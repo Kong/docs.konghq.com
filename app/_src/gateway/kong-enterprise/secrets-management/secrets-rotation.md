@@ -30,11 +30,10 @@ Kong PDK API that can be used to rotate secrets on failure: [kong.vault.try](/ga
 
 ## Periodically rotating secrets using TTLs
 
-Kong employs a background job that runs periodically **once every minute** (thus you cannot currently
-automatically rotate more often than that). Its job is to rotate secrets that are about to expire.
-The TTL can be configured with the Vault (for all the secrets) or in secret reference (for a single secret).
-By default, Kong does not rotate any secrets, so **remember to configure the TTLs** if you want to turn on
-**the automatic rotation**.
+Kong automatically rotates secrets *once every minute*, through a background job. This allows uncoupling the secret rotation process from proxying. It has some consequences:
+
+* The once-per-minute refresh rate means that a secret with a TTL of 30 seconds might take up to 60 seconds to refresh in the least favorable scenario.
+* Additionally, if the sum of TTL and `resurrect_ttl` is less than 60 seconds for a given secret, it won't be refreshed or resurrected correctly.
 
 The TTL based rotation works with most of the Kong supported vaults, including:
 

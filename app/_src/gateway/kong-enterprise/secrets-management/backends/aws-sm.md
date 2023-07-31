@@ -30,9 +30,7 @@ export KONG_VAULT_AWS_REGION=<aws-region>
 
 ### Examples
 
-For example, let's use an AWS Secrets Manager Secret with the name `my-secret-name`.
-
-In this object, you have multiple key=value pairs.
+For example, an AWS Secrets Manager Secret with the name `my-secret-name` may have multiple key=value pairs, like so:
 
 ```json
 {
@@ -141,7 +139,7 @@ Parameter | Field name                     | Description
 ----------|--------------------------------|------------
 `vaults.config.region` | **AWS region** | The AWS region your vault is located in.
 `vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the AWS vault when cached.
-`vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a AWS vault miss (no secret).
+`vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a vault miss (no secret). Negatively cached secrets will remain valid until neg_ttl is reached, after which Kong will attempt to refresh the secret again.
 `vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for how long secrets will remain in use after they are expired (config.ttl is over). This is useful when a vault becomes unreachable, or when a secret is deleted from the Vault and isn't replaced immediately. On this both cases, the Gateway will keep trying to refresh the secret for `resurrect_ttl` seconds. After that, it will stop trying to refresh. It is recommended to assign a sufficiently high value to this configuration option to ensure a seamless transition in cases of unexpected issues with the Vault.
 
 Common options:

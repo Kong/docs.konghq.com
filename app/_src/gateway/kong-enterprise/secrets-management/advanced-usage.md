@@ -129,7 +129,7 @@ Most of the vaults also support secret rotation by using TTLs:
 Parameter | Field name | Description
 ----------|------------|------------
 `vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the vault when cached.
-`vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a vault miss (no secret).
+`vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a vault miss (no secret). Negatively cached secrets will remain valid until neg_ttl is reached, after which Kong will attempt to refresh the secret again.
 `vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for how long secrets will remain in use after they are expired (config.ttl is over). This is useful when a vault becomes unreachable, or when a secret is deleted from the Vault and isn't replaced immediately. On this both cases, the Gateway will keep trying to refresh the secret for `resurrect_ttl` seconds. After that, it will stop trying to refresh. It is recommended to assign a sufficiently high value to this configuration option to ensure a seamless transition in cases of unexpected issues with the Vault.
 
 [Read more about secrets rotation](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/secrets-rotation/).
