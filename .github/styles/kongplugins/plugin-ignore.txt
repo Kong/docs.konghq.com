@@ -77,8 +77,12 @@ allow_partial_chain
 allow_paths
 allow_status_codes
 allowBoolean
+amal
 allowDetailed
 allowed_content_types
+consumer_group
+barryallen
+wallywest
 allowed_header_parameters
 allowed_payload_size
 allPeople
