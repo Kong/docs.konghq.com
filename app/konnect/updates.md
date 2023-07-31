@@ -9,8 +9,10 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
-
 ## July 2023
+
+**API Products API released**
+: A new {{site.konnect_short_name}} API for managing API products and versions is now available for external consumption. This API allows you to create and manage API products and versions, upload documentation and specs, and link a version to an existing Gateway service to enable application registration. As a result, you can integrate this API into your automated pipeline to streamline publishing documentation for your products to your third-party developers. Explore the API spec on our [Developer Portal](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0)
 
 **API Products**
 : Introducing a new {{site.konnect_short_name}} module, [API Products](https://cloud.konghq.com/us/api-products/), where technical & non-technical audiences can document their services, link to Gateway services for application registration, and publish API Products to a Developer Portal for consumption. Existing {{site.konnect_short_name}} customers will find that their services in Service Hub have been seamlessly moved to the new API Products UI & API experience.
@@ -35,6 +37,13 @@ With composite runtime groups, organizations can reduce infrastructure costs whi
 : The read-only [Ingress Controller association with {{site.konnect_short_name}}](/konnect/runtime-manager/kic/) is now GA and can be deployed in a production environment. This release also includes the following features:
 * {{site.konnect_short_name}} now manages license and entitlement for KIC-managed Gateways so that you don't need to worry about license management. There is a [seamless upgrade path](/kubernetes-ingress-controller/latest/guides/choose-gateway-image/) available if you want to move from the OSS experience to the Enterprise experience.
 * {{site.konnect_short_name}} now supports analytics for KIC runtime groups. You can get detailed visibility into your K8 native managed Gateways on the {{site.konnect_short_name}} platform.
+
+**Identity Management and Audit Log Roles**
+: Introducing two new administrative roles in  {{site.konnect_short_name}}, `Identity Management` and `Audit Logs Setting`.
+- `Identity Management` - access to users, teams, system accounts, tokens, IdP configurations, and authentication settings.
+- `Audit Logs Setting` - access to configuring webhooks to receive region-specific audit logs and to trigger audit log replays.
+
+: These roles provide finer control over administrative capabilities inline with least privilege principles.
 
 ## June 2023
 

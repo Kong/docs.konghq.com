@@ -34,12 +34,12 @@ Install {{site.base_gateway}} on Ubuntu from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.all.deb "{{ site.links.download }}/gateway-2.x-ubuntu-$(lsb_release -sc)/pool/all/k/kong-enterprise-edition/kong-enterprise-edition_{{page.kong_versions[page.version-index].ee-version}}_all.deb"
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.all.deb "{{ site.links.cloudsmith }}/public/gateway-28/deb/ubuntu/pool/jammy/main/k/ko/kong-enterprise-edition_{{page.versions.ee}}/kong-enterprise-edition_{{page.versions.ee}}_all.deb"
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.deb "{{ site.links.download }}/gateway-2.x-ubuntu-$(lsb_release -sc)/pool/all/k/kong/kong_{{page.kong_versions[page.version-index].ce-version}}_amd64.deb"
+curl -Lo kong-{{page.versions.ce}}.amd64.deb "{{ site.links.cloudsmith }}/public/gateway-28/deb/ubuntu/pool/bionic/main/k/ko/kong_{{page.versions.ce}}/kong_{{page.versions.ce}}_amd64.deb"
  ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -53,12 +53,12 @@ curl -Lo kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.deb "{
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-sudo dpkg -i kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.all.deb
+sudo apt install -y ./kong-enterprise-edition-{{page.versions.ee}}.all.deb
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-sudo dpkg -i kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.deb
+sudo apt install -y ./kong-{{page.versions.ce}}.amd64.deb
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -71,10 +71,12 @@ sudo dpkg -i kong-{{page.kong_versions[page.version-index].ce-version}}.amd64.de
 
 Install the APT repository from the command line.
 
+{% assign gpg_key = site.data.installation.gateway['28'].gpg_key  %}
+
 1. Setup the Kong APT repository:
     ```bash
-    echo "deb [trusted=yes] {{ site.links.download }}/gateway-2.x-ubuntu-$(lsb_release -sc)/ \
-    default all" | sudo tee /etc/apt/sources.list.d/kong.list
+    curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/gpg.{{ gpg_key }}.key" |  gpg --dearmor | sudo tee /usr/share/keyrings/kong-gateway-{{ page.major_minor_version }}-archive-keyring.gpg > /dev/null
+    curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/config.deb.txt?distro=ubuntu&codename=focal" | sudo tee /etc/apt/sources.list.d/kong-gateway-{{ page.major_minor_version }}.list > /dev/null
     ```
 
 2. Update the repository:
@@ -88,13 +90,13 @@ Install the APT repository from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-sudo apt install -y kong-enterprise-edition={{page.kong_versions[page.version-index].ee-version}}
+sudo apt install -y kong-enterprise-edition={{page.versions.ee}}
 ```
 
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-sudo apt install -y kong={{page.kong_versions[page.version-index].ce-version}}
+sudo apt install -y kong={{page.versions.ce}}
 ```
 
 
