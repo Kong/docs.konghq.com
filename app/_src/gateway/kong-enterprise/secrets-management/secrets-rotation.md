@@ -32,7 +32,7 @@ Kong PDK API that can be used to rotate secrets on failure: [kong.vault.try](/ga
 
 Kong employs a background job that runs periodically **once every minute** (thus you cannot currently
 automatically rotate more often than that). Its job is to rotate secrets that are about to expire.
-The TTL can be configured  with the Vault (for all the secrets) or in secret reference (for a single secret).
+The TTL can be configured with the Vault (for all the secrets) or in secret reference (for a single secret).
 By default, Kong does not rotate any secrets, so **remember to configure the TTLs** if you want to turn on
 **the automatic rotation**.
 
