@@ -30,4 +30,4 @@ Consumers that are not in a consumer group default to the Rate Limiting advanced
 plugin’s configuration, so you can define tier groups for some users and
 have a default behavior for consumers without groups.
 
-To learn how this works, follow the [rate-limiting guide](hub/kong-inc/rate-limiting-advanced/how-to/)
+To learn how this works, follow the [rate-limiting guide](/hub/kong-inc/rate-limiting-advanced/how-to/)
