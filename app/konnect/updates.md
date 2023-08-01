@@ -11,9 +11,8 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## June 2023
 
-**Makelog Integration**
-: Makelog integration will allow {{site.konnect_saas}} feature teams to publish product updates in time with the feature releases and also manage the in-product release annoucements based on feature flags. Once integrated, customers will see the latest feature updates easily and quickly in UI.
-
+**Release announcements in Konnect**
+: With Makelog integration, you can now see the latest feature and update announcements in the {{site.konnect_saas}} UI. 
 ## May 2023
 
 **Gateway 3.3 Support**
