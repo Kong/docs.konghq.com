@@ -48,7 +48,8 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
           'extn_release' => '2.8.x',
           'extn_icon' => '/assets/images/icons/hub/kong-inc_jwt-signer.png',
           'layout' => 'extension',
-          'book' => 'plugins/kong-inc/jwt-signer/2.8.x'
+          'book' => 'plugins/kong-inc/jwt-signer/2.8.x',
+          'kong_version' => '2.8.x'
         )
       end
 
@@ -90,7 +91,8 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
           'extn_release' => '2.5.x',
           'extn_icon' => '/assets/images/icons/hub/kong-inc_jwt-signer.png',
           'layout' => 'extension',
-          'book' => 'plugins/kong-inc/jwt-signer/2.5.x'
+          'book' => 'plugins/kong-inc/jwt-signer/2.5.x',
+          'kong_version' => '2.5.x'
         )
       end
 
