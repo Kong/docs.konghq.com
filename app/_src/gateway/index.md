@@ -212,7 +212,7 @@ the Kong Admin API.
 To test it out, you can choose either the open-source package, or
 run {{site.base_gateway}} in free mode and also try out Kong Manager.
 
-After installation, get started with our introductory [quickstart guide](/gateway/{{page.kong_version}}/get-started/)
+After installation, get started with the introductory [quickstart guide](/gateway/{{page.kong_version}}/get-started/)
 
 ### Try in {{site.konnect_short_name}}
 
@@ -233,4 +233,4 @@ Kong primarily follows a [semantic versioning](https://semver.org/) (SemVer)
 model for its products.
 
 For the latest version support information for {{site.ee_product_name}} and
-{{site.mesh_product_name}}, see our [version support policy](/gateway/{{page.kong_version}}/support-policy/).
+{{site.mesh_product_name}}, see the [version support policy](/gateway/{{page.kong_version}}/support-policy/).

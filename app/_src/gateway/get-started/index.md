@@ -95,7 +95,7 @@ This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://
 
     {% if_version gte:3.4.x %}
     {:.note}
-    > **Note:** If you install {{site.ce_product_name}}, you will use [Kong Manager Open Source](/gateway/{{page.kong_version}}/kong-manager-oss/). All other {{site.base_gateway}} installations use the [regular Kong Manager](/gateway/{{page.kong_version}}/kong-manager/).
+    > **Note:** If you install {{site.ce_product_name}}, you will use [Kong Manager Open Source](/gateway/{{page.kong_version}}/kong-manager-oss/). All other {{site.base_gateway}} installations use the [Kong Manager Free version](/gateway/{{page.kong_version}}/kong-manager/).
     {% endif_version %}
 
 Every step in this tutorial requires a running {{site.base_gateway}}, so leave
