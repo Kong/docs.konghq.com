@@ -26,8 +26,7 @@ module PluginSingleSource
         {
           'is_latest' => @release.latest?,
           'seo_noindex' => @release.latest? ? nil : true,
-          'version' => @release.set_version? ? @release.version : nil,
-          'kong_version' => @release.version,
+          'version' => @release.version,
           'extn_slug' => @release.name,
           'extn_publisher' => @release.vendor,
           'extn_release' => @release.version,
