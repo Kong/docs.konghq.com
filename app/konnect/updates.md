@@ -9,7 +9,7 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
-## June 2023
+## August 2023
 
 **Release announcements in Konnect**
 : With Makelog integration, you can now see the latest feature and update announcements in the {{site.konnect_saas}} UI. 
