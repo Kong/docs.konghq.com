@@ -2,10 +2,14 @@
 nav_title: Overview
 ---
 
-HTTP Log plugin lets you send request and response logs to an HTTP server.
+The HTTP Log plugin lets you send request and response logs to an HTTP server.
+
+It also supports stream data (TCP, TLS, and UDP).
+
+## Features
 
 {% if_plugin_version gte:3.3.x %}
-## Queueing
+### Queueing
 
 The HTTP Log plugin uses internal queues to decouple the production of
 log entries from their transmission to the upstream log server.  In
@@ -17,7 +21,9 @@ All plugin instances that have the same values for these parameters
 share one queue.
 {% endif_plugin_version %}
 
-## Custom Headers
+{% if_plugin_version gte:3.0.x %}
+
+### Custom Headers
 
 The log server that receives these messages might require extra headers, such as for authorization purposes.
 
@@ -30,10 +36,34 @@ The log server that receives these messages might require extra headers, such as
 ...
 ```
 
-## Kong process errors
+{% endif_plugin_version %}
+
+{% if_plugin_version lte:2.8.x %}
+
+### Custom Headers
+
+The log server that receives these messages might require extra headers, such as for authorization purposes.
+
+```yaml
+...
+  - name: http-log
+    config:
+      headers:
+        Authorization: 
+          - "Bearer <token>"
+...
+```
+
+{% endif_plugin_version %}
+
+### Kong process errors
 
 {% include /md/plugins-hub/kong-process-errors.md %}
 
-## Custom Fields by Lua
+## Get started with the HTTP Log plugin
+* [Configuration reference](/hub/kong-inc/http-log/configuration/)
+* [Basic configuration example](/hub/kong-inc/http-log/how-to/basic-example/)
+* [Using custom fields by Lua](/hub/kong-inc/http-log/how-to/custom-fields/)
+* [Configure HTTP Log to send logs to Splunk](/hub/kong-inc/http-log/how-to/custom-fields/)
+* [Log format reference](/hub/kong-inc/http-log/how-to/log-format/)
 
-{% include /md/plugins-hub/log_custom_fields_by_lua.md %}

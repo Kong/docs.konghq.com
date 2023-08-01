@@ -17,14 +17,15 @@ You have a Splunk authorization token.
 To send raw text, use the [`/services/collector/raw`](https://docs.splunk.com/Documentation/Splunk/9.1.0/RESTREF/RESTinput#services.2Fcollector.2Fraw) Splunk endpoint.
 
 For example, assuming that Splunk is running at `https://example.splunkcloud.com:8088/` and its secure token is `123456`,
-enable an HTTP Log plugin instance using the following configuration: 
+you can enable an HTTP Log plugin instance using the following configuration: 
 
+{% if_plugin_version gte:3.0.x %}
 {% plugin_example %}
 plugin: kong-inc/http-log
 name: http-log
 config:
   headers:
-    - Authorization: "Splunk 123456"
+    Authorization: "Splunk 123456"
   http_endpoint: "https://example.splunkcloud.com:8088/services/collector/raw"
   method: POST
   timeout: 3000
@@ -39,6 +40,32 @@ formats:
   - yaml
   - kubernetes
 {% endplugin_example %}
+{% endif_plugin_version %}
+
+
+{% if_plugin_version lte:2.8.x %}
+{% plugin_example %}
+plugin: kong-inc/http-log
+name: http-log
+config:
+  headers:
+    Authorization: 
+      - "Splunk 123456"
+  http_endpoint: "https://example.splunkcloud.com:8088/services/collector/raw"
+  method: POST
+  timeout: 3000
+  retry_count: 1
+targets:
+  - service
+  - route
+  - consumer
+  - global
+formats:
+  - curl
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+{% endif_plugin_version %}
 
 Based on this configuration, the HTTP Log plugin sends the logs to `https://example.splunkcloud.com:8088/services/collector/raw` with a secure token.
 

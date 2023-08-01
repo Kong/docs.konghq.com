@@ -15,6 +15,6 @@ nav_title: Log format
 
 {% include /md/plugins-hub/log-format.md %}
 
-## JSON object considerations
+### JSON object descriptions
 
 {% include /md/plugins-hub/json-object-log.md %}
