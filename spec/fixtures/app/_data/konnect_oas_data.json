@@ -1,0 +1,52 @@
+[
+  {
+    "id": "2dad627f-7269-40db-ab14-01264379cec7",
+    "title": "Portal RBAC",
+    "latestVersion": {
+      "name": "v2",
+      "id": "0ecb66fc-0049-414a-a1f9-f29e8a02c696"
+    },
+    "description": "(Konnect) The portal rbac api provides methods for creating and describing teams, collecting developers into teams, assigning roles to give those teams functionality in the developer portal.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "0ecb66fc-0049-414a-a1f9-f29e8a02c696",
+        "created_at": "2023-01-24T20:12:45.051Z",
+        "updated_at": "2023-02-24T17:04:31.582Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "e46e7742-befb-49b1-9bf1-7cbe477ab818",
+    "title": "Audit Logs API",
+    "latestVersion": {
+      "name": "v2",
+      "id": "d36126ee-ab8d-47b2-960f-5703da22cced"
+    },
+    "description": "The management API for Konnect audit logging",
+    "documentCount": 0,
+    "versionCount": 2,
+    "versions": [
+      {
+        "id": "d36126ee-ab8d-47b2-960f-5703da22cced",
+        "created_at": "2023-01-18T22:01:21.688Z",
+        "updated_at": "2023-01-19T16:53:17.132Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "d36126ee-ab8d-47b2-960f-5703da22ccee",
+        "created_at": "2023-01-18T22:01:21.688Z",
+        "updated_at": "2023-01-19T16:53:17.132Z",
+        "name": "v1",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  }
+]
