@@ -316,12 +316,17 @@ You must also make sure the global control plane communicates with Vault. When a
 <!-- links -->
 {% if_version gte:2.0.x %}
 [mtls-policy]: /mesh/{{page.kong_version}}/policies/mutual-tls/
+{% if_version lte:2.1.x %}
 [secrets]: /mesh/{{page.kong_version}}/security/secrets/
+{% endif_version %}
+{% if_version gte:2.2.x %}
+[secrets]: /mesh/{{page.kong_version}}/production/secure-deployment/secrets/
+{% endif_version %}
 [http-api]: /mesh/{{page.kong_version}}/reference/http-api/
 {% endif_version %}
 
 {% if_version lte:1.9.x %}
-[mtls-policy]: https://kuma.io/docs/latest/policies/mutual-tls/
-[secrets]: https://kuma.io/docs/latest/security/secrets/
-[http-api]: https://kuma.io/docs/latest/reference/http-api
+[mtls-policy]: https://kuma.io/docs/1.8.x/policies/mutual-tls/
+[secrets]: https://kuma.io/docs/1.8.x/security/secrets/
+[http-api]: https://kuma.io/docs/1.8.x/reference/http-api
 {% endif_version %}

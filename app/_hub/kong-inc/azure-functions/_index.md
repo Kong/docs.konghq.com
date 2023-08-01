@@ -1,3 +1,7 @@
+This plugin invokes [Azure Functions](https://azure.microsoft.com/en-us/services/functions/).
+It can be used in combination with other [request plugins](/hub/?search=request) 
+to secure, manage, or extend the function.
+
 ## Demonstration
 
 To demonstrate the plugin, set up the [Azure Functions "hello world" function](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-azure-function).
@@ -65,6 +69,10 @@ plugins:
 {% endnavtab %}
 {% endnavtabs %}
 
+{:.note}
+> **Note:** If `config.https_verify` is set as `true`, then the server certificate
+is verified according to the CA certificates specified by the
+`lua_ssl_trusted_certificate` directive in your Kong configuration.
 
 ### Test the Azure Function through Kong
 

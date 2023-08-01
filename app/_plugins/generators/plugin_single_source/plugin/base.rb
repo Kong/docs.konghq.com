@@ -46,10 +46,6 @@ module PluginSingleSource
         @sources ||= Hash.new { |_k, _v| '_index' }
       end
 
-      def set_version?
-        releases.size > 1
-      end
-
       def ext_data
         {}
       end

@@ -26,7 +26,7 @@ module PluginSingleSource
         {
           'is_latest' => @release.latest?,
           'seo_noindex' => @release.latest? ? nil : true,
-          'version' => @release.set_version? ? @release.version : nil,
+          'version' => @release.version,
           'extn_slug' => @release.name,
           'extn_publisher' => @release.vendor,
           'extn_release' => @release.version,
@@ -66,7 +66,12 @@ module PluginSingleSource
       def hub_examples
         return unless @release.schema
 
-        ::Jekyll::Drops::Plugins::HubExamples.new(schema: @release.schema)
+        ::Jekyll::Drops::Plugins::HubExamples.new(
+          schema: @release.schema,
+          example: @release.schema.example,
+          targets: %i[consumer route global service],
+          formats: %i[curl yaml kubernetes]
+        )
       end
 
       def schema

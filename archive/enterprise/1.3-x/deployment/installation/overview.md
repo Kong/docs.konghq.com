@@ -37,7 +37,7 @@ disable_image_expand: true
   </a>
 
   <a href="/enterprise/{{page.kong_version}}/deployment/installation/rhel" class="docs-grid-install-block">
-    <img class="install-icon" src="https://www.redhat.com/cms/managed-files/styles/wysiwyg_full_width/s3/Logo-RedHat-Hat-Color-CMYK%20%281%29.jpg?itok=Mf0Ff9jq" alt="redhat" />
+    <img class="install-icon" src="/assets/images/icons/documentation/rhel.jpg" alt="redhat" />
     <div class="install-text">RHEL</div>
   </a>
 

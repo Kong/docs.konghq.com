@@ -1,3 +1,16 @@
+Add HMAC Signature authentication to a service or a route
+to establish the integrity of incoming requests. The plugin validates the
+digital signature sent in the `Proxy-Authorization` or `Authorization` header
+(in that order). This plugin implementation is based off the
+[draft-cavage-http-signatures](https://tools.ietf.org/html/draft-cavage-http-signatures)
+draft with a slightly different signature scheme.
+
+{:.important}
+> **Important**: Once the plugin is enabled, any user with a valid credential can access the service or route.
+To restrict usage to only some of the authenticated users, also add the
+[ACL](/plugins/acl/) plugin (not covered here) and create allowed or
+denied groups of users.
+
 ## Usage
 
 In order to use the plugin, you first need to create a Consumer to associate

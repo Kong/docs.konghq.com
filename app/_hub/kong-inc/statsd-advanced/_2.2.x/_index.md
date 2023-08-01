@@ -1,3 +1,14 @@
+Log [metrics](#metrics) for a service or route
+to a StatsD server.
+It can also be used to log metrics on [Collectd](https://collectd.org/)
+daemon by enabling its [StatsD
+plugin](https://collectd.org/wiki/index.php/Plugin:StatsD).
+
+By default the plugin sends a packet for each metric it observes. 
+`udp_packet_size` configures the greatest datagram size the Plugin can combine. 
+It should be less than 65507 according to UDP protocol. 
+Consider the MTU of the network when setting this parameter.
+
 ## Metrics
 
 Metric                     | Description | Namespace

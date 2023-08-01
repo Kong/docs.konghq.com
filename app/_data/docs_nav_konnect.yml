@@ -20,7 +20,7 @@
         - text: Control Plane Upgrades FAQ
           url: /upgrade-faq/
         - text: Supported Installation Options
-          url: /install-support/
+          url: /runtime-manager/runtime-instances/
 
 - title: Get Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
@@ -31,13 +31,13 @@
       url: /getting-started/access-account/
     - text: Set up a Runtime
       url: /getting-started/configure-runtime/
-    - text: Configure a Service
-      url: /getting-started/configure-service/
-    - text: Implement and Test the Service
-      url: /getting-started/implement-service/
+    - text: Proxy and Test a Service
+      url: /getting-started/deploy-service/
+    - text: Productize a Service
+      url: /getting-started/productize-service/
     - text: Get Started with the Dev Portal
       items:
-        - text: Publish and Consume Services
+        - text: Add Documentation
           url: /getting-started/publish-service/
         - text: Register Applications
           url: /getting-started/app-registration/
@@ -63,6 +63,16 @@
           url: /runtime-manager/runtime-instances/runtime-parameter-reference/
         - text: Using Custom DP Labels
           url: /runtime-manager/runtime-instances/custom-dp-labels
+    - text: Composite Runtime Groups
+      items: 
+        - text: Overview
+          url: /runtime-manager/composite-runtime-groups/
+        - text: Working with Composite Runtime Groups
+          url: /runtime-manager/composite-runtime-groups/how-to/
+        - text: Migrate Configuration into Composite Runtime Groups
+          url: /runtime-manager/composite-runtime-groups/migrate/
+        - text: Conflicts in Runtime Groups
+          url: /runtime-manager/composite-runtime-groups/conflicts/
 
     - text: Runtime Configuration
       items:
@@ -80,6 +90,14 @@
           url: /runtime-manager/declarative-config/
     - text: KIC Association
       url: /runtime-manager/kic/
+    - text: Manage Plugins
+      items:
+        - text: Overview
+          url: /runtime-manager/plugins/
+        - text: Configure a Plugin on a Gateway Service
+          url: /runtime-manager/enable-service-plugin/
+        - text: Configure a Plugin on a Route
+          url: /runtime-manager/enable-route-plugin/
     - text: Backup and Restore
       url: /runtime-manager/backup-restore/
     - text: Version Compatibility
@@ -87,23 +105,20 @@
     - text: Troubleshooting
       url: /runtime-manager/troubleshoot/
 
-
 - title: Service Hub
   icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
   items:
     - text: Overview
       url: /servicehub/
-    - text: Manage Service Documentation
-      url: /servicehub/service-documentation/
 
-    - text: Manage Plugins
-      items:
-        - text: Overview
-          url: /servicehub/plugins/
-        - text: Configure a Plugin on a Service
-          url: /servicehub/enable-service-plugin/
-        - text: Configure a Plugin on a Route
-          url: /servicehub/enable-route-plugin/
+- title: API Products
+  icon: /assets/images/icons/konnect/icn-api-product.svg
+  items:
+    - text: Overview
+      url: /api-products/
+    - text: Manage API Product Documentation
+      url: /api-products/service-documentation/
+
 
 - title: Dev Portal
   icon: /assets/images/icons/konnect/icn-dev-portal-nav.svg
@@ -120,7 +135,7 @@
           url: /dev-portal/access-and-approval/manage-devs/
         - text: Manage Application Registration Requests
           url: /dev-portal/access-and-approval/manage-app-reg-requests/
-        - text: Manage Application Connections
+        - text: Manage Application Registrations
           url: /dev-portal/access-and-approval/manage-app-connections/
         - text: Auto Approve Dev and App Registrations
           url: /dev-portal/access-and-approval/auto-approve-devs-apps/
@@ -130,7 +145,7 @@
       items:
         - text: Application Overview
           url: /dev-portal/applications/application-overview/
-        - text: Enable and Disable App Registration
+        - text: Enable and Disable App Registration for API Product Versions
           url: /dev-portal/applications/enable-app-reg/
         - text: Dynamic Client Registration
           items:
@@ -144,12 +159,21 @@
               url: /dev-portal/applications/dynamic-client-registration/auth0/
         - text: Create, Edit, and Delete an Application
           url: /dev-portal/applications/dev-apps/
-        - text: Register an Application with a Service
+        - text: Register an Application with an API product
           url: /dev-portal/applications/dev-reg-app-service/
         - text: Generate Credentials for an Application
           url: /dev-portal/applications/dev-gen-creds/
     - text: Customize Dev Portal
-      url: /dev-portal/customization/
+      items:
+        - text: Overview
+          url: /dev-portal/customization/
+        - text: About Self-Hosted Dev Portal
+          url: /dev-portal/customization/self-hosted-portal/
+        - text: Host your Dev Portal with Netlify 
+          url: /dev-portal/customization/netlify/
+    - text: Dev Portal SDK
+      url: https://www.npmjs.com/package/@kong/sdk-portal-js
+      absolute_url: true
     - text: Troubleshoot
       url: /dev-portal/troubleshoot/
 
@@ -158,8 +182,6 @@
   items:
     - text: Introduction to Analytics
       url: /analytics/
-    - text: Analyze Services and Routes
-      url: /analytics/services-and-routes/
     - text: Report Use Cases
       items: 
       - text: Analyze API Usage and Performance
@@ -208,10 +230,22 @@
             url: /org-management/okta-idp/
           - text: Login Sessions Reference
             url: /org-management/sessions-reference/
-          - text: Account and Org Deactivation
-            url: /org-management/deactivation/
           - text: Troubleshoot
             url: /org-management/troubleshoot/
+      - text: Audit Logging
+        items:
+          - text: Overview
+            url: /org-management/audit-logging/
+          - text: Set up an Audit Log Webhook
+            url: /org-management/audit-logging/webhook/
+          - text: Set up an Audit Log Replay Job
+            url: /org-management/audit-logging/replay-job/
+          - text: Verify Audit Log Signatures
+            url: /org-management/audit-logging/verify-signatures/
+          - text: Log Reference
+            url: /org-management/audit-logging/reference/
+      - text: Account and Org Deactivation
+        url: /org-management/deactivation/
 
 - title: API
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
@@ -271,6 +305,23 @@
             url: /api/runtime-groups-config/#vaults-object
         - text: API Spec
           url: https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf
+          absolute_url: true
+    - text: Portal Client API
+      items: 
+        - text: API Documentation
+          url: https://developer.konghq.com/spec/2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6/b4539157-4ced-4df5-affa-7d790baee356
+          absolute_url: true
+    - text: Audit Logs API
+      items:
+        - text: API Documentation
+          url: https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/
+          absolute_url: true
+        - text: Audit Log Webhooks
+          url: /api/audit-logs/webhook/
+    - text: API Products API
+      items: 
+        - text: API Spec
+          url: https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0
           absolute_url: true
     - text: Reference
       items:

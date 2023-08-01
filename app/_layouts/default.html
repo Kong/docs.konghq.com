@@ -40,7 +40,6 @@
 
     {% include_cached footer.html %} {% include_cached anchor_links.html %}
 
-    <script src="/assets/app.js?v={{ site.time | date: '%s' }}"></script>
     {% if jekyll.environment == "production" %}
       <script>
         (function stp(){
@@ -56,20 +55,6 @@
     <script
       id="github-bjs"
       src="https://buttons.github.io/buttons.js"
-      async
-      defer
-    ></script>
-    <script
-      id="twitter-wjs"
-      type="text/javascript"
-      src="https://platform.twitter.com/widgets.js"
-      async
-      defer
-    ></script>
-    <script
-      id="facebook-jssdk"
-      type="text/javascript"
-      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=842731852424506"
       async
       defer
     ></script>
@@ -159,73 +144,6 @@
         };
       })();
       _vwo_settings_timer = _vwo_code.init();
-    </script>
-
-    <script>
-      // Collapse Toggler
-      $('button[data-toggle="kong-expand"]').on('click', function(e) {
-        e.stopPropagation();
-        var $this = $(this);
-        $('#oss_subnav.expand').toggleClass('slideup');
-        $($this.data('target')).toggleClass('kong-navbar-collapse--expand');
-        $('nav.navbar.full-width').toggleClass('kong-navbar-collapse--expand');
-        $this.toggleClass('active').attr('aria-expanded', true);
-        $('.kong-navbar-collapse_section').removeClass('shift');
-        $('.subnav, .trigger, .remove').removeClass('active');
-        setTimeout(function() {
-          $('#menu-primary-nav li').removeClass('active');
-          $('.active-tab').removeClass('active-tab');
-        }, 100);
-      });
-
-      var $window = $(window);
-
-      function checkWidth() {
-        var windowsize = $window.width();
-        if (windowsize > 1080) {
-          $('.navbar').removeClass('mobile-triggers');
-          $('#menu-primary-nav li').removeClass('active');
-          $('.active-tab').removeClass('active-tab');
-        } else {
-          $('.navbar').addClass('mobile-triggers');
-        }
-      }
-      // Execute on load
-      checkWidth();
-      // Bind event listener
-      $(window).on("resize", checkWidth)
-
-      $('#menu-primary-nav .nav1 > a').on("click", function() {
-        if ($('nav.navbar').hasClass('mobile-triggers')) {
-          event.preventDefault();
-          $('.nav3').removeClass('active');
-          var position = $(this)
-            .parent()
-            .position();
-          $(this)
-            .parent()
-            .toggleClass('active');
-          $('body')
-            .get(0)
-            .style.setProperty(
-              '--navPosition',
-              (position.top - 75) * -1 + 'px'
-            );
-          $(this)
-            .parent()
-            .parent()
-            .toggleClass('active-tab');
-        }
-      });
-
-      $('#menu-primary-nav .nav3 > a').on("click", function() {
-        if ($('nav.navbar').hasClass('mobile-triggers')) {
-          event.preventDefault();
-          $(this)
-            .parent()
-            .toggleClass('active');
-        }
-      });
     </script>
   </body>
 

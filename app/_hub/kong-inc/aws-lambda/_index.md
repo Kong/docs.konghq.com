@@ -1,10 +1,18 @@
-## Sending parameters
+This plugin lets you invoke an [AWS Lambda](https://aws.amazon.com/lambda/) function from {{site.base_gateway}}. 
+The AWS Lambda plugin can be used in combination with other [request plugins](/hub/?search=request) 
+to secure, manage, or extend the function.
 
-Any form parameter sent along with the request is also sent as an
-argument to the AWS Lambda function.
+Any form parameter sent along with the request is also sent as an argument to the AWS Lambda function.
 
----
 ## Notes
+
+By default, cURL sends payloads with an
+`application/x-www-form-urlencoded` MIME type, which will naturally be URL-
+decoded by Kong. To ensure special characters that are likely to appear in
+your AWS key or secret (like `+`) are correctly decoded, you must
+URL-encode them with `--data-urlencode`.
+Alternatives to this approach would be to send your payload with a
+different MIME type (like `application/json`), or to use a different HTTP client.
 
 If you provide `aws_key` and `aws_secret`, they will be used in the highest priority to
 invoke the Lambda function.
@@ -79,7 +87,6 @@ from being executed. We are planning to remove this limitation in the future.
 
 {% endif_plugin_version %}
 
----
 ## Usage
 
 Prerequisite: You must have access to the AWS Console as a user who is

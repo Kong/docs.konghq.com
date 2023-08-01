@@ -1,3 +1,7 @@
+Validate requests before they reach their upstream service. Supports validating
+the schema of the body and the parameters of the request using either Kong's own
+schema validator (body only) or a JSON Schema Draft 4 compliant validator.
+
 ## Examples
 
 ### Overview

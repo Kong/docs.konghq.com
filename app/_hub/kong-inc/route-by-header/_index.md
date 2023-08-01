@@ -1,3 +1,5 @@
+{{site.base_gateway}} plugin to route requests based on request headers.
+
 ## Rules
 
 | parameter | description |

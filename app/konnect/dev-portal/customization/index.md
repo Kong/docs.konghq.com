@@ -6,6 +6,12 @@ content_type: how-to
 
 ## Appearance
 
+To customize Dev Portal, you have two options:
+* Basic customization using the Dev Portal [Appearance settings](#appearance) in the UI
+* Complete customization using the [open source Dev Portal client](/konnect/dev-portal/customization/self-hosted-portal/)
+
+### Basic customization
+
 The Dev Portal can be customized by those with admin roles via the **Appearance
 settings** in the {{site.konnect_short_name}} admin UI. To access the appearance
 settings, click {% konnect_icon dev-portal %} **Dev Portal**, then **Appearance**.
@@ -20,6 +26,16 @@ From the **Appearance** menu you have the ability to modify the following option
 
 For details on the requirements for each customizable option, hover over the information (`i`) icon next to each item in the UI.
 
+### Complete customization using the open source Dev Portal
+
+You can completely customize the Dev Portal using the [open source Dev Portal client](/konnect/dev-portal/customization/self-hosted-portal/). To enable the self-hosted Dev Portal, navigate to {% konnect_icon dev-portal %} **Dev Portal** > [**Settings**](https://cloud.konghq.com/portal/portal-settings), then set up a custom domain in the **Portal Domain** tab.
+
+This self-hosted portal provides the following benefits: 
+
+* **Fully customizable:** Use the [example frontend Dev Portal application](https://github.com/Kong/konnect-portal) as a starting point and then customize Dev Portal for your needs using the [Portal API](https://developer.konghq.com/spec/2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6/b4539157-4ced-4df5-affa-7d790baee356) and [Portal SDK](https://www.npmjs.com/package/@kong/sdk-portal-js). You can also integrate the API specs with workflows tailored to your organization's own processes.
+* **Hosting service choice:** When you self-host, you also get to choose which hosting service you use to deploy your Dev Portal. 
+* **Range of customization options:** With the self-hosted Dev Portal, you determine how much you want to customize. You can choose to use the example application right out of the box, or you can use the [Portal API](https://developer.konghq.com/spec/2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6/b4539157-4ced-4df5-affa-7d790baee356) and [Portal SDK](https://www.npmjs.com/package/@kong/sdk-portal-js) for more fine-grained control.
+
 ## Custom Dev Portal URL
 
 Every Dev Portal instance has an auto-generated default URL. You can also manage custom URLs within {{site.konnect_short_name}}. This gives users the ability to access the Dev Portal from either the default URL, for example `https://example.us.portal.konghq.com`, or a custom URL like `portal.example.com`.
@@ -28,6 +44,8 @@ To add a custom URL to Dev Portal, you need:
 
 * A domain and access to configure the domain's DNS `CNAME` records.
 * Your organization's auto-generated default Dev Portal URL.
+
+You can also choose to [self-host the Dev Portal with Netlify](/konnect/dev-portal/customization/netlify/) or any other static hosting service that supports single page applications.
 
 ### Configure DNS
 
@@ -42,9 +60,9 @@ The record will look like this:
 
 To add a custom URL to Dev Portal, open {% konnect_icon dev-portal %} **Dev Portal**, click **Settings**, then follow these steps:
 
-1. Open the **Portal URL** tab.
+1. Open the **Portal Domain** tab.
 
-3. Enter the fully qualified domain name (FQDN) including the subdomain, if applicable, into the **Custom Portal URL** field.
+3. Enter the fully qualified domain name (FQDN) including the subdomain, if applicable, into the **Custom Hosted Domain** field.
    Don't include a path or protocol (e.g. `https://`).
 
 4. Click **Save Custom Domain**.
@@ -81,7 +99,7 @@ Delete a custom Dev Portal URL through your organization's {{site.konnect_short_
 
 1. In {{site.konnect_short_name}}, open {% konnect_icon dev-portal %} **Dev Portal**, then click **Settings**.
 
-2. Open the **Portal URL** tab.
+2. Open the **Portal Domain** tab.
 
 3. Click **Delete Custom Domain**
 

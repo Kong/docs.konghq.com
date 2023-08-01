@@ -305,7 +305,7 @@ jQuery(function () {
       $(this).addClass("mobile");
       var headerCount = $(this).find("thead th").length;
 
-      for (i = 0; i <= headerCount; i++) {
+      for (var i = 0; i <= headerCount; i++) {
         var headerLabel = $(this)
           .find("thead th:nth-child(" + i + ") .mobile-label")
           .text();

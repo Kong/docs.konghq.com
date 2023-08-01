@@ -1,0 +1,362 @@
+overlay: 1.0.0
+info:
+  title: Add descriptions
+  version: 0.1
+actions:
+- target: $.paths["/{runtimeGroupId}/expected-config-hash"].get
+  update:
+    description: Retrieve the expected config hash for this runtime group. The expected
+      config hash can be used to verify if the config hash of a runtime instance is
+      up to date with the runtime group. The config hash will be the same if they
+      are in sync.
+- target: $.paths["/{runtimeGroupId}/dp-client-certificates"].get
+  update:
+    description: Returns a list of pinned dataplane client certificates that are associated
+      to this runtime group. A pinned dataplane certificate allows dataplanes configured
+      with the certificate and corresponding private key to establish connection with
+      this runtime group.
+- target: $.paths["/{runtimeGroupId}/dp-client-certificates/{certificate_id}"].get
+  update:
+    description: Retrieve a pinned dataplane client certificate associated to this
+      runtime group. A pinned dataplane certificate allows dataplanes configured with
+      the certificate and corresponding private key to establish connection with this
+      runtime group.
+- target: $.paths["/{runtimeGroupId}/dp-client-certificates/{certificate_id}"].delete
+  update:
+    description: Remove a pinned dataplane client certificate associated to this runtime
+      group. Removing a pinned dataplane certificate would invalidate any dataplanes
+      currently connected to this runtime group using this certificate.
+- target: $.paths["/{runtimeGroupId}/nodes"].get
+  update:
+    description: Returns a list of runtime instance records that are associated to
+      this runtime group. A runtime instance record contains all the metadata information
+      of the Kong Gateway dataplane.
+- target: $.paths["/{runtimeGroupId}/nodes/{nodeId}"].get
+  update:
+    description: Retrieve a specific runtime instance record associated to this runtime
+      group. A runtime instance record contains all the metadata information of the
+      Kong Gateway dataplane.
+- target: $.paths["/{runtimeGroupId}/nodes/{nodeId}"].delete
+  update:
+    description: Remove a specific runtime instance record associated to this runtime
+      group. Deleting this record does not prevent the runtime instance from re-connecting
+      to the runtime group.
+- target: $.paths["/{runtimeGroupId}/core-entities/ca_certificates"].get
+  update:
+    description: Retrieve a list of all available Certificate Authority (CA) certificates,
+      including the certificate ID, creation date, and other details. You can use
+      query parameters to filter the results by size or tags, for example `/ca-certificates?size=50&tags=enterprise`.
+- target: $.paths["/{runtimeGroupId}/core-entities/ca_certificates/{ca_certificate_id}"].delete
+  update:
+    description: Delete the specified Certificate Authority (CA) certificate using
+      the provided ca_certificate_id.
+- target: $.paths["/{runtimeGroupId}/core-entities/ca_certificates/{ca_certificate_id}"].get
+  update:
+    description: Retrieve details about the specified Certificate Authority (CA) certificate
+      using the provided path parameter `ca_certificate_id`.
+- target: $.paths["/{runtimeGroupId}/core-entities/ca_certificates/{ca_certificate_id}"].put
+  update:
+    description: Create or Update a CA Certificate using the provided path parameter
+      `ca_certificate_id`.
+- target: $.paths["/{runtimeGroupId}/core-entities/certificates"].get
+  update:
+    description: Retrieve a list of all available certificate/ You can use query parameters
+      to filter the results by size or tags, for example `/certificates?size=50&tags=enterprise`.
+- target: $.paths["/{runtimeGroupId}/core-entities/certificates/{certificate_id}"].delete
+  update:
+    description: 'Delete a Certificate
+
+      '
+- target: $.paths["/{runtimeGroupId}/core-entities/certificates/{certificate_id}"].get
+  update:
+    description: Retrieve details about the specified certificate using the provided
+      path parameter `certificate_id`.
+- target: $.paths["/{runtimeGroupId}/core-entities/certificates/{certificate_id}"].put
+  update:
+    description: 'Update details about the specified certificate using the provided
+      path parameter `certificate_id`.
+
+
+      Inserts (or replaces) the certificate under the requested `certificate_id`with
+      the definition specified in the request body. When the `id` attribute has the
+      structure of a UUID, the certificate being inserted/replaced will be identified
+      by its `id`. Otherwise it will be identified by the `name`.
+
+
+      When creating a new Certificate without specifying `id` (neither in the path
+      or the request body), then it will be auto-generated.
+
+      '
+- target: $.paths["/{runtimeGroupId}/core-entities/certificates/{certificate_name_or_id}/snis"].get
+  update:
+    description: Retrieve a paginated list of all SNIs associated with a certificate.
+      Use this endpoint to retrieve a list of SNIs that are linked to a specific certificate.
+      You can use the optional query parameters to filter the results based on specific
+      criteria. The response will include the list of SNIs and pagination information.
+      See the response schema for details on the expected format of the response body.
+- target: $.paths["/{runtimeGroupId}/core-entities/certificates/{certificate_id}/snis/{sni_id}"].delete
+  update:
+    description: Delete a an SNI associated with a a Certificate using an ID.
+- target: $.paths["/{runtimeGroupId}/core-entities/certificates/{certificate_id}/snis/{sni_id}"].get
+  update:
+    description: Get an SNI associated with a Certificate using ID or name.
+- target: $.paths["/{runtimeGroupId}/core-entities/certificates/{certificate_id}/snis/{sni_id}"].put
+  update:
+    description: 'Create or Update an SNI associated with a Certificate using ID or
+      name.
+
+
+      Inserts (or replaces) the SNI under the requested resource with the definition
+      specified in the body. The SNI will be identified by the id attribute.
+
+
+      When the name or id attribute has the structure of a UUID, the SNI being inserted/replaced
+      will be identified by its id. Otherwise it will be identified by its name.
+
+
+      When creating a new SNI without specifying id (neither in the URL nor in the
+      body), then it will be auto-generated.'
+- target: $.paths["/{runtimeGroupId}/core-entities/consumers"].get
+  update:
+    description: Retrieve a list of all consumers.You can use query parameters to
+      filter the results by size or tags, for example `/consumers?size=50&tags=enterprise`.
+- target: $.paths["/{runtimeGroupId}/core-entities/consumers/{consumer_id}"].delete
+  update:
+    description: Delete a specific consumer from the system using either the consumer
+      ID or the consumer username. This operation is irreversible and permanently
+      removes all data associated with the specified consumer. If the consumer was
+      deleted succesfully the endpoint will return a 204 response indicating that
+      the resource did not exist.
+- target: $.paths["/{runtimeGroupId}/core-entities/consumers/{consumer_id}"].get
+  update:
+    description: Retrieve the details of a specific consumer in the system using either
+      the consumer ID or the consumer username. If the consumer with the specified
+      ID or username cannot be found, the endpoint will return a 404.
+- target: $.paths["/{runtimeGroupId}/core-entities/consumers/{consumer_id}"].put
+  update:
+    description: "Create or Update Consumer using ID or username. The consumer will\
+      \ be identified via the username or id attribute.If the consumer with the specified\
+      \ ID or username cannot be found, the endpoint will return a 404. \n\nWhen the\
+      \ username or id attribute has the structure of a UUID, the Consumer being inserted/replaced\
+      \ will be identified by its id. Otherwise it will be identified by its username.\n\
+      \nWhen creating a new Consumer without specifying id (neither in the URL nor\
+      \ in the body), then it will be auto-generated.\n\nNotice that specifying a\
+      \ username in the URL and a different one in the request body is not allowed."
+- target: $.paths["/{runtimeGroupId}/core-entities/consumers/{consumer_id}/plugins"].get
+  update:
+    description: 'Retrieve a list of all plugins associated with a consumer. '
+- target: $.paths["/{runtimeGroupId}/core-entities/consumers/{consumer_id}/plugins/{plugin_id_or_instance_name}"].delete
+  update:
+    description: Delete a a Plugin associated with a a Consumer using ID.
+- target: $.paths["/{runtimeGroupId}/core-entities/consumers/{consumer_id}/plugins/{plugin_id_or_instance_name}"].get
+  update:
+    description: Get a Plugin associated with a Consumer using ID.
+- target: $.paths["/{runtimeGroupId}/core-entities/consumers/{consumer_id}/plugins/{plugin_id_or_instance_name}"].put
+  update:
+    description: Create or Update a Plugin associated with a Consumer using ID.
+- target: $.paths["/{runtimeGroupId}/core-entities/key-sets"].get
+  update:
+    description: 'Retrieve a list of all Key-sets in the system. A Key Set object
+      holds a collection of asymmetric key objects. This entity allows to logically
+      group keys by their purpose. Key Sets can be both tagged and filtered by tags.
+
+      '
+- target: $.paths["/{runtimeGroupId}/core-entities/key-sets/{key-set_id_or_name}"].delete
+  update:
+    description: Delete a Key-set.
+- target: $.paths["/{runtimeGroupId}/core-entities/key-sets/{key-set_id_or_name}"].get
+  update:
+    description: This endpoint retrieves information about a specific key-set based
+      on its ID or name.
+- target: $.paths["/{runtimeGroupId}/core-entities/key-sets/{key-set_id_or_name}"].put
+  update:
+    description: Update a Key-set using ID or name.
+- target: $.paths["/{runtimeGroupId}/core-entities/keys"].get
+  update:
+    description: List all Keys
+- target: $.paths["/{runtimeGroupId}/core-entities/keys/{key_id_or_name}"].delete
+  update:
+    description: Delete a Key
+- target: $.paths["/{runtimeGroupId}/core-entities/keys/{key_id_or_name}"].get
+  update:
+    description: Get a Key using ID or name.
+- target: $.paths["/{runtimeGroupId}/core-entities/keys/{key_id_or_name}"].put
+  update:
+    description: Create or Update Key using ID or name.
+- target: $.paths["/{runtimeGroupId}/core-entities/plugins"].get
+  update:
+    description: This endpoint allows you to list all the plugins. You can use query
+      parameters to filter the results by size or tags, for example `/plugins?size=50&tags=enterprise`.
+- target: $.paths["/{runtimeGroupId}/core-entities/plugins/{plugin_id_or_instance_name}"].delete
+  update:
+    description: Delete a Plugin
+- target: $.paths["/{runtimeGroupId}/core-entities/plugins/{plugin_id_or_instance_name}"].get
+  update:
+    description: Get a Plugin using ID.
+- target: $.paths["/{runtimeGroupId}/core-entities/plugins/{plugin_id_or_instance_name}"].put
+  update:
+    description: Create or Update Plugin using ID.
+- target: $.paths["/{runtimeGroupId}/core-entities/routes"].get
+  update:
+    description: 'List all routes
+
+
+      route entities define rules to match client requests. Each route is associated
+      with a service, and a service may have multiple routes associated to it. Every
+      request matching a given route will be proxied to its associated service.
+
+
+      > Note: Path handling algorithms v1 was deprecated in Kong 3.0. From Kong 3.0,
+      when router_flavor is set to expressions, route.path_handling will be unconfigurable
+      and the path handling behavior will be v0; when router_flavor is set to traditional_compatible,
+      the path handling behavior will be v0 regardless of the value of route.path_handling.
+      Only router_flavor = traditional will support path_handling v1'' behavior.'
+- target: $.paths["/{runtimeGroupId}/core-entities/routes/{route_id}"].delete
+  update:
+    description: Delete a route.
+- target: $.paths["/{runtimeGroupId}/core-entities/routes/{route_id}"].get
+  update:
+    description: Get a route using ID or name.
+- target: $.paths["/{runtimeGroupId}/core-entities/routes/{route_id}"].put
+  update:
+    description: Create or Update route using ID or name.
+- target: $.paths["/{runtimeGroupId}/core-entities/routes/{route_id}/plugins"].get
+  update:
+    description: List all Plugins associated with a a route
+- target: $.paths["/{runtimeGroupId}/core-entities/routes/{route_id}/plugins/{plugin_id_or_instance_name}"].delete
+  update:
+    description: Delete a a Plugin associated with a a route using ID.
+- target: $.paths["/{runtimeGroupId}/core-entities/routes/{route_id}/plugins/{plugin_id_or_instance_name}"].get
+  update:
+    description: Get a Plugin associated with a route using ID.
+- target: $.paths["/{runtimeGroupId}/core-entities/routes/{route_id}/plugins/{plugin_id_or_instance_name}"].put
+  update:
+    description: Create or Update a Plugin associated with a route using ID.
+- target: $.paths["/{runtimeGroupId}/core-entities/services"].get
+  update:
+    description: List all services
+- target: $.paths["/{runtimeGroupId}/core-entities/services/{service_id}"].delete
+  update:
+    description: Delete a service
+- target: $.paths["/{runtimeGroupId}/core-entities/services/{service_id}"].get
+  update:
+    description: Get a service using ID or name.
+- target: $.paths["/{runtimeGroupId}/core-entities/services/{service_id}"].put
+  update:
+    description: Create or Update service using ID or name.
+- target: $.paths["/{runtimeGroupId}/core-entities/services/{service_id}/plugins"].get
+  update:
+    description: List all Plugins associated with a a service
+- target: $.paths["/{runtimeGroupId}/core-entities/services/{service_id}/plugins/{plugin_id_or_instance_name}"].delete
+  update:
+    description: Delete a a Plugin associated with a a service using ID.
+- target: $.paths["/{runtimeGroupId}/core-entities/services/{service_id}/plugins/{plugin_id_or_instance_name}"].get
+  update:
+    description: Get a Plugin associated with a service using ID.
+- target: $.paths["/{runtimeGroupId}/core-entities/services/{service_id}/plugins/{plugin_id_or_instance_name}"].put
+  update:
+    description: Create or Update a Plugin associated with a service using ID.
+- target: $.paths["/{runtimeGroupId}/core-entities/services/{service_id}/routes"].get
+  update:
+    description: List all routes associated with a a service
+- target: $.paths["/{runtimeGroupId}/core-entities/services/{service_id}/routes/{route_id}"].delete
+  update:
+    description: Delete a a route associated with a a service using ID or name.
+- target: $.paths["/{runtimeGroupId}/core-entities/services/{service_id}/routes/{route_id}"].get
+  update:
+    description: Get a route associated with a service using ID or name.
+- target: $.paths["/{runtimeGroupId}/core-entities/services/{service_id}/routes/{route_id}"].put
+  update:
+    description: Create or Update a route associated with a service using ID or name.
+- target: $.paths["/{runtimeGroupId}/core-entities/snis"].get
+  update:
+    description: List all SNIs
+- target: $.paths["/{runtimeGroupId}/core-entities/snis/{sni_id}"].delete
+  update:
+    description: Delete an SNI
+- target: $.paths["/{runtimeGroupId}/core-entities/snis/{sni_id}"].get
+  update:
+    description: Get an SNI using ID or name.
+- target: $.paths["/{runtimeGroupId}/core-entities/snis/{sni_id}"].put
+  update:
+    description: Create or Update SNI using ID or name.
+- target: $.paths["/{runtimeGroupId}/core-entities/upstreams"].get
+  update:
+    description: 'List all registered upstreams. You can filter the results by pagination
+      size, offset, or tags like `/upstreams?size=10&offset=0`.
+
+      '
+- target: $.paths["/{runtimeGroupId}/core-entities/upstreams/{upstream_id}"].delete
+  update:
+    description: Delete an Upstream
+- target: $.paths["/{runtimeGroupId}/core-entities/upstreams/{upstream_id}"].get
+  update:
+    description: Get an Upstream using ID or name.
+- target: $.paths["/{runtimeGroupId}/core-entities/upstreams/{upstream_id}"].put
+  update:
+    description: Create or Update Upstream using ID or name.
+- target: $.paths["/{runtimeGroupId}/core-entities/upstreams/{upstream_id}/targets"].get
+  update:
+    description: List all Targets associated with a an Upstream
+- target: $.paths["/{runtimeGroupId}/core-entities/upstreams/{upstream_id}/targets/{target_id}"].delete
+  update:
+    description: Delete a a Target associated with a an Upstream using ID or target.
+- target: $.paths["/{runtimeGroupId}/core-entities/upstreams/{upstream_id}/targets/{target_id}"].get
+  update:
+    description: Get a Target associated with an Upstream using ID or target.
+- target: $.paths["/{runtimeGroupId}/core-entities/upstreams/{upstream_id}/targets/{target_id}"].put
+  update:
+    description: Create or Update a Target associated with an Upstream using ID or
+      target.
+- target: $.paths["/{runtimeGroupId}/core-entities/vaults"].get
+  update:
+    description: List all Vaults
+- target: $.paths["/{runtimeGroupId}/core-entities/vaults/{vault_id_or_prefix}"].delete
+  update:
+    description: Delete a Vault
+- target: $.paths["/{runtimeGroupId}/core-entities/vaults/{vault_id_or_prefix}"].get
+  update:
+    description: 'Get a Vault using ID or prefix.
+
+
+      Vault entities are used to configure different Vault connectors.'
+- target: $.paths["/{runtimeGroupId}/core-entities/vaults/{vault_id_or_prefix}"].put
+  update:
+    description: Create or Update Vault using ID or prefix.
+- target: $.paths["/{runtimeGroupId}/core-entities/schemas/plugins/{plugin_name}"].get
+  update:
+    description: "Retrieve the schema of a plugin\u2019s configuration. This is useful\
+      \ to understand what fields a plugin accepts, and can be used for building third-party\
+      \ integrations to the Kong\u2019s plugin system.\n"
+- target: $.paths["/{runtimeGroupId}/core-entities/consumer_groups"].get
+  update:
+    description: Returns a list of active consumer groups.
+- target: $.paths["/{runtimeGroupId}/core-entities/consumer_groups"].delete
+  update:
+    description: 'Delete a consumer group. Deleting a consumer group removes all consumers
+      from that group. This operation does not delete existing consuemrs.
+
+      '
+- target: $.paths["/{runtimeGroupId}/core-entities/consumer_groups/{group_id}"].get
+  update:
+    description: Return information about a specific consumer group by passing the
+      `group_id` as a path parameter.
+- target: $.paths["/{runtimeGroupId}/core-entities/consumer_groups/{group_id}"].put
+  update:
+    description: Create a consumer group.
+- target: $.paths["/{runtimeGroupId}/core-entities/consumer_groups/{group_id}"].delete
+  update:
+    description: Delete consumer group.
+- target: $.paths["/{runtimeGroupId}/core-entities/consumer_groups/{group_id}/consumers"].get
+  update:
+    description: Returns a list of consumers that belong to a consumer group.
+- target: $.paths["/{runtimeGroupId}/core-entities/consumer_groups/{group_id}/consumers"].delete
+  update:
+    description: Removes all consumers from a consumer group. Does not delete any
+      consumers.consumers.
+- target: $.paths["/{runtimeGroupId}/core-entities/consumers/{consumer_id}/consumer_groups"].get
+  update:
+    description: 'View all consumer groups that a consumer is assigned to.'
+- target: $.paths["/{runtimeGroupId}/core-entities/consumers/{consumer_id}/consumer_groups"].delete
+  update:
+    description: Remove a consumer from all groups

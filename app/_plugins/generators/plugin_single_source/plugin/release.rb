@@ -10,7 +10,7 @@ module PluginSingleSource
 
       attr_reader :version, :source, :site
 
-      def_delegators :@plugin, :ext_data, :vendor, :name, :dir, :set_version?
+      def_delegators :@plugin, :ext_data, :vendor, :name, :dir
 
       def initialize(site:, version:, plugin:, source:, is_latest:)
         @site = site
@@ -45,12 +45,22 @@ module PluginSingleSource
         end
       end
 
+      def references
+        return nil unless File.exist?(File.join(plugin_base_path, '_api.md'))
+
+        @references ||= Pages::References.new(
+          release: self,
+          file: '_api.md',
+          source_path: plugin_base_path
+        )
+      end
+
       def configuration
         return nil if schema.empty?
 
         @configuration ||= Pages::Configuration.new(
           release: self,
-          file: nil,
+          file: schema.file_path,
           source_path: pages_source_path
         )
       end
@@ -60,7 +70,7 @@ module PluginSingleSource
 
         @configuration_examples ||= Pages::ConfigurationExamples.new(
           release: self,
-          file: nil,
+          file: schema.example_file_path,
           source_path: pages_source_path
         )
       end

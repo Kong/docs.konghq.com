@@ -42,7 +42,7 @@ Server: kong/1.2.1
 1. Add a gRPC deployment and service:
 
     ```bash
-    kubectl apply -f https://bit.ly/grpcbin-service
+    kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/manifests/sample-apps/grpc.yaml
     service/grpcbin created
     deployment.apps/grpcbin created
     ```
@@ -181,7 +181,7 @@ kind: Ingress
 metadata:
   name: demo
   annotations:
-  kubernetes.io/ingress.class: kong
+    kubernetes.io/ingress.class: kong
 spec:
   rules:
   - http:

@@ -1,32 +1,38 @@
-{%- assign hub_examples = page.hub_examples -%}
+{%- assign hub_examples = include.hub_examples -%}
+
+{% if include.title %}
+  <h3 id="{{ include.title | slugify }}">{{ include.title }}</h3>
+{% endif %}
 
 {% capture global_content %}
-{%- include plugins/hub-examples/global.html hub_example=hub_examples.global -%}
+{%- include plugins/hub-examples/global.html hub_example=hub_examples.global render_intro_text=include.render_intro_text -%}
 {% endcapture %}
 
 {% if hub_examples.navtabs? %}
   {% navtabs parent %}
     {% if hub_examples.enable_on_service? %}
       {% navtab Enable on a service %}
-        {%- include plugins/hub-examples/service.html hub_example=hub_examples.service -%}
+        {%- include plugins/hub-examples/service.html hub_example=hub_examples.service render_intro_text=include.render_intro_text -%}
       {% endnavtab %}
     {% endif %}
 
     {% if hub_examples.enable_on_route? %}
       {% navtab Enable on a route %}
-        {%- include plugins/hub-examples/route.html hub_example=hub_examples.route -%}
+        {%- include plugins/hub-examples/route.html hub_example=hub_examples.route render_intro_text=include.render_intro_text -%}
       {% endnavtab %}
     {% endif %}
 
     {% if hub_examples.enable_on_consumer? %}
       {% navtab Enable on a consumer %}
-        {%- include plugins/hub-examples/consumer.html hub_example=hub_examples.consumer -%}
+        {%- include plugins/hub-examples/consumer.html hub_example=hub_examples.consumer render_intro_text=include.render_intro_text -%}
       {% endnavtab %}
     {% endif %}
 
-    {% navtab Enable globally %}
-      {{ global_content | markdownify }}
-    {% endnavtab %}
+    {% if hub_examples.enable_globally? %}
+      {% navtab Enable globally %}
+        {{ global_content | markdownify }}
+      {% endnavtab %}
+    {% endif %}
   {% endnavtabs %}
 {% else %}
   {{ global_content | markdownify }}

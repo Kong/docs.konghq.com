@@ -1037,6 +1037,8 @@ conform to the pattern defined by `openssl ciphers`.
 
 This value is ignored if `ssl_cipher_suite` is not `custom`.
 
+If you use DHE ciphers, you must also configure the `ssl_dhparam` parameter.
+
 **Default:** none
 
 
