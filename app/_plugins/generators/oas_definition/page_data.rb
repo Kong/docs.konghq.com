@@ -25,7 +25,9 @@ module OasDefinition
                      'title' => page_title,
                      'version' => @version.slice('id', 'name'),
                      'layout' => 'oas-spec',
-                     'canonical_url' => canonical_url
+                     'canonical_url' => canonical_url,
+                     'seo_noindex' => @latest ? nil : true,
+                     'is_latest' => @latest
                    })
     end
 
