@@ -9,10 +9,12 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
-## July 2023
+## August 2023
 
 **Azure for Dynamic Client Registration**
 : You can now use Azure Active Directory as the identity source for your Dev Portal's Dynamic Client Registration configuration. This expands {{site.konnect_short_name}}'s existing support, which already includes Okta, Auth0, and Curity. This streamlines developer self-service access to provisioning applications with secure access to published API Products. For more information, see [Configuring Azure for Dynamic Client Registration](/konnect/dev-portal/applications/dynamic-client-registration/azure/).
+
+## July 2023
 
 **API Products API released**
 : A new {{site.konnect_short_name}} API for managing API products and versions is now available for external consumption. This API allows you to create and manage API products and versions, upload documentation and specs, and link a version to an existing Gateway service to enable application registration. As a result, you can integrate this API into your automated pipeline to streamline publishing documentation for your products to your third-party developers. Explore the API spec on our [Developer Portal](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0)
