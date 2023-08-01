@@ -2554,9 +2554,8 @@ Turn on FIPS mode; this mode is only available on a FIPS build.
 
 The Admin GUI for Kong Enterprise.
 
-
 ### admin_gui_listen
-{:.badge .free}
+{% if_version lte:3.3.x %}{:.badge .free}{% endif_version %}
 
 Kong Manager Listeners
 
@@ -2571,7 +2570,7 @@ directive.
 
 
 ### admin_gui_url
-{:.badge .free}
+{% if_version lte:3.3.x %}{:.badge .free}{% endif_version %}
 
 Kong Manager URL
 
@@ -2592,11 +2591,10 @@ resolved listener port depending on the requested protocol.
 
 **Default:** none
 
-
 {% if_version gte:3.1.x %}
 
 ### admin_gui_path
-{:.badge .free}
+{% if_version lte:3.3.x %}{:.badge .free}{% endif_version %}
 
 Kong Manager base path
 
@@ -2626,7 +2624,7 @@ Examples:
 {% endif_version %}
 
 ### admin_gui_ssl_cert
-{:.badge .free}
+{% if_version lte:3.3.x %}{:.badge .free}{% endif_version %}
 
 {% if_version lte:3.0.x %}
 The absolute path to the SSL certificate for `admin_gui_listen` values with SSL
@@ -2646,7 +2644,7 @@ Values:
 
 
 ### admin_gui_ssl_cert_key
-{:.badge .free}
+{% if_version lte:3.3.x %}{:.badge .free}{% endif_version %}
 
 {% if_version lte:3.0.x %}
 The absolute path to the SSL key for `admin_gui_listen` values with SSL
@@ -2676,7 +2674,7 @@ Alters the layout Admin GUI (JSON) The only supported value is `{
 
 
 ### admin_gui_access_log
-{:.badge .free}
+{% if_version lte:3.3.x %}{:.badge .free}{% endif_version %}
 
 Kong Manager Access Logs
 
@@ -2689,7 +2687,7 @@ Setting this value to `off` disables access logs for Kong Manager.
 
 
 ### admin_gui_error_log
-{:.badge .free}
+{% if_version lte:3.3.x %}{:.badge .free}{% endif_version %}
 
 Kong Manager Error Logs
 
