@@ -32,9 +32,6 @@ configuration
 
 ## Create rate limiting tiers
 
-
-### Set up consumer group
-
 1. Create a consumer group named `Gold`:
 
     ```bash
@@ -102,26 +99,31 @@ configuration
       ]
     }
     ```
+{% if_plugin_version gte:3.4.x %}
+1. Enable the plugin on the consumer group
 
+    ```bash
+    curl -i -X POST http://{HOSTNAME}:8001/consumer_groups/gold/plugins/  \
+    --data name=rate-limiting-advanced \
+    --data config.limit=5 \
+    --data config.window_size=30 \
+    --data config.window_type=sliding \
+    --data config.retry_after_jitter_max=0 \
+    ```
+This configuration sets the rate limit to five requests (`config.limit`) for every
+30 seconds (`config.window_size`). 
+
+{% endif_plugin_version %}
+
+{% if_plugin_version lte:3.3.x %}
 ## Set up Rate Limiting Advanced config for consumer group
 
 1. Enable the [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/),
 setting the rate limit to five requests (`config.limit`) for every
 30 seconds (`config.window_size`):
 
-{% if_plugin_version gte:3.4.x %}
-    ```bash
-    curl -i -X POST http://{HOSTNAME}:8001/plugins/  \
-    --data name=rate-limiting-advanced \
-    --data config.limit=5 \
-    --data config.window_size=30 \
-    --data config.window_type=sliding \
-    --data config.retry_after_jitter_max=0 \
-    --data config.consumer_groups=Gold
-    ```
-{% endif_plugin_version %}
 
-{% if_plugin_version lte:3.3.x %}
+
     ```bash
     curl -i -X POST http://{HOSTNAME}:8001/plugins/  \
     --data name=rate-limiting-advanced \
@@ -133,12 +135,10 @@ setting the rate limit to five requests (`config.limit`) for every
     --data config.consumer_groups=Gold
     ```
 
-
-
     For consumer groups, the following parameters are required:
     * `config.enforce_consumer_groups=true`: enables consumer groups for this plugin.
     * `config.consumer_groups=Gold`: specifies a list of groups that this plugin allows overrides for.
-{% endif_plugin_version %}
+
 
     {:.note}
     > **Note:** In this example, you're configuring the plugin globally, so it
@@ -586,6 +586,7 @@ if you need to cycle the group for a new batch of users.
     HTTP/1.1 204 No Content
     ```
 
+{% endif_plugin_version %}
 
 ## More Information
 
