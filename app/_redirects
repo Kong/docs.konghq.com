@@ -5,7 +5,7 @@
 #3.4
 
 /gateway/latest/kong-enterprise/consumer-groups /gateway/latest/key-concepts/consumer-groups
-
+/gateway/latest/admin-api/consumer-groups/reference  https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60#/consumer_groups/get-consumer_groups
 #3.2
 
 /gateway/latest/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
