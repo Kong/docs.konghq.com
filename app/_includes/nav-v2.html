@@ -37,55 +37,51 @@
         </li>
 
         <li id="top-module-list" aria-haspopup="true" role="menuitem"
-          class="navbar-item main-menu-item with-submenu{% if include.layout != 'landing-page' %} active{% endif %}"
+          class="navbar-item main-menu-item with-submenu {% if include.layout != 'landing-page' %} active{% endif %}"
         >
-          <a href="/" tabindex="0" id="docs-link">Docs</a>
+          <span tabindex="0" id="docs-link" class="main-menu-item-title">Docs</span>
           <span class="caret"></span>
           <ul class="navbar-item-submenu" role="menu" aria-hidden="true">
             <div class="submenu-section">
+
               <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="/gateway/latest/" class="navbar-item navbar-item-docs">Kong Gateway</a>
+
+                <div class="docs-dropdown-li__section">
+                  <div class="docs-dropdown-li__section-title heading">
+                    Docs
+                  </div>
+                  <div class="docs-dropdown-li__section-items">
+
+                    {% for doc_menu_item in site.data.docs_top_nav %}
+                      <a class="item" href="{{ doc_menu_item.url }}">
+                        {% if doc_menu_item.icon %}
+                        <div>
+                          <img src="{{ doc_menu_item.icon }}" alt="{{ doc_menu_item.name }}'s icon">
+                        </div>
+                        {% endif %}
+                        <div class="item__description">
+                          <div class="item__description-title">{{ doc_menu_item.name }}</div>
+                          <div class="item__description-desc">{{ doc_menu_item.desc }}</div>
+                        </div>
+                      </a>
+                    {% endfor %}
+                  </div>
+                </div>
               </li>
-              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="/konnect/" class="navbar-item navbar-item-docs">Kong Konnect</a>
-              </li>
-              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="/mesh/latest/" class="navbar-item navbar-item-docs">Kong Mesh</a>
-              </li>
-              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="/hub/" class="navbar-item navbar-item-docs">Plugin Hub</a>
-              </li>
-              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="/deck/latest/" class="navbar-item navbar-item-docs">decK</a>
-              </li>
-              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="/kubernetes-ingress-controller/latest/" class="navbar-item navbar-item-docs">Kong Ingress
-                  Controller</a>
-              </li>
-              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="https://docs.insomnia.rest/" target="_blank"
-                  class="navbar-item navbar-item-docs">Insomnia</a>
-              </li>
-              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="https://kuma.io/docs/" target="_blank" class="navbar-item navbar-item-docs">Kuma</a>
-              </li>
-              <hr>
-              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="/contributing/" class="navbar-item navbar-item-docs">Docs contribution guidelines</a>
-              </li>
-              </div>
+
+            </div>
           </ul>
         </li>
         <li
           role="menuitem"
           aria-haspopup="true"
-          class="navbar-item main-menu-item with-submenu navbar-item-hub"
+          class="navbar-item navbar-item-hub main-menu-item with-submenu"
         >
-          <a href="/hub/" id="plugin-link">Plugin Hub</a>
+          <span id="plugin-link" class="main-menu-item-title">Plugin Hub</span>
           <span class="caret"></span>
-          <ul class="navbar-item-submenu navbar-item-submenu__hub" role="menu" aria-hidden="true">
+          <ul class="navbar-item-submenu" role="menu" aria-hidden="true">
             <div class="submenu-section submenu-section__hub">
-              <li role="menuitem" class="docs-dropdown-li docs-dropdown-li-hub" tabindex="-1">
+              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
                 <a href="/hub/" class="docs-dropdown-li__link">
                   <div class="docs-dropdown-li__card">
                     <span class="heading">Explore the Plugin Hub</span>
@@ -100,7 +96,7 @@
                 </a>
               </li>
 
-              <li role="menuitem" class="docs-dropdown-li docs-dropdown-li-hub" tabindex="-1">
+              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
                 <div class="docs-dropdown-li__section">
                   <div class="docs-dropdown-li__section-title">
                     <span class="heading">Functionality</span>
@@ -110,7 +106,7 @@
                     </a>
                   </div>
 
-                  <div class="docs-dropdown-li__section-items">
+                  <div class="docs-dropdown-li__section-items docs-dropdown-li__section-items-hub">
                     <a class="item item-all" href="/hub/">
                       <div class="item__description">
                         <div class="item__description-title">View all plugins</div>
