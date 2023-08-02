@@ -62,7 +62,9 @@ Once you have Azure configured, you can set up the Dev Portal to use Azure for d
 
 ## Create an application with DCR
 
+<!-- vale off -->
 From the **My Apps** page in the Dev Portal, follow these instructions:
+<!-- vale on -->
 
 1. Click the **New App** button.
 
