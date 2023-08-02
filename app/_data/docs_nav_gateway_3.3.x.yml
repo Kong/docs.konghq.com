@@ -28,7 +28,8 @@ items:
       - text: Breaking Changes
         items:
           - text: Kong Gateway 3.3.x
-            url: /breaking-changes/33x
+            url: /breaking-changes/
+            src: /gateway/breaking-changes/33x
           - text: Kong Gateway 3.2.x
             url: /breaking-changes/32x
           - text: Kong Gateway 3.1.x
@@ -226,6 +227,9 @@ items:
             src: /gateway/upgrade-v2
           - text: Migrate from OSS to Enterprise
             url: /migrate-ce-to-ke/
+          - text: Breaking Changes
+            url: /production/breaking-changes/
+            generate: false
   - title: Kong Enterprise
     icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
     items:
