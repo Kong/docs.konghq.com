@@ -113,7 +113,7 @@ custom plugins, for example.
 
 ### Plugins
 
-For breaking changes to plugins, see the [Kong Gateway Changelog](/gateway/changelog/) for your {{site.base_gateway}} version.
+For breaking changes to plugins, see the [{{site.base_gateway}} Changelog](/gateway/changelog/) for your {{site.base_gateway}} version.
 
 {% if_version gte:3.3.x %}
 ### Plugin queuing
@@ -222,7 +222,7 @@ from session configuration to avoid unpredictable behavior.
 #### Session plugin
 
 The following parameters and the values that they accept have changed. 
-For details on the new accepted values, see the [Seesion plugin](/hub/kong-inc/session/) documentation.
+For details on the new accepted values, see the [Session plugin](/hub/kong-inc/session/) documentation.
 
 Old parameter name | New parameter name
 -------------------|--------------------
@@ -406,7 +406,7 @@ Depending on the database you're using (Postgres or Cassandra), a database dump 
 
 Additionally, {{site.base_gateway}} supports exporting data in YAML format with `kong config db_export`, which later on
 can be imported back by `kong config db_import`. For more information, see
-[kong config CLI](https://docs.konghq.com/gateway/latest/reference/cli/#kong-config).
+[kong config CLI](/gateway/latest/reference/cli/#kong-config).
 
 ### Traditional mode
 
