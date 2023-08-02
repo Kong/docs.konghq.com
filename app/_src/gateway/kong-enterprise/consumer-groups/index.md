@@ -574,3 +574,9 @@ if you need to cycle the group for a new batch of users.
     ```
 
 {% endif_version %}
+
+
+## More Information
+
+* [API documentation](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60#/consumer_groups/get-consumer_groups)
+* [Enforcing rate limiting tiers with the Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/how-to/)

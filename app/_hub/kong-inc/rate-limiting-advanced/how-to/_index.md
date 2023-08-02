@@ -1,5 +1,5 @@
 ---
-nav_title: Rate-limiting tiers
+nav_title: How to create rate limiting tiers
 ---
 
 
