@@ -75,9 +75,13 @@ jwks: |
 
 ---
 
-## Admin API
+## Using the OpenID Connect API
 
-The OpenID Connect plugin extends the [Kong Admin API](/gateway/latest/admin-api/) with a few endpoints.
+The OpenID Connect plugin extends the Kong Admin API with endpoints for configuring discovery 
+caches and JWKs.
+
+To configure and enable the plugin itself, [use the `/plugins` API endpoint](/hub/kong-inc/openid-connect/how-to/basic-example/).
+The `/openid-connect` endpoints only appear once the plugin has been enabled. 
 
 ### Discovery Cache
 

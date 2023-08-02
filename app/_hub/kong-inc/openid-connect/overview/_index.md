@@ -1,7 +1,45 @@
 The OpenID Connect ([1.0][connect]) plugin (also known as OIDC) allows for integration with a third party
 identity provider (IdP) in a standardized way. This plugin can be used to implement
 Kong as a (proxying) [OAuth 2.0][oauth2] resource server (RS) and/or as an OpenID
-Connect relying party (RP) between the client, and the upstream service.
+Connect relying party (RP) between the client and the upstream service.
+
+## About OpenID Connect
+
+### What does OpenID Connect do?
+
+OpenID Connect provides a way to form a **federation** with **identity providers (IdPs)**. 
+Identity providers are third parties that store account credentials. 
+If the identity provider authenticates a user, the application trusts that provider and allows access to the user. 
+The identity provider bears some responsibility for protecting the user’s credentials and ensuring authenticity, 
+so applications no longer need to on their own.
+
+Besides delegating responsibility to an identity provider, OpenID Connect also makes single sign-on possible 
+without storing any credentials on a user’s local machine.
+
+Finally, enterprises may want to manage access control for many applications from one central system of record. 
+For example, they may want employees to be able to access many different applications using their email address and password. 
+They may want to also change access (for example, if an employee leaves or changes roles) from one central point. 
+OpenID Connect addresses this challenge by providing a way for many different applications to authenticate users through the 
+same third-party identity provider.
+
+### What does Kong’s OpenID Connect plugin do?
+
+Just as OpenID Connect enables developers to offload authentication to another party, Kong enables developers to 
+separate entire processes from their applications. Rather than needing to hand write the code for OpenID Connect 
+*within* a service, developers can place Kong in front of the service and have Kong handle authentication. 
+This separation allows developers to focus on the business logic within their application. 
+It also allows them to easily swap out services while preserving authentication at the front door, and 
+to effortlessly spread the same authentication to *new* services.
+
+Kong users may prefer OpenID Connect to other authentication types, such as Key Auth and Basic Auth, 
+because they will not need to manage the database storing passwords. Instead, they can offload the 
+task to a trusted identity provider of their choice.
+
+While the OpenID Connect plugin can suit many different use cases and extends to other plugins 
+such as JWT (JSON Web Token) and 0Auth 2.0, the most common use case is the 
+[authorization code flow](/hub/kong-inc/openid-connect/how-to/authentication/authorization-code-flow/).
+
+## Supported credentials, grants, and tested IdPs
 
 The plugin supports several types of credentials and grants:
 
@@ -114,7 +152,9 @@ In summary, start with the following parameters:
 4. `config.audience_required` (if using a public identity provider)
 5. `config.session_secret` (if using Kong in DB-less mode)
 
-## Authentication flows and grants
+## How-to guides and demos
+
+### Authentication flows and grants
 
 We use [HTTPie](https://httpie.org/) to execute the examples. The output is stripped
 for a better readability. [httpbin.org](https://httpbin.org/) is used as an upstream service.
@@ -146,7 +186,7 @@ not run these usage examples with a production identity provider as there is a g
 of leaking information. Also the examples below use the plain HTTP protocol that you should
 never use in production. 
 
-## Authorization
+### Authorization
 
 The OpenID Connect plugin has several features to do coarse grained authorization:
 
@@ -154,7 +194,7 @@ The OpenID Connect plugin has several features to do coarse grained authorizatio
 2. [ACL plugin authorization](/hub/kong-inc/openid-connect/how-to/authorization/acl/)
 3. [Consumer authorization](/hub/kong-inc/openid-connect/how-to/authorization/consumer/)
 
-## Authentication in Kong Manager
+### OIDC authentication in Kong Manager
 
 {{site.base_gateway}} can use OpenID Connect to secure Kong Manager.
 It offers the ability to bind authentication for Kong
@@ -169,7 +209,7 @@ To set up RBAC in Kong Manager with OIDC, see:
 * [Enable OIDC for Kong Manager](/gateway/latest/kong-manager/auth/oidc/configure/)
 * [OIDC Authenticated Group Mapping](/gateway/latest/kong-manager/auth/oidc/mapping/)
 
-## Authentication in Dev Portal
+### OIDC authentication in Dev Portal
 
 The OpenID Connect plugin allows the Kong Dev Portal to hook into existing authentication 
 setups using third-party identity providers such as Google, Okta, Microsoft Azure AD, Curity,
@@ -188,7 +228,7 @@ Self-managed {{site.base_gateway}}:
 * [Enable OpenID Connect in the Dev Portal](/gateway/latest/kong-enterprise/dev-portal/authentication/oidc/)
 * [OIDC with Curity for Dev Portal](/hub/kong-inc/openid-connect/how-to/third-party/curity/#kong-dev-portal-authentication)
 
-### Application registration
+#### Application registration
 
 You can also use OIDC for application registration in Dev Portal.
 
@@ -203,5 +243,12 @@ Application registration in self-managed {{site.base_gateway}}:
 * [External Portal Application Authentication with Azure AD and OIDC](/gateway/latest/kong-enterprise/dev-portal/authentication/azure-oidc-config/)
 * [Set Up External Portal Application Authentication with Okta and OIDC](/gateway/latest/kong-enterprise/dev-portal/authentication/okta-config/)
 
+### More information
 
-
+* [Configuration reference](/hub/kong-inc/openid-connect/configuration/)
+* [Basic configuration example](/hub/kong-inc/openid-connect/how-to/basic-example/)
+* [OpenID Connect plugin API reference](/hub/kong-inc/openid-connect/api/)
+* [Headers](/hub/kong-inc/openid-connect/how-to/headers/)
+* [Logout](/hub/kong-inc/openid-connect/how-to/logout/)
+* [Records](/hub/kong-inc/openid-connect/how-to/records/)
+* [Debugging](/hub/kong-inc/openid-connect/how-to/debugging/)
