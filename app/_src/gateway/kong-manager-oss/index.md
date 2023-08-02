@@ -14,7 +14,7 @@ Here are some of the things you can do with Kong Manager OSS:
 * Centrally store and easily access key sets and keys. 
 
 {:.note}
-> **Note:** If you are using the Enterprise image of {{site.base_gateway}}, you can use the [Free version of Kong Manager](/gateway/{{page.kong_version}}/kong-manager/). 
+> **Note:** If you are using the Enterprise image of {{site.base_gateway}}, you can use the [Kong Manager Enterprise](/gateway/{{page.kong_version}}/kong-manager/). 
 
 ## Kong Manager OSS interface
 
