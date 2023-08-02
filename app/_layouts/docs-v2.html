@@ -6,12 +6,12 @@ id: documentation
 
 {% assign latest_page_url = page.url | replace: page.kong_version, "latest" %}
 
-<div class="page v2 hub {{ page.class }}" data-url={{ page.url }}>
+<div class="page v2 {{ page.class }}" data-url={{ page.url }}>
   <div class="page--header-background"></div>
   <div class="container">
 
-    <header class="hub-page-header">
-      <div class="hub-page-header--nav">
+    <header class="page-header">
+      <div class="page-header--nav">
         <i class="sidebar-toggle"></i>
 
         {% unless page.no_breadcrumbs %}
@@ -34,8 +34,8 @@ id: documentation
         {% include header/github-links.html edit_link=edit_link %}
       </div>
 
-      <div class="hub-page-header--info">
-        <div class="hub-page-header--info-meta">
+      <div class="page-header--info">
+        <div class="page-header--info-meta">
           <div class="meta--title">
             <h1 id="main" tabindex="-1">
               {% if page.edition == 'enterprise' %}{{site.ee_product_name}}
