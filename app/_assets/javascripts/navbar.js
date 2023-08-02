@@ -31,9 +31,10 @@ function toggleButtonClicked() {
   }
 }
 
-function toggleSubmenuVisible(element) {
-  $(element).toggleClass("submenu-title");
-  $(element.parentElement).toggleClass("submenu-opened");
+function toggleSubmenuVisible(element, visible) {
+  $(element).toggleClass("submenu-title", visible);
+  $(element).toggleClass("submenu-opened", visible);
+  $(element).closest('ul.navbar-items').toggleClass("submenu-opened", visible);
 }
 
 // open Docs menu item upon enter and enable tabbing through menu
@@ -56,8 +57,14 @@ jQuery(function () {
     $(".with-submenu").removeClass("submenu-opened");
   });
 
-  $(".main-menu-item.with-submenu").on("click", function(e) {
-    toggleSubmenuVisible(e.target);
+  $("ul.navbar-items").on("click", function(e) {
+    const mainMenuItem = $(e.target).closest('.main-menu-item')[0];
+    $("ul.navbar-items .main-menu-item").each(function(i, elem) {
+      if (mainMenuItem !== elem) {
+        toggleSubmenuVisible(elem, false);
+      }
+    });
+    toggleSubmenuVisible($(mainMenuItem), !$(mainMenuItem).hasClass('submenu-opened'));
   });
 
   $(".search-input-wrapper img").on("click", function(e) {
