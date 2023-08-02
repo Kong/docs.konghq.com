@@ -10,7 +10,7 @@ pdk: true
 toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
-
+<!-- vale off -->
 Client information module.
 
  A set of functions to retrieve information about the client connecting to
