@@ -39,11 +39,11 @@
   {% capture product_title %}Style guide and contribution guidelines{% endcapture %}
 {% endif %}
 
-<div id="breadcrumbs">
   <ul class="breadcrumbs">
-    <i class="sidebar-toggle"></i>
     <li class="breadcrumb-item">
-      <a href="/">Home</a>
+      <a href="/">
+        <img src="/assets/images/icons/documentation/hub/icn-breadcrumbs.svg" alt="Home icon">
+      </a>
     </li>
     <li class="breadcrumb-item">
       <a href="{{ product_url }}">{{ product_title }}</a>
@@ -82,4 +82,3 @@
       <a href="{{ page.url }}">{{ page_title }}</a>
     </li>
   </ul>
-</div>
