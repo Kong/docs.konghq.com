@@ -7,7 +7,7 @@ id: documentation
 {% assign latest_page_url = page.url | replace: page.kong_version, "latest" %}
 
 <div class="page v2 {{ page.class }}" data-url={{ page.url }}>
-  <div class="page--header-background"></div>
+  <div class="page--header-background page--header-background-doc"></div>
   <div class="container">
 
     <header class="page-header">
@@ -32,50 +32,6 @@ id: documentation
         {% endcapture %}
 
         {% include header/github-links.html edit_link=edit_link %}
-      </div>
-
-      <div class="page-header--info">
-        <div class="page-header--info-meta">
-          <div class="meta--title">
-            <h1 id="main" tabindex="-1">
-              {% if page.edition == 'enterprise' %}{{site.ee_product_name}}
-              {% elsif page.edition == 'konnect' %}{{site.konnect_saas}}
-              {% elsif page.edition == 'mesh' %}{{site.mesh_product_name}}
-              {% elsif page.edition == 'deck' %}decK
-              {% elsif page.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
-              {% elsif page.edition == 'gateway-oss' %}{{site.ce_product_name}}
-              {% elsif page.edition == 'gateway' %}Kong Gateway
-              {% elsif page.edition == 'getting-started-guide' %}Getting Started with Kong Gateway
-              {% elsif page.edition == 'contributing' %}Contribution guidelines
-              {% endif %}
-            </h1>
-          </div>
-
-        <div class="meta--content">
-          {% if page.subtitle %}
-            <div class="meta--content-publisher"><span>{{page.subtitle | flatify }}</span></div>
-          {% endif %}
-          {% if page.badge %}
-            <div class="meta--content-badges">
-                <a href="https://konghq.com/pricing" {%
-                  if page.badge == 'plus' %}class="badge plus" aria-label="available with plus subscription"{% endif %}{%
-                  if page.badge == 'enterprise' %}class="badge enterprise" aria-label="available with enterprise subscription"{% endif %}{%
-                  if page.badge == 'free' %}class="badge free" aria-label="available in Kong Gateway free mode"{% endif %}{%
-                  if page.badge == 'oss' %}class="badge oss" aria-label="open-source only"{% endif %}>
-                </a>
-            </div>
-          {% endif %}
-        </div>
-
-          {% unless page.no_version == true %}
-            <div class="content-version">
-              {{page.kong_version}}
-              {% if page.kong_version == page.kong_latest.release and page.edition != 'gateway-oss' and page.edition != 'enterprise' and page.edition != 'getting-started-guide' %}
-              <span>(latest)</span>
-              {% endif %}
-            </div>
-          {% endunless %}
-        </div>
       </div>
     </header>
 
