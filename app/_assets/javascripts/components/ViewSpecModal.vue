@@ -118,5 +118,10 @@ const copySpec = (executeCopy) => {
   padding: var(--spacing-md);
   font-size: var(--type-xs);
   font-family: var(--font-family-mono);
+  border-width: 0;
+  box-shadow: none;
+}
+code {
+  background: none;
 }
 </style>

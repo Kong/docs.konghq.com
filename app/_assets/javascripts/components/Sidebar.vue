@@ -104,33 +104,48 @@ function onSelectedVersion (event) {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
   aside {
     width: 100%;
     max-width: 260px;
-  }
-  .title {
-    font-weight: 500;
-    font-size: 20px;
-    display: block;
-  }
-  aside {
-    width: 100%;
-    max-width: 260px;
-  }
-  .title {
-    font-weight: 500;
-    font-size: 20px;
-    display: block;
   }
   .operations-list :deep(button) {
     height: 60px;
     line-height: 24px;
   }
-  .version-select-dropdown :deep(.k-input) {
-    margin-bottom: inherit;
-  }
   h2 {
     margin-top: auto;
+  }
+  .title {
+    font-weight: 500;
+    font-size: 20px;
+    display: block;
+    color: var(--text_colors-primary);
+  }
+
+  .version-select-dropdown :deep(div.k-select-input.select-input-container) {
+    border-color: var(--section_colors-stroke);
+  }
+  .operations-list {
+    --kong-ui-spec-renderer-operations-list-item-summary-text-color: var(--text_colors-primary);
+    --kong-ui-spec-renderer-operations-list-section-label-text-color: var(--text_colors-primary);
+    --kong-ui-spec-renderer-operations-list-section-icon-color-expanded: var(--text_colors-primary);
+    --kong-ui-spec-renderer-operations-list-section-icon-color-collapsed: var(--text_colors-primary);
+    --kong-ui-spec-renderer-operations-list-filter-icon-color: var(--text_colors-primary);
+    --kong-ui-spec-renderer-operations-list-item-selected-bar-background: var(--section_colors-accent);
+    --kong-ui-spec-renderer-operations-list-section-border-color: var(--section_colors-stroke);
+    --kong-ui-spec-renderer-operations-list-item-border-color: var(--section_colors-stroke);
+
+    // Hover and selected styles
+    --kong-ui-spec-renderer-operations-list-item-background-hover: var(--text_colors-primary);
+    --kong-ui-spec-renderer-operations-list-item-summary-text-color-hover: var(--section_colors-body);
+    --kong-ui-spec-renderer-operations-list-item-background-selected: var(--text_colors-primary);
+    --kong-ui-spec-renderer-operations-list-item-summary-text-color-selected: var(--section_colors-body);
+
+  }
+  .version-select-dropdown :deep(.k-input) {
+    margin: 0;
+    cursor: pointer;
+    pointer-events: none;
   }
 </style>
