@@ -1,29 +1,39 @@
 <template>
-  <div v-if="activeProductVersionId" class="app-container flex pb-0 product fixed-position">
-    <div class="sidebar-wrapper">
-      <Sidebar
-        class="sidebar"
-        :product="product"
-        :active-product-version-id="activeProductVersionId"
-        @operation-selected="onOperationSelected"
-      />
-    </div>
+  <EmptyState
+    v-if="productError"
+    is-error
+    class="mt-6"
+    :message="productError"
+  />
+  <template v-else>
+    <div v-if="activeProductVersionId" class="app-container flex pb-0 product fixed-position">
+      <div class="sidebar-wrapper">
+        <Sidebar
+          class="sidebar"
+          :product="product"
+          :active-product-version-id="activeProductVersionId"
+          @operation-selected="onOperationSelected"
+        />
+      </div>
 
-    <div class="spec-content">
-      <Spec
-        :product="product"
-        :product-version-id="activeProductVersionId"
-        :active-operation="activeOperation"
-      />
+      <div class="spec-content">
+        <Spec
+          :product="product"
+          :product-version-id="activeProductVersionId"
+          :active-operation="activeOperation"
+        />
+      </div>
     </div>
-  </div>
+  </template>
 </template>
 
 <script setup>
 import { computed, onMounted, ref, watch, reactive } from 'vue'
 import { sortByDate } from '~/javascripts/helpers/sortBy.js'
 import { fetchAll } from '~/javascripts/helpers/fetchAll.js'
+import getMessageFromError from '~/javascripts/helpers/getMessageFromError.js'
 import ApiService from '~/javascripts/services/api.js'
+import EmptyState from '../components/EmptyState.vue'
 import Spec from '../components/Spec.vue'
 import Sidebar from '../components/Sidebar.vue'
 
@@ -36,6 +46,7 @@ const productsAPI = new ApiService().productsAPI;
 const versionsAPI = new ApiService().versionsAPI;
 const activeOperation = ref(null);
 const state = reactive({ activeOperation });
+const productError = ref(null);
 
 function onOperationSelected(event) {
   activeOperation.value = event;
@@ -59,7 +70,8 @@ async function fetchProduct () {
 
     product.value = productWithVersion;
   } catch (err) {
-    console.error(err)
+    console.error(err);
+    productError.value = getMessageFromError(err);
   }
 }
 
