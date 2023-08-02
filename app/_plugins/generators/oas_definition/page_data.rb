@@ -24,7 +24,7 @@ module OasDefinition
                      'description' => @product['description'],
                      'title' => page_title,
                      'version' => @version.slice('id', 'name'),
-                     'layout' => 'oas-spec',
+                     'layout' => 'oas/spec',
                      'canonical_url' => canonical_url,
                      'seo_noindex' => @latest ? nil : true,
                      'is_latest' => @latest

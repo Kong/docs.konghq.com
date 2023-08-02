@@ -23,7 +23,7 @@ RSpec.describe OasDefinition::PageData do
         expect(subject['description']).to eq('The management API for Konnect audit logging')
         expect(subject['title']).to eq('Audit Logs API - latest')
         expect(subject['version']).to eq({ 'name' => 'v2', 'id' => 'd36126ee-ab8d-47b2-960f-5703da22cced' })
-        expect(subject['layout']).to eq('oas-spec')
+        expect(subject['layout']).to eq('oas/spec')
         expect(subject['canonical_url']).to eq('/api/audit-logs/latest/')
         expect(subject['is_latest']).to eq(true)
       end
@@ -43,7 +43,7 @@ RSpec.describe OasDefinition::PageData do
         expect(subject['description']).to eq('The management API for Konnect audit logging')
         expect(subject['title']).to eq('Audit Logs API - v1')
         expect(subject['version']).to eq({ 'name' => 'v1', 'id' => 'd36126ee-ab8d-47b2-960f-5703da22ccee' })
-        expect(subject['layout']).to eq('oas-spec')
+        expect(subject['layout']).to eq('oas/spec')
         expect(subject['canonical_url']).to eq('/api/audit-logs/latest/')
         expect(subject['is_latest']).to eq(false)
       end
