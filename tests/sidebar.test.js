@@ -1,36 +1,5 @@
 const { toArray } = require("lodash");
 
-describe("Module Switcher", () => {
-  test.skip("has the same products, in the same order as the top 'Docs' dropdown", async () => {
-    const $ = await fetchPage("/gateway/latest/");
-
-    function fetchLinksFromElement($, selector) {
-      return $(selector)
-        .map(function(){
-          const link = $(this);
-          const r = {};
-
-          // Normalise title by removing newlines and collapsing whitespace
-          const title = link.text().replace(/\n/m, "").replace(/\s+/g, " ");
-          r[title] = link.attr("href");
-          return r;
-        })
-        .toArray()
-        .reduce((prev, current) => {
-          return { ...prev, ...current };
-        }, {});
-    }
-
-    const sidebarUrls = fetchLinksFromElement($, "#module-list a");
-    const topNavUrls = fetchLinksFromElement(
-      $,
-      "#top-module-list .navbar-item-submenu a"
-    );
-
-    expect(sidebarUrls).toEqual(topNavUrls);
-  });
-});
-
 describe("Version Switcher", () => {
   [
     {
