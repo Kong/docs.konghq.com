@@ -4,18 +4,21 @@ book: plugin_dev
 chapter: 11
 ---
 
-# Hello World: Your First Wasm Filter
+# Hello World: Your First Proxy-Wasm Filter
 
-Filters can be written in almost  any language that supports WebAssembly as a
+Filters can be written in almost any language that supports WebAssembly as a
 compilation target, but the easiest  and most ergonomic way to get started is by
-using a language which has an existing [Proxy-Wasm](https://github.com/proxy-wasm/spec) SDK, such as [Go](https://github.com/tetratelabs/proxy-wasm-go-sdk/),
+using a language which has an existing [Proxy-Wasm](https://github.com/proxy-wasm/spec)
+SDK, such as [Go](https://github.com/tetratelabs/proxy-wasm-go-sdk/),
 [C++](https://github.com/proxy-wasm/proxy-wasm-cpp-sdk/), or [Rust](https://github.com/proxy-wasm/proxy-wasm-rust-sdk/).
 
-This section describes how to create and utilize a basic Proxy-Wasm filter to terminate the request after sending a custom response.
+This section describes how to create and use a basic Proxy-Wasm filter to
+terminate the request after sending a custom response.
 
 ## The Code
 
-We will write our filter in Rust, using the [Proxy-Wasm SDK for Rust](https://github.com/proxy-wasm/proxy-wasm-rust-sdk/).
+The Hello World filter will be written in Rust, using the
+[Proxy-Wasm SDK for Rust](https://github.com/proxy-wasm/proxy-wasm-rust-sdk/).
 
 Here is a look at the filesystem tree:
 
@@ -86,19 +89,19 @@ This will produce a binary file at `target/wasm32-wasi/debug/hello_world.wasm`.
 
 ### Deploying the Filter with Kong
 
-We have written and built the filter, and now it is time to deploy.
+After writing and building the filter, it is time to deploy it.
 
 #### Configuration
 
-We need to tell {{site.base_gateway}} to enable wasm support:
+At first, WebAssembly support must be enabled in {{site.base_gateway}}:
 
 ```console
 $ echo "wasm = on" > kong.conf
 ```
 
-And we also need to tell {{site.base_gateway}} which directory the filter module
-resides in. We can provide the full `cargo` target output path, or we can copy
-the individual file into a common directory instead:
+The path where the filters files are stored also must be set. It can be the full
+`cargo` target output path, or the individual file can be copied or moved into a
+common directory instead:
 
 ```console
 $ mkdir -p ./filters
@@ -108,9 +111,9 @@ $ echo "wasm_filters_path = $PWD/filters" >> kong.conf
 
 #### Link to a Kong Service and Route
 
-Now, what's needed is to create a Kong filter chain entity using our filter
-and associate it with a Kong route or service. Let's do that by creating a
-declarative yaml config file at `kong.yml`:
+Now, the next step is to create a Kong filter chain entity using the Hell World
+filter and associate it with a Kong route or service. This will be done by
+creating a declarative yaml config file at `kong.yml`:
 
 ```yaml
 ---
@@ -135,7 +138,7 @@ $ echo "declarative_config = $PWD/kong.yml" >> kong.conf
 
 #### Start Kong
 
-Now we can start Kong:
+Now Kong can be started:
 
 ```console
 $ echo "prefix = $PWD/wasm-servroot" >> kong.conf
@@ -143,7 +146,7 @@ $ kong prepare -c kong.conf
 $ kong start -c kong.conf
 ```
 
-And we can make a request to test it out:
+And the Hello World filter is ready to be used:
 
 ```console
 $ curl http://127.0.0.1:8000/
@@ -156,7 +159,7 @@ Other useful resources to learn more about Proxy-Wasm:
 * [Proxy-Wasm spec](https://github.com/proxy-wasm/spec)
 * [ngx_wasm_module](https://github.com/Kong/ngx_wasm_module)
 * [ngx_wasm_module Proxy-Wasm documentation](https://github.com/Kong/ngx_wasm_module/blob/main/docs/PROXY_WASM.md)
-* [Kong's `filter_chains` entity](https://docs.konghq.com/gateway/latest/reference/wasm/#filter-chain)
+* [Kong's `filter_chains` entity](/gateway/latest/reference/wasm/#filter-chain)
 * [Go SDK](https://github.com/tetratelabs/proxy-wasm-go-sdk/)
 * [Rust SDK](https://github.com/proxy-wasm/proxy-wasm-rust-sdk/)
 * [C++ SDK](https://github.com/proxy-wasm/proxy-wasm-cpp-sdk/)

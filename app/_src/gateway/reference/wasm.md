@@ -95,12 +95,12 @@ executed.
 Filters are always executed in the order in which they are defined in the filter
 chain.
 
-#### Can I use Lua plugins and Wasm filters at the same time?
+### Can Lua plugins and Proxy-Wasm filters be used at the same time?
 
 Yes! Keep in mind though that Lua plugins are executed earlier in the request
 lifecycle, _before_ filter chain linkage is assessed. So, if a Lua plugin
-terminates the request early in the `access` phase, no Wasm filters will be
-executed.
+terminates the request early in the `access` phase, no Proxy-Wasm filters will
+be executed.
 
 ## Limitations/Known Issues
 
@@ -126,7 +126,7 @@ returning the `pause` signal from `on_http_response_body()`. This behavior is
 part of the Envoy Proxy-Wasm implementation but not explicitly called out within
 the specification.
 
-Currently, this functionality does not work in Kong, though we plan on
+Currently, this functionality does not work in Kong, though there are plans on
 implementing it in a future release for increase compatibility with other
 Proxy-Wasm implementations.
 
