@@ -10,7 +10,7 @@ jobs:
         run: |
           cd tools/konnect-oas-data-generator
           npm ci
-          node run.js --url ${{ secrets.VITE_PORTAL_API_URL }}
+          node run.js --url ${{ vars.VITE_PORTAL_API_URL }}
       - name: Create pull request
         uses: peter-evans/create-pull-request@v5
         with:
