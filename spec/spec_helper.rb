@@ -93,6 +93,9 @@ RSpec.configure do |config|
   config.include SharedContexts::Site
 
   config.before(:each) do
+    allow(ENV).to receive(:[]).and_call_original
+    allow(ENV).to receive(:[]).with('VITE_PORTAL_API_URL').and_return('http://developer.konghq.com')
+
     stub_const(
       'PluginSingleSource::Plugin::Schemas::ThirdParty::SCHEMAS_PATH',
       'spec/fixtures/app/_hub/'
