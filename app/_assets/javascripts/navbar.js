@@ -55,4 +55,16 @@ jQuery(function () {
   $("#plugin-link").on("focus", function (e) {
     $(".with-submenu").removeClass("submenu-opened");
   });
+
+  $(".main-menu-item.with-submenu").on("click", function(e) {
+    toggleSubmenuVisible(e.target);
+  });
+
+  $("#navbar-menu-toggle-button").on("click", function(e) {
+    toggleButtonClicked();
+  });
+
+  $(".search-input-wrapper img").on("click", function(e) {
+    handleSearchClicked();
+  });
 });

@@ -146,14 +146,18 @@ any of the supported tools:
 
 Configuration options for a HashiCorp vault in {{site.base_gateway}}:
 
-| Parameter | Field name | Description |
-| ----------|------------|------------ |
-| `vaults.config.protocol` | **config-protocol** (Kong Manager) <br> **Protocol** ({{site.konnect_short_name}}) | The protocol to connect with. Accepts one of `http` or `https`. |
-| `vaults.config.host` | **config-host** (Kong Manager) <br> **Host** ({{site.konnect_short_name}}) | The hostname of your HashiCorp vault. |
-| `vaults.config.port` | **config-port** (Kong Manager) <br> **Port** ({{site.konnect_short_name}}) | The port number of your HashiCorp vault. |
-| `vaults.config.mount` | **config-mount** (Kong Manager) <br> **Mount** ({{site.konnect_short_name}}) | The mount point. |
-| `vaults.config.kv` | **config-kv** (Kong Manager) <br> **Kv** ({{site.konnect_short_name}}) | The secrets engine version. Accepts `v1` or `v2`. |
-| `vaults.config.token` | **config-token** (Kong Manager) <br> **Token** ({{site.konnect_short_name}}) | A token string. |
+Parameter | Field name | Description
+----------|------------|------------
+`vaults.config.protocol` | **config-protocol** (Kong Manager) <br> **Protocol** ({{site.konnect_short_name}}) | The protocol to connect with. Accepts one of `http` or `https`.
+`vaults.config.host` | **config-host** (Kong Manager) <br> **Host** ({{site.konnect_short_name}}) | The hostname of your HashiCorp vault.
+`vaults.config.port` | **config-port** (Kong Manager) <br> **Port** ({{site.konnect_short_name}}) | The port number of your HashiCorp vault.
+`vaults.config.mount` | **config-mount** (Kong Manager) <br> **Mount** ({{site.konnect_short_name}}) | The mount point.
+`vaults.config.kv` | **config-kv** (Kong Manager) <br> **Kv** ({{site.konnect_short_name}}) | The secrets engine version. Accepts `v1` or `v2`.
+`vaults.config.token` | **config-token** (Kong Manager) <br> **Token** ({{site.konnect_short_name}}) | A token string.
+`vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the AWS vault when cached by this node.
+`vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a AWS vault miss (no secret).
+`vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for which stale secrets from the AWS vault should be resurrected forwhen they cannot be refreshed (e.g., the HashiCorp vault is unreachable).
+
 
 {% if_version gte:3.1.x %}
 | `vaults.config.namespace` | **namespace** | Namespace for the Vault. Vault Enterprise requires a namespace to successfully connect to it. |

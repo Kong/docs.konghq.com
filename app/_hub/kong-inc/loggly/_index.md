@@ -1,3 +1,5 @@
+Log request and response data over UDP to [Loggly](https://www.loggly.com).
+
 ## Log format
 
 Every request is logged to the System log in [SYSLOG](https://en.wikipedia.org/wiki/Syslog) standard, with the

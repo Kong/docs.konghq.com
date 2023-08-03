@@ -1,3 +1,6 @@
+The Correlation ID plugin lets you correlate requests and responses using a unique 
+ID transmitted over an HTTP header.
+
 ## How it works
 
 When you enable this plugin, it adds a new header to all of the requests processed by Kong. This header bears the name configured in `config.header_name`, and a unique value is generated according to `config.generator`.

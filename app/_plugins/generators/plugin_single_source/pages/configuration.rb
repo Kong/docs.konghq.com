@@ -25,7 +25,9 @@ module PluginSingleSource
         @dropdown_url ||= "#{base_url}VERSION/configuration/"
       end
 
-      def source_file; end
+      def source_file
+        @file.gsub('app/', '')
+      end
 
       def content
         ''

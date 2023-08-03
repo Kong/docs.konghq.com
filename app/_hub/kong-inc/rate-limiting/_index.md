@@ -1,3 +1,16 @@
+Rate limit how many HTTP requests can be made in a given period of seconds, minutes, hours, days, months, or years.
+If the underlying service or route has no authentication layer,
+the **Client IP** address is used. Otherwise, the consumer is used if an
+authentication plugin has been configured.
+ 
+The advanced version of this plugin, [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/),
+provides the ability to apply
+[multiple limits in sliding or fixed windows](/hub/kong-inc/rate-limiting-advanced/#multi-limits-windows).
+
+{:.note}
+> **Note:** At least one limit (`second`, `minute`, `hour`, `day`, `month`, `year`) must be configured. 
+Multiple limits can be configured.
+
 ## Headers sent to the client
 
 When this plugin is enabled, Kong sends additional headers

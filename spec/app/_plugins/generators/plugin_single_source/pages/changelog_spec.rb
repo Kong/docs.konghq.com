@@ -86,4 +86,18 @@ RSpec.describe PluginSingleSource::Pages::Changelog do
       it_behaves_like 'returns the relative path to the top-level _index.md file'
     end
   end
+
+  describe '#breadcrumbs' do
+    let(:is_latest) { true }
+    let(:version) { '2.8.x' }
+    let(:source) { '_index' }
+
+    it 'returns a hash containing the page\'s breadcrumbs' do
+      expect(subject.breadcrumbs).to eq([
+        { text: 'Authentication', url: '/hub/?category=authentication' },
+        { text: 'Kong JWT Signer', url: '/hub/kong-inc/jwt-signer/' },
+        { text: 'Changelog', url: '/hub/kong-inc/jwt-signer/changelog/' }
+      ])
+    end
+  end
 end

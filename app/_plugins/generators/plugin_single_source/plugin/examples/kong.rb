@@ -7,7 +7,12 @@ module PluginSingleSource
         EXAMPLES_PATH = 'app/_src/.repos/kong-plugins/examples'
 
         def file_path
-          @file_path ||= File.join(EXAMPLES_PATH, plugin_folder, "_#{release_version}.yaml")
+          @file_path ||= if @example_name
+                           path = File.join(HUB_PATH, @vendor, @name, 'examples', @example_name)
+                           Utils::SingleSourceFileFinder.find(file_path: path, version: @version)
+                         else
+                           File.join(EXAMPLES_PATH, plugin_folder, "_#{release_version}.yaml")
+                         end
         end
 
         def release_version

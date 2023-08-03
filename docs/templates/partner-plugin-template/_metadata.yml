@@ -25,14 +25,6 @@ type: plugin
 
 desc: # (Required) Short, one sentence description; max 80 characters.
 
-description: #|
-  # (Required) Extended description.
-  # Use YAML pipe notation (|) and indent the text two spaces. 
-  # For example:
-  #
-  # description: |
-  #   My plugin is a great plugin that does cool things.
-
 #support_url:
   # (Optional) A support URL for plugin users to file tickets,
   # bug reports, or support requests.
@@ -55,6 +47,9 @@ kong_version_compatibility: # (Required)
 enterprise: # true OR false
   # (Required) Set true if the plugin is *only* available with an Enterprise subscription.
   # Set false if your plugin is open-source and works with open-source Kong Gateway.
+
+konnect: # true OR false
+   # (Required) Set true if compatible with Konnect. Set false if not.
 
 dbless_compatible:
   # (Required) Degree of compatibility with Kong Gateway's DB-less mode. 

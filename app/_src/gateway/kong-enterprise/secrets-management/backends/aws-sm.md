@@ -137,9 +137,12 @@ any of the supported tools:
 
 Configuration options for an AWS Secrets Manager vault in {{site.base_gateway}}:
 
-Parameter | Field name | Description
-----------|---------------|------------
+Parameter | Field name                     | Description
+----------|--------------------------------|------------
 `vaults.config.region` | **AWS region** | The AWS region your vault is located in.
+`vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the AWS vault when cached by this node.
+`vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a AWS vault miss (no secret).
+`vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for which stale secrets from the AWS vault should be resurrected for when they cannot be refreshed (e.g., the AWS vault is unreachable).
 
 Common options:
 

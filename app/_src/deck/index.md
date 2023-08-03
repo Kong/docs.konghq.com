@@ -14,6 +14,7 @@ Features include:
 * Sync configuration to a running Kong cluster
 * diff configuration to detect any drift or manual changes
 * Back up your instance's configuration
+* Build pipelines of automation with [APIOps](/deck/{{page.kong_version}}/guides/apiops/)
 * Manage Kong’s configuration in a distributed way using tags, helping you split
 the configuration across various teams
 
@@ -34,6 +35,13 @@ manual interventions.
 * **Reverse sync**: decK also supports sync in the opposite direction, meaning
 that if an entity is created in Kong and isn't added to the config file,
 decK will detect the change.
+
+* **Configuration Generation**: decK can generate gateway configurations from OpenAPI 
+Specifications.
+
+* **Configuration Transformations**: decK provides multiple transformation commands 
+to manipulate full and partial configuration files. This feature allows you to build 
+API delivery automations, or [APIOps](/deck/{{page.kong_version}}/guides/apiops/).
 
 * **Validation**: decK can validate YAML files that you backup or modify to
 catch errors early on.

@@ -123,3 +123,13 @@ Parameter | UI field name | Description
 `vaults.description` *optional* | Description | An optional description for your vault.
 `vaults.name` | N/A | The type of vault. Accepts one of: `env`, `gcp`, `aws`, or `hcv`.
 `vaults.prefix` | Prefix | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://my-env-vault/<some-secret>}`.
+
+Most of the vaults also support secret rotation by using TTLs:
+
+Parameter | Field name | Description
+----------|------------|------------
+`vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the vault when cached by this node.
+`vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a vault miss (no secret).
+`vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for which stale secrets should be resurrected forwhen they cannot be refreshed (e.g., the vault is unreachable).
+
+[Read more about secrets rotation](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/secrets-rotation/).

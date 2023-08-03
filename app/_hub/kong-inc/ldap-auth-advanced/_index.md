@@ -1,3 +1,17 @@
+Add LDAP Bind Authentication with username and password protection. The plugin
+checks for valid credentials in the `Proxy-Authorization` and `Authorization` headers,
+in that order.
+
+The LDAP Authentication Advanced plugin
+provides features not available in the open-source [LDAP Authentication plugin](/hub/kong-inc/ldap-auth/),
+which includes:
+* LDAP searches for group and consumer mapping
+* Ability to authenticate based on username or custom ID
+* The ability to bind to an enterprise LDAP directory with a password
+* The ability to authenticate/authorize using a group base DN and specific group member or group name attributes
+* The ability to obtain LDAP groups and set them in a header to the request before proxying to the upstream. 
+This is useful for Kong Manager role mapping.
+
 ## Usage
 
 To authenticate a user, the client must set credentials in either the
@@ -15,7 +29,6 @@ credentials for future requests for the duration specified in
 
 You can set the header type `ldap` to any string (such as `basic`) using
 `config.header_type`.
-
 
 
 ### Upstream Headers

@@ -8,12 +8,7 @@ title: Compatibility
 |----------------------------------|:--:|:----:|:-------:|:------:|:------:|
 | {{site.konnect_saas}} |  <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |  <i class="fa fa-check"></i> |  <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 
-## Runtime version compatibility
-
-{:.note}
-> **Note:** Currently, the only supported runtime type in
-{{site.konnect_saas}} is a [{{site.base_gateway}}](/gateway/)
-data plane.
+## {{site.base_gateway}} version compatibility
 
 |                                | {{site.konnect_saas}} | First supported patch version
 |--------------------------------|:---------------------:|-----------------------------

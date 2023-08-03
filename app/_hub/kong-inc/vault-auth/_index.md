@@ -1,3 +1,8 @@
+Add authentication to a service or route with an access token and a secret token. 
+Credential tokens are stored securely via Vault. 
+
+Credential lifecyles can be managed through the Kong Admin API, or independently via Vault.
+
 ## Usage
 
 In order to use the plugin, you first need to create a Consumer to associate one or more credentials to. The Consumer represents a developer using the upstream service. Additionally, a Vault object must be created to represent the connection Kong will use to communicate with a Vault server, where access and secret tokens will be stored.

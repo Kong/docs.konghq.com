@@ -2,6 +2,7 @@
 title: How to Configure Data Plane Resilience
 badge: enterprise
 content_type: how-to
+toc: false
 ---
 
 Starting in version 3.2, {{site.base_gateway}} can be configured to support configuring new data planes in the event of a control plane outage. This feature works by designating a backup node and allowing it read/write access to a data store. This backup node will automatically push valid {{site.base_gateway}} configurations to the data store. In the event of a control plane outage when a new node is created, it will pull the latest {{site.base_gateway}} configuration from the data store, configure itself, and start proxying requests. 
@@ -128,6 +129,7 @@ The example below uses MinIO to demonstrate configuring a backup node:
       AWS_ACCESS_KEY_ID: <access_key_write>
       AWS_SECRET_ACCESS_KEY: <secret_access_key_write>
       KONG_CLUSTER_FALLBACK_CONFIG_EXPORT: "on"
+      KONG_CLUSTER_FALLBACK_CONFIG_STORAGE: s3://test-bucket/test-prefix
       AWS_CONFIG_STORAGE_ENDPOINT: http://minio:9000/
 ```
 

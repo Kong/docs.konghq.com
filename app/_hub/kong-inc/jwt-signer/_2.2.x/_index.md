@@ -1,3 +1,13 @@
+The Kong JWT Signer plugin makes it possible to verify and (re-)sign
+one or two tokens in a request, that the plugin refers as access token
+and channel token. 
+
+The plugin supports both opaque tokens (via introspection)
+and signed JWT tokens (JWS tokens via signature verification).
+`access_token` and `channel_token` are names of the tokens and they
+can be any valid verifiable tokens. E.g. two access tokens
+(one given to end user and one given to client application).
+
 ## Contents
 
 * [Plugin Configuration](#plugin-configuration)

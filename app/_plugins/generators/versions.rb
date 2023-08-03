@@ -119,12 +119,12 @@ module Jekyll
           page.data['kong_version'] = parts[1] if has_version
           page.data['kong_versions'] = mesh_versions
           page.data['kong_latest'] = latest_version_mesh
+          page.data['nav_items'] ||= site.data["docs_nav_mesh_#{parts[1].gsub(/\./, '')}"]
           version_data = mesh_versions.detect { |v| v['release'] == parts[1] }
           if version_data
             page.data['version'] = version_data['version']
             page.data['release'] = version_data['release']
             page.data['version_data'] = version_data
-            page.data['nav_items'] = site.data["docs_nav_mesh_#{parts[1].gsub(/\./, '')}"]
           end
         when 'konnect'
           page.data['edition'] = parts[0]
@@ -174,7 +174,14 @@ module Jekyll
 
           page.data['release'] = current['release']
           page.data['version'] = current['version']
+          page.data['versions'] = {
+            'ce' => current['ce-version'],
+            'ee' => current['ee-version']
+          }
         end
+
+        # Add a `major_minor_version` property which is used for cloudsmith install pages
+        page.data['major_minor_version'] = page.data['release'].gsub('.x', '').gsub('.', '') if page.data['release']
 
         # Clean up nav_items for generated pages as there's an
         # additional level of nesting

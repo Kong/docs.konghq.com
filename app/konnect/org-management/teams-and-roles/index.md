@@ -40,7 +40,7 @@ with any of the [supported roles](/konnect/org-management/teams-and-roles/roles-
 Users can be part of any number of teams, and the roles gained from the teams
 are additive. For example, if you add a user to both the Service Developer and
 `Portal Viewer` teams, the user can create and manage services
-through the Service Hub _and_ register applications through the Dev Portal.
+through API Products _and_ register applications through the Dev Portal.
 
 If two roles provide access to the same entity, the role with more access
 takes effect. For example, if you have the Service Admin and Service Deployer

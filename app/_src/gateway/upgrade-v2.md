@@ -133,6 +133,18 @@ The `traditional_compat` router mode has been made more compatible with the beha
 
 {% endif_version %}
 
+{% if_version gte:3.3.x %}
+### Upgrading {{site.base_gateway}} after adopting PostgreSQL 15
+
+PostgreSQL 15 enforces different permissions on the public schema than prior versions of PostgreSQL. This requires an extra step to grant the correct permissions to the Kong user to make schema changes. 
+
+You can grant the permissions in one of two ways:
+* Assign the Kong database owner to Kong by running `ALTER DATABASE kong OWNER TO kong`.
+* Temporarily give the Kong user the ability to modify the public schema and then revoke that permission. This option is more restrictive and is a two-part process:
+  1. Before you run the bootstrap migration commands, grant the right to modify the schema with `GRANT CREATE ON SCHEMA public TO kong`.
+  2. After the migrations are done, remove this permission by running `REVOKE CREATE ON SCHEMA public FROM kong`.
+{% endif_version %}
+
 {% if_version gte:3.2.x %}
 
 ### PostgreSQL SSL version bump
@@ -388,7 +400,7 @@ diff the files to identify any changes, and apply them as needed.
 
 Running `kong migrations` in this workflow is irrevocable, therefore we recommend that you backup data before making any changes.
 
-Depending on the database you're using (Postgres or Cassandra), a database dump is recommended so that you can recover from migrations failure at the database level.
+A database dump is recommended so that you can recover from migrations failure at the database level.
 
 Additionally, {{site.base_gateway}} supports exporting data in YAML format with `kong config db_export`, which later on
 can be imported back by `kong config db_import`. For more information, see
