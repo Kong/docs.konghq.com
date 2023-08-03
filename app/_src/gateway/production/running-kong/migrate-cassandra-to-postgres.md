@@ -1,5 +1,5 @@
 ---
-title: Migration guidelines: Cassandra to Postgres
+title: Cassandra to Postgres Migration Guidelines 
 ---
 
 This guide walks you through migrating {{site.base_gateway}} from a Cassandra DB-backed 
@@ -25,7 +25,7 @@ While the document provides high level guidelines, actual migration steps may di
 * Complexity of the Kong deployment environment
 * Kong plugins
 * Custom plugins
-* External touchpoints to the Gateway (for example, OIDC with external IdPs)
+* External touch points to the Gateway (for example, OIDC with external IdPs)
 * Number of configuration entities, for example services and routes
 * If running an older version of {{site.base_gateway}}, we recommend doing a {{site.base_gateway}} version upgrade before the database migration. This reduces the moving parts in the upgrade procedure.
 * If you're using Cassandra, you likely have a traditional deployment. We recommend taking this opportunity to review the [deployment topology options](gateway/{{page.kong_version}}/production/deployment-topologies/) for {{site.base_gateway}} and converting to a hybrid mode deployment, if possible.
@@ -43,23 +43,23 @@ The following diagram shows the architecture of a hybrid mode deployment, which 
 ## Migration approach
 The following steps should be tested in a non-production environment. Any gaps in the target state should be identified and remediated before running it in production.
 
-| Step | Name               | Description                                                                                           | Completed |
-|------|--------------------|-------------------------------------------------------------------------------------------------------|-----------|
-| 1    | Platform build     | Build the green environment with {{site.base_gateway}} using the same version as the blue environment |           |
-| 2    | Database setup     | Build a new Postgres DB and connect it to the green environment                                     |           |
-| 3    | Regression testing | Deploy your setup into the new system and regression test it. Clean up the deployment when testing is completed . |           |
+| Step | Name               | Description                                                                                           | 
+|------|--------------------|-------------------------------------------------------------------------------------------------------|
+| 1    | Platform build     | Build the green environment with {{site.base_gateway}} using the same version as the blue environment |
+| 2    | Database setup     | Build a new Postgres DB and connect it to the green environment                                     |
+| 3    | Regression testing | Deploy your setup into the new system and regression test it. Clean up the deployment when testing is completed . |
 
 
 ## Preparation
 
 
 
-| Step | Name                          | Description                                                                                                 | Completed |
-|------|-------------------------------|-------------------------------------------------------------------------------------------------------------|-----------|
-| 1    | Change embargo                | Place a change embargo on the old environment preventing new deployments or configuration changes             |           |
-| 2    | Blue environment backup       | Make a backup of the blue environment's Cassandra database and place it into redundant storage              |           |
-| 3    | Observability setup           | Create dashboards to track the health of the new environment                                           |           |
-| 4    | Go/No Go checkpoint           | Go/No Go decision point for the migration execution                                                         |           |
+| Step | Name                          | Description                                                                                                 |
+|------|-------------------------------|-------------------------------------------------------------------------------------------------------------|
+| 1    | Change embargo                | Place a change embargo on the old environment preventing new deployments or configuration changes             |
+| 2    | Blue environment backup       | Make a backup of the blue environment's Cassandra database and place it into redundant storage              |
+| 3    | Observability setup           | Create dashboards to track the health of the new environment                                           |
+| 4    | Go/No Go checkpoint           | Go/No Go decision point for the migration execution                                                         |
 
 
 
@@ -68,32 +68,32 @@ The following steps should be tested in a non-production environment. Any gaps i
 The goal of this phase is to reproduce the {{site.base_gateway}} configuration in the blue environment and perform regression and smoke testing ahead of live traffic cut-over. 
 
 
-| Step | Name                  | Description                                                                                                           | Completed |
-|------|-----------------------|-----------------------------------------------------------------------------------------------------------------------|-----------|
-| 1    | Configuration dump    | - Execute the `deck dump` command against the blue environment for each workspace to build a YAML representation of the Kong estate<br>- Execute `deck dump --rbac-resources-only` against the blue environment for each workspace to build a YAML representation of any RBAC resources created<br>- If using the Kong Dev Portal, run the `portal fetch` command via the Portal CLI to build a representation of the Dev Portal assets for a workspace |           |
-| 2    | Configuration sync    | - Change decK to work with the green environment, and execute `deck sync` to push the configuration to the green environment<br>- Change the Portal CLI to work against the green environment, and execute `portal deploy` to push the Dev Portal configuration against the new environment |           |
-| 3    | Regression testing    | Execute regression tests against the green environment backed by PostgreSQL                                             |           |
-| 4    | Go/No Go checkpoint   | If all tests pass, proceed with traffic cutover                                                                         |           |
+| Step | Name                  | Description                                                                                                           |
+|------|-----------------------|-----------------------------------------------------------------------------------------------------------------------|
+| 1    | Configuration dump    | - Execute the `deck dump` command against the blue environment for each workspace to build a YAML representation of the Kong estate<br>- Execute `deck dump --rbac-resources-only` against the blue environment for each workspace to build a YAML representation of any RBAC resources created<br>- If using the Kong Dev Portal, run the `portal fetch` command via the Portal CLI to build a representation of the Dev Portal assets for a workspace |
+| 2    | Configuration sync    | - Change decK to work with the green environment, and execute `deck sync` to push the configuration to the green environment<br>- Change the Portal CLI to work against the green environment, and execute `portal deploy` to push the Dev Portal configuration against the new environment |
+| 3    | Regression testing    | Execute regression tests against the green environment backed by PostgreSQL                                             |
+| 4    | Go/No Go checkpoint   | If all tests pass, proceed with traffic cut over                                                                         |
 
 
-## Traffic cutover
+## Traffic cut over
 
 The purpose of this phase is to migrate traffic in a controlled manner, with a rapid fallback mechanism if a problem is detected. You can increase or decrease the wait times before increasing the canary split depending on the risk tolerance.
 
 
-| Step | Name                                                  | Description                                                                                                                     | Completed |
+| Step | Name                                                  | Description|
 |------|-------------------------|---------------------------------------|-----------|
-| 1    | Canary 1% of traffic to the new green environment      | Canary 1% of traffic to the new environment and monitor the traffic health.                                                     |           |
-| 2    | Canary 5% of traffic to the new green environment      | Increase traffic split to 5% and monitor.                                                                                       |           |
-| 3    | Canary 10% of traffic to the new green environment     | Increase traffic split to 10% and monitor.                                                                                      |           |
-| 4    | Canary 50% of traffic to the new green environment     | Increase traffic split to 50% and monitor.                                                                                      |           |
-| 5    | Switch 100% of traffic to the new green environment    | Perform a full DNS switch over to point to the new green environment.                                                           |           |
-| 6    | Take down old platform                                    | After 24 hours when confidence is high, take down the old platform.                                                              |           |
+| 1    | Canary 1% of traffic to the new green environment      | Canary 1% of traffic to the new environment and monitor the traffic health. |
+| 2    | Canary 5% of traffic to the new green environment      | Increase traffic split to 5% and monitor. |
+| 3    | Canary 10% of traffic to the new green environment     | Increase traffic split to 10% and monitor. |
+| 4    | Canary 50% of traffic to the new green environment     | Increase traffic split to 50% and monitor.|
+| 5    | Switch 100% of traffic to the new green environment    | Perform a full DNS switch over to point to the new green environment.|
+| 6    | Take down old platform | After 24 hours when confidence is high, take down the old platform. |
 
 
 
 
-## Limitations
+## Next steps
 
 * If using the Basic Authentication plugin, the passwords are hashed and encrypted in the database. A decK dump doesn't export these credentials, so it is impossible to get the passwords out of the database in the cleartext. You must migrate these credentials using the Admin Api or Kong Manager.
 
