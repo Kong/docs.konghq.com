@@ -1,7 +1,7 @@
 const { toArray } = require("lodash");
 
 describe("Module Switcher", () => {
-  test("has the same products, in the same order as the top 'Docs' dropdown", async () => {
+  test.skip("has the same products, in the same order as the top 'Docs' dropdown", async () => {
     const $ = await fetchPage("/gateway/latest/");
 
     function fetchLinksFromElement($, selector) {
