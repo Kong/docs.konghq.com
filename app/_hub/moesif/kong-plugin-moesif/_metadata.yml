@@ -24,7 +24,7 @@ privacy_policy_url: https://www.moesif.com/privacy?utm_medium=docs&utm_campaign=
 terms_of_service_url: https://www.moesif.com/terms?utm_medium=docs&utm_campaign=partners&utm_source=kong
 
 free: true
-plus: true
+plus: false
 konnect: true
 enterprise: true
 techpartner: true
