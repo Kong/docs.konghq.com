@@ -1,4 +1,4 @@
-name: Moesif API Analytics and Monetization
+name: Moesif API Monetization and Analytics
 api_id: true
 dbless_compatible: 'yes'
 dbless_explanation: The plugin is compatible with any with DB-less mode including `local`, `cluster`, and `redis`
@@ -23,6 +23,9 @@ privacy_policy_url: https://www.moesif.com/privacy?utm_medium=docs&utm_campaign=
 
 terms_of_service_url: https://www.moesif.com/terms?utm_medium=docs&utm_campaign=partners&utm_source=kong
 
+free: true
+plus: true
+konnect: true
 enterprise: true
 techpartner: true
 
