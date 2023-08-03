@@ -27,20 +27,20 @@ After writing and building the filter, it is time to deploy it.
 
 #### Configuration
 
-At first, WebAssembly support must be enabled in {{site.base_gateway}}:
+WebAssembly support must be enabled in {{site.base_gateway}}:
 
 ```console
 $ echo "wasm = on" >> /etc/kong.conf
 ```
 
-The path where the filters files are stored also must be set. It can be the full
-binary output path, or the individual file can be copied or moved into a common
-directory instead:
+Additionally, the `wasm_filters_path` parameter must be configured in order for
+{{site.base_gateway}} to load the filter at runtime. During local development,
+when a short feedback loop is desirable, you may want to set this parameter to
+your build toolchain's output directory (wherever the compiled
+`<filter-name>.wasm` file is produced):
 
 ```console
-$ mkdir -p ./filters
-$ find . -name '*.wasm' | xargs cp '{}' ./filters
-$ echo "wasm_filters_path = $PWD/filters" >> /etc/kong.conf
+echo "wasm_filters_path = /path/to/my_filter/build" >> /etc/kong.conf
 ```
 
 #### Link to a Kong Service and Route
@@ -63,7 +63,7 @@ services:
     filter_chains:
       - name: my-wasm-demo
         filters:
-          - name: proxy_wasm_rust_my_filter
+          - name: my_filter
             config: >-
               {
                 "my_greeting": "Hello from WasmX!"
