@@ -4,7 +4,7 @@
 {% if include.render_intro_text %}
 The following examples provide some typical configurations for enabling
 the <code>{{ hub_example.plugin_name }}</code> plugin on a
-[consume group](gateway/latest/admin-api/consumer-groups/reference/).
+[consumer group](gateway/latest/admin-api/consumer-groups/reference/).
 {% endif %}
 
 {% navtabs %}
@@ -15,13 +15,8 @@ Make the following request:
 
 {% include_cached plugins/hub-examples/curl.html example=hub_example.curl %}
 
-Replace `CONSUMER_GROUP_NAME|CONSUMER_GROUP_ID` with the `id` or `name` of the consumer that this plugin configuration will target.
+Replace `CONSUMER_GROUP_NAME|CONSUMER_GROUP_ID` with the `id` or `name` of the consumer group that this plugin configuration will target.
 
-{% if page.service_id and page.route_id %}
-You can combine `consumer.id`, `service.id`, or `route.id`
-{% elsif page.service_id %} and `service.id`
-{% elsif page.route_id %} and `route.id`
-{% endif %} in the same request, to further narrow the scope of the plugin.
 
   {% endnavtab %}
   {% endif %}
@@ -38,18 +33,16 @@ resource:
 Next, apply the `KongPlugin` resource to an ingress by annotating the `KongConsumerGroup` object as follows:
 
 ```yaml
-kubectl annotate KongConsumer CONSUMER_NAME konghq.com/plugins={{ hub_example.kubernetes.plugin_name }}-example
+kubectl annotate KongConsumerGroup CONSUMER_GROUP_NAME konghq.com/plugins={{ hub_example.kubernetes.plugin_name }}-example
 ```
 
-Replace `CONSUMER_GROUP_NAME` with the name of the consumer that this plugin configuration will target.
-You can see your available consumers by running `kubectl get KongConsumer`.
+Replace `CONSUMER_GROUP_NAME` with the name of the consumer group that this plugin configuration will target.
+You can see your available consumer groups by running `kubectl get KongConsumerGroup`.
 
-To learn more about `KongConsumer` objects, see [Provisioning Consumers and Credentials
-](/kubernetes-ingress-controller/latest/guides/using-consumer-credential-resource/).
 
 <blockquote class="note">
   <strong>Note:</strong> The KongPlugin resource only needs to be defined once
-  and can be applied to any service, consumer group, or route in the namespace. If you
+  and can be applied to any service, consumer, consumer group, or route in the namespace. If you
   want the plugin to be available cluster-wide, create the resource as a
   <code>KongClusterPlugin</code> instead of <code>KongPlugin</code>.
 </blockquote>
@@ -66,7 +59,7 @@ Add this section to your declarative configuration file:
 
 {% include_cached plugins/hub-examples/yaml.html example=hub_example.yaml %}
 
-Replace `CONSUMER_NAME|CONSUMER_ID` with the `id` or `name` of the consumer that this plugin configuration will target.
+Replace `CONSUMER_GRPUP_NAME|CONSUMER_GROUP_ID` with the `id` or `name` of the consumer group that this plugin configuration will target.
 
     {% endnavtab %}
     {% endif %}
