@@ -807,3 +807,57 @@
   float: right;
   text-align: right;
 }
+
+.konnect-cta-card {
+  .shadowed-card;
+
+  &.hide {
+    display: none;
+  }
+
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+
+  .title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cta-card-close {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    align-self: flex-start;
+  }
+
+  .description {
+    max-width: 230px;
+    flex-grow: 1;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .button {
+    padding: 8px 16px;
+    border: 1px solid #1155cb;
+    background: linear-gradient(90deg,#1155cb 0, #1155cb 100%);
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
+    color: #fff;
+
+    &:hover {
+      background: linear-gradient(90deg,#1155cb 0, #0a2b66 100%);
+      color: white;
+    }
+  }
+}

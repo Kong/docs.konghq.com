@@ -1,5 +1,6 @@
 ---
 title: Install Kong Gateway on Docker
+konnect_cta_card: true
 ---
 
 This guide provides steps to configure {{site.base_gateway}} on Docker with or without a database.

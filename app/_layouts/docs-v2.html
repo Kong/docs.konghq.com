@@ -75,6 +75,22 @@ id: documentation
         {% if page.toc == true or page.toc != false %}
         {% include_cached toc.html html=content anchor_class="scroll-to" h_min=2 h_max=3 %}
         {% endif %}
+
+
+        {% if page.konnect_cta_card %}
+          <div class="konnect-cta-card">
+            <div class="title">
+              Try Konnect for Free
+              <span class="cta-card-close">
+                <img src="/assets/images/icons/documentation/close.svg" alt="close cta icon"/>
+              </span>
+            </div>
+            <div class="description">Fast setup, reduced administration, all the latest features, and lots more.</div>
+            <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=right-nav-card" class="button" target="_blank">
+              Try it for Free
+            </a>
+          </div>
+        {% endif %}
       </aside>
 
     <div class="page-content-container page-content-container-doc v2 {% if page.no_version == true and page.has_version == false and page.nav_items == nil %}no-sidebar{% endif %}" id="documentation">
