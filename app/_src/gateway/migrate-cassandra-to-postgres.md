@@ -28,7 +28,7 @@ While the document provides high level guidelines, actual migration steps may di
 * External touch points to the Gateway (for example, OIDC with external IdPs)
 * Number of configuration entities, for example services and routes
 * If running an older version of {{site.base_gateway}}, we recommend doing a {{site.base_gateway}} version upgrade before the database migration. This reduces the moving parts in the upgrade procedure.
-* If you're using Cassandra, you likely have a traditional deployment. We recommend taking this opportunity to review the [deployment topology options](gateway/{{page.kong_version}}/production/deployment-topologies/) for {{site.base_gateway}} and converting to a hybrid mode deployment, if possible.
+* If you're using Cassandra, you likely have a traditional deployment. We recommend taking this opportunity to review the [deployment topology options](/gateway/{{page.kong_version}}/production/deployment-topologies/) for {{site.base_gateway}} and converting to a hybrid mode deployment, if possible.
 
 The following diagram shows the architecture of a hybrid mode deployment, which means there is a split between the {{site.base_gateway}} control and data planes. You can follow the same database migration approach for {{site.base_gateway}} instances deployed in traditional mode.
 
