@@ -41,6 +41,16 @@ git submodule update --init --recursive
 make run
 ```
 
+### OAS Pages
+
+Create local .env file
+
+```bash
+cp .env.example .env
+```
+
+OAS Pages require `VITE_PORTAL_API_URL` to be set in your current environment, it should match the Kong supplied portal URL.
+
 ### Generating specific products
 
 In order to speed up build times, it's possible to generate a specific subset of products and their corresponding versions by specifying the `KONG_PRODUCTS` env variable. It takes a comma-separated list of products and for each product, the list of versions the versions to be generated separated by semi-colons, in the following way.
