@@ -45,34 +45,35 @@ Example:
 
 ```yaml
 ---
-name: my-filter-chain
-# filter chains can be toggled on/off for testing
-enabled: true
-filters:
-  # this maps to $wasm_filters_path/my_filter.wasm
-  - name: my_filter
-    # at runtime, configuration is passed to the filter as a byte array
-    #
-    # filter configuration is inherently untyped--schema and
-    # encoding/serialization are left up to the filter code itself
-    config: foo=bar baz=bat
+filter-chains:
+  name: my-filter-chain
+  # filter chains can be toggled on/off for testing
+  enabled: true
+  filters:
+    # this maps to $wasm_filters_path/my_filter.wasm
+    - name: my_filter
+      # at runtime, configuration is passed to the filter as a byte array
+      #
+      # filter configuration is inherently untyped--schema and
+      # encoding/serialization are left up to the filter code itself
+      config: foo=bar baz=bat
 
-  - name: my_other_filter
-    # individual filters within a chain can be toggled on/off for testing
-    enabled: false
-    config: >-
-        {
-          "some_settings": {
-            "a": "b",
-            "c": "d"
-          },
-          "foo": "bar"
-        }
+    - name: my_other_filter
+      # individual filters within a chain can be toggled on/off for testing
+      enabled: false
+      config: >-
+          {
+            "some_settings": {
+              "a": "b",
+              "c": "d"
+            },
+            "foo": "bar"
+          }
 
-  # the same filter may occur more than once in a single chain, and all entries will be
-  # executed
-  - name: my_filter
-    config: foo=123 baz=456
+    # the same filter may occur more than once in a single chain, and all   entries will be
+    # executed
+    - name: my_filter
+      config: foo=123 baz=456
 ```
 
 
@@ -130,7 +131,6 @@ Currently, this functionality does not work in Kong, though there are plans on
 implementing it in a future release for increase compatibility with other
 Proxy-Wasm implementations.
 
-
 ## Further Reading
 
 Other useful sources about this topic:
@@ -139,4 +139,3 @@ Other useful sources about this topic:
 * [ngx_wasm_module Proxy-Wasm documentation](https://github.com/Kong/ngx_wasm_module/blob/main/docs/PROXY_WASM.md)
 * [Go SDK](https://github.com/tetratelabs/proxy-wasm-go-sdk/)
 * [Rust SDK](https://github.com/proxy-wasm/proxy-wasm-rust-sdk/)
-* [C++ SDK](https://github.com/proxy-wasm/proxy-wasm-cpp-sdk/)
