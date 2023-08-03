@@ -4,8 +4,8 @@ badge: enterprise
 ---
 
 
-Consumer Groups is a powerful feature available in {{site.base_gateway}} that enables the organization and categorization of consumers (users or applications) within an API ecosystem. By grouping consumers together, you can manage in an aggregated and more efficient manner. Consumer groups functionality has the capability to scope plugins specifically to defined groups, making configurations and customizations more flexible and convenient.
-Consumer groups eliminate the need to manage consumers individually, providing a scalable approach to managing configurations. 
+Consumer Groups is a powerful feature available in {{site.base_gateway}} that enables the organization and categorization of consumers (users or applications) within an API ecosystem. By grouping consumers together, you can manage in an aggregated and more efficient manner. Consumer groups functionality has the capability to scope plugins specifically to defined groups, making configurations and customizations more flexible and convenient. Consumer groups eliminate the need to manage consumers individually, providing a scalable approach to managing configurations.
+
 
 {% if_version gte:3.4.x %}
 
@@ -19,8 +19,9 @@ Consumer groups eliminate the need to manage consumers individually, providing a
 
 * Customizing plugin configurations: With the ability to scope plugins specifically to defined groups, different Consumer Groups can have distinct plugin configurations based on their requirements. For example, one group may require additional request transformations while another may not need them at all.
 
+Consumer group execution order is deterministic consumers can be part of multiple consumer groups, but this does have an implication on the execution logic, so refer to the  [precedence](/gateway/latest/key-concepts/plugins/#precedence) chart when assigning multiple consuemr groups.
 
-### Scope plugins 
+## Scope plugins 
 The ability to scope plugins to consumer groups is available for: 
 
 * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/)
@@ -28,6 +29,11 @@ The ability to scope plugins to consumer groups is available for:
 * [Response transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
 * [Request Transformer](/hub/kong-inc/request-transformer)
 * [Response Transformer](/hub/kong-inc/response-transformer)
+
+{:note}
+> Consumer groups plugin scoping is a feature that was added in {{site.base_gateway}} version 3.4. Running a mixed-version {{site.base_gateway}} cluster (3.4 control plane, and <=3.3 data planes) is not supported when using consumer-group scoped plugins. 
+
+
 
 
 {% endif_version %}
