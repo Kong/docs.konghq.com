@@ -19,7 +19,7 @@ Consumer Groups is a powerful feature available in {{site.base_gateway}} that en
 
 * Customizing plugin configurations: With the ability to scope plugins specifically to defined groups, different Consumer Groups can have distinct plugin configurations based on their requirements. For example, one group may require additional request transformations while another may not need them at all.
 
-Consumer group execution order is deterministic consumers can be part of multiple consumer groups, but this does have an implication on the execution logic, so refer to the  [precedence](/gateway/latest/key-concepts/plugins/#precedence) chart when assigning multiple consuemr groups.
+Consumer group execution order is deterministic consumers can be part of multiple consumer groups, but this does have an implication on the execution logic, so refer to the  [precedence](/gateway/latest/key-concepts/plugins/#precedence) chart when assigning multiple consumer groups.
 
 ## Scope plugins 
 The ability to scope plugins to consumer groups is available for: 
