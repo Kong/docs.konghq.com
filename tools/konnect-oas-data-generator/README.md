@@ -1,7 +1,7 @@
 ## Konnect OAS data
 
 In order to render the OAS definitions in the docs, we need to have the products Ids in Konnect
-and their versions so that the Vue.js application can make the correspoding API calls to Konnect Portal.
+and their versions so that the Vue.js application can make the corresponding API calls to Konnect Portal.
 
 This script writes the data into `app/_data/konnect_oas_data.json`.
 
