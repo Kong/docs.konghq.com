@@ -111,7 +111,7 @@ $ echo "wasm_filters_path = $PWD/filters" >> kong.conf
 
 #### Link to a Kong Service and Route
 
-Now, the next step is to create a Kong filter chain entity using the Hell World
+Now, the next step is to create a Kong filter chain entity using the Hello World
 filter and associate it with a Kong route or service. This will be done by
 creating a declarative yaml config file at `kong.yml`:
 
