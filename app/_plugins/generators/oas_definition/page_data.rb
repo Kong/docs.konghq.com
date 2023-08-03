@@ -19,7 +19,7 @@ module OasDefinition
       @data.merge!({
                      'source_file' => @file,
                      'dir' => permalink(version_segment),
-                     'product_info' => { 'id' => @product.fetch('id') },
+                     'product' => ::Jekyll::Drops::Oas::Product.new(product: @product),
                      'permalink' => permalink(version_segment),
                      'description' => @product['description'],
                      'title' => page_title,

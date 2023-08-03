@@ -9,6 +9,8 @@ RSpec.describe OasDefinition::Product do
   describe '#generate_pages!' do
     subject { described_class.new(site:, file:, product:) }
 
+    before { site.data['ssg_oas_pages'] = [] }
+
     it 'generates a page for each version of the product' do
       subject.generate_pages!
 

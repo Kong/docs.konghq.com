@@ -51,7 +51,8 @@ RSpec.describe SEO::Sitemap do
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/unbundled-plugin/changelog/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/unbundled-plugin/configuration/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/api/portal-rbac/latest/' },
-        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/api/audit-logs/latest/' }
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/api/audit-logs/latest/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/api/' }
       ])
     end
 

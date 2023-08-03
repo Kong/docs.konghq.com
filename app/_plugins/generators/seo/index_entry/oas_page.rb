@@ -4,7 +4,7 @@ module SEO
   module IndexEntry
     class OasPage < Base
       def indexable?(_pages_index)
-        @page.data['is_latest']
+        index? || @page.data['is_latest']
       end
 
       def key
@@ -12,7 +12,9 @@ module SEO
       end
 
       def attributes
-        { 'version' => version, 'url' => @page.url, 'page' => @page }
+        attrs = { 'url' => @page.url, 'page' => @page }
+        attrs.merge!('version' => version) unless index?
+        attrs
       end
 
       def version
@@ -20,6 +22,10 @@ module SEO
         @version ||= Utils::Version.to_version(
           @page.url.split('/').last
         )
+      end
+
+      def index?
+        @page.url == '/api/'
       end
     end
   end

@@ -18,7 +18,7 @@ RSpec.describe OasDefinition::PageData do
       it 'generates the necessary page data' do
         expect(subject['source_file']).to eq(file)
         expect(subject['dir']).to eq('/api/audit-logs/latest/')
-        expect(subject['product_info']).to eq({ 'id' => 'e46e7742-befb-49b1-9bf1-7cbe477ab818' })
+        expect(subject['product']['id']).to eq('e46e7742-befb-49b1-9bf1-7cbe477ab818')
         expect(subject['permalink']).to eq('/api/audit-logs/latest/')
         expect(subject['description']).to eq('The management API for Konnect audit logging')
         expect(subject['title']).to eq('Audit Logs API - latest')
@@ -38,7 +38,7 @@ RSpec.describe OasDefinition::PageData do
       it 'generates the necessary page data' do
         expect(subject['source_file']).to eq(file)
         expect(subject['dir']).to eq('/api/audit-logs/v1/')
-        expect(subject['product_info']).to eq({ 'id' => 'e46e7742-befb-49b1-9bf1-7cbe477ab818' })
+        expect(subject['product']['id']).to eq('e46e7742-befb-49b1-9bf1-7cbe477ab818')
         expect(subject['permalink']).to eq('/api/audit-logs/v1/')
         expect(subject['description']).to eq('The management API for Konnect audit logging')
         expect(subject['title']).to eq('Audit Logs API - v1')

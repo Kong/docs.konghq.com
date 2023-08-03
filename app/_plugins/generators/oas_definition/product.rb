@@ -26,7 +26,11 @@ module OasDefinition
       version = product['latestVersion']
       data = OasDefinition::PageData.generate(product:, version:, file:, latest: true)
 
-      site.pages << ::OasDefinition::Page.new(site:, data:)
+      latest_page = ::OasDefinition::Page.new(site:, data:)
+
+      site.data['ssg_oas_pages'] << latest_page
+
+      site.pages << latest_page
     end
   end
 end
