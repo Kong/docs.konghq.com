@@ -89,11 +89,11 @@ Fetches the strategy and schema for a given vault during initialization.
 
 **Returns**
 
-1.   strategy ??? The fetched or required strategy for the given vault.
+1.   strategy: The fetched or required strategy for the given vault.
 
-1.   schema ??? The fetched or required schema for the given vault.
+1.   schema: The fetched or required schema for the given vault.
 
-1.   string|nil An error message, if an error occurred while fetching or requiring the strategy or schema.
+1.   `string|nil`: An error message, if an error occurred while fetching or requiring the strategy or schema.
 
 
 
