@@ -1,5 +1,6 @@
 ---
 nav_title: Send Kong Logs to Splunk
+title: Send Kong Logs to Splunk
 ---
 
 You can use the HTTP Log plugin to send {{site.base_gateway}} logs to Splunk.
