@@ -26,6 +26,10 @@ RSpec.describe OasDefinition::PageData do
         expect(subject['layout']).to eq('oas/spec')
         expect(subject['canonical_url']).to eq('/api/audit-logs/latest/')
         expect(subject['is_latest']).to eq(true)
+        expect(subject['algolia_docsearch_meta']).to match_array([
+          { 'name' => 'docsearch:title', 'value' => 'Audit Logs API - latest' },
+          { 'name' => 'docsearch:description', 'value' => 'The management API for Konnect audit logging' }
+        ])
       end
     end
 
@@ -46,6 +50,10 @@ RSpec.describe OasDefinition::PageData do
         expect(subject['layout']).to eq('oas/spec')
         expect(subject['canonical_url']).to eq('/api/audit-logs/latest/')
         expect(subject['is_latest']).to eq(false)
+        expect(subject['algolia_docsearch_meta']).to match_array([
+          { 'name' => 'docsearch:title', 'value' => 'Audit Logs API - v1' },
+          { 'name' => 'docsearch:description', 'value' => 'The management API for Konnect audit logging' }
+        ])
       end
     end
   end

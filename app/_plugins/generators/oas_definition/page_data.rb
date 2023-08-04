@@ -27,7 +27,8 @@ module OasDefinition
                      'layout' => 'oas/spec',
                      'canonical_url' => canonical_url,
                      'seo_noindex' => @latest ? nil : true,
-                     'is_latest' => @latest
+                     'is_latest' => @latest,
+                     'algolia_docsearch_meta' => algolia_docsearch_meta
                    })
     end
 
@@ -57,6 +58,13 @@ module OasDefinition
       else
         "#{@product['title']} - #{@version['name']}"
       end
+    end
+
+    def algolia_docsearch_meta
+      [
+        { 'name' => 'docsearch:title', 'value' => page_title },
+        { 'name' => 'docsearch:description', 'value' => @product['description'] }
+      ]
     end
   end
 end
