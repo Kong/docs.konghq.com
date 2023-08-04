@@ -93,6 +93,10 @@ Follow these steps:
 click **Custom** and select a date range.
 1. Click **Export** to generate and download a CSV file.
 
+## Limits
+
+Konnect Analytics limits the number of entities returned and displayed in any activity graph or custom report to only 50 to provide a smooth experience. A warning icon at the top of a graph or report indicates that. Please [use custom reports](/konnect/analytics/generate-reports/) to filter and descrease the number of entities if required.  
+
 ## Team permissions
 
 You can assign {{site.konnect_short_name}} users to specific, predefined Analytic teams. This gives you the ability to allow certain users to only view or manage the Analytics area of your {{site.konnect_short_name}} instance. For more information about the Analytics Admin and Analytics Viewer teams, see the [Teams Reference](/konnect/org-management/teams-and-roles/teams-reference/).
