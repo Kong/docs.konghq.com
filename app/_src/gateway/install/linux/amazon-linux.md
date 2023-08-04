@@ -48,12 +48,12 @@ curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-sudo yum install kong-enterprise-edition-{{page.versions.ee}}.aws.amd64.rpm
+sudo yum install kong-enterprise-edition-{{page.versions.ee}}.rpm
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-sudo yum install kong-{{page.versions.ce}}.aws.amd64.rpm
+sudo yum install kong-{{page.versions.ce}}.rpm
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}
