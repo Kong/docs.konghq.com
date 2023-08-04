@@ -1111,7 +1111,7 @@ components:
           - bar
       properties:
         config:
-          description: The configuration properties for the Vault which can be found on the vaults' documentation page.
+          description: The configuration properties for the Vault which can be found on the [vaults' documentation page](https://docs.konghq.com/gateway/latest/kong-enterprise/secrets-management/advanced-usage/).
           type: object
           properties:
             prefix:
