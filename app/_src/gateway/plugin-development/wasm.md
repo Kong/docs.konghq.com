@@ -1,29 +1,28 @@
 ---
-title: WebAssembly
+title: Create a Proxy-Wasm filter
 book: plugin_dev
 chapter: 11
 ---
 
-# Your First Proxy-Wasm Filter
+## Your first Proxy-Wasm filter
 
-Filters can be written in almost any language that supports WebAssembly as a
-compilation target, but the easiest and most ergonomic way to get started is by
+Filters can be written as a compilation target in almost any language that supports WebAssembly, but the easiest way to get started is by
 using a language which has an existing [Proxy-Wasm](https://github.com/proxy-wasm/spec)
 SDK, such as [Go](https://github.com/tetratelabs/proxy-wasm-go-sdk/)
 or [Rust](https://github.com/proxy-wasm/proxy-wasm-rust-sdk/).
 
 ## Coding, building and deploying a Proxy-Wasm filter
 
-Kong made available Go and Rust Proxy-Wasm filter templates, which can be used
-to start coding your own filters or build as they are and have your first "hello
-world"-type filter:
+Kong made Go and Rust Proxy-Wasm filter templates available, they can be used
+to start writing your own filters or builds as they are and write your first `hello
+world`-type filter:
 
 * [Go Proxy-Wasm filter template](https://github.com/Kong/proxy-wasm-go-filter-template/)
 * [Rust Proxy-Wasm filter template](https://github.com/Kong/proxy-wasm-rust-filter-template/)
 
-### Deploying the Filter with Kong
+### Deploying the filter with Kong
 
-After writing and building the filter, it is time to deploy it.
+After writing and building the filter, deploy it:
 
 #### Configuration
 
@@ -35,7 +34,7 @@ $ export KONG_WASM=on
 
 Additionally, the `wasm_filters_path` parameter must be configured in order for
 {{site.base_gateway}} to load the filter at runtime. During local development,
-when a short feedback loop is desirable, you may want to set this parameter to
+when a short feedback loop is desired, you can set this parameter to
 your build toolchain's output directory (wherever the compiled
 `<filter-name>.wasm` file is produced):
 
@@ -43,7 +42,7 @@ your build toolchain's output directory (wherever the compiled
 $ export KONG_WASM_FILTERS_PATH=/path/to/my_filter/build
 ```
 
-#### Link to a Kong Service and Route
+#### Link to a Kong service and route
 
 Now, the next step is to create a Kong filter chain entity using the
 filter created in the previous step and associate it with a Kong route
@@ -103,8 +102,7 @@ X-Kong-Upstream-Latency: 342
 ```
 
 ## Further Reading
-
-Other useful resources to learn more about Proxy-Wasm:
+* [Kong WebAssembly reference](/gateway/latest/reference/wasm)
 * [Proxy-Wasm spec](https://github.com/proxy-wasm/spec)
 * [ngx_wasm_module](https://github.com/Kong/ngx_wasm_module)
 * [ngx_wasm_module Proxy-Wasm documentation](https://github.com/Kong/ngx_wasm_module/blob/main/docs/PROXY_WASM.md)

@@ -457,6 +457,8 @@ items:
         url: /plugin-development/tests
       - text: (un)Installing your Plugin
         url: /plugin-development/distribution
+      - text: Create a Proxy-Wasm filter
+        url: /plugin-development/wasm
       - text: Plugin Development Kit
         items:
         - text: Overview
@@ -635,5 +637,7 @@ items:
         url: /reference/performance-testing-framework
       - text: Router Expressions Language
         url: /reference/router-expressions-language
+      - text: WebAssembly
+        url: /reference/wasm
       - text: FAQ
         url: /reference/faq

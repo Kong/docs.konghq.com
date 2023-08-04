@@ -78,6 +78,7 @@ Terraform
 Terraform's
 UIs
 Unicode
+untyped
 Valero
 Vue
 Wireshark
