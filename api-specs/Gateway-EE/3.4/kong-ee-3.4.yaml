@@ -5636,7 +5636,7 @@ paths:
       parameters:
         - schema:
             type: boolean
-            example: 'true'
+            example: true
           in: query
           name: cascade
           description: The `cascade` option lets you delete a workspace and all of its entities in one request.
