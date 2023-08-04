@@ -2840,7 +2840,7 @@ externalDocs:
   url: 'https://docs.konghq.com'
 info:
   contact:
-    email: harry@konghq.com
+    email: docs@konghq.com
     name: Kong Inc
     url: 'https://konghq.com'
   description: |-
@@ -2852,7 +2852,7 @@ info:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
   title: Kong Admin API
-  version: 0.0.1
+  version: 3.4.0
 openapi: 3.0.0
 paths:
   /ca_certificates:
@@ -3192,6 +3192,7 @@ paths:
       operationId: fetch-sni-with-certificate
     patch:
       description: |2
+
 
 
          Update an existing SNI associated with a certificate in the system using the SNI ID or name. The request body should include the fields of the SNI that need to be updated, such as the name, description, or other properties. If the request body contains valid data, the endpoint will update the SNI and return a success response. 

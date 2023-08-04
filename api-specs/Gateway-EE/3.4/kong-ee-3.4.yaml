@@ -1102,7 +1102,7 @@ components:
       description: 'Vault entities are used to configure different Vault connectors. Examples of Vaults are Environment Variables, Hashicorp Vault and AWS Secrets Manager. Configuring a Vault allows referencing the secrets with other entities. For example a certificate entity can store a reference to a certificate and key, stored in a vault, instead of storing the certificate and key within the entity. This allows a proper separation of secrets and configuration and prevents secret sprawl.'
       example:
         config:
-          prefix: "vaults.config.resurrect_ttl"
+          prefix: vaults.config.resurrect_ttl
         description: environment variable based vault
         id: 2747d1e5-8246-4f65-a939-b392f1ee17f8
         name: env
@@ -1113,15 +1113,15 @@ components:
         config:
           description: The configuration properties for the Vault which can be found on the vaults' documentation page.
           type: object
-          properties: 
-            prefix: 
+          properties:
+            prefix:
               description: The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
               type: string
               enum:
-              - vaults.config.resurrect_ttl
-              - vaults.config.neg_ttl
-              - vaults.config.ttl
-              required: 
+                - vaults.config.resurrect_ttl
+                - vaults.config.neg_ttl
+                - vaults.config.ttl
+              required:
                 - prefix
         created_at:
           description: Unix epoch when the resource was created.
@@ -3459,7 +3459,7 @@ externalDocs:
   url: 'https://docs.konghq.com'
 info:
   contact:
-    email: harry@konghq.com
+    email: docs@konghq.com
     name: Kong Inc
     url: 'https://konghq.com'
   description: |-
@@ -3471,7 +3471,7 @@ info:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
   title: Enterprise Kong Admin API
-  version: 0.0.2
+  version: 3.4.0
 openapi: 3.0.0
 paths:
   /ca_certificates:
