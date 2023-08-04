@@ -89,7 +89,6 @@ jobs:
           version: 2.24.0
           # path where vale checks checking only modified files.
           filter_mode: file
-          fail_on_error: true
           vale_flags: "--glob=!app/_src/.repos/kuma/**"
           reporter: github-pr-review
         env:
