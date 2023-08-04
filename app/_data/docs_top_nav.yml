@@ -1,10 +1,10 @@
-- name: Gateway
+- name: Kong Gateway
   desc: Lightweight, fast, and flexible cloud-native API gateway
   url: /gateway/latest/
-- name: Konnect
+- name: Kong Konnect
   desc: Single platform for SaaS end-to-end connectivity
   url: /konnect/
-- name: Mesh
+- name: Kong Mesh
   desc: Enterprise service mesh based on Kuma and Envoy
   url: /mesh/latest/
 - name: decK
