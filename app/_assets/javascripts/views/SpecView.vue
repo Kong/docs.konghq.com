@@ -17,6 +17,12 @@
       </div>
 
       <div class="spec-content">
+        <KAlert
+          v-if="deprecatedProductVersion"
+          appearance="warning"
+          class="deprecated-warning"
+          alert-message="This product version is now deprecated. The endpoints will remain fully usable until this version is sunsetted."
+        />
         <Spec
           :product="product"
           :product-version-id="activeProductVersionId"
@@ -47,6 +53,7 @@ const versionsAPI = new ApiService().versionsAPI;
 const activeOperation = ref(null);
 const state = reactive({ activeOperation });
 const productError = ref(null);
+const deprecatedProductVersion = ref(false);
 
 function onOperationSelected(event) {
   activeOperation.value = event;
@@ -96,6 +103,7 @@ function initActiveProductVersionId () {
 
     if (newProductVersion) {
       activeProductVersionId.value = newProductVersion.id;
+      deprecatedProductVersion.value = newProductVersion.deprecated;
     }
   }
 
