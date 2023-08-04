@@ -43,6 +43,8 @@ jobs:
         run: |
           cd tools/broken-link-checker
           npm ci
-          node run.js pr --base_url https://deploy-preview-${{ github.event.pull_request.number }}--kongdocs.netlify.app
+          node run.js pr \
+            --base_url https://deploy-preview-${{ github.event.pull_request.number }}--kongdocs.netlify.app \
+            ${{ runner.debug != '' && '--verbose' || '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
