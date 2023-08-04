@@ -1,6 +1,7 @@
 {
   "all": {
     "sourceCodeDir": "app/_assets",
+    "publicDir": "app/assets",
     "watchAdditionalPaths": ["app/index.html", "app/_includes/**/*", "app/_layouts/**/*"]
   },
   "development": {
