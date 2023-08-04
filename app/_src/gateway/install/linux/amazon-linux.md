@@ -109,9 +109,11 @@ sudo yum install -y kong-{{page.versions.ce}}.rpm
 
 Install the YUM repository from the command line.
 
-1. Download the Kong APT repository:
+1. Download the Kong YUM repository:
+
     ```bash
-    curl https://download.konghq.com/gateway-3.x-amazonlinux-2023/config.repo | sudo tee /etc/yum.repos.d/kong.repo
+    curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/config.rpm.txt?distro=amzn&codename=$(rpm --eval '%{amzn}')" | sudo tee /etc/yum.repos.d/kong-gateway-{{ page.major_minor_version }}.repo > /dev/null
+    sudo yum -q makecache -y --disablerepo='*' --enablerepo='kong-gateway-{{ page.major_minor_version }}'
     ```
 
 2. Install Kong:
