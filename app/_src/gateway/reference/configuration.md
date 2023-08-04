@@ -2413,8 +2413,6 @@ resolved listener port depending on the requested protocol.
 
 **Default:** none
 
-{% if_version gte:3.1.x %}
-
 ### admin_gui_path
 {% if_version lte:3.3.x %}{:.badge .free}{% endif_version %}
 

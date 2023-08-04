@@ -432,7 +432,7 @@ items:
       - text: Sending Email
         url: /kong-manager/configuring-to-send-email
   - title: Kong Manager Open Source
-    icon: 
+    icon: /assets/images/icons/documentation/icn-manager-oss-color.svg
     items:
       - text: Overview
         url: /kong-manager-oss/
