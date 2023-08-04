@@ -45,7 +45,7 @@ The Vault entity can only be used once the database is initialized. Secrets for 
 {% navtab Admin API %}
 
 ```bash
-curl -i -X PUT http://HOSTNAME:8001/vaults/my-hashicorp-vault \
+curl -i -X PUT http://HOSTNAME:8001/vaults/hashicorp-vault \
   --data name="hcv" \
   --data description="Storing secrets in HashiCorp Vault" \
   --data config.protocol="https" \
@@ -53,7 +53,7 @@ curl -i -X PUT http://HOSTNAME:8001/vaults/my-hashicorp-vault \
   --data config.port="8200" \
   --data config.mount="secret" \
   --data config.kv="v2" \
-  --data config.token="<mytoken>"
+  --data config.token="<token>"
 ```
 
 Result:
@@ -66,13 +66,13 @@ Result:
         "mount": "secret",
         "port": 8200,
         "protocol": "https",
-        "token": "<mytoken>"
+        "token": "<token>"
     },
     "created_at": 1645008893,
     "description": "Storing secrets in HashiCorp Vault",
     "id": "0b43d867-05db-4bed-8aed-0fccb6667837",
     "name": "hcv",
-    "prefix": "my-hashicorp-vault",
+    "prefix": "hashicorp-vault",
     "tags": null,
     "updated_at": 1645008893
 }
@@ -95,10 +95,10 @@ vaults:
     mount: secret
     port: 8200
     protocol: https
-    token: <mytoken>
+    token: <token>
   description: Storing secrets in HashiCorp Vault
   name: hcv
-  prefix: my-hashicorp-vault
+  prefix: hashicorp-vault
 ```
 
 {% endnavtab %}
@@ -129,7 +129,7 @@ Access these secrets like this:
 Or, if you configured an entity:
 
 ```bash
-{vault://my-hashicorp-vault/hello/foo}
+{vault://hashicorp-vault/hello/foo}
 ```
 
 ## Vault configuration options
@@ -174,4 +174,4 @@ Parameter | Field name | Description
 ----------|------------|------------
 `vaults.description` <br> *optional* | **Description** | An optional description for your vault.
 `vaults.name` | **Name** | The type of vault. Accepts one of: `env`, `gcp`, `aws`, or `hcv`. Set `hcv` for HashiCorp Vault.
-`vaults.prefix` | **Prefix** | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://my-hcv-vault/<some-secret>}`.
+`vaults.prefix` | **Prefix** | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://hcv-vault/<some-secret>}`.

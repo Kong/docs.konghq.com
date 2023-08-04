@@ -30,7 +30,7 @@ export KONG_VAULT_AWS_REGION=<aws-region>
 
 ### Examples
 
-For example, an AWS Secrets Manager Secret with the name `my-secret-name` may have multiple key=value pairs:
+For example, an AWS Secrets Manager Secret with the name `secret-name` may have multiple key=value pairs:
 
 ```json
 {
@@ -39,11 +39,11 @@ For example, an AWS Secrets Manager Secret with the name `my-secret-name` may ha
 }
 ```
 
-Access these secrets from `my-secret-name` like this:
+Access these secrets from `secret-name` like this:
 
 ```bash
-{vault://aws/my-secret-name/foo}
-{vault://aws/my-secret-name/snip}
+{vault://aws/secret-name/foo}
+{vault://aws/secret-name/snip}
 ```
 
 ## Configuration via vaults entity
@@ -54,7 +54,7 @@ The Vault entity can only be used once the database is initialized. Secrets for 
 {% navtab Admin API %}
 
 ```bash
-curl -i -X PUT http://HOSTNAME:8001/vaults/my-aws-sm-vault  \
+curl -i -X PUT http://HOSTNAME:8001/vaults/aws-sm-vault  \
   --data name=aws \
   --data description="Storing secrets in AWS Secrets Manager" \
   --data config.region="us-east-1"
@@ -71,7 +71,7 @@ Result:
     "description": "Storing secrets in AWS Secrets Manager",
     "id": "2911e119-ee1f-42af-a114-67061c3831e5",
     "name": "aws",
-    "prefix": "my-aws-sm-vault",
+    "prefix": "aws-sm-vault",
     "tags": null,
     "updated_at": 1644942689
 }
@@ -91,7 +91,7 @@ vaults:
     region: us-east-1
   description: Storing secrets in AWS Secrets Manager
   name: aws
-  prefix: my-aws-sm-vault
+  prefix: aws-sm-vault
 ```
 
 {% endnavtab %}
@@ -101,8 +101,8 @@ With the Vault entity in place, you can now reference the secrets. This allows y
 environment variable.
 
 ```bash
-{vault://my-aws-sm-vault/my-secret-name/foo}
-{vault://my-aws-sm-vault/my-secret-name/snip}
+{vault://aws-sm-vault/secret-name/foo}
+{vault://aws-sm-vault/secret-name/snip}
 ```
 
 ## Secrets in different regions
@@ -117,8 +117,8 @@ curl -X PUT http://HOSTNAME:8001/vaults/aws-us-west-vault -d name=aws -d config.
 This lets you source secrets from different regions:
 
 ```bash
-{vault://aws-eu-central-vault/my-secret-name/foo}
-{vault://aws-us-west-vault/my-secret-name/snip}
+{vault://aws-eu-central-vault/secret-name/foo}
+{vault://aws-us-west-vault/secret-name/snip}
 ```
 
 ## Vault configuration options
@@ -151,4 +151,4 @@ Parameter | Field name | Description
 ----------|---------------|------------
 `vaults.description` <br> *optional* | **Description** | An optional description for your vault.
 `vaults.name` | **Name** | The type of vault. Accepts one of: `env`, `gcp`, `aws`, or `hcv`. Set `aws` for AWS Secrets Manager.
-`vaults.prefix` | **Prefix** | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://my-aws-sm-vault/<some-secret>}`.
+`vaults.prefix` | **Prefix** | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://aws-sm-vault/<some-secret>}`.

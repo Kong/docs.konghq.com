@@ -19,7 +19,7 @@ You can configure your vault backend with query arguments.
 For example, the following query uses an option called `prefix` with the value `SECURE_`:
 
 ```bash
-{vault://env/my-secret-config-value?prefix=SECURE_}
+{vault://env/secret-config-value?prefix=SECURE_}
 ```
 
 For more information on available configuration options,
@@ -44,7 +44,7 @@ The Vault entity can only be used once the database is initialized. Secrets for 
 Create a Vault entity:
 
 ```bash
-curl -i -X PUT http://HOSTNAME:8001/vaults/my-env-vault-1  \
+curl -i -X PUT http://HOSTNAME:8001/vaults/env-vault-1  \
   --data name=env \
   --data description='ENV vault for secrets' \
   --data config.prefix=SECRET_
@@ -61,7 +61,7 @@ Result:
     "description": "ENV vault for secrets",
     "id": "684ff5ea-7f65-4377-913b-880857f39251",
     "name": "env",
-    "prefix": "my-env-vault-1",
+    "prefix": "env-vault-1",
     "tags": null,
     "updated_at": 1644929952
 }
@@ -72,7 +72,7 @@ Config options depend on the associated [backend](/gateway/{{page.kong_version}}
 This lets you drop the configuration from environment variables and query arguments and use the entity name in the reference:
 
 ```bash
-{vault://my-env-vault/my-secret-config-value}
+{vault://env-vault/secret-config-value}
 ```
 
 ## Vaults CLI
@@ -105,10 +105,10 @@ You can configure a vault backend with decK. For example:
 ```yaml
 vaults:
 - config:
-    prefix: MY_SECRET_
+    prefix: SECRET_
   description: ENV vault for secrets
   name: env
-  prefix: my-env-vault
+  prefix: env-vault
 ```
 
 For more information on configuring vaults and using secret references in declarative
@@ -122,7 +122,7 @@ Parameter | UI field name | Description
 ----------|---------------|------------
 `vaults.description` *optional* | Description | An optional description for your vault.
 `vaults.name` | N/A | The type of vault. Accepts one of: `env`, `gcp`, `aws`, or `hcv`.
-`vaults.prefix` | Prefix | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://my-env-vault/<some-secret>}`.
+`vaults.prefix` | Prefix | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://env-vault/<some-secret>}`.
 
 Most of the vaults also support secret rotation by using TTLs:
 
