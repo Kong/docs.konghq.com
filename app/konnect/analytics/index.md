@@ -95,7 +95,7 @@ click **Custom** and select a date range.
 
 ## Limits
 
-Konnect Analytics limits the number of entities returned and displayed in any activity graph or custom report to only 50 to provide a smooth experience. A warning icon at the top of a graph or report indicates that. Please [use custom reports](/konnect/analytics/generate-reports/) to filter and descrease the number of entities if required.  
+Konnect Analytics limits the number of entities returned and displayed in any activity graph or custom report to only 50 to provide a smooth experience. A warning icon at the top of a graph or report indicates that. Please [use custom reports](/konnect/analytics/generate-reports/) to filter and decrease the number of entities if required.  
 
 ## Team permissions
 
