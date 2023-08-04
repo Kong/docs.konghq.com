@@ -115,5 +115,5 @@ In a multi-zone environment, validation is performed on the global control plane
 {% endif_version %}
 
 {% if_version lte:1.9.x %}
-[mtls-policy]: https://kuma.io/docs/latest/policies/mutual-tls/
+[mtls-policy]: https://kuma.io/docs/1.8.x/policies/mutual-tls/
 {% endif_version %}
