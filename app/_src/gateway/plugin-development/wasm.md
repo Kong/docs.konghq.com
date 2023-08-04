@@ -30,7 +30,7 @@ After writing and building the filter, it is time to deploy it.
 WebAssembly support must be enabled in {{site.base_gateway}}:
 
 ```console
-$ echo "wasm = on" >> /etc/kong.conf
+$ export KONG_WASM=on
 ```
 
 Additionally, the `wasm_filters_path` parameter must be configured in order for
@@ -40,7 +40,7 @@ your build toolchain's output directory (wherever the compiled
 `<filter-name>.wasm` file is produced):
 
 ```console
-echo "wasm_filters_path = /path/to/my_filter/build" >> /etc/kong.conf
+$ export KONG_WASM_FILTERS_PATH=/path/to/my_filter/build
 ```
 
 #### Link to a Kong Service and Route
@@ -71,8 +71,8 @@ services:
 ```
 
 ```console
-$ echo "database = off" >> /etc/kong.conf
-$ echo "declarative_config = $PWD/kong.yml" >> /etc/kong.conf
+$ export KONG_DATABASE=off
+$ export KONG_DECLARATIVE_CONFIG="$PWD/kong.yml"
 ```
 
 #### Start Kong
@@ -80,9 +80,9 @@ $ echo "declarative_config = $PWD/kong.yml" >> /etc/kong.conf
 Now Kong can be started:
 
 ```console
-$ echo "prefix = $PWD/wasm-servroot" >> /etc/kong.conf
-$ kong prepare -c /etc/kong.conf
-$ kong start -c /etc/kong.conf
+$ export KONG_PREFIX="$PWD/wasm-servroot"
+$ kong prepare
+$ kong start
 ```
 
 And the Proxy-Wasm filter is ready to be used:
