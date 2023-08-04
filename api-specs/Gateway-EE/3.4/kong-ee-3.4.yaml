@@ -16,8 +16,8 @@ components:
         minimum: 1
         type: integer
     pagination-tags-filter:
-      description: A list of tags to filter the list of resources on. Multiple tags can be concatenated using ',' to mean AND or using '/' to mean OR.
-      example: tag1,tag2
+      description: 'A list of tags to filter the list of resources on. Multiple tags can be concatenated using '','' to mean AND or using ''/'' to mean OR.'
+      example: 'tag1,tag2'
       in: query
       name: tags
       schema:
@@ -318,7 +318,7 @@ components:
           description: PEM-encoded public certificate of the CA.
           type: string
         cert_digest:
-          description: SHA256 hex digest of the public certificate. This field is read-only and it cannot be set by the caller, the value is automatically computed.
+          description: 'SHA256 hex digest of the public certificate. This field is read-only and it cannot be set by the caller, the value is automatically computed.'
           type: string
         created_at:
           description: Unix epoch when the resource was created.
@@ -345,10 +345,10 @@ components:
           -----END PRIVATE KEY-----
       properties:
         cert:
-          description: PEM-encoded public certificate chain of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+          description: 'PEM-encoded public certificate chain of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).'
           type: string
         cert_alt:
-          description: PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+          description: 'PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).'
           type: string
         created_at:
           description: Unix epoch when the resource was created.
@@ -356,10 +356,10 @@ components:
         id:
           type: string
         key:
-          description: PEM-encoded private key of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+          description: 'PEM-encoded private key of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).'
           type: string
         key_alt:
-          description: PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
+          description: 'PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).'
           type: string
         tags:
           description: An optional set of strings associated with the Certificate for grouping and filtering.
@@ -371,10 +371,10 @@ components:
           type: integer
       type: object
     Consumer:
-      description: The Consumer object represents a consumer - or a user - of a Service. You can either rely on Kong as the primary datastore, or you can map the consumer list with your database to keep consistency between Kong and your existing primary datastore.
+      description: 'The Consumer object represents a consumer - or a user - of a Service. You can either rely on Kong as the primary datastore, or you can map the consumer list with your database to keep consistency between Kong and your existing primary datastore.'
       example:
         custom_id: '4200'
-        id: 8a388226-80e8-4027-a486-25e4f7db5d21
+        id: 8a388226-20e8-4027-a486-25e4f7db5d21
         tags:
           - silver-tier
         username: bob-the-builder
@@ -481,7 +481,7 @@ components:
       type: object
       title: Key-set
     Plugin:
-      description: A Plugin entity represents a plugin configuration that will be executed during the HTTP request/response lifecycle. It is how you can add functionalities to Services that run behind Kong, like Authentication or Rate Limiting for example. You can find more information about how to install and what values each plugin takes by visiting the [Kong Hub](https://docs.konghq.com/hub/). When adding a Plugin Configuration to a Service, every request made by a client to that Service will run said Plugin. If a Plugin needs to be tuned to different values for some specific Consumers, you can do so by creating a separate plugin instance that specifies both the Service and the Consumer, through the `service` and `consumer` fields.
+      description: 'A Plugin entity represents a plugin configuration that will be executed during the HTTP request/response lifecycle. It is how you can add functionalities to Services that run behind Kong, like Authentication or Rate Limiting for example. You can find more information about how to install and what values each plugin takes by visiting the [Kong Hub](https://docs.konghq.com/hub/). When adding a Plugin Configuration to a Service, every request made by a client to that Service will run said Plugin. If a Plugin needs to be tuned to different values for some specific Consumers, you can do so by creating a separate plugin instance that specifies both the Service and the Consumer, through the `service` and `consumer` fields.'
       example:
         config:
           anonymous: null
@@ -502,11 +502,11 @@ components:
           - https
       properties:
         config:
-          description: The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).
+          description: 'The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).'
           type: object
         consumer:
           additionalProperties: false
-          description: If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer.
+          description: 'If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer.'
           properties:
             id:
               type: string
@@ -528,7 +528,7 @@ components:
         id:
           type: string
         name:
-          description: The name of the Plugin that's going to be added. Currently, the Plugin must be installed in every Kong instance separately.
+          description: 'The name of the Plugin that''s going to be added. Currently, the Plugin must be installed in every Kong instance separately.'
           type: string
         ordering:
           type: object
@@ -538,20 +538,20 @@ components:
             - grpcs
             - http
             - https
-          description: A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.
+          description: 'A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.'
           items:
             type: string
           type: array
         route:
           additionalProperties: false
-          description: If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.
+          description: 'If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.'
           properties:
             id:
               type: string
           type: object
         service:
           additionalProperties: false
-          description: If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.
+          description: 'If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.'
           properties:
             id:
               type: string
@@ -566,7 +566,7 @@ components:
           type: integer
       type: object
     Route:
-      description: Route entities define rules to match client requests. Each Route is associated with a Service, and a Service may have multiple Routes associated to it. Every request matching a given Route will be proxied to its associated Service. The combination of Routes and Services (and the separation of concerns between them) offers a powerful routing mechanism with which it is possible to define fine-grained entry-points in Kong leading to different upstream services of your infrastructure. You need at least one matching rule that applies to the protocol being matched by the Route.
+      description: 'Route entities define rules to match client requests. Each Route is associated with a Service, and a Service may have multiple Routes associated to it. Every request matching a given Route will be proxied to its associated Service. The combination of Routes and Services (and the separation of concerns between them) offers a powerful routing mechanism with which it is possible to define fine-grained entry-points in Kong leading to different upstream services of your infrastructure. You need at least one matching rule that applies to the protocol being matched by the Route.'
       example:
         hosts:
           - foo.example.com
@@ -609,11 +609,11 @@ components:
             type: string
           type: array
         name:
-          description: The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".
+          description: 'The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".'
           type: string
         path_handling:
           default: v0
-          description: Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior.
+          description: 'Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior.'
           type: string
         paths:
           description: A list of paths that match this Route.
@@ -622,23 +622,23 @@ components:
           type: array
         preserve_host:
           default: false
-          description: When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service's `host`.
+          description: 'When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service''s `host`.'
           type: boolean
         protocols:
           default:
             - http
             - https
-          description: An array of the protocols this Route should allow. See the [Route Object](#route-object) section for a list of accepted protocols. When set to only `"https"`, HTTP requests are answered with an upgrade error. When set to only `"http"`, HTTPS requests are answered with an error.
+          description: 'An array of the protocols this Route should allow. See the [Route Object](#route-object) section for a list of accepted protocols. When set to only `"https"`, HTTP requests are answered with an upgrade error. When set to only `"http"`, HTTPS requests are answered with an error.'
           items:
             type: string
           type: array
         regex_priority:
           default: 0
-          description: A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same `regex_priority`, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).
+          description: 'A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same `regex_priority`, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).'
           type: integer
         request_buffering:
           default: true
-          description: Whether to enable request body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that receive data with chunked transfer encoding.
+          description: 'Whether to enable request body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that receive data with chunked transfer encoding.'
           type: boolean
         response_buffering:
           default: true
@@ -1102,7 +1102,7 @@ components:
       description: 'Vault entities are used to configure different Vault connectors. Examples of Vaults are Environment Variables, Hashicorp Vault and AWS Secrets Manager. Configuring a Vault allows referencing the secrets with other entities. For example a certificate entity can store a reference to a certificate and key, stored in a vault, instead of storing the certificate and key within the entity. This allows a proper separation of secrets and configuration and prevents secret sprawl.'
       example:
         config:
-          prefix: ENV_PREFIX
+          prefix: "vaults.config.resurrect_ttl"
         description: environment variable based vault
         id: 2747d1e5-8246-4f65-a939-b392f1ee17f8
         name: env
@@ -1113,6 +1113,16 @@ components:
         config:
           description: The configuration properties for the Vault which can be found on the vaults' documentation page.
           type: object
+          properties: 
+            prefix: 
+              description: The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
+              type: string
+              enum:
+              - vaults.config.resurrect_ttl
+              - vaults.config.neg_ttl
+              - vaults.config.ttl
+              required: 
+                - prefix
         created_at:
           description: Unix epoch when the resource was created.
           type: integer
@@ -5623,6 +5633,13 @@ paths:
       summary: Delete a Workspace
       tags:
         - Workspaces
+      parameters:
+        - schema:
+            type: boolean
+            example: 'true'
+          in: query
+          name: cascade
+          description: The `cascade` option lets you delete a workspace and all of its entities in one request.
     get:
       description: Get a Workspace using ID or name.
       operationId: get-workspace
@@ -7977,6 +7994,261 @@ paths:
           $ref: '#/components/responses/key-ring-response'
       operationId: get-keyring
       description: 'Kong Gateway provides a mechanism to store sensitive data fields, such as consumer secrets, in an encrypted format within the database.This provides for encryption-at-rest security controls in a Kong cluster. For more information review the [keyring and data encryption documentation](https://docs.konghq.com/gateway/latest/kong-enterprise/db-encryption/#getting-started).'
+  '/{endpoint}':
+    parameters:
+      - schema:
+          type: string
+          example: key
+        name: endpoint
+        in: path
+        required: true
+        description: Any available endpoint
+    head:
+      summary: Check endpoint or entity existence
+      operationId: head-endpoints
+      responses:
+        '204':
+          description: No Content
+          headers:
+            Date:
+              description: The date and time at which the message was originated
+              schema:
+                type: string
+              example: 'Fri, 14 Apr 2023 17:38:29 GMT'
+            Content-Type:
+              description: The media type of the message content
+              schema:
+                type: string
+                example: text/html; charset=UTF-8
+            Connection:
+              description: Indicates whether the connection will be closed after the message is completed
+              schema:
+                type: string
+                enum:
+                  - keep-alive
+                  - close
+              example: keep-alive
+            Access-Control-Allow-Origin:
+              description: Indicates whether the resource can be accessed by any origin
+              schema:
+                type: string
+                example: '*'
+            X-Kong-Admin-Request-ID:
+              description: 'A unique identifier for the request, generated by Kong'
+              schema:
+                type: string
+                example: aqETeVmkeiGnAMzdUT2JRWroB2myY1lB
+            X-Kong-Admin-Latency:
+              description: 'The time taken to process the request on the server, in milliseconds'
+              schema:
+                type: integer
+                example: 5
+            Server:
+              description: The software used by the origin server to handle the request
+              schema:
+                type: string
+                example: kong/3.2.2.0-enterprise-edition
+        '404':
+          description: Endpoint does not exist
+          headers: {}
+      description: |
+        Similar to `HTTP` GET, but does not return the body. Returns HTTP 200 when the endpoint exits or HTTP 404 when it does not. Other status codes are possible.
+      tags:
+        - Information
+    options:
+      summary: List method by endpoint
+      operationId: options-endpoint
+      responses:
+        '204':
+          description: No Content
+          headers:
+            Date:
+              description: The date and time at which the message was originated
+              schema:
+                type: string
+              example: 'Fri, 14 Apr 2023 17:24:17 GMT'
+            Connection:
+              description: Indicates whether the connection will be closed after the message is completed
+              schema:
+                type: string
+                enum:
+                  - keep-alive
+                  - close
+              example: keep-alive
+            Access-Control-Allow-Origin:
+              description: Indicates whether the resource can be accessed by any origin
+              schema:
+                type: string
+                example: '*'
+            Access-Control-Allow-Headers:
+              description: Used in response to a preflight request to indicate which HTTP headers can be used during the actual request
+              schema:
+                type: string
+                example: 'Content-Type, Kong-Admin-Token, Kong-Request-Type, Cache-Control'
+            X-Kong-Admin-Request-ID:
+              description: 'A unique identifier for the request, generated by Kong'
+              schema:
+                type: string
+                example: gDP1cF3OsNbrgcKPhRNE0RXRNfS7NcoG
+            Allow:
+              description: Lists the HTTP methods that are supported for the resource
+              schema:
+                type: string
+                example: 'OPTIONS, PATCH, POST'
+            Access-Control-Allow-Methods:
+              description: Indicates the methods allowed when accessing the resource in response to a preflight request
+              schema:
+                type: string
+                example: 'OPTIONS, PATCH, POST'
+            X-Kong-Admin-Latency:
+              description: 'The time taken to process the request on the server, in milliseconds'
+              schema:
+                type: integer
+                example: 5
+            Server:
+              description: The software used by the origin server to handle the request
+              schema:
+                type: string
+                example: kong/3.2.2.0-enterprise-edition
+        '400':
+          description: Bad Request
+      description: |
+        List all the supported HTTP methods by an endpoint. This can also be used with a CORS preflight request.
+      tags:
+        - Information
+  '/schemas/{entity}/validate':
+    parameters:
+      - schema:
+          type: string
+        name: entity
+        in: path
+        required: true
+    get:
+      summary: Retrieve entity schema
+      tags:
+        - Information
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    fields:
+                      - id:
+                          auto: true
+                          type: string
+                          uuid: true
+                properties:
+                  fields:
+                    type: array
+                    description: A value of a schema
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: object
+                          description: A value of a schema
+                          properties:
+                            auto:
+                              type: boolean
+                              description: A value of a schema
+                            type:
+                              type: string
+                              description: A value of a schema
+                            uuid:
+                              type: boolean
+                              description: A value of a schema
+              examples:
+                A mock schema:
+                  value:
+                    fields:
+                      - id:
+                          auto: true
+                          type: string
+                          uuid: true
+                      - created_at:
+                          auto: true
+                          timestamp: true
+                          type: integer
+      operationId: get-schemas-entity
+      description: 'Retrieve the schema of an entity. This is useful to understand what fields an entity accepts, and can be used for building third-party integrations with Kong.'
+    post:
+      summary: Validate a configuration against a schema
+      operationId: post-schemas-entity-validate
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Message:
+                    type: string
+                    example: schema validation successful
+                    description: A success message
+              examples:
+                schema validation successful:
+                  value:
+                    Message: schema validation successful
+      description: |-
+        Check validity of a configuration against its entity schema. This allows you to test your input before submitting a request to the entity endpoints of the Admin API.
+
+        A requests to the entity endpoint using the given configuration may still fail due to other reasons, such as invalid foreign key relationships or uniqueness check failures against the contents of the data store.
+      tags:
+        - Information
+  '/schemas/plugins/{plugin_name}':
+    parameters:
+      - schema:
+          type: string
+          example: basic-auth
+        name: plugin_name
+        in: path
+        required: true
+        description: The name of a Kong plugin
+    get:
+      summary: Retrieve Plugin Schema
+      tags:
+        - Information
+      responses:
+        '200':
+          description: OK
+      operationId: get-schemas-plugins-plugin_name
+      description: |
+        Retrieve the schema of a plugin’s configuration. This is useful to understand what fields a plugin accepts, and can be used for building third-party integrations to the Kong’s plugin system.
+  /schemas/plugins/validate:
+    post:
+      summary: Validate plugin schema
+      operationId: post-schemas-plugins-validate
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    message: schema validation successful
+                properties:
+                  message:
+                    type: string
+                    description: A successful message
+                    example: schema validation successful
+              examples:
+                schema validation successful:
+                  value:
+                    message: schema validation successful
+      description: |-
+        Check validity of a plugin configuration against the plugins entity schema. This allows you to test your input before submitting a request to the entity endpoints of the Admin API.
+
+
+        This only performs the schema validation checks, checking that the input configuration is well-formed. A requests to the entity endpoint using the given configuration may still fail due to other reasons, such as invalid foreign key relationships or uniqueness check failures against the contents of the data store
+      tags:
+        - Information
   /keyring/generate:
     post:
       summary: Generate key

@@ -1615,9 +1615,7 @@ components:
                   type: string
               service:
                 type: object
-                description: |-
-
-                  The service this route is associated to. This is where the route proxies traffic to. With form-encoded, the notation is service.id=<service id> or service.name=<service name>. With JSON, use “`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
+                description: 'The service this route is associated to. This is where the route proxies traffic to. With form-encoded, the notation is service.id=<service id> or service.name=<service name>. With JSON, use “`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.'
                 properties:
                   id:
                     type: string
@@ -1708,7 +1706,6 @@ components:
               protocol:
                 type: string
                 description: |-
-
                   The protocol used to communicate with the upstream. Accepted values are: "`grpc`", "`grpcs`", "`http`", "`https`", "`tcp`", "`tls`", "`tls_passthrough`", "`udp`", "`ws`" 
                   , "`wss`" 
                   . Default: "`http`".
@@ -2478,9 +2475,8 @@ components:
                     created_at:
                       type: integer
                       example: 1422386534
-                      description: |+
+                      description: |
                         Unix epoch when the resource was created.
-
                     tags:
                       type: array
                       description: |
@@ -2489,9 +2485,8 @@ components:
                         type: string
                     certificate:
                       type: object
-                      description: |+
+                      description: |
                         The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object.
-
                       properties:
                         id:
                           type: string
@@ -2581,9 +2576,8 @@ components:
                 example: c1a1f6f-2aa4-4e58-93ff-b56368f19b27
               created_at:
                 type: integer
-                description: |+
+                description: |
                   Unix epoch when the resource was created.
-
               username:
                 type: string
                 description: The unique username of the consumer.
@@ -2768,9 +2762,8 @@ components:
                 example: 1422386534
               updated_at:
                 type: integer
-                description: |+
+                description: |
                   Unix epoch when the resource was last updated.
-
                 example: 1422386534
               tags:
                 type: array
@@ -2780,9 +2773,8 @@ components:
                   type: string
               next:
                 type: string
-                description: |+
+                description: |
                   Offset is used to paginate through the API. Provide this value to the next list operation to fetch the next page
-
                 example: 'http://localhost:8001/key-sets?offset=6378122c-a0a1-438d-a5c6-efabae9fb969'
           examples:
             example:
@@ -3037,11 +3029,10 @@ paths:
         $ref: '#/components/requestBodies/cert-request'
   '/certificates/{certificate_id}':
     delete:
-      description: |+
+      description: |
         Delete a Certificate
 
         >Note: This API is not available in DB-less mode.
-
       operationId: delete-certificate
       parameters:
         - description: ID of the Certificate to delete
@@ -3105,7 +3096,7 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/cert-request'
     put:
-      description: |+
+      description: |
         Update details about the specified certificate using the provided path parameter `certificate_id`.
 
         Inserts (or replaces) the certificate under the requested `certificate_id`with the definition specified in the request body. When the `name` or `id` attribute has the structure of a UUID, the certificate being inserted/replaced will be identified by its `id`. Otherwise it will be identified by the `name`.
@@ -3115,7 +3106,6 @@ paths:
 
 
         > Note: This API is not available in DB-less mode.
-
       operationId: update-certificate-put
       responses:
         '200':
@@ -3201,10 +3191,11 @@ paths:
         - SNIs
       operationId: fetch-sni-with-certificate
     patch:
-      description: |2+
+      description: |2
+
+
          Update an existing SNI associated with a certificate in the system using the SNI ID or name. The request body should include the fields of the SNI that need to be updated, such as the name, description, or other properties. If the request body contains valid data, the endpoint will update the SNI and return a success response. 
          
-
       responses:
         '200':
           content:
@@ -3491,9 +3482,8 @@ paths:
       - $ref: '#/components/parameters/plugin_id'
   /key-sets:
     get:
-      description: |+
+      description: |
         Retrieve a list of all Key-sets in the system. A Key Set object holds a collection of asymmetric key objects. This entity allows to logically group keys by their purpose. Key Sets can be both tagged and filtered by tags.
-
       operationId: list-key-set
       parameters:
         - $ref: '#/components/parameters/pagination-size'
@@ -3619,11 +3609,10 @@ paths:
       tags:
         - Keys
     post:
-      description: |+
+      description: |
         This API endpoint allows you to create a new key. When the request is successful, the API will respond with a 200 status code and a JSON object that represents the newly created key. If the request is invalid, the API will respond with a `400` status code and an error message in the response body.
 
         > Note: This API is not available in DB-less mode.
-
       operationId: create-key
       responses:
         '200':
@@ -6772,9 +6761,8 @@ paths:
                 example: kong/3.2.2.0-enterprise-edition
         '400':
           description: Bad Request
-      description: |+
+      description: |
         List all the supported HTTP methods by an endpoint. This can also be used with a CORS preflight request.
-
       tags:
         - Information
   '/schemas/{entity}/validate':
@@ -6878,9 +6866,8 @@ paths:
         '200':
           description: OK
       operationId: get-schemas-plugins-plugin_name
-      description: |+
+      description: |
         Retrieve the schema of a plugin’s configuration. This is useful to understand what fields a plugin accepts, and can be used for building third-party integrations to the Kong’s plugin system.
-
   /schemas/plugins/validate:
     post:
       summary: Validate plugin schema
@@ -6908,7 +6895,7 @@ paths:
         Check validity of a plugin configuration against the plugins entity schema. This allows you to test your input before submitting a request to the entity endpoints of the Admin API.
 
 
-        This only performs the schema validation checks, checking that the input configuration is well-formed. A requests to the entity endpoint using the given configuration may still fail due to other reasons, such as invalid foreign key relationships or uniqueness check failures against the contents of the data store
+        This only performs the schema validation checks, checking that the input configuration is well-formed. A requests to the entity endpoint using the given configuration may still fail due to other reasons, such as invalid foreign key relationships or uniqueness check failures against the contents of the data store.
       tags:
         - Information
   /timers:
@@ -7367,7 +7354,7 @@ paths:
                 log level changed:
                   value:
                     message: log level changed
-      description: |+
+      description: |
         Change the log level of all Control Plane nodes deployed in Hybrid (CP/DP) cluster.
 
         See the [NGINX docs](http://nginx.org/en/docs/ngx_core_module.html#error_log) for a list of accepted values.
@@ -7375,7 +7362,6 @@ paths:
         Care must be taken when changing the log level of a node to `debug` in a production environment because the disk could fill up quickly. As soon as the debug logging finishes, revert back to a higher level such as notice.
 
         It’s currently not possible to change the log level of DP and DB-less nodes.
-
       tags:
         - Debug
   '/debug/cluster/log-level/{log_level}':
@@ -7403,7 +7389,7 @@ paths:
                 log level changed:
                   value:
                     message: log level changed
-      description: |+
+      description: |
         Change the log level of all nodes in a cluster.
 
 
@@ -7413,8 +7399,6 @@ paths:
         It’s currently not possible to change the log level of DP and DB-less nodes.
 
         Currently, when a user dynamically changes the log level for the entire cluster, if a new node joins a cluster the new node will run at the previous log level, not at the log level that was previously set dynamically for the entire cluster.
-
-
       tags:
         - Debug
   /debug/node/log-level:
