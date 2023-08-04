@@ -56,7 +56,7 @@ filter-chains:
       #
       # filter configuration is inherently untyped--schema and
       # encoding/serialization are left up to the filter code itself
-      config: foo=bar baz=bat
+      config: "foo=bar baz=bat"
 
     - name: my_other_filter
       # individual filters within a chain can be toggled on/off for testing
@@ -73,7 +73,7 @@ filter-chains:
     # the same filter may occur more than once in a single chain, and all   entries will be
     # executed
     - name: my_filter
-      config: foo=123 baz=456
+      config: "foo=123 baz=456"
 ```
 
 
