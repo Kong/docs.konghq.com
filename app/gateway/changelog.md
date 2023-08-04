@@ -3,6 +3,285 @@ title: Kong Gateway Changelog
 no_version: true
 ---
 
+## 3.4.0.0
+**Release Date** TBA
+
+### Breaking changes and deprecations
+
+* Cassandra is now removed.
+* Vitals defaults to `off`
+* Ubuntu 18.04 artifacts are no longer supported as it's EOL
+* AmazonLinux 2022 artifacts are renamed to AmazonLinux 2023 according to AWS's decision
+* Remove option `declarative_config_encryption_mode` in kong.conf and disable LMDB encryption. [FTI-5068](https://konghq.atlassian.net/browse/FTI-5068)
+* **Alpine packages, Docker images are now removed from the release and are no longer supported in future versions.**
+* The `/consumer_groups/:id/overrides` feature is deprecated in favor of the more generic plugin scoping mechanism.
+  [KAG-666](https://konghq.atlassian.net/browse/KAG-666)
+* **CentOS packages are now removed from the release and are no longer supported in future versions.**
+* Renamed configuration property `admin_api_uri` to `admin_gui_api_url`.
+  The old `admin_api_uri` property is considered deprecated and will be
+  fully removed in a future version of Kong.
+  [#5984](https://github.com/Kong/kong-ee/pull/5984)
+  [KAG-2037](https://konghq.atlassian.net/browse/KAG-2037)
+
+
+- :warning: Alpine packages and Docker images based on Alpine are no longer supported
+  [#10926](https://github.com/Kong/kong/pull/10926)
+- :warning: Cassandra as a datastore for Kong is no longer supported
+  [#10931](https://github.com/Kong/kong/pull/10931)
+- Ubuntu 18.04 artifacts are no longer supported as it's EOL
+- AmazonLinux 2022 artifacts are renamed to AmazonLinux 2023 according to AWS's decision
+
+### Features 
+
+#### Enterprise
+
+* The Redis strategy of Rate Limiting catches strategy connection failure. [#4810](https://github.com/Kong/kong-ee/pull/4810)
+* Introduces a new parameter `cascade` to support workspace cascade delete. [FTI-4731](https://konghq.atlassian.net/browse/FTI-4731)
+* Plugins can now be scoped to `Consumer Groups`. [KAG-666](https://konghq.atlassian.net/browse/KAG-666)
+* Added a new `ttl` option to vault configurations, allowing users to define the interval at which references are automatically re-fetched from the configured vault. [KAG-675](https://konghq.atlassian.net/browse/KAG-675)
+- Add workspace name to the logging payload. [FTI-4728](https://konghq.atlassian.net/browse/FTI-4728)
+
+
+#### Kong Manager
+
+- First release of the Kong Manager Open Source Edition.
+  [#11131](https://github.com/Kong/kong/pull/11131)
+
+* Enhanced the user experience of entity editing pages with a refined look and feel. [KAG-1453](https://konghq.atlassian.net/browse/KAG-1453) [KAG-1568](https://konghq.atlassian.net/browse/KAG-1568)
+
+* Simplified the user path by removing the configuration pages for nested entities. [KAG-1660](https://konghq.atlassian.net/browse/KAG-1660)
+
+#### Core
+
+- '/schemas' endpoint returns additional information about cross-field validation as part of the schema. This should help tools that use the Admin API to perform better client-side validation.
+- Enable `expressions` and `traditional_compatible` router flavor in stream subsystem.
+  [#11071](https://github.com/Kong/kong/pull/11071)
+- Make upstream `host_header` and router `preserve_host` config work in stream tls proxy.
+  [#11244](https://github.com/Kong/kong/pull/11244)
+- Add beta support for WebAssembly/proxy-wasm
+  [#11218](https://github.com/Kong/kong/pull/11218)
+
+- In dbless mode, the declarative schema is now fully initialized at startup
+  instead of on-demand in the request path. This is most evident in decreased
+  response latency when updating configuration via the `/config` API endpoint.
+  [#10932](https://github.com/Kong/kong/pull/10932)
+
+- Tracing: new attribute `http.route` added to http request spans.
+  [#10981](https://github.com/Kong/kong/pull/10981)
+
+- The default value of `lmdb_map_size` config has been bumped to `2048m`
+  from `128m` to accommodate most commonly deployed config sizes in DB-less
+  and Hybrid mode.
+  [#11047](https://github.com/Kong/kong/pull/11047)
+- The default value of `cluster_max_payload` config has been bumped to `16m`
+  from `4m` to accommodate most commonly deployed config sizes in Hybrid mode.
+  [#11090](https://github.com/Kong/kong/pull/11090)
+- Remove kong branding from kong HTML error template.
+  [#11150](https://github.com/Kong/kong/pull/11150)
+
+#### Plugins
+
+
+- Validation for queue related parameters has been
+  improved. `max_batch_size`, `max_entries` and `max_bytes` are now
+  `integer`s instead of `number`s.  `initial_retry_delay` and
+  `max_retry_delay` must now be `number`s greater than 0.001
+  (seconds).
+  [#10840](https://github.com/Kong/kong/pull/10840)
+
+
+- OpenID-Connect now support error reason header, and it can be turned off with `expose_error_code` set to false.
+  [FTI-1882](https://konghq.atlassian.net/browse/FTI-1882)
+- Kafka-Log now supports the `custom_fields_by_lua` configuration for dynamic modification of log fields using lua code just like other log plugins.
+  [FTI-5127](https://konghq.atlassian.net/browse/FTI-5127)
+- OpenID-Connect now supports adding scope to the token cache key with `token_cache_key_include_scope` set to true.
+  [KAG-1439](https://konghq.atlassian.net/browse/KAG-1439)
+- graphql-rate-limiting-advanced now support config with upstream target.
+  [FTI-5209](https://konghq.atlassian.net/browse/FTI-5209)
+
+- **OpenTelemetry**: Support AWS X-Ray propagation header
+  The field `header_type`now accepts the `aws` value to handle this specific
+  propagation header.
+  [11075](https://github.com/Kong/kong/pull/11075)
+- **Opentelemetry**: Support the `endpoint` parameter as referenceable.
+  [#11220](https://github.com/Kong/kong/pull/11220)
+- **Ip-Restriction**: Add TCP support to the plugin.
+  Thanks [@scrudge](https://github.com/scrudge) for contributing this change.
+  [#10245](https://github.com/Kong/kong/pull/10245)
+
+- The Prometheus plugin has been optimized to reduce proxy latency impacts during scraping.
+  [#10949](https://github.com/Kong/kong/pull/10949)
+  [#11040](https://github.com/Kong/kong/pull/11040)
+  [#11065](https://github.com/Kong/kong/pull/11065)
+
+### Fixes
+
+#### Enterprise
+
+* Fix a potential memory leak and reconnection problem which will probably occur when telemetry breaks down due to any exceptions in its `send` thread. [FTI-5225](https://konghq.atlassian.net/browse/FTI-5225)
+* Fix the bug that will cause the telemetry websocket to be broken when there is a bad latency in flushing vitals to database by decoupling the process of receving vitals data from DP and the process of flushing vitals to database in the side of CP with a queue as a buffer. [FTI-4386](https://konghq.atlassian.net/browse/FTI-4386)
+* Fix the bug of getting empty request_id when generating auditting data. [FTI-2438](https://konghq.atlassian.net/browse/FTI-2438)
+* Fix a bug that would cause an error when the header x-datadog-parent-id is not passed to Kong. [KAG-1642](https://konghq.atlassian.net/browse/KAG-1642)
+* Fix a queueing related bug that caused the event-hooks feature to
+  not work in release 3.3.0.0 [KAG-1760](https://konghq.atlassian.net/browse/KAG-1760)
+* Update the datafile library to make the SAML plugin work again when
+  Kong is controlled by systemd [KAG-1832](https://konghq.atlassian.net/browse/KAG-1832)
+* Fix an issue that sometimes can't attach workspace with the cache's consumer well. [FTI-4564](https://konghq.atlassian.net/browse/FTI-4564)
+* Fix CORS incorrect behavior when KM integrated with Portal GUI. [FTI-1437](https://konghq.atlassian.net/browse/FTI-1437)
+* Fix the bug that will cause the telemetry websocket in Konnect mode between CP and DP to be broken due to unexpected payloads when counter of request equals zero. [KAG-1900](https://konghq.atlassian.net/browse/KAG-1900)
+* Fix Kong Manger doesn't get the latest kconfig while the license posted via admin API. [FTI-5135](https://konghq.atlassian.net/browse/FTI-5135)
+* Fix LuaJIT crash on Arm64 and enable JIT on M1. [KAG-2028](https://konghq.atlassian.net/browse/KAG-2028)
+* Fix an issue where a crashing Go plugin server process would cause subsequent
+  requests proxied through Kong to execute Go plugins with inconsistent configurations.
+  The issue only affects scenarios where the same Go plugin is applied to different Route
+  or Service entities. [FTI-5238](https://konghq.atlassian.net/browse/FTI-5238)
+* Fixed an issue where the license cannot load when pulling `KONG_LICENSE_DATA` from Vault. [FTI-4856](https://konghq.atlassian.net/browse/FTI-4856)
+* Fixed an issue in the Dev Portal when attempting to expand an API. [FTI-4899](https://konghq.atlassian.net/browse/FTI-4899)
+* Fixed an issue where the kafka-log or the kafka-upstream could lose connection to a broker when when broker leadership changes [FTI-4895](https://konghq.atlassian.net/browse/FTI-4895)
+
+#### Kong Manager
+
+* Fixes an issue using OIDC does not handle `invalid credentials` when providing wrong usename. [FTI-5194](https://konghq.atlassian.net/browse/FTI-5194)
+* Add an alert message in the `admins tab` page for `workspace access` while the admin_auth is set to `openid-connect`. [FTI-5085](https://konghq.atlassian.net/browse/FTI-5085)
+* Fixed an issue the custom permission endpoint not work. [#FTI-5053](https://konghq.atlassian.net/browse/FTI-5053)
+
+#### Core
+
+- Declarative config now performs proper uniqueness checks against its inputs:
+  previously, it would silently drop entries with conflicting primary/endpoint
+  keys, or accept conflicting unique fields silently.
+  [#11199](https://github.com/Kong/kong/pull/11199)
+- Fixed a bug that causes `POST /config?flatten_errors=1` to throw an exception
+  and return a 500 error under certain circumstances.
+  [#10896](https://github.com/Kong/kong/pull/10896)
+- Fix a bug when worker consuming dynamic log level setting event and using a wrong reference for notice logging
+  [#10897](https://github.com/Kong/kong/pull/10897)
+- Added a `User=` specification to the systemd unit definition so that
+  Kong can be controlled by systemd again.
+  [#11066](https://github.com/Kong/kong/pull/11066)
+- Fix a bug that caused sampling rate to be applied to individual spans producing split traces.
+  [#11135](https://github.com/Kong/kong/pull/11135)
+- Fix a bug that caused the router to fail in `traditional_compatible` mode when a route with multiple paths and no service was created.
+  [#11158](https://github.com/Kong/kong/pull/11158)
+- Fix an issue where the router of flavor `expressions` can not work correctly
+  when `route.protocols` is set to `grpc` or `grpcs`.
+  [#11082](https://github.com/Kong/kong/pull/11082)
+- Fix an issue where the router of flavor `expressions` can not configure https redirection.
+  [#11166](https://github.com/Kong/kong/pull/11166)
+- Added new span attribute `net.peer.name` if balancer_data.hostname is available.
+  Thanks [@backjo](https://github.com/backjo) for contributing this change.
+  [#10723](https://github.com/Kong/kong/pull/10729)
+- Make `kong vault get` CLI command work in dbless mode by injecting the necessary directives into the kong cli nginx.conf.
+  [#11127](https://github.com/Kong/kong/pull/11127)
+  [#11291](https://github.com/Kong/kong/pull/11291)
+- Fix an issue where a crashing Go plugin server process would cause subsequent
+  requests proxied through Kong to execute Go plugins with inconsistent configurations.
+  The issue only affects scenarios where the same Go plugin is applied to different Route
+  or Service entities.
+  [#11306](https://github.com/Kong/kong/pull/11306)
+  
+
+#### Admin API
+
+- Fix an issue where `/schemas/plugins/validate` endpoint fails to validate valid plugin configuration
+  when the key of `custom_fields_by_lua` contains dot character(s).
+  [#11091](https://github.com/Kong/kong/pull/11091)
+
+#### Status API
+
+- Remove the database information from the status API when operating in dbless
+  mode or data plane.
+  [#10995](https://github.com/Kong/kong/pull/10995)
+
+#### Plugins
+
+* Oauth 2.0 Introspection plugin fails when request with JSON that is not a table. [FTI-4974](https://konghq.atlassian.net/browse/FTI-4974)
+* Portal documentation page: field `registration` in `document_object` will not be set
+  when the plugin `Portal Application Registration` is installed but not enabled.
+  [FTI-4798](https://konghq.atlassian.net/browse/FTI-4798)
+* **gRPC-Gateway**: fix an issue where an array with one element would fail to be encoded.
+  [FTI-5074](https://konghq.atlassian.net/browse/FTI-5074)
+* **Mtls-auth**: Fix a bug that would cause an unexpected error when `skip_consumer_lookup` is enabled and `authenticated_group_by` is set to `null`.
+  [FTI-5101](https://konghq.atlassian.net/browse/FTI-5101)
+* Fix an issue that Request-Transformer-Advanced does not transform the response body while upstream returns a Content-Type with +json suffix at subtype.
+  [FTI-4959](https://konghq.atlassian.net/browse/FTI-4959)
+* **OpenID-Connect**: Log levels of many error message of OIDC are increased.
+* **OpenID-Connect**: Changes some log's level from `notice` to `error` for better visibility.
+  [FTI-2884](https://konghq.atlassian.net/browse/FTI-2884)
+* **Mocking**: Fix a bug that the plugin throws an error when the arbitrary elements are defined in the path node.
+* **Mtls-Auth**: Fix several revocation verification issues where
+  1. If `revocation_check_mode=IGNORE_CA_ERROR` then the crl revocation failure will be ignored.
+  2. Once a crl is added into the store, it will always do crl revocation check with this crl file.
+  3. OCSP verification fails with `no issuer certificate in chain` error if the client only sends a leaf certificate.
+  4. A optimization of crl revocation verification.
+  5. `http_timeout` is not correctly set
+  [FTI-5058](https://konghq.atlassian.net/browse/FTI-5058)
+  [FTI-3060](https://konghq.atlassian.net/browse/FTI-3060)
+  [FTI-5223](https://konghq.atlassian.net/browse/FTI-5223)
+
+* OAS Validation
+  * Fix a bug that the plugin is unable to pass the validation even if path parameter is valid. [FTI-4965](https://konghq.atlassian.net/browse/FTI-4965)
+  * Fix an issue that the plugin always validates the request body even if the method spec has no requestBody defined. [FTI-4967](https://konghq.atlassian.net/browse/FTI-4967)
+  * Fix an issue that the comparison between large absolute value numbers may be incorrect due to the number being converted to exponential notation. [FTI-5128](https://konghq.atlassian.net/browse/FTI-5128)
+* OpenID-Connect
+  * Correctly set the right table key on 'log' and 'message'.
+  * If an invalid opaque token is provided but verified failed, print the correct error.
+* Request Validator
+  * Optmize the response message for invalid request.
+  [FTI-5078](https://konghq.atlassian.net/browse/FTI-5078)
+  [FTI-5006](https://konghq.atlassian.net/browse/FTI-5006)
+
+
+- **Response Transformer**: fix an issue that plugin does not transform the response body while upstream returns a Content-Type with +json suffix at subtype.
+  [#10656](https://github.com/Kong/kong/pull/10656)
+- **grpc-gateway**: Fixed an issue that empty (all default value) messages can not be unframed correctly.
+  [#10836](https://github.com/Kong/kong/pull/10836)
+- **ACME**: Fixed sanity test can't work with "kong" storage in Hybrid mode
+  [#10852](https://github.com/Kong/kong/pull/10852)
+- **rate-limiting**: Fixed an issue that impact the accuracy with the `redis` policy.
+  Thanks [@giovanibrioni](https://github.com/giovanibrioni) for contributing this change.
+  [#10559](https://github.com/Kong/kong/pull/10559)
+- **Zipkin**: Fixed an issue that traces not being generated correctly when instrumentations are enabled.
+  [#10983](https://github.com/Kong/kong/pull/10983)
+
+
+### Dependencies
+* `kong-redis-cluster` is bumped from 1.5.0 to 1.5.1
+* `lua-resty-ljsonschema` is bumped from 1.1.3 to 1.15
+* `lua-resty-kafka` is bumped from 0.15 to 0.16
+* `OpenSSL` is bumped from 1.1.1t to 3.0.8
+* `lua-resty-aws` is bumped from 1.2.2 to 1.2.3
+
+
+- Bumped lua-resty-openssl from 0.8.20 to 0.8.23
+  [#10837](https://github.com/Kong/kong/pull/10837)
+  [#11099](https://github.com/Kong/kong/pull/11099)
+- Bumped kong-lapis from 1.8.3.1 to 1.14.0.2
+  [#10841](https://github.com/Kong/kong/pull/10841)
+- Bumped lua-resty-events from 0.1.4 to 0.2.0
+  [#10883](https://github.com/Kong/kong/pull/10883)
+  [#11083](https://github.com/Kong/kong/pull/11083)
+  [#11214](https://github.com/Kong/kong/pull/11214)
+- Bumped lua-resty-session from 4.0.3 to 4.0.4
+  [#11011](https://github.com/Kong/kong/pull/11011)
+- Bumped OpenSSL from 1.1.1t to 3.1.1
+  [#10180](https://github.com/Kong/kong/pull/10180)
+  [#11140](https://github.com/Kong/kong/pull/11140)
+- Bumped pgmoon from 1.16.0 to 1.16.2 (Kong's fork)
+  [#11181](https://github.com/Kong/kong/pull/11181)
+  [#11229](https://github.com/Kong/kong/pull/11229)
+- Bumped atc-router from 1.0.5 to 1.2.0
+  [#10100](https://github.com/Kong/kong/pull/10100)
+  [#11071](https://github.com/Kong/kong/pull/11071)
+- Bumped lua-resty-lmdb from 1.1.0 to 1.3.0
+  [#11227](https://github.com/Kong/kong/pull/11227)
+
+### Known issues
+
+- Some referenceable configuration fields, such as the `http_endpoint` field
+  of the `http-log` plugin and the `endpoint` field of the `opentelemetry` plugin,
+  do not accept reference values due to incorrect field validation.
+
 <!-- vale off -->
 
 ## 3.3.1.0
