@@ -152,7 +152,13 @@ Sets whether TLS verification is enabled while handshaking with the Service.
 
 **Phases**
 
+{% if_version lte:3.3.x %}
 * `rewrite`, `access`, `balancer`
+{% endif_version %}
+
+{% if_version gte:3.4.x %}
+* `rewrite`, `access`, `balancer`, `preread`
+{% endif_version %}
 
 **Parameters**
 

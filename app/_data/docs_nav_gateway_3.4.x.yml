@@ -482,6 +482,8 @@ items:
           url: /plugin-development/pdk/kong.nginx
         - text: kong.node
           url: /plugin-development/pdk/kong.node
+        - text: kong.plugin
+          url: /plugin-development/pdk/kong.plugin
         - text: kong.request
           url: /plugin-development/pdk/kong.request
         - text: kong.response
