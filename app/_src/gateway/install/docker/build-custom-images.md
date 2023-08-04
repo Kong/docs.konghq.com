@@ -7,7 +7,7 @@ Kong is distributed as prebuilt `apk`, `deb`, and `rpm` packages, in addition to
 
 Kong builds and verifies [Debian](#dockerhub-debian-link-here) and [RHEL](#dockerhub-rhel-link-here) images for use in production. {% if_version lte:3.3.x %}[Alpine](#dockerhub-alpine-link-here) images are provided for **development purposes only** as they contain development tooling such as `git` for plugin development purposes.{% endif_version %}
 
-Our Debian and RHEL images are built with minimal dependencies (as of {{ site.base_gateway }} 3.0) and run through automated security scanners before being published. Any vulnerabilities detected in supported images will be addressed in the next available patch release.
+The Debian and RHEL images are built with minimal dependencies (as of {{ site.base_gateway }} 3.0) and run through automated security scanners before being published. Any vulnerabilities detected in supported images will be addressed in the next available patch release.
 
 If you would like to build your own images to further customise the base image and any dependencies, follow the instructions below:
 
