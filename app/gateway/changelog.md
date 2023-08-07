@@ -11,11 +11,9 @@ no_version: true
 * **Cassandra DB support removed:** Cassandra DB support has been removed. 
 It is no longer supported as a datastore for Kong Gateway. 
 [#10931](https://github.com/Kong/kong/pull/10931).
-
 * **Alpine support removed:** Alpine packages and Docker images based on Alpine are no longer supported,
 Starting with Kong Gateway 3.4.0.0, Kong is not building new Alpine images or packages.
 [#10926](https://github.com/Kong/kong/pull/10926)
-
 * **Ubuntu 18.04 support removed**: Support for running Kong Gateway on Ubuntu 18.04 ("Bionic") is now deprecated,
 as [Standard Support for Ubuntu 18.04 has ended as of June 2023](https://wiki.ubuntu.com/Releases).
 Starting with Kong Gateway 3.4.0.0, Kong is not building new Ubuntu 18.04
@@ -23,16 +21,11 @@ images or packages, and Kong will not test package installation on Ubuntu 168.04
 
     If you need to install Kong Gateway on Ubuntu 18.04, see the documentation for
     [previous versions](/gateway/3.3.x/install/linux/ubuntu/).
-
 * Vitals is now off by default. To enable it, set `vitals=on` in Kong configuration.
-
 * Amazon Linux 2022 artifacts are renamed to Amazon Linux 2023, based on AWS's own renaming.
-
 * LMDB encryption has been disabled. The option `declarative_config_encryption_mode` has been removed from `kong.conf`.
-
 * The `/consumer_groups/:id/overrides` endpoint is deprecated in favor of a more generic plugin scoping mechanism. 
 See the new [consumer groups]() entity.
-
 * Renamed the configuration property `admin_api_uri` to `admin_gui_api_url`.
   The old `admin_api_uri` property is considered deprecated and will be
   fully removed in a future version of Kong Gateway.
@@ -41,43 +34,49 @@ See the new [consumer groups]() entity.
 
 #### Enterprise
 
-* Introduced the [`cascade`]() option for `/workspaces`, which lets you delete a workspace and all of its entities in one request.
-* Consumer groups are now a core entity. The following plugins can now be scoped to consumer groups:
+* Introduced the [`cascade`](/gateway/latest/admin-api/workspaces/reference/#delete-a-workspace) option for 
+`/workspaces`, which lets you delete a workspace and all of its entities in one request.
+* Consumer groups are now a core entity. With consumer groups, you can apply different configurations to select groups of consumers.
+  The following plugins can now be scoped to consumer groups:
   * Rate Limiting Advanced
   * Request Transformer and Request Transformer Advanced
   * Response Transformer and Response Transformer Advanced
 
-  [explanation of what this is]
-  [links to docs]()
-
+   See the documentation for [consumer groups](/gateway/latest/kong-enterprise/consumer-groups/) to learn more.
 * Added a new `ttl` option to vault configurations, allowing users to define the interval at which 
 references are automatically re-fetched from the configured vault.
   
-  [links to docs]()
-
+  See the documentation for [secrets rotation](/gateway/latest/kong-enterprise/secrets-management/secrets-rotation/) to learn more.
 * The workspace name now appears in the logging payload.
 
 #### Kong Manager
 
-* First release of the Kong Manager Open Source Edition.
+* Introduced the **Kong Manager Open Source Edition (OSS)**, a 
+free and open-source UI for Kong Gateway OSS!
   [#11131](https://github.com/Kong/kong/pull/11131)
 
-  [explanation of what this is]
-  [links to docs]()
+  Kong Manager OSS allows you to view and edit all Kong Gateway objects using the Admin API. 
+  It interacts directly with the Kong Admin API and does not require a separate database.
+  This UI provides a great way to see all of your Kong Gateway configuration at glance.
+
+  Starting with 3.4.0.0, Kong Manager OSS is bundled with Kong Gateway OSS.
+  Install a new Kong Gateway OSS instance to try it out!
+
+  The quickest way to get started is using our [quickstart script](https://github.com/Kong/kong-manager#getting-started).
+
+  Check out the [Kong Manager OSS repo](https://github.com/Kong/kong-manager)
+  to learn more about it.
 
 * Enhanced the user experience of editing pages for entities with a refined look and feel.
 * Simplified the user path by removing the configuration pages for nested entities.
 
 #### Core
 
-* **Beta feature:** Introducing the beta of WebAssembly (`proxy-wasm`).
+* **Beta feature:** Introduced the beta of WebAssembly (`proxy-wasm`).
   [#11218](https://github.com/Kong/kong/pull/11218)
 
   This release integrates [`Kong/ngx-wasm-module`](https://github.com/Kong/ngx_wasm_module)
   into Kong Gateway.
-  
-  [explanation of what this is]
-  [links to docs]()
 
 * The `/schemas` endpoint now returns additional information about cross-field validation 
 as part of the schema. This should help tools that use the Admin API to perform 
@@ -236,7 +235,7 @@ hang when attempting to expand an API.
 
 #### Plugins
 
-* [Oauth 2.0 Introspection](/hub/kong-inc/oauth2-introspection/) (`oauth2-introspection`)
+* [**Oauth 2.0 Introspection**](/hub/kong-inc/oauth2-introspection/) (`oauth2-introspection`)
   * Fixed an issue where the plugin failed when processing a request with JSON that is not a table.
 
 * [**gRPC Gateway**](/hub/kong-inc/grpc-gateway/) (`grpc-gateway`)
