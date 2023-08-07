@@ -227,6 +227,89 @@
   }
 }
 
+.page-header-doc {
+  @media (max-width: 480px) {
+    .page-header--nav {
+      padding: 5px;
+      height: auto;
+    }
+  }
+  @media (max-width: 800px) {
+    z-index: 90;
+    position: fixed;
+    top: 60px;
+    margin: auto;
+    padding: 0;
+    width: 93%;
+
+    .github-links {
+      display: none !important;
+    }
+
+    .page-header--nav {
+      justify-content: flex-start;
+      gap: 20px;
+    }
+  }
+
+  .breadcrumbs {
+    display: flex !important;
+    white-space: nowrap;
+    overflow-x: auto;
+  }
+
+  .sidebar-toggle {
+    align-self: center;
+  }
+
+  &.scrolled {
+    @media (max-width: 480px) {
+      height: 45px;
+
+      .sidebar-toggle {
+        height: 12px;
+        width: 14px;
+        transition: height 0.5s ease-in-out;
+      }
+
+      .page-header--nav {
+        height: 100%;
+        padding: 0px;
+        transition: height 0.5s ease-in-out;
+      }
+
+      .page-header-product-version {
+        display: none;
+        visibility: hidden;
+      }
+    }
+  }
+}
+
+.page-header-product-version {
+  color: white;
+  display: none;
+  visibility: hidden;
+  width: 100%;
+  justify-content: flex-start;
+  padding: 5px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    display: flex;
+    visibility: visible;
+  }
+
+  .edition {
+    font: 500 20x/24px Roboto;
+  }
+
+  .version {
+    text-transform: uppercase;
+    font: 700 12px/16px Roboto;
+  }
+}
+
 .page--header-background {
   position: absolute;
   width: 100%;
@@ -238,5 +321,22 @@
 
   &-doc {
     height: 72px;
+
+    &.scrolled {
+      @media (max-width: 480px) {
+        height: 45px;
+        transition: height 0.5s ease-in-out;
+      }
+    }
+
+    @media (max-width: 480px) {
+      height: 90px;
+    }
+
+    @media (max-width: 800px) {
+      z-index: 90;
+      position: fixed;
+      top: 60px;
+    }
   }
 }
