@@ -35,6 +35,7 @@ max_args
 max_headers
 metatable
 narr
+neg_ttl
 ngx
 ngx_stream_proxy_module
 nrec
@@ -68,6 +69,7 @@ TCPRoute
 TCPRoutes
 TLSRoute
 TLSRoutes
+TTLs
 UDPRoute
 UDPRoutes
 uid
