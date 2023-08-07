@@ -14,7 +14,7 @@ the {{ site.base_gateway }} image, you must temporarily set the user to `root`.
 This is an example Dockerfile that explains how to mount your plugin in the {{ site.base_gateway }} image:
 
 ```dockerfile
-FROM kong
+FROM kong:alpine
 USER root
 # Example for GO:
 COPY your-go-plugin /usr/local/bin/your-go-plugin
