@@ -33,7 +33,10 @@ $ export KONG_WASM=on
 ```
 
 Additionally, the `wasm_filters_path` parameter must be configured in order for
-{{site.base_gateway}} to load the filter at runtime. During local development,
+{{site.base_gateway}} to load the filter at runtime. This can be any folder
+cotaining `.wasm` files.
+
+During local development,
 when a short feedback loop is desired, you can set this parameter to
 your build toolchain's output directory (wherever the compiled
 `<filter-name>.wasm` file is produced):
