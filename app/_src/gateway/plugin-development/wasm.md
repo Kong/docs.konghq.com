@@ -65,7 +65,7 @@ services:
           - name: my_filter
             config: >-
               {
-                "my_greeting": "Hello from WasmX!"
+                "my_greeting": "Hello from Kong using WebAssembly!"
               }
 ```
 
@@ -96,7 +96,7 @@ Content-Type: text/html; charset=utf-8
 Date: Thu, 03 Aug 2023 19:28:27 GMT
 Vary: Accept-Encoding
 Via: kong/3.4.0
-X-Greeting: Hello from WasmX!
+X-Greeting: Hello from Kong using WebAssembly!
 X-Kong-Proxy-Latency: 1
 X-Kong-Upstream-Latency: 342
 ```
