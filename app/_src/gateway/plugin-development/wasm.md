@@ -22,7 +22,7 @@ world`-type filter:
 
 ### Deploying the filter with Kong
 
-After writing and building the filter, the next steps are to configure Kong to enable Wasm support and add the filter, then associate the filter to a route or a service. We will then be able to start Kong and issue requests that go through the filter.
+After writing and building the filter, the next steps are to configure Kong to enable Wasm support and add the filter, then associate the filter to a route or a service. You will then be able to start Kong and issue requests that go through the filter.
 
 #### Configuration
 
