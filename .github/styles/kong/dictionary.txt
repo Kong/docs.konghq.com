@@ -82,6 +82,7 @@ untyped
 Valero
 Vue
 Wasm
+WebAssembly
 Wireshark
 Zipkin
 acl

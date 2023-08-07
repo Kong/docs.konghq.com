@@ -135,7 +135,7 @@ Proxy-Wasm implementations.
 
 * [Create a Proxy-Wasm filter](/gateway/latest/plugin-development/wasm)
 * [WebAssembly for Proxies (Proxy-Wasm) specification](https://github.com/proxy-wasm/spec)
-* [ngx_wasm_module](https://github.com/Kong/ngx_wasm_module)
-* [ngx_wasm_module Proxy-Wasm documentation](https://github.com/Kong/ngx_wasm_module/blob/main/docs/PROXY_WASM.md)
+* [`ngx_wasm_module`](https://github.com/Kong/ngx_wasm_module)
+* [`ngx_wasm_module` Proxy-Wasm documentation](https://github.com/Kong/ngx_wasm_module/blob/main/docs/PROXY_WASM.md)
 * [Go SDK](https://github.com/tetratelabs/proxy-wasm-go-sdk/)
 * [Rust SDK](https://github.com/proxy-wasm/proxy-wasm-rust-sdk/)
