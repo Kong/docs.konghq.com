@@ -1,14 +1,14 @@
 [
   {
     "id": "d420333f-01b0-464e-a87a-97acc92c2026",
-    "title": "API Products",
+    "title": "Konnect API Products",
     "latestVersion": {
       "name": "v2",
       "id": "941af975-8cfa-40f7-afea-e82d248489a0"
     },
-    "description": "The API Products API allows you to create and manage API products to productize your services.",
+    "description": "API Products can be used to manage API versions, documentation, and analytics.",
     "documentCount": 0,
-    "versionCount": 2,
+    "versionCount": 1,
     "versions": [
       {
         "id": "941af975-8cfa-40f7-afea-e82d248489a0",
@@ -17,25 +17,17 @@
         "name": "v2",
         "deprecated": false,
         "registration_configs": []
-      },
-      {
-        "id": "941af975-8cfa-40f7-afea-e82d24848900",
-        "created_at": "2023-06-28T18:37:55.070Z",
-        "updated_at": "2023-07-17T14:08:02.747Z",
-        "name": "v1",
-        "deprecated": false,
-        "registration_configs": []
       }
     ]
   },
   {
     "id": "3e65edbc-364d-4762-9d3e-f13083e1b534",
-    "title": "Kong Gateway Dev Portal",
+    "title": "Gateway Dev Portal",
     "latestVersion": {
       "name": "v1",
       "id": "33cd4595-e389-4c2b-80ee-5275f25e80e1"
     },
-    "description": "(Kong Gateway) On-prem Dev Portal API documentation.",
+    "description": "Dev Portal provides a single source of truth for all developers to locate, access, and consume services for Kong Gateway Enterprise Edition.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
@@ -51,12 +43,12 @@
   },
   {
     "id": "680541e5-de6e-46e5-b43d-0bd1b2369453",
-    "title": "Gateway Admin API - OSS",
+    "title": "Gateway Admin - OSS (Beta)",
     "latestVersion": {
       "name": "3.3.0",
       "id": "e2a0ef29-573d-4fc4-86df-216c417f4aa9"
     },
-    "description": "The Kong Gateway open source Admin API - Beta",
+    "description": "Kong Gateway (OSS) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
@@ -72,12 +64,12 @@
   },
   {
     "id": "937dcdd7-4485-47dc-af5f-b805d562552f",
-    "title": "Gateway Admin API - EE",
+    "title": "Gateway Admin - EE (Beta)",
     "latestVersion": {
       "name": "3.3.0.0",
       "id": "be79b812-46d5-4cc1-b757-b5270bf4fa60"
     },
-    "description": "The Kong Gateway Enterprise Admin API - Beta",
+    "description": "Kong Gateway (EE) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
@@ -93,12 +85,12 @@
   },
   {
     "id": "5175b87f-bfae-40f6-898d-82d224387f9b",
-    "title": "Identity Management",
+    "title": "Konnect Identity Management",
     "latestVersion": {
       "name": "v2",
       "id": "d0e13745-db5c-42d5-80ae-ef803104f5ce"
     },
-    "description": "(Konnect) The identity management service. Responsible for Konnect users, teams, organization, roles, permissions, and IdP settings.",
+    "description": "Identity Management is responsible for Konnect users, teams, organization, roles, permissions, and IdP settings.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
@@ -114,12 +106,12 @@
   },
   {
     "id": "9542436a-58d1-4522-a00b-32125b5940f0",
-    "title": "Kong Gateway Status API",
+    "title": "Gateway Status",
     "latestVersion": {
       "name": "v1",
       "id": "5feb007a-348b-486d-8d06-92f615471d22"
     },
-    "description": "API for monitoring Kong nodes",
+    "description": "Gateway Status is a read-only endpoint allowing monitoring tools to retrieve metrics, healthiness, and other non-sensitive information of the node.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
@@ -135,12 +127,12 @@
   },
   {
     "id": "2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6",
-    "title": "Konnect Portal Client API",
+    "title": "Konnect Customizable Portal",
     "latestVersion": {
       "name": "v2",
       "id": "b4539157-4ced-4df5-affa-7d790baee356"
     },
-    "description": "(Konnect) This set of APIs allow organizations to develop custom developer portal user experiences",
+    "description": "Customize your self-hosted developer portal experience.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
@@ -156,12 +148,12 @@
   },
   {
     "id": "3c38bff8-3b7b-4323-8e2e-690d35ef97e0",
-    "title": "Runtime Groups Configuration",
+    "title": "Konnect Runtime Group Config (Beta)",
     "latestVersion": {
       "name": "v2",
       "id": "16adcd15-493a-49b2-ad53-8c73891e29bf"
     },
-    "description": "(Konnect) This set of APIs allow organizations to manage runtime instances and gateway configuration of the runtime group.",
+    "description": "Manage Kong Gateway services, routes, certificates, consumer and global configuration within Konnect. This spec is a Beta version.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
@@ -177,12 +169,12 @@
   },
   {
     "id": "e46e7742-befb-49b1-9bf1-7cbe477ab818",
-    "title": "Audit Logs API",
+    "title": "Konnect Audit Logging",
     "latestVersion": {
       "name": "v2",
       "id": "d36126ee-ab8d-47b2-960f-5703da22cced"
     },
-    "description": "The management API for Konnect audit logging",
+    "description": "Audit logging enables administrators to better spot security risks and maintain compliance of their core infrastructure.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
@@ -198,12 +190,12 @@
   },
   {
     "id": "2dad627f-7269-40db-ab14-01264379cec7",
-    "title": "Portal RBAC",
+    "title": "Konnect Portal RBAC",
     "latestVersion": {
       "name": "v2",
       "id": "0ecb66fc-0049-414a-a1f9-f29e8a02c696"
     },
-    "description": "(Konnect) The portal rbac api provides methods for creating and describing teams, collecting developers into teams, assigning roles to give those teams functionality in the developer portal.",
+    "description": "Portal RBAC can be used to create teams, collect developers into teams, and assign roles to give those teams functionality in the developer portal.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
@@ -224,7 +216,7 @@
       "name": "v2",
       "id": "24c1f98b-ea51-4277-9178-ca28a6aa85d9"
     },
-    "description": "(Konnect) This set of APIs allow organizations to create and manage runtime groups. ",
+    "description": "Manage the runtime group entity in Konnect.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
