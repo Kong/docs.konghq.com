@@ -36,7 +36,7 @@ is built on an open-source foundation, any breaking changes in OSS affect all {{
 If you are running 1.x, upgrade to 2.8.2 first and then to 3.0.x and 3.1.x at a minimum. Finally, upgrade to
 {{page.kong_version}} from there.
 
-In either case, you can review the [upgrade considerations](#upgrade-considerations-and-breaking-changes),
+In either case, you can review the {% if_version lte:3.2.x %}[upgrade considerations and breaking changes](#upgrade-considerations-and-breaking-changes){% endif_version %} breaking changes for your version,
 then follow the [database migration](#migrate-db) instructions.
 
 ## Upgrade path for {{site.base_gateway}} {{page.kong_version}} 
@@ -102,6 +102,7 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 
 {% endif_version %}
 
+{% if_version lte:3.2.x %}
 ## Upgrade considerations and breaking changes
 
 Before upgrading, review any configuration or breaking changes in this version and prior versions that
@@ -112,7 +113,7 @@ custom plugins, for example.
 
 ### Plugins
 
-For breaking changes to plugins, see the [Kong Gateway Changelog](/gateway/changelog/) for your {{site.base_gateway}} version.
+For breaking changes to plugins, see the [{{site.base_gateway}} Changelog](/gateway/changelog/) for your {{site.base_gateway}} version.
 
 {% if_version gte:3.3.x %}
 ### Plugin queuing
@@ -221,7 +222,7 @@ from session configuration to avoid unpredictable behavior.
 #### Session plugin
 
 The following parameters and the values that they accept have changed. 
-For details on the new accepted values, see the [Seesion plugin](/hub/kong-inc/session/) documentation.
+For details on the new accepted values, see the [Session plugin](/hub/kong-inc/session/) documentation.
 
 Old parameter name | New parameter name
 -------------------|--------------------
@@ -396,6 +397,7 @@ diff the files to identify any changes, and apply them as needed.
 {% endnavtab %}
 {% endnavtabs %}
 
+{% endif_version %}
 ## General upgrade path {#migrate-db}
 
 Running `kong migrations` in this workflow is irrevocable, therefore we recommend that you backup data before making any changes.
@@ -404,7 +406,7 @@ Depending on the database you're using (Postgres or Cassandra), a database dump 
 
 Additionally, {{site.base_gateway}} supports exporting data in YAML format with `kong config db_export`, which later on
 can be imported back by `kong config db_import`. For more information, see
-[kong config CLI](https://docs.konghq.com/gateway/latest/reference/cli/#kong-config).
+[kong config CLI](/gateway/latest/reference/cli/#kong-config).
 
 ### Traditional mode
 
