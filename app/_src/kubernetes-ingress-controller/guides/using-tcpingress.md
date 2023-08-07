@@ -37,7 +37,7 @@ To expose TCP listens, update the Deployment's environment variables and port
 configuration:
 
 ```bash
-kubectl patch deploy -n kong ingress-kong --patch '{
+kubectl patch deploy -n kong proxy-kong --patch '{
   "spec": {
     "template": {
       "spec": {
