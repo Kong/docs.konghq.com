@@ -3,6 +3,19 @@ For more information, see [Kafka topics](https://kafka.apache.org/documentation/
 
 Kong also provides a Kafka plugin for request transformations. See [Kafka Upstream](/hub/kong-inc/kafka-upstream/).
 
+{% if_plugin_version lte:3.3.x %}
+{:.note}
+> **Note**: This plugin has the following limitations:
+* Message compression is not supported.
+* The message format is not customizable.
+{% endif_plugin_version %}
+
+
+{% if_plugin_version gte:3.4.x %}
+{:.note}
+> **Note**: This plugin does not support message compression.
+{% endif_plugin_version %}
+
 ## Quickstart
 
 The following guidelines assume that both {{site.ee_product_name}} and `Kafka` have been
@@ -50,7 +63,16 @@ installed on your local machine.
 
 ## Log format
 
-Similar to the [HTTP Log Plugin](https://docs.konghq.com/hub/kong-inc/http-log#log-format).
+{% if_version lte:3.2.x %}
+{:.note}
+> **Note:** If the `queue_size` argument > 1, a request is logged as an array of JSON objects.
+{% endif_version %}
+{% if_version gte:3.3.x %}
+{:.note}
+> **Note:** If the `max_batch_size` argument > 1, a request is logged as an array of JSON objects.
+{% endif_version %}
+
+{% include /md/plugins-hub/log-format.md %}
 
 ## Implementation details
 
@@ -113,9 +135,10 @@ This plugin supports the following authentication mechanisms:
 
 {% endif_plugin_version %}
 
-## Known issues and limitations
+{% if_plugin_version gte:3.4.x %}
+## Custom Fields by Lua
 
-Known limitations:
+{% include /md/plugins-hub/log_custom_fields_by_lua.md %}
 
-1. Message compression is not supported.
-2. The message format is not customizable.
+{% endif_plugin_version %}
+
