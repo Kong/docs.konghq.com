@@ -93,6 +93,11 @@ This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://
    
     While the rest of this guide demonstrates configuring {{site.base_gateway}} using the Admin API, you can also use Kong Manager to manage your Services, Routes, Plugins, and more. To access Kong Manager, go to the following URL: [http://localhost:8002](http://localhost:8002)
 
+    {% if_version gte:3.4.x %}
+    {:.note}
+    > **Note:** If you install {{site.ce_product_name}}, you will use [Kong Manager Open Source](/gateway/{{page.kong_version}}/kong-manager-oss/). All other {{site.base_gateway}} installations use [Kong Manager Enterprise](/gateway/{{page.kong_version}}/kong-manager/).
+    {% endif_version %}
+
 Every step in this tutorial requires a running {{site.base_gateway}}, so leave
 everything running and proceed to the next steps in this tutorial.
 
