@@ -11,6 +11,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## August 2023
 
+**Vault Secret Rotation**
+: {{site.konnect_short_name}} now supports the rotation of secrets stored in vaults without restarting the gateway. This allows you to securely manage your secrets. For more information, see [Set Up and Use a Vault in {{site.konnect_short_name}}](/konnect/runtime-manager/configuration/vaults/how-to/).
+
 **Azure for Dynamic Client Registration**
 : You can now use Azure Active Directory as the identity source for your Dev Portal's Dynamic Client Registration configuration. This expands {{site.konnect_short_name}}'s existing support, which already includes Okta, Auth0, and Curity. This streamlines developer self-service access to provisioning applications with secure access to published API Products. For more information, see [Configuring Azure for Dynamic Client Registration](/konnect/dev-portal/applications/dynamic-client-registration/azure/).
 
