@@ -81,6 +81,7 @@ Unicode
 untyped
 Valero
 Vue
+Wasm
 Wireshark
 Zipkin
 acl
