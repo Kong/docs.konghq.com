@@ -102,15 +102,14 @@ Each entry will execute with its own configuration.
 
 ### Can Lua plugins and Proxy-Wasm filters be used at the same time?
 
-Yes. Keep in mind though that for request phase, Lua plugins are executed
+Yes. Keep in mind though that for each request phase, Lua plugins are executed
 _before_ Wasm filters.
 
-There is one crucial side effect of this ordering to be aware of: Filter Chain
-attachment is assessed during the `access` phase, _after_ Lua plugin execution.
-Therefore, if a Lua plugin terminates the request during or prior to the `access` phase (by
+There is one side effect of this ordering that is crucial to be aware of: if a
+Lua plugin terminates the request during or prior to the `access` phase (by
 throwing an exception or explicitly sending a response with
-`kong.response.exit()` or other PDK function), **no Wasm filters will be
-executed for the request,** including other phases (e.g. `header_filter`).
+`kong.response.exit()` or other PDK function), **no Wasm filters will be executed
+for the request,** including other phases (e.g. `header_filter`).
 
 ## Limitations and known issues
 
