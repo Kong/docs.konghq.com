@@ -12,6 +12,297 @@ source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 <!-- vale off -->
 This module can be used to resolve, parse, and verify vault references.
+{% if_version gte:3.4.x %}
+## get_subfield(value, key)
+
+This function extracts a subfield from a JSON object.
+ It first decodes the JSON string into a Lua table, then checks for the presence and type of a specific key.
+
+
+**Parameters**
+
+* **value** :  The JSON string to be parsed and decoded.
+* **key** :  The specific subfield to be searched for within the JSON object.
+
+**Returns**
+
+*   On success, returns the value associated with the specified key in the JSON object.
+ If the key does not exist or its value is not a string, returns nil along with an error message.
+ If the input value cannot be parsed as a JSON object, also returns nil along with an error message.
+
+
+
+
+## adjust_ttl(ttl, vault_config)
+
+This function adjusts the 'time-to-live' (TTL) according to the configuration provided in 'vault_config'.
+ If the TTL is not a number or if it falls outside of the configured minimum or maximum TTL, it will be adjusted accordingly.
+
+
+**Parameters**
+
+* **ttl** :  The initial time-to-live value.
+* **vault_config** :  The configuration table for the vault, which may contain 'ttl', 'min_ttl', and 'max_ttl' fields.
+
+**Returns**
+
+*   Returns the adjusted TTL. If the initial TTL is not a number, it returns the 'ttl' field from the 'vault_config' table or 0 if it doesn't exist.
+ If the initial TTL is greater than 'max_ttl' from 'vault_config', it returns 'max_ttl'.
+ If the initial TTL is less than 'min_ttl' from 'vault_config', it returns 'min_ttl'.
+ Otherwise, it returns the original TTL.
+
+
+
+
+## get_vault(prefix)
+
+This function retrieves a vault by its prefix.  It either fetches the vault from a cache or directly accesses it.
+ The vault is expected to be found in a database (db) or cache. If not found, an error message is returned.
+
+
+**Parameters**
+
+* **prefix** :  The unique identifier of the vault to be retrieved.
+
+**Returns**
+
+*  Returns the vault if it's found. If the vault is not found, it returns nil along with an error message.
+
+
+
+
+## get_vault_strategy_and_schema_during_init(name)
+
+Fetches the strategy and schema for a given vault during initialization.
+
+ This function checks if the vault exists in `VAULT_NAMES`, fetches the associated strategy and schema from
+ the `STRATEGIES` and `SCHEMAS` tables, respectively. If the strategy or schema isn't found in the tables, it
+ attempts to fetch them from the application's database or by requiring them from a module.
+
+ The fetched strategy and schema are then stored back into the `STRATEGIES` and `SCHEMAS` tables for later use.
+ If the `init` method exists in the strategy, it's also executed.
+
+
+**Parameters**
+
+* **name** :  string The name of the vault to fetch the strategy and schema for.
+
+**Returns**
+
+1.   strategy: The fetched or required strategy for the given vault.
+
+1.   schema: The fetched or required schema for the given vault.
+
+1.   `string|nil`: An error message, if an error occurred while fetching or requiring the strategy or schema.
+
+
+
+
+## parse_and_resolve_reference(reference)
+
+Function `parse_and_resolve_reference` processes a reference to retrieve configuration settings,
+ a strategy to be used, and the hash of the reference.
+ The function first parses the reference. Then, it gets the strategy, the schema, and the base configuration
+ settings for the vault based on the parsed reference. It checks the license type if required by the strategy.
+ Finally, it gets the configuration and the hash of the reference.
+
+
+**Parameters**
+
+* **reference** :  The reference to be parsed and resolved.
+
+**Returns**
+
+*   The configuration, a nil value (as a placeholder for an error that did not occur),
+ the parsed reference, the strategy to be used, and the hash of the reference.
+ If an error occurs, it returns `nil` and an error message.
+
+
+**Usage**
+
+``` lua
+local config, _, parsed_reference, strategy, hash = parse_and_resolve_reference(reference)
+```
+
+
+
+## get_from_vault(strategy, config, parsed_reference, cache_key, reference)
+
+Function `get_from_vault` retrieves a value from the vault using the provided strategy.
+ The function first retrieves a value from the vault and its ttl (time-to-live).
+ It then adjusts the ttl within configured bounds, stores the value in the SHDICT cache
+ with a ttl that includes a resurrection time, and stores the value in the LRU cache with
+ the adjusted ttl.
+
+
+**Parameters**
+
+* **strategy** :  The strategy to be used to retrieve the value from the vault.
+* **config** :  The configuration settings to be used.
+* **parsed_reference** :  The parsed reference key to lookup in the vault.
+* **cache_key** :  The key to be used when storing the value in the cache.
+* **reference** :  The original reference key.
+
+**Returns**
+
+*  The retrieved value from the vault. If an error occurs, it returns `nil` and an error message.
+
+
+**Usage**
+
+``` lua
+local value, err = get_from_vault(strategy, config, parsed_reference, cache_key, reference)
+```
+
+
+
+## renew_from_vault(reference)
+
+Function `renew_from_vault` attempts to retrieve a value from the vault.
+ It first parses and resolves the reference, then uses the resulting strategy,
+ config, parsed_reference, and cache_key to attempt to get the value from the vault.
+
+
+**Parameters**
+
+* **reference** :  The reference key to lookup in the vault.
+
+**Returns**
+
+*  The retrieved value from the vault corresponding to the provided reference.
+ If the value is not found or if an error occurs, it returns `nil` and an error message.
+
+
+**Usage**
+
+``` lua
+local value, err = renew_from_vault(reference)
+```
+
+
+
+## get(reference, cache_only)
+
+Function `get` retrieves a value from local (LRU) or shared dictionary (SHDICT) cache.
+ If the value is not found in these caches and `cache_only` is not set, it attempts
+ to retrieve the value from a vault.
+
+
+**Parameters**
+
+* **reference** :  The reference key to lookup in the cache and potentially the vault.
+* **cache_only** :  Optional boolean flag. If set to true, the function will not attempt
+ to retrieve the value from the vault if it's not found in the caches.
+
+**Returns**
+
+*  The retrieved value corresponding to the provided reference. If the value is
+ not found, it returns `nil` and an error message.
+
+
+**Usage**
+
+``` lua
+local value, err = get(reference, cache_only)
+```
+
+
+
+## get_from_cache(references)
+
+Function `get_from_cache` retrieves values from a cache.
+
+ This function uses the provided references to fetch values from a cache.
+ The fetching process will return cached values if they exist.
+
+
+**Parameters**
+
+* **references** :  A list or table of reference keys. Each reference key corresponds to a value in the cache.
+
+**Returns**
+
+*  The retrieved values corresponding to the provided references. If a value does not exist in the cache for a particular reference, it is not clear from the given code what will be returned.
+
+
+**Usage**
+
+``` lua
+local values = get_from_cache(references)
+```
+
+
+
+## update(config)
+
+Function `update` recursively updates a configuration table.
+
+ This function updates a configuration table by replacing reference fields
+ with values fetched from a cache. The references are specified in a `$refs`
+ field, which should be a table mapping from field names to reference keys.
+
+ If a reference cannot be fetched from the cache, the corresponding field is
+ set to an empty string and an error is logged.
+
+
+**Parameters**
+
+* **config** :  A table representing the configuration to update. If `config`
+ is not a table, the function immediately returns it without any modifications.
+
+**Returns**
+
+*  The updated configuration table. If the `$refs` field is not a table
+ or is empty, the function returns `config` as is.
+
+
+**Usage**
+
+``` lua
+local updated_config = update(config)
+```
+
+
+
+## try(callback, options)
+
+Function `try` attempts to execute a provided callback function with the provided options.
+ If the callback function fails, the `try` function will attempt to resolve references and update
+ the values in the options table before re-attempting the callback function.
+ NOTE: This function currently only detects changes by doing a shallow comparison. As a result, it might trigger more retries than necessary - when a config option has a table value and it seems "changed" even if the "new value" is a new table with the same keys and values inside.
+
+**Parameters**
+
+* **callback** :  The callback function to execute. This function should take an options table as its argument.
+* **options** :  The options table to provide to the callback function. This table may include a "$refs" field which is a table mapping reference names to their values.
+
+**Returns**
+
+*  Returns the result of the callback function if it succeeds, otherwise it returns `nil` and an error message.
+
+
+
+
+## rotate_secrets()
+
+Function `rotate_secrets` rotates the secrets in the shared dictionary cache (SHDICT).
+ It iterates over all keys in the SHDICT and, if a key corresponds to a reference and the
+ ttl of the key is less than or equal to the resurrection period, it refreshes the value
+ associated with the reference.
+
+
+**Returns**
+
+*  Returns `true` after it has finished iterating over all keys in the SHDICT.
+
+
+**Usage**
+
+``` lua
+local success = rotate_secrets()
+```
+{% endif_version %}
+
 {% if_version gte:3.3.x %}
 ## kong.vault.flush()
 
@@ -116,8 +407,54 @@ Resolves the passed in reference and returns the value of it.
 ``` lua
 local value, err = kong.vault.get("{vault://env/cert/key}")
 ```
+{% if_version gte:3.4.x %}
+## kong.vault.update(options)
+
+Helper function for secret rotation based on TTLs.  Currently experimental.
 
 
+**Parameters**
+
+* **options** (`table`):   options containing secrets and references (this function modifies the input options)
+
+**Returns**
+
+* `table`:  options with updated secret values
+
+
+**Usage**
+
+``` lua
+local options = kong.vault.update({
+  cert = "-----BEGIN CERTIFICATE-----...",
+  key = "-----BEGIN RSA PRIVATE KEY-----...",
+  cert_alt = "-----BEGIN CERTIFICATE-----...",
+  key_alt = "-----BEGIN EC PRIVATE KEY-----...",
+  ["$refs"] = {
+    cert = "{vault://aws/cert}",
+    key = "{vault://aws/key}",
+    cert_alt = "{vault://aws/cert-alt}",
+    key_alt = "{vault://aws/key-alt}",
+  }
+})
+
+-- or
+
+local options = {
+  cert = "-----BEGIN CERTIFICATE-----...",
+  key = "-----BEGIN RSA PRIVATE KEY-----...",
+  cert_alt = "-----BEGIN CERTIFICATE-----...",
+  key_alt = "-----BEGIN EC PRIVATE KEY-----...",
+  ["$refs"] = {
+    cert = "{vault://aws/cert}",
+    key = "{vault://aws/key}",
+    cert_alt = "{vault://aws/cert-alt}",
+    key_alt = "{vault://aws/key-alt}",
+  }
+}
+kong.vault.update(options)
+```
+{% endif_version %}
 
 ## kong.vault.try(callback, options)
 
@@ -152,3 +489,36 @@ local connection, err = kong.vault.try(connect, {
   }
 })
 ```
+
+{% if_version gte:3.4.x %}
+
+## invoke_strategy(strategy, config, parsed_reference)
+
+Invokes a provided strategy to fetch a secret.
+ This function invokes a strategy provided to it to retrieve a secret from a resource, with version control.
+ The secret can have multiple values, each stored under a different key.
+ The secret returned by the strategy must be a string containing a JSON object, which can be indexed by the key to get a specific value.
+ If the secret can't be retrieved or doesn't have the expected format, appropriate errors are returned.
+
+
+**Parameters**
+
+* **strategy** :  The strategy used to fetch the secret.
+* **config** :  The configuration required by the strategy.
+* **parsed_reference** :  A table containing the resource and version of the secret to be fetched, and optionally, a key to index a specific value.
+
+**Returns**
+
+1. Value The value of the secret or subfield if retrieval is successful.
+
+1. `nil` If retrieval is successful, the second returned value will be nil.
+
+1. `err` A string describing an error if there was one, or ttl (time to live) of the fetched secret.
+
+
+**Usage**
+
+``` lua
+local value, _, err = invoke_strategy(strategy, config, parsed_reference)
+```
+{% endif_version %}

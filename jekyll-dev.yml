@@ -78,6 +78,7 @@ extensions:
 exclude:
   - node_modules
   - jekyll-cache
+  - app/assets
 
 # location vars
 icons_dir: assets/images/icons

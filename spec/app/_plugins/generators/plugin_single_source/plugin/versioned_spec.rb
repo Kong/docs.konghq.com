@@ -11,12 +11,6 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
     it { expect(subject.extension?).to eq(true) }
   end
 
-  describe '#set_version?' do
-    context 'when there is more than one release' do
-      it { expect(subject.set_version?).to eq(true) }
-    end
-  end
-
   describe '#releases' do
     let(:name) { 'jwt-signer' }
 

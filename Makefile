@@ -14,7 +14,6 @@ install-prerequisites:
 # Installs npm packages and gems.
 install: ruby-version-check
 	npm ci
-	gem install foreman
 	bundle install
 	git submodule update --init
 

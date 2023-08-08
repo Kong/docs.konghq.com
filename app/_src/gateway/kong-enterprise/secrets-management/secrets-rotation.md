@@ -30,11 +30,15 @@ Kong PDK API that can be used to rotate secrets on failure: [kong.vault.try](/ga
 
 ## Periodically rotating secrets using TTLs
 
-Kong employs a background job that runs periodically on **every minute** (thus you cannot currently
-automatically rotate more often than that). Its job is to rotate secrets that are about to expire.
-The TTL can be configured  with the Vault (for all the secrets) or in secret reference (for a single secret).
-By default, Kong does not rotate any secrets, so **remember to configure the TTLs** if you want to turn on
-**the automatic rotation**.
+{% if_version lte: 3.3.x %}
+Kong automatically rotates secrets *once every minute* in the background. It rotates secrets that are about to expire. The TTL can be configured with the Vault (for all secrets) or in the secret reference (for a single secret). By default, Kong does not rotate any secrets, so remember to configure the TTLs if you want to enable automatic rotation.
+{% endif_version %}
+{% if_version gte: 3.4.x %}
+Kong automatically rotates secrets *once every minute* in the background. This decouples the secret rotation process from proxying. It has the following consequences:
+
+* The once-per-minute refresh rate means that a secret with a TTL of 30 seconds might take up to 60 seconds to refresh in the least favorable scenario.
+* Additionally, if the sum of TTL and `resurrect_ttl` is less than 60 seconds for a given secret, it won't be refreshed or resurrected correctly.
+{% endif_version %}
 
 The TTL based rotation works with most of the Kong supported vaults, including:
 
@@ -90,7 +94,7 @@ Now when using certificates you can reference them with:
 {vault://aws-certs/certs/web-site}
 ```
 
-And the all secrets (certificates in this case) referenced with `aws-certs` vault
+The secrets (certificates, in this case) referenced with `aws-certs` vault
 will share the same 6 hours TTL, and will be rotated one minute earlier than
 their expiry.
 
@@ -134,7 +138,7 @@ Now when using certificates you can reference them with:
 {vault://gcp-certs/certs/web-site}
 ```
 
-And all the secrets (certificates in this case) referenced with `gcp-certs` vault
+The secrets (certificates, in this case) referenced with `gcp-certs` vault
 will share the same 6 hours TTL, and will be rotated one minute earlier than
 their expiry.
 
@@ -178,6 +182,6 @@ Now you can reference certificates with:
 {vault://hcv-certs/certs/web-site}
 ```
 
-And all the secrets (certificates in this case) referenced with `hcv-certs` vault
+The secrets (certificates, in this case) referenced with `hcv-certs` vault
 will share the same 6 hours TTL, and will be rotated one minute earlier than
 their expiry.
