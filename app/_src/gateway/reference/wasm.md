@@ -94,7 +94,7 @@ was matched to the request is linked to a filter chain, its filters are _also_
 executed.
 
 Filters are always executed in the order in which they are defined in the filter
-chain.
+chain. The same filter may appear in the execution plan multiple times, either coming from the Service and Route chains, or even within the same filter chain. Each entry will execute with its own configuration.
 
 ### Can Lua plugins and Proxy-Wasm filters be used at the same time?
 
