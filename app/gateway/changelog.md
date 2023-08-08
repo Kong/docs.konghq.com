@@ -245,7 +245,7 @@ hang when attempting to expand an API.
   * Fixed an issue where empty (all default value) messages couldn't be unframed correctly.
   [#10836](https://github.com/Kong/kong/pull/10836)
 
-* * [**Response Transformer**](/hub/kong-inc/response-transformer/) (`response-transformer`) and 
+* [**Response Transformer**](/hub/kong-inc/response-transformer/) (`response-transformer`) and 
 [**Request Transformer Advanced**](/hub/kong-inc/request-transformer-advanced/) (`request-transformer-advanced`)
   * Fixed an issue where the plugin wouldn't transform the response body when the upstream returns a 
   Content-Type with a `+json` suffix at the subtype.
