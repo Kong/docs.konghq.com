@@ -91,7 +91,7 @@ The filter execution plan for a given request is determined during the `access`
 phase, after Lua plugins execution. If the Service entity for the request
 is linked to a filter chain, the filters are executed. If the Route entity that
 was matched to the request is linked to a filter chain, its filters are _also_
-executed.
+executed, concatenating the list of filters from the matched Service and Route filter chains to produce the final execution plan. You can inspect the full filter execution plan for a given route via the Admin API, through the endpoint `/routes/{route name or id}/filters/enabled`.
 
 Filters are always executed in the order in which they are defined in the filter
 chain. The same filter may appear in the execution plan multiple times, either coming from the Service and Route chains, or even within the same filter chain. Each entry will execute with its own configuration.
