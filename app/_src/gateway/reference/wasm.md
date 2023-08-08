@@ -128,7 +128,7 @@ part of the Envoy Proxy-Wasm implementation but not explicitly called out within
 the specification.
 
 Currently, this functionality does not work with Kong, though there are plans on
-implementing it in a future release for increase compatibility with other
+implementing it in a future release for increased compatibility with other
 Proxy-Wasm implementations.
 
 ## Further Reading
