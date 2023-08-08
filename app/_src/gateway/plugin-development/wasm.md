@@ -31,7 +31,7 @@ world`-type filter:
 
 ### Deploying the filter with Kong
 
-After writing and building the filter, the next steps are to configure Kong to enable Wasm support and add the filter, then associate the filter to a Route or a Service. You will then be able to start Kong and issue requests that go through the filter.
+After writing and building the filter, the next steps are to configure Kong to enable Wasm support and add the filter, then associate the filter to a route or a service. You will then be able to start Kong and issue requests that go through the filter.
 
 #### Configuration
 
@@ -54,11 +54,11 @@ your build toolchain's output directory (wherever the compiled
 $ export KONG_WASM_FILTERS_PATH=/path/to/my_filter/build
 ```
 
-#### Link to a Kong Service and Route
+#### Link to a Kong service and route
 
 Now, the next step is to create a Kong Filter Chain entity using the
-filter created in the previous step and associate it with a Kong Route
-or Service. This will be done by creating a declarative yaml config file,
+filter created in the previous step and associate it with a Kong route
+or service. This will be done by creating a declarative yaml config file,
 e.g. `kong.yml`:
 
 ```yaml

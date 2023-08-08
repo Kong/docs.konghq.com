@@ -17,7 +17,7 @@ the [Proxy-Wasm specification](https://github.com/proxy-wasm/spec).
 
 In the context of Proxy-Wasm, a "filter" refers to a specific component or
 module that is executed at some stage of request/response handling. Filters can
-perform actions such as:
+perform actions like:
 
 * read or write request or response headers
 * read or write the request or response body
@@ -38,7 +38,7 @@ directive.
 ### Filter Chain
 
 A Filter Chain is the database entity representing one or more filters executed
-for each request to a particular Service or Route, each one with its
+for each request to a particular service or route, each one with its
 configuration.
 
 Example:
@@ -79,25 +79,25 @@ filter-chains:
 
 #### Relationships
 
-Filter Chains **must** be linked to a Service or Route, and as of this writing,
+Filter Chains **must** be linked to a service or route, and as of {{site.base_gateway}} version 3.4,
 the relationship is one-to-one:
 
-* a Service or Route may only be linked to a single Filter Chain
-* a Filter Chain may only be linked to a single Service or Route
+* A service or route may only be linked to a single Filter Chain.
+* A Filter Chain may only be linked to a single service or route.
 
 ## Filter execution behavior
 
 The list of filters that will be executed for a given request is determined
-during  the `access` phase, after Lua plugins execution. If the Service entity
-for the  request is linked to a Filter Chain, the filters are executed. If the
-Route  entity that was matched to the request is linked to a Filter Chain, its
-filters  are also executed, _after_ Service-related filters (if any) have been
-executed. You can inspect the  full  filter execution plan for a given Route via
-the Admin  API, through the endpoint `/routes/{route name or id}/filters/enabled`.
+during the `access` phase, after Lua plugins execution. If the service entity
+for the request is linked to a Filter Chain, the filters are executed. If the
+route entity that was matched to the request is linked to a Filter Chain, its
+filters are also executed, _after_ service-related filters (if any) have been
+executed. You can inspect the full filter execution plan for a given route via
+the Admin API, through the endpoint `/routes/{route_name_or_id}/filters/enabled`.
 
 Filters are always executed in the order in which they are defined in the filter
 chain. The same filter may appear in the execution plan multiple times, either
-coming from the Service and Route chains, or even within the same Filter Chain.
+coming from the service and route chains, or even within the same Filter Chain.
 Each entry will execute with its own configuration.
 
 ### Can Lua plugins and Proxy-Wasm filters be used at the same time?
