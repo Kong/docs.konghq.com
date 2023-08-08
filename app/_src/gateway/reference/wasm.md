@@ -87,13 +87,13 @@ the relationship is one-to-one:
 
 ## Filter execution behavior
 
-The filter execution plan for a given request is determined during the `access`
-phase, after Lua plugins execution. If the Service entity for the request
-is linked to a Filter Chain, the filters are executed. If the Route entity that
-was matched to the request is linked to a Filter Chain, its filters are also
-executed, _after_ Service-related filters (if any) have been executed. You can
-inspect the  full  filter execution plan for a given Route via the Admin API,
-through the endpoint `/routes/{route name or id}/filters/enabled`.
+The list of filters that will be executed for a given request is determined
+during  the `access` phase, after Lua plugins execution. If the Service entity
+for the  request is linked to a Filter Chain, the filters are executed. If the
+Route  entity that was matched to the request is linked to a Filter Chain, its
+filters  are also executed, _after_ Service-related filters (if any) have been
+executed. You can inspect the  full  filter execution plan for a given Route via
+the Admin  API, through the endpoint `/routes/{route name or id}/filters/enabled`.
 
 Filters are always executed in the order in which they are defined in the filter
 chain. The same filter may appear in the execution plan multiple times, either
