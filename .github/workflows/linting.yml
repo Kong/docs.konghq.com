@@ -84,9 +84,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: errata-ai/vale-action@v2
+      - uses: errata-ai/vale-action@reviewdog
         with:
-          version: 2.24.0
+          #version: 2.24.0
           # path where vale checks checking only modified files.
           filter_mode: file
           vale_flags: "--glob=!app/_src/.repos/kuma/**"
