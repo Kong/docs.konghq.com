@@ -68,7 +68,7 @@ module Jekyll
       end
 
       def version
-        @version ||= @page['kong_version']
+        @version ||= @page['kong_version'] || @page['version']
       end
     end
   end

@@ -8,7 +8,7 @@ title: Kong Ingress on Minikube
 
    Minikube is a tool that makes it easy to run Kubernetes locally.
    Minikube runs a single-node Kubernetes cluster inside a VM on your laptop
-   for users looking to try out Kubernetes or develop with it day-to-day.
+   to try out Kubernetes or develop with it day-to-day.
 
 1. Start `minikube`
 
@@ -26,18 +26,27 @@ title: Kong Ingress on Minikube
 
 ## Setup environment variables
 
-Next, we will setup an environment variable with the IP address at which
-Kong is accessible. This will be used to actually send requests into the
+Next, set up an environment variable with the IP address at which
+Kong is accessible. This is used to send requests into the
 Kubernetes cluster.
 
-```bash
-$ export PROXY_IP=$(minikube service -n kong kong-proxy --url | head -1)
-# If installed by helm, service name would be "<release-name>-kong-proxy".
-# $ export PROXY_IP=$(minikube service <release-name>-kong-proxy --url | head -1)
-$ echo $PROXY_IP
-http://192.168.99.100:32728
-```
-
-Once you've installed the {{site.kic_product_name}}, please follow our
+1. Get the IP address at which you can access {{site.base_gateway}}:
+   
+   ```bash
+   $ minikube service -n kong kong-proxy --url | head -1
+   # If installed by helm, service name would be "<release-name>-kong-proxy".
+   # minikube service <release-name>-kong-proxy --url | head -1
+   ```
+   The output is similar to:
+   ```bash
+   http://192.168.99.100:32728
+   ```
+1. Set the environment variable. Replace `<ip-address>` with the {{site.base_gateway}} IP address you just retrieved:
+   
+   ```bash
+   export PROXY_IP=<ip-address>
+   echo $PROXY_IP
+   ```
+After you've installed the {{site.kic_product_name}}, please follow the
 [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn
 about how to use the Ingress Controller.

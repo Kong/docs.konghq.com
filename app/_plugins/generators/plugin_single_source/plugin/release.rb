@@ -10,7 +10,7 @@ module PluginSingleSource
 
       attr_reader :version, :source, :site
 
-      def_delegators :@plugin, :ext_data, :vendor, :name, :dir, :set_version?
+      def_delegators :@plugin, :ext_data, :vendor, :name, :dir
 
       def initialize(site:, version:, plugin:, source:, is_latest:)
         @site = site

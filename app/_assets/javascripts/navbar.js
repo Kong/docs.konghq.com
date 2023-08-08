@@ -56,7 +56,15 @@ jQuery(function () {
     $(".with-submenu").removeClass("submenu-opened");
   });
 
-  $("#top-module-list").on("click", function(e) {
-      toggleSubmenuVisible($(e.target));
+  $(".main-menu-item.with-submenu").on("click", function(e) {
+    toggleSubmenuVisible(e.target);
+  });
+
+  $("#navbar-menu-toggle-button").on("click", function(e) {
+    toggleButtonClicked();
+  });
+
+  $(".search-input-wrapper img").on("click", function(e) {
+    handleSearchClicked();
   });
 });
