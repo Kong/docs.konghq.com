@@ -13,7 +13,7 @@ or [Rust](https://github.com/proxy-wasm/proxy-wasm-rust-sdk/).
 
 ## Coding, building and deploying a Proxy-Wasm filter
 
-Kong made Go and Rust Proxy-Wasm filter templates available, they can be used
+Kong has made Go and Rust Proxy-Wasm filter templates available. They can be used
 to start writing your own filters, or to build as they are and get your first `hello
 world`-type filter:
 
