@@ -4868,6 +4868,10 @@ stored in a vault, instead of storing the certificate and key within the
 entity. This allows a proper separation of secrets and configuration and
 prevents secret sprawl.
 
+{% if_version gte:3.4.x %}
+Secrets rotation can be managed using [TTLs](/gateway/latest/kong-enterprise/secrets-management/advanced-usage).
+{% endif_version %}
+
 Vaults can be both [tagged and filtered by tags](#tags).
 
 
