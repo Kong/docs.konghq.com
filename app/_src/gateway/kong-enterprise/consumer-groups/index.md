@@ -4,25 +4,27 @@ badge: enterprise
 ---
 
 
-Consumer Groups is a powerful feature available in {{site.base_gateway}} that enables the organization and categorization of consumers (users or applications) within an API ecosystem. By grouping consumers together, you can manage in an aggregated and more efficient manner. Consumer groups functionality has the capability to scope plugins specifically to defined groups, making configurations and customizations more flexible and convenient. Consumer groups eliminate the need to manage consumers individually, providing a scalable approach to managing configurations.
+Consumer groups enable the organization and categorization of consumers (users or applications) within an API ecosystem. By grouping consumers together, you eliminate the need to manage them individually, providing a scalable, efficient approach to managing configurations. 
+
+With consumer groups, you can scope plugins specifically to defined groups, making configurations and customizations more flexible and convenient. 
 
 
 {% if_version gte:3.4.x %}
 
-### Use cases
+## Use cases
 
-* Managing permissions:   Consumer Groups can be used to define different sets of users with varying levels of permissions. For example, you can create distinct consumer groups for regular users, premium users, and administrators.
+* Managing permissions: Consumer groups can be used to define different sets of users with varying levels of permissions. For example, you can create distinct consumer groups for regular users, premium users, and administrators.
 
 * Managing roles: Within an organization, there may be various departments or teams that interact with APIs differently. By creating consumer groups for these different roles, you can customize the API usage experience. For instance, an organization could have separate consumer groups for the marketing team, development team, and support team.
 
-* Resource quotas and rate limiting:  Consumer groups can be used to enforce resource quotas and rate limiting on different sets of consumers. For instance, you can apply different rate limits to different consumer groups based on their subscription plans. 
+* Resource quotas and rate limiting: Consumer groups can be used to enforce resource quotas and rate limiting on different sets of consumers. For instance, you can apply different rate limits to different consumer groups based on their subscription plans. 
 
-* Customizing plugin configurations: With the ability to scope plugins specifically to defined groups, different Consumer Groups can have distinct plugin configurations based on their requirements. For example, one group may require additional request transformations while another may not need them at all.
+* Customizing plugin configurations: With the ability to scope plugins specifically to defined groups, different consumer groups can have distinct plugin configurations based on their requirements. For example, one group may require additional request transformations while another may not need them at all.
 
-Consumer group execution order is deterministic consumers can be part of multiple consumer groups, but this does have an implication on the execution logic, so refer to the  [precedence](/gateway/latest/key-concepts/plugins/#precedence) chart when assigning multiple consumer groups.
+Consumer group execution order is deterministic. Consumers can be part of multiple consumer groups, but this does have an implication on the execution logic, so refer to the [precedence](/gateway/latest/key-concepts/plugins/#precedence) chart when assigning multiple consumer groups.
 
 ## Scope plugins 
-The ability to scope plugins to consumer groups is available for: 
+You can scope the following plugins to consumer groups: 
 
 * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/)
 * [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
@@ -582,7 +584,7 @@ if you need to cycle the group for a new batch of users.
 {% endif_version %}
 
 
-## More Information
+## More information
 
 * [API documentation](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60#/consumer_groups/get-consumer_groups)
 * [Enforcing rate limiting tiers with the Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/how-to/)

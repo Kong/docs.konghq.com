@@ -4,7 +4,7 @@ nav_title: How to create rate limiting tiers
 
 
 
-With consumer groups, you can use the define limiting tiers and apply them across subsets of consumers of your application.
+With consumer groups, you can define rate limiting tiers and apply them to subsets of application consumers.
 
 You can define consumer groups as tiers, for example:
 
@@ -35,7 +35,7 @@ configuration
 1. Create a consumer group named `Gold`:
 
     ```bash
-    curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
+    curl -i -X POST http://localhost:8001/consumer_groups \
     --data name=Gold
     ```
 
@@ -53,7 +53,7 @@ configuration
 1. Create a consumer, `Amal`:
 
     ```bash
-    curl -i -X POST http://{HOSTNAME}:8001/consumers \
+    curl -i -X POST http://localhost:8001/consumers \
     --data username=Amal
     ```
 
@@ -74,7 +74,7 @@ configuration
 1. Add `Amal` to the `Gold` consumer group:
 
     ```bash
-    curl -i -X POST http://{HOSTNAME}:8001/consumer_groups/Gold/consumers \
+    curl -i -X POST http://localhost:8001/consumer_groups/Gold/consumers \
     --data consumer=Amal
     ```
 
@@ -100,10 +100,10 @@ configuration
     }
     ```
 {% if_plugin_version gte:3.4.x %}
-1. Enable the plugin on the consumer group
+1. Enable the plugin on the consumer group:
 
     ```bash
-    curl -i -X POST http://{HOSTNAME}:8001/consumer_groups/gold/plugins/  \
+    curl -i -X POST http://localhost:8001/consumer_groups/gold/plugins/  \
     --data name=rate-limiting-advanced \
     --data config.limit=5 \
     --data config.window_size=30 \
@@ -125,7 +125,7 @@ setting the rate limit to five requests (`config.limit`) for every
 
 
     ```bash
-    curl -i -X POST http://{HOSTNAME}:8001/plugins/  \
+    curl -i -X POST http://localhost:8001/plugins/  \
     --data name=rate-limiting-advanced \
     --data config.limit=5 \
     --data config.window_size=30 \
@@ -142,9 +142,9 @@ setting the rate limit to five requests (`config.limit`) for every
 
     {:.note}
     > **Note:** In this example, you're configuring the plugin globally, so it
-    applies to all entities (Services, Routes, and Consumers) in the
+    applies to all entities (services, routes, and consumers) in the
     {{site.base_gateway}} instance. You can also apply it to a
-    [specific Service or Route](/hub/kong-inc/rate-limiting-advanced/)
+    [specific service or route](/hub/kong-inc/rate-limiting-advanced/how-to/basic-example/)
     for more granular control.
 
 1. The plugin you just set up applies to all consumers in the cluster. Change
@@ -152,7 +152,7 @@ the rate limiting configuration for the `Gold` consumer group only, setting
 the limit to ten requests for every ten seconds:
 
     ```bash
-    curl -i -X PUT http://{HOSTNAME}:8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced \
+    curl -i -X PUT http://localhost:8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced \
     --data config.limit=10 \
     --data config.window_size=10 \
     --data config.retry_after_jitter_max=1
@@ -179,7 +179,7 @@ the limit to ten requests for every ten seconds:
 1. Check that it worked by looking at the `Gold` consumer group object:
 
     ```bash
-    curl -i -X GET http://{HOSTNAME}:8001/consumer_groups/Gold
+    curl -i -X GET http://localhost:8001/consumer_groups/Gold
     ```
 
     Notice the `plugins` object in the response, along with the parameters that you
@@ -258,7 +258,7 @@ You can remove a consumer from a group by accessing `/consumers` or
 1. Check the `Gold` consumer group for the consumer name:
 
     ```bash
-    curl -i -X GET http://{HOSTNAME}:8001/consumer_groups/Gold
+    curl -i -X GET http://localhost:8001/consumer_groups/Gold
     ```
 
     Response:
@@ -287,7 +287,7 @@ You can remove a consumer from a group by accessing `/consumers` or
 remove the consumer from the group:
 
     ```bash
-    curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/Gold/consumers/Amal
+    curl -i -X DELETE http://localhost:8001/consumer_groups/Gold/consumers/Amal
     ```
 
     If successful, you receive the following response:
@@ -298,7 +298,7 @@ remove the consumer from the group:
 1. To verify, check the consumer group configuration again:
 
     ```bash
-    curl -i -X GET http://{HOSTNAME}:8001/consumer_groups/Gold
+    curl -i -X GET http://localhost:8001/consumer_groups/Gold
     ```
 
     Response, with no consumers assigned:
@@ -323,7 +323,7 @@ You can remove a consumer from a group by accessing `/consumers` or
 you can look up the group through the consumer:
 
     ```bash
-    curl -i -X GET http://{HOSTNAME}:8001/consumers/Amal/consumer_groups
+    curl -i -X GET http://localhost:8001/consumers/Amal/consumer_groups
     ```
 
     Response:
@@ -345,7 +345,7 @@ you can look up the group through the consumer:
 remove the consumer from the group:
 
     ```bash
-    curl -i -X DELETE http://{HOSTNAME}:8001/consumers/Amal/consumer_groups/Gold
+    curl -i -X DELETE http://localhost:8001/consumers/Amal/consumer_groups/Gold
     ```
 
     If successful, you receive the following response:
@@ -356,7 +356,7 @@ remove the consumer from the group:
 1. To verify, check the consumer object configuration:
 
     ```bash
-    curl -i -X GET http://{HOSTNAME}:8001/consumer_groups/Gold
+    curl -i -X GET http://localhost:8001/consumer_groups/Gold
     ```
 
     Response, with no consumers assigned:
@@ -381,7 +381,7 @@ With this method, the consumers in the group aren't deleted and are still in the
 1. Delete the consumer group configuration using the following request:
 
     ```bash
-    curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced
+    curl -i -X DELETE http://localhost:8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced
     ```
 
     If successful, you receive see the following response:
@@ -392,7 +392,7 @@ With this method, the consumers in the group aren't deleted and are still in the
 1. To verify, check the consumer object configuration:
 
     ```bash
-    curl -i -X GET http://{HOSTNAME}:8001/consumer_groups/Gold
+    curl -i -X GET http://localhost:8001/consumer_groups/Gold
     ```
 
     Response, without a `plugins` object:
@@ -418,10 +418,10 @@ the group are not deleted.
 1. Delete a consumer group using the following request:
 
     ```bash
-    curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/Gold
+    curl -i -X DELETE http://localhost:8001/consumer_groups/Gold
     ```
 
-    If successful, you receive see the following response:
+    If successful, you receive the following response:
     ```
     HTTP/1.1 204 No Content
     ```
@@ -429,7 +429,7 @@ the group are not deleted.
 1. Check the list of consumer groups to verify that the `Gold` group is gone:
 
     ```bash
-    curl -i -X GET http://{HOSTNAME}:8001/consumer_groups
+    curl -i -X GET http://localhost:8001/consumer_groups
     ```
 
     Response:
@@ -443,7 +443,7 @@ the group are not deleted.
 1. Check a consumer that was in the group to make sure it still exists:
 
     ```bash
-    curl -i -X GET http://{HOSTNAME}:8001/consumers/Amal
+    curl -i -X GET http://localhost:8001/consumers/Amal
     ```
 
     An `HTTP/1.1 200 OK` response means the consumer exists.
@@ -454,7 +454,7 @@ the group are not deleted.
 You can perform many `/consumer_groups` operations in bulk.
 
 1. Assuming you deleted the group `Gold` in the previous section, create it again,
-along with another group named `Speedsters`:
+along with another group named `Silver`:
 
     ```bash
     curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
