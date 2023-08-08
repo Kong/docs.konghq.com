@@ -5,18 +5,6 @@ chapter: 9
 ---
 
 
-we
-We
-[non relative link](https://docs.konghq.com/konnect/architecture/)
-We
-I am
-blacklist
-whitelist
-ntrk
-netwrk
-Kong Gatewey
-  file name
-
 If you are serious about your plugin, you probably want to write tests for it.
 Unit testing Lua is easy, and [many testing
 frameworks](http://lua-users.org/wiki/UnitTesting) are available. However, you
