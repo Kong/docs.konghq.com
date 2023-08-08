@@ -26,10 +26,12 @@ items:
         url: /gateway/changelog
         absolute_url: true
       - text: Breaking Changes	
-        items:	
-          - text: Kong Gateway 3.3.x	
+        items:
+          - text: Kong Gateway 3.4.x	
             url: /breaking-changes/
-            src: /gateway/breaking-changes/33x
+            src: /gateway/breaking-changes/34x
+          - text: Kong Gateway 3.3.x	
+            url: /breaking-changes/33x/
           - text: Kong Gateway 3.2.x
             url: /breaking-changes/32x/
           - text: Kong Gateway 3.1.x
@@ -230,7 +232,7 @@ items:
             src: /gateway/upgrade-v2
           - text: Migrate from OSS to Enterprise
             url: /migrate-ce-to-ke/
-          - text: Migration Guidelines Cassandra to PostgresSQL
+          - text: Migration Guidelines Cassandra to PostgreSQL
             url: /migrate-cassandra-to-postgres
           - text: Breaking Changes
             url: /production/breaking-changes/

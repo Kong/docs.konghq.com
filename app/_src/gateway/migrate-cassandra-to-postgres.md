@@ -1,5 +1,5 @@
 ---
-title: Cassandra to Postgres Migration Guidelines 
+title: Cassandra to PostgreSQL Migration Guidelines 
 ---
 
 This guide walks you through migrating {{site.base_gateway}} from a Cassandra DB-backed 

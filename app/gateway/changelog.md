@@ -23,7 +23,6 @@ images or packages, and Kong will not test package installation on Ubuntu 18.04.
 
     If you need to install Kong Gateway on Ubuntu 18.04, see the documentation for
     [previous versions](/gateway/3.3.x/install/linux/ubuntu/).
-* Vitals is now off by default. To enable it, set `vitals=on` in Kong configuration.
 * Amazon Linux 2022 artifacts are renamed to Amazon Linux 2023, based on AWS's own renaming.
 * LMDB encryption has been disabled. The option `declarative_config_encryption_mode` has been removed from `kong.conf`.
 * The `/consumer_groups/:id/overrides` endpoint is deprecated in favor of a more generic plugin scoping mechanism. 
