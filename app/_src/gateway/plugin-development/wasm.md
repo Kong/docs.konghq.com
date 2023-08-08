@@ -19,7 +19,8 @@ making them a good choice for your first filter:
 * [Go](https://github.com/tetratelabs/proxy-wasm-go-sdk/)
 * [Rust](https://github.com/proxy-wasm/proxy-wasm-rust-sdk/)
 
-## Coding, building and deploying a Proxy-Wasm filter
+Other languages and/or Proxy-Wasm SDKs are theoretically supported but have not
+yet been fully tested.
 
 Kong has made Go and Rust Proxy-Wasm filter templates available. They can be used
 to start writing your own filters, or to build as they are and get your first `hello
