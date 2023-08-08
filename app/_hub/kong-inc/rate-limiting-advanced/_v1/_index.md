@@ -104,7 +104,7 @@ When the `redis` strategy is used and a {{site.base_gateway}} node is disconnect
 {{site.base_gateway}} will still rate limit, but the {{site.base_gateway}} nodes can't sync the counters. As a result, users will be able
 to perform more requests than the limit, but there will still be a limit per node.
 
-{% if_plugin_version gte:2.7.x %}
+{% if_plugin_version gte:2.7.x lte 3.3.x %}
 ## Rate limiting for consumer groups
 
 You can use consumer groups to manage custom rate limiting configuration for

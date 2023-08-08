@@ -1,80 +1,41 @@
 ---
-title: Consumer Groups
-badge: enterprise
+nav_title: How to create rate limiting tiers
 ---
 
 
-Consumer groups enable the organization and categorization of consumers (users or applications) within an API ecosystem. By grouping consumers together, you eliminate the need to manage them individually, providing a scalable, efficient approach to managing configurations. 
 
-With consumer groups, you can scope plugins specifically to defined groups, making configurations and customizations more flexible and convenient. 
+With consumer groups, you can define rate limiting tiers and apply them to subsets of application consumers.
 
+You can define consumer groups as tiers, for example:
 
-{% if_version gte:3.4.x %}
+* A **gold tier** consumer group with 1000 requests per minute
+* A **silver tier** consumer group with 10 requests per second
+* A **bronze tier** consumer group with 6 requests per second
 
-## Use cases
-
-* Managing permissions: Consumer groups can be used to define different sets of users with varying levels of permissions. For example, you can create distinct consumer groups for regular users, premium users, and administrators.
-
-* Managing roles: Within an organization, there may be various departments or teams that interact with APIs differently. By creating consumer groups for these different roles, you can customize the API usage experience. For instance, an organization could have separate consumer groups for the marketing team, development team, and support team.
-
-* Resource quotas and rate limiting: Consumer groups can be used to enforce resource quotas and rate limiting on different sets of consumers. For instance, you can apply different rate limits to different consumer groups based on their subscription plans. 
-
-* Customizing plugin configurations: With the ability to scope plugins specifically to defined groups, different consumer groups can have distinct plugin configurations based on their requirements. For example, one group may require additional request transformations while another may not need them at all.
-
-Consumer group execution order is deterministic. Consumers can be part of multiple consumer groups, but this does have an implication on the execution logic, so refer to the [precedence](/gateway/latest/key-concepts/plugins/#precedence) chart when assigning multiple consumer groups.
-
-## Scope plugins 
-You can scope the following plugins to consumer groups: 
-
-* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/)
-* [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
-* [Response transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
-* [Request Transformer](/hub/kong-inc/request-transformer)
-* [Response Transformer](/hub/kong-inc/response-transformer)
-
-{:note}
-> Consumer groups plugin scoping is a feature that was added in {{site.base_gateway}} version 3.4. Running a mixed-version {{site.base_gateway}} cluster (3.4 control plane, and <=3.3 data planes) is not supported when using consumer-group scoped plugins. 
-
-
-
-
-{% endif_version %}
-
-{% if_version lte:3.3.x %}
-With consumer groups, you can define any number of rate limiting tiers and
-apply them to subsets of consumers, instead of managing each consumer
-individually.
-
-For example, you could define three consumer groups:
-* A "gold tier" with 1000 requests per minute
-* A "silver tier" with 10 requests per second
-* A "bronze tier" with 6 requests per second
-
-The `consumer_groups` endpoint works together with the [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/).
 
 Consumers that are not in a consumer group default to the Rate Limiting advanced
 plugin’s configuration, so you can define tier groups for some users and
 have a default behavior for consumers without groups.
 
+
 To use consumer groups for rate limiting, you need to:
 * Create one or more consumer groups
 * Create consumers
 * Assign consumers to groups
+{% if_plugin_version lte:3.3.x %}
 * Configure the Rate Limiting Advanced plugin with the `enforce_consumer_groups`
 and `consumer_groups` parameters, setting up the list of consumer groups that
 the plugin accepts
 * Configure rate limiting for each consumer group, overriding the plugin's
 configuration
+{% endif_plugin_version %}
 
-For all possible requests, see the
-[Consumer Groups reference](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference).
-
-## Set up consumer group
+## Create rate limiting tiers
 
 1. Create a consumer group named `Gold`:
 
     ```bash
-    curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
+    curl -i -X POST http://localhost:8001/consumer_groups \
     --data name=Gold
     ```
 
@@ -92,7 +53,7 @@ For all possible requests, see the
 1. Create a consumer, `Amal`:
 
     ```bash
-    curl -i -X POST http://{HOSTNAME}:8001/consumers \
+    curl -i -X POST http://localhost:8001/consumers \
     --data username=Amal
     ```
 
@@ -113,7 +74,7 @@ For all possible requests, see the
 1. Add `Amal` to the `Gold` consumer group:
 
     ```bash
-    curl -i -X POST http://{HOSTNAME}:8001/consumer_groups/Gold/consumers \
+    curl -i -X POST http://localhost:8001/consumer_groups/Gold/consumers \
     --data consumer=Amal
     ```
 
@@ -138,15 +99,33 @@ For all possible requests, see the
       ]
     }
     ```
+{% if_plugin_version gte:3.4.x %}
+1. Enable the plugin on the consumer group:
 
+    ```bash
+    curl -i -X POST http://localhost:8001/consumer_groups/gold/plugins/  \
+    --data name=rate-limiting-advanced \
+    --data config.limit=5 \
+    --data config.window_size=30 \
+    --data config.window_type=sliding \
+    --data config.retry_after_jitter_max=0 \
+    ```
+This configuration sets the rate limit to five requests (`config.limit`) for every
+30 seconds (`config.window_size`). 
+
+{% endif_plugin_version %}
+
+{% if_plugin_version lte:3.3.x %}
 ## Set up Rate Limiting Advanced config for consumer group
 
 1. Enable the [Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/),
 setting the rate limit to five requests (`config.limit`) for every
 30 seconds (`config.window_size`):
 
+
+
     ```bash
-    curl -i -X POST http://{HOSTNAME}:8001/plugins/  \
+    curl -i -X POST http://localhost:8001/plugins/  \
     --data name=rate-limiting-advanced \
     --data config.limit=5 \
     --data config.window_size=30 \
@@ -160,11 +139,12 @@ setting the rate limit to five requests (`config.limit`) for every
     * `config.enforce_consumer_groups=true`: enables consumer groups for this plugin.
     * `config.consumer_groups=Gold`: specifies a list of groups that this plugin allows overrides for.
 
+
     {:.note}
     > **Note:** In this example, you're configuring the plugin globally, so it
-    applies to all entities (Services, Routes, and Consumers) in the
+    applies to all entities (services, routes, and consumers) in the
     {{site.base_gateway}} instance. You can also apply it to a
-    [specific Service or Route](/hub/kong-inc/rate-limiting-advanced/)
+    [specific service or route](/hub/kong-inc/rate-limiting-advanced/how-to/basic-example/)
     for more granular control.
 
 1. The plugin you just set up applies to all consumers in the cluster. Change
@@ -172,7 +152,7 @@ the rate limiting configuration for the `Gold` consumer group only, setting
 the limit to ten requests for every ten seconds:
 
     ```bash
-    curl -i -X PUT http://{HOSTNAME}:8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced \
+    curl -i -X PUT http://localhost:8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced \
     --data config.limit=10 \
     --data config.window_size=10 \
     --data config.retry_after_jitter_max=1
@@ -199,11 +179,13 @@ the limit to ten requests for every ten seconds:
 1. Check that it worked by looking at the `Gold` consumer group object:
 
     ```bash
-    curl -i -X GET http://{HOSTNAME}:8001/consumer_groups/Gold
+    curl -i -X GET http://localhost:8001/consumer_groups/Gold
     ```
 
     Notice the `plugins` object in the response, along with the parameters that you
     just set for the Rate Limiting Advanced plugin:
+
+{% if_plugin_version lte:3.3.x %}
 
     ```json
     {
@@ -244,6 +226,29 @@ the limit to ten requests for every ten seconds:
         ]
     }
     ```
+{% endif_plugin_version %}
+{% if_plugin_version gte:3.4.x %}
+
+    ```json
+    {
+        "consumer_group": {
+            "created_at": 1638915521,
+            "id": "8a4bba3c-7f82-45f0-8121-ed4d2847c4a4",
+            "name": "Gold",
+            "tags": null
+        },
+        "consumers": [
+            {
+                "created_at": 1638915577,
+                "id": "8089a0e6-1d31-4e00-bf51-5b902899b4cb",
+                "type": 0,
+                "username": "Amal",
+                "username_lower": "amal"
+            }
+        ]
+    }
+    ```
+{% endif_plugin_version %}
 
 ## Remove consumer from group - group view
 
@@ -253,7 +258,7 @@ You can remove a consumer from a group by accessing `/consumers` or
 1. Check the `Gold` consumer group for the consumer name:
 
     ```bash
-    curl -i -X GET http://{HOSTNAME}:8001/consumer_groups/Gold
+    curl -i -X GET http://localhost:8001/consumer_groups/Gold
     ```
 
     Response:
@@ -282,7 +287,7 @@ You can remove a consumer from a group by accessing `/consumers` or
 remove the consumer from the group:
 
     ```bash
-    curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/Gold/consumers/Amal
+    curl -i -X DELETE http://localhost:8001/consumer_groups/Gold/consumers/Amal
     ```
 
     If successful, you receive the following response:
@@ -293,7 +298,7 @@ remove the consumer from the group:
 1. To verify, check the consumer group configuration again:
 
     ```bash
-    curl -i -X GET http://{HOSTNAME}:8001/consumer_groups/Gold
+    curl -i -X GET http://localhost:8001/consumer_groups/Gold
     ```
 
     Response, with no consumers assigned:
@@ -318,7 +323,7 @@ You can remove a consumer from a group by accessing `/consumers` or
 you can look up the group through the consumer:
 
     ```bash
-    curl -i -X GET http://{HOSTNAME}:8001/consumers/Amal/consumer_groups
+    curl -i -X GET http://localhost:8001/consumers/Amal/consumer_groups
     ```
 
     Response:
@@ -340,7 +345,7 @@ you can look up the group through the consumer:
 remove the consumer from the group:
 
     ```bash
-    curl -i -X DELETE http://{HOSTNAME}:8001/consumers/Amal/consumer_groups/Gold
+    curl -i -X DELETE http://localhost:8001/consumers/Amal/consumer_groups/Gold
     ```
 
     If successful, you receive the following response:
@@ -351,7 +356,7 @@ remove the consumer from the group:
 1. To verify, check the consumer object configuration:
 
     ```bash
-    curl -i -X GET http://{HOSTNAME}:8001/consumer_groups/Gold
+    curl -i -X GET http://localhost:8001/consumer_groups/Gold
     ```
 
     Response, with no consumers assigned:
@@ -376,7 +381,7 @@ With this method, the consumers in the group aren't deleted and are still in the
 1. Delete the consumer group configuration using the following request:
 
     ```bash
-    curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced
+    curl -i -X DELETE http://localhost:8001/consumer_groups/Gold/overrides/plugins/rate-limiting-advanced
     ```
 
     If successful, you receive see the following response:
@@ -387,7 +392,7 @@ With this method, the consumers in the group aren't deleted and are still in the
 1. To verify, check the consumer object configuration:
 
     ```bash
-    curl -i -X GET http://{HOSTNAME}:8001/consumer_groups/Gold
+    curl -i -X GET http://localhost:8001/consumer_groups/Gold
     ```
 
     Response, without a `plugins` object:
@@ -413,10 +418,10 @@ the group are not deleted.
 1. Delete a consumer group using the following request:
 
     ```bash
-    curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/Gold
+    curl -i -X DELETE http://localhost:8001/consumer_groups/Gold
     ```
 
-    If successful, you receive see the following response:
+    If successful, you receive the following response:
     ```
     HTTP/1.1 204 No Content
     ```
@@ -424,7 +429,7 @@ the group are not deleted.
 1. Check the list of consumer groups to verify that the `Gold` group is gone:
 
     ```bash
-    curl -i -X GET http://{HOSTNAME}:8001/consumer_groups
+    curl -i -X GET http://localhost:8001/consumer_groups
     ```
 
     Response:
@@ -438,7 +443,7 @@ the group are not deleted.
 1. Check a consumer that was in the group to make sure it still exists:
 
     ```bash
-    curl -i -X GET http://{HOSTNAME}:8001/consumers/Amal
+    curl -i -X GET http://localhost:8001/consumers/Amal
     ```
 
     An `HTTP/1.1 200 OK` response means the consumer exists.
@@ -449,32 +454,32 @@ the group are not deleted.
 You can perform many `/consumer_groups` operations in bulk.
 
 1. Assuming you deleted the group `Gold` in the previous section, create it again,
-along with another group named `Speedsters`:
+along with another group named `Silver`:
 
     ```bash
-    curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
+    curl -i -X POST http://localhost:8001/consumer_groups \
     --data name=Gold
 
-    curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
+    curl -i -X POST http://localhost:8001/consumer_groups \
     --data name=Speedsters
     ```
 
-1. Create two consumers, `BarryAllen` and `WallyWest`:
+1. Create two consumers, `Alex` and `Charlie`:
 
     ```bash
-    curl -i -X POST http://{HOSTNAME}:8001/consumers \
-    --data username=BarryAllen
+    curl -i -X POST http://localhost:8001/consumers \
+    --data username=Alex
 
-    curl -i -X POST http://{HOSTNAME}:8001/consumers \
-    --data username=WallyWest
+    curl -i -X POST http://localhost:8001/consumers \
+    --data username=Charlie
     ```
 
 1. Add both consumers to the `Speedsters` group:
 
     ```bash
-    curl -i -X POST http://{HOSTNAME}:8001/consumer_groups/Speedsters/consumers \
-    --data consumer=BarryAllen \
-    --data consumer=WallyWest
+    curl -i -X POST http://localhost:8001/consumer_groups/Speedsters/consumers \
+    --data consumer=Alex \
+    --data consumer=Charlie
     ```
 
     {{site.base_gateway}} validates the provided list of consumers before assigning
@@ -498,15 +503,15 @@ along with another group named `Speedsters`:
                 "created_at": 1639432286,
                 "id": "ea904e1d-1f0d-4d5a-8391-cae60cb21d61",
                 "type": 0,
-                "username": "BarryAllen",
-                "username_lower": "barryallen"
+                "username": "Alex",
+                "username_lower": "Alex"
             },
             {
                 "created_at": 1639432288,
                 "id": "065d8249-6fe6-4d80-a0ae-f159caef7af0",
                 "type": 0,
-                "username": "WallyWest",
-                "username_lower": "wallywest"
+                "username": "Charlie",
+                "username_lower": "Charlie"
             }
         ]
     }
@@ -518,7 +523,7 @@ if you need to cycle the group for a new batch of users.
     For example, delete all consumers from the `Speedsters` group:
 
     ```bash
-    curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/Speedsters/consumers
+    curl -i -X DELETE http://localhost:8001/consumer_groups/Speedsters/consumers
     ```
 
     Response:
@@ -532,10 +537,10 @@ if you need to cycle the group for a new batch of users.
     * Otherwise, whichever group is specified in the Rate Limiting Advanced
     plugin becomes active.
 
-    Add `BarryAllen` to two groups, `Gold` and `Speedsters`:
+    Add `Alex` to two groups, `Gold` and `Speedsters`:
 
     ```bash
-    curl -i -X POST http://{HOSTNAME}:8001/consumers/BarryAllen/consumer_groups \
+    curl -i -X POST http://localhost:8001/consumers/Alex/consumer_groups \
     --data group=Gold \
     --data group=Speedsters
     ```
@@ -550,8 +555,8 @@ if you need to cycle the group for a new batch of users.
           "id": "6098d577-6741-4cf8-9c86-e68057b8f970",
           "tags": null,
           "type": 0,
-          "username": "BarryAllen",
-          "username_lower": "barryallen"
+          "username": "Alex",
+          "username_lower": "Alex"
       },
       "consumer_groups": [
           {
@@ -573,7 +578,7 @@ if you need to cycle the group for a new batch of users.
 1. Finally, you can also remove a consumer from all groups:
 
     ```bash
-    curl -i -X DELETE http://{HOSTNAME}:8001/consumers/BarryAllen/consumer_groups
+    curl -i -X DELETE http://localhost:8001/consumers/Alex/consumer_groups
     ```
 
     Response:
@@ -581,10 +586,8 @@ if you need to cycle the group for a new batch of users.
     HTTP/1.1 204 No Content
     ```
 
-{% endif_version %}
+{% endif_plugin_version %}
 
+## More Information
 
-## More information
-
-* [API documentation](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60#/consumer_groups/get-consumer_groups)
-* [Enforcing rate limiting tiers with the Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/how-to/)
+* [Consumer Groups API documentation](/gateway/latest/admin-api/consumer-groups/reference/).

@@ -212,6 +212,11 @@ Custom plugins (either your own plugins or third-party plugins that are not
 shipped with Kong) need to be installed on both the control plane and the data
 plane in hybrid mode.
 
+{% if_version gte:3.4.x %}
+### Consumer groups
+The ability to scope plugins to consumer groups was added in {{site.base_gateway}} version 3.4. Running a mixed-version {{site.base_gateway}} cluster (3.4 control plane, and <=3.3 data planes) is not supported when using consumer-group scoped plugins. 
+
+{% endif_version %}
 ### Load Balancing
 
 Currently, there is no automated load balancing for connections between the

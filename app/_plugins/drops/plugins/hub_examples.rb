@@ -56,11 +56,15 @@ module Jekyll
         end
 
         def navtabs?
-          enable_on_consumer? || enable_on_service? || enable_on_route?
+          enable_on_consumer? || enable_on_consumer_group? || enable_on_service? || enable_on_route?
         end
 
         def enable_on_consumer?
           @targets.include?(:consumer) && @schema.enable_on_consumer?
+        end
+
+        def enable_on_consumer_group?
+          @targets.include?(:consumer_group) && @schema.enable_on_consumer_group?
         end
 
         def enable_on_route?
@@ -95,6 +99,12 @@ module Jekyll
           return unless enable_on_service?
 
           @service ||= Example.new(type: 'service', example:, formats:)
+        end
+
+        def consumer_group
+          return unless enable_on_consumer_group?
+
+          @consumer_group ||= Example.new(type: 'consumer_group', example:, formats:)
         end
       end
     end
