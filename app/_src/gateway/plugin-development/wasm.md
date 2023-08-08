@@ -58,8 +58,8 @@ $ export KONG_WASM_FILTERS_PATH=/path/to/my_filter/build
 
 Now, the next step is to create a Kong Filter Chain entity using the
 filter created in the previous step and associate it with a Kong Route
-or Service. This will be done by creating a declarative yaml config file
-at `kong.yml`:
+or Service. This will be done by creating a declarative yaml config file,
+e.g. `kong.yml`:
 
 ```yaml
 ---
