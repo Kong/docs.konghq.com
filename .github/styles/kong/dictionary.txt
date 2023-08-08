@@ -68,6 +68,7 @@ Prometheus
 Protobuf
 Resty
 SAML
+SDKs
 Splunk
 Stap
 Styra
@@ -240,6 +241,7 @@ namespaces
 navtabs
 nginx
 ngrok
+ngx_wasm_module
 nopp
 nopped
 nopping
