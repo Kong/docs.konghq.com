@@ -119,17 +119,14 @@ Filter Chain instance using the Admin API. This is not so much a limitation of
 Kong's implementation as it is a limitation of the Proxy-Wasm
 specification itself.
 
-### Buffered responses in `on_http_response_body`
+### Proxy-Wasm functionality
 
-[Code samples](https://github.com/proxy-wasm/proxy-wasm-rust-sdk/blob/v0.2.1/examples/http_body/src/lib.rs#L52-L56) in the official Proxy-Wasm SDK
-repositories demonstrate the ability to buffer the entire response stream by
-returning the `pause` signal from `on_http_response_body()`. This behavior is
-part of the Envoy Proxy-Wasm implementation but not explicitly called out within
-the specification.
+The Proxy-Wasm specification is relatively new and still evolving. Some
+behaviors of the specification may not yet be fully-implemented. Additionally,
+there may be some behavioral discrepancies between {{site.base_gateway}} and
+other Proxy-Wasm implementations.
 
-Currently, this functionality does not work with Kong, though there are plans on
-implementing it in a future release for increased compatibility with other
-Proxy-Wasm implementations.
+Please refer to the [ngx_wasm_module Proxy-Wasm documentation](https://github.com/Kong/ngx_wasm_module/blob/main/docs/PROXY_WASM.md#current-limitations) for more details.
 
 ## Further Reading
 
