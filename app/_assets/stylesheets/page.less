@@ -72,12 +72,6 @@ ul.navbar-item-submenu {
           margin-bottom: 32px;
           font-size: 16px;
         }
-
-        .content-edition,
-        .content-version {
-          display: none;
-          visibility: hidden;
-        }
       }
 
       @media (max-width: 800px) {
@@ -86,47 +80,6 @@ ul.navbar-item-submenu {
 
         .page-content {
           border-left: none;
-
-          .content-edition {
-            margin-bottom: 10px;
-            color: #043558;
-            font: 500 24px/28px Roboto;
-            transition: font-size 0.25s;
-          }
-
-          .content-version {
-            color: #4c6d80;
-            text-transform: uppercase;
-            font: 700 12px/16px Roboto;
-          }
-
-          .content-edition,
-          .content-version {
-            display: block;
-            visibility: visible;
-          }
-
-          .content-header {
-            z-index: 90;
-            margin-bottom: 24px;
-            max-height: 88px;
-            transition: max-height 0.25s ease-in-out;
-
-            &.scrolled {
-              max-height: 68px;
-              position: fixed;
-              padding: 4px 18px;
-              margin: -4px -20px;
-              top: 60px;
-              width: calc(100% - 32px);
-              background-color: white;
-              box-shadow: 0 20px 24px rgba(4, 53, 88, 0.1);
-
-              .content-edition {
-                font: 700 12px/16px Roboto;
-              }
-            }
-          }
         }
       }
     }
