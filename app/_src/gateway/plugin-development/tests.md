@@ -9,7 +9,7 @@ we
 We
 [non relative link](https://docs.konghq.com/konnect/architecture/)
 We
-I am 
+I am
 blacklist
 whitelist
 ntrk
