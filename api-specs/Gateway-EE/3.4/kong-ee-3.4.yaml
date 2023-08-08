@@ -7659,7 +7659,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/group_name_or_id'
     put:
-      summary: Configure rate limiting for a consumer group
+      summary: Configure rate limiting for a consumer group. As of Kong Gateway 3.4, you can scope plugins to consumer groups using only the `/consumer_groups` endpoint. Using `overrides` is deprecated, and no longer recommended.
       operationId: put-consumer_groups-group_name_or_id-overrides-plugins-rate-limiting-advanced
       responses:
         '201':

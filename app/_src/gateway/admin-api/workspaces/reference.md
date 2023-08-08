@@ -147,6 +147,7 @@ Attributes | Description
 ---:| ---
 `id`<br>**conditional** | The **workspaces'** unique ID, if replacing it.*
 
+
 * The behavior of `PUT` endpoints is the following: if the request payload **does
 not** contain an entity's primary key (`id` for workspaces), the entity will be
 created with the given payload. If the request payload **does** contain an
@@ -281,10 +282,17 @@ HTTP 200 OK
 
 <div class="endpoint delete">/workspaces/{name or id}</div>
 
+{% if_version lte:3.3.x %}
 Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the workspace to delete
-
+{% endif_version %}
+{% if_version gte:3.4.x %}
+Attributes | Description
+---:| ---
+`name or id`<br>**required** | The unique identifier **or** the name of the workspace to delete
+`cascade` | The `cascade` option lets you delete a workspace and all of its entities in one request.
+{% endif_version %}
 {:.note}
 > **Note:** All entities within a workspace must be deleted before the
 workspace itself can be.
