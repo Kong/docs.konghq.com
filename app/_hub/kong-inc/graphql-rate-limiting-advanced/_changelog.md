@@ -1,5 +1,8 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.4.x**
+* The `host` field of this plugin now accepts Kong upstream targets.
+
 **{{site.base_gateway}} 2.8.x**
 
 * Added the `redis.username` and `redis.sentinel_username` configuration parameters.

@@ -1,5 +1,9 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.4.x**
+* The Kafka Log plugin now supports the `custom_fields_by_lua` configuration for 
+dynamic modification of log fields using Lua code.
+
 **{{site.base_gateway}} 2.8.x**
 
 * Added support for the `SCRAM-SHA-512` authentication mechanism.
