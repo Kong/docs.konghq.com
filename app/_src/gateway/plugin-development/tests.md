@@ -9,7 +9,7 @@ we
 We
 blacklist
 whitelist
-ntwrk
+ntrk
 netwrk
 Kong Gatewey
   file name
