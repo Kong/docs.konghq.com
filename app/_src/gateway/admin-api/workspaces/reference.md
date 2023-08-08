@@ -283,19 +283,23 @@ HTTP 200 OK
 <div class="endpoint delete">/workspaces/{name or id}</div>
 
 {% if_version lte:3.3.x %}
+
 Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the workspace to delete
+
+{:.note}
+> **Note:** All entities within a workspace must be deleted before the
+workspace itself can be.
+
 {% endif_version %}
+
 {% if_version gte:3.4.x %}
 Attributes | Description
 ---:| ---
 `name or id`<br>**required** | The unique identifier **or** the name of the workspace to delete
 `cascade` | The `cascade` option lets you delete a workspace and all of its entities in one request.
-{% endif_version %}
-{:.note}
-> **Note:** All entities within a workspace must be deleted before the
-workspace itself can be.
+
 
 **Response**
 
@@ -309,7 +313,7 @@ Perform a cascading delete. Normally, deleting a workspace requires its entities
 ```
 DELETE /workspaces/{name or id}?cascade=true
 ```
-
+{% endif_version %}
 ## Update a workspace
 
 **Endpoint**

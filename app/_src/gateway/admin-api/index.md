@@ -4869,7 +4869,7 @@ entity. This allows a proper separation of secrets and configuration and
 prevents secret sprawl.
 
 {% if_version gte:3.4.x %}
-Support for secrets rotation can be managed using [TTLs](/gateway/latest/kong-enterprise/secrets-management/advanced-usage).
+Secrets rotation can be managed using [TTLs](/gateway/latest/kong-enterprise/secrets-management/advanced-usage).
 {% endif_version %}
 
 Vaults can be both [tagged and filtered by tags](#tags).
