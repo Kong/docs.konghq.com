@@ -78,7 +78,6 @@ Terraform
 Terraform's
 UIs
 Unicode
-untyped
 Valero
 Vue
 Wasm
@@ -371,6 +370,7 @@ unregister
 unregistering
 unshorten
 unshortened
+untyped
 updated_at
 upsert
 upstream
