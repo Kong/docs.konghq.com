@@ -9,7 +9,7 @@ Kong primarily follows [semantic versioning](https://semver.org/) (SemVer) with 
 
 For the purposes of this support document:
 
-* **Release versioning**
+**Release versioning**
   * **Major Version** means a version identified by the number to the left of the leftmost decimal point (X.y.z.a). For example, 2.1.3.0 indicates Major Version 2 and 1.3.0.4 indicates Major Version 1.
   
   * **Minor Version** means a version identified by a change in the number in between the two leftmost decimal points (x.Y.z.a). For example, 2.1.3.0 indicates Minor Version 1 and 1.3.0.4 indicates Minor Version 3.
