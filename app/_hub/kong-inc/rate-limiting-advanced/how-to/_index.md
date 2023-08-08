@@ -457,29 +457,29 @@ You can perform many `/consumer_groups` operations in bulk.
 along with another group named `Silver`:
 
     ```bash
-    curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
+    curl -i -X POST http://localhost:8001/consumer_groups \
     --data name=Gold
 
-    curl -i -X POST http://{HOSTNAME}:8001/consumer_groups \
+    curl -i -X POST http://localhost:8001/consumer_groups \
     --data name=Speedsters
     ```
 
-1. Create two consumers, `BarryAllen` and `WallyWest`:
+1. Create two consumers, `Alex` and `Charlie`:
 
     ```bash
-    curl -i -X POST http://{HOSTNAME}:8001/consumers \
-    --data username=BarryAllen
+    curl -i -X POST http://localhost:8001/consumers \
+    --data username=Alex
 
-    curl -i -X POST http://{HOSTNAME}:8001/consumers \
-    --data username=WallyWest
+    curl -i -X POST http://localhost:8001/consumers \
+    --data username=Charlie
     ```
 
 1. Add both consumers to the `Speedsters` group:
 
     ```bash
-    curl -i -X POST http://{HOSTNAME}:8001/consumer_groups/Speedsters/consumers \
-    --data consumer=BarryAllen \
-    --data consumer=WallyWest
+    curl -i -X POST http://localhost:8001/consumer_groups/Speedsters/consumers \
+    --data consumer=Alex \
+    --data consumer=Charlie
     ```
 
     {{site.base_gateway}} validates the provided list of consumers before assigning
@@ -503,15 +503,15 @@ along with another group named `Silver`:
                 "created_at": 1639432286,
                 "id": "ea904e1d-1f0d-4d5a-8391-cae60cb21d61",
                 "type": 0,
-                "username": "BarryAllen",
-                "username_lower": "barryallen"
+                "username": "Alex",
+                "username_lower": "Alex"
             },
             {
                 "created_at": 1639432288,
                 "id": "065d8249-6fe6-4d80-a0ae-f159caef7af0",
                 "type": 0,
-                "username": "WallyWest",
-                "username_lower": "wallywest"
+                "username": "Charlie",
+                "username_lower": "Charlie"
             }
         ]
     }
@@ -523,7 +523,7 @@ if you need to cycle the group for a new batch of users.
     For example, delete all consumers from the `Speedsters` group:
 
     ```bash
-    curl -i -X DELETE http://{HOSTNAME}:8001/consumer_groups/Speedsters/consumers
+    curl -i -X DELETE http://localhost:8001/consumer_groups/Speedsters/consumers
     ```
 
     Response:
@@ -537,10 +537,10 @@ if you need to cycle the group for a new batch of users.
     * Otherwise, whichever group is specified in the Rate Limiting Advanced
     plugin becomes active.
 
-    Add `BarryAllen` to two groups, `Gold` and `Speedsters`:
+    Add `Alex` to two groups, `Gold` and `Speedsters`:
 
     ```bash
-    curl -i -X POST http://{HOSTNAME}:8001/consumers/BarryAllen/consumer_groups \
+    curl -i -X POST http://localhost:8001/consumers/Alex/consumer_groups \
     --data group=Gold \
     --data group=Speedsters
     ```
@@ -555,8 +555,8 @@ if you need to cycle the group for a new batch of users.
           "id": "6098d577-6741-4cf8-9c86-e68057b8f970",
           "tags": null,
           "type": 0,
-          "username": "BarryAllen",
-          "username_lower": "barryallen"
+          "username": "Alex",
+          "username_lower": "Alex"
       },
       "consumer_groups": [
           {
@@ -578,7 +578,7 @@ if you need to cycle the group for a new batch of users.
 1. Finally, you can also remove a consumer from all groups:
 
     ```bash
-    curl -i -X DELETE http://{HOSTNAME}:8001/consumers/BarryAllen/consumer_groups
+    curl -i -X DELETE http://localhost:8001/consumers/Alex/consumer_groups
     ```
 
     Response:

@@ -37,12 +37,8 @@ a certain way for most requests, but make _authenticated requests_ behave
 slightly differently.
 
 Therefore, there is an order of precedence for running a plugin when it has
-been applied to different entities with different configurations. The rule of
-thumb is: the more specific a plugin is with regards to how many entities it
-has been configured on, the higher its priority.
-
-The complete order of precedence when a plugin has been configured multiple
-times is:
+been applied to different entities with different configurations. The amount of entities configured to a specific plugin directly correlate to its priority. The more entities configured to a plugin the higher its order of precedence is. 
+The complete order of precedence for plugins configured to multiple entities is: 
 
 
 
