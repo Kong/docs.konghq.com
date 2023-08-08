@@ -33,6 +33,9 @@ Istio
 Istio's
 Jira
 JsonPath
+JSONPath
+JSONObjects
+JSONObject
 Keycloak
 knative
 Knative
