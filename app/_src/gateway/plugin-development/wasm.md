@@ -115,7 +115,7 @@ X-Kong-Upstream-Latency: 342
 
 ## Further Reading
 * [Kong WebAssembly reference](/gateway/latest/reference/wasm)
-* [Proxy-Wasm spec](https://github.com/proxy-wasm/spec)
+* [WebAssembly for Proxies (Proxy-Wasm) specification](https://github.com/proxy-wasm/spec)
 * [ngx_wasm_module](https://github.com/Kong/ngx_wasm_module)
 * [ngx_wasm_module Proxy-Wasm documentation](https://github.com/Kong/ngx_wasm_module/blob/main/docs/PROXY_WASM.md)
 * [Kong's `filter_chains` entity](/gateway/latest/reference/wasm/#filter-chain)
