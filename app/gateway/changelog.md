@@ -11,15 +11,15 @@ no_version: true
 ### Breaking changes and deprecations
 
 * **Cassandra DB support removed:** Cassandra DB support has been removed. 
-It is no longer supported as a datastore for Kong Gateway. 
+It is no longer supported as a data store for Kong Gateway. 
 [#10931](https://github.com/Kong/kong/pull/10931).
-* **Alpine support removed:** Alpine packages and Docker images based on Alpine are no longer supported,
+* **Alpine support removed:** Alpine packages and Docker images based on Alpine are no longer supported.
 Starting with Kong Gateway 3.4.0.0, Kong is not building new Alpine images or packages.
 [#10926](https://github.com/Kong/kong/pull/10926)
 * **Ubuntu 18.04 support removed**: Support for running Kong Gateway on Ubuntu 18.04 ("Bionic") is now deprecated,
 as [Standard Support for Ubuntu 18.04 has ended as of June 2023](https://wiki.ubuntu.com/Releases).
 Starting with Kong Gateway 3.4.0.0, Kong is not building new Ubuntu 18.04
-images or packages, and Kong will not test package installation on Ubuntu 168.04.
+images or packages, and Kong will not test package installation on Ubuntu 18.04.
 
     If you need to install Kong Gateway on Ubuntu 18.04, see the documentation for
     [previous versions](/gateway/3.3.x/install/linux/ubuntu/).
@@ -27,7 +27,7 @@ images or packages, and Kong will not test package installation on Ubuntu 168.04
 * Amazon Linux 2022 artifacts are renamed to Amazon Linux 2023, based on AWS's own renaming.
 * LMDB encryption has been disabled. The option `declarative_config_encryption_mode` has been removed from `kong.conf`.
 * The `/consumer_groups/:id/overrides` endpoint is deprecated in favor of a more generic plugin scoping mechanism. 
-See the new [consumer groups]() entity.
+See the new [consumer groups](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/25d728a0-cfe3-4cf4-8e90-93a5bb15cfd9#/consumer_groups/get-consumer_groups) entity.
 * Renamed the configuration property `admin_api_uri` to `admin_gui_api_url`.
   The old `admin_api_uri` property is considered deprecated and will be
   fully removed in a future version of Kong Gateway.
@@ -111,8 +111,8 @@ available in `balancer_data.hostname`.
 
 * Validation for plugin queue related parameters has been
   improved. [#10840](https://github.com/Kong/kong/pull/10840)
-  * `max_batch_size`, `max_entries`, and `max_bytes` are now
-  integers instead of numbers. 
+  * `max_batch_size`, `max_entries`, and `max_bytes` are now declared
+  as `integer` not `number`. 
   * `initial_retry_delay` and `max_retry_delay` must now be numbers greater 
   than 0.001 (in seconds).
 
@@ -133,7 +133,7 @@ available in `balancer_data.hostname`.
   * The `host` field of this plugin now accepts Kong upstream targets.
 
 * [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
-  * Introduced support for the AWS X-Ray propagation header
+  * Introduced support for the AWS X-Ray propagation header.
   The field `header_type`now accepts the `aws` value to handle this specific
   propagation header.
   [#11075](https://github.com/Kong/kong/pull/11075)
@@ -283,7 +283,7 @@ hang when attempting to expand an API.
   * Optimized the response message for invalid requests.
 
 * [**ACME**](/hub/kong-inc/acme/) (`acme`)
- * Fixed an issue where the sanity test didn't work with `kong` storage in hybrid mode.
+    * Fixed an issue where the sanity test didn't work with `kong` storage in hybrid mode.
   [#10852](https://github.com/Kong/kong/pull/10852)
 
 * [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) 
