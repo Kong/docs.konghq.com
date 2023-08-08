@@ -8,6 +8,8 @@ chapter: 9
 we
 We
 blacklist
+whitelist
+ntwrk
 netwrk
 Kong Gatewey
   file name
