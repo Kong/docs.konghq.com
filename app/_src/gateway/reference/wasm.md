@@ -89,7 +89,7 @@ the relationship is one-to-one:
 
 The filter execution plan for a given request is determined during the `access`
 phase, after Lua plugins execution. If the Service entity for the request
-is linked to a filter chain, the filters are executed. If the route entity that
+is linked to a filter chain, the filters are executed. If the Route entity that
 was matched to the request is linked to a filter chain, its filters are _also_
 executed.
 
