@@ -6,10 +6,18 @@ chapter: 11
 
 ## Your first Proxy-Wasm filter
 
-Filters can be written as a compilation target in almost any language that supports WebAssembly, but the easiest way to get started is by
-using a language which has an existing [Proxy-Wasm](https://github.com/proxy-wasm/spec)
-SDK, such as [Go](https://github.com/tetratelabs/proxy-wasm-go-sdk/)
-or [Rust](https://github.com/proxy-wasm/proxy-wasm-rust-sdk/).
+## Selecting a language
+
+In order to be viable for filter development, your programming language of
+choice must meet the following criteria:
+
+1. Supports WebAssembly as a build target
+2. Has a [Proxy-Wasm](https://github.com/proxy-wasm/spec) SDK
+
+The following language SDKs are currently well-tested in {{site.base_gateway}},
+making them a good choice for your first filter:
+* [Go](https://github.com/tetratelabs/proxy-wasm-go-sdk/)
+* [Rust](https://github.com/proxy-wasm/proxy-wasm-rust-sdk/)
 
 ## Coding, building and deploying a Proxy-Wasm filter
 
