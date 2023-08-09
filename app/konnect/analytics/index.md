@@ -24,7 +24,7 @@ Reports will only show the composite group.
 
 ## Contextual analytics for services and routes
 
-In the [Runtime Manager](https://docs.konghq.com/konnect/runtime-manager/), you can see
+In the [Runtime Manager](/konnect/runtime-manager/), you can see
 activity graphs for gateway services or routes for the past 30 days.
 For gateway services and routes, the graphs show requests broken down by status codes.
 
@@ -92,6 +92,10 @@ Follow these steps:
 1. Select the time frame to include in the report. To customize the time frame,
 click **Custom** and select a date range.
 1. Click **Export** to generate and download a CSV file.
+
+## Limits
+
+Konnect Analytics limits the number of entities returned and displayed in any activity graph or custom report to only 50 to provide a smooth experience. A warning icon at the top of a graph or report indicates that. Please [use custom reports](/konnect/analytics/generate-reports/) to filter and decrease the number of entities if required.  
 
 ## Team permissions
 

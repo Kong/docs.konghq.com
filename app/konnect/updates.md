@@ -14,6 +14,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **Azure for Dynamic Client Registration**
 : You can now use Azure Active Directory as the identity source for your Dev Portal's Dynamic Client Registration configuration. This expands {{site.konnect_short_name}}'s existing support, which already includes Okta, Auth0, and Curity. This streamlines developer self-service access to provisioning applications with secure access to published API Products. For more information, see [Configuring Azure for Dynamic Client Registration](/konnect/dev-portal/applications/dynamic-client-registration/azure/).
 
+**{{site.konnect_short_name}} Analytics display increase from 15 to 50**
+: In our continuous efforts to optimize your custom reporting experience with {{site.konnect_short_name}} Analytics, we've expanded the display limit from 15 to 50, providing a more comprehensive data view. Accompanying this change, we've refined our UI with enhanced tooltip functionality. Now, by simply clicking on report content, users can lock a tooltip in place. This feature not only allows for intuitive drag-and-drop repositioning but also enables scrolling within the tooltip to easily access additional data points.
+
 ## July 2023
 
 **API Products API released**
