@@ -152,33 +152,6 @@ id: landing-page
   </section>
   {% endfor %}
 
-  <section class="additional-info">
-    <div class="info-container">
-      <h2>Contribute to the docs</h2>
-      <div class="subtitle">Want to help out, or found an issue in the docs and want to let us know?</div>
-      <div class="links-container">
-        {% for link in site.data.landing_page.contribute_links %}
-        <a href="{{ link.url }}" class="link-text">
-          <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
-          {{ link.text }}
-        </a>
-        {% endfor %}
-      </div>
-    </div>
-    <div class="info-container">
-      <h2>Popular Topics</h2>
-      <div class="subtitle">Don’t know where to start? Check out the most visited topics and guides</div>
-      <div class="links-container">
-        {% for link in site.data.landing_page.popular_topics %}
-        <a href="{{ link.url }}" class="link-text">
-          <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
-          {{ link.text }}
-        </a>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-
     {% include feedback-widget.html %}
 
   <img class="kong-image" src="/assets/images/landing-page/kong.svg" alt="">

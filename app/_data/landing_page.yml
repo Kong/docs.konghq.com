@@ -80,21 +80,3 @@ features:
           - text: Learn more
             icon: /assets/images/icons/icn-doc.svg
             url: /deck/
-
-contribute_links:
-  - text: Contribution guidelines
-    url: /contributing/
-  - text: GitHub Source code
-    url: https://github.com/Kong/docs.konghq.com
-  - text: GitHub Issues
-    url: https://github.com/Kong/docs.konghq.com/issues
-
-popular_topics:
-  - text: Install Kong Gateway
-    url: /gateway/latest/install/
-  - text: Plugin development guide
-    url: /gateway/latest/plugin-development/
-  - text: OpenID Connect
-    url: /gateway/latest/kong-plugins/authentication/oidc/
-  - text: Kong Gateway API documentation
-    url: /gateway/latest/admin-api
