@@ -32,6 +32,7 @@ jobs:
           body: |
             This is a scheduled pull request to update the changelog.
           labels: skip-changelog,review:copyedit
+          base: main
           branch: automated-changelog-update
           token: ${{ secrets.PAT }}
           committer: kong-docs[bot] <team-docs@konghq.com>
