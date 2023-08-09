@@ -1,3 +1,4 @@
+go run internal/private/generators/01compat-changes/main.go
 ---
 messages:
   - ID: D100
@@ -1844,8 +1845,8 @@ messages:
   - ID: P188
     Severity: error
     Description: |
-      For the `ip-restriction` plugin, the'protocols` array contains one or both of:
-      `TLS`, `TCP`.This is not supported in Kong Gateway versions < 3.4.0.0. These
+      For the `ip-restriction` plugin, the `protocols` array contains one or both of:
+      `TLS`, `TCP`. This is not supported in Kong Gateway versions < 3.4.0.0. These
       values have been removed and plugin features that rely on these values are not
       working as intended. If `TLS` and/or `TCP` were the only values, then protocols
       has been reset to the default values of [`HTTP`, `HTTPS`, `GRPC`, `GRPCS`].
@@ -1856,17 +1857,19 @@ messages:
   - ID: P189
     Severity: error
     Description: |
-      Kong Gateway version only supports the wRPC protocol which has been removed from
-      Kong Gateway >= 3.2.0.0. Konnect will be removing support for these releases of
-      Kong Gateway on 2023/09/30. After this date these versions of Kong Gateway will
-      not be able to establish connections with Konnect to retrieve configuration
-      changes. Kong recommends upgrading to Kong Gateway 3.4.0.0 LTS.
+      Only Kong Gateway versions >= 3.1.0.0 and < 3.1.1.2 support the wRPC protocol which 
+      has been removed from Kong Gateway >= 3.2.0.0. Konnect will be removing support for 
+      these releases of Kong Gateway on 2023/09/30. After this date these versions of 
+      Kong Gateway will not be able to establish connections with Konnect to retrieve 
+      configuration changes. Kong recommends upgrading to Kong Gateway 3.4.0.0 LTS.
     Resolution: |
       Please upgrade Kong Gateway to version `3.4.0.0` or above.
+    DocumentationURL: |
+      N/A
   - ID: P190
     Severity: warning
     Description: |
-      For the `vaults` entity, the'prefix` value contains hyphens. This is not
+      For the `vaults` entity, the `prefix` value contains hyphens. This is not
       supported in Kong Gateway versions < 3.3.0.0. Hyphens have been converted to
       underscores.
     Resolution: |
