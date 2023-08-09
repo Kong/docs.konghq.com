@@ -16,6 +16,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT }}
       - name: Run changelog script
         working-directory: tools/changelog-generator
         run: |
@@ -27,5 +29,11 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           title: Automated Changelog update
+          body: |
+            This is an scheduled pull request to update the changelog.
           labels: skip-changelog
+          branch: automated-changelog-update
           token: ${{ secrets.PAT }}
+          author: kong-docs[bot] <kong-docs[bot]@users.noreply.github.com>
+          delete-branch: true
+          commit-message: "Automated changelog update"
