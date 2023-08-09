@@ -143,7 +143,9 @@ id: landing-page
     <div class="cards-container">
       {% for item in feature.items %}
       <div class="card default">
-        <img src="{{ item.icon }}" alt="" class="icon">
+        {% if item.icon %}
+          <img src="{{ item.icon }}" alt="" class="icon">
+        {% endif %}
         <div class="title">{{ item.name }}</div>
         <div class="description">{{ item.description }}</div>
         <hr>

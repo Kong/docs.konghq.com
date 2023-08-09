@@ -59,7 +59,6 @@ features:
     items:
       - name: decK
         description: Manage Kong Gateway declaratively using decK. Sync YAML or JSON configuration across Kong Gateway clusters, push configuration to a running cluster, detect drift, and create backups.
-        icon: /assets/images/landing-page/card-icons/alerting.svg
         links:
           - text: Overview
             icon: /assets/images/icons/icn-doc.svg
@@ -73,7 +72,6 @@ features:
 
       # - name: Kong Operator
       #   description: TBD
-      #   icon: /assets/images/landing-page/card-icons/kubernetes.svg
       #   links:
       #     - text: Overview
       #       icon: /assets/images/icons/icn-doc.svg
@@ -81,7 +79,6 @@ features:
 
       - name: Kong Ingress Controller
         description: Implement authentication, transformations, and other functionalities across Kubernetes clusters with zero downtime.
-        icon: /assets/images/landing-page/card-icons/kubernetes.svg
         links:
           - text: Overview
             icon: /assets/images/icons/icn-doc.svg
@@ -92,7 +89,6 @@ features:
 
       - name: Insomnia
         description: Streamline workflows by enabling users to instantly drop into Insomnia to design, document, and test APIs and microservices.
-        icon: /assets/images/landing-page/card-icons/insomnia.svg
         links:
           - text: Overview
             icon: /assets/images/icons/icn-doc.svg
@@ -100,7 +96,6 @@ features:
 
       - name: Plugin Hub
         description: Use plugins to provide advanced functionality and extend the use of the Kong Gateway.
-        icon: /assets/images/landing-page/card-icons/plugin.svg
         links:
           - text: Overview
             icon: /assets/images/icons/icn-doc.svg
