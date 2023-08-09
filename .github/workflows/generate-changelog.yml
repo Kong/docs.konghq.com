@@ -34,6 +34,7 @@ jobs:
           labels: skip-changelog,review:copyedit
           branch: automated-changelog-update
           token: ${{ secrets.PAT }}
-          author: kong-docs[bot] <kong-docs[bot]@users.noreply.github.com>
+          committer: kong-docs[bot] <team-docs@konghq.com>
+          author: kong-docs[bot] <team-docs@konghq.com>
           delete-branch: true
           commit-message: "Automated changelog update"
