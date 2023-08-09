@@ -29,12 +29,12 @@ Install {{site.base_gateway}} on Amazon Linux 2023 from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/amzn/%{amzn}/x86_64/kong-enterprise-edition-{{page.versions.ee}}.aws.x86_64.rpm)
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/amzn/2023/x86_64/kong-enterprise-edition-{{page.versions.ee}}.aws.x86_64.rpm)
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/amzn/%{amzn}/x86_64/kong-{{page.versions.ce}}.aws.x86_64.rpm)
+curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/amzn/2023/x86_64/kong-{{page.versions.ce}}.aws.x86_64.rpm)
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -72,12 +72,12 @@ Install {{site.base_gateway}} on Amazon Linux 2 from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/amzn/%{amzn}/x86_64/kong-enterprise-edition-{{page.versions.ee}}.aws.x86_64.rpm)
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/amzn/2/x86_64/kong-enterprise-edition-{{page.versions.ee}}.aws.x86_64.rpm)
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/amzn/%{amzn}/x86_64/kong-{{page.versions.ce}}.aws.x86_64.rpm)
+curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/amzn/amzn/2/x86_64/kong-{{page.versions.ce}}.aws.x86_64.rpm)
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}
