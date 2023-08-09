@@ -157,7 +157,7 @@ associates KongPlugin resources with a collection of KongConsumers.
 KongConsumers have a `consumerGroups` array. Adding a KongConsumerGroup's name
 to that array will add that consumer to that consumer group.
 
-Applying a `konghq.com/plugins: <KongPlugin name>` to a KongConsumerGroup will
+Applying a `konghq.com/plugins: <KongPlugin name>` annotation to a KongConsumerGroup will
 then execute that plugin on every consumer in the consumer group.
 
 {% endif_version %}
