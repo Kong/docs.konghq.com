@@ -37,7 +37,7 @@ features:
         links:
           - text: Overview
             icon: /assets/images/icons/icn-doc.svg
-            url: /konnect/runtime-manager
+            url: /konnect/runtime-manager/
 
       - name: API Products
         description: Bundle and manage multiple APIs via API products to document, enable application registration and publish them to a Developer Portal for consumption. 
@@ -45,7 +45,7 @@ features:
         links:
           - text: Overview
             icon: /assets/images/icons/icn-doc.svg
-            url: /konnect/api-products
+            url: /konnect/api-products/
 
 #       - name: Mesh Manager
 #         description: TBD
@@ -92,17 +92,17 @@ features:
         links:
           - text: Overview
             icon: /assets/images/icons/icn-doc.svg
-            url: https://support.insomnia.rest/
+            url: https://docs.insomnia.rest
 
       - name: Plugin Hub
         description: Use plugins to provide advanced functionality and extend the use of the Kong Gateway.
         links:
           - text: Overview
             icon: /assets/images/icons/icn-doc.svg
-            url: /gateway/latest/kong-plugins/
+            url: /hub/plugins/overview/
           - text: Plugin Development
             icon: /assets/images/icons/icn-doc.svg
-            url: /gateway/latest/plugin-development/
+            url: /hub/plugins/overview/#developing-custom-plugins
           - text: Hub
             icon: /assets/images/icons/icn-doc.svg
             url: /hub/
