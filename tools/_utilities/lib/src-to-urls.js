@@ -2,6 +2,9 @@
 Accepts a file path in app/_src and returns all URLs that the file renders
 */
 
+// This is a hack to enable utilities to access node_modules out of tree
+module.paths.unshift(process.mainModule.paths[0]);
+
 module.exports = srcToUrls;
 
 const fg = require("fast-glob");
