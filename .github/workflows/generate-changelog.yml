@@ -30,8 +30,8 @@ jobs:
         with:
           title: Automated Changelog update
           body: |
-            This is an scheduled pull request to update the changelog.
-          labels: skip-changelog
+            This is a scheduled pull request to update the changelog.
+          labels: skip-changelog,review:copyedit
           branch: automated-changelog-update
           token: ${{ secrets.PAT }}
           author: kong-docs[bot] <kong-docs[bot]@users.noreply.github.com>
