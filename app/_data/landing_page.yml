@@ -47,13 +47,13 @@ features:
             icon: /assets/images/icons/icn-cloud-blue.svg
             url: /konnect/api-products
 
-      - name: Mesh Manager
-        description: TBD
-        icon: /assets/images/landing-page/card-icons/insomnia.svg
-        links:
-          - text: Overview
-            icon: /assets/images/icons/icn-doc.svg
-            url: /mesh/latest/
+#       - name: Mesh Manager
+#         description: TBD
+#         icon: /assets/images/landing-page/card-icons/insomnia.svg
+#         links:
+#           - text: Overview
+#             icon: /assets/images/icons/icn-doc.svg
+#             url: /mesh/latest/
 
   - title: Extensions & Tools
     items:
@@ -71,13 +71,13 @@ features:
             icon: /assets/images/icons/icn-doc.svg
             url: /deck/latest/guides/apiops/
 
-      - name: Kong Operator
-        description: TBD
-        icon: /assets/images/landing-page/card-icons/kubernetes.svg
-        links:
-          - text: Overview
-            icon: /assets/images/icons/icn-doc.svg
-            url: /kubernetes-ingress-controller/latest/
+      # - name: Kong Operator
+      #   description: TBD
+      #   icon: /assets/images/landing-page/card-icons/kubernetes.svg
+      #   links:
+      #     - text: Overview
+      #       icon: /assets/images/icons/icn-doc.svg
+      #       url: /kubernetes-ingress-controller/latest/
 
       - name: Kong Ingress Controller
         description: Implement authentication, transformations, and other functionalities across Kubernetes clusters with zero downtime.
