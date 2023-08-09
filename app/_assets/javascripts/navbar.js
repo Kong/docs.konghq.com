@@ -31,33 +31,42 @@ function toggleButtonClicked() {
   }
 }
 
-function toggleSubmenuVisible(element) {
-  $(element).toggleClass("submenu-title");
-  $(element.parentElement).toggleClass("submenu-opened");
+function toggleSubmenuVisible(element, visible) {
+  $(element).toggleClass("submenu-title", visible);
+  $(element).toggleClass("submenu-opened", visible);
+  $(element).closest('ul.navbar-items').toggleClass("submenu-opened", visible);
 }
 
 // open Docs menu item upon enter and enable tabbing through menu
-jQuery(function () {
+$(document).ready(function() {
   $("#docs-link").on("keypress keydown", function (e) {
     if (e.keyCode == 13) {
       e.preventDefault();
-      $(".with-submenu").toggleClass("submenu-opened");
-      $(".navbar-item-docs").setAttribute("aria-hidden", "false");
+
+      document.querySelector("#top-module-list").classList.toggle("submenu-opened");
+      document.querySelector("#top-module-list ul.navbar-item-submenu").setAttribute("aria-hidden", "false");
       return false;
     }
+
     // if user doesn't open Docs submenu, move focus to Support menu item
-    let submenu = $(".with-submenu");
-    if (!submenu.hasClass("submenu-opened")) {
-      $("#plugin-link").focus();
+    let submenu = document.querySelector("#top-module-list");
+    if (!submenu.classList.contains("submenu-opened")) {
+      document.querySelector("#plugin-link").click();
     }
   });
-  // close docs dropdown menu when tabbing on Support menu item
-  $("#plugin-link").on("focus", function (e) {
-    $(".with-submenu").removeClass("submenu-opened");
+
+  $("ul.navbar-items").on("click", function(e) {
+    const mainMenuItem = $(e.target).closest('.main-menu-item')[0];
+    $("ul.navbar-items .main-menu-item").each(function(i, elem) {
+      if (mainMenuItem !== elem) {
+        toggleSubmenuVisible(elem, false);
+      }
+    });
+    toggleSubmenuVisible($(mainMenuItem), !$(mainMenuItem).hasClass('submenu-opened'));
   });
 
-  $(".main-menu-item.with-submenu").on("click", function(e) {
-    toggleSubmenuVisible(e.target);
+  $(".search-input-wrapper img").on("click", function(e) {
+    handleSearchClicked();
   });
 
   $("#navbar-menu-toggle-button").on("click", function(e) {
