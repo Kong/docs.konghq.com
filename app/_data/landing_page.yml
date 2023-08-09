@@ -6,7 +6,7 @@ features:
         icon: /assets/images/landing-page/card-icons/service-hub.svg
         links:
           - text: Overview
-            icon: /assets/images/icons/icn-cloud-blue.svg
+            icon: /assets/images/icons/icn-doc.svg
             url: /konnect/servicehub/
 
       - name: Dev Portal
@@ -14,10 +14,10 @@ features:
         icon: /assets/images/landing-page/card-icons/dev-portal.svg
         links:
           - text: Overview (cloud)
-            icon: /assets/images/icons/icn-cloud-blue.svg
+            icon: /assets/images/icons/icn-doc.svg
             url: /konnect/dev-portal/
           - text: Self-managed
-            icon: /assets/images/icons/icn-server-blue.svg
+            icon: /assets/images/icons/icn-doc.svg
             url: /gateway/latest/kong-enterprise/dev-portal/
 
       - name: Vitals
@@ -25,10 +25,10 @@ features:
         icon: /assets/images/landing-page/card-icons/analytics.svg
         links:
           - text: Overview (cloud)
-            icon: /assets/images/icons/icn-cloud-blue.svg
+            icon: /assets/images/icons/icn-doc.svg
             url: /konnect/vitals/
           - text: Self-managed
-            icon: /assets/images/icons/icn-server-blue.svg
+            icon: /assets/images/icons/icn-doc.svg
             url: /gateway/latest/kong-enterprise/analytics/
 
       - name: Runtime Manager
@@ -36,7 +36,7 @@ features:
         icon:  /assets/images/landing-page/card-icons/runtime.svg
         links:
           - text: Overview
-            icon: /assets/images/icons/icn-cloud-blue.svg
+            icon: /assets/images/icons/icn-doc.svg
             url: /konnect/runtime-manager
 
       - name: API Products
@@ -44,7 +44,7 @@ features:
         icon: /assets/images/landing-page/card-icons/api-product.svg
         links:
           - text: Overview
-            icon: /assets/images/icons/icn-cloud-blue.svg
+            icon: /assets/images/icons/icn-doc.svg
             url: /konnect/api-products
 
 #       - name: Mesh Manager
