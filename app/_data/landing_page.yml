@@ -3,7 +3,7 @@ features:
     items:
       - name: Service Hub
         description: Build a comprehensive catalog of services to enable discovery, consumption, and management of every API across your entire architecture.
-        icon: /assets/images/landing-page/service-hub.svg
+        icon: /assets/images/landing-page/card-icons/service-hub.svg
         links:
           - text: Overview
             icon: /assets/images/icons/icn-cloud-blue.svg
@@ -11,7 +11,7 @@ features:
 
       - name: Dev Portal
         description: Streamline developer onboarding with a self-service developer experience, letting developers discover, register, and consume published services.
-        icon: /assets/images/landing-page/dev-portal.svg
+        icon: /assets/images/landing-page/card-icons/dev-portal.svg
         links:
           - text: Overview (cloud)
             icon: /assets/images/icons/icn-cloud-blue.svg
@@ -22,7 +22,7 @@ features:
 
       - name: Vitals
         description: View granular analytics with Vitals to monitor the health of environments and clusters. Gain deep insights into service, route, and application usage.
-        icon: /assets/images/landing-page/analytics.svg
+        icon: /assets/images/landing-page/card-icons/analytics.svg
         links:
           - text: Overview (cloud)
             icon: /assets/images/icons/icn-cloud-blue.svg
@@ -33,7 +33,7 @@ features:
 
       - name: Runtime Manager
         description: Provision and manage Kong Gateway runtimes and services in your environment and platform of choice.
-        icon: /assets/images/landing-page/runtime.svg
+        icon:  /assets/images/landing-page/card-icons/runtime.svg
         links:
           - text: Overview
             icon: /assets/images/icons/icn-cloud-blue.svg
@@ -41,7 +41,7 @@ features:
 
       - name: API Products
         description: Bundle and manage multiple APIs via API products to document, enable application registration and publish them to a Developer Portal for consumption. 
-        icon: /assets/images/landing-page/service-hub.svg
+        icon: /assets/images/landing-page/card-icons/api-product.svg
         links:
           - text: Overview
             icon: /assets/images/icons/icn-cloud-blue.svg
@@ -49,7 +49,7 @@ features:
 
       - name: Mesh Manager
         description: TBD
-        icon: /assets/images/landing-page/insomnia.svg
+        icon: /assets/images/landing-page/card-icons/insomnia.svg
         links:
           - text: Overview
             icon: /assets/images/icons/icn-doc.svg
@@ -59,7 +59,7 @@ features:
     items:
       - name: decK
         description: Manage Kong Gateway declaratively using decK. Sync YAML or JSON configuration across Kong Gateway clusters, push configuration to a running cluster, detect drift, and create backups.
-        icon: /assets/images/landing-page/alerting.svg
+        icon: /assets/images/landing-page/card-icons/alerting.svg
         links:
           - text: Overview
             icon: /assets/images/icons/icn-doc.svg
@@ -73,7 +73,7 @@ features:
 
       - name: Kong Operator
         description: TBD
-        icon: /assets/images/landing-page/kubernetes.svg
+        icon: /assets/images/landing-page/card-icons/kubernetes.svg
         links:
           - text: Overview
             icon: /assets/images/icons/icn-doc.svg
@@ -81,7 +81,7 @@ features:
 
       - name: Kong Ingress Controller
         description: Implement authentication, transformations, and other functionalities across Kubernetes clusters with zero downtime.
-        icon: /assets/images/landing-page/kubernetes.svg
+        icon: /assets/images/landing-page/card-icons/kubernetes.svg
         links:
           - text: Overview
             icon: /assets/images/icons/icn-doc.svg
@@ -92,7 +92,7 @@ features:
 
       - name: Insomnia
         description: Streamline workflows by enabling users to instantly drop into Insomnia to design, document, and test APIs and microservices.
-        icon: /assets/images/landing-page/insomnia.svg
+        icon: /assets/images/landing-page/card-icons/insomnia.svg
         links:
           - text: Overview
             icon: /assets/images/icons/icn-doc.svg
@@ -100,7 +100,7 @@ features:
 
       - name: Plugin Hub
         description: Use plugins to provide advanced functionality and extend the use of the Kong Gateway.
-        icon: /assets/images/landing-page/plugin.svg
+        icon: /assets/images/landing-page/card-icons/plugin.svg
         links:
           - text: Overview
             icon: /assets/images/icons/icn-doc.svg
