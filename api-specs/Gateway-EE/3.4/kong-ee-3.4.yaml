@@ -7659,7 +7659,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/group_name_or_id'
     put:
-      summary: Configure rate limiting for a consumer group. As of Kong Gateway 3.4, you can scope plugins to consumer groups using only the `/consumer_groups` endpoint. Using `overrides` is deprecated, and no longer recommended.
+      summary: Configure rate limiting for a consumer group.
       operationId: put-consumer_groups-group_name_or_id-overrides-plugins-rate-limiting-advanced
       responses:
         '201':
@@ -7686,7 +7686,7 @@ paths:
                       limit:
                         type: array
                         description: |
-                          An array of one or more requests-per-window limits to apply. There must be a matching number of window limits and sizes specified.
+                          An array of one or more requests-per-window limits to apply. There must be a matching number of window limits and sizes specified. 
                         items:
                           type: integer
                           example: 10
@@ -7727,7 +7727,7 @@ paths:
                     group: test-group
                     plugin: rate-limiting-advanced
       description: |
-        Define custom rate limiting settings for a consumer group. This endpoint overrides the settings of the Rate Limiting Advanced plugin.
+        Define custom rate limiting settings for a consumer group. This endpoint overrides the settings of the Rate Limiting Advanced plugin. As of Kong Gateway 3.4, you can scope plugins to consumer groups using only the `/consumer_groups` endpoint. Using `overrides` is deprecated, and no longer recommended.
       requestBody:
         content:
           application/json:
@@ -7776,7 +7776,7 @@ paths:
           description: |
             HTTP/1.1 204 No Content
       description: |
-        Delete custom rate limiting settings for a consumer group.
+        Delete custom rate limiting settings for a consumer group. As of Kong Gateway 3.4, you can scope plugins to consumer groups using only the `/consumer_groups` endpoint. Using `overrides` is deprecated, and no longer recommended.
   '/consumer_groups/{consumer_username_or_id}/plugins':
     get:
       description: Retrieve a list of all plugins associated with a consumer group. 
