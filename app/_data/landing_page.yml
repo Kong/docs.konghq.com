@@ -55,28 +55,59 @@ features:
             icon: /assets/images/icons/icn-doc.svg
             url: /mesh/latest/
 
-  - title: Ecosystem integrations
+  - title: Extensions & Tools
     items:
-      - name: Plugin Hub
-        description: Use plugins to provide advanced functionality and extend the use of the Kong Gateway.
-        icon: /assets/images/landing-page/plugin.svg
+      - name: decK
+        description: Manage Kong Gateway declaratively using decK. Sync YAML or JSON configuration across Kong Gateway clusters, push configuration to a running cluster, detect drift, and create backups.
+        icon: /assets/images/landing-page/alerting.svg
         links:
-          - text: Learn more
+          - text: Overview
             icon: /assets/images/icons/icn-doc.svg
-            url: /hub/
+            url: /deck/latest/
+          - text: Get Started
+            icon: /assets/images/icons/icn-doc.svg
+            url: /deck/latest/guides/getting-started/
+          - text: APIOps with decK
+            icon: /assets/images/icons/icn-doc.svg
+            url: /deck/latest/guides/apiops/
+
+      - name: Kong Operator
+        description: TBD
+        icon: /assets/images/landing-page/kubernetes.svg
+        links:
+          - text: Overview
+            icon: /assets/images/icons/icn-doc.svg
+            url: /kubernetes-ingress-controller/latest/
 
       - name: Kong Ingress Controller
         description: Implement authentication, transformations, and other functionalities across Kubernetes clusters with zero downtime.
         icon: /assets/images/landing-page/kubernetes.svg
         links:
-          - text: Learn more
+          - text: Overview
             icon: /assets/images/icons/icn-doc.svg
-            url: /kubernetes-ingress-controller/
+            url: /kubernetes-ingress-controller/latest/
+          - text: Get Started
+            icon: /assets/images/icons/icn-doc.svg
+            url: /kubernetes-ingress-controller/latest/guides/getting-started/
 
-      - name: Declarative Configuration
-        description: Manage Kong Gateway declaratively using decK. Sync YAML or JSON configuration across Kong Gateway clusters, push configuration to a running cluster, detect drift, and create backups.
-        icon: /assets/images/landing-page/alerting.svg
+      - name: Insomnia
+        description: Streamline workflows by enabling users to instantly drop into Insomnia to design, document, and test APIs and microservices.
+        icon: /assets/images/landing-page/insomnia.svg
         links:
-          - text: Learn more
+          - text: Overview
             icon: /assets/images/icons/icn-doc.svg
-            url: /deck/
+            url: https://support.insomnia.rest/
+
+      - name: Plugin Hub
+        description: Use plugins to provide advanced functionality and extend the use of the Kong Gateway.
+        icon: /assets/images/landing-page/plugin.svg
+        links:
+          - text: Overview
+            icon: /assets/images/icons/icn-doc.svg
+            url: /gateway/latest/kong-plugins/
+          - text: Plugin Development
+            icon: /assets/images/icons/icn-doc.svg
+            url: /gateway/latest/plugin-development/
+          - text: Hub
+            icon: /assets/images/icons/icn-doc.svg
+            url: /hub/
