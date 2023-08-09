@@ -361,6 +361,7 @@
 /konnect/servicehub/service-documentation/            /konnect/api-products/service-documentation
 /konnect/servicehub/service-implementations/          /konnect/api-products/
 /konnect/servicehub/service-versions/                 /konnect/api-products/
+/konnect/api/portal-auth/portal-rbac-guide/ /konnect/dev-portal/access-and-approval/manage-teams/
 #API Redirects
 
 /konnect/identity-management-api/   https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce/
