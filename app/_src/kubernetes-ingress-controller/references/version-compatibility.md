@@ -9,8 +9,6 @@ those versions' documentation.
 
 ## Kong
 
-By Kong, we are here referring to the official distribution of the Open-Source {{site.base_gateway}}.
-
 | {{site.kic_product_name}} |            2.6.x            |            2.7.x            |            2.8.x            |            2.9.x            |            2.10.x           |            2.11.x           |
 |:--------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
 | Kong 1.5.x                | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> |
@@ -30,9 +28,6 @@ By Kong, we are here referring to the official distribution of the Open-Source {
 | Kong 3.4.x                | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 
 ## Kong Enterprise
-
-Kong Enterprise is the official enterprise distribution, which includes all
-other enterprise functionality, built on top of the Open-Source {{site.base_gateway}}.
 
 | {{site.kic_product_name}} |            2.6.x            |            2.7.x            |            2.8.x            |            2.9.x            |            2.10.x           |            2.11.x           |
 |:--------------------------|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
