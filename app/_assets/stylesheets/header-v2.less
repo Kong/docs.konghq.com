@@ -192,7 +192,7 @@ header.navbar-v2 {
 
   .main-menu-item {
     list-style-type: none;
-    padding-top: 35px;
+    padding-top: 32px;
   }
 
   .navbar-item-submenu {
@@ -213,6 +213,7 @@ header.navbar-v2 {
     background: white;
 
     .navbar-brand {
+      display: flex;
       flex-shrink: 0;
       max-width: 100px;
 
@@ -231,7 +232,6 @@ header.navbar-v2 {
       margin-right: 8px;
       margin-left: 8px;
       color: @steel-200;
-      padding-bottom: 6px;
     }
 
     .separator {
@@ -250,7 +250,7 @@ header.navbar-v2 {
       display: flex;
       align-items: center;
       margin: 0 20px 0 30px;
-      padding: 2px 16px;
+      padding: 0px 16px;
       background: rgba(248, 249, 252, 1);
       border-radius: 100px;
       width: 208px;
@@ -270,6 +270,7 @@ header.navbar-v2 {
 
       .algolia-autocomplete {
         flex-grow: 1;
+        max-height: 34px;
       }
 
       img {
