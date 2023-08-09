@@ -111,7 +111,7 @@ const earliestDate = subDays(now, 7);
       );
 
       if (addedFiles.length) {
-        changelogContent += `## Added\n\n`;
+        changelogContent += `### Added\n\n`;
         for (const file of addedFiles) {
           changelogContent += `- ${file.url}\n`;
         }
@@ -122,7 +122,7 @@ const earliestDate = subDays(now, 7);
       }
 
       if (changedFiles.length) {
-        changelogContent += `## Modified\n\n`;
+        changelogContent += `### Modified\n\n`;
         for (const file of changedFiles) {
           changelogContent += `- ${file.url}\n`;
         }
