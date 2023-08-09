@@ -44,7 +44,9 @@ If you're not sure which option to use, we recommend starting [with a database](
 Set up a {{site.base_gateway}} container with a PostgreSQL database to store
 Kong configuration.
 
+{% if_version lte:3.3.x %}
 {% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
+{% endif_version %}
 
 ### Prepare the database
 

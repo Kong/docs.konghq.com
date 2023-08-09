@@ -227,6 +227,8 @@ items:
             src: /gateway/upgrade-v2
           - text: Migrate from OSS to Enterprise
             url: /migrate-ce-to-ke/
+          - text: Migration Guidelines Cassandra to PostgresSQL
+            url: /migrate-cassandra-to-postgres
           - text: Breaking Changes
             url: /production/breaking-changes/
             generate: false
@@ -635,6 +637,7 @@ items:
     items:
       - text: kong.conf
         url: /reference/configuration
+        src: /gateway/reference/configuration-3.0-3.3
       - text: Injecting Nginx Directives
         url: /reference/nginx-directives
       - text: CLI

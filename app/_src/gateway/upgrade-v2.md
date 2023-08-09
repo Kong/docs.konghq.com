@@ -102,6 +102,32 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 
 {% endif_version %}
 
+{% if_version eq: 3.4.x %}
+
+| **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
+| ------------------- | ------------ | ---------------------------- | ---------------- |
+| 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 2.x–2.7.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 2.8.x | Traditional | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 2.8.x | Hybrid | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 2.8.x | DB less | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.0.x | Traditional | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.0.x | Hybrid | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.0.x | DB less | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.1.x | Traditional | No | [Upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.1.0.x-3.1.1.2 | Hybrid | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.1.1.3 | Hybrid | No | [Upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.1.x | DB less | No | [Upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.2.x | Traditional | Yes | [Upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.2.x | Hybrid | Yes | [Upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.2.x | DB less | Yes | [Upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.3.x | Traditional | Yes | [Upgrade to 3.4.x](#migrate-db). |
+| 3.3.x | Hybrid | Yes | [Upgrade to 3.4.x](#migrate-db). |
+| 3.3.x | DB less | Yes | [Upgrade to 3.4.x](#migrate-db). |
+
+{% endif_version %}
+
 {% if_version lte:3.2.x %}
 ## Upgrade considerations and breaking changes
 
@@ -402,7 +428,7 @@ diff the files to identify any changes, and apply them as needed.
 
 Running `kong migrations` in this workflow is irrevocable, therefore we recommend that you backup data before making any changes.
 
-Depending on the database you're using (Postgres or Cassandra), a database dump is recommended so that you can recover from migrations failure at the database level.
+A database dump is recommended so that you can recover from migrations failure at the database level.
 
 Additionally, {{site.base_gateway}} supports exporting data in YAML format with `kong config db_export`, which later on
 can be imported back by `kong config db_import`. For more information, see

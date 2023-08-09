@@ -1,5 +1,8 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.4.x**
+* The `redis` strategy now catches strategy connection failures.
+
 **{{site.base_gateway}} 3.2.1**
 * The shared Redis connector now supports username + password authentication for cluster connections, improving on the existing single-node connection support. This automatically applies to all plugins using the shared Redis configuration.
 

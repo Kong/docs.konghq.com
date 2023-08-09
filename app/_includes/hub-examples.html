@@ -28,6 +28,12 @@
       {% endnavtab %}
     {% endif %}
 
+    {% if hub_examples.enable_on_consumer_group? %}
+      {% navtab Enable on a consumer group %}
+        {%- include plugins/hub-examples/consumer_groups.html hub_example=hub_examples.consumer_group render_intro_text=include.render_intro_text -%}
+      {% endnavtab %}
+    {% endif%}
+
     {% if hub_examples.enable_globally? %}
       {% navtab Enable globally %}
         {{ global_content | markdownify }}
