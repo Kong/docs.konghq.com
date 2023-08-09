@@ -12,7 +12,7 @@ module OasDefinition
 
     def generate_pages!
       product['versions'].map do |version|
-        data = OasDefinition::PageData.generate(product:, version:, file:)
+        data = OasDefinition::PageData.generate(product:, version:, file:, site:)
 
         site.pages << ::OasDefinition::Page.new(site:, data:)
       end
@@ -24,7 +24,7 @@ module OasDefinition
 
     def generate_latest_page!
       version = product['latestVersion']
-      data = OasDefinition::PageData.generate(product:, version:, file:, latest: true)
+      data = OasDefinition::PageData.generate(product:, version:, file:, site:, latest: true)
 
       latest_page = ::OasDefinition::Page.new(site:, data:)
 

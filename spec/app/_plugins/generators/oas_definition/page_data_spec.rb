@@ -7,7 +7,7 @@ RSpec.describe OasDefinition::PageData do
   end
 
   describe '#build_data' do
-    subject { described_class.new(product:, version:, file:, latest:).build_data }
+    subject { described_class.new(product:, version:, file:, site:, latest:).build_data }
 
     context 'latest version' do
       let(:latest) { true }
@@ -53,6 +53,36 @@ RSpec.describe OasDefinition::PageData do
         expect(subject['algolia_docsearch_meta']).to match_array([
           { 'name' => 'docsearch:title', 'value' => 'Audit Logs API - v1' },
           { 'name' => 'docsearch:description', 'value' => 'The management API for Konnect audit logging' }
+        ])
+      end
+    end
+
+    context 'page with data in frontmatter' do
+      let(:latest) { true }
+      let(:file) { '_api/portal-rbac/_index.md' }
+      let(:product) do
+        JSON.parse(
+          File.read('spec/fixtures/app/_data/konnect_oas_data.json')
+        ).detect{ |p| p['id'] == '2dad627f-7269-40db-ab14-01264379cec7' }
+      end
+      let(:version) do
+        product['versions'].detect { |v| v['name'] == 'v2' }
+      end
+
+      it 'generates the necessary page data, including the frontmatter' do
+        expect(subject['source_file']).to eq(file)
+        expect(subject['dir']).to eq('/api/portal-rbac/latest/')
+        expect(subject['product']['id']).to eq('2dad627f-7269-40db-ab14-01264379cec7')
+        expect(subject['permalink']).to eq('/api/portal-rbac/latest/')
+        expect(subject['description']).to eq('Custom description in Frontmatter')
+        expect(subject['title']).to eq('Portal RBAC - latest')
+        expect(subject['version']).to eq({ 'name' => 'v2', 'id' => '0ecb66fc-0049-414a-a1f9-f29e8a02c696' })
+        expect(subject['layout']).to eq('oas/spec')
+        expect(subject['canonical_url']).to eq('/api/portal-rbac/latest/')
+        expect(subject['is_latest']).to eq(true)
+        expect(subject['algolia_docsearch_meta']).to match_array([
+          { 'name' => 'docsearch:title', 'value' => 'Portal RBAC - latest' },
+          { 'name' => 'docsearch:description', 'value' => '(Konnect) The portal rbac api provides methods for creating and describing teams, collecting developers into teams, assigning roles to give those teams functionality in the developer portal.' }
         ])
       end
     end
