@@ -35,7 +35,7 @@ header.navbar {
     font-weight: bold;
     font-size: 48px;
     line-height: 67px;
-    color: @color-text;
+    color: white;
     scroll-margin-top: 100px;
 
     > span {
@@ -47,7 +47,7 @@ header.navbar {
     font-weight: 500;
     font-size: 24px;
     line-height: 34px;
-    color: @color-text;
+    color: text;
   }
 
   h3 {
@@ -63,7 +63,7 @@ header.navbar {
     font-weight: normal;
     font-size: 20px;
     line-height: 28px;
-    color: @color-text-light;
+    color: white;
   }
 
   h5 {
@@ -166,43 +166,6 @@ header.navbar {
           background-color: #f8f9fc;
         }
       }
-    }
-  }
-
-  .textures {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: -1;
-
-    .top-left {
-      position: absolute;
-      top: 0;
-      left: 0;
-      mix-blend-mode: multiply;
-    }
-
-    .top-right {
-      position: absolute;
-      top: 0;
-      right: 0;
-      mix-blend-mode: multiply;
-      opacity: 0.8;
-    }
-
-    .top-gradient {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 120px;
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.99) 42.92%,
-        rgba(255, 255, 255, 0.6) 70.57%,
-        rgba(255, 255, 255, 0) 100%
-      );
     }
   }
 
@@ -697,22 +660,6 @@ header.navbar {
 
     section.additional-info {
       margin-top: 48px;
-    }
-  }
-
-  .textures > .mobile-texture {
-    display: none;
-  }
-
-  @media (max-width: 450px) {
-    .textures > .top-left,
-    .top-right {
-      display: none;
-    }
-    .textures > .mobile-texture {
-      display: block;
-      position: absolute;
-      padding-top: 60px;
     }
   }
 }
