@@ -1,4 +1,3 @@
-go run internal/private/generators/01compat-changes/main.go
 ---
 messages:
   - ID: D100
