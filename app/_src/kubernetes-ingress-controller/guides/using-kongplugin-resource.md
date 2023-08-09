@@ -469,11 +469,13 @@ apiVersion: configuration.konghq.com/v1
 kind: KongPlugin
 metadata:
   name: add-header-group
+  annotations:
+    kubernetes.io/ingress.class: "kong"
 config:
   add:
     headers:
     - "x-added-group: demo"
-plugin: response-transformer
+plugin: response-transformer-advanced
 ' | kubectl apply -f -
 ```
 Response:
@@ -494,7 +496,6 @@ metadata:
     kubernetes.io/ingress.class: "kong"
     konghq.com/plugins: add-header-group
 ' | kubectl apply -f -
-
 ```
 Response:
 ```text
