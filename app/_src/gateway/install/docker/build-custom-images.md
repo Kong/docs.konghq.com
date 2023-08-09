@@ -17,7 +17,7 @@ chmod +x docker-entrypoint.sh
 ```
 
 1. Download the {{site.base_gateway}} package:
-    * **Debian and Ubuntu**: [.deb]({{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/deb/ubuntu/pool/bionic/main/k/ko/kong-enterprise-edition_{{page.versions.ee}}/kong-enterprise-edition_{{page.versions.ee}}_amd64.deb).
+    * **Debian and Ubuntu**: [.deb]({{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/deb/ubuntu/pool/jammy/main/k/ko/kong-enterprise-edition_{{page.versions.ee}}/kong-enterprise-edition_{{page.versions.ee}}_amd64.deb).
     {% comment %}
     not all of the older alpine "packages" met Cloudsmith's definition for what an alpine package must be
     so some are uploaded there as "raw" artifacts instead and must be linked to differently
