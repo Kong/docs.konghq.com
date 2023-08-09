@@ -20,7 +20,7 @@ features:
             icon: /assets/images/icons/icn-doc.svg
             url: /gateway/latest/kong-enterprise/dev-portal/
 
-      - name: Vitals
+      - name: Analytics
         description: View granular analytics with Vitals to monitor the health of environments and clusters. Gain deep insights into service, route, and application usage.
         icon: /assets/images/landing-page/card-icons/analytics.svg
         links:
