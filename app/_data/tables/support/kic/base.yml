@@ -1,0 +1,21 @@
+_base:
+  ce: &ce
+    min: 2.0
+    max: 3.4
+    name: Kong Gateway (OSS)
+  ee: &ee
+    min: 2.1
+    max: 3.4
+    name: Kong Enterprise
+  kubernetes: &kubernetes
+    min: 1.22
+    max: 1.27
+    name: Kubernetes
+  gwapi: &gwapi
+    min: 1.22
+    max: 1.27
+    name: Kubernetes Gateway API
+  istio: &istio
+    min: 1.13
+    max: 1.18
+    name: Istio

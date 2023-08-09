@@ -1,0 +1,11 @@
+{% include_relative_once _data/tables/support/kic/base.yml %}
+
+lts: false
+
+ce: *ce
+ee: *ee
+kubernetes: *kubernetes
+gwapi: *gwapi
+istio:
+  <<: *istio
+  min: 1.15
