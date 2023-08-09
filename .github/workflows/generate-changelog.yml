@@ -16,10 +16,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Install link checker deps (temporary until refactoring)
-        working-directory: tools/broken-link-checker
-        run: |
-          npm ci
       - name: Run changelog script
         working-directory: tools/changelog-generator
         run: |
