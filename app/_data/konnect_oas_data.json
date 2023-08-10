@@ -27,7 +27,7 @@
       "name": "v1",
       "id": "33cd4595-e389-4c2b-80ee-5275f25e80e1"
     },
-    "description": "Dev Portal provides a single source of truth for all developers to locate, access, and consume services for Kong Gateway Enterprise Edition.",
+    "description": "Dev Portal provides a single source of truth for all developers to locate, access, and consume services for Kong Gateway EE. This spec is a Beta version.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
@@ -45,18 +45,26 @@
     "id": "680541e5-de6e-46e5-b43d-0bd1b2369453",
     "title": "Gateway Admin - OSS (Beta)",
     "latestVersion": {
-      "name": "3.3.0",
-      "id": "e2a0ef29-573d-4fc4-86df-216c417f4aa9"
+      "name": "3.4.0",
+      "id": "7df4368a-a2d1-41a3-b8de-708e86c218f4"
     },
     "description": "Kong Gateway (OSS) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
     "documentCount": 0,
-    "versionCount": 1,
+    "versionCount": 2,
     "versions": [
       {
         "id": "e2a0ef29-573d-4fc4-86df-216c417f4aa9",
         "created_at": "2023-05-11T19:34:55.498Z",
         "updated_at": "2023-05-11T19:35:57.388Z",
         "name": "3.3.0",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "7df4368a-a2d1-41a3-b8de-708e86c218f4",
+        "created_at": "2023-08-08T20:53:41.418Z",
+        "updated_at": "2023-08-09T21:03:42.381Z",
+        "name": "3.4.0",
         "deprecated": false,
         "registration_configs": []
       }
@@ -66,18 +74,26 @@
     "id": "937dcdd7-4485-47dc-af5f-b805d562552f",
     "title": "Gateway Admin - EE (Beta)",
     "latestVersion": {
-      "name": "3.3.0.0",
-      "id": "be79b812-46d5-4cc1-b757-b5270bf4fa60"
+      "name": "3.4.0.0",
+      "id": "25d728a0-cfe3-4cf4-8e90-93a5bb15cfd9"
     },
     "description": "Kong Gateway (EE) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
     "documentCount": 0,
-    "versionCount": 1,
+    "versionCount": 2,
     "versions": [
       {
         "id": "be79b812-46d5-4cc1-b757-b5270bf4fa60",
         "created_at": "2023-05-11T19:37:04.731Z",
         "updated_at": "2023-05-11T19:37:33.078Z",
         "name": "3.3.0.0",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "25d728a0-cfe3-4cf4-8e90-93a5bb15cfd9",
+        "created_at": "2023-08-01T16:48:18.726Z",
+        "updated_at": "2023-08-09T21:03:30.480Z",
+        "name": "3.4.0.0",
         "deprecated": false,
         "registration_configs": []
       }
