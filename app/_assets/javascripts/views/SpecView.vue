@@ -121,7 +121,7 @@ function initActiveProductVersionId () {
   flex: 0 0 auto;
   position: sticky;
   height: calc(100vh - 60px);
-  top: 60px;
+  margin-top: 60px;
   border-right: 1px solid var(--section_colors-stroke);
 }
 .sidebar {
