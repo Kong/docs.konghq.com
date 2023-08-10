@@ -36,7 +36,7 @@ module SEO
     private
 
     def oas_page?
-      @page.url.start_with?('/api/')
+      @page.relative_path.start_with?('_api/')
     end
 
     def hub_page?

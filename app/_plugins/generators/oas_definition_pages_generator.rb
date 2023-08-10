@@ -10,7 +10,7 @@ module OasDefinitionPages
       @site = site
       @site.data['ssg_oas_pages'] = []
 
-      Dir.glob(File.join(site.source, '_api/*/_index.md')).each do |file|
+      Dir.glob(File.join(site.source, '_api/**/**/_index.md')).each do |file|
         product = page_product(file)
 
         ::OasDefinition::Product.new(product:, file:, site:).generate_pages!

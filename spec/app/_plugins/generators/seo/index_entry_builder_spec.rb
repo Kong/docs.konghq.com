@@ -37,5 +37,19 @@ RSpec.describe SEO::IndexEntryBuilder do
         it { expect(subject).to be_a(SEO::IndexEntry::VersionedPage) }
       end
     end
+
+    context 'OpenAPI pages' do
+      context 'konnect' do
+        let(:page_url) { '/konnect/api/portal-rbac/latest/' }
+
+        it { expect(subject).to be_a(SEO::IndexEntry::OasPage) }
+      end
+
+      context 'gateway' do
+        let(:page_url) { '/gateway/api/admin-ee/latest/' }
+
+        it { expect(subject).to be_a(SEO::IndexEntry::OasPage) }
+      end
+    end
   end
 end

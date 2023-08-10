@@ -38,11 +38,7 @@ module OasDefinition
     private
 
     def permalink(version)
-      [
-        '/api',
-        @file.split('/')[1],
-        version
-      ].join('/').concat('/')
+      PageUrlGenerator.run(file: @file, version:)
     end
 
     def canonical_url

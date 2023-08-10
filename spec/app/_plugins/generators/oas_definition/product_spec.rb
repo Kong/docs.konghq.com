@@ -1,5 +1,5 @@
 RSpec.describe OasDefinition::Product do
-  let(:file) { File.join(site.source, '_api/audit-logs/_index.md') }
+  let(:file) { File.join(site.source, '_api/konnect/audit-logs/_index.md') }
   let(:product) do
     JSON.parse(
       File.read('spec/fixtures/app/_data/konnect_oas_data.json')
@@ -15,14 +15,14 @@ RSpec.describe OasDefinition::Product do
       subject.generate_pages!
 
       permalinks = site.pages.map(&:permalink)
-      expect(permalinks).to include('/api/audit-logs/v1/')
-      expect(permalinks).to include('/api/audit-logs/v2/')
+      expect(permalinks).to include('/konnect/api/audit-logs/v1/')
+      expect(permalinks).to include('/konnect/api/audit-logs/v2/')
     end
 
     it 'generates a latest page' do
       subject.generate_pages!
 
-      expect(site.pages.map(&:permalink)).to include('/api/audit-logs/latest/')
+      expect(site.pages.map(&:permalink)).to include('/konnect/api/audit-logs/latest/')
     end
   end
 end

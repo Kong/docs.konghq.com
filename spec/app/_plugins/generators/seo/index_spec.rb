@@ -46,8 +46,9 @@ RSpec.describe SEO::Index do
         '/mesh/changelog/' => { 'url' => '/mesh/changelog/', 'page' => find_page_by_url('/mesh/changelog/'), 'version' => Gem::Version.new('9999.9.9') },
 
         '/api/' => { 'url' => '/api/', 'page' => find_page_by_url('/api/') },
-        '/api/portal-rbac/latest/' => { 'url' => '/api/portal-rbac/latest/', 'page' => find_page_by_url('/api/portal-rbac/latest/'), 'version' => Gem::Version.new('9999.9.9') },
-        '/api/audit-logs/latest/' => { 'url' => '/api/audit-logs/latest/', 'page' => find_page_by_url('/api/audit-logs/latest/'), 'version' => Gem::Version.new('9999.9.9') },
+        '/konnect/api/portal-rbac/latest/' => { 'url' => '/konnect/api/portal-rbac/latest/', 'page' => find_page_by_url('/konnect/api/portal-rbac/latest/'), 'version' => Gem::Version.new('9999.9.9') },
+        '/konnect/api/audit-logs/latest/' => { 'url' => '/konnect/api/audit-logs/latest/', 'page' => find_page_by_url('/konnect/api/audit-logs/latest/'), 'version' => Gem::Version.new('9999.9.9') },
+        '/gateway/api/admin-ee/latest/' => { 'url' => '/gateway/api/admin-ee/latest/', 'page' => find_page_by_url('/gateway/api/admin-ee/latest/'), 'version' => Gem::Version.new('9999.9.9') }
       })
     end
   end
