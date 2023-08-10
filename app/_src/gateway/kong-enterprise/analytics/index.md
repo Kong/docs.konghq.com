@@ -13,7 +13,7 @@ Use Kong Vitals (Vitals) to monitor {{site.ee_product_name}} health and performa
 
 ## Prerequisites
 
-Vitals is enabled by default in {{site.ee_product_name}} and available upon the first login of a Super Admin.
+Vitals is disabled by default in {{site.ee_product_name}} and available upon the first login of a Super Admin if it is enabled.
 
 {% if_version lte:3.3.x %}
 {% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
@@ -24,11 +24,11 @@ You can use one of the following storage strategies with Vitals:
   * PostgresSQL 9.5+
 * Separate storage engine:
   * InfluxDB
-  * Prometheus 
+  * Prometheus
 
 ## Guidelines for viewing Vitals
 When using Vitals, note:
-* Vitals is enabled by default and accessible the first time a Super Admin logs in.
+* Vitals is disabled by default and accessible the first time a Super Admin logs in if it is enabled.
   * To enable or disable Vitals, see [Enable or Disable Vitals](#enable-or-disable-vitals).
 * Any authorized user can view Vitals for the entire Kong cluster or for a particular Workspace.
   * If a user does not have access to a Workspace, its Vitals are hidden from view.
@@ -36,11 +36,11 @@ When using Vitals, note:
 
 ## Vitals API
 
-Vitals data is available using the Vitals API. Access to these endpoints can be managed using RBAC. 
+Vitals data is available using the Vitals API. Access to these endpoints can be managed using RBAC.
 
 The Vitals API is described using the Open API Specification. You can view it by downloading the [`vitals.yaml`](/api/vitals.yaml) file. Use the API to retrieve health and traffic information from your cluster.
 
-For example, you can use the API to retrieve the number of requests for a service in a workspace by issuing the following `GET` request: 
+For example, you can use the API to retrieve the number of requests for a service in a workspace by issuing the following `GET` request:
 
 ```bash
 curl -i -X GET http://localhost:8001/WORKSPACE_NAME/vitals/status_codes/by_service \
@@ -115,7 +115,7 @@ The Status Codes view displays visualizations of cluster-wide status code classe
 {% navtabs %}
 {% navtab Using kong.conf %}
 
-1. Edit the configuration file to enable or disable Vitals:    
+1. Edit the configuration file to enable or disable Vitals:
     ```bash
     # via your Kong configuration file; e.g., kong.conf
     vitals = on  # vitals is enabled
