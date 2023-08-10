@@ -41,7 +41,7 @@ const props = defineProps({
   activeOperation: { type: Object }
 });
 
-const loading = ref(false);
+const loading = ref(true);
 const spec = ref(null);
 const viewSpecModalIsVisible = ref(false);
 const specContents = ref('');
@@ -93,7 +93,7 @@ function getSpecContents () {
 
 function downloadSpecContents (){
   let extension;
-  let fileName;
+  let fileName = window.location.pathname.split('/').slice(1, -1).join('-');
   const content = specContents.value;
   const element = document.createElement('a');
 
@@ -102,14 +102,6 @@ function downloadSpecContents (){
     extension = '.json';
   } catch (e) {
     extension = '.yaml';
-  }
-
-  if (window.location.pathname.includes('/')) {
-    const splitPath = window.location.pathname.split('/');
-
-    fileName = splitPath.slice(2, -1).join('-');
-  } else {
-    fileName = window.location.pathname;
   }
 
   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(specContents.value));
