@@ -30,7 +30,7 @@ const earliestDate = subDays(now, 7);
       for (let pr of response.data) {
         //console.log(JSON.stringify(pr));
         //process.exit(0);
-        prDate = new Date(pr.created_at);
+        prDate = new Date(pr.merged_at);
         if (prDate > earliestDate && pr.merged_at && pr.base.ref == "main") {
           validPulls.push(pr);
         }
@@ -44,12 +44,12 @@ const earliestDate = subDays(now, 7);
     },
   );
 
-  pulls = pulls.slice(0, 1);
+  //pulls = pulls.slice(0, 1);
 
   let prsWithFiles = (
     await Promise.all(
       pulls.map(async (pr) => {
-        const created_at = new Date(pr.created_at);
+        const created_at = new Date(pr.merged_at);
 
         // Load the files for this PR using the API
         const pr_files = await octokit.paginate(
@@ -111,7 +111,7 @@ const earliestDate = subDays(now, 7);
       );
 
       if (addedFiles.length) {
-        changelogContent += `### Added\n\n`;
+        changelogContent += `#### Added\n\n`;
         for (const file of addedFiles) {
           changelogContent += `- ${file.url}\n`;
         }
@@ -122,7 +122,7 @@ const earliestDate = subDays(now, 7);
       }
 
       if (changedFiles.length) {
-        changelogContent += `### Modified\n\n`;
+        changelogContent += `#### Modified\n\n`;
         for (const file of changedFiles) {
           changelogContent += `- ${file.url}\n`;
         }
