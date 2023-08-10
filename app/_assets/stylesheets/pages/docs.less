@@ -6,7 +6,7 @@
 
   > a {
     padding: 0 10px 16px;
-    font-size: 16px;
+    font-size: 15px;
     color: @black-70;
 
     &.active {
@@ -125,7 +125,7 @@
 
       li {
         // avoid ridiculously big spaces between lists elements
-        margin-bottom: 0.1rem;
+        margin-bottom: 0.5rem;
         list-style-type: disc;
 
         > p {
@@ -139,7 +139,7 @@
         // avoid nested lists to have too much margin
         margin-left: 1.3rem;
         margin-top: 0.7rem;
-        margin-bottom: 0.7rem;
+        margin-bottom: 0;
       }
     }
 
@@ -166,7 +166,7 @@
       .page-content-title {
         color: #062e4d;
         margin-bottom: 0.5em;
-        font: 500 34px/40px Roboto;
+        font: 500 30px/40px Roboto;
         scroll-margin-top: 100px;
 
         &::before {
@@ -221,7 +221,7 @@
         }
 
         > a {
-          font-size: 16px;
+          font-size: 15px;
         }
       }
 
@@ -373,13 +373,13 @@
   position: sticky;
   top: 54px;
   height: ~"calc(100vh - 56px)";
-  border-right: 1px solid @gray;
+  // border-right: 1px solid @gray;
   overflow-y: auto;
 
   .sidebar-title-container {
     display: flex;
     flex-direction: column;
-    padding: 16px;
+    padding: 10px;
 
     .sidebar-title {
       margin: 8px 0;
@@ -394,7 +394,7 @@
     padding: 0;
     overflow: hidden;
     color: rgba(0, 0, 0, 0.2);
-    font-size: 20px;
+    font-size: 18px;
     text-align: right;
 
     &:before {
@@ -547,7 +547,6 @@
   overflow-y: auto;
   overflow-x: hidden;
   box-sizing: border-box;
-  font-family: Roboto;
 
   .close-sidebar {
     position: absolute;
@@ -556,7 +555,7 @@
     top: 0;
     padding: 16px;
     color: rgba(0, 0, 0, 0.2);
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .collapse-toc,
@@ -582,7 +581,6 @@
   .docs-toc-title {
     margin-bottom: 4px;
     text-transform: uppercase;
-    font: normal 14px Roboto;
     display: flex;
     align-items: center;
     letter-spacing: 0.5px;
@@ -593,6 +591,7 @@
       color: @black-90;
       opacity: 1;
       transition: opacity 0.2s;
+      font-size: 15px;
 
       &:hover {
         opacity: 0.6;
@@ -659,10 +658,10 @@
           display: none;
         }
 
-        font-size: 16px;
-        line-height: 24px;
-        color: rgba(0, 0, 0, 0.8);
-        opacity: 0.6;
+        font-size: 14px;
+        line-height: 22px;
+        color: rgba(0, 0, 0, 0.60);
+        opacity: 0.8;
         transition: opacity 0.2s;
 
         &:hover {
