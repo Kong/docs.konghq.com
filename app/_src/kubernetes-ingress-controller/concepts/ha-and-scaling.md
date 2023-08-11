@@ -1,5 +1,5 @@
 ---
-title: High-availability and Scaling
+title: High-availability, Scaling, and robustness
 ---
 
 ## High availability
@@ -88,3 +88,22 @@ cached heavily in-memory) or loaded in-memory directly via a config file.
 One can use a `HorizontalPodAutoscaler` (HPA) based on metrics
 like CPU utilization, bandwidth being used, total request count per second
 to dynamically scale {{site.kic_product_name}} as the traffic profile changes.
+
+{% if_version gte: 2.11.x %}
+
+## Robustness
+
+In case of a well-configured and active Kubernetes configuration gets broken by
+the user (e.g., some resources get misconfigured), {{site.kic_product_name}} is
+capable of storing the last valid configuration in memory and using it for the new
+Kong instances, in case Kong gets scaled up, or Kong pods restart for any reason.
+In this way, the scaling feature of Kong keeps working even in scenarios where
+the configuration is no more valid.
+Additionally, assuming the same scenario of above (broken configuration) if there
+is at least a Kong instance deployed, configured and running, and {{site.kic_product_name}}
+pod restarts for any reason, {{site.kic_product_name}} fetches the last valid configuration
+from the running Kong instances and stores it in memory, to increase robustness
+even against {{site.kic_product_name}} pod restarts. The only scenario with no
+possible recovery of the previous state is when there is no Kong instance running
+with the old valid configuration, and the {{site.kic_product_name}} pod restart.
+{% endif_version %}
