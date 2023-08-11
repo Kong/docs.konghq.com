@@ -360,6 +360,9 @@
 - release: "2.10.x"
   version: "2.10.0"
   edition: "kubernetes-ingress-controller"
+- release: "2.11.x"
+  version: "2.11.0"
+  edition: "kubernetes-ingress-controller"
 - edition: mesh
   version: 1.2.6
   release: 1.2.x

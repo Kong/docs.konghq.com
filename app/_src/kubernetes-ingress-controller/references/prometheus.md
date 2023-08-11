@@ -29,14 +29,15 @@ This metric provides the following labels:
     * `other`: Other issues, such as {{site.base_gateway}} reporting a non-conflict error.
 {% endif_version %}
 
-
 ### ingress_controller_translation_count
+
 `ingress_controller_translation_count` (type: `counter`) provides the number of translations from the Kubernetes state to the {{site.base_gateway}} state.
 
 This metric provides the `success` label. `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.
 If `success` is `true`, the translation succeeded with no errors.
 
 ### ingress_controller_configuration_push_duration_milliseconds
+
 `ingress_controller_configuration_push_duration_milliseconds` (type: `histogram`) is the amount of time, in milliseconds, that it takes to push the configuration to {{site.base_gateway}}.
 
 This metric provides the following labels:
@@ -46,6 +47,29 @@ This metric provides the following labels:
 * `dataplane` describes the data plane that was the target of configuration push.
 {% endif_version %}
 * `success` logs the status of configuration updates. If `success` is `false`, an unrecoverable error occurred.  If `success` is `true`, the push succeeded with no errors.
+
+{% if_version gte:2.11.x %}
+### ingress_controller_configuration_push_broken_resource_count
+
+`ingress_controller_configuration_push_broken_resource_count` (type: `counter`) provides the number of resources not accepted by {{site.base_gateway}} when attempting to push configuration.
+
+This metric provides the following labels:
+
+* `dataplane` describes the data plane that was the target of the configuration push
+
+### ingress_controller_configuration_push_last_successful
+
+`ingress_controller_configuration_push_last_successful` (type: `gauge`) provides the time of the last successful configuration push.
+
+This metric provides the following labels:
+
+* `dataplane` describes the data plane that was the target of the configuration push
+
+### ingress_controller_translation_broken_resource_count
+
+`ingress_controller_translation_broken_resource_count` (type: `gauge`) provides the number of resources that the controller cannot successfully translate to {{site.base_gateway}} configuration.
+
+{% endif_version %}
 
 ## Low-level performance metrics
 
