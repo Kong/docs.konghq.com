@@ -129,7 +129,6 @@
 /gateway/VERSION/reference/db-less-and-declarative-config/: "/gateway/VERSION/production/deployment-topologies/db-less-and-declarative-config/"
 /gateway/VERSION/reference/loadbalancing/: "/gateway/VERSION/how-kong-works/load-balancing/"
 /gateway/VERSION/reference/proxy/: "/gateway/VERSION/how-kong-works/routing-traffic/"
-/gateway/VERSION/reference/rate-limiting/: "/gateway/VERSION/kong-plugins/rate-limiting/algorithms/rate-limiting/"
 /gateway/VERSION/reference/health-checks-circuit-breakers/: "/gateway/VERSION/how-kong-works/health-checks/"
 /gateway/VERSION/reference/clustering/: "/gateway/VERSION/production/clustering/"
 /gateway/VERSION/pdk/: "/gateway/VERSION/plugin-development/pdk/"
