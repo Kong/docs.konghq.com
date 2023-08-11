@@ -64,7 +64,7 @@ function updateVersionSelectItems () {
     .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
     .map((productVersion) => ({
       value: productVersion.id,
-      label: `${productVersion.name}${productVersion.deprecated ? ' (Deprecated)' : ''}`,
+      label: `${versionToRelease(productVersion.name)}${productVersion.deprecated ? ' (Deprecated)' : ''}`,
       selected: productVersion.id === props.activeProductVersionId
     })) || []
 }
@@ -99,8 +99,20 @@ function onSelectedVersion (event) {
     return;
   }
   const currentPath = window.location.pathname;
-  let newPathname = currentPath.split('/').slice(0, -2).concat(version.name).join('/').concat('/')
+  let versionSegment = versionToRelease(version.name);
+
+  let newPathname = currentPath.split('/').slice(0, -2).concat(versionSegment).join('/').concat('/')
   window.location.pathname = newPathname;
+}
+
+function versionToRelease(version) {
+  let versionSegment;
+  if (/\d\.\d\.\d(\.\d)?/.test(version)) {
+    versionSegment = version.split('.').slice(0, -1).join('.').concat('.x');
+  } else {
+    versionSegment = version;
+  }
+  return versionSegment;
 }
 </script>
 

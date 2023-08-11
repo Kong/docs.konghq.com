@@ -86,5 +86,35 @@ RSpec.describe OasDefinition::PageData do
         ])
       end
     end
+
+    context 'API version that follows semver' do
+      let(:latest) { false }
+      let(:file) { '_api/gateway/admin-ee/_index.md' }
+      let(:product) do
+        JSON.parse(
+          File.read('spec/fixtures/app/_data/konnect_oas_data.json')
+        ).detect{ |p| p['id'] == '937dcdd7-4485-47dc-af5f-b805d562552f' }
+      end
+      let(:version) do
+        product['versions'].detect { |v| v['name'] == '3.4.0.0' }
+      end
+
+      it 'generates the necessary page data, and replaces the version with the corresponding release in the url' do
+        expect(subject['source_file']).to eq(file)
+        expect(subject['dir']).to eq('/gateway/api/admin-ee/3.4.0.x/')
+        expect(subject['product']['id']).to eq('937dcdd7-4485-47dc-af5f-b805d562552f')
+        expect(subject['permalink']).to eq('/gateway/api/admin-ee/3.4.0.x/')
+        expect(subject['description']).to eq('Kong Gateway (EE) comes with an internal RESTful API for administration purposes. This spec is a Beta version.')
+        expect(subject['title']).to eq('Gateway Admin - EE (Beta) - 3.4.0.0')
+        expect(subject['version']).to eq({ 'name' => '3.4.0.0', 'id' => '25d728a0-cfe3-4cf4-8e90-93a5bb15cfd9' })
+        expect(subject['layout']).to eq('oas/spec')
+        expect(subject['canonical_url']).to eq('/gateway/api/admin-ee/latest/')
+        expect(subject['is_latest']).to eq(false)
+        expect(subject['algolia_docsearch_meta']).to match_array([
+          { 'name' => 'docsearch:title', 'value' => 'Gateway Admin - EE (Beta) - 3.4.0.0' },
+          { 'name' => 'docsearch:description', 'value' => 'Kong Gateway (EE) comes with an internal RESTful API for administration purposes. This spec is a Beta version.' }
+        ])
+      end
+    end
   end
 end

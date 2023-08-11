@@ -46,9 +46,15 @@ module OasDefinition
     end
 
     def version_segment
-      return @version['name'] unless @latest
+      return 'latest' if @latest
 
-      'latest'
+      if Gem::Version.correct? @version['name']
+        version = @version['name'].split('.')
+        version.pop
+        version.join('.').concat('.x')
+      else
+        @version['name']
+      end
     end
 
     def page_title
