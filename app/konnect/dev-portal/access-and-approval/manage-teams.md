@@ -5,14 +5,14 @@ content_type: how-to
 
 A common scenario for a Dev Portal is to restrict developers' ability to view or request access to specific services based on their permissions.
 
-{{site.konnect_short_name}} Portal enables administrators with the ability to define Role-Based Access Control (RBAC) for teams of developers through the Konnect API.
+{{site.konnect_short_name}} Portal enables administrators with the ability to define Role-Based Access Control (RBAC) for teams of developers through the Konnect UI and API.
 
 Portal RBAC supports two different roles for Services that can be applied to a Team of developers:
 
-* API Viewer: provides read access to the documentation associated with a Service.
-* API Consumer: can register applications to consume versions of a Service.
+* API Viewer: Provides developers with read access to the documentation associated with a service.
+* API Consumer: Includes API Viewer permissions as well as allows developers to register applications to consume versions of a service.
 
-You can use the API to create a team, assign a role to the team, and finally, add developers to the team.
+You can use the API and UI to create a team, assign a role to the team, and finally, add developers to the team.
 
 In this guide, you will set up two developer teams (more info about the scenario) and then enable Portal RBAC using a hypothetical scenario.
 
@@ -31,7 +31,7 @@ You've decided to create two groups of developers with different access levels t
 {:.important}
 > **Important:** If you currently have developers in your {{site.konnect_short_name}}, you must configure developer teams before enabling Portal RBAC (which is disabled by default). If you enable Portal RBAC before configuring teams for your developers, it will prevent all developers from seeing any services in your Dev Portal. We recommend setting up your teams and permissions before enabling RBAC which will allow for a seamless transition: developers see what they're supposed to, instead of nothing at all.
 
-### Create an API Product
+### Create an API product
 
 {% navtabs %}
 {% navtab Konnect UI %}
@@ -45,9 +45,11 @@ In {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/us
     * Use the defaults for the remaining fields.
 1. Click **Save**. 
 1. To create an API product for your service, navigate to **API Products** in the sidebar, click **Add API Product** and enter `Classic Pizzas` in the **Product Name** field.
+1. Click **Publish to portal** from the Actions dropdown menu. This will allow developers to see your API product once you assign them to a team.
 1. Click **New Version** from the Actions dropdown menu and enter `v1` in the **Version Name** field and then click **Create**.
 1. Click the **v1** version and then click **Link** to add a service.
 1. Select **default** from the **Select Runtime Group** dropdown menu, select **classic_pizzas** from the **Gateway Service** dropdown menu, and then click **Save**.
+1. Click the **Edit** icon next to the status of your product version and select **Published** from the **Edit version status** dialog and then click **Save**.
 
 {% endnavtab %}
 {% navtab API %}
@@ -57,10 +59,10 @@ In {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/us
 curl --request POST \
   --url https://<region>.api.konghq.com/v2/api-products \
   -- data '{
-    "id": "e7a4f6c0-5777-4a37-bcb9-2d37d3b362ee",
+    "id": "GATEWAY_SERVICE_ID",
     "name": "Classic Pizzas",
     "description": "API product for classic pizzas",
-    "portal_ids": [],
+    "portal_ids": PORTAL_ID,
     "created_at": "2023-01-01T00:00:00.000Z",
     "updated_at": "2023-01-01T00:00:00.000Z",
     "labels": {
@@ -73,16 +75,12 @@ curl --request POST \
 curl --request POST \
   --url https://<region>.api.konghq.com/v2/api-products/<api-product-id>/product-versions \
   -- data '{
-    "id": "9f5061ce-78f6-4452-9108-ad7c02821fd5",
+    "id": "GATEWAY_SERVICE_ID",
     "name": "v1",
     "gateway_service": {
-        "runtime_group_id": "e4d9ebb1-26b4-426a-b00e-cb67044f3baf",
-        "id": "09b4786a-3e48-4631-8f6b-62d1d8e1a7f3"
+        "runtime_group_id": "RUNTIME_GROUP_ID",
         },
-    "publish_status": "unpublished",
-    "deprecated": false,
-    "created_at": "2023-01-01T00:00:00.000Z",
-    "updated_at": "2023-01-01T00:00:00.000Z"
+    "publish_status": "published",
     }'
 ```
 {% endnavtab %}
@@ -108,7 +106,6 @@ First, let's create two developer teams: "Delivery Partners" with API Viewer and
 1. On the **Developers** tab of your new team, click **Add developer** and select a developer to add to the team.
 1. On the **Products** tab of your new team, click **Add Role**.
 1. Select the **Classic Pizzas** product from the dropdown menu and select **API Viewer** from the **Add roles** dropdown menu. 
-1. Enable auto approval?
 {% endnavtab %}
 {% navtab API %}
 1. Create the `Delivery Partners` team:
@@ -149,7 +146,6 @@ curl --request POST \
   "role_name": "API Viewer, API Consumer",
   "entity_id": "5b349722-dfb4-4e78-937c-41526164fa1a",
   "entity_type_name": "Services",
-  "entity_region": "us"
 }'
 ```
 1. Now assign the `API Viewer` role to the `New Partners` team for the same classic pizzas API product with a service ID of `5b349722-dfb4-4e78-937c-41526164fa1a`:
@@ -162,12 +158,7 @@ curl --request POST \
   "role_name": "API Viewer",
   "entity_id": "5b349722-dfb4-4e78-937c-41526164fa1a",
   "entity_type_name": "Services",
-  "entity_region": "us"
 }'
-```
-1. Additionally, you've decided that since the "Delivery Partner" developers have already been vetted, it would speed up the process if you enabled auto approval for their apps. You can enable this by making the following request:
-```bash
-?
 ```
 {% endnavtab %}
 {% endnavtabs %}
