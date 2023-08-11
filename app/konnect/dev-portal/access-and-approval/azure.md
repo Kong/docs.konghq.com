@@ -38,8 +38,6 @@ Kong offers OIDC support to allow Single-Sign-on for {{site.konnect_short_name}}
 
 ## Configure group claims in Azure
 
-Group claims automatically add or remove users from group memberships. To configure group claims, follow these steps: 
-
 1. On your new application page in Azure, click **Token configuration** in the sidebar.
 
 1. Click **+ Add groups claim** and do the following:
