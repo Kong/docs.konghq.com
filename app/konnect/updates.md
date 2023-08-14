@@ -23,13 +23,13 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **{{site.konnect_short_name}} consumer groups enhancements**
 : {{site.konnect_short_name}} now features the same consumer groups enhancements added in the Gateway 3.4 [release](/gateway/changelog). Consumer groups are now a core entity. With consumer groups, you can apply different configurations to select groups of consumers. The following plugins can be scoped to consumer groups:
 
-* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/)
-* [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
-* [Response transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
-* [Request Transformer](/hub/kong-inc/request-transformer)
-* [Response Transformer](/hub/kong-inc/response-transformer)
-
-See the consumer groups [documentation](/gateway/latest/kong-enterprise/consumer-groups/) to learn more.
+  * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/)
+  * [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
+  * [Response transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
+  * [Request Transformer](/hub/kong-inc/request-transformer)
+  * [Response Transformer](/hub/kong-inc/response-transformer)
+  
+  See the consumer groups [documentation](/gateway/latest/kong-enterprise/consumer-groups/) to learn more.
 
 ## July 2023
 
