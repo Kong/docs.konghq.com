@@ -11,6 +11,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## August 2023
 
+**Gateway 3.4 Support**
+: Konnect now supports the latest Gateway release version of 3.4 including all [Konnect-compatible plugins](/konnect/compatibility/).
+
 **Vault Secret Rotation**
 : {{site.konnect_short_name}} now supports the rotation of secrets stored in vaults without restarting the gateway. This allows you to securely manage your secrets. For more information, see [Set Up and Use a Vault in {{site.konnect_short_name}}](/konnect/runtime-manager/configuration/vaults/how-to/).
 
