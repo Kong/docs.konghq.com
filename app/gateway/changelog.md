@@ -753,6 +753,50 @@ This should be a 400 because the configuration is invalid.
 * When the OpenID Connect (OIDC) plugin is configured to reference HashiCorp Vault in the `config.client_secret` field (for example, `{vault://hcv/clientSecret}`),
 it does not look up the secret correctly.
 
+## 3.2.2.4
+**Release Date** 2023/08/21
+
+### Enterprise
+
+#### Breaking Changes
+
+- Ubuntu 18.04 artifacts are no longer supported as they are end-of-life.
+- Amazon Linux 2022 artifacts are renamed to Amazon Linux 2023, based on AWS's own renaming.
+
+#### Deprecations
+
+- **CentOS packages are now removed from the release and are no longer supported in future versions.**
+
+#### Dependencies
+
+* `lua-resty-kafka` is bumped from 0.15 to 0.16
+
+#### Fixes
+
+* Updated the datafile library to make the SAML plugin work again when Kong is controlled by systemd.
+* Fixed an issue where the anonymous report couldn't be silenced by setting `anonymous_reports=false`.
+* Fixed an issue where a crashing Go plugin server process would cause subsequent requests proxied through Kong to execute Go plugins with inconsistent configurations. The issue only affected scenarios where the same Go plugin is applied to different route or service entities. [#6208](https://github.com/Kong/kong-ee/pull/6208) THIS IS STILL IN PROGRESS?
+
+### Plugins
+#### Fixes
+
+* OpenID-Connect
+  * The correct table key on 'log' and 'message' is now set.
+  * If an invalid opaque token is provided but verification fails, the correct error now prints.
+
+
+### Kong Manager
+#### Fixes
+
+* Fixed an issue where the Zipkin plugin prevented users from editing the `static_tags` configuration.
+* Fixed an issue where the unavailable Datadog Tracing plugin displayed on the plugin installation page.
+* Fixed an issue where some metrics were missing from the Statsd plugin. [#2493](https://github.com/Kong/kong-admin/pull/2493)
+* Fixed an issue where locale files were not found when using a non-default `admin_gui_path` configuration.
+* Fixed an issue where endpoint permissions for application instances did not work as expected.
+* Fixed an issue where some icons were shown as unreadable symbols and characters.
+* Fixed an issue where users were redirected to pages under the default workspace when clicking links for service or routes of entities residing in other workspaces. [#2363](https://github.com/Kong/kong-admin/pull/2363)
+* Fixed an issue that caused OpenID Connect in Kong Manager to fail to redirect if it was provided with an incorrect username.
+
 ## 3.2.2.3 
 **Release Date** 2023/06/07
 
