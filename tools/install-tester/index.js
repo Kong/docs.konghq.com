@@ -1,5 +1,5 @@
 if (!process.env.BASE_URL) {
-  process.env.BASE_URL = "http://localhost:3000";
+  process.env.BASE_URL = "http://localhost:8888";
 }
 
 // Parse a format like [2.6.x/rhel/oss/yum-repository] into
@@ -93,37 +93,44 @@ async function runSingleJob(distro, job, installOption, conditions) {
   const expected = job.outputs[installOption.package];
   debug(`Expecting: ${expected}`);
 
-  const { jobConfig, version, stdout, stderr } = await run(
-    distro,
-    installOption.blocks,
-  );
-  debug(`Got: ${version}`);
+  try {
+    const { jobConfig, version, stdout, stderr } = await run(
+      distro,
+      installOption.blocks,
+    );
+    debug(`Got: ${version}`);
 
-  // Create a file to re-run the command in one + debug
-  fs.writeFileSync(
-    `./output/${job.version}-${distro}-${installOption.package}-${installOption.type}.txt`,
-    `docker run --platform linux/amd64 -it ${
-      jobConfig.image
-    } bash -c "${jobConfig.commands
-      .replace(/"/g, '\\"')
-      .replace(
-        /\$/g,
-        "\\$",
-      )}; sleep 100000"\n\nSTDOUT:\n${stdout}\n\nSTDERR:\n${stderr}`,
-  );
+    // Create a file to re-run the command in one + debug
+    fs.writeFileSync(
+      `./output/${job.version}-${distro}-${installOption.package}-${installOption.type}.txt`,
+      `docker run --platform linux/amd64 -it ${
+        jobConfig.image
+      } bash -c "${jobConfig.commands
+        .replace(/"/g, '\\"')
+        .replace(
+          /\$/g,
+          "\\$",
+        )}; sleep 100000"\n\nSTDOUT:\n${stdout}\n\nSTDERR:\n${stderr}`,
+    );
 
-  if (expected !== version) {
-    console.log(`❌ ${summary} Expected: ${expected}, Got: ${version}`);
-    process.exitCode = 1;
+    if (expected !== version) {
+      console.log(`❌ ${summary} Expected: ${expected}, Got: ${version}`);
+      process.exitCode = 1;
 
-    allStderr += `\n\n---------------------------------------\n❌ ${summary}\n---------------------------------------\n${stderr}`;
+      allStderr += `\n\n---------------------------------------\n❌ ${summary}\n---------------------------------------\n${stderr}`;
 
+      if (!process.env.CONTINUE_ON_ERROR) {
+        console.log(allStderr);
+        process.exit(1);
+      }
+    } else {
+      console.log(`✅ ${summary}`);
+    }
+  } catch (e) {
+    console.log(`⚠️ ${summary} ${e.message}`);
     if (!process.env.CONTINUE_ON_ERROR) {
-      console.log(allStderr);
       process.exit(1);
     }
-  } else {
-    console.log(`✅ ${summary}`);
   }
 
   debug(`====== END ${marker} ======`);

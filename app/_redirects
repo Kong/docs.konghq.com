@@ -45,6 +45,7 @@
 /gateway/:version/kong-plugins/graphql/  /hub/kong-inc/graphql-proxy-cache-advanced/how-to/
 /gateway/:version/kong-plugins/grpc/     /hub/kong-inc/grpc-gateway/
 /gateway/:version/kong-plugins/configuring-a-grpc-service/    /gateway/:version/production/configuring-a-grpc-service/
+/gateway/:version/kong-plugins/algorithms/rate-limiting/      /gateway/:version/reference/rate-limiting/
 
 # CONTRIBUTING & STYLE GUIDE
 /contributing/plugin-docs/               /contributing/contribution-templates/
