@@ -23,6 +23,17 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **{{site.konnect_short_name}} Analytics display increase from 15 to 50**
 : In our continuous efforts to optimize your custom reporting experience with {{site.konnect_short_name}} Analytics, we've expanded the display limit from 15 to 50, providing a more comprehensive data view. Accompanying this change, we've refined our UI with enhanced tooltip functionality. Now, by simply clicking on report content, users can lock a tooltip in place. This feature not only allows for intuitive drag-and-drop repositioning but also enables scrolling within the tooltip to easily access additional data points.
 
+**{{site.konnect_short_name}} consumer groups enhancements**
+: {{site.konnect_short_name}} now features the same consumer groups enhancements added in the Gateway 3.4 [release](/gateway/changelog). Consumer groups are now a core entity. With consumer groups, you can apply different configurations to select groups of consumers. The following plugins can be scoped to consumer groups:
+
+  * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/)
+  * [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
+  * [Response transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
+  * [Request Transformer](/hub/kong-inc/request-transformer)
+  * [Response Transformer](/hub/kong-inc/response-transformer)
+  
+  See the consumer groups [documentation](/gateway/latest/kong-enterprise/consumer-groups/) to learn more.
+
 ## July 2023
 
 **API Products API released**
