@@ -1,5 +1,5 @@
 ---
-title: High-availability, Scaling, and robustness
+title: High-availability, Scaling, and Robustness
 ---
 
 ## High availability
@@ -91,19 +91,26 @@ to dynamically scale {{site.kic_product_name}} as the traffic profile changes.
 
 {% if_version gte: 2.11.x %}
 
-## Robustness
+## Last Known Good Configuration
 
-In case of a well-configured and active Kubernetes configuration gets broken by
-the user (e.g., some resources get misconfigured), {{site.kic_product_name}} is
-capable of storing the last valid configuration in memory and using it for the new
-Kong instances, in case Kong gets scaled up, or Kong pods restart for any reason.
-In this way, the scaling feature of Kong keeps working even in scenarios where
-the configuration is no more valid.
-Additionally, assuming the same scenario of above (broken configuration) if there
-is at least a Kong instance deployed, configured and running, and {{site.kic_product_name}}
-pod restarts for any reason, {{site.kic_product_name}} fetches the last valid configuration
-from the running Kong instances and stores it in memory, to increase robustness
-even against {{site.kic_product_name}} pod restarts. The only scenario with no
-possible recovery of the previous state is when there is no Kong instance running
-with the old valid configuration, and the {{site.kic_product_name}} pod restart.
+Prior to {{site.kic_product_name}} 2.11, new pods will not receive a valid
+configuration and will be unable to proxy traffic if your Kubernetes API server
+contains an invalid Kong configuration.
+
+{{site.kic_product_name}} 2.11 stores the last valid configuration in memory and
+uses it to configure new pods. Any pods created due to scale out events or pod
+restarts will receive the latest configuration that was accepted by any Kong pod.
+
+{:.note}
+> **Note:** Any changes you make with `kubectl` will not be reflected until the
+> Kubernetes API server state is fixed. This feature is designed to keep your
+> deployment online until an operator can fix the k8s server state.
+
+If the {{site.kic_product_name}} pod is restarted with a broken configuration
+on the Kubernetes API server, it will fetch the last valid configuration from an
+existing Kong instance and store it in memory.
+
+If there are no running proxy pods when the controller is restarted the last
+known good configuration will be lost. In this event, please fix the configuration
+on your Kubernetes API server.
 {% endif_version %}
