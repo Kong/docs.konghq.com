@@ -106,7 +106,7 @@ To install a valid license via Helm:
   * `kong-mesh-system` is the namespace where Kong Mesh control plane is installed
   * `/path/to/license.json` is the path to a valid license file. The filename should be `license.json` unless otherwise specified in `values.yaml`.
 
-1. Modify the `values.yaml` file to point to the secret. For example:
+2. Modify the `values.yaml` file to point to the secret. For example:
 
   ```yaml
   kuma:
