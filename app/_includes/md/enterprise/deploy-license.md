@@ -121,7 +121,13 @@ substituting your own license key.
 
 1. Include the license as part of the `docker run` command when starting a {{site.base_gateway}} container:
 
-    {% if_version lte:2.8.x %}
+    {% if_version lte:2.5.x %}
+    {:.note}
+    > **Note:** This is only a snippet. For a full working example, see the instructions to
+    [Install Kong Gateway on Docker](/enterprise/{{page.kong_version}}/deployment/installation/docker/).
+    {% endif_version %}
+
+    {% if_version gte:2.6.x lte:2.8.x %}
     {:.note}
     > **Note:** This is only a snippet. For a full working example, see the instructions to
     [Install Kong Gateway on Docker](/gateway/{{page.kong_version}}/install-and-run/docker/).
@@ -154,7 +160,13 @@ Include the license as part of the `docker run` command when starting a
 local filesystem to a directory in the Docker container, making the file visible
 from the container:
 
-{% if_version lte:2.8.x %}
+{% if_version lte:2.5.x %}
+{:.note}
+> **Note:** This is only a snippet. For a full working example, see the instructions to
+[Install Kong Gateway on Docker](/enterprise/{{page.kong_version}}/deployment/installation/docker/).
+{% endif_version %}
+
+{% if_version gte:2.6.x lte:2.8.x %}
 {:.note}
 > **Note:** This is only a snippet. For a full working example, see the instructions to
 [Install Kong Gateway on Docker](/gateway/{{page.kong_version}}/install-and-run/docker).
