@@ -7,7 +7,8 @@ You can use the HTTP Log plugin to send {{site.base_gateway}} logs to Splunk.
 
 {:.note}
 > **Note**: The following example uses Splunk 9.0.2. If you are using a different version of Splunk,
-check the Splunk documentation for the appropriate method.
+check the [Splunk documentation](https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTinput)
+for the appropriate method.
 
 ## Prerequisites
 
@@ -15,7 +16,7 @@ You have a Splunk authorization token.
 
 ## Send raw text to HEC
 
-To send raw text, use the [`/services/collector/raw`](https://docs.splunk.com/Documentation/Splunk/9.1.0/RESTREF/RESTinput#services.2Fcollector.2Fraw) Splunk endpoint.
+To send raw text, use the [`/services/collector/raw`](https://docs.splunk.com/Documentation/Splunk/latest/RESTREF/RESTinput#services.2Fcollector.2Fraw) Splunk endpoint.
 
 For example, assuming that Splunk is running at `https://example.splunkcloud.com:8088/` and its secure token is `123456`,
 you can enable an HTTP Log plugin instance using the following configuration: 
@@ -70,7 +71,7 @@ formats:
 
 Based on this configuration, the HTTP Log plugin sends the logs to `https://example.splunkcloud.com:8088/services/collector/raw` with a secure token.
 
-Logs are sent as JSON objects. See the [Log Format](/hub/kong-inc/http-log/how-to/log-format/) reference for details.
+Logs are sent as JSON objects. See the [Log Format](/hub/kong-inc/http-log/#log-format) reference for details.
 
 ## More information
 

@@ -6,10 +6,25 @@ The HTTP Log plugin lets you send request and response logs to an HTTP server.
 
 It also supports stream data (TCP, TLS, and UDP).
 
-## Features
+## Log format
+
+{% if_plugin_version lte:3.2.x %}
+{:.note}
+> **Note:** If the `queue_size` argument > 1, a request is logged as an array of JSON objects.
+{% endif_plugin_version %}
+{% if_plugin_version gte:3.3.x %}
+{:.note}
+> **Note:** If the `max_batch_size` argument > 1, a request is logged as an array of JSON objects.
+{% endif_plugin_version %}
+
+{% include /md/plugins-hub/log-format.md %}
+
+### JSON object descriptions
+
+{% include /md/plugins-hub/json-object-log.md %}
 
 {% if_plugin_version gte:3.3.x %}
-### Queueing
+## Queueing
 
 The HTTP Log plugin uses internal queues to decouple the production of
 log entries from their transmission to the upstream log server.  In
@@ -23,7 +38,7 @@ share one queue.
 
 {% if_plugin_version gte:3.0.x %}
 
-### Custom Headers
+## Custom Headers
 
 The log server that receives these messages might require extra headers, such as for authorization purposes.
 
@@ -40,7 +55,7 @@ The log server that receives these messages might require extra headers, such as
 
 {% if_plugin_version lte:2.8.x %}
 
-### Custom Headers
+## Custom Headers
 
 The log server that receives these messages might require extra headers, such as for authorization purposes.
 
@@ -56,14 +71,19 @@ The log server that receives these messages might require extra headers, such as
 
 {% endif_plugin_version %}
 
-### Kong process errors
+## Kong process errors
 
 {% include /md/plugins-hub/kong-process-errors.md %}
+
+{% if_plugin_version gte:2.4.x %}
+
+## Custom fields by Lua
+
+{% include /md/plugins-hub/log_custom_fields_by_lua.md %}
+
+{% endif_plugin_version %}
 
 ## Get started with the HTTP Log plugin
 * [Configuration reference](/hub/kong-inc/http-log/configuration/)
 * [Basic configuration example](/hub/kong-inc/http-log/how-to/basic-example/)
-* [Using custom fields by Lua](/hub/kong-inc/http-log/how-to/custom-fields/)
 * [Configure HTTP Log to send logs to Splunk](/hub/kong-inc/http-log/how-to/custom-fields/)
-* [Log format reference](/hub/kong-inc/http-log/how-to/log-format/)
-
