@@ -87,9 +87,9 @@ Install {{site.base_gateway}} on Ubuntu from the command line.
 1. Download the Kong package:
 
 {% assign ubuntu_flavor = "jammy" %}
-{% if_version eq:3.0.x %}
+{% if page.release == "3.0.x" %}
 {% assign ubuntu_flavor = "bionic" %}
-{% endif_version %}
+{% endif %}
 
 {% capture download_package %}
 {% navtabs_ee codeblock %}
