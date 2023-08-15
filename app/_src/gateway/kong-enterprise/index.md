@@ -132,7 +132,7 @@ For example, you could define three consumer groups:
 
 {% if_version lte:3.3.x %}
 [Set up consumer groups &rarr;](/hub/kong-inc/rate-limiting-advanced/how-to/)
-[Consuemr groups API reference](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference/)
+[Consumer groups API reference](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference/)
 {% endif_version %}
 {% if_version gte:3.4.x %}
 [Set up consumer groups &rarr;](/hub/kong-inc/rate-limiting-advanced/how-to/)
