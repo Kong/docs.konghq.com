@@ -56,7 +56,34 @@ In {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/us
 {:.note}
 > **Note:** Make sure you replace the placeholders in the following API requests with information specific to your environment. 
 
-1. Create the service?
+1. Create the `classic_pizzas` service:
+```bash
+curl --request POST \
+  --url https://<region>.api.konghq.com/v2/<runtime-group-id>/core-entities/services \
+  -- data '{
+    "name": "classic_pizzas",
+    "retries": 5,
+    "protocol": "http",
+    "host": "example.com",
+    "port": 80,
+    "path": "/classic_pizzas",
+    "connect_timeout": 6000,
+    "write_timeout": 6000,
+    "read_timeout": 6000,
+    "tags": [
+      "user-level"
+    ],
+    "client_certificate": {
+      "id": "CERTIFICATE_ID"
+    },
+    "tls_verify": true,
+    "tls_verify_depth": null,
+    "ca_certificates": [
+      "CA_CERTIFICATE_ID"
+    ],
+    "enabled": true
+  }'
+```
 1. Create the `Classic Pizzas` API product:
 ```bash
 curl --request POST \
