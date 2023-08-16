@@ -763,8 +763,8 @@ as [Standard Support for Ubuntu 18.04 has ended as of June 2023](https://wiki.ub
 Starting with Kong Gateway 3.2.2.4, Kong is not building new Ubuntu 18.04
 images or packages, and Kong will not test package installation on Ubuntu 18.04.
 
-    If you need to install Kong Gateway on Ubuntu 18.04, see the documentation for
-    [previous versions](/gateway/3.1.x/install/linux/ubuntu/).
+    If you need to install Kong Gateway on Ubuntu 18.04, substitute a previous 3.2.x 
+    patch version in the [installation instructions](/gateway/3.2.x/install/linux/ubuntu/).
 - Amazon Linux 2022 artifacts are renamed to Amazon Linux 2023, based on AWS's own renaming.
 
 ### Fixes
