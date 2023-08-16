@@ -79,8 +79,7 @@
         - text: Overview
           url: /gateway-manager/configuration/
         - text: Create Consumer Groups
-          url: https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/how-to/
-          absolute_url: true
+          url: ../../hub/kong-inc/rate-limiting-advanced/how-to
         - text: Secrets Management
           items:
             - text: Overview
