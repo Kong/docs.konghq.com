@@ -577,23 +577,17 @@ jQuery(function () {
 
 
   var ctaKonnectCardClosed = getCookie("konnect-cta-card");
-  if (ctaKonnectCardClosed !== "") {
-    $(".konnect-cta-card").addClass("hide");
+  if (ctaKonnectCardClosed === "") {
+    $("#modal-open").click();
   }
-  $(".konnect-cta-card .button").on("click", function(e) {
-    e.stopPropagation();
 
+  $(".konnect-cta-card .button").on("click", function(e) {
     setCookie("konnect-cta-card", "true");
-    $(".konnect-cta-card").addClass("hide");
   });
 
   $(".cta-card-close").on("click", function(e) {
-    e.stopPropagation();
     e.preventDefault();
-
     setCookie("konnect-cta-card", "false");
-    $(e.target).closest(".konnect-cta-card").addClass("hide");
-
     analytics.track("Docs Konnect CTA Dismissed");
   });
 });
