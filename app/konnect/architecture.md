@@ -11,7 +11,7 @@ anywhere, on-premise or in the cloud.
 
 > Figure 1: Diagram of {{site.konnect_short_name}} modules.
 
-Runtime instances, acting as data planes, listen for traffic on the proxy port 443
+Data Plane Nodes, acting as data planes, listen for traffic on the proxy port 443
 by default. The {{site.konnect_short_name}} data plane evaluates
 incoming client API requests and routes them to the appropriate backend APIs.
 While routing requests and providing responses, policies can be applied with

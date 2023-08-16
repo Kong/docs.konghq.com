@@ -42,7 +42,7 @@ preferred network environment.
 
   <a href="/konnect/runtime-manager/runtime-instances/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/konnect/icn-runtimes-nav.svg" alt="">
-    <div class="install-text">Set up Runtime Instances</div>
+    <div class="install-text">Set up Data Plane Nodes</div>
   </a>
 
   <a href="/deck/guides/konnect/" class="docs-grid-install-block no-description">
@@ -71,17 +71,17 @@ across the organization’s applications.
 [Start cataloging services with Service Hub &rarr;](/konnect/servicehub)
 
 
-### Runtime Manager
+### Gateway Manager
 
-[Runtime Manager](/konnect/runtime-manager/) empowers your teams to securely
+[Gateway Manager](/konnect/runtime-manager/) empowers your teams to securely
 collaborate and manage their own set of runtimes and services without
-the risk of impacting other teams and projects. Runtime Manager instantly
+the risk of impacting other teams and projects. Gateway Manager instantly
 provisions hosted {{site.base_gateway}} control planes and supports securely
 attaching {{site.base_gateway}} data planes from your cloud or hybrid environments.
 
-Through the Runtime Manager, increase the security of your APIs with out-of-the-box enterprise and community plugins, including OpenID Connect, Open Policy Agent, Mutual TLS, and more.
+Through the Gateway Manager, increase the security of your APIs with out-of-the-box enterprise and community plugins, including OpenID Connect, Open Policy Agent, Mutual TLS, and more.
 
-[Learn more about the Runtime Manager &rarr;](/konnect/runtime-manager/)
+[Learn more about the Gateway Manager &rarr;](/konnect/runtime-manager/)
 
 [Check out {{site.konnect_short_name}}-compatible plugins &rarr;](/hub)
 

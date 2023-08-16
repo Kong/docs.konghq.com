@@ -13,7 +13,7 @@ The {{site.konnect_saas}} control plane uses the following ports:
 
 Kong's hosted control plane expects traffic on these ports, so they can't be customized. 
 
-## Runtime instance ports
+## Data Plane Node ports
 
 By default, {{site.base_gateway}} listens on the following ports:
 
@@ -29,29 +29,29 @@ want to use port `3001` for the proxy, map `3001:8000`.
 
 ## Hostnames
 
-Depending on your Runtime Group type, you may need to add hostnames to your firewall allowlist.
+Depending on your control plane type, you may need to add hostnames to your firewall allowlist.
 
 {% navtabs %}
 {% navtab Kong Gateway %}
-Runtime instances initiate the connection to the {{site.konnect_short_name}} control plane.
+Data Plane Nodes initiate the connection to the {{site.konnect_short_name}} control plane.
 They require access through firewalls to communicate with the control plane.
 
-To let runtime instances request and receive configuration, and send telemetry data,
+To let a data plane node request and receive configuration, and send telemetry data,
 add the following hostnames to the firewall allowlist:
 
 * `cloud.konghq.com`: The {{site.konnect_short_name}} platform.
 * `<region>.api.konghq.com`: The {{site.konnect_short_name}} API.
   Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations.
   Region can be `us`, `eu`, or `global`.
-* `<runtime-group-id>.<region>.cp0.konghq.com`: Handles configuration for a runtime group.
-  Runtime instances connect to this host to receive configuration updates.
-  This hostname is unique to each organization and runtime group.
-* `<runtime-group-id>.<region>.tp0.konghq.com`: Gathers telemetry data for a runtime group.
-  This hostname is unique to each organization and runtime group.
+* `<runtime-group-id>.<region>.cp0.konghq.com`: Handles configuration for a control plane.
+  Data plane nodes connect to this host to receive configuration updates.
+  This hostname is unique to each organization and control plane.
+* `<runtime-group-id>.<region>.tp0.konghq.com`: Gathers telemetry data for a control plane.
+  This hostname is unique to each organization and control plane.
 
-You can find the configuration and telemetry hostnames through the Runtime Manager:
+You can find the configuration and telemetry hostnames through the Gateway Manager:
 
-1. Open a runtime group.
+1. Open a control plane.
 2. Click **Add runtime instance**.
 3. Choose the Linux or Kubernetes tab and note the hostnames in the code block
    for the following parameters:
@@ -69,22 +69,22 @@ You can find the configuration and telemetry hostnames through the Runtime Manag
 {{site.kic_product_name}} initiates the connection to the {{site.konnect_short_name}} [Runtime Configuration API](/konnect/api/runtime-groups-config/) to:
 
 * Synchronize the configuration of the {{site.base_gateway}} instances with {{site.konnect_short_name}}
-* Register runtime instances
+* Register data plane nodes
 * Fetch license information
 
-Runtime instances initiate the connection to {{site.konnect_short_name}} APIs to report Analytics data.
+Data plane nodes initiate the connection to {{site.konnect_short_name}} APIs to report Analytics data.
 
 The following hostnames must be allowed through firewalls to enable these connections:
 
 * `cloud.konghq.com`: The {{site.konnect_short_name}} platform.
 * `<region>.api.konghq.com`: The {{site.konnect_short_name}} API.
-* `<runtime-group-id>.<region>.tp0.konghq.com`: Telemetry endpoint for a runtime group, required for Analytics.
-  This hostname is unique to each organization and runtime group. 
+* `<runtime-group-id>.<region>.tp0.konghq.com`: Telemetry endpoint for a control plane, required for Analytics.
+  This hostname is unique to each organization and control plane. 
 
-You can find the Telemetry hostname through the Runtime Manager:
+You can find the Telemetry hostname through the Gateway Manager:
 
-1. Open a runtime group.
-2. Click **Runtime group actions** > **View Connection Instructions**.
+1. Open a control plane.
+2. Click **control plane actions** > **View Connection Instructions**.
 3. Look for the following parameter in the `Install the KIC` section: 
 
     ```
