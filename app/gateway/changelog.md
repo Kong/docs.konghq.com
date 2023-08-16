@@ -33,6 +33,10 @@ See the new [consumer groups](https://developer.konghq.com/spec/937dcdd7-4485-47
 
 ### Features 
 
+#### Deployment
+
+* Kong Gateway is now available on [RHEL 9](https://cloudsmith.io/~kong/repos/gateway-34/packages/?q=distribution%3Arhel+AND+distribution%3A9).
+
 #### Enterprise
 
 * Introduced the [`cascade`](/gateway/latest/admin-api/workspaces/reference/#delete-a-workspace) option for 
