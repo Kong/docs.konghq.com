@@ -3,8 +3,16 @@
 # More general/sweeping redirects should be at the bottom.
 
 
+
+
+
+
+
 # Konnect rename
 
+/konnect/runtime-manager/runtime-instances/* /konnect/gateway-manager/data-plane-nodes/:splat
+/konnect/runtime-manager/composite-runtime-groups/*     /konnect/gateway-manager/control-plane-groups/:splat
+/konnect/runtime-manager/runtime-groups/* /konnect/gateway-manager/control-plane-groups/:splat
 /konnect/runtime-manager/* /konnect/gateway-manager/:splat
 
 #3.4
