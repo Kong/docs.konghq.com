@@ -110,6 +110,6 @@ For next steps, check out some of the other things you can do in
 
 * If you have existing {{site.base_gateway}} configuration you want to use,
 [import {{site.base_gateway}} entities into {{site.konnect_saas}}](/konnect/getting-started/import)
-* Enable plugins on a [Gateway Service](/konnect/runtime-manager/enable-service-plugin/) or a
-[route](/konnect/runtime-manager/enable-route-plugin/)
+* Enable plugins on a [Gateway Service](/konnect/gateway-manager/enable-service-plugin/) or a
+[route](/konnect/gateway-manager/enable-route-plugin/)
 * [Manage your teams and roles](/konnect/org-management/teams-and-roles/)

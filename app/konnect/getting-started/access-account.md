@@ -58,7 +58,7 @@ reset a password if you forgot it.
 
 If this is your first time using {{site.konnect_short_name}}, follow these guides: 
 
-* [Configure a runtime](/konnect/getting-started/configure-runtime/)
+* [Configure a data plane node](/konnect/getting-started/configure-data-plane-node/)
 * [Proxy and test a service](/konnect/getting-started/deploy-service/)
 * [Productize a service](/konnect/getting-started/productize-service/)
 

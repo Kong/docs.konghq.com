@@ -39,9 +39,9 @@ After creating the new version, you will see **Link with a Gateway Service** as 
 
 1. Select **Link with a Gateway Service**. 
 
-    Choose a [runtime group](/konnect/runtime-manager/runtime-groups/) and [Gateway Service](/konnect/runtime-manager/configuration/#gateway-services) to
+    Choose a [control plane](/konnect/gateway-manager/control-plane-groups/) and [Gateway Service](/konnect/gateway-manager/configuration/#gateway-services) to
     deploy this API product version to. This lets you deploy to a specific group of
-    runtime instances in a specific environment.
+    data plane nodes in a specific environment.
 1. Click **Save**.
 
 ## Publish an API product
