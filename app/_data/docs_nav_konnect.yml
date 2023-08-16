@@ -20,7 +20,7 @@
         - text: Control Plane Upgrades FAQ
           url: /upgrade-faq/
         - text: Supported Installation Options
-          url: /runtime-manager/runtime-instances/
+          url: /gateway-manager/data-plane-nodes/
 
 - title: Get Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
@@ -44,67 +44,66 @@
     - text: Import Kong Gateway Entities into Konnect
       url: /getting-started/import/
 
-- title: Runtime Manager
+- title: Gateway Manager
   icon: /assets/images/icons/konnect/icn-runtimes-nav.svg
   items:
     - text: Overview
-      url: /runtime-manager/
-    - text: Runtime Instances
+      url: /gateway-manager/
+    - text: Data Plane Nodes
       items:
         - text: Installation Options
-          url: /runtime-manager/runtime-instances/
-        - text: Upgrade a Runtime Instance
-          url: /runtime-manager/runtime-instances/upgrade/
-        - text: Verify a Runtime Instance
-          url: /runtime-manager/runtime-instances/verify-instance/
+          url: /gateway-manager/data-plane-nodes/
+        - text: Upgrade a Data Plane Node
+          url: /gateway-manager/data-plane-nodes/upgrade/
+        - text: Verify a Data Plane Node
+          url: /gateway-manager/data-plane-nodes/verify-instance/
         - text: Renew Data Plane Certificates
-          url: /runtime-manager/runtime-instances/renew-certificates/
+          url: /gateway-manager/data-plane-nodes/renew-certificates/
         - text: Runtime Parameter Reference
-          url: /runtime-manager/runtime-instances/runtime-parameter-reference/
+          url: /gateway-manager/data-plane-nodes/runtime-parameter-reference/
         - text: Using Custom DP Labels
-          url: /runtime-manager/runtime-instances/custom-dp-labels
-    - text: Composite Runtime Groups
+          url: /gateway-manager/data-plane-nodes/custom-dp-labels
+    - text: Control Plane Groups
       items: 
         - text: Overview
-          url: /runtime-manager/composite-runtime-groups/
-        - text: Working with Composite Runtime Groups
-          url: /runtime-manager/composite-runtime-groups/how-to/
-        - text: Migrate Configuration into Composite Runtime Groups
-          url: /runtime-manager/composite-runtime-groups/migrate/
+          url: /gateway-manager/control-plane-groups/
+        - text: Working with Control Plane Groups
+          url: /gateway-manager/control-plane-groups/how-to/
+        - text: Migrate Configuration into Control Plane Groups
+          url: /gateway-manager/control-plane-groups/migrate/
         - text: Conflicts in Runtime Groups
-          url: /runtime-manager/composite-runtime-groups/conflicts/
+          url: /gateway-manager/control-plane-groups/conflicts/
 
     - text: Runtime Configuration
       items:
         - text: Overview
-          url: /runtime-manager/configuration/
+          url: /gateway-manager/configuration/
         - text: Create Consumer Groups
-          url: https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/how-to/
-          absolute_url: true
+          url: ../../hub/kong-inc/rate-limiting-advanced/how-to
         - text: Secrets Management
           items:
             - text: Overview
-              url: /runtime-manager/configuration/vaults/
+              url: /gateway-manager/configuration/vaults/
             - text: Set Up and Use a Vault in Konnect
-              url: /runtime-manager/configuration/vaults/how-to/
+              url: /gateway-manager/configuration/vaults/how-to/
         - text: Manage Runtime Configuration using decK
-          url: /runtime-manager/declarative-config/
+          url: /gateway-manager/declarative-config/
     - text: KIC Association
-      url: /runtime-manager/kic/
+      url: /gateway-manager/kic/
     - text: Manage Plugins
       items:
         - text: Overview
-          url: /runtime-manager/plugins/
+          url: /gateway-manager/plugins/
         - text: Configure a Plugin on a Gateway Service
-          url: /runtime-manager/enable-service-plugin/
+          url: /gateway-manager/enable-service-plugin/
         - text: Configure a Plugin on a Route
-          url: /runtime-manager/enable-route-plugin/
+          url: /gateway-manager/enable-route-plugin/
     - text: Backup and Restore
-      url: /runtime-manager/backup-restore/
+      url: /gateway-manager/backup-restore/
     - text: Version Compatibility
-      url: /runtime-manager/version-compatibility/
+      url: /gateway-manager/version-compatibility/
     - text: Troubleshooting
-      url: /runtime-manager/troubleshoot/
+      url: /gateway-manager/troubleshoot/
 
 - title: Service Hub
   icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
@@ -264,7 +263,7 @@
           url: /api/identity-management/identity-integration/
         - text: SSO Customization
           url: /api/identity-management/sso/
-    - text: Runtime Groups API
+    - text: Control Plane API
       items:
         - text: API Documentation
           url: https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/
