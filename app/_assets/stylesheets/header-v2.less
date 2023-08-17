@@ -1,3 +1,8 @@
+.item-hovered {
+  text-decoration: underline;
+  color: @color-blue !important;
+}
+
 header.navbar-v2 {
   position: fixed;
   left: 0;
@@ -56,6 +61,13 @@ header.navbar-v2 {
     &:last-child {
       flex-grow: 2;
     }
+
+    .item__description, .view-all, .docs-dropdown-li__link {
+      &:hover {
+        .item-hovered();
+      }
+    }
+
   }
 
   .docs-dropdown-li__link {
@@ -193,6 +205,10 @@ header.navbar-v2 {
   .main-menu-item {
     list-style-type: none;
     padding-top: 32px;
+
+    &:hover {
+      .item-hovered();
+    }
   }
 
   .navbar-item-submenu {
@@ -318,9 +334,6 @@ header.navbar-v2 {
         font: 500 16px/24px Roboto;
         transition: color 0.25s;
 
-        a:hover {
-          text-decoration: underline;
-        }
 
         &.with-submenu {
           display: flex;
@@ -336,6 +349,10 @@ header.navbar-v2 {
 
         > a {
           color: #043558;
+        }
+
+        &:hover {
+          .item-hovered();
         }
 
         .navbar-item-submenu {
