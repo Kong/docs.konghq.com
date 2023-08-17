@@ -349,7 +349,7 @@ This will be shown when Enterprise is selected
 {% navtab Kong Gateway (OSS) %}
 ```bash
 This will be shown when OSS is selected
- ```
+```
 {% endnavtab %}
 {% endnavtabs_ee %}
 {% endraw %}
@@ -371,7 +371,7 @@ you can use the indent filter on a capture of your tabs.
 
 <!-- vale off -->
 {% raw %}
-```
+````
 {% capture the_code %}
 {% navtabs codeblock %}
 {% navtab cURL %}
@@ -395,7 +395,7 @@ config.url=<WEBHOOK_URL>
 {% endnavtabs %}
 {% endcapture %}
 {{ the_code | indent }}
-```
+````
 {% endraw %}
 <!-- vale on -->
 
