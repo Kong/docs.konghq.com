@@ -12,7 +12,7 @@ You can administer a Dev Portal instance through the Kong Admin API. Use the
 {:.note}
 > **Note:** The `/developers` API is part of the Kong Admin API, and is meant
 for bulk developer administration.
-This is not the same as the Dev Portal API [`/developer`](https://developer.konghq.com/spec/3e65edbc-364d-4762-9d3e-f13083e1b534/33cd4595-e389-4c2b-80ee-5275f25e80e1#/developer/get-developer) endpoints,
+This is not the same as the Dev Portal API [`/developer`](/dev-portal/api/v1/#/developer/get-developer) endpoints,
 which return data on the logged-in developer.
 
 ## Using the API in workspaces

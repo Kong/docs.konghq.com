@@ -591,5 +591,5 @@ if you need to cycle the group for a new batch of users.
 ## More information
 
 * [Consumer group precedence information](/gateway/latest/key-concepts/plugins/#precedence).
-* [API documentation](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60#/consumer_groups/get-consumer_groups)
+* [API documentation](/gateway/api/admin-ee/3.3.0.x/#/consumer_groups/get-consumer_groups)
 * [Enforcing rate limiting tiers with the Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/how-to/)

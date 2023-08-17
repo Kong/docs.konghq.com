@@ -8,14 +8,14 @@ The pages are generated based on the markdown files under `app/_api/` (one for e
 
 ### OAS configuration file
 
-This file is generated using `tools/konnect-oas-data-generator` which makes a few API requests to Konnect to fetch the [published API products](https://developer.konghq.com/spec/2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6/b4539157-4ced-4df5-affa-7d790baee356#/products/list-products) and [their corresponding versions](https://developer.konghq.com/spec/2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6/b4539157-4ced-4df5-affa-7d790baee356#/versions/list-product-versions). It can be synced by manually triggering the `sync-konnect-oas-data` Github Action.
+This file is generated using `tools/konnect-oas-data-generator` which makes a few API requests to Konnect to fetch the [published API products](/konnect/api/portal/v2/#/products/list-products) and [their corresponding versions](/konnect/api/portal/v2/#/versions/list-product-versions). It can be synced by manually triggering the `sync-konnect-oas-data` Github Action.
 
 
 ### Folder structure
 
 The OAS pages are generated ala single-source by the `OasDefinitionPages::Generator`. Each markdown file under `app/_api/` is treated as the source and **must** have the key `konnect_product_id` in its frontmatter which should match the corresponding `Product Id` in Konnect.
 
-For each file, we fetch its `konnect_product_id`, and based on the information present in `app/_data/konnect_oas_data.json` we generate one page for every version listed there plus an extra `latest` version based on the `latest_version` section present in the [API response](https://developer.konghq.com/spec/2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6/b4539157-4ced-4df5-affa-7d790baee356#/products/list-products).
+For each file, we fetch its `konnect_product_id`, and based on the information present in `app/_data/konnect_oas_data.json` we generate one page for every version listed there plus an extra `latest` version based on the `latest_version` section present in the [API response](/konnect/api/portal/v2/#/products/list-products).
 
 These pages use the `oas/spec.html` layout that sets the `product` and `version` to the `window` object, which are required for the Vue.js app to make the necessary requests to Konnect to render the OpenAPI Specification.
 
