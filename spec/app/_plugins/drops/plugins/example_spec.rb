@@ -70,7 +70,7 @@ RSpec.describe Jekyll::Drops::Plugins::Example do
   end
 
   describe '#konnect' do
-    it { expect(subject.curl).to be_an_instance_of(Jekyll::Drops::Plugins::Examples::Konnect) }
+    it { expect(subject.konnect).to be_an_instance_of(Jekyll::Drops::Plugins::Examples::Konnect) }
   end
 
   describe '#yaml' do
