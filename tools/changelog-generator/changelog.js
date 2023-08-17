@@ -4,7 +4,7 @@ const groupBy = require("lodash.groupby");
 
 const convertFilePathsToUrls = require("../_utilities/path-to-url");
 const now = startOfDay(new Date());
-const earliestDate = subDays(now, 7);
+const earliestDate = subDays(now, 4);
 
 (async function () {
   // Create an octokit instance
@@ -15,6 +15,17 @@ const earliestDate = subDays(now, 7);
 
   const owner = "Kong";
   const repo = "docs.konghq.com";
+  
+  function getVersionFromLabels(labels) {
+    const versions = [];
+    for (let label of labels) {
+        if (label.name.match(/^\d+\.\d+\.x$/)) {
+            versions.push(label.name);
+        }
+    }
+    return versions;
+}
+  
 
   let pulls = await octokit.paginate(
     octokit.pulls.list,
@@ -98,6 +109,7 @@ const earliestDate = subDays(now, 7);
     changelogContent += `## Week ${week}\n\n`;
 
     for (const pr of prsWithFiles[week]) {
+      const prVersion = getVersionFromLabels(pr.labels);
       changelogContent += `### [${pr.title}](${pr.url}) (${format(
         pr.created_at,
         "yyyy-MM-dd",
@@ -105,10 +117,16 @@ const earliestDate = subDays(now, 7);
 
       changelogContent += `${pr.description}\n\n`;
 
-      const addedFiles = pr.affected_files.filter((u) => u.status == "added");
-      const changedFiles = pr.affected_files.filter(
+      let addedFiles = pr.affected_files.filter((u) => u.status == "added");
+      let changedFiles = pr.affected_files.filter(
         (u) => u.status == "modified",
       );
+
+      if (prVersion.length) {
+        addedFiles = addedFiles.filter(file => prVersion.some(version => new RegExp(`/[^/]+/${version}/`).test(file.url)));
+        changedFiles = changedFiles.filter(file => prVersion.some(version => new RegExp(`/[^/]+/${version}/`).test(file.url)));
+      }
+
 
       if (addedFiles.length) {
         changelogContent += `#### Added\n\n`;
