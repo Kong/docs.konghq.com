@@ -672,6 +672,7 @@
 /mesh/konnect/* /mesh/latest/:splat
 /mesh/:version/installation/windows   /mesh/:version/features/windows
 /mesh/:version/policies/meshopa   /mesh/:version/features/meshopa
+/mesh/:version/policies/opapolicy   /mesh/:version/features/opa
 /mesh/:version/policies/meshglobalratelimit   /mesh/:version/features/meshglobalratelimit
 
 # kuma IA redirects (TODO review these they should likely only be for latest and most of them should be in Kuma's `_common_redirects`)
