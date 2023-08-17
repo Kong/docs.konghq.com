@@ -30,7 +30,7 @@ See the new [consumer groups](https://developer.konghq.com/spec/937dcdd7-4485-47
 * Renamed the configuration property `admin_api_uri` to `admin_gui_api_url`.
   The old `admin_api_uri` property is considered deprecated and will be
   fully removed in a future version of Kong Gateway.
-* The RHEL8 Docker image provided by Kong is replaced with the RHEL9 Docker image. The RHEL8 package is still avialable. 
+* The RHEL8 Docker image provided by Kong is replaced with the RHEL9 Docker image. The RHEL8 package is still available [here](https://cloudsmith.io/~kong/repos/gateway-34/packages/?q=distribution%3Arhel+AND+distribution%3A8). 
 
 ### Features 
 
