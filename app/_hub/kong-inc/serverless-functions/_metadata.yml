@@ -6,7 +6,7 @@ categories:
   - serverless
 free: true
 enterprise: true
-konnect_examples: false
+konnect: true
 dbless_compatible: partially
 dbless_explanation: |
   The functions will be executed, but if the configured functions attempt to write to the database, the writes will fail.

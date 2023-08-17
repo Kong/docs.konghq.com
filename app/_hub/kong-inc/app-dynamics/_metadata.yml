@@ -8,4 +8,4 @@ categories:
   - analytics-monitoring
 bundled: false
 dbless_compatible: 'yes'
-konnect_examples: false
+konnect: false
