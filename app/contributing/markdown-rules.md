@@ -193,17 +193,6 @@ avoid qualifiers, and end the statement with a colon (`:`).
 
   ❌ **Don't:** The output will show...
 
-## Placeholders
-
-Use placeholders in both inline text and in code blocks to
-denote a value that the user should edit. Always enclose placeholders in code
-formatting.
-
-### Inline placeholders
-
-If you're adding a placeholder inline, such as in a sentence, enclose it in single
-backticks: \`EXAMPLE_TEXT`
-
 ## Tabs
 
 If your topic provides instructions for two or more methods of completing a
