@@ -5,6 +5,8 @@
   {:.important}
   > This plugin cannot be enabled globally. Please select another tab.
 {% else %}
+
+{% if include.render_intro_text %}
 A plugin which is not associated to any service, route, consumer, or consumer group is
 considered _global_, and will be run on every request.
 
@@ -17,7 +19,6 @@ Read the
 [Plugin Reference](/gateway/latest/admin-api/#add-plugin) and the [Plugin Precedence](/gateway/latest/admin-api/#precedence)
 sections for more information. 
 
-{% if include.render_intro_text %}
 The following examples provide some typical configurations for enabling
 the <code>{{page.name}}</code> plugin globally.
 {% endif %}
@@ -39,6 +40,8 @@ Make the following request:
 Make the following request, substituting your own access token, region, and runtime group ID:
 
 {% include_cached plugins/hub-examples/konnect.html example=hub_example.konnect %}
+
+See the [Konnect API reference](/konnect/api/) to learn about region-specific URLs and personal access tokens.
 
     {% endnavtab %}
     {% endif %}

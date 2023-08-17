@@ -17,12 +17,6 @@ Make the following request:
 
 Replace `CONSUMER_NAME|ID` with the `id` or `name` of the consumer group that this plugin configuration will target.
 
-{% if page.service_id and page.route_id %}
-You can combine `consumer.id`, `service.id`, or `route.id`
-{% elsif page.service_id %} and `service.id`
-{% elsif page.route_id %} and `route.id`
-{% endif %} in the same request, to further narrow the scope of the plugin.
-
   {% endnavtab %}
   {% endif %}
 
@@ -35,12 +29,6 @@ Make the following request, substituting your own access token, region, runtime 
 {% include_cached plugins/hub-examples/konnect.html example=hub_example.konnect %}
 
 See the [Konnect API reference](/konnect/api/) to learn about region-specific URLs and personal access tokens.
-
-{% if page.service_id and page.route_id %}
-You can combine `consumer.id`, `service.id`, or `route.id`
-{% elsif page.service_id %} and `service.id`
-{% elsif page.route_id %} and `route.id`
-{% endif %} in the same request, to further narrow the scope of the plugin.
 
   {% endnavtab %}
   {% endif %}
