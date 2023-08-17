@@ -5,7 +5,7 @@ toc: false
 
 {{site.konnect_saas}} deployments run in hybrid mode, which means that there is
 a separate control plane attached to one or more data plane nodes. These planes
-must communicate with each other to receive and send configuration. If
+must communicate with each other to receive and send configurations. If
 communication is interrupted and either side can't send or receive config, data
 plane nodes still continue proxying traffic to clients.
 
@@ -66,8 +66,7 @@ travel between them. In that situation, the data plane continues to use cached
 configuration until it reconnects to the control plane and receives new
 configuration.
 
-Whenever a connection is re-established with the CP node, the control plane
-always pushes the latest configuration to the data plane. It doesn't queue up
+Whenever a connection is re-established with the CP node, the control plane pushes the latest configuration to the data plane. It doesn't queue up
 or try to apply older changes.
 
 ### How long can data plane nodes remain disconnected from the control plane?

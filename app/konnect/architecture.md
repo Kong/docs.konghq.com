@@ -2,16 +2,16 @@
 title: Konnect Architecture
 ---
 
-The {{site.konnect_product_name}} platform provides a cloud control plane (CP),
-which manages all service configurations. It propagates those configurations to
-all runtime nodes, which use in-memory storage. These nodes can be installed
+The {{site.konnect_product_name}} platform provides a hosted control plane
+that manages all service configurations. It propagates those configurations to
+all data plane nodes, which use in-memory storage. These data planes can be installed
 anywhere, on-premise or in the cloud.
 
 ![{{site.konnect_short_name}} Cloud](/assets/images/docs/konnect/konnect-intro.png)
 
 > Figure 1: Diagram of {{site.konnect_short_name}} modules.
 
-Data Plane Nodes, acting as data planes, listen for traffic on the proxy port 443
+Data plane nodes listen for traffic on the proxy port `443`
 by default. The {{site.konnect_short_name}} data plane evaluates
 incoming client API requests and routes them to the appropriate backend APIs.
 While routing requests and providing responses, policies can be applied with
