@@ -1,0 +1,6 @@
+```bash
+curl -X POST \
+{{ include.example.url }} \
+    --header "Authorization: Bearer TOKEN" \
+{% for param in include.example.params %}    --data{% if param.konnect_options %}{{ param.konnect_options }}{% endif %} "{{ param }}"{% unless forloop.last %}  \{% endunless %}
+{% endfor %}```
