@@ -590,7 +590,7 @@ Resolves to <i class="fas fa-anchor"></i>.
 ### Custom icons
 
 Custom icons for the Kong docs site are located in the
-[`/_assets/images/icons/`](https://github.com/Kong/docs.konghq.com/tree/main/app/_assets/images/icons)
+[`/assets/images/icons/`](https://github.com/Kong/docs.konghq.com/tree/main/app/assets/images/icons)
 directory. To add an icon, ensure it meets the following criteria:
 * SVG format
 * The same icon doesn't already exist in the folder, in Unicode, or in the
@@ -607,7 +607,7 @@ This resolves to ![document icon](/assets/images/icons/icn-doc.svg){:.inline .no
 
 ### {{site.konnect_short_name}} icons
 
-{{site.konnect_short_name}} icons can be found in `app/_assets/images/icons/konnect`.
+{{site.konnect_short_name}} icons can be found in `app/assets/images/icons/konnect`.
 When adding an icon to this folder, use the naming convention `icn-<name>`.
 
 You can then access a {{site.konnect_short_name}} icon with a shortcut for easy use in text:
@@ -615,9 +615,9 @@ You can then access a {{site.konnect_short_name}} icon with a shortcut for easy 
 <!-- vale off -->
 ```
 {% raw %}{% konnect_icon runtimes %}{% endraw %}
-# Uses the icon located at /app/_assets/images/icons/konnect/icn-runtimes.svg
+# Uses the icon located at /app/assets/images/icons/konnect/icn-runtimes.svg
 
 {% raw %}{% konnect_icon dev-portal %}{% endraw %}
-# Uses the icon located at /app/_assets/images/icons/konnect/icn-dev-portal.svg
+# Uses the icon located at /app/assets/images/icons/konnect/icn-dev-portal.svg
 ```
 <!-- vale on -->
