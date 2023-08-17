@@ -4,7 +4,7 @@ const groupBy = require("lodash.groupby");
 
 const convertFilePathsToUrls = require("../_utilities/path-to-url");
 const now = startOfDay(new Date());
-const earliestDate = subDays(now, 4);
+const earliestDate = subDays(now, 7);
 
 (async function () {
   // Create an octokit instance
