@@ -41,7 +41,7 @@ After creating the new version, you will see **Link with a Gateway Service** as 
 
     Choose a [control plane](/konnect/gateway-manager/control-plane-groups/) and [Gateway Service](/konnect/gateway-manager/configuration/#gateway-services) to
     deploy this API product version to. This lets you deploy to a specific group of
-    data plane nodes in a specific environment.
+    data planes in a specific environment.
 1. Click **Save**.
 
 ## Publish an API product

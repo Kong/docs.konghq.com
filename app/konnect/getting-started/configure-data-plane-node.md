@@ -8,7 +8,7 @@ Set up your first data plane node through the
 At this time, the only type available is a {{site.base_gateway}}
 data plane.
 
-{{site.base_gateway}} data planes proxy service traffic. With
+{{site.base_gateway}} data plane nodes proxy service traffic. With
 {{site.konnect_saas}} working as the control plane, a
 data plane node doesn't need a database to store configuration data. Instead,
 configuration is stored in-memory on each node, and you can easily update
