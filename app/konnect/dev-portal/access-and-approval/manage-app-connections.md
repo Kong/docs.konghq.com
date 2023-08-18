@@ -9,7 +9,7 @@ the developer, their applications, and any associated API product versions. In {
 
 ## Applications section
 
-The Applications section shows existing applications that have been approved to access a Gateway service.
+The Applications section shows existing applications that have been approved to access an API product.
 
 To access the **Applications** section, from the {{site.konnect_product_name}} navigation menu, click {% konnect_icon dev-portal %} **Dev Portal**, then open the **Applications** page.
 
