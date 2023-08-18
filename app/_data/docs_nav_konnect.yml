@@ -29,8 +29,8 @@
       url: /getting-started/
     - text: Access a Konnect Account
       url: /getting-started/access-account/
-    - text: Set up a Runtime
-      url: /getting-started/configure-runtime/
+    - text: Set up a Data Plane Node
+      url: /getting-started/configure-data-plane-node/
     - text: Proxy and Test a Service
       url: /getting-started/deploy-service/
     - text: Productize a Service
