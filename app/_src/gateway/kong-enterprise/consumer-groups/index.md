@@ -11,7 +11,7 @@ Consumer groups enable the organization and categorization of consumers (users o
 
 {% if_version gte:3.4.x %}
 
-With consumer groups, you can scope plugins to specificially defined consumer groups, and a new plugin instance will be created for each individual consumer group, making configurations and customizations more flexible and convenient.
+With consumer groups, you can scope plugins to specifically defined consumer groups and a new plugin instance will be created for each individual consumer group, making configurations and customizations more flexible and convenient.
 
 ## Use cases
 
