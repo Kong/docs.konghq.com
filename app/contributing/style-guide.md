@@ -105,6 +105,11 @@ The type of placeholder you use depends on context:
     * For situations where you need a generic domain name and the examples are illustrative only (not intended to be runnable as-is), use `example` or `example.com`.
 
         For example: `user@example.com` or `https://example.okta.admin.com`
+* **Path parameters**
+    * Path parameters must be denoted with curly braces `{}`.
+    
+        For example: `http://localhost:8001/services/{service_id_or_name}/routes/{route_id_or_name}`
+    
 
 ## Capitalization guidelines
 
