@@ -31,38 +31,52 @@ function toggleButtonClicked() {
   }
 }
 
-function toggleSubmenuVisible(element, visible) {
-  $(element).toggleClass("submenu-title", visible);
-  $(element).toggleClass("submenu-opened", visible);
-  $(element).closest('ul.navbar-items').toggleClass("submenu-opened", visible);
+function toggleSubmenuVisible(element, show) {
+  element.classList.toggle("submenu-title", show);
+  element.classList.toggle("submenu-opened", show);
+  element.closest("ul.navbar-items").classList.toggle("submenu-opened", show);
+
+  if (show) {
+    element.setAttribute("aria-expanded", true);
+    element.querySelectorAll("a").forEach(function(link) {
+      link.removeAttribute("tabindex");
+    });
+  } else {
+    element.setAttribute("aria-expanded", false);
+    element.querySelectorAll("a").forEach(function(link) {
+      link.setAttribute("tabindex", "-1");
+    });
+  }
 }
 
 // open Docs menu item upon enter and enable tabbing through menu
 $(document).ready(function() {
-  $("#docs-link").on("keypress keydown", function (e) {
-    if (e.keyCode == 13) {
-      e.preventDefault();
+  const topNavSubmenus = document.querySelectorAll(".main-menu-item.with-submenu");
+  topNavSubmenus.forEach(function(nav) {
+    nav.addEventListener("keydown", function (e) {
+      if (e.keyCode == 13) {
+        e.preventDefault();
+        // show submenu
+        const visible = nav.classList.contains("submenu-opened");
+        toggleSubmenuVisible(nav, !visible);
 
-      document.querySelector("#top-module-list").classList.toggle("submenu-opened");
-      document.querySelector("#top-module-list ul.navbar-item-submenu").setAttribute("aria-hidden", "false");
-      return false;
-    }
-
-    // if user doesn't open Docs submenu, move focus to Support menu item
-    let submenu = document.querySelector("#top-module-list");
-    if (!submenu.classList.contains("submenu-opened")) {
-      document.querySelector("#plugin-link").click();
-    }
-  });
-
-  $("ul.navbar-items").on("click", function(e) {
-    const mainMenuItem = $(e.target).closest('.main-menu-item')[0];
-    $("ul.navbar-items .main-menu-item").each(function(i, elem) {
-      if (mainMenuItem !== elem) {
-        toggleSubmenuVisible(elem, false);
+        // hide other submenus
+        topNavSubmenus.forEach(function(menuItem) {
+          if (menuItem !== nav) {
+            toggleSubmenuVisible(menuItem, false);
+          }
+        });
+        return false;
       }
     });
-    toggleSubmenuVisible($(mainMenuItem), !$(mainMenuItem).hasClass('submenu-opened'));
+  });
+
+  document.querySelectorAll(".navbar-item, .main-menu-item-title").forEach(function(elem) {
+    elem.addEventListener("focus", function(e) {
+      topNavSubmenus.forEach(function(menuItem) {
+        toggleSubmenuVisible(menuItem, false);
+      });
+    });
   });
 
   $(".search-input-wrapper img").on("click", function(e) {

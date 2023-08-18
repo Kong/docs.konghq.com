@@ -36,12 +36,12 @@
           </a>
         </li>
 
-        <li id="top-module-list" aria-haspopup="true" role="menuitem"
+        <li id="top-module-list" aria-haspopup="true" role="menuitem" aria-expanded="false"
           class="navbar-item main-menu-item with-submenu {% if include.layout != 'landing-page' %} active{% endif %}"
         >
           <span tabindex="0" id="docs-link" class="main-menu-item-title">Docs</span>
           <span class="caret"></span>
-          <ul class="navbar-item-submenu" role="menu" aria-hidden="true">
+          <ul class="navbar-item-submenu">
             <div class="submenu-section">
 
               <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
@@ -53,7 +53,7 @@
                   <div class="docs-dropdown-li__section-items">
 
                     {% for doc_menu_item in site.data.docs_top_nav %}
-                      <a class="item" href="{{ doc_menu_item.url }}">
+                      <a class="item" href="{{ doc_menu_item.url }}" tabindex="-1">
                         {% if doc_menu_item.icon %}
                         <div>
                           <img src="{{ doc_menu_item.icon }}" alt="{{ doc_menu_item.name }}'s icon">
@@ -75,14 +75,15 @@
         <li
           role="menuitem"
           aria-haspopup="true"
+          aria-expanded="false"
           class="navbar-item navbar-item-hub main-menu-item with-submenu"
         >
-          <span id="plugin-link" class="main-menu-item-title">Plugin Hub</span>
+          <span id="plugin-link" class="main-menu-item-title" tabindex="0">Plugin Hub</span>
           <span class="caret"></span>
-          <ul class="navbar-item-submenu" role="menu" aria-hidden="true">
+          <ul class="navbar-item-submenu">
             <div class="submenu-section submenu-section__hub">
-              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="/hub/" class="docs-dropdown-li__link">
+              <li role="menuitem" class="docs-dropdown-li">
+                <a href="/hub/" class="docs-dropdown-li__link" tabindex="-1">
                   <div class="docs-dropdown-li__card">
                     <span class="heading">Explore the Plugin Hub</span>
                     <div class="docs-dropdown-li__card-link">
@@ -96,25 +97,25 @@
                 </a>
               </li>
 
-              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
+              <li role="menuitem" class="docs-dropdown-li">
                 <div class="docs-dropdown-li__section">
                   <div class="docs-dropdown-li__section-title">
                     <span class="heading">Functionality</span>
-                    <a href="/hub/" class="view-all">
+                    <a href="/hub/" class="view-all" tabindex="-1">
                       View all
                       <img src="/assets/images/landing-page/arrow-right.svg" alt="View all arrow image">
                     </a>
                   </div>
 
                   <div class="docs-dropdown-li__section-items docs-dropdown-li__section-items-hub">
-                    <a class="item item-all" href="/hub/">
+                    <a class="item item-all" href="/hub/" tabindex="-1">
                       <div class="item__description">
                         <div class="item__description-title">View all plugins</div>
                       </div>
                     </a>
 
                     {% for category in site.extensions.categories %}
-                      <a class="item" href="/hub?category={{ category.slug }}">
+                      <a class="item" href="/hub?category={{ category.slug }}" tabindex="-1">
                         <div>
                           <img src="{{ category.icon }}" alt="{{ category.name }}'s icon">
                         </div>
