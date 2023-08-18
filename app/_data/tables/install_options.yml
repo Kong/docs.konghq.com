@@ -32,7 +32,7 @@ features:
         enterprise: true
         support: true
         icon: /assets/images/icons/documentation/rhel.jpg
-      - name: "Amazon Linux 2"
+      - name: "Amazon Linux"
         url: /gateway/VERSION/install/linux/amazon-linux/
         oss: true
         enterprise: true

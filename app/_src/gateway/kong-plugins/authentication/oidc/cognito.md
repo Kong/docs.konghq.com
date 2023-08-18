@@ -143,7 +143,6 @@ Since AWS Cognito only supports the HTTPS protocol, when you start {{site.base_g
 docker run -d --name kong-ee --link kong-ee-database:kong-ee-database \
   -e "KONG_DATABASE=postgres" \
   -e "KONG_PG_HOST=kong-ee-database" \
-  -e "KONG_CASSANDRA_CONTACT_POINTS=kong-ee-database" \
   -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
   -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
   -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \

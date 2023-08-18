@@ -1,4 +1,9 @@
-module.exports = function(filename) {
+/*
+Accepts a navigation file + converts it to the index page for that product.
+This is enough to start spidering URLs using the sidebar for broken links
+*/
+
+module.exports = function (filename) {
   const lookup = {
     ce: "gateway-oss",
     deck: "deck",
@@ -20,4 +25,4 @@ module.exports = function(filename) {
   }
 
   return `/${lookup[edition]}/${version}/`;
-}
+};

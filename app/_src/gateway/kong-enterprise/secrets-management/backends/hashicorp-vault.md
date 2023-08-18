@@ -45,7 +45,7 @@ The Vault entity can only be used once the database is initialized. Secrets for 
 {% navtab Admin API %}
 
 ```bash
-curl -i -X PUT http://HOSTNAME:8001/vaults/my-hashicorp-vault \
+curl -i -X PUT http://HOSTNAME:8001/vaults/hashicorp-vault \
   --data name="hcv" \
   --data description="Storing secrets in HashiCorp Vault" \
   --data config.protocol="https" \
@@ -53,7 +53,7 @@ curl -i -X PUT http://HOSTNAME:8001/vaults/my-hashicorp-vault \
   --data config.port="8200" \
   --data config.mount="secret" \
   --data config.kv="v2" \
-  --data config.token="<mytoken>"
+  --data config.token="<token>"
 ```
 
 Result:
@@ -66,13 +66,13 @@ Result:
         "mount": "secret",
         "port": 8200,
         "protocol": "https",
-        "token": "<mytoken>"
+        "token": "<token>"
     },
     "created_at": 1645008893,
     "description": "Storing secrets in HashiCorp Vault",
     "id": "0b43d867-05db-4bed-8aed-0fccb6667837",
     "name": "hcv",
-    "prefix": "my-hashicorp-vault",
+    "prefix": "hashicorp-vault",
     "tags": null,
     "updated_at": 1645008893
 }
@@ -95,10 +95,10 @@ vaults:
     mount: secret
     port: 8200
     protocol: https
-    token: <mytoken>
+    token: <token>
   description: Storing secrets in HashiCorp Vault
   name: hcv
-  prefix: my-hashicorp-vault
+  prefix: hashicorp-vault
 ```
 
 {% endnavtab %}
@@ -106,7 +106,7 @@ vaults:
 
 ## Examples
 
-For example, let's say you've configured a HashiCorp Vault with a path of `secret/hello` and a key=value pair of `foo=world`:
+For example, if you've configured a HashiCorp Vault with a path of `secret/hello` and a key=value pair of `foo=world`:
 
 ```text
 vault kv put secret/hello foo=world
@@ -129,7 +129,7 @@ Access these secrets like this:
 Or, if you configured an entity:
 
 ```bash
-{vault://my-hashicorp-vault/hello/foo}
+{vault://hashicorp-vault/hello/foo}
 ```
 
 ## Vault configuration options
@@ -146,14 +146,18 @@ any of the supported tools:
 
 Configuration options for a HashiCorp vault in {{site.base_gateway}}:
 
-| Parameter | Field name | Description |
-| ----------|------------|------------ |
-| `vaults.config.protocol` | **config-protocol** (Kong Manager) <br> **Protocol** ({{site.konnect_short_name}}) | The protocol to connect with. Accepts one of `http` or `https`. |
-| `vaults.config.host` | **config-host** (Kong Manager) <br> **Host** ({{site.konnect_short_name}}) | The hostname of your HashiCorp vault. |
-| `vaults.config.port` | **config-port** (Kong Manager) <br> **Port** ({{site.konnect_short_name}}) | The port number of your HashiCorp vault. |
-| `vaults.config.mount` | **config-mount** (Kong Manager) <br> **Mount** ({{site.konnect_short_name}}) | The mount point. |
-| `vaults.config.kv` | **config-kv** (Kong Manager) <br> **Kv** ({{site.konnect_short_name}}) | The secrets engine version. Accepts `v1` or `v2`. |
-| `vaults.config.token` | **config-token** (Kong Manager) <br> **Token** ({{site.konnect_short_name}}) | A token string. |
+Parameter | Field name | Description
+----------|------------|------------
+`vaults.config.protocol` | **config-protocol** (Kong Manager) <br> **Protocol** ({{site.konnect_short_name}}) | The protocol to connect with. Accepts one of `http` or `https`.
+`vaults.config.host` | **config-host** (Kong Manager) <br> **Host** ({{site.konnect_short_name}}) | The hostname of your HashiCorp vault.
+`vaults.config.port` | **config-port** (Kong Manager) <br> **Port** ({{site.konnect_short_name}}) | The port number of your HashiCorp vault.
+`vaults.config.mount` | **config-mount** (Kong Manager) <br> **Mount** ({{site.konnect_short_name}}) | The mount point.
+`vaults.config.kv` | **config-kv** (Kong Manager) <br> **Kv** ({{site.konnect_short_name}}) | The secrets engine version. Accepts `v1` or `v2`.
+`vaults.config.token` | **config-token** (Kong Manager) <br> **Token** ({{site.konnect_short_name}}) | A token string.
+`vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the vault when it's cached. The special value of 0 means "no rotation" and it's the default. When using non-zero values, it is recommended that they're at least 1 minute.
+`vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a vault miss (no secret). Negatively cached secrets will remain valid until `neg_ttl` is reached, after which Kong will attempt to refresh the secret again. The default value for `neg_ttl` is 0, meaning no negative caching occurs.
+`vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for how long secrets will remain in use after they are expired (`config.ttl` is over). This is useful when a vault becomes unreachable, or when a secret is deleted from the Vault and isn't replaced immediately. On this both cases, the Gateway will keep trying to refresh the secret for `resurrect_ttl` seconds. After that, it will stop trying to refresh. We recommend assigning a sufficiently high value to this configuration option to ensure a seamless transition in case there are unexpected issues with the Vault. The default value for `resurrect_ttl` is 1e8 seconds, which is about 3 years.
+
 
 {% if_version gte:3.1.x %}
 | `vaults.config.namespace` | **namespace** | Namespace for the Vault. Vault Enterprise requires a namespace to successfully connect to it. |
@@ -167,4 +171,4 @@ Parameter | Field name | Description
 ----------|------------|------------
 `vaults.description` <br> *optional* | **Description** | An optional description for your vault.
 `vaults.name` | **Name** | The type of vault. Accepts one of: `env`, `gcp`, `aws`, or `hcv`. Set `hcv` for HashiCorp Vault.
-`vaults.prefix` | **Prefix** | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://my-hcv-vault/<some-secret>}`.
+`vaults.prefix` | **Prefix** | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://hcv-vault/<some-secret>}`.

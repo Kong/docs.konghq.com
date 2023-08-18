@@ -79,7 +79,8 @@
         - text: Overview
           url: /runtime-manager/configuration/
         - text: Create Consumer Groups
-          url: /runtime-manager/configuration/consumer-groups/
+          url: https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/how-to/
+          absolute_url: true
         - text: Secrets Management
           items:
             - text: Overview
@@ -157,6 +158,8 @@
               url: /dev-portal/applications/dynamic-client-registration/curity/
             - text: Auth0
               url: /dev-portal/applications/dynamic-client-registration/auth0/
+            - text: Azure
+              url: /dev-portal/applications/dynamic-client-registration/azure/
         - text: Create, Edit, and Delete an Application
           url: /dev-portal/applications/dev-apps/
         - text: Register an Application with an API product
@@ -183,7 +186,7 @@
     - text: Introduction to Analytics
       url: /analytics/
     - text: Report Use Cases
-      items: 
+      items:
       - text: Analyze API Usage and Performance
         url: /analytics/use-cases/
       - text: Diagnosing Latency Issues

@@ -36,7 +36,7 @@ is built on an open-source foundation, any breaking changes in OSS affect all {{
 If you are running 1.x, upgrade to 2.8.2 first and then to 3.0.x and 3.1.x at a minimum. Finally, upgrade to
 {{page.kong_version}} from there.
 
-In either case, you can review the [upgrade considerations](#upgrade-considerations-and-breaking-changes),
+In either case, you can review the {% if_version lte:3.2.x %}[upgrade considerations and breaking changes](#upgrade-considerations-and-breaking-changes){% endif_version %} breaking changes for your version,
 then follow the [database migration](#migrate-db) instructions.
 
 ## Upgrade path for {{site.base_gateway}} {{page.kong_version}} 
@@ -102,6 +102,33 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 
 {% endif_version %}
 
+{% if_version eq: 3.4.x %}
+
+| **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
+| ------------------- | ------------ | ---------------------------- | ---------------- |
+| 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 2.x–2.7.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 2.8.x | Traditional | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 2.8.x | Hybrid | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 2.8.x | DB less | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.0.x | Traditional | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.0.x | Hybrid | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.0.x | DB less | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.1.x | Traditional | No | [Upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.1.0.x-3.1.1.2 | Hybrid | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.1.1.3 | Hybrid | No | [Upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.1.x | DB less | No | [Upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.2.x | Traditional | Yes | [Upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.2.x | Hybrid | Yes | [Upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.2.x | DB less | Yes | [Upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.3.x | Traditional | Yes | [Upgrade to 3.4.x](#migrate-db). |
+| 3.3.x | Hybrid | Yes | [Upgrade to 3.4.x](#migrate-db). |
+| 3.3.x | DB less | Yes | [Upgrade to 3.4.x](#migrate-db). |
+
+{% endif_version %}
+
+{% if_version lte:3.2.x %}
 ## Upgrade considerations and breaking changes
 
 Before upgrading, review any configuration or breaking changes in this version and prior versions that
@@ -112,7 +139,7 @@ custom plugins, for example.
 
 ### Plugins
 
-For breaking changes to plugins, see the [Kong Gateway Changelog](/gateway/changelog/) for your {{site.base_gateway}} version.
+For breaking changes to plugins, see the [{{site.base_gateway}} Changelog](/gateway/changelog/) for your {{site.base_gateway}} version.
 
 {% if_version gte:3.3.x %}
 ### Plugin queuing
@@ -221,7 +248,7 @@ from session configuration to avoid unpredictable behavior.
 #### Session plugin
 
 The following parameters and the values that they accept have changed. 
-For details on the new accepted values, see the [Seesion plugin](/hub/kong-inc/session/) documentation.
+For details on the new accepted values, see the [Session plugin](/hub/kong-inc/session/) documentation.
 
 Old parameter name | New parameter name
 -------------------|--------------------
@@ -396,15 +423,16 @@ diff the files to identify any changes, and apply them as needed.
 {% endnavtab %}
 {% endnavtabs %}
 
+{% endif_version %}
 ## General upgrade path {#migrate-db}
 
 Running `kong migrations` in this workflow is irrevocable, therefore we recommend that you backup data before making any changes.
 
-Depending on the database you're using (Postgres or Cassandra), a database dump is recommended so that you can recover from migrations failure at the database level.
+A database dump is recommended so that you can recover from migrations failure at the database level.
 
 Additionally, {{site.base_gateway}} supports exporting data in YAML format with `kong config db_export`, which later on
 can be imported back by `kong config db_import`. For more information, see
-[kong config CLI](https://docs.konghq.com/gateway/latest/reference/cli/#kong-config).
+[kong config CLI](/gateway/latest/reference/cli/#kong-config).
 
 ### Traditional mode
 

@@ -691,8 +691,7 @@ Returns the request data as a key/value table.
    body could not be parsed.
 
  The optional argument `max_args` can be used to set a limit on the number
- of form arguments parsed for `application/x-www-form-urlencoded` payloads,
-  which is by default **100** (or what has been configured using `lua_max_post_args`).
+ of form arguments parsed for `application/x-www-form-urlencoded` payloads, which is by default **100** (or what has been configured using `lua_max_post_args`).
 
  The third return value is string containing the mimetype used to parsed
  the body (as per the `mimetype` argument), allowing the caller to identify

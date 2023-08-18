@@ -15,8 +15,9 @@ Use Kong Vitals (Vitals) to monitor {{site.ee_product_name}} health and performa
 
 Vitals is enabled by default in {{site.ee_product_name}} and available upon the first login of a Super Admin.
 
+{% if_version lte:3.3.x %}
 {% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
-
+{% endif_version %}
 
 You can use one of the following storage strategies with Vitals:
 * Kong database:

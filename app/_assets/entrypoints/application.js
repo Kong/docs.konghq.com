@@ -8,7 +8,6 @@ import "~/javascripts/app.js";
 import "~/javascripts/compat-dropdown.js";
 import "~/javascripts/plugin-hub.js";
 import "~/javascripts/subscribe.js";
-import "~/javascripts/editable-code-snippet.js";
 import "~/javascripts/navbar.js";
 import "~/javascripts/feedback-widget.js";
 import "~/javascripts/copy-code-snippet-support.js";

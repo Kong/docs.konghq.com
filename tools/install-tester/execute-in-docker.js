@@ -17,9 +17,12 @@ module.exports = async function (distro, steps) {
   }
   setup = setup.join(" && ");
 
-  const asUser = `su tester -c 'cd ~ && ${steps
-    .join(" && ")
-    .replace("\n", " && ")} && kong version'`;
+  steps = steps.join(" && ").replace("\n", " && ");
+  if (steps.trim().length == 0) {
+    throw new Error(`Unable to fetch install instructions from docs for ${distro}`);
+  }
+
+  const asUser = `su tester -c 'cd ~ && ${steps} && kong version'`;
 
   const completeString = `${setup} && ${asUser}`;
 

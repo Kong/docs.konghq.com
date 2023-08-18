@@ -97,25 +97,25 @@ To install a valid license via Helm:
 
 1. Create a secret named `kong-mesh-license` in the same namespace where Kong Mesh is being installed. For example:
 
-  ```sh
-  $ kubectl create namespace kong-mesh-system
-  $ kubectl create secret generic kong-mesh-license -n kong-mesh-system --from-file=/path/to/license.json
-  ```
+   ```sh
+   $ kubectl create namespace kong-mesh-system
+   $ kubectl create secret generic kong-mesh-license -n kong-mesh-system --from-file=/path/to/license.json
+   ```
 
-  Where:
-  * `kong-mesh-system` is the namespace where Kong Mesh control plane is installed
-  * `/path/to/license.json` is the path to a valid license file. The filename should be `license.json` unless otherwise specified in `values.yaml`.
+   Where:
+   * `kong-mesh-system` is the namespace where Kong Mesh control plane is installed
+   * `/path/to/license.json` is the path to a valid license file. The filename should be `license.json` unless otherwise specified in `values.yaml`.
 
 1. Modify the `values.yaml` file to point to the secret. For example:
 
-  ```yaml
-  kuma:
-    controlPlane:
-      secrets:
-        - Env: "KMESH_LICENSE_INLINE"
-          Secret: "kong-mesh-license"
-          Key: "license.json"
-  ```
+   ```yaml
+   kuma:
+     controlPlane:
+       secrets:
+         - Env: "KMESH_LICENSE_INLINE"
+           Secret: "kong-mesh-license"
+           Key: "license.json"
+   ```
 
 ### Universal
 

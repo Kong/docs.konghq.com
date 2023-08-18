@@ -14,14 +14,13 @@ Kong is licensed under an
 
 ## Download and Install
 
-You can install {{site.base_gateway}} by downloading an installation package or using our yum repository.
+You can install {{site.base_gateway}} by downloading an installation package or using the yum repository.
 
 {:.note}
 > **Note:** {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
 
 {% navtabs %}
 {% navtab Package %}
-
 Install {{site.base_gateway}} on Amazon Linux from the command line.
 
 1. Download the Kong package:
@@ -68,6 +67,7 @@ sudo yum install -y kong-{{page.versions.ce}}.rpm
 Install the YUM repository from the command line.
 
 1. Download the Kong YUM repository:
+
     ```bash
     curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/config.rpm.txt?distro=amzn&codename=$(rpm --eval '%{amzn}')" | sudo tee /etc/yum.repos.d/kong-gateway-{{ page.major_minor_version }}.repo > /dev/null
     sudo yum -q makecache -y --disablerepo='*' --enablerepo='kong-gateway-{{ page.major_minor_version }}'

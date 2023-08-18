@@ -71,12 +71,14 @@ multiple rate limiting windows (e.g., rate limit per minute and per hour, and pe
 Because of limitations with Kong's plugin configuration interface, each *nth* limit will apply to each *nth* window size.
 For example:
 
-<pre><code>curl -X POST http://<div contenteditable="true">{LOCALHOST}</div>:8001/services/<div contenteditable="true">{SERVICE}</div>/plugins \
+```sh
+curl -X POST http://localhost:8001/services/example-service/plugins \
   --data "name=rate-limiting-advanced" \
   --data "config.limit=10" \
   --data "config.limit=100" \
   --data "config.window_size=60" \
-  --data "config.window_size=3600"</code></pre>
+  --data "config.window_size=3600"
+```
 
 This example applies rate limiting policies, one of which will trip when 10 hits have been counted in 60 seconds,
 or the other when 100 hits have been counted in 3600 seconds. For more information, see the
@@ -104,7 +106,7 @@ When the `redis` strategy is used and a {{site.base_gateway}} node is disconnect
 {{site.base_gateway}} will still rate limit, but the {{site.base_gateway}} nodes can't sync the counters. As a result, users will be able
 to perform more requests than the limit, but there will still be a limit per node.
 
-{% if_plugin_version gte:2.7.x %}
+{% if_plugin_version gte:2.7.x lte 3.3.x %}
 ## Rate limiting for consumer groups
 
 You can use consumer groups to manage custom rate limiting configuration for

@@ -20,6 +20,10 @@ Open the **Vaults** page in {{site.konnect_short_name}}:
 Set up a new vault. For this example, we're going to use the environment variable vault. 
 1. Click **Add vault**.
 1. Choose a vault type. 
+1. Enter the configuration settings for your vault. For more information about how to configure settings, see the following {{site.base_gateway}} documentation:
+    * [AWS vault configuration options](/gateway/latest/kong-enterprise/secrets-management/backends/aws-sm/#vault-configuration-options)
+    * [Google Cloud vault configuration options](/gateway/latest/kong-enterprise/secrets-management/backends/gcp-sm/#vault-entity-configuration-options)
+    * [HashiCorp vault configuration options](/gateway/latest/kong-enterprise/secrets-management/backends/hashicorp-vault/#vault-configuration-options)
 1. Enter an environment variable prefix. This will be the prefix that the vault
 uses to recognize relevant values on the data plane.
 
