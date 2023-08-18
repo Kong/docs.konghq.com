@@ -71,6 +71,7 @@ Prometheus
 Protobuf
 Resty
 SAML
+SDKs
 Splunk
 Stap
 Styra
@@ -83,6 +84,8 @@ UIs
 Unicode
 Valero
 Vue
+Wasm
+WebAssembly
 Wireshark
 Zipkin
 acl
@@ -241,6 +244,7 @@ namespaces
 navtabs
 nginx
 ngrok
+ngx_wasm_module
 nopp
 nopped
 nopping
@@ -372,6 +376,7 @@ unregistering
 unshorten
 unshortened
 unvetted
+untyped
 updated_at
 upsert
 upstream

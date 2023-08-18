@@ -9,10 +9,34 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+
 ## August 2023
+
+**Release announcements in Konnect**
+: With Makelog integration, you can now see the latest feature and update announcements in the {{site.konnect_saas}} UI. 
+
+**Gateway 3.4 Support**
+: Konnect now supports the latest Gateway release version of 3.4 including all [Konnect-compatible plugins](/konnect/compatibility/).
+
+**Vault Secret Rotation**
+: {{site.konnect_short_name}} now supports the rotation of secrets stored in vaults without restarting the gateway. This allows you to securely manage your secrets. For more information, see [Set Up and Use a Vault in {{site.konnect_short_name}}](/konnect/runtime-manager/configuration/vaults/how-to/).
 
 **Azure for Dynamic Client Registration**
 : You can now use Azure Active Directory as the identity source for your Dev Portal's Dynamic Client Registration configuration. This expands {{site.konnect_short_name}}'s existing support, which already includes Okta, Auth0, and Curity. This streamlines developer self-service access to provisioning applications with secure access to published API Products. For more information, see [Configuring Azure for Dynamic Client Registration](/konnect/dev-portal/applications/dynamic-client-registration/azure/).
+
+**{{site.konnect_short_name}} Analytics display increase from 15 to 50**
+: In our continuous efforts to optimize your custom reporting experience with {{site.konnect_short_name}} Analytics, we've expanded the display limit from 15 to 50, providing a more comprehensive data view. Accompanying this change, we've refined our UI with enhanced tooltip functionality. Now, by simply clicking on report content, users can lock a tooltip in place. This feature not only allows for intuitive drag-and-drop repositioning but also enables scrolling within the tooltip to easily access additional data points.
+
+**{{site.konnect_short_name}} consumer groups enhancements**
+: {{site.konnect_short_name}} now features the same consumer groups enhancements added in the Gateway 3.4 [release](/gateway/changelog). Consumer groups are now a core entity. With consumer groups, you can apply different configurations to select groups of consumers. The following plugins can be scoped to consumer groups:
+
+  * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/)
+  * [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
+  * [Response transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
+  * [Request Transformer](/hub/kong-inc/request-transformer)
+  * [Response Transformer](/hub/kong-inc/response-transformer)
+  
+  See the consumer groups [documentation](/gateway/latest/kong-enterprise/consumer-groups/) to learn more.
 
 ## July 2023
 

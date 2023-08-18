@@ -22,8 +22,12 @@ Kong Enterprise also natively supports gRPC and REST, WebSockets, and integrates
 * [Mocking](/hub/kong-inc/mocking/)
 * [Advanced data transformation](/hub/kong-inc/jq/)
 * [OPA Policy driven traffic management](/hub/kong-inc/opa/)
+{% if_version lte:3.3.x %}
 * [API product tiers](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference/)
-
+{% endif_version %}
+{% if_version gte:3.4.x %}
+* [API product tiers](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60#/consumer_groups/get-consumer_groups)
+{% endif_version %}
 [Get started with plugins &rarr;](/hub/)
 
 ## Dev Portal
@@ -126,8 +130,14 @@ For example, you could define three consumer groups:
 * A "silver tier" with 10 requests per second
 * A "bronze tier" with 6 requests per second
 
-[Set up consumer groups &rarr;](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference/)
-
+{% if_version lte:3.3.x %}
+[Set up consumer groups &rarr;](/hub/kong-inc/rate-limiting-advanced/how-to/)
+[Consumer groups API reference](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference/)
+{% endif_version %}
+{% if_version gte:3.4.x %}
+[Set up consumer groups &rarr;](/hub/kong-inc/rate-limiting-advanced/how-to/)
+[Consumer groups API documentation](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60#/consumer_groups/get-consumer_groups)
+{% endif_version %}
 
 {% if_version gte:3.2.x %}
 ## Provisioning new data planes in the event of a control plane outage

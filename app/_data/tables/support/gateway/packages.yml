@@ -20,9 +20,9 @@ _packages:
     arm: false
     fips: false
     graviton: false
-  amazonlinux2022: &amazonlinux2022
+  amazonlinux2023: &amazonlinux2023
     os: Amazon Linux
-    version: 2022
+    version: 2023
     package: true
     arm: false
     fips: false

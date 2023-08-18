@@ -9,6 +9,7 @@ module Jekyll
         class Yaml < Base
           FIELD = {
             'consumer' => 'consumer: CONSUMER_NAME|CONSUMER_ID',
+            'consumer_group' => 'consumer_group: CONSUMER_GROUP_NAME|CONSUMER_GROUP_ID',
             'global' => nil,
             'route' => 'route: ROUTE_NAME|ROUTE_ID',
             'service' => 'service: SERVICE_NAME|SERVICE_ID'

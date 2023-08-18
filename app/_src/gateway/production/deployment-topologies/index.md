@@ -45,7 +45,8 @@ Hybrid mode deployments have the following benefits:
 
 ## Traditional (database) mode
 
-In [traditional mode](/gateway/{{page.kong_version}}/production/deployment-topologies/traditional/), {{site.base_gateway}} requires a database to store configured entities such as routes, services, and plugins. {{site.base_gateway}} supports both PostgreSQL 10+ and Cassandra 3.11.x as its data store.
+In [traditional mode](/gateway/{{page.kong_version}}/production/deployment-topologies/traditional/), {{site.base_gateway}} requires a database to store configured entities such as routes, services, and plugins.
+See [supported databases](/gateway/{{page.kong_version}}/support/third-party/#data-stores).
 
 Running {{ site.base_gateway }} in traditional mode is the simplest way to get started with Kong, and it is the only deployment topology that supports plugins that require a database, like rate-limiting with the cluster strategy, or OAuth2. However, there are some downsides too.
 

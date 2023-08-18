@@ -748,8 +748,8 @@ key_set_data: |
 > 
 | Spec | Developer portal link | Insomnia link |
 |------|-----------------------|---------------|
-| Enterprise beta API spec|[Developer Portal](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60)   | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Enterprise%20beta%20API&uri=https%3A%2F%2Fgithub.com%2FKong%2Fdocs.konghq.com%2Fblob%2Fmain%2Fapi-specs%2FGateway-EE%2Fjson%2Fkong-ee-33.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>  |
-|  Open source beta API spec | [Developer Portal](https://developer.konghq.com/spec/680541e5-de6e-46e5-b43d-0bd1b2369453/e2a0ef29-573d-4fc4-86df-216c417f4aa9)  | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Admin%20API%20Opensource&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-OSS%2Fjson%2Fkong-oss-33.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
+| Enterprise beta API spec|[Dev Portal](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60)   | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Enterprise%203.4&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-EE%2F3.4%2Fkong-ee-3.4.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>  |
+|  Open source beta API spec | [Dev Portal](https://developer.konghq.com/spec/680541e5-de6e-46e5-b43d-0bd1b2369453/e2a0ef29-573d-4fc4-86df-216c417f4aa9)  | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Open%20Source%203.4&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-OSS%2F3.4%2Fkong-oss-3.4.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
 
 
 <!-- vale off -->
@@ -2942,14 +2942,32 @@ even globally. This is useful, for example, when you wish to configure a plugin
 a certain way for most requests, but make _authenticated requests_ behave
 slightly differently.
 
-Therefore, there exists an order of precedence for running a plugin when it has
-been applied to different entities with different configurations. The rule of
-thumb is: the more specific a plugin is with regards to how many entities it
-has been configured on, the higher its priority.
+Therefore, there is an order of precedence for running a plugin when it has
+been applied to different entities with different configurations. The amount of entities configured to a specific plugin directly correlate to its priority. The more entities configured to a plugin the higher its order of precedence is. 
+The complete order of precedence for plugins configured to multiple entities is: 
 
-The complete order of precedence when a plugin has been configured multiple
-times is:
 
+{% if_version gte:3.4.x %}
+
+1. Plugins configured on a combination of: a Consumer, a Route, and a Service.
+    (Consumer means the request must be authenticated).
+2. Plugins configured on a combination of a ConsumerGroup, Service, and a Route.
+    (ConsumerGroup means the request must be authenticated).
+3. Plugins configured on a combination of a Consumer and a Route.
+    (Consumer means the request must be authenticated).
+4. Plugins configured on a combination of a Consumer and a Service.
+5. Plugins configured on a ConsumerGroup and Route.
+6. Plugins configured on a ConsumerGroup and Service.
+7. Plugins configured on a Route and Service.
+8. Plugins configured on a Consumer.
+9. Plugins Configured on a ConsumerGroup.
+10. Plugins configured on a Route.
+11. Plugins configured on a Service. 
+12. Plugins configured Globally. 
+
+{% endif_version %}
+
+{% if_version lte:3.3.x %}
 1. Plugins configured on a combination of: a Route, a Service, and a Consumer.
     (Consumer means the request must be authenticated).
 2. Plugins configured on a combination of a Route and a Consumer.
@@ -2962,7 +2980,12 @@ times is:
 6. Plugins configured on a Route.
 7. Plugins configured on a Service.
 8. Plugins configured to run globally.
+
+{% endif_version %}
+
+
 {% endunless %}
+
 **Example**: if the `rate-limiting` plugin is applied twice (with different
 configurations): for a Service (Plugin config A), and for a Consumer (Plugin
 config B), then requests authenticating this Consumer will run Plugin config B
@@ -4867,6 +4890,10 @@ example a certificate entity can store a reference to a certificate and key,
 stored in a vault, instead of storing the certificate and key within the
 entity. This allows a proper separation of secrets and configuration and
 prevents secret sprawl.
+
+{% if_version gte:3.4.x %}
+Secrets rotation can be managed using [TTLs](/gateway/latest/kong-enterprise/secrets-management/advanced-usage).
+{% endif_version %}
 
 Vaults can be both [tagged and filtered by tags](#tags).
 

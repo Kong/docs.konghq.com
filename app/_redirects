@@ -2,6 +2,12 @@
 # Newer, more relevant redirects should appear at the top of the file.
 # More general/sweeping redirects should be at the bottom.
 
+
+#3.4
+
+/gateway/latest/kong-enterprise/consumer-groups /gateway/latest/key-concepts/consumer-groups
+/gateway/latest/admin-api/consumer-groups/reference  https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60#/consumer_groups/get-consumer_groups
+/konnect/runtime-manager/configuration/consumer-groups /hub/kong-inc/rate-limiting-advanced/how-to/
 #3.3
 /gateway/latest/upgrade/#upgrade-considerations-and-breaking-changes    /gateway/latest/breaking-changes/
 /gateway/latest/production/breaking-changes/     /gateway/latest/breaking-changes/
@@ -39,6 +45,7 @@
 /gateway/:version/kong-plugins/graphql/  /hub/kong-inc/graphql-proxy-cache-advanced/how-to/
 /gateway/:version/kong-plugins/grpc/     /hub/kong-inc/grpc-gateway/
 /gateway/:version/kong-plugins/configuring-a-grpc-service/    /gateway/:version/production/configuring-a-grpc-service/
+/gateway/:version/kong-plugins/algorithms/rate-limiting/      /gateway/:version/reference/rate-limiting/
 
 # CONTRIBUTING & STYLE GUIDE
 /contributing/plugin-docs/               /contributing/contribution-templates/
@@ -666,6 +673,7 @@
 /mesh/konnect/* /mesh/latest/:splat
 /mesh/:version/installation/windows   /mesh/:version/features/windows
 /mesh/:version/policies/meshopa   /mesh/:version/features/meshopa
+/mesh/:version/policies/opapolicy   /mesh/:version/features/opa
 /mesh/:version/policies/meshglobalratelimit   /mesh/:version/features/meshglobalratelimit
 
 # kuma IA redirects (TODO review these they should likely only be for latest and most of them should be in Kuma's `_common_redirects`)

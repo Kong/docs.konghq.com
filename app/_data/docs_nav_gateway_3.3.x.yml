@@ -227,6 +227,8 @@ items:
             src: /gateway/upgrade-v2
           - text: Migrate from OSS to Enterprise
             url: /migrate-ce-to-ke/
+          - text: Migration Guidelines Cassandra to PostgresSQL
+            url: /migrate-cassandra-to-postgres
           - text: Breaking Changes
             url: /production/breaking-changes/
             generate: false
@@ -555,18 +557,6 @@ items:
             url: /kong-plugins/authentication/reference
           - text: Allow Multiple Authentication Plugins
             url: /kong-plugins/authentication/allowing-multiple-authentication-methods/
-      - text: Rate Limiting Plugin
-        url: /kong-plugins/rate-limiting/algorithms/rate-limiting
-        #items:
-          #- text: Overview
-            #url: /kong-plugins/rate-limiting/ commenting these lines out for 3.0
-            #url: /kong-plugins/rate-limiting/algorithms/rate-limiting
-          #- text: Algorithms
-           # items:
-            #  - text: Configuring sliding-window
-             #   url:  /kong-plugins/rate-limiting/algorithms/rate-limiting
-              #- text: Configuring Fixed bucket
-               # url: /kong-plugins/rate-limiting/algorithms/fixed-bucket
       - text: Plugin Queuing
         items:
           - text: Overview
@@ -635,6 +625,7 @@ items:
     items:
       - text: kong.conf
         url: /reference/configuration
+        src: /gateway/reference/configuration-3.0-3.3
       - text: Injecting Nginx Directives
         url: /reference/nginx-directives
       - text: CLI
@@ -645,5 +636,7 @@ items:
         url: /reference/performance-testing-framework
       - text: Router Expressions Language
         url: /reference/router-expressions-language
+      - text: Rate Limiting Library
+        url: /reference/rate-limiting/
       - text: FAQ
         url: /reference/faq

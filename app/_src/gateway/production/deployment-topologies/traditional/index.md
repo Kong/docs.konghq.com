@@ -69,7 +69,7 @@ If we delete a Service from node `A`, this change will not be effective in node
 
 This makes Kong clusters **eventually consistent**.
 
-### Use read-only replicas when deploying Kong clusters with PostgreSQL
+### Use read-only replicas when deploying Kong clusters with PostgresSQL
 
 When using Postgres as the backend storage, you can optionally enable
 Kong to serve read queries from a separate database instance.
@@ -163,7 +163,7 @@ experiment with its clustering capabilities while avoiding surprises. As you
 prepare a production setup, you should consider tuning those values to ensure
 that your performance constraints are respected.
 
-### 1. [`db_update_frequency`][db_update_frequency] (default: 5s)
+### [`db_update_frequency`][db_update_frequency] (default: 5s)
 
 This value determines the frequency at which your Kong nodes will be polling
 the database for invalidation events. A lower value means that the polling
@@ -172,14 +172,18 @@ with changes you apply. A higher value means that your Kong nodes will
 spend less time running the polling jobs, and will focus on proxying your
 traffic.
 
-**Note**: Changes propagate through the cluster in up to `db_update_frequency`
+{:.note}
+> **Note**: Changes propagate through the cluster in up to `db_update_frequency`
 seconds.
 
-### 2. [`db_update_propagation`][db_update_propagation] (default: 0s)
+### [`db_update_propagation`][db_update_propagation] (default: 0s)
 
+{% if_version lte:3.3.x %}
 If your database itself is eventually consistent (that is, Cassandra), you **must**
-configure this value. It is to ensure that the change has time to propagate
-across your database nodes. When set, Kong nodes receiving invalidation events
+configure this value. 
+{% endif_version %}
+Setting this parameter ensures that the change has time to 
+propagate across your database nodes. When set, Kong nodes receiving invalidation events
 from their polling jobs will delay the purging of their cache for
 `db_update_propagation` seconds.
 
@@ -190,10 +194,11 @@ value again (because the change hasn't propagated through the database yet)!
 You should set this value to an estimate of the amount of time your database
 cluster takes to propagate changes.
 
-**Note**: When this value is set, changes propagate through the cluster in
+{:.note}
+> **Note**: When this value is set, changes propagate through the cluster in
 up to `db_update_frequency + db_update_propagation` seconds.
 
-### 3. [`db_cache_ttl`][db_cache_ttl] (default: 0s)
+### [`db_cache_ttl`][db_cache_ttl] (default: 0s)
 
 The time (in seconds) for which Kong will cache database entities (both hits
 and misses). This Time-To-Live value acts as a safeguard in case a Kong node
@@ -203,15 +208,16 @@ next database result will be cached again.
 
 By default, no data is invalidated based on this TTL (the default value is `0`).
 This is usually fine: Kong nodes rely on invalidation events, which are handled
-at the db store level (Cassandra/PostgreSQL). If you are concerned that a Kong
+at the db store level. If you are concerned that a Kong
 node might miss invalidation event for any reason, you should set a TTL. Otherwise
 the node might run with a stale value in its cache for an undefined amount of time
 until the cache is manually purged, or the node is restarted.
 
-### 4. When using Cassandra
+{% if_version lte:3.3.x %}
+### When using Cassandra
 
 If you use Cassandra as your Kong database, you **must** set
-[`db_update_propagation`][db_update_propagation] to a non-zero value. Since
+[db_update_propagation][db_update_propagation] to a non-zero value. Since
 Cassandra is eventually consistent by nature, this will ensure that Kong nodes
 do not prematurely invalidate their cache, only to fetch and catch a
 not up-to-date entity again. Kong will present you a warning in logs if you did
@@ -223,12 +229,18 @@ Kong nodes are up-to-date values from your database.
 
 Setting the `cassandra_refresh_frequency` option to `0` is not advised, as a Kong
 restart will be required to discover any changes to the Cassandra cluster topology.
+{% endif_version %}
 
 ## Interacting with the cache via the Admin API
 
 If for some reason, you want to investigate the cached values, or manually
 invalidate a value cached by Kong (a cached hit or miss), you can do so via the
 Admin API `/cache` endpoint.
+
+{:.note}
+> **Note**: Retrieving the `cache_key` for each entity being cached by Kong is
+currently an undocumented process. Future versions of the Admin API will make
+this process easier.
 
 ### Inspect a cached value
 
@@ -254,10 +266,6 @@ Else:
 HTTP 404 Not Found
 ```
 
-**Note**: Retrieving the `cache_key` for each entity being cached by Kong is
-currently an undocumented process. Future versions of the Admin API will make
-this process easier.
-
 ### Purge a cached value
 
 **Endpoint**
@@ -271,10 +279,6 @@ HTTP 204 No Content
 ...
 ```
 
-**Note**: Retrieving the `cache_key` for each entity being cached by Kong is
-currently an undocumented process. Future versions of the Admin API will make
-this process easier.
-
 ### Purge a node's cache
 
 **Endpoint**
@@ -287,7 +291,8 @@ this process easier.
 HTTP 204 No Content
 ```
 
-**Note**: Be wary of using this endpoint on a node running in production with warm cache.
+{:.note}
+> **Note**: Be wary of using this endpoint on a node running in production with warm cache.
 If the node is receiving a lot of traffic, purging its cache at the same time
 will trigger many requests to your database, and could cause a
 [dog-pile effect](https://en.wikipedia.org/wiki/Cache_stampede).
@@ -295,3 +300,4 @@ will trigger many requests to your database, and could cause a
 [`db_update_frequency`]: /gateway/{{page.kong_version}}/reference/configuration/#db_update_frequency
 [`db_update_propagation`]: /gateway/{{page.kong_version}}/reference/configuration/#db_update_propagation
 [`db_cache_ttl`]: /gateway/{{page.kong_version}}/reference/configuration/#db_cache_ttl
+

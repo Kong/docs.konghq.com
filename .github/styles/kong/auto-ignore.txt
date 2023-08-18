@@ -27,6 +27,9 @@ foogineer
 if_version
 ingress_controller_configuration_push_count
 ingress_controller_configuration_push_duration_milliseconds
+ingress_controller_configuration_push_broken_resource_count
+ingress_controller_configuration_push_last_successful
+ingress_controller_translation_broken_resource_count
 ingress_controller_translation_count
 inlineString
 involvedObject
@@ -36,6 +39,7 @@ max_args
 max_headers
 metatable
 narr
+neg_ttl
 ngx
 ngx_stream_proxy_module
 nrec
@@ -69,6 +73,7 @@ TCPRoute
 TCPRoutes
 TLSRoute
 TLSRoutes
+TTLs
 UDPRoute
 UDPRoutes
 uid

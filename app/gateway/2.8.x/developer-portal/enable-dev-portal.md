@@ -53,10 +53,14 @@ configuration file (`kong.conf`):
 
 3. Execute the following command:
 
-    <pre><code>curl -X PATCH --url http://<div contenteditable="true">{HOSTNAME}</div>:8001/workspaces/default \
-        --data "config.portal=true"</code></pre>
+    ```sh
+    curl -X PATCH --url http://localhost:8001/workspaces/default \
+        --data "config.portal=true"
+    ```
 
 4. Access the Dev Portal for the default workspace using the URL specified
 in the `KONG_PORTAL_GUI_HOST` variable:
 
-    <pre><code>http://<div contenteditable="true">{HOSTNAME}</div>:8003/default</code></pre>
+    ```
+    http://localhost:8003/default
+    ```

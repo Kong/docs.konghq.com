@@ -79,7 +79,8 @@
         - text: Overview
           url: /runtime-manager/configuration/
         - text: Create Consumer Groups
-          url: /runtime-manager/configuration/consumer-groups/
+          url: https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/how-to/
+          absolute_url: true
         - text: Secrets Management
           items:
             - text: Overview

@@ -3,7 +3,7 @@ title: Using Plugin Resources
 ---
 
 This guide walks you through applying the {{site.kic_product_name}} 
-KongPlugin and KongClusterPlugin custom resources other configuration. These
+KongPlugin and KongClusterPlugin custom resources to other configuration. These
 resources change how {{site.base_gateway}} handles proxied requests. This guide
 configures plugins that modify headers and enforce authentication requirements.
 

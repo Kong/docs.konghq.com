@@ -101,6 +101,8 @@ Kong plugins no longer support `CREDENTIAL_USERNAME` (`X-Credential-Username`).
 Use the constant `CREDENTIAL_IDENTIFIER` (`X-Credential-Identifier`) when
 setting the upstream headers for a credential.
 
+The ability to scope plugins to consumer groups was added in {{site.base_gateway}} version 3.4. Running a mixed-version {{site.base_gateway}} cluster (3.4 control plane, and <=3.3 data planes) is not supported when using consumer-group scoped plugins. 
+
 #### Deprecations and changed parameters
 
 The [StatsD Advanced](/hub/kong-inc/statsd-advanced/) plugin

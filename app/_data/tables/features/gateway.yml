@@ -27,7 +27,7 @@ features:
         enterprise: true
       - name: "Kong Manager: Admin GUI"
         tooltip: Visually manage Kong cluster, plugins, APIs, and consumers
-        oss: false
+        oss: true
         enterprise: true
   - name: Traffic Management and Transformations
     items:
