@@ -9,7 +9,11 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+
 ## August 2023
+
+**Release announcements in Konnect**
+: With Makelog integration, you can now see the latest feature and update announcements in the {{site.konnect_saas}} UI. 
 
 **Gateway 3.4 Support**
 : Konnect now supports the latest Gateway release version of 3.4 including all [Konnect-compatible plugins](/konnect/compatibility/).
