@@ -27,7 +27,7 @@ You've decided to create two groups of developers with different access levels t
 * **New Partners:** This developer team will contain delivery groups that the company is still in the process of vetting, so you don't want to allow them to consume your APIs in their apps yet. You give this group view-only privileges so they can see what your API specs look like. 
 
 {:.important}
-> **Important:** If you currently have developers in {{site.konnect_short_name}}, you must configure developer teams before enabling Portal RBAC (which is disabled by default). If you enable Portal RBAC before configuring teams for your developers, it will prevent *all* developers from seeing any services in your Dev Portal. We recommend setting up your teams and permissions before enabling RBAC which will allow for a seamless transition; developers see what they're supposed to, instead of nothing at all.
+> **Important:** If you currently have developers in {{site.konnect_short_name}}, you must configure developer teams before enabling Portal RBAC (which is disabled by default). If you enable Portal RBAC before configuring teams for your developers, it will prevent *all* developers from seeing any API products in your Dev Portal. We recommend setting up your teams and permissions before enabling RBAC which will allow for a seamless transition; developers see what they're supposed to, instead of nothing at all.
 
 ### Create an API product
 
@@ -95,8 +95,8 @@ curl --request POST \
     "portal_ids": "PORTAL_ID",
     "labels": {
         "env": "test"
-        }
-    }'
+    }
+  }'
 ```
 1. Create the `v1` version for the `Classic Pizzas` API product and publish it:
 ```bash
@@ -107,9 +107,9 @@ curl --request POST \
     "name": "v1",
     "gateway_service": {
         "runtime_group_id": "RUNTIME_GROUP_ID"
-        },
+    },
     "publish_status": "published",
-    }'
+  }'
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -177,7 +177,7 @@ curl --request POST \
   "role_name": "API Viewer, API Consumer",
   "entity_id": "SERVICE_ID",
   "entity_type_name": "Services",
-}'
+  }'
 ```
 1. Now assign the `API Viewer` role to the `New Partners` team for the same classic pizzas API product:
 ```bash
@@ -189,7 +189,7 @@ curl --request POST \
   "role_name": "API Viewer",
   "entity_id": "SERVICE_ID",
   "entity_type_name": "Services",
-}'
+  }'
 ```
 {% endnavtab %}
 {% endnavtabs %}
