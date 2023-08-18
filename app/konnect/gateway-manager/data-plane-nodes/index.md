@@ -4,7 +4,8 @@ content_type: explanation
 disable_image_expand: true
 ---
 
-A data plane node is a single self-managed instance of {{site.base_gateway}} that functions as a data plane. In {{site.konnect_saas}}, data plane nodes are part of [control planes](/konnect/runtime-manager/runtime-groups) and can be used to serve traffic to the control plane. Control planes manage and store configurations in {{site.konnect_saas}}, and data plane nodes are configured according to the configuration distributed by the control plane.
+A data plane node is a single self-managed instance of {{site.base_gateway}} that acts as a proxy and serves traffic.
+In {{site.konnect_saas}}, data planes are managed by [control planes](/konnect/gateway-manager/control-plane-groups/). Control planes manage and store configurations in {{site.konnect_saas}}, and data plane nodes are configured according to the configuration distributed by the control plane.
 
 {{site.konnect_short_name}} provides data plane node installation scripts for various platforms. 
 These data plane nodes are configured to run in your {{site.konnect_short_name}} environment.
@@ -29,14 +30,14 @@ This brings you to a set of installation options. Choose one of the options, the
 
 {{site.konnect_product_name}} supports using non-transparent forward proxies to connect your {{site.base_gateway}} data plane with the {{site.konnect_saas}} control plane. See the [Forward proxy connections](/gateway/latest/production/networking/cp-dp-proxy/) {{site.base_gateway}} documentation for more information.
 
-## Data Plane Node dashboard
-### Data Plane Node dashboard
+## Data plane node dashboard
+### Data plane node dashboard
 ![gateway data plane node dashboard](/assets/images/docs/konnect/konnect-runtime-instance-gateway.png)
 > **Figure 1:** This image shows the Gateway data plane node dashboard. For each Gateway data plane node, you can see analytics, and host details.
 
-### KIC Data Plane Node dashboard
-![KIC Data Plane Node dashboard](/assets/images/docs/konnect/konnect-runtime-instance-kic.png)
-> **Figure 2:** This image shows a KIC Data Plane Node dashboard. For each KIC data plane node, you can see details about the data plane node, analytics, and KIC status details.
+### KIC data plane node dashboard
+![KIC data plane node dashboard](/assets/images/docs/konnect/konnect-runtime-instance-kic.png)
+> **Figure 2:** This image shows a KIC data plane node dashboard. For each KIC data plane node, you can see details about the data plane node, analytics, and KIC status details.
 
 ## More information
 
