@@ -3,12 +3,12 @@ title: Manage Dev Portal Teams
 content_type: how-to
 ---
 
-A common scenario for a Dev Portal is to restrict developers' ability to view or request access to specific services based on their permissions. {{site.konnect_short_name}} Portal enables administrators to define Role-Based Access Control (RBAC) for teams of developers through the Konnect UI and API.
+A common scenario for a Dev Portal is to restrict developers' ability to view or request access to specific API products based on their permissions. {{site.konnect_short_name}} Portal enables administrators to define Role-Based Access Control (RBAC) for teams of developers through the Konnect UI and API.
 
-Portal RBAC supports two different roles for services that can be applied to a team of developers:
+Portal RBAC supports two different roles for API products that can be applied to a team of developers:
 
-* **API Viewer:** Provides developers with read access to the documentation associated with a service.
-* **API Consumer:** Includes API Viewer permissions as well as allows developers to register applications to consume versions of a service.
+* **API Viewer:** Provides developers with read access to the documentation associated with an API product.
+* **API Consumer:** Includes API Viewer permissions as well as allows developers to register applications to consume versions of an API product.
 
 You can use the API and UI to create a team, assign a role to the team, and finally, add developers to the team.
 
@@ -88,13 +88,11 @@ curl --request POST \
 ```bash
 curl --request POST \
   --url https://<region>.api.konghq.com/v2/api-products \
-  -- data '{
+  --data '{
     "id": "GATEWAY_SERVICE_ID",
     "name": "Classic Pizzas",
     "description": "API product for classic pizzas",
     "portal_ids": "PORTAL_ID",
-    "created_at": "2023-01-01T00:00:00.000Z",
-    "updated_at": "2023-01-01T00:00:00.000Z",
     "labels": {
         "env": "test"
         }
@@ -104,11 +102,11 @@ curl --request POST \
 ```bash
 curl --request POST \
   --url https://<region>.api.konghq.com/v2/api-products/<api-product-id>/product-versions \
-  -- data '{
+  --data '{
     "id": "GATEWAY_SERVICE_ID",
     "name": "v1",
     "gateway_service": {
-        "runtime_group_id": "RUNTIME_GROUP_ID",
+        "runtime_group_id": "RUNTIME_GROUP_ID"
         },
     "publish_status": "published",
     }'
