@@ -12,7 +12,7 @@ These data plane nodes are configured to run in your {{site.konnect_short_name}}
 
 ## Supported installation options
 
-You can set up a data plane node by navigating to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/runtime-manager/), choosing a control plane, then clicking on **New Data Plane Node**.
+You can set up a data plane node by navigating to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/gateway-manager), choosing a control plane, then clicking on **New Data Plane Node**.
 
 This brings you to a set of installation options. Choose one of the options, then follow the instructions in {{site.konnect_short_name}} to finish setting up.
 
@@ -41,10 +41,10 @@ This brings you to a set of installation options. Choose one of the options, the
 
 ## More information
 
-- [Upgrade a data plane node](/konnect/runtime-manager/runtime-instances/upgrade/)
-- [Renew certificates](/konnect/runtime-manager/runtime-instances/renew-certificates/) - Renew your data plane certificates
-- [Backup and restore](/konnect/runtime-manager/backup-restore/) - Back up and restore {{site.konnect_short_name}} using declarative configuration
+- [Upgrade a data plane node](/konnect/gateway-manager/data-plane-nodes/upgrade/)
+- [Renew certificates](/konnect/gateway-manager/data-plane-nodes/renew-certificates/) - Renew your data plane certificates
+- [Backup and restore](/konnect/gateway-manager/backup-restore/) - Back up and restore {{site.konnect_short_name}} using declarative configuration
 - [Forward proxy connections](/gateway/latest/production/networking/cp-dp-proxy/) - Allow data plane nodes to communicate with {{site.konnect_short_name}} through a forward proxy
-- [Runtime parameter reference](/konnect/runtime-manager/runtime-instances/runtime-parameter-reference/) - Reference for the default configuration parameters used in data plane node installation
+- [Runtime parameter reference](/konnect/gateway-manager/data-plane-nodes/runtime-parameter-reference/) - Reference for the default configuration parameters used in data plane node installation
 - [Analytics dashboard](/konnect/analytics/) - Monitor and analyze your data plane nodes, as well as specific entities
-- [Troubleshooting documentation](/konnect/runtime-manager/troubleshoot/) - Common data plane node troubleshooting instruction documentation.
+- [Troubleshooting documentation](/konnect/gateway-manager/troubleshoot/) - Common data plane node troubleshooting instruction documentation.
