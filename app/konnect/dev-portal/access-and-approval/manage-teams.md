@@ -20,11 +20,11 @@ In this guide, you will set up two developer teams and then enable Portal RBAC u
 
 ## Configure developer teams 
 
-In this scenario, you are a product manager at a pizza company who is in charge of their online app. You're asked to create a Dev Portal that allows delivery companies to use your APIs to deliver the company's pizzas. However, you want to make sure only trusted delivery partners can build apps using your APIs and deliver your pizzas. 
+In this scenario, you are a product manager at a pizza company, responsible for overseeing their online application. Your task is to create a Developer Portal intended for delivery companies. This portal will grant delivery companies access to your APIs, enabling them to incorporate your pizza offerings into their own delivery service offerings. One of your primary objectives is to ensure that only trusted delivery partners are granted access to develop applications using your APIs, and deliver your pizzas.
 
-You've decided to create two groups of developers with different access levels to your APIs: 
-* **Delivery Partners:** This developer team will be able to view and consume your APIs so they can use them in their own apps to deliver your pizzas.
-* **New Partners:** This developer team will contain delivery groups that the company is still in the process of vetting, so you don't want to allow them to consume your APIs in their apps yet. You give this group view-only privileges so they can see what your API specs look like. 
+To achieve this, you create two groups of developers, each with different levels of API access:
+* **Authorized Delivery Partners:** This group can access and consume your APIs so they can integrate them into their own delivery applications.
+* **Prospective Partners:** These developers are currently undergoing an evaluation process. Since these potential partners have not completed the evaluation process, you grant them restricted view-only access. This allows them to review the API specs, and gain an understanding of how your system operates. 
 
 {:.important}
 > **Important:** If you currently have developers in {{site.konnect_short_name}}, you must configure developer teams before enabling Portal RBAC (which is disabled by default). If you enable Portal RBAC before configuring teams for your developers, it will prevent *all* developers from seeing any API products in your Dev Portal. We recommend setting up your teams and permissions before enabling RBAC which will allow for a seamless transition; developers see what they're supposed to, instead of nothing at all.
@@ -59,8 +59,8 @@ In {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/us
 1. Create the `classic_pizzas` service:
 ```bash
 curl --request POST \
-  --url https://<region>.api.konghq.com/v2/<runtime-group-id>/core-entities/services \
-  -- data '{
+  --url https://<region>.api.konghq.com/v2/{runtime-group-id}/core-entities/services \
+  --data '{
     "name": "classic_pizzas",
     "retries": 5,
     "protocol": "http",
@@ -108,7 +108,7 @@ curl --request POST \
     "gateway_service": {
         "runtime_group_id": "RUNTIME_GROUP_ID"
     },
-    "publish_status": "published",
+    "publish_status": "published"
   }'
 ```
 {% endnavtab %}
