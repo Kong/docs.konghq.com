@@ -12,7 +12,6 @@ bargineer
 bazgineer
 bcrypt
 callees
-classic_pizzas
 config_hash
 consumer_id
 creationTimestamp
