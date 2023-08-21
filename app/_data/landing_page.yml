@@ -21,7 +21,7 @@ features:
             url: /gateway/latest/kong-enterprise/dev-portal/
 
       - name: Analytics
-        description: View granular analytics with Vitals to monitor the health of environments and clusters. Gain deep insights into service, route, and application usage.
+        description: View granular analytics with Analytics to monitor the health of environments and clusters. Gain deep insights into service, route, and application usage.
         icon: /assets/images/landing-page/card-icons/analytics.svg
         links:
           - text: Overview (cloud)
