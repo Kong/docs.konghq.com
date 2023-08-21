@@ -10,11 +10,11 @@ These plugins run inside the data plane to support application registration for 
 
 ## Support for any control plane group
 
-App registration is fully supported in the `default` control plane group. The `default` control plane group is the one that is first created in each region when you create an organization. using application `consumers` and the `acl` plugin.
+App registration is fully supported in the `default` control plane group when using the application `consumers` and the `acl` plugin. The `default` control plane group is the one that is first created in each region when you create an organization.
 For non-`default` control plane groups, app registration is supported using the `konnect-application-auth` plugin available as of {{site.base_gateway}} 3.0.
 
 {:.note}
-> **Note:**  Although it can be renamed the [`default` control plane group](/konnect/gateway-manager/control-plane-groups/) will always be the first and oldest control plane group in each region.
+> **Note:**  Although it can be renamed, the [`default` control plane group](/konnect/gateway-manager/control-plane-groups/) will always be the first and oldest control plane group in each region.
 
 ## Prerequisites
 
@@ -82,7 +82,7 @@ support for {{site.base_gateway}} versions less than 3.0.
 
 ###  OpenID Connect configuration parameters {#openid-config-parameters}
 
-In the `default` control plane group, **Credential claim** is used as a **Consumer claim** which identifies a consumer. In non-`default` control plane groups, the **Credential claim** should be mapped to a claim that contains the unique `clientId` or `applicationId` in the identity provider.For more background information about OpenID Connect plugin parameters, see [Important Configuration Parameters](/hub/kong-inc/openid-connect/#important-configuration-parameters).
+In the `default` control plane group, **Credential claim** is used as a **Consumer claim** which identifies a consumer. In non-`default` control plane groups, the **Credential claim** should be mapped to a claim that contains the unique `clientId` or `applicationId` in the identity provider. For more background information about OpenID Connect plugin parameters, see [Important Configuration Parameters](/hub/kong-inc/openid-connect/#important-configuration-parameters).
 
    | Form Parameter | Description                                                                       |Required |
    |:---------------|:----------------------------------------------------------------------------------|--|
@@ -122,8 +122,8 @@ In the `default` control plane group, applications are linked to {{site.base_gat
 
 ### Known limitations
 
-The internal `konnect-application-auth` plugin only supports {{site.base_gateway}} 3.0+. If you need to use a version of {{site.base_gateway}} before 3.0, you must create your API product version that is linked to a Gateway service in the `default` group, which still supports consumer mapping with the `acl` plugin.
+The internal `konnect-application-auth` plugin only supports {{site.base_gateway}} 3.0 or later. If you need to use a version of {{site.base_gateway}} before 3.0, you must create your API product version that is linked to a Gateway service in the `default` group, which still supports consumer mapping with the `acl` plugin.
 
-The `konnect-application-auth` plugin does not connect applications to {{site.base_gateway}} consumers. Therefore, any applications created through the app registration process in any non-default control plane group wont support rate limiting plugins. This will be addressed in a future release.
+The `konnect-application-auth` plugin does not connect applications to {{site.base_gateway}} consumers. Therefore, any applications created through the app registration process in any non-default control plane group won't support rate limiting plugins. This will be addressed in a future release.
 
-If you don't use any rate limiting plugins, we recommend upgrading your data planes to {{site.base_gateway}} version 3.0+ to ensure future compatibility with the `konnect-application-auth` plugin, which has a built-in replacement for the `acl` plugin.
+If you don't use any rate limiting plugins, we recommend upgrading your data planes to {{site.base_gateway}} version 3.0 or later to ensure future compatibility with the `konnect-application-auth` plugin, which has a built-in replacement for the `acl` plugin.

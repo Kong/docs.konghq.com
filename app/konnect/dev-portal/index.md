@@ -7,7 +7,7 @@ The {{site.konnect_short_name}} Dev Portal is a customizable website for develop
 
 ## Publish service documentation
 
-In {{site.konnect_short_name}}, API products can be published to the Dev Portal with one click. Published products become immediately available to users who have access to the Dev Portal. When an API product is published, the API spec and any service document become discoverable. We use the term discoverable here because the Dev Portal can create a unified API experience where a developer can navigate through the different APIs that are available, read documentation, test endpoints within the Dev Portal, and register to create applications for specific APIs. 
+In {{site.konnect_short_name}}, API products can be published to the Dev Portal with one click. Published API products become immediately available to users who have access to the Dev Portal. When an API product is published, the API spec and any service documentation becomes discoverable. We use the term discoverable here because the Dev Portal can create a unified API experience where a developer can navigate through the different APIs that are available, read documentation, test endpoints within the Dev Portal, and register to create applications for specific APIs. 
 
 * [Getting started guide](/konnect/getting-started/publish-service/): This guide walks you through importing an API spec, publishing your service and corresponding API spec to the Dev Portal, and configuring registration settings so that users can view your services and register applications.
 
