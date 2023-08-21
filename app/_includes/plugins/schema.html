@@ -102,8 +102,8 @@
       <div class="field-description-and-children">
         <p class="field-description">
           The name or ID of the consumer group the plugin targets.
-          Set one of these parameters if adding the plugin to a consumer group through the top-level <a href="/gateway/latest/admin-api/#add-plugin"><code>/plugins</code> endpoint.</a>
-          Not required if using <code>/consumer_groups/{CONSUMER_GROUP_NAME|ID}/plugins</code>.
+          If set, the plugin will activate only for requests where the specified group has been authenticated <a href="/gateway/latest/admin-api/#add-plugin"><code>/plugins</code> endpoint.</a>
+          Not required if using  the <code>/consumer_groups/{CONSUMER_GROUP_NAME|ID}/plugins</code> endpoint.
         </p>
       </div>
     </li>
