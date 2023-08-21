@@ -6,11 +6,11 @@ module Jekyll
       module Examples
         class Konnect < Base
           URLS = {
-            'consumer' => 'https://global.api.konghq.com/v2/{RUNTIME-GROUP-ID}/core-entities/consumers/{CONSUMER_NAME|ID}/plugins',
-            'consumer_group' => 'https://global.api.konghq.com/v2/{RUNTIME-GROUP-ID}/core-entities/consumer_groups/{CONSUMER_GROUP_NAME|ID}/plugins',
-            'global' => 'https://global.api.konghq.com/v2/{RUNTIME-GROUP-ID}/core-entities/plugins/',
-            'route' => 'https://global.api.konghq.com/v2/{RUNTIME-GROUP-ID}/core-entities/routes/{ROUTE_NAME|ID}/plugins',
-            'service' => 'https://global.api.konghq.com/v2/{RUNTIME-GROUP-ID}/core-entities/services/{SERVICE_NAME|ID}/plugins'
+            'consumer' => 'https://{us|eu}.api.konghq.com/v2/{RUNTIME-GROUP-ID}/core-entities/consumers/{CONSUMER_NAME|ID}/plugins',
+            'consumer_group' => 'https://{us|eu}.api.konghq.com/v2/{RUNTIME-GROUP-ID}/core-entities/consumer_groups/{CONSUMER_GROUP_NAME|ID}/plugins',
+            'global' => 'https://{us|eu}.api.konghq.com/v2/{RUNTIME-GROUP-ID}/core-entities/plugins/',
+            'route' => 'https://{us|eu}.api.konghq.com/v2/{RUNTIME-GROUP-ID}/core-entities/routes/{ROUTE_NAME|ID}/plugins',
+            'service' => 'https://{us|eu}.api.konghq.com/v2/{RUNTIME-GROUP-ID}/core-entities/services/{SERVICE_NAME|ID}/plugins'
           }.freeze
 
           def params
