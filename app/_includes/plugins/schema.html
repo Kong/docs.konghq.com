@@ -91,6 +91,24 @@
     </li>
   {% endif %}
 
+  {% if schema.enable_on_consumer_group? %}
+    <li class="field">
+      <div class="field-overview">
+        <h4 id="consumer-group">consumer_group.name or consumer_group.id</h4>
+      </div>
+      <div class="field-attributes">
+        <span><strong>string</strong></span>
+      </div>
+      <div class="field-description-and-children">
+        <p class="field-description">
+          The name or ID of the consumer group the plugin targets.
+          If set, the plugin will activate only for requests where the specified group has been authenticated <a href="/gateway/latest/admin-api/#add-plugin"><code>/plugins</code> endpoint.</a>
+          Not required if using <code>/consumer_groups/{CONSUMER_GROUP_NAME|ID}/plugins</code>.
+        </p>
+      </div>
+    </li>
+  {% endif %}
+
   <li class="field">
     <div class="field-overview">
       <h4 id="enabled">enabled</h4>
