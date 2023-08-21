@@ -66,7 +66,7 @@ You can find the configuration and telemetry hostnames through the Gateway Manag
 
 {% navtab Kong Ingress Controller %}
 
-{{site.kic_product_name}} initiates the connection to the {{site.konnect_short_name}} [Control Planess Configuration API](/konnect/api/runtime-groups-config/) to:
+{{site.kic_product_name}} initiates the connection to the {{site.konnect_short_name}} [Control Planes Configuration API](/konnect/api/runtime-groups-config/) to:
 
 * Synchronize the configuration of the {{site.base_gateway}} instances with {{site.konnect_short_name}}
 * Register data plane nodes

@@ -72,7 +72,7 @@ or try to apply older changes.
 ### How long can data plane nodes remain disconnected from the control plane?
 
 A data plane node will keep pinging the
-control, until the connection is re-established or the data plane
+control plane, until the connection is re-established or the data plane
 is stopped.
 
 The data plane proxy needs to connect to the control plane at least once.
