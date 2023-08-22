@@ -6,7 +6,7 @@ The Rate Limiting Advanced plugin offers more functionality than the Kong Gatewa
 * Increased performance: Rate Limiting Advanced has better throughput performance with better accuracy. The plugin allows you to tune performance and accuracy via a configurable synchronization of counter data with the backend storage. This can be controlled by setting the desired value on the `sync_rate` parameter.
 * More limiting algorithms to choose from: These algorithms are more accurate and they enable configuration with more specificity. Learn more about our algorithms in [How to Design a Scalable Rate Limiting Algorithm](https://konghq.com/blog/how-to-design-a-scalable-rate-limiting-algorithm).
 * More control over which requests contribute to incrementing the rate limiting counters via the `disable_penalty` parameter
-{% if_plugin_version lte:3.3.x %}
+{% if_plugin_version gte:3.4.x %}
 * Consumer groups support: Apply different rate limiting configurations to select groups of consumers. Learn more in [Rate limiting for consumer groups](/hub/kong-inc/rate-limiting-advanced/how-to/)
 {% endif_plugin_version %}
 
@@ -99,6 +99,17 @@ When the `redis` strategy is used and a {{site.base_gateway}} node is disconnect
 {{site.base_gateway}} keeps the local counters for rate limiting and syncs with Redis once the connection is re-established.
 {{site.base_gateway}} will still rate limit, but the {{site.base_gateway}} nodes can't sync the counters. As a result, users will be able
 to perform more requests than the limit, but there will still be a limit per node.
+
+{% if_plugin_version gte:3.4.x%}
+## Rate limiting for consumer groups
+
+As of {{site.base_gateway}} 3.4, you can use the [consumer groups entity](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/25d728a0-cfe3-4cf4-8e90-93a5bb15cfd9#/default/post-consumer_groups) to manage custom rate limiting configurations for
+subsets of consumers. This is enabled by default **without** using the `/consumer_groups/:id/overrides` endpoint.
+
+
+You can see an example of this in the [Enforcing rate limiting tiers with the Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/how-to/) guide.
+
+{% endif_plugin_version %}
 
 {% if_plugin_version gte:2.7.x lte:3.3.x %}
 ## Rate limiting for consumer groups
