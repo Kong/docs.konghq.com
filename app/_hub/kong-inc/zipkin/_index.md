@@ -33,7 +33,6 @@ This plugin records tracing data for a given request, and sends it as a batch to
 
 The `http_endpoint` configuration variable must contain the full uri including scheme, host, port and path sections (i.e. your uri likely ends in `/api/v2/spans`).
 
-{% if_plugin_version gte:2.4.x %}
 ### Spans
 
 The plugin does *request sampling*. For each request which triggers the plugin, a random number between 0 and 1 is chosen.
@@ -52,11 +51,9 @@ For each request that gets traced, the following spans are produced:
 
   * `lc`: Hardcoded to `kong`.
   * `kong.service`: The uuid of the service matched when processing the request, if any.
-  {% if_plugin_version gte:2.5.x %}
   * `kong.service_name`: The name of the service matched when processing the request, if service exists and has a `name` attribute.
   * `kong.route`: The uuid of the route matched when processing the request, if any (it can be nil on non-matched requests).
   * `kong.route_name`: The name of the route matched when processing the request, if route exists and has a `name` attribute.
-  {% endif_plugin_version%}
   * `http.method`: The HTTP method used on the original request (only for HTTP requests).
   * `http.path`: The path of the request (only for HTTP requests).
   * If the plugin `tags_header` config option is set, and the request contains headers with the appropriate name and correct encoding tags, then the trace will include the tags.
@@ -82,8 +79,6 @@ Contains the following tags specific to load balancing:
   * `http.status_code`: The HTTP status code received, in case of error.
   * `kong.balancer.state`: An NGINX-specific description of the error, `next/failed` for HTTP failures, or `0` for stream failures.
      Equivalent to `state_name` in OpenResty's balancer's `get_last_failure` function.
-
-{% endif_plugin_version %}
 
 ### See also
 

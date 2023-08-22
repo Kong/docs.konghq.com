@@ -2,10 +2,7 @@ const fg = require('fast-glob')
 module.exports = async function (path) {
   path = path || '*'
   const lookup = {
-    ce: 'gateway-oss',
     deck: 'deck',
-    ee: 'enterprise',
-    gsg: 'getting-started-guide',
     kic: 'kubernetes-ingress-controller',
     konnect: 'konnect',
     mesh: 'mesh',

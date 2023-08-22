@@ -46,7 +46,6 @@ that the plugin now has the access permission configured in the target assumed r
 
 {% endif_plugin_version %}
 
-{% if_plugin_version gte:2.6.x %}
 ## AWS region as environment variable
 
 If the plugin configuration `aws_region` is unset, the plugin attempts to obtain the
@@ -56,36 +55,6 @@ with the former taking higher precedence. For example, if both `AWS_REGION` and
 `AWS_DEFAULT_REGION` is set, its value is used. If neither configuration `aws_region`
 nor environment variables are set, a run-time error "no region or host specified"
 will be thrown.
-
-{% endif_plugin_version %}
-
-{% if_plugin_version lte:2.1.x %}
-
-### Known issues
-
-#### Use a fake upstream service
-
-When using the AWS Lambda plugin, the response will be returned by the plugin
-itself without proxying the request to any upstream service. The service
-configured for a route is ignored when using this plugin.
-
-Versions of {{site.ce_product_name}} prior to 2.x require a service on all
-routes. Even though the service will not be used, you must configure a
-placeholder service for routes using this plugin. Versions after 2.x allow you
-to omit service configuration.
-
-When using {{site.kic_product_name}}, Kubernetes Ingresses require a service.
-Even on {{site.ce_product_name}} versions that support empty services, you must still configure a placeholder service for the Ingress. An [ExternalName
-service](https://kubernetes.io/docs/concepts/services-networking/service/#externalname)
-for an unresolvable domain (for example, `fake.example`) satisfies this
-requirement without requiring a Deployment associated with the service.
-
-#### Response plugins
-
-There is a known limitation in the system that prevents some response plugins
-from being executed. We are planning to remove this limitation in the future.
-
-{% endif_plugin_version %}
 
 ## Usage
 

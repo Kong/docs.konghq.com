@@ -14,9 +14,7 @@ can be any valid verifiable tokens. E.g. two access tokens
 * [Plugin Configuration Parameters](#plugin-configuration-parameters)
   * [Description of Plugin Configuration Parameters](#description-of-plugin-configuration-parameters)
     * [config.realm](#configrealm)
-    {% if_plugin_version gte:2.2.x %}
     * [config.enable_hs_signatures](#configenable_hs_signatures)
-    {% endif_plugin_version %}
     * [config.access_token_issuer](#configaccess_token_issuer)
     * [config.access_token_keyset](#configaccess_token_keyset)
     * [config.access_token_jwks_uri](#configaccess_token_jwks_uri)
@@ -130,12 +128,10 @@ Also for introspection to work, you need to specify introspection endpoints:
 When authentication or authorization fails, or there is an unexpected error, the plugin will
 send `WWW-Authenticate` header with `realm` attribute value of this configuration parameter.
 
-{% if_plugin_version gte:2.2.x %}
 #### `config.enable_hs_signatures`
 
 Tokens signed with HMAC algorithms such as HS256, HS384 or HS512 are not accepted by default.
 If you need to accept such tokens for verification, you can enable this setting. Default: `false`.
-{% endif_plugin_version %}
 
 #### `config.enable_instrumentation`
 

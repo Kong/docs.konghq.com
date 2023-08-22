@@ -3,9 +3,6 @@ layout: null
 ---
 {% if jekyll.environment == "production" %}
 User-agent: *
-Disallow: /enterprise/*
-Disallow: /gateway-oss/*
-Disallow: /getting-started-guide/*
 {% comment %}We disallow deck pre-1.7 as canonical generation doesn't work for non-semver releases{% endcomment %}
 Disallow: /deck/pre-1.7*
 
