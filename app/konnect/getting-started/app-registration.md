@@ -98,7 +98,7 @@ reference ID, and description. The reference ID must be unique.
 ## Summary and next steps
 
 In this topic, you:
-* Enabled application registration for the the API product version.
+* Enabled application registration for the API product version.
 * Created an application through the Dev Portal and registered it against your API product version.
 * Generated an API key for the application and made a call using this key
 

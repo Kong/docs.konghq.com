@@ -21,7 +21,7 @@ Let's set up your first API product and API product version, by clicking {% konn
 
 1. Create a new name for your API product, and enter an optional **Description** and any **labels** that you want to associate with the product, then press **create**. 
 
-You will be greeted by the dashboard for the API product that you just created. You can use this dashboard to manage an API product. You can read more about this dashboard on our API products [overview page](/konnect/api-products/)
+You will be greeted by the dashboard for the API product that you just created. You can use this dashboard to manage an API product. You can read more about this dashboard on the API products [overview page](/konnect/api-products/)
 
 ### Create an API product version
 
@@ -40,8 +40,7 @@ After creating the new version, you will see **Link with a Gateway Service** as 
 1. Select **Link with a Gateway Service**. 
 
     Choose a [control plane](/konnect/gateway-manager/control-plane-groups/) and [Gateway Service](/konnect/gateway-manager/configuration/#gateway-services) to
-    deploy this API product version to. This lets you deploy to a specific group of
-    data planes in a specific environment.
+    deploy this API product version to. This lets you deploy your service across data planes associated with the control plane.
 1. Click **Save**.
 
 ## Publish an API product
