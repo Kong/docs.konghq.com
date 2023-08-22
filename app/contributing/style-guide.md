@@ -177,7 +177,7 @@ When deciding which icon to use for a doc, use the following guidelines:
    Check out [their catalog](https://fontawesome.com/v5/search?m=free) to find
    an icon code, then see our [icon usage instructions](/contributing/markdown-rules/#icons).
 
-3. Does the [`/_assets/images/icons/`](https://github.com/Kong/docs.konghq.com/tree/main/app/_assets/images/icons)
+3. Does the [`/_assets/images/icons/`](https://github.com/Kong/docs.konghq.com/tree/main/app/assets/images/icons)
    folder contain the icon that you're looking for?
 
    For custom icons, we have to import them manually. This includes all of the
