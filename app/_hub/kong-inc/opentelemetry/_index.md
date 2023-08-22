@@ -170,6 +170,9 @@ The OpenTelemetry plugin propagates the following headers:
 {% if_plugin_version gte:3.4.x %}
 - `aws`: [AWS X-Ray header](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader)
 {% endif_plugin_version %}
+{% if_plugin_version gte:3.5.x %}
+- `gcp`: [GCP X-Cloud-Trace-Context header](https://cloud.google.com/trace/docs/setup#force-trace)
+{% endif_plugin_version %}
 
 The plugin detects the propagation format from the headers and will use the appropriate format to propagate the span context.
 If no appropriate format is found, the plugin will fallback to the default format, which is `w3c`.
