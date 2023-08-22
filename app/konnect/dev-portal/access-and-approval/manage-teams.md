@@ -54,7 +54,14 @@ In {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/us
 {:.note}
 > **Note:** Make sure to include headers with the personal access token in your requests.
 
-1. [Create the `classic_pizzas` service](https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf#/Services/create-service):
+These instructions only use the required fields in the following API specs:
+* [Create a service](https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf#/Services/create-service)
+* [Create an API product](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0#/API%20Products/create-api-product)
+* [Create an API product version](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0#/API%20Product%20Version%20Specification/create-api-product-version-spec)
+
+If you want to use additional fields, see the API spec documentation.
+
+1. Create the `classic_pizzas` service:
 ```bash
 curl --request POST \
   --url https://<region>.api.konghq.com/v2/{runtime-group-id}/core-entities/services \
@@ -62,7 +69,7 @@ curl --request POST \
   --data "host": "http://mockbin.org" \
   --data "path": "/classic_pizzas" 
 ```
-1. [Create the `Pizza Ordering` API product](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0#/API%20Products/create-api-product):
+1. Create the `Pizza Ordering` API product:
 ```bash
 curl --request POST \
   --url https://<region>.api.konghq.com/v2/api-products \
@@ -70,7 +77,7 @@ curl --request POST \
   --data "description": "API product for pizza ordering" 
 ```
   Save the `portal-id` value from the output. This will be used later.
-1. [Create the `v1` version for the `Pizza Ordering` API product and publish it](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0#/API%20Product%20Version%20Specification/create-api-product-version-spec):
+1. Create the `v1` version for the `Pizza Ordering` API product and publish it:
 ```bash
 curl --request POST \
   --url https://<region>.api.konghq.com/v2/api-products/<api-product-id>/product-versions \
@@ -109,7 +116,13 @@ Next, let's create two developer teams: "Authorized Delivery Partners" with API 
 {:.note}
 > **Note:** Make sure to include headers with the personal access token in your requests.
 
-1. [Create the `Authorized Delivery Partners` team](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Teams/create-portal-team):
+These instructions only use the required fields in the following API specs:
+* [Create developer team](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Teams/create-portal-team)
+* [Assign roles to a team](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Team%20Roles/portal-teams-assign-role)
+
+If you want to use additional fields, see the API spec documentation.
+
+1. Create the `Authorized Delivery Partners` team:
 ```bash
 curl --request POST \
   --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams \
@@ -117,7 +130,7 @@ curl --request POST \
   --data "description": "Team of vetted delivery partners that can view and consume APIs"
 ```
   The `portal-id` will be the value from the output of the request you used earlier to create the Pizza Delivery API product.
-1. [Create the `Prospective Partners` team](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Teams/create-portal-team):
+1. Create the `Prospective Partners` team:
 ```bash
 curl --request POST \
   --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams \
@@ -125,7 +138,7 @@ curl --request POST \
   --data "description": "Team of unvetted partners that can only view APIs"
 ```
   You can verify that the teams have been created by [making a GET request to the teams endpoint](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Teams/get-portal-team). 
-1. Now you can assign roles to your teams. To do so, you must [make a `POST` request to the team roles endpoint](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Team%20Roles/portal-teams-assign-role). The following example shows how to assign the `API Consumer` role to the `Authorized Delivery Partners` created in the previous section for your pizza ordering API product:
+1. Now you can assign roles to your teams. To do so, you must make a `POST` request to the team roles endpoint. The following example shows how to assign the `API Consumer` role to the `Authorized Delivery Partners` created in the previous section for your pizza ordering API product:
 ```bash
 curl --request POST \
   --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/assigned-roles \
@@ -133,7 +146,7 @@ curl --request POST \
   --data "entity_id": "SERVICE_ID" \
   --data "entity_type_name": "Services"
 ```
-1. Now [assign the `API Viewer` role to the `Prospective Partners` team](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Team%20Roles/portal-teams-assign-role) for the same pizza ordering API product:
+1. Now assign the `API Viewer` role to the `Prospective Partners` team for the same pizza ordering API product:
 ```bash
 curl --request POST \
   --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/assigned-roles \
