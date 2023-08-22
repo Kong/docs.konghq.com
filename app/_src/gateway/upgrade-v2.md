@@ -118,9 +118,9 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 | 3.1.0.x-3.1.1.2 | Hybrid | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
 | 3.1.1.3 | Hybrid | No | [Upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
 | 3.1.x | DB less | No | [Upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
-| 3.2.x | Traditional | Yes | [Upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
-| 3.2.x | Hybrid | Yes | [Upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
-| 3.2.x | DB less | Yes | [Upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.2.x | Traditional | No | [Upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.2.x | Hybrid | No | [Upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.2.x | DB less | No | [Upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
 | 3.3.x | Traditional | Yes | [Upgrade to 3.4.x](#migrate-db). |
 | 3.3.x | Hybrid | Yes | [Upgrade to 3.4.x](#migrate-db). |
 | 3.3.x | DB less | Yes | [Upgrade to 3.4.x](#migrate-db). |
