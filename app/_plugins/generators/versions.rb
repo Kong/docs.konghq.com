@@ -6,7 +6,6 @@ module Jekyll
     priority :high
 
     def generate(site) # rubocop:disable Metrics/PerceivedComplexity, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/AbcSize
-
       deck_versions = site.data['kong_versions'].select do |elem|
         elem['edition'] && elem['edition'] == 'deck'
       end
