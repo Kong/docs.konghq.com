@@ -1,6 +1,7 @@
 {% include_relative_once _data/tables/support/kic/base.yml %}
 
 lts: false
+version: 2.9
 
 ce: *ce
 ee: *ee
