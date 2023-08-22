@@ -9,23 +9,15 @@ version compatibility information is available in that version's documentation
 section.
 
 {% navtabs %}
-  {% navtab 2.11 %}
+  {% for version_hash in site.data.tables.support.kic.versions %}
+    {% assign versioninfo = version_hash[1] %}
+    {% assign name = versioninfo.version | string %}
+    {% navtab name %}
+      {% include_cached kic-support.md data=versioninfo %}
+    {% endnavtab %}
+  {% endfor %}
+  {% navtab static_example %}
     {% include_cached kic-support.md data=site.data.tables.support.kic.versions.211 %}
-  {% endnavtab %}
-  {% navtab 2.10 %}
-    {% include_cached kic-support.md data=site.data.tables.support.kic.versions.210 %}
-  {% endnavtab %}
-  {% navtab 2.9 %}
-    {% include_cached kic-support.md data=site.data.tables.support.kic.versions.29 %}
-  {% endnavtab %}
-  {% navtab 2.8 %}
-    {% include_cached kic-support.md data=site.data.tables.support.kic.versions.28 %}
-  {% endnavtab %}
-  {% navtab 2.7 %}
-    {% include_cached kic-support.md data=site.data.tables.support.kic.versions.27 %}
-  {% endnavtab %}
-  {% navtab 2.6 %}
-    {% include_cached kic-support.md data=site.data.tables.support.kic.versions.26 %}
   {% endnavtab %}
 {% endnavtabs %}
 
