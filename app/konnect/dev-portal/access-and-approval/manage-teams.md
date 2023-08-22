@@ -17,7 +17,7 @@ In this guide, you will set up two developer teams and then enable Portal RBAC u
 ## Prerequisites
 * Two [test developer accounts registered](/konnect/dev-portal/dev-reg/). If you currently have developers in {{site.konnect_short_name}}, you must configure developer teams before enabling Portal RBAC (which is disabled by default). If you enable Portal RBAC before configuring teams for your developers, it will prevent *all* developers from seeing any API products in your Dev Portal. We recommend setting up your teams and permissions before enabling RBAC which will allow for a seamless transition; developers see what they're supposed to, instead of nothing at all.
 * A [runtime configured](/konnect/getting-started/configure-runtime)
-* A [personal access token](/konnect/getting-started/import/#generate-a-personal-access-token) for authorization
+* A [personal access token](/konnect/getting-started/import/#generate-a-personal-access-token) for authorization. This is only required if you plan to use the API to create developer teams.
 
 ## Configure developer teams 
 
@@ -80,7 +80,7 @@ curl --request POST \
 1. Create the `v1` version for the `Pizza Ordering` API product and publish it:
 ```bash
 curl --request POST \
-  --url https://<region>.api.konghq.com/v2/api-products/<api-product-id>/product-versions \
+  --url https://<region>.api.konghq.com/v2/api-products/{api-product-id}/product-versions \
   --data "id": "GATEWAY_SERVICE_ID" \
   --data "name": "v1" \
   --data "gateway_service": {
@@ -88,6 +88,8 @@ curl --request POST \
     } \
   --data "publish_status": "published"
 ```
+{:.note}
+> The `api-product-id` is the UUID of the Pizza Ordering API product.
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -125,7 +127,7 @@ If you want to use additional fields, see the API spec documentation.
 1. Create the `Authorized Delivery Partners` team:
 ```bash
 curl --request POST \
-  --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams \
+  --url https://<region>.api.konghq.com/v2/portals/{portal-id}/teams \
   --data "name": "Authorized Delivery Partners" \
   --data "description": "Team of vetted delivery partners that can view and consume APIs"
 ```
@@ -133,7 +135,7 @@ curl --request POST \
 1. Create the `Prospective Partners` team:
 ```bash
 curl --request POST \
-  --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams \
+  --url https://<region>.api.konghq.com/v2/portals/{portal-id}/teams \
   --data "name": "Prospective Partners" \
   --data "description": "Team of unvetted partners that can only view APIs"
 ```
@@ -141,7 +143,7 @@ curl --request POST \
 1. Now you can assign roles to your teams. To do so, you must make a `POST` request to the team roles endpoint. The following example shows how to assign the `API Consumer` role to the `Authorized Delivery Partners` created in the previous section for your pizza ordering API product:
 ```bash
 curl --request POST \
-  --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/assigned-roles \
+  --url https://<region>.api.konghq.com/v2/portals/{portal-id}/teams/{team-id}/assigned-roles \
   --data "role_name": "API Consumer" \
   --data "entity_id": "SERVICE_ID" \
   --data "entity_type_name": "Services"
@@ -149,10 +151,11 @@ curl --request POST \
 1. Now assign the `API Viewer` role to the `Prospective Partners` team for the same pizza ordering API product:
 ```bash
 curl --request POST \
-  --url https://<region>.api.konghq.com/v2/portals/<portal-id>/teams/<team-id>/assigned-roles \
+  --url https://<region>.api.konghq.com/v2/portals/{portal-id}/teams/{team-id}/assigned-roles \
   --data "role_name": "API Viewer" \
   --data "entity_id": "SERVICE_ID" \
-  --data "entity_type_name": "Services"
+  --data "entity_type_name": "Services" \
+  --data "entity_region": "us"
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -172,7 +175,7 @@ To enable RBAC, you must make a `PATCH` request to the portal configuration endp
 
 ```bash
 curl --request PATCH \
-  --url https://<region>.api.konghq.com/konnect-api/api/portals/<portal-id> \
+  --url https://<region>.api.konghq.com/konnect-api/api/portals/{portal-id} \
   --data "rbac_enabled": true
 ```
 
