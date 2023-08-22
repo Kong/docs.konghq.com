@@ -12,7 +12,7 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
 
 1.  **Set up a data plane node**:
 
-    Set up your first data plane node, which gives you a data plane for proxying traffic.
+    Set up your first data plane node for proxying traffic.
 
     Start with a data plane proxy so that when your service configuration is
     ready, your services are immediately connected, configured,

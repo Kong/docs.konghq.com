@@ -5,17 +5,14 @@ title: Configure a Data Plane Node
 Set up your first data plane node through the
 [{{site.konnect_short_name}} Gateway Manager](/konnect/gateway-manager).
 
-At this time, the only type available is a {{site.base_gateway}}
-data plane.
 
-{{site.base_gateway}} data plane nodes proxy service traffic. With
-{{site.konnect_saas}} working as the control plane, a
-data plane node doesn't need a database to store configuration data. Instead,
-configuration is stored in-memory on each node, and you can easily update
-multiple data planes from one {{site.konnect_short_name}} account with a few clicks.
+Data plane nodes proxy service traffic. With
+{{site.konnect_saas}} working as the control plane, the
+data plane doesn't need a database to store configuration data. Instead,
+configurations are stored in-memory on each data plane.
 
 {:.note}
-> **Note:** Kong does not host data plane nodes. You must install and host your own
+> **Note:** {{site.konnect_short_name}} does not host data plane nodes. You must install and host your own
 data plane nodes.
 
 ## Prerequisites
@@ -29,7 +26,7 @@ is part of the organization admin team by default.
   * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
   * **Windows:** Docker Desktop [installed](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [integrated with a WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/).
 
-## Set up a new data plane node
+## Create a data plane node
 
 {{site.base_gateway}} data planes proxy service traffic.
 
@@ -42,8 +39,7 @@ is part of the organization admin team by default.
 
 1. Click **New Data Plane Node**.
 
-     The page opens to a data plane node configuration form with the Docker tab
-     selected.
+     You will see the latest {{site.base_gateway}} version and Docker pre-selected.
 
 1. Click **Generate Script**.
 
@@ -53,14 +49,14 @@ is part of the organization admin team by default.
     {{site.base_gateway}} instance and connects it to your
     {{site.konnect_saas}} account.
 
-1. Once {{site.konnect_short_name}} detects your data plane node, 
+1. Once {{site.konnect_short_name}} detects the data plane node, 
 click **Done** to go back to the data plane nodes page.
 
 The data plane nodes table will now include
-a new entry for your instance and the tag in the **Sync Status** column should
+a new entry for the data plane and the tag in the **Sync Status** column should
 say **In Sync**.
 
-The default proxy URL for this control plane is `http://localhost:8000`. Take
+The default proxy URL for the data plane is `http://localhost:8000`. Take
 note of this URL, as you'll need it later to access a service
 implementation.
 

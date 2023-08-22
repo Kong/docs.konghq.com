@@ -39,7 +39,7 @@ After creating the new version, you will see **Link with a Gateway Service** as 
 
 1. Select **Link with a Gateway Service**. 
 
-    Choose a [control plane](/konnect/gateway-manager/control-plane-groups/) and [Gateway Service](/konnect/gateway-manager/configuration/#gateway-services) to
+    Choose the [control plane](/konnect/gateway-manager/control-plane-groups/) and [Gateway Service](/konnect/gateway-manager/configuration/#gateway-services) to
     deploy this API product version to. This lets you deploy your service across data planes associated with the control plane.
 1. Click **Save**.
 

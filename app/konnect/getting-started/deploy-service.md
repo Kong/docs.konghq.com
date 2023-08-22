@@ -12,7 +12,7 @@ specified in the API product deployment.
 
 If you're following the {{site.konnect_short_name}} quickstart guide,
 make sure you have
-[Configured a data plane node](/konnect/getting-started/configure-data-plane-node).
+[configured a data plane node](/konnect/getting-started/configure-data-plane-node).
 
 ## Implement a Gateway service
 
@@ -51,9 +51,9 @@ In the {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.co
 
 ## Verify the implementation
 
-If you used the Docker script to create a container
+If you used the Docker script to connect a data plane
 earlier in [Configure a data plane node](/konnect/getting-started/configure-data-plane-node/),
-your control plane's default proxy URL is `localhost:8000`.
+your default proxy URL is `localhost:8000`.
 
 Enter the proxy URL into your browser’s address bar and append the route path
 you just set. The final URL should look something like this:
