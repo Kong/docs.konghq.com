@@ -8,7 +8,7 @@ publisher: Kong Inc.
 
 desc: Verify and (re-)sign one or two tokens in a request
 description: |
-  From \_2.2.x.md: The Kong JWT Signer plugin makes it possible to verify and (re-)sign one or two tokens in a request.
+  From \_2.6.x.md: The Kong JWT Signer plugin makes it possible to verify and (re-)sign one or two tokens in a request.
 
 enterprise: true
 plus: true
