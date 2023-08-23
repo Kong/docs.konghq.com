@@ -84,6 +84,8 @@ curl --request POST \
 ```
   The `api-product-id` is the UUID of the Pizza Ordering API product.
 
+You now have a published API product for your Pizza Ordering API in your Dev Portal.
+
 So far, you've used the following endpoints:
 
 * [Create a new service](https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf#/Services/create-service)
@@ -114,6 +116,8 @@ Next, let's create two developer teams: "Authorized Delivery Partners" with API 
 1. On the **Developers** tab of your new team, click **Add developer** and select a developer to add to the team.
 1. On the **Products** tab of your new team, click **Add Role**.
 1. Select the **Pizza Ordering** product from the dropdown menu and select **API Viewer** from the **Add roles** dropdown menu. 
+
+You now have added your test developer accounts to two teams with different access permissions for your Dev Portal. These developers won't be able to access anything in Dev Portal yet, though, because we need to enable Portal RBAC next.
 {% endnavtab %}
 {% navtab API %}
 The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
@@ -151,6 +155,7 @@ curl --request POST \
   --data "entity_type_name": "Services" \
   --data "entity_region": "us"
 ```
+You now have added your test developer accounts to two teams with different access permissions for your Dev Portal. These developers won't be able to access anything in Dev Portal yet, though, because we need to enable Portal RBAC next.
 
 So far, you've used the following endpoints:
 * [Create team](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Teams/create-portal-team)
@@ -169,6 +174,8 @@ Now that you've configured your two different teams and assigned permissions to 
 {% navtab Konnect UI %}
 1. From the navigation menu, open {% konnect_icon dev-portal %} **Dev Portal** and click **Settings** in the sidebar.
 1. To turn on Portal RBAC, click the **Portal RBAC** toggle.
+
+Now, if you access your Dev Portal as one of the test developer accounts, you should see that the one assigned to the "Prospective Partners" team can only view the Pizza Ordering API while the one assigned to the "Authorized Delivery Partners" team can both view and consume the Pizza Ordering API.
 {% endnavtab %}
 {% navtab API %}
 To enable RBAC, you must make a `PATCH` request to the portal configuration endpoint. The following example shows how to enable RBAC in the portal. For more details on how to create your personal access token, see [Authentication](/konnect/api/#authentication). 
@@ -181,6 +188,8 @@ curl --request PATCH \
 
 {:.note}
 > The `portal-id` can be found in {{site.konnect_short_name}} within the **Dev Portal** section.
+
+Now, if you access your Dev Portal as one of the test developer accounts, you should see that the one assigned to the "Prospective Partners" team can only view the Pizza Ordering API while the one assigned to the "Authorized Delivery Partners" team can both view and consume the Pizza Ordering API.
 {% endnavtab %}
 {% endnavtabs %}
 
