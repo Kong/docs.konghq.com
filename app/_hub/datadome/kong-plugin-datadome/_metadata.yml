@@ -20,4 +20,6 @@ enterprise: false
   # (Required) Set true if the plugin is *only* available with an Enterprise subscription.
   # Set false if your plugin is open-source and works with open-source Kong Gateway.
 
+techpartner: true
+
 dbless_compatible: yes
