@@ -811,6 +811,16 @@
 /gateway-oss/              /gateway/
 /gateway/*/production/kong-openresty       /gateway/
 
+
+# GETTING STARTED GUIDE ARCHIVES
+
+/getting-started-guide/2.1.x/:splat https://legacy-gateway--kongdocs.netlify.app/getting-started-guide/2.1.x/:splat
+/getting-started-guide/2.2.x/:splat https://legacy-gateway--kongdocs.netlify.app/getting-started-guide/2.2.x/:splat
+/getting-started-guide/2.3.x/:splat https://legacy-gateway--kongdocs.netlify.app/getting-started-guide/2.3.x/:splat
+/getting-started-guide/2.4.x/:splat https://legacy-gateway--kongdocs.netlify.app/getting-started-guide/2.4.x/:splat
+/getting-started-guide/2.5.x/:splat https://legacy-gateway--kongdocs.netlify.app/getting-started-guide/2.5.x/:splat
+
+
 # ENTERPRISE DOC ARCHIVES
 
 /enterprise/0.31-x/*    https://legacy-gateway--kongdocs.netlify.app/enterprise/0.31-x/:splat
