@@ -1,7 +1,6 @@
 ---
 title: Kong Security Update Process
 ---
-## Security of Release Artifacts
 
 Kong provides artifacts in [multiple formats](/gateway/{{page.kong_version}}/support-policy/#supported-versions), such as deb, rpm, apk, that are free of vulnerabilities at the time of release. Occasionally, for convenience, Kong also provides Docker images that are also free of vulnerabilities at the time of release.
 
