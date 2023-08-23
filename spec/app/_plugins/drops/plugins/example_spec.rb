@@ -8,7 +8,7 @@ RSpec.describe Jekyll::Drops::Plugins::Example do
     )
   end
   let(:example) { schema.example }
-  let(:formats) { [:curl, :yaml, :kubernetes] }
+  let(:formats) { [:curl, :konnect, :yaml, :kubernetes] }
 
 
   subject { described_class.new(type:, example:, formats:) }
@@ -26,6 +26,18 @@ RSpec.describe Jekyll::Drops::Plugins::Example do
       let(:formats) { [:yaml] }
 
       it { expect(subject.render_curl?).to eq(false) }
+    end
+  end
+
+  describe '#render_konnect?' do
+    context 'when :konnect is included in the targets' do
+      it { expect(subject.render_curl?).to eq(true) }
+    end
+
+    context 'when :konnect is not included in the targets' do
+      let(:formats) { [:curl] }
+
+      it { expect(subject.render_konnect?).to eq(false) }
     end
   end
 
@@ -55,6 +67,10 @@ RSpec.describe Jekyll::Drops::Plugins::Example do
 
   describe '#curl' do
     it { expect(subject.curl).to be_an_instance_of(Jekyll::Drops::Plugins::Examples::Curl) }
+  end
+
+  describe '#konnect' do
+    it { expect(subject.konnect).to be_an_instance_of(Jekyll::Drops::Plugins::Examples::Konnect) }
   end
 
   describe '#yaml' do

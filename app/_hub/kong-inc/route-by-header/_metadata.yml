@@ -1,7 +1,5 @@
 name: Route By Header
 dbless_compatible: 'yes'
-konnect_examples: false
-manager_examples: false
 free: false
 plus: true
 enterprise: true
