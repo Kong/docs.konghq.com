@@ -24,7 +24,7 @@ are removed.
 * The control plane associated with the organization is decommissioned.
 
 * Any users that were part of the organization are removed from any teams
-associated with the organization, and lose roles associated with the deactivated oraganization.
+associated with the organization, and lose roles associated with the deactivated organization.
 Their accounts are otherwise unaffected.
 
 * The email associated with the organization is locked and can't be used to
