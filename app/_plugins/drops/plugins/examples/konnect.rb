@@ -31,15 +31,9 @@ module Jekyll
               Fields::Konnect.make_for(
                 key: "config.#{field}",
                 values:,
-                options: field_config(field)
+                options: {}
               )
             end
-          end
-
-          def field_config(_field)
-            # TODO: handle url-encode with overlays or metadata
-            {}
-            # @config.fetch('config', {}).detect { |f| f['name'] == field } || {}
           end
         end
       end

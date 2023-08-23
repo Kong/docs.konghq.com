@@ -13,7 +13,7 @@ module Jekyll
             end
 
             def to_s
-              "#{@key}=#{escaped_values}"
+              "\"#{@key}\":\"#{escaped_values}\""
             end
 
             def escaped_values
