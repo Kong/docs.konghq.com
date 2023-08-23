@@ -20,6 +20,7 @@ In this guide, you will set up two developer teams and then enable Portal RBAC u
 If you existing registered developers in {{site.konnect_short_name}}, you must configure developer teams before enabling Portal RBAC. If you enable Portal RBAC before configuring teams for your developers, it will prevent *all* developers from seeing any API products in your Dev Portal. 
 
 We recommend setting up your teams and permissions before enabling RBAC to allow for a seamless transition; developers see what they're supposed to, instead of nothing at all.
+
 ## Configure developer teams 
 
 In this scenario, you are a product manager at a pizza company, responsible for overseeing their online application. Your task is to create a Dev Portal intended for delivery companies. This portal will grant delivery companies access to your APIs, enabling them to incorporate your pizza offerings into their own delivery service offerings. One of your primary objectives is to ensure that only trusted delivery partners are granted access to develop applications using your APIs, and deliver your pizzas.
@@ -37,9 +38,8 @@ In this scenario, before you can configure developer teams, you must have an API
 In {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/us/runtime-manager), select a runtime group and follow these steps:
 
 1. Select **Gateway Services** from the side navigation bar, then **New Gateway Service**.
-
 1. From the **Add a Gateway Service** dialog, enter the following to create a new service:
-    * **Name:** `classic_pizzas`
+    * **Name:** `pizza_ordering`
     * **Upstream URL:** `http://mockbin.org`
     * Use the defaults for the remaining fields.
 1. Click **Save**. 
@@ -47,30 +47,21 @@ In {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/us
 1. Click **Publish to portal** from the **Actions** dropdown menu. This will allow developers to access the API product once you assign them to a team.
 1. Click **New Version** from the **Actions** dropdown menu and enter `v1` in the **Version Name** field and then click **Create**.
 1. Click the **v1** version and then click **Link** to add a service.
-1. Select a runtime from the **Select Runtime Group** dropdown menu, select `classic_pizzas` from the **Gateway Service** dropdown menu, and then click **Save**.
+1. Select a runtime from the **Select Runtime Group** dropdown menu, select `pizza_ordering` from the **Gateway Service** dropdown menu, and then click **Save**.
 1. Click the **Edit** icon next to the status of your product version and select **Published** from the **Edit version status** dialog and then click **Save**.
 
 {% endnavtab %}
 {% navtab API %} 
 {:.note}
-> **Note:** Make sure to include headers with the personal access token in your requests.
+The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](https://docs.konghq.com/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
 
-These instructions only use the required fields in the following API specs:
-So far, you've used the following endpoints:
-
-* [Create a service](https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf#/Services/create-service)
-* [Create an API product](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0#/API%20Products/create-api-product)
-* [Create an API product version](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0#/API%20Product%20Version%20Specification/create-api-product-version-spec)
-
-Review the API documentation to see what other features are available.
-
-1. Create the `classic_pizzas` service:
+1. Create the `pizza_ordering` service:
 ```bash
 curl --request POST \
   --url https://<region>.api.konghq.com/v2/{runtime-group-id}/core-entities/services \
-  --data "name": "classic_pizzas" \
+  --data "name": "pizza_ordering" \
   --data "host": "mockbin.org" \
-  --data "path": "/classic_pizzas" 
+  --data "path": "/pizza_ordering" 
 ```
 1. Create the `Pizza Ordering` API product:
 ```bash
@@ -90,6 +81,14 @@ curl --request POST \
 ```
 {:.note}
 > The `api-product-id` is the UUID of the Pizza Ordering API product.
+
+So far, you've used the following endpoints:
+
+* [Create a service](https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf#/Services/create-service)
+* [Create an API product](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0#/API%20Products/create-api-product)
+* [Create an API product version](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0#/API%20Product%20Version%20Specification/create-api-product-version-spec)
+
+Review the API documentation to see what other features are available.
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -117,11 +116,6 @@ Next, let's create two developer teams: "Authorized Delivery Partners" with API 
 {% navtab API %}
 {:.note}
 > **Note:** Make sure to include headers with the personal access token in your requests.
-
-These instructions only use the required fields in the following API specs:
-* [Create developer team](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Teams/create-portal-team)
-* [Assign roles to a team](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Team%20Roles/portal-teams-assign-role)
-
 
 1. Create the `Authorized Delivery Partners` team:
 ```bash
@@ -156,6 +150,12 @@ curl --request POST \
   --data "entity_type_name": "Services" \
   --data "entity_region": "us"
 ```
+
+So far, you've used the following endpoints:
+* [Create developer team](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Teams/create-portal-team)
+* [Assign roles to a team](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Team%20Roles/portal-teams-assign-role)
+
+Review the API documentation to see what other features are available.
 {% endnavtab %}
 {% endnavtabs %}
  
