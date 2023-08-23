@@ -12,7 +12,7 @@ Generally, there are three types of vulnerabilities:
 * In third-party code that Kong directly links with
 * In third-pary code that is part of the Docker image.
 
-If vulnerabilities are found in Kong code or in third-party code that Kong directly links with, these are addressed within an SLA based on severity and release as patches. 
+If vulnerabilities are found in Kong code or in third-party code that Kong directly links with, these are addressed within an SLA based on severity and released as patches. 
 
 If vulnerabilities are found in the third-party code that is part of the Docker image, then customers have the option to: 
 * upgrade to the latest patch Docker image for their major version
