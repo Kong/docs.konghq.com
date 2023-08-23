@@ -14,10 +14,7 @@ module Jekyll
           }.freeze
 
           def params
-            @params ||= [
-              Fields::Konnect.new(key: 'name', values: plugin_name),
-              config_to_params
-            ].flatten
+            @params ||= { 'name' => plugin_name }.merge(config_to_params)
           end
 
           def url
@@ -27,13 +24,9 @@ module Jekyll
           private
 
           def config_to_params
-            @example.fetch('config', []).map do |field, values|
-              Fields::Konnect.make_for(
-                key: "config.#{field}",
-                values:,
-                options: {}
-              )
-            end
+            return {} unless @example.key?('config')
+
+            { 'config' => @example.fetch('config') }
           end
         end
       end
