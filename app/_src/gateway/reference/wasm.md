@@ -45,7 +45,7 @@ Example:
 
 ```yaml
 ---
-filter-chains:
+filter_chains:
   name: my-filter-chain
   # Filter Chains can be toggled on/off for testing
   enabled: true
