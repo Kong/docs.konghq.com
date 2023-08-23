@@ -10,15 +10,16 @@ Portal RBAC supports two different roles for API products that can be applied to
 * **API Viewer:** Provides developers with read access to the documentation associated with an API product.
 * **API Consumer:** Includes API Viewer permissions as well as allows developers to register applications to consume versions of an API product.
 
-You can use the API and UI to create a team, assign a role to the team, and finally, add developers to the team.
 
 In this guide, you will set up two developer teams and then enable Portal RBAC using a hypothetical scenario.
 
 ## Prerequisites
-* Two [test developer accounts registered](/konnect/dev-portal/dev-reg/). If you currently have developers in {{site.konnect_short_name}}, you must configure developer teams before enabling Portal RBAC (which is disabled by default). If you enable Portal RBAC before configuring teams for your developers, it will prevent *all* developers from seeing any API products in your Dev Portal. We recommend setting up your teams and permissions before enabling RBAC which will allow for a seamless transition; developers see what they're supposed to, instead of nothing at all.
+* Two [developer accounts registered](/konnect/dev-portal/dev-reg/). 
 * A [runtime configured](/konnect/getting-started/configure-runtime)
 * A [personal access token](/konnect/getting-started/import/#generate-a-personal-access-token) for authorization. This is only required if you plan to use the API to create developer teams.
+If you existing registered developers in {{site.konnect_short_name}}, you must configure developer teams before enabling Portal RBAC. If you enable Portal RBAC before configuring teams for your developers, it will prevent *all* developers from seeing any API products in your Dev Portal. 
 
+We recommend setting up your teams and permissions before enabling RBAC to allow for a seamless transition; developers see what they're supposed to, instead of nothing at all.
 ## Configure developer teams 
 
 In this scenario, you are a product manager at a pizza company, responsible for overseeing their online application. Your task is to create a Dev Portal intended for delivery companies. This portal will grant delivery companies access to your APIs, enabling them to incorporate your pizza offerings into their own delivery service offerings. One of your primary objectives is to ensure that only trusted delivery partners are granted access to develop applications using your APIs, and deliver your pizzas.
@@ -43,7 +44,7 @@ In {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/us
     * Use the defaults for the remaining fields.
 1. Click **Save**. 
 1. To create an API product for your service, navigate to **API Products** in the sidebar, click **Add API Product** and enter `Pizza Ordering` in the **Product Name** field.
-1. Click **Publish to portal** from the **Actions** dropdown menu. This will allow developers to see your API product once you assign them to a team.
+1. Click **Publish to portal** from the **Actions** dropdown menu. This will allow developers to access the API product once you assign them to a team.
 1. Click **New Version** from the **Actions** dropdown menu and enter `v1` in the **Version Name** field and then click **Create**.
 1. Click the **v1** version and then click **Link** to add a service.
 1. Select a runtime from the **Select Runtime Group** dropdown menu, select `classic_pizzas` from the **Gateway Service** dropdown menu, and then click **Save**.
@@ -55,18 +56,20 @@ In {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/us
 > **Note:** Make sure to include headers with the personal access token in your requests.
 
 These instructions only use the required fields in the following API specs:
+So far, you've used the following endpoints:
+
 * [Create a service](https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf#/Services/create-service)
 * [Create an API product](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0#/API%20Products/create-api-product)
 * [Create an API product version](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0#/API%20Product%20Version%20Specification/create-api-product-version-spec)
 
-If you want to use additional fields, see the API spec documentation.
+Review the API documentation to see what other features are available.
 
 1. Create the `classic_pizzas` service:
 ```bash
 curl --request POST \
   --url https://<region>.api.konghq.com/v2/{runtime-group-id}/core-entities/services \
   --data "name": "classic_pizzas" \
-  --data "host": "http://mockbin.org" \
+  --data "host": "mockbin.org" \
   --data "path": "/classic_pizzas" 
 ```
 1. Create the `Pizza Ordering` API product:
@@ -77,15 +80,12 @@ curl --request POST \
   --data "description": "API product for pizza ordering" 
 ```
   Save the `portal-id` value from the output. This will be used later.
-1. Create the `v1` version for the `Pizza Ordering` API product and publish it:
+1. Using the`api-product-id` UUID of the newly created API product, create a `v1` version for the `Pizza Ordering` API product and publish it:
 ```bash
 curl --request POST \
   --url https://<region>.api.konghq.com/v2/api-products/{api-product-id}/product-versions \
   --data "id": "GATEWAY_SERVICE_ID" \
   --data "name": "v1" \
-  --data "gateway_service": {
-      "runtime_group_id": "RUNTIME_GROUP_ID"
-    } \
   --data "publish_status": "published"
 ```
 {:.note}
@@ -122,7 +122,6 @@ These instructions only use the required fields in the following API specs:
 * [Create developer team](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Teams/create-portal-team)
 * [Assign roles to a team](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Team%20Roles/portal-teams-assign-role)
 
-If you want to use additional fields, see the API spec documentation.
 
 1. Create the `Authorized Delivery Partners` team:
 ```bash
