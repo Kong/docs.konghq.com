@@ -25,7 +25,7 @@ Once the connection is established, the control plane can send configuration dat
 Normally, the data plane maintains a persistent connection with the control
 plane. The data plane sends a heartbeat to the control plane every 30 seconds to
 keep the connection alive. If it receives no answer, it tries to reconnect to the
-control plane node after a 5-10 second delay.
+control plane after a 5-10 second delay.
 
 ### What types of data travel between the {{site.konnect_saas}} control plane and the data planes, and how?
 

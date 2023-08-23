@@ -8,7 +8,7 @@ The {{site.konnect_saas}} control plane uses the following ports:
 
 | Port      | Protocol  | Description |
 |:----------|:----------|:------------|
-| `443`    | TCP <br>HTTPS | Cluster communication port for configuration and telemetry data. The {{site.konnect_saas}} control plane uses this port to listen for connections and communicate with data planes.. <br> The cluster communication port must be accessible by all the data planes within the same cluster. This port is protected by mTLS to ensure end-to-end security and integrity. |
+| `443`    | TCP <br>HTTPS | Cluster communication port for configuration and telemetry data. The {{site.konnect_saas}} control plane uses this port to listen for connections and communicate with data plane nodes. <br> The cluster communication port must be accessible to data plane nodes within the same cluster. This port is protected by mTLS to ensure end-to-end security and integrity. |
 | `8071`   | TCP <br> UDP | Port used for audit logging. |
 
 Kong's hosted control plane expects traffic on these ports, so they can't be customized. 
@@ -52,7 +52,7 @@ add the following hostnames to the firewall allowlist:
 You can find the configuration and telemetry hostnames through the Gateway Manager:
 
 1. Open a control plane.
-2. Click **Add data plane**.
+2. Click **Add data plane node**.
 3. Choose the Linux or Kubernetes tab and note the hostnames in the code block
    for the following parameters:
 
