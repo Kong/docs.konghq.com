@@ -63,6 +63,12 @@ $(document).ready(function () {
       openModal();
     });
 
+    modalOverlay.addEventListener("click", function(e) {
+      e.stopPropagation();
+
+      modalClose.click();
+    })
+
     const buttons = modal.querySelectorAll(".modal-close, .button")
 
     buttons.forEach(function(elem) {
