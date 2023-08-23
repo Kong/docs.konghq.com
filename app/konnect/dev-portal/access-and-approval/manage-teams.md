@@ -3,7 +3,7 @@ title: Manage Dev Portal Teams
 content_type: how-to
 ---
 
-A common scenario for a Dev Portal is to restrict developers' ability to view or request access to specific API products based on their permissions. {{site.konnect_short_name}} Portal enables administrators to define Role-Based Access Control (RBAC) for teams of developers through the Konnect UI and API.
+A common scenario for a Dev Portal is to restrict developers' ability to view or request access to specific [API products](/konnect/api-products/) based on their permissions. {{site.konnect_short_name}} Dev Portal enables administrators to define Role-Based Access Control (RBAC) for teams of developers through the Konnect UI and API.
 
 Portal RBAC supports two different roles for API products that can be applied to a team of developers:
 
@@ -14,24 +14,25 @@ Portal RBAC supports two different roles for API products that can be applied to
 In this guide, you will set up two developer teams and then enable Portal RBAC using a hypothetical scenario.
 
 ## Prerequisites
-* Two [developer accounts registered](/konnect/dev-portal/dev-reg/). 
+* Two test [developer accounts registered](/konnect/dev-portal/dev-reg/)
 * A [runtime configured](/konnect/getting-started/configure-runtime)
 * A [personal access token](/konnect/getting-started/import/#generate-a-personal-access-token) for authorization. This is only required if you plan to use the API to create developer teams.
-If you existing registered developers in {{site.konnect_short_name}}, you must configure developer teams before enabling Portal RBAC. If you enable Portal RBAC before configuring teams for your developers, it will prevent *all* developers from seeing any API products in your Dev Portal. 
+
+If you have existing registered developers in {{site.konnect_short_name}}, you must configure developer teams before enabling Portal RBAC. If you enable Portal RBAC before configuring teams for your developers, it will prevent *all* developers from seeing any API products in your Dev Portal. 
 
 We recommend setting up your teams and permissions before enabling RBAC to allow for a seamless transition; developers see what they're supposed to, instead of nothing at all.
 
 ## Configure developer teams 
 
-In this scenario, you are a product manager at a pizza company, responsible for overseeing their online application. Your task is to create a Dev Portal intended for delivery companies. This portal will grant delivery companies access to your APIs, enabling them to incorporate your pizza offerings into their own delivery service offerings. One of your primary objectives is to ensure that only trusted delivery partners are granted access to develop applications using your APIs, and deliver your pizzas.
+In this scenario, you are a product manager at a pizza company, responsible for overseeing their online application. Your task is to create a Dev Portal intended for delivery companies. This portal will grant delivery companies access to your APIs, enabling them to incorporate your pizza offerings into their own delivery service offerings. One of your primary objectives is to ensure that only trusted delivery partners are granted access to develop applications using your APIs and deliver your pizzas.
 
-To achieve this, you create two groups of developers, each with different levels of API access:
+To achieve this, you must create two groups of developers, each with different levels of API access:
 * **Authorized Delivery Partners:** This group can access and consume your APIs so they can integrate them into their own delivery applications.
-* **Prospective Partners:** These developers are currently undergoing an evaluation process. Since these potential partners have not completed the evaluation process, you grant them restricted view-only access. This allows them to review the API specs, and gain an understanding of how your system operates. 
+* **Prospective Partners:** These developers are currently undergoing an evaluation process. Since these potential partners have not completed the evaluation process, you grant them restricted view-only access. This allows them to review the API specs and gain an understanding of how your system operates. 
 
 ### Create an API product
 
-In this scenario, before you can configure developer teams, you must have an API product created. This API product will be for your Pizza Ordering API. This API is used at the pizza company's website to take orders. Delivery companies can hook into this to see when orders are placed so they can have drivers ready. 
+In this scenario, before you can configure developer teams, you must have an API product created. This API product will be for your Pizza Ordering API. This API is used at your pizza company's website to take orders. Delivery companies can hook into this to see when orders are placed so they can have drivers ready. 
 
 {% navtabs %}
 {% navtab Konnect UI %}
@@ -50,10 +51,12 @@ In {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/us
 1. Select a runtime from the **Select Runtime Group** dropdown menu, select `pizza_ordering` from the **Gateway Service** dropdown menu, and then click **Save**.
 1. Click the **Edit** icon next to the status of your product version and select **Published** from the **Edit version status** dialog and then click **Save**.
 
+You now have a published API product for your Pizza Ordering API in your Dev Portal.
+
 {% endnavtab %}
 {% navtab API %} 
 {:.note}
-The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](https://docs.konghq.com/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
+The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
 
 1. Create the `pizza_ordering` service:
 ```bash
@@ -79,14 +82,13 @@ curl --request POST \
   --data "name": "v1" \
   --data "publish_status": "published"
 ```
-{:.note}
-> The `api-product-id` is the UUID of the Pizza Ordering API product.
+  The `api-product-id` is the UUID of the Pizza Ordering API product.
 
 So far, you've used the following endpoints:
 
-* [Create a service](https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf#/Services/create-service)
-* [Create an API product](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0#/API%20Products/create-api-product)
-* [Create an API product version](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0#/API%20Product%20Version%20Specification/create-api-product-version-spec)
+* [Create a new service](https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf#/Services/create-service)
+* [Create API product](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0#/API%20Products/create-api-product)
+* [Create API product version specification](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0#/API%20Product%20Version%20Specification/create-api-product-version-spec)
 
 Review the API documentation to see what other features are available.
 {% endnavtab %}
@@ -114,8 +116,7 @@ Next, let's create two developer teams: "Authorized Delivery Partners" with API 
 1. Select the **Pizza Ordering** product from the dropdown menu and select **API Viewer** from the **Add roles** dropdown menu. 
 {% endnavtab %}
 {% navtab API %}
-{:.note}
-> **Note:** Make sure to include headers with the personal access token in your requests.
+The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
 
 1. Create the `Authorized Delivery Partners` team:
 ```bash
@@ -132,8 +133,8 @@ curl --request POST \
   --data "name": "Prospective Partners" \
   --data "description": "Team of unvetted partners that can only view APIs"
 ```
-  You can verify that the teams have been created by [making a GET request to the teams endpoint](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Teams/get-portal-team). 
-1. Now you can assign roles to your teams. To do so, you must make a `POST` request to the team roles endpoint. The following example shows how to assign the `API Consumer` role to the `Authorized Delivery Partners` created in the previous section for your pizza ordering API product:
+1. Optional: You can verify that the teams have been created by [making a GET request to the teams endpoint](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Teams/get-portal-team). 
+1. Assign the `API Consumer` role to the `Authorized Delivery Partners` created in the previous section for your pizza ordering API product:
 ```bash
 curl --request POST \
   --url https://<region>.api.konghq.com/v2/portals/{portal-id}/teams/{team-id}/assigned-roles \
@@ -152,8 +153,8 @@ curl --request POST \
 ```
 
 So far, you've used the following endpoints:
-* [Create developer team](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Teams/create-portal-team)
-* [Assign roles to a team](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Team%20Roles/portal-teams-assign-role)
+* [Create team](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Teams/create-portal-team)
+* [Assign role](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Team%20Roles/portal-teams-assign-role)
 
 Review the API documentation to see what other features are available.
 {% endnavtab %}
