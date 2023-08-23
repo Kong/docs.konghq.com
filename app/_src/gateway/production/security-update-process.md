@@ -10,7 +10,7 @@ Kong provides artifacts in multiple formats, such as deb, rpm, apk, that are fre
 Generally, there are three types of vulnerabilities:
 * In Kong code
 * In third-party code that Kong directly links with
-* In third-pary codde that is part of the Docker image.
+* In third-pary code that is part of the Docker image.
 
 If vulnerabilities are found in Kong code or in third-party code that Kong directly links with, these are addressed within an SLA based on severity and release as patches. 
 
