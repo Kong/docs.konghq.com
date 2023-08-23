@@ -172,6 +172,7 @@ docker run -d --name kong-gateway \
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
+{% if_version lte:3.3.x %}
 ```sh
 docker run -d --name kong-gateway \
  --network=kong-net \
@@ -190,6 +191,28 @@ docker run -d --name kong-gateway \
  -p 127.0.0.1:8444:8444 \
  kong:{{page.versions.ce}}
  ```
+{% endif_version %}
+{% if_version gte:3.4.x %}
+```sh
+docker run -d --name kong-gateway \
+ --network=kong-net \
+ -e "KONG_DATABASE=postgres" \
+ -e "KONG_PG_HOST=kong-database" \
+ -e "KONG_PG_USER=kong" \
+ -e "KONG_PG_PASSWORD=kongpass" \
+ -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl" \
+ -p 8000:8000 \
+ -p 8443:8443 \
+ -p 127.0.0.1:8001:8001 \
+ -p 127.0.0.1:8002:8002 \
+ -p 127.0.0.1:8444:8444 \
+ kong:{{page.versions.ce}}
+ ```
+{% endif_version %}
 {% endnavtab %}
 {% endnavtabs_ee %}
 {% endcapture %}

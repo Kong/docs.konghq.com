@@ -459,6 +459,8 @@ items:
     items:
       - text: Overview
         url: /kong-manager-oss/
+      - text: Troubleshooting
+        url: /kong-manager-oss/troubleshoot/
 
   - title: Develop Custom Plugins
     icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
