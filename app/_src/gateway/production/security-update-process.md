@@ -3,11 +3,11 @@ title: Kong Security Update Process
 ---
 ## Security of Release Artifacts
 
-Kong provides artifacts in multiple formats, such as deb, rpm, apk, that are free of vulnerabitilies at the time of release. Occasionally, for convenience, Kong also provides Docker images that are also free of vulnerabilities at the time of release.
+Kong provides artifacts in multiple formats, such as deb, rpm, apk, that are free of vulnerabilities at the time of release. Occasionally, for convenience, Kong also provides Docker images that are also free of vulnerabilities at the time of release.
 
 ## Types of Vulnerabililites
 
-Generally, there are three types of vulerabilities:
+Generally, there are three types of vulnerabilities:
 * In Kong code
 * In third-party code that Kong directly links with
 * In third-pary codde that is part of the Docker image.
