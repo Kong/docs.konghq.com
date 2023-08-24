@@ -5,7 +5,7 @@
 
 #3.4
 
-/gateway/latest/production/security-update-process /gateway/latest/support/security-update-process 
+/gateway/latest/production/security-update-process /gateway/latest/support/vulnerability-patching-process 
 /gateway/latest/kong-enterprise/consumer-groups /gateway/latest/key-concepts/consumer-groups
 /gateway/latest/admin-api/consumer-groups/reference  https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60#/consumer_groups/get-consumer_groups
 /konnect/runtime-manager/configuration/consumer-groups /hub/kong-inc/rate-limiting-advanced/how-to/
