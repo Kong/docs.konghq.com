@@ -1,0 +1,24 @@
+- name: Kong Gateway
+  desc: Lightweight, fast, and flexible cloud-native API gateway
+  url: /gateway/latest/
+- name: Kong Konnect
+  desc: Single platform for SaaS end-to-end connectivity
+  url: /konnect/
+- name: Kong Mesh
+  desc: Enterprise service mesh based on Kuma and Envoy
+  url: /mesh/latest/
+- name: decK
+  desc: Helps manage Kong’s configuration in a declarative fashion
+  url: /deck/latest/
+- name: Kong Ingress Controller
+  desc: Works inside a Kubernetes cluster and configures Kong to proxy traffic
+  url: /kubernetes-ingress-controller/latest/
+- name: Insomnia
+  desc: Collaborative API development platform
+  url: https://docs.insomnia.rest/
+- name: Kuma
+  desc: Open-source distributed control plane with a bundled Envoy Proxy integration
+  url: https://kuma.io/docs/
+- name: Docs Contribution Guidelines
+  desc: Want to help out, or found an issue in the docs and want to let us know?
+  url: /contributing/

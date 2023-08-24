@@ -35,7 +35,7 @@ header.navbar {
     font-weight: bold;
     font-size: 48px;
     line-height: 67px;
-    color: @color-text;
+    color: white;
     scroll-margin-top: 100px;
 
     > span {
@@ -47,12 +47,12 @@ header.navbar {
     font-weight: 500;
     font-size: 24px;
     line-height: 34px;
-    color: @color-text;
+    color: text;
   }
 
   h3 {
     padding-top: 45px;
-    font-weight: normal;
+    font-weight: 500;
     font-size: 20px;
     line-height: 28px;
     color: @color-text;
@@ -63,7 +63,7 @@ header.navbar {
     font-weight: normal;
     font-size: 20px;
     line-height: 28px;
-    color: @color-text-light;
+    color: white;
   }
 
   h5 {
@@ -136,7 +136,8 @@ header.navbar {
 
     &.default {
       > .icon {
-        height: 64px;
+        height: 40px;
+        padding: 25px;
       }
 
       .title {
@@ -166,43 +167,6 @@ header.navbar {
           background-color: #f8f9fc;
         }
       }
-    }
-  }
-
-  .textures {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: -1;
-
-    .top-left {
-      position: absolute;
-      top: 0;
-      left: 0;
-      mix-blend-mode: multiply;
-    }
-
-    .top-right {
-      position: absolute;
-      top: 0;
-      right: 0;
-      mix-blend-mode: multiply;
-      opacity: 0.8;
-    }
-
-    .top-gradient {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 120px;
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.99) 42.92%,
-        rgba(255, 255, 255, 0.6) 70.57%,
-        rgba(255, 255, 255, 0) 100%
-      );
     }
   }
 
@@ -255,7 +219,7 @@ header.navbar {
 
       .platform-links {
         padding: 5px 0 20px;
-        justify-content: center;
+        justify-content: space-around;
         flex-direction: row;
         display: flex;
         width: 100%;
@@ -282,7 +246,7 @@ header.navbar {
       font-size: 28px;
       font-weight: 700;
       line-height: 30px;
-      color: #043558;
+      color: @navy-text;
       text-align: center;
       padding: 20px 24px 20px;
       background-image: url(/assets/images/landing-page/hero-konnect.png);
@@ -412,7 +376,7 @@ header.navbar {
             font-size: 28px;
             font-weight: bold;
             line-height: 39px;
-            color: @color-text;
+            color: @navy-text;
           }
 
           .description {
@@ -434,7 +398,7 @@ header.navbar {
           .name-link {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-start;
             transition: background-color @hover-transition-time;
             cursor: pointer;
             border-radius: 8px;
@@ -498,6 +462,10 @@ header.navbar {
         .links-container {
           min-height: 76px;
         }
+
+        .link-text {
+          justify-content: flex-start;
+        }
       }
     }
   }
@@ -537,6 +505,10 @@ header.navbar {
         }
       }
     }
+  }
+
+  .kong-image {
+    margin-top: 72px;
   }
 
   @media (max-width: 1249px) {
@@ -693,22 +665,6 @@ header.navbar {
 
     section.additional-info {
       margin-top: 48px;
-    }
-  }
-
-  .textures > .mobile-texture {
-    display: none;
-  }
-
-  @media (max-width: 450px) {
-    .textures > .top-left,
-    .top-right {
-      display: none;
-    }
-    .textures > .mobile-texture {
-      display: block;
-      position: absolute;
-      padding-top: 60px;
     }
   }
 }
