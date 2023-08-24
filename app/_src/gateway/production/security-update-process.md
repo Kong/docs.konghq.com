@@ -11,7 +11,7 @@ Generally, there are three types of vulnerabilities:
 * In third-party code that Kong directly links (such as openssl, glibc, libxml2)
 * In third-pary code that is part of the convenience Docker image (such as Python, Perl, curl etc). This code is not part of Kong.
 
-Vulnerabilities reported in Kong code will be assessed by Kong and assigned a CVSS3.0 score. Based on the CVSS score, Kong will produce patches for all applicable Gateway versions currently under support within SLA reproduced below. The SLA clock starts from the day the CVSS score is assigned.
+Vulnerabilities reported in Kong code will be assessed by Kong and assigned a CVSS3.0 score. Based on the CVSS score, Kong will produce patches for all applicable Gateway versions currently under support within the SLA reproduced in the table below. The SLA clock starts from the day the CVSS score is assigned.
 
 |  CVSS 3.0 Criticality | CVSS 3.0 Score | Resolution SLA |
 |---|---|---|
@@ -21,7 +21,7 @@ Vulnerabilities reported in Kong code will be assessed by Kong and assigned a CV
 |  Low |  0.1 - 3.9 | 180 days  |
 
 
-Vulnerabilities reported in third party code that Kong links directly must have confirmed CVE numbers assigned. Kong will produce patches for all applicable Gateway versions currently under support within SLA reproduced below. The SLA clock for these vulnerabilities starts from the day the upstream (third party) announces availability of patches.  
+Vulnerabilities reported in third party code that Kong links directly must have confirmed CVE numbers assigned. Kong will produce patches for all applicable Gateway versions currently under support within the SLA reproduced in the table below. The SLA clock for these vulnerabilities starts from the day the upstream (third party) announces availability of patches.  
 
 |  CVSS 3.0 Criticality | CVSS 3.0 Score | Resolution SLA |
 |---|---|---|
