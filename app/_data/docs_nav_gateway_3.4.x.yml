@@ -19,7 +19,7 @@ items:
           - text: Browser Support
             url: /support/browser
           - text: Vulnerability Patching Process
-            url: /production/vulnerability-patching-process
+            url: /support/vulnerability-patching-process
           - text: Software Bill of Materials
             url: /support/sbom
       - text: Stability
