@@ -1,34 +1,39 @@
 ---
-title: Kong Security Update Process
+title: Kong Vulnerability Patching Process
 ---
 
-Kong provides artifacts in [multiple formats](/gateway/{{page.kong_version}}/support-policy/#supported-versions), such as deb, rpm, apk, that are free of vulnerabilities at the time of release. Occasionally, for convenience, Kong also provides Docker images that are also free of vulnerabilities at the time of release.
+Kong Enterprise Gateway is primarily delivered as [DEB, RPM & APK](/gateway/{{page.kong_version}}/support-policy/#supported-versions) installable artifacts. Strictly as a convenience to customers, Kong also offers Docker images with the artifacts preinstalled.  At the time of release, all artifacts and images are patched, scanned and are free of known vulnerabilities. 
 
 ## Types of Vulnerabilities
 
 Generally, there are three types of vulnerabilities:
 * In Kong code
-* In third-party code that Kong directly links with
-* In third-pary code that is part of the Docker image.
+* In third-party code that Kong directly links (such as openssl, glibc, libxml2)
+* In third-pary code that is part of the convenience Docker image. This code is not part of Kong.
 
-If vulnerabilities are found in Kong code or in third-party code that Kong directly links with, these are addressed within an SLA based on severity and released as patches. 
+Vulnerabilities reported in Kong code will be assessed by Kong and assigned a CVSS3.0 score. Based on the CVSS score, Kong will produce patches for all applicable Gateway versions currently under support within SLA reproduced below. The SLA clock starts from the day the CVSS score is assigned.
 
-If vulnerabilities are found in the third-party code that is part of the Docker image, then customers have the option to: 
-* Use the Kong artifacts to build their own Docker image on their corporate-approved Docker distributions, using their approved security processes. This is the recommended option. 
-* Upgrade to the latest patch Docker image for their major version.
+|  CVSS 3.0 Criticality | CVSS 3.0 Score | Resolution SLA |
+|---|---|---|
+| Critical  | 9.0 - 10.0  |  15 days |
+| High  |  7.0 - 8.9 |  30 days |
+|  Medium |  4.0 - 6.9 |  90 days |
+|  Low |  0.1 - 3.9 | 180 days  |
 
-## Reporting a Vulnerability
 
-If you have found a vulnerability or a potential vulnerability in the Kong gateway or other Kong software, or know of a publicly disclosed security vulnerability, please immediately let us know by emailing [security@konghq.com](mailto:security@konghq.com). We'll send a confirmation email to acknowledge your report, and we'll send an additional email when we've identified the issue positively or negatively.
+Vulnerabilities reported in third party code that Kong links directly must have confirmed CVE numbers assigned. Kong will produce patches for all applicable Gateway versions currently under support within SLA reproduced below. The SLA clock for these vulnerabilities starts from the day the upstream (third party) announces availability of patches.  
 
-Once a report is received, we will investigate the vulnerability and assign it a [CVSS](https://www.first.org/cvss/) score which will determine the timeline for the development of an appropriate fix.
+|  CVSS 3.0 Criticality | CVSS 3.0 Score | Resolution SLA |
+|---|---|---|
+| Critical  | 9.0 - 10.0  |  15 days |
+| High  |  7.0 - 8.9 |  30 days |
+|  Medium |  4.0 - 6.9 |  90 days |
+|  Low |  0.1 - 3.9 | 180 days  |
 
-While the fix development is underway, we ask that you do not share or publicize an unresolved vulnerability with third parties. If you responsibly submitted a vulnerability report, we will do our best to acknowledge your report in a timely fashion and notify you of the estimated timeline for a fix.
 
-## Fix Development Process
+Vulnerabilities reported in third party code that is part of the convenience Docker images are only addressed by Kong as part of the regularly scheduled release process. These vulnerabilities are not exploitable during normal Kong operations. Kong always applies all available patches when releasing a docker image, but by definition images accrue vulnerabilities over time. All customers using containers are strongly urged to generate their own images using their secure corporate approved base images. Customers wishing to use the convenience images from Kong should always apply the latest patches for their Gateway version to receive the latest patched container images. Kong does not explicitly address 3rd party vulnerabilities in convenience images outside of the scheduled release mechanism.
 
-If a discovered vulnerability with a CVSS score above 4.0 (medium severity or higher) affects the latest major release of the Kong gateway or other Kong software, then we will work to develop a fix in the most timely fashion. The work and communication around the fix will happen in private channels, and a delivery estimate will be given to the vulnerability reporter. Once the fix is developed and verified, a new patch version will be released by Kong for each supported {{site.base_gateway}} release and for the current release of the open source gateway. We will disclose the vulnerability as appropriate.
+## Reporting Vulnerabilities in Kong code
 
-Discovered vulnerabilities with a CVSS score below 4.0 (low severity) will follow the same fix development and release process but with a less urgent timeline.
+If you are reporting a vulnerability in Kong code, we request you to kindly follow the instructions in the [Kong Vulnerability Disclosure Program](https://konghq.com/compliance/bug-bounty). 
 
-Vulnerabilities affecting upstream projects (e.g. NGINX, OpenResty, OpenSSL...) will receive fixes as per the upstream project's disclosure timeline.
