@@ -87,7 +87,7 @@ In the previous steps, you obtained the **Client ID** and **Client Secret**. To 
 curl example.com/REGISTERED_ROUTE -H "Authorization: Basic CLIENT_ID:CLIENT_SECRET"
 ```
 
-Where `example.com` is the address of the data plane.
+Where `example.com` is the address of the data plane node.
 
 You can also request a bearer token from Azure using this command:
 
