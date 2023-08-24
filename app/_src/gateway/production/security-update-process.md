@@ -9,7 +9,7 @@ Kong Enterprise Gateway is primarily delivered as [DEB, RPM & APK](/gateway/{{pa
 Generally, there are three types of vulnerabilities:
 * In Kong code
 * In third-party code that Kong directly links (such as openssl, glibc, libxml2)
-* In third-pary code that is part of the convenience Docker image. This code is not part of Kong.
+* In third-pary code that is part of the convenience Docker image (such as Python, Perl, curl etc). This code is not part of Kong.
 
 Vulnerabilities reported in Kong code will be assessed by Kong and assigned a CVSS3.0 score. Based on the CVSS score, Kong will produce patches for all applicable Gateway versions currently under support within SLA reproduced below. The SLA clock starts from the day the CVSS score is assigned.
 
