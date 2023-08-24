@@ -48,12 +48,12 @@ You must assign roles to a custom team to use the team. Roles define a set of pe
 
     ```
 {
-      "runtime_groups": {
-        "name": "Runtime Groups",
+      "control_planes": {
+        "name": "Control Planes",
         "roles": {
           "admin": {
             "name": "Admin",
-            "description": "This role grants full write access to all entities within a runtime group."
+            "description": "This role grants full write access to all entities within a control plane."
           },
           "certificate_admin": {
             "name": "Certificate Admin",
@@ -74,13 +74,13 @@ You must assign roles to a custom team to use the team. Roles define a set of pe
              --data '{
              "role_name": "Admin",
              "entity_id": "e67490ce-44dc-4cbd-b65e-b52c746fc26a",
-             "entity_type_name": "Runtime Groups",
+             "entity_type_name": "Control Planes",
              "entity_region": "eu"
              }'
          If the information in the request was correct, the response will return a `200` and the `id` of the new assigned role. 
 
     {:.note}
-    > `entity_id` can be found in the {{site.konnect_short_name}} in the **Runtime Instances** section. 
+    > `entity_id` can be found in the {{site.konnect_short_name}} in the **Data Plane Nodes** section. 
 
 ## Assign a user to a custom team
 
