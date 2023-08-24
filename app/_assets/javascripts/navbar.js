@@ -68,7 +68,6 @@ $(document).ready(function() {
   topNavSubmenus.forEach(function(nav) {
     nav.addEventListener("keydown", function(e) {
       if (e.keyCode == 13) {
-        e.preventDefault();
         toggleNav(nav);
         return false;
       }
