@@ -18,8 +18,8 @@ items:
             url: /support/third-party
           - text: Browser Support
             url: /support/browser
-          - text: Security Update Process
-            url: /production/security-update-process
+          - text: Vulnerability Patching Process
+            url: /production/vulnerability-patching-process
           - text: Software Bill of Materials
             url: /support/sbom
       - text: Stability
