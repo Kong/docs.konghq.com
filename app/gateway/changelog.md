@@ -1122,7 +1122,7 @@ Now, if IdP users with no groups or roles attempt to log into Kong Manager, they
 
 
 ## 3.1.1.5 
-**Release Date** 2023/09/08
+**Release Date** 2023/08/28
 
 ### Features
 
@@ -1131,9 +1131,6 @@ Now, if IdP users with no groups or roles attempt to log into Kong Manager, they
 * Kong Manager supports the `POST` response method for OIDC based authentication
 
 ### Fixes 
-
-
-
 #### Enterprise
 
 * Fixed an issue with the plugin iterator where sorting would become mixed up when dynamic reordering was applied. This fix ensures proper sorting behavior in all scenarios.
