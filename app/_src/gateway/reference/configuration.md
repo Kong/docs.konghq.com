@@ -684,10 +684,10 @@ datastore.
 
 Example: `proxy_listen = 0.0.0.0:443 ssl, 0.0.0.0:444 http2 ssl`
 
-See http://nginx.org/en/docs/http/ngx_http_core_module.html#listen for a
+See [http://nginx.org/en/docs/http/ngx_http_core_module.html#listen](http://nginx.org/en/docs/http/ngx_http_core_module.html#listen) for a
 description of the accepted formats for this and other `*_listen` values.
 
-See https://www.nginx.com/resources/admin-guide/proxy-protocol/ for more
+See [https://www.nginx.com/resources/admin-guide/proxy-protocol/]( https://www.nginx.com/resources/admin-guide/proxy-protocol/) for more
 details about the `proxy_protocol` parameter.
 
 Not all `*_listen` values accept all formats specified in nginx's
@@ -768,7 +768,7 @@ stream_listen = [::1]:1234 backlog=16384
 By default this value is set to `off`, thus disabling the stream proxy port for
 this node.
 
-See http://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen for a
+See [http://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen](http://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen) for a
 description of the formats that Kong might accept in stream_listen.
 
 **Default:** `off`
@@ -794,9 +794,8 @@ This value accepts IPv4, IPv6, and hostnames.
 It is highly recommended to avoid exposing the Admin API to public
 interface(s), by using values such as 0.0.0.0:8001
 
-See
-https://docs.konghq.com/gateway/latest/production/running-kong/secure-admin-api/
-for more information about how to secure your Admin API
+See [Securing the Admin API](/gateway/latest/production/running-kong/secure-admin-api/)
+for more information
 
 Some suffixes can be specified for each pair:
 
@@ -899,7 +898,7 @@ default user and group credentials will be `nobody nobody`.
 
 Determines the number of worker processes spawned by Nginx.
 
-See http://nginx.org/en/docs/ngx_core_module.html#worker_processes for detailed
+See [http://nginx.org/en/docs/ngx_core_module.html#worker_processes](http://nginx.org/en/docs/ngx_core_module.html#worker_processes) for detailed
 usage of the equivalent Nginx directive and a description of accepted values.
 
 **Default:** `auto`
@@ -910,7 +909,7 @@ usage of the equivalent Nginx directive and a description of accepted values.
 Determines whether Nginx will run as a daemon or as a foreground process.
 Mainly useful for development or when running Kong inside a Docker environment.
 
-See http://nginx.org/en/docs/ngx_core_module.html#daemon.
+See [http://nginx.org/en/docs/ngx_core_module.html#daemon](http://nginx.org/en/docs/ngx_core_module.html#daemon).
 
 **Default:** `on`
 
@@ -938,9 +937,9 @@ Defines the TLS ciphers served by Nginx.
 
 Accepted values are `modern`, `intermediate`, `old`, `fips` or `custom`.
 
-See https://wiki.mozilla.org/Security/Server_Side_TLS for detailed descriptions
+See [https://wiki.mozilla.org/Security/Server_Side_TLS](https://wiki.mozilla.org/Security/Server_Side_TLS) for detailed descriptions
 of each cipher suite. `fips` cipher suites are as described in
-https://wiki.openssl.org/index.php/FIPS_mode_and_TLS.
+[https://wiki.openssl.org/index.php/FIPS_mode_and_TLS](https://wiki.openssl.org/index.php/FIPS_mode_and_TLS).
 
 **Default:** `intermediate`
 
@@ -961,7 +960,7 @@ Enables the specified protocols for client-side connections. The set of
 supported protocol versions also depends on the version of OpenSSL Kong was
 built with. This value is ignored if `ssl_cipher_suite` is not `custom`.
 
-See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols
+See [http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols)
 
 **Default:** `TLSv1.1 TLSv1.2 TLSv1.3`
 
@@ -973,7 +972,7 @@ using the SSLv3 and TLS protocols. This value is ignored if `ssl_cipher_suite`
 is not `custom`.
 
 See
-http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers
+[http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers)
 
 **Default:** `on`
 
@@ -988,7 +987,7 @@ This value is ignored if `ssl_cipher_suite` is `modern` or `intermediate`. The
 reason is that `modern` has no ciphers that needs this, and `intermediate` uses
 `ffdhe2048`.
 
-See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_dhparam
+See (http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_dhparam)[http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_dhparam]
 
 **Default:** none
 
@@ -999,9 +998,9 @@ Enables or disables session resumption through TLS session tickets. This has no
 impact when used with TLSv1.3.
 
 Kong enables this by default for performance reasons, but it has security
-implications: https://github.com/mozilla/server-side-tls/issues/135
+implications: [https://github.com/mozilla/server-side-tls/issues/135](https://github.com/mozilla/server-side-tls/issues/135)
 
-See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_tickets
+See [http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_tickets](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_tickets)
 
 **Default:** `on`
 
@@ -1009,9 +1008,9 @@ See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_tickets
 ### ssl_session_timeout
 
 Specifies a time during which a client may reuse the session parameters. See
-the rationale: https://github.com/mozilla/server-side-tls/issues/198
+the rationale: [https://github.com/mozilla/server-side-tls/issues/198](https://github.com/mozilla/server-side-tls/issues/198)
 
-See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout
+See [http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout](http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout)
 
 **Default:** `1d`
 
@@ -1020,7 +1019,7 @@ See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout
 
 Sets the size of the caches that store session parameters
 
-See https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_cache
+See [https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_cache](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_cache)
 
 **Default:** `10m`
 
@@ -1223,7 +1222,7 @@ To trust *all* /!\ IPs, set this value to `0.0.0.0/0,::/0`.
 If the special value `unix:` is specified, all UNIX-domain sockets will be
 trusted.
 
-See http://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from
+See [http://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from](http://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from)
 for examples of accepted values.
 
 **Default:** none
@@ -1244,7 +1243,7 @@ If this value receives `proxy_protocol`:
 - the `proxy_protocol` parameter will be appended to the `listen` directive of
   the Nginx template.
 
-See http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header
+See [http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header](http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header)
 for a description of this directive.
 
 **Default:** `X-Real-IP`
@@ -1255,7 +1254,7 @@ for a description of this directive.
 This value sets the `ngx_http_realip_module` directive of the same name in the
 Nginx configuration.
 
-See http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive
+See [http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive](http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive)
 for a description of this directive.
 
 **Default:** `off`
@@ -1386,7 +1385,7 @@ The special and default value of `auto` sets this value to `ulimit -n` with the
 upper bound limited to 16384 as a measure to protect against excess memory use,
 and the lower bound of 1024 as a good default.
 
-See http://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_nofile
+See [http://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_nofile](http://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_nofile)
 
 **Default:** `auto`
 
@@ -1400,7 +1399,7 @@ The special and default value of `auto` sets this value to `ulimit -n` with the
 upper bound limited to 16384 as a measure to protect against excess memory use,
 and the lower bound of 1024 as a good default.
 
-See http://nginx.org/en/docs/ngx_core_module.html#worker_connections
+See [http://nginx.org/en/docs/ngx_core_module.html#worker_connections](http://nginx.org/en/docs/ngx_core_module.html#worker_connections)
 
 **Default:** `auto`
 
@@ -1410,7 +1409,7 @@ See http://nginx.org/en/docs/ngx_core_module.html#worker_connections
 Sets buffer size for reading the client request headers.
 
 See
-http://nginx.org/en/docs/http/ngx_http_core_module.html#client_header_buffer_size
+[http://nginx.org/en/docs/http/ngx_http_core_module.html#client_header_buffer_size](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_header_buffer_size)
 
 **Default:** `1k`
 
@@ -1421,7 +1420,7 @@ Sets the maximum number and size of buffers used for reading large clients
 requests headers.
 
 See
-http://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers
+[http://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers](http://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers)
 
 **Default:** `4 8k`
 
@@ -1434,7 +1433,8 @@ Kong will respond with a 413 (Request Entity Too Large). Setting this value to 0
 disables checking the request body size.
 
 See
-http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size
+[http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size](
+http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size)
 
 **Default:** `0`
 
@@ -1455,7 +1455,7 @@ directive, a conversion is performed.
 The parameter `off` cancels the addition of charset to the “Content-Type”
 response header field.
 
-See http://nginx.org/en/docs/http/ngx_http_charset_module.html#charset
+See [http://nginx.org/en/docs/http/ngx_http_charset_module.html#charset](http://nginx.org/en/docs/http/ngx_http_charset_module.html#charset)
 
 **Default:** `UTF-8`
 
@@ -1471,7 +1471,7 @@ to be kept in memory). Do note that high-concurrency environments will require
 significant memory allocations to process many concurrent large request bodies.
 
 See
-http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size
+[http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size](http://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size)
 
 **Default:** `8k`
 
@@ -2225,7 +2225,7 @@ Additional settings inherited from lua-nginx-module allowing for more
 flexibility and advanced usage.
 
 See the lua-nginx-module documentation for more information:
-https://github.com/openresty/lua-nginx-module
+[https://github.com/openresty/lua-nginx-module](https://github.com/openresty/lua-nginx-module)
 
 
 ### lua_ssl_trusted_certificate
@@ -2257,7 +2257,7 @@ values:
 * certificate content 
 * base64 encoded certificate content
 
-See https://github.com/openresty/lua-nginx-module#lua_ssl_trusted_certificate
+See [https://github.com/openresty/lua-nginx-module#lua_ssl_trusted_certificate](https://github.com/openresty/lua-nginx-module#lua_ssl_trusted_certificate)
 
 **Default:** `system`
 
@@ -2272,7 +2272,7 @@ This includes the certificates configured for Kong's database connections.
 If the maximum depth is reached before reaching the end of the chain,
 verification will fail. This helps mitigate certificate based DoS attacks.
 
-See https://github.com/openresty/lua-nginx-module#lua_ssl_verify_depth
+See [https://github.com/openresty/lua-nginx-module#lua_ssl_verify_depth](https://github.com/openresty/lua-nginx-module#lua_ssl_verify_depth)
 
 **Default:** `1`
 
@@ -2294,7 +2294,7 @@ connections made to the upstream Service or from downstream clients.
 Sets the Lua module search path (LUA_PATH). Useful when developing or using
 custom plugins not stored in the default search path.
 
-See https://github.com/openresty/lua-nginx-module#lua_package_path
+See [https://github.com/openresty/lua-nginx-module#lua_package_path](https://github.com/openresty/lua-nginx-module#lua_package_path)
 
 **Default:** `./?.lua;./?/init.lua;`
 
@@ -2303,7 +2303,7 @@ See https://github.com/openresty/lua-nginx-module#lua_package_path
 
 Sets the Lua C module search path (LUA_CPATH).
 
-See https://github.com/openresty/lua-nginx-module#lua_package_cpath
+See [https://github.com/openresty/lua-nginx-module#lua_package_cpath](https://github.com/openresty/lua-nginx-module#lua_package_cpath)
 
 **Default:** none
 
@@ -2313,7 +2313,7 @@ See https://github.com/openresty/lua-nginx-module#lua_package_cpath
 Specifies the size limit for every cosocket connection pool associated with
 every remote server.
 
-See https://github.com/openresty/lua-nginx-module#lua_socket_pool_size
+See [https://github.com/openresty/lua-nginx-module#lua_socket_pool_size](https://github.com/openresty/lua-nginx-module#lua_socket_pool_size)
 
 **Default:** `30`
 
@@ -2579,7 +2579,7 @@ Supported preset rules:
 - `min_20`: minimum length of 20
 
 To write your own rules, see
-https://manpages.debian.org/jessie/passwdqc/passwdqc.conf.5.en.html.
+[https://manpages.debian.org/jessie/passwdqc/passwdqc.conf.5.en.html](https://manpages.debian.org/jessie/passwdqc/passwdqc.conf.5.en.html).
 
 NOTE: Only keywords "min", "max" and "passphrase" are supported.
 
@@ -3201,7 +3201,7 @@ Supported preset rules:
 - `min_20`: minimum length of 20
 
 To write your own rules, see
-https://manpages.debian.org/jessie/passwdqc/passwdqc.conf.5.en.html.
+[https://manpages.debian.org/jessie/passwdqc/passwdqc.conf.5.en.html](https://manpages.debian.org/jessie/passwdqc/passwdqc.conf.5.en.html).
 
 NOTE: Only keywords "min", "max" and "passphrase" are supported.
 
@@ -3886,8 +3886,7 @@ The strategy used to validate routes when creating or updating them.
 Different strategies are available to tune how to enforce splitting traffic of
 workspaces.
 
-- `smart` is the default option and uses the algorithm described in
-  https://docs.konghq.com/gateway/latest/admin-api/workspaces/examples/#important-note-conflicting-services-or-routes-in-workspaces
+- `smart` is the default option
 - `off` disables any check
 - `path` enforces routes to comply with the pattern described in config
   enforce_route_path_pattern
@@ -4122,7 +4121,7 @@ Examples of `untrusted_lua = sandbox` behavior:
 /*')`.
 
 For a full allowed/disallowed list, see:
-https://github.com/kikito/sandbox.lua/blob/master/sandbox.lua
+[https://github.com/kikito/sandbox.lua/blob/master/sandbox.lua](https://github.com/kikito/sandbox.lua/blob/master/sandbox.lua)
 
 To customize the sandbox environment, use the `untrusted_lua_sandbox_requires`
 and `untrusted_lua_sandbox_environment` parameters below.
@@ -4281,6 +4280,6 @@ Notes:
 **Default:** none
 
 
-[Penlight]: http://stevedonovan.github.io/Penlight/api/index.html
-[pl.template]: http://stevedonovan.github.io/Penlight/api/libraries/pl.template.html
-[templates]: https://github.com/kong/kong/tree/master/kong/templates
+[Penlight](http://stevedonovan.github.io/Penlight/api/index.html)
+[pl.template](http://stevedonovan.github.io/Penlight/api/libraries/pl.template.html)
+[templates](https://github.com/kong/kong/tree/master/kong/templates)
