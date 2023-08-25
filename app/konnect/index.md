@@ -15,7 +15,7 @@ lightweight, fast, and flexible API gateway  — is managed by you within your
 preferred network environment.
 
 <p align="center">
-  <img src="/assets/images/docs/konnect/dashboard/konnect-dashboard.png" />
+  <img src="/assets/images/docs/konnect/dashboard/konnect-dashboard.png" alt="Konnect's dashboard screenshot" />
 </p>
 
 {{site.konnect_short_name}} helps simplify multi-cloud API management by:
