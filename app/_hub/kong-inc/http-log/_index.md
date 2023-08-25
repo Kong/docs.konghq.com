@@ -66,8 +66,8 @@ The log server that receives these messages might require extra headers, such as
 
 ## Logged headers allow list
 
-Some usecases may require that only a set of allowed request and response headers are included in the logs. 
-This can be to reduce overall log enty size, avoid garbage header values from the end user from being logged, or to avoid non-standard sensitive header values from being logged unredacted.
+Some use cases may require that only a set of allowed request and response headers are included in the logs. 
+This can be to reduce overall log entry size, avoid garbage header values from the end user from being logged, or to avoid non-standard sensitive header values from being logged un-redacted.
 
 The HTTP Log plugin can be configured to enforce an allow list of header names, such that only request or response headers who's name matches an allowed value will be included in the logs.
 
@@ -81,6 +81,6 @@ To enable this functionality, configure the plugin with:
 ...
 ```
 
-To set the header names in the allow list, configure the logged_header_allow_list array. By default, the allow list contains a number of standard request and response headers. For more info, view the configuration reference.
+To set the header names in the allow list, configure the `logged_header_allow_list` array. By default, the allow list contains a number of standard request and response headers. For more info, view the configuration reference.
 
 {% endif_plugin_version %}
