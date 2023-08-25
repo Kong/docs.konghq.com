@@ -1121,6 +1121,46 @@ Now, if IdP users with no groups or roles attempt to log into Kong Manager, they
 * Bumped `libxml` from 2.10.2 to 2.10.3 to resolve [CVE-2022-40303](https://nvd.nist.gov/vuln/detail/cve-2022-40303) and [CVE-2022-40304](https://nvd.nist.gov/vuln/detail/cve-2022-40304)
 
 
+## 3.1.1.5 
+**Release Date** 2023/08/25
+
+### Features
+
+* The Redis strategy of Rate Limiting now catches connection failures.
+* Added the parameter `admin_auto_create` for automatically creating a Kong admin.
+* Kong Manager supports the `POST` response method for OIDC based authentication
+
+### Fixes 
+#### Enterprise
+
+* Fixed an issue with the plugin iterator where sorting would become mixed up when dynamic reordering was applied. This fix ensures proper sorting behavior in all scenarios.
+* Fixed an issue where `resty.dns.client` leaked UDP sockets. 
+* Fixed a bug where setting `anonymous_reports=false` would not silence anonymous reports.
+* Fixed an issue with hybrid mode where vitals and analytics could not communicate through the cluster telemetry endpoint.
+* Fixed the HTTP2 request handle in ARM artifacts.
+* Backported the openresty ngx.print chunk encoding buffer double free bug fix that was leading to the corruption of chunk-encoded response data. [#10816](https://github.com/Kong/kong/pull/10816)[#10824](https://github.com/Kong/kong/pull/10824)
+* Fixed an issue where a crashing Go plugin server process would cause subsequent requests proxied through Kong to execute Go plugins with inconsistent configurations. The issue only affects scenarios where the same Go plugin is applied to different route or service entities.
+* Fixed the Dynatrace implementation.
+
+**Kong Manager**:
+* Fixed an issue where configuration links would redirect users to the default workspace.
+* Fixed an issue with Kong Manager when using OpenID Connect where passing invalid credentials was not resulting in a redirect. 
+
+#### Plugins 
+* Request Transformer Advanced: Fixed an issue that was causing some requests to be proxied with the wrong query parameters.
+* Response Transformer Advanced: Fixed an issue where large decimals were rounded when the plugin was being used.
+* Rate Limiting Advanced: 
+  * Fixed an issue where the control plane was trying to sync the rate-limiting-advanced counters with Redis.
+  * Fixed a bug where the `rl cluster_events` broadcasted the wrong data in traditional cluster mode.
+* Oauth2: Fixed a bug that `refresh_token` could be shared across instances.
+
+### Dependencies
+
+* Bumped`lua-resty-openssl` from 0.8.15 to 0.8.22
+* Bumped `lua-resty-kafka` from 0.15 to 0.16
+
+
+
 ## 3.1.1.4
 **Release Date** 2023/05/16
 
