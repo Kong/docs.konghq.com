@@ -116,7 +116,35 @@ curl --request POST \
     "updated_at": "2023-01-01T00:00:00.000Z"
   }
   ```
-  Save the `id` value from the output. This is your `api-product-id` and will be used in the next step.
+  Save the `id` value from the output. This is your `api-product-id` and will be used in another step.
+1. Using the`api-product-id` of the newly created API product, publish the `Pizza Ordering` API product:
+```bash
+curl --request PATCH \
+  --url https://<region>.api.konghq.com/v2/api-products/{apiProductId} \
+  --header 'Authorization: Bearer <personal-access-token>' \
+  --header 'Content-Type: application/json' \
+  --header 'accept: application/json' \
+  --data '{
+  "portal_ids":[
+    "DEV_PORTAL_ID"
+    ]
+  }'
+```
+  The `DEV_PORTAL_ID` can be found in the {{site.konnect_short_name}} UI in the **Dev Portal** section. <br><br>
+  You should get a `200` response like the following:
+  ```bash
+  {
+  "labels": {},
+  "id": "38219b88-28fb-4a51-aaca-ea5b931939d8",
+  "name": "Pizza Ordering",
+  "description": "API product for pizza ordering",
+  "portal_ids": [
+    "a060b86d-593b-4e7e-9cc4-188d2f13265e"
+  ],
+  "created_at": "2023-01-01T00:00:00.000Z",
+  "updated_at": "2023-01-01T00:00:00.000Z"
+}
+  ```
 1. Using the`api-product-id` of the newly created API product, create a `v1` version for the `Pizza Ordering` API product and publish it:
 ```bash
 curl --request POST \
