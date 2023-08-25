@@ -1122,7 +1122,7 @@ Now, if IdP users with no groups or roles attempt to log into Kong Manager, they
 
 
 ## 3.1.1.5 
-**Release Date** 2023/08/28
+**Release Date** 2023/08/25
 
 ### Features
 
