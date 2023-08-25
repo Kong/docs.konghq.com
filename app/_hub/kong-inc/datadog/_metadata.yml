@@ -1,5 +1,4 @@
 name: Datadog
-konnect_examples: false
 dbless_compatible: 'yes'
 free: true
 plus: true

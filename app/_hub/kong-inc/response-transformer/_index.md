@@ -131,7 +131,7 @@ curl -X POST http://localhost:8001/routes/{route}/plugins \
 ```bash
 curl -X POST http://localhost:8001/routes/{route}/plugins \
   --data "name=response-transformer" \
-  --data "config.add.json=p1:v1,p2=v2" \
+  --data "config.add.json=p1:v1,p2:v2" \
   --data "config.add.headers=h1:v1"
 ```
 {% endnavtab %}
@@ -143,7 +143,7 @@ plugins:
   route: {route}
   config:
     add:
-      json: ["p1:v1", "p2=v2"]
+      json: ["p1:v1", "p2:v2"]
       headers: ["h1:v1"]
 ```
 {% endnavtab %}
