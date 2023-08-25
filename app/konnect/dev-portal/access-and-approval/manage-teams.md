@@ -62,7 +62,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 1. Create the `pizza_ordering` service:
 ```bash
 curl --request POST \
-  --url https://<region>.api.konghq.com/v2/{runtime-group-id}/core-entities/services \
+  --url https://<region>.api.konghq.com/v2/runtime-groups/{runtimeGroupId}/core-entities/services \
   --header 'Authorization: Bearer <personal-access-token>' \
   --header 'Content-Type: application/json' \
   --header 'accept: application/json' \
@@ -72,7 +72,7 @@ curl --request POST \
   "path": "/pizza_ordering"
   }'
 ```
-  If you don't know the ID of your runtime group, you can use the [list runtime groups endpoint](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9#/Runtime%20Groups/list-runtime-groups) to list all runtime groups and their IDs. <br><br>
+  You can get the `runtimeGroupId`, by using the [list runtime groups endpoint](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9#/Runtime%20Groups/list-runtime-groups) to list all runtime groups and their IDs. <br><br>
   You should get a `201` response like the following:
   ```bash
   {
@@ -117,17 +117,20 @@ curl --request POST \
   }
   ```
   Save the `id` value from the output. This is your `api-product-id` and will be used in the next step.
-1. Using the`api-product-id` UUID of the newly created API product, create a `v1` version for the `Pizza Ordering` API product and publish it:
+1. Using the`api-product-id` of the newly created API product, create a `v1` version for the `Pizza Ordering` API product and publish it:
 ```bash
 curl --request POST \
-  --url https://<region>.api.konghq.com/v2/api-products/{api-product-id}/product-versions \
+  --url https://<region>.api.konghq.com/v2/api-products/{apiProductId}/product-versions \
   --header 'Authorization: Bearer <personal-access-token>' \
   --header 'Content-Type: application/json' \
   --header 'accept: application/json' \
   --data '{
-  "id": "GATEWAY_SERVICE_ID",
-  "name": "v1",
-  "publish_status": "published"
+  "name":"v1",
+  "publish_status":"published",
+  "gateway_service":{
+    "runtime_group_id":"RUNTIME_GROUP_ID",
+    "id":"GATEWAY_SERVICE_ID"
+     }
   }'
 ```
   You should get a `201` response like the following:
