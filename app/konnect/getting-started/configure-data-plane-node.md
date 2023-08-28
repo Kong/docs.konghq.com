@@ -17,44 +17,43 @@ data plane nodes.
 
 ## Prerequisites
 
-* You have the **Organization Admin** role in
+* Your account has the **Organization Admin** role in
 {{site.konnect_saas}}. If you created this {{site.konnect_short_name}} organization, your account
 is part of the organization admin team by default.
 * The quick setup script requires Docker and a Unix shell (for example, bash or
-  zsh). Platform-specific tools and permissions:
+  zsh). 
+* You also need the following platform-specific tools and permissions:
   * **All platforms:** [Docker](https://docs.docker.com/get-docker/) and [jq](https://stedolan.github.io/jq/) installed
   * **Linux:** User added to the [`docker` group](https://docs.docker.com/engine/install/linux-postinstall/)
   * **Windows:** Docker Desktop [installed](https://docs.docker.com/docker-for-windows/install/#install-docker-desktop-on-windows) and [integrated with a WSL 2 backend](https://docs.docker.com/docker-for-windows/wsl/).
 
 ## Create a data plane node
 
-{{site.base_gateway}} data planes proxy service traffic.
+Data planes are self hosted {{site.base_gateway}} instances that are used to proxy service traffic. {{site.konnect_short_name}} provides you with a script that creates a Docker container running an instance of {{site.base_gateway}} and automatically connects it to your {{site.konnect_short_name}} account.
 
 1. From the left navigation menu, open {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/runtime-manager).
 
 1. Select the `default` control plane.
 
-    Every account starts with one control plane named `default`. If you have an
-    Enterprise subscription, you can create additional custom control planes.
+    Every account starts with one control plane named `default`. 
 
 1. Click **New Data Plane Node**.
 
-     You will see the latest {{site.base_gateway}} version and Docker pre-selected.
+    You will see the latest {{site.base_gateway}} version and Docker pre-selected.
 
 1. Click **Generate Script**.
 
 1. Copy and run the script on any host you choose.
 
-    This script creates a Docker container running a
+    This script creates a Docker container running the
     {{site.base_gateway}} instance and connects it to your
     {{site.konnect_saas}} account.
 
-1. Once {{site.konnect_short_name}} detects the data plane node, 
-click **Done** to go back to the data plane nodes page.
+1. Once {{site.konnect_short_name}} detects the data plane node, click **Done** to go back to the data plane nodes page.
 
 The data plane nodes table will now include
 a new entry for the data plane and the tag in the **Sync Status** column should
-say **In Sync**.
+say **In Sync**. If you have an Enterprise subscription, you can create additional custom control planes.
 
 The default proxy URL for the data plane is `http://localhost:8000`. Take
 note of this URL, as you'll need it later to access a service
