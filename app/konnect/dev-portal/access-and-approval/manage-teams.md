@@ -61,34 +61,34 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 
 1. Create the `pizza_ordering` service:
 ```bash
-curl --request POST \
-  --url https://<region>.api.konghq.com/v2/runtime-groups/{runtimeGroupId}/core-entities/services \
-  --header 'Authorization: Bearer <personal-access-token>' \
-  --header 'Content-Type: application/json' \
-  --header 'accept: application/json' \
-  --data '{
-  "name": "pizza_ordering",
-  "host": "mockbin.org",
-  "path": "/pizza_ordering"
-  }'
+    curl --request POST \
+      --url https://<region>.api.konghq.com/v2/runtime-groups/{runtimeGroupId}/core-entities/services \
+      --header 'Authorization: Bearer <personal-access-token>' \
+      --header 'Content-Type: application/json' \
+      --header 'accept: application/json' \
+      --data '{
+          "name": "pizza_ordering",
+          "host": "mockbin.org",
+          "path": "/pizza_ordering"
+      }'
 ```
   You can get the `runtimeGroupId`, by using the [list runtime groups endpoint](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9#/Runtime%20Groups/list-runtime-groups) to list all runtime groups and their IDs. <br><br>
   You should get a `201` response like the following:
   ```bash
   {
-    "connect_timeout": 60000,
-    "created_at": 1692885974,
-    "enabled": true,
-    "host": "mockbin.org",
-    "id": "06acc4f4-c6d8-4daf-bef6-79866e88ca86",
-    "name": "pizza_ordering",
-    "path": "/pizza_ordering",
-    "port": 80,
-    "protocol": "http",
-    "read_timeout": 60000,
-    "retries": 5,
-    "updated_at": 1692885974,
-    "write_timeout": 60000
+      "connect_timeout": 60000,
+      "created_at": 1692885974,
+      "enabled": true,
+      "host": "mockbin.org",
+      "id": "06acc4f4-c6d8-4daf-bef6-79866e88ca86",
+      "name": "pizza_ordering",
+      "path": "/pizza_ordering",
+      "port": 80,
+      "protocol": "http",
+      "read_timeout": 60000,
+      "retries": 5,
+      "updated_at": 1692885974,
+      "write_timeout": 60000
   }
   ```
   Save the `id` value from the output. This is your `GATEWAY-SERVICE-ID` and will be used in another step.
@@ -100,8 +100,8 @@ curl --request POST \
   --header 'Content-Type: application/json' \
   --header 'accept: application/json' \
   --data '{
-  "name": "Pizza Ordering",
-  "description": "API product for pizza ordering"
+      "name": "Pizza Ordering",
+      "description": "API product for pizza ordering"
   }'
 ```
   You should get a `201` response like the following:
