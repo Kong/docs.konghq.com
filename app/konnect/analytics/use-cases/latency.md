@@ -26,9 +26,9 @@ For the Kong latency report, Tal configures the following:
 * **Group by**: API Product
 * **Choose Granularity**: Minutely
 
-Then, they add a filter to filter by the individual runtime group:
+Then, they add a filter to filter by the Control Plane
 
-* **Filter by**: Runtime Group
+* **Filter by**: Control Plane
 * **Operator**: In
 * **Value**: prod 
 
@@ -50,9 +50,9 @@ For the Upstream latency report, Tal configures the following:
 * **Group by**: API Product
 * **Choose Granularity**: Minutely
 
-Then they add a filter to filter by the individual Runtime Group 
+Then they add a filter to filter by Control Plane
 
-* **Filter by**: Runtime Group
+* **Filter by**: Control Plane
 * **Operator**: In
 * **Value**: prod 
 
