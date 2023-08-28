@@ -7,7 +7,7 @@ toc: false
 
 Starting in version 3.2, {{site.base_gateway}} can be configured to support configuring new data planes in the event of a control plane outage. This feature works by designating a backup node and allowing it read/write access to a data store. This backup node will automatically push valid {{site.base_gateway}} configurations to the data store. In the event of a control plane outage when a new node is created, it will pull the latest {{site.base_gateway}} configuration from the data store, configure itself, and start proxying requests. 
 
-This option is only recommended for customers who are have to adhere to strict availability SLAs, because it requires a larger maintenance load. 
+This option is only recommended for customers who have to adhere to strict availability SLAs, because it requires a larger maintenance load. 
 
 {% navtabs %}
 {% navtab Amazon S3 %}
@@ -35,14 +35,14 @@ kong-exporter:
       AWS_ACCESS_KEY_ID: <access_key_write>
       AWS_SECRET_ACCESS_KEY: <secret_access_key_write>
       KONG_CLUSTER_FALLBACK_CONFIG_STORAGE: s3://test-bucket/test-prefix
-      KONG_CLUSTER_FALLBACK_CONFIG_EXPORT: "on"
+      KONG_CLUSTER_FALLBACK_CONFIG_**EXPORT**: "on"
 
 ```
 
-This node is responsible for writing to the S3 bucket when it receives a new configuration. If the node version is `3.2.0.0`, the key name should be `test-prefix/3.2.0.0/config.json`.
+This node is responsible for writing to the bucket when it receives a new configuration. If the node version is `3.2.0.0`, the key name should be `test-prefix/3.2.0.0/config.json`.
 Both the control plane and data plane can be configured to export configurations.
 
-You can configure new data planes to load a configuration from a bucket if the control plane is unreachable using the following environment variables: 
+You can configure new data planes to load a configuration from a s3 storage bucket if the control plane is unreachable using the following environment variables: 
 
 ```yaml
 kong-dp-importer:
@@ -56,7 +56,7 @@ kong-dp-importer:
       AWS_ACCESS_KEY_ID: <access_key_read>
       AWS_SECRET_ACCESS_KEY: <secret_access_key_read>
       KONG_CLUSTER_FALLBACK_CONFIG_STORAGE: s3://test-bucket/test-prefix
-      KONG_CLUSTER_FALLBACK_CONFIG_IMPORT: "on"
+      KONG_CLUSTER_FALLBACK_CONFIG_**IMPORT**: "on"
 
 ```
 
@@ -86,7 +86,7 @@ kong-dp-exporter:
     environment:
       <<: *other-kong-envs
       KONG_CLUSTER_FALLBACK_CONFIG_STORAGE: gcs://test-bucket/
-      KONG_CLUSTER_FALLBACK_CONFIG_EXPORT: "on"
+      KONG_CLUSTER_FALLBACK_CONFIG_**EXPORT**: "on"
       GCP_SERVICE_ACCOUNT: <GCP_JSON_STRING_WRITE>
 ```
 
@@ -103,7 +103,7 @@ A new data plane can be configured to load a configuration from GCP bucket if th
     environment:
       <<: *other-kong-envs
       KONG_CLUSTER_FALLBACK_CONFIG_STORAGE: gcs://test-bucket/
-      KONG_CLUSTER_FALLBACK_CONFIG_IMPORT: "on"
+      KONG_CLUSTER_FALLBACK_CONFIG_**IMPORT**: "on"
       GCP_SERVICE_ACCOUNT: <GCP_JSON_STRING_READ>
 ```
 
@@ -128,7 +128,7 @@ The example below uses MinIO to demonstrate configuring a backup node:
       AWS_REGION: 'us-east-2'
       AWS_ACCESS_KEY_ID: <access_key_write>
       AWS_SECRET_ACCESS_KEY: <secret_access_key_write>
-      KONG_CLUSTER_FALLBACK_CONFIG_EXPORT: "on"
+      KONG_CLUSTER_FALLBACK_CONFIG_**EXPORT**: "on"
       KONG_CLUSTER_FALLBACK_CONFIG_STORAGE: s3://test-bucket/test-prefix
       AWS_CONFIG_STORAGE_ENDPOINT: http://minio:9000/
 ```
