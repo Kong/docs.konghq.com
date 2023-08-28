@@ -1,5 +1,4 @@
 name: OAuth 2.0 Introspection
-konnect_examples: false
 dbless_compatible: 'yes'
 free: false
 plus: true

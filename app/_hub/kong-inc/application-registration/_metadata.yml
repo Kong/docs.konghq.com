@@ -1,6 +1,5 @@
 name: Portal Application Registration
 global: false
-konnect_examples: false
 dbless_compatible: 'no'
 free: false
 plus: false

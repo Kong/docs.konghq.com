@@ -94,7 +94,12 @@ The type of placeholder you use depends on context:
 
     For example: `service: SERVICE_NAME`
 
-* **URLs:**
+* **Placeholders in API URLs or OpenAPI specs**: Enclose placeholders in `{ }` characters and write them in all caps,
+per [Swagger guidelines](https://swagger.io/docs/specification/describing-parameters/).
+    
+    For example: `/services/{SERVICE_NAME|ID}/plugins`
+
+* **Hostnames and example URLs:**
     * For guides with examples that are intended to be runnable as-is, use `localhost` as the domain name.
 
         For example: `curl -i -X https://localhost:8001/services`
@@ -105,6 +110,16 @@ The type of placeholder you use depends on context:
     * For situations where you need a generic domain name and the examples are illustrative only (not intended to be runnable as-is), use `example` or `example.com`.
 
         For example: `user@example.com` or `https://example.okta.admin.com`
+* **Path parameters**
+    * Path parameters must be denoted with curly braces `{}`.
+    
+        For example: `http://localhost:8001/services/{service_id_or_name}/routes/{route_id_or_name}`
+    
+
+### Inline placeholders
+
+If you're adding a placeholder inline, such as in a sentence, enclose it in single
+backticks: \`EXAMPLE_TEXT`
 
 ## Capitalization guidelines
 
@@ -150,14 +165,7 @@ to avoid horizontal scrolling.
 - Never have more than one command in a block/example.
 - Set a language for code blocks, for example, bash, to enable syntax highlighting.
     - [List of supported languages](https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers)
-    - If using HTML tags to create a code block for editable placeholders,
-    see [guidelines for editable placeholders](/contributing/markdown-rules/#editable-placeholders-in-codeblocks)
 - Do **NOT** use the command prompt marker ($) in code snippets.
-
-### Inline code formatting
-
-- Enclose sample code with single backticks.<br/>
-  For example: \`sudo yum install /path/to/package.rpm`
 
 ### Icons
 
@@ -174,7 +182,7 @@ When deciding which icon to use for a doc, use the following guidelines:
    Check out [their catalog](https://fontawesome.com/v5/search?m=free) to find
    an icon code, then see our [icon usage instructions](/contributing/markdown-rules/#icons).
 
-3. Does the [`/_assets/images/icons/`](https://github.com/Kong/docs.konghq.com/tree/main/app/_assets/images/icons)
+3. Does the [`/_assets/images/icons/`](https://github.com/Kong/docs.konghq.com/tree/main/app/assets/images/icons)
    folder contain the icon that you're looking for?
 
    For custom icons, we have to import them manually. This includes all of the

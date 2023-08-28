@@ -1,6 +1,5 @@
 name: Exit Transformer
 yaml_examples: false
-konnect_examples: false
 dbless_compatible: 'yes'
 free: false
 plus: true

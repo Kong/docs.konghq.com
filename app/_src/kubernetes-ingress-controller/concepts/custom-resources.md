@@ -19,6 +19,9 @@ The following CRDs allow users to declaratively configure all aspects of Kong:
 - [**KongPlugin**](#kongplugin)
 - [**KongClusterPlugin**](#kongclusterplugin)
 - [**KongConsumer**](#kongconsumer)
+{% if_version gte:2.11.x %}
+- [**KongConsumerGroup**](#kongconsumergroup)
+{% endif_version %}
 - [**TCPIngress**](#tcpingress)
 - [**UDPIngress**](#udpingress)
 
@@ -134,6 +137,31 @@ running inside Kubernetes to the outside world via Kong.
 This is useful for services such as DNS servers, Game Servers,
 VPN software and a variety of other applications.
 
+{% if_version gte:2.11.x %}
+## KongConsumerGroup
+
+{:.badge .enterprise}
+
+{:.note}
+> This feature requires {{site.ee_product_name}} 3.4 or higher.
+> It is not compatible with the older consumer groups implementation introduced
+> in {{site.ee_product_name}} 2.7.
+
+_This resource requires the `kubernetes.io/ingress.class` annotation. Its value
+must match the value of the controller's `--ingress-class` argument, which is
+`kong` by default._
+
+KongConsumerGroup creates a [consumer group][kong-consumer-group], which
+associates KongPlugin resources with a collection of KongConsumers.
+
+KongConsumers have a `consumerGroups` array. Adding a KongConsumerGroup's name
+to that array will add that consumer to that consumer group.
+
+Applying a `konghq.com/plugins: <KongPlugin name>` annotation to a KongConsumerGroup will
+then execute that plugin on every consumer in the consumer group.
+
+{% endif_version %}
+
 [udp]:https://datatracker.ietf.org/doc/html/rfc768
 [k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/
 [kong-consumer]: /gateway/latest/admin-api/#consumer-object
@@ -141,3 +169,4 @@ VPN software and a variety of other applications.
 [kong-route]: /gateway/latest/admin-api/#route-object
 [kong-service]: /gateway/latest/admin-api/#service-object
 [kong-upstream]: /gateway/latest/admin-api/#upstream-object
+[kong-consumer-group]: /gateway/latest/kong-enterprise/consumer-groups/

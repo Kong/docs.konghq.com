@@ -2,7 +2,7 @@
 title: Proxy and Test a Service
 ---
 
-Create a {{site.konnect_short_name}} Gateaway service to proxy your APIs. In this guide, you will create, proxy, and test a gateway service using Runtime Manager in {{site.konnect_short_name}}. 
+Create a {{site.konnect_short_name}} Gateway service to proxy your APIs. In this guide, you will create, proxy, and test a gateway service using Runtime Manager in {{site.konnect_short_name}}. 
 
 When you create a service, you also specify the route to it. This route,
 combined with the proxy URL for the service, will lead to the endpoint
@@ -25,13 +25,13 @@ In the {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.co
     1. Enter a unique name for the Gateway service, or
     specify a Gateway service that doesn't yet have a version connected to it.
 
-      For the purpose of this example, enter `example_gateway_service`.
+       For the purpose of this example, enter `example_gateway_service`.
 
-      The name can be any string containing letters, numbers, or the following
-      characters: `.`, `-`, `_`, `~`, or `:`. Do not use spaces.
+       The name can be any string containing letters, numbers, or the following
+       characters: `.`, `-`, `_`, `~`, or `:`. Do not use spaces.
 
-      For example, you can use `example_service`, `ExampleService`, `Example-Service`.
-      However, `Example Service` is invalid.
+       For example, you can use `example_service`, `ExampleService`, `Example-Service`.
+       However, `Example Service` is invalid.
 
     1. In the **add using upstream URL** field, enter `http://mockbin.org`.
 

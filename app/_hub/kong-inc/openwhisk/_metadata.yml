@@ -1,5 +1,4 @@
 name: Apache OpenWhisk
-konnect_examples: false
 dbless_compatible: 'yes'
 free: true
 plus: true
