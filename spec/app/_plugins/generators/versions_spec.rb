@@ -251,7 +251,7 @@ RSpec.describe Jekyll::Versions do
       end
 
       context 'plugins' do
-        let(:relative_path) { '_hub/acme/kong-plugin/_index.md' }
+        let(:relative_path) { '_hub/acme/kong-plugin/overview/_index.md' }
 
         it 'does not set `release' do
           expect(page.data['release']).to be_nil

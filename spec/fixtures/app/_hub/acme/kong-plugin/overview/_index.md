@@ -1,5 +1,7 @@
 ---
+nav_title: Introduction
 ---
+
 ## Usage
 Installation:
 ```

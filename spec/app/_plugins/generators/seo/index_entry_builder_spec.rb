@@ -7,7 +7,7 @@ RSpec.describe SEO::IndexEntryBuilder do
     subject { described_class.for(page) }
 
     context 'plugin page' do
-      let(:page_url) { '/hub/kong-inc/jq/' }
+      let(:page_url) { '/hub/kong-inc/jq/overview/' }
 
       it { expect(subject).to be_a(SEO::IndexEntry::HubPage) }
     end

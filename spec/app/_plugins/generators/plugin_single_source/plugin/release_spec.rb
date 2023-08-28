@@ -41,7 +41,7 @@ RSpec.describe PluginSingleSource::Plugin::Release do
 
       it 'returns the relative path to the _index.md file inside the corresponding folder' do
         expect(subject.generate_pages.map(&:permalink)).to match_array([
-          '/hub/kong-inc/jwt-signer/2.7.x/',
+          '/hub/kong-inc/jwt-signer/2.7.x/overview/',
           '/hub/kong-inc/jwt-signer/2.7.x/changelog/',
           '/hub/kong-inc/jwt-signer/2.7.x/how-to/',
           '/hub/kong-inc/jwt-signer/2.7.x/configuration/',
@@ -53,7 +53,8 @@ RSpec.describe PluginSingleSource::Plugin::Release do
     context 'when using `_index.md`' do
       it 'returns the relative path to the top-level _index.md file' do
         expect(subject.generate_pages.map(&:permalink)).to match_array([
-          '/hub/kong-inc/jwt-signer/',
+          '/hub/kong-inc/jwt-signer/overview/',
+          '/hub/kong-inc/jwt-signer/overview/nested/',
           '/hub/kong-inc/jwt-signer/changelog/',
           '/hub/kong-inc/jwt-signer/how-to/',
           '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/',

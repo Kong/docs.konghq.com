@@ -10,7 +10,7 @@ RSpec.describe 'Plugin page' do
   it 'renders the corresponding sidenav' do
     sidebar = html.find('.docs-sidebar')
 
-    expect(sidebar).to have_link('Overview', href: '/hub/acme/unbundled-plugin/')
+    expect(sidebar).to have_link('Introduction', href: '/hub/acme/unbundled-plugin/overview/')
     expect(sidebar).to have_link('Configuration reference', href: '/hub/acme/unbundled-plugin/configuration/')
     expect(sidebar).to have_link('Changelog', href: '/hub/acme/unbundled-plugin/changelog/')
   end

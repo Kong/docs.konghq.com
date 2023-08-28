@@ -75,12 +75,14 @@ module PluginSingleSource
         )
       end
 
-      def overview_page
-        @overview_page ||= Pages::Overview.new(
-          release: self,
-          file: '_index.md',
-          source_path: pages_source_path
-        )
+      def overviews
+        @overviews ||= Dir.glob(File.expand_path('overview/**/*.md', pages_source_path)).map do |file|
+          Pages::Overview.new(
+            release: self,
+            file: file.gsub(pages_source_path, ''),
+            source_path: pages_source_path
+          )
+        end
       end
 
       def changelog
