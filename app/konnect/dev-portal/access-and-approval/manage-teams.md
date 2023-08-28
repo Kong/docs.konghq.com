@@ -130,7 +130,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       ]
     }'
 ```
-  The `DEV_PORTAL_ID` can be found in the {{site.konnect_short_name}} UI in the **Dev Portal** section. <br><br>
+  The `DEV_PORTAL_ID` can be found in the {{site.konnect_short_name}} UI in the [**Dev Portal** section](https://cloud.konghq.com/us/portal/published-products). <br><br>
   You should get a `200` response like the following:
   ```bash
   {
@@ -323,7 +323,6 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       --url https://<region>.api.konghq.com/v2/portals/{portalId}/teams/{teamId}/developers \
       --header 'Authorization: Bearer <personal-access-token>' \
       --header 'Content-Type: application/json' \
-      --header 'accept: */*' \
       --data '{"id":"DEVELOPER-ID"}'
 ```
   If you don't remember the IDs for your test developers, you can sent a [GET request to list developers](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Developers/list-portal-developers).<br><br>
@@ -337,7 +336,6 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       --url https://<region>.api.konghq.com/v2/portals/{portalId}/teams/{teamId}/developers \
       --header 'Authorization: Bearer <personal-access-token>' \
       --header 'Content-Type: application/json' \
-      --header 'accept: */*' \
       --data '{"id":"DEVELOPER-ID"}'
 ```
   If you don't remember the IDs for your test developers, you can sent a [GET request to list developers](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Developers/list-portal-developers).<br><br>
@@ -353,7 +351,6 @@ So far, you've used the following endpoints:
 * [Create team](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Teams/create-portal-team)
 * [Assign role](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Team%20Roles/portal-teams-assign-role)
 
-Review the API documentation to see what other features are available.
 {% endnavtab %}
 {% endnavtabs %}
  
