@@ -435,6 +435,10 @@
   endOfLifeDate: "2024-06-26"
   branch: release-2.3
 - edition: mesh
+  version: 2.4.0
+  release: 2.4.x
+  branch: release-2.4
+- edition: mesh
   version: preview
   release: dev
   branch: master
