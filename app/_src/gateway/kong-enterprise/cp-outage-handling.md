@@ -35,7 +35,7 @@ kong-exporter:
       AWS_ACCESS_KEY_ID: <access_key_write>
       AWS_SECRET_ACCESS_KEY: <secret_access_key_write>
       KONG_CLUSTER_FALLBACK_CONFIG_STORAGE: s3://test-bucket/test-prefix
-      KONG_CLUSTER_FALLBACK_CONFIG_**EXPORT**: "on"
+      KONG_CLUSTER_FALLBACK_CONFIG_EXPORT: "on"
 
 ```
 
@@ -56,7 +56,7 @@ kong-dp-importer:
       AWS_ACCESS_KEY_ID: <access_key_read>
       AWS_SECRET_ACCESS_KEY: <secret_access_key_read>
       KONG_CLUSTER_FALLBACK_CONFIG_STORAGE: s3://test-bucket/test-prefix
-      KONG_CLUSTER_FALLBACK_CONFIG_**IMPORT**: "on"
+      KONG_CLUSTER_FALLBACK_CONFIG_IMPORT: "on"
 
 ```
 
@@ -86,7 +86,7 @@ kong-dp-exporter:
     environment:
       <<: *other-kong-envs
       KONG_CLUSTER_FALLBACK_CONFIG_STORAGE: gcs://test-bucket/
-      KONG_CLUSTER_FALLBACK_CONFIG_**EXPORT**: "on"
+      KONG_CLUSTER_FALLBACK_CONFIG_EXPORT: "on"
       GCP_SERVICE_ACCOUNT: <GCP_JSON_STRING_WRITE>
 ```
 
@@ -103,7 +103,7 @@ A new data plane can be configured to load a configuration from GCP bucket if th
     environment:
       <<: *other-kong-envs
       KONG_CLUSTER_FALLBACK_CONFIG_STORAGE: gcs://test-bucket/
-      KONG_CLUSTER_FALLBACK_CONFIG_**IMPORT**: "on"
+      KONG_CLUSTER_FALLBACK_CONFIG_IMPORT: "on"
       GCP_SERVICE_ACCOUNT: <GCP_JSON_STRING_READ>
 ```
 
@@ -128,7 +128,7 @@ The example below uses MinIO to demonstrate configuring a backup node:
       AWS_REGION: 'us-east-2'
       AWS_ACCESS_KEY_ID: <access_key_write>
       AWS_SECRET_ACCESS_KEY: <secret_access_key_write>
-      KONG_CLUSTER_FALLBACK_CONFIG_**EXPORT**: "on"
+      KONG_CLUSTER_FALLBACK_CONFIG_EXPORT: "on"
       KONG_CLUSTER_FALLBACK_CONFIG_STORAGE: s3://test-bucket/test-prefix
       AWS_CONFIG_STORAGE_ENDPOINT: http://minio:9000/
 ```
