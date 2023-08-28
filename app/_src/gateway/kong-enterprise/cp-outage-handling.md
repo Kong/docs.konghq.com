@@ -39,10 +39,10 @@ kong-exporter:
 
 ```
 
-This node is responsible for writing to the bucket when it receives a new configuration. If the node version is `3.2.0.0`, the key name should be `test-prefix/3.2.0.0/config.json`.
+This node is responsible for writing to the S3 bucket when it receives a new configuration. If the node version is `3.2.0.0`, the key name should be `test-prefix/3.2.0.0/config.json`.
 Both the control plane and data plane can be configured to export configurations.
 
-You can configure new data planes to load a configuration from a s3 storage bucket if the control plane is unreachable using the following environment variables: 
+You can configure new data planes to load a configuration from a S3 bucket if the control plane is unreachable using the following environment variables: 
 
 ```yaml
 kong-dp-importer:
