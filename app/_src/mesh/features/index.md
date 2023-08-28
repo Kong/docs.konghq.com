@@ -52,6 +52,8 @@ Apply targeted security policies, implement granular traffic control, and much m
 {{site.mesh_product_name}} UBI images are distributed with all standard images, but with the `ubi-` prefix.
 See the [UBI documentation](/mesh/{{page.kong_version}}/features/ubi-images/) for more information.
 
+{% if_version lte:2.3.x %}
 ## Windows Support
 
 You can [install {{site.mesh_product_name}} on Windows](/mesh/{{page.kong_version}}/installation/windows/).
+{% endif_version %}
