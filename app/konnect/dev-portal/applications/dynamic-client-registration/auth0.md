@@ -12,7 +12,7 @@ content_type: how-to
 
 ## Configure Auth0
 
-To use dynamic client registration (DCR) with Auth0 as the identity provider (IdP), there are two important configurations to prepare in Auth0. First, you must authorize an Auth0 application so Konnect can use the Auth0 Management API on your behalf. Next, you will create an API audience that {{site.konnect_short_name}} applications will be granted access to.
+To use dynamic client registration (DCR) with Auth0 as the identity provider (IdP), there are two important configurations to prepare in Auth0. First, you must authorize an Auth0 application so {{site.konnect_short_name}} can use the Auth0 Management API on your behalf. Next, you will create an API audience that {{site.konnect_short_name}} applications will be granted access to.
 
 To get started configuring Auth0, log in to your Auth0 dashboard and complete the following:
 
@@ -46,7 +46,7 @@ To get started configuring Auth0, log in to your Auth0 dashboard and complete th
 ### Configure the API audience
 
 {:.note}
-> **Note:** You can use an existing API entity if there is one already defined in Auth0 that represents the audience you are/will be serving with {{site.konnect_short_name}} Portal applications.
+> **Note:** You can use an existing API entity if there is one already defined in Auth0 that represents the audience you are/will be serving with {{site.konnect_short_name}}  Dev Portal applications.
 In most cases, it is a good idea to create a new API that is specific to your Konnect Portal applications.
 
 To create a new API audience:
@@ -55,7 +55,7 @@ To create a new API audience:
 
 2. Click the **Create API** button
 
-3. Give the API a memorable **name**, like "{{site.konnect_short_name}} Portal Applications"
+3. Give the API a **name**, like "{{site.konnect_short_name}} Portal Applications"
 
 4. Set the **identifier** to a value that represents the audience the API is serving
 
@@ -118,4 +118,4 @@ In the previous steps, you obtained the **Client ID** and **Client Secret**. To 
 curl example.com/REGISTERED_ROUTE -H "Authorization: Basic CLIENT_ID:CLIENT_SECRET"
 ```
 
-Where `example.com` is the address of the runtime instance you are running.
+Where `example.com` is the address of the data plane.
