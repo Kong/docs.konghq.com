@@ -21,10 +21,10 @@ Admins can find the Dev Portal URL in [cloud.konghq.com](https://cloud.konghq.co
 
 ## Application registration is not enabled for this service
 
-You may encounter the following error in the Register dialog:
+You may encounter the following error in the registration dialog:
 
 ```
-Application registration is not enabled for this Service. 
+Application registration is not enabled for this service. 
 ```
 
 To resolve the error, [enable application registration for the service](/konnect/dev-portal/applications/enable-app-reg/). Contact your {{site.konnect_short_name}} admin if you do not have the access to do so.
@@ -32,7 +32,7 @@ To resolve the error, [enable application registration for the service](/konnect
 
 ## How to differentiate between registration plugins in decK {#deck}
 
-If using a [declarative configuration](/konnect/runtime-manager/runtime-groups/declarative-config/)
+If using a [declarative configuration](/konnect/gateway-manager/control-plane-groups/declarative-config/)
 file to manage your service, these plugins appear in the file. **Do not**
 delete or edit them through declarative configuration, as it will break your service.
 

@@ -28,7 +28,7 @@ For details on the requirements for each customizable option, hover over the inf
 
 ### Complete customization using the open source Dev Portal
 
-You can completely customize the Dev Portal using the [open source Dev Portal client](/konnect/dev-portal/customization/self-hosted-portal/). To enable the self-hosted Dev Portal, navigate to {% konnect_icon dev-portal %} **Dev Portal** > [**Settings**](https://cloud.konghq.com/portal/portal-settings), then set up a custom hosted domain and a custom self-hosted UI domain in the **Portal Domain** tab. They must share a common top-level & second-level domain for security purposes (e.g. api-developer.company.com and developer.company.com)
+You can completely customize the Dev Portal using the [open source Dev Portal client](/konnect/dev-portal/customization/self-hosted-portal/). To enable the self-hosted Dev Portal, navigate to {% konnect_icon dev-portal %} **Dev Portal** > [**Settings**](https://cloud.konghq.com/portal/portal-settings), then set up a custom hosted domain and a custom self-hosted UI domain in the **Portal Domain** tab. They must share a common top-level and second-level domain for security purposes (e.g. `api-developer.company.com` and `developer.company.com`)
 
 This self-hosted portal provides the following benefits: 
 

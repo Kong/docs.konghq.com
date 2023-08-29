@@ -11,7 +11,7 @@ By default, plugins execution order is static. You can override the static prior
 dynamic plugin ordering settings field. This determines plugin ordering during the `access` phase,
 and lets you create _dynamic_ dependencies between plugins. 
 
-To configure this setting in {{site.konnect_short_name}}, go to **Runtime Manager > Plugins**, and then select **Configure Dynamic Ordering** from the context menu next to the plugin you want to configure. From the plugin ordering settings, you can configure whether a plugin runs before or after another plugin.
+To configure this setting in {{site.konnect_short_name}}, go to **Gateway Manager > Plugins**, and then select **Configure Dynamic Ordering** from the context menu next to the plugin you want to configure. From the plugin ordering settings, you can configure whether a plugin runs before or after another plugin.
 
 ## Plugin execution order
 
