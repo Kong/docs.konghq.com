@@ -325,7 +325,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       --header 'Content-Type: application/json' \
       --data '{"id":"DEVELOPER-ID"}'
 ```
-  If you don't remember the IDs for your test developers, you can sent a [GET request to list developers](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Developers/list-portal-developers).<br><br>
+  If you don't remember the IDs for your test developers, you can send a [GET request to list developers](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Developers/list-portal-developers).<br><br>
   You should get a `201` response like the following:
   ```bash
   Created
@@ -338,7 +338,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       --header 'Content-Type: application/json' \
       --data '{"id":"DEVELOPER-ID"}'
 ```
-  If you don't remember the IDs for your test developers, you can sent a [GET request to list developers](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Developers/list-portal-developers).<br><br>
+  If you don't remember the IDs for your test developers, you can send a [GET request to list developers](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Developers/list-portal-developers).<br><br>
   You should get a `201` response like the following:
   ```bash
   Created
