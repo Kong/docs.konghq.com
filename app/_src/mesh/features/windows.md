@@ -2,7 +2,8 @@
 title: Kong Mesh with Windows
 ---
 
-{% if_version lte:2.4.x %}
+{% if_version gte:2.4.x %}
+
 To install and run {{site.mesh_product_name}} on Windows:
 
 1. [Download {{site.mesh_product_name}}](#1-download-kong-mesh)

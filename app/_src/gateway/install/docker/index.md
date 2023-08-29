@@ -1,5 +1,6 @@
 ---
 title: Install Kong Gateway on Docker
+konnect_cta_card: true
 ---
 
 This guide provides steps to configure {{site.base_gateway}} on Docker with or without a database.
@@ -24,7 +25,7 @@ The {{site.base_gateway}} software is governed by the
 
 {:.note}
 > **Note:**
-> If you want to run Kong Gateway without managing a control plane or a database, [you can get started with Konnect](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=docker-install) in under 5 minutes using our Docker quick start script.
+> If you want to run {{ site.base_gateway }} without managing a control plane or a database, [you can get started with Konnect](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=docker-install) in under 5 minutes using our Docker quick start script.
 
 * A Docker-enabled system with proper Docker access
 * (Enterprise only) A `license.json` file from Kong
