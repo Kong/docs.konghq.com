@@ -18,12 +18,16 @@ This brings you to a set of installation options. Choose one of the options, the
 
 {{site.konnect_short_name}} supports the following installation options:
 
-![Konnect install options](https://github.com/Kong/docs.konghq.com/assets/8153796/fa7fccda-cc4f-47a6-bdc3-491d053b3cc5)
+<img alt="Installation Options for Konnect Runtime Instances" src="https://github.com/Kong/docs.konghq.com/assets/8153796/4d8d48f9-dfc7-4c88-bd5d-1e3b2994a4a9">
 
-* macOS
+Standard setup:
+* macOS (ARM)
+* macOS (Intel)
 * Windows
-* Linux
 * Linux (Docker)
+
+Advanced setup:
+* Linux
 * Kubernetes
 * AWS
 * Azure
