@@ -3,17 +3,11 @@
 module SEO
   module IndexEntry
     class Base
-      BLOCKED_PRODUCTS = [
-        '/enterprise/', '/gateway-oss/', '/getting-started-guide/'
-      ].freeze
-
       def initialize(page)
         @page = page
       end
 
-      def process!(_index)
-        handle_blocked_products
-      end
+      def process!(_index); end
 
       def indexable?(_pages_index)
         true
@@ -28,10 +22,6 @@ module SEO
       end
 
       private
-
-      def handle_blocked_products
-        @page.data['seo_noindex'] = true if BLOCKED_PRODUCTS.any? { |u| @page.url.include?(u) }
-      end
 
       def url_segments
         @url_segments ||= begin

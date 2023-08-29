@@ -13,21 +13,18 @@ id: documentation
     <header class="page-header page-header-doc">
       <div class="page-header-product-version">
         <div class="edition">
-          {% if page.edition == 'enterprise' %}{{site.ee_product_name}}
-          {% elsif page.edition == 'konnect' %}{{site.konnect_saas}}
+          {% if page.edition == 'konnect' %}{{site.konnect_saas}}
           {% elsif page.edition == 'mesh' %}{{site.mesh_product_name}}
           {% elsif page.edition == 'deck' %}decK
           {% elsif page.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
-          {% elsif page.edition == 'gateway-oss' %}{{site.ce_product_name}}
           {% elsif page.edition == 'gateway' %}Kong Gateway
-          {% elsif page.edition == 'getting-started-guide' %}Getting Started with Kong Gateway
           {% elsif page.edition == 'contributing' %}Contribution guidelines
           {% endif %}
         </div>
         {% unless page.no_version == true %}
         <div class="version">
           {{page.kong_version}}
-          {% if page.kong_version == page.kong_latest.release and page.edition != 'gateway-oss' and page.edition != 'enterprise' and page.edition != 'getting-started-guide' %}
+          {% if page.kong_version == page.kong_latest.release %}
             <span>(latest)</span>
           {% endif %}
         </div>
@@ -84,14 +81,7 @@ id: documentation
 
       <div class="page-content">
         <div class="content show-anchor-links">
-          {% if page.edition == 'gateway-oss' or page.edition == 'enterprise' or page.edition == 'getting-started-guide' %}
-            <blockquote class="important">
-                You are browsing documentation for an outdated version. The <a href="/gateway/">latest {{site.base_gateway}} documentation </a> is
-                now available as a combined doc set for Kong Gateway Enterprise and open-source (OSS).
-            </blockquote>
-          {% endif %}
           {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
-            {% unless page.edition == 'gateway-oss' or page.edition == 'enterprise' or page.edition == 'getting-started-guide' %}
               <blockquote class="important">
                 {% if page.edition == 'mesh' and page.version_data['releaseDate'] == nil %}
                 You are browsing documentation of an unreleased version.
@@ -100,7 +90,6 @@ id: documentation
                 {% endif %}
                 See the <a href="{{ page.canonical_url }}">latest documentation here</a>.
               </blockquote>
-            {% endunless %}
           {% endif %}
 
           <h1 tabindex="-1" id="main" class="page-content-title"

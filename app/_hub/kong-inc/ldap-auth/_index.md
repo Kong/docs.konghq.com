@@ -40,4 +40,4 @@ You can set the header type `ldap` to any string (such as `basic`) using
 
 ### Using Service Directory Mapping on the CLI
 
-{% include /md/2.1.x/ldap/ldap-service-directory-mapping.md %}
+{% include /md/gateway/ldap-service-directory-mapping.md %}

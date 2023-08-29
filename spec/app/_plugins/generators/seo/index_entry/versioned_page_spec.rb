@@ -87,42 +87,6 @@ RSpec.describe SEO::IndexEntry::VersionedPage do
         it_behaves_like 'sets `seo_noindex` to true'
       end
     end
-
-    context 'legacy endpoints and moved urls require extra checks' do
-      context 'moved urls' do
-        let(:page) { find_page_by_url('/gateway-oss/2.1.x/configuration/') }
-
-        it_behaves_like 'sets `seo_noindex` to true'
-
-        it 'sets the `canonical_url`' do
-          expect(page.data['canonical_url']).to eq('/gateway/latest/reference/configuration/')
-        end
-
-        # TODO: test circular references
-      end
-
-      context 'legacy endpoints - also checks for urls under `/gateway/VERSION/path/`' do
-        context 'gateway-oss' do
-          let(:page) { find_page_by_url('/gateway-oss/2.1.x/') }
-
-          it_behaves_like 'sets `seo_noindex` to true'
-
-          it 'sets the `canonical_url`' do
-            expect(page.data['canonical_url']).to eq('/gateway/latest/')
-          end
-        end
-
-        context 'enterprise' do
-          let(:page) { find_page_by_url('/enterprise/2.1.x/') }
-
-          it_behaves_like 'sets `seo_noindex` to true'
-
-          it 'sets the `canonical_url`' do
-            expect(page.data['canonical_url']).to eq('/gateway/latest/')
-          end
-        end
-      end
-    end
   end
 
   describe '#attributes' do
@@ -151,34 +115,6 @@ RSpec.describe SEO::IndexEntry::VersionedPage do
 
       it 'extracts the version from the url and replaces `x` with `0`' do
         expect(subject.version).to eq(Gem::Version.new('1.6.0'))
-      end
-    end
-  end
-
-  describe '#url' do
-    context 'when the url is under /gateway-oss/ or /enterprise/ - which can never be canonical' do
-      context 'gateway-oss' do
-        let(:page) { find_page_by_url('/gateway-oss/2.1.x/') }
-
-        it 'replaces `gateway-oss` with `gateway` and the version with a placeholder' do
-          expect(subject.url).to eq('/gateway/VERSION/')
-        end
-      end
-
-      context 'enterprise' do
-        let(:page) { find_page_by_url('/enterprise/2.1.x/') }
-
-        it 'replaces `enterprise` with `gateway` and the version with a placeholder' do
-          expect(subject.url).to eq('/gateway/VERSION/')
-        end
-      end
-    end
-
-    context 'otherwise' do
-      let(:page) { find_page_by_url('/mesh/latest/') }
-
-      it 'replaces the version with a placeholder' do
-        expect(subject.url).to eq('/mesh/VERSION/')
       end
     end
   end

@@ -2,7 +2,7 @@
 
 module PluginSingleSource
   class KongVersions
-    GATEWAY_VERSIONS = %w[gateway gateway-oss enterprise].freeze
+    GATEWAY_VERSIONS = %w[gateway].freeze
 
     def self.gateway(site)
       new(site).gateway
