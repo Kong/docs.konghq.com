@@ -90,7 +90,7 @@ curl --request POST \
   --data '{
   "role_name": "Viewer",
   "entity_id": "817d0422-45c9-4d88-8d64-45aef05c1ae7",
-  "entity_type_name": "Runtime Groups",
+  "entity_type_name": "Control Plane Groups",
   "entity_region": "eu"
 }'
 ```
@@ -102,7 +102,7 @@ You will receive a `201` response code and a response body containing the role t
   "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
   "role_name": "Viewer",
   "entity_id": "817d0422-45c9-4d88-8d64-45aef05c1ae7",
-  "entity_type_name": "Runtime Groups",
+  "entity_type_name": "Control Plane Groups",
   "entity_region": "eu"
 }
 ```

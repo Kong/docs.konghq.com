@@ -65,11 +65,11 @@ Assign roles to a user from the {% konnect_icon organizations %} [**Organization
 
 1. Select a user row to view their assigned teams and roles.
 
-1. Open one of the entity tabs: **Services** or **Runtime Groups**.
+1. Open one of the entity tabs: **API Products** or **Control Plane Groups**.
 
 1. To add or remove role(s) from the selected user, click **Add role(s)**.
 
-1. Select an instance of a service or runtime group, then check any roles you want to assign.
+1. Select an instance of an API product or control plane group, then check any roles you want to assign.
 
 1. Click **Save**.
 
