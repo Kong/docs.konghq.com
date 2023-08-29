@@ -52,17 +52,11 @@ function toggleSubmenuVisible(element, show) {
 // open Docs menu item upon enter and enable tabbing through menu
 $(document).ready(function() {
   const topNavSubmenus = document.querySelectorAll(".main-menu-item.with-submenu");
+
   function toggleNav(nav) {
     // show submenu
     const visible = nav.classList.contains("submenu-opened");
     toggleSubmenuVisible(nav, !visible);
-
-    // hide other submenus
-    topNavSubmenus.forEach(function(menuItem) {
-      if (menuItem !== nav) {
-        toggleSubmenuVisible(menuItem, false);
-      }
-    });
   }
 
   topNavSubmenus.forEach(function(nav) {
