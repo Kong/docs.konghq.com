@@ -110,6 +110,8 @@ In addition, you can enhance the native monitoring and analytics capabilities wi
 {{site.base_gateway}} plugins that enable streaming monitoring metrics to
 third-party analytics providers, such as Datadog and Prometheus.
 
+{{site.konnect_short_name}} Analytics provides pre-built custom reports to all new organizations. These reports contains common examples for important key performance indicators (KPIs) to keep track of while monitoring the success of your APIs. Users are free to modify them, and use them as a base to start their own analytics reports.
+
 [Learn more about Analytics &rarr;](/konnect/analytics)
 
 ### Teams

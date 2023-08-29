@@ -13,6 +13,9 @@ The {{site.konnect_saas}} control plane uses the following ports:
 
 Kong's hosted control plane expects traffic on these ports, so they can't be customized. 
 
+{:.note}
+> **Note**: If you are unable to make outbound connections using port `443`, you can use an existing proxy in your network to make the connection. See [Control Plane and Data Plane Communication through a Forward Proxy](/gateway/latest/production/networking/cp-dp-proxy/) for details. 
+
 ## Runtime instance ports
 
 By default, {{site.base_gateway}} listens on the following ports:

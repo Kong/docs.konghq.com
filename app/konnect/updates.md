@@ -12,6 +12,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## August 2023
 
+**New organizations new benefit from out of the box, pre-built Analytics reports**
+New organizations now benefit from out of the box reports. These reports represent common examples for important KPIs to track while monitoring the success of their APIs. Users are free to modify them and make these reports their own.
+
 **Release announcements in Konnect**
 : With Makelog integration, you can now see the latest feature and update announcements in the {{site.konnect_saas}} UI. 
 
