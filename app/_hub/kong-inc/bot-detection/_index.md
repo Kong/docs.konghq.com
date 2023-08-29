@@ -3,7 +3,7 @@ and set up allow and deny lists for custom clients.
 
 ## Default rules
 
-{% if_plugin_version gte:2.1.x and lte:2.8.x %}
+{% if_plugin_version lte:2.8.x %}
 
 {:.note}
 > **Note**: We have deprecated the usage of `whitelist` and `blacklist` in favor of `allow` and `deny`. This change may require Admin API requests to be updated.

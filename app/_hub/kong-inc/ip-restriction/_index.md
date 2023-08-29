@@ -6,8 +6,6 @@ The plugin supports IPv4 and IPv6 addresses.
 
 ## Usage
 
-{% if_plugin_version gte:2.1.x %}
-
 {% if_plugin_version lte:2.8.x %}
 
 {:.note}
@@ -25,12 +23,5 @@ curl -X POST http://kong:8001/services/{service}/plugins \
   --data "config.allow=127.0.0.0/24" \
   --data "config.deny=127.0.0.1"
 ```
-{% endif_plugin_version %}
-
-{% if_plugin_version eq:2.0.x %}
-
-Note that the `whitelist` and `blacklist` models are mutually exclusive in their usage, as they provide complimentary approaches. That is, you cannot configure the plugin with both `whitelist` and `blacklist` configurations. A `whitelist` provides a positive security model, in which the configured CIDR ranges are allowed access to the resource, and all others are inherently rejected. In contrast, a `blacklist` configuration provides a negative security model, in which certain CIDRS are explicitly denied access to the resource (and all others are inherently allowed).
-
-{% endif_plugin_version %}
 
 ---

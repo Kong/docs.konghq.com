@@ -32,8 +32,6 @@ share one queue.
 {% include /md/plugins-hub/json-object-log.md %}
 
 
-{% if_plugin_version gte:2.3.x %}
-
 ## Custom Headers
 
 The log server that receives these messages might require extra headers, such as for authorization purposes.
@@ -47,17 +45,10 @@ The log server that receives these messages might require extra headers, such as
 ...
 ```
 
-{% endif_plugin_version %}
-
 ## Kong process errors
 
 {% include /md/plugins-hub/kong-process-errors.md %}
 
-
-{% if_plugin_version gte:2.4.x %}
-
 ## Custom Fields by Lua
 
 {% include /md/plugins-hub/log_custom_fields_by_lua.md %}
-
-{% endif_plugin_version %}
