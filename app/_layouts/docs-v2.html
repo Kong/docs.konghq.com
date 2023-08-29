@@ -93,8 +93,12 @@ id: documentation
           {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
             {% unless page.edition == 'gateway-oss' or page.edition == 'enterprise' or page.edition == 'getting-started-guide' %}
               <blockquote class="important">
-                You are browsing documentation for an outdated version. See the
-                <a href="{{ page.canonical_url }}">latest documentation here</a>.
+                {% if page.edition == 'mesh' and page.version_data['releaseDate'] == nil %}
+                You are browsing documentation of an unreleased version.
+                {% else %}
+                You are browsing documentation for an outdated version.
+                {% endif %}
+                See the <a href="{{ page.canonical_url }}">latest documentation here</a>.
               </blockquote>
             {% endunless %}
           {% endif %}
