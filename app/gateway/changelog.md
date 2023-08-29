@@ -2598,6 +2598,20 @@ openid-connect
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
+## 2.8.4.3 
+**Release Date** 2023/08/xx
+
+### Fixes 
+#### Enterprise
+* Fixed an issue that prevented the dbless-reconfigure anonymous report type from respecting anonymous reports with a setting of `anonymous_reports=false`.
+* Fixed an issue where you couldn't create developers using the Admin API in {{site.base_gateway}} 2.8.4.2. 
+
+#### Plugins 
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`): 
+  * Fixed an issue that caused the plugin to trigger rate limiting unpredictably.
+  * Fixed an issue where {{site.base_gateway}} produced a log of error log entries when multiple Rate Limiting Advanced plugins shared the same namespace.
+* [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`): Fixed an issue that caused the plugin to return logs with `invalid introspection results` when decoding a bearer token.
+
 ## 2.8.4.2
 
 **Release Date** 2023/07/07
