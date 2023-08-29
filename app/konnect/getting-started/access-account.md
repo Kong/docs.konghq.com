@@ -21,8 +21,7 @@ and organization name.
     following: a lowercase letter, an uppercase letter, a number, or a special
     character.
 
-4. From your {{site.konnect_short_name}} welcome email, click the link
- to verify your account.
+4. From your {{site.konnect_short_name}} welcome email, click the link to verify your account.
 
 5. Sign in to {{site.konnect_short_name}} using your email and password.
 
@@ -33,32 +32,13 @@ and organization name.
     {{site.konnect_short_name}} Plus or downgrade to the
     {{site.konnect_short_name}} Free plan.
 
-## Reset password
-
-You can recover a forgotten password from the {{site.konnect_short_name}}
-landing page.
-
-1. Access {{site.konnect_product_name}} at
-[cloud.konghq.com/](https://cloud.konghq.com/).
-
-2. Click **Forgot your password?**
-
-3. Enter your email address and click **Recover Password**.
-
-4. From your email, follow the link to reset the password.
-
-    The new password must be 8 characters long and contain at least two of the
-    following: a lowercase letter, an uppercase letter, or a special
-    character.
-
 ## Summary and next steps
 
-In this topic, you created a {{site.konnect_saas}} account, or
-reset a password if you forgot it.
+In this topic, you created a {{site.konnect_saas}} account.
 
 If this is your first time using {{site.konnect_short_name}}, follow these guides: 
 
-* [Configure a runtime](/konnect/getting-started/configure-runtime/)
+* [Configure a data plane node](/konnect/getting-started/configure-data-plane-node/)
 * [Proxy and test a service](/konnect/getting-started/deploy-service/)
 * [Productize a service](/konnect/getting-started/productize-service/)
 

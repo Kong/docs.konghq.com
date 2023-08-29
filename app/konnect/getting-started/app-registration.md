@@ -12,9 +12,9 @@ legal agreements API.
 
 ## Prerequisites
 
-* You have an API product with at least one version.
+* An API product with at least one version.
 
-* You have [productized the API product to the Dev Portal](/konnect/getting-started/productize-service/).
+* [The API product is productized in the Dev Portal](/konnect/getting-started/productize-service/).
 
   * To use app registration, the Dev Portal must be protected by
   some sort of authentication. That means you can't have a public portal for this step.
@@ -25,9 +25,9 @@ legal agreements API.
 1. From the {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products/),
 open an API product version.
 
-1. Under **App Registration** select the **Disabled** From the **Actions** dropdown menu.
+1. Under **App Registration** select **Disabled** from the **Actions** dropdown menu.
 
-1. Accept the `key-auth` setting, toggle **Auto-Approve** to enable it,
+1. Accept the `key-auth` setting, click the **Auto-Approve** toggle,
  then click **Enable**.
 
     Application registration uses key authentication (`key-auth`) by default.
@@ -45,9 +45,9 @@ open an API product version.
 
 ## Create an application
 
-Link an application to a published service.
+You can now link an application to a published service.
 
-1. Log into the {{site.konnect_short_name}} Dev Portal.
+1. Log in to the {{site.konnect_short_name}} Dev Portal.
 
     You can always find your Dev Portal URL under the [Dev Portal menu](https://cloud.konghq.com/portal).
 
@@ -98,7 +98,7 @@ reference ID, and description. The reference ID must be unique.
 ## Summary and next steps
 
 In this topic, you:
-* Enabled application registration for the the API product version.
+* Enabled application registration for the API product version.
 * Created an application through the Dev Portal and registered it against your API product version.
 * Generated an API key for the application and made a call using this key
 
@@ -110,6 +110,6 @@ For next steps, check out some of the other things you can do in
 
 * If you have existing {{site.base_gateway}} configuration you want to use,
 [import {{site.base_gateway}} entities into {{site.konnect_saas}}](/konnect/getting-started/import)
-* Enable plugins on a [Gateway Service](/konnect/runtime-manager/enable-service-plugin/) or a
-[route](/konnect/runtime-manager/enable-route-plugin/)
+* Enable plugins on a [Gateway Service](/konnect/gateway-manager/enable-service-plugin/) or a
+[route](/konnect/gateway-manager/enable-route-plugin/)
 * [Manage your teams and roles](/konnect/org-management/teams-and-roles/)
