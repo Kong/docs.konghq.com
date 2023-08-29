@@ -23,7 +23,6 @@ $(document).ready(function () {
 
     modal.setAttribute("aria-hiddden", true);
     page.removeAttribute("aria-hidden");
-    document.querySelector(".skip-main").focus();
   }
 
   function focusNextElement() {
@@ -41,7 +40,7 @@ $(document).ready(function () {
     }
   }
 
-  if (modal.length !== 0) {
+  if (modal) {
     modal.addEventListener("keydown", function(e) {
       switch (e.which) {
         // Escape key
