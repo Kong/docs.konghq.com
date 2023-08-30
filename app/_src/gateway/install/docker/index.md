@@ -1,5 +1,6 @@
 ---
 title: Install Kong Gateway on Docker
+konnect_cta_card: true
 ---
 
 This guide provides steps to configure {{site.base_gateway}} on Docker with or without a database.
@@ -24,7 +25,7 @@ The {{site.base_gateway}} software is governed by the
 
 {:.note}
 > **Note:**
-> If you want to run Kong Gateway without managing a control plane or a database, [you can get started with Konnect](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=docker-install) in under 5 minutes using our Docker quick start script.
+> If you want to run {{ site.base_gateway }} without managing a control plane or a database, [you can get started with Konnect](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=docker-install) in under 5 minutes using our Docker quick start script.
 
 * A Docker-enabled system with proper Docker access
 * (Enterprise only) A `license.json` file from Kong
@@ -172,6 +173,7 @@ docker run -d --name kong-gateway \
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
+{% if_version lte:3.3.x %}
 ```sh
 docker run -d --name kong-gateway \
  --network=kong-net \
@@ -190,6 +192,28 @@ docker run -d --name kong-gateway \
  -p 127.0.0.1:8444:8444 \
  kong:{{page.versions.ce}}
  ```
+{% endif_version %}
+{% if_version gte:3.4.x %}
+```sh
+docker run -d --name kong-gateway \
+ --network=kong-net \
+ -e "KONG_DATABASE=postgres" \
+ -e "KONG_PG_HOST=kong-database" \
+ -e "KONG_PG_USER=kong" \
+ -e "KONG_PG_PASSWORD=kongpass" \
+ -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl" \
+ -p 8000:8000 \
+ -p 8443:8443 \
+ -p 127.0.0.1:8001:8001 \
+ -p 127.0.0.1:8002:8002 \
+ -p 127.0.0.1:8444:8444 \
+ kong:{{page.versions.ce}}
+ ```
+{% endif_version %}
 {% endnavtab %}
 {% endnavtabs_ee %}
 {% endcapture %}

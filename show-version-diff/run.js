@@ -24,10 +24,7 @@ const sourceFileFull = "../" + sourceFile;
 
 // Work out old versions to apply the change to
 const lookup = {
-  "gateway-oss": "ce",
   deck: "deck",
-  enterprise: "ee",
-  "getting-started-guide": "gsg",
   "kubernetes-ingress-controller": "kic",
   konnect: "konnect",
   mesh: "mesh",

@@ -52,16 +52,6 @@ describe("Sidebar section count", () => {
 
   [
     {
-      title: "Gateway OSS",
-      path: "/gateway-oss/2.5.x",
-      count: 6,
-    },
-    {
-      title: "Gateway Enterprise",
-      path: "/enterprise/2.5.x",
-      count: 10,
-    },
-    {
       title: "Gateway Single Sourced",
       path: "/gateway/latest/",
       count: 10,
