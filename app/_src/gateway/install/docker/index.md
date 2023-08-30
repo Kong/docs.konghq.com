@@ -235,8 +235,7 @@ docker run -d --name kong-gateway \
     the example to  print messages and errors to `stdout` and `stderr`.
     * [`KONG_ADMIN_LISTEN`](/gateway/{{page.kong_version}}/reference/configuration/#admin_listen):
     The port that the Kong Admin API listens on for requests.
-    * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url):
-    (Enterprise only) The URL for accessing Kong Manager, preceded by a protocol
+    * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url): The URL for accessing Kong Manager, preceded by a protocol
     (for example, `http://`).
     * `KONG_LICENSE_DATA`: (Enterprise only) If you have a license file and have saved it
     as an environment variable, this parameter pulls the license from your environment.
@@ -251,7 +250,7 @@ docker run -d --name kong-gateway \
 
     You should receive a `200` status code.
 <!-- vale on -->
-1. (Not available in OSS) Verify that Kong Manager is running by accessing it
+1. Verify that Kong Manager is running by accessing it
 using the URL specified in `KONG_ADMIN_GUI_URL`:
 
     ```
@@ -423,8 +422,7 @@ docker run -d --name kong-dbless \
     the example to  print messages and errors to `stdout` and `stderr`.
     * [`KONG_ADMIN_LISTEN`](/gateway/{{page.kong_version}}/reference/configuration/#admin_listen):
     The port that the Kong Admin API listens on for requests.
-    * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url):
-    (Enterprise only) The URL for accessing Kong Manager, preceded by a protocol
+    * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url): The URL for accessing Kong Manager, preceded by a protocol
     (for example, `http://`).
     * `KONG_LICENSE_DATA`: (Enterprise only) If you have a license file and have saved it
     as an environment variable, this parameter pulls the license from your environment.
