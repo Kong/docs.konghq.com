@@ -5,7 +5,7 @@ content_type: tutorial
 
 ## Overview
 
-This guide walks through setting up an HTTP(S) route and plugin using
+Deploy an upstream HTTP application, create a configuration group, add a route and a plugin using 
 {{site.base_gateway}} and {{site.kic_product_name}}.
 
 {% include_cached /md/kic/installation.md kong_version=page.kong_version %}
