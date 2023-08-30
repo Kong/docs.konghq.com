@@ -25,7 +25,7 @@ Kong is licensed under an
 {:.note}
 > **Notes:**
 * {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
-* In July of 2023 Kong announced that package hosting was shifting from {{ site.links.download }} to {{ site.links.cloudsmith }}. Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
+* In July of 2023 Kong announced that package hosting was shifting from {{ site.links.download }} to [{{ site.links.cloudsmith }}]({{ site.links.cloudsmith }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
 
 The quickest way to get started with {{ site.base_gateway }} is using the install script:
 
