@@ -134,7 +134,7 @@ For example, if a user can make 100 requests every second, and you have an
 equally balanced 5-node Kong cluster, setting the `local` limit to something like 30 requests every second
 should work. If you see too many false negatives, increase the limit.
 
-To minimise inaccuracies, consider using a consistent-hashing load balancer in front of
+To minimize inaccuracies, consider using a consistent-hashing load balancer in front of
 Kong. The load balancer ensures that a user is always directed to the same Kong node, thus reducing
 inaccuracies and preventing scaling problems.
 
