@@ -2,10 +2,10 @@
 title: Using Plugin Resources
 ---
 
-This guide walks you through applying the {{site.kic_product_name}} 
-KongPlugin and KongClusterPlugin custom resources to other configuration. These
-resources change how {{site.base_gateway}} handles proxied requests. This guide
-configures plugins that modify headers and enforce authentication requirements.
+Learn to apply the {{site.kic_product_name}} 
+`KongPlugin` and `KongClusterPlugin` custom resources to other configurations. These
+resources change how {{site.base_gateway}} handles proxied requests. You can 
+configures plugins to modify headers and enforce authentication requirements.
 
 See the [concept](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/#KongPlugin)
 documentation for more information about the purpose of the `KongPlugin` resource.
@@ -18,7 +18,7 @@ documentation for more information about the purpose of the `KongPlugin` resourc
 
 {% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/lemon' name='lemon' %}
 
-Once the first route is working, create a second pointing to the same Service:
+After you test the routing configuration to proxy `/lemon`, create a second routing configuration to proxy `/lime` that points to the same Service:
 
 {% include_cached /md/kic/http-test-routing-resource.md kong_version=include.kong_version path='/lime' name='lime' %}
 
@@ -26,7 +26,7 @@ Once the first route is working, create a second pointing to the same Service:
 
 {{site.base_gateway}} plugins can apply to a variety of resources. Plugins
 apply to different sets of requests depending on what type of resource they are
-applied to. Applying a plugin an Ingress or HTTPRoute will modify requests that
+applied to. Applying a plugin an Ingress or HTTPRoute modifies requests that
 match that resource's routing rules.
 
 {:.important}
@@ -36,10 +36,15 @@ match that resource's routing rules.
 > webhook can allow invalid plugin configuration, and invalid plugin
 > configuration will block configuration updates until fixed.
 
+The tasks involved in configuring plugins for routing configuration are:
+
+1. Creating a plugin
+2. Associating the plugin with routing configuration
+3. Testing the plugin
+
 ### Create a plugin
 
-To try this out, first create a KongPlugin resource that adds a response
-header:
+Create a KongPlugin resource `add-header-route` that adds a response header `x-added-route: demo`:
 
 ```bash
 echo '
@@ -56,7 +61,7 @@ config:
 plugin: response-transformer
 ' | kubectl apply -f -
 ```
-Response:
+Output is similar to:
 ```text
 kongplugin.configuration.konghq.com/add-header-route created
 ```
@@ -71,7 +76,7 @@ After creating the plugin, associate it with other resources by adding a
 ```bash
 kubectl annotate ingress lemon konghq.com/plugins=add-header-route
 ```
-Response:
+Output is similar to:
 ```text
 ingress.networking.k8s.io/lemon annotated
 ```
@@ -80,7 +85,7 @@ ingress.networking.k8s.io/lemon annotated
 ```bash
 kubectl annotate httproute lemon konghq.com/plugins=add-header-route
 ```
-Response:
+Output is similar to:
 ```text
 httproute.gateway.networking.k8s.io/lemon annotated
 ```
@@ -89,35 +94,41 @@ httproute.gateway.networking.k8s.io/lemon annotated
 
 ### Test the plugin
 
-Requests that match the `lemon` rules will now include the plugin header:
+Requests that match the `lemon` rules now includes the plugin header:
 
 ```bash
 curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP | grep x-added-route
 ```
-Response:
+Output is similar to:
 ```text
 x-added-route: demo
 ```
 
-Requests to the `lime` rules will not:
+Requests to the `lime` rules does not include the plugin header:
 
 ```bash
 curl -si http://kong.example/lime --resolve kong.example:80:$PROXY_IP | grep x-added-route | wc -l
 ```
-Response:
+Output is similar to:
 ```text
 0
 ```
 
 ## Configuring plugins on Service resource
 
-Associating a plugin with a Service will apply it to any requests that match a
+Associating a plugin with a Service applies it to any requests that match a
 routing rule that uses that Service as a backend.
+
+The tasks involved in configuring plugins on Service resource are:
+
+1. Creating a plugin
+2. Associating the plugin with the service
+3. Testing the plugin
+4. Removing the plugin from the Service resource
 
 ### Create a plugin
 
-To try this out, first create a KongPlugin resource that adds a response
-header:
+Create a KongPlugin resource `add-header-service` that adds a response header `x-added-service: demo`:
 
 ```bash
 echo '
@@ -134,7 +145,7 @@ config:
 plugin: response-transformer
 ' | kubectl apply -f -
 ```
-Response:
+Output is similar to:
 ```text
 kongplugin.configuration.konghq.com/add-header-service created
 ```
@@ -146,7 +157,7 @@ After creating the second plugin, annotate the Service to apply it:
 ```bash
 kubectl annotate service echo konghq.com/plugins=add-header-service
 ```
-Response:
+Output is similar to:
 ```text
 service/echo annotated
 ```
@@ -159,7 +170,7 @@ routes:
 ```bash
 curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP | grep x-added-
 ```
-Response:
+Output is similar to:
 ```text
 x-added-route: demo
 ```
@@ -167,7 +178,7 @@ x-added-route: demo
 ```bash
 curl -si http://kong.example/lime --resolve kong.example:80:$PROXY_IP | grep x-added-
 ```
-Response:
+Output is similar to:
 ```text
 x-added-service: demo
 ```
@@ -176,18 +187,18 @@ Although both routes use the `echo` Service, only the `lime` route applies the
 `echo` Service's plugin. This is because only one instance of a particular
 plugin can execute on a request, determined by a [precedence order](/gateway/latest/admin-api/#precedence).
 Route plugins take precedence over service plugins, so the `lemon` route still
-uses the header from the first plugin you created.
+uses the header from the plugin that you created first.
 
 ### Remove a plugin
 
-Removing the plugin annotation will remove plugin(s) from a resource:
+When you remove the plugin annotation the plugin(s) are removed from a resource:
 
 {% navtabs api %}
 {% navtab Ingress %}
 ```bash
 kubectl annotate ingress lemon konghq.com/plugins-
 ```
-Response:
+Output is similar to:
 ```text
 ingress.networking.k8s.io/lemon annotated
 ```
@@ -196,7 +207,7 @@ ingress.networking.k8s.io/lemon annotated
 ```bash
 kubectl annotate httproute lemon konghq.com/plugins-
 ```
-Response:
+Output is similar to:
 ```text
 httproute.gateway.networking.k8s.io/lemon annotated
 ```
@@ -208,7 +219,7 @@ Requests through the `lemon` route now use the Service's plugin:
 ```bash
 curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP | grep x-added-
 ```
-Response:
+Output is similar to:
 ```text
 x-added-service: demo
 ```
@@ -223,6 +234,14 @@ require a cluster-scoped KongClusterPlugin instead of a namespaced KongPlugin.
 > Although not shown in this guide, you can also apply a KongClusterPlugin
 > to resources using `konghq.com/plugins` annotations, to reuse plugin
 > configurations across namespaces.
+
+The tasks involved in configuring global plugins are:
+
+1. Creating a cluster plugin
+1. Configuring a credential
+1. Configuring a consumer
+1. Testing the plugin
+
 
 ### Create a cluster plugin
 
@@ -247,7 +266,7 @@ config:
   key_in_query: false
 " | kubectl apply -f -
 ```
-Response:
+Output is similar to:
 ```text
 kongclusterplugin.configuration.konghq.com/auth created
 ```
@@ -264,7 +283,7 @@ plugin requires authentication for all of them:
 ```bash
 curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP
 ```
-Response:
+Output is similar to:
 ```text
 HTTP/1.1 401 Unauthorized
 Date: Fri, 09 Dec 2022 20:10:11 GMT
@@ -285,23 +304,22 @@ Note that the earlier header plugins are still applied. Plugins that affect
 responses can modify both proxied responses and responses generated by
 {{site.base_gateway}}.
 
-## Configure a consumer and credential
-
-First, create a credential Secret:
+### Configure a credentail Secret
 
 {% include_cached /md/kic/key-auth.md kong_version=page.kong_version credName='consumer-1-key-auth' key='consumer-1' %}
 
-Second, create a KongConsumer resource that uses the Secret:
+### Configure a KongConsumer resource that uses the Secret
 
 {% include_cached /md/kic/consumer.md kong_version=page.kong_version name='consumer-1' credName='consumer-1-key-auth' %}
 
-Including this key will now satisfy the authentication requirement enforced by
-the global plugin:
+### Test the global plugin 
+
+Including this key will now satisfy the authentication requirement enforced by the global plugin:
 
 ```bash
 curl -sI http://kong.example/lemon --resolve kong.example:80:$PROXY_IP -H 'apikey: consumer-1'
 ```
-Response:
+Output is similar to:
 ```text
 HTTP/1.1 200 OK
 Content-Type: text/html; charset=utf-8
@@ -321,9 +339,16 @@ Via: kong/3.1.1
 Plugins can match requests made by a consumer and match requests that meet
 multiple criteria, such as requests made by a consumer for a specific route.
 
+The tasks involved in configuring plugins for consumers and multiple resources:
+
+1. Creating two plugins
+2. Associating the plugin with a consumer
+3. Associating the plugin with a consumer and route
+4. Associating the plugins with multiple consumers using a consumer group
+
 ### Create plugins
 
-First, create two additional header KongPlugins:
+Create a two KongPlugin resources `add-header-consumer` and  `add-header-multi` that adds a response header `x-added-consumer: demo` and `x-added-multi: demo` respestively:
 
 ```bash
 echo '
@@ -353,7 +378,7 @@ config:
 plugin: response-transformer
 ' | kubectl apply -f -
 ```
-Response:
+Output is similar to:
 ```text
 kongplugin.configuration.konghq.com/add-header-consumer created
 kongplugin.configuration.konghq.com/add-header-multi created
@@ -367,7 +392,7 @@ annotation to associate a plugin:
 ```bash
 kubectl annotate kongconsumer consumer-1 konghq.com/plugins=add-header-consumer
 ```
-Response:
+Output is similar to:
 ```text
 kongconsumer.configuration.konghq.com/consumer-1 annotated
 ```
@@ -378,7 +403,7 @@ consumer plugins take precedence over both route and service plugins:
 ```bash
 curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP -H 'apikey: consumer-1' | grep x-added
 ```
-Response:
+Output is similar to:
 ```text
 x-added-consumer: demo
 ```
@@ -389,7 +414,12 @@ Plugins can be associated with more than one resource. Although routing and
 Service configuration is implicitly linked (a routing rule cannot proxy to
 multiple Services), consumers are not. Assigning plugins to multiple resources
 allows a consumer to use different plugin configuration depending on which
-route they hit.
+route they hit. 
+
+The tasks involved in associating a plugin with a consumer and route are:
+
+1. Adding a plugin to a route
+1. Updating consumer configuration to include the plugins
 
 First, add the `add-header-multi` plugin to a route:
 
@@ -398,7 +428,7 @@ First, add the `add-header-multi` plugin to a route:
 ```bash
 kubectl annotate ingress lemon konghq.com/plugins=add-header-multi
 ```
-Response:
+Output is similar to:
 ```text
 ingress.networking.k8s.io/lemon annotated
 ```
@@ -407,7 +437,7 @@ ingress.networking.k8s.io/lemon annotated
 ```bash
 kubectl annotate httproute lemon konghq.com/plugins=add-header-multi
 ```
-Response:
+Output is similar to:
 ```text
 httproute.gateway.networking.k8s.io/lemon annotated
 ```
@@ -419,7 +449,7 @@ Then, update the consumer configuration to include both plugins:
 ```bash
 kubectl annotate kongconsumer consumer-1 konghq.com/plugins=add-header-consumer,add-header-multi --overwrite
 ```
-Response:
+Output is similar to:
 ```text
 kongconsumer.configuration.konghq.com/consumer-1 annotated
 ```
@@ -430,7 +460,7 @@ The header returned now depend on which route the consumer uses:
 echo "lemon\!"; curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP -H 'apikey: consumer-1' | grep x-added
 echo "lime\!"; curl -si http://kong.example/lime --resolve kong.example:80:$PROXY_IP -H 'apikey: consumer-1' | grep x-added
 ```
-Response:
+Output is similar to:
 ```text
 lemon!
 x-added-multi: demo
@@ -446,7 +476,7 @@ must match _all_ of them:
 ```bash
 curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP | grep x-added
 ```
-Response:
+Output is similar to:
 ```text
 x-added-service:  demo
 ```
@@ -487,7 +517,7 @@ config:
 plugin: response-transformer-advanced
 ' | kubectl apply -f -
 ```
-Response:
+Output is similar to:
 ```text
 kongplugin.configuration.konghq.com/add-header-group-golden created
 ```
@@ -506,7 +536,7 @@ metadata:
     konghq.com/plugins: add-header-group-golden
 ' | kubectl apply -f -
 ```
-Response:
+Output is similar to:
 ```text
 kongconsumergroup.configuration.konghq.com/golden created
 ```
@@ -533,7 +563,7 @@ kubectl patch --type json kongconsumer consumer-2 -p='[{
 	"value":["golden"],
 }]'
 ```
-Response:
+Output is similar to:
 ```text
 kongconsumer.configuration.konghq.com/consumer-1 patched
 kongconsumer.configuration.konghq.com/consumer-2 patched
@@ -547,7 +577,7 @@ Requests from `consumer-2` will show the group and service configuration:
 curl -si http://kong.example/lime --resolve kong.example:80:$PROXY_IP -H 'apikey: consumer-1' | grep x-added
 ```
 
-Response:
+Output is similar to:
 ```text
 x-added-consumer-group: demo
 x-added-consumer: demo
@@ -557,7 +587,7 @@ x-added-consumer: demo
 curl -si http://kong.example/lime --resolve kong.example:80:$PROXY_IP -H 'apikey: consumer-2' | grep x-added
 ```
 
-Response:
+Output is similar to:
 ```text
 x-added-consumer-group:  demo
 x-added-service:  demo
@@ -571,7 +601,7 @@ kubectl annotate kongconsumer consumer-1 konghq.com/plugins-
 curl -si http://kong.example/lime --resolve kong.example:80:$PROXY_IP -H 'apikey: consumer-1' | grep x-added
 ```
 
-Response:
+Output is similar to:
 ```text
 kongconsumer.configuration.konghq.com/consumer-1 annotated
 x-added-consumer-group:  demo

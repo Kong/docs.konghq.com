@@ -27,7 +27,7 @@ spec:
               number: 1027
 " | kubectl apply -f -
 ```
-Response:
+Output is similar to:
 ```text
 ingress.networking.k8s.io/{{ name }} created
 ```

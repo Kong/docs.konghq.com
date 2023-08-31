@@ -5,7 +5,7 @@ kubectl create secret generic {{ credName }} \
   --from-literal=kongCredType=key-auth  \
   --from-literal=key={{ key }}
 ```
-Response:
+Output is similar to:
 ```text
 secret/{{ credName }} created
 ```
