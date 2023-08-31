@@ -48,7 +48,7 @@ module PluginSingleSource
           if @release.enterprise_plugin?
             "https://github.com/Kong/kong-ee/edit/master/plugins-ee/#{@release.name}/kong/plugins/#{@release.name}/schema.lua"
           elsif @release.name == 'pre-function' || @release.name == 'post-function'
-            "https://github.com/Kong/kong/edit/master/kong/plugins/pre-function/_schema.lua"
+            'https://github.com/Kong/kong/edit/master/kong/plugins/pre-function/_schema.lua'
           else
             "https://github.com/Kong/kong/edit/master/kong/plugins/#{@release.name}/schema.lua"
           end

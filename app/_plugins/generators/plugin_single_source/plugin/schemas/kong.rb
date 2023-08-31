@@ -23,7 +23,7 @@ module PluginSingleSource
         private
 
         def plugin_folder
-            plugin_name
+          plugin_name
         end
       end
     end
