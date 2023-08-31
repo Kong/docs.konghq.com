@@ -32,23 +32,23 @@ RSpec.describe SEO::Sitemap do
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/moved_urls.yml' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/deck/latest/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/gateway/latest/reference/configuration/' },
-        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jq/overview/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jq/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jq/changelog/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jq/how-to/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jq/configuration/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jq/how-to/basic-example/' },
-        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jwt-signer/overview/' },
-        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jwt-signer/overview/nested/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jwt-signer/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jwt-signer/nested/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jwt-signer/changelog/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jwt-signer/how-to/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jwt-signer/configuration/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jwt-signer/how-to/basic-example/' },
-        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/kong-plugin/overview/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/kong-plugin/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/kong-plugin/configuration/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/kong-plugin/how-to/basic-example/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/kong-plugin/how-to/local-testing/' },
-        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/unbundled-plugin/overview/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/unbundled-plugin/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/unbundled-plugin/changelog/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/unbundled-plugin/configuration/' }
       ])
@@ -61,7 +61,7 @@ RSpec.describe SEO::Sitemap do
     end
 
     it 'excludes pages marked with `seo_noindex`' do
-      excluded_page = find_page_by_url('/hub/kong-inc/jwt-signer/2.7.x/overview/')
+      excluded_page = find_page_by_url('/hub/kong-inc/jwt-signer/2.7.x/')
       expect(subject).not_to include({ 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => excluded_page.url })
       expect(excluded_page.data['seo_noindex']).to eq(true)
     end

@@ -46,7 +46,7 @@ RSpec.describe PluginSingleSource::Pages::Overview do
         expect(subject.data).to include({
           'canonical_url' => nil,
           'source_file' => '_hub/kong-inc/jwt-signer/overview/_index.md',
-          'permalink' => '/hub/kong-inc/jwt-signer/overview/',
+          'permalink' => '/hub/kong-inc/jwt-signer/',
           'ssg_hub' => true,
           'title' => 'Kong JWT Signer'
         })
@@ -59,7 +59,7 @@ RSpec.describe PluginSingleSource::Pages::Overview do
           expect(subject.data).to include({
             'canonical_url' => nil,
             'source_file' => '_hub/kong-inc/jwt-signer/overview/_nested.md',
-            'permalink' => '/hub/kong-inc/jwt-signer/overview/nested/',
+            'permalink' => '/hub/kong-inc/jwt-signer/nested/',
             'ssg_hub' => false,
             'title' => 'Kong JWT Signer'
           })
@@ -75,9 +75,9 @@ RSpec.describe PluginSingleSource::Pages::Overview do
 
       it 'returns a hash containing the data needed to render the templates' do
         expect(subject.data).to include({
-          'canonical_url' => '/hub/kong-inc/jwt-signer/overview/',
+          'canonical_url' => '/hub/kong-inc/jwt-signer/',
           'source_file' => '_hub/kong-inc/jwt-signer/_2.6.x/overview/_index.md',
-          'permalink' => '/hub/kong-inc/jwt-signer/2.6.x/overview/',
+          'permalink' => '/hub/kong-inc/jwt-signer/2.6.x/',
           'ssg_hub' => false,
           'title' => 'Kong JWT Signer'
         })
@@ -129,9 +129,9 @@ RSpec.describe PluginSingleSource::Pages::Overview do
     it 'returns a hash containing the page\'s breadcrumbs' do
       expect(subject.breadcrumbs).to eq([
         { text: 'Authentication', url: '/hub/?category=authentication' },
-        { text: 'Kong JWT Signer' },
-        { text: 'Overview', url: '/hub/kong-inc/jwt-signer/overview/' },
-        { text: 'Introduction', url: '/hub/kong-inc/jwt-signer/overview/' },
+        { text: 'Kong JWT Signer', url: '/hub/kong-inc/jwt-signer/' },
+        { text: 'Overview' },
+        { text: 'Introduction', url: '/hub/kong-inc/jwt-signer/' },
       ])
     end
 
@@ -141,9 +141,9 @@ RSpec.describe PluginSingleSource::Pages::Overview do
       it 'returns a hash containing the page\'s breadcrumbs' do
         expect(subject.breadcrumbs).to eq([
           { text: 'Authentication', url: '/hub/?category=authentication' },
-          { text: 'Kong JWT Signer' },
-          { text: 'Overview', url: '/hub/kong-inc/jwt-signer/overview/' },
-          { text: 'Nested file', url: '/hub/kong-inc/jwt-signer/overview/nested/' },
+          { text: 'Kong JWT Signer', url: '/hub/kong-inc/jwt-signer/' },
+          { text: 'Overview' },
+          { text: 'Nested file', url: '/hub/kong-inc/jwt-signer/nested/' },
         ])
       end
 
@@ -154,9 +154,9 @@ RSpec.describe PluginSingleSource::Pages::Overview do
         it 'returns a hash containing the page\'s breadcrumbs' do
           expect(subject.breadcrumbs).to eq([
             { text: 'Authentication', url: '/hub/?category=authentication' },
-            { text: 'Kong JWT Signer' },
-            { text: 'Overview', url: '/hub/kong-inc/jwt-signer/2.7.x/overview/' },
-            { text: 'Nested file', url: '/hub/kong-inc/jwt-signer/2.7.x/overview/nested/' },
+            { text: 'Kong JWT Signer', url: '/hub/kong-inc/jwt-signer/2.7.x/' },
+            { text: 'Overview' },
+            { text: 'Nested file', url: '/hub/kong-inc/jwt-signer/2.7.x/nested/' },
           ])
         end
       end

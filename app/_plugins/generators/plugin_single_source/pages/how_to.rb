@@ -39,6 +39,15 @@ module PluginSingleSource
       def index_file_exist?
         File.exist?(File.expand_path('how-to/_index.md', @source_path))
       end
+
+      def base_section_url
+        base_path = permalink.split('/').tap(&:pop)
+        if @release.latest?
+          base_path.take(4)
+        else
+          base_path.take(5) # include version
+        end.join('/').concat('/')
+      end
     end
   end
 end

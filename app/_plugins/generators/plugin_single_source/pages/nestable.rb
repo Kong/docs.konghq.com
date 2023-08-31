@@ -4,7 +4,7 @@ module PluginSingleSource
   module Pages
     module Nestable
       def canonical_url
-        "#{base_url}#{file_to_url_segment}/"
+        "#{base_url}#{file_to_url_segment}/".gsub('//', '/')
       end
 
       def permalink
@@ -12,7 +12,7 @@ module PluginSingleSource
           canonical_url
         else
           "#{base_url}#{@release.version}/#{file_to_url_segment}/"
-        end
+        end.gsub('//', '/')
       end
 
       def nav_title
@@ -30,16 +30,7 @@ module PluginSingleSource
       end
 
       def dropdown_url
-        @dropdown_url ||= "#{base_url}VERSION/#{file_to_url_segment}/"
-      end
-
-      def base_section_url
-        base_path = permalink.split('/').tap(&:pop)
-        if @release.latest?
-          base_path.take(4)
-        else
-          base_path.take(5) # include version
-        end.join('/').concat('/')
+        @dropdown_url ||= "#{base_url}VERSION/#{file_to_url_segment}/".gsub('//', '/')
       end
     end
   end

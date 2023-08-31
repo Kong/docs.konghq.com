@@ -1,5 +1,5 @@
 RSpec.describe 'Plugin page' do
-  let(:page) { find_page_by_url('/hub/acme/unbundled-plugin/overview/') }
+  let(:page) { find_page_by_url('/hub/acme/unbundled-plugin/') }
   let(:html) { Capybara::Node::Simple.new(page.output) }
 
   before do

@@ -8,7 +8,7 @@ RSpec.describe 'Plugin page with multiple versions' do
   end
 
   context 'versions with a specific file - _2.6.x' do
-    let(:page_url) { '/hub/kong-inc/jwt-signer/2.6.x/overview/' }
+    let(:page_url) { '/hub/kong-inc/jwt-signer/2.6.x/' }
 
     it 'renders the content' do
       expect(html).to have_css('h2', text: '_2.6.x Description')
@@ -25,7 +25,7 @@ RSpec.describe 'Plugin page with multiple versions' do
   end
 
   context 'versions using _index' do
-    let(:page_url) { '/hub/kong-inc/jwt-signer/overview/' }
+    let(:page_url) { '/hub/kong-inc/jwt-signer/' }
 
     it 'renders the content' do
       expect(html).to have_css('h2', text: 'Manage key signing')

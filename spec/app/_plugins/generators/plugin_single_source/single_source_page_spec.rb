@@ -7,7 +7,7 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
       PluginSingleSource::Plugin::Release.new(site:, version:, plugin:, source:, is_latest:)
     end
     let(:page) do
-      release.overviews.detect { |p| p.permalink.end_with? '/overview/' }
+      release.overviews.detect { |p| p.data['source_file'].end_with?('overview/_index.md') }
     end
 
     subject { described_class.new(site:, page:) }
@@ -25,7 +25,7 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
         expect(subject.data['is_latest']).to eq(true)
         expect(subject.data['canonical_url']).to be_nil
         expect(subject.data['seo_noindex']).to be_nil
-        expect(subject.data['permalink']).to eq('/hub/kong-inc/jwt-signer/overview/')
+        expect(subject.data['permalink']).to eq('/hub/kong-inc/jwt-signer/')
         expect(subject.data['layout']).to eq('extension')
 
         expect(subject.data['source_file']).to eq('_hub/kong-inc/jwt-signer/overview/_index.md')
@@ -47,9 +47,9 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
 
         expect(subject.data['version']).to eq('2.8.x')
         expect(subject.data['is_latest']).to eq(false)
-        expect(subject.data['canonical_url']).to eq('/hub/kong-inc/jwt-signer/overview/')
+        expect(subject.data['canonical_url']).to eq('/hub/kong-inc/jwt-signer/')
         expect(subject.data['seo_noindex']).to eq(true)
-        expect(subject.data['permalink']).to eq('/hub/kong-inc/jwt-signer/2.8.x/overview/')
+        expect(subject.data['permalink']).to eq('/hub/kong-inc/jwt-signer/2.8.x/')
         expect(subject.data['layout']).to eq('extension')
 
         expect(subject.data['source_file']).to eq('_hub/kong-inc/jwt-signer/overview/_index.md')
@@ -70,9 +70,9 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
 
           expect(subject.data['version']).to eq('2.6.x')
           expect(subject.data['is_latest']).to eq(false)
-          expect(subject.data['canonical_url']).to eq('/hub/kong-inc/jwt-signer/overview/')
+          expect(subject.data['canonical_url']).to eq('/hub/kong-inc/jwt-signer/')
           expect(subject.data['seo_noindex']).to eq(true)
-          expect(subject.data['permalink']).to eq('/hub/kong-inc/jwt-signer/2.6.x/overview/')
+          expect(subject.data['permalink']).to eq('/hub/kong-inc/jwt-signer/2.6.x/')
           expect(subject.data['layout']).to eq('extension')
 
           expect(subject.data['source_file']).to eq('_hub/kong-inc/jwt-signer/_2.6.x/overview/_index.md')
