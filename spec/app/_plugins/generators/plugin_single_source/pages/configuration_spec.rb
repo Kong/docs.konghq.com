@@ -36,7 +36,7 @@ RSpec.describe PluginSingleSource::Pages::Configuration do
 
       it 'returns a hash containing the data needed to render the templates' do
         expect(subject.data).to include({
-          'canonical_url' => nil,
+          'canonical_url' => '/hub/kong-inc/jwt-signer/configuration/',
           'source_file' => '_src/.repos/kong-plugins/schemas/jwt-signer/2.8.x.json',
           'permalink' => '/hub/kong-inc/jwt-signer/configuration/',
           'ssg_hub' => false,

@@ -23,7 +23,7 @@ RSpec.describe PluginSingleSource::SingleSourcePage do
 
         expect(subject.data['version']).to eq('3.0.x')
         expect(subject.data['is_latest']).to eq(true)
-        expect(subject.data['canonical_url']).to be_nil
+        expect(subject.data['canonical_url']).to eq('/hub/kong-inc/jwt-signer/')
         expect(subject.data['seo_noindex']).to be_nil
         expect(subject.data['permalink']).to eq('/hub/kong-inc/jwt-signer/')
         expect(subject.data['layout']).to eq('extension')

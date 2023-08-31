@@ -86,7 +86,7 @@ RSpec.describe PluginSingleSource::Pages::HowTo do
 
       it 'returns a hash containing the data needed to render the templates' do
         expect(subject.data).to include({
-          'canonical_url' => nil,
+          'canonical_url' => '/hub/kong-inc/jwt-signer/how-to/',
           'source_file' => '_hub/kong-inc/jwt-signer/how-to/_index.md',
           'permalink' => '/hub/kong-inc/jwt-signer/how-to/',
           'ssg_hub' => false,
