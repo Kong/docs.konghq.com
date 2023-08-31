@@ -52,7 +52,9 @@ When a limit is reached, the plugin returns an `HTTP/1.1 429` status code, with 
 
 ### Limit by IP Address
 
-If limiting by IP address, it's important to understand how the IP address is determined. The IP address is determined by the request header sent to Kong from downstream. In most cases, the header has a name of ```X-Real-IP``` or ```X-Forwarded-For```. By default, Kong will use the header name ```X-Real-IP```, however if a different header name is required then this will need to be defined using the [real_ip_header](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_header) Nginx property. Depending on the environmental network setup, the [trusted_ips](https://docs.konghq.com/gateway/latest/reference/configuration/#trusted_ips) Nginx property may also need to be configured to include the load balancer IP address.
+If limiting by IP address, it's important to understand how the IP address is determined. The IP address is determined by the request header sent to Kong from downstream. In most cases, the header has a name of `X-Real-IP` or `X-Forwarded-For`. 
+
+By default, Kong uses the header name `X-Real-IP`. If a different header name is required, it needs to be defined using the [real_ip_header](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_header) Nginx property. Depending on the environmental network setup, the [trusted_ips](https://docs.konghq.com/gateway/latest/reference/configuration/#trusted_ips) Nginx property may also need to be configured to include the load balancer IP address.
 
 ### Strategies
 
@@ -62,7 +64,7 @@ The plugin supports three strategies.
 | --------- | ---- | ------ |
 | `local`   | Minimal performance impact. | Less accurate. Unless there's a consistent-hashing load balancer in front of Kong, it diverges when scaling the number of nodes.
 | `cluster` | Accurate, no extra components to support. | Each request forces a read and a write on the data store. Therefore, relatively, the biggest performance impact. |
-| `redis`   | Accurate, less performance impact than a `cluster` policy. | Needs a Redis installation. Bigger performance impact than a `local` policy. ||
+| `redis`   | Accurate, less performance impact than a `cluster` policy. | Needs a Redis installation. Bigger performance impact than a `local` policy. |
 
 Two common use cases are:
 
@@ -99,7 +101,7 @@ For example, if a user can make 100 requests every second, and you have an
 equally balanced 5-node Kong cluster, setting the `local` limit to something like 30 requests every second
 should work. If you see too many false negatives, increase the limit.
 
-To minimise inaccuracies, consider using a consistent-hashing load balancer in front of
+To minimize inaccuracies, consider using a consistent-hashing load balancer in front of
 Kong. The load balancer ensures that a user is always directed to the same Kong node, thus reducing
 inaccuracies and preventing scaling problems.
 
