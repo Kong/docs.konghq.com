@@ -177,8 +177,13 @@ $ scp license.json /etc/kong/license.json
 {% endnavtab %}
 {% endnavtabs %}
 
+{% if_version lte:3.3.x %}
 ### Enable Kong Manager
 {:.badge .free}
+{% endif_version %}
+{% if_version gte:3.4.x %}
+### Enable Kong Manager
+{% endif_version %}
 
 {% if_version gte:3.0.x %}
 
