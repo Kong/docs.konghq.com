@@ -68,5 +68,9 @@ export default defineComponent({
     display: inline-block;
     margin: 0 auto;
   }
+
+  &.is-error {
+    margin-top: 60px !important;
+  }
 }
 </style>
