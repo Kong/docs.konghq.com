@@ -45,14 +45,20 @@ When a limit is reached, the plugin returns an `HTTP/1.1 429` status code, with 
 { "message": "API rate limit exceeded" }
 ```
 
-{:.warning}
-> **Warning**: The headers `RateLimit-Limit`, `RateLimit-Remaining`, and `RateLimit-Reset` are based on the Internet-Draft [RateLimit Header Fields for HTTP](https://tools.ietf.org/html/draft-polli-ratelimit-headers-01). These could change if the specification is updated.
+{:.important}
+> The headers `RateLimit-Limit`, `RateLimit-Remaining`, and `RateLimit-Reset` are based on the Internet-Draft [RateLimit Header Fields for HTTP](https://tools.ietf.org/html/draft-polli-ratelimit-headers-02) and may change in the future to respect specification updates.
 
 ## Implementation considerations
 
-The plugin supports three policies.
+### Limit by IP Address
 
-| Policy    | Pros | Cons   |
+If limiting by IP address, it's important to understand how the IP address is determined. The IP address is determined by the request header sent to Kong from downstream. In most cases, the header has a name of ```X-Real-IP``` or ```X-Forwarded-For```. By default, Kong will use the header name ```X-Real-IP```, however if a different header name is required then this will need to be defined using the [real_ip_header](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_header) Nginx property. Depending on the environmental network setup, the [trusted_ips](https://docs.konghq.com/gateway/latest/reference/configuration/#trusted_ips) Nginx property may also need to be configured to include the load balancer IP address.
+
+### Strategies
+
+The plugin supports three strategies.
+
+| Strategy    | Pros | Cons   |
 | --------- | ---- | ------ |
 | `local`   | Minimal performance impact. | Less accurate. Unless there's a consistent-hashing load balancer in front of Kong, it diverges when scaling the number of nodes.
 | `cluster` | Accurate, no extra components to support. | Each request forces a read and a write on the data store. Therefore, relatively, the biggest performance impact. |
@@ -70,7 +76,7 @@ Two common use cases are:
 > **Note**: **Enterprise-Only**: The Kong Community Edition of this Rate Limiting plugin does not
 include [Redis Sentinel](https://redis.io/topics/sentinel) support. Only [{{site.base_gateway}} Enterprise](https://www.konghq.com/kong) customers can use Redis Sentinel with Kong Rate Limiting, enabling them to deliver highly available primary-replica deployments.
 
-### Every transaction counts
+#### Every transaction counts
 
 In this scenario, because accuracy is important, the `local` policy is not an option. Consider the support effort you might need
 for Redis, and then choose either `cluster` or `redis`.
@@ -83,7 +89,7 @@ This might not be a problem with short-lived metrics (for example, seconds or mi
 but if you use metrics with a longer time frame (for example, months), plan
 your switch carefully.
 
-### Backend protection
+#### Backend protection
 
 If accuracy is of lesser importance, choose the `local` policy. You might need to experiment a little
 before you get a setting that works for your scenario. As the cluster scales to more nodes, more user requests are handled.
@@ -97,7 +103,7 @@ To minimise inaccuracies, consider using a consistent-hashing load balancer in f
 Kong. The load balancer ensures that a user is always directed to the same Kong node, thus reducing
 inaccuracies and preventing scaling problems.
 
-### Fallback to IP
+#### Fallback to IP
 
 When the selected policy cannot be retrieved, the plugin falls back
 to limiting usage by identifying the IP address. This can happen for several reasons, such as the
