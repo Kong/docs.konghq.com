@@ -411,7 +411,7 @@ instead of the previous 1 (trace all requests).
   causing the log entries to be dropped.
   [#10172](https://github.com/Kong/kong/pull/10172)
 
-* [**Serverless Functions**](/hub/kong-inc/serverless-functions/) (`post-function` or `pre-function`)
+* **[Pre-function](/hub/kong-inc/pre-function/) (`pre-function`) and [Post-function](/hub/kong-inc/post-function/)** (`post-function`)
   * `kong.cache` now points to a cache instance that is dedicated to the
   Serverless Functions plugins. It does not provide access to the global Kong Gateway cache. 
   Access to certain fields in `kong.conf` has also been restricted.
@@ -2292,7 +2292,7 @@ Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020
   `lantency_metrics`, `bandwidth_metrics` and `upstream_health_metrics` respectively.
   [#9028](https://github.com/Kong/kong/pull/9028)
 
-* [Serverless Functions](/hub/kong-inc/serverless-functions/) (`post-function` or `pre-function`)
+* **[Pre-function](/hub/kong-inc/pre-function/) (`pre-function`) and [Post-function](/hub/kong-inc/post-function/)** (`post-function`)
   * Removed the deprecated `config.functions` configuration parameter from the Serverless Functions plugins' schemas.
     Use the `config.access` phase instead.
   [#8559](https://github.com/Kong/kong/pull/8559)
@@ -2517,7 +2517,7 @@ openid-connect
   * Fixed error handling when calling `get_window` and added more buffer on the window reserve.
   * Fixed error handling for plugin strategy configuration when in hybrid or DB-less mode and strategy is set to `cluster`.
 
-* [Serverless Functions](/hub/kong-inc/serverless-functions/) (`serverless-functions`)
+* **[Pre-function](/hub/kong-inc/pre-function/) (`pre-function`) and [Post-function](/hub/kong-inc/post-function/)** (`post-function`)
   * Fixed a problem that could cause a crash.
   [#9269](https://github.com/Kong/kong/pull/9269)
 

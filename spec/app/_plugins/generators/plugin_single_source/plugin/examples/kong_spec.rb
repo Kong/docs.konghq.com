@@ -11,7 +11,7 @@ RSpec.describe PluginSingleSource::Plugin::Examples::Kong do
     end
 
     context 'special case - serverless-functions' do
-      let(:name) { 'serverless-functions' }
+      let(:name) { 'post-function' }
 
       it 'returns the path to pre-function\'s example' do
         expect(subject.file_path).to eq('app/_src/.repos/kong-plugins/examples/pre-function/_3.1.x.yaml')

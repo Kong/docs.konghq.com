@@ -12,7 +12,8 @@ Set this up with the [`allow.body`](/hub/kong-inc/request-transformer-advanced/c
 > **Notes**:
 * If a value contains a `,` (comma), then the comma-separated format for lists cannot be used. The array
 notation must be used instead.
-* The `X-Forwarded-*` fields are non-standard header fields written by Nginx to inform the upstream about client details and can't be overwritten by this plugin. If you need to overwrite these header fields, see the [post-function plugin in Serverless Functions](https://docs.konghq.com/hub/kong-inc/serverless-functions/).
+* The `X-Forwarded-*` fields are non-standard header fields written by Nginx to inform the upstream about client details and can't be overwritten by this plugin. 
+If you need to overwrite these header fields, see the [Post-function plugin](/hub/kong-inc/post-function/how-to/).
 
 ## Order of execution
 

@@ -592,7 +592,8 @@ newly introduced in this release, [start up a new runtime](/konnect/runtime-mana
 : The following plugins are now available:
 
 : * **Free tier**
-    * [Serverless Functions](/hub/kong-inc/serverless-functions/)
+    * [Pre-function](/hub/kong-inc/pre-function/) (`pre-function`)
+    * [Post-function](/hub/kong-inc/post-function/) (`post-function`)
     * [Datadog](/hub/kong-inc/datadog/)
     * [Zipkin](/hub/kong-inc/zipkin/)
     * [Request Size Limiting](/hub/kong-inc/request-size-limiting/)

@@ -114,7 +114,7 @@ RSpec.describe PluginSingleSource::Plugin::Schemas::Kong do
     end
 
     context 'special case - serverless-functions' do
-      let(:plugin_name) { 'serverless-functions' }
+      let(:plugin_name) { 'post-function' }
 
       it 'returns the path to pre-function\'s schema' do
         expect(subject.file_path).to eq('app/_src/.repos/kong-plugins/schemas/pre-function/3.1.x.json')
