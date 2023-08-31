@@ -85,15 +85,58 @@ otherwise, an error occurs:
 You must provide the same number of windows and limits
 ```
 
-### Fallback to IP
+## Implementation considerations
 
-When the selected strategy cannot be retrieved, the `rate-limiting-advanced` plugin will fall back
-to limit using IP as the identifier. This can happen for several reasons, such as the
-selected header was not sent by the client or the configured service was not found.
+### Limit by IP Address
 
-[`Retry-After`]: https://tools.ietf.org/html/rfc7231#section-7.1.3
+If limiting by IP address, it's important to understand how the IP address is determined. The IP address is determined by the request header sent to Kong from downstream. In most cases, the header has a name of ```X-Real-IP``` or ```X-Forwarded-For```. By default, Kong will use the header name ```X-Real-IP```, however if a different header name is required then this will need to be defined using the [real_ip_header](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_header) Nginx property. Depending on the environmental network setup, the [trusted_ips](https://docs.konghq.com/gateway/latest/reference/configuration/#trusted_ips) Nginx property may also need to be configured to include the load balancer IP address.
 
-### Fallback from Redis
+### Strategies
+
+The plugin supports three strategies.
+
+| Strategy    | Pros | Cons   |
+| --------- | ---- | ------ |
+| `local`   | Minimal performance impact. | Less accurate. Unless there's a consistent-hashing load balancer in front of Kong, it diverges when scaling the number of nodes.
+| `cluster` | Accurate, no extra components to support. | Each request forces a read and a write on the data store. Therefore, relatively, the biggest performance impact. |
+| `redis`   | Accurate, less performance impact than a `cluster` policy. | Needs a Redis installation. Bigger performance impact than a `local` policy. ||
+
+Two common use cases are:
+
+1. _Every transaction counts_. The highest level of accuracy is needed. An example is a transaction with financial
+   consequences.
+2. _Backend protection_. Accuracy is not as relevant. The requirement is
+   only to protect backend services from overloading that's caused either by specific
+   users or by attacks.
+
+#### Every transaction counts
+
+In this scenario, because accuracy is important, the `local` policy is not an option. Consider the support effort you might need
+for Redis, and then choose either `cluster` or `redis`.
+
+You could start with the `cluster` policy, and move to `redis`
+if performance reduces drastically.
+
+Do remember that you cannot port the existing usage metrics from the data store to Redis.
+This might not be a problem with short-lived metrics (for example, seconds or minutes)
+but if you use metrics with a longer time frame (for example, months), plan
+your switch carefully.
+
+#### Backend protection
+
+If accuracy is of lesser importance, choose the `local` policy. You might need to experiment a little
+before you get a setting that works for your scenario. As the cluster scales to more nodes, more user requests are handled.
+When the cluster scales down, the probability of false negatives increases. So, adjust your limits when scaling.
+
+For example, if a user can make 100 requests every second, and you have an
+equally balanced 5-node Kong cluster, setting the `local` limit to something like 30 requests every second
+should work. If you see too many false negatives, increase the limit.
+
+To minimise inaccuracies, consider using a consistent-hashing load balancer in front of
+Kong. The load balancer ensures that a user is always directed to the same Kong node, thus reducing
+inaccuracies and preventing scaling problems.
+
+#### Fallback from Redis
 
 When the `redis` strategy is used and a {{site.base_gateway}} node is disconnected from Redis, the `rate-limiting-advanced` plugin will fall back to `local`. This can happen when the Redis server is down or the connection to Redis broken.
 {{site.base_gateway}} keeps the local counters for rate limiting and syncs with Redis once the connection is re-established.
