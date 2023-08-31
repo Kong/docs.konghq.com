@@ -45,7 +45,8 @@ RSpec.describe PluginSingleSource::Plugin::Release do
           '/hub/kong-inc/jwt-signer/2.7.x/changelog/',
           '/hub/kong-inc/jwt-signer/2.7.x/how-to/',
           '/hub/kong-inc/jwt-signer/2.7.x/configuration/',
-          '/hub/kong-inc/jwt-signer/2.7.x/how-to/basic-example/'
+          '/hub/kong-inc/jwt-signer/2.7.x/how-to/basic-example/',
+          '/hub/kong-inc/jwt-signer/2.7.x/how-to/nested/tutorial/'
         ])
       end
     end

@@ -20,7 +20,7 @@ module PluginSingleSource
           { text: category_title, url: category_url },
           { text: @release.metadata['name'], url: base_section_url },
           { text: 'How to', url: how_to_url },
-          { text: breadcrumb_title, url: permalink }
+          { text: nav_title, url: permalink }
         ]
       end
 
