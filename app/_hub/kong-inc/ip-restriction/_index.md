@@ -26,6 +26,8 @@ curl -X POST http://kong:8001/services/{service}/plugins \
 
 ### IP Addresses
 
-It is important to understand how the IP address is determined in order to use this plugin effectively. The IP address is determined by the request header sent to Kong from downstream. In most cases, the header has a name of ```X-Real-IP``` or ```X-Forwarded-For```. By default, Kong will use the header name ```X-Real-IP```, however if a different header name is required then this will need to be defined using the [real_ip_header](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_header) Nginx property. Depending on the environmental network setup, the [trusted_ips](https://docs.konghq.com/gateway/latest/reference/configuration/#trusted_ips) Nginx property may also need to be configured to include the load balancer IP address.
+It is important to understand how the IP address is determined. The IP address is determined by the request header sent to Kong from downstream. In most cases, the header has a name of `X-Real-IP` or `X-Forwarded-For`.
+
+By default, Kong uses the header name `X-Real-IP`. If a different header name is required, it needs to be defined using the [real_ip_header](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_header) Nginx property. Depending on the environmental network setup, the [trusted_ips](https://docs.konghq.com/gateway/latest/reference/configuration/#trusted_ips) Nginx property may also need to be configured to include the load balancer IP address.
 
 ---
