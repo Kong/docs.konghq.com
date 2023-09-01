@@ -60,7 +60,7 @@ about how to use the Ingress Controller.
 ## Troubleshooting connection issues
 
 The network is limited if you are using the Docker driver on Darwin, Windows, or WSL, and the Node IP is not reachable directly.
-When you deploy minikube on Linux with the Docker driver results in no tunnel being created. For more information, see [accessing apps](https://minikube.sigs.k8s.io/docs/handbook/accessing/#using-minikube-service-with-tunnel)
+When you deploy minikube on Linux with the Docker driver results in no tunnel being created. For more information, see [accessing apps](https://minikube.sigs.k8s.io/docs/handbook/accessing/#using-minikube-service-with-tunnel).
 
 ### Error message
 

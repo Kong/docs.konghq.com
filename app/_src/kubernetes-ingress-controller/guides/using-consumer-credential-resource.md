@@ -82,18 +82,15 @@ Requests that do not include a key receive a 401 Unauthorized response.
 
 ## Provision a consumer and credential
 
-First, create a credential Secret:
+1. create a credential Secret:
 
 {% include_cached /md/kic/key-auth.md kong_version=page.kong_version credName='kotenok-key-auth' %}
 
-Second, create a KongConsumer resource that uses the Secret:
+1. create a KongConsumer resource that uses the Secret:
 
 {% include_cached /md/kic/consumer.md kong_version=page.kong_version credName='kotenok-key-auth' %}
 
-Credential Secrets include a `kongCredType` key, whose value indicates what
-authentication plugin the credential is for, and keys corresponding to the
-fields necessary to configure that credential type (`key` for `key-auth`
-credentials).
+  Credential Secrets include a `kongCredType` key, whose value indicates what authentication plugin the credential is for, and keys corresponding to the fields necessary to configure that credential type (`key` for `key-auth` credentials).
 
 ## Use the credential
 

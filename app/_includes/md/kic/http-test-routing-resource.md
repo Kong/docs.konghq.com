@@ -57,7 +57,7 @@ spec:
       port: 1027
 " | kubectl apply -f -
 ```
-Response:
+Output is similar to:
 ```text
 httproute.gateway.networking.k8s.io/{{ name }} created
 ```
