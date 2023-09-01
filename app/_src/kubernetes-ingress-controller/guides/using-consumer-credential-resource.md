@@ -36,7 +36,7 @@ Response:
 kongplugin.configuration.konghq.com/example-auth created
 ```
 
-Now, associate this plugin with the previous Ingress rule we created
+Now, associate this plugin with the previous Ingress rule you created
 using the `konghq.com/plugins` annotation:
 
 {% navtabs api %}
