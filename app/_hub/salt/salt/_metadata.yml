@@ -11,10 +11,16 @@ desc: Integrate Kong API Gateway with Salt Security Discovery & Prevention for A
 
 enterprise: true
 techpartner: true
+konnect: true
 
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 3.2.x
+      - 3.1.x
+      - 3.0.x
+      - 2.9.x
+      - 2.8.x
       - 1.2.x
       - 1.1.x
       - 1.0.x
