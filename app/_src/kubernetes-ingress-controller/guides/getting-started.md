@@ -78,7 +78,7 @@ gateway.gateway.networking.k8s.io/kong patched
 {% endcapture %}
 {{ the_code | indent }}
 
-1. Send requests to verify if the configured certificate is servered.
+1. Send requests to verify if the configured certificate is served.
 
     ```bash
     curl -ksv https://kong.example/echo --resolve kong.example:443:$PROXY_IP 2>&1 | grep -A1 "certificate:"
