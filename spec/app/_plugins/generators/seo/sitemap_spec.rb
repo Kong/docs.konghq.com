@@ -60,7 +60,7 @@ RSpec.describe SEO::Sitemap do
     end
 
     it 'excludes pages marked with `seo_noindex`' do
-      excluded_page = find_page_by_url('/gateway-oss/2.1.x/configuration/')
+      excluded_page = find_page_by_url('/hub/kong-inc/jwt-signer/2.7.x/')
       expect(subject).not_to include({ 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => excluded_page.url })
       expect(excluded_page.data['seo_noindex']).to eq(true)
     end

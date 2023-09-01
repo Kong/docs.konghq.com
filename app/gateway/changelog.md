@@ -61,7 +61,7 @@ references are automatically re-fetched from the configured vault.
 free and open-source UI for Kong Gateway OSS!
   [#11131](https://github.com/Kong/kong/pull/11131)
 
-  Kong Manager OSS allows you to view and edit all Kong Gateway objects using the Admin API. 
+  [Kong Manager OSS](/gateway/latest/kong-manager-oss/) allows you to view and edit all Kong Gateway objects using the Admin API. 
   It interacts directly with the Kong Admin API and does not require a separate database.
   This UI provides a great way to see all of your Kong Gateway configuration at glance.
 

@@ -57,8 +57,6 @@ External storage in Hybrid Mode works in following flow:
 9. The Kong Data Plane reads from external storage and uses the new certificate to serve TLS requests.
 
 
-{% if_plugin_version gte:2.4.x %}
-
 ## Running with or without a database
 
 In database mode, the plugin creates an SNI and Certificate entity in Kong to
@@ -77,8 +75,6 @@ The following CA provider's external account can be registered automatically, wi
 the `eab_kid` or `eab_hmac_key`:
 
 - [ZeroSSL](https://zerossl.com/)
-
-{% endif_plugin_version %}
 
 ## Storage configuration considerations {#storage-config}
 
