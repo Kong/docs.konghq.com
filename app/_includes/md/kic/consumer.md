@@ -8,7 +8,7 @@
     annotations:
       kubernetes.io/ingress.class: kong
    username: {{ name }}
-    {% if credName -%}
+   {% if credName -%}
    credentials:
    - {{ credName }}
    {% endif -%}" | kubectl apply -f -
