@@ -31,7 +31,7 @@ metadata:
 plugin: key-auth
 " | kubectl apply -f -
 ```
-Response:
+Output is similar to:
 ```text
 kongplugin.configuration.konghq.com/example-auth created
 ```
@@ -44,7 +44,7 @@ using the `konghq.com/plugins` annotation:
 ```bash
 kubectl annotate ingress echo konghq.com/plugins=example-auth
 ```
-Response:
+Output is similar to:
 ```text
 ingress.networking.k8s.io/echo annotated
 ```
@@ -66,7 +66,7 @@ configuration will now require a valid API key:
 ```bash
 curl -si http://kong.example/echo --resolve kong.example:80:$PROXY_IP
 ```
-Response:
+Output is similar to:
 ```
 HTTP/1.1 401 Unauthorized
 Content-Type: application/json; charset=utf-8
@@ -100,7 +100,7 @@ header with the key by default):
 ```bash
 curl -si http://kong.example/echo --resolve kong.example:80:$PROXY_IP -H "apikey: gav"
 ```
-Response:
+Output is similar to:
 ```text
 HTTP/1.1 200 OK                
 Content-Type: text/plain; charset=UTF-8
