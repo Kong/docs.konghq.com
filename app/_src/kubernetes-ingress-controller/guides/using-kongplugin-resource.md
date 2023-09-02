@@ -328,8 +328,8 @@ multiple criteria, such as requests made by a consumer for a specific route.
         kubernetes.io/ingress.class: kong
    config:
     add:
-    headers:
-    - "x-added-consumer: demo"
+      headers:
+      - "x-added-consumer: demo"
    plugin: response-transformer
    ---
    apiVersion: configuration.konghq.com/v1
@@ -340,8 +340,8 @@ multiple criteria, such as requests made by a consumer for a specific route.
        kubernetes.io/ingress.class: kong
    config:
     add:
-    headers:
-    - "x-added-multi: demo"
+      headers:
+      - "x-added-multi: demo"
    plugin: response-transformer
    ' | kubectl apply -f -
     ```
