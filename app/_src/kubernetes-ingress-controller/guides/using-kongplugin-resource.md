@@ -344,6 +344,7 @@ config:
     - "x-added-multi: demo"
 plugin: response-transformer
 ' | kubectl apply -f -
+
     ```
     Output is similar to:
     ```text
