@@ -318,32 +318,32 @@ multiple criteria, such as requests made by a consumer for a specific route.
 1. Create a two KongPlugin resources `add-header-consumer` and  `add-header-multi` that adds a response header `x-added-consumer: demo` and `x-added-multi: demo` respectively.
 
     ```bash
-    echo '
-    ---
-    apiVersion: configuration.konghq.com/v1
-    kind: KongPlugin
-    metadata:
-      name: add-header-consumer
-      annotations:
+   echo '
+   ---
+   apiVersion: configuration.konghq.com/v1
+   kind: KongPlugin
+   metadata:
+    name: add-header-consumer
+    annotations:
         kubernetes.io/ingress.class: kong
-    config:
-      add:
-        headers:
-        - "x-added-consumer: demo"
-    plugin: response-transformer
-    ---
-    apiVersion: configuration.konghq.com/v1
-    kind: KongPlugin
-    metadata:
-      name: add-header-multi
-      annotations:
-        kubernetes.io/ingress.class: kong
-    config:
-      add:
-        headers:
-        - "x-added-multi: demo"
-    plugin: response-transformer
-    ' | kubectl apply -f -
+   config:
+    add:
+    headers:
+    - "x-added-consumer: demo"
+   plugin: response-transformer
+   ---
+   apiVersion: configuration.konghq.com/v1
+   kind: KongPlugin
+   metadata:
+    name: add-header-multi
+    annotations:
+       kubernetes.io/ingress.class: kong
+   config:
+    add:
+    headers:
+    - "x-added-multi: demo"
+   plugin: response-transformer
+   ' | kubectl apply -f -
     ```
     ```
     Output is similar to:
