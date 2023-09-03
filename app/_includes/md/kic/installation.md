@@ -19,7 +19,7 @@ an HTTP `404 Not Found` status code:
 ```bash
 curl -i $PROXY_IP
 ```
-Output is similar to:
+The results should look like this:
 ```text
 HTTP/1.1 404 Not Found
 Content-Type: application/json; charset=utf-8

@@ -30,7 +30,7 @@ openssl req -subj '/CN=kong.example' -new -newkey rsa:2048 -sha256 \
 {% endcapture %}
 {{ the_code | indent }}
 
-    Output is similar to:
+    The results should look like this:
 
     {% capture the_code %}
 {% navtabs codeblock %}
@@ -54,7 +54,7 @@ subject=CN = kong.example
     ```bash
     kubectl create secret tls {{ include.hostname }} --cert=./server.crt --key=./server.key
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     secret/{{ include.hostname }} created
     ```

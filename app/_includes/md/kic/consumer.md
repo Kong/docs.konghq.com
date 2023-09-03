@@ -13,7 +13,7 @@
    - {{ credName }}
    {% endif -%}" | kubectl apply -f -
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     kongconsumer.configuration.konghq.com/{{ name }} created
     ```

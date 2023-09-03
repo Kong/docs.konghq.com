@@ -37,7 +37,7 @@ Kubernetes cluster.
    # If installed by helm, service name would be "<release-name>-kong-proxy".
    # minikube service <release-name>-kong-proxy --url | head -1
    ```
-   The output is similar to:
+   The results should look like this:
    ```bash
    http://192.168.99.100:32728
    ```

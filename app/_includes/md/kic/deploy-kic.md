@@ -43,7 +43,7 @@ $ helm install kong/kong --generate-name
 
 {% endif_version %}
 
-The output is similar to:
+The results should look like this:
 ```bash
 namespace/kong created
 customresourcedefinition.apiextensions.k8s.io/kongplugins.configuration.konghq.com created

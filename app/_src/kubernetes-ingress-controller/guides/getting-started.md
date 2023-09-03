@@ -60,7 +60,7 @@ kubectl patch --type=json gateway kong -p='[{
 {% endcapture %}
 {{ the_code | indent }}
 
-    Output is similar to:
+    The results should look like this:
 
     {% capture the_code %}
 {% navtabs codeblock %}
@@ -83,7 +83,7 @@ gateway.gateway.networking.k8s.io/kong patched
     ```bash
     curl -ksv https://kong.example/echo --resolve kong.example:443:$PROXY_IP 2>&1 | grep -A1 "certificate:"
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     * Server certificate:
     *  subject: CN=kong.example
@@ -105,7 +105,7 @@ gateway.gateway.networking.k8s.io/kong patched
     plugin: correlation-id
     " | kubectl apply -f -
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     kongplugin.configuration.konghq.com/request-id created
     ```
@@ -127,7 +127,7 @@ kubectl annotate httproute echo konghq.com/plugins=request-id
 {% endcapture %}
 {{ the_code | indent }}
 
-    Output is similar to:
+    The results should look like this:
 
     {% capture the_code %}
 {% navtabs codeblock %}
@@ -153,7 +153,7 @@ httproute.gateway.networking.k8s.io/echo annotated
     ```bash
     curl -i http://kong.example/echo --resolve kong.example:80:$PROXY_IP
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     HTTP/1.1 200 OK
     Content-Type: text/plain; charset=UTF-8
@@ -201,7 +201,7 @@ plugin configuration on all requests to that Service, without configuring the sa
     plugin: rate-limiting
     " | kubectl apply -f -
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     kongplugin.configuration.konghq.com/rl-by-ip created
     ```
@@ -210,7 +210,7 @@ plugin configuration on all requests to that Service, without configuring the sa
     ```bash
     kubectl annotate service echo konghq.com/plugins=rl-by-ip
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     service/echo annotated
     ```
@@ -219,7 +219,7 @@ plugin configuration on all requests to that Service, without configuring the sa
     ```bash
     curl -i http://kong.example/echo --resolve kong.example:80:$PROXY_IP
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     HTTP/1.1 200 OK
     Content-Type: text/plain; charset=UTF-8

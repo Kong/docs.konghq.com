@@ -22,7 +22,7 @@ spec:
   controller: ingress-controllers.konghq.com/kong
 " | kubectl apply -f -
 ```
-Output is similar to:
+The results should look like this:
 ```text
 ingressclass.networking.k8s.io/kong configured
 ```
@@ -58,7 +58,7 @@ spec:
     protocol: HTTP
 " | kubectl apply -f -
 ```
-Output is similar to:
+:
 ```text
 gatewayclass.gateway.networking.k8s.io/kong created
 gateway.gateway.networking.k8s.io/kong created
@@ -70,7 +70,7 @@ its status:
 ```bash
 kubectl get gateway kong
 ```
-Output is similar to:
+The results should look like this:
 ```text
 NAME   CLASS   ADDRESS        READY   AGE
 kong   kong    203.0.113.42   True    4m46s

@@ -53,7 +53,7 @@ match that resource's routing rules.
     plugin: response-transformer
     ' | kubectl apply -f -
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     kongplugin.configuration.konghq.com/add-header-route created
     ```
@@ -75,7 +75,7 @@ kubectl annotate httproute lemon konghq.com/plugins=add-header-route
 {% endcapture %}
 {{ the_code | indent }}
 
-    Output is similar to:
+    The results should look like this:
 
     {% capture the_code %}
 {% navtabs codeblock %}
@@ -100,7 +100,7 @@ httproute.gateway.networking.k8s.io/lemon annotated
        ```bash
        curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP | grep x-added-route
        ```
-       Output is similar to:
+       The results should look like this:
        ```text
        x-added-route: demo
        ```
@@ -110,7 +110,7 @@ httproute.gateway.networking.k8s.io/lemon annotated
        ```bash
         curl -si http://kong.example/lime --resolve kong.example:80:$PROXY_IP | grep x-added-route | wc -l
         ```
-        Output is similar to:
+        The results should look like this:
         ```text
         0
         ```
@@ -137,7 +137,7 @@ routing rule that uses that Service as a backend.
     plugin: response-transformer
     ' | kubectl apply -f -
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     kongplugin.configuration.konghq.com/add-header-service created
     ```
@@ -147,7 +147,7 @@ routing rule that uses that Service as a backend.
     ```bash
     kubectl annotate service echo konghq.com/plugins=add-header-service
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     service/echo annotated
     ```
@@ -158,7 +158,7 @@ routing rule that uses that Service as a backend.
        ```bash
        curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP | grep x-added-
        ```
-       Output is similar to:
+       The results should look like this:
        ```text
        x-added-route: demo
        ```
@@ -168,7 +168,7 @@ routing rule that uses that Service as a backend.
        ```bash
         curl -si http://kong.example/lime --resolve kong.example:80:$PROXY_IP | grep x-added-
         ```
-        Output is similar to:
+        The results should look like this:
         ```text
         x-added-service: demo
         ```
@@ -193,7 +193,7 @@ kubectl annotate httproute lemon konghq.com/plugins-
 {% endcapture %}
 {{ the_code | indent }}
 
-    Output is similar to:
+    The results should look like this:
 
     {% capture the_code %}
 {% navtabs codeblock %}
@@ -216,7 +216,7 @@ httproute.gateway.networking.k8s.io/lemon annotated
     ```bash
     curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP | grep x-added-
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     x-added-service: demo
     ```
@@ -251,7 +251,7 @@ require a cluster-scoped KongClusterPlugin instead of a namespaced KongPlugin.
       key_in_query: false
     " | kubectl apply -f -
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     kongclusterplugin.configuration.konghq.com/auth created
     ```
@@ -264,7 +264,7 @@ require a cluster-scoped KongClusterPlugin instead of a namespaced KongPlugin.
     ```bash
     curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     HTTP/1.1 401 Unauthorized
     Date: Fri, 09 Dec 2022 20:10:11 GMT
@@ -295,7 +295,7 @@ require a cluster-scoped KongClusterPlugin instead of a namespaced KongPlugin.
     ```bash
     curl -sI http://kong.example/lemon --resolve kong.example:80:$PROXY_IP -H 'apikey: consumer-1'
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     HTTP/1.1 200 OK
     Content-Type: text/html; charset=utf-8
@@ -346,7 +346,7 @@ multiple criteria, such as requests made by a consumer for a specific route.
    ' | kubectl apply -f -
     ```
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     kongplugin.configuration.konghq.com/add-header-consumer created
     kongplugin.configuration.konghq.com/add-header-multi created
@@ -356,7 +356,7 @@ multiple criteria, such as requests made by a consumer for a specific route.
     ```bash
     kubectl annotate kongconsumer consumer-1 konghq.com/plugins=add-header-consumer
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     kongconsumer.configuration.konghq.com/consumer-1 annotated
     ```
@@ -365,7 +365,7 @@ multiple criteria, such as requests made by a consumer for a specific route.
     ```bash
     curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP -H 'apikey: consumer-1' | grep x-added
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     x-added-consumer: demo
     ```
@@ -396,7 +396,7 @@ kubectl annotate httproute lemon konghq.com/plugins=add-header-multi
 {% endcapture %}
 {{ the_code | indent }}
 
-    Output is similar to:
+    The results should look like this:
 
     {% capture the_code %}
 {% navtabs codeblock %}
@@ -420,7 +420,7 @@ httproute.gateway.networking.k8s.io/lemon annotated
     ```bash
     kubectl annotate kongconsumer consumer-1 konghq.com/plugins=add-header-consumer,add-header-multi --overwrite
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     kongconsumer.configuration.konghq.com/consumer-1 annotated
     ```
@@ -430,7 +430,7 @@ httproute.gateway.networking.k8s.io/lemon annotated
     echo "lemon\!"; curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP -H 'apikey: consumer-1' | grep x-added
     echo "lime\!"; curl -si http://kong.example/lime --resolve kong.example:80:$PROXY_IP -H 'apikey: consumer-1' | grep x-added
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     lemon!
     x-added-multi: demo
@@ -442,7 +442,7 @@ httproute.gateway.networking.k8s.io/lemon annotated
     ```bash
     curl -si http://kong.example/lemon --resolve kong.example:80:$PROXY_IP | grep x-added
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     x-added-service:  demo
     ```
@@ -482,7 +482,7 @@ them without annotating the consumers individually.
     plugin: response-transformer-advanced
     ' | kubectl apply -f -
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     kongplugin.configuration.konghq.com/add-header-group-golden created
     ```
@@ -500,7 +500,7 @@ them without annotating the consumers individually.
         konghq.com/plugins: add-header-group-golden
     ' | kubectl apply -f -
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
      kongconsumergroup.configuration.konghq.com/golden created
     ```
@@ -525,7 +525,7 @@ them without annotating the consumers individually.
     	"value":["golden"],
     }]'
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     kongconsumer.configuration.konghq.com/consumer-1 patched
     kongconsumer.configuration.konghq.com/consumer-2 patched
@@ -536,7 +536,7 @@ them without annotating the consumers individually.
     curl -si http://kong.example/lime --resolve kong.example:80:$PROXY_IP -H 'apikey: consumer-1' | grep x-added
     ```
 
-    Output is similar to:
+    The results should look like this:
     ```text
     x-added-consumer-group: demo
     x-added-consumer: demo
@@ -546,7 +546,7 @@ them without annotating the consumers individually.
     curl -si http://kong.example/lime --resolve kong.example:80:$PROXY_IP -H 'apikey: consumer-2' | grep x-added
     ```
     
-    Output is similar to:
+    The results should look like this:
     ```text
     x-added-consumer-group:  demo
     x-added-service:  demo
@@ -558,7 +558,7 @@ them without annotating the consumers individually.
     curl -si http://kong.example/lime --resolve kong.example:80:$PROXY_IP -H 'apikey: consumer-1' | grep x-added
     ```
 
-    Output is similar to:
+    The results should look like this:
     ```text
     kongconsumer.configuration.konghq.com/consumer-1 annotated
     x-added-consumer-group:  demo

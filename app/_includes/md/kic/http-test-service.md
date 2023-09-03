@@ -70,7 +70,7 @@ spec:
         resources: {}
 " | kubectl apply -f -
 ```
-Output is similar to:
+The results should look like this:
 ```text
 service/echo created
 deployment.apps/echo created

@@ -5,7 +5,7 @@
       --from-literal=kongCredType=key-auth  \
       --from-literal=key={{ key }}
     ```
-    Output is similar to:
+    The results should look like this:
     ```text
     secret/{{ credName }} created
    ```

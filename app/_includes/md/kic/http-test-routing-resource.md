@@ -1,4 +1,4 @@
-{%- assign path = include.path | default: '/echo' %}
+  {%- assign path = include.path | default: '/echo' %}
 {%- assign hostname = include.hostname | default: 'kong.example' %}
 {%- assign name = include.name | default: 'echo' %}
 {%- assign service = include.service | default: 'echo' %}
@@ -27,7 +27,7 @@ spec:
               number: 1027
 " | kubectl apply -f -
 ```
-Output is similar to:
+The results should look like this:
 ```text
 ingress.networking.k8s.io/{{ name }} created
 ```
@@ -57,10 +57,9 @@ spec:
       port: 1027
 " | kubectl apply -f -
 ```
-Output is similar to:
+The results should look like this:
 ```text
 httproute.gateway.networking.k8s.io/{{ name }} created
 ```
 {% endnavtab %}
 {% endnavtabs %}
-
