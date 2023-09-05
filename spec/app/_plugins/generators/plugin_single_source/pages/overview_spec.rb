@@ -15,8 +15,8 @@ RSpec.describe PluginSingleSource::Pages::Overview do
 
     context 'when there is a specific folder for the version' do
       let(:is_latest) { false }
-      let(:version) { '2.5.x' }
-      let(:source) { '_2.2.x' }
+      let(:version) { '2.6.x' }
+      let(:source) { '_2.6.x' }
       let(:source_path) { File.expand_path("_hub/kong-inc/jwt-signer/#{source}/", site.source) }
 
       it_behaves_like 'returns the content of _index.md'
@@ -55,15 +55,15 @@ RSpec.describe PluginSingleSource::Pages::Overview do
 
     context 'when it is not the latest version of the plugin' do
       let(:is_latest) { false }
-      let(:version) { '2.5.x' }
-      let(:source) { '_2.2.x' }
+      let(:version) { '2.6.x' }
+      let(:source) { '_2.6.x' }
       let(:source_path) { File.expand_path("_hub/kong-inc/jwt-signer/#{source}/", site.source) }
 
       it 'returns a hash containing the data needed to render the templates' do
         expect(subject.data).to include({
           'canonical_url' => '/hub/kong-inc/jwt-signer/',
-          'source_file' => '_hub/kong-inc/jwt-signer/_2.2.x/_index.md',
-          'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/',
+          'source_file' => '_hub/kong-inc/jwt-signer/_2.6.x/_index.md',
+          'permalink' => '/hub/kong-inc/jwt-signer/2.6.x/',
           'ssg_hub' => false,
           'title' => 'Kong JWT Signer'
         })

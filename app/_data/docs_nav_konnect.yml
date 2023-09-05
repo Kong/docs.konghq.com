@@ -134,6 +134,8 @@
       items:
         - text: Manage Developer Access
           url: /dev-portal/access-and-approval/manage-devs/
+        - text: Manage Developer Teams
+          url: /dev-portal/access-and-approval/manage-teams/
         - text: Manage Application Registration Requests
           url: /dev-portal/access-and-approval/manage-app-reg-requests/
         - text: Manage Application Registrations
@@ -274,8 +276,6 @@
         - text: API Documentation
           url: https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/
           absolute_url: true
-        - text: Portal RBAC Guide
-          url: /api/portal-auth/portal-rbac-guide/
     - text: Runtime Configuration API
       items:
         - text: Overview

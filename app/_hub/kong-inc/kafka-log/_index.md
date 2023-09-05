@@ -78,8 +78,6 @@ installed on your local machine.
 
 This plugin uses the [lua-resty-kafka](https://github.com/kong/lua-resty-kafka) client.
 
-{% if_plugin_version gte:2.6.x %}
-
 When encoding request bodies, several things happen:
 
 * For requests with a content-type header of `application/x-www-form-urlencoded`, `multipart/form-data`,
@@ -132,8 +130,6 @@ This plugin supports the following authentication mechanisms:
   `config.authentication.tokenauth` setting to `true`.
 
   [Read more on how to create, renew, and revoke delegation tokens.](https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_delegation.html#authentication-using-delegation-tokens)
-
-{% endif_plugin_version %}
 
 {% if_plugin_version gte:3.4.x %}
 ## Custom Fields by Lua

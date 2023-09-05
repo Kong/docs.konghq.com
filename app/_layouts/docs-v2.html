@@ -13,21 +13,18 @@ id: documentation
     <header class="page-header page-header-doc">
       <div class="page-header-product-version">
         <div class="edition">
-          {% if page.edition == 'enterprise' %}{{site.ee_product_name}}
-          {% elsif page.edition == 'konnect' %}{{site.konnect_saas}}
+          {% if page.edition == 'konnect' %}{{site.konnect_saas}}
           {% elsif page.edition == 'mesh' %}{{site.mesh_product_name}}
           {% elsif page.edition == 'deck' %}decK
           {% elsif page.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
-          {% elsif page.edition == 'gateway-oss' %}{{site.ce_product_name}}
           {% elsif page.edition == 'gateway' %}Kong Gateway
-          {% elsif page.edition == 'getting-started-guide' %}Getting Started with Kong Gateway
           {% elsif page.edition == 'contributing' %}Contribution guidelines
           {% endif %}
         </div>
         {% unless page.no_version == true %}
         <div class="version">
           {{page.kong_version}}
-          {% if page.kong_version == page.kong_latest.release and page.edition != 'gateway-oss' and page.edition != 'enterprise' and page.edition != 'getting-started-guide' %}
+          {% if page.kong_version == page.kong_latest.release %}
             <span>(latest)</span>
           {% endif %}
         </div>
@@ -84,19 +81,15 @@ id: documentation
 
       <div class="page-content">
         <div class="content show-anchor-links">
-          {% if page.edition == 'gateway-oss' or page.edition == 'enterprise' or page.edition == 'getting-started-guide' %}
-            <blockquote class="important">
-                You are browsing documentation for an outdated version. The <a href="/gateway/">latest {{site.base_gateway}} documentation </a> is
-                now available as a combined doc set for Kong Gateway Enterprise and open-source (OSS).
-            </blockquote>
-          {% endif %}
           {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
-            {% unless page.edition == 'gateway-oss' or page.edition == 'enterprise' or page.edition == 'getting-started-guide' %}
               <blockquote class="important">
-                You are browsing documentation for an outdated version. See the
-                <a href="{{ page.canonical_url }}">latest documentation here</a>.
+                {% if page.edition == 'mesh' and page.version_data['releaseDate'] == nil %}
+                You are browsing documentation of an unreleased version.
+                {% else %}
+                You are browsing documentation for an outdated version.
+                {% endif %}
+                See the <a href="{{ page.canonical_url }}">latest documentation here</a>.
               </blockquote>
-            {% endunless %}
           {% endif %}
 
           <h1 tabindex="-1" id="main" class="page-content-title"
@@ -151,3 +144,23 @@ id: documentation
   </div>
 
   {% include_cached image-modal.html disable_image_expand=page.disable_image_expand %}
+
+
+{% if page.konnect_cta_card %}
+  <div class="modal closed" id="modal" role="dialog" aria-hidden="true" aria-labelledby="title" aria-describedby="descr:ption">
+    <div class="konnect-cta-card">
+      <div class="title">
+        Try Konnect for Free
+        <a href="#" class="cta-card-close modal-close" id="modal-close">
+          <img src="/assets/images/icons/documentation/close.svg" alt="close cta icon"/>
+        </a>
+      </div>
+      <div class="description">Fast setup, reduced administration, all the latest features, and lots more.</div>
+      <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=right-nav-card" class="button" target="_blank">
+        Try it for Free
+      </a>
+    </div>
+  </div>
+  <div id="modal-open" class="modal-open"></div>
+  <div class="modal-overlay closed" id="modal-overlay"></div>
+{% endif %}

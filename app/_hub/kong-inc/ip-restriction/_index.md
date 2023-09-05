@@ -6,8 +6,6 @@ The plugin supports IPv4 and IPv6 addresses.
 
 ## Usage
 
-{% if_plugin_version gte:2.1.x %}
-
 {% if_plugin_version lte:2.8.x %}
 
 {:.note}
@@ -25,12 +23,11 @@ curl -X POST http://kong:8001/services/{service}/plugins \
   --data "config.allow=127.0.0.0/24" \
   --data "config.deny=127.0.0.1"
 ```
-{% endif_plugin_version %}
 
-{% if_plugin_version eq:2.0.x %}
+### IP Addresses
 
-Note that the `whitelist` and `blacklist` models are mutually exclusive in their usage, as they provide complimentary approaches. That is, you cannot configure the plugin with both `whitelist` and `blacklist` configurations. A `whitelist` provides a positive security model, in which the configured CIDR ranges are allowed access to the resource, and all others are inherently rejected. In contrast, a `blacklist` configuration provides a negative security model, in which certain CIDRS are explicitly denied access to the resource (and all others are inherently allowed).
+It is important to understand how the IP address is determined. The IP address is determined by the request header sent to Kong from downstream. In most cases, the header has a name of `X-Real-IP` or `X-Forwarded-For`.
 
-{% endif_plugin_version %}
+By default, Kong uses the header name `X-Real-IP`. If a different header name is required, it needs to be defined using the [real_ip_header](/gateway/latest/reference/configuration/#real_ip_header) Nginx property. Depending on the environmental network setup, the [trusted_ips](/gateway/latest/reference/configuration/#trusted_ips) Nginx property may also need to be configured to include the load balancer IP address.
 
 ---

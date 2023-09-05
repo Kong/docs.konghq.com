@@ -109,7 +109,6 @@ curl -XPOST localhost:8000/v1/messages/Kong2.0 -d '{"name":"kong2.0"}'
 
 All syntax defined in [Path template syntax](https://github.com/googleapis/googleapis/blob/fc37c47e70b83c1cc5cc1616c9a307c4303fe789/google/api/http.proto#L225) is supported.
 
-{% if_plugin_version gte:2.6.x %}
 Object fields not mentioned in the endpoint paths as in `/messages/{name}` can be passed as URL arguments, for example `/v1/messages?name=Kong`.  Structured arguments are supported.
 
  For example, a request like the following:
@@ -129,7 +128,5 @@ is interpreted like the following JSON object:
 ```
 
 Similarly, fields of the type `google.protobuf.Timestamp` are converted to and from strings in ISO8601 format.
-
-{% endif_plugin_version %}
 
 Currently only unary requests are supported; streaming requests are not supported.

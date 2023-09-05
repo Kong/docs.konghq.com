@@ -67,7 +67,7 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
     context 'when it is not the latest version of the plugin' do
       let(:is_latest) { false }
       let(:version) { '2.5.x' }
-      let(:source) { '_2.2.x' }
+      let(:source) { '_2.6.x' }
 
       it 'includes the attributes defined in the frontmatter' do
         expect(subject).to include(
@@ -96,7 +96,7 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
 
       it 'includes the attributes defined in _metadata.yml' do
         expect(subject)
-          .to include(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_2.2.x/_metadata.yml', site.source))))
+          .to include(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_2.6.x/_metadata.yml', site.source))))
       end
 
       it_behaves_like 'includes the hub_examples'

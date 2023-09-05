@@ -375,6 +375,7 @@ unregister
 unregistering
 unshorten
 unshortened
+unvetted
 untyped
 updated_at
 upsert

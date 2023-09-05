@@ -130,8 +130,6 @@ field/parameter      | description
 
 ### Make a Request with the Key
 
-{% if_plugin_version gte:2.3.x %}
-
 Make a request with the key as a query string parameter:
 
 ```bash
@@ -150,8 +148,6 @@ curl http://localhost:8000/{proxy path} \
 
 **Note:** The `key_in_header` plugin parameter must be set to `true` (default).
 
-{% endif_plugin_version %}
-
 Make a request with the key in the body:
 
 ```bash
@@ -167,8 +163,6 @@ gRPC clients are supported too:
 grpcurl -H 'apikey: {some_key}' ...
 ```
 
-{% if_plugin_version gte:2.3.x %}
-
 ### About API Key Locations in a Request
 
 {% include /md/plugins-hub/api-key-locations.md %}
@@ -183,8 +177,6 @@ curl -X POST http://localhost:8001/routes/{NAME_OR_ID}/plugins \
     --data "config.key_names=apikey" \
     --data "config.key_in_query=false"
 ```
-
-{% endif_plugin_version %}
 
 ### Delete a Key
 
