@@ -2603,7 +2603,7 @@ openid-connect
 
 ### Features
 #### Plugins
-* **AWS-Lambda**: the AWS-Lambda plugin has been refactored by using lua-resty-aws as an underlying AWS library. The refactor simplifies the AWS-Lambda plugin code base and adding support for multiple IAM authenticating scenarios.
+* [AWS-Lambda](/hub/kong-inc/aws-lambda/): the AWS-Lambda plugin has been refactored by using lua-resty-aws as an underlying AWS library. The refactor simplifies the AWS-Lambda plugin code base and adding support for multiple IAM authenticating scenarios.
 
 ### Fixes 
 #### Enterprise
@@ -2635,9 +2635,11 @@ openid-connect
 #### Plugins
 * Fixed an issue with the Oauth 2.0 Introspection plugin where a request with JSON that is not a table failed.
 * Fixed an issue where the slow startup of the Go plugin server caused a deadlock.
+
 ### Dependencies
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
+
 ## 2.8.4.1
 
 **Release Date** 2023/05/25
