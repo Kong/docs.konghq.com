@@ -1,5 +1,6 @@
 ---
 nav_title: Configure the plugin with Redis
+title: Configure the plugin with Redis
 ---
 
 ## Configure the plugin with Redis

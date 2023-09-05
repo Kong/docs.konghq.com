@@ -1,5 +1,6 @@
 ---
 nav_title: Using templates as values
+title: Using templates as values
 ---
 
 ## Using templates as values

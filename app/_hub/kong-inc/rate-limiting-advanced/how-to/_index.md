@@ -1,8 +1,7 @@
 ---
 nav_title: How to create rate limiting tiers
+title: How to create rate limiting tiers
 ---
-
-
 
 With consumer groups, you can define rate limiting tiers and apply them to subsets of application consumers.
 

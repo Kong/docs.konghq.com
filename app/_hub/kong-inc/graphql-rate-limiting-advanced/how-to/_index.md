@@ -1,5 +1,6 @@
 ---
 nav_title: Getting Started with GraphQL and Kong Gateway
+title: Getting Started with GraphQL and Kong Gateway
 ---
 
 ## About GraphQL with Kong Gateway

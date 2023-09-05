@@ -1,5 +1,6 @@
 ---
 nav_title: Adding attributes to HTTP requests with Kong Gateway
+title: Adding attributes to HTTP requests with Kong Gateway
 ---
 
 It's very common to have an HTTP service which accepts requests expecting a JSON document in the body.

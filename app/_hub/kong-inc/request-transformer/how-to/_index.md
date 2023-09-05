@@ -1,5 +1,6 @@
 ---
 nav_title: Examples of different transforms
+title: Examples of different transforms
 --- 
 
 {:.note}

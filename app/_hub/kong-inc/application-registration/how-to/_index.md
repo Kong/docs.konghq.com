@@ -1,5 +1,6 @@
 ---
 nav_title: Getting started with app registration
+title: Getting started with app registration
 ---
 
 ## Using the plugin

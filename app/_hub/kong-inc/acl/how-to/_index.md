@@ -1,5 +1,6 @@
 ---
 nav_title: Setting up and using ACLs
+title: Setting up and using ACLs
 ---
 
 ## Setting up and using ACLs
