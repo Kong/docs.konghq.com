@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 Propagate distributed tracing spans and report low-level spans to a OTLP-compatible server.

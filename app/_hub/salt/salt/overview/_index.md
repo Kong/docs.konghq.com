@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 The Salt Security Kong deployment is used to capture a mirror of application traffic and send it to the Salt Security Service for analysis.

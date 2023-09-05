@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 This plugin provides a reverse GraphQL proxy cache implementation for {{site.base_gateway}}. 

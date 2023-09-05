@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 The DeGraphQL plugin transforms a GraphQL upstream into a traditional endpoint 

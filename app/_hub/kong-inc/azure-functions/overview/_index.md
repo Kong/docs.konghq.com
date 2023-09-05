@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 This plugin invokes [Azure Functions](https://azure.microsoft.com/en-us/services/functions/).

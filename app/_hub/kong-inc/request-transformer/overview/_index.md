@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 The Request Transformer plugin for Kong allows simple transformation of requests

@@ -51,7 +51,7 @@ module PluginSingleSource
 
       def sidenav_items # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
         items = [
-          { 'title' => 'Overview',
+          { 'title' => 'Introduction',
             'items' => items_for(@release.overviews),
             'icon' => '/assets/images/icons/documentation/hub/icn-overview.svg' }
         ]

@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 The Kong JWE Decrypt plugin makes it possible to decrypt an inbound token (JWE) in a request.

@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 The JWT plugin lets you verify requests containing HS256 or RS256 signed JSON Web Tokens, 

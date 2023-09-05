@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 The Imperva API Security plugin connects Kong Gateway with the Imperva 

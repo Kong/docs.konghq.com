@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 Use the Bot Detection plugin to protect a service or a route from the most common bots, 

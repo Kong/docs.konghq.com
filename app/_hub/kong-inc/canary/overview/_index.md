@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 The Canary Release plugin lets you reduce the risk of introducing a new software version in 

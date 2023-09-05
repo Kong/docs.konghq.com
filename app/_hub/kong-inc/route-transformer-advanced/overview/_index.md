@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 This plugin transforms routing on the fly in Kong, changing the upstream server, port, or path to hit. 

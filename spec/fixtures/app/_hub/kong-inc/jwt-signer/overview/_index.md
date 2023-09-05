@@ -1,7 +1,7 @@
 ---
 name: Kong JWT Signer
 frontmatter_attr: Metadata defined in frontmatter
-nav_title: Introduction
+nav_title: Overview
 ---
 
 ## Manage key signing

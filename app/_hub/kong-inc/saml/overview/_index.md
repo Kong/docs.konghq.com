@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 Security Assertion Markup Language (SAML) is an open standard for

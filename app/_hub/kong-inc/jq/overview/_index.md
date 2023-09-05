@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 The jq plugin enables arbitrary jq transformations on JSON objects included in API requests or responses.

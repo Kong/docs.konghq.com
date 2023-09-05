@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 The Forward Proxy plugin allows {{site.base_gateway}} to connect to intermediary transparent

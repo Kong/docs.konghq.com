@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 Transform and customize {{site.base_gateway}} response exit messages using Lua functions.

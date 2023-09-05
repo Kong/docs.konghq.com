@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 [This integration guide](https://github.com/tom-smith-okta/okta-api-center/tree/master/gateways/kong){:target="_blank"}{:rel="noopener noreferrer"} describes how to integrate Okta's API Access Management (OAuth as a Service) with Kong API Gateway.

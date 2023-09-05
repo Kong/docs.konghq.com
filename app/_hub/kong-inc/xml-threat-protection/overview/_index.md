@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 Reduce the risk of XML attacks by checking the structure of XML payloads. This

@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 Log request and response data over UDP to [Loggly](https://www.loggly.com).

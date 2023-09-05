@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 HTTP Log plugin lets you send request and response logs to an HTTP server.

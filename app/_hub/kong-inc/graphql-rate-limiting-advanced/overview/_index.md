@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 The GraphQL Rate Limiting Advanced plugin provides rate limiting for GraphQL queries. The

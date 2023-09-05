@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 This plugin integrates Kong with the AppDynamics APM platform so that

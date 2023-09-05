@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 Restrict access to a service or a route by either allowing or denying IP addresses. 

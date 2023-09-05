@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 Add Basic Authentication to a service or a route with username and password protection. 

@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 The Proxy Cache plugin provides a reverse proxy cache implementation for {{site.base_gateway}}. 

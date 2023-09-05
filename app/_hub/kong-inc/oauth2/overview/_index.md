@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 Add an OAuth 2.0 authentication layer with one of the following grant flows:

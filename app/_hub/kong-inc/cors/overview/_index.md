@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 The CORS plugin lets you add cross-origin resource sharing (CORS) to a service or a route.

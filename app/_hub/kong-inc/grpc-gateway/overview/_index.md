@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 The gRPC-Gateway plugin allows you to send JSON requests to a gRPC service. A

@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 This plugin enables mocking virtual API request and response pairs through {{site.base_gateway}}.

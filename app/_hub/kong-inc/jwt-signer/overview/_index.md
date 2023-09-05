@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 The Kong JWT Signer plugin makes it possible to verify, sign, or re-sign

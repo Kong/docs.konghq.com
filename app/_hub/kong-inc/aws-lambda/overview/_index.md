@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 This plugin lets you invoke an [AWS Lambda](https://aws.amazon.com/lambda/) function from {{site.base_gateway}}. 

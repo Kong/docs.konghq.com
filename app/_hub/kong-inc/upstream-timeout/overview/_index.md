@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 Use the Upstream Timeout plugin to configure route-specific timeouts.

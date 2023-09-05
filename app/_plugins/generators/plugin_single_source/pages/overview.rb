@@ -19,7 +19,7 @@ module PluginSingleSource
         [
           { text: category_title, url: category_url },
           { text: breadcrumb_title, url: base_section_url },
-          { text: 'Overview' },
+          { text: 'Introduction' },
           { text: nav_title, url: permalink }
         ]
       end

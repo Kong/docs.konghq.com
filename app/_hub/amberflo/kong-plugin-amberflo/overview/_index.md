@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 This plugin allows you to understand customer [API usage](https://www.amberflo.io/products/metering-cloud) and implement [usage-based price & billing](https://www.amberflo.io/products/billing-cloud) by metering the requests with [Amberflo.io](https://amberflo.io).

@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 Allows operators to specify a maximum size for incoming WebSocket messages.

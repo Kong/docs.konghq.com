@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 Log [metrics](#metrics) for a service or route to a StatsD server.

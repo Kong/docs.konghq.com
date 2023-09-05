@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 The Kong Session plugin can be used to manage browser sessions for APIs proxied

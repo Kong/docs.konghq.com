@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 This plugin allows for secure communication with AWS Lambdas. It signs requests with AWS SIGV4 and temporary credentials obtained from sts.amazonaws.com using an OAuth token. 

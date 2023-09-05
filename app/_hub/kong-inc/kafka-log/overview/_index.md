@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 Publish request and response logs to an [Apache Kafka](https://kafka.apache.org/) topic.

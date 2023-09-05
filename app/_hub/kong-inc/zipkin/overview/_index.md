@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 Propagate Zipkin distributed tracing spans and report spans to a Zipkin server.

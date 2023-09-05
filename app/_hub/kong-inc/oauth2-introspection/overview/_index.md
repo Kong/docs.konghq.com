@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 Validate access tokens sent by developers using a third-party OAuth 2.0

@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 Add LDAP Bind Authentication to a route with username and password protection. The plugin

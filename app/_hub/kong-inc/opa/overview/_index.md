@@ -1,5 +1,5 @@
 ---
-nav_title: Introduction
+nav_title: Overview
 ---
 
 Forward requests to Open Policy Agent and process the requests only if the
