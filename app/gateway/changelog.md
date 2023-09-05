@@ -2601,6 +2601,15 @@ openid-connect
 ## 2.8.4.3 
 **Release Date** 2023/09/xx
 
+### Breaking changes and deprecations
+
+* **Ubuntu 18.04 support removed**: Support for running Kong Gateway on Ubuntu 18.04 ("Bionic") is now deprecated,
+as [Standard Support for Ubuntu 18.04 has ended as of June 2023](https://wiki.ubuntu.com/Releases).
+Starting with Kong Gateway 2.8.4.3, Kong is not building new Ubuntu 18.04
+images or packages, and Kong will not test package installation on Ubuntu 18.04.
+
+* Amazon Linux 2022 artifacts are renamed to Amazon Linux 2023, based on AWS's own renaming.
+
 ### Features
 #### Plugins
 * [AWS-Lambda](/hub/kong-inc/aws-lambda/): the AWS-Lambda plugin has been refactored by using lua-resty-aws as an underlying AWS library. The refactor simplifies the AWS-Lambda plugin code base and adding support for multiple IAM authenticating scenarios.
