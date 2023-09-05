@@ -130,8 +130,8 @@ RSpec.describe PluginSingleSource::Pages::Overview do
       expect(subject.breadcrumbs).to eq([
         { text: 'Authentication', url: '/hub/?category=authentication' },
         { text: 'Kong JWT Signer', url: '/hub/kong-inc/jwt-signer/' },
-        { text: 'Overview' },
-        { text: 'Introduction', url: '/hub/kong-inc/jwt-signer/' },
+        { text: 'Introduction' },
+        { text: 'Overview', url: '/hub/kong-inc/jwt-signer/' },
       ])
     end
 
@@ -142,7 +142,7 @@ RSpec.describe PluginSingleSource::Pages::Overview do
         expect(subject.breadcrumbs).to eq([
           { text: 'Authentication', url: '/hub/?category=authentication' },
           { text: 'Kong JWT Signer', url: '/hub/kong-inc/jwt-signer/' },
-          { text: 'Overview' },
+          { text: 'Introduction' },
           { text: 'Nested file', url: '/hub/kong-inc/jwt-signer/nested/' },
         ])
       end
@@ -155,7 +155,7 @@ RSpec.describe PluginSingleSource::Pages::Overview do
           expect(subject.breadcrumbs).to eq([
             { text: 'Authentication', url: '/hub/?category=authentication' },
             { text: 'Kong JWT Signer', url: '/hub/kong-inc/jwt-signer/2.7.x/' },
-            { text: 'Overview' },
+            { text: 'Introduction' },
             { text: 'Nested file', url: '/hub/kong-inc/jwt-signer/2.7.x/nested/' },
           ])
         end
