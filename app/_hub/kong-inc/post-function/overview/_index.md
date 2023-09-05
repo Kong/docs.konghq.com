@@ -1,11 +1,15 @@
-The Pre-function plugin (otherwise known as Kong Functions, Pre-Plugin) lets
-you dynamically run Lua code from Kong, before other plugins in each phase.
+---
+nav_title: Overview
+---
+
+The Post-function plugin (otherwise known as Kong Functions, Post-Plugin) lets
+you dynamically run Lua code from Kong, after other plugins in each phase.
 
 The plugin can be applied to individual services, routes, or globally.
 
 This plugin is part of a pair of serverless plugins. 
-If you need to run Lua code _after_ other plugins in each phase, see the 
-[Post-function](/hub/kong-inc/post-function/) plugin.
+If you need to run Lua code _before_ other plugins in each phase, use the 
+[Pre-function](/hub/kong-inc/pre-function/) plugin.
 
 {:.important}
 > **Warning:** The Pre-function and Post-function serverless plugins
@@ -13,7 +17,6 @@ If you need to run Lua code _after_ other plugins in each phase, see the
   If your organization has security concerns about this, 
   [disable the plugins](/gateway/latest/reference/configuration/#untrusted_lua)
   in your `kong.conf` file.
-
 
 ## Sandboxing
 
@@ -45,10 +48,10 @@ using a [minifier][lua-minifier].
 
 [lua-minifier]: https://mothereff.in/lua-minifier
 
-## Get started with Pre-functions
+## Get started with Post-functions
 
-* [Configuration reference](/hub/kong-inc/pre-function/configuration/)
-* [Basic configuration example](/hub/kong-inc/pre-function/how-to/basic-example/)
-* [Get started with pre-functions: filter requests by headers](/hub/kong-inc/pre-function/how-to/)
-* [Running functions in multiple phases](/hub/kong-inc/pre-function/how-to/phases/)
+* [Configuration reference](/hub/kong-inc/post-function/configuration/)
+* [Basic configuration example](/hub/kong-inc/post-function/how-to/basic-example/)
+* [Get started with post-functions: changing request headers](/hub/kong-inc/post-function/how-to/)
+* [Running functions in multiple phases](/hub/kong-inc/post-function/how-to/phases/)
 
