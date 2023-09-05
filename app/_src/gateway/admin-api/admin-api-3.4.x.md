@@ -824,7 +824,6 @@ filters_data:
 
 
 
-
 ---
 
 {:.note .no-icon }
@@ -5776,7 +5775,7 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
-{% if_version gte:3.4.x %}
+
 ## Filter Chain Object
 
 A [filter chain] is the database entity representing one or more WebAssembly
@@ -6167,7 +6166,7 @@ HTTP 200 OK
 {{ page.filters_data }}
 }
 ```
-{% endif_version %}
+
 
 ---
 

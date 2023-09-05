@@ -19,8 +19,8 @@ The compatibilities of router flavors between different {{site.kic_product_name}
 | Kong 3.x  `traditional_compatible` | <i class="fa fa-check"></i>(1) | <i class="fa fa-check"></i>(1) | <i class="fa fa-check"></i>(1) | <i class="fa fa-check"></i>(1) | 
 | Kong 3.x  `expressions`            |  <i class="fa fa-times"></i>   |  <i class="fa fa-times"></i>   |  <i class="fa fa-times"></i>   | <i class="fa fa-times"></i>(2) |
 
-(1) Most use cases are supported. The incompatible cases comes from the difference of regular expression standards in differen routers:
-`traditional` router accepts [PCRE 2][pcre-2-regex] regular expressions, but `traditional_compatible` and `expressions` routers accepts regulart expression in [Rust][rust-regex].
+(1) Most use cases are supported. The incompatible cases comes from the difference of regular expression standards in different routers:
+`traditional` router accepts [PCRE 2][pcre-2-regex] regular expressions, but `traditional_compatible` and `expressions` routers accepts regular expression in [Rust][rust-regex].
 The most significant difference is that Regular expressions with a backslash (`\`) followed by a non-escaped character (for example, `\j` or `\/`) in matches of paths or headers
 are accepted in `traditional` router but not accepted when {{site.base_gateway}} 3.x is configured to use the `traditional_compatible` router.
 
