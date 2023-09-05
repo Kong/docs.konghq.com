@@ -99,6 +99,11 @@ defaults:
       layout: "docs-v2"
 
   - scope:
+      path: "assets"
+    values:
+      layout: null
+
+  - scope:
       path: "deck"
     values:
       layout: "docs-v2"
