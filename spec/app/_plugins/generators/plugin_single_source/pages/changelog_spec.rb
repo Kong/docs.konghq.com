@@ -39,7 +39,7 @@ RSpec.describe PluginSingleSource::Pages::Changelog do
 
       it 'returns a hash containing the data needed to render the templates' do
         expect(subject.data).to include({
-          'canonical_url' => nil,
+          'canonical_url' => '/hub/kong-inc/jwt-signer/changelog/',
           'source_file' => '_hub/kong-inc/jwt-signer/_changelog.md',
           'permalink' => '/hub/kong-inc/jwt-signer/changelog/',
           'ssg_hub' => false,

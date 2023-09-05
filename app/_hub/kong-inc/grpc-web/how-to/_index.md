@@ -1,5 +1,6 @@
 ---
 nav_title: Getting started with gRPC-Web
+title: Getting started with gRPC-Web
 ---
 
 

@@ -1,5 +1,6 @@
 ---
 nav_title: Getting started with gRPC-Gateway
+title: Getting started with gRPC-Gateway
 ---
 
 This plugin should be enabled on a Kong route that serves the `HTTP(S)` protocol
