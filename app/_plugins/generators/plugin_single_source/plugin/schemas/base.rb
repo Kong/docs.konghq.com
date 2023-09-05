@@ -88,10 +88,10 @@ module PluginSingleSource
         end
 
         def enable_on_service?
-          field = fields.detect { |f| f.key?('service.ne') }
+          field = fields.detect { |f| f.key?('service') }
           return true unless field
 
-          !field_no_def?('service.ne', field, NO_SERVICE)
+          !field_no_def?('service', field, NO_SERVICE)
         end
 
         def enable_on_route?
