@@ -585,7 +585,6 @@ items:
     items:
       - text: Overview
         url: /admin-api/
-        src: admin-api/admin-api-3.4.x
       - text: Information Routes
         url: /admin-api/#information-routes
       - text: Health Routes
