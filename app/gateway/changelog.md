@@ -754,7 +754,7 @@ This should be a 400 because the configuration is invalid.
 it does not look up the secret correctly.
 
 ## 3.2.2.4
-**Release Date** 2023/08/21
+**Release Date** 2023/09/15
 
 ### Breaking changes and deprecations
 
