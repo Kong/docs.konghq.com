@@ -6,23 +6,6 @@ The HTTP Log plugin lets you send request and response logs to an HTTP server.
 
 It also supports stream data (TCP, TLS, and UDP).
 
-## Log format
-
-{% if_plugin_version lte:3.2.x %}
-{:.note}
-> **Note:** If the `queue_size` argument > 1, a request is logged as an array of JSON objects.
-{% endif_plugin_version %}
-{% if_plugin_version gte:3.3.x %}
-{:.note}
-> **Note:** If the `max_batch_size` argument > 1, a request is logged as an array of JSON objects.
-{% endif_plugin_version %}
-
-{% include /md/plugins-hub/log-format.md %}
-
-### JSON object descriptions
-
-{% include /md/plugins-hub/json-object-log.md %}
-
 {% if_plugin_version gte:3.3.x %}
 ## Queueing
 
@@ -36,52 +19,9 @@ All plugin instances that have the same values for these parameters
 share one queue.
 {% endif_plugin_version %}
 
-{% if_plugin_version gte:3.0.x %}
-
-## Custom Headers
-
-The log server that receives these messages might require extra headers, such as for authorization purposes.
-
-```yaml
-...
-  - name: http-log
-    config:
-      headers:
-        Authorization: "Bearer <token>"
-...
-```
-
-{% endif_plugin_version %}
-
-{% if_plugin_version lte:2.8.x %}
-
-## Custom Headers
-
-The log server that receives these messages might require extra headers, such as for authorization purposes.
-
-```yaml
-...
-  - name: http-log
-    config:
-      headers:
-        Authorization: 
-          - "Bearer <token>"
-...
-```
-
-{% endif_plugin_version %}
-
 ## Kong process errors
 
 {% include /md/plugins-hub/kong-process-errors.md %}
-
-{% if_plugin_version gte:2.4.x %}
-
-## Custom fields by Lua
-
-{% include /md/plugins-hub/log_custom_fields_by_lua.md %}
-
-{% endif_plugin_version %}
 
 ## Get started with the HTTP Log plugin
 * [Configuration reference](/hub/kong-inc/http-log/configuration/)
