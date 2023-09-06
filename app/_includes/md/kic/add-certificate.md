@@ -22,7 +22,7 @@ openssl req -subj '/CN={{ include.hostname }}' -new -newkey rsa:2048 -sha256 \
 openssl req -subj '/CN={{ include.hostname }}' -new -newkey rsa:2048 -sha256 \
   -days 365 -nodes -x509 -keyout server.key -out server.crt \
   -extensions EXT -config <( \
-   printf "[dn]\nCN=kong.example\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:{{ include.hostname }}\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth") 2>/dev/null;
+   printf "[dn]\nCN={{ include.hostname }}\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:{{ include.hostname }}\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth") 2>/dev/null;
   openssl x509 -in server.crt -subject -noout
 ```
 {% endnavtab %}
