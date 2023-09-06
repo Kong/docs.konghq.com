@@ -12,89 +12,13 @@ Kong nodes and enforce a slightly different rate limiting policy.
 This guide walks through the steps of using Redis for rate limiting in a
 multi-node Kong deployment.
 
-## Installation
+{% include_cached /md/kic/installation.md kong_version=page.kong_version %}
 
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/)
-documentation to install the {{site.kic_product_name}} on your Kubernetes
-cluster.
+{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
 
-## Testing Connectivity to Kong
+{% include_cached /md/kic/class.md kong_version=page.kong_version %}
 
-This guide assumes that the `PROXY_IP` environment variable is set to contain
-the IP address or URL pointing to Kong. Please follow one of the [deployment
-guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview)
-to configure this environment variable.
-
-If everything is setup correctly, making a request to Kong should return HTTP
-404 Not Found.
-
-```bash
-$ curl -i $PROXY_IP
-HTTP/1.1 404 Not Found
-Date: Fri, 21 Jun 2019 17:01:07 GMT
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-Content-Length: 48
-Server: kong/1.2.1
-
-{"message":"no Route matched with those values"}
-```
-
-This is expected as Kong does not yet know how to proxy the request.
-
-## Setup a Sample Service
-
-For the purpose of this guide, we will setup an [httpbin](https://httpbin.org)
-service in the cluster and proxy it.
-
-```bash
-kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/manifests/httpbin.yaml
-service/httpbin created
-deployment.apps/httpbin created
-```
-
-Create an Ingress rule to proxy the httpbin service we just created:
-
-```bash
-$ echo '
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: demo
-  annotations:
-    konghq.com/strip-path: "true"
-spec:
-  ingressClassName: kong
-  rules:
-  - http:
-      paths:
-      - path: /foo
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: httpbin
-            port:
-              number: 80
-' | kubectl apply -f -
-ingress.extensions/demo created
-```
-
-Test the Ingress rule:
-
-```bash
-$ curl -i $PROXY_IP/foo/status/200
-HTTP/1.1 200 OK
-Content-Type: text/html; charset=utf-8
-Content-Length: 0
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Date: Wed, 17 Jul 2019 19:25:32 GMT
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: kong/3.1.1
-```
+{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version %}
 
 ## Set up rate limiting
 
@@ -118,7 +42,7 @@ plugin: rate-limiting
 kongclusterplugin.configuration.konghq.com/global-rate-limit created
 ```
 
-Here we are configuring the {{site.kic_product_name}} to rate limit traffic
+Here we are configuring the {{site.base_gateway}} to rate limit traffic
 from any client to 5 requests per minute, and we are applying this policy in a
 global sense, meaning the rate limit will apply across all services.
 
