@@ -4191,12 +4191,37 @@ and valid UUID. When empty, node ID is automatically generated.
 
 **Default:** none
 
+---
+
+## Cluster Fallback Configuration section
+
+
+### cluster_fallback_config_export
+{:.badge .enterprise}
+
+Enable fallback configuration exports.
+
+**Default:** `off`
+
+
+### cluster_fallback_config_export_delay
+{:.badge .enterprise}
+
+The fallback configuration export interval.
+
+If it's set to 60 and configuration A is exported and there're new
+configurations B, C and D in the next 60 seconds, it will wait until 60 seconds
+passed and export D, skipping B and C.
+
+**Default:** `60`
+
+
 ### cluster_fallback_config_import
 {:.badge .enterprise}
 
 Enable fallback configuration imports
 
-This should only be enabled for data plane
+This should only be enabled for the data plane.
 
 **Default:** `off`
 
@@ -4224,29 +4249,9 @@ The credentials for GCP is provided via the environment variable
 **Default:** none
 
 
-### cluster_fallback_config_export
-{:.badge .enterprise}
-
-Enable fallback configuration exports.
-
-**Default:** `off`
-
-
-### cluster_fallback_config_export_delay
-{:.badge .enterprise}
-
-The fallback configuration export interval.
-
-If it's set to 60 and configuration A is exported and there're new
-configurations B, C and D in the next 60 seconds, it will wait until 60 seconds
-passed and export D, skipping B and C.
-
-**Default:** `60`
-
-
 ---
 
-## Wasm section
+## WebAssembly (Wasm) section
 
 ### wasm
 
