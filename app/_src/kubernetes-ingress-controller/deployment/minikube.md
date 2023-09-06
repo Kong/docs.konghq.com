@@ -53,6 +53,20 @@ Kubernetes cluster.
    ```bash
    curl -i $PROXY_IP
    ```
+   The results should look like this:
+   ```text
+   HTTP/1.1 404 Not Found
+   Date: Wed, 06 Sep 2023 06:48:26 GMT
+   Content-Type: application/json; charset=utf-8
+   Connection: keep-alive
+   Content-Length: 52
+   X-Kong-Response-Latency: 0
+   Server: kong/3.3.1
+
+   {
+     "message":"no Route matched with those values"
+   }
+   ```
 After you've installed the {{site.kic_product_name}}, please follow the
 [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn
 about how to use the Ingress Controller.
@@ -68,5 +82,5 @@ When you deploy minikube on Linux with the Docker driver results in no tunnel be
 
 ### Work around
 
- Run the `minikube tunnel` command in a separate terminal window to keep the tunnel open. 
+ Run the `minikube tunnel` command in a separate terminal window to keep the tunnel open. This command creates a network route on the host to the service using the cluster’s IP address as a gateway. It exposes the external IP directly to any program running on the host operating system.The tunnel command exposes the external IP directly to any program running on the host operating system.
 

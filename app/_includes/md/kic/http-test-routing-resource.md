@@ -1,4 +1,4 @@
-  {%- assign path = include.path | default: '/echo' %}
+{%- assign path = include.path | default: '/echo' %}
 {%- assign hostname = include.hostname | default: 'kong.example' %}
 {%- assign name = include.name | default: 'echo' %}
 {%- assign service = include.service | default: 'echo' %}
