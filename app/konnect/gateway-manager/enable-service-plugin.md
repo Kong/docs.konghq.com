@@ -3,7 +3,7 @@ title: Configure a Plugin on a Service
 ---
 Enable, update, disable, or delete a plugin for a service.
 
-You can find any Gateway service through the {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/runtime-manager) by selecting **Gateway Services**.
+You can find any Gateway service through the {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/gateway-manager) by selecting **Gateway Services**.
 
 ## Enable a plugin
 

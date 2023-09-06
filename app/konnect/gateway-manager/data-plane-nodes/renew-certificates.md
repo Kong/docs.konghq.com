@@ -1,5 +1,5 @@
 ---
-title: Renew Certificates for a Runtime Instance
+title: Renew Certificates for a Data Plane Node
 content_type: how-to
 ---
 
@@ -10,11 +10,11 @@ expiration date and associated metadata.
 Renew your certificates to prevent any interruption in communication between
 {{site.konnect_saas}} and any configured runtimes, or data planes. If a
 The following happens if a certificate expires and isn't replaced: 
-* The runtime instance stops receiving configuration updates from
+* The data plane node stops receiving configuration updates from
 the control plane.
-* The runtime instance stops sending [analytics](/konnect/analytics/) and usage data
+* The data plane node stops sending [analytics](/konnect/analytics/) and usage data
 to the control plane.
-* Each disconnected runtime instance uses cached configuration to continue
+* Each disconnected data plane node uses cached configuration to continue
 proxying and routing traffic.
 
 Depending on your setup, renewing certificates might mean bringing up a new data
@@ -24,20 +24,20 @@ files.
 
 ## Quick setup
 
-If you originally created your runtime instance container using one of the
-Docker options in Runtime Manager, we recommend creating a new instance with renewed
+If you originally created your data plane node container using one of the
+Docker options in Gateway Manager, we recommend creating a new instance with renewed
 certificates.
 
-1. Stop the runtime instance container.
-2. Open {% konnect_icon runtimes %} **Runtime Manager**, select a runtime group,
- and click **New Runtime Instance**.
-3. Run the script to create a new runtime instance with
+1. Stop the data plane node container.
+2. Open {% konnect_icon runtimes %} **Gateway Manager**, select a control plane,
+ and click **New Data Plane Node**.
+3. Run the script to create a new data plane node with
 updated certificates.
-4. Remove the old runtime instance container.
+4. Remove the old data plane node container.
 
 ## Advanced setup
 
-If your runtime instances are running on Linux or Kubernetes, or if you have a
+If your data plane nodes are running on Linux or Kubernetes, or if you have a
 Docker container that was _not_ created using the quick setup script, you must
 generate new certificates and replace them on the existing nodes.
 
@@ -45,10 +45,10 @@ generate new certificates and replace them on the existing nodes.
 ### Generate new data plane certificate
 
 {% navtabs %}
-{% navtab Runtime Manager %}
-You can generate a new data plane certificate from the {% konnect_icon runtimes %} **Runtime Manager**.
+{% navtab Gateway Manager %}
+You can generate a new data plane certificate from the {% konnect_icon runtimes %} **Gateway Manager**.
 
-1. Select a runtime instance
+1. Select a data plane node
 1. Click **Runtime group actions** and select **Data plane certificates**. 
 1. Click **Generate certificate**.
 
@@ -76,7 +76,7 @@ You can generate a certificate locally and use the [pin data plane client certif
     export CERT=$(awk 'NF {sub(/\r/, ""); printf "%s\\n",$0;}' tls.crt)
     ```
 
-1. `POST` the certificate to your runtime group using the Konnect API:
+1. `POST` the certificate to your control plane using the Konnect API:
 
     ```bash
     curl https://us.api.konghq.com/v2/runtime-groups/{runtimeGroupId}/dp-client-certificates --json '{"cert":"'$CERT'"}'
@@ -120,7 +120,7 @@ you saved earlier:
       --key=/PATH_TO_FILE/tls.key
     ```
 
-1. Open the `values.yaml` file for your runtime instance and update it to point
+1. Open the `values.yaml` file for your data plane node and update it to point
 to the new secrets.
 
     Update the `secretVolumes` section:
@@ -154,7 +154,7 @@ command:
 {% endnavtab %}
 {% navtab Docker %}
 
-In your Docker container, replace any existing certificates on your runtime instances
+In your Docker container, replace any existing certificates on your data plane nodes
 with the new files and restart the Gateway:
 
 ```sh
@@ -170,6 +170,6 @@ Delete any old certificate and key files on your filesystem.
 
 ## Advanced setup
 
-If your runtime instances are running on Linux or Kubernetes, or if you have a
+If your data plane nodes are running on Linux or Kubernetes, or if you have a
 Docker container that was _not_ created using the quick setup script, you must
 generate new certificates and replace them on the existing nodes.

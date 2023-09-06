@@ -32,8 +32,8 @@ This tutorial will walk through creating a bronze tier consumer group that allow
 
 In this section, you will create a consumer.
 
-1. From the {{site.konnect_short_name}} sidebar, open the **Runtime Manager** section.
-1. Select the **default** runtime group.
+1. From the {{site.konnect_short_name}} sidebar, open the **Gateway Manager** section.
+1. Select the **default** control plane.
 1. Open the **Consumers** tab, click **Add consumer**, and enter the following consumer information into the form:
     * **Username**: Amal
     * **Custom ID**: Amal
@@ -42,7 +42,7 @@ In this section, you will create a consumer.
 
 In this section, you will assign the consumer you just created to the Bronze tier consumer group. 
 
-1. From the **Runtime Manager** section in the **default** {{site.konnect_short_name}} workspace, open the **Consumers** tab.
+1. From the **Gateway Manager** section in the **default** {{site.konnect_short_name}} workspace, open the **Consumers** tab.
 1. Click the **Consumer Groups** tab, and then click **Add Consumer Group**.
 1. Enter "Bronze" for the consumer group name and select the "Amal" consumer you just created from the drop-down. 
 1. Click **Create**.
@@ -51,8 +51,8 @@ In this section, you will assign the consumer you just created to the Bronze tie
 
 In this section, you will configure the Rate Limiting Advanced plugin to set the rate limit to 5 requests every 30 seconds for all consumers.
 
-1. In {{site.konnect_short_name}}, click **Runtime Manager** in the sidebar.
-1. Click the **default** runtime group.
+1. In {{site.konnect_short_name}}, click **Gateway Manager** in the sidebar.
+1. Click the **default** control plane.
 1. From the menu, open **Plugins**, then click **Add plugin**.
 1. Find the **Rate Limiting** plugin, then click **Select**.
 1. Apply the plugin as **Global**
@@ -78,8 +78,8 @@ In this section, you will configure the Rate Limiting Advanced plugin to set the
 
 In this section, you will configure the Rate Limiting Advanced plugin to set the rate limit to 6 requests every 30 seconds only for consumers in the Bronze tier.
 
-1. In {{site.konnect_short_name}}, click **Runtime Manager** in the sidebar.
-1. Select the **default** runtime group.
+1. In {{site.konnect_short_name}}, click **Gateway Manager** in the sidebar.
+1. Select the **default** control plane.
 1. From the menu, open **Consumers**, then click the **Consumer Groups** tab.
 1. Click the **Bronze** consumer group you just created.
 1. Click **Add Configuration**.

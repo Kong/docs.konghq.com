@@ -5,7 +5,7 @@ content_type: how-to
 
 
 The following example shows you how to replace certificates used in {{site.base_gateway}}
-runtime instances with a reference. You can do the same thing with any [supported fields](/gateway/latest/kong-enterprise/secrets-management/). This is the most basic form of secrets management. 
+data plane nodes with a reference. You can do the same thing with any [supported fields](/gateway/latest/kong-enterprise/secrets-management/). This is the most basic form of secrets management. 
 
 
 ## Set up a vault
@@ -13,9 +13,9 @@ runtime instances with a reference. You can do the same thing with any [supporte
 First, define your environment variables.
 
 Open the **Vaults** page in {{site.konnect_short_name}}:
-1. From the navigation menu, open {% konnect_icon runtimes %} **Runtime Manager**.
-1. Select a runtime group.
-1. From the expanded runtime group menu, open **Vaults**.
+1. From the navigation menu, open {% konnect_icon runtimes %} **Gateway Manager**.
+1. Select a control plane.
+1. From the expanded control plane menu, open **Vaults**.
 
 Set up a new vault. For this example, we're going to use the environment variable vault. 
 1. Click **Add vault**.
@@ -46,9 +46,9 @@ uses to recognize relevant values on the data plane.
 ## Define a reference
 
 Now that you have your environment variables set up, you can define references for them.
-This next step has to be configured on the runtime instance.
+This next step has to be configured on the data plane node.
 
-For each runtime instance that needs to use this vault,
+For each data plane node that needs to use this vault,
 define an environment variable key and assign a secret to it. 
 
 ```bash
@@ -56,7 +56,7 @@ export MY_SECRET_CERT="<cert data>" \
 export MY_SECRET_KEY="<key data>"
 ```
 
-Restart the runtime instance to load the values.
+Restart the data plane node to load the values.
 
 Next, set up references to these environment variables in URL format so {{site.base_gateway}} can recognize these secrets.
 
@@ -78,14 +78,14 @@ In this case, the references would look like this:
 Now, you can reference the secrets in proxy configuration.
 
 Set up a cert and key using these references:
-1. From your runtime group side menu, open **Certificates**.
+1. From your control plane side menu, open **Certificates**.
 1. Click **Add certificate**.
 1. In the **Cert** field, paste `{vault://env/my-secret-cert}`.
 1. In the **Key** field, paste `{vault://env/my-secret-key}`.
 1. Save to see your certificate added to the list.
 
 The {{site.konnect_short_name}} control plane can now access the certificates
-on the runtime instances using the references you provided.
+on the data plane nodes using the references you provided.
 
 You can also store secrets in a secure vault backend.
 For a list of supported vault backend implementations, see the

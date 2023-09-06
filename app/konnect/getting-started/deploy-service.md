@@ -16,7 +16,7 @@ make sure you have
 
 ## Implement a Gateway service
 
-In the {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us/runtime-manager), select the **Default** control plane and follow these steps:
+In the {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager), select the **Default** control plane and follow these steps:
 
 1. Select **Gateway Services** from the side navigation bar, then **New Gateway Service**.
 
@@ -62,7 +62,7 @@ you just set. The final URL should look something like this:
 http://localhost:8000/mock
 ```
 
-If successful, you should see the homepage for `mockbin.org`. In the runtime manager you will now see a **200** responses recorded in the **Analytics** tab.
+If successful, you should see the homepage for `mockbin.org`. In the Gateway Manager you will now see a **200** responses recorded in the **Analytics** tab.
 
 And that's it! You have your first service set up, running, and routing
 traffic proxied through a {{site.base_gateway}} runtime.

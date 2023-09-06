@@ -24,11 +24,11 @@ platform never stores sensitive credentials.
 ## Vaults interface in {{site.konnect_short_name}}
 
 ![Vaults interface](/assets/images/docs/konnect/konnect-vaults.png)
-> Figure 1: Overview page for all vaults configured for a runtime group.
+> Figure 1: Overview page for all vaults configured for a control plane.
 
 Number | Item | Description
 -------|------|------------
-1 | **Vaults menu link** | Main link to the vaults configuration for a runtime group. Appears when you select a runtime group.
+1 | **Vaults menu link** | Main link to the vaults configuration for a control plane. Appears when you select a control plane.
 2 | **Add vault** | Click the **Add vault** button to set up any supported Konnect vault backend.
 3 | **Vault entry** | Select a vault entry to open the configuration page for the particular vault. On each vault's configuration page, you can edit or delete the vault, or copy the entire configuration as JSON.
 4 | **Vault ID** | The vault's UUID. 
@@ -49,8 +49,8 @@ Vaults have several use cases:
 You must provide those credentials to the {{site.base_gateway}} data plane directly.
 * Update or modify the secrets in 3rd party vaults.
 
-Vaults are configurable per runtime group. You can't use the same vault across
-multiple runtime groups.
+Vaults are configurable per control plane. You can't use the same vault across
+multiple control planes.
 
 ## Supported vaults in {{site.konnect_short_name}}
 
@@ -60,11 +60,11 @@ Konnect supports the following vault backends:
 * GCP Secret Manager
 * Environment variables
 
-You can manage all of these vaults through the [Runtime Manager](/konnect/runtime-manager/configuration/vaults/how-to/) or with [decK](/deck/latest/guides/vaults/).
+You can manage all of these vaults through the [Gateway Manager](/konnect/gateway-manager/configuration/vaults/how-to/) or with [decK](/deck/latest/guides/vaults/).
 
 ## See also
 
-Check out the example use case for [storing certificates in a vault](/konnect/runtime-manager/configuration/vaults/how-to/).
+Check out the example use case for [storing certificates in a vault](/konnect/gateway-manager/configuration/vaults/how-to/).
 
 For detailed vault configuration references and guides, see the {{site.base_gateway}}
 documentation:

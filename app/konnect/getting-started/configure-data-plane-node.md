@@ -31,7 +31,7 @@ is part of the organization admin team by default.
 
 Data planes are self hosted {{site.base_gateway}} instances that are used to proxy service traffic. {{site.konnect_short_name}} provides you with a script that creates a Docker container running an instance of {{site.base_gateway}} and automatically connects it to your {{site.konnect_short_name}} account.
 
-1. From the left navigation menu, open {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/runtime-manager).
+1. From the left navigation menu, open {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/gateway-manager).
 
 1. Select the `default` control plane.
 

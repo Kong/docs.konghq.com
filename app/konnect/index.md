@@ -40,7 +40,7 @@ lightweight, fast, and flexible API gateway.
     <div class="install-text">Get Started</div>
   </a>
 
-  <a href="/konnect/runtime-manager/runtime-instances/" class="docs-grid-install-block no-description">
+  <a href="/konnect/gateway-manager/data-plane-nodes/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/konnect/icn-runtimes-nav.svg" alt="">
     <div class="install-text">Set up Data Plane Nodes</div>
   </a>

@@ -1,101 +1,101 @@
 ---
-title: Working with composite runtime groups
+title: Working with control plane groups
 content_type: how-to
 badge: enterprise
 ---
 
-A composite runtime group (CRG) is a read-only group that combines configuration from its members, which are standard runtime groups (SRG). All of the standard runtime groups within a composite runtime group share the same cluster of runtime instances.
+A control plane group (CPG) is a read-only group that combines configuration from its members, which are standard control planes (CP). All of the standard control planes within a control plane group share the same cluster of data plane nodes.
 
-In this guide, you will set up a composite runtime groups with two members, then test that the configuration from both member groups is applied to the composite.
+In this guide, you will set up a control plane groups with two members, then test that the configuration from both member control planes is applied to the group.
 
 ## Prerequisites
 
-* You must have the **runtime group admin** role to fully manage composite runtime groups.
+* You must have the **control plane admin** role to fully manage control plane groups.
 * If you are using the {{site.konnect_short_name}} API, you have a personal or system access token.
 
-## Using composite runtime groups
+## Using control plane groups
 
-### Set up standard runtime groups
+### Set up standard control planes
 
-First, let's create a standard runtime group. 
-This group will be a member of a composite runtime group later on.
+First, let's create a standard control plane. 
+This group will be a member of a control plane group later on.
 
-If you already have some standard runtime groups in your org that you want to add to a composite, skip to [creating a composite runtime group](#create-composite-runtime-group).
+If you already have some standard control planes in your org that you want to add to a group, skip to [creating a control plane group](#create-control-plane-group).
 
 {% navtabs %}
 {% navtab Konnect UI %}
 
-1. From the navigation menu, open {% konnect_icon runtimes %} **Runtime Manager**.
-1. Click the **New Runtime Group** button and select **{{site.base_gateway}}**.
+1. From the navigation menu, open {% konnect_icon runtimes %} **Gateway Manager**.
+1. Click the **New Control Plane** button and select **{{site.base_gateway}}**.
    
-   Kong Ingress Controller runtime groups can't be part of composite groups. One composite runtime group cannot be a member of another composite runtime group. 
+   Kong Ingress Controller control planes can't be part of control plane groups. One control plane group cannot be a member of another control plane group. 
 
-1. Set up your group and save. For the purpose of this example, the group name will be SRG1.
-1. Create another {{site.base_gateway}} group, this time calling it SRG2.
+1. Set up your group and save. For the purpose of this example, the group name will be CP1.
+1. Create another {{site.base_gateway}} group, this time calling it CP2.
 
 {% endnavtab %}
 {% navtab API %}
 
-Create some standard runtime groups.
+Create some standard control planes.
 
-1. Create group `SRG1`:
+1. Create group `CP1`:
 
     ```sh
     curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups \
         -H "Authorization: Bearer <your_KPAT>" \
-        --data "name=SRG1" \
+        --data "name=CP1" \
         --data "cluster_type=CLUSTER_TYPE_HYBRID"
     ```
 
-1. Create group `SRG2`:
+1. Create group `CP2`:
 
     ```sh
     curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups \
         -H "Authorization: Bearer <your_KPAT>" \
-        --data "name=SRG2" \
+        --data "name=CP2" \
         --data "cluster_type=CLUSTER_TYPE_HYBRID"
     ```
 
 {% endnavtab %}
 {% endnavtabs %}
 
-### Set up composite runtime group
+### Set up control plane group
 
-Next, create a composite runtime group with the groups `SRG1` and `SRG2` as its members.
+Next, create a control plane group with the groups `CP1` and `CP2` as its members.
 
 {% navtabs %}
 {% navtab Konnect UI %}
 
-1. From the navigation menu, open {% konnect_icon runtimes %} **Runtime Manager**.
-1. Click the **New Runtime Group** button and select **Composite Runtime**.
-1. Set up the runtime. The name of the group must be unique.
+1. From the navigation menu, open {% konnect_icon runtimes %} **Gateway Manager**.
+1. Click the **New Control Plane** button and select **Control Plane Group**.
+1. Set up the group. The name of the group must be unique.
 
-    In the **Runtime Groups** field, add the `SRG1` and `SRG2` groups.
+    In the **Control Planes** field, add the `CP1` and `CP2` groups.
 
     {:.note}
-    > **Note**: When adding a standard group to a composite, make sure it has no connected 
-    runtime instances.
+    > **Note**: When adding a standard control plane to a control plane group,
+    make sure it has no connected data plane nodes.
 
 {% endnavtab %}
 {% navtab API %}
 
-1. Create a composite runtime group:
+1. Create a control plane group:
 
     ```sh
     curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups \
         -H "Authorization: Bearer <your_KPAT>" \
-        --data "name=CRG" \
+        --data "name=CPG" \
         --data "cluster_type=CLUSTER_TYPE_COMPOSITE"
     ```
 
-    Copy the runtime group ID from the response:
+    Copy the control plane ID from the response:
 
     ```json
     HTTP/2 201
 
     {
         "id": "2b802e10-fd6b-4b12-8dbd-ffff4ac8b258",
-        "name": "CRG",
+        "name": "CPG",
         "description": "",
         "labels": {},
         "config": {
@@ -108,7 +108,7 @@ Next, create a composite runtime group with the groups `SRG1` and `SRG2` as its 
         }
     ```
 
-1. Find the IDs of `SRG1` and `SRG2`:
+1. Find the IDs of `CP1` and `CP2`:
 
     ```sh
     curl -i -X GET https://<region>.api.konghq.com/v2/runtime-groups/
@@ -129,7 +129,7 @@ Next, create a composite runtime group with the groups `SRG1` and `SRG2` as its 
                 "description": "",
                 "id": "fb2fc564-96bc-4667-80af-c00e9aed2ab2",
                 "labels": {},
-                "name": "SRG1",
+                "name": "CP1",
                 "updated_at": "2023-06-29T04:55:26.590Z"
             },
             {
@@ -142,7 +142,7 @@ Next, create a composite runtime group with the groups `SRG1` and `SRG2` as its 
                 "description": "",
                 "id": "e78012ce-553b-4305-adb2-3231bc0570b4",
                 "labels": {},
-                "name": "SRG2",
+                "name": "CP2",
                 "updated_at": "2023-06-29T04:55:26.590Z"
             }
             ...
@@ -150,12 +150,12 @@ Next, create a composite runtime group with the groups `SRG1` and `SRG2` as its 
     }
     ```
 
-1. Add the groups SRG1 and SRG2 to your composite runtime group:
+1. Add the groups CP1 and CP2 to your control plane group:
 
     ```sh
     curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups/<composite-group-ID>/composite-memberships/add \
         -H "Authorization: Bearer <your_KPAT>" \
-        --json '{"members": [{"id": "<SRG1-ID>", "id": "<SRG2-ID>"}]}'
+        --json '{"members": [{"id": "<CP1-ID>", "id": "<CP2-ID>"}]}'
     ```
 
     Response:
@@ -165,29 +165,29 @@ Next, create a composite runtime group with the groups `SRG1` and `SRG2` as its 
     ```
 
     {:.note}
-    > **Note**: When adding a standard group to a composite, make sure it has no connected 
-    runtime instances.
+    > **Note**: When adding a standard control plane to a group, make sure it has no connected 
+    data plane nodes.
 
 {% endnavtab %}
 {% endnavtabs %}
 
-### Set up a runtime instance
+### Set up a data plane node
 
-Set up a runtime instance in the composite runtime group. 
-Navigate to {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/runtime-manager/), select group `CRG`, then click on **New Runtime Instance**.
+Set up a data plane node in the control plane group. 
+Navigate to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/gateway-manager/), select group `CPG`, then click on **New Data Plane Node**.
 
-Choose your installation method, then follow the instructions in {{site.konnect_short_name}} to set up the runtime instance.
+Choose your installation method, then follow the instructions in {{site.konnect_short_name}} to set up the data plane node.
 
-Once the instance is connected, go back to the runtime manager.
+Once the instance is connected, go back to the Gateway Manager.
 
-### Configure standard runtime groups
+### Configure standard control planes
 
-Create a service and route in `SRG1`. This will let you test the connection between groups.
+Create a service and route in `CP1`. This will let you test the connection between groups.
 
 {% navtabs %}
 {% navtab Konnect UI %}
 
-1. Open the SRG1 runtime group from Runtime Manager.
+1. Open the CP1 control plane from Gateway Manager.
 1. In the side menu, go to **Gateway Services**.
 1. Click the **New Gateway Service** button and set up the service. 
 For this example, you can use the following values:
@@ -200,7 +200,7 @@ For this example, you can use the following values:
 {% endnavtab %}
 {% navtab API %}
 
-1. Find the IDs of the runtime groups `SRG1` and `SRG2`:
+1. Find the IDs of the control planes `CP1` and `CP2`:
 
     ```sh
     curl -i -X GET https://<region>.api.konghq.com/v2/runtime-groups/
@@ -223,7 +223,7 @@ For this example, you can use the following values:
                 "description": "",
                 "id": "fb2fc564-96bc-4667-80af-c00e9aed2ab2",
                 "labels": {},
-                "name": "SRG1",
+                "name": "CP1",
                 "updated_at": "2023-06-29T04:55:26.590Z"
             },
             {
@@ -236,7 +236,7 @@ For this example, you can use the following values:
                 "description": "",
                 "id": "e78012ce-553b-4305-adb2-3231bc0570b4",
                 "labels": {},
-                "name": "SRG2",
+                "name": "CP2",
                 "updated_at": "2023-06-29T04:55:26.590Z"
             },
             {
@@ -249,7 +249,7 @@ For this example, you can use the following values:
                 "description": "",
                 "id": "2b802e10-fd6b-4b12-8dbd-ffff4ac8b258",
                 "labels": {},
-                "name": "CRG",
+                "name": "CPG",
                 "updated_at": "2023-06-29T04:55:26.590Z"
             }
         ],
@@ -263,7 +263,7 @@ For this example, you can use the following values:
     }
     ```
 
-1. In `SRG1`, create a service and a route:
+1. In `CP1`, create a service and a route:
 
     ```sh
     curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups/<runtime-group-id>/core-entities/services \
@@ -283,23 +283,23 @@ For this example, you can use the following values:
 
 ## Validate
 
-Let's test that the configurations from `SRG1` and `SRG2` are both being applied to the proxy running on `CRG`.
+Let's test that the configurations from `CP1` and `CP2` are both being applied to the proxy running on `CPG`.
 
-You should now have three runtime groups with the following configurations:
-* `SRG1`: Has a service (`example_service`) and a route (`/mock`)
-* `SRG2`: Nothing configured
-* `CRG`: Has one runtime instance
+You should now have three control planes with the following configurations:
+* `CP1`: Has a service (`example_service`) and a route (`/mock`)
+* `CP2`: Nothing configured
+* `CPG`: Has one data plane node
 
-First, test the configuration of `SRG1` by accessing it through the proxy URL `localhost:8000`, which is running on the instance configured in the `CRG`.
+First, test the configuration of `CP1` by accessing it through the proxy URL `localhost:8000`, which is running on the instance configured in the `CPG`.
 
 {% navtabs %}
 {% navtab Konnect UI %}
 
-1. Try to access the route you set up in `SRG1`. In a web browser, navigate to `http://localhost:8000/mock/request/hello`. 
+1. Try to access the route you set up in `CP1`. In a web browser, navigate to `http://localhost:8000/mock/request/hello`. 
 
     You should see a mock request page.
 
-1. Return to Runtime Manager in {{site.konnect_short_name}} and open `SRG2`. 
+1. Return to Gateway Manager in {{site.konnect_short_name}} and open `CP2`. 
 
 1. Set up the basic authentication plugin. 
 
@@ -312,7 +312,7 @@ This time, you should receive a prompt to enter a username and password.
 {% endnavtab %}
 {% navtab API %}
 
-1. Try to access the route you set up in `SRG1`:
+1. Try to access the route you set up in `CP1`:
 
     ```
     curl localhost:8000/mock/request/hello
@@ -320,7 +320,7 @@ This time, you should receive a prompt to enter a username and password.
 
     You should see a response from Mockbin.
 
-1. Find the ID of `SRG2`. In `SRG2`, set up the basic authentication plugin:
+1. Find the ID of `CP2`. In `CP2`, set up the basic authentication plugin:
 
     ```sh
     curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups/<runtime-group-id>/core-entities/plugins \
@@ -344,4 +344,4 @@ This time, you should receive a prompt to enter a username and password.
 
 This means that the route is active, and the basic authentication plugin is blocking access to the route.
 
-Since you were able to access the route, apply an auth plugin, then authorization to the route, it means that the configuration from both member runtime groups was applied. You now have a working composite runtime group!
+Since you were able to access the route, apply an auth plugin, then authorization to the route, it means that the configuration from both member control planes was applied. You now have a working control plane group!

@@ -10,16 +10,16 @@ find a full list of all Kong plugins on the [Plugin Hub](/hub/).
 
 ### Plugin configuration
 
-Manage {{site.konnect_short_name}} plugins through the [Runtime Manager](https://cloud.konghq.com/us/runtime-manager)
+Manage {{site.konnect_short_name}} plugins through the [Gateway Manager](https://cloud.konghq.com/us/gateway-manager)
 
 You can scope a plugin to an object, or apply it globally.
 
 * A **scoped** plugin applies configuration only to a specific service, route,
-or consumer. Set up scoped plugins through the Runtime Manager.
+or consumer. Set up scoped plugins through the Gateway Manager.
 
 * If you want to apply a plugin **globally** &ndash; that is, to all services,
-routes, and consumers in a runtime group &ndash; use the
-Runtime Manager.
+routes, and consumers in a control plane &ndash; use the
+Gateway Manager.
 
 ### Application registration
 

@@ -15,7 +15,7 @@ In this guide, you will set up two developer teams and then enable Portal RBAC u
 
 ## Prerequisites
 * Two test [developer accounts registered](/konnect/dev-portal/dev-reg/)
-* A [runtime group configured](/konnect/getting-started/configure-runtime)
+* A [control plane configured](/konnect/getting-started/configure-data-plane-node/)
 * A [personal access token](/konnect/getting-started/import/#generate-a-personal-access-token) for authorization. This is only required if you plan to use the API to create developer teams.
 
 If you have existing registered developers in {{site.konnect_short_name}}, you must configure developer teams before enabling Portal RBAC. If you enable Portal RBAC before configuring teams for your developers, it will prevent *all* developers from seeing any API products in your Dev Portal. 
@@ -36,7 +36,7 @@ In this scenario, before you can configure developer teams, you must have an API
 
 {% navtabs %}
 {% navtab Konnect UI %}
-In {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/us/runtime-manager), select a runtime group and follow these steps:
+In {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager), select a control plane and follow these steps:
 
 1. Select **Gateway Services** from the side navigation bar, then **New Gateway Service**.
 1. From the **Add a Gateway Service** dialog, enter the following to create a new service:
@@ -48,7 +48,7 @@ In {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/us
 1. Click **Publish to portal** from the **Actions** dropdown menu. This will allow developers to access the API product once you assign them to a team.
 1. Click **New Version** from the **Actions** dropdown menu and enter `v1` in the **Version Name** field and then click **Create**.
 1. Click the **v1** version and then click **Link** to add a service.
-1. Select a runtime from the **Select Runtime Group** dropdown menu, select `pizza_ordering` from the **Gateway Service** dropdown menu, and then click **Save**.
+1. Select a runtime from the **Select Control Plane** dropdown menu, select `pizza_ordering` from the **Gateway Service** dropdown menu, and then click **Save**.
 1. Click the **Edit** icon next to the status of your product version and select **Published** from the **Edit version status** dialog and then click **Save**.
 1. You need to enable app registration if you want the developer in the Authorized Delivery Partners group to be able to consume your APIs by registering apps. You can use an authentication method of your choice in the [enable or disable application registration](/konnect/dev-portal/applications/enable-app-reg/) documentation.
 
@@ -72,7 +72,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
           "path": "/pizza_ordering"
       }'
 ```
-  You can get the `runtimeGroupId`, by using the [list runtime groups endpoint](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9#/Runtime%20Groups/list-runtime-groups) to list all runtime groups and their IDs. <br><br>
+  You can get the `runtimeGroupId`, by using the [list control planes endpoint](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9#/Runtime%20Groups/list-runtime-groups) to list all control planes and their IDs. <br><br>
   You should get a `201` response like the following:
   ```bash
   {

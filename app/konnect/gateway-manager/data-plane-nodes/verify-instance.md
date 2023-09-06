@@ -1,9 +1,9 @@
 ---
-title: Verify a Runtime Instance
+title: Verify a Data Plane Node
 content_type: how-to
 ---
 
-You can test whether your runtime instances are running using the following methods.
+You can test whether your data plane nodes are running using the following methods.
 
 ## Access services using the proxy URL
 
@@ -19,7 +19,7 @@ For example, to access a service with the route `/mock`, use
 
 ## Kubernetes
 
-To proxy traffic through a runtime instance running on Kubernetes, you'll need its external IP
+To proxy traffic through a data plane node running on Kubernetes, you'll need its external IP
 address, a port, and a route.
 
 1. To find the address and port, run:

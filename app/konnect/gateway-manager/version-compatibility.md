@@ -1,14 +1,14 @@
 ---
-title: Version Compatibility in Runtime Groups
+title: Version Compatibility in Control Planes
 content_type: reference
 ---
 
-We recommend running one major version (2.x or 3.x) of a runtime instance per runtime group, unless you are in the middle of version upgrades to the data plane.
+We recommend running one major version (2.x or 3.x) of a data plane node per control plane, unless you are in the middle of version upgrades to the data plane.
 
-If you mix major runtime instance versions, the control plane will support the least common subset of configurations across all the versions connected to the {{site.konnect_short_name}} control plane.
-For example, if you are running 2.8.1.3 on one runtime instance and 3.0.0.0 on another, the control plane will only push configurations that can be used by the 2.8.1.3 runtime instance.
+If you mix major data plane node versions, the control plane will support the least common subset of configurations across all the versions connected to the {{site.konnect_short_name}} control plane.
+For example, if you are running 2.8.1.3 on one data plane node and 3.0.0.0 on another, the control plane will only push configurations that can be used by the 2.8.1.3 data plane node.
 
-If you experience compatibility errors, [upgrade your data planes](/konnect/runtime-manager/runtime-instances/upgrade/) to match the version of the highest-versioned runtime instance in your runtime group.
+If you experience compatibility errors, [upgrade your data planes](/konnect/gateway-manager/data-plane-nodes/upgrade/) to match the version of the highest-versioned data plane node in your control plane.
 
 Possible compatibility errors:
 
