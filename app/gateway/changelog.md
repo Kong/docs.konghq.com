@@ -2615,18 +2615,22 @@ images or packages, and Kong will not test package installation on Ubuntu 18.04.
 * [AWS-Lambda](/hub/kong-inc/aws-lambda/): the AWS-Lambda plugin has been refactored by using lua-resty-aws as an underlying AWS library. The refactor simplifies the AWS-Lambda plugin code base and adding support for multiple IAM authenticating scenarios.
 
 ### Fixes 
-#### Enterprise
+#### Core
 * Fixed an issue that prevented the dbless-reconfigure anonymous report type from respecting anonymous reports with a setting of `anonymous_reports=false`.
-* Fixed an issue where you couldn't create developers using the Admin API in {{site.base_gateway}} 2.8.4.2. 
+* Fixed an issue where you couldn't create developers using the Admin API in a non-default workspace in {{site.base_gateway}} 2.8.4.2.
+* Fixed an issue with Redis catching rate limiting strategy conneciton failures.
 
 #### Plugins 
 * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`): 
   * Fixed an issue that caused the plugin to trigger rate limiting unpredictably.
   * Fixed an issue where {{site.base_gateway}} produced a log of error log entries when multiple Rate Limiting Advanced plugins shared the same namespace.
 * [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`): Fixed an issue that caused the plugin to return logs with `invalid introspection results` when decoding a bearer token.
+* [Response Transformer Advanced](/hub/kong-inc/response-transformer-advanced/): Fixed an issue that caused the response body to load when the `if_status` does not match.
 
 ### Dependencies
-*  Bumped lua-protobuf from 0.3.3 to 0.4.2
+* Bumped lua-protobuf from 0.3.3 to 0.4.2
+* Bumped lua-resty-aws from 1.0.0 to 1.3.1
+* Bumped lua-resty-gcp from 0.0.5 to 0.0.13
 
 ## 2.8.4.2
 
