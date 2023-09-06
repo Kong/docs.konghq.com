@@ -82,5 +82,5 @@ When you deploy minikube on Linux with the Docker driver results in no tunnel be
 
 ### Work around
 
- Run the `minikube tunnel` command in a separate terminal window to keep the tunnel open. This command creates a network route on the host to the service using the cluster’s IP address as a gateway. It exposes the external IP directly to any program running on the host operating system.The tunnel command exposes the external IP directly to any program running on the host operating system.
+ Run the `minikube tunnel` command in a separate terminal window to keep the tunnel open. This command creates a network route on the host to the service using the cluster’s IP address as a gateway. It exposes the external IP directly to any program running on the host operating system.
 
