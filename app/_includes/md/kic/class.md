@@ -58,13 +58,13 @@ spec:
     protocol: HTTP
 " | kubectl apply -f -
 ```
-:
+The results should look like this:
 ```text
 gatewayclass.gateway.networking.k8s.io/kong created
 gateway.gateway.networking.k8s.io/kong created
 ```
 
-Once the controller has acknowledged the Gateway, it will show the proxy IP in
+After the controller has acknowledged the Gateway, it shows the proxy IP and 
 its status:
 
 ```bash
