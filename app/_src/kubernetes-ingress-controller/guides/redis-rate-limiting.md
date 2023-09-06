@@ -72,6 +72,10 @@ scalability and redundancy:
 ```bash
 kubectl scale --replicas 3 -n kong deployment ingress-kong
 ```
+{:.note}
+> Your Deployment name will vary depending on your install method. You can list
+> your Deployment(s) with `kubectl get deploy -n kong`. Replace `ingress-kong`
+> with your actual Deployment name.
 
 The results should look like this:
 ```text
