@@ -148,8 +148,6 @@ do this when a Redis instance is available.
 Redis provides an external database for Kong components to store shared data,
 such as rate limiting counters. There are several options to install it:
 
-{% navtabs redis %}
-{% navtab Helm %}
 Bitnami provides a [Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/redis)
 for Redis with turnkey options for authentication. To install it, first create
 a password Secret:
@@ -173,59 +171,6 @@ helm install -n kong kong oci://registry-1.docker.io/bitnamicharts/redis \
   --set architecture=standalone
 ```
 Helm will output a page of instructions describing the new installation.
-{% endnavtab %}
-{% navtab Manifest %}
-This basic manifest installs Redis without Helm, but does not offer easy
-configuration of authentication.
-
-To install it:
-
-```bash
-echo "
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: redis
-  labels:
-    app: redis
-spec:
-  selector:
-    matchLabels:
-      app: redis
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: redis
-    spec:
-      containers:
-      - name: redis
-        image: redis
-        ports:
-        - containerPort: 6379
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: rate-redis-master
-  labels:
-    app: redis
-spec:
-  ports:
-  - port: 6379
-    targetPort: 6379
-  selector:
-    app: redis" | kubectl apply -n kong -f -
-```
-
-The results should look like this:
-```text
-deployment.apps/redis created
-service/redis created
-```
-{% endnavtab %}
-{% endnavtabs %}
 
 With Redis deployed, you can update your plugin configuration with the `redis`
 policy, Service, and credentials:
