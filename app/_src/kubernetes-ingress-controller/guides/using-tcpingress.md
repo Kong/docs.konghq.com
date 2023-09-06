@@ -208,6 +208,8 @@ Status populate with an IP or Accepted condition once the route is ready:
 
 {% navtabs api %}
 {% navtab Ingress %}
+`tcpingress` returns an IP address when the route is ready:
+
 ```bash
 kubectl get tcpingress
 ```
