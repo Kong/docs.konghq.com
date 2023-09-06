@@ -35,7 +35,7 @@ kubectl patch --type json ingress echo -p='[{
 }]'
 ```
 {% endnavtab %}
-{% navtab GatewayAPIs %}
+{% navtab Gateway APIs %}
 ```bash
 kubectl patch --type=json gateway kong -p='[{
     "op":"add",
