@@ -270,7 +270,7 @@
     - text: Runtime Groups API
       items:
         - text: API Spec
-          url: /konnect/api/runtime-groups/latest/
+          url: https://docs.konghq.com/konnect/api/runtime-groups/v2/
           absolute_url: true
           generate: false
     - text: Portal RBAC API
