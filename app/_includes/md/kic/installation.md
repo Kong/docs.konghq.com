@@ -14,7 +14,7 @@ set to contain the IP address or URL pointing to {{site.base_gateway}}.
 The [deployment guide](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) that you used to install the {{site.kic_product_name}} on the Kubernetes cluster provides the instructions to configure this environment variable.
 
 If everything is set correctly, a request to {{site.base_gateway}} returns
-an HTTP `404 Not Found` status code:
+a HTTP `404 Not Found` status code:
 
 ```bash
 curl -i $PROXY_IP
