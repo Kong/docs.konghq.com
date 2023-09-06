@@ -3,8 +3,9 @@ over HTTPS. This is not required, as {{site.base_gateway}} will serve a default
 certificate if it cannot find another, but including TLS configuration along
 with routing configuration is typical.
 
-First, create a test certificate for the `{{ include.hostname }}` hostname using one of the following commands:
+1. Create a test certificate for the `{{ include.hostname }}` hostname.
 
+ {% capture the_code %}
 {% navtabs codeblock %}
 {% navtab OpenSSL 1.1.1 %}
 ```bash
@@ -15,16 +16,6 @@ openssl req -subj '/CN={{ include.hostname }}' -new -newkey rsa:2048 -sha256 \
   -addext "extendedKeyUsage = serverAuth" 2> /dev/null;
   openssl x509 -in server.crt -subject -noout
 ```
-
-Response:
-
-```text
-subject=CN = {{ include.hostname }}
-```
-
-Older OpenSSL versions, including the version provided with OS X Monterey,
-require using the alternative version of this command.
-
 {% endnavtab %}
 {% navtab OpenSSL 0.9.8 %}
 ```bash
@@ -34,20 +25,36 @@ openssl req -subj '/CN={{ include.hostname }}' -new -newkey rsa:2048 -sha256 \
    printf "[dn]\nCN={{ include.hostname }}\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:{{ include.hostname }}\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth") 2>/dev/null;
   openssl x509 -in server.crt -subject -noout
 ```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
 
-Response:
+    The results should look like this:
 
+    {% capture the_code %}
+{% navtabs codeblock %}
+{% navtab OpenSSL 1.1.1 %}
+```text
+subject=CN = {{ include.hostname }}
+```
+{% endnavtab %}
+{% navtab OpenSSL 0.9.8 %}
 ```text
 subject=CN = {{ include.hostname }}
 ```
 {% endnavtab %}
 {% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
 
-Then, create a Secret containing the certificate:
-```bash
-kubectl create secret tls {{ include.hostname }} --cert=./server.crt --key=./server.key
-```
-Response:
-```text
-secret/{{ include.hostname }} created
-```
+    Older OpenSSL versions, including the version provided with OS X Monterey, require using the alternative version of this command.
+
+1. Create a Secret containing the certificate.
+    ```bash
+    kubectl create secret tls {{ include.hostname }} --cert=./server.crt --key=./server.key
+    ```
+    The results should look like this:
+    ```text
+    secret/{{ include.hostname }} created
+    ```

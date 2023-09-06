@@ -1,5 +1,6 @@
 ---
 nav_title: Managing costs
+title: Managing costs
 ---
 
 ## Managing costs

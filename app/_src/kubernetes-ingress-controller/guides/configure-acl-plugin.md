@@ -72,10 +72,13 @@ Server: kong/3.0.1
 
 ## Provision consumers
 
-To access the protected endpoints, create two consumers:
+To access the protected endpoints, create two consumers.
+
+1. Create a consumer named `admin`:
 
 {% include_cached /md/kic/consumer.md kong_version=page.kong_version name='admin' %}
 
+1. Create a consumer named `user`:
 {% include_cached /md/kic/consumer.md kong_version=page.kong_version name='user' %}
 
 ## Provision JWT credentials

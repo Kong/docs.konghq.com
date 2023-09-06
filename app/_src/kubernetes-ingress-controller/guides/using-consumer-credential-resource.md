@@ -3,9 +3,7 @@ title: Provisioning Consumers and Credentials
 content_type: tutorial
 ---
 
-This guide walks through how to use the KongConsumer custom
-resource and use Secret resources to associate credentials with those
-consumers.
+Learn how to use the KongConsumer custom resource and use Secret resources to associate credentials with those consumers.
 
 {% include_cached /md/kic/installation.md kong_version=page.kong_version %}
 
@@ -17,11 +15,12 @@ consumers.
 
 ## Add authentication to the service
 
-With Kong, adding authentication in front of an API is as simple as
-enabling a plugin. To enforce authentication requirements on the on the route
-you've created, create a KongPlugin resource with an authentication plugin,
-such as `key-auth`:
+With Kong, adding authentication for an API is as simple as
+enabling a plugin.
 
+1. To enforce authentication requirements on the route you've created, create a KongPlugin resource with an authentication plugin, such as `key-auth`:
+
+{% capture the_code %}
 ```bash
 echo "
 apiVersion: configuration.konghq.com/v1
@@ -31,70 +30,82 @@ metadata:
 plugin: key-auth
 " | kubectl apply -f -
 ```
-Response:
-```text
-kongplugin.configuration.konghq.com/example-auth created
-```
+{% endcapture %}
+{{ the_code | indent }}
 
-Now, associate this plugin with the previous Ingress rule we created
+    The results should look like this:
+    ```text
+    kongplugin.configuration.konghq.com/example-auth created
+    ```
+
+1. Associate this plugin with the Ingress rule that you created
 using the `konghq.com/plugins` annotation:
 
-{% navtabs api %}
+{% capture the_code %}
+{% navtabs codeblock %}
 {% navtab Ingress %}
 ```bash
 kubectl annotate ingress echo konghq.com/plugins=example-auth
-```
-Response:
-```text
-ingress.networking.k8s.io/echo annotated
 ```
 {% endnavtab %}
 {% navtab Gateway APIs %}
 ```bash
 kubectl annotate httproute echo konghq.com/plugins=example-auth
 ```
-Response:
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+
+    The results should look like this:
+
+    {% capture the_code %}
+{% navtabs codeblock %}
+{% navtab Ingress %}
+```text
+ingress.networking.k8s.io/echo annotated
+```
+{% endnavtab %}
+{% navtab Gateway APIs %}
 ```text
 httproute.gateway.networking.k8s.io/echo annotated
 ```
 {% endnavtab %}
 {% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
 
-Any request matching the proxying rules defined in the `echo` routing
-configuration will now require a valid API key:
+1. Test the routing configuration by sending a request that matches the proxying rules defined in the `echo` routing configuration. It now requires a valid API key:
 
-```bash
-curl -si http://kong.example/echo --resolve kong.example:80:$PROXY_IP
-```
-Response:
-```
-HTTP/1.1 401 Unauthorized
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-WWW-Authenticate: Key realm="kong"
-Content-Length: 41
-Server: kong/3.0.1
+    ```bash
+    curl -si http://kong.example/echo --resolve kong.example:80:$PROXY_IP
+    ```
+    The results should look like this:
+    ```
+    HTTP/1.1 401 Unauthorized
+    Content-Type: application/json; charset=utf-8
+    Connection: keep-alive
+    WWW-Authenticate: Key realm="kong"
+    Content-Length: 41
+    Server: kong/3.0.1
+    
+    {"message":"No API key found in request"}
+    ```
 
-{"message":"No API key found in request"}
-```
-
-Requests that do not include a key receive a 401 Unauthorized response.
+    Requests that do not include a key receive a 401 Unauthorized response.
 
 ## Provision a consumer and credential
 
-First, create a credential Secret:
+Credential Secrets include a `kongCredType` key, whose value indicates what authentication plugin the credential is for, and keys corresponding to the fields necessary to configure that credential type (`key` for `key-auth` credentials).
+
+1. Create a credential Secret:
 
 {% include_cached /md/kic/key-auth.md kong_version=page.kong_version credName='kotenok-key-auth' %}
 
-Second, create a KongConsumer resource that uses the Secret:
+1. Create a KongConsumer resource that uses the Secret:
 
 {% include_cached /md/kic/consumer.md kong_version=page.kong_version credName='kotenok-key-auth' %}
-
-Credential Secrets include a `kongCredType` key, whose value indicates what
-authentication plugin the credential is for, and keys corresponding to the
-fields necessary to configure that credential type (`key` for `key-auth`
-credentials).
-
+  
 ## Use the credential
 
 Now, send a request including the credential (`key-auth` expects an `apikey`
@@ -103,7 +114,7 @@ header with the key by default):
 ```bash
 curl -si http://kong.example/echo --resolve kong.example:80:$PROXY_IP -H "apikey: gav"
 ```
-Response:
+The results should look like this:
 ```text
 HTTP/1.1 200 OK                
 Content-Type: text/plain; charset=UTF-8

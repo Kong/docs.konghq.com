@@ -37,14 +37,14 @@ components:
       required: true
       schema:
         type: string
-        example: 7fca84d6-7d37-4a74-a7b0-93e576089a41"
+        example: 7fca84d6-7d37-4a74-a7b0-93e576089a41
     certificate_id:
       name: certificate_id
       in: path
       required: true
       schema:
         type: string
-        example: 7fca84d6-7d37-4a74-a7b0-93e576089a41"
+        example: 7fca84d6-7d37-4a74-a7b0-93e576089a41
       description: The unique identifier of the Certificate to retrieve.
     certificate_name_or_id:
       name: certificate_name_or_id
@@ -1715,8 +1715,8 @@ components:
               protocol:
                 type: string
                 description: |-
-                  The protocol used to communicate with the upstream. Accepted values are: "`grpc`", "`grpcs`", "`http`", "`https`", "`tcp`", "`tls`", "`tls_passthrough`", "`udp`", "`ws`" 
-                  , "`wss`" 
+                  The protocol used to communicate with the upstream. Accepted values are: "`grpc`", "`grpcs`", "`http`", "`https`", "`tcp`", "`tls`", "`tls_passthrough`", "`udp`", "`ws`"
+                  , "`wss`"
                   . Default: "`http`".
                 default: http
                 enum:
@@ -2941,7 +2941,7 @@ paths:
         - CA Certificates
     patch:
       description: |-
-        Update the specified Certificate Authority (CA) certificate using the provided ca_certificate_id. Use this endpoint to modify an existing CA certificate in the system. The request body should include the fields of the CA certificate that need to be updated. 
+        Update the specified Certificate Authority (CA) certificate using the provided ca_certificate_id. Use this endpoint to modify an existing CA certificate in the system. The request body should include the fields of the CA certificate that need to be updated.
 
         > This API is not available in DB-less mode.
       operationId: update-ca_certificate
@@ -3204,8 +3204,8 @@ paths:
 
 
 
-         Update an existing SNI associated with a certificate in the system using the SNI ID or name. The request body should include the fields of the SNI that need to be updated, such as the name, description, or other properties. If the request body contains valid data, the endpoint will update the SNI and return a success response. 
-         
+         Update an existing SNI associated with a certificate in the system using the SNI ID or name. The request body should include the fields of the SNI that need to be updated, such as the name, description, or other properties. If the request body contains valid data, the endpoint will update the SNI and return a success response.
+
       responses:
         '200':
           content:
@@ -3261,7 +3261,7 @@ paths:
         required: true
         schema:
           type: string
-          example: 7fca84d6-7d37-4a74-a7b0-93e576089a41"
+          example: 7fca84d6-7d37-4a74-a7b0-93e576089a41
         description: The unique identifier of the Certificate to retrieve.
       - name: sni_name_or_id
         in: path
@@ -3365,7 +3365,7 @@ paths:
         $ref: '#/components/requestBodies/consumer-request'
     put:
       description: |-
-        Create or Update Consumer using ID or username. The consumer will be identified via the username or id attribute.If the consumer with the specified ID or username cannot be found, the endpoint will return a 404. 
+        Create or Update Consumer using ID or username. The consumer will be identified via the username or id attribute.If the consumer with the specified ID or username cannot be found, the endpoint will return a 404.
 
         When the username or id attribute has the structure of a UUID, the Consumer being inserted/replaced will be identified by its id. Otherwise it will be identified by its username.
 
@@ -3930,7 +3930,7 @@ paths:
 
         route entities define rules to match client requests. Each route is associated with a service, and a service may have multiple routes associated to it. Every request matching a given route will be proxied to its associated service.
 
-        > Note: Path handling algorithms v1 was deprecated in Kong 3.0. From Kong 3.0, when router_flavor is set to expressions, route.path_handling will be unconfigurable and the path handling behavior will be "v0"; when router_flavor is set to traditional_compatible, the path handling behavior will be "v0" regardless of the value of route.path_handling. Only router_flavor = traditional will support path_handling "v1' behavior.
+        > Note: Path handling algorithms v1 was deprecated in Kong 3.0. From Kong 3.0, when router_flavor is set to expressions, route.path_handling will be unconfigurable and the path handling behavior will be "v0"; when router_flavor is set to traditional_compatible, the path handling behavior will be "v0" regardless of the value of route.path_handling. Only router_flavor = traditional will support path_handling "v1" behavior.
       operationId: list-route
       parameters:
         - $ref: '#/components/parameters/pagination-size'

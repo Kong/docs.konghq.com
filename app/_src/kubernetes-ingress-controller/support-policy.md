@@ -4,11 +4,11 @@ badge: enterprise
 content-type: reference
 ---
 
-The support for {{site.kic_product_name}} software versions is explained in this topic.
+Learn about the support for {{site.kic_product_name}} software versions.
 
-## Version support for {{site.kic_product_name}} (Enterprise)
+## Version support for {{site.kic_product_name}}
 
-Kong primarily follows [semantic versioning](https://semver.org/) (SemVer) with its products.
+Kong primarily follows [semantic versioning](https://semver.org/) (SemVer) for its products.
 
 At Kong’s discretion a specific minor version can be marked as a LTS version. The LTS version is supported on a given distribution for the duration of the distribution’s lifecycle, or for 3 years from LTS release whichever comes sooner. LTS only receives security fixes or certain critical patches at the discretion of Kong. Kong guarantees that at any given time, there will be at least 1 active LTS Kong version.
 
@@ -120,7 +120,7 @@ LTS versions of {{site.kic_product_name}} are supported for 3 years after releas
 </tbody>
 </table>
 
-## All {{site.kic_product_name}} versions
+## {{site.kic_product_name}} versions
 
 | Version  | Released Date | End of Full Support | End of Sunset Support |
 |:--------:|:-------------:|:-------------------:|:---------------------:|

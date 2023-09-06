@@ -27,7 +27,7 @@ spec:
               number: 1027
 " | kubectl apply -f -
 ```
-Response:
+The results should look like this:
 ```text
 ingress.networking.k8s.io/{{ name }} created
 ```
@@ -57,10 +57,9 @@ spec:
       port: 1027
 " | kubectl apply -f -
 ```
-Response:
+The results should look like this:
 ```text
 httproute.gateway.networking.k8s.io/{{ name }} created
 ```
 {% endnavtab %}
 {% endnavtabs %}
-
