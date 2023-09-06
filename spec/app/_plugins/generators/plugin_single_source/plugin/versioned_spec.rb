@@ -106,7 +106,7 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
           .with(site:, version: '2.6.x', is_latest: false, plugin: subject, source: '_2.6.x')
           .and_call_original
 
-        expect(subject.create_pages.size).to eq(16)
+        expect(subject.create_pages.size).to eq(19)
       end
     end
   end

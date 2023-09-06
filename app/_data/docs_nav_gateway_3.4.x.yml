@@ -617,6 +617,8 @@ items:
         url: /admin-api/#vaults-object
       - text: Keys
         url: /admin-api/#keys-object
+      - text: Filter Chains
+        url: /admin-api/#filter-chain-object
       - text: Licenses
         url: /admin-api/licenses/reference
       - text: Workspaces
