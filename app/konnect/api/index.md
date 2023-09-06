@@ -21,9 +21,9 @@ The region-specific endpoints are used to manage {{site.konnect_short_name}} ent
 {:.note .no-icon }
 > <span class="badge beta"></span> **A beta API spec for the runtime group configuration API is now available!**
 >
-| Spec | Developer portal link | Insomnia link |
-|------|-----------------------|---------------|
-| Konnect runtime group configuration beta API spec |[Developer Portal](/konnect/api/runtime-groups-configuration/v2/)  | <a href="https://insomnia.rest/run/?label=Runtime%20Groups%20Configuration%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FKonnect%2Fv2%2Fjson%2Fkonnect-2.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
+| Spec | Insomnia link |
+|------|---------------|
+| [Konnect runtime group configuration beta API spec](/konnect/api/runtime-groups-configuration/v2/) | <a href="https://insomnia.rest/run/?label=Runtime%20Groups%20Configuration%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FKonnect%2Fv2%2Fjson%2Fkonnect-2.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
 
 ## Authentication
 
