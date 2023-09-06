@@ -34,15 +34,12 @@ The recommended method of authentication for {{site.konnect_short_name}} is [Per
 
 ## API reference documentation
 
-* [Identity Management API](/konnect/api/identity-management/v2/) - Interface for management of users, teams, team memberships and role assignments.
-
-* [Runtime Groups API](/konnect/api/runtime-groups/v2/) - Interface for managing runtime groups.
-
-* [Portal RBAC API Documentation](/konnect/api/portal-rbac/v2/) - Interface for portal developers, teams, and RBAC rules.
-
-* [Runtime Configuration API](/konnect/api/runtime-groups-configuration/v2/) - Interface for creating and managing control plane certificates, data plane certificates, and {{site.konnect_short_name}} entities.
-
-* [Portal Client API](/konnect/api/portal/v2/) - Interface for building and integrating custom Dev Portal experiences using {{site.konnect_short_name}} API data.
+* [Identity Management API](/konnect/api/identity-management/latest/) - Identity Management is responsible for {{site.konnect_short_name}} users, teams, organization, roles, permissions, and IdP settings.
+* [Runtime Groups API](/konnect/api/runtime-groups/latest/) - Manage the runtime group entity in {{site.konnect_short_name}}.
+* [Portal RBAC API Documentation](/konnect/api/portal-rbac/latest/) - Portal RBAC can be used to create teams, collect developers into teams, and assign roles to give those teams functionality in the developer portal.
+* [Portal Client API](/konnect/api/portal/latest/) - Customize your self-hosted developer portal experience.
+* [Audit Logs API](/konnect/api/audit-logs/latest/) - Audit logging enables administrators to better spot security risks and maintain compliance of their core infrastructure.
+* [API Products API](/konnect/api/api-products/latest/) - API Products can be used to manage API versions, documentation, and analytics.
 
 {:.note}
 > **Note**: This list represents the APIs supported for use in production environments. 
