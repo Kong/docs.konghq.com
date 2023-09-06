@@ -260,8 +260,9 @@
     - text: Konnect Identity API
       items:
         - text: API Documentation
-          url: https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce/
+          url: /konnect/api/identity-management/v2/
           absolute_url: true
+          generate: false
         - text: Identity Integration Guide
           url: /api/identity-management/identity-integration/
         - text: SSO Customization
@@ -269,63 +270,68 @@
     - text: Runtime Groups API
       items:
         - text: API Documentation
-          url: https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/
+          url: /konnect/api/runtime-groups/v2/
           absolute_url: true
+          generate: false
     - text: Portal RBAC API
       items:
         - text: API Documentation
-          url: https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/
+          url: /konnect/api/portal-rbac/v2/
           absolute_url: true
     - text: Runtime Configuration API
       items:
         - text: Overview
-          url: /api/runtime-groups-config/
+          url: /api/runtime-groups-config/overview/
         - text: Nodes
-          url: /api/runtime-groups-config/#nodes
+          url: /api/runtime-groups-config/overview/#nodes
         - text: Data Plane Certificiates
-          url: /api/runtime-groups-config/#data-plane-certificates
+          url: /api/runtime-groups-config/overview/#data-plane-certificates
         - text: Konnect Core Entities
           items:
           - text: Services
-            url: /api/runtime-groups-config/#service-object
+            url: /api/runtime-groups-config/overview/#service-object
           - text: Routes
-            url: /api/runtime-groups-config/#route-object
+            url: /api/runtime-groups-config/overview/#route-object
           - text: Consumers
-            url: /api/runtime-groups-config/#consumer-object
+            url: /api/runtime-groups-config/overview/#consumer-object
           - text: Plugins
-            url: /api/runtime-groups-config/#plugin-object
+            url: /api/runtime-groups-config/overview/#plugin-object
           - text: Upstreams
-            url: /api/runtime-groups-config/#upstream-object
+            url: /api/runtime-groups-config/overview/#upstream-object
           - text: Certificates
-            url: /api/runtime-groups-config/#certificate-object
+            url: /api/runtime-groups-config/overview/#certificate-object
           - text: CA Certificates
-            url: /api/runtime-groups-config/#ca-certificate-object
+            url: /api/runtime-groups-config/overview/#ca-certificate-object
           - text: SNIs
-            url: /api/runtime-groups-config/#sni-object
+            url: /api/runtime-groups-config/overview/#sni-object
           - text: Targets
-            url: /api/runtime-groups-config/#target-object
+            url: /api/runtime-groups-config/overview/#target-object
           - text: Vaults
-            url: /api/runtime-groups-config/#vaults-object
+            url: /api/runtime-groups-config/overview/#vaults-object
         - text: API Spec
-          url: https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf
+          url: /konnect/api/runtime-groups-configuration/v2/
           absolute_url: true
+          generate: false
     - text: Portal Client API
-      items: 
+      items:
         - text: API Documentation
-          url: https://developer.konghq.com/spec/2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6/b4539157-4ced-4df5-affa-7d790baee356
+          url: /konnect/api/portal/v2/
           absolute_url: true
+          generate: false
     - text: Audit Logs API
       items:
         - text: API Documentation
-          url: https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/
+          url: /konnect/api/audit-logs/v2/
           absolute_url: true
+          generate: false
         - text: Audit Log Webhooks
           url: /api/audit-logs/webhook/
     - text: API Products API
-      items: 
+      items:
         - text: API Spec
-          url: https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0
+          url: /konnect/api/api-products/v2/
           absolute_url: true
+          generate: false
     - text: Reference
       items:
         - text: Filtering

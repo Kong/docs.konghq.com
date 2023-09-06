@@ -121,7 +121,7 @@ instances in the have been accounted for.
 
 To delete a runtime group, you can use the Runtime Manager or the 
 {{site.konnect_short_name}} 
-[Runtime Groups API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/).
+[Runtime Groups API](/konnect/api/runtime-groups/v2/).
 
 When a runtime group is deleted, all associated entities are also deleted.
 This includes all entities configured in the Runtime Manager for this group.

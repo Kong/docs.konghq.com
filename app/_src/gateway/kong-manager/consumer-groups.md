@@ -37,7 +37,7 @@ the plugin accepts
 plugin's global configuration
 
 For all possible requests, see the
-[Consumer Groups reference](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60#/consumer_groups/get-consumer_groups).
+[Consumer Groups reference](/gateway/api/admin-ee/3.3.0.x/#/consumer_groups/get-consumer_groups).
 
 ## Set up a consumer group with consumers
 
