@@ -204,7 +204,6 @@ receives on port 9000 to `tcp-echo` service on port 2701.
 
 ### Test the configuration
 
-Status populate with an IP or Accepted condition once the route is ready:
 
 {% navtabs api %}
 {% navtab Ingress %}
