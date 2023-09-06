@@ -1,47 +1,23 @@
 ## Deploy the {{site.kic_product_name}} {#deploy-kic}
 
-You can deploy the {{site.kic_product_name}} on minikube using `kubectl` or `Helm Charts`:
+You can deploy the {{site.kic_product_name}} using `kubectl` or `Helm`:
 
-{% if_version gte:2.8.x %}
+{% assign version = include.version | default: page.version %}
+
 {% navtabs codeblock %}
 {% navtab kubectl %}
 ```bash
-$ kubectl create -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ include.version }}/deploy/single/all-in-one-dbless.yaml
+$ kubectl create -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ version }}/deploy/single/all-in-one-dbless.yaml
 ```
 {% endnavtab %}
 {% navtab Helm Charts %}
 ```bash
-$ helm repo add kong https://charts.konghq.com
-$ helm repo update
-
-# Helm 3
-$ helm install kong/kong --generate-name
+helm repo add kong https://charts.konghq.com
+helm repo update
+helm install kongdocs kong/kong
 ```
 {% endnavtab %}
 {% endnavtabs %}
-
-{% endif_version %}
-
-
-{% if_version lte:2.7.x %}
-{% navtabs codeblock %}
-{% navtab kubectl %}
-```bash
-$ kubectl create -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.version }}/deploy/single/all-in-one-dbless.yaml
-```
-{% endnavtab %}
-{% navtab Helm Charts %}
-```bash
-$ helm repo add kong https://charts.konghq.com
-$ helm repo update
-
-# Helm 3
-$ helm install kong/kong --generate-name
-```
-{% endnavtab %}
-{% endnavtabs %}
-
-{% endif_version %}
 
 The results should look like this:
 ```bash
