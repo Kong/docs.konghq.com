@@ -5,7 +5,7 @@ content_type: tutorial
 
 ## Overview
 
-Create TCP routing configuration for {{site.base_gateway}} in Kubernetes using either the TCPIngress custom resource or TCPRoute and TLSRoute Gateway APIs resource.
+Create TCP routing configuration for {{site.base_gateway}} in Kubernetes using either the `TCPIngress` custom resource or `TCPRoute` and `TLSRoute` Gateway APIs resource.
 
 TCP-based Ingress means that {{site.base_gateway}} simply forwards the TCP stream to a Pod of a Service that's running inside Kubernetes. {{site.base_gateway}} does not perform any sort of transformations.
 
