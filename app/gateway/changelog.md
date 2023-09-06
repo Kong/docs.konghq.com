@@ -2625,7 +2625,7 @@ images or packages, and Kong will not test package installation on Ubuntu 18.04.
   * Fixed an issue that caused the plugin to trigger rate limiting unpredictably.
   * Fixed an issue where {{site.base_gateway}} produced a log of error log entries when multiple Rate Limiting Advanced plugins shared the same namespace.
 * [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`): Fixed an issue that caused the plugin to return logs with `invalid introspection results` when decoding a bearer token.
-* [Response Transformer Advanced](/hub/kong-inc/response-transformer-advanced/): Fixed an issue that caused the response body to load when the `if_status` does not match.
+* [Response Transformer Advanced](/hub/kong-inc/response-transformer-advanced/) (`response-transformer-advanced`): Fixed an issue that caused the response body to load when the `if_status` does not match.
 
 ### Dependencies
 * Bumped lua-protobuf from 0.3.3 to 0.4.2
