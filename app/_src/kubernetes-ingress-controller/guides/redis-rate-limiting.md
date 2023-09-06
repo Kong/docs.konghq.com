@@ -25,7 +25,7 @@ multi-node Kong deployment.
 We will start by creating a global rate limiting policy:
 
 ```bash
-$ echo "
+echo "
 apiVersion: configuration.konghq.com/v1
 kind: KongClusterPlugin
 metadata:
@@ -39,6 +39,10 @@ config:
   policy: local
 plugin: rate-limiting
 " | kubectl apply -f -
+```
+
+The results should look like this:
+```text
 kongclusterplugin.configuration.konghq.com/global-rate-limit created
 ```
 
@@ -54,7 +58,7 @@ Next, test the rate limiting policy by executing the following command multiple
 times and observe the rate limit headers in the response:
 
 ```bash
-$ curl -I $PROXY_IP/foo/headers
+curl -I $PROXY_IP/foo/headers
 ```
 
 As there is a single Kong instance running, Kong correctly imposes the rate
@@ -66,7 +70,11 @@ Now, let's scale up the {{site.kic_product_name}} deployment to 3 pods, for
 scalability and redundancy:
 
 ```bash
-$ kubectl scale --replicas 3 -n kong deployment ingress-kong
+kubectl scale --replicas 3 -n kong deployment ingress-kong
+```
+
+The results should look like this:
+```text
 deployment.extensions/ingress-kong scaled
 ```
 
@@ -75,7 +83,7 @@ are up and running, test the rate limiting policy by executing the following
 command and observing the rate limit headers:
 
 ```bash
-$ curl -I $PROXY_IP/foo/headers
+curl -I $PROXY_IP/foo/headers
 ```
 
 You will observe that the rate limit is not consistent anymore and you can make
@@ -101,7 +109,11 @@ set this up next.
 First, we will deploy redis in our Kubernetes cluster:
 
 ```bash
-$ kubectl apply -n kong -f https://bit.ly/k8s-redis
+kubectl apply -n kong -f https://bit.ly/k8s-redis
+```
+
+The results should look like this:
+```text
 deployment.apps/redis created
 service/redis created
 ```
@@ -111,7 +123,7 @@ Redis as a data store rather than each Kong node storing the counter
 information in-memory:
 
 ```bash
-$ echo "
+echo "
 apiVersion: configuration.konghq.com/v1
 kind: KongClusterPlugin
 metadata:
@@ -126,6 +138,10 @@ config:
   redis_host: redis
 plugin: rate-limiting
 " | kubectl apply -f -
+```
+
+The results should look like this:
+```text
 kongclusterplugin.configuration.konghq.com/global-rate limit configured
 ```
 
