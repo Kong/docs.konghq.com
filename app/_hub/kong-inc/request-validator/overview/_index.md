@@ -264,8 +264,8 @@ or the [OpenAPI examples](https://swagger.io/docs/specification/serialization/).
 |name | `string` | **REQUIRED**. The name of the parameter. Parameter names are *case sensitive*, and corresponds to the parameter name used by the `in` property. If `in` is `"path"`, the `name` field MUST correspond to the [named capture group](https://docs.konghq.com/latest/proxy/#capturing-groups) from the configured `route`.|
 |in | `string` | **REQUIRED**. The location of the parameter. Possible values are `query`, `header`, or `path`.|
 |required | `boolean` | **REQUIRED** Determines whether this parameter is mandatory.|
-|style | `string` | **REQUIRED** when schema and explode are set<br> Describes how the parameter value will be serialized depending on the type of the parameter value.|
-|schema | `string` | **REQUIRED** when style and explode are set<br> The schema defining the type used for the parameter. It is validated using `draft4` for JSONschema draft 4 compliant validator.|
+|style | `string` | **REQUIRED** when schema and explode are set<br> Describes how the parameter value will be deserialized depending on the type of the parameter value.|
+|schema | `string` | **REQUIRED** when style and explode are set<br> The schema defining the type used for the parameter. It is validated using `draft4` for JSONschema draft 4 compliant validator. In addition to being a valid JSONschema, the parameter schema MUST have a top-level `type` property to enable proper deserialization before validating. |
 |explode | `boolean` | **REQUIRED** when schema and style are set<br> When this is true, parameter values of type `array` or `object` generate separate parameters for each value of the array or key-value pair of the map.  For other types of parameters this property has no effect.|
 
 #### Examples
