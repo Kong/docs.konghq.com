@@ -121,6 +121,7 @@ deduplication
 degraphql
 denylist
 deployer
+deserialization
 deserialize
 deserialized
 dev
