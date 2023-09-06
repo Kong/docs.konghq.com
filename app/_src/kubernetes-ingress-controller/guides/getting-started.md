@@ -89,7 +89,7 @@ gateway.gateway.networking.k8s.io/kong patched
     *  subject: CN=kong.example
     ```
 
-## Using plugins in Kong
+## Using plugins on Ingress / Gateway API Routes
 
 1. Setup a KongPlugin resource.
 
