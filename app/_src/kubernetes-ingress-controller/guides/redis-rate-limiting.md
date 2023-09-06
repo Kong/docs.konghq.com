@@ -1,33 +1,32 @@
 ---
-title: Using Redis for rate-limiting
+title: Using Redis for rate limiting
 ---
 
-Kong can rate-limit your traffic without any external dependency.
-In such a case, Kong stores the request counters in-memory
-and each Kong node applies the rate-limiting policy independently.
-There is no synchronization of information being done in this case.
-But if Redis is available in your cluster, Kong
-can take advantage of it and synchronize the rate-limit information
-across multiple Kong nodes and enforce a slightly different rate-limiting
-policy.
+Kong can rate limit your traffic without any external dependency. In such a
+case, Kong stores the request counters in-memory and each Kong node applies the
+rate limiting policy independently. There is no synchronization of information
+being done in this case. But if Redis is available in your cluster, Kong can
+take advantage of it and synchronize the rate limit information across multiple
+Kong nodes and enforce a slightly different rate limiting policy.
 
-This guide walks through the steps of using Redis for rate-limiting in
-a multi-node Kong deployment.
+This guide walks through the steps of using Redis for rate limiting in a
+multi-node Kong deployment.
 
 ## Installation
 
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install
-the {{site.kic_product_name}} on your Kubernetes cluster.
+Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/)
+documentation to install the {{site.kic_product_name}} on your Kubernetes
+cluster.
 
 ## Testing Connectivity to Kong
 
-This guide assumes that the `PROXY_IP` environment variable is
-set to contain the IP address or URL pointing to Kong.
-Please follow one of the
-[deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
+This guide assumes that the `PROXY_IP` environment variable is set to contain
+the IP address or URL pointing to Kong. Please follow one of the [deployment
+guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview)
+to configure this environment variable.
 
-If everything is setup correctly, making a request to Kong should return
-HTTP 404 Not Found.
+If everything is setup correctly, making a request to Kong should return HTTP
+404 Not Found.
 
 ```bash
 $ curl -i $PROXY_IP
@@ -97,9 +96,9 @@ X-Kong-Proxy-Latency: 1
 Via: kong/3.1.1
 ```
 
-## Set up rate-limiting
+## Set up rate limiting
 
-We will start by creating a global rate-limiting policy:
+We will start by creating a global rate limiting policy:
 
 ```bash
 $ echo "
@@ -119,23 +118,23 @@ plugin: rate-limiting
 kongclusterplugin.configuration.konghq.com/global-rate-limit created
 ```
 
-Here we are configuring the {{site.kic_product_name}} to rate-limit traffic from
-any client to 5 requests per minute, and we are applying this policy in a
-global sense, meaning the rate-limit will apply across all services.
+Here we are configuring the {{site.kic_product_name}} to rate limit traffic
+from any client to 5 requests per minute, and we are applying this policy in a
+global sense, meaning the rate limit will apply across all services.
 
 You can set this up for a specific Ingress or a specific service as well,
 please follow [using KongPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource/)
 guide on steps for doing that.
 
-Next, test the rate-limiting policy by executing the following command
-multiple times and observe the rate-limit headers in the response:
+Next, test the rate limiting policy by executing the following command multiple
+times and observe the rate limit headers in the response:
 
 ```bash
 $ curl -I $PROXY_IP/foo/headers
 ```
 
-As there is a single Kong instance running, Kong correctly imposes
-the rate-limit and you can make only 5 requests in a minute.
+As there is a single Kong instance running, Kong correctly imposes the rate
+limit and you can make only 5 requests in a minute.
 
 ## Scale the controller to multiple pods
 
@@ -147,32 +146,31 @@ $ kubectl scale --replicas 3 -n kong deployment ingress-kong
 deployment.extensions/ingress-kong scaled
 ```
 
-It will take a couple minutes for the new pods to start up.
-Once the new pods are up and running, test the rate-limiting policy by
-executing the following command and observing the rate-limit headers:
+It will take a couple minutes for the new pods to start up. Once the new pods
+are up and running, test the rate limiting policy by executing the following
+command and observing the rate limit headers:
 
 ```bash
 $ curl -I $PROXY_IP/foo/headers
 ```
 
-You will observe that the rate-limit is not consistent anymore
-and you can make more than 5 requests in a minute.
+You will observe that the rate limit is not consistent anymore and you can make
+more than 5 requests in a minute.
 
 To understand this behavior, we need to understand how we have configured Kong.
-In the current policy, each Kong node is tracking a rate-limit in-memory
-and it will allow 5 requests to go through for a client.
-There is no synchronization of the rate-limit information across Kong nodes.
-In use-cases where rate-limiting is used as a protection mechanism and to
-avoid over-loading your services, each Kong node tracking its own counter
-for requests is good enough as a malicious user will hit rate-limits on all
-nodes eventually.
-Or if the load-balancer in-front of Kong is performing some
-sort of deterministic hashing of requests such that the same Kong node always
-receives the requests from a client, then we won't have this problem at all.
+In the current policy, each Kong node is tracking a rate limit in-memory and it
+will allow 5 requests to go through for a client. There is no synchronization
+of the rate limit information across Kong nodes. In use-cases where rate
+limiting is used as a protection mechanism and to avoid over-loading your
+services, each Kong node tracking its own counter for requests is good enough
+as a malicious user will hit rate limits on all nodes eventually. Or if the
+load-balancer in-front of Kong is performing some sort of deterministic hashing
+of requests such that the same Kong node always receives the requests from a
+client, then we won't have this problem at all.
 
 In some cases, a synchronization of information that each Kong node maintains
-in-memory is needed. For that purpose, Redis can be used.
-Let's go ahead and set this up next.
+in-memory is needed. For that purpose, Redis can be used. Let's go ahead and
+set this up next.
 
 ## Deploy Redis to your Kubernetes cluster
 
@@ -185,15 +183,15 @@ service/redis created
 ```
 
 Once this is deployed, let's update our KongClusterPlugin configuration to use
-Redis as a data store rather than each Kong node storing the counter information
-in-memory:
+Redis as a data store rather than each Kong node storing the counter
+information in-memory:
 
 ```bash
 $ echo "
 apiVersion: configuration.konghq.com/v1
 kind: KongClusterPlugin
 metadata:
-  name: global-rate-limit
+  name: global-rate limit
   annotations:
     kubernetes.io/ingress.class: kong
   labels:
@@ -204,7 +202,7 @@ config:
   redis_host: redis
 plugin: rate-limiting
 " | kubectl apply -f -
-kongclusterplugin.configuration.konghq.com/global-rate-limit configured
+kongclusterplugin.configuration.konghq.com/global-rate limit configured
 ```
 
 Notice, how the `policy` is now set to `redis` and we have configured Kong
@@ -220,6 +218,6 @@ to make only 5 requests in a minute:
 $ curl -I $PROXY_IP/foo/headers
 ```
 
-This guide shows how to use Redis as a data-store for rate-limiting plugin,
-but this can be used for other plugins which support Redis as a data-store
-like proxy-cache.
+This guide shows how to use Redis as a data-store for rate limiting plugin, but
+this can be used for other plugins which support Redis as a data-store like
+proxy-cache.
