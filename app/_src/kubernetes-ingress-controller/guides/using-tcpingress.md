@@ -219,6 +219,8 @@ echo-plaintext   <PROXY_IP>   3m18s
 ```
 {% endnavtab %}
 {% navtab Gateway APIs %}
+`tcproute` contains an "Accepted" condition when the route is ready:
+
 ```bash
 kubectl get tcproute echo-plaintext -ojsonpath='{.status.parents[0].conditions[?(@.reason=="Accepted")]}'
 ```
