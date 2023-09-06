@@ -1902,7 +1902,7 @@ issues with the plugin or integration, try the following:
 
 1. Set Kong [log level](/gateway/latest/reference/configuration/#log_level) to `debug`, and check the Kong `error.log` (you can filter it with `openid-connect`)
    ```bash
-   KONG_LOG_LEVEL=debug kong restart
+   KONG_LOG_LEVEL=debug
    ```
 2. Set the Kong OpenID Connect plugin to display errors:
    ```json
