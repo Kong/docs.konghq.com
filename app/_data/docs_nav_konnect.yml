@@ -263,6 +263,7 @@
           url: /konnect/api/identity-management/latest/
           absolute_url: true
           generate: false
+           target_blank: true
         - text: Identity Integration Guide
           url: /api/identity-management/identity-integration/
         - text: SSO Customization
@@ -270,14 +271,17 @@
     - text: Runtime Groups API
       items:
         - text: API Spec
-          url: https://docs.konghq.com/konnect/api/runtime-groups/v2/
+          url: /konnect/api/runtime-groups/latest/
           absolute_url: true
           generate: false
+          target_blank: true
     - text: Portal RBAC API
       items:
         - text: API Spec
           url: /konnect/api/portal-rbac/latest/
           absolute_url: true
+          generate: false
+          target_blank: true
     - text: Runtime Configuration API
       items:
         - text: Overview
@@ -312,18 +316,21 @@
           url: /konnect/api/runtime-groups-configuration/latest/
           absolute_url: true
           generate: false
+          target_blank: true
     - text: Portal Client API
       items:
         - text: API Spec
           url: /konnect/api/portal/latest/
           absolute_url: true
           generate: false
+          target_blank: true
     - text: Audit Logs API
       items:
         - text: API Spec
           url: /konnect/api/audit-logs/latest/
           absolute_url: true
           generate: false
+          target_blank: true
         - text: Audit Log Webhooks
           url: /api/audit-logs/webhook/
     - text: API Products API
@@ -332,6 +339,7 @@
           url: /konnect/api/api-products/latest/
           absolute_url: true
           generate: false
+          target_blank: true
     - text: Reference
       items:
         - text: Filtering
