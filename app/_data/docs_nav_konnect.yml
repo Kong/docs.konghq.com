@@ -259,8 +259,8 @@
       url: /api/
     - text: Konnect Identity API
       items:
-        - text: API Documentation
-          url: /konnect/api/identity-management/v2/
+        - text: API Spec
+          url: /konnect/api/identity-management/latest/
           absolute_url: true
           generate: false
         - text: Identity Integration Guide
@@ -269,14 +269,14 @@
           url: /api/identity-management/sso/
     - text: Runtime Groups API
       items:
-        - text: API Documentation
-          url: /konnect/api/runtime-groups/v2/
+        - text: API Spec
+          url: /konnect/api/runtime-groups/latest/
           absolute_url: true
           generate: false
     - text: Portal RBAC API
       items:
-        - text: API Documentation
-          url: /konnect/api/portal-rbac/v2/
+        - text: API Spec
+          url: /konnect/api/portal-rbac/latest/
           absolute_url: true
     - text: Runtime Configuration API
       items:
@@ -309,19 +309,19 @@
           - text: Vaults
             url: /api/runtime-groups-config/overview/#vaults-object
         - text: API Spec
-          url: /konnect/api/runtime-groups-configuration/v2/
+          url: /konnect/api/runtime-groups-configuration/latest/
           absolute_url: true
           generate: false
     - text: Portal Client API
       items:
-        - text: API Documentation
-          url: /konnect/api/portal/v2/
+        - text: API Spec
+          url: /konnect/api/portal/latest/
           absolute_url: true
           generate: false
     - text: Audit Logs API
       items:
-        - text: API Documentation
-          url: /konnect/api/audit-logs/v2/
+        - text: API Spec
+          url: /konnect/api/audit-logs/latest/
           absolute_url: true
           generate: false
         - text: Audit Log Webhooks
@@ -329,7 +329,7 @@
     - text: API Products API
       items:
         - text: API Spec
-          url: /konnect/api/api-products/v2/
+          url: /konnect/api/api-products/latest/
           absolute_url: true
           generate: false
     - text: Reference
