@@ -206,6 +206,7 @@ docker run -d --name kong-gateway \
  -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
  -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
  -e "KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl" \
+ -e "KONG_ADMIN_GUI_URL=http://localhost:8002" \
  -p 8000:8000 \
  -p 8443:8443 \
  -p 127.0.0.1:8001:8001 \
@@ -235,8 +236,7 @@ docker run -d --name kong-gateway \
     the example to  print messages and errors to `stdout` and `stderr`.
     * [`KONG_ADMIN_LISTEN`](/gateway/{{page.kong_version}}/reference/configuration/#admin_listen):
     The port that the Kong Admin API listens on for requests.
-    * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url):
-    (Enterprise only) The URL for accessing Kong Manager, preceded by a protocol
+    * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url): {% if_version lte:3.3.x %}(Not available in OSS) {% endif_version %}The URL for accessing Kong Manager, preceded by a protocol
     (for example, `http://`).
     * `KONG_LICENSE_DATA`: (Enterprise only) If you have a license file and have saved it
     as an environment variable, this parameter pulls the license from your environment.
@@ -251,13 +251,22 @@ docker run -d --name kong-gateway \
 
     You should receive a `200` status code.
 <!-- vale on -->
+{% if_version lte:3.3.x %}
 1. (Not available in OSS) Verify that Kong Manager is running by accessing it
 using the URL specified in `KONG_ADMIN_GUI_URL`:
 
     ```
     http://localhost:8002
     ```
+{% endif_version %}
+{% if_version gte:3.4.x %}
+1. Verify that Kong Manager is running by accessing it
+using the URL specified in `KONG_ADMIN_GUI_URL`:
 
+    ```
+    http://localhost:8002
+    ```
+{% endif_version %}
 ### Get started with {{site.base_gateway}}
 
 Now that you have a running Gateway instance, Kong provides a series of
@@ -384,6 +393,7 @@ docker run -d --name kong-dbless \
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
+{% if_version lte:3.3.x %}
 ```sh
 docker run -d --name kong-dbless \
  --network=kong-net \
@@ -401,6 +411,27 @@ docker run -d --name kong-dbless \
  -p 127.0.0.1:8444:8444 \
  kong:{{page.versions.ce}}
  ```
+{% endif_version %}
+{% if_version gte:3.4.x %}
+```sh
+docker run -d --name kong-dbless \
+ --network=kong-net \
+ -v "$(pwd):/kong/declarative/" \
+ -e "KONG_DATABASE=off" \
+ -e "KONG_DECLARATIVE_CONFIG=/kong/declarative/kong.yml" \
+ -e "KONG_PROXY_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_ADMIN_ACCESS_LOG=/dev/stdout" \
+ -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
+ -e "KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl" \
+ -e "KONG_ADMIN_GUI_URL=http://localhost:8002" \
+ -p 8000:8000 \
+ -p 8443:8443 \
+ -p 127.0.0.1:8001:8001 \
+ -p 127.0.0.1:8444:8444 \
+ kong:{{page.versions.ce}}
+ ```
+{% endif_version %}
 {% endnavtab %}
 {% endnavtabs_ee %}
 {% endcapture %}
@@ -423,8 +454,7 @@ docker run -d --name kong-dbless \
     the example to  print messages and errors to `stdout` and `stderr`.
     * [`KONG_ADMIN_LISTEN`](/gateway/{{page.kong_version}}/reference/configuration/#admin_listen):
     The port that the Kong Admin API listens on for requests.
-    * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url):
-    (Enterprise only) The URL for accessing Kong Manager, preceded by a protocol
+    * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url): {% if_version lte:3.3.x %}(Not available in OSS) {% endif_version %}The URL for accessing Kong Manager, preceded by a protocol
     (for example, `http://`).
     * `KONG_LICENSE_DATA`: (Enterprise only) If you have a license file and have saved it
     as an environment variable, this parameter pulls the license from your environment.

@@ -13,6 +13,7 @@ RSpec.describe SEO::Index do
         '/hub/kong-inc/jq/how-to/basic-example/' => { 'url' => '/hub/kong-inc/jq/how-to/basic-example/', 'page' => find_page_by_url('/hub/kong-inc/jq/how-to/basic-example/') },
         '/hub/kong-inc/jq/how-to/' => { 'url' => '/hub/kong-inc/jq/how-to/', 'page' => find_page_by_url('/hub/kong-inc/jq/how-to/') },
         '/hub/kong-inc/jwt-signer/' => { 'url' => '/hub/kong-inc/jwt-signer/', 'page' => find_page_by_url('/hub/kong-inc/jwt-signer/') },
+        '/hub/kong-inc/jwt-signer/nested/' => { 'url' => '/hub/kong-inc/jwt-signer/nested/', 'page' => find_page_by_url('/hub/kong-inc/jwt-signer/nested/') },
         '/hub/kong-inc/jwt-signer/changelog/' => { 'url' => '/hub/kong-inc/jwt-signer/changelog/', 'page' => find_page_by_url('/hub/kong-inc/jwt-signer/changelog/') },
         '/hub/kong-inc/jwt-signer/how-to/' => { 'url' => '/hub/kong-inc/jwt-signer/how-to/', 'page' => find_page_by_url('/hub/kong-inc/jwt-signer/how-to/') },
         '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/' => { 'url' => '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/', 'page' => find_page_by_url('/hub/kong-inc/jwt-signer/how-to/nested/tutorial/') },

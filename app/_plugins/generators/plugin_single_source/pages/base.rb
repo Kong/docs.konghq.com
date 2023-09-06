@@ -72,7 +72,7 @@ module PluginSingleSource
       def url_attributes
         @url_attributes ||= {
           'permalink' => permalink,
-          'canonical_url' => @release.latest? ? nil : canonical_url,
+          'canonical_url' => canonical_url,
           'source_file' => source_file
         }
       end

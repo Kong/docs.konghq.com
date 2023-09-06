@@ -23,9 +23,11 @@ Kong is licensed under an
 ## Installation
 
 {:.note}
-> **Note:** {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
+> **Notes:**
+* {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
+* In July of 2023 Kong announced that package hosting was shifting from {{ site.links.download }} to [{{ site.links.cloudsmith }}]({{ site.links.cloudsmith }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
 
-The quickest way to get started with {{ site.base_gateway }} is using our install script:
+The quickest way to get started with {{ site.base_gateway }} is using the install script:
 
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
@@ -67,7 +69,7 @@ Once {{ site.base_gateway }} is running, you may want to do the following:
 
 ### Package Install
 
-You can install {{site.base_gateway}} by downloading an installation package or using our APT repository.
+You can install {{site.base_gateway}} by downloading an installation package or using the APT repository.
 
 {% if_version gte:3.4.x %}
 We currently package {{ site.base_gateway }} for Ubuntu Focal and Jammy. If you are using a different release, replace `jammy` with `$(lsb_release -sc)` or the release name in the commands below. To check your release name, run `lsb_release -sc`.
