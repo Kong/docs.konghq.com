@@ -54,6 +54,6 @@ This brings you to a set of installation options. Choose one of the options, the
 - [Renew certificates](/konnect/gateway-manager/data-plane-nodes/renew-certificates/) - Renew your data plane certificates
 - [Backup and restore](/konnect/gateway-manager/backup-restore/) - Back up and restore {{site.konnect_short_name}} using declarative configuration
 - [Forward proxy connections](/gateway/latest/production/networking/cp-dp-proxy/) - Allow data plane nodes to communicate with {{site.konnect_short_name}} through a forward proxy
-- [Runtime parameter reference](/konnect/gateway-manager/data-plane-nodes/runtime-parameter-reference/) - Reference for the default configuration parameters used in data plane node installation
+- [Data plane parameter reference](/konnect/gateway-manager/data-plane-nodes/parameter-reference/) - Reference for the default configuration parameters used in data plane node installation
 - [Analytics dashboard](/konnect/analytics/) - Monitor and analyze your data plane nodes, as well as specific entities
 - [Troubleshooting documentation](/konnect/gateway-manager/troubleshoot/) - Common data plane node troubleshooting instruction documentation.

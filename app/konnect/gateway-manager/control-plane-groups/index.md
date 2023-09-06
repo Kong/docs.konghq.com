@@ -1,5 +1,5 @@
 ---
-title: Composite Control Planes
+title: Control Plane Groups
 content_type: explanation
 badge: enterprise
 ---
@@ -23,14 +23,14 @@ The following diagram illustrates using a control plane group for a federated pl
 The data plane nodes in the cluster use the combined configuration from all three groups.
 
 ![Control plane group](/assets/images/docs/konnect/konnect-composite-rg.svg)
-> _**Figure 2:** Composite control plane workflow_
+> _**Figure 2:** Control plane group workflow_
 
 A control plane group can contain up to 256 control planes. 
 You can add or remove up to 50 member control planes at a time.
 
 Each standard control plane can be a member of no more than 5 control plane groups.
 
-## Runtime instances 
+## Data plane nodes
 
 In a control plane group, the composite configuration from all member control planes is pushed to each data plane node.
 
@@ -65,9 +65,9 @@ Consumer | Consumer group | By ID
 Consumer | ACL group | By string
 Consumer groups | Plugin | By string
 Plugin (Non-Global) | Service, route, consumer | By ID
-Global plugin | Control Plane | By Runtime group
+Global plugin | Control plane | By control plane
 Key | Key set | By ID
-Vault | Runtime group | By Runtime group
+Vault | Control plane| By control plane
 deGraphQL route | Service | By ID
 GraphQL Rate Limiting cost decoration | Service | By ID
 
@@ -96,11 +96,11 @@ For example, two instances of the Rate Limiting plugin cannot be installed in th
 A control plane group composition will be applied even if the configurations of the standard control planes are not combined successfully. 
 This means that even if there is some confict and the member groups weren't merged successfully, a control plane group still gets created.
 
-Composite control planes are read-only (with some exceptions), so configuration modifications must be made via a member standard control plane. 
+Control plane groups are read-only (with some exceptions), so configuration modifications must be made via a member control plane. 
 
 The following are exceptions to the read-only rule:
 * A data plane node client certificate can be generated in the UI or uploaded to a control plane group.
-* Runtime instances can be connected to a control plane group, however members of a control plane group cannot have any data plane nodes connected to them.
+* Data plane nodes can be connected to a control plane group, however members of a control plane group cannot have any data plane nodes connected to them.
 
 Kong Ingress Controller control planes can't be part of a control plane group.
 

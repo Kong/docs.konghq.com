@@ -65,7 +65,7 @@ http://localhost:8000/mock
 If successful, you should see the homepage for `mockbin.org`. In the Gateway Manager you will now see a **200** responses recorded in the **Analytics** tab.
 
 And that's it! You have your first service set up, running, and routing
-traffic proxied through a {{site.base_gateway}} runtime.
+traffic proxied through a {{site.base_gateway}} data plane node.
 
 ## Summary and next steps
 

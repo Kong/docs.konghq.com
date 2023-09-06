@@ -1,5 +1,5 @@
 ---
-title: Manage Runtime Configuration with decK
+title: Manage Control Plane Configuration with decK
 content_type: how-to
 ---
 
@@ -10,10 +10,10 @@ compare, and synchronize configuration as part of an automation pipeline.
 
 In {{site.konnect_saas}}, decK can manage [control planes](/konnect/gateway-manager/control-planes/)
 and all of their configurations:
-* Create state files for different control planes and manage each group
+* Create state files for different control planes and manage each one
 separately.
-* Manage [Gateway entities](/konnect/api/) for each group.
-* Migrate configuration from one group to another.
+* Manage [Gateway entities](/konnect/api/) for each control plane.
+* Migrate configuration from one control plane to another.
 
 Use a `--konnect`-prefixed CLI flag or pass {{site.konnect_short_name}}
 parameters using a decK configuration file (`~/.deck.yaml` by default) to target

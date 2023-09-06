@@ -3,7 +3,7 @@ title: Upgrade a Data Plane Node to a New Version
 content_type: how-to
 ---
 
-You can upgrade runtimes to a new {{site.base_gateway}} version by bringing
+You can upgrade data plane nodes to a new {{site.base_gateway}} version by bringing
 up new data plane nodes, and then shutting down the old ones. This is the best
 method for high availability, as the new node starts processing data before the
 old node is removed. It is the cleanest and safest way to upgrade with no
@@ -25,15 +25,15 @@ To upgrade a data plane node to a new version, follow these steps:
 1. Open {% konnect_icon runtimes %} **Gateway Manager**, choose a control plane,
 and provision a new data plane node through the Gateway Manager.
 
-    Make sure that your new data plane node appears in the list of runtime
-    instances, displays a _Connected_ status, and that it was last seen _Just Now_.
+    Make sure that your new data plane node appears in the list of nodes, 
+    displays a _Connected_ status, and that it was last seen _Just Now_.
 
 1. Once the new data plane node is connected and functioning, disconnect
 and shut down the instances you are replacing.
 
     {:.note}
     > You can't shut down data plane nodes from within Gateway Manager. Old
-    instances will also remain listed as `Connected` in Gateway Manager for a
+    nodes will also remain listed as `Connected` in Gateway Manager for a
     few hours after they have been removed or shut down.
 
 1. Test passing data through your new data plane node by accessing your proxy

@@ -15,7 +15,7 @@ Therefore, when migrating, you will need at least two new groups: a control plan
 
 ## Prerequisites
 
-* **Runtime group admin** permissions
+* **Control plane admin** permissions
 * decK v1.12 or later [installed](/deck/latest/installation/)
 * You have a Konnect access token and you have [made sure that decK can connect to your account](/konnect/gateway-manager/declarative-config/)
 
@@ -39,7 +39,7 @@ Therefore, when migrating, you will need at least two new groups: a control plan
         --data cluster_type=CLUSTER_TYPE_HYBRID
     ```
 
-1. Add the new group to the control plane group as a member:
+1. Add the new control plane to the group as a member:
 
     ```sh
     curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups/<composite-group-ID>/composite-memberships/add \
@@ -86,7 +86,7 @@ Assuming you already have a control plane group and a member control plane, you 
         --konnect-runtime-group-name CP1
     ```
 
-    Note that you can't sync the configuration to the control plane group `CPG`. Composite control planes don't have their own configuration. They use combined configuration from all of their member control planes.
+    Note that you can't sync the configuration to the control plane group `CPG`. Control plane groups don't have their own configuration. They use combined configuration from all of their member control planes.
 
 
 ## Scenario: Migrate workspaces to control plane groups
@@ -102,7 +102,7 @@ Use decK to migrate a self-managed {{site.base_gateway}} workspace into a contro
 1. Open the file. Remove the following:
 
     * Any `_workspace` entries: There are no workspaces in {{site.konnect_short_name}}. For a similar
-    concept, see [control planes](/konnect/gateway-manager/runtime-groups/).
+    concept, see [control planes](/konnect/gateway-manager/control-plane-groups/).
 
     * Configuration for the Portal App Registration plugin: App registration is
     [supported in {{site.konnect_short_name}}](/konnect/dev-portal/applications/application-overview/),

@@ -48,7 +48,7 @@ In {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us
 1. Click **Publish to portal** from the **Actions** dropdown menu. This will allow developers to access the API product once you assign them to a team.
 1. Click **New Version** from the **Actions** dropdown menu and enter `v1` in the **Version Name** field and then click **Create**.
 1. Click the **v1** version and then click **Link** to add a service.
-1. Select a runtime from the **Select Control Plane** dropdown menu, select `pizza_ordering` from the **Gateway Service** dropdown menu, and then click **Save**.
+1. Select a control plane from the **Select Control Plane** dropdown menu, select `pizza_ordering` from the **Gateway Service** dropdown menu, and then click **Save**.
 1. Click the **Edit** icon next to the status of your product version and select **Published** from the **Edit version status** dialog and then click **Save**.
 1. You need to enable app registration if you want the developer in the Authorized Delivery Partners group to be able to consume your APIs by registering apps. You can use an authentication method of your choice in the [enable or disable application registration](/konnect/dev-portal/applications/enable-app-reg/) documentation.
 
