@@ -37,7 +37,10 @@
     "https://docs.konghq.com/sitemap.xml"
   ],
   "stop_urls": [
-    "https://docs.konghq.com/hub/.*?/.*?/[0-9].[0-9].x/"
+    "https://docs.konghq.com/hub/.*?/.*?/[0-9].[0-9].x/",
+    "https://docs.konghq.com/hub/.*?/.*?/how-to/basic-examples/",
+    "**.yaml",
+    "**.yml"
   ],
 
   "selectors": {
