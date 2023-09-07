@@ -3,7 +3,7 @@ title: Getting started with the Post-function plugin
 nav_title: Getting started with Post-function
 ---
 
-Let's test out the post-function plugin by changing some request header names.
+Let's test out the Post-function plugin by changing some request header names.
 
 We'll try it out on two types of headers: headers set via a plugin (in this case, 
 [Rate Limiting](/hub/kong-inc/rate-limiting/)), and latency headers from {{site.base_gateway}}).
@@ -11,11 +11,11 @@ We'll try it out on two types of headers: headers set via a plugin (in this case
 * The Rate Limiting plugin returns headers such as `X-RateLimit-Remaining-<time>` and `X-RateLimit-Limit-<time>`, 
 where `<time>` is the configured time span for the limit.
 * {{site.base_gateway}} adds latency headers to responses, such as `X-Kong-Upstream-Latency` and `X-Kong-Proxy-Latency`.
-While you can turn these headers on or off in `kong.conf`, they have fixed names that can't be changed via direct configuration. 
+While you can turn these headers on or off in `kong.conf`, they have fixed names that can't be configured. 
 
 To change any header names, you have to set up a Post-function plugin instance that runs in the `header_filter` phase.
 
-1. Create a service in {{site.base_gateway}}:
+1. Create a {{site.base_gateway}} service:
 
     ```sh
     curl -i -X POST http://localhost:8001/services/ \
@@ -91,7 +91,7 @@ For example, let's apply it to the `test` route:
       --form "config.header_filter=@/tmp/serverless.lua"
     ```
 
-1. Verify the changes. Make a call to the Admin API and check the response header names have been changed:
+1. Verify the changes. Make a call to the Admin API and check that the response header names have been changed:
 
     ```sh
     curl -v http://localhost:8000/test
@@ -127,4 +127,4 @@ For example, let's apply it to the `test` route:
 This is just a small demonstration of the power this plugin grants. You were
 able to dynamically inject Lua code into the header phase to dynamically
 transform the request without creating a custom plugin or
-reloading/redeploying Kong.
+reloading and redeploying {{site.base_gateway}}.
