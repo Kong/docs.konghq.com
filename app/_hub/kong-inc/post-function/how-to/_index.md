@@ -3,9 +3,7 @@ title: Getting started with the Post-function plugin
 nav_title: Getting started with Post-function
 ---
 
-Let's test out the Post-function plugin by changing some request header names.
-
-We'll try it out on two types of headers: headers set via a plugin (in this case, 
+The following guide shows you how to set up the Post-fuction plugin to adjust request header names. In this example, we'll edit two types of headers: headers set via a plugin (in this case, 
 [Rate Limiting](/hub/kong-inc/rate-limiting/)), and latency headers from {{site.base_gateway}}).
 
 * The Rate Limiting plugin returns headers such as `X-RateLimit-Remaining-<time>` and `X-RateLimit-Limit-<time>`, 
@@ -13,7 +11,7 @@ where `<time>` is the configured time span for the limit.
 * {{site.base_gateway}} adds latency headers to responses, such as `X-Kong-Upstream-Latency` and `X-Kong-Proxy-Latency`.
 While you can turn these headers on or off in `kong.conf`, they have fixed names that can't be configured. 
 
-To change any header names, you have to set up a Post-function plugin instance that runs in the `header_filter` phase.
+To change any header names, set up a Post-function plugin instance that runs in the `header_filter` phase.
 
 1. Create a {{site.base_gateway}} service:
 
