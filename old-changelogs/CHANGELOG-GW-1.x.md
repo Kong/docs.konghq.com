@@ -1,5 +1,7 @@
 # Kong Gateway Changelog 1.x
 
+<!-- vale off -->
+
 This changelog covers 1.x versions that have reached end of sunset support.
 
 Looking for recent releases? See [https://docs.konghq.com/gateway/changelog/](https://docs.konghq.com/gateway/changelog/) for the latest changes.
