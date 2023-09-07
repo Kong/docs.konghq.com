@@ -96,7 +96,7 @@ For example, two instances of the Rate Limiting plugin cannot be installed in th
 ## Limitations
 
 A control plane group composition will be applied even if the configurations of the standard control planes are not combined successfully. 
-This means that even if there is some confict and the member control planes weren't merged successfully, a control plane group still gets created.
+This means that even if there is some conflict and the member control planes weren't merged successfully, a control plane group still gets created.
 
 Control plane groups are read-only (with some exceptions), so configuration modifications must be made via a member control plane. 
 

@@ -24,7 +24,7 @@ Reports will only show the control plane group.
 
 ## Contextual analytics for services and routes
 
-In the [Gateaway Manager](/konnect/gateway-manager/), you can see
+In the [Gateway Manager](/konnect/gateway-manager/), you can see
 activity graphs for gateway services or routes for the past 30 days.
 For gateway services and routes, the graphs show requests broken down by status codes.
 

@@ -5,7 +5,7 @@ badge: enterprise
 ---
 
 A conflict is a potential issue in combined configuration. 
-For example, there might be a name conflict between services, or the existance of consumer credentials, 
+For example, there might be a name conflict between services, or the existence of consumer credentials, 
 which become available to all members of a control plane group.
 
 Once you have at least one data plane node connected to your control plane group, 
@@ -19,9 +19,9 @@ Conflicts have been detected between these control planes:
 <control plane name>
 ```
 
-![Control plane groups invariances](/assets/images/docs/konnect/konnect-invariances-composite.png)
+![Control plane groups conflicts](/assets/images/docs/konnect/konnect-invariances-composite.png)
 
-![Standard control plane invariances](/assets/images/docs/konnect/konnect-invariances-members.png)
+![Standard control plane conflicts](/assets/images/docs/konnect/konnect-invariances-members.png)
 
 
 Standard control plane:
@@ -29,7 +29,7 @@ Standard control plane:
 This control plane is causing a conflict with the parent control plane group.
 ```
 
-![Specific control plane invariance example](/assets/images/docs/konnect/konnect-invariances-child.png)
+![Specific control plane conflict example](/assets/images/docs/konnect/konnect-invariances-child.png)
 
 You can follow the link from the notification to **View** the conflicts in each control plane, 
 then **View** again to open the resource that's causing the issue.
