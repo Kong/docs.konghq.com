@@ -8,7 +8,7 @@ files instead of the GUI or admin API commands. With decK, Kong's declarative
 configuration management tool, you can create, update,
 compare, and synchronize configuration as part of an automation pipeline.
 
-In {{site.konnect_saas}}, decK can manage [control planes](/konnect/gateway-manager/control-planes/)
+In {{site.konnect_saas}}, decK can manage [control planes](/konnect/gateway-manager/#control-planes)
 and all of their configurations:
 * Create state files for different control planes and manage each one
 separately.
