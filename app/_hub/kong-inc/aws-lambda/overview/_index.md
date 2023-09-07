@@ -50,6 +50,11 @@ that the plugin now has the access permission configured in the target assumed r
 
 {% endif_plugin_version %}
 
+{% if_plugin_version eq:2.8.x %}
+<!--AWS LAMDA refactor details go here-->
+{% endif_plugin_version %}
+
+
 ## AWS region as environment variable
 
 If the plugin configuration `aws_region` is unset, the plugin attempts to obtain the
