@@ -263,7 +263,7 @@
           url: /konnect/api/identity-management/latest/
           absolute_url: true
           generate: false
-           target_blank: true
+          target_blank: true
         - text: Identity Integration Guide
           url: /api/identity-management/identity-integration/
         - text: SSO Customization
