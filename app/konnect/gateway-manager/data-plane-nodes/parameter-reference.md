@@ -7,7 +7,7 @@ content_type: reference
 
 Refer to these parameters when using the **Advanced** runtime setup option.
 
-The following parameters are the minimum settings required for a data plane instance.
+The following parameters are the minimum settings required for a data plane node.
 For further customization, see the
 [{{site.base_gateway}} configuration reference](/gateway/latest/reference/configuration).
 

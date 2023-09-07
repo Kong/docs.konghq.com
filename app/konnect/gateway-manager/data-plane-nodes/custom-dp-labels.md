@@ -5,7 +5,7 @@ content_type: how-to
 
 You can set [labels](/konnect/reference/labels/) on each data plane node (data plane) to provide custom context information. 
 
-Labels are commonly used for metadata information. Set anything that you need to identify your data plane nodes -- deployment type, region, size, the team that the instance belongs to, the purpose it serves, and much more. 
+Labels are commonly used for metadata information. Set anything that you need to identify your data plane nodes -- deployment type, region, size, the team that the node belongs to, the purpose it serves, and much more. 
 
 Using labels makes it easier to manage data plane nodes at scale since you're able to identify all of this information at a glance. For example, debugging and troubleshooting become much easier when you're able to attribute a data plane node to a specific region or team.
 
@@ -18,7 +18,7 @@ Any labels you set on a data plane node are visible from the control plane via t
 
 1. Locate the [`konf.conf`](/gateway/latest/production/kong-conf/) file on a {{site.base_gateway}} data plane node. 
    
-1. In `kong.conf`, configure the `cluster_dp_labels` parameter with a comma-separated list of labels for the instance. 
+1. In `kong.conf`, configure the `cluster_dp_labels` parameter with a comma-separated list of labels for the node. 
 
     Each label must be configured as a string in the format `key:value`.
 
@@ -40,7 +40,7 @@ Any labels you set on a data plane node are visible from the control plane via t
 {% navtab Environment variables %}
 
 1. On a {{site.base_gateway}} data plane node, configure the `KONG_CLUSTER_DP_LABELS` environment variable with 
-a comma-separated list of labels for the instance. 
+a comma-separated list of labels for the node. 
 
     Each label must be configured as a string in the format `key:value`.
 

@@ -23,7 +23,7 @@ A maximum of 5 user-defined labels are allowed on each resource.
 
 ## Setting labels
 
-You can use labels separately on the control plane and data planes.
+You can use labels separately on the control plane and data plane nodes.
 * On the control plane, you can set a label for `control plane`, and for individual API products.
-* On data planes, set labels through `kong.conf` or via environment variables using the [`cluster_dp_labels`](/gateway/latest/reference/configuration/#cluster_dp_labels) property. 
+* On data plane nodes, set labels through `kong.conf` or via environment variables using the [`cluster_dp_labels`](/gateway/latest/reference/configuration/#cluster_dp_labels) property. 
 These labels are exposed through the `/nodes` endpoint of the {{site.konnect_short_name}} API.

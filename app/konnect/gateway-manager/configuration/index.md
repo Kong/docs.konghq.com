@@ -8,7 +8,7 @@ configuration, and global configuration from within a control plane.
 A **global** object is a set of configurations that apply to, or can be used
 by, all objects in a control plane. For example, if you set up a Proxy Caching
 plugin in the default control plane and set it to `Global`,
-the plugin configuration will apply to all services in the group.
+the plugin configuration will apply to all services in the control plane.
 
 Consumers, SNIs, upstreams, and certificates are all global. Plugins
 can either be global or scoped.

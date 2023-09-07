@@ -29,7 +29,7 @@ and provision a new data plane node through the Gateway Manager.
     displays a _Connected_ status, and that it was last seen _Just Now_.
 
 1. Once the new data plane node is connected and functioning, disconnect
-and shut down the instances you are replacing.
+and shut down the nodes you are replacing.
 
     {:.note}
     > You can't shut down data plane nodes from within Gateway Manager. Old

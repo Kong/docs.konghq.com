@@ -4,7 +4,7 @@ content_type: explanation
 badge: enterprise
 ---
 
-A control plane group is a read-only group that combines configuration from
+A control plane group is a read-only control plane that combines configuration from
 its members, which are standard control planes. All of the standard control planes within a 
 control plane group share the same cluster of data plane nodes. 
 
@@ -32,9 +32,9 @@ Each standard control plane can be a member of no more than 5 control plane grou
 
 ## Data plane nodes
 
-In a control plane group, the composite configuration from all member control planes is pushed to each data plane node.
+In a control plane group, the combined configuration from all member control planes is pushed to each data plane node.
 
-A data plane node (also known as a {{site.base_gateway}} data plane node) can only connect to a single control plane in a cluster.
+A data plane node can only connect to a single control plane in a cluster.
 This means that in a control plane group, all data plane nodes must be managed from the control plane group itself. 
 Members of a control plane group can't have their own data plane nodes. 
 
@@ -74,16 +74,18 @@ GraphQL Rate Limiting cost decoration | Service | By ID
 The {{site.base_gateway}} resource associated with an entity must be part of the same standard control plane as the entity.
 
 Entity-specific behavior exceptions:
-* **Consumers**: A consumer of a standard control plane becomes a consumer of the control plane group once the originating group becomes a member of the control plane group.
+* **Consumers**: A consumer of a standard control plane becomes a consumer of the control plane group once the originating 
+control plane becomes a member of the control plane group.
 The authentication credentials of a consumer in a standard control plane become valid credentials of the control plane group.
 The ID of a consumer from one control plane group member can't be used in authorization for another control plane group member.
 
 * **Consumer groups**: Only consumers from the same control plane can be added to a consumer group.
-Consumer groups names in the Rate Limiting Advanced plugin can reference group names from other control plane group members.
+Consumer group names in the Rate Limiting Advanced plugin can reference group names from other control plane group members.
 
 * **Vaults**: The prefix of each Vault must be unique.
 Once a Vault from a standard control plane becomes part of a control plane group, it becomes available to the whole control plane group.
 An entity field in a standard control plane can successfully reference a secret in a Vault from another standard control plane, now both part of the control plane group.
+
 * **Global plugins**: A plugin that is globally scoped in the standard control plane remains globally scoped in the control plane group. 
 This plugin will affect the entire control plane group.
 For example, two instances of the Rate Limiting plugin cannot be installed in the control plane group.
@@ -94,7 +96,7 @@ For example, two instances of the Rate Limiting plugin cannot be installed in th
 ## Limitations
 
 A control plane group composition will be applied even if the configurations of the standard control planes are not combined successfully. 
-This means that even if there is some confict and the member groups weren't merged successfully, a control plane group still gets created.
+This means that even if there is some confict and the member control planes weren't merged successfully, a control plane group still gets created.
 
 Control plane groups are read-only (with some exceptions), so configuration modifications must be made via a member control plane. 
 

@@ -4,8 +4,8 @@ content_type: explanation
 disable_image_expand: true
 ---
 
-A data plane node is a single self-managed instance of {{site.base_gateway}} that acts as a proxy and serves traffic.
-In {{site.konnect_saas}}, data planes are managed by [control planes](/konnect/gateway-manager/control-plane-groups/). Control planes manage and store configurations in {{site.konnect_saas}}, and data plane nodes are configured according to the configuration distributed by the control plane.
+A data plane node is a single instance of {{site.base_gateway}} that acts as a proxy and serves traffic.
+In {{site.konnect_saas}}, data plane nodes are managed by [control planes](/konnect/gateway-manager/control-plane-groups/). Control planes manage and store configurations in {{site.konnect_saas}}, and data plane nodes are configured according to the configuration distributed by the control plane.
 
 {{site.konnect_short_name}} provides data plane node installation scripts for various platforms. 
 These data plane nodes are configured to run in your {{site.konnect_short_name}} environment.

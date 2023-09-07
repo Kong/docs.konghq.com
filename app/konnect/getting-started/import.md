@@ -128,7 +128,7 @@ You can keep any data plane nodes that are:
 
 Turn any self-managed nodes into cloud data plane nodes by registering them
 through the Gateway Manager and adjusting their configurations, or power down
-the old instances and create new data plane nodes through {{site.konnect_saas}}.
+the old nodes and create new data plane nodes through {{site.konnect_saas}}.
 
 1. Follow the [data plane node setup guide](/konnect/gateway-manager/#data-plane-nodes) for
 your preferred deployment type.

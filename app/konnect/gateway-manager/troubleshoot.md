@@ -30,8 +30,8 @@ directory for {{site.base_gateway}} logs is [`/usr/local/kong/logs`](/gateway/la
     * Data plane node failed to ping the control plane.
     * Data plane node failed to receive a ping response from the control plane.
 
-    You may have an issue on the host network where the instance resides.
-    Diagnose and resolve the issue, then restart the instance and check
+    You may have an issue on the host network where the node resides.
+    Diagnose and resolve the issue, then restart the node and check
     the sync status in the Gateway Manager.
 
 * If the logs show a license issue, contact [Kong Support](https://support.konghq.com/).
@@ -48,7 +48,7 @@ the version may be out of date.
 
 **Solution**
 
-Verify that your instance versions are up to date:
+Verify that your data plane node versions are up to date:
 
 1. Open {% konnect_icon runtimes %} **Gateway Manager**, then open your control plane.
 

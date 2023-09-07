@@ -40,7 +40,7 @@ API products can have multiple API product versions, and each version can be lin
 A common use case is environment specialization.
 For example, if you have three control planes for `development`, `staging`, and
 `production`, you can manage which environment the API product version is available in by
-linking an API product version to a Gateway service in that group. You might have v1 running
+linking an API product version to a Gateway service in that control plane. You might have v1 running
 in `production`, and be actively working on v2 in `development`. Once it's
 ready to test, you'd create v2 in `staging` before finally creating v2 in
 `production` alongside v1.

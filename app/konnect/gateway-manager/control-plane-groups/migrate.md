@@ -6,7 +6,7 @@ badge: enterprise
 
 There are a few situations in which you might want to migrate existing configuration into a control plane group.
 
-* Migrate standard control plane configuration into a control plane group. In this scenario, you are migrating config from {{site.konnect_short_name}} to a different group in {{site.konnect_short_name}}.
+* Migrate standard control plane configuration into a control plane group. In this scenario, you are migrating config from {{site.konnect_short_name}} to a different control plane in {{site.konnect_short_name}}.
 * Migrate self-managed {{site.base_gateway}} workspace configuration into a control plane group in {{site.konnect_short_name}}. In this scenario, you are migrating from self-managed to cloud managed.
 
 A control plane group **can't be configured directly**. It compiles configuration from its member control planes.
@@ -63,10 +63,10 @@ If you want to migrate a standard control plane into a group, Kong recommends th
 1. Decommission the old standard control plane.
 
 We recommend this workflow because it gives you the opportunity to review shared entities and avoid conflicts. 
-It also decouples any team, dev portal, or identity permissions from the group. This way, you won't accidentally 
+It also decouples any team, dev portal, or identity permissions from the standard control plane. This way, you won't accidentally 
 grant access to the wrong resources to a new group of users.
 
-Assuming you already have a control plane group and a member control plane, you can export configuration from the old group and apply it to the new one.
+Assuming you already have a control plane group and a member control plane, you can export configuration from the old control plane and apply it to the new one.
 
 1. Export the configuration of the old control plane via `deck dump`:
 
@@ -126,7 +126,7 @@ command, pointing to the control plane that you want to target:
     If you don't specify the `--konnect-runtime-group-name` flag, decK targets the
     `default` control plane. If you have more than one control plane in your
     organization, we recommend always setting this flag to avoid accidentally
-    pushing configuration to the wrong group.
+    pushing configuration to the wrong control plane.
 
 1. Log in to your [{{site.konnect_saas}}](http://cloud.konghq.com/login) account.
 

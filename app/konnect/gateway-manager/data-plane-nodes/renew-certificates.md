@@ -18,14 +18,14 @@ to the control plane.
 proxying and routing traffic.
 
 Depending on your setup, renewing certificates might mean bringing up a new data
-plane, or generating new certificates and updating data planes with the new
+plane, or generating new certificates and updating data plane nodes with the new
 files.
 
 
 ## Quick setup
 
 If you originally created your data plane node container using one of the
-Docker options in Gateway Manager, we recommend creating a new instance with renewed
+Docker options in Gateway Manager, we recommend creating a new data plane node with renewed
 certificates.
 
 1. Stop the data plane node container.
@@ -89,7 +89,7 @@ You can generate a certificate locally and use the [pin data plane client certif
 {% navtabs %}
 {% navtab Linux %}
 
-Open your instance's `kong.conf` file. Replace existing certificates with
+Open your node's `kong.conf` file. Replace existing certificates with
 the new files:
 
 ```sh

@@ -4,10 +4,10 @@ toc: false
 ---
 
 {{site.konnect_saas}} deployments run in hybrid mode, which means that there is
-a separate control plane attached to one or more data plane nodes. Control planes and data planes
-must communicate with each other to receive and send configurations. If
-communication is interrupted and either side can't send or receive config, data
-plane nodes can still continue proxying traffic to clients.
+a separate control plane attached to one or more data plane nodes. Control planes 
+and data plane nodes must communicate with each other to receive and send 
+configurations. If communication is interrupted and either side can't send or 
+receive config, data plane nodes can still continue proxying traffic to clients.
 
 Whenever a data plane node receives new configuration from the control plane,
 it immediately loads that config into memory. At the same time, it caches
@@ -28,13 +28,13 @@ plane. The node sends a heartbeat to the control plane every 30 seconds to
 keep the connection alive. If it receives no answer, it tries to reconnect to the
 control plane after a 5-10 second delay.
 
-### What types of data travel between the {{site.konnect_saas}} control plane and the data planes nodes, and how?
+### What types of data travel between the {{site.konnect_saas}} control plane and the data plane nodes, and how?
 
 There are two types of data that travel between the planes: configuration
 and telemetry. Both use the secure TCP port `443`.
 
 * **Configuration:** The control plane sends configuration data to any connected
-  data planes in the cluster.
+  data plane nodes in the cluster.
 
 * **Telemetry:** Data plane nodes send usage information to the control plane
   for Analytics and for account billing. Analytics tracks aggregate traffic by
@@ -44,7 +44,7 @@ and telemetry. Both use the secure TCP port `443`.
 Telemetry data does not include any customer information or any data processed
 by the data plane. All telemetry data is encrypted using mTLS.
 
-### How frequently does data travel between the control plane and data planes?
+### How frequently does data travel between the control plane and data plane nodes?
 
 When you make a configuration change on the control plane, that change is
 immediately pushed to any connected data plane nodes.

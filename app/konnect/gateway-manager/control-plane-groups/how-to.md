@@ -18,7 +18,7 @@ In this guide, you will set up a control plane groups with two members, then tes
 ### Set up standard control planes
 
 First, let's create a standard control plane. 
-This group will be a member of a control plane group later on.
+This control plane will be a member of a control plane group later on.
 
 If you already have some standard control planes in your org that you want to add to a group, skip to [creating a control plane group](#create-control-plane-group).
 
@@ -30,15 +30,15 @@ If you already have some standard control planes in your org that you want to ad
    
    Kong Ingress Controller control planes can't be part of control plane groups. One control plane group cannot be a member of another control plane group. 
 
-1. Set up your group and save. For the purpose of this example, the group name will be CP1.
-1. Create another {{site.base_gateway}} group, this time calling it CP2.
+1. Set up your control plane and save. For the purpose of this example, its name will be CP1.
+1. Create another {{site.base_gateway}} control plane, this time calling it CP2.
 
 {% endnavtab %}
 {% navtab API %}
 
 Create some standard control planes.
 
-1. Create group `CP1`:
+1. Create control plane `CP1`:
 
     ```sh
     curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups \
@@ -47,7 +47,7 @@ Create some standard control planes.
         --data "cluster_type=CLUSTER_TYPE_HYBRID"
     ```
 
-1. Create group `CP2`:
+1. Create control plane `CP2`:
 
     ```sh
     curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups \
@@ -61,7 +61,7 @@ Create some standard control planes.
 
 ### Set up control plane group
 
-Next, create a control plane group with the groups `CP1` and `CP2` as its members.
+Next, create a control plane group with the control planes `CP1` and `CP2` as its members.
 
 {% navtabs %}
 {% navtab Konnect UI %}
@@ -70,7 +70,7 @@ Next, create a control plane group with the groups `CP1` and `CP2` as its member
 1. Click the **New Control Plane** button and select **Control Plane Group**.
 1. Set up the group. The name of the group must be unique.
 
-    In the **Control Planes** field, add the `CP1` and `CP2` groups.
+    In the **Control Planes** field, add the `CP1` and `CP2` control planes.
 
     {:.note}
     > **Note**: When adding a standard control plane to a control plane group,
@@ -150,7 +150,7 @@ Next, create a control plane group with the groups `CP1` and `CP2` as its member
     }
     ```
 
-1. Add the groups CP1 and CP2 to your control plane group:
+1. Add the control planes CP1 and CP2 to your control plane group:
 
     ```sh
     curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups/<composite-group-ID>/composite-memberships/add \
@@ -174,15 +174,15 @@ Next, create a control plane group with the groups `CP1` and `CP2` as its member
 ### Set up a data plane node
 
 Set up a data plane node in the control plane group. 
-Navigate to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/gateway-manager/), select group `CPG`, then click on **New Data Plane Node**.
+Navigate to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/gateway-manager/), selec group `CPG`, then click on **New Data Plane Node**.
 
 Choose your installation method, then follow the instructions in {{site.konnect_short_name}} to set up the data plane node.
 
-Once the instance is connected, go back to the Gateway Manager.
+Once the data plane node is connected, go back to the Gateway Manager.
 
 ### Configure standard control planes
 
-Create a service and route in `CP1`. This will let you test the connection between groups.
+Create a service and route in `CP1`. This will let you test the connection between members of a group.
 
 {% navtabs %}
 {% navtab Konnect UI %}
@@ -290,7 +290,8 @@ You should now have three control planes with the following configurations:
 * `CP2`: Nothing configured
 * `CPG`: Has one data plane node
 
-First, test the configuration of `CP1` by accessing it through the proxy URL `localhost:8000`, which is running on the instance configured in the `CPG`.
+First, test the configuration of `CP1` by accessing it through the proxy URL `localhost:8000`, which is 
+running on the data plane node configured in the `CPG`.
 
 {% navtabs %}
 {% navtab Konnect UI %}

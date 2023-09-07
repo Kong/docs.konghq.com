@@ -4,7 +4,7 @@ content_type: reference
 badge: enterprise
 ---
 
-A conflict is a potential issue in composite configuration. 
+A conflict is a potential issue in combined configuration. 
 For example, there might be a name conflict between services, or the existance of consumer credentials, 
 which become available to all members of a control plane group.
 
@@ -31,17 +31,17 @@ This control plane is causing a conflict with the parent control plane group.
 
 ![Specific control plane invariance example](/assets/images/docs/konnect/konnect-invariances-child.png)
 
-You can follow the link from the notification to **View** the conflicts in each group, 
+You can follow the link from the notification to **View** the conflicts in each control plane, 
 then **View** again to open the resource that's causing the issue.
 
-These issues must be resolved to continue using composite configuration. 
-The control plane won't send any config updates to its data planes until conflicts are resolved.
+These issues must be resolved to continue using combined configuration. 
+The control plane won't send any config updates to its data plane nodes until conflicts are resolved.
 
 See the following table for a breakdown of potential issues, their causes, and recommended solutions:
 
 Conflict | Description | Action
 -----------|-------------|--------
-Duplicate names across control plane group members | Entity names within a standard control plane must be unique. However, it's possible to create entities with the same name in different standard control planes. When those groups are added as members of the same control plane group, the control plane group ends up having entities with duplicate names. The duplicate entities behave as regular entities in the data plane. | Resolve the conflict by removing or renaming one of the instances.
+Duplicate names across control plane group members | Entity names within a standard control plane must be unique. However, it's possible to create entities with the same name in different standard control planes. When those control plane are added as members of the same control plane group, the control plane group ends up having entities with duplicate names. The duplicate entities behave as regular entities in the data plane. | Resolve the conflict by removing or renaming one of the instances.
 Shared credentials across control plane group members | Consumer credentials in one control plane group member can be used to authenticate to everything registered in the group.| If you don't want to share credentials across the members, identify and remove those credentials.
 ACL group names across control plane group members | ACL groups names can be referenced across control plane group members for authorization. | If you don't want to share ACL groups across the members, identify and remove duplicates.
 Consumer groups across control plane group members | Consumer group names in the Rate Limiting Advanced plugin can reference group names from other control plane group members.| If you don't want to share consumer groups across the members, identify and remove duplicates.

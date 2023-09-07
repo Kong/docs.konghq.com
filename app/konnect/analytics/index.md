@@ -17,7 +17,7 @@ historical data for the following lengths of time:
 
 {:.note}
 > **Note**:
-Member standard control planes have no individual analytics reporting. This means that:
+Member control planes in a control plane group have no individual analytics reporting. This means that:
 * In the Gateway Manager, contextual analytics are logged in the control plane group only.
 * When creating custom reports, control planes won't show up as individual entities. 
 Reports will only show the control plane group.
