@@ -59,11 +59,7 @@ Let's test out the Pre-function plugin by filtering requests based on header nam
       --form "config.log[1]=kong.log.err('Test Log!')"
     ```
 
-    Response:
-    ```
-    HTTP/1.1 201 Created
-    ...
-    ```
+    If successful, the API returns a `201` response code.
 
 {% endnavtab %}
 {% navtab Without a database %}
@@ -102,6 +98,12 @@ Let's test out the Pre-function plugin by filtering requests based on header nam
         - kong.log.err('Test Body_Filter!')
         log:
         - kong.log.err('Test Log!')
+    ```
+
+1. Sync the file to your {{site.base_gateway}} instance:
+
+    ```sh
+    deck sync
     ```
 
 {% endnavtab %}
