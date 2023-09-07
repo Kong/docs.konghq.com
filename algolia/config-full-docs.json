@@ -30,7 +30,8 @@
     },
     {
       "url": "https://docs.konghq.com/api",
-      "selectors_key": "api"
+      "selectors_key": "api",
+      "page_rank": 10
     }
   ],
   "sitemap_urls": [
@@ -80,7 +81,7 @@
     },
     "api": {
       "lvl0": {
-        "selector": ".page-hub--header",
+        "selector": ".search-selector",
         "global": true,
         "default_value": "Open API Specification"
       },
