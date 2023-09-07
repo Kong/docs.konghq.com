@@ -1,14 +1,14 @@
-# Kong Gateway Changelog 1.x
-
 <!-- vale off -->
+
+# Kong Gateway Changelog 1.x
 
 This changelog covers 1.x versions that have reached end of sunset support.
 
 Looking for recent releases? See [https://docs.konghq.com/gateway/changelog/](https://docs.konghq.com/gateway/changelog/) for the latest changes.
 
 Archives:
-- [Gateway 0.x](../CHANGELOG-GW-0.x.md)
-- [Gateway 2.x](../CHANGELOG-GW-2.x.md) (2.0.x-2.5.x)
+- [Gateway 0.x](/old-changelogs/CHANGELOG-GW-0.x.md)
+- [Gateway 2.x](/old-changelogs/CHANGELOG-GW-2.x.md) (2.0.x-2.5.x)
 
 ## 1.5.0.11
 **Release Date** 2021/04/22

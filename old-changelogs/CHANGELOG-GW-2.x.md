@@ -1,14 +1,14 @@
-# Kong Gateway Changelog 2.x
-
 <!-- vale off -->
+
+# Kong Gateway Changelog 2.x
 
 This changelog covers 2.x versions that have reached end of sunset support.
 
 Looking for recent releases? See [https://docs.konghq.com/gateway/changelog/](https://docs.konghq.com/gateway/changelog/) for the latest changes.
 
 Archives:
-- [Gateway 0.x](../CHANGELOG-GW-0.x.md)
-- [Gateway 1.x](../CHANGELOG-GW-1.x.md)
+- [Gateway 0.x](/old-changelogs/CHANGELOG-GW-0.x.md)
+- [Gateway 1.x](/old-changelogs/CHANGELOG-GW-1.x.md)
 
 ## 2.5.1.2
 **Release Date:** 2021/11/18
@@ -1214,7 +1214,7 @@ core entities but don't explicitly depend on them.
 **Release Date** 2021/02/11
 
 ### **Kong Gateway (Enterprise)**
-The following sections list {{site.ee_product_name}}-exclusive updates,
+The following sections list Kong Enterprise-exclusive updates,
 features, and fixes for the **2.3.2.0** version.
 
 Kong Enterprise is renamed to Kong Gateway or Kong Gateway (Enterprise) going forward. For a more detailed explanation, including information about Kong Gateway (OSS), see [Kong Gateway (Enterprise) 2.3.x Release Notes](https://docs.konghq.com/enterprise/2.3.x/release-notes/).
@@ -1241,11 +1241,11 @@ the data planes and any plugins have compatibility with the control plane in hyb
 The sync is stopped if the major/minor version differ or if the installed plugin versions
 differ between control plane and data plane nodes. For more information, see
 [Version and Compatibility Checks](/2.3.x/hybrid-mode/#version-and-compatibility-checks).
-- {{site.base_gateway}} now accepts UTF-8 characters in route and service names. Entities with a `name` field
+- Kong Gateway now accepts UTF-8 characters in route and service names. Entities with a `name` field
 now support UTF-8 characters.
 - Certificates now have `cert_alt` and `key_alt` fields to specify an alternative certificate
 and key pair.
-- The Go pluginserver `stderr` and `stdout` are now written into {{site.base_gateway}}’s logs, allowing Golang’s
+- The Go pluginserver `stderr` and `stdout` are now written into Kong Gateway’s logs, allowing Golang’s
 native `log.Printf()`.
   - Introduced support for multiple pluginservers. This feature is backward-compatible with
   the existing single Go pluginserver.
@@ -1253,11 +1253,11 @@ native `log.Printf()`.
 #### Plugin Development Kit (PDK)
 - Introduced a `kong.node.get_hostname` method that returns current node's host name.
 - Introduced a `kong.cluster.get_id` method that returns a unique ID
-  for the current {{site.base_gateway}} cluster. If the gateway is running in DB-less mode
+  for the current Kong Gateway cluster. If the gateway is running in DB-less mode
   without a cluster ID explicitly defined, this method returns nil.
   For Hybrid mode, all Control Planes and Data Planes belonging to the
   same cluster returns the same cluster ID. For traditional database
-  type deployments, all {{site.base_gateway}} nodes pointing to the same database will
+  type deployments, all Kong Gateway nodes pointing to the same database will
   also return the same cluster ID.
 - Introduced a `kong.log.set_serialize_value`, which allows customizing
   the output of `kong.log.serialize`.
@@ -1268,7 +1268,7 @@ now lets you add a table of headers to the HTTP request using the
 `headers` configuration parameter, which will help you integrate with many observability systems.
 - The [Key Authentication](https://docs.konghq.com/hub/kong-inc/key-auth/) (`key-auth`)
 plugin has two new configuration parameters: `key_in_header` and `key_in_query`. Both
-are booleans and tell {{site.base_gateway}} whether to accept (true) or reject (false) passed in either
+are booleans and tell Kong Gateway whether to accept (true) or reject (false) passed in either
 the header or the query string. Both default to “true.”
 - The [Request Size Limiting](https://docs.konghq.com/hub/kong-inc/request-size-limiting/)
 (`request-size-limiting`) plugin has a new configuration `require_content_length` that
@@ -1301,7 +1301,7 @@ and where only Kong PDK, OpenResty `ngx` APIs, and Lua standard libraries are al
   as the default fallback certificate; on old cipher suite, the RSA
   certificate remains as the default. On custom certificates, the first
   certificate specified in the array is used.
-- {{site.base_gateway}} now runs as a `kong` user if it exists; if user does not exist
+- Kong Gateway now runs as a `kong` user if it exists; if user does not exist
   in the system, the `nobody` user is used, as before.
 
 ### Dependencies
@@ -1346,7 +1346,7 @@ are in use.
 
 #### CLI
 - Fixed issue where `kong reload -c <config>` would fail.
-- Fixed issue where the {{site.base_gateway}} configuration cache would get corrupted.
+- Fixed issue where the Kong Gateway configuration cache would get corrupted.
 - Kong migrations now accepts a `-p/--prefix` flag.
 
 #### Developer Portal
@@ -1380,7 +1380,7 @@ plugin does not allow `null` in config anymore as they can lead to runtime error
 **Release Date** 2021/01/20
 
 ### **Kong Enterprise**
-The following sections list {{site.ee_product_name}}-exclusive updates,
+The following sections list Kong Enterprise-exclusive updates,
 features, and fixes for the **2.3.0.0 beta** version.
 
 ### Features
@@ -1705,7 +1705,7 @@ features, fixes, known issues, and workarounds. The changelog for 2.2.0.0 versio
 **Release Date** 2020/10/27
 
 ### **Kong Enterprise**
-The following sections list {{site.ee_product_name}}-exclusive updates,
+The following sections list Kong Enterprise-exclusive updates,
 features, and fixes for the **2.2.0.0 beta** version.
 
 ### Dependencies
