@@ -31,22 +31,10 @@ The recommended method of authentication for {{site.konnect_short_name}} is [Per
 
 `curl -X GET 'https://global.api.konghq.com/v2/users/' --header 'Authorization: Bearer kpat_xgfT'`
 
+## Filtering
 
-## API reference documentation
+The Konnect API supports filtering, read the [Filtering reference](/konnect/api/filtering/) to learn more.
 
-* [Identity Management API](/konnect/api/identity-management/v2/) - Interface for management of users, teams, team memberships and role assignments.
+## Specifications
 
-* [Runtime Groups API](/konnect/api/runtime-groups/v2/) - Interface for managing runtime groups.
-
-* [Portal RBAC API Documentation](/konnect/api/portal-rbac/v2/) - Interface for portal developers, teams, and RBAC rules.
-
-* [Runtime Configuration API](/konnect/api/runtime-groups-configuration/v2/) - Interface for creating and managing control plane certificates, data plane certificates, and {{site.konnect_short_name}} entities.
-
-* [Portal Client API](/konnect/api/portal/v2/) - Interface for building and integrating custom Dev Portal experiences using {{site.konnect_short_name}} API data.
-
-{:.note}
-> **Note**: This list represents the APIs supported for use in production environments. 
-
-## More information
-
-* The Konnect API supports filtering, read the [Filtering reference](/konnect/api/filtering/) to learn more.
+For a full list of the API specifications supported for use in production environments, visit [API Specs](/api/). 
