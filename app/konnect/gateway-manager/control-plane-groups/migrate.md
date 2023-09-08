@@ -86,7 +86,9 @@ Assuming you already have a control plane group and a member control plane, you 
         --konnect-runtime-group-name CP1
     ```
 
-    Note that you can't sync the configuration to the control plane group `CPG`. Control plane groups don't have their own configuration. They use combined configuration from all of their member control planes.
+    Note that you can't sync the configuration to the control plane group `CPG`. 
+    Control plane groups don't have their own configuration. 
+    They inherit combined configuration from all of their member control planes.
 
 
 ## Scenario: Migrate workspaces to control plane groups

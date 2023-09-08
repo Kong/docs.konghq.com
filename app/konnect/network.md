@@ -55,7 +55,7 @@ add the following hostnames to the firewall allowlist:
 You can find the configuration and telemetry hostnames through the Gateway Manager:
 
 1. Open a control plane.
-2. Click **Add data plane node**.
+2. Click **New Data Plane Node**.
 3. Choose the Linux or Kubernetes tab and note the hostnames in the code block
    for the following parameters:
 
@@ -87,7 +87,7 @@ The following hostnames must be allowed through firewalls to enable these connec
 You can find the Telemetry hostname through the Gateway Manager:
 
 1. Open a control plane.
-2. Click **control plane actions** > **View Connection Instructions**.
+2. Click {% konnect_icon_cogwheel %} **Control Plane Actions** > **View Connection Instructions**.
 3. Look for the following parameter in the `Install the KIC` section: 
 
     ```

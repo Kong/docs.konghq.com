@@ -8,10 +8,10 @@ When you enable application registration, {{site.konnect_saas}} enables plugins 
 These plugins run inside the data plane to support application registration for the API product version and are managed by
 {{site.konnect_saas}}.
 
-## Support for any control plane group
+## Support for any control plane
 
-App registration is fully supported in the `default` control plane group when using the application `consumers` and the `acl` plugin. The `default` control plane group is the one that is first created in each region when you create an organization.
-For non-`default` control plane groups, app registration is supported using the `konnect-application-auth` plugin available as of {{site.base_gateway}} 3.0.
+App registration is fully supported in the `default` control plane when using the application `consumers` and the `acl` plugin. The `default` control plane is the one that is first created in each region when you create an organization.
+For non-`default` control planes, app registration is supported using the `konnect-application-auth` plugin available as of {{site.base_gateway}} 3.0.
 
 {:.note}
 > **Note:**  Although it can be renamed, the [`default` control plane group](/konnect/gateway-manager/control-plane-groups/) will always be the first and oldest control plane group in each region.

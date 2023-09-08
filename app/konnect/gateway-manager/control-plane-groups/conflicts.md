@@ -4,9 +4,10 @@ content_type: reference
 badge: enterprise
 ---
 
-A conflict is a potential issue in combined configuration. 
-For example, there might be a name conflict between services, or the existence of consumer credentials, 
-which become available to all members of a control plane group.
+When combining configuration from individual control planes into a control 
+plane group, you might run into conflicts.
+For example, there might be a name conflict between services, or the existence 
+of consumer credentials, which become available to all members of a control plane group.
 
 Once you have at least one data plane node connected to your control plane group, 
 you may see one of the following error messages:
@@ -34,7 +35,6 @@ This control plane is causing a conflict with the parent control plane group.
 You can follow the link from the notification to **View** the conflicts in each control plane, 
 then **View** again to open the resource that's causing the issue.
 
-These issues must be resolved to continue using combined configuration. 
 The control plane won't send any config updates to its data plane nodes until conflicts are resolved.
 
 See the following table for a breakdown of potential issues, their causes, and recommended solutions:
