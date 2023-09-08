@@ -67,13 +67,13 @@ Some common use cases for using multiple control planes include:
 
 * **Environment separation:** Split environments based on their purpose, such as
 development, staging, and production.
-* **Region separation:** Dedicate each control plane to a region or group of
+* **Region separation:** Assign each control plane to a region or group of
 regions. Spin up data plane nodes in those regions for each control plane.
 * **Team separation:** Dedicate each control plane to a different team and share
 resources based on team purpose.
 
 ![control planes](/assets/images/docs/konnect/konnect-runtime-groups-example.png)
-> _**Figure 1:** Example control plane configuration with three control planes: the default, a development plane, and a production plane. {{site.konnect_short_name}} is the SaaS-managed global management plane that manages all of the control planes, while the control planes manage configuration for data plane nodes._
+> _**Figure 1:** Example control plane group configuration for three control planes: the default, a development CP, and a production CP. {{site.konnect_short_name}} is the SaaS-managed global management plane that manages all of the control planes, while the control planes manage configuration for data plane nodes._
 
 #### Control plane configuration
 
@@ -126,7 +126,7 @@ This allows you to see how much of a control plane is used. You can also select 
 {:.warning}
 > **Warning:** Deleting a control plane is irreversible. Make sure that you are
 certain that you want to delete the control plane, and that all entities and data plane
-nodes in control plane the have been accounted for.
+nodes in the control plane the have been accounted for.
 
 To delete a control plane, you can use the Gateway Manager or the 
 {{site.konnect_short_name}} 
@@ -149,14 +149,13 @@ You cannot delete the default control plane.
 A data plane node is a single {{site.base_gateway}} instance. 
 Data plane nodes service traffic for the control plane. 
 
-Kong does not host {{site.base_gateway}} data plane nodes. 
+Kong does not host data plane nodes.
 You must deploy your own nodes, either on your own systems or in 
 an external cloud provider.
 
 The Gateway Manager simplifies data plane node deployment 
 by providing a script to provision a {{site.base_gateway}} data plane node in a 
-Docker container running Linux, on MacOS, or on Windows, eliminating confusion about
-initial configuration or setup.
+Docker container running Linux, on MacOS, or on Windows. 
 
 You can also choose to manually configure data plane nodes on various platforms, including cloud providers.
 See the [data plane node installation options](/konnect/gateway-manager/data-plane-nodes/) for more detail.

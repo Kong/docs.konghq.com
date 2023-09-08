@@ -238,7 +238,7 @@ to see your changes:
 ## Test the service
 
 If you have already have a data plane node deployed, you can test this
-configuration now. Or, you can start a simple data plane node using the
+configuration now. Or, you can start a new data plane node using the
 [Docker quick setup](/konnect/getting-started/configure-data-plane-node/) script.
 
 The default proxy URL is `localhost:8000`.

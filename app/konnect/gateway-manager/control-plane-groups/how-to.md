@@ -346,4 +346,4 @@ This time, you should receive a prompt to enter a username and password.
 
 This means that the route is active, and the basic authentication plugin is blocking access to the route.
 
-Since you were able to access the route, apply an auth plugin, then authorization to the route, it means that the configuration from both member control planes was applied. You now have a working control plane group!
+Since you were able to access the route, apply an auth plugin, and then add authorization to the route, it means that the configuration from both member control planes was applied. You now have a working control plane group.

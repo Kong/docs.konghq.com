@@ -51,7 +51,7 @@ Therefore, when migrating, you will need at least two new groups: a control plan
     > **Note**: When adding a standard control plane to a group, make sure it has no connected 
     data plane nodes.
 
-## Scenario: Migrate control plane configuration into a control plane group
+## Scenario: Migrate a control plane configuration into a control plane group
 
 If you want to migrate a standard control plane into a group, Kong recommends the following path:
 
@@ -66,7 +66,7 @@ We recommend this workflow because it gives you the opportunity to review shared
 It also decouples any team, dev portal, or identity permissions from the standard control plane. This way, you won't accidentally 
 grant access to the wrong resources to a new group of users.
 
-Assuming you already have a control plane group and a member control plane, you can export configuration from the old control plane and apply it to the new one.
+Assuming you already have a control plane group and a member control plane, you can export the configuration from the old control plane and apply it to the new one.
 
 1. Export the configuration of the old control plane via `deck dump`:
 

@@ -3,9 +3,9 @@ title: Using custom data plane labels
 content_type: how-to
 ---
 
-You can set [labels](/konnect/reference/labels/) on each data plane node (data plane) to provide custom context information. 
+You can set [labels](/konnect/reference/labels/) on each data plane node to provide custom context information. 
 
-Labels are commonly used for metadata information. Set anything that you need to identify your data plane nodes -- deployment type, region, size, the team that the node belongs to, the purpose it serves, and much more. 
+Labels are commonly used for metadata information. Set anything that you need to identify your data plane nodes -- deployment type, region, size, the team that the node belongs to, the purpose it serves, or any other identifiable information.
 
 Using labels makes it easier to manage data plane nodes at scale since you're able to identify all of this information at a glance. For example, debugging and troubleshooting become much easier when you're able to attribute a data plane node to a specific region or team.
 

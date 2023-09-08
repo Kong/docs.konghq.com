@@ -34,7 +34,7 @@ There are two types of data that travel between the planes: configuration
 and telemetry. Both use the secure TCP port `443`.
 
 * **Configuration:** The control plane sends configuration data to any connected
-  data plane nodes in the cluster.
+  data plane node in the cluster.
 
 * **Telemetry:** Data plane nodes send usage information to the control plane
   for Analytics and for account billing. Analytics tracks aggregate traffic by
@@ -44,7 +44,7 @@ and telemetry. Both use the secure TCP port `443`.
 Telemetry data does not include any customer information or any data processed
 by the data plane. All telemetry data is encrypted using mTLS.
 
-### How frequently does data travel between the control plane and data plane nodes?
+### How frequently does data travel between the Konnect control plane and data plane nodes?
 
 When you make a configuration change on the control plane, that change is
 immediately pushed to any connected data plane nodes.

@@ -120,7 +120,7 @@ you saved earlier:
       --key=/PATH_TO_FILE/tls.key
     ```
 
-1. Open the `values.yaml` file for your data plane node and update it to point
+1. Open the `values.yaml` file for the data plane node and update it to point
 to the new secrets.
 
     Update the `secretVolumes` section:
