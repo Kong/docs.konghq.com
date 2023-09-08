@@ -13,28 +13,17 @@ plugins allows you to offer clients authentication options.
 
 ## Create a Kubernetes service
 
-Create a Kubernetes service using the hostname of the application you want to expose.
+Create a Kubernetes service setup an [httpbin](https://httpbin.org)
+service in the cluster and proxy it.
 
 ```bash
-echo '
-apiVersion: v1
-kind: Service
-metadata:
-  annotations:
-    konghq.com/protocol: https
-  name: httpbin
-spec:
-  externalName: httpbin.org
-  ports:
-    - port: 443
-      protocol: TCP
-  type: ExternalName
-' | kubectl apply -f -
+$ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/manifests/httpbin.yaml
 ```
 The results should look like this:
 
 ```text
 service/httpbin created
+deployment.apps/httpbin created
 ```
 
 ## Setup Ingress rules
@@ -49,8 +38,8 @@ service/httpbin created
       name: demo
       annotations:
         konghq.com/strip-path: "true"
-        kubernetes.io/ingress.class: kong
     spec:
+      ingressClassName: kong
       rules:
       - http:
           paths:
@@ -60,7 +49,7 @@ service/httpbin created
               service:
                 name: httpbin
                 port:
-                  number: 443
+                  number: 80
     ' | kubectl apply -f -
     ```
     The results should look like this:
@@ -149,9 +138,9 @@ service/httpbin created
       name: demo
       annotations:
         konghq.com/strip-path: "true"
-        kubernetes.io/ingress.class: kong
         konghq.com/plugins: httpbin-basic-auth, httpbin-key-auth
     spec:
+      ingressClassName: kong
       rules:
       - http:
           paths:
@@ -161,7 +150,7 @@ service/httpbin created
               service:
                 name: httpbin
                 port:
-                  number: 443
+                  number: 80
     ' | kubectl apply -f -
     ```
     The results should look like this:
