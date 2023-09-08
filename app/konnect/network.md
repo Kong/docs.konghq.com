@@ -87,7 +87,7 @@ The following hostnames must be allowed through firewalls to enable these connec
 You can find the Telemetry hostname through the Gateway Manager:
 
 1. Open a control plane.
-2. Click {% konnect_icon_cogwheel %} **Control Plane Actions** > **View Connection Instructions**.
+2. Click {% konnect_icon cogwheel %} **Control Plane Actions** > **View Connection Instructions**.
 3. Look for the following parameter in the `Install the KIC` section: 
 
     ```
