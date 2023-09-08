@@ -175,7 +175,7 @@ Next, create a control plane group with the control planes `CP1` and `CP2` as it
 
 Set up a data plane node in the control plane group. 
 Navigate to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/gateway-manager/), select
-group `CPG`, then click on **New Data Plane Node**.
+group `CPG`, select **Data Plane Nodes** from the navigation menu, then click on the **New Data Plane Node** button.
 
 Choose your installation method, then follow the instructions in {{site.konnect_short_name}} to set up the data plane node.
 

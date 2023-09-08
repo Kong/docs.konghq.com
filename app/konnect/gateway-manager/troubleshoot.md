@@ -52,7 +52,9 @@ Verify that your data plane node versions are up to date:
 
 1. Open {% konnect_icon runtimes %} **Gateway Manager**, then open your control plane.
 
-1. Click **New Data Plane Node** and check the {{site.base_gateway}} version
+1. Select **Data Plane Nodes** from the side menu, then click the **New Data Plane Node** button.
+
+1. Check the {{site.base_gateway}} version
 in the code block. This is the version that the {{site.konnect_short_name}}
 control plane is running.
 

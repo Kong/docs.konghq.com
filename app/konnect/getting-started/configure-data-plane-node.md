@@ -37,7 +37,7 @@ Data plane nodes are {{site.base_gateway}} instances that are used to proxy serv
 
     Every account starts with one control plane named `default`. 
 
-1. Click **New Data Plane Node**.
+1. Select **Data Plane Nodes** from the side menu, then click the **New Data Plane Node** button.
 
     You will see the latest {{site.base_gateway}} version and Docker pre-selected.
 

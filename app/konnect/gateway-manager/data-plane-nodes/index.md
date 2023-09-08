@@ -12,7 +12,7 @@ These data plane nodes are configured to run in your {{site.konnect_short_name}}
 
 ## Supported installation options
 
-You can set up a data plane node by navigating to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/gateway-manager), choosing a control plane, then clicking on **New Data Plane Node**.
+You can set up a data plane node by navigating to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/gateway-manager), choosing a control plane, opening **Data Plane Nodes** from the side menu, then clicking on **New Data Plane Node**.
 
 This brings you to a set of installation options. Choose one of the options, then follow the instructions in {{site.konnect_short_name}} to finish setting up.
 

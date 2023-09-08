@@ -29,8 +29,7 @@ Docker options in Gateway Manager, we recommend creating a new data plane node w
 certificates.
 
 1. Stop the data plane node container.
-2. Open {% konnect_icon runtimes %} **Gateway Manager**, select a control plane,
- and click **New Data Plane Node**.
+2. Open {% konnect_icon runtimes %} **Gateway Manager**, select a control plane, open **Data Plane Nodes** from the side menu, and click **New Data Plane Node**.
 3. Run the script to create a new data plane node with
 updated certificates.
 4. Remove the old data plane node container.
