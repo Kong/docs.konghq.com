@@ -13,7 +13,7 @@
     - text: Release Notes
       url: /release-notes
     - text: Changelog
-      url: /gateway/changelog
+      url: /enterprise/changelog/
       absolute_url: true
     - text: Version Support
       url: /support-policy

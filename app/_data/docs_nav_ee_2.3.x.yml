@@ -11,7 +11,7 @@
   url: /release-notes
   items:
     - text: Changelog
-      url: /gateway/changelog
+      url: /enterprise/changelog/
       absolute_url: true
     - text: Compatibility
       url: /compatibility/

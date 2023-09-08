@@ -10,7 +10,7 @@
   icon: /assets/images/icons/documentation/icn-references-color.svg
   items:
     - text: Changelog
-      url: /gateway/changelog
+      url: /enterprise/changelog/
       absolute_url: true
     - text: Compatibility
       url: /compatibility/
