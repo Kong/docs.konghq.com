@@ -4086,8 +4086,7 @@ instead of each plugin subschema.
 
 ### Deprecated
 * Kong Immunity is deprecated, removed, and not available in Kong Gateway.
-To access old Kong Immunity documentation, see the
-[doc archive](https://github.com/Kong/docs.konghq.com/tree/main/archive/enterprise/immunity_2.x).
+
 * Cassandra as a backend database for Kong Gateway
 is deprecated with this release and will be removed in a future version.
 
