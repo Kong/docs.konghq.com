@@ -27,6 +27,10 @@
     {
       "url": "https://docs.konghq.com/hub/",
       "selectors_key": "hub"
+    },
+    {
+      "url": "https://docs.konghq.com/api/",
+      "selectors_key": "api"
     }
   ],
   "sitemap_urls": [
@@ -72,6 +76,15 @@
       "lvl3": ".content h3",
       "lvl4": ".content h4",
       "text": ".content p, .content li"
+    },
+    "api": {
+      "lvl0": {
+        "selector": ".page-content-title",
+        "global": true,
+        "default_value": "Open API Specification"
+      },
+      "lvl1": "h1",
+      "text": ".renderMarkdown p"
     }
   },
 

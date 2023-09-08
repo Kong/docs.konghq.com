@@ -5,6 +5,10 @@ on:
       version:
         description: "Version (e.g. ce_2.4.x - see 'app/_data/*.yml')"
         required: true
+
+env:
+  VITE_PORTAL_API_URL: ${{ vars.VITE_PORTAL_API_URL }}
+
 jobs:
   pdf:
     runs-on: ubuntu-latest

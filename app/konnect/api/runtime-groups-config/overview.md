@@ -754,7 +754,7 @@ key_set_data: |
 >
 | Spec | Developer portal link | Insomnia link |
 |------|-----------------------|---------------|
-| Konnect runtime group configuration beta API spec |[Developer Portal](https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf)  | <a href="https://insomnia.rest/run/?label=Runtime%20Groups%20Configuration%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FKonnect%2Fv2%2Fjson%2Fkonnect-2.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
+| Konnect runtime group configuration beta API spec |[Developer Portal](/konnect/api/runtime-groups-configuration/v2/)  | <a href="https://insomnia.rest/run/?label=Runtime%20Groups%20Configuration%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FKonnect%2Fv2%2Fjson%2Fkonnect-2.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
 
 
 | URL                | Description                                                                                                                         |
@@ -809,8 +809,8 @@ curl -i -X POST http://https://{region}.api.konghq.com/v2/runtime-groups/{runtim
 
 * [Authentication](/konnect/api/)
 * [Kong Gateway API](/gateway/latest/admin-api/)
-* [Identity Management API](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce)
-* [Runtime Groups API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/)
+* [Identity Management API](/konnect/api/identity-management/v2/)
+* [Runtime Groups API](/konnect/api/runtime-groups/v2/)
 * [Plugin Hub](/hub/)
 
 ## Nodes

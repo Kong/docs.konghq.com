@@ -359,6 +359,7 @@ endfor
 endif
 endif_plugin_version
 endif_version
+endplugin_example
 endnavtab
 endnavtabs
 endraw
@@ -703,6 +704,7 @@ pidata
 pingfederate
 pitarget
 pkce
+plugin_example
 pluginserver_amberflo_query_cmd
 pluginserver_amberflo_start_cmd
 pluginserver_names

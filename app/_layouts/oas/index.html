@@ -1,0 +1,42 @@
+---
+layout: default
+---
+
+<div class="page page-hub oas-landing">
+  <div class="page-hub--header-background"></div>
+  <div class="page-hub--header">
+    <h1>Welcome to Kong API Specs</h1>
+    <h3>This section of our docs site is Powered by Konnect, using <a href="/konnect/dev-portal/customization/">customizations available for the DevPortal</a>.</h3>
+  </div>
+
+  <div class="landing-page">
+    <h3 class="feature-title feature-title-oas">Definitions</h3>
+
+    <section class="features">
+      <div class="cards-container">
+        {% for oas_page in site.data.ssg_oas_pages %}
+        <div class="card default">
+          <div class="title">
+            <a href="{{ oas_page.canonical_url }}">
+              {{ oas_page.product.title }}
+            </a>
+          </div>
+          <hr>
+          <div class="description">
+            <span>{{ oas_page.description }}</span>
+          </div>
+          <hr>
+
+          <div class="links-container">
+            <span>Latest Version: {{ oas_page.product.latest_version }}</span>
+            <a href="{{ oas_page.canonical_url }}" class="link-text">
+              Specification
+              <img src="/assets/images/icons/icn-arrow-right.svg" alt="link to {{ oas_page.product.title }} specification">
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+</div>
