@@ -4,6 +4,8 @@
 
 # Konnect rename
 
+/konnect/runtime-manager/runtime-instances/verify-instance/ /konnect/gateway-manager/data-plane-nodes/verify-node/
+/konnect/runtime-manager/runtime-instances/runtime-parameter-reference/ /konnect/gateway-manager/data-plane-nodes/parameter-reference/
 /konnect/runtime-manager/runtime-instances/* /konnect/gateway-manager/data-plane-nodes/:splat
 /konnect/runtime-manager/composite-runtime-groups/*     /konnect/gateway-manager/control-plane-groups/:splat
 /konnect/runtime-manager/runtime-groups/* /konnect/gateway-manager/control-plane-groups/:splat
