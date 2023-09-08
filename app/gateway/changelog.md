@@ -7,7 +7,7 @@ no_version: true
 
 Changelog for supported Kong Gateway versions. 
 
-For product versions that have reached the end of sunset support, see the [changelog archives](https://github.com/Kong/docs.konghq.com/tree/main/old-changelogs).
+For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/gateway/changelog/).
 
 ## 3.4.0.0
 **Release Date** 2023/08/09
