@@ -29,15 +29,17 @@
       "selectors_key": "hub"
     },
     {
-      "url": "https://docs.konghq.com/api/",
-      "selectors_key": "api"
+      "url": "https://docs.konghq.com/api",
+      "selectors_key": "api",
+      "page_rank": 10
     }
   ],
   "sitemap_urls": [
     "https://docs.konghq.com/sitemap.xml"
   ],
   "stop_urls": [
-    "https://docs.konghq.com/hub/.*?/.*?/[0-9].[0-9].x/"
+    "https://docs.konghq.com/hub/.*?/.*?/[0-9].[0-9].x/",
+    "https://docs.konghq.com/hub/.*?/.*?/how-to/basic-example/"
   ],
 
   "selectors": {
@@ -74,23 +76,23 @@
       "lvl1": "h1",
       "lvl2": ".content h2",
       "lvl3": ".content h3",
-      "lvl4": ".content h4",
       "text": ".content p, .content li"
     },
     "api": {
       "lvl0": {
-        "selector": ".page-content-title",
+        "selector": ".search-selector",
         "global": true,
         "default_value": "Open API Specification"
       },
-      "lvl1": "h1",
-      "text": ".renderMarkdown p"
+      "lvl1": ".title a",
+      "text": ".description span"
     }
   },
 
   "selectors_exclude": [
     "#next-steps",
     "#next-steps ~ p",
+    "#more-information",
     "#summary-and-next-steps",
     "#summary",
     "#see-also",

@@ -235,8 +235,7 @@
 /hub/kong-inc/response-transformer-advanced/0.*    /hub/kong-inc/response-transformer-advanced/
 /hub/kong-inc/response-transformer-advanced/1.*    /hub/kong-inc/response-transformer-advanced/
 /hub/kong-inc/route-by-header/0.*                  /hub/kong-inc/route-by-header/
-/hub/kong-inc/serverless-functions/0.*             /hub/kong-inc/serverless-functions
-/hub/kong-inc/serverless-functions/1.*             /hub/kong-inc/serverless-functions
+/hub/kong-inc/serverless-functions/*               /hub/kong-inc/pre-function/:splat
 /hub/kong-inc/session/0.*                          /hub/kong-inc/session/
 /hub/kong-inc/session/1.*                          /hub/kong-inc/session/
 /hub/kong-inc/session/2.2-x.html                   /hub/kong-inc/session/
