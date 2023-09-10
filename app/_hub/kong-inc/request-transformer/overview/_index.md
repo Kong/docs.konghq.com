@@ -17,7 +17,7 @@ With the advanced plugin, you can also limit the list of allowed parameters in t
 notation must be used instead.
 * The `X-Forwarded-*` fields are non-standard header fields written by Nginx to inform the upstream about
 client details and can't be overwritten by this plugin. If you need to overwrite these header fields, see the
-[post-function plugin in Serverless Functions](https://docs.konghq.com/hub/kong-inc/serverless-functions/).
+[Post-function plugin](/hub/kong-inc/post-function/how-to/).
 
 
 ## Order of execution

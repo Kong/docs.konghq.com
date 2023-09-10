@@ -1151,7 +1151,7 @@ messages:
       Please update the configuration to use `config.access` field instead of
       `config.functions`.
     DocumentationURL: |
-      [Serverless Functions plugin](/hub/kong-inc/serverless-functions/)
+      [Pre-function plugin](/hub/kong-inc/pre-function/)
   - ID: P123
     Severity: error
     Description: |
@@ -1162,7 +1162,7 @@ messages:
       Please update the configuration to use `config.access` field instead of
       `config.functions`.
     DocumentationURL: |
-      [Serverless Functions plugin](/hub/kong-inc/serverless-functions/)
+      [Post-function plugin](/hub/kong-inc/post-function/)
   - ID: P124
     Severity: warning
     Description: |
@@ -1173,7 +1173,7 @@ messages:
       Please update the plugin configuration to use `config.access` field in place of
       `config.functions` field
     DocumentationURL: |
-      [Serverless Functions plugin](/hub/kong-inc/serverless-functions/)
+      [Pre-function plugin](/hub/kong-inc/pre-function/)
   - ID: P125
     Severity: warning
     Description: |
@@ -1184,7 +1184,7 @@ messages:
       Please update the plugin configuration to use `config.access` field in place of
       `config.functions` field
     DocumentationURL: |
-      [Serverless Functions plugin](/hub/kong-inc/serverless-functions/)
+      [Post-function plugin](/hub/kong-inc/post-function/)
   - ID: P126
     Severity: error
     Description: |
@@ -1381,7 +1381,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [Serverless Functions plugin](/hub/kong-inc/serverless-functions/)
+      [Pre-function plugin](/hub/kong-inc/pre-function/)
   - ID: P145
     Severity: error
     Description: |
@@ -1392,7 +1392,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [Serverless Functions plugin](/hub/kong-inc/serverless-functions/)
+      [Pre-function plugin](/hub/kong-inc/pre-function/)
   - ID: P146
     Severity: error
     Description: |
