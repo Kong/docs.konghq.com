@@ -38,6 +38,9 @@ Following annotations are supported on Ingress resources:
 | [`konghq.com/path-handling`](#konghqcompathhandling) | Sets the path handling algorithm |
 | [`konghq.com/headers.*`](#konghqcomheaders) | Set header values required to match rules in this Ingress |
 {% endif_version %}
+{% if_version gte:2.12.x inline:true %}
+| [`konghq.com/rewrite`](#konghqcomrewrite) | Rewrite the path of a URL |
+{% endif_version %}
 
 `kubernetes.io/ingress.class` is normally required, and its value should match
 the value of the `--ingress-class` controller argument (`kong` by default).
@@ -658,4 +661,34 @@ data before closing a kept-alive connection.
 Sets the max retries on a request. For example, setting this annotation to `3`
 will re-send the request up to three times if it encounters a failure, such as
 a timeout.
+{% endif_version %}
+
+{% if_version gte:2.12.x %}
+### konghq.com/rewrite
+
+> Available since controller 2.12
+
+Rewrite a URL path. This annotation is a shorthand method of applying a
+[request-transformer plugin](/hub/kong-inc/request-transformer/)
+with [a `replace.uri` action](/hub/kong-inc/request-transformer/configuration/#config-replace).
+It cannot be combined with a `konghq.com/plugins` annotation that applies a
+request-transformer plugin as such.
+
+The annotation can rebuild URLs using segments captured from a regular
+expression path. A `$n` in the annotation path represents the nth capture group
+in the Ingress rule path, starting from 1. For example, combining an Ingress
+rule with path `/~/api/(.*)/foo/svc_(.*)` and a `konghq.com/rewrite:
+/v$1/svc/$2` would send a request for `/v2/svc/pricing` upstream for an inbound
+request to `/api/2/foo/svc_pricing` (the `/~` prefix instructs Kong to treat
+the path as a regular expression, and isn't used in the actual request).
+
+Annotations apply at the Ingress level and not modify individual rules. As
+such, this annotation should only be used on Ingresses with a single rule, or
+on Ingresses whose rules paths _all_ match the rewrite pattern.
+
+Note that this annotation overrides `strip_path` and Service `path`
+annotations. The value of the `konghq.com/rewrite` annotation will be the
+_entire_ path sent upstream. You must include path segments you would normally
+place in a Service `konghq.com/path` annotation at the start of your
+`konghq.com/rewrite` annotation.
 {% endif_version %}
