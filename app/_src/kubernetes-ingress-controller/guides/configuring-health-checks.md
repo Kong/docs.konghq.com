@@ -292,11 +292,7 @@ of Kong actively probes Pods to check if they are healthy.
     ```            
 
 Active health-checks automatically marked a Pod as healthy when passive health-checks marked it unhealthy.
-
-## Bonus
-
-Scale the `httpbin` and `ingress-kong` deployments and observe how
-multiple Pods change the outcome of the above demo.
+Each of the proxy Pod keeps a track of their healthchecks.
 
 Read more about health-checks and circuit breaker in Kong's
 [documentation](/gateway/latest/reference/health-checks-circuit-breakers).
