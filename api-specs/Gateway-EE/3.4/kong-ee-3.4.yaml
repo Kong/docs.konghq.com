@@ -1185,7 +1185,7 @@ components:
                   validator:
                     required: true
                     type: string
-              type: array
+              type: object
             portal_emails_from:
               type: string
             portal_emails_reply_to:
@@ -1710,7 +1710,7 @@ components:
                     type: string
                     description: The UUID for the consumer
                   tags:
-                    type: array
+                    type: object
                     description: An optional set of strings associated with consumer group for grouping and filtering.
                     nullable: true
                   type:
@@ -1738,7 +1738,7 @@ components:
                       type: string
                       description: The name of the consumer group
                     tags:
-                      type: array
+                      type: object
                       description: An optional set of strings associated with consumer group for grouping and filtering.
                       nullable: true
           examples:
@@ -8505,37 +8505,39 @@ servers:
           - http
           - https
 tags:
-  - description: Gateway services
+  - description:
+      Service entities, as the name implies, are abstractions of each of your own upstream
+      services. The main attribute of a Service is the destination URL for proxying traffic. This URL can be set as a single string or by specifying its protocol, host, port and path individually. Examples of Services would be a data transformation microservice, a billing API
     name: Services
-  - description: Gateway routes
+  - description: Route entities define rules to match client requests. Each route is associated with a service, and a service may have multiple routes associated to it. Every request matching a given Route will be proxied to the associated service. You need at least one matching rule that applies to the protocol being matched by the Route.
     name: Routes
-  - description: Plugins
+  - description: A Plugin entity represents a plugin configuration that will be executed during the HTTP request/response lifecycle. It is how you can add functionality to services that run behind a Kong Gateway instance, like authentication or rate limiting for example.
     name: Plugins
-  - description: Consumers
+  - description: The Consumer object represents a consumer - or a user - of a service. You can either rely on Kong as the primary datastore, or you can map the consumer list with your database to keep consistency between Kong and your existing primary datastore.
     name: Consumers
-  - description: Certificates
+  - description: A certificate object represents a public certificate, and can be optionally paired with the corresponding private key. These objects are used by Kong to handle SSL/TLS termination for encrypted requests, or for use as a trusted CA store when validating peer certificate of client/service. Certificates are optionally associated with SNI objects to tie a cert/key pair to one or more hostnames.If intermediate certificates are required in addition to the main certificate, they should be concatenated together into one string.
     name: Certificates
-  - description: SNIs
+  - description: An SNI object represents a many-to-one mapping of hostnames to a certificate. That is, a certificate object can have many hostnames associated with it; when Kong receives an SSL request, it uses the SNI field in the Client Hello to lookup the certificate object based on the SNI associated with the certificate.
     name: SNIs
-  - description: Targets
+  - description: A target is an ip address/hostname with a port that identifies an instance of a backend service. Every upstream can have many targets, and the targets can be dynamically added, modified, or deleted. Changes take effect on the fly.
     name: Targets
-  - description: CA certificates
+  - description: A CA certificate object represents a trusted CA. These objects are used by Kong to verify the validity of a client or server certificate.
     name: CA Certificates
-  - description: Upstreams
+  - description: The upstream object represents a virtual hostname and can be used to loadbalance incoming requests over multiple services (targets).An upstream also includes a [health checker](https://docs.konghq.com/gateway/3.4.x/how-kong-works/health-checks/), which is able to enable and disable targets based on their ability or inability to serve requests. The configuration for the health checker is stored in the upstream object, and applies to all of its targets.
     name: Upstreams
-  - description: Vaults
+  - description: Vault objects are used to configure different vault connectors. Examples of vaults are environment variables, Hashicorp Vault and AWS Secrets Manager. Configuring a vault allows referencing the secrets with other entities. For example a certificate entity can store a reference to a certificate and key, stored in a vault, instead of storing the certificate and key within the entity. This allows a proper separation of secrets and configuration and prevents secret sprawl. Secrets rotation can be managed using [TTLs](https://docs.konghq.com/gateway/latest/kong-enterprise/secrets-management/advanced-usage/).
     name: Vaults
-  - description: Keys
+  - description: A Key object holds a representation of asymmetric keys in various formats. When Kong or a Kong plugin requires a specific public or private key to perform certain operations, it can use this entity.
     name: Keys
-  - description: Keyring
+  - description:  The mechanism to store sensitive data fields, such as consumer secrets, in an encrypted format within the database. This provides for encryption-at-rest security controls in a Kong cluster.
     name: Keyring
-  - description: Key-sets
+  - description: A JSON Web Key Set. Key Sets are the preferred way to expose keys to plugins because they tell the plugin where to look for keys or have a scoping mechanism to restrict plugins to specific keys.
     name: Key-sets
-  - description: Workspaces
+  - description: The workspace object describes the workspace entity, which has an ID and a name.
     name: Workspaces
   - description: All about Basic-auth credentials in Kong
-    name: Basic-auth credentials
-  - description: License
+    name: The Kong Dev Portal can be fully or partially authenticated using ` protocol’s basic authentication scheme. Requests are sent with an authorization header that contains the word basic followed by the base64-encoded `username:password string`
+  - description: Licenses allow you to configure a license in your Kong Gateway cluster, in both traditional and hybrid mode deployments. In hybrid mode deployments, the control plane sends licenses configured through the `/licenses` endpoint to all data planes in the cluster. The data planes use the most recent `updated_at` license.
     name: licenses
-  - description: Consumer Groups
+  - description: Consumer groups enable the organization and categorization of consumers (users or applications) within an API ecosystem. By grouping consumers together, you eliminate the need to manage them individually, providing a scalable, efficient approach to managing configurations.
     name: consumer_groups
