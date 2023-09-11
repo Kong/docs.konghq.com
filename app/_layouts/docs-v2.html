@@ -146,19 +146,19 @@ id: documentation
   {% include_cached image-modal.html disable_image_expand=page.disable_image_expand %}
 
 
-{% if page.konnect_cta_card %}
-  <div class="modal closed" id="modal" role="dialog" aria-hidden="true" aria-labelledby="title" aria-describedby="descr:ption">
+{% if page.konnect_cta_card != false %}
+  <div class="modal closed" id="modal" role="dialog" aria-hidden="true" aria-labelledby="title" aria-describedby="description">
     <div class="konnect-cta-card">
       <div class="title">
-        Try Konnect for Free
-        <a href="#" class="cta-card-close modal-close" id="modal-close">
+      Too much on your plate?
+      <a href="#" class="cta-card-close modal-close" id="modal-close">
           <img src="/assets/images/icons/documentation/close.svg" alt="close cta icon"/>
         </a>
       </div>
-      <div class="description">Fast setup, reduced administration, all the latest features, and lots more.</div>
-      <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=right-nav-card" class="button" target="_blank">
-        Try it for Free
-      </a>
+      <div class="description">More features, less infrastructure with Kong Konnect. 1M requests per month for free.</div>
+      <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_campaign=right-nav-card&utm_content={{ page.edition }}" class="button" target="_blank">
+      Try it for Free
+    </a>
     </div>
   </div>
   <div id="modal-open" class="modal-open"></div>
