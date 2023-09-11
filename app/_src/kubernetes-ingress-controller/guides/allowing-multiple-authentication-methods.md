@@ -203,9 +203,6 @@ deployment.apps/httpbin created
 
 1. To add a `key-auth` credential for one consumer, and a `basic-auth`credential for another you need to create a [Secret](https://kubernetes.io/docs/concepts/configuration/secret/) resource with an API-key, username, and password.
 
-    Create a secret to add `key-auth` credential for `consumer-2`. 
-{% include_cached /md/kic/key-auth.md kong_version=page.kong_version credName='consumer-2-key-auth' key='consumer-2-password' %}
-
     Create a secret to add `basic-auth` credential for `consumer-1`.
 
     ```bash
@@ -219,6 +216,9 @@ deployment.apps/httpbin created
     secret/consumer-1-basic-auth created
     ```
     The type of credential is specified through `kongCredType`.
+
+   Create a secret to add `key-auth` credential for `consumer-2`. 
+{% include_cached /md/kic/key-auth.md kong_version=page.kong_version credName='consumer-2-key-auth' key='consumer-2-password' %}
 
 1. Associate these keys with the consumer that you created. You don't have to create the  KongConsumer resource again, you only need to update it to include the `credentials` array.
 
