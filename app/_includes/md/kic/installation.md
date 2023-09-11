@@ -1,3 +1,4 @@
+{% unless include.disable_gateway_api %}
 ## Installation
 
 Follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install the {{site.kic_product_name}} on the Kubernetes cluster.
@@ -32,3 +33,5 @@ Server: kong/3.0.0
 ```
 
 This is expected because {{site.base_gateway}} doesn't know how to proxy the request yet.
+
+{% endunless %}
