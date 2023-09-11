@@ -297,7 +297,7 @@ Any requests with missing or invalid credentials are rejected, whereas authorize
     
     {"message":"Authentication required"}%
     ```
-1. Send a request with an authentication.
+1. Send a request using the `key-auth` authentication method
     ```bash
     curl -i $PROXY_IP/test/status/200 -H apikey:consumer-2-password
     ```
