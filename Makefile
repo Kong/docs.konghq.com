@@ -16,6 +16,7 @@ install: ruby-version-check
 	npm ci
 	bundle install
 	git submodule update --init
+	@if [ ! -f .env ]; then cp .env.example .env; fi
 
 # Using local dependencies, starts a doc site instance on http://localhost:4000.
 run: ruby-version-check
