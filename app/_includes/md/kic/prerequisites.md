@@ -63,6 +63,6 @@ Kubernetes exposes the proxy through a Kubernetes service. Run the following com
     {"message":"no Route matched with those values"}
     ```
 
-    If the above instructions do not work for you, please read our more [detailed deployment guides](/kubernetes-ingress-controller/{{ page.release }}/deployment/overview/).
+    If the above instructions do not work for you, please read the more [detailed deployment guide](/kubernetes-ingress-controller/{{ page.release }}/deployment/overview/).
 
 </details>
