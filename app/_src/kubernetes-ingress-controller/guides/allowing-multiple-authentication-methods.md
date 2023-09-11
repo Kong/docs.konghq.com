@@ -108,7 +108,7 @@ deployment.apps/httpbin created
     ```text
     kongplugin.configuration.konghq.com/httpbin-basic-auth created
     ```
-    Create a plugin named `httpbin-kay-auth`.
+    Create a plugin named `httpbin-key-auth`.
     ```bash
     echo '
     apiVersion: configuration.konghq.com/v1
