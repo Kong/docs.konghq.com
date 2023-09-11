@@ -291,8 +291,6 @@ of Kong actively probes Pods to check if they are healthy.
     Via: kong/3.1.1
     ```            
 
-Active health-checks automatically marked a Pod as healthy when passive health-checks marked it unhealthy.
-Each of the proxy Pod keeps a track of their healthchecks.
 
 Read more about health-checks and circuit breaker in Kong's
 [documentation](/gateway/latest/reference/health-checks-circuit-breakers).
