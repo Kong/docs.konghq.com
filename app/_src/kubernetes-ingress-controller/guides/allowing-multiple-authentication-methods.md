@@ -314,7 +314,7 @@ Any requests with missing or invalid credentials are rejected, whereas authorize
     X-Kong-Proxy-Latency: 4
     Via: kong/3.3.1
     ```
-1. Send a request with credentials.
+1. Send a request using the `basic-auth` authentication method
     ```bash
     curl -i $PROXY_IP/test/status/200 -u consumer-1:consumer-1-password
     ```
