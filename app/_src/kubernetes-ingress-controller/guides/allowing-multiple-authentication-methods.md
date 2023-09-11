@@ -75,6 +75,9 @@ deployment.apps/httpbin created
     Via: kong/3.3.1
     ```
 
+
+## Create Consumers
+
 1. Create three consumers, named `consumer-1`, `consumer-2`, and `anonymous`.
 
    Create a consumer named `consumer-1`.
