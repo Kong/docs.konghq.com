@@ -188,7 +188,7 @@ There are a few options:
 Pod that comes in its place.
 - Scale the httpbin deployment; Kong then sends proxy requests to the new
   Pods and leave the short-circuited Pod out of the loop.
-- Manually change the Pod health status in Kong using Kong's [Admin API](https://docs.konghq.com/gateway/latest/admin-api/#set-target-as-healthy).
+- Manually change the Pod health status in Kong using Kong's [Admin API](/gateway/latest/admin-api/#set-target-as-healthy).
 
 These options highlight the fact that once a circuit is opened because of
 errors, there is no way for Kong to close the circuit again.
