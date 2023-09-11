@@ -10,7 +10,7 @@ mis-behaving in your Kubernetes Cluster.
 
 ## Create a Kubernetes service
 
-Create a Kubernetes service setup an [httpbin](https://httpbin.org)
+Create a Kubernetes service setup a [httpbin](https://httpbin.org)
 service in the cluster and proxy it.
 
 ```bash
