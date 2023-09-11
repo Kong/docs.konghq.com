@@ -228,7 +228,7 @@ of Kong actively probes Pods to check if they are healthy.
     kongingress.configuration.konghq.com/demo-health-checking created
     ```      
     
-    This configures Kong to actively probe `/status/200` every 5 seconds. If a Pod is unhealthy from Kong's perspective, 3 successful probes changes the status of the Pod to healthy and Kong again starts to forward requests to that Pod.
+    This configures Kong to actively probe `/status/200` every 5 seconds. If a Pod is unhealthy from Kong's perspective, 3 successful probes changes the status of the Pod to healthy and Kong again starts to forward requests to that Pod. Wait 15 seconds for the pod to be marked as healthy before continuing.
 
 1. Test the Ingress rule.
     ```bash
