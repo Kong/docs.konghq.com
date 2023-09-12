@@ -1,13 +1,9 @@
 <details markdown="1">
 <summary>
 <blockquote class="note">
-  <p style="cursor: pointer">This guide assumes that you have installed {{site.kic_product_name}} in your Kubernetes cluster.<br /><u>Click here</u> to show installation instructions</p>
+  <p style="cursor: pointer">Before you begin ensure that you have <u>Installed {{site.kic_product_name}} </u> in your Kubernetes cluster and are able to connect to Kong.</p>
 </blockquote>
 </summary>
-
-## Prerequisites
-
-Before following this guide, you will need to install and configure {{site.kic_product_name}}.
 
 {% unless include.disable_gateway_api %}
 ## Installing the Gateway APIs
@@ -26,13 +22,13 @@ Gateway APIs in KIC](/kubernetes-ingress-controller/{{page.kong_version}}/deploy
     helm repo update
     ```
 
-2. Install {{site.kic_product_name}} and {{ site.base_gateway }} with Helm:
+1. Install {{site.kic_product_name}} and {{ site.base_gateway }} with Helm:
 
     ```bash
     helm install kong kong/ingress -n kong --create-namespace
     ```
 
-### Testing connectivity to Kong
+### Test connectivity to Kong
 
 Kubernetes exposes the proxy through a Kubernetes service. Run the following commands to store the load balancer IP address in a variable named `PROXY_IP`:
 
@@ -63,6 +59,6 @@ Kubernetes exposes the proxy through a Kubernetes service. Run the following com
     {"message":"no Route matched with those values"}
     ```
 
-    If the above instructions do not work for you, please read the more [detailed deployment guide](/kubernetes-ingress-controller/{{ page.release }}/deployment/overview/).
+    If you are not able to connect to Kong, read the [deployment guide](/kubernetes-ingress-controller/{{ page.release }}/deployment/overview/).
 
 </details>
