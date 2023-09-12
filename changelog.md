@@ -6,7 +6,7 @@
 
 GraphQL Introspection endpoint will only be read from the Kong service (`service = ngx.ctx.service`) instead of reading from a specific variable or ingress - local.
 
-Documenting this behavior so consumers are aware of how to configure correctly and know about the limitation
+Documenting this behavior so consumers are aware of how to configure correctly and know about the limitation.
 
 #### Modified
 
@@ -14,8 +14,6 @@ Documenting this behavior so consumers are aware of how to configure correctly a
 
 
 ### [[Fix]- KIC: Setting up Active and Passive health checks guide](https://github.com/Kong/docs.konghq.com/pull/6081) (2023-09-11)
-
-What did you change and why?
  
 Revised and rewrote the guide after validating.
 
@@ -28,7 +26,7 @@ Revised and rewrote the guide after validating.
 
 ### [fix missing keyword config in curl data](https://github.com/Kong/docs.konghq.com/pull/6075) (2023-09-12)
 
-To enable grpc-web plugin via Admin API, the keyworkd `config` in curl data is missing.
+To enable grpc-web plugin via Admin API, the keywork `config` in curl data is missing.
 
 #### Modified
 
@@ -42,7 +40,6 @@ Remove the custom entities guide from KIC 2.x pages.
 This feature was never actually supported in 2.x, and we removed the leftover flag [in 2.9](https://github.com/Kong/kubernetes-ingress-controller/pull/3262). In earlier 2.x versions, the flag was available but did not work.
 
 
-
 ## Week 36
 
 ### [chore: Split the gateway changelogs to archive changelogs for sunset versions](https://github.com/Kong/docs.konghq.com/pull/6073) (2023-09-08)
@@ -54,7 +51,6 @@ Our Gateway changelog page is massive. This is a problem for everyone involved:
 * Documenting versions that we don't support
 * And the most recent discovery, a not-insignificant chunk of our Algolia records
 
-This is yet another attempt to split some of the changelog content out. 
 From now on, we will be archiving old changelogs at the same time we archive old versions of our docs. You can find the changelogs at https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/.
 
 #### Modified
@@ -63,10 +59,8 @@ From now on, we will be archiving old changelogs at the same time we archive old
 
 
 ### [Post-launch tidy of Konnect API overview page + nav](https://github.com/Kong/docs.konghq.com/pull/6067) (2023-09-07)
-
-What did you change and why?
  
-update links to api specs in overview page to reference evergreen links, repeat spec description from devportal description field, update nav links to consistently refer to API spec and use evergreen links.
+Update links to api specs in overview page to reference evergreen links, repeat spec description from devportal description field, update nav links to consistently refer to API spec and use evergreen links.
 
 #### Modified
 
@@ -75,7 +69,7 @@ update links to api specs in overview page to reference evergreen links, repeat 
 
 ### [update urls to latest and remove mention of dev portal](https://github.com/Kong/docs.konghq.com/pull/6066) (2023-09-06)
 
-Update urls to latest for gateway apis
+Update urls to latest for gateway APIs.
 
 Remove mention of dev portal from API announcement banner.
 
@@ -86,7 +80,7 @@ Remove mention of dev portal from API announcement banner.
 
 ### [Fix(plugin scopes): Consumer groups scope and application registration plugin](https://github.com/Kong/docs.konghq.com/pull/6059) (2023-09-05)
 
-The [scopes compatibility table](https://docs.konghq.com/hub/plugins/compatibility/#scopes) was missing a column for consumer groups. This PR enables generating the column and all entries from the plugins' schemas.
+The [scopes compatibility table](https://docs.konghq.com/hub/plugins/compatibility/#scopes) was missing a column for consumer groups. This update enables generating the column and all entries from the plugins' schemas.
 
 Additionally, the Application Registration plugin was listed as incompatible with all scopes, which is wrong - it's compatible with services only. Turns out we were selecting for the wrong key. Fixing this also fixes the display of the plugin's [config](https://docs.konghq.com/hub/kong-inc/application-registration/configuration/) and [basic examples](https://docs.konghq.com/hub/kong-inc/application-registration/how-to/basic-example/), which were both missing services.
 
@@ -97,15 +91,15 @@ Additionally, the Application Registration plugin was listed as incompatible wit
 
 ### [(fix) remove note about cloud launcher support ](https://github.com/Kong/docs.konghq.com/pull/6057) (2023-09-06)
 
-What did you change and why?
- Existing note was incorrect and causing confusion. https://kongstrong.slack.com/archives/CQK8J4VN3/p1693903551408579
+Existing note was incorrect and causing confusion. 
+https://kongstrong.slack.com/archives/CQK8J4VN3/p1693903551408579
 
 #### Modified
 
 - https://docs.konghq.com/konnect/runtime-manager/runtime-instances/upgrade
 
 
-### [Fix "supported-router-flavors" typos.](https://github.com/Kong/docs.konghq.com/pull/6056) (2023-09-05)
+### [Fix "supported-router-flavors" typos](https://github.com/Kong/docs.konghq.com/pull/6056) (2023-09-05)
 
 This change fixes small typos in the documentation.
 
@@ -120,8 +114,6 @@ This change fixes small typos in the documentation.
 
 ### [Salt plugin: add konnect and update version compatibility](https://github.com/Kong/docs.konghq.com/pull/6050) (2023-09-05)
 
-What did you change and why?
- 
 Updating for Konnect compatibility & Kong version support
 taking colleagues work and putting into PR on main for Kong's docs repo
 
@@ -135,11 +127,11 @@ taking colleagues work and putting into PR on main for Kong's docs repo
 We currently document one entry for [Serverless Functions](https://docs.konghq.com/hub/kong-inc/serverless-functions/), but it’s actually two plugins: `pre-function` and `post-function`. When searching for docs, users look for one of those names, not for Serverless Function. The UI also has them as two separate plugins, so one docs entry doesn't make sense.
 
 This PR aims to solve that by splitting Serverless Functions into Post-function and Pre-function plugins. 
-* For the titles of the plugins, I used the names from the Konnect and Kong Manager UIs: Kong Functions (Pre-Plugins) and Kong Functions (Post-Plugins).
+* For the titles of the plugins, used the names from the Konnect and Kong Manager UIs: Kong Functions (Pre-Plugins) and Kong Functions (Post-Plugins).
 * You can still search for these plugins by the term "serverless" and by their real names (post- and pre-function)
-* I split out the how-to guide for the pre-function plugin into its own topic
-* For the post-function plugin, I wrote a how-to guide based on a KB: https://support.konghq.com/support/s/article/How-can-the-latency-and-rate-limit-plugin-header-names-be-changed
-* For both plugins, I also added short guide on running the plugins in multiple phases based on yet another KB: https://support.konghq.com/support/s/article/Is-it-possible-to-run-serverless-plugins-in-phases-other-than-the-access-phase
+* Split out the how-to guide for the pre-function plugin into its own topic
+* For the post-function plugin, wrote a how-to guide based on a KB: https://support.konghq.com/support/s/article/How-can-the-latency-and-rate-limit-plugin-header-names-be-changed
+* For both plugins, also added short guide on running the plugins in multiple phases based on yet another KB: https://support.konghq.com/support/s/article/Is-it-possible-to-run-serverless-plugins-in-phases-other-than-the-access-phase
 
 https://konghq.atlassian.net/browse/DOCU-3434
 
@@ -256,23 +248,13 @@ Update existing Kong Ingress Controller guides for consistency and readability. 
 
 ### [fix: change go-apiops to deck file in deck_file_remove-tags.md](https://github.com/Kong/docs.konghq.com/pull/6037) (2023-09-06)
 
-go-apiops cli is built for testing purposes. End users are encumbered to use this utility through deck file command.
-
-
-
-
-What did you change and why?
+go-apiops cli is built for testing purposes. End users are encumbered to use this utility through deck file command
 
 I changed `go-apiops` cli example to `deck file`. As mentioned in [go-apiops repository](https://github.com/Kong/go-apiops)
 > Currently, the functionality is released as a library and as part of the [decK](https://github.com/Kong/deck) CLI tool. The 
 > repository also contains a CLI named go-apiops **for local testing**. For general CLI usage, prefer the decK tool [docs](https://docs.konghq.com/deck/latest/) tool.
 
  `go-apiops` is used for testing and deck is encouraged for general usage.
-
-### Checklist 
-
-- [ ] Review label added <!-- (see below) -->
-- [ ] PR pointed to correct branch (`main` for immediate publishing, or a release branch: e.g. `release/gateway-3.2`, `release/deck-1.17`)
 
 #### Modified
 
@@ -284,8 +266,6 @@ I changed `go-apiops` cli example to `deck file`. As mentioned in [go-apiops rep
 
 
 ### [Feat: Plugin hub nested overviews](https://github.com/Kong/docs.konghq.com/pull/6027) (2023-09-05)
-
-What did you change and why?
  
 Add the ability to nest overview pages to plugins, they work in the same way as the `how-tos`.
 Add redirects, so that existing URLs redirect to `/overview/`.
@@ -315,24 +295,6 @@ Add `nav_title: Introduction` to existing pages.
 
 Adds documentation for the Filter Chain entity available in Kong Gateway 3.4 when WebAssembly support is enabled.
 
-### Checklist 
-
-- [ ] Review label added <!-- (see below) -->
-- [x] PR pointed to correct branch (`main` for immediate publishing, or a release branch: e.g. `release/gateway-3.2`, `release/deck-1.17`)
-
-
-<!-- !!! Only Kong employees can add labels due to a GitHub limitation. If you're an OSS contributor, thank you! The maintainers will label this PR for you !!! -->
-
-<!-- When raising a pull request, indicate what type of review you need with one of the following labels:
-
-    review:copyedit: Request for writer review.
-    review:general: Review for general accuracy and presentation. Does the doc work? Does it output correctly?
-    review:tech: Request for technical review for a docs platform change.
-    review:sme: Request for review from an SME (engineer, PM, etc).
-
-At least one of these labels must be applied to a PR or the build will fail.
--->
-
 #### Modified
 
 - https://docs.konghq.com/gateway/3.4.x/kong-manager-oss/troubleshoot/
@@ -349,11 +311,6 @@ At least one of these labels must be applied to a PR or the build will fail.
 
 Added a blurb about how the IP Address is determined when using the IP Restriction plugin, as this was confusing customers who were unaware of the appropriate settings that needed to be tweaked for their environment so the IP could be determined accurately.
 
-### Checklist 
-
-- [x] Review label added <!-- (see below) -->
-- [x] PR pointed to correct branch (`main` for immediate publishing, or a release branch: e.g. `release/gateway-3.2`, `release/deck-1.17`)
-
 #### Modified
 
 - https://docs.konghq.com/hub/kong-inc/ip-restriction/
@@ -362,11 +319,6 @@ Added a blurb about how the IP Address is determined when using the IP Restricti
 ### [Added info about limiting by IP address](https://github.com/Kong/docs.konghq.com/pull/6045) (2023-08-31)
 
 We were missing details about how the IP address was determined when customers want to limit by IP address. Added these details to clarify how this works and linked to other sources for the appropriate properties that need to be set.
-
-### Checklist 
-
-- [x] Review label added <!-- (see below) -->
-- [x] PR pointed to correct branch (`main` for immediate publishing, or a release branch: e.g. `release/gateway-3.2`, `release/deck-1.17`)
 
 #### Modified
 
@@ -379,11 +331,6 @@ There were some missing details from the RL (Rate Limiting) plugin which I paste
 
 Also added a section for how the IP address is determined as this was missing from the details and was not obvious to customers how this worked when limiting by IP address.
 
-### Checklist 
-
-- [x] Review label added <!-- (see below) -->
-- [x] PR pointed to correct branch (`main` for immediate publishing, or a release branch: e.g. `release/gateway-3.2`, `release/deck-1.17`)
-
 #### Modified
 
 - https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/
@@ -392,12 +339,6 @@ Also added a section for how the IP address is determined as this was missing fr
 ### [Update index.md](https://github.com/Kong/docs.konghq.com/pull/6042) (2023-08-31)
 
 Fixed spelling mistake and commas
-
-
-
-
-What did you change and why?
- 
 
 - Fixed spelling error: changed confict to conflict.
 - Added commas
@@ -409,10 +350,8 @@ What did you change and why?
 
 ### [fix: Update OSS install instructions for Kong Manager](https://github.com/Kong/docs.konghq.com/pull/6040) (2023-08-31)
 
-What did you change and why?
-- Our OSS install instructions (specifically Docker and I found some Linux ones as well) that still said that KM wasn't for OSS even though it is. I fixed those spots.
- 
-Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc.
+Our OSS install instructions (specifically Docker and I found some Linux ones as well) that still said that KM wasn't for OSS even though it is. I fixed those spots.
+
 DOCU-3445
 
 #### Modified
@@ -433,29 +372,9 @@ Generated by [action](https://github.com/Kong/kong-mesh/actions/runs/6034676360)
 - https://docs.konghq.com/mesh/raw/CHANGELOG
 
 
-### [Update changelog.md](https://github.com/Kong/docs.konghq.com/pull/6034) (2023-08-29)
+### [Update: Add link to changelog entry for Kong Manager OSS](https://github.com/Kong/docs.konghq.com/pull/6034) (2023-08-29)
 
-add link to https://docs.konghq.com/gateway/latest/kong-manager-oss/ in the feature annoucement
-
-
-
-### Checklist 
-
-- [x] Review label added <!-- (see below) -->
-- [x] PR pointed to correct branch (`main` for immediate publishing, or a release branch: e.g. `release/gateway-3.2`, `release/deck-1.17`)
-
-
-<!-- !!! Only Kong employees can add labels due to a GitHub limitation. If you're an OSS contributor, thank you! The maintainers will label this PR for you !!! -->
-
-<!-- When raising a pull request, indicate what type of review you need with one of the following labels:
-
-    review:copyedit: Request for writer review.
-    review:general: Review for general accuracy and presentation. Does the doc work? Does it output correctly?
-    review:tech: Request for technical review for a docs platform change.
-    review:sme: Request for review from an SME (engineer, PM, etc).
-
-At least one of these labels must be applied to a PR or the build will fail.
--->
+Add link to https://docs.konghq.com/gateway/latest/kong-manager-oss/ in the feature annoucement
 
 #### Modified
 
@@ -467,27 +386,6 @@ At least one of these labels must be applied to a PR or the build will fail.
 You can now find cross-reference to the "Control Plane and Data Plane Communication through a Forward Proxy" page in the "Konnect Ports and Networking Requirements" page.
 
 Updated based on Slack feedback [here](https://kongstrong.slack.com/archives/C02CWN8C7DK/p1693260752247129). 
-
-Netlify link: https://deploy-preview-6028--kongdocs.netlify.app/konnect/network/
-
-
-### Checklist 
-
-- [x] Review label added <!-- (see below) -->
-- [x] PR pointed to correct branch (`main` for immediate publishing, or a release branch: e.g. `release/gateway-3.2`, `release/deck-1.17`)
-
-
-<!-- !!! Only Kong employees can add labels due to a GitHub limitation. If you're an OSS contributor, thank you! The maintainers will label this PR for you !!! -->
-
-<!-- When raising a pull request, indicate what type of review you need with one of the following labels:
-
-    review:copyedit: Request for writer review.
-    review:general: Review for general accuracy and presentation. Does the doc work? Does it output correctly?
-    review:tech: Request for technical review for a docs platform change.
-    review:sme: Request for review from an SME (engineer, PM, etc).
-
-At least one of these labels must be applied to a PR or the build will fail.
--->
 
 #### Modified
 
@@ -522,11 +420,6 @@ Triggered by [action](https://github.com/Kong/docs.konghq.com/actions/runs/60189
 Corrected some wording and bolded the "import" and "export" portions in the environment variables as customers are often seeing these are the same variables without realizing they're different between export and import.
 
 Reverted the bolding after I realized it didn't load correctly in the preview. Overall the final change is just a mild correction to a wrongly formatted sentence from earlier.
-
-### Checklist 
-
-- [x] Review label added <!-- (see below) -->
-- [x] PR pointed to correct branch (`main` for immediate publishing, or a release branch: e.g. `release/gateway-3.2`, `release/deck-1.17`)
 
 #### Modified
 
@@ -581,8 +474,6 @@ Triggered by [action](https://github.com/Kong/docs.konghq.com/actions/runs/59940
 
 
 ### [feat(pre-built-reports): added changelog entry and an intro sentence](https://github.com/Kong/docs.konghq.com/pull/6009) (2023-08-28)
-
-What did you change and why?
 
 Added a changelog item to release our pre-built reports feature ([Aha ticket](https://konghq.aha.io/features/KP-204)) and an intro sentence into the Analytics section inside the Konnect intro chapter. This feature is rather small and is only for new organization. Therefore, I think we don't need a lot of docs changes.
 
@@ -733,8 +624,6 @@ Adding it for 3.4, along with a troubleshooting entry, in case anyone else runs 
 
 ### [Add blog post note to gateway install pages](https://github.com/Kong/docs.konghq.com/pull/5997) (2023-08-31)
 
-What did you change and why?
- 
 This addition was requested by the marketing folks just to further cement usage of the new site.
 
 #### Modified
@@ -792,14 +681,10 @@ Some specifics:
 - https://docs.konghq.com/gateway/2.6.x/configure/auth/kong-manager/ldap
 - https://docs.konghq.com/gateway/2.7.x/configure/auth/kong-manager/ldap
 - https://docs.konghq.com/gateway/2.8.x/configure/auth/kong-manager/ldap
-- https://docs.konghq.com/robots.txt
-
 
 ## Week 34
 
 ### [Fix missing icon](https://github.com/Kong/docs.konghq.com/pull/6007) (2023-08-25)
-
-What did you change and why?
  
 The OSS/Enterprise icon was missing. We changed it to a white version when we added it to the blue navigation, and forgot to change it back when we put it back in the TOC. 
 
