@@ -1,33 +1,34 @@
 ---
-title: Konnect Plans, Billing, and Usage
+title: Pricing and Plans
 content_type: explanation
 ---
 
-{{site.konnect_product_name}} has [three plans](https://konghq.com/pricing) to
-choose from: Free, Plus, and Enterprise. When you first sign up, you get
-automatically enrolled into a 30-day free trial for {{site.konnect_short_name}} Plus. At the end of
-this trial, you can choose to continue with Plus, or downgrade to Free.
+{{site.konnect_product_name}} offers [two plans](https://konghq.com/pricing). 
 
+* {{site.konnect_product_name}} Plus 
+* {{site.konnect_product_name}} Enterprise
+
+{{site.konnect_product_name}} Plus is the simplest way to get started with {{site.konnect_product_name}}, allowing you to only pay for the services you consume. New accounts are automatically given 1,000 free credits as part of 30-day trial. 
+
+Enterprise is our contract-based option that includes 24x7x365 support and professional services access to help you build and maintain your own custom environment. 
+
+You can claim your Konnect Plus credits by [signing up](https://konghq.com/products/kong-konnect/register). Or learn more about enterprise on our [pricing page](https://konghq.com/pricing)
 
 ## Manage and view plan billing and usage
 
 You can view service, Dev Portal, and API call usage from the [Billing and Usage](https://cloud.konghq.com/settings/billing-settings)
-settings page.
 
-This page provides an overview of your current plan, including:
+Here you can: 
 
-* The plan name
-* An estimated cost for the month (not available for trial accounts)
-* The total count of all services and API products published to Dev Portal, and API calls for
-the current month
+* Review analytics for:
+    * Usage
+    * Partition hours
+    * Ingress and Egress
+* View invoices
+* Manage billing and payment information.
 
 ![Upstream targets](/assets/images/docs/konnect/billing/billing-and-usage.png)
 
-For Free and Plus plans, you can:
-* [Modify or cancel your plan](/konnect/account-management/change-plan/)
-* [Set up or modify a payment method](/konnect/account-management/billing#modify-a-payment-method)
-* [Pay an invoice](/konnect/account-management/billing#pay-an-invoice)
-* [Check billing history](/konnect/account-management/billing#view-billing-history)
 
 If you want to upgrade to Enterprise, you can use the billing page to [contact a sales representative](/konnect/account-management/change-plan/#upgrade-from-any-plan-to-enterprise).
 
