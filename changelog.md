@@ -1,5 +1,7 @@
 # Changelog
 
+<!--vale off-->
+
 ## Week 37
 
 ### [Update(plugins): GraphQL Introspection endpoint related note](https://github.com/Kong/docs.konghq.com/pull/6090) (2023-09-12)
