@@ -4,12 +4,12 @@ content_type: how-to
 ---
 
 Use [decK](/deck/latest/installation/) to back up and restore 
-{{site.konnect_short_name}}'s runtime group configuration. 
+{{site.konnect_short_name}}'s control plane configuration. 
 
-With `deck dump`, decK generates state files for each runtime group, which act 
-as snapshots of the runtime group's configuration at that point in time.
-If a runtime group's configuration is ever corrupted, you can then use these snapshots to 
-restore your runtime group, or bring up another runtime group with the same configuration.
+With `deck dump`, decK generates state files for each control plane, which act 
+as snapshots of the control plane's configuration at that point in time.
+If a control plane's configuration is ever corrupted, you can then use these snapshots to 
+restore your control plane, or bring up another control plane with the same configuration.
 
 Review the list of [entities managed by decK](/deck/latest/reference/entities/) to see what can 
 be backed up.
@@ -19,7 +19,7 @@ be backed up.
 Dev Portal configuration and objects, such as documents, specs, and applications.
 There is currently no automated way to back up Dev Portal content.
 
-## Back up a {{site.konnect_short_name}} runtime group
+## Back up a {{site.konnect_short_name}} control plane
 
 Use `deck dump` to back up your configuration:
 
@@ -33,7 +33,7 @@ deck dump \
 We recommend using a personal access token to authenticate with the {{site.konnect_short_name}} org. 
 You can also choose a [different form of authentication](/deck/latest/guides/konnect).
 
-This command generates a state file for the runtime group's entity
+This command generates a state file for the control plane's entity
 configuration, for example:
 
 ```yaml
@@ -52,14 +52,14 @@ services:
     ...
 ```
 
-## Restore a {{site.konnect_short_name}} runtime group
+## Restore a {{site.konnect_short_name}} control plane
 
-You can restore entity configuration for a runtime group using a declarative configuration file.
+You can restore entity configuration for a control plane using a declarative configuration file.
 Note that you must do this for one group at a time.
 
 Assuming you have a backup file, for example, `my-backup.yaml`:
 
-Run a diff between your backup file and the runtime group in {{site.konnect_short_name}} to 
+Run a diff between your backup file and the control plane in {{site.konnect_short_name}} to 
 make sure you're applying the configuration you want:
 
 ```sh
@@ -70,7 +70,7 @@ deck diff \
 ```
 
 If you're satisfied with the diff result, run `deck sync` to sync your configuration to 
-a runtime group:
+a control plane:
 
 ```sh
 deck sync \
@@ -79,8 +79,8 @@ deck sync \
 --output-file /path/to/<my-backup.yaml>
 ```
 
-Check your runtime group in {{site.konnect_short_name}} to make sure the sync worked. 
-Open **Runtime Manager**, select your runtime group, and check through the configured entities.
+Check your control plane in {{site.konnect_short_name}} to make sure the sync worked. 
+Open **Gateway Manager**, select your control plane, and check through the configured entities.
 
 ## More information
 * [Entities managed by decK](/deck/latest/reference/entities/)

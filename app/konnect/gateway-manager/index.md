@@ -1,75 +1,83 @@
 ---
-title: About Runtime Manager
+title: About Gateway Manager
 ---
 
-The [Runtime Manager](https://cloud.konghq.com/runtime-manager)
+The [Gateway Manager](https://cloud.konghq.com/gateway-manager)
 is a {{site.konnect_saas}} functionality module
-that lets you catalogue, connect to, and monitor the status of all runtime
-groups and instances in one place, as well as manage group configuration.
+that lets you catalog, connect to, and monitor the status of all control planes
+and data plane nodes in one place, as well as manage control plane configuration.
 
-The Runtime Manager overview page displays a list of
-runtime groups currently owned by the organization. From here, you can add or
-delete runtime groups, or go into each individual group to manage runtime
-instances and their global configuration.
+The Gateway Manager overview page displays a list of
+control planes currently owned by the organization. From here, you can add or
+delete control planes, or go into each individual control plane to manage 
+data plane nodes and their global configuration.
 
-![runtime manager dashboard](/assets/images/docs/konnect/konnect-runtime-manager-dashboard.png)
-> _**Figure 1:** Example Runtime Manager dashboard with several runtime groups, including the default group, a KIC runtime group, and groups for development and production._
+![gateway manager dashboard](/assets/images/docs/konnect/konnect-gateway-manager-dashboard.png)
+> _**Figure 1:** Example Gateway Manager dashboard with several control planes, including the_
+_default control plane, a KIC control plane, and control planes for development and production._
 
-With {{site.konnect_short_name}} acting as the control plane, a runtime instance
+With {{site.konnect_short_name}} hosting the control plane, a data plane node
 doesn't need a database to store configuration data. Instead, configuration
-is stored in-memory on each node, and you can easily update all runtime instances
-in a group with a few clicks.
+is stored in-memory on each node, and you can easily update all data plane nodes
+in a control plane with a few clicks.
 
-The Runtime Manager, and the {{site.konnect_saas}} application as
+The Gateway Manager, and the {{site.konnect_saas}} application as
 a whole, does not have access or visibility into the data flowing through your
-runtimes, and it does not store any data except the state and connection details
-for each runtime instance.
+data plane nodes, and it does not store any data except the state and connection details
+for each node.
 
-## Runtime groups
+## Control planes
 
-{{site.konnect_short_name}} manages runtime configuration in runtime groups. 
+{{site.konnect_short_name}} manages data plane configuration via control planes. 
 
-Runtime groups come in two types:
+Control planes come in three types:
 
-* [**Standard runtime group**](#standard-runtime-groups): 
-    A collection of API connectivity runtime instances
-    sharing the same configuration and behavior space. Each runtime group acts
-    as a separate control plane and can manage runtime configurations independently
-    of any other group.
+* [**{{site.base_gateway}} control plane**](#kong-gateway-control-planes): 
+    A collection of {{site.base_gateway}} data plane nodes sharing the same 
+    configuration and behavior space. Each control plane
+    manages configurations independently.
 
-* [**Composite runtime group**](#composite-runtime-groups) <span class="badge enterprise"></span>: 
-    A type of runtime group that lets teams share a cluster of {{site.base_gateway}} runtime instances, where each team has its own segregated configuration.
+* [**Control plane group**](#control-plane-groups) <span class="badge enterprise"></span>: 
+    A type of control plane that manages central data plane nodes for multiple control planes.
+    It collects configuration from its member control planes and applies the 
+    aggregate config to a group of nodes. 
+    
+    This means that teams within a group share a cluster of {{site.base_gateway}} data 
+    plane nodes, where each team has its own segregated configuration.
 
-You can find a list of all runtime groups in your organization
-on the [Runtime Manager overview](https://cloud.konghq.com/runtime-manager/).
+* [**Kong Ingress Controller**](/konnect/gateway-manager/kic/)
+    Monitor the configuration of Kubernetes-based {{site.base_gateway}} data plane nodes.
 
-Access to each runtime group is configurable on a team-by-team basis using
+You can find a list of all control planes in your organization
+on the [Gateway Manager overview](https://cloud.konghq.com/gateway-manager/).
+
+Access to each control plane is configurable on a team-by-team basis using
 entity-specific permissions. For more information, see [Administer teams](/konnect/org-management/teams-and-roles/).
 
-### Standard runtime groups
+### {{site.base_gateway}} control planes
 
-Every region in every organization starts with one default runtime group. 
-This group can't be deleted, and its status as the default group can't be changed.
+Every region in every organization starts with one default control plane.
+This control plane can't be deleted, and its status as the default can't be changed.
 
 With an [Enterprise subscription](https://konghq.com/pricing/), you can configure additional
-custom runtime groups. Use multiple groups in one {{site.konnect_short_name}} organization to
-manage runtime instances and their configuration in any groupings you want.
+custom control panes. Use multiple control planes in one {{site.konnect_short_name}} organization to
+manage data plane nodes and their configuration in any groupings you want.
 
-Some common use cases for using multiple standard runtime groups include:
+Some common use cases for using multiple control planes include:
 
 * **Environment separation:** Split environments based on their purpose, such as
 development, staging, and production.
-* **Region separation:** Dedicate each runtime group to a region or group of
-regions. Spin up runtime instances in those regions for each runtime group.
-* **Team separation:** Dedicate each runtime group to a different team and share
+* **Region separation:** Assign each control plane to a region or group of
+regions. Spin up data plane nodes in those regions for each control plane.
+* **Team separation:** Dedicate each control plane to a different team and share
 resources based on team purpose.
 
-![runtime groups](/assets/images/docs/konnect/konnect-runtime-groups-example.png)
-> _**Figure 1:** Example runtime group configuration with three runtime groups: the default group, a development group, and a production group. {{site.konnect_short_name}} is the SaaS-managed global management plane that controls all of the groups, while the runtime groups contain self-managed runtime instances._
+![control planes](/assets/images/docs/konnect/konnect-runtime-groups-example.png)
+> _**Figure 1:** Example control plane group configuration for three control planes: the default, a development CP, and a production CP. {{site.konnect_short_name}} is the SaaS-managed global management plane that manages all of the control planes, while the control planes manage configuration for data plane nodes._
 
-#### Runtime group configuration
+#### Control plane configuration
 
-For each runtime group, you can spin up runtime instances and configure
+For each control plane, you can spin up data plane nodes and configure
 the following {{site.base_gateway}} entities:
 * Gateway services
 * Routes
@@ -82,81 +90,75 @@ the following {{site.base_gateway}} entities:
 * Vaults
 * Keys
 
-When there are multiple runtime groups, any entity configuration only
-applies to the runtime group that it was created in. Consumers and
-their authentication mechanisms don't carry over to other runtime groups.
+When there are multiple control planes, any entity configuration only
+applies to the control plane that it was created in. Consumers and
+their authentication mechanisms don't carry over to other control planes.
 
-[{{site.base_gateway}} configuration in {{site.konnect_short_name}} &rarr;](/konnect/runtime-manager/configuration/)
+[{{site.base_gateway}} configuration in {{site.konnect_short_name}} &rarr;](/konnect/gateway-manager/configuration/)
 
-### Composite runtime groups
+### Control plane groups
 {:.badge .enterprise}
 
-A composite runtime group is a read-only group that combines configuration from
-its members, which are standard runtime groups. All of the members of a 
-composite runtime group share the same cluster of runtime instances.
+A control plane group is a read-only control plane that combines configuration from
+its members, which are standard {{site.base_gateway}} control planes. All of the members of a 
+control plane group share the same cluster of data plane nodes.
 
-The benefits of a composite runtime group include:
+The benefits of a control plane group include:
 * **Shared infrastructure, individual config**: Users or organizations can share infrastructure, 
-while teams still have their own standard runtime groups to manage individual configuration.
-* **Modular clusters**: Combine standard runtime groups in different ways to create unique configurations
+while teams still have their own standard control planes to manage individual configuration.
+* **Modular clusters**: Combine standard control planes in different ways to create unique configurations
 for different purposes.
-* **Workspaces in the cloud**: Composite runtime groups function similarly to {{site.base_gateway}} workspaces, with the added benefit of a cloud control plane.
+* **Workspaces in the cloud**: Control plane groups function similarly to {{site.base_gateway}} workspaces, with the added benefit of a cloud control plane.
 
-Learn more about composite runtime groups:
-* [Intro to composite runtime groups](/konnect/runtime-manager/composite-runtime-groups/)
-* [Set up and manage runtime groups](/konnect/runtime-manager/composite-runtime-groups/how-to/)
-* [Migrate configuration into a composite runtime group](/konnect/runtime-manager/composite-runtime-groups/migrate/)
-* [Conflicts in runtime groups](/konnect/runtime-manager/composite-runtime-groups/conflicts/)
+Learn more about control plane groups:
+* [Intro to control plane groups](/konnect/gateway-manager/control-plane-groups/)
+* [Set up and manage control plane groups](/konnect/gateway-manager/control-plane-groups/how-to/)
+* [Migrate configuration into a control plane group](/konnect/gateway-manager/control-plane-groups/migrate/)
+* [Conflicts in control plane groups](/konnect/gateway-manager/control-plane-groups/conflicts/)
 
-### Runtime group dashboard
+### Control plane dashboard
 
-For each runtime group, you can view traffic, error rate, and {{site.base_gateway}} service analytics for instances in a runtime group. This allows you to see how much of a runtime group is used. You can also select the time frame of analytics that you want to display.
+For each control plane, you can view traffic, error rate, and {{site.base_gateway}} service analytics for its data plane nodes. 
+This allows you to see how much of a control plane is used. You can also select the time frame of analytics that you want to display.
 
-### Deleting a runtime group
+### Deleting a control plane
 
 {:.warning}
-> **Warning:** Deleting a group is irreversible. Make sure that you are
-certain that you want to delete the group, and that all entities and runtime
-instances in the have been accounted for.
+> **Warning:** Deleting a control plane is irreversible. Make sure that you are
+certain that you want to delete the control plane, and that all entities and data plane
+nodes in the control plane the have been accounted for.
 
-To delete a runtime group, you can use the Runtime Manager or the 
+To delete a control plane, you can use the Gateway Manager or the 
 {{site.konnect_short_name}} 
-[Runtime Groups API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/).
+[Control Plane API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/).
 
-When a runtime group is deleted, all associated entities are also deleted.
-This includes all entities configured in the Runtime Manager for this group.
-As a best practice, [back up](/konnect/runtime-manager/backup-restore/) a runtime 
-group's configuration before deleting it to avoid losing necessary configuration.
+When a control plane is deleted, all associated entities are also deleted.
+This includes all entities configured in the Gateway Manager for this control plane.
+As a best practice, [back up](/konnect/gateway-manager/backup-restore/) a 
+control plane's configuration before deleting it to avoid losing necessary configuration.
 
-Runtime instances that are still active when the group is deleted will not be
+Data plane nodes that are still active when the control plane is deleted will not be
 terminated, but they will be orphaned. They will continue processing traffic
 using the last configuration they received until they are either connected to
-a new runtime group or manually shut down.
+a new control plane or manually shut down.
 
-You cannot delete the default runtime group.
+You cannot delete the default control plane.
 
-## Runtime instances
+## Data plane nodes
 
-A **runtime instance** is a single data plane node with a single instance of
-a runtime, such as {{site.base_gateway}}. Runtime instances service traffic for the runtime
-group. All runtime instances in one runtime group
-must be of the same type. Currently, only {{site.base_gateway}} runtime types are supported.
+A data plane node is a single {{site.base_gateway}} instance. 
+Data plane nodes service traffic for the control plane. 
 
-Kong does not host runtimes. You must provide your own runtime
-instances.
+Kong does not host data plane nodes.
+You must deploy your own nodes, either on your own systems or in 
+an external cloud provider.
 
-The Runtime Manager aims to simplify this process by providing a
-script to provision a {{site.base_gateway}} runtime in a Docker container,
-eliminating any confusion about initial configuration or setup.
+The Gateway Manager simplifies data plane node deployment 
+by providing a script to provision a {{site.base_gateway}} data plane node in a 
+Docker container running Linux, on MacOS, or on Windows. 
 
-You can also
-choose to manually configure runtime instances on the following:
-* Linux
-* Kubernetes
-* AWS
-* Azure
-
-See the [runtime instance installation options](/konnect/runtime-manager/runtime-instances/) for more detail.
+You can also choose to manually configure data plane nodes on various platforms, including cloud providers.
+See the [data plane node installation options](/konnect/gateway-manager/data-plane-nodes/) for more detail.
 
 ## Plugins
 

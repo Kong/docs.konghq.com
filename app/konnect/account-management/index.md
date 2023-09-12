@@ -17,7 +17,7 @@ When you create a {{site.konnect_saas}} account, a license is
 automatically provisioned to the organization. You do not need to manage this
 license manually.
 
-Any data plane nodes configured through the [Gateway Manager](/konnect/runtime-manager/)
+Any data plane nodes configured through the [Gateway Manager](/konnect/gateway-manager/)
 also implicitly receive the same license from the {{site.konnect_saas}}
 control plane. You should never have to deal with a license
 directly.

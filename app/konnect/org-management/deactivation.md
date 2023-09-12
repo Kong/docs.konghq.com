@@ -30,9 +30,9 @@ Their accounts are otherwise unaffected.
 * The email associated with the organization is locked and can't be used to
 create another {{site.konnect_saas}} account.
 
-If you have registered data planes, they won't be
+If you have registered data plane nodes, they won't be
 stopped by {{site.konnect_saas}}. They will no longer proxy data, but the
-instances will keep running until manually stop them.
+nodes will keep running until manually stop them.
 
 ## Deactivate or reactivate an organization
 

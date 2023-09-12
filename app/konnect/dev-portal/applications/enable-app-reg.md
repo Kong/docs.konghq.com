@@ -8,10 +8,10 @@ When you enable application registration, {{site.konnect_saas}} enables plugins 
 These plugins run inside the data plane to support application registration for the API product version and are managed by
 {{site.konnect_saas}}.
 
-## Support for any control plane group
+## Support for any control plane
 
-App registration is fully supported in the `default` control plane group when using the application `consumers` and the `acl` plugin. The `default` control plane group is the one that is first created in each region when you create an organization.
-For non-`default` control plane groups, app registration is supported using the `konnect-application-auth` plugin available as of {{site.base_gateway}} 3.0.
+App registration is fully supported in the `default` control plane when using the application `consumers` and the `acl` plugin. The `default` control plane is the one that is first created in each region when you create an organization.
+For non-`default` control planes, app registration is supported using the `konnect-application-auth` plugin available as of {{site.base_gateway}} 3.0.
 
 {:.note}
 > **Note:**  Although it can be renamed, the [`default` control plane group](/konnect/gateway-manager/control-plane-groups/) will always be the first and oldest control plane group in each region.
@@ -126,4 +126,4 @@ The internal `konnect-application-auth` plugin only supports {{site.base_gateway
 
 The `konnect-application-auth` plugin does not connect applications to {{site.base_gateway}} consumers. Therefore, any applications created through the app registration process in any non-default control plane group won't support rate limiting plugins. This will be addressed in a future release.
 
-If you don't use any rate limiting plugins, we recommend upgrading your data planes to {{site.base_gateway}} version 3.0 or later to ensure future compatibility with the `konnect-application-auth` plugin, which has a built-in replacement for the `acl` plugin.
+If you don't use any rate limiting plugins, we recommend upgrading your data plane nodes to {{site.base_gateway}} version 3.0 or later to ensure future compatibility with the `konnect-application-auth` plugin, which has a built-in replacement for the `acl` plugin.

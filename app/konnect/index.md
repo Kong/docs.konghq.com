@@ -40,7 +40,7 @@ lightweight, fast, and flexible API gateway.
     <div class="install-text">Get Started</div>
   </a>
 
-  <a href="/konnect/runtime-manager/runtime-instances/" class="docs-grid-install-block no-description">
+  <a href="/konnect/gateway-manager/data-plane-nodes/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/konnect/icn-runtimes-nav.svg" alt="">
     <div class="install-text">Set up Data Plane Nodes</div>
   </a>
@@ -74,7 +74,7 @@ across the organization’s applications.
 ### Gateway Manager
 
 [Gateway Manager](/konnect/gateway-manager/) empowers your teams to securely
-collaborate and manage their own set of data planes and services without
+collaborate and manage their own set of data plane nodes and services without
 the risk of impacting other teams and projects. Gateway Manager instantly
 provisions a hosted {{site.base_gateway}} control plane and supports securely
 attaching data plane nodes from your cloud or hybrid environments.

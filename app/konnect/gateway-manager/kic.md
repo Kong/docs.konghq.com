@@ -11,21 +11,21 @@ This setup is ideal for organizations who want to manage gateways in {{site.konn
 
 Kong Ingress Controller (KIC) for Kubernetes configures {{site.base_gateway}} using Ingress or [Gateway API](https://gateway-api.sigs.k8s.io/) resources created inside a Kubernetes cluster. 
 
-Beyond proxying the traffic coming into a Kubernetes cluster, KIC also lets you configure plugins, load balancing, health checking, and leverage all that {{site.base_gateway}} offers in a standalone installation. KIC runtime instances are compatible with all the plugins in the same subscription tier (Free, Plus, and Enterprise) as regular runtime instances. For more information, see [Plugin compatiblity](/konnect/compatibility/#plugin-compatibility). For more information about KIC, see [Kong Ingress Controller Design](/kubernetes-ingress-controller/latest/concepts/design/). 
+Beyond proxying the traffic coming into a Kubernetes cluster, KIC also lets you configure plugins, load balancing, health checking, and leverage all that {{site.base_gateway}} offers in a standalone installation. KIC data plane nodes are compatible with all the plugins in the same subscription tier (Free, Plus, and Enterprise) as regular data plane nodes. For more information, see [Plugin compatibility](/konnect/compatibility/#plugin-compatibility). For more information about KIC, see [Kong Ingress Controller Design](/kubernetes-ingress-controller/latest/concepts/design/). 
 
-By associating your KIC deployment with {{site.konnect_short_name}}, this read-only association allows you to view your runtime entities, such as routes and applications, from your Kubernetes resources in {{site.konnect_short_name}}.  
+By associating your KIC deployment with {{site.konnect_short_name}}, this read-only association allows you to view your {{site.base_gateway}} entities, such as routes and applications, from your Kubernetes resources in {{site.konnect_short_name}}.  
 
 Here are a few benefits of running KIC in {{site.konnect_short_name}} over a self-managed setup:
-* **Easy to set up:** The wizard allows you to add your KIC runtime group to {{site.konnect_short_name}} in minutes.
+* **Easy to set up:** The wizard allows you to add your KIC control plane to {{site.konnect_short_name}} in minutes.
 * **Centralized API management:** KIC in {{site.konnect_short_name}} allows organizations to have a centralized platform for API management, regardless of your individual teams' choice of API management, whether that is using Kubernetes or {{site.konnect_short_name}}. 
-* **Monitor your KIC analytics:** By associating with {{site.konnect_short_name}}, you can [view the analytics](/konnect/analytics/) from your KIC runtime instances alongside any of your self-managed {{site.konnect_short_name}} runtime instances. 
+* **Monitor your KIC analytics:** By associating with {{site.konnect_short_name}}, you can [view the analytics](/konnect/analytics/) from your KIC data plane nodes alongside any of your self-managed {{site.konnect_short_name}} data plane nodes. 
 * **Display KIC entities in Dev Portal:** Publish your KIC services to the Dev Portal and make the API specs available to third-party developers with [API Products](/konnect/api-products/).
 
 ## KIC in {{site.konnect_short_name}} association
 
-To associate your KIC runtime instances with {{site.konnect_short_name}}, use the setup wizard to add your KIC deployment to a KIC runtime group.  
+To associate your KIC data plane nodes with {{site.konnect_short_name}}, use the setup wizard to add your KIC deployment to a KIC control plane.  
 
-In {{site.konnect_short_name}}, navigate to {% konnect_icon runtimes %} **[Runtime Manager](https://cloud.konghq.com/runtime-manager)**, then click **New Runtime Group** > **Kong Ingress Controller**.
+In {{site.konnect_short_name}}, navigate to {% konnect_icon runtimes %} **[Gateway Manager](https://cloud.konghq.com/gateway-manager)**, then click **New Control Plane** > **Kong Ingress Controller**.
 
 {:.note}
 > **Note**: KIC OSS and {{site.base_gateway}} Free users can connect to {{site.konnect_short_name}}’s Free tier, while {{site.base_gateway}} Enterprise users can connect to {{site.konnect_short_name}}’s Enterprise tier. To migrate from {{site.ce_product_name}} to {{site.base_gateway}} Enterprise, see [Using Kong Enterprise](/kubernetes-ingress-controller/latest/guides/choose-gateway-image/) in the Kong Ingress Controller documentation.
@@ -40,19 +40,19 @@ If you don't have an existing KIC deployment, you need the following before usin
 
 ### View KIC entities
 
-After your KIC deployment is connected to {{site.konnect_short_name}}, you can view the details for each runtime instance in your KIC runtime groups. 
+After your KIC deployment is connected to {{site.konnect_short_name}}, you can view the details for each data plane node in your KIC control planes. 
 
 {:.note}
-> **Note**: The KIC deployment in {{site.konnect_short_name}} is currently read-only. The configuration of the gateway runtime is controlled by changes to resources in the Kubernetes API, and reflected here. For more information about how to manage these resources in KIC, see [Custom Resources](/kubernetes-ingress-controller/latest/concepts/custom-resources/).
+> **Note**: The KIC deployment in {{site.konnect_short_name}} is currently read-only. The configuration of the gateway data plane nodes is controlled by changes to resources in the Kubernetes API, and reflected here. For more information about how to manage these resources in KIC, see [Custom Resources](/kubernetes-ingress-controller/latest/concepts/custom-resources/).
 
-![KIC runtime instance dashboard](/assets/images/docs/konnect/konnect-runtime-instance-kic.png)
-> **Figure 1:** This image shows a KIC runtime instance dashboard. For each KIC runtime instance, you can see details about the runtime instance, analytics, and KIC status details.
+![KIC data plane node dashboard](/assets/images/docs/konnect/konnect-runtime-instance-kic.png)
+> **Figure 1:** This image shows a KIC data plane node dashboard. For each KIC data plane node, you can see details about an individual data plane node, analytics, and KIC status details.
 
 Item | Description
 ------|------------
-**KIC Details** | This section displays the status of your KIC runtime instance. The different status options are: Fully Operational, Partially Operational, Not Operational, Unknown, and Disconnected. See the UI for troubleshooting steps related to these statuses. 
-**Summary** | This section displays the traffic and error rate of your KIC runtime instance.  
-**Analytics** | Analytics data for the KIC runtime instance. You can configure the analytics options using the [**Analytics tool**](/konnect/analytics/). 
+**KIC Details** | This section displays the status of your KIC data plane node. The different status options are: Fully Operational, Partially Operational, Not Operational, Unknown, and Disconnected. See the UI for troubleshooting steps related to these statuses. 
+**Summary** | This section displays the traffic and error rate of your KIC data plane node.  
+**Analytics** | Analytics data for the KIC data plane node. You can configure the analytics options using the [**Analytics tool**](/konnect/analytics/). 
 
 ## KIC analytics compatibility
 

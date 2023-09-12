@@ -56,11 +56,11 @@
         - text: Upgrade a Data Plane Node
           url: /gateway-manager/data-plane-nodes/upgrade/
         - text: Verify a Data Plane Node
-          url: /gateway-manager/data-plane-nodes/verify-instance/
+          url: /gateway-manager/data-plane-nodes/verify-node/
         - text: Renew Data Plane Certificates
           url: /gateway-manager/data-plane-nodes/renew-certificates/
         - text: Runtime Parameter Reference
-          url: /gateway-manager/data-plane-nodes/runtime-parameter-reference/
+          url: /gateway-manager/data-plane-nodes/parameter-reference/
         - text: Using Custom DP Labels
           url: /gateway-manager/data-plane-nodes/custom-dp-labels
     - text: Control Plane Groups

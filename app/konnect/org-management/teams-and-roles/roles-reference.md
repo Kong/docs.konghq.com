@@ -51,7 +51,7 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Admin | Allows a user to view and manage existing organization settings, including billing/usage. Admins have all write access to organization objects. |
 | Creator | Allows a user to create organizations. [*Q: What's stopping a user from creating orgs in general? What does this role actually imply - they can crete new orgs within a company umbrella of orgs?*] |
 | Privileged | Privileged users of an existing organization can change system-level configuration, including the organization's license tier, organization status, (and what else?).
-| Root |  Allows root access for an existing organization. This role grants write access to all organization objects as well as to all {{site.konnect_short_name}} services, runtime groups, Dev Portal, Analytics reports, applications, and developers. | -->
+| Root |  Allows root access for an existing organization. This role grants write access to all organization objects as well as to all {{site.konnect_short_name}} services, control planes, Dev Portal, Analytics reports, applications, and developers. | -->
 
 <!--
 ## Portals
@@ -67,7 +67,7 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Role                        | Description  |
 |-----------------------------|--------------|
 | Admin | Create, read, update, and delete teams in the organization. Add or remove users and roles to the team. |
-| Creator | Create teams in Runtime Manager. |
+| Creator | Create teams in Gateway Manager. |
 | Viewer | Read-only access to all the configurations of a team, including attributes, versions, reports, and plugins. | -->
 
 <!-- ## Users

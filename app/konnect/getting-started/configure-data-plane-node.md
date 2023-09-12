@@ -29,15 +29,15 @@ is part of the organization admin team by default.
 
 ## Create a data plane node
 
-Data planes are self hosted {{site.base_gateway}} instances that are used to proxy service traffic. {{site.konnect_short_name}} provides you with a script that creates a Docker container running an instance of {{site.base_gateway}} and automatically connects it to your {{site.konnect_short_name}} account.
+Data plane nodes are {{site.base_gateway}} instances that are used to proxy service traffic. {{site.konnect_short_name}} provides you with a script that creates a Docker container running an instance of {{site.base_gateway}} and automatically connects it to your {{site.konnect_short_name}} account.
 
-1. From the left navigation menu, open {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/runtime-manager).
+1. From the left navigation menu, open {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/gateway-manager).
 
 1. Select the `default` control plane.
 
     Every account starts with one control plane named `default`. 
 
-1. Click **New Data Plane Node**.
+1. Select **Data Plane Nodes** from the side menu, then click the **New Data Plane Node** button.
 
     You will see the latest {{site.base_gateway}} version and Docker pre-selected.
 

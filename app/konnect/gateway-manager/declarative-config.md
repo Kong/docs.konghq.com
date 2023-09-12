@@ -1,19 +1,19 @@
 ---
-title: Manage Runtime Configuration with decK
+title: Manage Control Plane Configuration with decK
 content_type: how-to
 ---
 
-You can manage runtime groups in your {{site.konnect_saas}} org using configuration
+You can manage control planes in your {{site.konnect_saas}} org using configuration
 files instead of the GUI or admin API commands. With decK, Kong's declarative
 configuration management tool, you can create, update,
 compare, and synchronize configuration as part of an automation pipeline.
 
-In {{site.konnect_saas}}, decK can manage [runtime groups](/konnect/runtime-manager/runtime-groups/)
+In {{site.konnect_saas}}, decK can manage [control planes](/konnect/gateway-manager/#control-planes)
 and all of their configurations:
-* Create state files for different runtime groups and manage each group
+* Create state files for different control planes and manage each one
 separately.
-* Manage [Gateway entities](/konnect/api/) for each group.
-* Migrate configuration from one group to another.
+* Manage [Gateway entities](/konnect/api/) for each control plane.
+* Migrate configuration from one control plane to another.
 
 Use a `--konnect`-prefixed CLI flag or pass {{site.konnect_short_name}}
 parameters using a decK configuration file (`~/.deck.yaml` by default) to target
@@ -28,7 +28,7 @@ registration, or configure custom plugins.
 ## Prerequisites
 
 * decK v1.12.0 or later [installed](/deck/latest/installation/).
-* Optional: To test your configuration, [set up a simple runtime](/konnect/getting-started/configure-runtime/).
+* Optional: To test your configuration, [set up a simple data plane node](/konnect/getting-started/configure-data-plane-node/).
 
 ## Generate a personal access token
 
@@ -79,12 +79,12 @@ deck dump --konnect-runtime-group-name default
 ```
 
 If you don't specify the `--konnect-runtime-group-name` flag, decK will target the
-`default` runtime group. If you have more than one runtime group in your
+`default` control plane. If you have more than one control plane in your
 organization, we recommend always setting this flag to avoid accidentally
 pushing configuration to the wrong group.
 
 The command creates a file named `kong.yaml`. If you have nothing
-configured, decK creates the file with only the format version and runtime group
+configured, decK creates the file with only the format version and control plane
 name:
 
 ```yaml
@@ -179,9 +179,9 @@ For this example, let's add a new service.
       Deleted: 0
     ```
 
-1. Check {{site.konnect_saas}} to make sure the sync worked. Open **Runtime Manager**, select your runtime group, and select **Gateway Services**.
+1. Check {{site.konnect_saas}} to make sure the sync worked. Open **Gateway Manager**, select your control plane, and select **Gateway Services**.
 
-    You should see a new service named `MyService` in the runtime group.
+    You should see a new service named `MyService` in the control plane.
 
 ## Manage consumers and global plugins
 
@@ -193,7 +193,7 @@ authentication. They provide a way to divide access to your services, and
 make it easy to revoke that access without disturbing a service's function.
 
 * Global plugins are plugins that apply to all services, routes, and consumers
-in the runtime group, as applicable. For example, you can configure proxy
+in the control plane, as applicable. For example, you can configure proxy
 caching on all your services at once with one `proxy-cache` plugin entry.
 
 
@@ -237,9 +237,9 @@ to see your changes:
 
 ## Test the service
 
-If you have already have a runtime set up, you can test this
-configuration now. Or, you can start a simple runtime using the
-[Docker quick setup](/konnect/getting-started/configure-runtime/) script.
+If you have already have a data plane node deployed, you can test this
+configuration now. Or, you can start a new data plane node using the
+[Docker quick setup](/konnect/getting-started/configure-data-plane-node/) script.
 
 The default proxy URL is `localhost:8000`.
 
@@ -261,13 +261,12 @@ Kong Error
 No API key found in request.
 ```
 
-## Migrate configuration between runtime groups
+## Migrate configuration between control planes
 {:.badge .enterprise}
 
-You can also use decK to migrate or duplicate configuration between runtime
-groups.
+You can also use decK to migrate or duplicate configuration between control planes.
 
-1. Export configuration from the original runtime group with
+1. Export configuration from the original control plane with
 [`deck dump`](/deck/latest/reference/deck_dump) into a state file:
 
     ```bash
@@ -276,7 +275,7 @@ groups.
       --output-file default.yaml
     ```
 
-1. In the file, change the runtime group name to the new group:
+1. In the file, change the control plane name to the new group:
 
     ```yaml
     _format_version: "1.1"
@@ -286,7 +285,7 @@ groups.
 
 1. Using the state file you just edited, preview the import with
 the [`deck diff`](/deck/latest/reference/deck_diff/)
-command, pointing to the runtime group that you want to target:
+command, pointing to the control plane that you want to target:
 
     ```sh
     deck diff \
@@ -295,7 +294,7 @@ command, pointing to the runtime group that you want to target:
     ```
 
 1. If everything looks good, [`deck sync`](/deck/latest/reference/deck_sync/)
- the configuration to the new runtime group:
+ the configuration to the new control plane:
 
     ```sh
     deck sync \
@@ -303,7 +302,7 @@ command, pointing to the runtime group that you want to target:
       --state default.yaml
     ```
 
-You should now have two runtime groups in {{site.konnect_short_name}} with
+You should now have two control planes in {{site.konnect_short_name}} with
 the same configuration.
 
 ## More information
