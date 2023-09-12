@@ -13,7 +13,7 @@ Gateway APIs in KIC](/kubernetes-ingress-controller/{{page.kong_version}}/deploy
 {% endunless %}
 
 
-## Install Kong
+### Install Kong
 You can install Kong in your Kubernetes cluster using [Helm](https://helm.sh/).
 1. Add the Kong Helm charts:
 
@@ -28,7 +28,7 @@ You can install Kong in your Kubernetes cluster using [Helm](https://helm.sh/).
     helm install kong kong/ingress -n kong --create-namespace
     ```
 
-## Test connectivity to Kong
+### Test connectivity to Kong
 
 Kubernetes exposes the proxy through a Kubernetes service. Run the following commands to store the load balancer IP address in a variable named `PROXY_IP`:
 
