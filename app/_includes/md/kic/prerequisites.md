@@ -12,6 +12,7 @@ If you wish to use the Gateway APIs examples, ensure that you enable support for
 Gateway APIs in KIC](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/install-gateway-apis).
 {% endunless %}
 
+## Prerequisites
 
 ### Install Kong
 You can install Kong in your Kubernetes cluster using [Helm](https://helm.sh/).
