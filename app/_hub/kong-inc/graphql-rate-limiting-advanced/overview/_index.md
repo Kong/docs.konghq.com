@@ -21,7 +21,7 @@ cost for a given time window.
   * The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors.
   * The introspection endpoint is generated based on the Kong service path, so the service path should be defined with an actual path instead of appending from the route path.
     * Known limitation: The query and introspection endpoints _cannot_ have separate paths.
-    - Example: While using KIC, if the query and introspection endpoints are at path /graphql, should be configured like this
+    * Example: While using KIC, if the query and introspection endpoints are at path `/graphql`, they should be configured like this:
       * Add the `konghq.com/strip-path: "true"` annotation to the ingress resource
       - Add the `konghq.com/path: /graphql` annotation to the service resource
 
