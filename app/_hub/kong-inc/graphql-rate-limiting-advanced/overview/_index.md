@@ -20,7 +20,7 @@ cost for a given time window.
   * PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster datastore.
   * The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors.
   * The introspection endpoint is generated based on the Kong service path, so the service path should be defined with an actual path instead of appending from the route path.
-    - A known limitation is we cannot have separate paths for query and introspection endpoints.
+    * Known limitation: The query and introspection endpoints _cannot_ have separate paths.
     - Example: While using KIC, if the query and introspection endpoints are at path /graphql, should be configured like this
       - Add `konghq.com/strip-path: "true"` annotation to the ingress resource
       - Add `konghq.com/path: /graphql` annotation to the service resource.
