@@ -19,7 +19,8 @@ response;
 
 * **passive checks** (also known as **circuit breakers**), where Kong analyzes
 the ongoing traffic being proxied and determines the health of targets based
-on their behavior responding to requests.
+on their behavior responding to requests. **Note:** this feature is not supported
+in hybrid or db-less mode.
 
 ## Defining healthy and unhealthy
 
@@ -304,6 +305,9 @@ active probes (as defined by `healthchecks.active.unhealthy.http_statuses`) to
 consider a target unhealthy.
 
 ### Enabling passive health checks
+
+**Note:** this feature is not supported
+in hybrid or db-less mode.
 
 Passive health checks do not feature a probe, as they work by interpreting
 the ongoing traffic that flows from a target. This means that to enable
