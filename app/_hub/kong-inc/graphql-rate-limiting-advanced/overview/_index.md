@@ -23,7 +23,7 @@ cost for a given time window.
     * Known limitation: The query and introspection endpoints _cannot_ have separate paths.
     - Example: While using KIC, if the query and introspection endpoints are at path /graphql, should be configured like this
       - Add `konghq.com/strip-path: "true"` annotation to the ingress resource
-      - Add `konghq.com/path: /graphql` annotation to the service resource.
+      - Add the `konghq.com/path: /graphql` annotation to the service resource
 
 Kong also provides a [GraphQL Proxy Cache Advanced plugin](/hub/kong-inc/graphql-proxy-cache-advanced/).
 
