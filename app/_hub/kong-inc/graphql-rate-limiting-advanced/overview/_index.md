@@ -19,6 +19,11 @@ cost for a given time window.
   * Redis configuration values are ignored if the `cluster` strategy is used.
   * PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster datastore.
   * The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors.
+  * Introspection endpoint is generated based on the Kong service path, hence service path should be defined with actual path instead of appending from the route path.
+    - A known limitation is we cannot have separate paths for query and introspection endpoints.
+    - Example: While using KIC, if the query and introspection endpoints are at path /graphql, should be configured like this
+      - Add `konghq.com/strip-path: "true"` annotation to the ingress resource
+      - Add `konghq.com/path: /graphql` annotation to the service resource.
 
 Kong also provides a [GraphQL Proxy Cache Advanced plugin](/hub/kong-inc/graphql-proxy-cache-advanced/).
 
