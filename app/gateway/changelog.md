@@ -766,19 +766,27 @@ images or packages, and Kong will not test package installation on Ubuntu 18.04.
     If you need to install Kong Gateway on Ubuntu 18.04, substitute a previous 3.2.x 
     patch version in the [installation instructions](/gateway/3.2.x/install/linux/ubuntu/).
 - Amazon Linux 2022 artifacts are renamed to Amazon Linux 2023, based on AWS's own renaming.
+- CentOS packages are now removed from the release and are no longer supported in future versions.
 
 ### Fixes
 #### Enterprise
 
 * Updated the datafile library to make the SAML plugin work again when Kong is controlled by systemd.
 * Fixed an issue where the anonymous report couldn't be silenced by setting `anonymous_reports=false`.
-* Fixed an issue where a crashing Go plugin server process would cause subsequent requests proxied through Kong to execute Go plugins with inconsistent configurations. The issue only affected scenarios where the same Go plugin is applied to different route or service entities. THIS IS STILL IN PROGRESS?
+* Fixed an issue where a crashing Go plugin server process would cause subsequent requests proxied through Kong to execute Go plugins with inconsistent configurations. The issue only affected scenarios where the same Go plugin is applied to different route or service entities. 
 
 #### Plugins
 
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
   * Correctly set the right table key on `log` and `message`.
   * If an invalid opaque token is provided but verification fails, print the correct error.
+* [**Rate Limiting**](/hub/kong-inc/rate-limiting/) (`rate-limiting`)
+  * The redis rate limiting strategy now returns an error when Redis Cluster is down.
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * The control plane no longer attempts to create namespace or synchronize counters with Redis.
+* [**Response Transformer Advanced**](/hub/kong-inc/response-transformer-advanced/) (`response-transformer-advanced`)
+  * Does not load response body when `if_status` does not match.
+    
 
 #### Kong Manager
 
