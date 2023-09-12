@@ -117,8 +117,6 @@ items:
         generate: false # Generated in the CustomResources section above
       - text: Using the mTLS Auth Plugin
         url: /guides/using-mtls-auth-plugin
-      - text: Configuring Custom Entities
-        url: /guides/configuring-custom-entities
       - text: Using the OpenID Connect Plugin
         url: /guides/using-oidc-plugin
       - text: Rewriting Hosts and Paths
