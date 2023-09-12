@@ -19,8 +19,10 @@ response;
 
 * **passive checks** (also known as **circuit breakers**), where Kong analyzes
 the ongoing traffic being proxied and determines the health of targets based
-on their behavior responding to requests. **Note:** this feature is not supported
-in hybrid mode.
+on their behavior responding to requests. 
+  
+  {:.note}
+  > **Note:** This feature is not supported in hybrid mode.
 
 ## Defining healthy and unhealthy
 
@@ -183,7 +185,8 @@ do not apply to Upstreams assigned to Services with the protocol attribute set t
 
 ### Passive health checks (circuit breakers)
 
-**Note:** this feature is not supported in hybrid mode.
+{:.note}
+> **Note:** This feature is not supported in hybrid mode.
 
 Passive health checks, also known as circuit breakers, are
 checks performed based on the requests being proxied by Kong (HTTP/HTTPS/TCP),
@@ -308,8 +311,8 @@ consider a target unhealthy.
 
 ### Enabling passive health checks
 
-**Note:** this feature is not supported
-in hybrid mode.
+{:.note}
+> **Note:** This feature is not supported in hybrid mode.
 
 Passive health checks do not feature a probe, as they work by interpreting
 the ongoing traffic that flows from a target. This means that to enable
