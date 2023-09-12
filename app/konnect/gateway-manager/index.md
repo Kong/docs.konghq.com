@@ -72,7 +72,7 @@ regions. Spin up data plane nodes in those regions for each control plane.
 * **Team separation:** Dedicate each control plane to a different team and share
 resources based on team purpose.
 
-![control planes](/assets/images/docs/konnect/konnect-runtime-groups-example.png)
+![control planes](/assets/images/docs/konnect/konnect-control-planes-example.png)
 > _**Figure 1:** Example control plane group configuration for three control planes: the default, a development CP, and a production CP. {{site.konnect_short_name}} is the SaaS-managed global management plane that manages all of the control planes, while the control planes manage configuration for data plane nodes._
 
 #### Control plane configuration
