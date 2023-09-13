@@ -8,7 +8,7 @@ Using Mesh Manager, you can create {{site.mesh_product_name}} global control pla
 
 A global control plane is a managed central component that stores and distributes (to local zones) all of the configuration and policies for your meshes and services. The global control planes are responsible for validating and accepting connections from local zone control planes and distributing the appropriate configuration down to each local zone as required. They also serve as the target for all `kumactl` CLI operations when manipulating resources and configuration within the [mesh deployment](/mesh/latest/production/deployment/multi-zone/).
 
-![mesh global control plane](/assets/images/diagrams/gslides/kuma_multizone.svg)
+![mesh global control plane](/assets/images/diagrams/diagram-mesh-in-konnect.png)
 
 > _**Figure 1:** {{site.mesh_product_name}} can support multiple zones (like a Kubernetes cluster, VPC, data center, etc.) together in the same distributed deployment. Then, you can create multiple isolated virtual meshes with the same control plane in order to support every team and application in the organization._
 
