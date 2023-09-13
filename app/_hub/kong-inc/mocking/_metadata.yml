@@ -8,6 +8,7 @@ examples: true
 free: false
 plus: true
 enterprise: true
+paid: true
 konnect: true
 network_config_opts: All
 notes: --
