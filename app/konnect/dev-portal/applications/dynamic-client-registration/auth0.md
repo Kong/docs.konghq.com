@@ -11,12 +11,12 @@ content_type: how-to
 * An [Auth0 account](https://auth0.com/)
 
 {:.note}
-> **Note:** When using Auth0 DCR for Developer Portal, each application in auth0 will have the following metadata. This can be viewed via the auth0 dashboard, or accessed from the auth0 api.
+> **Note:** When using Auth0 DCR for Dev Portal, each application in auth0 will have the following metadata. This can be viewed via the auth0 dashboard, or accessed from the auth0 api.
 
 > * **konnect_portal_id**: ID of the Portal the application belongs to
-> * **konnect_developer_id**: ID of the developer in the Developer Portal
-> * **konnect_org_id**: ID of the Developer Portal the application belongs to
-> * **konnect_application_id**: ID of the Application in the Developer Portal
+> * **konnect_developer_id**: ID of the developer in the Dev Portal
+> * **konnect_org_id**: ID of the Dev Portal the application belongs to
+> * **konnect_application_id**: ID of the application in the Dev Portal
 
 ## Configure Auth0
 
