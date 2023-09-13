@@ -1,0 +1,46 @@
+name: Noname Security Kong Prevention
+publisher: Noname Security
+
+categories: 
+  - security
+  - analytics-monitoring
+  - logging
+
+type: integration
+
+desc: Noname Security machine learning for Kong API Gateway blocking of ip addresses, cookies, headers, query strings and JWT OAuth identities.
+
+support_url: https://success.nonamesecurity.com/
+
+kong_version_compatibility: 
+  community_edition:
+    compatible:
+      - 3.4.x
+      - 3.3.x
+      - 3.2.x
+      - 3.1.x
+      - 3.0.x
+      - 2.9.x
+      - 2.8.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
+  enterprise_edition:
+    compatible:
+      - 3.4.x
+      - 3.3.x
+      - 3.2.x
+      - 3.1.x
+      - 3.0.x
+      - 2.9.x
+      - 2.8.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
+
+enterprise: true
+
+konnect: false
+
+dbless_compatible: yes
+
