@@ -23,7 +23,7 @@ service/httpbin created
 deployment.apps/httpbin created
 ```
 
-## Setup Ingress rules
+## Expose the Kubernetes service using Ingress
 
 1. Expose the service outside the Kubernetes cluster by defining Ingress rules.
 
@@ -54,13 +54,16 @@ deployment.apps/httpbin created
     ingress.networking.k8s.io/demo created
     ```
 
+    We can now call `$PROXY_IP/test/request/200` to reach our deployed service.
+
 ## Create Consumers and secrets
 
-1. Create a consumer named `consumer-1`.
-   {% include_cached /md/kic/consumer.md kong_version=page.kong_version name='consumer-1' %}
+Create two consumers that use different authentication methods:
+
+* `consumer-1` uses `basic-auth`
+* `consumer-2` uses `key-auth`
 
 1. Create a secret to add `basic-auth` credential for `consumer-1`.
-   To add a `basic-auth` credential to `consumer-1`, you need to create a [Secret](https://kubernetes.io/docs/concepts/configuration/secret/) resource with an API-key, username, and password.
 
     ```bash
     kubectl create secret generic consumer-1-basic-auth  \
@@ -72,14 +75,17 @@ deployment.apps/httpbin created
     ```text
     secret/consumer-1-basic-auth created
     ```
-1. Create a consumer named `consumer-2`.
-   {% include_cached /md/kic/consumer.md kong_version=page.kong_version name='consumer-2' %}
+
+1. Create a consumer named `consumer-1`.
+    {% include_cached /md/kic/consumer.md kong_version=page.kong_version name='consumer-1' credName='consumer-1-basic-auth' %}
 
 1. Create a secret to add `key-auth` credential for `consumer-2`. 
-{% include_cached /md/kic/key-auth.md kong_version=page.kong_version credName='consumer-2-key-auth' key='consumer-2-password' %}
+    {% include_cached /md/kic/key-auth.md kong_version=page.kong_version credName='consumer-2-key-auth' key='consumer-2-password' %}
 
+1. Create a consumer named `consumer-2`.
+    {% include_cached /md/kic/consumer.md kong_version=page.kong_version name='consumer-2' credName='consumer-2-key-auth' %}
 
-## Associate plugins with the Ingress rules
+## Secure the Ingress
 
 1. Create two plugins.
 
@@ -131,95 +137,20 @@ deployment.apps/httpbin created
     ```text
     ingress.networking.k8s.io/demo patched
     ``` 
-1. Associate the keys with the consumer that you created. You don't have to create the  KongConsumer resource again, you only need to update it to include the `credentials` array.
 
-    Associate `consumer-1` with `consumer-1-basic-auth`.
-{% include_cached /md/kic/consumer.md kong_version=page.kong_version name='consumer-1' credName='consumer-1-basic-auth' %}
+## Anonymous Consumers
 
-    Associate `consumer-2` with `consumer-2-key-auth`.
-{% include_cached /md/kic/consumer.md kong_version=page.kong_version name='consumer-2' credName='consumer-2-key-auth' %}
+Your endpoints are now secure, but neither consumer can access the endpoint when providing valid credentials. This is because each plugin will verify the consumer using it's own authentication method.
 
-    At this point none of the requests are allowed. Even requests with valid credentials are not allowed.
+To allow multiple authentication methods, create an anonymous consumer which is the default user if no valid credentials are provided:
 
-1. Test requests.
-
-    ```bash
-    curl -i $PROXY_IP/test/status/200
-    ```
-    The results should look like this:
-    ```text
-    HTTP/1.1 500 Internal Server Error
-    Date: Wed, 13 Sep 2023 09:28:54 GMT
-    Content-Type: application/json; charset=utf-8
-    Connection: keep-alive
-    WWW-Authenticate: Key realm="kong"
-    Content-Length: 46
-    X-Kong-Response-Latency: 1
-    Server: kong/3.3.1
-    
-    {
-      "message":"An unexpected error occurred"
-    }%
-    ```
-1. Test valid credentials requests.
-    ```bash
-    curl -i $PROXY_IP/test/status/200 -H "apikey=consumer-2-password"
-    ```
-   The results should look like this:
-    ```text
-    HTTP/1.1 500 Internal Server Error
-    Date: Wed, 13 Sep 2023 09:28:54 GMT
-    Content-Type: application/json; charset=utf-8
-    Connection: keep-alive
-    WWW-Authenticate: Key realm="kong"
-    Content-Length: 46
-    X-Kong-Response-Latency: 1
-    Server: kong/3.3.1
-    
-    {
-      "message":"An unexpected error occurred"
-    }% 
-    ```
 1. Create a consumer named `anonymous`.
-   {% include_cached /md/kic/consumer.md kong_version=page.kong_version name='anonymous' %}
+    {% include_cached /md/kic/consumer.md kong_version=page.kong_version name='anonymous' %}
 
-1. Test requests. All requests including the requests with invalid authentication are allowed.
+    All requests to the API will now succeed as the anonymous consumer is being used as a default.
 
-    ```bash
-    curl -i $PROXY_IP/test/status/200
-    ```
-    The results should look like this:
-    ```text
-    HTTP/1.1 200 OK
-    Content-Type: text/html; charset=utf-8
-    Content-Length: 0
-    Connection: keep-alive
-    WWW-Authenticate: Key realm="kong"
-    Server: gunicorn/19.9.0
-    Access-Control-Allow-Origin: *
-    Access-Control-Allow-Credentials: true
-    X-Kong-Upstream-Latency: 2488
-    X-Kong-Proxy-Latency: 4
-    Via: kong/3.3.1
-    ```
-1. Test invalid credentials requests.
-    ```bash
-    curl -i $PROXY_IP/test/status/200 -H "apikey=invalid"
-    ```
-   The results should look like this:
-    ```text
-    HTTP/1.1 200 OK
-    Content-Type: text/html; charset=utf-8
-    Content-Length: 0
-    Connection: keep-alive
-    WWW-Authenticate: Key realm="kong"
-    Server: gunicorn/19.9.0
-    Access-Control-Allow-Origin: *
-    Access-Control-Allow-Credentials: true
-    X-Kong-Upstream-Latency: 1031
-    X-Kong-Proxy-Latency: 1
-    Via: kong/3.3.1
-    ```   
+    To secure the API once again, add a request termination plugin to the anonymous consumer that returns `HTTP 401`:
+
 1. Create a `Request Termination` plugin.
 
     ```bash
@@ -235,9 +166,12 @@ deployment.apps/httpbin created
     ' | kubectl apply -f -
     ```
 
+    The results should look like this:
+
     ```text
     kongplugin.configuration.konghq.com/anonymous-request-termination created
     ```
+
 1. Associate the `Request Termination` plugin to the `anonymous` consumer.
     ```bash
     echo '
@@ -256,7 +190,7 @@ deployment.apps/httpbin created
     kongconsumer.configuration.konghq.com/anonymous configured
     ```
     
-## Test the configurations
+## Test the configuration
 Any requests with missing or invalid credentials are rejected, whereas authorized requests using either of the authentication methods are allowed.
 
 1. Send a request with invalid credentials.
@@ -277,7 +211,7 @@ Any requests with missing or invalid credentials are rejected, whereas authorize
     {"message":"Authentication required"}% 
     ```
 
-1. Send a request without any authentication.
+1. Send a request without any credentials.
     ```bash
     curl -i $PROXY_IP/test/status/200
     ```
@@ -293,23 +227,7 @@ Any requests with missing or invalid credentials are rejected, whereas authorize
     
     {"message":"Authentication required"}%
     ```
-1. Send a request using the `key-auth` authentication method
-    ```bash
-    curl -i $PROXY_IP/test/status/200 -H apikey:consumer-2-password
-    ```
-    The results should look like this:
-    ```text
-    HTTP/1.1 200 OK
-    Content-Type: text/html; charset=utf-8
-    Content-Length: 0
-    Connection: keep-alive
-    Server: gunicorn/19.9.0
-    Access-Control-Allow-Origin: *
-    Access-Control-Allow-Credentials: true
-    X-Kong-Upstream-Latency: 1227
-    X-Kong-Proxy-Latency: 4
-    Via: kong/3.3.1
-    ```
+
 1. Send a request using the `basic-auth` authentication method
     ```bash
     curl -i $PROXY_IP/test/status/200 -u consumer-1:consumer-1-password
@@ -328,3 +246,21 @@ Any requests with missing or invalid credentials are rejected, whereas authorize
     X-Kong-Proxy-Latency: 3
     Via: kong/3.3.1
 ```
+
+1. Send a request using the `key-auth` authentication method
+    ```bash
+    curl -i $PROXY_IP/test/status/200 -H apikey:consumer-2-password
+    ```
+    The results should look like this:
+    ```text
+    HTTP/1.1 200 OK
+    Content-Type: text/html; charset=utf-8
+    Content-Length: 0
+    Connection: keep-alive
+    Server: gunicorn/19.9.0
+    Access-Control-Allow-Origin: *
+    Access-Control-Allow-Credentials: true
+    X-Kong-Upstream-Latency: 1227
+    X-Kong-Proxy-Latency: 4
+    Via: kong/3.3.1
+    ```
