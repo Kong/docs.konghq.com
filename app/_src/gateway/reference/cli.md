@@ -162,8 +162,7 @@ Options:
                                     disables the workspace entities check.
 
  --db-timeout     (default 60)      Timeout, in seconds, for all database
-                                    operations (including schema consensus for
-                                    Cassandra).
+                                    operations.
 
  --lock-timeout   (default 60)      Timeout, in seconds, for nodes waiting on
                                     the leader node to finish running
@@ -312,8 +311,7 @@ Options:
  --run-migrations (optional boolean)  Run migrations before starting.
 
  --db-timeout     (default 60)        Timeout, in seconds, for all database
-                                      operations (including schema consensus for
-                                      Cassandra).
+                                      operations.
 
  --lock-timeout   (default 60)        When --run-migrations is enabled, timeout,
                                       in seconds, for nodes waiting on the

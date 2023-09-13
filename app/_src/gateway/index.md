@@ -3,6 +3,7 @@ title: Kong Gateway
 breadcrumb: Overview
 subtitle: API gateway built for hybrid and multi-cloud, optimized for microservices and distributed architectures
 description: Kong Gateway is a lightweight, fast, and flexible cloud-native API gateway. Kong is a reverse proxy that lets you manage, configure, and route requests
+konnect_cta_card: true
 ---
 
 ## Quick Links
@@ -89,7 +90,7 @@ the [PDK reference](/gateway/{{page.kong_version}}/plugin-development/pdk/), and
 ## Packages and modes
 
 There are two ways to deploy {{site.base_gateway}}: cloud-hosted with {{ site.konnect_saas }}, and on-premises. If you're trying
-out {{site.base_gateway}} for the first time we, recommend starting with [{{ site.konnect_saas }}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-mode-overview).
+out {{site.base_gateway}} for the first time, Kong recommends starting with [{{ site.konnect_saas }}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-mode-overview).
 
 ### Cloud-hosted with Konnect
 
@@ -115,7 +116,7 @@ See the [Konnect documentation](/konnect/) and the
 
 **{{site.base_gateway}} (OSS)**: an open-source package containing the basic API gateway
 functionality and open-source plugins. You can manage the open-source Gateway
-with Kong's [Admin API](#kong-admin-api) or with [declarative configuration](#deck).
+with Kong's [Admin API](#kong-admin-api){% if_version gte:3.4.x %}, [Kong Manager Open Source](/gateway/{{page.kong_version}}/kong-manager-oss/),{% endif_version %} or with [declarative configuration](#deck).
 
 **{{site.base_gateway}}** (available in
 [Free or Enterprise mode](https://konghq.com/pricing)): Kong's API gateway
@@ -212,7 +213,7 @@ the Kong Admin API.
 To test it out, you can choose either the open-source package, or
 run {{site.base_gateway}} in free mode and also try out Kong Manager.
 
-After installation, get started with our introductory [quickstart guide](/gateway/{{page.kong_version}}/get-started/)
+After installation, get started with the introductory [quickstart guide](/gateway/{{page.kong_version}}/get-started/)
 
 ### Try in {{site.konnect_short_name}}
 
@@ -233,4 +234,4 @@ Kong primarily follows a [semantic versioning](https://semver.org/) (SemVer)
 model for its products.
 
 For the latest version support information for {{site.ee_product_name}} and
-{{site.mesh_product_name}}, see our [version support policy](/gateway/{{page.kong_version}}/support-policy/).
+{{site.mesh_product_name}}, see the [version support policy](/gateway/{{page.kong_version}}/support-policy/).

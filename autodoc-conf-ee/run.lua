@@ -164,7 +164,6 @@ for _, section in ipairs(parsed) do
   end
 
   local pg_found = false
-  local cassandra_found = false
   local render_as_table = false
 
   for _, var in ipairs(section.vars) do
@@ -175,16 +174,6 @@ for _, section in ipairs(parsed) do
         pg_found = true
         write("")
         write("### Postgres settings")
-        write("")
-        write(table_header)
-      end
-
-    elseif string.match(var.name, "^cassandra_.+$") then
-      render_as_table = true
-      if not cassandra_found then
-        cassandra_found = true
-        write("")
-        write("### Cassandra settings")
         write("")
         write(table_header)
       end
@@ -203,44 +192,47 @@ for _, section in ipairs(parsed) do
 
     else
       write("### " .. var.name)
-      if string.match(var.name, "admin_gui_auth") then
+
+      if string.match(var.name, "admin_gui_auth") or
+        string.match(var.name, "admin_gui_session") or
+        string.match(var.name, "cluster_telemetry") or
+        string.match(var.name, "cluster_fallback") or
+        string.match(var.name, "rbac") or
+        string.match(var.name, "event_hooks") or
+        string.match(var.name, "keyring") or
+      then
         write("{:.badge .enterprise}")
 
-      elseif string.match(var.name, "admin_gui_session") then
+      elseif string.match(var.name, "debug_") 
+        and not string.match(var.name, "allow_debug_header") 
+      then
         write("{:.badge .enterprise}")
 
-      elseif string.match(var.name, "cluster_telemetry") then
+      elseif string.match(var.name, "vault_") 
+        and not string.match(var.name, "vault_env") 
+      then
         write("{:.badge .enterprise}")
 
-      elseif string.match(var.name, "cluster_fallback") then
+      elseif string.match(section.name, "PORTAL") or
+        string.match(section.name, "VITALS") or
+        string.match(section.name, "SMTP") or
+        string.match(section.name, "GRANULAR TRACING") or
+        string.match(section.name, "ROUTE COLLISION")
+      then
         write("{:.badge .enterprise}")
 
-      elseif string.match(var.name, "rbac") then
-        write("{:.badge .enterprise}")
-
-      elseif string.match(var.name, "event_hooks") then
-        write("{:.badge .enterprise}")
-
-      elseif string.match(var.name, "keyring") then
-        write("{:.badge .enterprise}")
-
-      elseif string.match(section.name, "PORTAL") then
-        write("{:.badge .enterprise}")
-
-      elseif string.match(section.name, "KONG MANAGER") then
+      elseif string.match(section.name, "KONG MANAGER") 
+        and not string.match(var.name, "admin_gui_listen")
+        and not string.match(var.name, "admin_gui_url")
+        and not string.match(var.name, "admin_gui_path")
+        and not string.match(var.name, "admin_gui_path_url")
+        and not string.match(var.name, "admin_gui_ssl_cert")
+        and not string.match(var.name, "admin_gui_ssl_cert_key")
+        and not string.match(var.name, "admin_gui_access_log")
+        and not string.match(var.name, "admin_gui_error_log")
+      then
         write("{:.badge .free}")
 
-      elseif string.match(section.name, "VITALS") then
-        write("{:.badge .enterprise}")
-
-      elseif string.match(section.name, "SMTP") then
-        write("{:.badge .enterprise}")
-
-      elseif string.match(section.name, "GRANULAR TRACING") then
-        write("{:.badge .enterprise}")
-
-      elseif string.match(section.name, "ROUTE COLLISION") then
-        write("{:.badge .enterprise}")
       end
       write("")
       write(format_description(var.description))

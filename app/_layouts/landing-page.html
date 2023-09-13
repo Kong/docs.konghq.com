@@ -5,126 +5,122 @@ id: landing-page
 ---
 
 <div class="landing-page">
-  <div class="textures">
-    <img class="mobile-texture" src="/assets/images/landing-page/kong-docs-mobile-bg.svg" alt="mobile texture">
-    <img class="top-left" src="/assets/images/landing-page/texture-left.png" alt="texture">
-    <img class="top-right" src="/assets/images/landing-page/texture-right.png" alt="texture">
-    <div class="top-gradient"></div>
-  </div>
-
+  <div class="page--header-background"></div>
   <h1 id="main" tabindex="-1">Welcome <span>to Kong Docs</span></h1>
   <h4>Find all the information you need to use Kong’s platforms and projects</h4>
-
-  <section class="search">
-    <div class="search-input-wrapper">
-      <img src="/assets/images/landing-page/search.svg" alt="search">
-      <input id="getkong-algolia-search-input" type="text" placeholder="Search for guides, concepts, API documentation, and more...">
-    </div>
-  </section>
 
   <section class="cloud-platform">
     <section class="konnect-docs">
       <h3 class="platform-title">{{site.konnect_product_name}}</h3>
       <h5 class="platform-description">
-        Full stack connectivity platform that is designed from the ground up for cloud native architectures, delivered as a service
+        An end-to-end SaaS API lifecycle management platform that is designed for the cloud native era and provides the easiest way to get started with {{ site.base_gateway }}
       </h5>
       <hr>
       <div class="platform-links">
-          <a href="/konnect/" class="name-link">
-            <div class="name-label">
-              <div class="link-text">
-                <img class="icon" src="/assets/images/icons/icn-cloud-blue.svg" alt="">
-                Kong Konnect documentation
-              </div>
+        <a href="/konnect/" class="name-link">
+          <div class="name-label">
+            <div class="link-text">
+              <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
+              Konnect Overview
             </div>
-          </a>
-      </div>
-      </section>
+          </div>
+        </a>
 
-      <h3>
-        Get started with Kong Konnect
-      </h3>
-    <div class="cards-container">
-      <div class="card">
-        <img class="icon" src="/assets/images/landing-page/connection.svg" alt=""/>
-        <div class="title">1. Runtime connection</div>
-        <div class="description">Set up your first runtime connection</div>
-        <a href="/konnect/getting-started/configure-runtime/" class="link-text">
-          Set up
-          <img src="/assets/images/icons/icn-arrow-right.svg" alt="">
+        <a href="/konnect/getting-started/" class="name-link">
+          <div class="name-label">
+            <div class="link-text">
+              <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
+              Get Started With Konnect
+            </div>
+          </div>
+        </a>
+
+        <a href="/hub/?compatibility=konnect" class="name-link">
+          <div class="name-label">
+            <div class="link-text">
+              <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
+              Konnect-compatible Plugins
+            </div>
+          </div>
         </a>
       </div>
-      <div class="arrow-card">
-        <div class="arrow">
-          <img src="/assets/images/landing-page/arrow-right.svg" alt="">
-        </div>
-        <div class="card">
-          <img class="icon" src="/assets/images/landing-page/catalog.svg" alt=""/>
-          <div class="title">2. Catalog services</div>
-          <div class="description">Catalog your services using the {{site.konnect_short_name}} Service Hub</div>
-          <a href="/konnect/getting-started/configure-service" class="link-text">
-            Catalog
-            <img src="/assets/images/icons/icn-arrow-right.svg" alt="">
-          </a>
-        </div>
-      </div>
-      <div class="arrow-card">
-        <div class="arrow">
-          <img src="/assets/images/landing-page/arrow-right.svg" alt="">
-        </div>
-        <div class="card">
-          <img class="icon" src="/assets/images/landing-page/services.svg" alt=""/>
-          <div class="title">3. Manage services</div>
-          <div class="description">Manage your services using the {{site.konnect_short_name}} Service Hub</div>
-          <a href="/konnect/getting-started/implement-service/" class="link-text">
-            Manage
-            <img src="/assets/images/icons/icn-arrow-right.svg" alt="">
-          </a>
-        </div>
-      </div>
-    </div>
     </section>
+  </section>
 
   <section class="docs">
     <section class="title-cards">
-      <h3>Connectivity runtimes</h3>
       <div class="cards-container">
         <div class="card">
           <img class="banner-image" src="/assets/images/landing-page/gateway.png" alt="">
           <div class="title">{{site.base_gateway}}</div>
-          <div class="description">A lightweight API Gateway that lets you secure, manage, and extend APIs and microservices.</div>
+          <div class="description">
+            A lightweight, fast, and flexible cloud-native API gateway.
+          </div>
           <hr>
           <div class="links-container">
-            <a href="/gateway/" class="name-link">
+            <a href="/gateway/latest/" class="name-link">
               <div class="name-label">
                 <div class="link-text">
-                  <img class="icon" src="/assets/images/icons/icn-server-blue.svg" alt="">
-                  {{site.base_gateway}} documentation
+                  <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
+                  {{site.base_gateway}} Overview
+                </div>
+              </div>
+            </a>
+            <a href="/gateway/latest/get-started/" class="name-link">
+              <div class="name-label">
+                <div class="link-text">
+                  <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
+                  Get Started With {{site.base_gateway}}
+                </div>
+              </div>
+            </a>
+            <a href="/hub/" class="name-link">
+              <div class="name-label">
+                <div class="link-text">
+                  <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
+                  Plugins
+                </div>
+              </div>
+            </a>
+            <a href="/gateway/latest/admin-api/" class="name-link">
+              <div class="name-label">
+                <div class="link-text">
+                  <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
+                  Admin API
                 </div>
               </div>
             </a>
           </div>
         </div>
+
         <div class="card">
           <img class="banner-image" src="/assets/images/landing-page/mesh.png" alt="">
           <div class="title">{{site.mesh_product_name}}</div>
           <div class="description">
-            Universal service mesh for enterprise organizations focused on simplicity, security, and scalability with Kuma and Envoy.
+            An enterprise service mesh based on Kuma for multi-cloud and multi-cluster on both Kubernetes and VMs.
           </div>
           <hr>
           <div class="links-container">
-            <a href="/mesh/" class="name-link">
+            <a href="/mesh/latest/" class="name-link">
               <div class="name-label">
                 <div class="link-text">
-                  <img class="icon" src="/assets/images/icons/icn-server-blue.svg" alt="">
-                  {{site.mesh_product_name}} documentation
+                  <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
+                  {{site.mesh_product_name}} Overview
+                </div>
+              </div>
+            </a>
+            <a href="/mesh/latest/gettingstarted/" class="name-link">
+              <div class="name-label">
+                <div class="link-text">
+                  <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
+                  Get Started with {{site.mesh_product_name}}
                 </div>
               </div>
             </a>
             <a href="https://kuma.io/docs/" class="name-link">
               <div class="name-label">
                 <div class="link-text">
-                  <img class="icon" src="/assets/images/icons/icn-server-blue.svg" alt="">
+                  <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
                   Kuma (open-source)
                 </div>
               </div>
@@ -141,7 +137,9 @@ id: landing-page
     <div class="cards-container">
       {% for item in feature.items %}
       <div class="card default">
-        <img src="{{ item.icon }}" alt="" class="icon">
+        {% if item.icon %}
+          <img src="{{ item.icon }}" alt="" class="icon">
+        {% endif %}
         <div class="title">{{ item.name }}</div>
         <div class="description">{{ item.description }}</div>
         <hr>
@@ -159,36 +157,7 @@ id: landing-page
   </section>
   {% endfor %}
 
-  <section class="additional-info">
-    <div class="info-container">
-      <h2>Contribute to the docs</h2>
-      <div class="subtitle">Want to help out, or found an issue in the docs and want to let us know?</div>
-      <div class="links-container">
-        {% for link in site.data.landing_page.contribute_links %}
-        <a href="{{ link.url }}" class="link-text">
-          <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
-          {{ link.text }}
-        </a>
-        {% endfor %}
-      </div>
-    </div>
-    <div class="info-container">
-      <h2>Popular Topics</h2>
-      <div class="subtitle">Don’t know where to start? Check out the most visited topics and guides</div>
-      <div class="links-container">
-        {% for link in site.data.landing_page.popular_topics %}
-        <a href="{{ link.url }}" class="link-text">
-          <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
-          {{ link.text }}
-        </a>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-
     {% include feedback-widget.html %}
-
-  <img class="kong-image" src="/assets/images/landing-page/kong.svg" alt="">
 </div>
 
 <script type="text/javascript">

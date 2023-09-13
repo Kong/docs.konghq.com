@@ -76,7 +76,7 @@ Once your name servers are propogated (this may take a few minutes), your Dev Po
 
 If you want to further customize the example self-hosted Dev Portal, you can edit the settings in your forked copy of the open source {{site.konnect_short_name}} Dev Portal repository. For more information, see the [{{site.konnect_short_name}} Portal repository](https://github.com/Kong/konnect-portal).  
 
-You can also customize your Dev Portal using the [Portal API](https://developer.konghq.com/spec/2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6/b4539157-4ced-4df5-affa-7d790baee356) and [Portal SDK](https://www.npmjs.com/package/@kong/sdk-portal-js). 
+You can also customize your Dev Portal using the [Portal API](/konnect/api/portal/v2/) and [Portal SDK](https://www.npmjs.com/package/@kong/sdk-portal-js). 
 
 ## More information
 

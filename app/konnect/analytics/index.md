@@ -2,8 +2,8 @@
 title: Introduction to Monitoring Health with Analytics
 ---
 
-You can monitor the health and performance of any service, service version,
-route, or application managed by {{site.konnect_saas}}.
+
+You can monitor the health and performance of any API product, route, or application managed by {{site.konnect_saas}}.
 
 Analytics provides traffic reports to help you track the performance and
 behavior of your APIs and runtimes. Use these reports to quickly access key
@@ -15,19 +15,27 @@ historical data for the following lengths of time:
 * **Plus:** 3 months
 * **Enterprise:** 1 year
 
+{:.important}
+> **Important**: Analytics for a composite runtime group are only available at the composite level. 
+Member standard runtime groups have no individual analytics reporting. This means that:
+* In the Runtime Manager, contextual analytics are logged in the composite runtime group only.
+* When creating custom reports, members of a composite runtime group won't show up as individual entities. 
+Reports will only show the composite group.
+
 ## Contextual analytics for services and routes
 
-In the [Service Hub](https://cloud.konghq.com/servicehub/), you can see
-[activity graphs](/konnect/analytics/services-and-routes/) for services, service versions, or
-routes for the past 30 days.
-For services, these graphs display request counts. For service versions and
-routes, the graphs show requests broken down by status codes.
+In the [Runtime Manager](/konnect/runtime-manager/), you can see
+activity graphs for gateway services or routes for the past 30 days.
+For gateway services and routes, the graphs show requests broken down by status codes.
 
-![service graph](/assets/images/docs/konnect/konnect-vitals-service-versions.png){:.image-border}
 
-> _**Figure 1:** Graph showing throughput for a service with interval filter options._
+![service graph](/assets/images/docs/konnect/konnect-analytics-gateway-service.png){:.image-border}
 
-You can also [export this historical data in CSV format](/konnect/analytics/services-and-routes/) for any individual service, service version, or route.
+> _**Figure 1:** Graph showing traffic for the last 15 minutes by status code for a gateway service._
+
+
+You can also [export historical data in CSV](#export-analytics-data) format from any graph.
+
 
 
 ## Summary dashboard and custom reports
@@ -36,7 +44,7 @@ For greater insights into your service usage, access the dedicated {% konnect_ic
 
 From {% konnect_icon analytics %} Analytics, you can view dashboards, access historical data for a range greater than 30 days, and customize the entities in a report:
 * View the Analytics summary dashboard to track traffic, errors by error code, and latency across all services in your organization.
-* [Export historical data in CSV format](/konnect/analytics/services-and-routes/) for any individual service, service version, or route.
+* [Export historical data in CSV format](#export-analytics-data) for any individual service.
 * [Create a custom report](/konnect/analytics/generate-reports/) for any number of services, routes, or applications, filtered by time frame and grouped by metric.
 
 The summary dashboard provides metrics across all services in your organization within a selected time interval for the following categories:
@@ -73,6 +81,21 @@ Admins can monitor the latency, investigate where delays are noticed, and optimi
 Graphs can be interacted with, including hovering over chart items to display more details, and filtering options by clicking on items in the **legend**.
 
 You can select a time period using the **time period** drop-down menu. The intervals aggregate data at different increments of time.
+
+### Export analytics data
+
+Export API traffic data into a CSV file for any graph in Konnect.
+
+Follow these steps: 
+
+1. On the graph, click the **Export** button on the top right.
+1. Select the time frame to include in the report. To customize the time frame,
+click **Custom** and select a date range.
+1. Click **Export** to generate and download a CSV file.
+
+## Limits
+
+Konnect Analytics limits the number of entities returned and displayed in any activity graph or custom report to only 50 to provide a smooth experience. A warning icon at the top of a graph or report indicates that. Please [use custom reports](/konnect/analytics/generate-reports/) to filter and decrease the number of entities if required.  
 
 ## Team permissions
 

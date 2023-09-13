@@ -45,6 +45,7 @@ items:
         url: /installation/macos
       - text: Windows
         url: /installation/windows
+        generate: false
 
   - title: Plan and Deploy
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
@@ -66,14 +67,11 @@ items:
         url: /features/kds-auth
       - text: FIPS support
         url: /features/fips-support
-        src: production/secure-deployment/fips-support/
       - text: Certificate Authority rotation
         url: /features/ca-rotation
       - text: Role-Based Access Control
         url: /features/rbac
-        src: production/secure-deployment/rbac/
       - text: UBI Images
         url: /features/ubi-images
       - text: Windows Support
         url: /features/windows
-        generate: false

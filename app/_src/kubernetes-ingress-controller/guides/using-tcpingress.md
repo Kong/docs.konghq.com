@@ -5,22 +5,13 @@ content_type: tutorial
 
 ## Overview
 
-This guide walks through creating TCP routing configuration for
-{{site.base_gateway}} in Kubernetes using either the TCPIngress custom
-resource or TCPRoute and TLSRoute Gateway APIs resource.
+Create TCP routing configuration for {{site.base_gateway}} in Kubernetes using either the `TCPIngress` custom resource or `TCPRoute` and `TLSRoute` Gateway APIs resource.
 
-TCP-based Ingress means that {{site.base_gateway}} simply forwards the TCP stream to a Pod
-of a Service that's running inside Kubernetes. {{site.base_gateway}} will not perform any
-sort of transformations.
+TCP-based Ingress means that {{site.base_gateway}} simply forwards the TCP stream to a Pod of a Service that's running inside Kubernetes. {{site.base_gateway}} does not perform any sort of transformations.
 
 There are two modes available:
-- **Port based routing**: In this mode, {{site.base_gateway}} simply proxies all traffic it
-  receives on a specific port to the Kubernetes Service. TCP connections are
-  load balanced across all the available pods of the Service.
-- **SNI based routing**: In this mode, {{site.base_gateway}} accepts a TLS-encrypted stream
-  at the specified port and can route traffic to different services based on
-  the `SNI` present in the TLS handshake. {{site.base_gateway}} will also terminate the TLS
-  handshake and forward the TCP stream to the Kubernetes Service.
+- **Port based routing**: {{site.base_gateway}} simply proxies all traffic it receives on a specific port to the Kubernetes Service. TCP connections are load balanced across all the available pods of the Service.
+- **SNI based routing**: {site.base_gateway}} accepts a TLS-encrypted stream at the specified port and can route traffic to different services based on the `SNI` present in the TLS handshake. {{site.base_gateway}} also terminates the TLS handshake and forward the TCP stream to the Kubernetes Service.
 
 {% include_cached /md/kic/installation.md kong_version=page.kong_version %}
 
@@ -32,12 +23,10 @@ There are two modes available:
 
 ## Adding TCP listens
 
-{{site.base_gateway}} does not include any TCP listen configuration by default.
-To expose TCP listens, update the Deployment's environment variables and port
-configuration:
+{{site.base_gateway}} does not include any TCP listen configuration by default. To expose TCP listens, update the Deployment's environment variables and port configuration:
 
 ```bash
-kubectl patch deploy -n kong ingress-kong --patch '{
+kubectl patch deploy -n kong proxy-kong --patch '{
   "spec": {
     "template": {
       "spec": {
@@ -69,14 +58,12 @@ kubectl patch deploy -n kong ingress-kong --patch '{
   }
 }'
 ```
-Response:
+The results should look like this:
 ```text
 deployment.extensions/ingress-kong patched
 ```
 
-The `ssl` parameter after the 9443 listen instructs {{site.base_gateway}} to
-expect TLS-encrypted TCP traffic on that port. The 9000 listen has no
-parameters, and expects plain TCP traffic.
+The `ssl` parameter after the 9443 listen instructs {{site.base_gateway}} to expect TLS-encrypted TCP traffic on that port. The 9000 listen has no parameters, and expects plain TCP traffic.
 
 ## Update the proxy Service
 
@@ -102,15 +89,14 @@ kubectl patch service -n kong kong-proxy --patch '{
   }
 }'
 ```
-Response:
+The results should look like this:
 ```text
 service/kong-proxy patched
 ```
 
 ## Update the Gateway
 
-If you are using the Gateway APIs (TCPRoute) option, your Gateway needs additional
-configuration under `listeners`. If you are using TCPIngress, skip this step.
+If you are using TCPIngress, skip this step. However, if you are using the Gateway APIs (TCPRoute) option, your Gateway needs additional configuration under `listeners`. 
 
 ```bash
 kubectl patch --type=json gateway kong -p='[
@@ -142,19 +128,19 @@ kubectl patch --type=json gateway kong -p='[
     }
 ]'
 ```
-Response:
+The results should look like this:
 ```text
 gateway.gateway.networking.k8s.io/kong patched
 ```
 
 ## Install TCP echo service
 
-Next, install an example TCP service:
+Install an example TCP service:
 
 ```bash
 kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/tcp-echo-service.yaml
 ```
-Response:
+The results should look like this:
 ```text
 deployment.apps/tcp-echo created
 service/tcp-echo created
@@ -162,8 +148,7 @@ service/tcp-echo created
 
 ## Route TCP traffic by port
 
-To expose the service to the outside world, create the following
-TCPIngress resource:
+To expose the service to the outside world, create a TCPIngress resource:
 
 {% navtabs api %}
 {% navtab Ingress %}
@@ -182,7 +167,7 @@ spec:
       servicePort: 2701
 " | kubectl apply -f -
 ```
-Response:
+The results should look like this:
 ```text
 tcpingress.configuration.konghq.com/echo-plaintext created
 ```
@@ -207,7 +192,7 @@ spec:
 > v1alpha2 TCPRoutes do not support separate proxy and upstream ports. Traffic
 > is redirected to `2701` upstream via Service configuration.
 
-Response:
+The results should look like this:
 ```text
 tcproute.gateway.networking.k8s.io/echo-plaintext created
 ```
@@ -219,24 +204,27 @@ receives on port 9000 to `tcp-echo` service on port 2701.
 
 ### Test the configuration
 
-Status will populate with an IP or Accepted condition once the route is ready:
 
 {% navtabs api %}
 {% navtab Ingress %}
+`tcpingress` returns an IP address when the route is ready:
+
 ```bash
 kubectl get tcpingress
 ```
-Response:
+The results should look like this:
 ```text
 NAME             ADDRESS        AGE
 echo-plaintext   <PROXY_IP>   3m18s
 ```
 {% endnavtab %}
 {% navtab Gateway APIs %}
+`tcproute` contains an "Accepted" condition when the route is ready:
+
 ```bash
 kubectl get tcproute echo-plaintext -ojsonpath='{.status.parents[0].conditions[?(@.reason=="Accepted")]}'
 ```
-Response:
+The results should look like this:
 ```text
 {"lastTransitionTime":"2022-11-14T19:48:51Z","message":"","observedGeneration":2,"reason":"Accepted","status":"True","type":"Accepted"}
 ```
@@ -260,13 +248,11 @@ This text will be echoed back.
 telnet> Connection closed.
 ```
 
-We can see here that the `tcp-echo` service is now available outside the
-Kubernetes cluster via {{site.base_gateway}}.
+The `tcp-echo` service is now available outside the Kubernetes cluster through {{site.base_gateway}}.
 
 ## Route TLS traffic by SNI
 
-Next, we will demonstrate how {{site.base_gateway}} can route TLS-encrypted
-traffic to the `tcp-echo` service.
+For {{site.base_gateway}} to route TLS-encrypted traffic to the `tcp-echo` service.
 
 Create the following TCPIngress resource:
 
@@ -292,7 +278,7 @@ spec:
       servicePort: 2701
 " | kubectl apply -f -
 ```
-Response:
+The results should look like this:
 ```text
 tcpingress.configuration.konghq.com/echo-tls created
 ```
@@ -314,7 +300,7 @@ spec:
       port: 9443
 " | kubectl apply -f -
 ```
-Response:
+The results should look like this:
 ```text
 ```
 {% endnavtab %}
@@ -325,16 +311,14 @@ Response:
 You can now access the `tcp-echo` service on port 9443 with SNI
 `tls9443.kong.example`.
 
-In real-world usage, you would create a DNS record for `tls9443.kong.example`
-pointing to your proxy Service's public IP address, which causes TLS clients to
-add SNI automatically. For this demo, you'll add it manually using the OpenSSL
-CLI:
+In real-world usage, you would create a DNS record for `tls9443.kong.example`pointing to your proxy Service's public IP address, which causes TLS clients to add SNI automatically. For this demo, you'll add it manually using the OpenSSL CLI:
 
 ```bash
 echo "hello" | openssl s_client -connect $PROXY_IP:9443 -servername tls9443.kong.example -quiet 2>/dev/null 
 ```
-Press Ctrl+C to exit after.
-Response:
+Press Ctrl+C to exit.
+
+The results should look like this:
 ```text
 Welcome, you are connected to node kind-control-plane.
 Running on Pod tcp-echo-5f44d4c6f9-krnhk.

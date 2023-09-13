@@ -225,48 +225,6 @@ or use a flag when running any decK command.
     deck sync --konnect-runtime-group-name staging
     ```
 
-## {{site.konnect_short_name}} service tags
-
-In {{site.konnect_short_name}}, there are two types of services:
-* Gateway services: Managed through Runtime Manager
-* {{site.konnect_short_name}} services: Managed through Service Hub
-
-Each {{site.konnect_short_name}} service may contain one or more service versions.
-A service version represents an implementation of a Gateway service.
-
-decK manages Gateway services, which contain configurations for the Gateway proxy.
-
-Although decK doesn't _directly_ manage {{site.konnect_short_name}} services or service versions, you can use tags to associate a Gateway service to a service version in a {{site.konnect_short_name}} service:
-
-```yaml
-services:
-- name: SERVICE_NAME
-  tags:
-  - _KonnectService:KONNECT_SERVICE_NAME
-```
-
-Where:
-
-* `KONNECT_SERVICE_NAME`: Identifies which {{site.konnect_short_name}} _service_ to associate the Gateway service to.
-* `SERVICE_NAME`: The name of the Gateway service. Identifies which {{site.konnect_short_name}} _service version_ to associate the Gateway service to.
-
-If the {{site.konnect_short_name}} service doesn't exist, setting a `_Konnect` tag creates a {{site.konnect_short_name}} service.
-
-For example, see the following configuration snippet, where the Gateway service named `example_service` is attached to the {{site.konnect_short_name}} service `example`:
-
-```yaml
-_format_version: "3.0"
-_konnect:
-  runtime_group_name: default
-services:
-- name: example_service
-  host: mockbin.org
-  tags:
-  - _KonnectService:example
-```
-
-If the {{site.konnect_short_name}} service doesn't exist, this configuration snippet creates a {{site.konnect_short_name}} service named `example` with a version named `example_service` in the Service Hub.
-
 ## Troubleshoot
 
 {% if_version gte:1.14.x %}
@@ -318,8 +276,8 @@ _konnect:
 ### ACL, Key Auth, or OpenID Connect plugins and app registration
 
 You may encounter one of the following scenarios with the ACL, Key Authentication, or OpenID Connect (OIDC) plugins:
-* The plugins are visible in the Service Hub UI, but don't appear in the output from a `deck dump` or `deck diff`.
-* When trying to set up one of the plugins on a {{site.konnect_short_name}} service version with app registration enabled, you see the following error:
+* The plugins are visible in the Runtime Manager, but don't appear in the output from a `deck dump` or `deck diff`.
+* When trying to set up one of the plugins with app registration enabled, you see the following error:
 
     ```
     {Create} plugin key-auth for service example_service failed: HTTP status 400
@@ -328,10 +286,10 @@ You may encounter one of the following scenarios with the ACL, Key Authenticatio
 This is intentional. When you have application registration enabled, decK doesn't manage these plugins, and doesn't let you create duplicates of the plugin entries.
 
 When setting up app registration, {{site.konnect_short_name}} enables two plugins automatically: ACL, and either Key Authentication or OIDC, depending on your choice of authentication.
-These plugins run in the background to support application registration for the service version.
+These plugins run in the background to support application registration for an API product.
 They are managed entirely by {{site.konnect_short_name}}, so you can't manage these plugins directly.
 
-[Manage application registration](/konnect/dev-portal/applications/enable-app-reg) through the Service Hub to avoid any issues.
+read [Manage application registration](/konnect/dev-portal/applications/enable-app-reg) for more information.
 
 {% if_version gte:1.15 %}
 

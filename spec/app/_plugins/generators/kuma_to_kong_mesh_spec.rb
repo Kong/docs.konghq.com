@@ -24,9 +24,12 @@ RSpec.describe KumaToKongMesh::Generator do
             .to include('[Read about Kuma](/mesh/{{ page.kong_version }}/introduction/what-is-kong-mesh)')
         end
 
-        it 'replaces any `kong-mesh.io` with `kuma.io`' do
-          expect(page.content).not_to include('https://kong-mesh.io')
-          expect(page.content).to include('https://kuma.io').twice
+        it 'do not replace `kuma.io` and kumaio in links' do
+          expect(page.content).to include('https://kong.io#kumaioanchor')
+        end
+
+        it 'work with kuma more than once in a link' do
+          expect(page.content).to include('/foo-kong-mesh#kong-mesh')
         end
 
         it 'does not modify absolute urls' do

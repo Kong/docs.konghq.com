@@ -1,34 +1,14 @@
 # frozen_string_literal: true
 
+require_relative 'nestable'
+
 module PluginSingleSource
   module Pages
     class Overview < Base
-      def canonical_url
-        base_url
-      end
-
-      def permalink
-        if @release.latest?
-          canonical_url
-        else
-          "#{base_url}#{@release.version}/"
-        end
-      end
+      include ::PluginSingleSource::Pages::Nestable
 
       def page_title
         @release.metadata['name'].to_s
-      end
-
-      def dropdown_url
-        @dropdown_url ||= "#{base_url}VERSION/"
-      end
-
-      def nav_title
-        'Overview'
-      end
-
-      def icon
-        '/assets/images/icons/documentation/hub/icn-overview.svg'
       end
 
       def breadcrumb_title
@@ -38,18 +18,39 @@ module PluginSingleSource
       def breadcrumbs
         [
           { text: category_title, url: category_url },
-          { text: breadcrumb_title, url: permalink }
+          { text: breadcrumb_title, url: base_section_url },
+          { text: 'Introduction' },
+          { text: nav_title, url: permalink }
         ]
       end
 
       private
 
+      def file_to_url_segment
+        super.gsub('overview', '')
+      end
+
       def ssg_hub
-        @release.latest?
+        @release.latest? && @file == 'overview/_index.md'
       end
 
       def page_attributes
-        super.merge('layout' => 'extension')
+        super.merge(
+          'layout' => 'extension',
+          'configuration_url' => configuration_url
+        )
+      end
+
+      def base_section_url
+        if @release.latest?
+          base_url
+        else
+          "#{base_url}#{@release.version}/"
+        end
+      end
+
+      def configuration_url
+        "#{base_section_url}configuration/"
       end
     end
   end

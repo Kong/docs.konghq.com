@@ -18,6 +18,11 @@ The word "Kuma" means "bear" in Japanese (クマ).
 
 [Kuma-mesh](https://kong-mesh.io)
 [Kuma](https://kuma.io)
+[Kuma](https://kong.io#kumaioanchor)
+[Kuma](#kuma)
+[Kuma](/foo-kuma#kuma)
+[Kuma-mesh](https://kong-mesh.io)
+[Kuma](https://kuma.io)
 
 ## Commands
 

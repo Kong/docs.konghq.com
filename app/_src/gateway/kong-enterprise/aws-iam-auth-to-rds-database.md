@@ -27,7 +27,11 @@ Before you enable the AWS IAM authentication, you must configure your AWS RDS da
 - **Assign an IAM role to your Kong Gateway instance.** {{site.base_gateway}} can automatically discover and fetch the AWS credentials to use for the IAM role.
    - If you use an EC2 environment, use the [EC2 IAM role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html).
    - If you use an ECS cluster, use a [ECS task IAM role](https://docs.aws.amazon.com/AmazonECS/latest/userguide/task-iam-roles.html).
-   - If you use an EKS cluster, configure a Kubernetes service account that can annotate your assigned role and configure the pods to use an [IAM role defined by serviceaccount](https://docs.aws.amazon.com/eks/latest/userguide/associate-service-account-role.html).
+   - If you use an EKS cluster, configure a Kubernetes service account that can annotate your assigned role and configure the pods to use an [IAM role defined by serviceaccount](https://docs.aws.amazon.com/eks/latest/userguide/associate-service-account-role.html). 
+   
+      Using an IAM role defined by serviceaccount requires a request to the AWS STS service, so you also need to make sure that your Kong instance inside the Pod can access the AWS STS service endpoint. 
+   
+      If you're using STS regional endpoints, make sure you have `AWS_STS_REGIONAL_ENDPOINTS` defined in your environment variables.
    - If you run {{site.base_gateway}} locally, use the environment variables, like access key and secret key combination by using `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`, or profile and credential file combination by using `AWS_PROFILE` and `AWS_SHARED_CREDENTIALS_FILE`
    
    {:.warning}

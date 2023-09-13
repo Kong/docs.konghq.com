@@ -20,7 +20,7 @@
         - text: Control Plane Upgrades FAQ
           url: /upgrade-faq/
         - text: Supported Installation Options
-          url: /install-support/
+          url: /runtime-manager/runtime-instances/
 
 - title: Get Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
@@ -31,13 +31,13 @@
       url: /getting-started/access-account/
     - text: Set up a Runtime
       url: /getting-started/configure-runtime/
-    - text: Configure a Service
-      url: /getting-started/configure-service/
-    - text: Implement and Test the Service
-      url: /getting-started/implement-service/
+    - text: Proxy and Test a Service
+      url: /getting-started/deploy-service/
+    - text: Productize a Service
+      url: /getting-started/productize-service/
     - text: Get Started with the Dev Portal
       items:
-        - text: Publish and Consume Services
+        - text: Add Documentation
           url: /getting-started/publish-service/
         - text: Register Applications
           url: /getting-started/app-registration/
@@ -65,13 +65,24 @@
           url: /runtime-manager/runtime-instances/runtime-parameter-reference/
         - text: Using Custom DP Labels
           url: /runtime-manager/runtime-instances/custom-dp-labels
+    - text: Composite Runtime Groups
+      items: 
+        - text: Overview
+          url: /runtime-manager/composite-runtime-groups/
+        - text: Working with Composite Runtime Groups
+          url: /runtime-manager/composite-runtime-groups/how-to/
+        - text: Migrate Configuration into Composite Runtime Groups
+          url: /runtime-manager/composite-runtime-groups/migrate/
+        - text: Conflicts in Runtime Groups
+          url: /runtime-manager/composite-runtime-groups/conflicts/
 
     - text: Runtime Configuration
       items:
         - text: Overview
           url: /runtime-manager/configuration/
         - text: Create Consumer Groups
-          url: /runtime-manager/configuration/consumer-groups/
+          url: https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/how-to/
+          absolute_url: true
         - text: Secrets Management
           items:
             - text: Overview
@@ -82,6 +93,14 @@
           url: /runtime-manager/declarative-config/
     - text: KIC Association
       url: /runtime-manager/kic/
+    - text: Manage Plugins
+      items:
+        - text: Overview
+          url: /runtime-manager/plugins/
+        - text: Configure a Plugin on a Gateway Service
+          url: /runtime-manager/enable-service-plugin/
+        - text: Configure a Plugin on a Route
+          url: /runtime-manager/enable-route-plugin/
     - text: Backup and Restore
       url: /runtime-manager/backup-restore/
     - text: Version Compatibility
@@ -96,23 +115,21 @@
       url: /mesh-manager/
     - text: Create a mesh
       url: /mesh-manager/service-mesh/
-
+      
 - title: Service Hub
   icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
   items:
     - text: Overview
       url: /servicehub/
-    - text: Manage Service Documentation
-      url: /servicehub/service-documentation/
 
-    - text: Manage Plugins
-      items:
-        - text: Overview
-          url: /servicehub/plugins/
-        - text: Configure a Plugin on a Service
-          url: /servicehub/enable-service-plugin/
-        - text: Configure a Plugin on a Route
-          url: /servicehub/enable-route-plugin/
+- title: API Products
+  icon: /assets/images/icons/konnect/icn-api-product.svg
+  items:
+    - text: Overview
+      url: /api-products/
+    - text: Manage API Product Documentation
+      url: /api-products/service-documentation/
+
 
 - title: Dev Portal
   icon: /assets/images/icons/konnect/icn-dev-portal-nav.svg
@@ -127,9 +144,11 @@
       items:
         - text: Manage Developer Access
           url: /dev-portal/access-and-approval/manage-devs/
+        - text: Manage Developer Teams
+          url: /dev-portal/access-and-approval/manage-teams/
         - text: Manage Application Registration Requests
           url: /dev-portal/access-and-approval/manage-app-reg-requests/
-        - text: Manage Application Connections
+        - text: Manage Application Registrations
           url: /dev-portal/access-and-approval/manage-app-connections/
         - text: Auto Approve Dev and App Registrations
           url: /dev-portal/access-and-approval/auto-approve-devs-apps/
@@ -139,7 +158,7 @@
       items:
         - text: Application Overview
           url: /dev-portal/applications/application-overview/
-        - text: Enable and Disable App Registration
+        - text: Enable and Disable App Registration for API Product Versions
           url: /dev-portal/applications/enable-app-reg/
         - text: Dynamic Client Registration
           items:
@@ -151,9 +170,11 @@
               url: /dev-portal/applications/dynamic-client-registration/curity/
             - text: Auth0
               url: /dev-portal/applications/dynamic-client-registration/auth0/
+            - text: Azure
+              url: /dev-portal/applications/dynamic-client-registration/azure/
         - text: Create, Edit, and Delete an Application
           url: /dev-portal/applications/dev-apps/
-        - text: Register an Application with a Service
+        - text: Register an Application with an API product
           url: /dev-portal/applications/dev-reg-app-service/
         - text: Generate Credentials for an Application
           url: /dev-portal/applications/dev-gen-creds/
@@ -176,10 +197,8 @@
   items:
     - text: Introduction to Analytics
       url: /analytics/
-    - text: Analyze Services and Routes
-      url: /analytics/services-and-routes/
     - text: Report Use Cases
-      items: 
+      items:
       - text: Analyze API Usage and Performance
         url: /analytics/use-cases/
       - text: Diagnosing Latency Issues
@@ -250,68 +269,78 @@
       url: /api/
     - text: Konnect Identity API
       items:
-        - text: API Documentation
-          url: https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce/
+        - text: API Spec
+          url: /konnect/api/identity-management/latest/
           absolute_url: true
+          generate: false
+          target_blank: true
         - text: Identity Integration Guide
           url: /api/identity-management/identity-integration/
         - text: SSO Customization
           url: /api/identity-management/sso/
     - text: Runtime Groups API
       items:
-        - text: API Documentation
-          url: https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/
+        - text: API Spec
+          url: /konnect/api/runtime-groups/latest/
           absolute_url: true
+          generate: false
+          target_blank: true
     - text: Portal RBAC API
       items:
-        - text: API Documentation
-          url: https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/
+        - text: API Spec
+          url: /konnect/api/portal-rbac/latest/
           absolute_url: true
-        - text: Portal RBAC Guide
-          url: /api/portal-auth/portal-rbac-guide/
+          generate: false
+          target_blank: true
     - text: Runtime Configuration API
       items:
         - text: Overview
-          url: /api/runtime-groups-config/
+          url: /api/runtime-groups-config/overview/
         - text: Nodes
-          url: /api/runtime-groups-config/#nodes
+          url: /api/runtime-groups-config/overview/#nodes
         - text: Data Plane Certificiates
-          url: /api/runtime-groups-config/#data-plane-certificates
+          url: /api/runtime-groups-config/overview/#data-plane-certificates
         - text: Konnect Core Entities
           items:
           - text: Services
-            url: /api/runtime-groups-config/#service-object
+            url: /api/runtime-groups-config/overview/#service-object
           - text: Routes
-            url: /api/runtime-groups-config/#route-object
+            url: /api/runtime-groups-config/overview/#route-object
           - text: Consumers
-            url: /api/runtime-groups-config/#consumer-object
+            url: /api/runtime-groups-config/overview/#consumer-object
           - text: Plugins
-            url: /api/runtime-groups-config/#plugin-object
+            url: /api/runtime-groups-config/overview/#plugin-object
           - text: Upstreams
-            url: /api/runtime-groups-config/#upstream-object
+            url: /api/runtime-groups-config/overview/#upstream-object
           - text: Certificates
-            url: /api/runtime-groups-config/#certificate-object
+            url: /api/runtime-groups-config/overview/#certificate-object
           - text: CA Certificates
-            url: /api/runtime-groups-config/#ca-certificate-object
+            url: /api/runtime-groups-config/overview/#ca-certificate-object
           - text: SNIs
-            url: /api/runtime-groups-config/#sni-object
+            url: /api/runtime-groups-config/overview/#sni-object
           - text: Targets
-            url: /api/runtime-groups-config/#target-object
+            url: /api/runtime-groups-config/overview/#target-object
           - text: Vaults
-            url: /api/runtime-groups-config/#vaults-object
+            url: /api/runtime-groups-config/overview/#vaults-object
         - text: API Spec
-          url: https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf
+          url: /konnect/api/runtime-groups-configuration/latest/
           absolute_url: true
+          generate: false
+          target_blank: true
     - text: Portal Client API
-      items: 
-        - text: API Documentation
-          url: https://developer.konghq.com/spec/2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6/b4539157-4ced-4df5-affa-7d790baee356
-          absolute_url: true   
+      items:
+        - text: API Spec
+          url: /konnect/api/portal/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
     - text: Audit Logs API
       items:
-        - text: API Documentation
-          url: https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/
+        - text: API Spec
+          url: /konnect/api/audit-logs/latest/
           absolute_url: true
+          generate: false
+          target_blank: true
         - text: Audit Log Webhooks
           url: /api/audit-logs/webhook/
     - text: Mesh Manager API
@@ -322,6 +351,14 @@
         - text: Kong Mesh API Reference
           url: https://mink-beta--kongdocs.netlify.app/mesh/latest/reference/http-api/
           absolute_url: true
+    - text: API Products API
+      items:
+        - text: API Spec
+          url: /konnect/api/api-products/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
+
     - text: Reference
       items:
         - text: Filtering

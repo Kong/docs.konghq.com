@@ -1,680 +1,185 @@
-product: mesh
-release: 2.3.x
 generate: true
 assume_generated: true
-items:
-  - title: Introduction
-    icon: /assets/images/icons/documentation/icn-flag.svg
-    items:
-      - text: About service meshes
-        url: /introduction/what-is-a-service-mesh/
-        src: /.repos/kuma/app/_src/introduction/about-service-meshes
-      - text: Overview of Kong Mesh
-        url: /mesh/2.3.x/
-        absolute_url: true
-      - text: How Kong Mesh works
-        url: /introduction/how-kong-mesh-works/
-        src: /.repos/kuma/app/_src/introduction/how-kuma-works/
-      - text: Architecture
-        url: /introduction/architecture/
-        src: /.repos/kuma/app/_src/introduction/architecture/
-      - text: Stages of software availability
-        url: /availability-stages/
-      - text: Version support policy
-        url: /support-policy/
-      - text: Mesh Requirements
-        url: /introduction/mesh-requirements/
-        src: /.repos/kuma/app/_src/introduction/kuma-requirements/
-      - text: Release notes
-        url: /mesh/changelog
-        generate: false
-        absolute_url: true
-  - title: Getting Started
-    icon: /assets/images/icons/documentation/icn-quickstart-color.svg
-    url: /gettingstarted
-  - title: Kong Mesh in Production
-    icon: /assets/images/icons/documentation/icn-deployment-color.svg
-    items:
-      - text: Overview
-        url: /production/
-        src: /.repos/kuma/app/_src/production/
-      - text: Deployment topologies
-        items:
-          - text: Overview
-            url: /production/deployment/
-            src: /.repos/kuma/app/_src/production/deployment/
-          - text: Standalone deployment
-            url: /production/deployment/stand-alone/
-            src: /.repos/kuma/app/_src/production/deployment/stand-alone/
-          - text: Multi-zone deployment
-            url: /production/deployment/multi-zone/
-            src: /.repos/kuma/app/_src/production/deployment/multi-zone/
-          - text: Default ports
-            url: /production/deployment/networking/
-            src: /.repos/kuma/app/_src/production/deployment/networking/
-      - text: Install kumactl
-        url: /production/install-kumactl/
-        src: /.repos/kuma/app/_src/production/install-kumactl/
-      - text: Use Kong Mesh
-        url: /production/use-mesh/
-        src: /.repos/kuma/app/_src/production/use-kuma/
-      - text: Control plane deployment
-        items:
-          - text: Kong Mesh license
-            url: /production/cp-deployment/license/
-          - text: Deploy a standalone control plane
-            url: /production/cp-deployment/stand-alone/
-            src: /.repos/kuma/app/_src/production/cp-deployment/stand-alone/
-          - text: Deploy a multi-zone global control plane
-            url: /production/cp-deployment/multi-zone/
-            src: /.repos/kuma/app/_src/production/cp-deployment/multi-zone/
-          - text: Zone Ingress
-            url: /production/cp-deployment/zone-ingress/
-            src: /.repos/kuma/app/_src/production/cp-deployment/zone-ingress/
-          - text: Zone Egress
-            url: /production/cp-deployment/zoneegress/
-            src: /.repos/kuma/app/_src/production/cp-deployment/zoneegress/
-          - text: Configure zone proxy authentication
-            url: /production/cp-deployment/zoneproxy-auth/
-            src: /.repos/kuma/app/_src/production/cp-deployment/zoneproxy-auth/
-          - text: Control plane configuration reference
-            url: /generated/kuma-cp/
-            src: /.repos/kuma/app/_src/generated/kuma-cp/
-            generate: false
-      - text: Create multiple service meshes in a cluster
-        url: /production/mesh/
-        src: /.repos/kuma/app/_src/production/mesh/
-      - text: Data plane configuration
-        items:
-          - text: Data plane proxy
-            url: /production/dp-config/dpp/
-            src: /.repos/kuma/app/_src/production/dp-config/dpp/
-          - text: Configure the data plane on Kubernetes
-            url: /production/dp-config/dpp-on-kubernetes/
-            src: /.repos/kuma/app/_src/production/dp-config/dpp-on-kubernetes/
-          - text: Configure the data plane on Universal
-            url: /production/dp-config/dpp-on-universal/
-            src: /.repos/kuma/app/_src/production/dp-config/dpp-on-universal/
-          - text: Configure the Kong Mesh CNI
-            url: /production/dp-config/cni/
-            src: /.repos/kuma/app/_src/production/dp-config/cni/
-          - text: Configure transparent proxying
-            url: /production/dp-config/transparent-proxying/
-            src: /.repos/kuma/app/_src/production/dp-config/transparent-proxying/
-          - text: IPv6 support
-            url: /production/dp-config/ipv6/
-            src: /.repos/kuma/app/_src/production/dp-config/ipv6/
-      - text: Secure your deployment
-        items:
-          - text: Manage secrets
-            url: /production/secure-deployment/secrets/
-            src: /.repos/kuma/app/_src/production/secure-deployment/secrets/
-          - text: Kong Mesh API access control
-            url: /production/secure-deployment/api-access-control/
-            src: /.repos/kuma/app/_src/production/secure-deployment/api-access-control/
-          - text: Authentication with the API server
-            url: /production/secure-deployment/api-server-auth/
-            src: /.repos/kuma/app/_src/production/secure-deployment/api-server-auth/
-          - text: Authentication with the data plane proxy
-            url: /production/secure-deployment/dp-auth/
-            src: /.repos/kuma/app/_src/production/secure-deployment/dp-auth/
-          - text: Configure data plane proxy membership
-            url: /production/secure-deployment/dp-membership/
-            src: /.repos/kuma/app/_src/production/secure-deployment/dp-membership/
-          - text: Kong Mesh RBAC
-            url: /production/secure-deployment/rbac/
-          - text: FIPS support
-            url: /production/secure-deployment/fips-support/
-          - text: Secure access accross services
-            url: /production/secure-deployment/certificates/
-            src: /.repos/kuma/app/_src/production/secure-deployment/certificates/
-      - text: Kong Mesh user interface
-        url: /production/gui/
-        src: /.repos/kuma/app/_src/production/gui/
-      - text: Upgrades and tuning
-        items:
-          - text: Upgrade Kong Mesh
-            url: /production/upgrades-tuning/upgrades/
-            src: /.repos/kuma/app/_src/production/upgrades-tuning/upgrades/
-          - text: Performance fine-tuning
-            url: /production/upgrades-tuning/fine-tuning/
-            src: /.repos/kuma/app/_src/production/upgrades-tuning/fine-tuning/
-  - title: Deploy
-    icon: /assets/images/icons/documentation/icn-manager-color.svg
-    items:
-      - text: Explore Kong Mesh with the Kubernetes demo app
-        url: /quickstart/kubernetes/
-        src: /.repos/kuma/app/_src/quickstart/kubernetes/
-      - text: Explore Kong Mesh with the Universal demo app
-        url: /quickstart/universal/
-        src: /.repos/kuma/app/_src/quickstart/universal/
-  - title: Explore
-    icon: /assets/images/icons/documentation/icn-solution-guide.svg
-    items:
-      - text: Gateway
-        url: /explore/gateway/
-        src: /.repos/kuma/app/_src/explore/gateway/
-      - text: CLI
-        url: /explore/cli/
-        src: /.repos/kuma/app/_src/explore/cli/
-      - text: Observability
-        url: /explore/observability/
-        src: /.repos/kuma/app/_src/explore/observability/
-      - text: Inspect API
-        url: /explore/inspect-api/
-        src: /.repos/kuma/app/_src/explore/inspect-api/
-      - text: Kubernetes Gateway API
-        url: /explore/gateway-api/
-        src: /.repos/kuma/app/_src/explore/gateway-api/
-  - title: Networking
-    icon: /assets/images/icons/documentation/icn-brain-color.svg
-    items:
-      - text: Service Discovery
-        url: /networking/service-discovery/
-        src: /.repos/kuma/app/_src/networking/service-discovery/
-      - text: DNS
-        url: /networking/dns/
-        src: /.repos/kuma/app/_src/networking/dns/
-      - text: Non-mesh traffic
-        url: /networking/non-mesh-traffic/
-        src: /.repos/kuma/app/_src/networking/non-mesh-traffic/
-  - title: Monitor and Manage
-    icon: /assets/images/icons/konnect/icn-analytics-nav.svg
-    items:
-      - text: Dataplane Health
-        url: /documentation/health/
-        src: /.repos/kuma/app/_src/documentation/health/
-      - text: Control Plane Configuration
-        url: /documentation/configuration/
-        src: /.repos/kuma/app/_src/documentation/configuration/
-  - title: Policies
-    icon: /assets/images/icons/documentation/icn-documentation-small.svg
-    items:
-      - text: Introduction
-        url: /policies/
-      - text: General notes about Kong Mesh policies
-        url: /policies/general-notes-about-kong-mesh-policies/
-        src: /.repos/kuma/app/_src/policies/general-notes-about-kuma-policies/
-      - text: Applying Policies
-        url: /policies/applying-policies/
-        src: /.repos/kuma/app/_src/policies/applying-policies/
-      - text: How Kong Mesh chooses the right policy to apply
-        url: /policies/how-kong-mesh-chooses-the-right-policy-to-apply/
-        src: /.repos/kuma/app/_src/policies/how-kuma-chooses-the-right-policy-to-apply/
-      - text: Understanding TargetRef policies
-        url: /policies/targetref
-        src: /.repos/kuma/app/_src/policies/targetref/
-      - text: Protocol support in Kong Mesh
-        url: /policies/protocol-support-in-kong-mesh/
-        src: /.repos/kuma/app/_src/policies/protocol-support-in-kuma/
-      - text: Mutual TLS
-        url: /policies/mutual-tls/
-        src: /.repos/kuma/app/_src/policies/mutual-tls/
-      - text: Traffic Permissions
-        url: /policies/traffic-permissions/
-        src: /.repos/kuma/app/_src/policies/traffic-permissions/
-      - text: Traffic Route
-        url: /policies/traffic-route/
-        src: /.repos/kuma/app/_src/policies/traffic-route/
-      - text: Traffic Metrics
-        url: /policies/traffic-metrics/
-        src: /.repos/kuma/app/_src/policies/traffic-metrics/
-      - text: Traffic Trace
-        url: /policies/traffic-trace/
-        src: /.repos/kuma/app/_src/policies/traffic-trace/
-      - text: Traffic Log
-        url: /policies/traffic-log/
-        src: /.repos/kuma/app/_src/policies/traffic-log/
-      - text: Locality-aware Load Balancing
-        url: /policies/locality-aware/
-        src: /.repos/kuma/app/_src/policies/locality-aware/
-      - text: Fault Injection
-        url: /policies/fault-injection/
-        src: /.repos/kuma/app/_src/policies/fault-injection/
-      - text: Health Check
-        url: /policies/health-check/
-        src: /.repos/kuma/app/_src/policies/health-check/
-      - text: Circuit Breaker
-        url: /policies/circuit-breaker/
-        src: /.repos/kuma/app/_src/policies/circuit-breaker/
-      - text: External Service
-        url: /policies/external-services/
-        src: /.repos/kuma/app/_src/policies/external-services/
-      - text: Retry
-        url: /policies/retry/
-        src: /.repos/kuma/app/_src/policies/retry/
-      - text: Timeout
-        url: /policies/timeout/
-        src: /.repos/kuma/app/_src/policies/timeout/
-      - text: Rate Limit
-        url: /policies/rate-limit/
-        src: /.repos/kuma/app/_src/policies/rate-limit/
-      - text: Virtual Outbound
-        url: /policies/virtual-outbound/
-        src: /.repos/kuma/app/_src/policies/virtual-outbound/
-      - text: MeshGateway
-        url: /policies/mesh-gateway/
-        src: /.repos/kuma/app/_src/policies/mesh-gateway/
-      - text: MeshGatewayRoute
-        url: /policies/mesh-gateway-route/
-        src: /.repos/kuma/app/_src/policies/mesh-gateway-route/
-      - text: Service Health Probes
-        url: /policies/service-health-probes/
-        src: /.repos/kuma/app/_src/policies/service-health-probes/
-      - text: MeshAccessLog (Beta)
-        url: /policies/meshaccesslog/
-        src: /.repos/kuma/app/_src/policies/meshaccesslog/
-      - text: MeshCircuitBreaker (Beta)
-        url: /policies/meshcircuitbreaker/
-        src: /.repos/kuma/app/_src/policies/meshcircuitbreaker/
-      - text: MeshFaultInjection (Beta)
-        url: /policies/meshfaultinjection/
-        src: /.repos/kuma/app/_src/policies/meshfaultinjection/
-      - text: MeshGlobalRatelimit (beta)
-        url: /policies/meshglobalratelimit
-      - text: MeshHealthCheck (Beta)
-        url: /policies/meshhealthcheck/
-        src: /.repos/kuma/app/_src/policies/meshhealthcheck/
-      - text: MeshHTTPRoute (Beta)
-        url: /policies/meshhttproute/
-        src: /.repos/kuma/app/_src/policies/meshhttproute/
-      - text: MeshLoadBalancingStrategy (Beta)
-        url: /policies/meshloadbalancingstrategy/
-        src: /.repos/kuma/app/_src/policies/meshloadbalancingstrategy/
-      - text: MeshOPA (beta)
-        url: /policies/meshopa
-      - text: MeshProxyPatch (Beta)
-        url: /policies/meshproxypatch/
-        src: /.repos/kuma/app/_src/policies/meshproxypatch/
-      - text: MeshRateLimit (Beta)
-        url: /policies/meshratelimit/
-        src: /.repos/kuma/app/_src/policies/meshratelimit/
-      - text: MeshRetry (Beta)
-        url: /policies/meshretry/
-        src: /.repos/kuma/app/_src/policies/meshretry/
-      - text: MeshTCPRoute (Beta)
-        url: /policies/meshtcproute/
-        src: /.repos/kuma/app/_src/policies/meshtcproute/
-      - text: MeshTimeout (Beta)
-        url: /policies/meshtimeout/
-        src: /.repos/kuma/app/_src/policies/meshtimeout/
-      - text: MeshTrace (Beta)
-        url: /policies/meshtrace/
-        src: /.repos/kuma/app/_src/policies/meshtrace/
-      - text: MeshTrafficPermission (Beta)
-        url: /policies/meshtrafficpermission/
-        src: /.repos/kuma/app/_src/policies/meshtrafficpermission/
-  - title: Enterprise Features
-    icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
-    items:
-      - text: Overview
-        url: /features/
-      - text: HashiCorp Vault CA
-        url: /features/vault
-      - text: Amazon ACM Private CA
-        url: /features/acmpca
-      - text: cert-manager Private CA
-        url: /features/cert-manager
-      - text: OPA policy support
-        url: /features/opa
-      - text: MeshOPA (beta)
-        url: /policies/meshopa
-        generate: false
-      - text: MeshGlobalRatelimit (beta)
-        url: /policies/meshglobalratelimit
-        generate: false
-      - text: Multi-zone authentication
-        url: /features/kds-auth
-      - text: FIPS support
-        url: /production/secure-deployment/fips-support/
-        generate: false
-      - text: Certificate Authority rotation
-        url: /features/ca-rotation
-      - text: Role-Based Access Control
-        url: /production/secure-deployment/rbac/
-        generate: false
-      - text: UBI Images
-        url: /features/ubi-images
-      - text: Windows Support
-        url: /features/windows
-      - text: ECS Support
-        url: /installation/ecs
-      - text: Auditing
-        url: /features/access-audit
-  - title: Reference docs
-    icon: /assets/images/icons/documentation/icn-references-color.svg
-    items:
-      - text: HTTP API
-        url: /reference/http-api/
-        src: /.repos/kuma/app/_src/reference/http-api/
-      - text: Kubernetes annotations and labels
-        url: /reference/kubernetes-annotations/
-        src: /.repos/kuma/app/_src/reference/kubernetes-annotations/
-      - text: Kong Mesh data collection
-        url: /reference/data-collection/
-        src: /.repos/kuma/app/_src/reference/data-collection/
-      - text: Kuma-cp configuration reference
-        url: /generated/kuma-cp
-        src: /.repos/kuma/app/docs/2.1.x/generated/kuma-cp
-      - text: Envoy proxy template
-        url: /reference/proxy-template/
-        src: /.repos/kuma/app/_src/reference/proxy-template/
-      - text: Resources
-        items:
-          - text: Mesh
-            url: /generated/resources/other_mesh/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/other_mesh/
-          - text: CircuitBreaker
-            url: /generated/resources/policy_circuit-breaker/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_circuit-breaker/
-          - text: ExternalService
-            url: /generated/resources/policy_external-service/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_external-service/
-          - text: FaultInjection
-            url: /generated/resources/policy_fault-injection/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_fault-injection/
-          - text: HealthCheck
-            url: /generated/resources/policy_health-check/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_health-check/
-          - text: MeshGateway
-            url: /generated/resources/policy_meshgateway/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_meshgateway/
-          - text: MeshGatewayRoute
-            url: /generated/resources/policy_meshgatewayroute/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_meshgatewayroute/
-          - text: ProxyTemplate
-            url: /generated/resources/policy_proxy-template/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_proxy-template/
-          - text: RateLimit
-            url: /generated/resources/policy_rate-limit/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_rate-limit/
-          - text: Retry
-            url: /generated/resources/policy_retry/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_retry/
-          - text: Timeout
-            url: /generated/resources/policy_timeout/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_timeout/
-          - text: TrafficLog
-            url: /generated/resources/policy_traffic-log/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_traffic-log/
-          - text: TrafficPermission
-            url: /generated/resources/policy_traffic-permissions/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_traffic-permissions/
-          - text: TrafficRoute
-            url: /generated/resources/policy_traffic-route/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_traffic-route/
-          - text: TrafficTrace
-            url: /generated/resources/policy_traffic-trace/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_traffic-trace/
-          - text: VirtualOutbound
-            url: /generated/resources/policy_virtual-outbound/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_virtual-outbound/
-          - text: Dataplane
-            url: /generated/resources/proxy_dataplane/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/proxy_dataplane/
-          - text: ZoneEgress
-            url: /generated/resources/proxy_zoneegress/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/proxy_zoneegress/
-          - text: ZoneIngress
-            url: /generated/resources/proxy_zoneingress/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/proxy_zoneingress/
-      - text: Commands
-        items:
-          - text: kuma-cp
-            url: /generated/cmd/kuma-cp/kuma-cp/
-            src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kuma-cp/kuma-cp/
-          - text: kuma-dp
-            url: /generated/cmd/kuma-dp/kuma-dp/
-            src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kuma-dp/kuma-dp/
-          - text: kumactl
-            url: /generated/cmd/kumactl/kumactl/
-            src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl/
-  - title: Community
-    icon: /assets/images/icons/documentation/icn-references-color.svg
-    items:
-      - text: Open source License
-        url: /community/license/
-        src: /.repos/kuma/app/_src/community/license/
-      - text: Contribute to Kuma
-        url: https://kuma.io/community
-        absolute_url: true
+max_depth: 3
+inherit:
+  path: /.repos/kuma/app/_src
+  nav: ../_src/.repos/kuma/app/_data/docs_nav_kuma_2.3.x.yml
+  patches:
+    - path: [ Introduction ]
+      action: modify
+      icon: /assets/images/icons/documentation/icn-flag.svg
+    - path: [ Introduction, Overview of Kuma ]
+      text: Overview of Kong Mesh
+      url: /
+      src: null
+      action: modify
+    - path: [ Introduction, How Kuma works ]
+      text: How Kong Mesh works
+      url: /introduction/how-kong-mesh-works
+      action: modify
+      items: []
+    - path: [ Introduction, Kuma requirements ]
+      text: Mesh requirements
+      action: modify
+    - path: [ Introduction ]
+      text: Stages of software availability
+      url: /availability-stages/
+      action: insert
+      index: -3
+    - path: [ Introduction ]
+      text: Version support policy
+      url: /support-policy/
+      action: insert
+      index: -3
+    - path: [ Introduction, Release notes]
+      url: /mesh/changelog
+      src: /mesh/changelog
+      action: modify
+    - title: Getting Started
+      action: insert
+      index: 1
+      icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+      url: /gettingstarted
+    - path: [ Kuma in Production ]
+      action: modify
+      title: Kong Mesh in Production
+      icon: /assets/images/icons/documentation/icn-deployment-color.svg
+    - path: [ Kong Mesh in Production, Kuma user interface ]
+      action: modify
+      text: Kong Mesh user interface
+    - path: [ Kong Mesh in Production, Use Kuma ]
+      action: modify
+      text: Use Kong Mesh
+    - path: [ Kong Mesh in Production, Control plane deployment ]
+      action: insert
+      index: 0
+      text: Kong Mesh license
+      url: /production/cp-deployment/license
+    - path: [ Kong Mesh in Production, Secure your deployment, Kuma API access control ]
+      action: modify
+      text: Kong Mesh API access control
+    - path: [ Kong Mesh in Production, Secure your deployment ]
+      action: insert
+      index: -1
+      text: Kong Mesh RBAC
+      url: /features/rbac
+    - path: [ Kong Mesh in Production, Secure your deployment ]
+      action: insert
+      index: -1
+      text: FIPS support
+      url: /features/fips-support
+    - path: [ Kong Mesh in Production, Data plane configuration, Configure the Kuma CNI ]
+      action: modify
+      text: Configure the Kong Mesh CNI
+    - path: [ Kong Mesh in Production, Upgrades and tuning, Upgrade Kuma ]
+      action: modify
+      text: Upgrade Kong Mesh
+    - path: [ Deploy ]
+      action: modify
+      icon: /assets/images/icons/documentation/icn-manager-color.svg
+    - path: [ Deploy, Explore Kuma with the Kubernetes demo app ]
+      text: Explore Kong Mesh with the Kubernetes demo app
+      action: modify
+      items: []
+    - path: [ Deploy, Explore Kuma with the Universal demo app ]
+      text: Explore Kong Mesh with the Universal demo app
+      action: modify
+      items: []
+    - path: [ Explore ]
+      action: modify
+      icon: /assets/images/icons/documentation/icn-solution-guide.svg
+    - path: [ Networking ]
+      action: modify
+      icon: /assets/images/icons/documentation/icn-brain-color.svg
+    - path: [ Monitor & manage ]
+      action: modify
+      icon: /assets/images/icons/konnect/icn-analytics-nav.svg
+    - path: [ Policies ]
+      action: modify
+      icon: /assets/images/icons/documentation/icn-documentation-small.svg
+    - path: [ Policies, General notes about Kuma policies ]
+      text: General notes about Kong Mesh policies
+      url: /policies/general-notes-about-kong-mesh-policies
+      action: modify
+    - path: [ Policies, How Kuma chooses the right policy to apply ]
+      text: How Kong Mesh chooses the right policy to apply
+      action: modify
+      url: /policies/how-kong-mesh-chooses-the-right-policy-to-apply
+      items: []
+    - path: [ Policies, Protocol support in Kuma ]
+      text: Protocol support in Kong Mesh
+      action: modify
+      url: /policies/protocol-support-in-kong-mesh
+      items: []
+    - path: [ Policies ]
+      action: insert
+      index: -1
+      text: OPA policy
+      url: /features/opa
+      generate: false
+    - path: [ Policies ]
+      action: insert
+      index: -1
+      text: MeshOPA (beta)
+      url: /features/meshopa
+      generate: false
+    - path: [ Policies ]
+      action: insert
+      index: -1
+      text: MeshGlobalRateLimit (beta)
+      url: /features/meshglobalratelimit
+      generate: false
+    - title: Enterprise Features
+      action: insert
+      index: -3
+      icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
+      items:
+        - text: Overview
+          url: /features/
+        - text: HashiCorp Vault CA
+          url: /features/vault
+        - text: Amazon ACM Private CA
+          url: /features/acmpca
+        - text: cert-manager Private CA
+          url: /features/cert-manager
+        - text: OPA policy support
+          url: /features/opa
+        - text: MeshOPA (beta)
+          url: /features/meshopa
+        - text: Multi-zone authentication
+          url: /features/kds-auth
+        - text: FIPS support
+          url: /features/fips-support
+          generate: false
+        - text: Certificate Authority rotation
+          url: /features/ca-rotation
+        - text: Role-Based Access Control
+          url: /features/rbac
+          generate: false
+        - text: UBI Images
+          url: /features/ubi-images
+        - text: Windows Support
+          url: /features/windows
+        - text: ECS Support
+          url: /installation/ecs
+        - text: Auditing
+          url: /features/access-audit
+        - text: MeshGlobalRateLimit (beta)
+          url: /features/meshglobalratelimit
+    - path: [ Reference ]
+      action: modify
+      icon: /assets/images/icons/documentation/icn-references-color.svg
+    - path: [ Community ]
+      action: modify
+      icon: /assets/images/icons/documentation/icn-references-color.svg
+    - path: [ Community ]
+      action: delete
+      entries: [ License ]
+    - path: [ Community, Contribute to Kuma ]
+      action: modify
+      src: null
+      absolute_url: true
+      url: https://kuma.io/community
 unlisted:
-  # Kuma CP
-  - url: /generated/cmd/kuma-cp/kuma-cp_migrate/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kuma-cp/kuma-cp_migrate/
-  - url: /generated/cmd/kuma-cp/kuma-cp_migrate_up/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kuma-cp/kuma-cp_migrate_up/
-  - url: /generated/cmd/kuma-cp/kuma-cp_run/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kuma-cp/kuma-cp_run/
-  - url: /generated/cmd/kuma-cp/kuma-cp_version/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kuma-cp/kuma-cp_version/
-  - url: /generated/cmd/kuma-dp/kuma-dp_run/
-    # Kuma DP
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kuma-dp/kuma-dp_run/
-  - url: /generated/cmd/kuma-dp/kuma-dp_version/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kuma-dp/kuma-dp_version/
-  # kumactl
-  - url: /generated/cmd/kumactl/kumactl_apply/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_apply/
-  - url: /generated/cmd/kumactl/kumactl_completion/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_completion/
-  - url: /generated/cmd/kumactl/kumactl_completion_bash/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_completion_bash/
-  - url: /generated/cmd/kumactl/kumactl_completion_fish/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_completion_fish/
-  - url: /generated/cmd/kumactl/kumactl_completion_zsh/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_completion_zsh/
-  - url: /generated/cmd/kumactl/kumactl_config/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_config/
-  - url: /generated/cmd/kumactl/kumactl_config_control-planes/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_config_control-planes/
-  - url: /generated/cmd/kumactl/kumactl_config_control-planes_add/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_config_control-planes_add/
-  - url: /generated/cmd/kumactl/kumactl_config_control-planes_list/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_config_control-planes_list/
-  - url: /generated/cmd/kumactl/kumactl_config_control-planes_remove/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_config_control-planes_remove/
-  - url: /generated/cmd/kumactl/kumactl_config_control-planes_switch/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_config_control-planes_switch/
-  - url: /generated/cmd/kumactl/kumactl_config_view/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_config_view/
-  - url: /generated/cmd/kumactl/kumactl_delete/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_delete/
-  - url: /generated/cmd/kumactl/kumactl_generate/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_generate/
-  - url: /generated/cmd/kumactl/kumactl_generate_dataplane-token/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_generate_dataplane-token/
-  - url: /generated/cmd/kumactl/kumactl_generate_signing-key/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_generate_signing-key/
-  - url: /generated/cmd/kumactl/kumactl_generate_tls-certificate/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_generate_tls-certificate/
-  - url: /generated/cmd/kumactl/kumactl_generate_user-token/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_generate_user-token/
-  - url: /generated/cmd/kumactl/kumactl_generate_zone-ingress-token/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_generate_zone-ingress-token/
-  - url: /generated/cmd/kumactl/kumactl_generate_zone-token/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_generate_zone-token/
-  - url: /generated/cmd/kumactl/kumactl_get/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get/
-  - url: /generated/cmd/kumactl/kumactl_get_circuit-breaker/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_circuit-breaker/
-  - url: /generated/cmd/kumactl/kumactl_get_circuit-breakers/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_circuit-breakers/
-  - url: /generated/cmd/kumactl/kumactl_get_dataplane/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_dataplane/
-  - url: /generated/cmd/kumactl/kumactl_get_dataplanes/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_dataplanes/
-  - url: /generated/cmd/kumactl/kumactl_get_external-service/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_external-service/
-  - url: /generated/cmd/kumactl/kumactl_get_external-services/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_external-services/
-  - url: /generated/cmd/kumactl/kumactl_get_fault-injection/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_fault-injection/
-  - url: /generated/cmd/kumactl/kumactl_get_fault-injections/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_fault-injections/
-  - url: /generated/cmd/kumactl/kumactl_get_global-secret/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_global-secret/
-  - url: /generated/cmd/kumactl/kumactl_get_global-secrets/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_global-secrets/
-  - url: /generated/cmd/kumactl/kumactl_get_healthcheck/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_healthcheck/
-  - url: /generated/cmd/kumactl/kumactl_get_healthchecks/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_healthchecks/
-  - url: /generated/cmd/kumactl/kumactl_get_mesh/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_mesh/
-  - url: /generated/cmd/kumactl/kumactl_get_meshaccesslog/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshaccesslog/
-  - url: /generated/cmd/kumactl/kumactl_get_meshaccesslogs/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshaccesslogs/
-  - url: /generated/cmd/kumactl/kumactl_get_meshes/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshes/
-  - url: /generated/cmd/kumactl/kumactl_get_meshgateway/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshgateway/
-  - url: /generated/cmd/kumactl/kumactl_get_meshgatewayroute/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshgatewayroute/
-  - url: /generated/cmd/kumactl/kumactl_get_meshgatewayroutes/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshgatewayroutes/
-  - url: /generated/cmd/kumactl/kumactl_get_meshgateways/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshgateways/
-  - url: /generated/cmd/kumactl/kumactl_get_meshtrace/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshtrace/
-  - url: /generated/cmd/kumactl/kumactl_get_meshtraces/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshtraces/
-  - url: /generated/cmd/kumactl/kumactl_get_meshtrafficpermission/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshtrafficpermission/
-  - url: /generated/cmd/kumactl/kumactl_get_meshtrafficpermissions/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshtrafficpermissions/
-  - url: /generated/cmd/kumactl/kumactl_get_proxytemplate/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_proxytemplate/
-  - url: /generated/cmd/kumactl/kumactl_get_proxytemplates/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_proxytemplates/
-  - url: /generated/cmd/kumactl/kumactl_get_rate-limit/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_rate-limit/
-  - url: /generated/cmd/kumactl/kumactl_get_rate-limits/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_rate-limits/
-  - url: /generated/cmd/kumactl/kumactl_get_retries/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_retries/
-  - url: /generated/cmd/kumactl/kumactl_get_retry/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_retry/
-  - url: /generated/cmd/kumactl/kumactl_get_secret/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_secret/
-  - url: /generated/cmd/kumactl/kumactl_get_secrets/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_secrets/
-  - url: /generated/cmd/kumactl/kumactl_get_timeout/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_timeout/
-  - url: /generated/cmd/kumactl/kumactl_get_timeouts/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_timeouts/
-  - url: /generated/cmd/kumactl/kumactl_get_traffic-log/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_traffic-log/
-  - url: /generated/cmd/kumactl/kumactl_get_traffic-logs/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_traffic-logs/
-  - url: /generated/cmd/kumactl/kumactl_get_traffic-permission/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_traffic-permission/
-  - url: /generated/cmd/kumactl/kumactl_get_traffic-permissions/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_traffic-permissions/
-  - url: /generated/cmd/kumactl/kumactl_get_traffic-route/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_traffic-route/
-  - url: /generated/cmd/kumactl/kumactl_get_traffic-routes/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_traffic-routes/
-  - url: /generated/cmd/kumactl/kumactl_get_traffic-trace/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_traffic-trace/
-  - url: /generated/cmd/kumactl/kumactl_get_traffic-traces/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_traffic-traces/
-  - url: /generated/cmd/kumactl/kumactl_get_virtual-outbound/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_virtual-outbound/
-  - url: /generated/cmd/kumactl/kumactl_get_virtual-outbounds/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_virtual-outbounds/
-  - url: /generated/cmd/kumactl/kumactl_get_zone/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_zone/
-  - url: /generated/cmd/kumactl/kumactl_get_zone-ingress/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_zone-ingress/
-  - url: /generated/cmd/kumactl/kumactl_get_zone-ingresses/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_zone-ingresses/
-  - url: /generated/cmd/kumactl/kumactl_get_zoneegress/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_zoneegress/
-  - url: /generated/cmd/kumactl/kumactl_get_zoneegresses/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_zoneegresses/
-  - url: /generated/cmd/kumactl/kumactl_get_zones/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_zones/
-  - url: /generated/cmd/kumactl/kumactl_inspect/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect/
-  - url: /generated/cmd/kumactl/kumactl_inspect_circuit-breaker/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_circuit-breaker/
-  - url: /generated/cmd/kumactl/kumactl_inspect_dataplane/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_dataplane/
-  - url: /generated/cmd/kumactl/kumactl_inspect_dataplanes/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_dataplanes/
-  - url: /generated/cmd/kumactl/kumactl_inspect_fault-injection/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_fault-injection/
-  - url: /generated/cmd/kumactl/kumactl_inspect_healthcheck/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_healthcheck/
-  - url: /generated/cmd/kumactl/kumactl_inspect_meshaccesslog/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_meshaccesslog/
-  - url: /generated/cmd/kumactl/kumactl_inspect_meshes/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_meshes/
-  - url: /generated/cmd/kumactl/kumactl_inspect_meshgateway/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_meshgateway/
-  - url: /generated/cmd/kumactl/kumactl_inspect_meshtrace/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_meshtrace/
-  - url: /generated/cmd/kumactl/kumactl_inspect_meshtrafficpermission/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_meshtrafficpermission/
-  - url: /generated/cmd/kumactl/kumactl_inspect_proxytemplate/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_proxytemplate/
-  - url: /generated/cmd/kumactl/kumactl_inspect_rate-limit/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_rate-limit/
-  - url: /generated/cmd/kumactl/kumactl_inspect_retry/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_retry/
-  - url: /generated/cmd/kumactl/kumactl_inspect_services/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_services/
-  - url: /generated/cmd/kumactl/kumactl_inspect_timeout/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_timeout/
-  - url: /generated/cmd/kumactl/kumactl_inspect_traffic-log/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_traffic-log/
-  - url: /generated/cmd/kumactl/kumactl_inspect_traffic-permission/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_traffic-permission/
-  - url: /generated/cmd/kumactl/kumactl_inspect_traffic-route/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_traffic-route/
-  - url: /generated/cmd/kumactl/kumactl_inspect_traffic-trace/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_traffic-trace/
-  - url: /generated/cmd/kumactl/kumactl_inspect_zone-ingresses/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_zone-ingresses/
-  - url: /generated/cmd/kumactl/kumactl_inspect_zoneegress/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_zoneegress/
-  - url: /generated/cmd/kumactl/kumactl_inspect_zoneegresses/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_zoneegresses/
-  - url: /generated/cmd/kumactl/kumactl_inspect_zoneingress/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_zoneingress/
-  - url: /generated/cmd/kumactl/kumactl_inspect_zones/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_zones/
-  - url: /generated/cmd/kumactl/kumactl_install/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install/
-  - url: /generated/cmd/kumactl/kumactl_install_control-plane/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_control-plane/
-  - url: /generated/cmd/kumactl/kumactl_install_crds/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_crds/
-  - url: /generated/cmd/kumactl/kumactl_install_demo/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_demo/
-  - url: /generated/cmd/kumactl/kumactl_install_gateway/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_gateway/
-  - url: /generated/cmd/kumactl/kumactl_install_gateway_kong-enterprise/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_gateway_kong-enterprise/
-  - url: /generated/cmd/kumactl/kumactl_install_gateway_kong/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_gateway_kong/
-  - url: /generated/cmd/kumactl/kumactl_install_logging/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_logging/
-  - url: /generated/cmd/kumactl/kumactl_install_metrics/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_metrics/
-  - url: /generated/cmd/kumactl/kumactl_install_observability/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_observability/
-  - url: /generated/cmd/kumactl/kumactl_install_tracing/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_tracing/
-  - url: /generated/cmd/kumactl/kumactl_install_transparent-proxy/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_transparent-proxy/
-  - url: /generated/cmd/kumactl/kumactl_uninstall/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_uninstall/
-  - url: /generated/cmd/kumactl/kumactl_uninstall_ebpf/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_uninstall_ebpf/
-  - url: /generated/cmd/kumactl/kumactl_uninstall_transparent-proxy/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_uninstall_transparent-proxy/
-  - url: /generated/cmd/kumactl/kumactl_version/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_version/
+  - url: /install
+    src: /mesh/install

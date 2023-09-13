@@ -176,3 +176,13 @@ Update the value of should_sample for all spans
 * **should_sample** (`bool`):  value for the sample parameter
 
 {% endif_version %}
+
+{% if_version gte:3.4.x %}
+## kong.tracing:set_should_sample(should_sample)
+
+Update the value of should_sample for all spans
+
+**Parameters**
+
+* **should_sample** (`bool`):  value for the sample parameter
+{% endif_version %}

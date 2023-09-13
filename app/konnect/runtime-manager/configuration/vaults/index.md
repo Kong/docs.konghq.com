@@ -40,7 +40,7 @@ Vaults have several use cases:
 * Storing secrets securely
 * Managing access to secrets with fine-grained policies
 * Applying internal security policies
-* Automating secret rotation
+* Automating secret rotation without restarting the gateway
 * Auditing secrets usage
 * Encryption of secrets at rest
 

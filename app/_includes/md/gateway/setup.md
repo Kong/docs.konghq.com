@@ -26,17 +26,15 @@ See the data store section of the [Configuration Property Reference](/gateway/{{
 {{site.base_gateway}} supports both [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/)
 and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its data store.
 
-The following instructions use PostgreSQL as a database to store Kong configuration.
-
 {% endif_version %}
 
-{% if_version gte:2.7.x %}
-
-The following instructions use [PostgreSQL](http://www.postgresql.org/) as a database to store Kong configuration.
+{% if_version gte:2.7.x lte:3.3.x %}
 
 {% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
 
 {% endif_version %}
+
+The following instructions use [PostgreSQL](http://www.postgresql.org/) as a database to store Kong configuration.
 
 1. Provision a database and a user before starting {{site.base_gateway}}:
 
@@ -179,8 +177,13 @@ $ scp license.json /etc/kong/license.json
 {% endnavtab %}
 {% endnavtabs %}
 
+{% if_version lte:3.3.x %}
 ### Enable Kong Manager
 {:.badge .free}
+{% endif_version %}
+{% if_version gte:3.4.x %}
+### Enable Kong Manager
+{% endif_version %}
 
 {% if_version gte:3.0.x %}
 
@@ -188,7 +191,7 @@ If you're running {{site.base_gateway}} with a database (either in traditional
 or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
 (GUI), Kong Manager.
 
-See the [Kong Manager setup guide](/gateway/{{page.kong_version}}/kong-manager/enable/) for more information.
+See the [Kong Manager setup guide](/gateway/{{page.kong_version}}/kong-manager/enable/){% if_version gte:3.4.x %} or the [Kong Manager OSS guide](/gateway/{{page.kong_version}}/kong-manager-oss){% endif_version %} for more information.
 
 {% endif_version %}
 {% if_version lte:2.8.x %}

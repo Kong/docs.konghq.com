@@ -49,6 +49,30 @@ RSpec.describe PluginSingleSource::Plugin::Schemas::Kong do
     end
   end
 
+  describe '#enable_on_consumer_group?' do
+    context 'when the plugin has { consumer = typedefs.no_consumer_group } set' do
+      let(:plugin_name) { 'acl' }
+      let(:version) { '3.4.x' }
+
+      it { expect(subject.enable_on_consumer_group?).to eq(false) }
+    end
+
+    context 'when it does not have { consumer = typedefs.no_consumer_group } set' do
+      let(:plugin_name) { 'request-transformer' }
+
+      context 'for versions < 3.4.x' do
+        it 'always returns false' do
+          expect(subject.enable_on_consumer_group?).to eq(false)
+        end
+      end
+
+      context 'for versions >= 3.4' do
+        let(:version) { '3.4.x' }
+        it { expect(subject.enable_on_consumer_group?).to eq(true) }
+      end
+    end
+  end
+
   describe '#enable_on_service?' do
     context 'when the plugin has { service = typedefs.no_service } set' do
       let(:plugin_name) { 'acme' }
@@ -87,14 +111,6 @@ RSpec.describe PluginSingleSource::Plugin::Schemas::Kong do
   describe '#file_path' do
     it 'returns the path to the corresponding schema file' do
       expect(subject.file_path).to eq('app/_src/.repos/kong-plugins/schemas/acme/3.1.x.json')
-    end
-
-    context 'special case - serverless-functions' do
-      let(:plugin_name) { 'serverless-functions' }
-
-      it 'returns the path to pre-function\'s schema' do
-        expect(subject.file_path).to eq('app/_src/.repos/kong-plugins/schemas/pre-function/3.1.x.json')
-      end
     end
   end
 end

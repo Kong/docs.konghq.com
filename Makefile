@@ -9,20 +9,21 @@ ifndef RUBY_MATCH
 endif
 
 install-prerequisites:
-	npm install -g gulp netlify-cli
+	npm install -g netlify-cli
 
 # Installs npm packages and gems.
 install: ruby-version-check
 	npm ci
 	bundle install
 	git submodule update --init
+	@if [ ! -f .env ]; then cp .env.example .env; fi
 
-# Using local dependencies, starts a doc site instance on http://localhost:3000.
+# Using local dependencies, starts a doc site instance on http://localhost:4000.
 run: ruby-version-check
-	./node_modules/.bin/gulp
+	netlify dev
 
 build: ruby-version-check
-	./node_modules/.bin/gulp build
+	exe/build
 
 # Cleans up all temp files in the build.
 # Run `make clean` locally whenever you're updating dependencies, or to help
@@ -31,6 +32,7 @@ clean:
 	-rm -rf dist
 	-rm -rf app/.jekyll-cache
 	-rm -rf app/.jekyll-metadata
+	-rm -rf .jekyll-cache/vite
 
 # Runs tests
 test:

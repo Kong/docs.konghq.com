@@ -19,7 +19,7 @@ You can configure your vault backend with query arguments.
 For example, the following query uses an option called `prefix` with the value `SECURE_`:
 
 ```bash
-{vault://env/my-secret-config-value?prefix=SECURE_}
+{vault://env/secret-config-value?prefix=SECURE_}
 ```
 
 For more information on available configuration options,
@@ -44,7 +44,7 @@ The Vault entity can only be used once the database is initialized. Secrets for 
 Create a Vault entity:
 
 ```bash
-curl -i -X PUT http://HOSTNAME:8001/vaults/my-env-vault-1  \
+curl -i -X PUT http://HOSTNAME:8001/vaults/env-vault-1  \
   --data name=env \
   --data description='ENV vault for secrets' \
   --data config.prefix=SECRET_
@@ -61,7 +61,7 @@ Result:
     "description": "ENV vault for secrets",
     "id": "684ff5ea-7f65-4377-913b-880857f39251",
     "name": "env",
-    "prefix": "my-env-vault-1",
+    "prefix": "env-vault-1",
     "tags": null,
     "updated_at": 1644929952
 }
@@ -72,7 +72,7 @@ Config options depend on the associated [backend](/gateway/{{page.kong_version}}
 This lets you drop the configuration from environment variables and query arguments and use the entity name in the reference:
 
 ```bash
-{vault://my-env-vault/my-secret-config-value}
+{vault://env-vault/secret-config-value}
 ```
 
 ## Vaults CLI
@@ -105,10 +105,10 @@ You can configure a vault backend with decK. For example:
 ```yaml
 vaults:
 - config:
-    prefix: MY_SECRET_
+    prefix: SECRET_
   description: ENV vault for secrets
   name: env
-  prefix: my-env-vault
+  prefix: env-vault
 ```
 
 For more information on configuring vaults and using secret references in declarative
@@ -122,4 +122,16 @@ Parameter | UI field name | Description
 ----------|---------------|------------
 `vaults.description` *optional* | Description | An optional description for your vault.
 `vaults.name` | N/A | The type of vault. Accepts one of: `env`, `gcp`, `aws`, or `hcv`.
-`vaults.prefix` | Prefix | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://my-env-vault/<some-secret>}`.
+`vaults.prefix` | Prefix | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://env-vault/<some-secret>}`.
+
+Most of the vaults also support secret rotation by using TTLs:
+
+Parameter | Field name | Description
+----------|------------|------------
+`vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the vault when it's cached. The special value of 0 means "no rotation" and it's the default. When using non-zero values, it is recommended that they're at least 1 minute.
+`vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a vault miss (no secret). Negatively cached secrets will remain valid until `neg_ttl` is reached. After this, Kong will attempt to refresh the secret again. The default value for `neg_ttl` is 0, which means no negative caching occurs.
+`vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for how long secrets will remain in use after they are expired (`config.ttl` is over). This is useful when a vault becomes unreachable, or when a secret is deleted from the Vault and isn't replaced immediately. On this both cases, the Gateway will keep trying to refresh the secret for `resurrect_ttl` seconds. After that, it will stop trying to refresh. We recommend assigning a sufficiently high value to this configuration option to ensure a seamless transition in case there are unexpected issues with the Vault. The default value for `resurrect_ttl` is 1e8 seconds, which is about 3 years.
+
+{% if_version gte:3.4.x %}
+[Read more about secrets rotation](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/secrets-rotation/).
+{% endif_version %}

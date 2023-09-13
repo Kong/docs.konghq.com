@@ -142,17 +142,10 @@
   }
 
   &#plugin-toc {
-    padding: 35px 20px 0 15px;
-    width: 250px;
-    top: 75px;
-
     @media screen and (min-width: 1101px) {
       &.collapsed {
         width: 50px;
       }
-    }
-    .collapse-toc, .expand-toc {
-      top: 0;
     }
 
     // "On this page" title
@@ -163,22 +156,6 @@
         font-weight: 600;
         letter-spacing: 0.5px;
         padding-left: 0px;
-      }
-    }
-
-    .github-links {
-      margin-top: 0.2rem;
-      margin-top: 0.2rem;
-
-      a,
-      i {
-        &:hover,
-        &:focus {
-          opacity: 0.6;
-        }
-      }
-      i {
-        color: #aaa;
       }
     }
 
@@ -311,7 +288,8 @@
     border: none;
     border-radius: 4px;
     margin-top: 20px;
-    .font-source-sans();
+    margin-bottom: 15px;
+    font-family: 'Roboto', sans-serif;
   }
 }
 
@@ -331,13 +309,8 @@ table {
 }
 
 .hub {
-  .sidebar-toggle {
-    background: center no-repeat url(/assets/images/icons/documentation/hub/icn-frame.svg);
-    margin: 0;
-  }
-
-  .docs-toc {
-    padding-top: 0 !important;
+  .page-content-container {
+    padding-top: 0px;
   }
 
   .docs-sidebar {
@@ -353,10 +326,6 @@ table {
         display: none;
       }
     }
-  }
-
-  .page-content-container {
-    margin-top: 0 !important;
   }
 
   .content {
@@ -378,225 +347,11 @@ table {
       font-size: 13px;
     }
   }
-
-  &--header-background {
-    position: absolute;
-    width: 100%;
-    height: 124px;
-    left: 0;
-    top: 58px;
-    z-index: -1;
-    background: linear-gradient(180deg, #001740 -5.13%, #062D73 54.03%, #073382 100%);
-  }
-
-  .hub-page-header {
-    display: flex;
-    padding: 24px 32px;
-    flex-direction: column;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    align-items: center;
-    margin-top: 35px;
-
-    &--nav {
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-      padding: 24px 0;
-      height: 24px;
-
-      .breadcrumbs {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-
-        @media (max-width: 480px) {
-          display: none;
-        }
-
-        .breadcrumb-item {
-          text-transform: capitalize;
-          display: flex;
-          align-items: center;
-          font-size: inherit;
-          color: white;
-
-          &:last-of-type {
-            font-weight: inherit;
-          }
-
-          &:after {
-            font-size: 12px;
-            padding: 0 4px 0 10px;
-          }
-
-          a {
-            display: flex;
-            color: white;
-
-            &:hover {
-              cursor: pointer;
-              transition: opacity 0.2s ease;
-              opacity: 0.7;
-            }
-          }
-
-          img {
-            width: 14px;
-            height: 14px;
-            background: none;
-          }
-        }
-      }
-
-      .github-links {
-        display: flex;
-        text-align: right;
-        gap: 24px;
-
-        @media (max-width: 480px) {
-          gap: 15px;
-        }
-
-        &--edit, &--issues {
-          display: flex;
-          align-items: center;
-        }
-
-        a {
-          display: flex;
-          color: white;
-
-          &:hover {
-            transition: opacity 0.2s ease;
-            opacity: 0.7;
-          }
-        }
-
-        img {
-          width: 16px;
-          margin-right: 8px;
-        }
-      }
-    }
-
-    &--info {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      padding: 24px;
-      width: 100%;
-      gap: 16px;
-      background: #FFFFFF;
-      box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.05);
-      border-radius: 8px;
-      height: 100%;
-      flex-wrap: wrap;
-
-      &-icon {
-        display: flex;
-        gap: 16px;
-
-        @media (max-width: 480px) {
-          display: none;
-        }
-
-        img {
-          display: flex;
-          align-self: center;
-          max-width: 64px;
-        }
-      }
-
-      &-meta {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 0;
-        height: 100%;
-        flex-grow: 4;
-        gap: 12px;
-
-        @media (max-width: 480px) {
-          width: 100%;
-          gap: 10px;
-        }
-
-        h1 {
-          font-weight: 500;
-          font-size: 28px;
-          line-height: 28px;
-          margin: 0;
-
-          @media (max-width: 480px) {
-            font-size: 24px;
-            line-height: 24px;
-          }
-        }
-
-        .meta--title {
-          display: flex;
-          justify-content: space-between;
-
-          @media (max-width: 480px) {
-            flex-direction: column;
-            gap: 10px;
-          }
-        }
-
-        .meta--content {
-          display: flex;
-          align-items: center;
-          align-self: stretch;
-          flex-grow: 0;
-          flex: none;
-
-          @media (max-width: 480px) {
-            flex-direction: column;
-            gap: 10px;
-          }
-
-          &-publisher {
-            height: 20px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 12px;
-
-            span {
-              font-weight: 500;
-              font-size: 12px;
-              line-height: 12px;
-              display: flex;
-              align-items: center;
-              text-align: center;
-              padding: 4px 12px 4px 0px;
-            }
-          }
-
-          &-badges {
-            height: 20px;
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-
-            @media (max-width: 480px) {
-              gap: 5px;
-              justify-content: space-between;
-            }
-          }
-        }
-      }
-    }
-  }
 }
 
 .fields {
   padding-left: 0;
-  font-size: 16px;
+  font-size: 15px;
 
   .field {
     list-style: none;
@@ -648,7 +403,6 @@ table {
 
     &-description-and-children {
       margin-left: 15px;
-      font-size: initial;
     }
 
     &-description {

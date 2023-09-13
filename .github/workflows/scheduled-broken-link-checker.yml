@@ -3,6 +3,10 @@ on:
   workflow_dispatch:
   schedule:
   - cron: '0 0 * * 0'
+
+env:
+  VITE_PORTAL_API_URL: ${{ vars.VITE_PORTAL_API_URL }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,6 +32,8 @@ jobs:
         run: bundle config path ${{ github.workspace }}/vendor/bundle
       - name: Bundle Install
         run: bundle install --jobs 4 --retry 3
+      - name: Install foreman
+        run: gem install foreman
 
       # Configure Node to build assets
       - uses: actions/setup-node@v3
@@ -47,7 +53,7 @@ jobs:
       - name: Build Docs
         run: |
           npm ci
-          ./node_modules/.bin/gulp build
+          exe/build
 
       - name: Run site
         run: |

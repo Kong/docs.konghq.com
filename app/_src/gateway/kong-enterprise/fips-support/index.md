@@ -53,5 +53,8 @@ The following table explains where cryptographic algorithms are used for non-cry
 FIPS 140-2 only mentioned SSL server, which is already supported in {{site.base_gateway}} FIPS 3.0. FIPS specification isn't designated for SSL clients, so there isn't specific handling of these in {{site.base_gateway}}.
 
 This includes:
+* Using Lua to talk in HTTPS and PostgreSQL SSL
+{% if_version lte:3.3.x %}
 * Using Lua to talk in HTTPS, PostgreSQL SSL, and Cassandra SSL
+{% endif_version %}
 * Using an upstream that proxies in HTTPS

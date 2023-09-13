@@ -17,7 +17,7 @@ body:
     attributes:
       label: Where is the problem?
       description: Link to the affected page(s) or provide name(s) of elements
-      placeholder: e.g. left side navigation on https://docs.konghq.com/enterprise/
+      placeholder: e.g. left side navigation on https://docs.konghq.com/gateway/
     validations:
       required: true
   - type: textarea

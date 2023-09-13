@@ -54,14 +54,39 @@ Kong receives the payload and extracts the `"username"` value of `"john"` for th
 `{vault://hcv/pg/username}`.
 <!-- vale on -->
 
+If you have a single value secret with identifier `pg/username`, you need to add `/` as a suffix
+to a reference so that it is properly sent to the vault API:
+
+```
+{vault://hcv/pg/username/}
+```
+
 ## What can be stored as a secret?
 
 Most of the [Kong configuration](/gateway/{{page.kong_version}}/reference/configuration/) values
 can be stored as a secret, such as [`pg_user`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings) and
 [`pg_password`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings).
 
+{% if_version gte:3.1.x %}
+
+You can even store the default certificates in vaults, e.g.:
+
+```bash
+SSL_CERT=$(cat cluster.crt) \
+SSL_CERT_KEY=$(cat cluster.key) \
+KONG_SSL_CERT={vault://env/ssl-cert} \
+KONG_SSL_CERT_KEY={vault://env/ssl-cert-key} \
+kong prepare
+```
+
+{% endif_version %}
+
+{% if_version lte:3.0.x %}
+
 {:.note}
 > **Limitation:** {{site.base_gateway}} doesn't currently support storing certificate key content into vaults or environment variables for `kong.conf` settings that use file paths. For example, [ssl_cert_key](/gateway/{{page.kong_version}}/reference/configuration/#ssl_cert_key) configures a certificate key `file path` which can't be stored as a reference.
+
+{% endif_version %}
 
 The [Kong license](/gateway/{{page.kong_version}}/licenses/), usually configured with
 a `KONG_LICENSE_DATA` environment variable, can be stored as a secret.
@@ -94,6 +119,7 @@ for more information about each option.
 
 For further information on secrets management, see the following topics:
 * [Get started with secrets management](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/getting-started/)
+* [Secrets rotation](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/secrets-rotation/)
 * [Backends overview](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/)
 * [Reference format](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/reference-format/)
 * [Advanced usage](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/advanced-usage/)

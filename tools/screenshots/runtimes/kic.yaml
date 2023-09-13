@@ -1,0 +1,7 @@
+- output: ../../app/_assets/images/docs/konnect/konnect-runtime-instance-kic.png
+  url: https://cloud.konghq.com/us/runtime-manager/684e4e94-ecce-4310-b4fb-9cb827565c63/runtime-instances
+  wait: 4000
+  width: 1920
+  height: 1080
+  javascript: |
+    zoomPercentage(-5);

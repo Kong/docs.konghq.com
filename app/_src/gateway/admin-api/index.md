@@ -740,16 +740,100 @@ key_set_data: |
         "updated_at": 1422386534
     }],
 
+filter_chain_body: |
+    Attributes | Description
+    ---:| ---
+    `name` |  The name of the filter chain.
+    `enabled` | Whether the filter chain is applied. Default: `true`.
+    `route`<br>*optional* |  The route to which this chain is applied. A filter chain must be applied to either a single route or a single service. Default: `null`. With form-encoded, the notation is `route.id=<route id>` or `route.name=<route name>`. With JSON, use "`"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
+    `service`<br>*optional* |  The service to which this chain is applied. A filter chain must be applied to either a single route or a single service. Default: `null`. With form-encoded, the notation is `service.id=<service id>` or `service.name=<service name>`. With JSON, use "`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
+    `filters` |  An array of filter definitions. Each filter is an object containing a mandatory `name`, an optional `config` and a boolean `enabled` setting.
+    `tags`<br>*optional* |  An optional set of strings associated with the filter chain for grouping and filtering.
+
+filter_chain_json: |
+    {
+        "id": "ce44eef5-41ed-47f6-baab-f725cecf98c7",
+        "name": "my-chain",
+        "created_at": 1422386534,
+        "updated_at": 1422386534,
+        "enabled": true,
+        "route": null,
+        "service": "20487393-41ed-47f6-93a8-3407cade2002",,
+        "filters": [
+            {
+                "name": "go-rate-limiting",
+                "enabled": true,
+                "config": "{ \"minute\": 30 }"
+            },
+            {
+                "name": "rust-response-transformer",
+                "enabled": true,
+                "config": "{ \"remove_header\": \"X-Example\" }"
+            }
+        ],
+        "tags": ["my-tag"]
+    }
+
+filter_chain_data: |
+    "data": [{
+        "id": "ce44eef5-41ed-47f6-baab-f725cecf98c7",
+        "name": "my-chain",
+        "created_at": 1422386534,
+        "updated_at": 1422386534,
+        "enabled": true,
+        "route": null,
+        "service": "20487393-41ed-47f6-93a8-3407cade2002",,
+        "filters": [
+            {
+                "name": "go-rate-limiting",
+                "enabled": true,
+                "config": "{ \"minute\": 30 }"
+            },
+            {
+                "name": "rust-response-transformer",
+                "enabled": true,
+                "config": "{ \"remove_header\": \"X-Example\" }"
+            }
+        ],
+        "tags": ["my-tag"]
+    }]
+
+filters_data:
+    "filters": [
+        {
+            "config": "{\"minute\": 3}",
+            "enabled": true,
+            "filter_chain": {
+                "id": "0385abc3-f8a7-505b-aeec-9375a298d340",
+                "name": null
+            },
+            "from": "service",
+            "name": "go-rate-limiting"
+        },
+        {
+            "config": "{\"remove_header\": \"X-Example\"}",
+            "enabled": true,
+            "filter_chain": {
+                "id": "d8e9a640-f8a7-505b-aeec-e657383940d6",
+                "name": null
+            },
+            "from": "route",
+            "name": "rust-response-transformer"
+        }
+    ]
+
+
+
 
 ---
 
 {:.note .no-icon }
 > <span class="badge beta"></span> **Kong Gateway API specs now available!**
 > 
-| Spec | Developer portal link | Insomnia link |
-|------|-----------------------|---------------|
-| Enterprise beta API spec|[Developer Portal](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60)   | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Enterprise%20beta%20API&uri=https%3A%2F%2Fgithub.com%2FKong%2Fdocs.konghq.com%2Fblob%2Fmain%2Fapi-specs%2FGateway-EE%2Fjson%2Fkong-ee-33.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>  |
-|  Open source beta API spec | [Developer Portal](https://developer.konghq.com/spec/680541e5-de6e-46e5-b43d-0bd1b2369453/e2a0ef29-573d-4fc4-86df-216c417f4aa9)  | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Admin%20API%20Opensource&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-OSS%2Fjson%2Fkong-oss-33.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
+| Spec | Insomnia link |
+|-------|---------------|
+| [Enterprise beta API spec](/gateway/api/admin-ee/latest/) |<a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Enterprise%203.4&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-EE%2F3.4%2Fkong-ee-3.4.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>  |
+|  [Open source beta API spec](/gateway/api/admin-oss/latest/) |  <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Open%20Source%203.4&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-OSS%2F3.4%2Fkong-oss-3.4.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
 
 
 <!-- vale off -->
@@ -818,8 +902,8 @@ curl -i -X POST http://https://us.api.konghq.com/v2/runtime-groups/{runtime_grou
 
 * [Authentication](/konnect/api/)
 * [Kong Gateway API](/gateway/latest/admin-api/)
-* [Identity Management API](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce)
-* [Runtime Groups API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/)
+* [Identity Management API](/konnect/api/identity-management/v2/)
+* [Runtime Groups API](/konnect/api/runtime-groups/v2/)
 * [Plugin Hub](/hub/)
 
 ## Nodes
@@ -2942,14 +3026,32 @@ even globally. This is useful, for example, when you wish to configure a plugin
 a certain way for most requests, but make _authenticated requests_ behave
 slightly differently.
 
-Therefore, there exists an order of precedence for running a plugin when it has
-been applied to different entities with different configurations. The rule of
-thumb is: the more specific a plugin is with regards to how many entities it
-has been configured on, the higher its priority.
+Therefore, there is an order of precedence for running a plugin when it has
+been applied to different entities with different configurations. The amount of entities configured to a specific plugin directly correlate to its priority. The more entities configured to a plugin the higher its order of precedence is. 
+The complete order of precedence for plugins configured to multiple entities is: 
 
-The complete order of precedence when a plugin has been configured multiple
-times is:
 
+{% if_version gte:3.4.x %}
+
+1. Plugins configured on a combination of: a Consumer, a Route, and a Service.
+    (Consumer means the request must be authenticated).
+2. Plugins configured on a combination of a ConsumerGroup, Service, and a Route.
+    (ConsumerGroup means the request must be authenticated).
+3. Plugins configured on a combination of a Consumer and a Route.
+    (Consumer means the request must be authenticated).
+4. Plugins configured on a combination of a Consumer and a Service.
+5. Plugins configured on a ConsumerGroup and Route.
+6. Plugins configured on a ConsumerGroup and Service.
+7. Plugins configured on a Route and Service.
+8. Plugins configured on a Consumer.
+9. Plugins Configured on a ConsumerGroup.
+10. Plugins configured on a Route.
+11. Plugins configured on a Service. 
+12. Plugins configured Globally. 
+
+{% endif_version %}
+
+{% if_version lte:3.3.x %}
 1. Plugins configured on a combination of: a Route, a Service, and a Consumer.
     (Consumer means the request must be authenticated).
 2. Plugins configured on a combination of a Route and a Consumer.
@@ -2962,7 +3064,12 @@ times is:
 6. Plugins configured on a Route.
 7. Plugins configured on a Service.
 8. Plugins configured to run globally.
+
+{% endif_version %}
+
+
 {% endunless %}
+
 **Example**: if the `rate-limiting` plugin is applied twice (with different
 configurations): for a Service (Plugin config A), and for a Consumer (Plugin
 config B), then requests authenticating this Consumer will run Plugin config B
@@ -4868,6 +4975,10 @@ stored in a vault, instead of storing the certificate and key within the
 entity. This allows a proper separation of secrets and configuration and
 prevents secret sprawl.
 
+{% if_version gte:3.4.x %}
+Secrets rotation can be managed using [TTLs](/gateway/latest/kong-enterprise/secrets-management/advanced-usage).
+{% endif_version %}
+
 Vaults can be both [tagged and filtered by tags](#tags).
 
 
@@ -5665,7 +5776,398 @@ Attributes | Description
 ```
 HTTP 204 No Content
 ```
+{% if_version gte:3.4.x %}
+## Filter Chain Object
 
+A [filter chain] is the database entity representing one or more WebAssembly
+[filters] executed for each request to a particular [service](#services)
+or [route](#routes), each one with its configuration.
+
+Filter chains can be both [tagged and filtered by tags](#tags).
+
+
+```json
+{{ page.filter_chain_json }}
+```
+
+See the [WebAssembly section] of the reference documentation for more details.
+
+
+
+### Add Filter Chain
+
+
+
+{:.note}
+> **Note**: This API is not available in DB-less mode.
+
+##### Create Filter Chain
+
+<div class="endpoint post indent">{{ prefix }}/filter-chains</div>
+
+
+##### Create Filter Chain Associated to a Specific Route
+
+<div class="endpoint post indent">{{ prefix }}/routes/{route name or id}/filter-chains</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`route name or id`<br>**required** | The unique identifier or the `name` attribute of the Route that should be associated to the newly-created Filter Chain.
+
+
+##### Create Filter Chain Associated to a Specific Service
+
+<div class="endpoint post indent">{{ prefix }}/services/{service name or id}/filter-chains</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`service name or id`<br>**required** | The unique identifier or the `name` attribute of the Service that should be associated to the newly-created Filter Chain.
+
+
+#### Request Body
+
+{{ page.filter_chain_body }}
+
+
+#### Response
+
+```
+HTTP 201 Created
+```
+
+```json
+{{ page.filter_chain_json }}
+```
+
+
+---
+
+### List Filter Chains
+{:.badge .dbless}
+
+##### List All Filter Chains
+
+<div class="endpoint get indent">{{ prefix }}/filter-chains</div>
+
+
+##### List Filter Chains Associated to a Specific Route
+
+<div class="endpoint get indent">{{ prefix }}/routes/{route name or id}/filter-chains</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`route name or id`<br>**required** | The unique identifier or the `name` attribute of the Route whose Filter Chains are to be retrieved. When using this endpoint, only Filter Chains associated to the specified Route will be listed.
+
+
+##### List Filter Chains Associated to a Specific Service
+
+<div class="endpoint get indent">{{ prefix }}/services/{service name or id}/filter-chains</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`service name or id`<br>**required** | The unique identifier or the `name` attribute of the Service whose Filter Chains are to be retrieved. When using this endpoint, only Filter Chains associated to the specified Service will be listed.
+
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+{{ page.filter_chain_data }}
+}
+```
+
+
+---
+
+### Retrieve Filter Chain
+{:.badge .dbless}
+
+##### Retrieve Filter Chain
+
+<div class="endpoint get indent">{{ prefix }}/filter-chains/{filter chain id}</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`filter chain id`<br>**required** | The unique identifier of the Filter Chain to retrieve.
+
+
+##### Retrieve Filter Chain Associated to a Specific Route
+
+<div class="endpoint get indent">{{ prefix }}/routes/{route name or id}/filter-chains/{filter chain id}</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`route name or id`<br>**required** | The unique identifier **or** the name of the Route to retrieve.
+`filter chain id`<br>**required** | The unique identifier of the Filter Chain to retrieve.
+
+
+##### Retrieve Filter Chain Associated to a Specific Service
+
+<div class="endpoint get indent">{{ prefix }}/services/{service name or id}/filter-chains/{filter chain id}</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`service name or id`<br>**required** | The unique identifier **or** the name of the Service to retrieve.
+`filter chain id`<br>**required** | The unique identifier of the Filter Chain to retrieve.
+
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{{ page.filter_chain_json }}
+```
+
+
+---
+{% unless page.edition == "konnect" %}
+
+### Update Filter Chain
+
+
+
+{:.note}
+> **Note**: This API is not available in DB-less mode.
+
+##### Update Filter Chain
+
+<div class="endpoint patch indent">/filter-chains/{filter chain id}</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`filter chain id`<br>**required** | The unique identifier of the Filter Chain to update.
+
+
+##### Update Filter Chain Associated to a Specific Route
+
+<div class="endpoint patch indent">/routes/{route name or id}/filter-chains/{filter chain id}</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`route name or id`<br>**required** | The unique identifier **or** the name of the Route to update.
+`filter chain id`<br>**required** | The unique identifier of the Filter Chain to update.
+
+
+##### Update Filter Chain Associated to a Specific Service
+
+<div class="endpoint patch indent">/services/{service name or id}/filter-chains/{filter chain id}</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`service name or id`<br>**required** | The unique identifier **or** the name of the Service to update.
+`filter chain id`<br>**required** | The unique identifier of the Filter Chain to update.
+
+
+#### Request Body
+
+{{ page.filter_chain_body }}
+
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{{ page.filter_chain_json }}
+```
+
+{% endunless %}
+---
+
+### Update Or Create Filter Chain
+
+
+
+{:.note}
+> **Note**: This API is not available in DB-less mode.
+
+##### Create Or Update Filter Chain
+
+<div class="endpoint put indent">{{ prefix }}/filter-chains/{filter chain id}</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`filter chain id`<br>**required** | The unique identifier of the Filter Chain to create or update.
+
+
+##### Create Or Update Filter Chain Associated to a Specific Route
+
+<div class="endpoint put indent">{{ prefix }}/routes/{route name or id}/filter-chains/{filter chain id}</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`route name or id`<br>**required** | The unique identifier **or** the name of the Route to create or update.
+`filter chain id`<br>**required** | The unique identifier of the Filter Chain to create or update.
+
+
+##### Create Or Update Filter Chain Associated to a Specific Service
+
+<div class="endpoint put indent">{{ prefix }}/services/{service name or id}/filter-chains/{filter chain id}</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`service name or id`<br>**required** | The unique identifier **or** the name of the Service to create or update.
+`filter chain id`<br>**required** | The unique identifier of the Filter Chain to create or update.
+
+
+#### Request Body
+
+{{ page.filter_chain_body }}
+
+
+Inserts (or replaces) the Filter Chain under the requested resource with the
+definition specified in the body. The Filter Chain will be identified via the `name
+or id` attribute.
+
+When the `name or id` attribute has the structure of a UUID, the Filter Chain being
+inserted/replaced will be identified by its `id`. Otherwise it will be
+identified by its `name`.
+
+When creating a new Filter Chain without specifying `id` (neither in the URL nor in
+the body), then it will be auto-generated.
+
+Notice that specifying a `name` in the URL and a different one in the request
+body is not allowed.
+
+
+#### Response
+
+```
+HTTP 200 OK
+```
+{% unless page.edition == "konnect" %}
+See POST and PATCH responses.
+{% endunless %}
+
+---
+
+### Delete Filter Chain
+
+
+
+{:.note}
+> **Note**: This API is not available in DB-less mode.
+
+##### Delete Filter Chain
+
+<div class="endpoint delete indent">{{ prefix }}/filter-chains/{filter chain id}</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`filter chain id`<br>**required** | The unique identifier of the Filter Chain to delete.
+
+
+##### Delete Filter Chain Associated to a Specific Route
+
+<div class="endpoint delete indent">{{ prefix }}/routes/{route name or id}/filter-chains/{filter chain id}</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`route name or id`<br>**required** | The unique identifier **or** the name of the Route to delete.
+`filter chain id`<br>**required** | The unique identifier of the Filter Chain to delete.
+
+
+##### Delete Filter Chain Associated to a Specific Service
+
+<div class="endpoint delete indent">{{ prefix }}/services/{service name or id}/filter-chains/{filter chain id}</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`service name or id`<br>**required** | The unique identifier **or** the name of the Service to delete.
+`filter chain id`<br>**required** | The unique identifier of the Filter Chain to delete.
+
+
+#### Response
+
+```
+HTTP 204 No Content
+```
+
+---
+
+### List Filters Applied to a Route
+{:.badge .dbless}
+
+You can inspect the full filter execution plan for a given route, combining
+the filters applied from the service filter chain and the route filter chain,
+in that order. Since both the chains and individual filters can be enabled
+and disabled individually via the `enabled` boolean attribute, there are
+individual endpoints for listing enabled filters (which is the active
+execution plan), disabled filters, and all filters.
+
+See the reference documentation for [filter execution behavior] for more details.
+
+
+##### List Enabled Filters Applied to a Specific Route
+
+<div class="endpoint get indent">{{ prefix }}/routes/{route name or id}/filters/enabled</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`route name or id`<br>**required** | The unique identifier or the `name` attribute of the Route whose associated filters are to be listed.
+
+
+##### List Disabled Filters Applied to a Specific Route
+
+<div class="endpoint get indent">{{ prefix }}/routes/{route name or id}/filters/disabled</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`route name or id`<br>**required** | The unique identifier or the `name` attribute of the Route whose associated filters are to be listed.
+
+
+##### List All Filters Applied to a Specific Route
+
+<div class="endpoint get indent">{{ prefix }}/routes/{route name or id}/filters/all</div>
+
+{:.indent}
+Attributes | Description
+---:| ---
+`route name or id`<br>**required** | The unique identifier or the `name` attribute of the Route whose associated filters are to be listed.
+
+
+
+
+
+#### Response
+
+```
+HTTP 200 OK
+```
+
+```json
+{
+{{ page.filters_data }}
+}
+```
+{% endif_version %}
 
 ---
 
@@ -5675,5 +6177,9 @@ HTTP 204 No Content
 [healthchecks]: /gateway/{{page.kong_version}}/how-kong-works/health-checks
 [secure-admin-api]: /gateway/{{page.kong_version}}/production/running-kong/secure-admin-api
 [proxy-reference]: /gateway/{{page.kong_version}}/how-kong-works/routing-traffic/
+[WebAssembly section]: /gateway/{{page.kong_version}}/reference/wasm/
+[filter execution behavior]: /gateway/{{page.kong_version}}/reference/wasm/#filter_execution_behavior
+[filters]: /gateway/{{page.kong_version}}/reference/wasm/#filter
+[filter chain]: /gateway/{{page.kong_version}}/reference/wasm/#filter_chain
 
 {% endunless %}

@@ -17,7 +17,16 @@ This brings you to a set of installation options. Choose one of the options, the
 
 {{site.konnect_short_name}} supports the following installation options:
 
-{% include install.html config=site.data.tables.install_options_konnect header='no-header' %}
+![Konnect install options](https://github.com/Kong/docs.konghq.com/assets/8153796/fa7fccda-cc4f-47a6-bdc3-491d053b3cc5)
+
+* macOS
+* Windows
+* Linux
+* Linux (Docker)
+* Kubernetes
+* AWS
+* Azure
+* Google Cloud
 
 {:.note}
 > **Notes:** 
@@ -27,7 +36,7 @@ This brings you to a set of installation options. Choose one of the options, the
 
 ### Forward proxy support
 
-{{site.konnect_product_name}} supports using non-transparent forward proxies to connect your {{site.base_gateway}} data plane with the {{site.konnect_saas}} control plane. See the [Forward proxy connections](/gateway/latest/production/networking/cp-dp-proxy/){{site.base_gateway}} documentation for more information.
+{{site.konnect_product_name}} supports using non-transparent forward proxies to connect your {{site.base_gateway}} data plane with the {{site.konnect_saas}} control plane. See the [Forward proxy connections](/gateway/latest/production/networking/cp-dp-proxy/) {{site.base_gateway}} documentation for more information.
 
 ## Runtime instance dashboard
 ### Gateway runtime instance dashboard

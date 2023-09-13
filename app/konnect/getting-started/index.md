@@ -21,38 +21,37 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
     [Set up a runtime instance &gt;](/konnect/getting-started/configure-runtime/)
 
 
-2.  **Create a service**:
+2.  **Create a Gateway service**:
 
-    Catalog a new service using the {{site.konnect_short_name}} Service Hub.
-
-    Using Service Hub, you can catalog, manage, and track every service in your
-    entire architecture. In this step, you create the first version of a service,
-    adding the first entry to your catalog.
-
-    [Create a service &gt;](/konnect/getting-started/configure-service/)
-
-3.  **Implement the new service**:
-
-    Attach the new {{site.konnect_short_name}} service to an upstream service
-    and define a route.
+    Proxy a service using the {{site.konnect_short_name}} Runtime Manager
 
     After you've configured a service and the runtime proxy is ready, testing
     is the next step. Here you set up a route to a mocking API service,
     then proxy traffic through the route.
 
-    [Implement the service &gt;](/konnect/getting-started/implement-service/)
+
+    [Create a service &gt;](/konnect/getting-started/configure-service/)
+
+3.  **Productize an API**:
+    
+    Using API Products, you can bundle and manage every service in your
+    entire architecture. In this step, you create the first version of a service,
+    adding the first entry to your catalog.
+    
+
+    [Create an API product version &gt;](/konnect/getting-started/productize-service/)
 
 ## Share APIs and enable development
 
 Ready to share your API with developers?
-Use the Service Hub to manage your API documentation, then publish it to the Dev Portal:
+Use API Products to manage your API product documentation, then publish it to the Dev Portal:
 
 1. **Upload your spec to {{site.konnect_short_name}} and publish to Dev Portal**
 
-    Upload a markdown file to describe your service, and add an OpenAPI spec for any version of the service.
-    Then, publish your service documentation to the Dev Portal and preview it from the developer perspective.
+    Upload a markdown file to describe your service, and add an OpenAPI spec for any version of the API product.
+    Then, publish your API product documentation to the Dev Portal and preview it from the developer perspective.
 
-    [Import docs and publish a service &gt;](/konnect/getting-started/publish-service/)
+    [Import docs and publish an API product &gt;](/konnect/getting-started/publish-service/)
 
 1. **Register an application**
 

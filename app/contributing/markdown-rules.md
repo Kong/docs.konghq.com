@@ -193,86 +193,6 @@ avoid qualifiers, and end the statement with a colon (`:`).
 
   ❌ **Don't:** The output will show...
 
-## Placeholders
-
-Use placeholders in both inline text and in code blocks to
-denote a value that the user should edit. Always enclose placeholders in code
-formatting.
-
-### Inline placeholders
-
-If you're adding a placeholder inline, such as in a sentence, enclose it in single
-backticks: \`EXAMPLE_TEXT`
-
-<!--
-### Editable placeholders in code blocks
-
-If you have text in your code block that you want the user to edit before running
-the code, you can use editable placeholders.
-
-Editable placeholders require HTML markup. They are not supported in pure markdown (fenced) code blocks.
-
-{:.important}
-> **Important:** Use plaintext placeholders for sensitive personal
-information, and **do not** use editable placeholders for these values. Personal
-information includes:
-> * Passwords
-> * Usernames
-> * Emails
-
-#### Create an editable placeholder
-
-* Enclose the entire code block in a `<div>` tag with a "copy-code-snippet" class: `<div class="copy-code-snippet"></div>`
-* Use the `<pre>` and `<code>` tags to create a code block
-* Enclose your placeholder in `<div contenteditable="true"></div>` tags
-* Do not add any newlines around the `pre` and `code` tags. These tags read
-their contents very literally, so all newlines will output as newlines.
-* HTML code blocks can't pick up syntax highlighting. For consistency, if you're
-using fenced code blocks elsewhere on the same page, set the language to
-`plaintext`.
-
-**Do:**
-
-{% navtabs codeblock %}
-{% navtab Input %}
-```
-<div class="copy-code-snippet"><pre><code>host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
-port: 80 </code></pre></div>
-```
-{% endnavtab %}
-{% navtab Output %}
-<div class="copy-code-snippet"><pre><code>host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
-port: 80 </code></pre></div>
-{% endnavtab %}
-{% endnavtabs %}
-
-**Don't:**
-
-{% navtabs codeblock %}
-{% navtab Input %}
-```
-<div class="copy-code-snippet">
-  <pre>
-    <code>
-    host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
-    port: 80
-    </code>
-  </pre>
-</div>
-```
-{% endnavtab %}
-{% navtab Output %}
-<div class="copy-code-snippet">
-  <pre>
-      <code>
-      host: <div contenteditable="true">{EXAMPLE_VALUE}</div>
-      port: 80
-      </code>
-  </pre>
-</div>
-{% endnavtab %}
-{% endnavtabs %} -->
-
 ## Tabs
 
 If your topic provides instructions for two or more methods of completing a
@@ -418,7 +338,7 @@ This will be shown when Enterprise is selected
 {% navtab Kong Gateway (OSS) %}
 ```bash
 This will be shown when OSS is selected
- ```
+```
 {% endnavtab %}
 {% endnavtabs_ee %}
 {% endraw %}
@@ -440,27 +360,31 @@ you can use the indent filter on a capture of your tabs.
 
 <!-- vale off -->
 {% raw %}
-```
+````
 {% capture the_code %}
 {% navtabs codeblock %}
 {% navtab cURL %}
-<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+```sh
+curl -i -X POST http://localhost:8001/event-hooks \
 -d source=crud \
 -d event=consumers \
 -d handler=webhook \
--d config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+-d config.url=<WEBHOOK_URL>
+```
 {% endnavtab %}
 {% navtab HTTPie %}
-<div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+```sh
+http -f :8001/event-hooks \
 source=crud \
 event=consumers \
 handler=webhook \
-config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+config.url=<WEBHOOK_URL>
+```
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
 {{ the_code | indent }}
-```
+````
 {% endraw %}
 <!-- vale on -->
 
@@ -473,18 +397,22 @@ To make a technical writer smile, **always** do the following:
 {% capture the_code %}
 {% navtabs codeblock %}
 {% navtab cURL %}
-<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+```sh
+curl -i -X POST http://localhost:8001/event-hooks \
 -d source=crud \
 -d event=consumers \
 -d handler=webhook \
--d config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+-d config.url=<WEBHOOK_URL>
+```
 {% endnavtab %}
 {% navtab HTTPie %}
-<div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+```sh
+http -f :8001/event-hooks \
 source=crud \
 event=consumers \
 handler=webhook \
-config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+config.url=<WEBHOOK_URL>
+```
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
@@ -494,18 +422,22 @@ config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
 
   {% navtabs codeblock %}
   {% navtab cURL %}
-  <div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+  ```sh
+  curl -i -X POST http://localhost:8001/event-hooks \
   -d source=crud \
   -d event=consumers \
   -d handler=webhook \
-  -d config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+  -d config.url=<WEBHOOK_URL>
+  ```
   {% endnavtab %}
   {% navtab HTTPie %}
-  <div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+  ```sh
+  http -f :8001/event-hooks \
   source=crud \
   event=consumers \
   handler=webhook \
-  config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+  config.url=<WEBHOOK_URL>
+  ```
   {% endnavtab %}
   {% endnavtabs %}
 
@@ -513,18 +445,22 @@ config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
 
   {% navtabs codeblock %}
   {% navtab cURL %}
-  <div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+  ```sh
+  curl -i -X POST http://localhost:8001/event-hooks \
   -d source=crud \
   -d event=consumers \
   -d handler=webhook \
-  -d config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+  -d config.url=<WEBHOOK_URL>
+  ```
   {% endnavtab %}
   {% navtab HTTPie %}
-  <div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+  ```sh
+  http -f :8001/event-hooks \
   source=crud \
   event=consumers \
   handler=webhook \
-  config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
+  config.url=<WEBHOOK_URL>
+  ```
   {% endnavtab %}
   {% endnavtabs %}
 
@@ -643,7 +579,7 @@ Resolves to <i class="fas fa-anchor"></i>.
 ### Custom icons
 
 Custom icons for the Kong docs site are located in the
-[`/_assets/images/icons/`](https://github.com/Kong/docs.konghq.com/tree/main/app/_assets/images/icons)
+[`/assets/images/icons/`](https://github.com/Kong/docs.konghq.com/tree/main/app/assets/images/icons)
 directory. To add an icon, ensure it meets the following criteria:
 * SVG format
 * The same icon doesn't already exist in the folder, in Unicode, or in the
@@ -660,7 +596,7 @@ This resolves to ![document icon](/assets/images/icons/icn-doc.svg){:.inline .no
 
 ### {{site.konnect_short_name}} icons
 
-{{site.konnect_short_name}} icons can be found in `app/_assets/images/icons/konnect`.
+{{site.konnect_short_name}} icons can be found in `app/assets/images/icons/konnect`.
 When adding an icon to this folder, use the naming convention `icn-<name>`.
 
 You can then access a {{site.konnect_short_name}} icon with a shortcut for easy use in text:
@@ -668,9 +604,9 @@ You can then access a {{site.konnect_short_name}} icon with a shortcut for easy 
 <!-- vale off -->
 ```
 {% raw %}{% konnect_icon runtimes %}{% endraw %}
-# Uses the icon located at /app/_assets/images/icons/konnect/icn-runtimes.svg
+# Uses the icon located at /app/assets/images/icons/konnect/icn-runtimes.svg
 
 {% raw %}{% konnect_icon dev-portal %}{% endraw %}
-# Uses the icon located at /app/_assets/images/icons/konnect/icn-dev-portal.svg
+# Uses the icon located at /app/assets/images/icons/konnect/icn-dev-portal.svg
 ```
 <!-- vale on -->

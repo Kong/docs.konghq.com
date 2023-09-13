@@ -375,6 +375,8 @@ builds on top of it. The difference is that {{site.kic_product_name}} additional
 using the public [Admin API][admin] of the {{site.konnect_short_name}}'s Runtime Manager. The connection between {{site.kic_product_name}}
 and {{site.konnect_short_name}} is secured using mutual TLS.
 
+As {{site.kic_product_name}} calls {{site.konnect_short_name}}'s APIs, outbound traffic from {{site.kic_product_name}}'s pods must be allowed to reach {{site.konnect_short_name}}'s `*.konghq.com` [hosts](/konnect/network#hostnames).
+
 {:.important}
 > {{site.kic_product_name}}'s Runtime Group in {{site.konnect_short_name}} is **read-only**.
 > Although the configuration displayed in {{site.konnect_short_name}} will match the configuration used by proxy instances, it cannot be modified from the GUI.

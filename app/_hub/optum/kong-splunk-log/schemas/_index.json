@@ -8,6 +8,13 @@
       }
     },
     {
+      "consumer_group": {
+        "eq": null,
+        "type": "foreign",
+        "reference": "consumer_groups"
+      }
+    },
+    {
       "config": {
         "fields": [
           {

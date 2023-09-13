@@ -68,19 +68,22 @@ with each other.
 
 1. Prepare the Kong database:
 
-    <pre><code>docker run --rm --network=kong-ee-net \
+    ```sh
+    docker run --rm --network=kong-ee-net \
       -e "KONG_DATABASE=postgres" \
       -e "KONG_PG_HOST=kong-ee-database" \
       -e "KONG_PG_PASSWORD=kong" \
-      -e "KONG_PASSWORD=<div contenteditable="true">{PASSWORD}</div>" \
-      kong-ee kong migrations bootstrap </code></pre>
+      -e "KONG_PASSWORD=kongpass" \
+      kong-ee kong migrations bootstrap
+    ```
 
 
 1. Start the gateway with Kong Manager:
 
 {% include_cached /md/admin-listen.md desc='long' kong_version=page.kong_version %}
 
-    <pre><code>docker run -d --name kong-ee --network=kong-ee-net \
+    ```sh
+    docker run -d --name kong-ee --network=kong-ee-net \
       -e "KONG_DATABASE=postgres" \
       -e "KONG_PG_HOST=kong-ee-database" \
       -e "KONG_PG_PASSWORD=kong" \
@@ -89,7 +92,7 @@ with each other.
       -e "KONG_PROXY_ERROR_LOG=/dev/stderr" \
       -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
       -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
-      -e "KONG_ADMIN_GUI_URL=http://<div contenteditable="true">{DNSorIP}</div>:8002" \
+      -e "KONG_ADMIN_GUI_URL=http://localhost:8002" \
       -e "KONG_VITALS_STRATEGY=influxdb" \
       -e "KONG_VITALS_TSDB_ADDRESS=influxdb:8086" \
       -p 8000:8000 \
@@ -100,11 +103,12 @@ with each other.
       -p 8445:8445 \
       -p 8003:8003 \
       -p 8004:8004 \
-      kong-ee </code></pre>
+      kong-ee
+    ```
 
     {:.note}
-    > **Note:** For `KONG_ADMIN_GUI_URL`, replace `DNSorIP`
-    with with the DNS name or IP of the Docker host. <code>KONG_ADMIN_GUI_URL</code>
+    > **Note:** For `KONG_ADMIN_GUI_URL`, replace `localhost`
+    with with the DNS name or IP of the Docker host. `KONG_ADMIN_GUI_URL`
     _should_ have a protocol, for example, `http://`.
 
 ### Deploy a {{site.base_gateway}} license

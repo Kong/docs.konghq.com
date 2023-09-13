@@ -5,7 +5,7 @@ content_type: reference
 
 ## Metrics
 
-Traffic metrics provide insight into which of your services and service versions are being used and how they are responding.
+Traffic metrics provide insight into which of your services are being used and how they are responding.
 
 Metric | Description
 -------|------------
@@ -27,9 +27,9 @@ When selecting a category to filter or group by, you have the following options:
 Category | Description
 ---------|------------
 None | Aggregate all of the data in the organization without any grouping.
-Service | Group or filter the data by {{site.konnect_short_name}} service.
-Service Version | Group or filter the data by {{site.konnect_short_name}} service version. <br><br>If you select multiple service versions in a report, the report shows the sum of requests for all selected versions broken down by service. It **does not** show data points for individual service versions.
-Route | Group or filter the data by route. Route names are composed of elements referencing their related service, service version, and runtime group. See [Route entity format](#route-entity-format) for details.
+API Product | Group or filter the data by {{site.konnect_short_name}} API product.
+API Product Version | Group or filter the data by {{site.konnect_short_name}} API product version.
+Route | Group or filter the data by route.
 Application | Group or filter the data by application.
 Status Code | Group or filter the data by individual response status code. Individual status codes can range from 100 to 599.
 Status Code (grouped) | Group or filter the data by response status code category: 1XX, 2XX, 3XX, 4XX, and 5XX.
@@ -41,34 +41,32 @@ Gateway Services | Group or filter the data by gateway services.
 In custom reports, the route entity name is composed of the following elements:
 
 ```
-KONNECT_SERVICE_NAME.VERSION.ROUTE_NAME|FIRST_FIVE_UUID_CHARS (RUNTIME GROUP)
+ROUTE_NAME|FIRST_FIVE_UUID_CHARS (RUNTIME_GROUP_NAME)
 ```
 
-For example, for a route entity named `example_service.v1.example_route (default)`:
-* `example_service` is the {{site.konnect_short_name}} service name
-* `v1` is the service version
+For example, for a route entity named `example_route (default)`:
 * `example_route` is the route name
 * `default` is the runtime group name
 
 Or, if your route doesn't have a name, it might look like this:
-`example_service.v1.DA58B`
+`DA58B (default)`
 
-Where `DA58B` are the first five characters of its UUID.
+Where `DA58B` are the first five characters of its UUID and `default` is the runtime group name.
 
 {:.note}
 > **Note**: If you see a route with `*` and the last five digits of the UUID, like `*DA58B`, this represents the data of a deleted route.
 
-### Service version entity format
+### API product version entity format
 
-The service version name isn't unique across an organization. To identify the entity you need, the service version entity name is composed of the following elements:
+The API product version name isn't unique across an organization. To identify the entity you need, the API product version entity name is composed of the following elements:
 
 ```
-KONNECT_SERVICE_NAME - VERSION (RUNTIME GROUP)
+KONNECT_API_PRODUCT_NAME - API_PRODUCT_VERSION (RUNTIME_GROUP_NAME)
 ```
 
-For example, for a service version entity named `Account - v1 (dev)`:
-* `Account` is the {{site.konnect_short_name}} service name
-* `v1` is the service version
+For example, for an API product version entity named `Account - v1 (dev)`:
+* `Account` is the {{site.konnect_short_name}} API product name
+* `v1` is the API product version
 * `dev` is the runtime group name
 
 

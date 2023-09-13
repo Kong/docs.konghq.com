@@ -27,7 +27,9 @@ module PluginSingleSource
         @dropdown_url ||= "#{base_url}VERSION/how-to/basic-example/"
       end
 
-      def source_file; end
+      def source_file
+        @file.gsub('app/', '')
+      end
 
       def content
         ''
@@ -47,7 +49,7 @@ module PluginSingleSource
 
       def edit_link
         if @release.vendor == 'kong-inc'
-          name = @release.name == 'serverless-functions' ? 'pre-function' : @release.name
+          name = @release.name
           "https://github.com/Kong/docs-plugin-toolkit/edit/main/examples/#{name}/_#{@release.version}.yaml"
         else
           "https://github.com/Kong/docs.konghq.com/edit/#{@site.config['git_branch']}/app/_hub/#{@release.vendor}/#{@release.name}/examples/_index.yml"

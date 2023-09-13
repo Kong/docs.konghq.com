@@ -9,17 +9,19 @@ Kong primarily follows [semantic versioning](https://semver.org/) (SemVer) with 
 
 For the purposes of this support document:
 
-* **Major Version** means a version identified by the number to the left of the leftmost decimal point (X.y.z.a). For example, 2.1.3.0 indicates Major Version 2 and 1.3.0.4 indicates Major Version 1.
+**Release versioning**
+  * **Major Version** means a version identified by the number to the left of the leftmost decimal point (X.y.z.a). For example, 2.1.3.0 indicates Major Version 2 and 1.3.0.4 indicates Major Version 1.
+  
+  * **Minor Version** means a version identified by a change in the number in between the two leftmost decimal points (x.Y.z.a). For example, 2.1.3.0 indicates Minor Version 1 and 1.3.0.4 indicates Minor Version 3.
 
-* **Minor Version** means a version identified by a change in the number in between the two leftmost decimal points (x.Y.z.a). For example, 2.1.3.0 indicates Minor Version 1 and 1.3.0.4 indicates Minor Version 3.
-
-* **Patch Version** means a version identified by a change in the number to the left of the rightmost decimal point (x.y.Z.a). For example, 2.1.3.0 indicates Patch Version 3 and 1.3.0.4 indicates Patch Version 0.
-
-* **Enterprise Patch Version** means a version identified by a change in the number to the right of the rightmost decimal point (x.y.z.A). For example, 2.1.3.0 indicates Enterprise Patch Version 0 and 1.3.0.4 indicates Enterprise Patch Version 4.
+**Patches**
+  * **Community Edition Patch** means a patch identified by a change in the number to the left of the rightmost decimal point (x.y.Z.a). For example, Community/OSS version 2.8.3 indicates Release Version 2.8 with patch number 3 and 3.3.0 indicates Release version 3.0 with Patch number 0.
+  
+  * **Enterprise Patch Version** means a version identified by a change in the number to the right of the rightmost decimal point (x.y.z.A). For example, 2.8.3.0 indicates Enterprise Release version 2.8 with Patch Version 3.0 and 3.3.2.1 indicates Enterprise Release Version 3.3 with patch number 2.1
 
 Kong introduces major functionality and breaking changes by releasing a new major version. Major version releases happen rarely and are usually in response to changes in major industry trends, significant architectural changes or significant internal product innovation. There is no regular release cadence of major versions.
 
-Kong aims to release a new minor version every 10 weeks. Minor versions contain features and bug fixes. Minor versions are backwards compatible within that major version sequence.  Every minor version is supported for a period of 1 year from date of release. This is done by releasing patch version updates (also known as patch releases) that apply to each supported minor version.
+Kong aims to release a new minor version every 10 weeks. Minor versions contain features and bug fixes. Minor versions are backwards compatible within that major version sequence.  Every minor version is supported for a period of 1 year from date of release. This is done by releasing patches that apply to each supported minor version. Customers are encouraged to keep their installations up to date by applying the patches appropriate to their installed version. All patches released by Kong are rollup patches (for example, patch 1.5 for release version 3.3 includes all the fixes in patches 1.4, 1.3, 1.2, and 1.1).  
 
 Kong may designate a specific minor version as a Long-Term Support (LTS) version. Kong provides technical support for the LTS version on a given distribution for the duration of the distribution’s lifecycle, or for 3 years from LTS version release, whichever comes sooner. An LTS version is backwards compatible within its major version sequence. An LTS version receives all security fixes. Additionally, an LTS version may receive certain non-security patches at Kong's discretion. At any time, there will be at least 1 active LTS {{site.ee_product_name}} version.
 
@@ -45,6 +47,9 @@ Customers with platinum or higher subscriptions may request fixes outside of the
 Kong supports the following versions of {{site.ee_product_name}}: 
 
 {% navtabs %}
+  {% navtab 3.4 LTS %}
+    {% include_cached gateway-support.html version="3.4" data=site.data.tables.support.gateway.versions.34 eol="August 2026" %}
+  {% endnavtab %}
   {% navtab 3.3 %}
     {% include_cached gateway-support.html version="3.3" data=site.data.tables.support.gateway.versions.33 eol="May 2024" %}
   {% endnavtab %}

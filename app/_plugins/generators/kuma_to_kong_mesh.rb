@@ -33,8 +33,12 @@ module KumaToKongMesh
       # Links can be wrapped with " (html) or ( and ) (markdown)
       page.content = page
                      .content
-                     .gsub(%r{([("]/(?!assets/).*)kuma(?!(?:-cp|-dp|ctl))([^\s]*)([)"])}, '\1kong-mesh\2\3')
-                     .gsub('kong-mesh.io', 'kuma.io')
+                     # only consider urls that start with / or #
+                     .gsub(%r{([("][/#](?!assets/).*)kuma(?!(?:-cp|-dp|ctl))([^\s]*)([)"])}) do |s|
+                       # replace kuma to kong-mesh as many times as it occurs but do not replace
+                       # kuma.io or kumaio (These are annotations and should remain unchanged)
+                       s.gsub(/kuma(?!(\.?io))/, 'kong-mesh')
+                     end
     end
 
     def replace_exact_links(page)

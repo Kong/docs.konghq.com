@@ -1,5 +1,10 @@
 ## Changelog
 
+
+**{{site.base_gateway}} 3.4.x**
+* Added support for [AWS X-Ray header](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader) propagation.
+* The `endpoint` parameter is now referenceable, and can be stored as a secret in a vault.
+
 **{{site.base_gateway}} 3.2.x**
 * This plugin can now be scoped to individual services, routes, and consumers.
 

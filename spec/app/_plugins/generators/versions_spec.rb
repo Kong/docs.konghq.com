@@ -3,18 +3,6 @@ RSpec.describe Jekyll::Versions do
     SafeYAML.load(File.read(File.join(site.source, '_data/kong_versions.yml')))
   end
 
-  let(:enterprise_versions) do
-    kong_versions.select { |v| v.fetch('edition') == 'enterprise' }
-  end
-
-  let(:oss_versions) do
-    kong_versions.select { |v| v.fetch('edition') == 'gateway-oss' }
-  end
-
-  let(:getting_started_guide_versions) do
-    kong_versions.select { |v| v.fetch('edition') == 'getting-started-guide' }
-  end
-
   let(:deck_versions) do
     kong_versions.select { |v| v.fetch('edition') == 'deck' }
   end
@@ -70,9 +58,6 @@ RSpec.describe Jekyll::Versions do
     before { described_class.new.generate(site) }
 
     it 'sets kong_versions to the site' do
-      expect(site.data['kong_versions_ce']).to eq(oss_versions)
-      expect(site.data['kong_versions_ee']).to eq(enterprise_versions)
-      expect(site.data['kong_versions_gsg']).to eq(getting_started_guide_versions)
       expect(site.data['kong_versions_deck']).to eq(deck_versions)
       expect(site.data['kong_versions_mesh']).to eq(mesh_versions)
       expect(site.data['kong_versions_konnect']).to eq(['edition' => 'konnect'])
@@ -90,74 +75,6 @@ RSpec.describe Jekyll::Versions do
 
     context 'For pages under app/' do
       let(:page) { site.pages.detect { |p| p.relative_path == relative_path } }
-
-      context 'enterprise' do
-        context 'for a specific version' do
-          let(:relative_path) { 'enterprise/2.1.x/index.md' }
-
-          it 'adds version properties' do
-            expect(page.data['has_version']).to eq(true)
-            expect(page.data['edition']).to eq('enterprise')
-            expect(page.data['kong_version']).to eq('2.1.x')
-            expect(page.data['kong_versions']).to eq(enterprise_versions)
-            # We don't set the kong_latest on EE
-            expect(page.data['kong_latest']).to be_nil
-            expect(page.data['nav_items']).to eq(site.data.fetch('docs_nav_ee_21x'))
-          end
-
-          it_behaves_like 'sets `release` and `version` to the page', '2.1.x', '2.1.4.6'
-        end
-
-        context 'without version' do
-          context 'nested folder' do
-            let(:relative_path) { 'enterprise/references/index.md' }
-
-            it 'adds version properties' do
-              expect(page.data['has_version']).to eq(false)
-              expect(page.data['edition']).to eq('enterprise')
-              expect(page.data['kong_version']).to be_nil
-              expect(page.data['kong_versions']).to eq(enterprise_versions)
-              # We don't set the kong_latest on EE
-              expect(page.data['kong_latest']).to be_nil
-              expect(page.data['nav_items']).to be_nil
-            end
-
-            it_behaves_like 'does not set `release` and `version` to the page'
-          end
-
-          context 'root level' do
-            let(:relative_path) { 'enterprise/k8s-changelog.md' }
-
-            it 'adds version properties' do
-              expect(page.data['has_version']).to eq(false)
-              expect(page.data['edition']).to eq('enterprise')
-              expect(page.data['kong_version']).to be_nil
-              expect(page.data['kong_versions']).to eq(enterprise_versions)
-              # We don't set the kong_latest on EE
-              expect(page.data['kong_latest']).to be_nil
-              expect(page.data['nav_items']).to be_nil
-            end
-
-            it_behaves_like 'does not set `release` and `version` to the page'
-          end
-        end
-      end
-
-      context 'getting-started-guide' do
-        let(:relative_path) { 'getting-started-guide/2.1.x/overview.md' }
-
-        it 'adds version properties' do
-          expect(page.data['has_version']).to eq(true)
-          expect(page.data['edition']).to eq('getting-started-guide')
-          expect(page.data['kong_version']).to eq('2.1.x')
-          expect(page.data['kong_versions']).to eq(getting_started_guide_versions)
-          # We don't set the kong_latest on getting-started-guide
-          expect(page.data['kong_latest']).to be_nil
-          expect(page.data['nav_items']).to eq(site.data.fetch('docs_nav_gsg_21x'))
-        end
-
-        it_behaves_like 'sets `release` and `version` to the page', '2.1.x', '2.1'
-      end
 
       context 'mesh' do
         context 'with version' do
@@ -313,19 +230,6 @@ RSpec.describe Jekyll::Versions do
         it_behaves_like 'does not set `release` and `version` to the page'
       end
 
-      context 'gateway-oss' do
-        let(:relative_path) { 'gateway-oss/2.1.x/index.md' }
-
-        it 'adds version properties' do
-          expect(page.data['has_version']).to eq(true)
-          expect(page.data['edition']).to eq('gateway-oss')
-          expect(page.data['kong_version']).to eq('2.1.x')
-          expect(page.data['kong_versions']).to eq(oss_versions)
-          expect(page.data['kong_latest']).to be_nil
-          expect(page.data['nav_items']).to eq(site.data.fetch('docs_nav_ce_21x'))
-        end
-      end
-
       context 'pages that are not documentation' do
         shared_examples_for 'only sets has_version' do
           it do
@@ -347,9 +251,11 @@ RSpec.describe Jekyll::Versions do
       end
 
       context 'plugins' do
-        let(:relative_path) { '_hub/acme/kong-plugin/_index.md' }
+        let(:relative_path) { '_hub/acme/kong-plugin/overview/_index.md' }
 
-        it_behaves_like 'does not set `release` and `version` to the page'
+        it 'does not set `release' do
+          expect(page.data['release']).to be_nil
+        end
       end
 
       context 'single sourced pages' do

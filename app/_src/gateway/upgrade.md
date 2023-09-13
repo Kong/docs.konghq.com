@@ -101,6 +101,8 @@ Kong plugins no longer support `CREDENTIAL_USERNAME` (`X-Credential-Username`).
 Use the constant `CREDENTIAL_IDENTIFIER` (`X-Credential-Identifier`) when
 setting the upstream headers for a credential.
 
+The ability to scope plugins to consumer groups was added in {{site.base_gateway}} version 3.4. Running a mixed-version {{site.base_gateway}} cluster (3.4 control plane, and <=3.3 data planes) is not supported when using consumer-group scoped plugins. 
+
 #### Deprecations and changed parameters
 
 The [StatsD Advanced](/hub/kong-inc/statsd-advanced/) plugin
@@ -149,10 +151,9 @@ instead (`kong.ctx.shared.authenticated_jwt_token`) before upgrading to 3.0.
   health check metrics by default. They can still be turned on manually by setting `status_code_metrics`,
   `lantency_metrics`, `bandwidth_metrics` and `upstream_health_metrics` respectively.
 
-**[Serverless Functions](/hub/kong-inc/serverless-functions/)**
+**[Pre-function](/hub/kong-inc/pre-function/) and [Post-function](/hub/kong-inc/post-function/) plugins**
 * Removed the deprecated `config.functions` configuration parameter from the
-Serverless Functions plugins' schemas (`post-fuction` and `pre-function`).
-Use the `config.access` phase instead.
+`post-fuction` and `pre-function` plugins' schemas. Use the `config.access` phase instead.
 
 **[StatsD](/hub/kong-inc/statsd/)**
 * Any metric name that is related to a service now has a `service.` prefix: `kong.service.<service_identifier>.request.count`.

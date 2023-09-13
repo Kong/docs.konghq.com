@@ -11,6 +11,9 @@ items:
       - text: What is Service Mesh?
         url: /introduction/what-is-a-service-mesh/
         src: /.repos/kuma/app/docs/2.0.x/introduction/what-is-a-service-mesh/
+      - text: What is Kong Mesh?
+        url: /introduction/what-is-kong-mesh/
+        src: /.repos/kuma/app/docs/2.0.x/introduction/what-is-kuma/
       - text: How Kong Mesh works
         url: /introduction/how-kong-mesh-works/
         src: /.repos/kuma/app/docs/2.0.x/introduction/how-kuma-works/
@@ -57,6 +60,7 @@ items:
         url: /installation/macos/
       - text: Windows
         url: /installation/windows
+        generate: false
   - title: Deploy
     icon: /assets/images/icons/documentation/icn-manager-color.svg
     items:
@@ -181,7 +185,8 @@ items:
     icon: /assets/images/icons/documentation/icn-documentation-small.svg
     items:
       - text: Introduction
-        url: /policies/
+        url: /policies/introduction
+        src: /.repos/kuma/app/docs/2.0.x/policies/introduction/
       - text: General notes about Kong Mesh policies
         url: /policies/general-notes-about-kong-mesh-policies/
         src: /.repos/kuma/app/docs/2.0.x/policies/general-notes-about-kuma-policies/
@@ -283,17 +288,14 @@ items:
         url: /features/kds-auth
       - text: FIPS support
         url: /features/fips-support
-        src: production/secure-deployment/fips-support/
       - text: Certificate Authority rotation
         url: /features/ca-rotation
       - text: Role-Based Access Control
         url: /features/rbac
-        src: production/secure-deployment/rbac/
       - text: UBI Images
         url: /features/ubi-images
       - text: Windows Support
         url: /features/windows
-        generate: false
       - text: Auditing
         url: /features/access-audit
   - title: Reference docs
@@ -382,6 +384,8 @@ items:
         url: /generated/kuma-cp
         src: /.repos/kuma/app/docs/2.0.x/generated/kuma-cp
 unlisted:
+  - url: /policies/matching
+    src: /.repos/kuma/app/docs/2.0.x/policies/matching/
   # Kuma CP
   - url: /generated/cmd/kuma-cp/kuma-cp_migrate/
     src: /.repos/kuma/app/docs/2.0.x/generated/cmd/kuma-cp/kuma-cp_migrate/

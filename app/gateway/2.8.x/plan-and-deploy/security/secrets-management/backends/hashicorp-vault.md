@@ -87,7 +87,7 @@ Result:
 
 ## Examples
 
-For example, let's say you've configured a HashiCorp Vault with a path of `secret/hello` and a key=value pair of `foo=world`:
+For example, a HashiCorp Vault with a path of `secret/hello` and a key=value pair of `foo=world` created like this:
 
 ```text
 vault kv put secret/hello foo=world
@@ -101,7 +101,7 @@ destroyed          false
 version            1
 ```
 
-Access these secrets like this:
+Would make it secrets available by:
 
 ```bash
 {vault://hcv/hello/foo}

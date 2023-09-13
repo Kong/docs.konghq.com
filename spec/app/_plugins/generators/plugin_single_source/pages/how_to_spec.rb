@@ -9,8 +9,8 @@ RSpec.describe PluginSingleSource::Pages::HowTo do
 
     context 'when there is a specific folder for the version' do
       let(:is_latest) { false }
-      let(:version) { '2.5.x' }
-      let(:source) { '_2.2.x' }
+      let(:version) { '2.6.x' }
+      let(:source) { '_2.6.x' }
       let(:file) { 'how-to/_index.md' }
       let(:source_path) { File.expand_path("_hub/kong-inc/jwt-signer/#{source}/", site.source) }
 
@@ -47,16 +47,16 @@ RSpec.describe PluginSingleSource::Pages::HowTo do
 
     context 'when there is a specific folder for the version' do
       let(:is_latest) { false }
-      let(:version) { '2.5.x' }
-      let(:source) { '_2.2.x' }
+      let(:version) { '2.6.x' }
+      let(:source) { '_2.6.x' }
       let(:file) { 'how-to/_index.md' }
       let(:source_path) { File.expand_path("_hub/kong-inc/jwt-signer/#{source}/", site.source) }
 
       it 'returns a hash containing the data needed to render the templates' do
         expect(subject.data).to include({
           'canonical_url' => '/hub/kong-inc/jwt-signer/how-to/',
-          'source_file' => '_hub/kong-inc/jwt-signer/_2.2.x/how-to/_index.md',
-          'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/how-to/',
+          'source_file' => '_hub/kong-inc/jwt-signer/_2.6.x/how-to/_index.md',
+          'permalink' => '/hub/kong-inc/jwt-signer/2.6.x/how-to/',
           'ssg_hub' => false,
           'title' => 'Using the Kong JWT Signer plugin'
         })
@@ -68,8 +68,8 @@ RSpec.describe PluginSingleSource::Pages::HowTo do
         it 'returns a hash containing the data needed to render the templates' do
           expect(subject.data).to include({
             'canonical_url' => '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/',
-            'source_file' => '_hub/kong-inc/jwt-signer/_2.2.x/how-to/nested/_tutorial.md',
-            'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/how-to/nested/tutorial/',
+            'source_file' => '_hub/kong-inc/jwt-signer/_2.6.x/how-to/nested/_tutorial.md',
+            'permalink' => '/hub/kong-inc/jwt-signer/2.6.x/how-to/nested/tutorial/',
             'ssg_hub' => false,
             'title' => 'Using the Kong JWT Signer plugin'
           })
@@ -86,7 +86,7 @@ RSpec.describe PluginSingleSource::Pages::HowTo do
 
       it 'returns a hash containing the data needed to render the templates' do
         expect(subject.data).to include({
-          'canonical_url' => nil,
+          'canonical_url' => '/hub/kong-inc/jwt-signer/how-to/',
           'source_file' => '_hub/kong-inc/jwt-signer/how-to/_index.md',
           'permalink' => '/hub/kong-inc/jwt-signer/how-to/',
           'ssg_hub' => false,
@@ -99,13 +99,13 @@ RSpec.describe PluginSingleSource::Pages::HowTo do
   describe '#source_file' do
     context 'when there is a specific folder for the version' do
       let(:is_latest) { false }
-      let(:version) { '2.5.x' }
-      let(:source) { '_2.2.x' }
+      let(:version) { '2.6.x' }
+      let(:source) { '_2.6.x' }
       let(:file) { 'how-to/_index.md' }
       let(:source_path) { File.expand_path("_hub/kong-inc/jwt-signer/#{source}/", site.source) }
 
       it 'returns the relative path to the file inside the corresponding folder' do
-        expect(subject.source_file).to eq('_hub/kong-inc/jwt-signer/_2.2.x/how-to/_index.md')
+        expect(subject.source_file).to eq('_hub/kong-inc/jwt-signer/_2.6.x/how-to/_index.md')
       end
     end
 
@@ -143,22 +143,22 @@ RSpec.describe PluginSingleSource::Pages::HowTo do
           { text: 'Authentication', url: '/hub/?category=authentication' },
           { text: 'Kong JWT Signer', url: '/hub/kong-inc/jwt-signer/' },
           { text: 'How to', url: '/hub/kong-inc/jwt-signer/how-to/' },
-          { text: 'Using the Kong JWT Signer plugin', url: '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/' }
+          { text: 'Nested tutorial', url: '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/' }
         ])
       end
 
       context 'for older versions' do
         let(:is_latest) { false }
-        let(:version) { '2.5.x' }
-        let(:source) { '_2.2.x' }
+        let(:version) { '2.6.x' }
+        let(:source) { '_2.6.x' }
         let(:source_path) { File.expand_path("_hub/kong-inc/jwt-signer/#{source}/", site.source) }
 
         it 'returns a hash containing the page\'s breadcrumbs' do
           expect(subject.breadcrumbs).to eq([
             { text: 'Authentication', url: '/hub/?category=authentication' },
-            { text: 'Kong JWT Signer', url: '/hub/kong-inc/jwt-signer/2.5.x/' },
-            { text: 'How to', url: '/hub/kong-inc/jwt-signer/2.5.x/how-to/' },
-            { text: 'Using the Kong JWT Signer plugin', url: '/hub/kong-inc/jwt-signer/2.5.x/how-to/nested/tutorial/' }
+            { text: 'Kong JWT Signer', url: '/hub/kong-inc/jwt-signer/2.6.x/' },
+            { text: 'How to', url: '/hub/kong-inc/jwt-signer/2.6.x/how-to/' },
+            { text: 'Nested tutorial 2.6.x', url: '/hub/kong-inc/jwt-signer/2.6.x/how-to/nested/tutorial/' }
           ])
         end
       end
@@ -170,14 +170,14 @@ RSpec.describe PluginSingleSource::Pages::HowTo do
       let(:version) { '2.8.x' }
       let(:source) { '_index' }
       let(:file) { 'how-to/_local-testing.md' }
-      let(:source_path) { File.expand_path("_hub/acme/kong-plugin/#{source}/", site.source) }
+      let(:source_path) { File.expand_path("_hub/acme/kong-plugin/", site.source) }
 
       it 'returns a hash containing the page\'s breadcrumbs' do
         expect(subject.breadcrumbs).to eq([
           { text: 'Logging', url: '/hub/?category=logging' },
           { text: 'Sample plugin', url: '/hub/acme/kong-plugin/' },
           { text: 'How to', url: nil },
-          { text: 'Using the Sample plugin plugin', url: '/hub/acme/kong-plugin/how-to/local-testing/' }
+          { text: 'Local testing', url: '/hub/acme/kong-plugin/how-to/local-testing/' }
         ])
       end
     end

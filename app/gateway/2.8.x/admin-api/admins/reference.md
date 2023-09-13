@@ -142,7 +142,7 @@ HTTP 200 OK
 **Notes:**
 * `generate_register_url` will only generate a URL if the **Admin**'s
 invitation status is 4 ("invited").
-* `generate_register_url` will override the preåvious registration URL
+* `generate_register_url` will override the previous registration URL
 for the particular **Admin** each time it is requested.
 
 **Response**

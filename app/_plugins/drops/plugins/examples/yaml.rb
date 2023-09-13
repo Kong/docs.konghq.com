@@ -8,10 +8,11 @@ module Jekyll
       module Examples
         class Yaml < Base
           FIELD = {
-            'consumer' => 'consumer: CONSUMER_NAME|CONSUMER_ID',
+            'consumer' => 'consumer: CONSUMER_NAME|ID',
+            'consumer_group' => 'consumer_group: CONSUMER_GROUP_NAME|ID',
             'global' => nil,
-            'route' => 'route: ROUTE_NAME|ROUTE_ID',
-            'service' => 'service: SERVICE_NAME|SERVICE_ID'
+            'route' => 'route: ROUTE_NAME|ID',
+            'service' => 'service: SERVICE_NAME|ID'
           }.freeze
 
           def example_config

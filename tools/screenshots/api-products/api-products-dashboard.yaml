@@ -1,0 +1,7 @@
+- output: ../../app/_assets/images/docs/konnect/api-products/api-products-overview.png
+  url: https://cloud.konghq.com/us/api-products/
+  wait: 4000
+  width: 1280
+  height: 1024
+  javascript: |
+    zoomPercentage(-5);

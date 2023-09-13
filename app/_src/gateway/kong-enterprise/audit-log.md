@@ -434,14 +434,20 @@ audit_log_ignore_tables = consumers
 Audit log records are kept in the database for a duration defined by the
 [`audit_log_record_ttl`](/gateway/{{page.kong_version}}/reference/configuration/#audit_log_record_ttl)
 Kong configuration property. Records in the database older than `audit_log_record_ttl` 
-seconds are automatically purged. 
+seconds are automatically purged.
 
+{% if_version lte:3.3.x %}
 PostgreSQL and Cassandra handle record deletion in different ways:
 * In Cassandra databases, record deletion is handled automatically via the
 Cassandra TTL mechanism. 
 * In PostgreSQL databases, records are purged via the stored
 procedure that is executed on insert into the record database. 
+{% endif_version %}
 
+{% if_version gte:3.4.x %}
+PostgreSQL purges records via the stored procedure that is executed on insert into the 
+record database.
+{% endif_version %}
 Therefore, request audit records may exist in the database longer than the configured TTL, 
 if no new records are inserted to the audit table following the expiration timestamp.
 
