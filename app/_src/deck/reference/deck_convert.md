@@ -1,6 +1,6 @@
 ---
 title: deck convert
-source_url: https://github.com/Kong/deck/tree/main/cmd
+source_url: https://github.com/Kong/deck/tree/main/cmd/convert.go
 content_type: reference
 ---
 
