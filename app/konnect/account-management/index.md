@@ -18,6 +18,8 @@ You can claim your Konnect Plus credits by [signing up](https://konghq.com/produ
 
 You can view service, Dev Portal, and API call usage from the [Billing and Usage](https://cloud.konghq.com/settings/billing-settings)
 
+![Billing Page](/assets/images/docs/konnect/billing/billing-and-usage.png)
+
 Here you can: 
 
 * Review analytics for:
@@ -27,11 +29,7 @@ Here you can:
 * View invoices
 * Manage billing and payment information.
 
-![Upstream targets](/assets/images/docs/konnect/billing/billing-and-usage.png)
-
-
 If you want to upgrade to Enterprise, you can use the billing page to [contact a sales representative](/konnect/account-management/change-plan/#upgrade-from-any-plan-to-enterprise).
-
 
 ## License management
 

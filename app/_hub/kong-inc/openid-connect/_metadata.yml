@@ -6,7 +6,7 @@ dbless_compatible: 'yes'
 free: false
 plus: true
 enterprise: true
-paid: true
+premium: true
 konnect: true
 network_config_opts: All
 notes: --

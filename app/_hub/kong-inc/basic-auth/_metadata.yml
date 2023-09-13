@@ -9,6 +9,8 @@ free: true
 plus: true
 enterprise: true
 konnect: true
+paid: true
+premium: true
 network_config_opts: All
 notes: --
 categories:
