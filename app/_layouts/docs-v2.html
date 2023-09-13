@@ -42,7 +42,7 @@ id: documentation
           {% assign edit_link_no_https = page.edit_link | remove: "https://" %}
 
           {% if page.source_url %}
-            {{ page.source_url }}
+            {{ page.source_url | replace: "/tree/", "/edit/" }}
           {% elsif page.edit_link and edit_link_no_https == page.edit_link %}
             "https://github.com/Kong/docs.konghq.com/edit/{{ site.git_branch }}/app/{{ page.edit_link }}"
           {% elsif page.edit_link %}
