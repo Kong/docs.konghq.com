@@ -1,6 +1,6 @@
 ---
 title: deck file openapi2kong
-source_url: https://github.com/Kong/deck/tree/main/cmd
+source_url: https://github.com/Kong/deck/tree/main/cmd/file_openapi2kong.go
 content_type: reference
 ---
 

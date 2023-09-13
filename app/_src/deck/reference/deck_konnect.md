@@ -1,6 +1,6 @@
 ---
 title: deck konnect
-source_url: https://github.com/Kong/deck/tree/main/cmd
+source_url: https://github.com/Kong/deck/tree/main/cmd/konnect.go
 content_type: reference
 ---
 
