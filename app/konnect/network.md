@@ -31,6 +31,7 @@ For Kubernetes or Docker deployments, map ports as needed. For example, if you
 want to use port `3001` for the proxy, map `3001:8000`.
 
 ## Hostnames
+### Runtime groups
 
 Depending on your control plane type, you may need to add hostnames to your firewall allowlist.
 
@@ -97,4 +98,8 @@ You can find the Telemetry hostname through the Gateway Manager:
 {% endnavtabs %}
 
 {:.note}
-> **Note**: Visit [https://ip-addresses.origin.konghq.com/ip-addresses.json](https://ip-addresses.origin.konghq.com/ip-addresses.json) for the list of IPs associated to regional hostnames. You can also subscribe to [https://ip-addresses.origin.konghq.com/rss](https://ip-addresses.origin.konghq.com/rss) for updates.  
+> **Note**: Visit [https://ip-addresses.origin.konghq.com/ip-addresses.json](https://ip-addresses.origin.konghq.com/ip-addresses.json) for the list of IPs associated to regional hostnames. You can also subscribe to [https://ip-addresses.origin.konghq.com/rss](https://ip-addresses.origin.konghq.com/rss) for updates. 
+
+### Mesh Manager
+
+If you plan to use Mesh Manager to manage your Kong service mesh, you must add the `<region>.mesh.sync.konghq.com:443` hostname to your firewall allowlist. 
