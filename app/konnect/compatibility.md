@@ -27,9 +27,10 @@ title: Compatibility
 
 Each [subscription tier](https://konghq.com/pricing) gives you
 access to a subset of plugins:
-* **Free tier:** Open-source Kong plugins
-* **Plus tier:** Open-source and Plus-specific plugins
-* **Enterprise tier:** All Kong plugins
+* **Free tier**
+* **Paid tier** 
+* **Premium tier** 
+* **Enterprise tier** 
 
 If you're looking for supported network protocols and entity scopes, see [Plugin Compatibility](/hub/plugins/compatibility/) on the Plugin Hub.
 
@@ -47,8 +48,8 @@ If you're looking for supported network protocols and entity scopes, see [Plugin
   <thead>
       <th style="text-align: left; width: 10%">Plugin</th>
       <th style="text-align: center">Free</th>
-      <th style="text-align: center">Plus</th>
-      <th style="text-align: center">Enterprise</th>
+      <th style="text-align: center">Paid</th>
+      <th style="text-align: center">Premium</th>
       <th style="text-align: center">Konnect support</th>
       <th style="text-align: left; width: 35%">Notes</th>
   </thead>
@@ -67,16 +68,26 @@ If you're looking for supported network protocols and entity scopes, see [Plugin
           {% endif %}
         </td>
         <td style="text-align: center">
-          {% if plugin.plus == true %}
-            <i class="fa fa-check"></i>
-          {% elsif plugin.plus == false %}
+          {% if plugin.konnect == false %}
             <i class="fa fa-times"></i>
+          {% elsif plugin.free == true %}
+            <i class="fa fa-check"></i>
+          {% elsif plugin.paid == true %}
+            <i class="fa fa-check"></i>
+          {% else %}
+            {% unless plugin.paid %}
+            <i class="fa fa-times"></i>
+            {% endunless %}
           {% endif %}
         </td>
         <td style="text-align: center">
-          {% if plugin.enterprise == true %}
+          {% if plugin.konnect == false %}
+            <i class="fa fa-times"></i>
+          {% elsif plugin.free == true or plugin.paid == true %}
             <i class="fa fa-check"></i>
-          {% elsif plugin.enterprise == false %}
+          {% elsif plugin.premium == true %}
+            <i class="fa fa-check"></i>
+          {% else %}
             <i class="fa fa-times"></i>
           {% endif %}
         </td>
