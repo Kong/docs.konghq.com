@@ -79,7 +79,7 @@ testing and verifying the bandwidth availability for a given instance class.
 Bandwidth requirements for {{site.base_gateway}} depend on the shape and volume
 of traffic flowing through the cluster.
 
-### In-memory caching
+### In-memory caching  <!-- edits needed here -->
 We recommend defining the `mem_cache_size` configuration as large as possible,
 while still providing adequate resources to the operating system and any other
 processes running adjacent to {{site.base_gateway}}. This configuration allows
