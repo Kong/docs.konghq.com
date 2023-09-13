@@ -48,19 +48,6 @@ After creating the global control plane, you must add a zone to that control pla
 
 You now have a very basic {{site.mesh_product_name}} service mesh added to {{site.konnect_short_name}}. This service mesh can only create meshes and policies at the moment, so we must add services and additional configurations to it.
 
-## Configure `kumactl` to connect to your global control plane
-
-`kumactl` is a CLI tool that you can use to access {{site.mesh_product_name}}. It can create, read, update, and delete resources in {{site.mesh_product_name}} in Universal/{{site.konnect_short_name}} mode.
-<!--* (not sure if I removed the right line, so keeping in for easy swap 
-Perform read-only operations on {{site.mesh_product_name}} resources on Kubernetes. -->
-
-You connect `kumactl` to the global control plane in {{site.konnect_short_name}} so that you can run commands against the control plane.
-
-1. From the left navigation menu in {{site.konnect_short_name}}, open {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager) and select the `example-cp` control plane.
-1. Select **Configure kumactl** from the **Control Plane Actions** dropdown menu and follow the steps in the wizard to connect `kumactl` to the control plane.
-
-You can now run commands against your global control plane using `kumactl`. You can see the [`kumactl` command reference](/mesh/latest/generated/cmd/kumactl/kumactl/) for more information about the commands you can use.
-
 ## Add services to your service mesh using the Kubernetes demo app
 
 Now that you've added a global control plane and a zone to your service mesh in {{site.konnect_short_name}}, you can add services to your mesh. You can use the {{site.mesh_product_name}} Kubernetes demo app to set up four services so you can see how {{site.mesh_product_name}} can be used to control services, monitor traffic, and track resource status.
@@ -81,6 +68,28 @@ kubectl apply -f https://raw.githubusercontent.com/kumahq/kuma-demo/master/kuber
 You can see the services the Kubernetes demo app added by navigating to **Mesh Manager** in the sidebar of {{site.konnect_short_name}}, selecting the `example-cp` and clicking **Meshes** in the sidebar. You can view the services associated with that mesh by clicking **Default** and the **Services** tab.
 
 For more information about the Kubernetes demo app, see [Explore {{site.mesh_product_name}} with the Kubernetes demo app](/mesh/latest/quickstart/kubernetes/).
+
+## Configure `kumactl` to connect to your global control plane
+
+`kumactl` is a CLI tool that you can use to access {{site.mesh_product_name}}. It can create, read, update, and delete resources in {{site.mesh_product_name}} in Universal/{{site.konnect_short_name}} mode.
+<!--* (not sure if I removed the right line, so keeping in for easy swap 
+Perform read-only operations on {{site.mesh_product_name}} resources on Kubernetes. -->
+
+You connect `kumactl` to the global control plane in {{site.konnect_short_name}} so that you can run commands against the control plane.
+
+1. From the left navigation menu in {{site.konnect_short_name}}, open {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager) and select the `example-cp` control plane.
+1. Select **Configure kumactl** from the **Control Plane Actions** dropdown menu and follow the steps in the wizard to connect `kumactl` to the control plane.
+1. Verify that the services you added from the previous section with the Kubernetes demo app are running correctly:
+```bash
+kumactl get dataplanes
+```
+If your dataplanes were configured correctly with the demo app, it should return something like:
+```bash
+MESH   NAME   TAGS   ADDRESS   AGE
+?
+```
+
+You can now run commands against your global control plane using `kumactl`. You can see the [`kumactl` command reference](/mesh/latest/generated/cmd/kumactl/kumactl/) for more information about the commands you can use.
 
 ## Conclusion
 
