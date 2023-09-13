@@ -9,6 +9,7 @@
 /gateway/latest/production/breaking-changes/     /gateway/latest/breaking-changes/
 /gateway/:version/production/breaking-changes/   /gateway/:version/breaking-changes/
 
+
 # Konnect rename
 
 /konnect/runtime-manager/runtime-instances/verify-instance/ /konnect/gateway-manager/data-plane-nodes/verify-node/
