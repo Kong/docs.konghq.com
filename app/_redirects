@@ -2,6 +2,13 @@
 # Newer, more relevant redirects should appear at the top of the file.
 # More general/sweeping redirects should be at the bottom.
 
+######################################################################
+
+# Evergreen redirects for nav files; do not delete unless you're removing the nav entry
+/konnect/support/data-plane-nodes/  /konnect/gateway-manager/data-plane-nodes/
+/gateway/latest/production/breaking-changes/     /gateway/latest/breaking-changes/
+/gateway/:version/production/breaking-changes/   /gateway/:version/breaking-changes/
+
 # Konnect rename
 
 /konnect/runtime-manager/runtime-instances/verify-instance/ /konnect/gateway-manager/data-plane-nodes/verify-node/
@@ -22,8 +29,6 @@
 # 3.3
 
 /gateway/latest/upgrade/#upgrade-considerations-and-breaking-changes    /gateway/latest/breaking-changes/
-/gateway/latest/production/breaking-changes/     /gateway/latest/breaking-changes/
-/gateway/:version/production/breaking-changes/   /gateway/:version/breaking-changes/
 
 # 3.2
 

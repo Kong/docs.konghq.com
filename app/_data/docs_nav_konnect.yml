@@ -20,7 +20,8 @@
         - text: Control Plane Upgrades FAQ
           url: /upgrade-faq/
         - text: Supported Installation Options
-          url: /gateway-manager/data-plane-nodes/
+          url: /support/data-plane-nodes/
+          generate: false
 
 - title: Get Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
