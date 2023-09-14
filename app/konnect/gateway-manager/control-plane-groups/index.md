@@ -13,7 +13,7 @@ control plane group share the same cluster of data plane nodes.
 In a standard control plane setup, each team configures and manages their own data plane nodes.
 For example, in the following diagram Team Blue configures Control Plane Blue, which then uses a set of data plane nodes that only run Blue configuration; the same happens with Team Yellow.
 
-![Standard control plane](/assets/images/docs/konnect/konnect-standard-rg.svg)
+![Standard control plane](/assets/images/docs/konnect/konnect-control-plane.svg)
 > _**Figure 1:** Standard control plane workflow_
 
 In a control plane group setup, each team still administers their own control plane, but the data plane nodes are shared. 
@@ -22,7 +22,7 @@ The following diagram illustrates using a control plane group for a federated pl
 
 The data plane nodes in the cluster use the combined configuration from all three groups.
 
-![Control plane group](/assets/images/docs/konnect/konnect-composite-rg.svg)
+![Control plane group](/assets/images/docs/konnect/konnect-control-plane-group.svg)
 > _**Figure 2:** Control plane group workflow_
 
 A control plane group can contain up to 256 control planes. 
