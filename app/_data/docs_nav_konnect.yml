@@ -195,6 +195,8 @@
         url: /analytics/use-cases/latency
     - text: Reports Reference
       url: /analytics/reference/
+    - text: API Requests
+      url: /analytics/api-requests
     - text: Troubleshoot
       url: /analytics/troubleshoot/
 
