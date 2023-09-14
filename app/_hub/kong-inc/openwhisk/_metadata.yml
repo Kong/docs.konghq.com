@@ -1,7 +1,6 @@
 name: Apache OpenWhisk
 dbless_compatible: 'yes'
 free: true
-plus: true
 enterprise: true
 paid: true
 konnect: false

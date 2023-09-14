@@ -6,7 +6,6 @@ dbless_explanation: |
   instead of uploading to the Dev Portal. The API spec is configured directly in the plugin.
 examples: true
 free: false
-plus: true
 enterprise: true
 paid: true
 konnect: true

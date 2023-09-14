@@ -1,7 +1,6 @@
 name: OPA
 dbless_compatible: 'yes'
 free: false
-plus: true
 enterprise: true
 paid: true
 konnect: true

@@ -4,7 +4,6 @@ search_aliases:
   - oauth2
 dbless_compatible: 'yes'
 free: false
-plus: true
 enterprise: true
 premium: true
 konnect: true
