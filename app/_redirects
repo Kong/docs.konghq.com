@@ -2,6 +2,14 @@
 # Newer, more relevant redirects should appear at the top of the file.
 # More general/sweeping redirects should be at the bottom.
 
+
+# Konnect plus
+
+
+
+/konnect/account-management/change-plan/     /konnect/account-management/
+/konnect/account-management/billing/    /konnect/account-management/
+
 ######################################################################
 
 # Evergreen redirects for nav files; do not delete unless you're removing the nav entry
