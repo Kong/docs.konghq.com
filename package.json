@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-inject": "^5.0.3",
+    "@vitejs/plugin-vue": "^4.2.3",
     "broken-link-checker": "0.7.8",
     "browser-sync": "2.29.3",
     "cheerio": "1.0.0-rc.12",
@@ -33,6 +34,7 @@
     "lodash": "4.17.21",
     "node-fetch": "2.7.0",
     "prettier": "3.0.2",
+    "sass": "^1.63.6",
     "skeleton-css": "2.0.4",
     "vite": "^4.3.9",
     "vite-plugin-ruby": "^3.2.2"
@@ -51,7 +53,13 @@
   },
   "dependencies": {
     "@segment/analytics-next": "1.53.4",
+    "@kong-ui-public/spec-renderer": "^0.11.9",
+    "@kong/kongponents": "^8.119.0",
+    "@kong/sdk-portal-js": "^1.0.0",
     "jquery": "3.7.0",
-    "js-cookie": "^3.0.1"
+    "js-cookie": "^3.0.1",
+    "js-yaml": "^4.1.0",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4"
   }
 }

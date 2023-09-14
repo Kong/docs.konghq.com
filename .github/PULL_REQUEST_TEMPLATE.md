@@ -1,15 +1,13 @@
 
 ### Description
 
-What did you change and why?
+<!-- What did you change and why? -->
  
-Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc.
-
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 ### Testing instructions
 
-Netlify link: <!-- Netlify will generate a preview link after PR is opened. Add links to your edited content here. -->
-
+Preview link: <!-- Netlify will generate a preview link after PR is opened. Add links to your edited content here. -->
 
 ### Checklist 
 
