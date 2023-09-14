@@ -28,7 +28,7 @@
   items:
     - text: Overview
       url: /getting-started/
-    - text: Access a Konnect Account
+    - text: Create a Konnect Account
       url: /getting-started/access-account/
     - text: Set up a Data Plane Node
       url: /getting-started/configure-data-plane-node/

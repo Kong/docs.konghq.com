@@ -1,10 +1,7 @@
 ---
-title: Accessing a Kong Konnect Account
+title: Create a Kong Konnect Account
 ---
 
-Sign up for {{site.konnect_short_name}} to receive a 30 day free
-trial of {{site.konnect_short_name}} Plus. After 30 days, you can choose to
-downgrade to the free version, or continue with a paid Plus subscription.
 
 ## Set up a new {{site.konnect_saas}} account
 
@@ -13,24 +10,12 @@ downgrade to the free version, or continue with a paid Plus subscription.
 2. In the registration form, fill in your email address, first and last name,
 and organization name.
 
-    All fields are required.
-
 3. Create a password.
-
-    The new password must be between 8-128 characters, and contain at least three of the
-    following: a lowercase letter, an uppercase letter, a number, or a special
-    character.
 
 4. From your {{site.konnect_short_name}} welcome email, click the link to verify your account.
 
 5. Sign in to {{site.konnect_short_name}} using your email and password.
 
-    Your {{site.konnect_short_name}} Plus free trials starts now.
-
-    {{site.konnect_short_name}} notifies you three days before the trial ends.
-    At that point, you can choose whether to continue with
-    {{site.konnect_short_name}} Plus or downgrade to the
-    {{site.konnect_short_name}} Free plan.
 
 ## Summary and next steps
 
