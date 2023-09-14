@@ -23,7 +23,8 @@ In this setup, you need to designate one backup node.
 The backup node must have read and write access to the S3 bucket, and the data plane nodes that are provisioned must have read access to the same S3 bucket. 
 This node is responsible for communicating the state of the {{site.base_gateway}} `kong.conf` configuration file from the control plane to the S3 bucket.
 
-Nodes are initialized with fallback configs via environment variables, including `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_DEFAULT_REGION`. If associating with an IAM role and if the backup node does not reside on the AWS platform then an additional environment variable `AWS_SESSION_TOKEN` may be necessary. 
+Nodes are initialized with fallback configs via environment variables, including `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_DEFAULT_REGION`. 
+If associating with an IAM role and if the backup node does not reside on the AWS platform, an additional environment variable `AWS_SESSION_TOKEN` may be necessary. 
 
 A backup node should not be used to proxy traffic. A single backup node is sufficient for all deployments. For more information about the data that is set in the environment variables, review the [AWS environment variable configuration documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html).
 
