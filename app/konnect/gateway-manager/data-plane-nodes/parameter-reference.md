@@ -1,11 +1,9 @@
 ---
-title: Runtime Configuration Parameters
+title: Data Plane Node Configuration Parameters
 content_type: reference
 ---
 
 ## Advanced parameters for {{site.base_gateway}}
-
-Refer to these parameters when using the **Advanced** runtime setup option.
 
 The following parameters are the minimum settings required for a data plane node.
 For further customization, see the

@@ -59,7 +59,7 @@
           url: /gateway-manager/data-plane-nodes/verify-node/
         - text: Renew Data Plane Certificates
           url: /gateway-manager/data-plane-nodes/renew-certificates/
-        - text: Runtime Parameter Reference
+        - text: Parameter Reference
           url: /gateway-manager/data-plane-nodes/parameter-reference/
         - text: Using Custom DP Labels
           url: /gateway-manager/data-plane-nodes/custom-dp-labels
@@ -71,10 +71,10 @@
           url: /gateway-manager/control-plane-groups/how-to/
         - text: Migrate Configuration into Control Plane Groups
           url: /gateway-manager/control-plane-groups/migrate/
-        - text: Conflicts in Runtime Groups
+        - text: Conflicts in Control Planes
           url: /gateway-manager/control-plane-groups/conflicts/
 
-    - text: Runtime Configuration
+    - text: Kong Gateway Configuration in Konnect
       items:
         - text: Overview
           url: /gateway-manager/configuration/
@@ -86,7 +86,7 @@
               url: /gateway-manager/configuration/vaults/
             - text: Set Up and Use a Vault in Konnect
               url: /gateway-manager/configuration/vaults/how-to/
-        - text: Manage Runtime Configuration using decK
+        - text: Manage Control Plane Configuration with decK
           url: /gateway-manager/declarative-config/
     - text: KIC Association
       url: /gateway-manager/kic/
