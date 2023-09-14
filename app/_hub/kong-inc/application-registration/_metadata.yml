@@ -2,9 +2,7 @@ name: Portal Application Registration
 global: false
 dbless_compatible: 'no'
 free: false
-plus: false
 enterprise: true
-premium: false
 konnect: false
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: Application registration <b>is</b> available in Konnect, but doesn't require this plugin. <br>Learn how to <a href="/konnect/dev-portal/applications/enable-app-reg/">Enable Application Registration</a> in Konnect.

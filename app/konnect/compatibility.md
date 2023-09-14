@@ -56,6 +56,7 @@ If you're looking for supported network protocols and entity scopes, see [Plugin
   <tbody>
     {% assign plugins_for_category = kong_extns | where_exp: "plugin", "plugin.categories contains category.slug" %}
     {% for plugin in plugins_for_category %}
+     
       <tr>
         <td>
           <a href="{{plugin.url}}">{{ plugin.name }}</a>
@@ -63,38 +64,28 @@ If you're looking for supported network protocols and entity scopes, see [Plugin
         <td style="text-align: center">
           {% if plugin.free == true %}
             <i class="fa fa-check"></i>
-          {% elsif plugin.free == false %}
-            <i class="fa fa-times"></i>
+
           {% endif %}
         </td>
         <td style="text-align: center">
-          {% if plugin.konnect == false %}
-            <i class="fa fa-times"></i>
-          {% elsif plugin.free == true %}
-            <i class="fa fa-check"></i>
-          {% elsif plugin.paid == true %}
-            <i class="fa fa-check"></i>
-          {% else %}
-            {% unless plugin.paid %}
-            <i class="fa fa-times"></i>
+          {% unless plugin.free %}
+            {% unless plugin.premium %}
+              {% if plugin.paid == true %}
+                <i class="fa fa-check"></i>
+              {% endif %}
             {% endunless %}
-          {% endif %}
+          {% endunless %}
+        </td>
+        <td style="text-align: center">
+          {% unless plugin.free == true or plugin.paid == true %}
+            {% if plugin.premium == true %}
+              <i class="fa fa-check"></i>
+
+            {% endif %}
+          {% endunless %}
         </td>
         <td style="text-align: center">
           {% if plugin.konnect == false %}
-            <i class="fa fa-times"></i>
-          {% elsif plugin.free == true or plugin.paid == true %}
-            <i class="fa fa-check"></i>
-          {% elsif plugin.premium == true %}
-            <i class="fa fa-check"></i>
-          {% else %}
-            <i class="fa fa-times"></i>
-          {% endif %}
-        </td>
-        <td style="text-align: center">
-          {% if plugin.konnect == true %}
-            <i class="fa fa-check"></i>
-          {% elsif plugin.konnect == false %}
             <i class="fa fa-times"></i>
           {% endif %}
         </td>
@@ -102,8 +93,10 @@ If you're looking for supported network protocols and entity scopes, see [Plugin
           {{ plugin.notes }}
         </td>
       </tr>
+
     {% endfor %}
   </tbody>
 </table>
 
 {% endfor %}
+
