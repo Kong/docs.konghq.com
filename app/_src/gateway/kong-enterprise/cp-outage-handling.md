@@ -75,7 +75,7 @@ kong-dp-importer:
 ## Prerequisites
 
 * A GCP cloud storage bucket
-* Read & write credentials for the bucket
+* Read and write credentials for the bucket
 
 
 ## Configuration
