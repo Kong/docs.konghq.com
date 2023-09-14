@@ -46,7 +46,9 @@ kong-exporter:
 
 ```
 
-This node is responsible for writing to the S3 bucket when it receives a new configuration. The file structure will be automatically created inside of the bucket, these should not be created manually. If the node version is `3.2.0.0` using the example above, the key name will be `test-prefix/3.2.0.0/config.json`. Both the control plane and data plane can be configured to export configurations.
+This node is responsible for writing to the S3 bucket when it receives new configuration. The file structure is automatically created inside of the bucket and should not be created manually. If the node version is `3.2.0.0`, using the example above, the key name will be `test-prefix/3.2.0.0/config.json`. 
+
+Both the control plane and data plane can be configured to export configurations.
 
 You can configure new data planes to load a configuration from the S3 bucket if the control plane is unreachable using the following environment variables: 
 
