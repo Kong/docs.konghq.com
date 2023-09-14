@@ -80,7 +80,9 @@ kong-dp-importer:
 
 ## Configuration
 
-In this setup, you will need to designate one backup node. The backup node must have read & write access to the GCP cloud storage bucket and the data plane nodes that are provisioned must have read access to the same GCP cloud storage bucket. This node is responsible for communicating the state of the {{site.base_gateway}} `kong.conf` configuration file from the control plane to the GCP cloud storage bucket.
+In this setup, you need to designate one backup node. 
+The backup node must have read and write access to the GCP cloud storage bucket and the data plane nodes that are provisioned must have read access to the same GCP cloud storage bucket. 
+This node is responsible for communicating the state of the {{site.base_gateway}} `kong.conf` configuration file from the control plane to the GCP cloud storage bucket.
 
 Credentials are passed via the environment variable `GCP_SERVICE_ACCOUNT`. For more information about credentials review the [GCP credentials documentation](https://developers.google.com/workspace/guides/create-credentials).
 
