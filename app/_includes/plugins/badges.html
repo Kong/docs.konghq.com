@@ -1,11 +1,11 @@
-{% if include.badges.konnect? %}
-  <a href="https://cloud.konghq.com" target="_blank" class="badge konnect" aria-label="compatible with Konnect"> </a>
+{% if include.badges.paid? %}
+  <a href="https://konghq.com/pricing" target="_blank" class="badge paid" aria-label="available with Konnect Paid subscription"> </a>
 {% endif %}
-{% if include.badges.plus? %}
-  <a href="https://konghq.com/pricing" target="_blank" class="badge plus" aria-label="available with plus subscription"> </a>
+{% if include.badges.premium? %}
+  <a href="https://konghq.com/pricing" target="_blank" class="badge premium" aria-label="available with Konnect Premium subscription"> </a>
 {% endif %}
 {% if include.badges.enterprise? %}
-  <a href="https://konghq.com/pricing" target="_blank" class="badge enterprise" aria-label="available with enterprise subscription"> </a>
+  <a href="https://konghq.com/pricing" target="_blank" class="badge enterprise" aria-label="available with Kong Gateway Enterprise subscription"> </a>
 {% endif %}
 {% if include.badges.techpartner? %}
   <a href="https://konghq.com/partners" target="_blank" class="badge techpartner" aria-label="Verified Kong technical partner"> </a>
