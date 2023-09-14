@@ -1,7 +1,6 @@
 name: Proxy Caching Advanced
 dbless_compatible: 'yes'
 free: false
-plus: true
 enterprise: true
 paid: true
 konnect: true
