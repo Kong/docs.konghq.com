@@ -9,11 +9,16 @@ Credential lifecyles can be managed through the Kong Admin API, or independently
 
 ## Usage
 
-In order to use the plugin, you first need to create a Consumer to associate one or more credentials to. The Consumer represents a developer using the upstream service. Additionally, a Vault object must be created to represent the connection Kong will use to communicate with a Vault server, where access and secret tokens will be stored.
+To use the plugin, you first need to create a consumer to associate one or more credentials to. 
+The consumer represents a developer using the upstream service. 
 
-### Create a Consumer
+Additionally, a Vault object must be created to represent the connection Kong will use to communicate with a 
+Vault server, where access and secret tokens will be stored.
 
-You need to associate a credential to an existing [Consumer][consumer-object] object. To create a Consumer, you can execute the following request:
+### Create a consumer
+
+You need to associate a credential to an existing [consumer](/gateway/api/admin-oss/latest/#/Consumers) object. 
+To create a consumer, execute the following request:
 
 ```bash
 curl -X POST http://kong:8001/consumers/ \
@@ -38,23 +43,25 @@ parameter                      | default | description
 `username`<br>*semi-optional*  |         | The username of the Consumer. Either this field or `custom_id` must be specified.
 `custom_id`<br>*semi-optional* |         | A custom identifier used to map the Consumer to another database. Either this field or `username` must be specified.
 
-A [Consumer][consumer-object] can have many credentials.
+A consumer can have many credentials.
 
-If you are also using the [ACL](/plugins/acl/) plugin and allowed lists with this
+If you are also using the [ACL](/hub/kong-inc/acl/) plugin and allowed lists with this
 service, you must add the new consumer to an allowed group. See
-[ACL: Associating Consumers][acl-associating] for details.
+[ACL: Associating Consumers](/hub/kong-inc/acl/how-to/) for details.
 
 ### Create a Vault
 
 {% if_plugin_version lte:3.0.x %}
+
 {:.note}
-> Vault Auth plugin only works with HashiCorp Vault KV Secrets Engine - Version 1.
+> The Vault Auth plugin only works with HashiCorp Vault KV Secrets Engine - Version 1.
 
 {% endif_plugin_version %}
 
 {% if_plugin_version gte:3.1.x %}
 
-The Vault plugin supports HashiCorp Vault KV Secrets Engine versions 1 and 2.
+{:.note}
+> The Vault plugin supports HashiCorp Vault KV Secrets Engine versions 1 and 2.
 
 {% endif_plugin_version %}
 
