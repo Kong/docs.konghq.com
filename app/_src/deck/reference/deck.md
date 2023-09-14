@@ -1,6 +1,6 @@
 ---
 title: deck
-source_url: https://github.com/Kong/deck/tree/main/cmd
+source_url: https://github.com/Kong/deck/tree/main/cmd/root.go
 content_type: reference
 ---
 

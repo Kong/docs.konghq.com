@@ -1,6 +1,6 @@
 ---
 title: deck file merge
-source_url: https://github.com/Kong/deck/tree/main/cmd
+source_url: https://github.com/Kong/deck/tree/main/cmd/file_merge.go
 content_type: reference
 ---
 
