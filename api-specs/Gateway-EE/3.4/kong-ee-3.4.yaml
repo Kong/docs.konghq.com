@@ -8510,9 +8510,9 @@ tags:
       
       The main attribute of a service is the destination URL for proxying traffic. This URL can be set as a single string or by specifying its protocol, host, port and path individually. 
 
-    Services are associated to routes, and a single service can have many routes associated with it. Routes are entrypoints in Kong Gateway which define rules to match client requests. Once a route is matched, Kong Gateway proxies the request to its associated service. See the [Proxy Reference](https://docs.konghq.com/gateway/latest/how-kong-works/routing-traffic/) for a detailed explanation of how Kong proxies traffic.
+      Services are associated to routes, and a single service can have many routes associated with it. Routes are entrypoints in Kong Gateway which define rules to match client requests. Once a route is matched, Kong Gateway proxies the request to its associated service. See the [Proxy Reference](https://docs.konghq.com/gateway/latest/how-kong-works/routing-traffic/) for a detailed explanation of how Kong proxies traffic.
 
-    Services can be both [tagged and filtered by tags](https://docs.konghq.com/gateway/latest/admin-api/#tags).
+      Services can be both [tagged and filtered by tags](https://docs.konghq.com/gateway/latest/admin-api/#tags).
     name: Services
   - description: |
       Route entities define rules to match client requests. Each route is associated with a service, and a service may have multiple routes associated to it. Every request matching a given route will be proxied to the associated service. You need at least one matching rule that applies to the protocol being matched by the route.
@@ -8600,7 +8600,7 @@ tags:
       Workspaces provide a way to segment Kong Gateway entities. Entities in a workspace are isolated from those in other workspaces. 
     name: Workspaces
   - description: All about Basic-auth credentials in Kong
-    name: The Kong Dev Portal can be fully or partially authenticated using ` protocol’s basic authentication scheme. Requests are sent with an authorization header that contains the word basic followed by the base64-encoded `username:password string`
+    name: Basic-auth
   - description: |
       A license entity lets you configure a license in your Kong Gateway cluster, in both traditional and hybrid mode deployments. 
       In hybrid mode deployments, the control plane sends licenses configured through the `/licenses` endpoint to all data planes in the cluster.
