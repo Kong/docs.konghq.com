@@ -14,7 +14,7 @@ This option is only recommended for customers who have to adhere to strict avail
 ## Prerequisites
  
 * An Amazon S3 bucket
-* Read & write credentials for the bucket
+* Read and write credentials for the bucket
 
 
 ## Configuration
