@@ -47,25 +47,26 @@ If you're looking for plugin deployment topology compatibility, supported networ
         <td style="text-align: center">
           {% if plugin.free == true %}
             <i class="fa fa-check"></i>
-          {% elsif plugin.free == false %}
-            <i class="fa fa-times"></i>
+
           {% endif %}
         </td>
         <td style="text-align: center">
-          {% if plugin.free != false or plugin.konnect == true %}
-            <i class="fa fa-check"></i>
-            {% elsif plugin.premium == true %}
+          {% unless plugin.free %}
+            {% unless plugin.premium %}
+              {% if plugin.paid == true %}
+                <i class="fa fa-check"></i>
+              {% endif %}
+            {% endunless %}
+          {% endunless %}
+        </td>
+        <td style="text-align: center">
+          {% unless plugin.free == true or plugin.paid == true %}
+            {% if plugin.premium == true %}
               <i class="fa fa-check"></i>
-            {% elsif plugin.premium == false %}
+            {% else %}
               <i class="fa fa-times"></i>
-          {% endif %}
-        </td>
-        <td style="text-align: center">
-          {% if plugin.enterprise == true %}
-            <i class="fa fa-check"></i>
-          {% elsif plugin.enterprise == false %}
-            <i class="fa fa-times"></i>
-          {% endif %}
+            {% endif %}
+          {% endunless %}
         </td>
       </tr>
       {% endif %}
@@ -103,7 +104,6 @@ If you're looking for plugin deployment topology compatibility, supported networ
   <thead>
       <th style="text-align: left; width: 10%">Plugin</th>
       <th style="text-align: center">Free</th>
-      <th style="text-align: center">Plus</th>
       <th style="text-align: center">Enterprise</th>
   </thead>
   <tbody>
@@ -117,13 +117,6 @@ If you're looking for plugin deployment topology compatibility, supported networ
           {% if plugin.free == true %}
             <i class="fa fa-check"></i>
           {% elsif plugin.free == false %}
-            <i class="fa fa-times"></i>
-          {% endif %}
-        </td>
-        <td style="text-align: center">
-          {% if plugin.plus == true %}
-            <i class="fa fa-check"></i>
-          {% elsif plugin.plus == false %}
             <i class="fa fa-times"></i>
           {% endif %}
         </td>
