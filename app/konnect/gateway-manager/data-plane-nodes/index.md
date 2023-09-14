@@ -18,7 +18,7 @@ This brings you to a set of installation options. Choose one of the options, the
 
 {{site.konnect_short_name}} supports the following installation options:
 
-<img alt="Installation options for Gateway data plane nodes" src="https://github.com/Kong/docs.konghq.com/assets/8153796/4d8d48f9-dfc7-4c88-bd5d-1e3b2994a4a9">
+![Konnect install options](/assets/images/docs/konnect/konnect-install-options.png){:.image-border}
 
 Standard setup:
 * macOS (ARM)
