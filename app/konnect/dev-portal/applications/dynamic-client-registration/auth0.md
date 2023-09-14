@@ -13,10 +13,10 @@ content_type: how-to
 {:.note}
 > **Note:** When using Auth0 DCR for Dev Portal, each application in auth0 will have the following metadata. This can be viewed via the auth0 dashboard, or accessed from the auth0 api.
 
-> * **konnect_portal_id**: ID of the Portal the application belongs to
-> * **konnect_developer_id**: ID of the developer in the Dev Portal
-> * **konnect_org_id**: ID of the Dev Portal the application belongs to
-> * **konnect_application_id**: ID of the application in the Dev Portal
+> * `konnect_portal_id`: ID of the Portal the application belongs to
+> * `konnect_developer_id`: ID of the developer in the Dev Portal
+> * `konnect_org_id`: ID of the Dev Portal the application belongs to
+> * `konnect_application_id`: ID of the application in the Dev Portal
 
 ## Configure Auth0
 
@@ -134,7 +134,7 @@ Where `example.com` is the address of the runtime instance you are running.
 
 1. Follow the [Auth0 documentation](https://auth0.com/docs/customize/actions/write-your-first-action#create-an-action) to create a custom action on the "Machine to Machine" flow.
 
-2. Use the following code as an example for what your action could look like. Update the initial consts with the values from the when you configured DCR.
+2. Use the following code as an example for what your action could look like. Update the initial const variables with the values from the when you configured DCR.
 
    ```js
 
@@ -146,65 +146,65 @@ Where `example.com` is the address of the runtime instance you are running.
    const INITIAL_CLIENT_SECRET = 
 
    exports.onExecuteCredentialsExchange = async (event, api) => {
-   const metadata = event.client.metadata
-   const newClientName = `${metadata.konnect_portal_id}+${metadata.konnect_developer_id}+${metadata.konnect_application_id}`
-   await updateApplication(event.client.client_id, {
-      name: newClientName
-   })
+      const metadata = event.client.metadata
+      const newClientName = `${metadata.konnect_portal_id}+${metadata.konnect_developer_id}+${metadata.konnect_application_id}`
+      await updateApplication(event.client.client_id, {
+         name: newClientName
+      })
    };
 
    async function getShortLivedToken() {
-         const tokenEndpoint = new URL('/oauth/token', INITIAL_CLIENT_ISSUER).href
-         const headers = {
+      const tokenEndpoint = new URL('/oauth/token', INITIAL_CLIENT_ISSUER).href
+      const headers = {
          'Content-Type': 'application/json',
-         }
+      }
 
-         const payload = {
+      const payload = {
          client_id: INITIAL_CLIENT_ID,
          client_secret: INITIAL_CLIENT_SECRET,
          audience: INITIAL_CLIENT_AUDIENCE,
          grant_type: 'client_credentials'
-         }
-   
-         const result = await
-         axios.post(`${tokenEndpoint}`, payload, {
+      }
+
+      const result = await
+      axios.post(`${tokenEndpoint}`, payload, {
          headers
-         })
-         .then(x => x.data)
-         .catch(e => {
-            const msg = 'Unable to create one time access token'
-            throw new Error(msg)
-         })
-      
-         if (!result.access_token) {
+      })
+      .then(x => x.data)
+      .catch(e => {
+         const msg = 'Unable to create one time access token'
+         throw new Error(msg)
+      })
+
+      if (!result.access_token) {
          const msg = 'Unable to find one time access token from result'
          throw new Error(msg)
-         }
-   
-         return result.access_token
+      }
+
+      return result.access_token
    }
 
    async function updateApplication(clientId, update) {
-   const shortLivedToken = await getShortLivedToken()
-   const getApplicationEndpoint = new URL(`/api/v2/clients/${clientId}`, INITIAL_CLIENT_ISSUER).href
-   const headers = makeHeaders(shortLivedToken)
+      const shortLivedToken = await getShortLivedToken()
+      const getApplicationEndpoint = new URL(`/api/v2/clients/${clientId}`, INITIAL_CLIENT_ISSUER).href
+      const headers = makeHeaders(shortLivedToken)
 
 
-   return await axios.patch(getApplicationEndpoint,
-      update,
-      { headers })
-      .catch(e => {
-         const msg = `Unable to update Application from auth0 ${e}`
-         throw new Error(msg)
-      })
+      return await axios.patch(getApplicationEndpoint,
+         update,
+         { headers })
+         .catch(e => {
+            const msg = `Unable to update Application from auth0 ${e}`
+            throw new Error(msg)
+         })
    }
 
    function makeHeaders(token) {
-   return {
-      Authorization: `Bearer ${token}`,
-      accept: 'application/json',
-      'Content-Type': 'application/json'
-   }
+      return {
+         Authorization: `Bearer ${token}`,
+         accept: 'application/json',
+         'Content-Type': 'application/json'
+      }
    }
    ```
 
