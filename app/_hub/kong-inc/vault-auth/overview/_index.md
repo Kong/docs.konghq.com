@@ -5,7 +5,7 @@ nav_title: Overview
 Add authentication to a service or route with an access token and a secret token. 
 Credential tokens are stored securely via Vault. 
 
-Credential lifecyles can be managed through the Kong Admin API, or independently via Vault.
+Credential lifecycles can be managed through the Kong Admin API, or independently via Vault.
 
 ## Usage
 
