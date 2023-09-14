@@ -203,8 +203,9 @@ kongplugin.configuration.konghq.com/rate-limit patched
 ```
 
 Omitting the `redis_username` setting uses the default `redis` user.
-
-## (Optional) Use Secrets Management
+{% if_version gte:2.11.x %}
+## (Optional) Use Secrets Management 
+{:.badge .enterprise}
 
 {:.badge .enterprise}
 
@@ -302,6 +303,7 @@ The results should look like this:
 ```text
 "{vault://env/secret-redis-password}"
 ```
+{% endif_version %}
 
 ## Test it
 
