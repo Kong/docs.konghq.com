@@ -2,6 +2,7 @@
 {%- assign hostname = include.hostname | default: 'kong.example' %}
 {%- assign name = include.name | default: 'echo' %}
 {%- assign service = include.service | default: 'echo' %}
+{%- assign port = include.port | default: '1027' %}
 {% navtabs api %}
 {% navtab Ingress %}
 ```bash
@@ -24,7 +25,7 @@ spec:
           service:
             name: {{ service }}
             port:
-              number: 1027
+              number: {{ port }}
 " | kubectl apply -f -
 ```
 The results should look like this:
@@ -54,7 +55,7 @@ spec:
     backendRefs:
     - name: {{ service }}
       kind: Service
-      port: 1027
+      port: {{ port }}
 " | kubectl apply -f -
 ```
 The results should look like this:
