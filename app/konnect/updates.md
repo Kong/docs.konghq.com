@@ -9,7 +9,10 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## September 2023
 
+**API Requests is now in beta**
+: {{site.konnect_short_name}} users have now access to a new feature that tracks API requests in near real-time. API Requests provides detailed records for the requests that are made to your APIs. This information can not only help you understand your consumers better, but also simplifies any initial investigation into errors or performance issues by providing an intuitive web experience that is fully integrated into the rest of your {{site.konnect_short_name}} organization.
 ## August 2023
 
 **Role-based Access Control for developer teams**
