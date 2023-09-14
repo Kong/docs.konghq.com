@@ -93,8 +93,6 @@ with each other.
       -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
       -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
       -e "KONG_ADMIN_GUI_URL=http://localhost:8002" \
-      -e "KONG_VITALS_STRATEGY=influxdb" \
-      -e "KONG_VITALS_TSDB_ADDRESS=influxdb:8086" \
       -p 8000:8000 \
       -p 8443:8443 \
       -p 8001:8001 \
