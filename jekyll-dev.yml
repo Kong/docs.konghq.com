@@ -182,9 +182,11 @@ hub-filters:
   tiers:
     - name: Free
       slug: free
-    - name: Plus
-      slug: plus
-    - name: Enterprise
+    - name: Konnect Paid
+      slug: paid
+    - name: Konnect Premium
+      slug: premium
+    - name: Kong Gateway Enterprise
       slug: enterprise
   support:
     - name: Kong
