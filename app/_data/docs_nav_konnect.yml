@@ -115,6 +115,8 @@
       url: /mesh-manager/
     - text: Create a mesh
       url: /mesh-manager/service-mesh/
+    - text: RBAC
+      url: /mesh-manager/rbac/
       
 - title: Service Hub
   icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
