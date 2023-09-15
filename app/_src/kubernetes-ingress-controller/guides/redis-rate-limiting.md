@@ -10,7 +10,7 @@ Learn to use Redis for rate limiting in a multi-node Kong deployment.
 
 You can use the {{site.ee_product_name}} **Secrets Management** feature along with the example rate-limiting plugin. If you have an existing plugin that you wish to use Secrets Management with, you can skip directly to [the Secrets Management section](#optional-use-secrets-management) and use it for your plugin instead of the example rate-limiting plugin.
 
-{% include_cached /md/kic/installation.md kong_version=page.kong_version %}
+{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
 
 {% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
 
@@ -39,7 +39,7 @@ You can use the {{site.ee_product_name}} **Secrets Management** feature along wi
 
     The results should look like this:
     ```text
-    kongclusterplugin.configuration.konghq.com/global-rate-limit created
+    kongplugin.configuration.konghq.com/rate-limit created
     ```
     
 1. Associate the plugin with the Service.
@@ -70,7 +70,7 @@ You can use the {{site.ee_product_name}} **Secrets Management** feature along wi
 1. Send repeated requests to decrement the remaining limit headers, and block requests after the fifth request.
 
     ```bash
-    for i in `seq 6`; do curl -sv -H 'Host:kong.example' PROXY_IP/echo 2>&1 | grep "< HTTP"; done
+    for i in `seq 6`; do curl -sv -H 'Host:kong.example' $PROXY_IP/echo 2>&1 | grep "< HTTP"; done
     ```
 
     The results should look like this:
@@ -85,22 +85,16 @@ You can use the {{site.ee_product_name}} **Secrets Management** feature along wi
 
 ## Scale to multiple pods
 
-1. Scale your Deployment beyond a single replica, to test with multiple proxy instances.
+1. Scale your Deployment to three replicas, to test with multiple proxy instances.
 
     ```bash
-    kubectl scale --replicas 3 -n <NAMESPACE> deployment <DEPLOYMENT_NAME>
+    kubectl scale --replicas 3 -n kong deployment kong-gateway
     ```
-    {:.note}
-    > The `<DEPLOYMENT_NAME>` and `<NAMESPACE>` varies depending on your install method.
-    > If you installed using the [manifests](https://github.com/Kong/kubernetes-ingress-controller/tree/main/deploy/single), the namespace is `kong` and deployment name is `ingress-kong`. 
-    > If you installed using Helm, you can get the deployment name and namespace with
-    > `kubectl get deploy -A -l app.kubernetes.io/name=kong`.
-
     The results should look like this:
     ```text
-    deployment.extensions/ingress-kong scaled
+    deployment.apps/kong-gateway scaled
     ```
-1.  Check if the status of all the Pods that are `READY` is `Running` using the command `kubectl get pods -n <NAMESPACE>`.
+1.  Check if the status of all the Pods that are `READY` is `Running` using the command `kubectl get pods -n kong`.
 
 1. Send requests to this Service does not reliably decrement the remaining counter.
 
@@ -148,7 +142,7 @@ for Redis with turnkey options for authentication.
 1. Install a chart release using the Secret.
 
     ```bash
-    helm install -n kong kong oci://registry-1.docker.io/bitnamicharts/redis \
+    helm install -n kong redis oci://registry-1.docker.io/bitnamicharts/redis \
       --set auth.existingSecret=redis-password-secret \
       --set architecture=standalone
     ```
@@ -166,7 +160,7 @@ for Redis with turnkey options for authentication.
       {
         "op":"add",
         "path":"/config/redis_host",
-        "value":"kong-redis-master"
+        "value":"redis-master"
       },
       {
         "op":"add",
@@ -200,10 +194,10 @@ environment variables.
 ### Add environment variable from Secret
 
 Update your proxy Deployment with an environment variable sourced from the
-`redis-password-secret` Secret. Depending on the method that you used to install in the cluster the `<NAMESPACE>` and `<DEPLOYMENT_NAME>` varies.  
+`redis-password-secret` Secret.
 
 ```bash
-kubectl patch deploy -n <NAMESPACE> <DEPLOYMENT_NAME> --patch '
+kubectl patch deploy -n kong kong-gateway --patch '
 {
   "spec": {
     "template": {
@@ -232,7 +226,7 @@ kubectl patch deploy -n <NAMESPACE> <DEPLOYMENT_NAME> --patch '
 
 The results should look like this:
 ```text
-deployment.apps/ingress-kong patched
+deployment.apps/kong-gateway patched
 ```
 
 
