@@ -29,7 +29,7 @@ platform never stores sensitive credentials.
 Number | Item | Description
 -------|------|------------
 1 | **Vaults menu link** | Main link to the vaults configuration for a control plane. Appears when you select a control plane.
-2 | **Add vault** | Click the **Add vault** button to set up any supported Konnect vault backend.
+2 | **New Vault** | Click the **New Vault** button to set up any supported Konnect vault backend.
 3 | **Vault entry** | Select a vault entry to open the configuration page for the particular vault. On each vault's configuration page, you can edit or delete the vault, or copy the entire configuration as JSON.
 4 | **Vault action menu** | From this menu, you can <b>view</b>, <b>edit</b>, or <b>delete</b> a vault's configuration. 
 
