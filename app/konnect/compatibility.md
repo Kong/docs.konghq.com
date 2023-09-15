@@ -56,37 +56,48 @@ If you're looking for supported network protocols and entity scopes, see [Plugin
   <tbody>
     {% assign plugins_for_category = kong_extns | where_exp: "plugin", "plugin.categories contains category.slug" %}
     {% for plugin in plugins_for_category %}
-     
       <tr>
         <td>
           <a href="{{plugin.url}}">{{ plugin.name }}</a>
         </td>
         <td style="text-align: center">
-          {% if plugin.free == true %}
-            <i class="fa fa-check"></i>
-
-          {% endif %}
+        {% if plugin.konnect == false %}
+         <i class="fa fa-times"></i>
+        {% elsif plugin.free == true %}
+          <i class="fa fa-check"></i>
+        {% endif %}
         </td>
         <td style="text-align: center">
-          {% unless plugin.free %}
-            {% unless plugin.premium %}
-              {% if plugin.paid == true %}
-                <i class="fa fa-check"></i>
-              {% endif %}
+          {% unless plugin.konnect %}
+            <i class="fa fa-times"></i>
+          {% else %}
+            {% unless plugin.free %}
+              {% unless plugin.premium %}
+                {% if plugin.paid == true %}
+                  <i class="fa fa-check"></i>
+                {% endif %}
+              {% endunless %}
             {% endunless %}
           {% endunless %}
         </td>
         <td style="text-align: center">
-          {% unless plugin.free == true or plugin.paid == true %}
-            {% if plugin.premium == true %}
-              <i class="fa fa-check"></i>
-
-            {% endif %}
+          {% unless plugin.konnect %}
+            <i class="fa fa-times"></i>
+          {% else %}
+            {% unless plugin.free %}
+              {% unless plugin.paid %}
+                {% if plugin.premium == true %}
+                  <i class="fa fa-check"></i>
+                {% endif %}
+              {% endunless %}
+            {% endunless %}
           {% endunless %}
         </td>
         <td style="text-align: center">
           {% if plugin.konnect == false %}
             <i class="fa fa-times"></i>
+          {% else %}
+            <i class="fa fa-check"></i>
           {% endif %}
         </td>
         <td>
