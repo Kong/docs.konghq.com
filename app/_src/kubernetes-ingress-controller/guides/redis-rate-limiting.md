@@ -209,8 +209,6 @@ Omitting the `redis_username` setting uses the default `redis` user.
 ## (Optional) Use Secrets Management 
 {:.badge .enterprise}
 
-{:.badge .enterprise}
-
 Secrets Management is a {{site.ee_product_name}} feature for [storing sensitive
 plugin configuration](/gateway/latest/kong-enterprise/secrets-management/#referenceable-plugin-fields) 
 separately from the visible plugin configuration. The rate-limiting plugin
