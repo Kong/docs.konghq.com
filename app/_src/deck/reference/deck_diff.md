@@ -1,6 +1,6 @@
 ---
 title: deck diff
-source_url: https://github.com/Kong/deck/tree/main/cmd
+source_url: https://github.com/Kong/deck/tree/main/cmd/diff.go
 content_type: reference
 ---
 
