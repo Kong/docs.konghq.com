@@ -45,7 +45,7 @@ installs Lua modules.
 
 First of all, make sure you have your DataDome server-side key. It is available inside your dashboard in the [Integrations](https://app.datadome.co/dashboard/management/integrations) section.
 
-### Kong Gateway (OSS)
+### {{site.base_gateway}}
 
 If you already configured an API, execute the command below after replacing `<YOUR_API>` with the name of your API and `<server_side_key>` with your DataDome server-side key.
 
@@ -55,12 +55,12 @@ curl -i -X POST http://localhost:8001/services/<YOUR_API>/plugins \
      -F "config.datadome_server_side_key=<server_side_key>"
 ```
 
-### Kong Konnect
+### {{site.konnect_product_name}}
 
 - Depending on where you want to enable DataDome, select `Plugins`
 - Click on `+ New Plugin`
 - On `Custom Plugins`, select `DataDome`
-- Fill the *Datadome Server Side Key* field
+- Fill the *DataDome Server Side Key* field
 - Hit `Save`
 
 For further information, please check our [DataDome Kong documentation page](https://docs.datadome.co/docs/kong-plugin).
