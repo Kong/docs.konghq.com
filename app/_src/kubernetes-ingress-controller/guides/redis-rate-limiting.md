@@ -102,9 +102,11 @@ beyond a single replica:
 kubectl scale --replicas 3 -n kong deployment ingress-kong
 ```
 {:.note}
-> Your Deployment name will vary depending on your install method. You can list
-> your Deployment(s) with `kubectl get deploy -n kong`. Replace `ingress-kong`
-> with your actual Deployment name.
+> Your Deployment name and namespace will vary depending on your install
+> method. The examples in this document match the configuration used by the
+> [basic install manifests](https://github.com/Kong/kubernetes-ingress-controller/tree/main/deploy/single).
+> If you have installed using Helm, you can get your name and namespace with
+> `kubectl get deploy -A -l app.kubernetes.io/name=kong`.
 
 The results should look like this:
 ```text
@@ -223,10 +225,11 @@ environment variables.
 ### Add environment variable from Secret
 
 Update your proxy Deployment with an environment variable sourced from the
-`redis-password-secret` Secret:
+`redis-password-secret` Secret. As with before, your Deployment name and
+namespace may differ:
 
 ```bash
-kubectl patch deploy ingress-kong --patch '
+kubectl patch deploy -n kong ingress-kong --patch '
 {
   "spec": {
     "template": {
