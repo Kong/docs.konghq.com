@@ -8,7 +8,7 @@ content_type: explanation
 * {{site.konnect_product_name}} Plus 
 * {{site.konnect_product_name}} Enterprise
 
-{{site.konnect_product_name}} Plus is the simplest way to get started with {{site.konnect_product_name}}, allowing you to only pay for the services you consume. New accounts are automatically given 1,000 free credits as part of 30-day trial. 
+{{site.konnect_product_name}} Plus is the simplest way to get started with {{site.konnect_product_name}}, allowing you to only pay for the services you consume. New accounts are automatically given a month of free credits as part of 30-day trial. 
 
 Enterprise is our contract-based option that includes 24x7x365 support and professional services access to help you build and maintain your own custom environment. 
 
