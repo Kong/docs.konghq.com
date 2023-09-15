@@ -143,6 +143,14 @@ Property | Description
 `action` | The type of action the user performed on the resource. For example, `retrieve`, `list`, or `edit`.
 `granted` | Boolean indicating whether the authorization was granted or not.
 
+
+### Notice
+As of Sept 15, 2023, the following changes apply:
+- The name of the authorization logs have been updated:
+    - From `Authz.runtimegroups` to `Authz.control-planes`
+    - From `Authz.services` to `Authz.api-products`
+- This change has no effects on the tracibility of the resources by id.
+
 ## Access logs
 
 Access logs include information about create, update, and delete requests to the {{site.konnect_short_name}} API.
