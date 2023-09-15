@@ -10,4 +10,4 @@ categories:
   - analytics-monitoring
 bundled: false
 dbless_compatible: 'yes'
-konnect: false
+konnect: true

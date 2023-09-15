@@ -50,7 +50,7 @@ If you're looking for supported network protocols and entity scopes, see [Plugin
       <th style="text-align: center">Free</th>
       <th style="text-align: center">Paid</th>
       <th style="text-align: center">Premium</th>
-      <th style="text-align: center">Konnect support</th>
+
       <th style="text-align: left; width: 35%">Notes</th>
   </thead>
   <tbody>
@@ -62,14 +62,14 @@ If you're looking for supported network protocols and entity scopes, see [Plugin
         </td>
         <td style="text-align: center">
         {% if plugin.konnect == false %}
-         <i class="fa fa-times"></i>
+         <span>Not Applicable</span>
         {% elsif plugin.free == true %}
           <i class="fa fa-check"></i>
         {% endif %}
         </td>
         <td style="text-align: center">
           {% unless plugin.konnect %}
-            <i class="fa fa-times"></i>
+            <span>Not Applicable</span>
           {% else %}
             {% unless plugin.free %}
               {% unless plugin.premium %}
@@ -82,7 +82,7 @@ If you're looking for supported network protocols and entity scopes, see [Plugin
         </td>
         <td style="text-align: center">
           {% unless plugin.konnect %}
-            <i class="fa fa-times"></i>
+            <span>Not Applicable</span>
           {% else %}
             {% unless plugin.free %}
               {% unless plugin.paid %}
@@ -93,13 +93,7 @@ If you're looking for supported network protocols and entity scopes, see [Plugin
             {% endunless %}
           {% endunless %}
         </td>
-        <td style="text-align: center">
-          {% if plugin.konnect == false %}
-            <i class="fa fa-times"></i>
-          {% else %}
-            <i class="fa fa-check"></i>
-          {% endif %}
-        </td>
+    
         <td>
           {{ plugin.notes }}
         </td>
