@@ -137,6 +137,8 @@ items:
         url: /guides/using-gateway-discovery
       - text: Routing by Header
         url: /guides/routing-by-header/
+      - text: Using Secrets Management for Plugins
+        url: /guides/redis-rate-limiting
   - title: References
     icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
     items:
