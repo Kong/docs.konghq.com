@@ -23,6 +23,8 @@ Creating a fully-functioning {{site.mesh_product_name}} deployment in {{site.kon
 1. Click **New Control Plane** and complete the fields as needed.
 1. Select the control plane you just created, and then click **Zones** in the sidebar.
 1. Click **Create Zone**, configure the fields as needed, and follow the steps in the wizard to connect your zone to {{site.konnect_short_name}}.
+    {:.note}
+    > **Note:** Mesh Manager automatically creates a special [managed service account](/konnect/org-management/system-accounts/) that is only used in the zone creation process. This special, read-only managed service account cannot be edited or deleted manually. Instead, it is removed by {{site.konnect_short_name}} after the zone is created.
 1. From the {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager) navigation menu, and select the control plane you created in step 2.
 1. Select **Configure kumactl** from the **Control Plane Actions** dropdown menu and follow the steps in the wizard to connect `kumactl` to the control plane.
 
