@@ -145,11 +145,9 @@ Property | Description
 
 
 {:.note}
-> **Note:** As of Sept 15, 2023, the name of the authorization logs have been updated:
+> **Note:** As of Sept 15, 2023, the authorization logs have been renamed. This change has no effects on the traceability of the resources by id. These renames include:
 >  - From `Authz.runtimegroups` to `Authz.control-planes`
 >  - From `Authz.services` to `Authz.api-products`
-> 
-> This change has no effects on the traceability of the resources by id.
 
 ## Access logs
 
