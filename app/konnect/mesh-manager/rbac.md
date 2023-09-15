@@ -34,8 +34,8 @@ You can use the following example roles as guides when you are configuring RBAC 
 | `rules.names` | List of allowed names of types that access is granted to. If this is empty, then access is granted to all resources regardless of the name. |
 | `rules.mesh` | Name of the mesh in {{site.konnect_short_name}} that access is granted to the resources. It can only be used with the Mesh-scoped resources. |
 | `rules.access` | an action that is bound to a type.? |
-| `rules.when.sources` | a condition on sources section in connection policies (like TrafficRoute or Healtchecheck). If this value is missing, then all sources are allowed.? Is this the name of a policy/policies? |
-| `rules.when.destinations` | a condition on destinations section in connection policies (like TrafficRoute or Healtchecheck). If this value is missing, then all sources are allowed.? |
+| `rules.when.sources` | a condition on sources section in connection policies (like TrafficRoute or Healthcheck). If this value is missing, then all sources are allowed.? Is this the name of a policy/policies? |
+| `rules.when.destinations` | a condition on destinations section in connection policies (like TrafficRoute or Healthcheck). If this value is missing, then all sources are allowed.? |
 | `rules.when.selectors` | a condition on selectors section in dataplane policies (like TrafficTrace or ProxyTemplate). |
 | `rules.when.dpToken` | a condition on generate dataplane token. |
 
@@ -46,7 +46,7 @@ You can use the following example roles as guides when you are configuring RBAC 
 | `type` | The RBAC method. This will be `AccessRoleBinding`. |
 | `name` | Name for the role that you want to display in the {{site.konnect_short_name}} UI. |
 | `subjects.type` | The type of subject you want to bind the role to. This will be `User` or `Group`. |
-| `subjects.name` | Either the email of the user or the name of the group depending on what value you used for `subjects.type`. | ? |
+| `subjects.name` | Either the email of the user or the name of the group depending on what value you used for `subjects.type`. ? |
 | `roles` | List of roles that you want to assign to the users or groups. |
 
 ## More information
