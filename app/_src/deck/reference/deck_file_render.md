@@ -1,6 +1,6 @@
 ---
 title: deck file render
-source_url: https://github.com/Kong/deck/tree/main/cmd
+source_url: https://github.com/Kong/deck/tree/main/cmd/file_render.go
 ---
 
 Render the configuration as Kong declarative config.
