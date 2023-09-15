@@ -144,12 +144,12 @@ Property | Description
 `granted` | Boolean indicating whether the authorization was granted or not.
 
 
-### Notice
-As of Sept 15, 2023, the following changes apply:
-- The name of the authorization logs have been updated:
-    - From `Authz.runtimegroups` to `Authz.control-planes`
-    - From `Authz.services` to `Authz.api-products`
-- This change has no effects on the traceability of the resources by id.
+{:.note}
+> **Note:** As of Sept 15, 2023, the following changes apply:
+> - The name of the authorization logs have been updated:
+>    - From `Authz.runtimegroups` to `Authz.control-planes`
+>  - From `Authz.services` to `Authz.api-products`
+> - This change has no effects on the traceability of the resources by id.
 
 ## Access logs
 
