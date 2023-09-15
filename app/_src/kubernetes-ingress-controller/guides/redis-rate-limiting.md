@@ -185,7 +185,7 @@ kubectl patch kongplugin rate-limit --type json --patch '[
   {
     "op":"add",
     "path":"/config/redis_host",
-    "value":"rate-redis-master"
+    "value":"kong-redis-master"
   },
   {
     "op":"add",
@@ -226,26 +226,27 @@ Update your proxy Deployment with an environment variable sourced from the
 `redis-password-secret` Secret:
 
 ```bash
-kubectl patch deploy kong-1694034661-kong --patch '{
+kubectl patch deploy ingress-kong --patch '
+{
   "spec": {
     "template": {
-	  "spec": {
-	    "containers": [
+      "spec": {
+        "containers": [
           {
             "name": "proxy",
-			"env": [
-			  {
-			    "name":"SECRET_REDIS_PASSWORD",
-				"valueFrom": {
-				  "secretKeyRef": {
-				    "name": "redis-password-secret",
-					"key": "redis-password"
-				  }
-				}
-		      }
-			]
-		  }
-		]
+            "env": [
+              {
+                "name": "SECRET_REDIS_PASSWORD",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "name": "redis-password-secret",
+                    "key": "redis-password"
+                  }
+                }
+              }
+            ]
+          }
+        ]
       }
     }
   }
