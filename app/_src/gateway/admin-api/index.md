@@ -768,8 +768,8 @@ The API for configuring Kong Konnect Runtime Groups.
 
 | URL                | Description                                                                                                                         |
 | ---------                | -----------                                                                                                                         |
-| `https://us.api.konghq.com/v2/runtime-groups/{runtime_group_id}`                   | US Region Konnect Platform Base URL |
-| `https://eu.api.konghq.com/v2/runtime-groups/{runtime_group_id}` | EU Region Konnect Platform Base URL |
+| `https://us.api.konghq.com/v2/control-planes/{controlPlaneId}`                   | US Region Konnect Platform Base URL |
+| `https://eu.api.konghq.com/v2/control-planes/{controlPlaneId}` | EU Region Konnect Platform Base URL |
        
 
 
@@ -809,7 +809,7 @@ a JSON representation of the data you want to send. Example:
 An example adding a Route to a Service named `test-service`:
 
 ```
-curl -i -X POST http://https://us.api.konghq.com/v2/runtime-groups/{runtime_group_id}/core-entities/routes \
+curl -i -X POST http://https://us.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/routes \
      -H "Content-Type: application/json" \
      -d '{"name": "test-route", "paths": [ "/path/one", "/path/two" ]}'
 ```

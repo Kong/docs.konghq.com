@@ -806,7 +806,7 @@ a JSON representation of the data you want to send. Example:
 An example adding a Route to a Service named `test-service`:
 
 ```
-curl -i -X POST http://https://us.api.konghq.com/v2/runtime-groups/{runtime_group_id}/core-entities/routes \
+curl -i -X POST http://https://us.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/routes \
      -H "Content-Type: application/json" \
      -d '{"name": "test-route", "paths": [ "/path/one", "/path/two" ]}'
 ```

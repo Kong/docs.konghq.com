@@ -759,8 +759,8 @@ key_set_data: |
 
 | URL                | Description                                                                                                                         |
 | ---------                | -----------                                                                                                                         |
-| `https://us.api.konghq.com/v2/runtime-groups/{runtime_group_id}`                   | US Region Konnect Platform Base URL |
-| `https://eu.api.konghq.com/v2/runtime-groups/{runtime_group_id}` | EU Region Konnect Platform Base URL |
+| `https://us.api.konghq.com/v2/control-planes/{controlPlaneId}/`                   | US Region Konnect Platform Base URL |
+| `https://eu.api.konghq.com/v2/control-planes/{controlPlaneId}/` | EU Region Konnect Platform Base URL |
        
 
 

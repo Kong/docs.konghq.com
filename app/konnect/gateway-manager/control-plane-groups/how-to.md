@@ -111,7 +111,7 @@ Next, create a control plane group with the control planes `CP1` and `CP2` as it
 1. Find the IDs of `CP1` and `CP2`:
 
     ```sh
-    curl -i -X GET https://<region>.api.konghq.com/v2/runtime-groups/
+    curl -i -X GET https://<region>.api.konghq.com/v2/control-planes/
     ```
 
     ```json
@@ -153,7 +153,7 @@ Next, create a control plane group with the control planes `CP1` and `CP2` as it
 1. Add the control planes CP1 and CP2 to your control plane group:
 
     ```sh
-    curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups/<composite-group-ID>/composite-memberships/add \
+    curl -i -X POST https://<region>.api.konghq.com/v2/control-planes/{controlPlaneId}/group-memberships/add \
         -H "Authorization: Bearer <your_KPAT>" \
         --json '{"members": [{"id": "<CP1-ID>", "id": "<CP2-ID>"}]}'
     ```
@@ -204,7 +204,7 @@ For this example, you can use the following values:
 1. Find the IDs of the control planes `CP1` and `CP2`:
 
     ```sh
-    curl -i -X GET https://<region>.api.konghq.com/v2/runtime-groups/
+    curl -i -X GET https://<region>.api.konghq.com/v2/control-planes
     ```
 
     Response:
@@ -267,14 +267,14 @@ For this example, you can use the following values:
 1. In `CP1`, create a service and a route:
 
     ```sh
-    curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups/<runtime-group-id>/core-entities/services \
+    curl -i -X POST https://<region>.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/services \
         -H "Authorization: Bearer <your_KPAT>"  \
         --data "name=example_service" \
         --data "host=mockbin.org"
     ```
 
     ```sh
-    curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups/<runtime-group-id>/core-entities/services/example_service/routes \
+    curl -i -X POST https://<region>.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/services/example_service/routes \
         -H "Authorization: Bearer <your_KPAT>"  \
         --data "paths[]=/mock"
     ```
@@ -325,7 +325,7 @@ This time, you should receive a prompt to enter a username and password.
 1. Find the ID of `CP2`. In `CP2`, set up the basic authentication plugin:
 
     ```sh
-    curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups/<runtime-group-id>/core-entities/plugins \
+    curl -i -X POST https://<region>.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/plugins \
             -H "Authorization: Bearer <your_KPAT>"  \
             --data "name=basic-auth"
     ```
