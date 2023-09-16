@@ -14,6 +14,35 @@ For information about using Kong Vitals with a database as the backend, refer to
 
 ## Set up Kong Vitals with InfluxDB
 
+### Start an InfluxDB database
+
+Production-ready InfluxDB installations should be deployed as a separate
+effort, but for proof-of-concept testing, running a local InfluxDB instance
+is possible with Docker.
+
+1. Create a custom network to allow the containers to discover and communicate
+with each other.
+
+    ```bash
+    docker network create kong-ee-net
+    ```
+1. Start a local InfluxDB instance with Docker.
+
+    ```bash
+    docker run -p 8086:8086 \
+      --network=kong-ee-net \
+      --name influxdb \
+      -e INFLUXDB_DB=kong \
+      influxdb:1.8.4-alpine
+    ```
+
+    {:.warning}
+    > You **must** use InfluxDB 1.8.4-alpine because
+    InfluxDB 2.0 will **not** work.  
+    
+    Writing Vitals data to InfluxDB requires that the `kong` database is created,
+    this is done using the `INFLUXDB_DB` variable.
+
 ### Install {{site.base_gateway}}
 
 If you already have a {{site.base_gateway}} instance, skip to [deploying a license](#deploy-a-kong-gateway-license).
@@ -22,7 +51,7 @@ If you have not installed {{site.base_gateway}}, a Docker installation
 will work for the purposes of this guide.
 
 
-### Pull the {{site.base_gateway}} Docker image {#pull-image}
+#### Pull the {{site.base_gateway}} Docker image {#pull-image}
 
 1. Pull the following Docker image.
 
@@ -45,14 +74,7 @@ will work for the purposes of this guide.
     ```
 
 
-### Start the database and {{site.base_gateway}} containers
-
-1. Create a custom network to allow the containers to discover and communicate
-with each other.
-
-    ```bash
-    docker network create kong-ee-net
-    ```
+#### Start the database and {{site.base_gateway}} containers
 
 1. Start a PostgreSQL container:
 
@@ -78,7 +100,7 @@ with each other.
     ```
 
 
-1. Start the gateway with Kong Manager:
+1. Start the gateway with Kong Manager and InfluxDB:
 
 {% include_cached /md/admin-listen.md desc='long' kong_version=page.kong_version %}
 
@@ -93,6 +115,8 @@ with each other.
       -e "KONG_ADMIN_ERROR_LOG=/dev/stderr" \
       -e "KONG_ADMIN_LISTEN=0.0.0.0:8001" \
       -e "KONG_ADMIN_GUI_URL=http://localhost:8002" \
+      -e "KONG_VITALS_STRATEGY=influxdb" \
+      -e "KONG_VITALS_TSDB_ADDRESS=influxdb:8086" \
       -p 8000:8000 \
       -p 8443:8443 \
       -p 8001:8001 \
@@ -112,35 +136,15 @@ with each other.
 ### Deploy a {{site.base_gateway}} license
 
 If you already have a {{site.ee_product_name}} license attached to your {{site.base_gateway}}
-instance, skip to [starting an InfluxDB database](#start-an-influxdb-database).
+instance, skip to [Configure Vitals with InfluxDB](#configure-vitals-with-influxdb).
 
 You will not be able to access the Kong Vitals functionality without a valid
 {{site.ee_product_name}} license attached to your {{site.base_gateway}} instance.
 
 {% include_cached /md/enterprise/deploy-license.md heading="####" kong_version=page.kong_version %}
 
-### Start an InfluxDB database
 
-Production-ready InfluxDB installations should be deployed as a separate
-effort, but for proof-of-concept testing, running a local InfluxDB instance
-is possible with Docker:
-
-```bash
-docker run -p 8086:8086 \
-  --network=<YOUR_NETWORK_NAME> \
-  --name influxdb \
-  -e INFLUXDB_DB=kong \
-  influxdb:1.8.4-alpine
-```
-
-{:.warning}
-> You **must** use InfluxDB 1.8.4-alpine because
-InfluxDB 2.0 will **not** work.  
-
-Writing Vitals data to InfluxDB requires that the `kong` database is created,
-this is done using the `INFLUXDB_DB` variable.
-
-### Configure {{site.base_gateway}}
+### Configure Vitals with InfluxDB {{site.base_gateway}}
 
 {:.note}
 > **Note:** If you used the configuration in
