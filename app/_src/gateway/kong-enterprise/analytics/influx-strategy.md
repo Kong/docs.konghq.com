@@ -29,7 +29,7 @@ with each other.
 1. Start a local InfluxDB instance with Docker.
 
     ```bash
-    docker run -p 8086:8086 \
+    docker run -d -p 8086:8086 \
       --network=kong-ee-net \
       --name influxdb \
       -e INFLUXDB_DB=kong \
