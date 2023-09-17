@@ -8,39 +8,63 @@ match against any of the defined Ingress rules.
 This can be useful for scenarios where you would like to return a 404 page
 to the end user if the user clicks on a dead link or inputs an incorrect URL.
 
-## Installation
-
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install
-the {{site.kic_product_name}} on your Kubernetes cluster.
-
-## Testing Connectivity to Kong
-
-This guide assumes that the `PROXY_IP` environment variable is
-set to contain the IP address or URL pointing to Kong.
-Please follow one of the
-[deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
-
-If everything is setup correctly, making a request to Kong should return
-HTTP 404 Not Found.
-
-```bash
-$ curl -i $PROXY_IP
-HTTP/1.1 404 Not Found
-Date: Fri, 21 Jun 2019 17:01:07 GMT
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-Content-Length: 48
-Server: kong/1.2.1
-
-{"message":"no Route matched with those values"}
-```
-
-This is expected as Kong does not yet know how to proxy the request.
+{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=true %}
 
 ## Setup a Sample Service
 
-For the purpose of this guide, we will setup a simple HTTP service in the
-cluster and proxy it.
+{% include_cached /md/kic/http-test-service.md skip_title=true %}
+
+Create an Ingress rule to proxy the echo service we just created:
+
+```bash
+$ echo '
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo
+  annotations:
+    konghq.com/strip-path: "true"
+spec:
+  ingressClassName: kong
+  rules:
+  - http:
+      paths:
+      - path: /echo
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: echo
+            port:
+              number: 1027
+' | kubectl apply -f -
+ingress.extensions/demo created
+```
+
+Test the Ingress rule:
+
+```bash
+$ curl -i $PROXY_IP/echo
+```
+
+```bash
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+Content-Length: 137
+Connection: keep-alive
+Date: Sun, 17 Sep 2023 19:45:02 GMT
+X-Kong-Upstream-Latency: 1
+X-Kong-Proxy-Latency: 0
+Via: kong/3.3.1
+
+Welcome, you are connected to node kind.
+Running on Pod echo-74d47cc5d9-9zbzh.
+In namespace default.
+With IP address 192.168.194.7.
+```
+
+## Setup a fallback service
+
+Let's deploy another sample service service:
 
 ```bash
 $ echo '
@@ -89,59 +113,6 @@ Result:
 
 ```bash
 deployment.apps/fallback-svc created
-service/fallback-svc created
-```
-
-Create an Ingress rule to proxy the httpbin service we just created:
-
-```bash
-$ echo '
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: demo
-  annotations:
-    konghq.com/strip-path: "true"
-spec:
-  ingressClassName: kong
-  rules:
-  - http:
-      paths:
-      - path: /foo
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: httpbin
-            port:
-              number: 80
-' | kubectl apply -f -
-ingress.extensions/demo created
-```
-
-Test the Ingress rule:
-
-```bash
-$ curl -i $PROXY_IP/foo/status/200
-HTTP/1.1 200 OK
-Content-Type: text/html; charset=utf-8
-Content-Length: 0
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Date: Wed, 17 Jul 2019 19:25:32 GMT
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: kong/3.1.1
-```
-
-## Setup a fallback service
-
-Let's deploy another sample service service:
-
-```bash
-$ kubectl apply -f https://bit.ly/fallback-svc
-deployment.extensions/fallback-svc created
 service/fallback-svc created
 ```
 
