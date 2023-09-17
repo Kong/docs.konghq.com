@@ -298,4 +298,4 @@ The results should look like this:
 < X-RateLimit-Remaining-Minute: 0
 < X-RateLimit-Remaining-Minute: 0
 ```
-The decrement counters sequentially regardless of the {{site.base_gateway}} replica count.
+The counters decrement sequentially regardless of the {{site.base_gateway}} replica count.
