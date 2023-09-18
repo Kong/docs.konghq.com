@@ -11,9 +11,6 @@ proxy downtime.
 
 We recommend running one major version (2.x or 3.x) of a data plane node per control plane, unless you are in the middle of version upgrades to the data plane. Mixing versions may cause [compatibility issues](/konnect/gateway-manager/version-compatibility).
 
-{:.important}
-> **Important:** Upgrading a data plane node version isn't supported for data plane nodes created in cloud providers, such as AWS and Azure.
-
 ## Prerequisites
 
 Read through the [{{site.base_gateway}} upgrade considerations](/gateway/latest/upgrade/) for the version that you're upgrading to.

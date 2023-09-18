@@ -18,6 +18,7 @@ module SEO
 
     def build
       return IndexEntry::HubPage.for(@page) if hub_page?
+      return IndexEntry::OasPage.new(@page) if oas_page?
       return IndexEntry::UnversionedProductPage.new(@page) unless versioned_product?
 
       # We only want to process the following cases:
@@ -33,6 +34,10 @@ module SEO
     end
 
     private
+
+    def oas_page?
+      @page.relative_path.start_with?('_api/')
+    end
 
     def hub_page?
       @page.path.start_with?('_hub') || @page.url.start_with?('/hub/')

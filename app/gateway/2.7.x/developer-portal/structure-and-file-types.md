@@ -218,7 +218,7 @@ If you want to overwrite the hardcoded spec collection config, you can do so by
 including your own in `portal.conf.yaml`. Check out the Collections section of
 our `Working with Templates` guide to learn more.
 
-You can also use the [Portal Files API](https://developer.konghq.com/spec/3e65edbc-364d-4762-9d3e-f13083e1b534/33cd4595-e389-4c2b-80ee-5275f25e80e1)
+You can also use the [Portal Files API](/dev-portal/api/v1/)
 to `POST`, `GET`, `PATCH`, and `DELETE` content, spec, and theme files.
 
 ## Theme Files

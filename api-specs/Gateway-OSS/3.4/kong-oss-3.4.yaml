@@ -37,14 +37,14 @@ components:
       required: true
       schema:
         type: string
-        example: 7fca84d6-7d37-4a74-a7b0-93e576089a41"
+        example: 7fca84d6-7d37-4a74-a7b0-93e576089a41
     certificate_id:
       name: certificate_id
       in: path
       required: true
       schema:
         type: string
-        example: 7fca84d6-7d37-4a74-a7b0-93e576089a41"
+        example: 7fca84d6-7d37-4a74-a7b0-93e576089a41
       description: The unique identifier of the Certificate to retrieve.
     certificate_name_or_id:
       name: certificate_name_or_id
@@ -1715,8 +1715,8 @@ components:
               protocol:
                 type: string
                 description: |-
-                  The protocol used to communicate with the upstream. Accepted values are: "`grpc`", "`grpcs`", "`http`", "`https`", "`tcp`", "`tls`", "`tls_passthrough`", "`udp`", "`ws`" 
-                  , "`wss`" 
+                  The protocol used to communicate with the upstream. Accepted values are: "`grpc`", "`grpcs`", "`http`", "`https`", "`tcp`", "`tls`", "`tls_passthrough`", "`udp`", "`ws`"
+                  , "`wss`"
                   . Default: "`http`".
                 default: http
                 enum:
@@ -2941,7 +2941,7 @@ paths:
         - CA Certificates
     patch:
       description: |-
-        Update the specified Certificate Authority (CA) certificate using the provided ca_certificate_id. Use this endpoint to modify an existing CA certificate in the system. The request body should include the fields of the CA certificate that need to be updated. 
+        Update the specified Certificate Authority (CA) certificate using the provided ca_certificate_id. Use this endpoint to modify an existing CA certificate in the system. The request body should include the fields of the CA certificate that need to be updated.
 
         > This API is not available in DB-less mode.
       operationId: update-ca_certificate
@@ -3204,8 +3204,8 @@ paths:
 
 
 
-         Update an existing SNI associated with a certificate in the system using the SNI ID or name. The request body should include the fields of the SNI that need to be updated, such as the name, description, or other properties. If the request body contains valid data, the endpoint will update the SNI and return a success response. 
-         
+         Update an existing SNI associated with a certificate in the system using the SNI ID or name. The request body should include the fields of the SNI that need to be updated, such as the name, description, or other properties. If the request body contains valid data, the endpoint will update the SNI and return a success response.
+
       responses:
         '200':
           content:
@@ -3261,7 +3261,7 @@ paths:
         required: true
         schema:
           type: string
-          example: 7fca84d6-7d37-4a74-a7b0-93e576089a41"
+          example: 7fca84d6-7d37-4a74-a7b0-93e576089a41
         description: The unique identifier of the Certificate to retrieve.
       - name: sni_name_or_id
         in: path
@@ -3365,7 +3365,7 @@ paths:
         $ref: '#/components/requestBodies/consumer-request'
     put:
       description: |-
-        Create or Update Consumer using ID or username. The consumer will be identified via the username or id attribute.If the consumer with the specified ID or username cannot be found, the endpoint will return a 404. 
+        Create or Update Consumer using ID or username. The consumer will be identified via the username or id attribute.If the consumer with the specified ID or username cannot be found, the endpoint will return a 404.
 
         When the username or id attribute has the structure of a UUID, the Consumer being inserted/replaced will be identified by its id. Otherwise it will be identified by its username.
 
@@ -3930,7 +3930,7 @@ paths:
 
         route entities define rules to match client requests. Each route is associated with a service, and a service may have multiple routes associated to it. Every request matching a given route will be proxied to its associated service.
 
-        > Note: Path handling algorithms v1 was deprecated in Kong 3.0. From Kong 3.0, when router_flavor is set to expressions, route.path_handling will be unconfigurable and the path handling behavior will be "v0"; when router_flavor is set to traditional_compatible, the path handling behavior will be "v0" regardless of the value of route.path_handling. Only router_flavor = traditional will support path_handling "v1' behavior.
+        > Note: Path handling algorithms v1 was deprecated in Kong 3.0. From Kong 3.0, when router_flavor is set to expressions, route.path_handling will be unconfigurable and the path handling behavior will be "v0"; when router_flavor is set to traditional_compatible, the path handling behavior will be "v0" regardless of the value of route.path_handling. Only router_flavor = traditional will support path_handling "v1" behavior.
       operationId: list-route
       parameters:
         - $ref: '#/components/parameters/pagination-size'
@@ -7492,33 +7492,98 @@ servers:
           - http
           - https
 tags:
-  - description: Gateway services
+  - description: |
+      Service entities are abstractions of each of your own upstream services. For example, a service could be a data transformation microservice or a billing API.
+      <br><br>
+      The main attribute of a service is the destination URL for proxying traffic. This URL can be set as a single string or by specifying its protocol, host, port and path individually. 
+      <br><br>
+      Services are associated to routes, and a single service can have many routes associated with it. Routes are entrypoints in Kong Gateway which define rules to match client requests. Once a route is matched, Kong Gateway proxies the request to its associated service. See the [Proxy Reference](https://docs.konghq.com/gateway/latest/how-kong-works/routing-traffic/) for a detailed explanation of how Kong proxies traffic.
+      <br><br>
+      Services can be both [tagged and filtered by tags](https://docs.konghq.com/gateway/latest/admin-api/#tags).
     name: Services
-  - description: Gateway routes
+  - description: |
+      Route entities define rules to match client requests. Each route is associated with a service, and a service may have multiple routes associated to it. Every request matching a given route will be proxied to the associated service. You need at least one matching rule that applies to the protocol being matched by the route.
+      <br><br>
+      The combination of routes and services, and the separation of concerns between them, offers a powerful routing mechanism with which it is possible to define fine-grained entrypoints in Kong Gateway leading to different upstream services of your infrastructure.
+      <br><br>
+      Depending on the protocol, one of the following attributes must be set:
+      <br>
+      * `http`: At least one of `methods`, `hosts`, `headers`, or `paths`
+      * `https`:  At least one of `methods`, `hosts`, `headers`, `paths`, or `snis`
+      * `tcp`: At least one of `sources` or `destinations`
+      * `tls`: at least one of `sources`, `destinations`, or `snis`
+      * `tls_passthrough`: set `snis`
+      * `grpc`: At least one of `hosts`, `headers`, or `paths`
+      * `grpcs`: At least one of `hosts`, `headers`, `paths`, or `snis`
+      <br>
+
+      A route can't have both `tls` and `tls_passthrough` protocols at same time.
+      <br><br>
+
+      Learn more about the router: 
+      * [Configure routes using expressions](https://docs.konghq.com/gateway/3.4.x/key-concepts/routes/expressions)
+      * [Router Expressions language reference](https://docs.konghq.com/gateway/3.4.x/reference/router-expressions-language/)
     name: Routes
-  - description: Plugins
+  - description: |
+      A plugin entity represents a plugin configuration that will be executed during the HTTP request/response lifecycle. Plugins let you add functionality to services that run behind a Kong Gateway instance, like authentication or rate limiting.
+      You can find more information about available plugins and which values each plugin accepts at the [Plugin Hub](https://docs.konghq.com/hub/).
+      <br><br>
+      When adding a plugin configuration to a service, the plugin will run on every request made by a client to that service. If a plugin needs to be tuned to different values for some specific consumers, you can do so by creating a separate plugin instance that specifies both the service and the consumer, through the service and consumer fields.
+      <br><br>
+      Plugins can be both [tagged and filtered by tags](https://docs.konghq.com/gateway/latest/admin-api/#tags).
     name: Plugins
-  - description: Consumers
+  - description: |
+      The consumer object represents a consumer - or a user - of a service. 
+      You can either rely on Kong Gateway as the primary datastore, or you can map the consumer list with your database to keep consistency between Kong Gateway and your existing primary datastore.
     name: Consumers
-  - description: Certificates
+  - description: |
+      A certificate object represents a public certificate, and can be optionally paired with the corresponding private key. These objects are used by Kong Gateway to handle SSL/TLS termination for encrypted requests, or for use as a trusted CA store when validating peer certificate of client/service. 
+      <br><br>  
+      Certificates are optionally associated with SNI objects to tie a cert/key pair to one or more hostnames. 
+      <br><br>
+      If intermediate certificates are required in addition to the main certificate, they should be concatenated together into one string.
     name: Certificates
-  - description: SNIs
+  - description: |
+      An SNI object represents a many-to-one mapping of hostnames to a certificate. 
+      <br><br>
+      A certificate object can have many hostnames associated with it. When Kong Gateway receives an SSL request, it uses the SNI field in the Client Hello to look up the certificate object based on the SNI associated with the certificate.
     name: SNIs
-  - description: CA certificates
+  - description: |
+      A CA certificate object represents a trusted certificate authority. 
+      These objects are used by Kong Gateway to verify the validity of a client or server certificate.
     name: CA Certificates
-  - description: Upstreams
+  - description: |
+      The upstream object represents a virtual hostname and can be used to load balance incoming requests over multiple services (targets). 
+      <br><br>
+      An upstream also includes a [health checker](https://docs.konghq.com/gateway/latest/how-kong-works/health-checks/), which can enable and disable targets based on their ability or inability to serve requests. 
+      The configuration for the health checker is stored in the upstream object, and applies to all of its targets.
     name: Upstreams
-  - description: Vaults
+  - description: |
+      Vault objects are used to configure different vault connectors for [managing secrets](https://docs.konghq.com/gateway/latest/kong-enterprise/secrets-management/). 
+      Configuring a vault lets you reference secrets from other entities.
+      This allows for a proper separation of secrets and configuration and prevents secret sprawl. 
+      <br><br>
+      For example, you could store a certificate and a key in a vault, then reference them from a certificate entity. This way, the certificate and key are not stored in the entity directly and are more secure.
+      <br><br>
+      Secrets rotation can be managed using [TTLs](https://docs.konghq.com/gateway/latest/kong-enterprise/secrets-management/advanced-usage/).
     name: Vaults
-  - description: Keys
+  - description: |
+      A key object holds a representation of asymmetric keys in various formats. When Kong Gateway or a Kong plugin requires a specific public or private key to perform certain operations, it can use this entity.
     name: Keys
-  - description: Key-sets
+  - description: |
+      A JSON Web key set. Key sets are the preferred way to expose keys to plugins because they tell the plugin where to look for keys or have a scoping mechanism to restrict plugins to specific keys.
     name: Key-sets
   - description: Information routes
     name: Information
   - description: Debug routes
     name: Debug
-  - description: Target routes
+  - description: |
+      A target is an IP address or hostname with a port that identifies an instance of a backend service. Every upstream can have many targets, and the targets can be dynamically added, modified, or deleted. Changes take effect on the fly.
+      <br><br>
+      To disable a target, post a new one with `weight=0`, or use the `DELETE` method to accomplish the same.
     name: Targets
-  - description: Tag rotues
+  - description: |
+      Tags are strings associated to entities in Kong Gateway. Tags can contain almost all UTF-8 characters, with the following exceptions: `,`,`/`, and non-printable ASCII (for example, the space character). 
+      <br><br>
+      Most core entities can be tagged via the tags attribute upon creation or modification.
     name: Tags

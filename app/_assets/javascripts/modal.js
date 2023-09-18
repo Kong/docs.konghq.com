@@ -2,12 +2,10 @@ $(document).ready(function () {
   const modal = document.querySelector("#modal");
   const modalOpen = document.querySelector("#modal-open");
   const modalClose = document.querySelector("#modal-close");
-  const modalOverlay = document.querySelector("#modal-overlay");
   const page = document.querySelector(".page");
 
   function toggleModal(force) {
     modal.classList.toggle("closed", force);
-    modalOverlay.classList.toggle("closed", force);
   }
 
   function openModal() {
@@ -61,12 +59,6 @@ $(document).ready(function () {
 
       openModal();
     });
-
-    modalOverlay.addEventListener("click", function(e) {
-      e.stopPropagation();
-
-      modalClose.click();
-    })
 
     const buttons = modal.querySelectorAll(".modal-close, .button")
 

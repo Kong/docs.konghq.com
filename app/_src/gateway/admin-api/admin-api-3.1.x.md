@@ -745,8 +745,8 @@ key_set_data: |
 > 
 | Spec | Developer portal link | Insomnia link |
 |------|-----------------------|---------------|
-| Enterprise beta API spec|[Developer Portal](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60)   | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Enterprise%20beta%20API&uri=https%3A%2F%2Fgithub.com%2FKong%2Fdocs.konghq.com%2Fblob%2Fmain%2Fapi-specs%2FGateway-EE%2Fjson%2Fkong-ee-33.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>  |
-|  Open source beta API spec | [Developer Portal](https://developer.konghq.com/spec/680541e5-de6e-46e5-b43d-0bd1b2369453/e2a0ef29-573d-4fc4-86df-216c417f4aa9)  | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Admin%20API%20Opensource&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-OSS%2Fjson%2Fkong-oss-33.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
+| Enterprise beta API spec|[Developer Portal](/gateway/api/admin-ee/3.3.0.x/)   | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Enterprise%20beta%20API&uri=https%3A%2F%2Fgithub.com%2FKong%2Fdocs.konghq.com%2Fblob%2Fmain%2Fapi-specs%2FGateway-EE%2Fjson%2Fkong-ee-33.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>  |
+|  Open source beta API spec | [Developer Portal](/gateway/api/admin-oss/3.3.x/)  | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Admin%20API%20Opensource&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-OSS%2Fjson%2Fkong-oss-33.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
 
 
 <!-- vale off -->
@@ -815,8 +815,8 @@ curl -i -X POST http://https://us.api.konghq.com/v2/control-planes/{controlPlane
 
 * [Authentication](/konnect/api/)
 * [Kong Gateway API](/gateway/latest/admin-api/)
-* [Identity Management API](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce)
-* [Runtime Groups API](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/)
+* [Identity Management API](/konnect/api/identity-management/v2/)
+* [Runtime Groups API](/konnect/api/runtime-groups/v2/)
 * [Plugin Hub](/hub/)
 
 ## Nodes
