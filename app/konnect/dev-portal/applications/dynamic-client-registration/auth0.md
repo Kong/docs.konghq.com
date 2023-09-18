@@ -130,7 +130,7 @@ Where `example.com` is the address of the runtime instance you are running.
 
 ## Using Auth0 actions
 
-[Auth0 actions](https://auth0.com/docs/customize/actions) can be used to customize the application in Auth0. Using Auth0 actions, you can configure the application name in Auth0 to be something custom, instead of the default name set by the developer in the Konnect Developer Portal. Here's an example that sets the application name to be `konnect_portal_id+konnect_developer_id+konnect_application_id`. For some other actions it is possible to make changes directly via the api object passed to the `onExecuteCredentialsExchange`.
+[Auth0 actions](https://auth0.com/docs/customize/actions) can be used to customize the application in Auth0. Using Auth0 actions, you can configure the application name in Auth0 to be something custom, instead of the default name set by the developer in the Dev Portal. Here's an example that sets the application name to be `konnect_portal_id+konnect_developer_id+konnect_application_id`. For some other actions it is possible to make changes directly via the api object passed to the `onExecuteCredentialsExchange`.
 
 1. Follow the [Auth0 documentation](https://auth0.com/docs/customize/actions/write-your-first-action#create-an-action) to create a custom action on the "Machine to Machine" flow.
 
