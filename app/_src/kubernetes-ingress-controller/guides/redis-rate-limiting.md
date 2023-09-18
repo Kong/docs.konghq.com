@@ -139,7 +139,7 @@ for Redis with turnkey options for authentication.
     secret/redis-password-secret created
     ```
 
-1. Install a chart release using the Secret.
+1. Install Redis
 
     ```bash
     helm install -n kong redis oci://registry-1.docker.io/bitnamicharts/redis \
