@@ -134,7 +134,7 @@ Where `example.com` is the address of the runtime instance you are running.
 
 1. Follow the [Auth0 documentation](https://auth0.com/docs/customize/actions/write-your-first-action#create-an-action) to create a custom action on the "Machine to Machine" flow.
 
-2. Use the following code as an example for what your action could look like. Update the initial const variables with the values from the when you configured DCR.
+2. Use the following code as an example for what your action could look like. Update the initial `const` variables with the values from the when you configured DCR.
 
    ```js
 
