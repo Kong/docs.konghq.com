@@ -128,7 +128,7 @@ such as rate limiting counters. There are several options to install it:
 Bitnami provides a [Helm chart](https://github.com/bitnami/charts/tree/main/bitnami/redis)
 for Redis with turnkey options for authentication.
 
-1.  Create a password Secret and replace `<PASSWORD>` with a password of your choice.
+1.  Create a password Secret and replace `PASSWORD` with a password of your choice.
 
     ```bash
     kubectl create -n kong secret generic redis-password-secret --from-literal=redis-password=PASSWORD
