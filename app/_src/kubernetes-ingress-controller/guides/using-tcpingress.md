@@ -262,9 +262,17 @@ echo-plaintext   <PROXY_IP>   3m18s
 
 {% include_cached /md/kic/add-certificate.md hostname='tls9443.kong.example' kong_version=page.kong_version %}
 
+<<<<<<< HEAD
 1. Create the TCPIngress resource to route TLS-encrypted traffic to the `echo` service.
   {% capture the_code %}
 {% navtabs codeblock %}
+=======
+### Route TLS traffic by SNI
+
+For {{site.base_gateway}} to route TLS-encrypted traffic to the `echo` service. Create the TCPIngress resource.
+
+{% navtabs api %}
+>>>>>>> bab61fbbc (formatting changes)
 {% navtab Ingress %}
 ```bash
 echo "apiVersion: configuration.konghq.com/v1beta1
