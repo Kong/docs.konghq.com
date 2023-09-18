@@ -14,7 +14,22 @@ Here are a few benefits of creating a mesh deployment in {{site.konnect_short_na
 * **All entities in one place:** You can view all your information, such as entities from Kong Ingress Controller (KIC) for Kubernetes, {{site.konnect_short_name}}-managed entities, and now service mesh data all from one central platform. 
 * **Managed UI wizard setup:** {{site.konnect_short_name}} simplifies the process of creating a mesh by providing a setup wizard in the UI that guides you through the configuration steps. 
 
-### View service mesh entities
+## Supported installation options
+
+{{site.konnect_short_name}} supports the following installation options for {{site.mesh_product_name}} zones:
+
+* Kubernetes
+* Helm
+* OpenShift
+* Docker
+* Amazon Linux
+* Redhat
+* CentOS
+* Debian
+* Ubuntu
+* macOS
+
+## View service mesh entities
 
 After your mesh is deployed in {{site.mesh_product_name}}, the following information will be displayed in Mesh Manager for each control plane:
 
