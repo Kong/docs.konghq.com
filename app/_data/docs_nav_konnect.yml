@@ -342,6 +342,13 @@
           absolute_url: true
           generate: false
           target_blank: true
+    - text: Analytics Request API
+      items:
+        - text: API Spec
+          url: /konnect/api/analytics-requests/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
     - text: Reference
       items:
         - text: Filtering
