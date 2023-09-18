@@ -1,5 +1,0 @@
----
-title: Stability
----
-
-Stability page

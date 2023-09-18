@@ -1,3 +1,3 @@
 ---
-title: Upgrade Gateway Operator
+title: Upgrading Gateway Operator
 ---
