@@ -5,8 +5,9 @@ content_type: reference
 
 You can manage {{site.base_gateway}} core entity configuration in your {{site.konnect_short_name}} organization using decK.
 
-decK can only target one runtime group at a time.
-Managing multiple runtime groups requires a separate state file per group.
+decK can only target one control plane at a time.
+
+Managing multiple control planes requires a separate state file per control plane.
 
 You _cannot_ use decK to publish content to the Dev Portal, manage application registration, or configure custom plugins.
 
@@ -29,8 +30,15 @@ This takes precedence over the `--konnect-password-file` flag.
 `--konnect-password-file`
 :  File containing the password to your {{site.konnect_short_name}} account.
 
+{% if_version lte:1.26.x %}
 `--konnect-runtime-group-name`
 :  {{site.konnect_short_name}} runtime group name.
+{% endif_version %}
+
+{% if_version gte:1.27.x %}
+`--konnect-control-plane-name`
+:  {{site.konnect_short_name}} control plane name.
+{% endif_version %}
 
 {% if_version gte:1.14.x lte:1.17.x %}
 `--konnect-token`
@@ -203,15 +211,16 @@ To target the EU region, set `konnect-addr` to `"https://eu.api.konghq.com"`.
 
 {% endif_version %}
 
-## Runtime groups
+## Control planes
 
-Each [state file](/deck/{{page.kong_version}}/terminology/#state-files) targets one runtime group.
-If you don't provide a group, decK targets the `default` runtime group.
+Each [state file](/deck/{{page.kong_version}}/terminology/#state-files) targets one control plane.
+If you don't provide a control plane, decK targets the `default` control plane.
 
-If you have a custom runtime group, you can specify the group in the state file,
+If you have a custom control plane, you can specify it in the state file,
 or use a flag when running any decK command.
 
-* Target a runtime group in your state file with the `konnect_runtime_group` parameter:
+{% if_version lte:1.26.x %}
+* Target a control plane in your state file with the `_konnect.runtime_group_name` parameter:
 
     ```yaml
     _format_version: "3.0"
@@ -219,11 +228,28 @@ or use a flag when running any decK command.
       runtime_group_name: staging
     ```
 
-* Set a group using the `--konnect-runtime-group-name` flag:
+* Set a control plane using the `--konnect-runtime-group-name` flag:
 
     ```sh
     deck sync --konnect-runtime-group-name staging
     ```
+{% endif_version %}
+
+{% if_version gte:1.27.x %}
+* Target a control plane in your state file with the `_konnect.control_plane_name` parameter:
+
+    ```yaml
+    _format_version: "3.0"
+    _konnect:
+      control_plane_name: staging
+    ```
+
+* Set a control plane using the `--konnect-control-plane-name` flag:
+
+    ```sh
+    deck sync --konnect-control-plane-name staging
+    ```
+{% endif_version %}
 
 ## Troubleshoot
 
@@ -257,26 +283,41 @@ Error: checking if workspace exists
 
 Remove the `_workspace` key to resolve this error.
 
-You can now sync the file as-is to apply it to the default runtime group, or add a key to apply the configuration to a specific runtime group.
+You can now sync the file as-is to apply it to the default control plane or add a key to apply the configuration to a specific control plane.
 
-To apply the configuration to custom runtime groups, replace `_workspace` with `runtime_group_name: GroupName`.
+{% if_version lte:1.26.x %}
+To apply the configuration to custom control planes, replace `_workspace` with `control_plane_name: ExampleName`.
+{% endif_version %}
 
-For example, to export the configuration from workspace `staging` to runtime group `staging`, you would change:
+{% if_version gte:1.27.x %}
+To apply the configuration to custom control planes, replace `_workspace` with `control_plane_name: ExampleName`.
+{% endif_version %}
+
+For example, to export the configuration from workspace `staging` to control plane `staging`, you would change:
 
 ```yaml
 _workspace: staging
 ```
 
 To:
+{% if_version lte:1.26.x %}
 ```yaml
 _konnect:
   runtime_group_name: staging
 ```
+{% endif_version %}
+
+{% if_version gte:1.27.x %}
+```yaml
+_konnect:
+  control_plane_name: staging
+```
+{% endif_version %}
 
 ### ACL, Key Auth, or OpenID Connect plugins and app registration
 
 You may encounter one of the following scenarios with the ACL, Key Authentication, or OpenID Connect (OIDC) plugins:
-* The plugins are visible in the Runtime Manager, but don't appear in the output from a `deck dump` or `deck diff`.
+* The plugins are visible in the Gateway Manager, but don't appear in the output from a `deck dump` or `deck diff`.
 * When trying to set up one of the plugins with app registration enabled, you see the following error:
 
     ```
@@ -289,7 +330,7 @@ When setting up app registration, {{site.konnect_short_name}} enables two plugin
 These plugins run in the background to support application registration for an API product.
 They are managed entirely by {{site.konnect_short_name}}, so you can't manage these plugins directly.
 
-read [Manage application registration](/konnect/dev-portal/applications/enable-app-reg) for more information.
+Read [Manage application registration](/konnect/dev-portal/applications/enable-app-reg) for more information.
 
 {% if_version gte:1.15 %}
 
@@ -314,4 +355,4 @@ against {{site.konnect_short_name}}.
 ## See also
 
 * [Import {{site.base_gateway}} entities into {{site.konnect_short_name}}](/konnect/getting-started/import/)
-* [Manage runtime groups with decK](/konnect/runtime-manager/runtime-groups/declarative-config/)
+* [Manage control planes with decK](/konnect/gateway-manager/control-planes/declarative-config/)
