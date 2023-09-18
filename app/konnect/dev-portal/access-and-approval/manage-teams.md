@@ -62,7 +62,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 1. Create the `pizza_ordering` service:
 ```bash
     curl --request POST \
-      --url https://<region>.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/services \
+      --url https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/services \
       --header 'Authorization: Bearer <personal-access-token>' \
       --header 'Content-Type: application/json' \
       --header 'accept: application/json' \

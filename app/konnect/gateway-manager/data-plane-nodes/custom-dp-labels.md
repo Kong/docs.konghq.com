@@ -66,7 +66,7 @@ a comma-separated list of labels for the node.
 Check the `/nodes` endpoint to ensure that your labels have been applied, and that the control plane is able to see them:
 
 ```sh
-curl -i -X GET 'https://{REGION}.api.konghq.com/v2/control-planes/{controlPlaneId}/nodes' \
+curl -i -X GET 'https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/nodes' \
   --header 'Authorization: Bearer kpat_xgfT'
 ```
 
