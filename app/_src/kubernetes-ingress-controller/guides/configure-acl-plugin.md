@@ -88,9 +88,14 @@ about the algorithms used to construct the JWT, information ("claims") about
 the token and its bearer, and a cryptographic signature that recipients can use
 to verify the validity of the token.
 
+When generating tokens ensure that the `payload` data contains a field named `iss` alongside `name` and `iat`. For the admin token you should set `"iss": "admin-issuer"` and for the user token you should set `"iss": "user-issuer"`.
+
 As valid JWTs are not easily constructed by hand, you can use the
 [jwt.io](https://jwt.io) tool to generate cryptographic keys and sign your
-JWTs. Select the `RS256` option from the Algorithm dropdown for this guide.
+JWTs.
+
+{:.warning}
+> **Warning:** The following examples use a shared public key. Ensure you use your own public key in production.
 
 ### Create Secrets
 
@@ -104,8 +109,19 @@ kubectl create secret \
   --from-literal=key="admin-issuer" \
   --from-literal=algorithm=RS256 \
   --from-literal=rsa_public_key="-----BEGIN PUBLIC KEY-----
-  MIIBIjA....
-  -----END PUBLIC KEY-----"
+MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAxgqQPxIHPeiVz2Rtq7fF
+qria55PKorC6D3s0n3Di5Wp/8JtV9u+GzcAIviKZxo8urtyu1vBxmxwtDmDkynRS
+7FpC28O3WqVblVYNEpAQpsTR0fiPnaSRLuJgqTZU3JkHdlkJISCISWjGfN2rqN4f
+OwKGIiWU0JOWm5HiTG6Uf2S06Fv5OB0rhhlRT2W6hGC43JGnaQ/1Ek5zPgiuNfop
+KjptNFAsgUjWneZFC0toI7ivKudCQWB6v/fBn/7Lycd/qT4DOaYJsE/up23qnsf+
+U8y3emZ8F+s69T5k5aEzIxs89HD7zElKNHCSlUIl+Gar0h1HTN1QkzuGwppgGrYI
+H1nkAGYMjhSJa8TvYDI/Eze4KhYwjfNEnRbuYB74LyGl5Z2imJYlOPb2bYTAtmw0
+2GNDj27LGFbfhPA4rUE8EadIsE4i4AIdl8UH3OnAYsyj2/Ubr+Z7TtTZYsRlv4MR
+FVKjO71wonAD3ssZXGz7DKleqvXedEPGXeLbz2BrDKsOGojawLA04yNY0xMT0slN
+g/KPYWmuug0oONPZhKYsj/H0Jk1xiCyJK9B6ItfbAK021NWXrAPHbgUNEbNFy8yS
+7cPgS3OgEoCMBITKVpJlxvEwuajrewBRUcgS9opz+J94dGd8bnmLRlXK6290Ni6S
+hF9M5348YA/8VIjYq7XBw9sCAwEAAQ==
+-----END PUBLIC KEY-----"
 
 kubectl create secret \
   generic user-jwt  \
@@ -113,10 +129,23 @@ kubectl create secret \
   --from-literal=key="user-issuer" \
   --from-literal=algorithm=RS256 \
   --from-literal=rsa_public_key="-----BEGIN PUBLIC KEY-----
-  MIIBIjA....
-  -----END PUBLIC KEY-----"
+MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAxgqQPxIHPeiVz2Rtq7fF
+qria55PKorC6D3s0n3Di5Wp/8JtV9u+GzcAIviKZxo8urtyu1vBxmxwtDmDkynRS
+7FpC28O3WqVblVYNEpAQpsTR0fiPnaSRLuJgqTZU3JkHdlkJISCISWjGfN2rqN4f
+OwKGIiWU0JOWm5HiTG6Uf2S06Fv5OB0rhhlRT2W6hGC43JGnaQ/1Ek5zPgiuNfop
+KjptNFAsgUjWneZFC0toI7ivKudCQWB6v/fBn/7Lycd/qT4DOaYJsE/up23qnsf+
+U8y3emZ8F+s69T5k5aEzIxs89HD7zElKNHCSlUIl+Gar0h1HTN1QkzuGwppgGrYI
+H1nkAGYMjhSJa8TvYDI/Eze4KhYwjfNEnRbuYB74LyGl5Z2imJYlOPb2bYTAtmw0
+2GNDj27LGFbfhPA4rUE8EadIsE4i4AIdl8UH3OnAYsyj2/Ubr+Z7TtTZYsRlv4MR
+FVKjO71wonAD3ssZXGz7DKleqvXedEPGXeLbz2BrDKsOGojawLA04yNY0xMT0slN
+g/KPYWmuug0oONPZhKYsj/H0Jk1xiCyJK9B6ItfbAK021NWXrAPHbgUNEbNFy8yS
+7cPgS3OgEoCMBITKVpJlxvEwuajrewBRUcgS9opz+J94dGd8bnmLRlXK6290Ni6S
+hF9M5348YA/8VIjYq7XBw9sCAwEAAQ==
+-----END PUBLIC KEY-----"
 ```
+
 Response:
+
 ```text
 secret/admin-jwt created
 secret/user-jwt created
@@ -158,16 +187,21 @@ kongconsumer.configuration.konghq.com/user patched
 ### Send authenticated requests
 
 To send an authenticated request, you must create signed JWTs for your
-users. On [jwt.io](https://jwt.io), add an issuer matching the `key` field from your Secrets to
-the JWT payload (for example, `"iss":"admin-isuer",` for the `admin-jwt`
-Secret). The "Encoded" output will update automatically. Copy the "Encoded"
-value and store it in an environment variable:
+users. 
+
+We have provided pre-populated examples for both the Admin and User JWTs:
+
+* [Show Admin JWT](https://jwt.io/#debugger-io?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhZG1pbi1pc3N1ZXIifQ.kiHOLThl1SggXGxNhfDuSqP70uf4V80HUoeVBt7S-YqMz0DEL6IUeafMl_LzZyLYQO0qhhNzKL10tBN0krSe3IXsS9t4tlG9kWScDT7BavDyLRAffQ-ylT-PFNk0aXNtQ-0PEN4CVu71j7t7XZcV1USAFpLlr_QD3ruvlnOA2EP_5Cw7Ub9LnGOI_TYbkmYt-OsGXfFsuofytOYeG2_CDMCSNyJC5kNyehoDrFv8JZw4MLwPbOsCbvWo6y0TKN0ydVYyHCc5eu1eqOvdnQlBmL8uBmgBm_9MAyixhbNCum3nRoevb6ySGkCZGwpvEL7vomJcLOSM1naG8OhwNguHiBHt_WkS2FrlACd11xUkFkrtoH7UMpXIgiFOBihHWfEUBfzZcIcrgmsF0rtAo64JXs-km1gwKyIfwb29XQEEWd2-KzEDa2zS7IRQXD9i1U9tGpG7q3PJZLHFGkSuKs4i5mQ8gTPr-lB7X45Yp6g-xqLSA5EvgIo78AJ-G2gJW221VZM5gOvErEmLtDjT9Kk9Cqp-L4vXpWTpAo3sJN2kaQU24O6L8ujDn2XUnNkiU7QDPOQ9TPl5lDhw0VaFtMbGkBJORc2p-3-FTQfV80X6y9RHdyrb3UOhm1rjum2DsOUaacFJPhNcVsDYKTo1bhKoqVDtMYUvNjWP6hawb5H4jyg&publicKey=-----BEGIN%20PUBLIC%20KEY-----%0AMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAxgqQPxIHPeiVz2Rtq7fF%0Aqria55PKorC6D3s0n3Di5Wp%2F8JtV9u%2BGzcAIviKZxo8urtyu1vBxmxwtDmDkynRS%0A7FpC28O3WqVblVYNEpAQpsTR0fiPnaSRLuJgqTZU3JkHdlkJISCISWjGfN2rqN4f%0AOwKGIiWU0JOWm5HiTG6Uf2S06Fv5OB0rhhlRT2W6hGC43JGnaQ%2F1Ek5zPgiuNfop%0AKjptNFAsgUjWneZFC0toI7ivKudCQWB6v%2FfBn%2F7Lycd%2FqT4DOaYJsE%2Fup23qnsf%2B%0AU8y3emZ8F%2Bs69T5k5aEzIxs89HD7zElKNHCSlUIl%2BGar0h1HTN1QkzuGwppgGrYI%0AH1nkAGYMjhSJa8TvYDI%2FEze4KhYwjfNEnRbuYB74LyGl5Z2imJYlOPb2bYTAtmw0%0A2GNDj27LGFbfhPA4rUE8EadIsE4i4AIdl8UH3OnAYsyj2%2FUbr%2BZ7TtTZYsRlv4MR%0AFVKjO71wonAD3ssZXGz7DKleqvXedEPGXeLbz2BrDKsOGojawLA04yNY0xMT0slN%0Ag%2FKPYWmuug0oONPZhKYsj%2FH0Jk1xiCyJK9B6ItfbAK021NWXrAPHbgUNEbNFy8yS%0A7cPgS3OgEoCMBITKVpJlxvEwuajrewBRUcgS9opz%2BJ94dGd8bnmLRlXK6290Ni6S%0AhF9M5348YA%2F8VIjYq7XBw9sCAwEAAQ%3D%3D%0A-----END%20PUBLIC%20KEY-----%0A)
+* [Show User JWT](https://jwt.io/#debugger-io?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ1c2VyLWlzc3VlciJ9.KrdGJ50DYHiElgDULXDl3ZapcHIyILELFoGTIdYB54JTOxIgsaVo6aei2QbYucLK0GCmPNx7ED9J9SfilK_6ZsR7wHq7f7kGozXwgWf3LG5gMak1mzoHnJPi9cwzbSpV-OhJ4q4LkFUi7sGxRPlvSiP2GnxU38rxTBOonJ_y_nkZLXnTlaXanMxCdW_sccP9Y6_Px3_NtoRpVwkf11vj0Dv_9NMqK7WXEj8VPafOMp7NXFSZ0Ebo6vJ89znsA3_XdUqL0_PPZXMZ3ehPVfgz766LTJ8rf1_sQ0W6wxPapXEyiid_eo7JgAtVG4jYHspzuobkmWnJR7lLJOKlm8tVlLQo0e8nOVqV3Ks5e-kqHCfPG-5lD81u5gprG9UB04M8vVw5VN5uT5yHvGWEN2YmA9QsvFjHqTKa7lr0gTXS7lNBCaDLrm2YBSrywZMqs_QOlUtZLTEQSr1B6-cpp_b8gNxNsxzUctca3zj93QJ593qC2ifKxw8XkMab-YhV_lJexjwf1SO_AOBALTIcficI_Z5BVfLWjnEFOl2mEDffDs36fLft-d82tTSYQ76iCgy3tYEqdb3mwPsamaHIcbSYs35xoOocv1kKq81Pq-h6l3aX3yvj9OPfbfO2eS-faC2R0rd6PcjTIzD1v4f48gatnqpp_cKmu0tPfZ3c3dQLP5I&publicKey=-----BEGIN%20PUBLIC%20KEY-----%0AMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAxgqQPxIHPeiVz2Rtq7fF%0Aqria55PKorC6D3s0n3Di5Wp%2F8JtV9u%2BGzcAIviKZxo8urtyu1vBxmxwtDmDkynRS%0A7FpC28O3WqVblVYNEpAQpsTR0fiPnaSRLuJgqTZU3JkHdlkJISCISWjGfN2rqN4f%0AOwKGIiWU0JOWm5HiTG6Uf2S06Fv5OB0rhhlRT2W6hGC43JGnaQ%2F1Ek5zPgiuNfop%0AKjptNFAsgUjWneZFC0toI7ivKudCQWB6v%2FfBn%2F7Lycd%2FqT4DOaYJsE%2Fup23qnsf%2B%0AU8y3emZ8F%2Bs69T5k5aEzIxs89HD7zElKNHCSlUIl%2BGar0h1HTN1QkzuGwppgGrYI%0AH1nkAGYMjhSJa8TvYDI%2FEze4KhYwjfNEnRbuYB74LyGl5Z2imJYlOPb2bYTAtmw0%0A2GNDj27LGFbfhPA4rUE8EadIsE4i4AIdl8UH3OnAYsyj2%2FUbr%2BZ7TtTZYsRlv4MR%0AFVKjO71wonAD3ssZXGz7DKleqvXedEPGXeLbz2BrDKsOGojawLA04yNY0xMT0slN%0Ag%2FKPYWmuug0oONPZhKYsj%2FH0Jk1xiCyJK9B6ItfbAK021NWXrAPHbgUNEbNFy8yS%0A7cPgS3OgEoCMBITKVpJlxvEwuajrewBRUcgS9opz%2BJ94dGd8bnmLRlXK6290Ni6S%0AhF9M5348YA%2F8VIjYq7XBw9sCAwEAAQ%3D%3D%0A-----END%20PUBLIC%20KEY-----%0A)
+
+The `iss` field in the payload matches the value you provided in `--from-literal=key=` when creating the Kubernetes secret.
+
+Copy the "Encoded" value and store it in an environment variable for both the `ADMIN_JWT` and `USER_JWT`:
 
 ```bash
 export ADMIN_JWT=eyJhbG...
+export USER_JWT=eyJhbG...
 ```
-
-Do the same for `USER_JWT` for the `user-jwt` Secret.
 
 Once you have the JWTs stored, you can send them in an `Authorization` header:
 

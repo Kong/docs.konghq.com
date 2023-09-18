@@ -28,7 +28,7 @@ spec:
 ```
 Response:
 ```
-service/echo created
+service/proxy-to-httpbin created
 ```
 
 ## Create an Ingress to expose the service at the path `/httpbin`
