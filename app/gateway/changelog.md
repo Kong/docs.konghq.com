@@ -2652,6 +2652,50 @@ openid-connect
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
+## 2.8.4.3 
+**Release Date** 2023/09/18
+
+### Breaking changes and deprecations
+
+* **Ubuntu 18.04 support removed**: Support for running Kong Gateway on Ubuntu 18.04 ("Bionic") is now deprecated,
+as [Standard Support for Ubuntu 18.04 has ended as of June 2023](https://wiki.ubuntu.com/Releases).
+Starting with Kong Gateway 2.8.4.3, Kong is not building new Ubuntu 18.04
+images or packages, and Kong will not test package installation on Ubuntu 18.04.
+
+* Amazon Linux 2022 artifacts are renamed to Amazon Linux 2023, based on AWS's own renaming.
+ 
+### Features
+#### Plugins
+* [AWS-Lambda](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
+  * The AWS Lambda plugin has been refactored by using `lua-resty-aws` as an underlying AWS library. The refactor simplifies the AWS Lambda plugin codebase and adds support for multiple IAM authenticating scenarios.
+
+### Fixes 
+#### Core
+* Fixed an issue that prevented the `dbless-reconfigure` anonymous report type from respecting anonymous reports with the setting `anonymous_reports=false`.
+* Fixed an issue where you couldn't create developers using the Admin API in a non-default workspace in {{site.base_gateway}} 2.8.4.2.
+* Fixed an issue with Redis catching rate limiting strategy connection failures.
+
+#### Plugins 
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed an issue that caused the plugin to trigger rate limiting unpredictably.
+  * Fixed an issue where {{site.base_gateway}} produced a log of error log entries when multiple Rate Limiting Advanced plugins shared the same namespace.
+* [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Fixed an issue that caused the plugin to return logs with `invalid introspection results` when decoding a bearer token.
+* [Response Transformer Advanced](/hub/kong-inc/response-transformer-advanced/) (`response-transformer-advanced`)
+  * Fixed an issue that caused the response body to load when the `if_status` didn't match.
+
+#### PDK
+* Fixed a bug in the exit hook that caused customized headers to be lost.
+
+### Performance
+#### Configuration
+* Bumped the default value of `upstream_keepalive_pool_size` to 512 and `upstream_keepalive_max_requests` to 1000.
+
+### Dependencies
+* Bumped `lua-protobuf` from 0.3.3 to 0.4.2
+* Bumped `lua-resty-aws` from 1.0.0 to 1.3.1
+* Bumped `lua-resty-gcp` from 0.0.5 to 0.0.13
+
 ## 2.8.4.2
 
 **Release Date** 2023/07/07
@@ -2668,9 +2712,11 @@ openid-connect
 #### Plugins
 * Fixed an issue with the Oauth 2.0 Introspection plugin where a request with JSON that is not a table failed.
 * Fixed an issue where the slow startup of the Go plugin server caused a deadlock.
+
 ### Dependencies
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
+
 ## 2.8.4.1
 
 **Release Date** 2023/05/25
