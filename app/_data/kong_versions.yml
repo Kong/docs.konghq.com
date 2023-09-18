@@ -306,3 +306,6 @@
   version: preview
   release: dev
   branch: master
+- edition: gateway-operator
+  version: 1.0.0
+  release: 1.0.x

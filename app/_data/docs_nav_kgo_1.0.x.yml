@@ -1,0 +1,50 @@
+product: gateway-operator
+release: 1.0.x
+generate: true
+assume_generated: true
+items:
+  - title: Introduction
+    icon: /assets/images/icons/documentation/icn-flag.svg
+    items:
+      - text: Overview
+        url: /gateway-operator/1.0.x/
+        absolute_url: true
+      - text: Stability
+        url: /stability
+  - title: Get Started
+    icon: /assets/images/icons/documentation/icn-learning.svg
+    items:
+      - text: Konnect
+        items:
+          - text: Overview
+            url: /get-started/konnect/
+      - text: Kong Ingress Controller
+        items:
+          - text: Overview
+            url: /get-started/kic/
+  - title: Production Deployment
+    icon: /assets/images/icons/documentation/icn-deployment-color.svg
+    items:
+      - text: Overview
+        url: /production/
+      - text: Gateway API
+        items:
+          - text: Overview
+            url: /production/gateway-api/
+      - text: Data plane Configuration
+        items:
+          - text: Set data plane image
+            url: /production/dp-config/set-image/
+      - text: Upgrading
+        items:
+          - text: Upgrade Gateway Operator
+            url: /production/upgrade/gateway-operator/
+          - text: Upgrade Data Planes
+            url: /production/upgrade/data-plane/
+  - title: Reference
+    icon: /assets/images/icons/documentation/icn-references-color.svg
+    items:
+      - text: Custom Resources
+        items:
+          - text: DataPlane
+            url: /reference/custom-resources/dataplane/
