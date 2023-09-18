@@ -33,7 +33,7 @@ service/echo created
 
 ## Create an Ingress to expose the service at the path `/httpbin`
 
-{% include_cached /md/kic/http-test-routing-resource.md kong_version=page.kong_version path='/httpbin' name='proxy-from-k8s-to-httpbin' service='proxy-to-httpbin' %}
+{% include_cached /md/kic/http-test-routing-resource.md kong_version=page.kong_version path='/httpbin' name='proxy-from-k8s-to-httpbin' service='proxy-to-httpbin' port='80' %}
 
 ## Test the Service
 

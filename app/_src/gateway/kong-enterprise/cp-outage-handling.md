@@ -13,15 +13,22 @@ This option is only recommended for customers who have to adhere to strict avail
 {% navtab Amazon S3 %}
 ## Prerequisites
  
-* An Amazon S3 service and bucket.
-* Read/write credentials for the bucket.
+* An Amazon S3 bucket
+* Read and write credentials for the bucket
 
 
-## Configuration 
+## Configuration
 
-In this setup, you will need to designate one backup node. The backup node must have read/write access to the S3 compatible storage volume and the data plane nodes that are provisioned must have read access to the storage volume. This node is responsible for communicating the state of the {{site.base_gateway}} `kong.conf` configuration file from the control plane to the storage volume. Nodes are initialized with fallback configs via environment variables, including `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_DEFAULT_REGION`. A backup node should not be used to proxy traffic. A single backup node is sufficient for all deployments. For more information about the data that is set in the environment variables, review the [AWS environment variable configuration documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html).
+In this setup, you need to designate one backup node. 
+The backup node must have read and write access to the S3 bucket, and the data plane nodes that are provisioned must have read access to the same S3 bucket. 
+This node is responsible for communicating the state of the {{site.base_gateway}} `kong.conf` configuration file from the control plane to the S3 bucket.
 
-Using Docker Compose, you can configure the backup data plane:
+Nodes are initialized with fallback configs via environment variables, including `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_DEFAULT_REGION`. 
+If associating with an IAM role and if the backup node does not reside on the AWS platform, an additional environment variable `AWS_SESSION_TOKEN` may be necessary. 
+
+A backup node should not be used to proxy traffic. A single backup node is sufficient for all deployments. For more information about the data that is set in the environment variables, review the [AWS environment variable configuration documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html).
+
+Using Docker Compose, you can configure the backup node:
 
 ```yaml
 kong-exporter:
@@ -39,10 +46,11 @@ kong-exporter:
 
 ```
 
-This node is responsible for writing to the S3 bucket when it receives a new configuration. If the node version is `3.2.0.0`, the key name should be `test-prefix/3.2.0.0/config.json`.
+This node is responsible for writing to the S3 bucket when it receives new configuration. The file structure is automatically created inside of the bucket and should not be created manually. If the node version is `3.2.0.0`, using the example above, the key name will be `test-prefix/3.2.0.0/config.json`. 
+
 Both the control plane and data plane can be configured to export configurations.
 
-You can configure new data planes to load a configuration from a S3 bucket if the control plane is unreachable using the following environment variables: 
+You can configure new data planes to load a configuration from the S3 bucket if the control plane is unreachable using the following environment variables: 
 
 ```yaml
 kong-dp-importer:
@@ -67,15 +75,20 @@ kong-dp-importer:
 ## Prerequisites
 
 * A GCP cloud storage bucket
-* Read/write credentials for the bucket.
+* Read and write credentials for the bucket
 
 
 ## Configuration
 
-In this setup you will need to designate one backup node. The backup node must have read/write access to the storage volume, and the data plane nodes supposed to be provisioned must have read access to the storage volume. This node is responsible for communicating the state of the {{site.base_gateway}} `kong.conf` configuration file from the control plane to the storage volume. A backup node should not be used to proxy traffic. A single backup node is sufficient for all deployments.
+In this setup, you need to designate one backup node. 
+The backup node must have read and write access to the GCP cloud storage bucket and the data plane nodes that are provisioned must have read access to the same GCP cloud storage bucket. 
+This node is responsible for communicating the state of the {{site.base_gateway}} `kong.conf` configuration file from the control plane to the GCP cloud storage bucket.
+
 Credentials are passed via the environment variable `GCP_SERVICE_ACCOUNT`. For more information about credentials review the [GCP credentials documentation](https://developers.google.com/workspace/guides/create-credentials).
 
-Using Docker Compose, configure the node:
+A backup node should not be used to proxy traffic. A single backup node is sufficient for all deployments.
+
+Using Docker Compose, you can configure the backup node:
 
 ```yaml
 kong-dp-exporter:
@@ -85,14 +98,18 @@ kong-dp-exporter:
       - '8443:8443'
     environment:
       <<: *other-kong-envs
-      KONG_CLUSTER_FALLBACK_CONFIG_STORAGE: gcs://test-bucket/
-      KONG_CLUSTER_FALLBACK_CONFIG_EXPORT: "on"
       GCP_SERVICE_ACCOUNT: <GCP_JSON_STRING_WRITE>
+      KONG_CLUSTER_FALLBACK_CONFIG_STORAGE: gcs://test-bucket/test-prefix
+      KONG_CLUSTER_FALLBACK_CONFIG_EXPORT: "on"
 ```
 
-This node will ship backup configurations to the GCP bucket when it receives a new configuration. If the version is `3.2.0.0`, the key name should be `test-prefix/3.2.0.0/config.json`.
+This node is responsible for writing to the GCP bucket when it receives a new configuration. 
+The file structure is automatically created inside of the bucket and should not be created manually. If the node version is `3.2.0.0`, using the example above, the key name will be `test-prefix/3.2.0.0/config.json`. 
 
-A new data plane can be configured to load a configuration from GCP bucket if the control plane is not reachable using the following environment variables: 
+Both the control plane and data plane can be configured to export configurations.
+
+
+You can configure new data planes to load a configuration from the GCP cloud storage bucket if the control plane is unreachable using the following environment variables: 
 
 ```yaml
   kong-dp-importer:
@@ -102,9 +119,9 @@ A new data plane can be configured to load a configuration from GCP bucket if th
       - '8443:8443'
     environment:
       <<: *other-kong-envs
-      KONG_CLUSTER_FALLBACK_CONFIG_STORAGE: gcs://test-bucket/
-      KONG_CLUSTER_FALLBACK_CONFIG_IMPORT: "on"
       GCP_SERVICE_ACCOUNT: <GCP_JSON_STRING_READ>
+      KONG_CLUSTER_FALLBACK_CONFIG_STORAGE: gcs://test-bucket/test-prefix
+      KONG_CLUSTER_FALLBACK_CONFIG_IMPORT: "on"
 ```
 
 

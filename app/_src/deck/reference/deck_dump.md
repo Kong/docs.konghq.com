@@ -1,6 +1,6 @@
 ---
 title: deck dump
-source_url: https://github.com/Kong/deck/tree/main/cmd
+source_url: https://github.com/Kong/deck/tree/main/cmd/dump.go
 content_type: reference
 ---
 
