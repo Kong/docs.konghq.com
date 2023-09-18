@@ -2599,7 +2599,7 @@ openid-connect
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
 ## 2.8.4.3 
-**Release Date** 2023/09/08
+**Release Date** 2023/09/19
 
 ### Breaking changes and deprecations
 
@@ -2609,7 +2609,7 @@ Starting with Kong Gateway 2.8.4.3, Kong is not building new Ubuntu 18.04
 images or packages, and Kong will not test package installation on Ubuntu 18.04.
 
 * Amazon Linux 2022 artifacts are renamed to Amazon Linux 2023, based on AWS's own renaming.
-
+ 
 ### Features
 #### Plugins
 * [AWS-Lambda](/hub/kong-inc/aws-lambda/): the AWS-Lambda plugin has been refactored by using lua-resty-aws as an underlying AWS library. The refactor simplifies the AWS-Lambda plugin code base and adding support for multiple IAM authenticating scenarios.
@@ -2626,6 +2626,13 @@ images or packages, and Kong will not test package installation on Ubuntu 18.04.
   * Fixed an issue where {{site.base_gateway}} produced a log of error log entries when multiple Rate Limiting Advanced plugins shared the same namespace.
 * [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`): Fixed an issue that caused the plugin to return logs with `invalid introspection results` when decoding a bearer token.
 * [Response Transformer Advanced](/hub/kong-inc/response-transformer-advanced/) (`response-transformer-advanced`): Fixed an issue that caused the response body to load when the `if_status` does not match.
+
+#### PDK
+* Fixed a bug in the exit hook that caused customized headers to be lost.
+
+### Performance
+#### Configuration
+* Bumped the default value of `upstream_keepalive_pool_size` to 512 and `upstream_keepalive_max_requests` to 1000.
 
 ### Dependencies
 * Bumped lua-protobuf from 0.3.3 to 0.4.2
