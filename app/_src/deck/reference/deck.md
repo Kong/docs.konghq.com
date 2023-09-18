@@ -11,7 +11,7 @@ It can be used to export, import, or sync entities to Kong.
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md %}
+{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
 
 ## See also
 

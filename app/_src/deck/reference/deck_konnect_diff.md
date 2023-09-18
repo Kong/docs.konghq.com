@@ -56,7 +56,7 @@ This flag can be specified multiple times for multiple files. (Default: `[konnec
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md %}
+{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
 
 ## See also
 

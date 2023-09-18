@@ -69,7 +69,7 @@ When this setting has multiple tag values, entities must match every tag.
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md %}
+{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
 
 ## See also
 

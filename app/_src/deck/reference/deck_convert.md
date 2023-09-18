@@ -43,7 +43,7 @@ deck convert [command-specific flags] [global flags]
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md %}
+{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
 
 ## See also
 

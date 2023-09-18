@@ -19,7 +19,7 @@ manage your {{site.base_gateway}} config with {{site.konnect_short_name}}.
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md %}
+{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
 
 ## See also
 
