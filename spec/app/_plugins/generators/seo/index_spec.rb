@@ -45,6 +45,11 @@ RSpec.describe SEO::Index do
 
         '/mesh/VERSION/' => { 'url' => '/mesh/latest/', 'page' => find_page_by_url('/mesh/latest/'), 'version' => Gem::Version.new('9999.9.9') },
         '/mesh/changelog/' => { 'url' => '/mesh/changelog/', 'page' => find_page_by_url('/mesh/changelog/'), 'version' => Gem::Version.new('9999.9.9') },
+
+        '/api/' => { 'url' => '/api/', 'page' => find_page_by_url('/api/') },
+        '/konnect/api/portal-rbac/latest/' => { 'url' => '/konnect/api/portal-rbac/latest/', 'page' => find_page_by_url('/konnect/api/portal-rbac/latest/'), 'version' => Gem::Version.new('9999.9.9') },
+        '/konnect/api/audit-logs/latest/' => { 'url' => '/konnect/api/audit-logs/latest/', 'page' => find_page_by_url('/konnect/api/audit-logs/latest/'), 'version' => Gem::Version.new('9999.9.9') },
+        '/gateway/api/admin-ee/latest/' => { 'url' => '/gateway/api/admin-ee/latest/', 'page' => find_page_by_url('/gateway/api/admin-ee/latest/'), 'version' => Gem::Version.new('9999.9.9') }
       })
     end
   end

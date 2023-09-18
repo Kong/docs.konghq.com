@@ -123,8 +123,6 @@ items:
           url: /guides/using-ingress-with-grpc
       - text: Using the mTLS Auth Plugin
         url: /guides/using-mtls-auth-plugin
-      - text: Configuring Custom Entities
-        url: /guides/configuring-custom-entities
       - text: Using the OpenID Connect Plugin
         url: /guides/using-oidc-plugin
       - text: Rewriting Hosts and Paths
@@ -139,6 +137,8 @@ items:
         url: /guides/using-gateway-discovery
       - text: Routing by Header
         url: /guides/routing-by-header/
+      - text: Using Secrets Management for Plugins
+        url: /guides/redis-rate-limiting
   - title: References
     icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
     items:

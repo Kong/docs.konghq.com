@@ -1,11 +1,14 @@
+
 ## Installation
 
 Follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install the {{site.kic_product_name}} on the Kubernetes cluster.
 
+{% unless include.disable_gateway_api %}
 ## Installing the Gateway APIs
 
 If you wish to use the Gateway APIs examples, follow the [supplemental
 Gateway APIs installation instructions](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/install-gateway-apis).
+{% endunless %}
 
 ## Testing connectivity to {{site.base_gateway}}
 
@@ -32,3 +35,5 @@ Server: kong/3.0.0
 ```
 
 This is expected because {{site.base_gateway}} doesn't know how to proxy the request yet.
+
+

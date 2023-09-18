@@ -158,5 +158,5 @@ If you were successful, you will receive a `200` response code, and the response
 
 ## More information
 
-* [IdP API documentation](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce)
+* [IdP API documentation](/konnect/api/identity-management/v2/)
 * [Filtering Reference](/konnect/api/filtering/)

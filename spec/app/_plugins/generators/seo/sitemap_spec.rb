@@ -50,7 +50,11 @@ RSpec.describe SEO::Sitemap do
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/kong-plugin/how-to/local-testing/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/unbundled-plugin/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/unbundled-plugin/changelog/' },
-        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/unbundled-plugin/configuration/' }
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/acme/unbundled-plugin/configuration/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/konnect/api/portal-rbac/latest/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/konnect/api/audit-logs/latest/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/gateway/api/admin-ee/latest/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/api/' }
       ])
     end
 
