@@ -9,6 +9,10 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## September 2023
+
+**Auth0 DCR Configuration Audience Override**
+: API Product Versions can be each be assigned to a different Auth0 API instance allowing service teams to have more fine grained control over scopes and permissions of their services. See [ ](/konnect/dev-portal/rest of the URL) for more details. 
 
 ## August 2023
 
