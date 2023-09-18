@@ -131,7 +131,7 @@ for Redis with turnkey options for authentication.
 1.  Create a password Secret and replace `<PASSWORD>` with a password of your choice.
 
     ```bash
-    kubectl create -n kong secret generic redis-password-secret --from-literal=redis-password=<PASSWORD>
+    kubectl create -n kong secret generic redis-password-secret --from-literal=redis-password=PASSWORD
     ```
     The results should look like this:
 
@@ -255,12 +255,11 @@ You can confirm it by checking the admin API.
 In one terminal, open a port-forward to the admin API:
 
 ```
-kubectl port-forward deploy/ingress-kong 8444:8444
+kubectl port-forward deploy/kong-gateway -n kong 8444:8444
 ```
 
 The results should look like this:
 ```text
-"{vault://env/secret-redis-password}"
 Forwarding from 127.0.0.1:8444 -> 8444
 ```
 
