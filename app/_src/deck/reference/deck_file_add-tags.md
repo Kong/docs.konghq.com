@@ -1,6 +1,6 @@
 ---
 title: deck file add-tags
-source_url: https://github.com/Kong/deck/tree/main/cmd
+source_url: https://github.com/Kong/deck/tree/main/cmd/file_addtags.go
 content_type: reference
 ---
 
