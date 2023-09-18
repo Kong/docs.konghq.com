@@ -146,23 +146,25 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
   }
   ```
 1. Using the`api-product-id` of the newly created API product, create a `v1` version for the `Pizza Ordering` API product and publish it:
-```bash
-    curl --request POST \
-      --url https://<region>.api.konghq.com/v2/api-products/{apiProductId}/product-versions \
-      --header 'Authorization: Bearer <personal-access-token>' \
-      --header 'Content-Type: application/json' \
-      --header 'accept: application/json' \
-      --data '{
-      "name":"v1",
-      "publish_status":"published",
-      "gateway_service":{
-        "runtime_group_id":"RUNTIME_GROUP_ID",
-        "id":"GATEWAY_SERVICE_ID"
-        }
-      }'
-```
-  You should get a `201` response like the following:
+
   ```bash
+      curl --request POST \
+        --url https://<region>.api.konghq.com/v2/api-products/{apiProductId}/product-versions \
+        --header 'Authorization: Bearer <personal-access-token>' \
+        --header 'Content-Type: application/json' \
+        --header 'accept: application/json' \
+        --data '{
+        "name":"v1",
+        "publish_status":"published",
+        "gateway_service":{
+          "control_plane_id":"CONTROL_PLANE_ID",
+          "id":"GATEWAY_SERVICE_ID"
+          }
+        }'
+  ```
+
+  You should get a `201` response like the following:
+  ```json
   {
       "id": "0a8eebb6-0ed4-4382-c366-c1f4ea01f295",
       "name": "v1",
@@ -172,7 +174,6 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       "updated_at": "2023-01-01T00:00:00.000Z",
       "gateway_service": {
         "id": "0f5a6eaa-1267-4259-b226-fd2520926ee2",
-        "runtime_group_id": "5b32f5e1-6c0e-448d-bd94-14c770c4ffbd",
         "control_plane_id": "5b32f5e1-6c0e-448d-bd94-14c770c4ffbd"
       }
   }

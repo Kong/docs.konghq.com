@@ -282,7 +282,7 @@
           absolute_url: true
           generate: false
           target_blank: true
-    - text: Runtime Configuration API
+    - text: Control Plane Configuration API
       items:
         - text: Overview
           url: /api/runtime-groups-config/overview/
