@@ -72,8 +72,6 @@ For more information about the Kubernetes demo app, see [Explore {{site.mesh_pro
 ## Configure `kumactl` to connect to your global control plane
 
 `kumactl` is a CLI tool that you can use to access {{site.mesh_product_name}}. It can create, read, update, and delete resources in {{site.mesh_product_name}} in Universal/{{site.konnect_short_name}} mode.
-<!--* (not sure if I removed the right line, so keeping in for easy swap 
-Perform read-only operations on {{site.mesh_product_name}} resources on Kubernetes. -->
 
 You connect `kumactl` to the global control plane in {{site.konnect_short_name}} so that you can run commands against the control plane.
 
@@ -83,11 +81,7 @@ You connect `kumactl` to the global control plane in {{site.konnect_short_name}}
 ```bash
 kumactl get dataplanes
 ```
-If your dataplanes were configured correctly with the demo app, it should return something like:
-```bash
-MESH   NAME   TAGS   ADDRESS   AGE
-?
-```
+If your data planes were configured correctly with the demo app, it should return all four data planes in the output. 
 
 You can now run commands against your global control plane using `kumactl`. You can see the [`kumactl` command reference](/mesh/latest/generated/cmd/kumactl/kumactl/) for more information about the commands you can use.
 
