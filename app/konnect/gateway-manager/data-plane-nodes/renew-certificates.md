@@ -78,7 +78,7 @@ You can generate a certificate locally and use the [pin data plane client certif
 1. `POST` the certificate to your control plane using the Konnect API:
 
     ```bash
-    curl https://us.api.konghq.com/v2/runtime-groups/{runtimeGroupId}/dp-client-certificates --json '{"cert":"'$CERT'"}'
+    curl https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/dp-client-certificates --json '{"cert":"'$CERT'"}'
     ```
 {% endnavtab %}
 {% endnavtabs %}

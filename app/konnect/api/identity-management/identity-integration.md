@@ -12,7 +12,7 @@ You must authenticate with the API, for information about authentication read th
 Create a custom team by sending a `POST` request containing the `name` and `description` of your team in the response body: 
 ```
 curl --request POST \
-  --url https://global.api.konghq.tech/v2/teams \
+  --url https://global.api.konghq.com/v3/teams \
   --header 'Content-Type: application/json' \
   --data '{
   "name": "IDM - Developers",
@@ -42,7 +42,7 @@ You must assign roles to a custom team to use the team. Roles define a set of pe
 1. Obtain a list of available roles by issuing a `GET` request:
 
         curl --request GET \
-        --url https://global.api.konghq.tech/v2/roles
+        --url https://global.api.konghq.com/v3/roles
 
    The response body will contain a list of available roles: 
 
@@ -69,7 +69,7 @@ You must assign roles to a custom team to use the team. Roles define a set of pe
     The request must contain a `TEAM_ID` parameter in the URL. This request requires a JSON body that contains `role_name`, `entity_id`, `entity_type_name`, and `entity_region`. 
 
         curl --request POST \
-             --url https://global.api.konghq.tech/v2/teams/TEAM_ID/assigned-roles \
+             --url https://global.api.konghq.com/v3/teams/{teamId}/assigned-roles \
              --header 'Content-Type: application/json' \
              --data '{
              "role_name": "Admin",
@@ -89,7 +89,7 @@ For a user to access the roles assigned to a custom team, the user must become a
 1. Obtain a list of users by issuing a `GET` request:
 
         curl --request GET \
-        --url https://global.api.konghq.tech/v2/users
+        --url https://global.api.konghq.com/v2/users
     
     The response body will contain a list of users:
     
@@ -115,7 +115,7 @@ For a user to access the roles assigned to a custom team, the user must become a
 2. Using the `id` field from the desired user and the `id` field from the team construct and issue a `POST` request: 
 
         curl --request POST \
-        --url https://global.api.konghq.tech/v2/teams/TEAM_ID/users \
+        --url https://global.api.konghq.com/v3/teams/{teamId}/users \
         --header 'Content-Type: application/json' \
         --data '{
         "id": "USER_ID"
