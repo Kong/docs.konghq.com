@@ -148,7 +148,7 @@ for Redis with turnkey options for authentication.
     ```
     Helm displays the instructions that describes the new installation.
 
-1. Update your plugin configuration with the `redis` policy, Service, and credentials. Replace `<PASSWORD>` with the password that you set for Redis.
+1. Update your plugin configuration with the `redis` policy, Service, and credentials. Replace `PASSWORD` with the password that you set for Redis.
 
     ```bash
     kubectl patch kongplugin rate-limit --type json --patch '[
