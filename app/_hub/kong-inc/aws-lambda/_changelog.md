@@ -25,7 +25,7 @@ removed in 3.x.x.
 through configuration properties `aws_assume_role_arn` and `aws_role_session_name`.
 * {{site.base_gateway}} 2.8.4.0: Backported the parameter
 `aws_imds_protocol_version` into 2.8.x.
-* {{site.base_gateway}} 2.8.4.3: The AWS-Lambda plugin has been refactored by using lua-resty-aws as an underlying AWS library. The refactor simplifies the AWS-Lambda plugin code base and adding support for multiple IAM authenticating scenarios.
+* {{site.base_gateway}} 2.8.4.3: The AWS Lambda plugin has been refactored by using `lua-resty-aws` as an underlying AWS library. The refactor simplifies the AWS Lambda plugin codebase and adds support for multiple IAM authenticating scenarios.
 
 **{{site.base_gateway}} 2.7.x**
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
