@@ -16,7 +16,11 @@ System accounts offer the following benefits over regular user accounts:
 
 The system account can use a {{site.konnect_short_name}} personal access token (PAT) the same way a [regular {{site.konnect_short_name}} user](/konnect/org-management/users/) can. In addition, the system account can be assigned roles directly or inherit the roles of a [team](/konnect/org-management/teams-and-roles/). As such, a PAT created by a system account inherits the roles assigned to the system account.
 
-[Mesh Manager](/konnect/mesh-manager/) automatically creates a special managed service account that is only used in the zone creation process. This special, read-only managed service account cannot be edited or deleted manually. Instead, it is removed by {{site.konnect_short_name}} after the zone is created.
+## Managed system accounts
+
+Managed system accounts are system accounts whose life cycle is managed by {{site.konnect_short_name}} instead of the user. The `blank` flag in the API denotes this type of system account.
+
+[Mesh Manager](/konnect/mesh-manager/) automatically creates a managed system account that is only used in the zone creation process. This managed system account cannot be edited or deleted manually. Instead, it is deleted automatically by {{site.konnect_short_name}} when the zone is deleted.
 
 ## Manage a system account via the UI
 You can create and manage system accounts in your {{site.konnect_short_name}} organization through the {% konnect_icon organizations %} **Organization** > **System Accounts** page.
