@@ -18,9 +18,8 @@ The global endpoint is used to manage region-agnostic {{site.konnect_short_name}
 The region-specific endpoints are used to manage {{site.konnect_short_name}} entities that live in a specific {{site.konnect_short_name}} region. These APIs interact with entities specific to a region and do not have the ability to cross regional boundaries. For example, control planes, data plane nodes, and API product listings are all region-specific entities and therefore must use the region-specific endpoint.
 
 
-{:.note .no-icon }
-> <span class="badge beta"></span> **A beta API spec for the Control Plane Configuration API is now available!**
->
+
+
 | Spec | Insomnia link |
 |------|---------------|
 | [Konnect control plane configuration beta API spec](/konnect/api/runtime-groups-configuration/v2/) | <a href="https://insomnia.rest/run/?label=Runtime%20Groups%20Configuration%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FKonnect%2Fv2%2Fjson%2Fkonnect-2.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
