@@ -27,7 +27,7 @@
       "name": "v1",
       "id": "fa795b03-e0fc-4d33-aa97-28632b41cc61"
     },
-    "description": "The Control Plane Configuration API can be used to manage Konnect Control Planes",
+    "description": "The API for managing Konnect control plane entities.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
