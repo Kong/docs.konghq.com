@@ -165,7 +165,7 @@ for Redis with turnkey options for authentication.
       {
         "op":"add",
         "path":"/config/redis_password",
-        "value":"<PASSWORD>"
+        "value":"PASSWORD"
       }
     ]'
     ```
