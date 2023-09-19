@@ -275,13 +275,6 @@
           absolute_url: true
           generate: false
           target_blank: true
-    - text: Deprecated - Runtime Groups API
-      items:
-        - text: API Spec
-          url: /konnect/api/runtime-groups/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
     - text: Portal RBAC API
       items:
         - text: API Spec
@@ -293,13 +286,6 @@
       items:
         - text: API Documentation
           url: /konnect/api/control-plane-configuration/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
-    - text: (Deprecated) - Runtime Configuration API
-      items:
-        - text: API Spec
-          url: /konnect/api/runtime-groups-configuration/latest/
           absolute_url: true
           generate: false
           target_blank: true
@@ -323,6 +309,18 @@
       items:
         - text: API Spec
           url: /konnect/api/api-products/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
+    - text: Deprecated APIs
+      items:
+        - text: (Deprecated) - Runtime Configuration API
+          url: /konnect/api/runtime-groups-configuration/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: (Deprecated) - Runtime Configuration API
+          url: /konnect/api/runtime-groups-configuration/latest/
           absolute_url: true
           generate: false
           target_blank: true
