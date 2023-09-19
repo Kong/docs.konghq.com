@@ -54,6 +54,8 @@ items:
     items:
       - text: Overview
         url: /production/
+      - text: Install
+        url: /install/
       - text: Monitoring
         url: /production/monitoring/
       - text: Upgrade Gateway Operator
@@ -69,5 +71,11 @@ items:
     items:
       - text: Custom Resources
         items:
+          - text: Overview
+            url: /reference/custom-resources/
+          - text: GatewayConfiguration
+            url: /reference/custom-resources/gatewayconfiguration/
+          - text: ControlPlane
+            url: /reference/custom-resources/controlplane/
           - text: DataPlane
             url: /reference/custom-resources/dataplane/
