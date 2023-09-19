@@ -190,7 +190,7 @@
       "name": "v1",
       "id": "ffd06bfa-0a1c-4fb7-ade4-54089688225e"
     },
-    "description": "Manage the Konnect Control Plain entity.",
+    "description": "Manage the Konnect Control Plane entity.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
