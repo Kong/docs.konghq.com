@@ -14,7 +14,6 @@ swap:
   multizone: multi-zone
   pg: PostgreSQL
   'postgres$': PostgreSQL
-  'self(?:-| )hosted': self-managed
   redhat: Red Hat
   timezone: time zone
   utilize: use
