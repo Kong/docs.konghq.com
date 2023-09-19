@@ -102,3 +102,7 @@ curl --request GET \
 ```
 
 
+{:.note}
+> **Note:** Supports Azure OAuth v1 token endpoints only; v2 not supported.
+
+
