@@ -319,8 +319,8 @@
           absolute_url: true
           generate: false
           target_blank: true
-        - text: (Deprecated) - Runtime Configuration API
-          url: /konnect/api/runtime-groups-configuration/latest/
+        - text: (Deprecated) - Runtime Groups API
+          url: /konnect/api/runtime-groups/latest/
           absolute_url: true
           generate: false
           target_blank: true
