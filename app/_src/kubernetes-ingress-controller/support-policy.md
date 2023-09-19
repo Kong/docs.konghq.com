@@ -74,7 +74,7 @@ LTS versions of {{site.kic_product_name}} are supported for 3 years after releas
 
   <tr>
     <td>1.22</td>
-    <td>4.8</td>
+    <td>4.9</td>
     <td>Oct 2022</td>
     <td>2.8 LTS</td>
     <td>2.5 LTS</td>
@@ -82,7 +82,7 @@ LTS versions of {{site.kic_product_name}} are supported for 3 years after releas
   </tr>
   <tr>
     <td>1.23</td>
-    <td>4.8</td>
+    <td>4.10</td>
     <td>Feb 2023</td>
     <td>2.8 LTS, 3.x</td>
     <td>{{ latest_kic_release }}</td>
@@ -90,7 +90,7 @@ LTS versions of {{site.kic_product_name}} are supported for 3 years after releas
   </tr>
   <tr>
     <td>1.24</td>
-    <td>4.8</td>
+    <td>4.11</td>
     <td>July 2023</td>
     <td>2.8 LTS, 3.x</td>
     <td>{{ latest_kic_release }}</td>
@@ -98,7 +98,7 @@ LTS versions of {{site.kic_product_name}} are supported for 3 years after releas
   </tr>
   <tr>
     <td>1.25</td>
-    <td>N/A</td>
+    <td>4.12</td>
     <td>Oct 2023</td>
     <td>2.8 LTS, 3.x</td>
     <td>{{ latest_kic_release }}</td>
@@ -106,7 +106,7 @@ LTS versions of {{site.kic_product_name}} are supported for 3 years after releas
   </tr>
   <tr>
     <td>1.26</td>
-    <td>N/A</td>
+    <td>4.13</td>
     <td>Feb 2024</td>
     <td>2.8 LTS, 3.x</td>
     <td>{{ latest_kic_release }}</td>
