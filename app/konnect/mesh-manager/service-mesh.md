@@ -18,7 +18,7 @@ Using Mesh Manager, you can create {{site.mesh_product_name}} global control pla
 ## Create a global control plane in {{site.konnect_short_name}}
  
 1. From the left navigation menu in {{site.konnect_short_name}}, open {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager).
-1. Click **New Control Plane**.
+1. Click **New Global Control Plane**.
 1. Enter "example-cp" in the **Name** field.
 1. Click **Save**.
 
@@ -68,7 +68,7 @@ For more information about the Kubernetes demo app, see [Explore {{site.mesh_pro
 You connect `kumactl` to the global control plane in {{site.konnect_short_name}} so that you can run commands against the control plane.
 
 1. From the left navigation menu in {{site.konnect_short_name}}, open {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager) and select the `example-cp` control plane.
-1. Select **Configure kumactl** from the **Control Plane Actions** dropdown menu and follow the steps in the wizard to connect `kumactl` to the control plane.
+1. Select **Configure kumactl** from the **Global Control Plane Actions** dropdown menu and follow the steps in the wizard to connect `kumactl` to the control plane.
 1. Verify that the services you added from the previous section with the Kubernetes demo app are running correctly:
 ```bash
 kumactl get dataplanes
