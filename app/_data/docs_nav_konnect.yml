@@ -282,11 +282,17 @@
           absolute_url: true
           generate: false
           target_blank: true
-
     - text: Control Plane Configuration API
       items:
         - text: API Documentation
-          url: https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf
+          url: /konnect/api/control-plane-configuration/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
+    - text: (Deprecated) - Runtime Configuration API
+      items:
+        - text: API Spec
+          url: /konnect/api/runtime-groups-configuration/latest/
           absolute_url: true
           generate: false
           target_blank: true
