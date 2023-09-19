@@ -74,7 +74,7 @@ Assuming you already have a control plane group and a member control plane, you 
     deck dump \
         -o old-group.yaml \
         --konnect-token <your_KPAT> \
-        --konnect-runtime-group-name old-group
+        --konnect-control-plane-name old-group
     ```
 
 1. Sync the configuration to the new group:
@@ -83,7 +83,7 @@ Assuming you already have a control plane group and a member control plane, you 
     deck sync \
         -s old-group.yaml \
         --konnect-token <your_KPAT> \
-        --konnect-runtime-group-name CP1
+        --konnect-control-plane-name CP1
     ```
 
     Note that you can't sync the configuration to the control plane group `CPG`. 
@@ -116,16 +116,16 @@ Use decK to migrate a self-managed {{site.base_gateway}} workspace into a contro
 command, pointing to the control plane that you want to target:
 
     ```sh
-    deck diff --konnect-runtime-group-name CP1 -s ws1.yaml
+    deck diff --konnect-control-plane-name CP1 -s ws1.yaml
     ```
 
 1. If you're satisfied with the preview, run [`deck sync`](/deck/latest/reference/deck_sync/):
 
     ```sh
-    deck sync --konnect-runtime-group-name CP1 -s ws1.yaml
+    deck sync --konnect-control-plane-name CP1 -s ws1.yaml
     ```
 
-    If you don't specify the `--konnect-runtime-group-name` flag, decK targets the
+    If you don't specify the `--konnect-control-plane-name` flag, decK targets the
     `default` control plane. If you have more than one control plane in your
     organization, we recommend always setting this flag to avoid accidentally
     pushing configuration to the wrong control plane.

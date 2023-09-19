@@ -17,6 +17,8 @@ Curity
 CLIs
 DAO
 DAOs
+DN
+DNs
 DPP
 DPPs
 Datadog

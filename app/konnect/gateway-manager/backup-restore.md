@@ -26,7 +26,7 @@ Use `deck dump` to back up your configuration:
 ```sh
 deck dump \
 --konnect-token <your-PAT> \
---konnect-runtime-group-name <group-name> \
+--konnect-control-plane-name <example-name> \
 --output-file /path/to/<my-backup.yaml>
 ```
 
@@ -39,10 +39,10 @@ configuration, for example:
 ```yaml
 _format_version: "3.0"
 _konnect:
-    runtime_group_name: us-west
+    control_plane_name: us-west
 consumers:
-- username: DianaPrince
-- username: WallyWest
+- username: example-user1
+- username: example-user2
 services:
 - connect_timeout: 60000
     host: mockbin.org
@@ -65,7 +65,7 @@ make sure you're applying the configuration you want:
 ```sh
 deck diff \
 --konnect-token <your-PAT> \
---konnect-runtime-group-name <group-name> \
+--konnect-control-plane-name <example-name> \
 --output-file /path/to/<my-backup.yaml>
 ```
 
@@ -75,7 +75,7 @@ a control plane:
 ```sh
 deck sync \
 --konnect-token <your-PAT> \
---konnect-runtime-group-name <group-name> \
+--konnect-control-plane-name <example-name> \
 --output-file /path/to/<my-backup.yaml>
 ```
 

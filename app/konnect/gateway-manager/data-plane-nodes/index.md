@@ -35,7 +35,7 @@ Advanced setup:
 
 {:.note}
 > **Notes:** 
-> * Gateway Manager includes a feature called Runtime Launcher which can be used with any of AWS, Azure, or GCP. This feature is currently in tech preview.
+> * Gateway Manager includes a feature called Control Plane Launcher which can be used with any of AWS, Azure, or GCP. This feature is currently in tech preview.
 > * Kong does not host data plane nodes. You must install and host your own.
 > * Gateway Manager allows users to select the {{site.base_gateway}} version that they want for their Quickstart scripts (except for cloud provider quickstart scripts for AWS, Azure, and GCP). This allows you to leverage official {{site.konnect_short_name}} scripts to start your gateways while reducing the number of errors due to an invalid script for a certain {{site.base_gateway}} version.
 
