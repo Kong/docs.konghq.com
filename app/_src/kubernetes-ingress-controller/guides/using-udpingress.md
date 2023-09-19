@@ -5,42 +5,17 @@ content_type: tutorial
 
 ## Overview
 
-This guide walks through deploying a simple [Service][svc] that listens for
-[UDP datagrams][udp], and exposes this service outside of the cluster using
+Deploy a simple [Service][svc] that listens for [UDP datagrams][udp], and exposes this service outside of the cluster using
 {{site.base_gateway}}.
 
-For this example, you will:
-* Deploy a UDP test application.
-* Route UDP traffic to it using UDPIngress or UDPRoute.
+{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=true %}
 
-## Create a namespace
-
-First, create a namespace:
-
-{% navtabs codeblock %}
-{% navtab Command %}
-```bash
-kubectl create namespace udp-example
-```
-{% endnavtab %}
-{% navtab Response %}
-```text
-namespace/udp-example created
-```
-{% endnavtab %}
-{% endnavtabs %}
-
-Other examples in this guide will use this namespace. When you've completed
-this guide, `kubectl delete namespace udp-example` will clean those resources
-up.
-
-## Adding UDP listens
+## Add UDP listens
 
 {{site.base_gateway}} does not include any UDP listen configuration by default.
-To expose UDP listens, update the Deployment's environment variables and port
-configuration:
+To expose UDP listens, update the environment variables of the Deployment and port
+configuration.
 
 ```bash
 kubectl patch deploy -n kong kong-gateway --patch '{
@@ -70,7 +45,7 @@ kubectl patch deploy -n kong kong-gateway --patch '{
   }
 }'
 ```
-Response:
+The results should look like this:
 ```text
 deployment.apps/kong-gateway patched
 ```
@@ -79,8 +54,7 @@ deployment.apps/kong-gateway patched
 
 LoadBalancer Services only support a single transport protocol in [Kubernetes
 versions prior to 1.26](https://github.com/kubernetes/enhancements/issues/1435).
-To direct UDP traffic to the proxy Service, you'll need to create a second
-Service:
+To direct UDP traffic to the proxy Service, create a second Service named `kong-udp-proxy`.
 
 ```bash
 echo "apiVersion: v1
@@ -102,7 +76,7 @@ spec:
   type: LoadBalancer
 " | kubectl apply -f -
 ```
-Response:
+The results should look like this:
 ```text
 service/kong-udp-proxy created
 ```
@@ -114,7 +88,7 @@ chart normally manages for you and for compatibility with non-Helm installs.
 ## Update the Gateway
 
 If you are using Gateway APIs (UDPRoute) option, your Gateway needs additional
-configuration under `listeners`. If you are using UDPIngress, skip this step.
+configuration under `listeners`. If you are using UDPIngress, yo can skip this step.
 
 ```bash
 kubectl patch --type=json gateway kong -p='[
@@ -134,7 +108,7 @@ kubectl patch --type=json gateway kong -p='[
     }
 ]'
 ```
-Response:
+The results should look like this:
 ```text
 gateway.gateway.networking.k8s.io/kong patched
 ```
@@ -142,62 +116,71 @@ gateway.gateway.networking.k8s.io/kong patched
 
 ## Deploy a UDP test application
 
-Create a test application Deployment and an associated Service:
+1. Create a namespace for deploying the UDP application.
+    ```bash
+    kubectl create namespace udp-example
+    ```
+    The results should look like this:
+    ```text
+    namespace/udp-example created
+    ```
+    When you've completed this guide, use the `kubectl delete namespace udp-example` command to clean those resources.
 
-```bash
-echo "---
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: tftp
-  namespace: udp-example
-  labels:
-    app: tftp
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: tftp
-  template:
+1.  Create a test application Deployment and an associated Service.
+
+    ```bash
+    echo "---
+    apiVersion: apps/v1
+    kind: Deployment
     metadata:
+      name: tftp
+      namespace: udp-example
       labels:
         app: tftp
     spec:
-      containers:
-      - name: tftp
-        image: cilium/echoserver-udp:latest
-        args:
-        - --listen
-        - :9999
-        ports:
-        - containerPort: 9999
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: tftp
-  namespace: udp-example
-spec:
-  ports:
-  - port: 9999
-    name: tftp
-    protocol: UDP
-    targetPort: 9999
-  selector:
-    app: tftp
-  type: ClusterIP
-" | kubectl apply -f -
-```
-Response:
-```text
-deployment.apps/tftp created
-service/tftp created
-```
+      replicas: 1
+      selector:
+        matchLabels:
+          app: tftp
+      template:
+        metadata:
+          labels:
+            app: tftp
+        spec:
+          containers:
+          - name: tftp
+            image: cilium/echoserver-udp:latest
+            args:
+            - --listen
+            - :9999
+            ports:
+            - containerPort: 9999
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: tftp
+      namespace: udp-example
+    spec:
+      ports:
+      - port: 9999
+        name: tftp
+        protocol: UDP
+        targetPort: 9999
+      selector:
+        app: tftp
+      type: ClusterIP
+    " | kubectl apply -f -
+    ```
+    The results should look like this:
+    ```text
+    deployment.apps/tftp created
+    service/tftp created
+    ```
 
-[echoserver-udp](https://hub.docker.com/r/cilium/echoserver-udp) is a simple
-test server that accepts UDP TFTP requests and returns basic request
-information. As curl supports TFTP, it is a convenient option for
-testing UDP routing.
+    [echoserver-udp](https://hub.docker.com/r/cilium/echoserver-udp) is a simple
+    test server that accepts UDP TFTP requests and returns basic request
+    information. Because curl supports TFTP you can use it to test UDP routing.
 
 ## Route UDP traffic
 
@@ -223,7 +206,7 @@ spec:
     port: 9999
 " | kubectl apply -f -
 ```
-Response:
+The results should look like this:
 ```text
 udpingress.configuration.konghq.com/tftp created
 ```
@@ -245,8 +228,9 @@ spec:
       port: 9999
 " | kubectl apply -f -
 ```
-Response:
+The results should look like this:
 ```text
+udproute.gateway.networking.k8s.io/tftp created
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -254,36 +238,29 @@ Response:
 This configuration routes traffic to UDP port `9999` on the
 {{site.base_gateway}} proxy to port `9999` on the TFTP test server.
 
-## Test the configuration
+## Test the UDP routing configuration
 
-First, retrieve the external IP address of the UDP proxy Service you created
-previously:
+1. Retrieve the external IP address of the UDP proxy Service you created and set the `KONG_UDP_ENDPOINT` variable.
 
-```bash
-export KONG_UDP_ENDPOINT="$(kubectl -n kong get service kong-udp-proxy \
+    ```bash
+    export KONG_UDP_ENDPOINT="$(kubectl -n kong get service kong-udp-proxy \
     -o=go-template='{% raw %}{{range .status.loadBalancer.ingress}}{{.ip}}{{end}}{% endraw %}')"
-```
+    ```
+1. Send a TFTP request through the proxy.
 
-After, use curl to send a TFTP request through the proxy:
-
-{% navtabs codeblock %}
-{% navtab Command %}
-```bash
-curl -s tftp://${KONG_UDP_ENDPOINT}:9999/hello
-```
-{% endnavtab %}
-{% navtab Response %}
-```text
-Hostname: tftp-5849bfd46f-nqk9x
-
-Request Information:
-	client_address=10.244.0.1
-	client_port=39364
-	real path=/hello
-	request_scheme=tftp
-```
-{% endnavtab %}
-{% endnavtabs %}
+    ```bash
+    curl -s tftp://${KONG_UDP_ENDPOINT}:9999/hello
+    ```
+    The results should look like this:
+    ```text
+    Hostname: tftp-5849bfd46f-nqk9x
+    
+    Request Information:
+    	client_address=10.244.0.1
+    	client_port=39364
+    	real path=/hello
+    	request_scheme=tftp
+    ```
 
 [svc]:https://kubernetes.io/docs/concepts/services-networking/service/
 [udp]:https://datatracker.ietf.org/doc/html/rfc768
