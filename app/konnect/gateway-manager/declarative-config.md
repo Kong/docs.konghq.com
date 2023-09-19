@@ -43,7 +43,7 @@ recognizes your account credentials:
 
 ```sh
 deck ping \
-  --konnect-runtime-group-name default \
+  --konnect-control-plane-name default \
   --konnect-token {YOUR_PERSONAL_ACCESS_TOKEN}
 ```
 
@@ -75,10 +75,10 @@ The following steps all use a `.deck.yaml` file to store the
 Capture a snapshot of the current configuration in a file:
 
 ```sh
-deck dump --konnect-runtime-group-name default
+deck dump --konnect-control-plane-name default
 ```
 
-If you don't specify the `--konnect-runtime-group-name` flag, decK will target the
+If you don't specify the `--konnect-control-plane-name` flag, decK will target the
 `default` control plane. If you have more than one control plane in your
 organization, we recommend always setting this flag to avoid accidentally
 pushing configuration to the wrong group.
@@ -90,14 +90,14 @@ name:
 ```yaml
 _format_version: "1.1"
 _konnect:
-  runtime_group_name: default
+  control_plane_name: default
 ```
 
 You can specify a different filename or location, or export the
 configuration in JSON format:
 
 ```sh
-deck dump --konnect-runtime-group-name default \
+deck dump --konnect-control-plane-name default \
   --format json \
   --output-file examples/konnect.json
 ```
@@ -112,7 +112,7 @@ For this example, let's add a new service.
     ```yaml
     _format_version: "1.1"
     _konnect:
-      runtime_group_name: default
+      control_plane_name: default
     services:
     - name: MyService
       host: mockbin.org
@@ -144,7 +144,7 @@ For this example, let's add a new service.
 {{site.konnect_saas}}:
 
     ```sh
-    deck diff --konnect-runtime-group-name default
+    deck diff --konnect-control-plane-name default
     ```
 
     If the format and schema is correct, decK gives you a preview of what would
@@ -164,7 +164,7 @@ For this example, let's add a new service.
 {{site.konnect_saas}}:
 
     ```sh
-    deck sync --konnect-runtime-group-name default
+    deck sync --konnect-control-plane-name default
     ```
 
     You should see the same output again:
@@ -225,14 +225,14 @@ down with repeated requests. Add a global proxy cache plugin:
 1. Run a diff to test your changes:
 
     ```sh
-    deck diff --konnect-runtime-group-name default
+    deck diff --konnect-control-plane-name default
     ```
 
 1. If everything looks good, run another sync, then check {{site.konnect_saas}}
 to see your changes:
 
     ```sh
-    deck sync --konnect-runtime-group-name default
+    deck sync --konnect-control-plane-name default
     ```
 
 ## Test the service
@@ -271,7 +271,7 @@ You can also use decK to migrate or duplicate configuration between control plan
 
     ```bash
     deck dump \
-      --konnect-runtime-group-name default \
+      --konnect-control-plane-name default \
       --output-file default.yaml
     ```
 
@@ -280,7 +280,7 @@ You can also use decK to migrate or duplicate configuration between control plan
     ```yaml
     _format_version: "1.1"
     _konnect:
-      runtime_group_name: staging
+      control_plane_name: staging
     ```
 
 1. Using the state file you just edited, preview the import with
@@ -289,7 +289,7 @@ command, pointing to the control plane that you want to target:
 
     ```sh
     deck diff \
-      --konnect-runtime-group-name staging \
+      --konnect-control-plane-name staging \
       --state default.yaml
     ```
 
@@ -298,7 +298,7 @@ command, pointing to the control plane that you want to target:
 
     ```sh
     deck sync \
-      --konnect-runtime-group-name staging \
+      --konnect-control-plane-name staging \
       --state default.yaml
     ```
 
