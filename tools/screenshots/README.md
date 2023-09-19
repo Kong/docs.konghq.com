@@ -1,3 +1,5 @@
+<!--vale off-->
+
 ## Prerequisites
 
 Make sure python3 and pipenv are installed:
