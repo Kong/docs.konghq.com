@@ -190,7 +190,7 @@
       "name": "v1",
       "id": "ffd06bfa-0a1c-4fb7-ade4-54089688225e"
     },
-    "description": "Manage the Konnect Control Plen entity.",
+    "description": "Manage the Konnect Control Plain entity.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
@@ -262,7 +262,7 @@
         "created_at": "2022-11-17T20:00:05.266Z",
         "updated_at": "2022-12-20T02:25:32.459Z",
         "name": "v2",
-        "deprecated": true,
+        "deprecated": false,
         "registration_configs": []
       }
     ]
