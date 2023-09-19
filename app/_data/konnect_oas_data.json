@@ -103,18 +103,26 @@
     "id": "5175b87f-bfae-40f6-898d-82d224387f9b",
     "title": "Konnect Identity Management",
     "latestVersion": {
-      "name": "v2",
-      "id": "d0e13745-db5c-42d5-80ae-ef803104f5ce"
+      "name": "v3",
+      "id": "c8074b5c-5cb8-47bb-8fcd-797d9f209cb2"
     },
     "description": "Identity Management is responsible for Konnect users, teams, organization, roles, permissions, and IdP settings.",
     "documentCount": 0,
-    "versionCount": 1,
+    "versionCount": 2,
     "versions": [
       {
         "id": "d0e13745-db5c-42d5-80ae-ef803104f5ce",
         "created_at": "2022-10-07T00:04:47.449Z",
         "updated_at": "2023-03-22T18:50:13.655Z",
         "name": "v2",
+        "deprecated": true,
+        "registration_configs": []
+      },
+      {
+        "id": "c8074b5c-5cb8-47bb-8fcd-797d9f209cb2",
+        "created_at": "2023-09-20T00:04:47.449Z",
+        "updated_at": "2023-09-20T18:50:13.655Z",
+        "name": "v3",
         "deprecated": false,
         "registration_configs": []
       }
