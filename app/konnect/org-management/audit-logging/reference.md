@@ -143,6 +143,13 @@ Property | Description
 `action` | The type of action the user performed on the resource. For example, `retrieve`, `list`, or `edit`.
 `granted` | Boolean indicating whether the authorization was granted or not.
 
+
+{:.note}
+> **Note:**
+> As of Sept 15, 2023, the authorization logs have been renamed. This change has no effects on the traceability of the resources by id. These renames include:
+>  - From `Authz.runtimegroups` to `Authz.control-planes`
+>  - From `Authz.services` to `Authz.api-products`
+
 ## Access logs
 
 Access logs include information about create, update, and delete requests to the {{site.konnect_short_name}} API.
@@ -208,4 +215,4 @@ Property | Description
 * [Set up an audit log webhook](/konnect/org-management/audit-logging/webhook/)
 * [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
 * [Verify audit log signatures](/konnect/org-management/audit-logging/verify-signatures/)
-* [Audit Logs API](https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/)
+* [Audit Logs API](/konnect/api/audit-logs/v2/)

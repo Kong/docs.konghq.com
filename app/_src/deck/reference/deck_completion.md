@@ -1,6 +1,6 @@
 ---
 title: deck completion
-source_url: https://github.com/Kong/deck/tree/main/cmd
+source_url: https://github.com/Kong/deck/tree/main/cmd/completion.go
 content_type: reference
 ---
 

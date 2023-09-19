@@ -13,9 +13,9 @@ You can use the open source Dev Portal to display your APIs to developers on a s
 
 There are several benefits to keep in mind when deciding whether to use a {{site.konnect_short_name}}-hosted or self-hosted Dev Portal. The self-hosted portal provides the following benefits: 
 
-* **Fully customizable:** Use the [example frontend Dev Portal application](https://github.com/Kong/konnect-portal) as a starting point and then customize Dev Portal for your needs using the [Portal API](https://developer.konghq.com/spec/2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6/b4539157-4ced-4df5-affa-7d790baee356). You can also integrate the API specs with workflows tailored to your organization's own processes.
+* **Fully customizable:** Use the [example frontend Dev Portal application](https://github.com/Kong/konnect-portal) as a starting point and then customize Dev Portal for your needs using the [Portal API](/konnect/api/portal/v2/). You can also integrate the API specs with workflows tailored to your organization's own processes.
 * **Hosting platform choice:** When you self-host, you also get to choose which hosting platform you use to deploy your Dev Portal. 
-* **Range of customization options:** With the self-hosted Dev Portal, you determine how much you want to customize. You can choose to use the example application right out of the box, or you can use the [Portal API](https://developer.konghq.com/spec/2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6/b4539157-4ced-4df5-affa-7d790baee356) and [Portal SDK](https://www.npmjs.com/package/@kong/sdk-portal-js) for more fine-grained control.
+* **Range of customization options:** With the self-hosted Dev Portal, you determine how much you want to customize. You can choose to use the example application right out of the box, or you can use the [Portal API](/konnect/api/portal/v2/) and [Portal SDK](https://www.npmjs.com/package/@kong/sdk-portal-js) for more fine-grained control.
 
 ## How the self-hosted Dev Portal works 
 

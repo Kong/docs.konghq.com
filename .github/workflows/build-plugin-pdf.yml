@@ -8,6 +8,9 @@ on:
       version:
         description: "Version (leave empty for latest)"
         required: false
+env:
+  VITE_PORTAL_API_URL: ${{ vars.VITE_PORTAL_API_URL }}
+
 jobs:
   pdf:
     runs-on: ubuntu-latest

@@ -22,7 +22,7 @@ spec:
   controller: ingress-controllers.konghq.com/kong
 " | kubectl apply -f -
 ```
-Response:
+The results should look like this:
 ```text
 ingressclass.networking.k8s.io/kong configured
 ```
@@ -58,19 +58,19 @@ spec:
     protocol: HTTP
 " | kubectl apply -f -
 ```
-Response:
+The results should look like this:
 ```text
 gatewayclass.gateway.networking.k8s.io/kong created
 gateway.gateway.networking.k8s.io/kong created
 ```
 
-Once the controller has acknowledged the Gateway, it will show the proxy IP in
+After the controller has acknowledged the Gateway, it shows the proxy IP and 
 its status:
 
 ```bash
 kubectl get gateway kong
 ```
-Response:
+The results should look like this:
 ```text
 NAME   CLASS   ADDRESS        READY   AGE
 kong   kong    203.0.113.42   True    4m46s

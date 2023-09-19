@@ -11,7 +11,7 @@ control plane group share the same cluster of data plane nodes.
 ## Standard control planes vs groups
 
 In a standard control plane setup, each team configures and manages their own data plane nodes.
-For example, in the following diagram Team Blue configures Control Plane Blue, which then uses a set of data plane nodes that only run Blue configuration; the same happens with Team Yellow.
+For example, in the following diagram, Team Blue configures Control Plane Blue, which then uses a set of data plane nodes that only run Blue configuration; the same happens with Team Yellow.
 
 ![Standard control plane](/assets/images/docs/konnect/konnect-control-plane.svg)
 > _**Figure 1:** Standard control plane workflow_
@@ -102,7 +102,7 @@ Control plane groups are read-only (with some exceptions), so configuration modi
 
 The following are exceptions to the read-only rule:
 * A data plane node client certificate can be generated in the UI or uploaded to a control plane group.
-* Data plane nodes can be connected to a control plane group, however members of a control plane group cannot have any data plane nodes connected to them.
+* Data plane nodes can be connected to a control plane group, however, members of a control plane group cannot have any data plane nodes connected to them.
 
 Kong Ingress Controller control planes can't be part of a control plane group.
 

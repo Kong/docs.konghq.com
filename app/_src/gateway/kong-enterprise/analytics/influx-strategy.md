@@ -266,7 +266,7 @@ data points are present.
 
 Kong buffers Vitals metrics and writes InfluxDB points in batches to improve
 throughput in InfluxDB and reduce overhead in the Kong proxy path. Each Kong
-worker process flushes its buffer of metrics every 5 seconds or 5000 data points,
+worker process flushes its buffer of metrics every 10 seconds or 5000 data points,
 whichever comes first.
 
 Metrics points are written with microsecond (`u`) precision. To comply with

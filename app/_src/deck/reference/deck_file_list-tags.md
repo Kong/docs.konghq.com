@@ -1,6 +1,6 @@
 ---
 title: deck file list-tags
-source_url: https://github.com/Kong/deck/tree/main/cmd
+source_url: https://github.com/Kong/deck/tree/main/cmd/file_listtags.go
 content_type: reference
 ---
 

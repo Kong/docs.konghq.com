@@ -42,7 +42,7 @@ Therefore, when migrating, you will need at least two new groups: a control plan
 1. Add the new control plane to the group as a member:
 
     ```sh
-    curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups/<composite-group-ID>/composite-memberships/add \
+    curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/group-memberships/add \
         -H "Authorization: Bearer <your_KPAT>" \
         --json '{"members": [{"id": "062e2f2c-0f42-4938-91b4-f73f399260f5"}]}'
     ```

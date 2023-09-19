@@ -159,4 +159,4 @@ curl --request DELETE \
 ```
 
 ## More information
-[Portal RBAC API documentation](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/)
+[Portal RBAC API documentation](/konnect/api/portal-rbac/v2/)

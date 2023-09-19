@@ -61,7 +61,7 @@ You can generate a new data plane certificate from the {% konnect_icon runtimes 
 
 {% navtab Konnect API %}
 
-You can generate a certificate locally and use the [pin data plane client certificate](https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf#/DP%20Certificates/post-dp-client-certificates) endpoint to add it to {{site.konnect_short_name}}.
+You can generate a certificate locally and use the [pin data plane client certificate](/konnect/api/runtime-groups-configuration/v2/#/DP%20Certificates/post-dp-client-certificates) endpoint to add it to {{site.konnect_short_name}}.
 
 1.  Generate a new certificate and key:
 
@@ -78,7 +78,7 @@ You can generate a certificate locally and use the [pin data plane client certif
 1. `POST` the certificate to your control plane using the Konnect API:
 
     ```bash
-    curl https://us.api.konghq.com/v2/runtime-groups/{runtimeGroupId}/dp-client-certificates --json '{"cert":"'$CERT'"}'
+    curl https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/dp-client-certificates --json '{"cert":"'$CERT'"}'
     ```
 {% endnavtab %}
 {% endnavtabs %}

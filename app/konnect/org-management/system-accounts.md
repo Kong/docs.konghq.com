@@ -4,7 +4,7 @@ content_type: how-to
 no_version: true
 ---
 
-This guide explains what a system account is, how it varies from a user account, and how to manage a system account using the [{{site.konnect_short_name}} Identity API](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/fc735302-d8ac-4e66-a9ef-225569a75d3c). 
+This guide explains what a system account is, how it varies from a user account, and how to manage a system account using the [{{site.konnect_short_name}} Identity API](/konnect/api/identity-management/v2/). 
 
 A system account is a service account in {{site.konnect_short_name}}. Because system accounts are not associated with an email address and a user, they can be used for automation and integrations. 
 
@@ -57,7 +57,7 @@ Create a system account token by sending a `POST` request containing the `accoun
 
 ```sh
 curl --request POST \
-  --url https://global.api.konghq.com/v2/system-accounts/:497f6eca-6276-4993-bfeb-53cbbbba6f08/access-tokens
+  --url https://global.api.konghq.com/v3/system-accounts/:497f6eca-6276-4993-bfeb-53cbbbba6f08/access-tokens
 ```
 You will receive a `201` response code, and a response body containing the access token for the system account:
 
@@ -86,7 +86,7 @@ Assign a role to a system account by sending a `POST` request containing the `ac
 
 ```sh
 curl --request POST \
-  --url https://global.api.konghq.com/v2/system-accounts/:497f6eca-6276-4993-bfeb-53cbbbba6f08/assigned-roles
+  --url https://global.api.konghq.com/v3/system-accounts/:497f6eca-6276-4993-bfeb-53cbbbba6f08/assigned-roles
   --data '{
   "role_name": "Viewer",
   "entity_id": "817d0422-45c9-4d88-8d64-45aef05c1ae7",
@@ -115,7 +115,7 @@ Assign a team to a system account by sending a `POST` request containing the `te
 
 ```sh
 curl --request POST \
-  --url https://global.api.konghq.com/v2/teams/:497f6eca-6276-4993-bfeb-53cbbbba6f08/system-accounts
+  --url https://global.api.konghq.com/v3/teams/:497f6eca-6276-4993-bfeb-53cbbbba6f08/system-accounts
 ```
 
 You will receive a `201` response code and a response body stating that the system account was added to the team:

@@ -1,0 +1,19 @@
+name: Sync Konnect OAS Data
+on: workflow_dispatch
+
+jobs:
+  update_oas_data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Fetch OAS Data
+        run: |
+          cd tools/konnect-oas-data-generator
+          npm ci
+          node run.js --url ${{ vars.VITE_PORTAL_API_URL }}
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          title: Sync Konnect OAS Data
+          commit-message: Sync Konnect OAS Data
+          labels: 'review:tech'

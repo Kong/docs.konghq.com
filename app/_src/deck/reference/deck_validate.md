@@ -1,6 +1,6 @@
 ---
 title: deck validate
-source_url: https://github.com/Kong/deck/tree/main/cmd
+source_url: https://github.com/Kong/deck/tree/main/cmd/validate.go
 content_type: reference
 ---
 

@@ -151,10 +151,9 @@ instead (`kong.ctx.shared.authenticated_jwt_token`) before upgrading to 3.0.
   health check metrics by default. They can still be turned on manually by setting `status_code_metrics`,
   `lantency_metrics`, `bandwidth_metrics` and `upstream_health_metrics` respectively.
 
-**[Serverless Functions](/hub/kong-inc/serverless-functions/)**
+**[Pre-function](/hub/kong-inc/pre-function/) and [Post-function](/hub/kong-inc/post-function/) plugins**
 * Removed the deprecated `config.functions` configuration parameter from the
-Serverless Functions plugins' schemas (`post-fuction` and `pre-function`).
-Use the `config.access` phase instead.
+`post-fuction` and `pre-function` plugins' schemas. Use the `config.access` phase instead.
 
 **[StatsD](/hub/kong-inc/statsd/)**
 * Any metric name that is related to a service now has a `service.` prefix: `kong.service.<service_identifier>.request.count`.
