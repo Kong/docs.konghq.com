@@ -10,6 +10,10 @@ content_type: how-to
 * Enterprise {{site.konnect_short_name}} account.
 * An [Azure AD account](https://portal.azure.com).
 
+{:.note}
+> **Note:** Supports Azure OAuth v1 token endpoints only; v2 not supported.
+
+
 ## Configure Azure
 
 In Azure, create the main application:
