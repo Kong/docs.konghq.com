@@ -6,11 +6,56 @@ id: documentation
 
 {% assign latest_page_url = page.url | replace: page.kong_version, "latest" %}
 
-{% assign default_edit_link = page.path | replace: "latest", page.kong_version %}
-
 <div class="page v2 {{ page.class }}" data-url={{ page.url }}>
-
+  <div class="page--header-background page--header-background-doc"></div>
   <div class="container">
+
+    <header class="page-header page-header-doc">
+      <div class="page-header-product-version">
+        <div class="edition">
+          {% if page.edition == 'konnect' %}{{site.konnect_saas}}
+          {% elsif page.edition == 'mesh' %}{{site.mesh_product_name}}
+          {% elsif page.edition == 'deck' %}decK
+          {% elsif page.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
+          {% elsif page.edition == 'gateway' %}Kong Gateway
+          {% elsif page.edition == 'contributing' %}Contribution guidelines
+          {% endif %}
+        </div>
+        {% unless page.no_version == true %}
+        <div class="version">
+          {{page.kong_version}}
+          {% if page.kong_version == page.kong_latest.release %}
+            <span>(latest)</span>
+          {% endif %}
+        </div>
+        {% endunless %}
+      </div>
+      <div class="page-header--nav">
+        <i class="sidebar-toggle"></i>
+
+        {% unless page.no_breadcrumbs %}
+          {% include_cached breadcrumbs.html is_latest=page.is_latest edition=page.edition no_version=page.no_version has_version=page.has_version kong_version=page.kong_version url=page.url dir=page.dir%}
+        {% endunless %}
+
+        {% capture edit_link %}
+          {% assign default_edit_link = page.path | replace: "latest", page.kong_version %}
+          {% assign edit_link_no_https = page.edit_link | remove: "https://" %}
+
+          {% if page.source_url %}
+            {{ page.source_url | replace: "/tree/", "/edit/" }}
+          {% elsif page.edit_link and edit_link_no_https == page.edit_link %}
+            "https://github.com/Kong/docs.konghq.com/edit/{{ site.git_branch }}/app/{{ page.edit_link }}"
+          {% elsif page.edit_link %}
+            {{ page.edit_link }}
+          {% else %}
+            "https://github.com/Kong/docs.konghq.com/edit/{{ site.git_branch }}/app/{{ default_edit_link }}"
+          {% endif %}
+        {% endcapture %}
+
+        {% include header/nav-links.html edit_link=edit_link %}
+
+      </div>
+    </header>
 
     {% include_cached docs-sidebar.html sidenav=page.sidenav is_latest=page.is_latest url=page.url kong_version=page.kong_version edition=page.edition no_version=page.no_version has_version=page.has_version nav_items=page.nav_items edition=page.edition kong_version=page.kong_version kong_latest=page.kong_latest kong_versions=page.kong_versions badge=page.badge version_index=page.version_index %}
 
@@ -18,97 +63,54 @@ id: documentation
         <i class="fa fa-times close-sidebar"></i>
         <i class="fa fa-chevron-right collapse-toc"></i>
         <i class="far fa-list-alt expand-toc"></i>
-        <div class="github-links">
-          <p>
-            {% assign edit_link_no_https = page.edit_link | remove: "https://" %}
-            {% if page.edit_link and edit_link_no_https == page.edit_link %}
-            <a href="https://github.com/Kong/docs.konghq.com/edit/{{ site.git_branch }}/app/{{ page.edit_link }}">
-            {% elsif page.edit_link %}
-            <a href="{{ page.edit_link }}">
-            {% else %}
-            <a href="https://github.com/Kong/docs.konghq.com/edit/{{ site.git_branch }}/app/{{ default_edit_link }}">
-            {% endif %}
-              <img src="/assets/images/logos/logo-github.svg" alt="github-edit-page"/>Edit this page</a>
-          </p>
-          <p>
-            <a href="https://github.com/Kong/docs.konghq.com/issues">
-              <img src="/assets/images/icons/documentation/icn-monitoring-black.svg" alt="report-issue"/>Report an issue</a>
-          </p>
-          <p id="oss-ee-toggle" data-current="Enterprise" style="display: none">
-            <span class="oss-ee-toggle-inner">
-            <img src="/assets/images/icons/icn-enterprise-black.svg" alt="enterprise-switcher-icon"/>Switch to <span id="switch-to-version">OSS</span>
-            </span>
-          </p>
+
+        <div id="oss-ee-toggle" data-current="Enterprise" style="display: none">
+          <span class="oss-ee-toggle-inner">
+            <img src="/assets/images/icons/icn-enterprise-black.svg" alt="enterprise-switcher-icon"/>
+            <span>Switch to <span id="switch-to-version">OSS</span></span>
+          </span>
         </div>
+
         {% if page.toc == true or page.toc != false %}
         {% include_cached toc.html html=content anchor_class="scroll-to" h_min=2 h_max=3 %}
         {% endif %}
       </aside>
 
-    <div class="page-content-container v2 {% if page.no_version == true and page.has_version == false and page.nav_items == nil %}no-sidebar{% endif %}" id="documentation">
+    <div class="page-content-container page-content-container-doc v2 {% if page.no_version == true and page.has_version == false and page.nav_items == nil %}no-sidebar{% endif %}" id="documentation">
       <div class="toggles {% if page.no_version == true and page.has_version == false and page.nav_items == nil %}no-sidebar{% endif %}">
           <i class="far fa-list-alt toc-sidebar-toggle"></i>
       </div>
 
       <div class="page-content">
         <div class="content show-anchor-links">
-          <div class="content-header">
-            <div class="content-edition">
-              {% if page.edition == 'enterprise' %}{{site.ee_product_name}}
-                {% elsif page.edition == 'konnect' %}{{site.konnect_saas}}
-                {% elsif page.edition == 'mesh' %}{{site.mesh_product_name}}
-                {% elsif page.edition == 'deck' %}decK
-              {% elsif page.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
-                {% elsif page.edition == 'gateway-oss' %}{{site.ce_product_name}}
-                {% elsif page.edition == 'gateway' %}Kong Gateway
-                {% elsif page.edition == 'getting-started-guide' %}Getting Started with Kong Gateway
-              {% elsif page.edition == 'contributing' %}Contribution guidelines
-              {% endif %}
-            </div>
-            {% unless page.no_version == true %}
-              <div class="content-version">
-                {{page.kong_version}}
-                  {% if page.kong_version == page.kong_latest.release and page.edition != 'gateway-oss' and page.edition != 'enterprise' and page.edition != 'getting-started-guide' %}
-                  <span>(latest)</span>
-                {% endif %}
-              </div>
-            {% endunless %}
-            {% unless page.no_breadcrumbs %}
-              {% include_cached breadcrumbs.html is_latest=page.is_latest edition=page.edition no_version=page.no_version has_version=page.has_version kong_version=page.kong_version url=page.url dir=page.dir%}
-            {% endunless %}
-          </div>
-          {% if page.edition == 'gateway-oss' or page.edition == 'enterprise' or page.edition == 'getting-started-guide' %}
-          <blockquote class="important">
-              You are browsing documentation for an outdated version. The <a href="/gateway/">latest {{site.base_gateway}} documentation </a> is
-              now available as a combined doc set for Kong Gateway Enterprise and open-source (OSS).
-          </blockquote>
-          {% endif %}
-            {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
-            {% unless page.edition == 'gateway-oss' or page.edition == 'enterprise' or page.edition == 'getting-started-guide' %}
+          {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
               <blockquote class="important">
-              You are browsing documentation for an outdated version. See the
-              <a href="{{ page.canonical_url }}">latest documentation here</a>.
+                {% if page.edition == 'mesh' and page.version_data['releaseDate'] == nil %}
+                You are browsing documentation of an unreleased version.
+                {% else %}
+                You are browsing documentation for an outdated version.
+                {% endif %}
+                See the <a href="{{ page.canonical_url }}">latest documentation here</a>.
               </blockquote>
-            {% endunless %}
+          {% endif %}
+
+          <h1 tabindex="-1" id="main" class="page-content-title"
+          >{{page.title | flatify }}
+          {% if page.badge %}
+            <a href="https://konghq.com/pricing" {%
+              if page.badge == 'plus' %}class="badge plus" aria-label="available with plus subscription"{% endif %}{%
+              if page.badge == 'enterprise' %}class="badge enterprise" aria-label="available with enterprise subscription"{% endif %}{%
+              if page.badge == 'free' %}class="badge free" aria-label="available in Kong Gateway free mode"{% endif %}{%
+              if page.badge == 'oss' %}class="badge oss" aria-label="open-source only"{% endif %}>
+            </a>
             {% endif %}
+          </h1>
 
-            <h1 tabindex="-1" id="main" class="page-content-title"
-            >{{page.title | flatify }}
-            {% if page.badge %}
-              <a href="https://konghq.com/pricing" {%
-                if page.badge == 'plus' %}class="badge plus" aria-label="available with plus subscription"{% endif %}{%
-                if page.badge == 'enterprise' %}class="badge enterprise" aria-label="available with enterprise subscription"{% endif %}{%
-                if page.badge == 'free' %}class="badge free" aria-label="available in Kong Gateway free mode"{% endif %}{%
-                if page.badge == 'oss' %}class="badge oss" aria-label="open-source only"{% endif %}>
-              </a>
-              {% endif %}
-            </h1>
+          {% if page.subtitle %}
+            <h2 class="page-content-subtitle">{{page.subtitle | flatify }}</h2>
+          {% endif %}
 
-            {% if page.subtitle %}
-              <h2 class="page-content-subtitle">{{page.subtitle | flatify }}</h2>
-            {% endif %}
-
-            {% if page.alpha %}
+          {% if page.alpha %}
             <blockquote class="warning no-icon">
               This feature is released as a <a href="/gateway/latest/availability-stages/#tech-preview">tech preview</a> (alpha-quality) and should not be deployed in a production environment.
 
@@ -116,8 +118,8 @@ id: documentation
               {{ page.stability_message }}
               {% endif %}
             </blockquote>
-            {% endif %}
-            {% if page.beta %}
+          {% endif %}
+          {% if page.beta %}
             <blockquote class="warning no-icon">
               This feature is released as <a href="/gateway/latest/availability-stages/#beta">beta</a> and should not be deployed in a production environment.
 
@@ -125,12 +127,11 @@ id: documentation
               {{ page.stability_message }}
               {% endif %}
             </blockquote>
-            {% endif %}
+          {% endif %}
 
-            {{ content }}
+          {{ content }}
 
-            {% include book.html %}
-          </div>
+          {% include book.html %}
         </div>
       </div>
     </div>
@@ -145,3 +146,23 @@ id: documentation
   </div>
 
   {% include_cached image-modal.html disable_image_expand=page.disable_image_expand %}
+
+
+{% if page.konnect_cta_card != false %}
+  <div class="modal closed" id="modal" role="dialog" aria-hidden="true" aria-labelledby="title" aria-describedby="description">
+    <div class="konnect-cta-card">
+      <div class="title">
+      Too much on your plate?
+      <a href="#" class="cta-card-close modal-close" id="modal-close">
+          <img src="/assets/images/icons/documentation/close.svg" alt="close cta icon"/>
+        </a>
+      </div>
+      <div class="description">More features, less infrastructure with Kong Konnect. 1M requests per month for free.</div>
+      <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_campaign=right-nav-card&utm_content={{ page.edition }}" class="button" target="_blank">
+      Try it for Free
+    </a>
+    </div>
+  </div>
+  <div id="modal-open" class="modal-open"></div>
+  <div class="modal-overlay closed" id="modal-overlay"></div>
+{% endif %}

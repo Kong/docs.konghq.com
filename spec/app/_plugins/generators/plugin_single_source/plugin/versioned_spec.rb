@@ -17,7 +17,7 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
     context 'when a `maximum_version` is set' do
       it 'returns the versions defined in `kong_versions.yml` in the `minimum_version` `maximum_version` range, replacements apply' do
         expect(subject.releases).to eq(
-          ['2.8.x', '2.7.x', '2.6.x', '2.5.x', '2.4.x', '2.3.x-EE', '2.3.x-CE']
+          ['2.8.x', '2.7.x', '2.6.x']
         )
       end
     end
@@ -35,7 +35,7 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
 
       it 'returns the versions defined in `kong_versions.yml` greater than and equal to `minimum_version`, replacements apply' do
         expect(subject.releases).to eq(
-          ['3.0.x', '2.8.x', '2.7.x', '2.6.x', '2.5.x', '2.4.x', '2.3.x-EE', '2.3.x-CE']
+          ['3.0.x', '2.8.x', '2.7.x', '2.6.x']
         )
       end
     end
@@ -60,10 +60,8 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
 
       it 'returns the sources defined in the file' do
         expect(subject.sources).to eq({
-          '2.5.x' => '_2.2.x',
-          '2.4.x' => '_2.2.x',
-          '2.3.x' => '_2.2.x',
-          '2.2.x' => '_2.2.x'
+          '2.7.x' => '_2.6.x',
+          '2.6.x' => '_2.6.x',
         })
       end
     end
@@ -101,30 +99,14 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
           .and_call_original
         expect(PluginSingleSource::Plugin::Release)
           .to receive(:new)
-          .with(site:, version: '2.7.x', is_latest: false, plugin: subject, source: '_index')
+          .with(site:, version: '2.7.x', is_latest: false, plugin: subject, source: '_2.6.x')
           .and_call_original
         expect(PluginSingleSource::Plugin::Release)
           .to receive(:new)
-          .with(site:, version: '2.6.x', is_latest: false, plugin: subject, source: '_index')
-          .and_call_original
-        expect(PluginSingleSource::Plugin::Release)
-          .to receive(:new)
-          .with(site:, version: '2.5.x', is_latest: false, plugin: subject, source: '_2.2.x')
-          .and_call_original
-        expect(PluginSingleSource::Plugin::Release)
-          .to receive(:new)
-          .with(site:, version: '2.4.x', is_latest: false, plugin: subject, source: '_2.2.x')
-          .and_call_original
-        expect(PluginSingleSource::Plugin::Release)
-          .to receive(:new)
-          .with(site:, version: '2.3.x-EE', is_latest: false, plugin: subject, source: '_index')
-          .and_call_original
-        expect(PluginSingleSource::Plugin::Release)
-          .to receive(:new)
-          .with(site:, version: '2.3.x-CE', is_latest: false, plugin: subject, source: '_index')
+          .with(site:, version: '2.6.x', is_latest: false, plugin: subject, source: '_2.6.x')
           .and_call_original
 
-        expect(subject.create_pages.size).to eq(36)
+        expect(subject.create_pages.size).to eq(19)
       end
     end
   end
@@ -138,7 +120,7 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
 
     it 'includes the `releases`' do
       expect(subject.ext_data['releases']).to eq([
-        '2.8.x', '2.7.x', '2.6.x', '2.5.x', '2.4.x', '2.3.x-EE', '2.3.x-CE'
+        '2.8.x', '2.7.x', '2.6.x'
       ])
     end
 

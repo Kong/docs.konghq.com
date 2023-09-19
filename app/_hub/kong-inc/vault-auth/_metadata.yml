@@ -1,7 +1,5 @@
 name: Vault Authentication
 dbless_compatible: 'yes'
-manager_examples: false
-konnect_examples: false
 free: false
 plus: false
 enterprise: true

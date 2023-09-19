@@ -11,7 +11,7 @@ composite runtime group share the same cluster of runtime instances.
 ## Composite vs standard groups
 
 In a standard runtime group setup, each team configures and manages their own runtime instances.
-For example, in the following diagram Team Blue configures Runtime Group Blue, which then uses a set of runtime instances that only run Blue configuration; the same happens with Team Yellow.
+For example, in the following diagram, Team Blue configures Runtime Group Blue, which then uses a set of runtime instances that only run Blue configuration; the same happens with Team Yellow.
 
 ![Standard runtime group](/assets/images/docs/konnect/konnect-standard-rg.svg)
 > _**Figure 1:** Standard runtime group workflow_
@@ -94,13 +94,13 @@ For example, two instances of the Rate Limiting plugin cannot be installed in th
 ## Limitations
 
 A composite runtime group composition will be applied even if the configurations of the standard runtime groups are not combined successfully. 
-This means that even if there is some confict and the member groups weren't merged successfully, a composite runtime group still gets created.
+This means that even if there is some conflict and the member groups weren't merged successfully, a composite runtime group still gets created.
 
 Composite runtime groups are read-only (with some exceptions), so configuration modifications must be made via a member standard runtime group. 
 
 The following are exceptions to the read-only rule:
 * A runtime instance client certificate can be generated in the UI or uploaded to a composite runtime group.
-* Runtime instances can be connected to a composite runtime group, however members of a composite runtime group cannot have any runtime instances connected to them.
+* Runtime instances can be connected to a composite runtime group, however, members of a composite runtime group cannot have any runtime instances connected to them.
 
 Kong Ingress Controller runtime groups can't be part of a composite runtime group.
 

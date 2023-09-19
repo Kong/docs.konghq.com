@@ -10,7 +10,7 @@
   "author": "Michael Heap <m@michaelheap.com>",
   "license": "MIT",
   "dependencies": {
-    "execa": "^7.0.0",
+    "execa": "^8.0.0",
     "fast-glob": "^3.2.11",
     "semver": "^7.3.5"
   },

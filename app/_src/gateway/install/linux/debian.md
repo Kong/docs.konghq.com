@@ -18,7 +18,10 @@ The {{site.base_gateway}} software is governed by the
 
 ## Download and install
 
-You can install {{site.base_gateway}} by downloading an installation package or using our APT repository.
+You can install {{site.base_gateway}} by downloading an installation package or using the APT repository.
+
+{:.note}
+> **Note:** In July of 2023 Kong announced that package hosting was shifting from {{ site.links.download }} to [{{ site.links.cloudsmith }}]({{ site.links.cloudsmith }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
 
 {% navtabs %}
 {% navtab Package %}
@@ -36,8 +39,7 @@ curl -Lo kong-enterprise-edition-{{page.versions.ee}}.amd64.deb "{{ site.links.c
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.versions.ce}}.amd64.deb "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/deb/ubuntu/pool/jammy/main/k/ko/kong_{{page.versions.ce}}/kong_{{page.versions.ce}}_amd64.deb"
-
+curl -Lo kong-{{page.versions.ce}}.amd64.deb "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/deb/debian/pool/bullseye/main/k/ko/kong_{{page.versions.ce}}/kong_{{page.versions.ce}}_amd64.deb"
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}

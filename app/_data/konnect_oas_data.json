@@ -1,0 +1,249 @@
+[
+  {
+    "id": "d420333f-01b0-464e-a87a-97acc92c2026",
+    "title": "Konnect API Products",
+    "latestVersion": {
+      "name": "v2",
+      "id": "941af975-8cfa-40f7-afea-e82d248489a0"
+    },
+    "description": "API Products can be used to manage API versions, documentation, and analytics.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "941af975-8cfa-40f7-afea-e82d248489a0",
+        "created_at": "2023-06-28T18:37:55.070Z",
+        "updated_at": "2023-07-17T14:08:02.747Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "3e65edbc-364d-4762-9d3e-f13083e1b534",
+    "title": "Gateway Dev Portal",
+    "latestVersion": {
+      "name": "v1",
+      "id": "33cd4595-e389-4c2b-80ee-5275f25e80e1"
+    },
+    "description": "Dev Portal provides a single source of truth for all developers to locate, access, and consume services for Kong Gateway EE. This spec is a Beta version.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "33cd4595-e389-4c2b-80ee-5275f25e80e1",
+        "created_at": "2022-11-09T18:13:05.107Z",
+        "updated_at": "2023-02-24T17:05:21.077Z",
+        "name": "v1",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "680541e5-de6e-46e5-b43d-0bd1b2369453",
+    "title": "Gateway Admin - OSS (Beta)",
+    "latestVersion": {
+      "name": "3.4.0",
+      "id": "7df4368a-a2d1-41a3-b8de-708e86c218f4"
+    },
+    "description": "Kong Gateway (OSS) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
+    "documentCount": 0,
+    "versionCount": 2,
+    "versions": [
+      {
+        "id": "e2a0ef29-573d-4fc4-86df-216c417f4aa9",
+        "created_at": "2023-05-11T19:34:55.498Z",
+        "updated_at": "2023-05-11T19:35:57.388Z",
+        "name": "3.3.0",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "7df4368a-a2d1-41a3-b8de-708e86c218f4",
+        "created_at": "2023-08-08T20:53:41.418Z",
+        "updated_at": "2023-08-09T21:03:42.381Z",
+        "name": "3.4.0",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "937dcdd7-4485-47dc-af5f-b805d562552f",
+    "title": "Gateway Admin - EE (Beta)",
+    "latestVersion": {
+      "name": "3.4.0.0",
+      "id": "25d728a0-cfe3-4cf4-8e90-93a5bb15cfd9"
+    },
+    "description": "Kong Gateway (EE) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
+    "documentCount": 0,
+    "versionCount": 2,
+    "versions": [
+      {
+        "id": "be79b812-46d5-4cc1-b757-b5270bf4fa60",
+        "created_at": "2023-05-11T19:37:04.731Z",
+        "updated_at": "2023-05-11T19:37:33.078Z",
+        "name": "3.3.0.0",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "25d728a0-cfe3-4cf4-8e90-93a5bb15cfd9",
+        "created_at": "2023-08-01T16:48:18.726Z",
+        "updated_at": "2023-08-09T21:03:30.480Z",
+        "name": "3.4.0.0",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "5175b87f-bfae-40f6-898d-82d224387f9b",
+    "title": "Konnect Identity Management",
+    "latestVersion": {
+      "name": "v2",
+      "id": "d0e13745-db5c-42d5-80ae-ef803104f5ce"
+    },
+    "description": "Identity Management is responsible for Konnect users, teams, organization, roles, permissions, and IdP settings.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "d0e13745-db5c-42d5-80ae-ef803104f5ce",
+        "created_at": "2022-10-07T00:04:47.449Z",
+        "updated_at": "2023-03-22T18:50:13.655Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "9542436a-58d1-4522-a00b-32125b5940f0",
+    "title": "Gateway Status",
+    "latestVersion": {
+      "name": "v1",
+      "id": "5feb007a-348b-486d-8d06-92f615471d22"
+    },
+    "description": "Gateway Status is a read-only endpoint allowing monitoring tools to retrieve metrics, healthiness, and other non-sensitive information of the node.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "5feb007a-348b-486d-8d06-92f615471d22",
+        "created_at": "2023-05-08T15:01:55.082Z",
+        "updated_at": "2023-05-11T19:31:56.661Z",
+        "name": "v1",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6",
+    "title": "Konnect Customizable Portal",
+    "latestVersion": {
+      "name": "v2",
+      "id": "b4539157-4ced-4df5-affa-7d790baee356"
+    },
+    "description": "Customize your self-hosted developer portal experience.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "b4539157-4ced-4df5-affa-7d790baee356",
+        "created_at": "2023-04-29T22:35:19.274Z",
+        "updated_at": "2023-06-28T03:09:02.039Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "3c38bff8-3b7b-4323-8e2e-690d35ef97e0",
+    "title": "Konnect Runtime Group Config (Beta)",
+    "latestVersion": {
+      "name": "v2",
+      "id": "16adcd15-493a-49b2-ad53-8c73891e29bf"
+    },
+    "description": "Manage Kong Gateway services, routes, certificates, consumer and global configuration within Konnect. This spec is a Beta version.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "16adcd15-493a-49b2-ad53-8c73891e29bf",
+        "created_at": "2022-12-15T21:13:44.308Z",
+        "updated_at": "2022-12-15T21:13:44.308Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "e46e7742-befb-49b1-9bf1-7cbe477ab818",
+    "title": "Konnect Audit Logging",
+    "latestVersion": {
+      "name": "v2",
+      "id": "d36126ee-ab8d-47b2-960f-5703da22cced"
+    },
+    "description": "Audit logging enables administrators to better spot security risks and maintain compliance of their core infrastructure.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "d36126ee-ab8d-47b2-960f-5703da22cced",
+        "created_at": "2023-01-18T22:01:21.688Z",
+        "updated_at": "2023-01-19T16:53:17.132Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "2dad627f-7269-40db-ab14-01264379cec7",
+    "title": "Konnect Portal RBAC",
+    "latestVersion": {
+      "name": "v2",
+      "id": "0ecb66fc-0049-414a-a1f9-f29e8a02c696"
+    },
+    "description": "Portal RBAC can be used to create teams, collect developers into teams, and assign roles to give those teams functionality in the developer portal.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "0ecb66fc-0049-414a-a1f9-f29e8a02c696",
+        "created_at": "2023-01-24T20:12:45.051Z",
+        "updated_at": "2023-02-24T17:04:31.582Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "cd849478-4628-4bc2-abcd-5d8a83d3b5f2",
+    "title": "Konnect Runtime Groups",
+    "latestVersion": {
+      "name": "v2",
+      "id": "24c1f98b-ea51-4277-9178-ca28a6aa85d9"
+    },
+    "description": "Manage the runtime group entity in Konnect.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "24c1f98b-ea51-4277-9178-ca28a6aa85d9",
+        "created_at": "2022-11-17T20:00:05.266Z",
+        "updated_at": "2022-12-20T02:25:32.459Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  }
+]

@@ -136,6 +136,7 @@ deduplication
 degraphql
 denylist
 deployer
+deserialization
 deserialize
 deserialized
 dev
@@ -375,6 +376,7 @@ unregister
 unregistering
 unshorten
 unshortened
+unvetted
 untyped
 updated_at
 upsert

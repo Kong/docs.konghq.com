@@ -9,8 +9,8 @@ html {
 }
 
 body {
-  .font-source-sans();
-  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
   color: @font-color;
   -webkit-font-smoothing: antialiased;
 
@@ -103,7 +103,7 @@ input[type="url"],
 input[type="password"],
 textarea,
 select {
-  .font-source-sans();
+  font-family: 'Roboto', sans-serif;
   border-radius: 3px;
   border-color: #ced2d6;
   box-shadow: inset 1px 2px 0 0 rgba(242, 242, 242, 0.5);
@@ -164,53 +164,6 @@ code {
   font-family: @family-code;
 }
 
-[contenteditable="true"] {
-  color: @green-400;
-  font-weight: bold;
-  margin: 0 1px 0 -3px;
-  padding: 0 0 0 5px;
-  font-size: 14px;
-  display: inline-block;
-  line-height: 16px;
-  border-radius: 2px;
-  -webkit-user-modify: read-write-plaintext-only;
-
-  &::after {
-    content: "\f040";
-    font-family: "Font Awesome", FontAwesome;
-    font-weight: 100;
-    color: @green-400;
-    display: inline-block;
-    font-weight: 600;
-    font-size: 15px;
-    padding: 5px;
-    position: relative;
-  }
-
-  br {
-    display: none;
-    visibility: hidden;
-  }
-
-  &:hover {
-    opacity: 0.8;
-    text-decoration: underline;
-  }
-
-  &:active {
-    border: none;
-    outline: none;
-  }
-
-  &:focus {
-    border: 1px solid @green-300;
-    background: #fff;
-    outline: 0;
-    margin: -1px 0 -1px -4px;
-    padding: 0 0 0 5px;
-  }
-}
-
 a {
   color: @blue-500;
   text-decoration: none;
@@ -262,13 +215,13 @@ h6 {
 
 h2 {
   margin-top: 3.2rem;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 500;
 }
 
 h3 {
   margin-top: 2.9rem;
-  font-size: 2rem;
+  font-size: 1.9rem;
   font-weight: 500;
 }
 

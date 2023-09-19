@@ -2,12 +2,12 @@
   <a class="skip-main" href="#main">Skip to content</a>
   <!-- uncomment the promo-banner div when adding a new promo banner
   <!--also uncomment the promo banner sections in app/assets/stylesheets/header.less and application.js-->
-  <!-- <div id="promo-banner"> -->
-  <!--   <div class="container"> -->
-  <!--     <div class="closebanner"></div> <strong>Kong Summit 2022: Where API Innovation Runs Wild &nbsp;&mdash;<a -->
-  <!--         href="https://konghq.com/conferences/kong-summit">Learn More &rarr;</a></strong> -->
-  <!--   </div> -->
-  <!-- </div> -->
+  <div id="promo-banner">
+    <div class="container">
+      <div class="closebanner"></div> <strong>2023 API Summit Hackathon: Experiment with AI for APIs (August 28 - September 27) <a
+          href="https://konghq.com/conferences/kong-summit/hackathon?utm_medium=website&utm_source=docs-konghq-com&utm_campaign=docs-banner">Learn More &rarr;</a></strong>
+    </div>
+  </div>
   <div class="navbar-content">
     <a href="https://konghq.com" class="navbar-brand col col-xl-auto">
       <img src="/assets/images/logos/kong-logo-blue.svg" alt="Kong Logo" id="kong-logo">
@@ -16,7 +16,7 @@
     <a href="/" class="navbar-brand col col-xl-auto">
       <img src="/assets/images/logos/docs-logo-steel.svg" alt="Kong Docs Logo" id="kong-docs-logo">
     </a>
-    {% if include.layout != "landing-page" %}
+
     <div class="separator mobile"></div>
     <div class="search-input-wrapper">
       <img src="/assets/images/landing-page/search.svg" alt="search">
@@ -24,7 +24,7 @@
     </div>
 
     <div class="search-results-wrapper"></div>
-    {% endif %}
+
     <div class="separator"></div>
     <div class="navbar-items" role="navigation" aria-label="Main menu">
       <ul class="navbar-items" role="menubar">
@@ -36,48 +36,103 @@
           </a>
         </li>
 
-        <li id="top-module-list" aria-haspopup="true" role="menuitem"
-          class="navbar-item main-menu-item with-submenu{% if include.layout != 'landing-page' %} active{% endif %}"
+        <li id="top-module-list" aria-haspopup="true" role="menuitem" aria-expanded="false"
+          class="navbar-item main-menu-item with-submenu {% if include.layout != 'landing-page' %} active{% endif %}"
         >
-          <a href="/" tabindex="0" id="docs-link">Docs</a>
+          <span tabindex="0" id="docs-link" class="main-menu-item-title">Docs</span>
           <span class="caret"></span>
-          <ul class="navbar-item-submenu" role="menu" aria-hidden="true">
+          <ul class="navbar-item-submenu">
             <div class="submenu-section">
+
               <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="/gateway/latest/" class="navbar-item navbar-item-docs">Kong Gateway</a>
+
+                <div class="docs-dropdown-li__section">
+                  <div class="docs-dropdown-li__section-items">
+
+                    {% for doc_menu_item in site.data.docs_top_nav %}
+                      <a class="item" href="{{ doc_menu_item.url }}" tabindex="-1">
+                        {% if doc_menu_item.icon %}
+                        <div>
+                          <img src="{{ doc_menu_item.icon }}" alt="{{ doc_menu_item.name }}'s icon">
+                        </div>
+                        {% endif %}
+                        <div class="item__description">
+                          <div class="item__description-title">{{ doc_menu_item.name }}</div>
+                          <div class="item__description-desc">{{ doc_menu_item.desc }}</div>
+                        </div>
+                      </a>
+                    {% endfor %}
+                  </div>
+                </div>
               </li>
-              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="/konnect/" class="navbar-item navbar-item-docs">Kong Konnect</a>
-              </li>
-              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="/mesh/latest/" class="navbar-item navbar-item-docs">Kong Mesh</a>
-              </li>
-              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="/hub/" class="navbar-item navbar-item-docs">Plugin Hub</a>
-              </li>
-              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="/deck/latest/" class="navbar-item navbar-item-docs">decK</a>
-              </li>
-              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="/kubernetes-ingress-controller/latest/" class="navbar-item navbar-item-docs">Kong Ingress
-                  Controller</a>
-              </li>
-              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="https://docs.insomnia.rest/" target="_blank"
-                  class="navbar-item navbar-item-docs">Insomnia</a>
-              </li>
-              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="https://kuma.io/docs/" target="_blank" class="navbar-item navbar-item-docs">Kuma</a>
-              </li>
-              <hr>
-              <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-                <a href="/contributing/" class="navbar-item navbar-item-docs">Docs contribution guidelines</a>
-              </li>
-              </div>
+
+            </div>
           </ul>
         </li>
-        <li role="menuitem" tabindex="0" id="plugin-link" class="main-menu-item">
-          <a href="/hub/" class="navbar-item">Plugin Hub</a>
+
+        <li role="menuitem" class="main-menu-item">
+          <a href="/api/" class="navbar-item">API Specs</a>
+        </li>
+
+        <li
+          role="menuitem"
+          aria-haspopup="true"
+          aria-expanded="false"
+          class="navbar-item navbar-item-hub main-menu-item with-submenu"
+        >
+          <span id="plugin-link" class="main-menu-item-title" tabindex="0">Plugin Hub</span>
+          <span class="caret"></span>
+          <ul class="navbar-item-submenu">
+            <div class="submenu-section submenu-section__hub">
+              <li role="menuitem" class="docs-dropdown-li">
+                <a href="/hub/" class="docs-dropdown-li__link" tabindex="-1">
+                  <div class="docs-dropdown-li__card">
+                    <span class="heading">Explore the Plugin Hub</span>
+                    <div class="docs-dropdown-li__card-link">
+                      <img src="/assets/images/landing-page/view-all-plugins.svg" alt="View all plugins">
+                      <span class="docs-dropdown-li__card-image">
+                        View all plugins
+                        <img src="/assets/images/landing-page/arrow-right.svg" alt="View all plugins arrow image">
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+
+              <li role="menuitem" class="docs-dropdown-li">
+                <div class="docs-dropdown-li__section">
+                  <div class="docs-dropdown-li__section-title">
+                    <span class="heading">Functionality</span>
+                    <a href="/hub/" class="view-all" tabindex="-1">
+                      View all
+                      <img src="/assets/images/landing-page/arrow-right.svg" alt="View all arrow image">
+                    </a>
+                  </div>
+
+                  <div class="docs-dropdown-li__section-items docs-dropdown-li__section-items-hub">
+                    <a class="item item-all" href="/hub/" tabindex="-1">
+                      <div class="item__description">
+                        <div class="item__description-title">View all plugins</div>
+                      </div>
+                    </a>
+
+                    {% for category in site.extensions.categories %}
+                      <a class="item" href="/hub?category={{ category.slug }}" tabindex="-1">
+                        <div>
+                          <img src="{{ category.icon }}" alt="{{ category.name }}'s icon">
+                        </div>
+                        <div class="item__description">
+                          <div class="item__description-title">{{ category.name }}</div>
+                          <div class="item__description-desc">{{ category.desc }}</div>
+                        </div>
+                      </a>
+                    {% endfor %}
+
+                  </div>
+                </div>
+              </li>
+            </div>
+          </ul>
         </li>
         <li role="menuitem" class="main-menu-item">
           <a href="https://support.konghq.com/" class="navbar-item">Support</a>

@@ -49,7 +49,7 @@
         <p class="field-description">
           The name or ID of the service the plugin targets.
           Set one of these parameters if adding the plugin to a service through the top-level <a href="/gateway/latest/admin-api/#add-plugin"><code>/plugins</code> endpoint.</a>
-          Not required if using <code>/services/SERVICE_NAME|SERVICE_ID/plugins</code>.
+          Not required if using <code>/services/SERVICE_NAME|ID/plugins</code>.
         </p>
       </div>
     </li>
@@ -67,7 +67,7 @@
         <p class="field-description">
           The name or ID of the route the plugin targets.
           Set one of these parameters if adding the plugin to a route through the top-level <a href="/gateway/latest/admin-api/#add-plugin"><code>/plugins</code> endpoint.</a>
-          Not required if using <code>/routes/ROUTE_NAME|ROUTE_ID/plugins</code>.
+          Not required if using <code>/routes/ROUTE_NAME|ID/plugins</code>.
         </p>
       </div>
     </li>
@@ -85,7 +85,25 @@
         <p class="field-description">
           The name or ID of the consumer the plugin targets.
           Set one of these parameters if adding the plugin to a consumer through the top-level <a href="/gateway/latest/admin-api/#add-plugin"><code>/plugins</code> endpoint.</a>
-          Not required if using <code>/consumers/CONSUMER_NAME|CONSUMER_ID/plugins</code>.
+          Not required if using <code>/consumers/CONSUMER_NAME|ID/plugins</code>.
+        </p>
+      </div>
+    </li>
+  {% endif %}
+
+  {% if schema.enable_on_consumer_group? %}
+    <li class="field">
+      <div class="field-overview">
+        <h4 id="consumer-group">consumer_group.name or consumer_group.id</h4>
+      </div>
+      <div class="field-attributes">
+        <span><strong>string</strong></span>
+      </div>
+      <div class="field-description-and-children">
+        <p class="field-description">
+          The name or ID of the consumer group the plugin targets.
+          If set, the plugin will activate only for requests where the specified group has been authenticated <a href="/gateway/latest/admin-api/#add-plugin"><code>/plugins</code> endpoint.</a>
+          Not required if using <code>/consumer_groups/{CONSUMER_GROUP_NAME|ID}/plugins</code>.
         </p>
       </div>
     </li>

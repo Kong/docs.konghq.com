@@ -56,8 +56,8 @@ For example, you can not perform string comparisons on a integer type field.
 | `http.headers.header_name` | Value of header `Header-Name`. Header names are converted to lower case, and `-` are replaced to `_`. | String |
 | `net.src.ip` | Source IP address of incoming connection. | IpAddr |
 | `net.src.port` | Source port number of incoming connection. | Int |
-| `dst.src.ip` | Destination IP address of incoming connection. | IpAddr |
-| `dst.src.port` | Destination port number of incoming connection. | Int |
+| `net.dst.ip` | Destination IP address of incoming connection. | IpAddr |
+| `net.dst.port` | Destination port number of incoming connection. | Int |
 
 ## String
 

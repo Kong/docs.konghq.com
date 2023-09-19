@@ -23,11 +23,7 @@ module PluginSingleSource
         private
 
         def plugin_folder
-          if plugin_name == 'serverless-functions'
-            'pre-function'
-          else
-            plugin_name
-          end
+          plugin_name
         end
       end
     end

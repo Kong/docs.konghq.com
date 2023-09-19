@@ -153,6 +153,7 @@ The following entity resource limits apply to each runtime group for the configu
 | Mutual Transport Layer Security Authentication | 50,000 |
 | Plugin Configuration | 10,000 |
 | Route | 10,000 |
+| Runtime Groups | 100 |
 | Server Name Indication | 1,000 |
 | Service | 10,000 |
 | Target | 10,000 |

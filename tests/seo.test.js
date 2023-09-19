@@ -1,17 +1,6 @@
 describe("Canonical links", () => {
   [
     {
-      title: "links to the latest available page in /gateway/ when it exists",
-      src: "/enterprise/2.3.x/admin-api/",
-      href: "/gateway/latest/admin-api/",
-    },
-    {
-      title:
-        "links to the latest available version when the page does not exist in /latest/",
-      src: "/enterprise/2.3.x/property-reference/",
-      href: "/enterprise/2.5.x/property-reference/",
-    },
-    {
       title:
         "contains a canonical link pointing to itself if it's the latest version",
       src: "/gateway/latest/install/kubernetes/helm-quickstart/",
@@ -38,11 +27,6 @@ describe("Canonical links", () => {
       src: "/hub/",
       href: "/hub/",
     },
-    {
-      title: "page using moved_urls.yml to track renamed files",
-      src: "/gateway-oss/2.5.x/configuration/",
-      href: "/gateway/latest/reference/configuration/",
-    },
   ].forEach((t) => {
     test(t.title, async () => {
       const $ = await fetchPage(t.src);
@@ -62,18 +46,6 @@ describe("noindex links", () => {
     {
       title: "contains a noindex tag if it's not the latest URL (nested)",
       src: "/gateway/2.7.x/install-and-run/",
-    },
-    {
-      title: "contains a noindex tag if it's a gateway-oss page",
-      src: "/gateway-oss/2.5.x/",
-    },
-    {
-      title: "contains a noindex tag if it's an enterprise page",
-      src: "/enterprise/2.5.x/",
-    },
-    {
-      title: "contains a noindex tag if it's a getting-started-guide page",
-      src: "/getting-started-guide/2.5.x/prepare/",
     },
     {
       title: "contains a noindex tag for old plugin versions",
@@ -156,7 +128,6 @@ describe("sitemap includes", () => {
 
 describe("sitemap does not include", () => {
   [
-    "/gateway/2.6.x/configure/auth/kong-manager/oidc/",
     "/mesh/1.6.x/",
     "/mesh/1.1.x/overview/",
     "/deck/",

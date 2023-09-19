@@ -6,12 +6,13 @@ breadcrumbs:
   Hub: '/hub/'
 
 ---
-
 {% unless page.free %}
   {% if page.plus and page.extn_publisher == "kong-inc" %}
     <blockquote class="note" role="alert">
-      Did you know that you can try this plugin without talking to anyone with a free
-      trial of Kong Konnect? <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content={{ extn_slug }}">Get started in under 5 minutes</a>.
+      <p>
+        Did you know that you can try this plugin without talking to anyone with a free
+        trial of Kong Konnect? <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content={{ extn_slug }}">Get started in under 5 minutes</a>.
+      </p>
     </blockquote>
   {% endif %}
 {% endunless %}
@@ -51,7 +52,7 @@ breadcrumbs:
 {% if page.extn_publisher == "kong-inc" %}
 <blockquote>
   <p>
-    <em>Looking for the plugin's configuration parameters? You can find them in the <a href="{{ page.url }}configuration/">{{page.name}} configuration reference</a> doc.</em>
+    <em>Looking for the plugin's configuration parameters? You can find them in the <a href="{{ page.configuration_url }}">{{page.name}} configuration reference</a> doc.</em>
   </p>
 </blockquote>
 {% endif %}

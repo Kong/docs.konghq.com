@@ -19,7 +19,7 @@ distributions:
     graviton: true
   - *rhel7
   - <<: *rhel8
-    docker: true
+    docker: false
     fips: true
   - <<: *rhel9
     docker: true

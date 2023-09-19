@@ -58,12 +58,6 @@ jobs:
           echo "SUBMODULE_PR_LOG<<EOF" >> $GITHUB_ENV
           git log ${{ env.SUBMODULE_OLD_SHA }}..HEAD --format=oneline -- | sed -E 's:(#[0-9]+):kumahq/kuma-website\1:g' >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
-      - name: Generate GitHub app token # Get a token to be able to open a PR and push a branch to docs.konghq.com
-        id: github-app-token
-        uses: tibdex/github-app-token@b62528385c34dbc9f38e5f4225ac829252d1ea92 # v1.8.0
-        with:
-          app_id: ${{ vars.GH_APP__KONG__APP_ID }}
-          private_key: ${{ secrets.KONG_GH_APP_PRIVATE_KEY }}
       - name: 'Create pull request'
         # https://github.com/peter-evans/create-pull-request
         uses: peter-evans/create-pull-request@v5
@@ -71,11 +65,11 @@ jobs:
         with:
           base: main
           commit-message: 'chore(deps): bump kumahq/kuma-website from ${{ env.SUBMODULE_OLD_SHA }} to ${{ env.SUBMODULE_NEW_SHA }}'
-          committer: GitHub <noreply@github.com>
-          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          committer: kong-docs[bot] <team-docs@konghq.com>
+          author: kong-docs[bot] <team-docs@konghq.com>
           signoff: true
           branch: chore/upgrade-kuma-website
-          token: ${{ steps.github-app-token.outputs.token }}
+          token: ${{ secrets.PAT }}
           delete-branch: true
           title: 'chore(deps): bump kumahq/kuma-website from ${{ env.SUBMODULE_OLD_SHA }} to ${{ env.SUBMODULE_NEW_SHA }}'
           body: |

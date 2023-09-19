@@ -1,5 +1,6 @@
 ---
 nav_title: Getting started with ACME
+title: Getting started with ACME
 ---
 
 ## Using the plugin

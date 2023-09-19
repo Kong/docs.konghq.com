@@ -19,6 +19,10 @@ module Jekyll
           @formats.include?(:curl)
         end
 
+        def render_konnect?
+          @formats.include?(:konnect)
+        end
+
         def render_yaml?
           @formats.include?(:yaml)
         end
@@ -33,6 +37,10 @@ module Jekyll
 
         def curl
           @curl ||= Examples::Curl.new(type:, example:)
+        end
+
+        def konnect
+          @konnect ||= Examples::Konnect.new(type:, example:)
         end
 
         def yaml

@@ -15,7 +15,7 @@ lightweight, fast, and flexible API gateway  — is managed by you within your
 preferred network environment.
 
 <p align="center">
-  <img src="/assets/images/docs/konnect/dashboard/konnect-dashboard.png" />
+  <img src="/assets/images/docs/konnect/dashboard/konnect-dashboard.png" alt="Konnect's dashboard screenshot" />
 </p>
 
 {{site.konnect_short_name}} helps simplify multi-cloud API management by:
@@ -109,6 +109,8 @@ on the pulse of the health of your API products with custom reports and contextu
 In addition, you can enhance the native monitoring and analytics capabilities with
 {{site.base_gateway}} plugins that enable streaming monitoring metrics to
 third-party analytics providers, such as Datadog and Prometheus.
+
+{{site.konnect_short_name}} Analytics provides pre-built custom reports to all new organizations. These reports contains common examples for important key performance indicators (KPIs) to keep track of while monitoring the success of your APIs. Users are free to modify them, and use them as a base to start their own analytics reports.
 
 [Learn more about Analytics &rarr;](/konnect/analytics)
 

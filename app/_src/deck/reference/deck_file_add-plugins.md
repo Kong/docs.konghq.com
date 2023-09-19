@@ -1,6 +1,6 @@
 ---
 title: deck file add-plugins
-source_url: https://github.com/Kong/deck/tree/main/cmd
+source_url: https://github.com/Kong/deck/tree/main/cmd/file_addplugins.go
 content_type: reference
 ---
 
@@ -24,7 +24,7 @@ order they are given:
                 "my-property": "value"
               }
             }
-           ],
+           ]
         }
       ]
     }

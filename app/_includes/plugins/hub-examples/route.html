@@ -9,16 +9,30 @@ the <code>{{ hub_example.plugin_name }}</code> plugin on a
 
 {% navtabs %}
   {% if hub_example.render_curl? %}
-  {% navtab Admin API %}
+  {% navtab Kong Admin API %}
 
 Make the following request:
 
 {% include_cached plugins/hub-examples/curl.html example=hub_example.curl %}
 
-Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plugin configuration will target.
+Replace `ROUTE_NAME|ID` with the `id` or `name` of the route that this plugin configuration will target.
 
   {% endnavtab %}
   {% endif %}
+
+  {% unless page.konnect == false %}
+  {% if hub_example.render_konnect? %}
+  {% navtab Konnect API %}
+
+Make the following request, substituting your own access token, region, runtime group ID, and route ID:
+
+{% include_cached plugins/hub-examples/konnect.html example=hub_example.konnect %}
+
+See the [Konnect API reference](/konnect/api/) to learn about region-specific URLs and personal access tokens.
+
+  {% endnavtab %}
+  {% endif %}
+  {% endunless %}
 
   {% unless page.k8s_examples == false %}
     {% if hub_example.render_kubernetes? %}
@@ -59,7 +73,7 @@ Add this section to your declarative configuration file:
 
 {% include_cached plugins/hub-examples/yaml.html example=hub_example.yaml %}
 
-Replace `ROUTE_NAME|ROUTE_ID` with the `id` or `name` of the route that this plugin configuration
+Replace `ROUTE_NAME|ID` with the `id` or `name` of the route that this plugin configuration
   will target.
 {% endnavtab %}
 {% endif %}

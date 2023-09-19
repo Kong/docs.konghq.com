@@ -112,33 +112,45 @@ body {
       header #promo-banner ~ .navbar-content {
         margin-top: 17.5px;
         background: transparent;
+
+        .navbar-item-submenu {
+          margin-top: 35px;
+        }
       }
       // uncomment this section when adding a new promo banner
       // also uncomment the promo banner sections in /app/_includes/nav-v2.html and application.js
-      // header.navbar-v2 {
-      //   transition: transform 0.2s ease-in-out;
-      //   will-change: transform;
-      //   height: 95px;
-      // }
+      header.navbar-v2 {
+        transition: transform 0.2s ease-in-out;
+        will-change: transform;
+        height: 95px;
+      }
 
-      // header.navbar-v2.closed {
-      //   transition: 0s ease-in-out;
-      // }
+      header.navbar-v2.closed {
+        transition: 0s ease-in-out;
+      }
 
-      // header.closed,
-      // header.compress {
-      //   transform: translateY(-35px);
-      // }
+      header.closed,
+      header.compress {
+        transform: translateY(-35px);
+      }
 
-      // header:not(.closed) ~ .landing-page {
-      //   margin-top: 35px;
-      // }
-      // header:not(.closed) ~ div.page.v2 {
-      //   margin-top: 100px;
-      // }
-      // header:not(.closed) ~ .page-extension-profile, .page-hub {
-      //   margin-top: 45px;
-      // }
+      header:not(.closed) ~ .landing-page {
+        margin-top: 35px;
+
+        .page--header-background {
+          margin-top: 35px;
+        }
+      }
+      header:not(.closed) ~ div.page.v2 {
+        margin-top: 75px;
+
+        .page--header-background {
+          margin-top: 35px;
+        }
+      }
+      header:not(.closed) ~ .page-extension-profile, .page-hub {
+        margin-top: 45px;
+      }
     }
   }
 }

@@ -17,11 +17,13 @@ Kong is licensed under an
 You can install {{site.base_gateway}} by downloading an installation package or using the yum repository.
 
 {:.note}
-> **Note:** {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
+> **Notes:**
+* {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
+* In July of 2023 Kong announced that package hosting was shifting from {{ site.links.download }} to [{{ site.links.cloudsmith }}]({{ site.links.cloudsmith }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
 
 {% navtabs %}
-{% navtab Package (AL2023) %}
-Install {{site.base_gateway}} on Amazon Linux 2023 from the command line.
+{% navtab Package %}
+Install {{site.base_gateway}} on Amazon Linux from the command line.
 
 1. Download the Kong package:
 
@@ -29,55 +31,12 @@ Install {{site.base_gateway}} on Amazon Linux 2023 from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/amzn/2023/x86_64/kong-enterprise-edition-{{page.versions.ee}}.aws.x86_64.rpm)
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/amzn/%{amzn}/x86_64/kong-enterprise-edition-{{page.versions.ee}}.aws.x86_64.rpm)
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/amzn/2023/x86_64/kong-{{page.versions.ce}}.aws.x86_64.rpm)
-```
-{% endnavtab %}
-{% endnavtabs_ee %}
-{% endcapture %}
-
-{{ download_package | indent | replace: " </code>", "</code>" }}
-
-2. Install the package:
-
-{% capture install_package %}
-{% navtabs_ee codeblock %}
-{% navtab Kong Gateway %}
-```bash
-sudo yum install kong-enterprise-edition-{{page.versions.ee}}.rpm
-```
-{% endnavtab %}
-{% navtab Kong Gateway (OSS) %}
-```bash
-sudo yum install kong-{{page.versions.ce}}.rpm
-```
-{% endnavtab %}
-{% endnavtabs_ee %}
-{% endcapture %}
-
-{{ install_package | indent | replace: " </code>", "</code>" }}
-
-{% endnavtab %}
-{% navtab Package (Amazon Linux 2) %}
-
-Install {{site.base_gateway}} on Amazon Linux 2 from the command line.
-
-1. Download the Kong package:
-
-{% capture download_package %}
-{% navtabs_ee codeblock %}
-{% navtab Kong Gateway %}
-```bash
-curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/amzn/2/x86_64/kong-enterprise-edition-{{page.versions.ee}}.aws.x86_64.rpm)
-```
-{% endnavtab %}
-{% navtab Kong Gateway (OSS) %}
-```bash
-curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/amzn/amzn/2/x86_64/kong-{{page.versions.ce}}.aws.x86_64.rpm)
+curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/amzn/%{amzn}/x86_64/kong-{{page.versions.ce}}.aws.x86_64.rpm)
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -105,38 +64,7 @@ sudo yum install -y kong-{{page.versions.ce}}.rpm
 {{ install_package | indent | replace: " </code>", "</code>" }}
 
 {% endnavtab %}
-{% navtab YUM repository (AL2023) %}
-
-Install the YUM repository from the command line.
-
-1. Download the Kong YUM repository:
-
-    ```bash
-    curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/config.rpm.txt?distro=amzn&codename=$(rpm --eval '%{amzn}')" | sudo tee /etc/yum.repos.d/kong-gateway-{{ page.major_minor_version }}.repo > /dev/null
-    sudo yum -q makecache -y --disablerepo='*' --enablerepo='kong-gateway-{{ page.major_minor_version }}'
-    ```
-
-2. Install Kong:
-
-{% capture install_from_repo %}
-{% navtabs_ee codeblock %}
-{% navtab Kong Gateway %}
-```bash
-sudo yum install kong-enterprise-edition-{{page.versions.ee}}
-```
-{% endnavtab %}
-{% navtab Kong Gateway (OSS) %}
-```bash
-sudo yum install kong-{{page.versions.ce}}
-```
-{% endnavtab %}
-{% endnavtabs_ee %}
-{% endcapture %}
-
-{{ install_from_repo | indent | replace: " </code>", "</code>" }}
-
-{% endnavtab %}
-{% navtab YUM repository (Amazon Linux 2) %}
+{% navtab YUM repository %}
 
 Install the YUM repository from the command line.
 

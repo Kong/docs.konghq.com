@@ -9,7 +9,20 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+
 ## August 2023
+
+**Role-based Access Control for developer teams**
+: {{site.konnect_short_name}} Portal enables administrators with the ability to define Role-Based Access Control (RBAC) for teams of developers through the Konnect UI & API. See [Manage Dev Portal Teams](/konnect/dev-portal/access-and-approval/manage-teams/) for more details.
+
+**New organizations new benefit from out of the box, pre-built Analytics reports**
+: New organizations now benefit from out of the box reports. These reports represent common examples for important KPIs to track while monitoring the success of their APIs. Users are free to modify them and make these reports their own.
+
+**Release announcements in Konnect**
+: With Makelog integration, you can now see the latest feature and update announcements in the {{site.konnect_saas}} UI. 
+
+**Gateway 3.4 Support**
+: Konnect now supports the latest Gateway release version of 3.4 including all [Konnect-compatible plugins](/konnect/compatibility/).
 
 **Vault Secret Rotation**
 : {{site.konnect_short_name}} now supports the rotation of secrets stored in vaults without restarting the gateway. This allows you to securely manage your secrets. For more information, see [Set Up and Use a Vault in {{site.konnect_short_name}}](/konnect/runtime-manager/configuration/vaults/how-to/).
@@ -20,10 +33,21 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **{{site.konnect_short_name}} Analytics display increase from 15 to 50**
 : In our continuous efforts to optimize your custom reporting experience with {{site.konnect_short_name}} Analytics, we've expanded the display limit from 15 to 50, providing a more comprehensive data view. Accompanying this change, we've refined our UI with enhanced tooltip functionality. Now, by simply clicking on report content, users can lock a tooltip in place. This feature not only allows for intuitive drag-and-drop repositioning but also enables scrolling within the tooltip to easily access additional data points.
 
+**{{site.konnect_short_name}} consumer groups enhancements**
+: {{site.konnect_short_name}} now features the same consumer groups enhancements added in the Gateway 3.4 [release](/gateway/changelog). Consumer groups are now a core entity. With consumer groups, you can apply different configurations to select groups of consumers. The following plugins can be scoped to consumer groups:
+
+  * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/)
+  * [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
+  * [Response transformer Advanced](/hub/kong-inc/request-transformer-advanced/)
+  * [Request Transformer](/hub/kong-inc/request-transformer)
+  * [Response Transformer](/hub/kong-inc/response-transformer)
+  
+  See the consumer groups [documentation](/gateway/latest/kong-enterprise/consumer-groups/) to learn more.
+
 ## July 2023
 
 **API Products API released**
-: A new {{site.konnect_short_name}} API for managing API products and versions is now available for external consumption. This API allows you to create and manage API products and versions, upload documentation and specs, and link a version to an existing Gateway service to enable application registration. As a result, you can integrate this API into your automated pipeline to streamline publishing documentation for your products to your third-party developers. Explore the API spec on our [Developer Portal](https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0)
+: A new {{site.konnect_short_name}} API for managing API products and versions is now available for external consumption. This API allows you to create and manage API products and versions, upload documentation and specs, and link a version to an existing Gateway service to enable application registration. As a result, you can integrate this API into your automated pipeline to streamline publishing documentation for your products to your third-party developers. Explore the API spec on our [Developer Portal](/konnect/api/api-products/v2/)
 
 **API Products**
 : Introducing a new {{site.konnect_short_name}} module, [API Products](https://cloud.konghq.com/us/api-products/), where technical & non-technical audiences can document their services, link to Gateway services for application registration, and publish API Products to a Developer Portal for consumption. Existing {{site.konnect_short_name}} customers will find that their services in Service Hub have been seamlessly moved to the new API Products UI & API experience.
@@ -39,7 +63,7 @@ With composite runtime groups, organizations can reduce infrastructure costs whi
 * [Set up and manage runtime groups](/konnect/runtime-manager/composite-runtime-groups/how-to/)
 * [Migrate configuration into a composite runtime group](/konnect/runtime-manager/composite-runtime-groups/migrate/)
 * [Conflicts in runtime groups](/konnect/runtime-manager/composite-runtime-groups/conflicts/)
-* [API documentation](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9)
+* [API documentation](/konnect/api/runtime-groups/v2/)
 
 **Analytics for composite runtime groups**
 : Custom reports now support grouping and filtering by composite runtime group.
@@ -69,7 +93,7 @@ For more information, see [About Self-Hosted Dev Portal](/konnect/dev-portal/cus
 
 **Portal Client API**
 : {{site.konnect_short_name}} now supports customers' integration with Dev Portal workflows via public APIs. 
-For more information, see the [Portal Client API spec](https://developer.konghq.com/spec/2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6/b4539157-4ced-4df5-affa-7d790baee356).
+For more information, see the [Portal Client API spec](/konnect/api/portal/v2/).
 
 **Audit logging**
 : Konnect now provides audit logging capability, designed to enhance the security, compliance, debugging and risk management of your core infrastructure. 
@@ -146,7 +170,7 @@ For more information, see the documentation for [Audit Logging](/konnect/org-man
 * **API viewer**: Allows the Dev Portal developer to view the documentation of services.
 * **API consumer**: Allows the Dev Portal developer to register their applications with the consumer services.
 
-: For more information, see [Portal RBAC Setup](/konnect/api/portal-auth/portal-rbac-guide/) and the [Portal RBAC API documentation](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/).
+: For more information, see [Portal RBAC Setup](/konnect/api/portal-auth/portal-rbac-guide/) and the [Portal RBAC API documentation](/konnect/api/portal-rbac/v2/).
 
 ## January 2023
 
@@ -216,7 +240,7 @@ with any of the following backends:
 : {{site.konnect_short_name}} users can now take advantage of the the entire plugin suite offered alongside {{site.base_gateway}} 3.1. For more information about the available plugins. review our [compatibility documentation](/konnect/compatibility/#plugin-compatibility).
 
 **Runtime Groups API**
-: Konnect APIs for runtime groups are now available for external consumption. This set of APIs allow organizations to create and manage runtime groups and manage CP/DP certificates. [View API documentation](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/).
+: Konnect APIs for runtime groups are now available for external consumption. This set of APIs allow organizations to create and manage runtime groups and manage CP/DP certificates. [View API documentation](/konnect/api/runtime-groups/v2/).
 
 ## November 2022
 
@@ -257,7 +281,7 @@ The group still retains its status as the default group, and can't be deleted.
 
 **Konnect APIs for identity management**
 : Konnect APIs for identity management are now available for external consumption. This set of APIs allow organizations to manage users, teams, team memberships, team mappings and role assignments. As a result, customers can leverage our APIs to build custom integrations with their identity provider or ERP systems to manage their users and user’s access to Konnect.
-[IdP API documentation](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce)
+[IdP API documentation](/konnect/api/identity-management/v2/)
 
 ## October 2022
 
@@ -568,7 +592,8 @@ newly introduced in this release, [start up a new runtime](/konnect/runtime-mana
 : The following plugins are now available:
 
 : * **Free tier**
-    * [Serverless Functions](/hub/kong-inc/serverless-functions/)
+    * [Pre-function](/hub/kong-inc/pre-function/) (`pre-function`)
+    * [Post-function](/hub/kong-inc/post-function/) (`post-function`)
     * [Datadog](/hub/kong-inc/datadog/)
     * [Zipkin](/hub/kong-inc/zipkin/)
     * [Request Size Limiting](/hub/kong-inc/request-size-limiting/)

@@ -1,6 +1,6 @@
 ---
 title: deck file remove-tags
-source_url: https://github.com/Kong/deck/tree/main/cmd
+source_url: https://github.com/Kong/deck/tree/main/cmd/file_removetags.go
 content_type: reference
 ---
 
@@ -19,10 +19,10 @@ deck file remove-tags [command-specific flags] [global flags] tag [...tag]
 
 ```
 # clear tags 'tag1' and 'tag2' from all services in file 'kong.yml'
-cat kong.yml | go-apiops remove-tags --selector='services[*]' tag1 tag2
+cat kong.yml | deck file remove-tags --selector='services[*]' tag1 tag2
 
 # clear all tags except 'tag1' and 'tag2' from the file 'kong.yml'
-cat kong.yml | go-apiops remove-tags --keep-only tag1 tag2
+cat kong.yml | deck file remove-tags --keep-only tag1 tag2
 ```
 
 ## Flags

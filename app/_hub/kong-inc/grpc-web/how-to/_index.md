@@ -1,5 +1,6 @@
 ---
 nav_title: Getting started with gRPC-Web
+title: Getting started with gRPC-Web
 ---
 
 
@@ -105,7 +106,7 @@ or via the Admin API:
 ```bash
 curl -X POST localhost:8001/routes/web-service/plugins \
   --data name=grpc-web \
-  --data proto=path/to/hello.proto
+  --data config.proto=path/to/hello.proto
 ```
 
 Upload the Protobuf definition to your Kong Node:

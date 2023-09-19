@@ -261,11 +261,11 @@ items:
         url: /policies/virtual-outbound/
         src: /.repos/kuma/app/_src/policies/virtual-outbound/
       - text: MeshGateway
-        url: /policies/mesh-gateway/
-        src: /.repos/kuma/app/_src/policies/mesh-gateway/
+        url: /policies/meshgateway/
+        src: /.repos/kuma/app/_src/policies/meshgateway/
       - text: MeshGatewayRoute
-        url: /policies/mesh-gateway-route/
-        src: /.repos/kuma/app/_src/policies/mesh-gateway-route/
+        url: /policies/meshgatewayroute/
+        src: /.repos/kuma/app/_src/policies/meshgatewayroute/
       - text: MeshGatewayInstance
         url: /policies/meshgatewayinstance/
         src: /.repos/kuma/app/_src/policies/meshgatewayinstance/
