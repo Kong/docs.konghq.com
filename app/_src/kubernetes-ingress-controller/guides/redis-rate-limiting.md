@@ -96,7 +96,7 @@ You can use the {{site.ee_product_name}} **Secrets Management** feature along wi
     ```
 1.  Check if the status of all the Pods that are `READY` is `Running` using the command `kubectl get pods -n kong`.
 
-1. Send requests to this Service does not reliably decrement the remaining counter.
+1. Sending requests to this Service does not reliably decrement the remaining counter.
 
     ```bash
     for i in `seq 10`; do curl -sv -H 'Host:kong.example' $PROXY_IP/echo 2>&1 | grep "X-RateLimit-Remaining-Minute"; done
