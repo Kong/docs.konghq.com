@@ -280,40 +280,11 @@
         - text: API Spec
           url: /konnect/api/portal-rbac/latest/
           absolute_url: true
-          generate: false
-          target_blank: true
-    - text: Runtime Configuration API
+
+    - text: Control Plane Configuration API
       items:
-        - text: Overview
-          url: /api/runtime-groups-config/overview/
-        - text: Nodes
-          url: /api/runtime-groups-config/overview/#nodes
-        - text: Data Plane Certificiates
-          url: /api/runtime-groups-config/overview/#data-plane-certificates
-        - text: Konnect Core Entities
-          items:
-          - text: Services
-            url: /api/runtime-groups-config/overview/#service-object
-          - text: Routes
-            url: /api/runtime-groups-config/overview/#route-object
-          - text: Consumers
-            url: /api/runtime-groups-config/overview/#consumer-object
-          - text: Plugins
-            url: /api/runtime-groups-config/overview/#plugin-object
-          - text: Upstreams
-            url: /api/runtime-groups-config/overview/#upstream-object
-          - text: Certificates
-            url: /api/runtime-groups-config/overview/#certificate-object
-          - text: CA Certificates
-            url: /api/runtime-groups-config/overview/#ca-certificate-object
-          - text: SNIs
-            url: /api/runtime-groups-config/overview/#sni-object
-          - text: Targets
-            url: /api/runtime-groups-config/overview/#target-object
-          - text: Vaults
-            url: /api/runtime-groups-config/overview/#vaults-object
-        - text: API Spec
-          url: /konnect/api/runtime-groups-configuration/latest/
+        - text: API Documentation
+          url: https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf
           absolute_url: true
           generate: false
           target_blank: true
