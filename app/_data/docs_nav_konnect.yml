@@ -271,6 +271,13 @@
     - text: Control Plane API
       items:
         - text: API Spec
+          url: /konnect/api/control-planes/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
+    - text: Deprecated - Runtime Groups API
+      items:
+        - text: API Spec
           url: /konnect/api/runtime-groups/latest/
           absolute_url: true
           generate: false
