@@ -10,8 +10,28 @@ Deploy a simple [Service][svc] that listens for [UDP datagrams][udp], and expose
 
 {% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
 
+## Create a namespace
 
-## Add UDP listens
+First, create a namespace:
+
+{% navtabs codeblock %}
+{% navtab Command %}
+```bash
+kubectl create namespace udp-example
+```
+{% endnavtab %}
+{% navtab Response %}
+```text
+namespace/udp-example created
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+Other examples in this guide will use this namespace. When you've completed
+this guide, `kubectl delete namespace udp-example` will clean those resources
+up.
+
+## Adding UDP listens
 
 {{site.base_gateway}} does not include any UDP listen configuration by default.
 To expose UDP listens, update the environment variables of the Deployment and port
@@ -261,6 +281,15 @@ This configuration routes traffic to UDP port `9999` on the
     	real path=/hello
     	request_scheme=tftp
     ```
+
+Request Information:
+	client_address=10.244.0.1
+	client_port=39364
+	real path=/hello
+	request_scheme=tftp
+```
+{% endnavtab %}
+{% endnavtabs %}
 
 [svc]:https://kubernetes.io/docs/concepts/services-networking/service/
 [udp]:https://datatracker.ietf.org/doc/html/rfc768
