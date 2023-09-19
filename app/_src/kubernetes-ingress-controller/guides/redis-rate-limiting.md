@@ -176,6 +176,29 @@ for Redis with turnkey options for authentication.
 
     If the `redis_username` is not set , it uses the default `redis` user.
 
+## Test rate limiting is a multi-node Kong deployment
+
+Send requests to the Service with rate limiting response headers.
+
+```bash
+for i in `seq 10`; do curl -sv -H 'Host:kong.example' $PROXY_IP/echo 2>&1 | grep "X-RateLimit-Remaining-Minute"; done
+```
+
+The results should look like this:
+```text
+< X-RateLimit-Remaining-Minute: 4
+< X-RateLimit-Remaining-Minute: 3
+< X-RateLimit-Remaining-Minute: 2
+< X-RateLimit-Remaining-Minute: 1
+< X-RateLimit-Remaining-Minute: 0
+< X-RateLimit-Remaining-Minute: 0
+< X-RateLimit-Remaining-Minute: 0
+< X-RateLimit-Remaining-Minute: 0
+< X-RateLimit-Remaining-Minute: 0
+< X-RateLimit-Remaining-Minute: 0
+```
+The counters decrement sequentially regardless of the {{site.base_gateway}} replica count.
+
 {% if_version gte:2.11.x %}
 ## (Optional) Use Secrets Management 
 {:.badge .enterprise}
@@ -275,26 +298,3 @@ The results should look like this:
 "{vault://env/secret-redis-password}"
 ```
 {% endif_version %}
-
-## Test rate limiting is a multi-node Kong deployment
-
-Send requests to the Service with rate limiting response headers.
-
-```bash
-for i in `seq 10`; do curl -sv -H 'Host:kong.example' $PROXY_IP/echo 2>&1 | grep "X-RateLimit-Remaining-Minute"; done
-```
-
-The results should look like this:
-```text
-< X-RateLimit-Remaining-Minute: 4
-< X-RateLimit-Remaining-Minute: 3
-< X-RateLimit-Remaining-Minute: 2
-< X-RateLimit-Remaining-Minute: 1
-< X-RateLimit-Remaining-Minute: 0
-< X-RateLimit-Remaining-Minute: 0
-< X-RateLimit-Remaining-Minute: 0
-< X-RateLimit-Remaining-Minute: 0
-< X-RateLimit-Remaining-Minute: 0
-< X-RateLimit-Remaining-Minute: 0
-```
-The counters decrement sequentially regardless of the {{site.base_gateway}} replica count.
