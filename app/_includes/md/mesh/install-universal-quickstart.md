@@ -12,5 +12,5 @@ The Kuma quickstart documentation is fully compatible with
 binaries instead of the Kuma binaries.
 
 To start using {{site.mesh_product_name}}, see the
-[quickstart guide for Universal deployments](https://kuma.io/docs/latest/quickstart/universal/).
+[quickstart guide for Universal deployments](https://kuma.io/docs/1.8.x/quickstart/universal/).
 {% endif_version %}

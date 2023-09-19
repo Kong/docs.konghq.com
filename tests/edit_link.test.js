@@ -27,7 +27,7 @@ describe("Edit this page link", () => {
     },
     {
       title: "Submoduled /mesh/",
-      src: "/mesh/latest/explore/dpp/",
+      src: "/mesh/latest/production/dp-config/dpp/",
       expected:
         "https://github.com/kumahq/kuma-website/edit/master/app/_src/production/dp-config/dpp.md",
     },

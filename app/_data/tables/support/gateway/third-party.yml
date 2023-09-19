@@ -74,6 +74,8 @@ _third_party:
   # IDP
   auth0: &auth0
     name: Auth0
+  azure: &azure
+    name: Azure
   cognito: &cognito
     name: AWS Cognito
   connect2id: &connect2id

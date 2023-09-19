@@ -12,12 +12,12 @@ RSpec.describe PluginSingleSource::Plugin::Release do
   describe '#metadata' do
     context 'when there is a specific folder for the version' do
       let(:is_latest) { false }
-      let(:version) { '2.5.x' }
-      let(:source) { '_2.2.x' }
+      let(:version) { '2.7.x' }
+      let(:source) { '_2.6.x' }
 
       it 'returns the content of the _metadata.yml inside the corresponding folder' do
         expect(subject.metadata)
-          .to eq(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_2.2.x/_metadata.yml', site.source))))
+          .to eq(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_2.6.x/_metadata.yml', site.source))))
       end
     end
 
@@ -36,16 +36,17 @@ RSpec.describe PluginSingleSource::Plugin::Release do
   describe '#generate_pages' do
     context 'when there is a specific folder for the version' do
       let(:is_latest) { false }
-      let(:version) { '2.5.x' }
-      let(:source) { '_2.2.x' }
+      let(:version) { '2.7.x' }
+      let(:source) { '_2.6.x' }
 
       it 'returns the relative path to the _index.md file inside the corresponding folder' do
         expect(subject.generate_pages.map(&:permalink)).to match_array([
-          '/hub/kong-inc/jwt-signer/2.5.x/',
-          '/hub/kong-inc/jwt-signer/2.5.x/changelog/',
-          '/hub/kong-inc/jwt-signer/2.5.x/how-to/',
-          '/hub/kong-inc/jwt-signer/2.5.x/configuration/',
-          '/hub/kong-inc/jwt-signer/2.5.x/how-to/basic-example/'
+          '/hub/kong-inc/jwt-signer/2.7.x/',
+          '/hub/kong-inc/jwt-signer/2.7.x/changelog/',
+          '/hub/kong-inc/jwt-signer/2.7.x/how-to/',
+          '/hub/kong-inc/jwt-signer/2.7.x/configuration/',
+          '/hub/kong-inc/jwt-signer/2.7.x/how-to/basic-example/',
+          '/hub/kong-inc/jwt-signer/2.7.x/how-to/nested/tutorial/'
         ])
       end
     end
@@ -54,6 +55,7 @@ RSpec.describe PluginSingleSource::Plugin::Release do
       it 'returns the relative path to the top-level _index.md file' do
         expect(subject.generate_pages.map(&:permalink)).to match_array([
           '/hub/kong-inc/jwt-signer/',
+          '/hub/kong-inc/jwt-signer/nested/',
           '/hub/kong-inc/jwt-signer/changelog/',
           '/hub/kong-inc/jwt-signer/how-to/',
           '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/',
@@ -116,6 +118,32 @@ RSpec.describe PluginSingleSource::Plugin::Release do
       let(:plugin_name) { 'acme/jq' }
 
       it { expect(subject.enterprise_plugin?).to eq(false) }
+    end
+  end
+
+  describe '#configuration' do
+    let(:source_path) { "#{site.source}/_hub/kong-inc/jwt-signer/" }
+    let(:file) { "app/_src/.repos/kong-plugins/schemas/jwt-signer/#{version}.json" }
+
+    it 'returns an instance of Pages::Configuration' do
+      expect(PluginSingleSource::Pages::Configuration)
+        .to receive(:new)
+        .with(release: subject, file: , source_path:)
+
+      subject.configuration
+    end
+  end
+
+  describe '#configuration_examples' do
+    let(:source_path) { "#{site.source}/_hub/kong-inc/jwt-signer/" }
+    let(:file) { "app/_src/.repos/kong-plugins/examples/jwt-signer/_#{version}.yaml" }
+
+    it 'returns an instance of Pages::ConfigurationExamples' do
+      expect(PluginSingleSource::Pages::ConfigurationExamples)
+        .to receive(:new)
+        .with(release: subject, file: , source_path:)
+
+      subject.configuration_examples
     end
   end
 end

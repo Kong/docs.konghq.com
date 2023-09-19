@@ -1,0 +1,79 @@
+columns:
+  - name: Kong OSS
+    key: oss
+  - name: Kong Enterprise
+    key: enterprise
+  - name: Officially Supported
+    key: support
+features:
+  - name: "Packages"
+    items:
+      - name: "Debian"
+        url: /gateway/VERSION/install/linux/debian/
+        oss: true
+        enterprise: true
+        support: true
+        icon: /assets/images/icons/documentation/debian-logo.jpg
+      - name: "Ubuntu"
+        url: /gateway/VERSION/install/linux/ubuntu/
+        oss: true
+        enterprise: true
+        support: true
+        icon: /assets/images/icons/documentation/ubuntu.png
+      - name: "RedHat"
+        url: /gateway/VERSION/install/linux/rhel/
+        oss: true
+        enterprise: true
+        support: true
+        icon: /assets/images/icons/documentation/rhel.jpg
+      - name: "Amazon Linux 2"
+        url: /gateway/VERSION/install/linux/amazon-linux/
+        oss: true
+        enterprise: true
+        support: true
+        icon: /assets/images/icons/documentation/amazon-linux.png
+  - name: "Kubernetes"
+    items:
+      - name: "Kubernetes (YAML Manifests)"
+        url: /gateway/VERSION/install/kubernetes/kubectl/
+        oss: true
+        enterprise: true
+        support: false
+        icon: /assets/images/icons/documentation/kubernetes-logo.png
+      - name: "Kubernetes (Helm)"
+        url: /gateway/VERSION/install/kubernetes/helm-quickstart/
+        oss: true
+        enterprise: true
+        support: true
+        icon: /assets/images/icons/documentation/helm-icon-color.svg
+      - name: "OpenShift"
+        url: /gateway/VERSION/install/kubernetes/openshift/
+        oss: true
+        enterprise: true
+        support: true
+        icon: /assets/images/icons/documentation/openshift-logo.png
+
+  - name: "Docker"
+    items:
+      - name: "Debian (bullseye-slim)"
+        oss: true
+        enterprise: true
+        support: true
+        url: /gateway/VERSION/install/docker/
+        icon: /assets/images/icons/documentation/debian-logo.jpg
+      - name: "RHEL (8-ubi)"
+        oss: true
+        enterprise: true
+        support: true
+        url: /gateway/VERSION/install/docker/build-custom-images/
+        icon: /assets/images/icons/documentation/rhel.jpg
+
+  - name: "Other"
+    items:
+      - name: "AWS with Terraform"
+        oss: true
+        enterprise: true
+        support: true
+        url: https://github.com/kong/kong-terraform-aws
+        icon: /assets/images/icons/documentation/terraform.svg
+

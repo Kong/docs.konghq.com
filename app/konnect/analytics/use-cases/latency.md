@@ -23,7 +23,7 @@ For the Kong latency report, Tal configures the following:
 * **Date/Time**: Last hour
 * **Chart type**: Line chart
 * **Select a metric**: Kong Latency (avg)
-* **Group by**: Service
+* **Group by**: API Product
 * **Choose Granularity**: Minutely
 
 Then, they add a filter to filter by the individual runtime group:
@@ -47,7 +47,7 @@ For the Upstream latency report, Tal configures the following:
 * **Date/Time**: Last Hour
 * **Chart type**: Line chart
 * **Select a metric**: Upstream Latency (avg)
-* **Group by**: Service
+* **Group by**: API Product
 * **Choose Granularity**: Minutely
 
 Then they add a filter to filter by the individual Runtime Group 

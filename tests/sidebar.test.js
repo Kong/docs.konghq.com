@@ -1,36 +1,5 @@
 const { toArray } = require("lodash");
 
-describe("Module Switcher", () => {
-  test("has the same products, in the same order as the top 'Docs' dropdown", async () => {
-    const $ = await fetchPage("/gateway/latest/");
-
-    function fetchLinksFromElement($, selector) {
-      return $(selector)
-        .map(function(){
-          const link = $(this);
-          const r = {};
-
-          // Normalise title by removing newlines and collapsing whitespace
-          const title = link.text().replace(/\n/m, "").replace(/\s+/g, " ");
-          r[title] = link.attr("href");
-          return r;
-        })
-        .toArray()
-        .reduce((prev, current) => {
-          return { ...prev, ...current };
-        }, {});
-    }
-
-    const sidebarUrls = fetchLinksFromElement($, "#module-list a");
-    const topNavUrls = fetchLinksFromElement(
-      $,
-      "#top-module-list .navbar-item-submenu a"
-    );
-
-    expect(sidebarUrls).toEqual(topNavUrls);
-  });
-});
-
 describe("Version Switcher", () => {
   [
     {
@@ -83,19 +52,9 @@ describe("Sidebar section count", () => {
 
   [
     {
-      title: "Gateway OSS",
-      path: "/gateway-oss/2.5.x",
-      count: 6,
-    },
-    {
-      title: "Gateway Enterprise",
-      path: "/enterprise/2.5.x",
-      count: 10,
-    },
-    {
       title: "Gateway Single Sourced",
       path: "/gateway/latest/",
-      count: 9,
+      count: 10,
     },
     {
       title: "decK",

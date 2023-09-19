@@ -7,11 +7,19 @@ chapter: 5
 Kong interacts with the model layer through classes we refer to as "DAOs". This
 chapter will detail the available API to interact with the datastore.
 
-Kong supports two primary datastores: [PostgreSQL
+{% if_version lte:3.3.x %}
+Kong supports two primary data stores: [PostgreSQL
 {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and [Cassandra
 {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/).
 
 {% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
+{% endif_version %}
+
+{% if_version gte:3.4.x %}
+Kong supports [PostgreSQL
+{{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) as a data store.
+
+{% endif_version %}
 
 ## kong.db
 

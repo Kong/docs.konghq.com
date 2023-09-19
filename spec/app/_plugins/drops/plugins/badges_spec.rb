@@ -48,29 +48,19 @@ RSpec.describe Jekyll::Drops::Plugins::Badges do
   end
 
   describe '#konnect?' do
-    context 'when the publisher is not `kong-inc`' do
-      let(:publisher) { 'third-party' }
-      let(:konnect) { true }
-
-      it { expect(subject.konnect?).to eq(false) }
-    end
-
     context 'when `konnect` is set to false' do
-      let(:publisher) { 'kong-inc' }
       let(:konnect) { false }
 
       it { expect(subject.konnect?).to eq(false) }
     end
 
-    context 'when the publisher is `kong-inc` and `konnect` is set to true' do
-      let(:publisher) { 'kong-inc' }
+    context 'when `konnect` is set to true' do
       let(:konnect) { true }
 
       it { expect(subject.konnect?).to eq(true) }
     end
 
-    context 'when the publisher is `kong-inc` and `konnect` is nil' do
-      let(:publisher) { 'kong-inc' }
+    context 'when `konnect` is nil' do
       let(:konnect) { nil }
 
       it { expect(subject.konnect?).to eq(false) }

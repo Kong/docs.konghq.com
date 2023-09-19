@@ -1,0 +1,40 @@
+name: Generate Changelog
+
+on:
+  workflow_dispatch: ~
+  schedule:
+    - cron: "0 0 * * 0"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build-changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PAT }}
+      - name: Run changelog script
+        working-directory: tools/changelog-generator
+        run: |
+          npm ci
+          node changelog.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          title: Automated Changelog update
+          body: |
+            This is a scheduled pull request to update the changelog.
+          labels: skip-changelog,review:copyedit
+          base: main
+          branch: automated-changelog-update
+          token: ${{ secrets.PAT }}
+          committer: kong-docs[bot] <team-docs@konghq.com>
+          author: kong-docs[bot] <team-docs@konghq.com>
+          delete-branch: true
+          commit-message: "Automated changelog update"

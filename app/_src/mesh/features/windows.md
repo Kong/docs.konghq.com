@@ -2,6 +2,8 @@
 title: Kong Mesh with Windows
 ---
 
+{% if_version gte:2.4.x %}
+
 To install and run {{site.mesh_product_name}} on Windows:
 
 1. [Download {{site.mesh_product_name}}](#1-download-kong-mesh)
@@ -32,7 +34,7 @@ Invoke-Expression ([System.Text.Encoding]::UTF8.GetString((Invoke-WebRequest -Ur
 {% endnavtab %}
 {% navtab Manually %}
 
-You can also [download]({{site.links.download}}/kong-mesh-binaries-release/kong-mesh-{{page.version}}-windows-amd64.tar.gz)
+You can also [download]{%if_version gte:2.2.x %}({{site.links.download}}/kong-mesh-binaries-release/kong-mesh-{{page.version}}-windows-amd64.tar.gz){%endif_version%}{%if_version lte:2.1.x%}(https://download.konghq.com/mesh-alpine/kong-mesh-{{page.version}}-windows-amd64.tar.gz){%endif_version%}
 the distribution manually.
 
 Then extract the archive with:
@@ -79,12 +81,19 @@ but you can use a persistent storage like PostgreSQL by updating the `conf/kuma-
 
 <!-- links -->
 {% if_version gte:2.0.x %}
+{% if_version lte:2.1.x %}
 [deployments]: /mesh/{{page.kong_version}}/introduction/deployments/
 [backends]: /mesh/{{page.kong_version}}/documentation/configuration/
 {% endif_version %}
-
-{% if_version lte:1.9.x %}
-[deployments]: https://kuma.io/docs/latest/introduction/deployments/
-[backends]: https://kuma.io/docs/latest/documentation/configuration/
+{% if_version gte:2.2.x %}
+[deployments]: /mesh/{{page.kong_version}}/production/deployment/
+[backends]: /mesh/{{page.kong_version}}/documentation/configuration/
+{% endif_version %}
 {% endif_version %}
 
+{% if_version lte:1.9.x %}
+[deployments]: https://kuma.io/docs/1.8.x/introduction/deployments/
+[backends]: https://kuma.io/docs/1.8.x/documentation/configuration/
+{% endif_version %}
+
+{% endif_version %}

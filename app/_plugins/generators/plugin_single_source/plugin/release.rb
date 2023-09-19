@@ -10,7 +10,7 @@ module PluginSingleSource
 
       attr_reader :version, :source, :site
 
-      def_delegators :@plugin, :ext_data, :vendor, :name, :dir, :set_version?
+      def_delegators :@plugin, :ext_data, :vendor, :name, :dir
 
       def initialize(site:, version:, plugin:, source:, is_latest:)
         @site = site
@@ -60,7 +60,7 @@ module PluginSingleSource
 
         @configuration ||= Pages::Configuration.new(
           release: self,
-          file: nil,
+          file: schema.file_path,
           source_path: pages_source_path
         )
       end
@@ -70,17 +70,19 @@ module PluginSingleSource
 
         @configuration_examples ||= Pages::ConfigurationExamples.new(
           release: self,
-          file: nil,
+          file: schema.example_file_path,
           source_path: pages_source_path
         )
       end
 
-      def overview_page
-        @overview_page ||= Pages::Overview.new(
-          release: self,
-          file: '_index.md',
-          source_path: pages_source_path
-        )
+      def overviews
+        @overviews ||= Dir.glob(File.expand_path('overview/**/*.md', pages_source_path)).map do |file|
+          Pages::Overview.new(
+            release: self,
+            file: file.gsub(pages_source_path, ''),
+            source_path: pages_source_path
+          )
+        end
       end
 
       def changelog

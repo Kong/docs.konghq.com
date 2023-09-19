@@ -13,6 +13,7 @@ file for specifying the entities as a declarative configuration.
 
 ### Using a database
 
+{% if_version lte:3.3.x %}
 {% include_cached /md/enterprise/cassandra-deprecation.md %}
 
 [Configure][configuration] Kong so it can connect to your database. Kong supports both [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/) as its datastore.
@@ -22,11 +23,21 @@ file for specifying the entities as a declarative configuration.
     ```sql
     CREATE USER kong; CREATE DATABASE kong OWNER kong;
     ```
+{% endif_version %}
+{% if_version gte:3.4.x %}
+[Configure][configuration] Kong so it can connect to your database. Kong supports [PostgreSQL {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) as its datastore.
+
+1. Provision a Postgres database and a user before starting Kong:
+
+    ```sql
+    CREATE USER kong; CREATE DATABASE kong OWNER kong;
+    ```
+{% endif_version %}
 
 2. Run the Kong migrations:
 
     ```bash
-    $ kong migrations bootstrap [-c /path/to/kong.conf]
+    kong migrations bootstrap [-c /path/to/kong.conf]
     ```
 
 ### Without a database

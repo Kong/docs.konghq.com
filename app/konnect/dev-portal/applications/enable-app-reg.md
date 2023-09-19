@@ -1,33 +1,25 @@
 ---
-title: Enable or Disable Application Registration for a Service
+title: Enable or Disable Application Registration for an API Product Version
 content_type: how-to
 ---
 
-To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service/), you must enable application registration for a service version.
+To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service/), you must enable application registration for an API product version.
 When you enable application registration, {{site.konnect_saas}} enables plugins automatically to support the desired mode, either key authentication or OpenID Connect.
-These plugins run inside the {{site.base_gateway}} runtime instances to support application registration for the service and are managed by
+These plugins run inside the {{site.base_gateway}} runtime instances to support application registration for the API product version and are managed by
 {{site.konnect_saas}}.
 
 ## Support for any runtime group
 
 App registration is fully supported in the `default` runtime group, using application `consumers` and the `acl` plugin.
-We are rolling out full support in any non-`default` runtime group, using the `konnect-application-auth` plugin that was created for {{site.base_gateway}} 3.0.
+For non-`default` runtime groups, app registration is supported using the `konnect-application-auth` plugin available as of {{site.base_gateway}} 3.0.
 
 {:.note}
-> **Note:** The `default` runtime group is the one that is first created in each region when you create an organization. Although it can be renamed, it will always be the oldest runtime group in the region. See [default runtime group](/konnect/runtime-manager/runtime-groups/#default-runtime-group) for additional context.
+> **Note:** The `default` runtime group is the one that is first created in each region when you create an organization. Although it can be renamed, it will always be the oldest runtime group in the region. See [default runtime group](/konnect/runtime-manager/runtime-groups/#runtime-groups) for additional context.
 
 ## Prerequisites
 
-- A service that is versioned and published to the
+- An API product that is versioned and published to the
   {{site.konnect_short_name}} Dev Portal so that it appears in the catalog.
-
-- The service version can be in any runtime group, as long as the following conditions are met:
-
-  - Service versions **not** in the `default` runtime group must be proxied with a version of {{site.base_gateway}} >= 3.0
-
-  - Service versions in the `default` runtime group can be proxied with any version of {{site.base_gateway}}
-
-- The service version must have an [implementation](/konnect/servicehub/service-implementations/).
 
 - If you are using [OpenID Connect](#oidc-flow) for your authorization:
 
@@ -38,16 +30,16 @@ We are rolling out full support in any non-`default` runtime group, using the `k
     dialog to match to your third-party OAuth2 claim.
 
 {:.note}
-> **Note:** For instructions on configuring {{site.konnect_short_name}} declaratively, read our [declarative guide](/konnect/runtime-manager/declarative-config/).
+> **Note:** Generally, it's only recommended for an API product version to be linked to a Gateway service. However, for app registration to work, the link between API product version and a Gateway service is required. 
 
 ## Enable app registration with key authentication {#key-auth-flow}
 
-To enable app registration with key authentication, from the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %} **Service Hub**, select a
+To enable app registration with key authentication, from the {{site.konnect_short_name}} menu, click {% konnect_icon api-product %} **API Products**, select a
 service, and follow these steps:
 
-1. Click **Versions** to select a version.
+1. Click **Product Versions** to select a version.
 
-2. From the **Version actions** drop-down menu, select **Enable app registration**.
+2. Select **Disabled** under **App Registration**
 
 3. Select `key-auth` from the **Auth Type** list.
 
@@ -55,23 +47,23 @@ service, and follow these steps:
 
 5. Click **Enable**.
 
-    This version of the service package now includes a
+    This version of the API products now includes a
     read-only entry for the `konnect-application-auth` plugin.
 
 {:.note}
-> **Note:** If the service version is in the `default` runtime group, it will
+> **Note:** If the API product version is in the `default` runtime group, it will
 instead receive read-only entries for the `acl` and `key-auth` plugins to provide
 support for {{site.base_gateway}} versions less than 3.0.
 
 ## Enable app registration with OpenID Connect {#oidc-flow}
 
-To enable app registration with OpenID Connect, from the {{site.konnect_short_name}} menu, click {% konnect_icon servicehub %} **Service Hub**, select a
+To enable app registration with OpenID Connect, from the {{site.konnect_short_name}} menu, click {% konnect_icon api-product %} **API Products**, select a
 service, and follow these steps:
 
 
 1. Click **Versions** to select a version.
 
-2. From the **Version actions** drop-down menu, select **Enable app registration**.
+2. Select **Disabled** under **App Registration**
 
 3. Select `openid-connect` from the **Auth Type** list.
 
@@ -84,7 +76,7 @@ service, and follow these steps:
     read-only entries for the `konnect-application-auth` and `openid-connect` plugins.
 
 {:.note}
-> **Note:** If the service version is in the `default` runtime group, it will
+> **Note:** If the API product version is in the `default` runtime group, it will
 instead receive read-only entries for the `acl` and `openid-connect` plugins to provide
 support for {{site.base_gateway}} versions less than 3.0.
 
@@ -129,11 +121,11 @@ at any time.
 
 The `konnect-application-auth` plugin manages access control and API key authentication for app registration and replaces the need for the `acl` and `key-auth` plugins. It is used in every non-`default` runtime group. 
 
-In the `default` runtime group, applications are linked to {{site.base_gateway}} consumers and use the `acl` plugin to control access between an application’s consumers and a service version. In all other runtime groups, applications are not linked to {{site.base_gateway}} consumers.
+In the `default` runtime group, applications are linked to {{site.base_gateway}} consumers and use the `acl` plugin to control access between an application’s consumers and an API product version. In all other runtime groups, applications are not linked to {{site.base_gateway}} consumers.
 
 ### Known limitations
 
-The internal `konnect-application-auth` plugin only supports {{site.base_gateway}} 3.0+. If you need to use a version of {{site.base_gateway}} before 3.0, you must create your service version in the `default` runtime group, which still supports consumer mapping with the `acl` plugin.
+The internal `konnect-application-auth` plugin only supports {{site.base_gateway}} 3.0+. If you need to use a version of {{site.base_gateway}} before 3.0, you must create your API product version that is linked to a Gateway service in the `default` runtime group, which still supports consumer mapping with the `acl` plugin.
 
 The `konnect-application-auth` plugin does not connect applications to {{site.base_gateway}} consumers. Therefore, any applications created through the app registration process in any non-default runtime group currently don't support rate limiting plugins. This will be addressed in a future release.
 

@@ -3,7 +3,6 @@ message: Use '%s' instead of '%s'.
 level: error
 ignorecase: true
 scope: text
-custom: true
 swap:
 
   datacenter: data center

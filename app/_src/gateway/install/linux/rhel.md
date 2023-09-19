@@ -14,7 +14,10 @@ Kong is licensed under an
 
 ## Download and Install
 
-You can install {{site.base_gateway}} by downloading an installation package or using our yum repository.
+You can install {{site.base_gateway}} by downloading an installation package or using the yum repository.
+
+{:.note}
+> **Note:** In July of 2023 Kong announced that package hosting was shifting from {{ site.links.download }} to [{{ site.links.cloudsmith }}]({{ site.links.cloudsmith }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
 
 {% navtabs %}
 {% navtab Package %}
@@ -27,12 +30,12 @@ Install {{site.base_gateway}} on RHEL from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $( rpm --eval "{{ site.links.download }}/gateway-3.x-rhel-%{rhel}/Packages/k/kong-enterprise-edition-{{page.versions.ee}}.rhel%{rhel}.amd64.rpm")
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/el/%{rhel}/x86_64/kong-enterprise-edition-{{page.versions.ee}}.el%{rhel}.x86_64.rpm)
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval "{{ site.links.download }}/gateway-3.x-rhel-%{rhel}/Packages/k/kong-{{page.versions.ce}}.rhel%{rhel}.amd64.rpm")
+curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/el/%{rhel}/x86_64/kong-{{page.versions.ce}}.el%{rhel}.x86_64.rpm)
  ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -50,12 +53,12 @@ curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval "{{ site.links.download }}/g
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-sudo yum install kong-enterprise-edition-{{page.versions.ee}}.rpm
+sudo yum install -y kong-enterprise-edition-{{page.versions.ee}}.rpm
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-sudo yum install kong-{{page.versions.ce}}.rpm
+sudo yum install -y kong-{{page.versions.ce}}.rpm
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -81,11 +84,10 @@ rpm -iv kong-{{page.versions.ce}}.rpm
 
 Install the YUM repository from the command line.
 
-{% include_cached /md/gateway/rpm-gpg-key-2023.md kong_version=page.kong_version %}
-
 1. Download the Kong YUM repository:
     ```bash
-    curl $(rpm --eval "{{ site.links.download }}/gateway-3.x-rhel-%{rhel}/config.repo") | sudo tee /etc/yum.repos.d/kong.repo
+    curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/config.rpm.txt?distro=el&codename=$(rpm --eval '%{rhel}')" | sudo tee /etc/yum.repos.d/kong-gateway-{{ page.major_minor_version }}.repo
+    sudo yum -q makecache -y --disablerepo='*' --enablerepo='kong-gateway-{{ page.major_minor_version }}'
     ```
 
 2. Install Kong:
@@ -93,12 +95,12 @@ Install the YUM repository from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-sudo yum install kong-enterprise-edition-{{page.versions.ee}}
+sudo yum install -y kong-enterprise-edition-{{page.versions.ee}}
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-sudo yum install kong-{{page.versions.ce}}
+sudo yum install -y kong-{{page.versions.ce}}
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}

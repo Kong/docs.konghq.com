@@ -2,7 +2,8 @@
 title: Feature Gates
 ---
 
-Upstream [Kubernetes][k8s] includes [feature gates][gates], which enable or disable features with flags and track the maturity of a feature using [feature stages][stages]. Here in the {{site.kic_product_name}} (KIC), we use the same definitions of `feature gates` and `feature stages` from upstream Kubernetes to define our own list of features.
+Upstream [Kubernetes][k8s] includes [feature gates][gates], which enable or disable features with flags and track the maturity of a feature using [feature stages][stages].
+Here in the {{site.kic_product_name}} (KIC), the same definitions of `feature gates` and `feature stages` from upstream Kubernetes are used to define KIC's list of features.
 
 Using feature gates enables contributors to add and manage new (and potentially experimental) functionality to the KIC in a controlled manner. The features will be "hidden" until generally available (GA) and the progress and maturity of features on their path to GA will be documented. Feature gates also create a clear path for deprecating features.
 
@@ -35,13 +36,19 @@ Features that reach GA and become stable are removed from this table, but they c
 {% endif_version %}
 {% if_version gte: 2.10.x %}
 | ExpressionRoutes       | `false` | Alpha | 2.10.0 | TBD   |
+| FillIDs                | `false` | Alpha | 2.10.0 | 3.0   |
+{% endif_version %}
+{% if_version eq:2.10.x %}
 | CombinedServices       | `false` | Alpha | 2.10.0 | TBD   |
+{% endif_version %}
+{% if_version gte: 2.11.x %}
+| CombinedServices       | `true`  | Beta  | 2.11.0 | TBD   |
 {% endif_version %}
 
 ### Feature gates details
 
 * The **since** and **until** rows in the table refer to [KIC Releases][releases].
-* Most features will be planned using [Kubernetes Enhancement Proposals (KEP)][k8s-keps]. If you're interested in developing features, familiarize yourself with our [KEPs][kic-keps].
+* Most features will be planned using [Kubernetes Enhancement Proposals (KEP)][k8s-keps]. If you're interested in developing features, familiarize yourself with KIC's [KEPs][kic-keps].
 * Features that are currently in alpha or beta states may become deprecated at any time. Deprecated features are removed during the next minor release.
 * Until a feature becomes GA, there are no guarantees that it's going to continue being available. For more information, see the [changelog](https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md).
 

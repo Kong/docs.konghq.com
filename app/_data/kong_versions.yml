@@ -1,127 +1,4 @@
-- # Old OSS Gateway docs
-  release: "2.1.x"
-  version: "2.1.4"
-  edition: "gateway-oss"
-  luarocks_version: "2.1.4-0"
-  dependencies:
-    luajit: "2.1.0-beta3"
-    luarocks: "3.3.1"
-    cassandra: "3.x.x"
-    postgres: "9.5+"
-    openresty: "1.15.8.3"
-    openssl: "1.1.1g"
-    libyaml: "0.2.5"
-    pcre: "8.44"
-- release: "2.2.x"
-  version: "2.2.2"
-  edition: "gateway-oss"
-  luarocks_version: "2.2.2-0"
-  dependencies:
-    luajit: "2.1.0-beta3"
-    luarocks: "3.3.1"
-    cassandra: "3.x.x"
-    postgres: "9.5+"
-    openresty: "1.17.8.2"
-    openssl: "1.1.1h"
-    libyaml: "0.2.5"
-    pcre: "8.44"
-- release: "2.3.x"
-  version: "2.3.3"
-  edition: "gateway-oss"
-  luarocks_version: "2.3.3-0"
-  dependencies:
-    luajit: "2.1.0-beta3"
-    luarocks: "3.4.0"
-    cassandra: "3.x.x"
-    postgres: "9.5+"
-    openresty: "1.17.8.2"
-    openssl: "1.1.1i"
-    libyaml: "0.2.5"
-    pcre: "8.44"
-- release: "2.4.x"
-  version: "2.4.1"
-  edition: "gateway-oss"
-  luarocks_version: "2.4.1-0"
-  dependencies:
-    luajit: "2.1.0-beta3"
-    luarocks: "3.5.0"
-    cassandra: "3.x.x"
-    postgres: "9.5+"
-    openresty: "1.19.3.1"
-    openssl: "1.1.1k"
-    libyaml: "0.2.5"
-    pcre: "8.44"
-- release: "2.5.x"
-  version: "2.5.1"
-  edition: "gateway-oss"
-  luarocks_version: "2.5.1-0"
-  dependencies:
-    luajit: "2.1.0-beta3"
-    luarocks: "3.7.0"
-    cassandra: "3.x.x"
-    postgres: "9.5+"
-    openresty: "1.19.3.2"
-    openssl: "1.1.1k"
-    libyaml: "0.2.5"
-    pcre: "8.44"
-- # Old Enterprise Gateway docs
-  release: "2.1.x"
-  version: "2.1.4.6"
-  edition: "enterprise"
-  luarocks_version: "0.34.x"
-  dependencies:
-    luajit: "2.1.0-beta2"
-    luarocks: "2.4.3"
-    cassandra: "3.x.x"
-    postgres: "9.5+"
-    openresty: "1.13.6.2"
-  lua_doc: true
-- release: "2.2.x"
-  version: "2.2.1.3"
-  edition: "enterprise"
-  luarocks_version: "2.2.0.0"
-  dependencies:
-    luajit: "2.1.0-beta3"
-    luarocks: "3.3.1"
-    cassandra: "3.x.x"
-    postgres: "9.5+"
-    openresty: "1.15.8.3"
-  lua_doc: true
-- release: "2.3.x"
-  version: "2.3.3.2"
-  edition: "enterprise"
-  luarocks_version: "2.2.0.0"
-  dependencies:
-    luajit: "2.1.0-beta3"
-    luarocks: "3.5.0"
-    cassandra: "3.x.x"
-    postgres: "9.5+"
-    openresty: "1.17.8.2"
-  lua_doc: true
-- release: "2.4.x"
-  version: "2.4.1.0"
-  edition: "enterprise"
-  luarocks_version: "2.2.0.0"
-  dependencies:
-    luajit: "2.1.0-beta3"
-    luarocks: "3.7.0"
-    cassandra: "3.x.x"
-    postgres: "9.5+"
-    openresty: "1.19.3.1"
-  lua_doc: true
-- release: "2.5.x"
-  version: "2.5.1.2"
-  edition: "enterprise"
-  luarocks_version: "2.2.0.0"
-  dependencies:
-    luajit: "2.1.0-beta3"
-    luarocks: "3.7.1"
-    cassandra: "3.x.x"
-    postgres: "9.5+"
-    openresty: "1.19.3.1"
-  lua_doc: true
-- # Combined Gateway docs (single-sourced)
-  release: "2.6.x"
+- release: "2.6.x"
   ee-version: "2.6.1.0"
   ce-version: "2.6.1"
   edition: "gateway"
@@ -152,7 +29,7 @@
     pcre: "8.45"
   lua_doc: true
 - release: "2.8.x"
-  ee-version: "2.8.4.1"
+  ee-version: "2.8.4.3"
   ce-version: "2.8.3"
   edition: "gateway"
   luarocks_version: "2.5.1-0"
@@ -181,7 +58,7 @@
     pcre: 8.45
   lua_doc: true
 - release: "3.1.x"
-  ee-version: "3.1.1.4"
+  ee-version: "3.1.1.5"
   ce-version: "3.1.1"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -208,9 +85,8 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
--
-  release: "3.3.x"
-  ee-version: "3.3.0.0"
+- release: "3.3.x"
+  ee-version: "3.3.1.0"
   ce-version: "3.3.0"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -223,22 +99,20 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
--
-  release: "2.1.x"
-  version: "2.1"
-  edition: "getting-started-guide"
-- release: "2.2.x"
-  version: "2.2"
-  edition: "getting-started-guide"
-- release: "2.3.x"
-  version: "2.3"
-  edition: "getting-started-guide"
-- release: "2.4.x"
-  version: "2.4"
-  edition: "getting-started-guide"
-- release: "2.5.x"
-  version: "2.5"
-  edition: "getting-started-guide"
+- release: "3.4.x"
+  ee-version: "3.4.0.0"
+  ce-version: "3.4.0"
+  edition: "gateway"
+  luarocks_version: "3.0.0-0"
+  dependencies:
+    luajit: "2.1-20220411"
+    luarocks: "3.9.1"
+    postgres: "9.5+"
+    openresty: "1.21.4.1"
+    openssl: "1.1.1.q"
+    libyaml: "0.2.5"
+    pcre: 8.45
+  lua_doc: true
 - release: "pre-1.7"
   version: "1.6.0"
   edition: "deck"
@@ -287,6 +161,18 @@
 - release: "1.21.x"
   version: "1.21.0"
   edition: "deck"
+- release: "1.22.x"
+  version: "1.22.0"
+  edition: "deck"
+- release: "1.23.x"
+  version: "1.23.0"
+  edition: "deck"
+- release: "1.24.x"
+  version: "1.24.0"
+  edition: "deck"
+- release: "1.25.x"
+  version: "1.25.0"
+  edition: "deck"
 - edition: "konnect"
 - edition: "contributing"
 - release: "1.0.x"
@@ -334,6 +220,9 @@
 - release: "2.10.x"
   version: "2.10.0"
   edition: "kubernetes-ingress-controller"
+- release: "2.11.x"
+  version: "2.11.0"
+  edition: "kubernetes-ingress-controller"
 - edition: mesh
   version: 1.2.6
   release: 1.2.x
@@ -377,36 +266,42 @@
   endOfLifeDate: "2023-06-13"
   branch: release-1.8
 - edition: mesh
-  version: 1.9.5
+  version: 1.9.8
   release: 1.9.x
   releaseDate: "2022-08-23"
   endOfLifeDate: "2023-08-23"
   branch: release-1.9
 - edition: mesh
-  version: 2.0.4
+  version: 2.0.7
   release: 2.0.x
   releaseDate: "2022-11-04"
   endOfLifeDate: "2023-11-04"
   branch: release-2.0
 - edition: mesh
-  version: 2.1.2
+  version: 2.1.6
   release: 2.1.x
   releaseDate: "2023-01-30"
   endOfLifeDate: "2024-01-30"
   branch: release-2.1
 - edition: mesh
-  version: 2.2.0
+  version: 2.2.4
   release: 2.2.x
-  branch: release-2.2
   releaseDate: "2023-04-14"
   endOfLifeDate: "2024-04-14"
+  branch: release-2.2
 - edition: mesh
-  version: 2.3.0
+  version: 2.3.2
   release: 2.3.x
+  releaseDate: "2023-06-26"
+  endOfLifeDate: "2024-06-26"
   branch: release-2.3
+- edition: mesh
+  version: 2.4.1
+  release: 2.4.x
   latest: true
-  releaseDate: "2023-06-23"
-  endOfLifeDate: "2024-06-23"
+  releaseDate: "2023-08-29"
+  endOfLifeDate: "2024-08-29"
+  branch: release-2.4
 - edition: mesh
   version: preview
   release: dev

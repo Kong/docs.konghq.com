@@ -35,13 +35,13 @@ Install {{site.base_gateway}} on CentOS from the command line.
 1. Download the Kong package:
 
     ```bash
-    curl -Lo kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm $(rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{centos_ver}/Packages/k/kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.el%{centos_ver}.noarch.rpm")
+    curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/el/%{centos_ver}/x86_64/kong-enterprise-edition-{{page.versions.ee}}.el%{centos_ver}.noarch.rpm)
     ```
 
 2. Install the package:
 
     ```bash
-    sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}.rpm
+    sudo yum install -y kong-enterprise-edition-{{page.versions.ee}}.rpm
     ```
 
 {% endnavtab %}
@@ -51,13 +51,14 @@ Install the YUM repository from the command line.
 
 1. Download the Kong yum repository:
     ```bash
-    curl $(rpm --eval "{{ site.links.download }}/gateway-2.x-centos-%{centos_ver}/config.repo") | sudo tee /etc/yum.repos.d/kong.repo
+    curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/config.rpm.txt?distro=el&codename=$(rpm --eval '%{rhel}')" | sudo tee /etc/yum.repos.d/kong-gateway-{{ page.major_minor_version }}.repo
+    sudo yum -q makecache -y --disablerepo='*' --enablerepo='kong-gateway-{{ page.major_minor_version }}'
     ```
 
 2. Install Kong:
 
     ```bash
-    sudo yum install kong-enterprise-edition-{{page.kong_versions[page.version-index].ee-version}}
+    sudo yum install -y kong-enterprise-edition-{{page.versions.ee}}
     ```
 
 {% endnavtab %}

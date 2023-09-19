@@ -24,6 +24,7 @@ items:
         url: /availability-stages/
       - text: Release notes
         url: /mesh/changelog
+        src: /mesh/changelog
         generate: false
         absolute_url: true
   - title: Getting Started
@@ -191,7 +192,8 @@ items:
     icon: /assets/images/icons/documentation/icn-documentation-small.svg
     items:
       - text: Introduction
-        url: /policies/
+        url: /policies/introduction
+        src: /.repos/kuma/app/_src/policies/introduction/
       - text: General notes about Kong Mesh policies
         url: /policies/general-notes-about-kong-mesh-policies/
         src: /.repos/kuma/app/_src/policies/general-notes-about-kuma-policies/
@@ -259,11 +261,14 @@ items:
         url: /policies/virtual-outbound/
         src: /.repos/kuma/app/_src/policies/virtual-outbound/
       - text: MeshGateway
-        url: /policies/mesh-gateway/
-        src: /.repos/kuma/app/_src/policies/mesh-gateway/
+        url: /policies/meshgateway/
+        src: /.repos/kuma/app/_src/policies/meshgateway/
       - text: MeshGatewayRoute
-        url: /policies/mesh-gateway-route/
-        src: /.repos/kuma/app/_src/policies/mesh-gateway-route/
+        url: /policies/meshgatewayroute/
+        src: /.repos/kuma/app/_src/policies/meshgatewayroute/
+      - text: MeshGatewayInstance
+        url: /policies/meshgatewayinstance/
+        src: /.repos/kuma/app/_src/policies/meshgatewayinstance/
       - text: Service Health Probes
         url: /policies/service-health-probes/
         src: /.repos/kuma/app/_src/policies/service-health-probes/
@@ -314,22 +319,19 @@ items:
       - text: OPA policy support
         url: /features/opa
       - text: MeshOPA (beta)
-        url: /policies/meshopa
+        url: /features/meshopa
       - text: Multi-zone authentication
         url: /features/kds-auth
       - text: FIPS support
         url: /features/fips-support
-        src: production/secure-deployment/fips-support/
       - text: Certificate Authority rotation
         url: /features/ca-rotation
       - text: Role-Based Access Control
         url: /features/rbac
-        src: production/secure-deployment/rbac/
       - text: UBI Images
         url: /features/ubi-images
       - text: Windows Support
         url: /features/windows
-        generate: false
       - text: Auditing
         url: /features/access-audit
   - title: Reference docs
@@ -403,19 +405,8 @@ items:
           - text: ZoneIngress
             url: /generated/resources/proxy_zoneingress/
             src: /.repos/kuma/app/docs/2.1.x/generated/resources/proxy_zoneingress/
-      - text: Commands
-        items:
-          - text: kuma-cp
-            url: /generated/cmd/kuma-cp/kuma-cp/
-            src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kuma-cp/kuma-cp/
-          - text: kuma-dp
-            url: /generated/cmd/kuma-dp/kuma-dp/
-            src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kuma-dp/kuma-dp/
-          - text: kumactl
-            url: /generated/cmd/kumactl/kumactl/
-            src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl/
       - text: Kuma-cp configuration reference
-        url: /generated/kuma-cp
+        url: /reference/kuma-cp
         src: /.repos/kuma/app/docs/2.1.x/generated/kuma-cp
   - title: Community
     items:
@@ -425,245 +416,3 @@ items:
       - text: Contribute to Mesh
         url: /community/contribute-to-mesh/
         src: /.repos/kuma/app/_src/community/contribute-to-kuma/
-
-
-unlisted:
-  # Kuma CP
-  - url: /generated/cmd/kuma-cp/kuma-cp_migrate/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kuma-cp/kuma-cp_migrate/
-  - url: /generated/cmd/kuma-cp/kuma-cp_migrate_up/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kuma-cp/kuma-cp_migrate_up/
-  - url: /generated/cmd/kuma-cp/kuma-cp_run/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kuma-cp/kuma-cp_run/
-  - url: /generated/cmd/kuma-cp/kuma-cp_version/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kuma-cp/kuma-cp_version/
-  - url: /generated/cmd/kuma-dp/kuma-dp_run/
-    # Kuma DP
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kuma-dp/kuma-dp_run/
-  - url: /generated/cmd/kuma-dp/kuma-dp_version/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kuma-dp/kuma-dp_version/
-  # kumactl
-  - url: /generated/cmd/kumactl/kumactl_apply/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_apply/
-  - url: /generated/cmd/kumactl/kumactl_completion/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_completion/
-  - url: /generated/cmd/kumactl/kumactl_completion_bash/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_completion_bash/
-  - url: /generated/cmd/kumactl/kumactl_completion_fish/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_completion_fish/
-  - url: /generated/cmd/kumactl/kumactl_completion_zsh/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_completion_zsh/
-  - url: /generated/cmd/kumactl/kumactl_config/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_config/
-  - url: /generated/cmd/kumactl/kumactl_config_control-planes/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_config_control-planes/
-  - url: /generated/cmd/kumactl/kumactl_config_control-planes_add/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_config_control-planes_add/
-  - url: /generated/cmd/kumactl/kumactl_config_control-planes_list/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_config_control-planes_list/
-  - url: /generated/cmd/kumactl/kumactl_config_control-planes_remove/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_config_control-planes_remove/
-  - url: /generated/cmd/kumactl/kumactl_config_control-planes_switch/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_config_control-planes_switch/
-  - url: /generated/cmd/kumactl/kumactl_config_view/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_config_view/
-  - url: /generated/cmd/kumactl/kumactl_delete/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_delete/
-  - url: /generated/cmd/kumactl/kumactl_generate/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_generate/
-  - url: /generated/cmd/kumactl/kumactl_generate_dataplane-token/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_generate_dataplane-token/
-  - url: /generated/cmd/kumactl/kumactl_generate_signing-key/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_generate_signing-key/
-  - url: /generated/cmd/kumactl/kumactl_generate_tls-certificate/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_generate_tls-certificate/
-  - url: /generated/cmd/kumactl/kumactl_generate_user-token/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_generate_user-token/
-  - url: /generated/cmd/kumactl/kumactl_generate_zone-ingress-token/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_generate_zone-ingress-token/
-  - url: /generated/cmd/kumactl/kumactl_generate_zone-token/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_generate_zone-token/
-  - url: /generated/cmd/kumactl/kumactl_get/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get/
-  - url: /generated/cmd/kumactl/kumactl_get_circuit-breaker/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_circuit-breaker/
-  - url: /generated/cmd/kumactl/kumactl_get_circuit-breakers/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_circuit-breakers/
-  - url: /generated/cmd/kumactl/kumactl_get_dataplane/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_dataplane/
-  - url: /generated/cmd/kumactl/kumactl_get_dataplanes/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_dataplanes/
-  - url: /generated/cmd/kumactl/kumactl_get_external-service/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_external-service/
-  - url: /generated/cmd/kumactl/kumactl_get_external-services/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_external-services/
-  - url: /generated/cmd/kumactl/kumactl_get_fault-injection/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_fault-injection/
-  - url: /generated/cmd/kumactl/kumactl_get_fault-injections/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_fault-injections/
-  - url: /generated/cmd/kumactl/kumactl_get_global-secret/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_global-secret/
-  - url: /generated/cmd/kumactl/kumactl_get_global-secrets/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_global-secrets/
-  - url: /generated/cmd/kumactl/kumactl_get_healthcheck/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_healthcheck/
-  - url: /generated/cmd/kumactl/kumactl_get_healthchecks/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_healthchecks/
-  - url: /generated/cmd/kumactl/kumactl_get_mesh/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_mesh/
-  - url: /generated/cmd/kumactl/kumactl_get_meshaccesslog/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshaccesslog/
-  - url: /generated/cmd/kumactl/kumactl_get_meshaccesslogs/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshaccesslogs/
-  - url: /generated/cmd/kumactl/kumactl_get_meshes/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshes/
-  - url: /generated/cmd/kumactl/kumactl_get_meshgateway/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshgateway/
-  - url: /generated/cmd/kumactl/kumactl_get_meshgatewayroute/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshgatewayroute/
-  - url: /generated/cmd/kumactl/kumactl_get_meshgatewayroutes/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshgatewayroutes/
-  - url: /generated/cmd/kumactl/kumactl_get_meshgateways/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshgateways/
-  - url: /generated/cmd/kumactl/kumactl_get_meshtrace/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshtrace/
-  - url: /generated/cmd/kumactl/kumactl_get_meshtraces/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshtraces/
-  - url: /generated/cmd/kumactl/kumactl_get_meshtrafficpermission/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshtrafficpermission/
-  - url: /generated/cmd/kumactl/kumactl_get_meshtrafficpermissions/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_meshtrafficpermissions/
-  - url: /generated/cmd/kumactl/kumactl_get_proxytemplate/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_proxytemplate/
-  - url: /generated/cmd/kumactl/kumactl_get_proxytemplates/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_proxytemplates/
-  - url: /generated/cmd/kumactl/kumactl_get_rate-limit/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_rate-limit/
-  - url: /generated/cmd/kumactl/kumactl_get_rate-limits/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_rate-limits/
-  - url: /generated/cmd/kumactl/kumactl_get_retries/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_retries/
-  - url: /generated/cmd/kumactl/kumactl_get_retry/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_retry/
-  - url: /generated/cmd/kumactl/kumactl_get_secret/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_secret/
-  - url: /generated/cmd/kumactl/kumactl_get_secrets/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_secrets/
-  - url: /generated/cmd/kumactl/kumactl_get_timeout/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_timeout/
-  - url: /generated/cmd/kumactl/kumactl_get_timeouts/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_timeouts/
-  - url: /generated/cmd/kumactl/kumactl_get_traffic-log/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_traffic-log/
-  - url: /generated/cmd/kumactl/kumactl_get_traffic-logs/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_traffic-logs/
-  - url: /generated/cmd/kumactl/kumactl_get_traffic-permission/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_traffic-permission/
-  - url: /generated/cmd/kumactl/kumactl_get_traffic-permissions/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_traffic-permissions/
-  - url: /generated/cmd/kumactl/kumactl_get_traffic-route/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_traffic-route/
-  - url: /generated/cmd/kumactl/kumactl_get_traffic-routes/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_traffic-routes/
-  - url: /generated/cmd/kumactl/kumactl_get_traffic-trace/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_traffic-trace/
-  - url: /generated/cmd/kumactl/kumactl_get_traffic-traces/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_traffic-traces/
-  - url: /generated/cmd/kumactl/kumactl_get_virtual-outbound/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_virtual-outbound/
-  - url: /generated/cmd/kumactl/kumactl_get_virtual-outbounds/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_virtual-outbounds/
-  - url: /generated/cmd/kumactl/kumactl_get_zone/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_zone/
-  - url: /generated/cmd/kumactl/kumactl_get_zone-ingress/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_zone-ingress/
-  - url: /generated/cmd/kumactl/kumactl_get_zone-ingresses/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_zone-ingresses/
-  - url: /generated/cmd/kumactl/kumactl_get_zoneegress/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_zoneegress/
-  - url: /generated/cmd/kumactl/kumactl_get_zoneegresses/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_zoneegresses/
-  - url: /generated/cmd/kumactl/kumactl_get_zones/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_get_zones/
-  - url: /generated/cmd/kumactl/kumactl_inspect/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect/
-  - url: /generated/cmd/kumactl/kumactl_inspect_circuit-breaker/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_circuit-breaker/
-  - url: /generated/cmd/kumactl/kumactl_inspect_dataplane/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_dataplane/
-  - url: /generated/cmd/kumactl/kumactl_inspect_dataplanes/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_dataplanes/
-  - url: /generated/cmd/kumactl/kumactl_inspect_fault-injection/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_fault-injection/
-  - url: /generated/cmd/kumactl/kumactl_inspect_healthcheck/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_healthcheck/
-  - url: /generated/cmd/kumactl/kumactl_inspect_meshaccesslog/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_meshaccesslog/
-  - url: /generated/cmd/kumactl/kumactl_inspect_meshes/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_meshes/
-  - url: /generated/cmd/kumactl/kumactl_inspect_meshgateway/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_meshgateway/
-  - url: /generated/cmd/kumactl/kumactl_inspect_meshtrace/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_meshtrace/
-  - url: /generated/cmd/kumactl/kumactl_inspect_meshtrafficpermission/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_meshtrafficpermission/
-  - url: /generated/cmd/kumactl/kumactl_inspect_proxytemplate/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_proxytemplate/
-  - url: /generated/cmd/kumactl/kumactl_inspect_rate-limit/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_rate-limit/
-  - url: /generated/cmd/kumactl/kumactl_inspect_retry/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_retry/
-  - url: /generated/cmd/kumactl/kumactl_inspect_services/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_services/
-  - url: /generated/cmd/kumactl/kumactl_inspect_timeout/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_timeout/
-  - url: /generated/cmd/kumactl/kumactl_inspect_traffic-log/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_traffic-log/
-  - url: /generated/cmd/kumactl/kumactl_inspect_traffic-permission/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_traffic-permission/
-  - url: /generated/cmd/kumactl/kumactl_inspect_traffic-route/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_traffic-route/
-  - url: /generated/cmd/kumactl/kumactl_inspect_traffic-trace/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_traffic-trace/
-  - url: /generated/cmd/kumactl/kumactl_inspect_zone-ingresses/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_zone-ingresses/
-  - url: /generated/cmd/kumactl/kumactl_inspect_zoneegress/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_zoneegress/
-  - url: /generated/cmd/kumactl/kumactl_inspect_zoneegresses/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_zoneegresses/
-  - url: /generated/cmd/kumactl/kumactl_inspect_zoneingress/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_zoneingress/
-  - url: /generated/cmd/kumactl/kumactl_inspect_zones/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_inspect_zones/
-  - url: /generated/cmd/kumactl/kumactl_install/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install/
-  - url: /generated/cmd/kumactl/kumactl_install_control-plane/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_control-plane/
-  - url: /generated/cmd/kumactl/kumactl_install_crds/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_crds/
-  - url: /generated/cmd/kumactl/kumactl_install_demo/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_demo/
-  - url: /generated/cmd/kumactl/kumactl_install_gateway/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_gateway/
-  - url: /generated/cmd/kumactl/kumactl_install_gateway_kong-enterprise/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_gateway_kong-enterprise/
-  - url: /generated/cmd/kumactl/kumactl_install_gateway_kong/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_gateway_kong/
-  - url: /generated/cmd/kumactl/kumactl_install_logging/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_logging/
-  - url: /generated/cmd/kumactl/kumactl_install_metrics/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_metrics/
-  - url: /generated/cmd/kumactl/kumactl_install_observability/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_observability/
-  - url: /generated/cmd/kumactl/kumactl_install_tracing/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_tracing/
-  - url: /generated/cmd/kumactl/kumactl_install_transparent-proxy/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_install_transparent-proxy/
-  - url: /generated/cmd/kumactl/kumactl_uninstall/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_uninstall/
-  - url: /generated/cmd/kumactl/kumactl_uninstall_ebpf/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_uninstall_ebpf/
-  - url: /generated/cmd/kumactl/kumactl_uninstall_transparent-proxy/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_uninstall_transparent-proxy/
-  - url: /generated/cmd/kumactl/kumactl_version/
-    src: /.repos/kuma/app/docs/2.1.x/generated/cmd/kumactl/kumactl_version/

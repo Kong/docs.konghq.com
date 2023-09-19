@@ -59,12 +59,20 @@ module PluginSingleSource
         "https://github.com/Kong/docs.konghq.com/edit/#{@site.config['git_branch']}/app/#{source_file}"
       end
 
+      def breadcrumbs
+        [
+          { text: category_title, url: category_url },
+          { text: @release.metadata['name'], url: permalink.split('/').tap(&:pop).join('/').concat('/') },
+          { text: breadcrumb_title, url: permalink }
+        ]
+      end
+
       private
 
       def url_attributes
         @url_attributes ||= {
           'permalink' => permalink,
-          'canonical_url' => @release.latest? ? nil : canonical_url,
+          'canonical_url' => canonical_url,
           'source_file' => source_file
         }
       end
@@ -79,14 +87,6 @@ module PluginSingleSource
           'sidenav' => sidenav,
           'edit_link' => edit_link
         }
-      end
-
-      def breadcrumbs
-        [
-          { text: category_title, url: category_url },
-          { text: @release.metadata['name'], url: permalink.split('/').tap(&:pop).join('/').concat('/') },
-          { text: breadcrumb_title, url: permalink }
-        ]
       end
 
       def category_url

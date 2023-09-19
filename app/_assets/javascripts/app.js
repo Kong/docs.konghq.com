@@ -305,7 +305,7 @@ jQuery(function () {
       $(this).addClass("mobile");
       var headerCount = $(this).find("thead th").length;
 
-      for (i = 0; i <= headerCount; i++) {
+      for (var i = 0; i <= headerCount; i++) {
         var headerLabel = $(this)
           .find("thead th:nth-child(" + i + ") .mobile-label")
           .text();
@@ -573,6 +573,22 @@ jQuery(function () {
     var $field = $(event.target).closest('.field');
     $field.find('.fa-chevron-down').toggleClass('rotated');
     $field.find('.field-description-and-children > .field-subfield__params:first').toggle('hidden');
+  });
+
+
+  var ctaKonnectCardClosed = getCookie("konnect-cta-card");
+  if (ctaKonnectCardClosed === "") {
+    $("#modal-open").click();
+  }
+
+  $(".konnect-cta-card .button").on("click", function(e) {
+    setCookie("konnect-cta-card", "true");
+  });
+
+  $(".cta-card-close").on("click", function(e) {
+    e.preventDefault();
+    setCookie("konnect-cta-card", "false");
+    analytics.track("Docs Konnect CTA Dismissed");
   });
 });
 

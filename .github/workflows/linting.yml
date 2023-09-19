@@ -37,7 +37,7 @@ jobs:
       - run: npm ci
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v37
+        uses: tj-actions/changed-files@v38
         with:
           sha: ${{ github.sha }}
           files: |
@@ -84,11 +84,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: errata-ai/vale-action@v2
+      - uses: errata-ai/vale-action@reviewdog
         with:
+          #version: 2.24.0
           # path where vale checks checking only modified files.
-          filter_mode: file
           fail_on_error: true
+          filter_mode: file
           vale_flags: "--glob=!app/_src/.repos/kuma/**"
           reporter: github-pr-review
         env:

@@ -1,6 +1,5 @@
 name: jq
 yaml_examples: false
-konnect_examples: false
 dbless_compatible: null
 examples: false
 categories:

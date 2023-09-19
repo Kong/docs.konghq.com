@@ -14,8 +14,8 @@ RSpec.describe PluginSingleSource::Pages::Changelog do
 
     context 'when there is a specific folder for the version' do
       let(:is_latest) { false }
-      let(:version) { '2.5.x' }
-      let(:source) { '_2.2.x' }
+      let(:version) { '2.6.x' }
+      let(:source) { '_2.6.x' }
       it_behaves_like 'returns the content of the `_changelog.md` file at the top level'
     end
 
@@ -39,7 +39,7 @@ RSpec.describe PluginSingleSource::Pages::Changelog do
 
       it 'returns a hash containing the data needed to render the templates' do
         expect(subject.data).to include({
-          'canonical_url' => nil,
+          'canonical_url' => '/hub/kong-inc/jwt-signer/changelog/',
           'source_file' => '_hub/kong-inc/jwt-signer/_changelog.md',
           'permalink' => '/hub/kong-inc/jwt-signer/changelog/',
           'ssg_hub' => false,
@@ -50,14 +50,14 @@ RSpec.describe PluginSingleSource::Pages::Changelog do
 
     context 'when it is not the latest version of the plugin' do
       let(:is_latest) { false }
-      let(:version) { '2.5.x' }
-      let(:source) { '_2.2.x' }
+      let(:version) { '2.6.x' }
+      let(:source) { '_2.6.x' }
 
       it 'returns a hash containing the data needed to render the templates' do
         expect(subject.data).to include({
           'canonical_url' => '/hub/kong-inc/jwt-signer/changelog/',
           'source_file' => '_hub/kong-inc/jwt-signer/_changelog.md',
-          'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/changelog/',
+          'permalink' => '/hub/kong-inc/jwt-signer/2.6.x/changelog/',
           'ssg_hub' => false,
           'title' => 'Kong JWT Signer Changelog'
         })
@@ -72,8 +72,8 @@ RSpec.describe PluginSingleSource::Pages::Changelog do
 
     context 'when there is a specific folder for the version' do
       let(:is_latest) { false }
-      let(:version) { '2.5.x' }
-      let(:source) { '_2.2.x' }
+      let(:version) { '2.7.x' }
+      let(:source) { '_2.6.x' }
 
       it_behaves_like 'returns the relative path to the top-level _index.md file'
     end
@@ -84,6 +84,20 @@ RSpec.describe PluginSingleSource::Pages::Changelog do
       let(:source) { '_index' }
 
       it_behaves_like 'returns the relative path to the top-level _index.md file'
+    end
+  end
+
+  describe '#breadcrumbs' do
+    let(:is_latest) { true }
+    let(:version) { '2.8.x' }
+    let(:source) { '_index' }
+
+    it 'returns a hash containing the page\'s breadcrumbs' do
+      expect(subject.breadcrumbs).to eq([
+        { text: 'Authentication', url: '/hub/?category=authentication' },
+        { text: 'Kong JWT Signer', url: '/hub/kong-inc/jwt-signer/' },
+        { text: 'Changelog', url: '/hub/kong-inc/jwt-signer/changelog/' }
+      ])
     end
   end
 end

@@ -30,9 +30,7 @@ export KONG_VAULT_AWS_REGION=<aws-region>
 
 ### Examples
 
-For example, let's use an AWS Secrets Manager Secret with the name `my-secret-name`.
-
-In this object, you have multiple key=value pairs.
+For example, an AWS Secrets Manager Secret with the name `secret-name` may have multiple key=value pairs:
 
 ```json
 {
@@ -41,11 +39,11 @@ In this object, you have multiple key=value pairs.
 }
 ```
 
-Access these secrets from `my-secret-name` like this:
+Access these secrets from `secret-name` like this:
 
 ```bash
-{vault://aws/my-secret-name/foo}
-{vault://aws/my-secret-name/snip}
+{vault://aws/secret-name/foo}
+{vault://aws/secret-name/snip}
 ```
 
 ## Configuration via vaults entity
@@ -56,7 +54,7 @@ The Vault entity can only be used once the database is initialized. Secrets for 
 {% navtab Admin API %}
 
 ```bash
-curl -i -X PUT http://HOSTNAME:8001/vaults/my-aws-sm-vault  \
+curl -i -X PUT http://HOSTNAME:8001/vaults/aws-sm-vault  \
   --data name=aws \
   --data description="Storing secrets in AWS Secrets Manager" \
   --data config.region="us-east-1"
@@ -73,7 +71,7 @@ Result:
     "description": "Storing secrets in AWS Secrets Manager",
     "id": "2911e119-ee1f-42af-a114-67061c3831e5",
     "name": "aws",
-    "prefix": "my-aws-sm-vault",
+    "prefix": "aws-sm-vault",
     "tags": null,
     "updated_at": 1644942689
 }
@@ -93,7 +91,7 @@ vaults:
     region: us-east-1
   description: Storing secrets in AWS Secrets Manager
   name: aws
-  prefix: my-aws-sm-vault
+  prefix: aws-sm-vault
 ```
 
 {% endnavtab %}
@@ -103,8 +101,8 @@ With the Vault entity in place, you can now reference the secrets. This allows y
 environment variable.
 
 ```bash
-{vault://my-aws-sm-vault/my-secret-name/foo}
-{vault://my-aws-sm-vault/my-secret-name/snip}
+{vault://aws-sm-vault/secret-name/foo}
+{vault://aws-sm-vault/secret-name/snip}
 ```
 
 ## Secrets in different regions
@@ -119,8 +117,8 @@ curl -X PUT http://HOSTNAME:8001/vaults/aws-us-west-vault -d name=aws -d config.
 This lets you source secrets from different regions:
 
 ```bash
-{vault://aws-eu-central-vault/my-secret-name/foo}
-{vault://aws-us-west-vault/my-secret-name/snip}
+{vault://aws-eu-central-vault/secret-name/foo}
+{vault://aws-us-west-vault/secret-name/snip}
 ```
 
 ## Vault configuration options
@@ -137,9 +135,12 @@ any of the supported tools:
 
 Configuration options for an AWS Secrets Manager vault in {{site.base_gateway}}:
 
-Parameter | Field name | Description
-----------|---------------|------------
+Parameter | Field name                     | Description
+----------|--------------------------------|------------
 `vaults.config.region` | **AWS region** | The AWS region your vault is located in.
+`vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the vault when it's cached. The special value of 0 means "no rotation" and it's the default. When using non-zero values, it is recommended that they're at least 1 minute.
+`vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a vault miss (no secret). Negatively cached secrets will remain valid until `neg_ttl` is reached, after which Kong will attempt to refresh the secret again. The default value for `neg_ttl` is 0, meaning no negative caching occurs.
+`vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for how long secrets will remain in use after they are expired (`config.ttl` is over). This is useful when a vault becomes unreachable, or when a secret is deleted from the Vault and isn't replaced immediately. On this both cases, the Gateway will keep trying to refresh the secret for `resurrect_ttl` seconds. After that, it will stop trying to refresh. We recommend assigning a sufficiently high value to this configuration option to ensure a seamless transition in case there are unexpected issues with the Vault. The default value for `resurrect_ttl` is 1e8 seconds, which is about 3 years.
 
 Common options:
 
@@ -147,4 +148,4 @@ Parameter | Field name | Description
 ----------|---------------|------------
 `vaults.description` <br> *optional* | **Description** | An optional description for your vault.
 `vaults.name` | **Name** | The type of vault. Accepts one of: `env`, `gcp`, `aws`, or `hcv`. Set `aws` for AWS Secrets Manager.
-`vaults.prefix` | **Prefix** | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://my-aws-sm-vault/<some-secret>}`.
+`vaults.prefix` | **Prefix** | The reference prefix. You need this prefix to access secrets stored in this vault. For example, `{vault://aws-sm-vault/<some-secret>}`.

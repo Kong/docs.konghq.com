@@ -1,5 +1,6 @@
 ---
 nav_title: Getting started with ACME
+title: Getting started with ACME
 ---
 
 ## Using the plugin
@@ -21,7 +22,7 @@ users can set this config to `system` to auto pick CA-bundle from OS.
 For each the domain that needs a certificate, make sure `DOMAIN/.well-known/acme-challenge`
 is mapped to a route in Kong. You can check this by sending
 `curl KONG_IP/.well-known/acme-challenge/x -H "host:DOMAIN"` and getting the response `Not found`.
-You can also [use the Admin API](/hub/kong-inc/acme/reference/api/#create-certificates) to verify the setup.
+You can also [use the Admin API](/hub/kong-inc/acme/api/#create-certificates) to verify the setup.
 If not, add a route and a dummy service to catch this route.
 
 1. Add a sample service if needed:
@@ -114,10 +115,10 @@ curl http://localhost:8001/acme -XPATCH
 
 ## More information
 
-* [Local testing and development guide](/hub/kong-inc/how-to/local-testing-development/)
-* Monitoring and debugging: The ACME plugin exposes monitoring and debuggin endpoints 
+* [Local testing and development guide](/hub/kong-inc/acme/how-to/local-testing-development/)
+* Monitoring and debugging: The ACME plugin exposes monitoring and debugging endpoints 
 through the {{site.base_gateway}} Admin API. See the 
-[ACME API reference](/hub/kong-inc/acme/reference/api/) for more information.
+[ACME API reference](/hub/kong-inc/acme/api/) for more information.
 * [ACME plugin configuration reference](/hub/kong-inc/acme/configuration/) and 
-[basic configuration examples](/hub/kong-inc/acme/configuration/examples/)
+[basic configuration examples](/hub/kong-inc/acme/how-to/basic-example/)
 

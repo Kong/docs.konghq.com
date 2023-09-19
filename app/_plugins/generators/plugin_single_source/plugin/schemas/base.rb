@@ -10,6 +10,9 @@ module PluginSingleSource
 
         NO_CONSUMER = { 'consumer' => { 'type' => 'foreign', 'reference' => 'consumers', 'eq' => nil } }.freeze
 
+        NO_CONSUMER_GROUP = { 'consumer_group' => { 'type' => 'foreign', 'reference' => 'consumer_groups',
+                                                    'eq' => nil } }.freeze
+
         # Skips plugin versions older than 2.3.x for which
         # the docker image isn't working
         def self.make_for(vendor:, name:, version:)
@@ -53,6 +56,12 @@ module PluginSingleSource
                        .example
         end
 
+        def example_file_path
+          @example_file_path ||= Examples::Base
+                                 .make_for(vendor:, name: plugin_name, version:)
+                                 .file_path
+        end
+
         def protocols_field
           @protocols_field ||= fields.detect { |f| f.key?('protocols') }&.values&.first || {}
         end
@@ -65,25 +74,43 @@ module PluginSingleSource
           field = fields.detect { |f| f.key?('consumer') }
           return true unless field
 
-          field != NO_CONSUMER
+          !field_no_def?('consumer', field, NO_CONSUMER)
+        end
+
+        def enable_on_consumer_group?
+          # Consumer Groups support for plugins was introduced in 3.4.x
+          return false if Utils::Version.to_version(@version) < Utils::Version.to_version('3.4.x')
+
+          field = fields.detect { |f| f.key?('consumer_group') }
+          return true unless field
+
+          !field_no_def?('consumer_group', field, NO_CONSUMER_GROUP)
         end
 
         def enable_on_service?
           field = fields.detect { |f| f.key?('service') }
           return true unless field
 
-          field != NO_SERVICE
+          !field_no_def?('service', field, NO_SERVICE)
         end
 
         def enable_on_route?
           field = fields.detect { |f| f.key?('route') }
           return true unless field
 
-          field != NO_ROUTE
+          !field_no_def?('route', field, NO_ROUTE)
         end
 
         def empty?
           schema.empty?
+        end
+
+        private
+
+        def field_no_def?(key, field, no_def)
+          no_def[key].all? do |k, v|
+            field[key][k] == v
+          end
         end
       end
     end

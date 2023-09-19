@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+set -e
+bundle exec jekyll build --config jekyll.yml --profile

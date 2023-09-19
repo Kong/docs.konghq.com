@@ -22,7 +22,7 @@ Kong provides a set of core instrumentations for tracing, these can be configure
 - `off`: do not enable instrumentations.
 - `request`: only enable request-level instrumentations.
 - `all`: enable all the following instrumentations.
-- `db_query`: trace database query, including PostgresSQL and Cassandra.
+- `db_query`: trace database query.
 - `dns_query`: trace DNS query.
 - `router`: trace router execution, including router rebuilding.
 - `http_client`: trace OpenResty HTTP client requests.

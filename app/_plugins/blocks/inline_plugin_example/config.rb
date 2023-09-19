@@ -3,8 +3,8 @@
 module Jekyll
   module InlinePluginExample
     class Config
-      TARGETS = %i[service route consumer global].freeze
-      FORMATS = %i[curl yaml kubernetes].freeze
+      TARGETS = %i[service route consumer global consumer_group].freeze
+      FORMATS = %i[curl konnect yaml kubernetes].freeze
 
       def initialize(config:, page:)
         @config = config
@@ -68,7 +68,7 @@ module Jekyll
       end
 
       def version
-        @version ||= @page['kong_version']
+        @version ||= @page['kong_version'] || @page['version']
       end
     end
   end

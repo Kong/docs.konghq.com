@@ -1,0 +1,28 @@
+name: Install Instructions
+on: workflow_dispatch
+
+jobs:
+  install-instructions:
+    env:
+      BASE_URL: https://docs.konghq.com
+    strategy:
+      fail-fast: false
+      matrix:
+        distro: [ubuntu, rhel, amazon-linux, debian, centos]
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: "recursive"
+
+      - name: Run Install tests
+        env:
+          DISTRO: ${{ matrix.distro }}
+          CONTINUE_ON_ERROR: 1
+          IGNORE_SKIPS: 1
+          EXPECTED_FAILURES_EXIT_CODE: 0
+        run: |
+          cd tools/install-tester
+          npm ci
+          node index.js

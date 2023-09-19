@@ -13,31 +13,33 @@ the plugin configuration will apply to all services in the group.
 Consumers, SNIs, upstreams, and certificates are all global. Plugins
 can either be global or scoped.
 
+{:.note}
+> **Exceptions in composite runtime groups**: Some core entities have specific requirements and limitations 
+when part of a composite runtime group. See the [Composite runtime groups](/konnect/runtime-manager/composite-runtime-groups/#configuring-core-entities) documentation for details.
+
 ### Gateway services
 
 The **Gateway Service** configuration page lists all {{site.base_gateway}} services
 in the runtime group. Service entities are abstractions of each of your own
 upstream services, such as a data transformation microservice, or a billing API.
 
-Gateway services can be exposed in Service Hub, or managed though Runtime Manager
-only:
+Gateway services can be managed though Runtime Manager:
 
-* When you create a {{site.konnect_short_name}} service implementation through the Service Hub, it automatically creates a Gateway service.
+* When you create a {{site.konnect_short_name}} service implementation through the Setup Wizard, it automatically creates a Gateway service.
 * You can also create a Gateway service directly through Runtime Manager. This
-service won't be connected to any Service Hub implementation by default, unless you add a tag to link it.
+service won't be attached to an API product by default.
 
-To see if a Gateway service is connected to the Service Hub, open its
+To see if a Gateway service is connected to an API product, open its
 detail page from {% konnect_icon runtimes %} **Runtime Manager** > **Gateway Services**. If it's attached to an
-implementation, you should see a tag in the following format: [`_KonnectService:{SERVICE_NAME}`](/deck/latest/guides/konnect/#konnect-service-tags).
+an API product you will see the name of the API product under **API Product**, and the API product version under **API product version**.
 
-Learn more about [services in {{site.konnect_short_name}}](/konnect/servicehub/) or
+Learn more about [Gateway services in {{site.konnect_short_name}}](/konnect/runtime-manager/configuration/#gateway-services) or
 check out the [service object API reference](/gateway/latest/admin-api/#service-object)
 for all configuration options.
 
 ### Routes
 
-The **Routes** configuration page lists all routes in the runtime group, including
-routes created through the Service Hub. A route defines rules to match client
+The **Routes** configuration page lists all routes in the runtime group. A route defines rules to match client
 requests, and is associated with a Gateway service. You can edit any
 routes in the runtime group from here.
 
@@ -67,11 +69,11 @@ adding rules, policies, transformations, and more on requests and responses.
 
 Although you can see all plugins from this page, you can only edit _global_ or
 _consumer-scoped_ plugins through the Runtime Manager.
-[Service](/konnect/servicehub/enable-service-plugin) and
-[route](/konnect/servicehub/enable-route-plugin) plugins must be managed
-through the Service Hub.
+[Service](/konnect/runtime-manager/enable-service-plugin) and
+[route](/konnect/runtime-manager/enable-route-plugin) plugins must be managed
+through the Runtime Manager.
 
-Learn more about [using plugins in {{site.konnect_short_name}}](/konnect/servicehub/plugins/),
+Learn more about [using plugins in {{site.konnect_short_name}}](/konnect/runtime-manager/plugins/),
 check out the [plugin object API reference](/gateway/latest/admin-api/#plugin-object),
 or see all available plugins on the [Plugin Hub](/hub/) for specific configuration
 options for each plugin.
@@ -151,6 +153,7 @@ The following entity resource limits apply to each runtime group for the configu
 | Mutual Transport Layer Security Authentication | 50,000 |
 | Plugin Configuration | 10,000 |
 | Route | 10,000 |
+| Runtime Groups | 100 |
 | Server Name Indication | 1,000 |
 | Service | 10,000 |
 | Target | 10,000 |

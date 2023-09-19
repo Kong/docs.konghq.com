@@ -466,6 +466,7 @@ and if they do, the admin can grant them individually.
       --data 'endpoint=/rbac/*' \
       --data 'workspace=teamA' \
       --data 'actions=*' \
+      --data 'negative=true' \
       -H 'Kong-Admin-Token:n5bhjgv0speXp4N7rSUzUj8PGnl3F5eG'
     ```
 
@@ -494,6 +495,7 @@ and if they do, the admin can grant them individually.
       --data 'endpoint=/workspaces/*' \
       --data 'workspace=teamA' \
       --data 'actions=*' \
+      --data 'negative=true' \
       -H 'Kong-Admin-Token:n5bhjgv0speXp4N7rSUzUj8PGnl3F5eG'
     ```
 

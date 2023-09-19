@@ -90,7 +90,7 @@ RSpec.describe LatestVersion::Generator do
         end
 
         context 'pages that do not belong to products with latest versions' do
-          ['404.html', 'gateway-oss/2.1.x/index.md', 'contributing/index.md', 'enterprise/k8s-changelog.md'].each do |path|
+          ['404.html', 'contributing/index.md'].each do |path|
             let(:relative_path) { path }
 
             it_behaves_like 'does not create a latest page'

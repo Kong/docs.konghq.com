@@ -36,7 +36,7 @@ formats:
       expect(subject).to have_css('.navtab-title', text: 'Enable on a service')
       expect(subject).to have_css('.navtab-title', text: 'Enable on a route')
 
-      expect(subject).not_to have_css('.navtab-title', text: 'Enable on a consumer')
+      expect(subject).not_to have_css('.navtab-title', text: /^Enable on a consumer$/)
       expect(subject).not_to have_css('.navtab-title', text: 'Enable globally')
 
       expect(subject).to have_css('#navtab-id-0 .navtab-title', text: 'Admin API')

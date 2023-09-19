@@ -5,7 +5,7 @@ title: Reference Format
 We use the [URL syntax](https://en.wikipedia.org/wiki/URL) to describe references to a secret store.
 
 ```text
-{vault://<vault-backend|entity>/<secret-id>[/<secret-key][?query]}
+{vault://<vault-backend|entity>/<secret-id>[/<secret-key][/][?query]}
 ```
 
 ### Protocol/Scheme
@@ -53,6 +53,12 @@ like username and password as a secret `object`.
 #### Secret Key
 
 The `secret-key` is used to identify the secret within the `secret-id` object.
+
+{:.note}
+> If secret key ends with `/`, then it is not considered as a [Secret Key](#secret-key) but as a part of [Secret Id](#secret-id).
+> The difference between [Secret Key](#secret-key) and [Secret Id](#secret-id) is that only the [Secret Id](#secret-id) is sent to vault API,
+> and the [Secret Key](#secret-key) is only used when processing 
+
 
 ### Query
 

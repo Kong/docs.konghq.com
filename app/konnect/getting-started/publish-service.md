@@ -1,28 +1,18 @@
 ---
-title: Publish and Consume Services
+title: Add Documentation
 ---
 
-The Dev Portal is an API catalog that lets you document your {{site.konnect_short_name}} services
+The Dev Portal is an API catalog that lets you document your {{site.konnect_short_name}} API products
 and share them with your developers. Developers can use the Dev Portal to
-locate, access, consume, and register applications against the services.
+locate, access, consume, and register applications against the products.
 
-This guide walks you through setting up a sample API spec and description for
-the {{site.konnect_short_name}} service and publishing the service to the Dev
-Portal. You'll also have a chance to check out the Dev Portal live, and test
-out some customization options.
+This guide walks you through associating API specs and product documentation with your API products, and viewing any published content, and Dev Portal specific customization options.
 
-## Prerequisites
 
-You have [configured a {{site.konnect_short_name}} service](/konnect/getting-started/configure-service/) with at least one version.
+### Add Product Documentation
 
-## Upload a description
-
-You can provide extended descriptions of your {{site.konnect_short_name}} services with a Markdown (`.md`) file.
+You can provide extended descriptions of your {{site.konnect_short_name}} API products with a Markdown (`.md`) file.
 The contents of this file will be displayed as the introduction to your API in the Dev Portal.
-
-{{site.konnect_short_name}} supports
-[GitHub-Flavored Markdown](https://github.github.com/gfm/) (GFM) for API
-descriptions.
 
 1. Write a description for your API in Markdown (`.md`).
 
@@ -45,22 +35,21 @@ descriptions.
 
     ```
 
-1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), select a service.
+1. In the {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products), select a service.
 
-1. Select **Documentation**, then **Add Page**. Upload the `.md` file and click **Save**.
+1. Select **Documentation**, upload your documentation, add a **Page name**, and an optional **URL slug**. 
+1. Click **Save**.
 
-    {% konnect_icon servicehub %} will automatically populate fields from the uploaded file.
 
-## Upload an API spec
+### Add an API Spec {#add-api-spec}
 
-OpenAPI specifications, or specs, can be uploaded and attached to a specific service version within your Dev Portal.
 Every version can have one OpenAPI spec associated with it, in JSON or YAML format.
 
 If you have a spec, use it in the following steps. Otherwise, you can
 use the [sample Analytics spec](/konnect/vitalsSpec.yaml) for testing.
 
 
-1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), open a service, then select a service version.
+1. From the {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products) dashboard, select **Product Version** then **Upload**. 
 
 1. Find the **Version Spec** section and click **Upload Spec**.
 
@@ -72,15 +61,6 @@ use the [sample Analytics spec](/konnect/vitalsSpec.yaml) for testing.
 This OpenAPI spec will be shown under the version name when this service is
 published to the Dev Portal.
 
-## Publish a service
-
-1. In the {% konnect_icon servicehub %} [**Service Hub**](https://cloud.konghq.com/servicehub), return to your service's overview page.
-
-1. In the top right corner, click on the **Service actions** dropdown and select
-**Publish to Portal**.
-
-    By default, this publishes all of the service's version specs to a private
-    Dev Portal site.
 
 ## View the published content on Dev Portal
 
@@ -126,7 +106,7 @@ You can't use your {{site.konnect_short_name}} credentials to log in here.
 1. Check your email for a confirmation link. Click the link, then log
 into the Dev Portal.
 
-1. Open the service you published to check it out.
+1. Open the API product you published to check it out.
 
 {% endnavtab %}
 {% navtab Public Dev Portal %}
@@ -177,9 +157,7 @@ Let's change up a couple of things:
 ## Summary and next steps
 
 In this topic, you:
-* Uploaded documentation to describe your service
-* Published the service to the Dev Portal
-* Logged into the Dev Portal to check out the service documentation live
+* Logged into the Dev Portal to check out the API product documentation live
 * Customized the Dev Portal
 
-Next, [register an application against the service](/konnect/getting-started/app-registration/).
+Next, [register an application against the API product](/konnect/getting-started/app-registration/).

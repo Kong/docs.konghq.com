@@ -54,6 +54,10 @@ For example, you can not perform string comparisons on a integer type field.
 | `http.host`  | Lists of domains that match a route. | String |
 | `http.path` | Normalized request path (without query parameters). | String |
 | `http.headers.header_name` | Value of header `Header-Name`. Header names are converted to lower case, and `-` are replaced to `_`. | String |
+| `net.src.ip` | Source IP address of incoming connection. | IpAddr |
+| `net.src.port` | Source port number of incoming connection. | Int |
+| `net.dst.ip` | Destination IP address of incoming connection. | IpAddr |
+| `net.dst.port` | Destination port number of incoming connection. | Int |
 
 ## String
 
@@ -64,8 +68,7 @@ For example, you can not perform string comparisons on a integer type field.
 | ~ | Regex matching |
 | ^= | Prefix matching |
 | =^ | Suffix matching |
-| in | Contains |
-| not in | Does not contain |
+| contains | Contains |
 
 ## String transformations
 
@@ -84,13 +87,14 @@ For example, you can not perform string comparisons on a integer type field.
 | < | Less than |
 | <= | Less than or equal |
 
-## IP
+## IpAddr
 
 | Operator | Meaning |
 | --- | ----------- |
 | == | Equals |
 | != | Not equals |
-| in | Contains |
+| in | In CIDR |
+| not in | Not in CIDR |
 
 ## Boolean
 

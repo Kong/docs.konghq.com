@@ -10,12 +10,6 @@ OpenID Connect.
 This authentication method allows your users to log in to {{site.konnect_saas}}
 using their IdP credentials, without needing a separate login.
 
-You can't mix authentication methods in {{site.konnect_saas}}. With IdP
-authentication enabled, all non-admin {{site.konnect_short_name}} users have to
-log in through your IdP. Only the {{site.konnect_short_name}} org
-owner can continue to log in with {{site.konnect_short_name}}'s native
-authentication.
-
 ## Prerequisites
 
 * {{site.konnect_short_name}} must be added to your IdP as an application

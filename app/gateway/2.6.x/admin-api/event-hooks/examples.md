@@ -19,22 +19,22 @@ To create a webhook event hook:
 {% capture the_code %}
 {% navtabs codeblock %}
 {% navtab cURL %}
-
-<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+```sh
+curl -i -X POST http://localhost:8001/event-hooks \
 -d source=crud \
 -d event=consumers \
 -d handler=webhook \
--d config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
-
+-d config.url=<WEBHOOK_URL>
+```
 {% endnavtab %}
 {% navtab HTTPie %}
-
-<div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+```sh
+http -f :8001/event-hooks \
 source=crud \
 event=consumers \
 handler=webhook \
-config.url=<div contenteditable="true">{WEBHOOK_URL}</div></code></pre></div>
-
+config.url=<WEBHOOK_URL>
+```
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
@@ -62,16 +62,16 @@ Create a consumer, Ada Lovelace, by making the following HTTP request to your in
 
 {% navtabs codeblock %}
 {% navtab cURL %}
-
-<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/consumers \
--d username="Ada Lovelace"</code></pre></div>
-
+```sh
+curl -i -X POST http://localhost:8001/consumers \
+-d username="Ada Lovelace"
+```
 {% endnavtab %}
 {% navtab HTTPie %}
-
-<div class="copy-code-snippet"><pre><code>http -f :8001/consumers \
-username="Ada Lovelace"</code></pre><div>
-
+```sh
+http -f :8001/consumers \
+username="Ada Lovelace"
+```
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -121,28 +121,28 @@ To create a custom webhook event hook:
 {% capture the_code3 %}
 {% navtabs codeblock %}
 {% navtab cURL %}
-
-<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+```sh
+curl -i -X POST http://localhost:8001/event-hooks \
 -d source=crud \
 -d event=admins \
 -d handler=webhook-custom \
 -d config.method=POST \
--d config.url=<div contenteditable="true">{WEBHOOK_URL}</div> \
+-d config.url=<WEBHOOK_URL> \
 -d config.headers.content-type="application/json" \
--d config.payload.text={% raw %}"Admin account \`{{ entity.username }}\` {{ operation}}d; email address set to \`{{ entity.email }}\`"{% endraw %}</code></pre></div>
-
+-d config.payload.text={% raw %}"Admin account \`{{ entity.username }}\` {{ operation}}d; email address set to \`{{ entity.email }}\`"{% endraw %}
+```
 {% endnavtab %}
 {% navtab HTTPie %}
-
-<div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+```sh
+http -f :8001/event-hooks \
 source=crud \
 event=admins \
 handler=webhook-custom \
 config.method=POST \
-config.url=<div contenteditable="true">{WEBHOOK_URL}</div> \
+config.url=<WEBHOOK_URL> \
 config.headers.content-type="application/json" \
-config.payload.text={% raw %}"Admin account \`{{ entity.username }}\` {{ operation}}d; email address set to \`{{ entity.email }}\`"{% endraw %}</code></pre></div>
-
+config.payload.text={% raw %}"Admin account \`{{ entity.username }}\` {{ operation}}d; email address set to \`{{ entity.email }}\`"{% endraw %}
+```
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
@@ -175,25 +175,25 @@ config.payload.text={% raw %}"Admin account \`{{ entity.username }}\` {{ operati
 Create an admin, Arya Stark, by making the following HTTP request to your instance of the Kong Admin API:
 
 {:.note}
-> **Note:** Replace `{KONG_ADMIN_PASSWORD`} with your `kong_admin` password. This is the initial
+> **Note:** Replace `<KONG_ADMIN_PASSWORD>` with your `kong_admin` password. This is the initial
   `KONG_PASSWORD` you used when you ran migrations during installation.
 
 {% navtabs codeblock %}
 {% navtab cURL %}
-
-<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/admins \
+```sh
+curl -i -X POST http://localhost:8001/admins \
 -d username="Arya Stark" \
 -d email=arya@gameofthrones.com \
--H Kong-Admin-Token:{KONG_ADMIN_PASSWORD}</code></pre></div>
-
+-H Kong-Admin-Token:<KONG_ADMIN_PASSWORD>
+```
 {% endnavtab %}
 {% navtab HTTPie %}
-
-<div class="copy-code-snippet"><pre><code>http -f :8001/admins \
+```sh
+http -f :8001/admins \
 username="Arya Stark" \
 email=arya@gameofthrones.com \
-Kong-Admin-Token={KONG_ADMIN_PASSWORD}</code></pre><div>
-
+Kong-Admin-Token=<KONG_ADMIN_PASSWORD>
+```
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -217,20 +217,20 @@ To create a log event hook:
 {% capture the_code5 %}
 {% navtabs codeblock %}
 {% navtab cURL %}
-
-<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+```sh
+curl -i -X POST http://localhost:8001/event-hooks \
 -d source=crud \
 -d event=consumers \
--d handler=log</code></pre></div>
-
+-d handler=log
+```
 {% endnavtab %}
 {% navtab HTTPie %}
-
-<div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+```sh
+http -f :8001/event-hooks \
 source=crud \
 event=consumers \
-handler=log</code></pre></div>
-
+handler=log
+```
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
@@ -256,16 +256,16 @@ Create a consumer, Elizabeth Bennet, by making the following HTTP request to you
 
 {% navtabs codeblock %}
 {% navtab cURL %}
-
-<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/consumers \
--d username="Elizabeth Bennet"</code></pre></div>
-
+```sh
+curl -i -X POST http://localhost:8001/consumers \
+-d username="Elizabeth Bennet"
+```
 {% endnavtab %}
 {% navtab HTTPie %}
-
-<div class="copy-code-snippet"><pre><code>http -f :8001/consumers \
-username="Elizabeth Bennet"</code></pre><div>
-
+```sh
+http -f :8001/consumers \
+username="Elizabeth Bennet"
+```
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -322,22 +322,22 @@ To create a lambda event hook:
 {% capture the_code7 %}
 {% navtabs codeblock %}
 {% navtab cURL %}
-
-<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/event-hooks \
+```sh
+curl -i -X POST http://localhost:8001/event-hooks \
 -d source=crud \
 -d event=consumers \
 -d handler=lambda \
--F config.functions='return function (data, event, source, pid) local user = data.entity.username error("Event hook on consumer " .. user .. "")end'</code></pre></div>
-
+-F config.functions='return function (data, event, source, pid) local user = data.entity.username error("Event hook on consumer " .. user .. "")end'
+```
 {% endnavtab %}
 {% navtab HTTPie %}
-
-<div class="copy-code-snippet"><pre><code>http -f :8001/event-hooks \
+```sh
+http -f :8001/event-hooks \
 source=crud \
 event=consumers \
 handler=lambda \
-config.functions[]=@~/lambda.lua</code></pre></div>
-
+config.functions[]=@~/lambda.lua
+```
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
@@ -363,16 +363,16 @@ Create a consumer, Lois Lane, by making the following HTTP request to your insta
 
 {% navtabs codeblock %}
 {% navtab cURL %}
-
-<div class="copy-code-snippet"><pre><code>curl -i -X POST http://<div contenteditable="true">{HOSTNAME}</div>:8001/consumers \
--d username="Lois Lane"</code></pre></div>
-
+```sh
+curl -i -X POST http://localhost:8001/consumers \
+-d username="Lois Lane"
+```
 {% endnavtab %}
 {% navtab HTTPie %}
-
-<div class="copy-code-snippet"><pre><code>http -f :8001/consumers \
-username="Lois Lane"</code></pre></div>
-
+```sh
+http -f :8001/consumers \
+username="Lois Lane"
+```
 {% endnavtab %}
 {% endnavtabs %}
 

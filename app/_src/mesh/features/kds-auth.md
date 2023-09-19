@@ -160,15 +160,22 @@ You can still authenticate a control plane using the separate [Control Plane Tok
 <!-- vale off -->
 <!-- links -->
 {% if_version gte:2.0.x %}
+{% if_version lte:2.1.x %}
 [zone-proxy]: /mesh/{{page.kong_version}}/security/zoneproxy-auth/
 [auth]: /mesh/{{page.kong_version}}/security/certificates/#user-to-control-plane-communication
 [certs]: /mesh/{{page.kong_version}}/security/certificates/#control-plane-to-control-plane-multizone
 {% endif_version %}
+{% if_version gte:2.2.x %}
+[zone-proxy]: /mesh/{{page.kong_version}}/production/cp-deployment/zoneproxy-auth
+[auth]: /mesh/{{page.kong_version}}/production/secure-deployment/certificates/#data-plane-proxy-to-control-plane-communication
+[certs]: /mesh/{{page.kong_version}}/production/secure-deployment/certificates/#control-plane-to-control-plane-multizone
+{% endif_version %}
+{% endif_version %}
 
 {% if_version lte:1.9.x %}
-[zone-proxy]: https://kuma.io/docs/latest/security/zoneproxy-auth/
-[auth]: https://kuma.io/docs/latest/security/certificates/#user-to-control-plane-communication
-[certs]: https://kuma.io/docs/latest/security/certificates/#control-plane-to-control-plane-multizone
+[zone-proxy]: https://kuma.io/docs/1.8.x/security/zone-ingress-auth/
+[auth]: https://kuma.io/docs/1.8.x/security/certificates/#user-to-control-plane-communication
+[certs]: https://kuma.io/docs/1.8.x/security/certificates/#control-plane-to-control-plane-multizone
 {% endif_version %}
 
 <!-- vale on -->

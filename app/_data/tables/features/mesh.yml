@@ -113,11 +113,6 @@ features:
           Allows you to natively support AWS ECS workloads with a built-in controller that automatically integrates ECS workloads within one or more service meshes powered by Kong Mesh. This simplifies the expansion of service mesh in the cloud.
         kuma: false
         mesh: true
-      - name: Windows Distributions
-        tooltip: |
-          Allows you to natively support Microsoft Windows workloads in service meshes, allowing you to further expand the reach of Kong Mesh across every workload in your organization.
-        kuma: false
-        mesh: true
       - name: UBI Federal Distributions
         tooltip: |
           Provides officially supported distributions based on the Red Hat Universal Base Images (UBI).

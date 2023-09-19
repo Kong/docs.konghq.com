@@ -13,12 +13,7 @@ For this example, you will:
 * Deploy a UDP test application.
 * Route UDP traffic to it using UDPIngress or UDPRoute.
 
-{% include_cached /md/kic/installation.md kong_version=page.kong_version %}
-
-{% include_cached /md/kic/class.md kong_version=page.kong_version %}
-
-[svc]:https://kubernetes.io/docs/concepts/services-networking/service/
-[udp]:https://datatracker.ietf.org/doc/html/rfc768
+{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=true %}
 
 ## Create a namespace
 
@@ -48,7 +43,7 @@ To expose UDP listens, update the Deployment's environment variables and port
 configuration:
 
 ```bash
-kubectl patch deploy -n kong ingress-kong --patch '{
+kubectl patch deploy -n kong kong-gateway --patch '{
   "spec": {
     "template": {
       "spec": {
@@ -77,7 +72,7 @@ kubectl patch deploy -n kong ingress-kong --patch '{
 ```
 Response:
 ```text
-deployment.extensions/ingress-kong patched
+deployment.apps/kong-gateway patched
 ```
 
 ## Add a UDP proxy Service
@@ -103,7 +98,7 @@ spec:
     protocol: UDP
     targetPort: 9999
   selector:
-    app: ingress-kong
+    app: kong-gateway
   type: LoadBalancer
 " | kubectl apply -f -
 ```
@@ -289,3 +284,6 @@ Request Information:
 ```
 {% endnavtab %}
 {% endnavtabs %}
+
+[svc]:https://kubernetes.io/docs/concepts/services-networking/service/
+[udp]:https://datatracker.ietf.org/doc/html/rfc768

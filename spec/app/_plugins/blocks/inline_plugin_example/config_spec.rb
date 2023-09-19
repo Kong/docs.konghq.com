@@ -96,4 +96,22 @@ RSpec.describe Jekyll::InlinePluginExample::Config do
   describe '#title' do
     it { expect(subject.title).to eq('Opinionated Example') }
   end
+
+  describe '#schema' do
+    context 'when the page has `version` set instead of `kong_version`' do
+      let(:page) { { 'version' => '3.2.x' } }
+
+      it 'returns the schema' do
+        expect(subject.schema).to be_an_instance_of(::PluginSingleSource::Plugin::Schemas::Kong)
+      end
+    end
+
+    context 'when the page has `kong_version` set' do
+      let(:page) { { 'kong_version' => '3.2.x' } }
+
+      it 'returns the schema' do
+        expect(subject.schema).to be_an_instance_of(::PluginSingleSource::Plugin::Schemas::Kong)
+      end
+    end
+  end
 end

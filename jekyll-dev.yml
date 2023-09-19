@@ -21,9 +21,10 @@ name: Kong Docs
 title: Kong Docs
 description: "Documentation for Kong, the Cloud Connectivity Company for APIs and Microservices."
 links:
-  web: http://localhost:3000
+  web: http://localhost:4000
   share: https://docs.konghq.com # legacy link, must maintain for social sharing counters
   download: https://download.konghq.com
+  cloudsmith: https://packages.konghq.com
   instaclustr: "https://www.instaclustr.com/products/kong/?utm_source=partnership&utm_medium=link&utm_campaign=mashape"
   learn: https://education.konghq.com # kong academy
   archive: https://legacy-gateway--kongdocs.netlify.app
@@ -41,31 +42,31 @@ extensions:
     - name: Authentication
       slug: authentication
       desc: Protect your services with an authentication layer
-      icon:
+      icon: /assets/images/nav/hub/lock_person.svg
     - name: Security
       slug: security
       desc: Protect your services with additional security layer
-      icon:
+      icon: /assets/images/nav/hub/shield.svg
     - name: Traffic Control
       slug: traffic-control
       desc: Manage, throttle and restrict inbound and outbound API traffic
-      icon:
+      icon: /assets/images/nav/hub/route.svg
     - name: Serverless
       slug: serverless
       desc: Invoke serverless functions in combination with other plugins
-      icon:
+      icon: /assets/images/nav/hub/serverless.svg
     - name: Analytics & Monitoring
       slug: analytics-monitoring
       desc: Visualize, inspect and monitor APIs and microservices traffic
-      icon:
+      icon: /assets/images/nav/hub/bar_chart.svg
     - name: Transformations
       slug: transformations
       desc: Transform request and responses on the fly on Kong
-      icon:
+      icon: /assets/images/nav/hub/swap_horiz.svg
     - name: Logging
       slug: logging
       desc: Log request and response data using the best transport for your infrastructure
-      icon:
+      icon: /assets/images/nav/hub/list_alt.svg
   types:
     - name: plugin
       slug: plugin
@@ -77,6 +78,7 @@ extensions:
 exclude:
   - node_modules
   - jekyll-cache
+  - app/assets
 
 # location vars
 icons_dir: assets/images/icons
@@ -88,6 +90,7 @@ plugins:
   - jekyll-include-cache
   - jekyll-generator-single-source
   - jekyll-kuma-plugins
+  - jekyll/vite
 
 defaults:
   - scope:
@@ -96,24 +99,9 @@ defaults:
       layout: "docs-v2"
 
   - scope:
-      path: "enterprise"
+      path: "assets"
     values:
-      layout: "docs-v2"
-
-  - scope:
-      path: "gateway-oss"
-    values:
-      layout: "docs-v2"
-
-  - scope:
-      path: "install"
-    values:
-      layout: "install"
-
-  - scope:
-      path: "getting-started-guide"
-    values:
-      layout: "docs-v2"
+      layout: null
 
   - scope:
       path: "deck"
@@ -220,14 +208,22 @@ konnect_saas: Kong Konnect
 package_name: Kong Konnect
 company_name: Kong Inc.
 mesh_product_name: Kong Mesh
+# Mesh specific config
 mesh_namespace: kong-mesh-system
 mesh_cp_name: kong-mesh-control-plane
+mesh_ignored_links_regex:
+  - '\[.*\]\(https:\/\/github\.com\/[kK]ong\/kong-mesh.*\)'
+mesh_raw_generated_paths:
+  - app/mesh
+  - app/_src/.repos/kuma/app/docs
+# Helm commands
+set_flag_values_prefix: kuma.
+mesh_helm_repo: kong-mesh/kong-mesh
+mesh_helm_install_name: kong-mesh
+mesh_disabled_versions: [dev]
+# binary options
+mesh_install_archive_name: kong-mesh
 
 jekyll-generator-single-source:
   versions_file: '_data/kong_versions.yml'
   docs_nav_folder: '_data'
-
-# Helm commands
-mesh_helm_repo: kong-mesh/kong-mesh
-mesh_helm_install_name: kong-mesh
-mesh_disabled_versions: [dev]

@@ -25,6 +25,19 @@ items:
       - text: Release Notes
         url: /gateway/changelog
         absolute_url: true
+      - text: Breaking Changes
+        items:
+          - text: Kong Gateway 3.3.x
+            url: /breaking-changes/
+            src: /gateway/breaking-changes/33x
+          - text: Kong Gateway 3.2.x
+            url: /breaking-changes/32x
+          - text: Kong Gateway 3.1.x
+            url: /breaking-changes/31x
+          - text: Kong Gateway 3.0.x
+            url: /breaking-changes/30x
+          - text: Kong Gateway 2.8.x or earlier
+            url: /breaking-changes/28x
       - text: Key Concepts
         items:
           - text: Services
@@ -205,6 +218,8 @@ items:
           - text: Customize Gateway Logs
             url: /production/logging/customize-gateway-logs
         url: /production/logging
+      - text: Configure a gRPC service
+        url: /production/configuring-a-grpc-service
       - text: Upgrade and Migration
         items:
           - text: Upgrade Kong Gateway 3.x.x
@@ -212,6 +227,11 @@ items:
             src: /gateway/upgrade-v2
           - text: Migrate from OSS to Enterprise
             url: /migrate-ce-to-ke/
+          - text: Migration Guidelines Cassandra to PostgresSQL
+            url: /migrate-cassandra-to-postgres
+          - text: Breaking Changes
+            url: /production/breaking-changes/
+            generate: false
   - title: Kong Enterprise
     icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
     items:
@@ -334,8 +354,9 @@ items:
           - text: Helpers CLI
             url: /kong-enterprise/dev-portal/cli
           - text: Portal API Documentation
-            url: https://developer.konghq.com/spec/3e65edbc-364d-4762-9d3e-f13083e1b534/33cd4595-e389-4c2b-80ee-5275f25e80e1
+            url: /dev-portal/api/v1/
             absolute_url: true
+            generate: false
       - text: Audit Logging
         url: /kong-enterprise/audit-log
       - text: Keyring and Data Encryption
@@ -537,37 +558,13 @@ items:
             url: /kong-plugins/authentication/reference
           - text: Allow Multiple Authentication Plugins
             url: /kong-plugins/authentication/allowing-multiple-authentication-methods/
-      - text: Rate Limiting Plugin
-        url: /kong-plugins/rate-limiting/algorithms/rate-limiting
-        #items:
-          #- text: Overview
-            #url: /kong-plugins/rate-limiting/ commenting these lines out for 3.0
-            #url: /kong-plugins/rate-limiting/algorithms/rate-limiting
-          #- text: Algorithms
-           # items:
-            #  - text: Configuring sliding-window
-             #   url:  /kong-plugins/rate-limiting/algorithms/rate-limiting
-              #- text: Configuring Fixed bucket
-               # url: /kong-plugins/rate-limiting/algorithms/fixed-bucket
-      - text: Request Transformer
-        items:
-          - text: Add a Body Value
-            url: /kong-plugins/request-transformer/add-body-value
       - text: Plugin Queuing
         items:
           - text: Overview
             url: /kong-plugins/queue
           - text: Plugin Queuing Reference
             url: /kong-plugins/queue/reference
-      - text: GraphQL
-        url: /kong-plugins/graphql
-      - text: gRPC
-        items:
-        - text: gRPC Plugins
-          url: /kong-plugins/grpc
-        - text: Configure a gRPC service
-          url: /kong-plugins/configuring-a-grpc-service
-
+  
   - title: Admin API
     icon: /assets/images/icons/documentation/icn-admin-api-color.svg
     items:
@@ -622,13 +619,15 @@ items:
       - text: Audit Logs
         url: /admin-api/audit-logs
       - text: Status API
-        url: https://developer.konghq.com/spec/9542436a-58d1-4522-a00b-32125b5940f0
+        url: /gateway/api/status/v1/
         absolute_url: true
+        generate: false
   - title: Reference
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:
       - text: kong.conf
         url: /reference/configuration
+        src: /gateway/reference/configuration-3.0-3.3
       - text: Injecting Nginx Directives
         url: /reference/nginx-directives
       - text: CLI
@@ -639,5 +638,7 @@ items:
         url: /reference/performance-testing-framework
       - text: Router Expressions Language
         url: /reference/router-expressions-language
+      - text: Rate Limiting Library
+        url: /reference/rate-limiting/
       - text: FAQ
         url: /reference/faq

@@ -23,7 +23,13 @@ RSpec.describe Jekyll::Drops::Plugins::Examples::Yaml do
     context 'type consumer' do
       let(:type) { 'consumer' }
 
-      it { expect(subject.type_field).to eq('consumer: CONSUMER_NAME|CONSUMER_ID') }
+      it { expect(subject.type_field).to eq('consumer: CONSUMER_NAME|ID') }
+    end
+
+    context 'type consumer_group' do
+      let(:type) { 'consumer_group' }
+
+      it { expect(subject.type_field).to eq('consumer_group: CONSUMER_GROUP_NAME|ID') }
     end
 
     context 'type global' do
@@ -35,13 +41,13 @@ RSpec.describe Jekyll::Drops::Plugins::Examples::Yaml do
     context 'type route' do
       let(:type) { 'route' }
 
-      it { expect(subject.type_field).to eq('route: ROUTE_NAME|ROUTE_ID') }
+      it { expect(subject.type_field).to eq('route: ROUTE_NAME|ID') }
     end
 
     context 'type service' do
       let(:type) { 'service' }
 
-      it { expect(subject.type_field).to eq('service: SERVICE_NAME|SERVICE_ID') }
+      it { expect(subject.type_field).to eq('service: SERVICE_NAME|ID') }
     end
   end
 end

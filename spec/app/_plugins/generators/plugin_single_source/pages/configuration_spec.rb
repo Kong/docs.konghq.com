@@ -2,8 +2,9 @@ RSpec.describe PluginSingleSource::Pages::Configuration do
   let(:plugin_name) { 'kong-inc/jwt-signer' }
   let(:plugin) { PluginSingleSource::Plugin::Base.make_for(dir: plugin_name, site:) }
   let(:release) { PluginSingleSource::Plugin::Release.new(site:, version:, plugin:, is_latest:, source:) }
+  let(:file) { "app/_src/.repos/kong-plugins/schemas/jwt-signer/#{version}.json" }
 
-  subject { described_class.new(release:, file: nil, source_path:) }
+  subject { described_class.new(release:, file:, source_path:) }
 
   describe '#data' do
     before do
@@ -12,15 +13,15 @@ RSpec.describe PluginSingleSource::Pages::Configuration do
 
     context 'when there is a specific folder for the version' do
       let(:is_latest) { false }
-      let(:version) { '2.5.x' }
-      let(:source) { '_2.2.x' }
+      let(:version) { '2.6.x' }
+      let(:source) { '_2.6.x' }
       let(:source_path) { File.expand_path("_hub/kong-inc/jwt-signer/#{source}/", site.source) }
 
       it 'returns a hash containing the data needed to render the templates' do
         expect(subject.data).to include({
           'canonical_url' => '/hub/kong-inc/jwt-signer/configuration/',
-          'source_file' => nil,
-          'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/configuration/',
+          'source_file' => '_src/.repos/kong-plugins/schemas/jwt-signer/2.6.x.json',
+          'permalink' => '/hub/kong-inc/jwt-signer/2.6.x/configuration/',
           'ssg_hub' => false,
           'title' => 'Kong JWT Signer Configuration'
         })
@@ -35,8 +36,8 @@ RSpec.describe PluginSingleSource::Pages::Configuration do
 
       it 'returns a hash containing the data needed to render the templates' do
         expect(subject.data).to include({
-          'canonical_url' => nil,
-          'source_file' => nil,
+          'canonical_url' => '/hub/kong-inc/jwt-signer/configuration/',
+          'source_file' => '_src/.repos/kong-plugins/schemas/jwt-signer/2.8.x.json',
           'permalink' => '/hub/kong-inc/jwt-signer/configuration/',
           'ssg_hub' => false,
           'title' => 'Kong JWT Signer Configuration'
@@ -51,7 +52,9 @@ RSpec.describe PluginSingleSource::Pages::Configuration do
     let(:version) { '2.8.x' }
     let(:source_path) { File.expand_path('_hub/kong-inc/jwt-signer/', site.source) }
 
-    it { expect(subject.source_file).to be_nil }
+    it 'returns the relative path from app/ to the schema file' do
+      expect(subject.source_file).to eq('_src/.repos/kong-plugins/schemas/jwt-signer/2.8.x.json')
+    end
   end
 
   describe '#canonical_url' do
@@ -108,6 +111,7 @@ RSpec.describe PluginSingleSource::Pages::Configuration do
       context 'non-enterprise plugins' do
         let(:plugin_name) { 'kong-inc/jq' }
         let(:source_path) { File.expand_path('_hub/kong-inc/jq/', site.source) }
+        let(:file) { "app/_src/.repos/kong-plugins/schemas/jq/#{version}.json" }
 
         it { expect(subject.edit_link).to eq('https://github.com/Kong/kong/edit/master/kong/plugins/jq/schema.lua') }
       end
@@ -116,8 +120,24 @@ RSpec.describe PluginSingleSource::Pages::Configuration do
     context 'third-party plugins' do
       let(:plugin_name) { 'acme/kong-plugin' }
       let(:source_path) { File.expand_path('_hub/acme/kong-plugin/', site.source) }
+      let(:file) { "app/_hub/acme/kong-plugin/schemas/_index.json" }
 
       it { expect(subject.edit_link).to eq('https://github.com/Kong/docs.konghq.com/edit/main/spec/fixtures/app/_hub/acme/kong-plugin/schemas/_index.json') }
+    end
+  end
+
+  describe '#breadcrumbs' do
+    let(:is_latest) { true }
+    let(:version) { '2.8.x' }
+    let(:source) { '_index' }
+    let(:source_path) { File.expand_path('_hub/kong-inc/jwt-signer/', site.source) }
+
+    it 'returns a hash containing the page\'s breadcrumbs' do
+      expect(subject.breadcrumbs).to eq([
+        { text: 'Authentication', url: '/hub/?category=authentication' },
+        { text: 'Kong JWT Signer', url: '/hub/kong-inc/jwt-signer/' },
+        { text: 'Configuration', url: '/hub/kong-inc/jwt-signer/configuration/' }
+      ])
     end
   end
 end

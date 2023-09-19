@@ -55,7 +55,9 @@ Learn about enterprise features:
   * [Certificate Authority rotation](/mesh/{{page.kong_version}}/features/ca-rotation/)
   * [Role-Based Access Control](/mesh/{{page.kong_version}}/features/rbac/)
   * [Red Hat Universal Base Images](/mesh/{{page.kong_version}}/features/ubi-images/)
+  {% if_version lte:2.3.x %}
   * [Windows Support](/mesh/{{page.kong_version}}/features/windows/)
+  {% endif_version %}
 
 If you are a {{site.mesh_product_name}} customer, you can also open a support
 ticket with any questions or feedback you may have.
@@ -67,6 +69,6 @@ ticket with any questions or feedback you may have.
 {% endif_version %}
 
 {% if_version lte:1.9.x %}
-[get-started-k8s]: https://kuma.io/docs/latest/quickstart/kubernetes/
-[get-started-universal]: https://kuma.io/docs/latest/quickstart/universal/
+[get-started-k8s]: https://kuma.io/docs/1.8.x/quickstart/kubernetes/
+[get-started-universal]: https://kuma.io/docs/1.8.x/quickstart/universal/
 {% endif_version %}

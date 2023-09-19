@@ -1,14 +1,15 @@
 RSpec.describe Jekyll::Drops::Plugins::HubExamples do
   let(:version) { '3.2.2' }
+  let(:plugin_name) { 'opentelemetry' }
   let(:schema) do
     PluginSingleSource::Plugin::Schemas::Kong.new(
-      plugin_name: 'opentelemetry',
+      plugin_name:,
       vendor: 'kong-inc',
       version: version
     )
   end
   let(:example) { schema.example }
-  let(:targets) { [:consumer, :route, :global, :service] }
+  let(:targets) { [:consumer, :route, :global, :service, :consumer_group] }
   let(:formats) { [:curl, :yaml, :kubernetes] }
 
   subject { described_class.new(schema:, example:, formats:, targets:) }
@@ -48,6 +49,19 @@ RSpec.describe Jekyll::Drops::Plugins::HubExamples do
       let(:version) { '3.1.1' }
 
       it { expect(subject.consumer).to be_nil }
+    end
+  end
+
+  describe '#consumer_group' do
+    let(:version) { '3.4.1' }
+
+    context 'when the plugin can be enabled on a consumer_group' do
+      let(:plugin_name) { 'request-transformer' }
+      it { expect(subject.consumer_group).to be_an_instance_of(Jekyll::Drops::Plugins::Example) }
+    end
+
+    context 'when the plugin can not be enabled on a consumer_group' do
+      it { expect(subject.consumer_group).to be_nil }
     end
   end
 

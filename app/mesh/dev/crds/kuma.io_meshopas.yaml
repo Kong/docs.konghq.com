@@ -1,0 +1,167 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.13.0
+  name: meshopas.kuma.io
+spec:
+  group: kuma.io
+  names:
+    categories:
+    - kuma
+    kind: MeshOPA
+    listKind: MeshOPAList
+    plural: meshopas
+    singular: meshopa
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .spec.targetRef.kind
+      name: TargetRef Kind
+      type: string
+    - jsonPath: .spec.targetRef.name
+      name: TargetRef Name
+      type: string
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: Spec is the specification of the Kuma MeshOPA resource.
+            properties:
+              default:
+                properties:
+                  agentConfig:
+                    description: AgentConfig defines bootstrap OPA agent configuration.
+                    properties:
+                      inline:
+                        description: Data source is inline bytes.
+                        format: byte
+                        type: string
+                      inlineString:
+                        description: Data source is inline string`
+                        type: string
+                      secret:
+                        description: Data source is a secret with given Secret key.
+                        type: string
+                    type: object
+                  appendPolicies:
+                    description: Policies define OPA policies that will be applied
+                      on OPA Agent.
+                    items:
+                      properties:
+                        ignoreDecision:
+                          description: If true, then policy won't be taken into account
+                            when making a decision.
+                          type: boolean
+                        rego:
+                          description: 'OPA Policy written in Rego. Available values:
+                            secret, inline, inlineString.'
+                          properties:
+                            inline:
+                              description: Data source is inline bytes.
+                              format: byte
+                              type: string
+                            inlineString:
+                              description: Data source is inline string`
+                              type: string
+                            secret:
+                              description: Data source is a secret with given Secret
+                                key.
+                              type: string
+                          type: object
+                      required:
+                      - rego
+                      type: object
+                    type: array
+                  authConfig:
+                    description: AuthConfig are configurations specific to the filter.
+                    properties:
+                      onAgentFailure:
+                        description: OnAgentFailure either 'allow' or 'deny' (default
+                          to deny) whether to allow requests when the authorization
+                          agent failed.
+                        enum:
+                        - Allow
+                        - Deny
+                        type: string
+                      requestBody:
+                        description: RequestBody configuration to apply on the request
+                          body sent to the authorization agent (if absent, the body
+                          is not sent).
+                        properties:
+                          maxSize:
+                            description: 'MaxSize defines the maximum payload size
+                              sent to authorization agent. If the payload is larger
+                              it will be truncated and there will be a header `x-envoy-auth-partial-body:
+                              true`. If it is set to 0 no body will be sent to the
+                              agent.'
+                            format: int32
+                            type: integer
+                          sendRawBody:
+                            description: SendRawBody enable sending raw body instead
+                              of the body encoded into UTF-8
+                            type: boolean
+                        type: object
+                      statusOnError:
+                        description: StatusOnError is the http status to return when
+                          there's a connection failure between the dataplane and the
+                          authorization agent
+                        format: int32
+                        type: integer
+                      timeout:
+                        description: Timeout for the single gRPC request from Envoy
+                          to OPA Agent.
+                        type: string
+                    type: object
+                type: object
+              targetRef:
+                description: TargetRef is a reference to the resource the policy takes
+                  an effect on. The resource could be either a real store object or
+                  virtual resource defined inplace.
+                properties:
+                  kind:
+                    description: Kind of the referenced resource
+                    enum:
+                    - Mesh
+                    - MeshSubset
+                    - MeshGateway
+                    - MeshService
+                    - MeshServiceSubset
+                    - MeshHTTPRoute
+                    type: string
+                  mesh:
+                    description: Mesh is reserved for future use to identify cross
+                      mesh resources.
+                    type: string
+                  name:
+                    description: 'Name of the referenced resource. Can only be used
+                      with kinds: `MeshService`, `MeshServiceSubset` and `MeshGatewayRoute`'
+                    type: string
+                  tags:
+                    additionalProperties:
+                      type: string
+                    description: Tags used to select a subset of proxies by tags.
+                      Can only be used with kinds `MeshSubset` and `MeshServiceSubset`
+                    type: object
+                type: object
+            required:
+            - targetRef
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources: {}

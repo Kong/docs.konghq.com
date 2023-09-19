@@ -23,10 +23,7 @@ const { SiteChecker } = require("broken-link-checker");
   // We only want to test the latest version of each product, so exclude all
   // old versions by extracting versions from _data
   const lookup = {
-    ce: "gateway-oss",
     deck: "deck",
-    ee: "enterprise",
-    gsg: "getting-started-guide",
     kic: "kubernetes-ingress-controller",
     konnect: "konnect",
     mesh: "mesh",
