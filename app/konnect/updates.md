@@ -9,6 +9,9 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## September 2023
+**Renamed {{site.konnect_short_name}} capabilities**
+We have renamed a number of core {{site.konnect_short_name}} capabilities to align with the introduction of Mesh Manager as well as simplify user understanding. Runtime Manager is now Gateway Manager. Runtime Groups are now Control Planes. Composite Runtime Groups are now Shared Runtime Groups. Runtime Instances are now Data Plane Nodes.
 
 ## August 2023
 
