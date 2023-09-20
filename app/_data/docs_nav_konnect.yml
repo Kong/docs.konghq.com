@@ -313,7 +313,7 @@
           generate: false
           target_blank: true
     - text: PKI Certs API
-      items: 
+      items:
         - text: API Spec
           url: /konnect/api/pki-certs/latest/
           absolute_url: true
