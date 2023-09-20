@@ -10,7 +10,7 @@ from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## September 2023
-**PKI Certificates fir CP/DP Authentication**
+**PKI Certificates for CP/DP Authentication**
 : {{site.konnect_short_name}} now supports pinned PKI certs for CP/DP authentication. This means that Konnect supports digital certificates signed by a trusted CA in Konnect for CP/DP authentication. 
 
 **Renamed {{site.konnect_short_name}} capabilities**
