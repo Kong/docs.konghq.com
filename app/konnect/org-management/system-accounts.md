@@ -18,7 +18,7 @@ The system account can use a {{site.konnect_short_name}} personal access token (
 
 ## Managed system accounts
 
-Managed system accounts are system accounts whose life cycle is managed by {{site.konnect_short_name}} instead of the user. The `blank` flag in the API denotes this type of system account.
+Managed system accounts are system accounts whose life cycle is managed by {{site.konnect_short_name}} instead of the user. The `konnect_managed: true` flag in the API denotes this type of system account.
 
 [Mesh Manager](/konnect/mesh-manager/) automatically creates a managed system account that is only used in the zone creation process. This managed system account cannot be edited or deleted manually. Instead, it is deleted automatically by {{site.konnect_short_name}} when the zone is deleted.
 
