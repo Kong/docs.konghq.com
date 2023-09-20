@@ -6,15 +6,22 @@ chapter: 3
 alpha: true
 ---
 
+Now that you've installed all of the required components and configured a `GatewayClass`, it's time to route some traffic to a service in your Kubernetes cluster.
 
+## Configure the echo service
+
+In order to route a request using {{ site.base_gateway }} we need a service running in our cluster. Install an `echo` service using the following command:
 
 ```bash
 kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-service.yaml
 ```
 
-Create HTTPRoute
+## Create a HTTPRoute
+
+Now that we have a service to proxy requests to, we can create a `HTTPRoute` to send any requests that start with `/echo` to the echo service:
 
 ```yaml
+echo '
 kind: HTTPRoute
 apiVersion: gateway.networking.k8s.io/v1beta1
 metadata:
@@ -32,4 +39,32 @@ spec:
       backendRefs:
         - name: echo
           port: 1027
+' | kubectl apply -f -
 ```
+
+## Test the configuration
+
+To test the above configuration, make a call to the `$PROXY_IP` that you configured in the previous page:
+
+```bash
+curl $PROXY_IP/echo
+```
+
+You should see the following:
+
+```
+❯ curl $PROXY_IP/echo
+Welcome, you are connected to node king.
+Running on Pod echo-965f7cf84-rm7wq.
+In namespace default.
+With IP address 192.168.194.10.
+```
+
+Congratulations! You just configured {{ site.kgo_product_name }}, {{ site.kic_product_name }} and {{ site.base_gateway }} using open standards.
+
+## Next steps
+
+Now that you have a running `DataPlane` configured using Gateway API resources, you can explore the power that {{ site.base_gateway }}  provides:
+
+* [Configuring {{ site.base_gateway }} plugins using {{ site.kic_product_name }}](kubernetes-ingress-controller/latest/guides/using-kongplugin-resource/)
+* [Upgrading {{ site.kgo_product_name }} managed data planes](/gateway-operator/{{ page.release }}/production/upgrade/data-plane/rolling/)
