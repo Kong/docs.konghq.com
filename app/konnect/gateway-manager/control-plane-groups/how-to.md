@@ -20,7 +20,7 @@ In this guide, you will set up a control plane groups with two members, then tes
 First, let's create a standard control plane. 
 This control plane will be a member of a control plane group later on.
 
-If you already have some standard control planes in your org that you want to add to a group, skip to [creating a control plane group](#create-control-plane-group).
+If you already have some standard control planes in your org that you want to add to a group, skip to [creating a control plane group](#set-up-control-plane-group).
 
 {% navtabs %}
 {% navtab Konnect UI %}
