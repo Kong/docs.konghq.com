@@ -361,7 +361,7 @@ For more hands on experience with Gateway Discovery please see [our guide][gd-gu
 > This feature is released as [beta](/gateway/latest/availability-stages/#beta) and should not be deployed in a production environment.
 
 {{site.kic_product_name}} can be integrated with Kong's [{{site.konnect_short_name}}][konnect] platform. It's an
-optional feature that allows configuring a {{site.konnect_short_name}}'s Runtime Group with the same configuration as the one used
+optional feature that allows configuring a {{site.konnect_short_name}} control plane with the same configuration as the one used
 by {{site.kic_product_name}} for configuring local Kong Gateways. It enables using {{site.konnect_short_name}} UI
 to inspect the configuration of your Kong instances in a **read-only** mode, track [Analytics][konnect-analytics],
 and more.
@@ -371,19 +371,19 @@ For installation steps, please see the [{{site.kic_product_name}} for Kubernetes
 ![KIC {{site.konnect_short_name}} overview](/assets/images/docs/kubernetes-ingress-controller/kic-konnect-diagram.png "KIC {{site.konnect_short_name}} overview")
 
 From the architecture perspective, the integration is similar to the [Gateway Discovery](#gateway-discovery) and
-builds on top of it. The difference is that {{site.kic_product_name}} additionally configures a Runtime Group in {{site.konnect_short_name}}
-using the public [Admin API][admin] of the {{site.konnect_short_name}}'s Runtime Manager. The connection between {{site.kic_product_name}}
+builds on top of it. The difference is that {{site.kic_product_name}} additionally configures a control plane in {{site.konnect_short_name}}
+using the public [Admin API][admin] of the {{site.konnect_short_name}}'s Gateway Manager. The connection between {{site.kic_product_name}}
 and {{site.konnect_short_name}} is secured using mutual TLS.
 
 As {{site.kic_product_name}} calls {{site.konnect_short_name}}'s APIs, outbound traffic from {{site.kic_product_name}}'s pods must be allowed to reach {{site.konnect_short_name}}'s `*.konghq.com` [hosts](/konnect/network#hostnames).
 
 {:.important}
-> {{site.kic_product_name}}'s Runtime Group in {{site.konnect_short_name}} is **read-only**.
+> {{site.kic_product_name}}'s control plane in {{site.konnect_short_name}} is **read-only**.
 > Although the configuration displayed in {{site.konnect_short_name}} will match the configuration used by proxy instances, it cannot be modified from the GUI.
 > You must still modify the associated Kubernetes resources to change proxy configuration.
 > In the event of a connection  failure between {{site.kic_product_name}} and {{site.konnect_short_name}},
 > {{site.kic_product_name}} will continue to update data plane proxy configuration normally, but will not
-> update the Runtime Group's configuration until it can connect to {{site.konnect_short_name}} again.
+> update the control plane's configuration until it can connect to {{site.konnect_short_name}} again.
 
 [konnect]: /konnect/
 [konnect-kic]: /konnect/runtime-manager/kic/

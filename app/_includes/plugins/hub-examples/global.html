@@ -12,7 +12,7 @@ considered _global_, and will be run on every request.
 
 * In self-managed {{site.ee_product_name}}, the plugin applies to every entity in a given workspace.
 * In self-managed {{site.ce_product_name}}, the plugin applies to your entire environment.
-{% unless page.konnect == false %}* In {{site.konnect_short_name}}, the plugin applies to every entity in a given runtime group.
+{% unless page.konnect == false %}* In {{site.konnect_short_name}}, the plugin applies to every entity in a given control plane.
 {% endunless %}
 
 Read the
@@ -37,7 +37,7 @@ Make the following request:
     {% if hub_example.render_konnect? %}
     {% navtab Konnect API %}
 
-Make the following request, substituting your own access token, region, and runtime group ID:
+Make the following request, substituting your own access token, region, and control plane ID:
 
 {% include_cached plugins/hub-examples/konnect.html example=hub_example.konnect %}
 

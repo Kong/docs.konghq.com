@@ -40,7 +40,7 @@ Kong offers OIDC support to allow Single-Sign-on for {{site.konnect_short_name}}
 
 1. On your new application page in Azure, click **Token configuration** in the sidebar.
 
-1. Click **+ Add groups claim** and do the following:
+1. Click **Add groups claim** and do the following:
     1. Select each checkbox in the **Select group types to include in Access, ID, and SAML tokens** section. 
     1. Select **Group ID** for each section in **Customize token properties by type**.
     1. Click **Add**. 
@@ -61,6 +61,6 @@ This table maps the {{site.konnect_short_name}} values to the corresponding Azur
 | ----------- | ----------- |
 | Provider URL      | The value stored in the `issuer` variable. |
 | Client ID   | Your Azure application ID.        |
-|Client Secret | Azure client secret.|
+| Client Secret | Azure client secret.|
 
 You can test your configuration by navigating to the Dev Portal and using your Azure credentials to log in. 
