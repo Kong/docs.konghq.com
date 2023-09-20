@@ -57,7 +57,7 @@ Create a system account token by sending a `POST` request containing the `accoun
 
 ```sh
 curl --request POST \
-  --url https://global.api.konghq.com/v2/system-accounts/:497f6eca-6276-4993-bfeb-53cbbbba6f08/access-tokens
+  --url https://global.api.konghq.com/v3/system-accounts/:497f6eca-6276-4993-bfeb-53cbbbba6f08/access-tokens
 ```
 You will receive a `201` response code, and a response body containing the access token for the system account:
 
@@ -86,11 +86,11 @@ Assign a role to a system account by sending a `POST` request containing the `ac
 
 ```sh
 curl --request POST \
-  --url https://global.api.konghq.com/v2/system-accounts/:497f6eca-6276-4993-bfeb-53cbbbba6f08/assigned-roles
+  --url https://global.api.konghq.com/v3/system-accounts/:497f6eca-6276-4993-bfeb-53cbbbba6f08/assigned-roles
   --data '{
   "role_name": "Viewer",
   "entity_id": "817d0422-45c9-4d88-8d64-45aef05c1ae7",
-  "entity_type_name": "Runtime Groups",
+  "entity_type_name": "Control Plane Groups",
   "entity_region": "eu"
 }'
 ```
@@ -102,7 +102,7 @@ You will receive a `201` response code and a response body containing the role t
   "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
   "role_name": "Viewer",
   "entity_id": "817d0422-45c9-4d88-8d64-45aef05c1ae7",
-  "entity_type_name": "Runtime Groups",
+  "entity_type_name": "Control Plane Groups",
   "entity_region": "eu"
 }
 ```
@@ -115,7 +115,7 @@ Assign a team to a system account by sending a `POST` request containing the `te
 
 ```sh
 curl --request POST \
-  --url https://global.api.konghq.com/v2/teams/:497f6eca-6276-4993-bfeb-53cbbbba6f08/system-accounts
+  --url https://global.api.konghq.com/v3/teams/:497f6eca-6276-4993-bfeb-53cbbbba6f08/system-accounts
 ```
 
 You will receive a `201` response code and a response body stating that the system account was added to the team:

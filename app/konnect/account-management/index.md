@@ -17,8 +17,8 @@ When you create a {{site.konnect_saas}} account, a license is
 automatically provisioned to the organization. You do not need to manage this
 license manually.
 
-Any runtimes configured through the [Runtime Manager](/konnect/runtime-manager/)
-also implicitly receive the same license from {{site.konnect_saas}}
+Any data plane nodes configured through the [Gateway Manager](/konnect/gateway-manager/)
+also implicitly receive the same license from the {{site.konnect_saas}}
 control plane. You should never have to deal with a license
 directly.
 
@@ -33,7 +33,7 @@ This page provides an overview of your current plan, including:
 
 * The plan name
 * An estimated cost for the month (not available for trial accounts)
-* The total count of all services, services published to Dev Portal, and API calls for
+* The total count of all services and API products published to Dev Portal, and API calls for
 the current month
 
 For Free and Plus plans, you can:
