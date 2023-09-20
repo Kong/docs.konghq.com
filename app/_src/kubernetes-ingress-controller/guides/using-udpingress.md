@@ -288,8 +288,6 @@ Request Information:
 	real path=/hello
 	request_scheme=tftp
 ```
-{% endnavtab %}
-{% endnavtabs %}
 
 [svc]:https://kubernetes.io/docs/concepts/services-networking/service/
 [udp]:https://datatracker.ietf.org/doc/html/rfc768
