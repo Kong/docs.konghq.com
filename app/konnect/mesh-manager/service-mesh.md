@@ -18,7 +18,7 @@ Creating a fully-functioning {{site.mesh_product_name}} deployment in {{site.kon
 
 * [A Kubernetes cluster with a load balancer](https://kubernetes.io/docs/setup/)
 * [`kubectl` installed and configured to communicate with your Kubernetes cluster](https://kubernetes.io/docs/tasks/tools/#kubectl)
-* The latest version of [{{site.mesh_product_name}} installed](/mesh/latest/production/install-kumactl/)
+* The latest version of [{{site.mesh_product_name}} 2.4.x or later installed](/mesh/latest/production/install-kumactl/)
 
 ### Create and configure the global control plane
 
