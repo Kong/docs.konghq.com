@@ -28,3 +28,9 @@ spec:
             initialDelaySeconds: 1
             periodSeconds: 1
 ```
+
+{{ site.kgo_product_name }} will deploy a new `ReplicaSet` that you can validate before switching any traffic to the new pods.
+
+Once you've validated the pods, run `kubectl annotate dataplanes.gateway-operator.konghq.com <dataplane_name> gateway-operator.konghq.com/promote-when-ready=true` to allow {{ site.kgo_product_name }} to switch the traffic to the new pods.
+
+This annotation will automatically be cleared by {{ site.kgo_product_name }} once the new pods are promoted to be live.

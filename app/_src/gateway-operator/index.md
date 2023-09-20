@@ -12,7 +12,7 @@ subtitle: Deploy and manage Kong on Kubernetes using Kubernetes resources
     <div class="install-text">Quick Start (Konnect)</div>
   </a>
 
-  <a href="/gateway/{{page.release}}/get-started/kic/install/" class="docs-grid-install-block no-description">
+  <a href="/gateway-operator/{{page.release}}/get-started/kic/install/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-learning.svg" alt="">
     <div class="install-text">Quick Start (KIC)</div>
   </a>
