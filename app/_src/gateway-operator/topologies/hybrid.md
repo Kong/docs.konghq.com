@@ -6,7 +6,7 @@ title: Hybrid Deployments
 
 The external control plane may be a {{ site.konnect_product_name }} control plane, or a self-managed control plane.
 
-## Example
+## Installation
 
 {% navtabs %}
 {% navtab Konnect %}
@@ -24,7 +24,7 @@ spec:
   deployment:
     pods:
       containerImage: kong/kong-gateway
-      version: "3.4"
+      version: "{{ site.data.kong_latest_gateway.ee-version }}"
       volumes:
         - name: konnect-client-tls
           secret:
@@ -106,3 +106,5 @@ spec:
 ```
 {% endnavtab %}
 {% endnavtabs %}
+
+For more information about hybrid mode, see the {{ site.base_gateway }} [hybrid mode documentation](/gateway/latest/production/deployment-topologies/hybrid-mode/).

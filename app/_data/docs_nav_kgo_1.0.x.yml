@@ -19,6 +19,8 @@ items:
         items:
           - text: Gateway API
             url: /concepts/gateway-api
+          - text: Gateway Configuration
+            url: /concepts/gateway-configuration
       - text: Support
         url: /support
       - text: FAQ
