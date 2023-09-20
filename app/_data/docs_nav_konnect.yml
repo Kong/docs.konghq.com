@@ -264,8 +264,8 @@
           absolute_url: true
           generate: false
           target_blank: true
-   - text: Audit Logs API
-     items:
+    - text: Audit Logs API
+      items:
         - text: API Spec
           url: /konnect/api/audit-logs/latest/
           absolute_url: true
@@ -273,15 +273,15 @@
           target_blank: true
         - text: Audit Log Webhooks
           url: /api/audit-logs/webhook/
-   - text: Control Plane API
-     items:
+    - text: Control Plane API
+      items:
         - text: API Spec
           url: /konnect/api/control-planes/latest/
           absolute_url: true
           generate: false
           target_blank: true
-   - text: Control Plane Configuration API
-     items:
+    - text: Control Plane Configuration API
+      items:
         - text: API Spec
           url: /konnect/api/control-plane-configuration/latest/
           absolute_url: true
@@ -298,8 +298,8 @@
           url: /api/identity-management/identity-integration/
         - text: SSO Customization
           url: /api/identity-management/sso/
-     - text: Portal Client API
-       items:
+    - text: Portal Client API
+      items:
         - text: API Spec
           url: /konnect/api/portal/latest/
           absolute_url: true
