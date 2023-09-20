@@ -33,7 +33,7 @@ Route | Group or filter the data by route.
 Application | Group or filter the data by application.
 Status Code | Group or filter the data by individual response status code. Individual status codes can range from 100 to 599.
 Status Code (grouped) | Group or filter the data by response status code category: 1XX, 2XX, 3XX, 4XX, and 5XX.
-Runtime Group | Group or filter the data by runtime groups.
+Control Plane | Group or filter the data by control plane.
 Gateway Services | Group or filter the data by gateway services.
 
 ### Route entity format
@@ -41,17 +41,17 @@ Gateway Services | Group or filter the data by gateway services.
 In custom reports, the route entity name is composed of the following elements:
 
 ```
-ROUTE_NAME|FIRST_FIVE_UUID_CHARS (RUNTIME_GROUP_NAME)
+ROUTE_NAME|FIRST_FIVE_UUID_CHARS (CONTROL_PLANE_NODE)
 ```
 
 For example, for a route entity named `example_route (default)`:
 * `example_route` is the route name
-* `default` is the runtime group name
+* `default` is the name of the control plane.
 
 Or, if your route doesn't have a name, it might look like this:
 `DA58B (default)`
 
-Where `DA58B` are the first five characters of its UUID and `default` is the runtime group name.
+Where `DA58B` are the first five characters of its UUID and `default` is the name of the control plane.
 
 {:.note}
 > **Note**: If you see a route with `*` and the last five digits of the UUID, like `*DA58B`, this represents the data of a deleted route.
@@ -61,13 +61,13 @@ Where `DA58B` are the first five characters of its UUID and `default` is the run
 The API product version name isn't unique across an organization. To identify the entity you need, the API product version entity name is composed of the following elements:
 
 ```
-KONNECT_API_PRODUCT_NAME - API_PRODUCT_VERSION (RUNTIME_GROUP_NAME)
+KONNECT_API_PRODUCT_NAME - API_PRODUCT_VERSION (CONTROL_PLANE_NAME)
 ```
 
 For example, for an API product version entity named `Account - v1 (dev)`:
 * `Account` is the {{site.konnect_short_name}} API product name
 * `v1` is the API product version
-* `dev` is the runtime group name
+* `dev` is the name of the control plane.
 
 
 ## Time intervals
