@@ -314,11 +314,11 @@
           target_blank: true
     - text: PKI Certs API
       items: 
-      - text: API Spec
-        url: /konnect/api/pki-certs/latest/
-        absolute_url: true
-        generate: false
-        target_blank: true
+        - text: API Spec
+          url: /konnect/api/pki-certs/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
     - text: Deprecated APIs
       items:
         - text: (Deprecated) Runtime Configuration API
