@@ -5,3 +5,6 @@
   height: 1024
   javascript: |
     zoomPercentage(-5);
+    removeElementBySelector('a.sidebar-item-link[href="/us/mesh-manager/"]');
+    updateDivWithRandomNumberInRange('div[data-v-ee980c4c][style="font-size: 16px;"]', 30000, 600000);
+
