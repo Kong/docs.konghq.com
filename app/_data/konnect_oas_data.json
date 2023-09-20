@@ -277,12 +277,12 @@
   },
   {
     "id": "cd849478-4628-4bc2-abcd-5d8a83d3b5f2",
-    "title": "Konnect Runtime Groups",
+    "title": "Konnect Runtime Groups (Deprecated)",
     "latestVersion": {
       "name": "v2",
       "id": "24c1f98b-ea51-4277-9178-ca28a6aa85d9"
     },
-    "description": "Manage the runtime group entity in Konnect.",
+    "description": "(Deprecated) Manage the runtime group entity in Konnect.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
