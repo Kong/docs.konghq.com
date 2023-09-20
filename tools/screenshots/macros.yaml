@@ -78,3 +78,42 @@
       const newZoom = currentZoom + (currentZoom * percentage / 100);
       document.documentElement.style.transform = `scale(${newZoom})`;
     }
+- type: function
+  name: removeElementBySelector
+  javascript: |
+    function (selector) {
+      const elementToDelete = document.querySelector(selector);
+      if (elementToDelete) {
+        elementToDelete.parentNode.removeChild(elementToDelete);
+      }
+    }
+- type: function
+  name: updateElementsWithRandomNumbersInRange
+  javascript: |
+    function (selector, minRange, maxRange) {
+      const elementsToUpdate = document.querySelectorAll(selector);
+      elementsToUpdate.forEach(element => {
+        // Generate a random number
+        const randomNumber = Math.floor(Math.random() * (maxRange - minRange + 1)) + minRange;
+        
+        const innerDiv = element.querySelector('div.k-badge-text');
+        
+        if (innerDiv) {
+          innerDiv.textContent = randomNumber.toString();
+        }
+      });
+    }
+- type: function
+  name: updateDivWithRandomNumberInRange
+  javascript: |
+    function (selector, minRange, maxRange) {
+      const targetDiv = document.querySelector(selector);
+      if (targetDiv) {
+
+        const randomNumberInRange = Math.floor(Math.random() * (maxRange - minRange + 1)) + minRange;
+
+        // Format the number with commas
+        const formattedNumber = randomNumberInRange.toLocaleString();
+        targetDiv.textContent = formattedNumber;
+      }
+    }

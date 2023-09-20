@@ -750,17 +750,17 @@ key_set_data: |
 {% endif %}
 
 {:.note .no-icon }
-> <span class="badge beta"></span> **A beta API spec for the runtime group configuration API is now available!**
+> <span class="badge beta"></span> **A beta API spec for the control plane configuration API is now available!**
 >
 | Spec | Developer portal link | Insomnia link |
 |------|-----------------------|---------------|
-| Konnect runtime group configuration beta API spec |[Developer Portal](/konnect/api/runtime-groups-configuration/v2/)  | <a href="https://insomnia.rest/run/?label=Runtime%20Groups%20Configuration%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FKonnect%2Fv2%2Fjson%2Fkonnect-2.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
+| Konnect control plane configuration beta API spec |[Developer Portal](/konnect/api/runtime-groups-configuration/v2/)  | <a href="https://insomnia.rest/run/?label=Runtime%20Groups%20Configuration%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FKonnect%2Fv2%2Fjson%2Fkonnect-2.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
 
 
 | URL                | Description                                                                                                                         |
 | ---------                | -----------                                                                                                                         |
-| `https://us.api.konghq.com/v2/runtime-groups/{runtime_group_id}`                   | US Region Konnect Platform Base URL |
-| `https://eu.api.konghq.com/v2/runtime-groups/{runtime_group_id}` | EU Region Konnect Platform Base URL |
+| `https://us.api.konghq.com/v2/control-planes/{controlPlaneId}/`                   | US Region Konnect Platform Base URL |
+| `https://eu.api.konghq.com/v2/control-planes/{controlPlaneId}/` | EU Region Konnect Platform Base URL |
        
 
 
@@ -814,9 +814,9 @@ curl -i -X POST http://https://{region}.api.konghq.com/v2/runtime-groups/{runtim
 * [Plugin Hub](/hub/)
 
 ## Nodes
-### List Runtime Instance Records
+### List Data Plane Node Records
 
-Returns a list of runtime instance records that are associated to this runtime group. A runtime instance record contains all the metadata information of the Kong Gateway dataplane.
+Returns a list of data plane node records that are associated to this control plane. A data plane node record contains all the metadata information of the Kong Gateway dataplane.
 
 **Endpoint**
 
@@ -836,9 +836,9 @@ Returns a list of runtime instance records that are associated to this runtime g
 HTTP 200 OK
 ```
 
-### Fetch Runtime Instance Record
+### Fetch Data Plane Node Record
 
-Retrieve a specific runtime instance record associated to this runtime group. A runtime instance record contains all the metadata information of the Kong Gateway dataplane.
+Retrieve a specific data plane node record associated to this control plane. A data plane node record contains all the metadata information of the Kong Gateway dataplane.
 
 **Endpoint**
 
@@ -848,7 +848,7 @@ Retrieve a specific runtime instance record associated to this runtime group. A 
 
 | Attribute                | Description                                                                                                                         |
 | ---------                | -----------                                                                                                                         |
-| `node_id`                   | The unique identifier for the runtime instance.                                                                                                                 |
+| `node_id`                   | The unique identifier for the data plane node.                                                                                                                 |
 
 
 **Response**
@@ -857,9 +857,9 @@ Retrieve a specific runtime instance record associated to this runtime group. A 
 HTTP 204 OK
 ```
 
-### Delete Runtime Instance Record
+### Delete Data Plane Node Record
 
-Remove a specific runtime instance record associated to this runtime group. Deleting this record does not prevent the runtime instance from re-connecting to the runtime group.
+Remove a specific data plane node record associated to this control plane. Deleting this record does not prevent the data plane node from re-connecting to the control plane.
 
 **Endpoint**
 
@@ -869,7 +869,7 @@ Remove a specific runtime instance record associated to this runtime group. Dele
 
 | Attribute                | Description                                                                                                                         |
 | ---------                | -----------                                                                                                                         |
-| `node_id`                   | The unique identifier for the runtime instance.                                                                                                                 |
+| `node_id`                   | The unique identifier for the data plane node.                                                                                                                 |
 
 
 **Response**
@@ -880,7 +880,7 @@ HTTP 204 No Content
 
 ### Fetch Expected Config Hash
 
-Retrieve the expected config hash for this runtime group. The expected config hash can be used to verify if the config hash of a runtime instance is up to date with the conrol plane. If they are in sync, the config hash will be the same. If sync in progress or if out of sync, the config hash will be different. The updated_at timestamp indicates when the config was last updated.
+Retrieve the expected config hash for this control plane. The expected config hash can be used to verify if the config hash of a data plane node is up to date with the conrol plane. If they are in sync, the config hash will be the same. If sync in progress or if out of sync, the config hash will be different. The updated_at timestamp indicates when the config was last updated.
 
 **Endpoint**
 
@@ -895,7 +895,7 @@ HTTP 200 OK
 ## Data plane certificates
 ### List data plane client certificates
 
-Returns a list of pinned dataplane client certificates that are associated to this runtime group. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this runtime group.
+Returns a list of pinned dataplane client certificates that are associated to this control plane. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this control plane.
 
 **Endpoint**
 
@@ -910,7 +910,7 @@ HTTP 200 OK
 
 ### Pin new data plane client certificates
 
-Pin a new DP Client Certificate to this runtime group. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this runtime group.
+Pin a new DP Client Certificate to this control plane. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this control plane.
 
 **Endpoint**
 
@@ -924,7 +924,7 @@ HTTP 201 Created
 
 ### Fetch data plane client certificate
 
-Retrieve a pinned dataplane client certificate associated to this runtime group. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this runtime group.
+Retrieve a pinned dataplane client certificate associated to this control plane. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this control plane.
 
 **Endpoint**
 
@@ -938,7 +938,7 @@ HTTP 200 Created
 
 ### Replace data plane client certificate
 
-Update a pinned dataplane client certificate associated to this runtime group. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this runtime group.
+Update a pinned dataplane client certificate associated to this control plane. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this control plane.
 **Endpoint**
 
 <div class="endpoint put">/dp-client-certificates/{certificate_id}</div>
@@ -952,7 +952,7 @@ HTTP 200 Created
 
 ### Delete DP Client Certificate
 
-Remove a pinned dataplane client certificate associated to this runtime group. Removing a pinned dataplane certificate would invalidate any dataplanes currently connected to this runtime group using this certificate.
+Remove a pinned dataplane client certificate associated to this control plane. Removing a pinned dataplane certificate would invalidate any dataplanes currently connected to this control plane using this certificate.
 **Endpoint**
 
 <div class="endpoint delete">/dp-client-certificates/{certificate_id}</div>
@@ -1440,10 +1440,10 @@ HTTP 200 OK
 
 
 
-### Retrieve Runtime Debugging Info of Kong's Timers
+### Retrieve Data Plane Node Debugging Info of Kong's Timers
 {:.badge .dbless}
 
-Retrieve runtime stats data from [lua-resty-timer-ng](https://github.com/Kong/lua-resty-timer-ng).
+Retrieve data plane node stats data from [lua-resty-timer-ng](https://github.com/Kong/lua-resty-timer-ng).
 
 
 <div class="endpoint post">/timers</div>
@@ -2320,7 +2320,7 @@ The 3.0.x release introduces a new router implementation: `atc-router`.
 The router adds:
 
 * Reduced router rebuild time when changing Kong’s configuration
-* Increased runtime performance when routing requests
+* Increased data plane node performance when routing requests
 * Reduced P99 latency from 1.5s to 0.1s with 10,000 routes
 
 Learn more about the router:

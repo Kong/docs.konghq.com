@@ -1,13 +1,23 @@
 apiVersion: v1
 kind: Service
 metadata:
+  labels:
+    app: echo
   name: echo
 spec:
   ports:
-    - protocol: TCP
+    - port: 1025
+      name: tcp
+      protocol: TCP
+      targetPort: 1025
+    - port: 1026
+      name: udp
+      protocol: TCP
+      targetPort: 1026
+    - port: 1027
       name: http
-      port: 80
-      targetPort: http
+      protocol: TCP
+      targetPort: 1027
   selector:
     app: echo
 ---
@@ -22,21 +32,19 @@ spec:
   selector:
     matchLabels:
       app: echo
+  strategy: {}
   template:
     metadata:
       labels:
         app: echo
     spec:
       containers:
-        - name: echo
-          image: registry.k8s.io/e2e-test-images/agnhost:2.40
-          command:
-            - /agnhost
-            - netexec
-            - --http-port=8080
+        - image: kong/go-echo:latest
+          name: echo
           ports:
-            - containerPort: 8080
-              name: http
+            - containerPort: 1025
+            - containerPort: 1026
+            - containerPort: 1027
           env:
             - name: NODE_NAME
               valueFrom:
@@ -46,7 +54,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
-            - name: NAMESPACE
+            - name: POD_NAMESPACE
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
@@ -54,6 +62,4 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.podIP
-          resources:
-            requests:
-              cpu: 10m
+          resources: {}

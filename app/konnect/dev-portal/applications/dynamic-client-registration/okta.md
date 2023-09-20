@@ -37,7 +37,7 @@ Using your Okta credentials, log in to the Okta portal and follow these steps:
 
 2. Select **Security > API**.
 
-3. Select the Authorization Server that you want to configure.
+3. Select the authorization server that you want to configure.
 
 4. Select the **Scopes** tab, and click the **Add Scope** button.
 
@@ -49,7 +49,7 @@ In order to map an application from the Dev Portal to Okta, you have to create a
 
 2. Select **Security > API**.
 
-3. Select the Authorization Server that you want to configure.
+3. Select the authorization server that you want to configure.
 
 4. Select the **Claims** tab. and then click the **Add Claim** button.
 
@@ -104,4 +104,4 @@ In the previous steps, you obtained the **Client ID** and **Client Secret**. To 
 curl example.com/REGISTERED_ROUTE -H "Authorization: Basic CLIENT_ID:CLIENT_SECRET"
 ```
 
-Where `example.com` is the address of the runtime instance you are running.
+Where `example.com` is the address of the data plane.
