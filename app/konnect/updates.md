@@ -40,7 +40,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## September 2023
 
 **{{site.mesh_product_name}} in {{site.konnect_short_name}}**
-: You can now configure {{site.mesh_product_name}} global control planes in {{site.konnect_short_name}} using [Mesh Manager](/konnect/mesh-manager/). Mesh Manager in {{site.konnect_product_name}} allows you to create, manage, and view your {{site.mesh_product_name}} [service meshes](/mesh/latest/introduction/about-service-meshes/) in the {{site.konnect_short_name}} UI and using the {{site.konnect_short_name}} platform. Mesh Manager is ideal for organizations who want to have one or more global control planes that allow you to run your mesh deployments across multiple zones. 
+: Enterprise and new {{site.konnect_short_name}} Plus customers can now configure {{site.mesh_product_name}} global control planes in {{site.konnect_short_name}} using [Mesh Manager](/konnect/mesh-manager/). Mesh Manager in {{site.konnect_product_name}} allows you to create, manage, and view your {{site.mesh_product_name}} [service meshes](/mesh/latest/introduction/about-service-meshes/) in the {{site.konnect_short_name}} UI and using the {{site.konnect_short_name}} platform. Mesh Manager is ideal for organizations who want to have one or more global control planes that allow you to run your mesh deployments across multiple zones. 
 
 ## August 2023
 
