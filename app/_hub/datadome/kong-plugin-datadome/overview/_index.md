@@ -1,3 +1,7 @@
+---
+nav_title: Overview
+---
+
 The DataDome plugin is developed in Lua and integrates smoothly with Kong.
 
 This plugin relies on the DataDome Bot & Fraud Protection Platform to validate if any incoming API request is legitimate or coming from a bot.
