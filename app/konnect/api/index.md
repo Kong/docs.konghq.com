@@ -22,7 +22,7 @@ The region-specific endpoints are used to manage {{site.konnect_short_name}} ent
 
 | Spec | Insomnia link |
 |------|---------------|
-| [Konnect control plane configuration beta API spec](/konnect/api/runtime-groups-configuration/v2/) | <a href="https://insomnia.rest/run/?label=Runtime%20Groups%20Configuration%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FKonnect%2Fv2%2Fjson%2Fkonnect-2.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
+| [Konnect control plane configuration beta API spec](/konnect/api/control-plane-configuration/latest/) | <a href="https://insomnia.rest/run/?label=Control%20Plane%20Configuration%20API&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FKonnect%2Fcontrol-planes-config%2Fcontrol-planes-config.yaml" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
 
 ## Authentication
 

@@ -259,42 +259,17 @@
   items:
     - text: Overview
       url: /api/
-    - text: Konnect Identity API
+    - text: API Request API (Beta)
       items:
         - text: API Spec
-          url: /konnect/api/identity-management/latest/
+          url: /konnect/api/api-requests/latest/
           absolute_url: true
           generate: false
           target_blank: true
-        - text: Identity Integration Guide
-          url: /api/identity-management/identity-integration/
-        - text: SSO Customization
-          url: /api/identity-management/sso/
-    - text: Control Plane API
+    - text: API Products API
       items:
         - text: API Spec
-          url: /konnect/api/control-planes/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
-    - text: Portal RBAC API
-      items:
-        - text: API Spec
-          url: /konnect/api/portal-rbac/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
-    - text: Control Plane Configuration API
-      items:
-        - text: API Documentation
-          url: /konnect/api/control-plane-configuration/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
-    - text: Portal Client API
-      items:
-        - text: API Spec
-          url: /konnect/api/portal/latest/
+          url: /konnect/api/api-products/latest/
           absolute_url: true
           generate: false
           target_blank: true
@@ -307,17 +282,42 @@
           target_blank: true
         - text: Audit Log Webhooks
           url: /api/audit-logs/webhook/
-    - text: API Products API
+    - text: Control Plane API
       items:
         - text: API Spec
-          url: /konnect/api/api-products/latest/
+          url: /konnect/api/control-planes/latest/
           absolute_url: true
           generate: false
           target_blank: true
-    - text: Analytics Request API (Beta)
+    - text: Control Plane Configuration API
       items:
         - text: API Spec
-          url: /konnect/api/analytics-requests/latest/
+          url: /konnect/api/control-plane-configuration/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true          
+    - text: Identity API
+      items:
+        - text: API Spec
+          url: /konnect/api/identity-management/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Identity Integration Guide
+          url: /api/identity-management/identity-integration/
+        - text: SSO Customization
+          url: /api/identity-management/sso/
+    - text: Portal Client API
+      items:
+        - text: API Spec
+          url: /konnect/api/portal/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true  
+    - text: Portal RBAC API
+      items:
+        - text: API Spec
+          url: /konnect/api/portal-rbac/latest/
           absolute_url: true
           generate: false
           target_blank: true
