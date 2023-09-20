@@ -12,7 +12,9 @@ control planes currently owned by the organization. From here, you can add or
 delete control planes, or go into each individual control plane to manage 
 data plane nodes and their global configuration.
 
-![gateway manager dashboard](/assets/images/docs/konnect/konnect-gateway-manager-dashboard.png)
+
+![gateway manager dashboard](/assets/images/docs/konnect/konnect-control-plane-dashboard.png)
+
 > _**Figure 1:** Example Gateway Manager dashboard with several control planes, including the_
 _default control plane, a KIC control plane, and control planes for development and production._
 

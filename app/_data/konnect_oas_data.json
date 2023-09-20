@@ -21,20 +21,41 @@
     ]
   },
   {
+    "id": "98e74b12-7b86-429f-9255-d4a33e40f13b",
+    "title": "Konnect Control Planes",
+    "latestVersion": {
+      "name": "v2",
+      "id": "ffd06bfa-0a1c-4fb7-ade4-54089688225e"
+    },
+    "description": "Manage the control plane entity in Konnect.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "ffd06bfa-0a1c-4fb7-ade4-54089688225e",
+        "created_at": "2023-09-19T20:03:32.547Z",
+        "updated_at": "2023-09-20T15:53:46.683Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
     "id": "0267e60f-bf5d-4565-9618-b061f8398e14",
-    "title": "Konnect Control Plane Configuration API",
+    "title": "Konnect Control Planes Config (Beta)",
     "latestVersion": {
       "name": "v1",
       "id": "fa795b03-e0fc-4d33-aa97-28632b41cc61"
     },
-    "description": "The API for managing Konnect control plane entities.",
+    "description": "Manage Kong Gateway services, routes, certificates, consumer and global configuration within Konnect. This spec is a Beta version.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
       {
         "id": "fa795b03-e0fc-4d33-aa97-28632b41cc61",
-        "created_at": "2023-09-20T18:37:55.070Z",
-        "updated_at": "2023-09-20T14:08:02.747Z",
+        "created_at": "2023-09-19T15:03:02.006Z",
+        "updated_at": "2023-09-20T15:29:07.563Z",
         "name": "v1",
         "deprecated": false,
         "registration_configs": []
@@ -134,15 +155,15 @@
       {
         "id": "d0e13745-db5c-42d5-80ae-ef803104f5ce",
         "created_at": "2022-10-07T00:04:47.449Z",
-        "updated_at": "2023-03-22T18:50:13.655Z",
+        "updated_at": "2023-09-20T15:36:03.266Z",
         "name": "v2",
         "deprecated": true,
         "registration_configs": []
       },
       {
         "id": "c8074b5c-5cb8-47bb-8fcd-797d9f209cb2",
-        "created_at": "2023-09-20T00:04:47.449Z",
-        "updated_at": "2023-09-20T18:50:13.655Z",
+        "created_at": "2023-09-19T19:16:31.138Z",
+        "updated_at": "2023-09-19T19:17:05.882Z",
         "name": "v3",
         "deprecated": false,
         "registration_configs": []
@@ -193,42 +214,21 @@
   },
   {
     "id": "3c38bff8-3b7b-4323-8e2e-690d35ef97e0",
-    "title": " Deprecated - Konnect Runtime Group Config",
+    "title": "Konnect Runtime Group Config (Deprecated)",
     "latestVersion": {
       "name": "v2",
       "id": "16adcd15-493a-49b2-ad53-8c73891e29bf"
     },
-    "description": "Manage Kong Gateway services, routes, certificates, consumer and global configuration within Konnect. This spec is a Beta version.",
+    "description": "(Deprecated) Manage Kong Gateway services, routes, certificates, consumer and global configuration within Konnect.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
       {
         "id": "16adcd15-493a-49b2-ad53-8c73891e29bf",
         "created_at": "2022-12-15T21:13:44.308Z",
-        "updated_at": "2022-12-15T21:13:44.308Z",
+        "updated_at": "2023-09-19T20:52:16.144Z",
         "name": "v2",
         "deprecated": true,
-        "registration_configs": []
-      }
-    ]
-  },
-  {
-    "id": "98e74b12-7b86-429f-9255-d4a33e40f13b",
-    "title": "Konnect Control Planes",
-    "latestVersion": {
-      "name": "v1",
-      "id": "ffd06bfa-0a1c-4fb7-ade4-54089688225e"
-    },
-    "description": "Manage the Konnect Control Plane entity.",
-    "documentCount": 0,
-    "versionCount": 1,
-    "versions": [
-      {
-        "id": "ffd06bfa-0a1c-4fb7-ade4-54089688225e",
-        "created_at": "2023-09-20T22:01:21.688Z",
-        "updated_at": "2023-09-20T16:53:17.132Z",
-        "name": "v1",
-        "deprecated": false,
         "registration_configs": []
       }
     ]
@@ -277,21 +277,21 @@
   },
   {
     "id": "cd849478-4628-4bc2-abcd-5d8a83d3b5f2",
-    "title": "Konnect Runtime Groups",
+    "title": "Konnect Runtime Groups (Deprecated)",
     "latestVersion": {
       "name": "v2",
       "id": "24c1f98b-ea51-4277-9178-ca28a6aa85d9"
     },
-    "description": "Manage the runtime group entity in Konnect.",
+    "description": "(Deprecated) Manage the runtime group entity in Konnect.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
       {
         "id": "24c1f98b-ea51-4277-9178-ca28a6aa85d9",
         "created_at": "2022-11-17T20:00:05.266Z",
-        "updated_at": "2022-12-20T02:25:32.459Z",
+        "updated_at": "2023-09-20T15:35:47.234Z",
         "name": "v2",
-        "deprecated": false,
+        "deprecated": true,
         "registration_configs": []
       }
     ]

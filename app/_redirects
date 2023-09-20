@@ -3,8 +3,9 @@
 # More general/sweeping redirects should be at the bottom.
 
 
-# Konnect plus
 
+
+# Konnect plus
 
 
 /konnect/account-management/change-plan/     /konnect/account-management/
@@ -120,6 +121,8 @@
 
 # KIC GENERAL
 /kubernetes-ingress-controller/:version/guides/using-gateway-api/ /kubernetes-ingress-controller/:version/guides/getting-started/
+/kubernetes-ingress-controller/:version/guides/configuring-custom-entities/ /kubernetes-ingress-controller/latest/guides/overview/
+/kubernetes-ingress-controller/latest/guides/configuring-custom-entities/   /kubernetes-ingress-controller/latest/guides/overview/
 
 # GETTING STARTED GUIDES
 /getting-started-guide/2.6.x/       /gateway/2.6.x/get-started/comprehensive/

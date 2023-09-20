@@ -11,7 +11,33 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## September 2023
 **Renamed {{site.konnect_short_name}} capabilities**
-We have renamed a number of core {{site.konnect_short_name}} capabilities to align with the introduction of Mesh Manager as well as simplify user understanding. Runtime Manager is now Gateway Manager. Runtime Groups are now Control Planes. Composite Runtime Groups are now Shared Runtime Groups. Runtime Instances are now Data Plane Nodes.
+: We have renamed a number of core {{site.konnect_short_name}} capabilities to simplify user understanding:
+
+: UI:
+* Runtime Manager is now Gateway Manager
+* Runtime groups are now control planes
+* Composite runtime groups are now control plane groups
+* Runtime instances are now data plane nodes
+
+: API:
+* `/v2/systems-accounts` to `/v3/system-accounts`
+* `/v2/teams` to `/v3/teams`
+* `/v2/users` to `/v3/users`
+* `/v2/roles` to `/v3/roles`
+* `/v2/runtime-groups` to `/v2/control-planes`
+* `/v2/runtime-groups/{runtimeGroupId}/*` to `/v2/control-planes/{controlPlaneId}/*`
+* `/v2/runtime-groups/{runtimeGroupId}/composite-status` to `/v2/control-planes/{controlPlaneId}/group-status`
+
+: decK:
+* decK command flag: `--konnect-runtime-group-name` to `--konnect-control-plane-name`
+* decK state file attribute: `_konnect.runtime_group_name`  to` _konnect.control_plane_name`
+
+**Gateway Manager redesigns**
+: The Gateway Manager Landing Page is now updated to nudge customers to create a control plane if none are present. In addition, the control plane creation workflow has been revamped to make it more intuitive and easier to follow.
+
+: The Gateway Control Plane Overview page is now updated to present the users all relevant information of a specific control plane. In addition, prompts that nudge users to create their first service, route, plugin, and consumer are presented on the Overview Pages to nudge users to immediately dive into Konnect for the first time.
+
+## August 2023
 
 ## August 2023
 
@@ -221,7 +247,7 @@ with any of the following backends:
 : {{site.konnect_short_name}} now supports editing the app registration configuration while the app registration is still active. 
 
 **Runtime Groups Configuration API**
-: Konnect APIs for [runtime group configuration](https://docs.konghq.com/konnect/api/runtime-groups-config/) are now available for external consumption. This set of APIs allow organizations to create and manage kong gateway entities and CP/DP certificates. As a result, customers can leverage our APIs to provision runtime groups in their automated pipelines or platform infrastructure while managing data plane connections.
+: Konnect APIs for [runtime group configuration](/konnect/api/runtime-groups-configuration/latest/) are now available for external consumption. This set of APIs allow organizations to create and manage kong gateway entities and CP/DP certificates. As a result, customers can leverage our APIs to provision runtime groups in their automated pipelines or platform infrastructure while managing data plane connections.
 
 **New {{site.konnect_saas}} Analytics custom report chart types and metrics**
 : You can now choose between different chart types when creating custom reports. This feature allows you to better understand traffic patterns, user behavior, or trends over time.
