@@ -1,0 +1,7 @@
+- output: ../../app/assets/images/docs/konnect/konnect-control-plane-dashboard.png
+  url: https://cloud.konghq.com/us/gateway-manager/
+  wait: 4000
+  width: 1920
+  height: 800
+  javascript: |
+    removeElementBySelector('a.sidebar-item-link[href="/us/mesh-manager/"]');

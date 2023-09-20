@@ -46,5 +46,6 @@
   "https://kong.example.com",
   "https://kong.127-0-0-1.nip.io/api",
   "https://twitter.com/thekonginc",
-  "https://your_okta_domain/"
+  "https://your_okta_domain/",
+  "https://github.com/Kong/kong-ee/edit/*"
 ]

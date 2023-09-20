@@ -5,16 +5,16 @@ content_type: how-to
 
 To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service/), you must enable application registration for an API product version.
 When you enable application registration, {{site.konnect_saas}} enables plugins automatically to support the desired mode, either key authentication or OpenID Connect.
-These plugins run inside the {{site.base_gateway}} runtime instances to support application registration for the API product version and are managed by
+These plugins run inside the data plane to support application registration for the API product version and are managed by
 {{site.konnect_saas}}.
 
-## Support for any runtime group
+## Support for any control plane
 
-App registration is fully supported in the `default` runtime group, using application `consumers` and the `acl` plugin.
-For non-`default` runtime groups, app registration is supported using the `konnect-application-auth` plugin available as of {{site.base_gateway}} 3.0.
+App registration is fully supported in the `default` control plane when using the application `consumers` and the `acl` plugin. The `default` control plane is the one that is first created in each region when you create an organization.
+For non-`default` control planes, app registration is supported using the `konnect-application-auth` plugin available as of {{site.base_gateway}} 3.0.
 
 {:.note}
-> **Note:** The `default` runtime group is the one that is first created in each region when you create an organization. Although it can be renamed, it will always be the oldest runtime group in the region. See [default runtime group](/konnect/runtime-manager/runtime-groups/#runtime-groups) for additional context.
+> **Note:**  Although it can be renamed, the [`default` control plane group](/konnect/gateway-manager/control-plane-groups/) will always be the first and oldest control plane group in each region.
 
 ## Prerequisites
 
@@ -51,7 +51,7 @@ service, and follow these steps:
     read-only entry for the `konnect-application-auth` plugin.
 
 {:.note}
-> **Note:** If the API product version is in the `default` runtime group, it will
+> **Note:** If the API product version is in the `default` control plane group, it will
 instead receive read-only entries for the `acl` and `key-auth` plugins to provide
 support for {{site.base_gateway}} versions less than 3.0.
 
@@ -76,11 +76,13 @@ service, and follow these steps:
     read-only entries for the `konnect-application-auth` and `openid-connect` plugins.
 
 {:.note}
-> **Note:** If the API product version is in the `default` runtime group, it will
+> **Note:** If the API product version is in the `default` control plane group, it will
 instead receive read-only entries for the `acl` and `openid-connect` plugins to provide
 support for {{site.base_gateway}} versions less than 3.0.
 
 ###  OpenID Connect configuration parameters {#openid-config-parameters}
+
+In the `default` control plane group, **Credential claim** is used as a **Consumer claim** which identifies a consumer. In non-`default` control plane groups, the **Credential claim** should be mapped to a claim that contains the unique `clientId` or `applicationId` in the identity provider. For more background information about OpenID Connect plugin parameters, see [Important Configuration Parameters](/hub/kong-inc/openid-connect/#important-configuration-parameters).
 
    | Form Parameter | Description                                                                       |Required |
    |:---------------|:----------------------------------------------------------------------------------|--|
@@ -91,12 +93,7 @@ support for {{site.base_gateway}} versions less than 3.0.
    | `Hide Credentials` |**Default: disabled**<br>  Hide the credential from the upstream service. If enabled, the plugin strips the credential from the request header, query string, or request body, before proxying it. | **False** |
    | `Auto Approve`| **Default: disabled** <br>Automatically approve developer application requests for an application.| **False**
 
-{:.note}
-> **Note:** In the `default` runtime group, **Credential claim** is used as a **Consumer claim** which identifies a consumer. In non-`default` runtime groups, the **Credential claim** should be mapped to a claim that contains the unique `clientId` or `applicationId` in the identity provider.
-
-   For more background information about OpenID Connect plugin parameters, see
-   [Important Configuration Parameters](/hub/kong-inc/openid-connect/#important-configuration-parameters).
-
+   
 ## Disable application registration for a service {#disable}
 
 Disabling application registration removes all plugins that were initially enabled through application registration for this service.
@@ -117,16 +114,16 @@ You can
 [re-enable application registration](/konnect/dev-portal/applications/enable-app-reg)
 at any time.
 
-### Differences between runtime groups
+### Differences between control plane groups
 
-The `konnect-application-auth` plugin manages access control and API key authentication for app registration and replaces the need for the `acl` and `key-auth` plugins. It is used in every non-`default` runtime group. 
+The `konnect-application-auth` plugin manages access control and API key authentication for app registration and replaces the need for the `acl` and `key-auth` plugins. It is used in every non-`default` control plane group. 
 
-In the `default` runtime group, applications are linked to {{site.base_gateway}} consumers and use the `acl` plugin to control access between an application’s consumers and an API product version. In all other runtime groups, applications are not linked to {{site.base_gateway}} consumers.
+In the `default` control plane group, applications are linked to {{site.base_gateway}} consumers and use the `acl` plugin to control access between an application’s consumers and an API product version. For all other control planes, applications are not linked to {{site.base_gateway}} consumers.
 
 ### Known limitations
 
-The internal `konnect-application-auth` plugin only supports {{site.base_gateway}} 3.0+. If you need to use a version of {{site.base_gateway}} before 3.0, you must create your API product version that is linked to a Gateway service in the `default` runtime group, which still supports consumer mapping with the `acl` plugin.
+The internal `konnect-application-auth` plugin only supports {{site.base_gateway}} 3.0 or later. If you need to use a version of {{site.base_gateway}} before 3.0, you must create your API product version that is linked to a Gateway service in the `default` group, which still supports consumer mapping with the `acl` plugin.
 
-The `konnect-application-auth` plugin does not connect applications to {{site.base_gateway}} consumers. Therefore, any applications created through the app registration process in any non-default runtime group currently don't support rate limiting plugins. This will be addressed in a future release.
+The `konnect-application-auth` plugin does not connect applications to {{site.base_gateway}} consumers. Therefore, any applications created through the app registration process in any non-default control plane group won't support rate limiting plugins. This will be addressed in a future release.
 
-If you don't use any rate limiting plugins, we recommend upgrading your runtime instances to {{site.base_gateway}} version 3.0+ to ensure future compatibility with the `konnect-application-auth` plugin, which has a built-in replacement for the `acl` plugin.
+If you don't use any rate limiting plugins, we recommend upgrading your data plane nodes to {{site.base_gateway}} version 3.0 or later to ensure future compatibility with the `konnect-application-auth` plugin, which has a built-in replacement for the `acl` plugin.

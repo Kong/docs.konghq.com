@@ -2,8 +2,24 @@
 # Newer, more relevant redirects should appear at the top of the file.
 # More general/sweeping redirects should be at the bottom.
 
+######################################################################
 
-# 3.4
+# Evergreen redirects for nav files; do not delete unless you're removing the nav entry
+/konnect/support/data-plane-nodes/  /konnect/gateway-manager/data-plane-nodes/
+/gateway/latest/production/breaking-changes/     /gateway/latest/breaking-changes/
+/gateway/:version/production/breaking-changes/   /gateway/:version/breaking-changes/
+
+# Konnect rename
+
+/konnect/runtime-manager/runtime-instances/verify-instance/ /konnect/gateway-manager/data-plane-nodes/verify-node/
+/konnect/runtime-manager/runtime-instances/runtime-parameter-reference/ /konnect/gateway-manager/data-plane-nodes/parameter-reference/
+/konnect/runtime-manager/runtime-instances/* /konnect/gateway-manager/data-plane-nodes/:splat
+/konnect/runtime-manager/composite-runtime-groups/*     /konnect/gateway-manager/control-plane-groups/:splat
+/konnect/runtime-manager/runtime-groups/* /konnect/gateway-manager/control-plane-groups/:splat
+/konnect/runtime-manager/* /konnect/gateway-manager/:splat
+/konnect/getting-started/configure-runtime/ /konnect/getting-started/configure-data-plane-node/
+
+#3.4
 
 /gateway/latest/production/security-update-process /gateway/latest/support/vulnerability-patching-process 
 /gateway/latest/kong-enterprise/consumer-groups /gateway/latest/key-concepts/consumer-groups
@@ -13,8 +29,6 @@
 # 3.3
 
 /gateway/latest/upgrade/#upgrade-considerations-and-breaking-changes    /gateway/latest/breaking-changes/
-/gateway/latest/production/breaking-changes/     /gateway/latest/breaking-changes/
-/gateway/:version/production/breaking-changes/   /gateway/:version/breaking-changes/
 
 # 3.2
 
@@ -97,6 +111,8 @@
 
 # KIC GENERAL
 /kubernetes-ingress-controller/:version/guides/using-gateway-api/ /kubernetes-ingress-controller/:version/guides/getting-started/
+/kubernetes-ingress-controller/:version/guides/configuring-custom-entities/ /kubernetes-ingress-controller/latest/guides/overview/
+/kubernetes-ingress-controller/latest/guides/configuring-custom-entities/   /kubernetes-ingress-controller/latest/guides/overview/
 
 # GETTING STARTED GUIDES
 /getting-started-guide/2.6.x/       /gateway/2.6.x/get-started/comprehensive/

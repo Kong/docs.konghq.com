@@ -5,7 +5,8 @@
   height: 1080
   javascript: |
     async () => {
-      const sidebarItem = document.querySelector("#subnav-runtime-manager > li.sidebar-item-secondary.active");
+      removeElementBySelector('a.sidebar-item-link[href="/us/mesh-manager/"]');
+      const sidebarItem = document.querySelector("#subnav-gateway-manager > li.sidebar-item-secondary.active > a");
       const prefixItem = getTestId('prefix');
       const addItem = getTestId('toolbar-add-vault');
       const menuItem = getTestId('overflow-actions-button');

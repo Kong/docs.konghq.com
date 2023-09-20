@@ -6,7 +6,7 @@ title: Introduction to Monitoring Health with Analytics
 You can monitor the health and performance of any API product, route, or application managed by {{site.konnect_saas}}.
 
 Analytics provides traffic reports to help you track the performance and
-behavior of your APIs and runtimes. Use these reports to quickly access key
+behavior of your APIs and data plane nodes. Use these reports to quickly access key
 statistics, monitor vital signs, and pinpoint anomalies in real time.
 
 Depending on your {{site.konnect_saas}} subscription tier, Analytics retains
@@ -15,16 +15,16 @@ historical data for the following lengths of time:
 * **Plus:** 3 months
 * **Enterprise:** 1 year
 
-{:.important}
-> **Important**: Analytics for a composite runtime group are only available at the composite level. 
-Member standard runtime groups have no individual analytics reporting. This means that:
-* In the Runtime Manager, contextual analytics are logged in the composite runtime group only.
-* When creating custom reports, members of a composite runtime group won't show up as individual entities. 
-Reports will only show the composite group.
+{:.note}
+> **Note**:
+Member control planes in a control plane group have no individual analytics reporting. This means that:
+* In the Gateway Manager, contextual analytics are logged in the control plane group only.
+* When creating custom reports, control planes won't show up as individual entities. 
+Reports will only show the control plane group.
 
 ## Contextual analytics for services and routes
 
-In the [Runtime Manager](/konnect/runtime-manager/), you can see
+In the [Gateway Manager](/konnect/gateway-manager/), you can see
 activity graphs for gateway services or routes for the past 30 days.
 For gateway services and routes, the graphs show requests broken down by status codes.
 
@@ -73,7 +73,7 @@ You can view a graph for each category by clicking **Traffic**, **Errors**, or *
 Admins can monitor the latency, investigate where delays are noticed, and optimize performance for APIs.
 
     {:.note}
-    > **Note**: Latency data is only available for requests proxied through runtime instances running {{site.base_gateway}} 3.0.0.0 or later.
+    > **Note**: Latency data is only available for requests proxied through a data plane running {{site.base_gateway}} 3.0.0.0 or later.
 
    ![latency analytics graph](/assets/images/docs/konnect/konnect-analytics-latency.png){:.image-border}
   > _**Figure 4:** Graph showing latency as a percentage over the past 15 minutes._

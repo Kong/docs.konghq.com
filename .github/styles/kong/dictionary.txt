@@ -17,6 +17,8 @@ Curity
 CLIs
 DAO
 DAOs
+DN
+DNs
 DPP
 DPPs
 Datadog
@@ -136,6 +138,7 @@ deduplication
 degraphql
 denylist
 deployer
+deserialization
 deserialize
 deserialized
 dev
@@ -273,6 +276,10 @@ prepending
 prepends
 prepopulated
 preread
+printf
+productize
+productized
+productizing
 profiler
 prometheus
 proto

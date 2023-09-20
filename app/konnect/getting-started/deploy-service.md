@@ -2,7 +2,7 @@
 title: Proxy and Test a Service
 ---
 
-Create a {{site.konnect_short_name}} Gateway service to proxy your APIs. In this guide, you will create, proxy, and test a gateway service using Runtime Manager in {{site.konnect_short_name}}. 
+Create a {{site.konnect_short_name}} Gateway service to proxy your APIs. In this guide, you will create, proxy, and test a gateway service using Gateway Manager in {{site.konnect_short_name}}. 
 
 When you create a service, you also specify the route to it. This route,
 combined with the proxy URL for the service, will lead to the endpoint
@@ -12,11 +12,11 @@ specified in the API product deployment.
 
 If you're following the {{site.konnect_short_name}} quickstart guide,
 make sure you have
-[Configured a runtime](/konnect/getting-started/configure-runtime).
+[configured a data plane node](/konnect/getting-started/configure-data-plane-node).
 
 ## Implement a Gateway service
 
-In the {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/us/runtime-manager), select the **Default** runtime group and follow these steps:
+In the {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager), select the **Default** control plane and follow these steps:
 
 1. Select **Gateway Services** from the side navigation bar, then **New Gateway Service**.
 
@@ -51,9 +51,9 @@ In the {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.co
 
 ## Verify the implementation
 
-If you used the Docker script to create a container
-earlier in [Configure a Runtime](/konnect/getting-started/configure-runtime/),
-your runtime's default proxy URL is `localhost:8000`.
+If you used the Docker script to connect a data plane
+earlier in [Configure a data plane node](/konnect/getting-started/configure-data-plane-node/),
+your default proxy URL is `localhost:8000`.
 
 Enter the proxy URL into your browser’s address bar and append the route path
 you just set. The final URL should look something like this:
@@ -62,10 +62,10 @@ you just set. The final URL should look something like this:
 http://localhost:8000/mock
 ```
 
-If successful, you should see the homepage for `mockbin.org`. In the runtime manager you will now see a **200** responses recorded in the **Analytics** tab.
+If successful, you should see the homepage for `mockbin.org`. In the Gateway Manager you will now see a **200** responses recorded in the **Analytics** tab.
 
 And that's it! You have your first service set up, running, and routing
-traffic proxied through a {{site.base_gateway}} runtime.
+traffic proxied through a {{site.base_gateway}} data plane node.
 
 ## Summary and next steps
 
