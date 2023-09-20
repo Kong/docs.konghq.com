@@ -35,7 +35,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **Gateway Manager redesigns**
 : The Gateway Manager Landing Page is now updated to nudge customers to create a control plane if none are present. In addition, the control plane creation workflow has been revamped to make it more intuitive and easier to follow.
 
-: The Gateway Control Plane Overview page is now updated to present the users all relevant information of a specific control plane. In addition, prompts that nudge users to create their first service, route, plugin and consumer are presented on the Overview Pages to nudge users to immediately dive into {{site.konnect_short_name}} for the first time.
+: The Gateway Control Plane Overview page is now updated to present the users all relevant information of a specific control plane. In addition, prompts that nudge users to create their first service, route, plugin, and consumer are presented on the Overview Pages to nudge users to immediately dive into Konnect for the first time.
 
 ## August 2023
 
