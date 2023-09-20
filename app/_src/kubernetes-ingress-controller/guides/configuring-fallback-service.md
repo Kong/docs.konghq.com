@@ -109,7 +109,7 @@ to the end user if the user clicks a dead link or inputs an incorrect URL.
     spec:
       type: ClusterIP
       ports:
-     - port: 80
+      - port: 80
         targetPort: 5678
         protocol: TCP
         name: http
