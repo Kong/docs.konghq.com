@@ -11,7 +11,27 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## September 2023
 **Renamed {{site.konnect_short_name}} capabilities**
-We have renamed a number of core {{site.konnect_short_name}} capabilities to align with the introduction of Mesh Manager as well as simplify user understanding. Runtime Manager is now Gateway Manager. Runtime Groups are now Control Planes. Composite Runtime Groups are now Shared Runtime Groups. Runtime Instances are now Data Plane Nodes.
+: We have renamed a number of core {{site.konnect_short_name}} capabilities to simplify user understanding:
+
+: UI:
+* Runtime Manager is now Gateway Manager
+* Runtime groups are now control planes
+* Composite runtime groups are now control plane groups
+* Runtime instances are now data plane nodes
+
+: API:
+* `/v2/systems-accounts` to `/v3/system-accounts`
+* `/v2/teams` to `/v3/teams`
+* `/v2/users` to `/v3/users`
+* `/v2/roles` to `/v3/roles`
+* `/v2/runtime-groups` to `/v2/control-planes`
+* `/v2/runtime-groups/{runtimeGroupId}/*` to `/v2/control-planes/{controlPlaneId}/*`
+* `/v2/runtime-groups/{runtimeGroupId}/composite-status` to `/v2/control-planes/{controlPlaneId}/group-status`
+
+: decK:
+* decK command flag: `--konnect-runtime-group-name` to `--konnect-control-plane-name`
+* decK state file attribute: `_konnect.runtime_group_name`  to` _konnect.control_plane_name`
+
 
 ## August 2023
 
