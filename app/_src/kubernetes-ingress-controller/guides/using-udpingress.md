@@ -10,28 +10,8 @@ Deploy a simple [Service][svc] that listens for [UDP datagrams][udp], and expose
 
 {% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
 
-## Create a namespace
 
-First, create a namespace:
-
-{% navtabs codeblock %}
-{% navtab Command %}
-```bash
-kubectl create namespace udp-example
-```
-{% endnavtab %}
-{% navtab Response %}
-```text
-namespace/udp-example created
-```
-{% endnavtab %}
-{% endnavtabs %}
-
-Other examples in this guide will use this namespace. When you've completed
-this guide, `kubectl delete namespace udp-example` will clean those resources
-up.
-
-## Adding UDP listens
+## Add UDP listens
 
 {{site.base_gateway}} does not include any UDP listen configuration by default.
 To expose UDP listens, update the environment variables of the Deployment and port
@@ -101,9 +81,8 @@ The results should look like this:
 service/kong-udp-proxy created
 ```
 
-Note that this Service is typically added via the Kong Helm chart's `udpProxy`
-configuration. This guide creates it manually to demonstrate the resources the
-chart normally manages for you and for compatibility with non-Helm installs.
+This Service is typically added through the `udpProxy`configuration of the Kong Helm chart.
+Configure this manually to check the resources the chart manages and for compatibility with non-Helm installs.
 
 ## Update the Gateway
 
