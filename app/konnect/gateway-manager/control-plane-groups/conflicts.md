@@ -20,17 +20,10 @@ Conflicts have been detected between these control planes:
 <control plane name>
 ```
 
-![Control plane groups conflicts](/assets/images/docs/konnect/konnect-invariances-composite.png)
-
-![Standard control plane conflicts](/assets/images/docs/konnect/konnect-invariances-members.png)
-
-
 Standard control plane:
 ```
 This control plane is causing a conflict with the parent control plane group.
 ```
-
-![Specific control plane conflict example](/assets/images/docs/konnect/konnect-invariances-child.png)
 
 You can follow the link from the notification to **View** the conflicts in each control plane, 
 then **View** again to open the resource that's causing the issue.
