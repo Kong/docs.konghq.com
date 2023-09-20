@@ -260,13 +260,5 @@ This configuration routes traffic to UDP port `9999` on the
     	real path=/hello
     	request_scheme=tftp
     ```
-
-Request Information:
-	client_address=10.244.0.1
-	client_port=39364
-	real path=/hello
-	request_scheme=tftp
-```
-
 [svc]:https://kubernetes.io/docs/concepts/services-networking/service/
 [udp]:https://datatracker.ietf.org/doc/html/rfc768
