@@ -1,12 +1,12 @@
 The DataDome plugin is developed in Lua and integrates smoothly with Kong.
 
 This plugin relies on the DataDome Bot & Fraud Protection Platform to validate if any incoming API request is legitimate or coming from a bot.
-The only requirement to configure it is your DataDome server-side key.
+Once the plugin is installed, the only requirement is to configure your DataDome server-side key.
 
 
 ## How it works
 
-The DataDome plugin will hook into every API request from a client, and it will run before they are proxied to the upstream on the access phase (see details [here](https://openresty-reference.readthedocs.io/en/latest/Directives/)).
+The DataDome plugin will hook into every API request from a client, proxy the request to the DataDome Bot & Fraud Protection Platform to assess for threats in real time using our machine learning solution before allowing the request to be proxied to the upstream service.
 
 ## How to install
 
