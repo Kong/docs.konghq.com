@@ -70,8 +70,5 @@ the {{site.kic_product_name}}:
 - [Using mtls-auth plugin](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-mtls-auth-plugin/)
   This guide gives an overview of how to use `mtls-auth` plugin and CA
   certificates to authenticate requests using client certificates.
-- [Configuring custom entities in Kong](/kubernetes-ingress-controller/{{page.kong_version}}/guides/configuring-custom-entities/)
-  This guide gives an overview of how to configure custom entities for
-  deployments of the {{site.kic_product_name}} running without a database.
 - [Using OpenID-connect plugin](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-oidc-plugin/)
   This guide walks through steps necessary to set up OIDC authentication.
