@@ -23,7 +23,7 @@ Here are a few benefits of creating a mesh deployment in {{site.konnect_short_na
 * OpenShift
 * Docker
 * Amazon Linux
-* Redhat
+* Red Hat
 * CentOS
 * Debian
 * Ubuntu
