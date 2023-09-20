@@ -10,7 +10,7 @@ chapter: 1
 Use `kubectl kustomize` to install {{ site.kgo_product_name }}:
 
 ```bash
-kubectl apply -k "https://github.com/kong/gateway-operator-docs/config/crd?submodules=false" --server-side 
+kubectl apply -k "https://github.com/kong/gateway-operator-docs/config/crd?submodules=false" --server-side
 kubectl apply -k "https://github.com/kong/gateway-operator-docs/config/default?submodules=false"
 ```
 

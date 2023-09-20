@@ -14,8 +14,8 @@ kubectl apply -k "https://github.com/kubernetes-sigs/gateway-api/config/crd?ref=
 To install {{ site.kgo_product_name }} run:
 
 ```bash
-kubectl kustomize "https://github.com/kong/gateway-operator-docs/config/crd?submodules=false" | kubectl apply --server-side -f -
-kubectl kustomize "https://github.com/kong/gateway-operator-docs/config/default?submodules=false" | kubectl apply --server-side -f -
+kubectl apply -k "https://github.com/kong/gateway-operator-docs/config/crd?submodules=false" --server-side
+kubectl apply -k "https://github.com/kong/gateway-operator-docs/config/default?submodules=false"
 ```
 
 You can wait for the operator to be ready using `kubectl wait`:

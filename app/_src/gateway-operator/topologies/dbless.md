@@ -30,10 +30,10 @@ spec:
 ' | kubectl apply -f -
 ```
 
-You can now run `kubectl get gateway kong` to get the IP adress for the running gateway.
+You can now run `kubectl get gateway kong` to get the IP address for the running gateway.
 
 {:.note}
-Note: if your cluster can not provision LoadBalancer type Services then the IP you receive may only be routable from within the cluster.
+> Note: if your cluster can not provision LoadBalancer type Services then the IP you receive may only be routable from within the cluster.
 
 ## Configuring Gateways
 
