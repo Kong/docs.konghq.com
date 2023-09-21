@@ -25,4 +25,4 @@ spec:
           name: kong-enterprise-license
 ```
 
-For more information about `GatewayConfiguration` see the [GatewayConfiguration CRD reference](/gateway-operator/{{ page.release }}/reference/custom-resources/gatewayconfiguration/)
+For more information about `GatewayConfiguration` see the [GatewayConfiguration CRD reference](/gateway-operator/{{ page.release }}/reference/custom-resources#gatewayconfiguration)

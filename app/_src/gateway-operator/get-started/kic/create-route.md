@@ -64,7 +64,7 @@ Congratulations! You just configured {{ site.kgo_product_name }}, {{ site.kic_pr
 
 ## Next steps
 
-Now that you have a running `DataPlane` configured using Gateway API resources, you can explore the power that {{ site.base_gateway }}  provides:
+Now that you have a running `DataPlane` configured using Gateway API resources, you can explore the power that {{ site.base_gateway }} provides:
 
-* [Configuring {{ site.base_gateway }} plugins using {{ site.kic_product_name }}](kubernetes-ingress-controller/latest/guides/using-kongplugin-resource/)
+* [Configuring {{ site.base_gateway }} plugins using {{ site.kic_product_name }}](/kubernetes-ingress-controller/latest/guides/using-kongplugin-resource/)
 * [Upgrading {{ site.kgo_product_name }} managed data planes](/gateway-operator/{{ page.release }}/production/upgrade/data-plane/rolling/)
