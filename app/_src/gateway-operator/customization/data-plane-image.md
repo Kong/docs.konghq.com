@@ -2,14 +2,14 @@
 title: Customizing the Data Plane image
 ---
 
-Customizing the image that you use for your `DataPlane` is one of the most common use cases.
+You can customize the image of your `DataPlane` using  the `DataPlane` resource or the `GatewayConfiguration` CRD .
 
 ## Using DataPlane
 
 {:.note}
 > This method is only available when running in [hybrid mode](/gateway-operator/{{ page.release }}/topologies/hybrid/)
 
-The `DataPlane` resource uses the Kubernetes [PodTemplateSpec](/gateway-operator/{{ page.release }}/customization/pod-template-spec/) to define how pods should be run. If you need to customize the {{ site.base_gateway }} image being used, you can set `spec.deployment.podTemplateSpec.spec.containers[].name`:
+The `DataPlane` resource uses the Kubernetes [PodTemplateSpec](/gateway-operator/{{ page.release }}/customization/pod-template-spec/) to define how the Pods should run. Set the`spec.deployment.podTemplateSpec.spec.containers[].image` to customize the {{ site.base_gateway }} image.
 
 ```yaml
 apiVersion: gateway-operator.konghq.com/v1beta1

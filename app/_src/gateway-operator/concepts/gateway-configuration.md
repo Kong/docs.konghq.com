@@ -6,7 +6,7 @@ title: Gateway Configuration
 
 These customizations are primarily used to set the container image to be used and any environment variables required by the containers.
 
-Here is a example `GatewayConfiguration` that provides an enterprise license for {{ site.base_gateway }}:
+Here is an example of the `GatewayConfiguration` that provides an enterprise license for {{ site.base_gateway }}.
 
 ```yaml
 kind: GatewayConfiguration
