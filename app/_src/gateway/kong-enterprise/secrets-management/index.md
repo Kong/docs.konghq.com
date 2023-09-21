@@ -65,7 +65,9 @@ to a reference so that it is properly sent to the vault API:
 
 Most of the [Kong configuration](/gateway/{{page.kong_version}}/reference/configuration/) values
 can be stored as a secret, such as [`pg_user`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings) and
-[`pg_password`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings).
+[`pg_password`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings). 
+
+**Note**: `kong.conf` values do not work with secrets rotation. If you update a `kong.conf` value in your vault, Kong must be restarted to pick up the new value.
 
 {% if_version gte:3.1.x %}
 
