@@ -1,3 +1,7 @@
+---
+nav_title: Overview
+---
+
 The OpenID Connect ([1.0][connect]) plugin (also known as OIDC) allows for integration with a third party
 identity provider (IdP) in a standardized way. This plugin can be used to implement
 Kong as a (proxying) [OAuth 2.0][oauth2] resource server (RS) and/or as an OpenID
