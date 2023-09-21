@@ -70,12 +70,12 @@ features:
             icon: /assets/images/icons/icn-doc.svg
             url: /deck/latest/guides/apiops/
 
-      # - name: Kong Operator
-      #   description: TBD
-      #   links:
-      #     - text: Overview
-      #       icon: /assets/images/icons/icn-doc.svg
-      #       url: /kubernetes-ingress-controller/latest/
+       - name: Kong Gatway Operator
+         description: Manage your Kong Ingress Controller, Kong Gateway Data Planes, or both together when running on Kubernetes.
+         links:
+           - text: Overview
+             icon: /assets/images/icons/icn-doc.svg
+             url: /gateway-operator/latest/
 
       - name: Kong Ingress Controller
         description: Implement authentication, transformations, and other functionalities across Kubernetes clusters with zero downtime.
