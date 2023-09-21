@@ -38,7 +38,7 @@ You can now run `kubectl get gateway kong` to get the IP address for the running
 ## Configuring Gateways
 
 A `Gateway` resource has subcomponents such as a `ControlPlane` and a `DataPlane,` which are created and managed on its behalf.
-At a deeper technical level, `ControlPlane` corresponds with the [{{ site.kic_product_name }}][/kubernetes-ingress-controller/latest/] and `DataPlane` corresponds with the [Kong Gateway](/gateway/latest/).
+At a deeper technical level, `ControlPlane` corresponds with the [{{ site.kic_product_name }}][/kubernetes-ingress-controller/latest/] and `DataPlane` corresponds with the [{{site.base_gateway}}](/gateway/latest/).
 
 While not required for primary usage, it is possible to provide configuration for these subcomponents using the `GatewayConfiguration` API.
 That configuration can include the container image and image version to use for the subcomponents, as well as environment and volume mount overrides will be passed down to`Pods` created for that component.
