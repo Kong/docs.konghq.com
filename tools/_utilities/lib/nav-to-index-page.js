@@ -6,6 +6,7 @@ This is enough to start spidering URLs using the sidebar for broken links
 module.exports = function (filename) {
   const lookup = {
     deck: "deck",
+    kgo: "gatway-operator",
     kic: "kubernetes-ingress-controller",
     konnect: "konnect",
     mesh: "mesh",
