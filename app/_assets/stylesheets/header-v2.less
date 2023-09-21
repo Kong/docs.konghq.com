@@ -317,6 +317,11 @@ header.navbar-v2 {
       display: flex;
       align-items: center;
       transition: transform 0.5s;
+      max-height: 60px;
+
+      > ul {
+        max-height: 40px;
+      }
 
       .navbar-item {
         position: relative;
@@ -497,7 +502,19 @@ header.navbar-v2 {
     }
   }
 
-  @media (max-width: 1330px) {
+  @media (max-width: 1470px) {
+
+    .navbar-content {
+      .navbar-items {
+        .navbar-item {
+          margin-right: 22px;
+          transition: ease 0.5s;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1350px) {
 
     .navbar-content {
       .navbar-items {
