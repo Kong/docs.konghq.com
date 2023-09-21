@@ -31,7 +31,7 @@ For Kubernetes or Docker deployments, map ports as needed. For example, if you
 want to use port `3001` for the proxy, map `3001:8000`.
 
 ## Hostnames
-### Runtime groups
+### Control planes
 
 Depending on your control plane type, you may need to add hostnames to your firewall allowlist.
 
@@ -70,7 +70,7 @@ You can find the configuration and telemetry hostnames through the Gateway Manag
 
 {% navtab Kong Ingress Controller %}
 
-{{site.kic_product_name}} initiates the connection to the {{site.konnect_short_name}} [Control Planes Configuration API](/konnect/api/runtime-groups-config/) to:
+{{site.kic_product_name}} initiates the connection to the {{site.konnect_short_name}} [Control Planes Configuration API](/konnect/api/control-plane-configuration/latest/) to:
 
 * Synchronize the configuration of the {{site.base_gateway}} instances with {{site.konnect_short_name}}
 * Register data plane nodes
