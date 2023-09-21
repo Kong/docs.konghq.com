@@ -1965,8 +1965,8 @@ to), which can be set as a single string or by specifying its `protocol`,
 Services are associated to Routes (a Service can have many Routes associated
 with it). Routes are entry-points in Kong and define rules to match client
 requests. Once a Route is matched, Kong proxies the request to its associated
-Service. See the [Proxy Reference][proxy-reference] for a detailed explanation
-of how Kong proxies traffic.
+Service. See the [Proxy Reference](/gateway/latest/how-kong-works/routing-traffic/) 
+for a detailed explanation of how Kong proxies traffic.
 
 Services can be both [tagged and filtered by tags](#tags).
 

@@ -1048,7 +1048,7 @@ Here is an example of such a fallback Route:
 
 As you can guess, any HTTP request made to Kong would actually match this
 Route, since all URIs are prefixed by the root character `/`. As we know from
-the [Request path][proxy-request-path] section, the longest URL paths are
+the [Request path](#request-path) section, the longest URL paths are
 evaluated first by Kong, so the `/` path will eventually be evaluated last by
 Kong, and effectively provide a "fallback" Route, only matched as a last
 resort. You can then send traffic to a special Service or apply any plugin you

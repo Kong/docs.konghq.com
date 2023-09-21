@@ -13,7 +13,7 @@ In order to use the plugin, you first need to create a Consumer to associate one
 
 ### Create a Consumer
 
-You need to associate a credential to an existing [Consumer][consumer-object] object. To create a Consumer, you can execute the following request:
+You need to associate a credential to an existing [consumer](/gateway/api/admin-ee/latest/#/Consumers) object. To create a Consumer, you can execute the following request:
 
 ```bash
 $ curl -X POST http://kong:8001/consumers/ \
@@ -34,7 +34,7 @@ parameter                      | default | description
 `username`<br>*semi-optional*  |         | The username of the Consumer. Either this field or `custom_id` must be specified.
 `custom_id`<br>*semi-optional* |         | A custom identifier used to map the Consumer to another database. Either this field or `username` must be specified.
 
-A [Consumer][consumer-object] can have many credentials.
+A [consumer](/gateway/api/admin-ee/latest/#/Consumers) can have many credentials.
 
 If you are also using the [ACL](/plugins/acl/) plugin and allowed lists with this
 service, you must add the new consumer to an allowed group. See

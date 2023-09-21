@@ -1036,7 +1036,7 @@ Here is an example of such a fallback route:
 
 As you can guess, any HTTP request made to {{site.base_gateway}} would actually match this
 route, since all URIs are prefixed by the root character `/`. As we know from
-the [Request path][proxy-request-path] section, the longest URL paths are
+the [Request path](#request-path) section, the longest URL paths are
 evaluated first by {{site.base_gateway}}, so the `/` path will eventually be evaluated last by
 {{site.base_gateway}}, and effectively provide a "fallback" route, only matched as a last
 resort. You can then send traffic to a special service or apply any plugin you
