@@ -84,7 +84,7 @@ spec:
 
 With the `parametersRef` in the above `GatewayClass` being used to attach the `GatewayConfiguration`, that configuration will start applying to all `Gateway`resources created for that class, and will retroactively apply to any `Gateway`resources previously created.
 
-## Kong Gateway Enterprise
+## {{site.base_gateway}} Enterprise
 
 You can use Kong Enterprise as the data plane using the following steps:
 

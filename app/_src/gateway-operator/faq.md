@@ -2,7 +2,7 @@
 title: FAQ
 ---
 
-**How can I use the Kong Gateway operator?**
+**How can I use the {{site.kgo_product_name}}?**
 
 The Kong Gateway Operator can be installed by following the instructions at https://docs.konghq.com/gateway-operator/latest/install/
 
@@ -10,7 +10,7 @@ The quickest way to get started is to attach your data planes to Konnect. See [g
 
 ---
 
-**How can I get help with the Kong Gateway Operator?**
+**How can I get help with the {{site.kgo_product_name}}?**
 
 If you’re a Kong Enterprise customer, please raise a support ticket. If you’re an Open Source user, please create an issue in [Kong/gateway-operator-docs/](https://github.com/Kong/gateway-operator-docs/issues)
 

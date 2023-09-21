@@ -75,5 +75,6 @@ spec:
           - name: kong-cluster-cert
             secret:
               secretName: kong-cluster-cert
+              defaultMode: 420
 ' | kubectl apply -f -
 ```

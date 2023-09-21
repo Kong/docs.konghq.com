@@ -36,5 +36,5 @@ subtitle: Deploy and manage Kong on Kubernetes using Kubernetes resources
 With {{site.kgo_product_name}}, users can:
 
 * Deploy and configure {{ site.base_gateway }} services
-* Customise deployments using `PodTemplateSpec` to deploy sidecards, set node affinity and more.
+* Customise deployments using `PodTemplateSpec` to deploy sidecars, set node affinity and more.
 * Upgrade Data Planes using a rolling restart or blue/green deployments

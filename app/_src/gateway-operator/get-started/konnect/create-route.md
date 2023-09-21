@@ -10,7 +10,7 @@ chapter: 3
 
 Your `DataPlane` should now be running, but there are no routing rules to tell {{ site.base_gateway }} how to proxy traffic. In this tutorial we will use the Konnect API to configure and test routing.
 
-## Prerequisities
+## Prerequisites
 
 1. Visit the Gateway Manager section of Konnect and fetch your control plane ID. This is available on the _Data Plane Nodes_ page next to the _Control Plane ID_ label. Export a variable that contains this value:
 
