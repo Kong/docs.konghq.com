@@ -870,11 +870,11 @@ If the rule count for the given request is the same in two Routes `A` and
 `B`, then the following tiebreaker rules will be applied in the order they
 are listed. Route `A` will be selected over `B` if:
 
-* `A` has only "plain" Host headers and `B` has has one or more "wildcard"
+* `A` has only "plain" Host headers and `B` has one or more "wildcard"
   host headers
 * `A` has more non-Host headers than `B`.
 * `A` has at least one "regex" paths and `B` has only "plain" paths.
-* `A`'s longer path is longer than `B`'s longer path.
+* `A`'s longest path is longer than `B`'s longest path.
 * `A.created_at < B.created_at`
 
 ## Proxying behavior
@@ -914,7 +914,7 @@ information about in the [Plugin development guide][plugin-development-guide].
 
 Once Kong has executed all the necessary logic (including plugins), it is ready
 to forward the request to your upstream service. This is done via Nginx's
-[ngx_http_proxy_module][ngx-http-proxy-module]. You can configure the desired
+[`ngx_http_proxy_module`][ngx-http-proxy-module]. You can configure the desired
 timeouts for the connection between Kong and a given upstream, via the following
 properties of a Service:
 
@@ -933,34 +933,38 @@ Kong will send the request over HTTP/1.1, and set the following headers:
 - `Connection: keep-alive`, to allow for reusing the upstream connections.
 - `X-Real-IP: <remote_addr>`, where `$remote_addr` is the variable bearing
   the same name provided by
-  [ngx_http_core_module][ngx-remote-addr-variable]. Please note that the
+  [`ngx_http_core_module`][ngx-remote-addr-variable]. Please note that the
   `$remote_addr` is likely overridden by
-  [ngx_http_realip_module][ngx-http-realip-module].
+  [`ngx_http_realip_module`][ngx-http-realip-module].
 - `X-Forwarded-For: <address>`, where `<address>` is the content of
   `$realip_remote_addr` provided by
-  [ngx_http_realip_module][ngx-http-realip-module] appended to the request
+  [`ngx_http_realip_module`][ngx-http-realip-module] appended to the request
   header with the same name.
 - `X-Forwarded-Proto: <protocol>`, where `<protocol>` is the protocol used by
   the client. In the case where `$realip_remote_addr` is one of the **trusted**
   addresses, the request header with the same name gets forwarded if provided.
   Otherwise, the value of the `$scheme` variable provided by
-  [ngx_http_core_module][ngx-scheme-variable] will be used.
+  [`ngx_http_core_module`][ngx-scheme-variable] will be used.
 - `X-Forwarded-Host: <host>`, where `<host>` is the host name sent by
   the client. In the case where `$realip_remote_addr` is one of the **trusted**
   addresses, the request header with the same name gets forwarded if provided.
   Otherwise, the value of the `$host` variable provided by
-  [ngx_http_core_module][ngx-host-variable] will be used.
+  [`ngx_http_core_module`][ngx-host-variable] will be used.
 - `X-Forwarded-Port: <port>`, where `<port>` is the port of the server which
   accepted a request. In the case where `$realip_remote_addr` is one of the
   **trusted** addresses, the request header with the same name gets forwarded
   if provided. Otherwise, the value of the `$server_port` variable provided by
-  [ngx_http_core_module][ngx-server-port-variable] will be used.
+  [`ngx_http_core_module`][ngx-server-port-variable] will be used.
 - `X-Forwarded-Prefix: <path>`, where `<path>` is the path of the request which
   was accepted by Kong. In the case where `$realip_remote_addr` is one of the
   **trusted** addresses, the request header with the same name gets forwarded
   if provided. Otherwise, the value of the `$request_uri` variable (with
-  the query string stripped) provided by [ngx_http_core_module][ngx-server-port-variable]
-  will be used. **Note**: Kong will return `"/"` for an empty path, but it does not do any other normalization on the request path.
+  the query string stripped) provided by [`ngx_http_core_module`][ngx-server-port-variable]
+  will be used.
+  
+  {:.note}
+  > **Note**: Kong returns `"/"` for an empty path, but it doesn't do any other 
+  > normalization on the request path.
 
 All the other request headers are forwarded as-is by Kong.
 
@@ -1083,7 +1087,7 @@ associating the uploaded certificate to it.
 
 Note that one of the SNI names defined in `snis` above contains a wildcard
 (`*.tls-example.com`). An SNI may contain a single wildcard in the leftmost (prefix) or
-rightmost (suffix) postion. This can be useful when maintaining multiple subdomains. A
+rightmost (suffix) position. This can be useful when maintaining multiple subdomains. A
 single `sni` configured with a wildcard name can be used to match multiple
 subdomains, instead of creating an SNI for each.
 
@@ -1323,7 +1327,7 @@ This means all of the below setup are supported in this mode:
 
 **Note:** In L4 proxy mode, only plugins that has `tcp` or `tls` in the supported
 protocol list are supported. This list can be found in their respective documentation
-on [Kong Hub](https://docs.konghq.com/hub/).
+on the [Kong Plugin Hub](/hub/).
 
 ## Conclusion
 
@@ -1339,6 +1343,8 @@ Feel free to provide feedback to this document there, or propose improvements!
 If you haven't already, we suggest that you also read the [Load balancing
 Reference][load-balancing-reference], as it closely relates to the topic we
 just covered.
+
+<!--vale off-->
 
 [plugin-configuration-object]: /gateway/{{page.kong_version}}/admin-api#plugin-object
 [plugin-development-guide]: /gateway/{{page.kong_version}}/plugin-development
