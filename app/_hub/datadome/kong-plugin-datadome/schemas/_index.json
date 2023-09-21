@@ -23,31 +23,31 @@
               "type": "string",
               "required": true,
               "default": " ", 
-              "description": " "
+              "description": "DataDome license key"
             } 
           },
           { "datadome_endpoint": {
               "type": "string",
               "required": false,
-              "description": " " 
+              "description": "Hostname of the API Server"
             } 
           },
           { "datadome_timeout": {
               "type": "integer",
               "required": false,
-              "description": " " 
+              "description": "Timeout for regular API calls"
             } 
           },
           { "datadome_url_pattern_inclusion": {
               "type": "string",
               "required": false,
-              "description": " " 
+              "description": "Regular expression to include URLs"
             } 
           },
           { "datadome_url_pattern_exclusion": {
               "type": "string",
               "required": false,
-              "description": " " 
+              "description": "Regular expression to exclude URLs"
             }
           }
         ]
