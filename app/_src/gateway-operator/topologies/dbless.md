@@ -52,18 +52,26 @@ metadata:
   name: kong
   namespace: default
 spec:
-  controlPlaneDeploymentOptions:
-    containerImage: kong/kubernetes-ingress-controller
-    version: {{ site.data.kong_latest_KIC.version }}
-    env:
-    - name: TEST_VAR
-      value: TEST_VAL
-  dataPlaneDeploymentOptions:
-    containerImage: kong/kong
-    version: {{ site.data.kong_latest_gateway.ee-version }}
-    env:
-    - name: TEST_VAR
-      value: TEST_VAL
+  dataPlaneOptions:
+    deployment:
+      podTemplateSpec:
+        spec:
+          containers:
+          - name: proxy
+            image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
+          env:
+          - name: TEST_VAR
+            value: TEST_VAL
+  controlPlaneOptions:
+    deployment:
+      podTemplateSpec:
+        spec:
+          containers:
+          - name: controller
+            image: kong/kubernetes-ingress-controller:{{ site.data.kong_latest_kic }}
+          env:
+          - name: TEST_VAR
+            value: TEST_VAL
 ```
 
 Configurations like the above can be created on the API, but won't be active until referenced by a `GatewayClass`:
@@ -108,14 +116,19 @@ You can use Kong Enterprise as the data plane using the following steps:
       name: kong
       namespace: <your-namespace>
     spec:
-      dataPlaneDeploymentOptions:
-        containerImage: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
-        env:
-        - name: KONG_LICENSE_DATA
-          valueFrom:
-            secretKeyRef:
-              key: license
-              name: kong-enterprise-license
+      dataPlaneOptions:
+        deployment:
+          podTemplateSpec:
+            spec:
+              containers:
+              - name: proxy
+                image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
+              env:
+              - name: KONG_LICENSE_DATA
+                valueFrom:
+                  secretKeyRef:
+                    key: license
+                    name: kong-enterprise-license
     ```
 
 3. Create a `GatewayClass` that references the `GatewayConfiguration` above.

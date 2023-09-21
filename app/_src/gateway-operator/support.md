@@ -47,4 +47,4 @@ LTS versions of {{site.kgo_product_name}} are supported for 3 years after releas
 
 | Version  | Released Date | End of Full Support | End of Sunset Support |
 |:--------:|:-------------:|:-------------------:|:---------------------:|
-|  1.0.x  |  2023-09-27   |     2024-09-27      |      2025-09-27       |
+|  1.0.x   |  2023-09-27   |     2024-09-27      |      2025-09-27       |

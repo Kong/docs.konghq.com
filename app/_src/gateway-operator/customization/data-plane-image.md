@@ -42,12 +42,20 @@ metadata:
   name: kong
   namespace: default
 spec:
-  controlPlaneDeploymentOptions:
-    containerImage: kong/kubernetes-ingress-controller
-    version: {{ site.data.kong_latest_KIC.version }}
-  dataPlaneDeploymentOptions:
-    containerImage: kong/kong
-    version: {{ site.data.kong_latest_gateway.ee-version }}
+  dataPlaneOptions:
+    deployment:
+      podTemplateSpec:
+        spec:
+          containers:
+          - name: proxy
+            image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
+  controlPlaneOptions:
+    deployment:
+      podTemplateSpec:
+        spec:
+          containers:
+          - name: controller
+            image: kong/kubernetes-ingress-controller:{{ site.data.kong_latest_kic }}
 ```
 
 To make your deployment use this configuration, reference it in your `GatewayClass` resource:

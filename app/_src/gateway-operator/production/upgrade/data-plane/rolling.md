@@ -7,7 +7,7 @@ title: Rolling Upgrades
 {:.note}
 > This method is only available when running in [hybrid mode](/gateway-operator/{{ page.release }}/topologies/hybrid/)
 
-To change the image used for your `DataPlane` resources, set the `spec.deployment.podTemplateSpec.spec.containers[].name` field in your resource:
+To change the image used for your `DataPlane` resources, set the `spec.deployment.podTemplateSpec.spec.containers[].image` field in your resource:
 
 ```bash
 kubectl edit dataplane dataplane-example
@@ -29,12 +29,20 @@ metadata:
   name: kong
   namespace: default
 spec:
-  dataPlaneDeploymentOptions:
-    containerImage: kong/kong
-    version: {{ site.data.kong_latest_gateway.ee-version }}
-  controlPlaneDeploymentOptions:
-    containerImage: kong/kubernetes-ingress-controller
-    version: {{ site.data.kong_latest_KIC.version }}
+  dataPlaneOptions:
+    deployment:
+      podTemplateSpec:
+        spec:
+          containers:
+          - name: proxy
+            image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
+  controlPlaneOptions:
+    deployment:
+      podTemplateSpec:
+        spec:
+          containers:
+          - name: controller
+            image: kong/kubernetes-ingress-controller:{{ site.data.kong_latest_kic }}
 ```
 
 The above configuration will deploy all `DataPlane` resources connected to the
@@ -47,5 +55,5 @@ For example: assuming that at least one `Gateway` is currently deployed and runn
 kubectl edit gatewayconfiguration kong
 ```
 
-And updating the `dataPlaneDeploymentOptions.version` to `3.3.0`.
-The result will be a replacement `Pod` will roll out with the 9od version and once healthy the old `Pod` will be terminated.
+And updating the `proxy` container image tag in `spec.dataPlaneOptions.deployment.podTemplateSpec.spec` to `3.3` like so: `kong/kong-gateway:3.3`.
+The result will be a replacement `Pod` will roll out with the old version and once healthy the old `Pod` will be terminated.

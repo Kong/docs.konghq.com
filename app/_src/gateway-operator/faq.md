@@ -4,7 +4,7 @@ title: FAQ
 
 **How can I use the {{site.kgo_product_name}}?**
 
-The Kong Gateway Operator can be installed by following the instructions at https://docs.konghq.com/gateway-operator/latest/install/
+The {{site.kgo_product_name}} can be installed by following the instructions at https://docs.konghq.com/gateway-operator/latest/install/
 
 The quickest way to get started is to attach your data planes to Konnect. See [getting started with Konnect](/gateway-operator/{{ page.release }}/get-started/konnect/install/) for more information
 
