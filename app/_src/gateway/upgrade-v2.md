@@ -20,10 +20,10 @@ distinction between major, minor, and patch versions.
 The upgrade to {{page.kong_version}} is a **minor** upgrade.
 
 {:.important}
-> **Important**: Blue-green migration in traditional mode for versions below 2.8.2 to 3.0.x is not supported.
+> **Important**: Blue-green migration in traditional mode for versions below 2.8.x to 3.0.x is not supported.
 The 2.8.2 release includes blue-green migration support. If you want
 to perform migrations for traditional mode with no downtime,
-upgrade to 2.8.2, [then migrate to {{page.kong_version}}](#migrate-db).
+upgrade to 2.8.x, [then migrate to {{page.kong_version}}](#migrate-db).
 
 While you can upgrade directly to the latest version, be aware of any
 breaking changes between the 2.x and 3.x series noted in this document
@@ -32,7 +32,7 @@ breaking changes between the 2.x and 3.x series noted in this document
 is built on an open-source foundation, any breaking changes in OSS affect all {{site.base_gateway}} packages.
 
 {{site.base_gateway}} does not support directly upgrading from 1.x to {{page.kong_version}}.
-If you are running 1.x, upgrade to 2.8.2 first and then to 3.0.x and 3.1.x at a minimum. Finally, upgrade to
+If you are running 1.x, upgrade to 2.8.x first and then to 3.0.x and 3.1.x at a minimum. Finally, upgrade to
 {{page.kong_version}} from there.
 
 In either case, you can review the {% if_version lte:3.2.x %}[upgrade considerations and breaking changes](#upgrade-considerations-and-breaking-changes){% endif_version %} breaking changes for your version,
@@ -46,8 +46,8 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 
 | **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
 | ------------------- | ------------ | ---------------------------- | ---------------- |
-| 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#migrate-db). |
-| 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#migrate-db). |
+| 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#migrate-db). |
+| 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#migrate-db). |
 | 2.x–2.7.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#migrate-db). |
 | 2.8.x | Traditional | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#migrate-db). |
 | 2.8.x | Hybrid | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.1.3](#migrate-db). |
@@ -62,8 +62,8 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 
 | **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
 | ------------------- | ------------ | ---------------------------- | ---------------- |
-| 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
-| 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
 | 2.x–2.7.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
 | 2.8.x | Traditional | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
 | 2.8.x | Hybrid | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
@@ -82,8 +82,8 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 
 | **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
 | ------------------- | ------------ | ---------------------------- | ---------------- |
-| 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
-| 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
 | 2.x–2.7.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
 | 2.8.x | Traditional | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
 | 2.8.x | Hybrid | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
@@ -105,8 +105,8 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 
 | **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
 | ------------------- | ------------ | ---------------------------- | ---------------- |
-| 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
-| 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
 | 2.x–2.7.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
 | 2.8.x | Traditional | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
 | 2.8.x | Hybrid | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
