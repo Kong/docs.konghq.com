@@ -18,7 +18,7 @@ In order to gain access to more organizations, the user may:
 - Create a new organization - Newly created organizations will automatically show up in the org switcher.
 - Be invited to an organization - Organizations that the user is invited to will automatically show up in the org switcher.
 
-
+{:.note}
 > **Note**: It is possible to end up with more than one org switcher identities if the user does not choose to “Link Accounts” when logging into {{site.konnect_short_name}} for the very first time on different social credentials. Organizations will only be associated with one primary account. It is not currently possible to re-link accounts. {{site.konnect_short_name}} recommends “Linking Accounts” when using multiple social identities.
 
 ## Switch Organizations
@@ -28,6 +28,7 @@ The user can login to each organization listed in the org switcher by clicking o
 
 If the organization is configured to be single-sign-on only, then the user will be directed to the configured identity provider to re-authenticate into {{site.konnect_short_name}}.
 
+{:.note}
 > **Note**: You cannot be logged in to more than one {{site.konnect_short_name}} organization at the same time. You must return to the org switcher in order to switch to another organization.
 
 ## Create a New Organization
