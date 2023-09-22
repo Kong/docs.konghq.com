@@ -150,7 +150,7 @@ components:
           - error
           - crit
         example: warn
-      description: Log levels are set in Kong’s configuration. Log levels increase in order of their severity
+      description: Log levels are set in Kong's configuration. Log levels increase in order of their severity
   schemas:
     CA-Certificate:
       description: A CA certificate object represents a trusted CA. These objects are used by Kong to verify the validity of a client or server certificate. CA Certificates can be both tagged and filtered by tags.
@@ -1285,7 +1285,7 @@ components:
             properties:
               name:
                 type: string
-                description: 'The name of the Plugin that’s going to be added. Currently, the Plugin must be installed in every Kong instance separately.'
+                description: 'The name of the Plugin that's going to be added. Currently, the Plugin must be installed in every Kong instance separately.'
                 example: rate-limiting
               route:
                 type: string
@@ -1339,10 +1339,10 @@ components:
                   type: string
               ordering:
                 type: object
-                description: |-
+                description: |
                   Describes a dependency to another plugin to determine plugin ordering during the access phase.
-                  –`before`: The plugin will be executed before a specified plugin or list of plugins.
-                  – `after`: The plugin will be executed after a specified plugin or list of plugins.
+                  - `before`: The plugin will be executed before a specified plugin or list of plugins.
+                  - `after`: The plugin will be executed after a specified plugin or list of plugins.
                 properties:
                   before:
                     type: array
@@ -1573,7 +1573,7 @@ components:
                 example: v0
               preserve_host:
                 type: boolean
-                description: 'When matching a route via one of the `hosts` domain names, use the request `host` header in the upstream request headers. If set to `false`, the upstream Host header will be that of the service’s host.'
+                description: 'When matching a route via one of the `hosts` domain names, use the request `host` header in the upstream request headers. If set to `false`, the upstream Host header will be that of the service's host.'
                 default: true
               request_buffering:
                 type: boolean
@@ -1786,13 +1786,13 @@ components:
               tls_verify_depth:
                 type: string
                 description: |
-                  Maximum depth of chain while verifying Upstream server’s TLS certificate. If set to null, then the Nginx default is respected. Default: null.
+                  Maximum depth of chain while verifying Upstream server's TLS certificate. If set to null, then the Nginx default is respected. Default: null.
                 example: respected
                 default: null
                 nullable: true
               ca_certificates:
                 type: array
-                description: 'Array of CA Certificate object UUIDs that are used to build the trust store while verifying upstream server’s TLS certificate. If set to null when Nginx default is respected. With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an Array.'
+                description: 'Array of CA Certificate object UUIDs that are used to build the trust store while verifying upstream server's TLS certificate. If set to null when Nginx default is respected. With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an Array.'
                 items:
                   type: string
                   example: 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
@@ -2210,10 +2210,10 @@ components:
                         default: /
                       https_sni:
                         type: string
-                        description: 'The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host’s certificate can be verified with the proper SNI.'
+                        description: 'The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI.'
                   threshold:
                     type: integer
-                    description: The minimum percentage of the upstream’s targets’ weight that must be available for the whole upstream to be considered healthy.
+                    description: The minimum percentage of the upstream's targets' weight that must be available for the whole upstream to be considered healthy.
                     minimum: 0
                     maximum: 100
                     default: 0
@@ -2405,7 +2405,7 @@ components:
               name:
                 type: string
                 description: |
-                  The name of the Vault that’s going to be added. Currently, the Vault implementation must be installed in every Kong instance.
+                  The name of the Vault that's going to be added. Currently, the Vault implementation must be installed in every Kong instance.
                 example: env
               description:
                 type: string
@@ -2415,7 +2415,7 @@ components:
               config:
                 type: object
                 description: |
-                  The configuration properties for the Vault which can be found on the vaults’ documentation page.
+                  The configuration properties for the Vault which can be found on the vaults' documentation page.
                 properties:
                   prefix:
                     type: string
@@ -2609,7 +2609,7 @@ components:
                 type: string
               name:
                 type: string
-                description: 'The name of the Plugin that’s going to be added. Currently, the Plugin must be installed in every Kong instance separately.'
+                description: 'The name of the Plugin that's going to be added. Currently, the Plugin must be installed in every Kong instance separately.'
                 example: rate-limiting
               created_at:
                 type: integer
@@ -2666,10 +2666,10 @@ components:
                   type: string
               ordering:
                 type: object
-                description: |-
+                description: |
                   Describes a dependency to another plugin to determine plugin ordering during the access phase.
-                  –`before`: The plugin will be executed before a specified plugin or list of plugins.
-                  – `after`: The plugin will be executed after a specified plugin or list of plugins.
+                  - `before`: The plugin will be executed before a specified plugin or list of plugins.
+                  - `after`: The plugin will be executed after a specified plugin or list of plugins.
                 properties:
                   before:
                     type: array
@@ -6877,7 +6877,7 @@ paths:
           description: OK
       operationId: get-schemas-plugins-plugin_name
       description: |
-        Retrieve the schema of a plugin’s configuration. This is useful to understand what fields a plugin accepts, and can be used for building third-party integrations to the Kong’s plugin system.
+        Retrieve the schema of a plugin's configuration. This is useful to understand what fields a plugin accepts, and can be used for building third-party integrations to the Kong's plugin system.
   /schemas/plugins/validate:
     post:
       summary: Validate plugin schema
@@ -6910,7 +6910,7 @@ paths:
         - Information
   /timers:
     get:
-      summary: Retrieve Runtime Debugging Info of Kong’s Timers
+      summary: Retrieve Runtime Debugging Info of Kong's Timers
       tags:
         - Information
       responses:
@@ -7171,10 +7171,10 @@ paths:
                           properties:
                             http_allocated_gc:
                               type: string
-                              description: 'HTTP submodule’s Lua virtual machine’s memory usage information, as reported by'
+                              description: 'HTTP submodule's Lua virtual machine's memory usage information, as reported by'
                             pid:
                               type: integer
-                              description: worker’s process identification number.
+                              description: worker's process identification number.
                               example: 18478
                   database:
                     type: object
@@ -7306,7 +7306,7 @@ paths:
                       connections_accepted: 15
       operationId: get-status
       description: |-
-        Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process, the status of the database connection, and node’s memory usage.
+        Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process, the status of the database connection, and node's memory usage.
 
         If you want to monitor the Kong process, since Kong is built on top of nginx, every existing nginx monitoring tool or agent can be used.
   /tags:
@@ -7371,7 +7371,7 @@ paths:
 
         Care must be taken when changing the log level of a node to `debug` in a production environment because the disk could fill up quickly. As soon as the debug logging finishes, revert back to a higher level such as notice.
 
-        It’s currently not possible to change the log level of DP and DB-less nodes.
+        It's currently not possible to change the log level of DP and DB-less nodes.
       tags:
         - Debug
   '/debug/cluster/log-level/{log_level}':
@@ -7406,7 +7406,7 @@ paths:
 
         See the [NGINX docs](http://nginx.org/en/docs/ngx_core_module.html#error_log) for a list of accepted values.
 
-        It’s currently not possible to change the log level of DP and DB-less nodes.
+        It's currently not possible to change the log level of DP and DB-less nodes.
 
         Currently, when a user dynamically changes the log level for the entire cluster, if a new node joins a cluster the new node will run at the previous log level, not at the log level that was previously set dynamically for the entire cluster.
       tags:
