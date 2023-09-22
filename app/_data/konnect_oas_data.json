@@ -276,6 +276,27 @@
     ]
   },
   {
+    "id": "dbb7412b-28ed-473a-a6e3-4222e777bdaa",
+    "title": "Konnect PKI Certs for CP/DP Authentication",
+    "latestVersion": {
+      "name": "v1",
+      "id": "c26b8ed4-9f0a-40ed-a1b3-d0dd82492fa3"
+    },
+    "description": "Konnect now supports pinned PKI certs for CP/DP authentication. This means that Konnect supports digital certificates signed by a trusted CA in Konnect for CP/DP authentication.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "c26b8ed4-9f0a-40ed-a1b3-d0dd82492fa3",
+        "created_at": "2023-09-23T11:11:00.000Z",
+        "updated_at": "2023-09-23T11:11:00.000Z",
+        "name": "v1",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
     "id": "cd849478-4628-4bc2-abcd-5d8a83d3b5f2",
     "title": "Konnect Runtime Groups (Deprecated)",
     "latestVersion": {
