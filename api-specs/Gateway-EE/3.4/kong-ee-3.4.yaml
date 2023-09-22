@@ -2803,7 +2803,7 @@ components:
               name:
                 type: string
                 description: |
-                  The name of the route. Route names must be unique, and they are case sensitive. For example, there can be two different routes named “test” and “Test”.
+                  The name of the route. Route names must be unique, and they are case sensitive. For example, there can be two different routes named "test" and "Test".
               protocols:
                 type: array
                 description: An array of the protocols this route should allow
@@ -2892,7 +2892,7 @@ components:
               sources:
                 type: array
                 description: |
-                  A list of IP sources of incoming connections that match this route when using stream routing. Each entry is an object with fields “ip” (optionally in CIDR range notation) and/or “port”.
+                  A list of IP sources of incoming connections that match this route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
                 items:
                   type: object
                   properties:
@@ -2905,7 +2905,7 @@ components:
               destinations:
                 type: array
                 description: |
-                  A list of IP destinations of incoming connections that match this route when using stream routing. Each entry is an object with fields “ip” (optionally in CIDR range notation) and/or “port”.
+                  A list of IP destinations of incoming connections that match this route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
                 items:
                   type: object
                   properties:
@@ -2922,7 +2922,7 @@ components:
                   type: string
               service:
                 type: object
-                description: The service this route is associated to. This is where the route proxies traffic to. With form-encoded, the notation is service.id=<service id> or service.name=<service name>. With JSON, use “`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
+                description: The service this route is associated to. This is where the route proxies traffic to. With form-encoded, the notation is service.id=<service id> or service.name=<service name>. With JSON, use `"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
                 nullable: true
                 properties:
                   id:
@@ -2990,7 +2990,7 @@ components:
             properties:
               set:
                 type: object
-                description: The id (an UUID) of the key-set with which to associate the key .With form-encoded, the notation is `set.id=<set id>` or `set.name=<set name>`. With JSON, use `“"set":{"id":"<set id>"}` or `"set":{"name":"<set name>"}.`
+                description: The id (an UUID) of the key-set with which to associate the key .With form-encoded, the notation is `set.id=<set id>` or `set.name=<set name>`. With JSON, use `"set":{"id":"<set id>"}` or `"set":{"name":"<set name>"}.`
                 properties:
                   id:
                     type: string
@@ -3224,7 +3224,7 @@ components:
                   example: '["user-level", "low-priority"]'
               certificate:
                 type: object
-                description: The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object. With form-encoded, the notation is `certificate.id=<certificate id>`. With JSON, use `“certificate":{"id":"<certificate id>”}`.
+                description: The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object. With form-encoded, the notation is `certificate.id=<certificate id>`. With JSON, use `"certificate":{"id":"<certificate id>"}`.
                 properties:
                   id:
                     type: string

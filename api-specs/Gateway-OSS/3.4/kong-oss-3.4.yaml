@@ -1214,7 +1214,7 @@ components:
                   example: '["user-level", "low-priority"]'
               certificate:
                 type: object
-                description: 'The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object. With form-encoded, the notation is `certificate.id=<certificate id>`. With JSON, use `“certificate":{"id":"<certificate id>”}`.'
+                description: 'The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object. With form-encoded, the notation is `certificate.id=<certificate id>`. With JSON, use `"certificate":{"id":"<certificate id>"}`.'
                 properties:
                   id:
                     type: string
@@ -1285,19 +1285,23 @@ components:
             properties:
               name:
                 type: string
-                description: 'The name of the Plugin that's going to be added. Currently, the Plugin must be installed in every Kong instance separately.'
+                description: |
+                  The name of the Plugin that's going to be added. Currently, the Plugin must be installed in every Kong instance separately.
                 example: rate-limiting
               route:
                 type: string
-                description: 'If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the route being used. Default: `null`.With form-encoded, the notation is `route.id=<route id> or route.name=<route name>`. With JSON, use `"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.'
+                description: |
+                  If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the route being used. Default: `null`. With form-encoded, the notation is `route.id=<route id> or route.name=<route name>`. With JSON, use `"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
                 nullable: true
               service:
                 type: string
-                description: 'If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified service.'
+                description: |
+                  If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified service.
                 nullable: true
               consumer:
                 type: string
-                description: 'If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.)'
+                description: |
+                  If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.)
                 nullable: true
               instance_name:
                 type: string
@@ -1412,7 +1416,7 @@ components:
             properties:
               set:
                 type: object
-                description: 'The id (an UUID) of the key-set with which to associate the key .With form-encoded, the notation is `set.id=<set id>` or `set.name=<set name>`. With JSON, use `“"set":{"id":"<set id>"}` or `"set":{"name":"<set name>"}.`'
+                description: 'The id (an UUID) of the key-set with which to associate the key .With form-encoded, the notation is `set.id=<set id>` or `set.name=<set name>`. With JSON, use `"set":{"id":"<set id>"}` or `"set":{"name":"<set name>"}.`'
                 properties:
                   id:
                     type: string
@@ -1505,7 +1509,7 @@ components:
               name:
                 type: string
                 description: |
-                  The name of the route. Route names must be unique, and they are case sensitive. For example, there can be two different routes named “test” and “Test”.
+                  The name of the route. Route names must be unique, and they are case sensitive. For example, there can be two different routes named "test" and "Test".
               protocols:
                 type: array
                 description: An array of the protocols this route should allow
@@ -1573,7 +1577,8 @@ components:
                 example: v0
               preserve_host:
                 type: boolean
-                description: 'When matching a route via one of the `hosts` domain names, use the request `host` header in the upstream request headers. If set to `false`, the upstream Host header will be that of the service's host.'
+                description: |
+                  When matching a route via one of the `hosts` domain names, use the request `host` header in the upstream request headers. If set to `false`, the upstream Host header will be that of the service's host.
                 default: true
               request_buffering:
                 type: boolean
@@ -1594,7 +1599,7 @@ components:
               sources:
                 type: array
                 description: |
-                  A list of IP sources of incoming connections that match this route when using stream routing. Each entry is an object with fields “ip” (optionally in CIDR range notation) and/or “port”.
+                  A list of IP sources of incoming connections that match this route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
                 items:
                   type: object
                   properties:
@@ -1607,7 +1612,7 @@ components:
               destinations:
                 type: array
                 description: |
-                  A list of IP destinations of incoming connections that match this route when using stream routing. Each entry is an object with fields “ip” (optionally in CIDR range notation) and/or “port”.
+                  A list of IP destinations of incoming connections that match this route when using stream routing. Each entry is an object with fields "ip" (optionally in CIDR range notation) and/or "port".
                 items:
                   type: object
                   properties:
@@ -1624,7 +1629,7 @@ components:
                   type: string
               service:
                 type: object
-                description: 'The service this route is associated to. This is where the route proxies traffic to. With form-encoded, the notation is service.id=<service id> or service.name=<service name>. With JSON, use “`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.'
+                description: 'The service this route is associated to. This is where the route proxies traffic to. With form-encoded, the notation is service.id=<service id> or service.name=<service name>. With JSON, use `"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.'
                 properties:
                   id:
                     type: string
@@ -1792,14 +1797,17 @@ components:
                 nullable: true
               ca_certificates:
                 type: array
-                description: 'Array of CA Certificate object UUIDs that are used to build the trust store while verifying upstream server's TLS certificate. If set to null when Nginx default is respected. With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an Array.'
+                description: |
+                  Array of CA Certificate object UUIDs that are used to build the trust store while verifying upstream server's TLS certificate. If set to null when Nginx default is respected. 
+                  With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an Array.
                 items:
                   type: string
                   example: 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
               enabled:
                 type: boolean
                 default: true
-                description: 'Whether the service is active. If set to `false`, the proxy behavior will be as if any routes attached to it do not exist (404). Default: `true`.'
+                description: |
+                  Whether the service is active. If set to `false`, the proxy behavior will be as if any routes attached to it do not exist (404). Default: `true`.
             required:
               - protocol
               - host
@@ -2210,7 +2218,9 @@ components:
                         default: /
                       https_sni:
                         type: string
-                        description: 'The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI.'
+                        description: 
+                          The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. 
+                          This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI.
                   threshold:
                     type: integer
                     description: The minimum percentage of the upstream's targets' weight that must be available for the whole upstream to be considered healthy.
@@ -2609,7 +2619,8 @@ components:
                 type: string
               name:
                 type: string
-                description: 'The name of the Plugin that's going to be added. Currently, the Plugin must be installed in every Kong instance separately.'
+                description: |
+                  The name of the Plugin that's going to be added. Currently, the Plugin must be installed in every Kong instance separately.
                 example: rate-limiting
               created_at:
                 type: integer
@@ -7171,7 +7182,8 @@ paths:
                           properties:
                             http_allocated_gc:
                               type: string
-                              description: 'HTTP submodule's Lua virtual machine's memory usage information, as reported by'
+                              description: |
+                                HTTP submodule's Lua virtual machine's memory usage information, as reported by
                             pid:
                               type: integer
                               description: worker's process identification number.
