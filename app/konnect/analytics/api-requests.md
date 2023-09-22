@@ -20,9 +20,9 @@ At a glance, each API request on the Requests page shows the following informati
 * HTTP method of the API request.
 * Path that was requested.
 * Latency numbers for:
-  Response: how long it took to return the request
-  Kong: how long it took for Kong to process the request
-  Upstream: how long it took for your upstream service to return the request back to Kong.
+  * Response: how long it took to return the request
+  * Kong: how long it took for Kong to process the request
+  * Upstream: how long it took for your upstream service to return the request back to Kong.
 
 By clicking on a single API request, you can further inspect that request and see, for example, which API Product, Application, Consumer, or Control Plane is associated with this request. You can now continue to investigate each associated entity to see its configuration and adjust it if necessary.
 
