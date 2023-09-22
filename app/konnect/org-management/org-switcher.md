@@ -37,4 +37,4 @@ The user can create a new organization by clicking on the **+ Create** button.
 
 ## Delete Organizations from Org Switcher
 
-In order to remove organizations from the Org Switcher, the user can login to that organization and navigate to [**My Account**](https://cloud.konghq.com/global/account) > **Delete Account**. This will delete the Konnect account in that organization and remove the org from org switcher.
+In order to remove organizations from the org switcher, the user can login to that organization and navigate to [**My Account**](https://cloud.konghq.com/global/account) > **Delete Account**. This will delete the {{site.konnect_short_name}} account in that organization and remove the org from org switcher.
