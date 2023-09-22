@@ -11,7 +11,7 @@ Using Mesh Manager, you can create {{site.mesh_product_name}} global control pla
 
 ## Prerequisites
 
-* [A Kubernetes cluster with a load balancer](https://kubernetes.io/docs/setup/)
+* [A Kubernetes cluster with load balancer service capabilities](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
 * [`kubectl` installed and configured to communicate with your Kubernetes cluster](https://kubernetes.io/docs/tasks/tools/#kubectl)
 * [Download the latest version of {{site.mesh_product_name}}](/mesh/latest/production/install-kumactl/)
 
