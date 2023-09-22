@@ -71,9 +71,7 @@ configuration.
 Whenever a connection is re-established with the control plane, it pushes the latest 
 configuration to the data plane node. It doesn't queue up or try to apply older changes.
 
-### What happens if there are connectivity issues with the Mesh global or zone control planes?
-
-If the global {{site.mesh_product_name}} control plane and zone control plane become disconnected, configuration can't travel between them. You can see [Failure modes](/mesh/latest/production/deployment/multi-zone/#failure-modes) in the {{site.mesh_product_name}} documentation for more details on what happens when there are {{site.mesh_product_name}} connectivity issues.
+If your control plane is a {{site.mesh_product_name}} global control plane, see [Failure modes](/mesh/latest/production/deployment/multi-zone/#failure-modes) in the {{site.mesh_product_name}} documentation for more details on what happens when there are {{site.mesh_product_name}} connectivity issues.
 
 ### How long can data plane nodes remain disconnected from the control plane?
 
