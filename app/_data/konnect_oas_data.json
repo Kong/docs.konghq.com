@@ -20,6 +20,27 @@
       }
     ]
   },
+   {
+    "id": "51eda0ea-74ca-48c9-bf6e-80a413d620b4",
+    "title": "Konnect API Requests (Beta)",
+    "latestVersion": {
+      "name": "v2",
+      "id": "bf65b13d-d12e-42cb-8392-8d898d83b7a1"
+    },
+    "description": "API Requests provides access to detailed records for requests made to your API, in near real-time. This API is released as beta.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "bf65b13d-d12e-42cb-8392-8d898d83b7a1",
+        "created_at": "2023-09-22T11:11:00.000Z",
+        "updated_at": "2023-09-22T11:11:00.000Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
   {
     "id": "98e74b12-7b86-429f-9255-d4a33e40f13b",
     "title": "Konnect Control Planes",
