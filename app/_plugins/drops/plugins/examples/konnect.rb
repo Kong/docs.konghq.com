@@ -6,11 +6,11 @@ module Jekyll
       module Examples
         class Konnect < Base
           URLS = {
-            'consumer' => 'https://{us|eu}.api.konghq.com/v2/runtime-groups/{RUNTIME-GROUP-ID}/core-entities/consumers/{CONSUMER_ID}/plugins',
-            'consumer_group' => 'https://{us|eu}.api.konghq.com/v2/runtime-groups/{RUNTIME-GROUP-ID}/core-entities/consumer_groups/{CONSUMER_GROUP_ID}/plugins',
-            'global' => 'https://{us|eu}.api.konghq.com/v2/runtime-groups/{RUNTIME-GROUP-ID}/core-entities/plugins/',
-            'route' => 'https://{us|eu}.api.konghq.com/v2/runtime-groups/{RUNTIME-GROUP-ID}/core-entities/routes/{ROUTE_ID}/plugins',
-            'service' => 'https://{us|eu}.api.konghq.com/v2/runtime-groups/{RUNTIME-GROUP-ID}/core-entities/services/{SERVICE_ID}/plugins'
+            'consumer' => 'https://{us|eu}.api.konghq.com/v2/control-planes/{CONTROL-PLANE-ID}/core-entities/consumers/{CONSUMER_ID}/plugins',
+            'consumer_group' => 'https://{us|eu}.api.konghq.com/v2/control-planes/{CONTROL-PLANE-ID}/core-entities/consumer_groups/{CONSUMER_GROUP_ID}/plugins',
+            'global' => 'https://{us|eu}.api.konghq.com/v2/control-planes/{CONTROL-PLANE-ID}/core-entities/plugins/',
+            'route' => 'https://{us|eu}.api.konghq.com/v2/control-planes/{CONTROL-PLANE-ID}/core-entities/routes/{ROUTE_ID}/plugins',
+            'service' => 'https://{us|eu}.api.konghq.com/v2/control-planes/{CONTROL-PLANE-ID}/core-entities/services/{SERVICE_ID}/plugins'
           }.freeze
 
           def params
