@@ -33,6 +33,9 @@ You now have a {{site.mesh_product_name}} global control plane. This control pla
 
 After creating the global control plane, you must add a zone to that control plane. Adding a zone allows you to manage services added to that zone and send and receive configuration changes to the zone. 
 
+{:.important}
+> **Important:** Mesh zones are priced based on consumption. Your Konnect free trial provides enough credits for your first two zones. For more information about the pricing and consumption of additional zones, see the [Pricing and Plans](/konnect/account-management/) documentation and Kong's [Pricing](https://konghq.com/pricing) page.
+
 1. In {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager), click the `example-cp` control plane you just created, and then click **Zones** in the sidebar.
 1. Click **Create Zone**. 
 1. Enter "zone-1" in the **Name** field for the new zone, and then click **Create Zone & generate token**. 
