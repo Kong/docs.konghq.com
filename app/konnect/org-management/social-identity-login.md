@@ -3,7 +3,10 @@ title: Social Identity Login
 content_type: how-to
 ---
 
-Users have the option to register for and sign in to {{site.konnect_short_name}} accounts using social credentials from Google, GitHub and Microsoft. 
+Users have the option to register for and sign in to {{site.konnect_short_name}} accounts using social credentials from the following providers:
+- Google
+- GitHub 
+- Microsoft
 
 ## Account Linking
 
@@ -11,4 +14,4 @@ It is possible to login with one or more social identities such as Google and Gi
 
 ## Disable Social Login (Enterprise Only)
 
-The social login functionality is part of the “Built-In” authentication scheme found in the Organization > Auth Settings menu. The only way to disable social login is to enable OIDC single sign on and disable the built-in authentication scheme. This will also disable basic auth logins and delegate user management to the identity provider.
+The social login functionality is part of the “Built-In” authentication scheme found in the [**Organization**](https://cloud.konghq.com/organization/) > [**Auth Settings**](https://cloud.konghq.com/global/organization/auth-settings) menu. The only way to disable social login is to enable OIDC single sign on and disable the built-in authentication scheme. This will also disable basic auth logins and delegate user management to the identity provider.
