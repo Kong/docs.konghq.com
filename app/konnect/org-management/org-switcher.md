@@ -3,7 +3,7 @@ title: Org Switcher
 content_type: how-to
 ---
 
-The org switcher allows a user with multiple {{site.konnect_short_name}} accounts to seamlessly switch between organizations they belong to. You can navigate to the org switcher by clicking on Your `Org Name > Back to Org Switcher`.
+The org switcher allows a user with multiple {{site.konnect_short_name}} accounts to seamlessly switch between organizations they belong to. You can navigate to the org switcher by clicking on Your **Org Name** > **Back to Org Switcher**.
 
 From the org switcher, you can:
 - View a list of {{site.konnect_short_name}} organizations you have access to
@@ -23,7 +23,7 @@ In order to gain access to more organizations, the user may:
 
 ## Switch Organizations
 
-Users can switch organizations while logged in by clicking on the `Org Name > Back to Org Switcher`.
+Users can switch organizations while logged in by clicking on the **Org Name** > **Back to Org Switcher**.
 The user can login to each organization listed in the org switcher by clicking on the Select  button.
 
 If the organization is configured to be single-sign-on only, then the user will be directed to the configured identity provider to re-authenticate into {{site.konnect_short_name}}.
@@ -33,4 +33,4 @@ If the organization is configured to be single-sign-on only, then the user will 
 
 ## Create a New Organization
 
-The user can create a new organization by clicking on the `+ Create` button.
+The user can create a new organization by clicking on the **+ Create** button.
