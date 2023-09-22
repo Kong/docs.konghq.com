@@ -41,7 +41,7 @@ Create some standard control planes.
 1. Create control plane `CP1`:
 
     ```sh
-    curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups \
+    curl -i -X POST https://<region>.api.konghq.com/v2/control-planes \
         -H "Authorization: Bearer <your_KPAT>" \
         --data "name=CP1" \
         --data "cluster_type=CLUSTER_TYPE_HYBRID"
@@ -50,7 +50,7 @@ Create some standard control planes.
 1. Create control plane `CP2`:
 
     ```sh
-    curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups \
+    curl -i -X POST https://<region>.api.konghq.com/v2/control-planes \
         -H "Authorization: Bearer <your_KPAT>" \
         --data "name=CP2" \
         --data "cluster_type=CLUSTER_TYPE_HYBRID"
@@ -82,7 +82,7 @@ Next, create a control plane group with the control planes `CP1` and `CP2` as it
 1. Create a control plane group:
 
     ```sh
-    curl -i -X POST https://<region>.api.konghq.com/v2/runtime-groups \
+    curl -i -X POST https://<region>.api.konghq.com/v2/control-planes \
         -H "Authorization: Bearer <your_KPAT>" \
         --data "name=CPG" \
         --data "cluster_type=CLUSTER_TYPE_COMPOSITE"
