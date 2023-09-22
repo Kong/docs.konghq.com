@@ -3,7 +3,7 @@ title: Org Switcher
 content_type: how-to
 ---
 
-The org switcher allows a user with multiple {{site.konnect_short_name}} accounts to seamlessly switch between organizations they belong to. You can navigate to the org switcher by clicking on Your **Org Name** > **Back to Org Switcher**.
+The org switcher allows a user with multiple {{site.konnect_short_name}} accounts to seamlessly switch between organizations they belong to. You can navigate to the org switcher by clicking on **Your Org Name** > **Back to Org Switcher**.
 
 From the org switcher, you can:
 - View a list of {{site.konnect_short_name}} organizations you have access to
