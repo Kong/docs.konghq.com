@@ -67,9 +67,9 @@ curl -sX POST https://kong:8001/ca_certificates -F cert=@cert.pem
 
 {% navtab Konnect %}
 
-Go through the Runtime Manager:
-1. In {{site.konnect_short_name}}, click {% konnect_icon runtimes %} **Runtime Manager**.
-2. Select the runtime instance you want to add the CA certificate to.
+Go through the Gateway Manager:
+1. In {{site.konnect_short_name}}, click {% konnect_icon runtimes %} **Gateway Manager**.
+2. Select the control plane you want to add the CA certificate to.
 3. Click **Certificates**.
 4. Select the **CA Certificates** tab.
 5. Click **+ Add CA Certificate**

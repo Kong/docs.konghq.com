@@ -47,7 +47,7 @@ Kubernetes exposes the proxy through a Kubernetes service. Run the following com
     curl -i $PROXY_IP
     ```
 
-    The result should look like this:
+    The results should look like this:
 
     ```bash
     HTTP/1.1 404 Not Found

@@ -17,6 +17,8 @@ Curity
 CLIs
 DAO
 DAOs
+DN
+DNs
 DPP
 DPPs
 Datadog
@@ -274,6 +276,10 @@ prepending
 prepends
 prepopulated
 preread
+printf
+productize
+productized
+productizing
 profiler
 prometheus
 proto
