@@ -1,1 +1,34 @@
-{}
+{
+  "fields": [
+    {
+      "consumer": {
+        "eq": null,
+        "type": "foreign",
+        "reference": "consumers"
+      }
+    },
+    {
+      "protocols": {
+        "elements": {
+          "one_of": [ 
+            "http",
+            "https",
+            "etc"
+          ],
+          "type": "string"
+        },
+        "required": true,
+        "type": "set",
+        "default": [
+          "http",
+          "https",
+        ]
+      }
+    },
+    {
+      "config": {
+        "fields": []
+      }
+    }
+  ]
+}
