@@ -5,25 +5,32 @@ book: kgo-konnect-get-started
 chapter: 2
 ---
 
-In order for {{ site.kgo_product_name }} data planes to attach to {{ site.konnect_short_name }} they need to know which endpoint to connect to, and how to authenticate their requests.
+To attach a {{ site.kgo_product_name }} data plane to {{ site.konnect_short_name }} the data plane needs to know which endpoint to connect to, and how to authenticate the requests.
 
-To get this information, [log in to {{ site.konnect_short_name }}](https://cloud.konghq.com/login) and visit _Gateway Manager_. Select a Control Plane and then create a _New Runtime Instance_.
+To get the endpoint and the authentication details of the data plane.
+1.  [Log in to {{ site.konnect_short_name }}](https://cloud.konghq.com/login).
+1.  Navigate to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager), choose the control plane, and click **Create a New Data Plane Node**.
+1.  In the **Create a Data Plane Node** page select the  **Platform** as *Kubernetes*.
+     The **Advanced Kubernetes Setup** section lists the instructions to install Kong Gateway and deploy Kong Gateway data plane nodes in hybrid mode.
+1.  Create a namespace named `kong` in the Kubernetes cluster using `kubectl create namespace kong`.   
 
-Follow the instructions on the screen, but stop once you have created a secret in step 3:
+1.  Click **Generate Certificates**  in step 3.
+1.  Copy and save the contents of **Cluster Certificate** in a file named `tls.crt`.
+1.  Copy and save the contents of **Cluster Key** in a file named `tls.key`.
 
-```bash
-kubectl create secret tls kong-cluster-cert -n kong --cert=/{PATH_TO_FILE}/tls.crt --key=/{PATH_TO_FILE}/tls.key
-```
+1.  To deploy a {{ site.kgo_product_name }} instance, type:
+    ```bash
+    kubectl create secret tls kong-cluster-cert -n kong --cert=/{PATH_TO_FILE}/tls.crt --key=/{PATH_TO_FILE}/tls.key
+    ```
 
 The instructions in {{ site.konnect_short_name }} use Helm to deploy a dataplane instance, but we want to use {{ site.kgo_product_name }}.
 
-We installed {{ site.kgo_product_name }} in the previous step, which means we can create a `DataPlane` resource directly on the server and the operator will deploy an instance for us.
+    You can now create a `DataPlane` resource directly on the server and the operator will create an instance of {{ site.base_gateway }}.
 
-The final step is to find your control plane ID in step 4 of the {{ site.konnect_short_name }} UI. Your control plane ID is the first segment of `cluster_server_name`.
+    1. In the **Configuration parameters** step 4 of **Advanced Kubernetes Setup** find the value of  `cluster_server_name`. The first segment of that value is the control plane ID for your cluster.
+    For example, if the value of `cluster_server_name` is `36fc5d01be.us.cp0.konghq.com`, then the control plane ID of the cluster is `36fc5d01be`.
 
-For example, a `cluster_server_name` of `36fc5d01be.us.cp0.konghq.com` means that my control plane ID is `36fc5d01be`.
-
-Replace `YOUR_CP_ID` in the manifest below with your control plane ID and apply with `kubectl apply`:
+1.  In this maifest, replace `YOUR_CP_ID` with your control plane ID and deploy the data plane with `kubectl apply`:
 
 ```yaml
 echo '

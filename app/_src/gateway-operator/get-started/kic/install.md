@@ -12,17 +12,18 @@ You configure your `GatewayClass` and `Gateway` objects in a vendor independent 
 
 This means that we need to install CRDs for both the Gateway API and {{ site.kic_product_name }}:
 
-```bash
-kubectl apply -k https://github.com/Kong/kubernetes-ingress-controller/config/crd
-kubectl apply -k "https://github.com/kubernetes-sigs/gateway-api/config/crd?ref=v0.8.1"
+    ```bash
+    kubectl apply -k https://github.com/Kong/kubernetes-ingress-controller/config/crd
+    kubectl apply -k "https://github.com/kubernetes-sigs/gateway-api/config/crd?ref=v0.8.1"
+    ```
 ```
 
-Once that is done, install {{ site.kgo_product_name }} using `kubectl apply`:
+1. Install {{ site.kgo_product_name }} using `kubectl apply`.
 
-```bash
-kubectl apply -k "https://github.com/kong/gateway-operator-docs/config/crd" --server-side
-kubectl apply -k "https://github.com/kong/gateway-operator-docs/config/default"
-```
+    ```bash
+    kubectl apply -k "https://github.com/kong/gateway-operator-docs/config/crd" --server-side
+    kubectl apply -k "https://github.com/kong/gateway-operator-docs/config/default"
+    ```
 
 You can wait for the operator to be ready using `kubectl wait`:
 

@@ -2,9 +2,9 @@
 title: Deploying Sidecars
 ---
 
-{{ site.kgo_product_name }} supports using [PodTemplateSpec](/gateway-operator/{{ page.release }}/customization/pod-template-spec/) to customize deployments.
+{{ site.kgo_product_name }} uses [PodTemplateSpec](/gateway-operator/{{ page.release }}/customization/pod-template-spec/) to customize deployments.
 
-Here is an example that deploys a [Vector](https://vector.dev/) sidecar alongside your proxy containers:
+Here is an example that deploys a [Vector](https://vector.dev/) sidecar alongside the proxy containers:
 
 ```yaml
 apiVersion: v1

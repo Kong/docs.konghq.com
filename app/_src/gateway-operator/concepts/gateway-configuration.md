@@ -2,9 +2,9 @@
 title: Gateway Configuration
 ---
 
-{{ site.kgo_product_name }} provides a `GatewayConfiguration` CRD that allows you to customise the deployment of both `ControlPlane` and `DataPlane` resources.
+{{ site.kgo_product_name }} provides a `GatewayConfiguration` CRD to customise the deployment of both `ControlPlane` and `DataPlane` resources.
 
-These customizations are primarily used to set the container image to be used and any environment variables required by the containers.
+These customizations are primarily used to set the container image and any environment variables that are required by the containers.
 
 Here is an example of the `GatewayConfiguration` that provides an enterprise license for {{ site.base_gateway }}.
 
@@ -25,4 +25,4 @@ spec:
           name: kong-enterprise-license
 ```
 
-For more information about `GatewayConfiguration` see the [GatewayConfiguration CRD reference](/gateway-operator/{{ page.release }}/reference/custom-resources#gatewayconfiguration)
+For more information about `GatewayConfiguration` see the [GatewayConfiguration CRD reference](/gateway-operator/{{ page.release }}/reference/custom-resources#gatewayconfiguration).

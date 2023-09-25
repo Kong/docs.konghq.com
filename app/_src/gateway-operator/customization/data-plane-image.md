@@ -33,43 +33,43 @@ spec:
 
 The `GatewayConfiguration` resource is a Kong-specific API which allows you to set both `controlPlaneDeploymentOptions` and `dataPlaneDeploymentOptions`.
 
-You can customize both the `containerImage` and `version`:
-
-```yaml
-kind: GatewayConfiguration
-apiVersion: gateway-operator.konghq.com/v1alpha1
-metadata:
-  name: kong
-  namespace: default
-spec:
-  dataPlaneOptions:
-    deployment:
-      podTemplateSpec:
-        spec:
-          containers:
-          - name: proxy
-            image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
-  controlPlaneOptions:
-    deployment:
-      podTemplateSpec:
-        spec:
-          containers:
-          - name: controller
-            image: kong/kubernetes-ingress-controller:{{ site.data.kong_latest_kic }}
-```
-
-To make your deployment use this configuration, reference it in your `GatewayClass` resource:
-
-```yaml
-kind: GatewayClass
-apiVersion: gateway.networking.k8s.io/v1beta1
-metadata:
-  name: kong
-spec:
-  controllerName: konghq.com/gateway-operator
-  parametersRef:
-    group: gateway-operator.konghq.com
+You can customize both the container image and version.
+1.  Define the image in the `GatewayConfiguration`.
+    ```yaml
     kind: GatewayConfiguration
-    name: kong
-    namespace: default
-```
+    apiVersion: gateway-operator.konghq.com/v1alpha1
+    metadata:
+      name: kong
+      namespace: default
+    spec:
+      dataPlaneOptions:
+        deployment:
+          podTemplateSpec:
+            spec:
+              containers:
+              - name: proxy
+                image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
+      controlPlaneOptions:
+        deployment:
+          podTemplateSpec:
+            spec:
+              containers:
+              - name: controller
+                image: kong/kubernetes-ingress-controller:{{ site.data.kong_latest_KIC }}
+    ```
+
+1.  Reference this configuration in the`GatewayClass` resource for the deployment.
+
+    ```yaml
+    kind: GatewayClass
+    apiVersion: gateway.networking.k8s.io/v1beta1
+    metadata:
+      name: kong
+    spec:
+      controllerName: konghq.com/gateway-operator
+      parametersRef:
+        group: gateway-operator.konghq.com
+        kind: GatewayConfiguration
+        name: kong
+        namespace: default
+    ```

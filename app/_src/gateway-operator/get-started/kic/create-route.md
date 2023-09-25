@@ -6,19 +6,17 @@ chapter: 3
 alpha: true
 ---
 
-Now that you've installed all of the required components and configured a `GatewayClass`, it's time to route some traffic to a service in your Kubernetes cluster.
+After you've installed all of the required components and configured a `GatewayClass` you can route some traffic to a service in your Kubernetes cluster.
 
 ## Configure the echo service
 
 In order to route a request using {{ site.base_gateway }} we need a service running in our cluster. Install an `echo` service using the following command:
 
-```bash
-kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-service.yaml
-```
+    ```bash
+    kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-service.yaml
+    ```
 
-## Create a HTTPRoute
-
-Now that we have a service to proxy requests to, we can create a `HTTPRoute` to send any requests that start with `/echo` to the echo service:
+   1.  Create a `HTTPRoute` to send any requests that start with `/echo` to the echo service.
 
 ```yaml
 echo '
@@ -44,7 +42,7 @@ spec:
 
 ## Test the configuration
 
-To test the above configuration, make a call to the `$PROXY_IP` that you configured in the previous page:
+To test the configuration, make a call to the `$PROXY_IP` that you configured.
 
 ```bash
 curl $PROXY_IP/echo
