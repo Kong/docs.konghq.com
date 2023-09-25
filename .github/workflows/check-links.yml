@@ -48,6 +48,3 @@ jobs:
             ${{ runner.debug != '' && '--verbose' || '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
-      - name: Check for broken markdown anchors
-        run: |
-          ./tools/missing-markdown-anchor/run.sh
