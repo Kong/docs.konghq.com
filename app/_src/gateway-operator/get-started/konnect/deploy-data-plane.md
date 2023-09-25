@@ -23,7 +23,7 @@ To get the endpoint and the authentication details of the data plane.
     kubectl create secret tls kong-cluster-cert -n kong --cert=/{PATH_TO_FILE}/tls.crt --key=/{PATH_TO_FILE}/tls.key
     ```
 1. In the **Configuration parameters** step 4, find the value of  `cluster_server_name`. The first segment of that value is the control plane ID for your cluster. For example, if the value of `cluster_server_name` is `36fc5d01be.us.cp0.konghq.com`, then the control plane ID of the cluster is `36fc5d01be`.
-1.  Replace `YOUR_CP_ID` with your control plane ID in the manifest below and deploy the data plane with `kubectl apply`:
+1.  Replace `YOUR_CP_ID` with your control plane ID in the following manifest and deploy the data plane with `kubectl apply`:
 
     ```yaml
     echo '
@@ -78,7 +78,7 @@ To get the endpoint and the authentication details of the data plane.
                   defaultMode: 420
     ' | kubectl apply -f -
     ```
-1. The results should look like this:
+    The results should look like this:
 
     ```text
     dataplane.gateway-operator.konghq.com/dataplane-example configured
