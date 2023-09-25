@@ -32,6 +32,10 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 * decK command flag: `--konnect-runtime-group-name` to `--konnect-control-plane-name`
 * decK state file attribute: `_konnect.runtime_group_name`  to` _konnect.control_plane_name`
 
+: Authorization logs:
+* `Authz.runtimegroups` to `Authz.control-planes`
+* `Authz.services` to `Authz.api-products`
+
 **Gateway Manager redesigns**
 : The Gateway Manager Landing Page is now updated to nudge customers to create a control plane if none are present. In addition, the control plane creation workflow has been revamped to make it more intuitive and easier to follow.
 
