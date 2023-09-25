@@ -20,8 +20,8 @@ kubectl apply -k "https://github.com/kubernetes-sigs/gateway-api/config/crd?ref=
 Install {{ site.kgo_product_name }} using `kubectl apply`.
 
 ```bash
-kubectl apply -k "https://github.com/kong/gateway-operator-docs/config/crd" --server-side
-kubectl apply -k "https://github.com/kong/gateway-operator-docs/config/default"
+kubectl apply -f {{site.links.web}}/assets/gateway-operator/v{{page.version}}/crds.yaml --server-side
+kubectl apply -f {{site.links.web}}/assets/gateway-operator/v{{page.version}}/default.yaml
 ```
 
 You can wait for the operator to be ready using `kubectl wait`:
