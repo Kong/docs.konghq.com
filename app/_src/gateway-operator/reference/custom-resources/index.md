@@ -83,11 +83,8 @@ ControlPlaneSpec defines the desired state of ControlPlane
 | --- | --- |
 | `deployment` _[DeploymentOptions](#deploymentoptions)_ |  |
 | `dataplane` _string_ | DataPlanes refers to the named DataPlane objects which this ControlPlane is responsible for. Currently they must be in the same namespace as the Dataplane. |
-| `gatewayClass` _ObjectName_ | GatewayClass indicates the Gateway resources which this ControlPlane should be responsible for configuring routes for (e.g. HTTPRoute, TCPRoute, UDPRoute, TLSRoute, e.t.c.). 
- Required for the ControlPlane to have any effect: at least one Gateway must be present for configuration to be pushed to the data-plane and only Gateway resources can be used to identify data-plane entities. |
-| `ingressClass` _string_ | IngressClass enables support for the older Ingress resource and indicates which Ingress resources this ControlPlane should be responsible for. 
- Routing configured this way will be applied to the Gateway resources indicated by GatewayClass. 
- If omitted, Ingress resources will not be supported by the ControlPlane. |
+| `gatewayClass` _ObjectName_ | GatewayClass indicates the Gateway resources which this ControlPlane should be responsible for configuring routes for (e.g. HTTPRoute, TCPRoute, UDPRoute, TLSRoute, e.t.c.). <br /><br /> Required for the ControlPlane to have any effect: at least one Gateway must be present for configuration to be pushed to the data-plane and only Gateway resources can be used to identify data-plane entities. |
+| `ingressClass` _string_ | IngressClass enables support for the older Ingress resource and indicates which Ingress resources this ControlPlane should be responsible for. <br /><br /> Routing configured this way will be applied to the Gateway resources indicated by GatewayClass. <br /><br /> If omitted, Ingress resources will not be supported by the ControlPlane. |
 
 
 _Appears in:_
@@ -168,8 +165,7 @@ Address describes an address which can be either an IP address or a hostname.
 | Field | Description |
 | --- | --- |
 | `type` _[AddressType](#addresstype)_ | Type of the address. |
-| `value` _string_ | Value of the address. The validity of the values will depend on the type and support by the controller. 
- Examples: `1.2.3.4`, `128::1`, `my-ip-address`. |
+| `value` _string_ | Value of the address. The validity of the values will depend on the type and support by the controller. <br /><br /> Examples: `1.2.3.4`, `128::1`, `my-ip-address`. |
 | `sourceType` _[AddressSourceType](#addresssourcetype)_ | Source type of the address. |
 
 
