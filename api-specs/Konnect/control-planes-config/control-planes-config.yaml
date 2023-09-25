@@ -143,22 +143,22 @@ components:
           - crit
         example: warn
       description: Log levels are set in Kong’s configuration. Log levels increase in order of their severity
-    control_plane_id:
-      name: control_plane_id
+    runtime_group_id:
+      name: runtime_group_id
       in: path
       required: true
       schema:
         type: string
         example: 7a9ffc7d-4cf3-4dd3-880e-1acd167c5691
-      description: The ID of your control plane. This variable is available in the Konnect manager
-    controlPlaneId:
-      name: controlPlaneId
+      description: The ID of your runtime group. This variable is available in the Konnect manager
+    runtimeGroupId:
+      name: runtimeGroupId
       in: path
       required: true
       schema:
         type: string
         example: 9524ec7d-36d9-465d-a8c5-83a3c9390458
-      description: The ID of your control plane. This variable is available in the Konnect manager
+      description: The ID of your runtime group. This variable is available in the Konnect manager
     route_id:
       name: route_id
       in: path
@@ -3414,7 +3414,7 @@ components:
                     type: string
                     description: JSON escaped string of the certificate.
     get-expected-config-hash:
-      description: Response body for retrieving the expected config hash of the control plane.
+      description: Response body for retrieving the expected config hash of the runtime group.
       content:
         application/json:
           schema:
@@ -3425,10 +3425,10 @@ components:
                 description: The expected configuration hash.
               created_at:
                 type: integer
-                description: Date the control plane configuration was created.
+                description: Date the runtime group configuration was created.
               updated_at:
                 type: integer
-                description: Date the control plane configuration was last updated.
+                description: Date the runtime group configuration was last updated.
     list-dp-client-certs:
       description: Example response
       content:
@@ -3546,15 +3546,15 @@ info:
     email: support@konghq.com
     name: Kong Inc
     url: 'https://konghq.com'
-  description: The API for configuring Konnect Control Planes.
+  description: The API for configurating Konnect Runtime Groups.
   license:
     name: Apache 2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
-  title: Control Planes Configuration API
-  version: 2.0.0
-openapi: 3.0.2
+  title: Runtime Groups Configuration API
+  version: 0.0.1
+openapi: 3.0.0
 paths:
-  '/control-planes/{controlPlaneId}/expected-config-hash':
+  '/runtime-groups/{runtimeGroupId}/expected-config-hash':
     get:
       summary: Fetch Expected Config Hash
       tags:
@@ -3563,15 +3563,15 @@ paths:
         '200':
           $ref: '#/components/responses/get-expected-config-hash'
       operationId: get-expected-config-hash
-      description: Retrieve the expected config hash for this control plane. The expected config hash can be used to verify if the config hash of a data plane node is up to date with the control plane. The config hash will be the same if they are in sync.
+      description: Retrieve the expected config hash for this runtime group. The expected config hash can be used to verify if the config hash of a runtime instance is up to date with the runtime group. The config hash will be the same if they are in sync.
       parameters:
         - $ref: '#/components/parameters/page_size'
         - $ref: '#/components/parameters/page_number'
     parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/dp-client-certificates':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/dp-client-certificates':
     parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
+      - $ref: '#/components/parameters/runtimeGroupId'
     get:
       summary: List DP Client Certificates
       responses:
@@ -3580,7 +3580,7 @@ paths:
       operationId: get-dp-client-certificates
       tags:
         - DP Certificates
-      description: Returns a list of pinned dataplane client certificates that are associated to this control plane. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this control plane.
+      description: Returns a list of pinned dataplane client certificates that are associated to this runtime group. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this runtime group.
       parameters:
         - $ref: '#/components/parameters/page_size'
         - $ref: '#/components/parameters/page_number'
@@ -3592,12 +3592,12 @@ paths:
           $ref: '#/components/responses/get-dp-client-cert'
       tags:
         - DP Certificates
-      description: Pin a new DP Client Certificate to this control plane. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this control plane.
+      description: Pin a new DP Client Certificate to this runtime group. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this runtime group.
       requestBody:
         $ref: '#/components/requestBodies/create-dp-client-cert'
-  '/control-planes/{controlPlaneId}/dp-client-certificates/{certificateId}':
+  '/runtime-groups/{runtimeGroupId}/dp-client-certificates/{certificateId}':
     parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
+      - $ref: '#/components/parameters/runtimeGroupId'
       - schema:
           type: string
         name: certificateId
@@ -3611,7 +3611,7 @@ paths:
         '200':
           $ref: '#/components/responses/get-dp-client-cert'
       operationId: get-dp-client-certificates-cert_id
-      description: Retrieve a pinned dataplane client certificate associated to this control plane. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this control plane.
+      description: Retrieve a pinned dataplane client certificate associated to this runtime group. A pinned dataplane certificate allows dataplanes configured with the certificate and corresponding private key to establish connection with this runtime group.
       parameters:
         - $ref: '#/components/parameters/page_size'
         - $ref: '#/components/parameters/page_number'
@@ -3623,54 +3623,54 @@ paths:
           description: No Content
       tags:
         - DP Certificates
-      description: Remove a pinned dataplane client certificate associated to this control plane. Removing a pinned dataplane certificate would invalidate any dataplanes currently connected to this control plane using this certificate.
-  '/control-planes/{controlPlaneId}/nodes':
+      description: Remove a pinned dataplane client certificate associated to this runtime group. Removing a pinned dataplane certificate would invalidate any dataplanes currently connected to this runtime group using this certificate.
+  '/runtime-groups/{runtimeGroupId}/nodes':
     get:
-      summary: List Data Plane Node Records
+      summary: List Runtime Instance Records
       responses:
         '200':
           $ref: '#/components/responses/list-nodes'
       operationId: get-nodes
       tags:
         - DP Nodes
-      description: Returns a list of data plane node records that are associated to this control plane. A data plane node record contains metadata information for the data plane running Kong Gateway.
+      description: Returns a list of runtime instance records that are associated to this runtime group. A runtime instance record contains all the metadata information of the Kong Gateway dataplane.
       parameters:
         - $ref: '#/components/parameters/page_size'
         - $ref: '#/components/parameters/page_number'
     parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/nodes/{nodeId}':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/nodes/{nodeId}':
     parameters:
       - schema:
           type: string
         name: nodeId
         in: path
         required: true
-      - $ref: '#/components/parameters/controlPlaneId'
+      - $ref: '#/components/parameters/runtimeGroupId'
     get:
-      summary: Fetch Data Plane Node Record
+      summary: Fetch Runtime Instance Record
       responses:
         '200':
           $ref: '#/components/responses/get-node'
       operationId: get-nodes-node_id
       tags:
         - DP Nodes
-      description: Retrieve a specific data plane node record associated to this control plane. A data plane node record contains all the metadata information of the Kong Gateway dataplane.
+      description: Retrieve a specific runtime instance record associated to this runtime group. A runtime instance record contains all the metadata information of the Kong Gateway dataplane.
       parameters:
         - $ref: '#/components/parameters/pagination-size'
         - $ref: '#/components/parameters/pagination-tags-filter'
     delete:
-      summary: Delete Data Plane Node Record
+      summary: Delete Runtime Instance Record
       operationId: delete-nodes-node_id
       responses:
         '204':
           description: No Content
       tags:
         - DP Nodes
-      description: Remove a specific data plane node record associated to this control plane. Deleting this record does not prevent the data plane node from re-connecting to the control plane.
-  '/control-planes/{controlPlaneId}/core-entities/ca_certificates':
+      description: Remove a specific runtime instance record associated to this runtime group. Deleting this record does not prevent the runtime instance from re-connecting to the runtime group.
+  '/runtime-groups/{runtimeGroupId}/core-entities/ca_certificates':
     parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
+      - $ref: '#/components/parameters/runtimeGroupId'
     get:
       description: 'Retrieve a list of all available Certificate Authority (CA) certificates, including the certificate ID, creation date, and other details. You can use query parameters to filter the results by size or tags, for example `/ca-certificates?size=50&tags=enterprise`.'
       operationId: list-ca_certificates
@@ -3705,7 +3705,7 @@ paths:
         - CA Certificates
       requestBody:
         $ref: '#/components/requestBodies/CA-cert-request'
-  '/control-planes/{controlPlaneId}/core-entities/ca_certificates/{ca_certificate_id}':
+  '/runtime-groups/{runtimeGroupId}/core-entities/ca_certificates/{ca_certificate_id}':
     delete:
       description: Delete the specified Certificate Authority (CA) certificate using the provided ca_certificate_id.
       operationId: delete-ca_certificate
@@ -3789,8 +3789,8 @@ paths:
         $ref: '#/components/requestBodies/CA-cert-request'
     parameters:
       - $ref: '#/components/parameters/ca_certificate_id'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/certificates':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/certificates':
     get:
       description: 'Retrieve a list of all available certificate/ You can use query parameters to filter the results by size or tags, for example `/certificates?size=50&tags=enterprise`.'
       operationId: list-certificates
@@ -3822,14 +3822,14 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/cert-request'
     parameters:
-      - name: controlPlaneId
+      - name: runtimeGroupId
         in: path
         required: true
         schema:
           type: string
           example: 9524ec7d-36d9-465d-a8c5-83a3c9390458
-        description: The ID of your control plane. This variable is available in the Konnect manager
-  '/control-planes/{controlPlaneId}/core-entities/certificates/{certificate_id}':
+        description: The ID of your runtime group. This variable is available in the Konnect manager
+  '/runtime-groups/{runtimeGroupId}/core-entities/certificates/{certificate_id}':
     delete:
       description: |
         Delete a Certificate
@@ -3900,14 +3900,14 @@ paths:
           type: string
           example: 7fca84d6-7d37-4a74-a7b0-93e576089a41
         description: The unique identifier of the Certificate to retrieve.
-      - name: controlPlaneId
+      - name: runtimeGroupId
         in: path
         required: true
         schema:
           type: string
           example: 9524ec7d-36d9-465d-a8c5-83a3c9390458
-        description: The ID of your control plane. This variable is available in the Konnect manager
-  '/control-planes/{controlPlaneId}/core-entities/certificates/{certificate_name_or_id}/snis':
+        description: The ID of your runtime group. This variable is available in the Konnect manager
+  '/runtime-groups/{runtimeGroupId}/core-entities/certificates/{certificate_name_or_id}/snis':
     get:
       description: Retrieve a paginated list of all SNIs associated with a certificate. Use this endpoint to retrieve a list of SNIs that are linked to a specific certificate. You can use the optional query parameters to filter the results based on specific criteria. The response will include the list of SNIs and pagination information. See the response schema for details on the expected format of the response body.
       parameters:
@@ -3955,8 +3955,8 @@ paths:
       operationId: create-sni-for-certificate
     parameters:
       - $ref: '#/components/parameters/certificate_name_or_id'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/certificates/{certificate_id}/snis/{sni_id}':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/certificates/{certificate_id}/snis/{sni_id}':
     delete:
       description: Delete a an SNI associated with a a Certificate using an ID.
       responses:
@@ -4021,8 +4021,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/certificate_id'
       - $ref: '#/components/parameters/sni_id'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/consumers':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/consumers':
     get:
       description: 'Retrieve a list of all consumers.You can use query parameters to filter the results by size or tags, for example `/consumers?size=50&tags=enterprise`.'
       operationId: list-consumers
@@ -4054,8 +4054,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/consumer-request'
     parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/consumers/{consumer_id}':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/consumers/{consumer_id}':
     delete:
       description: Delete a specific consumer from the system using either the consumer ID or the consumer username. This operation is irreversible and permanently removes all data associated with the specified consumer. If the consumer was deleted succesfully the endpoint will return a 204 response indicating that the resource did not exist.
       operationId: delete-consumer
@@ -4104,8 +4104,8 @@ paths:
         $ref: '#/components/requestBodies/consumer-request'
     parameters:
       - $ref: '#/components/parameters/consumer_id'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/consumers/{consumer_id}/plugins':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/consumers/{consumer_id}/plugins':
     get:
       description: 'Retrieve a list of all plugins associated with a consumer. '
       parameters:
@@ -4138,8 +4138,8 @@ paths:
       operationId: create-plugin-for-consumer
     parameters:
       - $ref: '#/components/parameters/consumer_id'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/consumers/{consumer_id}/plugins/{plugin_id_or_instance_name}':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/consumers/{consumer_id}/plugins/{plugin_id_or_instance_name}':
     delete:
       description: Delete a a Plugin associated with a a Consumer using ID.
       responses:
@@ -4178,8 +4178,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/consumer_id'
       - $ref: '#/components/parameters/plugin_id_or_instance_name'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/key-sets':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/key-sets':
     get:
       description: |
         Retrieve a list of all Key-sets in the system. A Key Set object holds a collection of asymmetric key objects. This entity allows to logically group keys by their purpose. Key Sets can be both tagged and filtered by tags.
@@ -4208,8 +4208,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/key-set-request'
     parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/key-sets/{key-set_id_or_name}':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/key-sets/{key-set_id_or_name}':
     delete:
       description: Delete a Key-set.
       operationId: delete-key-set
@@ -4253,8 +4253,8 @@ paths:
         $ref: '#/components/requestBodies/key-set-request'
     parameters:
       - $ref: '#/components/parameters/key-set_id_or_name'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/keys':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/keys':
     get:
       description: List all Keys
       operationId: list-keys
@@ -4300,8 +4300,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/keys-request'
     parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/keys/{key_id_or_name}':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/keys/{key_id_or_name}':
     delete:
       description: Delete a Key
       operationId: delete-key
@@ -4377,8 +4377,8 @@ paths:
         $ref: '#/components/requestBodies/keys-request'
     parameters:
       - $ref: '#/components/parameters/key_id_or_name'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/plugins':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/plugins':
     get:
       description: 'This endpoint allows you to list all the plugins. You can use query parameters to filter the results by size or tags, for example `/plugins?size=50&tags=enterprise`.'
       operationId: list-plugins
@@ -4434,8 +4434,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/plugin-request'
     parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/plugins/{plugin_id_or_instance_name}':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/plugins/{plugin_id_or_instance_name}':
     delete:
       description: Delete a Plugin
       operationId: delete-plugin
@@ -4507,8 +4507,8 @@ paths:
         $ref: '#/components/requestBodies/plugin-request'
     parameters:
       - $ref: '#/components/parameters/plugin_id_or_instance_name'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/routes':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/routes':
     get:
       description: |-
         List all routes
@@ -4559,8 +4559,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/route-request'
     parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/routes/{route_id}':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/routes/{route_id}':
     delete:
       description: Delete a route.
       operationId: delete-route
@@ -4611,19 +4611,19 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/route-request'
     parameters:
-      - name: controlPlaneId
+      - name: runtimeGroupId
         in: path
         required: true
         schema:
           type: string
           example: 9524ec7d-36d9-465d-a8c5-83a3c9390458
-        description: The ID of your control plane. This variable is available in the Konnect manager
+        description: The ID of your runtime group. This variable is available in the Konnect manager
       - schema:
           type: string
         name: route_id
         in: path
         required: true
-  '/control-planes/{controlPlaneId}/core-entities/routes/{route_id}/plugins':
+  '/runtime-groups/{runtimeGroupId}/core-entities/routes/{route_id}/plugins':
     get:
       description: List all Plugins associated with a a route
       parameters:
@@ -4666,8 +4666,8 @@ paths:
       operationId: create-plugin-for-route
     parameters:
       - $ref: '#/components/parameters/route_id'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/routes/{route_id}/plugins/{plugin_id_or_instance_name}':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/routes/{route_id}/plugins/{plugin_id_or_instance_name}':
     delete:
       description: Delete a a Plugin associated with a a route using ID.
       responses:
@@ -4718,8 +4718,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/route_id'
       - $ref: '#/components/parameters/plugin_id_or_instance_name'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/services':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/services':
     get:
       description: List all services
       operationId: list-services
@@ -4813,8 +4813,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/service-request'
     parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/services/{service_id}':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/services/{service_id}':
     delete:
       description: Delete a service
       operationId: delete-service
@@ -4865,8 +4865,8 @@ paths:
         $ref: '#/components/requestBodies/service-request'
     parameters:
       - $ref: '#/components/parameters/service_id'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/services/{service_id}/plugins':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/services/{service_id}/plugins':
     get:
       description: List all Plugins associated with a a service
       parameters:
@@ -4913,8 +4913,8 @@ paths:
       operationId: create-plugin-for-service
     parameters:
       - $ref: '#/components/parameters/service_id'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/services/{service_id}/plugins/{plugin_id_or_instance_name}':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/services/{service_id}/plugins/{plugin_id_or_instance_name}':
     delete:
       description: Delete a a Plugin associated with a a service using ID.
       responses:
@@ -4963,8 +4963,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/service_id'
       - $ref: '#/components/parameters/plugin_id_or_instance_name'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/services/{service_id}/routes':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/services/{service_id}/routes':
     get:
       description: List all routes associated with a a service
       parameters:
@@ -5076,8 +5076,8 @@ paths:
       operationId: create-route-for-service
     parameters:
       - $ref: '#/components/parameters/service_id'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/services/{service_id}/routes/{route_id}':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/services/{service_id}/routes/{route_id}':
     delete:
       description: Delete a a route associated with a a service using ID or name.
       responses:
@@ -5156,8 +5156,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/service_id'
       - $ref: '#/components/parameters/route_id'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/snis':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/snis':
     get:
       description: List all SNIs
       operationId: list-snis
@@ -5189,8 +5189,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/create-sni'
     parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/snis/{sni_id}':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/snis/{sni_id}':
     delete:
       description: Delete an SNI
       operationId: delete-sni
@@ -5234,8 +5234,8 @@ paths:
         $ref: '#/components/requestBodies/create-sni'
     parameters:
       - $ref: '#/components/parameters/sni_id'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/upstreams':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/upstreams':
     get:
       description: |
         List all registered upstreams. You can filter the results by pagination size, offset, or tags like `/upstreams?size=10&offset=0`.
@@ -5355,8 +5355,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/upstream-request'
     parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/upstreams/{upstream_id}':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/upstreams/{upstream_id}':
     delete:
       description: Delete an Upstream
       operationId: delete-upstream
@@ -5500,8 +5500,8 @@ paths:
         $ref: '#/components/requestBodies/upstream-request'
     parameters:
       - $ref: '#/components/parameters/upstream_id'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/upstreams/{upstream_id}/targets':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/upstreams/{upstream_id}/targets':
     get:
       description: List all Targets associated with a an Upstream
       parameters:
@@ -5567,8 +5567,8 @@ paths:
       operationId: create-target-for-upstream
     parameters:
       - $ref: '#/components/parameters/upstream_id'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/upstreams/{upstream_id}/targets/{target_id}':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/upstreams/{upstream_id}/targets/{target_id}':
     delete:
       description: Delete a a Target associated with a an Upstream using ID or target.
       responses:
@@ -5621,8 +5621,8 @@ paths:
     parameters:
       - $ref: '#/components/parameters/upstream_id'
       - $ref: '#/components/parameters/target_id'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/vaults':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/vaults':
     get:
       description: List all Vaults
       operationId: list-vaults
@@ -5668,8 +5668,8 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/vault-request'
     parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/vaults/{vault_id_or_prefix}':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/vaults/{vault_id_or_prefix}':
     delete:
       description: Delete a Vault
       operationId: delete-vault
@@ -5738,8 +5738,8 @@ paths:
         $ref: '#/components/requestBodies/vault-request'
     parameters:
       - $ref: '#/components/parameters/vault_id_or_prefix'
-      - $ref: '#/components/parameters/controlPlaneId'
-  '/control-planes/{controlPlaneId}/core-entities/schemas/plugins/{plugin_name}':
+      - $ref: '#/components/parameters/runtimeGroupId'
+  '/runtime-groups/{runtimeGroupId}/core-entities/schemas/plugins/{plugin_name}':
     parameters:
       - schema:
           type: string
@@ -5748,7 +5748,7 @@ paths:
         in: path
         required: true
         description: The name of a Kong plugin
-      - $ref: '#/components/parameters/controlPlaneId'
+      - $ref: '#/components/parameters/runtimeGroupId'
     get:
       summary: Retrieve Plugin Schema
       tags:
@@ -5763,166 +5763,9 @@ paths:
         - $ref: '#/components/parameters/pagination-offset'
         - $ref: '#/components/parameters/pagination-size'
         - $ref: '#/components/parameters/pagination-tags-filter'
-  '/control-planes/{controlPlaneId}/core-entities/debug/cluster/control-planes-nodes/log-level/{log_level}':
+  '/runtime-groups/{runtimeGroupId}/core-entities/consumer_groups':
     parameters:
-      - name: log_level
-        in: path
-        required: true
-        schema:
-          type: string
-          enum:
-            - info
-            - notice
-            - warn
-            - error
-            - crit
-          example: warn
-        description: Log levels are set in Kong’s configuration. Log levels increase in order of their severity
-      - schema:
-          type: string
-        name: controlPlaneId
-        in: path
-        required: true
-    put:
-      summary: Set Node Log Level of All Control Plane Nodes
-      operationId: put-debug-cluster-control-planes-nodes-log-level-log_level
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                x-examples:
-                  Example 1:
-                    message: log level changed
-                properties:
-                  message:
-                    type: string
-                    description: Response message
-                    example: log level changed
-              examples:
-                log level changed:
-                  value:
-                    message: log level changed
-      description: |
-        Change the log level of all Control Plane nodes deployed in Hybrid (CP/DP) cluster.
-
-        See the [NGINX docs](http://nginx.org/en/docs/ngx_core_module.html#error_log) for a list of accepted values.
-
-        Care must be taken when changing the log level of a node to `debug` in a production environment because the disk could fill up quickly. As soon as the debug logging finishes, revert back to a higher level such as notice.
-
-        It’s currently not possible to change the log level of DP and DB-less nodes.
-      tags:
-        - Debug
-  '/control-planes/{controlPlaneId}/core-entities/debug/cluster/log-level/{log_level}':
-    parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
-      - $ref: '#/components/parameters/log_level'
-    put:
-      summary: Set Node Log Level of All Nodes
-      operationId: put-debug-cluster-log-level-log_level
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                x-examples:
-                  Example 1:
-                    message: log level changed
-                properties:
-                  message:
-                    type: string
-                    example: log level changed
-                    description: A message containing information about the log level
-              examples:
-                log level changed:
-                  value:
-                    message: log level changed
-      description: |
-        Change the log level of all nodes in a cluster.
-
-
-
-        See the [NGINX docs](http://nginx.org/en/docs/ngx_core_module.html#error_log) for a list of accepted values.
-
-        It’s currently not possible to change the log level of DP and DB-less nodes.
-
-        Currently, when a user dynamically changes the log level for the entire cluster, if a new node joins a cluster the new node will run at the previous log level, not at the log level that was previously set dynamically for the entire cluster.
-      tags:
-        - Debug
-  '/control-planes/{controlPlaneId}/core-entities/debug/node/log-level':
-    parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
-    get:
-      summary: Retrieve Node Log Level of A Node
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                x-examples:
-                  Example 1:
-                    message: 'log level: debug'
-                properties:
-                  message:
-                    type: string
-                    example: 'log level: debug'
-                    description: A message containing the current log level of the node.
-              examples:
-                Example 1:
-                  value:
-                    message: 'log level: debug'
-      operationId: get-debug-node-log-level
-      description: |-
-        Retrieve the current log level of a node.
-
-        See the [NGINX documentation](http://nginx.org/en/docs/ngx_core_module.html#error_log) for the list of possible return values.
-      tags:
-        - Debug
-      parameters:
-        - $ref: '#/components/parameters/pagination-offset'
-        - $ref: '#/components/parameters/pagination-size'
-        - $ref: '#/components/parameters/pagination-tags-filter'
-  '/control-planes/{controlPlaneId}/core-entities/debug/node/log-level/{log_level}':
-    parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
-      - $ref: '#/components/parameters/log_level'
-    put:
-      summary: Set log level of a single node
-      operationId: put-debug-node-log-level-log_level
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: object
-                x-examples:
-                  Example 1:
-                    message: log level changed
-                properties:
-                  message:
-                    type: string
-                    description: A message confirming the log level change
-                    example: log level changed
-              examples:
-                log level changed:
-                  value:
-                    message: log level changed
-      description: |
-        Change the log level of a node.
-
-        See the [NGINX documentation](http://nginx.org/en/docs/ngx_core_module.html#error_log) for the list of possible return values.
-      tags:
-        - Debug
-  '/control-planes/{controlPlaneId}/core-entities/consumer_groups':
-    parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
+      - $ref: '#/components/parameters/runtimeGroupId'
     get:
       summary: List consumer groups
       tags:
@@ -5930,7 +5773,7 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/consumer-groups-response'
-      operationId: get-controlPlaneId-core-entities-consumer_groups
+      operationId: get-runtimeGroupId-core-entities-consumer_groups
       description: Returns a list of active consumer groups.
       parameters:
         - $ref: '#/components/parameters/pagination-offset'
@@ -5938,7 +5781,7 @@ paths:
         - $ref: '#/components/parameters/pagination-tags-filter'
     post:
       summary: Create a consumer group
-      operationId: post-controlPlaneId-core-entities-consumer_groups
+      operationId: post-runtimeGroupId-core-entities-consumer_groups
       responses:
         '200':
           $ref: '#/components/responses/consumer-groups-response'
@@ -5958,9 +5801,9 @@ paths:
         Delete a consumer group. Deleting a consumer group removes all consumers from that group. This operation does not delete existing consuemrs.
       tags:
         - consumer-groups
-  '/control-planes/{controlPlaneId}/core-entities/consumer_groups/{group_id}':
+  '/runtime-groups/{runtimeGroupId}/core-entities/consumer_groups/{group_id}':
     parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
+      - $ref: '#/components/parameters/runtimeGroupId'
       - $ref: '#/components/parameters/group_id'
     get:
       summary: List a specific consumer group
@@ -5969,7 +5812,7 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/consumer-groups-response'
-      operationId: get-controlPlaneId-core-entities-consumer_groups-consumer_id
+      operationId: get-runtimeGroupId-core-entities-consumer_groups-consumer_id
       description: Return information about a specific consumer group by passing the `group_id` as a path parameter.
       parameters:
         - $ref: '#/components/parameters/pagination-offset'
@@ -5977,7 +5820,7 @@ paths:
         - $ref: '#/components/parameters/pagination-tags-filter'
     put:
       summary: Create a consumer group
-      operationId: put-controlPlaneId-core-entities-consumer_groups-group_id
+      operationId: put-runtimeGroupId-core-entities-consumer_groups-group_id
       responses:
         '200':
           $ref: '#/components/responses/consumer-response-data'
@@ -5988,16 +5831,16 @@ paths:
         - consumer-groups
     delete:
       summary: Delete consumer group
-      operationId: delete-controlPlaneId-core-entities-consumer_groups-group_id
+      operationId: delete-runtimeGroupId-core-entities-consumer_groups-group_id
       responses:
         '204':
           description: No Content
       description: Delete consumer group.
       tags:
         - consumer-groups
-  '/control-planes/{controlPlaneId}/core-entities/consumer_groups/{group_id}/consumers':
+  '/runtime-groups/{runtimeGroupId}/core-entities/consumer_groups/{group_id}/consumers':
     parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
+      - $ref: '#/components/parameters/runtimeGroupId'
       - $ref: '#/components/parameters/group_id'
     get:
       summary: List all consumers in a consumer group
@@ -6006,12 +5849,12 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/consumer-groups-response'
-      operationId: get-controlPlaneId-core-entities-consumer_groups-group_id-consumers
+      operationId: get-runtimeGroupId-core-entities-consumer_groups-group_id-consumers
       description: Returns a list of consumers that belong to a consumer group.
     post:
       description: Add a consumer to a group
       summary: Add a consumer to a group
-      operationId: post-controlPlaneId-core-entities-consumer_groups-group_id-consumers
+      operationId: post-runtimeGroupId-core-entities-consumer_groups-group_id-consumers
       responses:
         '201':
           $ref: '#/components/responses/return-consumer-group'
@@ -6029,16 +5872,16 @@ paths:
         - consumer-groups
     delete:
       summary: Remove all consumers from a consumer group
-      operationId: delete-controlPlaneId-core-entities-consumer_groups-group_id-consumers
+      operationId: delete-runtimeGroupId-core-entities-consumer_groups-group_id-consumers
       responses:
         '204':
           description: No Content
       description: Removes all consumers from a consumer group. Does not delete any consumers.consumers.
       tags:
         - consumer-groups
-  '/control-planes/{controlPlaneId}/core-entities/consumers/{consumer_id}/consumer_groups':
+  '/runtime-groups/{runtimeGroupId}/core-entities/consumers/{consumer_id}/consumer_groups':
     parameters:
-      - $ref: '#/components/parameters/controlPlaneId'
+      - $ref: '#/components/parameters/runtimeGroupId'
       - $ref: '#/components/parameters/consumer_id'
     get:
       summary: List consumer groups for a consumer
@@ -6047,12 +5890,12 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/consumer-groups-response'
-      operationId: get-controlPlaneId-core-entities-consumer_id-consumer_groups
+      operationId: get-runtimeGroupId-core-entities-consumer_id-consumer_groups
       description: |
         View all consumer groups that a consumer is assigned to.
     post:
       summary: Add a consumer to a group
-      operationId: post-controlPlaneId-core-entities-consumers-consumer_id-consumer_groups
+      operationId: post-runtimeGroupId-core-entities-consumers-consumer_id-consumer_groups
       responses:
         '200':
           $ref: '#/components/responses/consumer-groups-response'
@@ -6077,7 +5920,7 @@ paths:
         - consumer-groups
     delete:
       summary: Remove a consumer from all groups
-      operationId: delete-controlPlaneId-core-entities-consumers-consumer_id-consumer_groups
+      operationId: delete-runtimeGroupId-core-entities-consumers-consumer_id-consumer_groups
       responses:
         '204':
           description: No Content
@@ -6116,8 +5959,6 @@ tags:
     name: Key-sets
   - description: Information routes
     name: Information
-  - description: Debug routes
-    name: Debug
   - description: Target routes
     name: Targets
   - description: Tag rotues
