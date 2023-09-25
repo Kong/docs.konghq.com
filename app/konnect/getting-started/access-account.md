@@ -10,20 +10,12 @@ downgrade to the free version, or continue with a paid Plus subscription.
 
 1. Go to {{site.konnect_short_name}}'s [registration page](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=konnect-get-started).
 
-2. In the registration form, fill in your email address, first and last name,
-and organization name.
+2. In the registration form, register with a social identity provider or create an account using an email address and password.
 
-    All fields are required.
+    - If using a social identity provider, you will be directed to the identity provider to sign in.
+    - If using an email address and password, you will need to verify your email by clicking on a link emailed to you. 
 
-3. Create a password.
-
-    The new password must be between 8-128 characters, and contain at least three of the
-    following: a lowercase letter, an uppercase letter, a number, or a special
-    character.
-
-4. From your {{site.konnect_short_name}} welcome email, click the link to verify your account.
-
-5. Sign in to {{site.konnect_short_name}} using your email and password.
+4. Create an organization by providing an organization name, then click **Create Organization**.
 
     Your {{site.konnect_short_name}} Plus free trials starts now.
 

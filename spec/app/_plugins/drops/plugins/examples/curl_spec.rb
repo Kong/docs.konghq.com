@@ -24,7 +24,7 @@ RSpec.describe Jekyll::Drops::Plugins::Examples::Curl do
     context 'type consumer' do
       let(:type) { 'consumer' }
 
-      it { expect(subject.url).to eq('http://localhost:8001/consumers/{CONSUMER_NAME|ID}/plugins') }
+      it { expect(subject.url).to eq('http://localhost:8001/consumers/{consumerName|Id}/plugins') }
     end
 
     context 'type global' do
@@ -36,13 +36,13 @@ RSpec.describe Jekyll::Drops::Plugins::Examples::Curl do
     context 'type route' do
       let(:type) { 'route' }
 
-      it { expect(subject.url).to eq('http://localhost:8001/routes/{ROUTE_NAME|ID}/plugins') }
+      it { expect(subject.url).to eq('http://localhost:8001/routes/{routeName|Id}/plugins') }
     end
 
     context 'type service' do
       let(:type) { 'service' }
 
-      it { expect(subject.url).to eq('http://localhost:8001/services/{SERVICE_NAME|ID}/plugins') }
+      it { expect(subject.url).to eq('http://localhost:8001/services/{serviceName|Id}/plugins') }
     end
   end
 end

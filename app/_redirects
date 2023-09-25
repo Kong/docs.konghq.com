@@ -18,6 +18,7 @@
 /konnect/runtime-manager/runtime-groups/* /konnect/gateway-manager/control-plane-groups/:splat
 /konnect/runtime-manager/* /konnect/gateway-manager/:splat
 /konnect/getting-started/configure-runtime/ /konnect/getting-started/configure-data-plane-node/
+/konnect/api/runtime-groups-config/overview/ /konnect/api/
 
 #3.4
 

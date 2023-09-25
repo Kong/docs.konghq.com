@@ -19,6 +19,8 @@ authentication. You don't have to do anything special to set it up.
 organization
 * [Teams reference](/konnect/org-management/teams-and-roles/teams-reference/)
 * [Roles reference](/konnect/org-management/teams-and-roles/roles-reference/)
+* [Social Identity Login](/konnect/org-management/social-identity-login/)
+* [Org switcher](/konnect/org-management/org-switcher/)
 
 ## External authentication
 {:.badge .enterprise}
