@@ -9,7 +9,7 @@ Analytics provides traffic reports to help you track the performance and
 behavior of your APIs and data plane nodes. Use these reports to quickly access key
 statistics, monitor vital signs, and pinpoint anomalies in real time.
 
-With **Konnect Plus** Analytics retains historical data for up to 3 months. If you need a longer storage period, [contact a sales representative](https://konghq.com/contact-sales) about upgrading to Enterprise.
+With **Konnect Plus** Analytics retains historical data for up to 3 months. If you need a longer storage period, [contact a sales representative](https://konghq.com/contact-sales) about upgrading to {{site.konnect_product_name}} Enterprise.
 
 
 {:.note}

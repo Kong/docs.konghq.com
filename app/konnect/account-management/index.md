@@ -10,7 +10,7 @@ content_type: explanation
 
 {{site.konnect_product_name}} Plus is the simplest way to get started with {{site.konnect_product_name}}, allowing you to only pay for the services you consume. New accounts are automatically given a month of free credits as part of 30-day trial. 
 
-Enterprise is our contract-based option that includes 24x7x365 support and professional services access to help you build and maintain your own custom environment. 
+{{site.konnect_product_name}} Enterprise is our contract-based option that includes 24x7x365 support and professional services access to help you build and maintain your own custom environment. 
 
 You can claim your Konnect Plus credits by [signing up](https://konghq.com/products/kong-konnect/register). Or learn more about enterprise on our [pricing page](https://konghq.com/pricing)
 
@@ -23,7 +23,7 @@ You can view service, Dev Portal, and API call usage from the [Billing and Usage
 Here you can review your billable consumption of {{site.konnect_product_name}} and manage billing and payment information.
 
 
-If you want to upgrade to Enterprise, [contact a sales representative](https://konghq.com/contact-sales).
+If you want to upgrade to {{site.konnect_product_name}} Enterprise, [contact a sales representative](https://konghq.com/contact-sales).
 
 ## License management
 
