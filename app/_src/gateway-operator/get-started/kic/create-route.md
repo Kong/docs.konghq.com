@@ -10,55 +10,62 @@ After you've installed all of the required components and configured a `GatewayC
 
 ## Configure the echo service
 
-In order to route a request using {{ site.base_gateway }} we need a service running in our cluster. Install an `echo` service using the following command:
+1. In order to route a request using {{ site.base_gateway }} we need a service running in our cluster. Install an `echo` service using the following command:
 
     ```bash
     kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-service.yaml
     ```
 
-   1.  Create a `HTTPRoute` to send any requests that start with `/echo` to the echo service.
+1.  Create a `HTTPRoute` to send any requests that start with `/echo` to the echo service.
 
-```yaml
-echo '
-kind: HTTPRoute
-apiVersion: gateway.networking.k8s.io/v1beta1
-metadata:
-  name: echo
-spec:
-  parentRefs:
-    - group: gateway.networking.k8s.io
-      kind: Gateway
-      name: kong
-  rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /echo
-      backendRefs:
-        - name: echo
-          port: 1027
-' | kubectl apply -f -
-```
+    ```yaml
+    echo '
+    kind: HTTPRoute
+    apiVersion: gateway.networking.k8s.io/v1beta1
+    metadata:
+      name: echo
+    spec:
+      parentRefs:
+        - group: gateway.networking.k8s.io
+          kind: Gateway
+          name: kong
+      rules:
+        - matches:
+            - path:
+                type: PathPrefix
+                value: /echo
+          backendRefs:
+            - name: echo
+              port: 1027
+    ' | kubectl apply -f -
+    ```
+
+1. The results should look like this:
+
+    ```text
+    httproute.gateway.networking.k8s.io/echo created
+    ```
+
 
 ## Test the configuration
 
-To test the configuration, make a call to the `$PROXY_IP` that you configured.
+1. To test the configuration, make a call to the `$PROXY_IP` that you configured.
 
-```bash
-curl $PROXY_IP/echo
-```
+    ```bash
+    curl $PROXY_IP/echo
+    ```
 
-You should see the following:
+1. You should see the following:
 
-```
-❯ curl $PROXY_IP/echo
-Welcome, you are connected to node king.
-Running on Pod echo-965f7cf84-rm7wq.
-In namespace default.
-With IP address 192.168.194.10.
-```
+    ```
+    ❯ curl $PROXY_IP/echo
+    Welcome, you are connected to node king.
+    Running on Pod echo-965f7cf84-rm7wq.
+    In namespace default.
+    With IP address 192.168.194.10.
+    ```
 
-Congratulations! You just configured {{ site.kgo_product_name }}, {{ site.kic_product_name }} and {{ site.base_gateway }} using open standards.
+1. Congratulations! You just configured {{ site.kgo_product_name }}, {{ site.kic_product_name }} and {{ site.base_gateway }} using open standards.
 
 ## Next steps
 

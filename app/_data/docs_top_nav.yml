@@ -22,6 +22,3 @@
 - name: Kuma
   desc: Open-source distributed control plane with a bundled Envoy Proxy integration
   url: https://kuma.io/docs/
-- name: Docs Contribution Guidelines
-  desc: Want to help out, or found an issue in the docs and want to let us know?
-  url: /contributing/
