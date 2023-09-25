@@ -12,7 +12,7 @@ Creating a fully-functioning {{site.mesh_product_name}} deployment in {{site.kon
 1. Add services to your mesh.
 
 {:.important}
-> **Important:** Mesh zones are priced based on consumption. For more information about the pricing and consumption of zones, see the [Pricing and Plans](/konnect/account-management/) documentation and Kong's [Pricing](https://konghq.com/pricing) page.
+> **Important:** Mesh zones are priced based on consumption. For more information about the pricing and consumption of zones, see Kong's [Pricing](https://konghq.com/pricing) page.
 
 ### Prerequisites
 
