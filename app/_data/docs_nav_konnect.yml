@@ -229,6 +229,10 @@
             url: /org-management/users/
           - text: Manage System Accounts
             url: /org-management/system-accounts/
+          - text: Social Identity Login
+            url: /org-management/social-identity-login/
+          - text: Org Switcher
+            url: /org-management/org-switcher/
           - text: Set up SSO with OIDC
             url: /org-management/oidc-idp/
           - text: Set up SSO with Okta
