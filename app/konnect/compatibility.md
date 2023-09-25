@@ -30,7 +30,7 @@ access to a subset of plugins:
 * **Free tier**
 * **Paid tier** 
 * **Premium tier** 
-* **Enterprise tier** 
+
 
 If you're looking for supported network protocols and entity scopes, see [Plugin Compatibility](/hub/plugins/compatibility/) on the Plugin Hub.
 

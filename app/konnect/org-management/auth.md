@@ -21,7 +21,6 @@ organization
 * [Roles reference](/konnect/org-management/teams-and-roles/roles-reference/)
 
 ## External authentication
-{:.badge .enterprise}
 
 {{site.konnect_saas}} supports single sign-on (SSO) access through
 [Okta](https://developer.okta.com/docs/guides/) with
