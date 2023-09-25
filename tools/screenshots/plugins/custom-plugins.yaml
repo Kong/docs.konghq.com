@@ -1,0 +1,5 @@
+- output: ../../app/assets/images/docs/konnect/konnect-custom-plugins.png
+  url: https://cloud.konghq.com/us/gateway-manager/d95bc3ca-64b5-4cfd-a859-8d2df331151b/plugins/select#custom
+  wait: 4000
+  width: 1600
+  height: 850

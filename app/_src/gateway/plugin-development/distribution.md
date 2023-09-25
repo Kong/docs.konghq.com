@@ -215,6 +215,50 @@ Kong configuration (on each Kong node):
     kong reload
     ```
 
+## Install and load a plugin in a container
+
+If you are running {{site.base_gateway}} on Docker or Kubernetes, 
+the plugin needs to be installed inside the {{site.base_gateway}} container. 
+Copy or mount the plugin’s source code into the container.
+
+{:.note}
+> **Note:** Official {{site.base_gateway}} images are configured to run 
+as the `nobody` user.
+When building a custom image, to copy files into the {{site.base_gateway}} image, 
+you must temporarily set the user to `root`.
+
+Here is an example Dockerfile that shows how to mount your plugin in 
+the {{site.base_gateway}} image:
+
+```dockerfile
+FROM kong/kong-gateway:latest
+
+# Ensure any patching steps are executed as root user
+USER root
+
+# Add custom plugin to the image
+COPY example-plugin /usr/local/bin/example-plugin
+ENV KONG_PLUGINS=bundled,example-plugin
+
+# Ensure kong user is selected for image execution
+USER kong
+
+# ?
+ENTRYPOINT ["/docker-entrypoint.sh"]
+EXPOSE 8000 8443 8001 8444
+STOPSIGNAL SIGQUIT
+HEALTHCHECK --interval=10s --timeout=10s --retries=10 CMD kong health
+CMD ["kong", "docker-start"]
+``` 
+
+Or, include the following in your `docker run` command:
+
+```
+-v "$custom_plugin_folder:/tmp/custom_plugins/kong" 
+-e "KONG_LUA_PACKAGE_PATH=/tmp/custom_plugins/?.lua;;"
+-e "KONG_PLUGINS=bundled,example-plugin"
+```
+
 ## Verify loading the plugin
 
 You should now be able to start Kong without any issue. Consult your custom
