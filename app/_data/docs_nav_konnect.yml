@@ -290,7 +290,14 @@
           url: /konnect/api/control-plane-configuration/latest/
           absolute_url: true
           generate: false
-          target_blank: true          
+          target_blank: true   
+    - text: Custom Plugins API
+      items:
+        - text: API Spec
+          url: /konnect/api/custom-plugins/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true       
     - text: Identity API
       items:
         - text: API Spec
