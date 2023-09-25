@@ -5,7 +5,7 @@ content_type: how-to
 
 If you are an existing {{site.base_gateway}} user looking to use {{site.konnect_short_name}}
 as your cloud-hosted control plane, you can use [decK](/deck/) to import your
-{{site.base_gateway}} entity configuration into a runtime group in your
+{{site.base_gateway}} entity configuration into a control plane in your
 {{site.konnect_short_name}} organization.
 
 You can also use this method to migrate between {{site.konnect_short_name}} organizations.
@@ -31,7 +31,7 @@ To use decK to import entity configurations, we recommend that you use a persona
 
 ## Import entity configuration
 
-Use decK to import entity configurations into a runtime group.
+Use decK to import entity configurations into a control plane.
 
 When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.konghq.com` environment by default.
 
@@ -39,7 +39,7 @@ When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.
 
     ```sh
     deck ping \
-      --konnect-runtime-group-name default \
+      --konnect-control-plane-name default \
       --konnect-token {YOUR_PERSONAL_ACCESS_TOKEN}
     ```
 
@@ -79,7 +79,7 @@ When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.
 1. Open the file. If you have any of the following in your configuration, remove it:
 
     * Any `_workspace` entries: There are no workspaces in {{site.konnect_short_name}}. For a similar
-    concept, see [runtime groups](/konnect/runtime-manager/runtime-groups/).
+    concept, see [control planes](/konnect/gateway-manager/control-plane-groups/).
 
     * Configuration for the Portal App Registration plugin: App registration is
     [supported in {{site.konnect_short_name}}](/konnect/dev-portal/applications/application-overview/),
@@ -92,10 +92,10 @@ When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.
         * Key Authentication Encrypted
 
 1. Preview the import with the [`deck diff`](/deck/latest/reference/deck_diff/)
-command, pointing to the runtime group that you want to target:
+command, pointing to the control plane that you want to target:
 
     ```sh
-    deck diff --konnect-runtime-group-name default
+    deck diff --konnect-control-plane-name default
     ```
 
     If you're not using the default `kong.yaml` file, specify the filename and
@@ -104,17 +104,17 @@ command, pointing to the runtime group that you want to target:
 1. If you're satisfied with the preview, run [`deck sync`](/deck/latest/reference/deck_sync/):
 
     ```sh
-    deck sync --konnect-runtime-group-name default
+    deck sync --konnect-control-plane-name default
     ```
 
-    If you don't specify the `--konnect-runtime-group-name` flag, decK targets the
-    `default` runtime group. If you have more than one runtime group in your
+    If you don't specify the `--konnect-control-plane-name` flag, decK targets the
+    `default` control plane. If you have more than one control plane in your
     organization, we recommend always setting this flag to avoid accidentally
-    pushing configuration to the wrong group.
+    pushing configuration to the wrong control plane.
 
 1. Log in to your [{{site.konnect_saas}}](http://cloud.konghq.com/login) account.
 
-1. From the left navigation menu, open **Runtime Manager**, then open the runtime group
+1. From the left navigation menu, open **Gateway Manager**, then open the control plane
 you just updated.
 
 1. Look through the configuration details of any imported entities to make sure
@@ -127,14 +127,14 @@ You can keep any data plane nodes that are:
 * Are at least version 2.5 or higher
 
 Turn any self-managed nodes into cloud data plane nodes by registering them
-through the Runtime Manager and adjusting their configurations, or power down
-the old instances and create new data plane nodes through {{site.konnect_saas}}.
+through the Gateway Manager and adjusting their configurations, or power down
+the old data plane nodes and deploy new nodes through {{site.konnect_saas}}.
 
-1. Follow the [runtime setup guide](/konnect/runtime-manager/#runtime-instances) for
+1. Follow the [data plane node setup guide](/konnect/gateway-manager/#data-plane-nodes) for
 your preferred deployment type.
 
 2. Once you have created or converted the data plane nodes, `kong stop` your
-old Gateway runtimes, then shut them down.
+old Gateway data plane nodes, then shut them down.
 
 3. If any of the old nodes have connected database instances,
 you can shut them down now.
@@ -160,7 +160,7 @@ location.
     * [Publish services to the Dev Portal](/konnect/api-products/service-documentation/#publishing):
     The Dev Portal is automatically enabled on a {{site.konnect_saas}} org
     (Plus or Enterprise tier). Publish your services to the Dev Portal.
-* [**Prepare custom plugins for migration**](/konnect/runtime-manager/plugins/#custom-plugins):
+* [**Prepare custom plugins for migration**](/konnect/gateway-manager/plugins/#custom-plugins):
 Custom plugins are supported in {{site.konnect_saas}}, but with limitations. As
 long as your plugins fit the criteria, or if you can adjust them to do so,
 contact Kong Support to get the plugin manually added to your account.

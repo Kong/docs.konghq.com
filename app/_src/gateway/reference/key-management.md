@@ -10,7 +10,9 @@ This page describes {{site.base_gateway}}'s capabilities to manage asymmetric ke
 For some operations, access to public and private keys is required. This document also describes how to grant access to those keys using {{site.base_gateway}}.
 
 {% if_version gte:3.2.x %}
->This feature is available in both {{site.konnect_short_name}}, and Kong Manager. In **Konnect**, you can manage keys as a  **Runtime Manager** entity. In Kong Manager, it is available from the **API Gateway** drop-down. 
+> This feature is available in both {{site.konnect_short_name}}, and Kong Manager.
+* In **Konnect**, you can manage keys as a **Gateway Manager** entity. 
+* In Kong Manager, it is available from the **API Gateway** drop-down. 
 {% endif_version %}
 {:.note}
 

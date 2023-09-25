@@ -21,7 +21,7 @@ The default response status code is `200`.
 > * In the response context the entire body must be buffered to be processed. This requirement also
 implies that the `Content-Length` header will be dropped if present, and the body transferred with chunked encoding.
 > * To use this plugin in Konnect,
-[upgrade your runtimes](/konnect/runtime-manager/upgrade/) to at least
-v2.6.0.0.
+[upgrade your data plane nodes](/konnect/gateway-manager/data-plane-nodes/upgrade/) 
+to at least v2.6.0.0.
 
 See jq's documentation on [Basic filters](https://stedolan.github.io/jq/manual/#Basicfilters) for more information on writing programs with jq.
