@@ -15,7 +15,7 @@ In this guide, you will set up two developer teams and then enable Portal RBAC u
 
 ## Prerequisites
 * Two test [developer accounts registered](/konnect/dev-portal/dev-reg/)
-* A [runtime group configured](/konnect/getting-started/configure-runtime)
+* A [configured control plane](/konnect/getting-started/configure-data-plane-node/)
 * A [personal access token](/konnect/getting-started/import/#generate-a-personal-access-token) for authorization. This is only required if you plan to use the API to create developer teams.
 
 If you have existing registered developers in {{site.konnect_short_name}}, you must configure developer teams before enabling Portal RBAC. If you enable Portal RBAC before configuring teams for your developers, it will prevent *all* developers from seeing any API products in your Dev Portal. 
@@ -36,7 +36,7 @@ In this scenario, before you can configure developer teams, you must have an API
 
 {% navtabs %}
 {% navtab Konnect UI %}
-In {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/us/runtime-manager), select a runtime group and follow these steps:
+In {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager), select a control plane and follow these steps:
 
 1. Select **Gateway Services** from the side navigation bar, then **New Gateway Service**.
 1. From the **Add a Gateway Service** dialog, enter the following to create a new service:
@@ -48,7 +48,7 @@ In {% konnect_icon runtimes %} [**Runtime Manager**](https://cloud.konghq.com/us
 1. Click **Publish to portal** from the **Actions** dropdown menu. This will allow developers to access the API product once you assign them to a team.
 1. Click **New Version** from the **Actions** dropdown menu and enter `v1` in the **Version Name** field and then click **Create**.
 1. Click the **v1** version and then click **Link** to add a service.
-1. Select a runtime from the **Select Runtime Group** dropdown menu, select `pizza_ordering` from the **Gateway Service** dropdown menu, and then click **Save**.
+1. Select a control plane from the **Select Control Plane** dropdown menu, select `pizza_ordering` from the **Gateway Service** dropdown menu, and then click **Save**.
 1. Click the **Edit** icon next to the status of your product version and select **Published** from the **Edit version status** dialog and then click **Save**.
 1. You need to enable app registration if you want the developer in the Authorized Delivery Partners group to be able to consume your APIs by registering apps. You can use an authentication method of your choice in the [enable or disable application registration](/konnect/dev-portal/applications/enable-app-reg/) documentation.
 
@@ -60,9 +60,10 @@ You now have a published API product for your Pizza Ordering API in your Dev Por
 The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
 
 1. Create the `pizza_ordering` service:
-```bash
+
+    ```bash
     curl --request POST \
-      --url https://<region>.api.konghq.com/v2/runtime-groups/{runtimeGroupId}/core-entities/services \
+      --url https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/services \
       --header 'Authorization: Bearer <personal-access-token>' \
       --header 'Content-Type: application/json' \
       --header 'accept: application/json' \
@@ -71,31 +72,36 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
           "host": "mockbin.org",
           "path": "/pizza_ordering"
       }'
-```
-  You can get the `runtimeGroupId`, by using the [list runtime groups endpoint](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9#/Runtime%20Groups/list-runtime-groups) to list all runtime groups and their IDs. <br><br>
-  You should get a `201` response like the following:
-  ```bash
-  {
-      "connect_timeout": 60000,
-      "created_at": 1692885974,
-      "enabled": true,
-      "host": "mockbin.org",
-      "id": "06acc4f4-c6d8-4daf-bef6-79866e88ca86",
-      "name": "pizza_ordering",
-      "path": "/pizza_ordering",
-      "port": 80,
-      "protocol": "http",
-      "read_timeout": 60000,
-      "retries": 5,
-      "updated_at": 1692885974,
-      "write_timeout": 60000
-  }
-  ```
-  Save the `id` value from the output. This is your `GATEWAY-SERVICE-ID` and will be used in another step.
+    ```
+  
+    You can get the `controlPlaneId` by using the [list control planes endpoint](/konnect/api/control-planes/latest/#/Control%20Planes/list-control-planes) to list all control planes and their IDs.
+
+    You should get a `201` response like the following:
+    ```json
+    {
+        "connect_timeout": 60000,
+        "created_at": 1692885974,
+        "enabled": true,
+        "host": "mockbin.org",
+        "id": "06acc4f4-c6d8-4daf-bef6-79866e88ca86",
+        "name": "pizza_ordering",
+        "path": "/pizza_ordering",
+        "port": 80,
+        "protocol": "http",
+        "read_timeout": 60000,
+        "retries": 5,
+        "updated_at": 1692885974,
+        "write_timeout": 60000
+    }
+    ```
+
+    Save the `id` value from the output. This is your `GATEWAY-SERVICE-ID` and will be used in another step.
+
 1. Create the `Pizza Ordering` API product:
-```bash
+
+    ```bash
     curl --request POST \
-      --url https://<region>.api.konghq.com/v2/api-products \
+      --url https://{region}.api.konghq.com/v2/api-products \
       --header 'Authorization: Bearer <personal-access-token>' \
       --header 'Content-Type: application/json' \
       --header 'accept: application/json' \
@@ -103,24 +109,27 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
           "name": "Pizza Ordering",
           "description": "API product for pizza ordering"
       }'
-```
-  You should get a `201` response like the following:
-  ```bash
-  {
-      "labels": {},
-      "id": "0429aa6b-d789-4c73-bbb1-73a228c69477",
-      "name": "Pizza Ordering",
-      "description": "API product for pizza ordering",
-      "portal_ids": [],
-      "created_at": "2023-01-01T00:00:00.000Z",
-      "updated_at": "2023-01-01T00:00:00.000Z"
-  }
-  ```
-  Save the `id` value from the output. This is your `api-product-id` and will be used in another step.
+    ```
+
+    You should get a `201` response like the following:
+    ```json
+    {
+        "labels": {},
+        "id": "0429aa6b-d789-4c73-bbb1-73a228c69477",
+        "name": "Pizza Ordering",
+        "description": "API product for pizza ordering",
+        "portal_ids": [],
+        "created_at": "2023-01-01T00:00:00.000Z",
+        "updated_at": "2023-01-01T00:00:00.000Z"
+    }
+    ```
+    Save the `id` value from the output. This is your `api-product-id` and will be used in another step.
+
 1. Using the`api-product-id` of the newly created API product, publish the `Pizza Ordering` API product:
-```bash
+  
+    ```bash
     curl --request PATCH \
-      --url https://<region>.api.konghq.com/v2/api-products/{apiProductId} \
+      --url https://{region}.api.konghq.com/v2/api-products/{apiProductId} \
       --header 'Authorization: Bearer <personal-access-token>' \
       --header 'Content-Type: application/json' \
       --header 'accept: application/json' \
@@ -129,26 +138,30 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
         "DEV_PORTAL_ID"
       ]
     }'
-```
-  The `DEV_PORTAL_ID` can be found in the {{site.konnect_short_name}} UI in the [**Dev Portal** section](https://cloud.konghq.com/us/portal/published-products). <br><br>
-  You should get a `200` response like the following:
-  ```bash
-  {
-      "labels": {},
-      "id": "38219b88-28fb-4a51-aaca-ea5b931939d8",
-      "name": "Pizza Ordering",
-      "description": "API product for pizza ordering",
-      "portal_ids": [
-        "a060b86d-593b-4e7e-9cc4-188d2f13265e"
-      ],
-      "created_at": "2023-01-01T00:00:00.000Z",
-      "updated_at": "2023-01-01T00:00:00.000Z"
-  }
-  ```
+    ```
+
+    The `DEV_PORTAL_ID` can be found in the {{site.konnect_short_name}} UI in the [**Dev Portal** section](https://cloud.konghq.com/us/portal/published-products).
+
+    You should get a `200` response like the following:
+    ```json
+    {
+        "labels": {},
+        "id": "38219b88-28fb-4a51-aaca-ea5b931939d8",
+        "name": "Pizza Ordering",
+        "description": "API product for pizza ordering",
+        "portal_ids": [
+          "a060b86d-593b-4e7e-9cc4-188d2f13265e"
+        ],
+        "created_at": "2023-01-01T00:00:00.000Z",
+        "updated_at": "2023-01-01T00:00:00.000Z"
+    }
+    ```
+
 1. Using the`api-product-id` of the newly created API product, create a `v1` version for the `Pizza Ordering` API product and publish it:
-```bash
+
+    ```bash
     curl --request POST \
-      --url https://<region>.api.konghq.com/v2/api-products/{apiProductId}/product-versions \
+      --url https://{region}.api.konghq.com/v2/api-products/{apiProductId}/product-versions \
       --header 'Authorization: Bearer <personal-access-token>' \
       --header 'Content-Type: application/json' \
       --header 'accept: application/json' \
@@ -156,27 +169,27 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       "name":"v1",
       "publish_status":"published",
       "gateway_service":{
-        "runtime_group_id":"RUNTIME_GROUP_ID",
+        "control_plane_id":"CONTROL_PLANE_ID",
         "id":"GATEWAY_SERVICE_ID"
         }
       }'
-```
-  You should get a `201` response like the following:
-  ```bash
-  {
-      "id": "0a8eebb6-0ed4-4382-c366-c1f4ea01f295",
-      "name": "v1",
-      "publish_status": "published",
-      "deprecated": false,
-      "created_at": "2023-01-01T00:00:00.000Z",
-      "updated_at": "2023-01-01T00:00:00.000Z",
-      "gateway_service": {
-        "id": "0f5a6eaa-1267-4259-b226-fd2520926ee2",
-        "runtime_group_id": "5b32f5e1-6c0e-448d-bd94-14c770c4ffbd",
-        "control_plane_id": "5b32f5e1-6c0e-448d-bd94-14c770c4ffbd"
-      }
-  }
-  ```
+    ```
+
+    You should get a `201` response like the following:
+    ```json
+    {
+        "id": "0a8eebb6-0ed4-4382-c366-c1f4ea01f295",
+        "name": "v1",
+        "publish_status": "published",
+        "deprecated": false,
+        "created_at": "2023-01-01T00:00:00.000Z",
+        "updated_at": "2023-01-01T00:00:00.000Z",
+        "gateway_service": {
+          "id": "0f5a6eaa-1267-4259-b226-fd2520926ee2",
+          "control_plane_id": "5b32f5e1-6c0e-448d-bd94-14c770c4ffbd"
+        }
+    }
+    ```
 1. You need to enable app registration if you want the developer in the Authorized Delivery Partners group to be able to consume your APIs by registering apps. Currently, the only way to enable app registration is by using the {{site.konnect_short_name}} UI. You can use an authentication method of your choice in the [enable or disable application registration](/konnect/dev-portal/applications/enable-app-reg/) documentation.
 
 You now have a published API product for your Pizza Ordering API in your Dev Portal.
@@ -219,9 +232,10 @@ You now have added your test developer accounts to two teams with different acce
 The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
 
 1. Create the `Authorized Delivery Partners` team:
-```bash
+
+    ```bash
     curl --request POST \
-      --url https://<region>.api.konghq.com/v2/portals/{portal-id}/teams \
+      --url https://{region}.api.konghq.com/v2/portals/{portal-id}/teams \
       --header 'Authorization: Bearer <personal-access-token>' \
       --header 'Content-Type: application/json' \
       --header 'accept: application/json' \
@@ -229,24 +243,28 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       "name": "Authorized Delivery Partners",
       "description": "Team of vetted delivery partners that can view and consume APIs"
       }'
-```
-  The `portal-id` can be found in the {{site.konnect_short_name}} UI in the **Dev Portal** section. <br><br>
-  You should get a `201` response like the following:
-  ```bash
-  {
-      "id": "4bfe2ae8-42d9-46a3-a5de-80b054ae8a44",
-      "name": "Authorized Delivery Partners",
-      "description": "Team of vetted delivery partners that can view and consume APIs",
-      "created_at": "2023-01-01T00:00:00.000Z",
-      "updated_at": "2023-01-01T00:00:00.000Z"
-  }
-  ```
-  The `portal-id` will be the value from the output of the request you used earlier to create the Pizza Delivery API product. <br><br>
-  Save the `id` value from the output. This is your `teamId` for the `Authorized Delivery Partners` team and will be used in another step.
+    ```
+    The `portal-id` can be found in the {{site.konnect_short_name}} UI in the **Dev Portal** section. 
+
+    You should get a `201` response like the following:
+    ```json
+    {
+        "id": "4bfe2ae8-42d9-46a3-a5de-80b054ae8a44",
+        "name": "Authorized Delivery Partners",
+        "description": "Team of vetted delivery partners that can view and consume APIs",
+        "created_at": "2023-01-01T00:00:00.000Z",
+        "updated_at": "2023-01-01T00:00:00.000Z"
+    }
+    ```
+    The `portal-id` will be the value from the output of the request you used earlier to create the Pizza Delivery API product.
+
+    Save the `id` value from the output. This is your `teamId` for the `Authorized Delivery Partners` team and will be used in another step.
+
 1. Create the `Prospective Partners` team:
-```bash
+
+    ```bash
     curl --request POST \
-      --url https://<region>.api.konghq.com/v2/portals/{portal-id}/teams \
+      --url https://{region}.api.konghq.com/v2/portals/{portal-id}/teams \
       --header 'Authorization: Bearer <personal-access-token>' \
       --header 'Content-Type: application/json' \
       --header 'accept: application/json' \
@@ -254,24 +272,26 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       "name": "Prospective Partners",
       "description": "Team of unvetted partners that can only view APIs"
       }'
-```
-  The `portal-id` can be found in the {{site.konnect_short_name}} UI in the **Dev Portal** section. <br><br>
-  You should get a `201` response like the following:
-  ```bash
-  {
-      "id": "4bfe2ae8-42d9-46a5-a5de-80b054ae8a44",
-      "name": "Prospective Partners",
-      "description": "Team of unvetted partners that can only view APIs",
-      "created_at": "2023-01-01T00:00:00.000Z",
-      "updated_at": "2023-01-01T00:00:00.000Z"
-  }
-  ```
-  Save the `id` value from the output. This is your `teamId` for the `Prospective Partners` team and will be used in another step. 
+    ```
+    The `portal-id` can be found in the {{site.konnect_short_name}} UI in the **Dev Portal** section. 
+
+    You should get a `201` response like the following:
+    ```json
+    {
+        "id": "4bfe2ae8-42d9-46a5-a5de-80b054ae8a44",
+        "name": "Prospective Partners",
+        "description": "Team of unvetted partners that can only view APIs",
+        "created_at": "2023-01-01T00:00:00.000Z",
+        "updated_at": "2023-01-01T00:00:00.000Z"
+    }
+    ```
+    Save the `id` value from the output. This is your `teamId` for the `Prospective Partners` team and will be used in another step. 
 
 1. Assign the `API Consumer` role to the `Authorized Delivery Partners` created in the previous section for your pizza ordering API product:
-```bash
+
+    ```bash
     curl --request POST \
-      --url https://<region>.api.konghq.com/v2/portals/{portal-id}/teams/{team-id}/assigned-roles \
+      --url https://{region}.api.konghq.com/v2/portals/{portal-id}/teams/{team-id}/assigned-roles \
       --header 'Authorization: Bearer <personal-access-token>' \
       --header 'Content-Type: application/json' \
       --header 'accept: application/json' \
@@ -280,22 +300,25 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       "entity_id": "GATEWAY_SERVICE_ID",
       "entity_type_name": "Services"
       }'
-```
-  The `portal-id` can be found in the {{site.konnect_short_name}} UI in the **Dev Portal** section. <br><br>
-  You should get a `201` response like the following:
-  ```bash
-  {
-      "id": "091260a3-1e96-40c9-86c2-c7cbe795dfdb",
-      "role_name": "API Consumer",
-      "entity_id": "0f5a6eaa-1967-4269-b226-fd2520926ee2",
-      "entity_type_name": "Services",
-      "entity_region": "us"
-  }
-  ```
+    ```
+
+    The `portal-id` can be found in the {{site.konnect_short_name}} UI in the **Dev Portal** section. 
+
+    You should get a `201` response like the following:
+    ```json
+    {
+        "id": "091260a3-1e96-40c9-86c2-c7cbe795dfdb",
+        "role_name": "API Consumer",
+        "entity_id": "0f5a6eaa-1967-4269-b226-fd2520926ee2",
+        "entity_type_name": "Services",
+        "entity_region": "us"
+    }
+    ```
 1. Now assign the `API Viewer` role to the `Prospective Partners` team for the same pizza ordering API product:
-```bash
+
+    ```bash
     curl --request POST \
-      --url https://<region>.api.konghq.com/v2/portals/{portal-id}/teams/{team-id}/assigned-roles \
+      --url https://{region}.api.konghq.com/v2/portals/{portal-id}/teams/{team-id}/assigned-roles \
       --header 'Authorization: Bearer <personal-access-token>' \
       --header 'Content-Type: application/json' \
       --header 'accept: application/json' \
@@ -305,45 +328,51 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       "entity_type_name": "Services",
       "entity_region": "us"
       }'
-```
-  The `portal-id` can be found in the {{site.konnect_short_name}} UI in the **Dev Portal** section. <br><br>
-  You should get a `201` response like the following:
-  ```bash
-  {
-      "id": "091268a3-1e96-40c9-86c2-c7cbe795dfdb",
-      "role_name": "API Viewer",
-      "entity_id": "0f5a6eac-1967-4269-b226-fd2520926ee2",
-      "entity_type_name": "Services",
-      "entity_region": "us"
-  }
-  ```
+    ```
+    The `portal-id` can be found in the {{site.konnect_short_name}} UI in the **Dev Portal** section.
+    
+    You should get a `201` response like the following:
+    ```json
+    {
+        "id": "091268a3-1e96-40c9-86c2-c7cbe795dfdb",
+        "role_name": "API Viewer",
+        "entity_id": "0f5a6eac-1967-4269-b226-fd2520926ee2",
+        "entity_type_name": "Services",
+        "entity_region": "us"
+    }
+    ```
+
 1. Add a test developer to the `Authorized Delivery Partners` team:
-```bash
+
+    ```bash
     curl --request POST \
-      --url https://<region>.api.konghq.com/v2/portals/{portalId}/teams/{teamId}/developers \
+      --url https://{region}.api.konghq.com/v2/portals/{portalId}/teams/{teamId}/developers \
       --header 'Authorization: Bearer <personal-access-token>' \
       --header 'Content-Type: application/json' \
       --data '{"id":"DEVELOPER-ID"}'
-```
-  If you don't remember the IDs for your test developers, you can send a [GET request to list developers](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Developers/list-portal-developers).<br><br>
-  You should get a `201` response like the following:
-  ```bash
-  Created
-  ```
+    ```
+
+    If you don't remember the IDs for your test developers, you can send a [GET request to list developers](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Developers/list-portal-developers).
+    
+    You should get a `201` response like the following:
+    ```bash
+    Created
+    ```
 1. Add a test developer to the `Prospective Partners` team:
-```bash
+
+    ```bash
     curl --request POST \
-      --url https://<region>.api.konghq.com/v2/portals/{portalId}/teams/{teamId}/developers \
+      --url https://{region}.api.konghq.com/v2/portals/{portalId}/teams/{teamId}/developers \
       --header 'Authorization: Bearer <personal-access-token>' \
       --header 'Content-Type: application/json' \
       --data '{"id":"DEVELOPER-ID"}'
-```
-  If you don't remember the IDs for your test developers, you can send a [GET request to list developers](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Developers/list-portal-developers).<br><br>
-  You should get a `201` response like the following:
-  ```bash
-  Created
-  ```
-<!-- 1. App registration step, I don't see any APIs that allow us to do this-->
+    ```
+      
+    If you don't remember the IDs for your test developers, you can send a [GET request to list developers](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Developers/list-portal-developers).<br><br>
+    You should get a `201` response like the following:
+    ```bash
+    Created
+    ```
 
 You now have added your test developer accounts to two teams with different access permissions for your Dev Portal. These developers won't be able to access anything in Dev Portal yet, though, because we need to enable Portal RBAC next.
 
@@ -370,12 +399,12 @@ Now, if you access your Dev Portal as one of the test developer accounts, you sh
 To enable RBAC, you must make a `PATCH` request to the portal configuration endpoint. The following example shows how to enable RBAC in the portal. For more details on how to create your personal access token, see [Authentication](/konnect/api/#authentication). 
 
 ```bash
-    curl --request PATCH \
-      --url https://<region>.api.konghq.com/konnect-api/api/portals/{portal-id} \
-      --header 'Authorization: Bearer <personal-access-token>' \
-      --header 'Content-Type: application/json' \
-      --header 'accept: application/json' \
-      --data '{"rbac_enabled": true}'
+curl --request PATCH \
+  --url https://{region}.api.konghq.com/konnect-api/api/portals/{portal-id} \
+  --header 'Authorization: Bearer <personal-access-token>' \
+  --header 'Content-Type: application/json' \
+  --header 'accept: application/json' \
+  --data '{"rbac_enabled": true}'
 ```
 
 The `portal-id` can be found in the {{site.konnect_short_name}} UI in the **Dev Portal** section. <br><br>

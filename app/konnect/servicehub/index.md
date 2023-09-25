@@ -14,7 +14,7 @@ While the new Service Hub is in development, you can manage your services in the
 
 | Action | New location |
 | ------ | ------------ |
-| Create a new service | Go to [**Runtime Manager** in {{site.konnect_short_name}}](https://cloud.konghq.com/us/runtime-manager/). |
-| Manage my existing services | Go to [**Runtime Manager** in {{site.konnect_short_name}}](https://cloud.konghq.com/us/runtime-manager/). |
+| Create a new service | Go to [**Gateway Manager** in {{site.konnect_short_name}}](https://cloud.konghq.com/us/gateway-manager/). |
+| Manage my existing services | Go to [**Gateway Manager** in {{site.konnect_short_name}}](https://cloud.konghq.com/us/gateway-manager/). |
 | Manage service packages | Service packages are now API products. Go to [**API Products** in {{site.konnect_short_name}}](https://cloud.konghq.com/us/api-products/). | 
 | Create a service version | Service versions are now API product versions. Go to [**API Products** in {{site.konnect_short_name}}](https://cloud.konghq.com/us/api-products/). |
