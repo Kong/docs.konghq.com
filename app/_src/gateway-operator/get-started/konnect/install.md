@@ -20,4 +20,4 @@ You can wait for the operator to be ready using `kubectl wait`:
 kubectl -n kong-system wait --for=condition=Available=true --timeout=120s deployment/gateway-operator-controller-manager
 ```
 
-After the deployment `gateway-operator-controller-manager` is ready, you can deploy a `DataPlane` resource that is attached to a {{ site.konnect_short_name }} control plane.
+Once the `gateway-operator-controller-manager` deployment is ready, you can deploy a `DataPlane` resource that is attached to a {{ site.konnect_short_name }} control plane.
