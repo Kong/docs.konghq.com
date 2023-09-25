@@ -29,7 +29,7 @@ Once your `DataPlane` is deployed it receives configuration from Konnect, but th
 
 ## Create Kong Entities
 
-1.  Create a service and a route in your {{ site.konnect_short_name }} control plane using the variables that you set.
+Create a service and a route in your {{ site.konnect_short_name }} control plane using the variables that you set.
 
 The following commands create a service named _Sample_ and a route that proxies all traffic to mockbin.org:
 
@@ -53,7 +53,7 @@ echo "Proxy IP: $PROXY_IP"
 {:.note}
 > Note: if your cluster can not provision LoadBalancer type Services then you may not receive an IP address
 
-1. Test the routing rules by sending a request to the proxy IP address.
+Test the routing rules by sending a request to the proxy IP address.
 
 ```bash
 curl $PROXY_IP/request/hello
@@ -63,7 +63,7 @@ curl $PROXY_IP/request/hello
 
 You can delete the test service after you verify that {{ site.kgo_product_name }} and {{ site.konnect_short_name }} are working.
 
-1.  To delete the `Sample` service.
+To delete the `Sample` service.
 
 ```bash
 curl -sS -H "Authorization: Bearer $KONNECT_TOKEN" https://us.api.konghq.com/v2/runtime-groups/$CP_UUID/core-entities/services/$SERVICE_ID -X DELETE
