@@ -97,7 +97,6 @@ their authentication mechanisms don't carry over to other control planes.
 [{{site.base_gateway}} configuration in {{site.konnect_short_name}} &rarr;](/konnect/gateway-manager/configuration/)
 
 ### Control plane groups
-{:.badge .enterprise}
 
 A control plane group is a read-only control plane that combines configuration from
 its members, which are standard {{site.base_gateway}} control planes. All of the members of a 
