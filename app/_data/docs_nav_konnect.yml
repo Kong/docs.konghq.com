@@ -317,12 +317,16 @@
           url: /api/audit-logs/webhook/
     - text: Mesh Manager API
       items:
-        - text: API Documentation
-          url: https://deploy-preview-252--kong-platform-api.netlify.app/konnect/mesh-control-planes/v0/
+        - text: API Spec
+          url: /konnect/api/mesh-manager/latest/
           absolute_url: true
+          generate: false
+          target_blank: true
         - text: Kong Mesh API Reference
-          url: https://mink-beta--kongdocs.netlify.app/mesh/latest/reference/http-api/
+          url: /mesh/latest/reference/http-api/
           absolute_url: true
+          generate: false
+          target_blank: true
     - text: API Products API
       items:
         - text: API Spec
