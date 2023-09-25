@@ -12,7 +12,7 @@ Users have the option to register for and sign in to {{site.konnect_short_name}}
 
 You can login with one or more social identity such as Google and Github. When you login with a different identity, you're asked to link accounts so your social identities are associated to the same {{site.konnect_short_name}} accounts. 
 
-We recommend linking accounts when using multiple social identities, If you choose not to link, each account will behave as its own independent identity and be associated with its own organizations. Organizations will only be associated with one social identity. It is not currently possible to relink accounts. 
+We recommend linking accounts when using multiple social identities. If you choose not to link, each account will behave as its own independent identity and be associated with its own organizations. Organizations will only be associated with one social identity. It is not currently possible to relink accounts. 
 
 ## Disable Social Login
 {:.badge .enterprise}
