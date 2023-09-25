@@ -25,7 +25,8 @@ You now have a {{site.mesh_product_name}} global control plane. This control pla
 
 After creating the global control plane, you must add a zone to that control plane. Adding a zone allows you to manage services added to that zone and send and receive configuration changes to the zone. 
 
-1. Select the `example-cp` control plane you just created and then click **Create Zone**. 
+1. Select the `example-cp` control plane you just created and then click **Create Zone**.  
+  Mesh Manager automatically creates a [managed service account](/konnect/org-management/system-accounts/) that is only used to issue a token during the zone creation process.
 1. Enter "zone-1" in the **Name** field for the new zone, and then click **Create Zone & generate token**. 
     
     {:.note}
