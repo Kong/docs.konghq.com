@@ -8,11 +8,13 @@ chapter: 3
 {:.note}
 > These examples require that you have `jq` installed on your machine. You can also use the [Konnect UI](https://cloud.konghq.com) to configure services and routes.
 
-Your `DataPlane` should now be running, but there are no routing rules to tell {{ site.base_gateway }} how to proxy traffic. In this tutorial we will use the Konnect API to configure and test routing.
+Once your `DataPlane` is deployed it receives configuration from Konnect, but there are no routing rules available for {{ site.base_gateway }} to proxy traffic. You can use Konnect API to configure and test routing.
 
 ## Before you begin
 
-1. Visit the Gateway Manager section of Konnect and fetch your control plane ID. This is available on the _Data Plane Nodes_ page next to the _Control Plane ID_ label. Export a variable that contains this value:
+1. In Gateway Manager, navigate to the **Overview** page of the control plane to which you added the data plane.
+1. Copy the ID of the control plane in the **About this Hybrid Control Plane** section.
+1. Set the value of the variable `CP_UUID` to the ID of the control plane that you copied.
 
     ```bash
     export CP_UUID="a62e9a4c-d47..."
@@ -39,7 +41,7 @@ curl -sS -H "Authorization: Bearer $KONNECT_TOKEN" https://us.api.konghq.com/v2/
 
 ## Send test traffic
 
-Once the service and route are created, you can send traffic to the proxy and it will forward the request to mockbin.org. We'll use Mockbin's `/request` endpoint to echo back the request we made in the response.
+After the service and route are created, send traffic to the proxy and it will forward the request to mockbin.org. You can use Mockbin's `/request` endpoint to echo the request made in the response.
 
 To make a request to the proxy we need to fetch the LoadBalancer IP address using `kubectl get services`:
 
@@ -51,7 +53,7 @@ echo "Proxy IP: $PROXY_IP"
 {:.note}
 > Note: if your cluster can not provision LoadBalancer type Services then you may not receive an IP address
 
-To test the routing rules that you just created, use `curl` to make a request to the proxy IP:
+1. Test the routing rules by sending a request to the proxy IP address.
 
 ```bash
 curl $PROXY_IP/request/hello

@@ -11,7 +11,7 @@ To get the endpoint and the authentication details of the data plane.
 1.  [Log in to {{ site.konnect_short_name }}](https://cloud.konghq.com/login).
 1.  Navigate to {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager), choose the control plane, and click **Create a New Data Plane Node**.
 1.  In the **Create a Data Plane Node** page select the  **Platform** as *Kubernetes*.
-     The **Advanced Kubernetes Setup** section lists the instructions to install Kong Gateway and deploy Kong Gateway data plane nodes in hybrid mode.
+     The **Advanced Kubernetes Setup** section lists the instructions to install {{ site.base_gateway }} and deploy {{ site.base_gateway }} data plane nodes in hybrid mode.
 1.  Create a namespace named `kong` in the Kubernetes cluster using `kubectl create namespace kong`.   
 
 1.  Click **Generate Certificates**  in step 3.
