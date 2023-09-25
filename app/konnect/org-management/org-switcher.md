@@ -12,7 +12,7 @@ From the org switcher, you can:
 
 ## Email Matching
 
-The org switcher uses the email of the logged in user to locate all organizations where this email is attached to a {{site.konnect_short_name}}. 
+The org switcher uses the email of the logged in user to locate all organizations where this email is attached to a {{site.konnect_short_name}} account. 
 
 In order to gain access to more organizations, the user may:
 - Create a new organization - Newly created organizations will automatically show up in the org switcher.
