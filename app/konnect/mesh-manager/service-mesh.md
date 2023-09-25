@@ -43,7 +43,7 @@ Now that you've added a global control plane and a zone to your service mesh in 
 The demo application consists of four services:
 
 * `frontend`: A web application that lets you browse an online clothing store
-* `backend`: A nodejs API for querying and filtering clothing items
+* `backend`: A Node.js API for querying and filtering clothing items
 * `postgres`: A database for storing clothing item reviews
 * `redis`: A data store for the clothing item star ratings
 
