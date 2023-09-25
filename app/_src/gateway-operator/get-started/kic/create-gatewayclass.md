@@ -28,13 +28,13 @@ spec:
     protocol: HTTP
     port: 80
 ' | kubectl apply -f -
+```
 
 The results should look like this:
-
-    ```text
-    gatewayclass.gateway.networking.k8s.io/kong created
-    gateway.gateway.networking.k8s.io/kong created
-
+```text
+gatewayclass.gateway.networking.k8s.io/kong created
+gateway.gateway.networking.k8s.io/kong created
+```
 Run `kubectl get gateway kong` to get the IP address for the gateway and set that as the value for the variable `PROXY_IP`.
 
 ```bash
