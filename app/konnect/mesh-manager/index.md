@@ -1,7 +1,6 @@
 ---
 title: About Mesh Manager
 content_type: explanation
-beta: true
 ---
 
 [Mesh Manager](https://cloud.konghq.com/mesh-manager) in {{site.konnect_product_name}} allows you to create, manage and view your {{site.mesh_product_name}} [service meshes](/mesh/latest/introduction/what-is-a-service-mesh/) in the {{site.konnect_short_name}} UI and using the {{site.konnect_short_name}} platform.

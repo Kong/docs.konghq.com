@@ -102,4 +102,4 @@ You can find the Telemetry hostname through the Gateway Manager:
 
 ### Mesh Manager
 
-If you plan to use [Mesh Manager](/konnect/mesh-manager/) to manage your Kong service mesh, you must add the `<region>.mesh.sync.konghq.com:443` hostname to your firewall allowlist. The region can be `us`, `eu`, or `global`.
+If you plan to use [Mesh Manager](/konnect/mesh-manager/) to manage your Kong service mesh, you must add the `{region}.mesh.sync.konghq.com:443` hostname to your firewall allowlist. The region can be `us`, `eu`, or `global`.

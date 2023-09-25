@@ -1,25 +1,23 @@
 ---
 title: Configure a Mesh Global Control Plane with the Kubernetes demo app
 content_type: tutorial
-beta: true
 ---
 
-Using Mesh Manager, you can create {{site.mesh_product_name}} global control planes to manage your {{site.konnect_saas}} mesh services. This guide explains how to configure a global control plane with {{site.mesh_product_name}} and the Kubernetes demo app. You will use Kubernetes to install various service mesh components.
+Using Mesh Manager, you can create {{site.mesh_product_name}} global control planes to manage your {{site.konnect_saas}} mesh services. This guide explains how to configure a global control plane with {{site.mesh_product_name}} and then you will install the Kubernetes demo app so you can start interfacing with Mesh in {{site.konnect_saas}}.
 
-{:.important}
-> **Important:** Mesh zones are priced based on consumption. For more information about the pricing and consumption of zones, see Kong's [Pricing](https://konghq.com/pricing) page.
+Mesh zones are priced based on consumption. For more information about the pricing and consumption of zones, see Kong's [Pricing](https://konghq.com/pricing) page.
 
 ## Prerequisites
 
-* [A Kubernetes cluster with load balancer service capabilities](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
-* [`kubectl` installed and configured to communicate with your Kubernetes cluster](https://kubernetes.io/docs/tasks/tools/#kubectl)
-* [Download the latest version of {{site.mesh_product_name}}](/mesh/latest/production/install-kumactl/)
+* A Kubernetes cluster with [load balancer service capabilities](https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer)
+* `kubectl` installed and configured to communicate with your Kubernetes cluster
+* [The latest version of {{site.mesh_product_name}}](/mesh/latest/production/install-kumactl/)
 
 ## Create a global control plane in {{site.konnect_short_name}}
  
 1. From the left navigation menu in {{site.konnect_short_name}}, open {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager).
 1. Click **New Global Control Plane**.
-1. Enter "example-cp" in the **Name** field and click **Save**.
+1. Enter `example-cp` in the **Name** field and click **Save**.
 
 You now have a {{site.mesh_product_name}} global control plane. This control plane won't have any functionality until you connect a zone to it.
 
@@ -32,12 +30,12 @@ After creating the global control plane, you must add a zone to that control pla
     
     {:.note}
     > **Note:** The zone name must consist of lower case alphanumeric characters or `-`. It must also start and end with an alphanumeric character.
-1. Follow the instructions that display to set up Helm and a secret token. 
-    Once {{site.konnect_short_name}} finds the newly created zone, it will display it. 
+1. Follow the instructions to set up Helm and a secret token. 
+    {{site.konnect_short_name}} will automatically start looking for the zone. Once {{site.konnect_short_name}} finds the zone, it will display it. 
 
 You now have a very basic {{site.mesh_product_name}} service mesh added to {{site.konnect_short_name}}. This service mesh can only create meshes and policies at the moment, so we must add services and additional configurations to it.
 
-## Add services to your service mesh using the Kubernetes demo app
+## Install a demo service
 
 Now that you've added a global control plane and a zone to your service mesh in {{site.konnect_short_name}}, you can add services to your mesh. You can use the {{site.mesh_product_name}} Kubernetes demo app to set up four services so you can see how {{site.mesh_product_name}} can be used to control services, monitor traffic, and track resource status.
 
