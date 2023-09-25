@@ -14,7 +14,7 @@ kubectl apply -k "https://github.com/kong/gateway-operator-docs/config/crd" --se
 kubectl apply -k "https://github.com/kong/gateway-operator-docs/config/default"
 ```
 
-You can wait for the operator to be ready using `kubectl wait`:
+You can wait for the operator to be ready using `kubectl wait`.
 
 ```bash
 kubectl -n kong-system wait --for=condition=Available=true --timeout=120s deployment/gateway-operator-controller-manager
