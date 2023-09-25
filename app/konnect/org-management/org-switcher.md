@@ -3,16 +3,16 @@ title: Org Switcher
 content_type: how-to
 ---
 
-The org switcher allows a user with multiple {{site.konnect_short_name}} accounts to seamlessly switch between organizations they belong to. You can navigate to the org switcher by clicking on **Your Org Name** > **Back to Org Switcher**.
+The org switcher allows a user with multiple {{site.konnect_short_name}} accounts to seamlessly switch between their organizations. You can navigate to the org switcher by clicking on **Your Org Name** > **Back to Org Switcher**.
 
 From the org switcher, you can:
-- View a list of {{site.konnect_short_name}} organizations you have access to
+- View a list of {{site.konnect_short_name}} organizations to which you have access
 - Login to a different {{site.konnect_short_name}} organization
 - Create a new {{site.konnect_short_name}} organization
 
 ## Email Matching
 
-The org switcher allows users to switch between {{site.konnect_short_name}} accounts with the same email address as the user currently logged in. Each organization that contains an account with the same email address will be listed in the org switcher.
+The org switcher uses the email of the logged in user to locate all organizations where this email is attached to a {{site.konnect_short_name}}. 
 
 In order to gain access to more organizations, the user may:
 - Create a new organization - Newly created organizations will automatically show up in the org switcher.
@@ -31,9 +31,6 @@ If the organization is configured to be single-sign-on only, then the user will 
 {:.note}
 > **Note**: You cannot be logged in to more than one {{site.konnect_short_name}} organization at the same time. You must return to the org switcher in order to switch to another organization.
 
-## Create a New Organization
-
-The user can create a new organization by clicking on the **+ Create** button.
 
 ## Delete Organizations from Org Switcher
 
