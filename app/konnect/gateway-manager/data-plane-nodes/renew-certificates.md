@@ -61,7 +61,7 @@ You can generate a new data plane certificate from the {% konnect_icon runtimes 
 
 {% navtab Konnect API %}
 
-You can generate a certificate locally and use the [pin data plane client certificate](/konnect/api/runtime-groups-configuration/v2/#/DP%20Certificates/post-dp-client-certificates) endpoint to add it to {{site.konnect_short_name}}.
+You can generate a certificate locally and use the [pin data plane client certificate](/konnect/api/control-plane-configuration/latest/#/DP%20Certificates/post-dp-client-certificates) endpoint to add it to {{site.konnect_short_name}}.
 
 1.  Generate a new certificate and key:
 

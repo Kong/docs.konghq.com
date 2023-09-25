@@ -131,7 +131,7 @@ nodes in the control plane the have been accounted for.
 
 To delete a control plane, you can use the Gateway Manager or the 
 {{site.konnect_short_name}} 
-[Control Plane API](/konnect/api/runtime-groups/v2/).
+[Control Plane API](/konnect/api/control-planes/v2/).
 
 When a control plane is deleted, all associated entities are also deleted.
 This includes all entities configured in the Gateway Manager for this control plane.

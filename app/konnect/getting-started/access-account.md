@@ -7,14 +7,12 @@ title: Create a Kong Konnect Account
 
 1. Go to {{site.konnect_short_name}}'s [registration page](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=konnect-get-started).
 
-2. In the registration form, fill in your email address, first and last name,
-and organization name.
+2. In the registration form, register with a social identity provider or create an account using an email address and password.
 
-3. Create a password.
+    - If using a social identity provider, you will be directed to the identity provider to sign in.
+    - If using an email address and password, you will need to verify your email by clicking on a link emailed to you. 
 
-4. From your {{site.konnect_short_name}} welcome email, click the link to verify your account.
-
-5. Sign in to {{site.konnect_short_name}} using your email and password.
+3. Create an organization by providing an organization name, then click **Create Organization**.
 
 
 ## Summary and next steps

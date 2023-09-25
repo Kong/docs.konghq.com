@@ -10,6 +10,10 @@ content_type: how-to
 * Enterprise {{site.konnect_short_name}} account.
 * An [Azure AD account](https://portal.azure.com).
 
+{:.note}
+> **Note:** Dynamic client registration supports Azure OAuth v1 token endpoints only.
+> v2 is not supported.
+
 ## Configure Azure
 
 In Azure, create the main application:
@@ -89,7 +93,8 @@ curl example.com/REGISTERED_ROUTE -H "Authorization: Basic CLIENT_ID:CLIENT_SECR
 
 Where `example.com` is the address of the data plane node.
 
-You can also request a bearer token from Azure using this command:
+You can also request a bearer token from Azure using this command, 
+using an OAuth2 v1 token endpoint:
 
 ```sh
 curl --request GET \
@@ -100,5 +105,3 @@ curl --request GET \
   --data 'scope=https://graph.microsoft.com/.default' \
   --data 'client_secret=CLIENT_SECRET'
 ```
-
-
