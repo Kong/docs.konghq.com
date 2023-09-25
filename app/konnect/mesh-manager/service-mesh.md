@@ -1,5 +1,5 @@
 ---
-title: Configure a Mesh Global Control Plane and the Kubernetes demo app
+title: Configure a Mesh Global Control Plane with the Kubernetes demo app
 content_type: tutorial
 beta: true
 ---
