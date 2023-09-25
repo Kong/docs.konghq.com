@@ -66,10 +66,14 @@ upload all plugin files to **each** {{site.base_gateway}} data plane node:
 
 If a data plane node doesn't have these files, the plugin won't be able to run on that node.
 
-Follow the {{site.base_gateway}} [plugin deployment and installation instructions](/gateway/latest/plugin-development/distribution/) 
-to get your plugin up on each node, or see the [Docker upload section](#optional-docker-upload).
+{% navtabs %}
+{% navtab Universal %}
 
-### (Optional) Docker upload
+Follow the {{site.base_gateway}} [plugin deployment and installation instructions](/gateway/latest/plugin-development/distribution/) 
+to get your plugin up on each node.
+
+{% endnavtab %}
+{% navtab Docker %}
 
 If you are running {{site.base_gateway}} on Docker,
 the plugin needs to be installed inside the {{site.base_gateway}} container 
@@ -88,6 +92,9 @@ similar path structure to the following:
             ├── handler.lua
             └── schema.lua
 ```
+
+You can do this in one of two ways: mounting the files with `docker run`, or 
+using a Dockerfile.
 
 To mount and enable this custom plugin on a data plane node:
 
@@ -130,6 +137,9 @@ To mount and enable this custom plugin on a data plane node:
 1. Run the command to start a data plane node with your custom plugin loaded in.
 
 To copy the plugin using a Dockerfile instead, see the [{{site.base_gateway}} custom plugin docs](/gateway/latest/plugin-development/distribution/#install-and-load-a-plugin-in-a-container).
+
+{% endnavtab %}
+{% endnavtabs %}
 
 ## More information
 

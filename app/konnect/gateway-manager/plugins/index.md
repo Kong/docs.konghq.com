@@ -69,8 +69,10 @@ per individual data plane.
   * OAuth2 Authentication
   * Apache OpenWhisk
   * Vault Auth
-  * Key Authentication Encrypte
+  * Key Authentication - Encrypted
   * JWT Signer
+  * TLS Handshake Modifier
+  * TLS Metadata Headers
 
 See the [plugin compatibility chart](/konnect/compatibility/)
 for a breakdown of the pricing tiers that each plugin is available in, and for specific {{site.konnect_short_name}}
