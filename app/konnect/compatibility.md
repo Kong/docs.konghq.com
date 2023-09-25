@@ -29,7 +29,7 @@ To use [Mesh Manager](/konnect/mesh-manager/), you must also use a compatible ve
 
 |                                  | {{site.konnect_saas}} | First supported patch version
 |--------------------------------|:---------------------:|-----------------------------
-| {{site.mesh_product_name}} 2.3.x | <i class="fa fa-check"></i> | 2.3.0
+| {{site.mesh_product_name}} 2.4.x | <i class="fa fa-check"></i> | 2.4.1
 
 
 ## Plugin compatibility

@@ -42,8 +42,6 @@
           url: /getting-started/publish-service/
         - text: Register Applications
           url: /getting-started/app-registration/
-    - text: Configure a Mesh Global Control Plane
-      url: /getting-started/configure-mesh/
     - text: Import Kong Gateway Entities into Konnect
       url: /getting-started/import/
 
@@ -113,7 +111,7 @@
   items:
     - text: Overview
       url: /mesh-manager/
-    - text: Create a mesh
+    - text: Create a mesh with the Kubernetes demo app
       url: /mesh-manager/service-mesh/
       
 - title: Service Hub
@@ -317,12 +315,16 @@
           url: /api/audit-logs/webhook/
     - text: Mesh Manager API
       items:
-        - text: API Documentation
-          url: https://deploy-preview-252--kong-platform-api.netlify.app/konnect/mesh-control-planes/v0/
+        - text: API Spec
+          url: /konnect/api/mesh-manager/latest/
           absolute_url: true
+          generate: false
+          target_blank: true
         - text: Kong Mesh API Reference
-          url: https://mink-beta--kongdocs.netlify.app/mesh/latest/reference/http-api/
+          url: /mesh/latest/reference/http-api/
           absolute_url: true
+          generate: false
+          target_blank: true
     - text: API Products API
       items:
         - text: API Spec

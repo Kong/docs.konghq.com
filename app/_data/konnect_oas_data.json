@@ -171,6 +171,27 @@
     ]
   },
   {
+    "id": "f3675942-dbc0-4298-bec2-cbcfdcc10fab",
+    "title": "Konnect Mesh Manager",
+    "latestVersion": {
+      "name": "v1",
+      "id": "0426ee88-bf76-45e3-9f89-fc03bea0c3a5"
+    },
+    "description": "The Mesh Manager API can be used to create and manage your global mesh control planes.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "0426ee88-bf76-45e3-9f89-fc03bea0c3a5",
+        "created_at": "2023-09-25T12:01:47.449Z",
+        "updated_at": "2023-09-25T12:02:03.266Z",
+        "name": "v1",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
     "id": "9542436a-58d1-4522-a00b-32125b5940f0",
     "title": "Gateway Status",
     "latestVersion": {
