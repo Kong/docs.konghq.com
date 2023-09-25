@@ -87,7 +87,7 @@ Configure this manually to check the resources the chart manages and for compati
 ## Update the Gateway
 
 If you are using Gateway APIs (UDPRoute) option, your Gateway needs additional
-configuration under `listeners`. If you are using UDPIngress, yo can skip this step.
+configuration under `listeners`. If you are using UDPIngress, you can skip this step.
 
 ```bash
 kubectl patch --type=json gateway kong -p='[
