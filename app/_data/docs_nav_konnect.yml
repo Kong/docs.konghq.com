@@ -237,6 +237,10 @@
             url: /org-management/users/
           - text: Manage System Accounts
             url: /org-management/system-accounts/
+          - text: Social Identity Login
+            url: /org-management/social-identity-login/
+          - text: Org Switcher
+            url: /org-management/org-switcher/
           - text: Set up SSO with OIDC
             url: /org-management/oidc-idp/
           - text: Set up SSO with Okta
@@ -265,42 +269,10 @@
   items:
     - text: Overview
       url: /api/
-    - text: Konnect Identity API
+    - text: API Products API
       items:
         - text: API Spec
-          url: /konnect/api/identity-management/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
-        - text: Identity Integration Guide
-          url: /api/identity-management/identity-integration/
-        - text: SSO Customization
-          url: /api/identity-management/sso/
-    - text: Control Plane API
-      items:
-        - text: API Spec
-          url: /konnect/api/control-planes/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
-    - text: Portal RBAC API
-      items:
-        - text: API Spec
-          url: /konnect/api/portal-rbac/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
-    - text: Control Plane Configuration API
-      items:
-        - text: API Documentation
-          url: /konnect/api/control-plane-configuration/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
-    - text: Portal Client API
-      items:
-        - text: API Spec
-          url: /konnect/api/portal/latest/
+          url: /konnect/api/api-products/latest/
           absolute_url: true
           generate: false
           target_blank: true
@@ -313,6 +285,31 @@
           target_blank: true
         - text: Audit Log Webhooks
           url: /api/audit-logs/webhook/
+    - text: Control Plane API
+      items:
+        - text: API Spec
+          url: /konnect/api/control-planes/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
+    - text: Control Plane Configuration API
+      items:
+        - text: API Spec
+          url: /konnect/api/control-plane-configuration/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true          
+    - text: Identity API
+      items:
+        - text: API Spec
+          url: /konnect/api/identity-management/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Identity Integration Guide
+          url: /api/identity-management/identity-integration/
+        - text: SSO Customization
+          url: /api/identity-management/sso/
     - text: Mesh Manager API
       items:
         - text: API Spec
@@ -325,13 +322,20 @@
           absolute_url: true
           generate: false
           target_blank: true
-    - text: API Products API
+    - text: Portal Client API
       items:
         - text: API Spec
-          url: /konnect/api/api-products/latest/
+          url: /konnect/api/portal/latest/
           absolute_url: true
           generate: false
-          target_blank: true
+          target_blank: true  
+    - text: Portal RBAC API
+      items:
+        - text: API Spec
+          url: /konnect/api/portal-rbac/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true  
     - text: Deprecated APIs
       items:
         - text: (Deprecated) Runtime Configuration API
