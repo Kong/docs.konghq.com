@@ -111,7 +111,7 @@
   items:
     - text: Overview
       url: /mesh-manager/
-    - text: Create a mesh
+    - text: Create a mesh with the Kubernetes demo app
       url: /mesh-manager/service-mesh/
       
 - title: Service Hub
