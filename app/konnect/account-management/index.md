@@ -27,9 +27,9 @@ If you want to upgrade to {{site.konnect_product_name}} Enterprise, [contact a s
 
 ## License management
 
-When you create a {{site.konnect_saas}} account, a license is
-automatically provisioned to the organization. You do not need to manage this
-license manually.
+When you create a {{site.konnect_saas}} account, {{site.base_gateway}} and Kong Mesh licenses are
+automatically provisioned to the organization. You do not need to manage these
+licenses manually.
 
 Any data plane nodes configured through the [Gateway Manager](/konnect/gateway-manager/)
 also implicitly receive the same license from the {{site.konnect_saas}}
