@@ -39,8 +39,7 @@ After you've installed all of the required components and configured a `GatewayC
               port: 1027
     ' | kubectl apply -f -
     ```
-
-1. The results should look like this:
+    The results should look like this:
 
     ```text
     httproute.gateway.networking.k8s.io/echo created
@@ -65,7 +64,7 @@ After you've installed all of the required components and configured a `GatewayC
     With IP address 192.168.194.10.
     ```
 
-1. Congratulations! You just configured {{ site.kgo_product_name }}, {{ site.kic_product_name }} and {{ site.base_gateway }} using open standards.
+   Congratulations! You just configured {{ site.kgo_product_name }}, {{ site.kic_product_name }} and {{ site.base_gateway }} using open standards.
 
 ## Next steps
 
