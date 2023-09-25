@@ -20,16 +20,10 @@ You can view service, Dev Portal, and API call usage from the [Billing and Usage
 
 ![Billing Page](/assets/images/docs/konnect/billing/billing-and-usage.png)
 
-Here you can: 
+Here you can review your billable consumption of {{site.konnect_product_name}} and manage billing and payment information.
 
-* Review analytics for:
-    * Usage
-    * Partition hours
-    * Ingress and Egress
-* View invoices
-* Manage billing and payment information.
 
-If you want to upgrade to Enterprise, you can use the billing page to [contact a sales representative](/konnect/account-management/change-plan/#upgrade-from-any-plan-to-enterprise).
+If you want to upgrade to Enterprise, [contact a sales representative](https://konghq.com/contact-sales).
 
 ## License management
 
