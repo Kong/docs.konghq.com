@@ -3,7 +3,14 @@ title: Managing custom plugins in Konnect
 content_type: how-to
 ---
 
-You can manage custom plugins via the Konnect UI or the Konnect Custom Plugins API.
+You can manage custom plugins via the {{site.konnect_short_name}} UI or 
+the {{site.konnect_short_name}} Custom Plugins API.
+
+{:.important}
+> **Caution**: Carefully test the operation of any custom plugins before deploying
+them to production. Kong is not responsible for the operation or support of any 
+custom plugins, including any performance impacts on your {{site.konnect_short_name}}
+or {{site.base_gateway}} deployments. 
 
 ## Prerequisites
 

@@ -40,13 +40,18 @@ schema, it creates a plugin configuration object in {{site.konnect_short_name}},
 can access via the Konnect UI or the custom plugins API. This means that {{site.konnect_short_name}}
 only sees a custom plugin's configuration options, and does not see any other data.
 
-{:.note}
-> **Note**: The schema for the plugin must be written in Lua. 
+The schema for your custom plugin must be written in Lua. 
 All other plugin files can be written in any supported language.
 
 All plugin files must also be deployed to **each** {{site.base_gateway}} data plane node.
 
 ![Custom plugins](/assets/images/docs/konnect/konnect-custom-plugins.png){:.image-border}
+
+{:.important}
+> **Caution**: Carefully test the operation of any custom plugins before deploying
+them to production. Kong is not responsible for the operation or support of any 
+custom plugins, including any performance impacts on your {{site.konnect_short_name}}
+or {{site.base_gateway}} deployments. 
 
 ### Application registration
 
