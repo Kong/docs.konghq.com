@@ -147,6 +147,9 @@ Where `example.com` is the address of the runtime instance you are running.
 
    exports.onExecuteCredentialsExchange = async (event, api) => {
       const metadata = event.client.metadata
+      if (!metadata.konnect_portal_id) {
+         return
+      }
       const newClientName = `${metadata.konnect_portal_id}+${metadata.konnect_developer_id}+${metadata.konnect_application_id}`
       await updateApplication(event.client.client_id, {
          name: newClientName
