@@ -2,181 +2,171 @@
 title: Configuring a fallback service
 ---
 
-This guide walks through how to setup a fallback service using Ingress
-resource. The fallback service will receive all requests that don't
-match against any of the defined Ingress rules.
-This can be useful for scenarios where you would like to return a 404 page
-to the end user if the user clicks on a dead link or inputs an incorrect URL.
+Learn to setup a fallback service using Ingress resource. The fallback service receives all requests that don't
+match against any of the defined Ingress rules. This can be useful if you would like to return a 404 page
+to the end user if the user clicks a dead link or inputs an incorrect URL.
 
-## Installation
+{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=true %}
 
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install
-the {{site.kic_product_name}} on your Kubernetes cluster.
+## Setup a sample service
 
-## Testing Connectivity to Kong
+1. Deploy an example echo service.
 
-This guide assumes that the `PROXY_IP` environment variable is
-set to contain the IP address or URL pointing to Kong.
-Please follow one of the
-[deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
+    ```bash
+    kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-service.yaml
+    ```
+    The results should look like this:
+    ```text
+    deployment.apps/echo created
+    service/echo created
+    ```
 
-If everything is setup correctly, making a request to Kong should return
-HTTP 404 Not Found.
+1. Create an Ingress rule to proxy the echo service.
 
-```bash
-$ curl -i $PROXY_IP
-HTTP/1.1 404 Not Found
-Date: Fri, 21 Jun 2019 17:01:07 GMT
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-Content-Length: 48
-Server: kong/1.2.1
-
-{"message":"no Route matched with those values"}
-```
-
-This is expected as Kong does not yet know how to proxy the request.
-
-## Setup a Sample Service
-
-For the purpose of this guide, we will setup a simple HTTP service in the
-cluster and proxy it.
-
-```bash
-$ echo '
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: fallback-svc
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: fallback-svc
-  template:
+    ```bash
+    $ echo '
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
     metadata:
-      labels:
-        app: fallback-svc
+      name: demo
+      annotations:
+        konghq.com/strip-path: "true"
     spec:
-      containers:
-      - name: fallback-svc
-        image: hashicorp/http-echo
-        args:
-        - "-text"
-        - "This is not the path you are looking for. - Fallback service"
-        ports:
-        - containerPort: 5678
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: fallback-svc
-  labels:
-    app: fallback-svc
-spec:
-  type: ClusterIP
-  ports:
-  - port: 80
-    targetPort: 5678
-    protocol: TCP
-    name: http
-  selector:
-    app: fallback-svc
-' | kubectl apply -f -
-```
+      ingressClassName: kong
+      rules:
+      - http:
+          paths:
+          - path: /echo
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: echo
+                port:
+                  number: 1027
+    ' | kubectl apply -f -
+    ```
+   The results should look like this:
+    ```text
+    ingress.extensions/demo created
+    ```
+1. Test the Ingress rule:
 
-Result:
-
-```bash
-deployment.apps/fallback-svc created
-service/fallback-svc created
-```
-
-Create an Ingress rule to proxy the httpbin service we just created:
-
-```bash
-$ echo '
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: demo
-  annotations:
-    konghq.com/strip-path: "true"
-spec:
-  ingressClassName: kong
-  rules:
-  - http:
-      paths:
-      - path: /foo
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: httpbin
-            port:
-              number: 80
-' | kubectl apply -f -
-ingress.extensions/demo created
-```
-
-Test the Ingress rule:
-
-```bash
-$ curl -i $PROXY_IP/foo/status/200
-HTTP/1.1 200 OK
-Content-Type: text/html; charset=utf-8
-Content-Length: 0
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Date: Wed, 17 Jul 2019 19:25:32 GMT
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 2
-X-Kong-Proxy-Latency: 1
-Via: kong/3.1.1
-```
+    ```bash
+    $ curl -i $PROXY_IP/echo
+    ```
+    The results should look like this:
+    ```text
+    HTTP/1.1 200 OK
+    Content-Type: text/plain; charset=utf-8
+    Content-Length: 137
+    Connection: keep-alive
+    Date: Sun, 17 Sep 2023 19:45:02 GMT
+    X-Kong-Upstream-Latency: 1
+    X-Kong-Proxy-Latency: 0
+    Via: kong/3.3.1
+    
+    Welcome, you are connected to node kind.
+    Running on Pod echo-74d47cc5d9-9zbzh.
+    In namespace default.
+    With IP address 192.168.194.7.
+    ```
 
 ## Setup a fallback service
 
-Let's deploy another sample service service:
+1.  Deploy another sample service service.
 
-```bash
-$ kubectl apply -f https://bit.ly/fallback-svc
-deployment.extensions/fallback-svc created
-service/fallback-svc created
-```
-
-Next, let's set up an Ingress rule to make it the fallback service
-to send all requests to it that don't match any of our Ingress rules:
-
-```bash
-$ echo "
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: fallback
-  annotations:
-spec:
-  ingressClassName: kong
-  defaultBackend:
-    service:
+    ```bash
+    $ echo '
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
       name: fallback-svc
-      port:
-        number: 80
-" | kubectl apply -f -
-```
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: fallback-svc
+      template:
+        metadata:
+          labels:
+            app: fallback-svc
+        spec:
+          containers:
+          - name: fallback-svc
+            image: hashicorp/http-echo
+            args:
+            - "-text"
+            - "This is not the path you are looking for. - Fallback service"
+            ports:
+            - containerPort: 5678
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: fallback-svc
+      labels:
+        app: fallback-svc
+    spec:
+      type: ClusterIP
+      ports:
+      - port: 80
+        targetPort: 5678
+        protocol: TCP
+        name: http
+      selector:
+        app: fallback-svc
+    ' | kubectl apply -f -
+    ```
+    The results should look like this:
+    ```bash
+    deployment.apps/fallback-svc created
+    service/fallback-svc created
+    ```
+1. Configure an Ingress rule to make it the fallback service to send all requests to it that don't match any of the Ingress rules.
 
-## Test it
+    ```bash
+    $ echo "
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: fallback
+      annotations:
+    spec:
+      ingressClassName: kong
+      defaultBackend:
+        service:
+          name: fallback-svc
+          port:
+            number: 80
+    " | kubectl apply -f -
+    ```
+    The results should look like this:
+    ```text
+    ingress.networking.k8s.io/fallback created
+    ```
+## Test the fallback service
 
-Now send a request with a request property that doesn't match against
-any of the defined rules:
+    Send a request with a request property that doesn't match any of the defined rules:
 
-```bash
-$ curl $PROXY_IP/random-path
-This is not the path you are looking for. - Fallback service
-```
+    ```bash
+    $ curl $PROXY_IP/random-path
+    ```
+    The results should look like this:
+    ```text
+    HTTP/1.1 200 OK
+    Content-Type: text/plain; charset=utf-8
+    Content-Length: 61
+    Connection: keep-alive
+    X-App-Name: http-echo
+    X-App-Version: 0.2.3
+    Date: Wed, 20 Sep 2023 09:46:56 GMT
+    X-Kong-Upstream-Latency: 16
+    X-Kong-Proxy-Latency: 0
+    Via: kong/3.3.1
 
-The above message comes from the fallback service that was deployed in the
-last step.
+    This is not the path you are looking for. - Fallback service
+    ```
+    This message is from the fallback service that you deployed.
 
 Create more Ingress rules, some complicated regex based ones and
 see how requests that don't match any rules, are forwarded to the
@@ -184,4 +174,4 @@ fallback service.
 
 You can also use Kong's request-termination plugin on the `fallback`
 Ingress resource to terminate all requests at Kong, without
-forwarding them inside your infrastructure.
+forwarding them inside the infrastructure.

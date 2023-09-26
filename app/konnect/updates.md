@@ -9,6 +9,43 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## September 2023
+
+**Social Login and Org Switcher**
+: New users can now signup for and login to Konnect organizations using their social identities from Google and GitHub. Users also have the ability to quickly switch between different Konnect organizations that they own or have been invited to.
+: * [Social Login](/konnect/org-management/social-identity-login/) - Login with social identities has been added as part of the "built-in" authentication scheme in Konnect. Users can use their Google and GitHub credentials to create new organizations and sign in to existing Konnect accounts with a matching email. User invitations may also be accepted via social login.
+: * [Organization Switcher](/konnect/org-management/org-switcher/) - Users who have been invited to more than one organization will be able witch between orgs via the org switcher. In addition, users who wish to utilize more than one organization may create new organizations via org switcher. All organizations that have associated emails would be accessible to a login to via org switcher.
+
+**Renamed {{site.konnect_short_name}} capabilities**
+: We have renamed a number of core {{site.konnect_short_name}} capabilities to simplify user understanding:
+
+: UI:
+* Runtime Manager is now Gateway Manager
+* Runtime groups are now control planes
+* Composite runtime groups are now control plane groups
+* Runtime instances are now data plane nodes
+
+: API:
+* `/v2/systems-accounts` to `/v3/system-accounts`
+* `/v2/teams` to `/v3/teams`
+* `/v2/users` to `/v3/users`
+* `/v2/roles` to `/v3/roles`
+* `/v2/runtime-groups` to `/v2/control-planes`
+* `/v2/runtime-groups/{runtimeGroupId}/*` to `/v2/control-planes/{controlPlaneId}/*`
+* `/v2/runtime-groups/{runtimeGroupId}/composite-status` to `/v2/control-planes/{controlPlaneId}/group-status`
+
+: decK:
+* decK command flag: `--konnect-runtime-group-name` to `--konnect-control-plane-name`
+* decK state file attribute: `_konnect.runtime_group_name`  to` _konnect.control_plane_name`
+
+: Authorization logs:
+* `Authz.runtimegroups` to `Authz.control-planes`
+* `Authz.services` to `Authz.api-products`
+
+**Gateway Manager redesigns**
+: The Gateway Manager Landing Page is now updated to nudge customers to create a control plane if none are present. In addition, the control plane creation workflow has been revamped to make it more intuitive and easier to follow.
+
+: The Gateway Control Plane Overview page is now updated to present the users all relevant information of a specific control plane. In addition, prompts that nudge users to create their first service, route, plugin, and consumer are presented on the Overview Pages to nudge users to immediately dive into Konnect for the first time.
 
 ## August 2023
 
@@ -25,7 +62,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : Konnect now supports the latest Gateway release version of 3.4 including all [Konnect-compatible plugins](/konnect/compatibility/).
 
 **Vault Secret Rotation**
-: {{site.konnect_short_name}} now supports the rotation of secrets stored in vaults without restarting the gateway. This allows you to securely manage your secrets. For more information, see [Set Up and Use a Vault in {{site.konnect_short_name}}](/konnect/runtime-manager/configuration/vaults/how-to/).
+: {{site.konnect_short_name}} now supports the rotation of secrets stored in vaults without restarting the gateway. This allows you to securely manage your secrets. For more information, see [Set Up and Use a Vault in {{site.konnect_short_name}}](/konnect/gateway-manager/configuration/vaults/how-to/).
 
 **Azure for Dynamic Client Registration**
 : You can now use Azure Active Directory as the identity source for your Dev Portal's Dynamic Client Registration configuration. This expands {{site.konnect_short_name}}'s existing support, which already includes Okta, Auth0, and Curity. This streamlines developer self-service access to provisioning applications with secure access to published API Products. For more information, see [Configuring Azure for Dynamic Client Registration](/konnect/dev-portal/applications/dynamic-client-registration/azure/).
@@ -59,17 +96,17 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 With composite runtime groups, organizations can reduce infrastructure costs while providing the appropriate access to teams through RBAC.
 
 : Learn more about composite runtime groups:
-* [Intro to composite runtime groups](/konnect/runtime-manager/composite-runtime-groups/)
-* [Set up and manage runtime groups](/konnect/runtime-manager/composite-runtime-groups/how-to/)
-* [Migrate configuration into a composite runtime group](/konnect/runtime-manager/composite-runtime-groups/migrate/)
-* [Conflicts in runtime groups](/konnect/runtime-manager/composite-runtime-groups/conflicts/)
+* [Intro to composite runtime groups](/konnect/gateway-manager/control-plane-groups/)
+* [Set up and manage runtime groups](/konnect/gateway-manager/control-plane-groups/how-to/)
+* [Migrate configuration into a composite runtime group](/konnect/gateway-manager/control-plane-groups/migrate/)
+* [Conflicts in runtime groups](/konnect/gateway-manager/control-plane-groups/conflicts/)
 * [API documentation](/konnect/api/runtime-groups/v2/)
 
 **Analytics for composite runtime groups**
 : Custom reports now support grouping and filtering by composite runtime group.
 
 **Kong Ingress Controller for Kubernetes in {{site.konnect_short_name}}**
-: The read-only [Ingress Controller association with {{site.konnect_short_name}}](/konnect/runtime-manager/kic/) is now GA and can be deployed in a production environment. This release also includes the following features:
+: The read-only [Ingress Controller association with {{site.konnect_short_name}}](/konnect/gateway-manager/kic/) is now GA and can be deployed in a production environment. This release also includes the following features:
 * {{site.konnect_short_name}} now manages license and entitlement for KIC-managed Gateways so that you don't need to worry about license management. There is a [seamless upgrade path](/kubernetes-ingress-controller/latest/guides/choose-gateway-image/) available if you want to move from the OSS experience to the Enterprise experience.
 * {{site.konnect_short_name}} now supports analytics for KIC runtime groups. You can get detailed visibility into your K8 native managed Gateways on the {{site.konnect_short_name}} platform.
 
@@ -126,7 +163,7 @@ For more information, see the documentation for [Audit Logging](/konnect/org-man
 : Kong's [privacy policy](https://konghq.com/privacy) now includes the request process for removing personal information, also known as the right to be forgotten. You can also find a link to the policy in {{site.konnect_saas}} under **My Account**. 
 
 **Version picker in Runtime Manager Quickstart**
-: {{site.konnect_short_name}} now allows users to select the {{site.base_gateway}} version that they want for their Quickstart scripts (except for cloud provider quickstart scripts for AWS, Azure and GCP). This allows you to leverage official {{site.konnect_short_name}} scripts to start your gateways while reducing the number of errors due to an invalid script for a certain {{site.base_gateway}} version. For more information, see [Supported Installation Options](/konnect/runtime-manager/runtime-instances/).
+: {{site.konnect_short_name}} now allows users to select the {{site.base_gateway}} version that they want for their Quickstart scripts (except for cloud provider quickstart scripts for AWS, Azure and GCP). This allows you to leverage official {{site.konnect_short_name}} scripts to start your gateways while reducing the number of errors due to an invalid script for a certain {{site.base_gateway}} version. For more information, see [Supported Installation Options](/konnect/gateway-manager/data-plane-nodes/).
 
 **GraphQL plugins**
 : {{site.konnect_short_name}} now supports the the following GraphQL plugins:
@@ -134,7 +171,7 @@ For more information, see the documentation for [Audit Logging](/konnect/org-man
 * [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/): Rate limit GraphQL requests.
 
 **Kong Ingress Controller for Kubernetes in Konnect**
-: Konnect now allows customers to [associate an Ingress Controller with Konnect](/konnect/runtime-manager/kic/) in a read-only fashion. This feature is released as beta and should not be deployed in a production environment.
+: Konnect now allows customers to [associate an Ingress Controller with Konnect](/konnect/gateway-manager/kic/) in a read-only fashion. This feature is released as beta and should not be deployed in a production environment.
 
 
 ## March 2023
@@ -153,7 +190,7 @@ For more information, see the documentation for [Audit Logging](/konnect/org-man
 
 **Support for Gateway 3.2.x features**
 : {{site.konnect_saas}} now supports the following features released in {{site.base_gateway}} 3.2.1.0:
-* **Asymmetric Key Storage:** [Keys](/konnect/runtime-manager/configuration/#keys) and key sets can now be configured in Runtime Manager.
+* **Asymmetric Key Storage:** [Keys](/konnect/gateway-manager/configuration/#keys) and key sets can now be configured in Runtime Manager.
 * **Optional plugin config field:** Every plugin now supports the optional `instance_name` field.    
 
 **System accounts**
@@ -186,7 +223,7 @@ For more information, see the documentation for [Audit Logging](/konnect/org-man
 
 : **Known limitation:** There is a rate limiting advanced plugin bug for local strategy where the number of remaining requests resets after every couple of seconds. You can use the Redis strategy as a workaround or if you want to test with local strategy, you can use {{site.base_gateway}} version 3.0.2.0.
 
-: For more information, see [Create Consumer Groups in Konnect](/konnect/runtime-manager/configuration/consumer-groups/).
+: For more information, see [Create Consumer Groups in Konnect](/konnect/gateway-manager/configuration/consumer-groups/).
 
 **Auth0 support for Dynamic Client Registration**
 : [Auth0](/konnect/dev-portal/applications/dynamic-client-registration/auth0/) is now available as an identity provider for Dynamic Client Registration (DCR).
@@ -212,13 +249,13 @@ with any of the following backends:
 * AWS Secrets Manager
 * HashiCorp Vault
 * GCP Secret Manager
-: See the [vaults documentation](/konnect/runtime-manager/configuration/vaults/) to get started.
+: See the [vaults documentation](/konnect/gateway-manager/configuration/vaults/) to get started.
 
 **App Registration Enhancement**
 : {{site.konnect_short_name}} now supports editing the app registration configuration while the app registration is still active. 
 
 **Runtime Groups Configuration API**
-: Konnect APIs for [runtime group configuration](https://docs.konghq.com/konnect/api/runtime-groups-config/) are now available for external consumption. This set of APIs allow organizations to create and manage kong gateway entities and CP/DP certificates. As a result, customers can leverage our APIs to provision runtime groups in their automated pipelines or platform infrastructure while managing data plane connections.
+: Konnect APIs for [runtime group configuration](/konnect/api/runtime-groups-configuration/latest/) are now available for external consumption. This set of APIs allow organizations to create and manage kong gateway entities and CP/DP certificates. As a result, customers can leverage our APIs to provision runtime groups in their automated pipelines or platform infrastructure while managing data plane connections.
 
 **New {{site.konnect_saas}} Analytics custom report chart types and metrics**
 : You can now choose between different chart types when creating custom reports. This feature allows you to better understand traffic patterns, user behavior, or trends over time.
@@ -245,7 +282,7 @@ with any of the following backends:
 ## November 2022
 
 **Application registration support in any runtime group**
-: {{site.konnect_short_name}} now officially supports [app registration to services in both default and non-default runtime groups](/konnect/dev-portal/applications/enable-app-reg/#support-for-any-runtime-group). Portal developers can register their applications to consume services proxied through gateway services in both default and non-default runtime groups.
+: {{site.konnect_short_name}} now officially supports [app registration to services in both default and non-default runtime groups](/konnect/dev-portal/applications/enable-app-reg/#support-for-any-control-plane). Portal developers can register their applications to consume services proxied through gateway services in both default and non-default runtime groups.
 
 :  Currently, this feature is only available for services being proxied through {{site.base_gateway}} 3.0.0.0 or later.
 
@@ -304,7 +341,7 @@ P99 latency data also appears in runtime groups and on service overview pages in
 : Custom reporting provides more data insights by allowing you to view data details and export data into a CSV file.
 
 **Runtime groups dashboard**
-: In {{site.konnect_saas}}, you now have insights into your [runtime groups usage](/konnect/runtime-manager/#runtime-groups) across all and individual runtime instances. These insights help platform owners to understand the health and performance of each runtime group, which often reflects individual business units in a more federated organization.
+: In {{site.konnect_saas}}, you now have insights into your [runtime groups usage](/konnect/gateway-manager/#runtime-groups) across all and individual runtime instances. These insights help platform owners to understand the health and performance of each runtime group, which often reflects individual business units in a more federated organization.
 
 **Custom plugin instantiation**
 : {{site.konnect_saas}} now allows you to discover, configure, and apply Kong approved custom plugins to your control planes directly through the plugin hub in Runtime Manager. You can do this by submitting your custom plugin schemas for approval through the CRE teams. This allows you to expand Kong's functionality in your environment by using custom plugins, while reducing the operational overhead of working with your CRE teams to discover, configure, and apply custom plugins.
@@ -356,7 +393,7 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 [changelog](/gateway/changelog/#3000).
 
 : To use any new features in the release,
-[start up a new 3.0.0.0 runtime](/konnect/runtime-manager/runtime-instances/upgrade/).
+[start up a new 3.0.0.0 runtime](/konnect/gateway-manager/data-plane-nodes/upgrade/).
 
 ## August 2022
 
@@ -398,7 +435,7 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 
 : Every organization starts with one `default` runtime group. Additional custom runtime groups are an enterprise-only feature.
 
-: Learn more about runtime groups and managing them through the [Runtime Manager](/konnect/runtime-manager/), or [manage runtime groups with decK](/konnect/runtime-manager/declarative-config/).
+: Learn more about runtime groups and managing them through the [Runtime Manager](/konnect/gateway-manager/), or [manage runtime groups with decK](/konnect/gateway-manager/declarative-config/).
 
 : With runtime groups come a few other changes to runtime management for all organizations:
   * Certificate rotation and management:
@@ -423,7 +460,7 @@ Existing RBAC roles have been converted to [predefined teams](/konnect/org-manag
 : Learn how to use decK with {{site.konnect_short_name}}:
   * [Get started with decK and {{site.konnect_short_name}}](/deck/latest/guides/konnect/)
   * [Import](/konnect/getting-started/import) {{site.base_gateway}} or `konnect.konghq.com` configuration into `cloud.konqhq.com`
-  * [Manage runtime groups with decK](/konnect/runtime-manager/declarative-config/)
+  * [Manage runtime groups with decK](/konnect/gateway-manager/declarative-config/)
 
 **Tags for {{site.konnect_short_name}} services**
 : You can now connect {{site.konnect_short_name}} services to Gateway services with the [`_KonnectService` tag](/deck/latest/guides/konnect/#konnect-service-tags).
@@ -497,7 +534,7 @@ You can keep using existing 2.7.x runtimes, or you can upgrade to
 [changelog](/gateway/changelog/#2800).
 
 : To use any new features in the release,
-[start up a new 2.8.0.0 runtime](/konnect/runtime-manager/runtime-instances/upgrade).
+[start up a new 2.8.0.0 runtime](/konnect/gateway-manager/data-plane-nodes/upgrade).
 
 ## January 2022
 
@@ -520,7 +557,7 @@ You can keep using existing 2.6.x runtimes, or you can upgrade to
 [changelog](/gateway/changelog/#2700).
 
 : To use any new features in the release,
-[start up a new 2.7.0.0 runtime](/konnect/runtime-manager/runtime-instances/upgrade).
+[start up a new 2.7.0.0 runtime](/konnect/gateway-manager/data-plane-nodes/upgrade).
 
 ## November 2021
 
@@ -549,7 +586,7 @@ new `trigger` configuration option, which tells the
 plugin to activate only on specific headers or query parameters
 
 : To use any new features in the release and gain access to the jq plugin,
-[start up a new runtime](/konnect/runtime-manager/runtime-instances/upgrade).
+[start up a new runtime](/konnect/gateway-manager/data-plane-nodes/upgrade).
 
 : For all the changes and new features in {{site.base_gateway}} 2.6.x, see the
 [changelog](/gateway/changelog/#2600).
@@ -585,7 +622,7 @@ runtimes. You can keep using existing 2.3.x runtimes, or you can upgrade to
 2.4.1.1 to take advantage of any new features.
 : The 2.4.1.1 release includes two new plugins: [OPA](/hub/kong-inc/opa/) and
 [Mocking](/hub/kong-inc/mocking). To use these plugins, and any other features
-newly introduced in this release, [start up a new runtime](/konnect/runtime-manager/runtime-instances/upgrade/).
+newly introduced in this release, [start up a new runtime](/konnect/gateway-manager/data-plane-nodes/upgrade/).
 : For all the changes and new features in {{site.base_gateway}} 2.4.x, see the [changelog](/gateway/changelog/).
 
 **More plugins available in {{site.konnect_saas}}**
@@ -635,7 +672,7 @@ Runtime Manager by the **Last Seen** or **Sync Status** columns.
 six months.
 
 : To take advantage of the new validity period, bring up new data planes through
-the Runtime Manager. For existing instances, [generate new certificates](/konnect/runtime-manager/runtime-instances/renew-certificates/).
+the Runtime Manager. For existing instances, [generate new certificates](/konnect/gateway-manager/data-plane-nodes/renew-certificates/).
 
 **{{site.konnect_short_name}} Plus is launched!**
 : {{site.konnect_short_name}} introduces a
@@ -711,7 +748,7 @@ quick setup script.
 **{{site.base_gateway}} 2.3 support**
 : {{site.konnect_saas}} now supports {{site.base_gateway}} 2.3
 runtimes. There is no upgrade path for existing runtimes.
-: To use {{site.base_gateway}} 2.3, [re-provision a new runtime](/konnect/runtime-manager/#runtime-instances).
+: To use {{site.base_gateway}} 2.3, [re-provision a new runtime](/konnect/gateway-manager/#runtime-instances).
 
 **Advanced runtime configuration**
 : You can now configure custom {{site.base_gateway}} data planes through the
@@ -739,7 +776,7 @@ for Dev Portal access.
 **{{site.konnect_product_name}} ({{site.konnect_short_name}}) is now generally available!**
 
 : To get started with {{site.konnect_short_name}}, see the
-[Quickstart Guide](/konnect/getting-started/configure-runtime/).
+[Quickstart Guide](/konnect/getting-started/configure-data-plane-node/).
 
 : For more information about {{site.konnect_short_name}}, contact your Kong sales
 representative.

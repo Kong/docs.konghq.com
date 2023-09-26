@@ -3,15 +3,15 @@ title: Dev Portal Overview
 content_type: explanation
 ---
 
-The {{site.konnect_short_name}} Dev Portal is a customizable website for developers to locate, access, and consume API services. The Dev Portal enables developers to browse and search API documentation, test API endpoints, and manage their own credentials. {{site.konnect_short_name}} offers flexible deployment options to support both internal and external APIs that can be managed from the same {{site.konnect_short_name}} instance.
+The {{site.konnect_short_name}} Dev Portal is a customizable website for developers to locate, access, and consume API services. The Dev Portal enables developers to browse and search API documentation, test API endpoints, and manage their own credentials. {{site.konnect_short_name}} offers flexible deployment options to support both internal and external APIs that can be managed from {{site.konnect_short_name}}.
 
 ## Publish service documentation
 
-In {{site.konnect_short_name}}, API products can be published to the Dev Portal with one click. Published services become immediately available to users who have access to the Dev Portal. When a service is published, the API spec and any service document become discoverable. We use the term discoverable here because the Dev Portal can create a unified API experience where a developer can navigate through the different APIs that are available, read documentation, test endpoints within the Dev Portal, and register to create applications using your specific APIs.
+In {{site.konnect_short_name}}, API products can be published to the Dev Portal with one click. Published API products become immediately available to users who have access to the Dev Portal. When an API product is published, the API spec and any service documentation becomes discoverable. We use the term discoverable here because the Dev Portal can create a unified API experience where a developer can navigate through the different APIs that are available, read documentation, test endpoints within the Dev Portal, and register to create applications for specific APIs. 
 
 * [Getting started guide](/konnect/getting-started/publish-service/): This guide walks you through importing an API spec, publishing your service and corresponding API spec to the Dev Portal, and configuring registration settings so that users can view your services and register applications.
 
-* [API product Documentation](/konnect/api-products/service-documentation/): This doc explains how to upload and publish product documentation using the **API Products** dashboard and publish services to the Dev Portal so they can be publicly consumed.
+* [API product documentation](/konnect/api-products/service-documentation/): This doc explains how to upload and publish product documentation using the **API Products** dashboard and publish services to the Dev Portal so they can be publicly consumed.
 
 * [Manage Konnect API product versions](/konnect/api-products/): This explains how to manage the API product version for your services, including the status of the API product version. API product versions can have a status of "Published", "Deprecated", or "Unpublished". 
 
@@ -34,7 +34,7 @@ For more information on this topic, we offer several pieces of documentation dep
 
 For {{site.konnect_short_name}} administrators:
 
-* [Enabling and disabling application registration](/konnect/dev-portal/applications/enable-app-reg/) - This explains how to grant and rescind application registration access.
+* [Enabling and disabling application registration](/konnect/dev-portal/applications/enable-app-reg/) - This explains how to grant and revoke application registration access.
 Manage developer access - This doc details to a {{site.konnect_short_name}} administrator all of the different options they have available to them to manage developer access to their Dev Portal. The Dev Portal offers administrators the ability to approve and reject requests for access to the Dev Portal.
 
 * [Manage developer access](/konnect/dev-portal/access-and-approval/manage-devs/)- This doc details to a {{site.konnect_short_name}} administrator all of the different options they have available to them to manage developer access to their Dev Portal. The Dev Portal offers administrators the ability to approve and reject requests for access to the Dev Portal.
@@ -67,7 +67,7 @@ All of these metrics can be viewed within a selected time frame of up to **Last 
 
 ## Customization
 
-{{site.konnect_short_name}} has built-in customization options for managing the Dev Portal so that you can build a consistent experience for the consumers of your API. Customizing your Dev Portal to reflect the likeness of your brand can help convince Developers to create applications with your services. With {{site.konnect_short_name}}, you don’t need to have knowledge of any web frameworks, because you customize everything from the application. {{site.konnect_short_name}} also has built-in themes if customization is not your immediate priority.
+{{site.konnect_short_name}} has built-in customization options for managing the Dev Portal so that you can build a consistent experience for the consumers of your API. Customizing your Dev Portal to reflect the likeness of your brand can help convince developers to create applications with your services. With {{site.konnect_short_name}}, you can customize everything from the application, {{site.konnect_short_name}} also offers pre-built themes. 
 
 For more information please read our doc on [customization](/konnect/dev-portal/customization/).
 
