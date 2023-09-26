@@ -5,8 +5,8 @@ dbless_explanation: |
   Additionally, the DB entity count metric (`kong_db_entities_total`) is not
   emitted in DB-less mode.
 free: true
+plus: true
 enterprise: true
-paid: true
 konnect: true
 network_config_opts: All
 notes: --

@@ -6,10 +6,9 @@ dbless_explanation: |
   Admin API endpoints which do POST, PUT, PATCH or DELETE on Credentials are not available on DB-less mode.
 
 free: true
+plus: true
 enterprise: true
 konnect: true
-paid: true
-premium: true
 network_config_opts: All
 notes: --
 categories:

@@ -1,6 +1,7 @@
 name: gRPC-gateway
 dbless_compatible: 'yes'
 free: true
+plus: true
 enterprise: true
 konnect: true
 network_config_opts: All

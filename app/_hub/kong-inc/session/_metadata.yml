@@ -5,6 +5,7 @@ dbless_explanation: |
   a database, and is not supported. The plugin currently lacks checks
   for this invalid configuration in DB-less mode.
 free: true
+plus: true
 enterprise: true
 konnect: true
 network_config_opts: All

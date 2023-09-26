@@ -11,7 +11,7 @@ description: |
   From \_2.6.x.md: The Kong JWT Signer plugin makes it possible to verify and (re-)sign one or two tokens in a request.
 
 enterprise: true
-paid: true
+plus: true
 kong_version_compatibility:
     community_edition:
       compatible: null

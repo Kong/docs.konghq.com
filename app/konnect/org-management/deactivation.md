@@ -10,7 +10,7 @@ Your organization is considered inactive when:
 * There are no API requests in either the current or the previous billing cycle
 (30 day increments).
 
-To close a Plus or Enterprise account, you can
+Organizations in Plus or Enterprise tiers are exempt, will never deactivate automatically. To close a Plus or Enterprise account, you can
 request deactivation from [Kong Support](https://support.konghq.com/).
 
 ## What happens if an organization is deactivated?

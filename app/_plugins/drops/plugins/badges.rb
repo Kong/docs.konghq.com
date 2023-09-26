@@ -11,16 +11,12 @@ module Jekyll
           @publisher = publisher
         end
 
+        def plus?
+          !@metadata['free'] && !!@metadata['plus'] && @publisher == KONG_INC
+        end
+
         def konnect?
           !!@metadata['konnect']
-        end
-
-        def paid?
-          !@metadata['free'] && !!@metadata['paid'] && @publisher == KONG_INC
-        end
-
-        def premium?
-          !@metadata['free'] && !@metadata['paid'] && !!@metadata['premium'] && @publisher == KONG_INC
         end
 
         def enterprise?
@@ -33,9 +29,8 @@ module Jekyll
 
         def hash
           "publisher:#{@publisher}-" \
+            "plus:#{plus?}-" \
             "konnect:#{konnect?}-" \
-            "paid:#{paid?}-" \
-            "premium:#{premium?}-" \
             "enterprise:#{enterprise?}-" \
             "techpartner:#{techpartner?}"
         end

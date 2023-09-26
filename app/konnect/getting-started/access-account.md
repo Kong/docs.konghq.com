@@ -1,7 +1,10 @@
 ---
-title: Create a Kong Konnect Account
+title: Accessing a Kong Konnect Account
 ---
 
+Sign up for {{site.konnect_short_name}} to receive a 30 day free
+trial of {{site.konnect_short_name}} Plus. After 30 days, you can choose to
+downgrade to the free version, or continue with a paid Plus subscription.
 
 ## Set up a new {{site.konnect_saas}} account
 
@@ -12,8 +15,14 @@ title: Create a Kong Konnect Account
     - If using a social identity provider, you will be directed to the identity provider to sign in.
     - If using an email address and password, you will need to verify your email by clicking on a link emailed to you. 
 
-3. Create an organization by providing an organization name, then click **Create Organization**.
+4. Create an organization by providing an organization name, then click **Create Organization**.
 
+    Your {{site.konnect_short_name}} Plus free trials starts now.
+
+    {{site.konnect_short_name}} notifies you three days before the trial ends.
+    At that point, you can choose whether to continue with
+    {{site.konnect_short_name}} Plus or downgrade to the
+    {{site.konnect_short_name}} Free plan.
 
 ## Summary and next steps
 

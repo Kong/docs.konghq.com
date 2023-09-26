@@ -1,8 +1,8 @@
 name: OAuth 2.0 Introspection
 dbless_compatible: 'yes'
 free: false
+plus: true
 enterprise: true
-paid: true
 konnect: true
 network_config_opts: All
 notes: --

@@ -32,9 +32,7 @@ To resolve the error, [enable application registration for the service](/konnect
 
 ## How to differentiate between registration plugins in decK {#deck}
 
-
 If using a [declarative configuration](/konnect/gateway-manager/declarative-config/)
-
 file to manage your service, these plugins appear in the file. **Do not**
 delete or edit them through declarative configuration, as it will break your service.
 
