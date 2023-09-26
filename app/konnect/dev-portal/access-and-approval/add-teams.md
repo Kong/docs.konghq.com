@@ -1,5 +1,5 @@
 ---
-title: Mapping IdP Developer Teams to Konnect Developer Portal
+title: Mapping IdP Developer Teams to Konnect Dev Portal
 content_type: how-to
 ---
 
@@ -10,7 +10,7 @@ In this guide, we'll show you how to enable OIDC Team Mapping with Okta. Note: Y
 ## Prerequisites
 * An IDP configured in Konnect (OIDC or DCR) for [application registration](konnect/dev-portal/applications/enable-app-reg/)
 * A team created in your IDP
-* SSO enabled on your Developer Portal (ensure the login URI is properly set to your Konnect Developer Portal)
+* SSO enabled on your Dev Portal (ensure the login URI is properly set to your Konnect Dev Portal)
 
 Note: In order to use OIDC Team Mappings, you must enable RBAC to have the ability to create Teams (you can disable RBAC afterwards if you don't want to use it).
 
@@ -24,19 +24,19 @@ In Okta:
 
 In Konnect:
 
-1. Enable RBAC in Developer Portal Settings in order to be able to create Teams
+1. Enable RBAC in Dev Portal Settings in order to be able to create Teams
 2. Create a team called "Konnect Authorized Delivery Partners"
 3. In the Portal Settings Team Mappings, select IdP Mapping Enabled, paste the name of your team in Okta next to the Konnect Team name, and select save.
 4. If there are any API Products you want to assign to your Team, navigate to the team you created earlier and add those products now
 
-In your Developer Portal:
+In your Dev Portal:
 
-1. Log into your Developer Portal as the test developer using SSO
+1. Log into your Dev Portal as the test developer using SSO
 2. If you have any API Products assigned to your team in Konnect, you should see them here
 
 In Konnect:
 1. In Konnect you should now see your test developer populated in the "Konnect Authorized Delivery Partners" team.
-2. Every time a developer in your team signs into the Developer Portal, they will get populated as a new developer under that team in Konnect
+2. Every time a developer in your team signs into the Dev Portal, they will get populated as a new developer under that team in Konnect
 
 
 ### Summary
