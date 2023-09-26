@@ -125,7 +125,7 @@ Gateway Manager, or use the API:
 
 ```sh
 curl -i -X PUT \
-  https://{region}.api.konghq.com/v2/control_planes/{controlPlaneId}/core-entities/plugin-schemas/{customPluginName} \
+  https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/plugin-schemas/{customPluginName} \
   --data "lua_schema=@example-schema.lua"
 ```
 {% endnavtab %}
