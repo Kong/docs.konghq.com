@@ -5,8 +5,8 @@ dbless_explanation: |
 
   Admin API endpoints that POST, PUT, PATCH, or DELETE ACLs do not work in DB-less mode.
 free: true
-plus: true
 enterprise: true
+paid: true
 konnect: true
 network_config_opts: All
 notes: --
