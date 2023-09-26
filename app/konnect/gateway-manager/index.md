@@ -37,7 +37,7 @@ Control planes come in three types:
     configuration and behavior space. Each control plane
     manages configurations independently.
 
-* [**Control plane group**](#control-plane-groups) <span class="badge enterprise"></span>: 
+* [**Control plane group**](#control-plane-groups): 
     A type of control plane that manages central data plane nodes for multiple control planes.
     It collects configuration from its member control planes and applies the 
     aggregate config to a group of nodes. 
@@ -97,7 +97,6 @@ their authentication mechanisms don't carry over to other control planes.
 [{{site.base_gateway}} configuration in {{site.konnect_short_name}} &rarr;](/konnect/gateway-manager/configuration/)
 
 ### Control plane groups
-{:.badge .enterprise}
 
 A control plane group is a read-only control plane that combines configuration from
 its members, which are standard {{site.base_gateway}} control planes. All of the members of a 

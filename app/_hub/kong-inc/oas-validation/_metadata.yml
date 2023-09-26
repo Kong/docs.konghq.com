@@ -6,8 +6,8 @@ search_aliases:
 dbless_compatible: 'yes'
 konnect_examples: true
 free: false
-plus: true
 enterprise: true
+paid: true
 konnect: true
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 categories:

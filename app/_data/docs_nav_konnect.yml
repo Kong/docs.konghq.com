@@ -28,7 +28,7 @@
   items:
     - text: Overview
       url: /getting-started/
-    - text: Access a Konnect Account
+    - text: Create a Konnect Account
       url: /getting-started/access-account/
     - text: Set up a Data Plane Node
       url: /getting-started/configure-data-plane-node/
@@ -202,13 +202,7 @@
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
   items:
     - text: Plans and Billing
-      items:
-        - text: Manage a Konnect Account or Plan
-          url: /account-management/
-        - text: Change to a Different Plan
-          url: /account-management/change-plan/
-        - text: Manage Payment Methods and Invoices
-          url: /account-management/billing/
+      url: /account-management/
     - text: Org Management
       items:
       - text: Authentication and Authorization
