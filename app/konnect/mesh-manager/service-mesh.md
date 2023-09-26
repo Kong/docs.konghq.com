@@ -3,9 +3,7 @@ title: Configure a Mesh Global Control Plane with the Kubernetes demo app
 content_type: tutorial
 ---
 
-Using Mesh Manager, you can create {{site.mesh_product_name}} global control planes to manage your {{site.konnect_saas}} mesh services. This guide explains how to configure a global control plane with {{site.mesh_product_name}}, then install the Kubernetes demo app so you can start interfacing with Mesh in {{site.konnect_saas}}.
-
-Mesh zones are priced based on consumption. For more information about the pricing and consumption of zones, see Kong's [Pricing](https://konghq.com/pricing) page.
+Using Mesh Manager, you can create {{site.mesh_product_name}} global control planes to manage your {{site.konnect_saas}} mesh services. This guide explains how to configure a global control plane with {{site.mesh_product_name}}, then install the Kubernetes demo app so you can start interfacing with {{site.mesh_product_name}} in {{site.konnect_saas}}.
 
 ## Prerequisites
 
@@ -72,7 +70,7 @@ kumactl get dataplanes
 ```
 If your data planes were configured correctly with the demo app, the output should return all four data planes. 
 
-You can now issue commands to your global control plane using `kumactl`. You can see the [`kumactl` command reference](/mesh/latest/generated/cmd/kumactl/kumactl/) for more information about the commands you can use.
+You can now issue commands to your global control plane using `kumactl`. You can see the [`kumactl` command reference](/mesh/latest/explore/cli/#kumactl) for more information about the commands you can use.
 
 ## Conclusion
 

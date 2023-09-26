@@ -3,7 +3,7 @@ title: About Mesh Manager
 content_type: explanation
 ---
 
-[Mesh Manager](https://cloud.konghq.com/mesh-manager) in {{site.konnect_product_name}} allows you to create, manage, and view your {{site.mesh_product_name}} [service meshes](/mesh/latest/introduction/about-service-meshes/) in the {{site.konnect_short_name}} UI and using the {{site.konnect_short_name}} platform.
+[Mesh Manager](https://cloud.konghq.com/mesh-manager) in {{site.konnect_product_name}} allows you to create, manage, and view your {{site.mesh_product_name}} [service meshes](/mesh/latest/introduction/about-service-meshes/) using the {{site.konnect_short_name}} platform.
 
 A global control plane is a managed central component that stores and distributes all of the configuration and policies for your meshes and services to local zones. 
 Global control planes are responsible for validating and accepting connections from local zone control planes, and distributing the appropriate configuration down to each local zone as required. 
@@ -31,6 +31,8 @@ Creating a fully-functioning {{site.mesh_product_name}} deployment in {{site.kon
 1. Add services to your mesh.
     * If you're using Kubernetes, you must add the [kuma.io/sidecar-injection](/mesh/latest/reference/kubernetes-annotations/#kumaiosidecar-injection) label to the namespace or deployments you want to bring into the mesh. This will automatically enable {{site.product_mesh_name}} and register the service pods in the mesh.
     * If you are using universal, you must create a [dataplane definition](/mesh/latest/production/dp-config/dpp-on-universal/), pass it to the `kuma-dp run` command on a virtual machine, and point it to the local zone control plane.
+
+Mesh zones are priced based on consumption. For more information about the pricing and consumption of zones, see Kong's [Pricing](https://konghq.com/pricing) page.
 
 ## Supported installation options
 
