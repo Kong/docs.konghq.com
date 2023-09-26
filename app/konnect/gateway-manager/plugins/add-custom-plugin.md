@@ -158,7 +158,7 @@ To mount and enable this custom plugin on a data plane node:
     ```
 1. Run the command to start a data plane node with your custom plugin loaded in.
 
-To copy the plugin using a Dockerfile instead, see the [{{site.base_gateway}} custom plugin docs](/gateway/latest/plugin-development/distribution/#install-and-load-a-plugin-in-a-container).
+To copy the plugin using a Dockerfile instead, see the [{{site.base_gateway}} custom plugin docs](/gateway/latest/plugin-development/distribution/).
 
 {% endnavtab %}
 {% endnavtabs %}
