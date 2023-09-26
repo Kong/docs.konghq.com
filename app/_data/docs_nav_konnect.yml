@@ -84,9 +84,9 @@
             - text: Overview
               url: /gateway-manager/plugins/
             - text: Adding Custom Plugins
-              url: /gateway-manager/plugins/adding-custom-plugins/
+              url: /gateway-manager/plugins/add-custom-plugin/
             - text: Updating Custom Plugins
-              url: /gateway-manager/plugins/updating-custom-plugins/
+              url: /gateway-manager/plugins/update-custom-plugin/
             - text: Developing Custom Plugins
               url: ../../gateway/latest/plugin-development/
               generate: false

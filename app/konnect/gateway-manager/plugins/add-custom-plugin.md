@@ -6,6 +6,12 @@ content_type: how-to
 You can manage custom plugins via the {{site.konnect_short_name}} UI or 
 the {{site.konnect_short_name}} Custom Plugins API.
 
+If you need to update a schema for a plugin that has already been uploaded
+to {{site.konnect_short_name}}, there are a few considerations based on the type 
+of update. 
+See [Editing or deleting a custom plugin's schema](/konnect/gateway-manager/plugins/update-custom-plugin/) 
+for more information.
+
 {:.important}
 > **Caution**: Carefully test the operation of any custom plugins before deploying
 them to production. Kong is not responsible for the operation or support of any 
@@ -159,8 +165,7 @@ To copy the plugin using a Dockerfile instead, see the [{{site.base_gateway}} cu
 
 ## More information
 
-* [Custom Plugins API](/): Manage the lifecycle of a custom plugin in {{site.konnect_short_name}}
+* [Custom Plugins endpoints](/konnect/api/control-plane-configuration/latest/#/Custom%20Plugin%20Schemas) (Control Plane Config API): Manage the lifecycle of a custom plugin in {{site.konnect_short_name}}
 * [Custom plugin template](https://github.com/Kong/kong-plugin)
 * [Plugin development guide](/gateway/latest/plugin-development/)
-* [Plugins in other languages](/gateway/latest/plugin-development/pluginserver/external-plugins/)
 * [PDK reference](/gateway/latest/plugin-development/pdk/)

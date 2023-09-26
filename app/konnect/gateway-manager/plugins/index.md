@@ -32,7 +32,7 @@ Open the **Plugins** menu from within a control plane to access its list of plug
 
 ### Custom plugins
 
-You can also [apply your own custom plugins](/konnect/gateway-manager/plugins/custom-plugins/) 
+You can also [apply your own custom plugins](/konnect/gateway-manager/plugins/add-custom-plugin/) 
 through the Gateway Manager.
 
 All that the {{site.konnect_short_name}} control plane needs is a Lua schema file. Using that
