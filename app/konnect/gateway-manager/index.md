@@ -37,7 +37,7 @@ Control planes come in three types:
     configuration and behavior space. Each control plane
     manages configurations independently.
 
-* [**Control plane group**](#control-plane-groups) <span class="badge enterprise"></span>: 
+* [**Control plane group**](#control-plane-groups): 
     A type of control plane that manages central data plane nodes for multiple control planes.
     It collects configuration from its member control planes and applies the 
     aggregate config to a group of nodes. 
