@@ -21,12 +21,11 @@ consumer, or consumer group.
 * A **global** plugin applies to all services, routes, consumers, and consumer 
 groups in a control plane.
 
-
 In both cases, plugins are managed within a specific control plane. If you need a plugin to 
 apply to multiple control planes, configure a plugin instance separately for each one, 
 or create a [control plane group](/konnect/gateway-manager/control-plane-groups/).
 
-Open the **Plugins** menu from within a control plane to access its list of plugins:
+Open the **Plugins** menu from within a control plane to access and manage its list of plugins:
 
 ![List of plugins in a control plane](/assets/images/docs/konnect/konnect-plugin-list.png)
 
@@ -83,3 +82,16 @@ See the [plugin compatibility chart](/konnect/compatibility/)
 for a breakdown of the pricing tiers that each plugin is available in, and for specific {{site.konnect_short_name}}
 notes for each plugin.
 
+## More information
+
+### Kong bundled plugins
+* [Kong plugins in {{site.konnect_short_name}}](/hub/?compatibility=konnect&support=kong-inc)
+* [Kong plugin availability by tier](/hub/plugins/license-tiers/)
+
+### Custom plugins
+* [Add a custom plugin in {{site.konnect_short_name}}](/konnect/gateway-manager/plugins/add-custom-plugin/)
+* [Edit or delete custom plugins in {{site.konnect_short_name}}](/konnect/gateway-manager/plugins/update-custom-plugin/)
+* [Custom plugin schema endpoints (Control Plane Config API)](/konnect/api/control-plane-configuration/latest/#/Custom%20Plugin%20Schemas)
+* [Custom plugin template](https://github.com/Kong/kong-plugin)
+* [Plugin development guide](/gateway/latest/plugin-development/)
+* [PDK reference](/gateway/latest/plugin-development/pdk/)

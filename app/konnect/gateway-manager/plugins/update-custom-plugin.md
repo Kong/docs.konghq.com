@@ -16,7 +16,7 @@ The schema on the control plane doesn't need to be updated.
 There is no versioning for custom plugins. If you need to version a schema 
 (that is, maintain two or more similar copies of a custom plugin), upload it as a new custom plugin.
 
-{:note}
+{:.note}
 > **Note**: In cases where a breaking change is made to the schema, we **do not** recommend updating
 a data plane node first. 
 It will affect the data plane as soon as the node receives its first payload. 
@@ -41,7 +41,7 @@ Since plugin configurations are stored as JSON blobs, a schema change alone will
 plugin configuration. However, if the plugin itself is updated, the new schema will affect how 
 the new plugin configuration is represented.
 
-## Custom plugin update path
+### Custom plugin update path
 
 When you need to make plugin changes, we recommend first updating the schema in 
 {{site.konnect_short_name}} and then on the data plane nodes:
@@ -69,12 +69,12 @@ a configuration parameter change in a custom plugin's schema:
 * ✅ Happy path (1 → 2 → 3 → 4)
 * ⏸️ Semi-happy path (1 → 2 → 2.a → 3 → 4)
 * ❌ Unhappy path (1 → 2 → DP Error → 3 → 4)
->
+> <br><br>
 > **Note:** Unhappy paths don’t break existing proxy functionality, but they do cause temporary 
 `Out of Sync` states until both the configured plugins and the data plane nodes are updated with 
 the new schemas.
 
-### Adding or deleting fields
+#### Adding or deleting fields
 
 If new fields in a schema don't have default values and aren't required, a payload update won't break data plane payload validation. This means that even if new plugins are added or existing ones are updated, the data plane remains in sync because null fields are ignored.
 
@@ -128,7 +128,7 @@ curl -i -X PUT \
 ## More information
 
 * [Add a custom plugin in {{site.konnect_short_name}}](/konnect/gateway-manager/plugins/add-custom-plugin/)
-* [Custom Plugins endpoints](/konnect/api/control-plane-configuration/latest/#/Custom%20Plugin%20Schemas) (Control Plane Config API): Manage the lifecycle of a custom plugin in {{site.konnect_short_name}}
+* [Custom plugin schema endpoints (Control Plane Config API)](/konnect/api/control-plane-configuration/latest/#/Custom%20Plugin%20Schemas)
 * [Custom plugin template](https://github.com/Kong/kong-plugin)
 * [Plugin development guide](/gateway/latest/plugin-development/)
 * [PDK reference](/gateway/latest/plugin-development/pdk/)
