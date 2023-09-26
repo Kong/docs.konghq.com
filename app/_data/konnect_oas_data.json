@@ -185,7 +185,7 @@
         "id": "0426ee88-bf76-45e3-9f89-fc03bea0c3a5",
         "created_at": "2023-09-25T12:01:47.449Z",
         "updated_at": "2023-09-25T12:02:03.266Z",
-        "name": "v1",
+        "name": "v0",
         "deprecated": false,
         "registration_configs": []
       }
