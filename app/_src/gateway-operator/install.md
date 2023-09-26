@@ -11,15 +11,4 @@ kubectl apply -k https://github.com/Kong/kubernetes-ingress-controller/config/cr
 kubectl apply -k "https://github.com/kubernetes-sigs/gateway-api/config/crd?ref=v0.8.1"
 ```
 
-To install {{ site.kgo_product_name }} run:
-
-```bash
-kubectl apply -f {{site.links.web}}/assets/gateway-operator/v{{page.version}}/crds.yaml --server-side
-kubectl apply -f {{site.links.web}}/assets/gateway-operator/v{{page.version}}/default.yaml
-```
-
-You can wait for the operator to be ready using `kubectl wait`:
-
-```bash
-kubectl -n kong-system wait --for=condition=Available=true --timeout=120s deployment/gateway-operator-controller-manager
-```
+{% include snippets/gateway-operator/install_with_kubectl.md %}
