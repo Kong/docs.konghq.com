@@ -17,8 +17,8 @@
       title: Not Found
       description: The resource requested does not exist, or it is not owned by the organization that the authenticated user belongs to
       resolution: Check the resource ID provided and try again
-    invalid-request:
-      title: Invalid Request
+    bad-request:
+      title: Bad Request
       description: Your request was understood, but can't be processed due to invalid data in the payload
       resolution: See the `invalid_parameters` section of the response for more detailed information
     conflict:
