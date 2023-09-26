@@ -298,13 +298,6 @@
           url: /api/identity-management/identity-integration/
         - text: SSO Customization
           url: /api/identity-management/sso/
-    - text: PKI Certs API
-      items:
-        - text: API Spec
-          url: /konnect/api/pki-certs/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
     - text: Portal Client API
       items:
         - text: API Spec
