@@ -7,8 +7,9 @@ The workflow for updating an in-use custom plugin depends on whether you need to
 
 * **No change to plugin schema:** Editing a custom plugin's logic **without** any change in 
 schema doesn't cause the control plane to go out of sync with the data planes. 
-In that situation, you only need to make sure that each data plane node has the correct logic. 
-The schema on the control plane doesn't need to be updated.
+
+  In this situation, you only need to make sure that each data plane node has the correct logic. 
+  The schema on the control plane doesn't need to be updated.
 
 * **Changes to plugin schema:** If the schema needs to change, you must update both the schema in 
 {{site.konnect_short_name}} and the plugin code itself on each data plane node.
@@ -16,44 +17,47 @@ The schema on the control plane doesn't need to be updated.
 There is no versioning for custom plugins. If you need to version a schema 
 (that is, maintain two or more similar copies of a custom plugin), upload it as a new custom plugin.
 
-{:.note}
-> **Note**: In cases where a breaking change is made to the schema, we **do not** recommend updating
-a data plane node first. 
-It will affect the data plane as soon as the node receives its first payload. 
-This will happen even if there are no changes in the control plane for existing or new plugins 
-using the updated schema. 
-
 ## Updating a custom plugin
 
 ### How the {{site.konnect_short_name}} platform reads configuration
 
 When a schema is updated in {{site.konnect_short_name}}, the {{site.konnect_short_name}} 
-platform doesn't trigger a payload reconciliation automatically.
-This means that if a user doesn't make any configuration changes, such as adding, 
+platform doesn't trigger payload reconciliation automatically.
+This means that if you don't make any configuration changes, such as adding, 
 modifying, or deleting a {{site.base_gateway}} entity, the data plane nodes won't receive a
 payload update.
 
-When changes are pushed to the control plane, the payload reconciliation only affects the 
+When pushing changes to the control plane, the payload reconciliation only affects 
 data plane nodes if an instance of the plugin that uses the updated schema has its configuration 
-changed. 
+changed.
 
-Since plugin configurations are stored as JSON blobs, a schema change alone will not impact the 
-plugin configuration. However, if the plugin itself is updated, the new schema will affect how 
+Since plugin configurations are stored as JSON blobs, a schema change alone doesn't impact the 
+plugin configuration. However, if the plugin itself is updated, the new schema affects how 
 the new plugin configuration is represented.
 
 ### Custom plugin update path
 
-When you need to make plugin changes, we recommend first updating the schema in 
-{{site.konnect_short_name}} and then on the data plane nodes:
+When you need to make plugin changes, we recommend updating the schema in 
+{{site.konnect_short_name}} first, and then on the data plane nodes:
+
 1. Start a migration window.
-1. Update plugin schema in {{site.konnect_short_name}}.
-  1. (Optional) Update configuration for existing plugin instances.
+1. Update plugin schema in {{site.konnect_short_name}}.  
+1. (Optional) Update configuration for existing plugin instances.
+
+    Based on the nature of the schema updates, you might need this optional step 
+    after updating the schema in {{site.konnect_short_name}} to make sure that any
+    existing plugin entities are updated before the schemas are 
+    changed in the data plane nodes.
+
 1. Update plugin schema on each data plane node.
 1. Stop the migration window.
 
-Based on the nature of the schema updates, you might need an optional step after updating 
-the schema in {{site.konnect_short_name}} to make sure the existing plugin entities are 
-updated before the schemas are changed in the data plane nodes.
+{:.important}
+> **Important**: In cases where a breaking change is made to the schema, we **do not** 
+recommend updating data plane nodes first. 
+The change will affect each data plane node as soon as the node receives its first payload. 
+This will happen even if there are no changes in the control plane for existing or new plugins 
+using the updated schema. 
 
 See the following table for a comparison of possible changes and upgrade paths, in the case of 
 a configuration parameter change in a custom plugin's schema:
@@ -66,9 +70,9 @@ a configuration parameter change in a custom plugin's schema:
 
 {:.note .no-icon}
 > **Legend:**
-* ✅ Happy path (1 → 2 → 3 → 4)
-* ⏸️ Semi-happy path (1 → 2 → 2.a → 3 → 4)
-* ❌ Unhappy path (1 → 2 → DP Error → 3 → 4)
+* ✅ Happy path (1 → 2 → 4 → 5)
+* ⏸️ Semi-happy path (1 → 2 → 3 → 4 → 5)
+* ❌ Unhappy path (1 → 2 → DP Error → 4 → 5)
 > <br><br>
 > **Note:** Unhappy paths don’t break existing proxy functionality, but they do cause temporary 
 `Out of Sync` states until both the configured plugins and the data plane nodes are updated with 
@@ -92,7 +96,8 @@ Here's an example of a non-breaking change to a schema:
 },
 ```
 
-Similar to adding fields, when not-required fields are deleted, it won't break the data plane -- even when a plugin creation or update is performed. The data plane will only raise an error when a required field is removed and a payload update is triggered:
+Similar to adding fields, when not-required fields are deleted, it doesn't break the data plane -- even when a plugin is created or updated.
+The data plane will only raise an error when a required field is removed and a payload update is triggered:
 
 ```sh
 2023/09/01 07:14:26 [error] 2308#0: *160 [lua] data_plane.lua:244: [clustering] unable to update running config: bad config received from control plane in 'plugins':
@@ -103,6 +108,7 @@ Similar to adding fields, when not-required fields are deleted, it won't break t
 
 
 ## Make changes to custom plugin schemas
+
 To make any changes to a custom plugin schema, you need to access the **Add Plugin** page in 
 Gateway Manager, or use the API:
 
