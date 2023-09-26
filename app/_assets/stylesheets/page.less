@@ -727,7 +727,8 @@ Generic Styling for Desktop
     &.warning,
     &.important,
     &.note,
-    &.install-banner {
+    &.install-banner,
+    &.partner-plugin {
       margin-bottom: 1em;   
       opacity: 1;
       font-style: normal;
@@ -740,7 +741,9 @@ Generic Styling for Desktop
     }
 
     &.no-icon {
-      padding-left: 0;
+      p {
+        margin-left: unset;
+      }  
     }
 
     &.warning {
@@ -789,6 +792,12 @@ Generic Styling for Desktop
         margin: 0;
         float: left;
       }
+    }
+
+    &.partner-plugin {
+      background-color: @green-100;
+      color: @green-700;
+      border: none;
     }
 
     &.install-banner {
@@ -1126,18 +1135,6 @@ Generic Styling for Desktop
   code {
     background-color: #fff;
     border: none;
-  }
-}
-
-.alert-info {
-  color: #757575;
-  border-left: 3px solid #e0e0e0;
-  background-color: #f9f9f9;
-
-  &.blue {
-    color: #004a80;
-    border-left: 3px solid #004b80;
-    background-color: #edf7ff;
   }
 }
 
