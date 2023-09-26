@@ -106,6 +106,14 @@
     - text: Troubleshooting
       url: /gateway-manager/troubleshoot/
 
+- title: Mesh Manager
+  icon: /assets/images/icons/konnect/icn-mesh-manager-nav.svg
+  items:
+    - text: Overview
+      url: /mesh-manager/
+    - text: Create a mesh with the Kubernetes demo app
+      url: /mesh-manager/service-mesh/
+      
 - title: Service Hub
   icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
   items:
@@ -305,6 +313,18 @@
           url: /api/identity-management/identity-integration/
         - text: SSO Customization
           url: /api/identity-management/sso/
+    - text: Mesh Manager API
+      items:
+        - text: API Spec
+          url: /konnect/api/mesh-manager/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Kong Mesh API Reference
+          url: /mesh/latest/reference/http-api/
+          absolute_url: true
+          generate: false
+          target_blank: true
     - text: Portal Client API
       items:
         - text: API Spec
