@@ -49,6 +49,8 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## August 2023
 
+## August 2023
+
 **Role-based Access Control for developer teams**
 : {{site.konnect_short_name}} Portal enables administrators with the ability to define Role-Based Access Control (RBAC) for teams of developers through the Konnect UI & API. See [Manage Dev Portal Teams](/konnect/dev-portal/access-and-approval/manage-teams/) for more details.
 
