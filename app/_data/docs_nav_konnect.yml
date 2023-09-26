@@ -195,6 +195,8 @@
         url: /analytics/use-cases/latency
     - text: Reports Reference
       url: /analytics/reference/
+    - text: API Requests
+      url: /analytics/api-requests
     - text: Troubleshoot
       url: /analytics/troubleshoot/
 
@@ -255,6 +257,13 @@
   items:
     - text: Overview
       url: /api/
+    - text: API Request API (Beta)
+      items:
+        - text: API Spec
+          url: /konnect/api/api-requests/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
     - text: API Products API
       items:
         - text: API Spec
@@ -309,7 +318,7 @@
           url: /konnect/api/portal-rbac/latest/
           absolute_url: true
           generate: false
-          target_blank: true  
+          target_blank: true
     - text: Deprecated APIs
       items:
         - text: (Deprecated) Runtime Configuration API
