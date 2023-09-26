@@ -14,8 +14,10 @@ schema doesn't cause the control plane to go out of sync with the data planes.
 * **Changes to plugin schema:** If the schema needs to change, you must update both the schema in 
 {{site.konnect_short_name}} and the plugin code itself on each data plane node.
 
-There is no versioning for custom plugins. If you need to version a schema 
-(that is, maintain two or more similar copies of a custom plugin), upload it as a new custom plugin.
+There is no versioning for custom plugins. 
+If you need to version a schema (that is, maintain two or more similar copies of a custom plugin), upload it as a new custom plugin with a unique name. 
+For example, if your original plugin is named `delay`, you would have to name the copy 
+something else, such as `delay-v2`.
 
 ## Updating a custom plugin
 

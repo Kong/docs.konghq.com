@@ -20,14 +20,19 @@ or {{site.base_gateway}} deployments.
 
 ## Prerequisites
 
-You have a custom {{site.base_gateway}} plugin with a `schema.lua` file.
-The custom plugin can be written in any supported language, but the schema file must be in Lua.
+* You have a custom {{site.base_gateway}} plugin with a `schema.lua` file, and no
+ `api.lua`, `daos.lua`, or `migration.lua` files.
+
+* Your custom plugin meets all other [requirements](/konnect/gateway-manager/plugins/#custom-plugins)
+for {{site.konnect_short_name}}.
+
+* The custom plugin can be written in any supported language, but the schema file must be in Lua.
 For help with developing plugins, see the [plugin development resources](#more-information).
   
-If you have a custom plugin written in a language other than Lua, convert the schema 
+    If you have a custom plugin written in a language other than Lua, convert the schema 
 into a `schema.lua` file before uploading it to {{site.konnect_short_name}}.
 
-If using the Custom Plugins API, you have a personal access token or a system account
+* If using the `/plugin-schemas` API, you have a personal access token or a system account
 token to authenticate with the API. You can pass your token with any API request using an 
 authentication header:
 
@@ -82,11 +87,13 @@ You can now configure this custom plugin like any other plugin in {{site.konnect
 ## Upload files to data plane nodes
 
 After uploading a schema to {{site.konnect_short_name}}, 
-upload all plugin files to **each** {{site.base_gateway}} data plane node:
-* Basic modules: `schema.lua`, `handler.lua`
-* Advanced modules: `api.lua`, `daos.lua`, `migrations.lua`
+upload the `schema.lua` and `handler.lua` for your plugin to **each** 
+{{site.base_gateway}} data plane node.
 
 If a data plane node doesn't have these files, the plugin won't be able to run on that node.
+
+{:.note}
+> {{site.konnect_short_name}} does not support plugins with `api.lua`, `daos.lua`, or `migration.lua`.
 
 {% navtabs %}
 {% navtab Universal %}

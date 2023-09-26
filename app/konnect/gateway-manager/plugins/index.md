@@ -39,8 +39,16 @@ schema, it creates a plugin configuration object in {{site.konnect_short_name}},
 can access via the Konnect UI or the custom plugins API. This means that {{site.konnect_short_name}}
 only sees a custom plugin's configuration options, and does not see any other data.
 
-The schema for your custom plugin must be written in Lua. 
-All other plugin files can be written in any supported language.
+To run in {{site.konnect_short_name}}, every custom plugin must meet the following requirements:
+
+* Admin API extensions must not contain an `api.lua` file.
+* Custom plugin database tables must not contain a `dao.lua` file.
+* The plugin must not have a `migration.lua` file.
+* The schema for your custom plugin must be written in Lua. 
+* Custom validation functions must be written in Lua and be self-contained within the schema.
+* The `schema.lua` file must not contain any `require()` statements.
+* Plugins that require third-party libraries must reference them in the `handler.lua` file.
+* Each custom plugin must have a unique name.
 
 All plugin files must also be deployed to **each** {{site.base_gateway}} data plane node.
 
