@@ -12,9 +12,7 @@ control planes currently owned by the organization. From here, you can add or
 delete control planes, or go into each individual control plane to manage 
 data plane nodes and their global configuration.
 
-
 ![gateway manager dashboard](/assets/images/docs/konnect/konnect-control-plane-dashboard.png)
-
 > _**Figure 1:** Example Gateway Manager dashboard with several control planes, including the_
 _default control plane, a KIC control plane, and control planes for development and production._
 
@@ -99,6 +97,7 @@ their authentication mechanisms don't carry over to other control planes.
 [{{site.base_gateway}} configuration in {{site.konnect_short_name}} &rarr;](/konnect/gateway-manager/configuration/)
 
 ### Control plane groups
+{:.badge .enterprise}
 
 A control plane group is a read-only control plane that combines configuration from
 its members, which are standard {{site.base_gateway}} control planes. All of the members of a 

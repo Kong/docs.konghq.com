@@ -2,7 +2,7 @@ name: Unbundled Plugin
 dbless_compatible: 'yes'
 desc: Verify and sign one or two tokens in a request
 enterprise: true
-premium: true
+plus: true
 type: plugin
 categories:
   - authentication

@@ -1,6 +1,7 @@
 name: Datadog
 dbless_compatible: 'yes'
 free: true
+plus: true
 enterprise: true
 konnect: true
 referenceable: true

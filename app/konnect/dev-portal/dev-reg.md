@@ -26,7 +26,7 @@ If your admin has enabled auto-approve, you can log into the Dev Portal immediat
 If auto-approve is not enabled, an admin has to review and approve your request manually. All manually approved developers are notified via email upon gaining access to the Dev Portal. To learn more about the manual approval process, read the [manual approval](/konnect/dev-portal/access-and-approval/manage-devs/#approve-dev-reg) documentation.
 
 ## Login/Register with SSO {#sso}
-
+{:.badge .enterprise}
 The {{site.konnect_short_name}} Dev Portal supports single sign-on (SSO) login and registration. The {{site.konnect_short_name}} admin must configure SSO before it's available on the Dev Portal. For information on how to enable SSO on your Dev Portal as a {{site.konnect_short_name}} admin, review the [single sign-on setup instructions](/konnect/dev-portal/customization/#single-sign-on/). 
 
 To log in to the Dev Portal using SSO, navigate to the Dev Portal and follow these steps: 

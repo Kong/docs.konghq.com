@@ -27,10 +27,9 @@ title: Compatibility
 
 Each [subscription tier](https://konghq.com/pricing) gives you
 access to a subset of plugins:
-* **Free tier**
-* **Paid tier** 
-* **Premium tier** 
-
+* **Free tier:** Open-source Kong plugins
+* **Plus tier:** Open-source and Plus-specific plugins
+* **Enterprise tier:** All Kong plugins
 
 If you're looking for supported network protocols and entity scopes, see [Plugin Compatibility](/hub/plugins/compatibility/) on the Plugin Hub.
 
@@ -48,9 +47,9 @@ If you're looking for supported network protocols and entity scopes, see [Plugin
   <thead>
       <th style="text-align: left; width: 10%">Plugin</th>
       <th style="text-align: center">Free</th>
-      <th style="text-align: center">Paid</th>
-      <th style="text-align: center">Premium</th>
-
+      <th style="text-align: center">Plus</th>
+      <th style="text-align: center">Enterprise</th>
+      <th style="text-align: center">Konnect support</th>
       <th style="text-align: left; width: 35%">Notes</th>
   </thead>
   <tbody>
@@ -61,47 +60,39 @@ If you're looking for supported network protocols and entity scopes, see [Plugin
           <a href="{{plugin.url}}">{{ plugin.name }}</a>
         </td>
         <td style="text-align: center">
-        {% if plugin.konnect == false %}
-         <span>Not Applicable</span>
-        {% elsif plugin.free == true %}
-          <i class="fa fa-check"></i>
-        {% endif %}
+          {% if plugin.free == true %}
+            <i class="fa fa-check"></i>
+          {% elsif plugin.free == false %}
+            <i class="fa fa-times"></i>
+          {% endif %}
         </td>
         <td style="text-align: center">
-          {% unless plugin.konnect %}
-            <span>Not Applicable</span>
-          {% else %}
-            {% unless plugin.free %}
-              {% unless plugin.premium %}
-                {% if plugin.paid == true %}
-                  <i class="fa fa-check"></i>
-                {% endif %}
-              {% endunless %}
-            {% endunless %}
-          {% endunless %}
+          {% if plugin.plus == true %}
+            <i class="fa fa-check"></i>
+          {% elsif plugin.plus == false %}
+            <i class="fa fa-times"></i>
+          {% endif %}
         </td>
         <td style="text-align: center">
-          {% unless plugin.konnect %}
-            <span>Not Applicable</span>
-          {% else %}
-            {% unless plugin.free %}
-              {% unless plugin.paid %}
-                {% if plugin.premium == true %}
-                  <i class="fa fa-check"></i>
-                {% endif %}
-              {% endunless %}
-            {% endunless %}
-          {% endunless %}
+          {% if plugin.enterprise == true %}
+            <i class="fa fa-check"></i>
+          {% elsif plugin.enterprise == false %}
+            <i class="fa fa-times"></i>
+          {% endif %}
         </td>
-    
+        <td style="text-align: center">
+          {% if plugin.konnect == true %}
+            <i class="fa fa-check"></i>
+          {% elsif plugin.konnect == false %}
+            <i class="fa fa-times"></i>
+          {% endif %}
+        </td>
         <td>
           {{ plugin.notes }}
         </td>
       </tr>
-
     {% endfor %}
   </tbody>
 </table>
 
 {% endfor %}
-

@@ -1,7 +1,8 @@
 name: rate-limiting-advanced
 dbless_compatible: partially
 dbless_explanation: |
-  The cluster strategy is not supported in DB-less and hybrid modes. For {{site.base_gateway}} in DB-less or hybrid mode, the `redis` strategy is the only available option to configure the plugin with a central data store.
+  The cluster strategy is not supported in DB-less and hybrid modes. For Kong
+  Gateway in DB-less or hybrid mode, the `redis` strategy is the only available option to configure the plugin with a central data store.
 
   {:.note}
   > **Note**: We recommend setting `namespace` to a static value in DB-less mode.
@@ -13,4 +14,3 @@ categories:
   - traffic-control
 free: false
 enterprise: true
-premium: true
