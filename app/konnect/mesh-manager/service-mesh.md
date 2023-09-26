@@ -3,7 +3,7 @@ title: Configure a Mesh Global Control Plane with the Kubernetes demo app
 content_type: tutorial
 ---
 
-Using Mesh Manager, you can create {{site.mesh_product_name}} global control planes to manage your {{site.konnect_saas}} mesh services. This guide explains how to configure a global control plane with {{site.mesh_product_name}} and then you will install the Kubernetes demo app so you can start interfacing with Mesh in {{site.konnect_saas}}.
+Using Mesh Manager, you can create {{site.mesh_product_name}} global control planes to manage your {{site.konnect_saas}} mesh services. This guide explains how to configure a global control plane with {{site.mesh_product_name}}, then install the Kubernetes demo app so you can start interfacing with Mesh in {{site.konnect_saas}}.
 
 Mesh zones are priced based on consumption. For more information about the pricing and consumption of zones, see Kong's [Pricing](https://konghq.com/pricing) page.
 
@@ -34,13 +34,14 @@ After creating the global control plane, you must add a zone to that control pla
 1. Follow the instructions to set up Helm and a secret token. 
     {{site.konnect_short_name}} will automatically start looking for the zone. Once {{site.konnect_short_name}} finds the zone, it will display it. 
 
-You now have a very basic {{site.mesh_product_name}} service mesh added to {{site.konnect_short_name}}. This service mesh can only create meshes and policies at the moment, so we must add services and additional configurations to it.
+You now have a very basic {{site.mesh_product_name}} service mesh added to {{site.konnect_short_name}}. This service mesh can only create meshes and policies at the moment, so you need to add services and additional configurations to it.
 
 ## Install a demo service
 
-Now that you've added a global control plane and a zone to your service mesh in {{site.konnect_short_name}}, you can add services to your mesh. You can use the {{site.mesh_product_name}} Kubernetes demo app to set up four services so you can see how {{site.mesh_product_name}} can be used to control services, monitor traffic, and track resource status.
+Now that you've added a global control plane and a zone to your service mesh in {{site.konnect_short_name}}, you can add services to your mesh. 
 
-The demo application consists of four services:
+The {{site.mesh_product_name}} Kubernetes demo app sets up four services so you can see how {{site.mesh_product_name}} can be used to control services, monitor traffic, and track resource status:
+
 
 * `frontend`: A web application that lets you browse an online clothing store
 * `backend`: A Node.js API for querying and filtering clothing items

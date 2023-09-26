@@ -3,20 +3,22 @@ title: About Mesh Manager
 content_type: explanation
 ---
 
-[Mesh Manager](https://cloud.konghq.com/mesh-manager) in {{site.konnect_product_name}} allows you to create, manage and view your {{site.mesh_product_name}} [service meshes](/mesh/latest/introduction/what-is-a-service-mesh/) in the {{site.konnect_short_name}} UI and using the {{site.konnect_short_name}} platform.
+[Mesh Manager](https://cloud.konghq.com/mesh-manager) in {{site.konnect_product_name}} allows you to create, manage, and view your {{site.mesh_product_name}} [service meshes](/mesh/latest/introduction/about-service-meshes/) in the {{site.konnect_short_name}} UI and using the {{site.konnect_short_name}} platform.
 
-A global control plane is a managed central component that stores and distributes (to local zones) all of the configuration and policies for your meshes and services. The global control planes are responsible for validating and accepting connections from local zone control planes and distributing the appropriate configuration down to each local zone as required. They also serve as the target for all `kumactl` CLI operations when manipulating resources and configuration within the [mesh deployment](/mesh/latest/production/deployment/multi-zone/).
+A global control plane is a managed central component that stores and distributes all of the configuration and policies for your meshes and services to local zones. 
+Global control planes are responsible for validating and accepting connections from local zone control planes, and distributing the appropriate configuration down to each local zone as required. 
+They also serve as targets for all `kumactl` CLI operations when manipulating resources and configuration within the [mesh deployment](/mesh/latest/production/deployment/multi-zone/).
 
 ![mesh global control plane](/assets/images/diagrams/diagram-mesh-in-konnect.png)
 
-> _**Figure 1:** {{site.mesh_product_name}} can support multiple zones (like a Kubernetes cluster, VPC, data center, etc.) together in the same distributed deployment. Then, you can create multiple isolated virtual meshes with the same control plane in order to support every team and application in the organization._
+> _**Figure 1:** {{site.mesh_product_name}} can support multiple zones (like a Kubernetes cluster, VPC, data center, etc.) together in the same distributed deployment. Then, you can create multiple isolated virtual meshes with the same control plane to support every team and application in the organization._
 
-Mesh Manager is ideal for organizations who want to have one or more global control planes that allow you to run your mesh deployments across multiple zones. You can run a mix of Kubernetes and Universal zones. Your mesh deployment environments can include multiple isolated meshes (for multi-tenancy) and workloads running in different regions, on different clouds, or in different data-centers.
+Mesh Manager is ideal for organizations who want to have one or more global control planes that allow you to run your mesh deployments across multiple zones. You can run a mix of Kubernetes and Universal zones. Your mesh deployment environments can include multiple isolated meshes for multi-tenancy, with workloads running in different regions, on different clouds, or in different data-centers.
 
-Here are a few benefits of creating a mesh deployment in {{site.konnect_short_name}} instead of a self-managed setup:
+Here are a few benefits of creating a mesh deployment in {{site.konnect_short_name}} instead of using a self-managed setup:
 
 * **Kong-managed global control plane:** By creating your mesh in {{site.konnect_short_name}}, your global control plane is managed by Kong. 
-* **All entities in one place:** You can view all your information, such as entities from Kong Ingress Controller (KIC) for Kubernetes, {{site.konnect_short_name}}-managed entities, and now service mesh data all from one central platform. 
+* **All entities in one place:** You can view all your information, such as entities from Kong Ingress Controller (KIC) for Kubernetes, {{site.konnect_short_name}}-managed entities, and now service mesh data, all from one central platform. 
 * **Managed UI wizard setup:** {{site.konnect_short_name}} simplifies the process of creating a mesh by providing a setup wizard in the UI that guides you through the configuration steps.
 
 ## Create a mesh
@@ -47,7 +49,7 @@ Creating a fully-functioning {{site.mesh_product_name}} deployment in {{site.kon
 
 ## View service mesh entities
 
-After your mesh is deployed in {{site.mesh_product_name}}, the following information will be displayed in Mesh Manager for each control plane:
+After your mesh is deployed in {{site.mesh_product_name}}, Mesh Manager displays the following information for each control plane:
 
 * Meshes and data plane proxies with [mTLS](/mesh/latest/policies/mutual-tls/)
 * RBAC
@@ -63,7 +65,7 @@ After your mesh is deployed in {{site.mesh_product_name}}, the following informa
 
 ## Mesh Manager RBAC
 
-Mesh Manager has it's own role-based access control (RBAC) settings that are separate from the [{{site.konnect_short_name}} RBAC settings](/konnect/org-management/teams-and-roles/roles-reference/). The Mesh Manager RBAC settings are specific to the meshes and mesh policies in Mesh Manager. 
+Mesh Manager has its own role-based access control (RBAC) settings that are separate from the [{{site.konnect_short_name}} RBAC settings](/konnect/org-management/teams-and-roles/roles-reference/). The Mesh Manager RBAC settings are specific to the meshes and mesh policies in Mesh Manager. 
 
 To completely configure RBAC for Mesh Manager, you must configure both roles and role bindings.
 * **Role:** Determines what resources a user or group has access to
@@ -75,7 +77,7 @@ The Admin role and role binding is automatically created for you. The admin role
 
 #### Roles
 
-Access roles specify access levels and resources to which access is granted. Access is only defined for write operations. Read access is available to all users who have the {{site.konnect_short_name}} Mesh global control plane `Viewer` role. Access roles define roles that are assigned separately to users and groups/teams using access role bindings. They are scoped globally, which means they are not bound to a mesh. 
+Access roles specify access levels and resources to which access is granted. Access is only defined for write operations. Read access is available to all users who have the {{site.konnect_short_name}} Mesh global control plane `Viewer` role. Access roles define roles that are assigned separately to users and groups/teams using access role bindings. They are scoped globally, which means they aren't bound to a mesh. 
 
 For more information about how to configure the key mappings and RBAC settings, see [Role-Based Access Control](/mesh/latest/features/rbac/) in the {{site.mesh_product_name}} documentation.
 
