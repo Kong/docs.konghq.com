@@ -5,7 +5,6 @@ dbless_explanation: |
 
   Admin API endpoints that do POST, PUT, PATCH or DELETE on Credentials will not work on DB-less mode.
 free: true
-plus: true
 enterprise: true
 konnect: true
 network_config_opts: All

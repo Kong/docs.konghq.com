@@ -9,7 +9,7 @@ Labels are commonly used for metadata information. Set anything that you need to
 
 Using labels makes it easier to manage data plane nodes at scale since you're able to identify all of this information at a glance. For example, debugging and troubleshooting become much easier when you're able to attribute a data plane node to a specific region or team.
 
-Any labels you set on a data plane node are visible from the control plane via the [`/nodes`](/konnect/api/runtime-groups-config/#nodes) {{site.konnect_short_name}} API endpoint.
+Any labels you set on a data plane node are visible from the control plane via the [`/nodes`](/konnect/api/control-plane-configuration/latest/#/DP%20Nodes) {{site.konnect_short_name}} API endpoint.
 
 ## Set labels on a data plane node
 

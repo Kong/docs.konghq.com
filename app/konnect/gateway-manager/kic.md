@@ -11,7 +11,7 @@ This setup is ideal for organizations who want to manage gateways in {{site.konn
 
 Kong Ingress Controller (KIC) for Kubernetes configures {{site.base_gateway}} using Ingress or [Gateway API](https://gateway-api.sigs.k8s.io/) resources created inside a Kubernetes cluster. 
 
-Beyond proxying the traffic coming into a Kubernetes cluster, KIC also lets you configure plugins, load balancing, health checking, and leverage all that {{site.base_gateway}} offers in a standalone installation. KIC data plane nodes are compatible with all the plugins in the same subscription tier (Free, Plus, and Enterprise) as regular data plane nodes. For more information, see [Plugin compatibility](/konnect/compatibility/#plugin-compatibility). For more information about KIC, see [Kong Ingress Controller Design](/kubernetes-ingress-controller/latest/concepts/design/). 
+Beyond proxying the traffic coming into a Kubernetes cluster, KIC also lets you configure plugins, load balancing, health checking, and leverage all that {{site.base_gateway}} offers in a standalone installation. For more information, see [Plugin compatibility](/konnect/compatibility/#plugin-compatibility). For more information about KIC, see [Kong Ingress Controller Design](/kubernetes-ingress-controller/latest/concepts/design/). 
 
 By associating your KIC deployment with {{site.konnect_short_name}}, this read-only association allows you to view your {{site.base_gateway}} entities, such as routes and applications, from your Kubernetes resources in {{site.konnect_short_name}}.  
 

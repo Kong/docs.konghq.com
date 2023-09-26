@@ -158,8 +158,7 @@ location.
     mechanism than in self-managed {{site.base_gateway}}. Enable app
     registration on each service that requires it.
     * [Publish services to the Dev Portal](/konnect/api-products/service-documentation/#publishing):
-    The Dev Portal is automatically enabled on a {{site.konnect_saas}} org
-    (Plus or Enterprise tier). Publish your services to the Dev Portal.
+    The Dev Portal is automatically enabled on a {{site.konnect_saas}} org Publish your services to the Dev Portal.
 * [**Prepare custom plugins for migration**](/konnect/gateway-manager/plugins/#custom-plugins):
 Custom plugins are supported in {{site.konnect_saas}}, but with limitations. As
 long as your plugins fit the criteria, or if you can adjust them to do so,

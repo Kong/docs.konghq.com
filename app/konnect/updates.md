@@ -11,8 +11,18 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## September 2023
 
+
 **API Requests is now in beta**
 : {{site.konnect_short_name}} users have now access to a new feature that tracks [API requests](/konnect/analytics/api-requests/) in near real-time. API Requests provides detailed records for the requests that are made to your APIs. This information can not only help you understand your consumers better, but also simplifies any initial investigation into errors or performance issues by providing an intuitive web experience that is fully integrated into the rest of your {{site.konnect_short_name}} organization.
+
+**Consumption based billing**
+: New Konnect organizations will benefit from an updated Konnect Plus product tier which includes every product capability available. New accounts are automatically given a month of free credits as part of 30-day trial. For more information review our [pricing page](https://konghq.com/pricing).
+
+**Social Login and Org Switcher**
+: New users can now signup for and login to Konnect organizations using their social identities from Google and GitHub. Users also have the ability to quickly switch between different Konnect organizations that they own or have been invited to.
+: * [Social Login](/konnect/org-management/social-identity-login/) - Login with social identities has been added as part of the "built-in" authentication scheme in Konnect. Users can use their Google and GitHub credentials to create new organizations and sign in to existing Konnect accounts with a matching email. User invitations may also be accepted via social login.
+: * [Organization Switcher](/konnect/org-management/org-switcher/) - Users who have been invited to more than one organization will be able witch between orgs via the org switcher. In addition, users who wish to utilize more than one organization may create new organizations via org switcher. All organizations that have associated emails would be accessible to a login to via org switcher.
+
 
 **Renamed {{site.konnect_short_name}} capabilities**
 : We have renamed a number of core {{site.konnect_short_name}} capabilities to simplify user understanding:
@@ -35,6 +45,10 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : decK:
 * decK command flag: `--konnect-runtime-group-name` to `--konnect-control-plane-name`
 * decK state file attribute: `_konnect.runtime_group_name`  to` _konnect.control_plane_name`
+
+: Authorization logs:
+* `Authz.runtimegroups` to `Authz.control-planes`
+* `Authz.services` to `Authz.api-products`
 
 **Gateway Manager redesigns**
 : The Gateway Manager Landing Page is now updated to nudge customers to create a control plane if none are present. In addition, the control plane creation workflow has been revamped to make it more intuitive and easier to follow.
