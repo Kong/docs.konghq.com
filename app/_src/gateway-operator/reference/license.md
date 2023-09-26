@@ -2,9 +2,4 @@
 title: License
 ---
 
-```text
-License: Proprietary
-Use of this software is subject to the terms of your license agreement with Kong Inc.
-```
-
-Kong provides {{ site.kgo_product_name }} free of charge for use by all consumers in any environment. Source code for {{ site.kgo_product_name }} is not available.
+License: Proprietary. Use of this software is subject to the terms of the [Kong Software License Agreement](https://kong-mwe-web-assets.s3-accelerate.amazonaws.com/wp-content/uploads/2021/04/Kong-Software-License-Agreement-20-April-2021.pdf) unless there is a separate written agreement between you and Kong Inc.
