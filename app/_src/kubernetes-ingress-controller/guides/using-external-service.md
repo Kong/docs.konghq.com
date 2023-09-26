@@ -36,7 +36,7 @@ Learn to expose a service located outside the Kubernetes cluster using an Ingres
 ## Test the Service
 
 ```bash
-curl -si http://kong.example/httpbin/anything --resolve kong.example:80:$PROXY_IP
+curl -i -H 'Host:kong.example' $PROXY_IP/httpbin/anything
 ```
 The results should look like this:
 ```
