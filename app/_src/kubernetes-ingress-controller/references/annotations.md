@@ -677,9 +677,9 @@ request-transformer plugin as such.
 The annotation can rebuild URLs using segments captured from a regular
 expression path. A `$n` in the annotation path represents the nth capture group
 in the Ingress rule path, starting from 1. For example, combining an Ingress
-rule with path `/~/api/(.*)/foo/svc_(.*)` and a `konghq.com/rewrite:
-/v$1/svc/$2` would send a request for `/v2/svc/pricing` upstream for an inbound
-request to `/api/2/foo/svc_pricing` (the `/~` prefix instructs Kong to treat
+rule with path `/~/v(.*)/(.*)` and a `konghq.com/rewrite:
+/api/$1/foo/svc_$2` would send an upstream request to `/api/2/foo/svc_pricing` upstream
+when an inbound request is made to `/v2/pricing` (the `/~` prefix instructs Kong to treat
 the path as a regular expression, and isn't used in the actual request).
 
 Annotations apply at the Ingress level and not modify individual rules. As
