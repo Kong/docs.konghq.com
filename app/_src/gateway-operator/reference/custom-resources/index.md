@@ -171,12 +171,19 @@ Address describes an address which can be either an IP address or a hostname.
 
 _Appears in:_
 - [DataPlaneStatus](#dataplanestatus)
+- [RolloutStatusService](#rolloutstatusservice)
 
 ### AddressSourceType
 
 _Underlying type:_ `string`
 
-AddressSourceType defines the type of source this address represents.
+AddressSourceType defines the type of source this address represents. 
+ Can be one of: 
+ 
+* `PublicLoadBalancer` 
+* `PrivateLoadBalancer` 
+* `PublicIP` 
+* `PrivateIP`
 
 
 
@@ -189,7 +196,11 @@ _Appears in:_
 
 _Underlying type:_ `string`
 
-AddressType defines how a network address is represented as a text string.
+AddressType defines how a network address is represented as a text string. 
+ Can be one of: 
+ 
+* `IPAddress` 
+* `Hostname`
 
 
 
@@ -198,7 +209,22 @@ AddressType defines how a network address is represented as a text string.
 _Appears in:_
 - [Address](#address)
 
+### BlueGreenStrategy
 
+
+
+BlueGreenStrategy defines the Blue Green deployment strategy.
+
+
+
+| Field | Description |
+| --- | --- |
+| `promotion` _[Promotion](#promotion)_ | Promotion defines how the operator handles promotion of resources. |
+| `resources` _[RolloutResources](#rolloutresources)_ | Resources controls what happens to operator managed resources during or after a rollout. |
+
+
+_Appears in:_
+- [RolloutStrategy](#rolloutstrategy)
 
 ### DataPlaneDeploymentOptions
 
@@ -212,7 +238,7 @@ DataPlaneDeploymentOptions specifies options for the Deployments (as in the Kube
 | --- | --- |
 | `rollout` _[Rollout](#rollout)_ | Rollout describes a custom rollout strategy. |
 | `replicas` _integer_ | Replicas describes the number of desired pods. This is a pointer to distinguish between explicit zero and not specified. This only affects the DataPlane deployments for now, for more details on ControlPlane scaling please see https://github.com/Kong/gateway-operator/issues/736. |
-| `podTemplateSpec` _[PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#podtemplatespec-v1-core)_ | PodTemplateSpec defines PodTemplateSpec for Deployment's pods. |
+| `podTemplateSpec` _[PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#podtemplatespec-v1-core)_ | PodTemplateSpec defines PodTemplateSpec for Deployment's pods. It's being applied on top of the generated Deployments using [StrategicMergePatch](https://pkg.go.dev/k8s.io/apimachinery/pkg/util/strategicpatch#StrategicMergePatch). |
 
 
 _Appears in:_
@@ -351,7 +377,7 @@ DeploymentOptions is a shared type used on objects to indicate that their config
 | Field | Description |
 | --- | --- |
 | `replicas` _integer_ | Replicas describes the number of desired pods. This is a pointer to distinguish between explicit zero and not specified. This only affects the DataPlane deployments for now, for more details on ControlPlane scaling please see https://github.com/Kong/gateway-operator/issues/736. |
-| `podTemplateSpec` _[PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#podtemplatespec-v1-core)_ | PodTemplateSpec defines PodTemplateSpec for Deployment's pods. |
+| `podTemplateSpec` _[PodTemplateSpec](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#podtemplatespec-v1-core)_ | PodTemplateSpec defines PodTemplateSpec for Deployment's pods. It's being applied on top of the generated Deployments using [StrategicMergePatch](https://pkg.go.dev/k8s.io/apimachinery/pkg/util/strategicpatch#StrategicMergePatch). |
 
 
 _Appears in:_
@@ -377,7 +403,10 @@ _Appears in:_
 
 _Underlying type:_ `string`
 
-PromotionStrategy is the type of promotion strategy consts.
+PromotionStrategy is the type of promotion strategy consts. 
+ Allowed values: 
+ 
+- `BreakBeforePromotion` is a promotion strategy which will ensure all new resources are ready and then break, to enable manual inspection. The user must indicate manually when they want the promotion to continue. That can be done by annotating the `DataPlane` object with `"gateway-operator.konghq.com/promote-when-ready": "true"`.
 
 
 
@@ -422,7 +451,10 @@ _Appears in:_
 
 _Underlying type:_ `string`
 
-RolloutResourcePlanDeployment is the type that holds the resource plan for managing the Deployment objects during and after a rollout.
+RolloutResourcePlanDeployment is the type that holds the resource plan for managing the Deployment objects during and after a rollout. 
+ Allowed values: 
+ 
+- `ScaleDownOnPromotionScaleUpOnRollout` is a rollout resource plan for Deployment which makes the operator scale down the Deployment to 0 when the rollout is not initiated by a spec change and then to scale it up when the rollout is initiated (the owner resource like a DataPlane is patched or updated).
 
 
 
@@ -455,6 +487,10 @@ RolloutStatusService is a struct which contains status information about service
 
 
 
+| Field | Description |
+| --- | --- |
+| `name` _string_ | Name indicates the name of the service. |
+| `addresses` _[Address](#address) array_ | Addresses contains the addresses of a Service. |
 
 
 _Appears in:_
