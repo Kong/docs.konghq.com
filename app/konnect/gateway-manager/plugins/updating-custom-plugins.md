@@ -100,15 +100,8 @@ To make any changes to a custom plugin schema, you need to access the **Add Plug
 
 ```sh
 curl -i -X PUT \
-  https://{region}.api.konghq.com/v2/control_planes/{controlPlaneId}/core-entities/plugin-schemas/{customPluginName|Id} \
+  https://{region}.api.konghq.com/v2/control_planes/{controlPlaneId}/core-entities/plugin-schemas/{customPluginName} \
   --data "lua_schema=@example-schema.lua"
 ```
-or?
-```
-$ http put https://us.api.konghq.tech/v2/runtime-groups/$RGID/core-entities/plugins/$ID name=myplugin -A bearer -a $TOKEN_DEV
-HTTP/1.1 200 OK
-```
-
-
 {% endnavtab %}
 {% endnavtabs %}

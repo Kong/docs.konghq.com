@@ -52,10 +52,19 @@ Upload the `schema.lua` file for your plugin using the `/plugin-schemas` endpoin
 
 ```sh
 curl -i -X POST \
-  https://{region}.api.konghq.com/konnect-api/api/control_planes/{controlPlaneId}/v2/plugin-schemas \
-  # is it under /core-entities/?
-  --data "lua_schema=@example-schema.lua"
+  https://{region}.api.konghq.com/v2/{controlPlaneId}/core-entities/plugin-schemas \
+  --data lua_schema=@example-schema.lua
 ```
+
+This example specifies a file, but you can also include the entire schema in the request as JSON.
+
+You should get an HTTP 201 response. You can check that your schema was uploaded using the following request:
+
+```sh
+curl -i -X GET \
+  https://{region}.api.konghq.com/v2/{controlPlaneId}/core-entities/plugin-schemas
+```
+
 {% endnavtab %}
 {% endnavtabs %}
 
