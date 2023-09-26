@@ -174,7 +174,7 @@
     "id": "f3675942-dbc0-4298-bec2-cbcfdcc10fab",
     "title": "Konnect Mesh Manager",
     "latestVersion": {
-      "name": "v1",
+      "name": "v0",
       "id": "0426ee88-bf76-45e3-9f89-fc03bea0c3a5"
     },
     "description": "The Mesh Manager API can be used to create and manage your global mesh control planes.",
