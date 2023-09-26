@@ -12,6 +12,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## September 2023
 
 
+**Auth0 DCR Configuration Audience Override**
+: API Product Versions can be each be assigned to a different Auth0 API instance allowing service teams to have more fine grained control over scopes and permissions of their services. See [Using Auth0 actions](/konnect/dev-portal/applications/dynamic-client-registration/auth0/#using-auth0-actions) for more details. 
+
 **API Requests is now in beta**
 : {{site.konnect_short_name}} users have now access to a new feature that tracks [API requests](/konnect/analytics/api-requests/) in near real-time. API Requests provides detailed records for the requests that are made to your APIs. This information can not only help you understand your consumers better, but also simplifies any initial investigation into errors or performance issues by providing an intuitive web experience that is fully integrated into the rest of your {{site.konnect_short_name}} organization.
 
