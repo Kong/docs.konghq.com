@@ -21,6 +21,9 @@ items:
             url: /concepts/gateway-api
           - text: Gateway Configuration
             url: /concepts/gateway-configuration
+      - text: Changelog
+        url: /gateway-operator/changelog
+        absolute_url: true
       - text: Support
         url: /support
       - text: FAQ
@@ -83,3 +86,5 @@ items:
             url: /reference/custom-resources/#controlplane
           - text: DataPlane
             url: /reference/custom-resources/#dataplane
+      - text: License
+        url: /reference/license
