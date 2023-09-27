@@ -57,7 +57,6 @@ After you've installed all of the required components and configured a `GatewayC
 1. You should see the following:
 
     ```
-    ❯ curl $PROXY_IP/echo
     Welcome, you are connected to node king.
     Running on Pod echo-965f7cf84-rm7wq.
     In namespace default.

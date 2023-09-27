@@ -10,10 +10,10 @@ title: Rolling Upgrades
 To change the image used for your `DataPlane` resources, set the `spec.deployment.podTemplateSpec.spec.containers[].image` field in your resource:
 
 ```bash
-kubectl edit dataplane dataplane-example
+kubectl edit dataplane dataplane-example -n kong
 ```
 
-Once the resource is saved, Kubernetes will perform a rolling upgrade of your pods.
+Once the resource is saved, Kubernetes will perform a rolling upgrade of your `Pod`s.
 
 ## Using GatewayConfiguration
 
