@@ -8,6 +8,11 @@ alpha: true
 
 To use the Gateway API resources to configure your routes, you need to create a `GatewayClass` instance and create a `Gateway` resource that listens on the ports that you need.
 
+{:.note}
+> **Note:** `Gateway` and `ControlPlane` controllers are still `alpha` so be sure
+> to use the [installation steps from this guide](/gateway-operator/{{ page.release }}/get-started/kic/install/)
+> in order to get your `Gateway` up and running.
+
 ```yaml
 echo '
 kind: GatewayConfiguration
