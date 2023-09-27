@@ -27,7 +27,7 @@ spec:
         spec:
           containers:
           - name: proxy
-            image: kong:3.4
+            image: kong:{{ site.data.kong_latest_gateway.ce-version }}
             readinessProbe:
               initialDelaySeconds: 1
               periodSeconds: 1
@@ -37,7 +37,7 @@ spec:
         spec:
           containers:
           - name: controller
-            image: kong/kubernetes-ingress-controller:2.11
+            image: kong/kubernetes-ingress-controller:{{ site.data.kong_latest_KIC.version }}
             env:
             - name: CONTROLLER_LOG_LEVEL
               value: debug
