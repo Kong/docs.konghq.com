@@ -2,6 +2,9 @@
 title: Authentication Certificates for a Data Plane Node
 content_type: how-to
 ---
+
+## Authentication between Control Plane and Data Plane Nodes
+
 Konnect uses a mutual TLS handshake (mTLS) for authentication between data plane (DP) and  control plane (CP) so the actual private key is never transferred on the network, and communication between CP and DP nodes is secure. Konnect supports two modes for handling certificate/key pairs:
 Pinned mode - This mode is used by default in Konnect. The same public key is added to the dataplane and the control plane. The control plane uses this public key to authenticate the dataplane. Validation of the certificate only happens on the control plane.
 Public Key Infrastructure (PKI) mode - This mode leverages digital certificates signed by a certificate authority (or a chain of certificate authorities CA) to authenticate between control plane and data plane. The public key is added to the dataplane, while the chain of certificate authority is added to the control plane. Any certificate authority from the chain can be used to authenticate between dataplane and control plane. Konnect validates both CP and DP sides by checking if they are from the same CA, thus increasing the security of the network and eliminating the risks associated with transporting private keys. 
