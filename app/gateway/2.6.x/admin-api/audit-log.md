@@ -413,7 +413,7 @@ cat canonical_record.txt
 
 {:.note}
 > Ensure that the contents of the canonical record file on disk match the expected
-canonical record format exactly. The presence of any addditional bytes, such as
+canonical record format exactly. The presence of any additional bytes, such as
 a trailing newline `\n`, will cause a validation failure in the next step.
 
 Once these two elements are in place, the signature can be verified:
