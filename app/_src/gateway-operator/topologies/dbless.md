@@ -4,23 +4,57 @@ title: DB-less Deployments
 
 {{ site.kgo_product_name }} can deploy both a {{ site.kic_product_name }} Control Plane and Data Plane resources automatically.
 
-DB-less deployments are powered using the [Kubernetes Gateway API](https://github.com/kubernetes-sigs/gateway-api). You configure your `GatewayClass` and `Gateway` objects in a vendor independent way and {{ site.kgo_product_name }} translates those requirements in to Kong specific configuration.
+DB-less deployments are powered using the [Kubernetes Gateway API](https://github.com/kubernetes-sigs/gateway-api).
+You configure your `GatewayClass`, `Gateway` and `GatewayConfiguration` objects and {{ site.kgo_product_name }} translates those requirements in to Kong specific configuration.
 
 ## Installation
 
 ```yaml
 echo '
+kind: GatewayConfiguration
+apiVersion: gateway-operator.konghq.com/v1alpha1
+metadata:
+  name: kong
+  namespace: default
+spec:
+  dataPlaneOptions:
+    deployment:
+      podTemplateSpec:
+        spec:
+          containers:
+          - name: proxy
+            image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
+            readinessProbe:
+              initialDelaySeconds: 1
+              periodSeconds: 1
+  controlPlaneOptions:
+    deployment:
+      podTemplateSpec:
+        spec:
+          containers:
+          - name: controller
+            image: kong/kubernetes-ingress-controller:{{ site.data.kong_latest_KIC.version }}
+            env:
+            - name: CONTROLLER_LOG_LEVEL
+              value: debug
+---
 kind: GatewayClass
 apiVersion: gateway.networking.k8s.io/v1beta1
 metadata:
   name: kong
 spec:
   controllerName: konghq.com/gateway-operator
+  parametersRef:
+    group: gateway-operator.konghq.com
+    kind: GatewayConfiguration
+    name: kong
+    namespace: default
 ---
 kind: Gateway
 apiVersion: gateway.networking.k8s.io/v1beta1
 metadata:
   name: kong
+  namespace: default
 spec:
   gatewayClassName: kong
   listeners:
@@ -30,7 +64,7 @@ spec:
 ' | kubectl apply -f -
 ```
 
-You can now run `kubectl get gateway kong` to get the IP address for the running gateway.
+You can now run `kubectl get -n default gateway kong` to get the IP address for the running gateway.
 
 {:.note}
 > Note: if your cluster can not provision LoadBalancer type Services then the IP you receive may only be routable from within the cluster.
