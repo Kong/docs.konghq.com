@@ -333,6 +333,8 @@ stdin
 stdout
 subcommand
 subcommands
+subcomponent
+subcomponents
 submodule
 submodule's
 subnet

@@ -11,6 +11,7 @@
           {% elsif include.edition == 'mesh' %}{{site.mesh_product_name}}
           {% elsif include.edition == 'deck' %}decK
           {% elsif include.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
+          {% elsif include.edition == 'gateway-operator' %}{{site.kgo_product_name}}
           {% elsif include.edition == 'gateway' %}{{site.base_gateway}}
           {% elsif include.edition == 'getting-started-guide' %}Get Started with Kong Gateway
           {% elsif include.edition == 'contributing' %}Contribution guidelines
@@ -35,8 +36,11 @@
         <li role="menuitem" tabindex="-1" {% if include.edition == 'deck' %} class="active"{% endif %}>
           <a href="/deck/latest/" {% if include.edition == 'deck' %}class="active"{% endif %}>decK</a>
         </li>
-        <li role="menuitem" tabindex="-1" {% if include.edition == 'kubernetes-ingress-controller' %} class="active"{% endif %}" >
+        <li role="menuitem" tabindex="-1" {% if include.edition == 'kubernetes-ingress-controller' %} class="active"{% endif %}>
           <a href="/kubernetes-ingress-controller/latest/" {% if include.edition == 'kubernetes-ingress-controller' %}class="active"{% endif %}>Kong Ingress Controller</a>
+        </li>
+        <li role="menuitem" tabindex="-1" {% if include.edition == 'gateway-operator' %} class="active"{% endif %}>
+          <a href="/gateway-operator/latest/" {% if include.edition == 'gateway-operator' %}class="active"{% endif %}>Kong Gateway Operator</a>
         </li>
         <li>
           <a href="https://docs.insomnia.rest/" target="_blank">Insomnia</a>

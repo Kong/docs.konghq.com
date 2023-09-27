@@ -119,6 +119,11 @@ defaults:
       layout: "docs-v2"
 
   - scope:
+      path: "gateway-operator"
+    values:
+      layout: "docs-v2"
+
+  - scope:
       path: "konnect"
     values:
       layout: "docs-v2"
@@ -203,6 +208,7 @@ hub-filters:
 ee_product_name: Kong Enterprise
 ce_product_name: Kong Gateway (OSS)
 base_gateway: Kong Gateway
+kgo_product_name: Kong Gateway Operator
 kic_product_name: Kong Ingress Controller
 konnect_product_name: Kong Konnect
 konnect_short_name: Konnect
