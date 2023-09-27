@@ -1396,7 +1396,7 @@ This means all of the below setup are supported in this mode:
 
 **Note:** In L4 proxy mode, only plugins that has `tcp` or `tls` in the supported
 protocol list are supported. This list can be found in their respective documentation
-on [Kong Hub](https://docs.konghq.com/hub/).
+on [Kong Hub](/hub/).
 
 [Back to top](#introduction)
 
