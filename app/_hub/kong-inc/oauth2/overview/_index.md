@@ -24,9 +24,9 @@ Add an OAuth 2.0 authentication layer with one of the following grant flows:
 
 In order to use the plugin, you first need to create a consumer to associate one or more credentials to. The Consumer represents a developer using the upstream service.
 
-<div class="alert alert-warning">
-    <strong>Note</strong>: This plugin requires a database in order to work effectively. It <strong>does not</strong> work on DB-Less or hybrid mode.
-</div>
+
+{:.important}
+> This plugin requires a database in order to work effectively. It **does not** work in DB-less or hybrid mode.
 
 ### Endpoints
 

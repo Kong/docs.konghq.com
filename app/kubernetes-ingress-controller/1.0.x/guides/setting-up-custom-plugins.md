@@ -152,11 +152,10 @@ you might need for your installation to work.
 
 ### Deploy
 
-<div class="alert alert-warning">
-  Kustomize manifests are provided for illustration purposes only and are not officially supported by Kong.
-  There is no guarantee of backwards compatibility or upgrade capabilities for our Kustomize manifests.
-  For a production setup with Kong support, use the <a href="https://github.com/kong/charts">Helm Chart</a>.
-</div>
+{:.important}
+> Kustomize manifests are provided for illustration purposes only and are not officially supported by Kong.
+There is no guarantee of backwards compatibility or upgrade capabilities for our Kustomize manifests.
+For a production setup with Kong support, use the [Helm chart](https://github.com/kong/charts).
 
 Once, you have all the pieces in place, you are ready
 to deploy the {{site.kic_product_name}}:

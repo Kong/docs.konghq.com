@@ -60,14 +60,11 @@ criteria. For example, `/foo` will create a route with a `/foo$` regular express
 The controller leaves `ImplementationSpecific` path rules entirely up to the Kong
 router. It creates a route with the exact same path string as the Ingress rule.
 
-<div class="alert alert-warning">
- 
-  Both <code>Prefix</code> and <code>Exact</code> paths modify the paths you
-  provide, and those modifications may interfere with user-provided regular
-  expressions. If you are using your own regular expressions in paths, use
-  <code>ImplementationSpecific</code> to avoid unexpected behavior.
-</div>
-
+{:.important}
+> Both `Prefix` and `Exact` paths modify the paths you
+provide, and those modifications may interfere with user-provided regular
+expressions. If you are using your own regular expressions in paths, use
+`ImplementationSpecific` to avoid unexpected behavior.
 ## Ingress class
 
 [Ingress class][ingress-class] indicates which resources an ingress controller

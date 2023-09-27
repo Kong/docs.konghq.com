@@ -134,8 +134,8 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 {% navtab Using Kong Manager %}
 ### Invite a New Admin
 
-<div class="alert alert-warning">
-<strong>Note:</strong> If you also use the Admin API, once you've created this admin, you can find it under the <em>/admins</em> endpoint.</div>
+{:.note}
+> If you also use the Admin API, once you've created this admin, you can find it under the `/admins` endpoint.
 
 1. From the **Teams** > **Admins** tab, click **Invite Admin**.
 2. Enter the new administrator’s **Email** address, **Username**, and **Custom Id**.
@@ -149,9 +149,8 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 
     When you are done adding roles, you are redirected back to the Invite Admin dialog.
 
-    <div class="alert alert-warning">
-    <strong>Important:</strong> Before you move on, make sure the <strong>Enable RBAC Token</strong> checkbox is checked. The RBAC token is what allows the new admin to send a token to the Admin API to configure the system programmatically.
-    </div>
+    {:.important}
+    **Important:** Before you move on, make sure the **Enable RBAC Token** checkbox is checked. The RBAC token is what allows the new admin to send a token to the Admin API to configure the system programmatically.
 
 7. Click **Invite Admin** to send the invite.
 
@@ -177,9 +176,8 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 {% endnavtab %}
 {% navtab Using the Admin API %}
 
-<div class="alert alert-warning">
-<strong>Note:</strong> The following method refers to the <em>/users</em> endpoint and creates an Admin API user that won't be visible (or manageable) through Kong Manager. If you want to later administer the admin through Kong Manager, create it under the <a href="/gateway/{{page.kong_version}}/admin-api/admins/reference/"><em>/admins</em> endpoint</a> instead.
-</div>
+{:.important}
+> **Note** The following method refers to the `/users` endpoint and creates an Admin API user that won't be visible (or manageable) through Kong Manager. If you want to later administer the admin through Kong Manager, create it under the [`/admins`](/gateway/{{page.kong_version}}/admin-api/admins/reference/) endpoint instead.
 
 Create a new user named `secureworkspaceadmin` with the RBAC token
 `secureadmintoken`:

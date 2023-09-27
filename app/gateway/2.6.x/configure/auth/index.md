@@ -203,11 +203,11 @@ the consumer, or the last plugin that will set its configured anonymous consumer
 **NOTE 3**: When using the OAuth2 plugin in an `AND` fashion, then also the OAuth2 endpoints for requesting
 tokens and so forth will require authentication by the other configured auth plugins.
 
-<div class="alert alert-warning">
-  When multiple authentication plugins are enabled in an <tt>OR</tt> fashion on a given Service, and it is desired that
-  anonymous access be forbidden, then the <a href="/hub/kong-inc/request-termination/"><tt>request-termination</tt> plugin</a> should be
-  configured on the anonymous consumer. Failure to do so will allow unauthorized requests.
-</div>
+{:.important}
+When multiple authentication plugins are enabled in an `OR` fashion on a given service, 
+and you want anonymous access to be forbidden, then the [Request Termination plugin](/hub/kong-inc/request-termination/) should be
+configured on the anonymous consumer. 
+Failure to do so will allow unauthorized requests.
 
 [plugins]: https://konghq.com/plugins/
 [key-auth]: /hub/kong-inc/key-auth

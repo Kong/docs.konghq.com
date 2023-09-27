@@ -9,11 +9,10 @@ You will receive this file from Kong when you sign up for a
 
 [Contact Kong](https://konghq.com/get-started) for more information.
 
-<div class="alert alert-ee blue">
-<b>Note:</b> The free mode does not require a license. See
-<a href="/gateway/{{page.kong_version}}/plan-and-deploy/licenses">Kong Gateway Licensing</a>
+{:.note}
+> **Note:** The free mode does not require a license. See
+[Kong Gateway Licensing](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/)
 for a feature comparison.
-</div>
 
 Once a license has been deployed to a {{site.base_gateway}} node, retrieve it
 using the [`/licenses` Admin API endpoint](/gateway/{{page.kong_version}}/admin-api/licenses/examples/).

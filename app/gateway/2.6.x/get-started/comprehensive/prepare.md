@@ -84,11 +84,9 @@ the following command in a terminal window:
     You can also use this command at any time (for example, after a `deck sync`)
     to see the {{site.base_gateway}}'s most recent configuration.
 
-    <div class="alert alert-warning">
-
-    <strong>Be careful!</strong> Any subsequent <code>deck dump</code> will
-    overwrite the existing <code>kong.yaml</code> file. Create backups as needed.
-    </div>
+    {:.important}
+    > **Be careful!** Any subsequent `deck dump` will
+    overwrite the existing `kong.yaml` file. Create backups as needed.
 
 3. Open the file in your preferred code editor. Since you haven't configured
 anything yet, the file should only contain the decK version:

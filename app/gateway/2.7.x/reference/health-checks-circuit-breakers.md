@@ -175,10 +175,9 @@ when a target is healthy or unhealthy. If the `interval` value for either
 is set to zero, the checking is disabled at the corresponding scenario.
 When both are zero, active health checks are disabled altogether.
 
-<div class="alert alert-warning">
-<strong>Note:</strong> Active health checks currently only support HTTP/HTTPS targets. They
-do not apply to Upstreams assigned to Services with the protocol attribute set to "tcp" or "tls".
-</div>
+{:.note}
+> **Note:** Active health checks currently only support HTTP/HTTPS targets. They
+do not apply to upstreams assigned to services with the protocol attribute set to `tcp` or `tls`.
 
 ### Passive health checks (circuit breakers)
 
