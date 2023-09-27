@@ -43,8 +43,8 @@ items:
         items:
           - text: Install Gateway Operator
             url: /get-started/kic/install/
-          - text: Create a GatewayClass
-            url: /get-started/kic/create-gatewayclass/
+          - text: Create a Gateway
+            url: /get-started/kic/create-gateway/
           - text: Create a Route
             url: /get-started/kic/create-route/
   - title: Customization
