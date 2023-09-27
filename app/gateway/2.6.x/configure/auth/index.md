@@ -104,7 +104,7 @@ the corresponding Route:
 4. **Create an anonymous Consumer**
 
     Every request proxied by Kong must be associated with a Consumer. You'll now create a Consumer
-    named `anonymous_users` (that Kong will utilize when proxying anonymous access) by issuing the
+    named `anonymous_users` (that Kong will use when proxying anonymous access) by issuing the
     following request:
 
     ```bash

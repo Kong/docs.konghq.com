@@ -19,7 +19,7 @@ In this guide, an instance of {{site.base_gateway}} is referenced via
 `<admin-hostname>`. Make sure to replace `<admin-hostname>` with the hostname
 of your control plane instance.
 
-## Verify the Kong Gateway configuration
+## Verify the {{site.base_gateway}} configuration
 {% navtabs %}
 {% navtab Using Kong Manager %}
 As a {{site.base_gateway}} user, you can use Kong Manager for environment

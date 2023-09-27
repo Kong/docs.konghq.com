@@ -166,7 +166,7 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 3. Click the **copy icon** to copy the registration link, then save it.
 4. Email or SMS the registration link to the new administrator &mdash; or use it yourself to test the login in the following steps.
 5. Open a different browser or an incognito tab in the current browser so your existing login session is ignored.
-6. Enter the registration link you copied previously into the new browser to log in with the new administrator (secureworkspaceadmin).
+6. Enter the registration link you copied previously into the new browser to log in with the new administrator (`secureworkspaceadmin`).
 
     If the registration link has expired, you can generate a new one by logging in with your `kong_admin` administrator and generating a new link.
 
