@@ -520,6 +520,10 @@ ServiceOptions is used to includes options to customize the ingress service, suc
 
 
 
+| Field | Description |
+| --- | --- |
+| `type` _[ServiceType](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.25/#servicetype-v1-core)_ | Type determines how the Service is exposed. Defaults to `LoadBalancer`. <br /><br /> Valid options are `LoadBalancer` and `ClusterIP`. <br /><br /> `ClusterIP` allocates a cluster-internal IP address for load-balancing to endpoints. <br /><br /> `LoadBalancer` builds on NodePort and creates an external load-balancer (if supported in the current cloud) which routes to the same endpoints as the clusterIP. <br /><br /> More info: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types |
+| `annotations` _object (keys:string, values:string)_ | Annotations is an unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. <br /><br /> More info: http://kubernetes.io/docs/user-guide/annotations |
 
 
 _Appears in:_
