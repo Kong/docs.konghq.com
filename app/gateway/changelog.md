@@ -12,7 +12,64 @@ For product versions that have reached the end of sunset support, see the [chang
 ## 3.4.1.0
 **Release Date** 2023/09/28
 
+## Breaking Changes
+
+#### Plugin
+
+- **Graphql-rate-limiting-adv**: Fix a bug in the schema validation which prevents from using redis in cluster mode
+### Features
+#### Core
+
+- Support HTTP query parameters in expression routes.
+
+#### Plugin
+
+- **Openid-Connect**: New field `unauthorized_destroy_session`, which when set to true, we destory the session (delete the user's session cookie) when the request is unauthorized. Default to true. Set to false to preserve the session.
+- - **OpenID-Connect**: New field `using_pseudo_issuer`. When set to true, the plugin instance will not discover configuration from the issuer.
+  - **Opentelemetry**: A new value is added to the parameter `header_type`, which allows Kong to inject datadog headers into the headers of requests forwarding to upstream.
+
+### Dependencies
+#### Core
+- Fix incorrect LuaJIT LDP/STP fusion on ARM64 which may sometimes cause incorrect logic
+
 ### Fixes
+#### Core
+
+* Removed a hardcoded proxy-wasm isolation level setting that was preventing the
+  `nginx_http_proxy_wasm_isolation` configuration value from taking effect.
+* Fix an issue that the TTL of the key-auth plugin didnt work in DB-less and Hybrid mode.
+* Fix a problem that abnormal socket connection will be reused when querying Postgres database.
+* Fix upstream ssl failure when plugins use response handler
+* Fix an issue that protocol `tls_passthrough` can not work with expressions flavor
+* Fixed an issue where plugin would not trigger correctly when the authenticated consumer is part of multiple consumer groups.
+* Fix a keyring issue where a kong node fails to send keyring material when using cluster strategy
+- Fix a bug that will cause a failure of sending tracing data to datadog when value of x-datadog-parent-id header in requests is a short dec string
+- fix rbac retrieve group roles with the group name that type is number.
+
+
+#### PDK
+
+- Fix several issues in Vault and refactor the Vault code base: - Make DAOs to fallback to empty string when resolving Vault references fail - Use node level mutex when rotation references  - Refresh references on config changes - Update plugin referenced values only once per request - Pass only the valid config options to vault implementations - Resolve multi-value secrets only once when rotating them - Do not start vault secrets rotation timer on control planes - Re-enable negative caching - Reimplement the kong.vault.try function - Remove references from rotation in case their configuration has changed
+- - Tracing: fix an issue that resulted in some parent spans to end before their children due to different precision of their timestamps
+ 
+#### Plugin
+
+* **Opentelemetry**: fix an issue that resulted in invalid parent IDs in the propagated tracing headers
+
+- mtls-auth should not cache the network failure when doing revocation check
+  [#6359](https://github.com/Kong/kong-ee/issues/6359)
+  [FTI-5327](https://konghq.atlassian.net/browse/FTI-5327)
+- allow the 'start' field be a past time
+  [#6423](https://github.com/Kong/kong-ee/issues/6423)
+  [KAG-923](https://konghq.atlassian.net/browse/KAG-923)
+- **SAML**: When the redis session storage is incorrectly configured, users now receive a 500 error instead of being redirected endlessly
+  [#6453](https://github.com/Kong/kong-ee/issues/6453)
+  [KAG-863](https://konghq.atlassian.net/browse/KAG-863)
+- **Openid-Connect**: Fix issue on token revocation on logout where the code was revoking refresh token when it was supposed to revoke access token when using the discovered revocation endpoint.
+  [#6202](https://github.com/Kong/kong-ee/issues/6202)
+
+### Kong Manager
+* Fixed entity docs link. [#2890](https://github.com/Kong/kong-admin/pull/2890)
 
 ## 3.4.0.0
 **Release Date** 2023/08/09
