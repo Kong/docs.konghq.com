@@ -44,3 +44,7 @@ smoke:
 	@npm run test:smoke || true
 	@kill -TERM $$(cat netlify.PID)
 	@rm netlify.PID
+
+kill-ports:
+	@JEKYLL_PROCESS=$$(lsof -ti:4000) && kill -9 $$JEKYLL_PROCESS || true
+	@VITE_PROCESS=$$(lsof -ti:3036) && kill -9 $$VITE_PROCESS || true
