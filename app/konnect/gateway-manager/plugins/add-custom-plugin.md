@@ -64,7 +64,7 @@ curl -i -X POST \
 
 This example specifies a file, but you can also include the entire schema in the request as JSON data.
 
-You should get an HTTP 201 response. 
+You should get an `HTTP 201` response. 
 
 You can check that your schema was uploaded using the following request:
 
@@ -73,7 +73,7 @@ curl -i -X GET \
   https://{region}.api.konghq.com/v2/{controlPlaneId}/core-entities/plugin-schemas
 ```
 
-This request returns an HTTP 200 and the schema for your plugin as a JSON object.
+This request returns an `HTTP 200` response with the schema for your plugin as a JSON object.
 
 {% endnavtab %}
 {% endnavtabs %}
