@@ -105,7 +105,7 @@ request. This URL varies depending on your installation method. You can also get
 
 1. Send a request to the `Location` URL.
     ```bash
-    $ curl -k https://192.0.2.0/test/headers
+    $ curl -k https://$PROXY_IP/test/headers
     ```
     The results should look like this:
     ```text
