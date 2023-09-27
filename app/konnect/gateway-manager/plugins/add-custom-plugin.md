@@ -3,27 +3,22 @@ title: Managing custom plugins in Konnect
 content_type: how-to
 ---
 
-You can manage custom plugins via the {{site.konnect_short_name}} UI or 
-the {{site.konnect_short_name}} Control Planes Config API.
+You can manage schemas for custom plugins via the {{site.konnect_short_name}} UI or 
+the {{site.konnect_short_name}} Control Planes Config API. 
 
-If you need to update a schema for a plugin that has already been uploaded
+After uploading a schema to {{site.konnect_short_name}}, upload your 
+custom plugin to each data plane node, then {{site.konnect_short_name}} can manage the 
+configuration for your plugin like any other Kong entity.
+
+If you need to update a schema for a plugin that was already uploaded
 to {{site.konnect_short_name}}, there are a few considerations based on the type 
 of update. 
 See [Editing or deleting a custom plugin's schema](/konnect/gateway-manager/plugins/update-custom-plugin/) 
 for more information.
 
-{:.important}
-> **Caution**: Carefully test the operation of any custom plugins before deploying
-them to production. Kong is not responsible for the operation or support of any 
-custom plugins, including any performance impacts on your {{site.konnect_short_name}}
-or {{site.base_gateway}} deployments. 
-
 ## Prerequisites
 
-* You have a custom {{site.base_gateway}} plugin with a `schema.lua` file, and no
- `api.lua`, `daos.lua`, or `migration.lua` files.
-
-* Your custom plugin meets all other [requirements](/konnect/gateway-manager/plugins/#custom-plugins)
+* Your custom plugin meets all [requirements](/konnect/gateway-manager/plugins/#custom-plugins)
 for {{site.konnect_short_name}}.
 
 * The custom plugin can be written in any supported language, but the schema file must be in Lua.
@@ -32,15 +27,15 @@ For help with developing plugins, see the [plugin development resources](#more-i
     If you have a custom plugin written in a language other than Lua, convert the schema 
 into a `schema.lua` file before uploading it to {{site.konnect_short_name}}.
 
-* If using the `/plugin-schemas` API, you have a personal access token or a system account
+* If you're using the `/plugin-schemas` API, you need a personal access token or a system account
 token to authenticate with the API. You can pass your token with any API request using an 
 authentication header:
 
-```
---header 'Authorization: Bearer kpat_xgfT'
-```
+    ```
+    --header 'Authorization: Bearer kpat_xgfT'
+    ```
 
-## Add a custom plugin to a {{site.konnect_short_name}} org
+## Add a custom plugin to a control plane
 
 {{site.konnect_short_name}} only requires the custom plugin's `schema.lua` file. 
 Using that file, it creates a plugin entry in the plugin catalog for your control plane.
@@ -69,20 +64,22 @@ curl -i -X POST \
 
 This example specifies a file, but you can also include the entire schema in the request as JSON data.
 
-You should get an HTTP 201 response. You can check that your schema was uploaded using the following request:
+You should get an HTTP 201 response. 
+
+You can check that your schema was uploaded using the following request:
 
 ```sh
 curl -i -X GET \
   https://{region}.api.konghq.com/v2/{controlPlaneId}/core-entities/plugin-schemas
 ```
 
+This request returns an HTTP 200 and the schema for your plugin as a JSON object.
+
 {% endnavtab %}
 {% endnavtabs %}
 
 Uploading a custom plugin schema adds the plugin to a specific control plane. 
 If you need it to be available in multiple control planes, add the schema individually to each one.
-
-You can now configure this custom plugin like any other plugin in {{site.konnect_short_name}}.
 
 ## Upload files to data plane nodes
 
@@ -99,7 +96,7 @@ If a data plane node doesn't have these files, the plugin won't be able to run o
 {% navtab Universal %}
 
 Follow the {{site.base_gateway}} [plugin deployment and installation instructions](/gateway/latest/plugin-development/distribution/) 
-to get your plugin up on each node.
+to get your plugin set up on each node.
 
 {% endnavtab %}
 {% navtab Docker %}
@@ -169,6 +166,13 @@ To copy the plugin using a Dockerfile instead, see the [{{site.base_gateway}} cu
 
 {% endnavtab %}
 {% endnavtabs %}
+
+You can now configure this custom plugin like any other plugin in {{site.konnect_short_name}}.
+
+{:.important}
+> **Caution**: Carefully test the operation of any custom plugins before using them in production. Kong is not responsible for the operation or support of any 
+custom plugins, including any performance impacts on your {{site.konnect_short_name}}
+or {{site.base_gateway}} deployments. 
 
 ## More information
 
