@@ -1,5 +1,5 @@
 ---
-title: Managing custom plugins in Konnect
+title: Adding custom plugins in Konnect
 content_type: how-to
 ---
 
@@ -18,18 +18,16 @@ for more information.
 
 ## Prerequisites
 
-* Your custom plugin meets all [requirements](/konnect/gateway-manager/plugins/#custom-plugins)
+* Your custom plugin meets {{site.konnect_short_name}}'s [requirements](/konnect/gateway-manager/plugins/#custom-plugins)
 for {{site.konnect_short_name}}.
 
-* The custom plugin can be written in any supported language, but the schema file must be in Lua.
+* The schema file must be in Lua, even if the custom plugin is written in another supported language.
 For help with developing plugins, see the [plugin development resources](#more-information).
   
     If you have a custom plugin written in a language other than Lua, convert the schema 
 into a `schema.lua` file before uploading it to {{site.konnect_short_name}}.
 
-* If you're using the `/plugin-schemas` API, you need a personal access token or a system account
-token to authenticate with the API. You can pass your token with any API request using an 
-authentication header:
+* When using the `/plugin-schemas` API, authenticate your requests with either a personal access token or a system account token by including it in the authentication header:
 
     ```
     --header 'Authorization: Bearer kpat_xgfT'

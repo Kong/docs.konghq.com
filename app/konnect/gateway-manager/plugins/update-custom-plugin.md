@@ -44,10 +44,10 @@ plugin configuration. However, if an instance of this plugin is also updated, th
 any new plugin configuration is represented.
 
 In summary:
-* Uploading a custom plugin schema adds a new configurable object to the {{site.konnect_short_name}} plugin hub, 
+* Uploading a custom plugin schema adds a new configurable object to the {{site.konnect_short_name}} Plugin Hub, 
 both as a tile in the UI, and an API endpoint.
 
-  You can change that schema, but changing the schema alone doesn't trigger any payloads to the data plane nodes.
+ * Modifying the schema itself does not trigger payload updates to data plane nodes.
 
 * The new tile or endpoint added by the schema lets you create plugin configurations.
 If you create a plugin configuration in this way, it triggers a payload reconciliation with the data plane nodes.
@@ -83,8 +83,8 @@ a configuration parameter change in a custom plugin's schema.
 
 Based on the steps defined above and your specific use case, you have to take one of 
 the following paths:
-* Short: Follow steps 1 → 2 → 4 → 5, skipping step 3.
-* Long: Follow steps 1 → 2 → 3 → 4 → 5
+* Short path: Follow steps 1 → 2 → 4 → 5, skipping step 3.
+* Long path: Follow steps 1 → 2 → 3 → 4 → 5
 * CP/DP sync required: 1 → 2 → Optionally 3, if the updated parameter is in use → 4 → 5
 
 | | Required Default | Required Non-default | Non-required Default | Non-required Non-default |
@@ -94,7 +94,7 @@ the following paths:
 | Configuration parameter's data type changed | CP/DP sync required | CP/DP sync required | CP/DP sync required | CP/DP sync required |
 
 {:.note}
-> **Note:** If the path requires sync, that means the change doesn't break existing proxy functionality, 
+> **Note:** If the path requires a sync, that means the change doesn't disrupt existing proxy functionality, 
 but does cause temporary `Out of Sync` states until both the configured plugins and the data plane nodes are updated with 
 the new schemas.
 
