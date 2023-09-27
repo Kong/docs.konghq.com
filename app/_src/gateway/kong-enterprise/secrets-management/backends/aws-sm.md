@@ -5,22 +5,22 @@ badge: enterprise
 
 [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) can be configured in multiple ways.
 
-To access secrets stored in the AWS Secrets Manager, {{site.base_gateway}} needs to be configured with proper IAM Roles, with sufficient permissions(policies) to read secret value.
-{{site.base_gateway}} now supports automatically fetching IAM role credential based on your AWS environment, according to the following precedence order:
+To access secrets stored in the AWS Secrets Manager, {{site.base_gateway}} needs to be configured with an IAM Role that has sufficient permissions to read the required secret values.
+{{site.base_gateway}} can automatically fetch IAM role credentials based on your AWS environment, observing the following precedence order:
 - Fetch from credentials defined in environment variables `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
 - Fetch from profile and credential file, defined by `AWS_PROFILE` and `AWS_SHARED_CREDENTIALS_FILE`.
 - Fetch from ECS [container credential provider](https://docs.aws.amazon.com/sdkref/latest/guide/feature-container-credentials.html).
 - Fetch from EKS [IAM roles for service account](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
 - Fetch from EC2 IMDS metadata.(Both v1 and v2 are supported)
 
-{{site.base_gateway}} also supports role assuming which allows you to use a different IAM role to fetch secrets from AWS Secrets Manager, which is a common practice in permission division and governance, and also cross AWS account management.
+{{site.base_gateway}} also supports role assuming which allows you to use a different IAM role to fetch secrets from AWS Secrets Manager.  This is a common practice in permission division and governance and cross AWS account management.
 
 You can further customize the vault object by configuring a
 `vaults` entity in {{site.base_gateway}}.
 
 ## AWS Secrets Manager configuration
 
-To configure Vault backend with AWS Secrets Manager, you'll need to configure {{site.base_gateway}}'s runtime to have proper IAM roles.
+To configure the Vault backend with AWS Secrets Manager, you need to configure {{site.base_gateway}} to have the required IAM roles to access the relevant secrets.
 
 For example, to use the secrets management with AWS environment variable credentials, configure the following environment variables on your {{site.base_gateway}} data plane:
 
@@ -38,7 +38,7 @@ following environment variable on your control plane:
 export KONG_VAULT_AWS_REGION=<aws-region>
 ```
 
-Additionally, if you want to do role assuming, make sure you have the following environment variables on your {{site.base_gateway}} data plane:
+Additionally, if you want to use role assuming, make sure you have the following environment variables on your {{site.base_gateway}} data plane:
 
 ```bash
 export KONG_VAULT_AWS_ASSUME_ROLE_ARN=<aws_iam_role_arn>
@@ -158,8 +158,8 @@ Configuration options for an AWS Secrets Manager vault in {{site.base_gateway}}:
 Parameter | Field name                     | Description
 ----------|--------------------------------|------------
 `vaults.config.region` | **AWS region** | The AWS region your vault is located in.
-`vaults.config.endpoint_url` | **AWS Secrets Manager Endpoint URL** | The endpoint URL of AWS Secrets Manager service.If not specified, the value used by vault will be the official AWS SecretsManager service url which is `https://secretsmanager.<region>.amazonaws.com`. You can specify a complete URL(including the "http/https" scheme) to override the endpoint that vault will connect to.
-`vaults.config.assume_role_arn` | **Assume AWS IAM role ARN** | The target IAM role ARN that will be assumed to call AWS Secrets Manager service. If specified, Vault backend will do additional role assuming based on your current runtime's IAM Role. If you are not using assume role, you should not specify this value.
+`vaults.config.endpoint_url` | **AWS Secrets Manager Endpoint URL** | The endpoint URL of AWS Secrets Manager service. If not specified, the value used by vault will be the official AWS SecretsManager service url which is `https://secretsmanager.<region>.amazonaws.com`. You can specify a complete URL(including the "http/https" scheme) to override the endpoint that vault will connect to.
+`vaults.config.assume_role_arn` | **Assume AWS IAM role ARN** | The target IAM role ARN that will be assumed to call AWS Secrets Manager service. If specified, the Vault backend will do additional role assuming based on your current runtime's IAM Role. If you are not using assume role, do not specify this value.
 `vaults.config.role_session_name` | **Role Session Name** | The role session name used for role assuming. The default value is `KongVault`.
 `vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the vault when it's cached. The special value of 0 means "no rotation" and it's the default. When using non-zero values, it is recommended that they're at least 1 minute.
 `vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a vault miss (no secret). Negatively cached secrets will remain valid until `neg_ttl` is reached, after which Kong will attempt to refresh the secret again. The default value for `neg_ttl` is 0, meaning no negative caching occurs.
