@@ -12,7 +12,7 @@ Blue/Green upgrades can be accomplished when working with the `DataPlane` resour
     apiVersion: gateway-operator.konghq.com/v1beta1
     kind: DataPlane
     metadata:
-      name: bluegreen
+      name: dataplane-example
     spec:
       deployment:
         rollout:
@@ -42,19 +42,19 @@ Blue/Green upgrades can be accomplished when working with the `DataPlane` resour
 1. Wait for `DataPlane` to be ready to accept changes
 
     ```bash
-    kubectl wait dataplane bluegreen --for=jsonpath='{.status.rollout.conditions[*].reason}'=WaitingForChange
+    kubectl wait dataplane dataplane-example --for=jsonpath='{.status.rollout.conditions[*].reason}'=AwaitingPromotion
     ```
 
 1. Test it out by patching the `DataPlane` with a new `image`:
 
     ```bash
-    kubectl patch dataplane bluegreen --type='json' -p='[{"op": "replace", "path": "/spec/deployment/podTemplateSpec/spec/containers/0/image", "value":"kong:3.3.1"}]'
+    kubectl patch dataplane dataplane-example --type='json' -p='[{"op": "replace", "path": "/spec/deployment/podTemplateSpec/spec/containers/0/image", "value":"kong:3.3.1"}]'
     ```
 
     The output should look like this:
 
     ```bash
-    dataplane.gateway-operator.konghq.com/bluegreen patched
+    dataplane.gateway-operator.konghq.com/dataplane-example patched
     ```
 
     After this patch gets applied you'll be able to access the new {{ site.base_gateway }} `Pod`s via the "preview" ingress `Service`.
@@ -62,7 +62,7 @@ Blue/Green upgrades can be accomplished when working with the `DataPlane` resour
 1. To find the "preview" `Service` you can look up `DataPlane` status, and more specifically its `rollout` field:
 
     ```bash
-    kubectl get dataplane bluegreen -o jsonpath-as-json='{.status.rollout}
+    kubectl get dataplane dataplane-example -o jsonpath-as-json='{.status.rollout}'
     ```
 
     The output should look like this:
@@ -92,7 +92,7 @@ Blue/Green upgrades can be accomplished when working with the `DataPlane` resour
                             "value": "None"
                         }
                     ],
-                    "name": "dataplane-admin-bluegreen-cx6nq"
+                    "name": "dataplane-admin-dataplane-example-cx6nq"
                 },
                 "ingress": {
                     "addresses": [
@@ -107,7 +107,7 @@ Blue/Green upgrades can be accomplished when working with the `DataPlane` resour
                             "value": "10.96.28.2"
                         }
                     ],
-                    "name": "dataplane-ingress-bluegreen-2249g"
+                    "name": "dataplane-ingress-dataplane-example-2249g"
                 }
             }
         }
@@ -115,14 +115,14 @@ Blue/Green upgrades can be accomplished when working with the `DataPlane` resour
     ```
 
     Here you can see the ingress `Service` name that was created for you to validate the new set of `Pod`s.
-    Its name is stored in `status.rollout.service`.
-    For convenience its addresses (together with their `type`s and `sourceType`s) are stored `status.rollout.services[].ingress`.
+    
+    Its addresses (together with their `type`s and `sourceType`s) are stored `status.rollout.services[].ingress`.
 
-    Notice that `status.rollout.condtition` contains a condition with Type `RolledOut` and `Reason` set to `AwaitingPromotion`.
+    Notice that `status.rollout.conditions[]` contains a condition with Type `RolledOut` and `Reason` set to `AwaitingPromotion`.
     This means that everything is ready to promote the `DataPlane` with staged changes.
     Before we do so, let's test it.
 
-1. You can access the spawned "preview" `Service` by using its LB address (taken from the `status.rollout.services.ingress` field):
+1. You can access the spawned "preview" `Service` by using its LB address (taken from the `status.rollout.services[].ingress.addresses[].value` field):
 
     ```bash
     $ curl -s -D - -o /dev/null 172.18.0.101
@@ -142,7 +142,7 @@ Blue/Green upgrades can be accomplished when working with the `DataPlane` resour
     We can get its addresses with:
 
     ```bash
-    kubectl get dataplane bluegreen -o jsonpath-as-json='{.status.addresses}
+    kubectl get dataplane dataplane-example -o jsonpath-as-json='{.status.addresses}'
     ```
 
     The output should look like this:
@@ -181,7 +181,7 @@ Blue/Green upgrades can be accomplished when working with the `DataPlane` resour
 
 1. Now you can perform additional validation steps by inspecting the deployed resources.
 
-1. Once you've validated the newly created resources, run `kubectl annotate dataplanes.gateway-operator.konghq.com <dataplane_name> gateway-operator.konghq.com/promote-when-ready=true` to allow {{ site.kgo_product_name }} to switch the traffic to the new `Pod`s.
+1. Once you've validated the newly created resources, run `kubectl annotate dataplanes.gateway-operator.konghq.com dataplane-example gateway-operator.konghq.com/promote-when-ready=true` to allow {{ site.kgo_product_name }} to switch the traffic to the new `Pod`s.
 
    This annotation will automatically be cleared by {{ site.kgo_product_name }} once the new `Pod`s are promoted to be live.
 

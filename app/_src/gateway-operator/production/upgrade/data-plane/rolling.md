@@ -42,11 +42,11 @@ spec:
         spec:
           containers:
           - name: controller
-            image: kong/kubernetes-ingress-controller:{{ site.data.kong_latest_kic }}
+            image: kong/kubernetes-ingress-controller:{{ site.data.kong_latest_KIC.version }}
 ```
 
 The above configuration will deploy all `DataPlane` resources connected to the
-`GatewayConfiguration` (by way of `GatewayClass`) using `kong/kong:{{ site.data.kong_latest_gateway.ee-version }}` and any `ControlPlane` will be deployed with `kong/kubernetes-ingress-controller:{{ site.data.kong_latest_KIC.version }}`.
+`GatewayConfiguration` (by way of `GatewayClass`) using `kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}` and any `ControlPlane` will be deployed with `kong/kubernetes-ingress-controller:{{ site.data.kong_latest_KIC.version }}`.
 
 Given the above, a manual upgrade or downgrade can be performed simply by changing the version.
 For example: assuming that at least one `Gateway` is currently deployed and running using the above `GatewayConfiguration`, an upgrade could be performed by running the following:
