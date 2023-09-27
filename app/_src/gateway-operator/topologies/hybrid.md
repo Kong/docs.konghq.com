@@ -22,41 +22,48 @@ metadata:
   namespace: kong
 spec:
   deployment:
-    pods:
-      containerImage: kong/kong-gateway
-      version: "{{ site.data.kong_latest_gateway.ee-version }}"
-      volumes:
-        - name: konnect-client-tls
-          secret:
-            secretName: konnect-client-tls
-      volumeMounts:
-        - name: konnect-client-tls
-          mountPath: /etc/secrets/kong-cluster-cert/
-      env:
-        - name: KONG_ROLE
-          value: data_plane
-        - name: KONG_DATABASE
-          value: "off"
-        - name: KONG_CLUSTER_MTLS
-          value: pki
-        - name: KONG_CLUSTER_CONTROL_PLANE
-          value: YOUR_CP_ID.us.cp0.konghq.com:443
-        - name: KONG_CLUSTER_SERVER_NAME
-          value: YOUR_CP_ID.us.cp0.konghq.com
-        - name: KONG_CLUSTER_TELEMETRY_ENDPOINT
-          value: YOUR_CP_ID.us.tp0.konghq.com:443
-        - name: KONG_CLUSTER_TELEMETRY_SERVER_NAME
-          value: YOUR_CP_ID.us.tp0.konghq.com
-        - name: KONG_CLUSTER_CERT
-          value: /etc/secrets/kong-cluster-cert/tls.crt
-        - name: KONG_CLUSTER_CERT_KEY
-          value: /etc/secrets/kong-cluster-cert/tls.key
-        - name: KONG_LUA_SSL_TRUSTED_CERTIFICATE
-          value: system
-        - name: KONG_KONNECT_MODE
-          value: "on"
-        - name: KONG_VITALS
-          value: "off"
+    podTemplateSpec:
+      spec:
+        containers:
+        - name: proxy
+          image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
+          env:
+            - name: KONG_ROLE
+              value: data_plane
+            - name: KONG_DATABASE
+              value: "off"
+            - name: KONG_CLUSTER_MTLS
+              value: pki
+            - name: KONG_CLUSTER_CONTROL_PLANE
+              value: YOUR_CP_ID.us.cp0.konghq.com:443
+            - name: KONG_CLUSTER_SERVER_NAME
+              value: YOUR_CP_ID.us.cp0.konghq.com
+            - name: KONG_CLUSTER_TELEMETRY_ENDPOINT
+              value: YOUR_CP_ID.us.tp0.konghq.com:443
+            - name: KONG_CLUSTER_TELEMETRY_SERVER_NAME
+              value: YOUR_CP_ID.us.tp0.konghq.com
+            - name: KONG_CLUSTER_CERT
+              value: /etc/secrets/kong-cluster-cert/tls.crt
+            - name: KONG_CLUSTER_CERT_KEY
+              value: /etc/secrets/kong-cluster-cert/tls.key
+            - name: KONG_LUA_SSL_TRUSTED_CERTIFICATE
+              value: system
+            - name: KONG_KONNECT_MODE
+              value: "on"
+            - name: KONG_VITALS
+              value: "off"
+          volumeMounts:
+            - name: cluster-certificate
+              mountPath: /var/cluster-certificate
+            - name: kong-cluster-cert
+              mountPath: /etc/secrets/kong-cluster-cert/
+              readOnly: true
+        volumes:
+          - name: cluster-certificate
+          - name: kong-cluster-cert
+            secret:
+              secretName: kong-cluster-cert
+              defaultMode: 420
 " | kubectl apply -f -
 ```
 {% endnavtab %}
@@ -77,32 +84,38 @@ metadata:
   namespace: kong
 spec:
   deployment:
-    pods:
-      containerImage: kong/kong-gateway
-      version: "3.4"
-      volumes:
-        - name: kong-cluster-cert
-          secret:
-            secretName: kong-cluster-cert
-      volumeMounts:
-        - name: kong-cluster-cert
-          mountPath: /etc/secrets/kong-cluster-cert/
-      env:
-        - name: KONG_ROLE
-          value: data_plane
-        - name: KONG_DATABASE
-          value: "off"
-        - name: KONG_CLUSTER_CERT
-          value: /etc/secrets/kong-cluster-cert/tls.crt
-        - name: KONG_CLUSTER_CERT_KEY
-          value: /etc/secrets/kong-cluster-cert/tls.key
-        - name: KONG_LUA_SSL_TRUSTED_CERTIFICATE
-          value: system
-        - name: KONG_CLUSTER_CONTROL_PLANE
-          value: control-plane-release-name-kong-cluster.hybrid.svc.cluster.local:8005
-        - name: KONG_CLUSTER_TELEMETRY_ENDPOINT
-          value: control-plane-release-name-kong-clustertelemetry.hybrid.svc.cluster.local:8006
-" | kubectl apply -f -
+    podTemplateSpec:
+      spec:
+        containers:
+        - name: proxy
+          image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
+          env:
+          - name: KONG_ROLE
+            value: data_plane
+          - name: KONG_DATABASE
+            value: "off"
+          - name: KONG_CLUSTER_CERT
+            value: /etc/secrets/kong-cluster-cert/tls.crt
+          - name: KONG_CLUSTER_CERT_KEY
+            value: /etc/secrets/kong-cluster-cert/tls.key
+          - name: KONG_LUA_SSL_TRUSTED_CERTIFICATE
+            value: system
+          - name: KONG_CLUSTER_CONTROL_PLANE
+            value: control-plane-release-name-kong-cluster.hybrid.svc.cluster.local:8005
+          - name: KONG_CLUSTER_TELEMETRY_ENDPOINT
+            value: control-plane-release-name-kong-clustertelemetry.hybrid.svc.cluster.local:8006
+          volumeMounts:
+            - name: cluster-certificate
+              mountPath: /var/cluster-certificate
+            - name: kong-cluster-cert
+              mountPath: /etc/secrets/kong-cluster-cert/
+              readOnly: true
+        volumes:
+          - name: cluster-certificate
+          - name: kong-cluster-cert
+            secret:
+              secretName: kong-cluster-cert
+              defaultMode: 420
 ```
 {% endnavtab %}
 {% endnavtabs %}
