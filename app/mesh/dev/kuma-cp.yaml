@@ -62,6 +62,14 @@ store:
     # MaxReconnectInterval (applied only when driverName=postgres) controls the maximum possible duration to wait before trying
     # to re-establish the database connection after connection loss.
     maxReconnectInterval: "60s" # ENV: KUMA_STORE_POSTGRES_MAX_RECONNECT_INTERVAL
+    # ReadReplica is a setting for a DB replica used only for read queries
+    readReplica:
+      # Host of the Postgres DB read replica. If not set, read replica is not used.
+      host: "" # ENV: KUMA_STORE_POSTGRES_READ_REPLICA_HOST
+      # Port of the Postgres DB read replica
+      port: 5432 # ENV: KUMA_STORE_POSTGRES_READ_REPLICA_PORT
+      # Ratio in [0-100] range. How many SELECT queries (out of 100) will use read replica.
+      ratio: 100 # ENV: KUMA_STORE_POSTGRES_READ_REPLICA_RATIO
   # Cache for read only operations. This cache is local to the instance of the control plane.
   cache:
     # If true then cache is enabled
@@ -394,6 +402,8 @@ metrics:
     fullResyncInterval: 20s # ENV: KUMA_METRICS_MESH_FULL_RESYNC_INTERVAL
     # the size of the buffer between event creation and processing
     bufferSize: 1000 # ENV: KUMA_METRICS_MESH_BUFFER_SIZE
+    # the number of workers that process metrics events
+    eventProcessors: 1 # ENV: KUMA_METRICS_MESH_EVENT_PROCESSORS
   controlPlane:
     # If true metrics show number of resources in the system should be reported
     reportResourcesCount: true # ENV: KUMA_METRICS_CONTROL_PLANE_REPORT_RESOURCES_COUNT
@@ -694,6 +704,8 @@ experimental:
     flushInterval: 5s # ENV: KUMA_EXPERIMENTAL_KDS_EVENT_BASED_WATCHDOG_FLUSH_INTERVAL
     # How often we schedule full KDS resync when experimental event based watchdog is used.
     fullResyncInterval: 60s # ENV: KUMA_EXPERIMENTAL_KDS_EVENT_BASED_WATCHDOG_FULL_RESYNC_INTERVAL
+    # If true, then initial full resync is going to be delayed by 0 to FullResyncInterval.
+    delayFullResync: false # ENV: KUMA_EXPERIMENTAL_KDS_EVENT_BASED_WATCHDOG_DELAY_FULL_RESYNC
 proxy:
   gateway:
     # Sets the envoy runtime value to limit maximum number of incoming

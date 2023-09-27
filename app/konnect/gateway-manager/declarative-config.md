@@ -262,7 +262,7 @@ No API key found in request.
 ```
 
 ## Migrate configuration between control planes
-{:.badge .enterprise}
+
 
 You can also use decK to migrate or duplicate configuration between control planes.
 

@@ -37,6 +37,15 @@ The following predefined roles are available in {{site.konnect_short_name}}:
 | Upstream Admin | Access to configure upstreams for an existing control plane group. |
 | Vault Admin | Access to configure vaults for an existing control plane group. |
 
+## Mesh control planes 
+
+| Role                        | Description  |
+|-----------------------------|--------------|
+| Admin | Owner of an existing mesh control plane. The owners have all write access related to a control plane and its configuration. |
+| Connector | Access to connect a zone to the mesh control plane in {{site.konnect_short_name}}.|
+| Creator | Access to create a new mesh control plane in Mesh Manager. The creator becomes the owner of the control plane they create, gaining admin access to the new control plane. <br><br>This role does not grant access to _existing_ control planes or their configurations. See the mesh control plane `Admin` role. |
+| Viewer | Read-only access to all the configurations of a {{site.konnect_short_name}} mesh control plane, including zones, Zone Ingress and Egress, meshes, and RBAC. |
+
 ## Administration
 
 | Role                        | Description  |

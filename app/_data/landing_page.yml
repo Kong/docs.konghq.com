@@ -47,13 +47,13 @@ features:
             icon: /assets/images/icons/icn-doc.svg
             url: /konnect/api-products/
 
-#       - name: Mesh Manager
-#         description: TBD
-#         icon: /assets/images/landing-page/card-icons/insomnia.svg
-#         links:
-#           - text: Overview
-#             icon: /assets/images/icons/icn-doc.svg
-#             url: /mesh/latest/
+      - name: Mesh Manager
+        description: Create global control planes to manage your Kong Mesh service meshes.
+        icon: /assets/images/landing-page/card-icons/mesh-manager.svg
+        links:
+          - text: Overview
+            icon: /assets/images/icons/icn-doc.svg
+            url: /konnect/mesh-manager/
 
   - title: Extensions & Tools
     items:
