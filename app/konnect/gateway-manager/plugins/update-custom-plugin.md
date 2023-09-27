@@ -13,6 +13,9 @@ schema won't cause the control plane to go out of sync with the data planes.
 
 * **Changes to plugin schema:** If there are changes required in the plugin schema, you must update both the schema in {{site.konnect_short_name}} and the plugin code itself on each data plane node.
 
+* **Deleting a plugin and its schema**: If you need to completely remove the plugin from your
+control plane, you must remove all existing plugin configurations of this entity, then remove the schema from the control plane and all plugin files from the data plane nodes.
+
 There is no built-in versioning for custom plugins. 
 If you need to version a schema (that is, maintain two or more similar copies of a custom plugin), upload it as a new custom plugin and add a version identifier to the name.
 For example, if your original plugin is named `delay`, you can name the new version `delay-v2`.
@@ -83,7 +86,9 @@ the new schemas.
 When new fields are introduced in a schema without default values and aren't marked as required, a payload update won't disrupt data plane payload validation. 
 This means that even if new plugins are added or existing ones are updated, the data plane will stay in sync because null fields are gracefully handled and ignored.
 
-Here's an example of a non-breaking change to a schema:
+Here's an example of a non-breaking change to a schema. This snippet adds a non-required 
+`new_ttl` configuration parameter without a default value, and a response 
+header that references an existing `typedef`:
 
 ```lua
 { 
@@ -93,11 +98,11 @@ Here's an example of a non-breaking change to a schema:
     }
 },
 { 
-    new_response_header = typedefs.header_name 
+    new_response_header = typedefs.header_name
 },
 ```
 
-Similar to adding fields, when not-required fields are deleted, it doesn't break the data plane -- even when a plugin is created or updated.
+Similar to adding fields, when not-required fields are deleted, it doesn't break the data plane - even when a plugin is created or updated.
 The data plane will only raise an error when a required field is removed and a payload update is triggered:
 
 ```sh
@@ -107,8 +112,7 @@ The data plane will only raise an error when a required field is removed and a p
       in 'ttl': required field missing, context: ngx.timer
 ```
 
-
-## Make changes to custom plugin schemas
+## Make changes to custom plugin schemas in {{site.konnect_short_name}}
 
 To make any changes to a custom plugin schema, you need to access the **Add Plugin** page in 
 Gateway Manager, or use the API:
@@ -119,10 +123,12 @@ Gateway Manager, or use the API:
 1. From the **Gateway Manager**, open a control plane.
 1. Open **Plugins** from the side navigation, then click **Add Plugin**.
 1. Open the **Custom Plugins** tab.
-1. On the tile for your custom plugin click the action menu in the top right corner of the tile, then select **Edit** or **Delete**. Make your changes and save.
+1. On the tile for your custom plugin click the action menu in the top right corner of the tile, then select **Edit**. Make your changes and save.
 
 {% endnavtab %}
 {% navtab Konnect API %}
+
+To update a schema:
 
 ```sh
 curl -i -X PUT \
@@ -131,6 +137,111 @@ curl -i -X PUT \
 ```
 {% endnavtab %}
 {% endnavtabs %}
+
+Then, upload the updated schema file to each data plane node.
+
+## Delete custom plugin schemas from {{site.konnect_short_name}}
+
+To delete a custom plugin schema, you must delete all of its existing configuration entities first:
+
+{% navtabs %}
+{% navtab Konnect UI %}
+
+1. From the **Gateway Manager**, open a control plane.
+1. Open **Plugins** from the side navigation.
+1. Find any instances of the custom plugin that you want to delete, click on its action menu, then select **Delete**.
+1. Click **Add Plugin** from the **Plugins** page.
+1. Open the **Custom Plugins** tab.
+1. On the tile for your custom plugin click the action menu in the top right corner of the tile, then select **Delete**.
+
+{% endnavtab %}
+{% navtab Konnect API %}
+
+Find any existing plugin configs:
+
+```sh
+curl -i -X GET \
+  https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/plugins/
+```
+
+You will get an `HTTP 200` response listing all of your plugins:
+
+```json
+...
+{
+			"config": {
+				"request_header": "Hello",
+				"response_header": "Bye",
+				"ttl": 600
+			},
+			"created_at": 1695837042,
+			"enabled": true,
+			"id": "1227e7d6-f615-4928-a7c4-dcaadff4b95b",
+			"name": "example-plugin",
+			"protocols": [
+				"grpc",
+				"grpcs",
+				"http",
+				"https"
+			],
+			"updated_at": 1695837042
+		},
+    {
+			"config": {
+				"anonymous": null,
+				"hide_credentials": true
+			},
+			"created_at": 1692806129,
+			"enabled": true,
+			"id": "266409a3-3dbe-4d72-b1dd-2d0cf85c60db",
+			"name": "basic-auth",
+			"protocols": [
+				"grpc",
+				"grpcs",
+				"http",
+				"https",
+				"ws",
+				"wss"
+			],
+			"route": {
+				"id": "449fea21-ed2c-4010-9ea1-1c07d068f078"
+			},
+			"updated_at": 1692806129
+		},
+  ...
+```
+
+Find any instances of the plugin that you're removing, copy their IDs, then delete them:
+
+```sh
+curl -i -X DELETE \
+  https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/plugins/{pluginID}
+```
+
+You will get an `HTTP 204` response for each successfully deleted plugin.
+
+Once all instances of the plugin are deleted from the control plane, you can delete its schema:
+
+```sh
+curl -i -X DELETE \
+  https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/plugin-schemas/{customPluginName}
+```
+
+If successful, you should see an `HTTP 204` response.
+
+If the plugin is still in use in your control plane, you will see the following response instead:
+
+```
+{
+	"code": 3,
+	"message": "plugin schema is currently in use, please delete existing plugins using the schema and try again"
+}
+```
+
+{% endnavtab %}
+{% endnavtabs %}
+
+Finally, delete the plugin from each data plane node by going into each node's filesystem and removing the plugin's files.
 
 ## More information
 
