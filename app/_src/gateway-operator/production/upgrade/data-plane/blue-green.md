@@ -48,7 +48,12 @@ Blue/Green upgrades can be accomplished when working with the `DataPlane` resour
 1. Test it out by patching the `DataPlane` with a new `image`:
 
     ```bash
-    $ kubectl patch dataplane bluegreen --type='json' -p='[{"op": "replace", "path": "/spec/deployment/podTemplateSpec/spec/containers/0/image", "value":"kong:3.3.1"}]'
+    kubectl patch dataplane bluegreen --type='json' -p='[{"op": "replace", "path": "/spec/deployment/podTemplateSpec/spec/containers/0/image", "value":"kong:3.3.1"}]'
+    ```
+
+    The output should look like this:
+
+    ```bash
     dataplane.gateway-operator.konghq.com/bluegreen patched
     ```
 
@@ -57,7 +62,12 @@ Blue/Green upgrades can be accomplished when working with the `DataPlane` resour
 1. To find the "preview" `Service` you can look up `DataPlane` status, and more specifically its `rollout` field:
 
     ```bash
-    $ kubectl get dataplane bluegreen -o jsonpath-as-json='{.status.rollout}
+    kubectl get dataplane bluegreen -o jsonpath-as-json='{.status.rollout}
+    ```
+
+    The output should look like this:
+
+    ```json
     [
         {
             "conditions": [
@@ -132,7 +142,12 @@ Blue/Green upgrades can be accomplished when working with the `DataPlane` resour
     We can get its addresses with:
 
     ```bash
-    $ kubectl get dataplane bluegreen -o jsonpath-as-json='{.status.addreses}
+    kubectl get dataplane bluegreen -o jsonpath-as-json='{.status.addresses}
+    ```
+
+    The output should look like this:
+
+    ```bash
     [
       [
         {
@@ -149,7 +164,7 @@ Blue/Green upgrades can be accomplished when working with the `DataPlane` resour
     ]
     ```
 
-    and issue a request:
+    Knowing the LoadBalancer IP address is `172.18.0.100`, you can issue a request:
 
     ```bash
     $ curl -s -D - -o /dev/null 172.18.0.100
@@ -159,7 +174,7 @@ Blue/Green upgrades can be accomplished when working with the `DataPlane` resour
     Connection: keep-alive
     Content-Length: 52
     X-Kong-Response-Latency: 0
-    Server: kong/{{ site.data.kong_latest_gateway.ee-version }}
+    Server: kong/{{ site.data.kong_latest_gateway.ce-version }}
     ```
 
     As you can see the live `Service` is still serving traffic using `{{ site.data.kong_latest_gateway.ce-version }}`
