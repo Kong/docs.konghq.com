@@ -61,6 +61,7 @@ Netcat
 Netlify
 Nginx
 Nginx's
+Node.js
 OAuth
 Okta
 Okta's
@@ -332,6 +333,8 @@ stdin
 stdout
 subcommand
 subcommands
+subcomponent
+subcomponents
 submodule
 submodule's
 subnet

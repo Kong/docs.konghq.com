@@ -123,6 +123,11 @@ defaults:
       no_version: true
 
   - scope:
+      path: "gateway-operator"
+    values:
+      layout: "docs-v2"
+
+  - scope:
       path: "gateway"
     values:
       layout: "docs-v2"
@@ -168,9 +173,11 @@ hub-filters:
   tiers:
     - name: Free
       slug: free
-    - name: Plus
-      slug: plus
-    - name: Enterprise
+    - name: Konnect Paid
+      slug: paid
+    - name: Konnect Premium
+      slug: premium
+    - name: Kong Gateway Enterprise
       slug: enterprise
   support:
     - name: Kong
@@ -188,6 +195,7 @@ hub-filters:
 ee_product_name: Kong Enterprise
 ce_product_name: Kong Gateway (OSS)
 base_gateway: Kong Gateway
+kgo_product_name: Kong Gateway Operator
 kic_product_name: Kong Ingress Controller
 konnect_product_name: Kong Konnect
 konnect_short_name: Konnect

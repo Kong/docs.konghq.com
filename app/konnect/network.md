@@ -31,6 +31,7 @@ For Kubernetes or Docker deployments, map ports as needed. For example, if you
 want to use port `3001` for the proxy, map `3001:8000`.
 
 ## Hostnames
+### Control planes
 
 Depending on your control plane type, you may need to add hostnames to your firewall allowlist.
 
@@ -69,7 +70,7 @@ You can find the configuration and telemetry hostnames through the Gateway Manag
 
 {% navtab Kong Ingress Controller %}
 
-{{site.kic_product_name}} initiates the connection to the {{site.konnect_short_name}} [Control Planes Configuration API](/konnect/api/runtime-groups-config/) to:
+{{site.kic_product_name}} initiates the connection to the {{site.konnect_short_name}} [Control Planes Configuration API](/konnect/api/control-plane-configuration/latest/) to:
 
 * Synchronize the configuration of the {{site.base_gateway}} instances with {{site.konnect_short_name}}
 * Register data plane nodes
@@ -97,4 +98,8 @@ You can find the Telemetry hostname through the Gateway Manager:
 {% endnavtabs %}
 
 {:.note}
-> **Note**: Visit [https://ip-addresses.origin.konghq.com/ip-addresses.json](https://ip-addresses.origin.konghq.com/ip-addresses.json) for the list of IPs associated to regional hostnames. You can also subscribe to [https://ip-addresses.origin.konghq.com/rss](https://ip-addresses.origin.konghq.com/rss) for updates.  
+> **Note**: Visit [https://ip-addresses.origin.konghq.com/ip-addresses.json](https://ip-addresses.origin.konghq.com/ip-addresses.json) for the list of IPs associated to regional hostnames. You can also subscribe to [https://ip-addresses.origin.konghq.com/rss](https://ip-addresses.origin.konghq.com/rss) for updates. 
+
+### Mesh Manager
+
+If you plan to use [Mesh Manager](/konnect/mesh-manager/) to manage your Kong service mesh, you must add the `{region}.mesh.sync.konghq.com:443` hostname to your firewall allowlist. The region can be `us`, `eu`, or `global`.
