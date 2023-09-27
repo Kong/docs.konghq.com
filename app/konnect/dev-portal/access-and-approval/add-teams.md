@@ -1,22 +1,22 @@
 ---
-title: Mapping IdP Developer Teams to Konnect Dev Portal
+title: Add Developer Teams from Identity Providers
 content_type: how-to
 ---
 
-A common scenario in Konnect Dev Portal is the ability to import existing developer Teams from your IDP, and mapping their permissions in Konnect.
+A common scenario for a Dev Portal the ability to import existing developer teams from a third-party identity providers (IdP), and map their permissions to elements in {{site.konnect_short_name}}. 
 
-In this guide, we'll show you how to enable OIDC Team Mapping with Okta. Note: You can use this functionality on any IDP.
+In this guide, we'll show you how to enable OIDC Team Mapping with Okta. This functionality works with any IdP that conforms to OIDC standards, including Auth0 and Azure AD. 
 
 ## Prerequisites
-* An IDP configured in Konnect (OIDC or DCR) for [application registration](konnect/dev-portal/applications/enable-app-reg/)
-* A team created in your IDP
-* SSO enabled on your Dev Portal (ensure the login URI is properly set to your Konnect Dev Portal)
+* An IdP configured in Konnect (OIDC or DCR) for [application registration](konnect/dev-portal/applications/enable-app-reg/)
+* A team created in your IdP
+* SSO enabled on your Dev Portal, ensuring the login URI is properly set to your Dev Portal.
 
 Note: In order to use OIDC Team Mappings, you must enable RBAC to have the ability to create Teams (you can disable RBAC afterwards if you don't want to use it).
 
 ## Map developer teams 
 
-In this scenario, you want to map the permissions (scopes, claims, etc) from your group of developers in Okta, to your organization's team in Konnect.
+In this scenario, you want to map the permissions, including scopes and claims from your group of developers in Okta to your organization's team in {{site.konnect_short_name}}.
 
 In Okta:
 
