@@ -54,7 +54,7 @@ Upload a custom plugin schema to create a configurable entity in {{site.konnect_
 {% endnavtab %}
 {% navtab Konnect API %}
 
-Upload the `schema.lua` file for your plugin using the `/plugin-schemas` endpoint:
+Upload the `schema.lua` file for your plugin using the [`/plugin-schemas`](/konnect/api/control-plane-configuration/latest/#/Custom%20Plugin%20Schemas/) endpoint:
 
 ```sh
 curl -i -X POST \

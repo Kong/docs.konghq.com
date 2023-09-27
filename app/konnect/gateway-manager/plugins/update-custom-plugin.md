@@ -150,7 +150,7 @@ then select **Edit**. Make your changes and save.
 {% endnavtab %}
 {% navtab Konnect API %}
 
-To update a schema:
+To update a schema, use a `PUT` request with the [`/plugin-schemas`](/konnect/api/control-plane-configuration/latest/#/Custom%20Plugin%20Schemas/) endpoint:
 
 ```sh
 curl -i -X PUT \
@@ -242,7 +242,8 @@ To delete a custom plugin schema, you must delete all of its existing configurat
 
     You will get an `HTTP 204` response for each successfully deleted plugin.
 
-3. Once all instances of the plugin are deleted from the control plane, you can delete its schema:
+3. Once all instances of the plugin are deleted from the control plane, you can delete its schema 
+using the [`/plugin-schemas`](/konnect/api/control-plane-configuration/latest/#/Custom%20Plugin%20Schemas/) endpoint:
 
     ```sh
     curl -i -X DELETE \
