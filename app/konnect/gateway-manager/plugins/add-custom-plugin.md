@@ -4,7 +4,7 @@ content_type: how-to
 ---
 
 You can manage custom plugins via the {{site.konnect_short_name}} UI or 
-the {{site.konnect_short_name}} Custom Plugins API.
+the {{site.konnect_short_name}} Control Planes Config API.
 
 If you need to update a schema for a plugin that has already been uploaded
 to {{site.konnect_short_name}}, there are a few considerations based on the type 
@@ -67,7 +67,7 @@ curl -i -X POST \
   --data lua_schema=@example-schema.lua
 ```
 
-This example specifies a file, but you can also include the entire schema in the request as JSON.
+This example specifies a file, but you can also include the entire schema in the request as JSON data.
 
 You should get an HTTP 201 response. You can check that your schema was uploaded using the following request:
 
@@ -129,7 +129,7 @@ To mount and enable this custom plugin on a data plane node:
 
 1. In your control plane, go to **Data Plane Nodes**, then click **New Data Plane Node**.
 1. Choose **Linux (Docker)** and **Generate a certificate**.
-1. Copy the generated `docker run` command and add the following snippet it:
+1. Copy the generated `docker run` command and add the following snippet to it:
 
     ```sh
     -v "/tmp/plugins/kong:/tmp/custom_plugins/kong" \

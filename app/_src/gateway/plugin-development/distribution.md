@@ -127,7 +127,7 @@ as the `nobody` user.
 When building a custom image, to copy files into the {{site.base_gateway}} image, 
 you must temporarily set the user to `root`.
 
-Here is an example Dockerfile that shows how to mount your plugin in 
+Here's an example Dockerfile that shows how to mount your plugin in 
 the {{site.base_gateway}} image:
 
 ```dockerfile

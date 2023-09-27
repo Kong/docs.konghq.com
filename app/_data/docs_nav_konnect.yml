@@ -87,11 +87,9 @@
               url: /gateway-manager/plugins/add-custom-plugin/
             - text: Updating Custom Plugins
               url: /gateway-manager/plugins/update-custom-plugin/
-            - text: Developing Custom Plugins
+            - text: How to Create Custom Plugins
               url: ../../gateway/latest/plugin-development/
               generate: false
-            # - text: Troubleshooting Custom Plugins in Konnect
-            #   url: /gateway-manager/plugins/troubleshoot-custom-plugins/
         - text: Create Consumer Groups
           url: ../../hub/kong-inc/rate-limiting-advanced/how-to
         - text: Secrets Management

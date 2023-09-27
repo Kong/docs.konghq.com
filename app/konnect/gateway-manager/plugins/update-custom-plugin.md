@@ -5,19 +5,17 @@ content_type: how-to
 
 The workflow for updating an in-use custom plugin depends on whether you need to update the schema:
 
-* **No change to plugin schema:** Editing a custom plugin's logic **without** any change in 
-schema doesn't cause the control plane to go out of sync with the data planes. 
+* **No change to plugin schema:** Editing a custom plugin's logic **without** altering its
+schema won't cause the control plane to go out of sync with the data planes. 
 
   In this situation, you only need to make sure that each data plane node has the correct logic. 
   The schema on the control plane doesn't need to be updated.
 
-* **Changes to plugin schema:** If the schema needs to change, you must update both the schema in 
-{{site.konnect_short_name}} and the plugin code itself on each data plane node.
+* **Changes to plugin schema:** If there are changes required in the plugin schema, you must update both the schema in {{site.konnect_short_name}} and the plugin code itself on each data plane node.
 
-There is no versioning for custom plugins. 
-If you need to version a schema (that is, maintain two or more similar copies of a custom plugin), upload it as a new custom plugin with a unique name. 
-For example, if your original plugin is named `delay`, you would have to name the copy 
-something else, such as `delay-v2`.
+There is no built-in versioning for custom plugins. 
+If you need to version a schema (that is, maintain two or more similar copies of a custom plugin), upload it as a new custom plugin and add a version identifier to the name.
+For example, if your original plugin is named `delay`, you can name the new version `delay-v2`.
 
 ## Updating a custom plugin
 
@@ -43,15 +41,15 @@ When you need to make plugin changes, we recommend updating the schema in
 {{site.konnect_short_name}} first, and then on the data plane nodes:
 
 1. Start a migration window.
-1. Update plugin schema in {{site.konnect_short_name}}.  
-1. (Optional) Update configuration for existing plugin instances.
+1. Update the plugin schema in {{site.konnect_short_name}}.  
+1. (Optional) Update the configuration for existing plugin instances.
 
     Based on the nature of the schema updates, you might need this optional step 
     after updating the schema in {{site.konnect_short_name}} to make sure that any
     existing plugin entities are updated before the schemas are 
     changed in the data plane nodes.
 
-1. Update plugin schema on each data plane node.
+1. Update the plugin schema on each data plane node.
 1. Stop the migration window.
 
 {:.important}
@@ -82,7 +80,8 @@ the new schemas.
 
 #### Adding or deleting fields
 
-If new fields in a schema don't have default values and aren't required, a payload update won't break data plane payload validation. This means that even if new plugins are added or existing ones are updated, the data plane remains in sync because null fields are ignored.
+When new fields are introduced in a schema without default values and aren't marked as required, a payload update won't disrupt data plane payload validation. 
+This means that even if new plugins are added or existing ones are updated, the data plane will stay in sync because null fields are gracefully handled and ignored.
 
 Here's an example of a non-breaking change to a schema:
 

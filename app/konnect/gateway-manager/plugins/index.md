@@ -41,24 +41,24 @@ only sees a custom plugin's configuration options, and does not see any other da
 
 To run in {{site.konnect_short_name}}, every custom plugin must meet the following requirements:
 
-* Admin API extensions must not contain an `api.lua` file.
-* Custom plugin database tables must not contain a `dao.lua` file.
-* The plugin must not have a `migration.lua` file.
-* The schema for your custom plugin must be written in Lua. 
-* Custom validation functions must be written in Lua and be self-contained within the schema.
-* The `schema.lua` file must not contain any `require()` statements.
-* Plugins that require third-party libraries must reference them in the `handler.lua` file.
-* Each custom plugin must have a unique name.
 
-All plugin files must also be deployed to **each** {{site.base_gateway}} data plane node.
+* **General requirements:**
+    * Each custom plugin must have a unique name.
+    * All plugin files must also be deployed to **each** {{site.base_gateway}} data plane node.
+* **File structure requirements:**
+    * Admin API extensions must not contain an `api.lua` file.
+    * Custom plugin database tables must not contain a `dao.lua` file.
+    * The plugin must not have a `migration.lua` file.
+* **Code and language requirements:** 
+    * The schema for your custom plugin must be written in Lua.
+    * Custom validation functions must be written in Lua and be self-contained within the schema.
+    * The `schema.lua` file must not contain any `require()` statements.
+    * Plugins that require third-party libraries must reference them in the `handler.lua` file.
+
+
 
 ![Custom plugins](/assets/images/docs/konnect/konnect-custom-plugins.png){:.image-border}
 
-{:.important}
-> **Caution**: Carefully test the operation of any custom plugins before deploying
-them to production. Kong is not responsible for the operation or support of any 
-custom plugins, including any performance impacts on your {{site.konnect_short_name}}
-or {{site.base_gateway}} deployments. 
 
 ### Application registration
 
@@ -75,7 +75,7 @@ have configuration requirements specific to {{site.konnect_short_name}}.
 
 * Rate limiting plugins default to the `redis` strategy, for which you must
 provide your own Redis server. You can also use `local` to apply rate limiting
-per individual data plane.
+per individual data plane node.
 
 * The following plugins are not available with {{site.konnect_saas}}:
   * OAuth2 Authentication
