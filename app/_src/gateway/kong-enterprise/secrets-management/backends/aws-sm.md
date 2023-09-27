@@ -45,7 +45,7 @@ export KONG_VAULT_AWS_ASSUME_ROLE_ARN=<aws_iam_role_arn>
 export KONG_VAULT_AWS_ROLE_SESSION_NAME=<aws_assume_role_session_name>
 ```
 
-The vault backend configuration field can also be configured in the `kong.conf` file. See [Gateway Enterprise configuration reference](https://docs.konghq.com/gateway/latest/reference/configuration).
+The vault backend configuration field can also be configured in the `kong.conf` file. See [Gateway Enterprise configuration reference]({{ site.links.web }}/gateway/latest/reference/configuration).
 
 ### Examples
 
@@ -163,7 +163,7 @@ Parameter | Field name                     | Description
 `vaults.config.role_session_name` | **Role Session Name** | The role session name used for role assuming. The default value is `KongVault`.
 `vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the vault when it's cached. The special value of 0 means "no rotation" and it's the default. When using non-zero values, it is recommended that they're at least 1 minute.
 `vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a vault miss (no secret). Negatively cached secrets will remain valid until `neg_ttl` is reached, after which Kong will attempt to refresh the secret again. The default value for `neg_ttl` is 0, meaning no negative caching occurs.
-`vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for how long secrets will remain in use after they are expired (`config.ttl` is over). This is useful when a vault becomes unreachable, or when a secret is deleted from the Vault and isn't replaced immediately. On this both cases, the Gateway will keep trying to refresh the secret for `resurrect_ttl` seconds. After that, it will stop trying to refresh. We recommend assigning a sufficiently high value to this configuration option to ensure a seamless transition in case there are unexpected issues with the Vault. The default value for `resurrect_ttl` is 1e8 seconds, which is about 3 years.
+`vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for how long secrets will remain in use after they are expired (`config.ttl` is over). This is useful when a vault becomes unreachable, or when a secret is deleted from the Vault and isn't replaced immediately. On this both cases, the Gateway will keep trying to refresh the secret for `resurrect_ttl` seconds. After that, it will stop trying to refresh. Assigning a sufficiently high value to this configuration option is recommended to ensure a seamless transition in case there are unexpected issues with the Vault. The default value for `resurrect_ttl` is 1e8 seconds, which is about 3 years.
 
 Common options:
 
