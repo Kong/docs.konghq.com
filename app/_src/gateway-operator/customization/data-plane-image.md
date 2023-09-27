@@ -55,10 +55,10 @@ You can customize both the container image and version.
             spec:
               containers:
               - name: controller
-                image: kong/kubernetes-ingress-controller:{{ site.data.kong_latest_KIC }}
+                image: kong/kubernetes-ingress-controller:{{ site.data.kong_latest_KIC.version }}
     ```
 
-1.  Reference this configuration in the`GatewayClass` resource for the deployment.
+1.  Reference this configuration in the `GatewayClass` resource for the deployment.
 
     ```yaml
     kind: GatewayClass
