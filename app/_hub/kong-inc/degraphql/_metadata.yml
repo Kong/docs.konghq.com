@@ -4,6 +4,7 @@ dbless_compatible: 'yes'
 free: false
 plus: false
 enterprise: true
+premium: true
 konnect: true
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: --

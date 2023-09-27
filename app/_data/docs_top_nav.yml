@@ -13,12 +13,12 @@
 - name: Kong Ingress Controller
   desc: Works inside a Kubernetes cluster and configures Kong to proxy traffic
   url: /kubernetes-ingress-controller/latest/
+- name: Kong Gateway Operator
+  desc: Manage your Kong deployments on Kubernetes using YAML Manifests
+  url: /gateway-operator/latest/
 - name: Insomnia
   desc: Collaborative API development platform
   url: https://docs.insomnia.rest/
 - name: Kuma
   desc: Open-source distributed control plane with a bundled Envoy Proxy integration
   url: https://kuma.io/docs/
-- name: Docs Contribution Guidelines
-  desc: Want to help out, or found an issue in the docs and want to let us know?
-  url: /contributing/

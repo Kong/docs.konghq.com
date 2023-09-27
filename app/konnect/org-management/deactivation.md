@@ -10,7 +10,7 @@ Your organization is considered inactive when:
 * There are no API requests in either the current or the previous billing cycle
 (30 day increments).
 
-Organizations in Plus or Enterprise tiers are exempt, will never deactivate automatically. To close a Plus or Enterprise account, you can
+To close a Plus or Enterprise account, you can
 request deactivation from [Kong Support](https://support.konghq.com/).
 
 ## What happens if an organization is deactivated?
@@ -21,7 +21,9 @@ organization, either through the {{site.konnect_short_name}} UI or the API, then
 * All billing stops immediately, and all {{site.konnect_saas}} subscriptions
 are removed.
 
-* The control plane associated with the organization is decommissioned.
+* The control plane (both the {{site.base_gateway}} and {{site.product_mesh_name}} global control planes) associated with the organization are decommissioned.
+
+* {{site.product_mesh_name}} local zone control planes and data plane nodes (workloads) continue to run, but will not receive new configuration updates.
 
 * Any users that were part of the organization are removed from any teams
 associated with the organization, and lose roles associated with the deactivated organization.

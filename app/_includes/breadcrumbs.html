@@ -25,6 +25,9 @@
 {% elsif include.edition == 'gateway' %}
   {% capture product_url %}/gateway/{{version}}/{% endcapture %}
   {% capture product_title %}{{ site.base_gateway }}{% endcapture %}
+{% elsif include.edition == 'gateway-operator' %}
+  {% capture product_url %}/gateway-operator/{{version}}/{% endcapture %}
+  {% capture product_title %}{{ site.kgo_product_name }}{% endcapture %}
 {% elsif include.edition == 'contributing' %}
   {% capture product_url %}/contributing/{% endcapture %}
   {% capture product_title %}Style guide and contribution guidelines{% endcapture %}

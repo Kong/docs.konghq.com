@@ -74,7 +74,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       }'
     ```
   
-    You can get the `runtimeGroupId`, by using the [list control planes endpoint](https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9#/Runtime%20Groups/list-runtime-groups) to list all control planes and their IDs.
+    You can get the `controlPlaneId` by using the [list control planes endpoint](/konnect/api/control-planes/latest/#/Control%20Planes/list-control-planes) to list all control planes and their IDs.
 
     You should get a `201` response like the following:
     ```json
