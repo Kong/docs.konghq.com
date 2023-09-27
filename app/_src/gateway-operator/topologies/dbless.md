@@ -68,7 +68,7 @@ spec:
         spec:
           containers:
           - name: controller
-            image: kong/kubernetes-ingress-controller:{{ site.data.kong_latest_kic }}
+            image: kong/kubernetes-ingress-controller:{{ site.data.kong_latest_KIC.version }}
           env:
           - name: TEST_VAR
             value: TEST_VAL

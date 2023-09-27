@@ -15,14 +15,19 @@ metadata:
   name: kong
   namespace: <your-namespace>
 spec:
-  dataPlaneDeploymentOptions:
-    containerImage: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
-    env:
-    - name: KONG_LICENSE_DATA
-      valueFrom:
-        secretKeyRef:
-          key: license
-          name: kong-enterprise-license
+  dataPlaneOptions:
+    deployment:
+      podTemplateSpec:
+        spec:
+          containers:
+          - name: proxy
+            image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
+          env:
+          - name: KONG_LICENSE_DATA
+            valueFrom:
+              secretKeyRef:
+                key: license
+                name: kong-enterprise-license
 ```
 
 For more information about `GatewayConfiguration` see the [GatewayConfiguration CRD reference](/gateway-operator/{{ page.release }}/reference/custom-resources#gatewayconfiguration).

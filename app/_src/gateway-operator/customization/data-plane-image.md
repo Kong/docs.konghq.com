@@ -31,7 +31,7 @@ spec:
 {:.note}
 > This method is only available when running in [DB-less mode](/gateway-operator/{{ page.release }}/topologies/dbless/)
 
-The `GatewayConfiguration` resource is a Kong-specific API which allows you to set both `controlPlaneDeploymentOptions` and `dataPlaneDeploymentOptions`.
+The `GatewayConfiguration` resource is a Kong-specific API which allows you to set both `controlPlaneOptions` and `dataPlaneOptions`.
 
 You can customize both the container image and version.
 1.  Define the image in the `GatewayConfiguration`.
