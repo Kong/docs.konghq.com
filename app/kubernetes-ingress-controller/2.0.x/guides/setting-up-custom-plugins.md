@@ -90,7 +90,7 @@ Notable changes:
 - The plugin code is mounted into the pod via `volumeMounts` and `volumes`
   configuration property.
 - `KONG_PLUGINS` environment variable is set to include the custom plugin
-  alongwith all the plugins that come in Kong by default.
+  along with all the plugins that come in Kong by default.
 - `KONG_LUA_PACKAGE_PATH` environment variable directs Kong to look
   for plugins in the directory where we are mounting them.
 
