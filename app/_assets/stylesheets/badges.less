@@ -18,20 +18,20 @@
     border-radius: 2px;
   }
 
-  &.plus {
+  &.paid {
     background: #F2F6FE;
 
     &::after {
-      content: "PLUS";
+      content: "KONNECT PAID";
       color: #0364AC;
     }
   }
 
-  &.konnect {
+  &.premium {
     background: @blue-100;
 
     &::after {
-      content: "KONNECT COMPATIBLE";
+      content: "KONNECT PREMIUM";
       background: linear-gradient(90deg, #5052FD 0%, #033796 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -47,7 +47,7 @@
   }
 
   &.enterprise::after {
-    content: "ENTERPRISE";
+    content: "GATEWAY ENTERPRISE";
     color: @steel-700;
     background: @steel-100;
   }

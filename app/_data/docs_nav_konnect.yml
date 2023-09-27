@@ -28,7 +28,7 @@
   items:
     - text: Overview
       url: /getting-started/
-    - text: Access a Konnect Account
+    - text: Create a Konnect Account
       url: /getting-started/access-account/
     - text: Set up a Data Plane Node
       url: /getting-started/configure-data-plane-node/
@@ -106,6 +106,14 @@
     - text: Troubleshooting
       url: /gateway-manager/troubleshoot/
 
+- title: Mesh Manager
+  icon: /assets/images/icons/konnect/icn-mesh-manager-nav.svg
+  items:
+    - text: Overview
+      url: /mesh-manager/
+    - text: Create a mesh with the Kubernetes demo app
+      url: /mesh-manager/service-mesh/
+      
 - title: Service Hub
   icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
   items:
@@ -195,6 +203,8 @@
         url: /analytics/use-cases/latency
     - text: Reports Reference
       url: /analytics/reference/
+    - text: API Requests
+      url: /analytics/api-requests
     - text: Troubleshoot
       url: /analytics/troubleshoot/
 
@@ -202,13 +212,7 @@
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
   items:
     - text: Plans and Billing
-      items:
-        - text: Manage a Konnect Account or Plan
-          url: /account-management/
-        - text: Change to a Different Plan
-          url: /account-management/change-plan/
-        - text: Manage Payment Methods and Invoices
-          url: /account-management/billing/
+      url: /account-management/
     - text: Org Management
       items:
       - text: Authentication and Authorization
@@ -229,6 +233,10 @@
             url: /org-management/users/
           - text: Manage System Accounts
             url: /org-management/system-accounts/
+          - text: Social Identity Login
+            url: /org-management/social-identity-login/
+          - text: Org Switcher
+            url: /org-management/org-switcher/
           - text: Set up SSO with OIDC
             url: /org-management/oidc-idp/
           - text: Set up SSO with Okta
@@ -257,6 +265,13 @@
   items:
     - text: Overview
       url: /api/
+    - text: API Request API (Beta)
+      items:
+        - text: API Spec
+          url: /konnect/api/api-requests/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
     - text: API Products API
       items:
         - text: API Spec
@@ -298,6 +313,18 @@
           url: /api/identity-management/identity-integration/
         - text: SSO Customization
           url: /api/identity-management/sso/
+    - text: Mesh Manager API
+      items:
+        - text: API Spec
+          url: /konnect/api/mesh-manager/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Kong Mesh API Reference
+          url: /mesh/latest/reference/http-api/
+          absolute_url: true
+          generate: false
+          target_blank: true
     - text: Portal Client API
       items:
         - text: API Spec
@@ -311,7 +338,7 @@
           url: /konnect/api/portal-rbac/latest/
           absolute_url: true
           generate: false
-          target_blank: true  
+          target_blank: true
     - text: Deprecated APIs
       items:
         - text: (Deprecated) Runtime Configuration API
