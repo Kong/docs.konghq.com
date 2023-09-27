@@ -9,6 +9,10 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## October 2023
+**OIDC Teams for DevPortal**
+: {{site.konnect_short_name}} portal administrators can now automatically assign Developers to Teams to get the corresponding RBAC permissions based on their Identity Provider groups or claims. This reduces the onboarding experience for new developers and offers a secure and efficient Dev Portal experience for internal and external audiences.
+
 ## September 2023
 **Renamed {{site.konnect_short_name}} capabilities**
 : We have renamed a number of core {{site.konnect_short_name}} capabilities to simplify user understanding:
