@@ -120,7 +120,7 @@ request. This URL varies depending on your installation method. You can also get
     }
     ```
 
-Kong correctly serves the request only on HTTPS protocol and redirects the user if plaint-text HTTP protocol is used. The `-k` flag in cURL skips certificate validation as the certificate served by Kong is a self-signed one. If you are serving this traffic through a domain that you control and have configured TLS properties for it, then the flag won't
+Kong correctly serves the request only on HTTPS protocol and redirects the user if the HTTP protocol is used. The `-k` flag in cURL skips certificate validation as the certificate served by Kong is a self-signed one. If you are serving this traffic through a domain that you control and have configured TLS properties for it, then the flag won't
 be necessary.
 
 If you have a domain that you control but don't have TLS/SSL certificates
