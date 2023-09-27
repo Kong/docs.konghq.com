@@ -8,7 +8,7 @@ module Jekyll
           class HmacAuth < Base
             def self.fields
               {
-                'username' => 'alice',
+                'username' => 'alex',
                 'secret' => 'secret123'
               }
             end

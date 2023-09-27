@@ -8,7 +8,7 @@ module Jekyll
           class BasicAuth < Base
             def self.fields
               {
-                'username' => 'alice',
+                'username' => 'alex',
                 'password' => 'secret123'
               }
             end

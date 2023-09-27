@@ -3,7 +3,7 @@
 As this is an auth plugin, we need to create a credential for the plugin. Create a secret with the following command:
 
 ```bash
-kubectl create secret generic alice-{{ include.hub_example.plugin_name }} \
+kubectl create secret generic alex-{{ include.hub_example.plugin_name }} \
   --from-literal=kongCredType={{ include.hub_example.plugin_name }}{%- for field in include.hub_example.auth_fields %} \
   --from-literal={{ field[0] }}={{ field[1] }}{%- endfor %}
 ```
@@ -14,16 +14,16 @@ Finally, we create a consumer that will use this credential:
 echo "apiVersion: configuration.konghq.com/v1
 kind: KongConsumer
 metadata:
-  name: alice
+  name: alex
   annotations:
     kubernetes.io/ingress.class: kong
-username: alice
+username: alex
 credentials:
-- alice-{{ include.hub_example.plugin_name }}
+- alex-{{ include.hub_example.plugin_name }}
 " | kubectl apply -f -
 ```
 
-You can now authenticate as <code>alice</code> when making your request. See the <a href="/hub/kong-inc/{{ include.hub_example.plugin_name }}{{ include.hub_example.auth_next_steps_url }}">documentation</a> for more information.
+You can now authenticate as <code>alex</code> when making your request. See the <a href="/hub/kong-inc/{{ include.hub_example.plugin_name }}{{ include.hub_example.auth_next_steps_url }}">documentation</a> for more information.
 
 {% else %}
 {% endif %}
