@@ -58,7 +58,7 @@
           url: /gateway-manager/data-plane-nodes/upgrade/
         - text: Verify a Data Plane Node
           url: /gateway-manager/data-plane-nodes/verify-node/
-        - text: Renew Data Plane Certificates
+        - text: Data Plane Certificates
           url: /gateway-manager/data-plane-nodes/renew-certificates/
         - text: Parameter Reference
           url: /gateway-manager/data-plane-nodes/parameter-reference/
