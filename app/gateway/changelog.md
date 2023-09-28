@@ -42,6 +42,8 @@ For product versions that have reached the end of sunset support, see the [chang
 * Fixed a keyring issue where a Kong node fails to send keyring material when using cluster strategy.
 * Fixed an issue that will cause a failure to send tracing data to Datadog when the value of the `x-datadog-parent-id` header in requests is a short decimal string.
 * Fixed the way RBAC retrieves group roles with a group name whose type is a number.
+* Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availibilty detection feature. 
+
 
 
 #### PDK
