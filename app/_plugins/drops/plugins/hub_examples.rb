@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# There are also oauth2, acl and mtls-auth but I don't have examples of how to use them yet
+AUTH_PLUGINS = %w[basic-auth hmac-auth jwt key-auth].freeze
+
 module Jekyll
   module Drops
     module Plugins
@@ -28,6 +31,10 @@ module Jekyll
           @formats.include?(:kubernetes)
         end
 
+        def auth_plugin?
+          AUTH_PLUGINS.include?(plugin_name)
+        end
+
         def curl
           @curl ||= Examples::Curl.new(type:, example:)
         end
@@ -46,6 +53,18 @@ module Jekyll
 
         def plugin_name
           @plugin_name ||= @example.fetch('name')
+        end
+
+        def auth
+          @auth ||= Examples::AuthPlugins::Base.make_for(plugin_name)
+        end
+
+        def auth_fields
+          auth.fields
+        end
+
+        def auth_next_steps_url
+          auth.next_steps_url
         end
       end
 
