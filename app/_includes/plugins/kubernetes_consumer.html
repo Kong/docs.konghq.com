@@ -1,6 +1,6 @@
 {% if include.hub_example.auth_plugin? %}
 
-As this is an auth plugin, we need to create a credential for the plugin. Create a secret with the following command:
+As this is an auth plugin, you need to create a credential for the plugin. Create a secret with the following command:
 
 ```bash
 kubectl create secret generic alex-{{ include.hub_example.plugin_name }} \
@@ -8,7 +8,7 @@ kubectl create secret generic alex-{{ include.hub_example.plugin_name }} \
   --from-literal={{ field[0] }}={{ field[1] }}{%- endfor %}
 ```
 
-Finally, we create a consumer that will use this credential:
+Finally, create a consumer that will use this credential:
 
 ```bash
 echo "apiVersion: configuration.konghq.com/v1
