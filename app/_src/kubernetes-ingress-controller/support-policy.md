@@ -32,66 +32,17 @@ LTS versions of {{site.kic_product_name}} are supported for 3 years after releas
 </thead>
 <tbody>
   <tr>
-    <td>1.17</td>
-    <td>4.4</td>
-    <td>Dec 2020</td>
-    <td>2.8 LTS</td>
-    <td>2.5 LTS</td>
-    <td>March 2025</td>
-  </tr>
-  <tr>
-    <td>1.18</td>
-    <td>4.5</td>
-    <td>June 2021</td>
-    <td>2.8 LTS</td>
-    <td>2.5 LTS</td>
-    <td>March 2025</td>
-  </tr>
-  <tr>
-    <td>1.19</td>
-    <td>4.6</td>
-    <td>Oct 2021</td>
-    <td>2.8 LTS</td>
-    <td>2.5 LTS</td>
-    <td>March 2025</td>
-  </tr>
-  <tr>
-    <td>1.20</td>
-    <td>4.7</td>
-    <td>Feb 2022</td>
-    <td>2.8 LTS</td>
-    <td>2.5 LTS</td>
-    <td>March 2025</td>
-  </tr>
-  <tr>
-    <td>1.21</td>
-    <td>4.8</td>
-    <td>June 2022</td>
-    <td>2.8 LTS</td>
-    <td>2.5 LTS</td>
-    <td>March 2025</td>
-  </tr>
-
-  <tr>
-    <td>1.22</td>
-    <td>4.9</td>
-    <td>Oct 2022</td>
-    <td>2.8 LTS</td>
-    <td>2.5 LTS</td>
-    <td>March 2025</td>
-  </tr>
-  <tr>
-    <td>1.23</td>
-    <td>4.10</td>
-    <td>Feb 2023</td>
+    <td>1.27</td>
+    <td>N/A</td>
+    <td>Jun 2024</td>
     <td>2.8 LTS, 3.x</td>
     <td>{{ latest_kic_release }}</td>
     <td>{{ latest_kic_eol }}</td>
   </tr>
   <tr>
-    <td>1.24</td>
-    <td>4.11</td>
-    <td>July 2023</td>
+    <td>1.26</td>
+    <td>4.13</td>
+    <td>Feb 2024</td>
     <td>2.8 LTS, 3.x</td>
     <td>{{ latest_kic_release }}</td>
     <td>{{ latest_kic_eol }}</td>
@@ -105,20 +56,68 @@ LTS versions of {{site.kic_product_name}} are supported for 3 years after releas
     <td>{{ latest_kic_eol }}</td>
   </tr>
   <tr>
-    <td>1.26</td>
-    <td>4.13</td>
-    <td>Feb 2024</td>
+    <td>1.24</td>
+    <td>4.11</td>
+    <td>July 2023</td>
     <td>2.8 LTS, 3.x</td>
     <td>{{ latest_kic_release }}</td>
     <td>{{ latest_kic_eol }}</td>
   </tr>
-    <tr>
-    <td>1.27</td>
-    <td>N/A</td>
-    <td>Jun 2024</td>
+  <tr>
+    <td>1.23</td>
+    <td>4.10</td>
+    <td>Feb 2023</td>
     <td>2.8 LTS, 3.x</td>
     <td>{{ latest_kic_release }}</td>
     <td>{{ latest_kic_eol }}</td>
+  </tr>
+  <tr>
+    <td>1.22</td>
+    <td>4.9</td>
+    <td>Oct 2022</td>
+    <td>2.8 LTS</td>
+    <td>2.5 LTS</td>
+    <td>March 2025</td>
+  </tr>
+  <tr>
+    <td>1.21</td>
+    <td>4.8</td>
+    <td>June 2022</td>
+    <td>2.8 LTS</td>
+    <td>2.5 LTS</td>
+    <td>March 2025</td>
+  </tr>
+  <tr>
+    <td>1.20</td>
+    <td>4.7</td>
+    <td>Feb 2022</td>
+    <td>2.8 LTS</td>
+    <td>2.5 LTS</td>
+    <td>March 2025</td>
+  </tr>
+  <tr>
+    <td>1.19</td>
+    <td>4.6</td>
+    <td>Oct 2021</td>
+    <td>2.8 LTS</td>
+    <td>2.5 LTS</td>
+    <td>March 2025</td>
+  </tr>
+  <tr>
+    <td>1.18</td>
+    <td>4.5</td>
+    <td>June 2021</td>
+    <td>2.8 LTS</td>
+    <td>2.5 LTS</td>
+    <td>March 2025</td>
+  </tr>
+  <tr>
+    <td>1.17</td>
+    <td>4.4</td>
+    <td>Dec 2020</td>
+    <td>2.8 LTS</td>
+    <td>2.5 LTS</td>
+    <td>March 2025</td>
   </tr>
 </tbody>
 </table>
