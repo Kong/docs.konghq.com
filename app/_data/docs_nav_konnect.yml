@@ -79,6 +79,17 @@
       items:
         - text: Overview
           url: /gateway-manager/configuration/
+        - text: Manage Plugins
+          items:
+            - text: Overview
+              url: /gateway-manager/plugins/
+            - text: Adding Custom Plugins
+              url: /gateway-manager/plugins/add-custom-plugin/
+            - text: Updating Custom Plugins
+              url: /gateway-manager/plugins/update-custom-plugin/
+            - text: How to Create Custom Plugins
+              url: ../../gateway/latest/plugin-development/
+              generate: false
         - text: Create Consumer Groups
           url: ../../hub/kong-inc/rate-limiting-advanced/how-to
         - text: Secrets Management
@@ -91,14 +102,6 @@
           url: /gateway-manager/declarative-config/
     - text: KIC Association
       url: /gateway-manager/kic/
-    - text: Manage Plugins
-      items:
-        - text: Overview
-          url: /gateway-manager/plugins/
-        - text: Configure a Plugin on a Gateway Service
-          url: /gateway-manager/enable-service-plugin/
-        - text: Configure a Plugin on a Route
-          url: /gateway-manager/enable-route-plugin/
     - text: Backup and Restore
       url: /gateway-manager/backup-restore/
     - text: Version Compatibility
@@ -208,57 +211,55 @@
     - text: Troubleshoot
       url: /analytics/troubleshoot/
 
-- title: Administer
+- title: Org Management
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
   items:
     - text: Plans and Billing
       url: /account-management/
-    - text: Org Management
+    - text: Authentication and Authorization
       items:
-      - text: Authentication and Authorization
-        items:
-          - text: Overview
-            url: /org-management/auth/
-          - text: Teams
-            items:
-              - text: Overview
-                url: /org-management/teams-and-roles/
-              - text: Manage Teams
-                url: /org-management/teams-and-roles/manage/
-              - text: Teams Reference
-                url: /org-management/teams-and-roles/teams-reference/
-              - text: Roles Reference
-                url: /org-management/teams-and-roles/roles-reference/
-          - text: Manage Users
-            url: /org-management/users/
-          - text: Manage System Accounts
-            url: /org-management/system-accounts/
-          - text: Social Identity Login
-            url: /org-management/social-identity-login/
-          - text: Org Switcher
-            url: /org-management/org-switcher/
-          - text: Set up SSO with OIDC
-            url: /org-management/oidc-idp/
-          - text: Set up SSO with Okta
-            url: /org-management/okta-idp/
-          - text: Login Sessions Reference
-            url: /org-management/sessions-reference/
-          - text: Troubleshoot
-            url: /org-management/troubleshoot/
-      - text: Audit Logging
-        items:
-          - text: Overview
-            url: /org-management/audit-logging/
-          - text: Set up an Audit Log Webhook
-            url: /org-management/audit-logging/webhook/
-          - text: Set up an Audit Log Replay Job
-            url: /org-management/audit-logging/replay-job/
-          - text: Verify Audit Log Signatures
-            url: /org-management/audit-logging/verify-signatures/
-          - text: Log Reference
-            url: /org-management/audit-logging/reference/
-      - text: Account and Org Deactivation
-        url: /org-management/deactivation/
+        - text: Overview
+          url: /org-management/auth/
+        - text: Teams
+          items:
+            - text: Overview
+              url: /org-management/teams-and-roles/
+            - text: Manage Teams
+              url: /org-management/teams-and-roles/manage/
+            - text: Teams Reference
+              url: /org-management/teams-and-roles/teams-reference/
+            - text: Roles Reference
+              url: /org-management/teams-and-roles/roles-reference/
+        - text: Manage Users
+          url: /org-management/users/
+        - text: Manage System Accounts
+          url: /org-management/system-accounts/
+        - text: Social Identity Login
+          url: /org-management/social-identity-login/
+        - text: Org Switcher
+          url: /org-management/org-switcher/
+        - text: Set up SSO with OIDC
+          url: /org-management/oidc-idp/
+        - text: Set up SSO with Okta
+          url: /org-management/okta-idp/
+        - text: Login Sessions Reference
+          url: /org-management/sessions-reference/
+        - text: Troubleshoot
+          url: /org-management/troubleshoot/
+    - text: Audit Logging
+      items:
+        - text: Overview
+          url: /org-management/audit-logging/
+        - text: Set up an Audit Log Webhook
+          url: /org-management/audit-logging/webhook/
+        - text: Set up an Audit Log Replay Job
+          url: /org-management/audit-logging/replay-job/
+        - text: Verify Audit Log Signatures
+          url: /org-management/audit-logging/verify-signatures/
+        - text: Log Reference
+          url: /org-management/audit-logging/reference/
+    - text: Account and Org Deactivation
+      url: /org-management/deactivation/
 
 - title: API
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
