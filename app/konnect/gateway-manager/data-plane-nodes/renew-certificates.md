@@ -3,27 +3,25 @@ title: Authentication Certificates for a Data Plane Node
 content_type: how-to
 ---
 
-## Authentication between Control Plane and Data Plane Nodes
+{{site.konnect_short_name}} uses a mutual TLS handshake (mTLS) for authentication between data plane and control plane so the actual private key is never transferred on the network, and communication between the control plane and data plane nodes is secure. {{site.konnect_short_name}} supports two modes for handling certificate/key pairs:
+* **Pinned mode**: This is the default mode. The same public key is added to the data plane and the control plane, and the control plane uses this public key to authenticate the data plane. Validation of the certificate only happens on the control plane.
+* **Public Key Infrastructure (PKI) mode**: This mode uses digital certificates signed by a certificate authority, or a chain of certificate authorities, to authenticate between control plane and data plane. The public key is added to the data plane, while the chain of certificate authority is added to the control plane. Any certificate authority from the chain can be used to authenticate between dataplane and control plane.  {{site.konnect_short_name}} validates both the control plane and data plane sides by checking if they are from the same certificate authority, thereby increasing the security of the network and eliminating the risks associated with transporting private keys. This mode is only supoprted for Control Plane and Control Plane Groups.
 
-{{site.konnect_product_name}} uses a mutual TLS handshake (mTLS) for authentication between data plane (DP) and  control plane (CP) so the actual private key is never transferred on the network, and communication between CP and DP nodes is secure. {{site.konnect_product_name}} supports two modes for handling certificate/key pairs:
-* Pinned mode - This mode is used by default in {{site.konnect_product_name}}. The same public key is added to the dataplane and the control plane. The control plane uses this public key to authenticate the dataplane. Validation of the certificate only happens on the control plane.
-* Public Key Infrastructure (PKI) mode - This mode leverages digital certificates signed by a certificate authority (or a chain of certificate authorities CA) to authenticate between control plane and data plane. The public key is added to the dataplane, while the chain of certificate authority is added to the control plane. Any certificate authority from the chain can be used to authenticate between dataplane and control plane. {{site.konnect_product_name}} validates both CP and DP sides by checking if they are from the same CA, thus increasing the security of the network and eliminating the risks associated with transporting private keys. 
+## Set certificate authentication mode on the Control Plane
+You specify which certificate authentication mode is used at the control plane level. You can select between Pinned mode and PKI mode while creating a control plane, or edit the control plane to select a different mode. 
 
-The authentication certificate mode property between control plane and data plane node is set at the Control Plane level. You can select between Pinned mode and PKI mode while creating a control plane. You can also modify the certificate mode of an existing Control Plane by navigating to “Actions” and selecting “Edit Control Plane”. {{site.konnect_product_name}} supports PKI mode only for Control Plane and Control Plane Groups today.
+You need to upload enough of the certificate chain in the control plane so that the control plane can trust the certificate in the dataplane request and authenticate. 
 
-You need to upload enough of the certificate chain in the control plane such that the control plane can trust the certificate in the dataplane request and authenticate.Consider the following Cert Chain:
-* cert1: service (issuer: intermediary)
-* cert2: intermediary (issuer: root)
-* cert3: root (issuer: root / self signed)
+Consider the following scenarios with this example cert chain:
+   * `cert1`: service (issuer: intermediary)
+   * `cert2`: intermediary (issuer: root)
+   * `cert3`: root (issuer: root / self signed)
 
-There are the following scenarios that can happen:
-* Upload only cert1 to the control plane — this is essentially the ‘pinned cert’ method. You can include just cert1 in your dataplane request and not include the chain. The control plane doesn’t need to evaluate the issuer because it trusts the cert itself.
-* Upload only cert2 to the control plane — this would mean any cert coming in that has (issuer: intermediary) would be trusted. You can include just cert1 in your dataplane request. The control plane would trust any certificate issued by the intermediary public key. 
-* Upload only cert3 to the control plane — this is the typical PKI case. It means any cert signed by the root is trusted. However, since cert1 is signed by an intermediary and cert2 is signed by root, you need to include both cert1 and cert2 in your dataplane request. The control plane would trust the whole chain because cert2 is issued by cert3 and cert1 is issued by cert2.
+* **Upload only cert1 to the control plane**: This is the Pinned mode. You can include just `cert1` in your data plane request and not include the chain. The control plane doesn’t need to evaluate the issuer because it trusts the cert itself.
+* **Upload only cert2 to the control plane**: This would mean any cert coming in that has (issuer: intermediary) would be trusted. You can include just `cert1` in your data plane request. The control plane would trust any certificate issued by the intermediary public key. 
+* **Upload only cert3 to the control plane**: This is the typical PKI case. It means any cert signed by the root is trusted. However, since `cert1` is signed by an intermediary and `cert2` is signed by root, you need to include both `cert1` and `cert2` in your data plane request. The control plane would trust the whole chain because `cert2` is issued by `cert3` and `cert1` is issued by `cert2`.
 
-You can generate Pinned certificates through the UI in {{site.konnect_product_name}} or bring your own Pinned and PKI certificates to {{site.konnect_product_name}}. Data plane certificates generated by {{site.konnect_saas}} expire every ten
-years. If you bring your own certificates, make sure to review the
-expiration date and associated metadata.
+You can generate pinned certificates in {{site.konnect_saas}} or bring your own pinned and PKI certificates. Data plane certificates generated by {{site.konnect_saas}} expire every ten years. If you bring your own certificates, make sure to review the expiration date and associated metadata.
 
 ## Renew Data Plane Node Certificates
 
@@ -41,7 +39,7 @@ plane, or generating new certificates and updating data plane nodes with the new
 files.
 
 
-## Quick setup
+### Quick setup
 
 If you originally created your data plane node container using one of the
 Docker options in Gateway Manager, we recommend creating a new data plane node with renewed
@@ -53,7 +51,7 @@ certificates.
 updated certificates.
 4. Remove the old data plane node container.
 
-## Advanced setup
+### Advanced setup
 
 If your data plane nodes are running on Linux or Kubernetes, or if you have a
 Docker container that was _not_ created using the quick setup script, you must
