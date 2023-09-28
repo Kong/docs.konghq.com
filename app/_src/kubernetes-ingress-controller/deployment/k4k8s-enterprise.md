@@ -65,16 +65,16 @@ Let's setup an environment variable to hold the IP address:
 $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong kong-proxy)
 ```
 
+{:.note}
 > Note: It may take a while for your cloud provider to actually associate the
 IP address to the `kong-proxy` Service.
 
 ### Kustomize
 
-<div class="alert alert-warning">
-  Kustomize manifests are provided for illustration purposes only and are not officially supported by Kong.
-  There is no guarantee of backwards compatibility or upgrade capabilities for our Kustomize manifests.
-  For a production setup with Kong support, use the <a href="https://github.com/kong/charts">Helm Chart</a>.
-</div>
+{:.important}
+> Kustomize manifests are provided for illustration purposes only and are not officially supported by Kong.
+There is no guarantee of backwards compatibility or upgrade capabilities for our Kustomize manifests.
+For a production setup with Kong support, use the [Helm chart](https://github.com/kong/charts).
 
 Use Kustomize to install Kong for Kubernetes Enterprise:
 

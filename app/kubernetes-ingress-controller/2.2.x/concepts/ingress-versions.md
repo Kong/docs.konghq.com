@@ -15,7 +15,7 @@ equivalent `networking.k8s.io/v1beta1` and `networking.k8s.io/v1` resources for 
 Both Ingress v1beta1 and v1 HTTP rules require a path, which represents a [URI
 path][uri-rfc-paths]. Although v1beta1 had specified that paths were [POSIX
 regular expressions][posix-regex] and enforced this, in practice most
-controllers used other other implementations that did not match the
+controllers used other implementations that did not match the
 specification. v1 seeks to reduce confusion by introducing several [path
 types][path-types] and lifting restrictions on regular expression grammars used
 by controllers.
