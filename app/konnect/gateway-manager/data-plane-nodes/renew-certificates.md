@@ -100,7 +100,7 @@ You can generate a certificate locally and use the [pin data plane client certif
 {% endnavtab %}
 {% endnavtabs %}
 
-### Update data plane
+#### Update data plane
 
 {% navtabs %}
 {% navtab Linux %}
