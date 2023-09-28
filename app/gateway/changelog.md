@@ -25,30 +25,30 @@ For product versions that have reached the end of sunset support, see the [chang
 #### Plugins
 
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`):
-  * New field `unauthorized_destroy_session`, which when set to true, we destory the session (delete the user's session cookie) when the request is unauthorized. Default to true. Set to false to preserve the session.
-  * New field `using_pseudo_issuer`. When set to true, the plugin instance will not discover configuration from the issuer.
-* [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`): A new value is added to the parameter `header_type`, which allows Kong to inject datadog headers into the headers of requests forwarding to upstream.
+  * New field `unauthorized_destroy_session`, which when set to true, destroys the session, by deleting the user's session cookie, when the request is unauthorized. Default to `true`. Set to `false` to preserve the session.
+  * New field `using_pseudo_issuer`. When set to true, the plugin instance will not discover the configuration from the issuer.
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`): A new value is added to the parameter `header_type`, enabling Kong to seamlessly inject Datadog headers into forwarded requests' headers when communicating with upstream services.
 
 
 ### Fixes
 #### Core
 
 * Removed a hardcoded proxy-wasm isolation level setting that was preventing the `nginx_http_proxy_wasm_isolation` configuration value from taking effect.
-* Fixed an issue that the TTL of the key-auth plugin didnt work in DB-less and Hybrid mode.
-* Fixed an problem that abnormal socket connection will be reused when querying Postgres database.
-* Fixed an upstream ssl failure when plugins use response handler.
-* Fixed an issue that protocol `tls_passthrough` can not work with expressions flavor.
-* Fixed an issue where plugin would not trigger correctly when the authenticated consumer is part of multiple consumer groups.
-* Fixed an keyring issue where a kong node fails to send keyring material when using cluster strategy.
-* Fixed an issue that will cause a failure of sending tracing data to datadog when value of `x-datadog-parent-id` header in requests is a short dec string.
-* Fixed RBAC retrieve group roles with the group name that type is number.
+* Fixed an issue where the TTL of the Key Auth plugin didn't work in DB-less and Hybrid mode.
+* Fixed a problem where an abnormal socket connection will be reused when querying the Postgres database.
+* Fixed an upstream SSL failure when plugins used a response handler.
+* Fixed an issue with the `tls_passthrough` protocol did not work with the router expressions flavor.
+* Fixed an issue where plugins would not trigger correctly when the authenticated consumer is part of multiple consumer groups.
+* Fixed a keyring issue where a Kong node fails to send keyring material when using cluster strategy.
+* Fixed an issue that will cause a failure to send tracing data to Datadog when the value of the `x-datadog-parent-id` header in requests is a short decimal string.
+* Fixed the way RBAC retrieves group roles with a group name whose type is a number.
 
 
 #### PDK
 
 * Fixed several issues in Vault and refactored the Vault code base: 
-  * Make DAOs to fallback to empty string when resolving Vault references fail
-  * Use node level mutex when rotation references  
+  * Make DAOs fallback to an empty string when resolving Vault references fail
+  * Use node-level mutex when rotating references  
   * Refresh references on config changes 
   * Update plugin referenced values only once per request 
   * Pass only the valid config options to vault implementations
@@ -62,10 +62,10 @@ For product versions that have reached the end of sunset support, see the [chang
 #### Plugin
 
 * [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`): fix an issue that resulted in invalid parent IDs in the propagated tracing headers
-* [**mTLS Authentication**](/hub/kong-inc/mtls-auth/) (`mtls-auth`): should not cache the network failure when doing revocation check
+* [**mTLS Authentication**](/hub/kong-inc/mtls-auth/) (`mtls-auth`): should not cache the network failure when performing a revocation check
 * [**Canary**](/hub/kong-inc/canary/) (`canary`): allow the `start` field to be a time that occurs in the past.
-* [**SAML**](/hub/kong-inc/saml/) (`saml`): When the redis session storage is incorrectly configured, users now receive a 500 error instead of being redirected endlessly.
-* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`): Fix issue on token revocation on logout where the code was revoking refresh token when it was supposed to revoke access token when using the discovered revocation endpoint.
+* [**SAML**](/hub/kong-inc/saml/) (`saml`): When the Redis session storage is incorrectly configured, users now receive a 500 error instead of being redirected endlessly.
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`): Fix the issue on token revocation on logout where the code was revoking the refresh token when it was supposed to revoke access token when using the discovered revocation endpoint.
 
 
 ### Kong Manager
