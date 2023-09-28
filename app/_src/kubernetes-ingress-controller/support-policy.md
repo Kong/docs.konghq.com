@@ -16,6 +16,9 @@ LTS versions of {{site.kic_product_name}} are supported for 3 years after releas
 
 ## Supported versions
 
+{% assign latest_kic_release = site.data.kong_latest_KIC.release %}
+{% assign latest_kic_eol = "August 2024" %}
+
 <table style="display:table" width="100%">
 <thead>
 <tr>
@@ -24,30 +27,62 @@ LTS versions of {{site.kic_product_name}} are supported for 3 years after releas
   <th>Upstream K8s EOL</th>
   <th>Supported {{site.base_gateway}} Versions</th>
   <th>Recommended KIC Version</th>
-  <th>EOL</th>
+  <th>KIC EOL</th>
 </tr>
 </thead>
 <tbody>
   <tr>
-    <td>1.17</td>
-    <td>4.4</td>
-    <td>Dec 2020</td>
+    <td>1.27</td>
+    <td>N/A</td>
+    <td>Jun 2024</td>
+    <td>2.8 LTS, 3.x</td>
+    <td>{{ latest_kic_release }}</td>
+    <td>{{ latest_kic_eol }}</td>
+  </tr>
+  <tr>
+    <td>1.26</td>
+    <td>4.13</td>
+    <td>Feb 2024</td>
+    <td>2.8 LTS, 3.x</td>
+    <td>{{ latest_kic_release }}</td>
+    <td>{{ latest_kic_eol }}</td>
+  </tr>
+  <tr>
+    <td>1.25</td>
+    <td>4.12</td>
+    <td>Oct 2023</td>
+    <td>2.8 LTS, 3.x</td>
+    <td>{{ latest_kic_release }}</td>
+    <td>{{ latest_kic_eol }}</td>
+  </tr>
+  <tr>
+    <td>1.24</td>
+    <td>4.11</td>
+    <td>July 2023</td>
+    <td>2.8 LTS, 3.x</td>
+    <td>{{ latest_kic_release }}</td>
+    <td>{{ latest_kic_eol }}</td>
+  </tr>
+  <tr>
+    <td>1.23</td>
+    <td>4.10</td>
+    <td>Feb 2023</td>
+    <td>2.8 LTS, 3.x</td>
+    <td>{{ latest_kic_release }}</td>
+    <td>{{ latest_kic_eol }}</td>
+  </tr>
+  <tr>
+    <td>1.22</td>
+    <td>4.9</td>
+    <td>Oct 2022</td>
     <td>2.8 LTS</td>
     <td>2.5 LTS</td>
     <td>March 2025</td>
   </tr>
   <tr>
-    <td>1.18</td>
-    <td>4.5</td>
-    <td>June 2021</td>
-    <td>2.8 LTS</td>
-    <td>2.5 LTS</td>
-    <td>March 2025</td>
-  </tr>
-  <tr>
-    <td>1.19</td>
-    <td>4.6</td>
-    <td>Oct 2021</td>
+    <td>1.21</td>
+    <td>4.8</td>
+    <td>June 2022</td>
     <td>2.8 LTS</td>
     <td>2.5 LTS</td>
     <td>March 2025</td>
@@ -61,68 +96,35 @@ LTS versions of {{site.kic_product_name}} are supported for 3 years after releas
     <td>March 2025</td>
   </tr>
   <tr>
-    <td>1.21</td>
-    <td>4.8</td>
-    <td>June 2022</td>
+    <td>1.19</td>
+    <td>4.6</td>
+    <td>Oct 2021</td>
     <td>2.8 LTS</td>
     <td>2.5 LTS</td>
     <td>March 2025</td>
   </tr>
-
   <tr>
-    <td>1.22</td>
-    <td>4.8</td>
-    <td>Oct 2022</td>
-    <td>2.8 LTS, 3.x</td>
+    <td>1.18</td>
+    <td>4.5</td>
+    <td>June 2021</td>
+    <td>2.8 LTS</td>
     <td>2.5 LTS</td>
-    <td>Sept 2023</td>
+    <td>March 2025</td>
   </tr>
   <tr>
-    <td>1.23</td>
-    <td>4.8</td>
-    <td>Feb 2023</td>
-    <td>2.8 LTS, 3.x</td>
-    <td>{{ site.data.kong_latest_KIC.release }}</td>
-    <td>Sept 2023</td>
-  </tr>
-  <tr>
-    <td>1.24</td>
-    <td>4.8</td>
-    <td>July 2023</td>
-    <td>2.8 LTS, 3.x</td>
-    <td>{{ site.data.kong_latest_KIC.release }}</td>
-    <td>Sept 2023</td>
-  </tr>
-  <tr>
-    <td>1.25</td>
-    <td>N/A</td>
-    <td>Oct 2023</td>
-    <td>2.8 LTS, 3.x</td>
-    <td>{{ site.data.kong_latest_KIC.release }}</td>
-    <td>Sept 2023</td>
-  </tr>
-  <tr>
-    <td>1.26</td>
-    <td>N/A</td>
-    <td>Feb 2024</td>
-    <td>2.8 LTS, 3.x</td>
-    <td>{{ site.data.kong_latest_KIC.release }}</td>
-    <td>Sept 2023</td>
-  </tr>
-    <tr>
-    <td>1.27</td>
-    <td>N/A</td>
-    <td>Jun 2024</td>
-    <td>2.8 LTS, 3.x</td>
-    <td>{{ site.data.kong_latest_KIC.release }}</td>
-    <td>Sept 2023</td>
+    <td>1.17</td>
+    <td>4.4</td>
+    <td>Dec 2020</td>
+    <td>2.8 LTS</td>
+    <td>2.5 LTS</td>
+    <td>March 2025</td>
   </tr>
 </tbody>
 </table>
 
 ## {{site.kic_product_name}} versions
 
-| Version  | Released Date | End of Full Support | End of Sunset Support |
+| Version  | Release Date  | End of Full Support | End of Sunset Support |
 |:--------:|:-------------:|:-------------------:|:---------------------:|
 |  2.11.x  |  2023-08-09   |     2024-08-09      |      2025-08-09       |
 |  2.10.x  |  2023-06-02   |     2024-06-02      |      2025-06-02       |
