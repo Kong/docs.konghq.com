@@ -1,5 +1,5 @@
 ---
-title: Authentication Certificates for a Data Plane Node
+title: Authentication Certificates for Data Plane Nodes
 content_type: how-to
 ---
 
