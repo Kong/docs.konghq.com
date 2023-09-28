@@ -65,6 +65,10 @@ jobs:
           netlify dev & wait-on http://localhost:8888
           npm test
 
+      - name: Check for broken markdown anchors
+        run: |
+          ./tools/missing-markdown-anchor/run.sh
+
   rspec:
     runs-on: ubuntu-latest
     steps:
