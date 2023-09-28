@@ -13,7 +13,6 @@ For product versions that have reached the end of sunset support, see the [chang
 **Release Date** 2023/09/28
 
 ### Breaking Changes
-#### Plugins
 
 *  [**GraphQL Rate Limiting Advanced**](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`): The schema validation has been updated so that Redis cluster mode is now supported. This schema change does not impact other implementations of this plugin.
   
@@ -75,7 +74,6 @@ For product versions that have reached the end of sunset support, see the [chang
 * Kong Manager now links directly to the [Gateway Admin API - EE (beta)](/gateway/api/admin-ee/3.4.0.x/)
 
 ### Dependencies
-#### Core
 
 * Fixed incorrect LuaJIT LDP/STP fusion on ARM64 which may sometimes cause incorrect logic.
 
