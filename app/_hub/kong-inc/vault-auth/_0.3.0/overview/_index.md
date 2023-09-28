@@ -5,7 +5,7 @@ nav_title: Overview
 Add authentication to a service or route with an access token and a secret token. 
 Credential tokens are stored securely via Vault. 
 
-Credential lifecyles can be managed through the Kong Admin API, or independently via Vault.
+Credential lifecycles can be managed through the Kong Admin API, or independently via Vault.
 
 ## Usage
 
@@ -13,7 +13,7 @@ In order to use the plugin, you first need to create a Consumer to associate one
 
 ### Create a Consumer
 
-You need to associate a credential to an existing [Consumer][consumer-object] object. To create a Consumer, you can execute the following request:
+You need to associate a credential to an existing [consumer](/gateway/api/admin-ee/latest/#/Consumers) object. To create a Consumer, you can execute the following request:
 
 ```bash
 $ curl -X POST http://kong:8001/consumers/ \
@@ -34,7 +34,7 @@ parameter                      | default | description
 `username`<br>*semi-optional*  |         | The username of the Consumer. Either this field or `custom_id` must be specified.
 `custom_id`<br>*semi-optional* |         | A custom identifier used to map the Consumer to another database. Either this field or `username` must be specified.
 
-A [Consumer][consumer-object] can have many credentials.
+A [consumer](/gateway/api/admin-ee/latest/#/Consumers) can have many credentials.
 
 If you are also using the [ACL](/plugins/acl/) plugin and allowed lists with this
 service, you must add the new consumer to an allowed group. See
@@ -79,7 +79,7 @@ This assumes a Vault server is accessible via `127.0.0.1:8200`, and that a versi
 
 `vault-auth` credentials are defined as a pair of tokens: an `access` token that identifies the owner of the credential, and a `secret` token that is used to authenticate ownership of the `access` token.
 
-Token pairs can be managed either via the Kong Admin API, or independantly via direct access with Vault. Token pairs must be associated with an existing Kong Consumer. Creating a token pair with the Kong Admin API can be done via the following request:
+Token pairs can be managed either via the Kong Admin API, or independently via direct access with Vault. Token pairs must be associated with an existing Kong Consumer. Creating a token pair with the Kong Admin API can be done via the following request:
 
 ```bash
 $ curl -X POST http://kong:8001/vaults/{vault}/credentials/{consumer}

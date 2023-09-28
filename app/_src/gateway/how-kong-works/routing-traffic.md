@@ -1036,7 +1036,7 @@ Here is an example of such a fallback route:
 
 As you can guess, any HTTP request made to {{site.base_gateway}} would actually match this
 route, since all URIs are prefixed by the root character `/`. As we know from
-the [Request path][proxy-request-path] section, the longest URL paths are
+the [Request path](#request-path) section, the longest URL paths are
 evaluated first by {{site.base_gateway}}, so the `/` path will eventually be evaluated last by
 {{site.base_gateway}}, and effectively provide a "fallback" route, only matched as a last
 resort. You can then send traffic to a special service or apply any plugin you
@@ -1396,7 +1396,7 @@ This means all of the below setup are supported in this mode:
 
 **Note:** In L4 proxy mode, only plugins that has `tcp` or `tls` in the supported
 protocol list are supported. This list can be found in their respective documentation
-on [Kong Hub](https://docs.konghq.com/hub/).
+on [Kong Hub](/hub/).
 
 [Back to top](#introduction)
 
