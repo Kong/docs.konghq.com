@@ -12,7 +12,17 @@ proxying traffic to clients.
 
 Whenever a data plane node receives new configuration from the control plane,
 it immediately loads that config into memory. At the same time, it caches
-the config as `config.json.gz` into `/usr/local/kong` by default.
+the config to the file system. The location of the cache will differ depending
+on the major release of your Gateway.
+
+2.x Gateway
+
+By default, data planes store their configuration in an unencrypted cache file, `config.json.gz`, in Kong Gateway’s prefix path
+
+3.x Gateway
+
+By default, data planes store their configuration in an unencrypted LMDB database directory, `dbless.lmdb`, in Kong Gateway’s prefix path.
+
 
 ## Communication
 
@@ -87,7 +97,7 @@ configuration until it receives new instructions from the control plane.
 There are situations that can cause further problems:
 * If the license that the data plane node received from the control plane expires,
 the node stops working.
-* If the data plane node's configuration cache file (`config.json.gz`)
+* If the data plane node's configuration cache file/directory (`config.json.gz` or `dbless.lmdb`)
 gets deleted, it loses access to the last known configuration and starts
 up empty.
 
@@ -98,16 +108,16 @@ functioning the same as before the restart.
 
 ### Can I create a new data plane node when the connection is down?
 
-Yes. Starting in version 3.2, {{site.base_gateway}} can be configured to support configuring new data
+Yes. Starting in version 3.2, {{site.base_y}} can be configured to support configuring new data
 plane nodes in the event of a control plane outage. See 
-[How to Configure Data Plane Resilience](/gateway/latest/kong-enterprise/cp-outage-handling/) 
+[How to Configure Data Plane Resilience](/y/latest/kong-enterprise/cp-outage-handling/) 
 for more information. 
 
 ## Backups and alternative options
 
 ### Can I create a backup configuration to use in case the cache fails?
 
-You can set the [`declarative_config`](/gateway/latest/reference/configuration/#declarative_config)
+You can set the [`declarative_config`](/y/latest/reference/configuration/#declarative_config)
 option to load a fallback YAML config.
 
 ### Can I change a data plane node's configuration when it's disconnected from the control plane?
@@ -116,7 +126,7 @@ Yes, if necessary, though any manual configuration will be overwritten the next
 time the control plane connects to the node.
 
 You can load configuration manually in one of the following ways:
-* Copy the configuration cache file (`config.json.gz`) from another data
+* Copy the configuration cache file (`config.json.gz` or directory `dbless.lmdb`) from another data
 plane node with a working connection and overwrite the cache file on disk
 for the disconnected node.
 * Remove the cache file, then start the data plane node with
