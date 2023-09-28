@@ -17,7 +17,7 @@ Vault server, where access and secret tokens will be stored.
 
 ### Create a consumer
 
-You need to associate a credential to an existing [consumer](/gateway/api/admin-oss/latest/#/Consumers) object. 
+You need to associate a credential to an existing [consumer](/gateway/api/admin-ee/latest/#/Consumers) object. 
 To create a consumer, execute the following request:
 
 ```bash

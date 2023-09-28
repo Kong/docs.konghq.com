@@ -411,11 +411,10 @@ cat canonical_record.txt
 127.0.0.1|1544724298663|GET|/status|Ka2GeB13RkRIbMwBHw0xqe2EEfY0uZG0|1542132298664|200|fd51ce6e-59c0-4b6b-b991-aa708a9ff4d2
 ```
 
-<div class="alert alert-warning">
-Ensure that the contents of the canonical record file on disk match the expected
-canonical record format exactly. The presence of any addditional bytes, such as
+{:.important}
+> Ensure that the contents of the canonical record file on disk match the expected
+canonical record format exactly. The presence of any additional bytes, such as
 a trailing newline `\n`, will cause a validation failure in the next step.
-</div>
 
 Once these two elements are in place, the signature can be verified:
 

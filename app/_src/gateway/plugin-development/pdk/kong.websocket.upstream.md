@@ -15,13 +15,10 @@ enterprise: true
 
 Upstream WebSocket PDK functions.
 
-<div class="alert alert-warning">
-  <strong>Warning:</strong> The WebSocket PDK is under active development and is
-  considered unstable at this time. Backwards-incompatible changes may be made
-  to these functions.
-</div>
-
-
+{:.warning}
+> **Warning**: The WebSocket PDK is under active development and is
+considered unstable at this time. Backwards-incompatible changes may be made
+to these functions.
 
 ## kong.websocket.upstream.get_frame()
 

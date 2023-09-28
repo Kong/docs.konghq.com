@@ -34,7 +34,6 @@ repos:
   vagrant: https://github.com/Kong/kong-vagrant
   homebrew: https://github.com/Kong/homebrew-kong
   cloudformation: https://github.com/Kong/kong-dist-cloudformation
-  oauth2_hello_world: https://github.com/Kong/kong-oauth2-hello-world
 
 # for Kong platform extensions (not Jekyll)
 extensions:

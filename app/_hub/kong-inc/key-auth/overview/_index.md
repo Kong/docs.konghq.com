@@ -76,11 +76,11 @@ For more information about how to configure anonymous access, see [Anonymous Acc
 
 ### Create a Key
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> It is recommended to let the API gateway autogenerate the key. Only specify it yourself if
-  you are migrating an existing system to {{site.base_gateway}}. You must reuse your keys to make the
-  migration to {{site.base_gateway}} transparent to your Consumers.
-</div>
+{:.important}
+> **Note**: We recommend letting the API gateway autogenerate the key. Only specify it 
+yourself if you are migrating an existing system to {{site.base_gateway}}. 
+You must reuse your keys to make the migration to {{site.base_gateway}} transparent 
+to your consumers.
 
 {% navtabs %}
 {% navtab With a database %}
