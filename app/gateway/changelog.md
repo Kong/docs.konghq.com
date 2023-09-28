@@ -15,8 +15,8 @@ For product versions that have reached the end of sunset support, see the [chang
 ### Breaking Changes
 #### Plugins
 
-*  [**GraphQL Rate Limiting Advanced**](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`): Fixed a bug in the schema validation which prevented using redis in cluster mode.
-
+*  [**GraphQL Rate Limiting Advanced**](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`): The schema validation has been updated so that Redis cluster mode is now supported. This schema change does not impact other implementations of this plugin.
+  
 ### Features
 #### Core
 
