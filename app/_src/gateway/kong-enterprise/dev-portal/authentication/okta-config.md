@@ -88,11 +88,10 @@ your Okta application will vary:
 Now that the application has been configured in Okta, you need to associate the
 Okta application with the corresponding application in Kong's Dev Portal.
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> Each developer should have their own application in both Okta and Kong.  
-  Each Okta application has its own `client_id` that maps to its respective application in Kong.
-  Essentially, this maps identity provider applications to portal applications.
-</div>
+{:.important}
+> **Note:** Each developer should have their own application in both Okta and Kong.  
+Each Okta application has its own `client_id` that maps to its respective application in Kong.
+Essentially, this maps identity provider applications to portal applications.
 
 This example assumes Client Credentials is the chosen OAuth flow.
 

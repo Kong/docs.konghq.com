@@ -615,10 +615,10 @@ related to handling the declarative config, including:
 
 ## Declarative Configuration
 
-<div class="alert alert-ee blue"><strong>Note:</strong> We recommend using decK
-to manage your declarative configuration. See the <a href="/deck/">decK documentation</a> for more
-information.
-</div>
+{:.note}
+> **Note:** We recommend using decK
+to manage your declarative configuration. See the [decK documentation](/deck/) 
+for more information.
 
 Loading the declarative configuration of entities into {{site.base_gateway}}
 can be done in two ways: at start-up, through the `declarative_config`

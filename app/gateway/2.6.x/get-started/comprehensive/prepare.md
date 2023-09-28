@@ -19,7 +19,7 @@ In this guide, an instance of {{site.base_gateway}} is referenced via
 `<admin-hostname>`. Make sure to replace `<admin-hostname>` with the hostname
 of your control plane instance.
 
-## Verify the Kong Gateway configuration
+## Verify the {{site.base_gateway}} configuration
 {% navtabs %}
 {% navtab Using Kong Manager %}
 As a {{site.base_gateway}} user, you can use Kong Manager for environment
@@ -84,11 +84,9 @@ the following command in a terminal window:
     You can also use this command at any time (for example, after a `deck sync`)
     to see the {{site.base_gateway}}'s most recent configuration.
 
-    <div class="alert alert-warning">
-
-    <strong>Be careful!</strong> Any subsequent <code>deck dump</code> will
-    overwrite the existing <code>kong.yaml</code> file. Create backups as needed.
-    </div>
+    {:.important}
+    > **Be careful!** Any subsequent `deck dump` will
+    overwrite the existing `kong.yaml` file. Create backups as needed.
 
 3. Open the file in your preferred code editor. Since you haven't configured
 anything yet, the file should only contain the decK version:

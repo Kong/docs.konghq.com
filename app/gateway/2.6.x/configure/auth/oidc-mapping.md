@@ -34,10 +34,9 @@ Manager.
 
 ## Create Kong Groups and Assign Roles
 
-<div class="alert alert-ee blue">
-<b>Note:</b> The following examples assume that you have RBAC enabled with
+{:.note}
+> **Note:** The following examples assume that you have RBAC enabled with
 Basic Auth and are transitioning to OpenID Connect.
-</div>
 
 {% navtabs %}
 {% navtab Kong Manager %}

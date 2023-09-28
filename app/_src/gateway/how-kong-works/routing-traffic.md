@@ -741,9 +741,8 @@ such requests).
 
 ### Request source
 
-<div class="alert alert-warning">
-    **Note:** This section only applies to TCP and TLS routes.
-</div>
+{:.note}
+> **Note:** This section only applies to TCP and TLS routes.
 
 The `sources` routing attribute allows
 matching a route by a list of incoming connection IP and/or port sources.
@@ -763,9 +762,8 @@ address "10.2.2.2" or Port "9123" would match such route.
 
 ### Request destination
 
-<div class="alert alert-warning">
-    **Note:** This section only applies to TCP and TLS routes.
-</div>
+{:.note}
+> **Note:** This section only applies to TCP and TLS routes.
 
 The `destinations` attribute, similarly to `sources`,
 allows matching a route by a list of incoming connection IP and/or port, but
