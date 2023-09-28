@@ -79,6 +79,17 @@
       items:
         - text: Overview
           url: /gateway-manager/configuration/
+        - text: Manage Plugins
+          items:
+            - text: Overview
+              url: /gateway-manager/plugins/
+            - text: Adding Custom Plugins
+              url: /gateway-manager/plugins/add-custom-plugin/
+            - text: Updating Custom Plugins
+              url: /gateway-manager/plugins/update-custom-plugin/
+            - text: How to Create Custom Plugins
+              url: ../../gateway/latest/plugin-development/
+              generate: false
         - text: Create Consumer Groups
           url: ../../hub/kong-inc/rate-limiting-advanced/how-to
         - text: Secrets Management
@@ -91,14 +102,6 @@
           url: /gateway-manager/declarative-config/
     - text: KIC Association
       url: /gateway-manager/kic/
-    - text: Manage Plugins
-      items:
-        - text: Overview
-          url: /gateway-manager/plugins/
-        - text: Configure a Plugin on a Gateway Service
-          url: /gateway-manager/enable-service-plugin/
-        - text: Configure a Plugin on a Route
-          url: /gateway-manager/enable-route-plugin/
     - text: Backup and Restore
       url: /gateway-manager/backup-restore/
     - text: Version Compatibility
