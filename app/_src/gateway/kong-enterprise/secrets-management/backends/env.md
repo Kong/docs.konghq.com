@@ -11,7 +11,7 @@ Storing secrets in environment variables is a common method, as they can be inje
 Define a secret in a environment variable:
 
 ```bash
-export MY_SECRET_VALUE=EXAMPLE_VALUE
+export my-secret-value=EXAMPLE_VALUE
 ```
 
 You can now reference this secret:
