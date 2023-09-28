@@ -58,7 +58,7 @@ Docker container that was _not_ created using the quick setup script, you must
 generate new certificates and replace them on the existing nodes.
 
 
-### Generate new data plane certificate
+#### Generate new data plane certificate
 
 {% navtabs %}
 {% navtab Gateway Manager %}
@@ -184,8 +184,3 @@ Delete any old certificate and key files on your filesystem.
 {% endnavtab %}
 {% endnavtabs %}
 
-## Advanced setup
-
-If your data plane nodes are running on Linux or Kubernetes, or if you have a
-Docker container that was _not_ created using the quick setup script, you must
-generate new certificates and replace them on the existing nodes.
