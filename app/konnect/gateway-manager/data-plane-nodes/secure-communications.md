@@ -1,5 +1,5 @@
 ---
-title: Secure Communications between Control Plane and Data Plane
+title: Secure Control Plane and Data Plane Communications 
 content_type: how-to
 ---
 
