@@ -55,7 +55,7 @@ For example, you can not perform string comparisons on a integer type field.
 | `http.path` | Normalized request path (without query parameters). | String |
 | `http.headers.header_name` | Value of header `Header-Name`. Header names are converted to lower case, and `-` are replaced to `_`. | String |
 
-{% if_version gte:3.4.1.x %}
+{% if_version gte:3.4.x %}
 | `http.queries.query_name` | Value of query parameter `query-name`. | String |
 {% endif_version %}
 
