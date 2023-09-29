@@ -8,7 +8,7 @@ In the {{site.konnect_short_name}} Dev Portal, you can import existing developer
 This guide explains how to map the permissions, including scopes and claims, from your group of developers in your IdP to your organization's team in {{site.konnect_short_name}}. Although this guide uses Okta, Azure, and Auth0 as examples, you can use any IdP that conforms to OIDC standards. 
 
 ## Prerequisites
-An IdP configured in Konnect (OIDC or DCR) for [application registration](konnect/dev-portal/applications/enable-app-reg/)
+An IdP configured in Konnect (OIDC or DCR) for [application registration](/konnect/dev-portal/applications/enable-app-reg/).
 
 ## Create developer teams in your IdP
 
