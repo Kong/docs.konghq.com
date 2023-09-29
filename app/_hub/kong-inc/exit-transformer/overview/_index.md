@@ -6,6 +6,13 @@ Transform and customize {{site.base_gateway}} response exit messages using Lua f
 The plugin's capabilities range from changing messages, status codes, and headers,
 to completely transforming the structure of {{site.base_gateway}} responses.
 
+{:.note}
+> [`untrusted-lua`](/gateway/latest/reference/configuration/#untrusted_lua)
+must be set to either `on` or `sandbox` in your `kong.conf` file for this plugin 
+to work. The default value is `sandbox`, which means that Lua functions are allowed,
+but will be executed in a sandbox which has limited access to the Kong global
+environment.
+
 ## Transforming 4xx and 5xx Responses
 
 By default, the Exit Transformer is only applied to requests that match its
