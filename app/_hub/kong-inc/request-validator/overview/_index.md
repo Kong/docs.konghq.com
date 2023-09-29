@@ -252,10 +252,17 @@ Such a schema would validate the following request body:
 
 ### Parameter Schema Definition
 
-You can setup definitions for each parameter based on the OpenAPI Specification and
-the plugin will validate each parameter against it. For more information, see the
-[OpenAPI specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#parameter-object)
-or the [OpenAPI examples](https://swagger.io/docs/specification/serialization/).
+You can set up definitions for each parameter based on the OpenAPI Specification and
+the plugin will validate each parameter against it.
+
+To be able to do parameter validation, the parameter must be deserialized according to [OAS type serialization](https://swagger.io/docs/specification/serialization/).
+The datatype used in the deserialization step (`object`, `array` or `primitive`) is
+derived from the JSON Schema. The top-level type entry is used for this purpose,
+where `object` and `array` types map one-to-one to the deserialization, and any other
+type in the JSON Schema (`string`, `integer`, etc).
+
+For more information, see the
+[OpenAPI specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md#parameter-object).
 
 #### Fixed Fields
 
