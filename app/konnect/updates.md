@@ -9,10 +9,13 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
-## September 2023
+
+## October 2023
 
 **PKI Certificates for CP/DP Authentication**
 : {{site.konnect_short_name}} now supports [pinned PKI certs for CP/DP authentication](/konnect/gateway-manager/data-plane-nodes/secure-communications). This means that Konnect supports digital certificates signed by a trusted CA in Konnect for CP/DP authentication. 
+
+## September 2023
 
 **Custom plugin management**
 : Konnect now supports self-service custom plugins through the UI and API. 
