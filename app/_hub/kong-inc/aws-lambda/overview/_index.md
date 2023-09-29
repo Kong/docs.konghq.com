@@ -173,7 +173,7 @@ invocation, execution, and response:
 curl http://<kong_hostname>:8000/lambda1
 ```
 
-Additional headers:
+You should get a response back with the following headers from Amazon:
 
 ```
 x-amzn-Remapped-Content-Length, X-Amzn-Trace-Id, x-amzn-RequestId
