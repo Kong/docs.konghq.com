@@ -10,12 +10,16 @@ This guide explains how to map the permissions, including scopes and claims, fro
 ## Prerequisites
 
 * A test developer account in your IdP
+* Create teams in your IdP with your test developer account assigned to the team:
+    * [Okta](https://help.okta.com/en-us/content/topics/users-groups-profiles/usgp-assign-group-people.htm)
+    * [Auth0](https://auth0.com/docs/get-started/tenant-settings/auth0-teams)
+    * [Azure AD](https://learn.microsoft.com/azure/active-directory/fundamentals/how-to-manage-groups#create-a-basic-group-and-add-members)
 * An IdP configured in Konnect (OIDC or DCR) for dynamic client registration:
     * [Okta](/konnect/dev-portal/applications/dynamic-client-registration/okta/)
     * [Auth0](/konnect/dev-portal/applications/dynamic-client-registration/auth0/)
     * [Azure AD](/konnect/dev-portal/applications/dynamic-client-registration/azure/)
-* [Enable app registration](/konnect/dev-portal/applications/enable-app-reg/) for Dev Portal
 
+<!-- commenting this out so we can come back to it later after tech review
 ## Create developer teams in your IdP
 
 {% navtabs %}
@@ -34,6 +38,7 @@ In [Azure AD](https://portal.azure.com/), [create a new group](https://learn.mic
 In Auth0, create a [new team of developers](https://auth0.com/docs/get-started/tenant-settings/auth0-teams) that you want to map to {{site.konnect_short_name}}. Make sure to add your test developer account. 
 {% endnavtab %}
 {% endnavtabs %}
+-->
 
 ## Map IdP developer teams in {{site.konnect_short_name}}
 
@@ -50,10 +55,10 @@ In Auth0, create a [new team of developers](https://auth0.com/docs/get-started/t
 1. From **Settings** in the Dev Portal side bar, click the **Identity** tab and then click **Configure OIDC provider**.
 
 1. Configure the IdP settings using the following mappings:
-    * **Provider URL:** The value stored in the `issuer` variable for your IdP.
-    * **Client ID:** The application ID for your IdP.
-    * **Client Secret:** The client secret of your IdP.
-    * **Scopes:** The scopes to be requested from the OpenID Provider.
+    * **Provider URL:** The value stored in the `issuer` variable from your application in your IdP.
+    * **Client ID:** The application ID from your application in your IdP.
+    * **Client Secret:** The client secret from your application in your IdP.
+    * **Scopes:** The scopes to be requested from your application in your IdP.
     * **Claim Mappings - Name:** `name`
     * **Claim Mappings - Email:** `email`
     * **Claim Mappings - Groups:** `groups`
