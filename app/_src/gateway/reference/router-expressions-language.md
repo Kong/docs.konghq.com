@@ -54,6 +54,7 @@ For example, you can not perform string comparisons on a integer type field.
 | `http.host`  | Lists of domains that match a route. | String |
 | `http.path` | Normalized request path (without query parameters). | String |
 | `http.headers.header_name` | Value of header `Header-Name`. Header names are converted to lower case, and `-` are replaced to `_`. | String |
+| `http.queries.query_name` | Value of query parameter `query-name`. | String |
 | `net.src.ip` | Source IP address of incoming connection. | IpAddr |
 | `net.src.port` | Source port number of incoming connection. | Int |
 | `net.dst.ip` | Destination IP address of incoming connection. | IpAddr |
