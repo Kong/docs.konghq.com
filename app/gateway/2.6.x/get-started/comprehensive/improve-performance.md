@@ -50,7 +50,7 @@ Call the Admin API on port `8001` and configure plugins to enable in-memory cach
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X POST http://<admin-hostname>:8001/plugins \
+curl -i -X POST http://localhost:8001/plugins \
   --data name=proxy-cache \
   --data config.content_type="application/json; charset=utf-8" \
   --data config.cache_ttl=30 \
@@ -179,7 +179,7 @@ To test more rapidly, the cache can be deleted by calling the Admin API:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X DELETE http://<admin-hostname>:8001/proxy-cache
+curl -i -X DELETE http://localhost:8001/proxy-cache
 ```
 {% endnavtab %}
 {% navtab HTTPie %}

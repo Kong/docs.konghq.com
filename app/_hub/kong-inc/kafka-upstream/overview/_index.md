@@ -12,7 +12,7 @@ See [Kafka Log](/hub/kong-inc/kafka-log/).
 ## Enable on a service-less route
 
 ```bash
-curl -X POST http://kong:8001/routes/my-route/plugins \
+curl -X POST http://localhost:8001/routes/my-route/plugins \
     --data "name=kafka-upstream" \
     --data "config.bootstrap_servers[1].host=localhost" \
     --data "config.bootstrap_servers[1].port=9092" \

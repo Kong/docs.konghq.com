@@ -42,12 +42,12 @@ window:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-curl -i -X GET http://<admin-hostname>:8001
+curl -i -X GET http://localhost:8001
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-http <admin-hostname>:8001
+http localhost:8001
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -113,7 +113,7 @@ Run the following on a Control Plane:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-curl -i -X GET http://<admin-hostname>:8001/clustering/data-planes
+curl -i -X GET http://localhost:8001/clustering/data-planes
 ```
 {% endnavtab %}
 {% navtab HTTPie %}

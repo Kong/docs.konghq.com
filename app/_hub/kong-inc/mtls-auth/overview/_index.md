@@ -55,7 +55,7 @@ and POST it to `/ca_certificates`:
 {% navtabs %}
 {% navtab Kong Admin API %}
 ```bash
-curl -sX POST https://kong:8001/ca_certificates -F cert=@cert.pem
+curl -sX POST https://localhost:8001/ca_certificates -F cert=@cert.pem
 {
   "tags": null,
   "created_at": 1566597621,
@@ -139,7 +139,7 @@ Common Name (CN). CN is only used if the SAN extension does not exist.
 Create a mapping:
 
 ```bash
-curl -X POST http://kong:8001/consumers/{consumer}/mtls-auth \
+curl -X POST http://localhost:8001/consumers/{consumer}/mtls-auth \
     -d 'subject_name=test@example.com'
 ```
 

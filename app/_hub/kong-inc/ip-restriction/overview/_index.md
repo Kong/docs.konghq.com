@@ -22,7 +22,7 @@ An `allow` list provides a positive security model, in which the configured CIDR
 You can configure the plugin with both `allow` and `deny` configurations. An interesting use case of this flexibility is to allow a CIDR range, but deny an IP address on that CIDR range:
 
 ```bash
-curl -X POST http://kong:8001/services/{service}/plugins \
+curl -X POST http://localhost:8001/services/{service}/plugins \
   --data "name=ip-restriction" \
   --data "config.allow=127.0.0.0/24" \
   --data "config.deny=127.0.0.1"

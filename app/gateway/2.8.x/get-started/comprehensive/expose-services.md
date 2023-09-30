@@ -71,14 +71,14 @@ The service is created, and the page automatically redirects back to the
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X POST http://<kong-admin-host>:8001/services \
+curl -i -X POST http://localhost:8001/services \
   --data name=example_service \
   --data url='http://mockbin.org'
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-http POST http://<kong-admin-host>:8001/services \
+http POST http://localhost:8001/services \
   name=example_service \
   url='http://mockbin.org'
 ```
@@ -94,12 +94,12 @@ Verify the service’s endpoint:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i http://<admin-hostname>:8001/services/example_service
+curl -i http://localhost:8001/services/example_service
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-http http://<kong-admin-host>:8001/services/example_service
+http http://localhost:8001/services/example_service
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -180,7 +180,7 @@ methods must be set for the Route to be matched to the service.
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X POST http://<admin-hostname>:8001/services/example_service/routes \
+curl -i -X POST http://localhost:8001/services/example_service/routes \
   --data 'paths[]=/mock' \
   --data name=mocking
 ```
