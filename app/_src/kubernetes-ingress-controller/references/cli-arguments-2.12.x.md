@@ -1,6 +1,7 @@
 ---
 title: CLI Arguments
----<!-- vale off -->
+---
+<!-- vale off -->
 
 Various settings and configurations of the controller can be tweaked
 using CLI flags.
