@@ -1,4 +1,4 @@
-- output: ../../app/_assets/images/konnect/service-hub/konnect-service-package-versions.png
+- output: ../../app/assets/images/konnect/service-hub/konnect-service-package-versions.png
   url: https://cloud.konghq.com/us/servicehub/2d15e9bd-6272-4261-a92f-7225dad088af/overview
   wait: 4000
   width: 1920

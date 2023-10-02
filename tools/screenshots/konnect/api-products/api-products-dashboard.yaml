@@ -1,4 +1,4 @@
-- output: ../../app/_assets/images/konnect/api-products/api-products-overview.png
+- output: ../../app/assets/images/konnect/api-products/api-products-overview.png
   url: https://cloud.konghq.com/us/api-products/
   wait: 4000
   width: 1280

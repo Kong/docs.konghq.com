@@ -1,4 +1,4 @@
-- output: ../../app/_assets/images/konnect/analytics/custom-reports/api-usage-by-application.png
+- output: ../../app/assets/images/konnect/analytics/custom-reports/api-usage-by-application.png
   url: https://cloud.konghq.com/us/analytics/reports/create
   wait: 4000
   width: 1920
