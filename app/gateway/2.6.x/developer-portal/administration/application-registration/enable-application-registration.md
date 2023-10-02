@@ -38,20 +38,20 @@ In Kong Manager, access the Service for which you want to enable Application Reg
 4. On the Add New Plugin page in the Authentication section, find the
    **Portal Application Registration** Plugin and click **Enable**.
 
-   ![Portal Application Registration](/assets/images/docs/dev-portal/app-reg-plugin-panel.png)
+   ![Portal Application Registration](/assets/gateway/dev-portal/app-reg-plugin-panel.png)
 
 5. Enter the configuration settings. Use the parameters in the next section,
    [Application Registration Configuration Parameters](#application-registration-configuration-parameters),
    to complete the fields.
 
-   ![Create application-registration plugin](/assets/images/docs/dev-portal/create-app-reg-plugin-form.png)
+   ![Create application-registration plugin](/assets/gateway/dev-portal/create-app-reg-plugin-form.png)
 
    **Important:** Exposing
    the Issuer URL is essential for the
    [Authorization Code Flow](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth/#ac-flow)
    workflow configured for third-party identity providers.
 
-   ![Issuer URL](/assets/images/docs/dev-portal/dev-portal-issuer-url.png)
+   ![Issuer URL](/assets/gateway/dev-portal/dev-portal-issuer-url.png)
 
 6. Click **Create**.
 

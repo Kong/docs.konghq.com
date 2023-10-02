@@ -32,7 +32,7 @@ While the document provides high level guidelines, actual migration steps may di
 
 The following diagram shows the architecture of a hybrid mode deployment, which means there is a split between the {{site.base_gateway}} control and data planes. You can follow the same database migration approach for {{site.base_gateway}} instances deployed in traditional mode.
 
-![migration image](/assets/images/docs/gateway/migration.png)
+![migration image](/assets/images/gateway/migration.png)
 
 
 ## Prerequisites

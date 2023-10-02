@@ -18,7 +18,7 @@ Here are some of the things you can do with Kong Manager OSS:
 
 ## Kong Manager OSS interface
 
-![Kong Manager OSS interface](/assets/images/docs/gateway/km_oss.png)
+![Kong Manager OSS interface](/assets/images/gateway/km_oss.png)
 
 > Figure 1: Kong Manager OSS overview
 

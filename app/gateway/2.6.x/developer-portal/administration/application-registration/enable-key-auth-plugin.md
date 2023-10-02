@@ -29,7 +29,7 @@ use with application registration:
 4. On the Add New Plugin page in the Authentication section, find the
    **Key Authentication** Plugin and click **Enable**.
 
-   ![Key Authentication plugin panel](/assets/images/docs/dev-portal/key-auth-plugin-panel.png)
+   ![Key Authentication plugin panel](/assets/gateway/dev-portal/key-auth-plugin-panel.png)
 
 5. Complete the fields as appropriate for your application. In this example, the Service is already
    prepopulated. Refer to the parameters described in the next section,
@@ -60,7 +60,7 @@ credentials.
 
 2. In the **Authentication** pane, click **Generate Credential**.
 
-   ![Application Authentication Pane](/assets/images/docs/dev-portal/gen-client-id-secret.png)
+   ![Application Authentication Pane](/assets/gateway/dev-portal/gen-client-id-secret.png)
 
    Now you can make requests using the Client ID as an API Key.
 
@@ -71,11 +71,11 @@ The Client ID of your credentials can be used as an API key to make authenticate
 **Tip:** You can also access key request instructions directly within the user interface from the
 information icon in the Services details area of your application. Click the **i** icon to open the Service Details page.
 
-![Services Pane](/assets/images/docs/dev-portal/portal-info-modal-key-auth.png)
+![Services Pane](/assets/gateway/dev-portal/portal-info-modal-key-auth.png)
 
 Scroll to view all of the available examples.
 
-![Service Details Page Embedded Key Usage Instructions](/assets/images/docs/dev-portal/service-details-key-auth-usage.png)
+![Service Details Page Embedded Key Usage Instructions](/assets/gateway/dev-portal/service-details-key-auth-usage.png)
 
 ### About API Key Locations in a Request
 

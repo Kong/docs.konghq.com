@@ -173,7 +173,7 @@ Deploy the [Stock API spec example](#stock-spec) to either the [Dev Portal](#dep
 Follow these steps to deploy a spec to the Dev Portal using Kong Manager. You can
 copy and paste the `stock-01.json` example file into the Dev Portal using Editor Mode.
 
-![Dev Portal Specs](/assets/images/docs/dev-portal/stock-spec-mock-example.png)
+![Dev Portal Specs](/assets/gateway/dev-portal/stock-spec-mock-example.png)
 
 1. Open Editor Mode and click **New File**.
 2. Name the file `stock-01.json`.
@@ -466,7 +466,7 @@ curl -X POST http://<admin-hostname>:8001/routes/<route_id>/plugins \
 In Kong Manager, you can copy and paste the contents of the spec directly into
 the `Config.Api Specification` text field.
 
-![Kong Manager Config API Spec Text Field](/assets/images/docs/dev-portal/km-config-api-spec-txt-fld.png)
+![Kong Manager Config API Spec Text Field](/assets/gateway/dev-portal/km-config-api-spec-txt-fld.png)
 
 Response (random delay not enabled):
 
@@ -630,14 +630,14 @@ Test the mock response from within the Dev Portal spec using the **Try it out** 
 
 1. From the Dev Portal home page, click the **Stock API** Service tile.
 
-   ![Dev Portal Services](/assets/images/docs/dev-portal/stock-service.png)
+   ![Dev Portal Services](/assets/gateway/dev-portal/stock-service.png)
 
 2. Click the **GET /stock/historical** method and the **Try it out** button.
 
 3. Enter the ticker sign **AAPL** in the **tickers** box and click **Execute** to see the server response.
 
 
-   ![Try it out Dev Portal](/assets/images/docs/dev-portal/tryitout-portal.png)
+   ![Try it out Dev Portal](/assets/gateway/dev-portal/tryitout-portal.png)
 
 #### Insomnia mock spec test {#insomnia}
 
@@ -707,7 +707,7 @@ URL.
 Disable the Mocking plugin either in Kong Manager by clicking **Disable** for the plugin,
 or by using a command. You can copy and paste the plugin ID from within Kong Manager.
 
-![Copy Plugin ID](/assets/images/docs/dev-portal/km-copy-plugin-id.png)
+![Copy Plugin ID](/assets/gateway/dev-portal/km-copy-plugin-id.png)
 
 ```
 curl -X PATCH http://localhost:8001/plugins/<plugin-id>  -i \
@@ -759,7 +759,7 @@ The `enabled` config reflects `false` in line `22`.
 The service URL can be anything for purposes of mocking. After you disable the Mocking plugin,
 ensure you set the actual URL for your service so that the response can be received.
 
- ![Set Real Service URL](/assets/images/docs/dev-portal/km-service-url.png)
+ ![Set Real Service URL](/assets/gateway/dev-portal/km-service-url.png)
 
 ## See also
 * [`inso` CLI documentation](https://support.insomnia.rest/collection/105-inso-cli)

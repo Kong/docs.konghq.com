@@ -132,7 +132,7 @@ with added functionality.
 You can manage {{site.base_gateway}} in Free or Enterprise mode with Kong's
 [Admin API](#kong-admin-api), [declarative configuration](#deck), or [Kong Manager](#kong-manager).
 
-![Introduction to {{site.base_gateway}}](/assets/images/docs/gateway/gateway_overview.png)
+![Introduction to {{site.base_gateway}}](/assets/images/gateway/gateway_overview.png)
 > _Figure 1: Diagram of {{site.base_gateway}} modules and how they relate to the
 foundational Gateway components._
 > <br>

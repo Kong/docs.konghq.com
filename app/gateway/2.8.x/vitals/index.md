@@ -9,7 +9,7 @@ Use Kong Vitals (Vitals) to monitor {{site.ee_product_name}} health and performa
 
 * Use Kong Manager to view visualizations of Vitals data, including the Workspaces Overview Dashboard, Workspace Charts, Vitals tab, and Status Codes, and to generate CSV Reports.
 
-![Vitals Overview](/assets/images/docs/ee/vitals_overview.png)
+![Vitals Overview](/assets/images/gateway/vitals_overview.png)
 
 ## Prerequisites
 
