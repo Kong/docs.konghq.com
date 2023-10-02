@@ -19,7 +19,7 @@ standalone installation.
 
 The following figure shows how it works:
 
-![high-level-design](/assets/images/docs/kubernetes-ingress-controller/high-level-design.png "High Level Design")
+![high-level-design](/assets/images/kubernetes-ingress-controller/high-level-design.png "High Level Design")
 
 The Controller listens for changes happening inside the Kubernetes
 cluster and updates Kong in response to those changes to correctly
@@ -37,7 +37,7 @@ proxy all the traffic.
 The following figure describes the mapping between Kubernetes concepts
 to Kong's configuration:
 
-![translating k8s to kong](/assets/images/docs/kubernetes-ingress-controller/k8s-to-kong.png "Translating k8s resources to Kong")
+![translating k8s to kong](/assets/images/kubernetes-ingress-controller/k8s-to-kong.png "Translating k8s resources to Kong")
 
 Let's go through how Kubernetes resources are being mapped to Kong's
 configuration:

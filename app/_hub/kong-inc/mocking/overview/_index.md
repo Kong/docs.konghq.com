@@ -187,14 +187,14 @@ to upload a spec to the Dev Portal.
 1. From the Insomnia dashboard, click **Create** > **Import from File** and select the
    `stock-0.1.json` file.
 
-   ![Insomnia Dashboard Import File](/assets/images/docs/insomnia/insomnia-import-spec.png)
+   ![Insomnia Dashboard Import File](/assets/images/insomnia/insomnia-import-spec.png)
 
 
 2. Click **Design Document**, then click OK on the success message.
 
 3. (Optional) Click **Deploy to Portal** to deploy the spec to the Dev Portal.
 
-   ![Insomnia Dashboard Deploy Spec to Portal](/assets/images/docs/insomnia/insomnia-deploy-spec-dev-portal.png)
+   ![Insomnia Dashboard Deploy Spec to Portal](/assets/images/insomnia/insomnia-deploy-spec-dev-portal.png)
 
 #### Stock API spec example {#stock-spec}
 
@@ -645,14 +645,14 @@ Test the mock response from within the Insomnia spec using the **Try it out** fe
 
 1. From the Insomnia dashboard, click the **Stock API 0.1 Document** tile.
 
-   ![Insomnia Dashboard](/assets/images/docs/insomnia/insomnia-stock-spec.png)
+   ![Insomnia Dashboard](/assets/images/insomnia/insomnia-stock-spec.png)
 
 2. Click the **GET /stock/historical** method and the **Try it out** button.
 
 3. Enter the ticker sign **AAPL** in the **tickers** box and click **Execute** to see the server response.
 
 
-   ![Try it out Insomnia](/assets/images/docs/insomnia/tryitout-insomnia.png)
+   ![Try it out Insomnia](/assets/images/insomnia/tryitout-insomnia.png)
 
 #### Command line test
 

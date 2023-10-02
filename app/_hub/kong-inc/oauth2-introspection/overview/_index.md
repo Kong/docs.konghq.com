@@ -15,7 +15,7 @@ this plugin, such as restricting access by scope.
 
 ## Flow
 
-![OAuth2 Introspection Flow](/assets/images/docs/oauth2/oauth2-introspection.png)
+![OAuth2 Introspection Flow](/assets/images/plugins/oauth2/oauth2-introspection.png)
 
 ## Associate the response to a consumer
 

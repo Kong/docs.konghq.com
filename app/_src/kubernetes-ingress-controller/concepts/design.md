@@ -19,7 +19,7 @@ standalone installation.
 
 The following figure shows how it works:
 
-![high-level-design](/assets/images/docs/kubernetes-ingress-controller/high-level-design.png "High Level Design")
+![high-level-design](/assets/images/kubernetes-ingress-controller/high-level-design.png "High Level Design")
 
 The Controller Manager listens for changes happening inside the Kubernetes
 cluster and updates Kong in response to those changes to correctly
@@ -72,7 +72,7 @@ These rules correspond to the concept of a route in Kong.
 The following image describes the relationship between Kubernetes concepts and Kong's
 Ingress configuration.
 
-![translating Kubernetes to Kong](/assets/images/docs/kubernetes-ingress-controller/k8s-to-kong.png "Translating k8s resources to Kong")
+![translating Kubernetes to Kong](/assets/images/kubernetes-ingress-controller/k8s-to-kong.png "Translating k8s resources to Kong")
 
 ### Gateway API
 

@@ -219,11 +219,11 @@ You can see a sample implementation in [node.js + express.js](https://github.com
 
 A diagram representing this flow:
 
-![OAuth2 flow](/assets/images/docs/oauth2/oauth2-flow.png)
+![OAuth2 flow](/assets/images/plugins/oauth2/oauth2-flow.png)
 
 1. The client application will redirect the end user to the authorization page on your web application, passing `client_id`, `response_type` and `scope` (if required) as query string parameters. This is a sample authorization page:
 
-    <center><img title="OAuth 2.0 Prompt" src="/assets/images/docs/oauth2/oauth2-prompt.png"/></center>
+    <center><img title="OAuth 2.0 Prompt" src="/assets/images/plugins/oauth2/oauth2-prompt.png"/></center>
 
 2. Before showing the actual authorization page, the web application will make sure that the user is logged in.
 
@@ -284,7 +284,7 @@ In this flow, the steps that you need to implement are:
 
 The [Resource Owner Password Credentials Grant](https://tools.ietf.org/html/rfc6749#section-4.3) is a much simpler version of the Authorization Code flow, but it still requires to build an authorization backend (without the frontend) in order to make it work properly.
 
-![OAuth 2.0 Flow](/assets/images/docs/oauth2/oauth2-flow2.png)
+![OAuth 2.0 Flow](/assets/images/plugins/oauth2/oauth2-flow2.png)
 
 1. On the first request, the client application makes a request with some OAuth2 parameters to your web application.
 

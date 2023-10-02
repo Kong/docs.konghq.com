@@ -33,7 +33,7 @@ requests through {{site.base_gateway}}.
 This diagram illustrates the flow of requests and responses being routed through
 the Service to the backend API.
 
-![Services and routes](/assets/images/docs/getting-started-guide/route-and-service.png)
+![Services and routes](/assets/images/gateway/getting-started-guide/route-and-service.png)
 
 ## Add a Service
 

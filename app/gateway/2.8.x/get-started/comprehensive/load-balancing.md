@@ -14,7 +14,7 @@ In this topic, you’ll configure the service created earlier (`example_service`
 
 Here is a diagram illustrating the setup:
 
-![Upstream targets](/assets/images/docs/getting-started-guide/upstream-targets.png)
+![Upstream targets](/assets/images/gateway/getting-started-guide/upstream-targets.png)
 
 ## Why load balance across upstream targets?
 
