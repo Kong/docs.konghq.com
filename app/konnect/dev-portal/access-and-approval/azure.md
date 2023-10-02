@@ -45,7 +45,7 @@ Kong offers OIDC support to allow Single-Sign-on for {{site.konnect_short_name}}
     1. Select **Group ID** for each section in **Customize token properties by type**.
     1. Click **Add**. 
 
-    ![Group claim](/assets/images/docs/konnect/azure/group-claim.png)
+    ![Group claim](/assets/images/konnect/dev-portal/azure/group-claim.png)
 
 1. Click **Add optional claim**, select **ID** as the token type, and **email** as the claim.
 

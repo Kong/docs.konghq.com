@@ -9,7 +9,7 @@ Here are a couple of benefits of using API Requests:
 * **Understand usage behavior:** By analyzing API requests, organizations can derive insights about consumer behavior, popular endpoints, peak usage times, and more. This information can be crucial for making informed decisions about product development and marketing strategies.
 * **Built-in troubleshooting:** API requests can provide valuable insights into the sequence of events leading up to a problem. They can help identify what went wrong and where, making it easier to diagnose and fix issues. All that, out of the box within Konnect.
 
-![api requests](/assets/images/docs/konnect/konnect-analytics-api-requests.png)
+![api requests](/assets/images/konnect/analytics/konnect-analytics-api-requests.png)
 > _**Figure 1:** Example API Requests list filtered by error codes and a single request selected._
 
 ## Inspect and filter API requests

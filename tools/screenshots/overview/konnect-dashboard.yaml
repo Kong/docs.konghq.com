@@ -1,4 +1,4 @@
-- output: ../../app/_assets/images/docs/konnect/konnect-dashboard.png
+- output: ../../app/_assets/images/konnect/konnect-dashboard.png
   url: https://cloud.konghq.com/us/overview/
   wait: 4000
   width: 1920

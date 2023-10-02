@@ -109,7 +109,7 @@ You can view the status of your webhook through the **Audit Logs Setup** page un
 
 Notice the status badge next to title of the webhook. For example, the following webhook is active:
 
-![Audit log webhook](/assets/images/docs/konnect/konnect-audit-log-webhook.png)
+![Audit log webhook](/assets/images/konnect/audit-logs/konnect-audit-log-webhook.png)
 
 To find the last attempt timestamp and the last response code, use the audit log API.
 

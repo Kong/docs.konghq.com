@@ -1,4 +1,4 @@
-- output: ../../app/_assets/images/docs/konnect/konnect-vaults.png
+- output: ../../app/_assets/images/konnect/gateway-manager/konnect-vaults.png
   url: https://cloud.konghq.com/us/runtime-manager/988f1fa1-fd93-4ef7-a1f5-c481bd86e945/vaults
   wait: 4000
   width: 1920

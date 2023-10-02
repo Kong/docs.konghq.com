@@ -33,7 +33,7 @@ Then, they add a filter to filter by the Control Plane
 * **Value**: prod 
 
 
-![Production - Kong Latency (last hour)](/assets/images/docs/konnect/custom-reports/latency/kong-latency.png){:.image-border}
+![Production - Kong Latency (last hour)](/assets/images/konnect/analytics/custom-reports/latency/kong-latency.png){:.image-border}
 > _**Figure 1:** Line chart showing the latency over the last hour. The line chart shows the Account API briefly spiking while the Payment API doesn't spike at all._
 
 
@@ -57,7 +57,7 @@ Then they add a filter to filter by Control Plane
 * **Value**: prod 
 
 
-![Production - Upstream Latency (last hour)](/assets/images/docs/konnect/custom-reports/latency/upstream-latency.png){:.image-border}
+![Production - Upstream Latency (last hour)](/assets/images/konnect/analytics/custom-reports/latency/upstream-latency.png){:.image-border}
 > _**Figure 2:** Line chart showing the upstream latency over the last hour. The line chart shows the Account API spiking while the Payment API remains at normal levels._
 
 

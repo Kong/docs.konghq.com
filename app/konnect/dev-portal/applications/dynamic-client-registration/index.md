@@ -24,7 +24,7 @@ You can obtain a bearer access token by requesting it from the IdP's `/token` en
 
 
 <p align="center">
-  <img src="/assets/images/docs/konnect/dcr-bearer-tokens.png" />
+  <img src="/assets/images/konnect/dev-portal/dcr-bearer-tokens.png" />
 </p>
 
 Token endpoints for IdPs are:
