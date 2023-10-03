@@ -577,9 +577,9 @@ The following graph demonstrates the correlation between performance and count o
 calls per request. Numbers of RPS and latency are removed as they are dependent on
 hardware and to avoid confusion.
 
-<center><img title="RPS" src="/assets/images/plugins/external-plugins/rps.png"/></center>
+<center><img title="RPS" src="/assets/images/products/plugins/external-plugins/rps.png"/></center>
 
-<center><img title="Latency" src="/assets/images/plugins/external-plugins/latency.png"/></center>
+<center><img title="Latency" src="/assets/images/products/plugins/external-plugins/latency.png"/></center>
 
 ## Use external plugins in container and Kubernetes
 
