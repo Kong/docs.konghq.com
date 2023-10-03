@@ -9,9 +9,13 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+
 ## October 2023
 **OIDC Teams for DevPortal**
 : {{site.konnect_short_name}} portal administrators can now automatically assign Developers to Teams to get the corresponding RBAC permissions based on their Identity Provider groups or claims. This reduces the onboarding experience for new developers and offers a secure and efficient Dev Portal experience for internal and external audiences. For more information, see [Add Developer Teams from IdPs](/konnect/dev-portal/access-and-approval/add-teams/).
+
+**PKI Certificates for CP/DP Authentication**
+: {{site.konnect_short_name}} now supports [pinned PKI certs for CP/DP authentication](/konnect/gateway-manager/data-plane-nodes/secure-communications). This means that Konnect supports digital certificates signed by a trusted CA in Konnect for CP/DP authentication. 
 
 ## September 2023
 
@@ -35,7 +39,6 @@ to get started.
 : New users can now signup for and login to Konnect organizations using their social identities from Google and GitHub. Users also have the ability to quickly switch between different Konnect organizations that they own or have been invited to.
 : * [Social Login](/konnect/org-management/social-identity-login/) - Login with social identities has been added as part of the "built-in" authentication scheme in Konnect. Users can use their Google and GitHub credentials to create new organizations and sign in to existing Konnect accounts with a matching email. User invitations may also be accepted via social login.
 : * [Organization Switcher](/konnect/org-management/org-switcher/) - Users who have been invited to more than one organization will be able witch between orgs via the org switcher. In addition, users who wish to utilize more than one organization may create new organizations via org switcher. All organizations that have associated emails would be accessible to a login to via org switcher.
-
 
 **Renamed {{site.konnect_short_name}} capabilities**
 : We have renamed a number of core {{site.konnect_short_name}} capabilities to simplify user understanding:

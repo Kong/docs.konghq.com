@@ -14,7 +14,7 @@ If you are not following the Getting Started workflow, make sure you have
 ## What are Services and Routes?
 
 **Service** and **Route** objects let you expose your services to clients with
-Kong Gateway. When configuring access to your API, you’ll start by specifying a
+{{site.base_gateway}}. When configuring access to your API, you’ll start by specifying a
 Service. In {{site.base_gateway}}, a Service is an entity representing an external
 upstream API or microservice &mdash; for example, a data transformation
 microservice, a billing API, and so on.
@@ -25,7 +25,7 @@ protocol, host, port, and path individually.
 
 Before you can start making requests against the Service, you will need to add
 a Route to it. Routes determine how (and if) requests are sent to their Services
-after they reach Kong Gateway. A single Service can have many Routes.
+after they reach {{site.base_gateway}}. A single Service can have many Routes.
 
 After configuring the Service and the Route, you’ll be able to start making
 requests through {{site.base_gateway}}.
@@ -235,11 +235,9 @@ A `201` message indicates the Route was created successfully.
 
 3. (Optional) You can update your local file with the new configuration:
 
-    <div class="alert alert-warning">
-
-    <strong>Be careful!</strong> Any subsequent <code>deck dump</code> will
-    overwrite the existing <code>kong.yaml</code> file. Create backups as needed.
-    </div>
+    {:.important}
+    > **Be careful!** Any subsequent `deck dump` will
+    overwrite the existing `kong.yaml` file. Create backups as needed.
 
     ``` bash
     $ deck dump
