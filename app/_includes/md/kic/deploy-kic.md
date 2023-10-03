@@ -14,7 +14,7 @@ $ kubectl create -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-co
 ```bash
 helm repo add kong https://charts.konghq.com
 helm repo update
-helm install kongdocs kong/kong
+helm install kong kong/ingress
 ```
 {% endnavtab %}
 {% endnavtabs %}

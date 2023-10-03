@@ -65,7 +65,7 @@ spec:
 {% navtabs codeblock %}
 {% navtab ingress %}
 ```text
-ingress.networking.k8s.io/proxy-from-k8s-to-httpbin created
+ingress.networking.k8s.io/{{ name }} created
 ```
 {% endnavtab %}
 {% navtab Gateway APIs %}
