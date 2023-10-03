@@ -1,0 +1,8 @@
+- output: ../../app/assets/images/products/konnect/mesh-manager/konnect-mesh-control-plane-dashboard.png
+  url: https://cloud.konghq.com/us/mesh-manager/
+  wait: 4000
+  width: 1280
+  height: 1024
+  javascript: |
+    zoomPercentage(-5);
+
