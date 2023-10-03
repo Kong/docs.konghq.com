@@ -130,7 +130,7 @@ See the [OpenTelemetry Collector documentation](https://opentelemetry.io/docs/co
 Enable the plugin:
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/plugins \
+curl -X POST http://localhost:8001/plugins \
     --data "name=opentelemetry"  \
     --data "config.endpoint=http://<opentelemetry-backend>:4318/v1/traces" \
     --data "config.resource_attributes.service.name=kong-dev"
@@ -216,7 +216,7 @@ The following is an example for adding a custom span using {{site.base_gateway}}
 2. Apply the Lua code using the `post-function` plugin using a cURL file upload:
 
     ```bash
-    curl -i -X POST http://<admin-hostname>:8001/plugins \
+    curl -i -X POST http://localhost:8001/plugins \
       -F "name=post-function" \
       -F "config.access[1]=@custom-span.lua"
 

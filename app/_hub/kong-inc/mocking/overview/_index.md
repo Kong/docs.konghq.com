@@ -326,7 +326,7 @@ This example creates a service named `Stock-Service`.
 
 
 ```bash
-curl -i -X POST http://<admin-hostname>:8001/services \
+curl -i -X POST http://localhost:8001/services \
   --data name=Stock-Service \
   --data url='http://httpbin.org/anything'
 ```
@@ -429,7 +429,7 @@ vary: Origin
 This example enables the Mocking plugin on the `getStockQuote` route.
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
+curl -X POST http://localhost:8001/routes/getStockQuote/plugins \
     --data "name=mocking"  \
     --data "config.api_specification_filename=stock-0.1.json"
 ```
@@ -437,7 +437,7 @@ curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
 Optional configuration for random simulated delay:
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
+curl -X POST http://localhost:8001/routes/getStockQuote/plugins \
     --data "name=mocking"  \
     --data "config.api_specification_filename=stock-0.1.json" \
     --data "config.random_delay=true" \
@@ -448,7 +448,7 @@ curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
 DB-less or hybrid mode configuration must use `config.api_specification`:
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
+curl -X POST http://localhost:8001/routes/getStockQuote/plugins \
     --data "name=mocking"  \
     --data "config.api_specification=<spec_contents>"
 ```
@@ -458,7 +458,7 @@ a spec:
 
 ```bash
 mock_ex=$(cat example.yaml); \
-curl -X POST http://<admin-hostname>:8001/routes/<route_id>/plugins \
+curl -X POST http://localhost:8001/routes/<route_id>/plugins \
   --data name=mocking \
   --data config.api_specification="$mock_ex"
 ```
@@ -558,7 +558,7 @@ Cross-origin resource sharing (CORS) is disabled by default for security reasons
 from the Dev Portal, enable the [CORS plugin](/hub/kong-inc/cors/) on the `getStockQuote` route.
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
+curl -X POST http://localhost:8001/routes/getStockQuote/plugins \
     --data "name=cors"  \
     --data "config.origins=*"
 ```

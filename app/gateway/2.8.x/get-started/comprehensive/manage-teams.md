@@ -95,7 +95,7 @@ account’s password in place of `<super-user-token>`:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X POST http://<admin-hostname>:8001/workspaces \
+curl -X POST http://localhost:8001/workspaces \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'name=SecureWorkspace'
 ```
@@ -186,7 +186,7 @@ Create a new user named `secureworkspaceadmin` with the RBAC token
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users \
+curl -X POST http://localhost:8001/SecureWorkspace/rbac/users \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'name=secureworkspaceadmin' \
   --data 'user_token=secureadmintoken'
@@ -209,7 +209,7 @@ Create a blank role in the workspace and name it `admin`:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles \
+curl -X POST http://localhost:8001/SecureWorkspace/rbac/roles \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'name=admin' \
 ```
@@ -231,7 +231,7 @@ workspace:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles/admin/endpoints/ \
+curl -X POST http://localhost:8001/SecureWorkspace/rbac/roles/admin/endpoints/ \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'endpoint=*'
   --data 'workspace=SecureWorkspace' \
@@ -256,7 +256,7 @@ Grant the `admin` role to `secureworkspaceadmin`:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
+curl -X POST http://localhost:8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'role=admin'
 ```
@@ -292,7 +292,7 @@ http :8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
 
     *Using cURL:*
     ```sh
-    curl -H Kong-Admin-Token:secureadmintoken -X GET http://<admin-hostname>:8001/default/rbac/users
+    curl -H Kong-Admin-Token:secureadmintoken -X GET http://localhost:8001/default/rbac/users
     ```
     *Or using HTTPie:*
 
@@ -310,7 +310,7 @@ http :8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
 
     *Using cURL:*
     ```sh
-    curl -H Kong-Admin-Token:secureadmintoken -X GET http://<admin-hostname>:8001/SecureWorkspace/rbac/users
+    curl -H Kong-Admin-Token:secureadmintoken -X GET http://localhost:8001/SecureWorkspace/rbac/users
     ```
     *Or using HTTPie:*
 

@@ -61,7 +61,7 @@ created:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X POST http://<admin-hostname>:8001/routes/mocking/plugins \
+curl -X POST http://localhost:8001/routes/mocking/plugins \
   --data name=key-auth
 ```
 {% endnavtab %}
@@ -187,7 +187,7 @@ The following creates a new consumer called **consumer**:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X POST http://<admin-hostname>:8001/consumers/ \
+curl -i -X POST http://localhost:8001/consumers/ \
   --data username=consumer \
   --data custom_id=consumer
 ```
@@ -209,7 +209,7 @@ created above. For this example, set the key to `apikey`.
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X POST http://<admin-hostname>:8001/consumers/consumer/key-auth \
+curl -i -X POST http://localhost:8001/consumers/consumer/key-auth \
   --data key=apikey
 ```
 {% endnavtab %}
@@ -350,7 +350,7 @@ Find the plugin ID and copy it:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X GET http://<admin-hostname>:8001/routes/mocking/plugins/
+curl -X GET http://localhost:8001/routes/mocking/plugins/
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
@@ -372,7 +372,7 @@ Disable the plugin:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X PATCH http://<admin-hostname>:8001/routes/mocking/plugins/{<plugin-id>} \
+curl -X PATCH http://localhost:8001/routes/mocking/plugins/{<plugin-id>} \
   --data enabled=false
 ```
 {% endnavtab %}

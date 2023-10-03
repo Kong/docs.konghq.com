@@ -22,7 +22,7 @@ Service, Route, or Consumer.
 For example, a user performs the following request:
 
 ```bash
-curl -X POST http://kong:8001/services/<service-name-or-id>/plugins \
+curl -X POST http://localhost:8001/services/<service-name-or-id>/plugins \
   -d "name=my-custom-plugin" \
   -d "config.foo=bar"
 ```
@@ -343,7 +343,7 @@ Such a configuration will allow a user to post the configuration to your plugin
 as follows:
 
 ```bash
-curl -X POST http://kong:8001/services/<service-name-or-id>/plugins \
+curl -X POST http://localhost:8001/services/<service-name-or-id>/plugins \
   -d "name=my-custom-plugin" \
   -d "config.environment=development" \
   -d "config.server.host=http://localhost"
