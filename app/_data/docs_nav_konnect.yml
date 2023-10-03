@@ -147,10 +147,8 @@
       items:
         - text: Manage Developer Access
           url: /dev-portal/access-and-approval/manage-devs/
-        - text: Manage Developer Team Access
+        - text: Manage Developer Teams
           url: /dev-portal/access-and-approval/manage-teams/
-        - text: Add Developer Teams from IdPs
-          url: /dev-portal/access-and-approval/add-teams/
         - text: Manage Application Registration Requests
           url: /dev-portal/access-and-approval/manage-app-reg-requests/
         - text: Manage Application Registrations
