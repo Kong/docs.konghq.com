@@ -33,10 +33,10 @@ The solution to this is to use batch requests. With queuing, request information
 
 When {{site.base_gateway}} processes a request from certain plugins, it uses queuing to group the requests together before sending them to the upstream server. 
 
-![Plugin Queuing Part 1 ](/assets/images/docs/konnect/konnect-plugin-queuing-1.png)
+![Plugin Queuing Part 1 ](/assets/images/products/konnect/gateway-manager/plugins/konnect-plugin-queuing-1.png)
 > _**Figure 1:** Example of how requests from plugins are sent to {{site.base_gateway}}._
 
-![Plugin Queuing Part 2 ](/assets/images/docs/konnect/konnect-plugin-queuing-2.png)
+![Plugin Queuing Part 2 ](/assets/images/products/konnect/gateway-manager/plugins/konnect-plugin-queuing-2.png)
 > _**Figure 2:** After the plugin requests are sent to {{site.base_gateway}}, the queue can be sent to the upstream server._
 
 You can use several different configurable parameters for queuing. The following sections explain these features of plugin queuing in detail.
