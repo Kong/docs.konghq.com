@@ -161,7 +161,7 @@ Below is an example configuration object that is used to configure the OIDC plug
 }
 ```
 
-![Enable OIDC in Kong Dev Portal](/assets/images/products/gateway/dev-portal/curity/kong-dev-portal.png)
+![Enable OIDC in Kong Dev Portal](/assets/images/products/gateway/dev-portal/kong-dev-portal.png)
 
 ### Curity Authentication Action
 
@@ -175,7 +175,7 @@ This Action is straightforward to configure. An HTTP Client is needed to communi
 
 The Action also configures the URL to the registration endpoint of the Kong Developer Portal. Here the scheme needs to match what's configured in the HTTP Client used.
 
-![Kong Dev Portal User Provisioner](/assets/images/products/gateway/dev-portal/curity/kong-dev-portal-action.png)
+![Kong Dev Portal User Provisioner](/assets/images/products/gateway/dev-portal/kong-dev-portal-action.png)
 
 When the action is created, it can be assigned to the Authenticators used in the client configured in the Curity Identity Server as described above.
 
@@ -183,7 +183,7 @@ When the action is created, it can be assigned to the Authenticators used in the
 
 Depending on the Authenticator used, an additional Action may be needed to resolve additional information. By default, The Kong Developer portal provisioning requires `Full Name` and `email`. If the Authenticator does not provide this, it's possible to use an Action to resolve the data. This could be as simple as a **Data Source** action configured to use a Data Source that provides the information.
 
-![Chain Actions](/assets/images/products/gateway/dev-portal/curity/authentication-and-actions.png)
+![Chain Actions](/assets/images/products/gateway/dev-portal/authentication-and-actions.png)
 
 By default, the Kong Developer Portal Provisioner Action works on the default account table schema of the Curity Identity Server database. This provides `email` as a column, but the `Full Name` is not readily available. The Action operates on the `attributes` column and parse the information to pass the user's Full Name to the Kong Dev Portal.
 
