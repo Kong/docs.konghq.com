@@ -7,6 +7,11 @@ production by slowly rolling out the change to a small subset of users.
 This plugin also enables rolling back to your original upstream service, or shifting 
 all traffic to the new version.
 
+{:.important}
+> **Note**: The Canary plugin is not designed for a Kubernetes-native philosophy,
+and shouldn't be used with the {{site.kic_product_name}}. Instead, use the 
+[Gateway API](/kubernetes-ingress-controller/latest/concepts/gateway-api/) to manage canary deploys.
+
 ## Usage
 
 The Canary Release plugin allows you to route traffic to two separate upstream
