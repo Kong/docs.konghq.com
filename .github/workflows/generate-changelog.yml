@@ -27,7 +27,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          title: Automated Changelog update
+          title: Automated Changelog update [skip ci]
           body: |
             This is a scheduled pull request to update the changelog.
           labels: skip-changelog,review:copyedit

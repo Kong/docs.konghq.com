@@ -92,7 +92,7 @@ const earliestDate = subDays(now, 7);
   prsWithFiles = groupBy(prsWithFiles, "week");
 
   // Write the changelog
-  let changelogContent = `# Changelog\n\n`;
+  let changelogContent = `# Changelog\n\n<!--vale off-->\n\n`;
 
   for (let week of Object.keys(prsWithFiles).reverse()) {
     changelogContent += `## Week ${week}\n\n`;
@@ -145,7 +145,7 @@ const earliestDate = subDays(now, 7);
   }
 
   changelogContent = `${changelogContent}\n\n${existingChangelog.replace(
-    "# Changelog\n\n",
+    "# Changelog\n\n<!--vale off-->\n\n",
     "",
   )}`;
   await fs.writeFile(changelogFile, changelogContent);
