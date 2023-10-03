@@ -188,3 +188,8 @@ Most commonly, you will use the commands from CI/CD tools built into your versio
 to bring full and partial {{site.base_gateway}} configurations together to create APIOps for your 
 particular needs.
 
+## More information
+
+See the example file at [Kong/go-apiops](https://github.com/Kong/go-apiops/blob/main/docs/learnservice_oas.yaml)
+for extensive annotations explaining the conversion process, as well as all supported custom 
+annotations (`x-kong-...` directives).
