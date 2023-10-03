@@ -34,6 +34,22 @@ Creating a fully-functioning {{site.mesh_product_name}} deployment in {{site.kon
 
 Mesh zones are priced based on consumption. For more information about the pricing and consumption of zones, see Kong's [Pricing](https://konghq.com/pricing) page.
 
+### Mesh Manager dashboard
+
+After your service mesh is deployed in {{site.konnect_short_name}}, Mesh Manager displays the following information for each control plane:
+
+* Meshes and data plane proxies with [mTLS](/mesh/latest/policies/mutual-tls/)
+* RBAC
+* Zone control planes
+* [Zone Ingresses](/mesh/latest/explore/zone-ingress/)
+* [Zone Egresses](/mesh/latest/explore/zoneegress/)
+* Services associated with your mesh
+* [Gateways](/mesh/latest/explore/gateway/) associated with your mesh
+* Policies
+
+![mesh control plane dashboard](/assets/images/docs/konnect/konnect-mesh-control-plane-dashboard.png)
+> _**Figure 1:** Example control plane dashboard with several zones and services, a service mesh, and data plane proxies._
+
 ## Supported installation options
 
 {{site.konnect_short_name}} supports the following installation options for {{site.mesh_product_name}} zones:
@@ -49,21 +65,7 @@ Mesh zones are priced based on consumption. For more information about the prici
 * Ubuntu
 * macOS
 
-## View service mesh entities
-
-After your mesh is deployed in {{site.mesh_product_name}}, Mesh Manager displays the following information for each control plane:
-
-* Meshes and data plane proxies with [mTLS](/mesh/latest/policies/mutual-tls/)
-* RBAC
-* Zone control planes
-* [Zone Ingresses](/mesh/latest/explore/zone-ingress/)
-* [Zone Egresses](/mesh/latest/explore/zoneegress/)
-* Services associated with your mesh
-* [Gateways](/mesh/latest/explore/gateway/) associated with your mesh
-* Policies
-
-![mesh control plane dashboard](/assets/images/docs/konnect/konnect-mesh-control-plane-dashboard.png)
-> _**Figure 1:** Example control plane dashboard with several zones and services, a service mesh, and data plane proxies._
+After you create a zone in Mesh Manager, you can change the zone type by ????
 
 ## Mesh Manager RBAC
 

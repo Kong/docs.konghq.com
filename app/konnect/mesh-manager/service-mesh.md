@@ -3,7 +3,7 @@ title: Configure a Mesh Global Control Plane with the Kubernetes demo app
 content_type: tutorial
 ---
 
-Using Mesh Manager, you can create {{site.mesh_product_name}} global control planes to manage your {{site.konnect_saas}} mesh services. This guide explains how to configure a global control plane with {{site.mesh_product_name}}, then install the Kubernetes demo app so you can start interfacing with {{site.mesh_product_name}} in {{site.konnect_saas}}.
+Using Mesh Manager, you can create global control planes to manage your {{site.mesh_product_name}} meshes. This guide explains how to configure a global control plane, then install the Kubernetes demo app so you can start interfacing with {{site.mesh_product_name}} in {{site.konnect_saas}}.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ Using Mesh Manager, you can create {{site.mesh_product_name}} global control pla
 1. Click **New Global Control Plane**.
 1. Enter `example-cp` in the **Name** field and click **Save**.
 
-You now have a {{site.mesh_product_name}} global control plane. This control plane won't have any functionality until you connect a zone to it.
+You now have a global control plane. This control plane won't have any functionality until you connect a zone to it.
 
 ## Create a zone in the global control plane
 
@@ -68,13 +68,13 @@ You connect `kumactl` to the global control plane in {{site.konnect_short_name}}
 ```bash
 kumactl get dataplanes
 ```
-If your data planes were configured correctly with the demo app, the output should return all four data planes. 
+If your data planes were configured correctly with the demo app, the output should return all four data planes: `frontend`, `backend`, `postgres`, and `redis`.
 
 You can now issue commands to your global control plane using `kumactl`. You can see the [`kumactl` command reference](/mesh/latest/explore/cli/#kumactl) for more information about the commands you can use.
 
 ## Conclusion
 
-By following the instructions in this guide, you've created a {{site.mesh_product_name}} global control plane, added a zone to it, configured `kumactl` to connect to your global control plane, and added services to the mesh. 
+By following the instructions in this guide, you've created a global control plane for {{site.mesh_product_name}}, added a zone to it, configured `kumactl` to connect to your global control plane, and added services to the mesh. 
 
 ## Next steps
 
