@@ -31,23 +31,55 @@ Kong is accessible. This is used to send requests into the
 Kubernetes cluster.
 
 1. Get the IP address at which you can access {{site.base_gateway}}:
-   
+   {% capture the_code %}   
+{% navtabs codeblock %}
+{% navtab kubectl %}
+```bash
+$ minikube service -n kong kong-proxy --url | head -1
+```
+{% endnavtab %}
+{% navtab Helm Charts %}
    ```bash
-   $ minikube service -n kong kong-proxy --url | head -1
-   # If installed by helm, service name would be "<release-name>-kong-proxy".
-   # minikube service <release-name>-kong-proxy --url | head -1
+   HOST=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+   PORT=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.spec.ports[0].port}')
+   echo $HOST:$PORT
    ```
-   The results should look like this:
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+    The results should look like this:
+   {% capture the_code %}  
+{% navtabs codeblock %}
+{% navtab kubectl %}
+```bash
+http://192.168.99.100:32728
+```
+{% endnavtab %}
+{% navtab Helm Charts %}
    ```bash
-   http://192.168.99.100:32728
+   192.168.99.100:80
    ```
-1. Set the environment variable. Replace `<ip-address>` with the {{site.base_gateway}} IP address you just retrieved:
-   
-   ```bash
-   export PROXY_IP=<ip-address>
-   echo $PROXY_IP
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}  
+1. Set the environment variable. If you deployed using `kubectl` replace `<ip-address>` with the {{site.base_gateway}} IP address you just retrieved:
+   {% capture the_code %}     
+{% navtabs codeblock %}
+{% navtab kubectl %}
+```bash
+export PROXY_IP=<ip-address>
+```
+{% endnavtab %}
+{% navtab Helm Charts %}
+```bash
+   export PROXY_IP=${HOST}:${PORT}
    ```
-
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }} 
 1. Verify that you can access {{site.base_gateway}}:
 
    ```bash
