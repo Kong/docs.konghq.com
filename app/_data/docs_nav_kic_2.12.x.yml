@@ -1,5 +1,5 @@
 product: kubernetes-ingress-controller
-release: 2.11.x
+release: 2.12.x
 generate: true
 items:
   - title: Introduction
@@ -146,10 +146,10 @@ items:
         url: /references/annotations
       - text: CLI Arguments
         url: /references/cli-arguments
-        src: references/cli-arguments-lte-2.11.x
+        src: references/cli-arguments-2.12.x
       - text: Custom Resource Definitions
         url: /references/custom-resources
-        src: references/custom-resources-2.11.x
+        src: references/custom-resources-2.12.x
       - text: Plugin Compatibility
         url: /references/plugin-compatibility
       - text: Version Compatibility
