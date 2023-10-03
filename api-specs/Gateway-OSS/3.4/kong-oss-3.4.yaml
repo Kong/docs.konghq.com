@@ -7505,7 +7505,7 @@ servers:
           - https
 tags:
   - description: |
-      Service entities are abstractions of each of your own upstream services. For example, a service could be a data transformation microservice or a billing API.
+      Service entities are abstractions of your microservice interfaces or formal APIs. For example, a service could be a data transformation microservice or a billing API.
       <br><br>
       The main attribute of a service is the destination URL for proxying traffic. This URL can be set as a single string or by specifying its protocol, host, port and path individually. 
       <br><br>

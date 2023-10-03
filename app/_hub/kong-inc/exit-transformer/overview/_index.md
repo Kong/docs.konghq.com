@@ -6,6 +6,13 @@ Transform and customize {{site.base_gateway}} response exit messages using Lua f
 The plugin's capabilities range from changing messages, status codes, and headers,
 to completely transforming the structure of {{site.base_gateway}} responses.
 
+{:.note}
+> [`untrusted-lua`](/gateway/latest/reference/configuration/#untrusted_lua)
+must be set to either `on` or `sandbox` in your `kong.conf` file for this plugin 
+to work. The default value is `sandbox`, which means that Lua functions are allowed,
+but will be executed in a sandbox which has limited access to the Kong global
+environment.
+
 ## Transforming 4xx and 5xx Responses
 
 By default, the Exit Transformer is only applied to requests that match its
@@ -87,13 +94,11 @@ functions.
 Kong -> f(status, body, headers) -> ... -> exit(status, body, headers)
 ```
 
-<div class="alert alert-warning">
-  <strong>Warning</strong>
-  <code>kong.response.exit()</code> requires a <code>status</code> argument only.
-  <code>body</code> and <code>headers</code> may be <code>nil</code>.
-  If you manipulate the body and headers, first check that they exist and
-  instantiate them if they do not exist.
-</div>
+{:.important}
+> **Caution**: `kong.response.exit()` requires a `status` argument only.
+`body` and `headers` may be `nil`.
+If you manipulate the body and headers, first check that they exist and
+instantiate them if they do not exist.
 
 If you manipulate body and headers, see the
 [Modify the body and headers regardless if provided](#mod-body-head) example below.

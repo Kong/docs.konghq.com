@@ -24,9 +24,9 @@ Add an OAuth 2.0 authentication layer with one of the following grant flows:
 
 In order to use the plugin, you first need to create a consumer to associate one or more credentials to. The Consumer represents a developer using the upstream service.
 
-<div class="alert alert-warning">
-    <strong>Note</strong>: This plugin requires a database in order to work effectively. It <strong>does not</strong> work on DB-Less or hybrid mode.
-</div>
+
+{:.important}
+> This plugin requires a database in order to work effectively. It **does not** work in DB-less or hybrid mode.
 
 ### Endpoints
 
@@ -215,18 +215,15 @@ The authorization page is made of two parts:
 * The frontend page that the user will see, and that will allow him to authorize the client application to access his data
 * The backend that will process the HTML form displayed in the frontend, that will talk with the OAuth 2.0 plugin on Kong, and that will ultimately redirect the user to a third party URL.
 
-<div class="alert alert-info">
-    <a href="{{ site.repos.oauth2_hello_world }}">You can see a sample implementation in node.js + express.js on GitHub</a>
-</div>
+You can see a sample implementation in [node.js + express.js](https://github.com/Kong/kong-oauth2-hello-world) on GitHub.
 
 A diagram representing this flow:
 
 ![OAuth2 flow](/assets/images/docs/oauth2/oauth2-flow.png)
 
 1. The client application will redirect the end user to the authorization page on your web application, passing `client_id`, `response_type` and `scope` (if required) as query string parameters. This is a sample authorization page:
-    <div class="alert alert-info">
-      <center><img title="OAuth 2.0 Prompt" src="/assets/images/docs/oauth2/oauth2-prompt.png"/></center>
-    </div>
+
+    <center><img title="OAuth 2.0 Prompt" src="/assets/images/docs/oauth2/oauth2-prompt.png"/></center>
 
 2. Before showing the actual authorization page, the web application will make sure that the user is logged in.
 

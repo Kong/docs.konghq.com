@@ -11,5 +11,18 @@
   ],
   "labels": [
     "review:tech"
+  ],
+  "packageRules": [
+    {
+      "groupName": "Non-major dependencies",
+      "groupSlug": "all-minor-patch",
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ]
+    }
   ]
 }

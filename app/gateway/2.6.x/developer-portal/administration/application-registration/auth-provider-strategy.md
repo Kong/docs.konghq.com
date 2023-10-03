@@ -27,13 +27,12 @@ OAuth2 plugins for use with the Application Registration plugin:
 - When {{site.base_gateway}} is the system of record, the Application Registration plugin works
   in conjunction with the OAuth2 or the Key Authentication plugin.
 
-  <div class="alert alert-warning">
-    <strong>Important:</strong> The OAuth2 plugin does not support
+    {:.important}
+    > **Important:** The OAuth2 plugin does not support
     hybrid mode. Since the Key Authentication plugin is using the `kong-oauth2` strategy
     and client ID credential, hybrid mode is also not supported for the Key
     Authentication plugin. If your organization uses hybrid mode, you must use an external identity
     provider and configure the OpenID Connect plugin.
-  </div>
 
 - When an external OAuth2 is the system of record, the Application Registration
   plugin works in conjunction with the OpenID Connect plugin.
