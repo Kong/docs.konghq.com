@@ -8,7 +8,7 @@ This plugin also enables rolling back to your original upstream service, or shif
 all traffic to the new version.
 
 {:.important}
-> **Note**: The Canary plugin is not designed for a Kubernetes-native philosophy,
+> **Note**: The Canary plugin is not designed for a Kubernetes-native framework,
 and shouldn't be used with the {{site.kic_product_name}}. Instead, use the 
 [Gateway API](/kubernetes-ingress-controller/latest/concepts/gateway-api/) to manage canary deploys.
 
