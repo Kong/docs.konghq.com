@@ -24,14 +24,14 @@ scrapes this exporter as it would any other endpoint. Kong then queries Promethe
 display Vitals data via the API and Kong Manager. Prometheus does not ever directly scrape the Kong
 nodes for time series data. A trivialized workflow looks as follows:
 
-![Single Node Example Data Flow](/assets/images/gateway/vitals-prometheus/single.png)
+![Single Node Example Data Flow](/assets/images/products/gateway/vitals-prometheus/single.png)
 
 It is not uncommon to separate Kong functionality amongst a cluster of nodes. For example,
 one or more nodes serve only proxy traffic, while another node is responsible for serving the
 Kong Admin API and Kong Manager. In this case, the node responsible for proxy traffic writes
 the data to a StatsD exporter, and the node responsible for Admin API reads from Prometheus:
 
-![Multi Node Example Data Flow](/assets/images/gateway/vitals-prometheus/read-write.png)
+![Multi Node Example Data Flow](/assets/images/products/gateway/vitals-prometheus/read-write.png)
 
 In either case, the StatsD exporter process can be run either as a standalone process/container
 or as a sidecar/adjacent process within a VM. Note that in high-traffic environments, data aggregation

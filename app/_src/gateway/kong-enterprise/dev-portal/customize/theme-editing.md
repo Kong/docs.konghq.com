@@ -20,7 +20,7 @@ This will open the Dev Portals theme editor. From this page, the header logo, ba
 
 The predefined variables refer to the following elements:
 
-![Appearance Tab - Variables](/assets/gateway/dev-portal/appearance-dev-portal.png)
+![Appearance Tab - Variables](/assets/images/products/gateway/dev-portal/appearance-dev-portal.png)
 
 Hovering over an element will show a color picker, as well as a list of predefined colors. These colors are defined by the current template and can be edited in the [theme.conf.yaml](#editing-theme-files-with-the-editor) file
 

@@ -27,11 +27,11 @@ Here are some of the things you can do with Kong Manager:
 ## Kong Manager interface
 
 {% if_version lte:3.0.x %}
-![Kong Manager interface](/assets/images/gateway/km_workspace_3.0.png)
+![Kong Manager interface](/assets/images/products/gateway/km_workspace_3.0.png)
 {% endif_version %}
 
 {% if_version gte:3.1.x %}
-![Kong Manager interface](/assets/images/gateway/km_workspace_3.1.png)
+![Kong Manager interface](/assets/images/products/gateway/km_workspace_3.1.png)
 {% endif_version %}
 
 > Figure 1: Kong Manager individual workspace dashboard

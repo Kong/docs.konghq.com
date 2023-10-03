@@ -9,4 +9,4 @@ documentation, streamlined developer onboarding, and role-based access control
 (RBAC), Kong’s Dev Portal provides a comprehensive solution for creating
 and customizing a unified developer experience.
 
-![Dev Portal](/assets/gateway/dev-portal/dev-portal-homepage.png)
+![Dev Portal](/assets/images/products/gateway/dev-portal/dev-portal-homepage.png)

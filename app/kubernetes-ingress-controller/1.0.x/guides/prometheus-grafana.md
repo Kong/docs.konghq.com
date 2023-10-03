@@ -264,7 +264,7 @@ a variety of endpoints to shape your traffic.
 
 ### Request Latencies of Various Services
 
-![Request latencies](/assets/images/kubernetes-ingress-controller/request-latencies.png)
+![Request latencies](/assets/images/products/kubernetes-ingress-controller/request-latencies.png)
 
 Kong collects latency data of how long your services take to respond to
 requests. One can use this data to alert the on-call engineer if the latency
@@ -289,7 +289,7 @@ in the Prometheus documentation.
 
 ### Kong Proxy Latency
 
-![Proxy latencies](/assets/images/kubernetes-ingress-controller/proxy-latencies.png)
+![Proxy latencies](/assets/images/products/kubernetes-ingress-controller/proxy-latencies.png)
 
 Kong also collects metrics about its performance.
 The following query is similar to the previous one but gives
@@ -301,7 +301,7 @@ histogram_quantile(0.90, sum(rate(kong_latency_bucket{type="kong"}[1m])) by (le,
 
 ### Error Rates
 
-![Error rates](/assets/images/kubernetes-ingress-controller/error-rates.png)
+![Error rates](/assets/images/products/kubernetes-ingress-controller/error-rates.png)
 
 Another important metric to track is the rate of errors and requests
 your services are serving.
@@ -324,12 +324,12 @@ of client codes requesting an endpoint that was removed in a recent deploy.
 
 ### Request Rate and Bandwidth
 
-![Request rates](/assets/images/kubernetes-ingress-controller/request-rate.png)
+![Request rates](/assets/images/products/kubernetes-ingress-controller/request-rate.png)
 
 One can derive the total request rate for each of your services or
 across your Kubernetes cluster using the `kong_http_status` time series.
 
-![Bandwidth](/assets/images/kubernetes-ingress-controller/bandwidth.png)
+![Bandwidth](/assets/images/products/kubernetes-ingress-controller/bandwidth.png)
 
 Another metric that Kong keeps track of is the amount of
 network bandwidth (`kong_bandwidth`) being consumed.

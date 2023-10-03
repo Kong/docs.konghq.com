@@ -7,7 +7,7 @@ API Products bundles and manages multiple services. Each API product consists of
 
 **[Access {{site.konnect_short_name}} API Products](https://cloud.konghq.com/api-products).**
 
-![{{site.konnect_short_name}} API Products](/assets/images/konnect/api-products/api-products-overview.png)
+![{{site.konnect_short_name}} API Products](/assets/images/products/konnect/api-products/api-products-overview.png)
 
 ## API Products Dashboard
 
@@ -21,7 +21,7 @@ Here are some of the things you can do from the API Products Dashboard:
 * View traffic, error, and latency data. 
 
 
-![{{site.konnect_short_name}} API Products](/assets/images/konnect/api-products/api-products-manage.png)
+![{{site.konnect_short_name}} API Products](/assets/images/products/konnect/api-products/api-products-manage.png)
 
 
 | Item | Description

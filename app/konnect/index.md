@@ -15,7 +15,7 @@ preferred network environment.  All of this is powered by {{site.base_gateway}} 
 lightweight, fast, and flexible API gateway. 
 
 <p align="center">
-  <img src="/assets/images/konnect/dashboard/konnect-dashboard.png" alt="Konnect's dashboard screenshot" />
+  <img src="/assets/images/products/konnect/dashboard/konnect-dashboard.png" alt="Konnect's dashboard screenshot" />
 </p>
 
 {{site.konnect_short_name}} helps simplify multi-cloud API management by:

@@ -16,7 +16,7 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 
 1. Within Azure, go to the **App registrations** service and register a new application.
 
-   ![Azure App Registrations](/assets/gateway/dev-portal/ms-azure-app-reg.png)
+   ![Azure App Registrations](/assets/images/products/gateway/dev-portal/ms-azure-app-reg.png)
 
 1. In **Certificates & secrets**, create a Client secret and save it in a
    secure location. You can only view the secret once.
@@ -24,7 +24,7 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 1. Under **Manifest**, update `accessTokenAcceptedVersion=2` (default is null).
    The JSON for your application should look similar to this example:
 
-   ![Azure Manifest](/assets/gateway/dev-portal/azure-manifest.png)
+   ![Azure Manifest](/assets/images/products/gateway/dev-portal/azure-manifest.png)
 
 ## Create a Service in Kong
 
@@ -179,7 +179,7 @@ $ https -f POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/
 1. Paste the access token obtained from the previous step into
 [JWT](https://jwt.io).
 
-   ![JWT token converter](/assets/gateway/dev-portal/jwt-converter.png)
+   ![JWT token converter](/assets/images/products/gateway/dev-portal/jwt-converter.png)
 
 2. Click **Share JWT** to copy the value for the
 [aud (audience)](https://tools.ietf.org/html/rfc7519#section-4.1.3) claim to
@@ -196,7 +196,7 @@ next procedure.
 
    The Create Application form should look similar to this example:
 
-   ![Create Azure Application](/assets/gateway/dev-portal/azure-app.png)
+   ![Create Azure Application](/assets/images/products/gateway/dev-portal/azure-app.png)
 
 2. Click **Create**.
 
@@ -206,7 +206,7 @@ next procedure.
 
    The view application details page should look similar to this example:
 
-   ![Azure Example Application](/assets/gateway/dev-portal/azure-app-details.png)
+   ![Azure Example Application](/assets/images/products/gateway/dev-portal/azure-app-details.png)
 
    Because you enabled
    [Auto-approve](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration##aa)

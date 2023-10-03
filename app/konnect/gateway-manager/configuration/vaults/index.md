@@ -23,7 +23,7 @@ platform never stores sensitive credentials.
 
 ## Vaults interface in {{site.konnect_short_name}}
 
-![Vaults interface](/assets/images/konnect/gateway-manager/konnect-vaults.png)
+![Vaults interface](/assets/images/products/konnect/gateway-manager/konnect-vaults.png)
 > Figure 1: Overview page for all vaults configured for a control plane.
 
 Number | Item | Description

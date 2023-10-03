@@ -15,7 +15,7 @@ of the CP nodes, and only the CP nodes are directly connected to a database.
 Instead of accessing the database contents directly, the DP nodes maintain a 
 connection with CP nodes to receive the latest configuration.
 
-![Hybrid mode topology](/assets/images/gateway/deployment-hybrid-2.png)
+![Hybrid mode topology](/assets/images/products/gateway/deployment-hybrid-2.png)
 
 When you create a new data plane node, it establishes a connection to the
 control plane. The control plane listens on port `8005` for connections and

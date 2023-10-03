@@ -70,7 +70,7 @@ portal_session_conf={ "cookie_name":"portal_session","secret":"<CHANGE_THIS>","s
 3. Select **Basic Authentication**.
 4. Click **Save Changes**.
 
-![Authentication plugin](/assets/gateway/dev-portal/portal-settings-auth-plugin.png)
+![Authentication plugin](/assets/images/products/gateway/dev-portal/portal-settings-auth-plugin.png)
 
 ## Enable Basic Auth Using the Command Line
 

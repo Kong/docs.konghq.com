@@ -73,7 +73,7 @@ If the request is successful, you will receive a `202` response code and a respo
 1. Switch to the **Replay** tab.
 1. Check the status table below the configuration field.
 
-![Audit log replay](/assets/images/konnect/audit-logs/konnect-audit-log-replay.png)
+![Audit log replay](/assets/images/products/konnect/audit-logs/konnect-audit-log-replay.png)
 
 {% endnavtab %}
 {% navtab API %}

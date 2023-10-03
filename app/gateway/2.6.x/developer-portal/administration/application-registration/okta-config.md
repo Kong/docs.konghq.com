@@ -13,7 +13,7 @@ Follow these steps to set up an authorization server in Okta for all authorizati
 1. Sign in to the [Developer Okta site](https://developer.okta.com/).
 2. Click **API > Authorization Servers**.
 
-   ![Okta Authorization Server](/assets/gateway/dev-portal/okta-api-auth-server.png)
+   ![Okta Authorization Server](/assets/images/products/gateway/dev-portal/okta-api-auth-server.png)
 
    Notice that you already have an authorization server set up named `default`.
    This example uses the default auth server. You can also create as many
@@ -24,11 +24,11 @@ Follow these steps to set up an authorization server in Okta for all authorizati
 3. Click **default** to view the details for the default auth server. Take note
 of the `Issuer` URL, which you will use to associate Kong with your authorization server.
 
-   ![Okta Issuer URL](/assets/gateway/dev-portal/okta-auth-server-issuer-url.png)
+   ![Okta Issuer URL](/assets/images/products/gateway/dev-portal/okta-auth-server-issuer-url.png)
 
 4. Click the **Claims** tab.
 
-   ![Okta Issuer URL](/assets/gateway/dev-portal/okta-auth-server-claims.png)
+   ![Okta Issuer URL](/assets/images/products/gateway/dev-portal/okta-auth-server-claims.png)
 
 5. Click **Add Claim**. Add a custom claim called `application_id` that will attach any successfully authenticated application's `id` to the access token.
     1. Enter `application_id` in the **Name** field.
@@ -36,7 +36,7 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
     3. Enter `app.clientId` in the **Value** field.
     4. Click **Create**.
 
-   ![Okta Claim](/assets/gateway/dev-portal/okta-add-claim.png)
+   ![Okta Claim](/assets/images/products/gateway/dev-portal/okta-add-claim.png)
 
     Now that you have created a custom claim, you can associate the `client_id`
     with a Service via the Application Registration plugin. Start by creating a Service in Kong Manager.
@@ -46,7 +46,7 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
 
    1. In the `Config.Issuer` field, enter the Issuer URL of the Authorization server from your identity provider.
 
-      ![OIDC with Okta Issuer URL](/assets/gateway/dev-portal/oidc-issuer-url.png)
+      ![OIDC with Okta Issuer URL](/assets/images/products/gateway/dev-portal/oidc-issuer-url.png)
 
    2. In the `Config.Consumer Claim` field, enter your `<application_id>`.
 
@@ -54,7 +54,7 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
    auth types by default, ensure the
    `config.verify_parameters` option is disabled.
 
-   ![Clear Config Verify Parameters for OIDC with Okta](/assets/gateway/dev-portal/oidc-clear-verify-params-app-reg.png)
+   ![Clear Config Verify Parameters for OIDC with Okta](/assets/images/products/gateway/dev-portal/oidc-clear-verify-params-app-reg.png)
 
    The core configuration should be:
 
@@ -82,11 +82,11 @@ your Okta application will vary:
 
     - **Client Credentials**: Select `Machine-to-Machine` when prompted for an application type.
 
-     ![Okta Create New Application](/assets/gateway/dev-portal/okta-client-creds-app.png)
+     ![Okta Create New Application](/assets/images/products/gateway/dev-portal/okta-client-creds-app.png)
 
     You will need your `client_id` and `client_secret` later on when you [authenticate with the proxy](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth#cc-flow).
 
-    ![Okta Client Credentials](/assets/gateway/dev-portal/okta-client-id-secret.png)
+    ![Okta Client Credentials](/assets/images/products/gateway/dev-portal/okta-client-id-secret.png)
 
     - **Implicit Grant**: Select `Single-Page App`, `Native`, or `Web` when
   prompted for an application type. Make sure `Implicit` is selected for
@@ -112,7 +112,7 @@ This example assumes Client Credentials is the chosen OAuth flow.
 3. On the Applications page, click `+ New Application`.
 4. Complete the **Name** and **Description** fields. Paste the `client_id` of your corresponding Okta (or other identity provider) application into the **Reference Id** field.
 
-   ![Kong Create Application with Reference Id](/assets/gateway/dev-portal/create-app-ref-id.png)
+   ![Kong Create Application with Reference Id](/assets/images/products/gateway/dev-portal/create-app-ref-id.png)
 
 Now that the application has been created, developers can authenticate with the
 endpoint using the supported and recommended

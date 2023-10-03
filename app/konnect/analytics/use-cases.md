@@ -35,7 +35,7 @@ To build a report that displays the total number of requests across all of your 
 * **Group by**: API Product
 * **Then by**: None
 
-![API usage (last 30 days)](/assets/images/konnect/analytics/custom-reports/total-api-requests.png){:.image-border}
+![API usage (last 30 days)](/assets/images/products/konnect/analytics/custom-reports/total-api-requests.png){:.image-border}
 > _**Figure 1:** Horizontal bar chart showing the total number of requests across all APIs in the organization over the last 30 days._
 
 This report can provide your stakeholders with the answers to questions like:
@@ -71,7 +71,7 @@ Add a filter for the Accounts API. Click **Add Filter**, then set the following 
 * **Operator**: In
 * **Filter value**: Accounts API (or your own API name)
 
-![Daily Accounts API Usage (last 30 days)](/assets/images/konnect/analytics/custom-reports/total-usage-accounts-api-30.png){:.image-border}
+![Daily Accounts API Usage (last 30 days)](/assets/images/products/konnect/analytics/custom-reports/total-usage-accounts-api-30.png){:.image-border}
 > _**Figure 2:** Line chart showing the daily usage for the Accounts API over the last 30 days._
 
 These reports can provide your stakeholders with the answers to questions like:
@@ -109,7 +109,7 @@ To configure the {{site.konnect_saas}} to create a look back report of total tra
 * **Then by**: Application
 
 
-![API Usage by Application (last 30 days)](/assets/images/konnect/analytics/custom-reports/api-usage-by-application.png){:.image-border}
+![API Usage by Application (last 30 days)](/assets/images/products/konnect/analytics/custom-reports/api-usage-by-application.png){:.image-border}
 > _**Figure 4:** Vertical bar chart showing total API usage by {{site.konnect_saas}} application over the last 30 days._
 
 This report can be used to highlight which applications users prefer and where to distribute resources. Combined with the other reports, you can now communicate application-level usage data to your stakeholders. This data can help answer questions about how your APIs are being consumed. 
@@ -140,7 +140,7 @@ Add a filter for the Payment API. Click **Add Filter**, then set the following o
 * **Operator**: In
 * **Filter value**: Payment
 
-![Payment API - Latency (last 30 days)](/assets/images/konnect/analytics/custom-reports/latency-payments-api-30.png){:.image-border}
+![Payment API - Latency (last 30 days)](/assets/images/products/konnect/analytics/custom-reports/latency-payments-api-30.png){:.image-border}
 > _**Figure 5:** Line chart showing the latency for the Payments API over the last 30 days._
 
 This report can provide your stakeholders with the answers to questions like:

@@ -223,7 +223,7 @@ Kong as per the changes it receives from the Kubernetes API server.
 
 Following figure shows what this deployment looks like:
 
-![Kong DB-less](/assets/images/kubernetes-ingress-controller/dbless-deployment.png "Kong DB-less architecture")
+![Kong DB-less](/assets/images/products/kubernetes-ingress-controller/dbless-deployment.png "Kong DB-less architecture")
 
 In this deployment, only one Deployment is required, which is comprised of
 a Pod with two containers, a Kong container which proxies the requests
@@ -243,7 +243,7 @@ is a little different.
 
 Please refer to the below figure:
 
-![Kong with a database](/assets/images/kubernetes-ingress-controller/db-deployment.png "Kong with database")
+![Kong with a database](/assets/images/products/kubernetes-ingress-controller/db-deployment.png "Kong with database")
 
 In this type of deployment, there are two types of deployments created,
 separating the control and data flow:
@@ -333,7 +333,7 @@ through Kubernetes EndpointSlice watch.
 
 The overview of this type of deployment can be found on the figure below:
 
-![Gateway Discovery overview](/assets/images/kubernetes-ingress-controller/gateway-discovery-diagram.png "Gateway Discovery overview")
+![Gateway Discovery overview](/assets/images/products/kubernetes-ingress-controller/gateway-discovery-diagram.png "Gateway Discovery overview")
 
 In this type of architecture, there are two types of Kubernetes deployments created,
 separating the control and data flow:
@@ -368,7 +368,7 @@ and more.
 
 For installation steps, please see the [{{site.kic_product_name}} for Kubernetes Association][konnect-kic] page.
 
-![KIC {{site.konnect_short_name}} overview](/assets/images/kubernetes-ingress-controller/kic-konnect-diagram.png "KIC {{site.konnect_short_name}} overview")
+![KIC {{site.konnect_short_name}} overview](/assets/images/products/kubernetes-ingress-controller/kic-konnect-diagram.png "KIC {{site.konnect_short_name}} overview")
 
 From the architecture perspective, the integration is similar to the [Gateway Discovery](#gateway-discovery) and
 builds on top of it. The difference is that {{site.kic_product_name}} additionally configures a control plane in {{site.konnect_short_name}}

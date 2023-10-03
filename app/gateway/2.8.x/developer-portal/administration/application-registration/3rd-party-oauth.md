@@ -85,7 +85,7 @@ The following sequence diagram illustrates the Client Credentials flow through
 the OIDC and Application Registration plugins. Click on the image to expand its
  view.
 
-![Client Credentials Flow](/assets/gateway/dev-portal/dp-appreg-3rdparty-ccflow.png)
+![Client Credentials Flow](/assets/images/products/gateway/dev-portal/dp-appreg-3rdparty-ccflow.png)
 
 | Step | Explanation                                                          |
 |:------|:---------------------------------------------------------------------|
@@ -122,7 +122,7 @@ The following sequence diagram illustrates the Authorization Code flow through
 the OIDC and Application Registration plugins. Click on the image to expand its
  view.
 
-![Authorization Code Flow](/assets/gateway/dev-portal/dp-appreg-3rdparty-authcodeflow.png)
+![Authorization Code Flow](/assets/images/products/gateway/dev-portal/dp-appreg-3rdparty-authcodeflow.png)
 
 | Step | Explanation                                                          |
 |:------|:--------------------------------------------------------------------|
