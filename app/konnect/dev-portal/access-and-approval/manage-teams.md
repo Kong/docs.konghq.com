@@ -1,5 +1,5 @@
 ---
-title: Manage Dev Portal Team Access
+title: Manage Dev Portal Teams
 content_type: how-to
 ---
 
