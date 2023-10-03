@@ -3,7 +3,7 @@ title: Add Developer Teams from Identity Providers
 content_type: how-to
 ---
 
-In the {{site.konnect_short_name}} Dev Portal, you can import existing developer teams from a third-party identity provider (IdP) and map their permissions to elements in {{site.konnect_short_name}}. This allows you to import developers automatically instead of manually copying over every single team of developers from your IdP to {{site.konnect_short_name}}.
+In the {{site.konnect_short_name}} Dev Portal, you can map existing developer teams from a third-party identity provider (IdP) and map their permissions to elements in {{site.konnect_short_name}}. Instead of needing to manually copy over each team of developers, with IdP Mapped Teams, developers, as well as their respective permissions, will now be automatically mapped to Konnect.
 
 This guide explains how to map the permissions, including scopes and claims, from your group of developers in your IdP to your organization's team in {{site.konnect_short_name}}. Although this guide uses Okta, Azure Active Directory (AD), and Auth0 as examples, you can use any IdP that conforms to OIDC standards. 
 
@@ -14,10 +14,6 @@ This guide explains how to map the permissions, including scopes and claims, fro
     * [Okta](https://help.okta.com/en-us/content/topics/users-groups-profiles/usgp-assign-group-people.htm)
     * [Auth0](https://auth0.com/docs/get-started/tenant-settings/auth0-teams)
     * [Azure AD](https://learn.microsoft.com/azure/active-directory/fundamentals/how-to-manage-groups#create-a-basic-group-and-add-members)
-* An IdP configured in Konnect (OIDC or DCR) for dynamic client registration:
-    * [Okta](/konnect/dev-portal/applications/dynamic-client-registration/okta/)
-    * [Auth0](/konnect/dev-portal/applications/dynamic-client-registration/auth0/)
-    * [Azure AD](/konnect/dev-portal/applications/dynamic-client-registration/azure/)
 
 <!-- commenting this out so we can come back to it later after tech review
 ## Create developer teams in your IdP
