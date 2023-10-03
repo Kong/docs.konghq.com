@@ -56,7 +56,7 @@ This example tutorial steps you through ensuring an API request conforms to the 
  which is missing from the following request:
 
     ```bash
-    curl -X GET "http://<proxy-host>:8000/pet/findByStatus" \
+    curl -X GET "http://localhost:8000/pet/findByStatus" \
       -H "accept: application/json"
     ```
 

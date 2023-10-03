@@ -657,7 +657,7 @@ Test the mock response from within the Insomnia spec using the **Try it out** fe
 #### Command line test
 
 ```bash
-curl -X GET "http://<admin-hostname>:8000/stock/historical?tickers=AAPL" \
+curl -X GET "http://localhost:8000/stock/historical?tickers=AAPL" \
   -H "accept: application/json"
 ```
 

@@ -13,6 +13,8 @@ source_url: https://github.com/Kong/kong-ee/tree/master/kong/pdk
 badge: enterprise
 ---
 
+<!-- vale off -->
+
 The JWE utility module provides utility functions around JSON Web Encryption.
 
 

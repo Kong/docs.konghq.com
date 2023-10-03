@@ -66,6 +66,7 @@ Node.js
 OAuth
 Okta
 Okta's
+OpenSSL
 PayPal
 Pongo
 PostgreSQL
@@ -75,6 +76,8 @@ Prometheus
 Protobuf
 Resty
 SAML
+SBOM
+SBOMs
 SDKs
 Splunk
 Stap
@@ -151,6 +154,7 @@ downsample
 downsampled
 drilldown
 elbs
+enqueued
 enum
 env
 etcd
@@ -164,6 +168,7 @@ flamegraph
 full_name
 gevent
 gibibytes
+glibc
 globbing
 gojira
 grpc
@@ -226,6 +231,7 @@ kumactl
 kustomization
 kv
 lapis
+libxml2
 loggly
 lookup
 lookups
