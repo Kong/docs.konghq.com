@@ -225,6 +225,7 @@ See the following table for plugins and their compatible scopes:
       <th style="text-align: center">Service</th>
       <th style="text-align: center">Route</th>
       <th style="text-align: center">Consumer</th>
+      <th style="text-align: center">Consumer group</th>
       <th style="text-align: center">Global</th>
   </thead>
   <tbody>
@@ -249,6 +250,13 @@ See the following table for plugins and their compatible scopes:
         </td>
         <td style="text-align: center"> 
           {% if extn.schema.enable_on_consumer? %}
+            <i class="fa fa-check"></i>
+          {% else %}
+            <i class="fa fa-times"></i>
+          {% endif %}
+        </td>
+        <td style="text-align: center"> 
+          {% if extn.schema.enable_on_consumer_group? %}
             <i class="fa fa-check"></i>
           {% else %}
             <i class="fa fa-times"></i>

@@ -10,10 +10,7 @@
   {% assign offset = 2 %}
 {% endif %}
 
-{% if include.edition == 'enterprise' %}
-  {% capture product_url %}/enterprise/{% unless include.no_version == true %}{{version}}/{% endunless %}{% endcapture %}
-  {% capture product_title %}{{site.ee_product_name}}{% endcapture %}
-{% elsif include.edition == 'konnect' %}
+{% if include.edition == 'konnect' %}
   {% capture product_url %}/konnect/{% endcapture %}
   {% capture product_title %}{{site.konnect_saas}}{% endcapture %}
 {% elsif include.edition == 'mesh' %}
@@ -25,25 +22,22 @@
 {% elsif include.edition == 'kubernetes-ingress-controller' %}
   {% capture product_url %}/kubernetes-ingress-controller/{{version}}/{% endcapture %}
   {% capture product_title %}{{site.kic_product_name}}{% endcapture %}
-{% elsif include.edition == 'gateway-oss' %}
-  {% capture product_url %}/gateway-oss/{{version}}/{% endcapture %}
-  {% capture product_title %}{{ site.ce_product_name }}{% endcapture %}
 {% elsif include.edition == 'gateway' %}
   {% capture product_url %}/gateway/{{version}}/{% endcapture %}
   {% capture product_title %}{{ site.base_gateway }}{% endcapture %}
-{% elsif include.edition == 'getting-started-guide' %}
-  {% capture product_url %}/getting-started-guide/{{version}}/overview{% endcapture %}
-  {% capture product_title %}Get Started with Kong Gateway{% endcapture %}
+{% elsif include.edition == 'gateway-operator' %}
+  {% capture product_url %}/gateway-operator/{{version}}/{% endcapture %}
+  {% capture product_title %}{{ site.kgo_product_name }}{% endcapture %}
 {% elsif include.edition == 'contributing' %}
   {% capture product_url %}/contributing/{% endcapture %}
   {% capture product_title %}Style guide and contribution guidelines{% endcapture %}
 {% endif %}
 
-<div id="breadcrumbs">
   <ul class="breadcrumbs">
-    <i class="sidebar-toggle"></i>
     <li class="breadcrumb-item">
-      <a href="/">Home</a>
+      <a href="/">
+        <img src="/assets/images/icons/hub-layout/icn-breadcrumbs.svg" alt="Home icon">
+      </a>
     </li>
     <li class="breadcrumb-item">
       <a href="{{ product_url }}">{{ product_title }}</a>
@@ -82,4 +76,3 @@
       <a href="{{ page.url }}">{{ page_title }}</a>
     </li>
   </ul>
-</div>

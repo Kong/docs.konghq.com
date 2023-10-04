@@ -1,5 +1,6 @@
 ---
 nav_title: Local testing and development
+title: Local testing and development
 ---
 
 ## Local testing and development

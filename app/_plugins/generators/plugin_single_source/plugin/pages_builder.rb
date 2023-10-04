@@ -21,7 +21,7 @@ module PluginSingleSource
 
       def pages
         @pages ||= [
-          @release.overview_page,
+          @release.overviews,
           @release.configuration,
           @release.configuration_examples,
           @release.how_tos,
@@ -42,7 +42,7 @@ module PluginSingleSource
       end
 
       def icon
-        '/assets/images/icons/documentation/hub/icn-how-to.svg'
+        '/assets/images/icons/hub-layout/icn-how-to.svg'
       end
 
       def items_for(pages)
@@ -51,16 +51,16 @@ module PluginSingleSource
 
       def sidenav_items # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
         items = [
-          { 'title' => @release.overview_page.nav_title,
-            'url' => @release.overview_page.permalink,
-            'icon' => @release.overview_page.icon }
+          { 'title' => 'Introduction',
+            'items' => items_for(@release.overviews),
+            'icon' => '/assets/images/icons/hub-layout/icn-overview.svg' }
         ]
 
         if @release.configuration
           items.push({
                        'title' => @release.configuration.nav_title,
                        'url' => @release.configuration.permalink,
-                       'icon' => '/assets/images/icons/documentation/hub/icn-configuration.svg'
+                       'icon' => '/assets/images/icons/hub-layout/icn-configuration.svg'
                      })
         end
 

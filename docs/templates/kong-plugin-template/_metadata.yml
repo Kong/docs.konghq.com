@@ -27,12 +27,17 @@ free: # true OR false
   # (Required) Set true if your plugin is open-source and available in the 
   # free version of Kong Gateway. Set false if not.
 
-plus: # true OR false
-  # (Required) Set true if your plugin is available in Konnect Plus, but not available 
-  # in a free tier.
+paid: # true OR false
+  # (Required) Set true if your plugin is available in the Konnect Paid tier, 
+  # and not available for free.
+
+premium: # true OR false
+# (Required) Set true if your plugin is available in the Konnect Premium tier *only*, 
+# and not available for free or in the Paid tier.
 
 enterprise: # true OR false
-  # (Required) Set true if the plugin is *only* available with an Enterprise subscription.
+  # (Required) Set true if the plugin is *only* available with a 
+  # Kong Gateway Enterprise subscription.
   # Set false if your plugin is open-source and works with open-source Kong Gateway.
 
 konnect: # true OR false

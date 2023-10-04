@@ -6,6 +6,9 @@ on:
   pull_request:
     types: [synchronize, ready_for_review, opened]
 
+env:
+  VITE_PORTAL_API_URL: ${{ vars.VITE_PORTAL_API_URL }}
+
 jobs:
   smoke-test:
     runs-on: ubuntu-latest
@@ -13,7 +16,7 @@ jobs:
     steps:
       # Increase number of watchers to fix tests
       - run: sudo sysctl -w fs.inotify.max_user_watches=524288
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
 
@@ -62,10 +65,14 @@ jobs:
           netlify dev & wait-on http://localhost:8888
           npm test
 
+      - name: Check for broken markdown anchors
+        run: |
+          ./tools/missing-markdown-anchor/run.sh
+
   rspec:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
       # Configure Node to build assets

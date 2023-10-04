@@ -5,7 +5,7 @@ content_type: tutorial
 
 ## Overview
 
-This guide walks through setting up an HTTP(S) route and plugin using
+Deploy an upstream HTTP application, create a configuration group, add a route, and add a plugin using 
 {{site.base_gateway}} and {{site.kic_product_name}}.
 
 {% include_cached /md/kic/installation.md kong_version=page.kong_version %}
@@ -20,9 +20,9 @@ This guide walks through setting up an HTTP(S) route and plugin using
 
 {% include_cached /md/kic/add-certificate.md hostname='kong.example' kong_version=page.kong_version %}
 
-Finally, update your routing configuration to use this certificate:
-
-{% navtabs api %}
+1. Update your routing configuration to use this certificate.
+ {% capture the_code %}
+{% navtabs codeblock %}
 {% navtab Ingress %}
 ```bash
 kubectl patch --type json ingress echo -p='[{
@@ -34,17 +34,8 @@ kubectl patch --type json ingress echo -p='[{
     }]
 }]'
 ```
-Response:
-```text
-ingress.networking.k8s.io/echo patched
-
-```
 {% endnavtab %}
 {% navtab Gateway APIs %}
-{% if_version lte: 2.5.x %}
-{{site.kic_product_name}} versions below 2.5 do not support certificates with
-Gateway APIs.
-{% endif_version %}
 ```bash
 kubectl patch --type=json gateway kong -p='[{
     "op":"add",
@@ -62,177 +53,198 @@ kubectl patch --type=json gateway kong -p='[{
 		}
     }
 }]'
+
 ```
-Response:
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+
+    The results should look like this:
+
+    {% capture the_code %}
+{% navtabs codeblock %}
+{% navtab Ingress %}
+```text
+ingress.networking.k8s.io/echo patched
+```
+{% endnavtab %}
+{% navtab Gateway APIs %}
 ```text
 gateway.gateway.networking.k8s.io/kong patched
 ```
 {% endnavtab %}
 {% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
 
-After, requests will serve the configured certificate:
+1. Send requests to verify if the configured certificate is served.
 
-```bash
-curl -ksv https://kong.example/echo --resolve kong.example:443:$PROXY_IP 2>&1 | grep -A1 "certificate:"
-```
-Response:
-```text
-* Server certificate:
-*  subject: CN=kong.example
-```
+    ```bash
+    curl -ksv https://kong.example/echo --resolve kong.example:443:$PROXY_IP 2>&1 | grep -A1 "certificate:"
+    ```
+    The results should look like this:
+    ```text
+    * Server certificate:
+    *  subject: CN=kong.example
+    ```
 
-## Using plugins in Kong
+## Using plugins on Ingress / Gateway API Routes
 
-Setup a KongPlugin resource:
+1. Setup a KongPlugin resource.
 
-```bash
-echo "
-apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
-metadata:
-  name: request-id
-config:
-  header_name: my-request-id
-  echo_downstream: true
-plugin: correlation-id
-" | kubectl apply -f -
-```
-Response:
-```text
-kongplugin.configuration.konghq.com/request-id created
-```
+    ```bash
+    echo "
+    apiVersion: configuration.konghq.com/v1
+    kind: KongPlugin
+    metadata:
+      name: request-id
+    config:
+      header_name: my-request-id
+      echo_downstream: true
+    plugin: correlation-id
+    " | kubectl apply -f -
+    ```
+    The results should look like this:
+    ```text
+    kongplugin.configuration.konghq.com/request-id created
+    ```
+1. Update your route configuration to use the new plugin.
 
-Update your route configuration to use the new plugin:
-
-{% navtabs api %}
+ {% capture the_code %}
+{% navtabs codeblock %}
 {% navtab Ingress %}
 ```bash
 kubectl annotate ingress echo konghq.com/plugins=request-id
-```
-Response:
-```text
-ingress.networking.k8s.io/echo annotated
 ```
 {% endnavtab %}
 {% navtab Gateway APIs %}
 ```bash
 kubectl annotate httproute echo konghq.com/plugins=request-id
 ```
-Response:
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+
+    The results should look like this:
+
+    {% capture the_code %}
+{% navtabs codeblock %}
+{% navtab Ingress %}
+```text
+ingress.networking.k8s.io/echo annotated
+```
+{% endnavtab %}
+{% navtab Gateway APIs %}
 ```text
 httproute.gateway.networking.k8s.io/echo annotated
 ```
-
-Kong will now apply your plugin configuration to all routes associated with
-this resource. To test it, send another request through the proxy:
-
-```bash
-curl -i http://kong.example/echo --resolve kong.example:80:$PROXY_IP
-```
-Response:
-```text
-HTTP/1.1 200 OK
-Content-Type: text/plain; charset=UTF-8
-Transfer-Encoding: chunked
-Connection: keep-alive
-Date: Thu, 10 Nov 2022 22:33:14 GMT
-Server: echoserver
-my-request-id: ea87894d-7f97-4710-84ae-cbc608bb8107#2
-X-Kong-Upstream-Latency: 0
-X-Kong-Proxy-Latency: 0
-Via: kong/3.1.1
-
-Hostname: echo-fc6fd95b5-6lqnc
-
-Pod Information:
-	node name:	kind-control-plane
-	pod name:	echo-fc6fd95b5-6lqnc
-	pod namespace:	default
-	pod IP:	10.244.0.9
-...
-Request Headers:
-    ...
-	my-request-id=ea87894d-7f97-4710-84ae-cbc608bb8107#2
-...
-```
 {% endnavtab %}
 {% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
 
-Requests that match the `echo` Ingress or HTTPRoute now include a
-`my-request-id` header with a unique ID in both their request headers upstream
-and their response headers downstream.
+
+    Kong now applies your plugin configuration to all routes associated with this resource.
+
+1.  To verify, send another request through the proxy.
+
+    ```bash
+    curl -i http://kong.example/echo --resolve kong.example:80:$PROXY_IP
+    ```
+    The results should look like this:
+    ```text
+    HTTP/1.1 200 OK
+    Content-Type: text/plain; charset=UTF-8
+    Transfer-Encoding: chunked
+    Connection: keep-alive
+    Date: Thu, 10 Nov 2022 22:33:14 GMT
+    Server: echoserver
+    my-request-id: ea87894d-7f97-4710-84ae-cbc608bb8107#2
+    X-Kong-Upstream-Latency: 0
+    X-Kong-Proxy-Latency: 0
+    Via: kong/3.1.1
+    
+    Hostname: echo-fc6fd95b5-6lqnc
+
+    Pod Information:
+    	node name:	kind-control-plane
+    	pod name:	echo-fc6fd95b5-6lqnc
+    	pod namespace:	default
+    	pod IP:	10.244.0.9
+    ...
+    Request Headers:
+        ...
+    	my-request-id=ea87894d-7f97-4710-84ae-cbc608bb8107#2
+    ...
+    ```
+    Requests that match the `echo` Ingress or HTTPRoute now include a `my-request-id` header with a unique ID in both their request headers upstream and their response headers downstream.
 
 ## Using plugins on Services
 
 Kong can also apply plugins to Services. This allows you execute the same
-plugin configuration on all requests to that Service, without configuring the
-same plugin on multiple Ingresses.
+plugin configuration on all requests to that Service, without configuring the same plugin on multiple Ingresses.
 
-Create a KongPlugin resource:
+1. Create a KongPlugin resource.
 
-```bash
-echo "
-apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
-metadata:
-  name: rl-by-ip
-config:
-  minute: 5
-  limit_by: ip
-  policy: local
-plugin: rate-limiting
-" | kubectl apply -f -
-```
-Response:
-```text
-kongplugin.configuration.konghq.com/rl-by-ip created
-```
+    ```bash
+    echo "
+    apiVersion: configuration.konghq.com/v1
+    kind: KongPlugin
+    metadata:
+      name: rl-by-ip
+    config:
+      minute: 5
+      limit_by: ip
+      policy: local
+    plugin: rate-limiting
+    " | kubectl apply -f -
+    ```
+    The results should look like this:
+    ```text
+    kongplugin.configuration.konghq.com/rl-by-ip created
+    ```
+1. Apply the `konghq.com/plugins` annotation to the Kubernetes Service that needs rate-limiting.
 
-Next, apply the `konghq.com/plugins` annotation to the Kubernetes Service
-that needs rate-limiting:
+    ```bash
+    kubectl annotate service echo konghq.com/plugins=rl-by-ip
+    ```
+    The results should look like this:
+    ```text
+    service/echo annotated
+    ```
+    Kong now enforces a rate limit to requests proxied to this Service.        
+1. To verify, send a request.
+    ```bash
+    curl -i http://kong.example/echo --resolve kong.example:80:$PROXY_IP
+    ```
+    The results should look like this:
+    ```text
+    HTTP/1.1 200 OK
+    Content-Type: text/plain; charset=UTF-8
+    Transfer-Encoding: chunked
+    Connection: keep-alive
+    X-RateLimit-Remaining-Minute: 4
+    RateLimit-Limit: 5
+    RateLimit-Remaining: 4
+    RateLimit-Reset: 13
+    X-RateLimit-Limit-Minute: 5
+    Date: Thu, 10 Nov 2022 22:47:47 GMT
+    Server: echoserver
+    my-request-id: ea87894d-7f97-4710-84ae-cbc608bb8107#3
+    X-Kong-Upstream-Latency: 1
+    X-Kong-Proxy-Latency: 1
+    Via: kong/3.1.1
 
-```bash
-kubectl annotate service echo konghq.com/plugins=rl-by-ip
-```
-Response:
-```text
-service/echo annotated
-```
-
-Kong will now enforce a rate limit to requests proxied to this Service:
-
-```bash
-curl -i http://kong.example/echo --resolve kong.example:80:$PROXY_IP
-```
-Response:
-```text
-HTTP/1.1 200 OK
-Content-Type: text/plain; charset=UTF-8
-Transfer-Encoding: chunked
-Connection: keep-alive
-X-RateLimit-Remaining-Minute: 4
-RateLimit-Limit: 5
-RateLimit-Remaining: 4
-RateLimit-Reset: 13
-X-RateLimit-Limit-Minute: 5
-Date: Thu, 10 Nov 2022 22:47:47 GMT
-Server: echoserver
-my-request-id: ea87894d-7f97-4710-84ae-cbc608bb8107#3
-X-Kong-Upstream-Latency: 1
-X-Kong-Proxy-Latency: 1
-Via: kong/3.1.1
-
-
-
-Hostname: echo-fc6fd95b5-6lqnc
-
-Pod Information:
-	node name:	kind-control-plane
-	pod name:	echo-fc6fd95b5-6lqnc
-	pod namespace:	default
-	pod IP:	10.244.0.9
-...
-```
+    Hostname: echo-fc6fd95b5-6lqnc
+    Pod Information:
+    	node name:	kind-control-plane
+    	pod name:	echo-fc6fd95b5-6lqnc
+    	pod namespace:	default
+    	pod IP:	10.244.0.9
+    ...
+    ```
 
 ## Next steps
 

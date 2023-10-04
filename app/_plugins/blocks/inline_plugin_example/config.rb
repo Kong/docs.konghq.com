@@ -4,7 +4,7 @@ module Jekyll
   module InlinePluginExample
     class Config
       TARGETS = %i[service route consumer global consumer_group].freeze
-      FORMATS = %i[curl yaml kubernetes].freeze
+      FORMATS = %i[curl konnect yaml kubernetes].freeze
 
       def initialize(config:, page:)
         @config = config

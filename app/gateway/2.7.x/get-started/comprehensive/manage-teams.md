@@ -95,7 +95,7 @@ account’s password in place of `<super-user-token>`:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X POST http://<admin-hostname>:8001/workspaces \
+curl -X POST http://localhost:8001/workspaces \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'name=SecureWorkspace'
 ```
@@ -134,8 +134,8 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 {% navtab Using Kong Manager %}
 ### Invite a New Admin
 
-<div class="alert alert-warning">
-<strong>Note:</strong> If you also use the Admin API, once you've created this admin, you can find it under the <em>/admins</em> endpoint.</div>
+{:.note}
+> If you also use the Admin API, once you've created this admin, you can find it under the `/admins` endpoint.
 
 1. From the **Teams** > **Admins** tab, click **Invite Admin**.
 2. Enter the new administrator’s **Email** address, **Username**, and **Custom Id**.
@@ -149,9 +149,8 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 
     When you are done adding roles, you are redirected back to the Invite Admin dialog.
 
-    <div class="alert alert-warning">
-    <strong>Important:</strong> Before you move on, make sure the <strong>Enable RBAC Token</strong> checkbox is checked. The RBAC token is what allows the new admin to send a token to the Admin API to configure the system programmatically.
-    </div>
+    {:.important}
+    **Important:** Before you move on, make sure the **Enable RBAC Token** checkbox is checked. The RBAC token is what allows the new admin to send a token to the Admin API to configure the system programmatically.
 
 7. Click **Invite Admin** to send the invite.
 
@@ -167,7 +166,7 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 3. Click the **copy icon** to copy the registration link, then save it.
 4. Email or SMS the registration link to the new administrator &mdash; or use it yourself to test the login in the following steps.
 5. Open a different browser or an incognito tab in the current browser so your existing login session is ignored.
-6. Enter the registration link you copied previously into the new browser to log in with the new administrator (secureworkspaceadmin).
+6. Enter the registration link you copied previously into the new browser to log in with the new administrator (`secureworkspaceadmin`).
 
     If the registration link has expired, you can generate a new one by logging in with your `kong_admin` administrator and generating a new link.
 
@@ -177,9 +176,8 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 {% endnavtab %}
 {% navtab Using the Admin API %}
 
-<div class="alert alert-warning">
-<strong>Note:</strong> The following method refers to the <em>/users</em> endpoint and creates an Admin API user that won't be visible (or manageable) through Kong Manager. If you want to later administer the admin through Kong Manager, create it under the <a href="/gateway/{{page.kong_version}}/admin-api/admins/reference/"><em>/admins</em> endpoint</a> instead.
-</div>
+{:.important}
+> **Note** The following method refers to the `/users` endpoint and creates an Admin API user that won't be visible (or manageable) through Kong Manager. If you want to later administer the admin through Kong Manager, create it under the [`/admins`](/gateway/{{page.kong_version}}/admin-api/admins/reference/) endpoint instead.
 
 Create a new user named `secureworkspaceadmin` with the RBAC token
 `secureadmintoken`:
@@ -188,7 +186,7 @@ Create a new user named `secureworkspaceadmin` with the RBAC token
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users \
+curl -X POST http://localhost:8001/SecureWorkspace/rbac/users \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'name=secureworkspaceadmin' \
   --data 'user_token=secureadmintoken'
@@ -211,7 +209,7 @@ Create a blank role in the workspace and name it `admin`:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles \
+curl -X POST http://localhost:8001/SecureWorkspace/rbac/roles \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'name=admin' \
 ```
@@ -233,7 +231,7 @@ workspace:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/roles/admin/endpoints/ \
+curl -X POST http://localhost:8001/SecureWorkspace/rbac/roles/admin/endpoints/ \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'endpoint=*'
   --data 'workspace=SecureWorkspace' \
@@ -258,7 +256,7 @@ Grant the `admin` role to `secureworkspaceadmin`:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X POST http://<admin-hostname>:8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
+curl -X POST http://localhost:8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
   -H Kong-Admin-Token:<super-user-token> \
   --data 'role=admin'
 ```
@@ -294,7 +292,7 @@ http :8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
 
     *Using cURL:*
     ```sh
-    curl -H Kong-Admin-Token:secureadmintoken -X GET http://<admin-hostname>:8001/default/rbac/users
+    curl -H Kong-Admin-Token:secureadmintoken -X GET http://localhost:8001/default/rbac/users
     ```
     *Or using HTTPie:*
 
@@ -312,7 +310,7 @@ http :8001/SecureWorkspace/rbac/users/secureworkspaceadmin/roles/ \
 
     *Using cURL:*
     ```sh
-    curl -H Kong-Admin-Token:secureadmintoken -X GET http://<admin-hostname>:8001/SecureWorkspace/rbac/users
+    curl -H Kong-Admin-Token:secureadmintoken -X GET http://localhost:8001/SecureWorkspace/rbac/users
     ```
     *Or using HTTPie:*
 

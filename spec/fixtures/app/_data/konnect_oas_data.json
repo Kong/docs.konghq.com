@@ -1,0 +1,81 @@
+[
+  {
+    "id": "2dad627f-7269-40db-ab14-01264379cec7",
+    "title": "Portal RBAC",
+    "latestVersion": {
+      "name": "v2",
+      "id": "0ecb66fc-0049-414a-a1f9-f29e8a02c696"
+    },
+    "description": "(Konnect) The portal rbac api provides methods for creating and describing teams, collecting developers into teams, assigning roles to give those teams functionality in the developer portal.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "0ecb66fc-0049-414a-a1f9-f29e8a02c696",
+        "created_at": "2023-01-24T20:12:45.051Z",
+        "updated_at": "2023-02-24T17:04:31.582Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "e46e7742-befb-49b1-9bf1-7cbe477ab818",
+    "title": "Audit Logs API",
+    "latestVersion": {
+      "name": "v2",
+      "id": "d36126ee-ab8d-47b2-960f-5703da22cced"
+    },
+    "description": "The management API for Konnect audit logging",
+    "documentCount": 0,
+    "versionCount": 2,
+    "versions": [
+      {
+        "id": "d36126ee-ab8d-47b2-960f-5703da22cced",
+        "created_at": "2023-01-18T22:01:21.688Z",
+        "updated_at": "2023-01-19T16:53:17.132Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "d36126ee-ab8d-47b2-960f-5703da22ccee",
+        "created_at": "2023-01-18T22:01:21.688Z",
+        "updated_at": "2023-01-19T16:53:17.132Z",
+        "name": "v1",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "937dcdd7-4485-47dc-af5f-b805d562552f",
+    "title": "Gateway Admin - EE (Beta)",
+    "latestVersion": {
+      "name": "3.4.0.0",
+      "id": "25d728a0-cfe3-4cf4-8e90-93a5bb15cfd9"
+    },
+    "description": "Kong Gateway (EE) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
+    "documentCount": 0,
+    "versionCount": 2,
+    "versions": [
+      {
+        "id": "be79b812-46d5-4cc1-b757-b5270bf4fa60",
+        "created_at": "2023-05-11T19:37:04.731Z",
+        "updated_at": "2023-05-11T19:37:33.078Z",
+        "name": "3.3.0.0",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "25d728a0-cfe3-4cf4-8e90-93a5bb15cfd9",
+        "created_at": "2023-08-01T16:48:18.726Z",
+        "updated_at": "2023-08-09T21:03:30.480Z",
+        "name": "3.4.0.0",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  }
+]

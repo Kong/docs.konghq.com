@@ -12,9 +12,11 @@ module Jekyll
         end
       end
 
-      books.each do |_name, pages|
-        # Sort pages by page number
-        pages.sort! { |a, b| a.data['chapter'] <=> b.data['chapter'] }
+      books.each do |name, pages|
+        unless name.start_with? '//plugins'
+          # Sort pages by page number
+          pages.sort! { |a, b| a.data['chapter'] <=> b.data['chapter'] }
+        end
 
         # Insert next and previous link
         pages.each_with_index do |page, idx|

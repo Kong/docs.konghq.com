@@ -1,8 +1,8 @@
+{% unless include.skip_title %}
 ## Deploy an upstream HTTP application
+{% endunless %}
 
-To proxy requests, you need an upstream application to proxy to. Deploying this
-echo server provides a simple application that returns information about the
-Pod it's running in:
+To proxy requests, you need an upstream application to send a request to. Deploying this echo server provides a simple application that returns information about the Pod it's running in:
 
 ```bash
 echo "
@@ -72,7 +72,7 @@ spec:
         resources: {}
 " | kubectl apply -f -
 ```
-Response:
+The results should look like this:
 ```text
 service/echo created
 deployment.apps/echo created

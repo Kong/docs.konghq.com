@@ -5,18 +5,26 @@
   {:.important}
   > This plugin cannot be enabled globally. Please select another tab.
 {% else %}
-A plugin which is not associated to any service, route, or consumer is
-considered _global_, and will be run on every request. Read the
-[Plugin Reference](/gateway/latest/admin-api/#add-plugin) and the [Plugin Precedence](/gateway/latest/admin-api/#precedence)
-sections for more information.
 
 {% if include.render_intro_text %}
+A plugin which is not associated to any service, route, consumer, or consumer group is
+considered _global_, and will be run on every request.
+
+* In self-managed {{site.ee_product_name}}, the plugin applies to every entity in a given workspace.
+* In self-managed {{site.ce_product_name}}, the plugin applies to your entire environment.
+{% unless page.konnect == false %}* In {{site.konnect_short_name}}, the plugin applies to every entity in a given control plane.
+{% endunless %}
+
+Read the
+[Plugin Reference](/gateway/latest/admin-api/#add-plugin) and the [Plugin Precedence](/gateway/latest/admin-api/#precedence)
+sections for more information. 
+
 The following examples provide some typical configurations for enabling
 the <code>{{page.name}}</code> plugin globally.
 {% endif %}
   {% navtabs %}
     {% if hub_example.render_curl? %}
-    {% navtab Admin API %}
+    {% navtab Kong Admin API %}
 
 Make the following request:
 
@@ -24,6 +32,20 @@ Make the following request:
 
     {% endnavtab %}
     {% endif %}
+
+    {% unless page.konnect == false %}
+    {% if hub_example.render_konnect? %}
+    {% navtab Konnect API %}
+
+Make the following request, substituting your own access token, region, and control plane ID:
+
+{% include_cached plugins/hub-examples/konnect.html example=hub_example.konnect %}
+
+See the [Konnect API reference](/konnect/api/) to learn about region-specific URLs and personal access tokens.
+
+    {% endnavtab %}
+    {% endif %}
+    {% endunless %}
 
     {% unless page.k8s_examples == false %}
       {% if hub_example.render_kubernetes? %}
@@ -46,6 +68,8 @@ config:
   {{ line }}{%- endfor %}
 plugin: {{ hub_example.plugin_name }}
 ```
+
+{% include_cached plugins/kubernetes_consumer.html hub_example=hub_example %}
 
       {% endnavtab %}
       {% endif %}

@@ -2,6 +2,8 @@
 {%- assign hostname = include.hostname | default: 'kong.example' %}
 {%- assign name = include.name | default: 'echo' %}
 {%- assign service = include.service | default: 'echo' %}
+{%- assign port = include.port | default: '1027' %}
+  {% capture the_code %}
 {% navtabs api %}
 {% navtab Ingress %}
 ```bash
@@ -24,12 +26,8 @@ spec:
           service:
             name: {{ service }}
             port:
-              number: 1027
+              number: {{ port }}
 " | kubectl apply -f -
-```
-Response:
-```text
-ingress.networking.k8s.io/{{ name }} created
 ```
 {% endnavtab %}
 {% navtab Gateway APIs %}
@@ -54,13 +52,27 @@ spec:
     backendRefs:
     - name: {{ service }}
       kind: Service
-      port: 1027
+      port: {{ port }}
 " | kubectl apply -f -
 ```
-Response:
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+
+    The results should look like this:
+{% capture the_code %}
+{% navtabs codeblock %}
+{% navtab ingress %}
+```text
+ingress.networking.k8s.io/proxy-from-k8s-to-httpbin created
+```
+{% endnavtab %}
+{% navtab Gateway APIs %}
 ```text
 httproute.gateway.networking.k8s.io/{{ name }} created
 ```
 {% endnavtab %}
 {% endnavtabs %}
-
+{% endcapture %}
+{{ the_code | indent }}

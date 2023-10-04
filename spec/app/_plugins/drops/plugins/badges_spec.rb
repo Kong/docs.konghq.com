@@ -2,12 +2,12 @@ RSpec.describe Jekyll::Drops::Plugins::Badges do
   let(:publisher) { 'kong-inc' }
   let(:free) { false }
   let(:konnect) { true }
-  let(:plus) { true }
+  let(:paid) { true }
   let(:enterprise) { true }
 
   let(:metadata) do
     {
-      'plus' => plus,
+      'paid' => paid,
       'free' => free,
       'konnect' => konnect,
       'enterprise' => enterprise
@@ -16,34 +16,34 @@ RSpec.describe Jekyll::Drops::Plugins::Badges do
 
   subject { described_class.new(metadata:, publisher:) }
 
-  describe '#plus?' do
+  describe '#paid?' do
     context 'when the plugin is free' do
       let(:free) { true }
 
-      it { expect(subject.plus?).to eq(false) }
+      it { expect(subject.paid?).to eq(false) }
     end
 
-    context 'when the plugin is not plus' do
+    context 'when the plugin is not paid' do
       let(:free) { false }
-      let(:plus) { false }
+      let(:paid) { false }
 
-      it { expect(subject.plus?).to eq(false) }
+      it { expect(subject.paid?).to eq(false) }
     end
 
     context 'when the publisher is not `kong-inc`' do
       let(:free) { false }
-      let(:plus) { true }
+      let(:paid) { true }
       let(:publisher) { 'third-party' }
 
-      it { expect(subject.plus?).to eq(false) }
+      it { expect(subject.paid?).to eq(false) }
     end
 
-    context 'when the plugin is not free, is plus and the publisher is `kong-inc`' do
+    context 'when the plugin is not free, is paid, and the publisher is `kong-inc`' do
       let(:free) { false }
-      let(:plus) { true }
+      let(:paid) { true }
       let(:publisher) { 'kong-inc' }
 
-      it { expect(subject.plus?).to eq(true) }
+      it { expect(subject.paid?).to eq(true) }
     end
   end
 

@@ -574,16 +574,29 @@ jQuery(function () {
     $field.find('.fa-chevron-down').toggleClass('rotated');
     $field.find('.field-description-and-children > .field-subfield__params:first').toggle('hidden');
   });
+
+
+  var ctaKonnectCardClosed = getCookie("konnect-cta-card");
+  if (ctaKonnectCardClosed === "") {
+    $("#modal-open").click();
+  }
+
+  $(".konnect-cta-card .button").on("click", function(e) {
+    setCookie("konnect-cta-card", "true");
+  });
+
+  $(".cta-card-close").on("click", function(e) {
+    e.preventDefault();
+    setCookie("konnect-cta-card", "false");
+    analytics.track("Docs Konnect CTA Dismissed");
+  });
 });
 
 // Tooltips for badges
 jQuery(function () {
   if ($(".page.page-hub").length === 0) {
     $(".badge.enterprise").append(
-      '<div class="tooltip"><span class="tooltiptext">Available with Enterprise subscription - <a target="_blank" href="https://konghq.com/contact-sales">Contact Sales</a></span></div>'
-    );
-    $(".badge.plus").append(
-      '<div class="tooltip"><span class="tooltiptext">Available with Plus subscription (Kong Konnect)</span></div>'
+      '<div class="tooltip"><span class="tooltiptext">Available with Kong Gateway Enterprise subscription - <a target="_blank" href="https://konghq.com/contact-sales">Contact Sales</a></span></div>'
     );
     $(".badge.free").append(
       '<div class="tooltip"><span class="tooltiptext">Available in Enterprise Free mode (without a license)</span></div>'
@@ -599,6 +612,12 @@ jQuery(function () {
     );
     $(".badge.techpartner").append(
       '<div class="tooltip"><span class="tooltiptext">Verified Kong technical partner</span></div>'
+    );
+    $(".badge.paid").append(
+      '<div class="tooltip"><span class="tooltiptext">Available with Konnect Paid subscription </span></div>'
+    );
+    $(".badge.premium").append(
+      '<div class="tooltip"><span class="tooltiptext">Available with Konnect Premium subscription - <a target="_blank" href="https://konghq.com/contact-sales">Contact Sales</a></span></div>'
     );
   }
 });

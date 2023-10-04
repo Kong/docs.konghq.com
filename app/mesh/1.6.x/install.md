@@ -22,27 +22,27 @@ links to cloud marketplace integrations.
 <div class="docs-grid-install">
 
   <a href="/mesh/{{page.kong_version}}/installation/kubernetes" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/kubernetes-logo.png" alt="Kubernetes" />
+    <img class="install-icon" src="/assets/images/icons/third-party/kubernetes-logo.png" alt="Kubernetes" />
     <div class="install-text">Kubernetes</div>
   </a>
 
   <a href="/mesh/{{page.kong_version}}/installation/helm" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/helm-icon-color.svg" alt="Helm" />
+    <img class="install-icon" src="/assets/images/icons/third-party/helm-icon-color.svg" alt="Helm" />
     <div class="install-text">Helm</div>
   </a>
 
   <a href="/mesh/{{page.kong_version}}/installation/openshift" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/openshift-logo.png" alt="OpenShift" />
+    <img class="install-icon" src="/assets/images/icons/third-party/openshift-logo.png" alt="OpenShift" />
     <div class="install-text">OpenShift</div>
   </a>
 
   <a href="/mesh/{{page.kong_version}}/installation/docker" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/docker.png" alt="Docker" />
+    <img class="install-icon" src="/assets/images/icons/third-party/docker.png" alt="Docker" />
     <div class="install-text">Docker</div>
   </a>
 
   <a href="/mesh/{{page.kong_version}}/installation/ecs" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/docs/mesh/logo-ecs.jpg" alt="Amazon ECS" />
+    <img class="install-icon" src="/assets/images/icons/third-party/logo-ecs.jpg" alt="Amazon ECS" />
     <div class="install-text">Amazon ECS</div>
   </a>
 </div>
@@ -53,37 +53,37 @@ links to cloud marketplace integrations.
 <div class="docs-grid-install">
 
   <a href="/mesh/{{page.kong_version}}/installation/centos" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/centos.gif" alt="CentOS" />
+    <img class="install-icon" src="/assets/images/icons/third-party/centos.gif" alt="CentOS" />
     <div class="install-text">CentOS</div>
   </a>
 
   <a href="/mesh/{{page.kong_version}}/installation/redhat" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/rhel.jpg" alt="Red Hat" />
+    <img class="install-icon" src="/assets/images/icons/third-party/rhel.jpg" alt="Red Hat" />
     <div class="install-text">Red Hat</div>
   </a>
 
   <a href="/mesh/{{page.kong_version}}/installation/amazonlinux" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/amazon-linux.png" alt="AWS" />
+    <img class="install-icon" src="/assets/images/icons/third-party/amazon-linux.png" alt="AWS" />
     <div class="install-text">Amazon Linux</div>
   </a>
 
   <a href="/mesh/{{page.kong_version}}/installation/debian" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/debian-logo.jpg" alt="Debian" />
+    <img class="install-icon" src="/assets/images/icons/third-party/debian-logo.jpg" alt="Debian" />
     <div class="install-text">Debian</div>
   </a>
 
   <a href="/mesh/{{page.kong_version}}/installation/ubuntu" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/ubuntu.png" alt="Ubuntu" />
+    <img class="install-icon" src="/assets/images/icons/third-party/ubuntu.png" alt="Ubuntu" />
     <div class="install-text">Ubuntu</div>
   </a>
 
   <a href="/mesh/{{page.kong_version}}/installation/macos" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/macos-logo.png" alt="MacOS" />
+    <img class="install-icon" src="/assets/images/icons/third-party/macos-logo.png" alt="MacOS" />
     <div class="install-text">MacOS</div>
   </a>
 
   <a href="/mesh/{{page.kong_version}}/installation/windows" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/windows-logo.svg" alt="Windows" />
+    <img class="install-icon" src="/assets/images/icons/third-party/windows-logo.svg" alt="Windows" />
     <div class="install-text">Windows</div>
   </a>
 

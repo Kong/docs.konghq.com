@@ -2,6 +2,8 @@
 title: Kong Mesh with Windows
 ---
 
+{% if_version gte:2.4.x %}
+
 To install and run {{site.mesh_product_name}} on Windows:
 
 1. [Download {{site.mesh_product_name}}](#1-download-kong-mesh)
@@ -94,3 +96,4 @@ but you can use a persistent storage like PostgreSQL by updating the `conf/kuma-
 [backends]: https://kuma.io/docs/1.8.x/documentation/configuration/
 {% endif_version %}
 
+{% endif_version %}

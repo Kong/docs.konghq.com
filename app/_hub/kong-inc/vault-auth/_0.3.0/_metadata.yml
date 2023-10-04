@@ -1,13 +1,10 @@
 name: Vault Authentication
 dbless_compatible: 'yes'
-manager_examples: false
-konnect_examples: false
 free: false
 plus: false
 enterprise: true
+premium: true
 konnect: false
-
-
 publisher: Kong Inc.
 version: 2.1.x-2.7.x
 desc: Add Vault authentication to your services

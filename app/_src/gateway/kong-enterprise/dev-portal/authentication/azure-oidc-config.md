@@ -25,14 +25,14 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 ## Create a service in Kong
 
 ```bash
-curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure \
+curl -i -X PUT http://localhost:8001/services/httpbin-service-azure \
   --data 'url=https://httpbin.org/anything'
 ```
 
 ## Create a route in Kong
 
 ```bash
-curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure/routes/httpbin-route-azure \
+curl -i -X PUT http://localhost:8001/services/httpbin-service-azure/routes/httpbin-route-azure \
   --data 'paths=/httpbin-azure'
 ```
 
@@ -44,7 +44,7 @@ The plugins must be applied to a Service to work properly.
 1. Configure the OIDC plugin for the service:
 
     ```bash
-    curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugins \
+    curl -X POST http://localhost:8001/services/httpbin-service-azure/plugins \
       --data name=openid-connect \
       --data config.issuer="https://login.microsoftonline.com/<your_tenant_id>/v2.0" \
       --data config.display_errors="true" \
@@ -63,7 +63,7 @@ The plugins must be applied to a Service to work properly.
 2. Configure the Application Registration plugin for the service:
 
     ```bash
-    curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugins \
+    curl -X POST http://localhost:8001/services/httpbin-service-azure/plugins \
       --data "name=application-registration"  \
       --data "config.auto_approve=true" \
       --data "config.description=Uses consumer claim with various values (sub, aud, etc.) as registration id to support different flows and use cases." \

@@ -199,7 +199,7 @@ for _, section in ipairs(parsed) do
         string.match(var.name, "cluster_fallback") or
         string.match(var.name, "rbac") or
         string.match(var.name, "event_hooks") or
-        string.match(var.name, "keyring") or
+        string.match(var.name, "keyring")
       then
         write("{:.badge .enterprise}")
 

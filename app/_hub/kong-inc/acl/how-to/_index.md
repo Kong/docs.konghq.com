@@ -1,5 +1,6 @@
 ---
 nav_title: Setting up and using ACLs
+title: Setting up and using ACLs
 ---
 
 ## Setting up and using ACLs
@@ -26,7 +27,7 @@ created your [consumers](/gateway/latest/admin-api/#consumer-object), you can no
 associate a group to a consumer using the following request:
 
 ```bash
-curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/acls \
+curl -X POST http://localhost:8001/consumers/{CONSUMER}/acls \
     --data "group=group1" \
     --data "tags[]=tag1" \
     --data "tags[]=tag2"

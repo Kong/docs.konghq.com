@@ -7,18 +7,18 @@ RSpec.describe 'Plugin page with multiple versions' do
     render_page(page: page)
   end
 
-  context 'versions with a specific file - _2.2.x' do
-    let(:page_url) { '/hub/kong-inc/jwt-signer/2.5.x/' }
+  context 'versions with a specific file - _2.6.x' do
+    let(:page_url) { '/hub/kong-inc/jwt-signer/2.6.x/' }
 
     it 'renders the content' do
-      expect(html).to have_css('h2', text: '_2.2.x Description')
+      expect(html).to have_css('h2', text: '_2.6.x Description')
       expect(html).to have_css('p', text: 'content: Verify and (re-)sign one or two tokens in a request')
     end
 
     it 'renders metadata in the header' do
-      expect(html).to have_css('.hub-page-header--info-icon')
+      expect(html).to have_css('.page-header--info-icon')
       expect(html).to have_css('h1#main', text: 'Kong JWT Signer')
-      expect(html).to have_css('.badge.plus')
+      expect(html).to have_css('.badge.paid')
       expect(html).to have_css('.badge.enterprise')
       expect(html).to have_css('.old-version-banner')
     end
@@ -33,9 +33,9 @@ RSpec.describe 'Plugin page with multiple versions' do
     end
 
     it 'renders metadata in the header' do
-      expect(html).to have_css('.hub-page-header--info-icon')
+      expect(html).to have_css('.page-header--info-icon')
       expect(html).to have_css('h1#main', text: 'Kong JWT Signer')
-      expect(html).to have_css('.badge.plus')
+      expect(html).to have_css('.badge.paid')
       expect(html).to have_css('.badge.enterprise')
       expect(html).not_to have_css('.old-version-banner')
     end

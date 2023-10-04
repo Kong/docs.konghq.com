@@ -1,5 +1,6 @@
 ---
 nav_title: Getting Started with GraphQL and Kong Gateway
+title: Getting Started with GraphQL and Kong Gateway
 ---
 
 ## About GraphQL with Kong Gateway
@@ -39,7 +40,7 @@ curl -i -X POST \
 Protect your upstream GraphQL service with rate limiting. By introspecting your schema, it will analyze query costs and provide an enterprise-grade rate limiting strategy.
 
 ```sh
-curl -i -X POST http://kong:8001/services/example-service/plugins \
+curl -i -X POST http://localhost:8001/services/example-service/plugins \
   --data name=graphql-rate-limiting-advanced \
   --data config.limit=100,10000 \
   --data config.window_size=60,3600 \

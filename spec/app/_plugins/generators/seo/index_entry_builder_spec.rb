@@ -18,12 +18,6 @@ RSpec.describe SEO::IndexEntryBuilder do
       it { expect(subject).to be_a(SEO::IndexEntry::HubPage) }
     end
 
-    context 'page belonging to a product that is not versioned' do
-      let(:page_url) { '/getting-started-guide/2.1.x/overview/' }
-
-      it { expect(subject).to be_a(SEO::IndexEntry::UnversionedProductPage) }
-    end
-
     context 'page belonging to a product that is versioned' do
       context 'global page' do
         let(:page_url) { '/gateway/changelog/' }
@@ -42,11 +36,19 @@ RSpec.describe SEO::IndexEntryBuilder do
 
         it { expect(subject).to be_a(SEO::IndexEntry::VersionedPage) }
       end
+    end
 
-      context 'else' do
-        let(:page_url) { '/enterprise/references/' }
+    context 'OpenAPI pages' do
+      context 'konnect' do
+        let(:page_url) { '/konnect/api/portal-rbac/latest/' }
 
-        it { expect(subject).to be_a(SEO::IndexEntry::UnprocessablePage) }
+        it { expect(subject).to be_a(SEO::IndexEntry::OasPage) }
+      end
+
+      context 'gateway' do
+        let(:page_url) { '/gateway/api/admin-ee/latest/' }
+
+        it { expect(subject).to be_a(SEO::IndexEntry::OasPage) }
       end
     end
   end

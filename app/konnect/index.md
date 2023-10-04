@@ -9,18 +9,18 @@ breadcrumb: Overview
 {{site.konnect_short_name}} is an API lifecycle
 management platform designed from the ground up for the cloud native era
 and delivered as a service. This platform lets you build modern applications
-better, faster, and more securely. The management plane is hosted
-in the cloud by Kong, while the runtime engine, {{site.base_gateway}} — Kong's
-lightweight, fast, and flexible API gateway  — is managed by you within your
-preferred network environment.
+better, faster, and more securely. The control plane is hosted
+in the cloud by Kong, while the data plane is managed by you within your
+preferred network environment.  All of this is powered by {{site.base_gateway}} — Kong's
+lightweight, fast, and flexible API gateway. 
 
 <p align="center">
-  <img src="/assets/images/docs/konnect/dashboard/konnect-dashboard.png" />
+  <img src="/assets/images/products/konnect/dashboard/konnect-dashboard.png" alt="Konnect's dashboard screenshot" />
 </p>
 
 {{site.konnect_short_name}} helps simplify multi-cloud API management by:
 
-* Offering a single management plane to deploy and manage your APIs and microservices in any environment: cloud, on-premises, Kubernetes, and virtual machines.
+* Offering the control plane to deploy and manage your APIs and microservices in any environment: cloud, on-premises, Kubernetes, and virtual machines.
 
 * Instantly applying authentication, API security, and traffic control policies consistently across all your services using powerful enterprise and community plugins.
 
@@ -40,9 +40,9 @@ preferred network environment.
     <div class="install-text">Get Started</div>
   </a>
 
-  <a href="/konnect/runtime-manager/runtime-instances/" class="docs-grid-install-block no-description">
+  <a href="/konnect/gateway-manager/data-plane-nodes/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/konnect/icn-runtimes-nav.svg" alt="">
-    <div class="install-text">Set up Runtime Instances</div>
+    <div class="install-text">Set up Data Plane Nodes</div>
   </a>
 
   <a href="/deck/guides/konnect/" class="docs-grid-install-block no-description">
@@ -60,8 +60,8 @@ preferred network environment.
 ### Service Hub
 
 [Service Hub](/konnect/servicehub) makes internal APIs discoverable,
-consumable, and reusable for internal development teams. Catalog
-all your services through the Service Hub to create a single source of
+consumable, and reusable for internal development teams. You can use the Service Hub to catalog
+all your services and create a single source of
 truth for your organization’s service inventory. By leveraging Service Hub,
 your application developers
 can search, discover, and consume existing services to accelerate their
@@ -71,19 +71,25 @@ across the organization’s applications.
 [Start cataloging services with Service Hub &rarr;](/konnect/servicehub)
 
 
-### Runtime Manager
+### Gateway Manager
 
-[Runtime Manager](/konnect/runtime-manager/) empowers your teams to securely
-collaborate and manage their own set of runtimes and services without
-the risk of impacting other teams and projects. Runtime Manager instantly
-provisions hosted {{site.base_gateway}} control planes and supports securely
-attaching {{site.base_gateway}} data planes from your cloud or hybrid environments.
+[Gateway Manager](/konnect/gateway-manager/) empowers your teams to securely
+collaborate and manage their own set of data plane nodes and services without
+the risk of impacting other teams and projects. Gateway Manager instantly
+provisions a hosted {{site.base_gateway}} control plane and supports securely
+attaching data plane nodes from your cloud or hybrid environments.
 
-Through the Runtime Manager, increase the security of your APIs with out-of-the-box enterprise and community plugins, including OpenID Connect, Open Policy Agent, Mutual TLS, and more.
+Through the Gateway Manager, increase the security of your APIs with out-of-the-box enterprise and community plugins, including OpenID Connect, Open Policy Agent, Mutual TLS, and more.
 
-[Learn more about the Runtime Manager &rarr;](/konnect/runtime-manager/)
+[Learn more about the Gateway Manager &rarr;](/konnect/gateway-manager/)
 
 [Check out {{site.konnect_short_name}}-compatible plugins &rarr;](/hub)
+
+### Mesh Manager 
+
+[Mesh Manager](https://cloud.konghq.com/mesh-manager) in {{site.konnect_product_name}} allows you to create, manage, and view your {{site.mesh_product_name}} service meshes using the {{site.konnect_short_name}} platform. Mesh Manager is ideal for organizations who want to have one or more global control planes that allow you to run your mesh deployments across multiple zones. You can run a mix of Kubernetes and Universal zones. Your mesh deployment environments can include multiple isolated meshes for multi-tenancy, with workloads running in different regions, on different clouds, or in different data-centers.
+
+[Learn more about Mesh Manager &rarr;](/konnect/mesh-manager/)
 
 ### API Products
 
@@ -109,6 +115,8 @@ on the pulse of the health of your API products with custom reports and contextu
 In addition, you can enhance the native monitoring and analytics capabilities with
 {{site.base_gateway}} plugins that enable streaming monitoring metrics to
 third-party analytics providers, such as Datadog and Prometheus.
+
+{{site.konnect_short_name}} Analytics provides pre-built custom reports to all new organizations. These reports contains common examples for important key performance indicators (KPIs) to keep track of while monitoring the success of your APIs. Users are free to modify them, and use them as a base to start their own analytics reports.
 
 [Learn more about Analytics &rarr;](/konnect/analytics)
 

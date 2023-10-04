@@ -1,5 +1,5 @@
 jQuery(document).ready(function () {
-  var closed = localStorage.getItem("closebanner-summit-2022");
+  var closed = localStorage.getItem("closebanner-summit-2023");
   if (closed !== "closebanner") {
     $(".navbar-v2").removeClass("closed");
     $("body").addClass("banner");
@@ -26,6 +26,6 @@ setInterval(function () {
 }, 10);
 $(".closebanner").on("click", function () {
   $(".navbar-v2").addClass("closed");
-  localStorage.setItem("closebanner-summit-2022", "closebanner");
+  localStorage.setItem("closebanner-summit-2023", "closebanner");
   $("#mosaic-provider-react-aria-0-1").removeClass("banner-offset");
 });

@@ -1,10 +1,9 @@
 name: Vault Authentication
 dbless_compatible: 'yes'
-manager_examples: false
-konnect_examples: false
 free: false
 plus: false
 enterprise: true
+premium: true
 konnect: false
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: --

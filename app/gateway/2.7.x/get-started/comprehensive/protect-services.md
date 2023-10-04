@@ -55,7 +55,7 @@ Call the Admin API on port `8001` and configure plugins to enable a limit of fiv
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X POST http://<admin-hostname>:8001/plugins \
+curl -i -X POST http://localhost:8001/plugins \
   --data name=rate-limiting \
   --data config.minute=5 \
   --data config.policy=local

@@ -27,7 +27,7 @@ When enabled, the Dev Portal is pre-populated with Kong's default theme. The fil
 1. Portal Preview - View a live preview of the selected Dev Portal file.
 1. Toggle View - Choose between three different views: full screen code, split view, and full screen preview mode.
 
-![Dev Portal with Numbers](/assets/images/docs/dev-portal/editor-mode-numbered.png)
+![Dev Portal with Numbers](/assets/images/products/gateway/dev-portal/editor-mode-numbered.png)
 
 ## Editing Files
 

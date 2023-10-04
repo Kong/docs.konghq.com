@@ -7,7 +7,7 @@ API Products bundles and manages multiple services. Each API product consists of
 
 **[Access {{site.konnect_short_name}} API Products](https://cloud.konghq.com/api-products).**
 
-![{{site.konnect_short_name}} API Products](/assets/images/docs/konnect/api-products/api-products-overview.png)
+![{{site.konnect_short_name}} API Products](/assets/images/products/konnect/api-products/api-products-overview.png)
 
 ## API Products Dashboard
 
@@ -21,7 +21,7 @@ Here are some of the things you can do from the API Products Dashboard:
 * View traffic, error, and latency data. 
 
 
-![{{site.konnect_short_name}} API Products](/assets/images/docs/konnect/api-products/api-products-manage.png)
+![{{site.konnect_short_name}} API Products](/assets/images/products/konnect/api-products/api-products-manage.png)
 
 
 | Item | Description
@@ -33,14 +33,14 @@ Here are some of the things you can do from the API Products Dashboard:
 
 ### API product versions
 
-A {{site.konnect_short_name}} API product version is linked to a Gateway service inside a [runtime group](/konnect/runtime-manager/runtime-groups/). As such, the configurations or plugins that are associated with the Gateway service are also associated with the API product version. 
+A {{site.konnect_short_name}} API product version is linked to a Gateway service inside a [control plane](/konnect/gateway-manager/#control-planes). As such, the configurations or plugins that are associated with the Gateway service are also associated with the API product version. 
 
-API products can have multiple API product versions, and each version can be linked to a Gateway service. API products can be made available in multiple environments by linking API product versions to Gateway services in different runtime groups. You can also associate an API spec with a product version and make the spec accessible in the Dev Portal.
+API products can have multiple API product versions, and each version can be linked to a Gateway service. API products can be made available in multiple environments by linking API product versions to Gateway services in different control planes. You can also associate an API spec with a product version and make the spec accessible in the Dev Portal.
 
 A common use case is environment specialization.
-For example, if you have three runtime groups for `development`, `staging`, and
+For example, if you have three control planes for `development`, `staging`, and
 `production`, you can manage which environment the API product version is available in by
-linking an API product version to a Gateway service in that group. You might have v1 running
+linking an API product version to a Gateway service in that control plane. You might have v1 running
 in `production`, and be actively working on v2 in `development`. Once it's
 ready to test, you'd create v2 in `staging` before finally creating v2 in
 `production` alongside v1.
@@ -65,5 +65,5 @@ Learn more:
 
 ## More information
 
-* [Deploy and Test a Service](/konnect/getting-started/deploy-service/) - Learn how to deploy and test a service with Runtime Manager.
+* [Deploy and Test a Service](/konnect/getting-started/deploy-service/) - Learn how to deploy and test a service with Gateway Manager.
 * [Productize a Service](/konnect/getting-started/productize-service/) - Learn how to productize a service with API Products.

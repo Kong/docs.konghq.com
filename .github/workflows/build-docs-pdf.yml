@@ -5,6 +5,10 @@ on:
       version:
         description: "Version (e.g. ce_2.4.x - see 'app/_data/*.yml')"
         required: true
+
+env:
+  VITE_PORTAL_API_URL: ${{ vars.VITE_PORTAL_API_URL }}
+
 jobs:
   pdf:
     runs-on: ubuntu-latest
@@ -13,7 +17,7 @@ jobs:
       # Increase number of watchers to fix generation
       - run: sudo sysctl -w fs.inotify.max_user_watches=524288
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
 
