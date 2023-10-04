@@ -174,7 +174,7 @@ a consumer with an associated key first.
 5. On the Consumers page, find your new consumer and click **View**.
 6. Scroll down the page and click the **Credentials** tab.
 7. Click **New Key Auth Credential**.
-8. Set the key to **apikey** and click **Create**.
+8. Set the key to `apikey` and click **Create**.
 
   The new Key Authentication ID displays on the **Consumers** page under the **Credentials** tab.
 {% endnavtab %}

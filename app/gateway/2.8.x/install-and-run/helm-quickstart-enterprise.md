@@ -136,7 +136,7 @@ Configuring {{site.base_gateway}} requires a namespace and configuration secrets
            --from-literal=kong_admin_password=kong \
            --from-literal=password=kong
 
-4. Create a Kong Enterprise license secret:
+4. Create a  license secret:
 
 {% navtabs %}
 {% navtab Kong Enterprise Free Mode%}
@@ -308,7 +308,7 @@ Once all dependencies are installed and ready, deploy {{site.base_gateway}} to y
 
 For local deployments, Kong Manager is locally accessible at `https://kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service resolves this domain to localhost also known as `127.0.0.1`.
 
-You can configure Kong via the Admin API with [decK](https://docs.konghq.com/deck/latest/), [Insomnia](https://docs.insomnia.rest/insomnia/get-started), HTTPie, or cURL, at `https://kong.127-0-0-1.nip.io/api`:
+You can configure Kong via the Admin API with [decK](deck/latest/), [Insomnia](https://docs.insomnia.rest/insomnia/get-started), HTTPie, or cURL, at `https://kong.127-0-0-1.nip.io/api`:
 
 {% navtabs codeblock %}
 {% navtab cURL %}
@@ -425,4 +425,4 @@ To remove {{site.base_gateway}} from your system, follow these instructions:
 
 ## Next Steps
 
-See the [Kong Ingress Controller docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.
+See the [{{site.kic_product_name}} docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.

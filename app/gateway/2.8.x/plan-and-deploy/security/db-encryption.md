@@ -22,7 +22,7 @@ $ openssl genrsa -out key.pem 2048
 $ openssl rsa -in key.pem -pubout -out cert.pem
 ```
 
-This key pair will be provided to Kong in order to faciliate exporting and re-importing the keyring. The public `cert.pem` and private `key.pem` should be stored securely in accordance with your existing secrets management policies. Details on secure storage of RSA key pairs is outside the scope of this documentation.
+This key pair will be provided to Kong in order to facilitate exporting and re-importing the keyring. The public `cert.pem` and private `key.pem` should be stored securely in accordance with your existing secrets management policies. Details on secure storage of RSA key pairs is outside the scope of this documentation.
 
 ### Configure Kong for database encryption
 

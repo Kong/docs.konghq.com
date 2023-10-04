@@ -129,5 +129,5 @@ Similarly, setting `authenticated_groups_claim` will extract that claim's value 
 [add-certificate]: /gateway/{{page.kong_version}}/admin-api/#add-certificate
 [add-service]: /gateway/{{page.kong_version}}/admin-api/#service-object
 [oidc-id-token]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
-[credential-claim]: https://docs.konghq.com/hub/kong-inc/openid-connect/#configcredential_claim
+[credential-claim]: hub/kong-inc/openid-connect/#configcredential_claim
 [enable-plugin]: /gateway/{{page.kong_version}}/admin-api/#plugin-object

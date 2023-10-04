@@ -161,7 +161,7 @@ Configuring {{site.base_gateway}} requires a namespace and configuration secrets
        
        {% endif_version %}
 
-4. Create a Kong Enterprise license secret:
+4. Create a {{site.ee_product_name}} license secret:
 
 {% navtabs %}
 {% navtab Kong Enterprise Free Mode%}

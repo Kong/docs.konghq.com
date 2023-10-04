@@ -159,9 +159,9 @@ X-Kong-Upstream-Latency: 37
 
 Next, access the */mock* route one more time.
 
-This time, notice the differences in the values of `X-Cache-Status`, `X-Kong-Proxy-Latency`, and `X-Kong-Upstream-Latency`. Cache status is a `hit`, which means Kong Gateway is responding to the request directly from cache instead of proxying the request to the Upstream service.
+This time, notice the differences in the values of `X-Cache-Status`, `X-Kong-Proxy-Latency`, and `X-Kong-Upstream-Latency`. Cache status is a `hit`, which means {{site.base_gateway}} is responding to the request directly from cache instead of proxying the request to the Upstream service.
 
-Further, notice the minimal latency in the response, which allows Kong Gateway to deliver the best performance:
+Further, notice the minimal latency in the response, which allows {{site.base_gateway}} to deliver the best performance:
 
 ```
 HTTP/1.1 200 OK

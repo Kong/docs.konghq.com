@@ -925,7 +925,7 @@ all of the following are valid endpoints:
 
 Note, however, that `*` **is not** a generic, shell-like, glob pattern.
 
-If `workspace` is ommitted, it defaults to the current request's workspace. For
+If `workspace` is omitted, it defaults to the current request's workspace. For
 example, a role-endpoint permission created with `/teamA/roles/admin/endpoints`
 is scoped to workspace `teamA`.
 

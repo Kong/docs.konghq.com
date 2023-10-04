@@ -12,7 +12,7 @@ custom entities.
 As explained in the [previous chapter]({{page.book.previous.url}}), Kong interacts
 with the model layer through classes we refer to as "DAOs", and available on a
 singleton often referred to as the "DAO Factory". This chapter will explain how
-to to provide an abstraction for your own entities.
+to provide an abstraction for your own entities.
 
 ## Modules
 
@@ -30,7 +30,7 @@ Once you have defined your model, you must create your migration modules which
 will be executed by Kong to create the table in which your records of your
 entity will be stored.
 
-If your plugin is intended to support both Cassandra and Postgres, then both
+If your plugin is intended to support both Cassandra and PostgreSQL, then both
 migrations must be written.
 
 If your plugin doesn't have it already, you should add a `<plugin_name>/migrations`
@@ -80,7 +80,7 @@ return {
 
 ## Migration file syntax
 
-While Kong's core migrations support both Postgres and Cassandra, custom plugins
+While Kong's core migrations support both PostgreSQL and Cassandra, custom plugins
 can choose to support either both of them or just one.
 
 A migration file is a Lua file which returns a table with the following structure:
@@ -157,7 +157,7 @@ return {
 }
 ```
 
-If a plugin only supports Postgres or Cassandra, only the section for one strategy is
+If a plugin only supports PostgreSQL or Cassandra, only the section for one strategy is
 needed. Each strategy section has two parts, `up` and `teardown`.
 
 * `up` is an optional string of raw SQL/CQL statements. Those statements will be executed
@@ -176,14 +176,14 @@ as reentrant as possible. `DROP TABLE IF EXISTS` instead of `DROP TABLE`,
 reason, it is expected that the first attempt at fixing the problem will be simply
 re-running the migrations.
 
-While Postgres does, Cassandra does not support constraints such as "NOT
+While PostgreSQL does, Cassandra does not support constraints such as "NOT
 NULL", "UNIQUE" or "FOREIGN KEY", but Kong provides you with such features when
 you define your model's schema. Bear in mind that this schema will be the same
-for both Postgres and Cassandra, hence, you might trade-off a pure SQL schema
+for both PostgreSQL and Cassandra, hence, you might trade-off a pure SQL schema
 for one that works with Cassandra too.
 
 **IMPORTANT**: if your `schema` uses a `unique` constraint, then Kong will
-enforce it for Cassandra, but for Postgres you must set this constraint in
+enforce it for Cassandra, but for PostgreSQL you must set this constraint in
 the migrations.
 
 To see a real-life example, give a look at the [Key-Auth plugin migrations](https://github.com/Kong/kong/tree/master/kong/plugins/key-auth/migrations).

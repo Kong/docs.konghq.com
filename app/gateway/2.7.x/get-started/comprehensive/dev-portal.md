@@ -46,7 +46,7 @@ This will expose the Dev Portal at `http://localhost:8003/SecureWorkspace.`
 
 After the Dev Portal is enabled for the Workspace, a few new links appear in the left navigation menu. It may take a few seconds for the Settings page to populate.
 
-You can learn more about personalization in the [the Dev Portal documentation](/gateway/{{page.kong_version}}/developer-portal/), including:
+You can learn more about personalization in the [Dev Portal documentation](/gateway/{{page.kong_version}}/developer-portal/), including:
 
 * [Customizing the look and feel of the site and editor](/gateway/{{page.kong_version}}/developer-portal/theme-customization/easy-theme-editing/)
 * [Managing access](/gateway/{{page.kong_version}}/developer-portal/administration/managing-developers/)

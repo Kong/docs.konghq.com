@@ -20,7 +20,7 @@ With {{site.base_gateway}}, users can:
 * Secure and govern APIs/services, and improve API visibility across the
 entire organization
 
-## Extending the Kong Gateway
+## Extending the {{site.base_gateway}}
 
 {{site.base_gateway}} is a Lua application running in Nginx. {{site.base_gateway}}
 is distributed along with [OpenResty](https://openresty.org/), which is a bundle
@@ -43,11 +43,11 @@ the [PDK reference](/gateway/{{page.kong_version}}/pdk/), and the guide on
 
 {{site.base_gateway}} is available in the following modes:
 
-**Kong Gateway (OSS)**: an open-source package containing the basic API gateway
+**{{site.base_gateway}} (OSS)**: an open-source package containing the basic API gateway
 functionality and open-source plugins. You can manage the open-source Gateway
 with Kong's [Admin API](#kong-admin-api) or with [declarative configuration](#deck).
 
-**Kong Gateway** (available in
+**{{site.base_gateway}}** (available in
 [Free, Plus, or Enterprise modes](https://konghq.com/pricing)): Kong's API gateway
 with added functionality.
 * In **Free mode** <span class="badge free"></span>,
@@ -69,7 +69,7 @@ You can manage {{site.base_gateway}} in Free or Enterprise mode with Kong's
 This package is also available as part of
 [{{site.konnect_product_name}}](/konnect/).
 
-![Introduction to {{site.base_gateway}}](/assets/images/products/gateway/gateway_overview.png)
+![Introduction to {{site.base_gateway}}](/assets/images/docs/gateway/gateway_overview.png)
 > _Figure 1: Diagram of {{site.base_gateway}} modules and how they relate to the
 foundational Gateway components._
 > <br>
@@ -116,7 +116,7 @@ object-level health using intuitive, customizable dashboards
 
 {{site.base_gateway}} can run natively on Kubernetes with its custom [ingress controller](/kubernetes-ingress-controller/), Helm chart, and Operator. A Kubernetes ingress controller is a proxy that exposes Kubernetes services from applications (for example, Deployments, ReplicaSets) running on a Kubernetes cluster to client applications running outside of the cluster. The intent of an ingress controller is to provide a single point of control for all incoming traffic into the Kubernetes cluster.
 
-### Kong Gateway plugins
+### {{site.base_gateway}} plugins
 
 [{{site.base_gateway}} plugins](/hub/) provide advanced functionality to better manage your API and microservices. With turnkey capabilities to meet the most challenging use cases, {{site.base_gateway}} plugins ensure maximum control and minimizes unnecessary overhead. Enable features like authentication, rate-limiting, and transformations by enabling {{site.base_gateway}} plugins through Kong Manager or the Admin API.
 
@@ -129,17 +129,17 @@ Kong also provides API lifecycle management tools that you can use with {{site.b
 
 ### decK
 [decK](/deck) helps manage {{site.base_gateway}}’s configuration in a declarative fashion.
-This means that a developer can define the desired state of Kong Gateway or
-Konnect &ndash; services, routes, plugins, and more &ndash; and let decK handle
+This means that a developer can define the desired state of {{site.base_gateway}} or
+{{site.konnect_short_name}} &ndash; services, routes, plugins, and more &ndash; and let decK handle
 implementation without needing to execute each step manually, as you would with
 the Kong Admin API.
 
 
-## Get started with Kong Gateway
+## Get started with {{site.base_gateway}}
 
-[Download and install Kong Gateway](/gateway/{{page.kong_version}}/install-and-run).
+[Download and install {{site.base_gateway}}](/gateway/{{page.kong_version}}/install-and-run).
 To test it out, you can choose either the open-source package, or
-run Kong Gateway in free mode and also try out Kong Manager.
+run {{site.base_gateway}} in free mode and also try out Kong Manager.
 
 After installation, get started with one of our introductory guides:
 * **[Quickstart](/gateway/{{page.kong_version}}/get-started/quickstart/)**: An introduction to
@@ -149,7 +149,7 @@ The complete {{site.base_gateway}}
 getting started guide provides in-depth examples, explanations, and step-by-step
 instructions, and explores Kong's many available tools for managing the gateway.
 
-### Try in Konnect
+### Try in {{site.konnect_short_name}}
 
 [{{site.konnect_product_name}}](/konnect/) can manage {{site.base_gateway}}
 instances. With this setup, Kong hosts the control plane and you host your
@@ -168,4 +168,4 @@ Kong primarily follows a [semantic versioning](https://semver.org/) (SemVer)
 model for its products.
 
 For the latest version support information for {{site.ee_product_name}} and
-{{site.mesh_product_name}}, see our [version support policy](/konnect-platform/support-policy/).
+{{site.mesh_product_name}}, see our [version support policy](/gateway/latest/support-policy/).

@@ -1596,16 +1596,16 @@ declarative configuration file, which can be specified through the
 `declarative_config` property, or via the Admin API using the `/config`
 endpoint.
 
-When using Postgres as the backend storage, you can optionally enable Kong to
+When using PostgreSQL as the backend storage, you can optionally enable Kong to
 serve read queries from a separate database instance.
 
 When the number of proxies is large, this can greatly reduce the load on the
-main Postgres instance and achieve better scalability. It may also reduce the
-latency jitter if the Kong proxy node's latency to the main Postgres instance is
+main PostgreSQL instance and achieve better scalability. It may also reduce the
+latency jitter if the Kong proxy node's latency to the main PostgreSQL instance is
 high.
 
-The read-only Postgres instance only serves read queries and write queries
-still goes to the main connection. The read-only Postgres instance can be
+The read-only PostgreSQL instance only serves read queries and write queries
+still goes to the main connection. The read-only PostgreSQL instance can be
 eventually consistent while replicating changes from the main instance.
 
 At least the `pg_ro_host` config is needed to enable this feature.
@@ -1628,15 +1628,15 @@ Accepted values are `postgres`, `cassandra`, and `off`.
 ---
 
 
-#### Postgres settings
+#### PostgreSQL settings
 
 name   | description  | default
 -------|--------------|----------
-**pg_host** | Host of the Postgres server. | `127.0.0.1`
-**pg_port** | Port of the Postgres server. | `5432`
+**pg_host** | Host of the PostgreSQL server. | `127.0.0.1`
+**pg_port** | Port of the PostgreSQL server. | `5432`
 **pg_timeout** | Defines the timeout (in ms), for connecting, reading and writing. | `5000`
-**pg_user** | Postgres user. | `kong`
-**pg_password** | Postgres user's password. | none
+**pg_user** | PostgreSQL user. | `kong`
+**pg_password** | PostgreSQL user's password. | none
 **pg_database** | The database name to connect to. | `kong`
 **pg_schema** | The database schema to use. If unspecified, Kong will respect the `search_path` value of your PostgreSQL instance. | none
 **pg_ssl** | Toggles client-server TLS connections between Kong and PostgreSQL. Because PostgreSQL uses the same port for TLS and non-TLS, this is only a hint. If the server does not support TLS, the established connection will be a plain one. | `off`
@@ -1831,7 +1831,7 @@ used to expand short names to fully qualified ones. So it will first try the
 entire `SEARCH` list for the `SRV` type, if that fails it will try the `SEARCH`
 list for `A`, etc.
 
-For the duration of the `ttl`, the internal DNS resolver will loadbalance each
+For the duration of the `ttl`, the internal DNS resolver will load balance each
 request it gets over the entries in the DNS record. For `SRV` records the
 `weight` fields will be honored, but it will only use the lowest `priority`
 field entries in the record.
