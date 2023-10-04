@@ -197,7 +197,7 @@ avoid qualifiers, and end the statement with a colon (`:`).
 
 If your topic provides instructions for two or more methods of completing a
 task, you can nest them inside `navtabs`. For example,
-[this topic](https://docs.konghq.com/gateway/latest/get-started/comprehensive/expose-services/#add-a-service)
+[this topic](/gateway/latest/get-started/comprehensive/expose-services/#add-a-service)
 tabs between the Admin API and Kong Manager methods for adding a Service.
 
 {:.important}

@@ -11,13 +11,13 @@ All Kong plugin docs must follow a [specific template](https://github.com/Kong/d
 
 ## Prerequisites
 
-* You have a parallel plugin PR in one of the Kong source code repos.
+* You have a parallel plugin PR in one of the Kong source code repositories.
 * You plugin has description for every config parameter field in its Lua schema file.
 * You have set up a [local clone of the docs repository](https://github.com/Kong/docs.konghq.com/blob/main/docs/platform-install.md).
 
 ## Add a new plugin doc
 
-1. In your local clone of the docs repostory, create a new branch for your plugin.
+1. In your local clone of the docs repository, create a new branch for your plugin.
 
 1. Create a subdirectory for the plugin [within the `_app/_hub/kong-inc` directory](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub/kong-inc/).
 For example, `_app/_hub/kong-inc/your-plugin`.

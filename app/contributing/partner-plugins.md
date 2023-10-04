@@ -23,7 +23,7 @@ If you have a plugin that's verified and ready to go, the following guide walks 
 
 ## Document a partner plugin
 
-1. In your local clone of the docs repostory, create a new branch for your plugin.
+1. In your local clone of the docs repository, create a new branch for your plugin.
 
 1. Create a publisher directory in the [`app/_hub/` directory](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub/)
 of the docs GitHub repository.
