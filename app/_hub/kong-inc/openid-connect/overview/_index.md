@@ -932,17 +932,19 @@ We can use the output in `Authorization` header.
    
 #### Test the JWT Access Token Authentication with access token in query string 
 
-To specify the bearer token as a query string parameter 
+To specify the bearer token as a query string parameter:
 
 ```bash
-http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
-  config.bearer_token_param_type=query                          \
-  config.auth_methods=bearer                                     \
-  config.auth_methods=password # only enabled for demoing purposes
+curl -i -X PATCH http://localhost:8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9  \
+  --data "config.bearer_token_param_type=query"                 \
+  --data "config.auth_methods=bearer"                           \
+  --data "config.auth_methods=password" # only enabled for demoing purposes
 ```
-  
-  ```bash
-  http -v :8000 access_token==<access-token>
+
+Test out the token by accessing the Kong proxy:
+```bash
+curl -i -X GET http://localhost:8000 \
+  -H "Authorization: Bearer <access-token>"
 ```
 
 
