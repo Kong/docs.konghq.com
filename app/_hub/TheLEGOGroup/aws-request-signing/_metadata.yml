@@ -2,8 +2,8 @@ name: AWS Request Signing
 
 publisher: The LEGO Group
 
-categories: 
-  - serverless
+categories:
+  - third-party
 
 type: plugin 
 

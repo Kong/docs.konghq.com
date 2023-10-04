@@ -3,14 +3,14 @@ name: Salt Security
 publisher: Salt Security
 
 categories:
-  - security
+  - third-party
 
 type: integration
 
 desc: Integrate Kong API Gateway with Salt Security Discovery & Prevention for API-based apps
 
-enterprise: true
-techpartner: true
+free: true
+enterprise: false
 konnect: true
 
 kong_version_compatibility:

@@ -5,9 +5,8 @@ dbless_explanation: The plugin is compatible with any with DB-less mode includin
 publisher: Moesif
 version: 1.x.x
 
-categories: 
-  - analytics-monitoring
-  - logging
+categories:
+  - third-party
 
 type: plugin
 
@@ -27,7 +26,6 @@ free: true
 plus: false
 konnect: true
 enterprise: false
-techpartner: true
 
 kong_version_compatibility: # required
   community_edition: # optional
