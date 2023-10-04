@@ -6,6 +6,13 @@ breadcrumbs:
   Hub: '/hub/'
 
 ---
+
+{% unless page.konnect == true %}
+<blockquote class="compatibility">
+  <strong>This plugin is not compatible with Konnect</strong>
+</blockquote>
+{% endunless %}
+
 {% unless page.free %}
   {% if page.paid and page.extn_publisher == "kong-inc" %}
     <blockquote class="note" role="alert">
