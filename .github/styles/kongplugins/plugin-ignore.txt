@@ -993,6 +993,7 @@ tokens_in_body
 tonumber
 tos_accepted
 tostring
+trace_id
 traceid_byte_count
 traceparent
 transcoding
