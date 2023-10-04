@@ -3,7 +3,7 @@ title: Add Developer Teams from Identity Providers
 content_type: how-to
 ---
 
-In the {{site.konnect_short_name}} Dev Portal, you can map existing developer teams from a third-party identity provider (IdP) and map their permissions to elements in {{site.konnect_short_name}}. Instead of needing to manually copy over each team of developers, with IdP Mapped Teams, developers, as well as their respective permissions, will now be automatically mapped to Konnect.
+In the {{site.konnect_short_name}} Dev Portal, you can map existing developer teams from a third-party identity provider (IdP) and their permissions to elements in {{site.konnect_short_name}}. With teams mapped from an IdP, the developers and permissions are mapped automatically in {{site.konnect_short_name}} so you don't have to manually copy over each team of developers.
 
 This guide explains how to map the permissions, including scopes and claims, from your group of developers in your IdP to your organization's team in {{site.konnect_short_name}}. Although this guide uses Okta, Azure Active Directory (AD), and Auth0 as examples, you can use any IdP that conforms to OIDC standards. 
 
