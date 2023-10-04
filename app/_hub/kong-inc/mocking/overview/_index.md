@@ -19,7 +19,7 @@ Benefits of service mocking with the Kong Mocking plugin:
 This plugin can mock `200`, `201`, and `204` responses.
 
 {:.note}
-> **Note**: The plugin requires a spec to work. Depending on the Kong Gateway deployment mode, 
+> **Note**: The plugin requires a spec to work. Depending on the {{site.base_gateway}} deployment mode, 
 set either the [`api_specification_filename`](/hub/kong-inc/mocking/configuration/#config-api_specification_filename) 
 or the [`api_specification`](/hub/kong-inc/mocking/configuration/#config-api_specification) parameter. 
 
