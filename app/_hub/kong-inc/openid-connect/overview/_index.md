@@ -90,6 +90,7 @@ The plugin supports several types of credentials and grants:
 
 The plugin has been tested with several OpenID Connect providers:
 
+<!--vale off-->
 - [Auth0][auth0] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-auth0/))
 - [Amazon AWS Cognito][cognito] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-cognito/))
 - [Connect2id][connect2id]
@@ -140,6 +141,7 @@ want your provider to be tested and added to the list.
 [salesforce]: https://help.salesforce.com/articleView?id=sf.sso_provider_openid_connect.htm&type=5
 [wso2]: https://is.docs.wso2.com/en/latest/guides/identity-federation/configure-oauth2-openid-connect/
 [yahoo]: https://developer.yahoo.com/oauth2/guide/openid_connect/
+<!--vale on-->
 
 Once applied, any user with a valid credential can access the service.
 
