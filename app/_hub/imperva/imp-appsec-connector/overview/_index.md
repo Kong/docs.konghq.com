@@ -2,7 +2,7 @@
 nav_title: Overview
 ---
 
-The Imperva API Security plugin connects Kong Gateway with the Imperva 
+The Imperva API Security plugin connects {{site.base_gateway}} with the Imperva 
 API Security service, providing continuous discovery and monitoring of APIs 
 exposed by the API gateway. This enables security teams to protect business 
 applications and data against unauthorized access. 
@@ -12,7 +12,7 @@ negative impact on the inline performance of the gateway or your applications.
 
 The Imperva API Security plugin captures API calls with request/response payloads 
 and sends them to the Imperva API Security service for inspection. API calls are 
-copied and streamed through Kong Gateway. You provide the API Security 
+copied and streamed through {{site.base_gateway}}. You provide the API Security 
 receiver service endpoint though the plugin's configuration, so the API data is 
 kept under the control of the application owner.
 
