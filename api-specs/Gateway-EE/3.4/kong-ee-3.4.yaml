@@ -16,7 +16,7 @@ components:
         minimum: 1
         type: integer
     pagination-tags-filter:
-      description: 'A list of tags to filter the list of resources on. Multiple tags can be concatenated using `,` to mean AND or using `/` to mean OR.'
+      description: A list of tags to filter the list of resources on. Multiple tags can be concatenated using `,` to mean AND or using `/` to mean OR.
       example: 'tag1,tag2'
       in: query
       name: tags
@@ -32,7 +32,7 @@ components:
           - a3ad71a8-6685-4b03-a101-980a953544f6
           - name
         example: name
-      description: 'The unique identifier or the `name` attribute of the Certificate whose SNIs are to be retrieved. When using this endpoint, only SNIs associated to the specified Certificate will be listed.'
+      description: The unique identifier or the `name` attribute of the Certificate whose SNIs are to be retrieved. When using this endpoint, only SNIs associated to the specified Certificate will be listed.
     sni_name_or_id:
       name: sni_name_or_id
       in: path
@@ -70,7 +70,7 @@ components:
       schema:
         type: string
         example: 'example.com:8000'
-      description: 'The host/port combination element of the target to set as unhealthy, or the `id` of an existing target entry.'
+      description: The host/port combination element of the target to set as unhealthy, or the `id` of an existing target entry.
     vault_id_or_prefix:
       name: vault_id_or_prefix
       in: path
@@ -219,7 +219,7 @@ components:
         example: my-username
       description: The unique identifier or the username of the Consumer to retrieve.
     Gatewayapi_Pagination-tags-filter:
-      description: 'A list of tags to filter the list of resources on. Multiple tags can be concatenated using `,` to mean AND or using `/` to mean OR.'
+      description: A list of tags to filter the list of resources on. Multiple tags can be concatenated using `,` to mean AND or using `/` to mean OR.
       example: 'tag1,tag2'
       in: query
       name: tags
@@ -240,7 +240,7 @@ components:
           description: PEM-encoded public certificate of the CA.
           type: string
         cert_digest:
-          description: 'SHA256 hex digest of the public certificate. This field is read-only and it cannot be set by the caller, the value is automatically computed.'
+          description: SHA256 hex digest of the public certificate. This field is read-only and it cannot be set by the caller, the value is automatically computed.
           type: string
         created_at:
           description: Unix epoch when the resource was created.
@@ -254,7 +254,7 @@ components:
             type: string
             example: tag
     Certificate:
-      description: 'A certificate object represents a public certificate, and can be optionally paired with the corresponding private key. These objects are used by Kong to handle SSL/TLS termination for encrypted requests, or for use as a trusted CA store when validating peer certificate of client/service. Certificates are optionally associated with SNI objects to tie a cert/key pair to one or more hostnames. If intermediate certificates are required in addition to the main certificate, they should be concatenated together into one string according to the following order: main certificate on the top, followed by any intermediates.'
+      description: A certificate object represents a public certificate, and can be optionally paired with the corresponding private key. These objects are used by Kong to handle SSL/TLS termination for encrypted requests, or for use as a trusted CA store when validating peer certificate of client/service. Certificates are optionally associated with SNI objects to tie a cert/key pair to one or more hostnames. If intermediate certificates are required in addition to the main certificate, they should be concatenated together into one string according to the following order, main certificate on the top, followed by any intermediates.
       example:
         cert: |-
           -----BEGIN CERTIFICATE-----
@@ -267,10 +267,10 @@ components:
           -----END PRIVATE KEY-----
       properties:
         cert:
-          description: 'PEM-encoded public certificate chain of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).'
+          description: PEM-encoded public certificate chain of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
           type: string
         cert_alt:
-          description: 'PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).'
+          description: PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
           type: string
         created_at:
           description: Unix epoch when the resource was created.
@@ -278,10 +278,10 @@ components:
         id:
           type: string
         key:
-          description: 'PEM-encoded private key of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).'
+          description: PEM-encoded private key of the SSL key pair. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
           type: string
         key_alt:
-          description: 'PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).'
+          description: PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format).
           type: string
         tags:
           description: An optional set of strings associated with the Certificate for grouping and filtering.
@@ -293,7 +293,7 @@ components:
           type: integer
       type: object
     Consumer:
-      description: 'The Consumer object represents a consumer - or a user - of a Service. You can either rely on Kong as the primary datastore, or you can map the consumer list with your database to keep consistency between Kong and your existing primary datastore.'
+      description: The Consumer object represents a consumer - or a user - of a Service. You can either rely on Kong as the primary datastore, or you can map the consumer list with your database to keep consistency between Kong and your existing primary datastore.
       example:
         custom_id: '4200'
         id: 8a388226-20e8-4027-a486-25e4f7db5d21
@@ -329,7 +329,7 @@ components:
             - silver-tier
           username: bob-the-builder
     Key:
-      description: 'A Key object holds a representation of asymmetric keys in various formats. When Kong or a Kong plugin requires a specific public or private key to perform certain operations, it can use this entity.'
+      description: A Key object holds a representation of asymmetric keys in various formats. When Kong or a Kong plugin requires a specific public or private key to perform certain operations, it can use this entity.
       example:
         id: d958f66b-8e99-44d2-b0b4-edd5bbf24658
         jwk: '{"alg":"RSA",  "kid": "42",  ...}'
@@ -403,7 +403,7 @@ components:
       type: object
       title: Key-set
     Plugin:
-      description: 'A Plugin entity represents a plugin configuration that will be executed during the HTTP request/response lifecycle. It is how you can add functionalities to Services that run behind Kong, like Authentication or Rate Limiting for example. You can find more information about how to install and what values each plugin takes by visiting the [Kong Hub](https://docs.konghq.com/hub/). When adding a Plugin Configuration to a Service, every request made by a client to that Service will run said Plugin. If a Plugin needs to be tuned to different values for some specific Consumers, you can do so by creating a separate plugin instance that specifies both the Service and the Consumer, through the `service` and `consumer` fields.'
+      description: A Plugin entity represents a plugin configuration that will be executed during the HTTP request/response lifecycle. It is how you can add functionalities to Services that run behind Kong, like Authentication or Rate Limiting for example. You can find more information about how to install and what values each plugin takes by visiting the [Kong Hub](https://docs.konghq.com/hub/). When adding a Plugin Configuration to a Service, every request made by a client to that Service will run said Plugin. If a Plugin needs to be tuned to different values for some specific Consumers, you can do so by creating a separate plugin instance that specifies both the Service and the Consumer, through the `service` and `consumer` fields.
       example:
         config:
           anonymous: null
@@ -424,18 +424,18 @@ components:
           - https
       properties:
         config:
-          description: 'The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).'
+          description: The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).
           type: object
         consumer:
           additionalProperties: false
-          description: 'If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer.'
+          description: If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer.
           properties:
             id:
               type: string
           type: object
         consumer_group:
           additionalProperties: false
-          description: 'If set, the plugin will activate only for requests where the specified consumer group has been authenticated. (Note that some plugins can not be restricted to consumers groups this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer Groups'
+          description: If set, the plugin will activate only for requests where the specified consumer group has been authenticated. (Note that some plugins can not be restricted to consumers groups this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer Groups
           properties:
             id:
               type: string
@@ -450,7 +450,7 @@ components:
         id:
           type: string
         name:
-          description: 'The name of the Plugin that''''s going to be added. Currently, the Plugin must be installed in every Kong instance separately.'
+          description: The name of the Plugin that's going to be added. Currently, the Plugin must be installed in every Kong instance separately.'
           type: string
         ordering:
           type: object
@@ -460,20 +460,20 @@ components:
             - grpcs
             - http
             - https
-          description: 'A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.'
+          description: A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `tcp` and `tls`.
           items:
             type: string
           type: array
         route:
           additionalProperties: false
-          description: 'If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.'
+          description: If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.
           properties:
             id:
               type: string
           type: object
         service:
           additionalProperties: false
-          description: 'If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.'
+          description: If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.
           properties:
             id:
               type: string
@@ -488,7 +488,7 @@ components:
           type: integer
       type: object
     Route:
-      description: 'Route entities define rules to match client requests. Each Route is associated with a Service, and a Service may have multiple Routes associated to it. Every request matching a given Route will be proxied to its associated Service. The combination of Routes and Services (and the separation of concerns between them) offers a powerful routing mechanism with which it is possible to define fine-grained entry-points in Kong leading to different upstream services of your infrastructure. You need at least one matching rule that applies to the protocol being matched by the Route.'
+      description: Route entities define rules to match client requests. Each Route is associated with a Service, and a Service may have multiple Routes associated to it. Every request matching a given Route will be proxied to its associated Service. The combination of Routes and Services (and the separation of concerns between them) offers a powerful routing mechanism with which it is possible to define fine-grained entry-points in Kong leading to different upstream services of your infrastructure. You need at least one matching rule that applies to the protocol being matched by the Route.
       example:
         hosts:
           - foo.example.com
@@ -512,7 +512,7 @@ components:
             type: object
           type: array
         headers:
-          description: 'One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. When `headers` contains only one value and that value starts with the special prefix `~*`, the value is interpreted as a regular expression.'
+          description: One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this `attribute:` hosts should be specified using the `hosts` attribute. When `headers` contains only one value and that value starts with the special prefix `~*`, the value is interpreted as a regular expression.
           type: object
         hosts:
           description: A list of domain names that match this Route. Note that the hosts value is case sensitive.
@@ -521,7 +521,7 @@ components:
           type: array
         https_redirect_status_code:
           default: 426
-          description: 'The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308. Note: This config applies only if the Route is configured to only accept the `https` protocol.'
+          description: The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308. This config applies only if the Route is configured to only accept the `https` protocol.
           type: integer
         id:
           type: string
@@ -531,11 +531,11 @@ components:
             type: string
           type: array
         name:
-          description: 'The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".'
+          description: The name of the Route. Route names must be unique, and they are case sensitive. For example, there can be two different Routes named "test" and "Test".
           type: string
         path_handling:
           default: v0
-          description: 'Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior.'
+          description: Controls how the Service path, Route path and requested path are combined when sending a request to the upstream. See above for a detailed description of each behavior.
           type: string
         paths:
           description: A list of paths that match this Route.
@@ -544,27 +544,27 @@ components:
           type: array
         preserve_host:
           default: false
-          description: 'When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service''''s `host`.'
+          description: When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service'''s `host`.'
           type: boolean
         protocols:
           default:
             - http
             - https
-          description: 'An array of the protocols this Route should allow. See the [Route Object](#route-object) section for a list of accepted protocols. When set to only `"https"`, HTTP requests are answered with an upgrade error. When set to only `"http"`, HTTPS requests are answered with an error.'
+          description: An array of the protocols this Route should allow. See the [Route Object](#route-object) section for a list of accepted protocols. When set to only `"https"`, HTTP requests are answered with an upgrade error. When set to only `"http"`, HTTPS requests are answered with an error.
           items:
             type: string
           type: array
         regex_priority:
           default: 0
-          description: 'A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same `regex_priority`, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).'
+          description: A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same `regex_priority`, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).
           type: integer
         request_buffering:
           default: true
-          description: 'Whether to enable request body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that receive data with chunked transfer encoding.'
+          description: Whether to enable request body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that receive data with chunked transfer encoding.
           type: boolean
         response_buffering:
           default: true
-          description: 'Whether to enable response body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that send data with chunked transfer encoding.'
+          description: Whether to enable response body buffering or not. With HTTP 1.1, it may make sense to turn this off on services that send data with chunked transfer encoding.
           type: boolean
         service:
           additionalProperties: false
@@ -587,7 +587,7 @@ components:
           type: array
         strip_path:
           default: true
-          description: 'When matching a route via one of the `paths`, strip the matching prefix from the upstream request URL.'
+          description: When matching a route via one of the `paths`, strip the matching prefix from the upstream request URL.
           type: boolean
         tags:
           description: An optional set of strings associated with the route for grouping and filtering.
@@ -599,7 +599,7 @@ components:
           type: integer
       type: object
     SNI:
-      description: 'An SNI object represents a many-to-one mapping of hostnames to a certificate. That is, a certificate object can have many hostnames associated with it; when Kong receives an SSL request, it uses the SNI field in the Client Hello to lookup the certificate object based on the SNI associated with the certificate.'
+      description: An SNI object represents a many-to-one mapping of hostnames to a certificate. That is, a certificate object can have many hostnames associated with it; when Kong receives an SSL request, it uses the SNI field in the Client Hello to lookup the certificate object based on the SNI associated with the certificate.
       example:
         certificate:
           id: bd380f99-659d-415e-b0e7-72ea05df3218
@@ -631,7 +631,7 @@ components:
           type: integer
       type: object
     Service:
-      description: 'Service entities, as the name implies, are abstractions of each of your own upstream services. Examples of Services would be a data transformation microservice, a billing API, etc. The main attribute of a Service is its URL (where Kong should proxy traffic to), which can be set as a single string or by specifying its `protocol`, `host`, `port` and `path` individually. Services are associated to routes (a Service can have many routes associated with it). Routes are entry-points in Kong and define rules to match client requests. Once a route is matched, Kong proxies the request to its associated Service. See the [Proxy Reference][proxy-reference] for a detailed explanation of how Kong proxies traffic.'
+      description: Service entities, as the name implies, are abstractions of each of your own upstream services. Examples of Services would be a data transformation microservice, a billing API, etc. The main attribute of a Service is its URL (where Kong should proxy traffic to), which can be set as a single string or by specifying its `protocol`, `host`, `port` and `path` individually. Services are associated to routes (a Service can have many routes associated with it). Routes are entry-points in Kong and define rules to match client requests. Once a route is matched, Kong proxies the request to its associated Service. See the [Proxy Reference][proxy-reference] for a detailed explanation of how Kong proxies traffic.
       example:
         host: example.internal
         id: 49fd316e-c457-481c-9fc7-8079153e4f3c
@@ -641,7 +641,7 @@ components:
         protocol: http
       properties:
         ca_certificates:
-          description: 'Array of `CA Certificate` object UUIDs that are used to build the trust store while verifying upstream server''s TLS certificate. If set to `null` when Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with upstream server will always fail (because no CA are trusted).'
+          description: Array of `CA Certificate` object UUIDs that are used to build the trust store while verifying upstream servers TLS certificate. If set to `null` when Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with upstream server will always fail (because no CA are trusted).
           items:
             type: string
           type: array
@@ -661,7 +661,7 @@ components:
           type: integer
         enabled:
           default: true
-          description: 'Whether the Service is active. If set to `false`, the proxy behavior will be as if any routes attached to it do not exist (404). Default: `true`.'
+          description: Whether the Service is active. If set to `false`, the proxy behavior will be as if any routes attached to it do not exist (404).
           type: boolean
         host:
           description: The host of the upstream server. Note that the host value is case sensitive.
@@ -696,16 +696,16 @@ components:
             type: string
           type: array
         tls_verify:
-          description: 'Whether to enable verification of upstream server TLS certificate. If set to `null`, then the Nginx default is respected.'
+          description: Whether to enable verification of upstream server TLS certificate. If set to `null`, then the Nginx default is respected.
           type: boolean
         tls_verify_depth:
-          description: 'Maximum depth of chain while verifying Upstream server''''s TLS certificate. If set to `null`, then the Nginx default is respected.'
+          description: Maximum depth of chain while verifying Upstream server's TLS certificate. If set to `null`, then the Nginx default is respected.'
           type: integer
         updated_at:
           description: Unix epoch when the resource was last updated.
           type: integer
         url:
-          description: 'Helper field to set `protocol`, `host`, `port` and `path` using a URL. This field is write-only and is not returned in responses.'
+          description: Helper field to set `protocol`, `host`, `port` and `path` using a URL. This field is write-only and is not returned in responses.
           type: string
         write_timeout:
           default: 60000
@@ -714,7 +714,7 @@ components:
       type: object
       title: Service
     Target:
-      description: 'A target is an ip address/hostname with a port that identifies an instance of a backend service. Every upstream can have many targets, and the targets can be dynamically added, modified, or deleted. Changes take effect on the fly. To disable a target, post a new one with `weight=0`; alternatively, use the `DELETE` convenience method to accomplish the same. The current target object definition is the one with the latest `created_at`.'
+      description: A target is an ip address/hostname with a port that identifies an instance of a backend service. Every upstream can have many targets, and the targets can be dynamically added, modified, or deleted. Changes take effect on the fly. To disable a target, post a new one with `weight=0`; alternatively, use the `DELETE` convenience method to accomplish the same. The current target object definition is the one with the latest `created_at`.
       example:
         id: 089292a7-ba3d-4d88-acf0-97b4b2e2621a
         target: 203.0.113.42
@@ -733,7 +733,7 @@ components:
             type: string
           type: array
         target:
-          description: 'The target address (ip or hostname) and port. If the hostname resolves to an SRV record, the `port` value will be overridden by the value from the DNS record.'
+          description: The target address (ip or hostname) and port. If the hostname resolves to an SRV record, the `port` value will be overridden by the value from the DNS record.
           type: string
         updated_at:
           description: Unix epoch when the resource was last updated.
@@ -746,11 +746,11 @@ components:
           type: object
         weight:
           default: 100
-          description: 'The weight this target gets within the upstream loadbalancer (`0`-`65535`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.'
+          description: The weight this target gets within the upstream loadbalancer (`0`-`65535`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.
           type: integer
       type: object
     Upstream:
-      description: 'The upstream object represents a virtual hostname and can be used to loadbalance incoming requests over multiple services (targets). So for example an upstream named `service.v1.xyz` for a Service object whose `host` is `service.v1.xyz`. Requests for this Service would be proxied to the targets defined within the upstream. An upstream also includes a [health checker][healthchecks], which is able to enable and disable targets based on their ability or inability to serve requests. The configuration for the health checker is stored in the upstream object, and applies to all of its targets.'
+      description: The upstream object represents a virtual hostname and can be used to loadbalance incoming requests over multiple services (targets). So for example an upstream named `service.v1.xyz` for a Service object whose `host` is `service.v1.xyz`. Requests for this Service would be proxied to the targets defined within the upstream. An upstream also includes a [health checker][healthchecks], which is able to enable and disable targets based on their ability or inability to serve requests. The configuration for the health checker is stored in the upstream object, and applies to all of its targets.
       example:
         algorithm: round-robin
         hash_fallback: none
@@ -826,7 +826,7 @@ components:
           type: string
         client_certificate:
           additionalProperties: false
-          description: 'If set, the certificate to be used as client certificate while TLS handshaking to the upstream server.'
+          description: If set, the certificate to be used as client certificate while TLS handshaking to the upstream server.
           properties:
             id:
               type: string
@@ -836,7 +836,7 @@ components:
           type: integer
         hash_fallback:
           default: none
-          description: 'What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no Consumer identified). Not available if `hash_on` is set to `cookie`.'
+          description: What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no Consumer identified). Not available if `hash_on` is set to `cookie`.
           type: string
         hash_fallback_header:
           description: The header name to take the value from as hash input. Only required when `hash_fallback` is set to `header`.
@@ -852,7 +852,7 @@ components:
           description: What to use as hashing input. Using `none` results in a weighted-round-robin scheme with no hashing.
           type: string
         hash_on_cookie:
-          description: 'The cookie name to take the value from as hash input. Only required when `hash_on` or `hash_fallback` is set to `cookie`. If the specified cookie is not in the request, Kong will generate a value and set the cookie in the response.'
+          description: The cookie name to take the value from as hash input. Only required when `hash_on` or `hash_fallback` is set to `cookie`. If the specified cookie is not in the request, Kong will generate a value and set the cookie in the response.
           type: string
         hash_on_cookie_path:
           default: /
@@ -1001,11 +1001,11 @@ components:
         id:
           type: string
         name:
-          description: 'This is a hostname, which must be equal to the `host` of a Service.'
+          description: This is a hostname, which must be equal to the `host` of a Service.
           type: string
         slots:
           default: 10000
-          description: 'The number of slots in the load balancer algorithm. If `algorithm` is set to `round-robin`, this setting determines the maximum number of slots. If `algorithm` is set to `consistent-hashing`, this setting determines the actual number of slots in the algorithm. Accepts an integer in the range `10`-`65536`.'
+          description: The number of slots in the load balancer algorithm. If `algorithm` is set to `round-robin`, this setting determines the maximum number of slots. If `algorithm` is set to `consistent-hashing`, this setting determines the actual number of slots in the algorithm. Accepts an integer in the range `10`-`65536`.
           type: integer
         tags:
           description: An optional set of strings associated with the Upstream for grouping and filtering.
@@ -1017,11 +1017,11 @@ components:
           type: integer
         use_srv_name:
           default: false
-          description: 'If set, the balancer will use SRV hostname(if DNS Answer has SRV record) as the proxy upstream `Host`.'
+          description: If set, the balancer will use SRV hostname(if DNS Answer has SRV record) as the proxy upstream `Host`.
           type: boolean
       type: object
     Vault:
-      description: 'Vault entities are used to configure different Vault connectors. Examples of Vaults are Environment Variables, Hashicorp Vault and AWS Secrets Manager. Configuring a Vault allows referencing the secrets with other entities. For example a certificate entity can store a reference to a certificate and key, stored in a vault, instead of storing the certificate and key within the entity. This allows a proper separation of secrets and configuration and prevents secret sprawl.'
+      description: Vault entities are used to configure different Vault connectors. Examples of Vaults are Environment Variables, Hashicorp Vault and AWS Secrets Manager. Configuring a Vault allows referencing the secrets with other entities. For example a certificate entity can store a reference to a certificate and key, stored in a vault, instead of storing the certificate and key within the entity. This allows a proper separation of secrets and configuration and prevents secret sprawl.
       example:
         config:
           prefix: vaults.config.resurrect_ttl
@@ -1033,7 +1033,7 @@ components:
           - bar
       properties:
         config:
-          description: 'The configuration properties for the Vault which can be found on the [vaults'' documentation page](https://docs.konghq.com/gateway/latest/kong-enterprise/secrets-management/advanced-usage/).'
+          description: The configuration properties for the Vault which can be found on the [vaults documentation page](https://docs.konghq.com/gateway/latest/kong-enterprise/secrets-management/advanced-usage/).
           type: object
           properties:
             prefix:
@@ -1054,7 +1054,7 @@ components:
         id:
           type: string
         name:
-          description: 'The name of the Vault that''''s going to be added. Currently, the Vault implementation must be installed in every Kong instance.'
+          description: The name of the Vault that'''s going to be added. Currently, the Vault implementation must be installed in every Kong instance.'
           type: string
         prefix:
           description: The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
@@ -1300,22 +1300,22 @@ components:
                 type: string
               name:
                 type: string
-                description: 'The name of the plugin that''s going to be added. Currently, the plugin must be installed in every Kong instance separately.'
+                description: The name of the plugin thats going to be added. Currently, the plugin must be installed in every Kong instance separately.
                 example: rate-limiting
               created_at:
                 type: integer
                 description: Unix epoch when the resource was created.
               route:
                 type: string
-                description: 'If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the route being used. Default: `null`.With form-encoded, the notation is `route.id=<route id> or route.name=<route name>`. With JSON, use `"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.'
+                description: If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the route being used. Default, `null`.With form-encoded, the notation is `route.id=<route id>` or `route.name=<route name>`. With JSON, use `route:{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
                 nullable: true
               service:
                 type: string
-                description: 'If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified service.'
+                description: If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified service.
                 nullable: true
               consumer:
                 type: string
-                description: 'If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.)'
+                description: If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.)
                 nullable: true
               instance_name:
                 type: string
@@ -1469,7 +1469,7 @@ components:
                     id:
                       type: string
                       example: 147f5ef0-1ed6-4711-b77f-489262f8bff7
-                      description: 'The unique identifier or the name attribute of the Certificate whose SNIs are to be retrieved. When using this endpoint, only SNIs associated to the specified Certificate will be listed.'
+                      description: The unique identifier or the name attribute of the Certificate whose SNIs are to be retrieved. When using this endpoint, only SNIs associated to the specified Certificate will be listed.
                     name:
                       type: string
                       description: |
@@ -1839,7 +1839,7 @@ components:
                   properties:
                     bucket:
                       type: string
-                      description: 'Year and month when the requests were processed. If the value in bucket is UNKNOWN, then the requests were processed before Kong Gateway 2.7.0.1.'
+                      description: Year and month when the requests were processed. If the value in bucket is UNKNOWN, then the requests were processed before Kong Gateway 2.7.0.1.
                       example: 2021-12
                     request_count:
                       type: integer
@@ -3351,7 +3351,7 @@ components:
                     description: The unique identifier or the name of the upstream for which to update the target.
               weight:
                 default: 100
-                description: 'The weight this target gets within the upstream loadbalancer (`0`-`65535`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.'
+                description: The weight this target gets within the upstream loadbalancer (`0`-`65535`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.
                 type: integer
                 minimum: 0
                 maximum: 65535
@@ -3461,7 +3461,7 @@ components:
             properties:
               name:
                 type: string
-                description: 'This is a hostname, which must be equal to the `host` of a service.'
+                description: This is a hostname, which must be equal to the `host` of a service.
                 example: my-upstream
               algorithm:
                 type: string
@@ -3488,7 +3488,7 @@ components:
                   - query_arg
               hash_fallback:
                 type: string
-                description: 'What to use as hashing input if the primary hash_on does not return a hash (eg. header is missing, or no Consumer identified). Not available if hash_on is set to cookie.'
+                description: What to use as hashing input if the primary hash_on does not return a hash (eg. header is missing, or no Consumer identified). Not available if hash_on is set to cookie.
                 default: none
                 enum:
                   - none
@@ -3510,11 +3510,11 @@ components:
                 example: none
               hash_on_cookie:
                 type: string
-                description: 'The cookie name to take the value from as hash input. Only required when `hash_on` or `hash_fallback` is set to `cookie`. If the specified cookie is not in the request, Kong will generate a value and set the cookie in the response.'
+                description: The cookie name to take the value from as hash input. Only required when `hash_on` or `hash_fallback` is set to `cookie`. If the specified cookie is not in the request, Kong will generate a value and set the cookie in the response.
                 example: none
               hash_on_cookie_path:
                 type: string
-                description: 'The cookie path to set in the response headers. Only required when `hash_on` or `hash_fallback` is set to `cookie`. Default: `/`.'
+                description: The cookie path to set in the response headers. Only required when `hash_on` or `hash_fallback` is set to `cookie`.
                 default: /
                 example: /
               hash_on_query_arg:
@@ -3535,7 +3535,7 @@ components:
                 example: hash_value
               slots:
                 type: integer
-                description: 'The number of slots in the load balancer algorithm. If the algorithm is set to `round-robin`, this setting determines the maximum number of slots. If the algorithm is set to `consistent-hashing`, this setting determines the actual number of slots in the algorithm. Accepts an integer in the range 10-65536.'
+                description: The number of slots in the load balancer algorithm. If the algorithm is set to `round-robin`, this setting determines the maximum number of slots. If the algorithm is set to `consistent-hashing`, this setting determines the actual number of slots in the algorithm. Accepts an integer in the range 10-65536.
                 minimum: 10
                 maximum: 65536
                 default: 10000
@@ -3548,7 +3548,7 @@ components:
                     properties:
                       type:
                         type: string
-                        description: 'Whether to perform passive health checks interpreting HTTP/HTTPS statuses, or just check for TCP connection success. In passive checks, http and https options are equivalent. Accepted values are: `tcp`, `http`, `https`, `grpc`, `grpcs`.'
+                        description: Whether to perform passive health checks interpreting HTTP/HTTPS statuses, or just check for TCP connection success. In passive checks, http and https options are equivalent. Accepted values are `tcp`, `http`, `https`, `grpc`, `grpcs`.
                         default: http
                         enum:
                           - tcp
@@ -3562,7 +3562,7 @@ components:
                         properties:
                           http_statuses:
                             type: array
-                            description: 'An array of HTTP statuses which represent healthiness when produced by proxied traffic, as observed by passive health checks.  With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=201`. With JSON, use an array.'
+                            description: An array of HTTP statuses which represent healthiness when produced by proxied traffic, as observed by passive health checks.  With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=201`. With JSON, use an array.
                             default:
                               - 200
                               - 201
@@ -3611,7 +3611,7 @@ components:
                                 - 308
                           successes:
                             type: integer
-                            description: 'Number of successes in proxied traffic (as defined by `healthchecks.passive.healthy.http_statuses`) to consider a target healthy, as observed by passive health checks.'
+                            description: Number of successes in proxied traffic (as defined by `healthchecks.passive.healthy.http_statuses`) to consider a target healthy, as observed by passive health checks.
                             default: 0
                             example: 2
                       unhealthy:
@@ -3619,7 +3619,7 @@ components:
                         properties:
                           http_statuses:
                             type: array
-                            description: 'An array of HTTP statuses which represent unhealthiness when produced by proxied traffic, as observed by passive health checks. With form-encoded, the notation is `http_statuses[]=429&http_statuses[]=500`. With JSON, use an array.'
+                            description: An array of HTTP statuses which represent unhealthiness when produced by proxied traffic, as observed by passive health checks. With form-encoded, the notation is `http_statuses[]=429&http_statuses[]=500`. With JSON, use an array.
                             default:
                               - 429
                               - 500
@@ -3635,17 +3635,17 @@ components:
                                 - 503
                           timeouts:
                             type: integer
-                            description: 'Number of timeouts in proxied traffic to consider a target unhealthy, as observed by passive health checks.'
+                            description: Number of timeouts in proxied traffic to consider a target unhealthy, as observed by passive health checks.
                             default: 0
                             example: 1
                           http_failures:
                             type: integer
-                            description: 'Number of HTTP failures in proxied traffic (as defined by `healthchecks.passive.unhealthy.http_statuses`) to consider a target unhealthy, as observed by passive health checks.'
+                            description: Number of HTTP failures in proxied traffic (as defined by `healthchecks.passive.unhealthy.http_statuses`) to consider a target unhealthy, as observed by passive health checks.
                             default: 0
                             example: 3
                           tcp_failures:
                             type: integer
-                            description: 'Number of TCP connection failures to consider a target unhealthy, as observed by passive health checks.'
+                            description: Number of TCP connection failures to consider a target unhealthy, as observed by passive health checks.
                             default: 0
                             example: 1
                   active:
@@ -3658,7 +3658,7 @@ components:
                         properties:
                           http_statuses:
                             type: array
-                            description: 'An array of HTTP statuses to consider a success, indicating healthiness, when returned by a probe in active health checks. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=302`. With JSON, use an array.'
+                            description: An array of HTTP statuses to consider a success, indicating healthiness, when returned by a probe in active health checks. With form-encoded, the notation is `http_statuses[]=200&http_statuses[]=302`. With JSON, use an array.
                             default:
                               - 200
                               - 302
@@ -3687,7 +3687,7 @@ components:
                             example: 2
                           http_statuses:
                             type: array
-                            description: 'An array of HTTP statuses to consider a failure, indicating unhealthiness, when returned by a probe in active health checks. With form-encoded, the notation is `http_statuses[]=429&http_statuses[]=404`. With JSON, use an array.'
+                            description: An array of HTTP statuses to consider a failure, indicating unhealthiness, when returned by a probe in active health checks. With form-encoded, the notation is `http_statuses[]=429&http_statuses[]=404`. With JSON, use an array.
                             default:
                               - 429
                               - 404
@@ -3719,7 +3719,7 @@ components:
                             example: 10
                       type:
                         type: string
-                        description: 'Whether to perform active health checks using HTTP or HTTPS, or just attempt a TCP connection.'
+                        description: Whether to perform active health checks using HTTP or HTTPS, or just attempt a TCP connection.
                         enum:
                           - tcp
                           - http
@@ -3753,7 +3753,7 @@ components:
                         default: /
                       https_sni:
                         type: string
-                        description: 'The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host''s certificate can be verified with the proper SNI.'
+                        description: The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI.'
                   threshold:
                     type: integer
                     description: The minimum percentage of the upstream's targets' weight that must be available for the whole upstream to be considered healthy.
@@ -3773,14 +3773,14 @@ components:
                 description: The hostname to be used as Host header when proxying requests through Kong.
               client_certificate:
                 type: object
-                description: 'If set, the certificate to be used as client certificate while TLS handshaking to the upstream server.'
+                description: If set, the certificate to be used as client certificate while TLS handshaking to the upstream server.
                 properties:
                   id:
                     type: string
                     example: ea29aaa3-3b2d-488c-b90c-56df8e0dd8c6
               use_srv_name:
                 type: boolean
-                description: 'If set, the balancer will use SRV hostname(if DNS Answer has SRV record) as the proxy upstream Host.'
+                description: If set, the balancer will use SRV hostname(if DNS Answer has SRV record) as the proxy upstream Host.
                 example: false
             required:
               - name
@@ -3961,7 +3961,7 @@ components:
                 example: /some_api
               connect_timeout:
                 type: integer
-                description: 'The timeout in milliseconds for establishing a connection to the upstream server. Default: `60000`.'
+                description: The timeout in milliseconds for establishing a connection to the upstream server. Default `60000`.
                 default: 6000
                 example: 6000
               write_timeout:
@@ -3985,7 +3985,7 @@ components:
                   example: user-level
               client_certificate:
                 type: object
-                description: 'Certificate to be used as client certificate while TLS handshaking to the upstream server. With form-encoded, the notation is `client_certificate.id=<client_certificate id>`. With JSON, use `"client_certificate":{"id":"<client_certificate id>"}`.'
+                description: Certificate to be used as client certificate while TLS handshaking to the upstream server. With form-encoded, the notation is `client_certificate.id=<client_certificate id>`. With JSON, use `"client_certificate":{"id":"<client_certificate id>"}`.
                 properties:
                   id:
                     type: string
@@ -4004,14 +4004,14 @@ components:
                 nullable: true
               ca_certificates:
                 type: array
-                description: 'Array of CA Certificate object UUIDs that are used to build the trust store while verifying upstream server''s TLS certificate. If set to null when Nginx default is respected. With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an Array.'
+                description: Array of CA Certificate object UUIDs that are used to build the trust store while verifying upstream servers TLS certificate. If set to null when Nginx default is respected. With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an array.
                 items:
                   type: string
                   example: 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
               enabled:
                 type: boolean
                 default: true
-                description: 'Whether the service is active. If set to `false`, the proxy behavior will be as if any routes attached to it do not exist (404). Default: `true`.'
+                description: Whether the service is active. If set to `false`, the proxy behavior will be as if any routes attached to it do not exist (404).
             required:
               - protocol
               - host
@@ -4111,17 +4111,17 @@ components:
                   example: GET
               hosts:
                 type: array
-                description: 'A list of domain names that match this route. Note that the hosts value is case sensitive. With form-encoded, the notation is `hosts[]=example.com&hosts[]=foo.test`. With JSON, use an Array.'
+                description: A list of domain names that match this route. Note that the hosts value is case sensitive. With form-encoded, the notation is `hosts[]=example.com&hosts[]=foo.test`. With JSON, use an Array.
                 items:
                   type: string
               paths:
                 type: array
-                description: 'A list of paths that match this route. With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an array. The path can be a regular expression, or a plain text pattern.'
+                description: A list of paths that match this route. With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an array. The path can be a regular expression, or a plain text pattern.
                 items:
                   type: string
               headers:
                 type: object
-                description: 'One or more lists of values indexed by header name that will cause this route to match if present in the request. The Host header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. When headers contains only one value and that value starts with the special prefix` ~*`, the value is interpreted as a regular expression.'
+                description: One or more lists of values indexed by header name that will cause this route to match if present in the request. The Host header cannot be used with this attribute hosts should be specified using the `hosts` attribute. When headers contains only one value and that value starts with the special prefix` ~*`, the value is interpreted as a regular expression.
                 properties:
                   x-my-header:
                     type: array
@@ -4146,23 +4146,23 @@ components:
                 example: 426
               regex_priority:
                 type: integer
-                description: 'A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same regex_priority, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones). Default: `0`.'
+                description: A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same regex_priority, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).
                 default: 0
                 example: 0
               strip_path:
                 type: boolean
-                description: 'When matching a route via one of the paths, strip the matching prefix from the upstream request URL. Default: `true`.'
+                description: When matching a route via one of the paths, strip the matching prefix from the upstream request URL.
                 default: true
               path_handling:
                 type: string
-                description: 'Controls how the service path, route path and requested path are combined when sending a request to the upstream. Accepted values are: "`v0`", "`v1`". Default: "`v0`".'
+                description: Controls how the service path, route path and requested path are combined when sending a request to the upstream. Accepted values are "`v0`", "`v1`".
                 enum:
                   - v1
                   - v0
                 example: v0
               preserve_host:
                 type: boolean
-                description: 'When matching a route via one of the `hosts` domain names, use the request `host` header in the upstream request headers. If set to `false`, the upstream Host header will be that of the service''s host.'
+                description: When matching a route via one of the `hosts` domain names, use the request `host` header in the upstream request headers. If set to `false`, the upstream Host header will be that of the service's host.'
                 default: true
               request_buffering:
                 type: boolean
@@ -4213,7 +4213,7 @@ components:
                   type: string
               service:
                 type: object
-                description: 'The service this route is associated to. This is where the route proxies traffic to. With form-encoded, the notation is service.id=<service id> or service.name=<service name>. With JSON, use `"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.'
+                description: The service this route is associated to. This is where the route proxies traffic to. With form-encoded, the notation is service.id=<service id> or service.name=<service name>. With JSON, use `"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
                 nullable: true
                 properties:
                   id:
@@ -4281,7 +4281,7 @@ components:
             properties:
               set:
                 type: object
-                description: 'The id (an UUID) of the key-set with which to associate the key .With form-encoded, the notation is `set.id=<set id>` or `set.name=<set name>`. With JSON, use `"set":{"id":"<set id>"}` or `"set":{"name":"<set name>"}.`'
+                description: The id (an UUID) of the key-set with which to associate the key .With form-encoded, the notation is `set.id=<set id>` or `set.name=<set name>`. With JSON, use `"set":{"id":"<set id>"}` or `"set":{"name":"<set name>"}.`
                 properties:
                   id:
                     type: string
@@ -4372,19 +4372,19 @@ components:
             properties:
               name:
                 type: string
-                description: 'The name of the plugin that''s going to be added. Currently, the plugin must be installed in every Kong instance separately.'
+                description: The name of the plugin that's going to be added. Currently, the plugin must be installed in every Kong instance separately.
                 example: rate-limiting
               route:
                 type: string
-                description: 'If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the route being used. Default: `null`.With form-encoded, the notation is `route.id=<route id> or route.name=<route name>`. With JSON, use `"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.'
+                description: If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the route being used. Default `null`.With form-encoded, the notation is `route.id=<route id> or route.name=<route name>`. With JSON, use `"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
                 nullable: true
               service:
                 type: string
-                description: 'If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified service.'
+                description: If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified service.
                 nullable: true
               consumer:
                 type: string
-                description: 'If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.)'
+                description: If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.)
                 nullable: true
               instance_name:
                 type: string
@@ -4515,7 +4515,7 @@ components:
                   example: '["user-level", "low-priority"]'
               certificate:
                 type: object
-                description: 'The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object. With form-encoded, the notation is `certificate.id=<certificate id>`. With JSON, use `"certificate":{"id":"<certificate id>"}`.'
+                description: The id (a UUID) of the certificate with which to associate the SNI hostname. The Certificate must have a valid private key associated with it to be used by the SNI object. With form-encoded, the notation is `certificate.id=<certificate id>`. With JSON, use `"certificate":{"id":"<certificate id>"}`.
                 properties:
                   id:
                     type: string
@@ -4524,7 +4524,7 @@ components:
             required:
               - name
               - certificate
-      description: 'A JSON object containing the details of the new SNI, including the name, certificate, and tags.'
+      description: A JSON object containing the details of the new SNI, including the name, certificate, and tags.
     cert-request:
       content:
         application/json:
@@ -4573,7 +4573,7 @@ components:
                   type: string
               passphrase:
                 type: string
-                description: 'To load an encrypted private key into Kong, specify the passphrase using this attributKong will decrypt the private key and store it in its database. e. Enterprise Only'
+                description: To load an encrypted private key into Kong, specify the passphrase using this attributKong will decrypt the private key and store it in its database. e. Enterprise Only
                 example: example
             required:
               - cert
@@ -4689,7 +4689,7 @@ openapi: 3.0.0
 paths:
   /ca_certificates:
     get:
-      description: 'Retrieve a list of all available Certificate Authority (CA) certificates, including the certificate ID, creation date, and other details. You can use query parameters to filter the results by size or tags, for example `/ca-certificates?size=50&tags=enterprise`.'
+      description: Retrieve a list of all available Certificate Authority (CA) certificates, including the certificate ID, creation date, and other details. You can use query parameters to filter the results by size or tags, for example `/ca-certificates?size=50&tags=enterprise`.
       operationId: list-ca_certificate
       parameters:
         - $ref: '#/components/parameters/pagination-size'
@@ -4706,7 +4706,7 @@ paths:
       tags:
         - CA Certificates
     post:
-      description: 'Create a new Certificate Authority (CA) certificate. The request body must include the `cert` property, the certificate data in PEM format; it can also include `cert_digest`, a digest of the certificate in hex format for verifying the certificates integrity, and `tags`, an optional list of tags to categorize the certificate.'
+      description: Create a new Certificate Authority (CA) certificate. The request body must include the `cert` property, the certificate data in PEM format; it can also include `cert_digest`, a digest of the certificate in hex format for verifying the certificates integrity, and `tags`, an optional list of tags to categorize the certificate.
       operationId: create-ca_certificate
       responses:
         '200':
@@ -4836,7 +4836,7 @@ paths:
       - $ref: '#/components/parameters/ca_certificate_id'
   /certificates:
     get:
-      description: 'Retrieve a list of all available CA Certificate Authority (CA) certificates. You can use query parameters to filter the results by size or tags, for example `/certificates?size=50&tags=enterprise`.'
+      description: Retrieve a list of all available CA Certificate Authority (CA) certificates. You can use query parameters to filter the results by size or tags, for example `/certificates?size=50&tags=enterprise`.
       operationId: list-certificate
       parameters:
         - $ref: '#/components/parameters/pagination-size'
@@ -5067,7 +5067,7 @@ paths:
             - a3ad71a8-6685-4b03-a101-980a953544f6
             - name
           example: name
-        description: 'The unique identifier or the `name` attribute of the Certificate whose SNIs are to be retrieved. When using this endpoint, only SNIs associated to the specified Certificate will be listed.'
+        description: The unique identifier or the `name` attribute of the Certificate whose SNIs are to be retrieved. When using this endpoint, only SNIs associated to the specified Certificate will be listed.
   '/certificates/{certificate_id}/snis/{sni_name_or_id}':
     delete:
       description: |
@@ -5095,7 +5095,7 @@ paths:
         - SNIs
       operationId: fetch-sni-with-cert
     patch:
-      description: 'Update an existing SNI associated with a certificate in the system using the SNI ID or name. The request body should include the fields of the SNI that need to be updated, such as the name, description, or other properties. If the request body contains valid data, the endpoint will update the SNI and return a success response.'
+      description: Update an existing SNI associated with a certificate in the system using the SNI ID or name. The request body should include the fields of the SNI that need to be updated, such as the name, description, or other properties. If the request body contains valid data, the endpoint will update the SNI and return a success response.
       responses:
         '200':
           content:
@@ -5150,7 +5150,7 @@ paths:
       - $ref: '#/components/parameters/sni_name_or_id'
   /consumers:
     get:
-      description: 'Retrieve a list of all consumers.You can use query parameters to filter the results by size or tags, for example `/consumers?size=50&tags=enterprise`.'
+      description: Retrieve a list of all consumers.You can use query parameters to filter the results by size or tags, for example `/consumers?size=50&tags=enterprise`.
       operationId: list-consumer
       parameters:
         - $ref: '#/components/parameters/pagination-size'
@@ -5583,7 +5583,7 @@ paths:
       tags:
         - Keys
     post:
-      description: 'This API endpoint allows you to create a new key. When the request is successful, the API will respond with a 200 status code and a JSON object that represents the newly created key. If the request is invalid, the API will respond with a 400 status code and an error message in the response body.'
+      description: This API endpoint allows you to create a new key. When the request is successful, the API will respond with a 200 status code and a JSON object that represents the newly created key. If the request is invalid, the API will respond with a 400 status code and an error message in the response body.
       operationId: create-key
       responses:
         '200':
@@ -8980,7 +8980,7 @@ paths:
                     - fixed
                 config.retry_after_jitter_max:
                   type: string
-                  description: 'The upper bound of a jitter (random delay) in seconds to be added to the Retry-After header of denied requests (status = 429) in order to prevent all the clients from coming back at the same time. The lower bound of the jitter is 0; in this case, the Retry-After header is equal to the RateLimit-Reset header.'
+                  description: The upper bound of a jitter (random delay) in seconds to be added to the Retry-After header of denied requests (status = 429) in order to prevent all the clients from coming back at the same time. The lower bound of the jitter is 0; in this case, the Retry-After header is equal to the RateLimit-Reset header.
               required:
                 - config.limit
                 - config.window_size
@@ -9229,7 +9229,7 @@ paths:
         '200':
           $ref: '#/components/responses/key-ring-response'
       operationId: get-keyring
-      description: 'Kong Gateway provides a mechanism to store sensitive data fields, such as consumer secrets, in an encrypted format within the database.This provides for encryption-at-rest security controls in a Kong cluster. For more information review the [keyring and data encryption documentation](https://docs.konghq.com/gateway/latest/kong-enterprise/db-encryption/#getting-started).'
+      description: Kong Gateway provides a mechanism to store sensitive data fields, such as consumer secrets, in an encrypted format within the database.This provides for encryption-at-rest security controls in a Kong cluster. For more information review the [keyring and data encryption documentation](https://docs.konghq.com/gateway/latest/kong-enterprise/db-encryption/#getting-started).
   /endpoints:
     get:
       summary: List all endpoints
@@ -9240,7 +9240,6 @@ paths:
           $ref: '#/components/responses/get-endpoints'
       operationId: get-endpoints
       description: List all available endpoints provided by the Admin API.
-    parameters: []
   '/{endpoint}':
     parameters:
       - schema:
@@ -9281,12 +9280,12 @@ paths:
                 type: string
                 example: '*'
             X-Kong-Admin-Request-ID:
-              description: 'A unique identifier for the request, generated by Kong'
+              description: A unique identifier for the request, generated by Kong
               schema:
                 type: string
                 example: aqETeVmkeiGnAMzdUT2JRWroB2myY1lB
             X-Kong-Admin-Latency:
-              description: 'The time taken to process the request on the server, in milliseconds'
+              description: The time taken to process the request on the server, in milliseconds
               schema:
                 type: integer
                 example: 5
@@ -9333,7 +9332,7 @@ paths:
                 type: string
                 example: 'Content-Type, Kong-Admin-Token, Kong-Request-Type, Cache-Control'
             X-Kong-Admin-Request-ID:
-              description: 'A unique identifier for the request, generated by Kong'
+              description: A unique identifier for the request, generated by Kong
               schema:
                 type: string
                 example: gDP1cF3OsNbrgcKPhRNE0RXRNfS7NcoG
@@ -9348,7 +9347,7 @@ paths:
                 type: string
                 example: 'OPTIONS, PATCH, POST'
             X-Kong-Admin-Latency:
-              description: 'The time taken to process the request on the server, in milliseconds'
+              description: The time taken to process the request on the server, in milliseconds
               schema:
                 type: integer
                 example: 5
@@ -9421,7 +9420,7 @@ paths:
                           timestamp: true
                           type: integer
       operationId: get-schemas-entity
-      description: 'Retrieve the schema of an entity. This is useful to understand what fields an entity accepts, and can be used for building third-party integrations with Kong.'
+      description: Retrieve the schema of an entity. This is useful to understand what fields an entity accepts, and can be used for building third-party integrations with Kong.
     post:
       summary: Validate a configuration against a schema
       operationId: post-schemas-entity-validate
@@ -9630,7 +9629,7 @@ paths:
                         type: integer
                         description: The total number of the Nginx worker processes.
       operationId: get-timers
-      description: 'Retrieve runtime stats data from [lua-resty-timer-ng](https://github.com/Kong/lua-resty-timer-ng).'
+      description: Retrieve runtime stats data from [lua-resty-timer-ng](https://github.com/Kong/lua-resty-timer-ng).
   /status:
     get:
       summary: Health Routes
@@ -9738,7 +9737,7 @@ paths:
                     properties:
                       lua_shared_dicts:
                         type: object
-                        description: 'An array of dictionary objects that are shared with all workers in a Kong node, where each array node contains how much memory is dedicated for the specific shared dictionary (`capacity`) and how much of said memory is in use (`allocated_slabs`).'
+                        description: An array of dictionary objects that are shared with all workers in a Kong node, where each array node contains how much memory is dedicated for the specific shared dictionary (`capacity`) and how much of said memory is in use (`allocated_slabs`).
                         properties:
                           kong_core_db_cache:
                             type: object
@@ -9753,7 +9752,7 @@ paths:
                                 description: Total allocated memory
                       workers_lua_vms:
                         type: array
-                        description: 'An array with all workers of the Kong node, each entry contains a `http_allocated_gc` string and a `pid`.'
+                        description: An array with all workers of the Kong node, each entry contains a `http_allocated_gc` string and a `pid`.
                         items:
                           type: object
                           properties:
@@ -9794,7 +9793,7 @@ paths:
                         example: 1
                       connections_handled:
                         type: integer
-                        description: 'The total number of handled connections. Generally, the parameter value is the same as the `connections_accepted` parameter unless some resource limits have been reached.'
+                        description: The total number of handled connections. Generally, the parameter value is the same as the `connections_accepted` parameter unless some resource limits have been reached.
                         example: 1
                       connections_active:
                         type: integer
@@ -9957,7 +9956,7 @@ paths:
       responses:
         '204':
           description: No Content
-      description: 'Kong can write new sensitive data fields with the current active key, and read previously written fields in the database with the prior key, provided that key is in the keyring. Kong automatically selects the appropriate key to use when decrypting fields from the database.'
+      description: Kong can write new sensitive data fields with the current active key, and read previously written fields in the database with the prior key, provided that key is in the keyring. Kong automatically selects the appropriate key to use when decrypting fields from the database.
       requestBody:
         content:
           application/json:
