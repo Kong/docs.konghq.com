@@ -94,14 +94,12 @@ out {{site.base_gateway}} for the first time, we recommends starting with [{{ si
 
 ### Konnect
 
-Provides the easiest way to get started with Kong Gateway. The global control plane is hosted in the cloud by Kong, and you manage the individual data plane nodes within your preferred network environment.
-
-
+{{site.konnect_short_name}} provides the easiest way to get started with Kong Gateway. The global control plane is hosted in the cloud by Kong, and you manage the individual data plane nodes within your preferred network environment.
 
 Konnect offers two pricing packages: 
-* <span class="badge konnect-plus"></span> Our self-serve pay-as-you-go pricing model, giving you access to the Konnect platform in it's entirity while offering the flexibility to only pay for the services your organization uses. 
+* **Plus**: Our self-serve pay-as-you-go pricing model, giving you access to the Konnect platform in it's entirity while offering the flexibility to only pay for the services your organization uses. 
 
-* <span class="badge enterprise"></span> With an **Enterprise** subscription,
+* **Enterprise**: With an Enterprise subscription,
   you have access to the entire {{ site.konnect_saas }} suite and: 
 
   * 24x7x365 technical support
