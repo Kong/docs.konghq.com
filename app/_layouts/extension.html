@@ -24,10 +24,17 @@ breadcrumbs:
   {% endif %}
 {% endunless %}
 
+
 {% unless page.extn_publisher == "kong-inc" %}
-  <blockquote class="partner-plugin no-icon">
-    Partner Plugin: This plugin is <b>developed, tested, and maintained</b> by {{ page.publisher }}.
-  </blockquote>
+    {% if page.techpartner %}
+      <blockquote class="partner-plugin no-icon">
+        Partner Plugin: This plugin is <b>developed, tested, and maintained</b> by {{ page.publisher }}.
+      </blockquote>
+    {% else %}
+      <blockquote class="community-plugin no-icon">
+        Community Plugin: This plugin is <b>developed, tested, and maintained</b> by {{ page.publisher }}.
+      </blockquote>
+    {% endif %}
 {% endunless %}
 
 {% if page.bundled == false or page.bundled == false %}
