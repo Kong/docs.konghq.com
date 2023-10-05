@@ -201,7 +201,7 @@ components:
       schema:
         type: string
         example: 2747d1e5-8246-4f65-a939-b392f1ee17f8
-      description: ID or name of the workspace to lookup
+      description: ID or name of the workspace to look up.
     workspace:
       name: workspace
       in: path
@@ -254,7 +254,7 @@ components:
             type: string
             example: tag
     Certificate:
-      description: 'A certificate object represents a public certificate, and can be optionally paired with the corresponding private key. These objects are used by Kong to handle SSL/TLS termination for encrypted requests, or for use as a trusted CA store when validating peer certificate of client/service. Certificates are optionally associated with SNI objects to tie a cert/key pair to one or more hostnames. If intermediate certificates are required in addition to the main certificate, they should be concatenated together into one string according to the following order: main certificate on the top, followed by any intermediates.'
+      description: A certificate object represents a public certificate, and can be optionally paired with the corresponding private key. These objects are used by Kong to handle SSL/TLS termination for encrypted requests, or for use as a trusted CA store when validating peer certificate of client/service. Certificates are optionally associated with SNI objects to tie a cert/key pair to one or more hostnames. If intermediate certificates are required in addition to the main certificate, they should be concatenated together into one string according to the following order, main certificate on the top, followed by any intermediates.
       example:
         cert: |-
           -----BEGIN CERTIFICATE-----
@@ -450,7 +450,7 @@ components:
         id:
           type: string
         name:
-          description: The name of the Plugin that''s going to be added. Currently, the Plugin must be installed in every Kong instance separately.
+          description: The name of the Plugin that's going to be added. Currently, the Plugin must be installed in every Kong instance separately.'
           type: string
         ordering:
           type: object
@@ -460,7 +460,7 @@ components:
             - grpcs
             - http
             - https
-          description: A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.
+          description: A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `tcp` and `tls`.
           items:
             type: string
           type: array
@@ -512,7 +512,7 @@ components:
             type: object
           type: array
         headers:
-          description: 'One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. When `headers` contains only one value and that value starts with the special prefix `~*`, the value is interpreted as a regular expression.'
+          description: One or more lists of values indexed by header name that will cause this Route to match if present in the request. The `Host` header cannot be used with this `attribute:` hosts should be specified using the `hosts` attribute. When `headers` contains only one value and that value starts with the special prefix `~*`, the value is interpreted as a regular expression.
           type: object
         hosts:
           description: A list of domain names that match this Route. Note that the hosts value is case sensitive.
@@ -521,7 +521,7 @@ components:
           type: array
         https_redirect_status_code:
           default: 426
-          description: 'The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308. Note: This config applies only if the Route is configured to only accept the `https` protocol.'
+          description: The status code Kong responds with when all properties of a Route match except the protocol i.e. if the protocol of the request is `HTTP` instead of `HTTPS`. `Location` header is injected by Kong if the field is set to 301, 302, 307 or 308. This config applies only if the Route is configured to only accept the `https` protocol.
           type: integer
         id:
           type: string
@@ -544,7 +544,7 @@ components:
           type: array
         preserve_host:
           default: false
-          description: When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service''s `host`.
+          description: When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service'''s `host`.'
           type: boolean
         protocols:
           default:
@@ -641,7 +641,7 @@ components:
         protocol: http
       properties:
         ca_certificates:
-          description: 'Array of `CA Certificate` object UUIDs that are used to build the trust store while verifying upstream server''s TLS certificate. If set to `null` when Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with upstream server will always fail (because no CA are trusted).'
+          description: Array of `CA Certificate` object UUIDs that are used to build the trust store while verifying upstream servers TLS certificate. If set to `null` when Nginx default is respected. If default CA list in Nginx are not specified and TLS verification is enabled, then handshake with upstream server will always fail (because no CA are trusted).
           items:
             type: string
           type: array
@@ -661,7 +661,7 @@ components:
           type: integer
         enabled:
           default: true
-          description: 'Whether the Service is active. If set to `false`, the proxy behavior will be as if any routes attached to it do not exist (404). Default: `true`.'
+          description: Whether the Service is active. If set to `false`, the proxy behavior will be as if any routes attached to it do not exist (404).
           type: boolean
         host:
           description: The host of the upstream server. Note that the host value is case sensitive.
@@ -699,7 +699,7 @@ components:
           description: Whether to enable verification of upstream server TLS certificate. If set to `null`, then the Nginx default is respected.
           type: boolean
         tls_verify_depth:
-          description: Maximum depth of chain while verifying Upstream server''s TLS certificate. If set to `null`, then the Nginx default is respected.
+          description: Maximum depth of chain while verifying Upstream server's TLS certificate. If set to `null`, then the Nginx default is respected.'
           type: integer
         updated_at:
           description: Unix epoch when the resource was last updated.
@@ -1033,7 +1033,7 @@ components:
           - bar
       properties:
         config:
-          description: The configuration properties for the Vault which can be found on the [vaults' documentation page](https://docs.konghq.com/gateway/latest/kong-enterprise/secrets-management/advanced-usage/).
+          description: The configuration properties for the Vault which can be found on the [vaults documentation page](https://docs.konghq.com/gateway/latest/kong-enterprise/secrets-management/advanced-usage/).
           type: object
           properties:
             prefix:
@@ -1054,7 +1054,7 @@ components:
         id:
           type: string
         name:
-          description: The name of the Vault that''s going to be added. Currently, the Vault implementation must be installed in every Kong instance.
+          description: The name of the Vault that'''s going to be added. Currently, the Vault implementation must be installed in every Kong instance.'
           type: string
         prefix:
           description: The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
@@ -1102,11 +1102,12 @@ components:
                 type: string
             portal_developer_meta_fields:
               default:
-                - label: Full Name
-                  title: full_name
-                  validator:
-                    required: true
-                    type: string
+                properties:
+                  - label: Full Name
+                    title: full_name
+                    validator:
+                      required: true
+                      type: string
               type: object
             portal_emails_from:
               type: string
@@ -1216,7 +1217,7 @@ components:
                     tag:
                       type: string
                       example: example
-                      description: The tag 
+                      description: The tag
               offset:
                 type: string
                 example: 1fb491c4-f4a7-4bca-aeba-7f3bcee4d2f9
@@ -1299,14 +1300,14 @@ components:
                 type: string
               name:
                 type: string
-                description: The name of the plugin that's going to be added. Currently, the plugin must be installed in every Kong instance separately.
+                description: The name of the plugin thats going to be added. Currently, the plugin must be installed in every Kong instance separately.
                 example: rate-limiting
               created_at:
                 type: integer
                 description: Unix epoch when the resource was created.
               route:
                 type: string
-                description: 'If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the route being used. Default: `null`.With form-encoded, the notation is `route.id=<route id> or route.name=<route name>`. With JSON, use `"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.'
+                description: If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the route being used. Default, `null`.With form-encoded, the notation is `route.id=<route id>` or `route.name=<route name>`. With JSON, use `route:{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
                 nullable: true
               service:
                 type: string
@@ -1679,7 +1680,7 @@ components:
                     id: string
                     name: string
                     tags:
-                      - red
+                      red: null
     consumer_response:
       description: A consumer response object
       content:
@@ -1976,6 +1977,1296 @@ components:
                       type: string
                       description: The name assigned in the request body.
                       example: default
+    get-endpoints:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: string
+            x-examples:
+              Example 1:
+                data:
+                  - /
+                  - /acls
+                  - '/acls/{acls}'
+                  - '/acls/{acls}/consumer'
+                  - /acme
+                  - /acme/certificates
+                  - '/acme/certificates/{certificates}'
+                  - /acme_storage
+                  - '/acme_storage/{acme_storage}'
+                  - /admins
+                  - /admins/password_resets
+                  - /admins/register
+                  - /admins/self/password
+                  - /admins/self/token
+                  - '/admins/{admins}'
+                  - '/admins/{admins}/consumer'
+                  - '/admins/{admins}/rbac_user'
+                  - '/admins/{admin}/roles'
+                  - '/admins/{admin}/workspaces'
+                  - /applications
+                  - '/applications/{applications}'
+                  - '/applications/{applications}/application_instances'
+                  - '/applications/{applications}/application_instances/{application_instances}'
+                  - '/applications/{applications}/consumer'
+                  - '/applications/{applications}/credentials/{plugin}'
+                  - '/applications/{applications}/credentials/{plugin}/{credential_id}'
+                  - '/applications/{applications}/developer'
+                  - /auth
+                  - /basic-auths
+                  - '/basic-auths/{basicauth_credentials}'
+                  - '/basic-auths/{basicauth_credentials}/consumer'
+                  - /ca_certificates
+                  - '/ca_certificates/{ca_certificates}'
+                  - '/ca_certificates/{ca_certificates}/mtls_auth_credentials'
+                  - '/ca_certificates/{ca_certificates}/mtls_auth_credentials/{mtls_auth_credentials}'
+                  - /cache
+                  - '/cache/{key}'
+                  - /certificates
+                  - '/certificates/{certificates}'
+                  - '/certificates/{certificates}/services'
+                  - '/certificates/{certificates}/services/{services}'
+                  - '/certificates/{certificates}/snis'
+                  - '/certificates/{certificates}/snis/{snis}'
+                  - '/certificates/{certificates}/upstreams'
+                  - '/certificates/{certificates}/upstreams/{upstreams}'
+                  - /clustering/data-planes
+                  - /clustering/status
+                  - /config
+                  - /consumer_groups
+                  - '/consumer_groups/{consumer_groups}'
+                  - '/consumer_groups/{consumer_groups}/consumers'
+                  - '/consumer_groups/{consumer_groups}/consumers/{consumers}'
+                  - '/consumer_groups/{consumer_groups}/overrides/plugins/rate-limiting-advanced'
+                  - '/consumer_groups/{consumer_groups}/plugins'
+                  - '/consumer_groups/{consumer_groups}/plugins/{plugins}'
+                  - /consumers
+                  - '/consumers/{consumers}'
+                  - '/consumers/{consumers}/acls'
+                  - '/consumers/{consumers}/acls/{acls}'
+                  - '/consumers/{consumers}/admins'
+                  - '/consumers/{consumers}/admins/{admins}'
+                  - '/consumers/{consumers}/applications'
+                  - '/consumers/{consumers}/applications/{applications}'
+                  - '/consumers/{consumers}/basic-auth'
+                  - '/consumers/{consumers}/basic-auth/{basicauth_credentials}'
+                  - '/consumers/{consumers}/consumer_groups'
+                  - '/consumers/{consumers}/consumer_groups/{consumer_groups}'
+                  - '/consumers/{consumers}/developers'
+                  - '/consumers/{consumers}/developers/{developers}'
+                  - '/consumers/{consumers}/hmac-auth'
+                  - '/consumers/{consumers}/hmac-auth/{hmacauth_credentials}'
+                  - '/consumers/{consumers}/jwt'
+                  - '/consumers/{consumers}/jwt/{jwt_secrets}'
+                  - '/consumers/{consumers}/key-auth'
+                  - '/consumers/{consumers}/key-auth/{keyauth_credentials}'
+                  - '/consumers/{consumers}/key-auth-enc'
+                  - '/consumers/{consumers}/key-auth-enc/{keyauth_enc_credentials}'
+                  - '/consumers/{consumers}/login_attempts'
+                  - '/consumers/{consumers}/login_attempts/{login_attempts}'
+                  - '/consumers/{consumers}/mtls-auth'
+                  - '/consumers/{consumers}/mtls-auth/{mtls_auth_credentials}'
+                  - '/consumers/{consumers}/mtls_auth_credentials'
+                  - '/consumers/{consumers}/mtls_auth_credentials/{mtls_auth_credentials}'
+                  - '/consumers/{consumers}/oauth2'
+                  - '/consumers/{consumers}/oauth2/{oauth2_credentials}'
+                  - '/consumers/{consumers}/plugins'
+                  - '/consumers/{consumers}/plugins/{plugins}'
+                  - '/debug/cluster/log-level/{log_level}'
+                  - /debug/node/log-level
+                  - '/debug/node/log-level/{log_level}'
+                  - /debug/profiling/cpu
+                  - /debug/profiling/gc-snapshot
+                  - /debug/profiling/memory
+                  - /degraphql_routes
+                  - '/degraphql_routes/{degraphql_routes}'
+                  - '/degraphql_routes/{degraphql_routes}/service'
+                  - /developers
+                  - /developers/export
+                  - /developers/invite
+                  - /developers/roles
+                  - '/developers/roles/{rbac_roles}'
+                  - '/developers/{developers}'
+                  - '/developers/{developers}/applications'
+                  - '/developers/{developers}/applications/{applications}'
+                  - '/developers/{developers}/applications/{applications}/application_instances'
+                  - '/developers/{developers}/applications/{applications}/application_instances/{application_instances}'
+                  - '/developers/{developers}/applications/{applications}/credentials/{plugin}'
+                  - '/developers/{developers}/applications/{applications}/credentials/{plugin}/{credential_id}'
+                  - '/developers/{developers}/consumer'
+                  - '/developers/{developers}/credentials/{plugin}'
+                  - '/developers/{developers}/credentials/{plugin}/{credential_id}'
+                  - '/developers/{developers}/rbac_user'
+                  - '/developers/{email_or_id}/plugins/'
+                  - '/developers/{email_or_id}/plugins/{id}'
+                  - /document_objects
+                  - '/document_objects/{document_objects}'
+                  - '/document_objects/{document_objects}/service'
+                  - /endpoints
+                  - /entities/migrate
+                  - /event-hooks
+                  - /event-hooks/sources
+                  - '/event-hooks/sources/{source}'
+                  - '/event-hooks/sources/{source}/{event}'
+                  - '/event-hooks/{event_hooks}'
+                  - '/event-hooks/{event_hooks}/ping'
+                  - '/event-hooks/{event_hooks}/test'
+                  - /files
+                  - /files/*
+                  - /files/partials/*
+                  - '/files/{files}'
+                  - /filter-chains
+                  - '/filter-chains/{filter_chains}'
+                  - '/filter-chains/{filter_chains}/route'
+                  - '/filter-chains/{filter_chains}/service'
+                  - /graphql-proxy-cache-advanced
+                  - '/graphql-proxy-cache-advanced/{cache_key}'
+                  - '/graphql-proxy-cache-advanced/{plugin_id}/caches/{cache_key}'
+                  - /graphql-rate-limiting-advanced/costs
+                  - '/graphql-rate-limiting-advanced/costs/{graphql_ratelimiting_advanced_cost_decoration}'
+                  - /graphql_ratelimiting_advanced_cost_decoration
+                  - '/graphql_ratelimiting_advanced_cost_decoration/{graphql_ratelimiting_advanced_cost_decoration}'
+                  - '/graphql_ratelimiting_advanced_cost_decoration/{graphql_ratelimiting_advanced_cost_decoration}/service'
+                  - /groups
+                  - '/groups/{groups}'
+                  - '/groups/{groups}/roles'
+                  - /hmac-auths
+                  - '/hmac-auths/{hmacauth_credentials}'
+                  - '/hmac-auths/{hmacauth_credentials}/consumer'
+                  - /jwt-signer/jwks
+                  - '/jwt-signer/jwks/{jwt_signer_jwks}'
+                  - '/jwt-signer/jwks/{jwt_signer_jwks}/rotate'
+                  - /jwts
+                  - '/jwts/{jwt_secrets}'
+                  - '/jwts/{jwt_secrets}/consumer'
+                  - /key-auths
+                  - '/key-auths/{keyauth_credentials}'
+                  - '/key-auths/{keyauth_credentials}/consumer'
+                  - /key-auths-enc
+                  - '/key-auths-enc/{keyauth_enc_credentials}'
+                  - '/key-auths-enc/{keyauth_enc_credentials}/consumer'
+                  - /key-sets
+                  - '/key-sets/{key_sets}'
+                  - '/key-sets/{key_sets}/keys'
+                  - '/key-sets/{key_sets}/keys/{keys}'
+                  - /keyring
+                  - /keyring/activate
+                  - /keyring/active
+                  - /keyring/export
+                  - /keyring/generate
+                  - /keyring/import
+                  - /keyring/import/raw
+                  - /keyring/recover
+                  - /keyring/remove
+                  - /keyring/vault/sync
+                  - /keys
+                  - '/keys/{keys}'
+                  - '/keys/{keys}/set'
+                  - /konnect_applications
+                  - '/konnect_applications/{konnect_applications}'
+                  - /license/report
+                  - /licenses
+                  - '/licenses/{licenses}'
+                  - /login_attempts
+                  - '/login_attempts/{login_attempts}'
+                  - '/login_attempts/{login_attempts}/consumer'
+                  - /metrics
+                  - /mtls-auths
+                  - '/mtls-auths/{mtls_auth_credentials}/consumer'
+                  - /mtls_auth_credentials
+                  - '/mtls_auth_credentials/{mtls_auth_credentials}'
+                  - '/mtls_auth_credentials/{mtls_auth_credentials}/ca_certificate'
+                  - '/mtls_auth_credentials/{mtls_auth_credentials}/consumer'
+                  - /oauth2
+                  - '/oauth2/{oauth2_credentials}'
+                  - '/oauth2/{oauth2_credentials}/consumer'
+                  - '/oauth2/{oauth2_credentials}/oauth2_tokens'
+                  - '/oauth2/{oauth2_credentials}/oauth2_tokens/{oauth2_tokens}'
+                  - /oauth2_tokens
+                  - '/oauth2_tokens/{oauth2_tokens}'
+                  - '/oauth2_tokens/{oauth2_tokens}/credential'
+                  - '/oauth2_tokens/{oauth2_tokens}/service'
+                  - /openid-connect/issuers
+                  - '/openid-connect/issuers/{oic_issuers}'
+                  - /openid-connect/jwks
+                  - /plugins
+                  - /plugins/enabled
+                  - '/plugins/schema/{name}'
+                  - '/plugins/{plugins}'
+                  - '/plugins/{plugins}/consumer'
+                  - '/plugins/{plugins}/consumer_group'
+                  - '/plugins/{plugins}/route'
+                  - '/plugins/{plugins}/service'
+                  - /proxy-cache
+                  - '/proxy-cache/{cache_key}'
+                  - '/proxy-cache/{plugin_id}/caches/{cache_key}'
+                  - /proxy-cache-advanced
+                  - '/proxy-cache-advanced/{cache_key}'
+                  - '/proxy-cache-advanced/{plugin_id}/caches/{cache_key}'
+                  - /rbac/roles
+                  - '/rbac/roles/{rbac_roles}'
+                  - '/rbac/roles/{rbac_roles}/endpoints'
+                  - '/rbac/roles/{rbac_roles}/endpoints/permissions'
+                  - '/rbac/roles/{rbac_roles}/endpoints/{workspace}/*'
+                  - '/rbac/roles/{rbac_roles}/entities'
+                  - '/rbac/roles/{rbac_roles}/entities/permissions'
+                  - '/rbac/roles/{rbac_roles}/entities/{entity_id}'
+                  - '/rbac/roles/{rbac_roles}/permissions'
+                  - /rbac/users
+                  - '/rbac/users/{rbac_users}'
+                  - '/rbac/users/{rbac_users}/admins'
+                  - '/rbac/users/{rbac_users}/admins/{admins}'
+                  - '/rbac/users/{rbac_users}/developers'
+                  - '/rbac/users/{rbac_users}/developers/{developers}'
+                  - '/rbac/users/{rbac_users}/permissions'
+                  - '/rbac/users/{rbac_users}/roles'
+                  - /routes
+                  - '/routes/{routes}'
+                  - '/routes/{routes}/filter-chains'
+                  - '/routes/{routes}/filter-chains/{filter_chains}'
+                  - '/routes/{routes}/filters/all'
+                  - '/routes/{routes}/filters/disabled'
+                  - '/routes/{routes}/filters/enabled'
+                  - '/routes/{routes}/plugins'
+                  - '/routes/{routes}/plugins/{plugins}'
+                  - '/routes/{routes}/service'
+                  - /schemas/plugins/validate
+                  - '/schemas/plugins/{name}'
+                  - '/schemas/{db_entity_name}/validate'
+                  - '/schemas/{name}'
+                  - /services
+                  - '/services/{services}'
+                  - '/services/{services}/application_instances'
+                  - '/services/{services}/application_instances/{application_instances}'
+                  - '/services/{services}/applications'
+                  - '/services/{services}/client_certificate'
+                  - '/services/{services}/degraphql/routes'
+                  - '/services/{services}/degraphql/routes/{degraphql_routes}'
+                  - '/services/{services}/degraphql_routes'
+                  - '/services/{services}/degraphql_routes/{degraphql_routes}'
+                  - '/services/{services}/document_objects'
+                  - '/services/{services}/document_objects/{document_objects}'
+                  - '/services/{services}/filter-chains'
+                  - '/services/{services}/filter-chains/{filter_chains}'
+                  - '/services/{services}/graphql-rate-limiting-advanced/costs'
+                  - '/services/{services}/graphql_ratelimiting_advanced_cost_decoration'
+                  - '/services/{services}/graphql_ratelimiting_advanced_cost_decoration/{graphql_ratelimiting_advanced_cost_decoration}'
+                  - '/services/{services}/oauth2_tokens'
+                  - '/services/{services}/oauth2_tokens/{oauth2_tokens}'
+                  - '/services/{services}/plugins'
+                  - '/services/{services}/plugins/{plugins}'
+                  - '/services/{services}/routes'
+                  - '/services/{services}/routes/{routes}'
+                  - /sessions
+                  - '/sessions/{sessions}'
+                  - /snis
+                  - '/snis/{snis}'
+                  - '/snis/{snis}/certificate'
+                  - /status
+                  - /tags
+                  - '/tags/{tags}'
+                  - /targets
+                  - '/targets/{targets}'
+                  - '/targets/{targets}/upstream'
+                  - /timers
+                  - /upstreams
+                  - '/upstreams/{upstreams}'
+                  - '/upstreams/{upstreams}/client_certificate'
+                  - '/upstreams/{upstreams}/health'
+                  - '/upstreams/{upstreams}/targets'
+                  - '/upstreams/{upstreams}/targets/all'
+                  - '/upstreams/{upstreams}/targets/{targets}'
+                  - '/upstreams/{upstreams}/targets/{targets}/healthy'
+                  - '/upstreams/{upstreams}/targets/{targets}/unhealthy'
+                  - '/upstreams/{upstreams}/targets/{targets}/{address}/healthy'
+                  - '/upstreams/{upstreams}/targets/{targets}/{address}/unhealthy'
+                  - /userinfo
+                  - /vault-auth
+                  - '/vault-auth/{vault_auth_vaults}'
+                  - '/vault-auth/{vault}/credentials'
+                  - '/vault-auth/{vault}/credentials/token/{access_token}'
+                  - '/vault-auth/{vault}/credentials/{consumer}'
+                  - /vaults
+                  - '/vaults/{vaults}'
+                  - /vitals/
+                  - /vitals/cluster
+                  - /vitals/cluster/status_codes
+                  - '/vitals/consumers/{consumer_id}/cluster'
+                  - /vitals/nodes/
+                  - '/vitals/nodes/{node_id}'
+                  - '/vitals/reports/{entity_type}'
+                  - /vitals/status_code_classes
+                  - /vitals/status_codes/by_consumer
+                  - /vitals/status_codes/by_consumer_and_route
+                  - /vitals/status_codes/by_route
+                  - /vitals/status_codes/by_service
+                  - /workspaces
+                  - '/workspaces/{workspaces}'
+                  - '/workspaces/{workspaces}/meta'
+                  - '/{workspace_name}/kong'
+                  - workspace_/acls
+                  - 'workspace_/acls/{acls}'
+                  - 'workspace_/acls/{acls}/consumer'
+                  - workspace_/acme
+                  - workspace_/acme/certificates
+                  - 'workspace_/acme/certificates/{certificates}'
+                  - workspace_/acme_storage
+                  - 'workspace_/acme_storage/{acme_storage}'
+                  - workspace_/admins
+                  - workspace_/admins/password_resets
+                  - workspace_/admins/register
+                  - workspace_/admins/self/password
+                  - workspace_/admins/self/token
+                  - 'workspace_/admins/{admins}'
+                  - 'workspace_/admins/{admins}/consumer'
+                  - 'workspace_/admins/{admins}/rbac_user'
+                  - 'workspace_/admins/{admin}/roles'
+                  - 'workspace_/admins/{admin}/workspaces'
+                  - workspace_/applications
+                  - 'workspace_/applications/{applications}'
+                  - 'workspace_/applications/{applications}/application_instances'
+                  - 'workspace_/applications/{applications}/application_instances/{application_instances}'
+                  - 'workspace_/applications/{applications}/consumer'
+                  - 'workspace_/applications/{applications}/credentials/{plugin}'
+                  - 'workspace_/applications/{applications}/credentials/{plugin}/{credential_id}'
+                  - 'workspace_/applications/{applications}/developer'
+                  - workspace_/auth
+                  - workspace_/basic-auths
+                  - 'workspace_/basic-auths/{basicauth_credentials}'
+                  - 'workspace_/basic-auths/{basicauth_credentials}/consumer'
+                  - workspace_/ca_certificates
+                  - 'workspace_/ca_certificates/{ca_certificates}'
+                  - 'workspace_/ca_certificates/{ca_certificates}/mtls_auth_credentials'
+                  - 'workspace_/ca_certificates/{ca_certificates}/mtls_auth_credentials/{mtls_auth_credentials}'
+                  - workspace_/cache
+                  - 'workspace_/cache/{key}'
+                  - workspace_/certificates
+                  - 'workspace_/certificates/{certificates}'
+                  - 'workspace_/certificates/{certificates}/services'
+                  - 'workspace_/certificates/{certificates}/services/{services}'
+                  - 'workspace_/certificates/{certificates}/snis'
+                  - 'workspace_/certificates/{certificates}/snis/{snis}'
+                  - 'workspace_/certificates/{certificates}/upstreams'
+                  - 'workspace_/certificates/{certificates}/upstreams/{upstreams}'
+                  - workspace_/clustering/data-planes
+                  - workspace_/clustering/status
+                  - workspace_/config
+                  - workspace_/consumer_groups
+                  - 'workspace_/consumer_groups/{consumer_groups}'
+                  - 'workspace_/consumer_groups/{consumer_groups}/consumers'
+                  - 'workspace_/consumer_groups/{consumer_groups}/consumers/{consumers}'
+                  - 'workspace_/consumer_groups/{consumer_groups}/overrides/plugins/rate-limiting-advanced'
+                  - 'workspace_/consumer_groups/{consumer_groups}/plugins'
+                  - 'workspace_/consumer_groups/{consumer_groups}/plugins/{plugins}'
+                  - workspace_/consumers
+                  - 'workspace_/consumers/{consumers}'
+                  - 'workspace_/consumers/{consumers}/acls'
+                  - 'workspace_/consumers/{consumers}/acls/{acls}'
+                  - 'workspace_/consumers/{consumers}/admins'
+                  - 'workspace_/consumers/{consumers}/admins/{admins}'
+                  - 'workspace_/consumers/{consumers}/applications'
+                  - 'workspace_/consumers/{consumers}/applications/{applications}'
+                  - 'workspace_/consumers/{consumers}/basic-auth'
+                  - 'workspace_/consumers/{consumers}/basic-auth/{basicauth_credentials}'
+                  - 'workspace_/consumers/{consumers}/consumer_groups'
+                  - 'workspace_/consumers/{consumers}/consumer_groups/{consumer_groups}'
+                  - 'workspace_/consumers/{consumers}/developers'
+                  - 'workspace_/consumers/{consumers}/developers/{developers}'
+                  - 'workspace_/consumers/{consumers}/hmac-auth'
+                  - 'workspace_/consumers/{consumers}/hmac-auth/{hmacauth_credentials}'
+                  - 'workspace_/consumers/{consumers}/jwt'
+                  - 'workspace_/consumers/{consumers}/jwt/{jwt_secrets}'
+                  - 'workspace_/consumers/{consumers}/key-auth'
+                  - 'workspace_/consumers/{consumers}/key-auth/{keyauth_credentials}'
+                  - 'workspace_/consumers/{consumers}/key-auth-enc'
+                  - 'workspace_/consumers/{consumers}/key-auth-enc/{keyauth_enc_credentials}'
+                  - 'workspace_/consumers/{consumers}/login_attempts'
+                  - 'workspace_/consumers/{consumers}/login_attempts/{login_attempts}'
+                  - 'workspace_/consumers/{consumers}/mtls-auth'
+                  - 'workspace_/consumers/{consumers}/mtls-auth/{mtls_auth_credentials}'
+                  - 'workspace_/consumers/{consumers}/mtls_auth_credentials'
+                  - 'workspace_/consumers/{consumers}/mtls_auth_credentials/{mtls_auth_credentials}'
+                  - 'workspace_/consumers/{consumers}/oauth2'
+                  - 'workspace_/consumers/{consumers}/oauth2/{oauth2_credentials}'
+                  - 'workspace_/consumers/{consumers}/plugins'
+                  - 'workspace_/consumers/{consumers}/plugins/{plugins}'
+                  - 'workspace_/debug/cluster/log-level/{log_level}'
+                  - workspace_/debug/node/log-level
+                  - 'workspace_/debug/node/log-level/{log_level}'
+                  - workspace_/debug/profiling/cpu
+                  - workspace_/debug/profiling/gc-snapshot
+                  - workspace_/debug/profiling/memory
+                  - workspace_/degraphql_routes
+                  - 'workspace_/degraphql_routes/{degraphql_routes}'
+                  - 'workspace_/degraphql_routes/{degraphql_routes}/service'
+                  - workspace_/developers
+                  - workspace_/developers/export
+                  - workspace_/developers/invite
+                  - workspace_/developers/roles
+                  - 'workspace_/developers/roles/{rbac_roles}'
+                  - 'workspace_/developers/{developers}'
+                  - 'workspace_/developers/{developers}/applications'
+                  - 'workspace_/developers/{developers}/applications/{applications}'
+                  - 'workspace_/developers/{developers}/applications/{applications}/application_instances'
+                  - 'workspace_/developers/{developers}/applications/{applications}/application_instances/{application_instances}'
+                  - 'workspace_/developers/{developers}/applications/{applications}/credentials/{plugin}'
+                  - 'workspace_/developers/{developers}/applications/{applications}/credentials/{plugin}/{credential_id}'
+                  - 'workspace_/developers/{developers}/consumer'
+                  - 'workspace_/developers/{developers}/credentials/{plugin}'
+                  - 'workspace_/developers/{developers}/credentials/{plugin}/{credential_id}'
+                  - 'workspace_/developers/{developers}/rbac_user'
+                  - 'workspace_/developers/{email_or_id}/plugins/'
+                  - 'workspace_/developers/{email_or_id}/plugins/{id}'
+                  - workspace_/document_objects
+                  - 'workspace_/document_objects/{document_objects}'
+                  - 'workspace_/document_objects/{document_objects}/service'
+                  - workspace_/endpoints
+                  - workspace_/entities/migrate
+                  - workspace_/event-hooks
+                  - workspace_/event-hooks/sources
+                  - 'workspace_/event-hooks/sources/{source}'
+                  - 'workspace_/event-hooks/sources/{source}/{event}'
+                  - 'workspace_/event-hooks/{event_hooks}'
+                  - 'workspace_/event-hooks/{event_hooks}/ping'
+                  - 'workspace_/event-hooks/{event_hooks}/test'
+                  - workspace_/files
+                  - workspace_/files/*
+                  - workspace_/files/partials/*
+                  - 'workspace_/files/{files}'
+                  - workspace_/filter-chains
+                  - 'workspace_/filter-chains/{filter_chains}'
+                  - 'workspace_/filter-chains/{filter_chains}/route'
+                  - 'workspace_/filter-chains/{filter_chains}/service'
+                  - workspace_/graphql-proxy-cache-advanced
+                  - 'workspace_/graphql-proxy-cache-advanced/{cache_key}'
+                  - 'workspace_/graphql-proxy-cache-advanced/{plugin_id}/caches/{cache_key}'
+                  - workspace_/graphql-rate-limiting-advanced/costs
+                  - 'workspace_/graphql-rate-limiting-advanced/costs/{graphql_ratelimiting_advanced_cost_decoration}'
+                  - workspace_/graphql_ratelimiting_advanced_cost_decoration
+                  - 'workspace_/graphql_ratelimiting_advanced_cost_decoration/{graphql_ratelimiting_advanced_cost_decoration}'
+                  - 'workspace_/graphql_ratelimiting_advanced_cost_decoration/{graphql_ratelimiting_advanced_cost_decoration}/service'
+                  - workspace_/groups
+                  - 'workspace_/groups/{groups}'
+                  - 'workspace_/groups/{groups}/roles'
+                  - workspace_/hmac-auths
+                  - 'workspace_/hmac-auths/{hmacauth_credentials}'
+                  - 'workspace_/hmac-auths/{hmacauth_credentials}/consumer'
+                  - workspace_/jwt-signer/jwks
+                  - 'workspace_/jwt-signer/jwks/{jwt_signer_jwks}'
+                  - 'workspace_/jwt-signer/jwks/{jwt_signer_jwks}/rotate'
+                  - workspace_/jwts
+                  - 'workspace_/jwts/{jwt_secrets}'
+                  - 'workspace_/jwts/{jwt_secrets}/consumer'
+                  - workspace_/key-auths
+                  - 'workspace_/key-auths/{keyauth_credentials}'
+                  - 'workspace_/key-auths/{keyauth_credentials}/consumer'
+                  - workspace_/key-auths-enc
+                  - 'workspace_/key-auths-enc/{keyauth_enc_credentials}'
+                  - 'workspace_/key-auths-enc/{keyauth_enc_credentials}/consumer'
+                  - workspace_/key-sets
+                  - 'workspace_/key-sets/{key_sets}'
+                  - 'workspace_/key-sets/{key_sets}/keys'
+                  - 'workspace_/key-sets/{key_sets}/keys/{keys}'
+                  - workspace_/keyring
+                  - workspace_/keyring/activate
+                  - workspace_/keyring/active
+                  - workspace_/keyring/export
+                  - workspace_/keyring/generate
+                  - workspace_/keyring/import
+                  - workspace_/keyring/import/raw
+                  - workspace_/keyring/recover
+                  - workspace_/keyring/remove
+                  - workspace_/keyring/vault/sync
+                  - workspace_/keys
+                  - 'workspace_/keys/{keys}'
+                  - 'workspace_/keys/{keys}/set'
+                  - workspace_/konnect_applications
+                  - 'workspace_/konnect_applications/{konnect_applications}'
+                  - workspace_/license/report
+                  - workspace_/licenses
+                  - 'workspace_/licenses/{licenses}'
+                  - workspace_/login_attempts
+                  - 'workspace_/login_attempts/{login_attempts}'
+                  - 'workspace_/login_attempts/{login_attempts}/consumer'
+                  - workspace_/metrics
+                  - workspace_/mtls-auths
+                  - 'workspace_/mtls-auths/{mtls_auth_credentials}/consumer'
+                  - workspace_/mtls_auth_credentials
+                  - 'workspace_/mtls_auth_credentials/{mtls_auth_credentials}'
+                  - 'workspace_/mtls_auth_credentials/{mtls_auth_credentials}/ca_certificate'
+                  - 'workspace_/mtls_auth_credentials/{mtls_auth_credentials}/consumer'
+                  - workspace_/oauth2
+                  - 'workspace_/oauth2/{oauth2_credentials}'
+                  - 'workspace_/oauth2/{oauth2_credentials}/consumer'
+                  - 'workspace_/oauth2/{oauth2_credentials}/oauth2_tokens'
+                  - 'workspace_/oauth2/{oauth2_credentials}/oauth2_tokens/{oauth2_tokens}'
+                  - workspace_/oauth2_tokens
+                  - 'workspace_/oauth2_tokens/{oauth2_tokens}'
+                  - 'workspace_/oauth2_tokens/{oauth2_tokens}/credential'
+                  - 'workspace_/oauth2_tokens/{oauth2_tokens}/service'
+                  - workspace_/openid-connect/issuers
+                  - 'workspace_/openid-connect/issuers/{oic_issuers}'
+                  - workspace_/openid-connect/jwks
+                  - workspace_/plugins
+                  - workspace_/plugins/enabled
+                  - 'workspace_/plugins/schema/{name}'
+                  - 'workspace_/plugins/{plugins}'
+                  - 'workspace_/plugins/{plugins}/consumer'
+                  - 'workspace_/plugins/{plugins}/consumer_group'
+                  - 'workspace_/plugins/{plugins}/route'
+                  - 'workspace_/plugins/{plugins}/service'
+                  - workspace_/proxy-cache
+                  - 'workspace_/proxy-cache/{cache_key}'
+                  - 'workspace_/proxy-cache/{plugin_id}/caches/{cache_key}'
+                  - workspace_/proxy-cache-advanced
+                  - 'workspace_/proxy-cache-advanced/{cache_key}'
+                  - 'workspace_/proxy-cache-advanced/{plugin_id}/caches/{cache_key}'
+                  - workspace_/rbac/roles
+                  - 'workspace_/rbac/roles/{rbac_roles}'
+                  - 'workspace_/rbac/roles/{rbac_roles}/endpoints'
+                  - 'workspace_/rbac/roles/{rbac_roles}/endpoints/permissions'
+                  - 'workspace_/rbac/roles/{rbac_roles}/endpoints/{workspace}/*'
+                  - 'workspace_/rbac/roles/{rbac_roles}/entities'
+                  - 'workspace_/rbac/roles/{rbac_roles}/entities/permissions'
+                  - 'workspace_/rbac/roles/{rbac_roles}/entities/{entity_id}'
+                  - 'workspace_/rbac/roles/{rbac_roles}/permissions'
+                  - workspace_/rbac/users
+                  - 'workspace_/rbac/users/{rbac_users}'
+                  - 'workspace_/rbac/users/{rbac_users}/admins'
+                  - 'workspace_/rbac/users/{rbac_users}/admins/{admins}'
+                  - 'workspace_/rbac/users/{rbac_users}/developers'
+                  - 'workspace_/rbac/users/{rbac_users}/developers/{developers}'
+                  - 'workspace_/rbac/users/{rbac_users}/permissions'
+                  - 'workspace_/rbac/users/{rbac_users}/roles'
+                  - workspace_/routes
+                  - 'workspace_/routes/{routes}'
+                  - 'workspace_/routes/{routes}/filter-chains'
+                  - 'workspace_/routes/{routes}/filter-chains/{filter_chains}'
+                  - 'workspace_/routes/{routes}/filters/all'
+                  - 'workspace_/routes/{routes}/filters/disabled'
+                  - 'workspace_/routes/{routes}/filters/enabled'
+                  - 'workspace_/routes/{routes}/plugins'
+                  - 'workspace_/routes/{routes}/plugins/{plugins}'
+                  - 'workspace_/routes/{routes}/service'
+                  - workspace_/schemas/plugins/validate
+                  - 'workspace_/schemas/plugins/{name}'
+                  - 'workspace_/schemas/{db_entity_name}/validate'
+                  - 'workspace_/schemas/{name}'
+                  - workspace_/services
+                  - 'workspace_/services/{services}'
+                  - 'workspace_/services/{services}/application_instances'
+                  - 'workspace_/services/{services}/application_instances/{application_instances}'
+                  - 'workspace_/services/{services}/applications'
+                  - 'workspace_/services/{services}/client_certificate'
+                  - 'workspace_/services/{services}/degraphql/routes'
+                  - 'workspace_/services/{services}/degraphql/routes/{degraphql_routes}'
+                  - 'workspace_/services/{services}/degraphql_routes'
+                  - 'workspace_/services/{services}/degraphql_routes/{degraphql_routes}'
+                  - 'workspace_/services/{services}/document_objects'
+                  - 'workspace_/services/{services}/document_objects/{document_objects}'
+                  - 'workspace_/services/{services}/filter-chains'
+                  - 'workspace_/services/{services}/filter-chains/{filter_chains}'
+                  - 'workspace_/services/{services}/graphql-rate-limiting-advanced/costs'
+                  - 'workspace_/services/{services}/graphql_ratelimiting_advanced_cost_decoration'
+                  - 'workspace_/services/{services}/graphql_ratelimiting_advanced_cost_decoration/{graphql_ratelimiting_advanced_cost_decoration}'
+                  - 'workspace_/services/{services}/oauth2_tokens'
+                  - 'workspace_/services/{services}/oauth2_tokens/{oauth2_tokens}'
+                  - 'workspace_/services/{services}/plugins'
+                  - 'workspace_/services/{services}/plugins/{plugins}'
+                  - 'workspace_/services/{services}/routes'
+                  - 'workspace_/services/{services}/routes/{routes}'
+                  - workspace_/sessions
+                  - 'workspace_/sessions/{sessions}'
+                  - workspace_/snis
+                  - 'workspace_/snis/{snis}'
+                  - 'workspace_/snis/{snis}/certificate'
+                  - workspace_/status
+                  - workspace_/tags
+                  - 'workspace_/tags/{tags}'
+                  - workspace_/targets
+                  - 'workspace_/targets/{targets}'
+                  - 'workspace_/targets/{targets}/upstream'
+                  - workspace_/timers
+                  - workspace_/upstreams
+                  - 'workspace_/upstreams/{upstreams}'
+                  - 'workspace_/upstreams/{upstreams}/client_certificate'
+                  - 'workspace_/upstreams/{upstreams}/health'
+                  - 'workspace_/upstreams/{upstreams}/targets'
+                  - 'workspace_/upstreams/{upstreams}/targets/all'
+                  - 'workspace_/upstreams/{upstreams}/targets/{targets}'
+                  - 'workspace_/upstreams/{upstreams}/targets/{targets}/healthy'
+                  - 'workspace_/upstreams/{upstreams}/targets/{targets}/unhealthy'
+                  - 'workspace_/upstreams/{upstreams}/targets/{targets}/{address}/healthy'
+                  - 'workspace_/upstreams/{upstreams}/targets/{targets}/{address}/unhealthy'
+                  - workspace_/userinfo
+                  - workspace_/vault-auth
+                  - 'workspace_/vault-auth/{vault_auth_vaults}'
+                  - 'workspace_/vault-auth/{vault}/credentials'
+                  - 'workspace_/vault-auth/{vault}/credentials/token/{access_token}'
+                  - 'workspace_/vault-auth/{vault}/credentials/{consumer}'
+                  - workspace_/vaults
+                  - 'workspace_/vaults/{vaults}'
+                  - workspace_/vitals/
+                  - workspace_/vitals/cluster
+                  - workspace_/vitals/cluster/status_codes
+                  - 'workspace_/vitals/consumers/{consumer_id}/cluster'
+                  - workspace_/vitals/nodes/
+                  - 'workspace_/vitals/nodes/{node_id}'
+                  - 'workspace_/vitals/reports/{entity_type}'
+                  - workspace_/vitals/status_code_classes
+                  - workspace_/vitals/status_codes/by_consumer
+                  - workspace_/vitals/status_codes/by_consumer_and_route
+                  - workspace_/vitals/status_codes/by_route
+                  - workspace_/vitals/status_codes/by_service
+                  - workspace_/workspaces
+                  - 'workspace_/workspaces/{workspaces}'
+                  - 'workspace_/workspaces/{workspaces}/meta'
+          examples:
+            Get all endpoints:
+              value:
+                data:
+                  - /
+                  - /acls
+                  - '/acls/{acls}'
+                  - '/acls/{acls}/consumer'
+                  - /acme
+                  - /acme/certificates
+                  - '/acme/certificates/{certificates}'
+                  - /acme_storage
+                  - '/acme_storage/{acme_storage}'
+                  - /admins
+                  - /admins/password_resets
+                  - /admins/register
+                  - /admins/self/password
+                  - /admins/self/token
+                  - '/admins/{admins}'
+                  - '/admins/{admins}/consumer'
+                  - '/admins/{admins}/rbac_user'
+                  - '/admins/{admin}/roles'
+                  - '/admins/{admin}/workspaces'
+                  - /applications
+                  - '/applications/{applications}'
+                  - '/applications/{applications}/application_instances'
+                  - '/applications/{applications}/application_instances/{application_instances}'
+                  - '/applications/{applications}/consumer'
+                  - '/applications/{applications}/credentials/{plugin}'
+                  - '/applications/{applications}/credentials/{plugin}/{credential_id}'
+                  - '/applications/{applications}/developer'
+                  - /auth
+                  - /basic-auths
+                  - '/basic-auths/{basicauth_credentials}'
+                  - '/basic-auths/{basicauth_credentials}/consumer'
+                  - /ca_certificates
+                  - '/ca_certificates/{ca_certificates}'
+                  - '/ca_certificates/{ca_certificates}/mtls_auth_credentials'
+                  - '/ca_certificates/{ca_certificates}/mtls_auth_credentials/{mtls_auth_credentials}'
+                  - /cache
+                  - '/cache/{key}'
+                  - /certificates
+                  - '/certificates/{certificates}'
+                  - '/certificates/{certificates}/services'
+                  - '/certificates/{certificates}/services/{services}'
+                  - '/certificates/{certificates}/snis'
+                  - '/certificates/{certificates}/snis/{snis}'
+                  - '/certificates/{certificates}/upstreams'
+                  - '/certificates/{certificates}/upstreams/{upstreams}'
+                  - /clustering/data-planes
+                  - /clustering/status
+                  - /config
+                  - /consumer_groups
+                  - '/consumer_groups/{consumer_groups}'
+                  - '/consumer_groups/{consumer_groups}/consumers'
+                  - '/consumer_groups/{consumer_groups}/consumers/{consumers}'
+                  - '/consumer_groups/{consumer_groups}/overrides/plugins/rate-limiting-advanced'
+                  - '/consumer_groups/{consumer_groups}/plugins'
+                  - '/consumer_groups/{consumer_groups}/plugins/{plugins}'
+                  - /consumers
+                  - '/consumers/{consumers}'
+                  - '/consumers/{consumers}/acls'
+                  - '/consumers/{consumers}/acls/{acls}'
+                  - '/consumers/{consumers}/admins'
+                  - '/consumers/{consumers}/admins/{admins}'
+                  - '/consumers/{consumers}/applications'
+                  - '/consumers/{consumers}/applications/{applications}'
+                  - '/consumers/{consumers}/basic-auth'
+                  - '/consumers/{consumers}/basic-auth/{basicauth_credentials}'
+                  - '/consumers/{consumers}/consumer_groups'
+                  - '/consumers/{consumers}/consumer_groups/{consumer_groups}'
+                  - '/consumers/{consumers}/developers'
+                  - '/consumers/{consumers}/developers/{developers}'
+                  - '/consumers/{consumers}/hmac-auth'
+                  - '/consumers/{consumers}/hmac-auth/{hmacauth_credentials}'
+                  - '/consumers/{consumers}/jwt'
+                  - '/consumers/{consumers}/jwt/{jwt_secrets}'
+                  - '/consumers/{consumers}/key-auth'
+                  - '/consumers/{consumers}/key-auth/{keyauth_credentials}'
+                  - '/consumers/{consumers}/key-auth-enc'
+                  - '/consumers/{consumers}/key-auth-enc/{keyauth_enc_credentials}'
+                  - '/consumers/{consumers}/login_attempts'
+                  - '/consumers/{consumers}/login_attempts/{login_attempts}'
+                  - '/consumers/{consumers}/mtls-auth'
+                  - '/consumers/{consumers}/mtls-auth/{mtls_auth_credentials}'
+                  - '/consumers/{consumers}/mtls_auth_credentials'
+                  - '/consumers/{consumers}/mtls_auth_credentials/{mtls_auth_credentials}'
+                  - '/consumers/{consumers}/oauth2'
+                  - '/consumers/{consumers}/oauth2/{oauth2_credentials}'
+                  - '/consumers/{consumers}/plugins'
+                  - '/consumers/{consumers}/plugins/{plugins}'
+                  - '/debug/cluster/log-level/{log_level}'
+                  - /debug/node/log-level
+                  - '/debug/node/log-level/{log_level}'
+                  - /debug/profiling/cpu
+                  - /debug/profiling/gc-snapshot
+                  - /debug/profiling/memory
+                  - /degraphql_routes
+                  - '/degraphql_routes/{degraphql_routes}'
+                  - '/degraphql_routes/{degraphql_routes}/service'
+                  - /developers
+                  - /developers/export
+                  - /developers/invite
+                  - /developers/roles
+                  - '/developers/roles/{rbac_roles}'
+                  - '/developers/{developers}'
+                  - '/developers/{developers}/applications'
+                  - '/developers/{developers}/applications/{applications}'
+                  - '/developers/{developers}/applications/{applications}/application_instances'
+                  - '/developers/{developers}/applications/{applications}/application_instances/{application_instances}'
+                  - '/developers/{developers}/applications/{applications}/credentials/{plugin}'
+                  - '/developers/{developers}/applications/{applications}/credentials/{plugin}/{credential_id}'
+                  - '/developers/{developers}/consumer'
+                  - '/developers/{developers}/credentials/{plugin}'
+                  - '/developers/{developers}/credentials/{plugin}/{credential_id}'
+                  - '/developers/{developers}/rbac_user'
+                  - '/developers/{email_or_id}/plugins/'
+                  - '/developers/{email_or_id}/plugins/{id}'
+                  - /document_objects
+                  - '/document_objects/{document_objects}'
+                  - '/document_objects/{document_objects}/service'
+                  - /endpoints
+                  - /entities/migrate
+                  - /event-hooks
+                  - /event-hooks/sources
+                  - '/event-hooks/sources/{source}'
+                  - '/event-hooks/sources/{source}/{event}'
+                  - '/event-hooks/{event_hooks}'
+                  - '/event-hooks/{event_hooks}/ping'
+                  - '/event-hooks/{event_hooks}/test'
+                  - /files
+                  - /files/*
+                  - /files/partials/*
+                  - '/files/{files}'
+                  - /filter-chains
+                  - '/filter-chains/{filter_chains}'
+                  - '/filter-chains/{filter_chains}/route'
+                  - '/filter-chains/{filter_chains}/service'
+                  - /graphql-proxy-cache-advanced
+                  - '/graphql-proxy-cache-advanced/{cache_key}'
+                  - '/graphql-proxy-cache-advanced/{plugin_id}/caches/{cache_key}'
+                  - /graphql-rate-limiting-advanced/costs
+                  - '/graphql-rate-limiting-advanced/costs/{graphql_ratelimiting_advanced_cost_decoration}'
+                  - /graphql_ratelimiting_advanced_cost_decoration
+                  - '/graphql_ratelimiting_advanced_cost_decoration/{graphql_ratelimiting_advanced_cost_decoration}'
+                  - '/graphql_ratelimiting_advanced_cost_decoration/{graphql_ratelimiting_advanced_cost_decoration}/service'
+                  - /groups
+                  - '/groups/{groups}'
+                  - '/groups/{groups}/roles'
+                  - /hmac-auths
+                  - '/hmac-auths/{hmacauth_credentials}'
+                  - '/hmac-auths/{hmacauth_credentials}/consumer'
+                  - /jwt-signer/jwks
+                  - '/jwt-signer/jwks/{jwt_signer_jwks}'
+                  - '/jwt-signer/jwks/{jwt_signer_jwks}/rotate'
+                  - /jwts
+                  - '/jwts/{jwt_secrets}'
+                  - '/jwts/{jwt_secrets}/consumer'
+                  - /key-auths
+                  - '/key-auths/{keyauth_credentials}'
+                  - '/key-auths/{keyauth_credentials}/consumer'
+                  - /key-auths-enc
+                  - '/key-auths-enc/{keyauth_enc_credentials}'
+                  - '/key-auths-enc/{keyauth_enc_credentials}/consumer'
+                  - /key-sets
+                  - '/key-sets/{key_sets}'
+                  - '/key-sets/{key_sets}/keys'
+                  - '/key-sets/{key_sets}/keys/{keys}'
+                  - /keyring
+                  - /keyring/activate
+                  - /keyring/active
+                  - /keyring/export
+                  - /keyring/generate
+                  - /keyring/import
+                  - /keyring/import/raw
+                  - /keyring/recover
+                  - /keyring/remove
+                  - /keyring/vault/sync
+                  - /keys
+                  - '/keys/{keys}'
+                  - '/keys/{keys}/set'
+                  - /konnect_applications
+                  - '/konnect_applications/{konnect_applications}'
+                  - /license/report
+                  - /licenses
+                  - '/licenses/{licenses}'
+                  - /login_attempts
+                  - '/login_attempts/{login_attempts}'
+                  - '/login_attempts/{login_attempts}/consumer'
+                  - /metrics
+                  - /mtls-auths
+                  - '/mtls-auths/{mtls_auth_credentials}/consumer'
+                  - /mtls_auth_credentials
+                  - '/mtls_auth_credentials/{mtls_auth_credentials}'
+                  - '/mtls_auth_credentials/{mtls_auth_credentials}/ca_certificate'
+                  - '/mtls_auth_credentials/{mtls_auth_credentials}/consumer'
+                  - /oauth2
+                  - '/oauth2/{oauth2_credentials}'
+                  - '/oauth2/{oauth2_credentials}/consumer'
+                  - '/oauth2/{oauth2_credentials}/oauth2_tokens'
+                  - '/oauth2/{oauth2_credentials}/oauth2_tokens/{oauth2_tokens}'
+                  - /oauth2_tokens
+                  - '/oauth2_tokens/{oauth2_tokens}'
+                  - '/oauth2_tokens/{oauth2_tokens}/credential'
+                  - '/oauth2_tokens/{oauth2_tokens}/service'
+                  - /openid-connect/issuers
+                  - '/openid-connect/issuers/{oic_issuers}'
+                  - /openid-connect/jwks
+                  - /plugins
+                  - /plugins/enabled
+                  - '/plugins/schema/{name}'
+                  - '/plugins/{plugins}'
+                  - '/plugins/{plugins}/consumer'
+                  - '/plugins/{plugins}/consumer_group'
+                  - '/plugins/{plugins}/route'
+                  - '/plugins/{plugins}/service'
+                  - /proxy-cache
+                  - '/proxy-cache/{cache_key}'
+                  - '/proxy-cache/{plugin_id}/caches/{cache_key}'
+                  - /proxy-cache-advanced
+                  - '/proxy-cache-advanced/{cache_key}'
+                  - '/proxy-cache-advanced/{plugin_id}/caches/{cache_key}'
+                  - /rbac/roles
+                  - '/rbac/roles/{rbac_roles}'
+                  - '/rbac/roles/{rbac_roles}/endpoints'
+                  - '/rbac/roles/{rbac_roles}/endpoints/permissions'
+                  - '/rbac/roles/{rbac_roles}/endpoints/{workspace}/*'
+                  - '/rbac/roles/{rbac_roles}/entities'
+                  - '/rbac/roles/{rbac_roles}/entities/permissions'
+                  - '/rbac/roles/{rbac_roles}/entities/{entity_id}'
+                  - '/rbac/roles/{rbac_roles}/permissions'
+                  - /rbac/users
+                  - '/rbac/users/{rbac_users}'
+                  - '/rbac/users/{rbac_users}/admins'
+                  - '/rbac/users/{rbac_users}/admins/{admins}'
+                  - '/rbac/users/{rbac_users}/developers'
+                  - '/rbac/users/{rbac_users}/developers/{developers}'
+                  - '/rbac/users/{rbac_users}/permissions'
+                  - '/rbac/users/{rbac_users}/roles'
+                  - /routes
+                  - '/routes/{routes}'
+                  - '/routes/{routes}/filter-chains'
+                  - '/routes/{routes}/filter-chains/{filter_chains}'
+                  - '/routes/{routes}/filters/all'
+                  - '/routes/{routes}/filters/disabled'
+                  - '/routes/{routes}/filters/enabled'
+                  - '/routes/{routes}/plugins'
+                  - '/routes/{routes}/plugins/{plugins}'
+                  - '/routes/{routes}/service'
+                  - /schemas/plugins/validate
+                  - '/schemas/plugins/{name}'
+                  - '/schemas/{db_entity_name}/validate'
+                  - '/schemas/{name}'
+                  - /services
+                  - '/services/{services}'
+                  - '/services/{services}/application_instances'
+                  - '/services/{services}/application_instances/{application_instances}'
+                  - '/services/{services}/applications'
+                  - '/services/{services}/client_certificate'
+                  - '/services/{services}/degraphql/routes'
+                  - '/services/{services}/degraphql/routes/{degraphql_routes}'
+                  - '/services/{services}/degraphql_routes'
+                  - '/services/{services}/degraphql_routes/{degraphql_routes}'
+                  - '/services/{services}/document_objects'
+                  - '/services/{services}/document_objects/{document_objects}'
+                  - '/services/{services}/filter-chains'
+                  - '/services/{services}/filter-chains/{filter_chains}'
+                  - '/services/{services}/graphql-rate-limiting-advanced/costs'
+                  - '/services/{services}/graphql_ratelimiting_advanced_cost_decoration'
+                  - '/services/{services}/graphql_ratelimiting_advanced_cost_decoration/{graphql_ratelimiting_advanced_cost_decoration}'
+                  - '/services/{services}/oauth2_tokens'
+                  - '/services/{services}/oauth2_tokens/{oauth2_tokens}'
+                  - '/services/{services}/plugins'
+                  - '/services/{services}/plugins/{plugins}'
+                  - '/services/{services}/routes'
+                  - '/services/{services}/routes/{routes}'
+                  - /sessions
+                  - '/sessions/{sessions}'
+                  - /snis
+                  - '/snis/{snis}'
+                  - '/snis/{snis}/certificate'
+                  - /status
+                  - /tags
+                  - '/tags/{tags}'
+                  - /targets
+                  - '/targets/{targets}'
+                  - '/targets/{targets}/upstream'
+                  - /timers
+                  - /upstreams
+                  - '/upstreams/{upstreams}'
+                  - '/upstreams/{upstreams}/client_certificate'
+                  - '/upstreams/{upstreams}/health'
+                  - '/upstreams/{upstreams}/targets'
+                  - '/upstreams/{upstreams}/targets/all'
+                  - '/upstreams/{upstreams}/targets/{targets}'
+                  - '/upstreams/{upstreams}/targets/{targets}/healthy'
+                  - '/upstreams/{upstreams}/targets/{targets}/unhealthy'
+                  - '/upstreams/{upstreams}/targets/{targets}/{address}/healthy'
+                  - '/upstreams/{upstreams}/targets/{targets}/{address}/unhealthy'
+                  - /userinfo
+                  - /vault-auth
+                  - '/vault-auth/{vault_auth_vaults}'
+                  - '/vault-auth/{vault}/credentials'
+                  - '/vault-auth/{vault}/credentials/token/{access_token}'
+                  - '/vault-auth/{vault}/credentials/{consumer}'
+                  - /vaults
+                  - '/vaults/{vaults}'
+                  - /vitals/
+                  - /vitals/cluster
+                  - /vitals/cluster/status_codes
+                  - '/vitals/consumers/{consumer_id}/cluster'
+                  - /vitals/nodes/
+                  - '/vitals/nodes/{node_id}'
+                  - '/vitals/reports/{entity_type}'
+                  - /vitals/status_code_classes
+                  - /vitals/status_codes/by_consumer
+                  - /vitals/status_codes/by_consumer_and_route
+                  - /vitals/status_codes/by_route
+                  - /vitals/status_codes/by_service
+                  - /workspaces
+                  - '/workspaces/{workspaces}'
+                  - '/workspaces/{workspaces}/meta'
+                  - '/{workspace_name}/kong'
+                  - workspace_/acls
+                  - 'workspace_/acls/{acls}'
+                  - 'workspace_/acls/{acls}/consumer'
+                  - workspace_/acme
+                  - workspace_/acme/certificates
+                  - 'workspace_/acme/certificates/{certificates}'
+                  - workspace_/acme_storage
+                  - 'workspace_/acme_storage/{acme_storage}'
+                  - workspace_/admins
+                  - workspace_/admins/password_resets
+                  - workspace_/admins/register
+                  - workspace_/admins/self/password
+                  - workspace_/admins/self/token
+                  - 'workspace_/admins/{admins}'
+                  - 'workspace_/admins/{admins}/consumer'
+                  - 'workspace_/admins/{admins}/rbac_user'
+                  - 'workspace_/admins/{admin}/roles'
+                  - 'workspace_/admins/{admin}/workspaces'
+                  - workspace_/applications
+                  - 'workspace_/applications/{applications}'
+                  - 'workspace_/applications/{applications}/application_instances'
+                  - 'workspace_/applications/{applications}/application_instances/{application_instances}'
+                  - 'workspace_/applications/{applications}/consumer'
+                  - 'workspace_/applications/{applications}/credentials/{plugin}'
+                  - 'workspace_/applications/{applications}/credentials/{plugin}/{credential_id}'
+                  - 'workspace_/applications/{applications}/developer'
+                  - workspace_/auth
+                  - workspace_/basic-auths
+                  - 'workspace_/basic-auths/{basicauth_credentials}'
+                  - 'workspace_/basic-auths/{basicauth_credentials}/consumer'
+                  - workspace_/ca_certificates
+                  - 'workspace_/ca_certificates/{ca_certificates}'
+                  - 'workspace_/ca_certificates/{ca_certificates}/mtls_auth_credentials'
+                  - 'workspace_/ca_certificates/{ca_certificates}/mtls_auth_credentials/{mtls_auth_credentials}'
+                  - workspace_/cache
+                  - 'workspace_/cache/{key}'
+                  - workspace_/certificates
+                  - 'workspace_/certificates/{certificates}'
+                  - 'workspace_/certificates/{certificates}/services'
+                  - 'workspace_/certificates/{certificates}/services/{services}'
+                  - 'workspace_/certificates/{certificates}/snis'
+                  - 'workspace_/certificates/{certificates}/snis/{snis}'
+                  - 'workspace_/certificates/{certificates}/upstreams'
+                  - 'workspace_/certificates/{certificates}/upstreams/{upstreams}'
+                  - workspace_/clustering/data-planes
+                  - workspace_/clustering/status
+                  - workspace_/config
+                  - workspace_/consumer_groups
+                  - 'workspace_/consumer_groups/{consumer_groups}'
+                  - 'workspace_/consumer_groups/{consumer_groups}/consumers'
+                  - 'workspace_/consumer_groups/{consumer_groups}/consumers/{consumers}'
+                  - 'workspace_/consumer_groups/{consumer_groups}/overrides/plugins/rate-limiting-advanced'
+                  - 'workspace_/consumer_groups/{consumer_groups}/plugins'
+                  - 'workspace_/consumer_groups/{consumer_groups}/plugins/{plugins}'
+                  - workspace_/consumers
+                  - 'workspace_/consumers/{consumers}'
+                  - 'workspace_/consumers/{consumers}/acls'
+                  - 'workspace_/consumers/{consumers}/acls/{acls}'
+                  - 'workspace_/consumers/{consumers}/admins'
+                  - 'workspace_/consumers/{consumers}/admins/{admins}'
+                  - 'workspace_/consumers/{consumers}/applications'
+                  - 'workspace_/consumers/{consumers}/applications/{applications}'
+                  - 'workspace_/consumers/{consumers}/basic-auth'
+                  - 'workspace_/consumers/{consumers}/basic-auth/{basicauth_credentials}'
+                  - 'workspace_/consumers/{consumers}/consumer_groups'
+                  - 'workspace_/consumers/{consumers}/consumer_groups/{consumer_groups}'
+                  - 'workspace_/consumers/{consumers}/developers'
+                  - 'workspace_/consumers/{consumers}/developers/{developers}'
+                  - 'workspace_/consumers/{consumers}/hmac-auth'
+                  - 'workspace_/consumers/{consumers}/hmac-auth/{hmacauth_credentials}'
+                  - 'workspace_/consumers/{consumers}/jwt'
+                  - 'workspace_/consumers/{consumers}/jwt/{jwt_secrets}'
+                  - 'workspace_/consumers/{consumers}/key-auth'
+                  - 'workspace_/consumers/{consumers}/key-auth/{keyauth_credentials}'
+                  - 'workspace_/consumers/{consumers}/key-auth-enc'
+                  - 'workspace_/consumers/{consumers}/key-auth-enc/{keyauth_enc_credentials}'
+                  - 'workspace_/consumers/{consumers}/login_attempts'
+                  - 'workspace_/consumers/{consumers}/login_attempts/{login_attempts}'
+                  - 'workspace_/consumers/{consumers}/mtls-auth'
+                  - 'workspace_/consumers/{consumers}/mtls-auth/{mtls_auth_credentials}'
+                  - 'workspace_/consumers/{consumers}/mtls_auth_credentials'
+                  - 'workspace_/consumers/{consumers}/mtls_auth_credentials/{mtls_auth_credentials}'
+                  - 'workspace_/consumers/{consumers}/oauth2'
+                  - 'workspace_/consumers/{consumers}/oauth2/{oauth2_credentials}'
+                  - 'workspace_/consumers/{consumers}/plugins'
+                  - 'workspace_/consumers/{consumers}/plugins/{plugins}'
+                  - 'workspace_/debug/cluster/log-level/{log_level}'
+                  - workspace_/debug/node/log-level
+                  - 'workspace_/debug/node/log-level/{log_level}'
+                  - workspace_/debug/profiling/cpu
+                  - workspace_/debug/profiling/gc-snapshot
+                  - workspace_/debug/profiling/memory
+                  - workspace_/degraphql_routes
+                  - 'workspace_/degraphql_routes/{degraphql_routes}'
+                  - 'workspace_/degraphql_routes/{degraphql_routes}/service'
+                  - workspace_/developers
+                  - workspace_/developers/export
+                  - workspace_/developers/invite
+                  - workspace_/developers/roles
+                  - 'workspace_/developers/roles/{rbac_roles}'
+                  - 'workspace_/developers/{developers}'
+                  - 'workspace_/developers/{developers}/applications'
+                  - 'workspace_/developers/{developers}/applications/{applications}'
+                  - 'workspace_/developers/{developers}/applications/{applications}/application_instances'
+                  - 'workspace_/developers/{developers}/applications/{applications}/application_instances/{application_instances}'
+                  - 'workspace_/developers/{developers}/applications/{applications}/credentials/{plugin}'
+                  - 'workspace_/developers/{developers}/applications/{applications}/credentials/{plugin}/{credential_id}'
+                  - 'workspace_/developers/{developers}/consumer'
+                  - 'workspace_/developers/{developers}/credentials/{plugin}'
+                  - 'workspace_/developers/{developers}/credentials/{plugin}/{credential_id}'
+                  - 'workspace_/developers/{developers}/rbac_user'
+                  - 'workspace_/developers/{email_or_id}/plugins/'
+                  - 'workspace_/developers/{email_or_id}/plugins/{id}'
+                  - workspace_/document_objects
+                  - 'workspace_/document_objects/{document_objects}'
+                  - 'workspace_/document_objects/{document_objects}/service'
+                  - workspace_/endpoints
+                  - workspace_/entities/migrate
+                  - workspace_/event-hooks
+                  - workspace_/event-hooks/sources
+                  - 'workspace_/event-hooks/sources/{source}'
+                  - 'workspace_/event-hooks/sources/{source}/{event}'
+                  - 'workspace_/event-hooks/{event_hooks}'
+                  - 'workspace_/event-hooks/{event_hooks}/ping'
+                  - 'workspace_/event-hooks/{event_hooks}/test'
+                  - workspace_/files
+                  - workspace_/files/*
+                  - workspace_/files/partials/*
+                  - 'workspace_/files/{files}'
+                  - workspace_/filter-chains
+                  - 'workspace_/filter-chains/{filter_chains}'
+                  - 'workspace_/filter-chains/{filter_chains}/route'
+                  - 'workspace_/filter-chains/{filter_chains}/service'
+                  - workspace_/graphql-proxy-cache-advanced
+                  - 'workspace_/graphql-proxy-cache-advanced/{cache_key}'
+                  - 'workspace_/graphql-proxy-cache-advanced/{plugin_id}/caches/{cache_key}'
+                  - workspace_/graphql-rate-limiting-advanced/costs
+                  - 'workspace_/graphql-rate-limiting-advanced/costs/{graphql_ratelimiting_advanced_cost_decoration}'
+                  - workspace_/graphql_ratelimiting_advanced_cost_decoration
+                  - 'workspace_/graphql_ratelimiting_advanced_cost_decoration/{graphql_ratelimiting_advanced_cost_decoration}'
+                  - 'workspace_/graphql_ratelimiting_advanced_cost_decoration/{graphql_ratelimiting_advanced_cost_decoration}/service'
+                  - workspace_/groups
+                  - 'workspace_/groups/{groups}'
+                  - 'workspace_/groups/{groups}/roles'
+                  - workspace_/hmac-auths
+                  - 'workspace_/hmac-auths/{hmacauth_credentials}'
+                  - 'workspace_/hmac-auths/{hmacauth_credentials}/consumer'
+                  - workspace_/jwt-signer/jwks
+                  - 'workspace_/jwt-signer/jwks/{jwt_signer_jwks}'
+                  - 'workspace_/jwt-signer/jwks/{jwt_signer_jwks}/rotate'
+                  - workspace_/jwts
+                  - 'workspace_/jwts/{jwt_secrets}'
+                  - 'workspace_/jwts/{jwt_secrets}/consumer'
+                  - workspace_/key-auths
+                  - 'workspace_/key-auths/{keyauth_credentials}'
+                  - 'workspace_/key-auths/{keyauth_credentials}/consumer'
+                  - workspace_/key-auths-enc
+                  - 'workspace_/key-auths-enc/{keyauth_enc_credentials}'
+                  - 'workspace_/key-auths-enc/{keyauth_enc_credentials}/consumer'
+                  - workspace_/key-sets
+                  - 'workspace_/key-sets/{key_sets}'
+                  - 'workspace_/key-sets/{key_sets}/keys'
+                  - 'workspace_/key-sets/{key_sets}/keys/{keys}'
+                  - workspace_/keyring
+                  - workspace_/keyring/activate
+                  - workspace_/keyring/active
+                  - workspace_/keyring/export
+                  - workspace_/keyring/generate
+                  - workspace_/keyring/import
+                  - workspace_/keyring/import/raw
+                  - workspace_/keyring/recover
+                  - workspace_/keyring/remove
+                  - workspace_/keyring/vault/sync
+                  - workspace_/keys
+                  - 'workspace_/keys/{keys}'
+                  - 'workspace_/keys/{keys}/set'
+                  - workspace_/konnect_applications
+                  - 'workspace_/konnect_applications/{konnect_applications}'
+                  - workspace_/license/report
+                  - workspace_/licenses
+                  - 'workspace_/licenses/{licenses}'
+                  - workspace_/login_attempts
+                  - 'workspace_/login_attempts/{login_attempts}'
+                  - 'workspace_/login_attempts/{login_attempts}/consumer'
+                  - workspace_/metrics
+                  - workspace_/mtls-auths
+                  - 'workspace_/mtls-auths/{mtls_auth_credentials}/consumer'
+                  - workspace_/mtls_auth_credentials
+                  - 'workspace_/mtls_auth_credentials/{mtls_auth_credentials}'
+                  - 'workspace_/mtls_auth_credentials/{mtls_auth_credentials}/ca_certificate'
+                  - 'workspace_/mtls_auth_credentials/{mtls_auth_credentials}/consumer'
+                  - workspace_/oauth2
+                  - 'workspace_/oauth2/{oauth2_credentials}'
+                  - 'workspace_/oauth2/{oauth2_credentials}/consumer'
+                  - 'workspace_/oauth2/{oauth2_credentials}/oauth2_tokens'
+                  - 'workspace_/oauth2/{oauth2_credentials}/oauth2_tokens/{oauth2_tokens}'
+                  - workspace_/oauth2_tokens
+                  - 'workspace_/oauth2_tokens/{oauth2_tokens}'
+                  - 'workspace_/oauth2_tokens/{oauth2_tokens}/credential'
+                  - 'workspace_/oauth2_tokens/{oauth2_tokens}/service'
+                  - workspace_/openid-connect/issuers
+                  - 'workspace_/openid-connect/issuers/{oic_issuers}'
+                  - workspace_/openid-connect/jwks
+                  - workspace_/plugins
+                  - workspace_/plugins/enabled
+                  - 'workspace_/plugins/schema/{name}'
+                  - 'workspace_/plugins/{plugins}'
+                  - 'workspace_/plugins/{plugins}/consumer'
+                  - 'workspace_/plugins/{plugins}/consumer_group'
+                  - 'workspace_/plugins/{plugins}/route'
+                  - 'workspace_/plugins/{plugins}/service'
+                  - workspace_/proxy-cache
+                  - 'workspace_/proxy-cache/{cache_key}'
+                  - 'workspace_/proxy-cache/{plugin_id}/caches/{cache_key}'
+                  - workspace_/proxy-cache-advanced
+                  - 'workspace_/proxy-cache-advanced/{cache_key}'
+                  - 'workspace_/proxy-cache-advanced/{plugin_id}/caches/{cache_key}'
+                  - workspace_/rbac/roles
+                  - 'workspace_/rbac/roles/{rbac_roles}'
+                  - 'workspace_/rbac/roles/{rbac_roles}/endpoints'
+                  - 'workspace_/rbac/roles/{rbac_roles}/endpoints/permissions'
+                  - 'workspace_/rbac/roles/{rbac_roles}/endpoints/{workspace}/*'
+                  - 'workspace_/rbac/roles/{rbac_roles}/entities'
+                  - 'workspace_/rbac/roles/{rbac_roles}/entities/permissions'
+                  - 'workspace_/rbac/roles/{rbac_roles}/entities/{entity_id}'
+                  - 'workspace_/rbac/roles/{rbac_roles}/permissions'
+                  - workspace_/rbac/users
+                  - 'workspace_/rbac/users/{rbac_users}'
+                  - 'workspace_/rbac/users/{rbac_users}/admins'
+                  - 'workspace_/rbac/users/{rbac_users}/admins/{admins}'
+                  - 'workspace_/rbac/users/{rbac_users}/developers'
+                  - 'workspace_/rbac/users/{rbac_users}/developers/{developers}'
+                  - 'workspace_/rbac/users/{rbac_users}/permissions'
+                  - 'workspace_/rbac/users/{rbac_users}/roles'
+                  - workspace_/routes
+                  - 'workspace_/routes/{routes}'
+                  - 'workspace_/routes/{routes}/filter-chains'
+                  - 'workspace_/routes/{routes}/filter-chains/{filter_chains}'
+                  - 'workspace_/routes/{routes}/filters/all'
+                  - 'workspace_/routes/{routes}/filters/disabled'
+                  - 'workspace_/routes/{routes}/filters/enabled'
+                  - 'workspace_/routes/{routes}/plugins'
+                  - 'workspace_/routes/{routes}/plugins/{plugins}'
+                  - 'workspace_/routes/{routes}/service'
+                  - workspace_/schemas/plugins/validate
+                  - 'workspace_/schemas/plugins/{name}'
+                  - 'workspace_/schemas/{db_entity_name}/validate'
+                  - 'workspace_/schemas/{name}'
+                  - workspace_/services
+                  - 'workspace_/services/{services}'
+                  - 'workspace_/services/{services}/application_instances'
+                  - 'workspace_/services/{services}/application_instances/{application_instances}'
+                  - 'workspace_/services/{services}/applications'
+                  - 'workspace_/services/{services}/client_certificate'
+                  - 'workspace_/services/{services}/degraphql/routes'
+                  - 'workspace_/services/{services}/degraphql/routes/{degraphql_routes}'
+                  - 'workspace_/services/{services}/degraphql_routes'
+                  - 'workspace_/services/{services}/degraphql_routes/{degraphql_routes}'
+                  - 'workspace_/services/{services}/document_objects'
+                  - 'workspace_/services/{services}/document_objects/{document_objects}'
+                  - 'workspace_/services/{services}/filter-chains'
+                  - 'workspace_/services/{services}/filter-chains/{filter_chains}'
+                  - 'workspace_/services/{services}/graphql-rate-limiting-advanced/costs'
+                  - 'workspace_/services/{services}/graphql_ratelimiting_advanced_cost_decoration'
+                  - 'workspace_/services/{services}/graphql_ratelimiting_advanced_cost_decoration/{graphql_ratelimiting_advanced_cost_decoration}'
+                  - 'workspace_/services/{services}/oauth2_tokens'
+                  - 'workspace_/services/{services}/oauth2_tokens/{oauth2_tokens}'
+                  - 'workspace_/services/{services}/plugins'
+                  - 'workspace_/services/{services}/plugins/{plugins}'
+                  - 'workspace_/services/{services}/routes'
+                  - 'workspace_/services/{services}/routes/{routes}'
+                  - workspace_/sessions
+                  - 'workspace_/sessions/{sessions}'
+                  - workspace_/snis
+                  - 'workspace_/snis/{snis}'
+                  - 'workspace_/snis/{snis}/certificate'
+                  - workspace_/status
+                  - workspace_/tags
+                  - 'workspace_/tags/{tags}'
+                  - workspace_/targets
+                  - 'workspace_/targets/{targets}'
+                  - 'workspace_/targets/{targets}/upstream'
+                  - workspace_/timers
+                  - workspace_/upstreams
+                  - 'workspace_/upstreams/{upstreams}'
+                  - 'workspace_/upstreams/{upstreams}/client_certificate'
+                  - 'workspace_/upstreams/{upstreams}/health'
+                  - 'workspace_/upstreams/{upstreams}/targets'
+                  - 'workspace_/upstreams/{upstreams}/targets/all'
+                  - 'workspace_/upstreams/{upstreams}/targets/{targets}'
+                  - 'workspace_/upstreams/{upstreams}/targets/{targets}/healthy'
+                  - 'workspace_/upstreams/{upstreams}/targets/{targets}/unhealthy'
+                  - 'workspace_/upstreams/{upstreams}/targets/{targets}/{address}/healthy'
+                  - 'workspace_/upstreams/{upstreams}/targets/{targets}/{address}/unhealthy'
+                  - workspace_/userinfo
+                  - workspace_/vault-auth
+                  - 'workspace_/vault-auth/{vault_auth_vaults}'
+                  - 'workspace_/vault-auth/{vault}/credentials'
+                  - 'workspace_/vault-auth/{vault}/credentials/token/{access_token}'
+                  - 'workspace_/vault-auth/{vault}/credentials/{consumer}'
+                  - workspace_/vaults
+                  - 'workspace_/vaults/{vaults}'
+                  - workspace_/vitals/
+                  - workspace_/vitals/cluster
+                  - workspace_/vitals/cluster/status_codes
+                  - 'workspace_/vitals/consumers/{consumer_id}/cluster'
+                  - workspace_/vitals/nodes/
+                  - 'workspace_/vitals/nodes/{node_id}'
+                  - 'workspace_/vitals/reports/{entity_type}'
+                  - workspace_/vitals/status_code_classes
+                  - workspace_/vitals/status_codes/by_consumer
+                  - workspace_/vitals/status_codes/by_consumer_and_route
+                  - workspace_/vitals/status_codes/by_route
+                  - workspace_/vitals/status_codes/by_service
+                  - workspace_/workspaces
+                  - 'workspace_/workspaces/{workspaces}'
+                  - 'workspace_/workspaces/{workspaces}/meta'
   requestBodies:
     vault-request:
       content:
@@ -2223,7 +3514,7 @@ components:
                 example: none
               hash_on_cookie_path:
                 type: string
-                description: "The cookie path to set in the response headers. Only required when `hash_on` or `hash_fallback` is set to `cookie`. Default: `/`."
+                description: The cookie path to set in the response headers. Only required when `hash_on` or `hash_fallback` is set to `cookie`.
                 default: /
                 example: /
               hash_on_query_arg:
@@ -2257,7 +3548,7 @@ components:
                     properties:
                       type:
                         type: string
-                        description: 'Whether to perform passive health checks interpreting HTTP/HTTPS statuses, or just check for TCP connection success. In passive checks, http and https options are equivalent. Accepted values are: `tcp`, `http`, `https`, `grpc`, `grpcs`.'
+                        description: Whether to perform passive health checks interpreting HTTP/HTTPS statuses, or just check for TCP connection success. In passive checks, http and https options are equivalent. Accepted values are `tcp`, `http`, `https`, `grpc`, `grpcs`.
                         default: http
                         enum:
                           - tcp
@@ -2462,7 +3753,7 @@ components:
                         default: /
                       https_sni:
                         type: string
-                        description: The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI.
+                        description: The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI.'
                   threshold:
                     type: integer
                     description: The minimum percentage of the upstream's targets' weight that must be available for the whole upstream to be considered healthy.
@@ -2670,7 +3961,7 @@ components:
                 example: /some_api
               connect_timeout:
                 type: integer
-                description: 'The timeout in milliseconds for establishing a connection to the upstream server. Default: `60000`.'
+                description: The timeout in milliseconds for establishing a connection to the upstream server. Default `60000`.
                 default: 6000
                 example: 6000
               write_timeout:
@@ -2713,14 +4004,14 @@ components:
                 nullable: true
               ca_certificates:
                 type: array
-                description: Array of CA Certificate object UUIDs that are used to build the trust store while verifying upstream server's TLS certificate. If set to null when Nginx default is respected. With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an Array.
+                description: Array of CA Certificate object UUIDs that are used to build the trust store while verifying upstream servers TLS certificate. If set to null when Nginx default is respected. With form-encoded, the notation is `ca_certificates[]=4e3ad2e4-0bc4-4638-8e34-c84a417ba39b&ca_certificates[]=51e77dc2-8f3e-4afa-9d0e-0e3bbbcfd515`. With JSON, use an array.
                 items:
                   type: string
                   example: 4e3ad2e4-0bc4-4638-8e34-c84a417ba39b
               enabled:
                 type: boolean
                 default: true
-                description: 'Whether the service is active. If set to `false`, the proxy behavior will be as if any routes attached to it do not exist (404). Default: `true`.'
+                description: Whether the service is active. If set to `false`, the proxy behavior will be as if any routes attached to it do not exist (404).
             required:
               - protocol
               - host
@@ -2825,12 +4116,12 @@ components:
                   type: string
               paths:
                 type: array
-                description: A list of paths that match this route. With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an array. The path can be a regular expression, or a plain text pattern. 
+                description: A list of paths that match this route. With form-encoded, the notation is `paths[]=/foo&paths[]=/bar`. With JSON, use an array. The path can be a regular expression, or a plain text pattern.
                 items:
                   type: string
               headers:
                 type: object
-                description: 'One or more lists of values indexed by header name that will cause this route to match if present in the request. The Host header cannot be used with this attribute: hosts should be specified using the `hosts` attribute. When headers contains only one value and that value starts with the special prefix` ~*`, the value is interpreted as a regular expression.'
+                description: One or more lists of values indexed by header name that will cause this route to match if present in the request. The Host header cannot be used with this attribute hosts should be specified using the `hosts` attribute. When headers contains only one value and that value starts with the special prefix` ~*`, the value is interpreted as a regular expression.
                 properties:
                   x-my-header:
                     type: array
@@ -2855,23 +4146,23 @@ components:
                 example: 426
               regex_priority:
                 type: integer
-                description: 'A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same regex_priority, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones). Default: `0`.'
+                description: A number used to choose which route resolves a given request when several routes match it using regexes simultaneously. When two routes match the path and have the same regex_priority, the older one (lowest `created_at`) is used. Note that the priority for non-regex routes is different (longer non-regex routes are matched before shorter ones).
                 default: 0
                 example: 0
               strip_path:
                 type: boolean
-                description: 'When matching a route via one of the paths, strip the matching prefix from the upstream request URL. Default: `true`.'
+                description: When matching a route via one of the paths, strip the matching prefix from the upstream request URL.
                 default: true
               path_handling:
                 type: string
-                description: 'Controls how the service path, route path and requested path are combined when sending a request to the upstream. Accepted values are: "`v0`", "`v1`". Default: "`v0`".'
+                description: Controls how the service path, route path and requested path are combined when sending a request to the upstream. Accepted values are "`v0`", "`v1`".
                 enum:
                   - v1
                   - v0
                 example: v0
               preserve_host:
                 type: boolean
-                description: When matching a route via one of the `hosts` domain names, use the request `host` header in the upstream request headers. If set to `false`, the upstream Host header will be that of the service's host.
+                description: When matching a route via one of the `hosts` domain names, use the request `host` header in the upstream request headers. If set to `false`, the upstream Host header will be that of the service's host.'
                 default: true
               request_buffering:
                 type: boolean
@@ -3085,7 +4376,7 @@ components:
                 example: rate-limiting
               route:
                 type: string
-                description: 'If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the route being used. Default: `null`.With form-encoded, the notation is `route.id=<route id> or route.name=<route name>`. With JSON, use `"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.'
+                description: If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the route being used. Default `null`.With form-encoded, the notation is `route.id=<route id> or route.name=<route name>`. With JSON, use `"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
                 nullable: true
               service:
                 type: string
@@ -3256,15 +4547,15 @@ components:
             properties:
               cert:
                 type: string
-                description: PEM-encoded public certificate chain of the SSL key pair. 
-                example: "-----BEGIN CERTIFICATE-----..."
+                description: PEM-encoded public certificate chain of the SSL key pair.
+                example: '-----BEGIN CERTIFICATE-----...'
               key:
                 type: string
-                example: "-----BEGIN RSA PRIVATE KEY-----..."
+                example: '-----BEGIN RSA PRIVATE KEY-----...'
                 description: PEM-encoded private key of the SSL key pair.
               cert_alt:
                 type: string
-                description: PEM-encoded public certificate chain of the alternate SSL key pair. 
+                description: PEM-encoded public certificate chain of the alternate SSL key pair.
               key_alt:
                 type: string
                 description: PEM-encoded private key of the alternate SSL key pair.
@@ -3804,7 +5095,7 @@ paths:
         - SNIs
       operationId: fetch-sni-with-cert
     patch:
-      description: Update an existing SNI associated with a certificate in the system using the SNI ID or name. The request body should include the fields of the SNI that need to be updated, such as the name, description, or other properties. If the request body contains valid data, the endpoint will update the SNI and return a success response. 
+      description: Update an existing SNI associated with a certificate in the system using the SNI ID or name. The request body should include the fields of the SNI that need to be updated, such as the name, description, or other properties. If the request body contains valid data, the endpoint will update the SNI and return a success response.
       responses:
         '200':
           content:
@@ -4008,7 +5299,7 @@ paths:
       - $ref: '#/components/parameters/consumer_username_or_id'
   '/consumers/{consumer_username_or_id}/plugins':
     get:
-      description: Retrieve a list of all plugins associated with a consumer. 
+      description: Retrieve a list of all plugins associated with a consumer.
       parameters:
         - $ref: '#/components/parameters/pagination-size'
         - $ref: '#/components/parameters/pagination-offset'
@@ -4081,7 +5372,7 @@ paths:
                   message:
                     type: string
                     example: Not Found
-                    description: 404 Not Found 
+                    description: 404 Not Found
               examples:
                 Not Found:
                   value:
@@ -7421,18 +8712,20 @@ paths:
       description: Create a new consumer group.
       requestBody:
         $ref: '#/components/requestBodies/consumer_group_request'
+      tags:
+        - consumer_groups
   '/consumer_groups/{group_name_or_id}':
     parameters:
       - $ref: '#/components/parameters/group_name_or_id'
     get:
       summary: List a specific consumer group
-      tags:
-        - consumer_groups
       responses:
         '200':
           $ref: '#/components/responses/consumer_group_response'
       operationId: get-consumer_groups-group_name
       description: Returns a consumer group by passing either the `group_name` or `group_id` as a path parameter.
+      tags:
+        - consumer_groups
     put:
       summary: Create consumer group
       operationId: put-consumer_groups-group_name_or_id
@@ -7442,6 +8735,8 @@ paths:
       description: Create a consumer group by passing a new group name as the path parameter
       requestBody:
         $ref: '#/components/requestBodies/consumer_group_request'
+      tags:
+        - consumer_groups
     delete:
       summary: Delete a consumer group
       operationId: delete-consumer_groups-group_name_or_id
@@ -7451,6 +8746,8 @@ paths:
             HTTP/1.1 204 No Content
       description: |
         Delete a consumer group. Deleting a consumer group removes all consumers from that group. This operation does not delete existing consuemrs.
+      tags:
+        - consumer_groups
   '/consumers/{consumer_username_or_id}/consumer_groups':
     parameters:
       - $ref: '#/components/parameters/Gatewayapi_Consumer_username_or_id'
@@ -7495,6 +8792,8 @@ paths:
                 value:
                   group: 288f2bfc-04e2-4ec3-b6f3-40408dff5417
         description: The request body contains the group ID for the group that you are adding a consumer into.
+      tags:
+        - consumer_groups
     delete:
       summary: Remove a consumer from all groups
       operationId: delete-consumers-consumer_username_or_id-consumer_groups
@@ -7503,6 +8802,8 @@ paths:
           description: |
             HTTP/1.1 204 No Content
       description: Remove a consumer from all groups.
+      tags:
+        - consumer_groups
   '/consumer_groups/{group_name_or_id}/consumers':
     parameters:
       - $ref: '#/components/parameters/group_name_or_id'
@@ -7530,6 +8831,8 @@ paths:
 
         If all groups are allowed by the Rate Limiting Advanced plugin, only the first group's settings will apply.
         Otherwise, whichever group is specified in the Rate Limiting Advanced plugin will be active.
+      tags:
+        - consumer_groups
       requestBody:
         content:
           application/json:
@@ -7549,6 +8852,8 @@ paths:
           description: |
             HTTP/1.1 204 No Content
       description: Removes all consumers from a specified consumer group.
+      tags:
+        - consumer_groups
   '/consumers/{consumer_name_or_id}/consumer_groups/{group_name_or_id}':
     parameters:
       - $ref: '#/components/parameters/consumer_name_or_id'
@@ -7699,9 +9004,11 @@ paths:
             HTTP/1.1 204 No Content
       description: |
         Delete custom rate limiting settings for a consumer group. As of Kong Gateway 3.4, you can scope plugins to consumer groups using only the `/consumer_groups` endpoint. Using `overrides` is deprecated, and no longer recommended.
+      tags:
+        - consumer_groups
   '/consumer_groups/{consumer_username_or_id}/plugins':
     get:
-      description: Retrieve a list of all plugins associated with a consumer group. 
+      description: Retrieve a list of all plugins associated with a consumer group.
       parameters:
         - $ref: '#/components/parameters/pagination-size'
         - $ref: '#/components/parameters/pagination-offset'
@@ -7722,6 +9029,7 @@ paths:
       summary: List all plugins associated with a consumer group
       tags:
         - Plugins
+      operationId: list-plugins-consumer-group
     post:
       description: Create a new plugin associated with a Consumer Group
       responses:
@@ -7853,13 +9161,13 @@ paths:
       - $ref: '#/components/parameters/license-id'
     get:
       summary: List a specific license
-      tags:
-        - licenses
       responses:
         '200':
           $ref: '#/components/responses/license-response'
       operationId: get-licenses-license-id
       description: List a specific license using the license id parameter.
+      tags:
+        - licenses
     put:
       summary: Update or add a license
       operationId: put-licenses-license-id
@@ -7876,6 +9184,8 @@ paths:
         If the request payload does contain an entity's primary key (id for Licenses), the license will be replaced with the given payload attribute. If the ID is not a valid UUID, a `400 BAD REQUEST` will be returned. If the ID is omitted, a `405 NOT ALLOWED` will be returned.
       requestBody:
         $ref: '#/components/requestBodies/license-request'
+      tags:
+        - licenses
     patch:
       summary: Update a license
       operationId: patch-licenses-license-id
@@ -7888,6 +9198,8 @@ paths:
         If the request payload does not contain an entity's primary key (`id` for licenses), a `404 NOT FOUND `will be returned or if the request payload contains a invalid licence, a `400 BAD REQUEST` will be returned.
       requestBody:
         $ref: '#/components/requestBodies/license-request'
+      tags:
+        - licenses
     delete:
       summary: Delete a license
       operationId: delete-licenses-license-id
@@ -7895,6 +9207,8 @@ paths:
         '204':
           description: No Content
       description: Delete a license by passing the license ID as a path parameter.
+      tags:
+        - licenses
   /license/report:
     get:
       summary: Generate a report
@@ -7916,6 +9230,16 @@ paths:
           $ref: '#/components/responses/key-ring-response'
       operationId: get-keyring
       description: Kong Gateway provides a mechanism to store sensitive data fields, such as consumer secrets, in an encrypted format within the database.This provides for encryption-at-rest security controls in a Kong cluster. For more information review the [keyring and data encryption documentation](https://docs.konghq.com/gateway/latest/kong-enterprise/db-encryption/#getting-started).
+  /endpoints:
+    get:
+      summary: List all endpoints
+      tags:
+        - Information
+      responses:
+        '200':
+          $ref: '#/components/responses/get-endpoints'
+      operationId: get-endpoints
+      description: List all available endpoints provided by the Admin API.
   '/{endpoint}':
     parameters:
       - schema:
@@ -8171,6 +9495,408 @@ paths:
         This only performs the schema validation checks, checking that the input configuration is well-formed. A requests to the entity endpoint using the given configuration may still fail due to other reasons, such as invalid foreign key relationships or uniqueness check failures against the contents of the data store
       tags:
         - Information
+  /timers:
+    get:
+      summary: Retrieve Runtime Debugging Info of Kong's Timers
+      tags:
+        - Information
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    stats:
+                      sys:
+                        total: 13
+                        waiting: 12
+                        runs: 6771
+                        pending: 0
+                        running: 1
+                      flamegraph:
+                        pending: ''
+                        running: ''
+                        elapsed_time: ''
+                      timers:
+                        router-rebuild:
+                          is_running: false
+                          name: router-rebuild
+                          stats:
+                            runs: 464
+                            elapsed_time:
+                              avg: 0
+                              min: 9999999
+                              max: -1
+                              variance: 0
+                            finish: 464
+                            last_err_msg: ''
+                          meta:
+                            callstack: debug off
+                            name: debug off
+                        'unix_timestamp=1681492692484.000000;counter=7:meta=debug off':
+                          is_running: false
+                          name: 'unix_timestamp=1681492692484.000000;counter=7:meta=debug off'
+                          stats:
+                            runs: 3
+                            elapsed_time:
+                              avg: 0
+                              min: 9999999
+                              max: -1
+                              variance: 0
+                            finish: 3
+                            last_err_msg: ''
+                          meta:
+                            callstack: debug off
+                            name: debug off
+                    worker:
+                      id: 0
+                      count: 5
+                properties:
+                  stats:
+                    type: object
+                    description: Statistics about the worker
+                    properties:
+                      sys:
+                        type: object
+                        description: List of the number of different type of timers
+                        properties:
+                          total:
+                            description: The total number of timers (running + pending + waiting)
+                            type: integer
+                            default: 7
+                            example: 7
+                          waiting:
+                            description: The number of unexpired timers
+                            type: integer
+                            default: 7
+                            example: 7
+                          runs:
+                            description: The total number of runs for the timers
+                            type: integer
+                            default: 7
+                            example: 7
+                          pending:
+                            description: The number of pending timers
+                            type: integer
+                            default: 0
+                            example: 0
+                          running:
+                            description: The number of running timers
+                            type: integer
+                            default: 0
+                            example: 0
+                      flamegraph:
+                        type: object
+                        description: String-encoded timer-related flamegraph data
+                        properties:
+                          pending:
+                            description: The number of pending timers for the flamegraph
+                            type: string
+                            example: |
+                              @./kong/init.lua:706:init_worker();@./kong/runloop/handler.lua:1086:before() 0
+                          running:
+                            description: The number of running timers for the flamegraph
+                            type: string
+                            example: |
+                              @./kong/init.lua:706:init_worker();@./kong/runloop/handler.lua:1086:before() 0
+                          elapsed_time:
+                            description: The elapsed time for the flamegraph
+                            type: string
+                            example: |
+                              @./kong/init.lua:706:init_worker();@./kong/runloop/handler.lua:1086:before() 17
+                      timers:
+                        description: Timer statistics for the worker
+                        type: object
+                        properties:
+                          meta:
+                            description: Program callstack of created timers
+                            type: object
+                            properties:
+                              name:
+                                description: The name of the timer's metadata
+                                type: string
+                                example: '@/build/luarocks/share/lua/5.1/resty/counter.lua:71:new()'
+                  worker:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        description: The ordinal number of the current Nginx worker processes (starting from number 0).
+                      count:
+                        type: integer
+                        description: The total number of the Nginx worker processes.
+      operationId: get-timers
+      description: Retrieve runtime stats data from [lua-resty-timer-ng](https://github.com/Kong/lua-resty-timer-ng).
+  /status:
+    get:
+      summary: Health Routes
+      tags:
+        - Information
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  Example 1:
+                    memory:
+                      lua_shared_dicts:
+                        kong_core_db_cache:
+                          capacity: 128.00 MiB
+                          allocated_slabs: 0.76 MiB
+                        kong_core_db_cache_miss:
+                          capacity: 12.00 MiB
+                          allocated_slabs: 0.08 MiB
+                        kong_db_cache:
+                          capacity: 128.00 MiB
+                          allocated_slabs: 0.78 MiB
+                        kong_db_cache_miss:
+                          capacity: 12.00 MiB
+                          allocated_slabs: 0.08 MiB
+                        kong_vitals_counters:
+                          capacity: 50.00 MiB
+                          allocated_slabs: 0.30 MiB
+                        kong_vitals_lists:
+                          capacity: 1.00 MiB
+                          allocated_slabs: 0.02 MiB
+                        kong_vitals:
+                          capacity: 1.00 MiB
+                          allocated_slabs: 0.02 MiB
+                        kong_counters:
+                          capacity: 1.00 MiB
+                          allocated_slabs: 0.02 MiB
+                        kong_reports_consumers:
+                          capacity: 10.00 MiB
+                          allocated_slabs: 0.07 MiB
+                        kong_reports_routes:
+                          capacity: 1.00 MiB
+                          allocated_slabs: 0.02 MiB
+                        kong_reports_services:
+                          capacity: 1.00 MiB
+                          allocated_slabs: 0.02 MiB
+                        kong_reports_workspaces:
+                          capacity: 1.00 MiB
+                          allocated_slabs: 0.02 MiB
+                        kong_keyring:
+                          capacity: 5.00 MiB
+                          allocated_slabs: 0.04 MiB
+                        kong_profiling_state:
+                          capacity: 1.50 MiB
+                          allocated_slabs: 0.02 MiB
+                        prometheus_metrics:
+                          capacity: 5.00 MiB
+                          allocated_slabs: 0.04 MiB
+                        kong:
+                          capacity: 5.00 MiB
+                          allocated_slabs: 0.04 MiB
+                        kong_locks:
+                          capacity: 8.00 MiB
+                          allocated_slabs: 0.06 MiB
+                        kong_healthchecks:
+                          capacity: 5.00 MiB
+                          allocated_slabs: 0.04 MiB
+                        kong_process_events:
+                          capacity: 5.00 MiB
+                          allocated_slabs: 0.04 MiB
+                        kong_cluster_events:
+                          capacity: 5.00 MiB
+                          allocated_slabs: 0.04 MiB
+                        kong_rate_limiting_counters:
+                          capacity: 12.00 MiB
+                          allocated_slabs: 0.08 MiB
+                      workers_lua_vms:
+                        - http_allocated_gc: 51.92 MiB
+                          pid: 2323
+                        - http_allocated_gc: 51.48 MiB
+                          pid: 2324
+                        - http_allocated_gc: 51.48 MiB
+                          pid: 2325
+                        - http_allocated_gc: 51.48 MiB
+                          pid: 2326
+                        - http_allocated_gc: 51.48 MiB
+                          pid: 2327
+                    database:
+                      reachable: true
+                    server:
+                      connections_reading: 0
+                      connections_writing: 6
+                      total_requests: 28
+                      connections_waiting: 0
+                      connections_handled: 15
+                      connections_active: 6
+                      connections_accepted: 15
+                properties:
+                  memory:
+                    type: object
+                    description: Metrics about the memory usage.
+                    properties:
+                      lua_shared_dicts:
+                        type: object
+                        description: An array of dictionary objects that are shared with all workers in a Kong node, where each array node contains how much memory is dedicated for the specific shared dictionary (`capacity`) and how much of said memory is in use (`allocated_slabs`).
+                        properties:
+                          kong_core_db_cache:
+                            type: object
+                            properties:
+                              capacity:
+                                type: string
+                                example: 128.00 MiB
+                                description: Memory capacity
+                              allocated_slabs:
+                                type: string
+                                example: 128.00 MiB
+                                description: Total allocated memory
+                      workers_lua_vms:
+                        type: array
+                        description: An array with all workers of the Kong node, each entry contains a `http_allocated_gc` string and a `pid`.
+                        items:
+                          type: object
+                          properties:
+                            http_allocated_gc:
+                              type: string
+                              description: |
+                                HTTP submodule's Lua virtual machine's memory usage information.
+                            pid:
+                              type: integer
+                              description: A worker's process identification number.
+                              example: 18478
+                  database:
+                    type: object
+                    description: Metrics about the database
+                    properties:
+                      reachable:
+                        type: boolean
+                        description: A boolean value reflecting the state of the database connection. Please note that this flag does not reflect the health of the database itself.
+                  server:
+                    type: object
+                    description: Metrics about the nginx HTTP/S server
+                    properties:
+                      connections_reading:
+                        type: integer
+                        description: The current number of connections where Kong is reading the request header.
+                        example: 3
+                      connections_writing:
+                        type: integer
+                        description: The current number of connections where nginx is writing the response back to the client.
+                        example: 1
+                      total_requests:
+                        type: integer
+                        description: The total number of client requests.
+                        example: 1
+                      connections_waiting:
+                        type: integer
+                        description: The current number of idle client connections waiting for a request.
+                        example: 1
+                      connections_handled:
+                        type: integer
+                        description: The total number of handled connections. Generally, the parameter value is the same as the `connections_accepted` parameter unless some resource limits have been reached.
+                        example: 1
+                      connections_active:
+                        type: integer
+                        description: The current number of active client connections including waiting connections.
+                        example: 1
+                      connections_accepted:
+                        type: integer
+                        description: The total number of accepted client connections.
+                        example: 1
+              examples:
+                Status endpoint response:
+                  value:
+                    memory:
+                      lua_shared_dicts:
+                        kong_core_db_cache:
+                          capacity: 128.00 MiB
+                          allocated_slabs: 0.76 MiB
+                        kong_core_db_cache_miss:
+                          capacity: 12.00 MiB
+                          allocated_slabs: 0.08 MiB
+                        kong_db_cache:
+                          capacity: 128.00 MiB
+                          allocated_slabs: 0.78 MiB
+                        kong_db_cache_miss:
+                          capacity: 12.00 MiB
+                          allocated_slabs: 0.08 MiB
+                        kong_vitals_counters:
+                          capacity: 50.00 MiB
+                          allocated_slabs: 0.30 MiB
+                        kong_vitals_lists:
+                          capacity: 1.00 MiB
+                          allocated_slabs: 0.02 MiB
+                        kong_vitals:
+                          capacity: 1.00 MiB
+                          allocated_slabs: 0.02 MiB
+                        kong_counters:
+                          capacity: 1.00 MiB
+                          allocated_slabs: 0.02 MiB
+                        kong_reports_consumers:
+                          capacity: 10.00 MiB
+                          allocated_slabs: 0.07 MiB
+                        kong_reports_routes:
+                          capacity: 1.00 MiB
+                          allocated_slabs: 0.02 MiB
+                        kong_reports_services:
+                          capacity: 1.00 MiB
+                          allocated_slabs: 0.02 MiB
+                        kong_reports_workspaces:
+                          capacity: 1.00 MiB
+                          allocated_slabs: 0.02 MiB
+                        kong_keyring:
+                          capacity: 5.00 MiB
+                          allocated_slabs: 0.04 MiB
+                        kong_profiling_state:
+                          capacity: 1.50 MiB
+                          allocated_slabs: 0.02 MiB
+                        prometheus_metrics:
+                          capacity: 5.00 MiB
+                          allocated_slabs: 0.04 MiB
+                        kong:
+                          capacity: 5.00 MiB
+                          allocated_slabs: 0.04 MiB
+                        kong_locks:
+                          capacity: 8.00 MiB
+                          allocated_slabs: 0.06 MiB
+                        kong_healthchecks:
+                          capacity: 5.00 MiB
+                          allocated_slabs: 0.04 MiB
+                        kong_process_events:
+                          capacity: 5.00 MiB
+                          allocated_slabs: 0.04 MiB
+                        kong_cluster_events:
+                          capacity: 5.00 MiB
+                          allocated_slabs: 0.04 MiB
+                        kong_rate_limiting_counters:
+                          capacity: 12.00 MiB
+                          allocated_slabs: 0.08 MiB
+                      workers_lua_vms:
+                        - http_allocated_gc: 51.92 MiB
+                          pid: 2323
+                        - http_allocated_gc: 51.48 MiB
+                          pid: 2324
+                        - http_allocated_gc: 51.48 MiB
+                          pid: 2325
+                        - http_allocated_gc: 51.48 MiB
+                          pid: 2326
+                        - http_allocated_gc: 51.48 MiB
+                          pid: 2327
+                    database:
+                      reachable: true
+                    server:
+                      connections_reading: 0
+                      connections_writing: 6
+                      total_requests: 28
+                      connections_waiting: 0
+                      connections_handled: 15
+                      connections_active: 6
+                      connections_accepted: 15
+      operationId: get-status
+      description: |-
+        Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process, the status of the database connection, and node's memory usage.
+
+        If you want to monitor the Kong process, since Kong is built on top of nginx, every existing nginx monitoring tool or agent can be used.
   /keyring/generate:
     post:
       summary: Generate key
@@ -8456,7 +10182,7 @@ tags:
 
       A route can't have both `tls` and `tls_passthrough` protocols at same time.
       <br><br>
-      
+
       Learn more about the router: 
       * [Configure routes using expressions](https://docs.konghq.com/gateway/3.4.x/key-concepts/routes/expressions)
       * [Router Expressions language reference](https://docs.konghq.com/gateway/3.4.x/reference/router-expressions-language/)
@@ -8512,7 +10238,7 @@ tags:
   - description: |
       A key object holds a representation of asymmetric keys in various formats. When Kong Gateway or a Kong plugin requires a specific public or private key to perform certain operations, it can use this entity.
     name: Keys
-  - description:  |
+  - description: |
       Keyring is the mechanism for storing sensitive data fields, such as consumer secrets, in an encrypted format within the database. This provides for encryption-at-rest security controls in a Kong Gateway cluster.
     name: Keyring
   - description: |
@@ -8532,3 +10258,6 @@ tags:
       Consumer groups enable the organization and categorization of consumers (users or applications) within an API ecosystem. 
       By grouping consumers together, you eliminate the need to manage them individually, providing a scalable, efficient approach to managing configurations.
     name: consumer_groups
+  - description: |
+      Information routes.
+    name: Information
