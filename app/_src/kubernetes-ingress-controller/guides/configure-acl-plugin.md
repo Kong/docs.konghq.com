@@ -40,7 +40,7 @@ To add authentication in front of an API you just need to enable a plugin.
     ```
     The results should look like this:
     ```text
-    service.networking.k8s.io/echo annotated
+    service/echo annotated
     ```
     Any requests matching the proxying rules for `demo-get` and `demo` post now requires a valid JWT and the consumer for the JWT to be associate with the right ACL. Requests without credentials are rejected.
 1. Send a request without the credentials.    
