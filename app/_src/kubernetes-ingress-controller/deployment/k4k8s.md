@@ -34,14 +34,17 @@ For a production setup with Kong support, use the [Helm chart](https://github.co
 1. Install Kong for Kubernetes using Kustomize:
 
     ```bash
-    kustomize build github.com/kong/kubernetes-ingress-controller/deploy/manifests/base
+    kustomize build github.com/kong/kubernetes-ingress-controller/config/base
     ```
     You can use the above URL as a base kustomization and build on top of it
     to make it suite better for your cluster and use-case.
-1. Set the environment variable $PROXY_IP with the External IP address of the `kong-proxy` service in `kong` namespace:
+1. Kubernetes exposes the proxy through a Kubernetes service. Run the following commands to store the load balancer IP address in a variable named `PROXY_IP`:
 
     ```bash
-    export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong kong-proxy)
+    HOST=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+    PORT=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.spec.ports[0].port}')
+    export PROXY_IP=${HOST}:${PORT}
+    echo $PROXY_IP  
     ```
 {% endnavtab %}
 {% navtab Helm %}
