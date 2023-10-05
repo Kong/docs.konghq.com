@@ -209,5 +209,5 @@ and you want anonymous access to be forbidden, then the [Request Termination plu
 configured on the anonymous consumer. 
 Failure to do so will allow unauthorized requests.
 
-[plugins]: https://konghq.com/plugins/
+[plugins]: /hub/
 [key-auth]: /hub/kong-inc/key-auth
