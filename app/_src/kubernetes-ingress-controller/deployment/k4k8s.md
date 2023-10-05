@@ -48,8 +48,8 @@ For a production setup with Kong support, use the [Helm chart](https://github.co
 1. Kubernetes exposes the proxy through a Kubernetes service. Run the following commands to store the load balancer IP address in a variable named `PROXY_IP`:
 
     ```bash
-    HOST=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-    PORT=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.spec.ports[0].port}')
+    HOST=$(kubectl get svc --namespace kong kong-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+    PORT=$(kubectl get svc --namespace kong kong-proxy -o jsonpath='{.spec.ports[0].port}')
     export PROXY_IP=${HOST}:${PORT}
     echo $PROXY_IP  
     ```
