@@ -31,7 +31,7 @@ To add authentication in front of an API you just need to enable a plugin.
     ```
     The results should look like this:
     ```text
-    kongplugin.configuration.konghq.com/app-jwt
+    kongplugin.configuration.konghq.com/app-jwt created
     ```
 1. Associate the plugin to the Ingress rules.
 
