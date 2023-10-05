@@ -7,6 +7,8 @@ Learn to configure the Kong ACL Plugin. To use the ACL Plugin you need at least 
 
 {% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false%}
 
+{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
+
 {% include_cached /md/kic/class.md kong_version=page.kong_version %}
 
 {% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/lemon' name='lemon' %}
