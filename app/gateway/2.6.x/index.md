@@ -69,7 +69,7 @@ You can manage {{site.base_gateway}} in Free or Enterprise mode with Kong's
 This package is also available as part of
 [{{site.konnect_product_name}}](/konnect/).
 
-![Introduction to {{site.base_gateway}}](/assets/images/docs/gateway/gateway_overview.png)
+![Introduction to {{site.base_gateway}}](/assets/images/products/gateway/gateway_overview.png)
 > _Figure 1: Diagram of {{site.base_gateway}} modules and how they relate to the
 foundational Gateway components._
 > <br>

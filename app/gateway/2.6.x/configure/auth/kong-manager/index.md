@@ -21,7 +21,7 @@ if needed.
 Kong Manager currently supports the following Authentication Plugins:
 
 * [Basic Auth](/gateway/{{page.kong_version}}/configure/auth/kong-manager/basic/)
-* [OIDC](/gateway/{{page.kong_version}}/configure/auth/kong-manager/oidc-mapping/)
+* [OIDC](/gateway/{{page.kong_version}}/configure/auth/kong-manager/oidc/)
 * [LDAP](/gateway/{{page.kong_version}}/configure/auth/kong-manager/ldap/)
 
 In addition to the Authentication Plugins above, the new
