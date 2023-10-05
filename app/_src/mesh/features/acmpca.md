@@ -141,7 +141,9 @@ If you're running in Universal mode, you can also use the [HTTP API][http-api] t
 
 In a multi-zone environment, the global control plane provides the `Mesh` to the zone control planes. However, you must make sure that each zone control plane can communicate with ACM Private CA. This is because certificates for data plane proxies are requested from ACM Private CA by the zone control plane, not the global control plane.
 
+{% if_version lte:2.3.x %}
 You must also make sure the global control plane can communicate with ACM Private CA. When a new `acmpca` backend is configured, {{site.mesh_product_name}} validates the connection by issuing a test certificate. In a multi-zone environment, validation is performed on the global control plane.
+{% endif_version %}
 
 <!-- links -->
 {% if_version gte:2.0.x %}
