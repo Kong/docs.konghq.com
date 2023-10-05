@@ -10,7 +10,7 @@
 # https://github.com/Kong/kong-ee/blob/master/kong.conf.default
 
 title: Configuration Reference for Kong Gateway
-source_url: https://github.com/Kong/kong/blob/master/kong.conf.default
+source_url: https://github.com/Kong/kong/edit/master/kong.conf.default
 ---
 <!-- vale off -->
 
