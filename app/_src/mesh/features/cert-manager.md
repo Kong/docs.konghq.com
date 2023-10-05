@@ -105,9 +105,11 @@ resource with the `issuerRef`  specified in the `Mesh` `certmanager` backend spe
 Also, because the backend is `Mesh` scoped configuration and `certmanager` backend is limited to the Kubernetes environment,
 Universal and Kubernetes cannot be used together in a multi-zone environment which includes a `certmanager` mTLS backend.
 
+{% if_version lte:2.3.x %}
 You must also ensure the global control plan can access cert-manager.
 When a new `certmanager`backend is configured, {{site.mesh_product_name}} validates the connection by issuing a test certificate.
 In a multi-zone environment, validation is performed on the global control plane.
+{% endif_version %}
 
 <!-- links -->
 {% if_version gte:2.0.x %}
