@@ -84,13 +84,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: errata-ai/vale-action@reviewdog
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v38
         with:
-          #version: 2.24.0
-          # path where vale checks checking only modified files.
+          sha: ${{ github.sha }}
+          files: |
+            app/
+            docs/
+          files_ignore: |
+            app/_src/.repos/kuma/**
+            app/gateway/2.7.x/**
+            app/gateway/2.6.x/**
+          json: true
+          quotepath: false
+          escape_json: false
+      - uses: errata-ai/vale-action@reviewdog
+        if: steps.changed-files.outputs.any_changed == 'true'
+        with:
           fail_on_error: true
+          files: '${{ steps.changed-files.outputs.all_changed_files }}'
           filter_mode: file
-          vale_flags: "--glob=!app/_src/.repos/kuma/**"
           reporter: github-pr-review
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
