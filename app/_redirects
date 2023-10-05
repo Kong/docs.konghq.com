@@ -299,6 +299,7 @@
 /hub/smartparkingtechnology/*                      /hub/
 /hub/bitnami/*                                     /gateway/latest/install/
 /hub/kong-inc/kong-terraform-aws/                  https://github.com/kong/kong-terraform-aws
+/hub/kong-inc/jwt-signer/#manage-key-signing/      /hub/kong-inc/jwt-signer/manage-keys/
 
 # KONNECT
 
