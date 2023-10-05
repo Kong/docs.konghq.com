@@ -58,7 +58,7 @@ To add authentication in front of an API you just need to enable a plugin.
     X-Kong-Response-Latency: 1
     Server: kong/3.0.1
 
-    {"message":"Unauthorized"
+    {"message":"Unauthorized"}
     ```
 
 ## Provision consumers
