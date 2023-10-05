@@ -9,8 +9,6 @@ Learn to configure the Kong ACL Plugin. To use the ACL Plugin you need at least 
 
 {% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
 
-{% include_cached /md/kic/class.md kong_version=page.kong_version %}
-
 {% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/lemon' name='lemon' %}
 
 After the first route is working, create a second pointing to the same Service:
