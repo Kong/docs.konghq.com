@@ -16,7 +16,14 @@ your choice. After the installation is complete, see the [getting started](/kube
 {% navtabs %}
 {% navtab YAML manifests %}
 
-You can install using YAML manifest files in these platforms:
+
+You can install {{ site.kic_product_name }} with a single `kubectl apply` for testing purposes:
+
+```bash
+$ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.release }}/deploy/single/all-in-one-dbless.yaml
+```
+
+There are additional instructions for the following platforms:
 
 - [Minikube](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/minikube/)
 - [Google Kubernetes Engine(GKE) by Google](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/gke/)
