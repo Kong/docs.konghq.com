@@ -24,7 +24,7 @@ Trusted IPs module
  Trusted IP addresses are those that are known to send correct replacement
  addresses for clients (as per the chosen header field, e.g. X-Forwarded-*).
 
- See [docs.konghq.com/latest/configuration/#trusted_ips](latest/configuration/#trusted_ips)
+ See [docs.konghq.com/latest/configuration/#trusted_ips](/gateway/latest/reference/configuration/#trusted_ips)
 
 
 
