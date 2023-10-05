@@ -134,6 +134,7 @@ items:
         url: /references/annotations
       - text: CLI Arguments
         url: /references/cli-arguments
+        src: references/cli-arguments-lte-2.11.x
       - text: Custom Resource Definitions
         url: /references/custom-resources
         src: references/custom-resources-lte-2.6.x

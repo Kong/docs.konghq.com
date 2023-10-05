@@ -242,25 +242,25 @@ Set up the "Blue" environment, running version 1 of the address service:
 
 ```bash
 # create an upstream
-$ curl -X POST http://kong:8001/upstreams \
+$ curl -X POST http://localhost:8001/upstreams \
     --data "name=address.v1.service"
 
 # add two targets to the upstream
-$ curl -X POST http://kong:8001/upstreams/address.v1.service/targets \
+$ curl -X POST http://localhost:8001/upstreams/address.v1.service/targets \
     --data "target=192.168.34.15:80"
     --data "weight=100"
-$ curl -X POST http://kong:8001/upstreams/address.v1.service/targets \
+$ curl -X POST http://localhost:8001/upstreams/address.v1.service/targets \
     --data "target=192.168.34.16:80"
     --data "weight=50"
 
 # create a Service targeting the Blue upstream
-$ curl -X POST http://kong:8001/services/ \
+$ curl -X POST http://localhost:8001/services/ \
     --data "name=address-service" \
     --data "host=address.v1.service" \
     --data "path=/address"
 
 # finally, add a Route as an entry-point into the Service
-$ curl -X POST http://kong:8001/services/address-service/routes/ \
+$ curl -X POST http://localhost:8001/services/address-service/routes/ \
     --data "hosts[]=address.mydomain.com"
 ```
 
@@ -274,14 +274,14 @@ environment:
 
 ```bash
 # create a new Green upstream for address service v2
-$ curl -X POST http://kong:8001/upstreams \
+$ curl -X POST http://localhost:8001/upstreams \
     --data "name=address.v2.service"
 
 # add targets to the upstream
-$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+$ curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
     --data "target=192.168.34.17:80"
     --data "weight=100"
-$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+$ curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
     --data "target=192.168.34.18:80"
     --data "weight=100"
 ```
@@ -290,7 +290,7 @@ To activate the Blue/Green switch, we now only need to update the Service:
 
 ```bash
 # Switch the Service from Blue to Green upstream, v1 -> v2
-$ curl -X PATCH http://kong:8001/services/address-service \
+$ curl -X PATCH http://localhost:8001/services/address-service \
     --data "host=address.v2.service"
 ```
 
@@ -312,12 +312,12 @@ Using a very simple 2 target example:
 
 ```bash
 # first target at 1000
-$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+$ curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
     --data "target=192.168.34.17:80"
     --data "weight=1000"
 
 # second target at 0
-$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+$ curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
     --data "target=192.168.34.18:80"
     --data "weight=0"
 ```
@@ -327,12 +327,12 @@ slowly be routed towards the other target. For example, set it at 10%:
 
 ```bash
 # first target at 900
-$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+$ curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
     --data "target=192.168.34.17:80"
     --data "weight=900"
 
 # second target at 100
-$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+$ curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
     --data "target=192.168.34.18:80"
     --data "weight=100"
 ```

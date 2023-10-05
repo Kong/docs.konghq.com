@@ -18,7 +18,7 @@ This brings you to a set of installation options. Choose one of the options, the
 
 {{site.konnect_short_name}} supports the following installation options:
 
-![Konnect install options](/assets/images/docs/konnect/konnect-install-options.png){:.image-border}
+![Konnect install options](/assets/images/products/konnect/gateway-manager/konnect-install-options.png){:.image-border}
 
 Standard setup:
 * macOS (ARM)
@@ -45,11 +45,11 @@ Advanced setup:
 
 ## Data plane node dashboard
 ### Data plane node dashboard
-![gateway data plane node dashboard](/assets/images/docs/konnect/konnect-runtime-instance-gateway.png)
+![gateway data plane node dashboard](/assets/images/products/konnect/gateway-manager/konnect-runtime-instance-gateway.png)
 > **Figure 1:** This image shows the Gateway data plane node dashboard. For each Gateway data plane node, you can see analytics, and host details.
 
 ### KIC data plane node dashboard
-![KIC data plane node dashboard](/assets/images/docs/konnect/konnect-runtime-instance-kic.png)
+![KIC data plane node dashboard](/assets/images/products/konnect/gateway-manager/konnect-runtime-instance-kic.png)
 > **Figure 2:** This image shows a KIC data plane node dashboard. For each KIC data plane node, you can see details about the data plane node, analytics, and KIC status details.
 
 ## More information

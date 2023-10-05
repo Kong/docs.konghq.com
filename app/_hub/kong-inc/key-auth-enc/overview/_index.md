@@ -273,7 +273,7 @@ Response:
 Filter the list by consumer by using a different endpoint:
 
 ```bash
-curl -X GET http://kong:8001/consumers/{USERNAME_OR_ID}/key-auth-enc
+curl -X GET http://localhost:8001/consumers/{USERNAME_OR_ID}/key-auth-enc
 ```
 
 `{USERNAME_OR_ID}`: The username or ID of the consumer whose credentials need to be listed.
@@ -305,7 +305,7 @@ Retrieve a [consumer][consumer-object] associated with an API
 key by making the following request:
 
 ```bash
-curl -X GET http://kong:8001/key-auths-enc/{key or id}/consumer
+curl -X GET http://localhost:8001/key-auths-enc/{key or id}/consumer
 ```
 
 `key or id`: The `id` or `key` property of the API key for which to get the

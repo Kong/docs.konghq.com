@@ -27,7 +27,7 @@ or create a [control plane group](/konnect/gateway-manager/control-plane-groups/
 
 Open the **Plugins** menu from within a control plane to access and manage its list of plugins:
 
-![List of plugins in a control plane](/assets/images/docs/konnect/konnect-plugin-list.png)
+![List of plugins in a control plane](/assets/images/products/konnect/gateway-manager/plugins/konnect-plugin-list.png)
 
 ### Custom plugins
 
@@ -54,7 +54,7 @@ To run in {{site.konnect_short_name}}, every custom plugin must meet the followi
   * The `schema.lua` file must not contain any `require()` statements.
   * Plugins that require third-party libraries must reference them in the `handler.lua` file.
 
-![Custom plugins](/assets/images/docs/konnect/konnect-custom-plugins.png){:.image-border}
+![Custom plugins](/assets/images/products/konnect/gateway-manager/plugins/konnect-custom-plugins.png){:.image-border}
 
 ### Application registration plugins
 

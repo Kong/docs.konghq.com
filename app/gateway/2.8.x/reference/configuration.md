@@ -1111,8 +1111,10 @@ See http://nginx.org/en/docs/ngx_core_module.html#daemon.
 
 #### mem_cache_size
 
-Size of each of the two in-memory caches for database entities. The accepted
-units are `k` and `m`, with a minimum recommended value of a few MBs.
+Size of each of the two shared memory caches for traditional mode database
+entities and runtime data, `kong_core_cache` and `kong_cache`.
+
+The accepted units are `k` and `m`, with a minimum recommended value of a few MBs.
 
 **Note**: As this option controls the size of two different cache entries, the
 total memory Kong uses to cache entities might be double this value.
