@@ -43,7 +43,7 @@ repository contains [openresty-build-tools](https://github.com/Kong/kong-build-t
 which allows you to more easily build OpenResty with the necessary patches and modules.
 
 There is a new way to deploy Go using Plugin Servers.
-For more information, see [Developing Go plugins](gateway/2.6.x/reference/external-plugins/#developing-go-plugins).
+For more information, see [Developing Go plugins](/gateway/2.6.x/reference/external-plugins/#developing-go-plugins).
 
 ### Template changes
 
@@ -186,7 +186,7 @@ $ kong migrations up [-c configuration_file]
 
 If the command is successful, and no migration ran
 (no output), then you only have to
-[reload](gateway/2.7.x/reference/cli/#kong-reload) Kong:
+[reload](/gateway/2.7.x/reference/cli/#kong-reload) Kong:
 
 ```shell
 $ kong reload [-c configuration_file]

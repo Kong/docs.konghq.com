@@ -105,9 +105,9 @@ Returns the scheme component of the request's URL, but also considers
  Whether this function considers `X-Forwarded-Proto` or not depends on
  several Kong configuration parameters:
 
- * [trusted\_ips](gateway/latest/reference/configuration/#trusted_ips)
- * [real\_ip\_header](gateway/latest/reference/configuration/#real_ip_header)
- * [real\_ip\_recursive](gateway/latest/reference/configuration/#real_ip_recursive)
+ * [trusted\_ips](/gateway/latest/reference/configuration/#trusted_ips)
+ * [real\_ip\_header](/gateway/latest/reference/configuration/#real_ip_header)
+ * [real\_ip\_recursive](/gateway/latest/reference/configuration/#real_ip_recursive)
 
  **Note**: Kong does not offer support for the Forwarded HTTP Extension
  (RFC 7239) since it is not supported by ngx_http_realip_module.
@@ -140,9 +140,9 @@ Returns the host component of the request's URL or the value of the "host"
  Whether this function considers `X-Forwarded-Host` or not depends on
  several Kong configuration parameters:
 
- * [trusted\_ips](gateway/latest/reference/configuration/#trusted_ips)
- * [real\_ip\_header](gateway/latest/reference/configuration/#real_ip_header)
- * [real\_ip\_recursive](gateway/latest/reference/configuration/#real_ip_recursive)
+ * [trusted\_ips](/gateway/latest/reference/configuration/#trusted_ips)
+ * [real\_ip\_header](/gateway/latest/reference/configuration/#real_ip_header)
+ * [real\_ip\_recursive](/gateway/latest/reference/configuration/#real_ip_recursive)
 
  **Note**: Kong does not offer support for the Forwarded HTTP Extension
  (RFC 7239) since it is not supported by ngx_http_realip_module.
@@ -174,16 +174,16 @@ Returns the port component of the request's URL, but also considers
  Whether this function considers `X-Forwarded-Proto` or not depends on
  several Kong configuration parameters:
 
- * [trusted\_ips](gateway/latest/reference/configuration/#trusted_ips)
- * [real\_ip\_header](gateway/latest/reference/configuration/#real_ip_header)
- * [real\_ip\_recursive](gateway/latest/reference/configuration/#real_ip_recursive)
+ * [trusted\_ips](/gateway/latest/reference/configuration/#trusted_ips)
+ * [real\_ip\_header](/gateway/latest/reference/configuration/#real_ip_header)
+ * [real\_ip\_recursive](/gateway/latest/reference/configuration/#real_ip_recursive)
 
  **Note**: Kong does not offer support for the Forwarded HTTP Extension
  (RFC 7239) since it is not supported by ngx_http_realip_module.
 
  When running Kong behind the L4 port mapping (or forwarding), you can also
  configure:
- * [port\_maps](gateway/latest/reference/configuration/#port_maps)
+ * [port\_maps](/gateway/latest/reference/configuration/#port_maps)
 
  The `port_maps` configuration parameter enables this function to return the
  port to which the port Kong is listening to is mapped to (in case they differ).
@@ -215,9 +215,9 @@ Returns the path component of the request's URL, but also considers
  Whether this function considers `X-Forwarded-Path` or not depends on
  several Kong configuration parameters:
 
- * [trusted\_ips](gateway/latest/reference/configuration/#trusted_ips)
- * [real\_ip\_header](gateway/latest/reference/configuration/#real_ip_header)
- * [real\_ip\_recursive](gateway/latest/reference/configuration/#real_ip_recursive)
+ * [trusted\_ips](/gateway/latest/reference/configuration/#trusted_ips)
+ * [real\_ip\_header](/gateway/latest/reference/configuration/#real_ip_header)
+ * [real\_ip\_recursive](/gateway/latest/reference/configuration/#real_ip_recursive)
 
  **Note**: Kong does not do any normalization on the request path.
 
@@ -255,9 +255,9 @@ Returns the prefix path component of the request's URL that Kong stripped
  Whether this function considers `X-Forwarded-Prefix` or not depends on
  several Kong configuration parameters:
 
- * [trusted\_ips](gateway/latest/reference/configuration/#trusted_ips)
- * [real\_ip\_header](gateway/latest/reference/configuration/#real_ip_header)
- * [real\_ip\_recursive](gateway/latest/reference/configuration/#real_ip_recursive)
+ * [trusted\_ips](/gateway/latest/reference/configuration/#trusted_ips)
+ * [real\_ip\_header](/gateway/latest/reference/configuration/#real_ip_header)
+ * [real\_ip\_recursive](/gateway/latest/reference/configuration/#real_ip_recursive)
 
  **Note**: Kong does not do any normalization on the request path prefix.
 

@@ -23,7 +23,7 @@ Trusted IPs module.
  addresses for clients (as per the chosen header field, for example
  X-Forwarded-*).
 
- See the [documentation on trusted IPs](gateway/latest/reference/configuration/#trusted_ips).
+ See the [documentation on trusted IPs](/gateway/latest/reference/configuration/#trusted_ips).
 
 
 
