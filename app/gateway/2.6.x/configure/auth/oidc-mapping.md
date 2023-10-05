@@ -34,10 +34,9 @@ Manager.
 
 ## Create Kong Groups and Assign Roles
 
-<div class="alert alert-ee blue">
-<b>Note:</b> The following examples assume that you have RBAC enabled with
+{:.note}
+> **Note:** The following examples assume that you have RBAC enabled with
 Basic Auth and are transitioning to OpenID Connect.
-</div>
 
 {% navtabs %}
 {% navtab Kong Manager %}
@@ -76,7 +75,7 @@ easy for you to identify.
 name:
 
     ```sh
-    $ curl -X POST --url http://<admin-hostname>:8001/groups \
+    $ curl -X POST --url http://localhost:8001/groups \
       --header 'content-type: application/json' \
       --header 'kong-admin-token: <yourtoken>' \
       --data '{
@@ -91,7 +90,7 @@ name:
 2. Assign a role to the group:
 
     ```sh
-    $ curl -X POST --url http://<admin-hostname>:8001/groups/{group-id}/roles \
+    $ curl -X POST --url http://localhost:8001/groups/{group-id}/roles \
       --header 'content-type: application/json' \
       --header 'kong-admin-token: <yourtoken>' \
       --data '{   
@@ -109,7 +108,7 @@ name:
 3. Create an admin for the group:
 
     ```sh
-    $ curl -X POST --url http://<admin-hostname>:8001/admins \
+    $ curl -X POST --url http://localhost:8001/admins \
       --header 'content-type: application/json' \
       --header 'kong-admin-token: <yourtoken>' \
       --data '{

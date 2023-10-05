@@ -612,7 +612,7 @@ following on a control plane:
 {% navtabs %}
 {% navtab Using cURL %}
 ```bash
-curl -i -X GET http://<admin-hostname>:8001/clustering/data-planes
+curl -i -X GET http://localhost:8001/clustering/data-planes
 ```
 {% endnavtab %}
 {% navtab Using HTTPie %}

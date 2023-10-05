@@ -34,7 +34,6 @@ repos:
   vagrant: https://github.com/Kong/kong-vagrant
   homebrew: https://github.com/Kong/homebrew-kong
   cloudformation: https://github.com/Kong/kong-dist-cloudformation
-  oauth2_hello_world: https://github.com/Kong/kong-oauth2-hello-world
 
 # for Kong platform extensions (not Jekyll)
 extensions:
@@ -119,6 +118,11 @@ defaults:
       layout: "docs-v2"
 
   - scope:
+      path: "gateway-operator"
+    values:
+      layout: "docs-v2"
+
+  - scope:
       path: "konnect"
     values:
       layout: "docs-v2"
@@ -182,9 +186,11 @@ hub-filters:
   tiers:
     - name: Free
       slug: free
-    - name: Plus
-      slug: plus
-    - name: Enterprise
+    - name: Konnect Paid
+      slug: paid
+    - name: Konnect Premium
+      slug: premium
+    - name: Kong Gateway Enterprise
       slug: enterprise
   support:
     - name: Kong
@@ -201,6 +207,7 @@ hub-filters:
 ee_product_name: Kong Enterprise
 ce_product_name: Kong Gateway (OSS)
 base_gateway: Kong Gateway
+kgo_product_name: Kong Gateway Operator
 kic_product_name: Kong Ingress Controller
 konnect_product_name: Kong Konnect
 konnect_short_name: Konnect

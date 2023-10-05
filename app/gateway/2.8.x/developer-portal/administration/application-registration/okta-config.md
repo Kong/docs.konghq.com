@@ -38,7 +38,7 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
 
    1. In the `Config.Issuer` field, enter the Issuer URL of the Authorization server from your identity provider.
 
-      ![OIDC with Okta Issuer URL](/assets/images/docs/dev-portal/oidc-issuer-url.png)
+      ![OIDC with Okta Issuer URL](/assets/images/products/gateway/dev-portal/oidc-issuer-url.png)
 
    2. In the `Config.Consumer Claim` field, enter your `<application_id>`.
 
@@ -46,7 +46,7 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
    auth types by default, ensure the
    `config.verify_parameters` option is disabled.
 
-   ![Clear Config Verify Parameters for OIDC with Okta](/assets/images/docs/dev-portal/oidc-clear-verify-params-app-reg.png)
+   ![Clear Config Verify Parameters for OIDC with Okta](/assets/images/products/gateway/dev-portal/oidc-clear-verify-params-app-reg.png)
 
    The core configuration should be:
 
@@ -88,11 +88,10 @@ your Okta application will vary:
 Now that the application has been configured in Okta, you need to associate the
 Okta application with the corresponding application in Kong's Dev Portal.
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> Each developer should have their own application in both Okta and Kong.  
-  Each Okta application has its own `client_id` that maps to its respective application in Kong.
-  Essentially, this maps identity provider applications to portal applications.
-</div>
+{:.note}
+> **Note:** Each developer should have their own application in both Okta and Kong.  
+Each Okta application has its own `client_id` that maps to its respective application in Kong.
+Essentially, this maps identity provider applications to portal applications.
 
 This example assumes Client Credentials is the chosen OAuth flow.
 
@@ -101,7 +100,7 @@ This example assumes Client Credentials is the chosen OAuth flow.
 3. On the Applications page, click `+ New Application`.
 4. Complete the **Name** and **Description** fields. Paste the `client_id` of your corresponding Okta (or other identity provider) application into the **Reference Id** field.
 
-   ![Kong Create Application with Reference Id](/assets/images/docs/dev-portal/create-app-ref-id.png)
+   ![Kong Create Application with Reference Id](/assets/images/products/gateway/dev-portal/create-app-ref-id.png)
 
 Now that the application has been created, developers can authenticate with the
 endpoint using the supported and recommended

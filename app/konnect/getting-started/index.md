@@ -10,22 +10,22 @@ New to {{site.konnect_saas}}? Get started with the basics through the web app:
 
     [Create an account &gt;](/konnect/getting-started/access-account/)
 
-1.  **Set up a runtime instance**:
+1.  **Set up a data plane node**:
 
-    Set up your first runtime instance, which gives you a data plane for proxying traffic.
+    Set up your first data plane node for proxying traffic.
 
     Start with a data plane proxy so that when your service configuration is
     ready, your services are immediately connected, configured,
     and available for testing.
 
-    [Set up a runtime instance &gt;](/konnect/getting-started/configure-runtime/)
+    [Set up a data plane node &gt;](/konnect/getting-started/configure-data-plane-node/)
 
 
 2.  **Create a Gateway service**:
 
-    Proxy a service using the {{site.konnect_short_name}} Runtime Manager
+    Proxy a service using the {{site.konnect_short_name}} Gateway Manager
 
-    After you've configured a service and the runtime proxy is ready, testing
+    After you've configured a service and the data plane proxy is ready, testing
     is the next step. Here you set up a route to a mocking API service,
     then proxy traffic through the route.
 

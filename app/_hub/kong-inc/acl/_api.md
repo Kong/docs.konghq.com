@@ -14,7 +14,7 @@ The `/acls` endpoints only appear once the plugin has been enabled.
 Retrieves paginated ACLs.
 
 ```bash
-curl -X GET http://{HOST}:8001/acls
+curl -X GET http://localhost:8001/acls
 ```
 
 Result:
@@ -49,7 +49,7 @@ Result:
 Retrieves ACLs by consumer.
 
 ```bash
-curl -X GET http://{HOST}:8001/consumers/{CONSUMER}/acls
+curl -X GET http://localhost:8001/consumers/{CONSUMER}/acls
 ```
 
 Result:
@@ -74,7 +74,7 @@ Result:
 Retrieves ACL by ID if the ACL belongs to the specified consumer.
 
 ```bash
-curl -X GET http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}
+curl -X GET http://localhost:8001/consumers/{CONSUMER}/acls/{ID}
 ```
 
 Result:
@@ -97,7 +97,7 @@ Retrieves a consumer associated with an ACL
 using the following request:
 
 ```bash
-curl -X GET http://{HOST}:8001/acls/{ID}/consumer
+curl -X GET http://localhost:8001/acls/{ID}/consumer
 ```
 
 Result:
@@ -116,7 +116,7 @@ Result:
 Update and insert the group name of the ACL by passing a new group name.
 
 ```bash
-curl -X PUT http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}
+curl -X PUT http://localhost:8001/consumers/{CONSUMER}/acls/{ID}
   --data "group=newgroupname"
 ```
 
@@ -129,7 +129,7 @@ curl -X PUT http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}
 Updates an ACL group name by passing a new group name.
 
 ```bash
-curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/acls \
+curl -X POST http://localhost:8001/consumers/{CONSUMER}/acls \
     --data "group=group1"
 ```
 
@@ -140,7 +140,7 @@ curl -X POST http://{HOST}:8001/consumers/{CONSUMER}/acls \
 Deletes an ACL group by ID or group name.
 
 ```bash
-curl -X DELETE http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}
+curl -X DELETE http://localhost:8001/consumers/{CONSUMER}/acls/{ID}
 ```
 
 `ID`: The `id` property of the ACL.  
@@ -148,7 +148,7 @@ curl -X DELETE http://{HOST}:8001/consumers/{CONSUMER}/acls/{ID}
 Deletes an ACL group by group name.
 
 ```bash
-curl -X DELETE http://{HOST}:8001/consumers/{CONSUMER}/acls/{GROUP}
+curl -X DELETE http://localhost:8001/consumers/{CONSUMER}/acls/{GROUP}
 ```
 
 `GROUP`: The `group` property of the ACL.  

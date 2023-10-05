@@ -26,14 +26,14 @@ For the Kong latency report, Tal configures the following:
 * **Group by**: API Product
 * **Choose Granularity**: Minutely
 
-Then, they add a filter to filter by the individual runtime group:
+Then, they add a filter to filter by the Control Plane
 
-* **Filter by**: Runtime Group
+* **Filter by**: Control Plane
 * **Operator**: In
 * **Value**: prod 
 
 
-![Production - Kong Latency (last hour)](/assets/images/docs/konnect/custom-reports/latency/kong-latency.png){:.image-border}
+![Production - Kong Latency (last hour)](/assets/images/products/konnect/analytics/custom-reports/kong-latency.png){:.image-border}
 > _**Figure 1:** Line chart showing the latency over the last hour. The line chart shows the Account API briefly spiking while the Payment API doesn't spike at all._
 
 
@@ -50,14 +50,14 @@ For the Upstream latency report, Tal configures the following:
 * **Group by**: API Product
 * **Choose Granularity**: Minutely
 
-Then they add a filter to filter by the individual Runtime Group 
+Then they add a filter to filter by Control Plane
 
-* **Filter by**: Runtime Group
+* **Filter by**: Control Plane
 * **Operator**: In
 * **Value**: prod 
 
 
-![Production - Upstream Latency (last hour)](/assets/images/docs/konnect/custom-reports/latency/upstream-latency.png){:.image-border}
+![Production - Upstream Latency (last hour)](/assets/images/products/konnect/analytics/custom-reports/upstream-latency.png){:.image-border}
 > _**Figure 2:** Line chart showing the upstream latency over the last hour. The line chart shows the Account API spiking while the Payment API remains at normal levels._
 
 

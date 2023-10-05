@@ -29,7 +29,7 @@ Kuma | Kong's open-source service mesh. <br><br> ❌&nbsp; Do not use "Kong Kuma
 Insomnia | Kong's open-source API client.
 Dev Portal <br><br> Dev Portal, self-managed <br> Dev Portal, cloud | A module for sharing APIs and their specs with developers, and enabling the developers to create applications based on Gateway or Konnect services. <br><br> ❌&nbsp; Do not use "Developer Portal".
 Service Hub | The service catalog in Konnect. <br><br> ❌&nbsp; Do not use "ServiceHub", "Service hub", or "Servicehub".
-Runtime Manager | The runtime management service in Konnect <br><br> ❌&nbsp; Do not use "Runtime manager".
+Gateway Manager | The runtime management service in Konnect <br><br> ❌&nbsp; Do not use "Gateway manager" with lowercase "manager".
 Analytics | Analytics and monitoring for Gateway and Konnect. <br><br> ❌&nbsp; Do not use "Vitals".
 decK | Kong's CLI tool for managing declarative configuration.<br><br> ❌&nbsp; Do not capitalize the first letter, even if the name appears at the start of a sentence.
 

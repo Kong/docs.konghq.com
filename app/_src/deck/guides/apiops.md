@@ -83,7 +83,7 @@ upstreams: []
 > **Note**: The {{site.base_gateway}} [getting started guide](/gateway/latest/get-started/) 
 can help you quickly run a gateway in Docker to follow along with these instructions.
 
-You can syncronize this directly to the gateway using `deck sync`:
+You can synchronize this directly to the gateway using `deck sync`:
 
 ```sh
 deck sync -s mockbin.yaml
@@ -102,8 +102,8 @@ Summary:
 
 This is a very simple example. In reality, you will generally want to configure more sophisticated {{site.base_gateway}} capabilities 
 for your API. Maybe you want to secure your API with an 
-[authentication plugin](https://docs.konghq.com/hub/?category=security), 
-or protect it with [traffic management](https://docs.konghq.com/hub/?category=traffic-control).
+[authentication plugin](/hub/?category=security), 
+or protect it with [traffic management](/hub/?category=traffic-control).
 These API Gateway concepts are usually orthogonal to the OAS, and a clearer
 separation of concerns is achieved if they are configured independently of the specification.
 
@@ -114,7 +114,7 @@ This can be accomplished with decK file _transformations_.
 If you are building microservices or an API platform for multiple teams, you likely have 
 multiple services and code repositories with their own decK configuration files. 
 Using decK file transformation commands, you can organize your decK configuration files into partial segments 
-of the full configuration and assemble them prior to syncronizing with {{site.base_gateway}}. 
+of the full configuration and assemble them prior to synchronizing with {{site.base_gateway}}. 
 This allows you to organize different aspects of the configuration in alignment with the rest of your
 software development artifacts.
 
@@ -188,3 +188,8 @@ Most commonly, you will use the commands from CI/CD tools built into your versio
 to bring full and partial {{site.base_gateway}} configurations together to create APIOps for your 
 particular needs.
 
+## More information
+
+See the example file at [Kong/go-apiops](https://github.com/Kong/go-apiops/blob/main/docs/learnservice_oas.yaml)
+for extensive annotations explaining the conversion process, as well as all supported custom 
+annotations (`x-kong-...` directives).

@@ -923,7 +923,7 @@ See http://nginx.org/en/docs/ngx_core_module.html#daemon.
 ### mem_cache_size
 
 Size of each of the two shared memory caches for traditional mode database
-entities and runtime data.
+entities and runtime data, `kong_core_cache` and `kong_cache`.
 
 The accepted units are `k` and `m`, with a minimum recommended value of a few
 MBs.
@@ -4191,12 +4191,16 @@ and valid UUID. When empty, node ID is automatically generated.
 
 **Default:** none
 
+----
+
+## Cluster Fallback Configuration section
+
 ### cluster_fallback_config_import
 {:.badge .enterprise}
 
-Enable fallback configuration imports
+Enable fallback configuration imports.
 
-This should only be enabled for data plane
+This should only be enabled for data planes.
 
 **Default:** `off`
 
@@ -4205,21 +4209,24 @@ This should only be enabled for data plane
 {:.badge .enterprise}
 
 Storage definition used by `cluster_fallback_config_import` and
-`cluster_fallback_config_export`
+`cluster_fallback_config_export`.
 
-Currently supported storage type: S3-like storages and GCP storage service.
+Supported storage types:
+
+- S3-like storages
+- GCP storage service
 
 To use S3 with a bucket named b and place all configs to with a key prefix
-named p, set it to: s3://b/p To use GCP for the same bucket and prefix, set it
-to: gcs://b/p
+named p, set it to: `s3://b/p` To use GCP for the same bucket and prefix, set it
+to: `gcs://b/p`
 
-The credentials (and endpoint URL for S3-like) for S3 are passing with
-environment variables: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` and
+The credentials (and the endpoint URL for S3-like) for S3 are passed with
+environment variables: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and
 `AWS_CONFIG_STORAGE_ENDPOINT` (extension), where `AWS_CONFIG_STORAGE_ENDPOINT`
 is the endpoint that hosts S3-like storage.
 
-The credentials for GCP is provided via the environment variable
-`GCP_SERVICE_ACCOUNT`
+The credentials for GCP are provided via the environment variable
+`GCP_SERVICE_ACCOUNT`.
 
 **Default:** none
 
@@ -4237,16 +4244,15 @@ Enable fallback configuration exports.
 
 The fallback configuration export interval.
 
-If it's set to 60 and configuration A is exported and there're new
-configurations B, C and D in the next 60 seconds, it will wait until 60 seconds
+If the interval is set to 60 and configuration A is exported and there are new
+configurations B, C, and D in the next 60 seconds, it will wait until 60 seconds
 passed and export D, skipping B and C.
 
 **Default:** `60`
 
-
 ---
 
-## Wasm section
+## WebAssembly (Wasm) section
 
 ### wasm
 

@@ -115,7 +115,7 @@ Note:
 
 1. Health checks operate only on [*active* targets][targetobject] and do not
    modify the *active* status of a target in the Kong database.
-2. Unhealthy targets will not be removed from the loadbalancer, and hence will
+2. Unhealthy targets will not be removed from the load balancer, and hence will
    not have any impact on the balancer layout when using the hashing algorithm
    (they will just be skipped).
 3. The [DNS caveats][dnscaveats] and [balancer caveats][balancercaveats]
@@ -149,7 +149,7 @@ When a second failure occurs, another target fails, and another 100 weight is lo
 as unhealthy. Now the ring-balancer operates at 60% of its capacity, but still
 within the configured threshold.
 
-If we assume that the 2 failures occured due to a system overload, we can now assume
+If we assume that the two failures occurred due to a system overload, we can now assume
 that the remaining 60% will also not be able to cope with the full load and soon a third
 node will fail, reducing healthy capacity to 40%. At this point, the Upstream health
 will be less than its threshold, and it will be marked as unhealthy itself.
@@ -175,10 +175,9 @@ when a target is healthy or unhealthy. If the `interval` value for either
 is set to zero, the checking is disabled at the corresponding scenario.
 When both are zero, active health checks are disabled altogether.
 
-<div class="alert alert-warning">
-<strong>Note:</strong> Active health checks currently only support HTTP/HTTPS targets. They
-do not apply to Upstreams assigned to Services with the protocol attribute set to "tcp" or "tls".
-</div>
+{:.note}
+> **Note:** Active health checks currently only support HTTP/HTTPS targets. They
+do not apply to upstreams assigned to services with the protocol attribute set to `tcp` or `tls`.
 
 ### Passive health checks (circuit breakers)
 

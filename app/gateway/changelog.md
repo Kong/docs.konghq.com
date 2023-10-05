@@ -9,6 +9,75 @@ Changelog for supported Kong Gateway versions.
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.4.1.0
+**Release Date** 2023/09/28
+
+### Breaking Changes
+
+*  [**GraphQL Rate Limiting Advanced**](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`): The schema validation has been updated so that Redis cluster mode is now supported. This schema change does not impact other implementations of this plugin.
+  
+### Features
+#### Core
+
+* Support HTTP query parameters in expression routes.
+
+#### Plugins
+
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`):
+  * New field `unauthorized_destroy_session`, which when set to true, destroys the session, by deleting the user's session cookie, when the request is unauthorized. Default to `true`. Set to `false` to preserve the session.
+  * New field `using_pseudo_issuer`. When set to true, the plugin instance will not discover the configuration from the issuer.
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`): A new value is added to the parameter `header_type`, enabling Kong to seamlessly inject Datadog headers into forwarded requests' headers when communicating with upstream services.
+
+
+### Fixes
+#### Core
+
+* Removed a hardcoded proxy-wasm isolation level setting that was preventing the `nginx_http_proxy_wasm_isolation` configuration value from taking effect.
+* Fixed an issue where the TTL of the Key Auth plugin didn't work in DB-less and Hybrid mode.
+* Fixed a problem where an abnormal socket connection will be reused when querying the Postgres database.
+* Fixed an upstream SSL failure when plugins used a response handler.
+* Fixed an issue with the `tls_passthrough` protocol did not work with the router expressions flavor.
+* Fixed an issue where plugins would not trigger correctly when the authenticated consumer is part of multiple consumer groups.
+* Fixed a keyring issue where a Kong node fails to send keyring material when using cluster strategy.
+* Fixed an issue that will cause a failure to send tracing data to Datadog when the value of the `x-datadog-parent-id` header in requests is a short decimal string.
+* Fixed the way RBAC retrieves group roles with a group name whose type is a number.
+* Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availibilty detection feature. 
+
+
+
+#### PDK
+
+* Fixed several issues in Vault and refactored the Vault code base: 
+  * Make DAOs fallback to an empty string when resolving Vault references fail
+  * Use node-level mutex when rotating references  
+  * Refresh references on config changes 
+  * Update plugin referenced values only once per request 
+  * Pass only the valid config options to vault implementations
+  * Resolve multi-value secrets only once when rotating them 
+  * Do not start vault secrets rotation timer on control planes 
+  * Re-enable negative caching 
+  * Reimplement the `kong.vault.try` function 
+  * Remove references from rotation in case their configuration has changed
+* Tracing: fixed an issue that resulted in some parent spans to end before their children due to different precision of their timestamps.
+ 
+#### Plugin
+
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`): fix an issue that resulted in invalid parent IDs in the propagated tracing headers
+* [**mTLS Authentication**](/hub/kong-inc/mtls-auth/) (`mtls-auth`): should not cache the network failure when performing a revocation check
+* [**Canary**](/hub/kong-inc/canary/) (`canary`): allow the `start` field to be a time that occurs in the past.
+* [**SAML**](/hub/kong-inc/saml/) (`saml`): When the Redis session storage is incorrectly configured, users now receive a 500 error instead of being redirected endlessly.
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`): Fix the issue on token revocation on logout where the code was revoking the refresh token when it was supposed to revoke access token when using the discovered revocation endpoint.
+
+
+### Kong Manager
+
+* Kong Manager now links directly to the [Gateway Admin API - EE (beta)](/gateway/api/admin-ee/3.4.0.x/)
+
+### Dependencies
+
+* Fixed incorrect LuaJIT LDP/STP fusion on ARM64 which may sometimes cause incorrect logic.
+
+
 ## 3.4.0.0
 **Release Date** 2023/08/09
 
@@ -26,7 +95,7 @@ Starting with Kong Gateway 3.4.0.0, Kong is not building new Ubuntu 18.04
 images or packages, and Kong will not test package installation on Ubuntu 18.04.
 
     If you need to install Kong Gateway on Ubuntu 18.04, see the documentation for
-    [previous versions](/gateway/3.3.x/install/linux/ubuntu/).
+    [previous versions](/gateway/3.1.x/install/linux/ubuntu/).
 * Amazon Linux 2022 artifacts are renamed to Amazon Linux 2023, based on AWS's own renaming.
 * LMDB encryption has been disabled. The option `declarative_config_encryption_mode` has been removed from `kong.conf`.
 * The `/consumer_groups/:id/overrides` endpoint is deprecated in favor of a more generic plugin scoping mechanism. 
@@ -761,6 +830,56 @@ This should be a 400 because the configuration is invalid.
 
 * When the OpenID Connect (OIDC) plugin is configured to reference HashiCorp Vault in the `config.client_secret` field (for example, `{vault://hcv/clientSecret}`),
 it does not look up the secret correctly.
+
+## 3.2.2.4
+**Release Date** 2023/09/15
+
+### Breaking changes and deprecations
+
+* **Ubuntu 18.04 support removed**: Support for running Kong Gateway on Ubuntu 18.04 ("Bionic") is now deprecated,
+as [Standard Support for Ubuntu 18.04 has ended as of June 2023](https://wiki.ubuntu.com/Releases).
+Starting with Kong Gateway 3.2.2.4, Kong is not building new Ubuntu 18.04
+images or packages, and Kong will not test package installation on Ubuntu 18.04.
+
+    If you need to install Kong Gateway on Ubuntu 18.04, substitute a previous 3.2.x 
+    patch version in the [installation instructions](/gateway/3.2.x/install/linux/ubuntu/).
+- Amazon Linux 2022 artifacts are renamed to Amazon Linux 2023, based on AWS's own renaming.
+- CentOS packages are now removed from the release and are no longer supported in future versions.
+
+### Fixes
+#### Enterprise
+
+* Updated the datafile library to make the SAML plugin work again when Kong is controlled by systemd.
+* Fixed an issue where the anonymous report couldn't be silenced by setting `anonymous_reports=false`.
+* Fixed an issue where a crashing Go plugin server process would cause subsequent requests proxied through Kong to execute Go plugins with inconsistent configurations. The issue only affected scenarios where the same Go plugin is applied to different route or service entities. 
+
+#### Plugins
+
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Correctly set the right table key on `log` and `message`.
+  * If an invalid opaque token is provided but verification fails, print the correct error.
+* [**Rate Limiting**](/hub/kong-inc/rate-limiting/) (`rate-limiting`)
+  * The redis rate limiting strategy now returns an error when Redis Cluster is down.
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * The control plane no longer attempts to create namespace or synchronize counters with Redis.
+* [**Response Transformer Advanced**](/hub/kong-inc/response-transformer-advanced/) (`response-transformer-advanced`)
+  * Does not load response body when `if_status` does not match.
+    
+
+#### Kong Manager
+
+* Fixed an issue where the Zipkin plugin prevented users from editing the `static_tags` configuration.
+* Fixed an issue where the unavailable Datadog Tracing plugin displayed on the plugin installation page.
+* Fixed an issue where some metrics were missing from the StatsD plugin.
+* Fixed an issue where locale files were not found when using a non-default `admin_gui_path` configuration.
+* Fixed an issue where endpoint permissions for application instances did not work as expected.
+* Fixed an issue where some icons were shown as unreadable symbols and characters.
+* Fixed an issue where users were redirected to pages under the default workspace when clicking links for services or routes of entities residing in other workspaces.
+* Fixed an issue that failed to redirect OpenID Connect in Kong Manager if it was provided with an incorrect username.
+
+### Dependencies
+
+* `lua-resty-kafka` is bumped from 0.15 to 0.16
 
 ## 3.2.2.3 
 **Release Date** 2023/06/07
@@ -2602,6 +2721,50 @@ openid-connect
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
+## 2.8.4.3 
+**Release Date** 2023/09/18
+
+### Breaking changes and deprecations
+
+* **Ubuntu 18.04 support removed**: Support for running Kong Gateway on Ubuntu 18.04 ("Bionic") is now deprecated,
+as [Standard Support for Ubuntu 18.04 has ended as of June 2023](https://wiki.ubuntu.com/Releases).
+Starting with Kong Gateway 2.8.4.3, Kong is not building new Ubuntu 18.04
+images or packages, and Kong will not test package installation on Ubuntu 18.04.
+
+* Amazon Linux 2022 artifacts are renamed to Amazon Linux 2023, based on AWS's own renaming.
+ 
+### Features
+#### Plugins
+* [AWS-Lambda](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
+  * The AWS Lambda plugin has been refactored by using `lua-resty-aws` as an underlying AWS library. The refactor simplifies the AWS Lambda plugin codebase and adds support for multiple IAM authenticating scenarios.
+
+### Fixes 
+#### Core
+* Fixed an issue that prevented the `dbless-reconfigure` anonymous report type from respecting anonymous reports with the setting `anonymous_reports=false`.
+* Fixed an issue where you couldn't create developers using the Admin API in a non-default workspace in {{site.base_gateway}} 2.8.4.2.
+* Fixed an issue with Redis catching rate limiting strategy connection failures.
+
+#### Plugins 
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed an issue that caused the plugin to trigger rate limiting unpredictably.
+  * Fixed an issue where {{site.base_gateway}} produced a log of error log entries when multiple Rate Limiting Advanced plugins shared the same namespace.
+* [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Fixed an issue that caused the plugin to return logs with `invalid introspection results` when decoding a bearer token.
+* [Response Transformer Advanced](/hub/kong-inc/response-transformer-advanced/) (`response-transformer-advanced`)
+  * Fixed an issue that caused the response body to load when the `if_status` didn't match.
+
+#### PDK
+* Fixed a bug in the exit hook that caused customized headers to be lost.
+
+### Performance
+#### Configuration
+* Bumped the default value of `upstream_keepalive_pool_size` to 512 and `upstream_keepalive_max_requests` to 1000.
+
+### Dependencies
+* Bumped `lua-protobuf` from 0.3.3 to 0.4.2
+* Bumped `lua-resty-aws` from 1.0.0 to 1.3.1
+* Bumped `lua-resty-gcp` from 0.0.5 to 0.0.13
+
 ## 2.8.4.2
 
 **Release Date** 2023/07/07
@@ -2618,9 +2781,11 @@ openid-connect
 #### Plugins
 * Fixed an issue with the Oauth 2.0 Introspection plugin where a request with JSON that is not a table failed.
 * Fixed an issue where the slow startup of the Go plugin server caused a deadlock.
+
 ### Dependencies
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
+
 ## 2.8.4.1
 
 **Release Date** 2023/05/25

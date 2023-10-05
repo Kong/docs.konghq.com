@@ -30,7 +30,7 @@ module PluginSingleSource
       end
 
       def icon
-        '/assets/images/icons/documentation/hub/icn-reference.svg'
+        '/assets/images/icons/hub-layout/icn-reference.svg'
       end
 
       def breadcrumb_title

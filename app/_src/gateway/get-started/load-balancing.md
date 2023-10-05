@@ -24,7 +24,7 @@ instead of a specific host. For the purposes of our example, the upstream will p
 
 Here is a diagram illustrating the setup:
 
-![Upstream targets](/assets/images/docs/getting-started-guide/upstream-targets.png)
+![Upstream targets](/assets/images/products/gateway/getting-started-guide/upstream-targets.png)
 
 ## Enable load balancing
 

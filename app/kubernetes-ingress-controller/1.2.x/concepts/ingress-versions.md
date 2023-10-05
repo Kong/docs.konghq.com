@@ -15,7 +15,7 @@ equivalent `networking.k8s.io/v1beta1` and `networking.k8s.io/v1` resources for 
 Both Ingress v1beta1 and v1 HTTP rules require a path, which represents a [URI
 path][uri-rfc-paths]. Although v1beta1 had specified that paths were [POSIX
 regular expressions][posix-regex] and enforced this, in practice most
-controllers used other other implementations that did not match the
+controllers used other implementations that did not match the
 specification. v1 seeks to reduce confusion by introducing several [path
 types][path-types] and lifting restrictions on regular expression grammars used
 by controllers.
@@ -60,14 +60,11 @@ criteria. For example, `/foo` will create a route with a `/foo$` regular express
 The controller leaves `ImplementationSpecific` path rules entirely up to the Kong
 router. It creates a route with the exact same path string as the Ingress rule.
 
-<div class="alert alert-warning">
- 
-  Both <code>Prefix</code> and <code>Exact</code> paths modify the paths you
-  provide, and those modifications may interfere with user-provided regular
-  expressions. If you are using your own regular expressions in paths, use
-  <code>ImplementationSpecific</code> to avoid unexpected behavior.
-</div>
-
+{:.important}
+> Both `Prefix` and `Exact` paths modify the paths you
+provide, and those modifications may interfere with user-provided regular
+expressions. If you are using your own regular expressions in paths, use
+`ImplementationSpecific` to avoid unexpected behavior.
 ## Ingress class
 
 [Ingress class][ingress-class] indicates which resources an ingress controller

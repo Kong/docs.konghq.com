@@ -13,10 +13,9 @@ You can download the {{site.mesh_product_name}} binaries from the
 [official installation page](/mesh/{{page.kong_version}}/install), then follow
 [Kuma's official documentation](https://kuma.io/docs){:target="_blank"} to start using the product.
 
-<div class="alert alert-ee blue">
-   Kuma, a donated CNCF project, was originally created by Kong, which is
-   currently maintaining both the project and the documentation.
-</div>
+{:.note}
+Kuma, a donated CNCF project, was originally created by Kong, which is
+currently maintaining both the project and the documentation.
 
 ## 1. Installing {{site.mesh_product_name}}
 

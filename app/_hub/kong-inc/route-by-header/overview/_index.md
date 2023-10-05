@@ -31,7 +31,7 @@ a Kong service `serviceA`, which routes all the requests to upstream `default.do
 Add an upstream object and a target:
 
 ```bash
-curl -i -X POST http://kong:8001/upstreams -d name=default.domain.com
+curl -i -X POST http://localhost:8001/upstreams -d name=default.domain.com
 ```
 
 Response:
@@ -42,7 +42,7 @@ HTTP/1.1 201 Created
 ```
 
 ```bash
-curl -i -X POST http://kong:8001/upstreams/default.domain.com/targets --data target="default.host.com:9000"
+curl -i -X POST http://localhost:8001/upstreams/default.domain.com/targets --data target="default.host.com:9000"
 ```
 
 Response:
@@ -55,7 +55,7 @@ HTTP/1.1 201 Created
 Now we will add a `service` and a `route` object, using the upstream `default.domain.com` we just created:
 
 ```bash
-curl -i -X POST http://kong:8001/services --data protocol=http --data host=default.domain.com --data name=serviceA
+curl -i -X POST http://localhost:8001/services --data protocol=http --data host=default.domain.com --data name=serviceA
 ```
 
 Response:
@@ -66,7 +66,7 @@ HTTP/1.1 201 Created
 ```
 
 ```bash
-curl -i -X POST http://kong:8001/routes  --data "paths[]=/" --data service.id=6e7f5274-62da-469e-bdd5-03c4a212c15b
+curl -i -X POST http://localhost:8001/routes  --data "paths[]=/" --data service.id=6e7f5274-62da-469e-bdd5-03c4a212c15b
 ```
 
 Response:
@@ -98,7 +98,7 @@ HTTP/1.1 201 Created
 ```
 
 ```bash
-curl -i -X POST http://kong:8001/upstreams/east.domain.com/targets --data target="east.host.com:9001"
+curl -i -X POST http://localhost:8001/upstreams/east.domain.com/targets --data target="east.host.com:9001"
 ```
 
 Response:
@@ -120,7 +120,7 @@ HTTP/1.1 201 Created
 ```
 
 ```bash
-curl -i -X POST http://kong:8001/upstreams/west.domain.com/targets --data target="west.host.com:9002"
+curl -i -X POST http://localhost:8001/upstreams/west.domain.com/targets --data target="west.host.com:9002"
 ```
 
 Response:
@@ -133,7 +133,7 @@ HTTP/1.1 201 Created
 Enable plugin on service `serviceA`:
 
 ```bash
-curl -i -X POST http://kong:8001/services/serviceA/plugins \
+curl -i -X POST http://localhost:8001/services/serviceA/plugins \
   -H 'Content-Type: application/json' \
   --data '{"name": "route-by-header", "config": {"rules":[{"condition": {"location":"us-east"}, "upstream_name": "east.domain.com"}, {"condition": {"location":"us-west"}, "upstream_name": "west.domain.com"}]}}'
 ```
@@ -156,7 +156,7 @@ on the provided headers in the `condition` field of each rule.
 Let's patch above plugin to add one more rule with multiple headers:
 
 ```bash
-curl -i -X PATCH http://kong:8001/plugins/0df16085-76b2-4a50-ac30-c8a1eade389a \
+curl -i -X PATCH http://localhost:8001/plugins/0df16085-76b2-4a50-ac30-c8a1eade389a \
   -H 'Content-Type: application/json' \
   --data '{"name": "route-by-header", "config": {"rules":[{"condition": {"location":"us-east"}, "upstream_name": "east.domain.com"}, {"condition": {"location":"us-west"}, "upstream_name": "west.domain.com"},  {"condition": {"location":"us-south", "region": "US"}, "upstream_name": "south.domain.com"}]}}'
 ```

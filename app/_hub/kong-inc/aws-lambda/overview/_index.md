@@ -31,7 +31,26 @@ the plugin falls back on EC2 metadata.
 
 {% endif_plugin_version %}
 
-{% if_plugin_version gte:2.8.x %}
+{% if_plugin_version eq:2.8.x %}
+
+The AWS Lambda plugin automatically fetches the IAM role credential according to the following
+precedence order:
+1. Fetch from credentials defined in environment variables `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+2. Fetch from profile and credential files, defined by `AWS_PROFILE` and `AWS_SHARED_CREDENTIALS_FILE`.
+3. Fetch from ECS [container credential provider](https://docs.aws.amazon.com/sdkref/latest/guide/feature-container-credentials.html).
+4. Fetch from EKS [IAM roles for service account](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
+5. Fetch from EC2 IMDS metadata (both v1 and v2 are supported).
+
+If you also provide the `aws_assume_role_arn` option, the plugin tries to perform
+an additional [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)
+action. The AssumeRole action requires the {{site.base_gateway}} process to make an HTTPS request to the AWS STS service API after
+configuring AWS access key/secret or fetching credentials automatically from EC2/ECS/EKS IAM roles.
+If it succeeds, the plugin fetches temporary security credentials that represent
+that the plugin now has the access permission configured in the target assumed role. Then, the plugin will try to invoke the lambda function based on the target assumed role.
+
+{% endif_plugin_version %}
+
+{% if_plugin_version gte:3.0.x %}
 
 For example, if you're running Kong on an EC2 instance, the IAM role that attached
 to the EC2 will be used, and Kong will fetch the credential from the
@@ -49,6 +68,7 @@ If it succeeds, the plugin will fetch a temporary security credentials that repr
 that the plugin now has the access permission configured in the target assumed role.
 
 {% endif_plugin_version %}
+
 
 ## AWS region as environment variable
 
@@ -106,7 +126,7 @@ to invoke the function.
 Create the route:
 
 ```bash
-curl -i -X POST http://<kong_hostname>:8001/routes \
+curl -i -X POST http://localhost:8001/routes \
 --data 'name=lambda1' \
 --data 'paths[1]=/lambda1'
 ```
@@ -114,7 +134,7 @@ curl -i -X POST http://<kong_hostname>:8001/routes \
 Add the plugin:
 
 ```bash
-curl -i -X POST http://<kong_hostname>:8001/routes/lambda1/plugins \
+curl -i -X POST http://localhost:8001/routes/lambda1/plugins \
 --data 'name=aws-lambda' \
 --data-urlencode 'config.aws_key={KongInvoker user key}' \
 --data-urlencode 'config.aws_secret={KongInvoker user secret}' \
@@ -153,7 +173,7 @@ invocation, execution, and response:
 curl http://<kong_hostname>:8000/lambda1
 ```
 
-Additional headers:
+You should get a response back with the following headers from Amazon:
 
 ```
 x-amzn-Remapped-Content-Length, X-Amzn-Trace-Id, x-amzn-RequestId
