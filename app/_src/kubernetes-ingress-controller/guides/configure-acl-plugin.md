@@ -143,7 +143,7 @@ C6V0e/O3LEuJrP+XrEndtLsCAwEAAQ==
     ```text
     kongconsumer.configuration.konghq.com/admin patched
     ```
-1. Assign the credentials `user-wt` to the `user`. 
+1. Assign the credentials `user-jwt` to the `user`. 
     ```bash
     kubectl patch --type json kongconsumer user \
       -p='[{
