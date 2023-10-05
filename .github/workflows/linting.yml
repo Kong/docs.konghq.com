@@ -98,6 +98,7 @@ jobs:
           quotepath: false
           escape_json: false
       - uses: errata-ai/vale-action@reviewdog
+        if: steps.changed-files.outputs.any_changed == 'true'
         with:
           fail_on_error: true
           files: '${{ steps.changed-files.outputs.all_changed_files }}'
