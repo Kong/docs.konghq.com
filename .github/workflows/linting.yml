@@ -94,6 +94,8 @@ jobs:
             docs/
           files_ignore: |
             app/_src/.repos/kuma/**
+            app/gateway/2.7.x/**
+            app/gateway/2.6.x/**
           json: true
           quotepath: false
           escape_json: false
