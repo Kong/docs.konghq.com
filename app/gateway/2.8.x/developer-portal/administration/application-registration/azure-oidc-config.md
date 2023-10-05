@@ -28,7 +28,7 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 {% navtab Using cURL %}
 
 ```bash
-curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure \
+curl -i -X PUT http://localhost:8001/services/httpbin-service-azure \
   --data 'url=https://httpbin.org/anything'
 ```
 
@@ -48,7 +48,7 @@ http PUT :8001/services/httpbin-service-azure \
 {% navtab Using cURL %}
 
 ```bash
-curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure/routes/httpbin-route-azure \
+curl -i -X PUT http://localhost:8001/services/httpbin-service-azure/routes/httpbin-route-azure \
   --data 'paths=/httpbin-azure'
 ```
 {% endnavtab %}
@@ -74,7 +74,7 @@ The plugins must be applied to a Service to work properly.
 {% navtab Using cURL %}
 
  ```bash
-curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugins \
+curl -X POST http://localhost:8001/services/httpbin-service-azure/plugins \
   --data name=openid-connect \
   --data config.issuer="https://login.microsoftonline.com/<your_tenant_id>/v2.0" \
   --data config.display_errors="true" \
@@ -115,7 +115,7 @@ For more information, see [OIDC plugin](/hub/kong-inc/openid-connect/).
 {% navtab Using cURL %}
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugins \
+curl -X POST http://localhost:8001/services/httpbin-service-azure/plugins \
   --data "name=application-registration"  \
   --data "config.auto_approve=true" \
   --data "config.description=Uses consumer claim with various values (sub, aud, etc.) as registration id to support different flows and use cases." \

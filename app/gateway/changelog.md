@@ -9,6 +9,75 @@ Changelog for supported Kong Gateway versions.
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.4.1.0
+**Release Date** 2023/09/28
+
+### Breaking Changes
+
+*  [**GraphQL Rate Limiting Advanced**](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`): The schema validation has been updated so that Redis cluster mode is now supported. This schema change does not impact other implementations of this plugin.
+  
+### Features
+#### Core
+
+* Support HTTP query parameters in expression routes.
+
+#### Plugins
+
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`):
+  * New field `unauthorized_destroy_session`, which when set to true, destroys the session, by deleting the user's session cookie, when the request is unauthorized. Default to `true`. Set to `false` to preserve the session.
+  * New field `using_pseudo_issuer`. When set to true, the plugin instance will not discover the configuration from the issuer.
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`): A new value is added to the parameter `header_type`, enabling Kong to seamlessly inject Datadog headers into forwarded requests' headers when communicating with upstream services.
+
+
+### Fixes
+#### Core
+
+* Removed a hardcoded proxy-wasm isolation level setting that was preventing the `nginx_http_proxy_wasm_isolation` configuration value from taking effect.
+* Fixed an issue where the TTL of the Key Auth plugin didn't work in DB-less and Hybrid mode.
+* Fixed a problem where an abnormal socket connection will be reused when querying the Postgres database.
+* Fixed an upstream SSL failure when plugins used a response handler.
+* Fixed an issue with the `tls_passthrough` protocol did not work with the router expressions flavor.
+* Fixed an issue where plugins would not trigger correctly when the authenticated consumer is part of multiple consumer groups.
+* Fixed a keyring issue where a Kong node fails to send keyring material when using cluster strategy.
+* Fixed an issue that will cause a failure to send tracing data to Datadog when the value of the `x-datadog-parent-id` header in requests is a short decimal string.
+* Fixed the way RBAC retrieves group roles with a group name whose type is a number.
+* Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availibilty detection feature. 
+
+
+
+#### PDK
+
+* Fixed several issues in Vault and refactored the Vault code base: 
+  * Make DAOs fallback to an empty string when resolving Vault references fail
+  * Use node-level mutex when rotating references  
+  * Refresh references on config changes 
+  * Update plugin referenced values only once per request 
+  * Pass only the valid config options to vault implementations
+  * Resolve multi-value secrets only once when rotating them 
+  * Do not start vault secrets rotation timer on control planes 
+  * Re-enable negative caching 
+  * Reimplement the `kong.vault.try` function 
+  * Remove references from rotation in case their configuration has changed
+* Tracing: fixed an issue that resulted in some parent spans to end before their children due to different precision of their timestamps.
+ 
+#### Plugin
+
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`): fix an issue that resulted in invalid parent IDs in the propagated tracing headers
+* [**mTLS Authentication**](/hub/kong-inc/mtls-auth/) (`mtls-auth`): should not cache the network failure when performing a revocation check
+* [**Canary**](/hub/kong-inc/canary/) (`canary`): allow the `start` field to be a time that occurs in the past.
+* [**SAML**](/hub/kong-inc/saml/) (`saml`): When the Redis session storage is incorrectly configured, users now receive a 500 error instead of being redirected endlessly.
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`): Fix the issue on token revocation on logout where the code was revoking the refresh token when it was supposed to revoke access token when using the discovered revocation endpoint.
+
+
+### Kong Manager
+
+* Kong Manager now links directly to the [Gateway Admin API - EE (beta)](/gateway/api/admin-ee/3.4.0.x/)
+
+### Dependencies
+
+* Fixed incorrect LuaJIT LDP/STP fusion on ARM64 which may sometimes cause incorrect logic.
+
+
 ## 3.4.0.0
 **Release Date** 2023/08/09
 

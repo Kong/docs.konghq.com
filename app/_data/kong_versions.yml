@@ -100,7 +100,7 @@
     pcre: 8.45
   lua_doc: true
 - release: "3.4.x"
-  ee-version: "3.4.0.0"
+  ee-version: "3.4.1.0"
   ce-version: "3.4.0"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -229,6 +229,9 @@
 - release: "2.11.x"
   version: "2.11.0"
   edition: "kubernetes-ingress-controller"
+- release: "2.12.x"
+  version: "2.12.0"
+  edition: "kubernetes-ingress-controller"
 - edition: mesh
   version: 1.2.6
   release: 1.2.x
@@ -302,7 +305,7 @@
   endOfLifeDate: "2024-06-26"
   branch: release-2.3
 - edition: mesh
-  version: 2.4.1
+  version: 2.4.2
   release: 2.4.x
   latest: true
   releaseDate: "2023-08-29"

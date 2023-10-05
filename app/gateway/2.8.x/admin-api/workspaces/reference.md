@@ -364,7 +364,7 @@ Can be used with any request method.
 Target entities within a specified workspace by adding the workspace name or ID prefix before any entity endpoint.
 
 ```sh
-http://<ADMIN_API_HOSTNAME>:8001/<WORKSPACE_NAME|WORKSPACE_ID>/<ENDPOINT>
+http://localhost:8001/<WORKSPACE_NAME|WORKSPACE_ID>/<ENDPOINT>
 ```
 
 For example, to target `services` in the workspace `SRE`:

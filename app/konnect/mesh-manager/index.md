@@ -62,7 +62,7 @@ After your mesh is deployed in {{site.mesh_product_name}}, Mesh Manager displays
 * [Gateways](/mesh/latest/explore/gateway/) associated with your mesh
 * Policies
 
-![mesh control plane dashboard](/assets/images/docs/konnect/konnect-mesh-control-plane-dashboard.png)
+![mesh control plane dashboard](/assets/images/products/konnect/mesh-manager/konnect-mesh-control-plane-dashboard.png)
 > _**Figure 1:** Example control plane dashboard with several zones and services, a service mesh, and data plane proxies._
 
 ## Mesh Manager RBAC

@@ -18,7 +18,7 @@ You can provide extended descriptions of your API products with a Markdown (`.md
 * Deployment workflows
 
 <p align="center">
-  <img src="/assets/images/docs/konnect/konnect_service_docs_description.png" />
+  <img src="/assets/images/products/konnect/api-products/konnect_service_docs_description.png" />
 </p>
 
 All API product descriptions are managed from the **Documentation** section in the API Product overview. Once you've uploaded the markdown file, you have a preview of how it will render, the option to edit, and a view of the publication status. You can also create a hierarchy between the docs you upload that will be reflected in the way they're displayed in the Dev Portal.

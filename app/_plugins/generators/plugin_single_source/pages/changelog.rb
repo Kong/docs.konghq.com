@@ -34,7 +34,7 @@ module PluginSingleSource
       end
 
       def icon
-        '/assets/images/icons/documentation/hub/icn-changelog.svg'
+        '/assets/images/icons/hub-layout/icn-changelog.svg'
       end
 
       private

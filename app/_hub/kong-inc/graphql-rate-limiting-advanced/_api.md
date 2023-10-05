@@ -222,20 +222,20 @@ Add a cost to a service schema.
 Example requests:
 
 ```sh
-curl -X POST http://kong:8001/services/example-service/graphql-rate-limiting-advanced/costs \
+curl -X POST http://localhost:8001/services/example-service/graphql-rate-limiting-advanced/costs \
   --data type_path="Query.allPeople" \
   --data mul_arguments="first"
 
-curl -X POST http://kong:8001/services/example-service/graphql-rate-limiting-advanced/costs \
+curl -X POST http://localhost:8001/services/example-service/graphql-rate-limiting-advanced/costs \
   --data type_path="Person.vehicleConnection" \
   --data mul_arguments="first"
   --data add_constant=42
 
-curl -X POST http://kong:8001/services/example-service/graphql-rate-limiting-advanced/costs \
+curl -X POST http://localhost:8001/services/example-service/graphql-rate-limiting-advanced/costs \
   --data type_path="Vehicle.filmConnection" \
   --data mul_arguments="first"
 
-curl -X POST http://kong:8001/services/example-service/graphql-rate-limiting-advanced/costs \
+curl -X POST http://localhost:8001/services/example-service/graphql-rate-limiting-advanced/costs \
   --data type_path="Film.characterConnection" \
   --data mul_arguments="first"
 ```

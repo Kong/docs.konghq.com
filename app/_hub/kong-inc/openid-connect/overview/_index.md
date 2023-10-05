@@ -384,23 +384,23 @@ difficulties during this phase, please refer to the [Keycloak documentation](htt
 1. Create a confidential client `kong` with `private_key_jwt` authentication and configure
    Keycloak to download the public keys from [the OpenID Connect Plugin JWKS endpoint][json-web-key-set]:
    <br><br>
-   <img src="/assets/images/docs/openid-connect/keycloak-client-kong-settings.png">
+   <img src="/assets/images/products/plugins/openid-connect/keycloak-client-kong-settings.png">
    <br>
-   <img src="/assets/images/docs/openid-connect/keycloak-client-kong-auth.png">
+   <img src="/assets/images/products/plugins/openid-connect/keycloak-client-kong-auth.png">
    <br>
 2. Create another confidential client `service` with `client_secret_basic` authentication.
    For this client, Keycloak will auto-generate a secret similar to the following: `cf4c655a-0622-4ce6-a0de-d3353ef0b714`.
    Enable the client credentials grant for the client:
    <br><br>
-   <img src="/assets/images/docs/openid-connect/keycloak-client-service-settings.png">
+   <img src="/assets/images/products/plugins/openid-connect/keycloak-client-service-settings.png">
    <br>
-   <img src="/assets/images/docs/openid-connect/keycloak-client-service-auth.png">
+   <img src="/assets/images/products/plugins/openid-connect/keycloak-client-service-auth.png">
    <br>
 3. Create a verified user with the name: `john` and the non-temporary password: `doe` that can be used with the password grant:
    <br><br>
-   <img src="/assets/images/docs/openid-connect/keycloak-user-john.png">
+   <img src="/assets/images/products/plugins/openid-connect/keycloak-user-john.png">
 
-Alternatively you can [download the exported Keycloak configuration](/assets/images/docs/openid-connect/keycloak.json),
+Alternatively you can [download the exported Keycloak configuration](/assets/images/products/plugins/openid-connect/keycloak.json),
 and use it to configure the Keycloak. Please refer to [Keycloak import documentation](https://www.keycloak.org/docs/latest/server_admin/#_export_import)
 for more information.
 
@@ -544,7 +544,7 @@ The authorization code flow is the three-legged OAuth/OpenID Connect flow.
 The sequence diagram below describes the participants and their interactions
 for this usage scenario, including the use of session cookies:
 
-![Authorization code flow diagram](/assets/images/docs/openid-connect/authorization-code-flow.svg)
+![Authorization code flow diagram](/assets/images/products/plugins/openid-connect/authorization-code-flow.svg)
 
 {:.note}
 > If using PKCE, the identity provider *must* contain the `code_challenge_methods_supported` object in the `/.well-known/openid-configuration` issuer discovery endpoint response, as required by [RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html). If it is not included, the PKCE `code_challenge` query parameter will not be sent.
@@ -600,16 +600,16 @@ HTTP/1.1 200 OK
    ```bash
    open http://service.test:8000/?hello=world
    ```
-   <img src="/assets/images/docs/openid-connect/authorization-code-flow-1.png">
+   <img src="/assets/images/products/plugins/openid-connect/authorization-code-flow-1.png">
 
 2. See that the browser is redirected to the Keycloak login page:
    <br><br>
-   <img src="/assets/images/docs/openid-connect/authorization-code-flow-2.png">
+   <img src="/assets/images/products/plugins/openid-connect/authorization-code-flow-2.png">
    <br>
    > You may examine the query arguments passed to Keycloak with the browser developer tools.
 3. And finally you will be presented a response from httpbin.org:
    <br><br>
-   <img src="/assets/images/docs/openid-connect/authorization-code-flow-3.png">
+   <img src="/assets/images/products/plugins/openid-connect/authorization-code-flow-3.png">
 4. Done.
 
 It looks rather simple from the user point of view, but what really happened is
@@ -621,7 +621,7 @@ Password grant is a legacy authentication grant. This is a less secure way of
 authenticating end users than the authorization code flow, because, for example,
 the passwords are shared with third parties. The image below illustrates the grant:
 
-<img src="/assets/images/docs/openid-connect/password-grant.svg">
+<img src="/assets/images/products/plugins/openid-connect/password-grant.svg">
 
 #### Patch the Plugin
 
@@ -688,7 +688,7 @@ does not try to authenticate. It just forwards the credentials passed by the cli
 to the identity server's token endpoint. The client credentials grant is visualized
 below:
 
-<img src="/assets/images/docs/openid-connect/client-credentials-grant.svg">
+<img src="/assets/images/products/plugins/openid-connect/client-credentials-grant.svg">
 
 #### Patch the Plugin
 
@@ -756,7 +756,7 @@ is likely when Kong OpenID Connect is configured to use one client, and the refr
 with another. The grant itself is very similar to [password grant](#password-grant) and
 [client credentials grant](#client-credentials-grant):
 
-<img src="/assets/images/docs/openid-connect/refresh-token-grant.svg">
+<img src="/assets/images/products/plugins/openid-connect/refresh-token-grant.svg">
 
 #### Patch the Plugin
 
@@ -849,7 +849,7 @@ the signature verification using the identity provider published public keys and
 claims' verification (such as `exp` (or expiry)). The client may have received the token directly
 from the identity provider or by other means. It is simple:
 
-<img src="/assets/images/docs/openid-connect/bearer-authentication.svg">
+<img src="/assets/images/products/plugins/openid-connect/bearer-authentication.svg">
 
 #### Patch the Plugin
 
@@ -936,7 +936,7 @@ JWT authentication is that the plugin needs to call the introspection endpoint o
 to find out whether the token is valid and active. This makes it possible to issue opaque tokens to
 the clients.
 
-<img src="/assets/images/docs/openid-connect/introspection-authentication.svg">
+<img src="/assets/images/products/plugins/openid-connect/introspection-authentication.svg">
 
 #### Patch the Plugin
 
@@ -1009,7 +1009,7 @@ as that is meant for retrieving information from the token itself, whereas the u
 meant for retrieving information about the user for whom the token was given. The sequence
 diagram below looks almost identical to introspection authentication:
 
-<img src="/assets/images/docs/openid-connect/userinfo-authentication.svg">
+<img src="/assets/images/products/plugins/openid-connect/userinfo-authentication.svg">
 
 #### Patch the Plugin
 
@@ -1081,7 +1081,7 @@ The OpenID Connect plugin can also verify the tokens issued by [Kong OAuth 2.0 P
 This is very similar to third party identity provider issued [JWT access token authentication](#jwt-access-token-authentication)
 or [introspection authentication](#introspection-authentication):
 
-<img src="/assets/images/docs/openid-connect/kong-oauth-authentication.svg">
+<img src="/assets/images/products/plugins/openid-connect/kong-oauth-authentication.svg">
 
 #### Prepare Kong OAuth Application
 
@@ -1214,7 +1214,7 @@ to first authenticate with one of the other grant / flows described above. In
 authentication when we used the redirect login action. The session authentication
 is described below:
 
-<img src="/assets/images/docs/openid-connect/session-authentication.svg">
+<img src="/assets/images/products/plugins/openid-connect/session-authentication.svg">
 
 #### Patch the Plugin
 

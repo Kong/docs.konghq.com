@@ -64,7 +64,7 @@ when attached to an Ingress.
 
 The following diagram shows how the resources are linked with one another:
 
-![Associating Kong Ingress](/assets/images/docs/kubernetes-ingress-controller/kong-ingress-association.png "Associating Kong Ingress")
+![Associating Kong Ingress](/assets/images/products/kubernetes-ingress-controller/kong-ingress-association.png "Associating Kong Ingress")
 
 ## KongPlugin
 
@@ -83,7 +83,7 @@ Ingress, Service, or KongConsumer:
 
 |  |  |
 :-:|:-:
-![](/assets/images/docs/kubernetes-ingress-controller/kong-plugin-association1.png)|![](/assets/images/docs/kubernetes-ingress-controller/kong-plugin-association2.png)
+![](/assets/images/products/kubernetes-ingress-controller/kong-plugin-association1.png)|![](/assets/images/products/kubernetes-ingress-controller/kong-plugin-association2.png)
 
 ## KongClusterPlugin
 

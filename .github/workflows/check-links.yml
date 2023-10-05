@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Wait for Pages changed to be neutral
         uses: fountainhead/action-wait-for-check@v1.1.0
         id: waitForCheck

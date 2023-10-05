@@ -132,7 +132,7 @@ with added functionality.
 You can manage {{site.base_gateway}} in Free or Enterprise mode with Kong's
 [Admin API](#kong-admin-api), [declarative configuration](#deck), or [Kong Manager](#kong-manager).
 
-![Introduction to {{site.base_gateway}}](/assets/images/docs/gateway/gateway_overview.png)
+![Introduction to {{site.base_gateway}}](/assets/images/products/gateway/gateway_overview.png)
 > _Figure 1: Diagram of {{site.base_gateway}} modules and how they relate to the
 foundational Gateway components._
 > <br>
@@ -222,7 +222,7 @@ own data planes.
 
 There are a few ways to test out the Gateway's Plus or Enterprise features:
 
-* Sign up for [{site.konnect_product_name}}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-overview).
+* Sign up for [{{site.konnect_product_name}}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-overview).
 * Check out learning labs at [Kong Academy]({{site.links.learn}}).
 * If you are interested in evaluating Enterprise features locally,
 [request a demo](https://konghq.com/get-started/#request-demo) and a Kong

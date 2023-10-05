@@ -27,13 +27,13 @@ Make sure the Dev Portal is on. You should have enabled it during [installation]
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace \
+curl -X PATCH http://localhost:8001/workspaces/SecureWorkspace \
   --data config.portal=true
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-http -f PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace \
+http -f PATCH http://localhost:8001/workspaces/SecureWorkspace \
   config.portal=true
 ```
 {% endnavtab %}

@@ -30,7 +30,7 @@ This example tutorial steps you through ensuring an API request conforms to the 
 1. Create a service called `Petstore-Service`:
 
     ```bash
-    curl -X POST http://<admin-hostname>:8001/services/ \
+    curl -X POST http://localhost:8001/services/ \
         --data name='Petstore-Service' \
         --data url='https://petstore.swagger.io/v2'
     ```
@@ -38,7 +38,7 @@ This example tutorial steps you through ensuring an API request conforms to the 
 2. Create a wildcard route called `Petstore-Route`:
 
     ```bash
-    curl -X POST http://<admin-hostname>:8001/services/Petstore-Service/routes \
+    curl -X POST http://localhost:8001/services/Petstore-Service/routes \
         --data name='Petstore-Route' \
         --data paths='/.*'
     ```
@@ -46,7 +46,7 @@ This example tutorial steps you through ensuring an API request conforms to the 
 3. Enable the Validation plugin on the service you configured:
 
     ```bash
-    curl -X POST http://<admin-hostname>:8001/services/Petstore-Service/plugins \
+    curl -X POST http://localhost:8001/services/Petstore-Service/plugins \
         --data name='oas-validation' \
         --data config.api_spec='<copy contents of https://petstore.swagger.io/v2/swagger.json here>' \
         --data config.verbose_response=true
