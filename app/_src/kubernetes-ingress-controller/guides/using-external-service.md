@@ -27,8 +27,7 @@ Learn to expose a service located outside the Kubernetes cluster using an Ingres
     The results should look like this:
     ```
     service/proxy-to-httpbin created
-    ```
-
+    ```    
 1. Create an Ingress to expose the service at the path `/httpbin`
 
     {% include_cached /md/kic/http-test-routing-resource.md kong_version=page.kong_version path='/httpbin' name='proxy-from-k8s-to-httpbin' service='proxy-to-httpbin' port='80' %}
