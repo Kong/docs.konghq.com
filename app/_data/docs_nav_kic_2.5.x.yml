@@ -4,7 +4,7 @@ generate: true
 items:
   - title: Introduction
     icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
-    url: /kubernetes-ingress-controller/
+    url: /kubernetes-ingress-controller/2.5.x/
     absolute_url: true
     items:
       - text: FAQ
