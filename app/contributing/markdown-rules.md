@@ -110,7 +110,7 @@ domain (`docs.konghq.com`).
     you would write `/contributing`.
 
 - **Use version variables when possible:** For versioned doc sets such as
-{{site.base_gateway}} and Kong Mesh, use the page version variable.
+{{site.base_gateway}} and {{site.mesh_product_name}}, use the page version variable.
 
     For example: {% raw %}`/enterprise/{{page.kong_version}}/file`{% endraw %}
 
