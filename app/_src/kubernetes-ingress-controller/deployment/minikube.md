@@ -74,8 +74,8 @@ export PROXY_IP=<ip-address>
 {% endnavtab %}
 {% navtab Helm Charts %}
 ```bash
-   export PROXY_IP=${HOST}:${PORT}
-   ```
+export PROXY_IP=${HOST}:${PORT}
+```
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
