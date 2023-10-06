@@ -177,7 +177,7 @@ The `iss` field in the payload matches the value you provided in `--from-literal
 1. Send a request with the `Authorization` header.
 
     ```bash
-    curl -I -H "Authorization: Bearer ${USER_JWT}" http://kong.example/lemon --connect-to kong.example:80:$PROXY_IP
+    curl -I -H 'Host: kong.example' -H "Authorization: Bearer ${USER_JWT}" $PROXY_IP/lemon
     ```
     The results should look like this:
     ```text
@@ -322,8 +322,8 @@ httproute.gateway.networking.k8s.io/lime annotated
 1. Send a request as the `admin` consumer to both the URLS.
 
     ```bash
-    curl -sI http://kong.example/lemon -H "Authorization: Bearer ${ADMIN_JWT}" --connect-to kong.example:80:$PROXY_IP | grep HTTP
-    curl -sI http://kong.example/lime -H "Authorization: Bearer ${ADMIN_JWT}" --connect-to kong.example:80:$PROXY_IP | grep HTTP
+    curl -sI $PROXY_IP/lemon -H 'Host: kong.example' -H "Authorization: Bearer ${ADMIN_JWT}" | grep HTTP
+     curl -sI $PROXY_IP/lime -H 'Host: kong.example' -H "Authorization: Bearer ${ADMIN_JWT}" | grep HTTP
     ```
     The results should look like this:
     ```text
@@ -334,8 +334,8 @@ httproute.gateway.networking.k8s.io/lime annotated
 1. Send a request as the`user` consumer.
 
     ```bash
-    curl -sI http://kong.example/lemon -H "Authorization: Bearer ${USER_JWT}" --connect-to kong.example:80:$PROXY_IP | grep HTTP
-    curl -sI http://kong.example/lime -H "Authorization: Bearer ${USER_JWT}" --connect-to kong.example:80:$PROXY_IP | grep HTTP
+    curl -sI $PROXY_IP/lemon -H 'Host: kong.example' -H "Authorization: Bearer ${USER_JWT}" | grep HTTP
+    curl -sI $PROXY_IP/lime -H 'Host: kong.example' -H "Authorization: Bearer ${USER_JWT}" | grep HTTP
     ```
     The results should look like this:
     ```text
