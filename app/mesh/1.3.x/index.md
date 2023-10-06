@@ -133,5 +133,5 @@ hybrid Kubernetes/VMs:
      organization.</i>
 </center>
 <br>
-[Learn more](https://kuma.io/docs/latest/introduction/deployments/) about the
+[Learn more](/mesh/latest/production/deployment/) about the
 standalone and multi-zone deployment modes in the Kuma documentation.

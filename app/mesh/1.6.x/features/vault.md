@@ -187,7 +187,7 @@ You can authenticate with the `token` or with client certificates by providing `
 
 You can provide these values inline for testing purposes only, as a path to a file on the
 same host as `kuma-cp`, or contained in a `secret`. When using a `secret`, it should be a mesh-scoped 
-secret (see [the Kuma Secrets documentation](https://kuma.io/docs/latest/security/secrets/) for details 
+secret (see [the Kuma Secrets documentation](https://kuma.io/docs/1.6.x/security/secrets/) for details 
 on mesh-scoped secrets versus global secrets). On Kubernetes, this mesh-scoped secret should be stored 
 in the system namespace (`kong-mesh-system` by default) and should be configured as `type: system.kuma.io/secret`.
 

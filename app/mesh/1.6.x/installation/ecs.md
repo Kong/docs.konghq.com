@@ -35,7 +35,7 @@ join the cluster, the controller requests a new data plane token scoped to that 
 
 With {{site.mesh_product_name}} on ECS, each service enumerates
 other services it contacts in the mesh and
-[exposes them in `Dataplane` specification](https://kuma.io/docs/latest/reference/dpp-specification).
+[exposes them in `Dataplane` specification](https://kuma.io/docs/1.6.x/reference/dpp-specification/).
 
 ## Deployment
 
@@ -94,9 +94,6 @@ These permissions can be further restricted by including a `Resource` or `Condit
 the IAM policy statements. To make this easier, the controller supports the `--secret-name-prefix`
 command line switch to prefix the names of the AWS secrets under which it saves tokens.
 
-To see how this all ties together, refer back to the
-[example controller Cloudformation](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/controller.yaml).
-
 ## Services
 
 When deploying an ECS task to be included in the mesh, the following must be
@@ -108,7 +105,7 @@ Services are bootstrapped with a `Dataplane` specification.
 
 Transparent proxy is not supported on ECS, so the `Dataplane` resource for a
 service must enumerate all other mesh services this service contacts and include them
-[in the `Dataplane` specification as `outbounds`](https://kuma.io/docs/latest/reference/dpp-specification).
+[in the `Dataplane` specification as `outbounds`](https://kuma.io/docs/1.6.x/reference/dpp-specification).
 
 See the example repository to learn
 [how to handle the `Dataplane` template with Cloudformation](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/counter-demo/demo-app.yaml#L30-L46).

@@ -61,7 +61,7 @@ For example, `_app/_hub/kong-inc/your-plugin`.
         starting with the one you specify.
 
 1. Add an icon for your plugin into the 
-[`/app/_assets/images/icons/hub`](https://github.com/Kong/docs.konghq.com/tree/main/app/_assets/images/icons/hub) 
+[`/app/assets/images/icons/hub`](https://github.com/Kong/docs.konghq.com/tree/main/app/assets/images/icons/hub) 
 directory. 
     
     Plugin icons are required for publication on the Kong plugin hub. Icons
@@ -70,7 +70,7 @@ directory.
     The filename of your image should be `kong-inc_plugin-name`.
     For example, `kong-inc_oas-validation`.
 
-1. Create a basic example for your plugin in the [plugin toolkit repository](https://github.com/fabianrbz/kong-plugins-docs-toolkit/tree/main/examples).
+1. Create a basic example for your plugin in the [plugin toolkit repository](https://github.com/Kong/docs-plugin-toolkit/tree/main/examples).
 
     This example will be validated against the plugin's schema,
     so make sure to include all required configuration parameters.

@@ -75,7 +75,7 @@ For example, `_app/_hub/company-name/example-plugin`.
     * `_changelog.md`: A changelog for your plugin. For the first entry, note when the 
     plugin was published and which versions of Gateway it has been tested against.
 
-1. Add an icon for your plugin into the `/app/_assets/images/icons/hub/` directory. 
+1. Add an icon for your plugin into the `/app/assets/images/icons/hub/` directory. 
     
     Plugin icons are required for publication on the Kong plugin hub. Icons
     should be a square-format PNG or SVG file, 120x120 pixels in size. 
@@ -88,7 +88,7 @@ For example, `_app/_hub/company-name/example-plugin`.
 
 If you have any diagrams or screenshots that you want to add to your plugin documentation:
 
-1. Add to the images into the `app/_assets/images/docs/plugins` directory.
+1. Add to the images into the `app/assets/images/docs/plugins` directory.
 
    Make sure that any screenshots follow the [screenshot guidelines](/contributing/user-interfaces/#screenshots).
 
