@@ -100,7 +100,7 @@ The global control plane is hosted in the cloud by Kong, and you manage the
 individual data plane nodes within your preferred network environment.
 
 {{site.konnect_short_name}} offers two pricing packages: 
-* * **Plus**: Our self-serve pay-as-you-go pricing model, giving you access to the 
+* **Plus**: Our self-serve pay-as-you-go pricing model, giving you access to the 
 {{site.konnect_short_name}} platform in its entirety while offering the flexibility 
 to only pay for the services your organization uses. 
 
