@@ -46,7 +46,7 @@ available through `kong.db.*`.
 
 The DAO class is responsible for the operations executed on a given table in
 the datastore, generally mapping to an entity in Kong. All the underlying
-supported databases (currently Cassandra and Postgres) comply to the same
+supported databases (currently Cassandra and PostgreSQL) comply to the same
 interface, thus making the DAO compatible with all of them.
 
 For example, inserting a Service and a Plugin is as easy as:

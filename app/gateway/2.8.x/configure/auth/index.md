@@ -179,7 +179,7 @@ the corresponding Route:
 ## Multiple Authentication
 
 Kong supports multiple authentication plugins for a given Service, allowing
-different clients to utilize different authentication methods to access a given Service or Route.
+different clients to use different authentication methods to access a given Service or Route.
 
 The behaviour of the auth plugins can be set to do either a logical `AND`, or a logical `OR` when evaluating
 multiple authentication credentials. The key to the behaviour is the `config.anonymous` property.
@@ -210,5 +210,5 @@ should be configured on the anonymous consumer.
 Failure to do so will allow unauthorized requests.
 
 
-[plugins]: https://konghq.com/plugins/
+[plugins]: /hub/
 [key-auth]: /hub/kong-inc/key-auth

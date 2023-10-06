@@ -13,7 +13,7 @@ source_url: https://github.com/Kong/kong/tree/master/kong/pdk/plugin.lua
 
 <!-- Plugin related APIs -->
 
-
+<!-- vale off -->
 
 ## kong.plugin.get_id()
 

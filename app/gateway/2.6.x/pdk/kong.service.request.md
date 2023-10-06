@@ -11,6 +11,8 @@ toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
+<!--vale off-->
+
 ## kong.service.request
 
 Manipulation of the request to the Service

@@ -13,6 +13,8 @@ source_url: https://github.com/Kong/kong-ee/tree/master/kong/pdk/websocket/clien
 enterprise: true
 ---
 
+<!-- vale off -->
+
 Client WebSocket PDK functions.
 
 {:.warning}

@@ -111,7 +111,7 @@ If you create an RBAC superuser and plan to work with Kong Manager or Dev Portal
 
 Create a `values.yaml` file to provide required values such as password secrets or optional email addresses for notifications. Work from the [Enterprise example file](https://github.com/Kong/charts/blob/main/charts/kong/example-values/full-k4k8s-with-kong-enterprise.yaml). The example file includes comments to explain which values you must set. The [readme in the charts repository](https://github.com/Kong/charts/blob/main/charts/kong/README.md) includes an exhaustive list of all possible configuration properties.
 
-Note that this deployment includes a Postgres sub-chart provided by Bitnami. You might need to delete the PersistentVolume objects for Postgres in your Kubernetes cluster to connect to the database after install.
+Note that this deployment includes a PostgreSQL sub-chart provided by Bitnami. You might need to delete the PersistentVolume objects for PostgreSQL in your Kubernetes cluster to connect to the database after install.
 
 ## Deploy {{site.base_gateway}} with {{site.kic_product_name}}
 
@@ -176,4 +176,4 @@ Note that this deployment includes a Postgres sub-chart provided by Bitnami. You
 
 ## Next steps
 
-See the [Kong Ingress Controller docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.
+See the [{{site.kic_product_name}} docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.

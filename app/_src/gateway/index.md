@@ -92,12 +92,17 @@ the [PDK reference](/gateway/{{page.kong_version}}/plugin-development/pdk/), and
 There are two ways to deploy {{site.base_gateway}}: Managed with {{ site.konnect_saas }}, and self-managed. If you're trying
 out {{site.base_gateway}} for the first time, we recommends starting with [{{ site.konnect_saas }}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-mode-overview).
 
-### Konnect
+### {{site.konnect_short_name}}
 
-{{site.konnect_short_name}} provides the easiest way to get started with Kong Gateway. The global control plane is hosted in the cloud by Kong, and you manage the individual data plane nodes within your preferred network environment.
+{{site.konnect_short_name}} provides the easiest way to get started 
+with {{site.base_gateway}}. 
+The global control plane is hosted in the cloud by Kong, and you manage the 
+individual data plane nodes within your preferred network environment.
 
-Konnect offers two pricing packages: 
-* **Plus**: Our self-serve pay-as-you-go pricing model, giving you access to the Konnect platform in it's entirity while offering the flexibility to only pay for the services your organization uses. 
+{{site.konnect_short_name}} offers two pricing packages: 
+* * **Plus**: Our self-serve pay-as-you-go pricing model, giving you access to the 
+{{site.konnect_short_name}} platform in its entirety while offering the flexibility 
+to only pay for the services your organization uses. 
 
 * **Enterprise**: With an Enterprise subscription,
   you have access to the entire {{ site.konnect_saas }} suite and: 
@@ -105,7 +110,7 @@ Konnect offers two pricing packages:
   * 24x7x365 technical support
   * Professional Services to create a purpose-built solution for your environment
 
-For more information visit the [pricing page](https://konghq.com/pricing)
+For more information, visit the [pricing page](https://konghq.com/pricing).
 
 ### Self-managed
 

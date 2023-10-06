@@ -35,7 +35,7 @@ You can upload a plugin schema to Konnect and get started with custom plugins in
 : New Konnect organizations will benefit from an updated Konnect Plus product tier which includes every product capability available. New accounts are automatically given a month of free credits as part of 30-day trial. For more information review our [pricing page](https://konghq.com/pricing).
 
 **Social Login and Org Switcher**
-: New users can now signup for and login to Konnect organizations using their social identities from Google and GitHub. Users also have the ability to quickly switch between different Konnect organizations that they own or have been invited to.
+: New users can now sign up for and login to Konnect organizations using their social identities from Google and GitHub. Users also have the ability to quickly switch between different Konnect organizations that they own or have been invited to.
 : * [Social Login](/konnect/org-management/social-identity-login/) - Login with social identities has been added as part of the "built-in" authentication scheme in Konnect. Users can use their Google and GitHub credentials to create new organizations and sign in to existing Konnect accounts with a matching email. User invitations may also be accepted via social login.
 : * [Organization Switcher](/konnect/org-management/org-switcher/) - Users who have been invited to more than one organization will be able witch between orgs via the org switcher. In addition, users who wish to utilize more than one organization may create new organizations via org switcher. All organizations that have associated emails would be accessible to a login to via org switcher.
 

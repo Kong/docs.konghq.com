@@ -14,7 +14,7 @@ For JSON Schema draft 4 type schemas, see the [JSON Schema documentation](https:
 {% if_plugin_version eq:3.1.x %}
 ## Enable the plugin
 
-In Kong Gateway versions 3.1.0.0-3.1.1.1, this plugin is not enabled by default.
+In {{site.base_gateway}} versions 3.1.0.0-3.1.1.1, this plugin is not enabled by default.
 
 To enable the plugin, use one of the following methods:
   * Package install: Set `plugins=bundled,oas-validation` in `kong.conf` before starting Kong
@@ -56,7 +56,7 @@ This example tutorial steps you through ensuring an API request conforms to the 
  which is missing from the following request:
 
     ```bash
-    curl -X GET "http://<proxy-host>:8000/pet/findByStatus" \
+    curl -X GET "http://localhost:8000/pet/findByStatus" \
       -H "accept: application/json"
     ```
 
@@ -115,7 +115,7 @@ For the Validation plugin, event hook events can be enabled when a Validation fa
 
 2. Force a validation failure to a service or route to which the Validation plugin is applied. The Webhook URL will receive a response with JSON payload.
 
-    The following is an example JSON response which includes the forwarded IP address, service, consumer, and and error message:
+    The following is an example JSON response which includes the forwarded IP address, service, consumer, and error message:
 
     ```json
     {

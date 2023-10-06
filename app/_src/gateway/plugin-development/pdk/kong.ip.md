@@ -11,6 +11,8 @@ toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk/ip.lua
 ---
 
+<!-- vale off -->
+
 Trusted IPs module.
 
  This module can be used to determine whether or not a given IP address is
