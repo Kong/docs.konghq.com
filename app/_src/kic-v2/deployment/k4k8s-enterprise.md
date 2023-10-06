@@ -161,7 +161,7 @@ You can use Helm to install Kong using the official Helm chart:
     $ helm repo update
     $ helm install kong kong/ingress -n kong --create-namespace
     ```
-    The reults should look like this:
+    The results should look like this:
     ```text
     NAME: kong
     LAST DEPLOYED: Fri Oct  6 14:41:16 2023
