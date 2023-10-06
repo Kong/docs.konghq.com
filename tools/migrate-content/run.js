@@ -31,7 +31,7 @@ function addSrc(items) {
 
     if (item.absolute_url) {
       // Special handling for the overview page
-      if (item.url.startsWith("/")) {
+      if (item.url.startsWith(`/${content.product}/`)) {
         item.src = `${prefix}`;
       }
 
