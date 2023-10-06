@@ -60,7 +60,8 @@ spec:
 {% endcapture %}
 {{ the_code | indent }}
 
-    The results should look like this:
+The results should look like this:
+
 {% capture the_code %}
 {% navtabs codeblock %}
 {% navtab ingress %}
