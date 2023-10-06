@@ -30,6 +30,11 @@ Next, set up an environment variable with the IP address at which
 Kong is accessible. This is used to send requests into the
 Kubernetes cluster.
 
+The network is limited if you are using the Docker driver on Darwin, Windows, or WSL, and the Node IP is not reachable directly. When you deploy minikube on Linux with the Docker driver results in no tunnel being created. For more information, see [accessing apps](https://minikube.sigs.k8s.io/docs/handbook/accessing/#using-minikube-service-with-tunnel).
+
+1. Run the `minikube tunnel` command in a separate terminal window  and keep the tunnel open.
+   This command creates a network route on the host to the service using the cluster’s IP address as a gateway. It exposes the external IP directly to any program running on the host operating system.
+
 1. Get the IP address at which you can access {{site.base_gateway}}:
    {% capture the_code %}   
 {% navtabs codeblock %}
@@ -54,22 +59,25 @@ $ minikube service -n kong kong-proxy --url | head -1
 {% navtab kubectl %}
 ```bash
 http://192.168.99.100:32728
+
+# The format of the URL is http://<HOST>:<PORT>.
 ```
 {% endnavtab %}
 {% navtab Helm Charts %}
-   ```bash
-   192.168.99.100:80
-   ```
+```bash
+192.168.99.100:80
+```
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
-{{ the_code | indent }}  
-1. Set the environment variable. If you deployed using `kubectl` replace `<ip-address>` with the {{site.base_gateway}} IP address you just retrieved:
+{{ the_code | indent }}
+ 
+1. Set the environment variable. If you deployed using `kubectl` replace `<HOST>` with the IP address of {{site.base_gateway}} in the URL that you retrieved. 
    {% capture the_code %}     
 {% navtabs codeblock %}
 {% navtab kubectl %}
 ```bash
-export PROXY_IP=<ip-address>
+export PROXY_IP=<HOST>
 ```
 {% endnavtab %}
 {% navtab Helm Charts %}
@@ -102,17 +110,4 @@ export PROXY_IP=${HOST}:${PORT}
 After you've installed the {{site.kic_product_name}}, please follow the
 [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn
 about how to use the Ingress Controller.
-
-## Troubleshooting connection issues
-
-The network is limited if you are using the Docker driver on Darwin, Windows, or WSL, and the Node IP is not reachable directly.
-When you deploy minikube on Linux with the Docker driver results in no tunnel being created. For more information, see [accessing apps](https://minikube.sigs.k8s.io/docs/handbook/accessing/#using-minikube-service-with-tunnel).
-
-### Error message
-
-`curl: (7) Failed to connect to 127.0.0.1 port 80 after 5 ms: Couldn't connect to server`
-
-### Work around
-
- Run the `minikube tunnel` command in a separate terminal window to keep the tunnel open. This command creates a network route on the host to the service using the cluster’s IP address as a gateway. It exposes the external IP directly to any program running on the host operating system.
 
