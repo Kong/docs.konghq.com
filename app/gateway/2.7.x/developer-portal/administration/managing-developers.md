@@ -54,6 +54,8 @@ Each developer is bcc'd by default for privacy. You may choose to edit the messa
 
 ## Developer Management Property Reference
 
+<!--vale off-->
+
 ### portal_auto_approve
 
 **Default:** `off`

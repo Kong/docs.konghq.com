@@ -210,7 +210,7 @@ plugin_body: |
     `route`<br>*optional* |  If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.  Default: `null`.With form-encoded, the notation is `route.id=<route id>` or `route.name=<route name>`. With JSON, use "`"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
     `service`<br>*optional* |  If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.  Default: `null`.With form-encoded, the notation is `service.id=<service id>` or `service.name=<service name>`. With JSON, use "`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
     `consumer`<br>*optional* |  If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer.  Default: `null`.With form-encoded, the notation is `consumer.id=<consumer id>` or `consumer.username=<consumer username>`. With JSON, use "`"consumer":{"id":"<consumer id>"}` or `"consumer":{"username":"<consumer username>"}`.
-    `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).
+    `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](/hub/).
     `protocols` |  A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.  Default: `["grpc", "grpcs", "http",`<wbr>` "https"]`.
     `enabled` | Whether the plugin is applied. Default: `true`.
     `tags`<br>*optional* |  An optional set of strings associated with the Plugin for grouping and filtering.
@@ -741,12 +741,12 @@ key_set_data: |
 ---
 
 {:.note .no-icon }
-> <span class="badge beta"></span> **Kong Gateway API specs now available!**
+> <span class="badge beta"></span> **{{site.base_gateway}} API specs now available!**
 > 
 | Spec | Developer portal link | Insomnia link |
 |------|-----------------------|---------------|
-| Enterprise beta API spec|[Developer Portal](/gateway/api/admin-ee/3.3.0.x/)   | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Enterprise%20beta%20API&uri=https%3A%2F%2Fgithub.com%2FKong%2Fdocs.konghq.com%2Fblob%2Fmain%2Fapi-specs%2FGateway-EE%2Fjson%2Fkong-ee-33.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>  |
-|  Open source beta API spec | [Developer Portal](/gateway/api/admin-oss/3.3.x/)  | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Admin%20API%20Opensource&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-OSS%2Fjson%2Fkong-oss-33.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
+| Enterprise beta API spec|[Dev Portal](/gateway/api/admin-ee/3.3.0.x/)   | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Enterprise%20beta%20API&uri=https%3A%2F%2Fgithub.com%2FKong%2Fdocs.konghq.com%2Fblob%2Fmain%2Fapi-specs%2FGateway-EE%2Fjson%2Fkong-ee-33.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>  |
+|  Open source beta API spec | [Dev Portal](/gateway/api/admin-oss/3.3.x/)  | <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Admin%20API%20Opensource&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-OSS%2Fjson%2Fkong-oss-33.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
 
 
 <!-- vale off -->
@@ -1583,9 +1583,9 @@ HTTP 200 OK
  It's currently not possible to change the log level of DP and
  DB-less nodes.
 
- If using Kong Gateway Enterprise, this endpoint can be [RBAC-protected](https://docs.konghq.com/gateway/latest/admin-api/rbac/reference/#add-a-role-endpoint-permission)
+ If using {{site.ee_product_name}}, this endpoint can be [RBAC-protected](/gateway/latest/admin-api/rbac/reference/#add-a-role-endpoint-permission)
 
- If using Kong Gateway Enterprise, changes to the log level will be reflected in the [Audit Logs](https://docs.konghq.com/gateway/latest/kong-enterprise/audit-log/).
+ If using {{site.ee_product_name}}, changes to the log level will be reflected in the [Audit Logs](/gateway/latest/kong-enterprise/audit-log/).
 
  The log level change is propagated to all Nginx workers of a node,
  including to newly spawned workers.
@@ -1595,7 +1595,7 @@ HTTP 200 OK
  run at the previous log level, not at the log level that was
 previously set dynamically for the entire cluster. To work around that, make
  sure the new node starts with the proper level by setting the
- startup `kong.conf` setting [KONG_LOG_LEVEL](https://docs.konghq.com/gateway/latest/reference/configuration/#log_level).
+ startup `kong.conf` setting [KONG_LOG_LEVEL](/gateway/latest/reference/configuration/#log_level).
 
 
 <div class="endpoint put indent">/debug/cluster/control-planes-nodes/log-level/{log_level}</div>
@@ -1633,9 +1633,9 @@ back to a higher level such as `notice`.
 It's currently not possible to change the log level of DP and
 DB-less nodes.
 
-If using Kong Gateway Enterprise, this endpoint can be [RBAC-protected](https://docs.konghq.com/gateway/latest/admin-api/rbac/reference/#add-a-role-endpoint-permission)
+If using {{site.ee_product_name}}, this endpoint can be [RBAC-protected](/gateway/latest/admin-api/rbac/reference/#add-a-role-endpoint-permission)
 
-If using Kong Gateway Enterprise, changes to the log level will be reflected in the [Audit Logs](https://docs.konghq.com/gateway/latest/kong-enterprise/audit-log/).
+If using {{site.ee_product_name}}, changes to the log level will be reflected in the [Audit Logs](/gateway/latest/kong-enterprise/audit-log/).
 
 The log level change is propagated to all Nginx workers of a node,
 including to newly spawned workers.
@@ -1645,7 +1645,7 @@ entire cluster, if a new node joins a cluster the new node will
 run at the previous log level, not at the log level that was
 previously set dynamically for the entire cluster. To work around that, make
 sure the new node starts with the proper level by setting the
-startup `kong.conf` setting [KONG_LOG_LEVEL](https://docs.konghq.com/gateway/latest/reference/configuration/#log_level).
+startup `kong.conf` setting [KONG_LOG_LEVEL](/gateway/latest/reference/configuration/#log_level).
 
 
 <div class="endpoint put indent">/debug/cluster/log-level/{log_level}</div>
@@ -1709,9 +1709,9 @@ back to a higher level such as `notice`.
 It's currently not possible to change the log level of DP and
 DB-less nodes.
 
-If using Kong Gateway Enterprise, this endpoint can be [RBAC-protected](https://docs.konghq.com/gateway/latest/admin-api/rbac/reference/#add-a-role-endpoint-permission)
+If using {{site.ee_product_name}} this endpoint can be [RBAC-protected](/gateway/latest/admin-api/rbac/reference/#add-a-role-endpoint-permission)
 
-If using Kong Gateway Enterprise, changes to the log level will be reflected in the [Audit Logs](https://docs.konghq.com/gateway/latest/kong-enterprise/audit-log/).
+If using {{site.ee_product_name}}, changes to the log level will be reflected in the [Audit Logs](/gateway/latest/kong-enterprise/audit-log/).
 
 The log level change is propagated to all Nginx workers of a node,
 including to newly spawned workers.
@@ -2690,7 +2690,7 @@ A Plugin entity represents a plugin configuration that will be executed during
 the HTTP request/response lifecycle. It is how you can add functionalities
 to Services that run behind Kong, like Authentication or Rate Limiting for
 example. You can find more information about how to install and what values
-each plugin takes by visiting the [Kong Hub](https://docs.konghq.com/hub/).
+each plugin takes by visiting the [Kong Hub](/hub/).
 
 When adding a Plugin Configuration to a Service, every request made by a client to
 that Service will run said Plugin. If a Plugin needs to be tuned to different

@@ -23,10 +23,10 @@ of your control plane instance.
 {% navtabs %}
 {% navtab Using Kong Manager %}
 As a {{site.base_gateway}} user, you can use Kong Manager for environment
-administration. You’re going to use it later on in this guide, so first make s
-ure you can access Kong Manager.
+administration. You’re going to use it later on in this guide, so first make 
+sure you can access Kong Manager.
 
-Open a web browser and navigate to `http://<admin-hostname>:8002`.
+Open a web browser and navigate to `http://localhost:8002`.
 
 If {{site.base_gateway}} was installed correctly, it automatically logs you
 in and presents the Kong Manager Overview page.

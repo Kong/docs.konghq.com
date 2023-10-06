@@ -29,7 +29,7 @@ Manager. The mapping removes the task of manually managing access in
 * RBAC enabled
 * (Kubernetes) [Helm](https://helm.sh/docs/intro/install/) installed
 
-## Apply OIDC auth mapping to Kong Gateway
+## Apply OIDC auth mapping to {{site.base_gateway}}
 
 ### Review important values
 
@@ -45,7 +45,7 @@ specified {{site.base_gateway}} admin.
 
   This value depends on your IdP -- for example, Okta configures claims for `groups`, and another IdP might configure them as `roles`.
 
-  In the Idp, the group claim value must follow the format `<workspace_name>:<role_name>`.
+  In the IdP, the group claim value must follow the format `<workspace_name>:<role_name>`.
 
   For example, if `"authenticated_groups_claim": ["groups"]` is specified, and in the IdP `groups:["default:super-admin"]` is specified, the administrators specified in `admin_claim` are assigned to the super-admin role in the default {{site.base_gateway}} workspace.
 

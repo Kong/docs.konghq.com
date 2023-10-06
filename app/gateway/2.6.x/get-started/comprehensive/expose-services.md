@@ -291,7 +291,7 @@ A `201` message indicates the Route was created successfully.
 
 By default, {{site.base_gateway}} handles proxy requests on port `:8000`.
 
-From a web browser, enter `http://<admin-hostname>:8000/mock`.
+From a web browser, enter `http://localhost:8000/mock`.
 
 {% endnavtab %}
 {% navtab Using the Admin API %}
@@ -302,7 +302,7 @@ Using the Admin API, issue the following:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X GET http://<admin-hostname>:8000/mock/request
+curl -i -X GET http://localhost:8000/mock/request
 ```
 {% endnavtab %}
 {% navtab HTTPie %}

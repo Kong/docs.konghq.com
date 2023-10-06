@@ -6,11 +6,11 @@ title: DB-less and Declarative Configuration
 {% include_cached /md/enterprise/cassandra-deprecation.md %}
 
 
-Traditionally, Kong Gateway has always required a database, to store its configured entities such as Routes,
+Traditionally, {{site.base_gateway}} has always required a database, to store its configured entities such as Routes,
 Services and Plugins. Kong uses its configuration file, `kong.conf`, to
-specify the use of Postgres and Cassandra and its various settings.
+specify the use of PostgreSQL and Cassandra and its various settings.
 
-Kong Gateway can be run without a database using only in-memory storage for entities. We call this DB-less mode. When running Kong Gateway DB-less, the configuration of entities is done in a second configuration file, in YAML or JSON, using declarative configuration.
+{{site.base_gateway}} can be run without a database using only in-memory storage for entities. We call this DB-less mode. When running {{site.base_gateway}} DB-less, the configuration of entities is done in a second configuration file, in YAML or JSON, using declarative configuration.
 
 The combination of DB-less mode and declarative configuration has a number
 of benefits:
@@ -49,7 +49,7 @@ file loaded into Kong is the configured state of the system.
 
 ## Set up Kong in DB-less mode
 
-To use Kong Gateway in DB-less mode, set the `database` directive of `kong.conf` to `off`. As usual, you can do this by editing `kong.conf` and setting
+To use {{site.base_gateway}} in DB-less mode, set the `database` directive of `kong.conf` to `off`. As usual, you can do this by editing `kong.conf` and setting
 `database=off` or via environment variables. You can then start Kong
 as usual:
 
@@ -89,7 +89,7 @@ Server: kong/2.1.0
 }
 ```
 
-Kong Gateway is running, but no declarative configuration was loaded yet. This
+{{site.base_gateway}} is running, but no declarative configuration was loaded yet. This
 means that the configuration of this node is empty. There are no Routes,
 Services or entities of any kind.
 
@@ -138,7 +138,7 @@ by default. You can experiment by uncommenting the examples
 
 ## Declarative configuration format
 
-The Kong Gateway declarative configuration format consists of lists of
+The {{site.base_gateway}} declarative configuration format consists of lists of
 entities and their attributes. This is a small yet complete
 example that illustrates a number of features:
 
@@ -288,4 +288,4 @@ Not all Kong plugins are compatible with DB-less mode since some of them
 by design require a central database coordination or dynamic creation of
 entities.
 
-For current plugin compatibility, see [Plugin compatibility](/konnect-platform/compatibility/plugins/).  
+For current plugin compatibility, see [Plugin compatibility](/hub/plugins/compatibility/).  

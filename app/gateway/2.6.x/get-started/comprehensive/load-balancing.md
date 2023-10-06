@@ -186,7 +186,7 @@ You now have an Upstream with two targets, `httpbin.org` and `mockbin.org`, and 
 
 ## Validate the Upstream Services
 
-1. With the Upstream configured, validate that it’s working by visiting the route `http://<admin-hostname>:8000/mock` using a web browser or CLI.
+1. With the Upstream configured, validate that it’s working by visiting the route `http://localhost:8000/mock` using a web browser or CLI.
 2. Continue hitting the endpoint and the site should change from `httpbin` to `mockbin`.
 
 ## Summary and next steps

@@ -43,7 +43,7 @@ repository contains [openresty-build-tools](https://github.com/Kong/kong-build-t
 which allows you to more easily build OpenResty with the necessary patches and modules.
 
 There is a new way to deploy Go using Plugin Servers.
-For more information, see [Developing Go plugins](https://docs.konghq.com/gateway/2.6.x/reference/external-plugins/#developing-go-plugins).
+For more information, see [Developing Go plugins](/gateway/2.6.x/reference/external-plugins/#developing-go-plugins).
 
 ### Template changes
 
@@ -95,7 +95,7 @@ below to migrate to 2.7.x.
 
 ### Upgrade from 1.0.x - 2.6.x to 2.7.x
 
-**Postgres**
+**PostgreSQL**
 
 Kong 2.7.x supports a no-downtime migration model. This means that while the
 migration is ongoing, you will have two Kong clusters running, sharing the
@@ -132,7 +132,7 @@ database in the final expected state for Kong 2.7.x).
 
 {:.warning .no-icon}
 > **Deprecation notice:**
-> Cassandra as a backend database for Kong Gateway is deprecated. This means the feature will eventually be removed. Our target for Cassandra removal is the Kong Gateway 3.4 release, and some new features might not be supported with Cassandra in the Kong Gateway 3.0 release.
+> Cassandra as a backend database for {{site.base_gateway}} is deprecated. This means the feature will eventually be removed. Our target for Cassandra removal is the {{site.base_gateway}} 3.4 release, and some new features might not be supported with Cassandra in the {{site.base_gateway}} 3.0 release.
 
 Due to internal changes, the table schemas used by Kong 2.7.x on Cassandra
 are incompatible with those used by Kong 2.1.x (or lower). Migrating using the usual commands
@@ -186,7 +186,7 @@ $ kong migrations up [-c configuration_file]
 
 If the command is successful, and no migration ran
 (no output), then you only have to
-[reload](https://docs.konghq.com/gateway/2.7.x/reference/cli/#kong-reload) Kong:
+[reload](/gateway/2.7.x/reference/cli/#kong-reload) Kong:
 
 ```shell
 $ kong reload [-c configuration_file]

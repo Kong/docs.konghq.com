@@ -14,7 +14,7 @@ is done outside of Kong, and Kong only receives updates from the DNS server.
 Every Service that has been defined with a `host` containing a hostname
 (instead of an IP address) will automatically use DNS-based load balancing
 if the name resolves to multiple IP addresses, provided the hostname does not
-resolve to an `upstream` name or a name in your DNS hostsfile.
+resolve to an `upstream` name or a name in your DNS hosts file.
 
 The DNS record `ttl` setting (time to live) determines how often the information
 is refreshed. When using a `ttl` of 0, every request will be resolved using its
@@ -104,7 +104,7 @@ Configuring the ring-balancer is done through the `upstream` and `target`
 entities.
 
   - `target`: an IP address or hostname with a port number where a backend
-    service resides, eg. "192.168.100.12:80". Each target gets an additional
+    service resides, for example, "192.168.100.12:80". Each target gets an additional
     `weight` to indicate the relative load it gets. IP addresses can be
     in both IPv4 and IPv6 format.
 
@@ -226,7 +226,7 @@ entities only by their IP address, and never by name.
 - When picking your hash input make sure the input has enough variance to get
 to a well distributed hash. Hashes will be calculated using the CRC-32 digest.
 So for example, if your system has thousands of users, but only a few consumers, defined
-per platform (eg. 3 consumers: Web, iOS and Android) then picking the `consumer`
+per platform (for example, 3 consumers: Web, iOS and Android) then picking the `consumer`
 hash input will not suffice, using the remote IP address by setting the hash to
 `ip` would provide more variance in the input and hence a better distribution
 in the hash output. However, if many clients will be behind the same NAT gateway (e.g. in

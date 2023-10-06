@@ -136,7 +136,7 @@ flows with your Azure AD implementation.
 
     Replace `<token_from_above>` with the bearer token you generated in the previous step.
 
-3. Test the authorization code flow. In your browser, go to `http://<admin-hostname>:8000/httpbin-azure`.
+3. Test the authorization code flow. In your browser, go to `http://localhost:8000/httpbin-azure`.
 
     You should be guided through a login process within Azure with the results
     delivered in your browser.

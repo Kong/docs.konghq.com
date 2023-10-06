@@ -11,6 +11,8 @@ toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
+<!--vale off-->
+
 Client TLS connection module.
 
  A set of functions for interacting with TLS connections from the client.

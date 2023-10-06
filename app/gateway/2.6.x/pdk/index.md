@@ -28,7 +28,7 @@ The Plugin Development Kit (or "PDK") is set of Lua functions and variables
  `kong.request`, `kong.log`, etc...
 
 
-
+<!--vale off-->
 
 ### kong.version
 

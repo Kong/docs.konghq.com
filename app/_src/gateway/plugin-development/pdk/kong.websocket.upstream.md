@@ -13,6 +13,8 @@ source_url: https://github.com/Kong/kong-ee/tree/master/kong/pdk/websocket/upstr
 enterprise: true
 ---
 
+<!-- vale off -->
+
 Upstream WebSocket PDK functions.
 
 {:.warning}
