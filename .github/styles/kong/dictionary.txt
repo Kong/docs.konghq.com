@@ -259,6 +259,8 @@ md
 mebibytes
 metainfo
 metamethod
+metatable
+metatables
 middleware
 mimetype
 minifier
