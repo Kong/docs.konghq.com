@@ -319,6 +319,7 @@ protobuf
 proxied
 proxying
 querystring
+ratelimit
 rbac
 reachability
 readme
