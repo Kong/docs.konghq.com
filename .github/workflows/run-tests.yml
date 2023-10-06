@@ -5,6 +5,9 @@ on:
      - main
   pull_request:
     types: [synchronize, ready_for_review, opened]
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
 
 env:
   VITE_PORTAL_API_URL: ${{ vars.VITE_PORTAL_API_URL }}
