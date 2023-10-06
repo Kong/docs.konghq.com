@@ -24,11 +24,13 @@ DNs
 DPP
 DPPs
 Datadog
+Dex
 ElastiCache
 Equinix
 Equinix
 Fargate
 Github
+Gluu
 Goroutine
 Grafana
 HTTPie
@@ -62,6 +64,8 @@ Memcached
 Mockbin
 Moesif
 MongoDB
+NAT
+NATs
 Netcat
 Netlify
 Nginx

@@ -9,4 +9,4 @@ notes: --
 categories:
   - security
 publisher: Kong Inc.
-desc: Let's Encrypt and ACMEv2 integration with {{site.base_gateway}}
+desc: Let's Encrypt and ACMEv2 integration with Kong Gateway

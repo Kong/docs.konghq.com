@@ -153,11 +153,11 @@ Validation of the SAML response assertion is disabled in the plugin configuratio
 
 Replace the `Azure_Identity_ID` value below, with the `identifier` value from the single sign-on - basic SAML configuration from the Manage section of the Microsoft AzureAD enterprise application:
 
-<img src="/assets/images/plugins/saml/azuread_basic_config.png">
+<img src="/assets/images/products/plugins/saml/azuread_basic_config.png">
 
 Replace the `AzureAD_Sign_on_URL` value below, with the `Login URL` value from the single sign-on - Set up Service Provider section from the Manage section of the Microsoft AzureAD enterprise application:
 
-<img src="/assets/images/plugins/saml/azuread_sso_url.png">
+<img src="/assets/images/products/plugins/saml/azuread_sso_url.png">
 
 ```bash
 curl --request POST \
