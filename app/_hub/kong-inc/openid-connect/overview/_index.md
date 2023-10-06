@@ -942,11 +942,10 @@ curl -i -X PATCH http://localhost:8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f
 ```
 
 Test out the token by accessing the Kong proxy:
-```bash
-curl -i -X GET http://localhost:8000 \
-  -H "Authorization: Bearer <access-token>"
-```
 
+```bash
+curl http://localhost:8000?access_token=<token>
+```
 
 ### Introspection Authentication
 
