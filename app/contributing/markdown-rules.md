@@ -497,16 +497,19 @@ With this order, the first H3 gets skipped.
 Use badges when you need to label a heading, a page, or some other element as
 a specific {{site.konnect_short_name}} tier or DB-less compatible.
 
-Badge | HTML tag | Markdown tag
-------|----------|-------------
-<span class="badge free"></span> | `<span class="badge free"></span>` | `{:.badge .free}`
-<span class="badge plus"></span> | `<span class="badge plus"></span>` | `{:.badge .plus}`
-<span class="badge enterprise"></span> | `<span class="badge enterprise"></span>` | `{:.badge .enterprise}`
-<span class="badge dbless"></span> | `<span class="badge dbless"></span>` | `{:.badge .dbless}`
-<span class="badge beta"></span> | `<span class="badge beta"></span>` | `{:.badge .beta}`
-<span class="badge alpha"></span> | `<span class="badge alpha"></span>` | `{:.badge .alpha}`
-<span class="badge oss"></span> | `<span class="badge oss"></span>` | `{:.badge .oss}`
-<span class="badge konnect"></span> | `<span class="badge konnect"></span>` | `{:.badge .konnect}`
+Badge | HTML tag | Markdown tag | Purpose
+------|----------|--------------|---------
+<span class="badge free"></span> | `<span class="badge free"></span>` | `{:.badge .free}` | {{site.ee_product_name}} - free mode
+<span class="badge enterprise"></span> | `<span class="badge enterprise"></span>` | `{:.badge .enterprise}` | {{site.ee_product_name}} features
+<span class="badge paid"></span> | `<span class="badge paid"></span>` | `{:.badge .paid}` | {{site.konnect_short_name}} paid plugins
+<span class="badge premium"></span> | `<span class="badge premium"></span>` | `{:.badge .premium}` |  {{site.konnect_short_name}} premium plugins
+<span class="badge dbless"></span> | `<span class="badge dbless"></span>` | `{:.badge .dbless}` | Used to label API endpoints as DB-less compatible
+<span class="badge beta"></span> | `<span class="badge beta"></span>` | `{:.badge .beta}` | Beta features
+<span class="badge alpha"></span> | `<span class="badge alpha"></span>` | `{:.badge .alpha}` | Alpha/tech preview features
+<span class="badge oss"></span> | `<span class="badge oss"></span>` | `{:.badge .oss}` | {{site.base_gateway}} - features available in open-source Gateway only
+<span class="badge package"></span> | `<span class="badge package"></span>` | `{:.badge .package}` | Used in support tables
+<span class="badge docker"></span> | `<span class="badge docker"></span>` | `{:.badge .docker}` | Used in support tables
+<span class="badge ami"></span> | `<span class="badge ami"></span>` | `{:.badge .ami}` | Used in support tables
 
 For example, you can use the Markdown tag on headers:
 
