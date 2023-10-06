@@ -155,7 +155,14 @@ To update a schema, use a `PUT` request with the [`/plugin-schemas`](/konnect/ap
 ```sh
 curl -i -X PUT \
   https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/plugin-schemas/{customPluginName} \
-  --data "lua_schema=@example-schema.lua"
+  --header 'Content-Type: application/json' \
+  --data "{\"lua_schema\": "<your escaped Lua schema>"}"
+```
+
+{:.note}
+> **Tip**: You can use jq to pass your schema directly from the file instead of manually escaping it:
+```sh
+--data "{\"lua_schema\": $(jq -Rs '.' < REPLACE-PATH-TO-SCHEMA-FILE)}"
 ```
 {% endnavtab %}
 {% endnavtabs %}
