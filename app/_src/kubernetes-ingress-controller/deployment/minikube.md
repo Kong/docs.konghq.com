@@ -77,7 +77,7 @@ http://192.168.99.100:32728
 {% navtabs codeblock %}
 {% navtab kubectl %}
 ```bash
-export PROXY_IP=<HOST>
+export PROXY_IP=${HOST}:${PORT}
 ```
 {% endnavtab %}
 {% navtab Helm Charts %}
