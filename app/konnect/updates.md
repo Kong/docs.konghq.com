@@ -23,8 +23,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : Konnect now supports self-service custom plugins through the UI and API. 
 You can upload a plugin schema to Konnect and get started with custom plugins in a matter of minutes.
 
-: See the [Custom Plugins API](/konnect/api/control-plane-configuration/latest/#/Custom%20Plugin%20Schemas) 
-to get started.
+: See [Kong Gateway Plugins in Konnect](/konnect/gateway-manager/plugins/) to get started.
 
 **Auth0 DCR Configuration Audience Override**
 : API Product Versions can be each be assigned to a different Auth0 API instance allowing service teams to have more fine grained control over scopes and permissions of their services. See [Using Auth0 actions](/konnect/dev-portal/applications/dynamic-client-registration/auth0/#using-auth0-actions) for more details. 

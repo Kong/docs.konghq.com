@@ -7,7 +7,6 @@ dbless_explanation: |
 free: false
 plus: false
 enterprise: true
-premium: true
 konnect: false
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: |

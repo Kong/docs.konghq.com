@@ -311,7 +311,9 @@ You can also use the `replace` function to replace `_` with `-`. For example, `{
 
 In a multi-zone environment, the global control plane provides the `Mesh` to the zone control planes. However, you must make sure that each zone control plane communicates with Vault over the same address. This is because certificates for data plane proxies are issued from the zone control plane, not from the global control plane.
 
+{% if_version lte:2.3.x %}
 You must also make sure the global control plane communicates with Vault. When a new Vault backend is configured, {{site.mesh_product_name}} validates the connection by issuing a test certificate. In a multi-zone environment, validation is performed on the global control plane.
+{% endif_version %}
 
 <!-- links -->
 {% if_version gte:2.0.x %}
