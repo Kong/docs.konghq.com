@@ -665,3 +665,9 @@ items:
         url: /reference/wasm
       - text: FAQ
         url: /reference/faq
+
+unlisted:
+  - title: Overlays
+    items:
+      - url: /overlays/expected-config-hash
+      - url: /overlays/certificate.put
