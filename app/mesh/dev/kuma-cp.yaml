@@ -818,3 +818,12 @@ kmesh:
     # that the CP should use to verify dataplane identity in cross-account
     # setups.
     rolesToAssumeForAccounts: {}
+  limits:
+    # Default limits configuration
+    default:
+      # Maximum number of Dataplane resources that a user can create. Set to 0 to disable the limit.
+      dataplanes: 0 # ENV: KMESH_LIMITS_DEFAULT_DATAPLANES
+      # Maximum number of policy resources that a user can create. Set to 0 to disable the limit.
+      policies: 0 # ENV: KMESH_LIMITS_DEFAULT_POLICIES
+      # Maximum number of Zone control plane resources that a user can create. Set to 0 to disable the limit.
+      zones: 0 # ENV: KMESH_LIMITS_DEFAULT_ZONES
