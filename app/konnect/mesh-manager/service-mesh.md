@@ -3,7 +3,9 @@ title: Configure a Mesh Global Control Plane with the Kubernetes demo app
 content_type: tutorial
 ---
 
-Using Mesh Manager, you can create global control planes to manage your {{site.mesh_product_name}} meshes. This guide explains how to configure a global control plane, then install the Kubernetes demo app so you can start interfacing with {{site.mesh_product_name}} in {{site.konnect_saas}}.
+Using Mesh Manager, you can create global control planes to manage your {{site.mesh_product_name}} meshes. This guide explains how to configure a global control plane, install the Kubernetes demo app so you can start interfacing with {{site.mesh_product_name}} in {{site.konnect_saas}}, and how to apply {{site.mesh_product_name}} policies.
+
+In this scenario, you work for a clothing company that has an website where customers can shop online. Your clothing company is anticipating a high number of sales for your next clothing launch, so you want to get ahead of this by rate limiting your services so your website doesn't crash due to the increase in traffic. You decide that the best way to manage your services is with a service mesh ({{site.mesh_product_name}} in this tutorial). Your company already uses {{site.konnect_short_name}} for other services, so you decided to youse {{site.konnect_short_name}} to host your global control plane. 
 
 ## Prerequisites
 
@@ -12,10 +14,12 @@ Using Mesh Manager, you can create global control planes to manage your {{site.m
 * [The latest version of {{site.mesh_product_name}}](/mesh/latest/production/install-kumactl/)
 
 ## Create a global control plane in {{site.konnect_short_name}}
+
+Before you can add your services to the mesh or any configuration, you must create a global control plane in {{site.konnect_short_name}}. This global control plane is hosted by {{site.konnect_short_name}}.
  
 1. From the left navigation menu in {{site.konnect_short_name}}, open {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager).
 1. Click **New Global Control Plane**.
-1. Enter `example-cp` in the **Name** field and click **Save**.
+1. Enter `clothing-website` in the **Name** field and click **Save**.
 
 You now have a global control plane. This control plane won't have any functionality until you connect a zone to it.
 
@@ -23,9 +27,9 @@ You now have a global control plane. This control plane won't have any functiona
 
 After creating the global control plane, you must add a zone to that control plane. Adding a zone allows you to manage services added to that zone and send and receive configuration changes to the zone. 
 
-1. Select the `example-cp` control plane you just created and then click **Create Zone**.  
+1. Select the `clothing-website` control plane you just created and then click **Create Zone**.  
   Mesh Manager automatically creates a [managed service account](/konnect/org-management/system-accounts/) that is only used to issue a token during the zone creation process.
-1. Enter "zone-1" in the **Name** field for the new zone, and then click **Create Zone & generate token**. 
+1. Enter `zone-1` in the **Name** field for the new zone, and then click **Create Zone & generate token**. 
     
     {:.note}
     > **Note:** The zone name must consist of lower case alphanumeric characters or `-`. It must also start and end with an alphanumeric character.
@@ -46,13 +50,15 @@ The {{site.mesh_product_name}} Kubernetes demo app sets up four services so you 
 * `postgres`: A database for storing clothing item reviews
 * `redis`: A data store for the clothing item star ratings
 
+In this tutorial, we will use the services from the demo app as an easy way to see how {{site.mesh_product_name}} services can be managed with Mesh Manager. 
+
 To add the services to your mesh using the demo app, run the following command:
 
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kumahq/kuma-demo/master/kubernetes/kuma-demo-aio.yaml
 ```
 
-You can see the services the Kubernetes demo app added by navigating to **Mesh Manager** in the sidebar of {{site.konnect_short_name}}, selecting the `example-cp` and clicking **Meshes** in the sidebar. You can view the services associated with that mesh by clicking **Default** and the **Services** tab.
+You can see the services the Kubernetes demo app added by navigating to **Mesh Manager** in the sidebar of {{site.konnect_short_name}}, selecting the `clothing-website` and clicking **Meshes** in the sidebar. You can view the services associated with that mesh by clicking **Default** and the **Services** tab.
 
 For more information about the Kubernetes demo app, see [Explore {{site.mesh_product_name}} with the Kubernetes demo app](/mesh/latest/quickstart/kubernetes/).
 
@@ -62,7 +68,7 @@ For more information about the Kubernetes demo app, see [Explore {{site.mesh_pro
 
 You connect `kumactl` to the global control plane in {{site.konnect_short_name}} so that you can run commands against the control plane.
 
-1. From the left navigation menu in {{site.konnect_short_name}}, open {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager) and select the `example-cp` control plane.
+1. From the left navigation menu in {{site.konnect_short_name}}, open {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager) and select the `clothing-website` control plane.
 1. Select **Configure kumactl** from the **Global Control Plane Actions** dropdown menu and follow the steps in the wizard to connect `kumactl` to the control plane.
 1. Verify that the services you added from the previous section with the Kubernetes demo app are running correctly:
 ```bash
@@ -71,6 +77,43 @@ kumactl get dataplanes
 If your data planes were configured correctly with the demo app, the output should return all four data planes: `frontend`, `backend`, `postgres`, and `redis`.
 
 You can now issue commands to your global control plane using `kumactl`. You can see the [`kumactl` command reference](/mesh/latest/explore/cli/#kumactl) for more information about the commands you can use.
+
+## Do something with `kumactl`?
+
+## Apply a policy
+
+Now that `kumactl` is configured to connect to {{site.konnect_short_name}}, you can use it to apply policies to your mesh. In this scenario, you will be configuring and applying the [Rate Limit policy](/mesh/latest/policies/rate-limit/) to limit the traffic to your clothing website.
+
+1. Create a `.yaml` file named `rate-limit.yaml`:
+  ```yaml
+  apiVersion: kuma.io/v1alpha1
+  kind: RateLimit
+  mesh: default
+  metadata:
+    name: rate-limit-all-to-backend
+  spec:
+    sources:
+      - match:
+          kuma.io/service: "*"
+    destinations:
+      - match:
+          kuma.io/service: backend_default_svc_80
+    conf:
+      http:
+        requests: 5
+        interval: 10s
+        onRateLimit:
+          status: 423
+          headers:
+            - key: "x-kuma-rate-limited"
+              value: "true"
+              append: true
+  ```
+
+1. Apply the configuration with `kubectl apply -f rate-limit.yaml`.
+
+1. post step about where you can see the policy in Konnect and then something to hit the demo app to trigger the rate limiting and see it in action.
+
 
 ## Conclusion
 
