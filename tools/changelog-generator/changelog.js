@@ -51,6 +51,13 @@ const earliestDate = subDays(now, 7);
       pulls.map(async (pr) => {
         const created_at = new Date(pr.merged_at);
 
+        //check for skip-changelog label
+        const hasSkipChangelogLabel = pr.labels.some(label => label.name === 'skip-changelog');
+
+        if (hasSkipChangelogLabel) {
+          return null;
+        }
+
         // Load the files for this PR using the API
         const pr_files = await octokit.paginate(
           octokit.rest.pulls.listFiles,
@@ -86,6 +93,7 @@ const earliestDate = subDays(now, 7);
       }),
     )
   )
+    .filter((pr) => pr !== null) // Remove null entries
     .filter((pr) => pr.affected_files.length > 0)
     .filter((pr) => !pr.labels.includes("skip-changelog"));
 
