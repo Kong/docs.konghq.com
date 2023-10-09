@@ -1,11 +1,10 @@
 - output: ../../app/assets/images/products/konnect/gateway-manager/konnect-vaults.png
-  url: https://cloud.konghq.com/us/runtime-manager/988f1fa1-fd93-4ef7-a1f5-c481bd86e945/vaults
+  url: https://cloud.konghq.com/us/gateway-manager/5b32f5e1-6c0e-498d-bd94-14c770c4ffbd/vaults
   wait: 4000
   width: 1920
   height: 1080
   javascript: |
     async () => {
-      removeElementBySelector('a.sidebar-item-link[href="/us/mesh-manager/"]');
       const sidebarItem = document.querySelector("#subnav-gateway-manager > li.sidebar-item-secondary.active > a");
       const prefixItem = getTestId('prefix');
       const addItem = getTestId('toolbar-add-vault');
