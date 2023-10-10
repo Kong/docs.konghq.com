@@ -22,7 +22,8 @@ Format:
 xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 ```
 
-This format generates a heaxadecimal UUID for each request.
+This format generates a hexadecimal UUID for each request.
+
 ### uuid#counter
 
 Format:
@@ -41,18 +42,18 @@ Format:
 ip-port-pid-connection-connection_requests-timestamp
 ```
 
-This correlation id contains more practical implications for each request.
+This correlation ID contains more practical implications for each request.
 
 The following is a detailed description of the field
 
 form parameter      | description
 ---                 | ---
-`ip` | an address of the server that accepts a request
-`port` | port of the server that accepts a request
-`pid` | pid of the nginx worker process
-`connection` | connection serial number
-`connection_requests` | current number of requests made through a connection
-`timestamp` | a floating-point number for the elapsed time in seconds (including milliseconds as the decimal part) from the epoch for the current timestamp from the nginx cached time
+`ip` | Address of the server that accepts a request.
+`port` | Port of the server that accepts a request.
+`pid` |  Process ID of the Nginx worker process.
+`connection` | Connection serial number.
+`connection_requests` | Current number of requests made through a connection.
+`timestamp` | A floating-point number for the elapsed time in seconds (including milliseconds as the decimal part) from the epoch for the current timestamp from the Nginx cached time.
 
 ## FAQ
 

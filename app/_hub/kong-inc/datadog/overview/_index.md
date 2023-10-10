@@ -43,7 +43,7 @@ The metrics will be sent with the tags `name` and `status` carrying the API name
 
 Plugin can be configured with any combination of [Metrics](#metrics), with each entry containing the following fields.
 
-Field           | Description                                           | Datatypes   | Allowed values
+Field           | Description                                           | Data types   | Allowed values
 ---             | ---                                                   | ---         | ---
 `name`          | Datadog metric's name                                 | String      | [Metrics](#metrics)
 `stat_type`     | Determines what sort of event the metric represents   | String      | `gauge`, `timer`, `counter`, `histogram`, `meter`, `set` {% if_plugin_version gte:2.7.x %}, `distribution` {% endif_plugin_version %}
@@ -83,7 +83,7 @@ When installing a multi-data center setup, you might want to set Datadog's agent
 > Refer to [Configure with Kubernetes](#configure-with-kubernetes).
 {% endif_plugin_version %}
 
-Field           | Description                                           | Datatypes
+Field           | Description                                           | Data types
 ---             | ---                                                   | ---
 `KONG_DATADOG_AGENT_HOST` | The IP address or hostname to send data to. | string
 `KONG_DATADOG_AGENT_PORT` | The port to send data to on the upstream server. | integer

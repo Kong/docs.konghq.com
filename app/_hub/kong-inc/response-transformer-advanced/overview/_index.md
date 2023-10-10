@@ -25,7 +25,7 @@ The advanced plugin adds the following abilities:
 > **Notes:** 
 * Transformations on the response body can cause changes in performance.
 To parse and modify a JSON body, the plugin needs to retain it in memory,
-which might cause pressure on the worker's Lua VM when dealing with large bodies (several MBs).
+which might cause pressure on the worker's Lua VM when dealing with large bodies (several MB).
 Because of Nginx's internals, the `Content-Length` header will not be set when transforming a response body.
 * If the value contains a `,` then the comma separated format for lists cannot be used. 
 Array notation must be used instead.
@@ -303,4 +303,3 @@ curl -X POST http://localhost:8001/routes/{route id}/plugins \
   --data "config.add.json_types=number" \
   --data "config.add.if_status=500"
 ```
->>>>>>> 0ef6758f16 ([Plugin Hub] Move frontmatter to _configuration.yml)

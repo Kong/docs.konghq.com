@@ -50,8 +50,8 @@ Metric                     | Description | Namespace syntax
 `status_count_per_workspace`         | The status code per workspace. | `kong.service.<service_identifier>.workspace.<workspace_identifier>.status.<status>`
 `status_count_per_user_per_route`    | The status code per consumer per route. | `kong.route.<route_id>.user.<consumer_identifier>.status.<status>`
 `shdict_usage`             | The usage of a shared dict, sent once every minute. <br><br> Monitors any `lua_shared_dict` used by {{site.base_gateway}}. You can find all the shared dicts {{site.base_gateway}} has configured using the [`/status`](/gateway/latest/admin-api/#health-routes) endpoint of the Admin API. <br><br>For example, the metric might report on `shdict.kong_locks` or `shdict.kong_counters`. | `kong.node.<node_hostname>.shdict.<lua_shared_dict>.free_space` and <br>`kong.node.<node_hostname>.shdict.<lua_shared_dict>.capacity`
-`cache_datastore_hits_total`            | The total number of cache hits. (Kong Enterprise only) | `kong.service.<service_identifier>.cache_datastore_hits_total`
-`cache_datastore_misses_total`            | The total number of cache misses. (Kong Enterprise only) | `kong.service.<service_identifier>.cache_datastore_misses_total`
+`cache_datastore_hits_total`            | The total number of cache hits. ({{site.ee_product_name}} only) | `kong.service.<service_identifier>.cache_datastore_hits_total`
+`cache_datastore_misses_total`            | The total number of cache misses. ({{site.ee_product_name}} only) | `kong.service.<service_identifier>.cache_datastore_misses_total`
 
 {% endif_plugin_version %}
 {% if_plugin_version lte:2.8.x %}
@@ -92,8 +92,8 @@ Metric                     | Description | Namespace
 `request_per_user`         | Tracks the request count per consumer. | `kong.request.count`
 `upstream_latency`         | Tracks the time in milliseconds it took for the final service to process the request. | `kong.upstream_latency`
 `shdict_usage`             | The usage of shared dict, sent once every minute. | `kong.shdict.free_space` and `kong.shdict.capacity`
-`cache_datastore_hits_total`            | The total number of cache hits. (Kong Enterprise only) | `kong.cache_datastore_hits_total`
-`cache_datastore_misses_total`            | The total number of cache misses. (Kong Enterprise only) | `kong.cache_datastore_misses_total`
+`cache_datastore_hits_total`            | The total number of cache hits. ({{site.ee_product_name}} only) | `kong.cache_datastore_hits_total`
+`cache_datastore_misses_total`            | The total number of cache misses. ({{site.ee_product_name}} only) | `kong.cache_datastore_misses_total`
 
 
 

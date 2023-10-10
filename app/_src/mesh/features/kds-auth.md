@@ -56,7 +56,7 @@ kumactl install control-plane \
 {% endnavtab %}
 {% navtab Kubernetes with Helm %}
 
-Create a secret with a token in the same namespace where Kong Mesh is installed:
+Create a secret with a token in the same namespace where {{site.mesh_product_name}} is installed:
 
 ```sh
 kubectl create secret generic cp-token -n kong-mesh-system --from-file=/tmp/token
@@ -104,7 +104,7 @@ KMESH_MULTIZONE_ZONE_KDS_AUTH_CP_TOKEN_PATH="/tmp/token" \
 
 ### Enable authentication on the global control plane
 
-If you are starting from scratch and not securing existing Kong Mesh deployment, you can do this as a first step.
+If you are starting from scratch and not securing existing {{site.mesh_product_name}} deployment, you can do this as a first step.
 
 {% navtabs %}
 {% navtab Kubernetes with kumactl %}

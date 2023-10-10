@@ -44,7 +44,7 @@ Calculating the signature is slightly different for these formats.
    See the [CEF verification payload](#cef-verification-payload) and 
    [JSON verification payload](#json-verification-payload) sections for examples.
 
-1. Verify the ED25519 signature with the public key, signatureless audit log entry, and decoded signature.
+1. Verify the ED25519 signature with the public key, signature-less audit log entry, and decoded signature.
 
 ## CEF verification payload
 
