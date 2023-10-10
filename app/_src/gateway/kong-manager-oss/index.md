@@ -1,6 +1,8 @@
 ---
 title: About Kong Manager Open Source
 badge: oss
+github_star_button: <a class='github-button' href='https://github.com/Kong/kong-manager' data-icon='octicon-star' data-show-count='true' aria-label='Star kong/kong-manager on GitHub'>Star</a>
+
 ---
 
 Kong Manager Open Source (OSS) is the graphical user interface (GUI) for {{site.ce_product_name}}. It uses the Kong Admin API under the hood to administer and control {{site.ce_product_name}}. To access Kong Manager OSS, go to the following URL after installing {{site.ce_product_name}}: [http://localhost:8002](http://localhost:8002)
