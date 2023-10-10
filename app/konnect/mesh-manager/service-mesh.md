@@ -52,11 +52,117 @@ The {{site.mesh_product_name}} Kubernetes demo app sets up four services so you 
 
 In this tutorial, we will use the services from the demo app as an easy way to see how {{site.mesh_product_name}} services can be managed with Mesh Manager. 
 
-To add the services to your mesh using the demo app, run the following command:
+1. To add the services to your mesh using the demo app, run the following command:
+  ```bash
+  kubectl apply -f https://raw.githubusercontent.com/kumahq/kuma-demo/master/kubernetes/kuma-demo-aio.yaml
+  ```
 
-```sh
-kubectl apply -f https://raw.githubusercontent.com/kumahq/kuma-demo/master/kubernetes/kuma-demo-aio.yaml
-```
+1. Open the `demo.yaml` file locally and copy and paste the following:
+  ```yaml
+  apiVersion: v1
+  kind: Namespace
+  metadata:
+    name: kong-mesh-system
+    labels:
+      kuma.io/sidecar-injection: enabled
+  ---
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: redis
+    namespace: kong-mesh-system
+  spec:
+    selector:
+      matchLabels:
+        app: redis
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          app: redis
+      spec:
+        containers:
+          - name: redis
+            image: "redis"
+            ports:
+              - name: tcp
+                containerPort: 6379
+            lifecycle:
+              preStop: # delay shutdown to support graceful mesh leave
+                exec:
+                  command: ["/bin/sleep", "30"]
+              postStart:
+                exec:
+                  command: ["/usr/local/bin/redis-cli", "set", "zone", "local"]
+  ---
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: redis
+    namespace: kong-mesh-system
+  spec:
+    selector:
+      app: redis
+    ports:
+    - protocol: TCP
+      port: 6379
+  ---
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: demo-app
+    namespace: kong-mesh-system
+  spec:
+    selector:
+      matchLabels:
+        app: demo-app
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          app: demo-app
+      spec:
+        containers:
+          - name: demo-app
+            image: "kumahq/kuma-demo"
+            env:
+              - name: REDIS_HOST
+                value: "redis.kuma-demo.svc.cluster.local"
+              - name: REDIS_PORT
+                value: "6379"
+              - name: APP_VERSION
+                value: "1.0"
+              - name: APP_COLOR
+                value: "#efefef"
+            ports:
+              - name: http
+                containerPort: 5000
+  ---
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: demo-app
+    namespace: kong-mesh-system
+  spec:
+    selector:
+      app: demo-app
+    ports:
+    - protocol: TCP
+      appProtocol: http
+      port: 5000
+  ```
+
+1. Install resources in the `kong-mesh-system` namespace:
+  ```bash
+  kubectl apply -f demo.yaml
+  ```
+
+1. Port forward the service to the namespace on port `5000`:
+  ```bash
+  kubectl port-forward svc/demo-app -n kong-mesh-system 5000:5000
+  ```
+
+1. In a browser, go to `127.0.0.1:5000`. 
 
 You can see the services the Kubernetes demo app added by navigating to **Mesh Manager** in the sidebar of {{site.konnect_short_name}}, selecting the `clothing-website` and clicking **Meshes** in the sidebar. You can view the services associated with that mesh by clicking **Default** and the **Services** tab.
 
@@ -71,9 +177,9 @@ You connect `kumactl` to the global control plane in {{site.konnect_short_name}}
 1. From the left navigation menu in {{site.konnect_short_name}}, open {% konnect_icon mesh-manager %} [**Mesh Manager**](https://cloud.konghq.com/mesh-manager) and select the `clothing-website` control plane.
 1. Select **Configure kumactl** from the **Global Control Plane Actions** dropdown menu and follow the steps in the wizard to connect `kumactl` to the control plane.
 1. Verify that the services you added from the previous section with the Kubernetes demo app are running correctly:
-```bash
-kumactl get dataplanes
-```
+  ```bash
+  kumactl get dataplanes
+  ```
 If your data planes were configured correctly with the demo app, the output should return all four data planes: `frontend`, `backend`, `postgres`, and `redis`.
 
 You can now issue commands to your global control plane using `kumactl`. You can see the [`kumactl` command reference](/mesh/latest/explore/cli/#kumactl) for more information about the commands you can use.
@@ -97,7 +203,7 @@ Now that `kumactl` is configured to connect to {{site.konnect_short_name}}, you 
           kuma.io/service: "*"
     destinations:
       - match:
-          kuma.io/service: backend_default_svc_80
+          kuma.io/service: frontend_kuma-demo_svc_8080
     conf:
       http:
         requests: 5
@@ -110,21 +216,21 @@ Now that `kumactl` is configured to connect to {{site.konnect_short_name}}, you 
               append: true
   ```
 
-1. Apply the configuration with `kubectl apply -f rate-limit.yaml`.
+1. Apply the configuration:
+  ```bash
+  kubectl apply -f rate-limit.yaml
+  ```
 
-1. post step about where you can see the policy in Konnect and then something to hit the demo app to trigger the rate limiting and see it in action.
+1. How do I hit the demo app to trigger the rate limiting policy? And is there a way I can see it in action so I know the policy took affect?
 
+You can see policies associated with your mesh in {{site.konnect_short_name}} by navigating to **Mesh Manager > `clothing-website` > Meshes > `default`** and clicking on the **Policies** tab.
 
 ## Conclusion
 
-By following the instructions in this guide, you've created a global control plane for {{site.mesh_product_name}}, added a zone to it, configured `kumactl` to connect to your global control plane, and added services to the mesh. 
+By following the instructions in this guide, you've created a global control plane for {{site.mesh_product_name}}, added a zone to it, configured `kumactl` to connect to your global control plane, and added services to the mesh. <!--value statement about why this should be done in {{site.konnect_short_name}}-->
+
+You also saw how you can leverage {{site.mesh_product_name}} policies to rate limit traffic to your services. 
 
 ## Next steps
 
-Now that you've configured a global control plane, you can continue to configure your service mesh in {{site.konnect_short_name}} by following some of these guides:
-
-* [Zone Ingress](/mesh/latest/production/cp-deployment/zone-ingress/) - Set up zone ingress in {{site.mesh_product_name}}.
-* [Zone Egress](/mesh/latest/production/cp-deployment/zoneegress/) - Set up zone egress in {{site.mesh_product_name}}.
-* [Mutual TLS](/mesh/latest/policies/mutual-tls/) - Configure mTLS with {{site.mesh_product_name}}. 
-* [Observability](/mesh/latest/explore/observability/) - Find out how to configure observability with {{site.mesh_product_name}}.
-* [Traffic Log](/mesh/latest/policies/traffic-log/) - Learn how to configure logging with {{site.mesh_product_name}}.
+Now that you've configured a global control plane, you can continue to configure your service mesh in {{site.konnect_short_name}} by [enabling mTLS and traffic permissions](/mesh/latest/quickstart/kubernetes/#enable-mutual-tls-and-traffic-permissions) on your demo app services.
