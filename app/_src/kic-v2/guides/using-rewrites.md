@@ -3,33 +3,7 @@ title: Rewriting hosts and paths
 ---
 This guide demonstrates host and path rewrites using Ingress and Service configuration.
 
-## Installation
-
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install
-the {{site.kic_product_name}} on your Kubernetes cluster.
-
-## Testing Connectivity to Kong
-
-This guide assumes that the `PROXY_IP` environment variable is
-set to contain the IP address or URL pointing to Kong.
-Please follow one of the
-[deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
-
-If everything is setup correctly, making a request to Kong should return
-HTTP 404 Not Found.
-
-```bash
-$ curl -i $PROXY_IP
-HTTP/1.1 404 Not Found
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-Content-Length: 48
-Server: kong/1.2.1
-
-{"message":"no Route matched with those values"}
-```
-
-This is expected as Kong does not yet know how to proxy the request.
+{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false%}
 
 ## Create a test Deployment
 
@@ -37,46 +11,15 @@ To test our requests, we create an echo server Deployment, which responds to
 HTTP requests with a summary of the request contents:
 
 ```bash
-$ kubectl create namespace echo
-namespace/echo created
-$ kubectl apply -n echo -f https://bit.ly/echo-service
+kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-service.yaml
+```
+
+```bash
 service/echo created
 deployment.apps/echo created
 ```
 
-After completing the examples in the guide, you can clean up the example
-configuration with `kubectl delete namespace echo`.
-
-For your actual production configuration, replace `echo` with whatever
-namespace you use to run your application.
-
-## Create a Kubernetes service
-
-First, create a Kubernetes Service:
-
-```bash
-echo "
-apiVersion: v1
-kind: Service
-metadata:
-  name: echo
-  namespace: echo
-spec:
-  selector:
-    app: echo
-  ports:
-    - name: http
-      protocol: TCP
-      port: 80
-      targetPort: 80
-" | kubectl apply -f -
-```
-
-When referenced by an Ingress, this Service will create a Kong service and
-upstream that uses the upstream IPs (Pod IPs) for its `Host` header and appends
-request paths starting at `/`.
-
-## Create an Ingress to expose the service at the path `/myapp` on `example.com`
+## Create an Ingress
 
 ```bash
 echo '
@@ -84,29 +27,28 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: my-app
-  namespace: echo
 spec:
   ingressClassName: kong
   rules:
   - host: myapp.example.com
     http:
       paths:
-      - path: /myapp
+      - path: /echo
         pathType: ImplementationSpecific
         backend:
           service:
             name: echo
             port:
-              number: 80
-' | kubectl create -f -
+              number: 1027
+' | kubectl apply -f -
 ```
 
 This Ingress will create a Kong route attached to the service we created above.
 It will preserve its path but honor the service's hostname, so this request:
 
 ```bash
-$ curl -svX GET http://myapp.example.com/myapp/foo --resolve myapp.example.com:80:$PROXY_IP
-GET /myapp/foo HTTP/1.1
+$ curl -v -H 'Host: myapp.example.com' $PROXY_IP/echo
+GET /echo HTTP/1.1
 Host: myapp.example.com
 User-Agent: curl/7.70.0
 Accept: */*
@@ -114,7 +56,7 @@ Accept: */*
 will appear upstream as:
 
 ```
-GET /myapp/foo HTTP/1.1
+GET /echo HTTP/1.1
 Host: 10.16.4.8
 User-Agent: curl/7.70.0
 Accept: */*
@@ -163,9 +105,21 @@ above, the upstream host header will be `myapp.example.com`.
 
 ## Rewriting the path
 
-There are two options to rewrite the default path handling behavior:
+There are three options to rewrite the default path handling behavior:
 
-- Add the [`konghq.com/strip-path` annotation][2] to your Ingress, which strips
+
+- Add the [`konghq.com/rewrite` annotation][2] to your Ingress, allows you set a specific path for the upstream request. Any regex matches defined in your route definition are usable (see the [annotation documentation][2] for more information):
+  ```bash
+  $ kubectl patch -n echo ingress my-app -p '{"metadata":{"annotations":{"konghq.com/rewrite":"/hello/world"}}}'
+  ```
+  The request upstream will now contain the value of the rewrite annotation:
+  ```
+  GET /hello/world HTTP/1.1
+  Host: 10.16.4.8
+  User-Agent: curl/7.70.0
+  Accept: */*
+  ```
+- Add the [`konghq.com/strip-path` annotation][3] to your Ingress, which strips
   the path component of the route/Ingress, leaving the remainder of the path at
   the root:
   ```bash
@@ -179,7 +133,7 @@ There are two options to rewrite the default path handling behavior:
   User-Agent: curl/7.70.0
   Accept: */*
   ```
-- Add the [`konghq.com/path` annotation][3] to your Service, which prepends
+- Add the [`konghq.com/path` annotation][4] to your Service, which prepends
   that value to the upstream path:
   ```bash
   $ kubectl patch -n echo service echo -p '{"metadata":{"annotations":{"konghq.com/path":"/api"}}}'
@@ -196,5 +150,6 @@ coming first. Adding both annotations above will send requests for `/api/foo`.
 
 [0]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcompreserve-host
 [1]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcomhost-header
-[2]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcomstrip-path
-[3]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcompath
+[2]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcomrewrite
+[3]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcomstrip-path
+[4]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcompath
