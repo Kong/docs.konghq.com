@@ -195,8 +195,10 @@ hub-filters:
   support:
     - name: Kong
       slug: kong-inc
-    - name: Third-party
+    - name: Technical partner
       slug: third-party
+    - name: No support available
+      slug: none
   compatibility:
     - name: Konnect
       slug: konnect
