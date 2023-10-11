@@ -150,7 +150,7 @@ To validate rate limiting, access the API six (6) times from the CLI to confirm 
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X GET http://<admin-hostname>:8000/mock/request
+curl -i -X GET http://localhost:8000/mock/request
 ```
 {% endnavtab %}
 {% navtab HTTPie %}

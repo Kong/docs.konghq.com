@@ -11,6 +11,8 @@ toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
+<!--vale off-->
+
 Trusted IPs module.
 
  This module can be used to determine whether or not a given IP address is
@@ -21,7 +23,7 @@ Trusted IPs module.
  addresses for clients (as per the chosen header field, for example
  X-Forwarded-*).
 
- See the [documentation on trusted IPs](https://docs.konghq.com/gateway/latest/reference/configuration/#trusted_ips).
+ See the [documentation on trusted IPs](/gateway/latest/reference/configuration/#trusted_ips).
 
 
 

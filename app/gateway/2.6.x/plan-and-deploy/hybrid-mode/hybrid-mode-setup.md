@@ -322,7 +322,7 @@ keys.
 {% endnavtab %}
 {% endnavtabs %}
 
-Note that the Control Plane still needs a database (Postgres or Cassandra) to
+Note that the Control Plane still needs a database (PostgreSQL or Cassandra) to
 store the central configurations, although the database never needs to
 be accessed by Data Plane nodes. You may run multiple Control Plane nodes to
 provide load balancing and redundancy, as long as they all point to the same
@@ -477,7 +477,7 @@ kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
     : The tag of the {{site.base_gateway}} image that you're using, and the Docker network it communicates on.
 
     `KONG_CLUSTER_CONTROL_PLANE`
-    : Sets the address and port of the Control Plane (port `8005` by defaut).
+    : Sets the address and port of the Control Plane (port `8005` by default).
 
     `KONG_DATABASE`
     : Specifies whether this node connects directly to a database.
@@ -546,7 +546,7 @@ and follow the instructions in Steps 1 and 2 **only** to download
     Where:
 
     `cluster_control_plane`
-    : Sets the address and port of the Control Plane (port `8005` by defaut).
+    : Sets the address and port of the Control Plane (port `8005` by default).
 
     `database`
     : Specifies whether this node connects directly to a database.

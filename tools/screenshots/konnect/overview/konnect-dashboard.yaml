@@ -6,7 +6,6 @@
   javascript: |
     async () => {
     zoomPercentage(-5);
-    removeElementBySelector('a.sidebar-item-link[href="/us/mesh-manager/"]');
     updateElementsWithRandomNumbersInRange('div[data-v-ed93edde].k-badge-text', 1, 10);
     updateDivWithRandomNumberInRange('div[data-v-ee980c4c][style="font-size: 22px;"]', 30000, 600000);
     }

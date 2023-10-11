@@ -10,7 +10,7 @@ worth merging the two versioned options and finding generic language. -->
 {{site.ee_product_name}} requires a license to run.
 
 If you have lost access to your `license.json` file but still have a valid
-license for Kong Gateway (Enterprise), open a
+license for {{site.ee_product_name}}, open a
 [support case](https://support.konghq.com/) to request the file.
 {% endif %}
 

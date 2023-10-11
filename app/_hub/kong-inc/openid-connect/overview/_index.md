@@ -105,7 +105,7 @@ The plugin has been tested with several OpenID Connect providers:
 - [Okta][okta] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-okta/))
 - [OneLogin][onelogin]
 - [OpenAM][openam]
-- [Paypal][paypal]
+- [PayPal][paypal]
 - [PingFederate][pingfederate]
 - [Salesforce][salesforce]
 - [WSO2][wso2]

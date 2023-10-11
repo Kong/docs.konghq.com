@@ -2,7 +2,7 @@
 are used in the install section of the enterprise deployment docs
 and in the vitals on influxdb docs. -->
 
-{{ include.heading }}Pull the Kong Gateway Docker image {#pull-image}
+{{ include.heading }}Pull the {{site.base_gateway}} Docker image {#pull-image}
 
 Pull the following Docker image.
 

@@ -299,7 +299,7 @@ If you're running in Universal mode, you can also use the [HTTP API][http-api] t
 
 ## Common name
 
-Kong Mesh uses Service Alternative Name with `spiffe://` format to verify secure connection between services. In this case, the common name in the certificate is not used.
+{{site.mesh_product_name}} uses Service Alternative Name with `spiffe://` format to verify secure connection between services. In this case, the common name in the certificate is not used.
 You may need to set a common name in the certificate, for compliance reasons. To do this, set the `commonName` field in the Vault mTLS backend configuration.
 The value contains the template that will be used to generate the name.
 

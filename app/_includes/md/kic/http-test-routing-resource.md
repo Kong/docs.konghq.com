@@ -60,12 +60,13 @@ spec:
 {% endcapture %}
 {{ the_code | indent }}
 
-    The results should look like this:
+The results should look like this:
+
 {% capture the_code %}
 {% navtabs codeblock %}
 {% navtab ingress %}
 ```text
-ingress.networking.k8s.io/proxy-from-k8s-to-httpbin created
+ingress.networking.k8s.io/{{ name }} created
 ```
 {% endnavtab %}
 {% navtab Gateway APIs %}

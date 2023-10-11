@@ -163,7 +163,9 @@ experiment with its clustering capabilities while avoiding surprises. As you
 prepare a production setup, you should consider tuning those values to ensure
 that your performance constraints are respected.
 
+<!--vale off-->
 ### db_update_frequency (default: 5s)
+<!--vale on-->
 
 This value determines the frequency at which your Kong nodes will be polling
 the database for invalidation events. A lower value means that the polling
@@ -178,8 +180,9 @@ seconds.
 
 View the `db_update_frequency` entry in the configuration [reference documentation](/gateway/{{page.kong_version}}/reference/configuration/#db_update_frequency).
 
+<!--vale off-->
 ### db_update_propagation (default: 0s)
-
+<!--vale on-->
 
 {% if_version lte:3.3.x %}
 If your database itself is eventually consistent (that is, Cassandra), you **must**
@@ -203,7 +206,9 @@ up to `db_update_frequency + db_update_propagation` seconds.
 
 View the `db_update_propagation` entry in the configuration [reference documentation](/gateway/{{page.kong_version}}/reference/configuration/#db_update_propagation).
 
+<!--vale off-->
 ### db_cache_ttl (default: 0s)
+<!--vale on-->
 
 The time (in seconds) for which Kong will cache database entities (both hits
 and misses). This Time-To-Live value acts as a safeguard in case a Kong node

@@ -11,7 +11,7 @@ This page explains how {{site.kic_product_name}} can use the expression-based ro
 
 To install {{site.kic_product_name}} with a {{site.base_gateway}} expression-based router, you must configure environment variables in the container of {{site.kic_product_name}} and {{site.base_gateway}}.
 
-### Prerequistes
+### Prerequisites
 
 * {{site.kic_product_name}} 2.10.x or later
 * {{site.base_gateway}} 3.0.x or later

@@ -11,7 +11,7 @@ to the output file. The patches can be specified by a `--selector` and one or mo
 `--value` tags, or via patch files.
 
 When using `--selector` and `--values`, the items are selected by the `selector`, 
-which is a JSONpath query. From the array of nodes found, only the objects are updated.
+which is a JSONPath query. From the array of nodes found, only the objects are updated.
 The `values` are applied on each of the JSONObjects returned by the `selector`.
 
 The value must be a valid JSON snippet, so use single/double quotes

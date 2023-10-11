@@ -170,7 +170,7 @@ After everything is created, make the http request and verify the correct
 invocation, execution, and response:
 
 ```bash
-curl http://<kong_hostname>:8000/lambda1
+curl http://localhost:8000/lambda1
 ```
 
 You should get a response back with the following headers from Amazon:

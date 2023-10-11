@@ -267,7 +267,7 @@ $ http :8000/httpbin-azure Authorization:'bearer <token_from_above>'
 
 ### Test Authorization Code Flow
 
-In your browser, go to `http://<admin-hostname>:8000/httpbin-azure`.
+In your browser, go to `http://localhost:8000/httpbin-azure`.
 
 You should be guided through a log in process within Azure and then the results
 delivered in your browser.
