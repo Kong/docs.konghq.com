@@ -16,6 +16,8 @@ konnect: true
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 3.4.x
+      - 3.3.x
       - 3.2.x
       - 3.1.x
       - 3.0.x
@@ -29,6 +31,8 @@ kong_version_compatibility:
       - 0.12.x
   enterprise_edition:
     compatible:
+      - 3.4.x
+      - 3.3.x
       - 3.2.x
       - 3.1.x
       - 3.0.x
