@@ -388,7 +388,7 @@ difficulties during this phase, please refer to the [Keycloak documentation](htt
    <br>
    <img src="/assets/images/products/plugins/openid-connect/keycloak-client-kong-auth.png">
    <br>
-2. Create another confidential client `service` with `client_secret_basic` authentication.
+2. Create a confidential client `service` with `client_secret_basic` authentication.
    For this client, Keycloak will auto-generate a secret similar to the following: `cf4c655a-0622-4ce6-a0de-d3353ef0b714`.
    Enable the client credentials grant for the client:
    <br><br>
@@ -396,7 +396,12 @@ difficulties during this phase, please refer to the [Keycloak documentation](htt
    <br>
    <img src="/assets/images/products/plugins/openid-connect/keycloak-client-service-auth.png">
    <br>
-3. Create a verified user with the name: `john` and the non-temporary password: `doe` that can be used with the password grant:
+3. Create another confidential client `cert-bound` with similar settings to the `service` client above.
+   From the `advanced` tab, toggle the `OAuth 2.0 Mutual TLS Certificate Bound Access Tokens Enabled` option to `On`.
+   <br><br>
+   <img src="/assets/images/products/plugins/openid-connect/keycloak-client-cert-bound-settings.png">
+   <br>
+4. Create a verified user with the name: `john` and the non-temporary password: `doe` that can be used with the password grant:
    <br><br>
    <img src="/assets/images/products/plugins/openid-connect/keycloak-user-john.png">
 
@@ -418,6 +423,8 @@ to
 
 The Keycloak default `https` port conflicts with the default Kong TLS proxy port,
 and that can be a problem if both are started on the same host.
+
+**Note:** the mTLS proof of possession feature that validates OAuth 2.0 Mutual TLS Certificate Bound Access Tokens requires configuring Keycloak to validate client certificates using mTLS with the `--https-client-auth=request` option. For more information please refer to the [Keycloak documentation](https://www.keycloak.org/server/enabletls).
 
 [keycloak]: http://www.keycloak.org/
 
@@ -1734,6 +1741,118 @@ HTTP/1.1 200 OK
 Nice, as you can see the plugin even added the `X-Consumer-Id` and `X-Consumer-Username` as request headers.
 
 > It is possible to make consumer mapping optional and non-authorizing by setting the `config.consumer_optional=true`.
+
+## Certificate-Bound Access Tokens
+To use this feature, ensure that the Auth Server is set up to generate OAuth 2.0 Mutual TLS Certificate Bound Access Tokens.
+Information for configuring this in Keycloak can be found in the [Keycloak configuration](#keycloak-configuration) section above.
+For alternative Auth Servers, please consult their documentation to configure this functionality.
+
+Some of the flows described in the sections above support validation of access tokens using mTLS proof of possession.
+Enabling the `proof_of_possession_mtls` configuration option in the plugin helps ensure that the supplied access token
+belongs to the client by verifying its binding with the client certificate provided in the request.
+
+The feature is supported by the following flows:
+
+- [JWT Access Token Authentication](#jwt-access-token-authentication)
+- [Introspection Authentication](#introspection-authentication)
+- [Session Authentication](#session-authentication)
+
+**Note:** The Session Authentication flow is only compatible with this feature when used along one of the other supported flows listed above. When the configuration option `proof_of_possession_auth_methods_validation` is set to `false` and other (non compatible) flows are enabled, if a valid session is found, the proof of possession validation will only be performed if the session was originally created using one of the compatible flows. In case of multiple `openid-connect` plugins configured with the `session` auth method, for additional security it is strongly recommended to configure different values of `config.session_secret` across plugins instances, to avoid sessions being shared across plugins and possibly bypassing the proof of possession validation.
+
+The following example shows how to enable this feature for the **JWT Access Token Authentication flow**, similar steps can be followed for the other flows.
+
+Kong must be configured to do mTLS client certificate authentication. This can be achieved by configuring the [TLS Handshake Modifier plugin](/hub/kong-inc/tls-handshake-modifier/) or the [Mutual TLS Authentication plugin](/hub/kong-inc/mtls-auth/).
+
+```bash
+http -f post :8001/plugins    \
+  name=tls-handshake-modifier \
+  service.name=openid-connect
+```
+```http
+HTTP/1.1 200 OK
+```
+```json
+{
+    "id": "a7f676e6-580d-4841-80de-de46e1f79eb2",
+    "name": "tls-handshake-modifier",
+    "service": {
+        "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd"
+    }
+}
+```
+
+To enable the feature, use the `proof_of_possession_mtls` configuration option.
+
+```bash
+http -f put :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
+  name=openid-connect                                          \
+  service.name=openid-connect                                  \
+  config.issuer=https://keycloak.test:8440/auth/realms/master  \
+  config.client_id=cert-bound                                  \
+  config.client_secret=cf4c655a-0622-4ce6-a0de-d3353ef0b714    \
+  config.auth_methods=bearer                                   \
+  config.proof_of_possession_mtls=strict
+```
+```http
+HTTP/1.1 200 OK
+```
+```json
+{
+    "id": "5f35b796-ced6-4c00-9b2a-90eef745f4f9",
+    "name": "openid-connect",
+    "service": {
+        "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd"
+    },
+    "config": {
+        "issuer": "https://keycloak.test:8440/auth/realms/master",
+        "client_id": [ "cert-bound" ],
+        "client_secret": [ "cf4c655a-0622-4ce6-a0de-d3353ef0b714" ],
+        "auth_methods": [ "bearer" ],
+        "proof_of_possession_mtls": "strict",
+    }
+}
+```
+
+Use a command similar to the following to obtain the token from the IdP
+
+```bash
+http --cert client-cert.pem --cert-key client-key.pem                                 \
+  -f post https://keycloak.test:8440/auth/realms/master/protocol/openid-connect/token \
+  client_id=cert-bound                                                                \
+  client_secret=cf4c655a-0622-4ce6-a0de-d3353ef0b714                                  \
+  grant_type=client_credentials
+```
+```http
+HTTP/1.1 200 OK
+```
+```json
+{
+    "access_token": "eyJhbG...",
+}
+```
+
+The token obtained should include a claim that consists of the hash of the client certificate
+
+```json
+{
+    "exp": 1622556713,
+    "typ": "Bearer",
+    "cnf": {
+        "x5t#S256": "hh_XBS..."
+    }
+}
+```
+
+Access the service using the same client certificate and key used to obtain the token
+
+```bash
+http --cert client-cert.pem --cert-key client-key.pem \
+  -f post https://kong.test:8443                      \
+  Authorization:"Bearer eyJhbGc..."
+```
+```http
+HTTP/1.1 200 OK
+```
 
 ## Headers
 
