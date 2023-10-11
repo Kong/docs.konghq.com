@@ -21,19 +21,6 @@ This is available only for enterprise customers of Kong, Inc.
     ```
 1. Create [Kong Enterprise License secret](#kong-enterprise-license-secret)
 
-1. Create a `values.yaml` file with these details to deploy using Helm charts.
-    ```
-    image:
-      repository: kong/kong-gateway
-      tag: 2.2.1.0-alpine
-    env:
-      LICENSE_DATA:
-        valueFrom:
-          secretKeyRef:
-            name: kong-enterprise-license
-            key: license
-    ```
-
 {% include_cached /md/kic/kong-enterprise-license-secret.md version=page.version %}
 
 ### Installing Kong Enterprise
@@ -153,13 +140,24 @@ For a production setup with Kong support, use the [Helm chart](https://github.co
 {% endnavtab %}
 {% navtab Helm %}
 You can use Helm to install Kong using the official Helm chart:
-
+1. Create a `values.yaml` file with these details to deploy using Helm charts.
+    ```
+    image:
+      repository: kong/kong-gateway
+      tag: {{ site.data.kong_latest_gateway.ee-version }}
+    env:
+      LICENSE_DATA:
+        valueFrom:
+          secretKeyRef:
+            name: kong-enterprise-license
+            key: license
+    ```
 1. Install {{site.kic_product_name}} and {{ site.base_gateway }} with Helm:
 
     ```
     $ helm repo add kong https://charts.konghq.com
     $ helm repo update
-    $ helm install kong kong/ingress -n kong --create-namespace
+    $ helm install kong kong/ingress -n kong --create-namespace --values ./values.yaml
     ```
     The results should look like this:
     ```text
