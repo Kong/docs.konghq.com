@@ -4,7 +4,8 @@ subtitle: Manage Konnect and Kong Gateway configuration declaratively
 ---
 
 decK helps manage Kong’s configuration in a declarative fashion. This means that
-a developer can define the desired state of Kong Gateway or Konnect &ndash;
+a developer can define the desired state of 
+{{site.base_gateway}} or {{site.konnect_short_name}} &ndash;
 services, routes, plugins, and more &ndash; and let decK handle implementation
 without needing to execute each step manually, as you would with the Kong Admin
 API.

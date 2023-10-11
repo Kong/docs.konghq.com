@@ -2,7 +2,7 @@
 title: Multi-zone authentication
 ---
 
-To add to the security of your deployments, Kong Mesh provides token generation for authenticating zone control planes to the global control plane.
+To add to the security of your deployments, {{site.mesh_product_name}} provides token generation for authenticating zone control planes to the global control plane.
 
 The control plane token is a JWT that contains:
 
@@ -34,7 +34,7 @@ To generate the tokens you need and configure your clusters:
 
 ### Generate token for each zone
 
-On the global control plane, [authenticate](https://kuma.io/docs/latest/security/certificates/#user-to-control-plane-communication) and run the following command:
+On the global control plane, [authenticate](/mesh/latest/production/secure-deployment/certificates/#user-to-control-plane-communication) and run the following command:
 
 ```
 $ kumactl generate control-plane-token --zone=west --valid-for=720h > /tmp/token
@@ -68,7 +68,7 @@ $ kumactl install control-plane \
 {% endnavtab %}
 {% navtab Kubernetes with Helm %}
 
-Create a secret with a token in the same namespace where Kong Mesh is installed:
+Create a secret with a token in the same namespace where {{site.mesh_product_name}} is installed:
 
 ```
 $ kubectl create secret generic cp-token -n kong-mesh-system --from-file=/tmp/token
@@ -116,7 +116,7 @@ $ KUMA_MODE=zone \
 
 ### Enable authentication on the global control plane
 
-If you are starting from scratch and not securing existing Kong Mesh deployment, you can do this as a first step.
+If you are starting from scratch and not securing existing {{site.mesh_product_name}} deployment, you can do this as a first step.
 
 {% navtabs %}
 {% navtab Kubernetes with kumactl %}
@@ -163,7 +163,7 @@ Verify the zone control plane is connected with authentication by looking at the
 
 ## Revoke token
 
-Kong Mesh does not keep a list of issued tokens. Whenever a single token is compromised, you can add it to revocation list so the token is no longer valid.
+{{site.mesh_product_name}} does not keep a list of issued tokens. Whenever a single token is compromised, you can add it to revocation list so the token is no longer valid.
 
 Every token has its own ID, which is available in the payload under the `jti` key. You can extract an ID from the token using jwt.io or the [`jwt-cli`](https://www.npmjs.com/package/jwt-cli) tool. Here is an example of a `jti` key:
 ```
@@ -315,4 +315,4 @@ The result looks like:
 
 ## Additional security
 
-By default, a connection from the zone control plane to the global control plane is secured with TLS. You should also configure the zone control plane to [verify the certificate authority (CA) of the global control plane](https://kuma.io/docs/latest/security/certificates/#control-plane-to-control-plane-multizone){:target="_blank"}.
+By default, a connection from the zone control plane to the global control plane is secured with TLS. You should also configure the zone control plane to [verify the certificate authority (CA) of the global control plane](/mesh/latest/production/secure-deployment/certificates/#control-plane-to-control-plane-multizone){:target="_blank"}.

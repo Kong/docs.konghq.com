@@ -54,7 +54,7 @@ deployment.apps/httpbin created
     ingress.networking.k8s.io/demo created
     ```
 
-    We can now call `$PROXY_IP/test/request/200` to reach our deployed service.
+    We can now call `$PROXY_IP/test/status/200` to reach our deployed service.
 
 ## Create Consumers and secrets
 

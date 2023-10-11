@@ -225,6 +225,8 @@ mesh_raw_generated_paths:
   - app/_src/.repos/kuma/app/docs
 # Helm commands
 set_flag_values_prefix: kuma.
+mesh_helm_repo_url: https://kong.github.io/kong-mesh-charts
+mesh_helm_repo_name: kong-mesh
 mesh_helm_repo: kong-mesh/kong-mesh
 mesh_helm_install_name: kong-mesh
 mesh_disabled_versions: [dev]

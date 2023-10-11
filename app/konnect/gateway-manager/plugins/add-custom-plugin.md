@@ -57,10 +57,15 @@ Upload the `schema.lua` file for your plugin using the [`/plugin-schemas`](/konn
 ```sh
 curl -i -X POST \
   https://{region}.api.konghq.com/v2/{controlPlaneId}/core-entities/plugin-schemas \
-  --data lua_schema=@example-schema.lua
+  --header 'Content-Type: application/json' \
+  --data "{\"lua_schema\": <your escaped Lua schema>}"
 ```
 
-This example specifies a file, but you can also include the entire schema in the request as JSON data.
+{:.note}
+> **Tip**: You can use jq to pass your schema directly from the file instead of manually escaping it:
+```sh
+--data "{\"lua_schema\": $(jq -Rs '.' < REPLACE-PATH-TO-SCHEMA-FILE)}"
+```
 
 You should get an `HTTP 201` response. 
 
