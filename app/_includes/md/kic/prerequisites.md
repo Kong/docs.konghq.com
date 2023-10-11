@@ -38,6 +38,7 @@ Kubernetes exposes the proxy through a Kubernetes service. Run the following com
     ```bash
     HOST=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
     PORT=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.spec.ports[0].port}')
+    export HOST=${HOST}
     export PROXY_IP=${HOST}:${PORT}
     echo $PROXY_IP   
     ```
