@@ -5,7 +5,7 @@ publisher: Optum
 type: plugin
 
 categories:
-  - third-party
+  - none
 
 desc: Add a signed JWT into the header of proxied requests
 
