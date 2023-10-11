@@ -67,7 +67,9 @@ body_id: page-hub
             <h4 class="page-hub--category-title">Not Supported</h4>
             <div class="page-hub--category-cards">
               {% for extn in third_party_extns  %}
-                {% include hub_cards.html header_icon=page.header_icon %}
+                {% unless extn.techpartner %}
+                  {% include hub_cards.html header_icon=page.header_icon %}
+                {% endunless %}
               {% endfor %}
             </div>
           </div>

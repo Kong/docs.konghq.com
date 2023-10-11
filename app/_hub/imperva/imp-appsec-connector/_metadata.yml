@@ -1,5 +1,6 @@
 name: Imperva API Security 
-publisher: Imperva 
+publisher: Imperva
+support_url: https://www.imperva.com/support/technical-support/
 
 categories: 
   - security
