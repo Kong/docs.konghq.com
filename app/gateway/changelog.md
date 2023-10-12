@@ -1352,6 +1352,21 @@ Now, if IdP users with no groups or roles attempt to log into Kong Manager, they
   [#10230](https://github.com/Kong/kong/pull/10230)
 * Bumped `libxml` from 2.10.2 to 2.10.3 to resolve [CVE-2022-40303](https://nvd.nist.gov/vuln/detail/cve-2022-40303) and [CVE-2022-40304](https://nvd.nist.gov/vuln/detail/cve-2022-40304)
 
+## 3.1.1.6
+**Release Date** 2023/10/12
+
+### Fixes
+
+#### Core
+* Applied Nginx patch for early detection of HTTP/2 stream reset attacks.
+This change is in direct response to the identified vulnerability 
+[CVE-2023-44487](https://nvd.nist.gov/vuln/detail/CVE-2023-44487).
+
+  See our [blog post](https://konghq.com/blog/product-releases/novel-http2-rapid-reset-ddos-vulnerability-update) for more details on this vulnerability and Kong's responses to it.
+
+### Dependencies
+
+* Bumped `libxml2` from 2.10.2 to 2.11.5
 
 ## 3.1.1.5 
 **Release Date** 2023/08/25
