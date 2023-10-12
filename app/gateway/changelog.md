@@ -408,6 +408,67 @@ hang when attempting to expand an API.
   of the `http-log` plugin and the `endpoint` field of the `opentelemetry` plugin,
   do not accept reference values due to incorrect field validation.
 
+## 3.3.1.1
+**Release Date** 2023/10/12
+
+### Breaking Changes
+
+* **Ubuntu 18.04 support removed**: Support for running Kong Gateway on Ubuntu 18.04 ("Bionic") is now deprecated,
+as [Standard Support for Ubuntu 18.04 has ended as of June 2023](https://wiki.ubuntu.com/Releases).
+Starting with Kong Gateway 3.2.2.4, Kong is not building new Ubuntu 18.04
+images or packages, and Kong will not test package installation on Ubuntu 18.04.
+
+    If you need to install Kong Gateway on Ubuntu 18.04, substitute a previous 3.2.x 
+    patch version in the [installation instructions](/gateway/3.2.x/install/linux/ubuntu/).
+
+* Amazon Linux 2022 artifacts are renamed to Amazon Linux 2023, based on AWS's own renaming.
+* CentOS packages are now removed from the release and are no longer supported in future versions.
+
+### Features
+
+#### Plugins
+* [**GraphQL Rate Limiting Advanced**](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`) and [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`): The Redis strategy now catches strategy connection failures.
+
+### Fixes
+
+#### Core
+* Applied Nginx patch for early detection of HTTP/2 stream reset attacks.
+This change is in direct response to the identified vulnerability 
+[CVE-2023-44487](https://nvd.nist.gov/vuln/detail/CVE-2023-44487).
+* Fixed an issue where an abnormal socket connection would be reused when 
+querying the PostgreSQL database.
+* Fixed a keyring issue where Kong Gateway nodes would fail to send keyring 
+data when using the cluster strategy.
+* Fixed an issue where a crashing Go plugin server process would cause subsequent 
+requests proxied through Kong Gateway to execute Go plugins with inconsistent configurations. 
+The issue only affects scenarios where the same Go plugin is applied to different route or service entities.
+* Fixed an issue that caused the sampling rate to be applied to individual spans, producing split traces.
+* Fixed worker queue issues:
+  * When the worker is in shutdown mode and more data is immediately available without waiting for `max_coalescing_delay`, queues are now cleared in batches.
+  [#11376](https://github.com/Kong/kong/pull/11376)
+  * Fixed a race condition in plugin queues that could crash the worker when `max_entries` was set to `max_batch_size`.
+  [#11378](https://github.com/Kong/kong/pull/11378)
+* Added a `User=` specification to the systemd unit definition so that
+  Kong Gateway can be controlled by systemd again.
+
+#### Plugins
+
+* [**SAML**](/hub/kong-inc/saml/) (`saml`): When the Redis session storage is incorrectly configured, users now receive a 500 error instead of being redirected endlessly.
+
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`):
+  * The plugin now correctly sets the table key on `log` and `message`.
+  * If an invalid opaque token is provided and verification fails, the plugin now prints the correct error.
+
+* [**Response Transformer Advanced**](/hub/kong-inc/response-transformer-advanced/) (`response-transformer-advanced`): The plugin no longer loads the response body when `if_status` 
+doesn't match the provided status.
+
+* [**mTLS Authentication**](/hub/kong-inc/mtls-auth/) (`mtls-auth`): Fixed an issue that caused the plugin to cache network failures when running certificate revocation checks.
+
+### Dependencies
+
+* Bumped `libxml2` from 2.10.2 to 2.11.5
+* Bumped `lua-resty-kafka` from 0.15 to 0.16
+
 ## 3.3.1.0
 **Release Date** 2023/07/03
 
