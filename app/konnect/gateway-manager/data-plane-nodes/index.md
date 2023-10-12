@@ -38,6 +38,7 @@ Advanced setup:
 > * Gateway Manager includes a feature called Control Plane Launcher which can be used with any of AWS, Azure, or GCP. This feature is currently in tech preview.
 > * Kong does not host data plane nodes. You must install and host your own.
 > * Gateway Manager allows users to select the {{site.base_gateway}} version that they want for their Quickstart scripts (except for cloud provider quickstart scripts for AWS, Azure, and GCP). This allows you to leverage official {{site.konnect_short_name}} scripts to start your gateways while reducing the number of errors due to an invalid script for a certain {{site.base_gateway}} version.
+> * SSH access to Konnect data planes must be done using the cloud provider's tools when using [AWS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-connect-methods.html), [Azure](https://learn.microsoft.com/en-us/azure/cloud-shell/overview), and [Google Cloud](https://cloud.google.com/compute/docs/instances/ssh) advanced setups. Direct SSH access is not possible as the keys are randomly generated and not exposed.
 
 ### Forward proxy support
 
