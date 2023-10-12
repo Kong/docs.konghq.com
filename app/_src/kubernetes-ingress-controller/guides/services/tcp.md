@@ -16,9 +16,6 @@ There are two modes available:
 
 {% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false%}
 
-### Install OpenSSL
-### 
-
 ## Expose additional ports
 
 {{site.base_gateway}} does not include any TCP listen configuration by default. To expose TCP listens, update the Deployment's environment variables and port configuration.
