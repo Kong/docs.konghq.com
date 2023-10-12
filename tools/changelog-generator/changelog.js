@@ -51,6 +51,8 @@ const earliestDate = subDays(now, 7);
       pulls.map(async (pr) => {
         const created_at = new Date(pr.merged_at);
 
+
+
         // Load the files for this PR using the API
         const pr_files = await octokit.paginate(
           octokit.rest.pulls.listFiles,
@@ -86,9 +88,9 @@ const earliestDate = subDays(now, 7);
       }),
     )
   )
+    
     .filter((pr) => pr.affected_files.length > 0)
-    .filter((pr) => !pr.labels.includes("skip-changelog"));
-
+    .filter((pr) => !pr.labels.map(l => l.name).includes("skip-changelog"));
   prsWithFiles = groupBy(prsWithFiles, "week");
 
   // Write the changelog
@@ -141,7 +143,7 @@ const earliestDate = subDays(now, 7);
   try {
     existingChangelog = await fs.readFile("changelog.md", "utf8");
   } catch (e) {
-    // No file to read
+    console.log(e); // for debugging why the file is being overwritten.
   }
 
   changelogContent = `${changelogContent}\n\n${existingChangelog.replace(
