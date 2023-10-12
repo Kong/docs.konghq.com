@@ -16,6 +16,7 @@ jobs:
       - name: Submodule Sync
         uses: mheap/submodule-sync-action@v1
         with:
+          token: ${{ secrets.PAT }}
           path: app/_src/.repos/kong-plugins
           ref: main
           pr_branch: automated-kong-plugins-update
