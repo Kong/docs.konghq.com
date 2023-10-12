@@ -403,6 +403,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_TELEMETRY_ENDPOINT=control-plane.<admin-hostname>.com:8006" \
 -e "KONG_CLUSTER_CERT=/<path-to-file>/cluster.crt" \
 -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/cluster.key" \
+-e "KONG_CLUSTER_DP_LABELS=deployment:cloud1,region:us-east-1" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
 kong/kong-gateway:{{page.versions.ee}}-alpine
@@ -418,6 +419,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_TELEMETRY_ENDPOINT=control-plane.<admin-hostname>.com:8006" \
 -e "KONG_CLUSTER_CERT=/<path-to-file>/cluster.crt" \
 -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/cluster.key" \
+-e "KONG_CLUSTER_DP_LABELS=deployment:cloud1,region:us-east-1" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
 kong:{{page.versions.ce}}-alpine
@@ -444,6 +446,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_CERT=data-plane.crt" \
 -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/data-plane.crt" \
 -e "KONG_CLUSTER_CA_CERT=/<path-to-file>/ca-cert.pem" \
+-e "KONG_CLUSTER_DP_LABELS=deployment:cloud1,region:us-east-1" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
 kong/kong-gateway:{{page.versions.ee}}-alpine
@@ -462,6 +465,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_CERT=data-plane.crt" \
 -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/data-plane.crt" \
 -e "KONG_CLUSTER_CA_CERT=/<path-to-file>/ca-cert.pem" \
+-e "KONG_CLUSTER_DP_LABELS=deployment:cloud1,region:us-east-1" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
 kong:{{page.versions.ce}}-alpine
@@ -498,6 +502,9 @@ kong:{{page.versions.ce}}-alpine
     `KONG_CLUSTER_TELEMETRY_ENDPOINT`
     : Optional setting, needed for telemetry gathering. Not available in open-source deployments.
 
+    `KONG_CLUSTER_DP_LABELS`
+    : Optional setting, used to configure data plane labels.
+
     You can also choose to encrypt or disable the data plane configuration
     cache with some additional settings:
 
@@ -530,6 +537,7 @@ and follow the instructions in Steps 1 and 2 **only** to download
     cluster_telemetry_endpoint = control-plane.<admin-hostname>.com:8006
     cluster_cert = /<path-to-file>/cluster.crt
     cluster_cert_key = /<path-to-file>/cluster.key
+    cluster_dp_labels = deployment:cloud1,region:us-east-1
     ```
 
     For `pki` certificate mode, use:
@@ -544,6 +552,7 @@ and follow the instructions in Steps 1 and 2 **only** to download
     cluster_cert = /<path-to-file>/data-plane.crt
     cluster_cert_key = /<path-to-file>/data-plane.crt
     cluster_ca_cert = /<path-to-file>/ca-cert.pem
+    cluster_dp_labels = deployment:cloud1,region:us-east-1
     ```
 
     Where:
@@ -568,6 +577,9 @@ and follow the instructions in Steps 1 and 2 **only** to download
 
     `cluster_telemetry_endpoint`
     : Optional setting, needed for telemetry gathering. Not available in open-source deployments.
+
+    `cluster_dp_labels`
+    : Optional setting, used to configure data plane labels.
 
     You can also choose to encrypt or disable the data plane configuration
     cache with some additional settings:
@@ -596,7 +608,47 @@ curl -i -X GET http://localhost:8001/clustering/data-planes
 
 The output shows all of the connected data plane instances in the cluster:
 
-{% if_version gte:3.3.x %}
+{% if_version gte:3.5.x %}
+```json
+{
+    "data": [
+        {
+            "ip": "172.24.0.10",
+            "updated_at": 1689266492,
+            "config_hash": "595214af5fb356cc569313184c64d9b7",
+            "sync_status": "normal",
+            "version": "3.3.0.0",
+            "id": "10424658-f139-476c-b74f-e0a6e6ec9402",
+            "hostname": "kongDP1",
+            "ttl": 1209593,
+            "last_seen": 1689266492,
+            "labels": {
+                "deployment": "cloud1",
+                "region": "us-east-1"
+            }
+        },
+        {
+            "ip": "172.24.0.11",
+            "updated_at": 1689266472,
+            "config_hash": "595214af5fb356cc569313184c64d9b7",
+            "sync_status": "normal",
+            "version": "3.3.0.0",
+            "id": "3487f520-4f52-4ee5-ad6f-50756822f0c5",
+            "hostname": "kongDP2",
+            "ttl": 1209572,
+            "last_seen": 1689266472,
+            "labels": {
+                "deployment": "cloud2",
+                "region": "us-west-2"
+            }
+        }
+    ],
+    "next": null
+}
+```
+{% endif_version %}
+
+{% if_version gte:3.3.x lte:3.4.x %}
 ```json
 {
     "data": [
