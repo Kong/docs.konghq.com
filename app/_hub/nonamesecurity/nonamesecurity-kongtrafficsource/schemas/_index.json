@@ -20,7 +20,7 @@
         "type": "set",
         "default": [
           "http",
-          "https",
+          "https"
         ]
       }
     },
