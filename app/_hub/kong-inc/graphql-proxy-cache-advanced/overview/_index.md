@@ -31,7 +31,7 @@ hexadecimal-encoded MD5 sum of the concatenation of the constituent parts.
 key = md5(UUID | headers | body)
 ```
 
-Where `headers` contains the headers defined in vary_headers. `vary_headers` defaults to NONE.
+Where `headers` contains the headers defined in `vary_headers`, which defaults to `none`.
 
 Kong will return the cache key associated with a given request as the
 `X-Cache-Key` response header.

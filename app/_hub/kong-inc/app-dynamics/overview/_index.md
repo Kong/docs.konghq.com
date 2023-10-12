@@ -12,11 +12,11 @@ with other systems participating in handling application API requests.
 
 ## Prerequisites
 
-Before using the plugin, download and install the [AppDynamics C/C++ Application Agent and SDK](https://docs.appdynamics.com/pages/viewpage.action?pageId=42583435) on the machine or within the container running Kong Gateway. 
+Before using the plugin, download and install the [AppDynamics C/C++ Application Agent and SDK](https://docs.appdynamics.com/pages/viewpage.action?pageId=42583435) on the machine or within the container running {{site.base_gateway}}. 
 
 ### Platform support
 
-The AppDynamics C SDK supports Linux distributions based on glibc 2.5+. MUSL-based distributions like the Alpine distribution, which is popular for container usage, are not supported. Kong Gateway must be running on a glibc-based distribution like RHEL, CentOS, Debian, or Ubuntu to support this plugin. 
+The AppDynamics C SDK supports Linux distributions based on glibc 2.5+. MUSL-based distributions like the Alpine distribution, which is popular for container usage, are not supported. {{site.base_gateway}} must be running on a glibc-based distribution like RHEL, CentOS, Debian, or Ubuntu to support this plugin. 
 
 See the [AppDynamics C/C++ SDK Supported Environments](https://docs.appdynamics.com/appd/21.x/21.12/en/application-monitoring/install-app-server-agents/c-c++-sdk/c-c++-sdk-supported-environments) document for more information.
 

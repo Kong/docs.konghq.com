@@ -21,6 +21,7 @@ To send raw text, use the [`/services/collector/raw`](https://docs.splunk.com/Do
 For example, assuming that Splunk is running at `https://example.splunkcloud.com:8088/` and its secure token is `123456`,
 you can enable an HTTP Log plugin instance using the following configuration: 
 
+<!--vale off-->
 {% if_plugin_version gte:3.0.x %}
 {% plugin_example %}
 plugin: kong-inc/http-log
@@ -68,6 +69,7 @@ formats:
   - kubernetes
 {% endplugin_example %}
 {% endif_plugin_version %}
+<!--vale on-->
 
 Based on this configuration, the HTTP Log plugin sends the logs to `https://example.splunkcloud.com:8088/services/collector/raw` with a secure token.
 

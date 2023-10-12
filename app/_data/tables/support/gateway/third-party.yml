@@ -105,7 +105,7 @@ _third_party:
   openam: &openam
     name: OpenAM
   paypal: &paypal
-    name: Paypal
+    name: PayPal
   pingfederate: &pingfederate
     name: PingFederate
   salesforce: &salesforce

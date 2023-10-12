@@ -2,6 +2,112 @@
 
 <!--vale off-->
 
+## Week 40
+
+### [Fix: Badge alignment](https://github.com/Kong/docs.konghq.com/pull/6245) (2023-10-06)
+
+Badges & their tooltips are currently misaligned on h2-h5s:
+
+<img width="773" alt="Screenshot 2023-10-05 at 1 45 43 PM" src="https://github.com/Kong/docs.konghq.com/assets/54370747/5ea03aa5-02e9-4b9d-b6b1-f26bd758285b">
+
+<img width="777" alt="Screenshot 2023-10-05 at 1 46 26 PM" src="https://github.com/Kong/docs.konghq.com/assets/54370747/68ce7939-3e58-40b2-bcdb-b0489d5ac6ca">
+
+This PR fixes the alignment for both.
+
+While testing out the fix, I also noticed that we had some wrong badges applied to the Konnect section of the Gateway intro page. We got rid of Plus and Enterprise badges for Konnect with the switch to consumption-based billing, since it isn't accurate to apply either tier to features in Konnect anymore.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/
+- https://docs.konghq.com/gateway/3.1.x/
+- https://docs.konghq.com/gateway/3.2.x/
+- https://docs.konghq.com/gateway/3.3.x/
+- https://docs.konghq.com/gateway/3.4.x/
+- https://docs.konghq.com/contributing/markdown-rules
+
+
+### [fix: Plugin tiers for konnect-incompatible plugins](https://github.com/Kong/docs.konghq.com/pull/6235) (2023-10-05)
+
+Some konnect-incompatible plugins were displaying Konnect Paid or Konnect Premium badges. This was happening because the metadata was incorrectly set to include either `paid: true` or `premium: true` for these plugins.
+
+Fixing that, and adding a banner to konnect-incompatible plugin landing pages to call that out.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/jwt-signer/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/key-auth-enc/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/openwhisk/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/vault-auth/_0.3.0/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/vault-auth/_metadata.yml
+
+
+### [feat: OIDC team mapping documentation](https://github.com/Kong/docs.konghq.com/pull/6227) (2023-10-04)
+
+The OIDC team mapping feature will be released, so we need documentation that explains the workflow for how to set it up in Konnect. This PR also made some fixes after the previous PR was reverted.
+
+#### Added
+
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/add-teams
+
+#### Modified
+
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/manage-teams
+- https://docs.konghq.com/konnect/updates
+
+
+### [Update: Docs 404 page](https://github.com/Kong/docs.konghq.com/pull/6210) (2023-10-02)
+
+Docs 404 page had bad alignment and outdated links. Making some adjustments to the layout and using better element hierarchy.
+
+#### Modified
+
+- https://docs.konghq.com/404.html
+
+
+### [Update: Add cache names to mem_cache_size](https://github.com/Kong/docs.konghq.com/pull/6206) (2023-10-03)
+
+The mem_cache_size parameter in kong.conf mentions that it controls the size of two caches, but doesn't say what the names of the caches are.
+According to our [changelog](https://github.com/Kong/kong/blob/master/CHANGELOG-OLD.md#core-32), these two in-memory caches are kong_core_cache and kong_cache.
+
+Resolves doc ticket https://konghq.atlassian.net/browse/DOCU-1878.
+
+Parallel PR to https://github.com/Kong/kong/pull/11680.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/2.8.x/reference/configuration
+
+
+### [feat: OIDC IdP Team Mapping functionality](https://github.com/Kong/docs.konghq.com/pull/6166) (2023-10-03)
+
+Adds new documentation about the OIDC iDP team mapping function.
+
+
+#### Added
+
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/add-teams
+
+#### Modified
+
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/manage-teams
+- https://docs.konghq.com/konnect/updates
+
+
+### [Feat: PKI Certs for CP/DP authentication](https://github.com/Kong/docs.konghq.com/pull/6155) (2023-10-02)
+
+Konnect now supports pinned PKI certs for CP/DP authentication. This means that Konnect supports digital certificates signed by a trusted CA in Konnect for CP/DP authentication.
+
+[DOCU-3357](https://konghq.atlassian.net/browse/DOCU-3357)
+
+#### Added
+
+- https://docs.konghq.com/konnect/gateway-manager/data-plane-nodes/secure-communications
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/data-plane-nodes/renew-certificates
+- https://docs.konghq.com/konnect/updates
+
 ## Week 39
 
 ### [Fix: View Organizations](https://github.com/Kong/docs.konghq.com/pull/6203) (2023-09-29)

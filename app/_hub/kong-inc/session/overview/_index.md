@@ -134,7 +134,8 @@ For usage with [Key Auth] plugin
      --data "config.cookie_secure=false"
    ```
 
-   > Note: cookie_secure is true by default, and should always be true, but is set to
+   {:.note}
+   > **Note:** `cookie_secure` is true by default, and should always be true, but is set to
    > false for the sake of this demo to avoid using HTTPS.
 
 1. Add the Request Termination plugin

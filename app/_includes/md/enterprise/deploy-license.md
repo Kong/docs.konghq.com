@@ -73,7 +73,7 @@ For more detail and options, see the
 {% endnavtab %}
 {% navtab Filesystem %}
 
-You can provide a license file to Kong Gateway in any database-backed or DB-less
+You can provide a license file to {{site.base_gateway}} in any database-backed or DB-less
 deployment. This method is not recommended for use in hybrid mode, as you have
 to maintain the license on each node manually.
 
