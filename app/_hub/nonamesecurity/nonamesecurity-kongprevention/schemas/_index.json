@@ -13,7 +13,6 @@
           "one_of": [ 
             "http",
             "https",
-            "etc"
           ],
           "type": "string"
         },

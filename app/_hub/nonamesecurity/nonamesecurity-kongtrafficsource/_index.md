@@ -26,32 +26,18 @@ Please find the performance benchmarks for the Noname Security Kong prevention i
 The Noname Security Kong plugin is available as a LuaRocks module.
 The [Noname Security install and configuration Documentation](https://docs.nonamesecurity.com/docs/kong-plugin) explains how to logon to the Noname admin user interface to go to the Integrations section of the platform, begin the Kong integration wizard and to download the plugin that is used in the Dockerfile to create a custom docker image with the plugins preinstalled. 
 
-How you install the Noname Kong plugin depends on how you installed the Kong Gateway. For example, installing the Kong Gateway using docker vs installing RHEL Kong Gateway. The luarocks command may require root permissions. Use sudo for the installation environments that support it. If luarocks is not available in the $PATH, use the absolute path of luarocks which is installation specific. It is usually located in /usr/local/bin.
-
-Step 1: Configure the Integration Profile in Noname and Download the Plugin
-Step 2: Configure Your Environment in Kong
-Step 3: Install the Plugin
-Step 4: Enable the Plugin
-Step 5: Configure the Plugin
-
-You can modify the kong.conf file and append the nonamesecurity plugin to the plugins entry.
-
-```yaml
-plugins = bundled,nonamesecurity
-```
-
-Configure the plugin
-```shell
-$ curl -X POST http://<kong-domain>:<kong-port>/services/<your-kong service-id>/plugins/ \
---data "name=nonamesecurity"
-```
 
 
-1. Copy the LuaRocks module to the Kong server.
+1. Configure the Integration Profile in Noname and Download the Plugin
+
+In the Noname UI, navigate to Settings > Integrations > Traffic Sources. Select Add Integration and select the Kong tile to create an integration profile. Download the Zip file, and copy it to your Kong machine. Select Next. Provide an alias for the integration. Select Finish to save the integration.
+
 
 2. Install the LuaRocks module.
 
-    ```shell
+In your Kong machine CLI shell Navigate to the location of the copied Zip file and unzip the file.
+
+    ```sh
     luarocks install nonamesecurity.rockspec
     ```
 
@@ -59,11 +45,14 @@ $ curl -X POST http://<kong-domain>:<kong-port>/services/<your-kong service-id>/
 
     In your `kong.conf`, append `nonamesecurity` to the `plugins` field. Make sure the field is not commented out.
 
-    ```yaml
-    plugins = bundled,nonamesecurity    # Comma-separated list of plugins this node
-                                            # should load. By default, only plugins
-                                            # bundled in official distributions are
-                                            # loaded via the `bundled` keyword.
+```yaml
+plugins = bundled,nonamesecurity    
+
+# Comma-separated list of plugins this node
+# should load. By default, only plugins
+# bundled in official distributions are
+# loaded via the `bundled` keyword.
+```
 
 4. Restart {{site.base_gateway}}:
 
@@ -89,6 +78,7 @@ RUN apt update && apt-get install -y build-essential git curl unzip
 RUN bash -c 'mkdir -pv {nonamesecurity}'
 
 COPY ./noname-security-kong-policy.zip nonamesecurity/noname-security-kong-policy.zip
+
 RUN unzip nonamesecurity/noname-security-kong-policy.zip -d nonamesecurity && rm nonamesecurity/noname-security-kong-policy.zip
 
 RUN cd nonamesecurity && luarocks make
@@ -96,14 +86,15 @@ RUN cd nonamesecurity && luarocks make
 USER kong
 ```
 
-## Using the Plugin
+## Using the Noname Security Traffic Source Plugin
 
 Configure the plugin on a gateway service by making the following request:
 
 ```shell
-$ curl -X POST http://<kong-domain>:<kong-port>/services/<your-kong service-id>/plugins/ \
+$ curl -X POST http://KONG_HOST:8001/services/<your-kong service-id>/plugins/ \
 --data "name=nonamesecurity"
 ```
+
 
 The plugin is now configured on the service.
 
