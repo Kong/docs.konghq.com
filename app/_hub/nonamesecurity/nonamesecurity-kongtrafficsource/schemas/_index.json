@@ -12,7 +12,7 @@
         "elements": {
           "one_of": [ 
             "http",
-            "https",
+            "https"
           ],
           "type": "string"
         },
