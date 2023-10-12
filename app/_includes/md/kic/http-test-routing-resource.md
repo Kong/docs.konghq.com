@@ -3,6 +3,7 @@
 {%- assign name = include.name | default: 'echo' %}
 {%- assign service = include.service | default: 'echo' %}
 {%- assign port = include.port | default: '1027' %}
+  {% capture the_code %}
 {% navtabs api %}
 {% navtab Ingress %}
 ```bash
@@ -27,10 +28,6 @@ spec:
             port:
               number: {{ port }}
 " | kubectl apply -f -
-```
-The results should look like this:
-```text
-ingress.networking.k8s.io/{{ name }} created
 ```
 {% endnavtab %}
 {% navtab Gateway APIs %}
@@ -58,9 +55,25 @@ spec:
       port: {{ port }}
 " | kubectl apply -f -
 ```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+
 The results should look like this:
+
+{% capture the_code %}
+{% navtabs codeblock %}
+{% navtab ingress %}
+```text
+ingress.networking.k8s.io/{{ name }} created
+```
+{% endnavtab %}
+{% navtab Gateway APIs %}
 ```text
 httproute.gateway.networking.k8s.io/{{ name }} created
 ```
 {% endnavtab %}
 {% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}

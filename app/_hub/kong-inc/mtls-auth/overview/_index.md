@@ -55,7 +55,7 @@ and POST it to `/ca_certificates`:
 {% navtabs %}
 {% navtab Kong Admin API %}
 ```bash
-curl -sX POST https://kong:8001/ca_certificates -F cert=@cert.pem
+curl -sX POST https://localhost:8001/ca_certificates -F cert=@cert.pem
 {
   "tags": null,
   "created_at": 1566597621,
@@ -67,9 +67,9 @@ curl -sX POST https://kong:8001/ca_certificates -F cert=@cert.pem
 
 {% navtab Konnect %}
 
-Go through the Runtime Manager:
-1. In {{site.konnect_short_name}}, click {% konnect_icon runtimes %} **Runtime Manager**.
-2. Select the runtime instance you want to add the CA certificate to.
+Go through the Gateway Manager:
+1. In {{site.konnect_short_name}}, click {% konnect_icon runtimes %} **Gateway Manager**.
+2. Select the control plane you want to add the CA certificate to.
 3. Click **Certificates**.
 4. Select the **CA Certificates** tab.
 5. Click **+ Add CA Certificate**
@@ -139,7 +139,7 @@ Common Name (CN). CN is only used if the SAN extension does not exist.
 Create a mapping:
 
 ```bash
-curl -X POST http://kong:8001/consumers/{consumer}/mtls-auth \
+curl -X POST http://localhost:8001/consumers/{consumer}/mtls-auth \
     -d 'subject_name=test@example.com'
 ```
 

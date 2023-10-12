@@ -6,30 +6,27 @@ title: Introduction to Monitoring Health with Analytics
 You can monitor the health and performance of any API product, route, or application managed by {{site.konnect_saas}}.
 
 Analytics provides traffic reports to help you track the performance and
-behavior of your APIs and runtimes. Use these reports to quickly access key
+behavior of your APIs and data plane nodes. Use these reports to quickly access key
 statistics, monitor vital signs, and pinpoint anomalies in real time.
 
-Depending on your {{site.konnect_saas}} subscription tier, Analytics retains
-historical data for the following lengths of time:
-* **Free:** 24 hours
-* **Plus:** 3 months
-* **Enterprise:** 1 year
+With **Konnect Plus** Analytics retains historical data for up to 3 months. If you need a longer storage period, [contact a sales representative](https://konghq.com/contact-sales) about upgrading to {{site.konnect_product_name}} Enterprise.
 
-{:.important}
-> **Important**: Analytics for a composite runtime group are only available at the composite level. 
-Member standard runtime groups have no individual analytics reporting. This means that:
-* In the Runtime Manager, contextual analytics are logged in the composite runtime group only.
-* When creating custom reports, members of a composite runtime group won't show up as individual entities. 
-Reports will only show the composite group.
+
+{:.note}
+> **Note**:
+Member control planes in a control plane group have no individual analytics reporting. This means that:
+* In the Gateway Manager, contextual analytics are logged in the control plane group only.
+* When creating custom reports, control planes won't show up as individual entities. 
+Reports will only show the control plane group.
 
 ## Contextual analytics for services and routes
 
-In the [Runtime Manager](/konnect/runtime-manager/), you can see
+In the [Gateway Manager](/konnect/gateway-manager/), you can see
 activity graphs for gateway services or routes for the past 30 days.
 For gateway services and routes, the graphs show requests broken down by status codes.
 
 
-![service graph](/assets/images/docs/konnect/konnect-analytics-gateway-service.png){:.image-border}
+![service graph](/assets/images/products/konnect/analytics/konnect-analytics-gateway-service.png){:.image-border}
 
 > _**Figure 1:** Graph showing traffic for the last 15 minutes by status code for a gateway service._
 
@@ -61,21 +58,21 @@ You can view a graph for each category by clicking **Traffic**, **Errors**, or *
     * Failed requests contain all requests that returned a **4xx-5xx** status code.
     * 6xx status codes are not reported.
 
-    ![traffic analytics graph](/assets/images/docs/konnect/konnect-vitals-traffic.png){:.image-border}
+    ![traffic analytics graph](/assets/images/products/konnect/analytics/konnect-vitals-traffic.png){:.image-border}
     > _**Figure 2:** Graph showing successful and failed requests over the past three hours._
 
 * **Errors**: This graph displays the total number of failed HTTP requests categorized by error response codes over the specified time interval. Error response codes include any **4xx-5xx** status codes.
 
-    ![errors analytics graph](/assets/images/docs/konnect/konnect-vitals-errors.png){:.image-border}
+    ![errors analytics graph](/assets/images/products/konnect/analytics/konnect-vitals-errors.png){:.image-border}
     > _**Figure 3:** Graph showing errors by 4xx and 5xx error codes received over the past three hours._
 
 * **Latency**: This graph displays request latency, in milliseconds, of the 99th, 95th, and 50th percentiles.
 Admins can monitor the latency, investigate where delays are noticed, and optimize performance for APIs.
 
     {:.note}
-    > **Note**: Latency data is only available for requests proxied through runtime instances running {{site.base_gateway}} 3.0.0.0 or later.
+    > **Note**: Latency data is only available for requests proxied through a data plane running {{site.base_gateway}} 3.0.0.0 or later.
 
-   ![latency analytics graph](/assets/images/docs/konnect/konnect-analytics-latency.png){:.image-border}
+   ![latency analytics graph](/assets/images/products/konnect/analytics/konnect-analytics-latency.png){:.image-border}
   > _**Figure 4:** Graph showing latency as a percentage over the past 15 minutes._
 
 Graphs can be interacted with, including hovering over chart items to display more details, and filtering options by clicking on items in the **legend**.

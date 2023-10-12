@@ -13,7 +13,7 @@ to {{site.ee_product_name}}. See
 If you experience any issues when running migrations, contact
 [Kong Support](https://support.konghq.com/support/s/) for assistance.
 
-## Upgrade path for Kong Gateway releases
+## Upgrade path for {{site.base_gateway}} releases
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
 distinction between major, minor, and patch versions. The upgrade
@@ -23,10 +23,10 @@ from which you are migrating:
 - Upgrading from 2.5.x to 2.6.x is a minor upgrade; however, read below for important
 instructions on [database migration](#migrate-db), especially for Cassandra users.
 
-- Upgrading from from 1.x is a major upgrade. Follow the [Version Prerequisites](#prereqs-v).
+- Upgrading from 1.x is a major upgrade. Follow the [Version Prerequisites](#prereqs-v).
 Be aware of any noted breaking changes as documented in the version to which you are upgrading.
 
-### Version prerequisites for migrating to Kong Gateway 2.6.x {#prereqs-v}
+### Version prerequisites for migrating to {{site.base_gateway}} 2.6.x {#prereqs-v}
 
 If you are not on {{site.ee_product_name}} 2.5.x, you must first incrementally
 upgrade to 2.5.x before upgrading to 2.6.x. Zero downtime is possible but _not_
@@ -89,7 +89,7 @@ to run `kong migrations finish`.
 
 While the migrations themselves are automated, the chart does not automatically ensure
 that you follow the recommended upgrade path. If you are upgrading from more than one minor
-Kong version back, check the upgrade path recommendations for Kong open source or Kong Gateway.
+Kong version back, check the upgrade path recommendations for Kong open source or {{site.base_gateway}}.
 
 Although not required, users should upgrade their chart version and Kong version independently.
 In the event of any issues, this will help clarify whether the issue stems from changes in
@@ -150,7 +150,7 @@ decommission it. For this reason, the full migration is split into two commands:
 - `kong migrations finish`: puts the database in the final expected state (DB-less
   mode is not supported in {{site.ee_product_name}})
 
-#### Postgres
+#### PostgreSQL
 
 1. Download 2.6.x, and configure it to point to the same datastore as your old
    2.5.x (or 2.6.x-beta) cluster.

@@ -19,14 +19,14 @@ In this guide, an instance of {{site.base_gateway}} is referenced via
 `<admin-hostname>`. Make sure to replace `<admin-hostname>` with the hostname
 of your control plane instance.
 
-## Verify the Kong Gateway configuration
+## Verify the {{site.base_gateway}} configuration
 {% navtabs %}
 {% navtab Using Kong Manager %}
 As a {{site.base_gateway}} user, you can use Kong Manager for environment
-administration. You’re going to use it later on in this guide, so first make s
-ure you can access Kong Manager.
+administration. You’re going to use it later on in this guide, so first make 
+sure you can access Kong Manager.
 
-Open a web browser and navigate to `http://<admin-hostname>:8002`.
+Open a web browser and navigate to `http://localhost:8002`.
 
 If {{site.base_gateway}} was installed correctly, it automatically logs you
 in and presents the Kong Manager Overview page.
@@ -42,12 +42,12 @@ window:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-curl -i -X GET http://<admin-hostname>:8001
+curl -i -X GET http://localhost:8001
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-http <admin-hostname>:8001
+http localhost:8001
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -84,11 +84,9 @@ the following command in a terminal window:
     You can also use this command at any time (for example, after a `deck sync`)
     to see the {{site.base_gateway}}'s most recent configuration.
 
-    <div class="alert alert-warning">
-
-    <strong>Be careful!</strong> Any subsequent <code>deck dump</code> will
-    overwrite the existing <code>kong.yaml</code> file. Create backups as needed.
-    </div>
+    {:.important}
+    > **Be careful!** Any subsequent `deck dump` will
+    overwrite the existing `kong.yaml` file. Create backups as needed.
 
 3. Open the file in your preferred code editor. Since you haven't configured
 anything yet, the file should only contain the decK version:
@@ -115,7 +113,7 @@ Run the following from a control plane:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-curl -i -X GET http://<admin-hostname>:8001/clustering/data-planes
+curl -i -X GET http://localhost:8001/clustering/data-planes
 ```
 {% endnavtab %}
 {% navtab HTTPie %}

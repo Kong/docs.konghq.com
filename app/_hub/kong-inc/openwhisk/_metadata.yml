@@ -1,7 +1,6 @@
 name: Apache OpenWhisk
 dbless_compatible: 'yes'
 free: true
-plus: true
 enterprise: true
 konnect: false
 network_config_opts: Self-managed traditional, DB-less, and hybrid

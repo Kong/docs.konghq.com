@@ -6,6 +6,13 @@ Transform and customize {{site.base_gateway}} response exit messages using Lua f
 The plugin's capabilities range from changing messages, status codes, and headers,
 to completely transforming the structure of {{site.base_gateway}} responses.
 
+{:.note}
+> [`untrusted-lua`](/gateway/latest/reference/configuration/#untrusted_lua)
+must be set to either `on` or `sandbox` in your `kong.conf` file for this plugin 
+to work. The default value is `sandbox`, which means that Lua functions are allowed,
+but will be executed in a sandbox which has limited access to the Kong global
+environment.
+
 ## Transforming 4xx and 5xx Responses
 
 By default, the Exit Transformer is only applied to requests that match its
@@ -87,13 +94,11 @@ functions.
 Kong -> f(status, body, headers) -> ... -> exit(status, body, headers)
 ```
 
-<div class="alert alert-warning">
-  <strong>Warning</strong>
-  <code>kong.response.exit()</code> requires a <code>status</code> argument only.
-  <code>body</code> and <code>headers</code> may be <code>nil</code>.
-  If you manipulate the body and headers, first check that they exist and
-  instantiate them if they do not exist.
-</div>
+{:.important}
+> **Caution**: `kong.response.exit()` requires a `status` argument only.
+`body` and `headers` may be `nil`.
+If you manipulate the body and headers, first check that they exist and
+instantiate them if they do not exist.
 
 If you manipulate body and headers, see the
 [Modify the body and headers regardless if provided](#mod-body-head) example below.
@@ -170,7 +175,7 @@ end
 1. Create a service in Kong:
 
     ```bash
-    curl -i -X POST http://<admin-hostname>:8001/services \
+    curl -i -X POST http://localhost:8001/services \
       --data name=example.com \
       --data url='http://mockbin.org'
     ```
@@ -178,7 +183,7 @@ end
 2. Create a route in Kong:
 
     ```bash
-    curl -i -X POST http://<admin-hostname>:8001/services/example.com/routes \
+    curl -i -X POST http://localhost:8001/services/example.com/routes \
       --data 'hosts[]=example.com'
     ```
 
@@ -205,7 +210,7 @@ end
 1. Configure the `exit-transformer` plugin with `transform.lua`.
 
     ```bash
-    curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
+    curl -X POST http://localhost:8001/services/example.com/plugins \
       -F "name=exit-transformer"  \
       -F "config.functions=@transform.lua"
     ```
@@ -214,7 +219,7 @@ end
 response in the following step:
 
     ```bash
-    curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
+    curl -X POST http://localhost:8001/services/example.com/plugins \
       --data "name=key-auth"
     ```
 
@@ -247,7 +252,7 @@ response in the following step:
 The plugin can also be applied globally:
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/plugins/ \
+curl -X POST http://localhost:8001/plugins/ \
   -F "name=exit-transformer"  \
   -F "config.handle_unknown=true" \
   -F "config.functions=@transform.lua"
@@ -337,7 +342,7 @@ end
 Configure the `exit-transformer` plugin with `custom-errors-by-mimetype.lua`:
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
+curl -X POST http://localhost:8001/services/example.com/plugins \
   -F "name=exit-transformer"  \
   -F "config.handle_unknown=true" \
   -F "config.handle_unexpected=true" \

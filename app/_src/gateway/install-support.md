@@ -2,7 +2,7 @@
 title: Supported Installation Options
 ---
 
-This page outlines Kong's official support policy for {{site.konnect_short_name}} runtime instances
+This page outlines Kong's official support policy for {{site.base_gateway}} data plane nodes
 and provides links to detailed installation instructions for each.
 
 {:.note}

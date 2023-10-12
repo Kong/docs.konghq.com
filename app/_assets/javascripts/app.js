@@ -596,10 +596,7 @@ jQuery(function () {
 jQuery(function () {
   if ($(".page.page-hub").length === 0) {
     $(".badge.enterprise").append(
-      '<div class="tooltip"><span class="tooltiptext">Available with Enterprise subscription - <a target="_blank" href="https://konghq.com/contact-sales">Contact Sales</a></span></div>'
-    );
-    $(".badge.plus").append(
-      '<div class="tooltip"><span class="tooltiptext">Available with Plus subscription (Kong Konnect)</span></div>'
+      '<div class="tooltip"><span class="tooltiptext">Available with Kong Gateway Enterprise subscription - <a target="_blank" href="https://konghq.com/contact-sales">Contact Sales</a></span></div>'
     );
     $(".badge.free").append(
       '<div class="tooltip"><span class="tooltiptext">Available in Enterprise Free mode (without a license)</span></div>'
@@ -616,5 +613,18 @@ jQuery(function () {
     $(".badge.techpartner").append(
       '<div class="tooltip"><span class="tooltiptext">Verified Kong technical partner</span></div>'
     );
+    $(".badge.paid").append(
+      '<div class="tooltip"><span class="tooltiptext">Available with Konnect Paid subscription </span></div>'
+    );
+    $(".badge.premium").append(
+      '<div class="tooltip"><span class="tooltiptext">Available with Konnect Premium subscription - <a target="_blank" href="https://konghq.com/contact-sales">Contact Sales</a></span></div>'
+    );
   }
+});
+
+// Expand version list
+
+$(".see-more").on("click", function () { 
+  $(".compat-list").addClass("compat-list-expanded");
+  $(".compat-list").removeClass("compat-list-collapsed");
 });

@@ -2,10 +2,10 @@
 title: Licenses Examples
 badge: enterprise
 ---
-<div class="alert alert-ee">
-<b>Note:</b> The <code>/licenses</code> endpoint does not override standard
+
+{:.note}
+> **Note:** The `/licenses` endpoint does not override standard
 license configuration.
-</div>
 
 The `/licenses` endpoint provides a way to configure your {{site.base_gateway}}
 without using environment variables or placing a plaintext file

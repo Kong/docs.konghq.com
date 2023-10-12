@@ -11,6 +11,8 @@ toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
+<!--vale off-->
+
 ## kong.router
 
 Router module
@@ -45,7 +47,7 @@ local protocols = route.protocols
 
 ### kong.router.get_service()
 
-Returns the current `service` entity.  The request will be targetted to this
+Returns the current `service` entity.  The request will be targeted to this
  upstream service.
 
 

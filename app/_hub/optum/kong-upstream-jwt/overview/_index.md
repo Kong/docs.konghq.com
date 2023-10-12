@@ -2,7 +2,7 @@
 nav_title: Overview
 ---
 
-This plugin will add a signed JWT into the HTTP Header `JWT` of proxied requests through the Kong gateway. The purpose of this, is to provide means of _Authentication_, _Authorization_ and _Non-Repudiation_ to API providers (APIs for which Kong is a gateway).
+This plugin will add a signed JWT into the HTTP Header `JWT` of proxied requests through the {{site.base_gateway}}. The purpose of this, is to provide means of _Authentication_, _Authorization_ and _Non-Repudiation_ to API providers (APIs for which Kong is a gateway).
 
 API Providers need a means of cryptographically validating that requests they receive were proxied by Kong and not tampered with during transmission from Kong -> API Provider. This token accomplishes both as follows:
 
@@ -47,6 +47,8 @@ env KONG_SSL_CERT_DER;
 ```
 
 ## Maintainers
+
+<!--vale off-->
 
 [jeremyjpj0916](https://github.com/jeremyjpj0916){:target="_blank"}{:rel="noopener noreferrer"}  
 [rsbrisci](https://github.com/rsbrisci){:target="_blank"}{:rel="noopener noreferrer"}  

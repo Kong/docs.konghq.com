@@ -2,7 +2,7 @@
 nav_title: Overview
 ---
 
-The Imperva API Security plugin connects Kong Gateway with the Imperva 
+The Imperva API Security plugin connects {{site.base_gateway}} with the Imperva 
 API Security service, providing continuous discovery and monitoring of APIs 
 exposed by the API gateway. This enables security teams to protect business 
 applications and data against unauthorized access. 
@@ -12,7 +12,7 @@ negative impact on the inline performance of the gateway or your applications.
 
 The Imperva API Security plugin captures API calls with request/response payloads 
 and sends them to the Imperva API Security service for inspection. API calls are 
-copied and streamed through Kong Gateway. You provide the API Security 
+copied and streamed through {{site.base_gateway}}. You provide the API Security 
 receiver service endpoint though the plugin's configuration, so the API data is 
 kept under the control of the application owner.
 
@@ -22,7 +22,7 @@ The plugin sends a copy of API call requests/responses to the Imperva API receiv
 ## How to install
 
 {:.note}
-> If you are using Kong's [Kubernetes ingress controller](https://github.com/Kong/kubernetes-ingress-controller), the installation is slightly different. Review the [docs for the Kong Ingress Controller](/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/).
+> If you are using Kong's [Kubernetes ingress controller](https://github.com/Kong/kubernetes-ingress-controller), the installation is slightly different. Review the [docs for the {{site.kic_product_name}}](/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/).
 
 The `.rock` file is a self-contained package that can be installed locally or from a remote server.
 

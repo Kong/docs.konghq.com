@@ -5,8 +5,13 @@ ignorecase: false
 scope: text
 swap:
 
-  Developer Portal: Dev Portal
+  # Developer Portal: Dev Portal
   Kong Gateway: "{{site.base_gateway}}"
   Kong Konnect: "{{site.konnect_product_name}}"
+  Kong Ingress Controller: "{{site.kic_product_name}}"
+  Kong Mesh: "{{site.mesh_product_name}}"
+  Kong Enterprise: "{{site.ee_product_name}}"
+  Kong Gateway Operator: "{{site.kgo_product_name}}"
   ServiceHub: Service Hub
+  Runtime Manager: Gateway Manager
   dbless: DB-less

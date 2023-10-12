@@ -57,7 +57,7 @@ All nodes perform a periodic background job to synchronize with changes that
 may have been triggered by other nodes. The frequency of this job can be
 configured via:
 
-* [db_update_frequency][db_update_frequency] (default: 5 seconds)
+* [`db_update_frequency`][db_update_frequency] (default: 5 seconds)
 
 Every `db_update_frequency` seconds, all running Kong nodes will poll the
 database for any update, and will purge the relevant entities from their cache
@@ -69,9 +69,9 @@ If we delete a Service from node `A`, this change will not be effective in node
 
 This makes Kong clusters **eventually consistent**.
 
-### Use read-only replicas when deploying Kong clusters with Postgres
+### Use read-only replicas when deploying Kong clusters with PostgreSQL
 
-When using Postgres as the backend storage, you can optionally enable
+When using PostgreSQL as the backend storage, you can optionally enable
 Kong to serve read queries from a separate database instance.
 
 One of the common use cases of this feature is to deploy Kong with the
@@ -157,7 +157,9 @@ experiment with its clustering capabilities while avoiding surprises. As you
 prepare a production setup, you should consider tuning those values to ensure
 that your performance constraints are respected.
 
+<!--vale off-->
 ### 1. [db_update_frequency][db_update_frequency] (default: 5s)
+<!--vale on-->
 
 This value determines the frequency at which your Kong nodes will be polling
 the database for invalidation events. A lower value means that the polling
@@ -169,7 +171,9 @@ traffic.
 **Note**: Changes propagate through the cluster in up to `db_update_frequency`
 seconds.
 
+<!--vale off-->
 ### 2. [db_update_propagation][db_update_propagation] (default: 0s)
+<!--vale on-->
 
 If your database itself is eventually consistent (that is, Cassandra), you **must**
 configure this value. It is to ensure that the change has time to propagate
@@ -187,7 +191,9 @@ cluster takes to propagate changes.
 **Note**: When this value is set, changes propagate through the cluster in
 up to `db_update_frequency + db_update_propagation` seconds.
 
+<!--vale off-->
 ### 3. [db_cache_ttl][db_cache_ttl] (default: 0s)
+<!--vale on-->
 
 The time (in seconds) for which Kong will cache database entities (both hits
 and misses). This Time-To-Live value acts as a safeguard in case a Kong node
@@ -205,7 +211,7 @@ until the cache is manually purged, or the node is restarted.
 ### 4. When using Cassandra
 
 If you use Cassandra as your Kong database, you **must** set
-[db_update_propagation][db_update_propagation] to a non-zero value. Since
+[`db_update_propagation`][db_update_propagation] to a non-zero value. Since
 Cassandra is eventually consistent by nature, this will ensure that Kong nodes
 do not prematurely invalidate their cache, only to fetch and catch a
 not up-to-date entity again. Kong will present you a warning in logs if you did
@@ -286,6 +292,7 @@ If the node is receiving a lot of traffic, purging its cache at the same time
 will trigger many requests to your database, and could cause a
 [dog-pile effect](https://en.wikipedia.org/wiki/Cache_stampede).
 
+<!--vale off-->
 [db_update_frequency]: /gateway/{{page.kong_version}}/reference/configuration/#db_update_frequency
 [db_update_propagation]: /gateway/{{page.kong_version}}/reference/configuration/#db_update_propagation
 [db_cache_ttl]: /gateway/{{page.kong_version}}/reference/configuration/#db_cache_ttl

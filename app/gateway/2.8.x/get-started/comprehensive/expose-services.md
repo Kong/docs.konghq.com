@@ -14,7 +14,7 @@ If you are not following the Getting Started workflow, make sure you have
 ## What are Services and Routes?
 
 **Service** and **Route** objects let you expose your services to clients with
-Kong Gateway. When configuring access to your API, you’ll start by specifying a
+{{site.base_gateway}}. When configuring access to your API, you’ll start by specifying a
 Service. In {{site.base_gateway}}, a Service is an entity representing an external
 upstream API or microservice &mdash; for example, a data transformation
 microservice, a billing API, and so on.
@@ -25,7 +25,7 @@ protocol, host, port, and path individually.
 
 Before you can start making requests against the Service, you will need to add
 a Route to it. Routes determine how (and if) requests are sent to their Services
-after they reach Kong Gateway. A single Service can have many Routes.
+after they reach {{site.base_gateway}}. A single Service can have many Routes.
 
 After configuring the Service and the Route, you’ll be able to start making
 requests through {{site.base_gateway}}.
@@ -33,7 +33,7 @@ requests through {{site.base_gateway}}.
 This diagram illustrates the flow of requests and responses being routed through
 the Service to the backend API.
 
-![Services and routes](/assets/images/docs/getting-started-guide/route-and-service.png)
+![Services and routes](/assets/images/products/gateway/getting-started-guide/route-and-service.png)
 
 ## Add a Service
 
@@ -71,14 +71,14 @@ The service is created, and the page automatically redirects back to the
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X POST http://<kong-admin-host>:8001/services \
+curl -i -X POST http://localhost:8001/services \
   --data name=example_service \
   --data url='http://mockbin.org'
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-http POST http://<kong-admin-host>:8001/services \
+http POST http://localhost:8001/services \
   name=example_service \
   url='http://mockbin.org'
 ```
@@ -94,12 +94,12 @@ Verify the service’s endpoint:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i http://<admin-hostname>:8001/services/example_service
+curl -i http://localhost:8001/services/example_service
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-http http://<kong-admin-host>:8001/services/example_service
+http http://localhost:8001/services/example_service
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -180,7 +180,7 @@ methods must be set for the Route to be matched to the service.
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X POST http://<admin-hostname>:8001/services/example_service/routes \
+curl -i -X POST http://localhost:8001/services/example_service/routes \
   --data 'paths[]=/mock' \
   --data name=mocking
 ```
@@ -235,11 +235,9 @@ A `201` message indicates the Route was created successfully.
 
 3. (Optional) You can update your local file with the new configuration:
 
-    <div class="alert alert-warning">
-
-    <strong>Be careful!</strong> Any subsequent <code>deck dump</code> will
-    overwrite the existing <code>kong.yaml</code> file. Create backups as needed.
-    </div>
+    {:.important}
+    > **Be careful!** Any subsequent `deck dump` will
+    overwrite the existing `kong.yaml` file. Create backups as needed.
 
     ``` bash
     $ deck dump
@@ -293,7 +291,7 @@ By default, {{site.base_gateway}} handles proxy requests on port `8000`. The pro
 {% navtabs %}
 {% navtab Using a Web Browser %}
 
-From a web browser, navigate to `http://<kong-gateway-host>:8000/mock/request`.
+From a web browser, navigate to `http://localhost:8000/mock/request`.
 
 {% endnavtab %}
 {% endnavtabs %}

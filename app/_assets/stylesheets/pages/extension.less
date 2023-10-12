@@ -120,18 +120,6 @@
       margin-bottom: 2em;
     }
   }
-
-  .alert-info {
-    color: #757575;
-    border-color: #e0e0e0;
-    background-color: #f9f9f9;
-
-    &.blue {
-      color: #004a80;
-      border-left: 3px solid #004b80;
-      background-color: #edf7ff;
-    }
-  }
 }
 
 // Plugin sidebar; based on sidebar classes used in the rest of the docs, see
@@ -171,7 +159,7 @@
         }
 
         th {
-          font-size: 15px;
+          font-size: 14px;
           letter-spacing: 0.5px;
           line-height: 20px;
           text-transform: uppercase;
@@ -200,48 +188,47 @@
             }
           }
 
-          ul {
-            margin-bottom: 0;
-            padding-left: 0;
-            margin-left: 0;
+          .compat-list {
+            font-size: 14px;
 
-            li {
-              padding-top: none;
-              list-style: none;
-              border: none;
+            .compat-label {
+              text-transform: uppercase;
+              font-weight: 500;
+              letter-spacing: 0.4px;
+              margin-bottom: 8px;
+              margin-top: 5px;
+            }
 
-              &:before {
-                border-left: none;
+            .see-more {
+              margin-bottom: 20px;
+              margin-top: 8px;
+
+              i {
+                font-size: 12px;
+                opacity: 0.6;
+              }
+            }
+
+            .version {
+              margin: 0;
+            }
+
+            &.compat-list-collapsed {
+                p:nth-child(n+7) {
                 display: none;
               }
             }
 
-            // "Version Compatibility" lists
-            &.compat-list {
-              li {
-                text-align: center;
-              }
-
-              .compat-label {
-                text-transform: uppercase;
-                font-weight: 600;
-                letter-spacing: 0.4px;
-                font-size: 14px;
-                margin-bottom: 2px;
-                margin-top: 8px;
-              }
+            &.compat-list-expanded {
+              p:nth-child(n+7) {
+              display: block;
             }
 
-            // "Category" links
-            &.categories {
-              li {
-                margin-bottom: 3px;
-                line-height: 1.1em;
-                padding-left: 0;
-                margin-left: 0;
+              .see-more {
+                display: none;
               }
             }
-          }
+          }          
         }
       }
     }

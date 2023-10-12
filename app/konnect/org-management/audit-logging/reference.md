@@ -187,7 +187,7 @@ sig=JxJaQG3Bozrb5WdHE_Y0HaOsim2F1Xsq_bCfk71VgsfldkLAD_SF234cnKNS
     "org_id": "b065b594-6afc-4658-9101-5d9cf3f36b7b",
     "principal_id": "87655c36-8d63-48fe-9a1e-53b28dfbc19b",
     "query": "{}",
-    "request": "/konnect-api/api/runtime_groups/1c026712-c17d-4e30-ac27-53a6cdc56b9c/services",
+    "request": "/konnect-api/api/control_planes/1c026712-c17d-4e30-ac27-53a6cdc56b9c/services",
     "rt": "1684196881193",
     "severity": 1,
     "src": "127.0.0.6",

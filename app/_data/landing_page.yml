@@ -31,13 +31,13 @@ features:
             icon: /assets/images/icons/icn-doc.svg
             url: /gateway/latest/kong-enterprise/analytics/
 
-      - name: Runtime Manager
-        description: Provision and manage Kong Gateway runtimes and services in your environment and platform of choice.
+      - name: Gateway Manager
+        description: Provision and manage Kong Gateway data planes and services in your environment and platform of choice.
         icon:  /assets/images/landing-page/card-icons/runtime.svg
         links:
           - text: Overview
             icon: /assets/images/icons/icn-doc.svg
-            url: /konnect/runtime-manager/
+            url: /konnect/gateway-manager/
 
       - name: API Products
         description: Bundle and manage multiple APIs via API products to document, enable application registration and publish them to a Developer Portal for consumption. 
@@ -47,13 +47,13 @@ features:
             icon: /assets/images/icons/icn-doc.svg
             url: /konnect/api-products/
 
-#       - name: Mesh Manager
-#         description: TBD
-#         icon: /assets/images/landing-page/card-icons/insomnia.svg
-#         links:
-#           - text: Overview
-#             icon: /assets/images/icons/icn-doc.svg
-#             url: /mesh/latest/
+      - name: Mesh Manager
+        description: Create global control planes to manage your Kong Mesh service meshes.
+        icon: /assets/images/landing-page/card-icons/mesh-manager.svg
+        links:
+          - text: Overview
+            icon: /assets/images/icons/icn-doc.svg
+            url: /konnect/mesh-manager/
 
   - title: Extensions & Tools
     items:
@@ -70,12 +70,12 @@ features:
             icon: /assets/images/icons/icn-doc.svg
             url: /deck/latest/guides/apiops/
 
-      # - name: Kong Operator
-      #   description: TBD
-      #   links:
-      #     - text: Overview
-      #       icon: /assets/images/icons/icn-doc.svg
-      #       url: /kubernetes-ingress-controller/latest/
+      - name: Kong Gateway Operator
+        description: Manage your Kong Ingress Controller, Kong Gateway Data Planes, or both together when running on Kubernetes.
+        links:
+          - text: Overview
+            icon: /assets/images/icons/icn-doc.svg
+            url: /gateway-operator/latest/
 
       - name: Kong Ingress Controller
         description: Implement authentication, transformations, and other functionalities across Kubernetes clusters with zero downtime.

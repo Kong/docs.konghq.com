@@ -24,7 +24,7 @@ Audit logging webhooks can be configured through the {{site.konenct_short_name}}
 using the [Audit Logs API](/konnect/api/audit-logs/v2/).
 Only {{site.konnect_short_name}} org admins can configure and view audit log webhooks. 
 
-![Audit log webhook](/assets/images/docs/konnect/konnect-audit-log-webhook.png)
+![Audit log webhook](/assets/images/products/konnect/audit-logs/konnect-audit-log-webhook.png)
 
 Audit information includes authentication attempts and authorization requests.
 Each of the audit events contains a trace ID that allows events to be correlated to specific actions. 

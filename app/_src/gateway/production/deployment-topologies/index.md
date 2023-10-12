@@ -16,15 +16,15 @@ The following sections briefly describe each mode.
 
 ## {{ site.konnect_short_name }}
 
-{{ site.konnect_short_name }} is the fastest way to get started when using {{site.base_gateway}}. It allows you to deploy your own data planes (DP) to handle customer traffic without needing to deploy your own control plane (CP) or database.
+{{ site.konnect_short_name }} is the fastest way to get started when using {{site.base_gateway}}. It allows you to deploy your own data plane nodes (DP) to handle customer traffic without needing to deploy your own control plane (CP) or database.
 
-{{ site.konnect_short_name }} is a hybrid mode deployment, where Kong host the control plane for you. This means that you get all of the benefits of a hybrid mode deployment without needing to run multiple nodes yourself.
+{{ site.konnect_short_name }} is a hybrid mode deployment, where Kong hosts the control plane for you. This means that you get all of the benefits of a hybrid mode deployment without needing to run multiple control plane nodes yourself.
 
 Configuration changes can be made using the {{ site.konnect_short_name }} UI and configuration wizards, or applied in an automated way using [decK](/deck/latest/).
 
-As with hybrid mode, your data planes will continue to process traffic even if the control plane is offline. In addition, you no longer need to worry about securing the control plane because {{site.base_gateway}} does it for you.
+As with self-managed hybrid mode, your data plane nodes will continue to process traffic even if the control plane is offline. In addition, you no longer need to worry about securing the control plane because {{site.base_gateway}} does it for you.
 
-Finally, {{ site.konnect_short_name }} supports runtime groups, which allows you to segment your configuration in any way that you need. It could be by business unit, or environment. Achieving this using hybrid mode requires you to deploy one control plane per segment, while {{ site.konnect_short_name }} allows you to manage multiple configuration sets through the same UI and API.
+Finally, {{ site.konnect_short_name }} supports cloud-managed control planes and control plane groups, which allows you to segment your configuration in any way that you need. It could be by business unit, or environment. Achieving this using hybrid mode requires you to deploy one control plane per segment, while {{ site.konnect_short_name }} allows you to manage multiple configuration sets through the same UI and API.
 
 [Get started](https://cloud.konghq.com/register) with {{ site.konnect_short_name }} for free today.
 
@@ -52,7 +52,7 @@ Running {{ site.base_gateway }} in traditional mode is the simplest way to get s
 
 When running in traditional mode, every {{ site.base_gateway }} node runs as both a Control Plane (CP) and Data Plane (DP). This means that if **any** of your nodes are compromised, the entire running gateway configuration is compromised. In contrast, [hybrid mode](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/) has distinct CP and DP nodes reducing the attack surface.
 
-In addition, if you're running Kong Enterprise with Kong Manager, request throughput may be reduced on nodes running Kong Manager due to expensive calculations being run to render analytics data and graphs.
+In addition, if you're running {{site.ee_product_name}} with Kong Manager, request throughput may be reduced on nodes running Kong Manager due to expensive calculations being run to render analytics data and graphs.
 
 You can use the [Admin API](/gateway/{{page.kong_version}}/admin-api/) or declarative configuration files [(decK)](/deck/latest/) to configure the {{site.base_gateway}} in traditional mode.
 

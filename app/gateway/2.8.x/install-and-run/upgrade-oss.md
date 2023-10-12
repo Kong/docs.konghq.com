@@ -29,7 +29,7 @@ $ kong migrations up [-c configuration_file]
 
 If the command is successful, and no migration ran
 (no output), then you only have to
-[reload](https://docs.konghq.com/gateway/2.8.x/reference/cli/#kong-reload) Kong:
+[reload](/gateway/2.8.x/reference/cli/#kong-reload) Kong:
 
 ```shell
 $ kong reload [-c configuration_file]
@@ -78,10 +78,10 @@ which allows you to more easily build OpenResty with the necessary patches and m
 The external `go-pluginserver` project is considered deprecated in favor of
 the [embedded server approach](/gateway/{{page.kong_version}}/reference/external-plugins/).
 
-Starting with Kong Gateway 2.8.0.0, Kong is not building new open-source
-CentOS images. Support for running open-source Kong Gateway on CentOS on is now
+Starting with {{site.base_gateway}} 2.8.0.0, Kong is not building new open-source
+CentOS images. Support for running open-source {{site.base_gateway}} on CentOS on is now
 deprecated, as [CentOS has reached End of Life (OEL)](https://www.centos.org/centos-linux-eol/).
-This means that if you are running Kong Gateway on CentOS, you will need to
+This means that if you are running {{site.base_gateway}} on CentOS, you will need to
 migrate to another distribution to upgrade to 2.8.x
 
 ### Template changes
@@ -136,7 +136,7 @@ below to migrate to 2.8.x.
 
 ### Upgrade from 1.0.x - 2.7.x to 2.8.x
 
-**Postgres**
+**PostgreSQL**
 
 Kong 2.8.x supports a no-downtime migration model. This means that while the
 migration is ongoing, you will have two Kong clusters running, sharing the
@@ -173,7 +173,7 @@ database in the final expected state for Kong 2.8.x).
 
 {:.warning .no-icon}
 > **Deprecation notice:**
-> Cassandra as a backend database for Kong Gateway is deprecated. This means the feature will eventually be removed. Our target for Cassandra removal is the Kong Gateway 3.4 release, and some new features might not be supported with Cassandra in the Kong Gateway 3.0 release.
+> Cassandra as a backend database for {{site.base_gateway}} is deprecated. This means the feature will eventually be removed. Our target for Cassandra removal is the {{site.base_gateway}} 3.4 release, and some new features might not be supported with Cassandra in the {{site.base_gateway}} 3.0 release.
 
 Due to internal changes, the table schemas used by Kong 2.8.x on Cassandra
 are incompatible with those used by Kong 2.1.x (or lower). Migrating using the usual commands
@@ -227,7 +227,7 @@ $ kong migrations up [-c configuration_file]
 
 If the command is successful, and no migration ran
 (no output), then you only have to
-[reload](https://docs.konghq.com/gateway/2.8.x/reference/cli/#kong-reload) Kong:
+[reload](/gateway/2.8.x/reference/cli/#kong-reload) Kong:
 
 ```shell
 $ kong reload [-c configuration_file]

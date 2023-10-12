@@ -1,3 +1,20 @@
+<!--vale off-->
+
+## Prerequisites
+
+Make sure python3 and pipenv are installed:
+
+1. Install `python3`:
+
+    ```
+    brew install python3
+    ```
+
+2. Install `pipenv`:
+
+    ```
+    python3 -m pip install pipenv
+    ```
 
 ## Setup
 

@@ -17,7 +17,7 @@ using their IdP credentials, without needing a separate login.
 
 ## Set up SSO in {{site.konnect_short_name}}
 
-1. In [{{site.konnect_saas}}](https://cloud.konghq.com), click {% konnect_icon organizations %} **Organization**, and then **Auth Settings**.
+1. In [{{site.konnect_saas}}](https://cloud.konghq.com/login), click {% konnect_icon organizations %} **Organization**, and then **Auth Settings**.
 
 1. Click **Configure provider** for **OIDC**.
 
@@ -45,7 +45,9 @@ using their IdP credentials, without needing a separate login.
 {:.important}
 > **Important:** Keep built-in authentication enabled while you are testing IdP authentication. Only disable built-in authentication after successfully testing IdP authentication.
 
-You can test the SSO configuration by navigating to the login URI based on the organization login path you set earlier. For example: `cloud.konghq.com/login/examplepath`. If your configuration is set up correctly, you will see the IdP sign-in window.
+You can test the SSO configuration by navigating to the login URI based on the organization login path you set earlier. For example: `https://cloud.konghq.com/login/examplepath`, where `examplepath` is the unique login path string set in the steps above. 
+
+If your configuration is set up correctly, you will see the IdP sign-in page.
 
 You can now manage your organization's user permissions entirely from the IdP
 application.
@@ -59,3 +61,16 @@ You can configure custom IdP-specific behaviors in the **Advanced Settings** of 
     - `name`: Used as the {{site.konnect_short_name}} account's `full_name`.
     - `email`: Used as the {{site.konnect_short_name}} account's `email`.
     - `groups`: Used to map users to teams defined in the team mappings upon login.
+
+## Troubleshooting 
+
+### Authentication issues with large numbers of groups
+
+If users are assigned a very large number of groups (over 150 in most cases), the IdP may send the groups claim in a non-standard manner, causing authentication issues. 
+
+To work around this limitation at the IdP, we recommend using group filtering functions provided by the IdP for this purpose. 
+Here are some quick reference guides for common IdPs:
+* [Azure group filtering](https://learn.microsoft.com/en-us/azure/active-directory/hybrid/connect/how-to-connect-fed-group-claims#group-filtering) 
+* [Okta group filtering](https://support.okta.com/help/s/article/How-to-send-certain-groups-that-the-user-is-assigned-to-in-one-Group-attribute-statement)
+
+You may need to contact the support team of your identity provider in order to learn how to filter groups emitted for the application.

@@ -13,6 +13,7 @@ source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 
 This module can be used to resolve, parse, and verify vault references.
 
+<!--vale off-->
 
 ## kong.vault.is_reference(reference)
 

@@ -24,7 +24,7 @@ Replace `ROUTE_NAME|ID` with the `id` or `name` of the route that this plugin co
   {% if hub_example.render_konnect? %}
   {% navtab Konnect API %}
 
-Make the following request, substituting your own access token, region, runtime group ID, and route ID:
+Make the following request, substituting your own access token, region, control plane ID, and route ID:
 
 {% include_cached plugins/hub-examples/konnect.html example=hub_example.konnect %}
 
@@ -58,6 +58,8 @@ You can see your available ingresses by running `kubectl get ingress`.
   want the plugin to be available cluster-wide, create the resource as a
   <code>KongClusterPlugin</code> instead of <code>KongPlugin</code>.
 </blockquote>
+
+{% include_cached plugins/kubernetes_consumer.html hub_example=hub_example %}
 
     {% endnavtab %}
     {% endif %}

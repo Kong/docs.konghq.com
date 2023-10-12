@@ -13,10 +13,6 @@ elements-api h1 {
   padding-left: 45px !important;
 }
 
-.navbar-items > ul {
-  margin-bottom: 25px !important;
-}
-
 .submenu-section li .navbar-item {
   margin-left: 25px;
 }
@@ -498,198 +494,10 @@ Generic Styling for Desktop
     font-size: 17px;
     border-radius: 3px;
 
-    &.alert-warning {
-      color: hsl(45, 2%, 36%);
-      background-color: @yellow-100;
-      border-left: solid 3px @yellow-400;
-
-      &::before {
-        content: "\f071";
-        font-family: "Font Awesome", FontAwesome;
-        color: @yellow-400;
-        display: inline-block;
-        font-weight: 600;
-        font-size: 17px;
-        padding: 0 5px 0 0;
-      }
-    }
-
-    &.alert-red {
-      background-color: @red-100;
-      border-left: solid 3px @red-500;
-
-      &::before {
-        content: "\f057";
-        font-family: "Font Awesome", FontAwesome;
-        color: @red-500;
-        display: inline-block;
-        font-weight: 600;
-        font-size: 17px;
-        padding: 0 5px 0 0;
-      }
-
-      &.no-icon {
-        &::before {
-          display: none;
-        }
-      }
-    }
-
     ol,
     li {
       margin-bottom: 0;
       margin-top: 0.5em;
-    }
-  }
-
-  .alert-ee {
-    background-color: @blue-100;
-    border: none;
-    border-left: solid 3px @blue-400;
-    font-size: 15px;
-
-    &::before {
-      content: "\f05a";
-      font-family: "Font Awesome", FontAwesome;
-      color: @blue-400;
-      display: inline-block;
-      font-weight: 600;
-      font-size: 17px;
-      padding: 0 5px 0 0;
-    }
-
-    &.error {
-      background-color: @red-100;
-      border-left: solid 3px @red-500;
-
-      &::before {
-        content: "\f057";
-        font-family: "Font Awesome", FontAwesome;
-        color: @red-500;
-        display: inline-block;
-        font-weight: 600;
-        font-size: 17px;
-        padding: 0 5px 0 0;
-      }
-    }
-
-    &.warning {
-      background-color: @yellow-100;
-      border-left: solid 3px @yellow-400;
-
-      &::before {
-        content: "\f071";
-        font-family: "Font Awesome", FontAwesome;
-        color: @yellow-400;
-        display: inline-block;
-        font-weight: 600;
-        font-size: 17px;
-        padding: 0 5px 0 0;
-      }
-    }
-
-    &.info {
-      background-color: @blue-100;
-      border: none;
-      border-left: solid 3px @blue-400;
-
-      &::before {
-        content: "\f05a";
-        font-family: "Font Awesome", FontAwesome;
-        color: @blue-400;
-        display: inline-block;
-        font-weight: 600;
-        font-size: 17px;
-        padding: 0 5px 0 0;
-      }
-    }
-
-    &.tip {
-      border-left: 3px solid @green-400;
-      background-color: @green-100;
-
-      &::before {
-        content: "\f058";
-        font-family: "Font Awesome", FontAwesome;
-        color: @green-400;
-        display: inline-block;
-        font-weight: 600;
-        font-size: 17px;
-        padding: 0 5px 0 0;
-      }
-    }
-
-    .alert-body {
-      padding-top: 20px;
-    }
-
-    .left {
-      float: left;
-      padding-top: 5px;
-      margin: 0 20px 0;
-    }
-
-    .tag {
-      padding: 2px 8px;
-      margin-right: 12px;
-      border-radius: 11px;
-      font-family: Roboto, -apple-system, system-ui, BlinkMacSystemFont,
-        "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      font-size: 10px;
-      font-weight: bold;
-      background: @blue;
-      color: white;
-
-      &.green {
-        background: #35cb05;
-      }
-
-      &.red {
-        background: @red;
-      }
-    }
-
-    img {
-      width: 20px;
-      margin-right: 5px;
-      margin-top: 3px;
-      float: left;
-      display: inline-block;
-    }
-
-    code {
-      font-size: 13px;
-    }
-
-    p {
-      padding: 0 25px 0 75px;
-      font-size: 15px;
-    }
-
-    a {
-      text-decoration: none;
-      color: @blue-500;
-    }
-
-    &.condensed {
-      padding: 6px 8px;
-
-      .alert-body {
-        padding: 0;
-        margin: 0;
-        display: flex;
-        align-items: center;
-      }
-
-      p {
-        flex-grow: 1;
-        padding: 0;
-        margin: 0;
-      }
-    }
-
-    &.margin-bigger {
-      margin-bottom: 32px;
     }
   }
 
@@ -730,12 +538,16 @@ Generic Styling for Desktop
     &.warning,
     &.important,
     &.note,
-    &.install-banner {
+    &.install-banner,
+    &.partner-plugin,
+    &.community-plugin,
+    &.compatibility {
       margin-bottom: 1em;   
       opacity: 1;
       font-style: normal;
       font-size: 15px;
       padding: 15px;
+      border-radius: 2px;
 
       p {
         margin-left: 24px;
@@ -743,12 +555,15 @@ Generic Styling for Desktop
     }
 
     &.no-icon {
-      padding-left: 0;
+      p {
+        margin-left: unset;
+      }  
     }
 
     &.warning {
       background-color: @red-100;
       border-left: solid 3px @red-500;
+      padding-left: 8px;
 
       &:not(.no-icon)::before {
         content: "\f057";
@@ -757,6 +572,7 @@ Generic Styling for Desktop
         font-weight: 600;
         font-size: 15px;
         margin: 0;
+        margin-right: 8px;
         float: left;
       }
     }
@@ -772,6 +588,7 @@ Generic Styling for Desktop
         font-weight: 600;
         font-size: 15px;
         margin: 0;
+        margin-right: 8px;
         float: left;
       }
     }
@@ -788,8 +605,29 @@ Generic Styling for Desktop
         font-weight: bold;
         font-size: 15px;
         margin: 0;
+        margin-right: 8px;
         float: left;
       }
+    }
+
+    &.partner-plugin {
+      background-color: @green-100;
+      color: @green-700;
+
+    a {
+        color: @green-700;
+      }
+    }
+
+    &.compatibility {
+      background-color: @grey-200;
+      color: @grey-500;
+      padding: 10px;
+    }
+    
+    &.community-plugin {
+      border: 1px solid @grey-300;
+      border-radius: 5px;
     }
 
     &.install-banner {
@@ -881,8 +719,14 @@ Generic Styling for Desktop
   }
 
   @media (min-width: 991px) {
+    .max-2 {
+      grid-template-columns: 1fr 1fr !important;
+    }
     .max-3 {
       grid-template-columns: 1fr 1fr 1fr !important;
+    }
+    .max-4 {
+      grid-template-columns: 1fr 1fr 1fr 1fr !important;
     }
   }
 
@@ -1121,18 +965,6 @@ Generic Styling for Desktop
   code {
     background-color: #fff;
     border: none;
-  }
-}
-
-.alert-info {
-  color: #757575;
-  border-left: 3px solid #e0e0e0;
-  background-color: #f9f9f9;
-
-  &.blue {
-    color: #004a80;
-    border-left: 3px solid #004b80;
-    background-color: #edf7ff;
   }
 }
 
