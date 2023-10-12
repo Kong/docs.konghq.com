@@ -2732,6 +2732,8 @@ openid-connect
 This change is in direct response to the identified vulnerability 
 [CVE-2023-44487](https://nvd.nist.gov/vuln/detail/CVE-2023-44487).
 
+  See our [blog post](https://konghq.com/blog/product-releases/novel-http2-rapid-reset-ddos-vulnerability-update) for more details on this vulnerability and Kong's responses to it.
+
 ## 2.8.4.3 
 **Release Date** 2023/09/18
 
