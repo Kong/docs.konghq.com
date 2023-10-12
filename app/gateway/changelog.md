@@ -840,7 +840,9 @@ it does not look up the secret correctly.
 
 * Applied Nginx patch for early detection of HTTP/2 stream reset attacks.
 This change is in direct response to the identified vulnerability 
-[CVE-2023-44487](https://nvd.nist.gov/vuln/detail/CVE-2023-44487).
+[CVE-2023-44487](https://nvd.nist.gov/vuln/detail/CVE-2023-44487). 
+  
+  See our [blog post](https://konghq.com/blog/product-releases/novel-http2-rapid-reset-ddos-vulnerability-update) for more details on this vulnerability and Kong's responses to it.
 * Fixed a keyring issue where Kong Gateway nodes would fail to send keyring 
 data when using the cluster strategy.
 * Fixed an issue where an abnormal socket connection would be reused when 
