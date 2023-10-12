@@ -450,6 +450,7 @@ The issue only affects scenarios where the same Go plugin is applied to differen
   [#11378](https://github.com/Kong/kong/pull/11378)
 * Added a `User=` specification to the systemd unit definition so that
   Kong Gateway can be controlled by systemd again.
+    [#11066](https://github.com/Kong/kong/pull/11066)
 
 #### Plugins
 
