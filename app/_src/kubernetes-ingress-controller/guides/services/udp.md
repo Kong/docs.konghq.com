@@ -4,7 +4,6 @@ type: how-to
 purpose: |
   How to proxy UDP requests
 ---
-## Overview
 
 Deploy a [Service][svc] that listens for [UDP datagrams][udp], and exposes this service outside of the cluster using
 {{site.base_gateway}}.
