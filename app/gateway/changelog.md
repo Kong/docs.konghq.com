@@ -9,6 +9,26 @@ Changelog for supported Kong Gateway versions.
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.4.1.1
+**Release Date** 2023/10/12
+
+### Fixes
+
+#### Core
+
+* Applied Nginx patch for early detection of  HTTP/2 stream reset attacks.
+This change is in direct response to the identified vulnerability [CVE-2023-44487](https://nvd.nist.gov/vuln/detail/CVE-2023-44487).
+
+  See our [blog post](https://konghq.com/blog/product-releases/novel-http2-rapid-reset-ddos-vulnerability-update) for more details on this vulnerability and Kong's responses to it.
+
+#### Plugins
+
+* [**SAML**](/hub/kong-inc/saml/) (`saml`): Adjusted the severity of `session was not found` messages to `info`.
+
+### Dependencies
+
+* Bumped `libxml2` from 2.10.3 to 2.11.5
+
 ## 3.4.1.0
 **Release Date** 2023/09/28
 
