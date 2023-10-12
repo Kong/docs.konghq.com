@@ -1,13 +1,11 @@
 ---
-title: Proxy TCP request
+title: Proxy TCP requests
 type: how-to
 purpose: |
   How to proxy TCP requests
 ---
-## Overview
 
 Create TCP routing configuration for {{site.base_gateway}} in Kubernetes using either the `TCPIngress` custom resource or `TCPRoute` and `TLSRoute` Gateway APIs resource.
-
 TCP-based Ingress means that {{site.base_gateway}} forwards the TCP stream to a Pod of a Service that's running inside Kubernetes. {{site.base_gateway}} does not perform any sort of transformations.
 
 There are two modes available:
