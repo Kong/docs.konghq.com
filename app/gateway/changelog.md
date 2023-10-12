@@ -1253,6 +1253,8 @@ Now, if IdP users with no groups or roles attempt to log into Kong Manager, they
 This change is in direct response to the identified vulnerability 
 [CVE-2023-44487](https://nvd.nist.gov/vuln/detail/CVE-2023-44487).
 
+  See our [blog post](https://konghq.com/blog/product-releases/novel-http2-rapid-reset-ddos-vulnerability-update) for more details on this vulnerability and Kong's responses to it.
+
 ### Dependencies
 
 * Bumped `libxml2` from 2.10.2 to 2.11.5
