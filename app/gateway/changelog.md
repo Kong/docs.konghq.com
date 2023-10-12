@@ -421,7 +421,7 @@ images or packages, and Kong will not test package installation on Ubuntu 18.04.
     If you need to install Kong Gateway on Ubuntu 18.04, substitute a previous 3.2.x 
     patch version in the [installation instructions](/gateway/3.2.x/install/linux/ubuntu/).
 
-* Amazon Linux 2022 artifacts are renamed to Amazon Linux 2023, based on AWS's own renaming.
+* Amazon Linux 2022 artifacts are now labeled as Amazon Linux 2023, aligning with AWS's renaming.
 * CentOS packages are now removed from the release and are no longer supported in future versions.
 
 ### Features
@@ -435,8 +435,9 @@ images or packages, and Kong will not test package installation on Ubuntu 18.04.
 * Applied Nginx patch for early detection of HTTP/2 stream reset attacks.
 This change is in direct response to the identified vulnerability 
 [CVE-2023-44487](https://nvd.nist.gov/vuln/detail/CVE-2023-44487).
-* Fixed an issue where an abnormal socket connection would be reused when 
-querying the PostgreSQL database.
+
+  See our [blog post](https://konghq.com/blog/product-releases/novel-http2-rapid-reset-ddos-vulnerability-update) for more details on this vulnerability and Kong's responses to it.
+* Fixed an issue where an abnormal socket connection would be incorrectly reused when querying the PostgreSQL database.
 * Fixed a keyring issue where Kong Gateway nodes would fail to send keyring 
 data when using the cluster strategy.
 * Fixed an issue where a crashing Go plugin server process would cause subsequent 
@@ -444,21 +445,20 @@ requests proxied through Kong Gateway to execute Go plugins with inconsistent co
 The issue only affects scenarios where the same Go plugin is applied to different route or service entities.
 * Fixed an issue that caused the sampling rate to be applied to individual spans, producing split traces.
 * Fixed worker queue issues:
-  * When the worker is in shutdown mode and more data is immediately available without waiting for `max_coalescing_delay`, queues are now cleared in batches.
+  * Worker queues now clear in batches when the worker is in shutdown mode and more data becomes immediately available, without waiting for `max_coalescing_delay`.
   [#11376](https://github.com/Kong/kong/pull/11376)
   * Fixed a race condition in plugin queues that could crash the worker when `max_entries` was set to `max_batch_size`.
   [#11378](https://github.com/Kong/kong/pull/11378)
-* Added a `User=` specification to the systemd unit definition so that
-  Kong Gateway can be controlled by systemd again.
+* Added a `User=` specification to the systemd unit definition, enabling Kong Gateway to be controlled by systemd again.
     [#11066](https://github.com/Kong/kong/pull/11066)
 
 #### Plugins
 
-* [**SAML**](/hub/kong-inc/saml/) (`saml`): When the Redis session storage is incorrectly configured, users now receive a 500 error instead of being redirected endlessly.
+* [**SAML**](/hub/kong-inc/saml/) (`saml`): Users will now receive a 500 error instead of being endlessly redirected when the Redis session storage is incorrectly configured.
 
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`):
   * The plugin now correctly sets the table key on `log` and `message`.
-  * If an invalid opaque token is provided and verification fails, the plugin now prints the correct error.
+  * When an invalid opaque token is provided and the verification fails, the plugin now prints the correct error message.
 
 * [**Response Transformer Advanced**](/hub/kong-inc/response-transformer-advanced/) (`response-transformer-advanced`): The plugin no longer loads the response body when `if_status` 
 doesn't match the provided status.
