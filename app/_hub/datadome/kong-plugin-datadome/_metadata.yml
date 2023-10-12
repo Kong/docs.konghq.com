@@ -3,7 +3,7 @@ name: Kong DataDome Plugin
 publisher: DataDome
 
 categories:
-  - security
+  - none
 
 type: plugin
 
@@ -14,16 +14,16 @@ support_url: https://docs.datadome.co/docs/support
 dbless_compatible: yes
 
 enterprise: true
-techpartner: true
+techpartner: false
 konnect: true
 
 kong_version_compatibility:
   community_edition:
     compatible:
-       - 3.3.x
-       - 3.2.x
-       - 3.0.x
-       - 2.8.x
+      - 3.3.x
+      - 3.2.x
+      - 3.0.x
+      - 2.8.x
   enterprise_edition:
     compatible:
       - 3.3.x
