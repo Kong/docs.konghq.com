@@ -2721,6 +2721,17 @@ openid-connect
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
+
+## 2.8.4.4
+**Release Date** 2023/10/12
+
+### Fixes
+
+#### Core
+* Applied Nginx patch for early detection of HTTP/2 stream reset attacks.
+This change is in direct response to the identified vulnerability 
+[CVE-2023-44487](https://nvd.nist.gov/vuln/detail/CVE-2023-44487).
+
 ## 2.8.4.3 
 **Release Date** 2023/09/18
 
