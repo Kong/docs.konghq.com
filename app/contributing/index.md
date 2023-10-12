@@ -17,7 +17,7 @@ the code, and more.
 
 We are currently accepting plugin submissions, on a limited basis, from trusted technical partners to our plugin hub. To learn more about our partner program, see our [Kong Partners page](https://konghq.com/partners).
 
-Explore the existing documentation before you start a big docs contribution. Some types of docs don't belong on the site, including: end-to-end guides, tutorials, and anything better suited to a blog post. If you're interested in
+Explore the existing documentation before you start a big docs contribution. Some types of docs don't belong on the site, including: end-to-end guides and anything better suited to a blog post. If you're interested in
 this kind of content or have support questions, join the community on [Kong's forum](https://discuss.konghq.com/), on
 [Gitter](https://gitter.im/Kong/kong), or on IRC at #kong.
 
@@ -30,21 +30,20 @@ We adhere to our own [code of conduct](https://github.com/Kong/docs.konghq.com/b
 If you find a problem in the docs, you can [file an issue](https://github.com/kong/docs.konghq.com/issues/new)
 or you can submit a pull request (PR) with a fix. Please fill out the issue or PR template! We can't help if we don't understand the problem.
 
-The Kong docs team assigns someone to review PRs every day, so you can expect acknowledgment of your contribution and at least preliminary
-feedback within about a day of your initial PR. We ask that you respond to feedback within a week if we ask for changes; otherwise, we'll close
+The Kong docs team reviews PRs regularly, so you can expect acknowledgment of your contribution and at least preliminary
+feedback within about three days of your initial PR. We ask that you respond to feedback within a week if we ask for changes; otherwise, we'll close
 your issue or PR, although you can always reopen it to finish your work.
 
-If you fix a typo, be sure to check for it everywhere, not just in the one instance you found. Currently docs for each version live in separate directories, not branches, and not much content changes from
-version to version. Chances are good that a typo on a page in one version appears on the same page in other versions too.
+If you fix a typo, be sure to check for it everywhere, not just in the one instance you found.
 
 ### Content requirements
 
 Before you change anything except for typos or grammatical errors, explore these resources:
 
 * Our [style guide](/contributing/style-guide/) provides a minimal set of style guidelines.
-* Our set of [markdown rules](/contributing/markdown-rules/) for making your content work with our Jekyll implementation. Specifies how you must
-work with certain kinds of content - includes, variables, new pages.
-* Our [list of Kong-specific terms](/contributing/word-choice/). Includes product names and other terms the Kong docs use in specific ways.
+* Our set of [markdown rules](/contributing/markdown-rules/) explains how to make your content work with our Jekyll implementation. This specifies how you must
+work with certain kinds of content, such as includes, variables, and new pages.
+* Our [list of Kong-specific terms](/contributing/word-choice/). This includes product names and other terms the Kong docs use in specific ways.
 * Our [documentation templates](https://github.com/Kong/docs.konghq.com/tree/main/docs/templates). You can use these templates to create new documentation pages. 
 
 ### Build locally

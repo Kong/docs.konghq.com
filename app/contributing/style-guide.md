@@ -52,19 +52,19 @@ All files in `app/_src` are formatted with Prettier. Prose in `app` has not been
 
 ## Content types
 
-At Kong, we use the four following standard content types when we write our documentation:
+At Kong, we use the following standard content types when we write our documentation:
 
 - [Explanation](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/explanation-template.md): Documentation that is understanding-oriented because it clarifies and discusses a particular topic.
-- [How-to](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/how-to-template.md): Documentation that is goal-oriented and prescriptive and that takes readers through the steps to complete a real-world problem.
+- [Workflow](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/tutorial-template.md): Narrative-driven documentation that guides users through specific steps to complete a real-world problem. This content can be goal-oriented and learning-oriented.
 - [Reference](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/reference-template.md): Documentation that explains the technology, like API or command line documentation.
-- [Tutorial](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/tutorial-template.md): Documentation that helps users learn about a topic by going step-by-step through a series of tasks.
 
-Every documentation page should fit one of these four content types.
+Every documentation page should fit one of these content types.
 
 ## Punctuation rules
 
-- Commas and periods always go inside quotation marks, and colons and semicolons (dashes as well) go outside.
-  - For example: “There was a storm last night,” Paul said.
+Commas and periods always go inside quotation marks, and colons and semicolons (dashes as well) go outside.
+
+For example: “There was a storm last night,” Paul said.
 
 ### List punctuation
 
