@@ -29,7 +29,7 @@ information that fits the flow of the task or content on the page.
 
 ## Notice types
 
-Crete a notice with Markdown blockquotes (`>`) and a class to display a specific style:
+Create a notice with Markdown blockquotes (`>`) and a class to display a specific style:
 
 ### Note
 

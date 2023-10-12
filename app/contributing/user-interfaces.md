@@ -58,5 +58,5 @@ The border must use the color <span style="color:#0788ad">`#0788ad`</span> from 
     * It's hard to tell which text belongs to the screenshot and which to the page content
 - **Do not** use GIFs.
 - Limit image file size to ~2MB.
-- Add files to the corresponding product folder by navigating in the repo from `app > _assets > images > docs`.
+- Add files to the corresponding product folder by navigating in the repo from `app > assets > images > products`.
 - Use lowercase letters and dashes when naming an image file.

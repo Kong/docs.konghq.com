@@ -24,7 +24,7 @@ Kong Konnect <br><br> Konnect | Use Kong Konnect for the first mention, and Konn
 Kong Gateway <br><br> Gateway | Kong's API gateway runtime, regardless of packaging or license. This term also refers to the enterprise version. <br><br> Use lowercase “gateway” when referring to the general concept of an API gateway. Use uppercase “Gateway” as a shorthand for “Kong Gateway”. When writing about "Kong Gateway", use "Kong Gateway" for the first mention and "Gateway" after.
 Kong Gateway (OSS) | Kong's API gateway runtime, open-source package. Use this name to _specifically_ refer to the open-source package.
 Kong Enterprise | Kong Gateway packaged with Enterprise features. Use when talking about subscription levels or package types.
-Kong Mesh <br><br> Mesh | Kong's service mesh. Use "Kong Mesh" for the first mention, "Mesh" after.
+Kong Mesh | Kong's service mesh.
 Kuma | Kong's open-source service mesh. <br><br> ❌&nbsp; Do not use "Kong Kuma". This is an open-source project supported by the CNCF and maintained, not owned, by Kong.
 Insomnia | Kong's open-source API client.
 Dev Portal <br><br> Dev Portal, self-managed <br> Dev Portal, cloud | A module for sharing APIs and their specs with developers, and enabling the developers to create applications based on Gateway or Konnect services. <br><br> ❌&nbsp; Do not use "Developer Portal".
@@ -59,7 +59,8 @@ Neutral pronouns (you, they/them) | Gendered pronouns (he/his, she/her)
 --------------------------------|--------------------------------------
 Self-managed                    | Self-hosted, on-premise(s)
 Free tier                       | Free mode
-Plus tier                       | Plus mode, Plus subscription
+Paid tier                       | Paid mode, Paid subscription
+Premium tier                    | Premium mode, Premium subscription
 Enterprise tier                  | Enterprise mode, Enterprise subscription
 Cloud                           | Software as a Service/SaaS
 cURL                            | curl, CURL

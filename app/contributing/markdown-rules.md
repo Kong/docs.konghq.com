@@ -15,7 +15,7 @@ Plugin Hub docs have specialized front matter elements. See the
 **Required:**
 
 `title: PAGE_TITLE`
-: The title of the topic you're adding.
+: The title of the topic you're adding. Explanation topic titles typically start with "About" and the name of the subject, for example: "About API Products". Workflow topic titles start with a verb, for example: "Set up team mappings". Reference topic titles start with nouns that describe the subject, for example: "Identity Management API".
 
 `content_type: how-to | explanation | reference | tutorial`
 : Add a tag to the front matter of each topic that you edit.
@@ -198,7 +198,7 @@ avoid qualifiers, and end the statement with a colon (`:`).
 If your topic provides instructions for two or more methods of completing a
 task, you can nest them inside `navtabs`. For example,
 [this topic](/gateway/latest/get-started/comprehensive/expose-services/#add-a-service)
-tabs between the Admin API and Kong Manager methods for adding a Service.
+tabs between the Admin API and Kong Manager methods for adding a service.
 
 {:.important}
 > **Important:** You can’t use tabs in lists, or nest tabs within tabs.
