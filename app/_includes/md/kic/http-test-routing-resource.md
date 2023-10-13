@@ -69,7 +69,7 @@ spec:
 httproute.gateway.networking.k8s.io/{{ name }} created
 ```
 {% endnavtab %}
-{% navtab Ingress%}
+{% navtab Ingress %}
 ```text
 ingress.networking.k8s.io/{{ name }} created
 ```
