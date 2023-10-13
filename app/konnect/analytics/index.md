@@ -9,11 +9,8 @@ Analytics provides traffic reports to help you track the performance and
 behavior of your APIs and data plane nodes. Use these reports to quickly access key
 statistics, monitor vital signs, and pinpoint anomalies in real time.
 
-Depending on your {{site.konnect_saas}} subscription tier, Analytics retains
-historical data for the following lengths of time:
-* **Free:** 24 hours
-* **Plus:** 3 months
-* **Enterprise:** 1 year
+With **Konnect Plus** Analytics retains historical data for up to 3 months. If you need a longer storage period, [contact a sales representative](https://konghq.com/contact-sales) about upgrading to {{site.konnect_product_name}} Enterprise.
+
 
 {:.note}
 > **Note**:
@@ -29,7 +26,7 @@ activity graphs for gateway services or routes for the past 30 days.
 For gateway services and routes, the graphs show requests broken down by status codes.
 
 
-![service graph](/assets/images/docs/konnect/konnect-analytics-gateway-service.png){:.image-border}
+![service graph](/assets/images/products/konnect/analytics/konnect-analytics-gateway-service.png){:.image-border}
 
 > _**Figure 1:** Graph showing traffic for the last 15 minutes by status code for a gateway service._
 
@@ -61,12 +58,12 @@ You can view a graph for each category by clicking **Traffic**, **Errors**, or *
     * Failed requests contain all requests that returned a **4xx-5xx** status code.
     * 6xx status codes are not reported.
 
-    ![traffic analytics graph](/assets/images/docs/konnect/konnect-vitals-traffic.png){:.image-border}
+    ![traffic analytics graph](/assets/images/products/konnect/analytics/konnect-vitals-traffic.png){:.image-border}
     > _**Figure 2:** Graph showing successful and failed requests over the past three hours._
 
 * **Errors**: This graph displays the total number of failed HTTP requests categorized by error response codes over the specified time interval. Error response codes include any **4xx-5xx** status codes.
 
-    ![errors analytics graph](/assets/images/docs/konnect/konnect-vitals-errors.png){:.image-border}
+    ![errors analytics graph](/assets/images/products/konnect/analytics/konnect-vitals-errors.png){:.image-border}
     > _**Figure 3:** Graph showing errors by 4xx and 5xx error codes received over the past three hours._
 
 * **Latency**: This graph displays request latency, in milliseconds, of the 99th, 95th, and 50th percentiles.
@@ -75,7 +72,7 @@ Admins can monitor the latency, investigate where delays are noticed, and optimi
     {:.note}
     > **Note**: Latency data is only available for requests proxied through a data plane running {{site.base_gateway}} 3.0.0.0 or later.
 
-   ![latency analytics graph](/assets/images/docs/konnect/konnect-analytics-latency.png){:.image-border}
+   ![latency analytics graph](/assets/images/products/konnect/analytics/konnect-analytics-latency.png){:.image-border}
   > _**Figure 4:** Graph showing latency as a percentage over the past 15 minutes._
 
 Graphs can be interacted with, including hovering over chart items to display more details, and filtering options by clicking on items in the **legend**.

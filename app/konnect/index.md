@@ -15,7 +15,7 @@ preferred network environment.  All of this is powered by {{site.base_gateway}} 
 lightweight, fast, and flexible API gateway. 
 
 <p align="center">
-  <img src="/assets/images/docs/konnect/dashboard/konnect-dashboard.png" alt="Konnect's dashboard screenshot" />
+  <img src="/assets/images/products/konnect/dashboard/konnect-dashboard.png" alt="Konnect's dashboard screenshot" />
 </p>
 
 {{site.konnect_short_name}} helps simplify multi-cloud API management by:
@@ -84,6 +84,12 @@ Through the Gateway Manager, increase the security of your APIs with out-of-the-
 [Learn more about the Gateway Manager &rarr;](/konnect/gateway-manager/)
 
 [Check out {{site.konnect_short_name}}-compatible plugins &rarr;](/hub)
+
+### Mesh Manager 
+
+[Mesh Manager](https://cloud.konghq.com/mesh-manager) in {{site.konnect_product_name}} allows you to create, manage, and view your {{site.mesh_product_name}} service meshes using the {{site.konnect_short_name}} platform. Mesh Manager is ideal for organizations who want to have one or more global control planes that allow you to run your mesh deployments across multiple zones. You can run a mix of Kubernetes and Universal zones. Your mesh deployment environments can include multiple isolated meshes for multi-tenancy, with workloads running in different regions, on different clouds, or in different data-centers.
+
+[Learn more about Mesh Manager &rarr;](/konnect/mesh-manager/)
 
 ### API Products
 

@@ -47,8 +47,8 @@ Default node costs can be defined by decorating the schema:
 
 | `type_path`               | `mul_arguments`   | `mul_constant`    | `add_arguments`   | `add_constant`
 |---------------------------|-------------------|-------------------|-------------------|---------------
-| Query.allPeople           | ["first"]         | 1                 | []                | 1
-| Person.vehicleConnection  | ["first"]         | 1                 | []                | 1
+| `Query.allPeople`           | ["first"]         | 1                 | []                | 1
+| `Person.vehicleConnection`  | ["first"]         | 1                 | []                | 1
 
 
 ```
@@ -69,16 +69,16 @@ query { # + 1
 # total cost: ((((4 * 10 + 1) + 1) + 1) * 20 + 1) + 1 = 862
 ```
 
-Generally speaking, vehicleConnection weight (4) is applied 10 times, and the
+Generally speaking, `vehicleConnection` weight (4) is applied 10 times, and the
 total weight of it (40) 20 times, which gives us a rough 800.
 
 Cost constants can be atomically defined as:
 
 | `type_path`               | `mul_arguments`   | `mul_constant`    | `add_arguments`   | `add_constant`
 |---------------------------|-------------------|-------------------|-------------------|---------------
-| Query.allPeople           | ["first"]         | 2                 | []                | 2
-| Person.vehicleConnection  | ["first"]         | 1                 | []                | 5
-| Vehicle.name              | []                | 1                 | []                | 8
+| `Query.allPeople`           | ["first"]         | 2                 | []                | 2
+| `Person.vehicleConnection`  | ["first"]         | 1                 | []                | 5
+| `Vehicle.name`              | []                | 1                 | []                | 8
 
 On this example, `Vehicle.name` and `Person.vehicleConnection` have specific
 weights of 8 and 5 respectively. `allPeople` weights 2, and also has double
@@ -139,10 +139,10 @@ query {
 
 | `type_path`               | `mul_arguments`   | `mul_constant`    | `add_arguments`   | `add_constant`
 |---------------------------|-------------------|-------------------|-------------------|---------------
-| Query.allPeople           | ["first"]         | 1                 | []                | 1
-| Person.vehicleConnection  | ["first"]         | 1                 | []                | 1
-| Vehicle.filmConnection    | ["first"]         | 1                 | []                | 1
-| Film.characterConnection  | ["first"]         | 1                 | []                | 1
+| `Query.allPeople`           | ["first"]         | 1                 | []                | 1
+| `Person.vehicleConnection`  | ["first"]         | 1                 | []                | 1
+| `Vehicle.filmConnection`    | ["first"]         | 1                 | []                | 1
+| `Film.characterConnection`  | ["first"]         | 1                 | []                | 1
 
 Roughly speaking:
 
@@ -156,10 +156,10 @@ Specific costs per node can be specified by adding a constant:
 
 | `type_path`               | `mul_arguments`   | `mul_constant`    | `add_arguments`   | `add_constant`
 |---------------------------|-------------------|-------------------|-------------------|---------------
-| Query.allPeople           | ["first"]         | 1                 | []                | 1
-| Person.vehicleConnection  | ["first"]         | 1                 | []                | 42
-| Vehicle.filmConnection    | ["first"]         | 1                 | []                | 1
-| Film.characterConnection  | ["first"]         | 1                 | []                | 1
+| `Query.allPeople`           | ["first"]         | 1                 | []                | 1
+| `Person.vehicleConnection`  | ["first"]         | 1                 | []                | 42
+| `Vehicle.filmConnection`    | ["first"]         | 1                 | []                | 1
+| `Film.characterConnection`  | ["first"]         | 1                 | []                | 1
 
 
 ```
@@ -222,20 +222,20 @@ Add a cost to a service schema.
 Example requests:
 
 ```sh
-curl -X POST http://kong:8001/services/example-service/graphql-rate-limiting-advanced/costs \
+curl -X POST http://localhost:8001/services/example-service/graphql-rate-limiting-advanced/costs \
   --data type_path="Query.allPeople" \
   --data mul_arguments="first"
 
-curl -X POST http://kong:8001/services/example-service/graphql-rate-limiting-advanced/costs \
+curl -X POST http://localhost:8001/services/example-service/graphql-rate-limiting-advanced/costs \
   --data type_path="Person.vehicleConnection" \
   --data mul_arguments="first"
   --data add_constant=42
 
-curl -X POST http://kong:8001/services/example-service/graphql-rate-limiting-advanced/costs \
+curl -X POST http://localhost:8001/services/example-service/graphql-rate-limiting-advanced/costs \
   --data type_path="Vehicle.filmConnection" \
   --data mul_arguments="first"
 
-curl -X POST http://kong:8001/services/example-service/graphql-rate-limiting-advanced/costs \
+curl -X POST http://localhost:8001/services/example-service/graphql-rate-limiting-advanced/costs \
   --data type_path="Film.characterConnection" \
   --data mul_arguments="first"
 ```

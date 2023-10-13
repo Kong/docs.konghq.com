@@ -81,8 +81,8 @@ It can be installed by doing:
 
     $ luarocks install <rock-filename>
 
-The filename can be a local name, or any of the supported methods, eg.
-`http://myrepository.lan/rocks/my-plugin-0.1.0-1.all.rock`
+The filename can be a local name, or any of the supported methods, for example
+`http://myrepository.lan/rocks/my-plugin-0.1.0-1.all.rock`.
 
 ### Via LuaRocks from the source archive
 
@@ -266,13 +266,13 @@ reasons:
 `plugin is enabled but not installed`
 : The plugin's name is present in the `plugins` directive, but Kong can't load
 the `handler.lua` source file from the file system. To resolve, make sure that
-the [lua_package_path](/gateway/{{page.kong_version}}/reference/configuration/#development-miscellaneous-section)
+the [`lua_package_path`](/gateway/{{page.kong_version}}/reference/configuration/#development-miscellaneous-section)
 directive is properly set to load this plugin's Lua sources.
 
 `no configuration schema found for plugin`
 : The plugin is installed and enabled in the `plugins` directive, but Kong is
 unable to load the `schema.lua` source file from the file system. To resolve,
-make sure tha the `schema.lua` file is present alongside the plugin's
+make sure that the `schema.lua` file is present alongside the plugin's
 `handler.lua` file.
 
 ---

@@ -29,7 +29,7 @@ For more details about content files, see the
 {% navtab Using cURL %}
 
 ```bash
-$ curl -X POST http://<admin-hostname>:8001/default/files \
+$ curl -X POST http://localhost:8001/default/files \
   -F "path=content/homepage.html" \
   -F "contents=@<file-location>.json"
 ```
@@ -56,7 +56,7 @@ For more details about specification files, see the
 {% navtab Using cURL %}
 
 ```bash
-$ curl -X POST http://<admin-hostname>:8001/default/files \
+$ curl -X POST http://localhost:8001/default/files \
   -F "path=specs/homepage.json" \
   -F "contents=@<spec-location>.json"
 ```
@@ -83,7 +83,7 @@ For more details about theme files, see the
 {% navtab Using cURL %}
 
 ```bash
-$ curl -X POST http://<admin-hostname>:8001/default/files \
+$ curl -X POST http://localhost:8001/default/files \
   -F "path=themes/base/partials/header.html" \
   -F "contents=@<partial-location>.html"
 ```
@@ -106,7 +106,7 @@ $ http post :8001/default/files  \
 {% navtab Using cURL %}
 
 ```bash
-$ curl -X GET http://<admin-hostname>:8001/default/files/content/index.txt
+$ curl -X GET http://localhost:8001/default/files/content/index.txt
 ```
 
 {% endnavtab %}
@@ -125,7 +125,7 @@ $ http :8001/default/files/content/index.txt
 {% navtab Using cURL %}
 
 ```bash
-$ curl -X PATCH http://<admin-hostname>:8001/default/files/content/index.txt \
+$ curl -X PATCH http://localhost:8001/default/files/content/index.txt \
   -F "contents=@<updated-content-file-location>.txt"
 ```
 
@@ -146,7 +146,7 @@ $ http patch :8001/default/files/content/index.txt \
 {% navtab Using cURL %}
 
 ```bash
-$ curl -X DELETE http://<admin-hostname>:8001/default/files/content/index.txt
+$ curl -X DELETE http://localhost:8001/default/files/content/index.txt
 ```
 
 {% endnavtab %}

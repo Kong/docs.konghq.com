@@ -2,11 +2,11 @@
 title: Kong Mesh
 subtitle: A modern control plane built on top of Envoy and focused on simplicity, security, and scalability
 ---
-<div class="alert alert-ee blue">
-   <b>Demo</b>: To see {{site.mesh_product_name}} in action, you can
-   <a href="https://konghq.com/request-demo-kong-mesh/">request a demo</a> and
-   we will get in touch with you.
-</div>
+
+{:.note}
+> **Demo**: To see {{site.mesh_product_name}} in action, you can
+[request a demo](https://konghq.com/request-demo-kong-mesh/) and
+we will get in touch with you.
 
 Welcome to the official documentation for {{site.mesh_product_name}}!
 
@@ -25,13 +25,12 @@ support, while providing native integration with
 full-stack connectivity platform for all of your services and APIs, across
 every cloud and environment.
 
-<div class="alert alert-ee blue">
-   Kuma itself was originally created by Kong and donated to CNCF to
-   provide the first neutral Envoy-based service mesh to the industry. Kong
-   still maintains and develops Kuma, which is the foundation for
-   {{site.mesh_product_name}}.
-</div>
-<br>
+{:.note}
+> Kuma itself was originally created by Kong and donated to CNCF to
+provide the first neutral Envoy-based service mesh to the industry. Kong
+still maintains and develops Kuma, which is the foundation for
+{{site.mesh_product_name}}.
+
 <center>
   <i>{{site.mesh_product_name}} extends CNCF's Kuma and Envoy to provide an
   enterprise-grade service mesh with unique features in the service mesh

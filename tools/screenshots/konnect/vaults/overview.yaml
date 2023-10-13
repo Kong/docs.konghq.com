@@ -1,0 +1,17 @@
+- output: ../../app/assets/images/products/konnect/gateway-manager/konnect-vaults.png
+  url: https://cloud.konghq.com/us/gateway-manager/5b32f5e1-6c0e-498d-bd94-14c770c4ffbd/vaults
+  wait: 4000
+  width: 1920
+  height: 1080
+  javascript: |
+    async () => {
+      const sidebarItem = document.querySelector("#subnav-gateway-manager > li.sidebar-item-secondary.active > a");
+      const prefixItem = getTestId('prefix');
+      const addItem = getTestId('toolbar-add-vault');
+      const menuItem = getTestId('overflow-actions-button');
+
+      annotateNumber(sidebarItem, { number: 1, position: { left: "100px" } });
+      annotateNumber(addItem, { number: 2, position: { right: "-50px" } });
+      annotateNumber(prefixItem, { number: 3, position: { left: "-35px", top: "4px" } });
+      annotateNumber(menuItem, { number: 4, position: { right: "-35px" } });
+    }

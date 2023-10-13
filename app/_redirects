@@ -2,12 +2,27 @@
 # Newer, more relevant redirects should appear at the top of the file.
 # More general/sweeping redirects should be at the bottom.
 
+# Konnect plugins
+
+/konnect/gateway-manager/enable-route-plugin/    /konnect/gateway-manager/plugins/
+/konnect/gateway-manager/enable-service-plugin/  /konnect/gateway-manager/plugins/
+/konnect/runtime-manager/enable-route-plugin/    /konnect/gateway-manager/plugins/
+/konnect/runtime-manager/enable-service-plugin/  /konnect/gateway-manager/plugins/
+/konnect/manage-plugins/*                        /konnect/gateway-manager/plugins/
+/konnect/servicehub/plugins/*                    /konnect/gateway-manager/plugins/
+
+# Konnect plus
+
+/konnect/account-management/change-plan/     /konnect/account-management/
+/konnect/account-management/billing/    /konnect/account-management/
+
 ######################################################################
 
 # Evergreen redirects for nav files; do not delete unless you're removing the nav entry
 /konnect/support/data-plane-nodes/  /konnect/gateway-manager/data-plane-nodes/
 /gateway/latest/production/breaking-changes/     /gateway/latest/breaking-changes/
 /gateway/:version/production/breaking-changes/   /gateway/:version/breaking-changes/
+
 
 # Konnect rename
 
@@ -307,8 +322,6 @@
 /konnect/getting-started/spec/service/              /konnect/getting-started/configure-service/
 /konnect/servicehub/dev-portal/service-documentation/   /konnect/servicehub/service-documentation/
 /konnect/servicehub/dev-portal/publish/              /konnect/servicehub/service-documentation/
-/konnect/servicehub/plugins/enable-service-plugin/   /konnect/servicehub/enable-service-plugin/
-/konnect/servicehub/plugins/enable-route-plugin/     /konnect/servicehub/enable-route-plugin/
 /konnect/runtime-manager/gateway-runtime-conf        /konnect/runtime-manager/runtime-instances/
 /konnect/runtime-manager/gateway-runtime-docker      /konnect/runtime-manager/runtime-instances/
 /konnect/runtime-manager/gateway-runtime-kubernetes  /konnect/runtime-manager/runtime-instances/
@@ -327,9 +340,6 @@
 /konnect/dev-portal/applications/disable-app-reg/          /konnect/dev-portal/applications/enable-app-reg/
 /konnect/dev-portal/applications/manage-app-reg-requests/  /konnect/dev-portal/access-and-approval/manage-app-reg-requests/
 /konnect/dev-portal/applications/manage-app-connections/   /konnect/dev-portal/access-and-approval/manage-app-connections/
-/konnect/manage-plugins/                             /konnect/servicehub/plugins/
-/konnect/manage-plugins/enable-service-plugin/       /konnect/servicehub/enable-service-plugin/
-/konnect/manage-plugins/enable-route-plugin/         /konnect/servicehub/enable-route-plugin/
 /konnect/manage-plugins/shared-config                /konnect/runtime-manager/configuration/
 /konnect/shared-config                               /konnect/runtime-manager/configuration/
 /konnect/vitals/analyze/                             /konnect/analytics/
@@ -340,8 +350,7 @@
 /konnect/legacy/*                                    /konnect/
 /konnect/install-support/                            /konnect/runtime-manager/runtime-instances/
 /konnect/servicehub/plugins/                          /konnect/runtime-manager/plugins/
-/konnect/servicehub/enable-service-plugin/            /konnect/runtime-manager/enable-service-plugin/
-/konnect/servicehub/enable-route-plugin/              /konnect/runtime-manager/enable-route-plugin/
+
 /konnect/getting-started/configure-service/           /konnect/getting-started/productize-service/
 /konnect/getting-started/implement-service/           /konnect/getting-started/deploy-service
 /konnect/servicehub/service-documentation/            /konnect/api-products/service-documentation

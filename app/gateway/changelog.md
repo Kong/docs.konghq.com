@@ -9,6 +9,95 @@ Changelog for supported Kong Gateway versions.
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.4.1.1
+**Release Date** 2023/10/12
+
+### Fixes
+
+#### Core
+
+* Applied Nginx patch for early detection of  HTTP/2 stream reset attacks.
+This change is in direct response to the identified vulnerability [CVE-2023-44487](https://nvd.nist.gov/vuln/detail/CVE-2023-44487).
+
+  See our [blog post](https://konghq.com/blog/product-releases/novel-http2-rapid-reset-ddos-vulnerability-update) for more details on this vulnerability and Kong's responses to it.
+
+#### Plugins
+
+* [**SAML**](/hub/kong-inc/saml/) (`saml`): Adjusted the severity of `session was not found` messages to `info`.
+
+### Dependencies
+
+* Bumped `libxml2` from 2.10.3 to 2.11.5
+
+## 3.4.1.0
+**Release Date** 2023/09/28
+
+### Breaking Changes
+
+*  [**GraphQL Rate Limiting Advanced**](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`): The schema validation has been updated so that Redis cluster mode is now supported. This schema change does not impact other implementations of this plugin.
+  
+### Features
+#### Core
+
+* Support HTTP query parameters in expression routes.
+
+#### Plugins
+
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`):
+  * New field `unauthorized_destroy_session`, which when set to true, destroys the session, by deleting the user's session cookie, when the request is unauthorized. Default to `true`. Set to `false` to preserve the session.
+  * New field `using_pseudo_issuer`. When set to true, the plugin instance will not discover the configuration from the issuer.
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`): A new value is added to the parameter `header_type`, enabling Kong to seamlessly inject Datadog headers into forwarded requests' headers when communicating with upstream services.
+
+
+### Fixes
+#### Core
+
+* Removed a hardcoded proxy-wasm isolation level setting that was preventing the `nginx_http_proxy_wasm_isolation` configuration value from taking effect.
+* Fixed an issue where the TTL of the Key Auth plugin didn't work in DB-less and Hybrid mode.
+* Fixed a problem where an abnormal socket connection will be reused when querying the Postgres database.
+* Fixed an upstream SSL failure when plugins used a response handler.
+* Fixed an issue with the `tls_passthrough` protocol did not work with the router expressions flavor.
+* Fixed an issue where plugins would not trigger correctly when the authenticated consumer is part of multiple consumer groups.
+* Fixed a keyring issue where a Kong node fails to send keyring material when using cluster strategy.
+* Fixed an issue that will cause a failure to send tracing data to Datadog when the value of the `x-datadog-parent-id` header in requests is a short decimal string.
+* Fixed the way RBAC retrieves group roles with a group name whose type is a number.
+* Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availibilty detection feature. 
+
+
+
+#### PDK
+
+* Fixed several issues in Vault and refactored the Vault code base: 
+  * Make DAOs fallback to an empty string when resolving Vault references fail
+  * Use node-level mutex when rotating references  
+  * Refresh references on config changes 
+  * Update plugin referenced values only once per request 
+  * Pass only the valid config options to vault implementations
+  * Resolve multi-value secrets only once when rotating them 
+  * Do not start vault secrets rotation timer on control planes 
+  * Re-enable negative caching 
+  * Reimplement the `kong.vault.try` function 
+  * Remove references from rotation in case their configuration has changed
+* Tracing: fixed an issue that resulted in some parent spans to end before their children due to different precision of their timestamps.
+ 
+#### Plugin
+
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`): fix an issue that resulted in invalid parent IDs in the propagated tracing headers
+* [**mTLS Authentication**](/hub/kong-inc/mtls-auth/) (`mtls-auth`): should not cache the network failure when performing a revocation check
+* [**Canary**](/hub/kong-inc/canary/) (`canary`): allow the `start` field to be a time that occurs in the past.
+* [**SAML**](/hub/kong-inc/saml/) (`saml`): When the Redis session storage is incorrectly configured, users now receive a 500 error instead of being redirected endlessly.
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`): Fix the issue on token revocation on logout where the code was revoking the refresh token when it was supposed to revoke access token when using the discovered revocation endpoint.
+
+
+### Kong Manager
+
+* Kong Manager now links directly to the [Gateway Admin API - EE (beta)](/gateway/api/admin-ee/3.4.0.x/)
+
+### Dependencies
+
+* Fixed incorrect LuaJIT LDP/STP fusion on ARM64 which may sometimes cause incorrect logic.
+
+
 ## 3.4.0.0
 **Release Date** 2023/08/09
 
@@ -338,6 +427,68 @@ hang when attempting to expand an API.
 * Some referenceable configuration fields, such as the `http_endpoint` field
   of the `http-log` plugin and the `endpoint` field of the `opentelemetry` plugin,
   do not accept reference values due to incorrect field validation.
+
+## 3.3.1.1
+**Release Date** 2023/10/12
+
+### Breaking Changes
+
+* **Ubuntu 18.04 support removed**: Support for running Kong Gateway on Ubuntu 18.04 ("Bionic") is now deprecated,
+as [Standard Support for Ubuntu 18.04 has ended as of June 2023](https://wiki.ubuntu.com/Releases).
+Starting with Kong Gateway 3.2.2.4, Kong is not building new Ubuntu 18.04
+images or packages, and Kong will not test package installation on Ubuntu 18.04.
+
+    If you need to install Kong Gateway on Ubuntu 18.04, substitute a previous 3.2.x 
+    patch version in the [installation instructions](/gateway/3.2.x/install/linux/ubuntu/).
+
+* Amazon Linux 2022 artifacts are now labeled as Amazon Linux 2023, aligning with AWS's renaming.
+* CentOS packages are now removed from the release and are no longer supported in future versions.
+
+### Features
+
+#### Plugins
+* [**GraphQL Rate Limiting Advanced**](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`) and [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`): The Redis strategy now catches strategy connection failures.
+
+### Fixes
+
+#### Core
+* Applied Nginx patch for early detection of HTTP/2 stream reset attacks.
+This change is in direct response to the identified vulnerability 
+[CVE-2023-44487](https://nvd.nist.gov/vuln/detail/CVE-2023-44487).
+
+  See our [blog post](https://konghq.com/blog/product-releases/novel-http2-rapid-reset-ddos-vulnerability-update) for more details on this vulnerability and Kong's responses to it.
+* Fixed an issue where an abnormal socket connection would be incorrectly reused when querying the PostgreSQL database.
+* Fixed a keyring issue where Kong Gateway nodes would fail to send keyring 
+data when using the cluster strategy.
+* Fixed an issue where a crashing Go plugin server process would cause subsequent 
+requests proxied through Kong Gateway to execute Go plugins with inconsistent configurations. 
+The issue only affects scenarios where the same Go plugin is applied to different route or service entities.
+* Fixed an issue that caused the sampling rate to be applied to individual spans, producing split traces.
+* Fixed worker queue issues:
+  * Worker queues now clear in batches when the worker is in shutdown mode and more data becomes immediately available, without waiting for `max_coalescing_delay`.
+  [#11376](https://github.com/Kong/kong/pull/11376)
+  * Fixed a race condition in plugin queues that could crash the worker when `max_entries` was set to `max_batch_size`.
+  [#11378](https://github.com/Kong/kong/pull/11378)
+* Added a `User=` specification to the systemd unit definition, enabling Kong Gateway to be controlled by systemd again.
+    [#11066](https://github.com/Kong/kong/pull/11066)
+
+#### Plugins
+
+* [**SAML**](/hub/kong-inc/saml/) (`saml`): Users will now receive a 500 error instead of being endlessly redirected when the Redis session storage is incorrectly configured.
+
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`):
+  * The plugin now correctly sets the table key on `log` and `message`.
+  * When an invalid opaque token is provided and the verification fails, the plugin now prints the correct error message.
+
+* [**Response Transformer Advanced**](/hub/kong-inc/response-transformer-advanced/) (`response-transformer-advanced`): The plugin no longer loads the response body when `if_status` 
+doesn't match the provided status.
+
+* [**mTLS Authentication**](/hub/kong-inc/mtls-auth/) (`mtls-auth`): Fixed an issue that caused the plugin to cache network failures when running certificate revocation checks.
+
+### Dependencies
+
+* Bumped `libxml2` from 2.10.2 to 2.11.5
+* Bumped `lua-resty-kafka` from 0.15 to 0.16
 
 ## 3.3.1.0
 **Release Date** 2023/07/03
@@ -762,6 +913,33 @@ This should be a 400 because the configuration is invalid.
 * When the OpenID Connect (OIDC) plugin is configured to reference HashiCorp Vault in the `config.client_secret` field (for example, `{vault://hcv/clientSecret}`),
 it does not look up the secret correctly.
 
+
+## 3.2.2.5
+**Release Date** 2023/10/12
+
+### Fixes
+#### Core
+
+* Applied Nginx patch for early detection of HTTP/2 stream reset attacks.
+This change is in direct response to the identified vulnerability 
+[CVE-2023-44487](https://nvd.nist.gov/vuln/detail/CVE-2023-44487). 
+  
+  See our [blog post](https://konghq.com/blog/product-releases/novel-http2-rapid-reset-ddos-vulnerability-update) for more details on this vulnerability and Kong's responses to it.
+* Fixed a keyring issue where Kong Gateway nodes would fail to send keyring 
+data when using the cluster strategy.
+* Fixed an issue where an abnormal socket connection would be incorrectly reused when querying the PostgreSQL database.
+* Added a `User=` specification to the systemd unit definition, enabling Kong Gateway to be controlled by systemd again.
+  [#11066](https://github.com/Kong/kong/pull/11066)
+
+#### Plugins
+* [**mTLS Authentication**](/hub/kong-inc/mtls-auth/) (`mtls-auth`): Fixed an issue that caused the plugin to cache network failures when running certificate revocation checks.
+
+* [**SAML**](/hub/kong-inc/saml/) (`saml`): Users will now receive a 500 error instead of being endlessly redirected when the Redis session storage is incorrectly configured.
+
+### Dependencies
+
+* Bumped `libxml2` from 2.10.2 to 2.11.5
+
 ## 3.2.2.4
 **Release Date** 2023/09/15
 
@@ -1174,6 +1352,21 @@ Now, if IdP users with no groups or roles attempt to log into Kong Manager, they
   [#10230](https://github.com/Kong/kong/pull/10230)
 * Bumped `libxml` from 2.10.2 to 2.10.3 to resolve [CVE-2022-40303](https://nvd.nist.gov/vuln/detail/cve-2022-40303) and [CVE-2022-40304](https://nvd.nist.gov/vuln/detail/cve-2022-40304)
 
+## 3.1.1.6
+**Release Date** 2023/10/12
+
+### Fixes
+
+#### Core
+* Applied Nginx patch for early detection of HTTP/2 stream reset attacks.
+This change is in direct response to the identified vulnerability 
+[CVE-2023-44487](https://nvd.nist.gov/vuln/detail/CVE-2023-44487).
+
+  See our [blog post](https://konghq.com/blog/product-releases/novel-http2-rapid-reset-ddos-vulnerability-update) for more details on this vulnerability and Kong's responses to it.
+
+### Dependencies
+
+* Bumped `libxml2` from 2.10.2 to 2.11.5
 
 ## 3.1.1.5 
 **Release Date** 2023/08/25
@@ -2651,6 +2844,19 @@ openid-connect
   [#9287](https://github.com/Kong/kong/pull/9287)
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
+
+
+## 2.8.4.4
+**Release Date** 2023/10/12
+
+### Fixes
+
+#### Core
+* Applied Nginx patch for early detection of HTTP/2 stream reset attacks.
+This change is in direct response to the identified vulnerability 
+[CVE-2023-44487](https://nvd.nist.gov/vuln/detail/CVE-2023-44487).
+
+  See our [blog post](https://konghq.com/blog/product-releases/novel-http2-rapid-reset-ddos-vulnerability-update) for more details on this vulnerability and Kong's responses to it.
 
 ## 2.8.4.3 
 **Release Date** 2023/09/18

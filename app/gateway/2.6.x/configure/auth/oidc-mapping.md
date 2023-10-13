@@ -17,7 +17,7 @@ role also changes in {{site.base_gateway}} the next time they log in through Kon
 Manager. The mapping removes the task of manually managing access in
 {{site.base_gateway}}, as it makes the IdP the system of record.
 
-Here's how OIDC authenticaticated group mapping works:
+Here's how OIDC authenticated group mapping works:
 1. Create roles in {{site.base_gateway}} using either the Kong Admin API or Kong
 Manager.
 2. Create groups and associate roles with the groups.
@@ -34,10 +34,9 @@ Manager.
 
 ## Create Kong Groups and Assign Roles
 
-<div class="alert alert-ee blue">
-<b>Note:</b> The following examples assume that you have RBAC enabled with
+{:.note}
+> **Note:** The following examples assume that you have RBAC enabled with
 Basic Auth and are transitioning to OpenID Connect.
-</div>
 
 {% navtabs %}
 {% navtab Kong Manager %}
@@ -76,7 +75,7 @@ easy for you to identify.
 name:
 
     ```sh
-    $ curl -X POST --url http://<admin-hostname>:8001/groups \
+    $ curl -X POST --url http://localhost:8001/groups \
       --header 'content-type: application/json' \
       --header 'kong-admin-token: <yourtoken>' \
       --data '{
@@ -91,7 +90,7 @@ name:
 2. Assign a role to the group:
 
     ```sh
-    $ curl -X POST --url http://<admin-hostname>:8001/groups/{group-id}/roles \
+    $ curl -X POST --url http://localhost:8001/groups/{group-id}/roles \
       --header 'content-type: application/json' \
       --header 'kong-admin-token: <yourtoken>' \
       --data '{   
@@ -109,7 +108,7 @@ name:
 3. Create an admin for the group:
 
     ```sh
-    $ curl -X POST --url http://<admin-hostname>:8001/admins \
+    $ curl -X POST --url http://localhost:8001/admins \
       --header 'content-type: application/json' \
       --header 'kong-admin-token: <yourtoken>' \
       --data '{
@@ -126,7 +125,7 @@ name:
 Notice how in the instructions above, you did not assign a role to your
 admin. The role will be matched with the role assigned to them in the IdP.
 
-## Apply OIDC Auth Mapping to Kong Gateway
+## Apply OIDC Auth Mapping to {{site.base_gateway}}
 
 {% navtabs %}
 {% navtab Kubernetes with Helm %}

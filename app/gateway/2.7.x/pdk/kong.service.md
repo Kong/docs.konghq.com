@@ -11,12 +11,14 @@ toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
+<!--vale off-->
+
 ## kong.service
 
 The service module contains a set of functions to manipulate the connection
  aspect of the request to the Service, such as connecting to a given host, IP
  address/port, or choosing a given Upstream entity for load-balancing and
- healthchecking.
+ health checking.
 
 
 

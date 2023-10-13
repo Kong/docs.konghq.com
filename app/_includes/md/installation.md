@@ -61,7 +61,7 @@ to `off` and the `declarative_config` option to the path of your `kong.yml` file
     declarative_config = /path/to/kong.yml
     ```
 
-## Run Kong Gateway
+## Run {{site.base_gateway}}
 
 {:.note}
 > **Note:** When you start Kong, the NGINX master process runs

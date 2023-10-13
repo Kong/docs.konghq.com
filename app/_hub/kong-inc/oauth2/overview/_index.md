@@ -24,9 +24,9 @@ Add an OAuth 2.0 authentication layer with one of the following grant flows:
 
 In order to use the plugin, you first need to create a consumer to associate one or more credentials to. The Consumer represents a developer using the upstream service.
 
-<div class="alert alert-warning">
-    <strong>Note</strong>: This plugin requires a database in order to work effectively. It <strong>does not</strong> work on DB-Less or hybrid mode.
-</div>
+
+{:.important}
+> This plugin requires a database in order to work effectively. It **does not** work in DB-less or hybrid mode.
 
 ### Endpoints
 
@@ -46,7 +46,7 @@ The clients trying to authorize and request access tokens must use these endpoin
 You need to associate a credential to an existing [Consumer][consumer-object] object. To create a Consumer, you can execute the following request:
 
 ```bash
-curl -X POST http://kong:8001/consumers/ \
+curl -X POST http://localhost:8001/consumers/ \
   --data "username=user123" \
   --data "custom_id=SOME_CUSTOM_ID"
 ```
@@ -63,7 +63,7 @@ A [Consumer][consumer-object] can have many credentials.
 Then you can finally provision new OAuth 2.0 credentials (also called "OAuth applications") by making the following HTTP request:
 
 ```bash
-curl -X POST http://kong:8001/consumers/{consumer_id}/oauth2 \
+curl -X POST http://localhost:8001/consumers/{consumer_id}/oauth2 \
   --data "name=Test%20Application" \
   --data "client_id=SOME-CLIENT-ID" \
   --data "client_secret=SOME-CLIENT-SECRET" \
@@ -89,7 +89,7 @@ If you are migrating your existing OAuth 2.0 applications and access tokens over
 * Migrate access tokens using the `/oauth2_tokens` endpoints in the Kong's Admin API. For example:
 
 ```bash
-curl -X POST http://kong:8001/oauth2_tokens \
+curl -X POST http://localhost:8001/oauth2_tokens \
   --data 'credential.id=KONG-APPLICATION-ID' \
   --data "token_type=bearer" \
   --data "access_token=SOME-TOKEN" \
@@ -112,7 +112,7 @@ form parameter                        | default | description
 Active tokens can be listed and modified using the Admin API. A GET on the `/oauth2_tokens` endpoint returns the following:
 
 ```bash
-curl -sX GET http://kong:8001/oauth2_tokens/
+curl -sX GET http://localhost:8001/oauth2_tokens/
 ```
 
 Response:
@@ -144,11 +144,11 @@ Response:
 }
 ```
 
-`credential_id` is the ID of the OAuth application at `kong:8001/consumers/{consumer_id}/oauth2` and `service_id` is the API or service that the token is valid for.
+`credential_id` is the ID of the OAuth application at `localhost:8001/consumers/{consumer_id}/oauth2` and `service_id` is the API or service that the token is valid for.
 
 Note that `expires_in` is static and does not decrement based on elapsed time: you must add it to `created_at` to calculate when the token will expire.
 
-`DELETE http://kong:8001/oauth2_tokens/<token ID>` allows you to immediately invalidate a token if needed.
+`DELETE http://localhost:8001/oauth2_tokens/<token ID>` allows you to immediately invalidate a token if needed.
 
 ## Upstream Headers
 
@@ -215,25 +215,22 @@ The authorization page is made of two parts:
 * The frontend page that the user will see, and that will allow him to authorize the client application to access his data
 * The backend that will process the HTML form displayed in the frontend, that will talk with the OAuth 2.0 plugin on Kong, and that will ultimately redirect the user to a third party URL.
 
-<div class="alert alert-info">
-    <a href="{{ site.repos.oauth2_hello_world }}">You can see a sample implementation in node.js + express.js on GitHub</a>
-</div>
+You can see a sample implementation in [node.js + express.js](https://github.com/Kong/kong-oauth2-hello-world) on GitHub.
 
 A diagram representing this flow:
 
-![OAuth2 flow](/assets/images/docs/oauth2/oauth2-flow.png)
+![OAuth2 flow](/assets/images/products/plugins/oauth2/oauth2-flow.png)
 
 1. The client application will redirect the end user to the authorization page on your web application, passing `client_id`, `response_type` and `scope` (if required) as query string parameters. This is a sample authorization page:
-    <div class="alert alert-info">
-      <center><img title="OAuth 2.0 Prompt" src="/assets/images/docs/oauth2/oauth2-prompt.png"/></center>
-    </div>
+
+    <center><img title="OAuth 2.0 Prompt" src="/assets/images/products/plugins/oauth2/oauth2-prompt.png"/></center>
 
 2. Before showing the actual authorization page, the web application will make sure that the user is logged in.
 
 3. The client application will send the `client_id` in the query string, from which the web application can retrieve both the OAuth 2.0 application name, and developer name, by making the following request to Kong:
 
     ```bash
-    curl kong:8001/oauth2?client_id=XXX
+    curl localhost:8001/oauth2?client_id=XXX
     ```
 
 4. If the end user authorized the application, the form will submit the data to your backend with a `POST` request, sending the `client_id`, `response_type` and `scope` parameters that were placed in `<input type="hidden" .. />` fields.
@@ -287,7 +284,7 @@ In this flow, the steps that you need to implement are:
 
 The [Resource Owner Password Credentials Grant](https://tools.ietf.org/html/rfc6749#section-4.3) is a much simpler version of the Authorization Code flow, but it still requires to build an authorization backend (without the frontend) in order to make it work properly.
 
-![OAuth 2.0 Flow](/assets/images/docs/oauth2/oauth2-flow2.png)
+![OAuth 2.0 Flow](/assets/images/products/plugins/oauth2/oauth2-flow2.png)
 
 1. On the first request, the client application makes a request with some OAuth2 parameters to your web application.
 

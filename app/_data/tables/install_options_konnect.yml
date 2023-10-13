@@ -6,37 +6,37 @@ features:
     items:
       - name: "Docker on MacOS"
         ga: true
-        icon: /assets/images/icons/documentation/macos-logo.png
+        icon: /assets/images/icons/third-party/macos-logo.png
       - name: "Windows"
-        icon: /assets/images/icons/documentation/windows-logo.svg
+        icon: /assets/images/icons/third-party/windows-logo.svg
         ga: true
       - name: "Linux (Docker)"
         ga: true
-        icon: /assets/images/icons/documentation/docker.png
+        icon: /assets/images/icons/third-party/docker.png
       - name: "Advanced Docker configuration"
         ga: true
-        icon: /assets/images/icons/documentation/docker.png
+        icon: /assets/images/icons/third-party/docker.png
 
   - name: "Packages"
     items:
       - name: "Linux"
         ga: true
-        icon: /assets/images/icons/documentation/linux-logo.svg
+        icon: /assets/images/icons/third-party/linux-logo.svg
 
   - name: "Kubernetes"
     items:
       - name: "Kubernetes (Helm)"
         ga: true
-        icon: /assets/images/icons/documentation/helm-icon-color.svg
+        icon: /assets/images/icons/third-party/helm-icon-color.svg
 
   - name: "Cloud Providers"
     items:
       - name: "AWS <span class=\"badge alpha\"></span>"
         ga: false
-        icon: /assets/images/icons/documentation/aws.svg
+        icon: /assets/images/icons/third-party/aws-main.svg
       - name: "Azure <span class=\"badge alpha\"></span>"
         ga: false
-        icon: /assets/images/icons/documentation/azure.svg
+        icon: /assets/images/icons/third-party/azure.svg
       - name: "Google Cloud <span class=\"badge alpha\"></span>"
         ga: false
-        icon: /assets/images/icons/documentation/cloud-icon-color.svg
+        icon: /assets/images/icons/third-party/cloud-icon-color.svg

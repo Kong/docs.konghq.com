@@ -2,11 +2,14 @@
 {%- assign badges = extn.badges -%}
 {%- assign categories = extn.categories | join: ' ' -%}
 {%- assign css_classes = {{ extn.type | append: ' ' | append: categories -%}
-{%- if badges.plus? -%}
-  {%- assign css_classes =  css_classes | append: " plus" -%}
-{%- endif -%}
 {%- if badges.konnect? -%}
   {%- assign css_classes =  css_classes | append: " konnect" -%}
+{%- endif -%}
+{%- if badges.paid? == true -%}
+  {%- assign css_classes = css_classes | append: " paid" -%}
+{%- endif -%}
+{%- if badges.premium? == true -%}
+  {%- assign css_classes = css_classes | append: " premium" -%}
 {%- endif -%}
 {%- if badges.enterprise? -%}
   {%- assign css_classes =  css_classes | append: " enterprise" -%}
@@ -22,9 +25,12 @@
 {%- endif -%}
 {%- if extn_publisher == 'kong-inc' -%}
   {%- assign css_classes = css_classes | append: " gateway" | append: " kong-inc" -%}
-{%- else -%}
+{%- elsif extn.techpartner -%}
   {%- assign third_party_classes = " pub-not-konghq pub-" | append: extn_publisher | append: ' third-party ' -%}
   {%- assign css_classes = css_classes | append: third_party_classes -%}
+{%- else -%}
+  {%- assign unsupported_plugin_classes = " pub-not-konghq pub-" | append: extn_publisher | append: ' none ' -%}
+  {%- assign css_classes = css_classes | append: unsupported_plugin_classes -%}
 {%- endif -%}
 <div class="plugin-card {{ css_classes }}">
   <a href="{{ extn.url | remove: 'index.html' }}" title="{{ extn.name }}: {{ extn.desc }}">
@@ -35,11 +41,11 @@
           <p>{{ extn.name }}</p>
         </div>
         <div class="plugin-card--meta__badges">
-          {% if badges.plus? %}
-              <span class="badge plus"></span>
+          {% if badges.paid? %}
+              <span class="badge paid"></span>
           {% endif %}
-          {% if badges.konnect? %}
-              <span class="badge konnect"></span>
+          {% if badges.premium? %}
+              <span class="badge premium"></span>
           {% endif %}
           {% if badges.enterprise? %}
             <span class="badge enterprise"></span>

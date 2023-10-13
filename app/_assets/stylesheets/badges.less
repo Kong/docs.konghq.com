@@ -1,7 +1,5 @@
 .badge {
-  display: inline-flex;
-  margin: 0;
-  padding: 0;
+  display: flex;
   border-radius: 2px;
 
   &:after {
@@ -18,20 +16,20 @@
     border-radius: 2px;
   }
 
-  &.plus {
+  &.paid {
     background: #F2F6FE;
 
     &::after {
-      content: "PLUS";
+      content: "KONNECT PAID";
       color: #0364AC;
     }
   }
 
-  &.konnect {
+  &.premium {
     background: @blue-100;
 
     &::after {
-      content: "KONNECT COMPATIBLE";
+      content: "KONNECT PREMIUM";
       background: linear-gradient(90deg, #5052FD 0%, #033796 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -156,6 +154,7 @@
 
 span.badge {
   vertical-align: text-bottom;
+  display: inline-flex;
 }
 
 h2.badge,
@@ -167,6 +166,10 @@ h5.badge {
     max-height: 12px;
     align-self: center;
     padding: 5px 12px 4px;
+  }
+
+  .tooltiptext {
+    margin-top: 2rem;
   }
 
   &:hover,

@@ -14,7 +14,7 @@ In this topic, you’ll configure the service created earlier (`example_service`
 
 Here is a diagram illustrating the setup:
 
-![Upstream targets](/assets/images/docs/getting-started-guide/upstream-targets.png)
+![Upstream targets](/assets/images/products/gateway/getting-started-guide/upstream-targets.png)
 
 ## Why load balance across upstream targets?
 
@@ -48,7 +48,7 @@ Call the Admin API on port `8001` and create an Upstream named `example_upstream
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X POST http://<admin-hostname>:8001/upstreams \
+curl -X POST http://localhost:8001/upstreams \
   --data name=example_upstream
 ```
 {% endnavtab %}
@@ -67,7 +67,7 @@ Update the service you created previously to point to this upstream:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X PATCH http://<admin-hostname>:8001/services/example_service \
+curl -X PATCH http://localhost:8001/services/example_service \
   --data host='example_upstream'
 ```
 {% endnavtab %}
@@ -87,10 +87,10 @@ Add two targets to the upstream, each with port 80: `mockbin.org:80` and
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X POST http://<admin-hostname>:8001/upstreams/example_upstream/targets \
+curl -X POST http://localhost:8001/upstreams/example_upstream/targets \
   --data target='mockbin.org:80'
 
-curl -X POST http://<admin-hostname>:8001/upstreams/example_upstream/targets \
+curl -X POST http://localhost:8001/upstreams/example_upstream/targets \
   --data target='httpbin.org:80'
 ```
 {% endnavtab %}
@@ -186,7 +186,7 @@ You now have an Upstream with two targets, `httpbin.org` and `mockbin.org`, and 
 
 ## Validate the Upstream Services
 
-1. With the Upstream configured, validate that it’s working by visiting the route `http://<admin-hostname>:8000/mock` using a web browser or CLI.
+1. With the Upstream configured, validate that it’s working by visiting the route `http://localhost:8000/mock` using a web browser or CLI.
 2. Continue hitting the endpoint and the site should change from `httpbin` to `mockbin`.
 
 ## Summary and next steps

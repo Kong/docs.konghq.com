@@ -12,7 +12,7 @@ control planes currently owned by the organization. From here, you can add or
 delete control planes, or go into each individual control plane to manage 
 data plane nodes and their global configuration.
 
-![gateway manager dashboard](/assets/images/docs/konnect/konnect-control-plane-dashboard.png)
+![gateway manager dashboard](/assets/images/products/konnect/gateway-manager/konnect-control-plane-dashboard.png)
 > _**Figure 1:** Example Gateway Manager dashboard with several control planes, including the_
 _default control plane, a KIC control plane, and control planes for development and production._
 
@@ -37,7 +37,7 @@ Control planes come in three types:
     configuration and behavior space. Each control plane
     manages configurations independently.
 
-* [**Control plane group**](#control-plane-groups) <span class="badge enterprise"></span>: 
+* [**Control plane group**](#control-plane-groups): 
     A type of control plane that manages central data plane nodes for multiple control planes.
     It collects configuration from its member control planes and applies the 
     aggregate config to a group of nodes. 
@@ -72,7 +72,7 @@ regions. Spin up data plane nodes in those regions for each control plane.
 * **Team separation:** Dedicate each control plane to a different team and share
 resources based on team purpose.
 
-![control planes](/assets/images/docs/konnect/konnect-control-planes-example.png)
+![control planes](/assets/images/products/konnect/gateway-manager/konnect-control-planes-example.png)
 > _**Figure 1:** Example control plane group configuration for three control planes: the default, a development CP, and a production CP. {{site.konnect_short_name}} is the SaaS-managed global management plane that manages all of the control planes, while the control planes manage configuration for data plane nodes._
 
 #### Control plane configuration
@@ -97,7 +97,6 @@ their authentication mechanisms don't carry over to other control planes.
 [{{site.base_gateway}} configuration in {{site.konnect_short_name}} &rarr;](/konnect/gateway-manager/configuration/)
 
 ### Control plane groups
-{:.badge .enterprise}
 
 A control plane group is a read-only control plane that combines configuration from
 its members, which are standard {{site.base_gateway}} control planes. All of the members of a 

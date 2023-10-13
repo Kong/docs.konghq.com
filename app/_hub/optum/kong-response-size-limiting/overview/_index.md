@@ -26,6 +26,9 @@ $ luarocks make *.rockspec
 ```
 
 ### Maintainers
+
+<!--vale off-->
+
 [jeremyjpj0916](https://github.com/jeremyjpj0916){:target="_blank"}{:rel="noopener noreferrer"}  
 [rsbrisci](https://github.com/rsbrisci){:target="_blank"}{:rel="noopener noreferrer"}
 

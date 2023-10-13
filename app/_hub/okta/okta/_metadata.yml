@@ -3,6 +3,7 @@ publisher: Okta
 
 categories:
   - authentication
+  - third-party
 
 type: integration
 

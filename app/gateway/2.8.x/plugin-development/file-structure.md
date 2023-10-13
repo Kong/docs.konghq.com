@@ -18,9 +18,9 @@ kong.plugins.<plugin_name>.<module_name>
 ```
 
 Your modules need to be accessible through your
-[package.path](http://www.lua.org/manual/5.1/manual.html#pdf-package.path)
+[`package.path`](http://www.lua.org/manual/5.1/manual.html#pdf-package.path)
 variable, which can be tweaked to your needs via the
-[lua_package_path](/gateway/{{page.kong_version}}/reference/configuration/#lua_package_path)
+[`lua_package_path`](/gateway/{{page.kong_version}}/reference/configuration/#lua_package_path)
 configuration property.
 However, the preferred way of installing plugins is through
 [LuaRocks](https://luarocks.org/), which Kong natively integrates with.

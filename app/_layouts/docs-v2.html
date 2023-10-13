@@ -96,13 +96,18 @@ id: documentation
 
           <h1 tabindex="-1" id="main" class="page-content-title"
           >{{page.title | flatify }}
-          {% if page.badge %}
-            <a href="https://konghq.com/pricing" {%
-              if page.badge == 'plus' %}class="badge plus" aria-label="available with plus subscription"{% endif %}{%
-              if page.badge == 'enterprise' %}class="badge enterprise" aria-label="available with enterprise subscription"{% endif %}{%
-              if page.badge == 'free' %}class="badge free" aria-label="available in Kong Gateway free mode"{% endif %}{%
-              if page.badge == 'oss' %}class="badge oss" aria-label="open-source only"{% endif %}>
-            </a>
+            {% if page.github_star_button %}
+              {{ page.github_star_button }}
+            {% endif %}
+
+            {% if page.badge %}
+              <a href="https://konghq.com/pricing" {%
+                if page.badge == 'paid' %}class="badge paid" aria-label="available with Konnect Paid subscription"{% endif %}{%
+                if page.badge == 'premium' %}class="badge premium" aria-label="available with Konnect Premium subscription"{% endif %}{%
+                if page.badge == 'enterprise' %}class="badge enterprise" aria-label="available with Kong Gateway Enterprise subscription"{% endif %}{%
+                if page.badge == 'free' %}class="badge free" aria-label="available in Kong Gateway free mode"{% endif %}{%
+                if page.badge == 'oss' %}class="badge oss" aria-label="open-source only"{% endif %}>
+              </a>
             {% endif %}
           </h1>
 
@@ -111,8 +116,8 @@ id: documentation
           {% endif %}
 
           {% if page.alpha %}
-            <blockquote class="warning no-icon">
-              This feature is released as a <a href="/gateway/latest/availability-stages/#tech-preview">tech preview</a> (alpha-quality) and should not be deployed in a production environment.
+            <blockquote class="important">
+              This feature is released as a <a href="/gateway/latest/availability-stages/#tech-preview">tech preview</a> (alpha-quality) and should not be depended upon in a production environment.
 
               {% if page.stability_message %}
               {{ page.stability_message }}
@@ -120,8 +125,8 @@ id: documentation
             </blockquote>
           {% endif %}
           {% if page.beta %}
-            <blockquote class="warning no-icon">
-              This feature is released as <a href="/gateway/latest/availability-stages/#beta">beta</a> and should not be deployed in a production environment.
+            <blockquote class="important">
+              This feature is released as <a href="/gateway/latest/availability-stages/#beta">beta</a> and should not be depended upon in a production environment.
 
               {% if page.stability_message %}
               {{ page.stability_message }}

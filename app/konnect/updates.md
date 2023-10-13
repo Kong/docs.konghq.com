@@ -9,7 +9,36 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+
+## October 2023
+**OIDC Teams for DevPortal**
+: {{site.konnect_short_name}} portal administrators can now automatically assign Developers to Teams to get the corresponding RBAC permissions based on their Identity Provider groups or claims. This reduces the onboarding experience for new developers and offers a secure and efficient Dev Portal experience for internal and external audiences. For more information, see [Add Developer Teams from IdPs](/konnect/dev-portal/access-and-approval/add-teams/).
+
+**PKI Certificates for CP/DP Authentication**
+: {{site.konnect_short_name}} now supports [pinned PKI certs for CP/DP authentication](/konnect/gateway-manager/data-plane-nodes/secure-communications). This means that Konnect supports digital certificates signed by a trusted CA in Konnect for CP/DP authentication. 
+
 ## September 2023
+
+**Custom plugin management**
+: Konnect now supports self-service custom plugins through the UI and API. 
+You can upload a plugin schema to Konnect and get started with custom plugins in a matter of minutes.
+
+: See [Kong Gateway Plugins in Konnect](/konnect/gateway-manager/plugins/) to get started.
+
+**Auth0 DCR Configuration Audience Override**
+: API Product Versions can be each be assigned to a different Auth0 API instance allowing service teams to have more fine grained control over scopes and permissions of their services. See [Using Auth0 actions](/konnect/dev-portal/applications/dynamic-client-registration/auth0/#using-auth0-actions) for more details. 
+
+**API Requests is now in beta**
+: {{site.konnect_short_name}} users have now access to a new feature that tracks [API requests](/konnect/analytics/api-requests/) in near real-time. API Requests provides detailed records for the requests that are made to your APIs. This information can not only help you understand your consumers better, but also simplifies any initial investigation into errors or performance issues by providing an intuitive web experience that is fully integrated into the rest of your {{site.konnect_short_name}} organization.
+
+**Consumption based billing**
+: New Konnect organizations will benefit from an updated Konnect Plus product tier which includes every product capability available. New accounts are automatically given a month of free credits as part of 30-day trial. For more information review our [pricing page](https://konghq.com/pricing).
+
+**Social Login and Org Switcher**
+: New users can now sign up for and login to Konnect organizations using their social identities from Google and GitHub. Users also have the ability to quickly switch between different Konnect organizations that they own or have been invited to.
+: * [Social Login](/konnect/org-management/social-identity-login/) - Login with social identities has been added as part of the "built-in" authentication scheme in Konnect. Users can use their Google and GitHub credentials to create new organizations and sign in to existing Konnect accounts with a matching email. User invitations may also be accepted via social login.
+: * [Organization Switcher](/konnect/org-management/org-switcher/) - Users who have been invited to more than one organization will be able witch between orgs via the org switcher. In addition, users who wish to utilize more than one organization may create new organizations via org switcher. All organizations that have associated emails would be accessible to a login to via org switcher.
+
 **Renamed {{site.konnect_short_name}} capabilities**
 : We have renamed a number of core {{site.konnect_short_name}} capabilities to simplify user understanding:
 
@@ -40,6 +69,20 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : The Gateway Manager Landing Page is now updated to nudge customers to create a control plane if none are present. In addition, the control plane creation workflow has been revamped to make it more intuitive and easier to follow.
 
 : The Gateway Control Plane Overview page is now updated to present the users all relevant information of a specific control plane. In addition, prompts that nudge users to create their first service, route, plugin, and consumer are presented on the Overview Pages to nudge users to immediately dive into Konnect for the first time.
+
+**{{site.mesh_product_name}} in {{site.konnect_short_name}}**
+: {{site.mesh_product_name}} joins {{site.base_gateway}} and {{site.kic_product_name}} in {{site.konnect_short_name}} as a generally available control plane that is managed centrally by {{site.konnect_short_name}}’s management plane. This unified API platform allows you to see all configuration management and manage services from {{site.base_gateway}}, {{site.kic_product_name}}, and {{site.mesh_product_name}} in a single location. 
+
+: Mesh Manager also allows your organization to lower their operational overhead and elevate their developers’ experience by streamlining the operation of {{site.base_gateway}}s, {{site.kic_product_name}}, and {{site.mesh_product_name}} with a hosted control plane that can be implemented across any cloud, virtual machine, or on-premises solution.
+
+: You can use [Mesh Manager](/konnect/mesh-manager/) to create, modify, and delete mesh global control planes. Mesh global control planes are control planes that are mapped to different environments or business units. Each mesh global control plane maps to a Kubernetes or Linux zone through a process that is similar to adding a control plane for {{site.base_gateway}} using Gateway Manager. You can also now identify [service meshes](/mesh/latest/introduction/about-service-meshes/), view relevant metadata like meshes and zones, and access a service's details in {{site.konnect_short_name}}.
+
+: Mesh Manager is available now to Enterprise and new {{site.konnect_short_name}} customers:
+  * Enterprise customers will be able to access Mesh Manager immediately and can contact their sales representative for more information.
+  * New customers can apply their trial credits towards mesh zones.
+    For more information, see [{{site.konnect_short_name}} pricing](https://konghq.com/pricing).
+    
+: Mesh Manager is not available for existing plus customers. Stay tuned for more information.
 
 ## August 2023
 
@@ -405,7 +448,7 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 
 **DevPortal Custom Domain Progress Indicator**
 
-: We've added an in interactive checklist when configuring a [custom domain](/konnect/dev-portal/customization/#custom-dev-portal-url) for your developer portal. There is now an indicator to help understand if your DNS changes have propogated, and when the SSL certificate has been generated by {{site.konnect_short_name}}.
+: We've added an in interactive checklist when configuring a [custom domain](/konnect/dev-portal/customization/#custom-dev-portal-url) for your developer portal. There is now an indicator to help understand if your DNS changes have propagated, and when the SSL certificate has been generated by {{site.konnect_short_name}}.
 
 **Download option to all reports**
 

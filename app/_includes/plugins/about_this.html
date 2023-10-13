@@ -18,28 +18,27 @@
       <tr class="kong-compatibility">
         <td colspan="2">
           {% if ee_compatible %}
-            <ul class="compat-list">
-              {% unless first_ee %}
-                  <span class="compat-label">{{site.ee_product_name}}</span>{% assign first_ee = true %}
-              {% endunless %}
+            <div class="compat-list compat-list-collapsed">
+                <div class="compat-label">{{site.ee_product_name}}</div>
               {% for v in ee_compatible %}
-                <li>
-                  <i class="fa fa-check"></i> {{ v }}
-                </li>
+                <p class="version"><i class="fa fa-check"></i> {{ v }}</p>
              {% endfor %}
-            </ul>
+             {% if ee_compatible.size > 5 %}
+             <div class="see-more">See all <i class="fa fa-chevron-down"></i></div>
+             {% endif %}
+            </div>
+
           {% endif %}
           {% if ce_compatible %}
-            <ul class="compat-list">
-              {% unless first_ce %}
-                  <span class="compat-label">{{site.ce_product_name}}</span>{% assign first_ce = true %}
-              {% endunless %}
+            <div class="compat-list compat-list-collapsed">
+                <div class="compat-label">{{site.ce_product_name}}</div>
               {% for v in ce_compatible %}
-                <li>
-                  <i class="fa fa-check"></i> {{ v }}
-                </li>
+                <p class="version"><i class="fa fa-check"></i> {{ v }}</p>
              {% endfor %}
-            </ul>
+             {% if ce_compatible.size > 5 %}
+             <div class="see-more">See all <i class="fa fa-chevron-down"></i></div>
+             {% endif %}
+            </div>
           {% endif %}
         </td>
       </tr>

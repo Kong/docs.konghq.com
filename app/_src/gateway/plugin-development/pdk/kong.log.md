@@ -11,6 +11,8 @@ toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk/log.lua
 ---
 
+<!-- vale off -->
+
 This namespace contains an instance of a logging facility, which is a
  table containing all of the methods described below.
 

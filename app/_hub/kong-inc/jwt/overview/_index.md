@@ -103,19 +103,17 @@ field/parameter                | default         | description
 `rsa_public_key`<br>*optional* |                 | If `algorithm` is `RS256`, `RS384`, `RS512`, `ES256`, or `ES384`, the public key (in PEM format) to use to verify the token's signature.
 `secret`<br>*optional*         |                 | If `algorithm` is `HS256`, `HS384`, or `HS512`, the secret used to sign JWTs for this credential. If left out, will be auto-generated.
 
-  <div class="alert alert-warning">
-    <strong>Note for decK and Kong Ingress Controller users:</strong> The declarative
-    configuration used in decK and the Kong Ingress Controller imposes some
-    additional validation requirements that differ from the requirements listed
-    above. Because they cannot rely on defaults and do not implement their own
-    algorithm-specific requirements, all fields other than
-    <code>rsa_public_key</code> fields are required.
-    <br/>
-    <br/>
-    You should always fill out <code>key</code>, <code>algorithm</code>, and
-    <code>secret</code>. If you use the <code>RS256</code> or
-    <code>ES256</code> algorithm, use a dummy value for <code>secret</code>.
-  </div>
+{:.important}
+> **Note for decK and {{site.kic_product_name}} users:** The declarative
+configuration used in decK and the {{site.kic_product_name}} imposes some
+additional validation requirements that differ from the requirements listed
+above. Because they cannot rely on defaults and do not implement their own
+algorithm-specific requirements, all fields other than
+`rsa_public_key` fields are required.
+> <br/><br/>
+> You should always fill out `key`, `algorithm`, and
+`secret`. If you use the `RS256` or
+`ES256` algorithm, use a dummy value for `secret`.
 
 ### Delete a JWT credential
 
@@ -240,9 +238,8 @@ invalid signature              | no                       | 401
 valid signature                | yes                      | from the upstream service
 valid signature, invalid verified claim _optional_ | no                       | 401
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> When the JWT is valid and proxied to the upstream service, Kong makes no modification to the request other than adding headers identifying the Consumer. The JWT will be forwarded to your upstream service, which can assume its validity. It is now the role of your service to base64 decode the JWT claims and make use of them.
-</div>
+{:.note}
+> **Note:** When the JWT is valid and proxied to the upstream service, {{site.base_gateway}} makes no modification to the request other than adding headers identifying the consumer. The JWT will be forwarded to your upstream service, which can assume its validity. It is now the role of your service to base64 decode the JWT claims and make use of them.
 
 ### (Optional) Verified claims
 
@@ -449,10 +446,6 @@ use the `X-Consumer-ID` value to query the Kong Admin API and retrieve more info
 
 ### Paginate through the JWTs
 
-<div class="alert alert-warning">
-  <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
-</div>
-
 You can paginate through the JWTs for all Consumers using the following
 request:
 
@@ -522,10 +515,6 @@ Response:
 
 
 ### Retrieve the Consumer associated with a JWT
-
-<div class="alert alert-warning">
-  <strong>Note:</strong> This endpoint was introduced in Kong 0.11.2.
-</div>
 
 Retrieve a [Consumer][consumer-object] associated with a JWT
 using the following request:

@@ -17,6 +17,8 @@ If they are not modified manually, the Dev Portal will use the default value def
 In 1.3.0.1 or greater, [Dev Portal email content and styling can be customized via template files](/gateway/{{page.kong_version}}/developer-portal/theme-customization/emails/)
 
 
+<!--vale off-->
+
 ## portal_invite_email
 
 **Default:** `on`

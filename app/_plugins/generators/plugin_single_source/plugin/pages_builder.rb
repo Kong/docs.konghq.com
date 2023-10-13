@@ -42,7 +42,7 @@ module PluginSingleSource
       end
 
       def icon
-        '/assets/images/icons/documentation/hub/icn-how-to.svg'
+        '/assets/images/icons/hub-layout/icn-how-to.svg'
       end
 
       def items_for(pages)
@@ -53,14 +53,14 @@ module PluginSingleSource
         items = [
           { 'title' => 'Introduction',
             'items' => items_for(@release.overviews),
-            'icon' => '/assets/images/icons/documentation/hub/icn-overview.svg' }
+            'icon' => '/assets/images/icons/hub-layout/icn-overview.svg' }
         ]
 
         if @release.configuration
           items.push({
                        'title' => @release.configuration.nav_title,
                        'url' => @release.configuration.permalink,
-                       'icon' => '/assets/images/icons/documentation/hub/icn-configuration.svg'
+                       'icon' => '/assets/images/icons/hub-layout/icn-configuration.svg'
                      })
         end
 

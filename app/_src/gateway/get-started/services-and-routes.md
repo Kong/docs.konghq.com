@@ -15,7 +15,7 @@ through the system.
 The high level overview below shows requests arriving at routes and being forward to services,
 with responses taking the opposite pathway:
 
-![Services and routes](/assets/images/docs/getting-started-guide/route-and-service.png)
+![Services and routes](/assets/images/products/gateway/getting-started-guide/route-and-service.png)
 
 ### What is a service
 
