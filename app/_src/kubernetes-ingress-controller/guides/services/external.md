@@ -7,7 +7,7 @@ purpose: |
 
 Expose a service located outside the Kubernetes cluster using an Ingress.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=true %}
+{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
 
 ## Create a Kubernetes Service
 
