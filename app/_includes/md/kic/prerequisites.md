@@ -1,7 +1,7 @@
 <details markdown="1">
 <summary>
 <blockquote class="note">
-  <p style="cursor: pointer">Before you begin ensure that you have <u>Installed {{site.kic_product_name}} </u> in your Kubernetes cluster and are able to connect to Kong.</p>
+  <p style="cursor: pointer">Before you begin ensure that you have <u>Installed {{site.kic_product_name}} </u> in your Kubernetes cluster and are able to connect to Kong. {% if include.enterprise %}This guide requires <strong>Kong Enterprise</strong>.{% endif %}</p>
 </blockquote>
 </summary>
 
@@ -23,10 +23,33 @@ You can install Kong in your Kubernetes cluster using [Helm](https://helm.sh/).
     helm repo update
     ```
 
+{% if include.enterprise %}
+1. Create a file named `license.json` containing your Kong Enterprise license and store it in a Kubenetes secret:
+
+    ```bash
+    kubectl create namespace kong
+    kubectl create secret generic kong-enterprise-license --from-file=license=./license.json -n kong
+    ```
+
+1. Create a `values.yaml` file:
+
+    ```yaml
+    gateway:
+      image:
+        repository: kong/kong-gateway
+      env:
+        LICENSE_DATA:
+          valueFrom:
+            secretKeyRef:
+              name: kong-enterprise-license
+              key: license
+    ```
+{% endif %}
+
 1. Install {{site.kic_product_name}} and {{ site.base_gateway }} with Helm:
 
     ```bash
-    helm install kong kong/ingress -n kong --create-namespace
+    helm install kong kong/ingress -n kong --create-namespace {% if include.enterprise %}--values ./values.yaml{% endif %}
     ```
 
 ### Test connectivity to Kong
@@ -37,9 +60,8 @@ Kubernetes exposes the proxy through a Kubernetes service. Run the following com
 
     ```bash
     HOST=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-    PORT=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.spec.ports[0].port}')
-    export PROXY_IP=${HOST}:${PORT}
-    echo $PROXY_IP   
+    export PROXY_IP=${HOST}
+    echo $PROXY_IP
     ```
 
 2. Ensure that you can call the proxy IP:
