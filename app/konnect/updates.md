@@ -11,6 +11,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
 ## October 2023
+**Combine multiple metrics inside the same custom report**
+: {{site.konnect_short_name}} users are now able to select multiple metrics in a custom report. This feature allows them to compare multiple metrics of the same category (e.g. latency) within the same report instead of creating multiple reports.
+
 **OIDC Teams for DevPortal**
 : {{site.konnect_short_name}} portal administrators can now automatically assign Developers to Teams to get the corresponding RBAC permissions based on their Identity Provider groups or claims. This reduces the onboarding experience for new developers and offers a secure and efficient Dev Portal experience for internal and external audiences. For more information, see [Add Developer Teams from IdPs](/konnect/dev-portal/access-and-approval/add-teams/).
 
