@@ -141,7 +141,7 @@ const earliestDate = subDays(now, 7);
   let existingChangelog = "";
 
   try {
-    existingChangelog = await fs.readFile("changelog.md", "utf8");
+    existingChangelog = await fs.readFile(changelogFile, "utf8");
   } catch (e) {
     console.log(e); // for debugging why the file is being overwritten.
   }
