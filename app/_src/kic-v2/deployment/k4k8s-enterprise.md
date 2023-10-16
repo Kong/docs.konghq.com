@@ -142,15 +142,16 @@ For a production setup with Kong support, use the [Helm chart](https://github.co
 You can use Helm to install Kong using the official Helm chart:
 1. Create a `values.yaml` file with these details to deploy using Helm charts.
     ```
-    image:
-      repository: kong/kong-gateway
-      tag: {{ site.data.kong_latest_gateway.ee-version }}
-    env:
-      LICENSE_DATA:
-        valueFrom:
-          secretKeyRef:
-            name: kong-enterprise-license
-            key: license
+    gateway:
+        image:
+          repository: kong/kong-gateway
+          tag: {{ site.data.kong_latest_gateway.ee-version }}
+        env:
+          LICENSE_DATA:
+            valueFrom:
+              secretKeyRef:
+                name: kong-enterprise-license
+                key: license
     ```
 1. Install {{site.kic_product_name}} and {{ site.base_gateway }} with Helm:
 
