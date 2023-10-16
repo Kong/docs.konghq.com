@@ -1,25 +1,26 @@
 ---
-title: Migrate Zone Control Plane from the On-Prem Global to {{site.konnect_saas}}
+title: Migrate a self-managed global zone control plane to {{site.konnect_saas}}
 content_type: tutorial
 ---
 
-This guide explains how to migrate Zone which is connected to the On-Prem Global Control Plane to {{site.konnect_saas}}.
+This guide explains how to migrate a self-managed global control plane to {{site.konnect_saas}}. This can be useful if you manage other services in {{site.konnect_saas}} that way you can view all your entities in one place. 
 
 ## Prerequisites
 
-* Universal or Kubernetes cluster with running Zone Control Plane connected to the On-Prem Global Control Plane
-* [The latest version of kumactl](/mesh/latest/production/install-kumactl/) installed and configured to communicate with Zone Control Plane
-* [Mesh Global Control Plane in Konnect](/konnect/mesh-manager/service-mesh/#create-a-zone-in-the-global-control-plane)
-* [yq](https://github.com/mikefarah/yq)
+* A universal or Kubernetes cluster with a running zone control plane connected to the self-managed global control plane
+* [The latest version of kumactl](/mesh/latest/production/install-kumactl/) installed and configured to communicate with the zone control plane
+* A [{{site.mesh_product_name}} global control plane in {{site.konnect_short_name}}](/konnect/mesh-manager/service-mesh/#create-a-zone-in-the-global-control-plane)
+* [yq installed](https://github.com/mikefarah/yq)
 
-## Transfer resources from the On-Prem Global to {{site.konnect_short_name}}
+## Transfer resources from the self-managed global control plane to {{site.konnect_short_name}}
 
-1. Make sure `kumactl config control-planes list` shows On-Prem Global as an active control plane
+1. Make sure the self-managed global control plane is active:
+  ```bash
+  kumactl config control-planes list
+  ```
+  This should return your self-managed global control plane. You can use port-forward of the On-Prem Global CP API port 5681 to localhost to get quick access with `kumactl`.
 
-    {:.note}
-    > **Note:** You can use port-forward of the On-Prem Global CP API port 5681 to localhost to get quick access with `kumactl`
-
-1. Get mesh resources and policies for each mesh. The following script gives understanding what resources are required:
+1. Get the service mesh resources and policies for each service mesh. The following script provides an example of which resources are required:
 
     ```bash
    #!/bin/bash
@@ -35,7 +36,7 @@ This guide explains how to migrate Zone which is connected to the On-Prem Global
     
    meshes=$(kumactl get meshes -oyaml | yq '.items[].name')
    
-   # For each mesh we produce a single file ${mesh}.yaml that contains all the policies of the mesh including 
+   # For each service mesh we produce a single file ${mesh}.yaml that contains all the policies of the mesh including 
    # the mesh resource itself
    
    for mesh in ${meshes}; do
@@ -48,19 +49,24 @@ This guide explains how to migrate Zone which is connected to the On-Prem Global
    done
     ```
 
-1. If mTLS is enabled on the mesh and backend type is `builtin` or `provided` then copy mesh secrets.
+1. If mTLS is enabled on the mesh and the backend type is `builtin` or `provided`, then copy the mesh secrets:
+    * **Builtin:** Copy secrets named `{mesh_name}.ca-builtin-cert-{backend_name}` and `{mesh_name}.ca-builtin-key-{backend_name}`. For more information, see [storage of secrets](/mesh/{{page.kong_version}}/policies/mutual-tls/#storage-of-secrets).
+    * **Provided:** Copy secrets specified in the mesh resource. For more information, see [usage of "provided" CA](/mesh/{{page.kong_version}}/policies/mutual-tls/#usage-of-provided-ca).
 
-    * `builtin` – copy secrets named `{mesh_name}.ca-builtin-cert-{backend_name}` and `{mesh_name}.ca-builtin-key-{backend_name}`. More on [storage of secrets](/mesh/{{page.kong_version}}/policies/mutual-tls/#storage-of-secrets)
-    * `provided` – copy secrets specified in the mesh resource, see [usage of "provided" CA](/mesh/{{page.kong_version}}/policies/mutual-tls/#usage-of-provided-ca)
+1. Switch the active `kumactl` control plane to {{site.konnect_short_name}}:
+  ```bash
+  kumactl config control-planes switch --name {config}
+  ```
 
-1. Switch `kumactl` active control plane to {{site.konnect_short_name}} with `kumactl config control-planes switch --name {config}`
+1. Apply resources fetched from the self-managed global control plane in steps 2 and 3: 
+  ```bash
+  kumactl apply -f {file_name}
+  ```
 
-1. Apply resources fetched from the On-Prem Global CP on the steps 2 and 3 with `kumactl apply -f {file_name}`
+## Connect the zone control plane to {{site.konnect_short_name}}
 
-## Connect Zone CP to Konnect
+1. [Create a zone in the global control plane](/konnect/mesh-manager/service-mesh/#create-a-zone-in-the-global-control-plane).
 
-1. [Create a zone in the global control plane](konnect/mesh-manager/service-mesh/#create-a-zone-in-the-global-control-plane)
+1. If [KDS TLS](/mesh/latest/production/secure-deployment/certificates/#control-plane-to-control-plane-multizone) is enabled with self-signed certificates, set `kuma.controlPlane.tls.kdsZoneClient.secretName=""` so the zone control plane can use public certificates to authenticate with {{site.konnect_short_name}}.
 
-1. If [KDS TLS](mesh/{{page.kong_version}}/production/secure-deployment/certificates/#control-plane-to-control-plane-multizone) is enabled with self-signed certificates, set `kuma.controlPlane.tls.kdsZoneClient.secretName=""` so Zone CP could use public certificates to authenticate Konnect.
-
-1. Follow the instructions to set up Helm and a secret token. Konnect will automatically start looking for the zone. Once Konnect finds the zone, it will display it.
+1. Follow the instructions in the {{site.konnect_short_name}} UI to set up Helm and a secret token. {{site.konnect_short_name}} will automatically start looking for the zone. Once {{site.konnect_short_name}} finds the zone, it will display it.
