@@ -2,8 +2,9 @@ name: Kong Splunk Log
 dbless_compatible: yes
 publisher: Optum
 type: plugin
+
 categories:
-  - logging
+  - none
 
 desc: Log API transactions to Splunk using the Splunk HTTP collector
 

@@ -130,6 +130,10 @@
   version: "2.0.0"
   edition: "mesh"
   latest: true
+- release: "dev"
+  version: "preview"
+  edition: "mesh"
+  branch: "master"
 - release: "1.0.x"
   version: "1.0.0"
   edition: "kubernetes-ingress-controller"
