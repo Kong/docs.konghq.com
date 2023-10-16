@@ -17,9 +17,9 @@ Kubernetes as well.
     namespace/kong created
     ```
 
-* Create Kong Enterprise bootstrap password. Replace `<cloudnative>` with a random password of your choice and note it down
+* Create Kong Enterprise bootstrap password. Replace `cloudnative` with a random password of your choice and note it down
     ```bash
-    $ kubectl create secret generic kong-enterprise-superuser-password  -n kong --from-literal=password=<cloudnative>
+    $ kubectl create secret generic kong-enterprise-superuser-password  -n kong --from-literal=password=cloudnative
     ```
     The results should look like this:
     ```text
