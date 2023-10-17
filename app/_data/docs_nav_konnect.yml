@@ -118,7 +118,7 @@
       url: /mesh-manager/
     - text: Create a mesh with the Kubernetes demo app
       url: /mesh-manager/service-mesh/
-    - text: Migrate a Self-managed Zone Control Plane to Konnect
+    - text: Migrate a self-managed zone control plane to Konnect
       url: /mesh-manager/migrate-zone/
 
 - title: Service Hub

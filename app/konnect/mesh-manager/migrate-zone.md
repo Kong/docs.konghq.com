@@ -1,5 +1,5 @@
 ---
-title: Migrate a self-managed global zone control plane to {{site.konnect_saas}}
+title: Migrate a self-managed zone control plane to {{site.konnect_saas}}
 content_type: tutorial
 ---
 
@@ -8,7 +8,7 @@ This guide explains how to migrate a self-managed global control plane to {{site
 ## Prerequisites
 
 * A universal or Kubernetes cluster with a running zone control plane connected to the self-managed global control plane
-* [The latest version of kumactl](/mesh/latest/production/install-kumactl/) installed and configured to communicate with the zone control plane
+* [The latest version of kumactl](/mesh/latest/production/install-kumactl/) installed and configured to communicate with the self-managed global control plane
 * A [{{site.mesh_product_name}} global control plane in {{site.konnect_short_name}}](/konnect/mesh-manager/service-mesh/#create-a-zone-in-the-global-control-plane)
 * [yq installed](https://github.com/mikefarah/yq)
 
