@@ -6,9 +6,6 @@ _third_party:
       - 14
       - 13
       - 12
-      - 11
-      - 10
-      - 9
       - Amazon RDS
     icon: postgresql.svg
   cassandra: &cassandra
