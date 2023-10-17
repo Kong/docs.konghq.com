@@ -665,7 +665,7 @@ confines of their Team A workspace. Let's validate this.
       -H 'Kong-Admin-Token:dNeYvYAwvjOJdoReVJZXF8vLBXQioKkI'
     ```
 
-    Respone:
+    Response:
     ```json
     {
       "message": "foogineer, you do not have permissions to read this resource"

@@ -167,7 +167,7 @@ Below is an example configuration object that is used to configure the OIDC plug
 
 An Authentication Action to automatically provision the user to the Kong Developer Portal is available in the Curity GitHub repository. Using the Action is not mandatory as the user could be provisioned in other ways, such as manually through the Kong Developer portal login page. However, using the Authentication Action would streamline the user flow since the Action takes the user's full name and the email from the Curity Authenticator and automatically provision that to the Kong Developer Portal using the exposed API.
 
-The [The Kong Developer Portal User Provisioner][curity-kong-dev-portal-user-provisioner] action is available as open source and can be forked to fit the needs of the environment as needed.
+The [Kong Developer Portal User Provisioner][curity-kong-dev-portal-user-provisioner] action is available as open source and can be forked to fit the needs of the environment as needed.
 
 #### Configuration
 

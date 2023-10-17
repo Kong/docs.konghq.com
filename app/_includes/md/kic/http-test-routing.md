@@ -14,7 +14,9 @@ Test the routing rule:
 ```bash
 curl -i -H 'Host:{{ hostname }}' $PROXY_IP{{ path }}
 ```
+
 The results should look like this:
+
 ```text
 HTTP/1.1 200 OK
 Content-Type: text/plain; charset=utf-8

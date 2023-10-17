@@ -11,7 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "@kong/sdk-portal-js": "^2.0.0",
-    "axios": "^0.27.2",
+    "axios": "^1.0.0",
     "minimist": "^1.2.8"
   }
 }

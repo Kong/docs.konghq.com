@@ -51,7 +51,7 @@ a specific workspace.
 That said, it's worth noting that the default workspace is a workspace as any
 other, the only difference being that it's created by Kong, at migration time.
 
-(Examples will be shown using the httpie HTTP command line client.)
+(Examples will be shown using the HTTPie command line client.)
 
 ## Listing workspaces and its entities
 

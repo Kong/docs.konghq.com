@@ -3,9 +3,9 @@ title: About Plugin Queuing
 content_type: explanation
 ---
 
-Starting with {{site.base_gateway}} 3.3.x, some Kong plugins now use queuing to decouple the production of data in the proxy path and the submission of that data to a server, such as a log server. This ensures that the upstream server isn't taxed by recieving many proxy requests at the same time.
+Some Kong plugins use queuing to decouple the production of data in the proxy path and the submission of that data to a server, such as a log server. This ensures that the upstream server isn't taxed by receiving many proxy requests at the same time.
 
-The following plugins now use queuing:
+The following plugins use queuing:
 
 * [HTTP Log](/hub/kong-inc/http-log/)
 * [OpenTelemetry](/hub/kong-inc/opentelemetry/)

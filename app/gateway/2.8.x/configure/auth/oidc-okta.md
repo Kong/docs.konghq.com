@@ -13,7 +13,7 @@ in conjunction with the Application Registration plugin, see
 
 ### Sign-in flow
 
-![OIDC signin flow](/assets/images/products/plugins/openid-connect/OIDCsignin.png)
+![OIDC sign-in flow](/assets/images/products/plugins/openid-connect/OIDCsignin.png)
 
 1. If the client does not have a session cookie, it initiates sign in with Kong.
 2. Kong responds to the client with an **authorization cookie** and a location to redirect (with Okta as the header).
@@ -80,11 +80,11 @@ guide, assume the route is in the default workspace.
     1. Under **Grant Type**, select **Authorization Code**.
     1. In both the **Sign-in redirect URIs** and
     **Sign-out redirect URIs** fields, enter a location handled by your Route
-    in Kong Gateway.
+    in {{site.base_gateway}}.
 
         For this example, you can enter `https://kong.com/api`.
 
-    1. In the Assigments section, for **Controlled access**, choose your
+    1. In the Assignments section, for **Controlled access**, choose your
     preferred access level for this application. This preferred access level sets the permissions for
     Okta admins.
 
@@ -105,13 +105,13 @@ guide, assume the route is in the default workspace.
 
 Configure the following parameters:
 
-* **issuer**: The issuer `url` from which OpenID Connect configuration can be discovered. Using Okta, specify the domain and server in the path:
+* `issuer`: The issuer `url` from which OpenID Connect configuration can be discovered. Using Okta, specify the domain and server in the path:
     * `https://YOUR_OKTA_DOMAIN/oauth2/YOUR_AUTH_SERVER/.well-known/openid-configuration`
-* **auth_method**: A list of authentication methods to use with the plugin, such as passwords, introspection tokens, etc. The majority of cases use `authorization_code`, and {{site.base_gateway}} will accept all methods if no methods are specified.
-* **client_id**: The `client_id` of the OpenID Connect client registered in OpenID Connect Provider. Okta provides one to identify itself.  
-* **client_secret**: The `client_secret` of the OpenID Connect client registered in OpenID Connect Provider. These credentials should never be publicly exposed.
-* **redirect_uri**: The `redirect_uri` of the client defined with `client_id` (also used as a redirection URI for the authorization code flow).
-* **scopes**:  The scope of what OpenID Connect checks. `openid` by default; set to `email` and `profile` for this example.
+* `auth_method`: A list of authentication methods to use with the plugin, such as passwords, introspection tokens, etc. The majority of cases use `authorization_code`, and {{site.base_gateway}} will accept all methods if no methods are specified.
+* `client_id`: The `client_id` of the OpenID Connect client registered in OpenID Connect Provider. Okta provides one to identify itself.  
+* `client_secret`: The `client_secret` of the OpenID Connect client registered in OpenID Connect Provider. These credentials should never be publicly exposed.
+* `redirect_uri`: The `redirect_uri` of the client defined with `client_id` (also used as a redirection URI for the authorization code flow).
+* `scopes`:  The scope of what OpenID Connect checks. `openid` by default; set to `email` and `profile` for this example.
 
 {% navtabs %}
 {% navtab Configure plugin with Kong Manager %}
@@ -253,4 +253,4 @@ Similarly, setting `authenticated_groups_claim` will extract that claim's value 
 
 [okta-authorization-server]: https://developer.okta.com/docs/guides/customize-authz-server/create-authz-server/
 [okta-register-app]: https://developer.okta.com/docs/guides/add-an-external-idp/openidconnect/register-app-in-okta/
-[credential-claim]: https://docs.konghq.com/hub/kong-inc/openid-connect/#configcredential_claim
+[credential-claim]: /hub/kong-inc/openid-connect/#configcredential_claim

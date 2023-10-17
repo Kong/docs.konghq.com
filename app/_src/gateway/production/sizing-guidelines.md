@@ -97,18 +97,18 @@ For example, on a machine with 4 CPU cores and 8 GB of RAM available, we recomme
 ### Plugin queues
 
 Several plugins that are distributed with {{site.base_gateway}}
-utilize internal, in-memory queues to decouple production of data from
+use internal, in-memory queues to decouple production of data from
 the transmission to an upstream server. These queues reduce the
 number of concurrent requests that are made to an upstream server
 under high load conditions and provide for buffering during temporary
 network and upstream outages. For more information about {{site.base_gateway}}'s internal queueing system, see [About Plugin Queuing](/gateway/{{page.kong_version}}/kong-plugins/queue/).
 
-As queues utilize main memory to store queued entries, it is important
+As queues use main memory to store queued entries, it is important
 to understand how many queues exist in the system and how many entries
 they can hold in terms of their capacity configuration.
 
 Most plugins use one queue per plugin instance, with the exception of
-the http-log plugin, which uses one queue per log server upstream
+the HTTP Log plugin, which uses one queue per log server upstream
 configuration.
 
 The `queue.max_entries` configuration parameter determines how many

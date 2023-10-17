@@ -245,7 +245,7 @@ roles: # a list of roles that will be assigned to the list of subjects.
 
 Let's go through example roles in the organization that can be created using {{site.mesh_product_name}} RBAC.
 
-### Kong Mesh operator (admin)
+### {{site.mesh_product_name}} operator (admin)
 
 Mesh operator is a part of infrastructure team responsible for {{site.mesh_product_name}} deployment.
 
@@ -1096,7 +1096,7 @@ In a multi-zone setup, `AccessRole` and `AccessRoleBinding` are not synchronized
 ## Wildcard tag value matching
 
 {:.note}
-> **Note**: This feature is available starting in Kong Mesh 1.9.1
+> **Note**: This feature is available starting in {{site.mesh_product_name}} 1.9.1
 
 You can perform partial tag value matching using `*` wildcards.
 

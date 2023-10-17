@@ -8,7 +8,7 @@ layout: plugins/introduction
 Each [subscription tier](https://konghq.com/pricing) gives you
 access to a subset of plugins:
 
-## Konnect
+## {{site.konnect_short_name}}
 
 {{site.konnect_short_name}} allows you to pay only for what you use with flexible pay-as-you-go billing. There are three plugin tiers categorized by pricing models:
 * **Free tier:** A selection of our world-class open-source plugins available in {{site.konnect_short_name}} for free. 
@@ -78,7 +78,7 @@ If you're looking for plugin deployment topology compatibility, supported networ
 
 
 
-## Kong Gateway
+## {{site.base_gateway}}
 
 
 * **Free tier:** Open-source {{site.base_gateway}} plugins. Available in:

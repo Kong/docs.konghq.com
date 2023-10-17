@@ -45,9 +45,8 @@ body_id: page-hub
         </div>
 
         {% for cat in categories %}
-          {% assign extns = kong_extns | where_exp: "extn", "extn.categories contains cat.slug" %}
-          {% assign third_extns = third_party_extns | where_exp: "extn", "extn.categories contains cat.slug" %}
-
+        {% assign extns = kong_extns | where_exp: "extn", "extn.categories contains cat.slug" %}
+        {% assign third_extns = third_party_extns | where_exp: "extn", "extn.categories contains cat.slug" %}
           {% if extns.size > 0 or third_extns.size > 0 %}
             <div class="page-hub--category active" id="{{cat.slug}}">
               <h4 class="page-hub--category-title">{{ cat.name }}</h4>
@@ -62,6 +61,18 @@ body_id: page-hub
             </div>
           {% endif %}
         {% endfor %}
+
+        <!-- Separate section for third-party plugins that we don't want to generate as a functionality category -->
+          <div class="page-hub--category active" id="third-party">
+            <h4 class="page-hub--category-title">No Support Available</h4>
+            <div class="page-hub--category-cards">
+              {% for extn in third_party_extns  %}
+                {% unless extn.techpartner %}
+                  {% include hub_cards.html header_icon=page.header_icon %}
+                {% endunless %}
+              {% endfor %}
+            </div>
+          </div>
       </div>
     </div>
   </div>

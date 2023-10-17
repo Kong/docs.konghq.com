@@ -65,7 +65,7 @@ On initialization, the Dev Portal will be configured using the [**Default Portal
 
 {:.note}
 > **Note**: You can only enable a Dev Portal for a Workspace if the
-Dev Portal feature has been [enabled for Kong Gateway](/gateway/{{page.kong_version}}/developer-portal/enable-dev-portal/).
+Dev Portal feature has been [enabled for {{site.base_gateway}}](/gateway/{{page.kong_version}}/developer-portal/enable-dev-portal/).
 
 These settings can be manually overridden in the Dev Portals **Settings** tab
 in the Kong Manager or by patching the setting directly.

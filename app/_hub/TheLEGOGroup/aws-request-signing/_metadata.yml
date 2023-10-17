@@ -2,8 +2,8 @@ name: AWS Request Signing
 
 publisher: The LEGO Group
 
-categories: 
-  - serverless
+categories:
+  - none
 
 type: plugin 
 
@@ -21,8 +21,10 @@ free: true
 
 kong_version_compatibility:
   community_edition: # optional
-    compatible: true
+    compatible:
+      - 3.2.x
   enterprise_edition: # optional
     compatible: true
+      - 3.2.x
 
 dbless_compatible: yes

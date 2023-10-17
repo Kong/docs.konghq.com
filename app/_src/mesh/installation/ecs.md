@@ -96,9 +96,6 @@ These permissions can be further restricted by including a `Resource` or `Condit
 the IAM policy statements. To make this easier, the controller supports the `--secret-name-prefix`
 command line switch to prefix the names of the AWS secrets under which it saves tokens.
 
-To see how this all ties together, refer back to the
-[example controller Cloudformation](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/controller.yaml).
-
 ## Services
 
 When deploying an ECS task to be included in the mesh, the following must be

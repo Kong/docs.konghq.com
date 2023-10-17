@@ -5,8 +5,7 @@ dbless_compatible: 'yes'
 dbless_explanation: The plugin is compatible with any with DB-less mode, including `local`, `cluster`, and `redis`.
 
 categories:
-  - analytics-monitoring
-  - logging
+  - none
 
 desc: API usage metering and usage-based billing.
 

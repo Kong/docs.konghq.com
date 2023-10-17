@@ -207,7 +207,7 @@ plugin_body: |
     `route`<br>*optional* |  If set, the plugin will only activate when receiving requests via the specified route. Leave unset for the plugin to activate regardless of the Route being used.  Default: `null`.With form-encoded, the notation is `route.id=<route id>` or `route.name=<route name>`. With JSON, use "`"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
     `service`<br>*optional* |  If set, the plugin will only activate when receiving requests via one of the routes belonging to the specified Service. Leave unset for the plugin to activate regardless of the Service being matched.  Default: `null`.With form-encoded, the notation is `service.id=<service id>` or `service.name=<service name>`. With JSON, use "`"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
     `consumer`<br>*optional* |  If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer.  Default: `null`.With form-encoded, the notation is `consumer.id=<consumer id>` or `consumer.username=<consumer username>`. With JSON, use "`"consumer":{"id":"<consumer id>"}` or `"consumer":{"username":"<consumer username>"}`.
-    `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](https://docs.konghq.com/hub/).
+    `config`<br>*optional* |  The configuration properties for the Plugin which can be found on the plugins documentation page in the [Kong Hub](/hub/).
     `protocols` |  A list of the request protocols that will trigger this plugin. The default value, as well as the possible values allowed on this field, may change depending on the plugin type. For example, plugins that only work in stream mode will only support `"tcp"` and `"tls"`.  Default: `["grpc", "grpcs", "http",`<wbr>` "https"]`.
     `enabled` | Whether the plugin is applied. Default: `true`.
     `tags`<br>*optional* |  An optional set of strings associated with the Plugin for grouping and filtering.
@@ -360,7 +360,7 @@ upstream_body: |
     `name` | This is a hostname, which must be equal to the `host` of a Service.
     `algorithm`<br>*optional* | Which load balancing algorithm to use. Accepted values are: `"consistent-hashing"`, `"least-connections"`, `"round-robin"`.  Default: `"round-robin"`.
     `hash_on`<br>*optional* | What to use as hashing input. Using `none` results in a weighted-round-robin scheme with no hashing. Accepted values are: `"none"`, `"consumer"`, `"ip"`, `"header"`, `"cookie"`.  Default: `"none"`.
-    `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (eg. header is missing, or no Consumer identified). Not available if `hash_on` is set to `cookie`. Accepted values are: `"none"`, `"consumer"`, `"ip"`, `"header"`, `"cookie"`.  Default: `"none"`.
+    `hash_fallback`<br>*optional* | What to use as hashing input if the primary `hash_on` does not return a hash (for example, header is missing, or no Consumer identified). Not available if `hash_on` is set to `cookie`. Accepted values are: `"none"`, `"consumer"`, `"ip"`, `"header"`, `"cookie"`.  Default: `"none"`.
     `hash_on_header`<br>*semi-optional* | The header name to take the value from as hash input. Only required when `hash_on` is set to `header`.
     `hash_fallback_header`<br>*semi-optional* | The header name to take the value from as hash input. Only required when `hash_fallback` is set to `header`.
     `hash_on_cookie`<br>*semi-optional* | The cookie name to take the value from as hash input. Only required when `hash_on` or `hash_fallback` is set to `cookie`. If the specified cookie is not in the request, Kong will generate a value and set the cookie in the response.
@@ -546,7 +546,7 @@ target_body: |
     Attributes | Description
     ---:| ---
     `target` |  The target address (ip or hostname) and port. If the hostname resolves to an SRV record, the `port` value will be overridden by the value from the DNS record.
-    `weight`<br>*optional* |  The weight this target gets within the upstream loadbalancer (`0`-`65535`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.  Default: `100`.
+    `weight`<br>*optional* |  The weight this target gets within the upstream load balancer (`0`-`65535`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.  Default: `100`.
     `tags`<br>*optional* |  An optional set of strings associated with the Target for grouping and filtering.
 
 target_json: |
@@ -2212,7 +2212,7 @@ A Plugin entity represents a plugin configuration that will be executed during
 the HTTP request/response lifecycle. It is how you can add functionalities
 to Services that run behind Kong, like Authentication or Rate Limiting for
 example. You can find more information about how to install and what values
-each plugin takes by visiting the [Kong Hub](https://docs.konghq.com/hub/).
+each plugin takes by visiting the [Kong Hub](/hub/).
 
 When adding a Plugin Configuration to a Service, every request made by a client to
 that Service will run said Plugin. If a Plugin needs to be tuned to different
@@ -3418,7 +3418,7 @@ HTTP 204 No Content
 
 ## Upstream Object
 
-The upstream object represents a virtual hostname and can be used to loadbalance
+The upstream object represents a virtual hostname and can be used to load balance
 incoming requests over multiple services (targets). So for example an upstream
 named `service.v1.xyz` for a Service object whose `host` is `service.v1.xyz`.
 Requests for this Service would be proxied to the targets defined within the upstream.

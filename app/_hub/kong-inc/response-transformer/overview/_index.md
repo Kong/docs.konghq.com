@@ -27,7 +27,7 @@ Response Transformer Advanced includes the following additional configurations: 
 > **Notes:** 
 * Transformations on the response body can cause changes in performance.
 To parse and modify a JSON body, the plugin needs to retain it in memory,
-which might cause pressure on the worker's Lua VM when dealing with large bodies (several MBs).
+which might cause pressure on the worker's Lua VM when dealing with large bodies (several MB).
 Because of Nginx's internals, the `Content-Length` header will not be set when transforming a response body.
 * If the value contains a `,` then the comma separated format for lists cannot be used. 
 Array notation must be used instead.

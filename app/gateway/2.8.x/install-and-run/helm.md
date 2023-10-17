@@ -4,8 +4,8 @@ title: Install on Kubernetes with Helm
 
 This page explains how to install {{site.base_gateway}} with {{site.kic_product_name}} using Helm.
 
-* The Enterprise deployment includes a Postgres sub-chart provided by Bitnami.
-* For open-source deployments, you can choose to use the Postgres sub-chart, or install without a database.
+* The Enterprise deployment includes a PostgreSQL sub-chart provided by Bitnami.
+* For open-source deployments, you can choose to use the PostgreSQL sub-chart, or install without a database.
 
 Configuration for both options is flexible and depends on your environment.
 
@@ -120,19 +120,19 @@ Create a `values.yaml` file to provide required values such as password secrets 
 
 For OSS deployments, the default install might be sufficient, but you can explore other `values.yaml` files and [the readme in the charts repository](https://github.com/Kong/charts/blob/main/charts/kong/README.md), which includes an exhaustive list of all possible configuration properties.
 
-Note that the Enterprise deployment includes a Postgres sub-chart provided by Bitnami. You might need to delete the PersistentVolume objects for Postgres in your Kubernetes cluster to connect to the database after install.
+Note that the Enterprise deployment includes a PostgreSQL sub-chart provided by Bitnami. You might need to delete the PersistentVolume objects for PostgreSQL in your Kubernetes cluster to connect to the database after install.
 
 ## Deploy {{site.base_gateway}} with {{site.kic_product_name}}
 
 1.  Run:
 
     ```sh
-    ## Kong Gateway
+    ## {{site.base_gateway}}
     helm install my-kong kong/kong -n kong --values ./values.yaml
     ```
 
     ```sh
-    ## Kong Gateway (OSS)
+    ## {{site.base_gateway}} (OSS)
     helm install kong/kong --generate-name --set ingressController.installCRDs=false
     ```
 
@@ -194,4 +194,4 @@ Note that the Enterprise deployment includes a Postgres sub-chart provided by Bi
 
 ## Next steps
 
-See the [Kong Ingress Controller docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.
+See the [{{site.kic_product_name}} docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.

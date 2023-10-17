@@ -172,7 +172,7 @@ body of 0 length.
 
 Note: In order to create the digest of a request body, the plugin needs to
 retain it in memory, which might cause pressure on the worker's Lua VM when
-dealing with large bodies (several MBs) or during high request concurrency.
+dealing with large bodies (several MB) or during high request concurrency.
 
 ### Enforcing Headers
 

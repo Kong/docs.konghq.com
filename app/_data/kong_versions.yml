@@ -29,7 +29,7 @@
     pcre: "8.45"
   lua_doc: true
 - release: "2.8.x"
-  ee-version: "2.8.4.3"
+  ee-version: "2.8.4.4"
   ce-version: "2.8.4"
   edition: "gateway"
   luarocks_version: "2.5.1-0"
@@ -58,7 +58,7 @@
     pcre: 8.45
   lua_doc: true
 - release: "3.1.x"
-  ee-version: "3.1.1.5"
+  ee-version: "3.1.1.6"
   ce-version: "3.1.1"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -72,7 +72,7 @@
     pcre: 8.45
   lua_doc: true
 - release: "3.2.x"
-  ee-version: "3.2.2.2"
+  ee-version: "3.2.2.5"
   ce-version: "3.2.2"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -86,8 +86,8 @@
     pcre: 8.45
   lua_doc: true
 - release: "3.3.x"
-  ee-version: "3.3.1.0"
-  ce-version: "3.3.0"
+  ee-version: "3.3.1.1"
+  ce-version: "3.3.1"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
   dependencies:
@@ -100,8 +100,8 @@
     pcre: 8.45
   lua_doc: true
 - release: "3.4.x"
-  ee-version: "3.4.1.0"
-  ce-version: "3.4.0"
+  ee-version: "3.4.1.1"
+  ce-version: "3.4.2"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
   dependencies:
@@ -246,6 +246,9 @@
 - release: "2.12.x"
   version: "2.12.0"
   edition: "kubernetes-ingress-controller"
+- edition: gateway-operator
+  version: 1.0.0
+  release: 1.0.x
 - edition: mesh
   version: 1.2.6
   release: 1.2.x
@@ -295,31 +298,31 @@
   endOfLifeDate: "2023-08-23"
   branch: release-1.9
 - edition: mesh
-  version: 2.0.7
+  version: 2.0.8
   release: 2.0.x
   releaseDate: "2022-11-04"
   endOfLifeDate: "2023-11-04"
   branch: release-2.0
 - edition: mesh
-  version: 2.1.6
+  version: 2.1.7
   release: 2.1.x
   releaseDate: "2023-01-30"
   endOfLifeDate: "2024-01-30"
   branch: release-2.1
 - edition: mesh
-  version: 2.2.4
+  version: 2.2.5
   release: 2.2.x
   releaseDate: "2023-04-14"
   endOfLifeDate: "2024-04-14"
   branch: release-2.2
 - edition: mesh
-  version: 2.3.2
+  version: 2.3.3
   release: 2.3.x
   releaseDate: "2023-06-26"
   endOfLifeDate: "2024-06-26"
   branch: release-2.3
 - edition: mesh
-  version: 2.4.2
+  version: 2.4.3
   release: 2.4.x
   latest: true
   releaseDate: "2023-08-29"
@@ -329,6 +332,3 @@
   version: preview
   release: dev
   branch: master
-- edition: gateway-operator
-  version: 1.0.0
-  release: 1.0.x

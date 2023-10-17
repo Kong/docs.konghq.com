@@ -10,6 +10,7 @@ pdk: true
 toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk/ctx.lua
 ---
+<!-- vale off -->
 
 Contextual data for the current request.
 

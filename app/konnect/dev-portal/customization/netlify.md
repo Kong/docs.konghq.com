@@ -70,7 +70,7 @@ You will deploy the self-hosted example Dev Portal using Netlify in this example
 1. Click **Domains** in the sidebar, then select your domain.
 1. [Configure the name servers in your domain registrar](https://docs.netlify.com/domains-https/netlify-dns/delegate-to-netlify/).
 
-Once your name servers are propogated (this may take a few minutes), your Dev Portal will be deployed by Netlify.
+Once your name servers are propagated (this may take a few minutes), your Dev Portal will be deployed by Netlify.
 
 ## Customize the example open source Dev Portal 
 

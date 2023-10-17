@@ -17,7 +17,7 @@ role also changes in {{site.base_gateway}} the next time they log in through Kon
 Manager. The mapping removes the task of manually managing access in
 {{site.base_gateway}}, as it makes the IdP the system of record.
 
-Here's how OIDC authenticaticated group mapping works:
+Here's how OIDC authenticated group mapping works:
 1. Create roles in {{site.base_gateway}} using either the Kong Admin API or Kong
 Manager.
 2. Create groups and associate roles with the groups.
@@ -125,7 +125,7 @@ name:
 Notice how in the instructions above, you did not assign a role to your
 admin. The role will be matched with the role assigned to them in the IdP.
 
-## Apply OIDC Auth Mapping to Kong Gateway
+## Apply OIDC Auth Mapping to {{site.base_gateway}}
 
 {% navtabs %}
 {% navtab Kubernetes with Helm %}

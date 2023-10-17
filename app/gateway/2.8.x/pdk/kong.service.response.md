@@ -13,7 +13,7 @@ source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 
 Module for manipulating the response from the Service.
 
-
+<!--vale off-->
 
 ## kong.service.response.get_status()
 

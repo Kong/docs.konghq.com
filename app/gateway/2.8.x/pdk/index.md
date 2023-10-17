@@ -11,6 +11,8 @@ toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
+<!--vale off-->
+
 The Plugin Development Kit (PDK) is set of Lua functions and variables
  that can be used by plugins to implement their own logic.  The PDK is a
  [Semantically Versioned](https://semver.org/) component, originally
