@@ -25,7 +25,7 @@ Noname Security Prevention integration for Kong uses a Noname-provided custom Lu
 
 You can find the performance benchmarks for the Noname Security Kong prevention integration here:
 
-[Kong Enterprise 2.8.1.1 with Noname 3.1](https://docs.nonamesecurity.com/v320/docs/kong-performance-results)
+[{{site.ee_product_name}} 2.8.1.1 with Noname 3.1](https://docs.nonamesecurity.com/v320/docs/kong-performance-results)
 
 ## How to install
 

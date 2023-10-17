@@ -20,7 +20,7 @@ The [Noname Security install and configuration documentation](https://docs.nonam
 
 You can find the performance benchmarks for Kong with Noname here:
 
-[Kong Enterprise 2.8.1.1 with Noname 3.1](https://docs.nonamesecurity.com/v320/docs/kong-performance-results)
+[{{site.ee_product_name}} 2.8.1.1 with Noname 3.1](https://docs.nonamesecurity.com/v320/docs/kong-performance-results)
 
 ## How to install
 
