@@ -19,11 +19,11 @@ This is available only for enterprise customers of Kong, Inc.
     ```text
     namespace/kong created
     ```
-1. Create [Kong Enterprise License secret](#kong-enterprise-license-secret)
+1. Create {{site.ee_product_name}} [License secret](#kong-enterprise-license-secret)
 
 {% include_cached /md/kic/kong-enterprise-license-secret.md version=page.version %}
 
-### Installing Kong Enterprise
+### Installing {{site.ee_product_name}}
 
 Kong for Kubernetes Enterprise can be installed using an installer of your choice. After the installation is complete, see the [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn more.
 
