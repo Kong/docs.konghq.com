@@ -111,7 +111,6 @@ describe("sitemap includes", () => {
     "/deck/latest/",
     "/gateway/latest/install/kubernetes/helm-quickstart/",
     "/mesh/latest/installation/ecs/",
-    "/kubernetes-ingress-controller/latest/deployment/k4k8s/",
     "/deck/latest/installation/",
     "/hub/kong-inc/application-registration/",
     "/gateway/changelog/",
