@@ -10,9 +10,9 @@ TCP-based Ingress means that {{site.base_gateway}} forwards the TCP stream to a 
 
 There are two modes available:
 - **Port based routing**: {{site.base_gateway}} simply proxies all traffic it receives on a specific port to the Kubernetes Service. TCP connections are load balanced across all the available Pods of the Service.
-- **SNI based routing**: {site.base_gateway}} accepts a TLS-encrypted stream at the specified port and can route traffic to different services based on the `SNI` present in the TLS handshake. {{site.base_gateway}} also terminates the TLS handshake and forward the TCP stream to the Kubernetes Service.
+- **SNI based routing**: {{site.base_gateway}} accepts a TLS-encrypted stream at the specified port and can route traffic to different services based on the `SNI` present in the TLS handshake. {{site.base_gateway}} also terminates the TLS handshake and forward the TCP stream to the Kubernetes Service.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false%}
+{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version gateway_api_experimental=true %}
 
 ## Expose additional ports
 
@@ -152,6 +152,7 @@ metadata:
 spec:
   parentRefs:
   - name: kong
+    sectionName: stream9000
   rules:
   - backendRefs:
     - name: echo
@@ -236,7 +237,7 @@ echo-plaintext   192.0.2.3   3m18s
 
 1. Connect to this service using `telnet`.
     ```shell
-    $ telnet $HOST 9000
+    $ telnet $PROXY_IP 9000
     ```
 
     After you  connect, type some text that you want as a response from the echo Service. 
@@ -272,13 +273,14 @@ metadata:
   name: echo-tls
 spec:
   parentRefs:
-  - name: kong
+    - name: kong
+      sectionName: stream9443
   hostnames:
-  - tls9443.kong.example
+    - tls9443.kong.example
   rules:
-  - backendRefs:
-    - name: echo
-      port: 9443
+    - backendRefs:
+      - name: echo
+        port: 1025
 " | kubectl apply -f -
 ```
 {% endnavtab %}
@@ -292,9 +294,9 @@ metadata:
     kubernetes.io/ingress.class: kong
 spec:
   tls:
-  - hosts:
-    - tls9443.kong.example
-    secretName: tls9443.kong.example
+  - secretName: tls9443.kong.example
+    hosts:
+      - tls9443.kong.example
   rules:
   - host: tls9443.kong.example
     port: 9443
@@ -334,7 +336,7 @@ You can now access the `echo` service on port 9443 with SNI `tls9443.kong.exampl
 In real-world usage, you would create a DNS record for `tls9443.kong.example`pointing to your proxy Service's public IP address, which causes TLS clients to add SNI automatically. For this demo, add it manually using the OpenSSL CLI.
 
 ```bash
-echo "hello" | openssl s_client -connect $HOST:9443 -servername tls9443.kong.example -quiet 2>/dev/null 
+echo "hello" | openssl s_client -connect $PROXY_IP:9443 -servername tls9443.kong.example -quiet 2>/dev/null
 ```
 Press Ctrl+C to exit.
 
