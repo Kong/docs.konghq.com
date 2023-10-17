@@ -11,11 +11,11 @@ Configure the Kong ACL Plugin. To use the ACL Plugin you need at least one Authe
 
 {% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
 
-{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/lemon' name='lemon' %}
+{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/lemon' name='lemon' skip_host=true %}
 
 After the first route is working, create a second pointing to the same Service:
 
-{% include_cached /md/kic/http-test-routing-resource.md kong_version=include.kong_version path='/lime' name='lime' %}
+{% include_cached /md/kic/http-test-routing-resource.md kong_version=include.kong_version path='/lime' name='lime' skip_host=true %}
 
 ## Add JWT authentication to the service
 
@@ -48,7 +48,7 @@ To add authentication in front of an API you just need to enable a plugin.
 1. Send a request without the credentials.    
 
     ```bash
-    curl -i -H 'Host:kong.example' $PROXY_IP/lemon
+    curl -i $PROXY_IP/lemon
     ```
     The results should look like this:
     ```text
@@ -179,7 +179,7 @@ The `iss` field in the payload matches the value you provided in `--from-literal
 1. Send a request with the `Authorization` header.
 
     ```bash
-    curl -I -H 'Host: kong.example' -H "Authorization: Bearer ${USER_JWT}" $PROXY_IP/lemon
+    curl -I -H "Authorization: Bearer ${USER_JWT}" $PROXY_IP/lemon
     ```
     The results should look like this:
     ```text
@@ -324,8 +324,8 @@ ingress.networking.k8s.io/lime annotated
 1. Send a request as the `admin` consumer to both the URLS.
 
     ```bash
-    curl -sI $PROXY_IP/lemon -H 'Host: kong.example' -H "Authorization: Bearer ${ADMIN_JWT}" | grep HTTP
-     curl -sI $PROXY_IP/lime -H 'Host: kong.example' -H "Authorization: Bearer ${ADMIN_JWT}" | grep HTTP
+    curl -sI $PROXY_IP/lemon -H "Authorization: Bearer ${ADMIN_JWT}" | grep HTTP
+     curl -sI $PROXY_IP/lime -H "Authorization: Bearer ${ADMIN_JWT}" | grep HTTP
     ```
     The results should look like this:
     ```text
@@ -336,8 +336,8 @@ ingress.networking.k8s.io/lime annotated
 1. Send a request as the`user` consumer.
 
     ```bash
-    curl -sI $PROXY_IP/lemon -H 'Host: kong.example' -H "Authorization: Bearer ${USER_JWT}" | grep HTTP
-    curl -sI $PROXY_IP/lime -H 'Host: kong.example' -H "Authorization: Bearer ${USER_JWT}" | grep HTTP
+    curl -sI $PROXY_IP/lemon -H "Authorization: Bearer ${USER_JWT}" | grep HTTP
+    curl -sI $PROXY_IP/lime -H "Authorization: Bearer ${USER_JWT}" | grep HTTP
     ```
     The results should look like this:
     ```text
