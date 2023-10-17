@@ -3,7 +3,7 @@
 {%- assign name = include.name | default: 'echo' %}
 {%- assign service = include.service | default: 'echo' %}
 {%- assign port = include.port | default: '1027' %}
-  {% capture the_code %}
+{% capture the_code %}
 {% navtabs api %}
 {% navtab Gateway APIs %}
 ```bash
@@ -58,11 +58,16 @@ spec:
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
+
+{% if include.indent %}
 {{ the_code | indent }}
+{% else %}
+{{ the_code }}
+{% endif %}
 
-     The results should look like this:
+The results should look like this:
 
-     {% capture the_code %}
+{% capture the_code %}
 {% navtabs codeblock %}
 {% navtab Gateway APIs %}
 ```text
