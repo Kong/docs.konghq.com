@@ -14,12 +14,13 @@ We are using this [project](https://github.com/lornajane/openapi-overlays-js) fo
 
 ## Apply a transformation
 
-To apply an overlay to a spec, run the following command from your clone of the docs directory: 
+To apply an overlay to a spec use the following command. It will output the changed version to the console, then pipe it to a new file:
 
-`overlayjs --openapi openapi.yml --overlay overlay.yaml`
+`overlayjs --openapi openapi.yml --overlay overlay.yaml >> newfile.yaml`
 
-This will output the changed version to the console, then you can pipe it to a new file like:
+For example:
 
-` overlayjs --openapi openapi.yml --overlay overlay.yaml >> newfile.yaml `
+`overlayjs --openapi api-specs/Gateway-EE/3.4/kong-ee-3.4.yaml --overlay api-specs/overlays/ee/tag-descriptions.yaml >> api-specs/Gateway-EE/newspec.yaml`
 
-That new file will be a complete and transformed API spec. Ideally this output is what is uploaded to the dev portal. 
+
+The command will pipe the output to a new file that will become the new API spec with the changes from the overlay applied. The new spec should be uploaded to the Dev Portal for consumption.
