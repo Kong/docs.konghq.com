@@ -5,7 +5,7 @@ The function of overlays is to apply a transformation to an API spec. The files 
 
 ## Installation
 
-We are using this [project](https://github.com/lornajane/openapi-overlays-js) for generation:
+We are using this [project](https://github.com/lornajane/openapi-overlays-js) for generating overlays:
 
 1. Clone the [openapi-overlays-js](https://github.com/lornajane/openapi-overlays-js) repo, `cd` into the directory where you cloned it. 
 2. Run `npm install` to get the dependencies
