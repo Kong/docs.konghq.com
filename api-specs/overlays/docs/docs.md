@@ -7,14 +7,14 @@ The function of overlays is to apply a transformation to an API spec. The files 
 
 We are using this [project](https://github.com/lornajane/openapi-overlays-js) for generation:
 
-* Clone [this](https://github.com/lornajane/openapi-overlays-js) repo, `cd` into the directory where you cloned it. 
-* Run `npm install` to get the dependencies
-* Run `npm install -g` to get `overlayjs` as a command
+1. Clone the [openapi-overlays-js](https://github.com/lornajane/openapi-overlays-js) repo, `cd` into the directory where you cloned it. 
+2. Run `npm install` to get the dependencies
+3. Run `npm install -g` to get `overlayjs` as a command
 
 
 ## Apply a transformation
 
-To apply an overlay to a spec use the following command: 
+To apply an overlay to a spec, run the following command from your clone of the docs directory: 
 
 `overlayjs --openapi openapi.yml --overlay overlay.yaml`
 

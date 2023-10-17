@@ -11,7 +11,7 @@ actions:
       <img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a> 
       <br><br>
 
-      OpenAPI 3.0 spec for Kong Gateway's Enterprise Admin API.
+      OpenAPI 3.0 spec for Kong Gateway's Open Source Admin API.
       <br><br>
 
       Kong Gateway comes with an **internal** RESTful Admin API for administration purposes.
