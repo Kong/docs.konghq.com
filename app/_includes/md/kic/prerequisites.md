@@ -6,6 +6,67 @@
 </summary>
 
 ## Prerequisites
+<<<<<<< HEAD
+||||||| parent of 6571919908 (KIC: Proxy TCP request (#6282))
+{% unless include.disable_gateway_api %}
+## Install the Gateway APIs
+
+If you wish to use the Gateway APIs examples, ensure that you enable support for [
+Gateway APIs in KIC](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/install-gateway-apis).
+{% endunless %}
+
+## Prerequisites
+=======
+
+{% unless include.disable_gateway_api %}
+### Install the Gateway APIs
+
+Install the Gateway API CRDs before installing {{ site.kic_product_name }}:
+
+```bash
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v0.8.1/standard-install.yaml
+```
+
+{% if include.gateway_api_experimental %}
+
+You will also need the experimental Gateway API CRDs to test this feature:
+
+```bash
+kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v0.8.1/experimental-install.yaml
+```
+{% endif %}
+
+Finally, create a `Gateway` and `GatewayClass` instance to use:
+
+```bash
+echo "
+---
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: GatewayClass
+metadata:
+  name: kong
+  annotations:
+    konghq.com/gatewayclass-unmanaged: 'true'
+
+spec:
+  controllerName: konghq.com/kic-gateway-controller
+---
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
+metadata:
+  name: kong
+spec:
+  gatewayClassName: kong
+  listeners:
+  - name: proxy
+    port: 80
+    protocol: HTTP
+" | kubectl apply -f -
+```
+
+{% endunless %}
+
+>>>>>>> 6571919908 (KIC: Proxy TCP request (#6282))
 
 {% unless include.disable_gateway_api %}
 ### Install the Gateway APIs
@@ -111,7 +172,6 @@ You can install Kong in your Kubernetes cluster using [Helm](https://helm.sh/).
    deployment.apps/kong-controller env updated
    ```
 {% endif %}
-
 
 ### Test connectivity to Kong
 
