@@ -12,7 +12,7 @@ In this scenario, Tal is a platform owner who supervises the implementation and 
 
 ## Build reports
 
-You can build ustom reports by navigating to {% konnect_icon analytics %} **Analytics** in the {{site.konnect_short_name}} menu, then **Reports**. This brings you to a list of all custom reports in the organization. From here, click **New Report** to get started.
+You can build custom reports by navigating to {% konnect_icon analytics %} **Analytics** in the {{site.konnect_short_name}} menu, then **Reports**. This brings you to a list of all custom reports in the organization. From here, click **New Report** to get started.
 
 For the this report, Tal configures the following:
 
