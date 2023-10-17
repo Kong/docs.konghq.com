@@ -17,9 +17,9 @@ metadata:
 spec:
   parentRefs:
   - name: kong
-  hostnames:
+{% unless include.skip_host %}  hostnames:
   - '{{ hostname }}'
-  rules:
+{% endunless %}  rules:
   - matches:
     - path:
         type: PathPrefix
@@ -43,8 +43,8 @@ metadata:
 spec:
   ingressClassName: kong
   rules:
-  - host: {{ hostname }}
-    http:
+  - {% unless include.skip_host %}host: {{ hostname }}
+    {% endunless %}http:
       paths:
       - path: {{ path }}
         pathType: ImplementationSpecific
