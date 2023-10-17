@@ -83,15 +83,13 @@ Choose one of the following methods.
 {% navtab Kong Manager %}
 Using Kong Manager, complete the following:
 
-1.  Manually delete all files via **Dev Portal** > **Editor**. You cannot delete folders at this time, but deleting
-all files from a folder will remove the folder.
-1. Turn off the Dev Portal. Go to Dev Portal **Settings** > **Advanced** > **Turn Off**.
-1. Remove all roles from the workspace:
-     1. Go to the **Teams** tab.
-     1. Navigate to the **Roles** tab.
-     1. Click **View** on the workspace you want to delete.
-     1. Go to each role entry and click **Edit**.
-     1. In the entry detail page, click **Delete Role**. A confirmation modal will appear. Click **Delete Role** again.
+1. Go to **Workspaces** and select the workspace you want to delete.
+
+1. Click **Settings** and then **Delete**.
+
+1. In the **Delete Workspace** dialog, enter the name of the workspace, select **Confirm: delete all associated resources**, and then click **Delete**. 
+
+This will automatically delete all entities (teams and roles) associated with the workspace as well as the workspace itself.
 
 {% endnavtab %}
 {% navtab Admin API %}
@@ -145,13 +143,13 @@ Kong Admin API. If not, see the previous section to [wipe workspace data](#wipe-
 {% navtabs %}
 {% navtab Kong Manager %}
 
-1. In the workspace you want to delete, navigate to the **Dashboard** page.
+Using Kong Manager, complete the following:
 
-1. Click the **Settings** button to open the **Edit Workspace** page.
+1. Go to **Workspaces** and select the workspace you want to delete.
 
-1. Click **Delete**.
+1. Click **Settings** and then **Delete**.
 
-    The deletion will fail if you have any data in your workspace.
+1. In the **Delete Workspace** dialog, enter the name of the workspace, select **Confirm: delete all associated resources**, and then click **Delete**. 
 
 {% endnavtab %}
 {% navtab Admin API %}
