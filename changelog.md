@@ -2,6 +2,154 @@
 
 <!--vale off-->
 
+## Week 41
+
+### [Fix: Missing `ldaps` option in Kong Manager LDAP setup. Resolves DOCU-2529.](https://github.com/Kong/docs.konghq.com/pull/6304) (2023-10-12)
+
+Added `ldaps` to the `admin_gui_auth_conf` setting and added to the attribute table. Resolves DOCU-2529.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/auth/ldap/configure
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/auth/ldap/configure
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/auth/ldap/configure
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/auth/ldap/configure
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/auth/ldap/configure
+
+
+### [Release: Changelog and version bump for Gateway 2.8.4.4](https://github.com/Kong/docs.konghq.com/pull/6303) (2023-10-12)
+
+Changelog for Gateway EE 2.8.4.4 patch version.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Changelog and version bump for Gateway 3.1.1.6](https://github.com/Kong/docs.konghq.com/pull/6302) (2023-10-12)
+
+Changelog for Gateway EE 3.1.1.6 patch version.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Changelog and version bump for Gateway 3.2.2.5](https://github.com/Kong/docs.konghq.com/pull/6301) (2023-10-12)
+
+Changelog for Gateway EE 3.2.2.5 patch version.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Fix: Konnect OIDC sign-in & sign-out redirect URIs](https://github.com/Kong/docs.konghq.com/pull/6300) (2023-10-12)
+
+Fixes the reported issue in Jira [DOCU-3311](https://konghq.atlassian.net/browse/DOCU-3311) which was causing confusion with the `examplepath` name in the testing section of the login URL.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/org-management/oidc-idp
+
+
+### [Release: Changelog and version bump for Gateway 3.3.1.1](https://github.com/Kong/docs.konghq.com/pull/6299) (2023-10-12)
+
+Changelog for Gateway EE 3.3.1.1 patch version.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Changelog and version bump for Gateway 3.4.1.1 and 3.4.2](https://github.com/Kong/docs.konghq.com/pull/6298) (2023-10-12)
+
+Changelog for Gateway EE 3.4.1.1 and OSS 3.4.2 releases.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [update: Remove Gateway 3.0 from supported versions and move to older versions table](https://github.com/Kong/docs.konghq.com/pull/6297) (2023-10-12)
+
+Support for Gateway 3.0 was removed in September, so we needed to update our support version docs to reflect that.
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+DOCU-3519
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.2.x/support/third-party
+- https://docs.konghq.com/gateway/3.3.x/support/third-party
+- https://docs.konghq.com/gateway/3.4.x/support/third-party
+
+
+
+### [Update: Salt plugin now supports new queue in 3.3+](https://github.com/Kong/docs.konghq.com/pull/6280) (2023-10-11)
+
+In Kong 3.3, the queue logic was updated, forcing a change to the plugin logic. This is that update.
+ 
+background: https://konghq.com/blog/product-releases/reworked-plugin-queues-in-kong-gateway-3-3
+
+#### Modified
+
+- https://docs.konghq.com/hub/salt/salt/_metadata.yml
+
+
+### [Fix: curl examples for custom plugins schemas in Konnect](https://github.com/Kong/docs.konghq.com/pull/6252) (2023-10-10)
+
+Turns out that you can't pass a file directly via cURL to our Konnect CP configuration API. The contents of the file don't get escaped correctly. When testing this out originally, I used a mix of cURL and HTTPie, and HTTPie had no issues - but our default cURL instructions have problems here.
+
+Issue was reported on [Slack](https://kongstrong.slack.com/archives/C03NRECFJPM/p1696622470557839).
+
+Updating the doc with Fero's help, tested it all with curl this time around.
+
+The jq instructions are in a "tip", since we can't tell them to use jq if they don't want to or don't have it.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/plugins/add-custom-plugin
+- https://docs.konghq.com/konnect/gateway-manager/plugins/update-custom-plugin
+
+
+### [Update: Third-party categorization](https://github.com/Kong/docs.konghq.com/pull/6236) (2023-10-11)
+
+Third party plugins are now categorized as:
+* Partner plugins: third party contributors that have a close relationship with Kong, usually meaning contracts, rigorous testing, etc.
+* Unsupported community plugins: Plugins from contributors that haven't gone through the above process.
+
+This update makes it clearer which is which by using better filtering, banners, and categorization.
+
+https://konghq.atlassian.net/browse/DOCU-3509
+
+#### Modified
+
+- https://docs.konghq.com/hub/TheLEGOGroup/aws-request-signing/_metadata.yml
+- https://docs.konghq.com/hub/amberflo/kong-plugin-amberflo/_metadata.yml
+- https://docs.konghq.com/hub/imperva/imp-appsec-connector/_metadata.yml
+- https://docs.konghq.com/hub/moesif/kong-plugin-moesif/_metadata.yml
+- https://docs.konghq.com/hub/okta/okta/_metadata.yml
+- https://docs.konghq.com/hub/optum/kong-response-size-limiting/_metadata.yml
+- https://docs.konghq.com/hub/optum/kong-service-virtualization/_metadata.yml
+- https://docs.konghq.com/hub/optum/kong-spec-expose/_metadata.yml
+- https://docs.konghq.com/hub/optum/kong-splunk-log/_metadata.yml
+- https://docs.konghq.com/hub/optum/kong-upstream-jwt/_metadata.yml
+- https://docs.konghq.com/hub/salt/salt/_metadata.yml
+- https://docs.konghq.com/hub/wallarm/wallarm/_metadata.yml
+- https://docs.konghq.com/hub/index.html
+
+
+### [Update: Add info on cache locations in Gateway 2.x vs 3.x](https://github.com/Kong/docs.konghq.com/pull/6192) (2023-10-11)
+
+The latest version of the documentation refers only to the config.json.gz which is misleading as on 3.x this was moved to lmdb. It has been updated to reflect both noting the version change.
+ 
+https://docs.konghq.com/gateway/latest/production/deployment-topologies/hybrid-mode/#data-plane-cache-configuration
+
+#### Modified
+
+- https://docs.konghq.com/konnect/network-resiliency
+
 ## Week 40
 
 ### [Fix: Badge alignment](https://github.com/Kong/docs.konghq.com/pull/6245) (2023-10-06)
