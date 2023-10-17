@@ -10,13 +10,12 @@ This guide explains how to map the permissions, including scopes and claims, fro
 ## Prerequisites
 
 * A test developer account in your IdP
-* Create teams in your IdP with your test developer account assigned to the team:
-    * [Okta](https://help.okta.com/en-us/content/topics/users-groups-profiles/usgp-assign-group-people.htm)
-    * [Auth0](https://auth0.com/docs/get-started/tenant-settings/auth0-teams)
-    * [Azure AD](https://learn.microsoft.com/azure/active-directory/fundamentals/how-to-manage-groups#create-a-basic-group-and-add-members)
+* An application for {{site.konnect_short_name}} configured in your IdP:
+    * [Okta](https://help.okta.com/en-us/content/topics/apps/apps_app_integration_wizard.htm)
+    * [Azure AD](https://learn.microsoft.com/graph/toolkit/get-started/add-aad-app-registration)
+    * [Auth0](https://auth0.com/docs/get-started/auth0-overview/create-applications)
 
-<!-- commenting this out so we can come back to it later after tech review
-## Create developer teams in your IdP
+## Set up developer teams and group claims in your IdP
 
 {% navtabs %}
 {% navtab Okta %}
@@ -25,16 +24,21 @@ This guide explains how to map the permissions, including scopes and claims, fro
 1. Configure any other group settings and attributes as needed.
 
 1. [Enable group push](https://help.okta.com/en-us/content/topics/users-groups-profiles/usgp-enable-group-push.htm) for **{{site.base_gateway}}** to push existing Okta groups and their memberships to {{site.konnect_short_name}}.
+
+1. [Add a groups claim for the org authorization server](https://developer.okta.com/docs/guides/customize-tokens-groups-claim/main/#add-a-groups-claim-for-the-org-authorization-server).
 {% endnavtab %}
 {% navtab Azure AD %}
-In [Azure AD](https://portal.azure.com/), [create a new group](https://learn.microsoft.com/azure/active-directory/fundamentals/how-to-manage-groups#create-a-basic-group-and-add-members) that includes your test developer account.
+1. In [Azure AD](https://portal.azure.com/), [create a new group](https://learn.microsoft.com/azure/active-directory/fundamentals/how-to-manage-groups#create-a-basic-group-and-add-members) that includes your test developer account.
+
+1. [Configure a groups claim](https://learn.microsoft.com/azure/active-directory/develop/optional-claims#configure-groups-optional-claims).
 
 {% endnavtab %}
 {% navtab Auth0 %}
-In Auth0, create a [new team of developers](https://auth0.com/docs/get-started/tenant-settings/auth0-teams) that you want to map to {{site.konnect_short_name}}. Make sure to add your test developer account. 
+1. In Auth0, create a [new team of developers](https://auth0.com/docs/get-started/tenant-settings/auth0-teams) that you want to map to {{site.konnect_short_name}}. Make sure to add your test developer account. 
+
+1. [Configure a groups claim](https://auth0.com/docs/secure/tokens/json-web-tokens/create-custom-claims).
 {% endnavtab %}
 {% endnavtabs %}
--->
 
 ## Map IdP developer teams in {{site.konnect_short_name}}
 
