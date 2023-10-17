@@ -8,14 +8,15 @@ purpose: |
 Deploy a [Service][svc] that listens for [UDP datagrams][udp], and exposes this service outside of the cluster using
 {{site.base_gateway}}.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
+{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version gateway_api_experimental=true %}
 
+## Configure {{ site.base_gateway }}
 
-## Add UDP listens
+{{ site.base_gateway }} does not include any UDP listen configuration by default
 
-{{site.base_gateway}} does not include any UDP listen configuration by default.
-To expose UDP listens, update the environment variables of the Deployment and port
-configuration.
+### Add UDP listens
+
+To expose UDP listens, set the `KONG_STREAM_LISTEN` environment variable and expose port `9999` in the Deployment:
 
 ```bash
 kubectl patch deploy -n kong kong-gateway --patch '{
@@ -50,11 +51,14 @@ The results should look like this:
 deployment.apps/kong-gateway patched
 ```
 
-## Add a UDP proxy Service
+### Add a UDP proxy Service
 
 LoadBalancer Services only support a single transport protocol in [Kubernetes
 versions prior to 1.26](https://github.com/kubernetes/enhancements/issues/1435).
 To direct UDP traffic to the proxy Service, create a second Service named `kong-udp-proxy`.
+
+{:.note}
+> This Service can be managed using [the `udpProxy` configuration](https://github.com/Kong/charts/tree/main/charts/kong#kong-service-parameters) of the Kong Helm chart.
 
 ```bash
 echo "apiVersion: v1
@@ -81,13 +85,10 @@ The results should look like this:
 service/kong-udp-proxy created
 ```
 
-This Service is typically added through the `udpProxy`configuration of the Kong Helm chart.
-Configure this manually to check the resources the chart manages and for compatibility with non-Helm installs.
+### Update Gateway API Listeners
 
-## Update the Gateway
-
-If you are using Gateway APIs (UDPRoute) option, your Gateway needs additional
-configuration under `listeners`. If you are using UDPIngress, you can skip this step.
+If you are using Gateway API (`UDPRoute`), your Gateway needs additional
+configuration under `listeners`. If you are using `UDPIngress`, you can skip this step.
 
 ```bash
 kubectl patch --type=json gateway kong -p='[
@@ -98,11 +99,11 @@ kubectl patch --type=json gateway kong -p='[
             "name":"stream9999",
             "port":9999,
             "protocol":"UDP",
-			"allowedRoutes": {
-			    "namespaces": {
-				     "from": "All"
-				}
-			}
+            "allowedRoutes": {
+                "namespaces": {
+                  "from": "All"
+                }
+            }
         }
     }
 ]'
@@ -112,8 +113,11 @@ The results should look like this:
 gateway.gateway.networking.k8s.io/kong patched
 ```
 
-
 ## Deploy a UDP test application
+
+[echoserver-udp](https://hub.docker.com/r/cilium/echoserver-udp) is a simple
+test server that accepts UDP TFTP requests and returns basic request
+information. Because curl supports TFTP you can use it to test UDP routing.
 
 1. Create a namespace for deploying the UDP application.
     ```bash
@@ -177,13 +181,9 @@ gateway.gateway.networking.k8s.io/kong patched
     service/tftp created
     ```
 
-    [echoserver-udp](https://hub.docker.com/r/cilium/echoserver-udp) is a simple
-    test server that accepts UDP TFTP requests and returns basic request
-    information. Because curl supports TFTP you can use it to test UDP routing.
-
 ## Route UDP traffic
 
-Now that {{site.base_gateway}} is listening on `9999` and the test application
+Now that {{site.base_gateway}} is listening on port `9999` and the test application
 is running, you can create UDP routing configuration that proxies traffic to
 the application:
 
