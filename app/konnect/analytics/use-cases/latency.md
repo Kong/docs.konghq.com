@@ -12,7 +12,7 @@ In this scenario, Tal is a platform owner who supervises the implementation and 
 
 ## Build reports
 
-You can build a custom report by navigating to {% konnect_icon analytics %} **Analytics** in the {{site.konnect_short_name}} menu, then **Reports**. This brings you to a list of all custom reports in the organization. From here, click **New Report** to get started.
+You can build ustom reports by navigating to {% konnect_icon analytics %} **Analytics** in the {{site.konnect_short_name}} menu, then **Reports**. This brings you to a list of all custom reports in the organization. From here, click **New Report** to get started.
 
 For the this report, Tal configures the following:
 
@@ -24,9 +24,9 @@ For the this report, Tal configures the following:
 * **Choose Granularity**: Minutely
 
 {:.note}
-> **Note**: To select more than one metric, click on "Select Multiple" next to the Metrics dropdown list.
+> You can select more than one metric by clicking on **Select Multiple** next to the Metrics dropdown list.
 
-Then, they add a filter to filter by the Control Plane
+Then, they add a filter to filter by the control plane
 
 * **Filter by**: Control Plane
 * **Operator**: In

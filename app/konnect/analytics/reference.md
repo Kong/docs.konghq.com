@@ -5,7 +5,7 @@ content_type: reference
 
 ## Metrics
 
-Traffic metrics provide insight into which of your services are being used and how they are responding. You can select one or more metrics of the same category inside a single report.
+Traffic metrics provide insight into which of your services are being used and how they are responding. Within a single report, you have the flexibility to choose one or multiple metrics from the same category.
 
 Metric | Category | Description
 -------|------------
