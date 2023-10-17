@@ -1,4 +1,8 @@
 name: OpenTelemetry
+search_aliases:
+  - otlp
+  - otel
+  - open telemetry
 dbless_compatible: 'yes'
 free: true
 enterprise: true

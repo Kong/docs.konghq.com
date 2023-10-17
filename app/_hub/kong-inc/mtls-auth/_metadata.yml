@@ -1,4 +1,9 @@
 name: Mutual TLS Authentication
+search_aliases:
+  - mtls
+  - mtls authentication
+  - mtls-auth
+  - certificates
 dbless_compatible: 'yes'
 free: false
 enterprise: true

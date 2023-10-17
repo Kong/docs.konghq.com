@@ -1,4 +1,6 @@
 name: Exit Transformer
+search_aliases:
+  - exit-transformer
 yaml_examples: false
 dbless_compatible: 'yes'
 free: false
