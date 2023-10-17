@@ -5,31 +5,6 @@
 {%- assign port = include.port | default: '1027' %}
   {% capture the_code %}
 {% navtabs api %}
-{% navtab Ingress %}
-```bash
-echo "
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: {{ name }}
-  annotations:
-    konghq.com/strip-path: 'true'
-spec:
-  ingressClassName: kong
-  rules:
-  - host: {{ hostname }}
-    http:
-      paths:
-      - path: {{ path }}
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: {{ service }}
-            port:
-              number: {{ port }}
-" | kubectl apply -f -
-```
-{% endnavtab %}
 {% navtab Gateway APIs %}
 ```bash
 echo "
@@ -42,9 +17,9 @@ metadata:
 spec:
   parentRefs:
   - name: kong
-  hostnames:
+{% unless include.skip_host %}  hostnames:
   - '{{ hostname }}'
-  rules:
+{% endunless %}  rules:
   - matches:
     - path:
         type: PathPrefix
@@ -56,22 +31,47 @@ spec:
 " | kubectl apply -f -
 ```
 {% endnavtab %}
+{% navtab Ingress %}
+```bash
+echo "
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ name }}
+  annotations:
+    konghq.com/strip-path: 'true'
+spec:
+  ingressClassName: kong
+  rules:
+  - {% unless include.skip_host %}host: {{ hostname }}
+    {% endunless %}http:
+      paths:
+      - path: {{ path }}
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: {{ service }}
+            port:
+              number: {{ port }}
+" | kubectl apply -f -
+```
+{% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
 {{ the_code | indent }}
 
-The results should look like this:
+     The results should look like this:
 
-{% capture the_code %}
+     {% capture the_code %}
 {% navtabs codeblock %}
-{% navtab ingress %}
-```text
-ingress.networking.k8s.io/{{ name }} created
-```
-{% endnavtab %}
 {% navtab Gateway APIs %}
 ```text
 httproute.gateway.networking.k8s.io/{{ name }} created
+```
+{% endnavtab %}
+{% navtab Ingress%}
+```text
+ingress.networking.k8s.io/{{ name }} created
 ```
 {% endnavtab %}
 {% endnavtabs %}
