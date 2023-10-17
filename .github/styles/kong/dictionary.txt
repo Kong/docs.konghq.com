@@ -470,5 +470,6 @@ xbox
 xenial
 yaml
 yml
+yq
 zipkin
 zsh
