@@ -18,9 +18,8 @@ For the this report, Tal configures the following:
 
 * **Name**: Production - Kong vs Upstream Latency (last hour)
 * **Chart type**: Line chart
-* **Date/Time**: Last hour
+* **Date/Time**: Last One Hour
 * **Metrics**: Kong Latency (avg), Upstream Latency (avg)
-* **Group by**: API Product
 * **Choose Granularity**: Minutely
 
 {:.note}

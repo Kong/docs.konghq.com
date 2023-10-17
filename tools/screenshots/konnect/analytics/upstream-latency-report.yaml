@@ -1,0 +1,8 @@
+- output: ../../app/assets/images/products/konnect/analytics/custom-reports/kong-vs-upstream-latency.png
+  url: https://cloud.konghq.com/us/analytics/reports/c4c5f1c7-5da9-4a00-bbc4-c49251bc783f/update
+  wait: 4000
+  width: 2033
+  height: 1384
+  javascript: |
+   async () => {
+    zoomPercentage(-35);} // 65% zoom level (100% - 35%)
