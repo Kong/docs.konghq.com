@@ -14,7 +14,19 @@ and enable the admission webhook.
 Please note that this requires {{site.kic_product_name}} >= 0.6 to be
 already installed in the cluster.
 
-## Set up with a script
+## Enable the webhook
+
+### Set up using the Helm chart
+
+If you are using the [Helm chart](https://github.com/Kong/charts/blob/main/charts/kong/README.md),
+you can enable the webhook by setting `ingressController.admissionWebhook.enabled=true`
+in your values.yaml. It is set to `true` by default as of chart version 2.16.
+
+The chart generates a self-signed certificate by default.
+`ingressController.admissionWebhook.certificate` contains settings to
+use a user-provided certificate instead.
+
+### Set up with a script
 
 If you are using the stock YAML manifests to install and setup Kong for
 Kubernetes, then you can set up the admission webhook using a single command:
@@ -38,17 +50,7 @@ This script takes all the following commands and packs them together.
 You need `kubectl` and `openssl` installed on your workstation for this to
 work.
 
-## Set up using the Helm chart
-
-If you are using the [Helm chart](https://github.com/Kong/charts/blob/main/charts/kong/README.md),
-you can enable the webhook by setting `ingressController.admissionWebhook.enabled=true`
-in your values.yaml. It is set to `true` by default as of chart version 2.16.
-
-The chart generates a self-signed certificate by default.
-`ingressController.admissionWebhook.certificate` contains settings to
-use a user-provided certificate instead.
-
-## Create a certificate for the admission webhook
+### Manual Setup
 
 Kubernetes API-server makes an HTTPS call to the admission webhook to verify
 if the custom resource is valid or not. For this to work, Kubernetes API-server
@@ -63,7 +65,7 @@ Please note the `CN` field of the x509 certificate takes the form
 `<validation-service-name>.<ingress-controller-namespace>.svc`, which
 in the default case is `kong-validation-webhook.kong.svc`.
 
-### Using self-signed certificate
+#### Using self-signed certificate
 
 Use `openssl` to generate a self-signed certificate:
 
@@ -82,7 +84,7 @@ Generating a 2048 bit RSA private key
 writing new private key to 'key.pem'
 ```
 
-### Using in-built Kubernetes CA
+#### Using in-built Kubernetes CA
 
 Kubernetes comes with an in-built CA which can be used to provision
 a certificate for the admission webhook.
@@ -90,7 +92,7 @@ Please refer to the
 [this guide](https://kubernetes.io/docs/tasks/tls/managing-tls-in-a-cluster/)
 on how to generate a certificate using the in-built CA.
 
-### Create the secret
+#### Create the secret
 
 Next, create a Kubernetes secret object based on the key and certificate that
 was generated in the previous steps.
@@ -106,7 +108,7 @@ The output is similar to the following:
 secret/kong-validation-webhook created
 ```
 
-## Update the deployment
+#### Update the deployment
 
 Once the secret is created, update the Ingress Controller deployment:
 
@@ -126,10 +128,10 @@ If you are using the Helm chart, run `helm upgrade -f <path to values.yamvl> <re
 after enabling the webhook or updating the certificate configuration. Note that
 chart versions 2.16 and later enable the webhook by default.
 
-## Enable the validating admission
+#### Enable the validating admission
 
 If you are using Kubernetes CA to generate the certificate, you don't need
-to supply a CA certificate (in the `caBunde` parameter)
+to supply a CA certificate (in the `caBundle` parameter)
 as part of the Validation Webhook configuration
 as the API-server already trusts the internal CA.
 
@@ -139,6 +141,7 @@ as the API-server already trusts the internal CA.
 {% endcapture %}
 
 ```bash
+readonly CABUNDLE=$(base64 < ./tls.crt)
 echo "apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
@@ -153,7 +156,7 @@ webhooks:
       - helm
   failurePolicy: {{ failure_policy | strip }}
   sideEffects: None
-  admissionReviewVersions: ["v1", "v1beta1"]
+  admissionReviewVersions: [\"v1\", \"v1beta1\"]
   rules:
   - apiGroups:
     - configuration.konghq.com
@@ -164,7 +167,10 @@ webhooks:
     - UPDATE
     resources:
     - kongconsumers
+    - kongconsumergroups
     - kongplugins
+    - kongclusterplugins
+    - kongingresses
   - apiGroups:
     - ''
     apiVersions:
@@ -173,11 +179,31 @@ webhooks:
     - UPDATE
     resources:
     - secrets
+  - apiGroups:
+    - networking.k8s.io
+    apiVersions:
+      - 'v1'
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - ingresses
+  - apiGroups:
+    - gateway.networking.k8s.io
+    apiVersions:
+    - 'v1alpha2'
+    - 'v1beta1'
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - gateways
+    - httproutes
   clientConfig:
     service:
       namespace: kong
       name: kong-validation-webhook
-    caBundle: $(cat tls.crt  | base64) " | kubectl apply -f -
+    caBundle: ${CABUNDLE}" | kubectl apply -f -
 ```
 The output is similar to the following:
 ```
@@ -253,7 +279,7 @@ With 0.7 and above versions of the controller, validations also take place
 for incorrect secret types and wrong parameters to the secrets:
 
 ```bash
-kubectl create secret generic some-credential \
+kubectl create secret generic missing-password-credential \
   --from-literal=kongCredType=basic-auth \
   --from-literal=username=foo
 ```
@@ -263,7 +289,7 @@ Error from server: admission webhook "validations.kong.konghq.com" denied the re
 ```
 
 ```bash
-kubectl create secret generic some-credential \
+kubectl create secret generic wrong-cred-credential \
   --from-literal=kongCredType=wrong-auth \
   --from-literal=sdfkey=my-sooper-secret-key
 ```
