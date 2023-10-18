@@ -297,3 +297,34 @@ The output is similar to the following:
 ```
 Error from server: admission webhook "validations.kong.konghq.com" denied the request: invalid credential type: wrong-auth
 ```
+
+{% if_version gte:2.12.x %}
+### Verify incorrect routes
+
+Versions 2.12 and above of the controller validate route definitions
+
+```bash
+echo 'apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: echo
+  annotations:
+    konghq.com/strip-path: "true"
+spec:
+  ingressClassName: kong
+  rules:
+    - http:
+        paths:
+          - path: /~/echo/**/broken
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: echo
+                port:
+                  number: 1025' | kubectl apply -f -
+```
+The output is similar to the following:
+```
+Error from server: error when creating "STDIN": admission webhook "validations.kong.konghq.com" denied the request: Ingress failed schema validation: schema violation (paths.1: invalid regex: '/echo/**/broken' (PCRE returned: pcre_compile() failed: nothing to repeat in "/echo/**/broken" at "*/broken"))
+```
+{% endif_version %}
