@@ -13,8 +13,6 @@ requests through the HTTPRoute are distributed across the Services. This guide w
 
 {% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
 
-{% include /md/kic/class.md %}
-
 ## Deploy multiple Services with HTTPRoute
 
 1. Deploy a second echo Service so that you have a second `BackendRef` to use for traffic splitting:
@@ -78,13 +76,14 @@ The `weight` field overrides the default distribution of requests across Service
     ```bash
     kubectl patch --type json httproute echo -p='[
         {
-    	    "op":"add",
-    		"path":"/spec/rules/0/backendRefs/0/weight",
-    		"value":200
+          "op":"add",
+          "path":"/spec/rules/0/backendRefs/0/weight",
+          "value":200
         },
-        {   "op":"add",
-    	    "path":"/spec/rules/0/backendRefs/1/weight",
-    		"value":100
+        {
+          "op":"add",
+          "path":"/spec/rules/0/backendRefs/1/weight",
+          "value":100
         }
     ]'
     ```
