@@ -10,11 +10,9 @@ You can use the {{site.ee_product_name}} **Secrets Management** feature along wi
 
 {% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
 
-{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
+{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version skip_host=true %}
 
-{% include_cached /md/kic/class.md kong_version=page.kong_version %}
-
-{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version %}
+{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version skip_host=true %}
 
 ## Set up rate limiting
 
@@ -54,7 +52,7 @@ You can use the {{site.ee_product_name}} **Secrets Management** feature along wi
 1. Send requests through this Service to rate limiting response headers.
 
     ```bash
-    curl -si -H 'Host:kong.example' $PROXY_IP/echo | grep RateLimit
+    curl -si $PROXY_IP/echo | grep RateLimit
     ```
 
     The results should look like this:
@@ -68,7 +66,7 @@ You can use the {{site.ee_product_name}} **Secrets Management** feature along wi
 1. Send repeated requests to decrement the remaining limit headers, and block requests after the fifth request.
 
     ```bash
-    for i in `seq 6`; do curl -sv -H 'Host:kong.example' $PROXY_IP/echo 2>&1 | grep "< HTTP"; done
+    for i in `seq 6`; do curl -sv $PROXY_IP/echo 2>&1 | grep "< HTTP"; done
     ```
 
     The results should look like this:
@@ -97,7 +95,7 @@ You can use the {{site.ee_product_name}} **Secrets Management** feature along wi
 1. Sending requests to this Service does not reliably decrement the remaining counter.
 
     ```bash
-    for i in `seq 10`; do curl -sv -H 'Host:kong.example' $PROXY_IP/echo 2>&1 | grep "X-RateLimit-Remaining-Minute"; done
+    for i in `seq 10`; do curl -sv $PROXY_IP/echo 2>&1 | grep "X-RateLimit-Remaining-Minute"; done
     ```
 
     The results should look like this:
@@ -179,7 +177,7 @@ for Redis with turnkey options for authentication.
 Send requests to the Service with rate limiting response headers.
 
 ```bash
-for i in `seq 10`; do curl -sv -H 'Host:kong.example' $PROXY_IP/echo 2>&1 | grep "X-RateLimit-Remaining-Minute"; done
+for i in `seq 10`; do curl -sv $PROXY_IP/echo 2>&1 | grep "X-RateLimit-Remaining-Minute"; done
 ```
 
 The results should look like this:
