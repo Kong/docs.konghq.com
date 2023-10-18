@@ -2,9 +2,9 @@
 title: Kong for Kubernetes Enterprise (DB Mode)
 ---
 
-Learn to set up the {{site.kic_product_name}} using {{site.ee_product_name}}. This architecture is described in detail in [Kong for Kubernetes with Kong Enterprise](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise/).
+Learn to set up the {{site.kic_product_name}} using {{site.ee_product_name}}. This architecture is described in detail in [Kong for Kubernetes with {{site.ee_product_name}}](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise/).
 
-To start from scratch deploy Kong Enterprise and its database in Kubernetes itself. You can safely run them outside
+To start from scratch deploy {{site.ee_product_name}} and its database in Kubernetes itself. You can safely run them outside
 Kubernetes as well.
 
 ## Before you begin
@@ -17,7 +17,7 @@ Kubernetes as well.
     namespace/kong created
     ```
 
-* Create Kong Enterprise bootstrap password. Replace `cloudnative` with a random password of your choice and note it down
+* Create {{site.ee_product_name}} bootstrap password. Replace `cloudnative` with a random password of your choice and note it down
     ```bash
     $ kubectl create secret generic kong-enterprise-superuser-password  -n kong --from-literal=password=cloudnative
     ```
@@ -26,16 +26,16 @@ Kubernetes as well.
     secret/kong-enterprise-superuser-password created
     ```
 
-* Create [Kong Enterprise License secret](#kong-enterprise-license-secret)
+* Create [{{site.ee_product_name}} License secret](#kong-enterprise-license-secret)
 
 {% include_cached /md/kic/kong-enterprise-license-secret.md version=page.version %}    
 
-## Install Kong Enterprise Ingress Controller
-1. Deploy Kong Enterprise Ingress Controller.
+## Install {{site.ee_product_name}} Ingress Controller
+1. Deploy {{site.ee_product_name}} Ingress Controller.
     ```bash
     kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.version }}/deploy/single/all-in-one-postgres-enterprise.yaml
     ```
-    It takes a little while to bootstrap the database. Once bootstrapped, you should see the {{site.kic_product_name}} running with Kong Enterprise as its core
+    It takes a little while to bootstrap the database. Once bootstrapped, you should see the {{site.kic_product_name}} running with {{site.ee_product_name}} as its core
 
 1. Check if {{site.kic_product_name}}  and the database is deployed.
     ```bash
@@ -90,7 +90,7 @@ Kubernetes as well.
     $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong kong-proxy)
     ```
 
-After you've installed Kong for Kubernetes Enterprise, follow our [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn more.
+After you've installed Kong for {{site.ee_product_name}}, follow our [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn more.
 
 ## Customizing by use-case
 
