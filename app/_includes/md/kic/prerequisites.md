@@ -177,10 +177,8 @@ You can install Kong in your Kubernetes cluster using [Helm](https://helm.sh/).
    ```
 {% endif %}
 
-   The results should look like this:
-   ```text
-   deployment.apps/kong-controller env updated
-   ```
+{% endif %}
+
 
 ### Test connectivity to Kong
 
