@@ -7,12 +7,12 @@
 
 Create routing configuration to proxy `{{ path }}` requests to the echo server:
 
-{% include_cached /md/kic/http-test-routing-resource.md kong_version=include.kong_version hostname=hostname path=path name=name service=service no_indent=include.no_indent %}
+{% include_cached /md/kic/http-test-routing-resource.md kong_version=include.kong_version hostname=hostname path=path name=name service=service no_indent=include.no_indent skip_host=include.skip_host %}
 
 Test the routing rule:
 
 ```bash
-curl -i -H 'Host:{{ hostname }}' $PROXY_IP{{ path }}
+curl -i {% unless include.skip_host %}-H 'Host:{{ hostname }}' {% endunless %}$PROXY_IP{{ path }}
 ```
 
 The results should look like this:
