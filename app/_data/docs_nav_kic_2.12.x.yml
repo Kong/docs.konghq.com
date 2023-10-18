@@ -65,10 +65,10 @@ items:
       - text: Kong for Kubernetes
         url: /deployment/k4k8s
         src: /kic-v2/deployment/k4k8s
-      - text: Kong for Kubernetes Enterprise
+      - text: Kong Enterprise for Kubernetes (DB-less)
         url: /deployment/k4k8s-enterprise
         src: /kic-v2/deployment/k4k8s-enterprise
-      - text: Kong for Kubernetes with Kong Enterprise
+      - text: Kong Enterprise for Kubernetes (DB-backed)
         url: /deployment/kong-enterprise
         src: /kic-v2/deployment/kong-enterprise
       - text: Kong Ingress on AKS
