@@ -48,7 +48,7 @@ describe("Outdated version documentation", () => {
 });
 
 describe("Sidebar section count", () => {
-  const sidebarSelector = ".accordion-container > .accordion-item";
+  const sidebarSelector = ".sidebar-container > .sidebar-item";
 
   [
     {
