@@ -6,27 +6,6 @@ coexist in the same cluster. Before creating individual routes, you need to
 create a class configuration to associate routes with:
 
 {% navtabs api %}
-{% navtab Ingress %}
-
-Official distributions of {{site.kic_product_name}} come with a `kong`
-IngressClass by default. If `kubectl get ingressclass kong` does not return a
-`not found` error, you can skip this command.
-
-```bash
-echo "
-apiVersion: networking.k8s.io/v1
-kind: IngressClass
-metadata:
-  name: kong
-spec:
-  controller: ingress-controllers.konghq.com/kong
-" | kubectl apply -f -
-```
-The results should look like this:
-```text
-ingressclass.networking.k8s.io/kong configured
-```
-{% endnavtab %}
 {% navtab Gateway APIs %}
 ```bash
 echo "
@@ -62,6 +41,28 @@ The results should look like this:
 ```text
 gatewayclass.gateway.networking.k8s.io/kong created
 gateway.gateway.networking.k8s.io/kong created
+```
+{% endnavtab %}
+
+{% navtab Ingress %}
+
+Official distributions of {{site.kic_product_name}} come with a `kong`
+IngressClass by default. If `kubectl get ingressclass kong` does not return a
+`not found` error, you can skip this command.
+
+```bash
+echo "
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: kong
+spec:
+  controller: ingress-controllers.konghq.com/kong
+" | kubectl apply -f -
+```
+The results should look like this:
+```text
+ingressclass.networking.k8s.io/kong configured
 ```
 
 After the controller has acknowledged the Gateway, it shows the proxy IP and 
