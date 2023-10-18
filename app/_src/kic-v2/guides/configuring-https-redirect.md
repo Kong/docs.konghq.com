@@ -1,107 +1,243 @@
 ---
-title: Configuring https redirect
+title: Configuring HTTPS redirect
+content_type: tutorial
 ---
 
-Learn to configure the {{site.kic_product_name}} to redirect HTTP request to HTTPS so that all communication from the external world to your APIs and microservices is encrypted.
+## Overview
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=true%}
+Learn to configure the {{site.kic_product_name}} to redirect HTTP requests to
+HTTPS so that all communication from the external world to your APIs and
+microservices is encrypted.
 
-## Setup a Sample service
+{% include_cached /md/kic/installation.md kong_version=page.kong_version %}
 
-1. Create an [httpbin](https://httpbin.org) service in the cluster and proxy it.
+{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
 
-    ```bash
-    kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/manifests/httpbin.yaml
-    ```
+{% include_cached /md/kic/class.md kong_version=page.kong_version %}
+
+{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version %}
+
+## Add TLS configuration
+
+<!-- TODO copied verbatim from getting-started.md. This should be worked into a
+reusable bit probably. This may be the only guide that _requires_ HTTPS, go
+figure. -->
+
+{% include_cached /md/kic/add-certificate.md hostname='kong.example' kong_version=page.kong_version %}
+
+1. Update your routing configuration to use this certificate.
+ {% capture the_code %}
+{% navtabs codeblock %}
+{% navtab Ingress %}
+```bash
+kubectl patch --type json ingress echo -p='[{
+    "op":"add",
+	"path":"/spec/tls",
+	"value":[{
+        "hosts":["kong.example"],
+		"secretName":"kong.example"
+    }]
+}]'
+```
+{% endnavtab %}
+{% navtab Gateway APIs %}
+```bash
+kubectl patch --type=json gateway kong -p='[{
+    "op":"add",
+	"path":"/spec/listeners/-",
+	"value":{
+		"name":"proxy-ssl",
+		"port":443,
+		"protocol":"HTTPS",
+		"tls":{
+				"certificateRefs":[{
+				    "group":"",
+					"kind":"Secret",
+					"name":"kong.example"
+				}]
+		}
+    }
+}]'
+
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+
     The results should look like this:
 
-    ```text
-    service/httpbin created
-    deployment.apps/httpbin created
-    ```
-1.  Create an Ingress rule to proxy the `httpbin` service.
+    {% capture the_code %}
+{% navtabs codeblock %}
+{% navtab Ingress %}
+```text
+ingress.networking.k8s.io/echo patched
+```
+{% endnavtab %}
+{% navtab Gateway APIs %}
+```text
+gateway.gateway.networking.k8s.io/kong patched
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+
+1. Send requests to verify if the configured certificate is served.
 
     ```bash
-    $ echo '
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-      name: demo
-      annotations:
-        konghq.com/strip-path: "true"
-    spec:
-      ingressClassName: kong
-      rules:
-      - http:
-          paths:
-          - path: /test
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: httpbin
-                port:
-                  number: 80
-    ' | kubectl apply -f -
+    curl -ksv https://kong.example/echo --resolve kong.example:443:$PROXY_IP 2>&1 | grep -A1 "certificate:"
     ```
     The results should look like this:
     ```text
-    ingress.networking.k8s.io/demo created
-    ```
-1.  Test the Ingress rule.
-
-    ```bash
-    $ curl -i $PROXY_IP/test/status/200
-    ```
-    The results should look like this:
-    ```text
-    HTTP/1.1 200 OK
-    Content-Type: text/html; charset=utf-8
-    Content-Length: 0
-    Connection: keep-alive
-    Server: gunicorn/19.9.0
-    Date: Wed, 27 Sep 2023 10:37:46 GMT
-    Access-Control-Allow-Origin: *
-    Access-Control-Allow-Credentials: true
-    X-Kong-Upstream-Latency: 3
-    X-Kong-Proxy-Latency: 1
-    Via: kong/3.3.1
+    * Server certificate:
+    *  subject: CN=kong.example
     ```
 
-## Setup HTTPS redirect
+## Configure an HTTPS redirect
 
-To instruct Kong to redirect all HTTP requests matching this Ingress rule to
-HTTPS, update its annotations.
+Kong handles HTTPS redirects by automatically issuing redirects to requests
+whose characteristics match an HTTPS-only route except for the protocol. For
+example with a Kong route like
 
-1. Limit the protocols of the Ingress rule to HTTPS only and issue a 308 redirect.
+```json
+{
+  "protocols": [
+    "https"
+  ],
+  "hosts": [
+    "kong.example"
+  ],
+  "https_redirect_status_code": 301,
+  "paths": [
+    "/echo/"
+  ],
+  "name": "example",
+}
+```
 
-    ```bash
-    $ kubectl patch ingress demo -p '{"metadata":{"annotations":{"konghq.com/protocols":"https","konghq.com/https-redirect-status-code":"308"}}}'
-    ```
-    The results should look like this:
-    ```text
-    ingress.networking.k8s.io/demo patched
-    ```
-1. Make a plain-text HTTP request to Kong and a redirect is issued.
+a request for `http://kong.example/echo/green` will receive a 301 response with
+a `Location: https://kong.example/echo/green` header. Kubernetes resource
+annotations instruct the controller to create a route with `protocols=[https]`
+and `https_redirect_status_code` set to the code of your choice (the default if
+unset is `426`).
 
-    ```bash
-    $ curl $PROXY_IP/test/headers -I
-    ```
-    The results should look like this:
-    ```text
-    HTTP/1.1 308 Permanent Redirect
-    Date: Tue, 06 Aug 2019 18:04:38 GMT
-    Content-Type: text/html
-    Content-Length: 167
-    Connection: keep-alive
-    Location: https://192.0.2.0/test/headers
-    Server: kong/1.2.1
-    ```
+{% navtabs codeblock %}
+{% navtab Ingress %}
+Setting the `konghq.com/protocols` annotation configures which protocols are
+allowed:
 
-The `Location` header contains the URL you need to use for an HTTPS
-request. This URL varies depending on your installation method. You can also get the IP address of the load balancer for Kong and send a HTTPS request to test.
+```bash
+kubectl annotate ingress echo konghq.com/protocols=https
+```
 
+The results should look like this:
+
+```text
+ingress.networking.k8s.io/echo annotated
+```
+
+The `konghq.com/https-redirect-status-code` annotation selects the status code
+used to redirect:
+
+```bash
+kubectl annotate ingress echo konghq.com/https-redirect-status-code="301"
+```
+
+The results should look like this:
+```text
+ingress.networking.k8s.io/echo annotated
+```
+
+{% endnavtab %}
+{% navtab Gateway APIs %}
+Setting the `konghq.com/protocols` annotation configures which protocols are
+allowed:
+
+```bash
+kubectl annotate httproute echo konghq.com/protocols=https
+```
+
+The results should look like this:
+
+```text
+httproute.gateway.networking.k8s.io/echo annotated
+```
+
+The `konghq.com/https-redirect-status-code` annotation selects the status code
+used to redirect:
+
+```bash
+kubectl annotate httproute echo konghq.com/https-redirect-status-code="301"
+```
+
+The results should look like this:
+```text
+httproute.gateway.networking.k8s.io/echo annotated
+```
+
+Note that this _does not_ use an [HTTPRequestRedirectFilter](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1.HTTPRequestRedirectFilter)
+to configure the redirect. Using the filter to redirect HTTP to HTTPS requires
+a separate HTTPRoute to handle redirected HTTPS traffic, which does not mesh
+well with Kong's single route redirect model.
+
+Work to support the standard filter-based configuration is ongoing. Until then,
+the annotations allow you to configure HTTPS-only HTTPRoutes.
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Test the configuration
+
+With the redirect configuration in place, HTTP requests will now receive a
+redirect rather than being proxied upstream:
+
+
+```bash
+curl -ksvo /dev/null http://kong.example/echo --resolve kong.example:80:$PROXY_IP 2>&1 | grep -i http
+```
+
+The results should look like this:
+
+```text
+> GET /echo HTTP/1.1
+< HTTP/1.1 301 Moved Permanently
+< Location: https://kong.example/echo
+```
+
+Instructing curl to follow redirects using the `-L` flag will have it navigate
+to the HTTPS URL and receive a proxied response from upstream:
+
+```bash
+curl -Lksv http://kong.example/echo --resolve kong.example:80:$PROXY_IP --resolve kong.example:443:$PROXY_IP 2>&1
+```
+
+The results should look like this (some output removed for brevity):
+
+```text
+> GET /echo HTTP/1.1
+> Host: kong.example
+>
+< HTTP/1.1 301 Moved Permanently
+< Location: https://kong.example/echo
+< Server: kong/3.4.2
+
+* Issue another request to this URL: 'https://kong.example/echo'
+
+* Server certificate:
+*  subject: CN=kong.example
+
+> GET /echo HTTP/2
+> Host: kong.example
+>
+< HTTP/2 200
+< via: kong/3.4.2
+<
+Welcome, you are connected to node kind-control-plane.
+Running on Pod echo-74d47cc5d9-pq2mw.
+In namespace default.
+With IP address 10.244.0.7.
+```
+
 
 1. Send a request to the `Location` URL.
     ```bash
@@ -120,8 +256,14 @@ request. This URL varies depending on your installation method. You can also get
     }
     ```
 
-Kong correctly serves the request only on HTTPS protocol and redirects the user if the HTTP protocol is used. The `-k` flag in cURL skips certificate validation as the certificate served by Kong is a self-signed one. If you are serving this traffic through a domain that you control and have configured TLS properties for it, then the flag won't
-be necessary.
+Kong correctly serves the request only on HTTPS protocol and redirects the user
+if the HTTP protocol is used. The `-k` flag in cURL skips certificate
+validation as the certificate served by Kong is a self-signed one. If you are
+serving this traffic through a domain that you control and have configured TLS
+properties for it, then the flag won't be necessary.
 
-If you have a domain that you control but don't have TLS/SSL certificates
-for it, see [Using cert-manager with Kong](/kubernetes-ingress-controller/{{page.kong_version}}/guides/cert-manager) guide which can get TLS certificates setup for you automatically. And it's free, thanks to Let's Encrypt!
+If you have a domain that you control but don't have TLS/SSL certificates for
+it, see [Using cert-manager with
+Kong](/kubernetes-ingress-controller/{{page.kong_version}}/guides/cert-manager)
+guide which can get TLS certificates setup for you automatically. And it's
+free, thanks to Let's Encrypt!
