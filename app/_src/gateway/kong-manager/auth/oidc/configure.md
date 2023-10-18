@@ -18,7 +18,7 @@ OIDC for Kong Manager.
 The following is an example using Google as the IdP and serving Kong Manager
 from its default URL, `http://127.0.0.1:8002`.
 
-The `admin_gui_auth_config` value must be valid JSON.
+The `admin_gui_auth_config` value must be valid JSON. Here is an example setting template.
 
 ```
 enforce_rbac = on
@@ -28,19 +28,22 @@ admin_gui_auth_conf={                                      \
   "issuer": "https://accounts.google.com/",                \
   "client_id": ["<ENTER_YOUR_CLIENT_ID>"],                 \
   "client_secret": ["<ENTER_YOUR_CLIENT_SECRET_HERE>"],    \
-  "consumer_by": ["username","custom_id"],                 \
-  "ssl_verify": false,                                     \
-  "admin_claim": ["email"],                             \
-  "leeway": 60,                                            \
-  "redirect_uri": ["http://localhost:8002/default"],                      \
-  "login_redirect_uri": ["http://localhost:8002/default"],                \
-  "logout_methods": ["GET", "DELETE"],                     \
-  "logout_query_arg": "logout",                            \
-  "logout_redirect_uri": ["http://localhost:8002/default"],               \
-  "scopes": ["openid","profile","email","offline_access"], \
-  "auth_methods": ["authorization_code"]                   \
+  "authenticated_groups_claim": ["groups"],                \
+  "admin_claim": ["email"],                                \
+  "redirect_uri": ["http://localhost:8002/default"],       \
 }
 ```
+Required for `admin_gui_auth_conf` of `openid-connect`
+| item                       | required | data type | default value                      | remark                                                                                                |
+|----------------------------|----------|-----------|------------------------------------|-------------------------------------------------------------------------------------------------------|
+| issuer                     | true     | String    | "input idp issuer"                 | A string representing a URL                                                                           |
+| client_id                  | true     | Array     | ["input idp client_id"]            | The client id(s) that the plugin uses when it calls authenticated endpoints on the identity provider. |
+| client_secret              | true     | Array     | ["input client secret"]            | The client secret.                                                                                    |
+| redirect_uri               | true     | Array     | _["input http://ip:8002/default"]_ | The redirect URI passed to the authorization and token endpoints.                                     |
+| authenticated_groups_claim | true     | Array     | ["groups"]                         | The claim that contains authenticated groups.                                                         |
+| admin_claim                | true     | Array     | ["email"]                          | Retrieve the field as a username.                                                                     |
+| admin_auto_create          | false    | Boolean   | true                               | This parameter is used to enable the automatic creation of administrators.                            |
+| ssl_verify                 | false    | Boolean   | false                              | Verify identity provider server certificate.                                                          |
 
 The **Sessions plugin** (configured with `admin_gui_session_conf`) requires a secret and is configured securely by default.
 * Under all circumstances, the `secret` must be manually set to a string.
