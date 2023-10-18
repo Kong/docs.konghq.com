@@ -11,6 +11,8 @@ The Federal Information Processing Standard (FIPS) 140-2 is a federal standard d
 
 The package replaces OpenSSL, the primary SSL library in {{site.base_gateway}}, with [BoringSSL](https://boringssl.googlesource.com/boringssl/), which at its core uses the FIPS 140-2 validated BoringCrypto for cryptographic operations.
 
+**Note**: FIPS is not supported when running Kong Gateway Enterprise in free mode.
+
 ## FIPS implementation
 ### Password hashing
 
