@@ -75,7 +75,6 @@ navigate to the new Workspace's dashboard.
 
 ## Delete a workspace
 
-### Wipe workspace data
 To delete a workspace, *all data* must first be deleted from the workspace.
 Choose one of the following methods.
 
@@ -113,6 +112,20 @@ from the workspace:
     ```bash
     curl -i -X DELETE http://localhost:8001/{WORKSPACE_NAME}/rbac/roles/{ROLE_NAME|ROLE_ID}
     ```
+
+1. Send a `DELETE` request to the Kong Admin API:
+
+    ```sh
+    curl -i -X DELETE http://localhost/workspaces/{WORKSPACE_NAME|WORKSPACE_ID}
+    ```
+
+    The deletion will fail if you have any data in your workspace.
+
+    If it is successful, you should see the following response:
+
+    ```
+    HTTP 204 No Content
+    ```
 {% endnavtab %}
 {% navtab Portal CLI %}
 
@@ -122,51 +135,19 @@ from the workspace:
     portal wipe WORKSPACE_NAME
     ```
 
-2. Turn off the Dev Portal for the workspace:
+1. Turn off the Dev Portal for the workspace:
 
     ```sh
     portal disable WORKSPACE_NAME
     ```
 
-3. Delete each role from the workspace. You can't complete this step using the
-Portal CLI, so switch to either the *Kong Manager* or *Admin API* tab and complete
+1. Delete each role from the workspace. You can't complete this step using the
+Portal CLI, so switch to the *Admin API* tab and complete
 step 3.
 
-{% endnavtab %}
-{% endnavtabs %}
-
-### Delete a clean workspace
-
-If your workspace is clean, you can delete it using the Kong Manager GUI or the
-Kong Admin API. If not, see the previous section to [wipe workspace data](#wipe-workspace-data).
-
-{% navtabs %}
-{% navtab Kong Manager %}
-
-Using Kong Manager, complete the following:
-
-1. Go to **Workspaces** and select the workspace you want to delete.
-
-1. Click **Settings** and then **Delete**.
-
-1. In the **Delete Workspace** dialog, enter the name of the workspace, select **Confirm: delete all associated resources**, and then click **Delete**. 
-
-{% endnavtab %}
-{% navtab Admin API %}
-
-Send a `DELETE` request to the Kong Admin API:
-
-```sh
-curl -i -X DELETE http://localhost/workspaces/{WORKSPACE_NAME|WORKSPACE_ID}
-```
-
-The deletion will fail if you have any data in your workspace.
-
-If it is successful, you should see the following response:
-
-```
-HTTP 204 No Content
-```
+1. Delete the workspace. You can't complete this step using the
+Portal CLI, so switch to either the *Kong Manager* or *Admin API* tab and complete
+step 4.
 
 {% endnavtab %}
 {% endnavtabs %}
