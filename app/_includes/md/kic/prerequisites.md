@@ -81,12 +81,13 @@ You can install Kong in your Kubernetes cluster using [Helm](https://helm.sh/).
     ```bash
     kubectl set env -n kong deployment/kong-controller CONTROLLER_FEATURE_GATES="GatewayAlpha=true" -c ingress-controller
     ```
-{% endif %}
 
    The results should look like this:
    ```text
    deployment.apps/kong-controller env updated
    ```
+{% endif %}
+
 
 ### Test connectivity to Kong
 
@@ -95,10 +96,8 @@ Kubernetes exposes the proxy through a Kubernetes service. Run the following com
 1. Populate `$PROXY_IP` for future commands:
 
     ```bash
-    HOST=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-    PORT=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.spec.ports[0].port}')
-    export PROXY_IP=${HOST}
-    echo $PROXY_IP   
+    export PROXY_IP=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+    echo $PROXY_IP
     ```
 
 2. Ensure that you can call the proxy IP:
