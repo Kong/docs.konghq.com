@@ -1,4 +1,6 @@
 name: Response Transformer
+search_aliases:
+  - response-transformer
 dbless_compatible: 'yes'
 free: true
 enterprise: true

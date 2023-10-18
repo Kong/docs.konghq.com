@@ -1,4 +1,6 @@
 name: OAuth 2.0 Introspection
+search_aliases:
+  - oauth2-introspection
 dbless_compatible: 'yes'
 free: false
 enterprise: true

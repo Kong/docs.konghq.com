@@ -1,4 +1,6 @@
 name: Kafka Upstream
+search_aliases:
+  - kafka-upstream
 dbless_compatible: 'yes'
 free: false
 enterprise: true

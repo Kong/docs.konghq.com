@@ -1,4 +1,7 @@
 name: AppDynamics
+search_aliases:
+  - app dynamics
+  - app-dynamics
 publisher: Kong Inc.
 desc: Integrate Kong with the AppDynamics APM Platform
 free: false

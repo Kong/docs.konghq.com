@@ -1,4 +1,10 @@
 name: Key Authentication - Encrypted
+search_aliases:
+  - key auth encrypted
+  - key authentication encrypted
+  - key auth advanced
+  - key authentication advanced
+  - key-auth-enc
 dbless_compatible: partially
 dbless_explanation: |
   Consumers and credentials can be created with declarative configuration.
