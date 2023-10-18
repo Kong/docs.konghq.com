@@ -1096,6 +1096,8 @@ configuration property to `kong.conf` to constrain the `Kong-Debug` header for d
       
 ### Features
 
+* Changed the underlying operating system (OS) for our convenience Docker tags (for example, `latest`, `3.2.1.0`, `3.2`) from Debian to Ubuntu.
+
 #### Core
 
 * When `router_flavor` is set to`traditional_compatible`, Kong Gateway verifies routes created 

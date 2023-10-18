@@ -24,7 +24,12 @@ We recommend setting up your teams and permissions before enabling RBAC to allow
 
 ## Configure developer teams 
 
-In this scenario, you are a product manager at a pizza company, responsible for overseeing their online application. Your task is to create a Dev Portal intended for delivery companies. This portal will grant delivery companies access to your APIs, enabling them to incorporate your pizza offerings into their own delivery service offerings. One of your primary objectives is to ensure that only trusted delivery partners are granted access to develop applications using your APIs and deliver your pizzas.
+In this scenario, you are a product manager at a pizza company, responsible for overseeing their online application. Your task is to create a Dev Portal intended for delivery companies. This portal will grant delivery companies access to your APIs, enabling them to incorporate your pizza offerings into their own delivery service offerings. 
+
+![pizza ordering api flow](/assets/images/diagrams/diagram-dev-portal-team-access.png)
+> _**Figure 1:** Diagram that shows how the Pizza Ordering API works in this scenario. The diagram shows how a customer, Rosario, orders a pizza through the Pizza App, which triggers the Pizza Ordering API to be sent to the pizza restaurant. Once the restaurant receives the API request, they begin to make the pizza. When the pizza is ready, the Pizza restaurant's Dispatch Driver API alerts the Pizza App. The Pizza App assigns a delivery driver that picks up the pizza and delivers it to Rosario._
+
+One of your primary objectives is to ensure that only trusted delivery partners are granted access to develop applications using your APIs and deliver your pizzas.
 
 To achieve this, you must create two groups of developers, each with different levels of API access:
 * **Authorized Delivery Partners:** This group can access and consume your APIs so they can integrate them into their own delivery applications.
