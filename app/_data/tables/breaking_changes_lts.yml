@@ -1,0 +1,705 @@
+categories:
+  - name: New feature
+    key: 1
+    desc: |
+      A new feature introduced in a 3.x release. It may affect existing configurations.
+  - name: Removed or deprecated
+    key: 2
+    desc: |
+      Feature or behavior is removed and we will not add it back.
+      By updating the setting accordingly, you can any potential 
+      issues that may arise from using the deprecated alias and ensure 
+      that their Kong instance functions correctly with the most recent changes and improvements. 
+      
+      Keeping configurations up to date is essential for maintaining the system's stability, 
+      security, and optimal performance. 
+      
+      Customers need to understand the notification part and compare the
+      settings with the customer's real settings.
+  - name: Compatible
+    key: 3
+    desc: |
+      Behavior change that may cause the customer's DB config or kong.conf to fail. 
+      This includes deprecated (but not removed) features.
+  - name: Debateable
+    key: 4
+    desc: |
+      Customer might choose to seek assistance from the Kong, which offers paid services and 
+      additional support. 
+      
+      Kong team provides advanced features and professional services tailored to meet 
+      specific business needs, including data migration, custom plugin integration, 
+      and seamless coordination with existing settings PDK.
+  - name: Notifications of changed behavior
+    key: 5
+    desc: |
+      Changes that you should be aware of, but require no action.
+entries:
+  - area: Plugins
+    category: 1
+    description: |
+      The Request Validator plugin now allows requests carrying a 
+      `content-type` with a parameter to match its `content-type` without a parameter.
+    action: |
+      No
+  - area: DB config
+    category: 1
+    description: |
+      The data plane configuration cache was removed. 
+      Configuration persistence is now done automatically with LMDB.
+
+      The data plane config cache mechanism and its related configuration options 
+      (`data_plane_config_cache_mode` and `data_plane_config_cache_path`) have been removed in favor of LMDB.
+    action: |
+      Remove parameters from Kong configuration.
+  - area: DB config
+    category: 1
+    description: |
+      Bumped the version number of declarative configuration to 3.0 for changes on route.path. 
+      
+      Declarative configurations using older versions are upgraded to 3.0 during migrations.
+    action: |
+      If any configurations are stored in a repository (following a GitOps model),
+      these need to be upgraded using [`deck convert`](/deck/latest/reference/deck_convert/).
+  - area: DB config?
+    category: 1
+    description: Tags may now contain space characters.
+    action: |
+      No
+  - area: kong.conf
+    category: 1
+    description: |
+      The default value of `lua_ssl_trusted_certificate` has changed to system to automatically load the
+      trusted CA list from the system CA store. 
+    action: |
+      If this field is not configured by the client, they need to ensure they are happy that 
+      the new default of the system now pulling in all certs on the server. 
+      May not be behavior they want.
+  - area: Plugins
+    category: 1
+    description: |
+      The default policy is now `local` for all deployment modes on Rate Limiting,
+      Rate Limiting Advanced, and Response Rate Limiting plugins.
+    action: |
+      No
+  - area: Plugins
+    category: 1
+    description: |
+      Plugin batch queuing: HTTP Log, StatsD, OpenTelemetry, and Datadog
+      
+      The queuing system has been reworked, causing some plugin parameters to not function as expected anymore.
+    action: | 
+      If you use queues in these plugins, new parameters must be configured. 
+      See each plugin's documentation for details.
+
+      The module `kong.tools.batch_queue` has been renamed to `kong.tools.batch` and the API was changed. 
+      If your custom plugin uses queues, it must be updated to use the new parameters.
+
+  - area: Deployment
+    category: 2
+    description: |
+      Deprecated and stopped producing Debian 8 (Jessie) containers and packages.
+    action: |
+      Debian 10 and 11 are available. Upgrade to one of these versions before 
+      upgrading to Kong 3.4.
+
+  - area: Deployment
+    category: 2
+    description: |
+      Deprecated and stopped producing Amazon Linux 1 containers and packages.
+    action: |
+       We recommend migrating to Amazon Linux 2 or another supported operating 
+       system to continue receiving updates, security patches, and support from AWS.
+  
+  - area: Deployment
+    category: 2
+    description: |
+      Deprecated and stopped producing Alpine Linux images and packages.
+
+      The underlying operating system (OS) for our convenience Docker tags 
+      (for example, `latest`, `3.4.0.0`, `3.4`) has changed from Alpine to Ubuntu.
+    action: |
+      Review your Dockerfiles for OS-specific configuration and adjust as necessary.
+
+      If you are using one of the convenience images, adjust your configuration for Ubuntu.
+      Otherwise, switch to an image using a specific OS tag 
+      (for example, `3.4.0.0-debian`).
+  
+  - area: Plugins
+    category: 2
+    description: |
+      The deprecated shorthands field in Kong plugin or DAO schemas was removed 
+      in favor of the typed `shorthand_fields`. 
+    action: |
+      If your custom schemas still use `shorthands`, you need to update them to 
+      use `shorthand_fields`. This update is necessary to ensure 
+      compatibility with the latest version of Kong.
+  
+  - area: 
+    category: 2
+    description: |
+      Support for the `legacy = true | false` attribute was removed from Kong 
+      schemas and Kong field schemas.
+    action: |
+      You can no longer use the `legacy` attribute in your schemas. 
+      
+      Any references to `legacy=true | false` in your custom schemas should be 
+      updated to conform to the latest schema specifications without the `legacy` attribute.
+  
+  - area: Nginx templates
+    category: 2
+    description: |
+      The deprecated alias of `Kong.serve_admin_api` was removed. 
+    action: |
+      If your custom Nginx templates still use the alias, change it to `Kong.admin_content`.
+
+  - area: PDK
+    category: 2
+    description: | 
+      The Kong singletons module `kong.singletons` was removed in favor of the PDK `kong.*`.
+    action: |
+      Remove the `kong.singletons` module and use the `kong` global variable instead. 
+      
+      For example: `singletons.db.daos` -> `kong.db.daos`
+      
+  - area: Templates?
+    category: 2
+    description: |
+      `ngx.ctx.balancer_address` was removed in favor of `ngx.ctx.balancer_data`.
+    action: |
+      If you were previously using `ngx.ctx.balancer_address`, use `ngx.ctx.balancer_data` instead.
+  
+  - area: Router
+    category: 2
+    description: |
+      The normalization rules for `route.path` have changed. 
+      Kong Gateway now stores the unnormalized path, but the regex path always pattern-matches 
+      with the normalized URI.
+      
+      Previously, Kong Gateway replaced percent-encoding in the regex path pattern to
+       ensure different forms of URI matches. That is no longer supported. 
+       Except for the reserved characters defined in [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986), 
+       write all other characters without percent-encoding. 
+    action: |
+      After the upgrade, if you configure routes using the old method, 
+      you will receive an alert and need to reconfigure the affected routes using the new route 
+      configuration method.
+
+  - area: Router
+    category: 2
+    description: |
+      Kong Gateway no longer uses a heuristic to guess whether a route path is a regex pattern. 
+      From 3.0 onward, all regex paths must start with the `~` prefix, and all paths that don't start with `~` are
+      considered plain text. 
+    action: |
+      No manual migration required.       
+      The migration process should automatically convert the regex paths when upgrading from 2.8 to 3.4. 
+
+      Going forward, when writing a regex, it must start with the `~` symbol.
+
+  - area: 
+    category: 2
+    description: |
+      Support for the `nginx-opentracing` module is deprecated as of 3.0 and will be removed from Kong in 4.0.
+    action: |
+      No
+
+  - area: Admin API
+    category: 2
+    description: |
+      The Admin API endpoints `/vitals/reports` and `/vitals/reports/:entity_type` have been removed. 
+
+    action: |
+      After the upgrade, use one of the following endpoints from the Vitals API instead:
+
+      * For `/vitals/reports/consumer`, use `/<workspace_name>/vitals/status_codes/by_consumer` instead
+      * For `/vitals/reports/service`, use `/<workspace_name>/vitals/status_codes/by_service` instead
+      * For `/vitals/reports/hostname`, use `/<workspace_name>/vitals/nodes` instead
+
+  - area: Admin API
+    category: 2
+    description: |
+      POST requests on `/targets` endpoints are no longer able to update existing entities. 
+      They are only able to create new ones.
+
+    action: |
+      If you have scripts that use POST requests to modify `/targets`, change them to PUT requests to the appropriate 
+      endpoints before updating to Kong Gateway 3.4. 
+
+  - area: Admin API
+    category:
+    description: |
+      Insert and update operations on duplicated targets return a 409 error.
+    action: |
+      If you have duplicate targets, remove them.
+
+  - area: PDK
+    category: 2
+    description: |
+      The `kong.request.get_path()` PDK function now performs path normalization on the string that is returned to the caller. 
+      The raw, non-normalized version of the request path can be fetched via `kong.request.get_raw_path()`. 
+    action: |
+      No
+
+  - area: PDK
+    category: 2
+    description: |
+      `pdk.response.set_header()`, `pdk.response.set_headers()`, and `pdk.response.exit()` now ignore and emit warnings 
+      for manually set Transfer-Encoding headers. 
+    action: |
+      No
+
+  - area: Go PDK
+    category: 2
+    description: |
+      The `go_pluginserver_exe` and `go_plugins_dir` directives are no longer supported. 
+    action: |
+      If you are using Go plugin server, migrate your plugins to use the Go PDK before upgrading.
+
+  - area: Plugins?
+    category: 2
+    description: |
+      The Kong constant `CREDENTIAL_USERNAME` with the value of `X-Credential-Username` has been removed. 
+
+      Kong plugins also don't support this constant.
+    action: |
+      Use the constant `CREDENTIAL_IDENTIFIER` (`X-Credential-Identifier`) when setting the upstream 
+      headers for a credential. 
+
+  - area: Declarative config
+    category: 2
+    description: |
+      It is no longer possible to use `.lua` format to import a declarative configuration file via
+      the Kong CLI tool. Only JSON and YAML formats are supported. 
+    action: |
+      If your update procedure with Kong Gateway involves executing `kong config db_import config.lua`,
+      convert the `config.lua` file into a `config.json` or `config.yml` file before upgrading. 
+
+  - area: Plugins
+    category: 2
+    description: |
+      DAOs in plugins must be listed in an array, so that their loading order is explicit. 
+      Loading them in a hash-like table is no longer supported.
+    action: |
+      Review your custom plugins. If you have plugins that use hash-like tables for listing DAOs, convert them into arrays.
+
+  - area: Plugins
+    category: 2
+    description: |
+      Plugins now must have a valid PRIORITY (integer) and VERSION (`x.y.z` format) field in their `handler.lua` 
+      file, otherwise the plugin will fail to load.
+    action: |
+      Review your custom plugins. Add a PRIORITY and VERSION in their respective formats to all of your custom plugins.
+
+  - area: PDK
+    category: 2
+    description: |
+      The `kong.plugins.log-serializers.basic` library was removed in favor of the PDK function `kong.log.serialize`. 
+    action: |
+      Upgrade your plugins to use the new PDK function.
+
+  - area: Plugins
+    category: 2
+    description: |
+      The support for deprecated legacy plugin schemas was removed. 
+    action: |
+      If your custom plugins still use the old (0.x era) schemas, you must upgrade them. 
+
+  - area: Plugins
+    category: 2
+    description: |
+      Updated the priority for some plugins.
+
+      This is important for those who run custom plugins as it may affect the sequence in which your plugins are executed.
+      This does not change the order of execution for plugins in a standard Kong Gateway installation.
+
+      Old and new plugin priority values:
+      - `acme` changed from `1007` to `1705`
+      - `basic-auth` changed from `1001` to `1100`
+      - `canary` changed from `13` to `20`
+      - `degraphql` changed from `1005` to `1500`
+      - `graphql-proxy-cache-advanced` changed from `100` to `99`
+      - `hmac-auth` changed from `1000` to `1030`
+      - `jwt` changed from `1005` to `1450`
+      - `jwt-signer` changed from `999` to `1020`.
+      - `key-auth` changed from `1003` to `1250`
+      - `key-auth-advanced` changed from `1003` to `1250`
+      - `ldap-auth` changed from `1002` to `1200`
+      - `ldap-auth-advanced` changed from `1002` to `1200`
+      - `mtls-auth` changed from `1006` to `1600`
+      - `oauth2` changed from `1004` to `1400`
+      - `openid-connect` changed from `1000` to `1050`
+      - `rate-limiting` changed from `901` to `910`
+      - `rate-limiting-advanced` changed from `902` to `910`
+      - `route-by-header` changed from `2000` to `850`
+      - `route-transformer-advanced` changed from `800` to `780`
+      - `pre-function` changed from `+inf` to `1000000`
+      - `vault-auth` changed from `1003` to `1350`
+  
+    action: |
+      Review custom plugin priorities. 
+      If any of the changes in priorities break expected behaviour, adjust as necessary.
+
+  - area: Plugins
+    category: 2
+    description: |
+      JWT plugin: The authenticated JWT is no longer put into the Nginx context (`ngx.ctx.authenticated_jwt_token`).
+    action: |
+      Custom plugins which depend on that value being set under that name must be updated to use Kong's 
+      shared context instead (`kong.ctx.shared.authenticated_jwt_token`) before upgrading to 3.4.
+
+  - area: Plugins
+    category: 2
+    description: |
+      JWT plugin (jwt): 
+      The JWT plugin now denies any request that has different tokens in the JWT token search locations. 
+    action: |
+      No
+
+  - area: Plugins
+    category: 2
+    description: |
+      StatsD plugin: Any metric name that is related to a service now has a `service.` prefix: 
+
+      `kong.service.<service_identifier>.request.count`.
+      * The metric `kong.<service_identifier>.request.status.<status>` has been renamed to 
+      `kong.service.<service_identifier>.status.<status>`.
+      * The metric `kong.<service_identifier>.user.<consumer_identifier>.request.status.<status>` has been renamed to 
+      `kong.service.<service_identifier>.user.<consumer_identifier>.status.<status>`.
+      * The metric `*.status.<status>.total` from metrics `status_count` and `status_count_per_user` has been removed.
+    action: |
+      No
+
+  - area: Plugins
+    category: 2
+    description: |
+      Proxy Cache, Proxy Cache Advanced, and GraphQL Proxy Cache Advanced plugins 
+      don't store response data in `ngx.ctx.proxy_cache_hit` anymore. They store it in `kong.ctx.shared.proxy_cache_hit`.
+    action: |
+      Logging plugins that need the response data must now read it from `kong.ctx.shared.proxy_cache_hit`.
+
+  - area: DB config
+    category: 2
+    description: |
+      Added the `allow_debug_header` configuration property to `kong.conf` to constrain the `Kong-Debug` header for debugging. 
+      This option defaults to `off`.
+    action: |
+      If you were previously relying on the Kong-Debug header to provide debugging information, 
+      set `allow_debug_header=on` to continue doing so.
+
+      If you're using Response Transformer plugin as a workaround to remove headers,
+      you no longer need the plugin. Disable and remove it.
+
+  - area: Plugins
+    category: 2
+    description: |
+      The lua-resty-session library has been upgraded to v4.0.0. This version includes a full 
+      rewrite of the session library, and is not backwards compatible.
+
+      This library is used by the following plugins: Session, OpenID Connect, and SAML. 
+      Many session parameters used by these plugins have been renamed or removed. 
+
+      This also affects any session configuration that uses the Session or OpenID Connect 
+      plugin in the background, including sessions for Kong Manager and Dev Portal.
+
+    action: |
+      All existing sessions are invalidated when upgrading to this version. 
+      For sessions to work as expected in this version, all nodes must run Kong Gateway 3.4.x.
+
+      For that reason, we recommend that during upgrades, proxy nodes with mixed versions run for as little time as possible. 
+      During that time, the invalid sessions could cause failures and partial downtime.
+
+      You can expect the following behavior:
+      * **After upgrading the control plane**: Existing Kong Manager and Dev Portal sessions will be 
+      invalidated and all users will be required to log back in.
+      * **After upgrading the data planes**: Existing proxy sessions will be invalidated. 
+      If you have an IdP configured, users will be required to log back into the IdP.
+
+      **After you have upgraded** all of your CP and DP nodes to 3.4 and ensured that your environment is stable, 
+      you can update parameters to their new renamed versions. Although your configuration will continue to work as 
+      previously configured, we recommend adjusting your configuration to avoid future unexpected behavior.
+     
+      See the [breaking changes doc](/gateway/latest/breaking-changes/32x/) for all session configuration 
+      changes and guidance on how to convert your existing session configuration.
+
+  - area: DB config
+    category: 2
+    description: |
+      Cassandra DB support has been removed. It is no longer supported as a data store for Kong Gateway.
+    action: |
+      [Migrate to PostgreSQL](/gateway/latest/migrate-cassandra-to-postgres/).
+
+  - area: Deployment
+    category: 2
+    description: |
+      Support for running Kong Gateway on Ubuntu 18.04 (“Bionic”) is now deprecated, as Standard Support for 
+      Ubuntu 18.04 has ended as of June 2023.
+    action: |
+      Ubuntu 20.04 and 22.04 are available. Upgrade to one of these versions before upgrading to Kong 3.4.
+
+  - area: Router
+    category: 3
+    description: | 
+      Regex look-around and backreferences support in the atc-router have been removed. 
+      These are rarely used features and removing support for them improves the speed of our regex matching.
+
+      If your current regexes use look-around or backreferences you will receive an error when attempting to start Kong, 
+      showing exactly what regex is incompatible. 
+      
+    action: |
+      To ensure consistency of behavior after the upgrade, set `router_flavor = traditional`, 
+      or change the regex to remove look-around or backreferences.
+
+      Review the regex paths and ensure these removed features are not in use. 
+      Update the regex router accordingly.
+
+  - area: Plugins
+    category: 3
+    description: |
+      ACL, Bot Detection, and IP Restriction plugins: 
+      Removed the deprecated `blacklist` and `whitelist` configuration parameters.
+
+    action: |
+      Remove the deprecated `blacklist` and `whitelist` configuration parameters.
+      Use `denylist` and `allowlist` instead.
+
+  - area: Plugins
+    category: 3
+    description: |
+      ACME plugin: The default value of the `auth_method` configuration parameter is now `token`.
+
+    action: |
+      Caution: Following the upgrade, the `auth_method` will persist as `null`
+      (if this configuration is not utilized), which deviates from the new version's default 
+      setting of `token`.
+
+  - area: Plugins
+    category: 3
+    description: |
+      **AWS Lambda plugin**
+
+      * The AWS region is now required. You can set it through the plugin configuration with the `aws_region` field parameter, or with environment variables.
+      * The plugin now allows host and `aws_region` fields to be set at the same time, and always applies the SigV4 signature. 
+
+    action: |
+      Review your configuration or consult with the Kong Support team.
+
+  - area: Plugins
+    category: 3
+    description: |
+      **HTTP Log (http-log) plugin**
+      
+      The `headers` field now only takes a single string per header name, 
+      where it previously took an array of values.
+
+    action: |
+      Review your configuration or consult with the Kong Support team.
+
+  - area: Plugins
+    category: 3
+    description: |
+      **Prometheus plugin**
+      
+      Complete overhaul of the plugin:
+
+      * High cardinality metrics are now disabled by default.
+      * Decreased performance penalty to proxy traffic when collecting metrics.
+      * The following metric names were adjusted to add units to standardize where possible:
+        * `http_status` to `http_requests_total`.
+        * `latency` to `kong_request_latency_ms` (HTTP), `kong_upstream_latency_ms`, `kong_kong_latency_ms`, and `session_duration_ms` (stream).
+
+            Kong latency and upstream latency can operate at orders of different magnitudes. Separate these buckets to reduce memory overhead.
+
+        * `kong_bandwidth` to `kong_bandwidth_bytes`.
+        * `nginx_http_current_connections` and `nginx_stream_current_connections` were merged into to `nginx_hconnections_total`
+        *  `request_count` and `consumer_status` were merged into http_requests_total.
+
+            If the `per_consumer` config is set to `false`, the `consumer` label will be empty. If the `per_consumer` config is `true`, the `consumer` label will be filled.
+            
+      * Removed the following metric: `http_consumer_status`
+      * New metrics:
+        * `session_duration_ms`: monitoring stream connections.
+        * `node_info`: Single gauge set to 1 that outputs the node's ID and Kong Gateway version.
+
+      * `http_requests_total` has a new label, `source`. It can be set to `exit`, `error`, or `service`.
+      * All memory metrics have a new label: `node_id`.
+      * Updated the Grafana dashboard that comes packaged with Kong
+
+    action: |
+      To make sure you don't miss any data, adjust your plugin configuration to use the new settings.
+      
+      If you have any custom dashboards or have written any custom PromQL, review them and ensure the name changes haven't broken anything.
+
+  - area: Plugins
+    category: 3
+    description: |
+      **StatsD Advanced plugin**
+
+      The StatsD Advanced plugin has been deprecated and will be removed in 4.0. 
+      All capabilities are now available in the StatsD plugin.
+
+    action: |
+      We recommend migrating over to the StatsD plugin, however StatsD Advanced continues to function in 3.4.
+  - area: Plugins
+    category: 3?
+    description: | 
+      **Serverless Functions (`post-function` or `pre-function`)**
+
+      Removed the deprecated `config.functions` configuration parameter from the Serverless Functions 
+      plugins' schemas.
+
+    action: |
+      Use the `config.access` phase instead.
+
+  - area: DB config
+    category: 3
+    description: |
+      The default PostgreSQL SSL version has been bumped to TLS 1.2. In `kong.conf`:
+   
+      * The default [`pg_ssl_version`](/gateway/latest/reference/configuration/#postgres-settings)
+      is now `tlsv1_2`.
+      * Constrained the valid values of this configuration option to only accept the following: `tlsv1_1`, `tlsv1_2`, `tlsv1_3` or `any`.
+
+      This mirrors the setting `ssl_min_protocol_version` in PostgreSQL 12.x and onward. 
+      See the [PostgreSQL documentation](https://postgresqlco.nf/doc/en/param/ssl_min_protocol_version/)
+      for more information about that parameter.
+  
+    action: |
+      Change the value in your `kong.conf` or environment variables from `tlsv1_0` to `tlsv1_2`.
+
+      To use the default setting in `kong.conf`, verify that your Postgres server supports TLS 1.2 or higher versions, or set the TLS version yourself. 
+      TLS versions lower than `tlsv1_2` are already deprecated and considered insecure from PostgreSQL 12.x onward.
+  
+  - area: Admin API
+    category: 3
+    description: |
+      The `/consumer_groups/:id/overrides` endpoint is deprecated in favor of a more generic plugin scoping mechanism. 
+
+    action: |
+      Instead of setting overrides, you can apply a plugin instance to a consumer group entity. See the 
+      [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/how-to/)
+      documentation for an example.
+
+  - area: Admin API
+    category: 3
+    description: |
+      The `admin_api_uri` property is now deprecated and will be fully removed in a future version of Kong Gateway.
+    action: |
+      Rename the configuration property `admin_api_uri` to `admin_gui_api_url`. 
+
+  - area: Plugins
+    category: 4
+    description: |
+      As of 3.0, Kong Gateway's schema library's `process_auto_fields` function will not make deep copies of data that is passed to it when the given context is `select`.
+      This was done to avoid excessive deep copying of tables where we believe the data most of the time comes from a driver like `pgmoon` or `lmdb`.
+
+      If a custom plugin relied on `process_auto_fields` not overriding the given table, it must make its own copy before passing it to the function now. 
+
+    action: |
+      If a custom plugin needs to fetch data by deep copying, perform it on the `select` context before calling the function. 
+      
+      Define `context = “select”` to trigger deep copying:
+
+      ```lua
+      local is_select = context == "select"
+        if not is_select then
+          data = tablex.deepcopy(data)
+        end
+      ```
+
+  - area: Plugins
+    category: 4
+    description: |
+      The list of reported plugins available on the server now returns a table of 
+      metadata per plugin instead of the boolean `true`. 
+
+      For example:
+      
+      ```json
+      plugins": {
+        "available_on_server": {
+            "acl": "3.0.1",
+            "acme": "0.4.0",
+            "aws-lambda": "3.6.3",
+            "azure-functions": "1.0.1",
+            "basic-auth": "2.2.0",
+            "bot-detection": "2.0.0",
+        ...
+      ```
+    action: |
+      Adapt to use the new metadata instead of boolean values.
+
+  - area: PDK
+    category: 5
+    description: |
+      The PDK is no longer versioned.
+    action: |
+      No
+
+  - area: DB config
+    category: 5
+    description: |
+      The migration helper library (mostly used for Cassandra migrations) is no longer supplied with Kong Gateway. 
+    action: |
+      No
+
+  - area: DB config
+    category: 5
+    description: |
+      PostgreSQL migrations can now have an `up_f` part like Cassandra migrations, designating a function to call. 
+      The `up_f` part is invoked after the `up` part has been executed against the database.
+    action: |
+      No
+
+  # Commented out because it was introduced in 3.0 and then changed in a later version, so it's irrelevant to 2.8 users
+  #
+  # - area: Router
+  #   category: 5
+  #   description: |
+  #     The `traditional_compat` router mode has been made more compatible with the behavior of traditional mode by splitting 
+  #     routes with multiple paths into multiple atc routes with separate priorities. 
+      
+  #     Since the introduction of the new router in Kong Gateway 3.0, traditional_compat mode assigned only one priority to each route, even if different prefix path lengths and regular expressions were mixed in a route. 
+  #     This was not how multiple paths were handled in the traditional router and the behavior has now been changed so that a separate priority value is assigned to each path in a route. 
+  #   action: |
+
+  - area: Plugins
+    category: 5
+    description: |
+      Kong Plugins are no longer individually versioned.
+      Starting in 3.0.0, every Kong plugin's version has been updated to match Kong Gateway's version.
+    action: |
+      No
+
+  - area: Plugins
+    category: 5
+    description: |
+      **HTTP Log plugin** 
+      
+      If the log server responds with a 3xx HTTP status code, the plugin now considers it to be 
+      an error and retries according to the retry configuration. Previously, 3xx status codes would be interpreted 
+      as a success, causing the log entries to be dropped. 
+
+    action: |
+      No
+
+  - area: Plugins
+    category: 5
+    description: |
+      **Serverless Functions (post-function or pre-function)**
+      
+      `kong.cache` now points to a cache instance that is 
+      dedicated to the Serverless Functions plugins. It does not provide access to the global Kong Gateway cache. 
+      Access to certain fields in `kong.conf` has also been restricted. 
+
+    action: |
+      No
+
+  - area: Plugins
+    category: 5
+    description: |
+      Zipkin plugin: This plugin now uses queues for internal buffering. 
+      The standard queue parameter set is available to control queuing behavior.
+    action: |
+      No
+      

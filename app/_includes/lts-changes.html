@@ -1,0 +1,28 @@
+{% for c in site.data.tables.breaking_changes_lts.categories %}
+<h3 id="{{ c.name | slugify }}">{{ c.name }}</h3>
+<p>{{ c.desc | markdownify }}</p>
+<table>
+  <thead>
+    <th>Change</th>
+    <th>Category</th>
+    <th>Action required</th>
+  </thead>
+  <tbody>
+    {% for e in site.data.tables.breaking_changes_lts.entries %}
+      {% if c.key == e.category %}
+        <tr>
+            <td>
+                <span>{{ e.description | markdownify }}</span>
+            </td>
+            <td>
+                <span>{{ e.area | markdownify }}</span>
+            </td>
+            <td>
+                <span>{{ e.action | strip-html | markdownify }}</span>
+            </td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+{% endfor %}
