@@ -3,7 +3,15 @@ title: Migrate a self-managed zone control plane to {{site.konnect_saas}}
 content_type: tutorial
 ---
 
-This guide explains how to migrate a self-managed global control plane to {{site.konnect_saas}}. This can be useful if you manage other services in {{site.konnect_saas}} that way you can view all your entities in one place. 
+If you already have zone control planes in {{site.mesh_product_name}}, you can migrate them to {{site.konnect_short_name}} in Mesh Manager. [Mesh Manager](/konnect/mesh-manager/) allows you to create, manage, and view your {{site.mesh_product_name}} service meshes using the {{site.konnect_short_name}} platform.
+
+Here are a few benefits of creating a mesh deployment in {{site.konnect_short_name}} instead of using a self-managed setup:
+
+* **Kong-managed global control plane:** By creating your mesh in {{site.konnect_short_name}}, your global control plane is managed by Kong. 
+* **All entities in one place:** You can view all your information, such as entities from Kong Ingress Controller (KIC) for Kubernetes, {{site.konnect_short_name}}-managed entities, and now service mesh data, all from one central platform. 
+* **Managed UI wizard setup:** {{site.konnect_short_name}} simplifies the process of creating a mesh by providing a setup wizard in the UI that guides you through the configuration steps.
+
+This guide explains how to migrate a self-managed zone control plane to {{site.konnect_saas}}. 
 
 ## Prerequisites
 
@@ -18,7 +26,7 @@ This guide explains how to migrate a self-managed global control plane to {{site
   ```bash
   kumactl config control-planes list
   ```
-  This should return your self-managed global control plane. You can use port-forward of the On-Prem Global CP API port 5681 to localhost to get quick access with `kumactl`.
+  This should return your self-managed global control plane. If you are using Kubernetes, you can run `kubectl port-forward deployment/mesh-cp-name -n mesh-namespace 5681` to get quick access with `kumactl`.
 
 1. Get the service mesh resources and policies for each service mesh. The following script provides an example of which resources are required:
 
