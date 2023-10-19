@@ -45,8 +45,9 @@ kong_version_compatibility: # (Required)
        #- 3.0.x
 
 enterprise: # true OR false
-  # (Required) Set true if the plugin is *only* available with an Enterprise subscription.
-  # Set false if your plugin is open-source and works with open-source Kong Gateway.
+  # (Required) Set true if the third-party plugin is _only_ supported with a 
+  # Kong Enterprise subscription; set false if the plugin is supported on 
+  # both OSS and Enterprise.
 
 konnect: # true OR false
    # (Required) Set true if compatible with Konnect. Set false if not.
