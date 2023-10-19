@@ -20,17 +20,6 @@ Deploy an upstream HTTP application, create a configuration group, add a route, 
 
 {% include_cached /md/kic/add-tls-conf.md hostname='kong.example' kong_version=page.kong_version %}
 
-1. Send requests to verify if the configured certificate is served.
-
-    ```bash
-    curl -ksv https://kong.example/echo --resolve kong.example:443:$PROXY_IP 2>&1 | grep -A1 "certificate:"
-    ```
-    The results should look like this:
-    ```text
-    * Server certificate:
-    *  subject: CN=kong.example
-    ```
-
 ## Using plugins on Ingress / Gateway API Routes
 
 1. Setup a KongPlugin resource.
