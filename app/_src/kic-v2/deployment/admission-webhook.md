@@ -249,7 +249,7 @@ kubectl create secret generic some-credential \
   --from-literal=kongCredType=wrong-auth \
   --from-literal=sdfkey=my-sooper-secret-key
 ```
-The rewsults should look like this:
+The results should look like this:
 ```
 Error from server: admission webhook "validations.kong.konghq.com" denied the request: invalid credential type: wrong-auth
 ```
