@@ -90,22 +90,22 @@ Using Kong Manager, complete the following:
 
 1. In the **Delete Workspace** dialog, enter the name of the workspace, select **Confirm: delete all associated resources**, and then click **Delete**. 
 
-This will automatically delete all entities (teams and roles) associated with the workspace as well as the workspace itself.
+This will automatically delete all entities (teams, roles, services, and routes, for example) associated with the workspace as well as the workspace itself.
 
 {% endnavtab %}
 {% navtab Admin API %}
 
 Delete the workspace and [all entities associated with the workspace](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/#delete-a-workspace):
 
-    ```bash
-    curl -i -X DELETE http://localhost:8001/{WORKSPACE_NAME}?cascade=true
-    ```
+```bash
+curl -i -X DELETE http://localhost:8001/{WORKSPACE_NAME}?cascade=true
+```
 
-    If it is successful, you should see the following response:
+If it is successful, you should see the following response:
 
-    ```
-    HTTP 204 No Content
-    ```
+```
+HTTP 204 No Content
+```
 {% endnavtab %}
 {% navtab Portal CLI %}
 
