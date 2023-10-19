@@ -14,7 +14,7 @@ requests through the HTTPRoute are distributed across the Services. This guide w
 
 ## Deploy multiple Services with HTTPRoute
 
-1. Deploy a second echo Service so that you have a second `BackendRef` to use for traffic splitting:
+1. Deploy two echo Services so that you have multiple `BackendRef`s to use for traffic splitting:
     ```bash
     kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-services.yaml
     ```
@@ -26,7 +26,7 @@ requests through the HTTPRoute are distributed across the Services. This guide w
     deployment.apps/echo2 created
     ```
 
-1. Deploy an HTTPRoute that sends traffic to both the services. By default, traffic is distributed evenly across all services:
+1. Deploy a HTTPRoute that sends traffic to both the services. By default, traffic is distributed evenly across all services:
 
     ```bash
    echo 'apiVersion: gateway.networking.k8s.io/v1beta1
