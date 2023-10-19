@@ -75,7 +75,9 @@ navigate to the new Workspace's dashboard.
 
 ## Delete a workspace
 
-To delete a workspace, *all data* must first be deleted from the workspace.
+{:.important}
+> **Caution**: The following steps will also delete **all entities in the workspace**. Make sure that this is something you want to do before proceeding.
+
 Choose one of the following methods.
 
 {% navtabs %}
@@ -93,7 +95,7 @@ This will automatically delete all entities (teams and roles) associated with th
 {% endnavtab %}
 {% navtab Admin API %}
 
-1. Delete the workspace and [all entities associated with the workspace](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/#delete-a-workspace):
+Delete the workspace and [all entities associated with the workspace](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/#delete-a-workspace):
 
     ```bash
     curl -i -X DELETE http://localhost:8001/{WORKSPACE_NAME}?cascade=true
