@@ -1,4 +1,7 @@
 name: Response Rate Limiting
+search_aliases:
+  - ratelimiting
+  - response-ratelimiting
 dbless_compatible: partially
 dbless_explanation: |
   The plugin will run fine with the `local` policy (which doesn't use the database) or

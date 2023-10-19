@@ -1,4 +1,7 @@
 name: TLS Handshake Modifier
+search_aliases:
+  - tls-handshake-modifier
+  - certificates
 dbless_compatible: 'yes'
 free: false
 plus: false

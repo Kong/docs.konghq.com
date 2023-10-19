@@ -1,4 +1,9 @@
 name: GraphQL Proxy Caching Advanced
+search_aliases:
+  - proxy cache
+  - graphql proxy cache
+  - graphql proxy cache advanced
+  - graphql-proxy-cache-advanced
 dbless_compatible: 'yes'
 free: false
 enterprise: true

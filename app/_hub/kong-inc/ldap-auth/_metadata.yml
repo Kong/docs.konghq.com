@@ -1,4 +1,6 @@
 name: LDAP Authentication
+search_aliases:
+  - ldap-auth
 dbless_compatible: 'yes'
 free: true
 enterprise: true

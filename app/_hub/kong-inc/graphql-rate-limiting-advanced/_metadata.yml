@@ -1,4 +1,6 @@
 name: GraphQL Rate Limiting Advanced
+search_aliases:
+  - graphql-rate-limiting-advanced
 konnect_examples: true
 dbless_compatible: partially
 dbless_explanation: |

@@ -1,4 +1,6 @@
 name: Request Termination
+search_aliases:
+  - request-termination
 dbless_compatible: 'yes'
 free: true
 enterprise: true

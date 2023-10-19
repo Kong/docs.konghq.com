@@ -1,4 +1,6 @@
 name: Upstream Timeout
+search_aliases:
+  - upstream-timeout
 dbless_compatible: yes
 free: false
 plus: false
