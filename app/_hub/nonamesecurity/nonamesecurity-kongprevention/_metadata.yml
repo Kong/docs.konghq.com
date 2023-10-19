@@ -34,7 +34,7 @@ kong_version_compatibility:
       - 1.1.x
       - 1.0.x
 
-enterprise: true
+enterprise: false
 
 konnect: false
 
