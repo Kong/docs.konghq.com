@@ -36,22 +36,11 @@ microservices is encrypted.
 
 Kong handles HTTPS redirects by automatically issuing redirects to requests
 whose characteristics match an HTTPS-only route except for the protocol. For
-example with a Kong route like
+example, with a Kong route like
 
 ```json
-{
-  "protocols": [
-    "https"
-  ],
-  "hosts": [
-    "kong.example"
-  ],
-  "https_redirect_status_code": 301,
-  "paths": [
-    "/echo/"
-  ],
-  "name": "example",
-}
+{ "protocols": ["https"], "hosts": ["kong.example"],
+  "https_redirect_status_code": 301, "paths": ["/echo/"], "name": "example" }
 ```
 
 a request for `http://kong.example/echo/green` will receive a 301 response with
@@ -62,6 +51,7 @@ unset is `426`).
 
 {% navtabs codeblock %}
 {% navtab Ingress %}
+
 Setting the `konghq.com/protocols` annotation configures which protocols are
 allowed:
 
@@ -89,6 +79,7 @@ ingress.networking.k8s.io/echo annotated
 
 {% endnavtab %}
 {% navtab Gateway APIs %}
+
 Setting the `konghq.com/protocols` annotation configures which protocols are
 allowed:
 
@@ -175,24 +166,6 @@ Running on Pod echo-74d47cc5d9-pq2mw.
 In namespace default.
 With IP address 10.244.0.7.
 ```
-
-
-1. Send a request to the `Location` URL.
-    ```bash
-    $ curl -k https://$PROXY_IP/test/headers
-    ```
-    The results should look like this:
-    ```text
-    {
-      "headers": {
-        "Accept": "*/*",
-        "Connection": "keep-alive",
-        "Host": "192.0.2.0",
-        "User-Agent": "curl/8.1.2",
-        "X-Forwarded-Host": "192.0.2.0"
-      }
-    }
-    ```
 
 Kong correctly serves the request only on HTTPS protocol and redirects the user
 if the HTTP protocol is used. The `-k` flag in cURL skips certificate
