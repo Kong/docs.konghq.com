@@ -38,7 +38,7 @@
 
 # 3.5
 /gateway/latest/kong-enterprise/analytics/* /gateway/3.4.x/kong-enterprise/analytics/:splat
-/gateway/latest/kong-enterprise/dev-portal/* /gateway/3.4.x/kong-enterprise/dev-portal/:splate
+/gateway/latest/kong-enterprise/dev-portal/* /gateway/3.4.x/kong-enterprise/dev-portal/:splat
 
 
 # 3.4
