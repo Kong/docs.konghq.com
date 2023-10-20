@@ -10,6 +10,11 @@ from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
+## November 2023
+
+**Support for exporting configurations in YAML and JSON**
+: {{site.konnect_short_name}} users can now export Gateway Manager objects like services, routes, plugins to YAML or JSON and import them into APIOps tooling like DecK.
+
 ## October 2023
 **Combine multiple metrics inside the same custom report**
 : {{site.konnect_short_name}} users are now able to select multiple metrics in a custom report. This feature allows them to compare multiple metrics of the same category (e.g. latency) within the same report instead of creating multiple reports.
