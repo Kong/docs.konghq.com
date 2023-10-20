@@ -178,7 +178,7 @@ Kubernetes API-server makes an HTTPS call to the admission webhook to verify if 
 {% endnavtabs %}
 
 ## Test the configuration
-You can test if the admission webhook is enabled for duplicate KongConsumers, incorrect KongPlugins, incorrect credentail secrets, and incorrect routes.
+You can test if the admission webhook is enabled for duplicate KongConsumers, incorrect KongPlugins, incorrect credential secrets, and incorrect routes.
 
 ### Verify duplicate KongConsumers
 
