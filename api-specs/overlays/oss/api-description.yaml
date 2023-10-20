@@ -1,0 +1,30 @@
+overlay: 1.0.0
+info:
+  title: update description
+  version: 0.0.1
+actions:
+- target: $.info
+  update:
+    description: |-
+      <br>
+      <a href="https://insomnia.rest/run?label=Kong%20Gateway%20Open%20Source%203.4&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-OSS%2F3.4%2Fkong-oss-3.4.json" target="_blank">
+      <img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a> 
+      <br><br>
+
+      OpenAPI 3.0 spec for Kong Gateway's Open Source Admin API.
+      <br><br>
+
+      Kong Gateway comes with an **internal** RESTful Admin API for administration purposes.
+      Requests to the Admin API can be sent to any node in the cluster, and Kong will
+      keep the configuration consistent across all nodes.
+      - `8001` is the default port on which the Admin API listens.
+      - `8444` is the default port for HTTPS traffic to the Admin API.
+
+      This API is designed for internal use and provides full control over Kong, so
+      care should be taken when setting up Kong environments to avoid undue public
+      exposure of this API.
+      <br><br>
+      
+      You can learn more about Kong Gateway at [docs.konghq.com](https://docs.konghq.com).
+      Give Kong a star at [Kong/kong](https://github.com/kong/kong) repository.
+

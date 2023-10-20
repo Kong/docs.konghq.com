@@ -1,4 +1,9 @@
 name: Portal Application Registration
+search_aliases:
+  - app reg
+  - portal app reg
+  - dev portal
+  - application-registration
 global: false
 dbless_compatible: 'no'
 free: false

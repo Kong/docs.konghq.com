@@ -1,4 +1,6 @@
 name: Forward Proxy Advanced
+search_aliases:
+  - forward-proxy
 dbless_compatible: 'yes'
 free: false
 plus: false

@@ -1,4 +1,6 @@
 name: Request Validator
+search_aliases:
+  - request-validator
 dbless_compatible: 'yes'
 free: false
 enterprise: true

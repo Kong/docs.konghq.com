@@ -1,4 +1,6 @@
 name: gRPC-gateway
+search_aliases:
+  - grpc gateway
 dbless_compatible: 'yes'
 free: true
 enterprise: true
