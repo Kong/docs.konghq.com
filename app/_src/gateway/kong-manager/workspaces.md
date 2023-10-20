@@ -82,6 +82,23 @@ Choose one of the following methods.
 
 {% navtabs %}
 {% navtab Kong Manager %}
+{% if_version lte:3.4.x %}
+1.  Manually delete all files via **Dev Portal** > **Editor**. You cannot delete folders at this time, but deleting
+all files from a folder will remove the folder.
+1. Turn off the Dev Portal. Go to Dev Portal **Settings** > **Advanced** > **Turn Off**.
+1. Remove all roles from the workspace:
+     1. Go to the **Teams** tab.
+     1. Navigate to the **Roles** tab.
+     1. Click **View** on the workspace you want to delete.
+     1. Go to each role entry and click **Edit**.
+     1. In the entry detail page, click **Delete Role**. A confirmation modal will appear. Click **Delete Role** again.
+1. In the workspace you want to delete, navigate to the **Dashboard** page.
+1. Click the **Settings** button to open the **Edit Workspace** page.
+1. Click **Delete**.
+    The deletion will fail if you have any data in your workspace.
+{% endif_version %}
+
+{% if_version gte:3.5.x %}
 Using Kong Manager, complete the following:
 
 1. Go to **Workspaces** and select the workspace you want to delete.
@@ -91,10 +108,45 @@ Using Kong Manager, complete the following:
 1. In the **Delete Workspace** dialog, enter the name of the workspace, select **Confirm: delete all associated resources**, and then click **Delete**. 
 
 This will automatically delete all entities (teams, roles, services, and routes, for example) associated with the workspace as well as the workspace itself.
+{% endif_version %}
 
 {% endnavtab %}
 {% navtab Admin API %}
 
+{% if_version lte:3.3.x %}
+1. Delete all Dev Portal files associated with the workspace:
+
+    ```bash
+    curl -i -X DELETE http://localhost:8001/{WORKSPACE_NAME}/files
+    ```
+
+1. Turn off the Dev Portal for the workspace:
+
+   ```bash
+   curl -X PATCH http://localhost:8001/workspaces/{WORKSPACE_NAME}  \
+    --data "config.portal=false"
+   ```
+
+1. [Delete each role](/gateway/{{page.kong_version}}/admin-api/rbac/reference/#delete-a-role)
+from the workspace:
+
+    ```bash
+    curl -i -X DELETE http://localhost:8001/{WORKSPACE_NAME}/rbac/roles/{ROLE_NAME|ROLE_ID}
+    ```
+
+1. Send a `DELETE` request to the Kong Admin API:
+    ```sh
+    curl -i -X DELETE http://localhost/workspaces/{WORKSPACE_NAME|WORKSPACE_ID}
+    ```
+    The deletion will fail if you have any data in your workspace.
+    
+    If it is successful, you should see the following response:
+    ```
+    HTTP 204 No Content
+    ```
+{% endif_version %}
+
+{% if_version gte:3.4.x %}
 Delete the workspace and [all entities associated with the workspace](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/#delete-a-workspace):
 
 ```bash
@@ -106,9 +158,27 @@ If it is successful, you should see the following response:
 ```
 HTTP 204 No Content
 ```
+{% endif_version %}
 {% endnavtab %}
 {% navtab Portal CLI %}
+{% if_version lte:3.4.x %}
+1. Delete all Dev Portal files associated with the workspace:
+    ```sh
+    portal wipe WORKSPACE_NAME
+    ```
+2. Turn off the Dev Portal for the workspace:
+    ```sh
+    portal disable WORKSPACE_NAME
+    ```
+3. Delete each role from the workspace. You can't complete this step using the
+Portal CLI, so switch to either the *Kong Manager* or *Admin API* tab and complete
+step 3.
 
+4. Delete the workspace. You can't complete this step using the
+Portal CLI, so switch to either the *Kong Manager* or *Admin API* tab and complete
+step 4.
+{% endif_version %}
+{% if_version gte:3.5.x %}
 1. Delete all Dev Portal files associated with the workspace:
 
     ```sh
@@ -131,6 +201,7 @@ Portal CLI, so you must use the Admin API:
 1. Delete the workspace. You can't complete this step using the
 Portal CLI, so switch to either the *Kong Manager* or *Admin API* tab and complete
 step 4.
+{% endif_version %}
 
 {% endnavtab %}
 {% endnavtabs %}
