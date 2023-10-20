@@ -127,8 +127,9 @@ with added functionality.
   this package adds [Kong Manager](#kong-manager) to the basic open-source functionality.
 * <span class="badge enterprise"></span> With an **Enterprise** subscription,
   it also includes:
+  {% if_version lte:3.4.x %}
     * [Dev Portal](#kong-dev-portal)
-    * [Vitals](#kong-vitals)
+    * [Vitals](#kong-vitals){% endif_version %}
     * [RBAC](/gateway/{{page.kong_version}}/admin-api/rbac/reference/)
     * [Enterprise plugins](/hub/)
 
@@ -173,6 +174,7 @@ Here are some of the things you can do with Kong Manager:
 * Activate or deactivate plugins with a couple of clicks
 * Group your teams, services, plugins, consumer management, and everything else
 exactly how you want them
+{% if_version lte:3.4.x %}
 * Monitor performance: visualize cluster-wide, workspace-level, or
 object-level health using intuitive, customizable dashboards
 
@@ -181,11 +183,12 @@ object-level health using intuitive, customizable dashboards
 
 [Kong Dev Portal](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/) is used to onboard new developers and to generate API documentation, create custom pages, manage API versions, and secure developer access.
 
+
 ### Kong Vitals
 {:.badge .enterprise}
 
 [Kong Vitals](/gateway/{{page.kong_version}}/kong-enterprise/analytics/) provides useful metrics about the health and performance of your {{site.base_gateway}} nodes, as well as metrics about the usage of your proxied APIs. You can visually monitor vital signs and pinpoint anomalies in real-time, and use visual API analytics to see exactly how your APIs and Gateway are performing and access key statistics. Kong Vitals is part of the Kong Manager UI.
-
+{% endif_version %}
 ### Kubernetes
 
 {{site.base_gateway}} can run natively on Kubernetes with its custom [ingress controller](/kubernetes-ingress-controller/), Helm chart, and Operator. A Kubernetes ingress controller is a proxy that exposes Kubernetes services from applications (for example, Deployments, ReplicaSets) running on a Kubernetes cluster to client applications running outside of the cluster. The intent of an ingress controller is to provide a single point of control for all incoming traffic into the Kubernetes cluster.

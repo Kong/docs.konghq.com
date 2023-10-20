@@ -8,9 +8,11 @@ session data storage, encryption, renewal, expiry, and sending browser cookies.
 It is built using
 [lua-resty-session](https://github.com/bungle/lua-resty-session).
 
+{% if_plugin_version lte:3.4.x %}
 For information about configuring and using the Session plugin with the Dev
 Portal, see [Sessions in the Dev Portal](/gateway/latest/developer-portal/configuration/authentication/sessions/#configuration-to-use-the-sessions-plugin-with-the-dev-portal).
 
+{% endif_plugin_version %}
 ## How it works
 
 The Session plugin can be configured globally or with an entity (for example, a service or a route)
