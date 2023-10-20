@@ -19,22 +19,20 @@ This guide explains how to migrate a self-managed zone control plane to {{site.k
 
 ![mesh migration after](/assets/images/diagrams/diagram-mesh-migration-after.png)
 
-> **Figure 2:** Diagram that explains how the {{site.konnect_short_name}} global control plane communicates with zone control planes, services, and data planes after migrating. Each service has an associated data plane proxy and those communicate with the zone control plane. The services, data plane proxies, and zone control planes are all self-managed in {{site.mesh_product_name}}. The zone control plane then communicates with the {{site.konnect_short_name}} global control plane, which is managed by {{site.konnect_short_name}}.
+> **Figure 2:** Diagram that explains how the {{site.konnect_short_name}} global control plane communicates with zone control planes, services, and data planes after migrating. Each service has an associated data plane proxy and those communicate with the zone control plane. The services, data plane proxies, and zone control planes are all self-managed in {{site.mesh_product_name}}. The zone control plane then communicates with the {{site.konnect_short_name}} global control plane, which is managed by Kong.
+
+## Limitation
+
+This guide assumes you are migrating zones from the self-managed global control plane to {{site.konnect_saas}} one by one. 
+In {{site.mesh_product_name}}, service discovery between zones works by to syncing Zone Ingresses from zone to global. 
+This means that if you have multiple zones that you are migrating, services in zone-1 won't be able to communicate with services in zone-2 while you're migrating zone-1 because the Zone Ingress from zone-2 is not synced yet to {{site.konnect_saas}}. 
 
 ## Prerequisites
 
 * A universal or Kubernetes cluster with a running zone control plane connected to the self-managed global control plane
 * [The latest version of kumactl](/mesh/latest/production/install-kumactl/) installed and configured to communicate with the self-managed global control plane
 * A [{{site.mesh_product_name}} global control plane in {{site.konnect_short_name}}](/konnect/mesh-manager/service-mesh/#create-a-zone-in-the-global-control-plane)
-* [yq installed](https://github.com/mikefarah/yq)
-
-## Limitation
-
-This guide implies migrating zones from self-managed global control plane to {{site.konnect_saas}} one by one. 
-In Kong Mesh service discovery between zones works by to syncing ZoneIngresses from Zone to Global. 
-This means, in the middle of migration, when zone-1 already connected to {{site.konnect_saas}} but zone-2 is still connected
-to the self-managed global control plane, services in zone-1 won't be able to communicate with services in zone-2 
-(because ZoneIngress from zone-2 is not yet synced to {{site.konnect_saas}}.  
+* [yq installed](https://github.com/mikefarah/yq) 
 
 ## Transfer resources from the self-managed global control plane to {{site.konnect_short_name}}
 
@@ -89,10 +87,14 @@ to the self-managed global control plane, services in zone-1 won't be able to co
 
 ## Connect the zone control plane to {{site.konnect_short_name}}
 
-1. [Create a new zone in {{site.konnect_short_name}}](/konnect/mesh-manager/service-mesh/#create-a-zone-in-the-global-control-plane). The name of the new zone should be similar to the zone we're connecting. 
+1. [Create a new zone in {{site.konnect_short_name}}](/konnect/mesh-manager/service-mesh/#create-a-zone-in-the-global-control-plane). The name of the new zone should match the zone from {{site.mesh_product_name}} that we're connecting to. 
+  Be sure to override your existing zone control plane `values.yaml` configuration with the values provided in the {{site.konnect_short_name}} UI wizard.
 
-1. If [KDS TLS](/mesh/latest/production/secure-deployment/certificates/#control-plane-to-control-plane-multizone) is enabled with self-signed certificates, set `kuma.controlPlane.tls.kdsZoneClient.secretName=""` so the zone control plane can use public certificates to authenticate with {{site.konnect_short_name}}.
-
-1. Override the existing zone control plane config with the values provided by {{site.konnect_short_name}} UI. 
+1. If [KDS TLS](/mesh/latest/production/secure-deployment/certificates/#control-plane-to-control-plane-multizone) is enabled with self-signed certificates, set `kuma.controlPlane.tls.kdsZoneClient.secretName=""` so the zone control plane can use public certificates to authenticate with {{site.konnect_short_name}}:
+  ```bash
+  kumactl install control-plane \
+  --set "kuma.controlPlane.tls.kdsZoneClient.secretName=kds-ca-certs" \
+  | kubectl apply -f -
+  ```
 
 1. Restart zone control plane with the new values. {{site.konnect_short_name}} will automatically start looking for the zone. Once {{site.konnect_short_name}} finds the zone, it will display it.
