@@ -13,8 +13,13 @@ Here are a few benefits of creating a mesh deployment in {{site.konnect_short_na
 
 This guide explains how to migrate a self-managed zone control plane to {{site.konnect_saas}}. 
 
-![migration before](/assets/images/diagrams/diagram-migration-before.svg)
-![migration after](/assets/images/diagrams/diagram-migration-after.svg)
+![mesh migration before](/assets/images/diagrams/diagram-mesh-migration-before.png)
+
+> **Figure 1:** Diagram that explains how the {{site.mesh_product_name}} global control plane communicates with zone control planes, services, and data planes before migrating. Each service has an associated data plane proxy and those communicate with the zone control plane. The zone control plane then communicates with the {{site.mesh_product_name}} global control plane. All of these entities are self-managed in {{site.mesh_product_name}}.
+
+![mesh migration after](/assets/images/diagrams/diagram-mesh-migration-after.png)
+
+> **Figure 2:** Diagram that explains how the {{site.konnect_short_name}} global control plane communicates with zone control planes, services, and data planes after migrating. Each service has an associated data plane proxy and those communicate with the zone control plane. The services, data plane proxies, and zone control planes are all self-managed in {{site.mesh_product_name}}. The zone control plane then communicates with the {{site.konnect_short_name}} global control plane, which is managed by {{site.konnect_short_name}}.
 
 ## Prerequisites
 
