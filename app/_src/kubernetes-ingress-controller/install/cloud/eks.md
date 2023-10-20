@@ -24,8 +24,8 @@ Kubernetes cluster.
     ```
    The results should look like this:
    ```text
-   NAME         TYPE           CLUSTER-IP      EXTERNAL-IP                           PORT(S)                      AGE
-   kong-proxy   LoadBalancer   10.63.250.199   example.eu-west-1.elb.amazonaws.com   80:31929/TCP,443:31408/TCP   57d
+   NAME                 TYPE           CLUSTER-IP      EXTERNAL-IP                           PORT(S)                      AGE
+   kong-gateway-proxy   LoadBalancer   10.63.250.199   example.eu-west-1.elb.amazonaws.com   80:31929/TCP,443:31408/TCP   57d
    ```
 1. Create an environment variable to hold the ELB hostname:
 
