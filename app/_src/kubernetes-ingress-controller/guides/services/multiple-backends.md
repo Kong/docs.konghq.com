@@ -2,9 +2,7 @@
 title: Multiple Backends
 type: how-to
 purpose: |
-  Distribute requests from multiple services through HTTPRoute
-stability_message: |
-  Using multiple backend services will be GA once a non-beta version of the <a href="https://gateway-api.sigs.k8s.io/">Kubernetes Gateway API</a> is available.
+  Distribute requests from multiple services using HTTPRoute
 ---
 
 HTTPRoute supports adding multiple Services under its `BackendRefs` field. When you add multiple Services,
