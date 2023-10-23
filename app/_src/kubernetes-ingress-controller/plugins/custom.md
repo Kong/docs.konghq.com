@@ -7,16 +7,15 @@ purpose: |
 
 Install a custom plugin in Kong without using a Docker build.
 
-## Install and configure custom plugin
+## Create a custom plugin
 
 1. Create a directory with test plugin code.
+
    {:.note}
    > If you already have a real plugin, you can skip this step.
 
-   Create either a ConfigMap or a Secret with the plugin code inside it. If you would like to install a plugin which is available as a rock from Luarocks, then you need to download it, unzip it and create a ConfigMap from all the Lua files of the plugin.
-
     ```bash
-    $ mkdir myheader && cd myheader
+    $ mkdir myheader
     $ echo 'local MyHeader = {}
 
     MyHeader.PRIORITY = 1000
@@ -28,7 +27,7 @@ Install a custom plugin in Kong without using a Docker build.
     end
 
     return MyHeader
-    ' > handler.lua
+    ' > myheader/handler.lua
     
     $ echo 'return {
       name = "myheader",
@@ -41,7 +40,7 @@ Install a custom plugin in Kong without using a Docker build.
         }, },
       }
     }
-    ' > schema.lua
+    ' > myheader/schema.lua
     ```
 
    After your plugin code available in a directory, the directory should look like this:
@@ -54,36 +53,12 @@ Install a custom plugin in Kong without using a Docker build.
 
     0 directories, 2 files
     ```
-1. Install {{site.kic_product_name}}.
 
-   If you plan to deploy using  Helm, add these values to your `values.yaml` file. The chart automatically configures all the environment variables based on the plugins you inject. Ensure that you add in other configuration values you might need for your installation to be successful.
-   ```yaml
-   gateway:
-     plugins:
-       configMaps:
-       - name: kong-plugin-myheader
-         pluginName: myheader
-   ```
-    {% capture the_code %}
-{% navtabs codeblock %}
-{% navtab YAML manifests %}
-```bash
-$ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.release }}/deploy/single/all-in-one-dbless.yaml
-```
-{% endnavtab %}
-{% navtab Helm %}
-```
-helm repo add kong https://charts.konghq.com
-helm repo update
-helm install kong kong/ingress -n kong --create-namespace --set ingressController.installCRDs=false --values values.yaml
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-{{ the_code | indent }}
+1. Create a ConfigMap or Secret with the plugin code. If you're not sure which option is correct, use a `ConfigMap`.
 
-1. Create a ConfigMap or Secret with the plugin code
-    {% capture the_code %}
+    If you would like to install a plugin which is available as a rock from Luarocks, then you need to download it, unzip it and create a ConfigMap or secret from all the Lua files of the plugin.
+
+{% capture the_code %}
 {% navtabs codeblock %}
 {% navtab ConfigMap %}
 ```bash
@@ -101,7 +76,7 @@ $ kubectl create secret generic -n kong kong-plugin-myheader --from-file=myheade
 {{ the_code | indent }}
 
     The results should look like this:
-    {% capture the_code %}
+{% capture the_code %}
 {% navtabs codeblock %}
 {% navtab ConfigMap %}
 ```text
@@ -118,6 +93,51 @@ secret/kong-plugin-myheader created
 {% endcapture %}
 {{ the_code | indent }}
 
+## Deploying custom plugins
+
+### Helm
+
+The easiest way to use custom plugins with Kong is via the Helm chart. The chart automatically configures all the environment variables based on the plugins you inject.
+
+1. Create a `values.yaml` file with the following contents. Ensure that you add in other configuration values you might need for your installation to be successful.
+
+{% capture the_code %}
+{% navtabs codeblock %}
+{% navtab ConfigMap %}
+```yaml
+gateway:
+  plugins:
+    configMaps:
+    - name: kong-plugin-myheader
+      pluginName: myheader
+```
+{% endnavtab %}
+
+{% navtab Secret %}
+```yaml
+gateway:
+  plugins:
+    secrets:
+    - name: kong-plugin-myheader
+      pluginName: myheader
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+
+2. Install {{site.kic_product_name}}.
+    ```
+    helm repo add kong https://charts.konghq.com
+    helm repo update
+    helm install kong kong/ingress -n kong --create-namespace --values values.yaml
+    ```
+
+### Non-Helm
+
+{:.note}
+> The following examples assume that you have a deployment named `proxy-kong`. Change this to the name of your deployment as needed.
+
 1. Modify configuration to update Kong's Deployment to load the custom plugin.
 
    The following patch is necessary to load the plugin.
@@ -125,12 +145,11 @@ secret/kong-plugin-myheader created
    - `KONG_PLUGINS` environment variable is set to include the custom plugin along with all the plugins that come in Kong by default.
    - `KONG_LUA_PACKAGE_PATH` environment variable directs Kong to look for plugins in the directory where we are mounting them.
 
-    If you have multiple plugins, simply mount multiple ConfigMaps and include the plugin name in the `KONG_PLUGINS` environment variable.
+   If you have multiple plugins, mount multiple ConfigMaps and include the plugin name in the `KONG_PLUGINS` environment variable.
 
-    > Note that if your plugin code involves database migration then you need to include the below patch to pod definition of your migration Job as well.
-   This is not a complete definition of the Deployment but merely a strategic patch which can be applied to an existing Deployment.
-
-   If you plan to deploy using  Helm, add these values to your `values.yaml` file. The chart automatically configures all the environment variables based on the plugins you inject. Ensure that you add in other configuration values you might need for your installation to be successful. Ensure that you replace the name of the deployment with `kong-gateway` if you installed using Helm.
+  {:.important}
+   > Note that if your plugin code involves database migration then you need to include the following patch to pod definition of your migration Job as well.
+   This is not a complete definition of the Deployment but a strategic patch which can be applied to an existing Deployment.
 
    ```yaml
 apiVersion: apps/v1
@@ -157,10 +176,12 @@ spec:
           name: kong-plugin-myheader
 ```
 
+## Using custom plugins
+
 1. After you have setup Kong with the custom plugin installed, you can use it like any other plugin. Create a KongPlugin custom resource:
 
     ```yaml
-   echo "
+   echo '
    apiVersion: configuration.konghq.com/v1
    kind: KongPlugin
    metadata:
@@ -168,20 +189,16 @@ spec:
    config:
      header_value: "my first plugin"
    plugin: myheader
-   " | kubectl apply -f -
+   ' | kubectl apply -f -
    ```
 
-1. Annotate an Ingress or Service resource to instruct Kong on when to execute the plugin:
+1. Add the `konghq.com/plugins` annotation to your Service, Ingress or Gateway API route to instruct Kong to execute the plugin:
 
-```yaml
-konghq.com/plugins: my-custom-plugin
-```
+   ```yaml
+   konghq.com/plugins: my-custom-plugin
+   ```
 
-Once you have got Kong up and running, configure your
-custom plugin via [KongPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource/).
-
-
-### Plugins in other languages
+## Plugins in other languages
 
 When deploying custom plugins in other languages, especially Golang, the built binary is larger than
 the size limit of ConfigMap. In such cases, consider using an init container to pull large binaries from
