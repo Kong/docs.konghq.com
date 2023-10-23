@@ -8,13 +8,13 @@ purpose: |
 ## Prerequisites
 
 * [Set up an EKS cluster](https://aws.amazon.com/getting-started/projects/deploy-kubernetes-app-amazon-eks/).
-* Inatall `kubectl` and connect to the EKS Kubernetes cluster. 
+* Install `kubectl` and update your `kubeconfig` to point to the EKS Kubernetes cluster by running `aws eks --region $AWS_REGION update-kubeconfig --name $CLUSTER_NAME`
 
-{% include_cached /md/kic/deploy-kic.md version=page.version %}
+{% include_cached /md/kic/deploy-kic-v3.md version=page.version %}
 
 ## Setup environment variables
 
-Create an environment variable with the IP address at which Kong is accessible. This IP address sends requests to the
+Create an environment variable with the address at which Kong is accessible. This address sends requests to the
 Kubernetes cluster.
 
 1. Get the IP address at which Kong is accessible:
@@ -25,7 +25,7 @@ Kubernetes cluster.
    The results should look like this:
    ```text
    NAME                 TYPE           CLUSTER-IP      EXTERNAL-IP                           PORT(S)                      AGE
-   kong-gateway-proxy   LoadBalancer   10.63.250.199   example.eu-west-1.elb.amazonaws.com   80:31929/TCP,443:31408/TCP   57d
+   kong-gateway-proxy   LoadBalancer   10.63.250.199   example.eu-west-1.elb.amazonaws.com   80:31929/TCP,443:31408/TCP   4m41s
    ```
 1. Create an environment variable to hold the ELB hostname:
 
@@ -33,9 +33,10 @@ Kubernetes cluster.
     $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].hostname}" service -n kong kong-gateway-proxy)
     ```
 
-> Note: It may take some time for Amazon to associate the IP address to the `kong-gateway-proxy` Service.
+    {:.important}
+    > It may take some time for Amazon to associate the IP address to the `kong-gateway-proxy` Service.
 
-After you've installed the {{site.kic_product_name}}, learn to use Ingress Controller, see the [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial.
+After you've installed the {{site.kic_product_name}}, learn to use Ingress Controller, see the [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/get-started/services-and-routes/) tutorial.
 
 ## Troubleshooting
 
