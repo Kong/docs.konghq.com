@@ -72,8 +72,8 @@ This means that if you have multiple zones that you are migrating, services in z
     ```
 
 1. If mTLS is enabled on the mesh and the backend type is `builtin` or `provided`, then copy the mesh secrets:
-    * **Builtin:** Copy secrets named `{mesh_name}.ca-builtin-cert-{backend_name}` and `{mesh_name}.ca-builtin-key-{backend_name}`. For more information, see [storage of secrets](/mesh/{{page.kong_version}}/policies/mutual-tls/#storage-of-secrets).
-    * **Provided:** Copy secrets specified in the mesh resource. For more information, see [usage of "provided" CA](/mesh/{{page.kong_version}}/policies/mutual-tls/#usage-of-provided-ca).
+    * **Builtin:** Copy secrets named `{mesh_name}.ca-builtin-cert-{backend_name}` and `{mesh_name}.ca-builtin-key-{backend_name}`. For more information, see [storage of secrets](/mesh/latest/policies/mutual-tls/#storage-of-secrets).
+    * **Provided:** Copy secrets specified in the mesh resource. For more information, see [usage of "provided" CA](/mesh/latest/policies/mutual-tls/#usage-of-provided-ca).
 
 1. Switch the active `kumactl` control plane to {{site.konnect_short_name}}:
   ```bash
