@@ -15,11 +15,11 @@ This guide explains how to migrate a self-managed zone control plane to {{site.k
 
 ![mesh migration before](/assets/images/diagrams/diagram-mesh-migration-before.png)
 
-> **Figure 1:** Diagram that explains how the {{site.mesh_product_name}} global control plane communicates with zone control planes, services, and data planes before migrating. Each service has an associated data plane proxy and those communicate with the zone control plane. The zone control plane then communicates with the {{site.mesh_product_name}} global control plane. All of these entities are self-managed in {{site.mesh_product_name}}.
+> **Figure 1:** Diagram that explains how the {{site.mesh_product_name}} global control plane communicates with zone control planes, services, and data planes before migrating. Each service has an associated data plane proxy and those communicate with the zone control plane. The zone control plane then communicates with the {{site.mesh_product_name}} global control plane. All of these entities are self-managed.
 
 ![mesh migration after](/assets/images/diagrams/diagram-mesh-migration-after.png)
 
-> **Figure 2:** Diagram that explains how the {{site.konnect_short_name}} global control plane communicates with zone control planes, services, and data planes after migrating. Each service has an associated data plane proxy and those communicate with the zone control plane. The services, data plane proxies, and zone control planes are all self-managed in {{site.mesh_product_name}}. The zone control plane then communicates with the {{site.konnect_short_name}} global control plane, which is managed by Kong.
+> **Figure 2:** Diagram that explains how the {{site.konnect_short_name}} global control plane communicates with zone control planes, services, and data planes after migrating. Each service has an associated data plane proxy and those communicate with the zone control plane. The services, data plane proxies, and zone control planes are all self-managed. The zone control plane then communicates with the {{site.konnect_short_name}} global control plane, which is managed by Kong.
 
 ## Limitation
 
@@ -97,4 +97,4 @@ This means that if you have multiple zones that you are migrating, services in z
   | kubectl apply -f -
   ```
 
-1. Restart zone control plane with the new values. {{site.konnect_short_name}} will automatically start looking for the zone. Once {{site.konnect_short_name}} finds the zone, it will display it.
+1. Restart the zone control plane with the new values. {{site.konnect_short_name}} will automatically start looking for the zone. Once {{site.konnect_short_name}} finds the zone, it will display it in the UI.
