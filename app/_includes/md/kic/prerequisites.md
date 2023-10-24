@@ -1,7 +1,7 @@
 <details markdown="1">
 <summary>
 <blockquote class="note">
-  <p style="cursor: pointer">Before you begin ensure that you have <u>Installed {{site.kic_product_name}} </u> in your Kubernetes cluster and are able to connect to Kong. {% if include.enterprise %}This guide requires <strong>Kong Enterprise</strong>.{% endif %}</p>
+  <p style="cursor: pointer">Before you begin ensure that you have <u>Installed {{site.kic_product_name}} </u> in your Kubernetes cluster and are able to connect to Kong. {% if include.enterprise %}This guide requires <strong>{{site.ee_product_name}}</strong>.{% endif %}</p>
 </blockquote>
 </summary>
 
@@ -70,7 +70,7 @@ You can install Kong in your Kubernetes cluster using [Helm](https://helm.sh/).
     ```
 
 {% if include.enterprise %}
-1. Create a file named `license.json` containing your Kong Enterprise license and store it in a Kubenetes secret:
+1. Create a file named `license.json` containing your {{site.ee_product_name}} license and store it in a Kubernetes secret:
 
     ```bash
     kubectl create namespace kong
