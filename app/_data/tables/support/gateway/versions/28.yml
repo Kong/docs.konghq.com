@@ -9,19 +9,24 @@ distributions:
   - <<: *rhel7
     docker: true
     eol: June 2024
-  - *rhel8
-  - *amazonlinux2
+  - <<: *rhel8
+    docker: true
+  - <<: *amazonlinux2
+    docker: true
   - <<: *centos7
     docker: true
     eol: June 2024
-  - *centos8
+  - <<: *centos8
+    eol: December 2021
   - <<: *debian10
+    docker: true
     eol: June 2024
   - *debian11
   - <<: *ubuntu1804
     eol: April 2023
   - *ubuntu2004
-  - *ubuntu2204
+  - <<: *ubuntu2204
+    docker: true
 
 third-party:
   datastore:

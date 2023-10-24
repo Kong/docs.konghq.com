@@ -1,4 +1,7 @@
 name: File Log
+search_aliases:
+  - log file
+  - file-log
 dbless_compatible: 'yes'
 free: true
 enterprise: true

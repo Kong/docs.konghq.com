@@ -1,4 +1,6 @@
 name: Request Transformer Advanced
+search_aliases:
+  - request-transformer-advanced
 dbless_compatible: 'yes'
 free: false
 plus: false

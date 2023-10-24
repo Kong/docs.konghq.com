@@ -1,4 +1,6 @@
 name: OPA
+search_aliases:
+  - open policy agent
 dbless_compatible: 'yes'
 free: false
 enterprise: true

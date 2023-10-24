@@ -5,14 +5,60 @@
 </blockquote>
 </summary>
 
-{% unless include.disable_gateway_api %}
-## Install the Gateway APIs
-
-If you wish to use the Gateway APIs examples, ensure that you enable support for [
-Gateway APIs in KIC](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/install-gateway-apis).
-{% endunless %}
-
 ## Prerequisites
+
+{% unless include.disable_gateway_api %}
+### Install the Gateway APIs
+
+1. Install the Gateway API CRDs before installing {{ site.kic_product_name }}.
+
+    ```bash
+    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v0.8.1/standard-install.yaml
+    ```
+
+    {% if include.gateway_api_experimental %}
+
+1. Install the experimental Gateway API CRDs to test this feature.
+
+    ```bash
+    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v0.8.1/experimental-install.yaml
+    ```
+    {% endif %}
+
+1. Create a `Gateway` and `GatewayClass` instance to use.
+
+    ```bash
+   echo "
+   ---
+   apiVersion: gateway.networking.k8s.io/v1beta1
+   kind: GatewayClass
+   metadata:
+     name: kong
+     annotations:
+       konghq.com/gatewayclass-unmanaged: 'true'
+
+   spec:
+     controllerName: konghq.com/kic-gateway-controller
+   ---
+   apiVersion: gateway.networking.k8s.io/v1beta1
+   kind: Gateway
+   metadata:
+     name: kong
+   spec:
+     gatewayClassName: kong
+     listeners:
+     - name: proxy
+       port: 80
+       protocol: HTTP
+   " | kubectl apply -f -
+   ```
+{% endunless %}
+   The results should look like this:
+   ```text
+   gatewayclass.gateway.networking.k8s.io/kong created
+   gateway.gateway.networking.k8s.io/kong created
+   ```
+
 
 ### Install Kong
 You can install Kong in your Kubernetes cluster using [Helm](https://helm.sh/).
@@ -52,6 +98,20 @@ You can install Kong in your Kubernetes cluster using [Helm](https://helm.sh/).
     helm install kong kong/ingress -n kong --create-namespace {% if include.enterprise %}--values ./values.yaml{% endif %}
     ```
 
+{% if include.gateway_api_experimental %}
+1. Enable the Gateway API Alpha feature gate:
+
+    ```bash
+    kubectl set env -n kong deployment/kong-controller CONTROLLER_FEATURE_GATES="GatewayAlpha=true" -c ingress-controller
+    ```
+
+   The results should look like this:
+   ```text
+   deployment.apps/kong-controller env updated
+   ```
+{% endif %}
+
+
 ### Test connectivity to Kong
 
 Kubernetes exposes the proxy through a Kubernetes service. Run the following commands to store the load balancer IP address in a variable named `PROXY_IP`:
@@ -82,7 +142,4 @@ Kubernetes exposes the proxy through a Kubernetes service. Run the following com
   
     {"message":"no Route matched with those values"}
     ```
-
-    If you are not able to connect to Kong, read the [deployment guide](/kubernetes-ingress-controller/{{ page.release }}/deployment/overview/).
-
 </details>

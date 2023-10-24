@@ -1,4 +1,6 @@
 name: JWT
+search_aliases:
+  - json web tokens
 dbless_compatible: partially
 dbless_explanation: |
   Consumers and JWT secrets can be created with declarative configuration.

@@ -1,4 +1,6 @@
 name: StatsD
+search_aliases:
+  - collectd
 dbless_compatible: 'yes'
 free: true
 enterprise: true
