@@ -4,49 +4,6 @@
 
 ## Week 42
 
-### [kgo: add 1.0.2 manifests](https://github.com/Kong/docs.konghq.com/pull/6338) (2023-10-19)
-
-Add 1.0.2 KGO manifests and also fix incorrect tag in 1.0.0 manifests.
-
-#### Added
-
-- https://docs.konghq.com/assets/gateway-operator/v1.0.2/all_controllers.yaml
-- https://docs.konghq.com/assets/gateway-operator/v1.0.2/crds.yaml
-- https://docs.konghq.com/assets/gateway-operator/v1.0.2/default.yaml
-
-#### Modified
-
-- https://docs.konghq.com/assets/gateway-operator/v1.0.0/all_controllers.yaml
-- https://docs.konghq.com/assets/gateway-operator/v1.0.0/default.yaml
-
-
-### [kgo: update docs with 1.0.2](https://github.com/Kong/docs.konghq.com/pull/6334) (2023-10-18)
-
-Update docs with gateway-operator 1.0.2
-
-
-### Checklist 
-
-- [x] Review label added <!-- (see below) -->
-- [x] PR pointed to correct branch (`main` for immediate publishing, or a release branch: e.g. `release/gateway-3.2`, `release/deck-1.17`)
-
-
-<!-- !!! Only Kong employees can add labels due to a GitHub limitation. If you're an OSS contributor, thank you! The maintainers will label this PR for you !!! -->
-
-<!-- When raising a pull request, indicate what type of review you need with one of the following labels:
-
-    review:copyedit: Request for writer review.
-    review:general: Review for general accuracy and presentation. Does the doc work? Does it output correctly?
-    review:tech: Request for technical review for a docs platform change.
-    review:sme: Request for review from an SME (engineer, PM, etc).
-
-At least one of these labels must be applied to a PR or the build will fail.
--->
-
-#### Modified
-
-- https://docs.konghq.com/gateway-operator/changelog
-
 
 ### [Chore: Add search aliases for plugins](https://github.com/Kong/docs.konghq.com/pull/6328) (2023-10-18)
 
@@ -174,11 +131,9 @@ Raised in Slack: https://kongstrong.slack.com/archives/C03NRECFJPM/p169168918134
 
 ### [update: Portal OIDC teams mapping post-GA improvements for IdP config instructions](https://github.com/Kong/docs.konghq.com/pull/6281) (2023-10-16)
 
-<!-- What did you change and why? -->
+
 When this was first published, we weren't able to get SME confirmation on the correct steps for setting up the IdP configuration. Users still needed this information, as well as information about configuring groups claims, so I added those in.
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-DOCU-3498
 
 #### Modified
 
@@ -187,11 +142,9 @@ DOCU-3498
 
 ### [update: Add Portal RBAC diagram to Managing Developer Team Access Page](https://github.com/Kong/docs.konghq.com/pull/6264) (2023-10-17)
 
-<!-- What did you change and why? -->
+
 We were requested to make a diagram that better visually explained how the scenario worked with the Pizza Ordering API and developer teams RBAC. I created the diagram and added it. 
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-DOCU-3440
 
 #### Added
 
@@ -202,14 +155,6 @@ DOCU-3440
 - https://docs.konghq.com/konnect/dev-portal/access-and-approval/manage-teams
 
 
-### [kgo: update docs with 1.0.1](https://github.com/Kong/docs.konghq.com/pull/6254) (2023-10-16)
-
-Update docs with 1.0.1 release https://github.com/Kong/gateway-operator/releases/tag/v1.0.1
-
-#### Modified
-
-- https://docs.konghq.com/gateway-operator/1.0.x/get-started/kic/create-gateway/
-- https://docs.konghq.com/gateway-operator/changelog
 
 ## Week 41
 
