@@ -776,3 +776,12 @@ kmesh:
       # If the token TTL is shorter than 60s, you may need to decrease this value.
       # When only tokens with `inline` or `inlineString` are set, you can disable this.
       tokenChangeCheckInterval: 30s # ENV: KMESH_CA_VAULT_TOKEN_CHANGE_CHECK_INTERVAL
+  awsIAM:
+    # AuthorizedAccountIDs is a list of accounts that are authorized
+    # to authenticate with this CP. This is optional if
+    # RolesToAssumeForAccounts is set.
+    authorizedAccountIds: []
+    # RolesToAssumeForAccounts is a map of AWS account IDs to role names
+    # that the CP should use to verify dataplane identity in cross-account
+    # setups.
+    rolesToAssumeForAccounts: {}

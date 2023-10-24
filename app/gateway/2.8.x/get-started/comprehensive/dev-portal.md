@@ -27,13 +27,13 @@ Make sure the Dev Portal is on. You should have enabled it during [installation]
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace \
+curl -X PATCH http://localhost:8001/workspaces/SecureWorkspace \
   --data config.portal=true
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-http -f PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace \
+http -f PATCH http://localhost:8001/workspaces/SecureWorkspace \
   config.portal=true
 ```
 {% endnavtab %}
@@ -42,11 +42,11 @@ http -f PATCH http://<admin-hostname>:8001/workspaces/SecureWorkspace \
 
 {% endnavtab %}
 {% endnavtabs %}
-This will expose the Dev Portal at `http://<admin-hostname>:8003/SecureWorkspace.`
+This will expose the Dev Portal at `http://localhost:8003/SecureWorkspace.`
 
 After the Dev Portal is enabled for the Workspace, a few new links appear in the left navigation menu. It may take a few seconds for the Settings page to populate.
 
-You can learn more about personalization in the [the Dev Portal documentation](/gateway/{{page.kong_version}}/developer-portal/), including:
+You can learn more about personalization in the [Dev Portal documentation](/gateway/{{page.kong_version}}/developer-portal/), including:
 
 * [Customizing the look and feel of the site and editor](/gateway/{{page.kong_version}}/developer-portal/theme-customization/easy-theme-editing/)
 * [Managing access](/gateway/{{page.kong_version}}/developer-portal/administration/managing-developers/)
@@ -54,7 +54,7 @@ You can learn more about personalization in the [the Dev Portal documentation](/
 
 ## Access and Interact with the Dev Portal
 
-1. Go back to **Dev Portal** > **Overview** and open the link in a new tab, or open the Dev Portal directly using this URL: `http://<admin-hostname>:8003/SecureWorkspace`.
+1. Go back to **Dev Portal** > **Overview** and open the link in a new tab, or open the Dev Portal directly using this URL: `http://localhost:8003/SecureWorkspace`.
 
     You’ll see a list of available API catalogs. By default, *httpbin.org* and *Swagger Petstore* appear as examples.
 
@@ -89,7 +89,7 @@ In this section, you’re going to add a new spec, the *Kong Vitals API*, to the
 
 7. Click **Save Changes**. If done correctly, the preview should show the API now.
 
-8. View the Dev Portal at `http://<admin-hostname>:8003/SecureWorkspace` and notice the new spec published to the Dev Portal.
+8. View the Dev Portal at `http://localhost:8003/SecureWorkspace` and notice the new spec published to the Dev Portal.
 
 ## Summary
 

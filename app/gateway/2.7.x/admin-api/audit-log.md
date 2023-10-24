@@ -142,7 +142,7 @@ Note also the presence of the `workspace` field. This is the UUID of the Workspa
 
 It may be desirable to ignore audit log generation for certain Admin API
 requests such as innocuous requests to the `/status` endpoint for
-healthchecking or to ignore requests for a given path prefix (e.g. a given
+health checking or to ignore requests for a given path prefix (e.g. a given
 Workspace). To this end, the `audit_log_ignore_methods` and
 `audit_log_ignore_paths` configuration options are presented:
 
@@ -155,7 +155,7 @@ audit_log_ignore_paths = /foo,/status,^/services,/routes$,/one/.+/two,/upstreams
 
 The values of `audit_log_ignore_paths` are matched via a Perl-compatible regular expression.
 
-For example, when `audit_log_ignore_paths = /foo,/status,^/services,/routes$,/one/.+/two,/upstreams/`, the following request paths do not generate an audit-log entry in the databse:
+For example, when `audit_log_ignore_paths = /foo,/status,^/services,/routes$,/one/.+/two,/upstreams/`, the following request paths do not generate an audit-log entry in the database:
 
 - `/status`
 - `/status/`
@@ -185,7 +185,7 @@ Request audit records are kept in the database for a duration defined by the
 `audit_log_record_ttl` [Kong configuration property](/gateway/{{page.kong_version}}/reference/configuration/#audit_log_record_ttl).
 Records in the database older than `audit_log_record_ttl` seconds are automatically
 purged. In Cassandra databases, record deletion is handled automatically via the
-Cassandra TTL mechanism. In Postgres databases, records are purged via the stored
+Cassandra TTL mechanism. In PostgreSQL databases, records are purged via the stored
 procedure that is executed on insert into the record database. Thus, request
 audit records may exist in the database longer than the configured TTL, if no new
 records are inserted to the audit table following the expiration timestamp.
@@ -306,7 +306,7 @@ Database audit records are kept in the database for a duration defined by the
 `audit_log_record_ttl` [Kong configuration property](/gateway/{{page.kong_version}}/reference/configuration/#audit_log_record_ttl).
 Records in the database older than `audit_log_record_ttl` seconds are automatically
 purged. In Cassandra databases, record deletion is handled automatically via the
-Cassandra TTL mechanism. In Postgres databases, records are purged via the stored
+Cassandra TTL mechanism. In PostgreSQL databases, records are purged via the stored
 procedure that is executed on insert into the record database. Thus, database
 audit records may exist in the database longer than the configured TTL, if no new
 records are inserted to the audit table following the expiration timestamp.

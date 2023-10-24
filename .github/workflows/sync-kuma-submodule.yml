@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Check-out current repo'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: true
           ref: main

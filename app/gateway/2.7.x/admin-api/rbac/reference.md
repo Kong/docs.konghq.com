@@ -389,11 +389,11 @@ ___
 `endpoint` must be the path of the associated endpoint. They can be
 exact matches, or contain wildcards, represented by `*`.
 
-- Exact matches; eg:
+- Exact matches; for example:
   * /services/
   * /services/foo
 
-- Wildcards; eg:
+- Wildcards; for example:
   * /services/*
   * /services/*/plugins
 

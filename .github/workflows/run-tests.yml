@@ -5,6 +5,9 @@ on:
      - main
   pull_request:
     types: [synchronize, ready_for_review, opened]
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
 
 env:
   VITE_PORTAL_API_URL: ${{ vars.VITE_PORTAL_API_URL }}
@@ -16,7 +19,7 @@ jobs:
     steps:
       # Increase number of watchers to fix tests
       - run: sudo sysctl -w fs.inotify.max_user_watches=524288
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
 
@@ -72,7 +75,7 @@ jobs:
   rspec:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
       # Configure Node to build assets

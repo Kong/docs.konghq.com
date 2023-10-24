@@ -8,15 +8,18 @@ distributions:
     docker: true
     arm: true
     graviton: true
+    eol: June 2025
   - <<: *amazonlinux2023
     docker: true
     arm: true
     graviton: true
-  - *debian10
+  - <<: *debian10
+    eol: June 2024
   - <<: *debian11
     docker: true
     arm: true
     graviton: true
+    eol: June 2026
   - *rhel7
   - <<: *rhel8
     docker: false
@@ -29,6 +32,7 @@ distributions:
     arm: false
     docker: false
     fips: true
+    eol: May 2025
   - <<: *ubuntu2204
     arm: true
     graviton: true
@@ -43,9 +47,6 @@ third-party:
         - 14
         - 13
         - 12
-        - 11
-        - 10
-        - 9
         - Amazon RDS
         - Amazon Aurora
     - *redis

@@ -26,7 +26,7 @@ As a {{site.base_gateway}} user, you can use Kong Manager for environment
 administration. You’re going to use it later on in this guide, so first make 
 sure you can access Kong Manager.
 
-Open a web browser and navigate to `http://<admin-hostname>:8002`.
+Open a web browser and navigate to `http://localhost:8002`.
 
 If {{site.base_gateway}} was installed correctly, it automatically logs you
 in and presents the Kong Manager Overview page.
@@ -42,12 +42,12 @@ window:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-curl -i -X GET http://<admin-hostname>:8001
+curl -i -X GET http://localhost:8001
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```bash
-http <admin-hostname>:8001
+http localhost:8001
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -113,7 +113,7 @@ Run the following from a control plane:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-curl -i -X GET http://<admin-hostname>:8001/clustering/data-planes
+curl -i -X GET http://localhost:8001/clustering/data-planes
 ```
 {% endnavtab %}
 {% navtab HTTPie %}

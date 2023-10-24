@@ -13,6 +13,8 @@ toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
+<!--vale off-->
+
 ## kong.log
 
 This namespace contains an instance of a "logging facility", which is a
@@ -63,7 +65,7 @@ Write a log line to the location specified by the current Nginx
  Where:
 
  * `%namespace`: is the configured namespace (the plugin name in this case).
- * `%file_src`: is the file name from where the log was called from.
+ * `%file_src`: is the filename from where the log was called from.
  * `%line_src`: is the line number from where the log was called from.
  * `%message`: is the message, made of concatenated arguments given by the caller.
 
@@ -197,7 +199,7 @@ Like `kong.log()`, this function will produce a log with the `notice` level,
 
  Where:
 
- * `%file_src`: is the file name from where the log was called from.
+ * `%file_src`: is the filename from where the log was called from.
  * `%func_name`: is the name of the function from where the log was called
    from.
  * `%line_src`: is the line number from where the log was called from.

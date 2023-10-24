@@ -22,6 +22,9 @@ install: ruby-version-check
 run: ruby-version-check
 	netlify dev
 
+run-debug: ruby-version-check
+	JEKYLL_LOG_LEVEL='debug' netlify dev
+
 build: ruby-version-check
 	exe/build
 

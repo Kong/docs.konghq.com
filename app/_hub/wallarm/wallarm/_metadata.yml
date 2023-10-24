@@ -3,16 +3,17 @@ name: Wallarm
 publisher: Wallarm
 
 categories:
-  - security
+  - none
 
 type: integration
 
 desc: Wallarm is AI-Powered Security Platform for protecting microservices and APIs
 
 terms_of_service_url: https://www.wallarm.com/terms-of-service
+support_url: https://www.wallarm.com/support
 
-enterprise: true
-techpartner: true
+free: true
+enterprise: false
 
 kong_version_compatibility:
   community_edition:

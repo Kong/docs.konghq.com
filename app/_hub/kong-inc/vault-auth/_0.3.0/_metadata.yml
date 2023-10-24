@@ -3,7 +3,6 @@ dbless_compatible: 'yes'
 free: false
 plus: false
 enterprise: true
-premium: true
 konnect: false
 publisher: Kong Inc.
 version: 2.1.x-2.7.x

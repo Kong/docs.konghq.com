@@ -16,7 +16,7 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 
 1. Within Azure, go to the **App registrations** service and register a new application.
 
-   ![Azure App Registrations](/assets/images/docs/dev-portal/ms-azure-app-reg.png)
+   ![Azure App Registrations](/assets/images/products/gateway/dev-portal/ms-azure-app-reg.png)
 
 1. In **Certificates & secrets**, create a Client secret and save it in a
    secure location. You can only view the secret once.
@@ -24,7 +24,7 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 1. Under **Manifest**, update `accessTokenAcceptedVersion=2` (default is null).
    The JSON for your application should look similar to this example:
 
-   ![Azure Manifest](/assets/images/docs/dev-portal/azure-manifest.png)
+   ![Azure Manifest](/assets/images/products/gateway/dev-portal/azure-manifest.png)
 
 ## Create a Service in Kong
 
@@ -32,7 +32,7 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 {% navtab Using cURL %}
 
 ```bash
-$ curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure \
+$ curl -i -X PUT http://localhost:8001/services/httpbin-service-azure \
   --data 'url=https://httpbin.org/anything'
 ```
 
@@ -52,7 +52,7 @@ $ http PUT :8001/services/httpbin-service-azure \
 {% navtab Using cURL %}
 
 ```bash
-$ curl -i -X PUT http://<admin-server>:8001/services/httpbin-service-azure/routes/httpbin-route-azure \
+$ curl -i -X PUT http://localhost:8001/services/httpbin-service-azure/routes/httpbin-route-azure \
   --data 'paths=/httpbin-azure'
 ```
 {% endnavtab %}
@@ -78,7 +78,7 @@ The plugins must be applied to a Service to work properly.
 {% navtab Using cURL %}
 
  ```bash
-$ curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugins \
+$ curl -X POST http://localhost:8001/services/httpbin-service-azure/plugins \
   --data name=openid-connect \
   --data config.issuer="https://login.microsoftonline.com/<your_tenant_id>/v2.0" \
   --data config.display_errors="true" \
@@ -119,7 +119,7 @@ For more information, see [OIDC plugin](/hub/kong-inc/openid-connect/).
 {% navtab Using cURL %}
 
 ```bash
-$ curl -X POST http://<admin-hostname>:8001/services/httpbin-service-azure/plugins \
+$ curl -X POST http://localhost:8001/services/httpbin-service-azure/plugins \
   --data "name=application-registration"  \
   --data "config.auto_approve=true" \
   --data "config.description=Uses consumer claim with various values (sub, aud, etc.) as registration id to support different flows and use cases." \
@@ -179,7 +179,7 @@ $ https -f POST "https://login.microsoftonline.com/<your_tenant_id>/oauth2/v2.0/
 1. Paste the access token obtained from the previous step into
 [JWT](https://jwt.io).
 
-   ![JWT token converter](/assets/images/docs/dev-portal/jwt-converter.png)
+   ![JWT token converter](/assets/images/products/gateway/dev-portal/jwt-converter.png)
 
 2. Click **Share JWT** to copy the value for the
 [aud (audience)](https://tools.ietf.org/html/rfc7519#section-4.1.3) claim to
@@ -196,7 +196,7 @@ next procedure.
 
    The Create Application form should look similar to this example:
 
-   ![Create Azure Application](/assets/images/docs/dev-portal/azure-app.png)
+   ![Create Azure Application](/assets/images/products/gateway/dev-portal/azure-app.png)
 
 2. Click **Create**.
 
@@ -206,7 +206,7 @@ next procedure.
 
    The view application details page should look similar to this example:
 
-   ![Azure Example Application](/assets/images/docs/dev-portal/azure-app-details.png)
+   ![Azure Example Application](/assets/images/products/gateway/dev-portal/azure-app-details.png)
 
    Because you enabled
    [Auto-approve](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration##aa)
@@ -267,7 +267,7 @@ $ http :8000/httpbin-azure Authorization:'bearer <token_from_above>'
 
 ### Test Authorization Code Flow
 
-In your browser, go to `http://<admin-hostname>:8000/httpbin-azure`.
+In your browser, go to `http://localhost:8000/httpbin-azure`.
 
 You should be guided through a log in process within Azure and then the results
 delivered in your browser.

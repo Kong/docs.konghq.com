@@ -9,7 +9,7 @@ Use Kong Vitals (Vitals) to monitor {{site.ee_product_name}} health and performa
 
 * Use Kong Manager to view visualizations of Vitals data, including the Workspaces Overview Dashboard, Workspace Charts, Vitals tab, and Status Codes, and to generate CSV Reports.
 
-![Vitals Overview](/assets/images/docs/ee/vitals_overview.png)
+![Vitals Overview](/assets/images/products/gateway/vitals/vitals_overview.png)
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ Vitals is enabled by default in {{site.ee_product_name}} and available upon the 
 
 You can use one of the following storage strategies with Vitals:
 * Kong database:
-  * PostgresSQL 9.5+
+  * PostgreSQL 9.5+
 * Separate storage engine:
   * InfluxDB
   * Prometheus 

@@ -13,6 +13,7 @@ _packages:
     arm: false
     fips: false
     graviton: false
+    eol: December 2020
   amazonlinux2: &amazonlinux2
     os: Amazon Linux
     version: 2
@@ -48,6 +49,7 @@ _packages:
     arm: false
     fips: false
     graviton: false
+    eol: June 2020
   debian9: &debian9
     os: Debian
     version: 9
@@ -55,6 +57,7 @@ _packages:
     arm: false
     fips: false
     graviton: false
+    eol: June 2022
   debian10: &debian10
     os: Debian
     version: 10

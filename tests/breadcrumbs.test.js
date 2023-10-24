@@ -4,7 +4,7 @@ describe("Gateway", () => {
 
     const $homeIcon = $(".breadcrumb-item:nth-of-type(1)").find("img");
     await expect($homeIcon.attr("src")).toBe(
-      "/assets/images/icons/documentation/hub/icn-breadcrumbs.svg"
+      "/assets/images/icons/hub-layout/icn-breadcrumbs.svg"
     );
 
     await expect($homeIcon.attr("alt")).toBe("Home icon");
@@ -21,7 +21,7 @@ describe("decK", () => {
 
     const $homeIcon = $(".breadcrumb-item:nth-of-type(1)").find("img");
     await expect($homeIcon.attr("src")).toBe(
-      "/assets/images/icons/documentation/hub/icn-breadcrumbs.svg"
+      "/assets/images/icons/hub-layout/icn-breadcrumbs.svg"
     );
 
     await expect($homeIcon.attr("alt")).toBe("Home icon");

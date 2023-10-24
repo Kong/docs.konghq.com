@@ -21,7 +21,7 @@ if needed.
 Kong Manager currently supports the following Authentication Plugins:
 
 * [Basic Auth](/gateway/{{page.kong_version}}/configure/auth/kong-manager/basic/)
-* [OIDC](/gateway/{{page.kong_version}}/configure/auth/kong-manager/oidc-mapping/)
+* [OIDC](/gateway/{{page.kong_version}}/configure/auth/kong-manager/oidc/)
 * [LDAP](/gateway/{{page.kong_version}}/configure/auth/kong-manager/ldap/)
 
 In addition to the Authentication Plugins above, the new
@@ -29,7 +29,7 @@ In addition to the Authentication Plugins above, the new
 is now required when RBAC is enabled. It sends HTTP cookies to authenticate
 client requests and maintain session information.
 
-The Sessions Plugin requries a secret and is configured
+The Sessions Plugin requires a secret and is configured
 securely by default.
 * Under all circumstances, the `secret` must be manually set to a string.
 * If using HTTP instead of HTTPS, `cookie_secure` must be manually set to `false`.

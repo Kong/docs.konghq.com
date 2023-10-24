@@ -103,9 +103,6 @@ has the above permissions. The Ingress Controller Pod then has this
 necessary authentication and authorization tokens to communicate with the
 Kubernetes API-server.
 
-[rbac.yaml](https://github.com/Kong/kubernetes-ingress-controller/blob/main/deploy/manifests/base/rbac.yaml) contains the permissions
-needed for the Ingress Controller to operate correctly.
-
 ### Ingress Controller deployment
 
 > required
@@ -199,7 +196,7 @@ Kong as per the changes it receives from the Kubernetes API server.
 
 Following figure shows how this deployment looks like:
 
-![Kong DB-less](/assets/images/docs/kubernetes-ingress-controller/dbless-deployment.png "Kong DB-less architecture")
+![Kong DB-less](/assets/images/products/kubernetes-ingress-controller/dbless-deployment.png "Kong DB-less architecture")
 
 In this deployment, only one Deployment is required, which is comprised of
 a Pod with two containers, a Kong container which proxies the requests
@@ -219,7 +216,7 @@ is a little different.
 
 Please refer to the below figure:
 
-![Kong with a Database](/assets/images/docs/kubernetes-ingress-controller/db-deployment.png "Kong with database")
+![Kong with a Database](/assets/images/products/kubernetes-ingress-controller/db-deployment.png "Kong with database")
 
 In this type of deployment, there are two types of deployments created,
 separating the control and data flow:

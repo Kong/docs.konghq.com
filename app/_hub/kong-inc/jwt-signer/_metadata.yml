@@ -3,7 +3,6 @@ dbless_compatible: 'yes'
 free: false
 
 enterprise: true
-paid: true
 konnect: false
 network_config_opts: All
 notes: --

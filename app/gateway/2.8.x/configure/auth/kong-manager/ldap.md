@@ -41,7 +41,7 @@ admin_gui_auth_conf = {                                       \
 * `"attribute":"<ENTER_YOUR_ATTRIBUTE_HERE>"`: The attribute used to identify LDAP users
     * For example, to map LDAP users to admins by their username, `"attribute":"uid"`
 * `"bind_dn":"<ENTER_YOUR_BIND_DN_HERE>"`: LDAP Bind DN (Distinguished Name)
-    * Used to perform LDAP search of user. This bind_dn should have permissions to search
+    * Used to perform LDAP search of user. This `bind_dn` should have permissions to search
       for the user being authenticated.
     * For example, `uid=einstein,ou=scientists,dc=ldap,dc=com`
 * `"base_dn":"<ENTER_YOUR_BASE_DN_HERE>"`: LDAP Base DN (Distinguished Name)
@@ -52,7 +52,7 @@ admin_gui_auth_conf = {                                       \
     * *Note*: As with any configuration property, sensitive information may be set as an
       environment variable instead of being written directly in the configuration file.
 
-The **Sessions Plugin** requries a secret and is configured securely by default.
+The **Sessions Plugin** requires a secret and is configured securely by default.
 * Under all circumstances, the `secret` must be manually set to a string.
 * If using HTTP instead of HTTPS, `cookie_secure` must be manually set to `false`.
 * If using different domains for the Admin API and Kong Manager, `cookie_samesite` must be set to `off`.

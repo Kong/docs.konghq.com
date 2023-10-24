@@ -19,7 +19,7 @@ before being proxied.
 Use a request like this:
 
 ``` bash
-curl -i -X POST http://kong:8001/services/{service}/plugins \
+curl -i -X POST http://localhost:8001/services/{service}/plugins \
   --data "name=request-validator" \
   --data "config.version=kong" \
   --data 'config.body_schema=[{\"name\":{\"type\": \"string\", \"required\": true}}]'
@@ -275,7 +275,7 @@ In this example, use the plugin to validate a request's path parameter.
 1.  Add a Service to Kong:
 
     ```
-    curl -i -X POST http://kong:8001/services \
+    curl -i -X POST http://localhost:8001/services \
       --data name=httpbin \
       --data url=http://httpbin.org
 
@@ -301,7 +301,7 @@ In this example, use the plugin to validate a request's path parameter.
 2.  Add a Route with [named capture group](/gateway/latest/how-kong-works/routing-traffic/#capturing-groups):
 
     ```
-    curl -i -X POST http://kong:8001/services/httpbin/routes \
+    curl -i -X POST http://localhost:8001/services/httpbin/routes \
       --data paths="~/status/(?<status_code>\d%+)" \
       --data strip_path=false
 
@@ -337,7 +337,7 @@ In this example, use the plugin to validate a request's path parameter.
 3. Enable `request-validator` plugin to validate body and parameter:
 
     ```
-    curl -i -X POST http://kong:8001/services/httpbin/plugins \
+    curl -i -X POST http://localhost:8001/services/httpbin/plugins \
       --header "Content-Type: application/json" \
       --data @parameter_schema.json
 

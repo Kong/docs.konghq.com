@@ -22,6 +22,26 @@ The queue parameters all reside in a record under the key `queue` in
 the `config` parameter section of the plugin.
 {% endif_version %}
 
+{% if_plugin_version gte:3.5.x %}
+## Trace IDs in serialized logs
+
+When the OpenTelemetry plugin is configured along with a plugin that uses the 
+[Log Serializer](/gateway/latest/plugin-development/pdk/kong.log/#konglogserialize),
+the trace ID of each request is added to the key `trace_id` in the serialized log output.
+
+The value of this field is an object that can contain different formats
+of the current request's trace ID. In case of multiple tracing headers in the
+same request, the `trace_id` field includes one trace ID format
+for each different header format, as in the following example:
+
+```
+"trace_id": {
+  "w3c": "4bf92f3577b34da6a3ce929d0e0e4736",
+  "datadog": "11803532876627986230"
+},
+```
+{% endif_plugin_version %}
+
 ## Usage
 
 {% if_plugin_version gte:3.2.x %}
@@ -130,7 +150,7 @@ See the [OpenTelemetry Collector documentation](https://opentelemetry.io/docs/co
 Enable the plugin:
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/plugins \
+curl -X POST http://localhost:8001/plugins \
     --data "name=opentelemetry"  \
     --data "config.endpoint=http://<opentelemetry-backend>:4318/v1/traces" \
     --data "config.resource_attributes.service.name=kong-dev"
@@ -174,6 +194,9 @@ The OpenTelemetry plugin propagates the following headers:
 {% if_plugin_version gte:3.4.x %}
 - `aws`: [AWS X-Ray header](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader)
 {% endif_plugin_version %}
+{% if_plugin_version gte:3.5.x %}
+- `gcp`: [GCP X-Cloud-Trace-Context header](https://cloud.google.com/trace/docs/setup#force-trace)
+{% endif_plugin_version %}
 
 The plugin detects the propagation format from the headers and will use the appropriate format to propagate the span context.
 If no appropriate format is found, the plugin will fallback to the default format, which is `w3c`.
@@ -216,7 +239,7 @@ The following is an example for adding a custom span using {{site.base_gateway}}
 2. Apply the Lua code using the `post-function` plugin using a cURL file upload:
 
     ```bash
-    curl -i -X POST http://<admin-hostname>:8001/plugins \
+    curl -i -X POST http://localhost:8001/plugins \
       -F "name=post-function" \
       -F "config.access[1]=@custom-span.lua"
 

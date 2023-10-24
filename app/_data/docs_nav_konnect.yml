@@ -58,6 +58,8 @@
           url: /gateway-manager/data-plane-nodes/upgrade/
         - text: Verify a Data Plane Node
           url: /gateway-manager/data-plane-nodes/verify-node/
+        - text: Secure Control Plane/Data Plane Communications  
+          url: /gateway-manager/data-plane-nodes/secure-communications/
         - text: Renew Data Plane Certificates
           url: /gateway-manager/data-plane-nodes/renew-certificates/
         - text: Parameter Reference
@@ -145,8 +147,10 @@
       items:
         - text: Manage Developer Access
           url: /dev-portal/access-and-approval/manage-devs/
-        - text: Manage Developer Teams
+        - text: Manage Developer Team Access
           url: /dev-portal/access-and-approval/manage-teams/
+        - text: Add Developer Teams from IdPs
+          url: /dev-portal/access-and-approval/add-teams/
         - text: Manage Application Registration Requests
           url: /dev-portal/access-and-approval/manage-app-reg-requests/
         - text: Manage Application Registrations

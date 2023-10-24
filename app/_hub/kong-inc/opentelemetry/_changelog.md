@@ -1,5 +1,7 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.5.x**
+* Added support for [Google Cloud Project's X-Cloud-Trace-Context header](https://cloud.google.com/trace/docs/setup#force-trace)
 
 **{{site.base_gateway}} 3.4.x**
 * Added support for [AWS X-Ray header](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader) propagation.

@@ -3,7 +3,7 @@ title: Performance Testing Framework
 badge: oss
 ---
 
-The Kong Gateway codebase includes a performance testing framework. It allows Kong developers and users to evaluate the performance of Kong itself as well as 
+The {{site.base_gateway}} codebase includes a performance testing framework. It allows Kong developers and users to evaluate the performance of Kong itself as well as 
 bundled or custom plugins, and plot frame graphs to debug performance bottlenecks.
 The framework collects RPS (request per second) and latencies of Kong processing the request
 to represent performance metrics under different workloads.
@@ -175,7 +175,7 @@ results, Kong error logs and FlameGraph files are saved to `output` directory un
 
 ## API
 
-### perf.use_driver
+### `perf.use_driver`
 
 *syntax: perf.use_driver(name, options?)*
 
@@ -188,20 +188,20 @@ Only the terraform driver expects an options parameter, which contains following
 - **tfvars** Terraform variables as a Lua table; for `equinix-metal` provider,
 `packet_project_id` and `packet_auth_token` is required.
 
-### perf.set_log_level
+### `perf.set_log_level`
 
 *syntax: perf.set_log_level(level)*
 
 Sets the log level; expect one of `"debug"`, `"info"`, `"notice"`, `"warn"`, `"error"` and
 `"crit"`. The default log level is `"info"`.
 
-### perf.set_retry_count
+### `perf.set_retry_count`
 
 *syntax: perf.set_retry_count(count)*
 
 Sets retry time for each “driver" operation. By default every operation is retried 3 times.
 
-### perf.setup
+### `perf.setup`
 
 *syntax: helpers = perf.setup()*
 
@@ -211,16 +211,22 @@ The framework sets up some environment variables before importing `spec.helpers`
 The returned helper is just a normal `spec.helpers` module. Users can use the same pattern
 in integration tests to setup entities in Kong. DB-less mode is currently not implemented.
 
-### perf.start_upstream
+### `perf.start_upstream`
 
-*syntax: upstream_uri = perf.start_upstream(nginx_conf_blob)*
+Syntax:
+```
+upstream_uri = perf.start_upstream(nginx_conf_blob)
+```
 
 Starts upstream (Nginx/OpenResty) with given `nginx_conf_blob`. Returns the upstream
 URI accessible from Kong's view. Throws error if any.
 
-### perf.start_kong
+### `perf.start_kong`
 
-*syntax: perf.start_kong(version, kong_configs?)*
+Syntax:
+```
+perf.start_kong(version, kong_configs?)
+```
 
 Starts Kong with given version and Kong configurations in `kong_configs` as a Lua table.
 Throws error if any.
@@ -229,22 +235,31 @@ To select a git hash or tag, use `"git:<hash>"` as version. Otherwise, the frame
 will treat the `version` as a release version and will download binary packages from
 Kong's distribution website.
 
-### perf.stop_kong
+### `perf.stop_kong`
 
-*syntax: perf.stop_kong()*
+Syntax:
+```
+perf.stop_kong()
+```
 
 Stops Kong. Throws error if any.
 
-### perf.teardown
+### `perf.teardown`
 
-*syntax: perf.teardown(full?)*
+Syntax:
+```
+perf.teardown(full?)
+```
 
 Teardown. Throws error if any. With the terraform driver, setting full to true terminates
 all infrastructure, while by default it does cleanup only to speed up successive runs.
 
-### perf.start_stapxx
+### `perf.start_stapxx`
 
-*syntax: perf.start_stapxx(stapxx_file_name, arg?)*
+Syntax:
+```
+perf.start_stapxx(stapxx_file_name, arg?)
+```
 
 Starts the Stap++ script with `stapxx_file_name` exists in
 [available stapxx scripts](https://github.com/Kong/stapxx/tree/kong/samples)
@@ -253,9 +268,12 @@ and additional CLI args. Throws error if any.
 This function blocks test execution until the `SystemTap` module is fully prepared and inserted into the
 kernel. It should be called before `perf.start_load`.
 
-### perf.start_load
+### `perf.start_load`
 
-*syntax: perf.start_load(options?)*
+Syntax:
+```
+perf.start_load(options?)
+```
 
 Starts to send load to Kong using `wrk`. Throws error if any. Options is a Lua table that may contain the following:
 
@@ -266,30 +284,42 @@ Starts to send load to Kong using `wrk`. Throws error if any. Options is a Lua t
 - **duration** Number of performance tests duration in seconds; defaults to 10. 
 - **script** Content of `wrk` script as string; defaults to nil.
 
-### perf.wait_result
+### `perf.wait_result`
 
-*syntax: result = perf.start_load(options?)*
+Syntax:
+```
+result = perf.start_load(options?)
+```
 
 Waits for the load test to finish and returns the result as a string. Throws error if any.
 
 Currently, this function waits indefinitely, or until both `wrk` and Stap++ processes exit.
 
-### perf.combine_results
+### `perf.combine_results`
 
-*syntax: combined_result = perf.combine_results(results, …)*
+Syntax:
+```
+combined_result = perf.combine_results(results, …)
+```
 
 Calculates multiple results returned by `perf.wait_result` and returns their average and min/max.
 Throws error if any.
 
-### perf.generate_flamegraph
+### `perf.generate_flamegraph`
 
-*syntax: perf.generate_flamegraph(path, title?)*
+Syntax:
+```
+perf.generate_flamegraph(path, title?)
+```
 
 Generates a FlameGraph with title and saves to path. Throws error if any.
 
-### perf.save_error_log
+### `perf.save_error_log`
 
-*syntax: perf.save_error_log(path)*
+Syntax:
+```
+perf.save_error_log(path)
+```
 
 Saves Kong error log to path. Throws error if any.
 

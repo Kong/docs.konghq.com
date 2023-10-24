@@ -13,7 +13,7 @@ to {{site.ee_product_name}}. See
 If you experience any issues when running migrations, contact
 [Kong Support](https://support.konghq.com/support/s/) for assistance.
 
-## Upgrade path for Kong Gateway releases
+## Upgrade path for {{site.base_gateway}} releases
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
 distinction between major, minor, and patch versions. The upgrade
@@ -29,9 +29,9 @@ upgrade. While you can upgrade directly to the latest version, be aware of any
 breaking changes between the 1.x and 2.x series noted in this document and in
 the Gateway changelogs.
 
-    See specific breaking changes in the Kong Gateway changelogs:
+    See specific breaking changes in the {{site.base_gateway}} changelogs:
     [open-source (OSS)](https://github.com/Kong/kong/blob/2.0.0/CHANGELOG.md#200) and
-    [Enterprise](/gateway/changelog/#2131). Since Kong Gateway is built on an
+    [Enterprise](/gateway/changelog/#2131). Since {{site.base_gateway}} is built on an
     open-source foundation, any breaking changes in OSS affect all Gateway packages.
 
 In either case, you can review the [upgrade considerations](#upgrade-considerations),
@@ -87,7 +87,7 @@ to run `kong migrations finish`.
 
 While the migrations themselves are automated, the chart does not automatically ensure
 that you follow the recommended upgrade path. If you are upgrading from more than one minor
-Kong version back, check the upgrade path recommendations for Kong open source or Kong Gateway.
+Kong version back, check the upgrade path recommendations for Kong open source or {{site.base_gateway}}.
 
 Although not required, users should upgrade their chart version and Kong version independently.
 In the event of any issues, this will help clarify whether the issue stems from changes in
@@ -154,7 +154,7 @@ If you prefer to use a fresh data store and only migrate your `kong.conf` file,
 see the instructions to
 [install 2.7.x on a fresh datastore](#install-27x-on-a-fresh-datastore).
 
-### Postgres
+### PostgreSQL
 
 1. Download 2.7.x, and configure it to point to the same
    datastore as your old (1.x.x-2.x.x) cluster.

@@ -126,7 +126,7 @@ to invoke the function.
 Create the route:
 
 ```bash
-curl -i -X POST http://<kong_hostname>:8001/routes \
+curl -i -X POST http://localhost:8001/routes \
 --data 'name=lambda1' \
 --data 'paths[1]=/lambda1'
 ```
@@ -134,7 +134,7 @@ curl -i -X POST http://<kong_hostname>:8001/routes \
 Add the plugin:
 
 ```bash
-curl -i -X POST http://<kong_hostname>:8001/routes/lambda1/plugins \
+curl -i -X POST http://localhost:8001/routes/lambda1/plugins \
 --data 'name=aws-lambda' \
 --data-urlencode 'config.aws_key={KongInvoker user key}' \
 --data-urlencode 'config.aws_secret={KongInvoker user secret}' \
@@ -170,7 +170,7 @@ After everything is created, make the http request and verify the correct
 invocation, execution, and response:
 
 ```bash
-curl http://<kong_hostname>:8000/lambda1
+curl http://localhost:8000/lambda1
 ```
 
 You should get a response back with the following headers from Amazon:
