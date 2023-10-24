@@ -51,12 +51,12 @@ items:
     items:
       - text: Deployment Topologies
         items:
-          - text: Traditional (sidecar)
-            url: /production/deployment-topologies/sidecar
           - text: Gateway Discovery
             url: /production/deployment-topologies/gateway-discovery
           - text: Database Backed
             url: /production/deployment-topologies/db-backed
+          - text: Traditional (sidecar)
+            url: /production/deployment-topologies/sidecar
       - text: Installation Methods
         items: 
           - text: Kong Gateway Operator
