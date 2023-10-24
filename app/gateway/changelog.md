@@ -1202,7 +1202,7 @@ See the documentation for more detail on [interpreting audit logs](/gateway/late
     If not set, the start time defaults to the current timestamp.
     
 * **Improved Plugin Documentation**
-    * Split the plugin compatibility table into a [technical compatibility page](/hub/plugins/compatibility/) and a [license tiers](hub/plugins/license-tiers) page. 
+    * Split the plugin compatibility table into a [technical compatibility page](/hub/plugins/compatibility/) and a [license tiers](/hub/plugins/license-tiers/) page.
     * Updated the plugin compatibility information for more clarity on [supported network protocols](/hub/plugins/compatibility/#protocols) and on [entity scopes](/hub/plugins/compatibility/#scopes). 
     * Revised docs for the following plugins to include examples:
       * [CORS](/hub/kong-inc/cors/)
