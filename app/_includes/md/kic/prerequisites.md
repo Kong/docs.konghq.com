@@ -1,7 +1,7 @@
 <details markdown="1">
 <summary>
 <blockquote class="note">
-  <p style="cursor: pointer">Before you begin ensure that you have <u>Installed {{site.kic_product_name}} </u> in your Kubernetes cluster and are able to connect to Kong. {% if include.enterprise %}This guide requires <strong>{{site.ee_product_name}}</strong>.{% endif %}</p>
+  <p style="cursor: pointer">Before you begin ensure that you have <u>Installed {{site.kic_product_name}}</u> {% unless include.disable_gateway_api %}with Gateway API support {% endunless %}in your Kubernetes cluster and are able to connect to Kong. {% if include.enterprise %}This guide requires <strong>{{site.ee_product_name}}</strong>.{% endif %}</p>
 </blockquote>
 </summary>
 
@@ -119,8 +119,7 @@ Kubernetes exposes the proxy through a Kubernetes service. Run the following com
 1. Populate `$PROXY_IP` for future commands:
 
     ```bash
-    HOST=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-    export PROXY_IP=${HOST}
+    export PROXY_IP=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
     echo $PROXY_IP
     ```
 
