@@ -2,6 +2,160 @@
 
 <!--vale off-->
 
+## Week 42
+
+
+### [Chore: Add search aliases for plugins](https://github.com/Kong/docs.konghq.com/pull/6328) (2023-10-18)
+
+The search field on the plugin hub homepage relies on the plugin's name and the optional `search_aliases` metadata field.
+Adding shortform aliases (eg `mtls`), related terms (eg `certificates`), and plugin literal names in code (eg `mtls-auth`).
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/acme/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/app-dynamics/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/application-registration/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/aws-lambda/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/azure-functions/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/basic-auth/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/bot-detection/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/correlation-id/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/exit-transformer/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/file-log/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/forward-proxy/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/graphql-proxy-cache-advanced/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/graphql-rate-limiting-advanced/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/grpc-gateway/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/grpc-web/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/hmac-auth/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/http-log/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/ip-restriction/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/jwe-decrypt/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/jwt-signer/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/jwt/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/kafka-log/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/kafka-upstream/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/key-auth-enc/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/key-auth/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/ldap-auth-advanced/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/ldap-auth/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/mtls-auth/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/oas-validation/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/oauth2-introspection/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/opa/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/openid-connect/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/opentelemetry/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/proxy-cache-advanced/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/proxy-cache/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/rate-limiting/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/request-size-limiting/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/request-termination/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/request-transformer-advanced/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/request-transformer/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/request-validator/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/response-ratelimiting/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/response-transformer-advanced/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/response-transformer/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/route-by-header/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/route-transformer-advanced/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/saml/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/session/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/statsd/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/tcp-log/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/tls-handshake-modifier/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/tls-metadata-headers/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/udp-log/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/upstream-timeout/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/vault-auth/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/websocket-size-limit/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/websocket-validator/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/xml-threat-protection/_metadata.yml
+
+
+### [Fix: Kong Gateway support matrix](https://github.com/Kong/docs.konghq.com/pull/6326) (2023-10-17)
+
+Fixing the following issues with the [Kong Gateway support matrix](https://docs.konghq.com/gateway/latest/support-policy/):
+* PostgreSQL 9 and 10 are no longer supported by upstream but our docs claim to support them. Also, PostgreSQL 11 is also going out of support in 3 weeks
+* Our support policy doc incorrectly stated the EOLs of many OSes. We have this statement (adjusted for dates/versions) at the top of every version's support table:
+
+  " Kong Gateway 2.8 LTS supports the following deployment targets until March 2025, unless otherwise noted by an earlier OS vendor end of life (EOL) date." 
+
+  However, our support tables aren't listing the accurate "earlier OS vendor end of life (EOL) dates".
+
+* The support table inaccurately lists available Docker images. We have many new Docker images available now that weren't listed (especially for 2.8 LTS).
+  
+  As I was trying to figure out which versions we have images for, I also noticed that the base OS for our convenience images changed once again in 3.2.1.0. It originally switched from Alpine to Debian in 3.0.0.0, which is already in the changelog, but we were unaware of the switch to Ubuntu later. Added a changelog entry for that.
+
+https://konghq.atlassian.net/browse/DOCU-3541
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [feat(multiple-metrics): updated latency section and images](https://github.com/Kong/docs.konghq.com/pull/6319) (2023-10-19)
+
+Updated content to support our new multiple metrics feature hopefully coming out by the end of this week. In details:
+* Updated latency use case section to only cover how to compare upstream vs kong latency. Previously, we had two separate section but you don't need to create two individual reports anymore.
+* Updated all images to cover UI changes.
+
+Jira: https://konghq.atlassian.net/browse/MA-1914
+Aha: https://konghq.aha.io/features/KP-299
+
+#### Added
+
+- https://docs.konghq.com/assets/images/products/konnect/analytics/custom-reports/kong-vs-upstream-latency.png
+
+#### Modified
+
+- https://docs.konghq.com/assets/images/products/konnect/analytics/custom-reports/api-usage-by-application.png
+- https://docs.konghq.com/assets/images/products/konnect/analytics/custom-reports/latency-payments-api-30.png
+- https://docs.konghq.com/assets/images/products/konnect/analytics/custom-reports/total-api-requests.png
+- https://docs.konghq.com/assets/images/products/konnect/analytics/custom-reports/total-usage-accounts-api-30.png
+- https://docs.konghq.com/konnect/analytics/reference
+- https://docs.konghq.com/konnect/analytics/use-cases/latency
+- https://docs.konghq.com/konnect/updates
+
+
+### [Update: SSH access note for instances deployed using Konnect Tech Preview install platforms](https://github.com/Kong/docs.konghq.com/pull/6305) (2023-10-18)
+
+Add a note about SSH access to Konnect data plane nodes when using the AWS, Azure, or GCP deployment styles and how it's not allowed directly but need to use the cloud provider tools.
+
+Raised in Slack: https://kongstrong.slack.com/archives/C03NRECFJPM/p1691689181346589
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/data-plane-nodes/
+
+
+### [update: Portal OIDC teams mapping post-GA improvements for IdP config instructions](https://github.com/Kong/docs.konghq.com/pull/6281) (2023-10-16)
+
+
+When this was first published, we weren't able to get SME confirmation on the correct steps for setting up the IdP configuration. Users still needed this information, as well as information about configuring groups claims, so I added those in.
+ 
+
+#### Modified
+
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/add-teams
+
+
+### [update: Add Portal RBAC diagram to Managing Developer Team Access Page](https://github.com/Kong/docs.konghq.com/pull/6264) (2023-10-17)
+
+
+We were requested to make a diagram that better visually explained how the scenario worked with the Pizza Ordering API and developer teams RBAC. I created the diagram and added it. 
+ 
+
+#### Added
+
+- https://docs.konghq.com/assets/images/diagrams/diagram-dev-portal-team-access.png
+
+#### Modified
+
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/manage-teams
+
+
+
 ## Week 41
 
 ### [Fix: Missing `ldaps` option in Kong Manager LDAP setup. Resolves DOCU-2529.](https://github.com/Kong/docs.konghq.com/pull/6304) (2023-10-12)
