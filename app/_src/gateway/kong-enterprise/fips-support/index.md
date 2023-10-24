@@ -47,7 +47,10 @@ The following table explains where cryptographic algorithms are used for non-cry
 | core/uuid | Lua random number generator | Lua random number generator | The RNG isn’t used for cryptographic purposes. |
 | core/declarative_config/uuid | UUIDv5 (namespaced SHA1) | UUIDv5 (namespaced SHA1) | Used to generate a unique identifier. |
 | core/declarative_config/config_hash and core/hybrid/hashes | MD5 | MD5 | Used to generate a unique identifier. |
-{% if_version gte:3.5.x %}| core/kong_request_id | rand(3) | rand(3) | The RNG isn’t used for cryptographic purposes. |{% endif_version %}
+
+{% if_version gte:3.5.x %}
+| core/kong_request_id | rand(3) | rand(3) | The RNG isn’t used for cryptographic purposes. |
+{% endif_version %}
 
 ### SSL client
 
