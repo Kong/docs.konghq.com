@@ -164,12 +164,12 @@ Configuring {{site.base_gateway}} requires a namespace and configuration secrets
 4. Create a {{site.ee_product_name}} license secret:
 
 {% navtabs %}
-{% navtab Kong Enterprise Free Mode%}
+{% navtab Kong Gateway Enterprise Free Mode%}
 
     kubectl create secret generic kong-enterprise-license --from-literal=license="'{}'" -n kong --dry-run=client -o yaml | kubectl apply -f -
 
 {% endnavtab %}
-{% navtab Kong Enterprise Licensed Mode%}
+{% navtab Kong Gateway Enterprise Licensed Mode%}
 
    >This command must be run in the directory that contains your `license.json` file.
 
