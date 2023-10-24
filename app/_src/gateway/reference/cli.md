@@ -426,6 +426,10 @@ The available commands are:
                                         default: 120 s
 
   log_level set --level <log_level>     Set the logging level.
+                                        It cannot work while not using a
+                                        database because it needs to be
+                                        protected by RBAC and RBAC is not
+                                        available in DB-less.
 
     --level (optional string)           It can be one of the following: debug,
                                         info, notice, warn, error, crit, alert,
