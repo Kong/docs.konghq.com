@@ -164,6 +164,13 @@ inherit:
           url: /features/access-audit
         - text: MeshGlobalRateLimit (beta)
           url: /features/meshglobalratelimit
+    - title: Guides
+      action: insert
+      index: -3
+      icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
+      items:
+        - text: Use OPA to validate JWT tokens
+          url: /guides/jwt-validation/
     - path: [ Reference ]
       action: modify
       icon: /assets/images/icons/documentation/icn-references-color.svg
