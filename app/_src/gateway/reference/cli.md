@@ -406,13 +406,24 @@ The available commands are:
     --interval  (optional number)       Sampling interval in microseconds.
                                         (only for mode=time)
 
+    --timeout (optional number)         Profiling will be stopped automatically
+                                        after the timeout (in seconds).
+                                        default: 10 s
+
   profiling memory <start|stop|status>  Generating the Lua GC heap memory
                                         tracing data (on-the-fly tracing).
 
     --stack_depth (optional number)     The maximum depth of the Lua stack.
 
+    --timeout (optional number)         Profiling will be stopped automatically
+                                        after the timeout (in seconds).
+                                        default: 10 s
+
   profiling gc-snapshot                 Generate a Lua GC heap snapshot.
 
+    --timeout (optional number)         Profiling will be stopped automatically
+                                        after the timeout (in seconds).
+                                        default: 120 s
 
   log_level set --level <log_level>     Set the logging level.
 
@@ -420,16 +431,16 @@ The available commands are:
                                         info, notice, warn, error, crit, alert,
                                         or emerg.
 
+    --timeout (optional number)         The log level will be restored to the
+                                        original level after the timeout (in
+                                        seconds).
+                                        default: 60 s
+
   log_level get                         Get the logging level.
 
 
 Options:
  --pid            (optional number)     The worker’s PID for profiling.
-
- --timeout        (optional number default 10)
-                                        Profiling will be stopped automatically
-                                        after the timeout (in seconds).
-                                        default: 10 s
 
  -f                                     Follow mode for certain commands, such
                                         as 'profiling {cpu|memory} status'.
