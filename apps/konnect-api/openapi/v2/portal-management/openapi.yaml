@@ -1,0 +1,2215 @@
+openapi: 3.0.3
+info:
+  title: Portal Management
+  version: 0.1.0
+  description: The management API for Portals
+  contact:
+    name: Kong
+    url: https://konghq.com
+servers:
+  - url: https://us.api.konghq.com/v2
+    description: US Region Base URL
+  - url: https://eu.api.konghq.com/v2
+    description: EU Region Base URL
+security:
+  - personalAccessToken: []
+  - systemAccountAccessToken: []
+tags:
+  - name: Portal Developers
+    description: APIs related to Konnect Developer Portal Developers.
+  - name: Portal Teams
+    description: APIs related to Konnect Developer Portal Developer Teams.
+  - name: Portal Team Membership
+    description: >-
+      APIs related to Developer Membership in Konnect Developer Portal Developer
+      Teams.
+  - name: Portal Team Roles
+    description: APIs related to Team Roles in Konnect Developer Portal.
+  - name: Portal Auth Settings
+    description: APIs related to Konnect Developer Portal Authentication Settings.
+paths:
+  /portals/{portalId}/authentication-settings:
+    parameters:
+      - $ref: '#/components/parameters/PortalId'
+    get:
+      x-unstable: true
+      summary: Get Auth Settings
+      description: >-
+        **Pre-release Endpoint**
+
+        This endpoint is currently in beta and is subject to change.
+
+
+        Returns authentication configuration, which determines how users can log
+        in and how they are assigned to teams.
+      operationId: get-portal-authentication-settings
+      tags:
+        - Portal Auth Settings
+      responses:
+        '200':
+          $ref: '#/components/responses/PortalAuthenticationSettings'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      x-unstable: true
+      summary: Update Auth Settings
+      description: |-
+        **Pre-release Endpoint**
+        This endpoint is currently in beta and is subject to change.
+
+        Updates authentication configuration.
+      operationId: update-portal-authentication-settings
+      requestBody:
+        $ref: '#/components/requestBodies/UpdatePortalAuthenticationSettings'
+      tags:
+        - Portal Auth Settings
+      responses:
+        '200':
+          $ref: '#/components/responses/PortalAuthenticationSettings'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /portals/{portalId}/identity-provider/team-group-mappings:
+    parameters:
+      - $ref: '#/components/parameters/PortalId'
+    get:
+      x-unstable: true
+      summary: Fetch Team Group Mappings
+      operationId: get-portal-team-group-mappings
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+      responses:
+        '200':
+          $ref: '#/components/responses/PortalTeamGroupMappingCollection'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      tags:
+        - Portal Auth Settings
+      description: >-
+        **Pre-release Endpoint**
+
+        This endpoint is currently in beta and is subject to change.
+
+
+        Retrieves the mappings between Konnect Portal Teams and Identity
+        Provider Groups.
+
+        Returns a 400 error if an Identity Provider has not yet been configured.
+    patch:
+      x-unstable: true
+      summary: Patch Mappings by Team ID
+      operationId: patch-portal-team-group-mappings
+      responses:
+        '200':
+          $ref: '#/components/responses/PortalTeamGroupMappingCollection'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      tags:
+        - Portal Auth Settings
+      description: >-
+        **Pre-release Endpoint**
+
+        This endpoint is currently in beta and is subject to change.
+
+
+        Allows partial updates to the mappings between Konnect Portal Teams and
+        Identity Provider Groups.
+
+        The request body must be keyed on team ID. For a given team ID, the
+        given group list is a
+
+        complete replacement. To remove all mappings for a given team, provide
+        an empty group list.
+
+
+        Returns a 400 error if an Identity Provider has not yet been configured,
+        or if a team ID in
+
+        the request body is not found or is not a UUID.
+      requestBody:
+        $ref: '#/components/requestBodies/PatchPortalTeamGroupMappings'
+  /portals/{portalId}/teams:
+    parameters:
+      - $ref: '#/components/parameters/PortalId'
+    get:
+      summary: List Teams
+      responses:
+        '200':
+          $ref: '#/components/responses/PortalTeamCollection'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      operationId: list-portal-teams
+      description: List the teams.
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - schema:
+            type: object
+            properties:
+              name:
+                $ref: '#/components/schemas/StringFieldFilter'
+          in: query
+          name: filter
+          description: Filter teams returned in the response.
+          required: false
+          style: deepObject
+      tags:
+        - Portal Teams
+    post:
+      summary: Create Team
+      operationId: create-portal-team
+      responses:
+        '201':
+          $ref: '#/components/responses/PortalTeamSingle'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Portal Teams
+      requestBody:
+        $ref: '#/components/requestBodies/PortalCreateTeam'
+      description: Create a team.
+  /portals/{portalId}/teams/{teamId}:
+    parameters:
+      - $ref: '#/components/parameters/TeamId'
+      - $ref: '#/components/parameters/PortalId'
+    get:
+      summary: Get Team
+      responses:
+        '200':
+          $ref: '#/components/responses/PortalTeamSingle'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      operationId: get-portal-team
+      description: Get an individual team.
+      tags:
+        - Portal Teams
+    patch:
+      summary: Update Team
+      operationId: update-portal-team
+      responses:
+        '200':
+          $ref: '#/components/responses/PortalTeamSingle'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      description: Update an individual team.
+      requestBody:
+        $ref: '#/components/requestBodies/PortalUpdateTeam'
+      tags:
+        - Portal Teams
+    delete:
+      summary: Delete Team
+      operationId: delete-portal-team
+      responses:
+        '204':
+          description: No Content
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      description: >-
+        Deleting a team also deletes its assigned roles. Members of the team are
+        not deleted.
+      tags:
+        - Portal Teams
+  /portals/{portalId}/teams/{teamId}/developers:
+    parameters:
+      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/TeamId'
+    get:
+      summary: List Team Developers
+      responses:
+        '200':
+          $ref: '#/components/responses/DeveloperCollection'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      operationId: list-portal-team-developers
+      description: List a team's developers.
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+      tags:
+        - Portal Team Membership
+    post:
+      summary: Add Developer
+      operationId: add-developer-to-portal-team
+      responses:
+        '201':
+          description: Created
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      description: Add a developer to a team.
+      requestBody:
+        $ref: '#/components/requestBodies/AddDeveloperToTeam'
+      tags:
+        - Portal Team Membership
+  /portals/{portalId}/teams/{teamId}/developers/{developerId}:
+    parameters:
+      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-DeveloperId'
+      - $ref: '#/components/parameters/TeamId'
+    delete:
+      summary: Remove Developer from Team
+      operationId: remove-developer-from-portal-team
+      responses:
+        '204':
+          description: No Content
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      description: Remove a developer from a team.
+      tags:
+        - Portal Team Membership
+  /portals/{portalId}/teams/{teamId}/assigned-roles:
+    parameters:
+      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/TeamId'
+      - $ref: '#/components/parameters/PageSize'
+      - $ref: '#/components/parameters/PageNumber'
+    get:
+      summary: List Team Roles
+      tags:
+        - Portal Team Roles
+      responses:
+        '200':
+          $ref: '#/components/responses/AssignedPortalRoleCollection'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      operationId: list-portal-team-roles
+      description: List the roles belonging to a team.
+    post:
+      summary: Assign Role
+      operationId: portal-teams-assign-role
+      responses:
+        '201':
+          $ref: '#/components/responses/PortalAssignedRoleResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+      description: Assign a role to a team.
+      requestBody:
+        $ref: '#/components/requestBodies/PortalAssignRole'
+      tags:
+        - Portal Team Roles
+  /portals/{portalId}/teams/{teamId}/assigned-roles/{roleId}:
+    parameters:
+      - $ref: '#/components/parameters/RoleId'
+      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/TeamId'
+    delete:
+      summary: Remove Role
+      operationId: portal-teams-remove-role
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Portal Team Roles
+      description: Remove an assigned role from a team.
+  /portals/{portalId}/developers:
+    parameters:
+      - $ref: '#/components/parameters/PortalId'
+    get:
+      summary: List Developers
+      description: >-
+        List all of the Developers that have registered for this Portal. Each
+        Developer can be registered to one Portal and must be approved to login
+        unless using the Developer auto-approve setting.
+      tags:
+        - Portal Developers
+      responses:
+        '200':
+          $ref: '#/components/responses/DeveloperCollection'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      operationId: list-portal-developers
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/FilterDevelopersByEmail'
+        - $ref: '#/components/parameters/FilterDevelopersByEmailShort'
+        - $ref: '#/components/parameters/FilterDevelopersByEmailContains'
+        - $ref: '#/components/parameters/FilterDevelopersByName'
+        - $ref: '#/components/parameters/FilterDevelopersByNameShort'
+        - $ref: '#/components/parameters/FilterDevelopersByNameContains'
+        - $ref: '#/components/parameters/FilterDevelopersByStatus'
+        - $ref: '#/components/parameters/FilterDevelopersByStatusShort'
+        - $ref: '#/components/parameters/SortDevelopers'
+  /portals/{portalId}/developers/{developerId}/teams:
+    parameters:
+      - $ref: '#/components/parameters/parameters-DeveloperId'
+      - $ref: '#/components/parameters/PortalId'
+    get:
+      summary: List Developer Teams
+      responses:
+        '200':
+          $ref: '#/components/responses/PortalTeamCollection'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      operationId: list-portal-developer-teams
+      description: List the teams to which a developer belongs.
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+      tags:
+        - Portal Team Membership
+  /portal-roles:
+    get:
+      summary: List Portal Roles
+      responses:
+        '200':
+          $ref: '#/components/responses/RolesDocument'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      operationId: list-portal-roles
+      description: List roles that can be assigned to teams in a portal.
+      tags:
+        - Portal Team Roles
+components:
+  requestBodies:
+    PortalUpdateTeam:
+      description: The request schema for the update team request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PortalUpdateTeamRequest'
+    PortalCreateTeam:
+      description: The request schema for the create team request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PortalCreateTeamRequest'
+    PatchPortalTeamGroupMappings:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PortalTeamGroupMappingsUpdateRequest'
+    UpdatePortalAuthenticationSettings:
+      description: The request schema to update an organization's authentication settings.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PortalAuthenticationSettingsUpdateRequest'
+    PortalAssignRole:
+      description: Assign a role to a team.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PortalAssignRoleRequest'
+    AddDeveloperToTeam:
+      description: The request schema for adding a developer to a team.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AddDeveloperToTeamRequest'
+  parameters:
+    FilterDevelopersByEmail:
+      name: filter[email][eq]
+      description: filters developers by their email
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDevelopersByEmailShort:
+      name: filter[email]
+      description: filters developers by their email (alias for filter[email][eq])
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDevelopersByEmailContains:
+      name: filter[email][contains]
+      description: >-
+        filters by contains comparison of the email property with a supplied
+        substring
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDevelopersByName:
+      name: filter[name][eq]
+      description: filters developers by their names
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDevelopersByNameShort:
+      name: filter[name]
+      description: filters developers by their names (alias for filter[name][eq])
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDevelopersByNameContains:
+      name: filter[name][contains]
+      description: >-
+        Filter by contains comparison of the name property with a supplied
+        substring
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDevelopersByStatus:
+      name: filter[status][eq]
+      description: filters developers by their status
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDevelopersByStatusShort:
+      name: filter[status]
+      description: filters developers by their status (alias for filter[status][eq])
+      in: query
+      required: false
+      schema:
+        type: string
+    SortDevelopers:
+      name: sort
+      description: |
+        Sorts a collection of developers. Supported sort attributes are:
+          - created_at
+          - updated_at
+          - email
+          - name
+          - status
+      in: query
+      required: false
+      schema:
+        type: string
+    PageSize:
+      name: page[size]
+      description: >-
+        The maximum number of items to include per page. The last page of a
+        collection may include fewer items.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: integer
+        example: 10
+    PageNumber:
+      name: page[number]
+      description: Determines which page of the entities to retrieve.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: integer
+        example: 1
+    PortalId:
+      schema:
+        type: string
+        format: uuid
+      name: portalId
+      in: path
+      required: true
+      description: ID of the portal.
+    TeamId:
+      schema:
+        type: string
+        format: uuid
+        example: d32d905a-ed33-46a3-a093-d8f536af9a8a
+      name: teamId
+      in: path
+      required: true
+      description: ID of the team.
+    parameters-DeveloperId:
+      schema:
+        type: string
+        example: d32d905a-ed33-46a3-a093-d8f536af9a8a
+        format: uuid
+      name: developerId
+      in: path
+      required: true
+      description: ID of the developer.
+    RoleId:
+      schema:
+        type: string
+        example: 8350205f-a305-4e39-abe9-bc082a80091a
+        format: uuid
+      name: roleId
+      in: path
+      required: true
+  responses:
+    PortalTeamGroupMappingCollection:
+      description: A paginated collection of mappings grouped by team_id.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PortalTeamGroupMapping'
+    PortalAuthenticationSettings:
+      description: Response for authentication settings endpoint
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PortalAuthenticationSettings'
+    PortalAssignedRoleResponse:
+      description: A get action response of a single assigned role.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PortalAssignedRole'
+          examples:
+            US Example:
+              value:
+                id: 1a3c2169-27f8-4594-926b-41df3432d5dc
+                role_name: API Viewer
+                entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
+                entity_type_name: Services
+                entity_region: us
+            All Regions Example:
+              value:
+                id: 034cb810-1f2d-40d2-a1ce-31944144668e
+                role_name: API Consumer
+                entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
+                entity_type_name: Services
+                entity_region: '*'
+    PortalTeamSingle:
+      description: A response including a single team.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PortalTeam'
+          examples:
+            Example:
+              value:
+                id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+                name: Gold Tier
+                description: Team with access to APIs in the Gold tier
+                created_at: '2022-02-07T17:46:57.52Z'
+                updated_at: '2022-09-25T13:00:00.00Z'
+    AssignedPortalRoleCollection:
+      description: A paginated collection of assigned roles.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AssignedPortalRoleCollection'
+    PortalTeamCollection:
+      description: A paginated list of teams.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PortalTeamCollection'
+    RolesDocument:
+      description: A set of roles available in portals.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RolesDocument'
+    DeveloperCollection:
+      description: A paginated list of developers.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeveloperCollection'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+          examples:
+            UnauthorizedExample:
+              $ref: '#/components/examples/UnauthorizedExample'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenError'
+          examples:
+            UnauthorizedExample:
+              $ref: '#/components/examples/ForbiddenExample'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BadRequestError'
+    NotFound:
+      description: Not Found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+          examples:
+            NotFoundExample:
+              $ref: '#/components/examples/NotFoundExample'
+    Conflict:
+      description: Conflict
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ConflictError'
+  schemas:
+    PortalClaimMappings:
+      type: object
+      minProperties: 0
+      maxProperties: 3
+      properties:
+        name:
+          type: string
+          example: name
+          default: name
+        email:
+          type: string
+          example: email
+          default: email
+        groups:
+          type: string
+          default: groups
+          example: custom-group-claim
+    PortalOIDCConfig:
+      type: object
+      properties:
+        issuer:
+          type: string
+        client_id:
+          type: string
+        scopes:
+          type: array
+          default:
+            - email
+            - openid
+            - profile
+          items:
+            type: string
+            default: openid
+        claim_mappings:
+          $ref: '#/components/schemas/PortalClaimMappings'
+      required:
+        - issuer
+        - client_id
+    PortalAuthenticationSettings:
+      type: object
+      properties:
+        basic_auth_enabled:
+          type: boolean
+          example: true
+          description: The organization has basic auth enabled.
+        oidc_auth_enabled:
+          type: boolean
+          example: false
+          description: The organization has OIDC disabled.
+        oidc_team_mapping_enabled:
+          type: boolean
+          example: true
+          description: IdP groups determine the Portal Teams a developer has.
+        konnect_mapping_enabled:
+          type: boolean
+          example: false
+          description: A Konnect Identity Admin assigns teams to a developer.
+        oidc_config:
+          $ref: '#/components/schemas/PortalOIDCConfig'
+      required:
+        - basic_auth_enabled
+        - konnect_mapping_enabled
+        - oidc_auth_enabled
+        - oidc_team_mapping_enabled
+    AssignedPortalRoleCollection:
+      type: object
+      required:
+        - meta
+        - data
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginatedMeta'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PortalAssignedRole'
+      example:
+        meta:
+          page:
+            number: 1
+            size: 10
+            total: 100
+        data:
+          - id: b02e23c5-8ee4-4e5a-99f4-43329923adce
+            role_name: API Viewer
+            entity_id: 437c7192-fea0-4f35-8478-c8d57783f8c1
+            entity_type_name: Services
+            entity_region: us
+          - id: b02e23c5-8ee4-4e5a-99f4-43329923adce
+            role_name: API Consumer
+            entity_id: 437c7192-fea0-4f35-8478-c8d57783f8c1
+            entity_type: Services
+            entity_region: us
+          - id: 869d9402-f117-4f9a-840f-69acaf70a81a
+            role_name: API Viewer
+            entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
+            entity_type_name: Services
+            entity_region: us
+    PortalTeamCollection:
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginatedMeta'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PortalTeam'
+      example:
+        meta:
+          page:
+            number: 1
+            size: 10
+            total: 10
+        data:
+          - id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+            name: Partner
+            description: Team with access to Partner APIs
+            created_at: '2022-02-07T17:46:57.52Z'
+            updated_at: '2022-09-25T13:00:00.00Z'
+    RolesDocument:
+      type: object
+      properties:
+        services:
+          type: object
+          required:
+            - name
+            - roles
+          properties:
+            name:
+              type: string
+              enum:
+                - Services
+            roles:
+              type: object
+              required:
+                - apiviewer
+                - apiconsumer
+              properties:
+                apiviewer:
+                  type: object
+                  required:
+                    - name
+                    - description
+                  properties:
+                    name:
+                      type: string
+                      enum:
+                        - API Viewer
+                    description:
+                      type: string
+                      enum:
+                        - >-
+                          API Viewers have read-only access to the documentation
+                          of a service in a portal
+                apiconsumer:
+                  type: object
+                  required:
+                    - name
+                    - description
+                  properties:
+                    name:
+                      type: string
+                      enum:
+                        - API Consumer
+                    description:
+                      type: string
+                      enum:
+                        - API Consumers can make calls to the given service
+      required:
+        - services
+      example:
+        services:
+          name: Services
+          roles:
+            apiviewer:
+              name: API Viewer
+              description: >-
+                API Viewers have read-only access to the documentation of a
+                service in a portal
+            apiconsumer:
+              name: API Consumer
+              description: API Consumers can make calls to the given service
+    DeveloperCollection:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginatedMeta'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Developer'
+      example:
+        meta:
+          page:
+            number: 1
+            size: 10
+            total: 10
+        data:
+          - id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+            email: james.woods@email.com
+            full_name: James Woods
+            preferred_name: Jimmy
+            active: true
+            created_at: '2022-08-17T17:46:57.52Z'
+            updated_at: '2022-10-03T17:00:00.00Z'
+    AddDeveloperToTeamRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          example: df120cb4-f60b-47bc-a2f8-6a28e6a3c63b
+          format: uuid
+          writeOnly: true
+      required:
+        - id
+    PortalAssignRoleRequest:
+      type: object
+      description: An assigned role associates a service and an action to a team.
+      properties:
+        role_name:
+          type: string
+          example: API Viewer
+        entity_id:
+          type: string
+          format: uuid
+          example: e67490ce-44dc-4cbd-b65e-b52c746fc26a
+        entity_type_name:
+          type: string
+          example: Services
+        entity_region:
+          type: string
+          enum:
+            - us
+            - eu
+            - '*'
+          example: eu
+      example:
+        role_name: API Viewer
+        entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
+        entity_type_name: Services
+        entity_region: us
+    PortalAuthenticationSettingsUpdateRequest:
+      type: object
+      properties:
+        basic_auth_enabled:
+          type: boolean
+          example: true
+          description: The organization has basic auth enabled.
+        oidc_auth_enabled:
+          type: boolean
+          example: false
+          description: The organization has OIDC disabled.
+        oidc_team_mapping_enabled:
+          type: boolean
+          example: true
+          description: >-
+            Whether IdP groups determine the Konnect Portal teams a developer
+            has.
+        konnect_mapping_enabled:
+          type: boolean
+          example: false
+          description: Whether a Konnect Identity Admin assigns teams to a developer.
+        oidc_issuer:
+          type: string
+        oidc_client_id:
+          type: string
+        oidc_client_secret:
+          type: string
+        oidc_scopes:
+          type: array
+          default:
+            - email
+            - openid
+            - profile
+          items:
+            type: string
+            default: openid
+        oidc_claim_mappings:
+          $ref: '#/components/schemas/PortalClaimMappings'
+    PortalTeamGroupMappingsUpdateRequest:
+      type: object
+      example:
+        data:
+          - team_id: af91db4c-6e51-403e-a2bf-33d27ae50c0a
+            groups:
+              - Service Developer
+      properties:
+        data:
+          type: array
+          description: The IdP groups to map to the given team.
+          items:
+            type: object
+            properties:
+              team_id:
+                type: string
+                format: uuid
+              groups:
+                type: array
+                items:
+                  type: string
+    PortalUpdateTeamRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example: IDM - Developers
+          pattern: ^[\w \W]+$
+          writeOnly: true
+        description:
+          type: string
+          maxLength: 250
+          example: The Identity Management (IDM) API team.
+          writeOnly: true
+      example:
+        name: IDM - Developers
+        description: The Identity Management (IDM) API team.
+    PortalCreateTeamRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example: IDM - Developers
+          pattern: ^[\w \W]+$
+          writeOnly: true
+        description:
+          type: string
+          maxLength: 250
+          example: The Identity Management (IDM) team.
+          writeOnly: true
+      required:
+        - name
+      example:
+        name: IDM - Developers
+        description: The Identity Management (IDM) team.
+    PortalTeam:
+      title: Team
+      type: object
+      description: A team is a group of developers.
+      example:
+        id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+        name: IDM - Developers
+        description: The developers for the IDM API.
+        created_at: '1992-02-07T17:46:57.52Z'
+        updated_at: '2022-08-31T17:00:00.52Z'
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+          readOnly: true
+        name:
+          type: string
+          pattern: ^[\w \W]+$
+          example: IDM - Developers
+          maxLength: 250
+        description:
+          type: string
+          example: The developers for the IDM API.
+          maxLength: 250
+        created_at:
+          type: string
+          format: date-time
+          example: '1992-02-07T17:46:57.52Z'
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          example: '2022-02-07T17:00:00.52Z'
+          readOnly: true
+    PortalTeamGroupMapping:
+      title: PortalTeamGroupMapping
+      type: object
+      description: A map of Konnect Team to IdP groups.
+      example:
+        team_id: 6801e673-cc10-498a-94cd-4271de07a0d3
+        groups:
+          - Tech Leads
+          - API Engineers
+      properties:
+        team_id:
+          type: string
+          format: uuid
+          example: 6801e673-cc10-498a-94cd-4271de07a0d3
+          description: The Konnect team ID.
+        groups:
+          type: array
+          uniqueItems: true
+          description: The IdP groups that are mapped to the specified team.
+          items:
+            type: string
+            example: API Engineers
+    PortalAssignedRole:
+      title: AssignedRole
+      type: object
+      description: An assigned role associates a service and an action to a team.
+      example:
+        id: 1a3c2169-27f8-4594-926b-41df3432d5dc
+        role_name: API Viewer
+        entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
+        entity_type_name: Services
+        entity_region: us
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: eaf7adf1-32c8-4bbf-b960-d1f8456afe67
+        role_name:
+          type: string
+          example: API Viewer
+        entity_id:
+          type: string
+          format: uuid
+          example: 817d0422-45c9-4d88-8d64-45aef05c1ae7
+        entity_type_name:
+          type: string
+          example: Services
+        entity_region:
+          type: string
+          enum:
+            - us
+            - eu
+            - '*'
+          example: eu
+    Developer:
+      title: Developer
+      type: object
+      description: A developer is an individual who can use a developer portal.
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+          readOnly: true
+        email:
+          type: string
+          format: email
+          example: developer@email.com
+          maxLength: 250
+        full_name:
+          type: string
+          pattern: ^[\w \W]+$
+          example: API Developer
+          maxLength: 250
+        status:
+          type: string
+          default: pending
+          readOnly: true
+        portal_id:
+          type: string
+          example: 51d313f4-e13d-43d0-a2b4-8d4bf2aa172b
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          example: '2022-02-07T17:46:57.52Z'
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          example: '2022-10-08T17:00:00.52Z'
+          readOnly: true
+      example:
+        id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+        email: user@email.com
+        full_name: API Developer
+        preferred_name: apidev
+        status: active
+        portal_id: 51d313f4-e13d-43d0-a2b4-8d4bf2aa172b
+        created_at: '2022-02-07T17:46:57.52Z'
+        updated_at: '2022-10-08T17:00:00.52Z'
+    ListPortalsResponse:
+      additionalProperties: false
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginatedMeta'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Portal'
+    ListPortalProductsResponse:
+      additionalProperties: false
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginatedMeta'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublishedAPIProduct'
+    PublishedAPIProduct:
+      title: API Product
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - name
+        - description
+        - portal_ids
+        - created_at
+        - updated_at
+        - labels
+        - version_count
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: b9e81174-b5bb-4638-a3c3-8afe61a0abf8
+          description: The API product ID.
+          readOnly: true
+        name:
+          type: string
+          description: The name of the API product
+          example: My Name
+        description:
+          type: string
+          nullable: true
+          description: The description of the API product
+          example: MyDescription
+        portal_ids:
+          type: array
+          nullable: false
+          uniqueItems: true
+          minItems: 0
+          description: >-
+            The list of portal identifiers which this API product is published
+            to
+          items:
+            type: string
+            format: uuid
+            example: 25a2624c-49fc-4764-99e1-224ed819f200
+        version_count:
+          type: number
+          example: 10
+          description: >-
+            The number of published product versions attached to this API
+            product
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+        labels:
+          $ref: '#/components/schemas/APIProductLabels'
+    GetPortalResponse:
+      $ref: '#/components/schemas/Portal'
+    CreatePortalResponse:
+      $ref: '#/components/schemas/Portal'
+    UpdatePortalResponse:
+      $ref: '#/components/schemas/Portal'
+    GetAppearanceDefaultsResponse:
+      $ref: '#/components/schemas/AppearanceDefaults'
+    GetPortalAppearanceResponse:
+      allOf:
+        - $ref: '#/components/schemas/PortalAppearance'
+        - type: object
+          required:
+            - theme_name
+            - use_custom_fonts
+            - custom_theme
+            - custom_fonts
+            - text
+            - images
+    UpdatePortalAppearanceResponse:
+      allOf:
+        - $ref: '#/components/schemas/PortalAppearance'
+        - type: object
+          required:
+            - theme_name
+            - use_custom_fonts
+            - custom_theme
+            - custom_fonts
+            - text
+            - images
+    ListDevelopersResponse:
+      additionalProperties: false
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginatedMeta'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PortalDeveloper'
+    ListApplicationsResponse:
+      additionalProperties: false
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginatedMeta'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+    UpdateDeveloperResponse:
+      $ref: '#/components/schemas/PortalDeveloper'
+    GetDeveloperResponse:
+      $ref: '#/components/schemas/PortalDeveloper'
+    GetApplicationResponse:
+      $ref: '#/components/schemas/Application'
+    ListApplicationRegistrationsResponse:
+      additionalProperties: false
+      type: object
+      required:
+        - data
+        - meta
+      properties:
+        meta:
+          $ref: '#/components/schemas/PaginatedMeta'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationRegistration'
+    ListGrantedScopesResponse:
+      additionalProperties: false
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: array
+          items:
+            type: string
+    GetApplicationRegistrationResponse:
+      $ref: '#/components/schemas/ApplicationRegistration'
+    UpdateApplicationRegistrationResponse:
+      $ref: '#/components/schemas/ApplicationRegistration'
+    VerifyPortalDomainsResponse:
+      additionalProperties: false
+      type: object
+      required:
+        - is_cname_verified
+        - is_ssl_issued
+      properties:
+        is_cname_verified:
+          type: boolean
+          readOnly: true
+        is_ssl_issued:
+          type: boolean
+          readOnly: true
+    PortalDeveloper:
+      additionalProperties: false
+      type: object
+      required:
+        - id
+        - created_at
+        - updated_at
+        - email
+        - full_name
+        - status
+        - application_count
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        full_name:
+          type: string
+          maxLength: 255
+        status:
+          $ref: '#/components/schemas/DeveloperStatus'
+        application_count:
+          readOnly: true
+          type: number
+          example: 4
+    Application:
+      additionalProperties: false
+      type: object
+      required:
+        - id
+        - created_at
+        - updated_at
+        - name
+        - description
+        - reference_id
+        - dcr_provider_id
+        - developer_id
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        reference_id:
+          type: string
+          readOnly: true
+        dcr_provider_id:
+          $ref: '#/components/schemas/NullableUUID'
+        developer_id:
+          type: string
+          format: uuid
+          readOnly: true
+    ApplicationRegistration:
+      additionalProperties: false
+      type: object
+      required:
+        - id
+        - created_at
+        - updated_at
+        - status
+        - product_version_id
+        - application_id
+        - developer_id
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+        status:
+          $ref: '#/components/schemas/ApplicationRegistrationStatus'
+        product_version_id:
+          $ref: '#/components/schemas/UUID'
+        application_id:
+          $ref: '#/components/schemas/UUID'
+        developer_id:
+          $ref: '#/components/schemas/UUID'
+    Portal:
+      additionalProperties: false
+      type: object
+      required:
+        - id
+        - created_at
+        - updated_at
+        - name
+        - default_domain
+        - is_public
+        - rbac_enabled
+        - auto_approve_applications
+        - auto_approve_developers
+        - custom_domain
+        - custom_client_domain
+        - public_catalog_enabled
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+        name:
+          type: string
+          maxLength: 255
+          minLength: 1
+        default_domain:
+          type: string
+          format: hostname
+          readOnly: true
+        is_public:
+          type: boolean
+        rbac_enabled:
+          type: boolean
+        auto_approve_applications:
+          type: boolean
+        auto_approve_developers:
+          type: boolean
+        custom_domain:
+          nullable: true
+          type: string
+          format: hostname
+        custom_client_domain:
+          nullable: true
+          type: string
+          format: hostname
+        public_catalog_enabled:
+          type: boolean
+    UpdatePortalRequest:
+      additionalProperties: false
+      type: object
+      properties:
+        is_public:
+          type: boolean
+        rbac_enabled:
+          type: boolean
+        auto_approve_applications:
+          type: boolean
+        auto_approve_developers:
+          type: boolean
+        custom_domain:
+          type: string
+          format: hostname
+          nullable: true
+          maxLength: 1024
+        custom_client_domain:
+          type: string
+          format: hostname
+          nullable: true
+          maxLength: 1024
+        public_catalog_enabled:
+          type: boolean
+    UpdateDeveloperRequest:
+      additionalProperties: false
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/DeveloperStatus'
+    UpdateApplicationRegistrationRequest:
+      additionalProperties: false
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/ApplicationRegistrationStatus'
+    UpdatePortalAppearanceRequest:
+      $ref: '#/components/schemas/PortalAppearance'
+    AppearanceDefaults:
+      additionalProperties: false
+      type: object
+      readOnly: true
+      required:
+        - themes
+        - fonts
+        - text
+      properties:
+        themes:
+          $ref: '#/components/schemas/AppearanceDefaultThemes'
+        fonts:
+          $ref: '#/components/schemas/AppearanceFonts'
+        text:
+          $ref: '#/components/schemas/AppearanceTextVariables'
+    AppearanceDefaultThemes:
+      additionalProperties: false
+      type: object
+      readOnly: true
+      required:
+        - mint_rocket
+        - dark_mode
+      properties:
+        mint_rocket:
+          $ref: '#/components/schemas/AppearanceThemeVariables'
+        dark_mode:
+          $ref: '#/components/schemas/AppearanceThemeVariables'
+    AppearanceColorVariable:
+      type: object
+      additionalProperties: false
+      required:
+        - value
+        - description
+      properties:
+        value:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+          maxLength: 512
+    AppearanceThemeColorVariables:
+      type: object
+      additionalProperties: false
+      required:
+        - section
+        - text
+        - button
+      properties:
+        section:
+          type: object
+          additionalProperties: false
+          required:
+            - header
+            - body
+            - hero
+            - accent
+            - tertiary
+            - stroke
+            - footer
+          properties:
+            header:
+              $ref: '#/components/schemas/AppearanceColorVariable'
+            body:
+              $ref: '#/components/schemas/AppearanceColorVariable'
+            hero:
+              $ref: '#/components/schemas/AppearanceColorVariable'
+            accent:
+              $ref: '#/components/schemas/AppearanceColorVariable'
+            tertiary:
+              $ref: '#/components/schemas/AppearanceColorVariable'
+            stroke:
+              $ref: '#/components/schemas/AppearanceColorVariable'
+            footer:
+              $ref: '#/components/schemas/AppearanceColorVariable'
+        text:
+          type: object
+          additionalProperties: false
+          required:
+            - header
+            - hero
+            - headings
+            - primary
+            - secondary
+            - accent
+            - link
+            - footer
+          properties:
+            header:
+              $ref: '#/components/schemas/AppearanceColorVariable'
+            hero:
+              $ref: '#/components/schemas/AppearanceColorVariable'
+            headings:
+              $ref: '#/components/schemas/AppearanceColorVariable'
+            primary:
+              $ref: '#/components/schemas/AppearanceColorVariable'
+            secondary:
+              $ref: '#/components/schemas/AppearanceColorVariable'
+            accent:
+              $ref: '#/components/schemas/AppearanceColorVariable'
+            link:
+              $ref: '#/components/schemas/AppearanceColorVariable'
+            footer:
+              $ref: '#/components/schemas/AppearanceColorVariable'
+        button:
+          type: object
+          additionalProperties: false
+          required:
+            - primary_fill
+            - primary_text
+          properties:
+            primary_fill:
+              $ref: '#/components/schemas/AppearanceColorVariable'
+            primary_text:
+              $ref: '#/components/schemas/AppearanceColorVariable'
+    AppearanceThemeVariables:
+      description: >-
+        Groups of variables for configuring visual details of the portal user
+        interface. Set theme_name to 'custom' to use custom values for theme
+        variables.
+      type: object
+      additionalProperties: false
+      required:
+        - colors
+      properties:
+        colors:
+          $ref: '#/components/schemas/AppearanceThemeColorVariables'
+    NullableAppearanceThemeVariables:
+      description: >-
+        Groups of variables for configuring visual details of the portal user
+        interface. Set theme_name to 'custom' to use custom values for theme
+        variables.
+      type: object
+      additionalProperties: false
+      required:
+        - colors
+      properties:
+        colors:
+          $ref: '#/components/schemas/AppearanceThemeColorVariables'
+      nullable: true
+    AppearanceFonts:
+      description: >-
+        Font selections to render text in the portal user interface. Must set
+        use_custom_fonts to true to enable using custom font values.
+      type: object
+      additionalProperties: false
+      required:
+        - base
+        - code
+        - headings
+      properties:
+        base:
+          $ref: '#/components/schemas/AppearanceFontName'
+        code:
+          $ref: '#/components/schemas/AppearanceFontName'
+        headings:
+          $ref: '#/components/schemas/AppearanceFontName'
+    NullableAppearanceFonts:
+      description: >-
+        Font selections to render text in the portal user interface. Must set
+        use_custom_fonts to true to enable using custom font values.
+      type: object
+      additionalProperties: false
+      required:
+        - base
+        - code
+        - headings
+      properties:
+        base:
+          $ref: '#/components/schemas/AppearanceFontName'
+        code:
+          $ref: '#/components/schemas/AppearanceFontName'
+        headings:
+          $ref: '#/components/schemas/AppearanceFontName'
+      nullable: true
+    AppearanceFontName:
+      type: string
+      enum:
+        - Roboto
+        - Inter
+        - Open Sans
+        - Lato
+        - Slabo 27px
+        - Slabo 13px
+        - Oswald
+        - Source Sans Pro
+        - Montserrat
+        - Raleway
+        - PT Sans
+        - Lora
+        - Roboto Mono
+        - Inconsolata
+        - Source Code Pro
+        - PT Mono
+        - Ubuntu Mono
+        - IBM Plex Mono
+    AppearanceImage:
+      type: object
+      additionalProperties: false
+      nullable: true
+      required:
+        - data
+      properties:
+        data:
+          type: string
+        filename:
+          type: string
+          maxLength: 512
+    AppearanceImages:
+      description: A collection of binary image data to customize images in the portal
+      type: object
+      additionalProperties: false
+      nullable: true
+      properties:
+        logo:
+          $ref: '#/components/schemas/AppearanceImage'
+        favicon:
+          $ref: '#/components/schemas/AppearanceImage'
+        catalog_cover:
+          $ref: '#/components/schemas/AppearanceImage'
+    AppearanceTextVariables:
+      description: Values to display for customizable text in the portal user interface
+      type: object
+      additionalProperties: false
+      required:
+        - catalog
+      properties:
+        catalog:
+          type: object
+          additionalProperties: false
+          required:
+            - welcome_message
+            - primary_header
+          properties:
+            welcome_message:
+              type: string
+              maxLength: 512
+            primary_header:
+              type: string
+              maxLength: 512
+    NullableAppearanceTextVariables:
+      description: Values to display for customizable text in the portal user interface
+      type: object
+      additionalProperties: false
+      required:
+        - catalog
+      properties:
+        catalog:
+          type: object
+          additionalProperties: false
+          required:
+            - welcome_message
+            - primary_header
+          properties:
+            welcome_message:
+              type: string
+              maxLength: 512
+            primary_header:
+              type: string
+              maxLength: 512
+      nullable: true
+    PortalAppearance:
+      additionalProperties: false
+      type: object
+      properties:
+        theme_name:
+          $ref: '#/components/schemas/PortalTheme'
+        custom_theme:
+          $ref: '#/components/schemas/NullableAppearanceThemeVariables'
+        custom_fonts:
+          $ref: '#/components/schemas/NullableAppearanceFonts'
+        use_custom_fonts:
+          description: >-
+            If true, fonts in custom_fonts will be used over the theme's default
+            fonts
+          type: boolean
+        text:
+          $ref: '#/components/schemas/NullableAppearanceTextVariables'
+        images:
+          $ref: '#/components/schemas/AppearanceImages'
+    DeveloperStatus:
+      type: string
+      enum:
+        - approved
+        - pending
+        - revoked
+        - rejected
+    ApplicationRegistrationStatus:
+      type: string
+      enum:
+        - approved
+        - pending
+        - revoked
+        - rejected
+    PortalTheme:
+      description: >-
+        Select a pre-existing default theme or specify 'custom' to use
+        custom_theme variables.
+      type: string
+      enum:
+        - mint_rocket
+        - dark_mode
+        - custom
+    PageMeta:
+      type: object
+      description: >-
+        Contains pagination query parameters and the total number of objects
+        returned.
+      required:
+        - number
+        - size
+        - total
+      properties:
+        number:
+          type: number
+          example: 1
+        size:
+          type: number
+          example: 10
+        total:
+          type: number
+          example: 100
+    PaginatedMeta:
+      type: object
+      title: PaginatedMeta
+      description: returns the pagination information
+      properties:
+        page:
+          $ref: '#/components/schemas/PageMeta'
+      required:
+        - page
+    UUID:
+      type: string
+      format: uuid
+      example: 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+      description: Contains a unique identifier used for this resource.
+      readOnly: true
+    CreatedAt:
+      type: string
+      format: date-time
+      example: '2022-11-04T20:10:06.927Z'
+      description: An ISO-8601 timestamp representation of entity creation date.
+      readOnly: true
+    UpdatedAt:
+      type: string
+      format: date-time
+      example: '2022-11-04T20:10:06.927Z'
+      description: An ISO-8601 timestamp representation of entity update date.
+      readOnly: true
+    BaseError:
+      type: object
+      title: Error
+      description: standard error
+      required:
+        - status
+        - title
+        - instance
+        - detail
+      properties:
+        status:
+          type: integer
+          description: >
+            The HTTP status code of the error. Useful when passing the response
+
+            body to child properties in a frontend UI. Must be returned as an
+            integer.
+          readOnly: true
+        title:
+          type: string
+          description: |
+            A short, human-readable summary of the problem. It should not
+            change between occurences of a problem, except for localization.
+            Should be provided as "Sentence case" for direct use in the UI.
+          readOnly: true
+        type:
+          type: string
+          description: The error type.
+          readOnly: true
+        instance:
+          type: string
+          description: |
+            Used to return the correlation ID back to the user, in the format
+            kong:trace:<correlation_id>. This helps us find the relevant logs
+            when a customer reports an issue.
+          readOnly: true
+        detail:
+          type: string
+          description: >
+            A human readable explanation specific to this occurence of the
+            problem.
+
+            This field may contain request/entity data to help the user
+            understand
+
+            what went wrong. Enclose variable values in square brackets. Should
+            be
+
+            provided as "Sentence case" for direct use in the UI.
+          readOnly: true
+    UnauthorizedError:
+      type: object
+      properties:
+        status:
+          example: 401
+        title:
+          example: Unauthorized
+        type:
+          example: https://httpstatuses.com/401
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Invalid credentials
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+    ForbiddenError:
+      type: object
+      properties:
+        status:
+          example: 403
+        title:
+          example: Forbidden
+        type:
+          example: https://httpstatuses.com/403
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Forbidden
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+    InvalidRules:
+      description: invalid parameters rules
+      type: string
+      readOnly: true
+      nullable: true
+      enum:
+        - required
+        - enum
+        - min_length
+        - max_length
+        - min_digits
+        - min_lowercase
+        - min_uppercase
+        - min_symbols
+        - is_array
+        - is_base64
+        - is_boolean
+        - is_date_time
+        - is_integer
+        - is_null
+        - is_number
+        - is_object
+        - is_string
+        - is_uuid
+        - unknown_property
+        - is_label
+        - matches_regex
+    InvalidParameterChoiceItem:
+      type: object
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          $ref: '#/components/schemas/InvalidRules'
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+        choices:
+          type: array
+          uniqueItems: true
+          nullable: true
+          items: {}
+          readOnly: true
+      required:
+        - field
+        - reason
+    InvalidParameterDependentItem:
+      type: object
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: true
+          enum:
+            - dependent_fields
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+        dependents:
+          type: array
+          uniqueItems: true
+          nullable: true
+          items: {}
+          readOnly: true
+      required:
+        - field
+        - rule
+        - reason
+        - dependents
+    InvalidParameters:
+      type: array
+      nullable: false
+      uniqueItems: true
+      minItems: 1
+      description: invalid parameters
+      items:
+        oneOf:
+          - $ref: '#/components/schemas/InvalidParameterChoiceItem'
+          - $ref: '#/components/schemas/InvalidParameterDependentItem'
+    BadRequestError:
+      type: object
+      required:
+        - invalid_parameters
+      properties:
+        status:
+          example: 400
+        title:
+          example: Bad Request
+        type:
+          example: https://httpstatuses.com/400
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Invalid request body
+        invalid_parameters:
+          $ref: '#/components/schemas/InvalidParameters'
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+    NotFoundError:
+      type: object
+      properties:
+        status:
+          example: 404
+        title:
+          example: Not Found
+        type:
+          example: https://httpstatuses.com/404
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Not found
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+    APIProductLabels:
+      title: Labels
+      type: object
+      description: >
+        description: A maximum of 5 user-defined labels are allowed on this
+        resource.
+
+        Keys must not start with kong, konnect, insomnia, mesh, kic or _, which
+        are reserved for Kong.
+
+        Keys are case-sensitive.
+      additionalProperties:
+        type: string
+        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z\-._]*[a-z0-9A-Z]+)?$
+        minLength: 1
+        maxLength: 63
+      default: {}
+    NullableUUID:
+      type: string
+      format: uuid
+      example: 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+      description: Contains a unique identifier for a resource.
+      nullable: true
+    StringFieldEqualsFilter:
+      title: StringFieldEqualsFilter
+      description: Filter a string value by exact match.
+      type: string
+    StringFieldContainsFilter:
+      type: object
+      title: StringFieldContainsFilter
+      description: Filter a string value field by partial contains.
+      properties:
+        contains:
+          type: string
+      required:
+        - contains
+    StringFieldFilter:
+      title: StringFieldFilter
+      description: Filter a string value field either by exact match or partial contains.
+      oneOf:
+        - $ref: '#/components/schemas/StringFieldEqualsFilter'
+        - $ref: '#/components/schemas/StringFieldContainsFilter'
+    ConflictError:
+      type: object
+      properties:
+        status:
+          example: 409
+        title:
+          example: Conflict
+        type:
+          example: https://httpstatuses.com/409
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Conflict
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+  securitySchemes:
+    personalAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Token
+      description: >
+        The personal access token is meant to be used as an alternative to
+        basic-auth when accessing Konnect via APIs.
+
+        You can generate a Personal Access Token (PAT) from the [personal access
+        token page](https://cloud.konghq.com/global/tokens/) in the Konnect
+        dashboard.
+
+        The PAT token must be passed in the header of a request, for example:
+
+        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header
+        'Authorization: Bearer kpat_xgfT...'`
+    systemAccountAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Token
+      description: >
+        The system account access token is meant for automations and
+        integrations that are not directly associated with a human identity.
+
+        You can generate a system account Access Token by creating a system
+        account and then obtaining a system account access token for that
+        account.
+
+        The access token must be passed in the header of a request, for example:
+
+        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header
+        'Authorization: Bearer spat_i2Ej...'`
+  examples:
+    UnauthorizedExample:
+      value:
+        status: 401
+        title: Unauthorized
+        instance: kong:trace:8347343766220159418
+        detail: Unauthorized
+    ForbiddenExample:
+      value:
+        status: 403
+        title: Forbidden
+        instance: kong:trace:2723154947768991354
+        detail: You do not have permission to perform this action
+    NotFoundExample:
+      value:
+        status: 404
+        title: Not Found
+        instance: kong:trace:6816496025408232265
+        detail: Not Found
