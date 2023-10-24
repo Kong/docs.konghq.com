@@ -6,17 +6,6 @@
 </summary>
 
 ## Prerequisites
-<<<<<<< HEAD
-||||||| parent of 6571919908 (KIC: Proxy TCP request (#6282))
-{% unless include.disable_gateway_api %}
-## Install the Gateway APIs
-
-If you wish to use the Gateway APIs examples, ensure that you enable support for [
-Gateway APIs in KIC](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/install-gateway-apis).
-{% endunless %}
-
-## Prerequisites
-=======
 
 {% unless include.disable_gateway_api %}
 ### Install the Gateway APIs
@@ -176,9 +165,6 @@ You can install Kong in your Kubernetes cluster using [Helm](https://helm.sh/).
    deployment.apps/kong-controller env updated
    ```
 {% endif %}
-
-{% endif %}
-
 
 ### Test connectivity to Kong
 
