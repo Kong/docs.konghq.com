@@ -116,11 +116,11 @@ For more information, visit the [pricing page](https://konghq.com/pricing).
 
 {{site.base_gateway}} is available in two different packages: Open Source (OSS) and Enterprise.
 
-**{{site.base_gateway}} (OSS)**: an open-source package containing the basic API gateway
+**{{site.ce_product_name}}**: An open-source package containing the basic API gateway
 functionality and open-source plugins. You can manage the open-source Gateway
 with Kong's [Admin API](#kong-admin-api){% if_version gte:3.4.x %}, [Kong Manager Open Source](/gateway/{{page.kong_version}}/kong-manager-oss/),{% endif_version %} or with [declarative configuration](#deck).
 
-**{{site.base_gateway}}** (available in
+**{{site.ee_product_name}}** (available in
 [Free or Enterprise mode](https://konghq.com/pricing)): Kong's API gateway
 with added functionality.
 * <span class="badge free"></span> In **Free mode**,
@@ -132,7 +132,7 @@ with added functionality.
     * [RBAC](/gateway/{{page.kong_version}}/admin-api/rbac/reference/)
     * [Enterprise plugins](/hub/)
 
-You can manage {{site.base_gateway}} in Free or Enterprise mode with Kong's
+You can manage {{site.ee_product_name}} in Free or Enterprise mode with Kong's
 [Admin API](#kong-admin-api), [declarative configuration](#deck), or [Kong Manager](#kong-manager).
 
 ![Introduction to {{site.base_gateway}}](/assets/images/products/gateway/gateway_overview.png)
@@ -150,9 +150,9 @@ configuration, and forwarded to upstream services._
 ### Kong Admin API
 
 [Kong Admin API](/gateway/{{page.kong_version}}/admin-api) provides a RESTful
-interface for administration and configuration of Services, Routes, Plugins, and
-Consumers. All of the tasks you can perform against the Gateway can be automated
-using the Kong Admin API.
+interface for administration and configuration of Gateway entities such as services, 
+routes, plugins, consumers, and more. All of the tasks you can perform against the 
+Gateway can be automated using the Kong Admin API.
 
 ### Kong Manager
 {:.badge .free}
@@ -169,7 +169,7 @@ Admin API under the hood to administer and control {{site.base_gateway}}.
 
 Here are some of the things you can do with Kong Manager:
 
-* Create new Routes and Services
+* Create new routes and services
 * Activate or deactivate plugins with a couple of clicks
 * Group your teams, services, plugins, consumer management, and everything else
 exactly how you want them
@@ -202,7 +202,7 @@ Kong also provides API lifecycle management tools that you can use with {{site.b
 [Insomnia](https://docs.insomnia.rest) enables spec-first development for all REST and GraphQL services. With Insomnia, organizations can accelerate design and test workflows using automated testing, direct Git sync, and inspection of all response types. Teams of all sizes can use Insomnia to increase development velocity, reduce deployment risk, and increase collaboration.
 
 ### decK
-[decK](/deck) helps manage {{site.base_gateway}}’s configuration in a declarative fashion.
+[decK](/deck/) helps manage {{site.base_gateway}}’s configuration in a declarative fashion.
 This means that a developer can define the desired state of {{site.base_gateway}} or
 {{site.konnect_short_name}} &ndash; services, routes, plugins, and more &ndash; and let decK handle
 implementation without needing to execute each step manually, as you would with
@@ -213,9 +213,9 @@ the Kong Admin API.
 
 [Download and install {{site.base_gateway}}](/gateway/{{page.kong_version}}/install/).
 To test it out, you can choose either the open-source package, or
-run {{site.base_gateway}} in free mode and also try out Kong Manager.
+run {{site.ee_product_name}} in free mode and also try out Kong Manager.
 
-After installation, get started with the introductory [quickstart guide](/gateway/{{page.kong_version}}/get-started/)
+After installation, get started with the introductory [quickstart guide](/gateway/{{page.kong_version}}/get-started/).
 
 ### Try in {{site.konnect_short_name}}
 
@@ -223,7 +223,7 @@ After installation, get started with the introductory [quickstart guide](/gatewa
 instances. With this setup, Kong hosts the control plane and you host your
 own data planes.
 
-There are a few ways to test out the Gateway's Plus or Enterprise features:
+There are a few ways to test out the Gateway's Enterprise features:
 
 * Sign up for [{{site.konnect_product_name}}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-overview).
 * Check out learning labs at [Kong Academy]({{site.links.learn}}).

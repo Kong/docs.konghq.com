@@ -28,7 +28,7 @@ To associate your KIC data plane nodes with {{site.konnect_short_name}}, use the
 In {{site.konnect_short_name}}, navigate to {% konnect_icon runtimes %} **[Gateway Manager](https://cloud.konghq.com/gateway-manager)**, then click **New Control Plane** > **Kong Ingress Controller**.
 
 {:.note}
-> **Note**: KIC OSS and {{site.base_gateway}} Free users can connect to {{site.konnect_short_name}}’s Free tier, while {{site.base_gateway}} Enterprise users can connect to {{site.konnect_short_name}}’s Enterprise tier. To migrate from {{site.ce_product_name}} to {{site.base_gateway}} Enterprise, see [Using Kong Enterprise](/kubernetes-ingress-controller/latest/guides/choose-gateway-image/) in the Kong Ingress Controller documentation.
+> **Note**: KIC OSS and {{site.base_gateway}} Free users can connect to {{site.konnect_short_name}}’s Free tier, while {{site.ee_product_name}} users can connect to {{site.konnect_short_name}}’s Enterprise tier. To migrate from {{site.ce_product_name}} to {{site.ee_product_name}}, see [Using {{site.ee_product_name}}](/kubernetes-ingress-controller/latest/guides/choose-gateway-image/) in the {{site.kic_product_name}} documentation.
 
 ### Prerequisites
 
