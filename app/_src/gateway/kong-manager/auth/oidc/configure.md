@@ -18,7 +18,34 @@ OIDC for Kong Manager.
 The following is an example using Google as the IdP and serving Kong Manager
 from its default URL, `http://127.0.0.1:8002`.
 
-The `admin_gui_auth_config` value must be valid JSON. Below is an example of the configuration:
+{% if_version lte:3.4.x %}
+The `admin_gui_auth_config` value must be valid JSON. The following is an example of the configuration:
+
+```
+enforce_rbac = on
+admin_gui_auth=openid-connect
+admin_gui_session_conf = { "secret":"set-your-string-here" }
+admin_gui_auth_conf={                                      \
+  "issuer": "https://accounts.google.com/",                \
+  "client_id": ["<ENTER_YOUR_CLIENT_ID>"],                 \
+  "client_secret": ["<ENTER_YOUR_CLIENT_SECRET_HERE>"],    \
+  "consumer_by": ["username","custom_id"],                 \
+  "ssl_verify": false,                                     \
+  "admin_claim": ["email"],                             \
+  "leeway": 60,                                            \
+  "redirect_uri": ["http://localhost:8002/default"],                      \
+  "login_redirect_uri": ["http://localhost:8002/default"],                \
+  "logout_methods": ["GET", "DELETE"],                     \
+  "logout_query_arg": "logout",                            \
+  "logout_redirect_uri": ["http://localhost:8002/default"],               \
+  "scopes": ["openid","profile","email","offline_access"], \
+  "auth_methods": ["authorization_code"]                   \
+}
+```
+{% endif_version %}
+{% if_version gte:3.5.x %}
+
+The `admin_gui_auth_config` value must be valid JSON. The following is an example of the configuration:
 
 ```
 enforce_rbac = on
@@ -32,20 +59,21 @@ admin_gui_auth_conf={                                      \
   "redirect_uri": ["http://localhost:8002/default"],       \
 }
 ```
-While authenticating Kong Manager with OpenID Connect, please ensure that your IdP supports the `authorization_code` grant type and is enabled for the associated client.
+While authenticating Kong Manager with OpenID Connect, make sure that your IdP supports the `authorization_code` grant type and is enabled for the associated client.
 
-Configuration parameters in `admin_gui_auth_conf` for `openid-connect`:
+The following are configuration parameters in `admin_gui_auth_conf` for `openid-connect`:
 
-| item                         | required | data type | default value                      | remark                                                                                                |
+| parameter                        | data type | default value                      | notes                                                                                                |
 |------------------------------|----------|-----------|------------------------------------|-------------------------------------------------------------------------------------------------------|
-| `issuer`                     | true     | String    | "input issuer"                     | A string representing a URL                                                                           |
-| `client_id`                  | true     | Array     | ["input client id"]                | The client id(s) that the plugin uses when it calls authenticated endpoints on the identity provider. |
-| `client_secret`              | true     | Array     | ["input client secret"]            | The client secret.                                                                                    |
-| `redirect_uri`               | true     | Array     | _["input http://ip:8002/default"]_ | The redirect URI passed to the authorization and token endpoints.                                     |
-| `authenticated_groups_claim` | true     | Array     | ["groups"]                         | The claim that contains authenticated groups.                                                         |
-| `admin_claim`                | true     | Array     | ["email"]                          | Retrieve the field as a username.                                                                     |
-| `admin_auto_create`          | false    | Boolean   | true                               | This parameter is used to enable the automatic creation of administrators.                            |
-| `ssl_verify`                 | false    | Boolean   | false                              | Verify identity provider server certificate.                                                          |
+| `issuer`<br>*required*   | String    | "input issuer"    | A string representing a URL               |
+| `client_id`<br>*required*      | Array     | ["input client id"]   | The client id(s) that the plugin uses when it calls authenticated endpoints on the identity provider. |
+| `client_secret`<br>*required*  | Array     | ["input client secret"]            | The client secret.    |
+| `redirect_uri`<br>*required*   | Array     | ["input http://ip:8002/default"] | The redirect URI passed to the authorization and token endpoints.                                     |
+| `authenticated_groups_claim`<br>*required* | Array     | ["groups"]                         | The claim that contains authenticated groups.                                                         |
+| `admin_claim`<br>*required*    | Array     | ["email"]     | Retrieve the field as a username.      |
+| `admin_auto_create`<br>*optional*  | Boolean   | true   | This parameter is used to enable the automatic creation of administrators.    |
+| `ssl_verify`<br>*optional*     | Boolean   | false   | Verify identity provider server certificate.    |
+{% endif_version %}
 
 The **Sessions plugin** (configured with `admin_gui_session_conf`) requires a secret and is configured securely by default.
 * Under all circumstances, the `secret` must be manually set to a string.
