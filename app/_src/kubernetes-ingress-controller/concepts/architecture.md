@@ -5,51 +5,35 @@ purpose: |
   How does KIC work? What are it's roles and responsibilities?
 ---
 
-The {{site.kic_product_name}} configures {{site.base_gateway}} using Ingress or [Gateway API][gateway-api] resources created inside a Kubernetes cluster. The {{site.kic_product_name}} is made of two high level components:
+The {{site.kic_product_name}} configures {{site.base_gateway}} using Ingress or [Gateway API][gateway-api] resources created inside a Kubernetes cluster.
 
-- Kong, the core proxy that handles all the traffic
-- Controller Manager, a series of processes that synchronize the configuration from Kubernetes to Kong
+{{site.kic_product_name}} enables you to configure plugins, load balance the services, check the health of the Pods, and leverage all that Kong offers in a standalone installation.
 
-The {{site.kic_product_name}} performs more than just proxying the traffic to a Kubernetes cluster. It enables you to configure plugins, load balance the services, check the health of the Pods, and leverage all that Kong offers in a standalone installation.
+{:.note}
+> The {{ site.kic_product_name }} does not proxy any traffic directly. It configures {{ site.base_gateway }} using Kubernetes resources.
 
 The figure illustrates how {{site.kic_product_name}} works:
 
 ![high-level-design](/assets/images/products/kubernetes-ingress-controller/high-level-design.png "High Level Design")
 
-The Controller Manager listens for the changes inside the Kubernetes cluster and updates Kong in response to those changes. So that it can correctly proxy all the traffic. Kong is updated dynamically to respond to changes around scaling, configuration, andn failures that occur inside a Kubernetes cluster.
-
----
+The Controller listens for the changes inside the Kubernetes cluster and updates Kong in response to those changes. So that it can correctly proxy all the traffic. Kong is updated dynamically to respond to changes around scaling, configuration, and failures that occur inside a Kubernetes cluster.
 
 For more information on how Kong works with routes, services, and upstreams,
-please see the [proxy](/gateway/latest/reference/proxy/) and [load balancing](/gateway/latest/how-kong-works/load-balancing/).
+please see the [proxy](/gateway/latest/reference/proxy/) and [load balancing](/gateway/latest/how-kong-works/load-balancing/) documentation.
 
-## Translation
+## Kubernetes resources
 
-Kubernetes resources are mapped to Kong resources to proxy traffic.
+In Kubernetes, there are several concepts that are used to logically identify workloads and route traffic between them.
 
-There are two flavors of objects in Kubernetes that can be used with {{site.kic_product_name}} to procure a working {{site.base_gateway}}.
+### Service / Pods
 
-- an [Ingress][ingress]
-- [Gateway API objects][gateway-api]
+A [Service][k8s-service] inside Kubernetes is a way to abstract an application that is running on a set of Pods. This maps to two objects in Kong: Service and Upstream.
 
-### Generic Kubernetes resources
+The service object in Kong holds the information of the protocol to use to talk to the upstream service and various other protocol specific settings. The Upstream object defines load-balancing and health-checking behavior.
 
-In Kubernetes, there are several main concepts that are used to logically identify workloads and route traffic between them. Some of them are:
-
-- A [Service][k8s-service] inside Kubernetes is a way to abstract an application that is running on a set of Pods.
-  This maps to two objects in Kong: Service and Upstream.
-  The service object in Kong holds the information of the protocol to use to talk to the upstream service and various other protocol specific settings. The Upstream object defines load-balancing and health-checking behavior.
-- Pods associated with a Service in Kubernetes map as a target belonging to the upstream, where the upstream correspondsto the Kubernetes Service in Kong. Kong load balances across the Pods of your service. This means that all requests flowing through Kong are not directed through kube-proxy but directly to the Pod.
+Pods associated with a Service in Kubernetes map as a target belonging to the upstream, where the upstream corresponds to the Kubernetes Service in Kong. Kong load balances across the Pods of your service. This means that **all requests flowing through Kong are not directed through kube-proxy but directly to the Pod**.
 
 [k8s-service]: https://kubernetes.io/docs/concepts/services-networking/service/
-
-### Ingress
-
-An [Ingress][ingress] resource in Kubernetes defines a set of rules for proxying traffic. These rules correspond to the concept of a route in Kong.
-
-This image describes the relationship between Kubernetes concepts and Kong's Ingress configuration.
-
-![translating Kubernetes to Kong](/assets/images/products/kubernetes-ingress-controller/k8s-to-kong.png "Translating k8s resources to Kong")
 
 ### Gateway API
 
@@ -69,8 +53,17 @@ The main concepts here are:
 For more information about Gateway API resources and features supported by {{site.kic_product_name}}, see
 [Gateway API](/kubernetes-ingress-controller/latest/concepts/gateway-api).
 
+
+### Ingress
+
+An [Ingress][ingress] resource in Kubernetes defines a set of rules for proxying traffic. These rules correspond to the concept of a route in Kong.
+
+This image describes the relationship between Kubernetes concepts and Kong's Ingress configuration.
+
+![translating Kubernetes to Kong](/assets/images/products/kubernetes-ingress-controller/k8s-to-kong.png "Translating k8s resources to Kong")
+
 [gateway-api]: https://gateway-api.sigs.k8s.io/
 [gateway-api-gateway]: https://gateway-api.sigs.k8s.io/concepts/api-overview/#gateway
 [gateway-api-gatewayclass]: https://gateway-api.sigs.k8s.io/concepts/api-overview/#gatewayclass
-[gateway-api-httproute]: https://gateway-api.sigs.k8s.io/concepts/api-overview/#httproute
+[gateway-api-httproute]: /kubernetes-ingress-controller/{{ page.release }}/guides/services/http/
 [ingress]: https://kubernetes.io/docs/concepts/services-networking/ingress/
