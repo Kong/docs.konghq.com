@@ -97,6 +97,8 @@ items:
     items:
       - text: Service Configuration
         items:
+          - text: HTTP Service
+            url: /guides/services/http
           - text: TCP Service
             url: /guides/services/tcp
           - text: UDP Service
