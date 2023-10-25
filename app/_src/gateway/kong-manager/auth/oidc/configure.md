@@ -28,22 +28,21 @@ admin_gui_auth_conf={                                      \
   "issuer": "https://accounts.google.com/",                \
   "client_id": ["<ENTER_YOUR_CLIENT_ID>"],                 \
   "client_secret": ["<ENTER_YOUR_CLIENT_SECRET_HERE>"],    \
-  "authenticated_groups_claim": ["groups"],                \
   "admin_claim": ["email"],                                \
   "redirect_uri": ["http://localhost:8002/default"],       \
 }
 ```
 Required for `admin_gui_auth_conf` of `openid-connect`
-| item                       | required | data type | default value                      | remark                                                                                                |
-|----------------------------|----------|-----------|------------------------------------|-------------------------------------------------------------------------------------------------------|
-| issuer                     | true     | String    | "input idp issuer"                 | A string representing a URL                                                                           |
-| client_id                  | true     | Array     | ["input idp client_id"]            | The client id(s) that the plugin uses when it calls authenticated endpoints on the identity provider. |
-| client_secret              | true     | Array     | ["input client secret"]            | The client secret.                                                                                    |
-| redirect_uri               | true     | Array     | _["input http://ip:8002/default"]_ | The redirect URI passed to the authorization and token endpoints.                                     |
-| authenticated_groups_claim | true     | Array     | ["groups"]                         | The claim that contains authenticated groups.                                                         |
-| admin_claim                | true     | Array     | ["email"]                          | Retrieve the field as a username.                                                                     |
-| admin_auto_create          | false    | Boolean   | true                               | This parameter is used to enable the automatic creation of administrators.                            |
-| ssl_verify                 | false    | Boolean   | false                              | Verify identity provider server certificate.                                                          |
+| item                         | required | data type | default value                      | remark                                                                                                |
+|------------------------------|----------|-----------|------------------------------------|-------------------------------------------------------------------------------------------------------|
+| `issuer`                     | true     | String    | "input issuer"                     | A string representing a URL                                                                           |
+| `client_id`                  | true     | Array     | ["input client id"]                | The client id(s) that the plugin uses when it calls authenticated endpoints on the identity provider. |
+| `client_secret`              | true     | Array     | ["input client secret"]            | The client secret.                                                                                    |
+| `redirect_uri`               | true     | Array     | _["input http://ip:8002/default"]_ | The redirect URI passed to the authorization and token endpoints.                                     |
+| `authenticated_groups_claim` | true     | Array     | ["groups"]                         | The claim that contains authenticated groups.                                                         |
+| `admin_claim`                | true     | Array     | ["email"]                          | Retrieve the field as a username.                                                                     |
+| `admin_auto_create`          | false    | Boolean   | true                               | This parameter is used to enable the automatic creation of administrators.                            |
+| `ssl_verify`                 | false    | Boolean   | false                              | Verify identity provider server certificate.                                                          |
 
 The **Sessions plugin** (configured with `admin_gui_session_conf`) requires a secret and is configured securely by default.
 * Under all circumstances, the `secret` must be manually set to a string.
