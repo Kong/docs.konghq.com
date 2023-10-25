@@ -59,60 +59,6 @@
    gateway.gateway.networking.k8s.io/kong created
    ```
 
->>>>>>> 6571919908 (KIC: Proxy TCP request (#6282))
-
-{% unless include.disable_gateway_api %}
-### Install the Gateway APIs
-
-1. Install the Gateway API CRDs before installing {{ site.kic_product_name }}.
-
-    ```bash
-    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v0.8.1/standard-install.yaml
-    ```
-
-    {% if include.gateway_api_experimental %}
-
-1. Install the experimental Gateway API CRDs to test this feature.
-
-    ```bash
-    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v0.8.1/experimental-install.yaml
-    ```
-    {% endif %}
-
-1. Create a `Gateway` and `GatewayClass` instance to use.
-
-    ```bash
-   echo "
-   ---
-   apiVersion: gateway.networking.k8s.io/v1beta1
-   kind: GatewayClass
-   metadata:
-     name: kong
-     annotations:
-       konghq.com/gatewayclass-unmanaged: 'true'
-
-   spec:
-     controllerName: konghq.com/kic-gateway-controller
-   ---
-   apiVersion: gateway.networking.k8s.io/v1beta1
-   kind: Gateway
-   metadata:
-     name: kong
-   spec:
-     gatewayClassName: kong
-     listeners:
-     - name: proxy
-       port: 80
-       protocol: HTTP
-   " | kubectl apply -f -
-   ```
-{% endunless %}
-   The results should look like this:
-   ```text
-   gatewayclass.gateway.networking.k8s.io/kong created
-   gateway.gateway.networking.k8s.io/kong created
-   ```
-
 
 ### Install Kong
 You can install Kong in your Kubernetes cluster using [Helm](https://helm.sh/).
