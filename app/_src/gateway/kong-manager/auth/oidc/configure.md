@@ -18,7 +18,7 @@ OIDC for Kong Manager.
 The following is an example using Google as the IdP and serving Kong Manager
 from its default URL, `http://127.0.0.1:8002`.
 
-The `admin_gui_auth_config` value must be valid JSON. Here is an example setting template.
+The `admin_gui_auth_config` value must be valid JSON. Below is an example of the configuration:
 
 ```
 enforce_rbac = on
