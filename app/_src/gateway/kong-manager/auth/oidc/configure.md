@@ -32,7 +32,10 @@ admin_gui_auth_conf={                                      \
   "redirect_uri": ["http://localhost:8002/default"],       \
 }
 ```
-Required for `admin_gui_auth_conf` of `openid-connect`
+While authenticating Kong Manager with OpenID Connect, please ensure that your IdP supports the `authorization_code` grant type and is enabled for the associated client.
+
+Configuration parameters in `admin_gui_auth_conf` for `openid-connect`:
+
 | item                         | required | data type | default value                      | remark                                                                                                |
 |------------------------------|----------|-----------|------------------------------------|-------------------------------------------------------------------------------------------------------|
 | `issuer`                     | true     | String    | "input issuer"                     | A string representing a URL                                                                           |
