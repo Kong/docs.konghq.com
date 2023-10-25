@@ -57,11 +57,11 @@ Controller.
 The Ingress Controller will support mutual-TLS-based authentication on Kong's Admin
 API in future.
 
-### Kong Enterprise RBAC
+### {{site.ee_product_name}} RBAC
 
-Kong Enterprise comes with support for authentication and authorization on
+{{site.ee_product_name}} comes with support for authentication and authorization on
 Kong's Admin API.
 
 Once an RBAC token is provisioned, the {{site.kic_product_name}} can use the RBAC
-token to authenticate against Kong Enterprise. Use the `--kong-admin-header` CLI
+token to authenticate against {{site.ee_product_name}}. Use the `--kong-admin-header` CLI
 flag to pass the RBAC token the Ingress Controller.

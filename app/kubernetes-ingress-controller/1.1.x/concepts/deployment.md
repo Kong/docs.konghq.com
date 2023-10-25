@@ -160,7 +160,7 @@ Following are the difference options to consider while deploying the
 - [**Multiple Ingress Controllers**](#multiple-ingress-controllers):
   Running multiple {{site.kic_product_name}}s inside the same Kubernetes cluster
 - [**Runtime**](#runtime):
-  Using Kong or Kong Enterprise (for Kong Enterprise customers)
+  Using Kong or {{site.ee_product_name}} (for {{site.ee_product_name}} customers)
 
 ### Kubernetes Service Types
 
@@ -265,11 +265,11 @@ There are a few different ways of accomplishing this:
   {{site.kic_product_name}} supports a deployment option where it will satisfy
   Ingress resources in a specific namespace. With this model, one can deploy
   a controller in multiple namespaces and they will run in an isolated manner.
-- If you are using Kong Enterprise, you can run multiple Ingress Controllers
+- If you are using {{site.ee_product_name}}, you can run multiple Ingress Controllers
   pointing to the same database and configuring different Workspaces inside
-  Kong Enterprise. With such a deployment, one can use either of the above
+  {{site.ee_product_name}}. With such a deployment, one can use either of the above
   two approaches to segment Ingress resources into different Workspaces in
-  Kong Enterprise.
+  {{site.ee_product_name}}.
 
 ## Runtime
 
@@ -281,20 +281,20 @@ This is the [Open-Source Gateway](https://github.com/kong/kong) runtime.
 The Ingress Controller is primarily developed against releases of the
 open-source gateway.
 
-### Kong Enterprise K8S
+### {{site.ee_product_name}} K8S
 
-If you are a Kong Enterprise customer, you have access to two more runtimes.
+If you are a {{site.ee_product_name}} customer, you have access to two more runtimes.
 
-The first one, Kong Enterprise K8S, is an package that takes the Open-Source
+The first one, {{site.ee_product_name}} K8S, is an package that takes the Open-Source
 {{site.base_gateway}} and adds enterprise-only plugins to it.
 
-You simply need to deploy Kong Enterprise K8S instead of the Open-Source
+You simply need to deploy {{site.ee_product_name}} K8S instead of the Open-Source
 Gateway in-order to take full-advantage of enterprise plugins.
 
-### Kong Enterprise
+### {{site.ee_product_name}}
 
 The {{site.kic_product_name}} is also compatible with the full-blown version of
-Kong Enterprise. This runtime ships with Kong Manager, Kong Portal, and a
+{{site.ee_product_name}}. This runtime ships with Kong Manager, Kong Portal, and a
 number of other enterprise-only features.
 [This doc](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise) provides a high-level
 overview of the architecture.

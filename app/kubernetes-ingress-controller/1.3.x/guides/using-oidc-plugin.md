@@ -2,7 +2,7 @@
 title: Using OIDC plugin
 ---
 
-Kong Enterprise's OIDC plugin can authenticate requests using OpenID Connect protocol.
+{{site.ee_product_name}}'s OIDC plugin can authenticate requests using OpenID Connect protocol.
 This guide shows a basic example of how to setup the OIDC plugin using
 the Ingress Controller.
 
