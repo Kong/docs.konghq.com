@@ -17,17 +17,10 @@ functionality, {{site.base_gateway}} enforces the presence and validity of a
 
 ## Deploying the license file
 
-{% if_version lte:3.4.x %}
-* **Hybrid mode deployment:** The license file only needs to be deployed to
-control plane nodes, which distribute the license to the data planes in their
-clusters.
-{% endif_version %}
-{% if_version gte:3.5.x %}
 * **Hybrid mode deployment:** The license file must be deployed to each control
 plane and data plane node. Apply the license through the Kong Admin API to the
 control plane. The control plane distributes the license to its data plane nodes.
 This is the only method that applies the license to data planes automatically.
-{% endif_version %}
 * **Traditional deployment with no separate control plane:** License file must
 be deployed to each node running {{site.base_gateway}}.
 
@@ -64,18 +57,6 @@ Licenses expire at 00:00 on the date of expiration, relative to the time zone th
 Kong Manager displays a banner with a license expiration warning starting at 15 days before expiration.
 Expiration warnings also appear in [{{site.base_gateway}} logs](#license-expiration-logs).
 
-{% if_version lte:3.4.x %}
-When a license expires, {{site.base_gateway}} behaves as follows:
-
-* Kong Manager and its configuration are accessible and may be changed, however any [Enterprise-specific features](/gateway/{{page.kong_version}}/kong-enterprise/) become read-only.
-* The Admin API is not accessible until the license is either renewed or the subscription is downgraded to free mode.
-* Proxy traffic, including traffic using Enterprise plugins, continues to be processed as if the license had not expired.
-* Other Enterprise features, such as the Dev Portal, are not accessible.
-
-If you downgrade to free mode, the Admin API will be unlocked, but Enterprise features such Dev Portal, 
-Enterprise plugins, and others will no longer be accessible.
-{% endif_version %}
-{% if_version gte:3.5.x %}
 After the license expires, there's a 30 day grace period. During the grace period, the full functionality of the license is available, but a message will be logged once a day, which includes information on when the functionality will no longer be available.
 
 After the grace period, {{site.base_gateway}} behaves as follows:
@@ -90,7 +71,6 @@ The behavior of the different deployment modes is as follows:
 - **Traditional:** Nodes will be able to restart/scale as needed.
 - **Hybrid:** Existing data planes or new data planes **can accept** config from a control plane with an expired license.
 - **DB-less and KIC:** New nodes **cannot** come up, restarts will break.
-{% endif_version %}
 
 To upload a new license, see [Deploy an Enterprise License](/gateway/{{page.kong_version}}/licenses/deploy/).
 
