@@ -71,7 +71,7 @@ The final option available is to run a full site scan. This will follow any link
 In general, running a per-product scan is the better choice, but if you _really_ want to scan the whole site, use the following:
 
 ```bash
-node full.js --host http://localhost:8888
+node full.js --host http://localhost:8888/
 ```
 
 Finally, be patient. The run will take at least 10 minutes, and up to 60 minutes to complete.
