@@ -5,7 +5,7 @@
 * `request`: Properties about the request sent by the client.
 * `response`: Properties about the response sent to the client.
 * `latencies`: Latency data.
-  * `kong`: The internal {{site.base_gateway}} latency that it takes to process the request. It varies based on the actual processing flow. Generally, it consists of three parts:
+  * `kong`: The internal {{site.base_gateway}} latency, in milliseconds, that it takes to process the request. It varies based on the actual processing flow. Generally, it consists of three parts:
     * The time it took to find the right upstream.
     * The time it took to receive the whole response from upstream.
     * The time it took to run all plugins executed before the log phase.

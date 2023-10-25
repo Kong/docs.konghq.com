@@ -26,9 +26,9 @@ body_id: page-hub
       <div class="page-hub--container">
         <div class="page-hub--filters">
           <div class="page-hub--filters__filter page-hub--filters__filter-name">
-            <img src="/assets/images/icons/documentation/hub/filter_list.svg" alt="Filter plugins icon" />
+            <img src="/assets/images/icons/hub-layout/filter_list.svg" alt="Filter plugins icon" />
             <input type='text' id='filter-plugins' placeholder="Filter plugins"/>
-            <div class="clear-search"><img src="/assets/images/icons/documentation/hub/close.svg" alt="Clear search icon" /></div>
+            <div class="clear-search"><img src="/assets/images/icons/documentation/close.svg" alt="Clear search icon" /></div>
           </div>
           <div class="page-hub--filters__filter page-hub--filters__filter-tiers">
             {% include components/dropdown.html label='Tiers' field_name='tier' options=site.hub-filters.tiers %}
@@ -45,9 +45,8 @@ body_id: page-hub
         </div>
 
         {% for cat in categories %}
-          {% assign extns = kong_extns | where_exp: "extn", "extn.categories contains cat.slug" %}
-          {% assign third_extns = third_party_extns | where_exp: "extn", "extn.categories contains cat.slug" %}
-
+        {% assign extns = kong_extns | where_exp: "extn", "extn.categories contains cat.slug" %}
+        {% assign third_extns = third_party_extns | where_exp: "extn", "extn.categories contains cat.slug" %}
           {% if extns.size > 0 or third_extns.size > 0 %}
             <div class="page-hub--category active" id="{{cat.slug}}">
               <h4 class="page-hub--category-title">{{ cat.name }}</h4>
@@ -62,6 +61,18 @@ body_id: page-hub
             </div>
           {% endif %}
         {% endfor %}
+
+        <!-- Separate section for third-party plugins that we don't want to generate as a functionality category -->
+          <div class="page-hub--category active" id="third-party">
+            <h4 class="page-hub--category-title">No Support Available</h4>
+            <div class="page-hub--category-cards">
+              {% for extn in third_party_extns  %}
+                {% unless extn.techpartner %}
+                  {% include hub_cards.html header_icon=page.header_icon %}
+                {% endunless %}
+              {% endfor %}
+            </div>
+          </div>
       </div>
     </div>
   </div>

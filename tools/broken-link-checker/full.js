@@ -23,10 +23,7 @@ const { SiteChecker } = require("broken-link-checker");
   // We only want to test the latest version of each product, so exclude all
   // old versions by extracting versions from _data
   const lookup = {
-    ce: "gateway-oss",
     deck: "deck",
-    ee: "enterprise",
-    gsg: "getting-started-guide",
     kic: "kubernetes-ingress-controller",
     konnect: "konnect",
     mesh: "mesh",
@@ -51,7 +48,13 @@ const { SiteChecker } = require("broken-link-checker");
       } else {
         const x = info.split("_");
         item.type = lookup[x[0]];
-        item.version = semver.coerce(x[1]).raw;
+
+        // Handle kuma_dev gracefully
+        if (semver.valid(semver.coerce(x[1]))) {
+          item.version = semver.coerce(x[1]).raw;
+        } else {
+          item.version = x[1];
+        }
         item.original_version = x[1];
       }
       return item;
@@ -65,11 +68,13 @@ const { SiteChecker } = require("broken-link-checker");
     const t = nav.type;
     const existing = current[t];
     if (existing) {
-      if (semver.gt(nav.version, existing.version)) {
-        ignored.push(existing);
-        current[t] = nav;
-      } else {
-        ignored.push(nav);
+      if (semver.valid(nav.version)) {
+        if (semver.gt(nav.version, existing.version)) {
+          ignored.push(existing);
+          current[t] = nav;
+        } else {
+          ignored.push(nav);
+        }
       }
     } else {
       current[t] = nav;

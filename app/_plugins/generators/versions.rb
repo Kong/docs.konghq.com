@@ -6,18 +6,6 @@ module Jekyll
     priority :high
 
     def generate(site) # rubocop:disable Metrics/PerceivedComplexity, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/AbcSize
-      ce_versions = site.data['kong_versions'].select do |elem|
-        elem['edition'] && elem['edition'] == 'gateway-oss'
-      end
-
-      ee_versions = site.data['kong_versions'].select do |elem|
-        elem['edition'] && elem['edition'] == 'enterprise'
-      end
-
-      gsg_versions = site.data['kong_versions'].select do |elem|
-        elem['edition'] && elem['edition'] == 'getting-started-guide'
-      end
-
       deck_versions = site.data['kong_versions'].select do |elem|
         elem['edition'] && elem['edition'] == 'deck'
       end
@@ -35,6 +23,10 @@ module Jekyll
         elem['edition'] && elem['edition'] == 'kubernetes-ingress-controller'
       end
 
+      kgo_versions = site.data['kong_versions'].select do |elem|
+        elem['edition'] && elem['edition'] == 'gateway-operator'
+      end
+
       contributing_versions = site.data['kong_versions'].select do |elem|
         elem['edition'] && elem['edition'] == 'contributing'
       end
@@ -43,32 +35,27 @@ module Jekyll
         elem['edition'] && elem['edition'] == 'gateway'
       end
 
-      site.data['kong_versions_ce'] = ce_versions
-      site.data['kong_versions_ee'] = ee_versions
-      site.data['kong_versions_gsg'] = gsg_versions
       site.data['kong_versions_deck'] = deck_versions
       site.data['kong_versions_mesh'] = mesh_versions
       site.data['kong_versions_konnect'] = konnect_versions
       site.data['kong_versions_kic'] = kic_versions
       site.data['kong_versions_contributing'] = contributing_versions
       site.data['kong_versions_gateway'] = gateway_versions
+      site.data['kong_versions_kgo'] = kgo_versions
 
       # Retrieve the latest version and put it in `site.data.kong_latest.version`
-
-      # There are no "latest" entries for ce_versions, ee_versions, or gsg_versions,
-      # because these docs no longer need a /latest/ URL. Any
-      # /enterprise/latest/, /gateway-oss/latest, or
-      # /getting-stared-guide/latest/ URL should redirect to /gateway/latest.
 
       latest_version_deck = deck_versions.last
       latest_version_mesh = mesh_versions.find { |x| x['latest'] }
       latest_version_kic = kic_versions.last
       latest_version_gateway = gateway_versions.last
+      latest_version_kgo = kgo_versions.last
 
       site.data['kong_latest_mesh'] = latest_version_mesh
       site.data['kong_latest_KIC'] = latest_version_kic
       site.data['kong_latest_deck'] = latest_version_deck
       site.data['kong_latest_gateway'] = latest_version_gateway
+      site.data['kong_latest_kgo'] = latest_version_kgo
 
       # Add a `version` property to every versioned page
       # Also create aliases under /latest/ for all x.x.x doc pages
@@ -86,15 +73,13 @@ module Jekyll
 
         # Only apply those rules to documentation pages
         is_product = %w[
-          enterprise
-          getting-started-guide
           mesh
           deck
           contributing
           konnect
           kubernetes-ingress-controller
           gateway
-          gateway-oss
+          gateway-operator
         ].any? { |p| parts[0] == p }
 
         next unless is_product
@@ -104,16 +89,6 @@ module Jekyll
         page.data['has_version'] = true if has_version
 
         case parts[0]
-        when 'enterprise'
-          page.data['edition'] = parts[0]
-          page.data['kong_version'] = parts[1] if has_version
-          page.data['kong_versions'] = ee_versions
-          page.data['nav_items'] = site.data["docs_nav_ee_#{parts[1].gsub(/\./, '')}"]
-        when 'getting-started-guide'
-          page.data['edition'] = parts[0]
-          page.data['kong_version'] = parts[1] if has_version
-          page.data['kong_versions'] = gsg_versions
-          page.data['nav_items'] = site.data["docs_nav_gsg_#{parts[1].gsub(/\./, '')}"]
         when 'mesh'
           page.data['edition'] = parts[0]
           page.data['kong_version'] = parts[1] if has_version
@@ -125,7 +100,10 @@ module Jekyll
             page.data['version'] = version_data['version']
             page.data['release'] = version_data['release']
             page.data['version_data'] = version_data
+            page.data['kong_version'] = parts[1]
           end
+
+          page.data['latest_released_version'] = latest_version_mesh['release']
         when 'konnect'
           page.data['edition'] = parts[0]
           page.data['kong_versions'] = konnect_versions
@@ -148,16 +126,17 @@ module Jekyll
           page.data['kong_versions'] = gateway_versions
           page.data['kong_latest'] = latest_version_gateway
           page.data['nav_items'] = site.data["docs_nav_gateway_#{parts[1].gsub(/\./, '')}"]
+        when 'gateway-operator'
+          page.data['edition'] = parts[0]
+          page.data['kong_version'] = parts[1] if has_version
+          page.data['kong_versions'] = kgo_versions
+          page.data['kong_latest'] = latest_version_kgo
+          page.data['nav_items'] = site.data["docs_nav_kgo_#{parts[1].gsub(/\./, '')}"]
         when 'contributing'
           page.data['edition'] = parts[0]
           page.data['kong_version'] = parts[1] if has_version
           page.data['kong_versions'] = contributing_versions
           page.data['nav_items'] = site.data['docs_nav_contributing']
-        when 'gateway-oss'
-          page.data['edition'] = parts[0]
-          page.data['kong_version'] = parts[1] if has_version
-          page.data['kong_versions'] = ce_versions
-          page.data['nav_items'] = site.data["docs_nav_ce_#{parts[1].gsub(/\./, '')}"]
         end
 
         # Add additional variables that are available in src pages

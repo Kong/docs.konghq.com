@@ -1,5 +1,6 @@
 ---
 nav_title: Getting started with ACME
+title: Getting started with ACME
 ---
 
 ## Using the plugin
@@ -90,7 +91,7 @@ Assume Kong proxy is accessible via http://mydomain.com and https://mydomain.com
 
     You can also use this endpoint to force renew a certificate.
 
-1. Now, the following request gives you a valid Let's Encrypt certicate:
+1. Now, the following request gives you a valid Let's Encrypt certificate:
 
     ```sh
     curl https://mydomain.com

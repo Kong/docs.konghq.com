@@ -3,98 +3,106 @@ features:
     items:
       - name: Service Hub
         description: Build a comprehensive catalog of services to enable discovery, consumption, and management of every API across your entire architecture.
-        icon: /assets/images/landing-page/service-hub.svg
+        icon: /assets/images/landing-page/card-icons/service-hub.svg
         links:
-          - text: Cloud
-            icon: /assets/images/icons/icn-cloud-blue.svg
-            url: /konnect/servicehub
+          - text: Overview
+            icon: /assets/images/icons/icn-doc.svg
+            url: /konnect/servicehub/
 
       - name: Dev Portal
         description: Streamline developer onboarding with a self-service developer experience, letting developers discover, register, and consume published services.
-        icon: /assets/images/landing-page/dev-portal.svg
+        icon: /assets/images/landing-page/card-icons/dev-portal.svg
         links:
-          - text: Cloud
-            icon: /assets/images/icons/icn-cloud-blue.svg
-            url: /konnect/dev-portal
+          - text: Overview (cloud)
+            icon: /assets/images/icons/icn-doc.svg
+            url: /konnect/dev-portal/
           - text: Self-managed
-            icon: /assets/images/icons/icn-server-blue.svg
+            icon: /assets/images/icons/icn-doc.svg
             url: /gateway/latest/kong-enterprise/dev-portal/
 
-      - name: Vitals
-        description: View granular analytics with Vitals to monitor the health of environments and clusters. Gain deep insights into service, route, and application usage.
-        icon: /assets/images/landing-page/analytics.svg
+      - name: Analytics
+        description: View granular analytics with Analytics to monitor the health of environments and clusters. Gain deep insights into service, route, and application usage.
+        icon: /assets/images/landing-page/card-icons/analytics.svg
         links:
-          - text: Cloud
-            icon: /assets/images/icons/icn-cloud-blue.svg
-            url: /konnect/vitals
+          - text: Overview (cloud)
+            icon: /assets/images/icons/icn-doc.svg
+            url: /konnect/vitals/
           - text: Self-managed
-            icon: /assets/images/icons/icn-server-blue.svg
+            icon: /assets/images/icons/icn-doc.svg
             url: /gateway/latest/kong-enterprise/analytics/
 
-      - name: Runtime Manager
-        description: Provision and manage Kong Gateway runtimes and services in your environment and platform of choice.
-        icon: /assets/images/landing-page/runtime.svg
+      - name: Gateway Manager
+        description: Provision and manage Kong Gateway data planes and services in your environment and platform of choice.
+        icon:  /assets/images/landing-page/card-icons/runtime.svg
         links:
-          - text: Cloud
-            icon: /assets/images/icons/icn-cloud-blue.svg
-            url: /konnect/runtime-manager
-      
+          - text: Overview
+            icon: /assets/images/icons/icn-doc.svg
+            url: /konnect/gateway-manager/
+
       - name: API Products
         description: Bundle and manage multiple APIs via API products to document, enable application registration and publish them to a Developer Portal for consumption. 
-        icon: /assets/images/landing-page/service-hub.svg
+        icon: /assets/images/landing-page/card-icons/api-product.svg
         links:
-          - text: Cloud
-            icon: /assets/images/icons/icn-cloud-blue.svg
-            url: /konnect/api-products
-
-      - name: Insomnia
-        description: Streamline workflows by enabling users to instantly drop into Insomnia to design, document, and test APIs and microservices.
-        icon: /assets/images/landing-page/insomnia.svg
-        links:
-          - text: Insomnia docs
+          - text: Overview
             icon: /assets/images/icons/icn-doc.svg
-            url: https://support.insomnia.rest/
+            url: /konnect/api-products/
 
-  - title: Ecosystem integrations
+      - name: Mesh Manager
+        description: Create global control planes to manage your Kong Mesh service meshes.
+        icon: /assets/images/landing-page/card-icons/mesh-manager.svg
+        links:
+          - text: Overview
+            icon: /assets/images/icons/icn-doc.svg
+            url: /konnect/mesh-manager/
+
+  - title: Extensions & Tools
     items:
-      - name: Plugin Hub
-        description: Use plugins to provide advanced functionality and extend the use of the Kong Gateway.
-        icon: /assets/images/landing-page/plugin.svg
+      - name: decK
+        description: Manage Kong Gateway declaratively using decK. Sync YAML or JSON configuration across Kong Gateway clusters, push configuration to a running cluster, detect drift, and create backups.
         links:
-          - text: Learn more
+          - text: Overview
             icon: /assets/images/icons/icn-doc.svg
-            url: /hub/
+            url: /deck/latest/
+          - text: Get Started
+            icon: /assets/images/icons/icn-doc.svg
+            url: /deck/latest/guides/getting-started/
+          - text: APIOps with decK
+            icon: /assets/images/icons/icn-doc.svg
+            url: /deck/latest/guides/apiops/
+
+      - name: Kong Gateway Operator
+        description: Manage your Kong Ingress Controller, Kong Gateway Data Planes, or both together when running on Kubernetes.
+        links:
+          - text: Overview
+            icon: /assets/images/icons/icn-doc.svg
+            url: /gateway-operator/latest/
 
       - name: Kong Ingress Controller
         description: Implement authentication, transformations, and other functionalities across Kubernetes clusters with zero downtime.
-        icon: /assets/images/landing-page/kubernetes.svg
         links:
-          - text: Learn more
+          - text: Overview
             icon: /assets/images/icons/icn-doc.svg
-            url: /kubernetes-ingress-controller/
+            url: /kubernetes-ingress-controller/latest/
+          - text: Get Started
+            icon: /assets/images/icons/icn-doc.svg
+            url: /kubernetes-ingress-controller/latest/guides/getting-started/
 
-      - name: Declarative Configuration
-        description: Manage Kong Gateway declaratively using decK. Sync YAML or JSON configuration across Kong Gateway clusters, push configuration to a running cluster, detect drift, and create backups.
-        icon: /assets/images/landing-page/alerting.svg
+      - name: Insomnia
+        description: Streamline workflows by enabling users to instantly drop into Insomnia to design, document, and test APIs and microservices.
         links:
-          - text: Learn more
+          - text: Overview
             icon: /assets/images/icons/icn-doc.svg
-            url: /deck/
+            url: https://docs.insomnia.rest
 
-contribute_links:
-  - text: Contribution guidelines
-    url: /contributing/
-  - text: GitHub Source code
-    url: https://github.com/Kong/docs.konghq.com
-  - text: GitHub Issues
-    url: https://github.com/Kong/docs.konghq.com/issues
-
-popular_topics:
-  - text: Install Kong Gateway
-    url: /gateway/latest/install/
-  - text: Plugin development guide
-    url: /gateway/latest/plugin-development/
-  - text: OpenID Connect
-    url: /gateway/latest/kong-plugins/authentication/oidc/
-  - text: Kong Gateway API documentation
-    url: /gateway/latest/admin-api
+      - name: Plugin Hub
+        description: Use plugins to provide advanced functionality and extend the use of the Kong Gateway.
+        links:
+          - text: Overview
+            icon: /assets/images/icons/icn-doc.svg
+            url: /hub/plugins/overview/
+          - text: Plugin Development
+            icon: /assets/images/icons/icn-doc.svg
+            url: /hub/plugins/overview/#developing-custom-plugins
+          - text: Hub
+            icon: /assets/images/icons/icn-doc.svg
+            url: /hub/

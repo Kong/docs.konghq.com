@@ -53,7 +53,7 @@ $ curl -Lo kong.rpm $( rpm --eval "{{ site.links.download }}/gateway-2.x-rhel-7/
 rpm -iv kong.rpm
 ```
 
-Installing directly using `rpm` is suitable for RedHat's [Universal Base Image](https://developers.redhat.com/blog/2020/03/24/red-hat-universal-base-images-for-docker-users) "minimal" variant. You will need to install Kong's dependencies separately via `microdnf`
+Installing directly using `rpm` is suitable for Red Hat's [Universal Base Image](https://developers.redhat.com/blog/2020/03/24/red-hat-universal-base-images-for-docker-users) "minimal" variant. You will need to install Kong's dependencies separately via `microdnf`
 
     {% endif %}
 

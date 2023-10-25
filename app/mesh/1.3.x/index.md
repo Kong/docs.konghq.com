@@ -3,11 +3,10 @@ title: Kong Mesh
 subtitle: A modern control plane built on top of Envoy and focused on simplicity, security, and scalability
 ---
 
-<div class="alert alert-ee blue">
-   <b>Demo</b>: To see {{site.mesh_product_name}} in action, you can
-   <a href="https://konghq.com/request-demo-kong-mesh">request a demo</a> and
-   we will get in touch with you.
-</div>
+{:.note}
+> **Demo**: To see {{site.mesh_product_name}} in action, you can
+[request a demo](https://konghq.com/request-demo-kong-mesh/) and
+we will get in touch with you.
 
 Welcome to the official documentation for {{site.mesh_product_name}}!
 
@@ -26,13 +25,12 @@ support, while providing native integration with
 full-stack connectivity platform for all of your services and APIs, across
 every cloud and environment.
 
-<div class="alert alert-ee blue">
-   Kuma itself was originally created by Kong and donated to CNCF to
-   provide the first neutral Envoy-based service mesh to the industry. Kong
-   still maintains and develops Kuma, which is the foundation for
-   {{site.mesh_product_name}}.
-</div>
-<br>
+{:.note}
+> Kuma itself was originally created by Kong and donated to CNCF to
+provide the first neutral Envoy-based service mesh to the industry. Kong
+still maintains and develops Kuma, which is the foundation for
+{{site.mesh_product_name}}.
+
 <center>
   <img src="/assets/images/docs/mesh/kong-mesh.png" width="500px"/>
   <br>
@@ -68,8 +66,8 @@ for both edge and internal API traffic.
   <img src="/assets/images/docs/mesh/gw_mesh.png" width="600px"/>
   <br>
   <i>Two different applications - "Banking" and "Trading" - run in their
-  own meshes "A" and "B" across different datacenters. In this example,
-  Kong Gateway is being used both for edge communication, and for internal
+  own meshes "A" and "B" across different data centers. In this example,
+  {{site.base_gateway}} is being used both for edge communication, and for internal
   communication between meshes.</i>
 </center>
 
@@ -129,11 +127,11 @@ hybrid Kubernetes/VMs:
   <img src="/assets/images/docs/mesh/multi-zone.jpg" width="600px"/>
   <br>
   <i>{{site.mesh_product_name}} can support multiple zones (like a Kubernetes
-    cluster, VPC, datacenter, etc.) together in the same distributed deployment.
+    cluster, VPC, data center, etc.) together in the same distributed deployment.
      Then, you can create multiple isolated virtual meshes with the same
      control plane in order to support every team and application in the
      organization.</i>
 </center>
 <br>
-[Learn more](https://kuma.io/docs/latest/introduction/deployments/) about the
+[Learn more](/mesh/latest/production/deployment/) about the
 standalone and multi-zone deployment modes in the Kuma documentation.

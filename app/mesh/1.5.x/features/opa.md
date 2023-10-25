@@ -11,7 +11,7 @@ The agent is included in the data plane proxy sidecar, instead of the more commo
 When `OPAPolicy` is applied, the control plane configures:
 
 - the embedded policy agent, with the specified policy
-- Envoy, to use [External Authorization](https://www.envoyproxy.io/docs/envoy/latest/api-v2/config/filter/http/ext_authz/v2/ext_authz.proto) that points to the embedded policy agent
+- Envoy, to use [External Authorization](https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/http/ext_authz/v3/ext_authz.proto) that points to the embedded policy agent
 
 ## Usage
 
@@ -177,7 +177,7 @@ conf:
 
 ### With Secrets
 
-Encoding the policy in a [Secret](https://kuma.io/docs/latest/security/secrets) provides some security for policies that contain sensitive data.
+Encoding the policy in a [Secret](https://kuma.io/docs/1.5.x/security/secrets/) provides some security for policies that contain sensitive data.
 
 {% navtabs %}
 {% navtab Kubernetes %}

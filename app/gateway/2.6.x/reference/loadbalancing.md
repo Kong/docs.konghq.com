@@ -14,7 +14,7 @@ is done outside of Kong, and Kong only receives updates from the DNS server.
 Every Service that has been defined with a `host` containing a hostname
 (instead of an IP address) will automatically use DNS-based load balancing
 if the name resolves to multiple IP addresses, provided the hostname does not
-resolve to an `upstream` name or a name in your DNS hostsfile.
+resolve to an `upstream` name or a name in your DNS hosts file.
 
 The DNS record `ttl` setting (time to live) determines how often the information
 is refreshed. When using a `ttl` of 0, every request will be resolved using its
@@ -104,7 +104,7 @@ Configuring the ring-balancer is done through the `upstream` and `target`
 entities.
 
   - `target`: an IP address or hostname with a port number where a backend
-    service resides, eg. "192.168.100.12:80". Each target gets an additional
+    service resides, for example, "192.168.100.12:80". Each target gets an additional
     `weight` to indicate the relative load it gets. IP addresses can be
     in both IPv4 and IPv6 format.
 
@@ -226,7 +226,7 @@ entities only by their IP address, and never by name.
 - When picking your hash input make sure the input has enough variance to get
 to a well distributed hash. Hashes will be calculated using the CRC-32 digest.
 So for example, if your system has thousands of users, but only a few consumers, defined
-per platform (eg. 3 consumers: Web, iOS and Android) then picking the `consumer`
+per platform (for example, 3 consumers: Web, iOS and Android) then picking the `consumer`
 hash input will not suffice, using the remote IP address by setting the hash to
 `ip` would provide more variance in the input and hence a better distribution
 in the hash output. However, if many clients will be behind the same NAT gateway (e.g. in
@@ -242,25 +242,25 @@ Set up the "Blue" environment, running version 1 of the address service:
 
 ```bash
 # create an upstream
-$ curl -X POST http://kong:8001/upstreams \
+$ curl -X POST http://localhost:8001/upstreams \
     --data "name=address.v1.service"
 
 # add two targets to the upstream
-$ curl -X POST http://kong:8001/upstreams/address.v1.service/targets \
+$ curl -X POST http://localhost:8001/upstreams/address.v1.service/targets \
     --data "target=192.168.34.15:80"
     --data "weight=100"
-$ curl -X POST http://kong:8001/upstreams/address.v1.service/targets \
+$ curl -X POST http://localhost:8001/upstreams/address.v1.service/targets \
     --data "target=192.168.34.16:80"
     --data "weight=50"
 
 # create a Service targeting the Blue upstream
-$ curl -X POST http://kong:8001/services/ \
+$ curl -X POST http://localhost:8001/services/ \
     --data "name=address-service" \
     --data "host=address.v1.service" \
     --data "path=/address"
 
 # finally, add a Route as an entry-point into the Service
-$ curl -X POST http://kong:8001/services/address-service/routes/ \
+$ curl -X POST http://localhost:8001/services/address-service/routes/ \
     --data "hosts[]=address.mydomain.com"
 ```
 
@@ -274,14 +274,14 @@ environment:
 
 ```bash
 # create a new Green upstream for address service v2
-$ curl -X POST http://kong:8001/upstreams \
+$ curl -X POST http://localhost:8001/upstreams \
     --data "name=address.v2.service"
 
 # add targets to the upstream
-$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+$ curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
     --data "target=192.168.34.17:80"
     --data "weight=100"
-$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+$ curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
     --data "target=192.168.34.18:80"
     --data "weight=100"
 ```
@@ -290,7 +290,7 @@ To activate the Blue/Green switch, we now only need to update the Service:
 
 ```bash
 # Switch the Service from Blue to Green upstream, v1 -> v2
-$ curl -X PATCH http://kong:8001/services/address-service \
+$ curl -X PATCH http://localhost:8001/services/address-service \
     --data "host=address.v2.service"
 ```
 
@@ -312,12 +312,12 @@ Using a very simple 2 target example:
 
 ```bash
 # first target at 1000
-$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+$ curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
     --data "target=192.168.34.17:80"
     --data "weight=1000"
 
 # second target at 0
-$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+$ curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
     --data "target=192.168.34.18:80"
     --data "weight=0"
 ```
@@ -327,12 +327,12 @@ slowly be routed towards the other target. For example, set it at 10%:
 
 ```bash
 # first target at 900
-$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+$ curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
     --data "target=192.168.34.17:80"
     --data "weight=900"
 
 # second target at 100
-$ curl -X POST http://kong:8001/upstreams/address.v2.service/targets \
+$ curl -X POST http://localhost:8001/upstreams/address.v2.service/targets \
     --data "target=192.168.34.18:80"
     --data "weight=100"
 ```

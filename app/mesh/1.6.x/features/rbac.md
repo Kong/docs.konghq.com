@@ -113,7 +113,7 @@ spec:
 
 Let's go through example roles in the organization that can be created using {{site.mesh_product_name}} RBAC.
 
-### Kong Mesh operator (admin)
+### {{site.mesh_product_name}} operator (admin)
 
 Mesh operator is a part of infrastructure team responsible for {{site.mesh_product_name}} deployment.
 

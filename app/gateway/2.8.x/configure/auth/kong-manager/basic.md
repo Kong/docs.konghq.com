@@ -13,7 +13,7 @@ admin_gui_auth = basic-auth
 admin_gui_session_conf = { "secret":"set-your-string-here" }
 ```
 
-The **Sessions Plugin** requries a secret and is configured securely by default.
+The **Sessions Plugin** requires a secret and is configured securely by default.
 
 * Under all circumstances, the `secret` must be manually set to a string.
 * If using HTTP instead of HTTPS, `cookie_secure` must be manually set to `false`.

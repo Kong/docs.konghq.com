@@ -1,5 +1,6 @@
 ---
 nav_title: Using templates as values
+title: Using templates as values
 ---
 
 ## Using templates as values
@@ -86,40 +87,44 @@ above).
 
 ### Examples using template as value
 
-Add a Service named `test` which routes requests to the mockbin.com upstream service:
+1. Add a service named `test` which routes requests to the mockbin.com upstream service:
 
-```bash
-curl -X POST http://localhost:8001/services \
-    --data 'name=test' \
-    --data 'url=http://mockbin.com/requests'
-```
+    ```bash
+    curl -X POST http://localhost:8001/services \
+        --data 'name=test' \
+        --data 'url=http://mockbin.com/requests'
+    ```
 
-Create a route for the `test` service, capturing a `user_id` field from the third segment of the request path:
+2. Create a route for the `test` service, capturing a `user_id` field from the 
+third segment of the request path using a regex:
 
-{:.note}
-> **Kubernetes users:** Version `v1beta1` of the Ingress
-  specification does not allow the use of named regex capture groups in paths.
-  If you use the ingress controller, you should use unnamed groups, e.g.
-  `(\w+)/`instead of `(?&lt;user_id&gt;\w+)`. You can access
-  these based on their order in the URL path. For example `$(uri_captures[1])`
-  obtains the value of the first capture group.
+    {:.note}
+    > **Kubernetes users:** Version `v1beta1` of the Ingress
+      specification does not allow the use of named regex capture groups in paths.
+      If you use the ingress controller, you should use unnamed groups, e.g.
+      `(\w+)/`instead of `(?&lt;user_id&gt;\w+)`. You can access
+      these based on their order in the URL path. For example `$(uri_captures[1])`
+      obtains the value of the first capture group.
 
-```bash
-curl -X POST http://localhost:8001/services/test/routes --data "name=test_user" \
-    --data-urlencode 'paths=~/requests/user/(?<user_id>\w+)'
-```
+    ```bash
+    curl -X POST http://localhost:8001/services/test/routes --data "name=test_user" \
+        --data-urlencode 'paths=~/requests/user/(?<user_id>\w+)'
+    ```
 
-Enable the `request-transformer-advanced` plugin to add a new header, `x-user-id`,
+    You can learn more about using regexes in paths in the {{site.base_gateway}} 
+    [traffic routing reference](/gateway/latest/how-kong-works/routing-traffic/#using-regex-in-paths).
+
+3. Enable the `request-transformer-advanced` plugin to add a new header, `x-user-id`,
 whose value is being set from the captured group in the route path specified above:
 
-```bash
-curl -XPOST http://localhost:8001/routes/test_user/plugins --data "name=request-transformer-advanced" --data "config.add.headers=x-user-id:\$(uri_captures['user_id'])"
-```
+    ```bash
+    curl -XPOST http://localhost:8001/routes/test_user/plugins --data "name=request-transformer-advanced" --data "config.add.headers=x-user-id:\$(uri_captures['user_id'])"
+    ```
 
-Now send a request with a user id in the route path:
+4. Now send a request with a user id in the route path:
 
-```bash
-curl -i -X GET localhost:8000/requests/user/foo
-```
+    ```bash
+    curl -i -X GET localhost:8000/requests/user/foo
+    ```
 
-You should notice in the response that the `x-user-id` header has been added with a value of `foo`.
+    You should notice in the response that the `x-user-id` header has been added with a value of `foo`.

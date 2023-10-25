@@ -40,8 +40,6 @@ Therefore, there is an order of precedence for running a plugin when it has
 been applied to different entities with different configurations. The amount of entities configured to a specific plugin directly correlate to its priority. The more entities configured to a plugin the higher its order of precedence is. 
 The complete order of precedence for plugins configured to multiple entities is: 
 
-
-
 1. Plugins configured on a combination of a consumer, a route, and a service.
     (Consumer means the request must be authenticated).
 2. Plugins configured on a combination of a consumer group, service, and a route.
@@ -58,62 +56,32 @@ The complete order of precedence for plugins configured to multiple entities is:
 11. Plugins configured on a service. 
 12. Plugins configured globally. 
 
-
-
 ## Terminology
 **Plugin**
-: An extension to the {{site.base_gateway}}, written in Lua or Go.
+: An extension to the {{site.base_gateway}}.
 
-**Kong plugin**
-: A plugin developed, maintained, and supported by Kong.
-
-**Third-party or Community plugin**
-: A custom plugin developed, maintained, and supported by an external developer,
-not by Kong. Kong does not test these plugins, or update their version
-compatibility. If you need more information or need to have a third-party plugin
-updated, contact the maintainer by clicking [Report an issue](https://github.com/Kong/docs.konghq.com/issues) in the plugin
-documentation's sidebar.
-
-**Service**
-: The Kong entity representing an external upstream API or microservice.
-
-**Route**
-: The Kong entity representing a way to map downstream requests to upstream
-services.
-
-**Consumer**
-: An entity that makes requests for Kong to proxy. It represents either a user
-or an external service.
-
-**Credential**
-: The API key. A unique string associated with a consumer. 
-
-**Upstream**
-: The Kong entity that refers to your own API/service sitting behind Kong,
-to which client requests are forwarded.
-
-
-## Plugin versioning
-
-Each plugin has its own internal versioning scheme. These versions differ from
-{{site.base_gateway}} versions.
-
-### Kong plugins
-
-For plugins developed and maintained by Kong, plugin versioning generally has
+: For plugins developed and maintained by Kong, plugin versioning generally has
 no impact on your implementation, other than to find out which versions of Kong
 contain which plugin features. Kong plugins are bundled with the
 {{site.base_gateway}}, so compatible plugin versions are already associated
 with the correct version of Kong.
 
-### Third-party plugins
+**Kong plugin** or **Kong bundled plugin**
+: A plugin developed, maintained, and supported by Kong.
 
-Because third-party plugins are not maintained by Kong and are not bundled with
+: Because third-party plugins are not maintained by Kong and are not bundled with
 the {{site.base_gateway}}, version compatibility is a bigger concern. See each
 individual plugin's page for its tested compatibility.
 
-If the versions on the plugin page are outdated, contact the maintainer through
-the Support link in the plugin documentation's sidebar.
+: If the versions on the plugin page are outdated, contact the maintainer directly.
+
+**Unsupported plugin**
+: A custom plugin developed, tested, and maintained by an external developer,
+not by Kong. Kong does not test these plugins, or update their version
+compatibility.
+
+**Partner plugin**
+: Definition TBD
 
 ## Developing custom plugins
 

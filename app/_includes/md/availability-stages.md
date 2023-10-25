@@ -2,14 +2,14 @@
 ## Tech preview
 A feature that is in tech preview might have limited to no documentation, no support, and is not guaranteed to be made available as GA in the future. Some products or projects may also call this stage *alpha*.
 
-**A tech preview feature or version should not be deployed in a production environment**.
+**A tech preview feature or version should not be depended upon in a production environment**.
 
 Tech preview features are experimental. Interfaces for features in tech preview could change in backwards-incompatible ways. Do not count on the feature becoming a formal product, and expect it to change heavily if it does.
 
 ## Beta
-A beta designation in Kong software means the functionality of a feature or release version is of high quality and can be deployed in a non-production environment.
+A beta designation in Kong software means the functionality of a feature or release version is of high quality and can be used in a non-production environment.
 
-**A beta feature or version should not be deployed in a production environment**.
+**A beta feature or version should not be depended upon in a production environment**.
 
 Note the following when using a beta feature or version:
 * Beta customers are encouraged to engage Kong Support to report issues encountered in beta testing. Support requests should be filed with normal priority, but contractual SLA’s will not be applicable for beta features.
@@ -24,6 +24,6 @@ is supported according to Kong's [support and maintenance policy](https://konghq
 
 If feature documentation doesn't have a tech preview, alpha, or beta label, then the feature is generally available.
 
-You can deploy GA features to production environments.
+You can depend on GA features in production environments.
 
 Interfaces are guaranteed to follow a [semantic versioning](https://semver.org/) model for any changes.

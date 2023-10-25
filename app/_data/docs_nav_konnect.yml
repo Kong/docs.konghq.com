@@ -20,17 +20,18 @@
         - text: Control Plane Upgrades FAQ
           url: /upgrade-faq/
         - text: Supported Installation Options
-          url: /runtime-manager/runtime-instances/
+          url: /support/data-plane-nodes/
+          generate: false
 
 - title: Get Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
   items:
     - text: Overview
       url: /getting-started/
-    - text: Access a Konnect Account
+    - text: Create a Konnect Account
       url: /getting-started/access-account/
-    - text: Set up a Runtime
-      url: /getting-started/configure-runtime/
+    - text: Set up a Data Plane Node
+      url: /getting-started/configure-data-plane-node/
     - text: Proxy and Test a Service
       url: /getting-started/deploy-service/
     - text: Productize a Service
@@ -44,68 +45,80 @@
     - text: Import Kong Gateway Entities into Konnect
       url: /getting-started/import/
 
-- title: Runtime Manager
+- title: Gateway Manager
   icon: /assets/images/icons/konnect/icn-runtimes-nav.svg
   items:
     - text: Overview
-      url: /runtime-manager/
-    - text: Runtime Instances
+      url: /gateway-manager/
+    - text: Data Plane Nodes
       items:
         - text: Installation Options
-          url: /runtime-manager/runtime-instances/
-        - text: Upgrade a Runtime Instance
-          url: /runtime-manager/runtime-instances/upgrade/
-        - text: Verify a Runtime Instance
-          url: /runtime-manager/runtime-instances/verify-instance/
+          url: /gateway-manager/data-plane-nodes/
+        - text: Upgrade a Data Plane Node
+          url: /gateway-manager/data-plane-nodes/upgrade/
+        - text: Verify a Data Plane Node
+          url: /gateway-manager/data-plane-nodes/verify-node/
+        - text: Secure Control Plane/Data Plane Communications  
+          url: /gateway-manager/data-plane-nodes/secure-communications/
         - text: Renew Data Plane Certificates
-          url: /runtime-manager/runtime-instances/renew-certificates/
-        - text: Runtime Parameter Reference
-          url: /runtime-manager/runtime-instances/runtime-parameter-reference/
+          url: /gateway-manager/data-plane-nodes/renew-certificates/
+        - text: Parameter Reference
+          url: /gateway-manager/data-plane-nodes/parameter-reference/
         - text: Using Custom DP Labels
-          url: /runtime-manager/runtime-instances/custom-dp-labels
-    - text: Composite Runtime Groups
+          url: /gateway-manager/data-plane-nodes/custom-dp-labels
+    - text: Control Plane Groups
       items: 
         - text: Overview
-          url: /runtime-manager/composite-runtime-groups/
-        - text: Working with Composite Runtime Groups
-          url: /runtime-manager/composite-runtime-groups/how-to/
-        - text: Migrate Configuration into Composite Runtime Groups
-          url: /runtime-manager/composite-runtime-groups/migrate/
-        - text: Conflicts in Runtime Groups
-          url: /runtime-manager/composite-runtime-groups/conflicts/
+          url: /gateway-manager/control-plane-groups/
+        - text: Working with Control Plane Groups
+          url: /gateway-manager/control-plane-groups/how-to/
+        - text: Migrate Configuration into Control Plane Groups
+          url: /gateway-manager/control-plane-groups/migrate/
+        - text: Conflicts in Control Planes
+          url: /gateway-manager/control-plane-groups/conflicts/
 
-    - text: Runtime Configuration
+    - text: Kong Gateway Configuration in Konnect
       items:
         - text: Overview
-          url: /runtime-manager/configuration/
+          url: /gateway-manager/configuration/
+        - text: Manage Plugins
+          items:
+            - text: Overview
+              url: /gateway-manager/plugins/
+            - text: Adding Custom Plugins
+              url: /gateway-manager/plugins/add-custom-plugin/
+            - text: Updating Custom Plugins
+              url: /gateway-manager/plugins/update-custom-plugin/
+            - text: How to Create Custom Plugins
+              url: ../../gateway/latest/plugin-development/
+              generate: false
         - text: Create Consumer Groups
-          url: https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/how-to/
-          absolute_url: true
+          url: ../../hub/kong-inc/rate-limiting-advanced/how-to
         - text: Secrets Management
           items:
             - text: Overview
-              url: /runtime-manager/configuration/vaults/
+              url: /gateway-manager/configuration/vaults/
             - text: Set Up and Use a Vault in Konnect
-              url: /runtime-manager/configuration/vaults/how-to/
-        - text: Manage Runtime Configuration using decK
-          url: /runtime-manager/declarative-config/
+              url: /gateway-manager/configuration/vaults/how-to/
+        - text: Manage Control Plane Configuration with decK
+          url: /gateway-manager/declarative-config/
     - text: KIC Association
-      url: /runtime-manager/kic/
-    - text: Manage Plugins
-      items:
-        - text: Overview
-          url: /runtime-manager/plugins/
-        - text: Configure a Plugin on a Gateway Service
-          url: /runtime-manager/enable-service-plugin/
-        - text: Configure a Plugin on a Route
-          url: /runtime-manager/enable-route-plugin/
+      url: /gateway-manager/kic/
     - text: Backup and Restore
-      url: /runtime-manager/backup-restore/
+      url: /gateway-manager/backup-restore/
     - text: Version Compatibility
-      url: /runtime-manager/version-compatibility/
+      url: /gateway-manager/version-compatibility/
     - text: Troubleshooting
-      url: /runtime-manager/troubleshoot/
+      url: /gateway-manager/troubleshoot/
 
+- title: Mesh Manager
+  icon: /assets/images/icons/konnect/icn-mesh-manager-nav.svg
+  items:
+    - text: Overview
+      url: /mesh-manager/
+    - text: Create a mesh with the Kubernetes demo app
+      url: /mesh-manager/service-mesh/
+      
 - title: Service Hub
   icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
   items:
@@ -134,6 +147,10 @@
       items:
         - text: Manage Developer Access
           url: /dev-portal/access-and-approval/manage-devs/
+        - text: Manage Developer Team Access
+          url: /dev-portal/access-and-approval/manage-teams/
+        - text: Add Developer Teams from IdPs
+          url: /dev-portal/access-and-approval/add-teams/
         - text: Manage Application Registration Requests
           url: /dev-portal/access-and-approval/manage-app-reg-requests/
         - text: Manage Application Registrations
@@ -193,139 +210,152 @@
         url: /analytics/use-cases/latency
     - text: Reports Reference
       url: /analytics/reference/
+    - text: API Requests
+      url: /analytics/api-requests
     - text: Troubleshoot
       url: /analytics/troubleshoot/
 
-- title: Administer
+- title: Org Management
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
   items:
     - text: Plans and Billing
+      url: /account-management/
+    - text: Authentication and Authorization
       items:
-        - text: Manage a Konnect Account or Plan
-          url: /account-management/
-        - text: Change to a Different Plan
-          url: /account-management/change-plan/
-        - text: Manage Payment Methods and Invoices
-          url: /account-management/billing/
-    - text: Org Management
+        - text: Overview
+          url: /org-management/auth/
+        - text: Teams
+          items:
+            - text: Overview
+              url: /org-management/teams-and-roles/
+            - text: Manage Teams
+              url: /org-management/teams-and-roles/manage/
+            - text: Teams Reference
+              url: /org-management/teams-and-roles/teams-reference/
+            - text: Roles Reference
+              url: /org-management/teams-and-roles/roles-reference/
+        - text: Manage Users
+          url: /org-management/users/
+        - text: Manage System Accounts
+          url: /org-management/system-accounts/
+        - text: Social Identity Login
+          url: /org-management/social-identity-login/
+        - text: Org Switcher
+          url: /org-management/org-switcher/
+        - text: Set up SSO with OIDC
+          url: /org-management/oidc-idp/
+        - text: Set up SSO with Okta
+          url: /org-management/okta-idp/
+        - text: Login Sessions Reference
+          url: /org-management/sessions-reference/
+        - text: Troubleshoot
+          url: /org-management/troubleshoot/
+    - text: Audit Logging
       items:
-      - text: Authentication and Authorization
-        items:
-          - text: Overview
-            url: /org-management/auth/
-          - text: Teams
-            items:
-              - text: Overview
-                url: /org-management/teams-and-roles/
-              - text: Manage Teams
-                url: /org-management/teams-and-roles/manage/
-              - text: Teams Reference
-                url: /org-management/teams-and-roles/teams-reference/
-              - text: Roles Reference
-                url: /org-management/teams-and-roles/roles-reference/
-          - text: Manage Users
-            url: /org-management/users/
-          - text: Manage System Accounts
-            url: /org-management/system-accounts/
-          - text: Set up SSO with OIDC
-            url: /org-management/oidc-idp/
-          - text: Set up SSO with Okta
-            url: /org-management/okta-idp/
-          - text: Login Sessions Reference
-            url: /org-management/sessions-reference/
-          - text: Troubleshoot
-            url: /org-management/troubleshoot/
-      - text: Audit Logging
-        items:
-          - text: Overview
-            url: /org-management/audit-logging/
-          - text: Set up an Audit Log Webhook
-            url: /org-management/audit-logging/webhook/
-          - text: Set up an Audit Log Replay Job
-            url: /org-management/audit-logging/replay-job/
-          - text: Verify Audit Log Signatures
-            url: /org-management/audit-logging/verify-signatures/
-          - text: Log Reference
-            url: /org-management/audit-logging/reference/
-      - text: Account and Org Deactivation
-        url: /org-management/deactivation/
+        - text: Overview
+          url: /org-management/audit-logging/
+        - text: Set up an Audit Log Webhook
+          url: /org-management/audit-logging/webhook/
+        - text: Set up an Audit Log Replay Job
+          url: /org-management/audit-logging/replay-job/
+        - text: Verify Audit Log Signatures
+          url: /org-management/audit-logging/verify-signatures/
+        - text: Log Reference
+          url: /org-management/audit-logging/reference/
+    - text: Account and Org Deactivation
+      url: /org-management/deactivation/
 
 - title: API
   icon: /assets/images/icons/documentation/icn-admin-api-color.svg
   items:
     - text: Overview
       url: /api/
-    - text: Konnect Identity API
+    - text: API Request API (Beta)
       items:
-        - text: API Documentation
-          url: https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce/
+        - text: API Spec
+          url: /konnect/api/api-requests/latest/
           absolute_url: true
+          generate: false
+          target_blank: true
+    - text: API Products API
+      items:
+        - text: API Spec
+          url: /konnect/api/api-products/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
+    - text: Audit Logs API
+      items:
+        - text: API Spec
+          url: /konnect/api/audit-logs/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Audit Log Webhooks
+          url: /api/audit-logs/webhook/
+    - text: Control Plane API
+      items:
+        - text: API Spec
+          url: /konnect/api/control-planes/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
+    - text: Control Plane Configuration API
+      items:
+        - text: API Spec
+          url: /konnect/api/control-plane-configuration/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true          
+    - text: Identity API
+      items:
+        - text: API Spec
+          url: /konnect/api/identity-management/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
         - text: Identity Integration Guide
           url: /api/identity-management/identity-integration/
         - text: SSO Customization
           url: /api/identity-management/sso/
-    - text: Runtime Groups API
+    - text: Mesh Manager API
       items:
-        - text: API Documentation
-          url: https://developer.konghq.com/spec/cd849478-4628-4bc2-abcd-5d8a83d3b5f2/24c1f98b-ea51-4277-9178-ca28a6aa85d9/
+        - text: API Spec
+          url: /konnect/api/mesh-manager/latest/
           absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Kong Mesh API Reference
+          url: /mesh/latest/reference/http-api/
+          absolute_url: true
+          generate: false
+          target_blank: true
+    - text: Portal Client API
+      items:
+        - text: API Spec
+          url: /konnect/api/portal/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true  
     - text: Portal RBAC API
       items:
-        - text: API Documentation
-          url: https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/
-          absolute_url: true
-        - text: Portal RBAC Guide
-          url: /api/portal-auth/portal-rbac-guide/
-    - text: Runtime Configuration API
-      items:
-        - text: Overview
-          url: /api/runtime-groups-config/
-        - text: Nodes
-          url: /api/runtime-groups-config/#nodes
-        - text: Data Plane Certificiates
-          url: /api/runtime-groups-config/#data-plane-certificates
-        - text: Konnect Core Entities
-          items:
-          - text: Services
-            url: /api/runtime-groups-config/#service-object
-          - text: Routes
-            url: /api/runtime-groups-config/#route-object
-          - text: Consumers
-            url: /api/runtime-groups-config/#consumer-object
-          - text: Plugins
-            url: /api/runtime-groups-config/#plugin-object
-          - text: Upstreams
-            url: /api/runtime-groups-config/#upstream-object
-          - text: Certificates
-            url: /api/runtime-groups-config/#certificate-object
-          - text: CA Certificates
-            url: /api/runtime-groups-config/#ca-certificate-object
-          - text: SNIs
-            url: /api/runtime-groups-config/#sni-object
-          - text: Targets
-            url: /api/runtime-groups-config/#target-object
-          - text: Vaults
-            url: /api/runtime-groups-config/#vaults-object
         - text: API Spec
-          url: https://developer.konghq.com/spec/3c38bff8-3b7b-4323-8e2e-690d35ef97e0/16adcd15-493a-49b2-ad53-8c73891e29bf
+          url: /konnect/api/portal-rbac/latest/
           absolute_url: true
-    - text: Portal Client API
-      items: 
-        - text: API Documentation
-          url: https://developer.konghq.com/spec/2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6/b4539157-4ced-4df5-affa-7d790baee356
-          absolute_url: true
-    - text: Audit Logs API
+          generate: false
+          target_blank: true
+    - text: Deprecated APIs
       items:
-        - text: API Documentation
-          url: https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/
+        - text: (Deprecated) Runtime Configuration API
+          url: /konnect/api/runtime-groups-configuration/latest/
           absolute_url: true
-        - text: Audit Log Webhooks
-          url: /api/audit-logs/webhook/
-    - text: API Products API
-      items: 
-        - text: API Spec
-          url: https://developer.konghq.com/spec/d420333f-01b0-464e-a87a-97acc92c2026/941af975-8cfa-40f7-afea-e82d248489a0
+          generate: false
+          target_blank: true
+        - text: (Deprecated) Runtime Groups API
+          url: /konnect/api/runtime-groups/latest/
           absolute_url: true
+          generate: false
+          target_blank: true
     - text: Reference
       items:
         - text: Filtering

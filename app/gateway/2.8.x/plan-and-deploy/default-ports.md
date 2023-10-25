@@ -19,5 +19,5 @@ By default, {{site.base_gateway}} listens on the following ports:
 | [`:8447`](/gateway/{{page.kong_version}}/reference/configuration/#portal_api_listen) | HTTPS    | Dev Portal `/files` traffic over HTTPS, assuming the Dev Portal is **enabled**. | {{site.base_gateway}} Enterprise tier |
 
 {:.note}
-> **Note:** Kong Gateway free mode and Enterprise tier are not available for
+> **Note:** {{site.base_gateway}} free mode and Enterprise tier are not available for
 open-source Gateway packages.

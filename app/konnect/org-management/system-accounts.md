@@ -4,7 +4,7 @@ content_type: how-to
 no_version: true
 ---
 
-This guide explains what a system account is, how it varies from a user account, and how to manage a system account using the [{{site.konnect_short_name}} Identity API](https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/fc735302-d8ac-4e66-a9ef-225569a75d3c). 
+This guide explains what a system account is, how it varies from a user account, and how to manage a system account using the [{{site.konnect_short_name}} Identity API](/konnect/api/identity-management/v2/). 
 
 A system account is a service account in {{site.konnect_short_name}}. Because system accounts are not associated with an email address and a user, they can be used for automation and integrations. 
 
@@ -15,6 +15,12 @@ System accounts offer the following benefits over regular user accounts:
 * System accounts don't have sign-in credentials and therefore can't access the {{site.konnect_short_name}} UI. These accounts are intended to be used with APIs and CLIs.
 
 The system account can use a {{site.konnect_short_name}} personal access token (PAT) the same way a [regular {{site.konnect_short_name}} user](/konnect/org-management/users/) can. In addition, the system account can be assigned roles directly or inherit the roles of a [team](/konnect/org-management/teams-and-roles/). As such, a PAT created by a system account inherits the roles assigned to the system account.
+
+## Managed system accounts
+
+Managed system accounts are system accounts whose life cycle is managed by {{site.konnect_short_name}} instead of the user. The `konnect_managed: true` flag in the API denotes this type of system account.
+
+[Mesh Manager](/konnect/mesh-manager/) automatically creates a managed system account that is only used to issue a token during the zone creation process. This managed system account can't be edited or deleted manually. Instead, it is deleted automatically by {{site.konnect_short_name}} when the zone is deleted.
 
 ## Manage a system account via the UI
 You can create and manage system accounts in your {{site.konnect_short_name}} organization through the {% konnect_icon organizations %} **Organization** > **System Accounts** page.
@@ -57,7 +63,7 @@ Create a system account token by sending a `POST` request containing the `accoun
 
 ```sh
 curl --request POST \
-  --url https://global.api.konghq.com/v2/system-accounts/:497f6eca-6276-4993-bfeb-53cbbbba6f08/access-tokens
+  --url https://global.api.konghq.com/v3/system-accounts/:497f6eca-6276-4993-bfeb-53cbbbba6f08/access-tokens
 ```
 You will receive a `201` response code, and a response body containing the access token for the system account:
 
@@ -86,11 +92,11 @@ Assign a role to a system account by sending a `POST` request containing the `ac
 
 ```sh
 curl --request POST \
-  --url https://global.api.konghq.com/v2/system-accounts/:497f6eca-6276-4993-bfeb-53cbbbba6f08/assigned-roles
+  --url https://global.api.konghq.com/v3/system-accounts/:497f6eca-6276-4993-bfeb-53cbbbba6f08/assigned-roles
   --data '{
   "role_name": "Viewer",
   "entity_id": "817d0422-45c9-4d88-8d64-45aef05c1ae7",
-  "entity_type_name": "Runtime Groups",
+  "entity_type_name": "Control Plane Groups",
   "entity_region": "eu"
 }'
 ```
@@ -102,7 +108,7 @@ You will receive a `201` response code and a response body containing the role t
   "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
   "role_name": "Viewer",
   "entity_id": "817d0422-45c9-4d88-8d64-45aef05c1ae7",
-  "entity_type_name": "Runtime Groups",
+  "entity_type_name": "Control Plane Groups",
   "entity_region": "eu"
 }
 ```
@@ -115,7 +121,7 @@ Assign a team to a system account by sending a `POST` request containing the `te
 
 ```sh
 curl --request POST \
-  --url https://global.api.konghq.com/v2/teams/:497f6eca-6276-4993-bfeb-53cbbbba6f08/system-accounts
+  --url https://global.api.konghq.com/v3/teams/:497f6eca-6276-4993-bfeb-53cbbbba6f08/system-accounts
 ```
 
 You will receive a `201` response code and a response body stating that the system account was added to the team:

@@ -2,18 +2,57 @@
 # Newer, more relevant redirects should appear at the top of the file.
 # More general/sweeping redirects should be at the bottom.
 
+# Konnect plugins
 
-#3.4
+/konnect/gateway-manager/enable-route-plugin/    /konnect/gateway-manager/plugins/
+/konnect/gateway-manager/enable-service-plugin/  /konnect/gateway-manager/plugins/
+/konnect/runtime-manager/enable-route-plugin/    /konnect/gateway-manager/plugins/
+/konnect/runtime-manager/enable-service-plugin/  /konnect/gateway-manager/plugins/
+/konnect/manage-plugins/*                        /konnect/gateway-manager/plugins/
+/konnect/servicehub/plugins/*                    /konnect/gateway-manager/plugins/
 
-/gateway/latest/kong-enterprise/consumer-groups /gateway/latest/key-concepts/consumer-groups
-/gateway/latest/admin-api/consumer-groups/reference  https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60#/consumer_groups/get-consumer_groups
-/konnect/runtime-manager/configuration/consumer-groups /hub/kong-inc/rate-limiting-advanced/how-to/
-#3.3
-/gateway/latest/upgrade/#upgrade-considerations-and-breaking-changes    /gateway/latest/breaking-changes/
+# Konnect plus
+
+/konnect/account-management/change-plan/     /konnect/account-management/
+/konnect/account-management/billing/    /konnect/account-management/
+
+######################################################################
+
+# Evergreen redirects for nav files; do not delete unless you're removing the nav entry
+/konnect/support/data-plane-nodes/  /konnect/gateway-manager/data-plane-nodes/
 /gateway/latest/production/breaking-changes/     /gateway/latest/breaking-changes/
 /gateway/:version/production/breaking-changes/   /gateway/:version/breaking-changes/
 
-#3.2
+
+# Konnect rename
+
+/konnect/runtime-manager/runtime-instances/verify-instance/ /konnect/gateway-manager/data-plane-nodes/verify-node/
+/konnect/runtime-manager/runtime-instances/runtime-parameter-reference/ /konnect/gateway-manager/data-plane-nodes/parameter-reference/
+/konnect/runtime-manager/runtime-instances/* /konnect/gateway-manager/data-plane-nodes/:splat
+/konnect/runtime-manager/composite-runtime-groups/*     /konnect/gateway-manager/control-plane-groups/:splat
+/konnect/runtime-manager/runtime-groups/* /konnect/gateway-manager/control-plane-groups/:splat
+/konnect/runtime-manager/* /konnect/gateway-manager/:splat
+/konnect/getting-started/configure-runtime/ /konnect/getting-started/configure-data-plane-node/
+/konnect/api/runtime-groups-config/overview/ /konnect/api/
+
+
+# 3.5
+/gateway/latest/kong-enterprise/analytics/* /gateway/3.4.x/kong-enterprise/analytics/:splat
+/gateway/latest/kong-enterprise/dev-portal/* /gateway/3.4.x/kong-enterprise/dev-portal/:splat
+
+
+# 3.4
+
+/gateway/latest/production/security-update-process /gateway/latest/support/vulnerability-patching-process 
+/gateway/latest/kong-enterprise/consumer-groups /gateway/latest/key-concepts/consumer-groups
+/gateway/latest/admin-api/consumer-groups/reference  /gateway/api/admin-ee/3.3.0.x/#/consumer_groups/get-consumer_groups
+/konnect/runtime-manager/configuration/consumer-groups /hub/kong-inc/rate-limiting-advanced/how-to/
+
+# 3.3
+
+/gateway/latest/upgrade/#upgrade-considerations-and-breaking-changes    /gateway/latest/breaking-changes/
+
+# 3.2
 
 /gateway/latest/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
 /gateway/latest/admin-api/index/#vaults-entity  /gateway/latest/admin-api/#vaults-object
@@ -87,14 +126,6 @@
 /gateway-oss/latest/kong-for-kubernetes/using-kong-for-kubernetes  /kubernetes-ingress-controller/
 /kubernetes-ingress-controller/latest/introduction /kubernetes-ingress-controller/
 /kubernetes-ingress-controller/1.2.x/introduction  /kubernetes-ingress-controller/
-/enterprise/2.5.x/deployment/using-kong-for-kubernetes/    /kubernetes-ingress-controller/
-/enterprise/latest/deployment/using-kong-for-kubernetes/   /kubernetes-ingress-controller/
-/enterprise/2.1.x/kong-for-kubernetes/install-on-kubernetes/  /enterprise/2.1.x/deployment/installation/kong-for-kubernetes/
-/enterprise/2.1.x/kong-for-kubernetes/install  /gateway/latest/install-and-run/kubernetes
-/enterprise/2.1.x/kong-for-kubernetes/install-on-kubernetes    /gateway/latest/install-and-run/kubernetes
-/enterprise/2.1.x/kong-for-kubernetes/  /gateway/latest/install-and-run/kubernetes
-/enterprise/2.1.x/kong-for-kubernetes/deployment-options  /gateway/latest/install-and-run/kubernetes
-
 
 # KIC BETA
 /kubernetes-ingress-controller-beta/   /kubernetes-ingress-controller/
@@ -102,37 +133,10 @@
 
 # KIC GENERAL
 /kubernetes-ingress-controller/:version/guides/using-gateway-api/ /kubernetes-ingress-controller/:version/guides/getting-started/
-
-# ENTERPRISE GATEWAY
-/enterprise/latest/introduction       /enterprise/
-/enterprise/2.3.x/introduction        /enterprise/
-/enterprise/2.4.x/release-notes       /gateway/changelog
-
+/kubernetes-ingress-controller/:version/guides/configuring-custom-entities/ /kubernetes-ingress-controller/latest/guides/overview/
+/kubernetes-ingress-controller/latest/guides/configuring-custom-entities/   /kubernetes-ingress-controller/latest/guides/overview/
 
 # GETTING STARTED GUIDES
-/enterprise/latest/getting-started/              /gateway/latest/get-started/comprehensive
-/enterprise/1.5.x/getting-started/               /getting-started-guide/ce-2.0.x_ke-1.5.x/overview/
-/gateway-oss/2.3.x/getting-started/introduction  /gateway-oss/2.3.x/
-/gateway-oss/2.4.x/getting-started/introduction  /gateway-oss/2.4.x/
-/gateway-oss/latest/getting-started/introduction /gateway/latest/get-started/comprehensive
-/getting-started-guide/                          /gateway/latest/get-started/comprehensive
-/*/getting-started/enabling-plugins              /gateway/latest/get-started/quickstart/enabling-plugins
-/enterprise/0.34-x/getting-started/enabling-plugins/enterprise/0.34-x/plugins  /gateway/latest/get-started/quickstart/enabling-plugins
-/enterprise/1.5.x/getting-started/add-consumer   /gateway/latest/get-started/quickstart/adding-consumers
-/enterprise/latest/getting-started/add-consumer  /gateway/latest/get-started/quickstart/adding-consumers
-/enterprise/1.5.x/getting-started/add-service    /gateway/latest/get-started/quickstart/configuring-a-service
-/enterprise/latest/getting-started/add-service   /gateway/latest/get-started/quickstart/configuring-a-service
-/enterprise/1.5.x/getting-started/add-admin      /gateway/latest/get-started/comprehensive/manage-teams
-/enterprise/latest/getting-started/add-admin     /gateway/latest/get-started/comprehensive/manage-teams
-/enterprise/1.5.x/getting-started/add-role       /gateway/latest/get-started/comprehensive/manage-teams
-/enterprise/latest/getting-started/add-role      /gateway/latest/get-started/comprehensive/manage-teams
-/enterprise/1.5.x/getting-started/add-workspace   /gateway/latest/configuration/auth/rbac
-/enterprise/latest/getting-started/add-workspace  /gateway/latest/configuration/auth/rbac
-/enterprise/1.5.x/getting-started/enable-plugin   /gateway/latest/get-started/quickstart/enabling-plugins
-/enterprise/1.5.x/getting-started/start-kong      /gateway/latest/plan-and-deploy/security/start-kong-securely
-/enterprise/*/getting-started/adding-your-api/    /gateway/latest/get-started/quickstart/configuring-a-service
-/enterprise/1.5.x/getting-started/   /gateway/latest/get-started/comprehensive/
-/enterprise/latest/getting-started/  /gateway/latest/get-started/comprehensive/
 /getting-started-guide/2.6.x/       /gateway/2.6.x/get-started/comprehensive/
 /getting-started-guide/2.7.x/       /gateway/2.7.x/get-started/comprehensive/
 /getting-started-guide/latest/      /gateway/latest/get-started/comprehensive/
@@ -172,9 +176,6 @@
 /plugins/                                   /hub/
 /plugins/*                                  /hub/kong-inc/:splat
 /hub/heroku/kong-app/                       /hub/
-/enterprise/0.34-x/getting-started/enabling-plugins/enterprise/0.34-x/plugins/key-authentication  /hub/kong-inc/key-auth
-/enterprise/*/plugins/rbac-api/             /gateway/latest/configuration/auth/rbac
-/enterprise/0.35-x/rate-limiting/           /hub/kong-inc/rate-limiting
 /enterprise/2.6.x/plugins                   /hub/
 /enterprise/2.7.x/plugins                   /hub/
 /enterprise/latest/plugins                  /hub/
@@ -272,8 +273,7 @@
 /hub/kong-inc/response-transformer-advanced/0.*    /hub/kong-inc/response-transformer-advanced/
 /hub/kong-inc/response-transformer-advanced/1.*    /hub/kong-inc/response-transformer-advanced/
 /hub/kong-inc/route-by-header/0.*                  /hub/kong-inc/route-by-header/
-/hub/kong-inc/serverless-functions/0.*             /hub/kong-inc/serverless-functions
-/hub/kong-inc/serverless-functions/1.*             /hub/kong-inc/serverless-functions
+/hub/kong-inc/serverless-functions/*               /hub/kong-inc/pre-function/:splat
 /hub/kong-inc/session/0.*                          /hub/kong-inc/session/
 /hub/kong-inc/session/1.*                          /hub/kong-inc/session/
 /hub/kong-inc/session/2.2-x.html                   /hub/kong-inc/session/
@@ -328,8 +328,6 @@
 /konnect/getting-started/spec/service/              /konnect/getting-started/configure-service/
 /konnect/servicehub/dev-portal/service-documentation/   /konnect/servicehub/service-documentation/
 /konnect/servicehub/dev-portal/publish/              /konnect/servicehub/service-documentation/
-/konnect/servicehub/plugins/enable-service-plugin/   /konnect/servicehub/enable-service-plugin/
-/konnect/servicehub/plugins/enable-route-plugin/     /konnect/servicehub/enable-route-plugin/
 /konnect/runtime-manager/gateway-runtime-conf        /konnect/runtime-manager/runtime-instances/
 /konnect/runtime-manager/gateway-runtime-docker      /konnect/runtime-manager/runtime-instances/
 /konnect/runtime-manager/gateway-runtime-kubernetes  /konnect/runtime-manager/runtime-instances/
@@ -348,9 +346,6 @@
 /konnect/dev-portal/applications/disable-app-reg/          /konnect/dev-portal/applications/enable-app-reg/
 /konnect/dev-portal/applications/manage-app-reg-requests/  /konnect/dev-portal/access-and-approval/manage-app-reg-requests/
 /konnect/dev-portal/applications/manage-app-connections/   /konnect/dev-portal/access-and-approval/manage-app-connections/
-/konnect/manage-plugins/                             /konnect/servicehub/plugins/
-/konnect/manage-plugins/enable-service-plugin/       /konnect/servicehub/enable-service-plugin/
-/konnect/manage-plugins/enable-route-plugin/         /konnect/servicehub/enable-route-plugin/
 /konnect/manage-plugins/shared-config                /konnect/runtime-manager/configuration/
 /konnect/shared-config                               /konnect/runtime-manager/configuration/
 /konnect/vitals/analyze/                             /konnect/analytics/
@@ -361,30 +356,22 @@
 /konnect/legacy/*                                    /konnect/
 /konnect/install-support/                            /konnect/runtime-manager/runtime-instances/
 /konnect/servicehub/plugins/                          /konnect/runtime-manager/plugins/
-/konnect/servicehub/enable-service-plugin/            /konnect/runtime-manager/enable-service-plugin/
-/konnect/servicehub/enable-route-plugin/              /konnect/runtime-manager/enable-route-plugin/
+
 /konnect/getting-started/configure-service/           /konnect/getting-started/productize-service/
 /konnect/getting-started/implement-service/           /konnect/getting-started/deploy-service
 /konnect/servicehub/service-documentation/            /konnect/api-products/service-documentation
 /konnect/servicehub/service-implementations/          /konnect/api-products/
 /konnect/servicehub/service-versions/                 /konnect/api-products/
+/konnect/api/portal-auth/portal-rbac-guide/ /konnect/dev-portal/access-and-approval/manage-teams/
 #API Redirects
 
-/konnect/identity-management-api/   https://developer.konghq.com/spec/5175b87f-bfae-40f6-898d-82d224387f9b/d0e13745-db5c-42d5-80ae-ef803104f5ce/
-/gateway/*/kong-enterprise/dev-portal/portal-api/ https://developer.konghq.com/spec/3e65edbc-364d-4762-9d3e-f13083e1b534/33cd4595-e389-4c2b-80ee-5275f25e80e1
+/konnect/identity-management-api/   /konnect/api/identity-management/v2/
+/gateway/*/kong-enterprise/dev-portal/portal-api/ /dev-portal/api/v1/
 
 # STUDIO
-/enterprise/2.3.x/studio/*                  https://support.insomnia.rest/
 /studio/*                                   https://support.insomnia.rest/
 
 # DEV PORTAL
-/enterprise/2.1.x/developer-portal/introduction            /enterprise/2.1.x/developer-portal
-/enterprise/2.2.x/developer-portal/introduction            /enterprise/2.2.x/developer-portal
-/enterprise/2.3.x/developer-portal/introduction            /enterprise/2.3.x/developer-portal
-/enterprise/2.6.x/developer-portal/introduction            /gateway/2.6.x/developer-portal
-/enterprise/2.7.x/developer-portal/introduction            /gateway/2.7.x/developer-portal
-/enterprise/latest/developer-portal/introduction           /gateway/latest/developer-portal
-/enterprise/latest/developer-portal/overview               /gateway/latest/developer-portal
 
 /konnect/dev-portal/application-overview                   /konnect/dev-portal/applications/application-overview
 /konnect/dev-portal/developers/dev-apps                    /konnect/dev-portal/applications/dev-apps
@@ -402,7 +389,6 @@
 /enterprise/2.7.x/developer-portal/configuration/networking     /gateway/latest/reference/configuration/#developer-portal-section
 /enterprise/latest/developer-portal/configuration/networking    /gateway/latest/reference/configuration/#developer-portal-section
 /enterprise/*/developer-portal/FAQ            /gateway/latest/developer-portal
-/enterprise/0.34-x/deployment-guide/enterprise/0.34-x/developer-portal/configuration/networking/   /gateway/latest/reference/configuration/#developer-portal-section
 /enterprise/*/developer-portal/configuration/property-reference/#dev-portal     /gateway/latest/reference/configuration/#developer-portal-section
 /enterprise/*/developer-portal/configuration/property-reference     /gateway/latest/reference/configuration/#developer-portal-section
 /enterprise/*/developer-portal/configuration/property-reference/*   /gateway/latest/reference/configuration/:splat
@@ -410,7 +396,6 @@
 /enterprise/*/developer-portal/smtp                    /gateway/latest/developer-portal/configuration/smtp
 /enterprise/*/developer-portal/file-management         /gateway/latest/developer-portal/files-api
 /developer-portal/configuration/enable-the-dev-portal  /gateway/latest/developer-portal/enable-dev-portal
-/enterprise/1.5.x/getting-started/enable-dev-portal    /gateway/latest/developer-portal/enable-dev-portal
 /enterprise/latest/getting-started/enable-dev-portal   /gateway/latest/developer-portal/enable-dev-portal
 
 /enterprise/2.6.x/developer-portal/                        /gateway/2.6.x/developer-portal
@@ -445,18 +430,11 @@
 /gateway-oss/latest/admin-api/*        /gateway/latest/admin-api/:splat
 
 /enterprise/*/kong-implementation-checklist/    /gateway/latest/plan-and-deploy
-/enterprise/0.34-x/deployment-guide/enterprise/0.34-x/kong-manager/configuration/networking/           /gateway/latest/reference/configuration/#kong-manager-section
 /enterprise/*/organization-management/managing-admins  /gateway/latest/configuration/auth/rbac/add-admin
 /enterprise/*/plugins/rbac-api/        /gateway/latest/configure/auth/rbac
 /enterprise/*/organization-management/rbac-and-perms/  /gateway/latest/configuration/auth/rbac
-/enterprise/0.35-x/admin-api/rbac/rbac  /gateway/latest/admin-api/rbac/reference
 /admin-api/workspaces   /gateway/latest/admin-api/workspaces/reference
-/enterprise/latest/go   /gateway/latest/reference/external-plugins
-/enterprise/2.3.x/go    /gateway/latest/reference/external-plugins
-/gateway-oss/latest/go  /gateway/latest/reference/external-plugins
-/gateway-oss/2.3.x/go   /gateway/latest/reference/external-plugins
 
-/0.11.x/lua-reference/modules/kong.tools.utils.html https://github.com/Kong/docs.konghq.com/tree/main/archive/gateway-oss/0.11.x/lua-reference/modules/kong.tools.utils.html
 /enterprise/latest/setting-up-admin-api-rbac  /gateway/latest/admin-api/rbac/reference/
 /enterprise/2.6.x/property-reference/   /gateway/2.6.x/reference/configuration
 /enterprise/2.7.x/property-reference/   /gateway/2.7.x/reference/configuration
@@ -632,18 +610,6 @@
 
 
 # VITALS
-/enterprise/2.1.x/admin-api/vitals/vitals-influx-strategy     /gateway/latest/vitals/vitals-influx-strategy
-/enterprise/2.1.x/admin-api/vitals/vitals-prometheus-strategy /gateway/latest/vitals/vitals-prometheus-strategy
-/enterprise/2.1.x/admin-api/vitals     /enterprise/2.1.x/vitals/overview
-/enterprise/2.1.x/admin-api/vitals/*   /enterprise/2.1.x/vitals/overview
-/enterprise/2.2.x/admin-api/vitals     /enterprise/2.2.x/vitals/overview
-/enterprise/2.2.x/admin-api/vitals/*   /enterprise/2.2.x/vitals/overview
-/enterprise/2.3.x/admin-api/vitals     /enterprise/2.3.x/vitals/overview
-/enterprise/2.3.x/admin-api/vitals/*   /enterprise/2.3.x/vitals/overview
-/enterprise/2.4.x/admin-api/vitals     /enterprise/2.4.x/vitals/overview
-/enterprise/2.4.x/admin-api/vitals/*   /enterprise/2.4.x/vitals/overview
-/enterprise/2.5.x/admin-api/vitals     /enterprise/2.5.x/vitals/overview
-/enterprise/2.5.x/admin-api/vitals/*   /enterprise/2.5.x/vitals/overview
 /enterprise/2.6.x/admin-api/vitals     /enterprise/2.6.x/vitals/overview
 /enterprise/2.6.x/admin-api/vitals/*   /enterprise/2.6.x/vitals/overview
 /gateway/2.6.x/admin-api/vitals     /gateway/2.6.x/vitals/
@@ -844,10 +810,10 @@
 /enterprise/2.6.x/deployment/upgrades/migrate-ce-to-ke/     /gateway/2.6.x/install-and-run/migrate-ce-to-ke
 /enterprise/2.7.x/deployment/upgrades/migrate-ce-to-ke/     /gateway/2.7.x/install-and-run/migrate-ce-to-ke
 /enterprise/latest/deployment/upgrades/migrate-ce-to-ke/    /gateway/latest/install-and-run/migrate-ce-to-ke
-/gateway/2.6.x/developer-portal/configuration/legacy-portal/    /enterprise/2.1.x/developer-portal/legacy-migration/
-/gateway/2.6.x/install-and-run/upgrade-enterprise/#dev-portal-migrations    /enterprise/2.1.x/developer-portal/legacy-migration/
-/gateway/2.7.x/developer-portal/configuration/legacy-portal/    /enterprise/2.1.x/developer-portal/legacy-migration/
-/gateway/2.7.x/install-and-run/upgrade-enterprise/#dev-portal-migrations    /enterprise/2.1.x/developer-portal/legacy-migration/
+/gateway/2.6.x/developer-portal/configuration/legacy-portal/    https://legacy-gateway--kongdocs.netlify.app/enterprise/2.1.x/developer-portal/legacy-migration/
+/gateway/2.6.x/install-and-run/upgrade-enterprise/#dev-portal-migrations    https://legacy-gateway--kongdocs.netlify.app/enterprise/2.1.x/developer-portal/legacy-migration/
+/gateway/2.7.x/developer-portal/configuration/legacy-portal/    https://legacy-gateway--kongdocs.netlify.app/enterprise/2.1.x/developer-portal/legacy-migration/
+/gateway/2.7.x/install-and-run/upgrade-enterprise/#dev-portal-migrations    https://legacy-gateway--kongdocs.netlify.app/enterprise/2.1.x/developer-portal/legacy-migration/
 
 # GENERAL REDIRECTS TO /GATEWAY/
 /enterprise/changelog      /gateway/changelog
@@ -877,6 +843,16 @@
 /gateway-oss/              /gateway/
 /gateway/*/production/kong-openresty       /gateway/
 
+
+# GETTING STARTED GUIDE ARCHIVES
+
+/getting-started-guide/2.1.x/:splat https://legacy-gateway--kongdocs.netlify.app/getting-started-guide/2.1.x/:splat
+/getting-started-guide/2.2.x/:splat https://legacy-gateway--kongdocs.netlify.app/getting-started-guide/2.2.x/:splat
+/getting-started-guide/2.3.x/:splat https://legacy-gateway--kongdocs.netlify.app/getting-started-guide/2.3.x/:splat
+/getting-started-guide/2.4.x/:splat https://legacy-gateway--kongdocs.netlify.app/getting-started-guide/2.4.x/:splat
+/getting-started-guide/2.5.x/:splat https://legacy-gateway--kongdocs.netlify.app/getting-started-guide/2.5.x/:splat
+
+
 # ENTERPRISE DOC ARCHIVES
 
 /enterprise/0.31-x/*    https://legacy-gateway--kongdocs.netlify.app/enterprise/0.31-x/:splat
@@ -887,16 +863,18 @@
 /enterprise/0.36-x/*    https://legacy-gateway--kongdocs.netlify.app/enterprise/0.36-x/:splat
 /enterprise/1.3-x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/1.3-x/:splat
 /enterprise/1.5.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/1.5.x/:splat
-
-# COMMUNITY DOC REBRANDING
-/community   https://konghq.com/community-resources/
-/2.5.x/*                                    /gateway-oss/2.5.x/:splat
-/2.4.x/*                                    /gateway-oss/2.4.x/:splat
-/2.3.x/*                                    /gateway-oss/2.3.x/:splat
-/2.2.x/*                                    /gateway-oss/2.2.x/:splat
-/2.1.x/*                                    /gateway-oss/2.1.x/:splat
+/enterprise/2.1.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.1.x/:splat
+/enterprise/2.2.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.2.x/:splat
+/enterprise/2.3.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.3.x/:splat
+/enterprise/2.4.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.4.x/:splat
+/enterprise/2.5.x/*     https://legacy-gateway--kongdocs.netlify.app/enterprise/2.5.x/:splat
 
 # COMMUNITY DOC ARCHIVES
+/gateway-oss/2.5.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/2.5.x/:splat
+/gateway-oss/2.4.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/2.4.x/:splat
+/gateway-oss/2.3.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/2.3.x/:splat
+/gateway-oss/2.2.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/2.2.x/:splat
+/gateway-oss/2.1.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/2.1.x/:splat
 /gateway-oss/2.0.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/2.0.x/:splat
 /gateway-oss/1.5.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/1.5.x/:splat
 /gateway-oss/1.4.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/1.4.x/:splat
@@ -917,6 +895,11 @@
 /gateway-oss/0.4.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.4.x/:splat
 /gateway-oss/0.3.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.3.x/:splat
 /gateway-oss/0.2.x/*                        https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.2.x/:splat
+/2.5.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/2.5.x/:splat
+/2.4.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/2.4.x/:splat
+/2.3.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/2.3.x/:splat
+/2.2.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/2.2.x/:splat
+/2.1.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/2.1.x/:splat
 /0.12.x/*                                   https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.12.x/:splat
 /0.11.x/*                                   https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.11.x/:splat
 /0.10.x/*                                   https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.10.x/:splat
@@ -928,3 +911,6 @@
 /0.4.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.4.x/:splat
 /0.3.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.3.x/:splat
 /0.2.x/*                                    https://legacy-gateway--kongdocs.netlify.app/gateway-oss/0.2.x/:splat
+
+# COMMUNITY DOC REBRANDING
+/community   https://konghq.com/community-resources/

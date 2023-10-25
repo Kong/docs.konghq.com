@@ -1,7 +1,7 @@
 name: Kong JWT Signer
 dbless_compatible: 'yes'
 free: false
-plus: true
+
 enterprise: true
 konnect: false
 network_config_opts: All

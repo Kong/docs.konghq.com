@@ -713,7 +713,7 @@ spec:
 
 `appendPolicies` is a list you can append, therefore in the case of the data plane proxy `test-server_kuma-demo_svc_80` service, both policies will be applied.
 
-Kong Mesh will autogenerate an additional OPA decision policy:
+{{site.mesh_product_name}} will autogenerate an additional OPA decision policy:
 ```rego
 package implicitkmesh
 import data.operator

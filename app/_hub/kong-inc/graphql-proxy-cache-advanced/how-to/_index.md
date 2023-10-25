@@ -1,8 +1,9 @@
 ---
 nav_title: Getting Started with GraphQL and Kong Gateway
+title: Getting Started with GraphQL and Kong Gateway
 ---
 
-## About GraphQL with Kong Gateway
+## About GraphQL with {{site.base_gateway}}
 
 GraphQL decouples apps from services by introducing a flexible query language. Instead of a custom API for each screen, app developers describe the data they need, service developers describe what they can supply, and GraphQL automatically matches the two together. Teams ship faster across more platforms, with new levels of visibility and control over the use of their data. To learn more about how teams benefit, read why [GraphQL is important](https://www.apollographql.com/why-graphql/).
 

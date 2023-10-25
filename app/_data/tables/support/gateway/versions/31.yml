@@ -8,9 +8,12 @@ distributions:
   - <<: *rhel7
     docker: true
   - <<: *rhel8
+    docker: true
     fips: true
-  - *amazonlinux2
-  - *amazonlinux2023
+  - <<: *amazonlinux2
+    docker: true
+  - <<: *amazonlinux2023
+    docker: true
   - <<: *debian10
     docker: true
   - *debian11
@@ -20,6 +23,7 @@ distributions:
     fips: true
   - <<: *ubuntu2204
     fips: true
+    docker: true
 
 third-party:
   datastore:

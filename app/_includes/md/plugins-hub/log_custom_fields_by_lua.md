@@ -1,15 +1,19 @@
 The `custom_fields_by_lua` configuration allows for the dynamic modification of
-log fields using Lua code. Below is an example configuration that removes the
-existing `route` field in the logs:
+log fields using Lua code. Below is a snippet of an example configuration that 
+removes the `route` field from the logs:
 
-```
-curl -i -X POST --url http://kong:8001/plugins ... --data config.custom_fields_by_lua.route="return nil"
+```sh
+curl -i -X POST http://localhost:8001/plugins \
+... 
+  --data config.custom_fields_by_lua.route="return nil"
 ```
 
 Similarly, new fields can be added:
 
-```
-curl -i -X POST --url http://kong:8001/plugins ... --data config.custom_fields_by_lua.header="return kong.request.get_header('h1')"
+```sh
+curl -i -X POST http://localhost:8001/plugins \
+... 
+  --data config.custom_fields_by_lua.header="return kong.request.get_header('h1')"
 ```
 
 ### Limitations

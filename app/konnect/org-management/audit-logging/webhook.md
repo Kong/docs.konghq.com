@@ -6,7 +6,7 @@ badge: enterprise
 
 You can use the {{site.konnect_short_name}} UI or the Audit Logs API to configure webhooks for [audit logging](/konnect/org-management/audit-logging/). 
 
-Webhooks are invoked via an HTTP request using the following retry rules:
+Webhooks are invoked via an HTTPS request using the following retry rules:
 
 - Minimum retry wait time: 1 second
 - Maximum retry wait time: 30 seconds
@@ -14,6 +14,10 @@ Webhooks are invoked via an HTTP request using the following retry rules:
 
 A retry is performed on connection error, server error (`500` HTTP status code), or too many requests (`429` HTTP status code).
 
+{:.note}
+> **Notes:**
+  Only supports HTTPS Webhook endpoints.
+  
 ## Prerequisites
 
 You must have **Org Admin** permissions to set up audit log webhooks.
@@ -105,7 +109,7 @@ You can view the status of your webhook through the **Audit Logs Setup** page un
 
 Notice the status badge next to title of the webhook. For example, the following webhook is active:
 
-![Audit log webhook](/assets/images/docs/konnect/konnect-audit-log-webhook.png)
+![Audit log webhook](/assets/images/products/konnect/audit-logs/konnect-audit-log-webhook.png)
 
 To find the last attempt timestamp and the last response code, use the audit log API.
 
@@ -176,4 +180,4 @@ false           | `unconfigured` | The webhook for this region has not been conf
 * [Audit log event reference](/konnect/org-management/audit-logging/reference/)
 * [Set up an audit log replay job](/konnect/org-management/audit-logging/replay-job/)
 * [Verify audit log signatures](/konnect/org-management/audit-logging/verify-signatures/)
-* [Audit Logs API](https://developer.konghq.com/spec/e46e7742-befb-49b1-9bf1-7cbe477ab818/d36126ee-ab8d-47b2-960f-5703da22cced/)
+* [Audit Logs API](/konnect/api/audit-logs/v2/)

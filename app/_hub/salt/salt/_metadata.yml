@@ -1,20 +1,28 @@
 dbless_compatible: yes
 name: Salt Security
 publisher: Salt Security
+support_url: https://salt.security/contact-us
 
 categories:
-  - security
+  - none
 
 type: integration
 
 desc: Integrate Kong API Gateway with Salt Security Discovery & Prevention for API-based apps
 
-enterprise: true
-techpartner: true
+free: true
+enterprise: false
+konnect: true
 
 kong_version_compatibility:
   community_edition:
     compatible:
+      - 3.4.x
+      - 3.3.x
+      - 3.2.x
+      - 3.1.x
+      - 3.0.x
+      - 2.8.x
       - 1.2.x
       - 1.1.x
       - 1.0.x
@@ -23,6 +31,15 @@ kong_version_compatibility:
       - 0.12.x
   enterprise_edition:
     compatible:
+      - 3.4.x
+      - 3.3.x
+      - 3.2.x
+      - 3.1.x
+      - 3.0.x
+      - 2.8.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
       - 0.35-x
       - 0.34-x
 

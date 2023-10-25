@@ -5,15 +5,15 @@
   {% assign header_title = include.name %}
 {% endif %}
 
-<header class="hub-page-header">
-  <div class="hub-page-header--nav">
+<header class="page-header">
+  <div class="page-header--nav">
     <i class="sidebar-toggle"></i>
 
     {% if include.breadcrumbs %}
-      <ul class="breadcrumbs install">
+      <ul class="breadcrumbs">
         <li class="breadcrumb-item">
           <a href="/hub/">
-            <img src="/assets/images/icons/documentation/hub/icn-breadcrumbs.svg" alt="Plugin Hub icon">
+            <img src="/assets/images/icons/hub-layout/icn-breadcrumbs.svg" alt="Plugin Hub icon">
           </a>
         </li>
         {% for breadcrumb in include.breadcrumbs %}
@@ -28,29 +28,18 @@
       </ul>
     {% endif %}
 
-    <div class="github-links">
-      <div class="github-links--edit">
-        {% if page.edit_link %}
-          <a href="{{ page.edit_link }}">
-            <img src="/assets/images/logos/logo-github-white.svg" alt="github-edit-page"/>Edit this page
-          </a>
-        {% endif %}
-      </div>
-      <div class="github-links--issues">
-        <a href="https://github.com/Kong/docs.konghq.com/issues">
-          <img src="/assets/images/icons/documentation/icn-monitoring-white.svg" alt="report-issue"/>Report an issue</a>
-      </div>
-    </div>
+    {% include header/nav-links.html edit_link=page.edit_link %}
+
   </div>
-  <div class="hub-page-header--info">
-    <div class="hub-page-header--info-icon">
+  <div class="page-header--info">
+    <div class="page-header--info-icon">
       {% if header_icon %}
       <img src="{{ header_icon }}" alt="header icon"/>
       {% endif %}
     </div>
-    <div class="hub-page-header--info-meta">
+    <div class="page-header--info-meta">
       <div class="meta--title">
-        <h1 id="main" tabindex="-1">{{ header_title }}</h1>
+        <h1 id="main" tabindex="-1">{{ header_title | flatify }}</h1>
 
         {% if include.extn_versions %}
           <div>
@@ -78,7 +67,7 @@
         {% endif %}
       </div>
       <div class="meta--content">
-        <div class="meta--content-publisher"><span>By {{ page.publisher }}</span></div>
+        <div class="meta--content-title"><span>By {{ page.publisher }}</span></div>
         <div class="meta--content-badges">
           {% include plugins/badges.html
                      badges=page.badges

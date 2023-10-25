@@ -22,7 +22,7 @@ You can check the status of your request in the [application details](/konnect/d
 
 ## Unregister an application
 
-You can unregister an application that has a pending, approved, or rejected registration status.
+You can unregister an application that has a `pending`, `approved`, or `rejected` registration status.
 Unregistering a pending request removes the request from the
 approval queue. If a {{site.konnect_short_name}} admin deletes the pending request, the pending request is removed from
 the **Products** pane. 

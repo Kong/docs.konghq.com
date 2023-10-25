@@ -3,9 +3,11 @@ publisher: Kong Inc.
 desc: Integrate Kong with the AppDynamics APM Platform
 free: false
 enterprise: true
+paid: true
+network_config_opts: Self-managed traditional, DB-less, and hybrid
 type: plugin
 categories:
   - analytics-monitoring
 bundled: false
 dbless_compatible: 'yes'
-konnect_examples: false
+konnect: true

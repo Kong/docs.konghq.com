@@ -1,0 +1,13 @@
+- output: ../../app/assets/images/products/gateway/km_workspace_3.5.png
+  url: http://localhost:8002/default/dashboard
+  wait: 4000
+  width: 1280
+  height: 1024
+  javascript: |
+    async () => {
+      clickElement("#app > aside > div.sidebar-content-container > nav > ul > li:nth-child(2) > div > a");
+      removeElementBySelector("#app > header > div > div.navbar-content > div.navbar-content-left > div > a.header-link.header-link-portals");
+      removeElementBySelector("#app > header > div > div.navbar-content > div.navbar-content-left > div > a.header-link.header-link-vitals");
+      removeElementBySelector("#app > aside > div.sidebar-content-container > nav > ul > li:nth-child(3) > div > a > div");
+      removeElementBySelector("#kong-ui-app-layout-notification > div");
+      }

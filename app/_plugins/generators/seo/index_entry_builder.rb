@@ -3,7 +3,7 @@
 module SEO
   class IndexEntryBuilder
     VERSIONED_PRODUCTS = %w[
-      gateway gateway-oss enterprise mesh kubernetes-ingress-controller deck
+      gateway mesh kubernetes-ingress-controller deck
     ].freeze
 
     GLOBAL_PAGES = %w[changelog].freeze
@@ -18,6 +18,7 @@ module SEO
 
     def build
       return IndexEntry::HubPage.for(@page) if hub_page?
+      return IndexEntry::OasPage.new(@page) if oas_page?
       return IndexEntry::UnversionedProductPage.new(@page) unless versioned_product?
 
       # We only want to process the following cases:
@@ -34,6 +35,10 @@ module SEO
 
     private
 
+    def oas_page?
+      @page.relative_path.start_with?('_api/')
+    end
+
     def hub_page?
       @page.path.start_with?('_hub') || @page.url.start_with?('/hub/')
     end
@@ -47,7 +52,7 @@ module SEO
     end
 
     def versioned_page?
-      /^\d+\.\d+\.x$/.match(url_segments[1]) || url_segments[1] == 'latest'
+      /^\d+\.\d+\.x$/.match(url_segments[1]) || url_segments[1] == 'latest' || url_segments[1] == 'dev'
     end
 
     def url_segments

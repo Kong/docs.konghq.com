@@ -7,19 +7,37 @@ breadcrumbs:
 
 ---
 
+{% unless page.konnect == true %}
+<blockquote class="compatibility">
+  <strong>This plugin is not compatible with Konnect</strong>
+</blockquote>
+{% endunless %}
+
 {% unless page.free %}
-  {% if page.plus and page.extn_publisher == "kong-inc" %}
+  {% if page.paid and page.extn_publisher == "kong-inc" %}
     <blockquote class="note" role="alert">
-      Did you know that you can try this plugin without talking to anyone with a free
-      trial of Kong Konnect? <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content={{ extn_slug }}">Get started in under 5 minutes</a>.
+      <p>
+        Did you know that you can try this plugin without talking to anyone with a free
+        trial of Kong Konnect? <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content={{ extn_slug }}">Get started in under 5 minutes</a>.
+      </p>
     </blockquote>
   {% endif %}
 {% endunless %}
 
+
 {% unless page.extn_publisher == "kong-inc" %}
-  <div class="alert alert-info blue" role="alert">
-    Partner Plugin: This plugin is <b>developed, tested, and maintained</b> by {{ page.publisher }}.
-  </div>
+    {% if page.techpartner %}
+      <blockquote class="partner-plugin no-icon">
+        <b>Partner Plugin:</b> This plugin is <b>developed, tested, and maintained</b> by {{ page.publisher }}
+    {% else %}
+      <blockquote class="community-plugin no-icon">
+        <b>Unsupported Plugin:</b> This plugin is <b>developed, tested, and maintained</b> by {{ page.publisher }}
+    {% endif %}
+        <ul>
+          {% if page.source_code %}<li><a href="{{page.source_code}}">Source code</a></li>{% endif %}
+          {% if page.support_url %}<li><a href="{{page.support_url}}">Support</a></li>{% endif %}
+        </ul>
+      </blockquote>
 {% endunless %}
 
 {% if page.bundled == false or page.bundled == false %}
@@ -51,7 +69,7 @@ breadcrumbs:
 {% if page.extn_publisher == "kong-inc" %}
 <blockquote>
   <p>
-    <em>Looking for the plugin's configuration parameters? You can find them in the <a href="{{ page.url }}configuration/">{{page.name}} configuration reference</a> doc.</em>
+    <em>Looking for the plugin's configuration parameters? You can find them in the <a href="{{ page.configuration_url }}">{{page.name}} configuration reference</a> doc.</em>
   </p>
 </blockquote>
 {% endif %}

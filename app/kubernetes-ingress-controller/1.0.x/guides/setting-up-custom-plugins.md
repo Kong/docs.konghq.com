@@ -90,7 +90,7 @@ Notable changes:
 - The plugin code is mounted into the pod via `volumeMounts` and `volumes`
   configuration property.
 - `KONG_PLUGINS` environment variable is set to include the custom plugin
-  alongwith all the plugins that come in Kong by default.
+  along with all the plugins that come in Kong by default.
 - `KONG_LUA_PACKAGE_PATH` environment variable directs Kong to look
   for plugins in the directory where we are mounting them.
 
@@ -152,11 +152,10 @@ you might need for your installation to work.
 
 ### Deploy
 
-<div class="alert alert-warning">
-  Kustomize manifests are provided for illustration purposes only and are not officially supported by Kong.
-  There is no guarantee of backwards compatibility or upgrade capabilities for our Kustomize manifests.
-  For a production setup with Kong support, use the <a href="https://github.com/kong/charts">Helm Chart</a>.
-</div>
+{:.important}
+> Kustomize manifests are provided for illustration purposes only and are not officially supported by Kong.
+There is no guarantee of backwards compatibility or upgrade capabilities for our Kustomize manifests.
+For a production setup with Kong support, use the [Helm chart](https://github.com/kong/charts).
 
 Once, you have all the pieces in place, you are ready
 to deploy the {{site.kic_product_name}}:

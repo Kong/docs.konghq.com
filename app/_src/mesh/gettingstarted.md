@@ -55,7 +55,9 @@ Learn about enterprise features:
   * [Certificate Authority rotation](/mesh/{{page.kong_version}}/features/ca-rotation/)
   * [Role-Based Access Control](/mesh/{{page.kong_version}}/features/rbac/)
   * [Red Hat Universal Base Images](/mesh/{{page.kong_version}}/features/ubi-images/)
+  {% if_version lte:2.3.x %}
   * [Windows Support](/mesh/{{page.kong_version}}/features/windows/)
+  {% endif_version %}
 
 If you are a {{site.mesh_product_name}} customer, you can also open a support
 ticket with any questions or feedback you may have.

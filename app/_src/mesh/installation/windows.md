@@ -1,7 +1,6 @@
 ---
 title: Kong Mesh with Windows
 ---
-
 To install and run {{site.mesh_product_name}} on Windows:
 
 1. [Download {{site.mesh_product_name}}](#1-download-kong-mesh)
@@ -16,9 +15,9 @@ Tested on Windows 10 and Windows Server 2019.
 {:.note}
 > **Note**: Transparent proxying is not supported on Windows.
 
-## 1. Download Kong Mesh
+## 1. Download {{site.mesh_product_name}}
 
-To run Kong Mesh on Windows you can choose among different installation methods:
+To run {{site.mesh_product_name}} on Windows you can choose among different installation methods:
 
 {% navtabs %}
 {% navtab PowerShell Script %}
@@ -43,7 +42,7 @@ tar xvzf kong-mesh-{{page.version}}-windows-amd64.tar.gz
 {% endnavtab %}
 {% endnavtabs %}
 
-## 2. Run Kong Mesh
+## 2. Run {{site.mesh_product_name}}
 
 Once downloaded, you will find the contents of {{site.mesh_product_name}} in the `kong-mesh-{{page.version}}` folder. In this folder, you will find &mdash; among other files &mdash; the bin directory that stores all the executables for {{site.mesh_product_name}}.
 
@@ -87,4 +86,3 @@ but you can use a persistent storage like PostgreSQL by updating the `conf/kuma-
 [deployments]: https://kuma.io/docs/1.8.x/introduction/deployments/
 [backends]: https://kuma.io/docs/1.8.x/documentation/configuration/
 {% endif_version %}
-

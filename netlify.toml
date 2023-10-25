@@ -13,35 +13,68 @@
   autoLaunch = false
   targetPort = 4000
 
-[[plugins]]
+[[context.deploy-preview.plugins]]
   package = "@netlify/plugin-lighthouse"
 
-  [plugins.inputs.settings]
+  [context.deploy-preview.plugins.inputs.settings]
     preset = "desktop"
 
-  [[plugins.inputs.audits]]
+  [[context.deploy-preview.plugins.inputs.audits]]
     path = "hub"
 
-  [[plugins.inputs.audits]]
+  [[context.deploy-preview.plugins.inputs.audits]]
     path = "hub/kong-inc/jwt-signer/"
 
-  [[plugins.inputs.audits]]
+  [[context.deploy-preview.plugins.inputs.audits]]
     path = "hub/kong-inc/jwt-signer/configuration/"
 
-  [[plugins.inputs.audits]]
+  [[context.deploy-preview.plugins.inputs.audits]]
     path = "gateway/latest/"
 
-  [[plugins.inputs.audits]]
+  [[context.deploy-preview.plugins.inputs.audits]]
     path = "konnect"
 
-  [[plugins.inputs.audits]]
+  [[context.deploy-preview.plugins.inputs.audits]]
     path = "mesh/latest/"
 
-  [[plugins.inputs.audits]]
+  [[context.deploy-preview.plugins.inputs.audits]]
     path = "deck/latest/"
 
-  [[plugins.inputs.audits]]
+  [[context.deploy-preview.plugins.inputs.audits]]
     path = "kubernetes-ingress-controller/latest/"
 
-  [[plugins.inputs.audits]]
+  [[context.deploy-preview.plugins.inputs.audits]]
+    path = "konnect/analytics/use-cases/"
+
+[[context.production.plugins]]
+  package = "@netlify/plugin-lighthouse"
+
+  [context.production.plugins.inputs.settings]
+    preset = "desktop"
+
+  [[context.production.plugins.inputs.audits]]
+    path = "hub"
+
+  [[context.production.plugins.inputs.audits]]
+    path = "hub/kong-inc/jwt-signer/"
+
+  [[context.production.plugins.inputs.audits]]
+    path = "hub/kong-inc/jwt-signer/configuration/"
+
+  [[context.production.plugins.inputs.audits]]
+    path = "gateway/latest/"
+
+  [[context.production.plugins.inputs.audits]]
+    path = "konnect"
+
+  [[context.production.plugins.inputs.audits]]
+    path = "mesh/latest/"
+
+  [[context.production.plugins.inputs.audits]]
+    path = "deck/latest/"
+
+  [[context.production.plugins.inputs.audits]]
+    path = "kubernetes-ingress-controller/latest/"
+
+  [[context.production.plugins.inputs.audits]]
     path = "konnect/analytics/use-cases/"

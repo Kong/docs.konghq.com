@@ -23,14 +23,14 @@ scrapes this exporter as it would any other endpoint. Kong then queries Promethe
 display Vitals data via the API and Kong Manager. Prometheus does not ever directly scrape the Kong
 nodes for time series data. A trivialized workflow looks as follows:
 
-![Single Node Example Data Flow](/assets/images/docs/ee/vitals-prometheus/single.png)
+![Single Node Example Data Flow](/assets/images/products/gateway/vitals/prometheus-single.png)
 
 It is not uncommon to separate Kong functionality amongst a cluster of nodes. For example,
 one or more nodes serve only proxy traffic, while another node is responsible for serving the
 Kong Admin API and Kong Manager. In this case, the node responsible for proxy traffic writes
 the data to a StatsD exporter, and the node responsible for Admin API reads from Prometheus:
 
-![Multi Node Example Data Flow](/assets/images/docs/ee/vitals-prometheus/read-write.png)
+![Multi Node Example Data Flow](/assets/images/products/gateway/vitals/prometheus-read-write.png)
 
 In either case, the StatsD exporter process can be run either as a standalone process/container
 or as a sidecar/adjacent process within a VM. Note that in high-traffic environments, data aggregation
@@ -116,14 +116,14 @@ Please update `statsd-node` with the actual hostname that runs StatsD exporter.
 
 If you are using service discovery, it will be more convenient to configure
 multiple StatsD exporters in Prometheus. Please refer to the
-[scape_configs](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#%3Cscrape_config%3E)
+[`scape_configs`](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#%3Cscrape_config%3E)
 section of Prometheus document for further reading.
 
 By default, the Vitals graph in Kong Manager uses the configured target address
 in the legend, which is named `instance` in the Prometheus metrics label. For some service
 discovery setups where `instance` is `IP:PORT`, the user might want to relabel the `instance`
 label to display a more meaningful hostname in the legend.
-To do so, the user can also refer to the [scape_configs](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#%3Cscrape_config%3E)
+To do so, the user can also refer to the [`scape_configs`](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#%3Cscrape_config%3E)
 section and rewrite the `instance` label with the corresponding meta label.
 
 For example, in a Kubernetes environment, use the following relabel rules:
@@ -222,7 +222,7 @@ In your Grafana installation, click the **+** button in the sidebar, and choose 
 On the **Import** screen, find the **Grafana.com Dashboard** field and enter `11870`. Then, click **Load**. Optionally, you
 can also download the JSON model from [https://grafana.com/grafana/dashboards/11870](https://grafana.com/grafana/dashboards/11870) and import it manually.
 
-On the next screen, select the **Prometheus** datasource that is configured to scrape `statsd-exporter`, then
+On the next screen, select the **Prometheus** data source that is configured to scrape `statsd-exporter`, then
 click **Import**.
 
 ## Tuning and Optimization

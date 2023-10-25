@@ -4,6 +4,7 @@
 // and link to the scripts and stylesheets, and let Vite transform it.
 
 import "~/javascripts/analytics.js";
+import "~/javascripts/modal.js"
 import "~/javascripts/app.js";
 import "~/javascripts/compat-dropdown.js";
 import "~/javascripts/plugin-hub.js";

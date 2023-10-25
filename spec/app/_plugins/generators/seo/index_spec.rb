@@ -13,6 +13,7 @@ RSpec.describe SEO::Index do
         '/hub/kong-inc/jq/how-to/basic-example/' => { 'url' => '/hub/kong-inc/jq/how-to/basic-example/', 'page' => find_page_by_url('/hub/kong-inc/jq/how-to/basic-example/') },
         '/hub/kong-inc/jq/how-to/' => { 'url' => '/hub/kong-inc/jq/how-to/', 'page' => find_page_by_url('/hub/kong-inc/jq/how-to/') },
         '/hub/kong-inc/jwt-signer/' => { 'url' => '/hub/kong-inc/jwt-signer/', 'page' => find_page_by_url('/hub/kong-inc/jwt-signer/') },
+        '/hub/kong-inc/jwt-signer/nested/' => { 'url' => '/hub/kong-inc/jwt-signer/nested/', 'page' => find_page_by_url('/hub/kong-inc/jwt-signer/nested/') },
         '/hub/kong-inc/jwt-signer/changelog/' => { 'url' => '/hub/kong-inc/jwt-signer/changelog/', 'page' => find_page_by_url('/hub/kong-inc/jwt-signer/changelog/') },
         '/hub/kong-inc/jwt-signer/how-to/' => { 'url' => '/hub/kong-inc/jwt-signer/how-to/', 'page' => find_page_by_url('/hub/kong-inc/jwt-signer/how-to/') },
         '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/' => { 'url' => '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/', 'page' => find_page_by_url('/hub/kong-inc/jwt-signer/how-to/nested/tutorial/') },
@@ -37,8 +38,6 @@ RSpec.describe SEO::Index do
         '/gateway/changelog/' => { 'url' => '/gateway/changelog/', 'page' => find_page_by_url('/gateway/changelog/'), 'version' => Gem::Version.new('9999.9.9') },
 
         '/gateway/VERSION/reference/configuration/' => { 'url' => '/gateway/latest/reference/configuration/', 'page' => find_page_by_url('/gateway/latest/reference/configuration/'), 'version' => Gem::Version.new('9999.9.9') },
-        '/gateway/VERSION/configuration/' => { 'url' => '/gateway-oss/2.1.x/configuration/', 'page' => find_page_by_url('/gateway-oss/2.1.x/configuration/'), 'version' => Gem::Version.new('2.1.0') },
-        '/getting-started-guide/2.1.x/overview/' => { 'url' => '/getting-started-guide/2.1.x/overview/', 'page' => find_page_by_url('/getting-started-guide/2.1.x/overview/') },
 
         '/konnect/' => { 'url' => '/konnect/', 'page' => find_page_by_url('/konnect/') },
 
@@ -46,13 +45,12 @@ RSpec.describe SEO::Index do
 
         '/mesh/VERSION/' => { 'url' => '/mesh/latest/', 'page' => find_page_by_url('/mesh/latest/'), 'version' => Gem::Version.new('9999.9.9') },
         '/mesh/changelog/' => { 'url' => '/mesh/changelog/', 'page' => find_page_by_url('/mesh/changelog/'), 'version' => Gem::Version.new('9999.9.9') },
-      })
-    end
 
-    it 'excludes global pages and the ones that do not have versions' do
-      expect(subject['/enterprise/references/']).to be_nil
-      expect(subject['/enterprise/k8s-changelog/']).to be_nil
-      expect(subject['/enterprise/VERSION/']).to be_nil
+        '/api/' => { 'url' => '/api/', 'page' => find_page_by_url('/api/') },
+        '/konnect/api/portal-rbac/latest/' => { 'url' => '/konnect/api/portal-rbac/latest/', 'page' => find_page_by_url('/konnect/api/portal-rbac/latest/'), 'version' => Gem::Version.new('9999.9.9') },
+        '/konnect/api/audit-logs/latest/' => { 'url' => '/konnect/api/audit-logs/latest/', 'page' => find_page_by_url('/konnect/api/audit-logs/latest/'), 'version' => Gem::Version.new('9999.9.9') },
+        '/gateway/api/admin-ee/latest/' => { 'url' => '/gateway/api/admin-ee/latest/', 'page' => find_page_by_url('/gateway/api/admin-ee/latest/'), 'version' => Gem::Version.new('9999.9.9') }
+      })
     end
   end
 end

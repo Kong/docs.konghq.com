@@ -236,13 +236,13 @@ Where the arguments must be the attributes specified in your schema's
 `cache_key` property, in the order they were specified. This function then
 computes a string value `cache_key` that is ensured to be unique.
 
-For example, if we were to generate the cache_key of an API key:
+For example, if we were to generate the `cache_key` of an API key:
 
 ```lua
 local cache_key = kong.db.keyauth_credentials:cache_key("abcd")
 ```
 
-This would produce a cache_key for the API key `"abcd"` (retrieved from one
+This would produce a `cache_key` for the API key `"abcd"` (retrieved from one
 of the query's arguments) that we can the use to retrieve the key from the
 cache (or fetch from the database if the cache is a miss):
 

@@ -19,7 +19,7 @@ their respective Kong PDKs:
 - JavaScript language: [kong-js-pdk]
 - Python language: [kong-python-pdk]
 
-## Kong Gateway plugin server configuration
+## {{site.base_gateway}} plugin server configuration
 
 The `pluginserver_names` property is a comma-separated list of names, one
 for each plugin server process. These names are used to group each process'
@@ -98,7 +98,7 @@ the following steps:
 1. Add a `main()` function that calls `server.StartServer(New, Version, Priority)`.
 2. Ensure that properties `go_plugins_dir` and `go_pluginserver_exe` are not set
 in your Kong configuration file or environment variable.
-3. Set configuration according to [Kong Gateway plugin server configuration](#kong-gateway-plugin-server-configuration).
+3. Set configuration according to [{{site.base_gateway}} plugin server configuration](#kong-gateway-plugin-server-configuration).
 
 Check out the [go-plugins](https://github.com/Kong/go-plugins/tree/v0.5.0) repository for an example of the required updates. Plugins with the `-lm` suffix correspond to the legacy method, while those without the suffix
 correspond to the embedded plugin server approach.
@@ -581,9 +581,9 @@ The following graph demonstrates the correlation between performance and count o
 calls per request. Numbers of RPS and latency are removed as they are dependent on
 hardware and to avoid confusion.
 
-<center><img title="RPS" src="/assets/images/docs/external-plugins/rps.png"/></center>
+<center><img title="RPS" src="/assets/images/products/plugins/external-plugins/rps.png"/></center>
 
-<center><img title="Latency" src="/assets/images/docs/external-plugins/latency.png"/></center>
+<center><img title="Latency" src="/assets/images/products/plugins/external-plugins/latency.png"/></center>
 
 ## Use external plugins in container and Kubernetes
 

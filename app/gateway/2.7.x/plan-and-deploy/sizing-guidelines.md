@@ -12,13 +12,13 @@ benchmarking efforts should be undertaken for performance-critical environments.
 
 ## General resource guidelines
 
-### Kong Gateway resources
+### {{site.base_gateway}} resources
 
 {{site.base_gateway}} is designed to operate in a variety of deployment
 environments. It has no minimum system requirements to operate.
 
 Resource requirements vary substantially based on configuration. The following
-high-level matricies offer a guideline for determining system requirements
+high-level matrices offer a guideline for determining system requirements
 based on overall configuration and performance requirements.
 
 Consider the following simplified examples, where latency and throughput requirements are considered on a per-node basis. This table has rough usage requirement estimates:

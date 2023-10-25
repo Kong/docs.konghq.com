@@ -45,7 +45,7 @@ following format, but provide your own content.
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```bash
-$ curl -i -X POST http://<hostname>:8001/licenses \
+$ curl -i -X POST http://localhost:8001/licenses \
   -d payload='{"license":{"payload":{"admin_seats":"1","customer":"Example Company, Inc","dataplanes":"1","license_creation_date":"2017-07-20","license_expiration_date":"2017-07-20","license_key":"00141000017ODj3AAG_a1V41000004wT0OEAU","product_subscription":"Konnect Enterprise","support_plan":"None"},"signature":"6985968131533a967fcc721244a979948b1066967f1e9cd65dbd8eeabe060fc32d894a2945f5e4a03c1cd2198c74e058ac63d28b045c2f1fcec95877bd790e1b","version":"1"}}'
 ```
 {% endnavtab %}
@@ -73,7 +73,7 @@ For more detail and options, see the
 {% endnavtab %}
 {% navtab Filesystem %}
 
-You can provide a license file to Kong Gateway in any database-backed or DB-less
+You can provide a license file to {{site.base_gateway}} in any database-backed or DB-less
 deployment. This method is not recommended for use in hybrid mode, as you have
 to maintain the license on each node manually.
 
@@ -121,12 +121,6 @@ substituting your own license key.
 
 1. Include the license as part of the `docker run` command when starting a {{site.base_gateway}} container:
 
-    {% if_version lte:2.5.x %}
-    {:.note}
-    > **Note:** This is only a snippet. For a full working example, see the instructions to
-    [Install {{site.base_gateway}} on Docker](/enterprise/{{page.kong_version}}/deployment/installation/docker/).
-    {% endif_version %}
-
     {% if_version gte:2.6.x lte:2.8.x %}
     {:.note}
     > **Note:** This is only a snippet. For a full working example, see the instructions to
@@ -159,12 +153,6 @@ Include the license as part of the `docker run` command when starting a
 {{site.base_gateway}} container. Mount the path to the file on your
 local filesystem to a directory in the Docker container, making the file visible
 from the container:
-
-{% if_version lte:2.5.x %}
-{:.note}
-> **Note:** This is only a snippet. For a full working example, see the instructions to
-[Install {{site.base_gateway}} on Docker](/enterprise/{{page.kong_version}}/deployment/installation/docker/).
-{% endif_version %}
 
 {% if_version gte:2.6.x lte:2.8.x %}
 {:.note}

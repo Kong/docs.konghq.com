@@ -16,10 +16,14 @@ install: ruby-version-check
 	npm ci
 	bundle install
 	git submodule update --init
+	@if [ ! -f .env ]; then cp .env.example .env; fi
 
 # Using local dependencies, starts a doc site instance on http://localhost:4000.
 run: ruby-version-check
 	netlify dev
+
+run-debug: ruby-version-check
+	JEKYLL_LOG_LEVEL='debug' netlify dev
 
 build: ruby-version-check
 	exe/build
@@ -43,3 +47,7 @@ smoke:
 	@npm run test:smoke || true
 	@kill -TERM $$(cat netlify.PID)
 	@rm netlify.PID
+
+kill-ports:
+	@JEKYLL_PROCESS=$$(lsof -ti:4000) && kill -9 $$JEKYLL_PROCESS || true
+	@VITE_PROCESS=$$(lsof -ti:3036) && kill -9 $$VITE_PROCESS || true

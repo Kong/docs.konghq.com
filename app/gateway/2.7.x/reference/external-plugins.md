@@ -18,7 +18,7 @@ those processes, starting, restarting and stopping as necessary.
 package [go-pdk], the JavaScript language support [kong-js-pdk]
 and Python language support [kong-python-pdk].
 
-## Kong Gateway plugin server configuration
+## {{site.base_gateway}} plugin server configuration
 
 The `pluginserver_names` property is a comma-separated list of names, one
 for each plugin server process. These names are used to group each process'
@@ -577,9 +577,9 @@ The following graph demonstrates the correlation between performance and count o
 calls per request. Numbers of RPS and latency are removed as they are dependent on
 hardware and to avoid confusion.
 
-<center><img title="RPS" src="/assets/images/docs/external-plugins/rps.png"/></center>
+<center><img title="RPS" src="/assets/images/products/plugins/external-plugins/rps.png"/></center>
 
-<center><img title="Latency" src="/assets/images/docs/external-plugins/latency.png"/></center>
+<center><img title="Latency" src="/assets/images/products/plugins/external-plugins/latency.png"/></center>
 
 ## Use external plugins in container and Kubernetes
 
@@ -627,7 +627,7 @@ CMD ["kong", "docker-start"]
 [go-pluginserver-makefile]: https://github.com/Kong/go-pluginserver/blob/master/Makefile
 [go-plugins]: https://github.com/Kong/go-plugins
 [go-pdk]: https://github.com/Kong/go-pdk
-[kong-pdk]: https://docs.konghq.com/latest/plugin-development/
+[kong-pdk]: /gateway/latest/plugin-development/
 [go-hello]: https://github.com/Kong/go-plugins/blob/master/go-hello.go
 [kong-js-pdk]: https://github.com/Kong/kong-js-pdk
 [kong-python-pdk]: https://github.com/Kong/kong-python-pdk

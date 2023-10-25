@@ -26,7 +26,7 @@ If you have not done so already, [create a **Service**][add-service] to protect.
 Add an OpenID plugin configuration using the parameters in the example below using an HTTP client or Kong Manager. Auth0's token endpoint [requires passing the API identifier in the `audience` parameter][audience-required], which must be added as a custom argument:
 
 ```bash
-curl -i -X POST http://kong:8001/kong-admin/services/{SERVICE_NAME}/plugins \
+curl -i -X POST http://localhost:8001/kong-admin/services/{SERVICE_NAME}/plugins \
   --data name="openid-connect" \
   --data config.auth_methods="client_credentials" \
   --data config.issuer="https://<auth0 API name>.auth0.com/.well-known/openid-configuration" \

@@ -38,7 +38,7 @@ Edit team roles from the {% konnect_icon organizations %} [**Organization**](htt
 
     Teams with the `Predefined` label can't be edited or deleted.
 
-1. Open one of the entity tabs: **Services** or **Runtime Groups**.
+1. Open one of the entity tabs: **API Products**, **Control Planes**, or **Mesh Control Planes**.
 
 1. Click **Add role(s)**.
 

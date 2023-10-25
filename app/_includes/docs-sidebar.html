@@ -7,12 +7,11 @@
     <div class="docsets-dropdown dropdown">
       <button class="dropdown-button" id="module-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
         <span>
-          {% if include.edition == 'enterprise' %}{{site.ee_product_name}}
-          {% elsif include.edition == 'konnect' %}{{site.konnect_saas}}
+          {% if include.edition == 'konnect' %}{{site.konnect_saas}}
           {% elsif include.edition == 'mesh' %}{{site.mesh_product_name}}
           {% elsif include.edition == 'deck' %}decK
           {% elsif include.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
-          {% elsif include.edition == 'gateway-oss' %}{{site.ce_product_name}}
+          {% elsif include.edition == 'gateway-operator' %}{{site.kgo_product_name}}
           {% elsif include.edition == 'gateway' %}{{site.base_gateway}}
           {% elsif include.edition == 'getting-started-guide' %}Get Started with Kong Gateway
           {% elsif include.edition == 'contributing' %}Contribution guidelines
@@ -22,7 +21,7 @@
       </button>
       <ul class="dropdown-menu dropdown-menu-right with-submenu" id="module-list" role="menu" aria-labelledby="module-dropdown" aria-hidden="true">
 
-        <li role="menuitem" tabindex="-1" {% if include.edition == 'gateway' or include.edition == 'gateway-oss' or include.edition == 'enterprise' %}class="active"{% endif %}>
+        <li role="menuitem" tabindex="-1" {% if include.edition == 'gateway' %}class="active"{% endif %}>
           <a href="/gateway/latest/" {% if include.edition == 'gateway' %}class="active"{% endif %}>Kong Gateway</a>
         </li>
         <li role="menuitem" tabindex="-1" {% if include.edition == 'konnect' %} class="active"{% endif %}>
@@ -37,8 +36,11 @@
         <li role="menuitem" tabindex="-1" {% if include.edition == 'deck' %} class="active"{% endif %}>
           <a href="/deck/latest/" {% if include.edition == 'deck' %}class="active"{% endif %}>decK</a>
         </li>
-        <li role="menuitem" tabindex="-1" {% if include.edition == 'kubernetes-ingress-controller' %} class="active"{% endif %}" >
+        <li role="menuitem" tabindex="-1" {% if include.edition == 'kubernetes-ingress-controller' %} class="active"{% endif %}>
           <a href="/kubernetes-ingress-controller/latest/" {% if include.edition == 'kubernetes-ingress-controller' %}class="active"{% endif %}>Kong Ingress Controller</a>
+        </li>
+        <li role="menuitem" tabindex="-1" {% if include.edition == 'gateway-operator' %} class="active"{% endif %}>
+          <a href="/gateway-operator/latest/" {% if include.edition == 'gateway-operator' %}class="active"{% endif %}>Kong Gateway Operator</a>
         </li>
         <li>
           <a href="https://docs.insomnia.rest/" target="_blank">Insomnia</a>
@@ -58,20 +60,13 @@
       <button class="dropdown-button" id="version-dropdown" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" tabindex="0">
         <span>
           Version {{include.kong_version}}
-          {% if include.kong_version == include.kong_latest.release and include.edition != 'gateway-oss' and include.edition != 'enterprise' and include.edition != 'getting-started-guide' %}
+          {% if include.kong_version == include.kong_latest.release %}
             <span>(latest)</span>
           {% endif %}
         </span>
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu dropdown-menu-right" id="version-list" role="menu" aria-labelledby="version-dropdown" aria-hidden="true">
-        {% if include.edition == 'gateway-oss' or include.edition == 'enterprise' or include.edition == 'getting-started-guide' %}
-        <li role="menuitem" tabindex="-1">
-          <a href="/gateway/">
-            Later versions (Enterprise and OSS)
-          </a>
-        </li>
-        {% endif %}
           {% for ver in include.kong_versions reversed %}
           {% assign release_segment = '/' | append: ver.release | append: '/' %}
           {% assign version_page_url = include.url | replace: include.kong_version, ver.release | replace: '/latest/', release_segment %}
@@ -80,33 +75,20 @@
           {% endunless %}
           {% capture version_page_exists %}{% page_exists {{version_page_url}} %}{% endcapture %}
         <li {% if include.kong_version==ver.release %}class="active" {% endif %} role="menuitem" tabindex="-1">
-          <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if include.edition == 'gateway-oss' %}gateway-oss/{% endif %}{% if include.edition == 'enterprise' %}enterprise/{% endif %}{% if include.edition == 'gateway' %}gateway/{% endif %}{% if include.edition == 'mesh' %}mesh/{% endif %}{% if include.edition == 'kubernetes-ingress-controller' %}kubernetes-ingress-controller/{% endif %}{% if include.edition == 'contributing' %}contributing/{% endif %}{% if include.edition == 'deck' %}deck/{% endif %}{{ver.release}}{% endif %}"
+          <a href="{% if version_page_exists == 'true' %}{{version_page_url}}{% else %}/{% if include.edition == 'gateway' %}gateway/{% endif %}{% if include.edition == 'mesh' %}mesh/{% endif %}{% if include.edition == 'kubernetes-ingress-controller' %}kubernetes-ingress-controller/{% endif %}{% if include.edition == 'contributing' %}contributing/{% endif %}{% if include.edition == 'deck' %}deck/{% endif %}{{ver.release}}{% endif %}"
             {% if ver.release==include.kong_version %} class="active" {% endif %}
             data-version-id="{{ver.release}}"
           >
             {{ver.release}}
-            {% if ver.release == include.kong_latest.release and include.edition != 'enterprise' and include.edition != 'gateway-oss' and include.edition != 'getting-started-guide' %} <em>(latest)</em>
+            {% if ver.release == include.kong_latest.release %} <em>(latest)</em>
             {% endif %}
           </a>
         </li>
         {% endfor %}
         {% if include.edition == 'gateway' %}
         <li role="menuitem" tabindex="-1">
-          <a href="/enterprise/2.5.x/">
-            Older Enterprise versions (2.1-2.5)
-          </a>
-        </li>
-        <li role="menuitem" tabindex="-1">
-          <a href="/gateway-oss/2.5.x/">
-            Older OSS versions (2.1-2.5)
-          </a>
-        </li>
-        {% endif %}
-
-        {% if include.edition == 'gateway-oss' or include.edition == 'gateway' or include.edition == 'enterprise' %}
-        <li role="menuitem" tabindex="-1">
           <a href="{{site.links.archive}}/">
-            Archive (pre-2.1)
+            Archive (pre-2.6)
           </a>
         </li>
         {% endif %}

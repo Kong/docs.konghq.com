@@ -22,14 +22,6 @@ RSpec.describe SEO::IndexEntry::UnversionedProductPage do
     it 'does not set seo_noindex to the page' do
       expect(page.data['seo_noindex']).to be_nil
     end
-
-    context 'when the product is blocked' do
-      let(:page) { find_page_by_url('/getting-started-guide/2.1.x/overview/') }
-
-      it 'sets seo_noindex to the page' do
-        expect(page.data['seo_noindex']).to eq(true)
-      end
-    end
   end
 
   describe '#attributes' do

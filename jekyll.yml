@@ -34,7 +34,6 @@ repos:
   vagrant: https://github.com/Kong/kong-vagrant
   homebrew: https://github.com/Kong/homebrew-kong
   cloudformation: https://github.com/Kong/kong-dist-cloudformation
-  oauth2_hello_world: https://github.com/Kong/kong-oauth2-hello-world
 
 # for Kong platform extensions (not Jekyll)
 extensions:
@@ -42,31 +41,31 @@ extensions:
     - name: Authentication
       slug: authentication
       desc: Protect your services with an authentication layer
-      # icon:
+      icon: /assets/images/nav/hub/lock_person.svg
     - name: Security
       slug: security
       desc: Protect your services with additional security layer
-      # icon:
+      icon: /assets/images/nav/hub/shield.svg
     - name: Traffic Control
       slug: traffic-control
       desc: Manage, throttle and restrict inbound and outbound API traffic
-      # icon:
+      icon: /assets/images/nav/hub/route.svg
     - name: Serverless
       slug: serverless
       desc: Invoke serverless functions in combination with other plugins
-      # icon:
+      icon: /assets/images/nav/hub/serverless.svg
     - name: Analytics & Monitoring
       slug: analytics-monitoring
       desc: Visualize, inspect and monitor APIs and microservices traffic
-      # icon:
+      icon: /assets/images/nav/hub/bar_chart.svg
     - name: Transformations
       slug: transformations
       desc: Transform request and responses on the fly on Kong
-      # icon:
+      icon: /assets/images/nav/hub/swap_horiz.svg
     - name: Logging
       slug: logging
       desc: Log request and response data using the best transport for your infrastructure
-      # icon:
+      icon: /assets/images/nav/hub/list_alt.svg
   types:
     - name: plugin
       slug: plugin
@@ -97,24 +96,9 @@ defaults:
       layout: "docs-v2"
 
   - scope:
-      path: "enterprise"
+      path: "assets"
     values:
-      layout: "docs-v2"
-
-  - scope:
-      path: "gateway-oss"
-    values:
-      layout: "docs-v2"
-
-  - scope:
-      path: "install"
-    values:
-      layout: "install"
-
-  - scope:
-      path: "getting-started-guide"
-    values:
-      layout: "docs-v2"
+      layout: null
 
   - scope:
       path: "deck"
@@ -136,6 +120,11 @@ defaults:
     values:
       layout: "docs-v2"
       no_version: true
+
+  - scope:
+      path: "gateway-operator"
+    values:
+      layout: "docs-v2"
 
   - scope:
       path: "gateway"
@@ -183,15 +172,19 @@ hub-filters:
   tiers:
     - name: Free
       slug: free
-    - name: Plus
-      slug: plus
-    - name: Enterprise
+    - name: Konnect Paid
+      slug: paid
+    - name: Konnect Premium
+      slug: premium
+    - name: Kong Gateway Enterprise
       slug: enterprise
   support:
     - name: Kong
       slug: kong-inc
-    - name: Third-party
+    - name: Technical partner
       slug: third-party
+    - name: No support available
+      slug: none
   compatibility:
     - name: Konnect
       slug: konnect
@@ -203,6 +196,7 @@ hub-filters:
 ee_product_name: Kong Enterprise
 ce_product_name: Kong Gateway (OSS)
 base_gateway: Kong Gateway
+kgo_product_name: Kong Gateway Operator
 kic_product_name: Kong Ingress Controller
 konnect_product_name: Kong Konnect
 konnect_short_name: Konnect
@@ -220,9 +214,11 @@ mesh_raw_generated_paths:
   - app/_src/.repos/kuma/app/docs
 # Helm commands
 set_flag_values_prefix: kuma.
+mesh_helm_repo_url: https://kong.github.io/kong-mesh-charts
+mesh_helm_repo_name: kong-mesh
 mesh_helm_repo: kong-mesh/kong-mesh
 mesh_helm_install_name: kong-mesh
-mesh_disabled_versions: [dev]
+mesh_disabled_versions: []
 # binary options
 mesh_install_archive_name: kong-mesh
 

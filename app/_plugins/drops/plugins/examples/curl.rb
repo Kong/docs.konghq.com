@@ -6,11 +6,11 @@ module Jekyll
       module Examples
         class Curl < Base
           URLS = {
-            'consumer' => 'http://localhost:8001/consumers/CONSUMER_NAME|CONSUMER_ID/plugins',
-            'consumer_group' => 'http://localhost:8001/consumer_groups/CONSUMER_GROUP_NAME|CONSUMER_GROUP_ID/plugins',
+            'consumer' => 'http://localhost:8001/consumers/{consumerName|Id}/plugins',
+            'consumer_group' => 'http://localhost:8001/consumer_groups/{consumerGroupName|Id}/plugins',
             'global' => 'http://localhost:8001/plugins/',
-            'route' => 'http://localhost:8001/routes/ROUTE_NAME|ROUTE_ID/plugins',
-            'service' => 'http://localhost:8001/services/SERVICE_NAME|SERVICE_ID/plugins'
+            'route' => 'http://localhost:8001/routes/{routeName|Id}/plugins',
+            'service' => 'http://localhost:8001/services/{serviceName|Id}/plugins'
           }.freeze
 
           def params

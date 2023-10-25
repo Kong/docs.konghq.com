@@ -18,6 +18,8 @@ items:
             url: /support/third-party
           - text: Browser Support
             url: /support/browser
+          - text: Vulnerability Patching Process
+            url: /support/vulnerability-patching-process
           - text: Software Bill of Materials
             url: /support/sbom
       - text: Stability
@@ -206,8 +208,6 @@ items:
             url: /production/tracing/api
       - text: Resource Sizing Guidelines
         url: /production/sizing-guidelines
-      - text: Security Update Process
-        url: /production/security-update-process
       - text: Blue-Green Deployments
         url: /production/blue-green
       - text: Canary Deployments
@@ -361,8 +361,9 @@ items:
           - text: Helpers CLI
             url: /kong-enterprise/dev-portal/cli
           - text: Portal API Documentation
-            url: https://developer.konghq.com/spec/3e65edbc-364d-4762-9d3e-f13083e1b534/33cd4595-e389-4c2b-80ee-5275f25e80e1
+            url: /dev-portal/api/v1/
             absolute_url: true
+            generate: false
       - text: Audit Logging
         url: /kong-enterprise/audit-log
       - text: Keyring and Data Encryption
@@ -459,6 +460,8 @@ items:
     items:
       - text: Overview
         url: /kong-manager-oss/
+      - text: Troubleshooting
+        url: /kong-manager-oss/troubleshoot/
 
   - title: Develop Custom Plugins
     icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
@@ -615,6 +618,8 @@ items:
         url: /admin-api/#vaults-object
       - text: Keys
         url: /admin-api/#keys-object
+      - text: Filter Chains
+        url: /admin-api/#filter-chain-object
       - text: Licenses
         url: /admin-api/licenses/reference
       - text: Workspaces
@@ -626,8 +631,9 @@ items:
       - text: Developers
         url: /admin-api/developers/reference
       - text: Consumer Groups
-        url: https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60#/consumer_groups/get-consumer_groups
+        url: /gateway/api/admin-ee/3.3.0.x/#/consumer_groups/get-consumer_groups
         absolute_url: true
+        generate: false
       - text: Event Hooks
         url: /admin-api/event-hooks/reference
       - text: Keyring and Data Encryption
@@ -635,8 +641,9 @@ items:
       - text: Audit Logs
         url: /admin-api/audit-logs
       - text: Status API
-        url: https://developer.konghq.com/spec/9542436a-58d1-4522-a00b-32125b5940f0
+        url: /gateway/api/status/v1/
         absolute_url: true
+        generate: false
   - title: Reference
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:

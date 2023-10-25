@@ -151,10 +151,9 @@ instead (`kong.ctx.shared.authenticated_jwt_token`) before upgrading to 3.0.
   health check metrics by default. They can still be turned on manually by setting `status_code_metrics`,
   `lantency_metrics`, `bandwidth_metrics` and `upstream_health_metrics` respectively.
 
-**[Serverless Functions](/hub/kong-inc/serverless-functions/)**
+**[Pre-function](/hub/kong-inc/pre-function/) and [Post-function](/hub/kong-inc/post-function/) plugins**
 * Removed the deprecated `config.functions` configuration parameter from the
-Serverless Functions plugins' schemas (`post-fuction` and `pre-function`).
-Use the `config.access` phase instead.
+`post-fuction` and `pre-function` plugins' schemas. Use the `config.access` phase instead.
 
 **[StatsD](/hub/kong-inc/statsd/)**
 * Any metric name that is related to a service now has a `service.` prefix: `kong.service.<service_identifier>.request.count`.
@@ -271,9 +270,9 @@ executing `kong config db_import config.lua`, convert the `config.lua` file into
 before upgrading.
 
 ### Admin API
-
+{% if_version lte:3.4.x %}
 The Admin API endpoint `/vitals/reports` has been removed.
-
+{% endif_version %}
 `POST` requests on `/targets` endpoints are no longer able to update
 existing entities. They are only able to create new ones.
 If you have scripts that use `POST` requests to modify `/targets`, change them to `PUT`

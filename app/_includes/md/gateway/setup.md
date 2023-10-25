@@ -177,8 +177,13 @@ $ scp license.json /etc/kong/license.json
 {% endnavtab %}
 {% endnavtabs %}
 
+{% if_version lte:3.3.x %}
 ### Enable Kong Manager
 {:.badge .free}
+{% endif_version %}
+{% if_version gte:3.4.x %}
+### Enable Kong Manager
+{% endif_version %}
 
 {% if_version gte:3.0.x %}
 
@@ -186,7 +191,7 @@ If you're running {{site.base_gateway}} with a database (either in traditional
 or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
 (GUI), Kong Manager.
 
-See the [Kong Manager setup guide](/gateway/{{page.kong_version}}/kong-manager/enable/) for more information.
+See the [Kong Manager setup guide](/gateway/{{page.kong_version}}/kong-manager/enable/){% if_version gte:3.4.x %} or the [Kong Manager OSS guide](/gateway/{{page.kong_version}}/kong-manager-oss){% endif_version %} for more information.
 
 {% endif_version %}
 {% if_version lte:2.8.x %}

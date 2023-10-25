@@ -4,7 +4,7 @@ Any requests that don't specify a workspace target the `default` workspace.
 To target a different workspace, prefix any endpoint with the workspace name or ID:
 
 ```sh
-http://<HOSTNAME>:8001/<WORKSPACE_NAME|ID>/<ENDPOINT>
+http://localhost:8001/<WORKSPACE_NAME|ID>/<ENDPOINT>
 ```
 
 For example, if you don't specify a workspace,

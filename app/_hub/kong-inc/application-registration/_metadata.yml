@@ -1,9 +1,7 @@
 name: Portal Application Registration
 global: false
-konnect_examples: false
 dbless_compatible: 'no'
 free: false
-plus: false
 enterprise: true
 konnect: false
 network_config_opts: Self-managed traditional, DB-less, and hybrid

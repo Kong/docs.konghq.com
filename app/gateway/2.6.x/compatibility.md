@@ -5,7 +5,7 @@ title: Kong Gateway Compatibility
 Provided below are compatibility tables for {{site.base_gateway}}. Select a version
 to see technologies that have been tested for interoperability with the Kong platform.
 
-Please see [{{site.base_gateway}} Version Support](https://docs.konghq.com/konnect-platform/support-policy/)
+Please see [{{site.base_gateway}} Version Support](/gateway/latest/support-policy/)
 for more information about Kong's support for {{site.base_gateway}} and our
 [Support & Maintenance Policy](https://konghq.com/supportandmaintenancepolicy).
 

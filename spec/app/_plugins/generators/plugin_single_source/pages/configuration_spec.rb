@@ -13,15 +13,15 @@ RSpec.describe PluginSingleSource::Pages::Configuration do
 
     context 'when there is a specific folder for the version' do
       let(:is_latest) { false }
-      let(:version) { '2.5.x' }
-      let(:source) { '_2.2.x' }
+      let(:version) { '2.6.x' }
+      let(:source) { '_2.6.x' }
       let(:source_path) { File.expand_path("_hub/kong-inc/jwt-signer/#{source}/", site.source) }
 
       it 'returns a hash containing the data needed to render the templates' do
         expect(subject.data).to include({
           'canonical_url' => '/hub/kong-inc/jwt-signer/configuration/',
-          'source_file' => '_src/.repos/kong-plugins/schemas/jwt-signer/2.5.x.json',
-          'permalink' => '/hub/kong-inc/jwt-signer/2.5.x/configuration/',
+          'source_file' => '_src/.repos/kong-plugins/schemas/jwt-signer/2.6.x.json',
+          'permalink' => '/hub/kong-inc/jwt-signer/2.6.x/configuration/',
           'ssg_hub' => false,
           'title' => 'Kong JWT Signer Configuration'
         })
@@ -36,7 +36,7 @@ RSpec.describe PluginSingleSource::Pages::Configuration do
 
       it 'returns a hash containing the data needed to render the templates' do
         expect(subject.data).to include({
-          'canonical_url' => nil,
+          'canonical_url' => '/hub/kong-inc/jwt-signer/configuration/',
           'source_file' => '_src/.repos/kong-plugins/schemas/jwt-signer/2.8.x.json',
           'permalink' => '/hub/kong-inc/jwt-signer/configuration/',
           'ssg_hub' => false,

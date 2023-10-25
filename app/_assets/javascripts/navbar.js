@@ -31,33 +31,57 @@ function toggleButtonClicked() {
   }
 }
 
-function toggleSubmenuVisible(element) {
-  $(element).toggleClass("submenu-title");
-  $(element.parentElement).toggleClass("submenu-opened");
+function toggleSubmenuVisible(element, show) {
+  element.classList.toggle("submenu-title", show);
+  element.classList.toggle("submenu-opened", show);
+  element.closest("ul.navbar-items").classList.toggle("submenu-opened", show);
+
+  if (show) {
+    element.setAttribute("aria-expanded", true);
+    element.querySelectorAll("a").forEach(function(link) {
+      link.removeAttribute("tabindex");
+    });
+  } else {
+    element.setAttribute("aria-expanded", false);
+    element.querySelectorAll("a").forEach(function(link) {
+      link.setAttribute("tabindex", "-1");
+    });
+  }
 }
 
 // open Docs menu item upon enter and enable tabbing through menu
-jQuery(function () {
-  $("#docs-link").on("keypress keydown", function (e) {
-    if (e.keyCode == 13) {
-      e.preventDefault();
-      $(".with-submenu").toggleClass("submenu-opened");
-      $(".navbar-item-docs").setAttribute("aria-hidden", "false");
-      return false;
-    }
-    // if user doesn't open Docs submenu, move focus to Support menu item
-    let submenu = $(".with-submenu");
-    if (!submenu.hasClass("submenu-opened")) {
-      $("#plugin-link").focus();
-    }
-  });
-  // close docs dropdown menu when tabbing on Support menu item
-  $("#plugin-link").on("focus", function (e) {
-    $(".with-submenu").removeClass("submenu-opened");
+$(document).ready(function() {
+  const topNavSubmenus = document.querySelectorAll(".main-menu-item.with-submenu");
+
+  function toggleNav(nav) {
+    // show submenu
+    const visible = nav.classList.contains("submenu-opened");
+    toggleSubmenuVisible(nav, !visible);
+  }
+
+  topNavSubmenus.forEach(function(nav) {
+    nav.addEventListener("keydown", function(e) {
+      if (e.keyCode == 13) {
+        toggleNav(nav);
+        return false;
+      }
+    });
+
+    nav.addEventListener("click", function(e) {
+      toggleNav(nav);
+    });
   });
 
-  $(".main-menu-item.with-submenu").on("click", function(e) {
-    toggleSubmenuVisible(e.target);
+  document.querySelectorAll(".navbar-item, .main-menu-item-title").forEach(function(elem) {
+    elem.addEventListener("focus", function(e) {
+      topNavSubmenus.forEach(function(menuItem) {
+        toggleSubmenuVisible(menuItem, false);
+      });
+    });
+  });
+
+  $(".search-input-wrapper img").on("click", function(e) {
+    handleSearchClicked();
   });
 
   $("#navbar-menu-toggle-button").on("click", function(e) {

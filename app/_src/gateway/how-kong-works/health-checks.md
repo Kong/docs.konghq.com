@@ -19,7 +19,10 @@ response;
 
 * **passive checks** (also known as **circuit breakers**), where Kong analyzes
 the ongoing traffic being proxied and determines the health of targets based
-on their behavior responding to requests.
+on their behavior responding to requests. 
+  
+  {:.note}
+  > **Note:** This feature is not supported in hybrid mode.
 
 ## Defining healthy and unhealthy
 
@@ -175,12 +178,14 @@ when a target is healthy or unhealthy. If the `interval` value for either
 is set to zero, the checking is disabled at the corresponding scenario.
 When both are zero, active health checks are disabled altogether.
 
-<div class="alert alert-warning">
-<strong>Note:</strong> Active health checks currently only support HTTP/HTTPS targets. They
-do not apply to Upstreams assigned to Services with the protocol attribute set to "tcp" or "TLS".
-</div>
+{:.important}
+> **Note:** Active health checks only support HTTP/HTTPS targets. They
+do not apply to upstreams assigned to services with the protocol attribute set to `tcp` or `TLS`.
 
 ### Passive health checks (circuit breakers)
+
+{:.note}
+> **Note:** This feature is not supported in hybrid mode.
 
 Passive health checks, also known as circuit breakers, are
 checks performed based on the requests being proxied by Kong (HTTP/HTTPS/TCP),
@@ -304,6 +309,9 @@ active probes (as defined by `healthchecks.active.unhealthy.http_statuses`) to
 consider a target unhealthy.
 
 ### Enabling passive health checks
+
+{:.note}
+> **Note:** This feature is not supported in hybrid mode.
 
 Passive health checks do not feature a probe, as they work by interpreting
 the ongoing traffic that flows from a target. This means that to enable

@@ -41,6 +41,16 @@ git submodule update --init --recursive
 make run
 ```
 
+### OAS Pages
+
+Create local .env file
+
+```bash
+cp .env.example .env
+```
+
+OAS Pages require `VITE_PORTAL_API_URL` to be set in your current environment, it should match the Kong supplied portal URL.
+
 ### Generating specific products
 
 In order to speed up build times, it's possible to generate a specific subset of products and their corresponding versions by specifying the `KONG_PRODUCTS` env variable. It takes a comma-separated list of products and for each product, the list of versions the versions to be generated separated by semi-colons, in the following way.
@@ -157,7 +167,7 @@ The `include-check.sh` script checks for any files in the `app/_includes` folder
 folder, and run `./include-check.sh`. If there is no output, everything is
 successful.
 
-In the following example, we can see that `deployment-options-k8s.md` uses a `page.*` variable, and that the include is used in the `kong-for-kubernetes.md` file:
+In the following example, we can see that `admin-listen.md` uses a `page.*` variable, and that the include is used in the `docker.md` file:
 
 ```bash
 ❯ ./include-check.sh
@@ -165,37 +175,37 @@ Page variables must not be used in includes.
 Pass them in via include_cached instead
 
 Files that currently use page.*:
-File: app/_includes/md/2.5.x/deployment-options-k8s.md
+File: app/_includes/md/admin-listen.md
 via:
-app/enterprise/2.5.x/deployment/installation/kong-for-kubernetes.md
+app/_src/gateway/install/docker.md
 ```
 
 Here are sample contents for those files:
 
-In `kong-for-kubernetes.md`:
+In `docker.md`:
 
 ```md
-{% include_cached app/_includes/md/2.5.x/deployment-options-k8s.md %}
+{% include_cached app/_includes/md/admin-listen.md %}
 ```
 
 In `deployment-options-k8s`:
 
 ```md
-This is an include that uses {{ page.url }}
+This is an include that uses {{ page.kong_version }}
 ```
 
 To resolve this, the two files should be updated to pass in the URL when `include_cached` is called:
 
-In `kong-for-kubernetes.md`:
+In `docker.md`:
 
 ```md
-{% include_cached app/_includes/md/2.5.x/deployment-options-k8s.md url=page.url %}
+{% include_cached app/_includes/md/admin-listen.md kong_version=page.kong_version %}
 ```
 
-In `deployment-options-k8s`:
+In `admin-listen`:
 
 ```md
-This is an include that uses {{ include.url }}
+This is an include that uses {{ include.kong_version }}
 ```
 
 The `include_cached` gem uses all passed parameters as the cache lookup key, and this ensures that all required permutations of an include file will be generated.
