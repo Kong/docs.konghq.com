@@ -396,8 +396,10 @@ difficulties during this phase, please refer to the [Keycloak documentation](htt
    <br>
    <img src="/assets/images/products/plugins/openid-connect/keycloak-client-service-auth.png">
    <br>
+{% if_version gte:3.5.x %}
 3. Optional: Create another confidential client `cert-bound` with settings similar to the `service` client created previously.
    From the **Advanced** tab, enable the **OAuth 2.0 Mutual TLS Certificate Bound Access Tokens Enabled** toggle.
+{% endif_version %}
 
 4. Create a verified user with the name: `john` and the non-temporary password: `doe` that can be used with the password grant:
    <br><br>
@@ -422,7 +424,10 @@ to
 The Keycloak default `https` port conflicts with the default Kong TLS proxy port,
 and that can be a problem if both are started on the same host.
 
-**Note:** the mTLS proof of possession feature that validates OAuth 2.0 Mutual TLS Certificate Bound Access Tokens requires configuring Keycloak to validate client certificates using mTLS with the `--https-client-auth=request` option. For more information please refer to the [Keycloak documentation](https://www.keycloak.org/server/enabletls).
+{% if_version gte:3.5.x %}
+{:.note}
+> **Note:** The mTLS proof of possession feature that validates OAuth 2.0 Mutual TLS Certificate Bound Access Tokens requires configuring Keycloak to validate client certificates using mTLS with the `--https-client-auth=request` option. For more information, see the [Keycloak documentation](https://www.keycloak.org/server/enabletls).
+{% endif_version %}
 
 [keycloak]: http://www.keycloak.org/
 
@@ -1740,6 +1745,7 @@ Nice, as you can see the plugin even added the `X-Consumer-Id` and `X-Consumer-U
 
 > It is possible to make consumer mapping optional and non-authorizing by setting the `config.consumer_optional=true`.
 
+{% if_version gte:3.5.x %}
 ## Certificate-Bound Access Tokens
 
 One of the main vulnerabilities of OAuth are bearer tokens because presenting a valid bearer token is enough proof to access a resource. This can create problems since the client presenting the token isn't validated as the legitimate user that the token was issued to. 
@@ -1849,7 +1855,7 @@ The following example shows how to enable this feature for the JWT Access Token 
     ```http
     HTTP/1.1 200 OK
     ```
-
+{% endif_version %}
 ## Headers
 
 Before you proceed, check that you have completed [the preparations](#preparations).
