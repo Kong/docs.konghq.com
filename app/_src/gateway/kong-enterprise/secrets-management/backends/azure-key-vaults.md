@@ -82,7 +82,7 @@ to encapsulate the provider and the required Azure Key Vault information:
 {% navtab Admin API %}
 
 ```bash
-curl -i -X PUT http://HOSTNAME:8001/vaults/azure-key-vault \
+curl -i -X PUT http://localhost:8001/vaults/azure-key-vault \
   --data name=azure \
   --data description="Storing secrets in Azure Key Vault (Secrets)" \
   --data config.type="secrets" \
