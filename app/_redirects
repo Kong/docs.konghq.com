@@ -35,7 +35,13 @@
 /konnect/getting-started/configure-runtime/ /konnect/getting-started/configure-data-plane-node/
 /konnect/api/runtime-groups-config/overview/ /konnect/api/
 
-#3.4
+
+# 3.5
+/gateway/latest/kong-enterprise/analytics/* /gateway/3.4.x/kong-enterprise/analytics/:splat
+/gateway/latest/kong-enterprise/dev-portal/* /gateway/3.4.x/kong-enterprise/dev-portal/:splat
+
+
+# 3.4
 
 /gateway/latest/production/security-update-process /gateway/latest/support/vulnerability-patching-process 
 /gateway/latest/kong-enterprise/consumer-groups /gateway/latest/key-concepts/consumer-groups

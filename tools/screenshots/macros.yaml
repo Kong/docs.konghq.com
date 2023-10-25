@@ -25,7 +25,16 @@
       remove(".intercom-lightweight-app"); 
       document.body.style.padding = "20px"; 
     }
-
+- type: function
+  name: clickElement
+  javascript: |
+    async function (selector) {
+      const elementToClick = document.querySelector(selector);
+      if (elementToClick) {
+        elementToClick.click();
+        await sleep(400);
+      }
+    }
 - type: function
   name: annotateNumber
   javascript: |
