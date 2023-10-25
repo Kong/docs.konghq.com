@@ -119,7 +119,9 @@ for more information about each option.
 
 For further information on secrets management, see the following topics:
 * [Get started with secrets management](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/getting-started/)
-* [Secrets rotation](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/secrets-rotation/)
+{% if_version gte:3.4.x inline:true %}
+
+* [Secrets rotation](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/secrets-rotation/){% endif_version %}
 * [Backends overview](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/)
 * [Reference format](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/reference-format/)
 * [Advanced usage](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/advanced-usage/)
