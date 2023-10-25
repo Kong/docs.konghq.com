@@ -4,5 +4,7 @@ book: kic-get-started
 chapter: 1
 type: tutorial
 purpose: |
-  Install KIC using the Kong Gateway Operator
+  Install KIC using Helm
 ---
+
+{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_accordian=true %}

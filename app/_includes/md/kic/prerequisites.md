@@ -1,3 +1,4 @@
+{% unless include.disable_accordian %}
 <details markdown="1">
 <summary>
 <blockquote class="note">
@@ -6,6 +7,7 @@
 </summary>
 
 ## Prerequisites
+{% endunless %}
 
 {% unless include.disable_gateway_api %}
 ### Install the Gateway APIs
@@ -140,4 +142,7 @@ Kubernetes exposes the proxy through a Kubernetes service. Run the following com
   
     {"message":"no Route matched with those values"}
     ```
+
+{% unless include.disable_accordian %}
 </details>
+{% endunless %}
