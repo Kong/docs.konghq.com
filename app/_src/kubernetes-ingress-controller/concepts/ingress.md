@@ -5,13 +5,14 @@ purpose: |
   Explain the Ingress resource, highlight that Gateway API is now preferred. State that we'll continue to support Ingress for the foreseeable future. Provide an Ingress definition example + talk about IngressClass
 ---
 
-> **Note**: Kong supports Ingress for the foreseeable future. However, Kong recommends that you use Gateway API to configure networking in Kubernetes.
+{:.note}
+> **Note**: Kong will support the Ingress resource for the foreseeable future. However, Kong recommends that you use Gateway API resources to configure networking in Kubernetes.
 
 The {{site.kic_product_name}} uses ingress classes to filter Kubernetes Ingress objects and other resources before converting them into Kong configuration. This allows it to coexist with other ingress controllers and/or other deployments of the {{site.kic_product_name}} in the same cluster. A {{site.kic_product_name}} only processes configuration marked for its use.
 
 ## Configure the controller ingress class
 
-The `--ingress-class` flag (or `CONTROLLER_INGRESS_CLASS` environment variable) specifies the ingress class expected by the {{site.kic_product_name}}. By default, it expects the `kong` class.
+The `--ingress-class` flag (or `CONTROLLER_INGRESS_CLASS` environment variable) specifies the ingress class expected by the {{site.kic_product_name}}. If you do not set a value, {{ site.kic_product_name }} will default to `--ingress-class=kong`.
 
 ## Load resources by class
 
@@ -32,25 +33,21 @@ that matches the controller.
 ### Add class information to resources
 
 Most resources use a [`kubernetes.io/ingress-class` annotation][class-annotation]
-to indicate their class. There are several exceptions:
-
-- v1 Ingress resources have a [dedicated `ingressClassName` field][ingress-class-name].
-- Knative Services [use the class specified][knative-class] by the
-  `ingress.class` key of the Knative installation's `config-network` ConfigMap.
-  You can optionally [override this on a per-Service basis][knative-override]
-  by adding a `networking.knative.dev/ingress.class` annotation to the Service.
+to indicate their class. However, v1 Ingress resources have a [dedicated `ingressClassName` field][ingress-class-name] that should contain the `ingressClassName`.
 
 ## When to use a custom class
 
-Using the default `kong` class is fine for simpler deployments, where only one
-{{site.kic_product_name}} instance is running in a cluster. Typically, change the class when:
+Using the default `kong` class is fine for simple deployments, where only one
+{{site.kic_product_name}} instance is running in a cluster.
+
+You need to use a custom class when:
 
 - You install multiple Kong environments in one Kubernetes cluster to handle
   different types of ingress traffic. For example, when using separate Kong instances
   to handle traffic on internal and external load balancers, or deploying
   different types of non-production environments in a single test cluster.
 - You install multiple controller instances alongside a single Kong cluster to
-  separate configuration into different Kong workspaces using the
+  separate configuration into different Kong workspaces (DB-backed mode only) using the
   `--kong-workspace` flag or to restrict which Kubernetes namespaces any one
   controller instance has access to.
 
@@ -66,43 +63,22 @@ shown):
 apiVersion: configuration.konghq.com/v1
 kind: KongConsumer
 metadata:
-  name: dyadya-styopa
+  name: alice
   annotations:
     kubernetes.io/ingress.class: "kong"
-username: styopa
+username: alice
 credentials:
-- styopa-key
+- alice-key
 
 ---
 
 kind: Secret
 apiVersion: v1
+metadata:
+  name: alice-key
 stringData:
   key: bylkogdatomoryakom
   kongCredType: key-auth
-metadata:
-  name: styopa-key
-
----
-
-kind: Ingress
-apiVersion: networking.k8s.io/v1
-metadata:
-  name: ktonezhnaet
-  annotations:
-    konghq.com/plugins: "key-auth-example"
-spec:
-  ingressClassName: kong
-  rules:
-  - http:
-      paths:
-      - path: /vsemznakom
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: httpbin
-            port:
-              number: 80
 
 ---
 
@@ -111,6 +87,28 @@ kind: KongPlugin
 metadata:
   name: key-auth-example
 plugin: key-auth
+
+---
+
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: echo-ingress
+  annotations:
+    konghq.com/plugins: "key-auth-example"
+spec:
+  ingressClassName: kong
+  rules:
+  - http:
+      paths:
+      - path: /echo
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: echo
+            port:
+              number: 1027
+
 ```
 
 The KongConsumer and Ingress resources both have class annotations, as they are
