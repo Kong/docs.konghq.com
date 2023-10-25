@@ -5,13 +5,13 @@ purpose: |
   Provide an overview of KIC and what it's used for
 ---
 
-{{ site.kic_product_name }} allows you to run {{ site.base_gateway }} as a Kubernetes Ingress to handle inbound requests for your cluster.
+{{ site.kic_product_name }} allows you to run {{ site.base_gateway }} as a Kubernetes Ingress to handle inbound requests for a Kubernetes cluster.
 
-{{ site.kic_product_name }} is responsible for taking Kubernetes resources such as `Ingress` and `HTTPRoute` and converting them into a valid {{ site.base_gateway }} configuration, which unlocks [the full power](/gateway/latest/#features) of {{ site.base_gateway }}.
+{{ site.kic_product_name }} takes Kubernetes resources such as `Ingress` and `HTTPRoute` and converts them into a valid {{ site.base_gateway }} configuration. It enables you to use all the [features](/gateway/latest/#features) of {{ site.base_gateway }}.
 
 ## Architecture
 
-A Kubernetes ingress controller is an application that runs in a cluster that configures a load balancer based on Kubernetes resources (`Ingress`, `HTTPRoute`, `TCPRoute` and more). {{ site.kic_product_name }} configures {{ site.base_gateway }} as a software load balancer which runs in the cluster and is typically exposed as a `LoadBalancer` service.
+A Kubernetes ingress controller is an application that runs in a cluster and configures a load balancer based on Kubernetes resources (`Ingress`, `HTTPRoute`, `TCPRoute` and more). {{ site.kic_product_name }} configures {{ site.base_gateway }} as a software load balancer which runs in the cluster and is typically exposed as a `LoadBalancer` service.
 
 [Learn More &raquo;](/kubernetes-ingress-controller/{{ page.release }}/concepts/architecture/)
 
@@ -37,7 +37,7 @@ To do all of these in under 10 minutes, follow our [getting started guide](/kube
 
 ## Gateway API Support
 
-Kong are proud to be a driving force behind the Kubernetes Gateway API standard. With multiple contributors in maintainer and reviewer roles, we're all-in on Gateway API as the future of Kubernetes networking.
+Kong are proud to be a driving force behind the Kubernetes Gateway API standard. With multiple contributors in maintainer and reviewer roles, Kong is all-in on Gateway API as the future of Kubernetes networking.
 
 {{ site.kic_product_name }} was the first submitted conformance report, and is 100% compliant with the core conformance tests (in addition to many extended tests). Kong has implemented the Gateway API resources as first-class citizens, converting them directly in to {{ site.base_gateway }} configuration rather than using intermediate CRDs. This makes the Gateway API CRDs a native language for {{ site.kic_product_name }}.
 

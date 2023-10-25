@@ -19,7 +19,7 @@ A `Gateway` is a 1:1 mapping to the deployment of a hardware or software load ba
 
 When using {{ site.kic_product_name }} without the [{{ site.kgo_product_name }}](/gateway-operator/latest/) the `GatewayClass` has a `konghq.com/gatewayclass-unmanaged: 'true'` annotation to indicate that it is manually configured.
 
-To create a `GatewayClass` and `Gateway` for use with {{ site.kic_product_name }} run the following:
+To create a `GatewayClass` and `Gateway` with {{ site.kic_product_name }} run the following:
 
 ```yaml
 echo "
@@ -55,5 +55,3 @@ spec:
 * [`TCPRoute`](/kubernetes-ingress-controller/{{ page.release }}/guides/services/tcp/)
 * [`UDPRoute`](/kubernetes-ingress-controller/{{ page.release }}/guides/services/udp/)
 * [`GRPCRoute`](/kubernetes-ingress-controller/{{ page.release }}/guides/services/grpc/)
-
-For more information, select a route type above. 
