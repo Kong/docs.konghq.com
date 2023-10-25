@@ -21,12 +21,13 @@ with the Azure Key Vaults API and grant you access.
 > With `Instance Managed Identity Token`, setting the environment variables isn't necessary.
 
 
-Note that Azure AD tenant ID (tenant_id), client ID (client_id), and client secret (client_secret) need to be specified. You can configure these values with environment variables before starting {{site.base_gateway}}:
+Note that Azure AD tenant ID, client ID, vault_uri and client secret need to be specified. You can configure these values with environment variables before starting {{site.base_gateway}}:
 
 ```bash
-export KONG_VAULT_AZURE_TENANT_ID=tenant_id
-export KONG_VAULT_AZURE_CLIENT_ID=client_id
-export KONG_VAULT_AZURE_CLIENT_SECRET=client_secret
+export KONG_VAULT_AZURE_VAULT_URI=https://my-vault.vault.azure.com
+export AZURE_TENANT_ID=tenant_id
+export AZURE_CLIENT_ID=client_id
+export AZURE_CLIENT_SECRET=client_secret
 ```
 
 Please note that `client_secret` can only be configured via environments variables.
@@ -52,12 +53,13 @@ with the name `secret-name`, create a JSON object in Azure Key Vault that contai
 }
 ```
 
-Note that Azure AD tenant ID (tenant_id), client ID (client_id), and client secret (client_secret) need to be specified. You can configure these values with environment variables before starting {{site.base_gateway}}:
+Note that Azure AD tenant ID, client ID, vault_uri and client secret need to be specified. You can configure these values with environment variables before starting {{site.base_gateway}}:
 
 ```bash
-export KONG_VAULT_AZURE_TENANT_ID=tenant_id
-export KONG_VAULT_AZURE_CLIENT_ID=client_id
-export KONG_VAULT_AZURE_CLIENT_SECRET=client_secret
+export KONG_VAULT_AZURE_VAULT_URI=https://my-vault.vault.azure.com
+export AZURE_TENANT_ID=tenant_id
+export AZURE_CLIENT_ID=client_id
+export AZURE_CLIENT_SECRET=client_secret
 ```
 
 ```bash
@@ -157,6 +159,7 @@ Configuration options for a Azure Key Vault in {{site.base_gateway}}:
 
 Parameter | Field name | Description
 ----------|------------|------------
+`vaults.config.vault_uri` | **Vault URI** | The URI the vault is reachable from.. Visit your Azure Key Vault Dashboard and look for the Vault URI entry.
 `vaults.config.client_id` | **Client ID** | The client ID from your registered Application. Visit your Azure Dashboard and select **App Registrations** to check your client ID.
 `vaults.config.tenant_id ` | **Tenant ID** | The DirectoryId and TenantId both equate to the GUID representing the ActiveDirectory Tenant. Depending on context, either term may be used by Microsoft documentation and products, which can be confusing. In other words, the "Tenant ID" IS the "Directory ID"
 `vaults.config.location` | **Location** | Each Azure geography contains one or more regions and meets specific data residency and compliance requirements.
