@@ -45,7 +45,7 @@ This lets you drop the configuration from environment variables and query argume
 {vault://my-env-vault/my-secret-config-value}
 ```
 
-For more information, see the section on the [Vaults entity](/gateway/{{ page.version }}/admin-api/#vaults-object).
+For more information, see the section on the [Vaults entity](/gateway/{{ page.kong_version }}/admin-api/#vaults-object).
 
 ## Vaults CLI
 
