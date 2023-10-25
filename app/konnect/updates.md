@@ -13,7 +13,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## November 2023
 
 **Support for exporting configurations in YAML and JSON**
-: {{site.konnect_short_name}} users can now export Gateway Manager objects like services, routes, plugins to YAML or JSON and import them into APIOps tooling like DecK.
+: {{site.konnect_short_name}} users can now export Gateway Manager [objects](/deck/latest/reference/entities/) like services, routes, and plugins into YAML or JSON and manage them with APIOps tooling like decK.
 
 ## October 2023
 **Combine multiple metrics inside the same custom report**
