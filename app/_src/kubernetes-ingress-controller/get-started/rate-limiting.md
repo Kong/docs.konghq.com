@@ -9,14 +9,14 @@ purpose: |
 
 Rate limiting is used to control the rate of requests sent to an upstream service. It can be used to prevent DoS attacks, limit web scraping, and other forms of overuse. Without rate limiting, clients have unlimited access to your upstream services, which may negatively impact availability.
 
-{{site.base_gateway}} imposes rate limits on clients through the use of the [Rate Limiting plugin](/hub/kong-inc/rate-limiting/).  When rate limiting is enabled, clients are restricted in the number of requests that can be made in a configurable period of time.  The plugin supports identifying clients as consumers based on authentication or by the client IP address of the requests.
+{{site.base_gateway}} imposes rate limits on clients through the [Rate Limiting plugin](/hub/kong-inc/rate-limiting/).  When rate limiting is enabled, clients are restricted in the number of requests that can be made in a configurable period of time.  The plugin supports identifying clients as consumers based on authentication or by the client IP address of the requests.
 
 ## Create a rate-limiting KongPlugin
 
-Configuring plugins with {{ site.kic_product_name }} is different to how you'd do it with {{ kic.base_gateway }}. Rather than attaching a configuration directly to a service or route, you create a `KongPlugin` definition and then annotate your Kubernetes resource with the `konghq.com/plugins` annotation.
+Configuring plugins with {{ site.kic_product_name }} is different compared to how you'd do it with {{ kic.base_gateway }}. Rather than attaching a configuration directly to a service or route, you create a `KongPlugin` definition and then annotate your Kubernetes resource with the `konghq.com/plugins` annotation.
 
 {:.note}
-> This tutorial uses the [Rate Limiting](/hub/kong-inc/rate-limiting/) <span class="badge free"></span> plugin. Also available is the [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) <span class="badge enterprise"></span> plugin. The advanced version provides additional features like support for the sliding window algorithm and advanced Redis support for greater performance.
+> This tutorial uses the [Rate Limiting](/hub/kong-inc/rate-limiting/) <span class="badge free"></span> plugin. The [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) <span class="badge enterprise"></span> plugin is also available. The advanced version provides additional features such as support for the sliding window algorithm and advanced Redis support for greater performance.
 
 ```yaml
 echo "
@@ -35,14 +35,14 @@ plugin: rate-limiting
 
 ## Associate the plugin with a service or route
 
-Plugins can be linked to a service or a route. Adding a rate limit plugin to a service will share the limit across all routes contained within that service. 
+Plugins can be linked to a service or a route. Adding a rate limit plugin to a service shares the limit across all routes contained within that service. 
 
 
 ```bash
 kubectl annotate service echo konghq.com/plugins=rate-limit-5-min
 ```
 
-Alternatively you can add the rate limit plugin to a route. Adding a rate limit plugin to a route will set a rate limit per-route.
+Alternatively you can add the rate limit plugin to a route. Adding a rate limit plugin to a route sets a rate limit per-route.
 
 {% navtabs api %}
 {% navtab Gateway API %}
@@ -65,7 +65,7 @@ To test the rate-limiting plugin, rapidly send six requests to `$PROXY_IP/echo`:
 for i in `seq 6`; do curl -sv $PROXY_IP/echo 2>&1 | grep "< HTTP"; done
 ```
 
-You will see that the final request receives a `HTTP 429` error.
+The final request receives a `HTTP 429` error.
 
 ```text
 < HTTP/1.1 200 OK
@@ -76,7 +76,7 @@ You will see that the final request receives a `HTTP 429` error.
 < HTTP/1.1 429 Too Many Requests
 ```
 
-This shows that our rate limiting plugin is preventing the request from reaching the upstream service.
+This shows that the rate limiting plugin is preventing the request from reaching the upstream service.
 
 ## Further reading
 

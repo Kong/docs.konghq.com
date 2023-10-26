@@ -16,9 +16,9 @@ enabled on specific routes for all requests globally.
 
 ## Create a proxy-cache KongClusterPlugin
 
-In the last section you created a `KongPlugin` that was applied to a specific service or route. This time, we're going to use a `KongClusterPlugin` which is a global plugin that applies to all services.
+In the previous section you created a `KongPlugin` that was applied to a specific service or route. You can also use a `KongClusterPlugin` which is a global plugin that applies to all services.
 
-The following config caches all `HTTP 200` responses to `GET` and `HEAD` requests for 300 seconds:
+This configuration caches all `HTTP 200` responses to `GET` and `HEAD` requests for 300 seconds:
 
 ```yaml
 echo '
@@ -64,7 +64,7 @@ The `X-Cache-Status` header can return the following cache results:
 |Bypass| The request could not be satisfied from cache based on plugin configuration.                                                                         |
 
 
-The final thing to note is that when a `HTTP 429` request is returned by the rate-limit plugin, we do not see a `X-Cache-Status` header. This is because `rate-limiting` executes before `proxy-cache`. For more information, see [plugin priority](/gateway/latest/plugin-development/custom-logic/#kong-plugins) for more information.
+The final thing to note is that when a `HTTP 429` request is returned by the rate-limit plugin, you do not see a `X-Cache-Status` header. This is because `rate-limiting` executes before `proxy-cache`. For more information, see [plugin priority](/gateway/latest/plugin-development/custom-logic/#kong-plugins).
 
 ```text
 < HTTP/1.1 200 OK

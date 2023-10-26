@@ -15,7 +15,7 @@ The service object in Kong holds the information of the protocol to use to talk 
 
 Routes are configured using Gateway API or Ingress resources, such as `HTTPRoute`, `TCPRoute`, `GRPCRoute`, `Ingress` and more.
 
-In this tutorial, we're going to deploy an `echo` service which returns information about the Kubernetes cluster and route traffic to the service.
+In this tutorial, you will deploy an `echo` service which returns information about the Kubernetes cluster and route traffic to the service.
 
 ## Deploy a sample service
 
