@@ -18,9 +18,7 @@
     </a>
 
     <div class="separator mobile"></div>
-    <div class="search-input-wrapper">
-      <img src="/assets/images/landing-page/search.svg" alt="search">
-      <input id="getkong-algolia-search-input" type="text" role="search" placeholder="Search the docs...">
+      <div class="search-input-wrapper" id="getkong-algolia-search-input">
     </div>
 
     <div class="search-results-wrapper"></div>
@@ -167,27 +165,6 @@
     </div>
   </div>
 </header>
-
-<style>
-  @media (max-width: 768px) {
-    .algolia-docsearch-suggestion--subcategory-column {
-      display: none !important;
-    }
-
-    .algolia-autocomplete .ds-dropdown-menu {
-      max-width: calc(100% + 40px);
-      min-width: 300px;
-    }
-
-    .algolia-autocomplete.algolia-autocomplete-left .ds-dropdown-menu {
-      left: -40px !important;
-    }
-
-    .algolia-autocomplete.algolia-autocomplete-left .ds-dropdown-menu:before {
-      left: 88px;
-    }
-  }
-</style>
 
 {% if include.layout != "landing-page" %}
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>

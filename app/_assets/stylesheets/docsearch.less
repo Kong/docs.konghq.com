@@ -1,0 +1,45 @@
+#getkong-algolia-search {
+  float: right;
+
+  @media (max-width: 800px) {
+    float: initial;
+    display: inline-block;
+    margin-right: 5px;
+    .algolia-docsearch-suggestion--subcategory-column {
+      display: none !important;
+    }
+  }
+  @media (max-width: 476px) {
+    margin: 10px 0 0;
+    float: left;
+    clear: both;
+  }
+}
+
+.search-version-row {
+  display: flex;
+  justify-content: center;
+}
+
+.DocSearch {
+  @media (max-width: 1100px) {
+    display: none;
+  }
+}
+
+.DocSearch-Button {
+  background: rgba(248, 249, 252, 1);
+  color: #4c6d80;
+  width: 100%;
+  padding: 0 16px;
+
+  .DocSearch-Search-Icon {
+    max-width: 20px;
+    color: #4c6d80;
+  }
+}
+
+.DocSearch-Button-Placeholder {
+  font: 400 16px/22px Roboto;
+  color: @color-text-light;
+}

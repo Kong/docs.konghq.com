@@ -122,9 +122,36 @@
       })();
       _vwo_settings_timer = _vwo_code.init();
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+
+    <script type="text/javascript">
+      docsearch({
+        appId: '05Y6TLHNFZ',
+        apiKey: '80483bfe28d9fd036a11a6f6a06454f8',
+        indexName: 'konghq',
+        container: '#getkong-algolia-search-input',
+        disableUserPersonalization: true,
+        placeholder: 'Search the docs...',
+        // Override selected event to allow for local environment navigation
+        transformItems(items) {
+          return items.map((item) => {
+            var modifiedUrl = window.location.protocol + '//' + window.location.host + item.url.split('docs.konghq.com')[1];
+            return { ...item, url: modifiedUrl };
+          });
+        },
+        translations: {
+          button: {
+            buttonText: 'Search the docs..',
+            buttonAriaLabel: 'Search the docs...'
+          }
+        }
+      });
+    </script>
   </body>
 
   {% if page.pdk %}
   <!--- PDK git sha1: {{ site.data.pdk_info.sha1 }} -->
   {% endif %}
+
 </html>

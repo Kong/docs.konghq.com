@@ -267,12 +267,9 @@ header.navbar-v2 {
       display: flex;
       align-items: center;
       margin: 0 20px 0 30px;
-      padding: 0px 16px;
-      background: rgba(248, 249, 252, 1);
       border-radius: 100px;
       width: 208px;
       min-width: 98px;
-      color: #4c6d80;
 
       @media (min-width: 1600px) {
         width: 368px;
@@ -287,25 +284,6 @@ header.navbar-v2 {
 
       .algolia-autocomplete {
         flex-grow: 1;
-      }
-
-      img {
-        max-width: 26px;
-        cursor: pointer;
-      }
-
-      input {
-        width: 100%;
-        border: none;
-        box-shadow: none;
-        margin: 0;
-        font: 400 16px/22px Roboto;
-        color: #4c6d80;
-        background-color: transparent;
-
-        &::placeholder {
-          color: @color-text-light;
-        }
       }
     }
 
@@ -661,18 +639,6 @@ header.navbar-v2 {
       .small-screen-button {
         display: block;
       }
-
-      > .search-results-wrapper {
-        position: absolute;
-        top: 60px;
-        left: 0;
-        right: 0;
-        min-height: calc(100vh - 60px);
-        transform: translateY(-120%);
-        background: white center no-repeat;
-        z-index: -100;
-        transition: transform 0.25s;
-      }
     }
 
     &.menu-opened {
@@ -699,15 +665,6 @@ header.navbar-v2 {
           margin: 0 10px;
           padding: 2px 16px;
           background: rgba(248, 249, 252, 1);
-
-          input {
-            display: block;
-            width: 100%;
-          }
-        }
-
-        > .search-results-wrapper {
-          transform: translateY(0);
         }
       }
     }
