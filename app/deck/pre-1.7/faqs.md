@@ -17,7 +17,7 @@ decK covers all the problems that Terraform solves and goes beyond it:
 - decK can validate if a configuration file is valid or note
   (validate sub-command).
 - decK can quickly reset your Kong's configuration when needed.
-- decK works out of the box with Kong Enterprise features like
+- decK works out of the box with {{site.ee_product_name}} features like
   Workspaces and RBAC.
 
 ### Can I run multiple decK processes at the same time?
@@ -72,7 +72,7 @@ your use-case:
   correctly re-imported by decK. This happens because Kong's Admin API call
   to sync the configuration will re-hash the already hashed password.
 
-### I'm a Kong Enterprise customer, can I use decK?
+### I'm a {{site.ee_product_name}} customer, can I use decK?
 
 Of course, decK is designed to be compatible with open-source and enterprise
 versions of Kong.

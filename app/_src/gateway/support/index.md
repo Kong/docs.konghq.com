@@ -1,5 +1,5 @@
 ---
-title: Kong Enterprise Version Support
+title: Kong Gateway Enterprise Version Support
 breadcrumb: Distributions
 ---
 

@@ -20,10 +20,10 @@ Capitalize the following Kong-specific terms and component names:
 
 Name | Description
 -----|------------
-Kong Konnect <br><br> Konnect | Use Kong Konnect for the first mention, and Konnect after.
-Kong Gateway <br><br> Gateway | Kong's API gateway runtime, regardless of packaging or license. This term also refers to the enterprise version. <br><br> Use lowercase “gateway” when referring to the general concept of an API gateway. Use uppercase “Gateway” as a shorthand for “Kong Gateway”. When writing about "Kong Gateway", use "Kong Gateway" for the first mention and "Gateway" after.
-Kong Gateway (OSS) | Kong's API gateway runtime, open-source package. Use this name to _specifically_ refer to the open-source package.
-Kong Enterprise | Kong Gateway packaged with Enterprise features. Use when talking about subscription levels or package types.
+{{site.konnect_product_name}} <br><br> {{site.konnect_short_name}} | Use {{site.konnect_product_name}} for the first mention, and {{site.konnect_short_name}} after.
+{{site.base_gateway}} <br><br> Gateway | Kong's API gateway runtime, regardless of packaging or license. This term also refers to the enterprise version. <br><br> Use lowercase “gateway” when referring to the general concept of an API gateway. Use uppercase “Gateway” as a shorthand for “Kong Gateway”. When writing about "Kong Gateway", use "Kong Gateway" for the first mention and "Gateway" after.
+{{site.ce_product_name}} | Kong's API gateway runtime, open-source package. Use this name to _specifically_ refer to the open-source package.
+{{site.ee_product_name}} | Kong Gateway packaged with Enterprise features. Use when talking about subscription levels or package types.
 Kong Mesh <br><br> Mesh | Kong's service mesh. Use "Kong Mesh" for the first mention, "Mesh" after.
 Kuma | Kong's open-source service mesh. <br><br> ❌&nbsp; Do not use "Kong Kuma". This is an open-source project supported by the CNCF and maintained, not owned, by Kong.
 Insomnia | Kong's open-source API client.

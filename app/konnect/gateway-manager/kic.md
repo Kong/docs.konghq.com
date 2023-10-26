@@ -3,15 +3,15 @@ title: Kong Ingress Controller for Kubernetes Association
 content_type: explanation
 ---
 
-You can use native Kubernetes resources to configure your clusters in {{site.konnect_short_name}} by associating your Kong Ingress Controller (KIC) for Kubernetes deployment with {{site.konnect_short_name}}. 
+You can use native Kubernetes resources to configure your clusters in {{site.konnect_short_name}} by associating your {{site.kic_product_name}} (KIC) for Kubernetes deployment with {{site.konnect_short_name}}. 
 This setup is ideal for organizations who want to manage gateways in {{site.konnect_short_name}} through native Kubernetes resources without having to use a hybrid deployment model. 
 
 
 ## About KIC in {{site.konnect_short_name}}
 
-Kong Ingress Controller (KIC) for Kubernetes configures {{site.base_gateway}} using Ingress or [Gateway API](https://gateway-api.sigs.k8s.io/) resources created inside a Kubernetes cluster. 
+{{site.kic_product_name}} (KIC) for Kubernetes configures {{site.base_gateway}} using Ingress or [Gateway API](https://gateway-api.sigs.k8s.io/) resources created inside a Kubernetes cluster. 
 
-Beyond proxying the traffic coming into a Kubernetes cluster, KIC also lets you configure plugins, load balancing, health checking, and leverage all that {{site.base_gateway}} offers in a standalone installation. For more information, see [Plugin compatibility](/konnect/compatibility/#plugin-compatibility). For more information about KIC, see [Kong Ingress Controller Design](/kubernetes-ingress-controller/latest/concepts/design/). 
+Beyond proxying the traffic coming into a Kubernetes cluster, KIC also lets you configure plugins, load balancing, health checking, and leverage all that {{site.base_gateway}} offers in a standalone installation. For more information, see [Plugin compatibility](/konnect/compatibility/#plugin-compatibility). For more information about KIC, see [{{site.kic_product_name}} Design](/kubernetes-ingress-controller/latest/concepts/design/). 
 
 By associating your KIC deployment with {{site.konnect_short_name}}, this read-only association allows you to view your {{site.base_gateway}} entities, such as routes and applications, from your Kubernetes resources in {{site.konnect_short_name}}.  
 
@@ -25,10 +25,10 @@ Here are a few benefits of running KIC in {{site.konnect_short_name}} over a sel
 
 To associate your KIC data plane nodes with {{site.konnect_short_name}}, use the setup wizard to add your KIC deployment to a KIC control plane.  
 
-In {{site.konnect_short_name}}, navigate to {% konnect_icon runtimes %} **[Gateway Manager](https://cloud.konghq.com/gateway-manager)**, then click **New Control Plane** > **Kong Ingress Controller**.
+In {{site.konnect_short_name}}, navigate to {% konnect_icon runtimes %} **[Gateway Manager](https://cloud.konghq.com/gateway-manager)**, then click **New Control Plane** > **{{site.kic_product_name}}**.
 
 {:.note}
-> **Note**: KIC OSS and {{site.base_gateway}} Free users can connect to {{site.konnect_short_name}}’s Free tier, while {{site.base_gateway}} Enterprise users can connect to {{site.konnect_short_name}}’s Enterprise tier. To migrate from {{site.ce_product_name}} to {{site.base_gateway}} Enterprise, see [Using Kong Enterprise](/kubernetes-ingress-controller/latest/guides/choose-gateway-image/) in the Kong Ingress Controller documentation.
+> **Note**: KIC OSS and {{site.base_gateway}} Free users can connect to {{site.konnect_short_name}}’s Free tier, while {{site.ee_product_name}} users can connect to {{site.konnect_short_name}}’s Enterprise tier. To migrate from {{site.ce_product_name}} to {{site.ee_product_name}}, see [Using {{site.ee_product_name}}](/kubernetes-ingress-controller/latest/guides/choose-gateway-image/) in the {{site.kic_product_name}} documentation.
 
 ### Prerequisites
 
@@ -66,9 +66,9 @@ The following table describes which {{site.base_gateway}} versions are compatibl
 
 ## More information
 
-* [Kong Ingress Controller Deployment](/kubernetes-ingress-controller/latest/concepts/deployment/):
+* [{{site.kic_product_name}} Deployment](/kubernetes-ingress-controller/latest/concepts/deployment/):
     Learn about the various deployment methods for KIC. 
-* [Getting started with the Kong Ingress Controller](/kubernetes-ingress-controller/latest/guides/getting-started/):
+* [Getting started with the {{site.kic_product_name}}](/kubernetes-ingress-controller/latest/guides/getting-started/):
     This guide walks through setting up an HTTP(S) route and plugin using {{site.base_gateway}} and KIC.
 * [Analyze Services and Routes](/konnect/analytics/)
     Learn how to use monitoring tools in Konnect to analyze KIC entities.

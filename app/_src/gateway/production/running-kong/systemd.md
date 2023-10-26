@@ -85,8 +85,8 @@ Note that the official Kong systemd service doesn't set `user` or `group` as `ro
 
 ```
 [Unit]
-Description=Kong Enterprise Edition
-Documentation=https://docs.konghq.com/enterprise/
+Description=Kong Gateway
+Documentation=https://docs.konghq.com/gateway/
 After=syslog.target network.target remote-fs.target nss-lookup.target
 [Service]
 User=root
