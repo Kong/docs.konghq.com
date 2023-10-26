@@ -1,0 +1,81 @@
+openapi: 3.0.0
+info:
+  title: Kong Status API
+  description: API for monitoring Kong node.
+  version: 3.3.0
+servers:
+  - description: Default Admin API URL
+    url: '{protocol}://{hostname}:{port}{path}'
+    variables:
+      hostname:
+        default: localhost
+        description: Hostname for Kong's Admin API
+      path:
+        default: /
+        description: Base path for Kong's Admin API
+      port:
+        default: '8001'
+        description: Port for Kong's Admin API
+      protocol:
+        default: http
+        description: Protocol for requests to Kong's Admin API
+        enum:
+          - http
+          - https
+paths:
+  /metrics:
+    get:
+      summary: Retrieve Kong metrics
+      description: Returns metrics in Prometheus Exposition format.
+      responses:
+        '200':
+          description: Metrics data
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: |
+                  kong_http_status_total{code="200",service="example"} 42
+  /status:
+    get:
+      summary: Retrieve Kong node status
+      description: Returns the status of the Kong node.
+      responses:
+        '200':
+          description: >-
+            Kong node status and details about shared memory zone usage, timer
+            usage and connection count
+          content:
+            application/json:
+              schema:
+                type: object
+  /status/ready:
+    get:
+      summary: Endpoint to health-check Kong node.
+      description: >-
+        This endpoint should be used to health-check Kong nodes. This can be
+        health checks from orchestration frameworks like k8s or by
+        load-balancers fronting Kong nodes that proxy traffic. This endpoint
+        returns 200 only after the Kong node has configured itself and is ready
+        to start proxying traffic.
+      responses:
+        '200':
+          description: Kong is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: ready
+        '503':
+          description: Kong is unhealthy and the response body contains the reason for it.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: no configuration available
