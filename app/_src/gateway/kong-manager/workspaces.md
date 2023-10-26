@@ -76,6 +76,7 @@ navigate to the new Workspace's dashboard.
 {% if_version lte:3.4.x %}
 ## Delete a workspace
 
+
 {:.important}
 > **Caution**: The following steps will also delete **all entities in the workspace**. Make sure that this is something you want to do before proceeding.
 
