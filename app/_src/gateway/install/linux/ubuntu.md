@@ -13,7 +13,7 @@ Kong is licensed under an
 > 
 > &nbsp;
 > 
-> We recommend using [{{site.konnect_short_name}}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=install-ubuntu) as your control plane to allow your data plane to run at maximum performance and decrease your deployment complexity
+> We recommend using [{{site.konnect_short_name}}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=install-ubuntu) as your control plane to allow your data plane to run at maximum performance and decrease your deployment complexity.
 
 ## Prerequisites
 
@@ -27,48 +27,11 @@ Kong is licensed under an
 * {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
 * In July of 2023 Kong announced that package hosting was shifting from {{ site.links.download }} to [{{ site.links.cloudsmith }}]({{ site.links.cloudsmith }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
 
-The quickest way to get started with {{ site.base_gateway }} is using the install script:
+{% include /md/gateway/install-linux-os.md kong_version=page.kong_version versions_ce=page.versions.ce versions_ee=page.versions.ee %}
 
-{% navtabs_ee codeblock %}
-{% navtab Kong Gateway %}
-```bash
-bash <(curl -sS https://get.konghq.com/install) -v {{page.versions.ee}}
-```
-{% endnavtab %}
-{% navtab Kong Gateway (OSS) %}
-```bash
-bash <(curl -sS https://get.konghq.com/install) -p kong -v {{page.versions.ce}}
-```
-{% endnavtab %}
-{% endnavtabs_ee %}
+## Advanced installation
 
-This script detects your operating system and automatically installs the correct package. It will also install a Postgres database and bootstrap {{ site.base_gateway }} for you.
-
-If you'd prefer to install just the package, please see the [Package Install](#package-install) section.
-
-### Verify install
-
-Once the script completes, run the following in the same terminal window:
-
-```bash
-curl -i http://localhost:8001
-```
-
-You should receive a `200` status code.
-
-### Next steps
-
-Once {{ site.base_gateway }} is running, you may want to do the following:
-
-* Optional: [Add your Enterprise license](/gateway/{{ page.kong_version }}/licenses/deploy).
-* [Enable Kong Manager](/gateway/{{ page.kong_version }}/kong-manager/enable/)
-* [Create services and routes](/gateway/{{ page.kong_version }}/get-started/services-and-routes/).
-{% if_version lte:3.4.x %}
-* [Enable Dev Portal](/gateway/{{ page.kong_version }}/kong-enterprise/dev-portal/enable/)
-{% endif_version %}
-## Advanced Installation
-
-### Package Install
+### Package install
 
 You can install {{site.base_gateway}} by downloading an installation package or using the APT repository.
 
@@ -200,3 +163,19 @@ sudo apt-mark hold kong
 
 {% endnavtab %}
 {% endnavtabs %}
+
+### Next steps
+
+Before starting {{site.base_gateway}}, [set up a data store](/gateway/{{page.kong_version}}/install/post-install/set-up-data-store/) 
+and update the `kong.conf.default` configuration property file with a reference to your data store.
+
+Depending on your desired environment, also see the following guides:
+* Optional: [Add your Enterprise license](/gateway/{{ include.kong_version }}/licenses/deploy)
+* Enable Kong Manager:
+  * [Kong Manager Enterprise](/gateway/{{ include.kong_version }}/kong-manager/enable/)
+  * [Kong Manager OSS](/gateway/{{ include.kong_version }}/kong-manager-oss/)
+* [Enable Dev Portal](/gateway/{{ include.kong_version }}/kong-enterprise/dev-portal/enable/)
+
+You can also check out {{site.base_gateway}}'s series of
+[Getting Started](/gateway/{{include.kong_version}}/get-started/) guides to learn how 
+get the most out of {{site.base_gateway}}.

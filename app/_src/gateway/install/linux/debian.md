@@ -7,6 +7,14 @@ The {{site.base_gateway}} software is governed by the
 {{site.ce_product_name}} is licensed under an
 [Apache 2.0 license](https://github.com/Kong/kong/blob/master/LICENSE).
 
+{:.note}
+> This page will install {{ site.base_gateway }} in traditional mode, where it acts as both the control plane and data plane. Running in this mode may have a small performance impact.
+> &nbsp;
+> 
+> &nbsp;
+> 
+> We recommend using [{{site.konnect_short_name}}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=install-ubuntu) as your control plane to allow your data plane to run at maximum performance and decrease your deployment complexity.
+
 ## Prerequisites
 
 * A [supported system](/gateway/{{page.kong_version}}/support-policy/#supported-versions) with root or [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user/) access.
@@ -16,12 +24,23 @@ The {{site.base_gateway}} software is governed by the
   * [`apt-transport-https`](https://packages.debian.org/apt-transport-https) (Only if installing the APT repository)
 * (Enterprise only) A `license.json` file from Kong.
 
-## Download and install
-
-You can install {{site.base_gateway}} by downloading an installation package or using the APT repository.
+## Installation
 
 {:.note}
 > **Note:** In July of 2023 Kong announced that package hosting was shifting from {{ site.links.download }} to [{{ site.links.cloudsmith }}]({{ site.links.cloudsmith }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
+
+{:.note}
+> **Notes:**
+* {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
+* In July of 2023 Kong announced that package hosting was shifting from {{ site.links.download }} to [{{ site.links.cloudsmith }}]({{ site.links.cloudsmith }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
+
+{% include /md/gateway/install-linux-os.md kong_version=page.kong_version versions_ce=page.versions.ce versions_ee=page.versions.ee %}
+
+## Advanced installation
+
+### Package install
+
+You can install {{site.base_gateway}} by downloading an installation package or using the APT repository.
 
 {% navtabs %}
 {% navtab Package %}
@@ -108,4 +127,17 @@ sudo apt install -y kong={{page.versions.ce}}
 {% endnavtab %}
 {% endnavtabs %}
 
-{% include_cached /md/gateway/setup.md kong_version=page.kong_version %}
+## Next steps
+
+Before starting {{site.base_gateway}}, [set up a data store](/gateway/{{page.kong_version}}/install/post-install/set-up-data-store/) 
+and update the `kong.conf.default` configuration property file with a reference to your data store.
+
+Depending on your desired environment, also see the following guides:
+* Optional: [Add your Enterprise license](/gateway/{{ include.kong_version }}/licenses/deploy)
+* Enable Kong Manager:
+  * [Kong Manager Enterprise](/gateway/{{ include.kong_version }}/kong-manager/enable/)
+  * [Kong Manager OSS](/gateway/{{ include.kong_version }}/kong-manager-oss/)
+
+You can also check out {{site.base_gateway}}'s series of
+[Getting Started](/gateway/{{include.kong_version}}/get-started/) guides to learn how 
+get the most out of {{site.base_gateway}}.
