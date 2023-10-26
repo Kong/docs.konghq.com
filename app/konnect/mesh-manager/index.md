@@ -27,6 +27,8 @@ Creating a fully-functioning {{site.mesh_product_name}} deployment in {{site.kon
 
 1. Create the global control plane in {{site.konnect_short_name}} by going to [Mesh Manager](https://cloud.konghq.com/mesh-manager).
 1. Add and configure a zone for your control plane from the mesh global control plane dashboard.
+    {:.note}
+    > **Note:** You can't create multiple zones in the same cluster.
 1. Configure `kumactl` to connect to your global control plane following the wizard in the UI.
 1. Add services to your mesh.
     * If you're using Kubernetes, you must add the [kuma.io/sidecar-injection](/mesh/latest/reference/kubernetes-annotations/#kumaiosidecar-injection) label to the namespace or deployments you want to bring into the mesh. This will automatically enable {{site.product_mesh_name}} and register the service pods in the mesh.
@@ -65,7 +67,7 @@ After your service mesh is deployed in {{site.konnect_short_name}}, Mesh Manager
 * Ubuntu
 * macOS
 
-After you create a zone in Mesh Manager, you can change the zone type by ????
+The installer automatically chooses the installation option based on your current platform.
 
 ## Mesh Manager RBAC
 
