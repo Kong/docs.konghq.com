@@ -5,40 +5,42 @@ purpose: |
   How to pass the client IP through Gateway to the upstream service
 ---
 
-Kong is deployed behind a Load Balancer using a Kubernetes Service of type `LoadBalancer`. This can result
-in loss of actual Client IP address and Kong observing the IP address of the Load Balancer as the client IP address. This guide lays out different methods of solving this problem.
+Kong is deployed using a Kubernetes Service of type `LoadBalancer`. This can result
+in the loss of the actual Client IP address, and lead to Kong observing the IP address of the Load Balancer as the client IP address. This guide lays out different methods of solving this problem.
 
-Preserving the Client IP address in cloud behind Load Balancers requires
-configuration that is be specific to your use-case, cloud provider
+Preserving the Client IP address in the cloud behind Load Balancers requires
+configuration that is specific to your use-case, cloud provider
 and other architecture details.
 [Using Source IP](https://kubernetes.io/docs/tutorials/services/source-ip/)
 provides details on how networking works inside Kubernetes and explains
 in detail the various methods work. It is recommended that you give this a read.
 
 To preserve Client IP address you can use one of these methods:
+
 * ExternalTrafficPolicy
 * Proxy Protocol
 * HTTP headers
 
 ## ExternalTrafficPolicy: Local
 
-As explained in
+As explained in the
 [Kubernetes docs](https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip),
 setting `service.spec.externalTrafficPolicy` to `Local` preserves the Client
 IP address. You don't need to change any configuration in Kong if you
 are using this method to preserve Client IP address.
 
->**Note**: This method is not supported by all the public Cloud providers.
+{:.important}
+> This method is not supported by all Cloud providers.
 
 ## Proxy Protocol
 
 If you have an L4 Load Balancer that supports Proxy Protocol, and you're
 terminating TCP connections at the Load Balancer before passing traffic
-onward to Kong, then you can configure Kong to pick up the Client IP
+onward to Kong, then you can configure Kong to set the Client IP
 address through this protocol.
 
 Once you have configured the Load Balancer to use Proxy Protocol, you
-need to set the following environment variables in Kong for Kong to
+need to set the following environment variables in Kong to
 receive the Client IP from the Proxy Protocol header.
 
 - [`KONG_TRUSTED_IPS`](/gateway/latest/reference/configuration/#trusted_ips)
@@ -56,20 +58,16 @@ KONG_REAL_IP_HEADER=proxy_protocol
 ## HTTP headers
 
 If you are using an L7 Load Balancer where HTTP requests are being terminated
-at the Load Balancer, then you need to use `x-forwarded-for` or `x-real-ip`
+at the Load Balancer, you need to use the `x-forwarded-for` or `x-real-ip`
 header to preserve details of the connection between the Client and Load Balancer.
 
 You should configure the Load Balancer to inject these headers, and then
-you need to set the following environment variables in Kong for Kong to pick up
+you need to set the following environment variables in Kong to pick up
 the Client IP address from HTTP headers:
 
 - [`KONG_TRUSTED_IPS`](/gateway/latest/reference/configuration/#trusted_ips)
 - [`KONG_REAL_IP_HEADER`](/gateway/latest/reference/configuration/#real_ip_header)
 - Optional [`KONG_REAL_IP_RECURSIVE`](/gateway/latest/reference/configuration/#real_ip_recursive)
-
-> **Note**: If you are using an L7 Load Balancer with Kong,
-you cannot use the `certificates` feature in Kong as the TLS session is
-already established between the Client and Load Balancer.
 
 ## Cloud-provider specific details
 
