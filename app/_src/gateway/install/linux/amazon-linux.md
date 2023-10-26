@@ -8,11 +8,8 @@ Kong is licensed under an
 [Apache 2.0 license](https://github.com/Kong/kong/blob/master/LICENSE).
 
 {:.note}
-> This page will install {{ site.base_gateway }} in traditional mode, where it acts as both the control plane and data plane. Running in this mode may have a small performance impact.
-> &nbsp;
-> 
-> &nbsp;
-> 
+> This page guides you through installing {{ site.base_gateway }} in traditional mode, where it acts as both the control plane and data plane. Running in this mode may have a small performance impact.
+> <br><br>
 > We recommend using [{{site.konnect_short_name}}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=install-ubuntu) as your control plane to allow your data plane to run at maximum performance and decrease your deployment complexity.
 
 ## Prerequisites
@@ -22,10 +19,17 @@ Kong is licensed under an
 
 ## Installation
 
+{% if_version gte:3.2.x %}
 {:.note}
 > **Notes:**
 * {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
-* In July of 2023 Kong announced that package hosting was shifting from {{ site.links.download }} to [{{ site.links.cloudsmith }}]({{ site.links.cloudsmith }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
+* In July of 2023, Kong announced that package hosting was shifting from {{ site.links.download }} to [{{ site.links.cloudsmith }}]({{ site.links.cloudsmith }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
+{% endif_version %}
+
+{% if_version lte:3.2.x %}
+{:.note}
+> **Note:** In July of 2023, Kong announced that package hosting was shifting from {{ site.links.download }} to [{{ site.links.cloudsmith }}]({{ site.links.cloudsmith }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
+{% endif_version %}
 
 {% include /md/gateway/install-linux-os.md kong_version=page.kong_version versions_ce=page.versions.ce versions_ee=page.versions.ee %}
 
@@ -35,10 +39,10 @@ Kong is licensed under an
 
 You can install {{site.base_gateway}} by downloading an installation package or using the yum repository.
 
-{:.note}
-> **Notes:**
-* {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
-* In July of 2023 Kong announced that package hosting was shifting from {{ site.links.download }} to [{{ site.links.cloudsmith }}]({{ site.links.cloudsmith }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
+{% if_version gte:3.2.x %}
+{:.note .no-icon}
+> {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
+{% endif_version %}
 
 {% navtabs %}
 {% navtab Package %}
@@ -123,11 +127,32 @@ and update the `kong.conf.default` configuration property file with a reference 
 
 Depending on your desired environment, also see the following guides:
 * Optional: [Add your Enterprise license](/gateway/{{ include.kong_version }}/licenses/deploy)
+{%- if_version gte:3.4.x -%}
 * Enable Kong Manager:
   * [Kong Manager Enterprise](/gateway/{{ include.kong_version }}/kong-manager/enable/)
   * [Kong Manager OSS](/gateway/{{ include.kong_version }}/kong-manager-oss/)
-* [Enable Dev Portal](/gateway/{{ include.kong_version }}/kong-enterprise/dev-portal/enable/)
+{%- endif_version -%}
+{%- if_version lte:3.3.x -%}
+* [Enable Kong Manager](/gateway/{{ include.kong_version }}/kong-manager/enable/)
+{% endif_version %}
 
 You can also check out {{site.base_gateway}}'s series of
 [Getting Started](/gateway/{{include.kong_version}}/get-started/) guides to learn how 
 get the most out of {{site.base_gateway}}.
+
+## Uninstall package
+
+{% navtabs_ee %}
+{% navtab Kong Gateway %}
+To uninstall the package, run: 
+```
+sudo yum remove kong-enterprise-edition
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+To uninstall the package, run: 
+```
+sudo yum remove kong
+```
+{% endnavtab %}
+{% endnavtabs_ee %}

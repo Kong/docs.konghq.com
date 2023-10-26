@@ -8,11 +8,8 @@ Kong is licensed under an
 [Apache 2.0 license](https://github.com/Kong/kong/blob/master/LICENSE).
 
 {:.note}
-> This page will install {{ site.base_gateway }} in traditional mode, where it acts as both the control plane and data plane. Running in this mode may have a small performance impact.
-> &nbsp;
-> 
-> &nbsp;
-> 
+> This page guides you through installing {{ site.base_gateway }} in traditional mode, where it acts as both the control plane and data plane. Running in this mode may have a small performance impact.
+> <br><br>
 > We recommend using [{{site.konnect_short_name}}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=install-ubuntu) as your control plane to allow your data plane to run at maximum performance and decrease your deployment complexity.
 
 ## Prerequisites
@@ -132,8 +129,32 @@ and update the `kong.conf.default` configuration property file with a reference 
 
 Depending on your desired environment, also see the following guides:
 * [Apply Enterprise license](/gateway/{{page.kong_version}}/install/post-install/apply-enterprise-license/) 
-* [Enable Kong Manager](/gateway/{{page.kong_version}}/install/post-install/enable-kong-manager/) 
+{%- if_version gte:3.4.x -%}
+* Enable Kong Manager:
+  * [Kong Manager Enterprise](/gateway/{{ include.kong_version }}/kong-manager/enable/)
+  * [Kong Manager OSS](/gateway/{{ include.kong_version }}/kong-manager-oss/)
+{%- endif_version -%}
+{%- if_version lte:3.3.x -%}
+* [Enable Kong Manager](/gateway/{{ include.kong_version }}/kong-manager/enable/)
+{% endif_version %}
 
 You can also check out {{site.base_gateway}}'s series of
 [Getting Started](/gateway/{{include.kong_version}}/get-started/) guides to learn how 
 get the most out of {{site.base_gateway}}.
+
+## Uninstall package
+
+{% navtabs_ee %}
+{% navtab Kong Gateway %}
+To uninstall the package, run: 
+```
+sudo yum remove kong-enterprise-edition
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+To uninstall the package, run: 
+```
+sudo yum remove kong
+```
+{% endnavtab %}
+{% endnavtabs_ee %}

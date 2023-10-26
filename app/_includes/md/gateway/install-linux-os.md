@@ -33,8 +33,13 @@ You should receive a `200` status code.
 Once {{ site.base_gateway }} is running, you may want to do the following:
 
 * Optional: [Add your Enterprise license](/gateway/{{ include.kong_version }}/licenses/deploy)
+{%- if_version gte:3.4.x -%}
 * Enable Kong Manager:
   * [Kong Manager Enterprise](/gateway/{{ include.kong_version }}/kong-manager/enable/)
   * [Kong Manager OSS](/gateway/{{ include.kong_version }}/kong-manager-oss/)
+{%- endif_version -%}{%- if_version lte:3.3.x -%}
+* [Enable Kong Manager](/gateway/{{ include.kong_version }}/kong-manager/enable/)
+{%- endif_version -%}{%- if_version lte:3.4.x -%}
 * [Enable Dev Portal](/gateway/{{ include.kong_version }}/kong-enterprise/dev-portal/enable/)
+{%- endif_version -%}
 * [Create services and routes](/gateway/{{ include.kong_version }}/get-started/services-and-routes/)
