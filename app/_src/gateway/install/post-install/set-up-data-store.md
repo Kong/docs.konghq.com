@@ -84,7 +84,7 @@ authentication method to `md5` by modifying the PostgreSQL configuration file.
 Instead of using a database, you can also store the configuration properties for all of {{site.base_gateway}}'s 
 configured entities in a YAML declarative configuration file (also referred to as DB-less mode).
 
-Ceate a `kong.yml` file and update the `kong.conf` configuration file to include the file path to the `kong.yml` file.
+Create a `kong.yml` file and update the `kong.conf` configuration file to include the file path to the `kong.yml` file.
 
 1. Use the following command to generate a `kong.yml` declarative configuration file in your current folder:
 
