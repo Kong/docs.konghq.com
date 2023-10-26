@@ -46,10 +46,6 @@ non-default configuration for
 
 ## {{site.ee_product_name}}
 
-There are [two distributions of {{site.ee_product_name}}](https://github.com/Kong/kubernetes-ingress-controller/tree/master/docs/deployment#overview),
-`kong-enterprise-k8s` (used with Kong for Kubernetes Enterprise) and
-`kong-enterprise-edition` (used with Kong for Kubernetes with {{site.ee_product_name}}).
-
 {% include md/enterprise/k8s-image-note.md %}
 
 |  Plugin                          |  Kong for Kubernetes with {{site.ee_product_name}}  |  Kong for Kubernetes Enterprise           |
