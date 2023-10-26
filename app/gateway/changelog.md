@@ -9,6 +9,13 @@ Changelog for supported Kong Gateway versions.
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.5.0.0
+**Release Date** TBD
+
+### Kong Manager
+
+* You can now force delete a workspace in the Kong Manager UI. Previously, a workspace couldn't be deleted until all the entities associated with it were manually deleted. With forced deletion, you can automatically remove any entities associated with a workspace while you are deleting it. For more information, see [Delete a workspace](/gateway/latest/kong-manager/workspaces/#delete-a-workspace).
+
 ## 3.4.1.1
 **Release Date** 2023/10/12
 
