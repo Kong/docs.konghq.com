@@ -26,12 +26,12 @@ kubectl patch --type=json gateway kong -p='[{
 		"port":443,
 		"protocol":"HTTPS",
 		"tls":{
-				"certificateRefs":[{
-				    "group":"",
-					"kind":"Secret",
-					"name":"{{include.hostname}}"
-				}]
-		}
+                    "certificateRefs":[{
+                        "group":"",
+                        "kind":"Secret",
+                        "name":"{{include.hostname}}"
+                    }]
+                }
     }
 }]'
 

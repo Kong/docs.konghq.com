@@ -112,9 +112,9 @@ httproute.gateway.networking.k8s.io/echo annotated
 {% endcapture %}
 {{ the_code | indent }}
 
-> **Note**: The GatewayAPI _does not_ use an [HTTPRequestRedirectFilter](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1.HTTPRequestRedirectFilter)
+> **Note**: The GatewayAPI _does not_ use a [HTTPRequestRedirectFilter](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1.HTTPRequestRedirectFilter)
 to configure the redirect. Using the filter to redirect HTTP to HTTPS requires
-a separate HTTPRoute to handle redirected HTTPS traffic, which does not mesh
+a separate HTTPRoute to handle redirected HTTPS traffic, which does not align
 well with Kong's single route redirect model.
 
 Work to support the standard filter-based configuration is ongoing. Until then,
@@ -126,7 +126,7 @@ With the redirect configuration in place, HTTP requests now receive a
 redirect rather than being proxied upstream:
 1. Send a HTTP request.
     ```bash
-    curl -ksvo /dev/null http://kong.example/echo --resolve kong.example:80:$PROXY_IP 2>&1 | grep -i http
+    curl -ksvo /dev/null -H 'Host: kong.example' http://$PROXY_IP/echo 2>&1 | grep -i http
     ```
 
     The results should look like this:
@@ -141,7 +141,7 @@ redirect rather than being proxied upstream:
 to the HTTPS URL and receive a proxied response from upstream.
 
     ```bash
-    curl -Lksv http://kong.example/echo --resolve kong.example:80:$PROXY_IP --resolve kong.example:443:$PROXY_IP 2>&1
+    curl -Lksv -H 'Host: kong.example' http://$PROXY_IP/echo 2>&1
     ```
 
     The results should look like this (some output removed for brevity):
