@@ -173,6 +173,8 @@ items:
         url: /reference/troubleshooting
       - text: Annotations
         url: /reference/annotations
+      - text: CLI Arguments
+        url: /reference/cli-arguments
       - text: Feature Gates
         url: /reference/feature-gates
       - text: FAQ
