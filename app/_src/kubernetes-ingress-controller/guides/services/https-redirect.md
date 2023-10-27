@@ -13,18 +13,16 @@ microservices is encrypted.
 
 {% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
 
-{% include_cached /md/kic/class.md kong_version=page.kong_version %}
-
 {% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version %}
 
 ## Add TLS configuration
 
 {% include_cached /md/kic/add-tls-conf.md hostname='kong.example' kong_version=page.kong_version %}
 
-## Configure an HTTPS redirect
+## Configure a HTTPS redirect
 
 Kong handles HTTPS redirects by automatically issuing redirects to requests
-whose characteristics match an HTTPS-only route except for the protocol. For
+whose characteristics match a HTTPS-only route except for the protocol. For
 example, with a Kong route such as this:
 
 ```json
@@ -112,9 +110,9 @@ ingress.networking.k8s.io/echo annotated
 {% endcapture %}
 {{ the_code | indent }}
 
-> **Note**: The GatewayAPI _does not_ use an [HTTPRequestRedirectFilter](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1.HTTPRequestRedirectFilter)
+> **Note**: The GatewayAPI _does not_ use a [HTTPRequestRedirectFilter](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1.HTTPRequestRedirectFilter)
 to configure the redirect. Using the filter to redirect HTTP to HTTPS requires
-a separate HTTPRoute to handle redirected HTTPS traffic, which does not mesh
+a separate HTTPRoute to handle redirected HTTPS traffic, which does not align
 well with Kong's single route redirect model.
 
 Work to support the standard filter-based configuration is ongoing. Until then,
