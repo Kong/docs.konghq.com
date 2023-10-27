@@ -2,7 +2,7 @@
 
 **{{site.base_gateway}} 3.5.x**
 * The AWS-Lambda plugin has been refactored by using lua-resty-aws as an underlying AWS library.
-The refactor simplifies the AWS-Lambda plugin code base and adding support for multiple IAM
+The refactor simplifies the AWS-Lambda plugin code base and adds support for multiple IAM
 authenticating scenarios. [#11350](https://github.com/Kong/kong/pull/11350)
 
 **{{site.base_gateway}} 3.3.x**
