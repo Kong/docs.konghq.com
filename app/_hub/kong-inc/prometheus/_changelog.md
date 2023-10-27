@@ -42,4 +42,4 @@
 * Added the `per_consumer` configuration parameter to export per-consumer status.
 
 **{{site.base_gateway}} 2.3.x**
-* The plugin can now export Kong Enterprise licensing information.
+* The plugin can now export {{site.ee_product_name}} licensing information.

@@ -4,6 +4,10 @@ on:
   schedule:
   - cron: '0 0 * * 0'
 
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}
+
 env:
   VITE_PORTAL_API_URL: ${{ vars.VITE_PORTAL_API_URL }}
 

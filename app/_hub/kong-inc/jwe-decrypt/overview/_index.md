@@ -6,7 +6,7 @@ The Kong JWE Decrypt plugin makes it possible to decrypt an inbound token (JWE) 
 
 ## Manage keys and Key Sets
 
-For more information, see [Key and Key Set Management in Kong Gateway](/gateway/latest/reference/key-management/).
+For more information, see [Key and Key Set Management in {{site.base_gateway}}](/gateway/latest/reference/key-management/).
 
 
 ## Supported Content Encryption Algorithms

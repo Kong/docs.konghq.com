@@ -80,7 +80,7 @@ Try to access the service again:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i http://<admin-hostname>:8000/mock
+curl -i http://localhost:8000/mock
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
@@ -150,7 +150,7 @@ add a plugin section and enable the `key-auth` plugin:
     deck sync
     ```
 
-Now, if you try to access the route at `http://<admin-hostname>:8000/mock`
+Now, if you try to access the route at `http://localhost:8000/mock`
 without providing an API key, the request will fail, and you’ll see the message
 `"No API key found in request".`
 
@@ -174,7 +174,7 @@ a consumer with an associated key first.
 5. On the Consumers page, find your new consumer and click **View**.
 6. Scroll down the page and click the **Credentials** tab.
 7. Click **New Key Auth Credential**.
-8. Set the key to **apikey** and click **Create**.
+8. Set the key to `apikey` and click **Create**.
 
   The new Key Authentication ID displays on the **Consumers** page under the **Credentials** tab.
 {% endnavtab %}
@@ -306,7 +306,7 @@ You now have a consumer with an API key provisioned to access the route.
 
 To validate the Key Authentication plugin, access your route through your browser by appending `?apikey=apikey` to the url:
 ```
-http://<admin-hostname>:8000/mock?apikey=apikey
+http://localhost:8000/mock?apikey=apikey
 ```
 
 {% endnavtab %}
@@ -317,7 +317,7 @@ To validate the Key Authentication plugin, access the *mocking* route again, usi
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i http://<admin-hostname>:8000/mock/request \
+curl -i http://localhost:8000/mock/request \
   -H 'apikey:apikey'
 ```
 {% endnavtab %}

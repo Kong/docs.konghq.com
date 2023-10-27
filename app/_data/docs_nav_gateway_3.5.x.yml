@@ -239,23 +239,11 @@ items:
           - text: Breaking Changes
             url: /production/breaking-changes/
             generate: false
-  - title: Kong Enterprise
+  - title: Kong Gateway Enterprise
     icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
     items:
       - text: Overview
         url: /kong-enterprise/
-      - text: Kong Vitals
-        items:
-          - text: Overview
-            url: /kong-enterprise/analytics/
-          - text: Metrics
-            url: /kong-enterprise/analytics/metrics
-          - text: Analytics with InfluxDB
-            url: /kong-enterprise/analytics/influx-strategy
-          - text: Analytics with Prometheus
-            url: /kong-enterprise/analytics/prometheus-strategy
-          - text: Estimate Analytics Storage in PostgreSQL
-            url: /kong-enterprise/analytics/estimates
       - text: Secrets Management
         items:
           - text: Overview
@@ -274,6 +262,8 @@ items:
                 url: /kong-enterprise/secrets-management/backends/env
               - text: AWS Secrets Manager
                 url: /kong-enterprise/secrets-management/backends/aws-sm
+              - text: Azure Key Vaults
+                url: /kong-enterprise/secrets-management/backends/azure-key-vaults
               - text: Google Secrets Manager
                 url: /kong-enterprise/secrets-management/backends/gcp-sm
               - text: Hashicorp Vault
@@ -290,81 +280,6 @@ items:
             url: /kong-enterprise/plugin-ordering/
           - text: Get Started with Dynamic Plugin Ordering
             url: /kong-enterprise/plugin-ordering/get-started
-      - text: Dev Portal
-        items:
-          - text: Overview
-            url: /kong-enterprise/dev-portal/
-          - text: Enable the Dev Portal
-            url: /kong-enterprise/dev-portal/enable
-          - text: Publish an OpenAPI Spec
-            url: /kong-enterprise/dev-portal/publish-spec
-          - text: Structure and File Types
-            url: /kong-enterprise/dev-portal/structure-and-file-types
-          - text: Themes Files
-            url: /kong-enterprise/dev-portal/themes
-          - text: Working with Templates
-            url: /kong-enterprise/dev-portal/working-with-templates
-          - text: Using the Editor
-            url: /kong-enterprise/dev-portal/using-the-editor
-          - text: Authentication and Authorization
-            items:
-              - text: Basic Auth
-                url: /kong-enterprise/dev-portal/authentication/basic-auth
-              - text: Key Auth
-                url: /kong-enterprise/dev-portal/authentication/key-auth
-              - text: OIDC
-                url: /kong-enterprise/dev-portal/authentication/oidc
-              - text: Sessions
-                url: /kong-enterprise/dev-portal/authentication/sessions
-              - text: Adding Custom Registration Fields
-                url: /kong-enterprise/dev-portal/authentication/adding-registration-fields
-              - text: Manage Developers
-                url: /kong-enterprise/dev-portal/authentication/managing-developers
-              - text: Developer Roles and Content Permissions
-                url: /kong-enterprise/dev-portal/authentication/developer-permissions
-          - text: Application Registration
-            items:
-              - text: Authorization Provider Strategy
-                url: /kong-enterprise/dev-portal/applications/auth-provider-strategy
-              - text: Enable Application Registration
-                url: /kong-enterprise/dev-portal/applications/enable-application-registration
-              - text: Enable Key Authentication for Application Registration
-                url: /kong-enterprise/dev-portal/applications/enable-key-auth-plugin
-              - text: Enable External Authentication
-                items:
-                  - text: External OAuth2 Support
-                    url: /kong-enterprise/dev-portal/authentication/3rd-party-oauth
-                  - text: Set up Okta and Kong for External Oauth
-                    url: /kong-enterprise/dev-portal/authentication/okta-config
-                  - text: Set up Azure AD and Kong for External Authentication
-                    url: /kong-enterprise/dev-portal/authentication/azure-oidc-config
-              - text: Manage Applications
-                url: /kong-enterprise/dev-portal/applications/managing-applications
-          - text: Customize Dev Portal
-            items:
-              - text: Theme Editing
-                url: /kong-enterprise/dev-portal/customize/theme-editing
-              - text: Migrating Templates Between Workspaces
-                url: /kong-enterprise/dev-portal/customize/migrating-templates
-              - text: Markdown Rendering Module
-                url: /kong-enterprise/dev-portal/customize/markdown-extended
-              - text: Customizing Portal Emails
-                url: /kong-enterprise/dev-portal/customize/emails
-              - text: Adding and Using JavaScript Assets
-                url: /kong-enterprise/dev-portal/customize/adding-javascript-assets
-              - text: Single Page App in Dev Portal
-                url: /kong-enterprise/dev-portal/customize/single-page-app
-              - text: Alternate OpenAPI Renderer
-                url: /kong-enterprise/dev-portal/customize/alternate-openapi-renderer
-          - text: SMTP
-            url: /kong-enterprise/dev-portal/smtp
-          - text: Workspaces
-            url: /kong-enterprise/dev-portal/workspaces
-          - text: Helpers CLI
-            url: /kong-enterprise/dev-portal/cli
-          - text: Portal API Documentation
-            url: https://developer.konghq.com/spec/3e65edbc-364d-4762-9d3e-f13083e1b534/33cd4595-e389-4c2b-80ee-5275f25e80e1
-            absolute_url: true
       - text: Audit Logging
         url: /kong-enterprise/audit-log
       - text: Keyring and Data Encryption

@@ -10,8 +10,8 @@ to log into the Dev Portal.
 Key Authentication for the Dev Portal can be enabled in three ways:
 
 - via the [Kong Manager](#enable-key-auth-via-kong-manager)
-- via the [the command line](#enable-key-auth-via-the-command-line)
-- via the [the Kong configuration file](#enable-key-auth-via-the-kongconf)
+- via the [command line](#enable-key-auth-via-the-command-line)
+- via the [Kong configuration file](#enable-key-auth-via-the-kongconf)
 
 >**Warning** Enabling authentication in the Dev Portal requires use of the
 > Sessions plugin. Developers will not be able to login if this is not set

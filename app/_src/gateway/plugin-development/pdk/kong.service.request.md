@@ -11,6 +11,8 @@ toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk/service/request.lua
 ---
 
+<!-- vale off -->
+
 Module for manipulating the request sent to the Service.
 
 

@@ -81,10 +81,10 @@ A license report file is generated and archived to a `*.tar` file.
 Field | Description
 ------|------------
 `counters.req_count` | Counts the number of requests made since the license creation date.
-`db_version` | The type and version of the datastore Kong Gateway is using.
-`kong_version` | The version of the Kong Gateway instance.
+`db_version` | The type and version of the datastore {{site.base_gateway}} is using.
+`kong_version` | The version of the {{site.base_gateway}} instance.
 `license_key` | An encrypted identifier for the current license key. If no license is present, the field displays as `UNLICENSED`.
 `rbac_users` | The number of users registered with through RBAC.
-`services_count` | The number of configured services in the Kong Gateway instance.
-`system_info` | Displays information about the system running Kong Gateway. <br><br> &#8226; `cores`: Number of CPU cores on the node <br> &#8226; `hostname`: Encrypted system hostname <br> &#8226; `uname`: Operating system
-`workspaces_count` | The number of workspaces configured in the Kong Gateway instance.
+`services_count` | The number of configured services in the {{site.base_gateway}} instance.
+`system_info` | Displays information about the system running {{site.base_gateway}}. <br><br> &#8226; `cores`: Number of CPU cores on the node <br> &#8226; `hostname`: Encrypted system hostname <br> &#8226; `uname`: Operating system
+`workspaces_count` | The number of workspaces configured in the {{site.base_gateway}} instance.

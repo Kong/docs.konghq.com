@@ -18,12 +18,11 @@ For specific product name definitions and when to use what, see [word choice and
 
 Variable | Output | Definition
 ---------|--------|-----------
-{% raw %}`{{site.base_gateway}}`{% endraw %} | {{site.base_gateway}} | The Kong API Gateway. Use this in most situations, including: <br><br> &#8226; When talking about a feature that is available for both open-source and Enterprise <br> &#8226; When referring to the Enterprise image used in any mode, with a license or without.
-{% raw %}`{{site.ee_product_name}}`{% endraw %} | {{site.ee_product_name}} | (Legacy variable, do not use) The whole self-managed Enterprise Gateway package, including modules and peripherals, eg Kong Manager, Dev Portal, Vitals, etc.
+{% raw %}`{{site.base_gateway}}`{% endraw %} | {{site.base_gateway}} | The Kong API Gateway. Use this in most situations, especially when talking about a feature that is available in both open-source and Enterprise packages.
+{% raw %}`{{site.ee_product_name}}`{% endraw %} | {{site.ee_product_name}} | The whole self-managed Enterprise Gateway package, including modules and peripherals, e.g. Kong Manager, Enterprise plugins, etc. Use when you specifically need to refer to Enterprise functionality.
 {% raw %}`{{site.ce_product_name}}`{% endraw %} | {{site.ce_product_name}} | Kong's open-source API gateway. Use when referring to something that's _only_ available in open-source.
 {% raw %}`{{site.konnect_product_name}}`{% endraw %}| {{site.konnect_product_name}} | The full name of Kong Konnect.
 {% raw %}`{{site.konnect_short_name}}`{% endraw %} | {{site.konnect_short_name}} | The short name of the SaaS Konnect control plane.
-{% raw %}`{{site.konnect_saas}}`{% endraw %} | {{site.konnect_saas}} | The full name of the SaaS Konnect control plane.
 {% raw %}`{{site.company_name}}`{% endraw %} | {{site.company_name}} | The name of the company. <br><br> Sometimes "Kong" is used to refer to Kong Gateway. For branding reasons, we should avoid using this term to refer to Kong Gateway going forward, however, user communities will continue to use this term as shorthand.
 
 ## Links

@@ -188,7 +188,7 @@ Copy and paste the following Auth Config JSON object:
 
 To log out the user completely, we need to use the logout endpoint provided by Cognito (https://docs.aws.amazon.com/cognito/latest/developerguide/logout-endpoint.html). Therefore, in the above configuration, we have passed in Cognito logout endpoint of logout redirect URL.
 
-Please also note that the developer signed up from Dev Portal doesn’t get created in Cognito automatically. Therefore, developer signup is a two-step process:
+Please also note that the developer signed up from Dev Portal doesn’t get created in Cognito automatically. Therefore, developer sign-up is a two-step process:
 * The developer signs up from Dev Portal itself, so a Kong Admin needs to approve the developer access.
-* The developer signs up from Amazon Cognito. Please make sure that you use the _same email address_ for both signups.
+* The developer signs up from Amazon Cognito. Please make sure that you use the _same email address_ for both sign-ups.
 Now you should be able to login to Developer Portal using the Amazon Cognito user and credential.

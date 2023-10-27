@@ -54,8 +54,8 @@ admin_gui_session_conf = { "secret":"set-your-string-here" }
 >Note: The **Sessions Plugin** requires a **secret** and is configured securely by default:
 
 * Under all circumstances, the secret must be manually set to a string.
-*  If using HTTP instead of HTTPS, cookie_secure must be manually set to false.
-*  If using different domains for the Admin API and Kong Manager, cookie_samesite must be set to off. Learn more about these properties in [_Session Security in Kong Manager_](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/), and see [_example configurations_](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/#example-configurations).
+*  If using HTTP instead of HTTPS, `cookie_secure` must be manually set to false.
+*  If using different domains for the Admin API and Kong Manager, `cookie_samesite` must be set to `off`. Learn more about these properties in [_Session Security in Kong Manager_](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/), and see [_example configurations_](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/#example-configurations).
 
 ## Configure LDAP Authentication for Kong Manager
 
@@ -86,14 +86,14 @@ admin_gui_auth_conf = {
 * `attribute`:`<ENTER_YOUR_ATTRIBUTE_HERE>`: The attribute used to identify LDAP users
     * For example, to map LDAP users to admins by their username, `attribute":"uid`
 * `bind_dn`:`<ENTER_YOUR_BIND_DN_HERE>`: LDAP Bind DN (Distinguished Name)
-    * Used to perform LDAP search of user. This bind_dn should have permissions to search for the user being authenticated.
+    * Used to perform LDAP search of user. This `bind_dn` should have permissions to search for the user being authenticated.
     * For example, `uid=einstein,ou=scientists,dc=ldap,dc=com`
 * `base_dn`:`<ENTER_YOUR_BASE_DN_HERE>`: LDAP Base DN (Distinguished Name)
     * For example, `ou=scientists,dc=ldap,dc=com`
 * `ldap_host`:`<ENTER_YOUR_LDAP_HOST_HERE>`: LDAP host domain.
     * For example, `ec2-XX-XXX-XX-XXX.compute-1.amazonaws.com`
 * `ldap_port`: The default LDAP port is 389. 636 is the port required for SSL LDAP and AD.
-   If ldaps is configured, you must use port 636. For more complex Active Directory (AD) environments,
+   If `ldaps` is configured, you must use port 636. For more complex Active Directory (AD) environments,
    instead of Domain Controller and port 389, consider using a Global Catalog host and port, which is port 3268 by default.    
 * `ldap_password`:`<ENTER_YOUR_LDAP_PASSWORD_HERE>`: LDAP password
     * *Important*: As with any configuration property, sensitive information may be set as an environment variable instead of being written directly in the configuration file.
@@ -112,7 +112,7 @@ With the Admin API's Directory Mapping endpoints.
 
 ## User-Admin Mapping
 
-To map a Service Directory User to a Kong Admin, you must configure the Admin's username as the value of the User's name from their LDAP Distinguished Name (DN) corresponding the attribute configured in admin_gui_auth_conf. Creating an Admin account in [_Kong Manager_](/gateway/{{page.kong_version}}/configure/auth/rbac/add-admin/) or using the [_Admin API_](/gateway/{{page.kong_version}}/admin-api/admins/reference/#invite-an-admin).
+To map a Service Directory User to a Kong Admin, you must configure the Admin's username as the value of the User's name from their LDAP Distinguished Name (DN) corresponding the attribute configured in `admin_gui_auth_conf`. Creating an Admin account in [_Kong Manager_](/gateway/{{page.kong_version}}/configure/auth/rbac/add-admin/) or using the [_Admin API_](/gateway/{{page.kong_version}}/admin-api/admins/reference/#invite-an-admin).
 
 For instructions on how to pair the bootstrapped Super Admin with a Directory User, see [_How to Set Up a Service Directory User as the First Super Admin_](/gateway/{{page.kong_version}}/configure/auth/service-directory-mapping/#set-up-a-directory-user-as-the-first-super-admin).
 
@@ -139,7 +139,7 @@ If Wayne Enterprises decides to revoke bruce-wayne's privileges by removing thei
 
 
 The following is an example of setting up a Directory User as the first Super Admin.
-The example shows an attribute is configured with a unique identifier (UID), and the Directory User you want to make the Super Admin has a distinguished name (DN) entry of UID=bruce-wayne:
+The example shows an attribute is configured with a unique identifier (UID), and the Directory User you want to make the Super Admin has a distinguished name (DN) entry of `UID=bruce-wayne`:
 
 ```
 HTTPie

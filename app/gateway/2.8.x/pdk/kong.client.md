@@ -11,6 +11,8 @@ toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
+<!--vale off-->
+
 Client information module.
 
  A set of functions to retrieve information about the client connecting to
@@ -58,9 +60,9 @@ Returns the remote address of the client making the request.  Unlike
  returns a forwarded address or not depends on several Kong configuration
  parameters:
 
- * [trusted\_ips](https://docs.konghq.com/gateway/latest/reference/configuration/#trusted_ips)
- * [real\_ip\_header](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_header)
- * [real\_ip\_recursive](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_recursive)
+ * [trusted\_ips](/gateway/latest/reference/configuration/#trusted_ips)
+ * [real\_ip\_header](/gateway/latest/reference/configuration/#real_ip_header)
+ * [real\_ip\_recursive](/gateway/latest/reference/configuration/#real_ip_recursive)
 
 
 **Phases**
@@ -122,9 +124,9 @@ Returns the remote port of the client making the request.  Unlike
  when a load balancer is in front of Kong. Whether this function returns a
  forwarded port or not depends on several Kong configuration parameters:
 
- * [trusted\_ips](https://docs.konghq.com/gateway/latest/reference/configuration/#trusted_ips)
- * [real\_ip\_header](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_header)
- * [real\_ip\_recursive](https://docs.konghq.com/gateway/latest/reference/configuration/#real_ip_recursive)
+ * [trusted\_ips](/gateway/latest/reference/configuration/#trusted_ips)
+ * [real\_ip\_header](/gateway/latest/reference/configuration/#real_ip_header)
+ * [real\_ip\_recursive](/gateway/latest/reference/configuration/#real_ip_recursive)
 
 **Phases**
 

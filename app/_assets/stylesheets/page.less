@@ -539,12 +539,15 @@ Generic Styling for Desktop
     &.important,
     &.note,
     &.install-banner,
-    &.partner-plugin {
+    &.partner-plugin,
+    &.community-plugin,
+    &.compatibility {
       margin-bottom: 1em;   
       opacity: 1;
       font-style: normal;
       font-size: 15px;
       padding: 15px;
+      border-radius: 2px;
 
       p {
         margin-left: 24px;
@@ -610,7 +613,21 @@ Generic Styling for Desktop
     &.partner-plugin {
       background-color: @green-100;
       color: @green-700;
-      border: none;
+
+    a {
+        color: @green-700;
+      }
+    }
+
+    &.compatibility {
+      background-color: @grey-200;
+      color: @grey-500;
+      padding: 10px;
+    }
+    
+    &.community-plugin {
+      border: 1px solid @grey-300;
+      border-radius: 5px;
     }
 
     &.install-banner {

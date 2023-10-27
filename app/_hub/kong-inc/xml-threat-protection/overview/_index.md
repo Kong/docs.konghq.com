@@ -23,9 +23,9 @@ last byte parsed (for example, the closing tag on the previous element), to the 
 into the parser. If the buffer size is greater than the allowed value, the request is rejected.
 
 For example, if the following limits are defined:
-- localname: 1 KB
-- attribute value: 10 KB
-- max attributes: 10
+- `localname`: 1 KB
+- `attribute value`: 10 KB
+- `max attributes`: 10
 If a request comes in with an element with 100 attributes, each 1 GB, the parser reads the payload, and tries to fire a callback for a new element of at least 100 GB in size, since it also contains all attributes. This fails because the system runs out of resources.
 
 You can mitigate this by using the unparsed buffer size:

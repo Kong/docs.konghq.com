@@ -16,7 +16,7 @@
           url: /concepts/custom-resources
         - text: Deployment Methods
           url: /concepts/deployment
-        - text: Kong for Kubernetes with Kong Enterprise
+        - text: Kong for Kubernetes with Kong Gateway Enterprise
           url: /concepts/k4k8s-with-kong-enterprise
         - text: High-Availability and Scaling
           url: /concepts/ha-and-scaling
@@ -36,7 +36,7 @@
           url: /deployment/k4k8s
         - text: Kong for Kubernetes Enterprise
           url: /deployment/k4k8s-enterprise
-        - text: Kong for Kubernetes with Kong Enterprise
+        - text: Kong for Kubernetes with Kong Gateway Enterprise
           url: /deployment/kong-enterprise
         - text: Kong Ingress on AKS
           url: /deployment/aks

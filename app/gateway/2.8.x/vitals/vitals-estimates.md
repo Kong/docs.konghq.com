@@ -166,9 +166,9 @@ After 24 hours of traffic, the status codes tables will have this number of rows
 
 Status code table name | Day | Minute | Seconds | Total
 ---------------------- | --- | ------ | ------- | -----
-**vitals_codes_by_cluster** | 5 | 7200 | 18000 | 25200
-**vitals_codes_by_workspace** | 5 | 7200 | 18000 | 25200
-**vitals_codes_by_route** | 5 | 7200 | 18000 | 25200
+`vitals_codes_by_cluster` | 5 | 7200 | 18000 | 25200
+`vitals_codes_by_workspace` | 5 | 7200 | 18000 | 25200
+`vitals_codes_by_route` | 5 | 7200 | 18000 | 25200
 
 It's important to note that this assumes that all 5 groups of status codes had been observed in those 24 hours of traffic. This is why quantities were multiplied by 5.
 

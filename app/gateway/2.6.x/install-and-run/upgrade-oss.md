@@ -96,7 +96,7 @@ below to migrate to 2.6.x.
 
 ### Upgrade from 1.0.x - 2.5.x to 2.6.x
 
-**Postgres**
+**PostgreSQL**
 
 Kong 2.6.x supports a no-downtime migration model. This means that while the
 migration is ongoing, you will have two Kong clusters running, sharing the

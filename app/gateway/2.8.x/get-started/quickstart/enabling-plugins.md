@@ -32,7 +32,7 @@ $ curl -i -X POST \
 
 **Note:** This plugin also accepts a `config.key_names` parameter, which
 defaults to `['apikey']`. It is a list of headers and parameters names (both
-are supported) that are supposed to contain the apikey during a request.
+are supported) that are supposed to contain the API key during a request.
 
 ## 2. Verify that the plugin is properly configured
 

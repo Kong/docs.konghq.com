@@ -2,12 +2,12 @@
 title: Start Kong Gateway
 ---
 
-In this section, you'll learn how to install and manage your Kong Gateway instance. First, you'll start Kong Gateway to gain access to its Admin
+In this section, you'll learn how to install and manage your {{site.base_gateway}} instance. First, you'll start {{site.base_gateway}} to gain access to its Admin
 API, where you'll manage entities including Services, Routes, and Consumers.
 
-## Start Kong Gateway using Docker with a database
+## Start {{site.base_gateway}} using Docker with a database
 
-One quick way to get Kong Gateway up and running is by using [Docker with a PostgreSQL database](/gateway/{{page.kong_version}}/install-and-run/docker/). We recommend this method to test out basic Kong Gateway functionality.
+One quick way to get {{site.base_gateway}} up and running is by using [Docker with a PostgreSQL database](/gateway/{{page.kong_version}}/install-and-run/docker/). We recommend this method to test out basic {{site.base_gateway}} functionality.
 
 For a comprehensive list of installation options, see our [Install page](/gateway/{{page.kong_version}}/install-and-run/).
 
@@ -86,19 +86,19 @@ By default, Kong listens on the following ports:
 {:.note}
 > **Note**: If you are using Docker, [`exec`](https://docs.docker.com/engine/reference/commandline/exec) into the Docker container to use these commands.
 
-Stop Kong Gateway using the [stop][CLI] command:
+Stop {{site.base_gateway}} using the [stop][CLI] command:
 
 ```bash
 kong stop
 ```
 
-Reload Kong Gateway using the [reload][CLI] command:
+Reload {{site.base_gateway}} using the [reload][CLI] command:
 
 ```bash
 kong reload
 ```
 
-Start Kong Gateway using the [start][CLI] command:
+Start {{site.base_gateway}} using the [start][CLI] command:
 
 ```bash
 kong start
@@ -106,7 +106,7 @@ kong start
 
 ## Next Steps
 
-Now that you have Kong Gateway running, you can interact with the Admin API.
+Now that you have {{site.base_gateway}} running, you can interact with the Admin API.
 
 To begin, go to [Configuring a Service &rsaquo;][configuring-a-service]
 

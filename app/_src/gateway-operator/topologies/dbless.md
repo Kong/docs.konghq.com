@@ -126,12 +126,12 @@ spec:
 
 With the `parametersRef` in the above `GatewayClass` being used to attach the `GatewayConfiguration`, that configuration will start applying to all `Gateway`resources created for that class, and will retroactively apply to any `Gateway`resources previously created.
 
-## {{site.base_gateway}} Enterprise
+## {{site.ee_product_name}}
 
-You can use Kong Enterprise as the data plane using the following steps:
+You can use {{site.ee_product_name}} as the data plane using the following steps:
 
 {:.note}
-> **Note**: the license secret, the `GatewayConfiguration`, and the `Gateway` MUST be created in the same namespace.
+> **Note**: The license secret, the `GatewayConfiguration`, and the `Gateway` MUST be created in the same namespace.
 
 1. Create a secret with the Kong license in the namespace you intend to use for deploying the gateway.
 

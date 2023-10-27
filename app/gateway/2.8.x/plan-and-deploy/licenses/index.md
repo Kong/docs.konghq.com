@@ -44,7 +44,7 @@ CLI tool.
 
 For more information, see [Deploy Your License](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/deploy-license/).
 
-## Examining the license data on a Kong Gateway node
+## Examining the license data on a {{site.base_gateway}} node
 
 Retrieve license data using the Admin API's `/licenses` endpoint, or through
 the Admin GUI in Kong Manager.

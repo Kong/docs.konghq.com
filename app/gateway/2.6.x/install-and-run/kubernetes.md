@@ -55,17 +55,17 @@ oc new-project kong
 1.  Run one of the following:
 
     ```sh
-    ## Kong Gateway on Kubernetes native
+    ## {{site.base_gateway}} on Kubernetes native
     kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless-k4k8s-enterprise.yaml
     ```
 
     ```sh
-    ## Kong Gateway on OpenShift
+    ## {{site.base_gateway}} on OpenShift
     oc create -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless-k4k8s-enterprise.yaml
     ```
 
     ```sh
-    ## Kong Gateway (OSS) on Kubernetes native
+    ## {{site.base_gateway}} (OSS) on Kubernetes native
     kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/single/all-in-one-dbless.yaml
     ```
 
@@ -106,4 +106,4 @@ oc new-project kong
 
 ## Next steps
 
-See the [Kong Ingress Controller docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.
+See the [{{site.kic_product_name}} docs](/kubernetes-ingress-controller/) for  how-to guides, reference guides, and more.
