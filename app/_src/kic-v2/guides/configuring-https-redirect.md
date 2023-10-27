@@ -9,7 +9,7 @@ Learn to configure the {{site.kic_product_name}} to redirect HTTP requests to
 HTTPS so that all communication from the external world to your APIs and
 microservices is encrypted.
 
-{% include_cached /md/kic/installation.md kong_version=page.kong_version %}
+{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
 
 {% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
 
@@ -25,136 +25,151 @@ microservices is encrypted.
 
 Kong handles HTTPS redirects by automatically issuing redirects to requests
 whose characteristics match an HTTPS-only route except for the protocol. For
-example, with a Kong route like
+example, with a Kong route such as this:
 
 ```json
 { "protocols": ["https"], "hosts": ["kong.example"],
   "https_redirect_status_code": 301, "paths": ["/echo/"], "name": "example" }
 ```
 
-a request for `http://kong.example/echo/green` will receive a 301 response with
+A request for `http://kong.example/echo/green` receives a 301 response with
 a `Location: https://kong.example/echo/green` header. Kubernetes resource
 annotations instruct the controller to create a route with `protocols=[https]`
 and `https_redirect_status_code` set to the code of your choice (the default if
 unset is `426`).
-
+1. Configure the protocols that are aloowed in the `konghq.com/protocols` annotation.
+   {% capture the_code %}
 {% navtabs codeblock %}
 {% navtab Ingress %}
-
-Setting the `konghq.com/protocols` annotation configures which protocols are
-allowed:
 
 ```bash
 kubectl annotate ingress echo konghq.com/protocols=https
 ```
-
-The results should look like this:
-
-```text
-ingress.networking.k8s.io/echo annotated
-```
-
-The `konghq.com/https-redirect-status-code` annotation selects the status code
-used to redirect:
-
-```bash
-kubectl annotate ingress echo konghq.com/https-redirect-status-code="301"
-```
-
-The results should look like this:
-```text
-ingress.networking.k8s.io/echo annotated
-```
-
 {% endnavtab %}
 {% navtab Gateway APIs %}
-
-Setting the `konghq.com/protocols` annotation configures which protocols are
-allowed:
 
 ```bash
 kubectl annotate httproute echo konghq.com/protocols=https
 ```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
 
-The results should look like this:
+    The results should look like this:
 
+    {% capture the_code %}
+{% navtabs codeblock %}
+{% navtab Ingress %}
+```text
+ingress.networking.k8s.io/echo annotated
+```
+{% endnavtab %}
+{% navtab Gateway APIs %}
 ```text
 httproute.gateway.networking.k8s.io/echo annotated
 ```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
 
-The `konghq.com/https-redirect-status-code` annotation selects the status code
-used to redirect:
+
+1. Configure the status code used to redirect in the `konghq.com/https-redirect-status-code`` annotation. 
+   {% capture the_code %}
+{% navtabs codeblock %}
+{% navtab Ingress %}
+
+```bash
+kubectl annotate ingress echo konghq.com/https-redirect-status-code="301"
+```
+{% endnavtab %}
+{% navtab Gateway APIs %}
 
 ```bash
 kubectl annotate httproute echo konghq.com/https-redirect-status-code="301"
 ```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
 
-The results should look like this:
+   The results should look like this:
+
+   {% capture the_code %}
+{% navtabs codeblock %}
+{% navtab Ingress %}
+```text
+ingress.networking.k8s.io/echo annotated
+```
+{% endnavtab %}
+{% navtab Gateway APIs %}
 ```text
 httproute.gateway.networking.k8s.io/echo annotated
 ```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
 
-Note that this _does not_ use an [HTTPRequestRedirectFilter](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1.HTTPRequestRedirectFilter)
+> **Note**: The GatewayAPI _does not_ use an [HTTPRequestRedirectFilter](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1.HTTPRequestRedirectFilter)
 to configure the redirect. Using the filter to redirect HTTP to HTTPS requires
 a separate HTTPRoute to handle redirected HTTPS traffic, which does not mesh
 well with Kong's single route redirect model.
 
 Work to support the standard filter-based configuration is ongoing. Until then,
 the annotations allow you to configure HTTPS-only HTTPRoutes.
-{% endnavtab %}
-{% endnavtabs %}
 
 ## Test the configuration
 
-With the redirect configuration in place, HTTP requests will now receive a
+With the redirect configuration in place, HTTP requests now receive a
 redirect rather than being proxied upstream:
+1. Send a HTTP request.
+    ```bash
+    curl -ksvo /dev/null http://kong.example/echo --resolve kong.example:80:$PROXY_IP 2>&1 | grep -i http
+    ```
 
+    The results should look like this:
 
-```bash
-curl -ksvo /dev/null http://kong.example/echo --resolve kong.example:80:$PROXY_IP 2>&1 | grep -i http
-```
+    ```text
+    > GET /echo HTTP/1.1
+    < HTTP/1.1 301 Moved Permanently
+    < Location: https://kong.example/echo
+    ```
 
-The results should look like this:
+1. Send a curl request to follow redirects using the `-L` flag navigates
+to the HTTPS URL and receive a proxied response from upstream.
 
-```text
-> GET /echo HTTP/1.1
-< HTTP/1.1 301 Moved Permanently
-< Location: https://kong.example/echo
-```
+    ```bash
+    curl -Lksv http://kong.example/echo --resolve kong.example:80:$PROXY_IP --resolve kong.example:443:$PROXY_IP 2>&1
+    ```
 
-Instructing curl to follow redirects using the `-L` flag will have it navigate
-to the HTTPS URL and receive a proxied response from upstream:
+    The results should look like this (some output removed for brevity):
 
-```bash
-curl -Lksv http://kong.example/echo --resolve kong.example:80:$PROXY_IP --resolve kong.example:443:$PROXY_IP 2>&1
-```
+    ```text
+    > GET /echo HTTP/1.1
+    > Host: kong.example
+    >
+    < HTTP/1.1 301 Moved Permanently
+    < Location: https://kong.example/echo
+    < Server: kong/3.4.2
+    
+    * Issue another request to this URL: 'https://kong.example/echo'
 
-The results should look like this (some output removed for brevity):
-
-```text
-> GET /echo HTTP/1.1
-> Host: kong.example
->
-< HTTP/1.1 301 Moved Permanently
-< Location: https://kong.example/echo
-< Server: kong/3.4.2
-
-* Issue another request to this URL: 'https://kong.example/echo'
-
-* Server certificate:
-*  subject: CN=kong.example
-
-> GET /echo HTTP/2
-> Host: kong.example
->
-< HTTP/2 200
-< via: kong/3.4.2
-<
-Welcome, you are connected to node kind-control-plane.
-Running on Pod echo-74d47cc5d9-pq2mw.
-In namespace default.
-With IP address 10.244.0.7.
-```
+    * Server certificate:
+    *  subject: CN=kong.example
+     
+    > GET /echo HTTP/2
+    > Host: kong.example
+    >
+    < HTTP/2 200
+    < via: kong/3.4.2
+    <
+    Welcome, you are connected to node kind-control-plane.
+    Running on Pod echo-74d47cc5d9-pq2mw.
+    In namespace default.
+    With IP address 10.244.0.7.
+    ```
 
 Kong correctly serves the request only on HTTPS protocol and redirects the user
 if the HTTP protocol is used. The `-k` flag in cURL skips certificate
