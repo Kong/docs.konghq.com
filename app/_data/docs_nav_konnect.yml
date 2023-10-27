@@ -341,11 +341,11 @@
           target_blank: true
     - text: Portal Management API
       items:
-      - text: API Spec
-        url: /konnect/api/portal-management/latest/
-        absolute_url: true
-        generate: false
-        target_blank: true
+        - text: API Spec
+          url: /konnect/api/portal-management/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
     - text: Portal RBAC API
       items:
         - text: API Spec
