@@ -52,7 +52,7 @@ For more information, see [What is API Gateway Authentication?](https://konghq.c
 1. Apply the `key-auth` plugin to the `echo` service in addition to the previous `rate-limit` plugin.
 
     ```bash
-    kubectl annotate service echo konghq.com/plugins=rate-limit-5-min,key-auth
+    kubectl annotate service echo konghq.com/plugins=rate-limit-5-min,key-auth --overwrite
     ```
 
 1. Test that the API is secure by sending a request using `curl -i $PROXY_IP/echo`. Observe that a `HTTP 401` is returned with this message:
