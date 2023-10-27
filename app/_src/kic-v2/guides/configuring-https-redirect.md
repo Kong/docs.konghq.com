@@ -37,7 +37,7 @@ a `Location: https://kong.example/echo/green` header. Kubernetes resource
 annotations instruct the controller to create a route with `protocols=[https]`
 and `https_redirect_status_code` set to the code of your choice (the default if
 unset is `426`).
-1. Configure the protocols that are aloowed in the `konghq.com/protocols` annotation.
+1. Configure the protocols that are allowed in the `konghq.com/protocols` annotation.
    {% capture the_code %}
 {% navtabs codeblock %}
 {% navtab Ingress %}
