@@ -4,6 +4,13 @@ type: how-to
 purpose: |
   How to configure the mTLS plugin
 ---
+
+---
+title: mTLS
+type: how-to
+purpose: |
+  How to configure the mTLS plugin
+---
 Configure the {{site.kic_product_name}} to verify client certificates using CA certificates and
 [mtls-auth](/hub/kong-inc/mtls-auth/) plugin for HTTPS requests.
 

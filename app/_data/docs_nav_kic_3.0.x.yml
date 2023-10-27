@@ -51,12 +51,12 @@ items:
     items:
       - text: Deployment Topologies
         items:
-          - text: Traditional (sidecar)
-            url: /production/deployment-topologies/sidecar
           - text: Gateway Discovery
             url: /production/deployment-topologies/gateway-discovery
           - text: Database Backed
             url: /production/deployment-topologies/db-backed
+          - text: Traditional (sidecar)
+            url: /production/deployment-topologies/sidecar
       - text: Installation Methods
         items: 
           - text: Kong Gateway Operator
@@ -97,14 +97,14 @@ items:
     items:
       - text: Service Configuration
         items:
+          - text: HTTP Service
+            url: /guides/services/http
           - text: TCP Service
             url: /guides/services/tcp
           - text: UDP Service
             url: /guides/services/udp
           - text: gRPC Service
             url: /guides/services/grpc
-          - text: Fallback Service
-            url: /guides/services/fallback
           - text: External Service
             url: /guides/services/external
           - text: HTTPS Redirects

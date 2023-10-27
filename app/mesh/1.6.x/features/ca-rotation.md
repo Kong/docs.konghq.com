@@ -138,7 +138,7 @@ continuing too soon.
               secret: ca-2-key
     ```
 
-    After the configuration finishes, the data plane proxy certicates are signed by the CA from `ca-2`.
+    After the configuration finishes, the data plane proxy certificates are signed by the CA from `ca-2`.
     The data plane proxies still support CAs from `ca-1` and `ca-2`.
 
 3.  Remove the old backend:
@@ -161,7 +161,7 @@ continuing too soon.
               secret: ca-2-key
     ```
 
-    After the configuration finishes, the data plane proxy certicates should still be signed by the CA from `ca-2`.
+    After the configuration finishes, the data plane proxy certificates should still be signed by the CA from `ca-2`.
     But the data plane proxies no longer support the CA from `ca-1`.
 
 {% endnavtab %}
@@ -207,7 +207,7 @@ continuing too soon.
             secret: ca-2-key
     ```
 
-    After the configuration finishes, the data plane proxy certicates are signed by the CA from `ca-2`.
+    After the configuration finishes, the data plane proxy certificates are signed by the CA from `ca-2`.
     The data plane proxies still support CAs from `ca-1` and `ca-2`.
 
 3.  Remove the old backend:
@@ -227,7 +227,7 @@ continuing too soon.
             secret: ca-2-key
     ```
 
-    After the configuration finishes, the data plane proxy certicates should still be signed by the CA from `ca-2`.
+    After the configuration finishes, the data plane proxy certificates should still be signed by the CA from `ca-2`.
     But the data plane proxies no longer support the CA from `ca-1`.
 {% endnavtab %}
 {% endnavtabs %}

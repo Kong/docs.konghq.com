@@ -1,0 +1,1463 @@
+openapi: 3.0.0
+info:
+  title: Konnect Control Planes
+  version: 2.0.0
+  description: The API for Kong Konnect Control Planes.
+  contact:
+    name: Kong
+    url: https://cloud.konghq.com
+servers:
+  - url: https://us.api.konghq.com/v2
+    description: US Region Base URL
+  - url: https://eu.api.konghq.com/v2
+    description: EU Region Base URL
+security:
+  - personalAccessToken: []
+  - systemAccountAccessToken: []
+tags:
+  - name: Control Planes
+  - name: Control Plane Groups
+paths:
+  /control-planes:
+    get:
+      summary: List Control Planes
+      responses:
+        '200':
+          $ref: '#/components/responses/ListControlPlanesResponse'
+        '400':
+          $ref: '#/components/responses/ControlPlanesBadRequest'
+        '401':
+          $ref: '#/components/responses/ControlPlaneUnauthenticated'
+        '403':
+          $ref: '#/components/responses/ControlPlanePermissionDenied'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      operationId: list-control-planes
+      description: >-
+        Returns an array of control plane objects containing information about
+        the Konnect Control Planes.
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/FilterByNameEquality'
+        - $ref: '#/components/parameters/FilterByNameEqualityShort'
+        - $ref: '#/components/parameters/FilterByNameContains'
+        - $ref: '#/components/parameters/FilterByNameNotEquals'
+        - $ref: '#/components/parameters/FilterByIdEquality'
+        - $ref: '#/components/parameters/FilterByIdEqualityShort'
+        - $ref: '#/components/parameters/FilterByIdsEquality'
+        - $ref: '#/components/parameters/FilterByClusterTypeEquality'
+        - $ref: '#/components/parameters/FilterByClusterTypeEqualityShort'
+        - $ref: '#/components/parameters/FilterByClusterTypeNotEquals'
+        - $ref: '#/components/parameters/FilterByLabels'
+      tags:
+        - Control Planes
+    parameters: []
+    post:
+      summary: Create Control Plane
+      operationId: create-control-plane
+      responses:
+        '201':
+          $ref: '#/components/responses/CreateControlPlaneResponse'
+        '400':
+          $ref: '#/components/responses/ControlPlanesBadRequest'
+        '401':
+          $ref: '#/components/responses/ControlPlaneUnauthenticated'
+        '403':
+          $ref: '#/components/responses/ControlPlanePermissionDenied'
+        '409':
+          $ref: '#/components/responses/ControlPlaneConflict'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      tags:
+        - Control Planes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateControlPlaneRequest'
+            examples:
+              Example Request Body:
+                $ref: '#/components/examples/CreateControlPlaneRequestExample'
+      description: Create a control plane in the Konnect Organization.
+  /control-planes/{id}:
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+          example: d32d905a-ed33-46a3-a093-d8f536af9a8a
+        name: id
+        in: path
+        required: true
+        description: The control plane ID
+    get:
+      summary: Fetch Control Plane
+      responses:
+        '200':
+          $ref: '#/components/responses/RetrieveControlPlaneResponse'
+        '400':
+          $ref: '#/components/responses/ControlPlanesBadRequest'
+        '401':
+          $ref: '#/components/responses/ControlPlaneUnauthenticated'
+        '403':
+          $ref: '#/components/responses/ControlPlanePermissionDenied'
+        '404':
+          $ref: '#/components/responses/ControlPlaneNotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      operationId: get-control-plane
+      description: Returns information about a team from a given team ID.
+      tags:
+        - Control Planes
+    patch:
+      summary: Update Control Plane
+      operationId: update-control-plane
+      responses:
+        '200':
+          $ref: '#/components/responses/UpdateControlPlaneResponse'
+        '400':
+          $ref: '#/components/responses/ControlPlanesBadRequest'
+        '401':
+          $ref: '#/components/responses/ControlPlaneUnauthenticated'
+        '403':
+          $ref: '#/components/responses/ControlPlanePermissionDenied'
+        '404':
+          $ref: '#/components/responses/ControlPlaneNotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Update an individual control plane.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateControlPlaneRequest'
+            examples:
+              Example Request Body:
+                $ref: '#/components/examples/UpdateControlPlaneRequestExample'
+      tags:
+        - Control Planes
+    delete:
+      summary: Delete Control Plane
+      operationId: delete-control-plane
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/ControlPlanesBadRequest'
+        '401':
+          $ref: '#/components/responses/ControlPlaneUnauthenticated'
+        '403':
+          $ref: '#/components/responses/ControlPlanePermissionDenied'
+        '404':
+          $ref: '#/components/responses/ControlPlaneNotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      description: Delete an individual control plane.
+      tags:
+        - Control Planes
+  /control-planes/{id}/group-memberships:
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: ID of a control plane group
+    get:
+      summary: List Control Plane Group Memberships
+      tags:
+        - Control Plane Groups
+      responses:
+        '200':
+          $ref: '#/components/responses/ListGroupMemberships'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      operationId: get-control-planes-id-group-memberships
+      description: >-
+        Returns an array of control planes that are a member of this control
+        plane group.
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+  /control-planes/{id}/group-memberships/add:
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: ID of a control plane group
+    post:
+      summary: Add Control Plane Group Members
+      operationId: post-control-planes-id-group-memberships-add
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      requestBody:
+        $ref: '#/components/requestBodies/GroupMemebershipAdd'
+      tags:
+        - Control Plane Groups
+      description: Adds one or more control planes as a member of a control plane group.
+  /control-planes/{id}/group-memberships/remove:
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: ID of a control plane group
+    post:
+      summary: Remove Control Plane Group Members
+      operationId: post-control-planes-id-group-memberships-remove
+      requestBody:
+        $ref: '#/components/requestBodies/GroupMembershipRemove'
+      tags:
+        - Control Plane Groups
+      description: >-
+        Removes one or more control planes from the members of a control plane
+        group.
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /control-planes/{id}/group-status:
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: ID of a control plane group
+    get:
+      summary: Get Control Plane Group Status
+      tags:
+        - Control Plane Groups
+      responses:
+        '200':
+          $ref: '#/components/responses/GetGroupStatus'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+      operationId: get-control-planes-id-group-status
+      description: >-
+        Returns the status of a control plane group, including existing
+        conflicts.
+components:
+  parameters:
+    FilterByLabels:
+      name: labels
+      description: Filter control planes in the response by associated labels.
+      in: query
+      required: false
+      schema:
+        type: string
+        example: key:value,existCheck
+    FilterByNameEquality:
+      name: filter[name][eq]
+      description: >-
+        Filter by direct equality comparison of the name property with a
+        supplied value.
+      in: query
+      required: false
+      schema:
+        type: string
+        example: test
+    FilterByNameEqualityShort:
+      name: filter[name]
+      description: >-
+        Filter by direct equality comparison (short-hand) of the name property
+        with a supplied value.
+      in: query
+      required: false
+      schema:
+        type: string
+        example: test
+    FilterByNameContains:
+      name: filter[name][contains]
+      description: >-
+        Filter by contains comparison of the name property with a supplied
+        substring.
+      in: query
+      required: false
+      schema:
+        type: string
+        example: test
+    FilterByNameNotEquals:
+      name: filter[name][neq]
+      description: >-
+        Filter by non-equality comparison of the name property with a supplied
+        value.
+      in: query
+      required: false
+      schema:
+        type: string
+        example: test
+    FilterByIdEquality:
+      name: filter[id][eq]
+      description: >-
+        Filter by direct equality comparison of the id property with a supplied
+        value.
+      in: query
+      required: false
+      schema:
+        type: string
+        example: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+    FilterByIdEqualityShort:
+      name: filter[id]
+      description: >-
+        Filter by direct equality comparison (short-hand) of the id property
+        with a supplied value.
+      in: query
+      required: false
+      schema:
+        type: string
+        example: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+    FilterByIdsEquality:
+      name: filter[id][oeq]
+      description: >-
+        Filter by direct equality comparison of id property with multiple
+        supplied values.
+      in: query
+      required: false
+      schema:
+        type: string
+        example: some-value,some-other-value
+    FilterByClusterTypeEquality:
+      name: filter[cluster_type][eq]
+      description: >-
+        Filter by direct equality comparison of the cluster_type property with a
+        supplied value.
+      in: query
+      required: false
+      schema:
+        type: string
+      example: CLUSTER_TYPE_CONTROL_PLANE
+    FilterByClusterTypeEqualityShort:
+      name: filter[cluster_type]
+      description: >-
+        Filter by direct equality comparison (short-hand) of the cluster_type
+        property with a supplied value.
+      in: query
+      required: false
+      schema:
+        type: string
+        example: CLUSTER_TYPE_CONTROL_PLANE
+    FilterByClusterTypeNotEquals:
+      name: filter[cluster_type][neq]
+      description: >-
+        Filter by non-equality comparison of the cluster_type property with a
+        supplied value.
+      in: query
+      required: false
+      schema:
+        type: string
+        example: test
+    PageSize:
+      name: page[size]
+      description: >-
+        The maximum number of items to include per page. The last page of a
+        collection may include fewer items.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: integer
+        example: 10
+    PageNumber:
+      name: page[number]
+      description: Determines which page of the entities to retrieve.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: integer
+        example: 1
+  responses:
+    RetrieveControlPlaneResponse:
+      description: A response to retrieving a single control plane.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ControlPlane'
+          examples:
+            Single control plane response:
+              $ref: '#/components/examples/ControlPlaneExample'
+    CreateControlPlaneResponse:
+      description: A response to creating a control plane.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ControlPlane'
+          examples:
+            Create Control Plane Response:
+              $ref: '#/components/examples/ControlPlaneExample'
+    UpdateControlPlaneResponse:
+      description: A response to updating a control plane.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ControlPlane'
+          examples:
+            Update Control Plane Response:
+              $ref: '#/components/examples/ControlPlaneExample'
+    ListControlPlanesResponse:
+      description: A paginated list response for a collection of control planes.
+      content:
+        application/json:
+          schema:
+            title: ListControlPlanesResponse
+            type: object
+            additionalProperties: false
+            properties:
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ControlPlane'
+            required:
+              - meta
+              - data
+          examples: {}
+    ControlPlanesBadRequest:
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BadRequestError'
+          examples:
+            Request Format Invalid:
+              $ref: '#/components/examples/400RequestFormatInvalidExample'
+            Cannot Be Blank:
+              $ref: '#/components/examples/400CannotBeBlankExample'
+            Invalid ID Format:
+              $ref: '#/components/examples/400InvalidIDFormatExample'
+            Usage Limits Reached:
+              $ref: '#/components/examples/400UsageLimitsReachedExample'
+            Unknown Property:
+              $ref: '#/components/examples/400UnknownPropertyExample'
+    ControlPlanePermissionDenied:
+      description: Permission denied
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenError'
+          examples:
+            Permission Denied:
+              $ref: '#/components/examples/403PermissionDeniedExample'
+    ControlPlaneUnauthenticated:
+      description: Unauthenticated
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+          examples:
+            Unauthorized:
+              $ref: '#/components/examples/401UnauthenticatedExample'
+    ControlPlaneNotFound:
+      description: Not Found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+          examples:
+            Not Found:
+              $ref: '#/components/examples/404NotFoundExample'
+    ControlPlaneConflict:
+      description: Conflict
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ConflictError'
+          examples:
+            Conflict:
+              $ref: '#/components/examples/409ConflictExample'
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/problem+json:
+          schema:
+            title: InternalServerError
+            type: object
+            description: The error response object.
+            properties:
+              status:
+                type: integer
+                description: The HTTP status code.
+                example: 500
+                enum:
+                  - 500
+              title:
+                type: string
+                description: The error response code.
+                example: Internal Server Error
+              instance:
+                type: string
+                example: konnect:trace:2287285207635123011
+                description: The Konnect traceback code
+              detail:
+                type: string
+                example: >-
+                  Could not propagate control plane changes to control plane
+                  cluster service.
+                description: Details about the error.
+            required:
+              - status
+              - title
+              - instance
+          examples:
+            Internal Server Error:
+              $ref: '#/components/examples/500InternalErrorExample'
+    ServiceUnavailable:
+      description: Service Unavailable
+      content:
+        application/problem+json:
+          schema:
+            title: ServiceUnavailableError
+            type: object
+            description: Error response for temporary service unavailability.
+            properties:
+              status:
+                type: integer
+                description: The HTTP status code.
+                example: 503
+                enum:
+                  - 503
+              title:
+                type: string
+                description: The error response code.
+                example: Service Unavailable
+              instance:
+                type: string
+                example: konnect:trace:2287285207635123011
+                description: The Konnect traceback code
+              detail:
+                type: string
+                example: >-
+                  Could not retrieve permissions to check resource
+                  accessibility.
+                description: Details about the error.
+            required:
+              - status
+              - title
+              - instance
+          examples:
+            Service Unavailable:
+              $ref: '#/components/examples/503PermissionReadFailureExample'
+    ListGroupMemberships:
+      description: >-
+        A paginated list response for a collection of control plane group
+        memberships.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+              data:
+                type: array
+                description: >-
+                  Array of control planes summary who are a child to this
+                  control plane group.
+                items:
+                  $ref: '#/components/schemas/ControlPlaneSummary'
+          examples:
+            List Group Memberships Example:
+              $ref: '#/components/examples/ListGroupMembershipsExample'
+    GetGroupStatus:
+      description: Status of a control plane group, including existing conflicts.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GroupStatus'
+          examples:
+            Group Conflict Status Example:
+              $ref: '#/components/examples/GroupConflictStatusExample'
+            Group No Conflict Status Example:
+              $ref: '#/components/examples/GroupNoConflictStatusExample'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BadRequestError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+          examples:
+            UnauthorizedExample:
+              $ref: '#/components/examples/UnauthorizedExample'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenError'
+          examples:
+            UnauthorizedExample:
+              $ref: '#/components/examples/ForbiddenExample'
+    NotFound:
+      description: Not Found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+          examples:
+            NotFoundExample:
+              $ref: '#/components/examples/NotFoundExample'
+  schemas:
+    CreateControlPlaneRequest:
+      title: CreateControlPlaneRequest
+      description: The request schema for the create control plane request.
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+          example: Test Control Plane
+          description: The name of the control plane.
+        description:
+          type: string
+          example: A test control plane for exploration.
+          description: The description of the control plane in Konnect.
+        cluster_type:
+          type: string
+          description: >-
+            The ClusterType value of the cluster associated with the Control
+            Plane.
+          example: CLUSTER_TYPE_CONTROL_PLANE
+          enum:
+            - CLUSTER_TYPE_CONTROL_PLANE
+            - CLUSTER_TYPE_K8S_INGRESS_CONTROLLER
+            - CLUSTER_TYPE_CONTROL_PLANE_GROUP
+        auth_type:
+          type: string
+          description: >-
+            The auth type value of the cluster associated with the Runtime
+            Group.
+          example: pinned_client_certs
+          enum:
+            - pinned_client_certs
+            - pki_client_certs
+        labels:
+          $ref: '#/components/schemas/Labels'
+      required:
+        - name
+    UpdateControlPlaneRequest:
+      title: UpdateControlPlaneRequest
+      description: The request schema for the update control plane request.
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+          example: Test Control Plane
+          description: The name of the control plane.
+        description:
+          type: string
+          example: A test control plane for exploration.
+          description: The description of the control plane in Konnect.
+        auth_type:
+          type: string
+          description: >-
+            The auth type value of the cluster associated with the Runtime
+            Group.
+          example: pinned_client_certs
+          enum:
+            - pinned_client_certs
+            - pki_client_certs
+        labels:
+          $ref: '#/components/schemas/Labels'
+    ControlPlane:
+      allOf:
+        - $ref: '#/components/schemas/ControlPlaneSummary'
+        - type: object
+          properties:
+            labels:
+              $ref: '#/components/schemas/Labels'
+            config:
+              type: object
+              description: CP configuration object for related access endpoints.
+              properties:
+                control_plane_endpoint:
+                  type: string
+                  format: url
+                  example: https://acfe5f253f.cp0.konghq.com
+                  description: Control Plane Endpoint.
+                  readOnly: true
+                telemetry_endpoint:
+                  type: string
+                  format: url
+                  example: https://acfe5f253f.tp0.konghq.com
+                  description: Telemetry Endpoint.
+                  readOnly: true
+            created_at:
+              type: string
+              format: date-time
+              example: '2022-11-04T20:10:06.927Z'
+              description: >-
+                An ISO-8604 timestamp representation of control plane creation
+                date.
+              readOnly: true
+            updated_at:
+              type: string
+              format: date-time
+              example: '2022-11-04T20:10:06.927Z'
+              description: >-
+                An ISO-8604 timestamp representation of control plane update
+                date.
+              readOnly: true
+      x-examples:
+        Example 1:
+          id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+          name: Test Control Plane
+          description: A test control plane for exploration.
+          labels:
+            env: test
+          config:
+            control_plane_endpoint: https://acfe5f253f.cp0.konghq.com
+            telemetry_endpoint: https://acfe5f253f.tp0.konghq.com
+            cluster_type: CLUSTER_TYPE_CONTROL_PLANE
+            auth_type: pinned_client_certs
+          created_at: '2022-11-04T20:10:06.927Z'
+          updated_at: '2022-11-04T20:10:06.927Z'
+    ControlPlaneSummary:
+      title: ControlPlaneSummary
+      type: object
+      description: >-
+        The control plane object contains information about a Kong control
+        plane.
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+          description: The control plane ID.
+          readOnly: true
+        name:
+          type: string
+          example: Test Control Plane
+          description: The name of the control plane.
+        description:
+          type: string
+          example: A test control plane for exploration.
+          description: The description of the control plane in Konnect.
+        labels:
+          $ref: '#/components/schemas/Labels'
+        config:
+          type: object
+          description: CP configuration object for related access endpoints.
+          additionalProperties: false
+          properties:
+            control_plane_endpoint:
+              type: string
+              format: url
+              example: https://acfe5f253f.cp0.konghq.com
+              description: Control Plane Endpoint.
+              readOnly: true
+            telemetry_endpoint:
+              type: string
+              format: url
+              example: https://acfe5f253f.tp0.konghq.com
+              description: Telemetry Endpoint.
+              readOnly: true
+            cluster_type:
+              type: string
+              description: >-
+                The ClusterType value of the cluster associated with the Control
+                Plane.
+              example: CLUSTER_TYPE_CONTROL_PLANE
+              enum:
+                - CLUSTER_TYPE_CONTROL_PLANE
+                - CLUSTER_TYPE_K8S_INGRESS_CONTROLLER
+                - CLUSTER_TYPE_CONTROL_PLANE_GROUP
+              readOnly: true
+            auth_type:
+              type: string
+              description: >-
+                The auth type value of the cluster associated with the Runtime
+                Group.
+              example: pinned_client_certs
+              enum:
+                - pinned_client_certs
+                - pki_client_certs
+              readOnly: true
+          required:
+            - control_plane_endpoint
+            - telemetry_endpoint
+            - cluster_type
+            - auth_type
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    GroupStatus:
+      title: GroupStatus
+      type: object
+      description: >-
+        The Group Status object contains information about the status of a
+        control plane group.
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+          description: The control plane group ID.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          example: '2022-11-04T20:10:06.927Z'
+          description: >-
+            An ISO-8604 timestamp representation of control plane group status
+            creation date.
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          example: '2022-11-04T20:10:06.927Z'
+          description: >-
+            An ISO-8604 timestamp representation of control plane group status
+            update date.
+          readOnly: true
+        conflicts:
+          type: array
+          maxItems: 256
+          items:
+            $ref: '#/components/schemas/GroupConflict'
+        state:
+          type: string
+          description: The state of the control plane group.
+          example: CONFLICT
+          readOnly: true
+          enum:
+            - OK
+            - CONFLICT
+            - UNKNOWN
+    GroupConflict:
+      title: GroupConflict
+      type: object
+      description: >-
+        The Group Conflict object contains information about a conflict in a
+        control plane group.
+      properties:
+        cluster_id:
+          type: string
+          format: uuid
+          example: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+          description: The ID of a control plane member of a control plane group.
+          readOnly: true
+        description:
+          type: string
+          example: >-
+            conflicting entity found: ID=38d790ad-8b08-4ff5-a074-2e1e9e64d8bd,
+            Name=foo
+          description: The description of the conflict.
+          readOnly: true
+        resource:
+          $ref: '#/components/schemas/GroupConflictResource'
+    GroupConflictResource:
+      title: GroupConflictResource
+      type: object
+      description: A resource causing a conflict in a control plane group.
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+          description: The ID of the resource.
+          readOnly: true
+        type:
+          type: string
+          example: service
+          description: The type of the resource.
+          readOnly: true
+      required:
+        - id
+        - type
+    Labels:
+      title: Labels
+      type: object
+      example:
+        env: test
+      description: >-
+        Labels to facilitate tagged search on control planes. Keys must be of
+        length 1-63 characters, and cannot start with 'kong', 'konnect', 'mesh',
+        'kic', or '_'.
+      additionalProperties:
+        type: string
+        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z\-\.\_]*[a-z0-9A-Z]+)?$
+        minLength: 1
+        maxLength: 63
+    PageMeta:
+      type: object
+      description: >-
+        Contains pagination query parameters and the total number of objects
+        returned.
+      required:
+        - number
+        - size
+        - total
+      properties:
+        number:
+          type: number
+          example: 1
+        size:
+          type: number
+          example: 10
+        total:
+          type: number
+          example: 100
+    PaginatedMeta:
+      type: object
+      title: PaginatedMeta
+      description: returns the pagination information
+      properties:
+        page:
+          $ref: '#/components/schemas/PageMeta'
+      required:
+        - page
+    BaseError:
+      type: object
+      title: Error
+      description: standard error
+      required:
+        - status
+        - title
+        - instance
+        - detail
+      properties:
+        status:
+          type: integer
+          description: >
+            The HTTP status code of the error. Useful when passing the response
+
+            body to child properties in a frontend UI. Must be returned as an
+            integer.
+          readOnly: true
+        title:
+          type: string
+          description: |
+            A short, human-readable summary of the problem. It should not
+            change between occurences of a problem, except for localization.
+            Should be provided as "Sentence case" for direct use in the UI.
+          readOnly: true
+        type:
+          type: string
+          description: The error type.
+          readOnly: true
+        instance:
+          type: string
+          description: |
+            Used to return the correlation ID back to the user, in the format
+            kong:trace:<correlation_id>. This helps us find the relevant logs
+            when a customer reports an issue.
+          readOnly: true
+        detail:
+          type: string
+          description: >
+            A human readable explanation specific to this occurence of the
+            problem.
+
+            This field may contain request/entity data to help the user
+            understand
+
+            what went wrong. Enclose variable values in square brackets. Should
+            be
+
+            provided as "Sentence case" for direct use in the UI.
+          readOnly: true
+    InvalidRules:
+      description: invalid parameters rules
+      type: string
+      readOnly: true
+      nullable: true
+      enum:
+        - required
+        - enum
+        - min_length
+        - max_length
+        - min_digits
+        - min_lowercase
+        - min_uppercase
+        - min_symbols
+        - is_array
+        - is_base64
+        - is_boolean
+        - is_date_time
+        - is_integer
+        - is_null
+        - is_number
+        - is_object
+        - is_string
+        - is_uuid
+        - unknown_property
+        - is_label
+        - matches_regex
+    InvalidParameterChoiceItem:
+      type: object
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          $ref: '#/components/schemas/InvalidRules'
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+        choices:
+          type: array
+          uniqueItems: true
+          nullable: true
+          items: {}
+          readOnly: true
+      required:
+        - field
+        - reason
+    InvalidParameterDependentItem:
+      type: object
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: true
+          enum:
+            - dependent_fields
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+        dependents:
+          type: array
+          uniqueItems: true
+          nullable: true
+          items: {}
+          readOnly: true
+      required:
+        - field
+        - rule
+        - reason
+        - dependents
+    InvalidParameters:
+      type: array
+      nullable: false
+      uniqueItems: true
+      minItems: 1
+      description: invalid parameters
+      items:
+        oneOf:
+          - $ref: '#/components/schemas/InvalidParameterChoiceItem'
+          - $ref: '#/components/schemas/InvalidParameterDependentItem'
+    BadRequestError:
+      type: object
+      required:
+        - invalid_parameters
+      properties:
+        status:
+          example: 400
+        title:
+          example: Bad Request
+        type:
+          example: https://httpstatuses.com/400
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Invalid request body
+        invalid_parameters:
+          $ref: '#/components/schemas/InvalidParameters'
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+    UnauthorizedError:
+      type: object
+      properties:
+        status:
+          example: 401
+        title:
+          example: Unauthorized
+        type:
+          example: https://httpstatuses.com/401
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Invalid credentials
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+    ForbiddenError:
+      type: object
+      properties:
+        status:
+          example: 403
+        title:
+          example: Forbidden
+        type:
+          example: https://httpstatuses.com/403
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Forbidden
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+    ConflictError:
+      type: object
+      properties:
+        status:
+          example: 409
+        title:
+          example: Conflict
+        type:
+          example: https://httpstatuses.com/409
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Conflict
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+    NotFoundError:
+      type: object
+      properties:
+        status:
+          example: 404
+        title:
+          example: Not Found
+        type:
+          example: https://httpstatuses.com/404
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Not found
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+  securitySchemes:
+    personalAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Token
+      description: >
+        The personal access token is meant to be used as an alternative to
+        basic-auth when accessing Konnect via APIs.
+
+        You can generate a Personal Access Token (PAT) from the [personal access
+        token page](https://cloud.konghq.com/global/tokens/) in the Konnect
+        dashboard.
+
+        The PAT token must be passed in the header of a request, for example:
+
+        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header
+        'Authorization: Bearer kpat_xgfT...'`
+    systemAccountAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Token
+      description: >
+        The system account access token is meant for automations and
+        integrations that are not directly associated with a human identity.
+
+        You can generate a system account Access Token by creating a system
+        account and then obtaining a system account access token for that
+        account.
+
+        The access token must be passed in the header of a request, for example:
+
+        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header
+        'Authorization: Bearer spat_i2Ej...'`
+  examples:
+    400RequestFormatInvalidExample:
+      value:
+        status: 400
+        title: Bad Request
+        instance: konnect:trace:3674017986744198214
+        invalid_parameters:
+          - field: body
+            reason: request format is invalid
+    400CannotBeBlankExample:
+      value:
+        status: 400
+        title: Bad Request
+        instance: konnect:trace:6644808935508571943
+        invalid_parameters:
+          - field: name
+            reason: cannot be blank
+    400InvalidIDFormatExample:
+      value:
+        status: 400
+        title: Bad Request
+        instance: konnect:trace:8988732526256293040
+        invalid_parameters:
+          - field: id
+            reason: invalid ID format
+    400UsageLimitsReachedExample:
+      value:
+        status: 400
+        title: Bad Request
+        instance: konnect:trace:8988732526256293040
+        detail: >-
+          Cannot create an additional control plane because usage limits have
+          been reached.
+    400UnknownPropertyExample:
+      value:
+        status: 400
+        title: Bad Request
+        instance: konnect:trace:8988732526256293040
+        invalid_parameters:
+          - field: id
+            rule: unknownProperty
+            reason: property id should not exist
+    401UnauthenticatedExample:
+      value:
+        status: 401
+        title: Unauthenticated
+        instance: konnect:trace:952172606039454040
+        detail: A valid token is required
+    403PermissionDeniedExample:
+      value:
+        status: 403
+        title: Permission denied
+        instance: konnect:trace:2822394689570210664
+        detail: Insufficient role-set to create control planes.
+    404NotFoundExample:
+      value:
+        status: 404
+        title: Not Found
+        instance: konnect:trace:2287285207635123011
+        detail: The requested control plane was not found.
+    409ConflictExample:
+      value:
+        status: 409
+        title: Conflict
+        instance: konnect:trace:2287285207635123011
+        detail: Control Plane with provided name already exists.
+    500InternalErrorExample:
+      value:
+        status: 500
+        title: Internal Server Error
+        instance: konnect:trace:2287285207635123011
+        detail: >-
+          Could not propagate control plane changes to control plane cluster
+          service.
+    503PermissionReadFailureExample:
+      value:
+        status: 503
+        title: Service Unavailable
+        instance: konnect:trace:2287285207635123011
+        detail: Could not retrieve permissions to check resource accessibility.
+    CreateControlPlaneRequestExample:
+      value:
+        name: Test Control Plane
+        description: A test control plane for exploration.
+        cluster_type: CLUSTER_TYPE_K8S_INGRESS_CONTROLLER
+        labels:
+          env: test
+    UpdateControlPlaneRequestExample:
+      value:
+        name: Test Control Plane
+        description: A test control plane for exploration.
+        labels:
+          env: development
+    ControlPlaneExample:
+      value:
+        id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+        name: Test Control Plane
+        description: A test control plane for exploration.
+        labels:
+          env: test
+        config:
+          control_plane_endpoint: https://acfe5f253f.cp0.konghq.com
+          telemetry_endpoint: https://acfe5f253f.tp0.konghq.com
+          cluster_type: CLUSTER_TYPE_CONTROL_PLANE
+          auth_type: pinned_client_certs
+    GroupConflictStatusExample:
+      value:
+        id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+        conflicts:
+          - cluster_id: 57fdf779-7935-476f-ab2b-7fa1323b70e6
+            description: >-
+              conflicting entity found: ID=df43b088-cace-4119-9e2a-d83e5fbb0c48,
+              Name=svc1
+            resource:
+              id: df43b088-cace-4119-9e2a-d83e5fbb0c48
+              type: service
+          - cluster_id: 38ceea96-fe39-11ed-be56-0242ac120002
+            description: >-
+              conflicting entity found: ID=15f3ab7d-7202-498a-95b4-334f783dbcdd,
+              Name=svc1
+            resource:
+              id: 15f3ab7d-7202-498a-95b4-334f783dbcdd
+              type: service
+        state: CONFLICT
+        created_at: '2022-11-04T20:10:06.927Z'
+        updated_at: '2022-11-04T20:10:06.927Z'
+    GroupNoConflictStatusExample:
+      value:
+        id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+        conflicts:
+          - cluster_id: 57fdf779-7935-476f-ab2b-7fa1323b70e6
+            description: >-
+              conflicting entity found: ID=df43b088-cace-4119-9e2a-d83e5fbb0c48,
+              Name=svc1
+            resource:
+              id: df43b088-cace-4119-9e2a-d83e5fbb0c48
+              type: service
+          - cluster_id: 38ceea96-fe39-11ed-be56-0242ac120002
+            description: >-
+              conflicting entity found: ID=15f3ab7d-7202-498a-95b4-334f783dbcdd,
+              Name=svc1
+            resource:
+              id: 15f3ab7d-7202-498a-95b4-334f783dbcdd
+              type: service
+        state: CONFLICT
+        created_at: '2022-11-04T20:10:06.927Z'
+        updated_at: '2022-11-04T20:10:06.927Z'
+    ListGroupMembershipsExample:
+      value:
+        meta:
+          page:
+            total: 2
+            size: 100
+            number: 1
+        data:
+          - id: 774f2a35-509d-4b94-97e9-1ed49563bcb1
+            name: Group Member 1
+            description: Child RG
+            labels:
+              env: prod
+            config:
+              control_plane_endpoint: https://9e0353434a.us.cp0.konghq.com
+              telemetry_endpoint: https://9e0353434a.us.tp0.konghq.com
+              cluster_type: CLUSTER_TYPE_CONTROL_PLANE
+              auth_type: pinned_client_certs
+            created_at: '2023-03-20T22:23:45.873Z'
+            updated_at: '2023-03-30T16:17:55.073Z'
+          - id: e4a1917c-bb26-4aa1-9a3e-50ee366f13db
+            name: Group Member 2
+            description: Child RG
+            labels:
+              env: prod
+              foo: bar
+            config:
+              control_plane_endpoint: https://05459046af.us.cp0.konghq.com
+              telemetry_endpoint: https://05459046af.us.tp0.konghq.com
+              cluster_type: CLUSTER_TYPE_CONTROL_PLANE
+              auth_type: pinned_client_certs
+            created_at: '2023-03-23T22:25:30.907Z'
+            updated_at: '2023-03-30T16:18:12.067Z'
+    UnauthorizedExample:
+      value:
+        status: 401
+        title: Unauthorized
+        instance: kong:trace:8347343766220159418
+        detail: Unauthorized
+    ForbiddenExample:
+      value:
+        status: 403
+        title: Forbidden
+        instance: kong:trace:2723154947768991354
+        detail: You do not have permission to perform this action
+    NotFoundExample:
+      value:
+        status: 404
+        title: Not Found
+        instance: kong:trace:6816496025408232265
+        detail: Not Found
+  requestBodies:
+    GroupMemebershipAdd:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              members:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+          examples:
+            Example 1:
+              value:
+                members:
+                  - id: 1beb9ad3-d21b-4090-b6e3-574784d1166d
+                  - id: 778a0474-687d-41af-8e51-a0488d790586
+                  - id: fa85f8e8-2e5a-496e-b6d0-4e534eaab459
+      description: >-
+        Request body for adding a list of child control planes to a control
+        plane group membership.
+    GroupMembershipRemove:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              members:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+          examples:
+            Example 1:
+              value:
+                members:
+                  - id: 1beb9ad3-d21b-4090-b6e3-574784d1166d
+                  - id: 778a0474-687d-41af-8e51-a0488d790586
+                  - id: fa85f8e8-2e5a-496e-b6d0-4e534eaab459
+      description: >-
+        Request body for removing a list of child control planes from a control
+        plane group membership.

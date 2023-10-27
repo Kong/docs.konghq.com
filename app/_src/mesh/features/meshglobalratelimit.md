@@ -80,14 +80,14 @@ one per minute.
 The second scenario could result in requests burst around the window switch. In this scenario, when you configure the ratelimit to 100 requests per minute
 you could end up receiving 200 request in a couple of seconds.
 
-### Multizone deployment
+### Multi-zone deployment
 
-When it comes to multizone deployment, you should deploy the ratelimit service in every zone. As for Redis, you have two options:
+When it comes to multi-zone deployments, you should deploy the ratelimit service in every zone. As for Redis, you have two options:
 
 <center>
   <img src="/assets/images/docs/mesh/ratelimit-service-multizone-multi-redis.png"/>
 </center>
-> Figure 3: Diagram of multizone ratelimit setup with Redis per zone.
+> Figure 3: Diagram of multi-zone ratelimit setup with Redis per zone.
 
 The first option is to deploy Redis in every zone. In this setup, limits will be applied per zone. Since each zone will have its own counters cache, 
 requests will be faster, and it will be easier to distribute your system geographically.
@@ -95,7 +95,7 @@ requests will be faster, and it will be easier to distribute your system geograp
 <center>
   <img src="/assets/images/docs/mesh/ratelimit-service-multizone-single-redis.png"/>
 </center>
-> Figure 4: Diagram of multizone ratelimit setup with global Redis.
+> Figure 4: Diagram of multi-zone ratelimit setup with global Redis.
 
 The second option is to deploy a single Redis datastore for all your zones. In this setup, the rate limit will be truly global. When deploying a single Redis datastore, remember that if your zones are distributed geographically requests to Redis can become slower which could drastically 
 increase response times of service you are rate limiting. 

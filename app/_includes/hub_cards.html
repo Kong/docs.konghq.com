@@ -25,9 +25,12 @@
 {%- endif -%}
 {%- if extn_publisher == 'kong-inc' -%}
   {%- assign css_classes = css_classes | append: " gateway" | append: " kong-inc" -%}
-{%- else -%}
+{%- elsif extn.techpartner -%}
   {%- assign third_party_classes = " pub-not-konghq pub-" | append: extn_publisher | append: ' third-party ' -%}
   {%- assign css_classes = css_classes | append: third_party_classes -%}
+{%- else -%}
+  {%- assign unsupported_plugin_classes = " pub-not-konghq pub-" | append: extn_publisher | append: ' none ' -%}
+  {%- assign css_classes = css_classes | append: unsupported_plugin_classes -%}
 {%- endif -%}
 <div class="plugin-card {{ css_classes }}">
   <a href="{{ extn.url | remove: 'index.html' }}" title="{{ extn.name }}: {{ extn.desc }}">

@@ -43,6 +43,9 @@ Upload a custom plugin schema to create a configurable entity in {{site.konnect_
 {% navtabs %}
 {% navtab Konnect UI %}
 
+{:.note}
+> **Note**: The UI is not available when using KIC in Konnect. Please use the Konnect API instead.
+
 1. From the **Gateway Manager**, open a control plane.
 1. Open **Plugins** from the side navigation, then click **Add Plugin**.
 1. Open the **Custom Plugins** tab, then click **Create** on the Custom Plugin tile.
@@ -56,11 +59,16 @@ Upload the `schema.lua` file for your plugin using the [`/plugin-schemas`](/konn
 
 ```sh
 curl -i -X POST \
-  https://{region}.api.konghq.com/v2/{controlPlaneId}/core-entities/plugin-schemas \
-  --data lua_schema=@example-schema.lua
+  https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/plugin-schemas \
+  --header 'Content-Type: application/json' \
+  --data "{\"lua_schema\": <your escaped Lua schema>}"
 ```
 
-This example specifies a file, but you can also include the entire schema in the request as JSON data.
+{:.note}
+> **Tip**: You can use jq to pass your schema directly from the file instead of manually escaping it:
+```sh
+--data "{\"lua_schema\": $(jq -Rs '.' < REPLACE-PATH-TO-SCHEMA-FILE)}"
+```
 
 You should get an `HTTP 201` response. 
 
@@ -68,7 +76,7 @@ You can check that your schema was uploaded using the following request:
 
 ```sh
 curl -i -X GET \
-  https://{region}.api.konghq.com/v2/{controlPlaneId}/core-entities/plugin-schemas
+  https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/plugin-schemas
 ```
 
 This request returns an `HTTP 200` response with the schema for your plugin as a JSON object.

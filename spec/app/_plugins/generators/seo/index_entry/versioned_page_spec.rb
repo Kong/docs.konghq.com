@@ -86,6 +86,14 @@ RSpec.describe SEO::IndexEntry::VersionedPage do
 
         it_behaves_like 'sets `seo_noindex` to true'
       end
+
+      context 'when the version is not yet released - `dev`' do
+        let(:page) { find_page_by_url('/mesh/dev/') }
+
+        it 'sets the `canonical_url`' do
+          expect(page.data['canonical_url']).to eq('/mesh/latest/')
+        end
+      end
     end
   end
 

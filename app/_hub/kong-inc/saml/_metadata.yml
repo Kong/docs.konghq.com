@@ -1,4 +1,7 @@
 name: SAML
+search_aliases:
+  - azure
+  - security assertion markup language
 dbless_compatible: 'yes'
 free: false
 enterprise: true

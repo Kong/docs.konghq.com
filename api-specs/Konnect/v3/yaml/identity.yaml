@@ -1,0 +1,3774 @@
+openapi: 3.0.2
+info:
+  title: Konnect Identity
+  version: 3.0.0
+  description: The management API for Kong Konnect Identity resources.
+  contact:
+    name: Kong
+    url: https://konghq.com
+servers:
+  - url: https://global.api.konghq.com/v3
+    description: Global Base URL
+security:
+  - personalAccessToken: []
+  - systemAccountAccessToken: []
+  - konnectAccessToken: []
+tags:
+  - name: Auth Settings
+  - name: Invites
+  - name: Roles
+  - name: Team Membership
+  - name: Teams
+  - name: Users
+  - name: System Accounts
+  - name: System Accounts - Access Tokens
+  - name: System Accounts - Roles
+  - name: System Accounts - Team Membership
+paths:
+  /authentication-settings:
+    get:
+      summary: Get Auth Settings
+      description: >-
+        Returns authentication configuration, which determines how users can log
+        in and how they are assigned to teams.
+      operationId: get-authentication-settings
+      tags:
+        - Auth Settings
+      responses:
+        '200':
+          $ref: '#/components/responses/AuthenticationSettings'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+    patch:
+      summary: Update Auth Settings
+      description: Updates authentication configuration.
+      operationId: update-authentication-settings
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateAuthenticationSettings'
+      tags:
+        - Auth Settings
+      responses:
+        '200':
+          $ref: '#/components/responses/AuthenticationSettings'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+  /invites:
+    post:
+      summary: Invite User
+      description: >-
+        Sends an invitation email to invite a user to the Konnect organization.
+        The email contains a link with a one time token to accept the
+        invitation. Upon accepting the invitation, the user is directed to
+        https://cloud.konghq.com/login to complete registration.
+      operationId: invite-user
+      requestBody:
+        $ref: '#/components/requestBodies/InviteUser'
+      responses:
+        '201':
+          description: Created
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '409':
+          $ref: '#/components/responses/IdentityConflict'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+      tags:
+        - Invites
+  /identity-provider:
+    get:
+      summary: Fetch IdP Configuration
+      operationId: get-idp-configuration
+      responses:
+        '200':
+          $ref: '#/components/responses/IdPConfiguration'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/IdentityPermissionDenied'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      tags:
+        - Auth Settings
+      description: Fetch the IdP configuration.
+    parameters: []
+    patch:
+      summary: Update IdP Configuration
+      operationId: update-idp-configuration
+      responses:
+        '200':
+          $ref: '#/components/responses/IdPConfiguration'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+      description: Update the IdP configuration.
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateIdPConfiguration'
+      tags:
+        - Auth Settings
+  /identity-provider/team-mappings:
+    put:
+      summary: Update Team Mappings
+      operationId: update-idp-team-mappings
+      responses:
+        '200':
+          $ref: '#/components/responses/TeamMappingCollection'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '401':
+          $ref: '#/components/responses/IdentityPermissionDenied'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+        '412':
+          $ref: '#/components/responses/PreconditionFailed'
+      tags:
+        - Auth Settings
+      description: Updates the IdP group to Konnect team mapping.
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateTeamMappings'
+    get:
+      summary: Fetch Team Mapping
+      operationId: get-idp-team-mappings
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+      responses:
+        '200':
+          $ref: '#/components/responses/TeamMappingResponse'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/IdentityPermissionDenied'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+        '412':
+          $ref: '#/components/responses/PreconditionFailed'
+      tags:
+        - Auth Settings
+      description: Fetch the IdP group to Konnect team mapping.
+  /identity-provider/team-group-mappings:
+    get:
+      summary: Fetch Team Group Mappings
+      operationId: get-team-group-mappings
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+      responses:
+        '200':
+          $ref: '#/components/responses/TeamGroupMappingCollection'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/IdentityPermissionDenied'
+      tags:
+        - Auth Settings
+      description: >-
+        Retrieves the mappings between Konnect Teams and Identity Provider
+        Groups.
+
+        Returns a 400 error if an Identity Provider has not yet been configured.
+    patch:
+      summary: Patch Mappings by Team ID
+      operationId: patch-team-group-mappings
+      responses:
+        '200':
+          $ref: '#/components/responses/TeamGroupMappingCollection'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/IdentityPermissionDenied'
+      tags:
+        - Auth Settings
+      description: >-
+        Allows partial updates to the mappings between Konnect Teams and
+        Identity Provider Groups.
+
+        The request body must be keyed on team ID. For a given team ID, the
+        given group list is a
+
+        complete replacement. To remove all mappings for a given team, provide
+        an empty group list.
+
+
+        Returns a 400 error if an Identity Provider has not yet been configured,
+        or if a team ID in
+
+        the request body is not found or is not a UUID.
+      requestBody:
+        $ref: '#/components/requestBodies/PatchTeamGroupMappings'
+  /roles:
+    get:
+      summary: Get Predefined Roles
+      description: Retrieves the predefined, or system managed, roles.
+      operationId: get-predefined-roles
+      responses:
+        '200':
+          $ref: '#/components/responses/Roles'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+      tags:
+        - Roles
+  /teams:
+    get:
+      summary: List Teams
+      responses:
+        '200':
+          $ref: '#/components/responses/TeamCollection'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      operationId: list-teams
+      description: >-
+        Returns an array of team objects containing information about the
+        Konnect Teams.
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - schema:
+            type: object
+            properties:
+              name:
+                $ref: '#/components/schemas/StringFieldFilter'
+          in: query
+          name: filter
+          description: Filter teams returned in the response.
+          required: false
+          style: deepObject
+      tags:
+        - Teams
+    parameters: []
+    post:
+      summary: Create Team
+      operationId: create-team
+      responses:
+        '201':
+          $ref: '#/components/responses/TeamSingle'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '403':
+          $ref: '#/components/responses/IdentityPermissionDenied'
+      tags:
+        - Teams
+      requestBody:
+        $ref: '#/components/requestBodies/CreateTeam'
+      description: 'Creates a team in the Konnect Organization. '
+  /teams/{teamId}/users:
+    parameters:
+      - schema:
+          type: string
+          example: d32d905a-ed33-46a3-a093-d8f536af9a8a
+          format: uuid
+        name: teamId
+        in: path
+        required: true
+        description: ID of the team.
+    get:
+      summary: List Team Users
+      responses:
+        '200':
+          $ref: '#/components/responses/UserCollection'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      operationId: list-team-users
+      description: >-
+        Returns a paginated list of users that belong to the team specified in
+        the path parameter.
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - schema:
+            type: object
+            properties:
+              id:
+                $ref: '#/components/schemas/StringFieldEqualsFilter'
+              email:
+                $ref: '#/components/schemas/StringFieldFilter'
+              full_name:
+                $ref: '#/components/schemas/StringFieldFilter'
+              active:
+                $ref: '#/components/schemas/BooleanFieldFilter'
+          in: query
+          name: filter
+          description: Filter users returned in the response.
+          required: false
+          style: deepObject
+      tags:
+        - Team Membership
+    post:
+      summary: Add User
+      operationId: add-user-to-team
+      responses:
+        '201':
+          description: Created
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      description: Adds a user to a team.
+      requestBody:
+        $ref: '#/components/requestBodies/AddUserToTeam'
+      tags:
+        - Team Membership
+  /teams/{teamId}:
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+          example: d32d905a-ed33-46a3-a093-d8f536af9a8a
+        name: teamId
+        in: path
+        required: true
+        description: The team ID
+    get:
+      summary: Fetch Team
+      responses:
+        '200':
+          $ref: '#/components/responses/TeamSingle'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      operationId: get-team
+      description: Returns information about a team from a given team ID.
+      tags:
+        - Teams
+    patch:
+      summary: Update Team
+      operationId: update-team
+      responses:
+        '200':
+          $ref: '#/components/responses/TeamSingle'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      description: Updates an individual team.
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateTeam'
+      tags:
+        - Teams
+    delete:
+      summary: Delete Team
+      operationId: delete-team
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      description: Deletes an individual team. Returns 404 if the team is not found.
+      tags:
+        - Teams
+  /teams/{teamId}/users/{userId}:
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+          example: d32d905a-ed33-46a3-a093-d8f536af9a8a
+        name: userId
+        in: path
+        required: true
+        description: User ID
+      - schema:
+          type: string
+          example: d32d905a-ed33-46a3-a093-d8f536af9a8a
+          format: uuid
+        name: teamId
+        in: path
+        required: true
+        description: Team ID.
+    delete:
+      summary: Remove User
+      operationId: remove-user-from-team
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      description: >-
+        Removes a user from a team.
+
+        If the user was removed, returns a 204 empty response. Returns 404 if
+        the user or team were not found.
+      tags:
+        - Team Membership
+  /teams/{teamId}/assigned-roles:
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+          example: e81bc3e5-e9db-4764-b7dd-e81e39072cbe
+        name: teamId
+        in: path
+        required: true
+        description: The team ID
+    get:
+      summary: List Team Roles
+      tags:
+        - Roles
+      responses:
+        '200':
+          $ref: '#/components/responses/AssignedRoleCollection'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/IdentityPermissionDenied'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      operationId: list-team-roles
+      description: >-
+        Lists the roles belonging to a team. Returns 400 if any filter
+        parameters are invalid.
+      parameters:
+        - schema:
+            type: object
+            properties:
+              role_name:
+                $ref: '#/components/schemas/StringFieldEqualsFilter'
+              entity_type_name:
+                $ref: '#/components/schemas/StringFieldEqualsFilter'
+          in: query
+          name: filter
+          description: Filter roles returned in the response.
+          required: false
+          style: deepObject
+    post:
+      summary: Assign Role
+      operationId: teams-assign-role
+      responses:
+        '201':
+          $ref: '#/components/responses/AssignedRoleSingle'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/IdentityPermissionDenied'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+        '409':
+          $ref: '#/components/responses/IdentityConflict'
+      description: Assigns a role to a team. Returns 409 if role is already assigned.
+      requestBody:
+        $ref: '#/components/requestBodies/AssignRole'
+      tags:
+        - Roles
+  /teams/{teamId}/assigned-roles/{roleId}:
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+          example: e81bc3e5-e9db-4764-b7dd-e81e39072cbe
+        name: teamId
+        in: path
+        required: true
+        description: The team ID.
+      - schema:
+          type: string
+          example: 8350205f-a305-4e39-abe9-bc082a80091a
+          format: uuid
+        name: roleId
+        in: path
+        required: true
+        description: The role ID.
+    delete:
+      summary: Remove Role
+      operationId: teams-remove-role
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/IdentityPermissionDenied'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      tags:
+        - Roles
+      description: >-
+        Removes an assigned role from a team. Returns 404 if the requested team
+        or assigned role were not found.
+  /users:
+    get:
+      summary: List Users
+      tags:
+        - Users
+      responses:
+        '200':
+          $ref: '#/components/responses/UserCollection'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+      operationId: list-users
+      description: Returns a paginated list of user objects.
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - schema:
+            type: object
+            properties:
+              id:
+                $ref: '#/components/schemas/StringFieldEqualsFilter'
+              email:
+                $ref: '#/components/schemas/StringFieldFilter'
+              full_name:
+                $ref: '#/components/schemas/StringFieldFilter'
+              active:
+                $ref: '#/components/schemas/BooleanFieldFilter'
+          in: query
+          name: filter
+          description: Filter users returned in the response.
+          required: false
+          style: deepObject
+  /users/{userId}:
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+          example: d32d905a-ed33-46a3-a093-d8f536af9a8a
+        name: userId
+        in: path
+        required: true
+        description: The ID of the user being deleted.
+    get:
+      summary: Fetch User
+      tags:
+        - Users
+      responses:
+        '200':
+          $ref: '#/components/responses/UserSingle'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      operationId: get-user
+      description: Returns the user object for the user ID specified as a path parameter.
+    patch:
+      summary: Update User
+      operationId: update-user
+      responses:
+        '200':
+          $ref: '#/components/responses/UserSingle'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/IdentityPermissionDenied'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      description: Update an individual user.
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateUser'
+      tags:
+        - Users
+    delete:
+      summary: Delete User
+      operationId: delete-user
+      responses:
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      description: >-
+        Deletes an individual user. Returns 404 if the requested user was not
+        found.
+      tags:
+        - Users
+  /users/{userId}/teams:
+    parameters:
+      - schema:
+          type: string
+          example: d32d905a-ed33-46a3-a093-d8f536af9a8a
+          format: uuid
+        name: userId
+        in: path
+        required: true
+        description: The user ID.
+    get:
+      summary: List User Teams
+      responses:
+        '200':
+          $ref: '#/components/responses/TeamCollection'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      operationId: list-user-teams
+      description: Returns a paginated list of a teams that the user belongs to.
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - schema:
+            type: object
+            properties:
+              name:
+                $ref: '#/components/schemas/StringFieldFilter'
+          in: query
+          name: filter
+          description: Filter teams returned in the response.
+          required: false
+          style: deepObject
+      tags:
+        - Team Membership
+  /users/{userId}/assigned-roles:
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+          example: e81bc3e5-e9db-4764-b7dd-e81e39072cbe
+        name: userId
+        in: path
+        required: true
+        description: The user ID
+    get:
+      summary: List User Roles
+      tags:
+        - Roles
+      responses:
+        '200':
+          $ref: '#/components/responses/AssignedRoleCollection'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      operationId: list-user-roles
+      description: >-
+        Lists the roles assigned to a user.  Returns 400 if any filter
+        parameters are invalid.
+      parameters:
+        - schema:
+            type: object
+            properties:
+              role_name:
+                $ref: '#/components/schemas/StringFieldEqualsFilter'
+              entity_type_name:
+                $ref: '#/components/schemas/StringFieldEqualsFilter'
+          in: query
+          name: filter
+          description: Filter roles returned in the response.
+          required: false
+          style: deepObject
+    post:
+      summary: Assign Role
+      operationId: users-assign-role
+      responses:
+        '201':
+          $ref: '#/components/responses/AssignedRoleSingle'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/IdentityPermissionDenied'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+        '409':
+          $ref: '#/components/responses/IdentityConflict'
+      description: Assigns a role to a user. Returns 409 if role is already assigned.
+      requestBody:
+        $ref: '#/components/requestBodies/AssignRole'
+      tags:
+        - Roles
+  /users/{userId}/assigned-roles/{roleId}:
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+          example: e81bc3e5-e9db-4764-b7dd-e81e39072cbe
+        name: userId
+        in: path
+        required: true
+        description: ID of the user.
+      - schema:
+          type: string
+          example: 8350205f-a305-4e39-abe9-bc082a80091a
+          format: uuid
+        name: roleId
+        in: path
+        required: true
+        description: ID of the role.
+    delete:
+      summary: Remove Role
+      operationId: users-remove-role
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      tags:
+        - Roles
+      description: >-
+        Removes an assigned role from a user. Returns 404 if the requested user
+        or assigned role were not found.
+  /system-accounts:
+    get:
+      summary: List System Accounts
+      tags:
+        - System Accounts
+      responses:
+        '200':
+          $ref: '#/components/responses/SystemAccountCollection'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+      operationId: get-system-accounts
+      description: >-
+        Returns an array of system accounts (SA) in the organization. Returns
+        400 if any filter parameters are invalid.
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - schema:
+            type: object
+            properties:
+              name:
+                $ref: '#/components/schemas/StringFieldFilter'
+              description:
+                $ref: '#/components/schemas/StringFieldFilter'
+              konnect_managed:
+                $ref: '#/components/schemas/BooleanFieldFilter'
+          in: query
+          name: filter
+          description: Filter system accounts returned in the response.
+          required: false
+          style: deepObject
+    post:
+      summary: Create System Account
+      operationId: post-system-accounts
+      tags:
+        - System Accounts
+      description: >-
+        Creates a system account. Returns a 409 if a system account with the
+        same name already exists.
+      requestBody:
+        $ref: '#/components/requestBodies/CreateSystemAccount'
+      responses:
+        '201':
+          $ref: '#/components/responses/SystemAccountSingle'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/IdentityConflict'
+  /system-accounts/{accountId}:
+    get:
+      summary: Fetch System Account
+      tags:
+        - System Accounts
+      responses:
+        '200':
+          $ref: '#/components/responses/SystemAccountSingle'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      operationId: get-system-accounts-id
+      description: >-
+        Returns the system account (SA) for the SA ID specified as a path
+        parameter.
+    parameters:
+      - schema:
+          type: string
+        name: accountId
+        in: path
+        required: true
+        description: ID of the system account.
+    patch:
+      summary: Update System Account
+      operationId: patch-system-accounts-id
+      responses:
+        '200':
+          $ref: '#/components/responses/SystemAccountSingle'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+        '409':
+          $ref: '#/components/responses/IdentityConflict'
+      description: >-
+        Updates the specified system account. Returns a 409 if the updated name
+        is the same as another system account in the organization.
+      tags:
+        - System Accounts
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateSystemAccount'
+    delete:
+      summary: Delete System Account
+      operationId: delete-system-accounts-id
+      responses:
+        '204':
+          description: No Content
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      description: >-
+        Deletes the specified system account. Returns 404 if the requested
+        account was not found.
+      tags:
+        - System Accounts
+  /system-accounts/{accountId}/access-tokens:
+    get:
+      summary: List System Account Access Tokens
+      tags:
+        - System Accounts - Access Tokens
+      responses:
+        '200':
+          $ref: '#/components/responses/SystemAccountAccessTokenCollection'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      operationId: get-system-account-id-access-tokens
+      description: >-
+        Returns the access tokens for the specified system account. Returns 400
+        if any filter parameters are invalid.
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - schema:
+            type: object
+            properties:
+              name:
+                $ref: '#/components/schemas/StringFieldFilter'
+          in: query
+          name: filter
+          description: Filter access tokens returned in the response.
+          required: false
+          style: deepObject
+    parameters:
+      - schema:
+          type: string
+        name: accountId
+        in: path
+        required: true
+        description: ID of the system account.
+    post:
+      summary: Create System Account Access Token
+      operationId: post-system-accounts-id-access-tokens
+      responses:
+        '201':
+          $ref: '#/components/responses/SystemAccountAccessTokenCreated'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+        '409':
+          $ref: '#/components/responses/IdentityConflict'
+      description: >-
+        Creates an access token for the specified system account (SA). The
+        access token can be used for authenticating API and CLI requests. The
+        token will only be displayed once on creation. Returns a 409 if the
+        system account already has a token with the same name.
+      requestBody:
+        $ref: '#/components/requestBodies/CreateSystemAccountAccessToken'
+      tags:
+        - System Accounts - Access Tokens
+  /system-accounts/{accountId}/access-tokens/{tokenId}:
+    get:
+      summary: Fetch System Account Access Token
+      responses:
+        '200':
+          $ref: '#/components/responses/SystemAccountAccessTokenSingle'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      operationId: get-system-accounts-id-access-tokens-id
+      description: >-
+        Returns the system account (SA) access token for the SA Access Token ID
+        specified as a path parameter.
+      parameters: []
+      tags:
+        - System Accounts - Access Tokens
+    parameters:
+      - schema:
+          type: string
+        name: accountId
+        in: path
+        required: true
+        description: ID of the system account.
+      - schema:
+          type: string
+        name: tokenId
+        in: path
+        required: true
+        description: ID of the system account access token.
+    patch:
+      summary: Update System Account Access Token
+      operationId: patch-system-accounts-id-access-tokens-id
+      responses:
+        '200':
+          $ref: '#/components/responses/SystemAccountAccessTokenSingle'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+        '409':
+          $ref: '#/components/responses/IdentityConflict'
+      description: >-
+        Updates the specified access token. Returns a 409 if the updated name is
+        the same as another token belonging to the specified system user.
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateSystemAccountAccessToken'
+      tags:
+        - System Accounts - Access Tokens
+    delete:
+      summary: Delete System Account Access Token
+      operationId: delete-system-accounts-id-access-tokens-id
+      responses:
+        '204':
+          description: No Content
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      description: Deletes the specified token. Returns 404 if the token was not found.
+      tags:
+        - System Accounts - Access Tokens
+  /system-accounts/{accountId}/assigned-roles:
+    parameters:
+      - schema:
+          type: string
+        name: accountId
+        in: path
+        required: true
+        description: ID of the system account.
+    get:
+      summary: Fetch Assigned Roles for System Account
+      responses:
+        '200':
+          $ref: '#/components/responses/AssignedRoleCollection'
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      operationId: get-system-accounts-accountId-assigned-roles
+      description: >-
+        Lists the roles belonging to a system account. Returns 400 if any filter
+        parameters are invalid.
+      parameters:
+        - schema:
+            type: object
+            properties:
+              role_name:
+                $ref: '#/components/schemas/StringFieldEqualsFilter'
+              entity_type_name:
+                $ref: '#/components/schemas/StringFieldEqualsFilter'
+          in: query
+          name: filter
+          description: Filter roles returned in the response.
+          required: false
+          style: deepObject
+      tags:
+        - System Accounts - Roles
+    post:
+      summary: Create Assigned Role for System Account
+      operationId: post-system-accounts-accountId-assigned-roles
+      responses:
+        '201':
+          $ref: '#/components/responses/AssignedRoleSingle'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+        '409':
+          $ref: '#/components/responses/IdentityConflict'
+      description: >-
+        Assigns a role to a system account. Returns 409 if role is already
+        assigned.
+      requestBody:
+        $ref: '#/components/requestBodies/AssignRole'
+      tags:
+        - System Accounts - Roles
+  /system-accounts/{accountId}/assigned-roles/{roleId}:
+    parameters:
+      - schema:
+          type: string
+        name: accountId
+        in: path
+        required: true
+        description: ID of the system account.
+      - schema:
+          type: string
+        name: roleId
+        in: path
+        required: true
+        description: ID of the role.
+    delete:
+      summary: Delete Assigned Role from System Account
+      operationId: delete-system-accounts-accountId-assigned-roles-roleId
+      responses:
+        '204':
+          description: No Content
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      description: >-
+        Removes an assigned role from a system account. Returns 404 if the
+        system account or assigned role were not found.
+      tags:
+        - System Accounts - Roles
+  /teams/{teamId}/system-accounts:
+    parameters:
+      - schema:
+          type: string
+        name: teamId
+        in: path
+        required: true
+        description: ID of the team.
+    get:
+      summary: List System Accounts on a Team
+      responses:
+        '200':
+          $ref: '#/components/responses/SystemAccountCollection'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      operationId: get-teams-teamId-system-accounts
+      description: >-
+        Returns a paginated list of system accounts that belong to the team
+        specified in the path parameter.
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - schema:
+            type: object
+            properties:
+              name:
+                $ref: '#/components/schemas/StringFieldFilter'
+          in: query
+          name: filter
+          description: Filter system accounts returned in the response.
+          required: false
+          style: deepObject
+      tags:
+        - System Accounts - Team Membership
+    post:
+      summary: Add System Account to a Team
+      operationId: post-teams-teamId-system-accounts
+      responses:
+        '201':
+          description: Created
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+        '409':
+          $ref: '#/components/responses/IdentityConflict'
+      description: >-
+        Adds a system account to a team. Returns a 409 if the system account is
+        already a member of the team.
+      requestBody:
+        $ref: '#/components/requestBodies/AddSystemAccountToTeam'
+      tags:
+        - System Accounts - Team Membership
+  /teams/{teamId}/system-accounts/{accountId}:
+    parameters:
+      - schema:
+          type: string
+        name: teamId
+        in: path
+        required: true
+        description: ID of the team.
+      - schema:
+          type: string
+        name: accountId
+        in: path
+        required: true
+        description: ID of the system account.
+    delete:
+      summary: Remove System Account From Team
+      operationId: delete-teams-teamId-system-accounts-accountId
+      responses:
+        '204':
+          description: No Content
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      description: >-
+        Removes a system account from a team. Returns 404 if the team or system
+        account were not found.
+      tags:
+        - System Accounts - Team Membership
+  /system-accounts/{accountId}/teams:
+    parameters:
+      - schema:
+          type: string
+        name: accountId
+        in: path
+        required: true
+        description: ID of the system account.
+    get:
+      summary: List Teams for a System Account
+      responses:
+        '200':
+          $ref: '#/components/responses/TeamCollection'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
+        '403':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/IdentityNotFound'
+      operationId: get-system-accounts-accountId-teams
+      description: Returns a paginated list of a teams that the system account belongs to.
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - schema:
+            type: object
+            properties:
+              name:
+                $ref: '#/components/schemas/StringFieldFilter'
+          in: query
+          name: filter
+          description: Filter teams returned in the response.
+          required: false
+          style: deepObject
+      tags:
+        - System Accounts - Team Membership
+components:
+  responses:
+    UserSingle:
+      description: A get action response of a single user.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/User'
+          examples:
+            Example:
+              $ref: '#/components/examples/Get-User-Response'
+    UserCollection:
+      description: A paginated list response for a collection of users.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+          examples:
+            User Collection Response:
+              $ref: '#/components/examples/user-collection-response-example'
+    TeamSingle:
+      description: A response including a single team.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Team'
+          examples:
+            Single team response:
+              $ref: '#/components/examples/single-team-response'
+    TeamCollection:
+      description: A paginated list response for a collection of users.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+          examples:
+            Team Collection:
+              value:
+                meta:
+                  page:
+                    number: 1
+                    size: 1
+                    total: 10
+                data:
+                  - id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+                    name: IDM - Developers
+                    description: The developers for the IDM API.
+                    system_team: false
+                    created_at: '2022-02-07T17:46:57.52Z'
+                    updated_at: '2022-09-25T13:00:00.00Z'
+    TeamMappingCollection:
+      description: A paginated list response for a collection of team mappings.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TeamMapping'
+          examples:
+            Team Mapping Collection:
+              $ref: '#/components/examples/team-mapping-collection'
+    TeamGroupMappingCollection:
+      description: A paginated collection of mappings grouped by team_id.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TeamGroupMapping'
+          examples:
+            Team Mapping Collection:
+              $ref: '#/components/examples/team-mapping-collection'
+    AssignedRoleSingle:
+      description: A get action response of a single assigned role.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AssignedRole'
+          examples:
+            Assigned Role Example:
+              $ref: '#/components/examples/Assigned-Role-Example'
+    AssignedRoleCollection:
+      description: A paginated list response for a collection of assigned roles.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+              data:
+                type: array
+                description: An Array
+                items:
+                  $ref: '#/components/schemas/AssignedRole'
+          examples:
+            CollectionExample:
+              $ref: '#/components/examples/collection-example'
+    AuthenticationSettings:
+      description: Response for authentication settings endpoint
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              basic_auth_enabled:
+                type: boolean
+                example: true
+                description: The organization has basic auth enabled.
+              oidc_auth_enabled:
+                type: boolean
+                example: false
+                description: The organization has OIDC disabled.
+              idp_mapping_enabled:
+                type: boolean
+                example: true
+                description: IdP groups determine the Konnect teams a user has.
+              konnect_mapping_enabled:
+                type: boolean
+                example: false
+                description: A Konnect Identity Admin assigns teams to a user.
+          examples:
+            Get Authorization Settings:
+              $ref: '#/components/examples/Get-Authentication-Settings'
+    IdentityBadRequest:
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BadRequestError'
+          examples:
+            Request Format is Invalid:
+              $ref: '#/components/examples/400-request-format-is-invalid'
+            Cannot be Blank:
+              $ref: '#/components/examples/400-cannot-be-blank'
+            Invalid ID format:
+              $ref: '#/components/examples/400-invalid-id-format'
+            Must be a valid UUID v4:
+              $ref: '#/components/examples/400-valid-uuid'
+            System teams cannot be modified:
+              $ref: '#/components/examples/400-systems-team-modified'
+            Password Complexity:
+              $ref: '#/components/examples/400-password-complexity'
+            Authentication Settings cannot be both Disabled:
+              $ref: >-
+                #/components/examples/400-authentication-settings-cannot-be-both-disabled
+            OIDC needs an IdP configuration:
+              $ref: '#/components/examples/400-oidc-auth-enabled-needs-idp'
+            IdP configuration is required:
+              $ref: '#/components/examples/400-idp-config-is-required'
+            Unsupported filter operation:
+              value:
+                status: 400
+                title: Bad Request
+                instance: konnect:trace:3674017986744198214
+                invalid_parameters:
+                  - field: '[filter][actions][contains]'
+                    reason: '[contains] is not a supported filter operation'
+    IdentityConflict:
+      description: Conflict
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ConflictError'
+          examples:
+            User is Already Active:
+              $ref: '#/components/examples/409-user-is-already-active'
+    IdentityPermissionDenied:
+      description: Permission denied
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenError'
+          examples:
+            Permission Denied:
+              $ref: '#/components/examples/403-permission-denied'
+            Invalid Permissions:
+              $ref: '#/components/examples/403-invalid-permissions'
+            Username or Password invalid:
+              $ref: '#/components/examples/403-auth-invalid'
+    PreconditionFailed:
+      description: Precondition Failed
+      content:
+        application/problem+json:
+          schema:
+            type: object
+            description: The error response object.
+            properties:
+              status:
+                type: integer
+                description: The HTTP status code.
+                example: 412
+              title:
+                type: string
+                description: The error response code.
+                example: Precondition Failed
+              instance:
+                type: string
+                description: The Konnect traceback code.
+                example: konnect:trace:1896611024257578096
+              detail:
+                type: string
+                description: Details about the error response.
+                example: IdP configuration not found
+          examples:
+            Precondition Failed:
+              $ref: '#/components/examples/412-precondition-failed'
+    RateLimited:
+      description: Rate Limited
+      content:
+        application/problem+json:
+          schema:
+            type: object
+            description: The error object
+            properties:
+              status:
+                type: integer
+                description: The HTTP response code
+                example: 429
+              title:
+                type: string
+                example: Rate Limited
+                description: The Error response
+              instance:
+                type: string
+                description: The Konnect traceback ID.
+                example: konnect:trace:3674017986744198214
+              detail:
+                type: string
+                description: Detailed explanation of the error response.
+                example: Too many requests
+          examples:
+            Rate Limited:
+              $ref: '#/components/examples/429-rate-limited'
+    IdentityUnauthenticated:
+      description: Unauthenticated
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+          examples:
+            Unauthorized:
+              $ref: '#/components/examples/401-unauthenticated'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/problem+json:
+          schema:
+            type: object
+            description: The error response object.
+            properties:
+              status:
+                type: integer
+                example: 403
+                description: The HTTP status code.
+              title:
+                type: string
+                description: The Error Response.
+                example: Unauthorized
+              instance:
+                type: string
+                description: The Konnect traceback code.
+                example: konnect:trace:952172606039454040
+              detail:
+                type: string
+                description: Details about the error response.
+                example: You do not have permission to perform this action
+          examples:
+            Unauthorized:
+              $ref: '#/components/examples/403-permission-denied'
+    IdentityNotFound:
+      description: Not Found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+          examples:
+            Not Found:
+              $ref: '#/components/examples/404-not-found'
+    TeamMappingResponse:
+      description: A paginated list response for a collection of team mappings.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                type: object
+                description: Contains pagination data.
+                properties:
+                  page:
+                    type: object
+                    description: The page object.
+                    properties:
+                      number:
+                        type: integer
+                        description: Page number.
+                        example: 1
+                      size:
+                        type: integer
+                        description: Page size.
+                        example: 9
+                      total:
+                        type: integer
+                        description: Total number of results.
+                        example: 5
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    group:
+                      type: string
+                      description: Group names.
+                      example: 111(@&*$)(@*#_@(gfds re gdsf dfg
+                    team_ids:
+                      type: array
+                      description: Team ID's that belong to the specified group.
+                      items:
+                        type: string
+                        example: 3df49db8-39ff-490d-9fe1-251a3361fb13
+          examples:
+            Group Collection:
+              $ref: '#/components/examples/group-collection-example'
+    Roles:
+      description: The predefined, or system managed, roles.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              control_planes:
+                type: object
+                additionalProperties: false
+                required:
+                  - name
+                  - roles
+                properties:
+                  name:
+                    type: string
+                    enum:
+                      - Control Planes
+                  roles:
+                    type: object
+                    properties:
+                      admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Admin
+                          description:
+                            type: string
+                            example: >-
+                              This role grants full write access to all entities
+                              within a control plane.
+                            enum:
+                              - >-
+                                This role grants full write access to all
+                                entities within a control plane.
+                      certificate_admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Certificate Admin
+                          description:
+                            type: string
+                            example: >-
+                              This role grants full write access to administer
+                              certificates.
+                            enum:
+                              - >-
+                                This role grants full write access to administer
+                                certificates.
+                      consumer_admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Consumer Admin
+                          description:
+                            type: string
+                            example: >-
+                              This role grants full write access to administer
+                              consumers.
+                            enum:
+                              - >-
+                                This role grants full write access to administer
+                                consumers.
+                      creator:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Creator
+                          description:
+                            type: string
+                            example: >-
+                              Creates a new Control Plane in an organization.
+                              The creator becomes the owner of the Control Plane
+                              they create.
+                            enum:
+                              - >-
+                                Creates a new Control Plane in an organization.
+                                The creator becomes the owner of the Control
+                                Plane they create.
+                      deployer:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Deployer
+                          description:
+                            type: string
+                            example: >-
+                              This role grants full write access to administer
+                              services, routes and plugins necessary to deploy
+                              services in Service Hub.
+                            enum:
+                              - >-
+                                This role grants full write access to administer
+                                services, routes and plugins necessary to deploy
+                                services in Service Hub.
+                      gateway_service_admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Gateway Service Admin
+                          description:
+                            type: string
+                            example: >-
+                              This role grants full write access to administer
+                              gateway services.
+                            enum:
+                              - >-
+                                This role grants full write access to administer
+                                gateway services.
+                      plugin_admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Plugin Admin
+                          description:
+                            type: string
+                            example: >-
+                              This role grants full write access to administer
+                              plugins.
+                            enum:
+                              - >-
+                                This role grants full write access to administer
+                                plugins.
+                      route_admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Route Admin
+                          description:
+                            type: string
+                            example: >-
+                              This role grants full write access to administer
+                              routes.
+                            enum:
+                              - >-
+                                This role grants full write access to administer
+                                routes.
+                      sni_admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - SNI Admin
+                          description:
+                            type: string
+                            example: >-
+                              This role grants full write access to administer
+                              SNIs.
+                            enum:
+                              - >-
+                                This role grants full write access to administer
+                                SNIs.
+                      upstream_admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Upstream Admin
+                          description:
+                            type: string
+                            example: >-
+                              This role grants full write access to administer
+                              upstreams.
+                            enum:
+                              - >-
+                                This role grants full write access to administer
+                                upstreams.
+                      viewer:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Viewer
+                          description:
+                            type: string
+                            example: >-
+                              This role grants read only access to all entities
+                              within a control plane.
+                            enum:
+                              - >-
+                                This role grants read only access to all
+                                entities within a control plane.
+              api_products:
+                type: object
+                additionalProperties: false
+                required:
+                  - name
+                  - roles
+                properties:
+                  name:
+                    type: string
+                    enum:
+                      - API Products
+                  roles:
+                    type: object
+                    properties:
+                      admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Admin
+                          description:
+                            type: string
+                            example: >-
+                              This role grants full write access to an API
+                              product and its versions.
+                            enum:
+                              - >-
+                                This role grants full write access to an API
+                                product and its versions.
+                      application_registration:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Application Registration
+                          description:
+                            type: string
+                            example: >-
+                              This role grants permission to enable and disable
+                              application registration on an API product.
+                            enum:
+                              - >-
+                                This role grants permission to enable and
+                                disable application registration on an API
+                                product.
+                      creator:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Creator
+                          description:
+                            type: string
+                            example: >-
+                              This access is required to create API products.
+                              This access is not for creating sub-entities such
+                              as versions, API specs, etc.
+                            enum:
+                              - >-
+                                This access is required to create API products.
+                                This access is not for creating sub-entities
+                                such as versions, API specs, etc.
+                      deployer:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Deployer
+                          description:
+                            type: string
+                            example: >-
+                              This role grants permission to deploy and remove
+                              an API product from a control plane.
+                            enum:
+                              - >-
+                                This role grants permission to deploy and remove
+                                an API product from a control plane.
+                      maintainer:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Maintainer
+                          description:
+                            type: string
+                            example: >-
+                              This role grants all write permission to manage an
+                              API product and to administer plugins.
+                            enum:
+                              - >-
+                                This role grants all write permission to manage
+                                an API product and to administer plugins.
+                      plugins_admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Plugins Admin
+                          description:
+                            type: string
+                            example: >-
+                              This role grants full write permission to
+                              administer plugins.
+                            enum:
+                              - >-
+                                This role grants full write permission to
+                                administer plugins.
+                      publisher:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Publisher
+                          description:
+                            type: string
+                            example: >-
+                              This role grants permission to publish an API
+                              product to one or more portals.
+                            enum:
+                              - >-
+                                This role grants permission to publish an API
+                                product to one or more portals.
+                      viewer:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Viewer
+                          description:
+                            type: string
+                            example: >-
+                              Viewer has read-only access to an API product and
+                              its sub-entities.
+                            enum:
+                              - >-
+                                Viewer has read-only access to an API product
+                                and its sub-entities.
+              audit_logs:
+                type: object
+                additionalProperties: false
+                required:
+                  - name
+                  - roles
+                properties:
+                  name:
+                    type: string
+                    enum:
+                      - Audit Logs
+                  roles:
+                    type: object
+                    properties:
+                      admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Admin
+                          description:
+                            type: string
+                            example: >-
+                              This role grants full write access to the Audit
+                              log configuration.
+                            enum:
+                              - >-
+                                This role grants full write access to the Audit
+                                log configuration.
+              identity:
+                type: object
+                additionalProperties: false
+                required:
+                  - name
+                  - roles
+                properties:
+                  name:
+                    type: string
+                    enum:
+                      - Identity
+                  roles:
+                    type: object
+                    properties:
+                      admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Admin
+                          description:
+                            type: string
+                            example: >-
+                              This role grants full write access to the Identity
+                              configuration.
+                            enum:
+                              - >-
+                                This role grants full write access to the
+                                Identity configuration.
+              mesh_control_planes:
+                type: object
+                additionalProperties: false
+                required:
+                  - name
+                  - roles
+                properties:
+                  name:
+                    type: string
+                    enum:
+                      - Mesh Control Plane
+                  roles:
+                    type: object
+                    properties:
+                      admin:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Admin
+                          description:
+                            type: string
+                            example: >-
+                              This role grants full write access to the related
+                              to Mesh control planes.
+                            enum:
+                              - >-
+                                This role grants full write access to the
+                                related to Mesh control planes.
+                      creator:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Creator
+                          description:
+                            type: string
+                            example: >-
+                              This role grants access to create new Mesh control
+                              planes.
+                            enum:
+                              - >-
+                                This role grants access to create new Mesh
+                                control planes.
+                      viewer:
+                        type: object
+                        additionalProperties: false
+                        required:
+                          - name
+                          - description
+                        properties:
+                          name:
+                            type: string
+                            enum:
+                              - Viewer
+                          description:
+                            type: string
+                            example: >-
+                              This role grants access to read-only permissions
+                              to Mesh control planes.
+                            enum:
+                              - >-
+                                This role grants access to read-only permissions
+                                to Mesh control planes.
+          examples:
+            Predefined Roles:
+              value:
+                control_planes:
+                  name: Control Planes
+                  roles:
+                    admin:
+                      name: Admin
+                      description: >-
+                        This role grants full write access to all entities
+                        within a control plane.
+                    certificate_admin:
+                      name: Certificate Admin
+                      description: >-
+                        This role grants full write access to administer
+                        certificates.
+                    consumer_admin:
+                      name: Consumer Admin
+                      description: >-
+                        This role grants full write access to administer
+                        consumers.
+                    creator:
+                      name: Creator
+                      description: >-
+                        Creates a new Control Plane in an organization. The
+                        creator becomes the owner of the Control Plane they
+                        create.
+                    deployer:
+                      name: Deployer
+                      description: >-
+                        This role grants full write access to administer
+                        services, routes and plugins necessary to deploy
+                        services in Service Hub.
+                    gateway_service_admin:
+                      name: Gateway Service Admin
+                      description: >-
+                        This role grants full write access to administer gateway
+                        services.
+                    plugin_admin:
+                      name: Plugin Admin
+                      description: >-
+                        This role grants full write access to administer
+                        plugins.
+                    route_admin:
+                      name: Route Admin
+                      description: This role grants full write access to administer routes.
+                    sni_admin:
+                      name: SNI Admin
+                      description: This role grants full write access to administer SNIs.
+                    upstream_admin:
+                      name: Upstream Admin
+                      description: >-
+                        This role grants full write access to administer
+                        upstreams.
+                    viewer:
+                      name: Viewer
+                      description: >-
+                        This role grants read only access to all entities within
+                        a control plane.
+                api_products:
+                  name: API Products
+                  roles:
+                    admin:
+                      name: Admin
+                      description: >-
+                        This role grants full write access to an API product and
+                        its versions.
+                    application_registration:
+                      name: Application Registration
+                      description: >-
+                        This role grants permission to enable and disable
+                        application registration on an API product.
+                    creator:
+                      name: Creator
+                      description: >-
+                        This access is required to create API products. This
+                        access is not for creating sub-entities such as
+                        versions, API specs, etc.
+                    deployer:
+                      name: Deployer
+                      description: >-
+                        This role grants permission to deploy and remove an API
+                        product from a control plane.
+                    maintainer:
+                      name: Maintainer
+                      description: >-
+                        This role grants all write permission to manage an API
+                        product and to administer plugins.
+                    plugins_admin:
+                      name: Plugins Admin
+                      description: >-
+                        This role grants full write permission to administer
+                        plugins.
+                    publisher:
+                      name: Publisher
+                      description: >-
+                        This role grants permission to publish an API product to
+                        one or more portals.
+                    viewer:
+                      name: Viewer
+                      description: >-
+                        Viewer has read-only access to an API product and its
+                        sub-entities.
+                audit_logs:
+                  name: Audit Logs
+                  roles:
+                    admin:
+                      name: Admin
+                      description: >-
+                        This role grants full write access to the Audit log
+                        configuration.
+                identity:
+                  name: Identity
+                  roles:
+                    admin:
+                      name: Admin
+                      description: >-
+                        This role grants full write access to the Identity
+                        configuration.
+                mesh_control_planes:
+                  name: Mesh Control Plane
+                  roles:
+                    admin:
+                      name: Admin
+                      description: >-
+                        This role grants full write access to the related to
+                        Mesh control planes.
+                    creator:
+                      name: Creator
+                      description: >-
+                        This role grants access to create new Mesh control
+                        planes.
+                    viewer:
+                      name: Viewer
+                      description: >-
+                        This role grants access to read-only permissions to Mesh
+                        control planes.
+    SystemAccountCollection:
+      description: A paginated list response for a collection of system accounts.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SystemAccount'
+          examples:
+            Sample System Accounts:
+              value:
+                meta:
+                  page:
+                    number: 1
+                    size: 10
+                    total: 100
+                data:
+                  - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    name: Sample System Account
+                    created_at: '2019-08-24T14:15:22Z'
+                    updated_at: '2019-08-24T14:15:22Z'
+                    konnect_managed: false
+    SystemAccountSingle:
+      description: A response including a single system account.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SystemAccount'
+          examples:
+            Sample System Account:
+              value:
+                id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                name: Sample System Account
+                description: This is a sample system account description.
+                created_at: '2019-08-24T14:15:22Z'
+                updated_at: '2019-08-24T14:15:22Z'
+                konnect_managed: false
+    SystemAccountAccessTokenSingle:
+      description: A response including a single system account access token.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SystemAccountAccessToken'
+          examples:
+            Sample System Account Access Token:
+              value:
+                id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                name: Sample Access Token
+                created_at: '2019-08-24T14:15:22Z'
+                updated_at: '2019-08-24T14:15:22Z'
+                expires_at: '2019-08-24T14:15:22Z'
+                last_used_at: '2019-08-24T14:15:22Z'
+    SystemAccountAccessTokenCollection:
+      description: >-
+        A paginated list response for a collection of system accounts access
+        tokens.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SystemAccountAccessToken'
+          examples:
+            Sample System Account Access Token:
+              value:
+                meta:
+                  page:
+                    number: 1
+                    size: 10
+                    total: 100
+                data:
+                  - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    name: Sample Access Token
+                    created_at: '2019-08-24T14:15:22Z'
+                    updated_at: '2019-08-24T14:15:22Z'
+                    expires_at: '2019-08-24T14:15:22Z'
+                    last_used_at: '2019-08-24T14:15:22Z'
+    SystemAccountAccessTokenCreated:
+      description: >-
+        A response including a single system account access token with the
+        token.
+      content:
+        application/json:
+          schema:
+            type: object
+            example:
+              id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+              name: Sample Access Token
+              created_at: '2022-08-01T14:16:09Z'
+              updated_at: '2022-08-02T08:35:49Z'
+              expires_at: '2022-12-31T12:52:23Z'
+              last_used_at: '2022-10-24T13:05:42Z'
+            properties:
+              id:
+                type: string
+                description: ID of the system account access token.
+                format: uuid
+                readOnly: true
+              name:
+                type: string
+                description: Name of the system account access token.
+              created_at:
+                type: string
+                description: Timestamp of when the system account access token was created.
+                format: date-time
+                readOnly: true
+              updated_at:
+                type: string
+                description: >-
+                  Timestamp of when the system account access token was last
+                  updated.
+                format: date-time
+                readOnly: true
+              expires_at:
+                type: string
+                description: Timestamp of when the system account access token will expire.
+                format: date-time
+                readOnly: true
+              last_used_at:
+                type: string
+                description: >-
+                  Timestamp of when the system account access token was last
+                  used.
+                format: date-time
+                readOnly: true
+              token:
+                type: string
+                description: The token of the system account access token.
+                readOnly: true
+          examples:
+            Sample Access Token:
+              value:
+                id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                name: Sample Access Token
+                created_at: '2019-08-24T14:15:22Z'
+                updated_at: '2019-08-24T14:15:22Z'
+                expires_at: '2019-08-24T14:15:22Z'
+                last_used_at: '2019-08-24T14:15:22Z'
+                token: npat_12345678901234567890123456789012345678901234567890
+    IdPConfiguration:
+      description: A get action response of the IdP configuration.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/IdP'
+  requestBodies:
+    UpdateUser:
+      description: The request schema for the update user request.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              full_name:
+                type: string
+                pattern: ^[\w \W]+$
+                example: James C. Woods
+                description: The user's full name.
+                writeOnly: true
+              preferred_name:
+                type: string
+                maxLength: 250
+                example: Jimmy
+                description: The user's desired name.
+                writeOnly: true
+          examples:
+            Example Request Body:
+              $ref: '#/components/examples/Update-User-Request'
+    CreateTeam:
+      description: >-
+        The request schema for the create team request.
+
+
+        If you pass the same `name` and `description` of an existing team in the
+        request, a team with the same `name` and `description` will be created.
+        The two teams will have different `team_id` values to differentiate
+        them.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: IDM - Developers
+                pattern: ^[\w \W]+$
+                description: A name for the team being created.
+                writeOnly: true
+              description:
+                type: string
+                maxLength: 250
+                example: The Identity Management (IDM) team.
+                description: The description of the new team.
+                writeOnly: true
+            required:
+              - name
+          examples:
+            Example Request Body:
+              $ref: '#/components/examples/CreateTeamExample'
+    UpdateTeam:
+      description: The request schema for the update team request.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                example: IDM - Developers
+                pattern: ^[\w \W]+$
+                description: The name of the team.
+                writeOnly: true
+              description:
+                type: string
+                maxLength: 250
+                example: The Identity Management (IDM) API team.
+                description: The description of the team.
+                writeOnly: true
+          examples:
+            Example Request Body:
+              $ref: '#/components/examples/Update-Team-Request'
+    AddUserToTeam:
+      description: The request schema for adding a user to a team.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                example: df120cb4-f60b-47bc-a2f8-6a28e6a3c63b
+                format: uuid
+                description: The user ID for the user being added to a team.
+                writeOnly: true
+            required:
+              - id
+          examples:
+            Example request body:
+              $ref: '#/components/examples/Add-User-Request'
+    UpdateTeamMappings:
+      content:
+        application/json:
+          schema:
+            type: object
+            example:
+              mappings:
+                - group: Service Developers
+                  team_ids:
+                    - af91db4c-6e51-403e-a2bf-33d27ae50c0a
+            properties:
+              mappings:
+                type: array
+                description: The mappings object.
+                items:
+                  type: object
+                  properties:
+                    group:
+                      type: string
+                    team_ids:
+                      type: array
+                      items:
+                        type: string
+          examples:
+            Example Request Body:
+              $ref: '#/components/examples/Update-Team-Mappings'
+      description: The request schema for updating IdP team mappings.
+    PatchTeamGroupMappings:
+      content:
+        application/json:
+          schema:
+            type: object
+            example:
+              data:
+                - group: Service Developers
+                  team_ids:
+                    - af91db4c-6e51-403e-a2bf-33d27ae50c0a
+            properties:
+              data:
+                type: array
+                description: The IdP groups to map to the given team.
+                items:
+                  type: object
+                  properties:
+                    team_id:
+                      type: string
+                      format: uuid
+                    groups:
+                      type: array
+                      items:
+                        type: string
+          examples:
+            Example Request Body:
+              $ref: '#/components/examples/Patch-Team-Group-Mappings'
+      description: >-
+        The request schema for a partial update of mappings from Konnect Teams
+        to IdP Groups.
+    AssignRole:
+      content:
+        application/json:
+          schema:
+            type: object
+            description: >-
+              An assigned role is a role that has been assigned to a user or
+              team.
+            properties:
+              role_name:
+                type: string
+                example: Viewer
+                description: The desired role.
+              entity_id:
+                type: string
+                format: uuid
+                example: e67490ce-44dc-4cbd-b65e-b52c746fc26a
+                description: The ID of the entity.
+              entity_type_name:
+                type: string
+                example: Control Planes
+                description: The type of entity.
+              entity_region:
+                type: string
+                enum:
+                  - us
+                  - eu
+                  - '*'
+                example: eu
+                description: The region of the team.
+          examples:
+            Assigned Roles US:
+              $ref: '#/components/examples/Assign-Roles-US'
+            Assigned Roles Global:
+              $ref: '#/components/examples/Assign-Roles-Global'
+      description: The request schema for assigning a role.
+    InviteUser:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+                format: email
+                example: james.c.woods@example.com
+                writeOnly: true
+            required:
+              - email
+      description: >-
+        The request schema for the invite user request.
+
+
+        If you pass an `email` that is not already an active user in the
+        request, a fresh invitation email will be created and sent to the new
+        user.
+    CreateSystemAccount:
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - name
+              - description
+            properties:
+              name:
+                type: string
+                description: Name of the system account.
+              description:
+                type: string
+                description: >-
+                  Description of the system account. Useful when the system
+                  account name is not sufficient to differentiate one system
+                  account from another.
+              konnect_managed:
+                type: boolean
+                description: The system account is managed by Konnect (true/false).
+          examples:
+            Sample System Account:
+              value:
+                name: Sample System Account
+                description: This is a sample system account description.
+                konnect_managed: false
+      description: The request schema to create a system account.
+    UpdateSystemAccount:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the system account.
+              description:
+                type: string
+                description: Description of the system account.
+      description: The request schema for the update system account request.
+    UpdateSystemAccountAccessToken:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Name of the system account access token.
+    CreateSystemAccountAccessToken:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              expires_at:
+                type: string
+                format: date-time
+          examples:
+            Sample Access Token:
+              value:
+                name: Sample Access Token
+                expires_at: '2019-08-24T14:15:22Z'
+      description: The request body to create a system account access token.
+    AddSystemAccountToTeam:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: ID of the system account.
+                format: uuid
+          examples:
+            Sample System Account:
+              value:
+                id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+      description: The request schema for adding a system account to a team.
+    UpdateAuthenticationSettings:
+      description: The request schema to update an organization's authentication settings.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              basic_auth_enabled:
+                type: boolean
+                example: true
+                description: The organization has basic auth enabled.
+              oidc_auth_enabled:
+                type: boolean
+                example: false
+                description: The organization has OIDC disabled.
+              idp_mapping_enabled:
+                type: boolean
+                example: true
+                description: Whether IdP groups determine the Konnect teams a user has.
+              konnect_mapping_enabled:
+                type: boolean
+                example: false
+                description: Whether a Konnect Identity Admin assigns teams to a user.
+          examples:
+            Example Request Body:
+              $ref: '#/components/examples/Update-Authentication-Settings'
+    UpdateIdPConfiguration:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              issuer:
+                type: string
+                format: uri
+                example: https://myidp.com/oauth2
+              login_path:
+                type: string
+                example: myapp
+              client_id:
+                type: string
+                example: YOUR_CLIENT_ID
+              client_secret:
+                type: string
+                example: YOUR_CLIENT_SECRET
+              scopes:
+                type: array
+                default:
+                  - email
+                  - openid
+                  - profile
+                items:
+                  type: string
+                  default: openid
+              claim_mappings:
+                type: object
+                minProperties: 3
+                properties:
+                  name:
+                    type: string
+                    example: name
+                    default: name
+                  email:
+                    type: string
+                    example: email
+                    default: email
+                  groups:
+                    type: string
+                    default: groups
+                    example: custom-group-claim
+      description: The request schema for the update IdP configuration request.
+  schemas:
+    Auth0Organization:
+      title: Auth0 organization schema.
+      type: object
+      description: A single auth0 organization.
+      properties:
+        name:
+          type: string
+          example: My Organization
+          description: The name of the organization.
+          readOnly: true
+        login_path:
+          type: string
+          example: >-
+            /v2/authenticate/federated?org_id=7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+          description: The login path of the organization.
+          readOnly: true
+    Auth0Registration:
+      title: Auth0 organization registration response
+      type: object
+      description: A successful Auth0 organization registration response.
+      properties:
+        organization_id:
+          type: string
+        login_path:
+          type: string
+    IdP:
+      title: IdP Configuration
+      type: object
+      description: >-
+        The IdP object contains the configuration data for the OIDC
+        authentication integration.
+
+
+        NOTE: The `openid` scope is required. Removing it could break the OIDC
+        integration.
+      properties:
+        issuer:
+          type: string
+          format: uri
+          example: https://myidp.com/oauth2
+        login_path:
+          type: string
+          example: myapp
+        client_id:
+          type: string
+          example: YOUR_CLIENT_ID
+        scopes:
+          type: array
+          default:
+            - email
+            - openid
+            - profile
+          items:
+            type: string
+        claim_mappings:
+          type: object
+          minProperties: 3
+          properties:
+            name:
+              type: string
+              example: name
+              default: name
+            email:
+              type: string
+              example: email
+              default: email
+            groups:
+              type: string
+              default: groups
+              example: custom-groups-claim
+    User:
+      title: User
+      type: object
+      description: >-
+        The user object contains information about an individual user who can
+        use the Konnect application and API.
+      example:
+        id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+        email: user@email.com
+        full_name: Test User
+        preferred_name: test
+        active: true
+        created_at: '2022-02-07T17:46:57.52Z'
+        updated_at: '2022-10-08T17:00:00.52Z'
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+          description: The User ID.
+          readOnly: true
+        email:
+          type: string
+          format: email
+          example: user@email.com
+          maxLength: 250
+          description: The email registered to the user.
+        full_name:
+          type: string
+          pattern: ^[\w \W]+$
+          maxLength: 250
+          description: The User's full name.
+          example: Jane Doe
+        preferred_name:
+          type: string
+          example: Jane
+          maxLength: 250
+          description: The User's preferred name.
+        active:
+          type: boolean
+          default: true
+          description: Returns True if a user has verified their email address.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          example: '2022-02-07T17:46:57.52Z'
+          description: The time stamp for the date the account was registered.
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          example: '2022-10-08T17:00:00.52Z'
+          description: >-
+            A Unix timestamp representation of the most recent change to the
+            User account.
+          readOnly: true
+    Team:
+      title: Team
+      type: object
+      description: The team object contains information about a group of users.
+      example:
+        id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+        name: IDM - Developers
+        description: The developers for the IDM API.
+        system_team: false
+        created_at: '1992-02-07T17:46:57.52Z'
+        updated_at: '2022-08-31T17:00:00.52Z'
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+          description: The team ID.
+          readOnly: true
+        name:
+          type: string
+          pattern: ^[\w \W]+$
+          example: IDM - Developers
+          maxLength: 250
+          description: The name of the team.
+        description:
+          type: string
+          example: The developers for the IDM API.
+          maxLength: 250
+          description: The team description in Konnect.
+        system_team:
+          type: boolean
+          default: false
+          description: >-
+            Returns True if a user belongs to a `system_team`. System teams are
+            teams that can manage Konnect objects, like "Organization Admin", or
+            "Service"
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          example: '1992-02-07T17:46:57.52Z'
+          description: A Unix timestamp representation of team creation.
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          example: '2022-02-07T17:00:00.52Z'
+          description: >
+            A Unix timestamp representation of the most recent change to the
+            team object in Konnect.
+          readOnly: true
+    TeamMapping:
+      title: TeamMapping
+      type: object
+      description: A team assignment is a mapping of an IdP group to a Konnect Team.
+      example:
+        group: Service Developers
+        team_ids:
+          - 6801e673-cc10-498a-94cd-4271de07a0d3
+      properties:
+        group:
+          type: string
+          example: Service Developers
+          description: The IdP group.
+        team_ids:
+          type: array
+          uniqueItems: true
+          description: An array of ID's that are mapped to the specified group.
+          items:
+            type: string
+            format: uuid
+            example: 6801e673-cc10-498a-94cd-4271de07a0d3
+    TeamGroupMapping:
+      title: TeamGroupMapping
+      type: object
+      description: A map of Konnect Team to IdP groups.
+      example:
+        team_id: 6801e673-cc10-498a-94cd-4271de07a0d3
+        groups:
+          - Tech Leads
+          - API Engineers
+      properties:
+        team_id:
+          type: string
+          format: uuid
+          example: 6801e673-cc10-498a-94cd-4271de07a0d3
+          description: The Konnect team ID.
+        groups:
+          type: array
+          uniqueItems: true
+          description: The IdP groups that are mapped to the specified team.
+          items:
+            type: string
+            example: API Engineers
+    AssignedRole:
+      title: AssignedRole
+      type: object
+      description: An assigned role is a role that has been assigned to a user or team.
+      example:
+        id: 54cc6168-ebb1-4300-8168-d62a0dd08fc8
+        role_name: Viewer
+        entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
+        entity_type_name: Control Planes
+        entity_region: us
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: eaf7adf1-32c8-4bbf-b960-d1f8456afe67
+          description: The ID of the role assignment.
+        role_name:
+          type: string
+          example: Viewer
+          description: Name of the role being assigned.
+        entity_id:
+          type: string
+          format: uuid
+          example: 817d0422-45c9-4d88-8d64-45aef05c1ae7
+          description: A RBAC entity ID.
+        entity_type_name:
+          type: string
+          example: Control Planes
+          description: Name of the entity type the role is being assigned to.
+        entity_region:
+          type: string
+          enum:
+            - us
+            - eu
+            - '*'
+          example: eu
+          description: Region of the entity.
+    ParameterizedAssignedRole:
+      title: ParameterizedAssignedRole
+      type: object
+      description: >-
+        A parameterized assigned role is a role that has been assigned to a
+        managed system account with additional parameters.
+      example:
+        id: 54cc6168-ebb1-4300-8168-d62a0dd08fc8
+        role_name: Viewer
+        entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
+        entity_type_name: Control Planes
+        entity_region: us
+        parameters:
+          zoneName: zone3
+      x-internal: true
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: eaf7adf1-32c8-4bbf-b960-d1f8456afe67
+          description: The ID of the role assignment.
+        role_name:
+          type: string
+          example: Viewer
+          description: Name of the role being assigned.
+        entity_id:
+          type: string
+          format: uuid
+          example: 817d0422-45c9-4d88-8d64-45aef05c1ae7
+          description: A RBAC entity ID.
+        entity_type_name:
+          type: string
+          example: Control Planes
+          description: Name of the entity type the role is being assigned to.
+        entity_region:
+          type: string
+          enum:
+            - us
+            - eu
+            - '*'
+          example: eu
+          description: Region of the entity.
+        parameters:
+          type: object
+          description: Additional parameters for the role assignment.
+          properties:
+            '':
+              type: object
+    SystemAccount:
+      title: System Account
+      type: object
+      example:
+        id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+        name: Example System Account
+        description: This is a sample system account description.
+        created_at: '2022-08-24T14:15:22Z'
+        updated_at: '2022-10-05T10:33:49Z'
+        konnect_managed: false
+      description: Schema of the system account.
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: ID of the system account.
+          readOnly: true
+        name:
+          type: string
+          description: Name of the system account.
+        description:
+          type: string
+          description: Description of the system account.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp of when the system account was created.
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp of when the system account was last updated.
+          readOnly: true
+        konnect_managed:
+          type: boolean
+          description: The system account is managed by Konnect (true/false).
+    SystemAccountAccessToken:
+      title: System Account Access Token
+      example:
+        id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+        name: Sample Access Token
+        created_at: '2022-08-01T14:16:09Z'
+        updated_at: '2022-08-02T08:35:49Z'
+        expires_at: '2022-12-31T12:52:23Z'
+        last_used_at: '2022-10-24T13:05:42Z'
+      description: Schema of the system account access token.
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: ID of the system account access token.
+          readOnly: true
+        name:
+          type: string
+          description: Name of the system account access token.
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp of when the system account access token was created.
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp of when the system account access token was last updated.
+          readOnly: true
+        expires_at:
+          type: string
+          format: date-time
+          description: Timestamp of when the system account access token will expire.
+        last_used_at:
+          type: string
+          format: date-time
+          description: Timestamp of when the system account access token was last used.
+          readOnly: true
+    BooleanFieldFilter:
+      example: true
+      title: BooleanFieldFilter
+      description: Filter by a boolean value (true/false).
+      type: boolean
+    BaseError:
+      type: object
+      title: Error
+      description: standard error
+      required:
+        - status
+        - title
+        - instance
+        - detail
+      properties:
+        status:
+          type: integer
+          description: >
+            The HTTP status code of the error. Useful when passing the response
+
+            body to child properties in a frontend UI. Must be returned as an
+            integer.
+          readOnly: true
+        title:
+          type: string
+          description: |
+            A short, human-readable summary of the problem. It should not
+            change between occurences of a problem, except for localization.
+            Should be provided as "Sentence case" for direct use in the UI.
+          readOnly: true
+        type:
+          type: string
+          description: The error type.
+          readOnly: true
+        instance:
+          type: string
+          description: |
+            Used to return the correlation ID back to the user, in the format
+            kong:trace:<correlation_id>. This helps us find the relevant logs
+            when a customer reports an issue.
+          readOnly: true
+        detail:
+          type: string
+          description: >
+            A human readable explanation specific to this occurence of the
+            problem.
+
+            This field may contain request/entity data to help the user
+            understand
+
+            what went wrong. Enclose variable values in square brackets. Should
+            be
+
+            provided as "Sentence case" for direct use in the UI.
+          readOnly: true
+    InvalidRules:
+      description: invalid parameters rules
+      type: string
+      readOnly: true
+      nullable: true
+      enum:
+        - required
+        - enum
+        - min_length
+        - max_length
+        - min_digits
+        - min_lowercase
+        - min_uppercase
+        - min_symbols
+        - is_array
+        - is_base64
+        - is_boolean
+        - is_date_time
+        - is_integer
+        - is_null
+        - is_number
+        - is_object
+        - is_string
+        - is_uuid
+        - unknown_property
+        - is_label
+        - matches_regex
+    InvalidParameterChoiceItem:
+      type: object
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          $ref: '#/components/schemas/InvalidRules'
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+        choices:
+          type: array
+          uniqueItems: true
+          nullable: true
+          items: {}
+          readOnly: true
+      required:
+        - field
+        - reason
+    InvalidParameterDependentItem:
+      type: object
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: true
+          enum:
+            - dependent_fields
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+        dependents:
+          type: array
+          uniqueItems: true
+          nullable: true
+          items: {}
+          readOnly: true
+      required:
+        - field
+        - rule
+        - reason
+        - dependents
+    InvalidParameters:
+      type: array
+      nullable: false
+      uniqueItems: true
+      minItems: 1
+      description: invalid parameters
+      items:
+        oneOf:
+          - $ref: '#/components/schemas/InvalidParameterChoiceItem'
+          - $ref: '#/components/schemas/InvalidParameterDependentItem'
+    BadRequestError:
+      type: object
+      required:
+        - invalid_parameters
+      properties:
+        status:
+          example: 400
+        title:
+          example: Bad Request
+        type:
+          example: https://httpstatuses.com/400
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Invalid request body
+        invalid_parameters:
+          $ref: '#/components/schemas/InvalidParameters'
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+    NotFoundError:
+      type: object
+      properties:
+        status:
+          example: 404
+        title:
+          example: Not Found
+        type:
+          example: https://httpstatuses.com/404
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Not found
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+    PageMeta:
+      type: object
+      description: >-
+        Contains pagination query parameters and the total number of objects
+        returned.
+      required:
+        - number
+        - size
+        - total
+      properties:
+        number:
+          type: number
+          example: 1
+        size:
+          type: number
+          example: 10
+        total:
+          type: number
+          example: 100
+    PaginatedMeta:
+      type: object
+      title: PaginatedMeta
+      description: returns the pagination information
+      properties:
+        page:
+          $ref: '#/components/schemas/PageMeta'
+      required:
+        - page
+    UnauthorizedError:
+      type: object
+      properties:
+        status:
+          example: 401
+        title:
+          example: Unauthorized
+        type:
+          example: https://httpstatuses.com/401
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Invalid credentials
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+    ConflictError:
+      type: object
+      properties:
+        status:
+          example: 409
+        title:
+          example: Conflict
+        type:
+          example: https://httpstatuses.com/409
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Conflict
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+    ForbiddenError:
+      type: object
+      properties:
+        status:
+          example: 403
+        title:
+          example: Forbidden
+        type:
+          example: https://httpstatuses.com/403
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Forbidden
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+    StringFieldEqualsFilter:
+      title: StringFieldEqualsFilter
+      description: Filter a string value by exact match.
+      type: string
+    StringFieldContainsFilter:
+      type: object
+      title: StringFieldContainsFilter
+      description: Filter a string value field by partial contains.
+      properties:
+        contains:
+          type: string
+      required:
+        - contains
+    StringFieldFilter:
+      title: StringFieldFilter
+      description: Filter a string value field either by exact match or partial contains.
+      oneOf:
+        - $ref: '#/components/schemas/StringFieldEqualsFilter'
+        - $ref: '#/components/schemas/StringFieldContainsFilter'
+  securitySchemes:
+    systemAccountAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Token
+      description: >
+        The system account access token is meant for automations and
+        integrations that are not directly associated with a human identity.
+
+        You can generate a system account Access Token by creating a system
+        account and then obtaining a system account access token for that
+        account.
+
+        The access token must be passed in the header of a request, for example:
+
+        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header
+        'Authorization: Bearer spat_i2Ej...'`
+    personalAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Token
+      description: >
+        The personal access token is meant to be used as an alternative to
+        basic-auth when accessing Konnect via APIs.
+
+        You can generate a Personal Access Token (PAT) from the [personal access
+        token page](https://cloud.konghq.com/global/tokens/) in the Konnect
+        dashboard.
+
+        The PAT token must be passed in the header of a request, for example:
+
+        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header
+        'Authorization: Bearer kpat_xgfT...'`
+    konnectAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >
+        The Konnect access token is meant to be used by the Konnect dashboard
+        and the decK CLI authenticate with.
+  examples:
+    400-request-format-is-invalid:
+      value:
+        status: 400
+        title: Bad Request
+        instance: konnect:trace:3674017986744198214
+        invalid_parameters:
+          - field: body
+            reason: request format is invalid
+    400-cannot-be-blank:
+      value:
+        status: 400
+        title: Bad Request
+        instance: konnect:trace:6644808935508571943
+        invalid_parameters:
+          - field: name
+            reason: cannot be blank
+    400-invalid-id-format:
+      value:
+        status: 400
+        title: Bad Request
+        instance: konnect:trace:8988732526256293040
+        invalid_parameters:
+          - field: teamID
+            reason: invalid ID format
+    400-valid-uuid:
+      value:
+        status: 400
+        title: Bad Request
+        instance: konnect:trace:7680390984800447837
+        invalid_parameters:
+          - field: id
+            reason: must be a valid UUID v4
+    400-password-complexity:
+      value:
+        status: 400
+        title: Bad Request
+        detail: Password does not meet complexity requirements.
+        instance: konnect:trace:1738820719742148545
+        invalid_parameters:
+          - field: new_password
+            reason: 'is too short (minimum length: 8)'
+            rule: min_length
+            minimum: 8
+          - field: new_password
+            reason: must contain at least 1 digit
+            rule: min_digits
+            minimum: 1
+          - field: new_password
+            reason: must contain at least 1 lower case character
+            rule: min_lowercase
+            minimum: 1
+          - field: new_password
+            reason: must contain at least 1 upper case character
+            rule: min_uppercase
+            minimum: 1
+          - field: new_password
+            reason: must contain at least 1 special character
+            rule: min_symbols
+            minimum: 1
+    400-systems-team-modified:
+      value:
+        status: 400
+        title: Bad Request
+        instance: konnect:trace:1738820719742148545
+        invalid_parameters:
+          - field: teamID
+            reason: system teams cannot be modified
+    400-authentication-settings-cannot-be-both-disabled:
+      value:
+        status: 400
+        title: Bad Request
+        instance: konnect:trace:6644808935508571943
+        invalid_parameters:
+          - field: oidc_auth_enabled
+            reason: cannot be disabled when basic auth is also disabled
+          - field: basic_auth_enabled
+            reason: cannot be disabled when OIDC is also disabled
+    400-oidc-auth-enabled-needs-idp:
+      value:
+        status: 400
+        title: Bad Request
+        instance: konnect:trace:6644808935508571943
+        invalid_parameters:
+          - field: oidc_auth_enabled
+            reason: cannot be set before configuring an identity provider
+    400-idp-config-is-required:
+      value:
+        status: 400
+        title: Bad Request
+        detail: An IdP configuration is required
+        instance: konnect:trace:6644808935508571943
+        invalid_parameters:
+          - field: data
+            reason: cannot be set before configuring an identity provider
+    404-not-found:
+      value:
+        status: 404
+        title: Not Found
+        instance: konnect:trace:2287285207635123011
+        detail: The requested team was not found
+    403-permission-denied:
+      value:
+        status: 403
+        title: Permission denied
+        instance: konnect:trace:2822394689570210664
+        detail: Only enterprise organizations can create teams
+    403-invalid-permissions:
+      value:
+        status: 403
+        title: Invalid Permissions
+        detail: You must have the [administrator] role to perform this action
+        instance: konnect:trace:6c1ef33ae5bce33634d7d7d695c7f203
+    403-auth-invalid:
+      value:
+        type: https://kongapi.info/konnect/invalid-permissions
+        status: 403
+        title: Invalid Permissions
+        detail: You must have the [administrator] role to perform this action
+        instance: konnect:trace:6c1ef33ae5bce33634d7d7d695c7f203
+    409-user-is-already-active:
+      value:
+        status: 409
+        title: Resource Conflict
+        instance: konnect:trace:6644808935508571943
+        detail: User is already active
+    412-precondition-failed:
+      value:
+        status: 412
+        title: Precondition Failed
+        instance: konnect:trace:1896611024257578096
+        detail: IdP configuration not found
+    429-rate-limited:
+      value:
+        status: 429
+        title: Rate Limited
+        instance: konnect:trace:6644808935508571943
+        detail: Too many requests
+    collection-example:
+      value:
+        meta:
+          page:
+            number: 1
+            size: 10
+            total: 100
+        data:
+          - id: b02e23c5-8ee4-4e5a-99f4-43329923adcd
+            role_name: Viewer
+            entity_id: 437c7192-fea0-4f35-8478-c8d57783f8c1
+            entity_type_name: Control Planes
+            entity_region: eu
+          - id: 869d9402-f117-4f9a-840f-69acaf70a81a
+            role_name: Admin
+            entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
+            entity_type_name: Services
+            entity_region: '*'
+    Parameterized-Assigned-Roles-Collection-Example:
+      value:
+        meta:
+          page:
+            number: 1
+            size: 10
+            total: 100
+        data:
+          - id: b02e23c5-8ee4-4e5a-99f4-43329923adcd
+            role_name: Connector
+            entity_id: 437c7192-fea0-4f35-8478-c8d57783f8c1
+            entity_type_name: Mesh Control Planes
+            entity_region: us
+            parameters:
+              zoneName: zone2
+          - id: 869d9402-f117-4f9a-840f-69acaf70a81a
+            role_name: Connector
+            entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
+            entity_type_name: Mesh Control Planes
+            entity_region: eu
+            parameters:
+              zoneName: zone3
+    Assigned-Role-Example:
+      value:
+        id: eaf7adf1-32c8-4bbf-b960-d1f8456afe67
+        role_name: Viewer
+        entity_id: 817d0422-45c9-4d88-8d64-45aef05c1ae7
+        entity_type_name: Control Planes
+        entity_region: eu
+    Parameterized-Assigned-Role-Example:
+      value:
+        id: eaf7adf1-32c8-4bbf-b960-d1f8456afe67
+        role_name: Connector
+        entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
+        entity_type_name: Mesh Control Planes
+        entity_region: eu
+        parameters:
+          zoneName: zone4
+    group-collection-example:
+      value:
+        meta:
+          page:
+            number: 1
+            size: 10
+            total: 6
+        data:
+          - group: 111(@&*$)(@*#_@(gfds re gdsf dfg
+            team_ids:
+              - c0010105-e840-4824-b7ee-787f22267c36
+          - group: '2222'
+            team_ids:
+              - af91db4c-6e51-403e-a2bf-33d27ae50c0a
+    single-team-response:
+      value:
+        id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+        name: IDM - Developers
+        description: The developers for the IDM API.
+        system_team: false
+        created_at: '2022-02-07T17:46:57.52Z'
+        updated_at: '2022-09-25T13:00:00.00Z'
+    team-mapping-collection:
+      value:
+        mappings:
+          - group: Service Developers
+            team_ids:
+              - 6801e673-cc10-498a-94cd-4271de07a0d3
+    401-unauthenticated:
+      value:
+        status: 401
+        title: Unauthenticated
+        instance: konnect:trace:952172606039454040
+        detail: A valid token is required
+    user-collection-response-example:
+      value:
+        meta:
+          page:
+            number: 1
+            size: 10
+            total: 10
+        data:
+          - id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+            email: james.woods@email.com
+            full_name: James Woods
+            preferred_name: Jimmy
+            active: true
+            created_at: '2022-08-17T17:46:57.52Z'
+            updated_at: '2022-10-03T17:00:00.00Z'
+    Get-User-Response:
+      value:
+        id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+        email: james.woods@email.com
+        full_name: James Woods
+        preferred_name: Jimmy
+        active: true
+        created_at: '1992-02-07T17:46:57.52Z'
+        updated_at: '2022-02-07T17:00:00.52Z'
+    Assign-Roles-US:
+      value:
+        role_name: Viewer
+        entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
+        entity_type_name: Control Planes
+        entity_region: us
+    Assign-Roles-Global:
+      value:
+        role_name: Admin
+        entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
+        entity_type_name: Services
+        entity_region: '*'
+    CreateTeamExample:
+      value:
+        name: IDM - Developers
+        description: The Identity Management (IDM) team.
+    Update-Team-Request:
+      value:
+        name: IDM - Developers
+        description: The Identity Management (IDM) API team.
+    Update-Team-Mappings:
+      value:
+        mappings:
+          - group: API Engineers
+            team_ids:
+              - af91db4c-6e51-403e-a2bf-33d27ae50c0a
+    Patch-Team-Group-Mappings:
+      value:
+        data:
+          - team_id: af91db4c-6e51-403e-a2bf-33d27ae50c0a
+            groups:
+              - Team Leads
+              - API Engineers
+    Update-User-Request:
+      value:
+        full_name: James C Woods
+        preferred_name: Jimmy
+    Add-User-Request:
+      value:
+        id: df120cb4-f60b-47bc-a2f8-6a28e6a3c63b
+    Get-Authentication-Settings:
+      value:
+        oidc_auth_enabled: true
+        basic_auth_enabled: false
+        idp_mapping_enabled: false
+        konnect_mapping_enabled: true
+    Update-Authentication-Settings:
+      value:
+        oidc_auth_enabled: false
+        basic_auth_enabled: true
+        idp_mapping_enabled: false
+        konnect_mapping_enabled: true
+    Update-Organization:
+      value:
+        owner_id: df120cb4-f60b-47bc-a2f8-6a28e6a3c63b
+        name: Kong Inc
+  parameters:
+    PageSize:
+      name: page[size]
+      description: >-
+        The maximum number of items to include per page. The last page of a
+        collection may include fewer items.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: integer
+        example: 10
+    PageNumber:
+      name: page[number]
+      description: Determines which page of the entities to retrieve.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: integer
+        example: 1

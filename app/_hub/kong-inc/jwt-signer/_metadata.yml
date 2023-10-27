@@ -1,4 +1,7 @@
 name: Kong JWT Signer
+search_aliases:
+  - json web tokens
+  - jwt-signer
 dbless_compatible: 'yes'
 free: false
 

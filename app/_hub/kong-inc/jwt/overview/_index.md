@@ -16,6 +16,8 @@ You can then pass a token through any of the following:
 Kong will either proxy the request to your upstream services if the token's
 signature is verified, or discard the request if not. Kong can also perform
 verifications on some of the registered claims of RFC 7519 (`exp` and `nbf`).
+If Kong finds multiple tokens that differ - even if they are valid - the request
+will be rejected to prevent JWT smuggling.
 
 ## Using the plugin
 

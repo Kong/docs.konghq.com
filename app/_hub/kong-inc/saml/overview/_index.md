@@ -78,7 +78,7 @@ their content type. Forms that use `"text/plain"` or
 When the authentication process has finished, the plugin creates and
 maintains a session inside of {{site.base_gateway}}. A cookie in the browser
 is used to track the session. Data that is attached to the session
-can be stored in redis, memcached, or in the cookie itself. 
+can be stored in Redis, Memcached, or in the cookie itself. 
 
 {:.note}
 > **Note**: The lifetime of the session that is created by the IdP needs

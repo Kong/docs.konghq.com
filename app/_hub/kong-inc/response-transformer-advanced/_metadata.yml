@@ -1,4 +1,6 @@
 name: Response Transformer Advanced
+search_aliases:
+  - response-transformer-advanced
 dbless_compatible: 'yes'
 free: false
 plus: false
