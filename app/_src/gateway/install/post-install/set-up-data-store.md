@@ -130,14 +130,14 @@ You should receive a `200` status code.
 ## Related information and next steps
 
 Depending on your desired environment, see the following guides:
-* [Add your Enterprise license](/gateway/{{ include.kong_version }}/licenses/deploy)
+* [Add your Enterprise license](/gateway/{{ page.kong_version }}/licenses/deploy)
 {% if_version gte:3.4.x %}
 * Enable Kong Manager:
-  * [Kong Manager Enterprise](/gateway/{{ include.kong_version }}/kong-manager/enable/)
-  * [Kong Manager OSS](/gateway/{{ include.kong_version }}/kong-manager-oss/)
+  * [Kong Manager Enterprise](/gateway/{{ page.kong_version }}/kong-manager/enable/)
+  * [Kong Manager OSS](/gateway/{{ page.kong_version }}/kong-manager-oss/)
 {% endif_version %}
 {% if_version lte:3.3.x %}
-* [Enable Kong Manager](/gateway/{{ include.kong_version }}/kong-manager/enable/)
+* [Enable Kong Manager](/gateway/{{ page.kong_version }}/kong-manager/enable/)
 {% endif_version %}
 * [Default ports reference](/gateway/{{page.kong_version}}/production/networking/default-ports/)
 
