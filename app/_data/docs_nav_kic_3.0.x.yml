@@ -105,8 +105,6 @@ items:
             url: /guides/services/udp
           - text: gRPC Service
             url: /guides/services/grpc
-          - text: Fallback Service
-            url: /guides/services/fallback
           - text: External Service
             url: /guides/services/external
           - text: HTTPS Redirects
