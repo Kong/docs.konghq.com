@@ -34,3 +34,38 @@ kubectl patch --type=json gateway kong -p='[{
 		}
     }
 }]'
+
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+
+    The results should look like this:
+
+    {% capture the_code %}
+{% navtabs codeblock %}
+{% navtab Ingress %}
+```text
+ingress.networking.k8s.io/echo patched
+```
+{% endnavtab %}
+{% navtab Gateway APIs %}
+```text
+gateway.gateway.networking.k8s.io/kong patched
+```
+{% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
+
+1. Send requests to verify if the configured certificate is served.
+
+    ```bash
+    curl -ksv https://kong.example/echo --resolve kong.example:443:$PROXY_IP 2>&1 | grep -A1 "certificate:"
+    ```
+    The results should look like this:
+    ```text
+    * Server certificate:
+    *  subject: CN=kong.example
+    ```
