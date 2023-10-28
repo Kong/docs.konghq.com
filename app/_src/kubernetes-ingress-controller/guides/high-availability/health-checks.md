@@ -40,7 +40,33 @@ deployment.apps/httpbin created
 
 1. Expose the service outside the Kubernetes cluster.
 
-{% navtabs api %}
+    {% capture the_code %}
+{% navtabs codeblock %}
+{% navtab Gateway APIs %}
+```bash
+echo '
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: demo
+  annotations:
+    konghq.com/strip-path: "true"
+spec:
+  parentRefs:
+  - name: kong
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /test
+    backendRefs:
+    - name: httpbin
+      kind: Service
+      port: 80
+' | kubectl apply -f -
+```
+{% endnavtab %}
+
 {% navtab Ingress %}
 ```bash
 echo '
@@ -64,70 +90,50 @@ spec:
               number: 80
 ' | kubectl apply -f -
 ```
-
-1. The results should look like this:
-
-```text
-ingress.networking.k8s.io/demo created
-```
-
 {% endnavtab %}
+{% endnavtabs %}
+{% endcapture %}
+{{ the_code | indent }}
     
-{% navtab HTTPRoute %}
-```bash
-echo '
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: demo
-  annotations:
-    konghq.com/strip-path: "true"
-spec:
-  parentRefs:
-  - name: kong
-  rules:
-  - matches:
-    - path:
-        type: PathPrefix
-        value: /test
-    backendRefs:
-    - name: httpbin
-      kind: Service
-      port: 80
-' | kubectl apply -f -
-```
-
-1. The results should look like this:
-
+    The results should look like this:
+    {% capture the_code %}
+{% navtabs codeblock %}
+{% navtab Gateway APIs %}
 ```text
 httproute.gateway.networking.k8s.io/demo created
 ```
-
+{% endnavtab %}
+{% navtab Ingress %}
+```text
+ingress.networking.k8s.io/demo created
+```
 {% endnavtab %}
 {% endnavtabs %}
-
+{% endcapture %}
+{{ the_code | indent }}
+ 
 1. Test these endpoints.
 
-```bash
-curl -i $PROXY_IP/test/status/200
-```
+    ```bash
+    curl -i $PROXY_IP/test/status/200
+    ```
 
-The results should look like this:
+    The results should look like this:
 
-```text
-HTTP/1.1 200 OK
-Content-Type: text/html; charset=utf-8
-Content-Length: 0
-Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 1
-X-Kong-Proxy-Latency: 1
-Via: kong/3.4.2
-```
+    ```text
+    HTTP/1.1 200 OK
+    Content-Type: text/html; charset=utf-8
+    Content-Length: 0
+    Connection: keep-alive
+    Server: gunicorn/19.9.0
+    Access-Control-Allow-Origin: *
+    Access-Control-Allow-Credentials: true
+    X-Kong-Upstream-Latency: 1
+    X-Kong-Proxy-Latency: 1
+    Via: kong/3.4.2
+    ```
 
-Observe that the headers and you can see that Kong has proxied the request correctly.
+   Observe the headers and you can see that Kong has proxied the request correctly.
 
 ## Setup passive health checking
 
@@ -336,3 +342,4 @@ Observe that the headers and you can see that Kong has proxied the request corre
 
 Read more about health-checks and circuit breaker in Kong's
 [documentation](/gateway/latest/reference/health-checks-circuit-breakers).
+
