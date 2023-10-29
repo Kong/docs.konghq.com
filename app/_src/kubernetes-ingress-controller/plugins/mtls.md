@@ -7,12 +7,12 @@ purpose: |
 Configure the {{site.kic_product_name}} to verify client certificates using CA certificates and
 [mtls-auth](/hub/kong-inc/mtls-auth/) plugin for HTTPS requests.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=true enterprise=true %}
+{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version enterprise=true %}
 
 1. Generate self-signed CA certificates using OpenSSL:
 
     ```bash
-    openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -sha256 -days 365 -nodes\
+    openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -sha256 -days 365 -nodes \
     -subj "/C=US/ST=California/L=San Francisco/O=Kong/OU=Org/CN=www.example.com"
     ```
 
@@ -64,51 +64,19 @@ Configure the {{site.kic_product_name}} to verify client certificates using CA c
     ```text
     kongplugin.configuration.konghq.com/mtls-auth created
     ```
-1.  Install an echo service that will be secured using TLS client certificate authentication:
 
-    ```bash
-    $ kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-service.yaml
-    ```
-    The results should look like this:
-    ```text
-    service/echo created
-    deployment.apps/echo created
-    ```
-1. Create an Ingress to expose the echo service outside the Kubernetes cluster:
+{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
 
-    ```bash
-    $ echo "
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-      name: demo
-      annotations:
-        konghq.com/plugins: mtls-auth
-    spec:
-      ingressClassName: kong
-      rules:
-      - http:
-          paths:
-          - path: /test
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: echo
-                port:
-                  number: 1027
-    " | kubectl apply -f -
-    ```
-    The results should look like this:
-    ```text
-    ingress.extensions/demo created
-    ```
+{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/echo' name='echo' skip_host=true %}
+
+{% include_cached /md/kic/annotate-plugin.md name='echo' plugins='mtls-auth' %}
 
 ## Test the configuration
 
 1. Send a request to check Kong prompts you for client certificate.
 
     ```
-    $ curl -i -k https://$PROXY_IP/test
+    $ curl -i -k https://$PROXY_IP/echo
     ```
     The results should look like this:
     ```text
@@ -130,7 +98,7 @@ Configure the {{site.kic_product_name}} to verify client certificates using CA c
 1. Use the key and certificate to authenticate against Kong and use the service:
 
     ```bash
-    $ curl --key key.pem --cert cert.pem  https://$PROXY_IP/test -k -I
+    $ curl --key key.pem --cert cert.pem  https://$PROXY_IP/echo -k -I
     ```
     The results should look like this:
     ```text
