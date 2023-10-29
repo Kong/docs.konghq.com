@@ -16,7 +16,7 @@ This is the simplest deployment method as everything is contained in a single de
 
 Sidecar deployments have been deprecated in favor of [Gateway Discovery](/kubernetes-ingress-controller/{{ page.release }}/production/deployment-topologies/gateway-discovery/) for multiple reasons:
 
-* Reduced resource usage as the number of {{ site.kic_product_name }} does not scale lineraly with {{ site.base_gateway }}
+* Reduced resource usage as the number of {{ site.kic_product_name }} instances does not scale linearly with {{ site.base_gateway }}
 * Reduced load on the Kubernetes API server. There are fewer clients, and no thrashing behaviour as multiple controllers argue of the `programmed` state of a resource
 * The ability to scale {{ site.kic_product_name }} and {{ site.base_gateway }} independently as needed.
 
