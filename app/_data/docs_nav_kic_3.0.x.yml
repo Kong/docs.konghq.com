@@ -186,14 +186,7 @@ items:
           - text: Custom nginx.conf
             url: /reference/faq/nginx.conf
       - text: Custom Resource Definitions
-        items:
-          - text: KongPlugin / KongClusterPlugin
-            url: /reference/crd/kongplugin
-          - text: KongConsumer
-            url: /reference/crd/kongconsumer
-          - text: KongCredential
-            url: /reference/crd/kongcredential
-          - text: KongIngress
-            url: /reference/crd/kongingress
+        url: /reference/custom-resources
+        src: reference/custom-resources-3.0.x
       - text: Configuration Options
         url: /reference/configuration
