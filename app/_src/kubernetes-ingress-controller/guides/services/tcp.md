@@ -125,18 +125,7 @@ There are two modes available:
     gateway.gateway.networking.k8s.io/kong patched
     ```
 
-## Install TCP echo service
-
-Install an example TCP service:
-
-```bash
-kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-service.yaml
-```
-The results should look like this:
-```text
-service/echo created
-deployment.apps/echo created
-```
+{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
 
 ## Route based on ports
 
