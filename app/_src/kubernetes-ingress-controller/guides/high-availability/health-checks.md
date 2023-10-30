@@ -21,22 +21,9 @@ You can use active health-check, where each instance of Kong actively probes Pod
 
 {% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
 
-## Create a Kubernetes service
+{% include_cached /md/kic/http-service-httpbin.md %}
 
-Create a Kubernetes service setup a [httpbin](https://httpbin.org)
-service in the cluster and proxy it.
-
-```bash
-$ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/manifests/httpbin.yaml
-```
-The results should look like this:
-
-```text
-service/httpbin created
-deployment.apps/httpbin created
-```
-
-## Make sure service is accessible outside cluster
+## Add routing configuration
 
 1. Expose the service outside the Kubernetes cluster.
 
