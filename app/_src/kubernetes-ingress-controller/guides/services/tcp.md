@@ -125,7 +125,7 @@ There are two modes available:
     gateway.gateway.networking.k8s.io/kong patched
     ```
 
-{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
+{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
 
 ## Route based on ports
 
