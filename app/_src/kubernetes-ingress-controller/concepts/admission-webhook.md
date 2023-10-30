@@ -113,7 +113,7 @@ In versions 2.12 and later, the controller validates route definitions
 {% navtab Gateway API %}
 ```bash
 echo 'kind: HTTPRoute
-apiVersion: gateway.networking.k8s.io/v1beta1
+apiVersion: gateway.networking.k8s.io/v1
 metadata:
   name: echo-httproute
 spec:
