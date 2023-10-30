@@ -117,6 +117,8 @@ items:
             url: /guides/requests/rewrite-host
           - text: Rewrite Annotation
             url: /guides/requests/rewrite-annotation
+          - text: Customizing load-balancing behavior
+            url: /guides/requests/customizing-load-balancing
       - text: High Availability
         items:
           - text: KIC High Availability
