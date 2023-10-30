@@ -5,47 +5,11 @@ title: Customizing load-balancing behavior with KongUpstreamPolicy
 In this guide, we will learn how to use KongUpstreamPolicy resource to control
 proxy load-balancing behavior.
 
-{% include_cached /md/kic/installation.md kong_version=page.kong_version %}
+{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
 
-{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
+{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
 
-{% include_cached /md/kic/class.md kong_version=page.kong_version %}
-
-## Set up Ingress
-
-Let's expose the echo service outside the Kubernetes cluster
-by defining an Ingress.
-
-{% navtabs codeblock %}
-{% navtab Command %}
-```bash
-echo "
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: demo
-spec:
-  ingressClassName: kong
-  rules:
-  - http:
-      paths:
-      - path: /foo
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: echo
-            port:
-              number: 80
-" | kubectl apply -f -
-```
-{% endnavtab %}
-
-{% navtab Response %}
-```bash
-ingress.extensions/demo created
-```
-{% endnavtab %}
-{% endnavtabs %}
+{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/echo' name='echo' service='echo' port='1027' skip_host=true %}
 
 Let's test:
 
