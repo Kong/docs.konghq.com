@@ -143,9 +143,20 @@ URL: /hello/world?details=true
 Add the [`konghq.com/strip-path` annotation][3] to your Ingress, which strips
 the path component of the route/Ingress, leaving the remainder of the path at
 the root:
+
+{% navtabs api %}
+{% navtab Ingress %}
 ```bash
 $ kubectl patch ingress echo -p '{"metadata":{"annotations":{"konghq.com/strip-path":"true"}}}'
 ```
+{% endnavtab %}
+{% navtab Gateway APIs %}
+```bash
+$ kubectl patch httproute echo --type merge -p '{"metadata":{"annotations":{"konghq.com/strip-path":"true"}}}'
+```
+{% endnavtab %}
+{% endnavtabs %}
+
 The request upstream now only contains the path components not in the
 Ingress rule:
 ```
