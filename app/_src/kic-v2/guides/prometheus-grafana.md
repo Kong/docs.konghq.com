@@ -7,30 +7,12 @@ The {{site.kic_product_name}} can give you visibility into how {{site.base_gatew
 This guide walks you through setting up monitoring for
 {{site.base_gateway}} with Prometheus.
 
-{:.important}
-> As of {{site.kic_product_name}} 2.0, there are additional
-> performance metrics associated with the configuration process
-> (as opposed to the runtime performance of the Gateway), described in detail
-> in the [Prometheus metrics reference](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus/).
+As of {{site.kic_product_name}} 2.0, there are additional
+performance metrics associated with the configuration process
+(as opposed to the runtime performance of the Gateway), described in detail
+in the [Prometheus metrics reference](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus/).
 
-This guide was originally posted on [Kong blog](https://konghq.com/blog/observability-kubernetes-kong/).
-
-## Prerequisites
-
-You’ll need a few things before we can start:
-
-- **Kubernetes cluster**: You can use Minikube or a GKE cluster for the
-  purpose of this tutorial. We are running a GKE Kubernetes cluster v1.12.x.
-- **Helm**: We will be using [Helm](https://helm.sh/)
-  to install all of our components.
-  Tiller should be installed on your Kubernetes cluster and
-  Helm CLI should be available on your workstation.
-  You can follow Helm’s quickstart guide to set up helm.
-
-Once you have Kubernetes and Helm set up, please proceed.
-
-Caution: Settings here are tweaked to keep this guide simple.
-These settings are not meant for production usage.
+{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=true %}
 
 ## Install Prometheus and Grafana
 
@@ -48,12 +30,13 @@ First, we will install Prometheus with a
 scrape interval of 10 seconds to have fine-grained data points for all metrics.
 We’ll install both Prometheus and Grafana in a dedicated `monitoring` namespace.
 
-Create a `values.yaml` to set the scrape interval, use Grafana
+Create a `values-monitoring.yaml` to set the scrape interval, use Grafana
 persistence, and install Kong's dashboard:
 ```yaml
 prometheus:
   prometheusSpec:
     scrapeInterval: 10s
+    evaluationInterval: 30s
 grafana:
   persistence:
     enabled: true  # enable persistence using Persistent Volumes
@@ -73,7 +56,7 @@ grafana:
     default:
       kong-dash:
         gnetId: 7424  # Install the following Grafana dashboard in the
-        revision: 5   # instance: https://grafana.com/dashboards/7424
+        revision: 11  # instance: https://grafana.com/dashboards/7424
         datasource: Prometheus
       kic-dash:
         gnetId: 15662
@@ -87,20 +70,13 @@ to the `values.yaml` you created earlier:
 ```bash
 $ kubectl create namespace monitoring
 $ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-$ helm install promstack prometheus-community/kube-prometheus-stack --namespace monitoring --version 19.0.0 -f /path/to/values.yaml
+$ helm install promstack prometheus-community/kube-prometheus-stack --namespace monitoring --version 52.1.0 -f values-monitoring.yaml
 ```
 
-## Install Kong
-
-We will use Kong's Helm chart to install Kong
-but you can also use plain manifests for this purpose.
+## Enable ServiceMonitor
 
 ```bash
-$ helm repo add kong https://charts.konghq.com
-$ helm repo update
-
-$ kubectl create namespace kong
-$ helm install mykong kong/kong --namespace kong --set serviceMonitor.enabled=true --set serviceMonitor.labels.release=promstack
+$ helm upgrade kong kong/ingress -n kong --set gateway.serviceMonitor.enabled=true --set gateway.serviceMonitor.labels.release=promstack
 ```
 
 By default, kube-prometheus-stack [selects ServiceMonitors and PodMonitors by a
@@ -122,6 +98,12 @@ metadata:
   labels:
     global: "true"
 plugin: prometheus
+config:
+  status_code_metrics: true
+  bandwidth_metrics: true
+  upstream_health_metrics: true
+  latency_metrics: true
+  per_consumer: false
 ' | kubectl apply -f -
 kongclusterplugin.configuration.konghq.com/prometheus created
 ```
@@ -138,24 +120,14 @@ It is not advisable to do this in production.
 Open a new terminal and execute the following commands:
 
 ```bash
-POD_NAME=$(kubectl get pods --namespace monitoring -l "app.kubernetes.io/instance=promstack-kube-prometheus-prometheus" -o jsonpath="{.items[0].metadata.name}")
-kubectl --namespace monitoring  port-forward $POD_NAME 9090 &
-
-
-POD_NAME=$(kubectl get pods --namespace monitoring -l "app.kubernetes.io/name=grafana" -o jsonpath="{.items[0].metadata.name}")
-kubectl --namespace monitoring port-forward $POD_NAME 3000 &
-
-
-POD_NAME=$(kubectl get pods --namespace kong -o jsonpath="{.items[0].metadata.name}")
-kubectl --namespace kong port-forward $POD_NAME 8000 &
+kubectl -n monitoring port-forward services/prometheus-operated 9090 &
+kubectl -n monitoring port-forward services/promstack-grafana 3000:80 &
 
 # You can access Prometheus in your browser at localhost:9090
 # You can access Grafana in your browser at localhost:3000
-# Kong proxy port is now your localhost 8000 port
+# You can access Kong at $PROXY_IP
 # We are using plain-text HTTP proxy for this purpose of
 # demo.
-# You can also use the LoadBalancer IP address and not set up this
-# port-forwarding if you are running in a cloud environment.
 ```
 
 ## Access Grafana Dashboard
@@ -185,7 +157,7 @@ We will set up three services: billing, invoice, and comments.
 Execute the following to spin these services up:
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/Kong/docs.konghq.com/main/app/_src/kubernetes-ingress-controller/examples/001_multiple-services.yaml
+kubectl apply -f {{ site.links.web }}/assets/kubernetes-ingress-controller/examples/multiple-services.yaml
 ```
 
 ### Install Ingress for the Services
@@ -242,12 +214,12 @@ Execute the following in a new terminal:
 ```bash
 while true;
 do
-  curl http://localhost:8000/billing/status/200
-  curl http://localhost:8000/billing/status/501
-  curl http://localhost:8000/invoice/status/201
-  curl http://localhost:8000/invoice/status/404
-  curl http://localhost:8000/comments/status/200
-  curl http://localhost:8000/comments/status/200
+  curl $PROXY_IP/billing/status/200
+  curl $PROXY_IP/billing/status/501
+  curl $PROXY_IP/invoice/status/201
+  curl $PROXY_IP/invoice/status/404
+  curl $PROXY_IP/comments/status/200
+  curl $PROXY_IP/comments/status/200
   sleep 0.01
 done
 ```
@@ -277,7 +249,7 @@ for 95% of the requests.
 You could configure Prometheus to alert based on the following query:
 
 ```text
-histogram_quantile(0.95, sum(rate(kong_latency_bucket{type="request"}[1m])) by (le,service)) > 20
+histogram_quantile(0.95, sum(rate(kong_request_latency_ms_sum{route=~"$route"}[1m])) by (le)) > 20
 ```
 
 The query calculates the 95th percentile of the total request
@@ -299,7 +271,7 @@ The following query is similar to the previous one but gives
 us insight into latency added by Kong:
 
 ```text
-histogram_quantile(0.90, sum(rate(kong_latency_bucket{type="kong"}[1m])) by (le,service)) > 2
+histogram_quantile(0.90, sum(rate(kong_kong_latency_ms_bucket[1m])) by (le,service)) > 2
 ```
 
 ### Error Rates
@@ -314,7 +286,7 @@ for each service.
 This metric can help you track the rate of errors for each of your service:
 
 ```text
-sum(rate(kong_http_status{code=~"5[0-9]{2}"}[1m])) by (service)
+sum(rate(kong_http_requests_total{code=~"5[0-9]{2}"}[1m])) by (service)
 ```
 
 You can also calculate the percentage of requests in any duration
