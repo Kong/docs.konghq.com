@@ -188,14 +188,14 @@ You can test if the admission webhook is enabled for duplicate KongConsumers, in
     echo "apiVersion: configuration.konghq.com/v1
     kind: KongConsumer
     metadata:
-      name: harry
+      name: alice
       annotations:
         kubernetes.io/ingress.class: kong
     username: alice" | kubectl apply -f -
     ```
     The results should look like this:
     ```
-    kongconsumer.configuration.konghq.com/harry created
+    kongconsumer.configuration.konghq.com/alice created
     ```
 
 1. Create another KongConsumer with the same username:
