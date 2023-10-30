@@ -30,8 +30,8 @@ items:
         url: /concepts/custom-resources
       - text: Using Annotations
         url: /concepts/annotations
-      - text: Admission Controller
-        url: /concepts/admission-controller
+      - text: Admission Webhook
+        url: /concepts/admission-webhook
   - title: Get Started
     icon: /assets/images/icons/documentation/icn-learning.svg
     items:
