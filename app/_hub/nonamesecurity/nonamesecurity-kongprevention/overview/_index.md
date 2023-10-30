@@ -11,7 +11,7 @@ The Noname Security Prevention integration for {{site.base_gateway}} instructs t
 
 Prevention integrations enable Noname to automatically block, or you to manually block, suspicious or dangerous runtime traffic to your APIs. 
 
-This integration enables Noname to perform the blocking operation in an external system, such as an AWS API Gateway or an Azure API Manager. 
+This integration enables Noname to perform the blocking operation in an external system, such as Kong's API Gateway. 
 At the same time, Noname also informs Kong to block the IP address or OAuth JWT token associated with a known anomalous actor, such as a bot-net, hacker tool, or a QA test tool. 
 
 When blocking, you can specify a time period for the block. The external system manages the lifecycle of the block, including its removal.
