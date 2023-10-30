@@ -7,7 +7,7 @@ purpose: |
 
 Create HTTP routing configuration for {{site.base_gateway}} in Kubernetes using either the `HTTPRoute` Gateway API resource or `Ingress` resource.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version gateway_api_experimental=true %}
+{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false gateway_api_experimental=true %}
 
 ## Install echo service
 
