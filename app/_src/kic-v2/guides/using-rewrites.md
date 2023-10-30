@@ -34,7 +34,7 @@ kubectl patch httproute echo --type merge -p '{"metadata":{"annotations":{"kongh
 
 ### Preserve the Host header
 
-{{ site.kic_product_name }} will preserve the hostname in the request by default.
+{{ site.kic_product_name }} preserves the hostname in the request by default.
 
 ```bash
 $ curl -H 'Host:kong.example' "$PROXY_IP/echo?details=true"
@@ -87,7 +87,7 @@ You can set the Host header explicitly if needed by disabling `konghq.com/preser
     curl -H 'Host:kong.example' "$PROXY_IP/echo?details=true"
     ```
 
-    The request upstream will now use the header from the `host-header` annotation:
+    The request upstream now uses the header from the `host-header` annotation:
     ```
     HTTP request details
     ---------------------
@@ -125,7 +125,7 @@ kubectl patch httproute echo --type merge -p '{"metadata":{"annotations":{"kongh
 {% endnavtab %}
 {% endnavtabs %}
 
-The request upstream will now contain the value of the rewrite annotation:
+The request upstream now contains the value of the rewrite annotation:
 ```
 HTTP request details
 ---------------------
@@ -146,7 +146,7 @@ the root:
 ```bash
 $ kubectl patch ingress echo -p '{"metadata":{"annotations":{"konghq.com/strip-path":"true"}}}'
 ```
-The request upstream will now only contain the path components not in the
+The request upstream now only contains the path components not in the
 Ingress rule:
 ```
 HTTP request details
@@ -163,7 +163,7 @@ that value to the upstream path:
 ```bash
 $ kubectl patch service echo -p '{"metadata":{"annotations":{"konghq.com/path":"/api"}}}'
 ```
-The request upstream will now contain a leading `/api`:
+The request upstream now contains a leading `/api`:
 ```
 HTTP request details
 ---------------------
@@ -174,7 +174,7 @@ URL: /api?details=true
 ```
 
 `strip-path` and `path` can be combined together, with the `path` component
-coming first. Adding both annotations above will send requests for `/api/echo`.
+coming first. Adding both annotations send requests for `/api/echo`.
 
 [0]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcompreserve-host
 [1]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcomhost-header
