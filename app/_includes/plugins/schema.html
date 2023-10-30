@@ -143,3 +143,17 @@
     {% include plugins/schemas/field.html field=field %}
   {% endfor %}
 </ul>
+
+{% if schema.deprecated_fields.size > 0 %}
+
+<blockquote class="important">
+  <strong>Important:</strong> The following fields are deprecated
+</blockquote>
+
+  <ul class="fields">
+    {% for field in schema.deprecated_fields %}
+      {% include plugins/schemas/field.html field=field %}
+    {% endfor %}
+  </ul>
+{% endif %}
+
