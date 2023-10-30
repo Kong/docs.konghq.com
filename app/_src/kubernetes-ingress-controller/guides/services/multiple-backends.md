@@ -27,7 +27,7 @@ requests through the HTTPRoute are distributed across the Services. This guide w
 1. Deploy a HTTPRoute that sends traffic to both the services. By default, traffic is distributed evenly across all services:
 
     ```bash
-   echo 'apiVersion: gateway.networking.k8s.io/v1beta1
+   echo 'apiVersion: gateway.networking.k8s.io/v1
    kind: HTTPRoute
    metadata:
      name: echo
