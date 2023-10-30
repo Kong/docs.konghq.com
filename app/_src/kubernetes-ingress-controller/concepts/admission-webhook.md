@@ -19,6 +19,8 @@ To learn how to manually enable the webhook for an existing non-Helm deployment,
 ## Test the configuration
 You can test if the admission webhook is enabled for duplicate KongConsumers, incorrect KongPlugins, incorrect credential secrets, and incorrect routes.
 
+{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=true %}
+
 ### Verify duplicate KongConsumers
 
 1. Create a KongConsumer with username as `alice`:
