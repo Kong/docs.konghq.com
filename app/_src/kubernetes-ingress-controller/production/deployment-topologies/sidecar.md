@@ -10,21 +10,21 @@ purpose: |
 
 ## Overview
 
-Sidecar deployment is the original method of deployment for {{ site.kic_product_name }}. Both the controller and {{ site.base_gateway }} are deployed in a single pod and each {{ site.base_gateway }} instance was managed by a different {{ site.kic_product_name }}.
+Sidecar deployment is the original method of deployment for {{ site.kic_product_name }}. Both the controller and {{ site.base_gateway }} are deployed in a single Pod and each {{ site.base_gateway }} instance was managed by a different {{ site.kic_product_name }}.
 
 This is the simplest deployment method as everything is contained in a single deployment and the controller can communicate to {{ site.base_gateway }} on `localhost`.
 
 Sidecar deployments have been deprecated in favor of [Gateway Discovery](/kubernetes-ingress-controller/{{ page.release }}/production/deployment-topologies/gateway-discovery/) for multiple reasons:
 
-* Reduced resource usage as the number of {{ site.kic_product_name }} instances does not scale linearly with {{ site.base_gateway }}
-* Reduced load on the Kubernetes API server. There are fewer clients, and no thrashing behaviour as multiple controllers argue of the `programmed` state of a resource
-* The ability to scale {{ site.kic_product_name }} and {{ site.base_gateway }} independently as needed.
+* Reduce resource usage as the number of {{ site.kic_product_name }} instances does not scale linearly with {{ site.base_gateway }}.
+* Reduce load on the Kubernetes API server. There are fewer clients, and no thrashing behaviour as multiple controllers argue of the `programmed` state of a resource.
+* Scale {{ site.kic_product_name }} and {{ site.base_gateway }} independently as needed.
 
 ![Sidecar Architecture Diagram](/assets/images/products/kubernetes-ingress-controller/topology/sidecar.png)
 
 ## Migrating to Gateway Discovery
 
-If you see two containers running in the same pod, it's likely that you're running {{ site.kic_product_name }} in Sidecar mode.
+If you see two containers running in the same Pod, it's likely that you're running {{ site.kic_product_name }} in Sidecar mode.
 
 ```text
 NAME                         READY   STATUS    RESTARTS   AGE
@@ -60,7 +60,7 @@ admin:
   clusterIP: None
 ```
 
-The new Proxy pod won't come online as there is no available configuration:
+The new Proxy Pod won't come online as there is no available configuration.
 
 ```
 2023/10/27 15:32:43 [notice] 1257#0: *301 [lua] ready.lua:111: fn(): not ready for proxying: no configuration available (empty configuration present), client: 192.168.194.1, server: kong_status, request: "GET /status/ready HTTP/1.1", host: "192.168.194.9:8100
@@ -84,35 +84,35 @@ deployment:
 {:.note}
 > `kong-kong-admin` is the default name if your release is called `kong`. Run `kubectl get services -n kong` to find the correct name
 
-Create a new `controller` deployment using Helm:
+Create a new `controller` deployment using Helm.
 
 ```bash
 helm install controller kong/kong --values ./values-controller.yaml -n kong
 ```
 
-The new pods will not come online as the controller can't access the Admin API for the original Proxy pod. Delete the old Proxy pod to allow Gateway Discovery to work.
+The new Pods do not come online as the controller can't access the Admin API for the original Proxy Pod. Delete the old Proxy Pod to allow Gateway Discovery to work.
 
 {:.important}
-> There may be a small amount of downtime of up to three seconds between the pod being deleted and new proxy pods receiving a configuration
+> There may be a small amount of downtime of up to three seconds between the Pod being deleted and new proxy pods receiving a configuration.
 
 ```bash
 kubectl get pods -n kong
 ```
 
-Find the pod with two containers. This is the old Sidecar topology that we need to delete.
+Find the Pod with two containers. This is the old Sidecar topology that needs to be deleted.
 
 ```text
 NAME                               READY   STATUS    RESTARTS   AGE
 kong-kong-7f5bddf88c-6cnlq         2/2     Running   0          2m
 ```
 
-Delete the pod:
+Delete the Pod.
 
 ```bash
 kubectl delete pod -n kong kong-kong-7f5bddf88c-6cnlq
 ```
 
-At this point you will have two pods running. `controller-kong` contains {{ site.kic_product_name }} and `kong-kong` contains {{ site.base_gateway }}
+At this point there are two Pods running. `controller-kong` contains {{ site.kic_product_name }} and `kong-kong` contains {{ site.base_gateway }}
 
 ```text
 NAME                               READY   STATUS    RESTARTS        AGE

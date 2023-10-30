@@ -6,7 +6,7 @@ purpose: |
 ---
 
 {:.important}
-> Database backed deployments should only be used in a small set of circumstances. We recommend using [Gateway Discovery](/kubernetes-ingress-controller/{{ page.release }}/production/deployment-topologies/gateway-discovery/) unless you've been otherwise advised by a member of the Kong team
+> Database backed deployments should only be used in a small set of circumstances. We recommend using [Gateway Discovery](/kubernetes-ingress-controller/{{ page.release }}/production/deployment-topologies/gateway-discovery/) unless you've been otherwise advised by a member of the Kong team.
 
 Database backed deployments are when {{ site.kic_product_name }} is used to update a Lua Control Plane that is attached to a PostgreSQL database. {{ site.base_gateway }} may be deployed in either [Traditional](/gateway/latest/production/deployment-topologies/traditional/) or [Hybrid](/gateway/latest/production/deployment-topologies/hybrid-mode/) mode.
 
@@ -18,7 +18,7 @@ Traditional mode is when every {{ site.base_gateway }} instance acts as both a C
 
 ![Traditional Architecture Diagram](/assets/images/products/kubernetes-ingress-controller/topology/db-backed-traditional.png)
 
-{{ site.kic_product_name }} will send configuration to a random {{ site.base_gateway }} instance, which writes the configuration to the database. All other nodes read the configuration from the database.
+{{ site.kic_product_name }} sends configuration to a random {{ site.base_gateway }} instance, which writes the configuration to the database. All other nodes read the configuration from the database.
 
 ## Hybrid Mode
 
