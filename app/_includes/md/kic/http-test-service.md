@@ -1,5 +1,5 @@
 {% unless include.skip_title %}
-## Deploy an upstream HTTP application
+## Deploy an echo service
 {% endunless %}
 
 To proxy requests, you need an upstream application to send a request to. Deploying this echo server provides a simple application that returns information about the Pod it's running in:
