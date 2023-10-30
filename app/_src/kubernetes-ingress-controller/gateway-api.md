@@ -24,7 +24,7 @@ To create a `GatewayClass` and `Gateway` with {{ site.kic_product_name }} run th
 ```yaml
 echo "
 ---
-apiVersion: gateway.networking.k8s.io/v1beta1
+apiVersion: gateway.networking.k8s.io/v1
 kind: GatewayClass
 metadata:
   name: kong
@@ -34,7 +34,7 @@ metadata:
 spec:
   controllerName: konghq.com/kic-gateway-controller
 ---
-apiVersion: gateway.networking.k8s.io/v1beta1
+apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: kong

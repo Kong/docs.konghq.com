@@ -33,7 +33,7 @@ configure your Deployment and Service to match your Gateway's configuration.
 For example, with this Gateway.
 
 ```
-apiVersion: gateway.networking.k8s.io/v1beta1
+apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: example
