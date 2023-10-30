@@ -51,6 +51,8 @@ items:
     items:
       - text: Deployment Topologies
         items:
+          - text: Overview
+            url: /production/deployment-topologies/
           - text: Gateway Discovery
             url: /production/deployment-topologies/gateway-discovery
           - text: Database Backed
