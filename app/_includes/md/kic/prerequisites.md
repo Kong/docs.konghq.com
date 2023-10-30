@@ -52,12 +52,13 @@
        protocol: HTTP
    " | kubectl apply -f -
    ```
-{% endunless %}
+
    The results should look like this:
    ```text
    gatewayclass.gateway.networking.k8s.io/kong created
    gateway.gateway.networking.k8s.io/kong created
    ```
+{% endunless %}
 
 
 ### Install Kong
