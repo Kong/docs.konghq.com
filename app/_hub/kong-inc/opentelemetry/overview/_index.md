@@ -131,9 +131,16 @@ Enable the plugin:
 
 ```bash
 curl -X POST http://localhost:8001/plugins \
-    --data "name=opentelemetry"  \
-    --data "config.endpoint=http://<opentelemetry-backend>:4318/v1/traces" \
-    --data "config.resource_attributes.service.name=kong-dev"
+    -H 'Content-Type: application/json' \
+    -d '{
+      "name": "opentelemetry",
+      "config": {
+        "endpoint": "http://<opentelemetry-backend>:4318/v1/traces",
+        "resource_attributes": {
+          "service.name": "kong-dev"
+        }
+      }
+    }'
 ```
 
 ## How the OpenTelemetry plugin functions
