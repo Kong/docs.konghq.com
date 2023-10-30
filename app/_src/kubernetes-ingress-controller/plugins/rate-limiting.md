@@ -10,7 +10,7 @@ You can use the {{site.ee_product_name}} **Secrets Management** feature along wi
 
 {% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
 
-{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version skip_host=true %}
+{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version skip_host=true %}
 
 {% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version skip_host=true %}
 

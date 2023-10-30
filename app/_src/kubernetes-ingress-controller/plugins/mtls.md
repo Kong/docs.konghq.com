@@ -65,7 +65,7 @@ Configure the {{site.kic_product_name}} to verify client certificates using CA c
     kongplugin.configuration.konghq.com/mtls-auth created
     ```
 
-{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
+{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
 
 {% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/echo' name='echo' skip_host=true %}
 

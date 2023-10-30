@@ -10,7 +10,7 @@ Deploy an upstream HTTP application, create a configuration group, add a route, 
 
 {% include_cached /md/kic/installation.md kong_version=page.kong_version %}
 
-{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
+{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
 
 {% include_cached /md/kic/class.md kong_version=page.kong_version %}
 
