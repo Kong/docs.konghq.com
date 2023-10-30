@@ -10,7 +10,6 @@ proxy load-balancing behavior.
 {% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
 
 {% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/echo' name='echo' service='echo' port='1027' skip_host=true %}
-
 Let's test:
 
 {% navtabs codeblock %}
