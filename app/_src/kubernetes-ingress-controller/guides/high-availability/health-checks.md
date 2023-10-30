@@ -21,7 +21,7 @@ You can use active health-check, where each instance of Kong actively probes Pod
 
 {% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
 
-{% include_cached /md/kic/http-service-httpbin.md %}
+{% include_cached /md/kic/test-service-httpbin.md %}
 
 ## Add routing configuration
 

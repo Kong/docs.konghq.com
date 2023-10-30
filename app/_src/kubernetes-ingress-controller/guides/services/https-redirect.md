@@ -11,7 +11,7 @@ microservices is encrypted.
 
 {% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
 
-{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
+{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
 
 {% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version %}
 
