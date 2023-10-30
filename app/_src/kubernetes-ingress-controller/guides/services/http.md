@@ -9,17 +9,6 @@ Create HTTP routing configuration for {{site.base_gateway}} in Kubernetes using 
 
 {% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false gateway_api_experimental=true %}
 
-## Install echo service
-
-Install an example echo service:
-
-```bash
-kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-service.yaml
-```
-The results should look like this:
-```text
-service/echo created
-deployment.apps/echo created
-```
+{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
 
 {% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/echo' name='echo' service='echo' port='1027' skip_host=true %}
