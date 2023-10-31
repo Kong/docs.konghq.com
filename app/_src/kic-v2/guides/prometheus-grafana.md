@@ -78,28 +78,29 @@ persistence, and install Kong's dashboard:
 
 1. Enable the Prometheus plugin in Kong at the global level, so that each request that flows into the Kubernetes cluster gets tracked in Prometheus:
 
-```bash
-$ echo 'apiVersion: configuration.konghq.com/v1
-kind: KongClusterPlugin
-metadata:
-  name: prometheus
-  annotations:
-    kubernetes.io/ingress.class: kong
-  labels:
-    global: "true"
-plugin: prometheus
-config:
-  status_code_metrics: true
-  bandwidth_metrics: true
-  upstream_health_metrics: true
-  latency_metrics: true
-  per_consumer: false
-' | kubectl apply -f -
-```
-The results should look like this:
-```text
-kongclusterplugin.configuration.konghq.com/prometheus created
-```
+    ```bash
+    $ echo 'apiVersion: configuration.konghq.com/v1
+    kind: KongClusterPlugin
+    metadata:
+      name: prometheus
+      annotations:
+        kubernetes.io/ingress.class: kong
+      labels:
+        global: "true"
+    plugin: prometheus
+    config:
+      status_code_metrics: true
+      bandwidth_metrics: true
+      upstream_health_metrics: true
+      latency_metrics: true
+      per_consumer: false
+    ' | kubectl apply -f -
+    ```
+
+    The results should look like this:
+    ```text
+    kongclusterplugin.configuration.konghq.com/prometheus created
+    ```
 
 ## Set Up Port Forwards
 
