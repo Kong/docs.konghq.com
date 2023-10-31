@@ -145,7 +145,7 @@ spec:
 ```
 
 and apply it to a Service resource with a `konghq.com/upstream-policy:
-sample-customization` annotation. TODO confirm annotation, it's not merged yet.
+sample-customization` annotation.
 
 TODO new URL
 [annotations]:https://docs.konghq.com/kubernetes-ingress-controller/2.12.x/references/annotations/
