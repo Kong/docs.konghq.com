@@ -62,7 +62,6 @@ jQuery(function () {
             .text()
             .replace(/^ /gim, "")
             .replace(/^\s*\$\s*/gim, "")
-            .replace(/^ /gim, "")
       );
       copyInput.select();
       document.execCommand("copy");
