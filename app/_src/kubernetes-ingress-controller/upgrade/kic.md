@@ -137,9 +137,10 @@ kind: KongUpstreamPolicy
 metadata:
   name: sample-customization
 spec:
-  hash_on: header
-  hash_on_header: x-lb
-  hash_fallback: ip
+  hashOn: 
+    header: x-lb
+  hashOnFallback: 
+    input: ip
   algorithm: consistent-hashing
 ```
 
