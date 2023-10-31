@@ -9,46 +9,39 @@ proxy load-balancing behavior.
 
 {% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
 
+### Deploy additional echo replicas
+
+To demonstrate Kong's load balancing functionality we need multiple `echo` Pods. Scale out the `echo` deployment.
+
+```bash
+kubectl scale --replicas 2 deployment echo
+```
+
 {% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/echo' name='echo' service='echo' port='1027' skip_host=true %}
 Let's test:
 
 {% navtabs codeblock %}
 {% navtab Command %}
 ```bash
-curl -i $PROXY_IP/foo
+curl -i $PROXY_IP/echo
 ```
 {% endnavtab %}
 
 {% navtab Response %}
 ```bash
 HTTP/1.1 200 OK
-Content-Type: text/plain; charset=UTF-8
-Transfer-Encoding: chunked
+Content-Type: text/plain; charset=utf-8
+Content-Length: 136
 Connection: keep-alive
-Server: echoserver
-X-Kong-Upstream-Latency: 2
+Date: Tue, 31 Oct 2023 09:58:35 GMT
+X-Kong-Upstream-Latency: 1
 X-Kong-Proxy-Latency: 1
-Via: kong/3.1.1
+Via: kong/3.4.0
 
-Hostname: echo-d778ffcd8-n9bss
-
-Pod Information:
-  node name:	gke-harry-k8s-dev-default-pool-bb23a167-8pgh
-  pod name:	echo-d778ffcd8-n9bss
-  pod namespace:	default
-  pod IP:	10.60.0.4
-
-Server values:
-  server_version=nginx: 1.12.2 - lua: 10010
-
-Request Information:
-  client_address=10.60.1.10
-  method=GET
-  real path=/foo
-  query=
-  request_version=1.1
-  request_scheme=http
-  request_uri=http://35.233.170.67:8080/foo
+Welcome, you are connected to node orbstack.
+Running on Pod echo-965f7cf84-prt62.
+In namespace default.
+With IP address 192.168.194.7.
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -56,7 +49,7 @@ Request Information:
 ## Use KongUpstreamPolicy with a Service resource
 
 By default, Kong will round-robin requests between upstream replicas. If you
-run `curl -s $PROXY_IP/foo | grep "pod name:"` repeatedly, you should see the
+run `curl -s $PROXY_IP/echo | grep "Pod"` repeatedly, you should see the
 reported Pod name alternate between two values.
 
 You can configure the Kong upstream associated with the Service to use a
@@ -116,7 +109,7 @@ same Pod:
 {% navtabs codeblock %}
 {% navtab Command %}
 ```bash
-for n in {1..5}; do curl -s $PROXY_IP/foo | grep "pod name:"; done
+for n in {1..5}; do curl -s $PROXY_IP/echo | grep "Pod"; done
 ```
 {% endnavtab %}
 
@@ -138,24 +131,16 @@ same replica when using the same value:
 {% navtab Command %}
 ```bash
 for n in {1..3}; do
-  curl -s $PROXY_IP/foo -H "x-lb: foo" | grep "pod name:";
-  curl -s $PROXY_IP/foo -H "x-lb: bar" | grep "pod name:";
-  curl -s $PROXY_IP/foo -H "x-lb: baz" | grep "pod name:";
+  curl -s $PROXY_IP/echo -H "x-lb: foo" | grep "Pod";
+  curl -s $PROXY_IP/echo -H "x-lb: bar" | grep "Pod";
+  curl -s $PROXY_IP/echo -H "x-lb: baz" | grep "Pod";
 done
 ```
 {% endnavtab %}
 
 {% navtab Response %}
 ```bash
-	pod name:	echo-588c888c78-nk4jc
-	pod name:	echo-588c888c78-nk4jc
-	pod name:	echo-588c888c78-6jrmn
-	pod name:	echo-588c888c78-nk4jc
-	pod name:	echo-588c888c78-nk4jc
-	pod name:	echo-588c888c78-6jrmn
-	pod name:	echo-588c888c78-nk4jc
-	pod name:	echo-588c888c78-nk4jc
-	pod name:	echo-588c888c78-6jrmn
+@TODO
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -166,7 +151,7 @@ replica:
 {% navtabs codeblock %}
 {% navtab Command %}
 ```bash
-kubectl patch deploy echo --patch '{"spec": {"replicas": 3}}'
+kubectl scale --replicas 3 deployment echo
 ```
 {% endnavtab %}
 
@@ -181,24 +166,16 @@ deployment.apps/echo patched
 {% navtab Command %}
 ```bash
 for n in {1..3}; do
-  curl -s $PROXY_IP/foo -H "x-lb: foo" | grep "pod name:";
-  curl -s $PROXY_IP/foo -H "x-lb: bar" | grep "pod name:";
-  curl -s $PROXY_IP/foo -H "x-lb: baz" | grep "pod name:";
+  curl -s $PROXY_IP/echo -H "x-lb: foo" | grep "Pod";
+  curl -s $PROXY_IP/echo -H "x-lb: bar" | grep "Pod";
+  curl -s $PROXY_IP/echo -H "x-lb: baz" | grep "Pod";
 done
 ```
 {% endnavtab %}
 
 {% navtab Response %}
 ```bash
-	pod name:	echo-588c888c78-nk4jc
-	pod name:	echo-588c888c78-d477r
-	pod name:	echo-588c888c78-6jrmn
-	pod name:	echo-588c888c78-nk4jc
-	pod name:	echo-588c888c78-d477r
-	pod name:	echo-588c888c78-6jrmn
-	pod name:	echo-588c888c78-nk4jc
-	pod name:	echo-588c888c78-d477r
-	pod name:	echo-588c888c78-6jrmn
+@TODO
 ```
 {% endnavtab %}
 {% endnavtabs %}
