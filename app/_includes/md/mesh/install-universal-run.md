@@ -35,7 +35,7 @@ but you can use a persistent storage like PostgreSQL by updating the `conf/kuma-
 
 <!-- links -->
 {% if_version gte:2.0.x %}
-[deployments]: /mesh/{{page.kong_version}}/production/deployment/
+[deployments]: /mesh/{{page.kong_version}}/introduction/deployments/
 [backends]: /mesh/{{page.kong_version}}/documentation/configuration/
 {% endif_version %}
 
