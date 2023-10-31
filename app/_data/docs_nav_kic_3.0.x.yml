@@ -85,6 +85,8 @@ items:
         items:
           - text: Prometheus
             url: /production/observability/prometheus
+          - text: Integration of Prometheus/Grafana
+            url: /production/observability/prometheus-grafana
           - text: Kubernetes Events
             url: /production/observability/events
       - text: Upgrading
