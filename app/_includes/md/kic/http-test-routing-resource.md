@@ -3,6 +3,7 @@
 {%- assign name = include.name | default: 'echo' %}
 {%- assign service = include.service | default: 'echo' %}
 {%- assign port = include.port | default: '1027' %}
+
 {% capture the_code %}
 {% navtabs api %}
 {% navtab Gateway APIs %}
@@ -12,7 +13,8 @@ apiVersion: gateway.networking.k8s.io/v1beta1
 kind: HTTPRoute
 metadata:
   name: {{ name }}
-  annotations:
+  annotations:{% if include.annotation_rewrite %}
+    konghq.com/rewrite: '{{ include.annotation_rewrite }}'{% endif %}
     konghq.com/strip-path: 'true'
 spec:
   parentRefs:
@@ -22,7 +24,7 @@ spec:
 {% endunless %}  rules:
   - matches:
     - path:
-        type: PathPrefix
+        type: {{ include.route_type }}
         value: {{ path }}
     backendRefs:
     - name: {{ service }}
@@ -38,7 +40,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ name }}
-  annotations:
+  annotations:{% if include.annotation_rewrite %}
+    konghq.com/rewrite: '{{ include.annotation_rewrite }}'{% endif %}
     konghq.com/strip-path: 'true'
 spec:
   ingressClassName: kong
@@ -46,7 +49,7 @@ spec:
   - {% unless include.skip_host %}host: {{ hostname }}
     {% endunless %}http:
       paths:
-      - path: {{ path }}
+      - path: {% if include.route_type == 'RegularExpression' %}/~{% endif %}{{ path }}
         pathType: ImplementationSpecific
         backend:
           service:
@@ -65,6 +68,7 @@ spec:
 {{ the_code }}
 {% endif %}
 
+{% unless include.no_results %}
 The results should look like this:
 
 {% capture the_code %}
@@ -82,3 +86,4 @@ ingress.networking.k8s.io/{{ name }} created
 {% endnavtabs %}
 {% endcapture %}
 {{ the_code | indent }}
+{% endunless %}
