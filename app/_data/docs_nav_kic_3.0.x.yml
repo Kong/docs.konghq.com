@@ -182,7 +182,8 @@ items:
       - text: FAQ
         items:
           - text: Plugin Compatibility
-            url: /reference/faq/plugin-compatibility
+            url: /hub/plugins/compatibility/
+            absolute_url: true
           - text: Kong Router
             url: /reference/faq/router
           - text: Custom nginx.conf
