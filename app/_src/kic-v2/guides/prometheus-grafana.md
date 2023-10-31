@@ -78,7 +78,6 @@ grafana:
       kic-dash:
         gnetId: 15662
         datasource: Prometheus
-
 ```
 
 To install Prometheus and Grafana, execute the following, specifying the path
