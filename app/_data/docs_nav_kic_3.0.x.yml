@@ -143,14 +143,14 @@ items:
             url: /guides/security/workspaces
           - text: Preserving Client IP
             url: /guides/security/client-ip
-      - text: Service Mesh
-        items:
-          - text: Kong Mesh
-            url: /guides/mesh/kong-mesh
-          - text: Kuma
-            url: /guides/mesh/kuma
-          - text: Istio
-            url: /guides/mesh/istio
+      #- text: Service Mesh
+      #  items:
+      #    - text: Kong Mesh
+      #      url: /guides/mesh/kong-mesh
+      #    - text: Kuma
+      #      url: /guides/mesh/kuma
+      #    - text: Istio
+      #      url: /guides/mesh/istio
 
   - title: Plugins
     icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
