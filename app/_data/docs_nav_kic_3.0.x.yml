@@ -61,10 +61,10 @@ items:
             url: /production/deployment-topologies/sidecar
       - text: Installation Methods
         items: 
-          - text: Kong Gateway Operator
-            url: /install/gateway-operator
           - text: Helm
             url: /install/helm
+          - text: Kong Gateway Operator
+            url: /install/gateway-operator
       - text: Cloud Deployment
         items: 
           - text: Azure
