@@ -177,7 +177,7 @@ items:
         url: /reference/annotations
       - text: CLI Arguments
         url: /reference/cli-arguments
-      - text: Feature Gates
+      - text: Beta Feature Gates
         url: /reference/feature-gates
       - text: FAQ
         items:
