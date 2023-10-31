@@ -137,8 +137,8 @@ items:
             url: /guides/security/kic-dp
           - text: Kong Vaults
             url: /guides/security/kong-vault
-          - text: Cert Manager
-            url: /guides/security/cert-manager
+          #- text: Cert Manager
+          #  url: /guides/security/cert-manager
           - text: Using Workspaces
             url: /guides/security/workspaces
           - text: Preserving Client IP
