@@ -83,8 +83,10 @@ items:
             url: /runtimes/openshift
       - text: Observability
         items:
-          - text: Prometheus
+          - text: Prometheus Metrics
             url: /production/observability/prometheus
+          - text: Configuring Prometheus + Grafana
+            url: /production/observability/prometheus-grafana
           - text: Kubernetes Events
             url: /production/observability/events
       - text: Upgrading
