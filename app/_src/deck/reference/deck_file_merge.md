@@ -21,6 +21,13 @@ determined by the `_transform` and `_format_version` fields.
 deck file merge [command-specific flags] [global flags] filename [...filename]
 ```
 
+## Examples
+
+```
+# Merge 3 files
+deck file patch -o merged.yaml file1.yaml file2.yaml file3.yaml
+```
+
 ## Flags
 
 `--format`

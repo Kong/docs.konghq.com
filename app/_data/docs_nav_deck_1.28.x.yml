@@ -70,40 +70,64 @@ items:
         url: /reference/deck/
       - text: deck completion
         url: /reference/deck_completion/
-      - text: deck convert
-        url: /reference/deck_convert/
-      - text: deck diff
-        url: /reference/deck_diff/
-      - text: deck dump
-        url: /reference/deck_dump/
       - text: deck file
         url: /reference/deck_file/
-      - text: deck file add-plugins
-        url: /reference/deck_file_add-plugins/
-      - text: deck file add-tags
-        url: /reference/deck_file_add-tags/
-      - text: deck file list-tags
-        url: /reference/deck_file_list-tags/
-      - text: deck file merge
-        url: /reference/deck_file_merge/
-      - text: deck file openapi2kong
-        url: /reference/deck_file_openapi2kong/
-      - text: deck file patch
-        url: /reference/deck_file_patch/
-      - text: deck file remove-tags
-        url: /reference/deck_file_remove-tags/
-      - text: deck file render
-        url: /reference/deck_file_render/
-      - text: deck ping
-        url: /reference/deck_ping/
-      - text: deck reset
-        url: /reference/deck_reset/
-      - text: deck sync
-        url: /reference/deck_sync/
-      - text: deck validate
-        url: /reference/deck_validate/
+        items:
+          - text: deck file add-plugins
+            url: /reference/deck_file_add-plugins/
+          - text: deck file add-tags
+            url: /reference/deck_file_add-tags/
+          - text: deck file convert
+            url: /reference/deck_file_convert/
+          - text: deck file lint
+            url: /reference/deck_file_lint/
+          - text: deck file list-tags
+            url: /reference/deck_file_list-tags/
+          - text: deck file merge
+            url: /reference/deck_file_merge/
+          - text: deck file openapi2kong
+            url: /reference/deck_file_openapi2kong/
+          - text: deck file patch
+            url: /reference/deck_file_patch/
+          - text: deck file remove-tags
+            url: /reference/deck_file_remove-tags/
+          - text: deck file render
+            url: /reference/deck_file_render/
+          - text: deck file validate
+            url: /reference/deck_file_validate/
+      - text: deck gateway
+        url: /reference/deck_gateway/
+        items:
+          - text: deck gateway diff
+            url: /reference/deck_gateway_diff/
+          - text: deck gateway dump
+            url: /reference/deck_gateway_dump/
+          - text: deck gateway ping
+            url: /reference/deck_gateway_ping/
+          - text: deck gateway reset
+            url: /reference/deck_gateway_reset/
+          - text: deck gateway sync
+            url: /reference/deck_gateway_sync/
+          - text: deck gateway validate
+            url: /reference/deck_gateway_validate/
       - text: deck version
         url: /reference/deck_version/
+      - text: Deprecated commands
+        items: 
+          - text: deck convert
+            url: /reference/deck_convert/
+          - text: deck diff
+            url: /reference/deck_diff/
+          - text: deck dump
+            url: /reference/deck_dump/
+          - text: deck ping
+            url: /reference/deck_ping/
+          - text: deck reset
+            url: /reference/deck_reset/
+          - text: deck sync
+            url: /reference/deck_sync/
+          - text: deck validate
+            url: /reference/deck_validate/
       
 
   - title: FAQ

@@ -13,7 +13,54 @@ It can be used to export, import, or sync entities to Kong.
 
 {% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
 
-## See also
+## decK CLI commands
+
+<!--vale off -->
+
+{% if_version lte:1.28.x %}
+
+General:
+* [deck completion](/deck/{{page.kong_version}}/reference/deck_completion/)	 - Generate completion script
+* [deck version](/deck/{{page.kong_version}}/reference/deck_version/) - Print the decK version
+
+
+Gateway subcommands:
+* [deck gateway diff](/deck/{{page.kong_version}}/reference/deck_gateway_diff/)	- Diff the current entities in Kong with the one on disks
+* [deck gateway dump](/deck/{{page.kong_version}}/reference/deck_gateway_dump/)	- Export Kong configuration to a file
+* [deck gateway ping](/deck/{{page.kong_version}}/reference/deck_gateway_ping/)	- Verify connectivity with Kong
+* [deck gateway reset](/deck/{{page.kong_version}}/reference/deck_gateway_reset/) - Reset deletes all entities in Kong
+* [deck gateway sync](/deck/{{page.kong_version}}/reference/deck_gateway_sync/)	- Sync performs operations to get Kong's configuration to match the state file
+* [deck gateway validate](/deck/{{page.kong_version}}/reference/deck_gateway_validate/)	- Validate the state file
+
+
+File subcommands:
+* [deck file add-plugins](/deck/{{page.kong_version}}/reference/deck_file_add-plugins)	 - Add plugins to objects in a decK file
+* [deck file add-tags](/deck/{{page.kong_version}}/reference/deck_file_add-tags)	 - Add tags to objects in a decK file
+* [deck file convert](/deck/{{page.kong_version}}/reference/deck_file_convert)	 - Convert files from one format into another format
+* [deck file lint](/deck/{{page.kong_version}}/reference/deck_file_lint)	 - Lint a file against a ruleset
+* [deck file list-tags](/deck/{{page.kong_version}}/reference/deck_file_list-tags)	 - List current tags from objects in a decK file
+* [deck file merge](/deck/{{page.kong_version}}/reference/deck_file_merge)	 - Merge multiple decK files into one
+* [deck file openapi2kong](/deck/{{page.kong_version}}/reference/deck_file_openapi2kong)	 - Convert OpenAPI files to Kong's decK format
+* [deck file patch](/deck/{{page.kong_version}}/reference/deck_file_patch)	 - Apply patches on top of a decK file
+* [deck file remove-tags](/deck/{{page.kong_version}}/reference/deck_file_remove-tags)	 - Remove tags from objects in a decK file
+* [deck file render](/deck/{{page.kong_version}}/reference/deck_file_render)	 - Combines multiple complete configuration files and renders them as one Kong declarative config file.
+* [deck file validate](/deck/{{page.kong_version}}/reference/deck_file_validate)	 - Validate the state file (locally)
+
+Deprecated:
+* [deck convert](/deck/{{page.kong_version}}/reference/deck_convert/)
+* [deck diff](/deck/{{page.kong_version}}/reference/deck_diff/)
+* [deck dump](/deck/{{page.kong_version}}/reference/deck_dump/)
+* [deck ping](/deck/{{page.kong_version}}/reference/deck_ping/)
+* [deck reset](/deck/{{page.kong_version}}/reference/deck_reset/)
+* [deck sync](/deck/{{page.kong_version}}/reference/deck_sync/)
+* [deck validate](/deck/{{page.kong_version}}/reference/deck_validate/)
+
+{% endif_version %}
+
+
+<!-- ################ PRE 1.28 REFACTORING ################## -->
+
+{% if_version lte:1.27.x %}
 
 {% if_version gte:1.8.x %}
 * [deck completion](/deck/{{page.kong_version}}/reference/deck_completion/)	 - Generate completion script
@@ -29,3 +76,15 @@ It can be used to export, import, or sync entities to Kong.
 * [deck sync](/deck/{{page.kong_version}}/reference/deck_sync/)	 - Sync performs operations to get Kong's configuration to match the state file
 * [deck validate](/deck/{{page.kong_version}}/reference/deck_validate/)	 - Validate the state file
 * [deck version](/deck/{{page.kong_version}}/reference/deck_version/)	 - Print the decK version
+{% if_version gte:1.24.x %}
+* [deck file](/deck/{{page.kong_version}}/reference/deck_file_add-plugins)	 - Subcommand to host the decK file operations
+* [deck file add-plugins](/deck/{{page.kong_version}}/reference/deck_file_add-plugins)	 - Add plugins to objects in a decK file
+* [deck file add-tags](/deck/{{page.kong_version}}/reference/deck_file_add-tags)	 - Add tags to objects in a decK file
+* [deck file list-tags](/deck/{{page.kong_version}}/reference/deck_file_list-tags)	 - List current tags from objects in a decK file
+* [deck file merge](/deck/{{page.kong_version}}/reference/deck_file_merge)	 - Merge multiple decK files into one
+* [deck file openapi2kong](/deck/{{page.kong_version}}/reference/deck_file_openapi2kong)	 - Convert OpenAPI files to Kong's decK format
+* [deck file patch](/deck/{{page.kong_version}}/reference/deck_file_patch)	 - Apply patches on top of a decK file
+* [deck file remove-tags](/deck/{{page.kong_version}}/reference/deck_file_remove-tags)	 - Remove tags from objects in a decK file
+{% endif_version %}
+
+{% endif_version %}

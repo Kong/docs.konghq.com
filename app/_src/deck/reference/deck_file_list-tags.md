@@ -15,6 +15,13 @@ selectors are given, all Kong entities are scanned.
 deck file list-tags [command-specific flags] [global flags]
 ```
 
+## Examples
+
+```
+# list all tags used on services
+cat kong.yml | deck file list-tags --selector='services[*]'
+```
+
 ## Flags
 
 `--format`

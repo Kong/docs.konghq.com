@@ -88,7 +88,7 @@ deck completion [command-specific flags] [global flags]
 ## Flags
 
 `-h`, `--help`
-:  help for completion (Default: `false`)
+:  help for completion 
 
 
 ## Global flags
