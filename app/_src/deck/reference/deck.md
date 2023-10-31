@@ -17,7 +17,7 @@ It can be used to export, import, or sync entities to Kong.
 
 <!--vale off -->
 
-{% if_version lte:1.28.x %}
+{% if_version gte:1.28.x %}
 
 General:
 * [deck completion](/deck/{{page.kong_version}}/reference/deck_completion/)	 - Generate completion script
