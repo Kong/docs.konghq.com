@@ -2,15 +2,13 @@
 title: Integrate the Kong Ingress Controller with Prometheus/Grafana
 ---
 
-The {{site.kic_product_name}} can give you visibility into how {{site.base_gateway}} is performing and how the services in your Kubernetes cluster are responding to the inbound traffic.
+The {{site.kic_product_name}} gives you visibility into how {{site.base_gateway}} is performing and how the services in your Kubernetes cluster are responding to the inbound traffic.
 
-This guide walks you through setting up monitoring for
-{{site.base_gateway}} with Prometheus.
+Learn to set up monitoring for {{site.base_gateway}} with Prometheus.
 
 As of {{site.kic_product_name}} 2.0, there are additional
 performance metrics associated with the configuration process
-(as opposed to the runtime performance of the Gateway), described in detail
-in the [Prometheus metrics reference](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus/).
+rather than the runtime performance of the Gateway. For more information, see the [Prometheus metrics reference](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus/).
 
 {% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=true %}
 
@@ -18,75 +16,67 @@ in the [Prometheus metrics reference](/kubernetes-ingress-controller/{{page.kong
 
 If you already have the [Prometheus
 Operator](https://github.com/prometheus-operator/prometheus-operator) and
-Grafana installed in your cluster, you can skip these steps.
+Grafana installed in your cluster, you can skip installing Prometheus and Grafana.
 
 {:.note}
 > **Note:** The Prometheus Operator is required, as the {{site.kic_product_name}}
 uses its PodMonitor custom resource to configure scrape rules.
 
-### Prometheus and Grafana
+Install Prometheus with a scrape interval of 10 seconds to have fine-grained data points for all metrics. And install both Prometheus and Grafana in a dedicated `monitoring` namespace.
 
-First, we will install Prometheus with a
-scrape interval of 10 seconds to have fine-grained data points for all metrics.
-We’ll install both Prometheus and Grafana in a dedicated `monitoring` namespace.
-
-Create a `values-monitoring.yaml` to set the scrape interval, use Grafana
+1. Create a `values-monitoring.yaml` file to set the scrape interval, use Grafana
 persistence, and install Kong's dashboard:
-```yaml
-prometheus:
-  prometheusSpec:
-    scrapeInterval: 10s
-    evaluationInterval: 30s
-grafana:
-  persistence:
-    enabled: true  # enable persistence using Persistent Volumes
-  dashboardProviders:
-    dashboardproviders.yaml:
-      apiVersion: 1
-      providers:
-      - name: 'default' # Configure a dashboard provider file to
-        orgId: 1        # put Kong dashboard into.
-        folder: ''
-        type: file
-        disableDeletion: false
-        editable: true
-        options:
-          path: /var/lib/grafana/dashboards/default
-  dashboards:
-    default:
-      kong-dash:
-        gnetId: 7424  # Install the following Grafana dashboard in the
-        revision: 11  # instance: https://grafana.com/dashboards/7424
-        datasource: Prometheus
-      kic-dash:
-        gnetId: 15662
-        datasource: Prometheus
+    ```yaml
+    prometheus:
+      prometheusSpec:
+        scrapeInterval: 10s
+        evaluationInterval: 30s
+    grafana:
+      persistence:
+        enabled: true  # enable persistence using Persistent Volumes
+      dashboardProviders:
+        dashboardproviders.yaml:
+          apiVersion: 1
+          providers:
+          - name: 'default' # Configure a dashboard provider file to
+            orgId: 1        # put Kong dashboard into.
+            folder: ''
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/default
+      dashboards:
+        default:
+          kong-dash:
+            gnetId: 7424  # Install the following Grafana dashboard in the
+            revision: 11  # instance: https://grafana.com/dashboards/7424
+            datasource: Prometheus
+          kic-dash:
+            gnetId: 15662
+            datasource: Prometheus
+    
+    ```
 
-```
+1. To install Prometheus and Grafana, execute the following, specifying the path to the `values-monitoring.yaml` file that you created:
 
-To install Prometheus and Grafana, execute the following, specifying the path
-to the `values.yaml` you created earlier:
-
-```bash
-$ kubectl create namespace monitoring
-$ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-$ helm install promstack prometheus-community/kube-prometheus-stack --namespace monitoring --version 52.1.0 -f values-monitoring.yaml
-```
+    ```bash
+    $ kubectl create namespace monitoring
+    $ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+    $ helm install promstack prometheus-community/kube-prometheus-stack --namespace monitoring --version 52.1.0 -f values-monitoring.yaml
+    ```
 
 ## Enable ServiceMonitor
 
-```bash
-$ helm upgrade kong kong/ingress -n kong --set gateway.serviceMonitor.enabled=true --set gateway.serviceMonitor.labels.release=promstack
-```
+1. To enable ServiceMonitor, set `gateway.serviceMonitor.enabled=true`.
 
-By default, kube-prometheus-stack [selects ServiceMonitors and PodMonitors by a
-`release` label equal to the release name](https://github.com/prometheus-community/helm-charts/blob/kube-prometheus-stack-19.0.1/charts/kube-prometheus-stack/values.yaml#L2128-L2169). The `labels` setting here adds a label matching the
-`promstack` release name from the example.
+    ```bash
+    $ helm upgrade kong kong/ingress -n kong --set gateway.serviceMonitor.enabled=true --set gateway.serviceMonitor.labels.release=promstack
+    ```
 
-### Enable Prometheus plugin in Kong
+    By default, kube-prometheus-stack [selects ServiceMonitors and PodMonitors by a`release` label equal to the release name](https://github.com/prometheus-community/helm-charts/blob/kube-prometheus-stack-19.0.1/charts/kube-prometheus-stack/values.yaml#L2128-L2169). The `labels` setting here adds a label matching the `promstack` release name from the example.
 
-We will enable the Prometheus plugin in Kong at the global level, meaning
-each request that flows into the Kubernetes cluster gets tracked in Prometheus:
+1. Enable the Prometheus plugin in Kong at the global level, so that each request that flows into the Kubernetes cluster gets tracked in Prometheus:
 
 ```bash
 $ echo 'apiVersion: configuration.konghq.com/v1
@@ -105,19 +95,21 @@ config:
   latency_metrics: true
   per_consumer: false
 ' | kubectl apply -f -
+```
+The results should look like this:
+```text
 kongclusterplugin.configuration.konghq.com/prometheus created
 ```
 
 ## Set Up Port Forwards
 
-Now, we will gain access to the components we just deployed.
 In a production environment, you would have a Kubernetes Service with
 an external IP or load balancer, which would allow you to access
 Prometheus, Grafana, and Kong.
-For demo purposes, we will set up port-forwarding using kubectl to get access.
+For demo purposes, set up port-forwarding using kubectl to get access.
 It is not advisable to do this in production.
 
-Open a new terminal and execute the following commands:
+Open a new terminal and execute these commands:
 
 ```bash
 kubectl -n monitoring port-forward services/prometheus-operated 9090 &
@@ -141,95 +133,79 @@ kubectl get secret --namespace monitoring promstack-grafana -o jsonpath="{.data.
 ```
 
 Now, browse to [http://localhost:3000](http://localhost:3000) and
-fill in username as “admin” and password as what you just noted above.
-You should be logged in to Grafana and Kong’s Grafana Dashboard
-should already be installed for you.
+fill in username as “admin” and password that you made a note of.
+After you log in to Grafana you can notice that Kong’s Grafana Dashboard should already be installed for you.
 
 ## Setup Services
 
-We have all the components for monitoring installed,
-we will now spin up some services for demo purposes and setup Ingress
+Spin up some services for demo purposes and setup Ingress
 routing for them.
 
-### Install Services
+1. Install three services: billing, invoice, and comments.
 
-We will set up three services: billing, invoice, and comments.
-Execute the following to spin these services up:
+    ```bash
+    kubectl apply -f {{ site.links.web }}/assets/kubernetes-ingress-controller/examples/multiple-services.yaml
+    ```
 
-```bash
-kubectl apply -f {{ site.links.web }}/assets/kubernetes-ingress-controller/examples/multiple-services.yaml
-```
+1. Create Ingress routing rules in Kubernetes. This configures Kong to proxy traffic destined for these services correctly.
 
-### Install Ingress for the Services
+    ```bash
+    echo '
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: sample-ingresses
+      annotations:
+        konghq.com/strip-path: "true"
+    spec:
+      ingressClassName: kong
+      rules:
+      - http:
+         paths:
+         - path: /billing
+           pathType: ImplementationSpecific
+           backend:
+             service:
+               name: billing
+               port:
+                 number: 80
+         - path: /comments
+           pathType: ImplementationSpecific
+           backend:
+             service:
+               name: comments
+               port:
+                 number: 80
+         - path: /invoice
+           pathType: ImplementationSpecific
+           backend:
+             service:
+               name: invoice
+               port:
+                 number: 80
+    ' | kubectl apply -f -
+    ```
 
-Next, once the services are up and running, we will create Ingress
-routing rules in Kubernetes.
-This will configure Kong to proxy traffic destined for these services correctly.
+1. Create some traffic after configuring the services and proxies.
 
-Execute the following:
+    ```bash
+    while true;
+    do
+      curl $PROXY_IP/billing/status/200
+      curl $PROXY_IP/billing/status/501
+      curl $PROXY_IP/invoice/status/201
+      curl $PROXY_IP/invoice/status/404
+      curl $PROXY_IP/comments/status/200
+      curl $PROXY_IP/comments/status/200
+      sleep 0.01
+    done
+    ```
 
-```bash
-echo '
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: sample-ingresses
-  annotations:
-    konghq.com/strip-path: "true"
-spec:
-  ingressClassName: kong
-  rules:
-  - http:
-     paths:
-     - path: /billing
-       pathType: ImplementationSpecific
-       backend:
-         service:
-           name: billing
-           port:
-             number: 80
-     - path: /comments
-       pathType: ImplementationSpecific
-       backend:
-         service:
-           name: comments
-           port:
-             number: 80
-     - path: /invoice
-       pathType: ImplementationSpecific
-       backend:
-         service:
-           name: invoice
-           port:
-             number: 80
-' | kubectl apply -f -
-```
-
-## Let’s Create Some Traffic
-
-We’re done configuring our services and proxies.
-Time to see if our setup works.
-Execute the following in a new terminal:
-
-```bash
-while true;
-do
-  curl $PROXY_IP/billing/status/200
-  curl $PROXY_IP/billing/status/501
-  curl $PROXY_IP/invoice/status/201
-  curl $PROXY_IP/invoice/status/404
-  curl $PROXY_IP/comments/status/200
-  curl $PROXY_IP/comments/status/200
-  sleep 0.01
-done
-```
-
-Since we have already enabled Prometheus plugin in Kong to
-collect metrics for requests proxied via Kong,
-we should see metrics coming through in the Grafana dashboard.
+Because you have already enabled Prometheus plugin in Kong to
+collect metrics for requests proxied via Kong, you should see metrics coming through in the Grafana dashboard.
 
 You should be able to see metrics related to the traffic flowing
-through our services.
+through the services.
 Try tweaking the above script to send different traffic patterns
 and see how the metrics change.
 The upstream services are httpbin instances, meaning you can use
