@@ -37,8 +37,6 @@ tags:
     description: APIs related to Konnect Developer Portal Authentication Settings.
   - name: Portal Appearance
     description: APIs related to Konnect Developer Portal Appearance Settings.
-  - name: Portal Categories
-    description: APIs related to Portal Products Categories.
 paths:
   /portals:
     get:
@@ -63,24 +61,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '403':
           $ref: '#/components/responses/Forbidden'
-  /portals/categories/{categoryId}:
-    parameters:
-      - $ref: '#/components/parameters/CategoryId'
-    delete:
-      summary: Delete a category by ID
-      description: Delete a category by its unique ID.
-      operationId: delete-category-by-id
-      tags:
-        - Portal Categories
-      responses:
-        '204':
-          description: No Content
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '403':
-          $ref: '#/components/responses/Forbidden'
-        '404':
-          $ref: '#/components/responses/NotFound'
   /portals/{portalId}:
     parameters:
       - $ref: '#/components/parameters/PortalId'
@@ -2061,14 +2041,6 @@ components:
       required: false
       schema:
         type: string
-    CategoryId:
-      schema:
-        type: string
-        format: uuid
-      name: categoryId
-      in: path
-      required: true
-      description: ID of the category.
     PageSize:
       name: page[size]
       description: >-
@@ -4760,7 +4732,7 @@ components:
       additionalProperties: false
       type: object
       required:
-        - catagory_id
+        - category_id
         - public_catalog_enabled
       properties:
         category_id:
