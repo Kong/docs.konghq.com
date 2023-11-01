@@ -353,6 +353,6 @@ kong admin` for configuration push failures.
 
 ### Finding problem resource Events
 
-{{ site.kic_product_name }} provides Kubernetes Events to help understand the state of your system. Events are emitted when an invalid configuration is rejected by {{ site.base_gateway }} (`KongConfigurationApplyFailed`) and when an invalid configuration is detected e.g. the upstream service does not exist (`KongConfigurationTranslationFailed`).
+{{ site.kic_product_name }} provides Kubernetes Events to help understand the state of your system. Events occur when an invalid configuration is rejected by {{ site.base_gateway }} (`KongConfigurationApplyFailed`) or when an invalid configuration such as an upstream service that does not exist is detected (`KongConfigurationTranslationFailed`)..
 
 For more information, see [Events](/kubernetes-ingress-controller/{{ page.release }}/production/observability/events/).
