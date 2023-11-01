@@ -17,4 +17,4 @@ kubectl apply -k https://github.com/Kong/kubernetes-ingress-controller/config/cr
 kubectl apply -k "https://github.com/kubernetes-sigs/gateway-api/config/crd?ref=v0.8.1"
 ```
 
-{% include snippets/gateway-operator/install_with_kubectl_all_controllers.md %}
+{% include snippets/gateway-operator/install_with_kubectl_all_controllers.md version=page.version%}
