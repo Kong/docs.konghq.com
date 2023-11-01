@@ -3,8 +3,7 @@ title: Using OIDC plugin
 ---
 
 Kong Enterprise's OIDC plugin can authenticate requests using OpenID Connect protocol.
-This guide shows a basic example of how to setup the OIDC plugin using
-the Ingress Controller.
+Learn to setup the OIDC plugin using the Ingress Controller. It is important that create a domain name to use OIDC plugin in a production environment. 
 
 {% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false enterprise=true %}
 
@@ -12,10 +11,8 @@ the Ingress Controller.
 
 {% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/echo' name='echo' hostname="127.0.0.1.nip.io" %}
 
-We are using `127.0.0.1.nip.io` as our host, you can use any domain name
-of your choice. A domain name is a prerequisite for this guide.
-For demo purpose, we are using [nip.io](http://nip.io)
-service to avoid setting up a DNS record.
+This example uses `127.0.0.1.nip.io` as the host, you can use any domain name
+of your choice. For demo purpose, you can [nip.io](http://nip.io) service to avoid setting up a DNS record.
 
 Test the Ingress rule:
 
@@ -41,53 +38,52 @@ With IP address 192.168.194.7.
 Now we are going to protect our dummy service with OpenID Connect
 protocol using Google as our identity provider.
 
-First, setup an OAuth 2.0 application in
-[Google](https://developers.google.com/identity/protocols/oauth2/openid-connect). Set the `redirect_uri` to `http://127.0.0.1.nip.io/echo`.
+1. Setup an OAuth 2.0 application in [Google](https://developers.google.com/identity/protocols/oauth2/openid-connect). And set the `redirect_uri` to `http://127.0.0.1.nip.io/echo`.
 
-{:.note}
-> Your OAuth 2.0 application must have the `openid` scope
+    {:.note}
+    > Your OAuth 2.0 application must have the `openid` scope.
 
-Once you have setup your application in Google, use the client ID and client
-secret and create a KongPlugin resource in Kubernetes:
+1. After you have setup your application in Google, use the client ID and client secret and create a KongPlugin resource in Kubernetes.
 
-```bash
-$ echo "
-apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
-metadata:
-  name: oidc-auth
-config:
-  issuer: https://accounts.google.com/.well-known/openid-configuration
-  client_id:
-  - <client-id>
-  client_secret:
-  - <client-secret>
-  redirect_uri:
-  - http://127.0.0.1.nip.io/echo
-plugin: openid-connect
-" | kubectl apply -f -
-kongplugin.configuration.konghq.com/oidc-auth created
-```
+    ```bash
+    $ echo "
+    apiVersion: configuration.konghq.com/v1
+    kind: KongPlugin
+    metadata:
+      name: oidc-auth
+    config:
+      issuer: https://accounts.google.com/.well-known/openid-configuration
+      client_id:
+      - <client-id>
+      client_secret:
+      - <client-secret>
+      redirect_uri:
+      - http://127.0.0.1.nip.io/echo
+    plugin: openid-connect
+    " | kubectl apply -f -
+    ```
+    The results should look like this:
+    ```text
+    kongplugin.configuration.konghq.com/oidc-auth created
+    ```
 
-The `redirect_uri` parameter must be a URI that matches the Ingress rule we
-created earlier. You must also [add it to your Google OIDC
-configuration](https://developers.google.com/identity/protocols/oauth2/openid-connect#setredirecturi)
+    The `redirect_uri` parameter must be a URI that matches the Ingress rule that you created. You must also [add it to your Google OIDC configuration](https://developers.google.com/identity/protocols/oauth2/openid-connect#setredirecturi).
 
-Next, enable the plugin on our Ingress:
+1. Enable the plugin on ingress.
 
-```bash
-$ kubectl patch ingress echo -p '{"metadata":{"annotations":{"konghq.com/plugins":"oidc-auth"}}}'
-ingress.extensions/demo patched
-```
-## Test
+    ```bash
+    $ kubectl patch ingress echo -p '{"metadata":{"annotations":{"konghq.com/plugins":"oidc-auth"}}}'
+    ingress.extensions/demo patched
+    ```
+    
+## Test the configuration
 
-Now, if you visit http://127.0.0.1.nip.io/echo in your web browser
+Now, if you visit `http://127.0.0.1.nip.io/echo` in your web browser
 Kong should redirect you to Google to verify your identity.
-Once you identify yourself, you should be able to browse our dummy service
+After you identify yourself, you should be able to browse our dummy service
 once again.
 
 This basic configuration permits any user with a valid Google account to access
 the dummy service.
-For setting up more complicated authentication and authorization flows,
-please read
+For setting up more complicated authentication and authorization flows, see the
 [plugin docs](/gateway/latest/kong-plugins/authentication/oidc/google).
