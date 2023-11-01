@@ -9,7 +9,7 @@ Learn to setup the OIDC plugin using the Ingress Controller. It is important tha
 
 {% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
 
-{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/echo' name='echo' hostname="127.0.0.1.nip.io" %}
+{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/echo' name='echo' hostname="127.0.0.1.nip.io" no_indent=true %}
 
 This example uses `127.0.0.1.nip.io` as the host, you can use any domain name
 of your choice. For demo purpose, you can [nip.io](http://nip.io) service to avoid setting up a DNS record.
@@ -62,6 +62,7 @@ protocol using Google as our identity provider.
     plugin: openid-connect
     " | kubectl apply -f -
     ```
+
     The results should look like this:
     ```text
     kongplugin.configuration.konghq.com/oidc-auth created
