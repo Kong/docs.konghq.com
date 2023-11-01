@@ -78,4 +78,5 @@ jobs:
             ${{ env.SUBMODULE_PR_LOG }}
 
             Triggered by [action](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+            labels: skip-changelog,review:general
           draft: false
