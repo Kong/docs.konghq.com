@@ -146,6 +146,11 @@ For example, you could define three consumer groups:
 Starting in version 3.2, {{site.base_gateway}} can be configured to support configuring new data planes in the event of a control plane outage. For more information, read the [How to Manage New Data Planes during Control Plane Outages](/gateway/latest/kong-enterprise/cp-outage-handling/) documentation, or the [Control Plane Outage Management FAQ](/gateway/latest/kong-enterprise/cp-outage-handling-faq/).
 
 {% endif_version %}
+
+## Docker container image signing
+
+Starting with version 3.5 of {{site.ee_product_name}}, Docker container images are signed, and can be verified using `cosign` with signatures published to a Docker Hub repository. Read the [Verify signatures for Signed Kong Images](/gateway/latest/kong-enterprise/signing-verify/) documentation to learn more.
+
 ## More information
 
 See [Plugin Compatibility](/hub/plugins/compatibility/) for more information about Enterprise-only plugins.
