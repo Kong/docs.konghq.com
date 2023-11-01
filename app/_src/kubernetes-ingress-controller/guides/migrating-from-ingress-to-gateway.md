@@ -23,17 +23,17 @@ export PATH=$PATH:$(pwd)
 
 ## Convert all your yaml files
 
-In order to migrate your resources from ingress to gateway, you need all your ingress-based
+In order to migrate your resources from `Ingress` API to Gateway API you need all your `Ingress`-based
 `yaml` manifests. Starting from them you can migrate to the new API by creating copies
-that replace the ingress resources with Gateway API ones.
+that replace the `Ingress` resources with Gateway API ones.
 Now, use the `ingress2gateway` tool to create new manifests containing the gateway
 API configurations:
 
 1. Export your source and destination paths:
 
     ```bash
-    export SOURCE_DIR=<your_source_directory>
-    export DEST_DIR=<your_destination_directory>
+    SOURCE_DIR=<your_source_directory>
+    DEST_DIR=<your_destination_directory>
     ```
 
 1. Convert your manifests and create new files in the destination directory
@@ -84,9 +84,9 @@ following commands:
 
 ## Delete the previous configuration
 
-Once all the Gateways have been correctly deployed and are programmed, you can carefully
+Once all the Gateways have been correctly deployed and are programmed (i.e. have status condition `Programmed` set, with status field set to `True`), you can carefully
 delete the ingress resources.
 
-> NOTE: we recommend to not delete all the ingress resources at once, but instead
+> NOTE: we recommend not deleting all the ingress resources at once, but instead
 > iteratively delete one ingress at a time, verify that no connection is lost, then
 > continue.
