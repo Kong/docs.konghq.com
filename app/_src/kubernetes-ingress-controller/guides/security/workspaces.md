@@ -12,7 +12,7 @@ enterprise: true
 * `--watch-namespace`: Namespace(s) to watch for Kubernetes resources. Defaults to all namespaces. To watch multiple namespaces, use a comma-separated list of namespaces.
 * `--kong-workspace`: Kong Enterprise workspace to configure. Leave this empty if not using Kong workspaces.
 
-Use the following `values.yaml` when installing using Helm to configure the namespace and workspace:
+Use this `values.yaml` when you install {{ site.kic_product_name }} using Helm to configure the namespace and workspace.
 
 ```yaml
 gateway:
@@ -22,5 +22,5 @@ gateway:
       kong_workspace: workspacename
 ```
 
-{{ site.kic_product_name }} will watch for resources in the defined namespace and send them to the configured workspace. This allows teams to manage their own resources in Kubernetes and send them to their own workspace within {{ site.base_gateway }}.
+{{ site.kic_product_name }} watches for resources in the defined namespace and send them to the configured workspace. This allows teams to manage their own resources in Kubernetes and send them to their own workspace within {{ site.base_gateway }}.
 

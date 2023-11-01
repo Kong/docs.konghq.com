@@ -24,7 +24,7 @@ To learn more about the available vaults, see the [{{ site.base_gateway }} docum
 
 ### Environment Vault
 
-You can set an environment variable on your proxy Pod using `valueFrom.secretKeyRef` in your deployment. The following example makes the `redis-password-secret` secret available using the environment variable vault.
+1.  Set an environment variable on your proxy Pod using `valueFrom.secretKeyRef` in your deployment. This example makes the `redis-password-secret` secret available using the environment variable vault.
 
 ```bash
 kubectl patch deploy -n kong kong-gateway --patch '
@@ -54,7 +54,7 @@ kubectl patch deploy -n kong kong-gateway --patch '
 }'
 ```
 
-This value can then be used in a `KongPlugin` definition:
+1. Use this value ` SECRET_REDIS_PASSWORD` in a `KongPlugin` definition.
 
 ```yaml
 apiVersion: configuration.konghq.com/v1
