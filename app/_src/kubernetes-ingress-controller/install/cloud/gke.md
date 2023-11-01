@@ -15,10 +15,10 @@ purpose: |
 
 ## Setup environment variables
 
-Create an environment variable with the address at which Kong is accessible. This address sends requests to the
+Create an environment variable with the IP address at which Kong is accessible. This IP address sends requests to the
 Kubernetes cluster.
 
-1. Get the IP address at which Kong is accessible:
+1. Get the IP address at which Kong is accessible.
 
     ```bash
     $ kubectl get services -n kong
@@ -28,7 +28,7 @@ Kubernetes cluster.
    NAME                 TYPE           CLUSTER-IP      EXTERNAL-IP                           PORT(S)                      AGE
    kong-gateway-proxy                   LoadBalancer   34.118.227.63    34.28.38.36   80:32683/TCP,443:30798/TCP      5m2s
    ```
-1. Create an environment variable to hold the ELB hostname:
+1. Create an environment variable for the LoadBalancer IP.
 
     ```bash
     $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong kong-gateway-proxy)
