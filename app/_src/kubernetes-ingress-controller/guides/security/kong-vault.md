@@ -26,49 +26,49 @@ To learn more about the available vaults, see the [{{ site.base_gateway }} docum
 
 1.  Set an environment variable on your proxy Pod using `valueFrom.secretKeyRef` in your deployment. This example makes the `redis-password-secret` secret available using the environment variable vault.
 
-```bash
-kubectl patch deploy -n kong kong-gateway --patch '
-{
-  "spec": {
-    "template": {
+    ```bash
+    kubectl patch deploy -n kong kong-gateway --patch '
+    {
       "spec": {
-        "containers": [
-          {
-            "name": "proxy",
-            "env": [
+        "template": {
+          "spec": {
+            "containers": [
               {
-                "name": "SECRET_REDIS_PASSWORD",
-                "valueFrom": {
-                  "secretKeyRef": {
-                    "name": "redis-password-secret",
-                    "key": "redis-password"
+                "name": "proxy",
+                "env": [
+                  {
+                    "name": "SECRET_REDIS_PASSWORD",
+                    "valueFrom": {
+                      "secretKeyRef": {
+                        "name": "redis-password-secret",
+                        "key": "redis-password"
+                      }
+                    }
                   }
-                }
+                ]
               }
             ]
           }
-        ]
+        }
       }
-    }
-  }
-}'
-```
+    }'
+    ```
 
 1. Use this value ` SECRET_REDIS_PASSWORD` in a `KongPlugin` definition.
 
-```yaml
-apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
-metadata:
-  name: rate-limiting-example
-plugin: rate-limiting
-config:
-  second: 5
-  hour: 10000
-  policy: redis
-  redis_host: <redis_host>
-  redis_password: "vault://env/secret-redis-password"
-```
+    ```yaml
+    apiVersion: configuration.konghq.com/v1
+    kind: KongPlugin
+    metadata:
+      name: rate-limiting-example
+    plugin: rate-limiting
+    config:
+      second: 5
+      hour: 10000
+      policy: redis
+      redis_host: <redis_host>
+      redis_password: "vault://env/secret-redis-password"
+    ```
 
 
 ### Hashicorp Vault
