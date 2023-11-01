@@ -57,6 +57,11 @@
                   </div>
 
                   <div class="docs-dropdown-li__section-items">
+                    <a class="item item-all" href="/api/" tabindex="-1">
+                      <div class="item__description">
+                        <div class="item__description-title">API Specs</div>
+                      </div>
+                    </a>
                     {% for doc_menu_item in site.data.docs_top_nav %}
                       <a class="item" href="{{ doc_menu_item.url }}" tabindex="-1">
                         {% if doc_menu_item.icon %}
