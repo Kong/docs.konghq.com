@@ -29,6 +29,7 @@
     data-offset="350"
   >
 
+
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NL48VKT"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -145,7 +146,12 @@
             buttonText: 'Search the docs..',
             buttonAriaLabel: 'Search the docs...'
           }
+        },
+        {% if page.algolia_filters %}
+        searchParameters: {
+          optionalFilters: [{{ page.algolia_filters }}]
         }
+        {% endif %}
       });
     </script>
   </body>
