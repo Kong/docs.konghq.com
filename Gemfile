@@ -13,6 +13,10 @@ gem 'nokogiri'
 gem 'jekyll-kuma-plugins', path: './app/_src/.repos/kuma/jekyll-kuma-plugins'
 gem 'jekyll-vite'
 
+group :jekyll_plugins do
+  gem 'jekyll-mermaid'
+end
+
 group :development do
   gem 'pry'
   gem 'puma'

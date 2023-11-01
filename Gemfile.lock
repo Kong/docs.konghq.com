@@ -58,6 +58,7 @@ GEM
       jekyll (>= 4.2, < 5.0)
     jekyll-include-cache (0.2.1)
       jekyll (>= 3.7, < 5.0)
+    jekyll-mermaid (1.0.0)
     jekyll-redirect-from (0.16.0)
       jekyll (>= 3.3, < 5.0)
     jekyll-sass-converter (2.2.0)
@@ -182,6 +183,7 @@ DEPENDENCIES
   jekyll-generator-single-source
   jekyll-include-cache
   jekyll-kuma-plugins!
+  jekyll-mermaid
   jekyll-redirect-from
   jekyll-vite
   kramdown-parser-gfm
