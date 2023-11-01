@@ -9,11 +9,11 @@ purpose: |
 
 The annotation can be used on `Ingress` and `HTTPRoute` resources, and configures a [request-transformer](/hub/kong-inc/request-transformer/) plugin within Kong when added to a route.
 
-The following definition creates a route that matches the path `/users/(\w+)` and rewrites it to `/requests/users_svc/$1` before sending the request upstream.
+This definition creates a route that matches the path `/users/(\w+)` and rewrites it to `/requests/users_svc/$1` before sending the request upstream.
 
 {% include /md/kic/http-test-routing-resource.md kong_version=page.kong_version path='/users/(\w+)' name='user' service='users' port='80' skip_host=true route_type='RegularExpression' no_results=true annotation_rewrite="/requests/users_svc/$1" %}
 
-This is equivalent to the following plugin configuration:
+Alternatively, you can define this in a plugin configuration.
 
 ```yaml
 plugins:
