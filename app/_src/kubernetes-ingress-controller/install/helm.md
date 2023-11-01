@@ -9,9 +9,9 @@ purpose: |
 
 The `kong/ingress` chart is a wrapper around `kong/kong` that manages separate {{ site.kic_product_name }} and {{ site.base_gateway }} deployments automatically.
 
-You can use any [configuration option](https://github.com/Kong/charts/blob/main/charts/kong/README.md#configuration) available in the `kong/kong` chart when using the `kong/ingress` chart.
+You can use any of the [configuration options](https://github.com/Kong/charts/blob/main/charts/kong/README.md#configuration) available in the `kong/kong` chart when using the `kong/ingress` chart.
 
-To configure the {{ site.kic_product_name }} deployment, place the keys from `kong/kong` under a `controller` key in your `values.yaml` file.
+*  To configure the {{ site.kic_product_name }} deployment, place the keys from `kong/kong` under a `controller` key in the values.yaml` file.
 
 ```yaml
 controller:
@@ -23,7 +23,7 @@ controller:
 ```
 
 
-To configure the {{ site.base_gateway }} deployment, place the keys from `kong/kong` under a `gateway` key in your `values.yaml` file.
+*  To configure the {{ site.base_gateway }} deployment, place the keys from `kong/kong` under a `gateway` key in the `values.yaml` file.
 
 ```yaml
 gateway:
