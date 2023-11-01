@@ -133,8 +133,6 @@ items:
             url: /guides/high-availability/health-checks
       - text: Security
         items:
-          - text: KIC <-> Data Plane mTLS
-            url: /guides/security/kic-dp
           - text: Kong Vaults
             url: /guides/security/kong-vault
           #- text: Cert Manager
