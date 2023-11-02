@@ -21,8 +21,7 @@ This option defaults to `v1` and can be set to `v2` to enable IMDSv2.
 **{{site.base_gateway}} 2.8.x**
 * The `proxy_scheme` configuration parameter is deprecated and planned to be
 removed in 3.x.x.
-* {{site.base_gateway}} 2.8.1.3: Added support for cross account invocation
-through configuration properties `aws_assume_role_arn` and `aws_role_session_name`.
+* {{site.base_gateway}} 2.8.1.3: Added support for cross-account invocation through the `aws_assume_role_arn` and `aws_role_session_name` configuration parameters. [#8900](https://github.com/Kong/kong/pull/8900)
 * {{site.base_gateway}} 2.8.4.0: Backported the parameter
 `aws_imds_protocol_version` into 2.8.x.
 * {{site.base_gateway}} 2.8.4.3: The AWS Lambda plugin has been refactored by using `lua-resty-aws` as an underlying AWS library. The refactor simplifies the AWS Lambda plugin codebase and adds support for multiple IAM authenticating scenarios.
