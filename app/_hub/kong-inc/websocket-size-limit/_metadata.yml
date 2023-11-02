@@ -1,4 +1,6 @@
 name: WebSocket Size Limit
+search_aliases:
+  - websocket-size-limit
 dbless_compatible: 'yes'
 free: false
 enterprise: true

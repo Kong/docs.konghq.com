@@ -1,4 +1,6 @@
 name: TCP Log
+search_aliases:
+  - tcp-log
 dbless_compatible: 'yes'
 free: true
 enterprise: true

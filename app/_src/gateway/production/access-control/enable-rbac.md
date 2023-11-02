@@ -357,7 +357,7 @@ user token:
 
     ```sh
     curl -i -X GET http://localhost:8001/teamB/rbac/users \
-      -H 'Kong-Admin-Token:n5bhjgv0speXp4N7rSUzUj8PGnl3F5eG'
+      -H 'Kong-Admin-Token:exampletokenA'
     ```
 
     Notice that you can't access the endpoint:
@@ -371,7 +371,7 @@ user token:
 
     ```sh
     curl -i -X GET http://localhost:8001/teamA/rbac/users \
-      -H 'Kong-Admin-Token:n5bhjgv0speXp4N7rSUzUj8PGnl3F5eG'
+      -H 'Kong-Admin-Token:exampletokenA'
     ```
 
     Response:
@@ -416,7 +416,7 @@ and if they do, the admin can grant them individually.
     ```sh
     curl -i -X POST http://localhost:8001/teamA/rbac/roles/ \
       --data name=users \
-      -H 'Kong-Admin-Token:n5bhjgv0speXp4N7rSUzUj8PGnl3F5eG'
+      -H 'Kong-Admin-Token:exampletokenA'
     ```
 
     Response:
@@ -436,7 +436,7 @@ and if they do, the admin can grant them individually.
       --data 'endpoint=*' \
       --data 'workspace=teamA' \
       --data 'actions=*' \
-      -H 'Kong-Admin-Token:n5bhjgv0speXp4N7rSUzUj8PGnl3F5eG'
+      -H 'Kong-Admin-Token:exampletokenA'
     ```
 
     Response:
@@ -467,7 +467,7 @@ and if they do, the admin can grant them individually.
       --data 'workspace=teamA' \
       --data 'actions=*' \
       --data 'negative=true' \
-      -H 'Kong-Admin-Token:n5bhjgv0speXp4N7rSUzUj8PGnl3F5eG'
+      -H 'Kong-Admin-Token:exampletokenA'
     ```
 
     Response:
@@ -496,7 +496,7 @@ and if they do, the admin can grant them individually.
       --data 'workspace=teamA' \
       --data 'actions=*' \
       --data 'negative=true' \
-      -H 'Kong-Admin-Token:n5bhjgv0speXp4N7rSUzUj8PGnl3F5eG'
+      -H 'Kong-Admin-Token:exampletokenA'
     ```
 
     Response:
@@ -542,7 +542,7 @@ access to Kong.
     curl -i -X POST http://localhost:8001/teamA/rbac/users \
       --data name=foogineer \
       --data user_token=exampletokenfoo \
-      -H 'Kong-Admin-Token:n5bhjgv0speXp4N7rSUzUj8PGnl3F5eG'
+      -H 'Kong-Admin-Token:exampletokenA'
     ```
 
     Response:
@@ -562,7 +562,7 @@ access to Kong.
     ```sh
     curl -i -X POST http://localhost:8001/teamA/rbac/users/foogineer/roles \
       --data roles=users \
-      -H 'Kong-Admin-Token:n5bhjgv0speXp4N7rSUzUj8PGnl3F5eG'
+      -H 'Kong-Admin-Token:exampletokenA'
     ```
 
     Response:
@@ -600,7 +600,7 @@ access to Kong.
     curl -i -X POST http://localhost:8001/teamA/rbac/users \
       --data name=bargineer \
       --data user_token=exampletokenbar \
-      -H 'Kong-Admin-Token:n5bhjgv0speXp4N7rSUzUj8PGnl3F5eG'
+      -H 'Kong-Admin-Token:exampletokenA'
     ```
 
     Response:
@@ -620,7 +620,7 @@ access to Kong.
     ```sh
     curl -i -X POST http://localhost:8001/teamA/rbac/users/foogineer/roles \
       --data roles=users \
-      -H 'Kong-Admin-Token:n5bhjgv0speXp4N7rSUzUj8PGnl3F5eG'
+      -H 'Kong-Admin-Token:exampletokenA'
     ```
 
     Response:
@@ -768,7 +768,7 @@ to use entity-level RBAC.
     ```sh
     curl -i -X POST http://localhost:8001/teamA/rbac/roles \
       --data name=qux-role \
-      -H Kong-Admin-Token:n5bhjgv0speXp4N7rSUzUj8PGnl3F5eG
+      -H Kong-Admin-Token:exampletokenA
     ```
 
     Response:
@@ -790,7 +790,7 @@ to use entity-level RBAC.
       --data entity_id=3ed24101-19a7-4a0b-a10f-2f47bcd4ff43 \
       --data entity_type=services \
       --data actions=read \
-      -H 'Kong-Admin-Token:n5bhjgv0speXp4N7rSUzUj8PGnl3F5eG'
+      -H 'Kong-Admin-Token:exampletokenA'
     ```
 
     Response:
@@ -813,7 +813,7 @@ to use entity-level RBAC.
       --data entity_id=d25afc46-dc59-48b2-b04f-d3ebe19f6d4b \
       --data entity_type=routes \
       --data actions=read \
-      -H 'Kong-Admin-Token:n5bhjgv0speXp4N7rSUzUj8PGnl3F5eG'
+      -H 'Kong-Admin-Token:exampletokenA'
     ```
 
     Response:
@@ -836,7 +836,7 @@ to use entity-level RBAC.
     ```sh
     curl -i -X POST http://localhost:8001/teamA/rbac/users/qux/roles \
       --data roles=qux-role \
-      -H 'Kong-Admin-Token:n5bhjgv0speXp4N7rSUzUj8PGnl3F5eG'
+      -H 'Kong-Admin-Token:exampletokenA'
     ```
 
     Response:
@@ -872,7 +872,7 @@ to use entity-level RBAC.
 
     ```sh
     curl -i -X GET http://localhost:8001/teamA/rbac/users/qux/permissions \
-      -H 'Kong-Admin-Token:n5bhjgv0speXp4N7rSUzUj8PGnl3F5eG'
+      -H 'Kong-Admin-Token:exampletokenA'
     ```
 
     Response:

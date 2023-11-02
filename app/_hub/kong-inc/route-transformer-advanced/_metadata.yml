@@ -1,4 +1,6 @@
 name: Route Transformer Advanced
+search_aliases:
+  - route-transformer-advanced
 dbless_compatible: 'yes'
 free: false
 plus: false

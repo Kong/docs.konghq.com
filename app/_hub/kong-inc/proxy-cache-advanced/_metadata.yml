@@ -1,4 +1,8 @@
 name: Proxy Caching Advanced
+search_aliases:
+  - proxy cache
+  - proxy cache advanced
+  - proxy-cache-advanced
 dbless_compatible: 'yes'
 free: false
 enterprise: true

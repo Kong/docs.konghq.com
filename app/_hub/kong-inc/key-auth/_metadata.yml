@@ -1,4 +1,7 @@
 name: Key Auth
+search_aliases:
+  - key authentication
+  - key-auth
 dbless_compatible: partially
 dbless_explanation: |
   Consumers and Credentials can be created with declarative configuration.

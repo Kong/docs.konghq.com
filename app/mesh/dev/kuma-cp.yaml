@@ -336,7 +336,6 @@ runtime:
         enabled: true # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_BUILTIN_DNS_ENABLED
         # Redirect port for DNS
         port: 15053 # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_BUILTIN_DNS_PORT
-      transparentProxyV1: false # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_TRANSPARENT_PROXY_V1
       # EBPF defines configuration for the ebpf, when transparent proxy is marked to be
       # installed using ebpf instead of iptables
       ebpf:
@@ -718,6 +717,9 @@ experimental:
     fullResyncInterval: 60s # ENV: KUMA_EXPERIMENTAL_KDS_EVENT_BASED_WATCHDOG_FULL_RESYNC_INTERVAL
     # If true, then initial full resync is going to be delayed by 0 to FullResyncInterval.
     delayFullResync: false # ENV: KUMA_EXPERIMENTAL_KDS_EVENT_BASED_WATCHDOG_DELAY_FULL_RESYNC
+  # If true then control plane computes reachable services automatically based on MeshTrafficPermission.
+  # Lack of MeshTrafficPermission is treated as Deny the traffic.
+  autoReachableServices: false # ENV: KUMA_EXPERIMENTAL_AUTO_REACHABLE_SERVICES
 proxy:
   gateway:
     # Sets the envoy runtime value to limit maximum number of incoming

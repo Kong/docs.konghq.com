@@ -1,4 +1,6 @@
 name: Azure Functions
+search_aliases:
+  - azure-functions
 dbless_compatible: 'yes'
 free: true
 enterprise: true

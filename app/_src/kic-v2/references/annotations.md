@@ -666,7 +666,7 @@ a timeout.
 {% if_version gte:2.12.x %}
 ### konghq.com/rewrite
 
-> Available since controller 2.12
+> Available since controller 2.12. Requires the [`RewriteURIs` feature gate](/kubernetes-ingress-controller/{{ page.release }}/references/feature-gates/)
 
 Rewrite a URL path. This annotation is a shorthand method of applying a
 [request-transformer plugin](/hub/kong-inc/request-transformer/)
