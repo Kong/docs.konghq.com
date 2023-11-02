@@ -46,7 +46,7 @@ items:
             items:
               - text: Overview
                 url: /key-concepts/routes
-              - text: Configure Routes with Expressions
+              - text: Using the Expressions router
                 url: /key-concepts/routes/expressions
           - text: Upstreams
             url: /key-concepts/upstreams
