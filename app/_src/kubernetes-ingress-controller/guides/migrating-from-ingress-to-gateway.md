@@ -7,7 +7,7 @@ purpose: |
 
 ## Prerequisites
 
-This guide will use git and [go][go] to download and execute the [`ingress2gateway`][ingress2gateway]
+Ensure that you have installed `Git` and [go][go] to download and execute the [`ingress2gateway`][ingress2gateway]
 tool.
 
 ```bash
@@ -21,28 +21,28 @@ export PATH=$PATH:$(pwd)
 [go]: https://go.dev/dl/
 [ingress2gateway]: https://github.com/kubernetes-sigs/ingress2gateway
 
-## Convert all your yaml files
+## Convert all the yaml files
 
-In order to migrate your resources from `Ingress` API to Gateway API you need all your `Ingress`-based
-`yaml` manifests. Starting from them you can migrate to the new API by creating copies
+In order to migrate your resources from `Ingress` API to Gateway API you need all the `Ingress`-based
+`yaml` manifests. You can use these manifests as source to migrate to the new API by creating copies
 that replace the `Ingress` resources with Gateway API ones.
 Now, use the `ingress2gateway` tool to create new manifests containing the gateway
-API configurations:
+API configurations.
 
-1. Export your source and destination paths:
+1. Export your source and destination paths.
 
     ```bash
     SOURCE_DIR=<your_source_directory>
     DEST_DIR=<your_destination_directory>
     ```
 
-1. Convert your manifests and create new files in the destination directory
+1. Convert the manifests and create new files in the destination directory.
 
     ```bash
     for file in ${SOURCE_DIR}/*.yaml; do ingress2gateway print --input-file ${file} -A --providers=kong --all-resources > ${DEST_DIR}/$(basename -- $file); done
     ```
 
-1. Check the new manifest files have been correctly created in the destination directory:
+1. Check the new manifest files have been correctly created in the destination directory.
 
     ```bash
     ls ${DEST_DIR}
@@ -57,18 +57,17 @@ API configurations:
    1. `konghq.com/headers`
    1. `konghq.com/plugins`
 
-## Check your new manifests
+## Check the new manifests
 
 The manifests conversion will be performed as follows:
 
-- `Ingress`es will be converted into `Gateway` and `HTTPRoute`s
-- `TCPIngress`es will be converted into `Gateway` and `TCPRoute`s and `TLSRoute`s
-- `UDPIngress`es will be converted into `Gateway` and `UDPRoute`s
+- `Ingress`es are converted to `Gateway` and `HTTPRoute`s
+- `TCPIngress`es are converted to `Gateway` and `TCPRoute`s and `TLSRoute`s
+- `UDPIngress`es are converted to `Gateway` and `UDPRoute`s
 
 ## Migrate from Ingress to Gateway
 
-In order to migrate from using the ingress resources to the Gateway ones, run the
-following commands:
+To migrate from using the ingress resources to the Gateway resources:
 
 1. Apply the new manifest files into the cluster
 
@@ -87,6 +86,6 @@ following commands:
 Once all the Gateways have been correctly deployed and are programmed (i.e. have status condition `Programmed` set, with status field set to `True`), you can carefully
 delete the ingress resources.
 
-> NOTE: we recommend not deleting all the ingress resources at once, but instead
+> **Note**: It is a best practice to not delete all the ingress resources at once, but instead
 > iteratively delete one ingress at a time, verify that no connection is lost, then
 > continue.
