@@ -26,7 +26,7 @@ containing the converted configuration.
 Here is a list of all the ingress features, along with the Gateway API
 equivalent support.
 
-{{ site.kic_product_name }} provides an extensive set of [annotations](../references/annotations.md).
+{{ site.kic_product_name }} provides an extensive set of [annotations](/kubernetes-ingress-controller/latest/reference/annotations).
 This is the list of the features supported by the Ingress2Gateway's Kong provider.
 Such a list is improved over time.
 
