@@ -1,4 +1,6 @@
 name: HTTP Log
+search_aliases:
+  - http-log
 dbless_compatible: 'yes'
 free: true
 enterprise: true

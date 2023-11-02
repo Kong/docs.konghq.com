@@ -50,8 +50,8 @@ RSpec.describe Jekyll::Drops::Plugins::SchemaField do
   end
 
   describe '#fields' do
-    it 'returns the list of `fields` and `shorthand_fields`' do
-      expect(subject.fields.size).to eq(68)
+    it 'returns the list of `fields`' do
+      expect(subject.fields.size).to eq(54)
       expect(subject.fields).to all(be_an(described_class))
     end
   end

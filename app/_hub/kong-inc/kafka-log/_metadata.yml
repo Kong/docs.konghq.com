@@ -1,4 +1,6 @@
 name: Kafka Log
+search_aliases:
+  - kafka-log
 dbless_compatible: 'yes'
 free: false
 enterprise: true

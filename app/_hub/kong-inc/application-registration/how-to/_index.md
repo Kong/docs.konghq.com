@@ -10,7 +10,7 @@ your plugin using your preferred method. Or, follow this guide for some specific
 
 ### Prerequisites
 
-Before using this plugin, [set an authorization provider strategy in `kong.conf`](/gateway/latest/kong-enterprise/dev-portal/applications/auth-provider-strategy/#portal-app-auth). 
+Before using this plugin, [set an authorization provider strategy in `kong.conf`](/gateway/latest/kong-enterprise/dev-portal/applications/auth-provider-strategy/). 
 
 ### Enable automatic registration approval
 

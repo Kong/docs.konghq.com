@@ -138,7 +138,7 @@ To learn more about the details of this feature, reference the [{{site.base_gate
 
 The following entity resource limits apply to each control plane for the configuration:
 
-| Resource name | Entity resource limit |
+| Resource name | Default Entity resource limit |
 | --- | --- |
 | Access Control List | 50,000 |
 | Asymmetric Key | 1,000 |

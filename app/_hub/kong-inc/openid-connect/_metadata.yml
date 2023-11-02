@@ -2,6 +2,9 @@ name: OpenID Connect
 search_aliases:
   - oidc
   - oauth2
+  - openid-connect
+  - idp
+  - identity provider
 dbless_compatible: 'yes'
 free: false
 enterprise: true

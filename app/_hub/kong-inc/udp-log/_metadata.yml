@@ -1,4 +1,6 @@
 name: UDP Log
+search_aliases:
+  - udp-log
 dbless_compatible: 'yes'
 free: true
 enterprise: true

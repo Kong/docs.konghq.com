@@ -44,6 +44,9 @@ Features that reach GA and become stable are removed from this table, but they c
 {% if_version gte: 2.11.x %}
 | CombinedServices       | `true`  | Beta  | 2.11.0 | TBD   |
 {% endif_version %}
+{% if_version gte: 2.12.x %}
+| RewriteURIs            | `false`  | Beta  | 2.12.0 | TBD   |
+{% endif_version %}
 
 ### Feature gates details
 

@@ -1,4 +1,6 @@
 name: Rate Limiting Advanced
+search_aliases:
+  - rate-limiting-advanced
 dbless_compatible: partially
 dbless_explanation: |
   The cluster strategy is not supported in DB-less and hybrid modes. For Kong

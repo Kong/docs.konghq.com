@@ -5,6 +5,14 @@ no_version: true
 
 Changelog for supported {{ site.kgo_product_name }} versions.
 
+## 1.0.2
+
+**Release Date** 2023/10/18
+
+### Changed
+
+* Bump dependencies
+
 ## 1.0.1
 
 **Release Date** 2023/10/02

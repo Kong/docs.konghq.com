@@ -1,4 +1,6 @@
 name: Session
+search_aliases:
+  - sessions
 dbless_compatible: partially
 dbless_explanation: |
   `config.storage` must be set to `cookie`. The `kong` strategy uses
