@@ -88,10 +88,6 @@ plugins:
   - jekyll-generator-single-source
   - jekyll-kuma-plugins
   - jekyll/vite
-  - jekyll-mermaid
-
-mermaid:
-  src: '/node_modules/mermaid/dist/mermaid.min.js'
 
 defaults:
   - scope:

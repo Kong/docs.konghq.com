@@ -44,12 +44,89 @@ konnect_cta_card: true
 
 ## Introducing {{ site.base_gateway }}
 
+
+
 {% mermaid %}
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
+graph TD 
+A[Client] --> B[Load Balancer] 
+B --> C[Server01] 
+B --> D[Server02]
+{% endmermaid %}
+
+
+{% mermaid %}
+graph TD
+  subgraph Dimension1
+    A[Document 1]
+    B[Document 2]
+    C[Document 3]
+  end
+
+  subgraph Dimension2
+    D[Document 4]
+    E[Document 5]
+    F[Document 6]
+  end
+
+  subgraph Dimension3
+    G[Document 7]
+    H[Document 8]
+    I[Document 9]
+  end
+
+  A -->|Accuracy| D
+  B -->|Accuracy| E
+  C -->|Accuracy| F
+
+  A -->|Relevance| G
+  B -->|Relevance| H
+  C -->|Relevance| I
+
+  A -->|Completeness| G
+  B -->|Completeness| H
+  C -->|Completeness| I
+
+  %% Add more connections for department relevance or placement criteria
+  %% A -->|Education Department Relevance| D
+  %% B -->|Education Department Relevance| E
+  %% C -->|Education Department Relevance| F
+  %% A -->|Sales Department Relevance| G
+  %% B -->
+
+{% endmermaid %}
+
+{% mermaid %}
+graph TD
+  A[Start] --> B[Process 1]
+  B --> C[Process 2]
+  C --> D[Process 3]
+  D --> E[End]
+{% endmermaid %}
+
+{% mermaid %}
+gantt
+    title Git Issues - days since last update
+    dateFormat  X
+    axisFormat %s
+
+    section Issue19062
+    71   : 0, 71
+    section Issue19401
+    36   : 0, 36
+    section Issue193
+    34   : 0, 34
+    section Issue7441
+    9    : 0, 9
+    section Issue1300
+    5    : 0, 5
+{% endmermaid %}
+
+{% mermaid %}
+pie
+  title Pie Chart Example
+  "Category A" : 45
+  "Category B" : 25
+  "Category C" : 30
 {% endmermaid %}
 
 {{site.base_gateway}} is a lightweight, fast, and flexible cloud-native API
