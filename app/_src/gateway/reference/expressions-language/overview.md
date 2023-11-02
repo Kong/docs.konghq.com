@@ -4,7 +4,7 @@ title: Overview
 
 With the release of version 3.0, {{site.base_gateway}} now ships with a powerful and efficient rule based engine using
 a domain-specific language called Expressions. Expressions can be used to perform tasks such as defining
-complex routing logic that was previously not possible with the pre 3.0 router.
+complex routing logic that was previously not possible with the pre 3.0 era router.
 This document serves as a reference for the Expressions language and how it can be used.
 
 If you want to learn how to configure routes using Expressions as well

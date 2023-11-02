@@ -13,16 +13,25 @@ matching performance.
 
 # Key concepts
 
-* **Field:** Field contains value extracted from the incoming request. For example, the request path or the value of a header field.
-* **Operator:** A operator defines the action to be performed on the field.
+* **Field:** Field contains value extracted from the incoming request. For example,
+  the request path or the value of a header field. Field value could also be absent
+  in some cases, absent field value will always cause predicate to yield `false`
+  no matter the operator. Field always appears on the left hand side of the predicate.
+* **Constant value:** Constant value is what the field is compared against based on the
+  provided operator. Constant value always appears on the right hand side of the predicate.
+* **Operator:** A operator defines the desired comparison action to be performed on the field
+  against the provided constant value. Operator always appears in the middle of the predicate,
+  between the field and constant value.
 * **Predicate:** A predicate compares a field against a pre-defined value using the provided operator and
   returns `true` if the field passed the comparison, or `false` if not.
-* **Route:** A route is one or more predicated, combined together with logical operators.
+* **Route:** A route is one or more predicates, combined together with logical operators.
 * **Router:** A router is a collection of routes which are all evaluated against incoming
   requests until a match could be found.
 * **Priority:** A positive integer that defines the order of evaluation of the router.
   The bigger the priority, the sooner a route will be evaluated. In case of duplicate
   priority value between two routes within the same router, their order of evaluation is undefined.
+
+![Structure of a predicate](/assets/images/products/gateway/reference/expressions-language/predicate.png)
 
 # Examples (HTTP)
 ## Prefix based path matching
@@ -114,7 +123,22 @@ tls.sni =^ ".example.com"
 
 This matches all TLS connections with SNI ending with `.example.com`.
 
+# How are route executed
+
+At runtime, Kong builds two separate routers for the HTTP and Stream (TCP, TLS, UDP) subsystem.
+Routes are inserted into each router with appropriate `priority` field set. The router is
+updated incrementally as configured routes change.
+
+When a request/connection comes in, Kong looks at what field your configured routes require,
+and supply the value of these fields to the router execution context, which is evaluated against
+the configured routes in descendent order (higher number `priority` routes gets evaluated first).
+
+As soon as a route yields a match, the router stops matching and the matched route is selected
+for processing the current request/connection.
+
+![Router matching flow](/assets/images/products/gateway/reference/expressions-language/router-matching-flow.png)
+
 # What's next
 
-Read the [Language References](/gateway/reference/expressions-language/language-references) page
+Read the [Language References](/gateway/{{ page.kong_version }}/reference/expressions-language/language-references) page
 to understand what operators and data types are available in the expressions language.
