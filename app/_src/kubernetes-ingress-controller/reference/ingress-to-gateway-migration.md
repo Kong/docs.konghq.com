@@ -60,8 +60,8 @@ each method creates a match copy. All the matches belonging to the same
 > [Annotation description](/kubernetes-ingress-controller/latest/reference/annotations/#konghqcomheaders)
 
 If configured on an Ingress resource, this value sets the `HTTPRoute` header
-matching configuration. Only exact matching is supported. Because many values can be
-set for the same header name as a comma-separated list, each header value is used
+matching configuration. Only exact matching is supported. Because many values can
+be set for the same header name as a comma-separated list, each header value is used
 to create a match copy. All the matches belonging to the same `HTTPRoute` rule
 are put in OR.
 

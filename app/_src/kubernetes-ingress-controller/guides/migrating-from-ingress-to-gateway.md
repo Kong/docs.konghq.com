@@ -7,8 +7,8 @@ purpose: |
 
 ## Prerequisites
 
-Ensure that you have installed `Git` and [go][go] to download and execute the [`ingress2gateway`][ingress2gateway]
-tool.
+Ensure that you have installed `Make`, `Git`, and [go][go] to download and execute
+the [`ingress2gateway`][ingress2gateway] tool.
 
 ```bash
 git clone https://github.com/kong/ingress2gateway
@@ -23,11 +23,11 @@ export PATH=$PATH:$(pwd)
 
 ## Convert all the yaml files
 
-In order to migrate your resources from `Ingress` API to Gateway API you need all the `Ingress`-based
-`yaml` manifests. You can use these manifests as source to migrate to the new API by creating copies
-that replace the `Ingress` resources with Gateway API ones.
-Now, use the `ingress2gateway` tool to create new manifests containing the gateway
-API configurations.
+In order to migrate your resources from `Ingress` API to Gateway API you need all
+the `Ingress`-based `yaml` manifests. You can use these manifests as source to
+migrate to the new API by creating copies that replace the `Ingress` resources
+with Gateway API ones. Now, use the `ingress2gateway` tool to create new manifests
+containing the gateway API configurations.
 
 1. Export your source and destination paths.
 
@@ -49,10 +49,10 @@ API configurations.
     ```
 
 1. Copy your annotations from the ingress resources to the Routes. The routes' names
-   use the ingress name as prefix, so that tracking down which ingress generated
-   which route is a straightforward process. All the `konghq.com/` annotations must
-   be copied except for the following, that have been natively implemented in the
-   ingress to Gateway conversion process:
+   use the ingress name as prefix to help you track the route that the ingress
+   generated. All the `konghq.com/` annotations must be copied except for these,
+   that have been natively implemented as Gateway API features.
+
    1. `konghq.com/methods`
    1. `konghq.com/headers`
    1. `konghq.com/plugins`
@@ -83,9 +83,11 @@ To migrate from using the ingress resources to the Gateway resources:
 
 ## Delete the previous configuration
 
-Once all the Gateways have been correctly deployed and are programmed (i.e. have status condition `Programmed` set, with status field set to `True`), you can carefully
-delete the ingress resources.
+After all the Gateways have been correctly deployed and are programmed, you can
+delete the ingress resources. In other words the Gateways should have the status
+condition `Programmed` set, and status field set to `True` before you delete the
+ingress resources. delete the ingress resources.
 
-> **Note**: It is a best practice to not delete all the ingress resources at once, but instead
-> iteratively delete one ingress at a time, verify that no connection is lost, then
-> continue.
+> **Note**: It is a best practice to not delete all the ingress resources at once,
+> but instead iteratively delete one ingress at a time, verify that no connection
+> is lost, then continue.
