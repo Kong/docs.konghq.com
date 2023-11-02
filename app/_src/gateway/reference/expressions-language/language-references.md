@@ -137,7 +137,7 @@ Here is an overview:
 | `not in`        | Not in                | Field value is not inside constant value                                              |
 | `contains`      | Contains              | Field value contains constant value                                                   |
 | `&&`            | And                   | Returns `true` if **both** expressions on the left and right side evaluates to `true` |
-| `\|\|`          | Or                    | Returns `true` if **any** expressions on the left and right side evaluates to `true`  |
+| `||`          | Or                    | Returns `true` if **any** expressions on the left and right side evaluates to `true`  |
 | `(Expression)`  | Parenthesis           | Groups expressions together to be evaluated first                                     |
 
 Here are the allowed combination of field types and constant types with each operator:
@@ -149,7 +149,7 @@ Here are the allowed combination of field types and constant types with each ope
 | `String`     | `==`, `!=`, `~`, `^=`, `=^`, `contains` | ❌              | ❌        | ❌                          | `~`     | ❌            |
 | `IpAddr`     | ❌                                       | `in`, `not in` | `==`     | ❌                          | ❌       | ❌            |
 | `Int`        | ❌                                       | ❌              | ❌        | `==`, `>=`, `>`, `<=`, `<` | ❌       | ❌            |
-| `Expression` | ❌                                       | ❌              | ❌        | ❌                          | ❌       | `&&`, `\|\|` |
+| `Expression` | ❌                                       | ❌              | ❌        | ❌                          | ❌       | `&&`, `||` |
 
 > **Note:** The `~` operator is described as supports both `String ~ String` and `String ~ Regex`.
   In reality, `Regex` constant values can only be written as `String` on the right hand side.
