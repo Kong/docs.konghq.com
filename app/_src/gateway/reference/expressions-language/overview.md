@@ -13,7 +13,7 @@ Refer to the [Language References](/gateway/latest/reference/expressions-languag
 and needs to understand everything the Expressions language has to provide.
 
 If you want to learn how to configure routes using Expressions as well
-as available fields, read [How to configure routes using Expressions](/gateway/{{ page.kong_version }}/key-concepts/routes/expressions).
+as available fields, read [How to configure Routes using Expressions](/gateway/{{ page.kong_version }}/key-concepts/routes/expressions).
 
 Finally, you can checkout the [Performance](/gateway/latest/reference/expressions-language/performance/) page to understand performance characteristics when
 using the Expressions router and how to optimize your routes.
@@ -21,4 +21,4 @@ using the Expressions router and how to optimize your routes.
 ## More information
 
 * [Expressions repository](https://github.com/Kong/atc-router#table-of-contents)
-* [How to configure routes using Expressions](/gateway/{{ page.kong_version }}/key-concepts/routes/expressions)
+* [How to configure Routes using Expressions](/gateway/{{ page.kong_version }}/key-concepts/routes/expressions)
