@@ -4,10 +4,13 @@ source_url: https://github.com/Kong/deck/tree/main/cmd/completion.go
 content_type: reference
 ---
 
+Generate completion script.
+
+## Examples
 
 {% navtabs %}
 {% navtab Bash %}
-### Bash
+
 ```sh
 source <(deck completion bash)
 ```
@@ -31,7 +34,6 @@ deck completion bash > /usr/local/etc/bash_completion.d/deck
 {% endnavtab %}
 {% navtab Zsh%}
 
-### Zsh
 If shell completion is not already enabled in your environment,
 you will need to enable it. You can execute the following once:
 ```sh
@@ -48,8 +50,6 @@ You will need to start a new shell for this setup to take effect.
 {% endnavtab %}
 {% navtab fish %}
 
-### fish
-
 ```sh
 deck completion fish | source
 ```
@@ -61,8 +61,6 @@ deck completion fish > ~/.config/fish/completions/deck.fish
 
 {% endnavtab %}
 {% navtab Powershell %}
-
-### PowerShell
 
 ```powershell
 PS> deck completion powershell | Out-String | Invoke-Expression
@@ -76,8 +74,6 @@ PS> deck completion powershell > deck.ps1
 Then source this file from your PowerShell profile.
 {% endnavtab %}
 {% endnavtabs %}
-
-
 
 ## Syntax
 

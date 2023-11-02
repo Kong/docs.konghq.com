@@ -45,5 +45,5 @@ This takes precedence over `_workspace` fields in state files.
 
 ## See also
 
-* [deck file](/deck/{{page.kong_version}}/reference/deck_file)	 - Subcommand to host the decK file operations
+{% include /md/deck-reference-links.md file_links='true' %}
 

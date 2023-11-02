@@ -58,5 +58,4 @@ When this setting has multiple tag values, entities must match every tag.
 
 ## See also
 
-* [deck gateway](/deck/{{page.kong_version}}/reference/deck_gateway)	 - Subcommand to host the decK network operations
-
+{% include /md/deck-reference-links.md gateway_links='true' %}

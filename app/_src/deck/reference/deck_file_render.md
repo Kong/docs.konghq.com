@@ -45,5 +45,6 @@ deck file render [command-specific flags] [global flags]
 
 ## See also
 
-* [deck file](/deck/{{page.kong_version}}/reference/deck_file)	 - Subcommand to host the decK file manipulation operations
+{% include /md/deck-reference-links.md file_links='true' %}
+
 
