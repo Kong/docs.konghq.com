@@ -98,7 +98,7 @@ It is possible to define regex capture groups in any regex operation which will 
 later for plugins to use. Currently this is only supported with the `http.path` field:
 
 ```
-http.path~ "/foo/(?P<component>.+)"
+http.path ~ "/foo/(?P<component>.+)"
 ```
 
 The matched value of `component` will be made available later to plugins such as
@@ -123,7 +123,7 @@ tls.sni =^ ".example.com"
 
 This matches all TLS connections with SNI ending with `.example.com`.
 
-## How are route executed
+## How are routes executed
 
 At runtime, Kong builds two separate routers for the HTTP and Stream (TCP, TLS, UDP) subsystem.
 Routes are inserted into each router with appropriate `priority` field set. The router is

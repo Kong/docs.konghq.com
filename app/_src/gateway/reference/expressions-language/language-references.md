@@ -45,7 +45,7 @@ Strings are valid UTF-8 sequences. They can be defined with string literal that 
 | `\\`            | The `\` character         |
 | `\"`            | The `"` character         |
 
-In addition, Expressions supports raw string literals which takes form in `r#"content"`.
+In addition, Expressions supports raw string literals which takes form in `r#"content"#`.
 This feature is useful in case you want to write a regex and repeated escape quickly become
 tedious to deal with:
 
@@ -60,7 +60,7 @@ http.path ~ "/\\d+\\-\\d+"
 With raw string literals, you can simply write:
 
 ```
-http.path ~ r"/\d+\-\d+"
+http.path ~ r#"/\d+\-\d+"#
 ```
 
 ### IpCidr
