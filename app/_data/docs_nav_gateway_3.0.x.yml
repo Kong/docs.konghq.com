@@ -583,6 +583,8 @@ items:
             url: /reference/expressions-language/quickstart
           - text: Language References
             url: /reference/expressions-language/language-references
+          - text: Performance Optimizations
+            url: /reference/expressions-language/performance
       - text: Rate Limiting Library
         url: /reference/rate-limiting/
       - text: FAQ

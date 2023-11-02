@@ -3,7 +3,7 @@ title: Quickstart
 content-type: reference
 ---
 
-# The expressions language
+## The expressions language
 
 The expressions language is a strongly typed [Domain Specific Language (DSL)](https://en.wikipedia.org/wiki/Domain-specific_language)
 that allows user to define comparison operations on various input data.
@@ -11,7 +11,7 @@ Results of the comparisons can be combined with logical operations, allowing
 complex routing logic to be written easily while ensuring good runtime
 matching performance.
 
-# Key concepts
+## Key concepts
 
 * **Field:** Field contains value extracted from the incoming request. For example,
   the request path or the value of a header field. Field value could also be absent
@@ -33,8 +33,8 @@ matching performance.
 
 ![Structure of a predicate](/assets/images/products/gateway/reference/expressions-language/predicate.png)
 
-# Examples (HTTP)
-## Prefix based path matching
+## Examples (HTTP)
+### Prefix based path matching
 
 This is one of the most commonly used method for routing. Supposedly you would like
 to match HTTP requests that have path starting with `/foo/bar`, you can write the following route:
@@ -43,7 +43,7 @@ to match HTTP requests that have path starting with `/foo/bar`, you can write th
 http.path ^= "/foo/bar"
 ```
 
-## Regex based path matching
+### Regex based path matching
 
 If you prefer to match HTTP requests path against a regex, you can write the following route:
 
@@ -51,7 +51,7 @@ If you prefer to match HTTP requests path against a regex, you can write the fol
 http.path ~ r#"/foo/bar/\d+"#
 ```
 
-## Case insensitive path matching
+### Case insensitive path matching
 
 If you want to ignore case when performing the path match, use the `lower()` modifier on the field
 to ensure it always returns a lowercase value:
@@ -62,7 +62,7 @@ lower(http.path) == "/foo/bar"
 
 This will now match requests with path of `/foo/bar`, `/FOO/bAr` and etc.
 
-## Match by header value
+### Match by header value
 
 If you want to match incoming requests by the value of header `X-Foo`, do the following:
 
@@ -92,7 +92,7 @@ that performs case-insensitive matching:
 any(lower(http.headers.x_foo)) ~ r#"bar\d"#
 ```
 
-## Regex captures
+### Regex captures
 
 It is possible to define regex capture groups in any regex operation which will be made available
 later for plugins to use. Currently this is only supported with the `http.path` field:
@@ -104,9 +104,9 @@ http.path~ "/foo/(?P<component>.+)"
 The matched value of `component` will be made available later to plugins such as
 [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/how-to/templates/).
 
-# Examples (TCP, TLS, UDP)
+## Examples (TCP, TLS, UDP)
 
-## Match by source IP and destination port
+### Match by source IP and destination port
 
 ```
 net.src.ip in 192.168.1.0/24 && net.dst.port == 8080
@@ -115,7 +115,7 @@ net.src.ip in 192.168.1.0/24 && net.dst.port == 8080
 This matches all client within the `192.168.1.0/24` subnet and destination port (listened by Kong)
 is `8080`. IPv6 addresses are also supported.
 
-## Match by SNI (for TLS routes)
+### Match by SNI (for TLS routes)
 
 ```
 tls.sni =^ ".example.com"
@@ -123,7 +123,7 @@ tls.sni =^ ".example.com"
 
 This matches all TLS connections with SNI ending with `.example.com`.
 
-# How are route executed
+## How are route executed
 
 At runtime, Kong builds two separate routers for the HTTP and Stream (TCP, TLS, UDP) subsystem.
 Routes are inserted into each router with appropriate `priority` field set. The router is
@@ -138,7 +138,7 @@ for processing the current request/connection.
 
 ![Router matching flow](/assets/images/products/gateway/reference/expressions-language/router-matching-flow.png)
 
-# What's next
+## What's next
 
 Read the [Language References](/gateway/{{ page.kong_version }}/reference/expressions-language/language-references) page
 to understand what operators and data types are available in the expressions language.
