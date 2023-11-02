@@ -171,7 +171,7 @@ scenario, adding more cache memory would not increase maximum throughput by
 much.
 
 {% if_version gte:3.5.x %}
-When {{site.base_gateway}} is operating in `hybrid` mode with a large number of configuration
+When {{site.base_gateway}} is operating in hybrid mode with a large number of configuration
 entities (routes, services, etc.), it can benefit from the **dedicated configuration processing** option.
 When enabled, certain CPU-intensive steps of the data plane reconfiguration operation are offloaded
 to a dedicated worker process. This reduces proxy latency during reconfigurations at the cost of a
