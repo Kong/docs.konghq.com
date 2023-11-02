@@ -14,8 +14,8 @@ content_type: how-to
 > **Note:** When using Auth0 DCR for Dev Portal, each application in Auth0 will have the following metadata. This can be viewed via the auth0 dashboard, or accessed from the Auth0 API.
 > 
 > * `konnect_portal_id`: ID of the Portal the application belongs to
-> * `konnect_developer_id`: ID of the developer in the Dev Portal
-> * `konnect_org_id`: ID of the Dev Portal the application belongs to
+> * `konnect_developer_id`: ID of the developer in the Dev Portal that this application belongs to
+> * `konnect_org_id`: ID of the Konnect Organization the application belongs to
 > * `konnect_application_id`: ID of the application in the Dev Portal
 
 ## Configure Auth0

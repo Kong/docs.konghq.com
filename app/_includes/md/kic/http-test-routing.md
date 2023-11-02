@@ -7,7 +7,7 @@
 
 Create routing configuration to proxy `{{ path }}` requests to the echo server:
 
-{% include_cached /md/kic/http-test-routing-resource.md kong_version=include.kong_version hostname=hostname path=path name=name service=service %}
+{% include_cached /md/kic/http-test-routing-resource.md kong_version=include.kong_version hostname=hostname path=path name=name service=service no_indent=include.no_indent %}
 
 Test the routing rule:
 

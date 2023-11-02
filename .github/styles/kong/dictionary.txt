@@ -71,6 +71,7 @@ Netlify
 Nginx
 Nginx's
 Node.js
+Noname
 OAuth
 Okta
 Okta's
@@ -470,5 +471,6 @@ xbox
 xenial
 yaml
 yml
+yq
 zipkin
 zsh

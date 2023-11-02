@@ -2,149 +2,89 @@
 title: Using OIDC plugin
 ---
 
-{{site.ee_product_name}}'s OIDC plugin can authenticate requests using OpenID Connect protocol.
-This guide shows a basic example of how to setup the OIDC plugin using
-the Ingress Controller.
+Kong Enterprise's OIDC plugin can authenticate requests using OpenID Connect protocol.
+Learn to setup the OIDC plugin using the Ingress Controller. It is important that create a domain name to use OIDC plugin in a production environment. 
 
-> Note: This works only with Enterprise version of Kong.
+{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false enterprise=true %}
 
-## Installation
+{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
 
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/k4k8s-enterprise/) documentation
-to install enterprise version of the {{site.kic_product_name}}.
+{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/echo' name='echo' hostname="127.0.0.1.nip.io" no_indent=true %}
 
-## Testing Connectivity to Kong
-
-This guide assumes that the `PROXY_IP` environment variable is
-set to contain the IP address or URL pointing to Kong.
-Please follow one of the
-[deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
-
-If everything is setup correctly, making a request to Kong should return
-HTTP 404 Not Found.
-
-```bash
-$ curl -i $PROXY_IP
-HTTP/1.1 404 Not Found
-Content-Type: application/json; charset=utf-8
-Connection: keep-alive
-Content-Length: 48
-Server: kong/1.2.1
-
-{"message":"no Route matched with those values"}
-```
-
-This is expected as Kong does not yet know how to proxy the request.
-
-## Setup a Sample Service
-
-For the purpose of this guide, we will setup an [httpbin](https://httpbin.org)
-service in the cluster and proxy it.
-
-```bash
-kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{site.data.kong_latest_KIC.version}}/deploy/manifests/httpbin.yaml
-service/httpbin created
-deployment.apps/httpbin created
-```
-
-Create an Ingress rule to proxy the httpbin service we just created:
-
-```bash
-$ echo '
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: demo
-spec:
-  ingressClassName: kong
-  rules:
-  - host: 192.0.2.8.xip.io
-    http:
-      paths:
-      - path: /
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: httpbin
-            port:
-              number: 80
-' | kubectl apply -f -
-ingress.extensions/demo created
-```
-
-We are using `192.0.2.8.xip.io` as our host, you can use any domain name
-of your choice. A domain name is a prerequisite for this guide.
-For demo purpose, we are using [xip.io](http://xip.io)
-service to avoid setting up a DNS record.
+This example uses `127.0.0.1.nip.io` as the host, you can use any domain name
+of your choice. For demo purpose, you can [nip.io](http://nip.io) service to avoid setting up a DNS record.
 
 Test the Ingress rule:
 
 ```bash
-$ curl -i 192.0.2.8.xip.io/status/200
+$ curl -i 127.0.0.1.nip.io/echo
 HTTP/1.1 200 OK
-Content-Type: text/html; charset=utf-8
-Content-Length: 0
+Content-Type: text/plain; charset=utf-8
+Content-Length: 137
 Connection: keep-alive
-Server: gunicorn/19.9.0
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Credentials: true
-X-Kong-Upstream-Latency: 2
+Date: Tue, 31 Oct 2023 21:26:56 GMT
+X-Kong-Upstream-Latency: 0
 X-Kong-Proxy-Latency: 1
-Via: kong/3.1.1
-```
+Via: kong/3.4.1.0-enterprise-edition
 
-Next, open a browser and browse to `http://192.0.2.8.xip.io`.
-You should see landing page same as httpbin.org.
+Welcome, you are connected to node orbstack.
+Running on Pod echo-74d47cc5d9-cqnh6.
+In namespace default.
+With IP address 192.168.194.7.
+```
 
 ## Setup OIDC plugin
 
 Now we are going to protect our dummy service with OpenID Connect
 protocol using Google as our identity provider.
 
-First, set up an OAuth 2.0 application in
-[Google](https://developers.google.com/identity/protocols/oauth2/openid-connect).
+1. Setup an OAuth 2.0 application in [Google](https://developers.google.com/identity/protocols/oauth2/openid-connect). And set the `redirect_uri` to `http://127.0.0.1.nip.io/echo`.
 
-Once you have setup your application in Google, use the client ID and client
-secret and create a KongPlugin resource in Kubernetes:
+    {:.note}
+    > Your OAuth 2.0 application must have the `openid` scope.
 
-```bash
-$ echo "
-apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
-metadata:
-  name: oidc-auth
-config:
-  issuer: https://accounts.google.com/.well-known/openid-configuration
-  client_id:
-  - <client-id>
-  client_secret:
-  - <client-secret>
-  redirect_uri:
-  - http://192.0.2.8.xip.io
-plugin: openid-connect
-" | kubectl apply -f -
-kongplugin.configuration.konghq.com/oidc-auth created
-```
+1. After you have setup your application in Google, use the client ID and client secret and create a KongPlugin resource in Kubernetes.
 
-The `redirect_uri` parameter must be a URI that matches the Ingress rule we
-created earlier. You must also [add it to your Google OIDC
-configuration](https://developers.google.com/identity/protocols/oauth2/openid-connect#setredirecturi)
+    ```bash
+    $ echo "
+    apiVersion: configuration.konghq.com/v1
+    kind: KongPlugin
+    metadata:
+      name: oidc-auth
+    config:
+      issuer: https://accounts.google.com/.well-known/openid-configuration
+      client_id:
+      - <client-id>
+      client_secret:
+      - <client-secret>
+      redirect_uri:
+      - http://127.0.0.1.nip.io/echo
+    plugin: openid-connect
+    " | kubectl apply -f -
+    ```
 
-Next, enable the plugin on our Ingress:
+    The results should look like this:
+    ```text
+    kongplugin.configuration.konghq.com/oidc-auth created
+    ```
 
-```bash
-$ kubectl patch ing demo -p '{"metadata":{"annotations":{"konghq.com/plugins":"oidc-auth"}}}'
-ingress.extensions/demo patched
-```
-## Test
+    The `redirect_uri` parameter must be a URI that matches the Ingress rule that you created. You must also [add it to your Google OIDC configuration](https://developers.google.com/identity/protocols/oauth2/openid-connect#setredirecturi).
 
-Now, if you visit the host you have set up in your Ingress resource,
+1. Enable the plugin on ingress.
+
+    ```bash
+    $ kubectl patch ingress echo -p '{"metadata":{"annotations":{"konghq.com/plugins":"oidc-auth"}}}'
+    ingress.extensions/demo patched
+    ```
+    
+## Test the configuration
+
+Now, if you visit `http://127.0.0.1.nip.io/echo` in your web browser
 Kong should redirect you to Google to verify your identity.
-Once you identify yourself, you should be able to browse our dummy service
+After you identify yourself, you should be able to browse our dummy service
 once again.
 
 This basic configuration permits any user with a valid Google account to access
 the dummy service.
-For setting up more complicated authentication and authorization flows,
-please read
+For setting up more complicated authentication and authorization flows, see the
 [plugin docs](/gateway/latest/kong-plugins/authentication/oidc/google).

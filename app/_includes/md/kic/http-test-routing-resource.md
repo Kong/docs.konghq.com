@@ -58,7 +58,11 @@ spec:
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
+{% if include.no_indent %}
+{{ the_code }}
+{% else %}
 {{ the_code | indent }}
+{% endif %}
 
 The results should look like this:
 
@@ -76,4 +80,8 @@ httproute.gateway.networking.k8s.io/{{ name }} created
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
+{% if include.no_indent %}
+{{ the_code }}
+{% else %}
 {{ the_code | indent }}
+{% endif %}

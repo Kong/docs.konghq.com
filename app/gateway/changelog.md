@@ -404,7 +404,6 @@ hang when attempting to expand an API.
 * Bumped `kong-redis-cluster` from 1.5.0 to 1.5.1
 * Bumped `lua-resty-ljsonschema` from 1.1.3 to 1.15
 * Bumped `lua-resty-kafka` from 0.15 to 0.16
-* Bumped `OpenSSL` from 1.1.1t to 3.0.8
 * Bumped `lua-resty-aws` from 1.2.2 to 1.2.3
 * Bumped `lua-resty-openssl` from 0.8.20 to 0.8.23
   [#10837](https://github.com/Kong/kong/pull/10837)
@@ -496,6 +495,8 @@ doesn't match the provided status.
 
 * Bumped `libxml2` from 2.10.2 to 2.11.5
 * Bumped `lua-resty-kafka` from 0.15 to 0.16
+* Bumped `OpenSSL` from 1.1.1t to 3.1.1
+
 
 ## 3.3.1.0
 **Release Date** 2023/07/03
@@ -996,6 +997,8 @@ images or packages, and Kong will not test package installation on Ubuntu 18.04.
 ### Dependencies
 
 * `lua-resty-kafka` is bumped from 0.15 to 0.16
+* Bumped `OpenSSL` from 1.1.1t to 3.1.1
+
 
 ## 3.2.2.3 
 **Release Date** 2023/06/07
@@ -1412,6 +1415,7 @@ This change is in direct response to the identified vulnerability
 
 ### Dependencies
 
+* Bumped `OpenSSL` from 1.1.1t to 3.1.1
 * Bumped`lua-resty-openssl` from 0.8.15 to 0.8.22
 * Bumped `lua-resty-kafka` from 0.15 to 0.16
 
@@ -2929,6 +2933,7 @@ images or packages, and Kong will not test package installation on Ubuntu 18.04.
 * Fixed an issue where the slow startup of the Go plugin server caused a deadlock.
 
 ### Dependencies
+* Bumped `OpenSSL` from 1.1.1t to 3.1.1
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
@@ -3251,7 +3256,10 @@ The following entities were affected:
 #### Plugins
 
 * [AWS Lambda](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
-   * Added support for cross-account lambda function invocation based on AWS roles.
+  * Added support for cross-account invocation through
+  the `aws_assume_role_arn` and
+  `aws_role_session_name` configuration parameters.
+  [#8900](https://github.com/Kong/kong/pull/8900)
 
 ### Fixes
 

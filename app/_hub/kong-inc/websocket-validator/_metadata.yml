@@ -1,4 +1,6 @@
 name: WebSocket Validator
+search_aliases:
+  - websocket-validator
 dbless_compatible: 'yes'
 free: false
 enterprise: true
