@@ -68,12 +68,12 @@ better matching performance.
 When performing exact matches (non-prefix patches) of request path, use the `==` operator,
 instead of regex:
 
-<span style="color:green">**Fast:**</span>.
+<span style="color:green">**Fast:**</span>
 ```
 http.path == "/foo/bar"
 ```
 
-<span style="color:red">**Slow:**</span>.
+<span style="color:red">**Slow:**</span>
 ```
 http.path ~ r#"^/foo/bar$"#
 ```
@@ -81,12 +81,12 @@ http.path ~ r#"^/foo/bar$"#
 When performing exact matches with optional slash `/` at the end, it is tempting to write
 regexes. However, this is completely unnecessary with the Expressions language:
 
-<span style="color:green">**Fast:**</span>.
+<span style="color:green">**Fast:**</span>
 ```
 http.path == "/foo/bar" || http.path == "/foo/bar/"
 ```
 
-<span style="color:red">**Slow:**</span>.
+<span style="color:red">**Slow:**</span>
 ```
 http.path ~ r#"^/foo/?$"#
 ```
