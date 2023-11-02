@@ -172,12 +172,12 @@ much.
 
 {% if_version gte:3.5.x %}
 When {{site.base_gateway}} is operating in `hybrid` mode with a large number of configuration
-entities (routes, services etc.), it can benefit from the "Dedicated Configuration Processing" option.
-When enabled, certain CPU  intensive steps of the data plane reconfiguration operation are offloaded
+entities (routes, services, etc.), it can benefit from the **dedicated configuration processing** option.
+When enabled, certain CPU-intensive steps of the data plane reconfiguration operation are offloaded
 to a dedicated worker process. This reduces proxy latency during reconfigurations at the cost of a
 slight increase in memory usage. The benefits of this mechanism are most apparent with configurations
 consisting of more than a thousand configuration entities. See the
-[configuration reference]:(/gateway/{{page.kong_version}}/reference/configuration/#dedicated_config_processing)
+configuration reference for [`dedicated_config_processing`](/gateway/{{page.kong_version}}/reference/configuration/#dedicated_config_processing) for more information.
 
 {% endif_version %}
 
