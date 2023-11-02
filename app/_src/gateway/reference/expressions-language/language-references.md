@@ -122,30 +122,34 @@ http.path ~ r#"/foo/bar/.+"#
 Expressions language support rich set of operators that can be performed on various data types.
 Here is an overview:
 
-| Operator   | Name                  | Description                                      |
-|------------|-----------------------|--------------------------------------------------|
-| `==`       | Equals                | Field value equals to constant value             |
-| `!=`       | Not equals            | Field value does not equals to constant value    |
-| `~`        | Regex match           | Field value matches regex                        |
-| `^=`       | Prefix match          | Field value starts with constant value           |
-| `=^`       | Postfix match         | Field value ends with constant value             |
-| `>=`       | Greater than or equal | Field value greater than or equal constant value |
-| `>`        | Greater than          | Field value greater than constant value          |
-| `<=`       | Less than or equal    | Field value less than or equal constant value    |
-| `<`        | Less than             | Field value less than constant value             |
-| `in`       | In                    | Field value is inside constant value             |
-| `not in`   | Not in                | Field value is not inside constant value         |
-| `contains` | Contains              | Field value contains constant value              |
+| Operator        | Name                  | Description                                                                           |
+|-----------------|-----------------------|---------------------------------------------------------------------------------------|
+| `==`            | Equals                | Field value equals to constant value                                                  |
+| `!=`            | Not equals            | Field value does not equals to constant value                                         |
+| `~`             | Regex match           | Field value matches regex                                                             |
+| `^=`            | Prefix match          | Field value starts with constant value                                                |
+| `=^`            | Postfix match         | Field value ends with constant value                                                  |
+| `>=`            | Greater than or equal | Field value greater than or equal constant value                                      |
+| `>`             | Greater than          | Field value greater than constant value                                               |
+| `<=`            | Less than or equal    | Field value less than or equal constant value                                         |
+| `<`             | Less than             | Field value less than constant value                                                  |
+| `in`            | In                    | Field value is inside constant value                                                  |
+| `not in`        | Not in                | Field value is not inside constant value                                              |
+| `contains`      | Contains              | Field value contains constant value                                                   |
+| `&&`            | And                   | Returns `true` if **both** expressions on the left and right side evaluates to `true` |
+| `\|\|`          | Or                    | Returns `true` if **any** expressions on the left and right side evaluates to `true`  |
+| `(Expression)`  | Parenthesis           | Groups expressions together to be evaluated first                                     |
 
 Here are the allowed combination of field types and constant types with each operator:
 
 > **Note:** Rows represents field types where columns represents constant value types.
 
-| LHS/RHS  | `String`                                | `IpCidr`       | `IpAddr` | `Int`                      | `Regex` |
-|----------|-----------------------------------------|----------------|----------|----------------------------|---------|
-| `String` | `==`, `!=`, `~`, `^=`, `=^`, `contains` | ❌              | ❌        | ❌                          | `~`     |
-| `IpAddr` | ❌                                       | `in`, `not in` | `==`     | ❌                          | ❌       |
-| `Int`    | ❌                                       | ❌              | ❌        | `==`, `>=`, `>`, `<=`, `<` | ❌       |
+| LHS/RHS      | `String`                                | `IpCidr`       | `IpAddr` | `Int`                      | `Regex` | `Expression` |
+|--------------|-----------------------------------------|----------------|----------|----------------------------|---------|--------------|
+| `String`     | `==`, `!=`, `~`, `^=`, `=^`, `contains` | ❌              | ❌        | ❌                          | `~`     | ❌            |
+| `IpAddr`     | ❌                                       | `in`, `not in` | `==`     | ❌                          | ❌       | ❌            |
+| `Int`        | ❌                                       | ❌              | ❌        | `==`, `>=`, `>`, `<=`, `<` | ❌       | ❌            |
+| `Expression` | ❌                                       | ❌              | ❌        | ❌                          | ❌       | `&&`, `\|\|` |
 
 > **Note:** The `~` operator is described as supports both `String ~ String` and `String ~ Regex`.
   In reality, `Regex` constant values can only be written as `String` on the right hand side.
