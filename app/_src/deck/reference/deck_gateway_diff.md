@@ -26,7 +26,7 @@ deck gateway diff [command-specific flags] [global flags]
 :  generate command execution report in a JSON format (Default: `false`)
 
 `--no-mask-deck-env-vars-value`
-:  do not mask DECK_ environment variable values at diff output. (Default: `false`)
+:  do not mask DECK_ environment variable values in the diff output. (Default: `false`)
 
 `--non-zero-exit-code`
 :  return exit code 2 if there is a diff present,

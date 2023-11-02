@@ -4,13 +4,13 @@ source_url: https://github.com/Kong/deck/tree/main/cmd/file_validate.go
 content_type: reference
 ---
 
-The validate command reads the state file and ensures validity.
-It reads all the specified state files and reports YAML/JSON
-parsing issues. It also checks for foreign relationships
-and alerts if there are broken relationships, or missing links present.
+The validate command reads the state file and ensures its validity.
+It reads all the specified state files and reports any YAML/JSON
+parsing issues. Additionally, it checks for foreign relationships
+and alerts in cases of broken relationships or missing links.
 
 No communication takes places between decK and Kong during the execution of
-this command. This is faster than the online validation, but catches fewer errors.
+this command. This process is faster than online validation but may catch fewer errors.
 For online validation see 'deck gateway validate'.
 
 

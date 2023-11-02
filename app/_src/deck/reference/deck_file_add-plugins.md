@@ -38,7 +38,7 @@ deck file add-plugins [command-specific flags] [global flags] [...plugin-files]
 ## Examples
 
 ```
-# adds 2 plugins to all services in a deck file, except if they are already present
+# adds 2 plugins to all services in a deck file, unless they are already present
 cat kong.yml | deck file add-plugins --selector='services[*]' plugin1.json plugin2.yml
 
 # same, but now overwriting plugins if they already exist

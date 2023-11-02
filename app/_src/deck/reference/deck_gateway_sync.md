@@ -27,7 +27,7 @@ See `db_update_propagation` in kong.conf. (Default: `0`)
 :  generate command execution report in a JSON format (Default: `false`)
 
 `--no-mask-deck-env-vars-value`
-:  do not mask DECK_ environment variable values at diff output. (Default: `false`)
+:  do not mask DECK_ environment variable values in the diff output. (Default: `false`)
 
 `--parallelism`
 :  Maximum number of concurrent operations. (Default: `10`)

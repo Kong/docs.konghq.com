@@ -32,7 +32,7 @@ deck gateway reset [command-specific flags] [global flags]
 :  generate command execution report in a JSON format (Default: `false`)
 
 `--no-mask-deck-env-vars-value`
-:  do not mask DECK_ environment variable values at diff output. (Default: `false`)
+:  do not mask DECK_ environment variable values in the diff output. (Default: `false`)
 
 `--rbac-resources-only`
 :  reset only the RBAC resources ({{site.ee_product_name}} only). (Default: `false`)

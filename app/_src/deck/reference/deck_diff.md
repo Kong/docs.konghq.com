@@ -42,7 +42,7 @@ and exit code 1 if an error occurs. (Default: `false`)
 :  Maximum number of concurrent operations. (Default: `10`)
 
 `--rbac-resources-only`
-:  sync only the RBAC resources ({{site.ee_product_name}} only). (Default: `false`)
+:  sync only the RBAC resources **{{site.ee_product_name}} only**. (Default: `false`)
 
 `--select-tag`
 :  only entities matching tags specified via this flag are diffed.

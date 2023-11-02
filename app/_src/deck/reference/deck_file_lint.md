@@ -6,7 +6,7 @@ content_type: reference
 
 Validate a decK state file against a linting ruleset, reporting any violations or failures.
 Report output can be returned in JSON, YAML, or human readable format (see --format).
-Ruleset Docs: https://quobix.com/vacuum/rulesets/
+[Ruleset Docs](https://quobix.com/vacuum/rulesets/)
 
 ## Syntax
 

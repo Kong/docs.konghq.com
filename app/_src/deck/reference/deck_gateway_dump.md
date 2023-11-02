@@ -44,10 +44,10 @@ When this setting has multiple tag values, entities must match every tag.
 :  skip exporting consumers, consumer-groups and any plugins associated with them. (Default: `false`)
 
 `--with-id`
-:  write ID of all entities in the output (Default: `false`)
+:  return the ID of all entities in the output (Default: `false`)
 
 `-w`, `--workspace`
-:  dump configuration of a specific Workspace({{site.ee_product_name}} only).
+:  dump configuration of a specific workspace. **{{site.ee_product_name}} only**.
 
 `--yes`
 :  assume `yes` to prompts and run non-interactively. (Default: `false`)

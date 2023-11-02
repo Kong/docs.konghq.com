@@ -35,7 +35,7 @@ deck reset [command-specific flags] [global flags]
 
 {% if_version gte:1.16.x %}
 `--no-mask-deck-env-vars-value`
-:  do not mask `DECK_` environment variable values at diff output. (Default: `false`)
+:  do not mask `DECK_` environment variable values in the diff output. (Default: `false`)
 {% endif_version %}
 
 `--rbac-resources-only`

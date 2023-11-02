@@ -30,5 +30,5 @@ Subcommand to host the decK file manipulation operations.
 * [deck file remove-tags](/deck/{{page.kong_version}}/reference/deck_file_remove-tags)	 - Remove tags from objects in a decK file
 {% if_version gte:1.28.x %}
 * [deck file render](/deck/{{page.kong_version}}/reference/deck_file_render)	 - Combines multiple complete configuration files and renders them as one Kong declarative config file.
-* [deck file validate](/deck/{{page.kong_version}}/reference/deck_file_validate)	 - Validate the state file (locally)
+* [deck file validate](/deck/{{page.kong_version}}/reference/deck_file_validate)	 - Validate the state file locally
 {% endif_version %}
