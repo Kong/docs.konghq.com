@@ -3249,7 +3249,10 @@ The following entities were affected:
 #### Plugins
 
 * [AWS Lambda](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
-   * Added support for cross-account lambda function invocation based on AWS roles.
+  * Added support for cross-account invocation through
+  the `aws_assume_role_arn` and
+  `aws_role_session_name` configuration parameters.
+  [#8900](https://github.com/Kong/kong/pull/8900)
 
 ### Fixes
 
