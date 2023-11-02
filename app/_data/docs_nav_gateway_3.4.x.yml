@@ -164,6 +164,7 @@ items:
             url: /licenses/examples
           - text: Monitor Licenses Usage
             url: /licenses/report
+            # src: /gateway/licenses/report-v2
       - text: Networking
         items:
           - text: Default Ports
