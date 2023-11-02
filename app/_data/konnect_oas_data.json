@@ -1,5 +1,26 @@
 [
   {
+    "id": "f99f0f29-be4e-4fc8-8cec-64e5d3511bff",
+    "title": "Konnect Portal Management",
+    "latestVersion": {
+      "name": "v2",
+      "id": "43fca68c-f83d-4cf1-8c40-87574d423313"
+    },
+    "description": "Integrate portal management operations with  automation systems (such as CI/CD pipelines) utilizing this AIP-compliant API.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "43fca68c-f83d-4cf1-8c40-87574d423313",
+        "created_at": "2023-06-28T18:37:55.070Z",
+        "updated_at": "2023-07-17T14:08:02.747Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
     "id": "d420333f-01b0-464e-a87a-97acc92c2026",
     "title": "Konnect API Products",
     "latestVersion": {
