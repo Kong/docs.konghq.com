@@ -1813,7 +1813,7 @@ The router adds:
 Learn more about the router:
 
 * [Configure routes using expressions](/gateway/3.0.x/key-concepts/routes/expressions/)
-* [Router Expressions language reference](/gateway/3.0.x/reference/router-expressions-language/)
+* [Expressions language reference](/gateway/3.0.x/reference/router-language/)
 
 #### Path handling algorithms
 

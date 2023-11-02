@@ -51,7 +51,7 @@ curl --request POST \
                 http.headers.x_another_header == "example_header" && (http.headers.x_my_header == "example" || http.headers.x_my_header == "example2")'
 ```
 
-Please refer to the  [Expressions Language Quickstart](/gateway/latest/reference/expressions-language/quickstart/#examples-http) page for common use cases
+Please refer to the [Expressions Language Quickstart](/gateway/latest/reference/expressions-language/quickstart/#examples-http) page for common use cases
 and how to write Expressions route for them.
 
 For a list of all available language features, see the [Expressions Language References](/gateway/latest/reference/expressions-language/language-references/).
@@ -76,5 +76,5 @@ Here are the available matching fields, as well as their associated type when us
 
 ## More information
 
-* [Expressions Language Reference](/gateway/latest/reference/router-expressions-language/overview/)
+* [Expressions Language Reference](/gateway/latest/reference/expressions-language/overview/)
 * [Repository for the Expressions router engine](https://github.com/Kong/atc-router)
