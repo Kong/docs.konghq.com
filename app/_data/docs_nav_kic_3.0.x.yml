@@ -60,13 +60,13 @@ items:
           - text: Traditional (sidecar)
             url: /production/deployment-topologies/sidecar
       - text: Installation Methods
-        items: 
+        items:
           - text: Helm
             url: /install/helm
           - text: Kong Gateway Operator
             url: /install/gateway-operator
       - text: Cloud Deployment
-        items: 
+        items:
           - text: Azure
             url: /install/cloud/aks
           - text: Amazon
@@ -76,7 +76,7 @@ items:
       - text: Enterprise License
         url: /license
       - text: Runtimes
-        items: 
+        items:
           - text: Kubernetes
             url: /runtimes/kubernetes
           - text: Openshift
@@ -90,7 +90,7 @@ items:
           - text: Kubernetes Events
             url: /production/observability/events
       - text: Upgrading
-        items: 
+        items:
           - text: Kong Gateway
             url: /upgrade/gateway
           - text: Ingress Controller
@@ -149,6 +149,8 @@ items:
       #      url: /guides/mesh/kuma
       #    - text: Istio
       #      url: /guides/mesh/istio
+      - text: Migrating from Ingress API to gateway API
+        url: /guides/migrating-from-ingress-to-gateway
 
   - title: Plugins
     icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
@@ -191,3 +193,5 @@ items:
         src: reference/custom-resources-3.0.x
       - text: Configuration Options
         url: /reference/configuration
+      - text: Gateway API migration
+        url: /reference/ingress-to-gateway-migration
