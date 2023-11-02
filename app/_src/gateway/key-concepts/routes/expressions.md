@@ -12,8 +12,9 @@ before processing through the rest of this guide.
 ## Prerequisite
 
 Edit [kong.conf](/gateway/latest/production/kong-conf/) to contain the line `router_flavor = expressions` and restart {{site.base_gateway}}.
-> **Note:** once you enable expressions, the match fields that traditionally exist on the Route object (such as `paths`, `methods`) will no longer
-  be configurable and you must specify Expressions in the `expression` field.
+> **Note:** Once you enable expressions, the match fields that traditionally exist on the Route object (such as `paths`, `methods`) will no longer
+  be configurable and you must specify Expressions in the `expression` field. A new field `prioriry` will be made available
+  that allows specifying the order of evaluation of configured Expression routes.
 
 ## Create routes with Expressions
 
