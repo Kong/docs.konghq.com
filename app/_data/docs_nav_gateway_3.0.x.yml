@@ -575,8 +575,14 @@ items:
         url: /reference/file-access-permissions
       - text: Performance Testing Framework
         url: /reference/performance-testing-framework
-      - text: Router Expressions Language
-        url: /reference/router-expressions-language
+      - text: The Expressions Language
+        items:
+          - text: Overview
+            url: /reference/expressions-language/overview
+          - text: Quickstart
+            url: /reference/expressions-language/quickstart
+          - text: Language References
+            url: /reference/expressions-language/language-references
       - text: Rate Limiting Library
         url: /reference/rate-limiting/
       - text: FAQ
