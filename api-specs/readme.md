@@ -12,4 +12,4 @@ If you have to add/delete an endpoint, edit parameters, add parameter descriptio
 
 ## Update non-admin API specs
 
-The source of truth for all other specs is the [platform-api](https://github.com/Kong/platform-api) repo. Open a PR against a spec to update it .
+The source of truth for all other specs is the [platform-api](https://github.com/Kong/platform-api) repo. Open a PR against a spec to update it.
