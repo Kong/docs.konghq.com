@@ -180,7 +180,7 @@
   version: "1.27.1"
   edition: "deck"
 - release: "1.28.x"
-  version: "1.28.0"
+  version: "1.28.1"
   edition: "deck"
 - edition: "konnect"
 - edition: "contributing"
