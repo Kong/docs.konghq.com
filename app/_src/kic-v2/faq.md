@@ -35,8 +35,8 @@ This means that if consumers and credentials are created dynamically, they are n
 
 ### Is it possible to deploy {{site.kic_product_name}} with {{site.base_gateway}} as DaemonSet?
 
-It is possible. Such configuration may be useful in environments where LoadBalancer or NodePort Service
-is not a desired choice. Deploy Kong as DaemonSet and configure Pods to use the network of the host they run on instead
+It is possible. Such a configuration may be useful in environments where LoadBalancer or NodePort Service
+is not preferred. Deploy Kong as DaemonSet and configure Pods to use the network of the host they run on instead
 of a dedicated network namespace. The benefit of this approach is that the Kong can bind ports 80 and 443 directly to
 Kubernetes nodes' network interfaces, without the extra network translation imposed by NodePort Services. Read more about
 such configuration in the [dedicated Helm chart docs section][chart-using-a-daemonset].
