@@ -131,7 +131,7 @@ Here is an overview:
 | `=^`            | Postfix match         | Field value ends with constant value                                                  |
 | `>=`            | Greater than or equal | Field value greater than or equal to constant value                                      |
 | `>`             | Greater than          | Field value greater than constant value                                               |
-| `<=`            | Less than or equal    | Field value less than or equal constant value                                         |
+| `<=`            | Less than or equal    | Field value less than or equal to constant value                                         |
 | `<`             | Less than             | Field value less than constant value                                                  |
 | `in`            | In                    | Field value is inside constant value                                                  |
 | `not in`        | Not in                | Field value is not inside constant value                                              |
