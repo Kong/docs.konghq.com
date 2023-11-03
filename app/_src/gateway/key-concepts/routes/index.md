@@ -22,7 +22,7 @@ service gets to handle it based on the routes that are defined.  With
 release 3.0, {{site.base_gateway}} introduced a new router that can be
 running in two modes, the `traditional_compat` mode, which is
 configured like prior releases, and the `expressions` mode which uses
-a new configuration scheme. It is recommended new deployments to use
+a new configuration scheme. It is recommended that new deployments use
 the expressions router as it is more powerful and expressive.
 
 The default mode of the router is `traditional_compat` and the
