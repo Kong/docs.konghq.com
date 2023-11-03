@@ -39,7 +39,10 @@
 # 3.5
 /gateway/latest/kong-enterprise/analytics/* /gateway/3.4.x/kong-enterprise/analytics/:splat
 /gateway/latest/kong-enterprise/dev-portal/* /gateway/3.4.x/kong-enterprise/dev-portal/:splat
-
+/gateway/latest/how-kong-works/performance-testing/ /gateway/3.4.x/how-kong-works/performance-testing/
+/gateway/3.5.x/how-kong-works/performance-testing/ /gateway/3.4.x/how-kong-works/performance-testing/
+/gateway/latest/reference/performance-testing-framework/ /gateway/3.4.x/reference/performance-testing-framework/
+/gateway/3.5.x/reference/performance-testing-framework/ /gateway/3.4.x/reference/performance-testing-framework/
 
 # 3.4
 

@@ -69,8 +69,6 @@ items:
             url: /how-kong-works/load-balancing
           - text: Health Checks and Circuit Breakers
             url: /how-kong-works/health-checks
-          - text: Kong Performance Testing
-            url: /how-kong-works/performance-testing
       - text: Glossary
         url: /glossary
 
@@ -566,8 +564,6 @@ items:
         url: /reference/cli
       - text: Key Management
         url: /reference/key-management
-      - text: Performance Testing Framework
-        url: /reference/performance-testing-framework
       - text: Router Expressions Language
         url: /reference/router-expressions-language
       - text: Rate Limiting Library

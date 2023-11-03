@@ -3,6 +3,9 @@ title: Kong Gateway Performance Testing
 content_type: explanation
 ---
 
+{:.important}
+> **Note**: As of {{site.base_gateway}} 3.5.x, this feature has been deprecated. It is not supported past 3.4.x.
+
 The {{site.base_gateway}} codebase includes a performance testing framework. It allows Kong developers and users to evaluate the performance of Kong itself as well as 
 bundled or custom plugins, and plot frame graphs to debug performance bottlenecks.
 The framework collects RPS (request per second) and latencies of Kong processing the request
