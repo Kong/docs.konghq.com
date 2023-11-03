@@ -129,7 +129,7 @@ Here is an overview:
 | `~`             | Regex match           | Field value matches regex                                                             |
 | `^=`            | Prefix match          | Field value starts with constant value                                                |
 | `=^`            | Postfix match         | Field value ends with constant value                                                  |
-| `>=`            | Greater than or equal | Field value greater than or equal constant value                                      |
+| `>=`            | Greater than or equal | Field value greater than or equal to constant value                                      |
 | `>`             | Greater than          | Field value greater than constant value                                               |
 | `<=`            | Less than or equal    | Field value less than or equal constant value                                         |
 | `<`             | Less than             | Field value less than constant value                                                  |
