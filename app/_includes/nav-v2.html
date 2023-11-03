@@ -168,7 +168,6 @@
   </div>
 </header>
 
-{% if include.layout != "landing-page" %}
 <style>
   @media (max-width: 768px) {
     .algolia-docsearch-suggestion--subcategory-column {
@@ -190,6 +189,7 @@
   }
 </style>
 
+{% if include.layout != "landing-page" %}
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 
 <script type="text/javascript">
