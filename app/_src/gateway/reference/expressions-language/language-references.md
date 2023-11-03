@@ -85,7 +85,7 @@ net.src.ip in fd00::/8
 
 ### IpAddr
 
-`IpCidr` represents a single IP addresses in [IPv4 Dot-decimal notation](https://en.wikipedia.org/wiki/Dot-decimal_notation),
+`IpAddr` represents a single IP addresses in [IPv4 Dot-decimal notation](https://en.wikipedia.org/wiki/Dot-decimal_notation),
 or the standard [IPv6 Address Format](https://en.wikipedia.org/wiki/IPv6_address#Address_formats).
 
 Here are some examples:
