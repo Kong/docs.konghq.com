@@ -11,25 +11,25 @@ additional types of routes such as TCP, UDP, and TLS in addition to HTTP/HTTPS,
 and to support backends other than Service, and manage the proxies that implement
 routes.
 
-Gateway API and Kong's implementation of Gateway API are both Generally Available for all users.
+Gateway API and Kong's implementation of Gateway API are both generally available for all users.
 
 ## Gateway management
 
 A [Gateway resource](https://gateway-api.sigs.k8s.io/concepts/api-overview/#gateway)
 describes an application or cluster feature that can handle Gateway API routing
-rules, directing inbound traffic to Services by following the rules provided. For
-Kong's implementation, a Gateway corresponds to a Kong Deployment managed by
+rules, directing inbound traffic to services by following the rules provided. For
+Kong's implementation, a Gateway corresponds to a Kong deployment managed by
 the Ingress controller.
 
 Typically, Gateway API implementations manage the resources associated with a
 Gateway on behalf of users for creating a Gateway resource triggers automatic
-provisioning of Deployments, Services, and others with configuration by matching the
-Gateway's listeners and addresses. The Kong's implementation does _not_
+provisioning of deployments, services, and others with configuration by matching the
+Gateway's listeners and addresses. Kong's implementation does _not_
 automatically manage Gateway provisioning.
 
-Because the Kong Deployment and its configuration are not managed
+Because the Kong deployment and its configuration are not managed
 automatically, listener and address configuration are not set for you. You must
-configure your Deployment and Service to match your Gateway's configuration.
+configure your deployment and service to match your Gateway's configuration.
 For example, with this Gateway.
 
 ```
@@ -130,7 +130,7 @@ reason: PortUnavailable
 Each {{ site.kic_product_name }} can only handle a single GatewayClass, and only one Gateway in that GatewayClass. Although the controller attempts to handle configuration from all Gateways in its GatewayClass, adding more than one Gateway is not yet supported and results in unexpected behavior.
 
 If you wish to use multiple Gateways, define multiple GatewayClasses and create a separate {{ site.kic_product_name }}
-Deployment for each.
+deployment for each.
 
 ### Binding {{site.base_gateway}} to a Gateway resource
 

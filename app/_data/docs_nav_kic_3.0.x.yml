@@ -79,7 +79,7 @@ items:
         items:
           - text: Prometheus Metrics
             url: /production/observability/prometheus
-          - text: Configuring Prometheus + Grafana
+          - text: Configuring Prometheus and Grafana
             url: /production/observability/prometheus-grafana
           - text: Kubernetes Events
             url: /production/observability/events
@@ -113,7 +113,7 @@ items:
             url: /guides/services/multiple-backends
       - text: Request Manipulation
         items:
-          - text: Rewriting Hosts + Paths
+          - text: Rewriting Hosts and Paths
             url: /guides/requests/rewrite-host
           - text: Rewrite Annotation
             url: /guides/requests/rewrite-annotation

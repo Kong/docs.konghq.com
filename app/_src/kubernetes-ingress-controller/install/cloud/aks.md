@@ -33,6 +33,7 @@ Kubernetes cluster.
     $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong kong-gateway-proxy)
     ```
 
+{:.note} 
 > Note: It may take some time for Azure to associate the IP address to the `kong-gateway-proxy` Service.
 
 After you've installed the {{site.kic_product_name}}, learn to use Ingress Controller, see the [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial.

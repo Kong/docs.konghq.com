@@ -6,11 +6,11 @@ purpose: |
 ---
 
 Create TCP routing configuration for {{site.base_gateway}} in Kubernetes using either the `TCPIngress` custom resource or `TCPRoute` and `TLSRoute` Gateway APIs resource.
-TCP-based Ingress means that {{site.base_gateway}} forwards the TCP stream to a Pod of a Service that's running inside Kubernetes. {{site.base_gateway}} does not perform any sort of transformations.
+TCP-based Ingress means that {{site.base_gateway}} forwards the TCP stream to a Pod of a service that's running inside Kubernetes. {{site.base_gateway}} does not perform any sort of transformations.
 
 There are two modes available:
-- **Port based routing**: {{site.base_gateway}} simply proxies all traffic it receives on a specific port to the Kubernetes Service. TCP connections are load balanced across all the available Pods of the Service.
-- **SNI based routing**: {{site.base_gateway}} accepts a TLS-encrypted stream at the specified port and can route traffic to different services based on the `SNI` present in the TLS handshake. {{site.base_gateway}} also terminates the TLS handshake and forward the TCP stream to the Kubernetes Service.
+- **Port based routing**: {{site.base_gateway}} simply proxies all traffic it receives on a specific port to the Kubernetes service. TCP connections are load balanced across all the available Pods of the service.
+- **SNI based routing**: {{site.base_gateway}} accepts a TLS-encrypted stream at the specified port and can route traffic to different services based on the `SNI` present in the TLS handshake. {{site.base_gateway}} also terminates the TLS handshake and forward the TCP stream to the Kubernetes service.
 
 {% include /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false gateway_api_experimental=true %}
 
@@ -59,7 +59,7 @@ There are two modes available:
 
     The `ssl` parameter after the 9443 listen instructs {{site.base_gateway}} to expect TLS-encrypted TCP traffic on that port. The 9000 listen has no parameters, and expects plain TCP traffic.
 
-1.  Update the proxy Service to indicate the new ports.
+1.  Update the proxy service to indicate the new ports.
 
     ```bash
     kubectl patch service -n kong kong-gateway-proxy --patch '{
@@ -151,7 +151,7 @@ spec:
 
 {:.note}
 > v1alpha2 TCPRoutes do not support separate proxy and upstream ports. Traffic
-> is redirected to `1025` upstream via Service configuration.
+> is redirected to `1025` upstream via service configuration.
 
 The results should look like this:
 ```text
@@ -186,7 +186,7 @@ receives on port 9000 to `echo` service on port 1025.
 
 ### Test the configuration
 
-1. Check if the Service is ready on the route.
+1. Check if the service is ready on the route.
     {% capture the_code %}
 {% navtabs codeblock %}
 {% navtab Gateway APIs%}
@@ -229,7 +229,7 @@ echo-plaintext   192.0.2.3   3m18s
     $ telnet $PROXY_IP 9000
     ```
 
-    After you  connect, type some text that you want as a response from the echo Service. 
+    After you  connect, type some text that you want as a response from the echo service. 
     ```
     Trying 192.0.2.3...
     Connected to 192.0.2.3.
@@ -245,7 +245,7 @@ echo-plaintext   192.0.2.3   3m18s
     ```
     To exit, press `ctrl+]` then `ctrl+d`.
 
-    The `echo` Service is now available outside the Kubernetes cluster through {{site.base_gateway}}.
+    The `echo` service is now available outside the Kubernetes cluster through {{site.base_gateway}}.
 
 ## Route based on SNI
 
@@ -322,7 +322,7 @@ tcpingress.configuration.konghq.com/echo-tls created
 
 You can now access the `echo` service on port 9443 with SNI `tls9443.kong.example`.
 
-In real-world usage, you would create a DNS record for `tls9443.kong.example`pointing to your proxy Service's public IP address, which causes TLS clients to add SNI automatically. For this demo, add it manually using the OpenSSL CLI.
+In real-world usage, you would create a DNS record for `tls9443.kong.example`pointing to your proxy service's public IP address, which causes TLS clients to add SNI automatically. For this demo, add it manually using the OpenSSL CLI.
 
 ```bash
 echo "hello" | openssl s_client -connect $PROXY_IP:9443 -servername tls9443.kong.example -quiet 2>/dev/null

@@ -10,7 +10,7 @@ purpose: |
 
 ## Overview
 
-Sidecar deployment is the original method of deployment for {{ site.kic_product_name }}. Both the controller and {{ site.base_gateway }} are deployed in a single Pod and each {{ site.base_gateway }} instance was managed by a different {{ site.kic_product_name }}.
+Sidecar deployment is the original method of deployment for {{ site.kic_product_name }}. Both the controller and {{ site.base_gateway }} are deployed in a single pod and each {{ site.base_gateway }} instance was managed by a different {{ site.kic_product_name }}.
 
 This is the simplest deployment method as everything is contained in a single deployment and the controller can communicate to {{ site.base_gateway }} on `localhost`.
 
@@ -24,7 +24,7 @@ Sidecar deployments have been deprecated in favor of [Gateway Discovery](/kubern
 
 ## Migrating to Gateway Discovery
 
-If you see two containers running in the same Pod, it's likely that you're running {{ site.kic_product_name }} in Sidecar mode.
+If you see two containers running in the same pod, it's likely that you're running {{ site.kic_product_name }} in Sidecar mode.
 
 ```text
 NAME                         READY   STATUS    RESTARTS   AGE
@@ -60,7 +60,7 @@ admin:
   clusterIP: None
 ```
 
-The new Proxy Pod won't come online as there is no available configuration.
+The new proxy pod won't come online as there is no available configuration.
 
 ```
 2023/10/27 15:32:43 [notice] 1257#0: *301 [lua] ready.lua:111: fn(): not ready for proxying: no configuration available (empty configuration present), client: 192.168.194.1, server: kong_status, request: "GET /status/ready HTTP/1.1", host: "192.168.194.9:8100
@@ -90,29 +90,29 @@ Create a new `controller` deployment using Helm.
 helm install controller kong/kong --values ./values-controller.yaml -n kong
 ```
 
-The new Pods do not come online as the controller can't access the Admin API for the original Proxy Pod. Delete the old Proxy Pod to allow Gateway Discovery to work.
+The new pods do not come online as the controller can't access the Admin API for the original proxy pod. Delete the old proxy Pod to allow Gateway discovery to work.
 
 {:.important}
-> There may be a small amount of downtime of up to three seconds between the Pod being deleted and new proxy pods receiving a configuration.
+> There may be a small amount of downtime of up to three seconds between the pod being deleted and new proxy pods receiving a configuration.
 
 ```bash
 kubectl get pods -n kong
 ```
 
-Find the Pod with two containers. This is the old Sidecar topology that needs to be deleted.
+Find the pod with two containers. This is the old Sidecar topology that needs to be deleted.
 
 ```text
 NAME                               READY   STATUS    RESTARTS   AGE
 kong-kong-7f5bddf88c-6cnlq         2/2     Running   0          2m
 ```
 
-Delete the Pod.
+Delete the pod.
 
 ```bash
 kubectl delete pod -n kong kong-kong-7f5bddf88c-6cnlq
 ```
 
-At this point there are two Pods running. `controller-kong` contains {{ site.kic_product_name }} and `kong-kong` contains {{ site.base_gateway }}
+At this point there are two pods running. `controller-kong` contains {{ site.kic_product_name }} and `kong-kong` contains {{ site.base_gateway }}
 
 ```text
 NAME                               READY   STATUS    RESTARTS        AGE

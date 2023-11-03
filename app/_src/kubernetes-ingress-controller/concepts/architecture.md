@@ -7,7 +7,7 @@ purpose: |
 
 The {{site.kic_product_name}} configures {{site.base_gateway}} using Ingress or [Gateway API][gateway-api] resources created inside a Kubernetes cluster.
 
-{{site.kic_product_name}} enables you to configure plugins, load balance the services, check the health of the Pods, and leverage all that Kong offers in a standalone installation.
+{{site.kic_product_name}} enables you to configure plugins, load balance the services, check the health of the pods, and leverage all that Kong offers in a standalone installation.
 
 {:.note}
 > The {{ site.kic_product_name }} does not proxy any traffic directly. It configures {{ site.base_gateway }} using Kubernetes resources.
@@ -25,13 +25,13 @@ please see the [proxy](/gateway/latest/reference/proxy/) and [load balancing](/g
 
 In Kubernetes, there are several concepts that are used to logically identify workloads and route traffic between them.
 
-### Service / Pods
+### Service and pods
 
-A [Service][k8s-service] inside Kubernetes is a way to abstract an application that is running on a set of Pods. This maps to two objects in Kong: Service and Upstream.
+A [Service][k8s-service] inside Kubernetes is a way to abstract an application that is running on a set of pods. This maps to two objects in Kong: service and upstream.
 
 The service object in Kong holds the information of the protocol to use to talk to the upstream service and various other protocol specific settings. The Upstream object defines load-balancing and health-checking behavior.
 
-Pods associated with a Service in Kubernetes map as a target belonging to the upstream, where the upstream corresponds to the Kubernetes Service in Kong. Kong load balances across the Pods of your service. This means that **all requests flowing through Kong are not directed through kube-proxy but directly to the Pod**.
+pods associated with a Service in Kubernetes map as a target belonging to the upstream, where the upstream corresponds to the Kubernetes Service in Kong. Kong load balances across the pods of your service. This means that **all requests flowing through Kong are not directed through kube-proxy but directly to the Pod**.
 
 [k8s-service]: https://kubernetes.io/docs/concepts/services-networking/service/
 
