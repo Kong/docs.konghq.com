@@ -548,7 +548,7 @@ items:
       - text: Developers
         url: /admin-api/developers/reference
       - text: Consumer Groups
-        url: /gateway/api/admin-ee/3.3.0.x/#/consumer_groups/get-consumer_groups
+        url: /gateway/api/admin-ee/latest/#/consumer_groups/
         absolute_url: true
         generate: false
       - text: Event Hooks
