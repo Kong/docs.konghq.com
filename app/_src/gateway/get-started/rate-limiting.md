@@ -85,13 +85,13 @@ will be subject to rate limit enforcement.
 Run the following command to quickly send 6 mock requests:
 
 ```sh
-for _ in {1..6}; do curl -s -i localhost:8000/mock/request; echo; sleep 1; done
+for _ in {1..6}; do curl -s -i localhost:8000/mock/anything; echo; sleep 1; done
 ```
 
 {% endnavtab %}
 {% navtab Web browser %}
 
-Open [http://localhost:8000/mock/request](http://localhost:8000/mock/request) in your browser 
+Open [http://localhost:8000/mock/anything](http://localhost:8000/mock/anything) in your browser 
 and refresh the page 6 times within 1 minute. 
 
 {% endnavtab %}

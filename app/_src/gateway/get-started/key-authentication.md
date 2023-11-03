@@ -115,7 +115,7 @@ Installing the plugin globally means *every* proxy request to {{site.base_gatewa
    Try to access the service without providing the key:
    
    ```sh
-   curl -i http://localhost:8000/mock/request
+   curl -i http://localhost:8000/mock/anything
    ```
    
    Since you enabled key authentication globally, you will receive an unauthorized response:
@@ -133,7 +133,7 @@ Installing the plugin globally means *every* proxy request to {{site.base_gatewa
    Try to access the service with the wrong key:
    
    ```sh
-   curl -i http://localhost:8000/mock/request \
+   curl -i http://localhost:8000/mock/anything \
      -H 'apikey:bad-key'
    ```
   
@@ -152,7 +152,7 @@ Installing the plugin globally means *every* proxy request to {{site.base_gatewa
    Send a request with the valid key in the `apikey` header:
 
    ```sh
-   curl -i http://localhost:8000/mock/request \
+   curl -i http://localhost:8000/mock/anything \
      -H 'apikey:top-secret-key'
    ```
 
@@ -212,7 +212,7 @@ in any requests going forward. If you don’t want to keep specifying the key, d
    Now you can make a request without providing an API key:
 
    ```sh
-   curl -i http://localhost:8000/mock/request
+   curl -i http://localhost:8000/mock/anything
    ```
 
    You should receive:

@@ -46,7 +46,7 @@ In {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us
 1. Select **Gateway Services** from the side navigation bar, then **New Gateway Service**.
 1. From the **Add a Gateway Service** dialog, enter the following to create a new service:
     * **Name:** `pizza_ordering`
-    * **Upstream URL:** `http://mockbin.org`
+    * **Upstream URL:** `http://httpbin.org`
     * Use the defaults for the remaining fields.
 1. Click **Save**. 
 1. To create an API product for your service, navigate to **API Products** in the sidebar, click **Add API Product** and enter `Pizza Ordering` in the **Product Name** field.
@@ -74,7 +74,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       --header 'accept: application/json' \
       --data '{
           "name": "pizza_ordering",
-          "host": "mockbin.org",
+          "host": "httpbin.org",
           "path": "/pizza_ordering"
       }'
     ```
@@ -87,7 +87,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
         "connect_timeout": 60000,
         "created_at": 1692885974,
         "enabled": true,
-        "host": "mockbin.org",
+        "host": "httpbin.org",
         "id": "06acc4f4-c6d8-4daf-bef6-79866e88ca86",
         "name": "pizza_ordering",
         "path": "/pizza_ordering",

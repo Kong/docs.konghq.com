@@ -280,7 +280,7 @@ backed up by a Redis cluster).
     _transform: true
 
     services:
-    - host: mockbin.org
+    - host: httpbin.org
       name: example_service
       port: 80
       protocol: http

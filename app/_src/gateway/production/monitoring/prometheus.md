@@ -78,7 +78,7 @@ will begin to scrape metrics data from {{site.base_gateway}}.
    requests over one minute. Run the following in a new terminal:
 
    ```bash
-   for _ in {1..60}; do {curl -s localhost:8000/mock/request; sleep 1; } done
+   for _ in {1..60}; do {curl -s localhost:8000/mock/anything; sleep 1; } done
    ```
 
 1. You can view the metric data directly from {{site.base_gateway}} by querying the

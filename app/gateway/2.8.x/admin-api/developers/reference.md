@@ -526,7 +526,7 @@ HTTP/1.1 200 OK
             },
             "id": "5ff48aaf-3951-4c99-a636-3b682081705c",
             "name": "example_app",
-            "redirect_uri": "http://mockbin.org",
+            "redirect_uri": "http://httpbin.org",
             "updated_at": 1644963627
         },
         {
@@ -539,7 +539,7 @@ HTTP/1.1 200 OK
             },
             "id": "94e0f633-e8fd-4647-a0cd-4c3015ff2722",
             "name": "example_app2",
-            "redirect_uri": "http://mockbin.org",
+            "redirect_uri": "http://httpbin.org",
             "updated_at": 1644963657
         }
     ],
@@ -579,7 +579,7 @@ HTTP/1.1 200 OK
     },
     "id": "ca0d62bd-4616-4b87-b947-43e33e5418f0",
     "name": "testapp",
-    "redirect_uri": "http://mockbin.org",
+    "redirect_uri": "http://httpbin.org",
     "updated_at": 1644965555
 }
 ```
@@ -624,7 +624,7 @@ HTTP/1.1 201 Created
     },
     "id": "ca0d62bd-4616-4b87-b947-43e33e5418f0",
     "name": "testapp",
-    "redirect_uri": "http://mockbin.org",
+    "redirect_uri": "http://httpbin.org",
     "updated_at": 1644965555
 }
 ```
@@ -669,7 +669,7 @@ HTTP/1.1 200 OK
     },
     "id": "5ff48aaf-3951-4c99-a636-3b682081705c",
     "name": "ExampleApp",
-    "redirect_uri": "http://mockbin.org",
+    "redirect_uri": "http://httpbin.org",
     "updated_at": 1645575611
 }
 ```
@@ -736,7 +736,7 @@ HTTP/1.1 200 OK
                 },
                 "id": "645682ae-0be6-420a-bcf3-0e711a391546",
                 "name": "testapp",
-                "redirect_uri": "http://mockbin.org",
+                "redirect_uri": "http://httpbin.org",
                 "updated_at": 1644965487
             },
             "composite_id": "645682ae-0be6-420a-bcf3-0e711a391546_212a758a-810b-4226-9175-b1b44eecebec",
@@ -1447,7 +1447,7 @@ HTTP/1.1 200 OK
             "id": "e22760bc-c6d4-4572-9814-132825286618",
             "name": "example_app",
             "redirect_uris": [
-                "http://mockbin.org"
+                "http://httpbin.org"
             ]
         }
     ],
@@ -1503,7 +1503,7 @@ HTTP/1.1 201 Created
     "id": "2dc8ee2a-ecfd-4ca5-a9c1-db371480e2cf",
     "name": "example_app",
     "redirect_uris": [
-        "http://mockbin.org"
+        "http://httpbin.org"
     ]
 }
 ```
@@ -1541,7 +1541,7 @@ HTTP/1.1 200 OK
     "id": "e22760bc-c6d4-4572-9814-132825286618",
     "name": "example_app",
     "redirect_uris": [
-        "http://mockbin.org"
+        "http://httpbin.org"
     ]
 }
 ```
