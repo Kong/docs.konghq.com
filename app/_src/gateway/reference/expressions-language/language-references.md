@@ -122,23 +122,43 @@ http.path ~ r#"/foo/bar/.+"#
 Expressions language support rich set of operators that can be performed on various data types.
 Here is an overview:
 
-| Operator        | Name                  | Description                                                                           |
-|-----------------|-----------------------|---------------------------------------------------------------------------------------|
-| `==`            | Equals                | Field value equals to constant value                                                  |
-| `!=`            | Not equals            | Field value does not equals to constant value                                         |
-| `~`             | Regex match           | Field value matches regex                                                             |
-| `^=`            | Prefix match          | Field value starts with constant value                                                |
-| `=^`            | Postfix match         | Field value ends with constant value                                                  |
-| `>=`            | Greater than or equal | Field value greater than or equal to constant value                                      |
-| `>`             | Greater than          | Field value greater than constant value                                               |
-| `<=`            | Less than or equal    | Field value less than or equal to constant value                                         |
-| `<`             | Less than             | Field value less than constant value                                                  |
-| `in`            | In                    | Field value is inside constant value                                                  |
-| `not in`        | Not in                | Field value is not inside constant value                                              |
-| `contains`      | Contains              | Field value contains constant value                                                   |
-| `&&`            | And                   | Returns `true` if **both** expressions on the left and right side evaluates to `true` |
-| `||`          | Or                    | Returns `true` if **any** expressions on the left and right side evaluates to `true`  |
-| `(Expression)`  | Parenthesis           | Groups expressions together to be evaluated first                                     |
+| Operator       | Name                  | Description                                                                           |
+|----------------|-----------------------|---------------------------------------------------------------------------------------|
+| `==`           | Equals                | Field value equals to constant value                                                  |
+| `!=`           | Not equals            | Field value does not equals to constant value                                         |
+| `~`            | Regex match           | Field value matches regex                                                             |
+| `^=`           | Prefix match          | Field value starts with constant value                                                |
+| `=^`           | Postfix match         | Field value ends with constant value                                                  |
+| `>=`           | Greater than or equal | Field value greater than or equal to constant value                                   |
+| `>`            | Greater than          | Field value greater than constant value                                               |
+| `<=`           | Less than or equal    | Field value less than or equal to constant value                                      |
+| `<`            | Less than             | Field value less than constant value                                                  |
+| `in`           | In                    | Field value is inside constant value.                                                 |
+| `not in`       | Not in                | Field value is not inside constant value                                              |
+| `contains`     | Contains              | Field value contains constant value                                                   |
+| `&&`           | And                   | Returns `true` if **both** expressions on the left and right side evaluates to `true` |
+| `\|\|`         | Or                    | Returns `true` if **any** expressions on the left and right side evaluates to `true`  |
+| `(Expression)` | Parenthesis           | Groups expressions together to be evaluated first                                     |
+
+### Extended descriptions
+
+### In/Not in
+
+These operators are used with `IpAddr` and `IpCidr` types to perform efficient IP list check.
+For example:
+
+`net.src.ip in 192.168.0.0/24` will only return `true` if the value of `net.src.ip` is within
+`192.168.0.0/24`.
+
+### Contains
+
+This operator is used to check the existence of a string (needle) inside another string (haystack).
+For example:
+
+`http.path contains "foo"` will return `true` if `foo` can be found anywhere inside `http.path`.
+For example, this will match `http.path` that looks like `/foo`, `/abc/foo`, /xfooy`, etc.
+
+### Type/operator semantics
 
 Here are the allowed combination of field types and constant types with each operator:
 
