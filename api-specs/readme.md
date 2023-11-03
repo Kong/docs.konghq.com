@@ -1,13 +1,18 @@
-This is a temporary directory that exists solely for the purpose of generating "Run on Insomnia" buttons. 
+The purpose of this directory is: 
 
-The latest versions of the API spec are available at https://docs.konghq.com/api/ -- [Kong-EE](/gateway/api/admin-ee/3.3.0.x/), [Kong-OSS](/gateway/api/admin-oss/3.3.x/)
+* To store API specs for the creation of the  "Run on Insomnia" buttons found on the [API docs page](https://docs.konghq.com/api/). The source of truth for these specs is the [platform-api](https://github.com/Kong/platform-api) repo.
+
+* To host the source of truth for the beta Kong Gateway Enterprise and Open Source Admin API specs.
 
 
+The latest consumable versions of the API spec are available at https://docs.konghq.com/api/
 
-## How to update API documentation
 
-While we are in beta the process is as follows:
+## How to update Gateway admin API documentation
 
-If you have to add/delete an endpoint, edit parameters, add parameter descriptions, add examples, etc **Edit the spec directly**.
+While we are in beta stage if you have to add/delete an endpoint, edit parameters, add parameter descriptions, add examples, and so on, **edit the spec directly** in its source location.
 
-If you want to update API endpoint descriptions, edit the **Overlay.yaml** file in the directory of the appropriate API spec.
+
+## Update non-admin API specs
+
+The source of truth for all other specs is the [platform-api](https://github.com/Kong/platform-api) repo. Open a PR against a spec to update it.
