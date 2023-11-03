@@ -15,14 +15,7 @@ Subcommand to host the decK file manipulation operations.
 
 {% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
 
-## See also
+## decK file commands
 
-* [deck](/deck/{{page.kong_version}}/reference/deck)	 - Administer your Kong clusters declaratively
-* [deck file add-plugins](/deck/{{page.kong_version}}/reference/deck_file_add-plugins)	 - Add plugins to objects in a decK file
-* [deck file add-tags](/deck/{{page.kong_version}}/reference/deck_file_add-tags)	 - Add tags to objects in a decK file
-* [deck file list-tags](/deck/{{page.kong_version}}/reference/deck_file_list-tags)	 - List current tags from objects in a decK file
-* [deck file merge](/deck/{{page.kong_version}}/reference/deck_file_merge)	 - Merge multiple decK files into one
-* [deck file openapi2kong](/deck/{{page.kong_version}}/reference/deck_file_openapi2kong)	 - Convert OpenAPI files to Kong's decK format
-* [deck file patch](/deck/{{page.kong_version}}/reference/deck_file_patch)	 - Apply patches on top of a decK file
-* [deck file remove-tags](/deck/{{page.kong_version}}/reference/deck_file_remove-tags)	 - Remove tags from objects in a decK file
+{% include /md/deck-reference-links.md file_links='true' %}
 

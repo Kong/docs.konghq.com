@@ -27,7 +27,7 @@ deck konnect dump [command-specific flags] [global flags]
 :  output file format: json or yaml. (Default: `"yaml"`)
 
 `-h`, `--help`
-:  help for dump (Default: `false`)
+:  help for dump 
 
 `--include-consumers`
 :  export consumers, associated credentials and any plugins associated with consumers. (Default: `false`)

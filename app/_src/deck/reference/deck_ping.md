@@ -1,8 +1,13 @@
 ---
 title: deck ping
-source_url: https://github.com/Kong/deck/tree/main/cmd/ping.go
 content_type: reference
 ---
+
+{% if_version gte:1.28.x %}
+{:.warning}
+> **Warning**: This command is deprecated and will be removed in a future version.
+Use [deck gateway ping](/deck/{{page.kong_version}}/reference/deck_gateway_ping/) instead.
+{% endif_version %}
 
 The ping command can be used to verify if decK
 can connect to Kong's Admin API.
@@ -16,10 +21,10 @@ deck ping [command-specific flags] [global flags]
 ## Flags
 
 `-h`, `--help`
-:  help for ping (Default: `false`)
+:  help for ping 
 
 `-w`, `--workspace`
-:  Ping configuration with a specific Workspace (Kong Enterprise only).
+:  Ping configuration with a specific Workspace ({{site.ee_product_name}} only).
 Useful when RBAC permissions are scoped to a Workspace.
 
 ## Global flags
