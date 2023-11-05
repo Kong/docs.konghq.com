@@ -236,7 +236,7 @@
   version: "2.12.0"
   edition: "kubernetes-ingress-controller"
 - release: "3.0.x"
-  version: "3.0.x"
+  version: "3.0.0"
   edition: "kubernetes-ingress-controller"
 - edition: gateway-operator
   version: 1.0.2
