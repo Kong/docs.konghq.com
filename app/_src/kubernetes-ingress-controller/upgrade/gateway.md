@@ -1,6 +1,96 @@
 ---
-title: Upgrading Kong Gateway
+title: Upgrading {{ site.base_gateway }} with {{ site.kic_product_name }}
 type: how-to
 purpose: |
-  What do I need to know when upgrading Kong Gateway on Kubernetes? DB-backed mode vs DB-less
+  What do I need to know when upgrading {{ site.base_gateway }} on Kubernetes? DB-backed mode vs DB-less
 ---
+
+Every {{ site.kic_product_name }} deployment consists of two components that can be upgraded independently (learn more in [Deployment methods]).
+
+- {{ site.kic_product_name }} (a control plane),
+- {{ site.base_gateway }} (a data plane).
+
+In this guide we'll show you how to upgrade {{ site.base_gateway }} when running with {{ site.kic_product_name }}.
+
+To see the available {{ site.base_gateway }} images, please refer to Docker Hub:
+
+- [{{ site.ce_product_name }}](https://hub.docker.com/r/kong/kong-gateway/tags)
+- [{{ site.ee_product_name }}](https://hub.docker.com/_/kong/tags)
+
+## Prerequisites
+
+- {{ site.kic_product_name }} installed using the `kong/ingress` Helm chart.
+- [yq] installed (for YAML processing).
+
+## Checking {{ site.base_gateway }} and {{ site.kic_product_name }} versions 
+
+Before you start, check which version of {{ site.base_gateway }} and {{ site.kic_product_name }} you're currently running. 
+
+```shell
+helm get values --all kong -n kong  | yq '{
+  "gateway": .gateway.image.repository + ":" + .gateway.image.tag,
+  "controller": .controller.ingressController.image.repository + ":" + .controller.ingressController.image.tag
+}'
+```
+
+As an output, you should get {{ site.base_gateway }} and {{ site.kic_product_name }} versions deployed in your cluster, for example:
+
+```yaml
+gateway: kong:3.3
+controller: kong/kubernetes-ingress-controller:{{ site.data.kong_latest_KIC.version }}
+```
+
+To understand what version of {{ site.base_gateway }} is compatible with your version of {{ site.kic_product_name }}, please refer to the [compatibility matrix]. Before upgrading, please also make sure your Helm charts repository is up-to-date by running `helm repo update`.
+
+{:.important}
+>  **Upgrading {{ site.base_gateway }} in DB mode**
+>
+> There may be database migrations to run when running {{ site.base_gateway }} in DB-backed mode.
+> Please refer to [Upgrade {{ site.base_gateway }} 3.x.x] to learn more about upgrade paths between different versions of {{ site.base_gateway }}.
+
+## Upgrading {{ site.base_gateway }} using Helm
+
+1. Edit or create a `values.yaml` file so that it contains a `gateway.image.tag` entry. Set this value to the version of {{ site.base_gateway }} to be installed:
+
+    ```yaml
+    gateway:
+      image:
+        tag: {{ site.data.kong_latest_gateway.ce-version }}
+    ```
+
+1. Run `helm upgrade` command with `--values` flag:
+
+    ```shell
+    helm upgrade -n kong kong kong/ingress --values values.yaml --wait
+    ```
+
+    The output is similar to this:
+    
+    ```shell
+    Release "kong" has been upgraded. Happy Helming!
+    NAME: kong
+    LAST DEPLOYED: Fri Nov  3 15:27:49 2023
+    NAMESPACE: kong
+    STATUS: deployed
+    REVISION: 5
+    TEST SUITE: None
+    ```
+
+    As we pass `--wait` to `helm upgrade`, we ensure that the command only returns when the rollout finishes successfully. 
+
+1. Verify the upgrade by checking the version of {{ site.base_gateway }} Deployment running in your cluster:
+
+    ```shell
+    kubectl get deploy kong-gateway -n kong -ojsonpath='{.spec.template.spec.containers[0].image}'
+    ```
+
+    You should see now the new version of {{ site.base_gateway }}:
+
+    ```shell
+    kong:{{ site.data.kong_latest_gateway.ce-version }}
+    ```
+
+[Deployment methods]: /kubernetes-ingress-controller/{{ page.release}}/concepts/deployment/
+[yq]: https://github.com/mikefarah/yq
+[Compatibility Matrix]: /kubernetes-ingress-controller/{{page.release}}/references/version-compatibility/#kong
+[Upgrade {{ site.base_gateway }} 3.x.x]: https://docs.konghq.com/gateway/latest/upgrade/
