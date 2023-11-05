@@ -75,12 +75,6 @@ items:
             url: /install/cloud/gke
       - text: Enterprise License
         url: /license
-      - text: Runtimes
-        items:
-          - text: Kubernetes
-            url: /runtimes/kubernetes
-          - text: Openshift
-            url: /runtimes/openshift
       - text: Observability
         items:
           - text: Prometheus Metrics
