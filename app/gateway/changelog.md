@@ -12,6 +12,71 @@ For product versions that have reached the end of sunset support, see the [chang
 ## 3.5.0.0
 **Release Date** TBD
 
+### Features
+
+### Core
+* Modified the current AWS Vault backend to supportusing `CredentialProviderChain` so that users can opt to not use `AK-SK` environment variables to grant IAM role permissions.
+* Implemented a new grace period that lasts 30 days from the Kong Enterprise license expiration date. During the grace period all Open Source functionality will be available, Enterprise functionality will be set to read-only mode.
+* Added `analytics_debug` option to the output of logged requests. 
+* Added `cluster_fallback_export_s3_config` option to config S3 config backup `putObject` request. 
+* Added troubleshooting tools to container images.
+* `workspaces.get_workspace()` now tries to get workspace from cache instead of querying database directly. 
+
+### PDK
+
+* Added support for Microsoft Azure's KeyVault Secrets Engine
+
+### Plugin
+
+* [**Mocking**](/hub/kong-inc/mocking/)`mocking`: Added a new property `include_base_path` for path match evaluation. 
+* [**OAS Validation**](/hub/kong-inc/oas-validation/)(`oas-vaildation`): Added a new property `include_base_path` for path match evaluation. 
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`):
+  * Added a new field `unauthorized_destroy_session`, when set to true, it will destory the session (delete the user's session cookie) when the request is unauthorized.
+  * Added a new field `using_pseudo_issuer`, when set to true, the plugin instance will not discover a configuration from the issuer.
+  * Added support for public clients for token revocation and introspection.
+  * Added support for designating parameter names `introspection_token_param_name` and `revocation_token_param_name`.
+  * Added support for mTLS proof of possession. The feature is available by enabling `proof_of_possession_mtls`. 
+* **Konnect Application Auth**: Added support for multiple `consumer_groups`/ 
+* [**Open Telemetry**](/hub/kong-inc/opentelemetry/): Added a new value to the parameter `header_type` that allows Kong Gateway to inject DataDog headers into the headers of requests forwarding to the upstream.
+
+### Admin API
+* Added support for counters such as routes, plugins, licenses, and deployment information to the report component.
+* Added a checksum to the output of the license endpoint. 
+
+### Breaking changes and deprecations
+
+* Graphql Rate Limiting Advanced: Fixed a bug in the schema validation which prevented users from using Redis in cluster mode. 
+* Removed support for Developer Portal and Vitals, these features were deprecated in Kong Gateway version 3.4
+* Update included curl to 8.4.0 & nghttp2 1.57.0
+
+#### Dependencies
+
+* Bumped submodule` kong-openid-connect` to 2.5.7 
+* Bumped submodule `kong-openid-connect` to 2.5.9 
+* Bumped the dependency `kong-openid-connect` of the OIDC plugin from 2.5.5 to 2.5.7. 
+
+
+### Fixes
+
+#### Core
+
+
+#### Portal
+
+* Sanitized developer names in emails to prevent hyperlink recognition and mitigate the risk of unexpected visits to email receivers (admins).
+* Fixed issue causing 500 errors during portal visits by verifying replacement types and converting unsupported types to strings before passing to `string.gsub`.
+
+### Configuration
+
+* Added FIPS state and license type checks in validate_fips; throws error and exits if no FIPS-enabled license found.
+* Fixed issue removing FIPS from free mode.
+* Implemented lazy enabling of FIPS mode upon receiving a valid license, emitting warnings instead of blocking Kong Gateway startup. This approach allows normal use of non-FIPS content without a license, and FIPS mode activates only with a valid license. When no license is present, the service can start with a warning log, and FIPS mode remains disabled until a valid license is added. Additionally, deleting a valid license via the Admin API results in a warning without disabling FIPS mode.
+
+#### Plugins
+
+* Rate Limiting Advanced: Adds a new handler that plugins can implement to use the new. 
+
+
 ### Kong Manager
 
 * You can now force delete a workspace in the Kong Manager UI. Previously, a workspace couldn't be deleted until all the entities associated with it were manually deleted. With forced deletion, you can automatically remove any entities associated with a workspace while you are deleting it. For more information, see [Delete a workspace](/gateway/latest/kong-manager/workspaces/#delete-a-workspace).
