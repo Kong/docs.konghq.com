@@ -143,8 +143,14 @@ items:
       #      url: /guides/mesh/kuma
       #    - text: Istio
       #      url: /guides/mesh/istio
-      - text: Migrating from Ingress API to gateway API
-        url: /guides/migrating-from-ingress-to-gateway
+      - text: Migrate
+        items:
+          - text: KongIngress to KongUpstreamPolicy
+            url: /guides/migrate/kongingress
+          - text: Migrating from Ingress to Gateway
+            url: /guides/migrate/ingress-to-gateway
+          - text: Credential Type Labels
+            url: /guides/migrate/credential-kongcredtype-label
 
   - title: Plugins
     icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
