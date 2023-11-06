@@ -6,6 +6,10 @@ chapter: 12
 
 ## Proxy-Wasm Filter Configuration
 
+{:.note}
+> As of this writing, only [Draft 4](https://json-schema.org/specification-links#draft-4)
+of the JSON schema specification is supported.
+
 ### Purpose
 
 The [Proxy-Wasm specification](https://github.com/proxy-wasm/spec) defines
@@ -213,11 +217,6 @@ X-Kong-Admin-Latency: 23
     "updated_at": 1699230090
 }
 ```
-
-### Notes
-
-As of this writing, only [Draft 4](https://json-schema.org/specification-links#draft-4)
-of the JSON schema specification is supported.
 
 ## Further Reading
 
