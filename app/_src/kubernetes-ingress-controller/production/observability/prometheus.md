@@ -83,5 +83,5 @@ A non-exhaustive list of these low-level metrics is described in the following:
 * [Workqueue metrics](https://github.com/kubernetes/component-base/blob/release-1.20/metrics/prometheus/workqueue/metrics.go#L29)
 
 [kongplugin-guide]: /kubernetes-ingress-controller/{{page.kong_version}}/plugins/custom/
-[grafana-guide]: /kubernetes-ingress-controller/{{page.kong_version}}/production/observability/grafana
+[grafana-guide]: /kubernetes-ingress-controller/{{page.kong_version}}/production/observability/prometheus-grafana
 [prom-plugin]: /hub/kong-inc/prometheus/

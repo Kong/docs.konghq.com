@@ -216,11 +216,6 @@ following resources:
   client of your service some special treatment, you can do so by applying
   the same annotation to both of the resources.
 
-Follow the
-[Using the KongPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource)
-guide for details on how this annotation can be used.
-
-
 ### konghq.com/path
 
 > Available since controller 0.8
@@ -437,20 +432,6 @@ Results in two routes:
 {:.important}
 > To avoid creating overlapping routes, don't reuse the same path in multiple rules.
 
-### konghq.com/override
-
-> Available since controller 0.8
-
-This annotation can associate a KongIngress resource with
-an Ingress or a Service resource.
-It serves as a way to bridge the gap between a sparse Ingress API in Kubernetes
-with fine-grained controlled using the properties of Service, Route
-and Upstream entities in Kong.
-
-Follow the
-[Using the KongIngress resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource)
-guide for details on how to use this annotation.
-
 ### konghq.com/protocol
 
 > Available since controller 0.8
@@ -561,7 +542,7 @@ regex match. If the annotation is set, paths with the specified prefix is
 considered as paths with regex match and will be translated to `~` started
 path in Kong. For example, if an ingress has annotation
 `konghq.com/regex-prefix: "/@"`, paths started with `/@` are considered as
-paths using regex match. See: [upgrade-to-kong-3x](/kubernetes-ingress-controller/latest/guides/upgrade-kong-3x/)
+paths using regex match. See: [upgrade-to-kong-3x](/kubernetes-ingress-controller/2.12.x/guides/upgrade-kong-3x/)
 
 ### konghq.com/path-handling
 

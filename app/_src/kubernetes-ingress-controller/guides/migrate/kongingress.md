@@ -37,7 +37,7 @@ The `upstream` section of `KongIngress` resources contains a complex object that
 - Field names now use `lowerCamelCase` instead of `snake_case` to be consistent with Kubernetes APIs.
 - `hash_on`, `hash_fallback`, and their related `has_on_*`, `hash_fallback_*` fields are now `hashOn` and `hashOnFallback` objects. To define the primary hashing strategy, use `hashOn` with one of its fields filled (e.g. when you want to hash on a header, fill `hashOn.header` with a header name). Similarly, to define the secondary hashing strategy, use `hashOnFallback`.
 
-For the exact schema please refer to [KongUpstreamPolicy reference](https://docs.konghq.com/kubernetes-ingress-controller/2.12.x/references/custom-resource-definitions/#kongupstreampolicy). 
+For the exact schema please refer to [KongUpstreamPolicy reference](/kubernetes-ingress-controller/{{ page.release }}/reference/custom-resources/#kongupstreampolicy). 
 
 For example, if you previously used a KongIngress like:
 

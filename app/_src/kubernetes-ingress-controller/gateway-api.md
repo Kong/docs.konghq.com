@@ -54,4 +54,4 @@ spec:
 * [`HTTPRoute`](/kubernetes-ingress-controller/{{ page.release }}/guides/services/http/)
 * [`TCPRoute`](/kubernetes-ingress-controller/{{ page.release }}/guides/services/tcp/)
 * [`UDPRoute`](/kubernetes-ingress-controller/{{ page.release }}/guides/services/udp/)
-* [`GRPCRoute`](/kubernetes-ingress-controller/{{ page.release }}/guides/services/grpc/)
+* `GRPCRoute`

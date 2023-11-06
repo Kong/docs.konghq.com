@@ -110,7 +110,7 @@ ingress.networking.k8s.io/echo annotated
 {% endcapture %}
 {{ the_code | indent }}
 
-> **Note**: The GatewayAPI _does not_ use a [HTTPRequestRedirectFilter](https://gateway-api.sigs.k8s.io/references/spec/#gateway.networking.k8s.io/v1.HTTPRequestRedirectFilter)
+> **Note**: The GatewayAPI _does not_ use a [HTTPRequestRedirectFilter](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.HTTPRequestRedirectFilter)
 to configure the redirect. Using the filter to redirect HTTP to HTTPS requires
 a separate HTTPRoute to handle redirected HTTPS traffic, which does not align
 well with Kong's single route redirect model.
@@ -174,9 +174,3 @@ if the HTTP protocol is used. The `-k` flag in cURL skips certificate
 validation as the certificate served by Kong is a self-signed one. If you are
 serving this traffic through a domain that you control and have configured TLS
 properties for it, then the flag won't be necessary.
-
-If you have a domain that you control but don't have TLS/SSL certificates for
-it, see [Using cert-manager with
-Kong](/kubernetes-ingress-controller/{{page.kong_version}}/guides/cert-manager)
-guide which can get TLS certificates setup for you automatically. And it's
-free, thanks to Let's Encrypt!

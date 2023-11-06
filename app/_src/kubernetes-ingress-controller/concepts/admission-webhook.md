@@ -14,7 +14,7 @@ The admission webhook is enabled by default when installing {{ site.kic_product_
 {:.important}
 > The admission webhook should not be disabled unless you are asked to do so by a member of the Kong team.
 
-To learn how to manually enable the webhook for an existing non-Helm deployment, see the [{{ site.kic_product_name }} 2.x documentation](/kubernetes-ingress-controller/2.12.x/deployment/admission-webhook/?tab=script).
+To learn how to manually enable the webhook for an existing non-Helm deployment, see the [{{ site.kic_product_name }} 2.x documentation](/kubernetes-ingress-controller/{{ page.release }}/deployment/admission-webhook/?tab=script).
 
 ## Test the configuration
 You can test if the admission webhook is enabled for duplicate KongConsumers, incorrect KongPlugins, incorrect credential secrets, and incorrect routes.

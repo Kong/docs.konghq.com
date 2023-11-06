@@ -173,6 +173,9 @@ items:
     items:
       - text: Troubleshooting
         url: /reference/troubleshooting
+      - text: Version Compatibility
+        url: /reference/version-compatibility
+        src: /kic-v2/references/version-compatibility
       - text: Annotations
         url: /reference/annotations
       - text: Configuration Options

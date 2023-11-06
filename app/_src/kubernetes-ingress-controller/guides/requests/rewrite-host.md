@@ -112,7 +112,7 @@ There are three options to rewrite the default path handling behavior:
 ### Rewrite using regular expressions
 
 {:.note}
-> This feature is available from {{ site.kic_product_name }} 2.12 and requires the [`RewriteURIs` feature gate](/kubernetes-ingress-controller/{{ page.release }}/references/feature-gates/) to be activated.
+> This feature is available from {{ site.kic_product_name }} 2.12 and requires the [`RewriteURIs` feature gate](/kubernetes-ingress-controller/{{ page.release }}/reference/feature-gates/) to be activated.
 
 Add the [`konghq.com/rewrite` annotation][2] to your Ingress, allows you set a specific path for the upstream request. Any regex matches defined in your route definition are usable (see the [annotation documentation][2] for more information):
 
@@ -191,8 +191,8 @@ URL: /api?details=true
 `strip-path` and `path` can be combined together, with the `path` component
 coming first. Adding both annotations send requests for `/api/echo`.
 
-[0]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcompreserve-host
-[1]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcomhost-header
-[2]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcomrewrite
-[3]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcomstrip-path
-[4]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcompath
+[0]: /kubernetes-ingress-controller/{{page.kong_version}}/reference/annotations/#konghqcompreserve-host
+[1]: /kubernetes-ingress-controller/{{page.kong_version}}/reference/annotations/#konghqcomhost-header
+[2]: /kubernetes-ingress-controller/{{page.kong_version}}/reference/annotations/#konghqcomrewrite
+[3]: /kubernetes-ingress-controller/{{page.kong_version}}/reference/annotations/#konghqcomstrip-path
+[4]: /kubernetes-ingress-controller/{{page.kong_version}}/reference/annotations/#konghqcompath

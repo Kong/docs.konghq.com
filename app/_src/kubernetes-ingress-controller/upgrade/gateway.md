@@ -88,7 +88,7 @@ To see the available {{ site.base_gateway }} images, refer to Docker Hub:
     kong:{{ site.data.kong_latest_gateway.ce-version }}
     ```
 
-[Deployment methods]: /kubernetes-ingress-controller/{{ page.release}}/concepts/deployment/
+[Deployment methods]: /kubernetes-ingress-controller/{{ page.release}}/production/deployment-topologies/
 [yq]: https://github.com/mikefarah/yq
-[Compatibility Matrix]: /kubernetes-ingress-controller/{{page.release}}/references/version-compatibility/#kong
+[Compatibility Matrix]: /kubernetes-ingress-controller/{{page.release}}/reference/version-compatibility/#kong
 [Upgrade {{ site.base_gateway }} 3.x.x]: https://docs.konghq.com/gateway/latest/upgrade/

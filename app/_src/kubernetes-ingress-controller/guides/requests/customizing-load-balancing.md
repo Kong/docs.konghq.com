@@ -26,7 +26,7 @@ run `curl -s $PROXY_IP/echo | grep "Pod"` repeatedly, you should see the
 reported Pod name alternate between two values.
 
 You can configure the Kong upstream associated with the Service to use a
-different [load balancing strategy](/gateway/latest/how-kong-works/load-balancing/#balancing-algorithms), such as consistently sending requests to the same upstream based on a header value (please see the [KongUpstreamPolicy reference](/kubernetes-ingress-controller/{{page.kong_version}}/references/custom-resources/#kongupstreampolicy) for the full list of supported algorithms and their configuration options).
+different [load balancing strategy](/gateway/latest/how-kong-works/load-balancing/#balancing-algorithms), such as consistently sending requests to the same upstream based on a header value (please see the [KongUpstreamPolicy reference](/kubernetes-ingress-controller/{{page.kong_version}}/reference/custom-resources/#kongupstreampolicy) for the full list of supported algorithms and their configuration options).
 
 To modify these behaviours, let's first create a KongUpstreamPolicy resource
 defining the new behaviour:
@@ -192,4 +192,4 @@ four-Endpoint Service to eight would halve the weight of its targets (two
 weight `16` targets and eight weight `4` targets).
 
 KongUpstreamPolicy can also configure upstream [health checking behavior](/gateway/latest/reference/health-checks-circuit-breakers/) as well. See [the
-KongUpstreamPolicy reference](/kubernetes-ingress-controller/{{page.release}}/references/custom-resources/#kongupstreampolicy) for the health check fields.
+KongUpstreamPolicy reference](/kubernetes-ingress-controller/{{page.release}}/reference/custom-resources/#kongupstreampolicy) for the health check fields.
