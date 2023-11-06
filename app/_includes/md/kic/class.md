@@ -6,7 +6,7 @@ coexist in the same cluster. Before creating individual routes, you need to
 create a class configuration to associate routes with:
 
 {% navtabs api %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 echo "
 ---

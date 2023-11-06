@@ -24,7 +24,7 @@ This guide demonstrates host and path rewrites using Ingress and Service configu
 kubectl patch ingress echo -p '{"metadata":{"annotations":{"konghq.com/preserve-host":"false"}}}'
 ``` 
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 kubectl patch httproute echo --type merge -p '{"metadata":{"annotations":{"konghq.com/preserve-host":"false"}}}'
 ```
@@ -118,7 +118,7 @@ Add the [`konghq.com/rewrite` annotation][2] to your Ingress, allows you set a s
   $ kubectl patch ingress echo -p '{"metadata":{"annotations":{"konghq.com/rewrite":"/hello/world"}}}'
 ``` 
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 kubectl patch httproute echo --type merge -p '{"metadata":{"annotations":{"konghq.com/rewrite":"/hello/world"}}}'
 ```
@@ -150,7 +150,7 @@ the root:
 $ kubectl patch ingress echo -p '{"metadata":{"annotations":{"konghq.com/strip-path":"true"}}}'
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 $ kubectl patch httproute echo --type merge -p '{"metadata":{"annotations":{"konghq.com/strip-path":"true"}}}'
 ```

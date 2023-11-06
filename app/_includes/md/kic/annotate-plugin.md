@@ -1,7 +1,7 @@
 {% unless include.skip_header %}## Add the konghq.com/plugin annotation
 {% endunless %}{% capture the_code %}
 {% navtabs api %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 kubectl annotate httproute {{ include.name }} konghq.com/plugins='{{ include.plugins }}'
 ```

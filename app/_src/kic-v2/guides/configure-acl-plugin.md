@@ -246,7 +246,7 @@ kubectl annotate ingress lemon konghq.com/plugins=admin-acl
 kubectl annotate ingress lime konghq.com/plugins=anyone-acl
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 kubectl annotate httproute lemon konghq.com/plugins=admin-acl
 kubectl annotate httproute lime konghq.com/plugins=anyone-acl
@@ -266,7 +266,7 @@ ingress.networking.k8s.io/lemon annotated
 ingress.networking.k8s.io/lime annotated
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 httproute.gateway.networking.k8s.io/lemon annotated
 httproute.gateway.networking.k8s.io/lime annotated

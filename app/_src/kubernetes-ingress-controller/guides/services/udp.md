@@ -188,7 +188,7 @@ is running, you can create UDP routing configuration that proxies traffic to
 the application:
 
 {% navtabs api %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 echo "apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: UDPRoute

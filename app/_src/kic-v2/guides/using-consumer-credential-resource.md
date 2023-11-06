@@ -48,7 +48,7 @@ using the `konghq.com/plugins` annotation:
 kubectl annotate ingress echo konghq.com/plugins=example-auth
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 kubectl annotate httproute echo konghq.com/plugins=example-auth
 ```
@@ -66,7 +66,7 @@ kubectl annotate httproute echo konghq.com/plugins=example-auth
 ingress.networking.k8s.io/echo annotated
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 httproute.gateway.networking.k8s.io/echo annotated
 ```

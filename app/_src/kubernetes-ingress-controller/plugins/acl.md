@@ -242,7 +242,7 @@ an `admin` group, and one which allows both `admin` and `user`:
 
  {% capture the_code %}
 {% navtabs api %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 kubectl annotate httproute lemon konghq.com/plugins=admin-acl
 kubectl annotate httproute lime konghq.com/plugins=anyone-acl
@@ -262,7 +262,7 @@ kubectl annotate ingress lime konghq.com/plugins=anyone-acl
 
     {% capture the_code %}
 {% navtabs codeblock %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 httproute.gateway.networking.k8s.io/lemon annotated
 httproute.gateway.networking.k8s.io/lime annotated

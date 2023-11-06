@@ -29,7 +29,7 @@ You can use active health-check, where each instance of Kong actively probes Pod
 
     {% capture the_code %}
 {% navtabs codeblock %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 echo '
 apiVersion: gateway.networking.k8s.io/v1
@@ -85,7 +85,7 @@ spec:
     The results should look like this:
     {% capture the_code %}
 {% navtabs codeblock %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 httproute.gateway.networking.k8s.io/demo created
 ```

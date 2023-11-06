@@ -23,7 +23,7 @@ This guide demonstrates host and path rewrites using Ingress and Service configu
 
 {% capture preserve_host %}
 {% navtabs api %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 kubectl patch httproute echo --type merge -p '{"metadata":{"annotations":{"konghq.com/preserve-host":"false"}}}'
 ```
@@ -117,7 +117,7 @@ There are three options to rewrite the default path handling behavior:
 Add the [`konghq.com/rewrite` annotation][2] to your Ingress, allows you set a specific path for the upstream request. Any regex matches defined in your route definition are usable (see the [annotation documentation][2] for more information):
 
 {% navtabs api %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 kubectl patch httproute echo --type merge -p '{"metadata":{"annotations":{"konghq.com/rewrite":"/hello/world"}}}'
 ```
@@ -149,7 +149,7 @@ the path component of the route/Ingress, leaving the remainder of the path at
 the root:
 
 {% navtabs api %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 $ kubectl patch httproute echo --type merge -p '{"metadata":{"annotations":{"konghq.com/strip-path":"true"}}}'
 ```

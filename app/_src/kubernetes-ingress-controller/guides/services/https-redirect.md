@@ -38,7 +38,7 @@ unset is `426`).
 1. Configure the protocols that are allowed in the `konghq.com/protocols` annotation.
    {% capture the_code %}
 {% navtabs codeblock %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 
 ```bash
 kubectl annotate httproute echo konghq.com/protocols=https
@@ -58,7 +58,7 @@ kubectl annotate ingress echo konghq.com/protocols=https
 
     {% capture the_code %}
 {% navtabs codeblock %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 httproute.gateway.networking.k8s.io/echo annotated
 ```
@@ -76,7 +76,7 @@ ingress.networking.k8s.io/echo annotated
 1. Configure the status code used to redirect in the `konghq.com/https-redirect-status-code`` annotation. 
    {% capture the_code %}
 {% navtabs codeblock %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 
 ```bash
 kubectl annotate httproute echo konghq.com/https-redirect-status-code="301"
@@ -96,7 +96,7 @@ kubectl annotate ingress echo konghq.com/https-redirect-status-code="301"
 
    {% capture the_code %}
 {% navtabs codeblock %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 httproute.gateway.networking.k8s.io/echo annotated
 ```

@@ -6,7 +6,7 @@
 
 {% capture the_code %}
 {% navtabs api %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 echo "
 {%- if_version gte:3.0.x %}
@@ -77,7 +77,7 @@ The results should look like this:
 
 {% capture the_code %}
 {% navtabs codeblock %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 httproute.gateway.networking.k8s.io/{{ name }} created
 ```

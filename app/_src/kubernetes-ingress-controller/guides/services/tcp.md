@@ -132,7 +132,7 @@ There are two modes available:
 To expose the service to the outside world, create a TCPRoute resource for Gateway APIs or a TCPIngress resource for Ingress.
 
 {% navtabs api %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 echo "apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: TCPRoute
@@ -189,7 +189,7 @@ receives on port 9000 to `echo` service on port 1025.
 1. Check if the Service is ready on the route.
     {% capture the_code %}
 {% navtabs codeblock %}
-{% navtab Gateway APIs%}
+{% navtab Gateway API %}
 ```bash
 kubectl get tcproute echo-plaintext -ojsonpath='{.status.parents[0].conditions[?(@.reason=="Accepted")]}'
 ```
@@ -207,7 +207,7 @@ kubectl get tcpingress
 
     {% capture the_code %}
 {% navtabs codeblock %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 {"lastTransitionTime":"2022-11-14T19:48:51Z","message":"","observedGeneration":2,"reason":"Accepted","status":"True","type":"Accepted"}
 
@@ -254,7 +254,7 @@ echo-plaintext   192.0.2.3   3m18s
 1. Create the TCPIngress resource to route TLS-encrypted traffic to the `echo` service.
   {% capture the_code %}
 {% navtabs codeblock %}
-{% navtab Gateway APIs%}
+{% navtab Gateway API %}
 ```bash
 echo "apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: TLSRoute
@@ -303,7 +303,7 @@ spec:
 
     {% capture the_code %}
 {% navtabs codeblock %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 tcproute.gateway.networking.k8s.io/echo-tls created
 ```
