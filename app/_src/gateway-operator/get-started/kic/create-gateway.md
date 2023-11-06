@@ -43,12 +43,7 @@ spec:
               value: debug
 ---
 kind: GatewayClass
-{%- if_version gte:3.0.x %}
-apiVersion: gateway.networking.k8s.io/v1
-{%- endif_version %}
-{%- if_version lte:2.12.x %}
 apiVersion: gateway.networking.k8s.io/v1beta1
-{%- endif_version %}
 metadata:
   name: kong
 spec:
@@ -60,12 +55,7 @@ spec:
     namespace: default
 ---
 kind: Gateway
-{%- if_version gte:3.0.x %}
-apiVersion: gateway.networking.k8s.io/v1
-{%- endif_version %}
-{%- if_version lte:2.12.x %}
 apiVersion: gateway.networking.k8s.io/v1beta1
-{%- endif_version %}
 metadata:
   name: kong
   namespace: default
