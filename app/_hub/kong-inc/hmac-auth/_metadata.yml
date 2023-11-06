@@ -1,4 +1,7 @@
 name: HMAC Auth
+search_aliases:
+  - hmac authentication
+  - hmac-auth
 dbless_compatible: partially
 dbless_explanation: |
   Consumers and Credentials can be created with declarative configuration.

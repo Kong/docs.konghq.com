@@ -1,18 +1,65 @@
 <details markdown="1">
 <summary>
 <blockquote class="note">
-  <p style="cursor: pointer">Before you begin ensure that you have <u>Installed {{site.kic_product_name}} </u> in your Kubernetes cluster and are able to connect to Kong.</p>
+  <p style="cursor: pointer">Before you begin ensure that you have <u>Installed {{site.kic_product_name}}</u> {% unless include.disable_gateway_api %}with Gateway API support {% endunless %}in your Kubernetes cluster and are able to connect to Kong. {% if include.enterprise %}This guide requires <strong>{{site.ee_product_name}}</strong>.{% endif %}</p>
 </blockquote>
 </summary>
 
-{% unless include.disable_gateway_api %}
-## Install the Gateway APIs
+## Prerequisites
 
-If you wish to use the Gateway APIs examples, ensure that you enable support for [
-Gateway APIs in KIC](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/install-gateway-apis).
+{% unless include.disable_gateway_api %}
+### Install the Gateway APIs
+
+1. Install the Gateway API CRDs before installing {{ site.kic_product_name }}.
+
+    ```bash
+    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v0.8.1/standard-install.yaml
+    ```
+
+    {% if include.gateway_api_experimental %}
+
+1. Install the experimental Gateway API CRDs to test this feature.
+
+    ```bash
+    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v0.8.1/experimental-install.yaml
+    ```
+    {% endif %}
+
+1. Create a `Gateway` and `GatewayClass` instance to use.
+
+    ```bash
+   echo "
+   ---
+   apiVersion: gateway.networking.k8s.io/v1beta1
+   kind: GatewayClass
+   metadata:
+     name: kong
+     annotations:
+       konghq.com/gatewayclass-unmanaged: 'true'
+
+   spec:
+     controllerName: konghq.com/kic-gateway-controller
+   ---
+   apiVersion: gateway.networking.k8s.io/v1beta1
+   kind: Gateway
+   metadata:
+     name: kong
+   spec:
+     gatewayClassName: kong
+     listeners:
+     - name: proxy
+       port: 80
+       protocol: HTTP
+   " | kubectl apply -f -
+   ```
+
+   The results should look like this:
+   ```text
+   gatewayclass.gateway.networking.k8s.io/kong created
+   gateway.gateway.networking.k8s.io/kong created
+   ```
 {% endunless %}
 
-## Prerequisites
 
 ### Install Kong
 You can install Kong in your Kubernetes cluster using [Helm](https://helm.sh/).
@@ -23,11 +70,48 @@ You can install Kong in your Kubernetes cluster using [Helm](https://helm.sh/).
     helm repo update
     ```
 
+{% if include.enterprise %}
+1. Create a file named `license.json` containing your {{site.ee_product_name}} license and store it in a Kubernetes secret:
+
+    ```bash
+    kubectl create namespace kong
+    kubectl create secret generic kong-enterprise-license --from-file=license=./license.json -n kong
+    ```
+
+1. Create a `values.yaml` file:
+
+    ```yaml
+    gateway:
+      image:
+        repository: kong/kong-gateway
+      env:
+        LICENSE_DATA:
+          valueFrom:
+            secretKeyRef:
+              name: kong-enterprise-license
+              key: license
+    ```
+{% endif %}
+
 1. Install {{site.kic_product_name}} and {{ site.base_gateway }} with Helm:
 
     ```bash
-    helm install kong kong/ingress -n kong --create-namespace
+    helm install kong kong/ingress -n kong --create-namespace {% if include.enterprise %}--values ./values.yaml{% endif %}
     ```
+
+{% if include.gateway_api_experimental %}
+1. Enable the Gateway API Alpha feature gate:
+
+    ```bash
+    kubectl set env -n kong deployment/kong-controller CONTROLLER_FEATURE_GATES="GatewayAlpha=true" -c ingress-controller
+    ```
+
+   The results should look like this:
+   ```text
+   deployment.apps/kong-controller env updated
+   ```
+{% endif %}
+
 
 ### Test connectivity to Kong
 
@@ -36,10 +120,8 @@ Kubernetes exposes the proxy through a Kubernetes service. Run the following com
 1. Populate `$PROXY_IP` for future commands:
 
     ```bash
-    HOST=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-    PORT=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.spec.ports[0].port}')
-    export PROXY_IP=${HOST}:${PORT}
-    echo $PROXY_IP   
+    export PROXY_IP=$(kubectl get svc --namespace kong kong-gateway-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+    echo $PROXY_IP
     ```
 
 2. Ensure that you can call the proxy IP:
@@ -60,7 +142,4 @@ Kubernetes exposes the proxy through a Kubernetes service. Run the following com
   
     {"message":"no Route matched with those values"}
     ```
-
-    If you are not able to connect to Kong, read the [deployment guide](/kubernetes-ingress-controller/{{ page.release }}/deployment/overview/).
-
 </details>

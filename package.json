@@ -52,8 +52,8 @@
     ]
   },
   "dependencies": {
-    "@segment/analytics-next": "1.57.0",
-    "@kong-ui-public/spec-renderer": "^0.11.9",
+    "@segment/analytics-next": "1.59.0",
+    "@kong-ui-public/spec-renderer": "^0.12.0",
     "@kong/kongponents": "^8.119.0",
     "@kong/sdk-portal-js": "^2.0.0",
     "jquery": "3.7.1",

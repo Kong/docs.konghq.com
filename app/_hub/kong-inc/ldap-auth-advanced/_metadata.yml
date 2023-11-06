@@ -1,4 +1,7 @@
 name: LDAP Authentication Advanced
+search_aliases:
+  - ldap-auth-advanced
+  - ldap auth advanced
 dbless_compatible: 'yes'
 free: false
 enterprise: true

@@ -1,4 +1,6 @@
 name: Vault Authentication
+search_aliases:
+  - vault-auth
 dbless_compatible: 'yes'
 free: false
 plus: false

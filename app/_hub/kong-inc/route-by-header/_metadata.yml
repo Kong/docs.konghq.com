@@ -1,4 +1,7 @@
 name: Route By Header
+search_aliases:
+  - route-by-header
+  - route by request header
 dbless_compatible: 'yes'
 free: false
 enterprise: true

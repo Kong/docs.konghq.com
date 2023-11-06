@@ -1,4 +1,6 @@
 name: gRPC-Web
+search_aliases:
+  - grpc web
 dbless_compatible: 'yes'
 free: true
 enterprise: true

@@ -2,7 +2,7 @@
 nav_title: Overview
 ---
 
-This plugin will expose the OpenAPI Spec (OAS), Swagger, or other specification of auth protected API services fronted by the Kong gateway.
+This plugin will expose the OpenAPI Spec (OAS), Swagger, or other specification of auth protected API services fronted by the {{site.base_gateway}}.
 
 API providers need a means of exposing the specifications of their services while maintaining authentication on the service itself - this plugin solves this problem by:
 
@@ -27,6 +27,8 @@ $ luarocks make *.rockspec
 ```
 
 ## Maintainers
+
+<!--vale off-->
 
 [jeremyjpj0916](https://github.com/jeremyjpj0916){:target="_blank"}{:rel="noopener noreferrer"}  
 [rsbrisci](https://github.com/rsbrisci){:target="_blank"}{:rel="noopener noreferrer"}  

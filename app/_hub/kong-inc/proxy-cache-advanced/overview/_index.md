@@ -56,7 +56,7 @@ Kong identifies the status of the request's proxy cache behavior via the `X-Cach
 
 - `Miss`: The request could be satisfied in cache, but an entry for the resource was not found in cache, and the request was proxied upstream.
 - `Hit`: The request was satisfied and served from cache.
-- `Refresh`: The resource was found in cache, but could not satisfy the request, due to Cache-Control behaviors or reaching its hard-coded cache_ttl threshold.
+- `Refresh`: The resource was found in cache, but could not satisfy the request, due to Cache-Control behaviors or reaching its hard-coded `cache_ttl` threshold.
 - `Bypass`: The request could not be satisfied from cache based on plugin configuration.
 
 ## Storage TTL

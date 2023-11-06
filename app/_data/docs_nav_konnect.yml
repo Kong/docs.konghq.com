@@ -58,7 +58,7 @@
           url: /gateway-manager/data-plane-nodes/upgrade/
         - text: Verify a Data Plane Node
           url: /gateway-manager/data-plane-nodes/verify-node/
-        - text: Secure Control Plane/Data Plane Communications  
+        - text: Secure Control Plane/Data Plane Communications
           url: /gateway-manager/data-plane-nodes/secure-communications/
         - text: Renew Data Plane Certificates
           url: /gateway-manager/data-plane-nodes/renew-certificates/
@@ -67,7 +67,7 @@
         - text: Using Custom DP Labels
           url: /gateway-manager/data-plane-nodes/custom-dp-labels
     - text: Control Plane Groups
-      items: 
+      items:
         - text: Overview
           url: /gateway-manager/control-plane-groups/
         - text: Working with Control Plane Groups
@@ -118,7 +118,9 @@
       url: /mesh-manager/
     - text: Create a mesh with the Kubernetes demo app
       url: /mesh-manager/service-mesh/
-      
+    - text: Migrate a self-managed zone control plane to Konnect
+      url: /mesh-manager/migrate-zone/
+
 - title: Service Hub
   icon: /assets/images/icons/konnect/icn-servicehub-nav.svg
   items:
@@ -189,7 +191,7 @@
           url: /dev-portal/customization/
         - text: About Self-Hosted Dev Portal
           url: /dev-portal/customization/self-hosted-portal/
-        - text: Host your Dev Portal with Netlify 
+        - text: Host your Dev Portal with Netlify
           url: /dev-portal/customization/netlify/
     - text: Dev Portal SDK
       url: https://www.npmjs.com/package/@kong/sdk-portal-js
@@ -306,7 +308,7 @@
           url: /konnect/api/control-plane-configuration/latest/
           absolute_url: true
           generate: false
-          target_blank: true          
+          target_blank: true
     - text: Identity API
       items:
         - text: API Spec
@@ -336,7 +338,14 @@
           url: /konnect/api/portal/latest/
           absolute_url: true
           generate: false
-          target_blank: true  
+          target_blank: true
+    - text: Portal Management API
+      items:
+        - text: API Spec
+          url: /konnect/api/portal-management/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
     - text: Portal RBAC API
       items:
         - text: API Spec

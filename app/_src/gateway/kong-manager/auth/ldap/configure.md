@@ -33,6 +33,7 @@ admin_gui_auth_conf = {                                       \
     "ldap_password":"<ENTER_YOUR_LDAP_PASSWORD_HERE>",        \
     "ldap_port":389,                                          \
     "start_tls":false,                                        \
+    "ldaps":false,                                            \
     "timeout":10000,                                          \
     "verify_ldap_host":true                                   \
 }
@@ -46,6 +47,7 @@ Attribute | Description
 `ldap_host`| LDAP host domain. <br> For example, `ec2-XX-XXX-XX-XXX.compute-1.amazonaws.com`.
 `ldap_port`| The default LDAP port is 389. 636 is the port required for SSL LDAP and AD. If `ldaps` is configured, you must use port 636. For more complex Active Directory (AD) environments, instead of Domain Controller and port 389, consider using a Global Catalog host and port, which is port 3268 by default.    
 `ldap_password` | LDAP password. <br> As with any configuration property, sensitive information may be set as an environment variable instead of being written directly in the configuration file.
+`ldaps` | Set it to `true` to use `ldaps`, a secure protocol (that can be configured to TLS) to connect to the LDAP server. If the `ldaps` setting is enabled, ensure the `start_tls` setting is disabled.
 
 The **Sessions plugin** (configured with `admin_gui_session_conf`) requires a secret and is configured securely by default.
 

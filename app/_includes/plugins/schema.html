@@ -143,3 +143,22 @@
     {% include plugins/schemas/field.html field=field %}
   {% endfor %}
 </ul>
+
+{% if schema.deprecated_fields.size > 0 %}
+
+<h3 id="deprecated-parameters">Deprecated parameters</h3>
+
+<blockquote class="important">
+  <strong>Important:</strong> The following fields have been deprecated and will be 
+  removed in a future version. 
+  <br>
+  See the <a href="../changelog/" class="no-link-icon">changelog</a> for this plugin for new field mapping info.
+</blockquote>
+
+  <ul class="fields">
+    {% for field in schema.deprecated_fields %}
+      {% include plugins/schemas/field.html field=field %}
+    {% endfor %}
+  </ul>
+{% endif %}
+

@@ -1,8 +1,13 @@
 ---
 title: deck sync
-source_url: https://github.com/Kong/deck/tree/main/cmd/sync.go
 content_type: reference
 ---
+
+{% if_version gte:1.28.x %}
+{:.warning}
+> **Warning**: This command is deprecated and will be removed in a future version.
+Use [deck gateway sync](/deck/{{page.kong_version}}/reference/deck_gateway_sync/) instead.
+{% endif_version %}
 
 The sync command reads the state file and performs operation on Kong
 to get Kong's state in sync with the input state.
@@ -21,7 +26,7 @@ for related entities (usually for Cassandra deployments).
 See `db_update_propagation` in `kong.conf`. (Default: `0`)
 
 `-h`, `--help`
-:  help for sync (Default: `false`)
+:  help for sync 
 
 {% if_version gte:1.16.x %}
 `--no-mask-deck-env-vars-value`
@@ -32,7 +37,7 @@ See `db_update_propagation` in `kong.conf`. (Default: `0`)
 :  Maximum number of concurrent operations. (Default: `10`)
 
 `--rbac-resources-only`
-:  diff only the RBAC resources (Kong Enterprise only). (Default: `false`)
+:  diff only the RBAC resources ({{site.ee_product_name}} only). (Default: `false`)
 
 `--select-tag`
 :  only entities matching tags specified via this flag are synced.
@@ -73,7 +78,7 @@ Use `-` to read from stdin. (Default: `[kong.yaml]`)
 
 
 {% if_version gte:1.16.x %} `-w`,{% endif_version %} `--workspace`
-:  Sync configuration to a specific workspace (Kong Enterprise only).
+:  Sync configuration to a specific workspace ({{site.ee_product_name}} only).
 This takes precedence over `_workspace` fields in state files.
 
 ## Global flags

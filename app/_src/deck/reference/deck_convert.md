@@ -1,8 +1,14 @@
 ---
 title: deck convert
-source_url: https://github.com/Kong/deck/tree/main/cmd/convert.go
 content_type: reference
+short_desc: The convert command changes configuration files from one format into another compatible format.
 ---
+
+{% if_version gte:1.28.x %}
+{:.warning}
+> **Warning**: This command is deprecated and will be removed in a future version.
+Use [deck file convert](/deck/{{page.kong_version}}/reference/deck_file_convert/) instead.
+{% endif_version %}
 
 The convert command changes configuration files from one format
 into another compatible format. For example, a configuration for `kong-gateway`
@@ -22,7 +28,7 @@ deck convert [command-specific flags] [global flags]
    if_version gte:1.7.x lte:1.14.x %}`kong-gateway`{% endif_version %}
 
 `-h`, `--help`
-:  help for convert (Default: `false`)
+:  help for convert 
 
 `--input-file`
 :  configuration file to be converted. Use `-` to read from stdin.

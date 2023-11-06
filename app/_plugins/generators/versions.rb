@@ -100,7 +100,10 @@ module Jekyll
             page.data['version'] = version_data['version']
             page.data['release'] = version_data['release']
             page.data['version_data'] = version_data
+            page.data['kong_version'] = parts[1]
           end
+
+          page.data['latest_released_version'] = latest_version_mesh['release']
         when 'konnect'
           page.data['edition'] = parts[0]
           page.data['kong_versions'] = konnect_versions

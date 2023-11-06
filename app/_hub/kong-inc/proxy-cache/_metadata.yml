@@ -1,4 +1,7 @@
 name: Proxy Cache
+search_aliases:
+  - proxy caching
+  - proxy-cache
 dbless_compatible: 'yes'
 free: true
 enterprise: true

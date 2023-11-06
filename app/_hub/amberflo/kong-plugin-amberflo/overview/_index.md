@@ -12,7 +12,7 @@ It supports high-volume HTTP(S) usage without adding latency.
 
 This plugin intercepts the requests, detects which customer is making it, generates a meter event and sends it to Amberflo.
 
-Customer detection occurs via inspection of the request headers. You can configure {{site.base_gateway}} to inject the `customerId` as a header before this plugin runs. For example, if you use the [Key Authentication](https://docs.konghq.com/hub/kong-inc/key-auth/) plugin, this occurs automatically.
+Customer detection occurs via inspection of the request headers. You can configure {{site.base_gateway}} to inject the `customerId` as a header before this plugin runs. For example, if you use the [Key Authentication](/hub/kong-inc/key-auth/) plugin, this occurs automatically.
 
 To avoid impacting the performance of your gateway, the plugin batches the meter records and sends them asynchronously to Amberflo.
 

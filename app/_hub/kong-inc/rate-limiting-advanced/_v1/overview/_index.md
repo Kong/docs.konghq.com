@@ -1,4 +1,4 @@
-The Rate Limiting Advanced plugin for Konnect is a re-engineered version of the Kong Gateway (OSS) [Rate Limiting plugin](/hub/kong-inc/rate-limiting/).
+The Rate Limiting Advanced plugin for Konnect is a re-engineered version of the {{site.base_gateway}} (OSS) [Rate Limiting plugin](/hub/kong-inc/rate-limiting/).
 
 As compared to the standard Rate Limiting plugin, Rate Limiting Advanced provides:
 * Enhanced capabilities to tune the rate limiter, provided by the parameters `limit` and `window_size`. Learn more in [Multiple Limits and Window Sizes](#multi-limits-windows)

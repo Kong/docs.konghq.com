@@ -1,4 +1,6 @@
 name: IP Restriction
+search_aliases:
+  - ip-restriction
 dbless_compatible: 'yes'
 free: true
 enterprise: true

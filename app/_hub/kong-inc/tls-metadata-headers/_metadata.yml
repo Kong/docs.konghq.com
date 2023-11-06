@@ -1,4 +1,7 @@
 name: TLS Metadata Headers
+search_aliases:
+  - tls-metadata-headers
+  - certificates
 dbless_compatible: 'yes'
 free: false
 plus: false

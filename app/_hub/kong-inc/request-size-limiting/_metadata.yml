@@ -1,4 +1,6 @@
 name: Request Size Limiting
+search_aliases:
+  - request-size-limiting
 dbless_compatible: 'yes'
 free: true
 enterprise: true

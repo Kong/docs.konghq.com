@@ -621,3 +621,10 @@ jQuery(function () {
     );
   }
 });
+
+// Expand version list
+
+$(".see-more").on("click", function () { 
+  $(".compat-list").addClass("compat-list-expanded");
+  $(".compat-list").removeClass("compat-list-collapsed");
+});

@@ -1,8 +1,13 @@
 ---
 title: deck dump
-source_url: https://github.com/Kong/deck/tree/main/cmd/dump.go
 content_type: reference
 ---
+
+{% if_version gte:1.28.x %}
+{:.warning}
+> **Warning**: This command is deprecated and will be removed in a future version.
+Use [deck gateway dump](/deck/{{page.kong_version}}/reference/deck_gateway_dump/) instead.
+{% endif_version %}
 
 The dump command reads all entities present in Kong
 and writes them to a local file.
@@ -19,19 +24,19 @@ deck dump [command-specific flags] [global flags]
 ## Flags
 
 `--all-workspaces`
-:  dump configuration of all Workspaces (Kong Enterprise only). (Default: `false`)
+:  dump configuration of all workspaces **{{site.ee_product_name}} only**. (Default: `false`)
 
 `--format`
 :  output file format: json or yaml. (Default: `"yaml"`)
 
 `-h`, `--help`
-:  help for dump (Default: `false`)
+:  help for dump 
 
 `-o`, `--output-file`
 :  file to which to write Kong's configuration.Use `-` to write to stdout. (Default: `"kong"`)
 
 `--rbac-resources-only`
-:  export only the RBAC resources (Kong Enterprise only). (Default: `false`)
+:  export only the RBAC resources **{{site.ee_product_name}} only**. (Default: `false`)
 
 `--select-tag`
 :  only entities matching tags specified with this flag are exported.
@@ -62,7 +67,7 @@ When this setting has multiple tag values, entities must match every tag.
 :  write ID of all entities in the output (Default: `false`)
 
 `-w`, `--workspace`
-:  dump configuration of a specific Workspace(Kong Enterprise only).
+:  dump configuration of a specific workspace **{{site.ee_product_name}} only**.
 
 `--yes`
 :  assume `yes` to prompts and run non-interactively. (Default: `false`)
