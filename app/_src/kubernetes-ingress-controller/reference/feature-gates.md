@@ -36,6 +36,12 @@ ingressController:
     feature_gates: FillIDs=true,RewriteURIs=true
 ```
 
+To test a feature gate in an existing deployment, use `kubectl set env`.
+
+```bash
+kubectl set env -n kong deployment/kong-controller CONTROLLER_FEATURE_GATES="FillIDs=true,RewriteURIs=true" -c ingress-controller
+```
+
 ## Feature gate availability
 
 * The **since** and **until** rows in the table above refer to [KIC Releases][releases].
