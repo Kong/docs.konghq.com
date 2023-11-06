@@ -228,6 +228,8 @@ items:
         url: /production/logging
       - text: Configure a gRPC service
         url: /production/configuring-a-grpc-service
+      - text: Debug Requests
+        url: /production/debug-request
       - text: Upgrade and Migration
         items:
           - text: Upgrade Kong Gateway 3.x.x
