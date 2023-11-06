@@ -17,34 +17,7 @@ To demonstrate Kong's load balancing functionality we need multiple `echo` Pods.
 kubectl scale --replicas 2 deployment echo
 ```
 
-{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/echo' name='echo' service='echo' port='1027' skip_host=true %}
-Let's test:
-
-{% navtabs codeblock %}
-{% navtab Command %}
-```bash
-curl -i $PROXY_IP/echo
-```
-{% endnavtab %}
-
-{% navtab Response %}
-```bash
-HTTP/1.1 200 OK
-Content-Type: text/plain; charset=utf-8
-Content-Length: 136
-Connection: keep-alive
-Date: Tue, 31 Oct 2023 09:58:35 GMT
-X-Kong-Upstream-Latency: 1
-X-Kong-Proxy-Latency: 1
-Via: kong/3.4.0
-
-Welcome, you are connected to node orbstack.
-Running on Pod echo-965f7cf84-prt62.
-In namespace default.
-With IP address 192.168.194.7.
-```
-{% endnavtab %}
-{% endnavtabs %}
+{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/echo' name='echo' service='echo' port='1027' skip_host=true no_indent=true %}
 
 ## Use KongUpstreamPolicy with a Service resource
 
@@ -53,10 +26,7 @@ run `curl -s $PROXY_IP/echo | grep "Pod"` repeatedly, you should see the
 reported Pod name alternate between two values.
 
 You can configure the Kong upstream associated with the Service to use a
-different [load balancing strategy](/gateway/latest/how-kong-works/load-balancing/#balancing-algorithms),
-such as consistently sending requests to the same upstream based on a header
-value (please see the [KongUpstreamPolicy reference](/kubernetes-ingress-controller/{{page.kong_version}}/references/custom-resources/#kongupstreampolicy)
-for the full list of supported algorithms and their configuration options).
+different [load balancing strategy](/gateway/latest/how-kong-works/load-balancing/#balancing-algorithms), such as consistently sending requests to the same upstream based on a header value (please see the [KongUpstreamPolicy reference](/kubernetes-ingress-controller/{{page.kong_version}}/references/custom-resources/#kongupstreampolicy) for the full list of supported algorithms and their configuration options).
 
 To modify these behaviours, let's first create a KongUpstreamPolicy resource
 defining the new behaviour:
@@ -103,8 +73,7 @@ service/echo patched
 {% endnavtab %}
 {% endnavtabs %}
 
-With consistent hashing and client IP fallback, sending repeated requests without any `x-lb` header now sends them to the
-same Pod:
+With consistent hashing and client IP fallback, sending repeated requests without any `x-lb` header now sends them to the same Pod:
 
 {% navtabs codeblock %}
 {% navtab Command %}
@@ -115,11 +84,11 @@ for n in {1..5}; do curl -s $PROXY_IP/echo | grep "Pod"; done
 
 {% navtab Response %}
 ```bash
-	pod name:	echo-588c888c78-6jrmn
-	pod name:	echo-588c888c78-6jrmn
-	pod name:	echo-588c888c78-6jrmn
-	pod name:	echo-588c888c78-6jrmn
-	pod name:	echo-588c888c78-6jrmn
+Running on Pod echo-965f7cf84-frpjc.
+Running on Pod echo-965f7cf84-frpjc.
+Running on Pod echo-965f7cf84-frpjc.
+Running on Pod echo-965f7cf84-frpjc.
+Running on Pod echo-965f7cf84-frpjc.
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -140,7 +109,15 @@ done
 
 {% navtab Response %}
 ```bash
-@TODO
+Running on Pod echo-965f7cf84-wlvw9.
+Running on Pod echo-965f7cf84-frpjc.
+Running on Pod echo-965f7cf84-wlvw9.
+Running on Pod echo-965f7cf84-wlvw9.
+Running on Pod echo-965f7cf84-frpjc.
+Running on Pod echo-965f7cf84-wlvw9.
+Running on Pod echo-965f7cf84-wlvw9.
+Running on Pod echo-965f7cf84-frpjc.
+Running on Pod echo-965f7cf84-wlvw9.
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -175,7 +152,15 @@ done
 
 {% navtab Response %}
 ```bash
-@TODO
+Running on Pod echo-965f7cf84-5h56p.
+Running on Pod echo-965f7cf84-5h56p.
+Running on Pod echo-965f7cf84-wlvw9.
+Running on Pod echo-965f7cf84-5h56p.
+Running on Pod echo-965f7cf84-5h56p.
+Running on Pod echo-965f7cf84-wlvw9.
+Running on Pod echo-965f7cf84-5h56p.
+Running on Pod echo-965f7cf84-5h56p.
+Running on Pod echo-965f7cf84-wlvw9.
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -207,5 +192,4 @@ four-Endpoint Service to eight would halve the weight of its targets (two
 weight `16` targets and eight weight `4` targets).
 
 KongUpstreamPolicy can also configure upstream [health checking behavior](/gateway/latest/reference/health-checks-circuit-breakers/) as well. See [the
-KongUpstreamPolicy reference](/kubernetes-ingress-controller/{{page.kong_version}}/references/custom-resources/#kongupstreampolicy)
-for the health check fields.
+KongUpstreamPolicy reference](/kubernetes-ingress-controller/{{page.release}}/references/custom-resources/#kongupstreampolicy) for the health check fields.
