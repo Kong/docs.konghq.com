@@ -20,7 +20,7 @@ A Kubernetes ingress controller is an application that runs in a cluster and con
 
 ## Deployment Methods
 
-Kong recommends using the `kong/ingress` Helm chart to deploy {{ site.kic_product_name }}. This chart supports both [DB-less](#todo) and [DB-backed](#todo) deployments. If you're not sure which to choose, we recommend choosing DB-less which treats the Kubernetes API server as the source of truth.
+Kong recommends using the `kong/ingress` Helm chart to deploy {{ site.kic_product_name }}. This chart supports both [DB-less](/kubernetes-ingress-controller/{{ page.release }}/production/deployment-topologies/gateway-discovery/) and [DB-backed](/kubernetes-ingress-controller/{{ page.release }}/production/deployment-topologies/db-backed/) deployments. If you're not sure which to choose, we recommend choosing DB-less which treats the Kubernetes API server as the source of truth.
 
 [Learn More &raquo;](/kubernetes-ingress-controller/{{ page.release }}/production/deployment-topologies/gateway-discovery/)
 
