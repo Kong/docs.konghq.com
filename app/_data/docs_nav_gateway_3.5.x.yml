@@ -27,14 +27,14 @@ items:
       - text: Release Notes
         url: /gateway/changelog
         absolute_url: true
-      - text: Breaking Changes
+      - text: Breaking Changes	
         items:
-          - text: Kong Gateway 3.5.x
+          - text: Kong Gateway 3.5.x	
             url: /breaking-changes/
             src: /gateway/breaking-changes/35x
-          - text: Kong Gateway 3.4.x
+          - text: Kong Gateway 3.4.x	
             url: /breaking-changes/34x/
-          - text: Kong Gateway 3.3.x
+          - text: Kong Gateway 3.3.x	
             url: /breaking-changes/33x/
           - text: Kong Gateway 3.2.x
             url: /breaking-changes/32x/
