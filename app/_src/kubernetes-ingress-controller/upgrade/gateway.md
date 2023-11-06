@@ -12,7 +12,7 @@ Every {{ site.kic_product_name }} deployment consists of two components that can
 
 Learn to upgrade {{ site.base_gateway }} when running with {{ site.kic_product_name }}.
 
-To see the latest available {{ site.base_gateway }} images, refer to Docker Hub:
+To see the available {{ site.base_gateway }} images, refer to Docker Hub:
 
 - [{{ site.ce_product_name }}](https://hub.docker.com/r/kong/kong-gateway/tags)
 - [{{ site.ee_product_name }}](https://hub.docker.com/_/kong/tags)
@@ -56,7 +56,7 @@ To see the latest available {{ site.base_gateway }} images, refer to Docker Hub:
         tag: {{ site.data.kong_latest_gateway.ce-version }}
     ```
 
-1. Run `helm upgrade` command with `--values` flag.
+1. Run `helm upgrade` with the `--values` flag.
 
     ```bash
     helm upgrade -n kong kong kong/ingress --values values.yaml --wait
@@ -74,7 +74,7 @@ To see the latest available {{ site.base_gateway }} images, refer to Docker Hub:
     TEST SUITE: None
     ```
 
-    When you pass `--wait` to `helm upgrade`, you can ensure that the command only returns when the rollout finishes successfully. 
+    Pass `--wait` to `helm upgrade` to ensure that the command only returns when the rollout finishes successfully. 
 
 1. Verify the upgrade by checking the version of {{ site.base_gateway }} Deployment running in your cluster.
 
