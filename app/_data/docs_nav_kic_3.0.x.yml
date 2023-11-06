@@ -83,13 +83,19 @@ items:
             url: /production/observability/prometheus-grafana
           - text: Kubernetes Events
             url: /production/observability/events
+      - text: Runtimes
+        items:
+          - text: Kubernetes runtimes
+            url: /production/runtimes/kubernetes
+          - text: Openshift runtimes
+            url: /production/runtimes/openshift     
       - text: Upgrading
         items:
           - text: Kong Gateway
             url: /upgrade/gateway
           - text: Ingress Controller
             url: /upgrade/kic
-
+            
   - title: Guides
     icon: /assets/images/icons/documentation/icn-solution-guide.svg
     items:
