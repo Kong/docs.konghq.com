@@ -10,9 +10,9 @@ Every {{ site.kic_product_name }} deployment consists of two components that can
 - {{ site.kic_product_name }} (a control plane),
 - {{ site.base_gateway }} (a data plane).
 
-In this guide we'll show you how to upgrade {{ site.base_gateway }} when running with {{ site.kic_product_name }}.
+Learn to upgrade {{ site.base_gateway }} when running with {{ site.kic_product_name }}.
 
-To see the available {{ site.base_gateway }} images, please refer to Docker Hub:
+To see the latest available {{ site.base_gateway }} images, refer to Docker Hub:
 
 - [{{ site.ce_product_name }}](https://hub.docker.com/r/kong/kong-gateway/tags)
 - [{{ site.ee_product_name }}](https://hub.docker.com/_/kong/tags)
@@ -20,37 +20,35 @@ To see the available {{ site.base_gateway }} images, please refer to Docker Hub:
 ## Prerequisites
 
 - {{ site.kic_product_name }} installed using the `kong/ingress` Helm chart.
+- Enure your Helm charts repository is up-to-date by running `helm repo update`.
 - [yq] installed (for YAML processing).
+- Check the version of {{ site.base_gateway }} and {{ site.kic_product_name }} you're currently  running. 
 
-## Checking {{ site.base_gateway }} and {{ site.kic_product_name }} versions 
+    ```shell
+    helm get values --all kong -n kong  | yq '{
+      "gateway": .gateway.image.repository + ":" + .gateway.image.tag,
+      "controller": .controller.ingressController.image.repository + ":" + .controller.ingressController.image.tag
+    }'
+    ```
 
-Before you start, check which version of {{ site.base_gateway }} and {{ site.kic_product_name }} you're currently running. 
+    As an output, you should get the versions of {{ site.base_gateway }} and {{ site.kic_product_name }} deployed in your cluster, for example:
 
-```shell
-helm get values --all kong -n kong  | yq '{
-  "gateway": .gateway.image.repository + ":" + .gateway.image.tag,
-  "controller": .controller.ingressController.image.repository + ":" + .controller.ingressController.image.tag
-}'
-```
+    ```text
+    gateway: kong:3.3
+    controller: kong/kubernetes-ingress-controller:{{ site.data.kong_latest_KIC.version }}
+    ```
 
-As an output, you should get {{ site.base_gateway }} and {{ site.kic_product_name }} versions deployed in your cluster, for example:
-
-```yaml
-gateway: kong:3.3
-controller: kong/kubernetes-ingress-controller:{{ site.data.kong_latest_KIC.version }}
-```
-
-To understand what version of {{ site.base_gateway }} is compatible with your version of {{ site.kic_product_name }}, please refer to the [compatibility matrix]. Before upgrading, please also make sure your Helm charts repository is up-to-date by running `helm repo update`.
+    To understand what version of {{ site.base_gateway }} is compatible with your version of {{ site.kic_product_name }}, refer to the [compatibility matrix].
 
 {:.important}
 >  **Upgrading {{ site.base_gateway }} in DB mode**
 >
 > There may be database migrations to run when running {{ site.base_gateway }} in DB-backed mode.
-> Please refer to [Upgrade {{ site.base_gateway }} 3.x.x] to learn more about upgrade paths between different versions of {{ site.base_gateway }}.
+> Refer to [Upgrade {{ site.base_gateway }} 3.x.x] to learn more about upgrade paths between different versions of {{ site.base_gateway }}.
 
-## Upgrading {{ site.base_gateway }} using Helm
+## Upgrade {{ site.base_gateway }} using Helm
 
-1. Edit or create a `values.yaml` file so that it contains a `gateway.image.tag` entry. Set this value to the version of {{ site.base_gateway }} to be installed:
+1. Edit or create a `values.yaml` file so that it contains a `gateway.image.tag` entry. Set this value to the version of {{ site.base_gateway }} to be installed.
 
     ```yaml
     gateway:
@@ -58,15 +56,15 @@ To understand what version of {{ site.base_gateway }} is compatible with your ve
         tag: {{ site.data.kong_latest_gateway.ce-version }}
     ```
 
-1. Run `helm upgrade` command with `--values` flag:
+1. Run `helm upgrade` command with `--values` flag.
 
-    ```shell
+    ```bash
     helm upgrade -n kong kong kong/ingress --values values.yaml --wait
     ```
 
-    The output is similar to this:
+    The result should look like this:
     
-    ```shell
+    ```bash
     Release "kong" has been upgraded. Happy Helming!
     NAME: kong
     LAST DEPLOYED: Fri Nov  3 15:27:49 2023
@@ -76,17 +74,17 @@ To understand what version of {{ site.base_gateway }} is compatible with your ve
     TEST SUITE: None
     ```
 
-    As we pass `--wait` to `helm upgrade`, we ensure that the command only returns when the rollout finishes successfully. 
+    When you pass `--wait` to `helm upgrade`, you can ensure that the command only returns when the rollout finishes successfully. 
 
-1. Verify the upgrade by checking the version of {{ site.base_gateway }} Deployment running in your cluster:
+1. Verify the upgrade by checking the version of {{ site.base_gateway }} Deployment running in your cluster.
 
-    ```shell
+    ```bash
     kubectl get deploy kong-gateway -n kong -ojsonpath='{.spec.template.spec.containers[0].image}'
     ```
 
-    You should see now the new version of {{ site.base_gateway }}:
+    You should see the new version of {{ site.base_gateway }}:
 
-    ```shell
+    ```bash
     kong:{{ site.data.kong_latest_gateway.ce-version }}
     ```
 
