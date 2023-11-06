@@ -1,0 +1,135 @@
+product: deck
+release: 1.29.x
+generate: true
+items:
+  - title: Introduction
+    icon: /assets/images/icons/documentation/icn-flag.svg
+    url: /deck/1.29.x/
+    absolute_url: true
+    items:
+      - text: Terminology
+        url: /terminology/
+      - text: Architecture
+        url: /design-architecture/
+      - text: Compatibility Promise
+        url: /compatibility-promise/
+
+  - title: Changelog
+    icon: /assets/images/icons/documentation/icn-references-color.svg
+    url: https://github.com/kong/deck/blob/main/CHANGELOG.md
+    absolute_url: true
+
+  - title: Installation
+    icon: /assets/images/icons/documentation/icn-deployment-color.svg
+    url: /installation
+
+  - title: Guides
+    icon: /assets/images/icons/documentation/icn-solution-guide.svg
+    items:
+      - text: Getting Started with decK
+        url: /guides/getting-started/
+      - text: Backup and Restore
+        url: /guides/backup-restore/
+      - text: Upgrade to Kong Gateway 3.x
+        url: /3.0-upgrade/
+      - text: Configuration as Code and GitOps
+        url: /guides/ci-driven-configuration/
+      - text: APIOps with decK
+        url: /guides/apiops/
+      - text: Distributed Configuration
+        url: /guides/distributed-configuration/
+      - text: Best Practices
+        url: /guides/best-practices/
+      - text: Using decK with Kong Gateway (Enterprise)
+        url: /guides/kong-enterprise/
+      - text: Using decK with Konnect
+        url: /guides/konnect/
+      - text: Run decK with Docker
+        url: /guides/run-with-docker/
+      - text: Using Multiple Files to Store Configuration
+        url: /guides/multi-file-state/
+      - text: De-duplicate Plugin Configuration
+        url: /guides/deduplicate-plugin-configuration/
+      - text: Set Up Object Defaults
+        url: /guides/defaults/
+      - text: Security
+        items:
+          - text: Overview
+            url: /guides/security/
+          - text: Secret Management with decK
+            url: /guides/vaults/
+          - text: Using Environment Variables with decK
+            url: /guides/environment-variables/
+
+  - title: Reference
+    icon: /assets/images/icons/documentation/icn-references-color.svg
+    items:
+      - text: Entities Managed by decK
+        url: /reference/entities/
+      - text: decK CLI
+        url: /reference/deck/
+      - text: deck completion
+        url: /reference/deck_completion/
+      - text: deck file
+        url: /reference/deck_file/
+        items:
+          - text: deck file add-plugins
+            url: /reference/deck_file_add-plugins/
+          - text: deck file add-tags
+            url: /reference/deck_file_add-tags/
+          - text: deck file convert
+            url: /reference/deck_file_convert/
+          - text: deck file lint
+            url: /reference/deck_file_lint/
+          - text: deck file list-tags
+            url: /reference/deck_file_list-tags/
+          - text: deck file merge
+            url: /reference/deck_file_merge/
+          - text: deck file openapi2kong
+            url: /reference/deck_file_openapi2kong/
+          - text: deck file patch
+            url: /reference/deck_file_patch/
+          - text: deck file remove-tags
+            url: /reference/deck_file_remove-tags/
+          - text: deck file render
+            url: /reference/deck_file_render/
+          - text: deck file validate
+            url: /reference/deck_file_validate/
+      - text: deck gateway
+        url: /reference/deck_gateway/
+        items:
+          - text: deck gateway diff
+            url: /reference/deck_gateway_diff/
+          - text: deck gateway dump
+            url: /reference/deck_gateway_dump/
+          - text: deck gateway ping
+            url: /reference/deck_gateway_ping/
+          - text: deck gateway reset
+            url: /reference/deck_gateway_reset/
+          - text: deck gateway sync
+            url: /reference/deck_gateway_sync/
+          - text: deck gateway validate
+            url: /reference/deck_gateway_validate/
+      - text: deck version
+        url: /reference/deck_version/
+      - text: Deprecated commands
+        items: 
+          - text: deck convert
+            url: /reference/deck_convert/
+          - text: deck diff
+            url: /reference/deck_diff/
+          - text: deck dump
+            url: /reference/deck_dump/
+          - text: deck ping
+            url: /reference/deck_ping/
+          - text: deck reset
+            url: /reference/deck_reset/
+          - text: deck sync
+            url: /reference/deck_sync/
+          - text: deck validate
+            url: /reference/deck_validate/
+      
+
+  - title: FAQ
+    icon: /assets/images/icons/documentation/icn-faq-color.svg
+    url: /faqs/
