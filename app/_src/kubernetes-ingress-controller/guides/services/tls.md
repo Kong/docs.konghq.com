@@ -32,10 +32,10 @@ The Ingress API supports TLS temination using the `.spec.tls` field. To terminat
 1. Create a `Gateway` resource.
 
     ```yaml
-    {%- if_version gte: 3.0.x %}
+    {%- if_version gte:3.0.x %}
     apiVersion: gateway.networking.k8s.io/v1
     {%- endif_version %}
-    {%- if_version lte: 2.12.x %}
+    {%- if_version lte:2.12.x %}
     apiVersion: gateway.networking.k8s.io/v1beta1
     {%- endif_version %}
     kind: Gateway
@@ -55,10 +55,10 @@ The Ingress API supports TLS temination using the `.spec.tls` field. To terminat
 2. Bind a `HTTPRoute` to the `Gateway`.
 
     ```yaml
-    {%- if_version gte: 3.0.x %}
+    {%- if_version gte:3.0.x %}
     apiVersion: gateway.networking.k8s.io/v1
     {%- endif_version %}
-    {%- if_version lte: 2.12.x %}
+    {%- if_version lte:2.12.x %}
     apiVersion: gateway.networking.k8s.io/v1beta1
     {%- endif_version %}
     kind: HTTPRoute
@@ -126,10 +126,10 @@ The Ingress API supports TLS temination using the `.spec.tls` field. To terminat
 1. Create a `Gateway` resource.
 
     ```yaml
-    {%- if_version gte: 3.0.x %}
+    {%- if_version gte:3.0.x %}
     apiVersion: gateway.networking.k8s.io/v1
     {%- endif_version %}
-    {%- if_version lte: 2.12.x %}
+    {%- if_version lte:2.12.x %}
     apiVersion: gateway.networking.k8s.io/v1beta1
     {%- endif_version %}
     kind: Gateway
