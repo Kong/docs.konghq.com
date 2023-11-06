@@ -103,16 +103,14 @@ items:
             url: /guides/services/udp
           - text: gRPC Service
             url: /guides/services/grpc
+          - text: TLS
+            url: /guides/services/tls
           - text: External Service
             url: /guides/services/external
           - text: HTTPS Redirects
             url: /guides/services/https-redirect
           - text: Multiple Backend Services
             url: /guides/services/multiple-backends
-          - text: TLS Termination
-            url: /guides/services/tls-termination
-          - text: TLS Passthrough
-            url: /guides/services/tls-passthrough
       - text: Request Manipulation
         items:
           - text: Rewriting Hosts + Paths
