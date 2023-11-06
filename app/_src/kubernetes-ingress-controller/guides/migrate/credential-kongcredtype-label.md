@@ -2,7 +2,7 @@
 title: Credential Type Labels
 ---
 
-Prior to 3.0, credential Secrets used a `kongCredType` field in the Secret to indicate the Secret type. 3.0 replaces this field with a `konghq.com/credential` label to allow the admission controller and resource cache to filter out Secrets that {{ site.kic_product_name }} will not use to improve performance and avoid interference with non-{{ site.kic_product_name }} Secret updates.
+In version before 3.0, credential Secrets used a `kongCredType` field in the Secret to indicate the Secret type. Version 3.0 replaces this field with a `konghq.com/credential` label to allow the admission controller and resource cache to filter out Secrets that {{ site.kic_product_name }} do not use to improve performance and avoid interference with non-{{ site.kic_product_name }} Secret updates.
 
 The `kongCredType` field is now deprecated and will be removed in a future release.
 
@@ -26,7 +26,6 @@ kubectl label secret -n other consumer-10-key-auth konghq.com/credential=bee-aut
 ```
 
 You do not need to remove the `kongCredType` field from Secrets after you have
-added the label, but once you have added the label, the label's value will be
-used instead of the field's.
+added the label, but once you have added the label, the value of the label is used instead of the field.
 
 [jq]: https://jqlang.github.io/jq/
