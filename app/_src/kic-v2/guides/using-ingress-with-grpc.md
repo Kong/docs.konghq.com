@@ -196,7 +196,7 @@ Response:
 ingress.networking.k8s.io/demo created
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 echo "apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: GRPCRoute

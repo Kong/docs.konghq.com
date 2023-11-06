@@ -179,6 +179,9 @@
 - release: "1.27.x"
   version: "1.27.1"
   edition: "deck"
+- release: "1.28.x"
+  version: "1.28.1"
+  edition: "deck"
 - edition: "konnect"
 - edition: "contributing"
 - release: "1.0.x"
@@ -231,6 +234,9 @@
   edition: "kubernetes-ingress-controller"
 - release: "2.12.x"
   version: "2.12.0"
+  edition: "kubernetes-ingress-controller"
+- release: "3.0.x"
+  version: "3.0.0"
   edition: "kubernetes-ingress-controller"
 - edition: gateway-operator
   version: 1.0.2

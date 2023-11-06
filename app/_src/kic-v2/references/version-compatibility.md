@@ -97,7 +97,13 @@ For specific Gateway API resources support, please refer to the [Gateway API Sup
 
 [gateway-api]:https://github.com/kubernetes-sigs/gateway-api
 [gateway-api-supported-versions]:https://gateway-api.sigs.k8s.io/concepts/versioning/#supported-versions
+
+{% if_version gte:3.0.x %}
+[gateway-api-support]:/kubernetes-ingress-controller/{{page.kong_version}}/concepts/gateway-api/
+{% endif_version %}
+{% if_version lte:2.12.x %}
 [gateway-api-support]:/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/
+{% endif_version %}
 
 {% endif_version %}
 
@@ -118,4 +124,4 @@ For each {{site.kic_product_name}} release, tests are run to verify this documen
 | Istio 1.19                | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> |
 
 [istio]:https://istio.io
-[istio-guide]:/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started-istio/
+[istio-guide]:/kubernetes-ingress-controller/2.12.x/guides/getting-started-istio/

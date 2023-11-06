@@ -357,9 +357,6 @@ For more hands on experience with Gateway Discovery please see [our guide][gd-gu
 
 ### {{site.konnect_short_name}} Integration
 
-{:.warning .no-icon}
-> This feature is released as [beta](/gateway/latest/availability-stages/#beta) and should not be deployed in a production environment.
-
 {{site.kic_product_name}} can be integrated with Kong's [{{site.konnect_short_name}}][konnect] platform. It's an
 optional feature that allows configuring a {{site.konnect_short_name}} control plane with the same configuration as the one used
 by {{site.kic_product_name}} for configuring local Kong Gateways. It enables using {{site.konnect_short_name}} UI

@@ -65,5 +65,6 @@ for details on this issue.
 
 ## See also
 
-* [deck file](/deck/{{page.kong_version}}/reference/deck_file)	 - Sub-command to host the decK file manipulation operations
+{% include /md/deck-reference-links.md file_links='true' %}
+
 

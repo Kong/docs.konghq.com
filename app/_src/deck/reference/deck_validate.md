@@ -1,8 +1,13 @@
 ---
 title: deck validate
-source_url: https://github.com/Kong/deck/tree/main/cmd/validate.go
 content_type: reference
 ---
+
+{% if_version gte:1.28.x %}
+{:.warning}
+> **Warning**: This command is deprecated and will be removed in a future version.
+Use [deck gateway validate](/deck/{{page.kong_version}}/reference/deck_gateway_validate/) instead.
+{% endif_version %}
 
 The validate command reads the state file and ensures validity.
 It reads all the specified state files and reports YAML/JSON
@@ -22,7 +27,7 @@ deck validate [command-specific flags] [global flags]
 ## Flags
 
 `-h`, `--help`
-:  help for validate (Default: `false`)
+:  help for validate 
 
 {% if_version gte:1.11.x %}
 
@@ -39,7 +44,7 @@ significant errors. No resource is created in Kong. (Default: `false`)
 {% endif_version %}
 
 `--rbac-resources-only`
-:  indicate that the state file(s) contains RBAC resources only (Kong Enterprise only). (Default: `false`)
+:  indicate that the state file(s) contains RBAC resources only ({{site.ee_product_name}} only). (Default: `false`)
 
 `-s`, `--state`
 :  file(s) containing Kong's configuration.
@@ -49,7 +54,7 @@ Use '-' to read from stdin. (Default: `[kong.yaml]`)
 {% if_version gte:1.11.x %}
 
 `-w`, `--workspace`
-:  validate configuration of a specific workspace (Kong Enterprise only).
+:  validate configuration of a specific workspace ({{site.ee_product_name}} only).
 This takes precedence over _workspace fields in state files.
 
 {% endif_version %}

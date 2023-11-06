@@ -22,7 +22,7 @@ deck konnect ping [command-specific flags] [global flags]
 ## Flags
 
 `-h`, `--help`
-:  help for ping (Default: `false`)
+:  help for ping 
 
 ## Global flags
 
