@@ -29,10 +29,15 @@
 
 1. Create a `Gateway` and `GatewayClass` instance to use.
 
+{% assign gwapi_version = "v1" %}
+{% if_version lte:2.12.x %}
+{% assign gwapi_version = "v1beta1" %}
+{% endif_version %}
+
     ```bash
    echo "
    ---
-   apiVersion: gateway.networking.k8s.io/v1
+   apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
    kind: GatewayClass
    metadata:
      name: kong
@@ -42,7 +47,7 @@
    spec:
      controllerName: konghq.com/kic-gateway-controller
    ---
-   apiVersion: gateway.networking.k8s.io/v1
+   apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
    kind: Gateway
    metadata:
      name: kong

@@ -26,18 +26,18 @@ The Ingress API supports TLS temination using the `.spec.tls` field. To terminat
 
 
 ### TLS Termination
+{% assign gwapi_version = "v1" %}
+{% if_version lte:2.12.x %}
+{% assign gwapi_version = "v1beta1" %}
+{% endif_version %}
 
 {% navtabs %}
 {% navtab Gateway API %}
+
 1. Create a `Gateway` resource.
 
     ```yaml
-    {%- if_version gte:3.0.x %}
-    apiVersion: gateway.networking.k8s.io/v1
-    {%- endif_version %}
-    {%- if_version lte:2.12.x %}
-    apiVersion: gateway.networking.k8s.io/v1beta1
-    {%- endif_version %}
+    apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
     kind: Gateway
     metadata:
       name: example-gateway
@@ -55,12 +55,7 @@ The Ingress API supports TLS temination using the `.spec.tls` field. To terminat
 2. Bind a `HTTPRoute` to the `Gateway`.
 
     ```yaml
-    {%- if_version gte:3.0.x %}
-    apiVersion: gateway.networking.k8s.io/v1
-    {%- endif_version %}
-    {%- if_version lte:2.12.x %}
-    apiVersion: gateway.networking.k8s.io/v1beta1
-    {%- endif_version %}
+    apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
     kind: HTTPRoute
     metadata:
       name: demo-example 
@@ -126,12 +121,7 @@ The Ingress API supports TLS temination using the `.spec.tls` field. To terminat
 1. Create a `Gateway` resource.
 
     ```yaml
-    {%- if_version gte:3.0.x %}
-    apiVersion: gateway.networking.k8s.io/v1
-    {%- endif_version %}
-    {%- if_version lte:2.12.x %}
-    apiVersion: gateway.networking.k8s.io/v1beta1
-    {%- endif_version %}
+    apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
     kind: Gateway
     metadata:
       name: example-gateway
