@@ -1,8 +1,8 @@
 ---
-title: Upgrading {{ site.base_gateway }} with {{ site.kic_product_name }}
+title: Upgrading Kong Gateway with Kong Ingress Controller
 type: how-to
 purpose: |
-  What do I need to know when upgrading {{ site.base_gateway }} on Kubernetes? DB-backed mode vs DB-less
+  What do I need to know when upgrading Kong Gateway on Kubernetes? DB-backed mode vs DB-less
 ---
 
 Every {{ site.kic_product_name }} deployment consists of two components that can be upgraded independently (learn more in [Deployment methods]).
