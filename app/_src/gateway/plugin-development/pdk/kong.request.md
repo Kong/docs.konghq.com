@@ -643,8 +643,16 @@ Returns the plain request body.
 * rewrite, access, response, admin_api
 
 **Returns**
-
+{% if_version lte:3.4.x %}
 * `string`:  The plain request body.
+{% endif_version %}
+{% if_version gte:3.5.x %}
+
+1.  `string|nil`:  The plain request body or nil if it does not fit into
+ the NGINX temporary buffer.
+
+1.  `nil|string`:  An error message.
+{% endif_version %}
 
 
 **Usage**

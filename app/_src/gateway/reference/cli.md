@@ -73,6 +73,107 @@ Options:
 > **Note:** `db_export` is only supported with open-source
 {{site.base_gateway}} packages.
 
+
+{% if_version gte:3.5.x %}
+--- 
+
+
+### Kong Debug
+{:.badge .enterprise}
+```
+Usage: kong debug COMMAND [OPTIONS]
+
+Invoke various debugging features in Kong.
+
+The available commands are:
+
+  For the endpoint in kong/api/routes/debug.lua,
+
+  profiling cpu <start|stop|status>     Generate the raw data of Lua-land CPU
+                                        flamegraph.
+
+    --mode      (optional string default "time")
+                                        The mode of CPU profiling, `time` means
+                                        time-based profiling, `instruction`
+                                        means instruction-counter-based
+                                        profiling.
+
+    --step      (optional number)       The initial value of the instruction
+                                        counter. A sample will be taken when the
+                                        counter goes to zero.
+                                        (only for mode=instruction)
+
+    --interval  (optional number)       Sampling interval in microseconds.
+                                        (only for mode=time)
+
+    --timeout (optional number)         Profiling will be stopped automatically
+                                        after the timeout (in seconds).
+                                        default: 10
+
+  profiling memory <start|stop|status>  Generating the Lua GC heap memory
+                                        tracing data (on-the-fly tracing).
+
+    --stack_depth (optional number)     The maximum depth of the Lua stack.
+
+    --timeout (optional number)         Profiling will be stopped automatically
+                                        after the timeout (in seconds).
+                                        default: 10
+
+  profiling gc-snapshot                 Generate a Lua GC heap snapshot.
+
+    --timeout (optional number)         Profiling will be stopped automatically
+                                        after the timeout (in seconds).
+                                        default: 120
+
+  log_level set --level <log_level>     Set the logging level.
+                                        It cannot work while not using a
+                                        database because it needs to be
+                                        protected by RBAC and RBAC is not
+                                        available in DB-less.
+
+    --level (optional string)           It can be one of the following: debug,
+                                        info, notice, warn, error, crit, alert,
+                                        or emerg.
+
+    --timeout (optional number)         The log level will be restored to the
+                                        original level after the timeout (in
+                                        seconds).
+                                        default: 60
+
+  log_level get                         Get the logging level.
+
+
+Options:
+ --pid            (optional number)     The worker’s PID for profiling.
+
+ -f                                     Follow mode for certain commands, such
+                                        as 'profiling {cpu|memory} status'.
+                                        It continuously checks the status until
+                                        it completes.
+
+ -c,--conf        (optional string)     Configuration file.
+ -p,--prefix      (optional string)     Override prefix directory.
+
+
+EXIT CODES
+  Various error codes and their associated messages may be returned by this
+  command during error situations.
+
+ `0` - Success. The requested operation completed successfully.
+
+ `1` - Error. The requested operation failed. An error message is available in
+       the command output.
+
+ `2` - In progress. The profiling is still in progress.
+       The following commands make use of this return value:
+       - kong debug profiling cpu start
+       - kong debug profiling memory start
+       - kong debug profiling gc-snapshot
+
+
+```
+{% endif_version %}
+
 ---
 
 
@@ -246,6 +347,8 @@ Options:
  -c,--conf        (optional string) configuration file
  -p,--prefix      (optional string) prefix Kong is running at
  --nginx-conf     (optional string) custom Nginx configuration template
+ --nginx-conf-flags        (optional string) flags that can be used to control
+                                             how Nginx configuration templates are rendered
 
 ```
 
@@ -271,6 +374,10 @@ Options:
  --db-timeout     (default 60)
  --lock-timeout   (default 60)
 
+{% if_version gte:3.3.x %}
+ --nginx-conf-flags        (optional string)   flags that can be used to control
+                                               how Nginx configuration templates are rendered
+{% endif_version %}
 ```
 
 ---
@@ -316,7 +423,12 @@ Options:
  --lock-timeout   (default 60)        When --run-migrations is enabled, timeout,
                                       in seconds, for nodes waiting on the
                                       leader node to finish running migrations.
-
+```
+```
+{% if_version gte:3.5.x %}
+ --nginx-conf-flags        (optional string)   Flags that can be used to control
+                                               how Nginx configuration templates are rendered
+{% endif_version %}
 ```
 
 ---
