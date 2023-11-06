@@ -46,7 +46,7 @@ kind: GatewayClass
 {%- if_version gte: 3.0.x %}
 apiVersion: gateway.networking.k8s.io/v1
 {%- endif_version %}
-{%- if_version le: 3.0.x %}
+{%- if_version lte: 2.12.x %}
 apiVersion: gateway.networking.k8s.io/v1beta1
 {%- endif_version %}
 metadata:
@@ -63,7 +63,7 @@ kind: Gateway
 {%- if_version gte: 3.0.x %}
 apiVersion: gateway.networking.k8s.io/v1
 {%- endif_version %}
-{%- if_version le: 3.0.x %}
+{%- if_version lte: 2.12.x %}
 apiVersion: gateway.networking.k8s.io/v1beta1
 {%- endif_version %}
 metadata:
