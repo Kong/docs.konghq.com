@@ -2,7 +2,7 @@
 title: Credential Type Labels
 ---
 
-In version before 3.0, credential Secrets used a `kongCredType` field in the Secret to indicate the Secret type. Version 3.0 replaces this field with a `konghq.com/credential` label to allow the admission controller and resource cache to filter out Secrets that {{ site.kic_product_name }} do not use to improve performance and avoid interference with non-{{ site.kic_product_name }} Secret updates.
+In versions before 3.0, credential Secrets used a `kongCredType` field in the Secret to indicate the Secret type. Version 3.0 replaces this field with a `konghq.com/credential` label to allow the admission controller and resource cache to filter out Secrets that {{ site.kic_product_name }} do not use to improve performance and avoid interference with non-{{ site.kic_product_name }} Secret updates.
 
 The `kongCredType` field is now deprecated and will be removed in a future release.
 
