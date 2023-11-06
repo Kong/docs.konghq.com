@@ -101,8 +101,8 @@ items:
             url: /guides/services/tcp
           - text: UDP Service
             url: /guides/services/udp
-          - text: gRPC Service
-            url: /guides/services/grpc
+          #- text: gRPC Service
+          #  url: /guides/services/grpc
           - text: TLS
             url: /guides/services/tls
           - text: External Service
