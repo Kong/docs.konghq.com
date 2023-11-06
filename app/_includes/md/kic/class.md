@@ -10,7 +10,12 @@ create a class configuration to associate routes with:
 ```bash
 echo "
 ---
+{%- if_version gte: 3.0.x %}
+apiVersion: gateway.networking.k8s.io/v1
+{%- endif_version %}
+{%- if_version le: 3.0.x %}
 apiVersion: gateway.networking.k8s.io/v1beta1
+{%- endif_version %}
 kind: GatewayClass
 metadata:
   name: kong
@@ -21,7 +26,12 @@ metadata:
 spec:
   controllerName: konghq.com/kic-gateway-controller
 ---
+{%- if_version gte: 3.0.x %}
+apiVersion: gateway.networking.k8s.io/v1
+{%- endif_version %}
+{%- if_version le: 3.0.x %}
 apiVersion: gateway.networking.k8s.io/v1beta1
+{%- endif_version %}
 kind: Gateway
 metadata:
   name: kong
