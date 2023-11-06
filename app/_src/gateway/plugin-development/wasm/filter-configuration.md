@@ -1,6 +1,7 @@
 ---
 title: Proxy-Wasm Filter Configuration
 book: plugin_dev
+chapter: 12
 ---
 
 ## Proxy-Wasm Filter Configuration

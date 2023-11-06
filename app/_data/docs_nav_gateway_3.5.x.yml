@@ -405,10 +405,10 @@ items:
         url: /plugin-development/distribution
       - text: Proxy-Wasm Filters
         items:
-        - text: Create a Proxy-Wasm Filter
-          url: /plugin-development/wasm/filter-development-guide
-        - text: Proxy-Wasm Filter Configuration
-          url: /plugin-development/wasm/filter-configuration
+          - text: Create a Proxy-Wasm Filter
+            url: /plugin-development/wasm/filter-development-guide
+          - text: Proxy-Wasm Filter Configuration
+            url: /plugin-development/wasm/filter-configuration
       - text: Plugin Development Kit
         items:
         - text: Overview
