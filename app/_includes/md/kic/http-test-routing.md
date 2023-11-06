@@ -8,13 +8,7 @@
 
 Create routing configuration to proxy `{{ path }}` requests to the echo server:
 
-<<<<<<< HEAD
-{% include_cached /md/kic/http-test-routing-resource.md kong_version=include.kong_version hostname=hostname path=path name=name service=service no_indent=include.no_indent skip_host=include.skip_host %}
-||||||| parent of 781edf018 (KIC 3.0: Rewrite annotation (#6422))
-{% include_cached /md/kic/http-test-routing-resource.md kong_version=include.kong_version hostname=hostname path=path name=name service=service skip_host=include.skip_host %}
-=======
-{% include_cached /md/kic/http-test-routing-resource.md kong_version=include.kong_version hostname=hostname path=path name=name service=service skip_host=include.skip_host route_type=route_type %}
->>>>>>> 781edf018 (KIC 3.0: Rewrite annotation (#6422))
+{% include_cached /md/kic/http-test-routing-resource.md kong_version=include.kong_version hostname=hostname path=path name=name service=service no_indent=include.no_indent skip_host=include.skip_host route_type=route_type %}
 
 Test the routing rule:
 
@@ -42,5 +36,4 @@ With IP address 10.1.0.237.
 ```
 
 If everything is deployed correctly, you should see the above response.
-This verifies that {{site.base_gateway}} can correctly route traffic to an application running
-inside Kubernetes.
+This verifies that {{site.base_gateway}} can correctly route traffic to an application running inside Kubernetes.
