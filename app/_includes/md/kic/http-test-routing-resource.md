@@ -7,14 +7,13 @@
 {% capture the_code %}
 {% navtabs api %}
 {% navtab Gateway API %}
+{% assign gwapi_version = "v1" %}
+{% if_version lte:2.12.x %}
+{% assign gwapi_version = "v1beta1" %}
+{%- endif_version %}
 ```bash
 echo "
-{%- if_version gte:3.0.x %}
-apiVersion: gateway.networking.k8s.io/v1
-{%- endif_version %}
-{%- if_version lte:2.12.x %}
-apiVersion: gateway.networking.k8s.io/v1beta1
-{%- endif_version %}
+apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
 kind: HTTPRoute
 metadata:
   name: {{ name }}
@@ -66,10 +65,10 @@ spec:
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
-{% if include.no_indent %}
-{{ the_code }}
-{% else %}
+{% if include.indent %}
 {{ the_code | indent }}
+{% else %}
+{{ the_code }}
 {% endif %}
 
 {% unless include.no_results %}
@@ -89,9 +88,9 @@ ingress.networking.k8s.io/{{ name }} created
 {% endnavtab %}
 {% endnavtabs %}
 {% endcapture %}
-{% if include.no_indent %}
-{{ the_code }}
-{% else %}
+{% if include.indent %}
 {{ the_code | indent }}
+{% else %}
+{{ the_code }}
 {% endif %}
 {% endunless %}
