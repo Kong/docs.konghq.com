@@ -175,7 +175,7 @@ items:
         url: /reference/troubleshooting
       - text: Annotations
         url: /reference/annotations
-      - text: CLI Arguments
+      - text: Configuration Options
         url: /reference/cli-arguments
       - text: Beta Feature Gates
         url: /reference/feature-gates
@@ -191,7 +191,5 @@ items:
       - text: Custom Resource Definitions
         url: /reference/custom-resources
         src: reference/custom-resources-3.0.x
-      - text: Configuration Options
-        url: /reference/configuration
       - text: Gateway API migration
         url: /reference/ingress-to-gateway-migration
