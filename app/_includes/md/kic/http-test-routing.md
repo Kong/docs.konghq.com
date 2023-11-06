@@ -4,15 +4,16 @@
 {%- assign hostname = include.hostname | default: 'kong.example' %}
 {%- assign name = include.name | default: 'echo' %}
 {%- assign service = include.service | default: 'echo' %}
+{%- assign route_type = include.route_type | default: 'PathPrefix' %}
 
 Create routing configuration to proxy `{{ path }}` requests to the echo server:
 
-{% include_cached /md/kic/http-test-routing-resource.md kong_version=include.kong_version hostname=hostname path=path name=name service=service no_indent=include.no_indent %}
+{% include_cached /md/kic/http-test-routing-resource.md kong_version=include.kong_version hostname=hostname path=path name=name service=service indent=include.indent skip_host=include.skip_host route_type=route_type %}
 
 Test the routing rule:
 
 ```bash
-curl -i -H 'Host:{{ hostname }}' $PROXY_IP{{ path }}
+curl -i {% unless include.skip_host %}-H 'Host:{{ hostname }}' {% endunless %}$PROXY_IP{{ path }}
 ```
 
 The results should look like this:
@@ -35,5 +36,4 @@ With IP address 10.1.0.237.
 ```
 
 If everything is deployed correctly, you should see the above response.
-This verifies that {{site.base_gateway}} can correctly route traffic to an application running
-inside Kubernetes.
+This verifies that {{site.base_gateway}} can correctly route traffic to an application running inside Kubernetes.

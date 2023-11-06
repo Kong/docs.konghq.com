@@ -7,7 +7,7 @@ content_type: tutorial
 {:.warning .no-icon}
 > This feature is released as a [tech preview](/gateway/latest/availability-stages/#tech-preview) (alpha-quality) and should not be deployed in a production environment.
 {% endif_version %}
-{% if_version gte: 2.6.x %}
+{% if_version gte:2.6.x %}
 {:.warning .no-icon}
 > This feature is released as a [beta](/gateway/latest/availability-stages/#beta) and should not be deployed in a production environment.
 {% endif_version %}
@@ -33,7 +33,7 @@ Response:
 deployment.apps/ingress-kong env updated
 ```
 {% endif_version %}
-{% if_version gte: 2.6.x %}
+{% if_version gte:2.6.x %}
 {{site.kic_product_name}} automatically disables support for non-standard
 resources if they are not available at start, so you must restart it after
 installing Gateway APIs for it to recognize those resources:

@@ -210,7 +210,7 @@ The results should look like this:
 udpingress.configuration.konghq.com/tftp created
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 echo "apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: UDPRoute

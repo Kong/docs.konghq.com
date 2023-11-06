@@ -1,3 +1,4 @@
+{% unless include.disable_accordian %}
 <details markdown="1">
 <summary>
 <blockquote class="note">
@@ -6,6 +7,7 @@
 </summary>
 
 ## Prerequisites
+{% endunless %}
 
 {% unless include.disable_gateway_api %}
 ### Install the Gateway APIs
@@ -13,7 +15,7 @@
 1. Install the Gateway API CRDs before installing {{ site.kic_product_name }}.
 
     ```bash
-    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v0.8.1/standard-install.yaml
+    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.0.0/standard-install.yaml
     ```
 
     {% if include.gateway_api_experimental %}
@@ -21,16 +23,21 @@
 1. Install the experimental Gateway API CRDs to test this feature.
 
     ```bash
-    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v0.8.1/experimental-install.yaml
+    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.0.0/experimental-install.yaml
     ```
     {% endif %}
 
 1. Create a `Gateway` and `GatewayClass` instance to use.
 
+{% assign gwapi_version = "v1" %}
+{% if_version lte:2.12.x %}
+{% assign gwapi_version = "v1beta1" %}
+{% endif_version %}
+
     ```bash
    echo "
    ---
-   apiVersion: gateway.networking.k8s.io/v1beta1
+   apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
    kind: GatewayClass
    metadata:
      name: kong
@@ -40,7 +47,7 @@
    spec:
      controllerName: konghq.com/kic-gateway-controller
    ---
-   apiVersion: gateway.networking.k8s.io/v1beta1
+   apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
    kind: Gateway
    metadata:
      name: kong
@@ -59,7 +66,6 @@
    gateway.gateway.networking.k8s.io/kong created
    ```
 {% endunless %}
-
 
 ### Install Kong
 You can install Kong in your Kubernetes cluster using [Helm](https://helm.sh/).
@@ -112,7 +118,6 @@ You can install Kong in your Kubernetes cluster using [Helm](https://helm.sh/).
    ```
 {% endif %}
 
-
 ### Test connectivity to Kong
 
 Kubernetes exposes the proxy through a Kubernetes service. Run the following commands to store the load balancer IP address in a variable named `PROXY_IP`:
@@ -142,4 +147,7 @@ Kubernetes exposes the proxy through a Kubernetes service. Run the following com
   
     {"message":"no Route matched with those values"}
     ```
+
+{% unless include.disable_accordian %}
 </details>
+{% endunless %}

@@ -7,7 +7,7 @@ Learn to configure the Kong ACL Plugin. To use the ACL Plugin you need at least 
 
 {% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false%}
 
-{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
+{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
 
 {% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/lemon' name='lemon' %}
 
@@ -246,7 +246,7 @@ kubectl annotate ingress lemon konghq.com/plugins=admin-acl
 kubectl annotate ingress lime konghq.com/plugins=anyone-acl
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 kubectl annotate httproute lemon konghq.com/plugins=admin-acl
 kubectl annotate httproute lime konghq.com/plugins=anyone-acl
@@ -266,7 +266,7 @@ ingress.networking.k8s.io/lemon annotated
 ingress.networking.k8s.io/lime annotated
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 httproute.gateway.networking.k8s.io/lemon annotated
 httproute.gateway.networking.k8s.io/lime annotated

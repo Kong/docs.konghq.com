@@ -7,7 +7,7 @@ Learn to setup the OIDC plugin using the Ingress Controller. It is important tha
 
 {% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false enterprise=true %}
 
-{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
+{% include /md/kic/test-service-echo.md kong_version=page.kong_version %}
 
 {% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/echo' name='echo' hostname="127.0.0.1.nip.io" no_indent=true %}
 
