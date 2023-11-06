@@ -603,18 +603,18 @@ messages:
       For the `openid-connect` plugin, one or more `config` fields are set but Kong
       Gateway versions < 3.2.0.0 do not support these fields. The plugin configuration
       has been updated and these fields have been mapped to their old names:
-      `session_rolling_timeout` => `session_cookie_lifetime`,
-      `session_cookie_same_site` => `session_cookie_samesite`,
       `session_cookie_http_only` => `session_cookie_httponly`,
+      `session_memcached_prefix` => `session_memcache_prefix`,
+      `session_memcached_socket` => `session_memcache_socket`,
       `session_redis_cluster_max_redirections` =>
-      `session_redis_cluster_maxredirections`, `session_memcached_host` =>
-      `session_memcache_host`, `session_memcached_port` => `session_memcache_port`,
-      `authorization_rolling_timeout` => `authorization_cookie_lifetime`,
+      `session_redis_cluster_maxredirections`, `authorization_rolling_timeout` =>
+      `authorization_cookie_lifetime`, `session_idling_timeout` =>
+      `session_cookie_idletime`, `session_cookie_same_site` =>
+      `session_cookie_samesite`, `session_memcached_host` => `session_memcache_host`,
+      `session_memcached_port` => `session_memcache_port`,
       `authorization_cookie_same_site` => `authorization_cookie_samesite`,
       `authorization_cookie_http_only` => `authorization_cookie_httponly`,
-      `session_idling_timeout` => `session_cookie_idletime`,
-      `session_memcached_prefix` => `session_memcache_prefix`,
-      `session_memcached_socket` => `session_memcache_socket`
+      `session_rolling_timeout` => `session_cookie_lifetime`
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
@@ -678,13 +678,13 @@ messages:
       For the `saml` plugin, one or more `config` fields are set but Kong Gateway
       versions < 3.2.0.0 do not support these fields. The plugin configuration has
       been updated and these fields have been mapped to their old names:
-      `session_memcached_port` => `session_memcache_port`, `session_rolling_timeout`
+      `session_idling_timeout` => `session_cookie_idletime`, `session_rolling_timeout`
       => `session_cookie_lifetime`, `session_cookie_same_site` =>
       `session_cookie_samesite`, `session_cookie_http_only` =>
-      `session_cookie_httponly`, `session_memcached_prefix` =>
-      `session_memcache_prefix`, `session_memcached_socket` =>
-      `session_memcache_socket`, `session_memcached_host` => `session_memcache_host`,
-      `session_idling_timeout` => `session_cookie_idletime`,
+      `session_cookie_httponly`, `session_memcached_socket` =>
+      `session_memcache_socket`, `session_memcached_port` => `session_memcache_port`,
+      `session_memcached_prefix` => `session_memcache_prefix`,
+      `session_memcached_host` => `session_memcache_host`,
       `session_redis_cluster_max_redirections` =>
       `session_redis_cluster_maxredirections`
     Resolution: |
@@ -732,8 +732,8 @@ messages:
       consumer. This is not supported in Kong Gateway versions < 3.2.0.0. The plugin
       has been removed in the data plane node.
     Resolution: |
-      Unset the `consumer` fields for the plugin, or upgrade Kong Gateway to a version
-      >= 3.2.0.0.
+      Unset the `consumer` fields for the plugin, or upgrade Kong Gateway to a 
+      version >= 3.2.0.0.
     DocumentationURL: |
       [App Dynamics plugin](/hub/kong-inc/app-dynamics/)
   - ID: D168
@@ -1025,8 +1025,8 @@ messages:
     Description: |
       For the `graphql-rate-limiting-advanced` plugin, instances have been configured
       with `strategy=redis` and the `cluster_addresses` field set. This is not
-      supported in Kong Gateway versions < 3.4.1.0. For data plane nodes with version
-      >= 3.2.0.0 and < 3.4.1.0, the plugin configuration has been changed to
+      supported in Kong Gateway versions < 3.4.1.0. For data plane nodes with 
+      version >= 3.2.0.0 and < 3.4.1.0, the plugin configuration has been changed to
       `config.strategy=cluster` and `config.sync_rate=-1`.
     Resolution: |
       Unset the `redis` fields for the plugin, or upgrade Kong Gateway to a version >=
@@ -1588,7 +1588,7 @@ messages:
   - ID: P145
     Severity: error
     Description: |
-      For the `pre-function` plugin, one or more of the following `config` fields are
+      For the `post-function` plugin, one or more of the following `config` fields are
       set: `ws_handshake`, `ws_client_frame`, `ws_upstream_frame`, `ws_close` but Kong
       Gateway versions < 3.0.0.0 do not support these fields. Plugin features that
       rely on these fields are not working as intended.
@@ -1650,8 +1650,8 @@ messages:
   - ID: P151
     Severity: error
     Description: |
-      For the `upstreams` entity, the `algorithm` field is set to `latency'but Kong
-      Gateway versions < 3.2.0.0 do not support this value.Because of this,
+      For the `upstreams` entity, the `algorithm` field is set to `latency` but Kong
+      Gateway versions < 3.2.0.0 do not support this value. Because of this,
       `algorithm` has been set to the default value `round-robin` and features
       depending on the `latency` algorithm may not work as expected.
     Resolution: |
@@ -1705,10 +1705,10 @@ messages:
     Description: |
       For the `session` plugin, one or more `config` fields are set but Kong Gateway
       versions < 3.2.0.0 do not support these fields. The plugin configuration has
-      been updated and these fields have been mapped to their old names:
-      `cookie_http_only` => `cookie_httponly`, `rolling_timeout` => `cookie_lifetime`,
-      `idling_timeout` => `cookie_idletime`, `stale_ttl` => `cookie_discard`,
-      `cookie_same_site` => `cookie_samesite`
+      been updated and these fields have been mapped to their old names: `stale_ttl`
+      => `cookie_discard`, `cookie_same_site` => `cookie_samesite`, `cookie_http_only`
+      => `cookie_httponly`, `rolling_timeout` => `cookie_lifetime`, `idling_timeout`
+      => `cookie_idletime`
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
@@ -2047,8 +2047,8 @@ messages:
   - ID: P188
     Severity: error
     Description: |
-      For the `ip-restriction` plugin, the'protocols` array contains one or both of:
-      `TLS`, `TCP`.This is not supported in Kong Gateway versions < 3.4.0.0. These
+      For the `ip-restriction` plugin, the `protocols` array contains one or both of:
+      `TLS`, `TCP`. This is not supported in Kong Gateway versions < 3.4.0.0. These
       values have been removed and plugin features that rely on these values are not
       working as intended. If `TLS` and/or `TCP` were the only values, then protocols
       has been reset to the default values of [`HTTP`, `HTTPS`, `GRPC`, `GRPCS`].
@@ -2073,7 +2073,7 @@ messages:
   - ID: P190
     Severity: warning
     Description: |
-      For the `vaults` entity, the'prefix` value contains hyphens. This is not
+      For the `vaults` entity, the `prefix` value contains hyphens. This is not
       supported in Kong Gateway versions < 3.3.0.0. Hyphens have been converted to
       underscores.
     Resolution: |
