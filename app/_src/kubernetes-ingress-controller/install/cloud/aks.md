@@ -10,7 +10,7 @@ purpose: |
 * [Set up an AKS cluster](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough).
 * Install `kubectl` and connect to the AKS Kubernetes cluster.
 
-{% include_cached /md/kic/deploy-kic-v3.md version=page.version %}
+{% include /md/kic/deploy-kic-v3.md version=page.version %}
 
 ## Setup environment variables
 

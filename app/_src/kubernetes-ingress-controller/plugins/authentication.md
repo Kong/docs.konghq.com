@@ -10,11 +10,11 @@ Learn to configure multiple authentication options for consumers using the {{sit
 The default behavior for Kong authentication plugins is to require credentials
 for all requests even if a request has been authenticated through another plugin. Configure an anonymous consumer on your authentication plugins to set clients authentication options.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
+{% include /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
 
-{% include_cached /md/kic/test-service-httpbin.md %}
+{% include /md/kic/test-service-httpbin.md %}
 
-{% include_cached /md/kic/http-test-routing-resource.md kong_version=page.kong_version path='/test' name='httpbin' service='httpbin' port='80' skip_host=true %}
+{% include /md/kic/http-test-routing-resource.md kong_version=page.kong_version path='/test' name='httpbin' service='httpbin' port='80' skip_host=true %}
 
 ## Create Consumers and secrets
 
@@ -37,13 +37,13 @@ Create two consumers that use different authentication methods:
     ```
 
 1. Create a consumer named `consumer-1`.
-    {% include_cached /md/kic/consumer.md kong_version=page.kong_version name='consumer-1' credName='consumer-1-basic-auth' %}
+    {% include /md/kic/consumer.md kong_version=page.kong_version name='consumer-1' credName='consumer-1-basic-auth' %}
 
 1. Create a secret to add `key-auth` credential for `consumer-2`. 
-    {% include_cached /md/kic/key-auth.md kong_version=page.kong_version credName='consumer-2-key-auth' key='consumer-2-password' %}
+    {% include /md/kic/key-auth.md kong_version=page.kong_version credName='consumer-2-key-auth' key='consumer-2-password' %}
 
 1. Create a consumer named `consumer-2`.
-    {% include_cached /md/kic/consumer.md kong_version=page.kong_version name='consumer-2' credName='consumer-2-key-auth' %}
+    {% include /md/kic/consumer.md kong_version=page.kong_version name='consumer-2' credName='consumer-2-key-auth' %}
 
 ## Secure the Ingress
 
@@ -90,7 +90,7 @@ Create two consumers that use different authentication methods:
 
 1. Associate the plugins with the route that you created.
 
-{% include_cached /md/kic/annotate-plugin.md name='httpbin' plugins="httpbin-basic-auth, httpbin-key-auth" skip_header=true indent=true %}
+{% include /md/kic/annotate-plugin.md name='httpbin' plugins="httpbin-basic-auth, httpbin-key-auth" skip_header=true indent=true %}
 
 ## Anonymous Consumers
 
@@ -99,7 +99,7 @@ Your endpoints are now secure, but neither consumer can access the endpoint when
 To allow multiple authentication methods, create an anonymous consumer which is the default user if no valid credentials are provided:
 
 1. Create a consumer named `anonymous`.
-    {% include_cached /md/kic/consumer.md kong_version=page.kong_version name='anonymous' %}
+    {% include /md/kic/consumer.md kong_version=page.kong_version name='anonymous' %}
 
     All requests to the API will now succeed as the anonymous consumer is being used as a default.
 

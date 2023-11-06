@@ -11,7 +11,7 @@ purpose: |
 * [Set up an GKE cluster](https://cloud.google.com/kubernetes-engine/docs/).
 * Install `kubectl` and update your `kubeconfig` to point to the GKE Kubernetes cluster by running `gcloud container clusters get-credentials <my-cluster-name> --zone <my-zone> --project <my-project-id>`
 
-{% include_cached /md/kic/deploy-kic-v3.md version=page.version %}
+{% include /md/kic/deploy-kic-v3.md version=page.version %}
 
 ## Setup environment variables
 

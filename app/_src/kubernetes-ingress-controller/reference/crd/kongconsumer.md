@@ -17,7 +17,7 @@ purpose: |
 
 KongConsumer is the Schema for the kongconsumers API.
 
-{% include_cached md/kic/crd-ref/kong_consumer_description.md kong_version=page.kong_version %}
+{% include md/kic/crd-ref/kong_consumer_description.md kong_version=page.kong_version %}
 
 | Field | Description |
 | --- | --- |
@@ -35,7 +35,7 @@ KongConsumer is the Schema for the kongconsumers API.
 
 KongConsumerGroup is the Schema for the kongconsumergroups API.
 
-{% include_cached md/kic/crd-ref/kong_consumer_group_description.md kong_version=page.kong_version %}
+{% include md/kic/crd-ref/kong_consumer_group_description.md kong_version=page.kong_version %}
 
 | Field | Description |
 | --- | --- |
