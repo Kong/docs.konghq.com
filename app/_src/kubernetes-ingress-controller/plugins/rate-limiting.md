@@ -8,11 +8,11 @@ Kong can rate limit traffic without any external dependency. Kong stores the req
 
 You can use the {{site.ee_product_name}} **Secrets Management** feature along with the example rate-limiting plugin. If you have an existing plugin that you wish to use Secrets Management with, you can skip directly to [the Secrets Management section](#optional-use-secrets-management) and use it for your plugin instead of the rate-limiting plugin.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
+{% include /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
 
-{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version skip_host=true %}
+{% include /md/kic/test-service-echo.md kong_version=page.kong_version skip_host=true %}
 
-{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version skip_host=true %}
+{% include /md/kic/http-test-routing.md kong_version=page.kong_version skip_host=true %}
 
 ## Set up rate limiting
 

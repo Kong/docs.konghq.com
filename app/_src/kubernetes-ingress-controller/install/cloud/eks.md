@@ -10,7 +10,7 @@ purpose: |
 * [Set up an EKS cluster](https://aws.amazon.com/getting-started/projects/deploy-kubernetes-app-amazon-eks/).
 * Install `kubectl` and update your `kubeconfig` to point to the EKS Kubernetes cluster by running `aws eks --region $AWS_REGION update-kubeconfig --name $CLUSTER_NAME`
 
-{% include_cached /md/kic/deploy-kic-v3.md version=page.version %}
+{% include /md/kic/deploy-kic-v3.md version=page.version %}
 
 ## Setup environment variables
 

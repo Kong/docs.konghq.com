@@ -9,15 +9,15 @@ Learn to configure the {{site.kic_product_name}} to redirect HTTP requests to
 HTTPS so that all communication from the external world to your APIs and
 microservices is encrypted.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
+{% include /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
 
-{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
+{% include /md/kic/test-service-echo.md kong_version=page.kong_version %}
 
-{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version %}
+{% include /md/kic/http-test-routing.md kong_version=page.kong_version %}
 
 ## Add TLS configuration
 
-{% include_cached /md/kic/add-tls-conf.md hostname='kong.example' kong_version=page.kong_version %}
+{% include /md/kic/add-tls-conf.md hostname='kong.example' kong_version=page.kong_version %}
 
 ## Configure a HTTPS redirect
 

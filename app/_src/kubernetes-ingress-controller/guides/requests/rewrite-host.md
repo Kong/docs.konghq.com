@@ -7,11 +7,11 @@ purpose: |
 
 This guide demonstrates host and path rewrites using Ingress and Service configuration.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false%}
+{% include /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false%}
 
-{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
+{% include /md/kic/test-service-echo.md kong_version=page.kong_version %}
 
-{% include_cached /md/kic/http-test-routing.md kong_version=include.kong_version path='/echo' name='echo' %}
+{% include /md/kic/http-test-routing.md kong_version=include.kong_version path='/echo' name='echo' %}
 
 ## Rewriting the host
 
