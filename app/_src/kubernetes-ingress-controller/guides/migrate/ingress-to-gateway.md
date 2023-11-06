@@ -7,26 +7,25 @@ purpose: |
 
 ## Prerequisites
 
-Ensure that you have installed `Make`, `Git`, and [go][go] to download and execute
-the [`ingress2gateway`][ingress2gateway] tool.
+- Ensure that you have installed `Make`, `Git`, and [go][go] to download and execute the [`ingress2gateway`][ingress2gateway] tool.
 
-```bash
-git clone https://github.com/kong/ingress2gateway
-cd ingress2gateway
-git checkout preview
-make build
-export PATH=$PATH:$(pwd)
-```
+    ```bash
+    git clone https://github.com/kong/ingress2gateway
+    cd ingress2gateway
+    git checkout preview
+    make build
+    export PATH=$PATH:$(pwd)
+    ```
 
-[go]: https://go.dev/dl/
-[ingress2gateway]: https://github.com/kubernetes-sigs/ingress2gateway
+   [go]: https://go.dev/dl/
+   [ingress2gateway]: https://github.com/kubernetes-sigs/ingress2gateway
 
 ## Convert all the yaml files
 
 In order to migrate your resources from `Ingress` API to Gateway API you need all
 the `Ingress`-based `yaml` manifests. You can use these manifests as source to
 migrate to the new API by creating copies that replace the `Ingress` resources
-with Gateway API ones. Now, use the `ingress2gateway` tool to create new manifests
+with Gateway API resources. Then, use the `ingress2gateway` tool to create new manifests
 containing the gateway API configurations.
 
 1. Export your source and destination paths.
@@ -59,7 +58,7 @@ containing the gateway API configurations.
 
 ## Check the new manifests
 
-The manifests conversion will be performed as follows:
+The manifests conversion are as follows:
 
 - `Ingress`es are converted to `Gateway` and `HTTPRoute`s
 - `TCPIngress`es are converted to `Gateway` and `TCPRoute`s and `TLSRoute`s
