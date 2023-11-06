@@ -27,14 +27,14 @@ items:
       - text: Release Notes
         url: /gateway/changelog
         absolute_url: true
-      - text: Breaking Changes	
+      - text: Breaking Changes
         items:
-          - text: Kong Gateway 3.5.x	
+          - text: Kong Gateway 3.5.x
             url: /breaking-changes/
             src: /gateway/breaking-changes/35x
-          - text: Kong Gateway 3.4.x	
+          - text: Kong Gateway 3.4.x
             url: /breaking-changes/34x/
-          - text: Kong Gateway 3.3.x	
+          - text: Kong Gateway 3.3.x
             url: /breaking-changes/33x/
           - text: Kong Gateway 3.2.x
             url: /breaking-changes/32x/
@@ -403,8 +403,12 @@ items:
         url: /plugin-development/tests
       - text: (un)Installing your Plugin
         url: /plugin-development/distribution
-      - text: Create a Proxy-Wasm filter
-        url: /plugin-development/wasm
+      - text: Proxy-Wasm Filters
+        items:
+        - text: Create a Proxy-Wasm Filter
+          url: /plugin-development/wasm/filter-development-guide
+        - text: Proxy-Wasm Filter Configuration
+          url: /plugin-development/wasm/filter-configuration
       - text: Plugin Development Kit
         items:
         - text: Overview

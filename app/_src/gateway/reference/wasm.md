@@ -138,7 +138,7 @@ Please refer to the [ngx_wasm_module Proxy-Wasm documentation](https://github.co
 
 ## Further Reading
 
-* [Create a Proxy-Wasm filter](/gateway/latest/plugin-development/wasm)
+* [Create a Proxy-Wasm filter](/gateway/latest/plugin-development/wasm/filter-development-guide)
 * [WebAssembly for Proxies (Proxy-Wasm) specification](https://github.com/proxy-wasm/spec)
 * [`ngx_wasm_module`](https://github.com/Kong/ngx_wasm_module)
 * [`ngx_wasm_module` Proxy-Wasm documentation](https://github.com/Kong/ngx_wasm_module/blob/main/docs/PROXY_WASM.md)
