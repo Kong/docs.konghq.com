@@ -308,6 +308,8 @@ items:
             url: /kong-enterprise/fips-support/plugins
       - text: Authenticate your Kong Gateway Amazon RDS database with AWS IAM
         url: /kong-enterprise/aws-iam-auth-to-rds-database
+      - text: Verify signatures for Signed Kong Images
+        url: /kong-enterprise/signing-verify
 
   - title: Kong Manager
     icon: /assets/images/icons/documentation/icn-manager-color.svg
