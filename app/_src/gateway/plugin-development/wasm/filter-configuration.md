@@ -38,7 +38,7 @@ adjacent to the filter's bytecode within the `wasm_filters_path` directory:
 └── other-filter.meta.json
 ```
 
-Configuration schema is supplied in the `config_schema` metadata field. Example:
+The configuration schema is supplied in the `config_schema` metadata field. For example:
 
 ```json
 {
@@ -100,7 +100,7 @@ $ cat <<'EOF' | http POST :8001/services/test/filter-chains
 In this example, `set-response-header` is a filter that sets a single response
 header. It takes a JSON configuration with a header name and value.
 
-Here is the contents of `$KONG_WASM_FILTERS_PATH/set-response-header.meta.json`:
+Here are the contents of `$KONG_WASM_FILTERS_PATH/set-response-header.meta.json`:
 
 ```json
 {
