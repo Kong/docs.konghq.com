@@ -119,7 +119,7 @@ spec:
 ```
 {% endif_version %}
 
-{% if_version gte: 2.6.x %}
+{% if_version gte:2.6.x %}
 ```bash
 $ echo "apiVersion: gateway.networking.k8s.io/v1beta1
 kind: GatewayClass
@@ -158,7 +158,7 @@ spec:
 ```
 {% endif_version %}
 
-{% if_version gte: 2.6.x %}
+{% if_version gte:2.6.x %}
 ```bash
 $ echo "apiVersion: gateway.networking.k8s.io/v1beta1
 kind: Gateway
@@ -214,7 +214,7 @@ resource, we set the `konghq.com/gateway-unmanaged` annotation to the
 that {{site.base_gateway}} resource with listener and status information. 
 {% endif_version %}
 
-{% if_version gte: 2.6.x %}
+{% if_version gte:2.6.x %}
 To configure KIC to reconcile the Gateway resource, you must set the 
 `konghq.com/gatewayclass-unmanaged` annotation as the example in GatewayClass resource used in 
 `spec.gatewayClassName` in Gateway resource. Also, the 
@@ -287,7 +287,7 @@ spec:
 ```
 {% endif_version %}
 
-{% if_version gte: 2.6.x %}
+{% if_version gte:2.6.x %}
 ```bash
 $ echo "apiVersion: gateway.networking.k8s.io/v1beta1
 kind: HTTPRoute
@@ -337,7 +337,7 @@ Via: kong/3.1.1
 echo-658c5ff5ff-8cvgj%
 ```
 
-{% if_version gte: 2.6.x %}
+{% if_version gte:2.6.x %}
 ## Traffic splitting with HTTPRoute
 
 HTTPRoute contains a [`BackendRefs`][gateway-api-backendref] field, which allows
@@ -405,7 +405,7 @@ echo-658c5ff5ff-8cvgj%
 {% if_version lte: 2.5.x %}
 ## Alpha limitations
 {% endif_version %}
-{% if_version gte: 2.6.x %}
+{% if_version gte:2.6.x %}
 ## Beta limitations
 {% endif_version %}
 

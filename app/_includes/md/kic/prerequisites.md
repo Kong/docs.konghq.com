@@ -15,7 +15,7 @@
 1. Install the Gateway API CRDs before installing {{ site.kic_product_name }}.
 
     ```bash
-    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.0.0-rc2/standard-install.yaml
+    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.0.0/standard-install.yaml
     ```
 
     {% if include.gateway_api_experimental %}
@@ -23,7 +23,7 @@
 1. Install the experimental Gateway API CRDs to test this feature.
 
     ```bash
-    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.0.0-rc2/experimental-install.yaml
+    kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.0.0/experimental-install.yaml
     ```
     {% endif %}
 
