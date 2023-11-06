@@ -33,11 +33,9 @@ set multiple header values. You must set the CSV format within a single header.
 ## KongUpstreamPolicy
 
 The `upstream` section of `KongIngress` resources contains a complex object that does not easily fit in annotations. Version 3.x uses the new `KongUpstreamPolicy` resource to configure upstream settings. The `spec` field of `KongUpstreamPolicy` is similar to the `upstream` section of KongIngress, with the following differences:
+
 - Field names now use `lowerCamelCase` instead of `snake_case` to be consistent with Kubernetes APIs.
-- `hash_on`, `hash_fallback`, and their related `has_on_*`, `hash_fallback_*` fields are now `hashOn` and
-`hashOnFallback` objects. To define the primary hashing strategy, use `hashOn` with one of its fields filled
-(e.g. when you want to hash on a header, fill `hashOn.header` with a header name). Similarly, to define the
-secondary hashing strategy, use `hashOnFallback`.
+- `hash_on`, `hash_fallback`, and their related `has_on_*`, `hash_fallback_*` fields are now `hashOn` and `hashOnFallback` objects. To define the primary hashing strategy, use `hashOn` with one of its fields filled (e.g. when you want to hash on a header, fill `hashOn.header` with a header name). Similarly, to define the secondary hashing strategy, use `hashOnFallback`.
 
 For the exact schema please refer to [KongUpstreamPolicy reference](https://docs.konghq.com/kubernetes-ingress-controller/2.12.x/references/custom-resource-definitions/#kongupstreampolicy). 
 
@@ -72,5 +70,5 @@ spec:
 
 Apply it to a Service resource with a `konghq.com/upstream-policy: sample-customization` annotation.
 
-[annotations]:https://docs.konghq.com/kubernetes-ingress-controller/2.12.x/references/annotations/
-[headers-annotation]:https://docs.konghq.com/kubernetes-ingress-controller/2.12.x/references/annotations/#konghqcomheaders
+[annotations]:/kubernetes-ingress-controller/{{ page.release }}/reference/annotations/
+[headers-annotation]:/kubernetes-ingress-controller/{{ page.release }}/reference/annotations/#konghqcomheaders

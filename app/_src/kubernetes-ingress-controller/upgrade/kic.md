@@ -205,3 +205,5 @@ they were added in code:
 
 Although the default log setting is still `console`, `json` should be used for
 production systems, or any other systems that need machine-parseable logs.
+
+[annotations]:/kubernetes-ingress-controller/{{ page.release }}/reference/annotations/
