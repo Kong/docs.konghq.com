@@ -7,14 +7,13 @@ purpose: |
 
 ## Prerequisites
 
-- Ensure that you have installed `Make`, `Git`, and [go][go] to download and execute the [`ingress2gateway`][ingress2gateway] tool.
+- Ensure that you have installed `Make`, `git`, and [Go][go] to download and execute the [`ingress2gateway`][ingress2gateway] tool.
 
     ```bash
-    git clone https://github.com/kong/ingress2gateway
+    git clone --branch preview https://github.com/kong/ingress2gateway
     cd ingress2gateway
-    git checkout preview
     make build
-    export PATH=$PATH:$(pwd)
+    export PATH=${PATH}:$(pwd)
     ```
 
    [go]: https://go.dev/dl/

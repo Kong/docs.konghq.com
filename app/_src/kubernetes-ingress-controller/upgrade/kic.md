@@ -12,9 +12,9 @@ purpose: |
 
 ### Prerequisites
 
-1. Use Helm as your deployment mechanism. As of {{ site.kic_product_name }} 3.0, [Helm](https://github.com/Kong/charts/) is the only officially supported install method.
+1.  Ensure that you installed {{ site.kic_product_name }} 3.0, using [Helm](https://github.com/Kong/charts/).
 
-1. Run `helm repo update` to fetch the latest version of the Kong Helm chart.
+1. Fetch the latest version of the Kong Helm chart using `helm repo update`.
 
 1. Update your `values.yaml` file to use the latest version of {{ site.kic_product_name }}. The values to set are different depending on if you've installed with the `kong/ingress` chart or the `kong/kong` chart. You can find which chart you're using by running `helm list -A -o yaml | grep chart`.
 
@@ -42,7 +42,7 @@ ingressController:
 ### Upgrade
 
 Run the following command, specifying the old release name, the namespace where
-you've configured {{site.base_gateway}}, and the existing `values.yaml` configuration file:
+you've configured {{site.base_gateway}}, and the existing `values.yaml` configuration file.
 
 {% navtabs %}
 {% navtab kong/ingress %}
@@ -73,7 +73,7 @@ Once the new pods are in a `Ready` state, the upgrade is complete.
 
 ### Rollback
 
-If you run into problems during or after the upgrade, Helm provides a rollback mechanism to revert to a previous revision of the release:
+If you run into problems during or after the upgrade, Helm provides a rollback mechanism to revert to a previous revision of the release.
 
 ```shell
 $ helm rollback --namespace ${YOUR_RELEASE_NAMESPACE} ${YOUR_RELEASE_NAME}
@@ -85,7 +85,7 @@ You can wait for the rollback to complete by watching the relevant Pod resources
 $ kubectl -n ${YOUR_RELEASE_NAMESPACE} get pods -w
 ```
 
-After a rollback, if you ran into issues in production, consider using a testing environment to identify and correct these issues, or reference the [troubleshooting documentation](/kubernetes-ingress-controller/{{page.release}}/reference/troubleshooting/).
+After a rollback, if you run into issues in production, consider using a testing environment to identify and correct these issues, or reference the [troubleshooting documentation](/kubernetes-ingress-controller/{{page.release}}/reference/troubleshooting/).
 
 ## Upgrade to {{ site.kic_product_name }} 3.0 {#upgrade-30}
 
@@ -93,20 +93,19 @@ After a rollback, if you ran into issues in production, consider using a testing
 
     As of {{ site.kic_product_name }} 3.0, [Helm](https://github.com/Kong/charts/) is the only officially supported install method.
 
-1. **Upgrade Kong to version 3.4.1 or higher.**
+1. **Upgrade Kong to version 3.4.1 or later.**
 
-    {{ site.kic_product_name }} 3.0 requires Kong version 3.4.1 or higher. You must upgrade your Kong instances to 3.4.1 prior to upgrading to {{ site.kic_product_name }} 3.0.
+    {{ site.kic_product_name }} 3.0 requires Kong version 3.4.1 or later. You must upgrade your Kong instances to 3.4.1 before you upgrade to {{ site.kic_product_name }} 3.0.
 
 1. **Update the {{ site.kic_product_name }} CRDs.**
 
-    Helm does not upgrade CRDs automatically. You must apply the 3.x CRDs prior to
-    upgrading your releases:
+    Helm does not upgrade CRDs automatically. You must apply the 3.x CRDs before you upgrade your releases.
 
     ```bash
     kubectl kustomize https://github.com/Kong/kubernetes-ingress-controller//config/crd/?v3.0.0 | kubectl apply -f -
     ```
 
-1. **Convert KongIngress `route` and `service` fields to annotations.**
+1. **Convert `KongIngress` `route` and `service` fields to annotations.**
 
     Route (Ingress) and service (Service) configuration fields previously available in KongIngress are now all handled via [dedicated annotations][annotations] and will not be respected if set in `KongIngress`.
 
@@ -114,15 +113,15 @@ After a rollback, if you ran into issues in production, consider using a testing
 
 1. **Remove the `CombinedRoutes` and `CombinedServices` feature gates if set.**
 
-    The `CombinedRoutes` and `CombinedServices` feature gates have been enabled by default since versions 2.8.0 and 2.11.0, respectively. 3.x removes these feature gates and the combined generators are now the only option. You must remove these flags from the `CONTROLLER_FEATURE_GATES` environment variable if they are present.
+    The `CombinedRoutes` and `CombinedServices` feature gates have been enabled by default since versions 2.8.0 and 2.11.0, respectively. Version 3.x removes these feature gates and the combined generators are now the only option. You must remove these flags from the `CONTROLLER_FEATURE_GATES` environment variable if they are present.
 
 1. **Remove the `Knative` feature gate if set.**
 
-    As KNative is [no longer supported](https://github.com/Kong/kubernetes-ingress-controller/issues/2813), you will need to use another controller for KNative Ingress resources if you use them.
+    As KNative is [no longer supported](https://github.com/Kong/kubernetes-ingress-controller/issues/2813), you need to use another controller for KNative Ingress resources if you use them.
 
 1. **Remove or rename outdated CLI arguments and `CONTROLLER_*` environment variables.**
 
-    3.0 removes or renames several flags that were previously deprecated, were
+    Version 3.0 removes or renames several flags that were previously deprecated, were
     removed due to other changes, or were left over for compatibility after their
     functionality was removed.
     

@@ -8,7 +8,7 @@ The [`konghq.com/headers.*` annotation][headers-annotation] uses a special
 format to set headers. The string after the `.` in the annotation name is the
 header name and the annotation value is the header value. For example, to apply
 `x-custom-header-a: example,otherexample` and `x-custom-header-b: example`
-headers to requests, KongIngress configuration would look like:
+headers to requests, the KongIngress configuration is:
 
 ```yaml
 route:
@@ -27,12 +27,12 @@ konghq.com/headers.x-custom-header-a: example,otherexample
 konghq.com/headers.x-custom-header-b: example
 ```
 
-Note that you cannot apply multiple instances of the same header annotation to
-set multiple header values: you must set the CSV format within a single header.
+You cannot apply multiple instances of the same header annotation to
+set multiple header values. You must set the CSV format within a single header.
 
 ## KongUpstreamPolicy
 
-The `upstream` section of KongIngress resources contains a complex object that does not easily fit in annotations. 3.x uses the new KongUpstreamPolicy resource to configure upstream settings. The `spec` field of KongUpstreamPolicy is the same as the `upstream` section of KongIngress. For example, if you previously used a KongIngress like:
+The `upstream` section of `KongIngress` resources contains a complex object that does not easily fit in annotations. Version 3.x uses the new `KongUpstreamPolicy` resource to configure upstream settings. The `spec` field of `KongUpstreamPolicy` is the same as the `upstream` section of `KongIngress`. For example, if you previously used a `KongIngress`:
 
 ```yaml
 apiVersion: configuration.konghq.com/v1
@@ -46,7 +46,7 @@ upstream:
   algorithm: consistent-hashing
 ```
 
-You will now use a KongUpstreamPolicy like:
+You need to use a `KongUpstreamPolicy`:
 
 ```yaml
 apiVersion: configuration.konghq.com/v1beta1
