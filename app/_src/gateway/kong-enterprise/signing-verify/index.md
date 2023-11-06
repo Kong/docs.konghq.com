@@ -10,9 +10,12 @@ This guide provides steps to verify signatures for signed {{site.ee_product_name
 For the minimal example, you only need: Docker details, Github repo name, and Github workflow filename.
 For the complete example, you will need the same details from above, as well as any of the optional annotations you wish to verify:
 
-- Github commit sha
-- Github repository
-- Github workflow name
+| "token" | Description | Example Value |
+|---|---|---|
+| `<sha>` | Github commit sha | `3687f9f32a80a60869cc3c0b7584be9696973e7e` |
+| `<repo>` | Github repository | `kong-ee` |
+| `<workflow filename>` | Github workflow filename | `release.yml` |
+| `<workflow name>` | Github workflow name | `Package & Release` |
 
 Because Kong uses Github Actions to build and release, Kong also uses Github's OIDC identity to sign images; thus many of these details are Github-related.
 
@@ -52,6 +55,16 @@ cosign verify \
 ```
 
 ### Complete Example
+
+```sh
+cosign verify \
+   <image>:<tag>@sha256:<digest> \
+   --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \
+   --certificate-identity-regexp='https://github.com/Kong/<repo>/.github/workflows/<workflow filename>*' \
+   -a repo="Kong/<repo>" \
+   -a workflow="<workflow name>" \
+   -a sha="<sha>"
+```
 
 ```sh
 cosign verify \
