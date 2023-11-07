@@ -3,7 +3,8 @@ title: Debug requests
 content_type: explanation
 ---
 
-You can debug requests in {{site.base_gateway}}. This allows an admin user to collect timing information about a given request on demand. Request debugging is triggered using a secure token and the resulting data is returned in a response header named `X-Kong-Request-Debug-Output`. 
+{{site.base_gateway}} admins can debug requests by collecting timing information about a given request, on demand. 
+Request debugging is triggered using a secure token and the resulting data is returned in a response header named `X-Kong-Request-Debug-Output`. 
 
 Request debugging provides the following insights:
 * Time spent in various {{site.base_gateway}} components, such as plugins, DNS resolution, and load balancing. 
@@ -17,8 +18,7 @@ Request debugging provides the following insights:
 Request debugging is enabled by default and has the following configurations in [`kong.conf`](/gateway/{{page.kong_version}}/reference/configuration/):
 
 ```
-request_debug = on # request debugging is enabled
-request_debug = off # request debugging is disabled
+request_debug = on | off # enable or disable request debugging
 request_debug_token <token> # Set debug token explicitly. Otherwise, it will be generated randomly when Kong starts, restarts, and reloads. 
 ```
 
@@ -26,11 +26,13 @@ The debug token (`X-Kong-Request-Debug-Token`) is used to authenticate the clien
 
 You can find the debug token in the following locations:
 * **{{site.base_gateway}} error log:** The debug token is logged in the error log (notice level) when {{site.base_gateway}} starts, restarts, or reloads. The log line will have the `[request-debug]` prefix to aid in searching.
-* **Filesystem:** The debug token will also be stored in a file at `{prefix}/.request_debug_token` and updated when {{site.base_gateway}} starts, restarts, or reloads.
+* **Filesystem:** The debug token is also stored in a file at `{prefix}/.request_debug_token` and updated when {{site.base_gateway}} starts, restarts, or reloads.
 
 ## Debug request configuration
 
-To debug a request, certain request headers must be added. At a minimum, you should set the `X-Kong-Request-Debug` header. If the requests originate from loopback addresses, the `X-Kong-Request-Debug-Token` header also needs to be set.
+To debug a request, add the following request headers:
+* At a minimum, you should set the `X-Kong-Request-Debug` header. 
+* If the requests originate from loopback addresses, the `X-Kong-Request-Debug-Token` header also needs to be set.
 
 ### X-Kong-Request-Debug header
 
@@ -51,21 +53,21 @@ If this header isn't present or contains an unknown value, timing information wi
 
 ### X-Kong-Request-Debug-Log header
 
-If the `X-Kong-Request-Debug-Token` header is set to true, timing information will also be logged in the {{site.base_gateway}} error log with a log level of notice. By default, the `X-Kong-Request-Debug-Token` header is set to `false`. The log line will have the `[request-debug]` prefix to aid in searching.
+If the `X-Kong-Request-Debug-Token` header is set to true, timing information will also be logged in the {{site.base_gateway}} error log with a log level of `notice`. By default, the `X-Kong-Request-Debug-Token` header is set to `false`. The log line will have the `[request-debug]` prefix to aid in searching.
 
 ## Debug request example 
 
 The following is an example debug request:
 
 ```bash
-curl http://kong_proxy_host:8000/example \
+curl http://localhost:8000/example \
     -H "X-Kong-Request-Debug: *" \
     -H "X-Kong-Request-Debug-Token: xxxxxx"
 ```
 
 Here's an example of the output of the response header:
 
-```bash
+```json
 {
     "request_id": "2effa21fb2d36d31f80ed02635cde86b",
     "workspace_id": "7b7f79f2-8d52-470c-a307-e76f986041cf",
@@ -113,17 +115,17 @@ Here's an example of the output of the response header:
 }
 ```
 
-You can analyze the debug output like the following:
+If you analyze the example debug output, you can see that:
 * The unit of `total_time` is `millisecond`.
 * The DNS resolution for `example.host` was cached, which is why it's so fast in the example.
-* Upstream took 100ms in this request.
+* The upstream took 100ms in this request.
     * The elapsed time from {{site.base_gateway}} sending the request to the upstream to {{site.base_gateway}} receiving the first byte is 20ms.
     * The elapsed time from the first byte to the last byte from the upstream is 80ms.
 
 You can also filter the debug output:
 
 ```bash
-curl http://kong_proxy_host:8000/example \
+curl http://localhost:8000/example \
     -H "X-Kong-Request-Debug: upstream" \
     -H "X-Kong-Request-Debug-Token: xxxxxx"
 ```
@@ -142,7 +144,7 @@ X-Kong-Request-Debug-Output:
 The downstream system may impose a size restriction on response headers, leading {{site.base_gateway}} to truncate the `X-Kong-Request-Output` if it exceeds 2KB. This truncated output will be unconditionally logged in the `error_log`.
 
 ```bash
-curl http://kong_proxy_host:8000/large_debugging_output \
+curl http://localhost:8000/large_debugging_output \
     -H "X-Kong-Request-Debug: *" \
     -H "X-Kong-Request-Debug-Token: xxxxxx"
 ```
