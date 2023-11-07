@@ -67,36 +67,46 @@ and response bodies.
 Without a schema, JSON filter configuration must be serialized as a string in
 API requests:
 
-```console
-$ cat <<'EOF' | http POST :8001/services/test/filter-chains
-> {
->   "name": "my-filter-chain",
->   "filters": [
->     {
->       "name": "my-filter",
->       "config": "{ \"my-property\": \"My value\" }"
->     }
->   ]
-> }
-> EOF
+```
+POST /services/test/filter-chains HTTP/1.1
+Host: kong
+User-Agent: curl/8.0.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 143
+
+{
+  "name": "my-filter-chain",
+  "filters": [
+    {
+      "name": "my-filter",
+      "config": "{ \"my-property\": \"My value\" }"
+    }
+  ]
+}
 ```
 
 But with a schema, the configuration is accepted as JSON:
 
-```console
-$ cat <<'EOF' | http POST :8001/services/test/filter-chains
-> {
->   "name": "my-filter-chain",
->   "filters": [
->     {
->       "name": "my-filter",
->       "config": {
->         "my-property": "My value"
->       }
->     }
->   ]
-> }
-> EOF
+```
+POST /services/test/filter-chains HTTP/1.1
+Host: kong
+User-Agent: curl/8.0.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 151
+
+{
+  "name": "my-filter-chain",
+  "filters": [
+    {
+      "name": "my-filter",
+      "config": {
+        "my-property": "My value"
+      }
+    }
+  ]
+}
 ```
 
 ### Example
@@ -129,20 +139,30 @@ Here are the contents of `$KONG_WASM_FILTERS_PATH/set-response-header.meta.json`
 With the schema in place, configurations that do not pass validation are
 rejected:
 
-```console
-$ cat <<'EOF' | http POST :8001/services/test/filter-chains
-> {
->   "name": "my-filter-chain",
->   "filters": [
->     {
->       "name": "set-response-header",
->       "config": {
->         "header-name": "X-My-Custom-Header"
->       }
->     }
->   ]
-> }
-> EOF
+```
+POST /services/test/filter-chains HTTP/1.1
+Host: kong
+User-Agent: curl/8.0.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 171
+
+{
+  "name": "my-filter-chain",
+  "filters": [
+    {
+      "name": "set-response-header",
+      "config": {
+        "header-name": "X-My-Custom-Header"
+      }
+    }
+  ]
+}
+```
+
+Response:
+
+```
 HTTP/1.1 400 Bad Request
 Access-Control-Allow-Credentials: true
 Access-Control-Allow-Origin: *
@@ -169,21 +189,31 @@ X-Kong-Admin-Latency: 6
 
 Whereas valid configurations are accepted:
 
-```console
-$ cat <<'EOF' | http POST :8001/services/test/filter-chains
-> {
->   "name": "my-filter-chain",
->   "filters": [
->     {
->       "name": "set-response-header",
->       "config": {
->         "header-name": "X-My-Custom-Header",
->         "header-value": "Hello, Wasm!"
->       }
->     }
->   ]
-> }
-> EOF
+```
+POST /services/test/filter-chains HTTP/1.1
+Host: kong
+User-Agent: curl/8.0.1
+Content-Type: application/json
+Accept: application/json
+Content-Length: 211
+
+{
+  "name": "my-filter-chain",
+  "filters": [
+    {
+      "name": "set-response-header",
+      "config": {
+        "header-name": "X-My-Custom-Header",
+        "header-value": "Hello, Wasm!"
+      }
+    }
+  ]
+}
+```
+
+Response:
+
+```
 HTTP/1.1 201 Created
 Access-Control-Allow-Credentials: true
 Access-Control-Allow-Origin: *
