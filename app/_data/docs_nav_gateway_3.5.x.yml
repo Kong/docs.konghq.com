@@ -403,8 +403,12 @@ items:
         url: /plugin-development/tests
       - text: (un)Installing your Plugin
         url: /plugin-development/distribution
-      - text: Create a Proxy-Wasm filter
-        url: /plugin-development/wasm
+      - text: Proxy-Wasm Filters
+        items:
+          - text: Create a Proxy-Wasm Filter
+            url: /plugin-development/wasm/filter-development-guide
+          - text: Proxy-Wasm Filter Configuration
+            url: /plugin-development/wasm/filter-configuration
       - text: Plugin Development Kit
         items:
         - text: Overview
