@@ -33,7 +33,7 @@ Leave the process running.
     ```bash
     curl http://localhost:8001/services \
     -d name=acme-test \
-    -d url=http://mockbin.org
+    -d url=http://httpbin.org
     ```
 
 1. Configure a route:

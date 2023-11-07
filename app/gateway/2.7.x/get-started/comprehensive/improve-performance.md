@@ -91,7 +91,7 @@ plugin with a timeout of 30 seconds for Content-Type
     ``` yaml
     _format_version: "1.1"
     services:
-    - host: mockbin.org
+    - host: httpbin.org
       name: example_service
       port: 80
       protocol: http
@@ -134,12 +134,12 @@ Access the */mock* route using the Admin API and note the response headers:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X GET http://localhost:8000/mock/request
+curl -i -X GET http://localhost:8000/mock/anything
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-http :8000/mock/request
+http :8000/mock/anything
 ```
 {% endnavtab %}
 {% endnavtabs %}

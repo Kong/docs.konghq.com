@@ -177,7 +177,7 @@ end
     ```bash
     curl -i -X POST http://localhost:8001/services \
       --data name=example.com \
-      --data url='http://mockbin.org'
+      --data url='http://httpbin.org'
     ```
 
 2. Create a route in Kong:

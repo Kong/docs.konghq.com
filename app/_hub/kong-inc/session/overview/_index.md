@@ -40,13 +40,13 @@ For usage with [Key Auth] plugin
 1. Create an example Service and a Route
 
    Issue the following cURL request to create `example-service` pointing to
-   mockbin.org, which echoes the request:
+   httpbin.org, which echoes the request:
 
    ```bash
    curl -i -X POST \
      --url http://localhost:8001/services/ \
      --data 'name=example-service' \
-     --data 'url=http://mockbin.org/request'
+     --data 'url=http://httpbin.org/anything'
    ```
 
    Add a route to the Service:
@@ -160,7 +160,7 @@ Add all these to the declarative config file:
 ```yaml
 services:
   - name: example-service
-    url: http://mockbin.org/request
+    url: http://httpbin.org/anything
 
 routes:
   - service: example-service

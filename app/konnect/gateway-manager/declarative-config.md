@@ -115,7 +115,7 @@ For this example, let's add a new service.
       control_plane_name: default
     services:
     - name: MyService
-      host: mockbin.org
+      host: httpbin.org
       port: 80
       protocol: http
       routes:
@@ -132,7 +132,7 @@ For this example, let's add a new service.
             - apikey
     ```
 
-    This snippet defines a service named `MyService` pointing to `mockbin.org`.
+    This snippet defines a service named `MyService` pointing to `httpbin.org`.
     The service has one version, and the version gets implemented with the
     route `/mock`, which means that you can access the service by appending
     this route to your proxy URL.
@@ -251,7 +251,7 @@ header:
   -H 'apikey: {API_KEY}'
  ```
 
-If successful, you should see the homepage for `mockbin.org`. On the Service
+If successful, you should see the homepage for `httpbin.org`. On the Service
 Version overview page, you’ll see a record for status code `200`.
 
 If you try to access the route without a key, you'll get an authorization error:

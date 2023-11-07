@@ -45,7 +45,7 @@ consumers:
 - username: example-user2
 services:
 - connect_timeout: 60000
-    host: mockbin.org
+    host: httpbin.org
     name: MyService
     tags:
     - _KonnectService:example_service

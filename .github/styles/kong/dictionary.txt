@@ -61,7 +61,6 @@ Loggly
 Lua's
 Luarocks
 Memcached
-Mockbin
 Moesif
 MongoDB
 NAT

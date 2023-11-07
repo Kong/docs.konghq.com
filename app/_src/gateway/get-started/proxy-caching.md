@@ -85,7 +85,7 @@ will potentially be cached.
    information headers prefixed with `X-Cache`, so use `grep` to filter for that information:
 
    ```
-   curl -i -s -XGET http://localhost:8000/mock/requests | grep X-Cache
+   curl -i -s -XGET http://localhost:8000/mock/anything | grep X-Cache
    ```
 
    On the initial request, there should be no cached responses, and the headers will indicate this with
