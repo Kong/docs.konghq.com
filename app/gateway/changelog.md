@@ -20,7 +20,7 @@ unless `read_body_for_logout` is explicitly set to `true`. This adjustment preve
 
 * As of this release, the product component known as Kong Enterprise Portal is no longer included in the Kong Gateway Enterprise (previously known as Kong Enterprise) software package. Existing customers who have purchased Kong Enterprise Portal can continue to use it and be supported via a dedicated mechanism. 
   
-  If you have purchased Kong Enterprise Portal in the past and would like to continue to use it with this release or a future release of Kong Gateway Enterprise, please contact [Kong Support](https://support.konghq.com/support/s/) for more information.
+  If you have purchased Kong Enterprise Portal in the past and would like to continue to use it with this release or a future release of Kong Gateway Enterprise, contact [Kong Support](https://support.konghq.com/support/s/) for more information.
 
 * As of this release, the product component known as Vitals is deprecated and is no longer included in Kong Gateway Enterprise.
 Kong Konnect users can take advantage of our [API Analytics](/konnect/analytics/) offering, which provides a superset of Vitals functionality. 
