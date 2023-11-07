@@ -27,7 +27,7 @@ Kong Konnect users can take advantage of our [API Analytics](/konnect/analytics/
 
   Vitals continues to be supported for existing customers until August 2026 via the Kong Enterprise 3.4 LTS release.
 
-* The default value of the [`dns_no_sync`](/gateway/{{page.kong_version}}/reference/configuration/#dns_no_sync) option has been changed to `on`.
+* The default value of the [`dns_no_sync`](/gateway/3.5.x/reference/configuration/#dns_no_sync) option has been changed to `on`.
 [#11871](https://github.com/kong/kong/pull/11871).
 
 * Kong Gateway now requires an Enterprise license to use dynamic plugin ordering.
@@ -54,7 +54,7 @@ This change only affects documentation, and doesn't affect the Kong Gateway code
 * Added the ability to delete workspaces along with all associated resources.
 Previously, a workspace couldn't be deleted until all the entities associated with it were manually deleted. 
 With forced deletion, you can automatically remove any entities associated with a workspace while you are deleting it. 
-For more information, see [Delete a workspace](/gateway/latest/kong-manager/workspaces/#delete-a-workspace).
+For more information, see [Delete a workspace](/gateway/3.5.x/kong-manager/workspaces/#delete-a-workspace).
 * Added support for Azure's KeyVault Secrets Engine.
 * Enabled plugins to be scoped to consumer groups.
 * Implemented the removal of consumer group policies.
@@ -68,25 +68,38 @@ For more information, see [Delete a workspace](/gateway/latest/kong-manager/work
 * Added `cluster_fallback_export_s3_config` option to config S3 config backup `putObject` request. 
 * Added troubleshooting tools to container images.
 * `workspaces.get_workspace()` now tries to get workspace from cache instead of querying database directly. 
-* Introduced the new endpoint `/schemas/vaults/:name` for retrieving the schema of a vault. 
+* Introduced the new endpoint [`/schemas/vaults/:name`](/gateway/api/admin-ee/latest/#/Information/get-schemas-vaults-vault_name) for retrieving the schema of a vault. 
 [#11727](https://github.com/Kong/kong/pull/11727)
-* Renamed `privileged_agent` to `dedicated_config_processing` and enabled `dedicated_config_processing` by default.
+* Renamed `privileged_agent` to [`dedicated_config_processing`](/gateway/3.5.x/reference/configuration/#dedicated_config_processing) and enabled `dedicated_config_processing` by default.
 [#11784](https://github.com/Kong/kong/pull/11784)
 * Debugging tools:
-  * Added a unique Request ID that is now populated in the error log, access log, error templates, log serializer, and a new `X-Kong-Request-Id` header. This header's configuration can be customized for upstream and downstream using the `headers` and `headers_upstream`configuration options. 
+  * Added a unique Request ID that is now populated in the error log, access log, error templates, log serializer, and a new `X-Kong-Request-Id` header. 
+  This configuration can be customized for upstreams and downstreams using the 
+  [`headers`](/gateway/3.5.x/reference/configuration/#headers) and 
+  [`headers_upstream`](/gateway/3.5.x/reference/configuration/#headers_upstream) configuration options. 
   [#11663](https://github.com/Kong/kong/pull/11663)
   * Added support for the debug request header `X-Kong-Request-Debug-Output`, 
   which lets you observe the time consumed by specific components in a given request.
+  Enable it using the 
+  [`request_debug`](/gateway/3.5.x/reference/configuration/#request_debug) configuration parameter.
   This header helps you diagnose the cause of any latency in Kong Gateway.
+  See the [Request Debugging](/gateway/3.5.x/production/debug-request/) guide for more information.
   [#11627](https://github.com/Kong/kong/pull/11627)
 * Enabled plugins to implement the `Plugin:configure(configs)` function, 
-which is called when there is a change in plugin entities. It receives an array of current plugin configurations or nil if there are no active configurations.
+which is called when there is a change in plugin entities. 
+It receives an array of current plugin configurations or nil if there are no active configurations.
+Learn more about this function in the guide for [Implementing Custom Logic](/gateway/3.5.x/plugin-development/custom-logic/) for plugins.
 [#11703](https://github.com/Kong/kong/pull/11703)
 * Implemented a request-aware table capable of detecting accesses from different requests.
 [#11017](https://github.com/Kong/kong/pull/11017)
 * WebAssembly (Wasm):
-  * Added support for optional Wasm filter configuration schemas.[#11568](https://github.com/Kong/kong/pull/11568).
-  * Improved support for JSON in Wasm filter configuration.[#11697](https://github.com/Kong/kong/pull/11697).
+  * Added support for optional Wasm filter configuration schemas.
+  [#11568](https://github.com/Kong/kong/pull/11568)
+  * Improved support for JSON in Wasm filter configuration.
+  [#11697](https://github.com/Kong/kong/pull/11697)
+
+  See the [Proxy-Wasm filter configuration](/gateway/3.5.x/plugin-development/wasm/filter-configuration/)
+  guide to learn more.
 
 #### Kong Manager Open Source
 
@@ -142,7 +155,7 @@ When set to `true`, it destroys the session when receiving an unauthorized reque
 * Fixed a keyring issue where Kong nodes failed to send keyring material when using the cluster strategy.
 * Enforced Content Security Policy (CSP) headers for serving static resources via Dev Portal and Kong Manager.
 * Fixed an RBAC issue related to retrieving group roles with a numeric group name type.
-* Hardcoded `admin_gui_auth_conf` settings for parts while using openid-connect as the `admin_gui_auth` method.
+* Hardcoded `admin_gui_auth_conf` settings for parts while using `openid-connect` as the `admin_gui_auth` method.
 * Fixed an issue where the data plane hostname was `nil` in Vitals when running Kong Gateway in hybrid mode.
 
 ##### Admin API
