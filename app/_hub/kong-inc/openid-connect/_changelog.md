@@ -12,9 +12,11 @@ When set to `true`, the plugin instance will not discover configuration from the
 **{{site.base_gateway}} 3.4.x**
 * This plugin now supports the error reason header. 
 This header can be turned off by setting `expose_error_code` to `false`.
-
 * OpenID Connect now supports adding scope to the token cache key by 
 setting `token_cache_key_include_scope` to `true`.
+* Changed some log levels from `notice` to `error` for better visibility.
+* Correctly set the right table key on `log` and `message`.
+* If an invalid opaque token is provided but verification fails, the plugin now prints the correct error.
 
 **{{site.base_gateway}} 3.2.x**
 * The plugin has been updated to use version 4.0.0 of the `lua-resty-session` library which introduced several new features such as the possibility to specify audiences.

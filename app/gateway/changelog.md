@@ -622,16 +622,16 @@ hang when attempting to expand an API.
 
 * [**Response Transformer**](/hub/kong-inc/response-transformer/) (`response-transformer`) and 
 [**Request Transformer Advanced**](/hub/kong-inc/request-transformer-advanced/) (`request-transformer-advanced`)
-  * Fixed an issue where the plugin wouldn't transform the response body when the upstream returns a 
-  Content-Type with a `+json` suffix at the subtype.
+  * Fixed an issue where the plugin wouldn't transform the response body when the upstream returned a 
+  Content-Type with a `+json` suffix as the subtype.
 
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
   * Changed some log levels from `notice` to `error` for better visibility.
   * Correctly set the right table key on `log` and `message`.
-  * If an invalid opaque token is provided but verification fails, print the correct error.
+  * If an invalid opaque token is provided but verification fails, the plugin now prints the correct error.
 
 * [**Mocking**](/hub/kong-inc/mocking/) (`mocking`)
-  * Fix a bug that the plugin throws an error when the arbitrary elements are defined in the path node.
+  * Fixed an issue where the plugin threw an error when the arbitrary elements were defined in the path node.
 
 * [**mTLS Authentication**](/hub/kong-inc/mtls-auth/) (`mtls-auth`)
   * Fixed several revocation verification issues:

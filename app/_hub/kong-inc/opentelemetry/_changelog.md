@@ -10,6 +10,11 @@
 
 **{{site.base_gateway}} 3.4.x**
 * Added support for [AWS X-Ray header](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader) propagation.
+  
+  The field `header_type`now accepts the `aws` value to handle this specific
+  propagation header.
+  [#11075](https://github.com/Kong/kong/pull/11075)
+
 * The `endpoint` parameter is now referenceable, and can be stored as a secret in a vault.
 
 **{{site.base_gateway}} 3.2.x**
