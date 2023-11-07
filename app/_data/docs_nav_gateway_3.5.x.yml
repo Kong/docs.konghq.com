@@ -549,8 +549,6 @@ items:
         url: /admin-api/rbac/reference
       - text: Admins
         url: /admin-api/admins/reference
-      - text: Developers
-        url: /admin-api/developers/reference
       - text: Consumer Groups
         url: /gateway/api/admin-ee/latest/#/consumer_groups/
         absolute_url: true

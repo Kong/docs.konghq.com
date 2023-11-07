@@ -6,10 +6,11 @@ badge: enterprise
 This guide covers an example OpenID Connect plugin configuration to authenticate
 browser clients using an Azure AD identity provider.
 
+{% if_version lte: 3.4.x %}
 For information about configuring OIDC using Azure as an Identity provider
 in conjunction with the Application Registration plugin, see
 [Set Up External Portal Application Authentication with Azure AD and OIDC](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/azure-oidc-config).
-
+{% endif_version %}
 ## Prerequisites
 
 Because OpenID Connect deals with user credentials, all transactions should take place over HTTPS.
