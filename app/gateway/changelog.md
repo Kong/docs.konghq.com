@@ -12,11 +12,6 @@ For product versions that have reached the end of sunset support, see the [chang
 ## 3.5.0.0
 **Release Date** TBD
 
-### Features
-#### Enterprise
-
-* The new debug request header (`X-Kong-Request-Debug-Output`), when sent with a request, will dump all timing of the request which hits a certain data plane. The idea is to provide you with a tool to easily diagnose the cause of any latency in {{site.base_gateway}}.
-
 ### Kong Manager
 
 * You can now force delete a workspace in the Kong Manager UI. Previously, a workspace couldn't be deleted until all the entities associated with it were manually deleted. With forced deletion, you can automatically remove any entities associated with a workspace while you are deleting it. For more information, see [Delete a workspace](/gateway/latest/kong-manager/workspaces/#delete-a-workspace).
