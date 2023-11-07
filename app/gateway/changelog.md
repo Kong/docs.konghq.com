@@ -36,7 +36,7 @@ Kong Konnect users can take advantage of our [API Analytics](/konnect/analytics/
 
 #### Enterprise
 
-* Modified the current AWS Vault backend to supporting `CredentialProviderChain` so that users can
+* Modified the current AWS Vault backend to support `CredentialProviderChain` so that users can
 choose not to use `AK-SK` environment variables to grant IAM role permissions.
 * Added support for Microsoft Azure's KeyVault Secrets Engine. 
 Set it up using the [`*_azure_vault`](/gateway/3.5.x/reference/configuration/#vault_azure_vault_uri).
@@ -64,10 +64,13 @@ For more information, see [Delete a workspace](/gateway/3.5.x/kong-manager/works
 
 #### Core
 
-* Added `analytics_debug` option to the output of logged requests. 
-* Added `cluster_fallback_export_s3_config` option to config S3 config backup `putObject` request. 
+* Added the [`analytics_debug`](/gateway/3.5.x/reference/configuration/#analytics_debug)
+ option to the output of logged requests. 
+* Added the [`cluster_fallback_export_s3_config`](/gateway/3.5.x/reference/configuration/#cluster_fallback_export_s3_config) option to allow adding a 
+config table to the Kong exporter config S3 `putObject` request.
 * Added troubleshooting tools to container images.
-* `workspaces.get_workspace()` now tries to get workspace from cache instead of querying database directly. 
+* `workspaces.get_workspace()` now tries to get the workspace from the cache 
+instead of querying the database directly. 
 * Introduced the new endpoint [`/schemas/vaults/:name`](/gateway/api/admin-ee/latest/#/Information/get-schemas-vaults-vault_name) for retrieving the schema of a vault. 
 [#11727](https://github.com/Kong/kong/pull/11727)
 * Renamed `privileged_agent` to [`dedicated_config_processing`](/gateway/3.5.x/reference/configuration/#dedicated_config_processing) and enabled `dedicated_config_processing` by default.
@@ -121,7 +124,8 @@ action items when certain conditions are met.
   * Added a new property `include_base_path` for path match evaluation. 
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
   * Added the new field `unauthorized_destroy_session`. 
-When set to `true`, it destroys the session when receiving an unauthorized request by deleting the user's session cookie.
+  When set to `true`, it destroys the session when receiving an 
+  unauthorized request by deleting the user's session cookie.
   * Added the new field `using_pseudo_issuer`. 
   When set to `true`, the plugin instance will not discover configuration from the issuer.
   * Added support for public clients for token revocation and introspection.
@@ -155,7 +159,7 @@ When set to `true`, it destroys the session when receiving an unauthorized reque
 * Fixed a keyring issue where Kong nodes failed to send keyring material when using the cluster strategy.
 * Enforced Content Security Policy (CSP) headers for serving static resources via Dev Portal and Kong Manager.
 * Fixed an RBAC issue related to retrieving group roles with a numeric group name type.
-* Hardcoded `admin_gui_auth_conf` settings for parts while using `openid-connect` as the `admin_gui_auth` method.
+* When using `openid-connect` as the `admin_gui_auth` method for Kong Manager, some `admin_gui_auth_conf` required settings are now hardcoded.
 * Fixed an issue where the data plane hostname was `nil` in Vitals when running Kong Gateway in hybrid mode.
 
 ##### Admin API
