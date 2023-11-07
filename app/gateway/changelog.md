@@ -10,7 +10,7 @@ Changelog for supported Kong Gateway versions.
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
 ## 3.5.0.0
-**Release Date** 2023/11/07
+**Release Date** 2023/11/08
 
 ### Breaking changes and deprecations
 
@@ -27,11 +27,10 @@ Kong Konnect users can take advantage of our [API Analytics](/konnect/analytics/
 
   Vitals continues to be supported for existing customers until August 2026 via the Kong Enterprise 3.4 LTS release.
 
-* The default value of the `dns_no_sync` option has been changed to `on`.
+* The default value of the [`dns_no_sync`](/gateway/{{page.kong_version}}/reference/configuration/#dns_no_sync) option has been changed to `on`.
 [#11871](https://github.com/kong/kong/pull/11871).
 
-* Kong Gateway now requires a license to use dynamic plugin ordering.
-
+* Kong Gateway now requires an Enterprise license to use dynamic plugin ordering.
 
 ### Features
 
