@@ -1,5 +1,14 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.5.x**
+* Added the new field `unauthorized_destroy_session`. 
+When set to `true`, it destroys the session when receiving an unauthorized request by deleting the user's session cookie.
+* Added the new field `using_pseudo_issuer`. 
+When set to `true`, the plugin instance will not discover configuration from the issuer.
+* Added support for public clients for token revocation and introspection.
+* Added support for designating parameter names `introspection_token_param_name` and `revocation_token_param_name`.
+* Added support for mTLS proof of possession. The feature is available by enabling `proof_of_possession_mtls`. 
+
 **{{site.base_gateway}} 3.4.x**
 * This plugin now supports the error reason header. 
 This header can be turned off by setting `expose_error_code` to `false`.

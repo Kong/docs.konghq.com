@@ -1,5 +1,8 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.5.x**
+* Fixed an issue to prevent caching network failures during revocation checks.
+
 **{{site.base_gateway}} 3.0.x**
 * The deprecated `X-Credential-Username` header has been removed.
 
