@@ -132,11 +132,20 @@ curl http://localhost:8000/example \
 
 This will return something like the following:
 
-```bash
-X-Kong-Request-Id: a1a1530f8ddb6f6f2462916ae002b715
-X-Kong-Request-Debug-Output: 
-{"child":{"upstream":{"total_time":363,"child":{"time_to_first_byte":{"total_time":363}}}},"request_id":"a1a1530f8ddb6f6f2462916ae
-002b715"}
+```json
+{
+  "request_id": "a1a1530f8ddb6f6f2462916ae002b715",
+  "child": {
+    "upstream": {
+      "total_time": 363,
+      "child": {
+        "time_to_first_byte": {
+          "total_time": 363
+        }
+      }
+    }
+  }
+}
 ```
 
 ### Truncation for large debugging output
@@ -151,10 +160,12 @@ curl http://localhost:8000/large_debugging_output \
 
 This will return something like the following:
 
-```bash
-X-Kong-Request-Id: 60ca0a4f8e5e936c43692f49b27d2932
-X-Kong-Request-Debug-Output: 
-{"request_id":"60ca0a4f8e5e936c43692f49b27d2932","truncated":true,"message":"Output is truncated, please check the error_log for full output by filtering with the request_id."}
+```json
+{
+  "request_id": "60ca0a4f8e5e936c43692f49b27d2932",
+  "truncated": true,
+  "message": "Output is truncated, please check the error_log for full output by filtering with the request_id."
+}
 ```
 
 Debug request outputs that exceed 3KB are split into multiple parts with the `request_id` as an identifier.
