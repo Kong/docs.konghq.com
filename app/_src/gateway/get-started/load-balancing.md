@@ -20,7 +20,7 @@ used to health check, circuit break, and load balance incoming requests over mul
 
 In this section, you’ll re-configure the service created earlier, (`example_service`) to point to an upstream 
 instead of a specific host. For the purposes of our example, the upstream will point to two different targets, 
-`httpbin.org` and `mockbin.org`. More commonly, targets will be instances of the same backend service running on different host systems.
+`httpbin.org` and `httpbun.com`. More commonly, targets will be instances of the same backend service running on different host systems.
 
 Here is a diagram illustrating the setup:
 
@@ -61,7 +61,7 @@ If you haven't completed these steps already, complete them before proceeding.
    
    ```sh
    curl -X POST http://localhost:8001/upstreams/example_upstream/targets \
-     --data target='mockbin.org:80'
+     --data target='httpbun.com:80'
    curl -X POST http://localhost:8001/upstreams/example_upstream/targets \
      --data target='httpbin.org:80'
    ```
@@ -69,14 +69,14 @@ If you haven't completed these steps already, complete them before proceeding.
 1. **Update the service**
 
    In the [services and routes](/gateway/latest/get-started/services-and-routes/) section of this guide, you created `example_service` which pointed
-   to an explicit host, `http://mockbin.org`. Now you'll modify that service to point to the upstream instead:
+   to an explicit host, `http://httpbun.com`. Now you'll modify that service to point to the upstream instead:
    
    ```sh
    curl -X PATCH http://localhost:8001/services/example_service \
      --data host='example_upstream'
    ```
 
-   You now have an upstream with two targets, `httpbin.org` and `mockbin.org`, and a service pointing to that upstream.
+   You now have an upstream with two targets, `httpbin.org` and `httpbun.com`, and a service pointing to that upstream.
 
 1. **Validate**
 
@@ -84,8 +84,8 @@ If you haven't completed these steps already, complete them before proceeding.
    Validate that the upstream you configured is working by visiting the route 
    `http://localhost:8000/mock` using a web browser or CLI.
   
-   * **Web browser**: Visit `http://localhost:8000/mock` and refresh the page several times to see the site change from `httpbin` to `mockbin`.
-   * **CLI**: Execute the command `curl -s http://localhost:8000/mock/headers |grep -i -A1 '"host"'` several times. You will see the hostname change between `httpbin` and `mockbin`.
+   * **Web browser**: Visit `http://localhost:8000/mock` and refresh the page several times to see the site change from `httpbin` to `httpbun`.
+   * **CLI**: Execute the command `curl -s http://localhost:8000/mock/headers |grep -i -A1 '"host"'` several times. You will see the hostname change between `httpbin` and `httpbun`.
 
 ## What's next
 

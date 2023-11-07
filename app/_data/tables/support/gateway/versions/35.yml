@@ -12,7 +12,8 @@ distributions:
     docker: true
     arm: true
     graviton: true
-  - *debian10
+  - <<: *debian10
+    eol: June 2024
   - <<: *debian11
     docker: true
     arm: true
@@ -43,9 +44,6 @@ third-party:
         - 14
         - 13
         - 12
-        - 11
-        - 10
-        - 9
         - Amazon RDS
         - Amazon Aurora
     - *redis

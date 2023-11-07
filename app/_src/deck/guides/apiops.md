@@ -30,15 +30,15 @@ Let's assume you have the following minimal OAS in a file named `oas.yaml`:
 ```yaml
 openapi: 3.0.0
 info:
-  title: Mockbin API
+  title: httpbin API
   description: Simple API for testing purposes
   version: 1.0.0
 servers:
-  - url: http://mockbin.org
+  - url: http://httpbin.org
 paths:
   /request:
     get:
-      summary: Get a simple response from the /request resource of the mockbin API
+      summary: Get a simple response from the /request resource of the httpbin API
       responses:
         '200':
           description: Successful response
@@ -49,7 +49,7 @@ You can generate a {{site.base_gateway}} configuration with the following:
 ```sh
 deck file openapi2kong \
   --spec oas.yaml \
-  --output-file mockbin.yaml
+  --output-file httpbin.yaml
 ```
 
 Which produces a complete decK configuration file:
@@ -57,9 +57,9 @@ Which produces a complete decK configuration file:
 ```yaml
 _format_version: "3.0"
 services:
-- host: mockbin.org
+- host: httpbin.org
   id: de7107e7-a39c-5574-9e8c-e66787ae50e7
-  name: mockbin-api
+  name: httpbin-api
   path: /
   plugins: []
   port: 80
@@ -68,7 +68,7 @@ services:
   - id: 803b324e-98ed-5ec5-aecf-b4ce973036f4
     methods:
     - GET
-    name: mockbin-api_request_get
+    name: httpbin-api_request_get
     paths:
     - ~/request$
     plugins: []
@@ -86,14 +86,14 @@ can help you quickly run a gateway in Docker to follow along with these instruct
 You can synchronize this directly to the gateway using `deck sync`:
 
 ```sh
-deck sync -s mockbin.yaml
+deck sync -s httpbin.yaml
 ```
 
 Which creates the service and route:
 
 ```sh
-creating service mockbin-api
-creating route mockbin-api_request_get
+creating service httpbin-api
+creating route httpbin-api_request_get
 Summary:
   Created: 2
   Updated: 0
@@ -122,14 +122,14 @@ Continuing the example above, let's take a look at how commands can be pipelined
 
 Let's assume you have a second team that builds a different API, and
 provides a {{site.base_gateway}} decK configuration segment for their service and route. Copy the 
-following configuration into a file named `another-mockbin.yaml`:
+following configuration into a file named `another-httpbin.yaml`:
 
 ```yaml
 _format_version: "3.0"
 services:
-- host: mockbin.org
+- host: httpbin.org
   id: 7cc31086-3837-4e7e-bbe9-271e51c1f614 
-  name: another-mockbin-api
+  name: another-httpbin-api
   path: /
   plugins: []
   port: 80
@@ -138,7 +138,7 @@ services:
   - id: 08ac3482-843a-40f8-a277-a4e73baf19d9 
     methods:
     - GET
-    name: another-mockbin-api_request_get
+    name: another-httpbin-api_request_get
     paths:
     - ~/another-request$
     plugins: []
@@ -152,7 +152,7 @@ upstreams: []
 You can use the decK `file merge` command to bring these two configurations into one:
 
 ```sh
-deck file merge mockbin.yaml another-mockbin.yaml \
+deck file merge httpbin.yaml another-httpbin.yaml \
   --output-file merged-kong.yaml
 ``` 
 
@@ -178,8 +178,8 @@ deck sync -s kong.yaml
 Here is an example of putting the above together in a Unix-style pipeline:
 
 ```sh
-deck file openapi2kong --spec oas.yaml --output-file mockbin.yaml && 
-  deck file merge mockbin.yaml another-mockbin.yaml | 
+deck file openapi2kong --spec oas.yaml --output-file httpbin.yaml && 
+  deck file merge httpbin.yaml another-httpbin.yaml | 
   deck file patch --selector "$.services[*]" --value 'protocol: "https"' |
   deck sync -s -
 ```

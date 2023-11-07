@@ -193,7 +193,7 @@ Create a service and route in `CP1`. This will let you test the connection betwe
 1. Click the **New Gateway Service** button and set up the service. 
 For this example, you can use the following values:
    * Name: `example_service`
-   * Host: `mockbin.org`
+   * Host: `httpbin.org`
 
 1. Next, create a route. From the side menu, open **Routes**.
 1. Click the **New Route** button and set up the route. For this example, you can enter `/mock` in the paths field.
@@ -270,7 +270,7 @@ For this example, you can use the following values:
     curl -i -X POST https://{region}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/services \
         -H "Authorization: Bearer <your_KPAT>"  \
         --data "name=example_service" \
-        --data "host=mockbin.org"
+        --data "host=httpbin.org"
     ```
 
     ```sh
@@ -297,7 +297,7 @@ running on the data plane node configured in the `CPG`.
 {% navtabs %}
 {% navtab Konnect UI %}
 
-1. Try to access the route you set up in `CP1`. In a web browser, navigate to `http://localhost:8000/mock/request/hello`. 
+1. Try to access the route you set up in `CP1`. In a web browser, navigate to `http://localhost:8000/mock/anything/hello`. 
 
     You should see a mock request page.
 
@@ -317,10 +317,10 @@ This time, you should receive a prompt to enter a username and password.
 1. Try to access the route you set up in `CP1`:
 
     ```
-    curl localhost:8000/mock/request/hello
+    curl localhost:8000/mock/anything/hello
     ```
 
-    You should see a response from Mockbin.
+    You should see a response from httpbin.
 
 1. Find the ID of `CP2`. In `CP2`, set up the basic authentication plugin:
 
@@ -333,7 +333,7 @@ This time, you should receive a prompt to enter a username and password.
 1. Wait a few seconds, then try to access the route again. This time, you shouldn't be able to access it:
 
     ```sh
-    curl localhost:8000/mock/request/hello
+    curl localhost:8000/mock/anything/hello
     ```
 
     Response:

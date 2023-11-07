@@ -488,7 +488,7 @@ items:
       - text: (un)Installing your Plugin
         url: /plugin-development/distribution
       - text: Create a Proxy-Wasm filter
-        url: /plugin-development/wasm
+        url: /plugin-development/wasm/filter-development-guide
       - text: Plugin Development Kit
         items:
         - text: Overview

@@ -18,6 +18,8 @@ items:
             url: /support/third-party
           - text: Browser Support
             url: /support/browser
+          - text: Vulnerability Patching Process
+            url: /support/vulnerability-patching-process
           - text: Software Bill of Materials
             url: /support/sbom
       - text: Stability
@@ -375,6 +377,8 @@ items:
     items:
       - text: Overview
         url: /kong-manager-oss/
+      - text: Troubleshooting
+        url: /kong-manager-oss/troubleshoot/
 
   - title: Develop Custom Plugins
     icon: /assets/images/icons/documentation/icn-dev-portal-color.svg
@@ -399,8 +403,12 @@ items:
         url: /plugin-development/tests
       - text: (un)Installing your Plugin
         url: /plugin-development/distribution
-      - text: Create a Proxy-Wasm filter
-        url: /plugin-development/wasm
+      - text: Proxy-Wasm Filters
+        items:
+          - text: Create a Proxy-Wasm Filter
+            url: /plugin-development/wasm/filter-development-guide
+          - text: Proxy-Wasm Filter Configuration
+            url: /plugin-development/wasm/filter-configuration
       - text: Plugin Development Kit
         items:
         - text: Overview
@@ -531,6 +539,8 @@ items:
         url: /admin-api/#vaults-object
       - text: Keys
         url: /admin-api/#keys-object
+      - text: Filter Chains
+        url: /admin-api/#filter-chain-object
       - text: Licenses
         url: /admin-api/licenses/reference
       - text: Workspaces
@@ -542,8 +552,9 @@ items:
       - text: Developers
         url: /admin-api/developers/reference
       - text: Consumer Groups
-        url: https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60#/consumer_groups/get-consumer_groups
+        url: /gateway/api/admin-ee/latest/#/consumer_groups/
         absolute_url: true
+        generate: false
       - text: Event Hooks
         url: /admin-api/event-hooks/reference
       - text: Keyring and Data Encryption
@@ -551,8 +562,9 @@ items:
       - text: Audit Logs
         url: /admin-api/audit-logs
       - text: Status API
-        url: https://developer.konghq.com/spec/9542436a-58d1-4522-a00b-32125b5940f0
+        url: /gateway/api/status/v1/
         absolute_url: true
+        generate: false
   - title: Reference
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:

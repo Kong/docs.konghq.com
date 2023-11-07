@@ -95,7 +95,7 @@ and in-memory, on the node:
     ``` yaml
     _format_version: "1.1"
     services:
-    - host: mockbin.org
+    - host: httpbin.org
       name: example_service
       port: 80
       protocol: http
@@ -150,12 +150,12 @@ To validate rate limiting, access the API six (6) times from the CLI to confirm 
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X GET http://localhost:8000/mock/request
+curl -i -X GET http://localhost:8000/mock/anything
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-http :8000/mock/request
+http :8000/mock/anything
 ```
 {% endnavtab %}
 {% endnavtabs %}
