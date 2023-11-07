@@ -29,7 +29,6 @@
     data-offset="350"
   >
 
-
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NL48VKT"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -147,10 +146,11 @@
             buttonAriaLabel: 'Search the docs...'
           }
         },
-        {% if page.algolia_filters %}
-        searchParameters: {
-          optionalFilters: [{{ page.algolia_filters }}]
-        }
+        {% if page.algolia %}
+          searchParameters: {
+            optionalFilters: [{{ page.algolia.optional_filters }}],
+            facetFilters: [ {{ page.algolia.facet_filters }}]
+          }
         {% endif %}
       });
     </script>
