@@ -194,5 +194,8 @@ items:
       - text: Custom Resource Definitions
         url: /reference/custom-resources
         src: reference/custom-resources-3.0.x
+      - text: Resources Requiring Setting Ingress Class
+        url: /reference/resource-requiring-ingress-class
+        src: reference/ingress-class-requirement
       - text: Gateway API migration
         url: /reference/ingress-to-gateway-migration
