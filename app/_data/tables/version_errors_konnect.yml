@@ -603,18 +603,18 @@ messages:
       For the `openid-connect` plugin, one or more `config` fields are set but Kong
       Gateway versions < 3.2.0.0 do not support these fields. The plugin configuration
       has been updated and these fields have been mapped to their old names:
-      `session_cookie_http_only` => `session_cookie_httponly`,
-      `session_memcached_prefix` => `session_memcache_prefix`,
-      `session_memcached_socket` => `session_memcache_socket`,
-      `session_redis_cluster_max_redirections` =>
-      `session_redis_cluster_maxredirections`, `authorization_rolling_timeout` =>
+      `authorization_cookie_same_site` => `authorization_cookie_samesite`,
+      `session_rolling_timeout` => `session_cookie_lifetime`, `session_memcached_host` =>
+      `session_memcache_host`, `authorization_rolling_timeout` =>
       `authorization_cookie_lifetime`, `session_idling_timeout` =>
       `session_cookie_idletime`, `session_cookie_same_site` =>
-      `session_cookie_samesite`, `session_memcached_host` => `session_memcache_host`,
-      `session_memcached_port` => `session_memcache_port`,
-      `authorization_cookie_same_site` => `authorization_cookie_samesite`,
-      `authorization_cookie_http_only` => `authorization_cookie_httponly`,
-      `session_rolling_timeout` => `session_cookie_lifetime`
+      `session_cookie_samesite`, `session_cookie_http_only` =>
+      `session_cookie_httponly`, `session_memcached_prefix` =>
+      `session_memcache_prefix`, `session_memcached_socket` =>
+      `session_memcache_socket`, `session_memcached_port` => `session_memcache_port`,
+      `session_redis_cluster_max_redirections` =>
+      `session_redis_cluster_maxredirections`, `authorization_cookie_http_only` =>
+      `authorization_cookie_httponly`
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
@@ -678,13 +678,13 @@ messages:
       For the `saml` plugin, one or more `config` fields are set but Kong Gateway
       versions < 3.2.0.0 do not support these fields. The plugin configuration has
       been updated and these fields have been mapped to their old names:
-      `session_idling_timeout` => `session_cookie_idletime`, `session_rolling_timeout`
-      => `session_cookie_lifetime`, `session_cookie_same_site` =>
-      `session_cookie_samesite`, `session_cookie_http_only` =>
-      `session_cookie_httponly`, `session_memcached_socket` =>
-      `session_memcache_socket`, `session_memcached_port` => `session_memcache_port`,
       `session_memcached_prefix` => `session_memcache_prefix`,
-      `session_memcached_host` => `session_memcache_host`,
+      `session_memcached_socket` => `session_memcache_socket`,
+      `session_memcached_port` => `session_memcache_port`, `session_rolling_timeout` =>
+      `session_cookie_lifetime`, `session_cookie_same_site` =>
+      `session_cookie_samesite`, `session_cookie_http_only` =>
+      `session_cookie_httponly`, `session_idling_timeout` =>
+      `session_cookie_idletime`, `session_memcached_host` => `session_memcache_host`,
       `session_redis_cluster_max_redirections` =>
       `session_redis_cluster_maxredirections`
     Resolution: |
@@ -732,8 +732,8 @@ messages:
       consumer. This is not supported in Kong Gateway versions < 3.2.0.0. The plugin
       has been removed in the data plane node.
     Resolution: |
-      Unset the `consumer` fields for the plugin, or upgrade Kong Gateway to a 
-      version >= 3.2.0.0.
+      Unset the `consumer` fields for the plugin, or upgrade Kong Gateway to a version >=
+      3.2.0.0.
     DocumentationURL: |
       [App Dynamics plugin](/hub/kong-inc/app-dynamics/)
   - ID: D168
@@ -1025,8 +1025,8 @@ messages:
     Description: |
       For the `graphql-rate-limiting-advanced` plugin, instances have been configured
       with `strategy=redis` and the `cluster_addresses` field set. This is not
-      supported in Kong Gateway versions < 3.4.1.0. For data plane nodes with 
-      version >= 3.2.0.0 and < 3.4.1.0, the plugin configuration has been changed to
+      supported in Kong Gateway versions < 3.4.1.0. For data plane nodes with version >=
+      3.2.0.0 and < 3.4.1.0, the plugin configuration has been changed to
       `config.strategy=cluster` and `config.sync_rate=-1`.
     Resolution: |
       Unset the `redis` fields for the plugin, or upgrade Kong Gateway to a version >=
@@ -1405,7 +1405,7 @@ messages:
       For the `upstreams` entity, one or more of the `hash_on, hash_fallback` schema
       fields are set with one of the following values: path, query_arg, uri_capture,
       but Kong Gateway versions < 3.0.0.0 do not support these values. Because of
-      this, `hash_on` and `hash_fallback'have been changed in the data plane node to
+      this, `hash_on` and `hash_fallback` have been changed in the data plane node to
       `none` and hashing is not working as expected.
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
@@ -1705,10 +1705,10 @@ messages:
     Description: |
       For the `session` plugin, one or more `config` fields are set but Kong Gateway
       versions < 3.2.0.0 do not support these fields. The plugin configuration has
-      been updated and these fields have been mapped to their old names: `stale_ttl`
-      => `cookie_discard`, `cookie_same_site` => `cookie_samesite`, `cookie_http_only`
-      => `cookie_httponly`, `rolling_timeout` => `cookie_lifetime`, `idling_timeout`
-      => `cookie_idletime`
+      been updated and these fields have been mapped to their old names:
+      `cookie_same_site` => `cookie_samesite`, `cookie_http_only` =>
+      `cookie_httponly`, `rolling_timeout` => `cookie_lifetime`, `idling_timeout` =>
+      `cookie_idletime`, `stale_ttl` => `cookie_discard`
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
@@ -1759,9 +1759,9 @@ messages:
     Severity: error
     Description: |
       For the `aws-lambda` plugin, the following `config` field is set:
-      aws_imds_protocol_version, but Kong Gateway versions <2.8.3.0 and
-      >=3.0.0.0,<3.2.0.0 do not support it. Plugin features that rely on this field
-      are not working as intended.
+      aws_imds_protocol_version, but Kong Gateway versions <2.8.3.0 and >=3.0.0.0,<3.2.0.0
+      do not support it. Plugin features that rely on this field are not working as
+      intended.
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
