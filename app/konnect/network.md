@@ -41,17 +41,32 @@ Data plane nodes initiate the connection to the {{site.konnect_short_name}} cont
 They require access through firewalls to communicate with the control plane.
 
 To let a data plane node request and receive configuration, and send telemetry data,
-add the following hostnames to the firewall allowlist:
+add the following hostnames to the firewall allowlist (depending on the [geographic regions](/konnect/regions) you use).
 
-* `cloud.konghq.com`: The {{site.konnect_short_name}} platform.
-* `<region>.api.konghq.com`: The {{site.konnect_short_name}} API.
-  Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations.
-  Region can be `us`, `eu`, or `global`.
-* `<controlPlaneId>.<region>.cp0.konghq.com`: Handles configuration for a control plane.
-  Data plane nodes connect to this host to receive configuration updates.
-  This hostname is unique to each organization and control plane.
-* `<controlPlaneId>.<region>.tp0.konghq.com`: Gathers telemetry data for a control plane.
-  This hostname is unique to each organization and control plane.
+### US region
+
+| Hostname      | Description |
+|:----------|:----------|
+| `cloud.konghq.com`    | The {{site.konnect_short_name}} platform. |
+| `global.api.konghq.com` | The {{site.konnect_short_name}} API for platform authentication, identity, permissions, teams, and organizational entitlements and settings. |
+| `us.api.konghq.com` | The {{site.konnect_short_name}} API for the US region. Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations. |
+| `PORTAL_ID.us.portal.konghq.com` | The URL for the Dev Portal in the US region. |
+| `RUNTIME_GROUP_ID.us.cp0.konghq.com` | Handles configuration for a runtime group in the US region. Runtime instances connect to this host to receive configuration updates. This hostname is unique to each organization and runtime group. |
+| `RUNTIME_GROUP_ID.us.tp0.konghq.com` | Gathers telemetry data for a runtime group in the US region. This hostname is unique to each organization and runtime group. |
+
+
+### EU region
+
+| Hostname      | Description |
+|:----------|:----------|
+| `cloud.konghq.com`    | The {{site.konnect_short_name}} platform. |
+| `global.api.konghq.com` | The {{site.konnect_short_name}} API for platform authentication, identity, permissions, teams, and organizational entitlements and settings. |
+| `eu.api.konghq.com` | The {{site.konnect_short_name}} API for the EU region. Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations. |
+| `PORTAL_ID.eu.portal.konghq.com` | The URL for the Dev Portal in the EU region. |
+| `RUNTIME_GROUP_ID.eu.cp0.konghq.com` | Handles configuration for a runtime group in the EU region. Runtime instances connect to this host to receive configuration updates. This hostname is unique to each organization and runtime group. |
+| `RUNTIME_GROUP_ID.eu.tp0.konghq.com` | Gathers telemetry data for a runtime group in the EU region. This hostname is unique to each organization and runtime group. |
+
+### Find configuration and telemetry hostnames
 
 You can find the configuration and telemetry hostnames through the Gateway Manager:
 
@@ -78,12 +93,32 @@ You can find the configuration and telemetry hostnames through the Gateway Manag
 
 Data plane nodes initiate the connection to {{site.konnect_short_name}} APIs to report Analytics data.
 
-The following hostnames must be allowed through firewalls to enable these connections:
+Add the following hostnames to the firewall allowlist (depending on the [geographic regions](/konnect/regions) you use).
 
-* `cloud.konghq.com`: The {{site.konnect_short_name}} platform.
-* `<region>.api.konghq.com`: The {{site.konnect_short_name}} API.
-* `<controlPlaneId>.<region>.tp0.konghq.com`: Telemetry endpoint for a control plane, required for Analytics.
-  This hostname is unique to each organization and control plane. 
+### US region
+
+| Hostname      | Description |
+|:----------|:----------|
+| `cloud.konghq.com`    | The {{site.konnect_short_name}} platform. |
+| `global.api.konghq.com` | The {{site.konnect_short_name}} API for platform authentication, identity, permissions, teams, and organizational entitlements and settings. |
+| `us.api.konghq.com` | The {{site.konnect_short_name}} API for the US region. Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations. |
+| `PORTAL_ID.us.portal.konghq.com` | The URL for the Dev Portal in the US region. |
+| `RUNTIME_GROUP_ID.us.cp0.konghq.com` | Handles configuration for a runtime group in the US region. Runtime instances connect to this host to receive configuration updates. This hostname is unique to each organization and runtime group. |
+| `RUNTIME_GROUP_ID.us.tp0.konghq.com` | Gathers telemetry data for a runtime group in the US region. This hostname is unique to each organization and runtime group. |
+
+
+### EU region
+
+| Hostname      | Description |
+|:----------|:----------|
+| `cloud.konghq.com`    | The {{site.konnect_short_name}} platform. |
+| `global.api.konghq.com` | The {{site.konnect_short_name}} API for platform authentication, identity, permissions, teams, and organizational entitlements and settings. |
+| `eu.api.konghq.com` | The {{site.konnect_short_name}} API for the EU region. Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations. |
+| `PORTAL_ID.eu.portal.konghq.com` | The URL for the Dev Portal in the EU region. |
+| `RUNTIME_GROUP_ID.eu.cp0.konghq.com` | Handles configuration for a runtime group in the EU region. Runtime instances connect to this host to receive configuration updates. This hostname is unique to each organization and runtime group. |
+| `RUNTIME_GROUP_ID.eu.tp0.konghq.com` | Gathers telemetry data for a runtime group in the EU region. This hostname is unique to each organization and runtime group. |
+
+### Find configuration and telemetry hostnames
 
 You can find the Telemetry hostname through the Gateway Manager:
 
