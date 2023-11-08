@@ -226,7 +226,7 @@ items:
           - text: Customize Gateway Logs
             url: /production/logging/customize-gateway-logs
           - text: Debug Requests
-            url: /production/logging/debug-request
+            url: /production/debug-request
         url: /production/logging
       - text: Configure a gRPC service
         url: /production/configuring-a-grpc-service
