@@ -22,7 +22,7 @@ Ensure that you have it installed on your local system.
 
 ## Deploy a gRPC test application
 
-Kong assumes that services are HTTP-based by default. We configure Kong to use gRPCs protocol when it talks to the upstream service with the `konghq.com/protocol` annotation
+By default, Kong considers all services to be HTTP-based. You need to configure Kong to use gRPCs protocol when it talks to the upstream service using the `konghq.com/protocol` annotation.
 
 ```bash
 echo "---
@@ -72,9 +72,9 @@ service/grpcbin created
 ## Route GRPC traffic
 
 Now that the test application is running, you can create GRPC routing configuration that
-proxies traffic to the application:
+proxies traffic to the application.
 
-All routes are assumed to be either HTTP or HTTPS by default. We need to update the Ingress rule to specify gRPC as the protocol by adding a `konghq.com/protocols` annotation.
+All routes are assumed to be either HTTP or HTTPS by default. You need to update the Ingress rule to specify gRPC as the protocol by adding a `konghq.com/protocols` annotation.
 
 This annotation informs Kong that this route is a gRPC route and not a plain HTTP route
 
@@ -98,7 +98,7 @@ spec:
             port: 
               number: 9001" | kubectl apply -f -
 ```
-Response:
+The results should look like this:
 ```text
 ingress.networking.k8s.io/demo created
 ```
@@ -111,7 +111,7 @@ Use `grpcurl` to send a gRPC request through the proxy:
 grpcurl -d '{"greeting": "Kong"}' -insecure $PROXY_IP:443 hello.HelloService.SayHello
 ```
 
-Response:
+The results should look like this:
 
 ```text
 {

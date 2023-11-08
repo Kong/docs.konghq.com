@@ -9,17 +9,17 @@ purpose: |
 
 This guide walks through deploying a [Service][svc] that listens for [gRPC connections][gRPC] and exposes this service outside of the cluster using {{site.base_gateway}}.
 
-For this example, you will:
+For this example, you need to:
 * Deploy a gRPC test application.
 * Route gRPC traffic to it using Ingress or GRPCRoute.
 
-To make `gRPC` requests, you need a client that can invoke gRPC requests.  In this guide, we use [`grpcurl`](https://github.com/fullstorydev/grpcurl#installation). Ensure that you have it installed on your local system.
+To make `gRPC` requests, you need a client that can invoke gRPC requests. You can use [`grpcurl`](https://github.com/fullstorydev/grpcurl#installation) as the client. Ensure that you have it installed on your local system.
 
 {% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false gateway_api_experimental=true %}
 
 ## Deploy a gRPC test application
 
-Kong assumes that services are HTTP-based by default. We configure Kong to use gRPCs protocol when it talks to the upstream service with the `konghq.com/protocol` annotation
+Kong assumes that services are HTTP-based by default. You need to configure Kong to use gRPCs protocol when it talks to the upstream service using the `konghq.com/protocol` annotation
 
 ```bash
 echo "---
@@ -60,7 +60,7 @@ spec:
         - containerPort: 9001
 " | kubectl apply -f -
 ```
-Response:
+The results should look like this:
 ```text
 deployment.apps/grpcbin created
 service/grpcbin created
@@ -124,7 +124,7 @@ spec:
       port: 9001
 ' | kubectl apply -f -
 ```
-Response:
+The results should look like this:
 ```text
 grpcroute.gateway.networking.k8s.io/grpcbin created
 ```
@@ -133,7 +133,7 @@ grpcroute.gateway.networking.k8s.io/grpcbin created
 
 All routes are assumed to be either HTTP or HTTPS by default. We need to update the route to specify gRPC as the protocol by adding a `konghq.com/protocols` annotation.
 
-This annotation informs Kong that this route is a gRPC route and not a plain HTTP route
+This annotation informs Kong that this route is a gRPC route and not a plain HTTP route.
 
 ```bash
 echo "apiVersion: networking.k8s.io/v1
@@ -155,7 +155,7 @@ spec:
             port:
               number: 9001" | kubectl apply -f -
 ```
-Response:
+The results should look like this:
 ```text
 ingress.networking.k8s.io/grpcbin created
 ```
@@ -170,7 +170,7 @@ Use `grpcurl` to send a gRPC request through the proxy:
 grpcurl -d '{"greeting": "Kong"}' -servername example.com -insecure $PROXY_IP:443 hello.HelloService.SayHello
 ```
 
-Response:
+The results should look like this:
 
 ```text
 {
