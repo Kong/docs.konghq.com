@@ -47,7 +47,6 @@ third-party:
         - Amazon RDS
         - Amazon Aurora
     - *redis
-    - *influxdb
     - *kafka
 
   metrics:
