@@ -153,3 +153,7 @@
 /gateway/VERSION/reference/external-plugins/: "/gateway/VERSION/plugin-development/pluginserver/go/"
 /gateway/VERSION/get-started/secure-services/: "/gateway/VERSION/get-started/key-authentication/"
 /gateway/VERSION/install/linux/os-support/: "/gateway/VERSION/support-policy/#supported-versions"
+
+# KIC 3.0
+/kubernetes-ingress-controller/VERSION/references/annotations/: /kubernetes-ingress-controller/VERSION/reference/annotations/
+/kubernetes-ingress-controller/VERSION/references/custom-resources/: /kubernetes-ingress-controller/VERSION/reference/custom-resources/

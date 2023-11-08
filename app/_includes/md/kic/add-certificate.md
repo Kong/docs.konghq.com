@@ -1,7 +1,9 @@
+{% unless include.cert_required %}
 The routing configuration can include a certificate to present when clients connect
 over HTTPS. This is not required, as {{site.base_gateway}} will serve a default
 certificate if it cannot find another, but including TLS configuration along
 with routing configuration is typical.
+{% endunless %}
 
 1. Create a test certificate for the `{{ include.hostname }}` hostname.
 

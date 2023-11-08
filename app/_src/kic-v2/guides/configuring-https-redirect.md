@@ -11,7 +11,7 @@ microservices is encrypted.
 
 {% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
 
-{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
+{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
 
 {% include_cached /md/kic/class.md kong_version=page.kong_version %}
 
@@ -46,7 +46,7 @@ unset is `426`).
 kubectl annotate ingress echo konghq.com/protocols=https
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 
 ```bash
 kubectl annotate httproute echo konghq.com/protocols=https
@@ -65,7 +65,7 @@ kubectl annotate httproute echo konghq.com/protocols=https
 ingress.networking.k8s.io/echo annotated
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 httproute.gateway.networking.k8s.io/echo annotated
 ```
@@ -84,7 +84,7 @@ httproute.gateway.networking.k8s.io/echo annotated
 kubectl annotate ingress echo konghq.com/https-redirect-status-code="301"
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 
 ```bash
 kubectl annotate httproute echo konghq.com/https-redirect-status-code="301"
@@ -103,7 +103,7 @@ kubectl annotate httproute echo konghq.com/https-redirect-status-code="301"
 ingress.networking.k8s.io/echo annotated
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 httproute.gateway.networking.k8s.io/echo annotated
 ```

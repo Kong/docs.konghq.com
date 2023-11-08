@@ -165,7 +165,7 @@ Kong proxy Service. This instructs KIC to populate that {{site.base_gateway}}
 resource with listener and status information.
 {% endif_version %}
 
-{% if_version gte: 2.6.x %}
+{% if_version gte:2.6.x %}
 To configure KIC to reconcile the Gateway resource, you must set the 
 `konghq.com/gatewayclass-unmanaged` annotation as the example in GatewayClass resource used in 
 `spec.gatewayClassName` in Gateway resource. Also, the 

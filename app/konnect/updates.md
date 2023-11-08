@@ -11,6 +11,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
 ## October 2023
+**Portal Management API**
+: {{site.konnect_short_name}} portal administrators are now able to integrate portal management operations with their automation systems (such as CI/CD pipelines) by utilizing an officially published, documented, and supported [Portal Management API](/konnect/api/portal-management/latest/). Approving developer and application requests, configuring appearance settings, and managing custom domain details can all be driven entirely through API automation.
+
 **Combine multiple metrics inside the same custom report**
 : {{site.konnect_short_name}} users are now able to select multiple metrics in a custom report. This feature allows them to compare multiple metrics of the same category (e.g. latency) within the same report instead of creating multiple reports.
 

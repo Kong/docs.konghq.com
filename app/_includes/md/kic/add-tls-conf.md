@@ -16,22 +16,22 @@ kubectl patch --type json ingress echo -p='[{
 }]'
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 kubectl patch --type=json gateway kong -p='[{
     "op":"add",
-	"path":"/spec/listeners/-",
-	"value":{
-		"name":"proxy-ssl",
-		"port":443,
-		"protocol":"HTTPS",
-		"tls":{
-                    "certificateRefs":[{
-                        "group":"",
-                        "kind":"Secret",
-                        "name":"{{include.hostname}}"
-                    }]
-                }
+    "path":"/spec/listeners/-",
+    "value":{
+        "name":"proxy-ssl",
+        "port":443,
+        "protocol":"HTTPS",
+        "tls":{
+            "certificateRefs":[{
+                "group":"",
+                "kind":"Secret",
+                "name":"{{include.hostname}}"
+            }]
+        }
     }
 }]'
 
@@ -50,7 +50,7 @@ kubectl patch --type=json gateway kong -p='[{
 ingress.networking.k8s.io/echo patched
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 gateway.gateway.networking.k8s.io/kong patched
 ```

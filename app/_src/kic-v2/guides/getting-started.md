@@ -10,7 +10,7 @@ Deploy an upstream HTTP application, create a configuration group, add a route, 
 
 {% include_cached /md/kic/installation.md kong_version=page.kong_version %}
 
-{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
+{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
 
 {% include_cached /md/kic/class.md kong_version=page.kong_version %}
 
@@ -49,7 +49,7 @@ Deploy an upstream HTTP application, create a configuration group, add a route, 
 kubectl annotate ingress echo konghq.com/plugins=request-id
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 kubectl annotate httproute echo konghq.com/plugins=request-id
 ```
@@ -67,7 +67,7 @@ kubectl annotate httproute echo konghq.com/plugins=request-id
 ingress.networking.k8s.io/echo annotated
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 httproute.gateway.networking.k8s.io/echo annotated
 ```

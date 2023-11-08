@@ -55,8 +55,8 @@ The Vitals platform provides deep insights into services, routes, and applicatio
 ## Secrets management
 {{site.ee_product_name}} offers out of the box secrets management with the following backends: 
 
-* [Amazon Web Services](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/aws-sm/)
-* [Google Cloud Platform](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/gcp-sm/)
+* [Amazon Web Services (AWS)](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/aws-sm/)
+* [Google Cloud Platform (GCP)](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/gcp-sm/)
 * [Hashicorp Vault](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
 
 To configure secrets management, {{site.base_gateway}} consumes your key for the backend provider, authenticates with the backend provider, and uses the backend to centrally manage and store application secrets, sensitive data, passwords, keys, certifications, tokens, and other items.
