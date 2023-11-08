@@ -35,6 +35,16 @@ order they are given:
 deck file add-plugins [command-specific flags] [global flags] [...plugin-files]
 ```
 
+## Examples
+
+```
+# adds 2 plugins to all services in a deck file, unless they are already present
+cat kong.yml | deck file add-plugins --selector='services[*]' plugin1.json plugin2.yml
+
+# same, but now overwriting plugins if they already exist
+cat kong.yml | deck file add-plugins --overwrite --selector='services[*]' plugin1.json plugin2.yml
+```
+
 ## Flags
 
 `--config`
@@ -77,5 +87,4 @@ for details on this issue.
 
 ## See also
 
-* [deck file](/deck/{{page.kong_version}}/reference/deck_file)   - Sub-command to host the decK file manipulation operations
-
+{% include /md/deck-reference-links.md file_links='true' %}

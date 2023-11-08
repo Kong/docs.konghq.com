@@ -28,11 +28,11 @@ information, see
 
 Supported authorization plugins for use with application registration:
 
-| {{site.base_gateway}} Plugin | Portal authorization strategy |
-|:------|:-----------------------------------------------------|
-| [OAuth2](/hub/kong-inc/oauth2/) | `kong-oauth2` |
-| [Key Auth](/hub/kong-inc/key-auth/)| `kong-oauth2` |
-| [OIDC](/hub/kong-inc/openid-connect/)| `external-oauth2` |
+| {{site.base_gateway}} Plugin | Portal authorization strategy | Supported topologies |
+|:------|:-----------------------------------------------------|----------------------|
+| [OAuth2](/hub/kong-inc/oauth2/) | `kong-oauth2` | Traditional |
+| [Key Auth](/hub/kong-inc/key-auth/)| `kong-oauth2` | Traditional, hybrid, DB-less |
+| [OIDC](/hub/kong-inc/openid-connect/)| `external-oauth2` | Traditional, hybrid, DB-less |
 
 To learn how to set up key authentication, see [Enable Key Authentication for Application Registration](/gateway/latest/kong-enterprise/dev-portal/applications/enable-key-auth-plugin/).
 

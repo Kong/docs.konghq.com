@@ -2,6 +2,458 @@
 
 <!--vale off-->
 
+## Week 44
+
+### [Fix: 2.8.1.3 changelog entry for aws-lambda plugin changes to match 3.0.0.0](https://github.com/Kong/docs.konghq.com/pull/6440) (2023-11-02)
+
+Copied the text written in 3.0.0.0 changelog entry for the aws-lambda plugin to when it was introduced in 2.8.1.3 for consistency. Makes it easier to find the versions in which those properties were added for `aws_assume_role_arn` for example.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Fix: Align wording of 2.8.1.3 update for `aws_assume_role_arn` property](https://github.com/Kong/docs.konghq.com/pull/6439) (2023-11-02)
+
+Extending the wording from the Gateway changelog in 3.0.0.0 and 2.8.1.3 to the plugin changelog for aws-lambda for 2.8.1.3 for consistency.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/aws-lambda/
+
+
+### [Update resource limit language](https://github.com/Kong/docs.konghq.com/pull/6431) (2023-11-01)
+
+Update resource limit language from entity resource limit to Default entity resource limit.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/configuration/
+
+
+### [Topnav tweaks](https://github.com/Kong/docs.konghq.com/pull/6429) (2023-11-01)
+
+Add a few tweaks based on the feedback we received.
+
+* Remove "We are hiring"
+* Move "API Specs" into the "Docs" dropdown
+
+Note: I added a "Documentation" title to the section for consistency
+
+#### Added
+
+- https://docs.konghq.com/assets/images/landing-page/view-all-api-specs.png
+
+
+### [Release: decK 1.28](https://github.com/Kong/docs.konghq.com/pull/6420) (2023-11-03)
+
+Release 1.28.x decK docs MVP. CLI reference updates only.
+Guides to follow.
+
+#### Added
+
+- https://docs.konghq.com/deck/1.28.x/reference/deck_file_convert/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_file_lint/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_file_validate/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_diff/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_dump/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_ping/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_reset/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_sync/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_validate/
+
+#### Modified
+
+- https://docs.konghq.com/deck/1.24.x/reference/deck/
+- https://docs.konghq.com/deck/1.25.x/reference/deck/
+- https://docs.konghq.com/deck/1.26.x/reference/deck/
+- https://docs.konghq.com/deck/1.27.x/reference/deck/
+- https://docs.konghq.com/deck/1.28.x/reference/deck/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_completion/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_convert/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_diff/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_dump/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_file_add-plugins/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_file_add-tags/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_file_list-tags/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_file_openapi2kong/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_file_remove-tags/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_file_render/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_ping/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_reset/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_sync/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_validate/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_version/
+
+### [Fix mistake in auth0 markdown](https://github.com/Kong/docs.konghq.com/pull/6417) (2023-10-31)
+
+Fix description for the `konnect_org_id` field.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/dev-portal/applications/dynamic-client-registration/auth0
+
+
+### [Fix: App registration doc lists hybrid mode as not supported](https://github.com/Kong/docs.konghq.com/pull/6416) (2023-11-02)
+
+We've had the same wrong info in the app registration docs since 2.1.x: that when using Kong Gateway as the system of record, app reg can't be used in hybrid mode. This issue recently resurfaced as a customer ran into it. 
+
+Changes made:
+* Removing the inaccurate info and making it clear that the limitation is for the OAuth2 plugin only. 
+* Added a column to the table in the App Reg plugin overview with info about supported topologies, to make it very clear up front.
+* Cleaning up the app reg auth provider strategy docs to remove all the duplicate info and cut the content down to what the user needs to know. We have the same info repeated three times in one topic, making it very difficult to actually follow along with any instructions. 
+* Removed outdated images from the edited topics.
+
+Backported it back through 2.6 since it was just a matter of copy & paste.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/application-registration/how-to/
+- https://docs.konghq.com/hub/kong-inc/application-registration/overview/
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/dev-portal/applications/auth-provider-strategy
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/dev-portal/applications/auth-provider-strategy
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/dev-portal/applications/auth-provider-strategy
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/dev-portal/applications/auth-provider-strategy
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/dev-portal/applications/auth-provider-strategy
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/dev-portal/applications/enable-application-registration
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/dev-portal/applications/enable-application-registration
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/dev-portal/applications/enable-application-registration
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/dev-portal/applications/enable-application-registration
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/dev-portal/applications/enable-application-registration
+- https://docs.konghq.com/gateway/2.6.x/developer-portal/administration/application-registration/auth-provider-strategy
+- https://docs.konghq.com/gateway/2.6.x/developer-portal/administration/application-registration/enable-application-registration
+- https://docs.konghq.com/gateway/2.7.x/developer-portal/administration/application-registration/auth-provider-strategy
+- https://docs.konghq.com/gateway/2.7.x/developer-portal/administration/application-registration/enable-application-registration
+- https://docs.konghq.com/gateway/2.8.x/developer-portal/administration/application-registration/auth-provider-strategy
+- https://docs.konghq.com/gateway/2.8.x/developer-portal/administration/application-registration/enable-application-registration
+
+
+### [Add Kong Mesh specific policies to the migration script](https://github.com/Kong/docs.konghq.com/pull/6414) (2023-11-01)
+
+In the recently introduced [guide](https://github.com/Kong/docs.konghq.com/pull/6320), I forgot to include Kong Mesh specific policies in the script.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/mesh-manager/migrate-zone
+
+
+### [fix(opentelemetry): address invalid request to set up plugin](https://github.com/Kong/docs.konghq.com/pull/6406) (2023-10-30)
+
+The request documented to configure the Opentelemetry plugin is invalid because it uses a dot `.` in the name of the attribute, which is interpreted as a field separator in the curl form data.
+
+This updates the documentation without changing the example, using JSON instead of form data to allow passing a name that includes a dot.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/opentelemetry/overview/
+
+
+### [fix: fix changelog entry for openssl version bump](https://github.com/Kong/docs.konghq.com/pull/6404) (2023-10-30)
+
+The PR fixes the issue that the changelog entries of OpenSSL version bumping from 1.1.1t to 3.1.1 are missing from several specific versions.
+
+The missing version list are:
+- 2.8.4.2
+- 3.1.1.5
+- 3.2.2.4
+- 3.3.1.1
+
+The PR adds all of them.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Feat: Portal Management API](https://github.com/Kong/docs.konghq.com/pull/6388) (2023-11-02)
+
+Customers are able to integrate portal management operations with their automation systems (such as CI/CD pipelines) by utilizing a refactored and newly-published AIP-compliant Portal Management API.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/updates
+
+
+### [docs(mesh): update docs and changelog](https://github.com/Kong/docs.konghq.com/pull/6382) (2023-10-31)
+
+Syncing docs from source code.
+
+Generated by [action](https://github.com/Kong/kong-mesh/actions/runs/6703671694)
+
+#### Modified
+
+- https://docs.konghq.com/mesh/dev/crds/kuma.io_meshloadbalancingstrategies.yaml
+- https://docs.konghq.com/mesh/dev/kuma-cp.yaml
+
+## Week 43
+
+### [Minor update to Noname plugin description](https://github.com/Kong/docs.konghq.com/pull/6375) (2023-10-26)
+
+
+Minor update to Noname plugin description.
+ 
+
+#### Modified
+
+- https://docs.konghq.com/hub/nonamesecurity/nonamesecurity-kongprevention/overview/
+
+
+### [Update cert-manager guide to use Kuma labels](https://github.com/Kong/docs.konghq.com/pull/6371) (2023-10-25)
+
+Kuma uses labels now instead of annotations.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/access-control/enable-rbac
+- https://docs.konghq.com/gateway/3.1.x/production/access-control/enable-rbac
+- https://docs.konghq.com/gateway/3.2.x/production/access-control/enable-rbac
+- https://docs.konghq.com/gateway/3.3.x/production/access-control/enable-rbac
+- https://docs.konghq.com/gateway/3.4.x/production/access-control/enable-rbac
+
+
+### [docs(mesh): update docs and changelog](https://github.com/Kong/docs.konghq.com/pull/6361) (2023-10-27)
+
+Syncing docs from source code.
+
+Generated by [action](https://github.com/Kong/kong-mesh/actions/runs/6651206297)
+
+#### Modified
+
+- https://docs.konghq.com/mesh/dev/kuma-cp.yaml
+
+
+### [fix(portal) remove examples with path in portal gui host](https://github.com/Kong/docs.konghq.com/pull/6358) (2023-10-24)
+
+### Summary
+Removes examples of adding a path when configuring `portal_gui_host`
+
+Related: https://github.com/Kong/docs.konghq.com/pull/4179
+
+### Reason
+Adding a path to `portal_gui_host` is not supported
+
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/access-control/enable-rbac
+- https://docs.konghq.com/gateway/3.1.x/production/access-control/enable-rbac
+- https://docs.konghq.com/gateway/3.2.x/production/access-control/enable-rbac
+- https://docs.konghq.com/gateway/3.3.x/production/access-control/enable-rbac
+- https://docs.konghq.com/gateway/3.4.x/production/access-control/enable-rbac
+
+
+### [Fix API URL in Konnect Custom Plugin docs](https://github.com/Kong/docs.konghq.com/pull/6357) (2023-10-24)
+
+Fix the API URL for uploading custom plugin schemas
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/plugins/add-custom-plugin
+
+
+### [fix(jwt): state what happens when multiple JWTs are provided](https://github.com/Kong/docs.konghq.com/pull/6353) (2023-10-24)
+
+A user asked to clarify the docs in scenario when multiple JWTs tokens are provided: https://github.com/Kong/kong/issues/11796. With the change from some time ago: https://github.com/Kong/kong/pull/9946 - kong rejects request when multiple JWTs were provided that differ from each other. 
+ 
+This PR explicitly states that the request will be rejected.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/jwt/overview/
+
+
+### [Add GWAPI redirect instructions](https://github.com/Kong/docs.konghq.com/pull/6335) (2023-10-27)
+
+Add GWAPI instructions to the KIC HTTPS redirect guide. Due to https://github.com/Kong/kubernetes-ingress-controller/issues/4890 this uses our vendor annotations.
+
+Adds a TLS configuration include. This creates a certificate and injects configuration to use it into either an Ingress or Gateway. The certificate hostname is configurable. The Gateway and Ingress names are not and expect the standard `echo` Ingress or `kong` Gateway.
+
+GWAPI does not easily allow adding HTTPS configuration without a TLS Listener, and these Listeners _must_ have a certificate as of GWAPI v0.8. We can't use the default Kong certificates if we don't care about the specific certificates, so we need this include for any guides that touch HTTPS-specific functionality.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/fips-support/plugins
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/fips-support/plugins
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/fips-support/plugins
+
+
+### [Guide to migrate Zone CP from On-Prem Global CP to Konnect](https://github.com/Kong/docs.konghq.com/pull/6320) (2023-10-23)
+
+Added a new guide on how to migrate Zone from on-prem Global to Konnect
+
+
+#### Added
+
+- https://docs.konghq.com/assets/images/diagrams/diagram-mesh-migration-after.png
+- https://docs.konghq.com/assets/images/diagrams/diagram-mesh-migration-before.png
+- https://docs.konghq.com/konnect/mesh-manager/migrate-zone
+
+
+
+### [Update: reflect latest FIPS support status](https://github.com/Kong/docs.konghq.com/pull/6286) (2023-10-24)
+
+
+From https://docs.google.com/document/d/1PJCcO_5DSTbv_08XxDlaS2Cx2-YeYfAencrFhS190AA/edit
+and https://github.com/Kong/kong/pull/11725
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.4.x/reference/configuration
+
+## Week 42
+
+
+### [Chore: Add search aliases for plugins](https://github.com/Kong/docs.konghq.com/pull/6328) (2023-10-18)
+
+The search field on the plugin hub homepage relies on the plugin's name and the optional `search_aliases` metadata field.
+Adding shortform aliases (eg `mtls`), related terms (eg `certificates`), and plugin literal names in code (eg `mtls-auth`).
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/acme/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/app-dynamics/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/application-registration/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/aws-lambda/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/azure-functions/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/basic-auth/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/bot-detection/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/correlation-id/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/exit-transformer/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/file-log/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/forward-proxy/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/graphql-proxy-cache-advanced/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/graphql-rate-limiting-advanced/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/grpc-gateway/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/grpc-web/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/hmac-auth/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/http-log/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/ip-restriction/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/jwe-decrypt/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/jwt-signer/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/jwt/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/kafka-log/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/kafka-upstream/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/key-auth-enc/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/key-auth/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/ldap-auth-advanced/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/ldap-auth/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/mtls-auth/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/oas-validation/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/oauth2-introspection/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/opa/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/openid-connect/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/opentelemetry/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/proxy-cache-advanced/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/proxy-cache/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/rate-limiting/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/request-size-limiting/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/request-termination/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/request-transformer-advanced/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/request-transformer/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/request-validator/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/response-ratelimiting/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/response-transformer-advanced/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/response-transformer/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/route-by-header/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/route-transformer-advanced/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/saml/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/session/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/statsd/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/tcp-log/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/tls-handshake-modifier/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/tls-metadata-headers/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/udp-log/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/upstream-timeout/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/vault-auth/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/websocket-size-limit/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/websocket-validator/_metadata.yml
+- https://docs.konghq.com/hub/kong-inc/xml-threat-protection/_metadata.yml
+
+
+### [Fix: Kong Gateway support matrix](https://github.com/Kong/docs.konghq.com/pull/6326) (2023-10-17)
+
+Fixing the following issues with the [Kong Gateway support matrix](https://docs.konghq.com/gateway/latest/support-policy/):
+* PostgreSQL 9 and 10 are no longer supported by upstream but our docs claim to support them. Also, PostgreSQL 11 is also going out of support in 3 weeks
+* Our support policy doc incorrectly stated the EOLs of many OSes. We have this statement (adjusted for dates/versions) at the top of every version's support table:
+
+  " Kong Gateway 2.8 LTS supports the following deployment targets until March 2025, unless otherwise noted by an earlier OS vendor end of life (EOL) date." 
+
+  However, our support tables aren't listing the accurate "earlier OS vendor end of life (EOL) dates".
+
+* The support table inaccurately lists available Docker images. We have many new Docker images available now that weren't listed (especially for 2.8 LTS).
+  
+  As I was trying to figure out which versions we have images for, I also noticed that the base OS for our convenience images changed once again in 3.2.1.0. It originally switched from Alpine to Debian in 3.0.0.0, which is already in the changelog, but we were unaware of the switch to Ubuntu later. Added a changelog entry for that.
+
+https://konghq.atlassian.net/browse/DOCU-3541
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [feat(multiple-metrics): updated latency section and images](https://github.com/Kong/docs.konghq.com/pull/6319) (2023-10-19)
+
+Updated content to support our new multiple metrics feature hopefully coming out by the end of this week. In details:
+* Updated latency use case section to only cover how to compare upstream vs kong latency. Previously, we had two separate section but you don't need to create two individual reports anymore.
+* Updated all images to cover UI changes.
+
+Jira: https://konghq.atlassian.net/browse/MA-1914
+Aha: https://konghq.aha.io/features/KP-299
+
+#### Added
+
+- https://docs.konghq.com/assets/images/products/konnect/analytics/custom-reports/kong-vs-upstream-latency.png
+
+#### Modified
+
+- https://docs.konghq.com/assets/images/products/konnect/analytics/custom-reports/api-usage-by-application.png
+- https://docs.konghq.com/assets/images/products/konnect/analytics/custom-reports/latency-payments-api-30.png
+- https://docs.konghq.com/assets/images/products/konnect/analytics/custom-reports/total-api-requests.png
+- https://docs.konghq.com/assets/images/products/konnect/analytics/custom-reports/total-usage-accounts-api-30.png
+- https://docs.konghq.com/konnect/analytics/reference
+- https://docs.konghq.com/konnect/analytics/use-cases/latency
+- https://docs.konghq.com/konnect/updates
+
+
+### [Update: SSH access note for instances deployed using Konnect Tech Preview install platforms](https://github.com/Kong/docs.konghq.com/pull/6305) (2023-10-18)
+
+Add a note about SSH access to Konnect data plane nodes when using the AWS, Azure, or GCP deployment styles and how it's not allowed directly but need to use the cloud provider tools.
+
+Raised in Slack: https://kongstrong.slack.com/archives/C03NRECFJPM/p1691689181346589
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/data-plane-nodes/
+
+
+### [update: Portal OIDC teams mapping post-GA improvements for IdP config instructions](https://github.com/Kong/docs.konghq.com/pull/6281) (2023-10-16)
+
+
+When this was first published, we weren't able to get SME confirmation on the correct steps for setting up the IdP configuration. Users still needed this information, as well as information about configuring groups claims, so I added those in.
+ 
+
+#### Modified
+
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/add-teams
+
+
+### [update: Add Portal RBAC diagram to Managing Developer Team Access Page](https://github.com/Kong/docs.konghq.com/pull/6264) (2023-10-17)
+
+
+We were requested to make a diagram that better visually explained how the scenario worked with the Pizza Ordering API and developer teams RBAC. I created the diagram and added it. 
+ 
+
+#### Added
+
+- https://docs.konghq.com/assets/images/diagrams/diagram-dev-portal-team-access.png
+
+#### Modified
+
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/manage-teams
+
+
+
 ## Week 41
 
 ### [Fix: Missing `ldaps` option in Kong Manager LDAP setup. Resolves DOCU-2529.](https://github.com/Kong/docs.konghq.com/pull/6304) (2023-10-12)

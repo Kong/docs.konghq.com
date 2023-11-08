@@ -39,7 +39,7 @@ jobs:
         run: bundle install --jobs 4 --retry 3
 
       # Configure Node to build assets
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: "16"
       - name: Cache node modules

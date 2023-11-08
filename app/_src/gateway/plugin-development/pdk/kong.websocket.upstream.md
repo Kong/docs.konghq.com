@@ -17,11 +17,6 @@ enterprise: true
 
 Upstream WebSocket PDK functions.
 
-{:.warning}
-> **Warning**: The WebSocket PDK is under active development and is
-considered unstable at this time. Backwards-incompatible changes may be made
-to these functions.
-
 ## kong.websocket.upstream.get_frame()
 
 Retrieve the current frame.

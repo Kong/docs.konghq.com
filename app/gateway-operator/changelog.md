@@ -5,6 +5,21 @@ no_version: true
 
 Changelog for supported {{ site.kgo_product_name }} versions.
 
+## 1.0.3
+
+**Release Date** 2023/11/06
+
+### Fixes
+
+* Fix an issue where operator is upgraded from an older version and it orphans
+  old `DataPlane` resources.
+
+### Added
+
+* Setting `spec.deployment.podTemplateSpec.spec.volumes` and
+  `spec.deployment.podTemplateSpec.spec.containers[*].volumeMounts` on `ControlPlane`s
+  is now allowed.
+
 ## 1.0.2
 
 **Release Date** 2023/10/18

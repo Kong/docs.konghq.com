@@ -12,7 +12,7 @@ documentation for more information about the purpose of the `KongPlugin` resourc
 
 {% include_cached /md/kic/installation.md kong_version=page.kong_version %}
 
-{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
+{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
 
 {% include_cached /md/kic/class.md kong_version=page.kong_version %}
 
@@ -66,7 +66,7 @@ match that resource's routing rules.
 kubectl annotate ingress lemon konghq.com/plugins=add-header-route
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 kubectl annotate httproute lemon konghq.com/plugins=add-header-route
 ```
@@ -84,7 +84,7 @@ kubectl annotate httproute lemon konghq.com/plugins=add-header-route
 ingress.networking.k8s.io/lemon annotated
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 httproute.gateway.networking.k8s.io/lemon annotated
 ```
@@ -184,7 +184,7 @@ routing rule that uses that Service as a backend.
 kubectl annotate ingress lemon konghq.com/plugins-
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 kubectl annotate httproute lemon konghq.com/plugins-
 ```
@@ -202,7 +202,7 @@ kubectl annotate httproute lemon konghq.com/plugins-
 ingress.networking.k8s.io/lemon annotated
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 httproute.gateway.networking.k8s.io/lemon annotated
 ```
@@ -387,7 +387,7 @@ route they hit.
 kubectl annotate ingress lemon konghq.com/plugins=add-header-multi
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 kubectl annotate httproute lemon konghq.com/plugins=add-header-multi
 ```
@@ -405,7 +405,7 @@ kubectl annotate httproute lemon konghq.com/plugins=add-header-multi
 ingress.networking.k8s.io/lemon annotated
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 httproute.gateway.networking.k8s.io/lemon annotated
 ```
