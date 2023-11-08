@@ -2,6 +2,189 @@
 
 <!--vale off-->
 
+## Week 44
+
+### [Fix: 2.8.1.3 changelog entry for aws-lambda plugin changes to match 3.0.0.0](https://github.com/Kong/docs.konghq.com/pull/6440) (2023-11-02)
+
+Copied the text written in 3.0.0.0 changelog entry for the aws-lambda plugin to when it was introduced in 2.8.1.3 for consistency. Makes it easier to find the versions in which those properties were added for `aws_assume_role_arn` for example.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Fix: Align wording of 2.8.1.3 update for `aws_assume_role_arn` property](https://github.com/Kong/docs.konghq.com/pull/6439) (2023-11-02)
+
+Extending the wording from the Gateway changelog in 3.0.0.0 and 2.8.1.3 to the plugin changelog for aws-lambda for 2.8.1.3 for consistency.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/aws-lambda/
+
+
+### [Update resource limit language](https://github.com/Kong/docs.konghq.com/pull/6431) (2023-11-01)
+
+Update resource limit language from entity resource limit to Default entity resource limit.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/configuration/
+
+
+### [Topnav tweaks](https://github.com/Kong/docs.konghq.com/pull/6429) (2023-11-01)
+
+Add a few tweaks based on the feedback we received.
+
+* Remove "We are hiring"
+* Move "API Specs" into the "Docs" dropdown
+
+Note: I added a "Documentation" title to the section for consistency
+
+#### Added
+
+- https://docs.konghq.com/assets/images/landing-page/view-all-api-specs.png
+
+
+### [Release: decK 1.28](https://github.com/Kong/docs.konghq.com/pull/6420) (2023-11-03)
+
+Release 1.28.x decK docs MVP. CLI reference updates only.
+Guides to follow.
+
+#### Added
+
+- https://docs.konghq.com/deck/1.28.x/reference/deck_file_convert/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_file_lint/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_file_validate/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_diff/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_dump/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_ping/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_reset/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_sync/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_validate/
+
+#### Modified
+
+- https://docs.konghq.com/deck/1.24.x/reference/deck/
+- https://docs.konghq.com/deck/1.25.x/reference/deck/
+- https://docs.konghq.com/deck/1.26.x/reference/deck/
+- https://docs.konghq.com/deck/1.27.x/reference/deck/
+- https://docs.konghq.com/deck/1.28.x/reference/deck/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_completion/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_convert/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_diff/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_dump/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_file_add-plugins/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_file_add-tags/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_file_list-tags/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_file_openapi2kong/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_file_remove-tags/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_file_render/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_ping/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_reset/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_sync/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_validate/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_version/
+
+### [Fix mistake in auth0 markdown](https://github.com/Kong/docs.konghq.com/pull/6417) (2023-10-31)
+
+Fix description for the `konnect_org_id` field.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/dev-portal/applications/dynamic-client-registration/auth0
+
+
+### [Fix: App registration doc lists hybrid mode as not supported](https://github.com/Kong/docs.konghq.com/pull/6416) (2023-11-02)
+
+We've had the same wrong info in the app registration docs since 2.1.x: that when using Kong Gateway as the system of record, app reg can't be used in hybrid mode. This issue recently resurfaced as a customer ran into it. 
+
+Changes made:
+* Removing the inaccurate info and making it clear that the limitation is for the OAuth2 plugin only. 
+* Added a column to the table in the App Reg plugin overview with info about supported topologies, to make it very clear up front.
+* Cleaning up the app reg auth provider strategy docs to remove all the duplicate info and cut the content down to what the user needs to know. We have the same info repeated three times in one topic, making it very difficult to actually follow along with any instructions. 
+* Removed outdated images from the edited topics.
+
+Backported it back through 2.6 since it was just a matter of copy & paste.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/application-registration/how-to/
+- https://docs.konghq.com/hub/kong-inc/application-registration/overview/
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/dev-portal/applications/auth-provider-strategy
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/dev-portal/applications/auth-provider-strategy
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/dev-portal/applications/auth-provider-strategy
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/dev-portal/applications/auth-provider-strategy
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/dev-portal/applications/auth-provider-strategy
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/dev-portal/applications/enable-application-registration
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/dev-portal/applications/enable-application-registration
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/dev-portal/applications/enable-application-registration
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/dev-portal/applications/enable-application-registration
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/dev-portal/applications/enable-application-registration
+- https://docs.konghq.com/gateway/2.6.x/developer-portal/administration/application-registration/auth-provider-strategy
+- https://docs.konghq.com/gateway/2.6.x/developer-portal/administration/application-registration/enable-application-registration
+- https://docs.konghq.com/gateway/2.7.x/developer-portal/administration/application-registration/auth-provider-strategy
+- https://docs.konghq.com/gateway/2.7.x/developer-portal/administration/application-registration/enable-application-registration
+- https://docs.konghq.com/gateway/2.8.x/developer-portal/administration/application-registration/auth-provider-strategy
+- https://docs.konghq.com/gateway/2.8.x/developer-portal/administration/application-registration/enable-application-registration
+
+
+### [Add Kong Mesh specific policies to the migration script](https://github.com/Kong/docs.konghq.com/pull/6414) (2023-11-01)
+
+In the recently introduced [guide](https://github.com/Kong/docs.konghq.com/pull/6320), I forgot to include Kong Mesh specific policies in the script.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/mesh-manager/migrate-zone
+
+
+### [fix(opentelemetry): address invalid request to set up plugin](https://github.com/Kong/docs.konghq.com/pull/6406) (2023-10-30)
+
+The request documented to configure the Opentelemetry plugin is invalid because it uses a dot `.` in the name of the attribute, which is interpreted as a field separator in the curl form data.
+
+This updates the documentation without changing the example, using JSON instead of form data to allow passing a name that includes a dot.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/opentelemetry/overview/
+
+
+### [fix: fix changelog entry for openssl version bump](https://github.com/Kong/docs.konghq.com/pull/6404) (2023-10-30)
+
+The PR fixes the issue that the changelog entries of OpenSSL version bumping from 1.1.1t to 3.1.1 are missing from several specific versions.
+
+The missing version list are:
+- 2.8.4.2
+- 3.1.1.5
+- 3.2.2.4
+- 3.3.1.1
+
+The PR adds all of them.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Feat: Portal Management API](https://github.com/Kong/docs.konghq.com/pull/6388) (2023-11-02)
+
+Customers are able to integrate portal management operations with their automation systems (such as CI/CD pipelines) by utilizing a refactored and newly-published AIP-compliant Portal Management API.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/updates
+
+
+### [docs(mesh): update docs and changelog](https://github.com/Kong/docs.konghq.com/pull/6382) (2023-10-31)
+
+Syncing docs from source code.
+
+Generated by [action](https://github.com/Kong/kong-mesh/actions/runs/6703671694)
+
+#### Modified
+
+- https://docs.konghq.com/mesh/dev/crds/kuma.io_meshloadbalancingstrategies.yaml
+- https://docs.konghq.com/mesh/dev/kuma-cp.yaml
+
 ## Week 43
 
 ### [Minor update to Noname plugin description](https://github.com/Kong/docs.konghq.com/pull/6375) (2023-10-26)
