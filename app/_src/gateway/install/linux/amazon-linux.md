@@ -17,11 +17,13 @@ Kong is licensed under an
 * A [supported system](/gateway/{{page.kong_version}}/support-policy/#supported-versions) with root or [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user/) access.
 * (Enterprise only) A `license.json` file from Kong.
 
-## Installation
+Once you have everything you need, choose an installation path: 
+  * [Quickstart](#installation): Install script for a {{site.base_gateway}} package and PostgreSQL database
+  * [Advanced installation](#advanced-installation): Choose your own pieces to install
 
 {% if_version gte:3.2.x %}
 {:.note}
-> **Notes:**
+> **Notes:** 
 * {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
 * In July of 2023, Kong announced that package hosting was shifting from {{ site.links.download }} to [{{ site.links.cloudsmith }}]({{ site.links.cloudsmith }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
 {% endif_version %}
@@ -31,6 +33,8 @@ Kong is licensed under an
 > **Note:** In July of 2023, Kong announced that package hosting was shifting from {{ site.links.download }} to [{{ site.links.cloudsmith }}]({{ site.links.cloudsmith }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
 {% endif_version %}
 
+## Installation
+
 {% include /md/gateway/install-linux-os.md kong_version=page.kong_version versions_ce=page.versions.ce versions_ee=page.versions.ee %}
 
 ## Advanced installation
@@ -39,10 +43,8 @@ Kong is licensed under an
 
 You can install {{site.base_gateway}} by downloading an installation package or using the yum repository.
 
-{% if_version gte:3.2.x %}
-{:.note .no-icon}
-> {{site.base_gateway}} supports running on [AWS Graviton processors](https://aws.amazon.com/ec2/graviton/). It can run in all AWS Regions where AWS Graviton is supported.
-{% endif_version %}
+The following steps install the package **only**, without a data store. 
+You will need to set one up after installation.
 
 {% navtabs %}
 {% navtab Package %}

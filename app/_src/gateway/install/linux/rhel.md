@@ -17,10 +17,14 @@ Kong is licensed under an
 * A [supported system](/gateway/{{page.kong_version}}/support-policy/#supported-versions) with root or [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user/) access.
 * (Enterprise only) A `license.json` file from Kong
 
-## Installation
+Once you have everything you need, choose an installation path: 
+  * [Quickstart](#installation): Install script for a {{site.base_gateway}} package and PostgreSQL database
+  * [Advanced installation](#advanced-installation): Choose your own pieces to install
 
 {:.note}
 > **Note:** In July of 2023 Kong announced that package hosting was shifting from {{ site.links.download }} to [{{ site.links.cloudsmith }}]({{ site.links.cloudsmith }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
+
+## Installation
 
 {% include /md/gateway/install-linux-os.md kong_version=page.kong_version versions_ce=page.versions.ce versions_ee=page.versions.ee %}
 
@@ -29,6 +33,9 @@ Kong is licensed under an
 ### Package install
 
 You can install {{site.base_gateway}} by downloading an installation package or using the yum repository.
+
+The following steps install the package **only**, without a data store. 
+You will need to set one up after installation.
 
 {% navtabs %}
 {% navtab Package %}
