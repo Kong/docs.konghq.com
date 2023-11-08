@@ -37,3 +37,9 @@ control plane. You should never have to deal with a license
 directly.
 
 For any license questions, contact your sales representative.
+
+## Geographic region management
+
+When you create a {{site.konnect_saas}} account, you select a [geographic region](/konnect/regions) for your instance. Regions are distinct deployments of {{site.konnect_short_name}} with objects, such as services and consumers, that are region-specific. Only authentication is shared between {{site.konnect_short_name}} regions.
+
+Only Enterprise plans can select more than one region.

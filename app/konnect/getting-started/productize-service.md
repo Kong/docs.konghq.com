@@ -2,7 +2,7 @@
 title: Productize a Service
 ---
 
-Using [API Products](/konnect/api-products), you can create and manage API products to productize your services. Each API product consists of at least one API product version, and each API product version is connected to a Gateway service. Creating API products is the first step in making your APIs and their documentation available to developers.
+Using [API Products](/konnect/api-products), you can create and manage API products to productize your services. Each API product consists of at least one API product version, and each API product version is connected to a Gateway service. Creating API products is the first step in making your APIs and their documentation available to developers. API products are region-specific and are not shared between [geographic regions](/konnect/regions/).
 
 ![{{site.konnect_short_name}} service diagram](/assets/images/products/konnect/gateway-manager/konnect-services-diagram.png)
 

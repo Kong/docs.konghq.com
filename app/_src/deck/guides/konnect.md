@@ -206,7 +206,7 @@ The default API decK uses is `https://us.api.konghq.com`, which targets the `clo
 
 {% if_version gte:1.14.x %}
 
-{{site.base_gateway}} supports US and EU geographic regions.
+{{site.base_gateway}} supports US, EU, and AU [geographic regions](/konnect/regions/).
 To target the EU region, set `konnect-addr` to `"https://eu.api.konghq.com"`.
 
 {% endif_version %}

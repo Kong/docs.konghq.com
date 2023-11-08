@@ -40,6 +40,8 @@ Edit team roles from the {% konnect_icon organizations %} [**Organization**](htt
 
 1. Open one of the entity tabs: **API Products**, **Control Planes**, or **Mesh Control Planes**.
 
+1. Enterprise only: Select the region you want to add from the **View region** drop-down menu. Members assigned to this role can only access {{site.konnect_short_name}} objects in the selected region.
+
 1. Click **Add role(s)**.
 
 1. Click the instance field to choose an instance of the entity you want to assign, or choose `*` to target all entities of the selected type.

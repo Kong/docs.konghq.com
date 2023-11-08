@@ -28,6 +28,7 @@ Gateway services can be managed though Gateway Manager:
 * When you create a {{site.konnect_short_name}} service implementation through the Setup Wizard, it automatically creates a Gateway service.
 * You can also create a Gateway service directly through Gateway Manager. This
 service won't be attached to an API product by default.
+* Services are region-specific and are not shared between [geographic regions](/konnect/regions/).
 
 To see if a Gateway service is connected to an API product, open its
 detail page from {% konnect_icon runtimes %} **Gateway Manager** > **Gateway Services**. If it's attached to an
