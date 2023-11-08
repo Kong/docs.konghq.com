@@ -239,7 +239,7 @@
   version: "3.0.0"
   edition: "kubernetes-ingress-controller"
 - edition: gateway-operator
-  version: 1.0.2
+  version: 1.0.3
   release: 1.0.x
 - edition: mesh
   version: 1.2.6
