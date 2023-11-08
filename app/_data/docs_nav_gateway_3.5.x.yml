@@ -217,7 +217,7 @@ items:
         url: /production/canary
       - text: Clustering Reference
         url: /production/clustering
-      - text: Logging
+      - text: Logging and Debugging
         items:
           - text: Log Reference
             url: /production/logging/log-reference
@@ -225,6 +225,8 @@ items:
             url: /production/logging/update-log-level-dynamically
           - text: Customize Gateway Logs
             url: /production/logging/customize-gateway-logs
+          - text: Debug Requests
+            url: /production/debug-request
         url: /production/logging
       - text: Configure a gRPC service
         url: /production/configuring-a-grpc-service
