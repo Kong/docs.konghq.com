@@ -36,8 +36,9 @@ Extract and store the token from the registration URL, either by manually creati
 {% navtab Manual method example %}
 
 1. Send a request to the registration URL
+
 ```bash
-curl -i -X hhttp://localhost:8001/$WORKSPACE/admins/$USERNAME?generate_register_url=true \
+curl -i http://localhost:8001/$WORKSPACE/admins/$USERNAME?generate_register_url=true \
   -H Kong-Admin-Token:$TOKEN
 ```
 
