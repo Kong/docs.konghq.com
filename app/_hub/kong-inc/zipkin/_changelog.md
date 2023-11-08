@@ -1,5 +1,9 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.4.x**
+* Fixed an issue where traces weren't being generated correctly when instrumentations were enabled.
+[#10983](https://github.com/Kong/kong/pull/10983)
+
 **{{site.base_gateway}} 3.1.x**
 * Added the parameter `response_header_for_traceid`.
 

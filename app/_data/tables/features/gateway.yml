@@ -3,7 +3,7 @@ columns:
     cta: Get Started
     cta_link: /gateway/latest/install/
     key: oss
-  - name: Kong Enterprise
+  - name: Kong Gateway Enterprise
     cta: Contact Sales
     cta_link: http://konghq.com/contact-sales
     key: enterprise

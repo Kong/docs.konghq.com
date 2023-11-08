@@ -76,7 +76,7 @@ ordering:
     ``` yaml
     _format_version: "3.0"
     services:
-    - host: mockbin.org
+    - host: httpbin.org
       name: example_service
       port: 80
       protocol: http
@@ -203,7 +203,7 @@ ordering:
     ``` yaml
     _format_version: "3.0"
     services:
-    - host: mockbin.org
+    - host: httpbin.org
       name: example_service
       port: 80
       protocol: http

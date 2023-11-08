@@ -112,7 +112,7 @@ Kong introspects the opaque token and receives the JWT in the response. The JWT 
 * Installing the [Curity Identity Server][curity-getting-started]
 
 ----
-
+{% if_version lte:3.4.x %}
 ## Kong Dev Portal Authentication
 
 The [Kong Dev Portal][kong-dev-portal-doc] is a part of {{site.ee_product_name}}. The portal enables developers to access and manage configured services and documentation to provide a streamlined onboarding process. The Kong Dev Portal supports various options for user authentication and access control. This guide outlines how to configure the Kong OpenID Connect Plugin to leverage the Curity Identity Server as a third-party Identity Provider for user Authentication to the Dev Portal.
@@ -202,7 +202,7 @@ select * from "accounts" where "username"= :subject
 ### Conclusion
 
 With relatively simple configurations in both the Curity Identity Server and the Kong Dev Portal, it's possible to leverage Curity as the Identity Provider for the Kong Dev Portal. This provides a very seamless flow for user authentication to the Kong Dev Portal. With the added capability of an Authentication Action, it is possible to automatically provision the user to the Kong Dev Portal for an even more streamlined experience.
-
+{% endif_version %}
 [kong-add-service]: /gateway/{{page.kong_version}}/admin-api/#service-object
 [curity-phantom-token-introspection]: https://curity.io/resources/learn/introspect-with-phantom-token
 [curity-getting-started]: https://curity.io/resources/getting-started

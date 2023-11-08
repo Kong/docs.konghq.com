@@ -74,9 +74,9 @@ and not CLI flags.
 | `--kong-admin-tls-client-key-file` | `string` | MTLS client key file for authentication. |  |
 | `--kong-admin-tls-server-name` | `string` | SNI name to use to verify the certificate presented by Kong in TLS. |  |
 | `--kong-admin-tls-skip-verify` | `bool` | Disable verification of TLS certificate of Kong's Admin endpoint. | `false` |
-| `--kong-admin-token` | `string` | The Kong Enterprise RBAC token used by the controller. |  |
+| `--kong-admin-token` | `string` | The {{site.ee_product_name}} RBAC token used by the controller. |  |
 | `--kong-admin-url` | `stringSlice` | Kong Admin URL(s) to connect to in the format "protocol://address:port". More than 1 URL can be provided, in such case the flag should be used multiple times or a corresponding env variable should use comma delimited addresses. | `[http://localhost:8001]` |
-| `--kong-workspace` | `string` | Kong Enterprise workspace to configure. Leave this empty if not using Kong workspaces. |  |
+| `--kong-workspace` | `string` | {{site.ee_product_name}} workspace to configure. Leave this empty if not using Kong workspaces. |  |
 | `--konnect-address` | `string` | Base address of Konnect API. | `https://us.kic.api.konghq.com` |
 | `--konnect-initial-license-polling-period` | `duration` | Polling period to be used before the first license is retrieved. | `1m0s` |
 | `--konnect-license-polling-period` | `duration` | Polling period to be used after the first license is retrieved. | `12h0m0s` |

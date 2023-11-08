@@ -206,7 +206,7 @@ hub-filters:
     *plugin_categories
 
 # product name vars
-ee_product_name: Kong Enterprise
+ee_product_name: Kong Gateway Enterprise
 ce_product_name: Kong Gateway (OSS)
 base_gateway: Kong Gateway
 kgo_product_name: Kong Gateway Operator

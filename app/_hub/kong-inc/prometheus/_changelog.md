@@ -1,5 +1,11 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.4.x**
+* This plugin has been optimized to reduce proxy latency impacts during scraping.
+  [#10949](https://github.com/Kong/kong/pull/10949)
+  [#11040](https://github.com/Kong/kong/pull/11040)
+  [#11065](https://github.com/Kong/kong/pull/11065)
+
 **{{site.base_gateway}} 3.0.x**
 * High cardinality metrics are now disabled by default.
 * Decreased performance penalty to proxy traffic when collecting metrics.

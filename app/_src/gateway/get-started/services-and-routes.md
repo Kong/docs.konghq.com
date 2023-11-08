@@ -57,10 +57,10 @@ also offers other options for configuration management including
 [{{site.konnect_saas}}](/konnect/) and [decK](/deck/latest/).
 
 In this section of the tutorial, you will complete the following steps:
-* Create a service pointing to the [Mockbin](https://mockbin.org/) API, which provides testing facilities 
+* Create a service pointing to the [httpbin](https://httpbin.org/) API, which provides testing facilities 
   for HTTP requests and responses.
 * Define a route by providing a URL path that will be available to clients on the running {{site.base_gateway}}.
-* Use the new Mockbin service to echo a test request, helping you understand how 
+* Use the new httpbin service to echo a test request, helping you understand how 
   {{site.base_gateway}} proxies API requests. 
 
 ### Prerequisites
@@ -84,11 +84,11 @@ complete that before proceeding.
    ```sh
    curl -i -s -X POST http://localhost:8001/services \
      --data name=example_service \
-     --data url='http://mockbin.org'
+     --data url='http://httpbin.org'
    ```
 
    This request instructs {{site.base_gateway}} to create a new 
-   service mapped to the upstream URL `http://mockbin.org`.
+   service mapped to the upstream URL `http://httpbin.org`.
    
    In our example, the request body contained two strings: 
    
@@ -100,7 +100,7 @@ complete that before proceeding.
 
    ```text
    {
-     "host": "mockbin.org",
+     "host": "httpbin.org",
      "name": "example_service",
      "enabled": true,
      "connect_timeout": 60000,
@@ -142,7 +142,7 @@ complete that before proceeding.
    
    ```text
    {
-     "host": "mockbin.org",
+     "host": "httpbin.org",
      "name": "example_service",
      "enabled": true,
      ...
@@ -165,7 +165,7 @@ complete that before proceeding.
    
    ```sh
    {
-     "host": "mockbin.org",
+     "host": "httpbin.org",
      "name": "example_service",
      "enabled": true,
      "retries": 6,
@@ -377,16 +377,16 @@ You can also view the configuration for your routes in the Kong Manager UI by na
 
 Kong is an API Gateway, it takes requests from clients and routes them to the appropriate upstream application 
 based on a the current configuration. Using the service and route that was previously configured, you can now 
-access `https://mockbin.org/` using `http://localhost:8000/mock`.
+access `https://httpbin.org/` using `http://localhost:8000/mock`.
 
 By default, {{site.base_gateway}}'s Admin API listens for administrative requests on port `8001`, this is sometimes referred to as the
 *control plane*. Clients use port `8000` to make data requests, and this is often referred to as the *data plane*.
 
-Mockbin provides a `/requests` resource which will echo back to clients information about requests made to it.
-Proxy a request through {{site.base_gateway}} to the `/requests` resource:
+Httpbin provides an `/anything` resource which will echo back to clients information about requests made to it.
+Proxy a request through {{site.base_gateway}} to the `/anything` resource:
 
 ```sh
-curl -X GET http://localhost:8000/mock/requests
+curl -X GET http://localhost:8000/mock/anything
 ```
 
 You should see a response similar to the following:
@@ -395,11 +395,11 @@ You should see a response similar to the following:
   "startedDateTime": "2022-08-24T13:44:28.449Z",
   "clientIPAddress": "172.19.0.1",
   "method": "GET",
-  "url": "http://localhost/requests",
+  "url": "http://localhost/anything",
   "httpVersion": "HTTP/1.1",
   "cookies": {},
   "headers": {
-    "host": "mockbin.org",
+    "host": "httpbin.org",
     "connection": "close",
     "accept-encoding": "gzip",
     "x-forwarded-for": "172.19.0.1,98.63.188.11, 162.158.63.41",
@@ -408,7 +408,7 @@ You should see a response similar to the following:
     "cf-visitor": "{\"scheme\":\"http\"}",
     "x-forwarded-host": "localhost",
     "x-forwarded-port": "80",
-    "x-forwarded-path": "/mock/requests",
+    "x-forwarded-path": "/mock/anything",
     "x-forwarded-prefix": "/mock",
     "user-agent": "curl/7.79.1",
     "accept": "*/*",

@@ -200,7 +200,7 @@ items:
             url: /migrate-ce-to-ke/
           - text: Migration Guidelines Cassandra to PostgresSQL
             url: /migrate-cassandra-to-postgres
-  - title: Kong Enterprise
+  - title: Kong Gateway Enterprise
     icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
     items:
       - text: Overview

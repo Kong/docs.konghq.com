@@ -493,7 +493,7 @@ jQuery(function () {
    *
    * To disable for whole page you can add 'disable_image_expand: true' to page Front Matter block. Example:
    * ---
-   * title: Install Kong Enterprise
+   * title: Install Kong Gateway Enterprise
    * disable_image_expand: true
    * ---
    */

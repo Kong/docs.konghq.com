@@ -30,13 +30,27 @@ Here are some of the things you can do with Kong Manager:
 ![Kong Manager interface](/assets/images/products/gateway/km_workspace_3.0.png)
 {% endif_version %}
 
-{% if_version gte:3.1.x %}
+{% if_version gte:3.1.x lte:3.4.x %}
 ![Kong Manager interface](/assets/images/products/gateway/km_workspace_3.1.png)
 {% endif_version %}
 
+{% if_version gte:3.5.x %}
+![Kong Manager interface](/assets/images/products/gateway/km_workspace_3.5.png)
+{% endif_version %}
 > Figure 1: Kong Manager individual workspace dashboard
 
 ### Top menu
+
+{% if_version gte:3.5.x %}
+
+Item | Description
+-----|------------
+**Workspaces** | Dashboard for all the workspaces in the cluster.
+**Teams** | Manage team roles and permissions with RBAC, or map groups to your IdP.
+
+{% endif_version %}
+
+{% if_version gte:3.1.x lte:3.4.x %}
 
 Number | Item | Description
 -------|------|------------
@@ -46,7 +60,18 @@ Number | Item | Description
 4 | **Teams** | Manage team roles and permissions with RBAC, or map groups to your IdP.
 5 | **Account settings** | Manage your password and RBAC token.
 
+{% endif_version %}
 ### Side menu
+
+{% if_version gte:3.5.x %}
+
+Item | Description
+-----|------------
+**Dashboard** | See information about a workspace.
+**API Gateway** | Manage the {{site.base_gateway}} entities in the current workspace.
+**Secrets** | Manage vaults, keys and key sets for your environment.
+{% endif_version %}
+{% if_version lte:3.4.x %}
 
 Number | Item | Description
 -------|------|------------
@@ -57,11 +82,11 @@ Number | Item | Description
 {% if_version gte:3.1.x %}
 10 | **Vaults** | Manage secret vaults in your environment.
 {% endif_version %}
-
 {% if_version gte:3.2.x %}
 11 | **Keys** | Centrally store and easily access key sets and keys.
 {% endif_version %}
-
+{% endif_version %}
+{% if_version lte:3.4.x %}
 ### Workspace dashboard
 
 {% if_version lte:3.0.x %}
@@ -80,4 +105,5 @@ Number | Item | Description
 12 | **Overview panel** | Overview of key statistics for the workspace: number of services, consumers, and API requests, as well as the license validity information.
 13 | **Total traffic graph** | Total traffic in the workspace by status code within a selected time frame.
 14 | **Time frame selector** | Choose the time frame for the traffic graph, from the last 5 minutes to the last 12 hours.
+{% endif_version %}
 {% endif_version %}

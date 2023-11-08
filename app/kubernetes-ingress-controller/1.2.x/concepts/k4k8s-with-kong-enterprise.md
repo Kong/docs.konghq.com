@@ -1,5 +1,5 @@
 ---
-title: Kong for Kubernetes with Kong Enterprise
+title: Kong for Kubernetes with {{site.ee_product_name}}
 ---
 
 Kong for Kubernetes is a {{site.kic_product_name}} built on top
@@ -15,7 +15,7 @@ operational and maintenance footprint.
 
 However, in some cases, those enterprise features are necessary,
 and for such use-cases we support another deployment - Kong for
-Kubernetes with Kong Enterprise.
+Kubernetes with {{site.ee_product_name}}.
 
 As seen in the diagram below, this deployment consists of
 Kong for Kubernetes deployed in Kubernetes, and is hooked up with
@@ -24,7 +24,7 @@ a regular {{site.base_gateway}} proxy can be deployed there and connected to the
 same database. This provides a single pane of visibility of
 all services that are running in your infrastructure.
 
-![architecture-overview](/assets/images/products/kubernetes-ingress-controller/k4k8s-with-kong-enterprise.png "K4K8S with Kong Enterprise")
+![architecture-overview](/assets/images/products/kubernetes-ingress-controller/k4k8s-with-kong-enterprise.png "K4K8S with {{site.ee_product_name}}")
 
 In this deployment model, the database for Kong can be hosted anywhere.
 It can be a managed DBaaS service like Amazon RDS, Google Cloud
@@ -34,10 +34,10 @@ If you are following this model, please keep in mind the following:
 - It is recommended to not deploy Postgres on Kubernetes,
   due to the fact that running stateful applications on Kubernetes
   is challenging to get right.
-- Ensure that you have the same image/package of Kong Enterprise
+- Ensure that you have the same image/package of {{site.ee_product_name}}
   running across the fleet. This means that all Kong instances that are
   connected to the same database must use the
-  same version of kong Enterprise package.
+  same version of {{site.ee_product_name}} package.
 
 [This guide](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/kong-enterprise)
 walks through the setup of the above architecture.

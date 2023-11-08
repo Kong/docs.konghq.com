@@ -270,12 +270,84 @@ Sets the authenticated consumer and/or credential for the current request.
 -- assuming `credential` and `consumer` have been set by some authentication code
 kong.client.authenticate(consumer, credentials)
 ```
+{% if_version gte:3.5.x %}
+## _CLIENT.set_authenticated_consumer_groups(group)
+
+Explicitly sets the authenticated consumer group for the current request.
+ Throws an error if the `group` is neither a table nor `nil`.
+
+**Phases**
+
+* auth_and_later
+
+**Parameters**
+
+* **group** (`table|nil`):  The consumer group to set. If no
+ value is provided, then any existing value will be cleared.
+ this value should be a table of tables where each group is an
+ table with metadata of the group like its `id` and `name`.
+
+**Usage**
+
+``` lua
+-- assuming `group` is provided by some code
+_CLIENT.set_authenticated_consumer_groups(group)
+```
+
+
+
+## _CLIENT.set_authenticated_consumer_group(group)
+
+This function is deprecated in favor of `set_authenticated_consumer_groups`.
+ Explicitly sets the authenticated consumer group for the current request.
+ Throws an error if the `group` is neither a table nor `nil`.
+
+**Phases**
+
+* auth_and_later
+
+**Parameters**
+
+* **group** (`table|nil`):  The consumer group to set. If no
+ value is provided, then any existing value will be cleared.
+ this value should be a table with metadata of the group like its `id` and `name`.
+
+**Usage**
+
+``` lua
+-- assuming `group` is provided by some code
+_CLIENT.set_authenticated_consumer_group(group)
+```
+
+
+
+## _CLIENT.get_consumer_groups()
+
+Retrieves the authenticated consumer groups for the current request.
+
+**Phases**
+
+* auth_and_later
+
+**Returns**
+
+* `table|nil`:  The authenticated consumer groups. Returns `nil` if no
+ consumer groups has been authenticated for the current request.
+
+
+**Usage**
+
+``` lua
+local groups = _CLIENT.get_consumer_groups()
+```
+{% endif_version %}
+
 {% if_version gte:3.4.x %}
 
 
 ## _CLIENT.get_consumer_group()
 
-Retrieves the authenticated consumer group for the current request.
+This function is deprecated in favor of `get_consumer_groups`. Retrieves the authenticated consumer group for the current request.
 
 **Phases**
 
@@ -291,6 +363,33 @@ Retrieves the authenticated consumer group for the current request.
 
 ``` lua
 local group = _CLIENT.get_consumer_group()
+```
+{% endif_version %}
+{% if_version gte:3.5.x %}
+## _CLIENT.authenticate_consumer_group_by_consumer_id(consumer_id)
+
+Sets the consumer group for the current request based on the provided consumer id.
+ If the consumer_id is neither a string nor nil, it throws an error.
+ If the consumer group has already been authenticated, it doesn't override the group.
+ The function performs a redis-SCAN-like lookup using a subset of the cache_key.
+ The consumer_group_mapping is sorted by group name for deterministic behavior,
+ but this might be changed in future releases.
+
+
+**Phases**
+
+* access
+
+**Parameters**
+
+* **consumer_id** (`string|nil`):  The consumer id to use for setting the consumer group.
+ If no value is provided, the current consumer group is not changed.
+
+**Usage**
+
+``` lua
+-- assuming `consumer_id` is provided by some code
+_CLIENT.authenticate_consumer_group_by_consumer_id(consumer_id)
 ```
 {% endif_version %}
 

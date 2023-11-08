@@ -1,7 +1,7 @@
 columns:
   - name: Kong OSS
     key: oss
-  - name: Kong Enterprise
+  - name: Kong Gateway Enterprise
     key: enterprise
   - name: Officially Supported
     key: support

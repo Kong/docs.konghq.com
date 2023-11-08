@@ -58,17 +58,21 @@ available in DB-less deployments.
 
 Some Enterprise features are not available in DB-less deployments.
 Use a database-backed deployment if you want to use:
-
-* Dev Portal
 * Teams (RBAC)
 * Workspaces
+{% if_version lte:3.4.x %}
+* Dev Portal
+{% endif_version %}
+
 
 The following features have support in DB-less mode, but
 work differently than in DB-backed modes:
 
 * Kong Manager (read-only)
+{% if_version lte:3.4.x %}
 * Vitals (using [Prometheus][vitals-prometheus] or [InfluxDB][vitals-influxdb]
   strategies)
+{% endif_version %}
 
 When {{site.base_gateway}} is configured by the ingress controller, some
 functionality in these features is different from traditional deployments:

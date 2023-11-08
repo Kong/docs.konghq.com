@@ -35,7 +35,18 @@
 /konnect/getting-started/configure-runtime/ /konnect/getting-started/configure-data-plane-node/
 /konnect/api/runtime-groups-config/overview/ /konnect/api/
 
-#3.4
+
+# 3.5
+/gateway/latest/kong-enterprise/analytics/* /gateway/3.4.x/kong-enterprise/analytics/:splat
+/gateway/latest/kong-enterprise/dev-portal/* /gateway/3.4.x/kong-enterprise/dev-portal/:splat
+/gateway/latest/how-kong-works/performance-testing/ /gateway/3.4.x/how-kong-works/performance-testing/
+/gateway/3.5.x/how-kong-works/performance-testing/ /gateway/3.4.x/how-kong-works/performance-testing/
+/gateway/latest/reference/performance-testing-framework/ /gateway/3.4.x/reference/performance-testing-framework/
+/gateway/3.5.x/reference/performance-testing-framework/ /gateway/3.4.x/reference/performance-testing-framework/
+/gateway/3.5.x/admin-api/developers/*   /gateway/3.4.x/admin-api/developers/reference/
+/gateway/latest/admin-api/developers/*   /gateway/3.4.x/admin-api/developers/reference/
+
+# 3.4
 
 /gateway/latest/production/security-update-process /gateway/latest/support/vulnerability-patching-process 
 /gateway/latest/kong-enterprise/consumer-groups /gateway/latest/key-concepts/consumer-groups

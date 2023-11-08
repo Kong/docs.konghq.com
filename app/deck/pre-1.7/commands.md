@@ -31,7 +31,7 @@ This flag can be used in the following cases:
   and sync its configuration without being aware of any other team's
   configuration.
 
-If you are a Kong Enterprise user, you can specify a specific workspace that
+If you are a {{site.ee_product_name}} user, you can specify a specific workspace that
 you want to export using the `--workspace` flag, or use the `--all-workspaces` flag
 to export routing configuration of all workspaces.
 

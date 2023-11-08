@@ -44,9 +44,9 @@ non-default configuration for
 |  `udp-log`                |  <i class="fa fa-check"></i>  |  <i class="fa fa-check"></i>  |
 |  `zipkin`                 |  <i class="fa fa-check"></i>  |  <i class="fa fa-check"></i>  |
 
-## Kong Enterprise
+## {{site.ee_product_name}}
 
-|  Plugin                          |  Kong Enterprise                           |  Kong Enterprise (DB-less)                |
+|  Plugin                          |  {{site.ee_product_name}}                  |  {{site.ee_product_name}} (DB-less)       |
 |----------------------------------|--------------------------------------------|-------------------------------------------|
 |  `acl`                             |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
 |  `aws-lambda`                      |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
