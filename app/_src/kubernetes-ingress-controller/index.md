@@ -15,7 +15,7 @@ A Kubernetes ingress controller is an application that runs in a cluster and con
 
 [Learn More &raquo;](/kubernetes-ingress-controller/{{ page.release }}/concepts/architecture/)
 
-![KIC + {{ site.base_gateway }} Architecture Diagram](/assets/images/products/kubernetes-ingress-controller/kic-gateway-arch.png)
+![KIC and {{ site.base_gateway }} Architecture Diagram](/assets/images/products/kubernetes-ingress-controller/kic-gateway-arch.png)
 
 
 ## Deployment Methods
