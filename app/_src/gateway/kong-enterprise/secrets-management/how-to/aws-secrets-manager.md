@@ -1,6 +1,7 @@
 ---
 title: Securing Kong Gateway database credentials with AWS Secrets Manager
 content_type: how-to
+badge: enterprise
 description: "How to keep your {{site.base_gateway}} database credentials secure using AWS Secrets Manager and vault integrations."
 ---
 

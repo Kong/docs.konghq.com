@@ -65,7 +65,7 @@ Choose your preferred mode when following installation steps:
 * **Free Mode**: Install {{site.base_gateway}} without a license, gaining access to Kong Manager.
 * **Enterprise**: Install {{site.base_gateway}} and add a license.
 
-If you install the {{site.base_gateway}} Enterprise in Free mode, you can add a license
+If you install the {{site.ee_product_name}} in Free mode, you can add a license
 at any time to gain access to Enterprise features.
 
 {:.note}

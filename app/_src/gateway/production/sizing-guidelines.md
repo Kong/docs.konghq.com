@@ -25,9 +25,10 @@ Consider the following simplified examples, where latency and throughput require
 
 | Size | Number of Configured Entities | Latency Requirements | Throughput Requirements | Usage Pattern |
 |---|---|---|---|---|
-| Small  | < 100   | < 100 ms | < 500 RPS   | Dev/test environments; latency-insensitive gateways |
-| Medium | < 1000  | < 20 ms  | < 2500 RPS  | Production clusters; greenfield traffic deployments |
-| Large  | < 10000 | < 10 ms  | < 10000 RPS | Mission-critical clusters; legacy & greenfield traffic; central enterprise-grade gateways |
+| Development | < 100 | < 100 ms | < 500 RPS   | Dev/test environments; latency-insensitive gateways |
+| Small | < 1000  | < 20 ms  | < 2500 RPS  | Production clusters; greenfield traffic deployments |
+| Medium | < 10000 | < 10 ms  | < 10000 RPS | Mission-critical clusters; legacy & greenfield traffic; central enterprise-grade gateways |
+| Large | < 50000+ | < 10 ms  | < 10000 RPS | Mission-critical clusters; legacy & greenfield traffic; central enterprise-grade gateways |
 
 ### Database resources
 
@@ -169,6 +170,17 @@ the better choice, as it provides near-unlimited throughput capacity. In this
 scenario, adding more cache memory would not increase maximum throughput by
 much.
 
+{% if_version gte:3.5.x %}
+When {{site.base_gateway}} is operating in hybrid mode with a large number of configuration
+entities (routes, services, etc.), it can benefit from the **dedicated configuration processing** option.
+When enabled, certain CPU-intensive steps of the data plane reconfiguration operation are offloaded
+to a dedicated worker process. This reduces proxy latency during reconfigurations at the cost of a
+slight increase in memory usage. The benefits of this mechanism are most apparent with configurations
+consisting of more than a thousand configuration entities. See the
+configuration reference for [`dedicated_config_processing`](/gateway/{{page.kong_version}}/reference/configuration/#dedicated_config_processing) for more information.
+
+{% endif_version %}
+
 Performance benchmarking and optimization as a whole is a complex exercise that
 must account for a variety of factors, including those external to
 {{site.base_gateway}}, such as the behavior of upstream services, or the health
@@ -187,7 +199,7 @@ thousands of Routes with minimal impact to latency as a result of request route
 evaluation.
 
 * **Number of configured Consumers and Credentials**: Consumer and credential
-data is stored in {{site.base_gateway}}'s datastore.  {{site.base_gateway}} 
+data is stored in {{site.base_gateway}}'s datastore.  {{site.base_gateway}}
 caches this data in memory to reduce database load and
 latency during request processing. Increasing the count of Consumers and
 Credentials requires more memory available for {{site.base_gateway}} to hold

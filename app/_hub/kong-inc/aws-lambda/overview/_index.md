@@ -50,22 +50,22 @@ that the plugin now has the access permission configured in the target assumed r
 
 {% endif_plugin_version %}
 
-{% if_plugin_version gte:3.0.x %}
+{% if_plugin_version gte:2.8.x %}
 
-For example, if you're running Kong on an EC2 instance, the IAM role that attached
-to the EC2 will be used, and Kong will fetch the credential from the
-[EC2 Instance Metadata service(IMDSv1)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html).
-If you're running Kong in an ECS container, the task IAM role will be used, and Kong will fetch the credentials from
-the [container credential provider](https://docs.aws.amazon.com/sdkref/latest/guide/feature-container-credentials.html).
-Note that the plugin will first try to fetch from ECS metadata to get the role, and if no ECS metadata related environment
-variables are available, the plugin falls back on EC2 metadata.
+The AWS Lambda plugin will automatically fetch the IAM role credential according to the following
+precedence order:
+- Fetch from the credentials defined in the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables.
+- Fetch from the profile and credential file, defined by `AWS_PROFILE` and `AWS_SHARED_CREDENTIALS_FILE`.
+- Fetch from the ECS [container credential provider](https://docs.aws.amazon.com/sdkref/latest/guide/feature-container-credentials.html).
+- Fetch from the EKS [IAM roles for the service account](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
+- Fetch from the EC2 IMDS metadata. Both v1 and v2 are supported.
 
 If you also provide the `aws_assume_role_arn` option, the plugin will try to perform
 an additional [AssumeRole](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)
-action, which requires the Kong process to make HTTPS request to AWS STS service API, after
-configuring AWS access key/secret or fetching credentials automatically from EC2/ECS IAM roles.
-If it succeeds, the plugin will fetch a temporary security credentials that represents
-that the plugin now has the access permission configured in the target assumed role.
+action. This requires the Kong process to make a HTTPS request to the AWS STS service API after
+configuring the AWS access key/secret or fetching credentials automatically from EC2/ECS/EKS IAM roles.
+If it succeeds, the plugin will fetch temporary security credentials that represents
+that the plugin now has the access permission configured in the target assumed role. Then the plugin will try to invoke the lambda function based on the target assumed role.
 
 {% endif_plugin_version %}
 

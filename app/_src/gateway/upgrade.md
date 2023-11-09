@@ -270,9 +270,9 @@ executing `kong config db_import config.lua`, convert the `config.lua` file into
 before upgrading.
 
 ### Admin API
-
+{% if_version lte:3.4.x %}
 The Admin API endpoint `/vitals/reports` has been removed.
-
+{% endif_version %}
 `POST` requests on `/targets` endpoints are no longer able to update
 existing entities. They are only able to create new ones.
 If you have scripts that use `POST` requests to modify `/targets`, change them to `PUT`

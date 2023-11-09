@@ -80,7 +80,7 @@ Two common use cases are:
 
 {:.warning}
 > **Note**: **Enterprise-Only**: The Kong Community Edition of this Rate Limiting plugin does not
-include [Redis Sentinel](https://redis.io/topics/sentinel) support. Only [{{site.base_gateway}} Enterprise](https://www.konghq.com/kong) customers can use Redis Sentinel with Kong Rate Limiting, enabling them to deliver highly available primary-replica deployments.
+include [Redis Sentinel](https://redis.io/topics/sentinel) support. Only [{{site.ee_product_name}}](https://www.konghq.com/kong) customers can use Redis Sentinel with Kong Rate Limiting, enabling them to deliver highly available primary-replica deployments.
 
 #### Every transaction counts
 

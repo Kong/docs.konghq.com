@@ -34,7 +34,7 @@ items:
       - text: Deployment Methods
         url: /concepts/deployment
         src: /kic-v2/concepts/deployment
-      - text: Kong for Kubernetes with Kong Enterprise
+      - text: Kong for Kubernetes with Kong Gateway Enterprise
         url: /concepts/k4k8s-with-kong-enterprise
         src: /kic-v2/concepts/k4k8s-with-kong-enterprise
       - text: High-Availability and Scaling

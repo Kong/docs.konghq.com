@@ -1,5 +1,8 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.4.x**
+* Optimized the response message for invalid requests.
+
 **{{site.base_gateway}} 3.1.x**
 
 * Breaking changes

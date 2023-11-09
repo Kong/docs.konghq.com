@@ -421,6 +421,14 @@ Generates a table with useful information for logging.
  * `request.tls.version` - TLS/SSL version used by the connection.
  * `request.tls.cipher` - TLS/SSL cipher used by the connection.
  * `request.tls.client_verify` - mTLS validation result. Contents are the same as described in [$ssl_client_verify](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#var_ssl_client_verify).
+ {% if_version gte:3.5.x %}
+
+ The following field is only present in requests where a tracing plugin (OpenTelemetry or Zipkin) is executed:
+ * `trace_id` - trace ID.
+
+ The following field is only present in requests where the Correlation ID plugin is executed:
+ * `correlation_id` - correlation ID.
+ {% endif_version %}
 
  **Warning:** This function may return sensitive data (e.g., API keys).
  Consider filtering before writing it to unsecured locations.

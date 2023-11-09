@@ -319,7 +319,12 @@ kong.worker_events.register(function(data)
   end
 end, "crud", "consumers")
 ```
-
+{% if_version gte:3.5.x %}
+{:.note}
+> In many cases it is worth to check whether implementing `configure` with the plugin
+> solves the issue/need without having to use events. For examples events might work
+> differently depending on Kong node's role (traditional, dbless, or data plane).
+{% endif_version %}
 ## Extending the Admin API
 
 As you are probably aware, the [Admin API] is where Kong users communicate with

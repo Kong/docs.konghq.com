@@ -1,21 +1,21 @@
 ---
-title: Kong for Kubernetes with Kong Enterprise
+title: Kong for Kubernetes with {{site.ee_product_name}}
 ---
 
 This guide walks through setting up the {{site.kic_product_name}} using Kong
 Enterprise. This architecture is described in detail in [this doc](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise/).
 
-We assume that we start from scratch and you don't have Kong Enterprise
-deployed. For the sake of simplicity, we will deploy Kong Enterprise and
+We assume that we start from scratch and you don't have {{site.ee_product_name}}
+deployed. For the sake of simplicity, we will deploy {{site.ee_product_name}} and
 its database in Kubernetes itself. You can safely run them outside
 Kubernetes as well.
 
 ## Prerequisites
 
-Before we can deploy the {{site.kic_product_name}} with Kong Enterprise,
+Before we can deploy the {{site.kic_product_name}} with {{site.ee_product_name}},
 we need to satisfy the following prerequisites:
-- [Kong Enterprise License secret](#kong-enterprise-license-secret)
-- [Kong Enterprise bootstrap password](#kong-enterprise-bootstrap-password)
+- [{{site.ee_product_name}} License secret](#kong-enterprise-license-secret)
+- [{{site.ee_product_name}} bootstrap password](#kong-enterprise-bootstrap-password)
 
 In order to create these secrets, let's provision the `kong`
 namespace first:
@@ -25,10 +25,10 @@ $ kubectl create namespace kong
 namespace/kong created
 ```
 
-### Kong Enterprise License secret
+### {{site.ee_product_name}} License secret
 
-Kong Enterprise requires a valid license to run.
-As part of sign up for Kong Enterprise, you should have received a license file.
+{{site.ee_product_name}} requires a valid license to run.
+As part of sign up for {{site.ee_product_name}}, you should have received a license file.
 Save the license file temporarily to disk and execute the following:
 
 ```bash
@@ -40,7 +40,7 @@ Please note that `-n kong` specifies the namespace in which you are deploying
   the {{site.kic_product_name}}. If you are deploying in a different namespace,
   please change this value.
 
-### Kong Enterprise bootstrap password
+### {{site.ee_product_name}} bootstrap password
 
 Next, we need to create a secret containing the password using which we can login into Kong Manager.
 Please replace `cloudnative` with a random password of your choice and note it down.
@@ -50,7 +50,7 @@ $ kubectl create secret generic kong-enterprise-superuser-password  -n kong --fr
 secret/kong-enterprise-superuser-password created
 ```
 
-Once these are created, we are ready to deploy Kong Enterprise
+Once these are created, we are ready to deploy {{site.ee_product_name}}
 Ingress Controller.
 
 ## Install
@@ -61,7 +61,7 @@ $ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-con
 
 It takes a little while to bootstrap the database.
 Once bootstrapped, you should see the {{site.kic_product_name}} running with
-Kong Enterprise as its core:
+{{site.ee_product_name}} as its core:
 
 ```bash
 $ kubectl get pods -n kong
@@ -114,7 +114,7 @@ As you follow along with other guides on how to use your newly deployed the {{si
 you will be able to browse Kong Manager and see changes reflected in the UI as Kong's
 configuration changes.
 
-## Using Kong for Kubernetes with Kong Enterprise
+## Using Kong for Kubernetes with {{site.ee_product_name}}
 
 Let's setup an environment variable to hold the IP address of `kong-proxy` service:
 

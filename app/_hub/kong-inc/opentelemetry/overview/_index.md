@@ -22,6 +22,26 @@ The queue parameters all reside in a record under the key `queue` in
 the `config` parameter section of the plugin.
 {% endif_version %}
 
+{% if_plugin_version gte:3.5.x %}
+## Trace IDs in serialized logs
+
+When the OpenTelemetry plugin is configured along with a plugin that uses the 
+[Log Serializer](/gateway/latest/plugin-development/pdk/kong.log/#konglogserialize),
+the trace ID of each request is added to the key `trace_id` in the serialized log output.
+
+The value of this field is an object that can contain different formats
+of the current request's trace ID. In case of multiple tracing headers in the
+same request, the `trace_id` field includes one trace ID format
+for each different header format, as in the following example:
+
+```
+"trace_id": {
+  "w3c": "4bf92f3577b34da6a3ce929d0e0e4736",
+  "datadog": "11803532876627986230"
+},
+```
+{% endif_plugin_version %}
+
 ## Usage
 
 {% if_plugin_version gte:3.2.x %}
@@ -180,6 +200,9 @@ The OpenTelemetry plugin propagates the following headers:
 - `datadog`: [Datadog headers](https://docs.datadoghq.com/tracing/trace_collection/library_config/go/#trace-context-propagation-for-distributed-tracing) (Enterprise only)
 {% if_plugin_version gte:3.4.x %}
 - `aws`: [AWS X-Ray header](https://docs.aws.amazon.com/xray/latest/devguide/xray-concepts.html#xray-concepts-tracingheader)
+{% endif_plugin_version %}
+{% if_plugin_version gte:3.5.x %}
+- `gcp`: [GCP X-Cloud-Trace-Context header](https://cloud.google.com/trace/docs/setup#force-trace)
 {% endif_plugin_version %}
 
 The plugin detects the propagation format from the headers and will use the appropriate format to propagate the span context.

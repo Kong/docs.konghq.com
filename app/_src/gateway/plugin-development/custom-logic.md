@@ -15,8 +15,17 @@ connection as it is proxied by {{site.base_gateway}}. To do so, the file
 more functions with predetermined names. Those functions will be
 invoked by {{site.base_gateway}} at different phases when it processes traffic.
 
+{% if_version gte: 3.5.x %}
+The first parameter they take is always `self`. All functions except `init_worker`
+and `configure`can receive a second parameter which is a table with the plugin
+configuration. The `configure` receives an array of all configurations for the
+specific plugin.
+{% endif_version %}
+
+{% if_version lte:3.4.x %}
 The first parameter they take is always `self`. All functions except `init_worker`
 can receive a second parameter which is a table with the plugin configuration.
+{% endif_version %}
 
 ## Module
 
@@ -31,6 +40,7 @@ file you'll implement custom logic at various entry-points
 of {{site.base_gateway}}'s execution life-cycle:
 
 - **[HTTP Module]** *is used for plugins written for HTTP/HTTPS requests*
+{% if_version lte: 3.4.x %}
 
 | Function name       | Phase             | Request Protocol        | Description
 |---------------------|-------------------|-------------------------|------------
@@ -61,26 +71,76 @@ To reduce unexpected behaviour changes, {{site.base_gateway}} does not start if 
 | `log`           | [log](https://github.com/openresty/stream-lua-nginx-module#log_by_lua_block) | Executed once for each connection after it has been closed.
 | `certificate`   | [ssl_certificate] | Executed during the SSL certificate serving phase of the SSL handshake.
 
-All of those functions, except `init_worker`, take one parameter which is given
+{% endif_version %}
+
+{% if_version gte: 3.5.x %}
+| Function name       | Phase               | Request Protocol              | Description
+|---------------------|---------------------|-------------------------------|------------
+| `init_worker`       | [init_worker]       | *                             | Executed upon every Nginx worker process's startup.
+| `configure`         | [init_worker]/timer | *                             | Executed everytime Kong plugin iterator is rebuild (aka after changes to configure plugins)
+| `certificate`       | [ssl_certificate]   | `https`, `grpcs`, `wss`       | Executed during the SSL certificate serving phase of the SSL handshake.
+| `rewrite`           | [rewrite]           | *                             | Executed for every request upon its reception from a client as a rewrite phase handler. <br> In this phase, neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the plugin was configured as a global plugin.
+| `access`            | [access]            | `http(s)`, `grpc(s)`, `ws(s)` | Executed for every request from a client and before it is being proxied to the upstream service.
+| `ws_handshake`      | [access]            | `ws(s)`                       | Executed for every request to a WebSocket service just before completing the WebSocket handshake.
+| `response`          | [access]            | `http(s)`, `grpc(s)`          | Replaces both `header_filter()` and `body_filter()`. Executed after the whole response has been received from the upstream service, but before sending any part of it to the client.
+| `header_filter`     | [header_filter]     | `http(s)`, `grpc(s)`          | Executed when all response headers bytes have been received from the upstream service.
+| `ws_client_frame`   | [content]           | `ws(s)`                       | Executed for each WebSocket message received from the client.
+| `ws_upstream_frame` | [content]           | `ws(s)`                       | Executed for each WebSocket message received from the upstream service.
+| `body_filter`       | [body_filter]       | `http(s)`, `grpc(s)`          | Executed for each chunk of the response body received from the upstream service. Since the response is streamed back to the client, it can exceed the buffer size and be streamed chunk by chunk. This function can be called multiple times if the response is large. See the [lua-nginx-module] documentation for more details.
+| `log`               | [log]               | `http(s)`, `grpc(s)`          | Executed when the last response byte has been sent to the client.
+| `ws_close`          | [log]               | `ws(s)`                       | Executed after the WebSocket connection has been terminated.
+
+{:.note}
+> **Note:** If a module implements the `response` function, {{site.base_gateway}} will automatically activate the "buffered proxy" mode, as if the [`kong.service.request.enable_buffering()` function][enable_buffering] had been called. Because of a current Nginx limitation, this doesn't work for HTTP/2 or gRPC upstreams.
+
+To reduce unexpected behaviour changes, {{site.base_gateway}} does not start if a plugin implements both `response` and either `header_filter` or `body_filter`.
+
+- **[Stream Module]** *is used for Plugins written for TCP and UDP stream connections*
+
+| Function name   | Phase                                                                        | Description
+|-----------------|------------------------------------------------------------------------------|------------
+| `init_worker`   | [init_worker]                                                                | Executed upon every Nginx worker process's startup.
+| `configure`     | [init_worker]/timer                                                         | Executed everytime Kong plugin iterator is rebuild (aka after changes to configure plugins)
+| `preread`       | [preread]                                                                    | Executed once for every connection.
+| `log`           | [log](https://github.com/openresty/stream-lua-nginx-module#log_by_lua_block) | Executed once for each connection after it has been closed.
+| `certificate`   | [ssl_certificate]                                                            | Executed during the SSL certificate serving phase of the SSL handshake.
+
+
+
+All of those functions, except `init_worker` and `configure`, take one parameter which is given
 by {{site.base_gateway}} upon its invocation: the configuration of your plugin. This parameter
 is a Lua table, and contains values defined by your users, according to your
 plugin's schema (described in the `schema.lua` module). More on plugins schemas
-in the [next chapter]({{page.book.next.url}}).
+in the [next chapter]({{page.book.next.url}}). The `configure` is called with an array of all the enabled
+plugin configurations for the particular plugin (or in case there is no active configurations
+to plugin, a `nil` is passed). `init_worker` and `configure` happens outside
+requests or frames, while the rest of the phases are bound to incoming request/frame.
 
 Note that UDP streams don't have real connections.  {{site.base_gateway}} will consider all
 packets with the same origin and destination host and port as a single
 connection.  After a configurable time without any packet, the connection is
 considered closed and the `log` function is executed.
 
+{:.note}
+> The `configure` handler was added on Kong 3.5. We are currently looking feedback for this new phase,
+> and there is a slight possibility that its signature might change in a future.
+{% endif_version %}
 ## handler.lua specifications
 
 {{site.base_gateway}} processes requests in **phases**. A plugin is a piece of code that gets
 activated by {{site.base_gateway}} as each phase is executed while the request gets proxied.
 
+{% if_version gte:3.5.x %}
+Phases are limited in what they can do. For example, the `init_worker` phase
+does not have access to the `config` parameter because that information isn't
+available when kong is initializing each worker. On the other hand the `configure`
+is passed with all the active configurations for the plugin (or `nil` if not configured).
+{% endif_version %}
+{% if_version lte: 3.4.x %}
 Phases are limited in what they can do. For example, the `init_worker` phase
 does not have access to the `config` parameter because that information isn't
 available when kong is initializing each worker.
-
+{% endif_version %}
 A plugin's `handler.lua` must return a table containing the functions it must
 execute on each phase.
 
@@ -113,7 +173,13 @@ function CustomHandler:init_worker()
   kong.log("init_worker")
 end
 
-
+{% if_version gte:3.5.x %}
+function CustomHandler:configure(configs)
+  -- Implement logic for the configure phase here
+  --(called whenever there is change to any of the plugins)
+  kong.log("configure")
+end
+{% endif_version %}
 function CustomHandler:preread(config)
   -- Implement logic for the preread phase here (stream)
   kong.log("preread")
@@ -280,6 +346,9 @@ The following handlers are _unique to_ WebSocket services:
 
 The following handlers are executed for both WebSocket _and_ non-Websocket services:
   - `init_worker`
+  {% if_version gte:3.5.x %}
+  - `configure`
+  {% endif_version %}
   - `certificate` (TLS/SSL requests only)
   - `rewrite`
 

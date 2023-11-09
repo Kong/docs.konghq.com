@@ -1,9 +1,9 @@
 ---
-title: Migrating from Kong Gateway (OSS) to Kong Gateway
+title: Migrating from Kong Gateway (OSS) to Kong Gateway Enterprise
 toc: true
 ---
 
-Run `kong migrations` commands to migrate from an open-source {{site.base_gateway}} installation to an Enterprise one.
+Run `kong migrations` commands to migrate from a {{site.ce_product_name}} installation to {{site.ee_product_name}}.
 
 You can only migrate to a {{site.ee_product_name}} version that
 supports the same {{site.ce_product_name}} version.
@@ -23,8 +23,8 @@ If running a version of {{site.ce_product_name}} earlier than {{page.kong_versio
 
 The following steps guide you through the migration process.
 
-1. [Download](/gateway/{{page.kong_version}}/install/) the {{site.base_gateway}}
-{{page.kong_version}} Enterprise package and configure it to point to the same data store as your
+1. [Download](/gateway/{{page.kong_version}}/install/) the {{site.ee_product_name}}
+{{page.kong_version}} package and configure it to point to the same data store as your
 {{site.ce_product_name}} node. The migration command expects the data store
 to be up to date on any pending migration:
 
