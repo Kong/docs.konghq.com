@@ -8,8 +8,10 @@ purpose: |
 ## Overview
 
 This guide walks through deploying a [Service][svc] that listens for [gRPC connections][gRPC] and exposes this service outside of the cluster using {{site.base_gateway}}.
+Currently, only gRPC over HTTP/2 with TLS is supported. Thus Gateway's listener must be configured with `protocol: HTTPS` as in the presented example.
 
 For this example, you need to:
+
 * Deploy a gRPC test application.
 * Route gRPC traffic to it using Ingress or GRPCRoute.
 
@@ -19,8 +21,6 @@ To make `gRPC` requests, you need a client that can invoke gRPC requests. You ca
 
 ## Deploy a gRPC test application
 
-Kong assumes that services are HTTP-based by default. You need to configure Kong to use gRPCs protocol when it talks to the upstream service using the `konghq.com/protocol` annotation
-
 ```bash
 echo "---
 apiVersion: v1
@@ -29,8 +29,6 @@ metadata:
   name: grpcbin
   labels:
     app: grpcbin
-  annotations:
-    konghq.com/protocol: grpcs
 spec:
   ports:
   - name: tls
