@@ -102,7 +102,7 @@ proxy:
     servicePort: 443
     containerPort: 8443
 
-  stream: []
+  stream:
     - containerPort: 9901
       servicePort: 9901
       protocol: TCP

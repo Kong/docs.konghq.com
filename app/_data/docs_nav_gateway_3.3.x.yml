@@ -232,7 +232,7 @@ items:
           - text: Breaking Changes
             url: /production/breaking-changes/
             generate: false
-  - title: Kong Enterprise
+  - title: Kong Gateway Enterprise
     icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
     items:
       - text: Overview

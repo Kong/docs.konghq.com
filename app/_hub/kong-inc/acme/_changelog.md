@@ -1,5 +1,16 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.5.x
+
+* Exposed the new configuration field `scan_count` for Redis storage, 
+which controls how many keys are returned in a `scan` call. 
+[#11532](https://github.com/kong/kong/pull/11532)
+
+### {{site.base_gateway}} 3.4.x
+
+* Fixed an issue where the sanity test didn't work with `kong` storage in hybrid mode.
+[#10852](https://github.com/Kong/kong/pull/10852)
+
 ### {{site.base_gateway}} 3.3.x
 
 * Added the `account_key` configuration parameter

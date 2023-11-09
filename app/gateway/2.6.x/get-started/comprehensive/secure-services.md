@@ -120,7 +120,7 @@ add a plugin section and enable the `key-auth` plugin:
     ``` yaml
     _format_version: "1.1"
     services:
-    - host: mockbin.org
+    - host: httpbin.org
       name: example_service
       port: 80
       protocol: http
@@ -258,7 +258,7 @@ You now have a consumer with an API key provisioned to access the route.
     ``` yaml
     _format_version: "1.1"
     services:
-    - host: mockbin.org
+    - host: httpbin.org
       name: example_service
       port: 80
       protocol: http
@@ -317,13 +317,13 @@ To validate the Key Authentication plugin, access the *mocking* route again, usi
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i http://localhost:8000/mock/request \
+curl -i http://localhost:8000/mock/anything \
   -H 'apikey:apikey'
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-http :8000/mock/request apikey:apikey
+http :8000/mock/anything apikey:apikey
 ```
 {% endnavtab %}
 {% endnavtabs %}

@@ -23,12 +23,12 @@ From the **Workspaces** tab in Kong Manager:
 4. Click on your new upstream to open its detail page.
 5. From the sub-menu, open **Targets**, then click **New Target**.
 6. In the target field, set the value `httpbin.org:80`, and click **Create**.
-7. Create another target, this time for `mockbin.org:80`.
+7. Create another target, this time for `httpbun.com:80`.
 8. Open the **Services** page.
 9. Open your `example_service`, then click **Edit**.
 10. Change the **Host** field to `example_upstream`, then click **Update**.
 
-You now have an upstream with two targets, `httpbin.org` and `mockbin.org`, and a service pointing to that upstream.
+You now have an upstream with two targets, `httpbin.org` and `httpbun.com`, and a service pointing to that upstream.
 
 ## Validate the upstream services
 
@@ -36,7 +36,7 @@ To test that {{site.base_gateway}} is load balancing traffic across the two targ
 
 1. With the upstream configured, validate that it’s working by visiting the route `http://localhost:8000/mock` using a web browser or the shell.
 
-2. Refresh the page a few times. The site should change back and forth from `httpbin` to `mockbin`.
+2. Refresh the page a few times. The site should change back and forth from `httpbin` to `httpbun`.
 
 ## Next steps
 

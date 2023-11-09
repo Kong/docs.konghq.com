@@ -1,5 +1,8 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.5.x**
+* Removed the custom validator for `config.start` to allow setting it to a past time.
+
 **{{site.base_gateway}} 3.2.x**
 * The `start` field now defaults to the current timestamp.
 

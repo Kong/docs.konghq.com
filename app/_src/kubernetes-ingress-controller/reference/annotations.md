@@ -11,26 +11,26 @@ resources.
 
 Following annotations are supported on Ingress resources:
 
-| Annotation name | Description |
-|-----------------|-------------|
-| REQUIRED [`kubernetes.io/ingress.class`](#kubernetesioingressclass) | Restrict the Ingress rules that Kong should satisfy |
-| [`konghq.com/plugins`](#konghqcomplugins) | Run plugins for specific Ingress |
-| [`konghq.com/protocols`](#konghqcomprotocols) | Set protocols to handle for each Ingress resource |
-| [`konghq.com/preserve-host`](#konghqcompreserve-host) | Pass the `host` header as is to the upstream service |
-| [`konghq.com/strip-path`](#konghqcomstrip-path) | Strip the path defined in Ingress resource and then forward the request to the upstream service |
-| [`ingress.kubernetes.io/force-ssl-redirect`](#ingresskubernetesioforce-ssl-redirect) | Force non-SSL requests to be redirected to SSL. |
-| [`konghq.com/https-redirect-status-code`](#konghqcomhttps-redirect-status-code) | Set the HTTPS redirect status code to use when an HTTP request is received |
-| [`konghq.com/regex-priority`](#konghqcomregex-priority) | Set the route's regex priority |
-| [`konghq.com/regex-prefix`](#konghqcomregex-prefix) | Prefix of path to annotate that the path is a regex match, other than default `/~` |
-| [`konghq.com/methods`](#konghqcommethods) | Set methods matched by this Ingress |
-| [`konghq.com/snis`](#konghqcomsnis) | Set SNI criteria for routes created from this Ingress |
-| [`konghq.com/request-buffering`](#konghqcomrequest-buffering) | Set request buffering on routes created from this Ingress |
-| [`konghq.com/response-buffering`](#konghqcomresponse-buffering) | Set response buffering on routes created from this Ingress |
-| [`konghq.com/host-aliases`](#konghqcomhostaliases) | Additional hosts for routes created from this Ingress's rules |
-| [`konghq.com/override`](#konghqcomoverride) | (Deprecated, replace with per-setting annotations) Control other routing attributes with a KongIngress resource |
-| [`konghq.com/path-handling`](#konghqcompathhandling) | Set the path handling algorithm |
-| [`konghq.com/headers.*`](#konghqcomheaders) | Set header values required to match rules in this Ingress |
-| [`konghq.com/rewrite`](#konghqcomrewrite) | Rewrite the path of a URL |
+| Annotation name                                                                      | Description                                                                                                     |
+|--------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| REQUIRED [`kubernetes.io/ingress.class`](#kubernetesioingressclass)                  | Restrict the Ingress rules that Kong should satisfy                                                             |
+| [`konghq.com/plugins`](#konghqcomplugins)                                            | Run plugins for specific Ingress                                                                                |
+| [`konghq.com/protocols`](#konghqcomprotocols)                                        | Set protocols to handle for each Ingress resource                                                               |
+| [`konghq.com/preserve-host`](#konghqcompreserve-host)                                | Pass the `host` header as is to the upstream service                                                            |
+| [`konghq.com/strip-path`](#konghqcomstrip-path)                                      | Strip the path defined in Ingress resource and then forward the request to the upstream service                 |
+| [`ingress.kubernetes.io/force-ssl-redirect`](#ingresskubernetesioforce-ssl-redirect) | Force non-SSL requests to be redirected to SSL.                                                                 |
+| [`konghq.com/https-redirect-status-code`](#konghqcomhttps-redirect-status-code)      | Set the HTTPS redirect status code to use when an HTTP request is received                                      |
+| [`konghq.com/regex-priority`](#konghqcomregex-priority)                              | Set the route's regex priority                                                                                  |
+| [`konghq.com/regex-prefix`](#konghqcomregex-prefix)                                  | Prefix of path to annotate that the path is a regex match, other than default `/~`                              |
+| [`konghq.com/methods`](#konghqcommethods)                                            | Set methods matched by this Ingress                                                                             |
+| [`konghq.com/snis`](#konghqcomsnis)                                                  | Set SNI criteria for routes created from this Ingress                                                           |
+| [`konghq.com/request-buffering`](#konghqcomrequest-buffering)                        | Set request buffering on routes created from this Ingress                                                       |
+| [`konghq.com/response-buffering`](#konghqcomresponse-buffering)                      | Set response buffering on routes created from this Ingress                                                      |
+| [`konghq.com/host-aliases`](#konghqcomhostaliases)                                   | Additional hosts for routes created from this Ingress's rules                                                   |
+| [`konghq.com/override`](#konghqcomoverride)                                          | (Deprecated, replace with per-setting annotations) Control other routing attributes with a KongIngress resource |
+| [`konghq.com/path-handling`](#konghqcompathhandling)                                 | Set the path handling algorithm                                                                                 |
+| [`konghq.com/headers.*`](#konghqcomheaders)                                          | Set header values required to match rules in this Ingress                                                       |
+| [`konghq.com/rewrite`](#konghqcomrewrite)                                            | Rewrite the path of a URL                                                                                       |
 
 `kubernetes.io/ingress.class` is required, and its value should match
 the value of the `--ingress-class` controller argument (`kong` by default).
@@ -39,19 +39,20 @@ the value of the `--ingress-class` controller argument (`kong` by default).
 
 These annotations are supported on Service resources.
 
-| Annotation name | Description |
-|-----------------|-------------|
-| [`konghq.com/plugins`](#konghqcomplugins) | Run plugins for a specific Service |
-| [`konghq.com/protocol`](#konghqcomprotocol) | Set protocol Kong should use to talk to a Kubernetes service |
-| [`konghq.com/path`](#konghqcompath) | HTTP Path that is always prepended to each request that is forwarded to a Kubernetes service |
-| [`konghq.com/client-cert`](#konghqcomclient-cert) | Client certificate and key pair Kong should use to authenticate itself to a specific Kubernetes service |
-| [`konghq.com/host-header`](#konghqcomhost-header) | Set the value sent in the `Host` header when proxying requests upstream |
-| [`ingress.kubernetes.io/service-upstream`](#ingresskubernetesioservice-upstream) | Offload load-balancing to kube-proxy or sidecar |
-| [`konghq.com/override`](#konghqcomoverride) | (Deprecated for non-upstream fields, replace with per-setting annotations) Control load balancing behavior with a KongIngress resource |
-| [`konghq.com/connect-timeout`](#konghqcomconnecttimeout) | Set the timeout for completing a TCP connection |
-| [`konghq.com/read-timeout`](#konghqcomreadtimeout) | Set the timeout for receiving an HTTP response after sending a request |
-| [`konghq.com/write-timeout`](#konghqcomwritetimeout) | Set the timeout for writing data |
-| [`konghq.com/retries`](#konghqcomretries) | Set the number of times to retry requests that failed |
+| Annotation name                                                                  | Description                                                                                                                            |
+|----------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| [`konghq.com/plugins`](#konghqcomplugins)                                        | Run plugins for a specific Service                                                                                                     |
+| [`konghq.com/protocol`](#konghqcomprotocol)                                      | Set protocol Kong should use to talk to a Kubernetes service                                                                           |
+| [`konghq.com/path`](#konghqcompath)                                              | HTTP Path that is always prepended to each request that is forwarded to a Kubernetes service                                           |
+| [`konghq.com/client-cert`](#konghqcomclient-cert)                                | Client certificate and key pair Kong should use to authenticate itself to a specific Kubernetes service                                |
+| [`konghq.com/host-header`](#konghqcomhost-header)                                | Set the value sent in the `Host` header when proxying requests upstream                                                                |
+| [`ingress.kubernetes.io/service-upstream`](#ingresskubernetesioservice-upstream) | Offload load-balancing to kube-proxy or sidecar                                                                                        |
+| [`konghq.com/override`](#konghqcomoverride)                                      | (Deprecated for non-upstream fields, replace with per-setting annotations) Control load balancing behavior with a KongIngress resource |
+| [`konghq.com/upstream-policy`](#konghqcomupstream-policy)                        | Override Kong Upstream configuration with KongUpstreamPolicy resource                                                                  |
+| [`konghq.com/connect-timeout`](#konghqcomconnecttimeout)                         | Set the timeout for completing a TCP connection                                                                                        |
+| [`konghq.com/read-timeout`](#konghqcomreadtimeout)                               | Set the timeout for receiving an HTTP response after sending a request                                                                 |
+| [`konghq.com/write-timeout`](#konghqcomwritetimeout)                             | Set the timeout for writing data                                                                                                       |
+| [`konghq.com/retries`](#konghqcomretries)                                        | Set the number of times to retry requests that failed                                                                                  |
 
 ## KongConsumer resource
 
@@ -626,3 +627,13 @@ annotations. The value of the `konghq.com/rewrite` annotation will be the
 _entire_ path sent upstream. You must include path segments you would normally
 place in a Service `konghq.com/path` annotation at the start of your
 `konghq.com/rewrite` annotation.
+
+### konghq.com/upstream-policy
+
+> Available since controller 3.0
+
+This annotation can be used to attach `KongUpstreamPolicy` resources to `Services`. 
+The value of the annotation is the name of the `KongUpstreamPolicy` object in the 
+same namespace as the `Service`. Please refer to the 
+[KongUpstreamPolicy reference](/kubernetes-ingress-controller/{{page.release}}/reference/custom-resources/#kongupstreampolicy) 
+for details on how to configure the `KongUpstreamPolicy` resource. 

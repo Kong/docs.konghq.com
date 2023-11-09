@@ -37,8 +37,8 @@ the Service to the backend API.
 
 ## Add a Service
 
-For the purpose of this example, you’ll create a Service pointing to the Mockbin
-API. Mockbin is an “echo” type public website that returns requests back to the
+For the purpose of this example, you’ll create a Service pointing to the httpbin
+API. Httpbin is an “echo” type public website that returns requests back to the
 requester as responses. This visualization will be helpful for learning how Kong
 Gateway proxies API requests.
 
@@ -58,7 +58,7 @@ click the **default** workspace.
 2. Scroll down to **Services** and click **Add a Service**.
 
 3. In the **Create Service** dialog, enter the name `example_service` and the
-URL `http://mockbin.org`.
+URL `http://httpbin.org`.
 
 4. Click **Create**.
 
@@ -73,14 +73,14 @@ The service is created, and the page automatically redirects back to the
 ```sh
 curl -i -X POST http://localhost:8001/services \
   --data name=example_service \
-  --data url='http://mockbin.org'
+  --data url='http://httpbin.org'
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
 http POST :8001/services \
   name=example_service \
-  url='http://mockbin.org'
+  url='http://httpbin.org'
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -111,12 +111,12 @@ http :8001/services/example_service
 1. In the `kong.yaml` file you exported in
 [Prepare to Administer {{site.base_gateway}}](/gateway/{{page.kong_version}}/get-started/comprehensive/prepare/#verify-the-kong-gateway-configuration),
 define a Service with the name `example_service` and the URL
-`http://mockbin.org`:
+`http://httpbin.org`:
 
     ``` yaml
     _format_version: "1.1"
     services:
-    - host: mockbin.org
+    - host: httpbin.org
       name: example_service
       port: 80
       protocol: http
@@ -216,7 +216,7 @@ A `201` message indicates the Route was created successfully.
     ``` yaml
     _format_version: "1.1"
     services:
-    - host: mockbin.org
+    - host: httpbin.org
       name: example_service
       port: 80
       protocol: http
@@ -253,7 +253,7 @@ A `201` message indicates the Route was created successfully.
     ``` yaml
     services:
     - connect_timeout: 60000
-      host: mockbin.org
+      host: httpbin.org
       name: example_service
       port: 80
       protocol: http
@@ -302,12 +302,12 @@ Using the Admin API, issue the following:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X GET http://localhost:8000/mock/request
+curl -i -X GET http://localhost:8000/mock/anything
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-http :8000/mock/request
+http :8000/mock/anything
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -321,11 +321,11 @@ http :8000/mock/request
 
 In this section, you:
 
-* Added a Service named `example_service` with a URL of `http://mockbin.org`.
+* Added a Service named `example_service` with a URL of `http://httpbin.org`.
 * Added a Route named `/mock`.
 * This means if an HTTP request is sent to the {{site.base_gateway}} node on
 port `8000`(the proxy port) and it matches route `/mock`, then that request is
-sent to `http://mockbin.org`.
+sent to `http://httpbin.org`.
 * Abstracted a backend/upstream service and put a route of your choice on the
 front end, which you can now give to clients to make requests.
 

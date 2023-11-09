@@ -4,6 +4,9 @@ badge: oss
 content_type: reference
 ---
 
+{:.important}
+> **Note**: As of {{site.base_gateway}} 3.5.x, this feature has been deprecated. It is not supported past 3.4.x.
+
 ### perf.use_defaults()
 
 *syntax: perf.use_defaults()*

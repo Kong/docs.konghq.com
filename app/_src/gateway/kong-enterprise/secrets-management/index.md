@@ -97,9 +97,9 @@ can be stored as a secret.
 ### Referenceable plugin fields
 
 Some plugins have fields that can be stored as secrets in a
-vault backend. These fields are labelled as `referenceable`. 
+vault backend. These fields are labelled as `referenceable`.
 
-The following plugins support vault references for specific fields. 
+The following plugins support vault references for specific fields.
 See each plugin's documentation for more information on each field:
 
 {% referenceable_fields_table %}
@@ -110,6 +110,7 @@ See each plugin's documentation for more information on each field:
 * Environment variables
 * AWS Secrets Manager
 * GCP Secrets Manager
+* Azure Key Vaults
 * HashiCorp Vault
 
 See the [backends overview](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/)

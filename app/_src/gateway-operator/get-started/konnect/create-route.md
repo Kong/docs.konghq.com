@@ -31,19 +31,19 @@ Once your `DataPlane` is deployed it receives configuration from Konnect, but th
 
 Create a service and a route in your {{ site.konnect_short_name }} control plane using the variables that you set.
 
-The following commands create a service named _Sample_ and a route that proxies all traffic to mockbin.org:
+The following commands create a service named _Sample_ and a route that proxies all traffic to httpbin.org:
 
 ```bash
-SERVICE_ID=$(curl -sS -H "Authorization: Bearer $KONNECT_TOKEN" https://us.api.konghq.com/v2/control-planes/$CP_UUID/core-entities/services -d name=Sample -d url=https://mockbin.org | jq -r .id)
+SERVICE_ID=$(curl -sS -H "Authorization: Bearer $KONNECT_TOKEN" https://us.api.konghq.com/v2/control-planes/$CP_UUID/core-entities/services -d name=Sample -d url=https://httpbin.org | jq -r .id)
 
 curl -sS -H "Authorization: Bearer $KONNECT_TOKEN" https://us.api.konghq.com/v2/control-planes/$CP_UUID/core-entities/services/$SERVICE_ID/routes -d "paths[]=/"
 ```
 
 ## Send test traffic
 
-After the service and route are created, send traffic to the proxy and it will forward the request to mockbin.org. You can use Mockbin's `/request` endpoint to echo the request made in the response.
+After the service and route are created, send traffic to the proxy and it will forward the request to httpbin.org. You can use httpbin's `/anything` endpoint to echo the request made in the response.
 
-To make a request to the proxy we need to fetch the LoadBalancer IP address using `kubectl get services`:
+To make a request to the proxy, fetch the LoadBalancer IP address using `kubectl get services`:
 
 ```bash
 export PROXY_IP=$(kubectl get services -n kong -o json | jq -r '.items[] | .status.loadBalancer?|.ingress[]?|.ip')
@@ -51,12 +51,12 @@ echo "Proxy IP: $PROXY_IP"
 ```
 
 {:.note}
-> Note: if your cluster can not provision LoadBalancer type Services then you may not receive an IP address
+> Note: If your cluster can't provision LoadBalancer type Services, then you might not receive an IP address.
 
-Test the routing rules by sending a request to the proxy IP address.
+Test the routing rules by sending a request to the proxy IP address:
 
 ```bash
-curl $PROXY_IP/request/hello
+curl $PROXY_IP/anything/hello
 ```
 
 ## Delete the test service

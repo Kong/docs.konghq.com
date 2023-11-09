@@ -11,10 +11,12 @@ Benefits of service mocking with the Kong Mocking plugin:
 - Conforms to a design-first approach since mock responses are within OAS.
 - Accelerates development of services and APIs.
 - Promotes parallel development of APIs across distributed teams.
+- Easily enable and disable the Mocking plugin for flexibility when testing API behavior.
+{% if_plugin_version lte:3.4.x %}
 - Provides an enhanced full lifecycle API development experience with Dev Portal
   integration.
-- Easily enable and disable the Mocking plugin for flexibility when
-  testing API behavior.
+{% endif_plugin_version %}
+
 
 This plugin can mock `200`, `201`, and `204` responses.
 
@@ -121,7 +123,7 @@ HTTP/1.1 500 Internal Server Error
     "message": "500"
 }
 ```
-
+{% if_plugin_version lte:3.4.x %}
 ## Tutorial Example
 
 This example tutorial steps you through testing a mock response for
@@ -760,7 +762,7 @@ The service URL can be anything for purposes of mocking. After you disable the M
 ensure you set the actual URL for your service so that the response can be received.
 
  ![Set Real Service URL](/assets/images/products/gateway/dev-portal/km-service-url.png)
-
+{% endif_plugin_version %}
 ## See also
 * [`inso` CLI documentation](https://support.insomnia.rest/collection/105-inso-cli)
 

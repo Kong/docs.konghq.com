@@ -2,7 +2,7 @@
 title: Using OIDC plugin
 ---
 
-Kong Enterprise's OIDC plugin can authenticate requests using OpenID Connect protocol.
+{{site.ee_product_name}}'s OIDC plugin can authenticate requests using OpenID Connect protocol.
 This guide shows a basic example of how to setup the OIDC plugin using
 the Ingress Controller.
 
@@ -101,7 +101,7 @@ You should see landing page same as httpbin.org.
 Now we are going to protect our dummy service with OpenID Connect
 protocol using Google as our identity provider.
 
-First, setup an Oauth 2.0 application in
+First, set up an OAuth 2.0 application in
 [Google](https://developers.google.com/identity/protocols/oauth2/openid-connect).
 
 Once you have setup your application in Google, use the client ID and client

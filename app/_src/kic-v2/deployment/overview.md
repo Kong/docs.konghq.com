@@ -54,11 +54,11 @@ production deployment.
 This is available to enterprise customers of Kong, Inc. only.
 
 Please follow [this guide](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/k4k8s-enterprise/) to deploy Kong for Kubernetes
-Enterprise if you have purchased or are trying out Kong Enterprise.
+Enterprise if you have purchased or are trying out {{site.ee_product_name}}.
 
-## Kong for Kubernetes with Kong Enterprise
+## Kong for Kubernetes with {{site.ee_product_name}}
 
-Kong for Kubernetes can integrate with Kong Enterprise to
+Kong for Kubernetes can integrate with {{site.ee_product_name}} to
 provide a single pane of visibility across all of your services
 that are running in Kubernetes and non-Kubernetes environments.
 

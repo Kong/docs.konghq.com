@@ -113,6 +113,20 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
+- release: "3.5.x"
+  ee-version: "3.5.0.0"
+  ce-version: "3.5.0"
+  edition: "gateway"
+  luarocks_version: "3.0.0-0"
+  dependencies:
+    luajit: "2.1-20220411"
+    luarocks: "3.9.1"
+    postgres: "9.5+"
+    openresty: "1.21.4.1"
+    openssl: "1.1.1.q"
+    libyaml: "0.2.5"
+    pcre: 8.45
+  lua_doc: true
 - release: "pre-1.7"
   version: "1.6.0"
   edition: "deck"
@@ -182,6 +196,9 @@
 - release: "1.28.x"
   version: "1.28.1"
   edition: "deck"
+- release: "1.29.x"
+  version: "1.29.2"
+  edition: "deck"
 - edition: "konnect"
 - edition: "contributing"
 - release: "1.0.x"
@@ -239,7 +256,7 @@
   version: "3.0.0"
   edition: "kubernetes-ingress-controller"
 - edition: gateway-operator
-  version: 1.0.2
+  version: 1.0.3
   release: 1.0.x
 - edition: mesh
   version: 1.2.6
