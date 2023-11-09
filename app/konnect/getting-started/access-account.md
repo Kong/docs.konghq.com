@@ -11,7 +11,7 @@ title: Create a Kong Konnect Account
 
     - If using a social identity provider, you will be directed to the identity provider to sign in.
     - If using an email address and password, you will need to verify your email by clicking on a link emailed to you. 
-    - For both methods, you will need to select your default region.
+    - For both methods, you will need to select your default geo.
 
 3. Create an organization by providing an organization name, then click **Create Organization**.
 

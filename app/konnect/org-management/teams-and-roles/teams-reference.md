@@ -3,7 +3,7 @@ title: Teams Reference
 content_type: reference
 ---
 
-All new and existing organizations in {{site.konnect_short_name}} have predefined default teams. All predefined roles and teams automatically get access to all [geographic regions](/konnect/regions) in your {{site.konnect_short_name}} instance.
+All new and existing organizations in {{site.konnect_short_name}} have predefined default teams. All predefined roles and teams automatically get access to all [geographic regions](/konnect/geo) in your {{site.konnect_short_name}} instance.
 The default teams can't be modified or deleted.
 
 Keywords:

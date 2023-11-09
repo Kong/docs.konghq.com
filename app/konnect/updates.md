@@ -9,6 +9,19 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## November 2023
+
+**Multi-geo support**
+: {{site.konnect_saas}} now allows you to host and operate your cloud instance in a geographic region that you specify. This is important for data privacy and regulatory compliance for you organization. Geographic regions allow you to also operate {{site.konnect_saas}} in a similar geo to your users and their infrastructure applications. 
+
+: Geos are distinct deployments of {{site.konnect_short_name}} with objects, such as services and consumers, that are geo-specific. Only authentication, billing, and usage is shared between {{site.konnect_short_name}} geos.
+
+: {{site.konnect_saas}} currently supports the following geos:
+  * US
+  * EU
+  * AU 
+
+: For more information, see [Geographic regions](/koonect/geo/).
 
 ## October 2023
 **Portal Management API**

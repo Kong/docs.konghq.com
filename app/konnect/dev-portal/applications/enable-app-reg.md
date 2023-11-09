@@ -8,9 +8,9 @@ When you enable application registration, {{site.konnect_saas}} enables plugins 
 These plugins run inside the data plane to support application registration for the API product version and are managed by
 {{site.konnect_saas}}.
 
-Enabling application registration is specific to the [geographic region](/konnect/regions). 
-You must enable application registration in each region that you want to allow developers to register with.
-Each region has their own API keys and specifications for application registration in their respective region.
+Enabling application registration is specific to the [geographic region](/konnect/geo). 
+You must enable application registration in each geo that you want to allow developers to register with.
+Each geo has their own API keys and specifications for application registration in their respective geo.
 
 ## Support for any control plane
 

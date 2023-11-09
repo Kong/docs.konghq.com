@@ -4,7 +4,7 @@ title: Sign Up for a Dev Portal Account
 
 Anyone that wants to access the {{site.konnect_short_name}} Dev Portal needs to register and request access to that specific Dev Portal, including {{site.konnect_short_name}} admins. Admins will have separate credentials for [{{site.konnect_short_name}}](https://cloud.konghq.com/) and the Dev Portal.
 
-If your organization has multiple [geographic regions](/konnect/regions/), developers must register and request access to the Dev Portal in each region separately. Dev Portals in different regions don't share any data, including developer information.
+If your organization has multiple [geographic regions](/konnect/geo/), developers must register and request access to the Dev Portal in each geo separately. Dev Portals in different geos don't share any data, including developer information.
 
 Developer registrations can be manually approved by {{site.konnect_short_name}} admins, or automatically approved by configuring your [auto-approve settings](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/).
 
