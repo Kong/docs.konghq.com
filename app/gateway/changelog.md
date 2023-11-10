@@ -304,7 +304,7 @@ was called multiple times in a request lifecycle.
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
 ## 3.4.2.0 
-**Release date** 2023/11/09
+**Release date** 2023/11/10
 
 ### Features
 #### Enterprise
