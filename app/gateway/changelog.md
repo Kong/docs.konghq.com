@@ -286,12 +286,8 @@ was called multiple times in a request lifecycle.
  [#11360](https://github.com/Kong/kong/issues/11360)
 * Bumped `lua-resty-aws` from 1.3.1 to 1.3.2
  [#11551](https://github.com/Kong/kong/issues/11551)
-* Bumped `luasec` from 1.3.1 to 1.3.2
- [#11553](https://github.com/Kong/kong/issues/11553)
 * Bumped `lua-resty-aws` from 1.3.2 to 1.3.5
  [#11613](https://github.com/Kong/kong/issues/11613)
-* Bumped `ngx_wasm_module` to latest rolling release version
- [#11678](https://github.com/Kong/kong/issues/11678)
 * Bumped `wasmtime` version from 8.0.1 to 12.0.2
  [#11738](https://github.com/Kong/kong/issues/11738)
 * Bumped `openssl` from 3.1.2 to 3.1.4
