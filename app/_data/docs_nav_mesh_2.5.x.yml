@@ -3,7 +3,7 @@ assume_generated: true
 max_depth: 3
 inherit:
   path: /.repos/kuma/app/_src
-  nav: ../_src/.repos/kuma/app/_data/docs_nav_kuma_dev.yml
+  nav: ../_src/.repos/kuma/app/_data/docs_nav_kuma_2.5.x.yml
   patches:
     - path: [ Introduction ]
       action: modify
