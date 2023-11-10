@@ -299,6 +299,45 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+## 3.4.2.0 
+**Release date** 2023/11/10
+
+### Features
+#### Enterprise
+
+* License management:
+  * Implemented a new grace period that lasts 30 days from the Kong Enterprise license expiration date. 
+    During the grace period all open source functionality will be available, and
+    Enterprise functionality will be set to read-only mode.
+  * Added support for counters such as routes, plugins, licenses, and deployment information to the license report.
+  * Added a checksum to the output of the license endpoint.
+### Fixes
+#### Core
+* Fixed an issue with the DNS client was not adhering to configured timeouts in a predictable manner. Also fixed a related issue that cause the DNS client to resolve incorrectly during transient network and DNS server failures. [#11386](https://github.com/Kong/kong/pull/11386)
+* The default value of the [`dns_no_sync`](/gateway/3.5.x/reference/configuration/#dns_no_sync) option has been changed to `on`.
+[#11871](https://github.com/kong/kong/pull/11871).
+* Dismiss confusing log entry from Redis regarding rate limiting.
+  [#7077](https://github.com/Kong/kong-ee/issues/7077)
+  [#7101](https://github.com/Kong/kong-ee/issues/7101)
+
+#### Kong Manager 
+* Fixed an issue where some services were not showing the exact name or ID while configuring a route. 
+
+#### Plugins
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
+  * Fixed an issue that resulted in traces with invalid parent IDs when balancer instrumentation was enabled. [#11830](https://github.com/Kong/kong/pull/11830)
+  * Add hybrid mode compatibility for older DPs that don't support the new `aws` header type. [#11686](https://github.com/Kong/kong/pull/11686)
+*  [**Zipkin**](/hub/kong-inc/zipkin/) (`zipkin`)
+  * Add hybrid mode compatibility for older DPs that don't support the new `aws` header type. [#11686](https://github.com/Kong/kong/pull/11686)
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Fixed an issue with `using_pseudo_issuer`, where it was not used after it was propagated.
+
+### Dependencies
+#### Enterprise
+* Bumped OpenSSL from 3.1.2 to 3.1.4
+* Added troubleshooting tools to container images
+* Bumped `ngx_wasm_module` version to prerelease-0.1.1 
+
 ## 3.4.1.1
 **Release Date** 2023/10/12
 
