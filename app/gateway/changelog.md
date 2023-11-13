@@ -284,9 +284,8 @@ was called multiple times in a request lifecycle.
  [#11360](https://github.com/Kong/kong/issues/11360)
 * Bumped `openresty` from 1.21.4.1 to 1.21.4.2
  [#11360](https://github.com/Kong/kong/issues/11360)
-* Bumped `lua-resty-aws` from 1.3.1 to 1.3.2
+* Bumped `lua-resty-aws` from 1.3.1 to 1.3.5
  [#11551](https://github.com/Kong/kong/issues/11551)
-* Bumped `lua-resty-aws` from 1.3.2 to 1.3.5
  [#11613](https://github.com/Kong/kong/issues/11613)
 * Bumped `wasmtime` version from 8.0.1 to 12.0.2
  [#11738](https://github.com/Kong/kong/issues/11738)
