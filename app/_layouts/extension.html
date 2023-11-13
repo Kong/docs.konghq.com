@@ -14,13 +14,15 @@ breadcrumbs:
 {% endunless %}
 
 {% unless page.free %}
-  {% if page.paid and page.extn_publisher == "kong-inc" %}
-    <blockquote class="note" role="alert">
-      <p>
-        Did you know that you can try this plugin without talking to anyone with a free
-        trial of Kong Konnect? <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content={{ extn_slug }}">Get started in under 5 minutes</a>.
-      </p>
-    </blockquote>
+  {% if page.extn_publisher == "kong-inc" %}
+    {% if page.paid or page.premium %}
+      <blockquote class="note" role="alert">
+        <p>
+          Did you know that you can try this plugin without talking to anyone with a free
+          trial of Kong Konnect? <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content={{ extn_slug }}">Get started in under 5 minutes</a>.
+        </p>
+      </blockquote>
+    {% endif %}
   {% endif %}
 {% endunless %}
 
