@@ -12,7 +12,7 @@ title: Compatibility
 
 |                                | {{site.konnect_saas}} | Beginning with version | End of support | 
 |--------------------------------|:---------------------:|-------------------------------|----------------|
-| {{site.ee_product_name}} 3.4.x (LTS)| <i class="fa fa-check"></i>    | 3.3.0.0 | Aug 2026 
+| {{site.ee_product_name}} 3.4.x (LTS)| <i class="fa fa-check"></i>    | 3.4.0.0 | Aug 2026 
 | {{site.ee_product_name}} 3.3.x | <i class="fa fa-check"></i>    | 3.3.0.0 | May 2024
 | {{site.ee_product_name}} 3.2.x | <i class="fa fa-check"></i>    | 3.2.1.0 | Feb 2024
 | {{site.ee_product_name}} 3.1.x | <i class="fa fa-check"></i>    | 3.1.0.0 | Dec 2023
