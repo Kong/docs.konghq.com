@@ -1,0 +1,183 @@
+generate: true
+assume_generated: true
+max_depth: 3
+inherit:
+  path: /.repos/kuma/app/_src
+  nav: ../_src/.repos/kuma/app/_data/docs_nav_kuma_2.5.x.yml
+  patches:
+    - path: [ Introduction ]
+      action: modify
+      icon: /assets/images/icons/documentation/icn-flag.svg
+    - path: [ Introduction, Overview of Kuma ]
+      text: Overview of Kong Mesh
+      url: /
+      src: null
+      action: modify
+    - path: [ Introduction, How Kuma works ]
+      text: How Kong Mesh works
+      url: /introduction/how-kong-mesh-works
+      action: modify
+      items: []
+    - path: [ Introduction, Kuma requirements ]
+      text: Mesh requirements
+      action: modify
+    - path: [ Introduction ]
+      text: Stages of software availability
+      url: /availability-stages/
+      action: insert
+      index: -3
+    - path: [ Introduction ]
+      text: Version support policy
+      url: /support-policy/
+      action: insert
+      index: -3
+    - path: [ Introduction, Release notes]
+      url: /mesh/changelog
+      src: /mesh/changelog
+      action: modify
+    - title: Getting Started
+      action: insert
+      index: 1
+      icon: /assets/images/icons/documentation/icn-quickstart-color.svg
+      url: /gettingstarted
+    - path: [ Kuma in Production ]
+      action: modify
+      title: Kong Mesh in Production
+      icon: /assets/images/icons/documentation/icn-deployment-color.svg
+    - path: [ Kong Mesh in Production, Kuma user interface ]
+      action: modify
+      text: Kong Mesh user interface
+    - path: [ Kong Mesh in Production, Use Kuma ]
+      action: modify
+      text: Use Kong Mesh
+    - path: [ Kong Mesh in Production, Control plane deployment ]
+      action: insert
+      index: 0
+      text: Kong Mesh license
+      url: /production/cp-deployment/license
+    - path: [ Kong Mesh in Production, Secure your deployment, Kuma API access control ]
+      action: modify
+      text: Kong Mesh API access control
+    - path: [ Kong Mesh in Production, Secure your deployment ]
+      action: insert
+      index: -1
+      text: Kong Mesh RBAC
+      url: /features/rbac
+    - path: [ Kong Mesh in Production, Secure your deployment ]
+      action: insert
+      index: -1
+      text: FIPS support
+      url: /features/fips-support
+    - path: [ Kong Mesh in Production, Data plane configuration, Configure the Kuma CNI ]
+      action: modify
+      text: Configure the Kong Mesh CNI
+    - path: [ Kong Mesh in Production, Upgrades and tuning, Upgrade Kuma ]
+      action: modify
+      text: Upgrade Kong Mesh
+    - path: [ Deploy ]
+      action: modify
+      icon: /assets/images/icons/documentation/icn-manager-color.svg
+    - path: [ Deploy, Explore Kuma with the Kubernetes demo app ]
+      text: Explore Kong Mesh with the Kubernetes demo app
+      action: modify
+      items: []
+    - path: [ Deploy, Explore Kuma with the Universal demo app ]
+      text: Explore Kong Mesh with the Universal demo app
+      action: modify
+      items: []
+    - path: [ Explore ]
+      action: modify
+      icon: /assets/images/icons/documentation/icn-solution-guide.svg
+    - path: [ Networking ]
+      action: modify
+      icon: /assets/images/icons/documentation/icn-brain-color.svg
+    - path: [ Monitor & manage ]
+      action: modify
+      icon: /assets/images/icons/konnect/icn-analytics-nav.svg
+    - path: [ Policies ]
+      action: modify
+      icon: /assets/images/icons/documentation/icn-documentation-small.svg
+    - path: [ Policies, General notes about Kuma policies ]
+      text: General notes about Kong Mesh policies
+      url: /policies/general-notes-about-kong-mesh-policies
+      action: modify
+    - path: [ Policies, How Kuma chooses the right policy to apply ]
+      text: How Kong Mesh chooses the right policy to apply
+      action: modify
+      url: /policies/how-kong-mesh-chooses-the-right-policy-to-apply
+      items: []
+    - path: [ Policies, Protocol support in Kuma ]
+      text: Protocol support in Kong Mesh
+      action: modify
+      url: /policies/protocol-support-in-kong-mesh
+      items: []
+    - path: [ Policies ]
+      action: insert
+      index: -1
+      text: OPA policy
+      url: /features/opa
+      generate: false
+    - path: [ Policies ]
+      action: insert
+      index: -1
+      text: MeshOPA (beta)
+      url: /features/meshopa
+      generate: false
+    - path: [ Policies ]
+      action: insert
+      index: -1
+      text: MeshGlobalRateLimit (beta)
+      url: /features/meshglobalratelimit
+      generate: false
+    - title: Enterprise Features
+      action: insert
+      index: -3
+      icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
+      items:
+        - text: Overview
+          url: /features/
+        - text: HashiCorp Vault CA
+          url: /features/vault
+        - text: Amazon ACM Private CA
+          url: /features/acmpca
+        - text: cert-manager Private CA
+          url: /features/cert-manager
+        - text: OPA policy support
+          url: /features/opa
+        - text: MeshOPA (beta)
+          url: /features/meshopa
+        - text: Multi-zone authentication
+          url: /features/kds-auth
+        - text: FIPS support
+          url: /features/fips-support
+          generate: false
+        - text: Certificate Authority rotation
+          url: /features/ca-rotation
+        - text: Role-Based Access Control
+          url: /features/rbac
+          generate: false
+        - text: UBI Images
+          url: /features/ubi-images
+        - text: ECS Support
+          url: /installation/ecs
+        - text: Auditing
+          url: /features/access-audit
+        - text: MeshGlobalRateLimit (beta)
+          url: /features/meshglobalratelimit
+    - path: [ Reference ]
+      action: modify
+      icon: /assets/images/icons/documentation/icn-references-color.svg
+    - path: [ Community ]
+      action: modify
+      icon: /assets/images/icons/documentation/icn-references-color.svg
+    - path: [ Community ]
+      action: delete
+      entries: [ License ]
+    - path: [ Community, Contribute to Kuma ]
+      action: modify
+      src: null
+      absolute_url: true
+      url: https://kuma.io/community
+unlisted:
+  - url: /install
+    src: /mesh/install
