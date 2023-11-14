@@ -330,7 +330,7 @@ ingress.networking.k8s.io/lime annotated
 
     ```bash
     curl -sI $PROXY_IP/lemon -H "Authorization: Bearer ${ADMIN_JWT}" | grep HTTP
-     curl -sI $PROXY_IP/lime -H "Authorization: Bearer ${ADMIN_JWT}" | grep HTTP
+    curl -sI $PROXY_IP/lime -H "Authorization: Bearer ${ADMIN_JWT}" | grep HTTP
     ```
     The results should look like this:
     ```text
