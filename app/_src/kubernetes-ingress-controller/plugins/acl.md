@@ -129,11 +129,12 @@ Validation requirements impose that even if the `secret` is not used for algorit
 `RS256` or `ES256` the field `secret` must be present, so put some dummy value for it.
 
    The results should look like this:
-    
-    ```text
-    secret/admin-jwt created
-    secret/user-jwt created
-    ```
+
+  ```text
+  secret/admin-jwt created
+  secret/user-jwt created
+  ```
+
    To associate the JWT Secrets with your consumers, you must add their name to the `credentials` array in the KongConsumers.
 
 1. Assign the credentials `admin-jwt` to the `admin`.     
