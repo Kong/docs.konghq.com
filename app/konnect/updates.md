@@ -21,7 +21,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
   * EU
   * AU 
 
-: For more information, see [Geographic regions](/koonect/geo/).
+: For more information, see [Geographic regions](/konnect/geo/).
 
 ## October 2023
 **Portal Management API**
