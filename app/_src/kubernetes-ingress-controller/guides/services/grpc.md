@@ -8,7 +8,7 @@ purpose: |
 ## Overview
 
 This guide walks through deploying a [Service][svc] that listens for [gRPC connections][gRPC] and exposes this service outside of the cluster using {{site.base_gateway}}.
-Currently, only gRPC over HTTP/2 with TLS is supported. Thus Gateway's listener must be configured with `protocol: HTTPS` as in the presented example.
+Currently, only gRPC over HTTP/2 with TLS is supported. Hence, configure the Gateway's listener using `protocol: HTTPS` when routing GRPC traffic.
 
 For this example, you need to:
 
