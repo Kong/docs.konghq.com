@@ -4,31 +4,6 @@
 
 ## Week 45
 
-### [[URGENT] Remove 2 unwanted changelog entries from 3.5.0.0](https://github.com/Kong/docs.konghq.com/pull/6501) (2023-11-10)
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
-We found two changelog entries should be removed from `3.5.0.0`.
-
-CC @AndyZhang0707
-
-#### Modified
-
-- https://docs.konghq.com/gateway/changelog
-
-
-### [chore: Kic 3.0 nitpicks ](https://github.com/Kong/docs.konghq.com/pull/6494) (2023-11-09)
-
-Apply suggestions from Angle's review in https://github.com/Kong/docs.konghq.com/pull/6454
-
-#### Modified
-
-- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/concepts/ingress
-- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/reference/annotations
-- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/support-policy
-
 
 ### [Release Gateway 3.4.2.0](https://github.com/Kong/docs.konghq.com/pull/6490) (2023-11-10)
 
@@ -42,33 +17,6 @@ https://konghq.atlassian.net/browse/DOCU-3563
 
 - https://docs.konghq.com/gateway/changelog
 
-
-### [Fix broken links from Mattia's blog post](https://github.com/Kong/docs.konghq.com/pull/6489) (2023-11-08)
-
-Fixing broken links that are published in a blog post. I'll fix the remaining links in a followup PR
-
-#### Modified
-
-- https://docs.konghq.com/moved_urls.yml
-
-
-### [docs(rbac): update description on 1st super admin creation](https://github.com/Kong/docs.konghq.com/pull/6488) (2023-11-08)
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
-The official doc on the first super admin creation is misleading.
-
-#### Modified
-
-- https://docs.konghq.com/gateway/3.0.x/plugin-development/pdk/kong.websocket.upstream
-- https://docs.konghq.com/gateway/3.1.x/plugin-development/pdk/kong.websocket.upstream
-- https://docs.konghq.com/gateway/3.2.x/plugin-development/pdk/kong.websocket.upstream
-- https://docs.konghq.com/gateway/3.3.x/plugin-development/pdk/kong.websocket.upstream
-- https://docs.konghq.com/gateway/3.4.x/plugin-development/pdk/kong.websocket.upstream
-- https://docs.konghq.com/gateway/3.5.x/plugin-development/pdk/kong.websocket.upstream
-- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/concepts/ingress
 
 
 ### [docs: add KIC 3.0 missing docs updates](https://github.com/Kong/docs.konghq.com/pull/6487) (2023-11-08)
@@ -100,34 +48,6 @@ Removes unnecessary brackets from example helm values proxy configuration that b
 - https://docs.konghq.com/gateway/3.5.x/plugin-development/pdk/kong.websocket.upstream
 
 
-### [chore(deps): bump kumahq/kuma-website from 4fe5f3af to e79300b0](https://github.com/Kong/docs.konghq.com/pull/6479) (2023-11-09)
-
-Auto upgrade PR log:
-
-e79300b0222b533d7c9770b8292dc21a119d033b docs(init-containers): changed labels to annotations (kumahq/kuma-website#1519)
-9286c666eded6503f457f7656776ecec2b2a3516 feat: make new policies not beta (kumahq/kuma-website#1516)
-d9804ad890ac44951ae1f0cef52473dbcb62d103 feat(reachableservices): add docs about auto reachable services (kumahq/kuma-website#1508)
-12a817da6ef450d623390b039d8bafa242c450e7 fix: update meshcircuitbreaker.md (kumahq/kuma-website#1515)
-2eb00a39a6f08de200d2e09fbcc8788a1d73327d chore(deps): update docs from repo source (kumahq/kuma-website#1518)
-daf0a76acc4078a179adec1029ddb6ea25f16874 Improvements to doc on control plane installation (kumahq/kuma-website#1510)
-b2e640ca3c21cf17c76ed694ca593685a48e92e8 chore: address Sass deprecation warnings (kumahq/kuma-website#1514)
-d00c327289832d914acc7f3b04f904dad9ee140a fix: sidebar sometimes being occluded (kumahq/kuma-website#1513)
-57a59aa4e4bfa1f9e169b79c6b9d9c7a890f727e chore(release): prepare docs for 2.5 (kumahq/kuma-website#1511)
-e58f911dfc25cb4937b9bdba7b6e8eb6bcd0db65 chore(deps): update docs from repo source (kumahq/kuma-website#1512)
-c42387bf42e44769d2df24d90cf1c283c778fb74 fix: sidebar search overlay being cut-off (kumahq/kuma-website#1507)
-ab669a77780a6469f1743dc53e49c8e6c4486d13 chore(deps): update docs from repo source (kumahq/kuma-website#1504)
-
-Triggered by [action](https://github.com/Kong/docs.konghq.com/actions/runs/6805614253).
-labels: skip-changelog,review:general
-
-#### Modified
-
-- https://docs.konghq.com/gateway/3.0.x/plugin-development/pdk/kong.websocket.upstream
-- https://docs.konghq.com/gateway/3.1.x/plugin-development/pdk/kong.websocket.upstream
-- https://docs.konghq.com/gateway/3.2.x/plugin-development/pdk/kong.websocket.upstream
-- https://docs.konghq.com/gateway/3.3.x/plugin-development/pdk/kong.websocket.upstream
-- https://docs.konghq.com/gateway/3.4.x/plugin-development/pdk/kong.websocket.upstream
-- https://docs.konghq.com/gateway/3.5.x/plugin-development/pdk/kong.websocket.upstream
 
 
 ### [removing warning about the websocket pdk](https://github.com/Kong/docs.konghq.com/pull/6477) (2023-11-07)
@@ -147,21 +67,6 @@ Add GRPC guide to KIC 3.0 docs
 
 - https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/
 - https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/production/deployment-topologies/db-backed
-
-
-### [kgo: release v1.0.3](https://github.com/Kong/docs.konghq.com/pull/6472) (2023-11-08)
-
-Include release notes and manifests for https://github.com/Kong/gateway-operator/releases/tag/v1.0.3
-
-#### Added
-
-- https://docs.konghq.com/assets/gateway-operator/v1.0.3/all_controllers.yaml
-- https://docs.konghq.com/assets/gateway-operator/v1.0.3/crds.yaml
-- https://docs.konghq.com/assets/gateway-operator/v1.0.3/default.yaml
-
-#### Modified
-
-- https://docs.konghq.com/gateway-operator/changelog
 
 
 ### [Release: KIC 3.0](https://github.com/Kong/docs.konghq.com/pull/6467) (2023-11-06)
@@ -253,24 +158,6 @@ RateLimit header fields for HTTP -> https://datatracker.ietf.org/doc/draft-ietf-
 - https://docs.konghq.com/hub/kong-inc/rate-limiting/overview/
 
 
-### [chore(deps): bump kumahq/kuma-website from d4a8c82e to 4fe5f3af](https://github.com/Kong/docs.konghq.com/pull/6456) (2023-11-06)
-
-Auto upgrade PR log:
-
-4fe5f3afbfc5720253fd1e73ff5fb464578f4925 fix: sidebar being too tall (kumahq/kuma-website#1505)
-
-Triggered by [action](https://github.com/Kong/docs.konghq.com/actions/runs/6764678173).
-labels: skip-changelog,review:general
-
-#### Modified
-
-- https://docs.konghq.com/gateway/3.0.x/production/access-control/start-securely
-- https://docs.konghq.com/gateway/3.1.x/production/access-control/start-securely
-- https://docs.konghq.com/gateway/3.2.x/production/access-control/start-securely
-- https://docs.konghq.com/gateway/3.3.x/production/access-control/start-securely
-- https://docs.konghq.com/gateway/3.4.x/production/access-control/start-securely
-- https://docs.konghq.com/gateway/3.5.x/production/access-control/start-securely
-
 
 ### [Release: Gateway 3.5](https://github.com/Kong/docs.konghq.com/pull/6433) (2023-11-08)
 
@@ -333,13 +220,7 @@ Code freeze on all doc updates that aren't for this release.
 - [x] Visual check that content renders correctly 
 - [x] Check for broken links 
 
-```
-make clean && make build
-netlify dev
-cd tools
-cd broken-link-checker
-node full.js --host <http://localhost:8888>
-```
+
 
 #### Added
 
