@@ -9,6 +9,13 @@ Changelog for supported Kong Gateway versions.
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.5.0.1
+**Release Date** 2023/11/14
+
+### Fixes
+#### Kong Manager
+* Fixed an issue where some values in the config cards did not display correctly.
+
 ## 3.5.0.0
 **Release Date** 2023/11/08
 
