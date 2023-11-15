@@ -27,7 +27,7 @@ The following objects are geo-specific and are not shared between geos:
 * [API products](/konnect/api-products/)
 * [Service meshes and mesh zones](/konnect/mesh-manager/)
 * [Routes](/konnect/getting-started/implement-service/)
-* [Consumers](/konnect/runtime-manager/manage-proxy-config/)
+* [Consumers](/konnect/gateway-manager/configuration/)
 * [Application registration](/konnect/dev-portal/applications/enable-app-reg/)
 * [Dev Portal](/konnect/dev-portal/access/)
 * [Custom teams and roles](/konnect/org-management/teams-and-roles/)

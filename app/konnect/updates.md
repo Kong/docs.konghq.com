@@ -163,7 +163,7 @@ With composite runtime groups, organizations can reduce infrastructure costs whi
 
 **Kong Ingress Controller for Kubernetes in {{site.konnect_short_name}}**
 : The read-only [Ingress Controller association with {{site.konnect_short_name}}](/konnect/gateway-manager/kic/) is now GA and can be deployed in a production environment. This release also includes the following features:
-* {{site.konnect_short_name}} now manages license and entitlement for KIC-managed Gateways so that you don't need to worry about license management. There is a [seamless upgrade path](/kubernetes-ingress-controller/latest/guides/choose-gateway-image/) available if you want to move from the OSS experience to the Enterprise experience.
+* {{site.konnect_short_name}} now manages license and entitlement for KIC-managed Gateways so that you don't need to worry about license management. There is a [seamless upgrade path](/kubernetes-ingress-controller/latest/license/) available if you want to move from the OSS experience to the Enterprise experience.
 * {{site.konnect_short_name}} now supports analytics for KIC runtime groups. You can get detailed visibility into your K8 native managed Gateways on the {{site.konnect_short_name}} platform.
 
 **Identity Management and Audit Log Roles**
