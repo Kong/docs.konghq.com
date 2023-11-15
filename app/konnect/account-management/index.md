@@ -41,5 +41,3 @@ For any license questions, contact your sales representative.
 ## Geographic region management
 
 When you create a {{site.konnect_saas}} account, you select a [geographic region](/konnect/geo) for your instance. Geos are distinct deployments of {{site.konnect_short_name}} with objects, such as services and consumers, that are geo-specific. Only authentication is shared between {{site.konnect_short_name}} geos.
-
-Only Enterprise plans can select more than one geo.
