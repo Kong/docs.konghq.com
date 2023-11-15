@@ -17,14 +17,12 @@ module Jekyll
         @products ||= FILTERS[edition]
       end
 
-      def version # rubocop:disable Metrics/MethodLength
+      def version
         return 'latest' if latest_version?
 
         case edition
-        when 'gateway'
-          Versions::Gateway.indexed_version(page_version)
-        when 'kubernetes-ingress-controller'
-          Versions::KIC.indexed_version(page_version)
+        when 'gateway', 'kubernetes-ingress-controller', 'deck', 'gateway-operator'
+          Gem::Version.correct?(page_version) ? page_version : 'latest'
         when 'mesh'
           Versions::Mesh.indexed_version(page_version)
         else
@@ -39,7 +37,7 @@ module Jekyll
       private
 
       def latest_version?
-        @page.data['is_latest'] || page_version.nil? || !Gem::Version.correct?(page_version)
+        @page.data['is_latest'] || page_version.nil?
       end
 
       def page_version

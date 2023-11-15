@@ -13,7 +13,7 @@ module Jekyll
         if @page.data['is_latest']
           'latest'
         else
-          Versions::Gateway.indexed_version(@page.data['version'])
+          @page.data['kong_version']
         end
       end
     end

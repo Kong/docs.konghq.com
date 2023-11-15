@@ -5,14 +5,10 @@ module Jekyll
     module Versions
       class Mesh
         def self.indexed_version(version)
-          page_version = Gem::Version.new(version)
-
-          if page_version <= Gem::Version.new('2.3.x')
-            '2.3.x'
-          elsif page_version <= Gem::Version.new('2.4.x')
-            '2.4.x'
+          if Gem::Version.correct?(version)
+            version
           else
-            'latest'
+            version == 'dev' ? 'dev' : 'latest'
           end
         end
       end
