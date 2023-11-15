@@ -88,3 +88,5 @@ items:
             url: /reference/custom-resources/#dataplane
       - text: License
         url: /reference/license
+      - text: Version Compatibility
+        url: /reference/version-compatibility
