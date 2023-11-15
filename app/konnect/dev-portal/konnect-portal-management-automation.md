@@ -134,7 +134,7 @@ In practice, organizations need to verify and approve developers in quantities e
 Using the [Konnect Portal Management API](https://docs.konghq.com/konnect/api/portal-management) you can significantly reduce manual overhead....
 
 
-
+<!--
 
 
 ## Automating Developer Permissions and Service Consumption Tracking
@@ -159,3 +159,5 @@ curl --request GET \
   --header 'Authorization: kpat' \
   --header 'Content-Type: application/json' | jq '.data | map(select(.registration_count == 0))'
 ```
+
+-->
