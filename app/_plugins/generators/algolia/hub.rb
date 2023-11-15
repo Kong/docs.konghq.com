@@ -13,7 +13,7 @@ module Jekyll
         if @page.data['is_latest']
           'latest'
         else
-          @page.data['kong_version']
+          @page.data['version']
         end
       end
     end
