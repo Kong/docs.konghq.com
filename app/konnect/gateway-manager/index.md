@@ -59,8 +59,9 @@ entity-specific permissions. For more information, see [Administer teams](/konne
 Every region in every organization starts with one default control plane.
 This control plane can't be deleted, and its status as the default can't be changed.
 
-With an [Enterprise subscription](https://konghq.com/pricing/), you can configure additional
-custom control panes. Use multiple control planes in one {{site.konnect_short_name}} organization to
+With {{site.konnect_short_name}} you can configure additional {{site.base_gateway}}
+control panes, each of which will have isolated configuration.
+Use multiple control planes in one {{site.konnect_short_name}} organization to
 manage data plane nodes and their configuration in any groupings you want.
 
 Some common use cases for using multiple control planes include:
