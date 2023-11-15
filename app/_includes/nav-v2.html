@@ -165,25 +165,3 @@
     </div>
   </div>
 </header>
-
-{% if include.layout != "landing-page" %}
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
-
-<script type="text/javascript">
-  docsearch({
-    appId: 'T5JKD83LWT',
-    apiKey: '1390283021f26e36117242934deb8d9d',
-    indexName: 'prod_Full_Docs',
-    inputSelector: '#getkong-algolia-search-input',
-    algoliaOptions: {
-      hitsPerPage: 8
-    },
-    // Override selected event to allow for local environment navigation
-    handleSelected: function (input, event, suggestion) {
-      input.setVal('')
-      window.location.href = window.location.protocol + '//' + window.location.host + suggestion.url.split('docs.konghq.com')[1]
-    }
-    // ,debug: true // Set debug to true if you want to inspect the dropdown
-  })
-</script>
-{% endif %}
