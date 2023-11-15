@@ -185,6 +185,8 @@
           url: /dev-portal/applications/dev-reg-app-service/
         - text: Generate Credentials for an Application
           url: /dev-portal/applications/dev-gen-creds/
+    - text: Konnect Portal Management API Automation Guide
+      url: /dev-portal/konnect-portal-management-automation/
     - text: Customize Dev Portal
       items:
         - text: Overview
