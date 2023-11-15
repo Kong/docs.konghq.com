@@ -84,7 +84,7 @@ id: documentation
       <div class="page-content">
         <div class="content show-anchor-links">
           {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
-              <blockquote class="important">
+              <blockquote id="version-notice" class="important">
                 {% if page.edition == 'mesh' and page.version_data['releaseDate'] == nil %}
                 You are browsing documentation of an unreleased version.
                 {% else %}
