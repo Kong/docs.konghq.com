@@ -52,7 +52,7 @@ items:
             items:
               - text: Overview
                 url: /key-concepts/routes
-              - text: Configure Routes with Expressions
+              - text: Using the Expressions router
                 url: /key-concepts/routes/expressions
           - text: Upstreams
             url: /key-concepts/upstreams
@@ -576,8 +576,16 @@ items:
         url: /reference/cli
       - text: Key Management
         url: /reference/key-management
-      - text: Router Expressions Language
-        url: /reference/router-expressions-language
+      - text: The Expressions Language
+        items:
+          - text: Overview
+            url: /reference/expressions-language/overview
+          - text: Quickstart
+            url: /reference/expressions-language/quickstart
+          - text: Language References
+            url: /reference/expressions-language/language-references
+          - text: Performance Optimizations
+            url: /reference/expressions-language/performance
       - text: Rate Limiting Library
         url: /reference/rate-limiting/
       - text: WebAssembly
