@@ -32,7 +32,6 @@ chmod +x docker-entrypoint.sh
 
 1. Create a `Dockerfile`, ensuring you replace the filename by the first `COPY` with the name of the {{site.base_gateway}} file you downloaded in step 2:
 
-{% if_version lte:3.3.x %}
 {% capture dockerfile_run_steps %}COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 USER kong
@@ -119,6 +118,8 @@ RUN set -ex; \
 {{ dockerfile_run_steps }}
 ```
 {% endnavtab %}
+
+{% if_version lte:3.3.x %}
 {% navtab Alpine %}
 ```dockerfile
 
@@ -147,102 +148,11 @@ RUN set -ex; \
 {{ dockerfile_run_steps }}
 ```
 {% endnavtab %}
+{% endif_version %}
+
 {% endnavtabs %}
 {% endcapture %}
 {{ dockerfile | indent }}
-{% endif_version %}
-
-{% if_version gte:3.4.x %}
-{% capture dockerfile_run_steps %}COPY docker-entrypoint.sh /docker-entrypoint.sh
-
-USER kong
-
-ENTRYPOINT ["/docker-entrypoint.sh"]
-
-EXPOSE 8000 8443 8001 8444 8002 8445 8003 8446 8004 8447
-
-STOPSIGNAL SIGQUIT
-
-HEALTHCHECK --interval=10s --timeout=10s --retries=10 CMD kong health
-
-CMD ["kong", "docker-start"]{% endcapture %}
-
-{% capture dockerfile %}
-{% navtabs codeblock indent %}
-
-{% navtab Debian %}
-```dockerfile
-
-FROM debian:bullseye-slim
-
-COPY kong.deb /tmp/kong.deb
-
-RUN set -ex; \
-    apt-get update \
-    && apt-get install --yes /tmp/kong.deb \
-    && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /tmp/kong.deb \
-    && chown kong:0 /usr/local/bin/kong \
-    && chown -R kong:0 /usr/local/kong \
-    && ln -s /usr/local/openresty/bin/resty /usr/local/bin/resty \
-    && ln -s /usr/local/openresty/luajit/bin/luajit /usr/local/bin/luajit \
-    && ln -s /usr/local/openresty/luajit/bin/luajit /usr/local/bin/lua \
-    && ln -s /usr/local/openresty/nginx/sbin/nginx /usr/local/bin/nginx \
-    && kong version
-
-{{ dockerfile_run_steps }}
-```
-{% endnavtab %}
-
-{% navtab Ubuntu %}
-```dockerfile
-
-FROM ubuntu:20.04
-
-COPY kong.deb /tmp/kong.deb
-
-RUN set -ex; \
-    apt-get update \
-    && apt-get install --yes /tmp/kong.deb \
-    && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /tmp/kong.deb \
-    && chown kong:0 /usr/local/bin/kong \
-    && chown -R kong:0 /usr/local/kong \
-    && ln -s /usr/local/openresty/bin/resty /usr/local/bin/resty \
-    && ln -s /usr/local/openresty/luajit/bin/luajit /usr/local/bin/luajit \
-    && ln -s /usr/local/openresty/luajit/bin/luajit /usr/local/bin/lua \
-    && ln -s /usr/local/openresty/nginx/sbin/nginx /usr/local/bin/nginx \
-    && kong version
-
-{{ dockerfile_run_steps }}
-```
-{% endnavtab %}
-
-{% navtab RHEL %}
-```dockerfile
-
-FROM registry.access.redhat.com/ubi8/ubi:8.1
-
-COPY kong.rpm /tmp/kong.rpm
-
-RUN set -ex; \
-    yum install -y /tmp/kong.rpm \
-    && rm /tmp/kong.rpm \
-    && chown kong:0 /usr/local/bin/kong \
-    && chown -R kong:0 /usr/local/kong \
-    && ln -s /usr/local/openresty/bin/resty /usr/local/bin/resty \
-    && ln -s /usr/local/openresty/luajit/bin/luajit /usr/local/bin/luajit \
-    && ln -s /usr/local/openresty/luajit/bin/luajit /usr/local/bin/lua \
-    && ln -s /usr/local/openresty/nginx/sbin/nginx /usr/local/bin/nginx \
-    && kong version
-
-{{ dockerfile_run_steps }}
-```
-{% endnavtab %}
-{% endnavtabs %}
-{% endcapture %}
-{{ dockerfile | indent }}
-{% endif_version %}
 
 1. Build your image:
 ```bash
