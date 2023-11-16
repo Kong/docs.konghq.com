@@ -164,7 +164,7 @@ action items when certain conditions are met.
 #### Enterprise
 
 * Fixed a keyring issue where Kong nodes failed to send keyring material when using the cluster strategy.
-* Enforced Content Security Policy (CSP) headers for serving static resources via Dev Portal and Kong Manager.
+* Enforced Content Security Policy (CSP) headers for serving static resources via Kong Manager.
 * Fixed an RBAC issue related to retrieving group roles with a numeric group name type.
 * When using `openid-connect` as the `admin_gui_auth` method for Kong Manager, some `admin_gui_auth_conf` required settings are now hardcoded.
 * Fixed an issue where the data plane hostname was `nil` in Vitals when running Kong Gateway in hybrid mode.
@@ -179,11 +179,6 @@ action items when certain conditions are met.
 * Removed FIPS from free mode.
 * Implemented lazy enabling of FIPS mode upon receiving a valid license, emitting warnings instead of blocking Kong Gateway startup. This approach allows normal use of non-FIPS content without a license, and FIPS mode activates only with a valid license. When no license is present, the service can start with a warning log, and FIPS mode remains disabled until a valid license is added. Additionally, deleting a valid license via the Admin API results in a warning without disabling FIPS mode.
 * Unified the error responses for failed admin authentication via Admin and Portal APIs.
-
-##### Dev Portal
-
-* Sanitized developer names in emails to prevent hyperlink recognition and mitigate the risk of unexpected visits to email receivers (admins).
-* Fixed an issue causing 500 errors during Dev Portal visits by verifying replacement types and converting unsupported types to strings before passing to `string.gsub`.
 
 ##### Kong Manager
 
