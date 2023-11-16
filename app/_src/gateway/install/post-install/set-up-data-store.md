@@ -8,9 +8,11 @@ at `/etc/kong/kong.conf.default`. This configuration file is used for setting {{
 configuration properties at startup.
 
 {{site.base_gateway}} offers two options for storing the configuration properties for all of
-{{site.base_gateway}}'s configured entities: a database or a YAML declarative configuration file (also known as DB-less mode).
-Before starting {{site.base_gateway}}, you must update the `kong.conf.default` configuration property file with a reference
-to your data store.
+{{site.base_gateway}}'s configured entities: using a database (PostgreSQL), or using a 
+YAML declarative configuration file, also known as DB-less mode.
+
+Before starting {{site.base_gateway}}, you must update the `kong.conf.default` configuration 
+property file with a reference to your data store.
 
 {:.note}
 > **Note**: The following data store setup is only necessary if you installed {{site.base_gateway}} without a data store. 
@@ -21,13 +23,13 @@ If you followed one of our Docker, Kubernetes, or quickstart guides, you should 
 To alter the default properties listed in the `kong.conf.default` file and configure {{site.base_gateway}},
 make a copy of the file, rename it (for example `kong.conf`), make your updates, and save it to the same location.
 
-Choose one of the following options to set up your data store:
+Then, choose one of the following options to set up your data store:
 * [Using a database](#using-a-database)
 * [Using a YAML declarative configuration file](#using-a-yaml-declarative-config-file) (DB-less)
 
 ### Using a database
 
-First, configure {{site.base_gateway}} using the `kong.conf` configuration file so it can connect to your database.
+Configure {{site.base_gateway}} using the `kong.conf.default` file so it can connect to your database.
 See the data store section of the [Configuration Property Reference](/gateway/{{ page.kong_version }}/reference/configuration/#datastore-section) 
 for all relevant configuration parameters.
 
@@ -37,9 +39,7 @@ for all relevant configuration parameters.
 
 {% endif_version %}
 
-The following instructions use [PostgreSQL](http://www.postgresql.org/) as a database to store Kong configuration.
-
-Provision a PostgreSQL database and a user before starting {{site.base_gateway}}:
+Provision a [PostgreSQL](http://www.postgresql.org/) database and a user before starting {{site.base_gateway}}:
 
 ```sql
 CREATE USER kong WITH PASSWORD 'super_secret'; CREATE DATABASE kong OWNER kong;
@@ -50,13 +50,13 @@ Run one of the following {{site.base_gateway}} migrations:
 {% navtabs %}
 {% navtab Kong Gateway Enterprise %}
 
-In Enterprise environments, we strongly recommend seeding a password for the Super Admin user with the `kong migrations` command. 
+In Enterprise environments, we strongly recommend seeding a password for the super admin user with the `kong migrations` command. 
 This allows you to use RBAC (Role Based Access Control) at a later time, if needed. 
 
 Create an environment variable with the desired password and store the password in a safe place:
 
 ```bash
-KONG_PASSWORD=<PASSWORD> kong migrations bootstrap -c <PATH_TO_KONG.CONF_FILE>
+KONG_PASSWORD=<PASSWORD> kong migrations bootstrap -c <KONG_DECLARATIVE_CONFIG_PATH>
 ```
 
 {:.important}
@@ -70,7 +70,7 @@ To work around this issue, do not use special characters in your password.
 If you aren't using Enterprise, run the following:
 
 ```bash
-kong migrations bootstrap -c <PATH_TO_KONG.CONF_FILE>
+kong migrations bootstrap -c <KONG_DECLARATIVE_CONFIG_PATH>
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -86,23 +86,20 @@ configured entities in a YAML declarative configuration file (also referred to a
 
 Create a `kong.yml` file and update the `kong.conf` configuration file to include the file path to the `kong.yml` file.
 
-1. Use the following command to generate a `kong.yml` declarative configuration file in your current folder:
+1. Generate a `kong.yml` declarative configuration file in your current folder:
 
     ```bash
     kong config init
     ```
 
-    The generated `kong.yml` file contains instructions for how to configure {{site.base_gateway}} using the file.
+    The generated `kong.yml` file contains instructions for configuring {{site.base_gateway}} using the file.
 
-2. Configure {{site.base_gateway}} with the path to your `kong.conf` configuration file so it is aware of
-your declarative configuration file.
-
-    Set the `database` option to `off` and the `declarative_config` option to the path of your `kong.yml` 
-    file:
+2. In `kong.conf`, set the `database` option to `off`, and set the `declarative_config` directive to the 
+path to your `kong.yml`:
 
     ```
     database = off
-    declarative_config = <PATH_TO_KONG.CONF_FILE>
+    declarative_config = <KONG_DECLARATIVE_CONFIG_PATH>
     ```
 
 ## Start {{site.base_gateway}}
