@@ -21,4 +21,5 @@ group :development do
   gem 'rspec'
   gem 'capybara'
   gem 'foreman'
+  gem 'ruby-lsp'
 end
