@@ -3,7 +3,7 @@ title: Build your own Docker images
 content_type: how-to
 ---
 
-Kong is distributed as prebuilt `apk`, `deb`, and `rpm` packages, in addition to official Docker images hosted on [DockerHub](https://hub.docker.com/r/kong)
+Kong is distributed as prebuilt {% if_version lte:3.3.x %}`apk`, {% endif_version %}`deb` and `rpm` packages, in addition to official Docker images hosted on [DockerHub](https://hub.docker.com/r/kong)
 
 Kong builds and verifies [Debian](#dockerhub-debian-link-here) and [RHEL](#dockerhub-rhel-link-here) images for use in production. {% if_version lte:3.3.x %}[Alpine](#dockerhub-alpine-link-here) images are provided for **development purposes only** as they contain development tooling such as `git` for plugin development purposes.{% endif_version %}
 
