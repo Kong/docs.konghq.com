@@ -12,6 +12,8 @@ title: Compatibility
 
 |                                | {{site.konnect_saas}} | First supported patch version
 |--------------------------------|:---------------------:|-----------------------------
+| {{site.ee_product_name}} 3.5.x | <i class="fa fa-check"></i>    | 3.5.0.0
+| {{site.ee_product_name}} 3.4.x | <i class="fa fa-check"></i>    | 3.4.0.0
 | {{site.ee_product_name}} 3.3.x | <i class="fa fa-check"></i>    | 3.3.0.0
 | {{site.ee_product_name}} 3.2.x | <i class="fa fa-check"></i>    | 3.2.1.0
 | {{site.ee_product_name}} 3.1.x | <i class="fa fa-check"></i>    | 3.1.0.0
