@@ -10,8 +10,10 @@ title: Compatibility
 
 ## {{site.base_gateway}} version compatibility
 
+
 |                                | {{site.konnect_saas}} | Beginning with version | End of support | 
 |--------------------------------|:---------------------:|-------------------------------|----------------|
+| {{site.ee_product_name}} 3.5.x | <i class="fa fa-check"></i>    | 3.5.0.0 | Nov 2026 
 | {{site.ee_product_name}} 3.4.x (LTS)| <i class="fa fa-check"></i>    | 3.4.0.0 | Aug 2026 
 | {{site.ee_product_name}} 3.3.x | <i class="fa fa-check"></i>    | 3.3.0.0 | May 2024
 | {{site.ee_product_name}} 3.2.x | <i class="fa fa-check"></i>    | 3.2.1.0 | Feb 2024
@@ -22,6 +24,7 @@ title: Compatibility
 | {{site.ee_product_name}} 2.6.x | <i class="fa fa-check"></i>    | 2.6.0.0 | Feb 2024
 | {{site.ee_product_name}} 2.5.x | <i class="fa fa-check"></i>    | 2.5.0.1 | Feb 2024
 | {{site.ee_product_name}} 2.4.x or earlier | <i class="fa fa-times"></i>    | -- | -- 
+
 
 
 ## {{site.mesh_product_name}} compatibility
