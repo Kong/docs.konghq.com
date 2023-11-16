@@ -28,11 +28,7 @@ items:
           - text: Services
             url: /key-concepts/services
           - text: Routes
-            items:
-              - text: Overview
-                url: /key-concepts/routes
-              - text: Using the Expressions router
-                url: /key-concepts/routes/expressions
+            url: /key-concepts/routes
           - text: Upstreams
             url: /key-concepts/upstreams
           - text: Plugins
@@ -197,6 +193,8 @@ items:
         url: /production/logging
       - text: Configure a gRPC service
         url: /production/configuring-a-grpc-service
+      - text: Use the Expressions Router
+        url: /key-concepts/routes/expressions
       - text: Upgrade and Migration
         items:
           - text: Upgrade Kong Gateway 3.1.x
@@ -592,9 +590,7 @@ items:
       - text: The Expressions Language
         items:
           - text: Overview
-            url: /reference/expressions-language/overview
-          - text: Quickstart
-            url: /reference/expressions-language/quickstart
+            url: /reference/expressions-language
           - text: Language References
             url: /reference/expressions-language/language-references
           - text: Performance Optimizations
