@@ -5,6 +5,7 @@ purpose: |
   Additional information needed to install KIC on GKE
 ---
 
+{% include /md/kic/konnect-setup.md %}
 
 ## Prerequisites
 
