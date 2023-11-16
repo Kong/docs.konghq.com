@@ -11,6 +11,7 @@ The following table presents the general compatibility of {{site.kgo_product_nam
 | {{site.kgo_product_name}}        |            1.0.x            |
 |:---------------------------------|:---------------------------:|
 | {{ site.kic_product_name }} 2.11 | <i class="fa fa-check"></i> |
+| {{ site.kic_product_name }} 2.12 | <i class="fa fa-check"></i> |
 | {{ site.kic_product_name }} 3.0  | <i class="fa fa-times"></i> |
 
 ### General
