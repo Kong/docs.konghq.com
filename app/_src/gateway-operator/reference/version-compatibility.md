@@ -34,6 +34,7 @@ of Gateway API features might be limited to those.
 
 | {{site.kgo_product_name}} |            1.0.x            |
 |:--------------------------|:---------------------------:|
+| Gateway API 1.0.0         | <i class="fa fa-times"></i> |
 | Gateway API 0.8.1         | <i class="fa fa-check"></i> |
 
 [gateway-api]: https://github.com/kubernetes-sigs/gateway-api
