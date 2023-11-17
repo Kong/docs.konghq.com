@@ -151,6 +151,10 @@ items:
             url: /guides/migrate/ingress-to-gateway
           - text: Credential Type Labels
             url: /guides/migrate/credential-kongcredtype-label
+      - text: Customize Deployments
+        items:
+          - text: Images
+            url: /guides/customize/image
 
   - title: Plugins
     icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
