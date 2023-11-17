@@ -83,12 +83,12 @@ items:
             src: reference/custom-resources/1.0.x
           - text: GatewayConfiguration
             url: /reference/custom-resources/#gatewayconfiguration
-            src: reference/custom-resources/1.0.x
+            generate: false
           - text: ControlPlane
             url: /reference/custom-resources/#controlplane
-            src: reference/custom-resources/1.0.x
+            generate: false
           - text: DataPlane
             url: /reference/custom-resources/#dataplane
-            src: reference/custom-resources/1.0.x
+            generate: false
       - text: License
         url: /reference/license
