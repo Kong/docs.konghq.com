@@ -79,12 +79,16 @@ items:
       - text: Custom Resources
         items:
           - text: Overview
-            url: /reference/custom-resources/1.0.x/
+            url: /reference/custom-resources/
+            src: reference/custom-resources/1.0.x
           - text: GatewayConfiguration
-            url: /reference/custom-resources/1.0.x/#gatewayconfiguration
+            url: /reference/custom-resources/#gatewayconfiguration
+            src: reference/custom-resources/1.0.x
           - text: ControlPlane
-            url: /reference/custom-resources/1.0.x/#controlplane
+            url: /reference/custom-resources/#controlplane
+            src: reference/custom-resources/1.0.x
           - text: DataPlane
-            url: /reference/custom-resources/1.0.x/#dataplane
+            url: /reference/custom-resources/#dataplane
+            src: reference/custom-resources/1.0.x
       - text: License
         url: /reference/license
