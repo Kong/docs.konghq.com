@@ -125,6 +125,8 @@ items:
             url: /guides/high-availability/kic
           - text: Service Health Checks
             url: /guides/high-availability/health-checks
+          - text: Last Known Good Config
+            url: /guides/high-availability/last-known-good-config
       - text: Security
         items:
           - text: Kong Vaults
