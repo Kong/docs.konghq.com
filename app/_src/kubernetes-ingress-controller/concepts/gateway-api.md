@@ -13,6 +13,9 @@ routes.
 
 Gateway API and Kong's implementation of Gateway API are both Generally Available for all users.
 
+{:.note}
+> Gateway API resources will only be reconciled when the Gateway API CRDs are installed in your cluster _before_ {{ site.kic_product_name }} is started. See the [getting started](/kubernetes-ingress-controller/{{ page.release }}/get-started/) page for installation instructions.
+
 ## Gateway management
 
 A [Gateway resource](https://gateway-api.sigs.k8s.io/concepts/api-overview/#gateway)
