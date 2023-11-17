@@ -18,13 +18,141 @@ In this tutorial, you are a security engineer at your company. The company has c
 
 ## Prerequisites
 
-* install example app:
+* [Deploy {{site.mesh_product_name}}](/mesh/{{page.kong_version}}/production/deployment/) in either standalone or multi-zone mode.
+* A valid JWT token
+* install example app?:
     ```bash
     kubectl apply -f https://bit.ly/demokuma
     ```
     why? what does this contain? maybe not since we want this to apply to a bunch of use cases?
 
-## instructions
+## Use an OPA policy to validate JWT tokens
+
+Each of the following sections details a different use case for using an OPA policy to validate JWT tokens, along with an example policy.
+
+### general
+
+{% navtabs %}
+{% navtab Kubernetes %}
+1. Create the `require-jwt` OPA policy that enforces JWT validation when the `frontend` service makes a request to the `backend` service in the `kuma-demo` namespace:
+
+```bash
+echo "
+apiVersion: kuma.io/v1alpha1
+kind: OPAPolicy
+mesh: default
+metadata:
+  name: require-jwt
+  namespace: kuma-demo
+spec:
+  selectors:
+  - match:
+      kuma.io/service: '*'
+  conf:
+    policies:
+      - inlineString: |
+          package envoy.authz
+
+          import input.attributes.request.http as http_request
+
+          default allow = false
+
+          token = {\"valid\": valid, \"payload\": payload} {
+              [_, encoded] := split(http_request.headers.authorization, \" \")
+              [valid, _, payload] := io.jwt.decode_verify(encoded, {\"secret\": \"secret\"})
+          }
+
+          allow {
+              is_token_valid
+              action_allowed
+          }
+
+          is_token_valid {
+            token.valid
+            now := time.now_ns() / 1000000000
+            token.payload.nbf <= now
+            now < token.payload.exp
+          }
+
+          action_allowed {
+            http_request.method == \"GET\"
+            token.payload.role == \"admin\"
+          }
+" | kubectl apply -f -
+```
+1. Export the token to a variable and make the request (somehow not manually, like how would this be done in real life):
+{% endnavtab %}
+{% navtab Universal %}
+1. Create the `require-jwt` OPA policy that enforces JWT validation when the `frontend` service makes a request to the `backend` service in the `kuma-demo` namespace:
+
+```bash
+echo "
+type: OPAPolicy
+mesh: default
+name: opa-1
+selectors:
+- match:
+    kuma.io/service: '*'
+conf:
+  agentConfig: # optional
+    inlineString: | # one of: inlineString, secret
+      decision_logs:
+        console: true
+  policies: # optional
+    - inlineString: | # one of: inlineString, secret
+        package envoy.authz
+
+        import input.attributes.request.http as http_request
+
+        default allow = false
+
+        token = {"valid": valid, "payload": payload} {
+            [_, encoded] := split(http_request.headers.authorization, " ")
+            [valid, _, payload] := io.jwt.decode_verify(encoded, {"secret": "secret"})
+        }
+
+        allow {
+            is_token_valid
+            action_allowed
+        }
+
+        is_token_valid {
+          token.valid
+          now := time.now_ns() / 1000000000
+          token.payload.nbf <= now
+          now < token.payload.exp
+        }
+
+        action_allowed {
+          http_request.method == "GET"
+          token.payload.role == "admin"
+        }
+" | kumactl apply -f -
+```
+1. Export the token to a variable and make the request (somehow not manually, like how would this be done in real life):
+{% endnavtab %}
+{% endnavtabs %}
+
+### with groups
+
+{% navtabs %}
+{% navtab Kubernetes %}
+```yaml
+```
+{% endnavtab %}
+{% navtab Universal %}
+```yaml
+```
+{% endnavtab %}
+{% endnavtabs %}
+
+## Test the JWT validation configuration
+
+verify that it won’t accept something without a JWT token
+
+verify that it will accept something with the token and any modifiers (if they were configured)
+
+troubleshooting if issues?
 
 
 
