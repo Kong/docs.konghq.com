@@ -296,7 +296,7 @@ since this is a node-specific in-memory operation.
 
 #### Kong Manager compatibility
 
-Kong Manager cannot guarantee compatibility with Kong operating in DB-less mode. You cannot create, update, or delete entities with Kong Manager when Kong is running in this mode. Entity counters in the "Summary" section on the global and workspace overview pages will not work normally as well.
+Kong Manager cannot guarantee compatibility with {{site.base_gateway}} operating in DB-less mode. You cannot create, update, or delete entities with Kong Manager when {{site.base_gateway}} is running in this mode. Entity counters in the "Summary" section on the global and workspace overview pages will not function correctly as well.
 
 #### Plugin compatibility
 
