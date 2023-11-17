@@ -79,12 +79,12 @@ items:
       - text: Custom Resources
         items:
           - text: Overview
-            url: /reference/custom-resources/
+            url: /reference/custom-resources/api-reference-1.0.x
           - text: GatewayConfiguration
-            url: /reference/custom-resources/#gatewayconfiguration
+            url: /reference/custom-resources/api-reference-1.0.x/#gatewayconfiguration
           - text: ControlPlane
-            url: /reference/custom-resources/#controlplane
+            url: /reference/custom-resources/api-reference-1.0.x/#controlplane
           - text: DataPlane
-            url: /reference/custom-resources/#dataplane
+            url: /reference/custom-resources/api-reference-1.0.x/#dataplane
       - text: License
         url: /reference/license
