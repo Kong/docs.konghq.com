@@ -80,7 +80,7 @@ Two common use cases are:
 
 {:.warning}
 > **Note**: **Enterprise-Only**: The Kong Community Edition of this Rate Limiting plugin does not
-include [Redis Cluster](https://redis.io/docs/management/scaling/) nor [Redis Sentinel](https://redis.io/topics/sentinel) support. Only [{{site.ee_product_name}}](https://www.konghq.com/kong) customers can use Redis Cluster or Redis Sentinel with Kong Rate Limiting, enabling them to deliver highly performant and available primary-replica deployments.
+include [Redis Cluster](https://redis.io/docs/management/scaling/) or [Redis Sentinel](https://redis.io/topics/sentinel) support. Only [{{site.ee_product_name}}](https://www.konghq.com/kong) customers can use Redis Cluster or Redis Sentinel with Kong Rate Limiting, enabling them to deliver highly performant and available primary-replica deployments.
 
 #### Every transaction counts
 
