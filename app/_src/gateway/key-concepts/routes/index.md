@@ -98,7 +98,7 @@ to route a request, the latency introduced by {{site.base_gateway}}
 can suffer and its CPU usage can increase. In installations with
 thousands of routes, replacing regular expression routes by simple
 prefix routes can improve throughput and latency of
-{{site.base_gateway}}. If regex must be used due to exact
+{{site.base_gateway}}. If regex must be used because an exact
 path match must be performed, using the [expressions router](expressions)
 will significantly improve {{site.base_gateway}}'s performance in this case.
 
@@ -119,7 +119,7 @@ Routes can be configured dynamically to rewrite the requested URL to a different
 
 {{site.base_gateway}} can also handle more complex URL rewriting cases by using regular expression capture groups in the route path and the [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) plugin. For example, this can be used when you must replace `/api/<function>/old` with `/new/api/<function>`.
 
-{{site.base_gateway}} 3.0.x or later ships with a new router. The new router can use regex expression capture groups to describe routes using a domain-specific language called Expressions. Expressions can describe routes or paths as patterns using regular expressions. For more information about how to configure the router using Expressions, see [How to configure Routes using expressions](/gateway/{{page.kong_version}}/key-concepts/routes/expressions/).
+{{site.base_gateway}} 3.0.x or later ships with a new router. The new router can use regex expression capture groups to describe routes using a domain-specific language called Expressions. Expressions can describe routes or paths as patterns using regular expressions. For more information about how to configure the router using Expressions, see [How to configure routes using expressions](/gateway/{{page.kong_version}}/key-concepts/routes/expressions/).
 
 ## Plugins for routes
 

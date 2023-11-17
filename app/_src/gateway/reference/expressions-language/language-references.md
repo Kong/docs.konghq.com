@@ -155,7 +155,7 @@ This operator is used to check the existence of a string inside another string.
 For example, `http.path contains "foo"` will return `true` if `foo` can be found anywhere inside `http.path`.
 This will match a `http.path` that looks like `/foo`, `/abc/foo`, or `/xfooy`, for example.
 
-### Type/operator semantics
+### Type and operator semantics
 
 Here are the allowed combination of field types and constant types with each operator:
 
