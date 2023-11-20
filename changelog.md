@@ -4,11 +4,6 @@
 
 ## Week 46
 
-### [kgo: make api reference versioned](https://github.com/Kong/docs.konghq.com/pull/6531) (2023-11-17)
-
-This will allow us to version the api reference.
-
-
 
 ### [(chore) Konnect + 3.5 support](https://github.com/Kong/docs.konghq.com/pull/6527) (2023-11-16)
 
@@ -20,12 +15,12 @@ Adding statements of Konnect support for 3.5 to changelog + compatibility table,
 - https://docs.konghq.com/konnect/updates
 
 
-### [Azure Key Vault docs for Konnect](https://github.com/Kong/docs.konghq.com/pull/6526) (2023-11-16)
+### [Feat: Azure Key Vault docs for Konnect](https://github.com/Kong/docs.konghq.com/pull/6526) (2023-11-16)
 
-<!-- What did you change and why? -->
+
  Added Azure Key Vault as a supported secret manager for Konnect docs
 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
 https://konghq.aha.io/features/KP-391
 This was hidden behind a feature flag from back in March. It is now ready to be turned on and released.
 
@@ -35,7 +30,7 @@ This was hidden behind a feature flag from back in March. It is now ready to be 
 - https://docs.konghq.com/konnect/gateway-manager/configuration/vaults/
 
 
-### [Fix custom Docker build instructions](https://github.com/Kong/docs.konghq.com/pull/6525) (2023-11-16)
+### [Fix: custom Docker build instructions](https://github.com/Kong/docs.konghq.com/pull/6525) (2023-11-16)
 
 Fix custom Docker build instructions. `openresty` is now symlinked in the package, which caused the `Dockerfile` provided to fail.
 
@@ -52,34 +47,6 @@ Adding a section for the compatibility warning while using Kong Manager with Kon
 
 - https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/install/cloud/eks
 
-
-### [Add moved_urls entries for all KIC 2.12.x->3.0.x pages](https://github.com/Kong/docs.konghq.com/pull/6520) (2023-11-16)
-
-Add entries to moved_urls to make the "latest version" link work, and add automatic redirects for /latest/
-
-#### Modified
-
-- https://docs.konghq.com/moved_urls.yml
-
-
-### [Redirect to KIC in Konnect on cloud install pages](https://github.com/Kong/docs.konghq.com/pull/6517) (2023-11-15)
-
-Make it clear that KIC install instructions are _not_ for Konnect + redirect to Gateway Manager as needed
-
-#### Modified
-
-- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/high-availability/kic
-- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/install/cloud/eks
-- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/install/cloud/gke
-
-
-### [Fix Kong Vault in KIC styling](https://github.com/Kong/docs.konghq.com/pull/6516) (2023-11-15)
-
-Fix code styling in KIC Vaults page
-
-#### Modified
-
-- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/security/kong-vault
 
 
 ### [docs(mesh): update docs and changelog](https://github.com/Kong/docs.konghq.com/pull/6513) (2023-11-16)
@@ -124,12 +91,6 @@ https://superuser.com/questions/835587/how-to-include-environment-variable-in-ba
 Updating gateway manager doc page since Plus and Enterprise users can create multiple control planes. This was new as part of KOD1 for API Summit.
 
 
-
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/konnect/gateway-manager/
@@ -161,41 +122,12 @@ This is for Gateway Enterprise 3.5.0.0 changelog.
 - https://docs.konghq.com/gateway/changelog
 
 
-### [chore(deps): bump kumahq/kuma-website from e79300b0 to 80fb6b2a](https://github.com/Kong/docs.konghq.com/pull/6500) (2023-11-17)
-
-Auto upgrade PR log:
-
-80fb6b2ad888f035f3943a1904f91a3955a6a846 feat(blog): release 2.5 blogpost (kumahq/kuma-website#1524)
-bcd7ad0a0dc377a3e1112672d65bdbe60b0322c0 chore(deps): update docs from repo source (kumahq/kuma-website#1531)
-ff86276f77213704e483e8c8679ae6b7a1f38175 docs(tproxy): improve tproxy instructions (kumahq/kuma-website#1527)
-933914cc48df550ae4bd94601a526d348104bf79 fix(DppUniversal): fix typo (kumahq/kuma-website#1526)
-87a54b5c272caba13358214373f2d427014a9e86 chore(deps): update docs from repo source (kumahq/kuma-website#1530)
-60098daca7c8d7d7e5b67fd5944af142b58caf0f change vale reporter (kumahq/kuma-website#1529)
-781a2ddd2d39ce404a78e14d65d6c89ef53d2fa8 feat(mlbs): documentation of advanced locality awareness (kumahq/kuma-website#1506)
-051a9a0064c4aa735feb4e15c4eb5208b26941f6 fix: traffic-metrics example (kumahq/kuma-website#1517)
-fb684921082e37aac58e2b977f8bd4389f936d93 chore(deps): update docs from repo source (kumahq/kuma-website#1521)
-74b85ab36045d681321fc83638e5ec59f24de37f docs(policies): name has to be defined with a bunch of kinds (kumahq/kuma-website#1522)
-b425d6e4ee403bd795f8567e16b07ff35ec74afb docs(perf): improve auto reachable services docs (kumahq/kuma-website#1520)
-
-Triggered by [action](https://github.com/Kong/docs.konghq.com/actions/runs/6898114756).
-labels: skip-changelog,review:general
-
-#### Modified
-
-- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/install/cloud/eks
-
-
 ### [chore: improve docs about support of gRPC in KIC](https://github.com/Kong/docs.konghq.com/pull/6497) (2023-11-15)
 
 Improve documentation for gRPC support in KIC
 - as long as https://github.com/Kong/kubernetes-ingress-controller/issues/4273 is not resolved only gRPC over HTTPS is supported, so mention it
 - remove the redundant annotation `konghq.com/protocol: grpcs` from the service, because in [examples/gateway-grpcroute.yaml](https://github.com/Kong/kubernetes-ingress-controller/blob/314951c3279dcd38cb7de7e53f71969379a0340a/examples/gateway-grpcroute.yaml#L5-L17) it's not specified and that configuration is tested in KIC CI so it works
 
-
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -205,9 +137,7 @@ Improve documentation for gRPC support in KIC
 ### [kic: fix the description of kic's leader election permission](https://github.com/Kong/docs.konghq.com/pull/6485) (2023-11-16)
 
 fixes: https://github.com/Kong/docs.konghq.com/issues/6410
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
 
 #### Modified
 
