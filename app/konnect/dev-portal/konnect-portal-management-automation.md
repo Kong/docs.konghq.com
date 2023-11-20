@@ -122,16 +122,19 @@ You can use the API as part of your automation strategy to manage exponentially 
 Here are some recommendations on how to integrate this workflow into your developer onboarding process:
 
 * **Continuous Integration/Continuous Deployment (CI/CD) Pipelines:**
+
    Integrate the developer approval and assignment workflow into your CI/CD pipelines. This ensures that every time a new developer signs up, they are automatically processed without manual intervention.
    
    **Example**: Trigger the approval process when a new developer account is created within your CI/CD pipeline. Issue requests to check and approve the developer's status based on their email domain.
 
 * **Identity and Access Management (IAM) Systems:**
+
    Integrate with your IAM system to automatically approve and assign developers based on their roles and permissions within your organization.
    
    **Example**: When a developer is granted specific IAM roles, use the automation workflow to update their status to `approved` and assign them to the relevant teams.
 
 * **Custom Developer Registration Portals:**
+
    If you have a custom developer registration portal, implement the automation workflow to handle developer approvals and team assignments.
    
    **Example:** When developers sign up through your custom portal, use the workflow to process their registrations and assign them to predefined teams.
