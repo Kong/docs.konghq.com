@@ -1,10 +1,9 @@
 ---
-title: Konnect Portal Management API Automation Guide
-content_type: how-to
+title: Manage Approval and Assignment with the Portal Management API
 purpose: This doc helps portal administrators and developers understand how to integrate the API into their workflow for tasks like automating approvals, assigning permissions, and monitoring developer activity. 
 ---
 
-The Konnect Portal Management API helps Konnect user’s manage their Developer Portals. Users can manage their portal settings, appearance, and handle application registration. This enables streamlined automation of tasks such as approving developer and application requests, configuring appearance settings, and managing custom domain details using the API. In this guide, we delve into practical use-cases that demonstrate the API's flexibility. These examples can be adapted to your unique requirements, illustrating the API's flexibility and utility.
+The Konnect Portal Management API helps Konnect user’s manage their Developer Portals. Users can manage their portal settings, appearance, and handle application registration. This enables streamlined automation of tasks such as approving developer and application requests, configuring appearance settings, and managing custom domain details using the API. This guide uses cURL to create examples that can be adapated into your existing automation workflow.
 
 
 ## Streamlining developer approval and assignment
@@ -47,7 +46,7 @@ This request will return a JSON object containing developer information, includi
 }
 ```
 
-If you wanted to return only the developers who had a pending status, you could use a tool like `jq` to filter out developers who have a status of `pending`: 
+If you wanted to return only the developers who had a pending status, you can use a tool like [`jq`](https://jqlang.github.io/jq/) to filter out developers who have a status of `pending`: 
 
 ```shell
 curl --request GET \
@@ -94,13 +93,12 @@ curl --request PATCH \
   --header 'Content-Type: application/json' \
   --data '{"status": "approved"}'
 ```
-This request can be use in combination with a list of domains from trusted partners: 
-
+This request can be use in combination with a list of trusted domains:
 ```
 trusted_domains = ["manchestercity.com", "liverpoolfc.com", "arsenal.com"]
 ```
 
-To make sure that developers who are eligible can access your portals resources and services are given the correct access.
+You can make sure that developers who are eligible can access your portals resources and services are given the correct access.
 
 Assigning developers to teams works in a similar way using the [Update Team Mapping](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Team%20Membership/add-developer-to-portal-team) endpoint, where you can issue a POST request and add a developer to a specific team. 
 
@@ -117,7 +115,7 @@ curl --request POST \
 
 ### Automation
 
-In practice, organizations need to verify and approve developers in quantities exponentially larger than this example. To efficiently manage this process and ensure that developers are onboarded and assigned to the appropriate teams, you can implement automation. Here are some recommendations on how to integrate this workflow to your developer onboarding process:
+The examples above are simplified and in reality your organization may need to verify and approve developers in large quantities. You can use the API as part of your automation strategy to manage exponentially large quantities of developers who want to use your portal. Here are some recommendations on how to integrate this workflow to your developer onboarding process:
 
 1. **Continuous Integration/Continuous Deployment (CI/CD) Pipelines:**
    - Integrate the developer approval and assignment workflow into your CI/CD pipelines. This ensures that every time a new developer signs up, they are automatically processed without manual intervention.
@@ -128,36 +126,7 @@ In practice, organizations need to verify and approve developers in quantities e
    - Example: When a developer is granted specific IAM roles, use the automation workflow to update their status to `approved` and assign them to the relevant teams.
 
 3. **Custom Developer Registration Portals:**
-   - If you have a custom developer registration portal, implement the automation workflow to seamlessly handle developer approvals and team assignments.
+   - If you have a custom developer registration portal, implement the automation workflow to handle developer approvals and team assignments.
    - Example: When developers sign up through your custom portal, use the workflow to process their registrations and assign them to predefined teams.
 
-Using the [Konnect Portal Management API](https://docs.konghq.com/konnect/api/portal-management) you can significantly reduce manual overhead....
-
-
-<!--
-
-
-## Automating Developer Permissions and Service Consumption Tracking
-
-The Developer Portal Management API can be used to discover which developers have not consumed any services. 
-
-
-Using the [List Applications](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Applications/list-applications) endpoint you can return a list of all developer applications:
-
-```
-curl --request GET \
-  --url https://us.api.konghq.com/v2/portals/{portal-id}/applications \
-  --header 'Authorization: kpat' \
-  --header 'Content-Type: application/json'
-```
-
-If you want to return developers who have no applications
-
-```
-curl --request GET \
-  --url https://us.api.konghq.com/v2/portals/{portal-id}/applications \
-  --header 'Authorization: kpat' \
-  --header 'Content-Type: application/json' | jq '.data | map(select(.registration_count == 0))'
-```
-
--->
+Using the [Konnect Portal Management API](https://docs.konghq.com/konnect/api/portal-management) you can significantly reduce manual overhead.
