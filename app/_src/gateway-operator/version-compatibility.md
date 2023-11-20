@@ -4,9 +4,7 @@ title: Version Compatibility
 
 ## {{ site.kic_product_name }}
 
-The following table presents the general compatibility of {{site.kgo_product_name}} with {{ site.kic_product_name }} minor versions.
-
-## Kubernetes
+The following table describes the general compatibility of {{site.kgo_product_name}} with {{ site.kic_product_name }} minor versions.
 
 | {{site.kgo_product_name}}        |            1.0.x            |
 |:---------------------------------|:---------------------------:|
@@ -14,10 +12,9 @@ The following table presents the general compatibility of {{site.kgo_product_nam
 | {{ site.kic_product_name }} 2.12 | <i class="fa fa-check"></i> |
 | {{ site.kic_product_name }} 3.0  | <i class="fa fa-times"></i> |
 
-### General
+## Kubernetes
 
-The following table presents the general compatibility of {{site.kgo_product_name}} with specific Kubernetes versions.
-Users should expect all the combinations marked with <i class="fa fa-check"></i> to work and to be supported.
+The following table describes the general compatibility of {{site.kgo_product_name}} with specific Kubernetes versions.
 
 | {{site.kgo_product_name}} |            1.0.x            |
 |:--------------------------|:---------------------------:|
@@ -26,10 +23,10 @@ Users should expect all the combinations marked with <i class="fa fa-check"></i>
 | Kubernetes 1.27           | <i class="fa fa-check"></i> |
 | Kubernetes 1.28           | <i class="fa fa-check"></i> |
 
-### Gateway API
+## Gateway API
 
-The following table presents the compatibility of {{site.kgo_product_name}} with specific [Gateway API][gateway-api] versions.
-As {{site.kgo_product_name}} implements Gateway API features using the upstream
+The following table describes the compatibility of {{site.kgo_product_name}} with specific [Gateway API][gateway-api] versions.
+Because {{site.kgo_product_name}} implements Gateway API features using the upstream
 project, which defines [its own compatibility declarations][gateway-api-supported-versions], the expected compatibility
 of Gateway API features might be limited to those.
 
