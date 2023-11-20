@@ -9,6 +9,13 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## November 2023
+
+**Gateway Manager** 
+: The {{site.konnect_short_name}} Gateway Manager has been updated to pull the most accurate data and remain consistent across {{site.konnect_short_name}}.
+
+**Gateway 3.5 Support**
+: {{site.konnect_short_name}} now supports the latest Gateway release version of 3.5 including all [Konnect-compatible plugins](/konnect/compatibility/#plugin-compatibility) and now supports Azure key vault for [Secrets Manager](/konnect/gateway-manager/configuration/vaults/).
 
 ## October 2023
 **Portal Management API**

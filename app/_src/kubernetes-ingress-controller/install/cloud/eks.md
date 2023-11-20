@@ -5,6 +5,8 @@ purpose: |
   Additional information needed to install KIC on Amazon EKS
 ---
 
+{% include /md/kic/konnect-setup.md %}
+
 ## Prerequisites
 
 * [Set up an EKS cluster](https://aws.amazon.com/getting-started/projects/deploy-kubernetes-app-amazon-eks/).

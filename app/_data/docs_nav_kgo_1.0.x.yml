@@ -80,12 +80,16 @@ items:
         items:
           - text: Overview
             url: /reference/custom-resources/
+            src: reference/custom-resources/1.0.x
           - text: GatewayConfiguration
             url: /reference/custom-resources/#gatewayconfiguration
+            generate: false
           - text: ControlPlane
             url: /reference/custom-resources/#controlplane
+            generate: false
           - text: DataPlane
             url: /reference/custom-resources/#dataplane
+            generate: false
       - text: License
         url: /reference/license
       - text: Version Compatibility
