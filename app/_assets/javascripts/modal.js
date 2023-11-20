@@ -12,14 +12,14 @@ $(document).ready(function () {
     toggleModal(false);
 
     modal.removeAttribute("aria-hidden");
-    page.setAttribute("aria-hiddden", true);
+    page.setAttribute("aria-hidden", true);
     modal.querySelector(".button").focus();
   }
 
   function closeModal() {
     toggleModal(true);
 
-    modal.setAttribute("aria-hiddden", true);
+    modal.setAttribute("aria-hidden", true);
     page.removeAttribute("aria-hidden");
   }
 
