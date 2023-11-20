@@ -17,9 +17,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : Geos are distinct deployments of {{site.konnect_short_name}} with objects, such as services and consumers, that are geo-specific. Only authentication, billing, and usage is shared between {{site.konnect_short_name}} geos.
 
 : {{site.konnect_saas}} currently supports the following geos:
-  * US
-  * EU
   * AU 
+  * EU
+  * US
 
 : For more information, see [Geographic regions](/konnect/geo/).
 

@@ -13,9 +13,9 @@ Geographic regions allow you to also operate {{site.konnect_saas}} in a similar 
 
 {{site.konnect_saas}} currently supports the following geos:
 
-* US
-* EU
 * AU
+* EU
+* US
 
 ## Geo management
 
