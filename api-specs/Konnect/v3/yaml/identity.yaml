@@ -24,6 +24,7 @@ tags:
   - name: System Accounts - Access Tokens
   - name: System Accounts - Roles
   - name: System Accounts - Team Membership
+  - name: Authentication
 paths:
   /authentication-settings:
     get:
@@ -1190,6 +1191,32 @@ paths:
           style: deepObject
       tags:
         - System Accounts - Team Membership
+  /authenticate/{organizationLoginPath}:
+    get:
+      summary: SSO Callback
+      description: Callback for authenticating via an organization's IdP
+      operationId: authenticate-sso
+      tags:
+        - Authentication
+      parameters:
+        - in: path
+          name: organizationLoginPath
+          description: The login path for the organization.
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: return_to
+          description: Return destination for the callback.
+          schema:
+            type: string
+      responses:
+        '302':
+          description: Found
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
 components:
   responses:
     UserSingle:
@@ -2570,6 +2597,7 @@ components:
                 enum:
                   - us
                   - eu
+                  - au
                   - '*'
                 example: eu
                 description: The region of the team.
@@ -3008,6 +3036,7 @@ components:
           enum:
             - us
             - eu
+            - au
             - '*'
           example: eu
           description: Region of the entity.
@@ -3050,6 +3079,7 @@ components:
           enum:
             - us
             - eu
+            - au
             - '*'
           example: eu
           description: Region of the entity.
@@ -3751,6 +3781,10 @@ components:
       value:
         owner_id: df120cb4-f60b-47bc-a2f8-6a28e6a3c63b
         name: Kong Inc
+    AWS-Resolve-Customer-Request:
+      value:
+        token: >-
+          A1B2C3D4E5F6G7H8I9J0K+LMNOPQRSTUVWXYZabcd+efghijklmnopqrstuv+wxyz0123456789+
   parameters:
     PageSize:
       name: page[size]

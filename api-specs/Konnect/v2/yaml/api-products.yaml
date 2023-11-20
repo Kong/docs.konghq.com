@@ -11,6 +11,8 @@ servers:
     description: US Region Base URL
   - url: https://eu.api.konghq.com/v2
     description: EU Region Base URL
+  - url: https://au.api.konghq.com/v2
+    description: AU Region Base URL
 security:
   - personalAccessToken: []
   - systemAccountAccessToken: []
@@ -1171,7 +1173,7 @@ components:
         ast:
           type: array
           items:
-            $ref: '#/components/schemas/AnyNode'
+            $ref: '#/components/schemas/ChildNode'
         created_at:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
@@ -1980,16 +1982,9 @@ components:
               children: []
           items:
             $ref: '#/components/schemas/DocumentTree'
-    BaseNode:
+    ChildNode:
       type: object
-      required:
-        - type
-      properties:
-        type:
-          type: string
-    AnyNode:
       oneOf:
-        - $ref: '#/components/schemas/DocumentBlock'
         - $ref: '#/components/schemas/HeadingBlock'
         - $ref: '#/components/schemas/BlockQuoteBlock'
         - $ref: '#/components/schemas/ParagraphBlock'
@@ -2011,175 +2006,206 @@ components:
         - $ref: '#/components/schemas/TaskCheckbox'
       discriminator:
         propertyName: type
-        mapping:
-          document: '#/components/schemas/DocumentBlock'
-          heading: '#/components/schemas/HeadingBlock'
-          blockquote: '#/components/schemas/BlockQuoteBlock'
-          paragraph: '#/components/schemas/ParagraphBlock'
-          text_block: '#/components/schemas/TextBlock'
-          break: '#/components/schemas/BreakBlock'
-          code_block: '#/components/schemas/CodeBlock'
-          list: '#/components/schemas/ListBlock'
-          list_item: '#/components/schemas/ListItemBlock'
-          text: '#/components/schemas/Text'
-          emphasis: '#/components/schemas/Emphasis'
-          code: '#/components/schemas/Code'
-          link: '#/components/schemas/Link'
-          image: '#/components/schemas/Image'
-          strikethrough: '#/components/schemas/StrikeThrough'
-          task_checkbox: '#/components/schemas/TaskCheckbox'
-          table: '#/components/schemas/TableBlock'
-          table_header: '#/components/schemas/TableHeaderBlock'
-          table_cell: '#/components/schemas/TableCellBlock'
-          table_row: '#/components/schemas/TableRowBlock'
-    BlockNode:
-      allOf:
-        - $ref: '#/components/schemas/BaseNode'
-        - type: object
-          properties:
-            children:
-              description: List of children nodes of the current node
-              type: array
-              items:
-                $ref: '#/components/schemas/AnyNode'
-    DocumentBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-        - type: object
-          properties:
-            version:
-              type: string
-      description: content of the document
-      example:
-        type: doc
-        content:
-          - type: paragraph
-            content:
-              - type: text
-                text: Hello World
+    NodeChildren:
+      description: List of children nodes of the current node
+      type: array
+      items:
+        $ref: '#/components/schemas/ChildNode'
     HeadingBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-        - type: object
-          properties:
-            level:
-              description: Level of the heading which maps to HTML <h> tag
-              type: number
-              minimum: 1
-              maximum: 6
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - heading
+        level:
+          description: Level of the heading which maps to HTML <h> tag
+          type: number
+          minimum: 1
+          maximum: 6
+        children:
+          $ref: '#/components/schemas/NodeChildren'
     BlockQuoteBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - blockquote
+        children:
+          $ref: '#/components/schemas/NodeChildren'
     ParagraphBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - paragraph
+        children:
+          $ref: '#/components/schemas/NodeChildren'
     TextBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - text_block
+        children:
+          $ref: '#/components/schemas/NodeChildren'
     BreakBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - break
+        children:
+          $ref: '#/components/schemas/NodeChildren'
     CodeBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-        - type: object
-          properties:
-            lang:
-              type: string
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - code_block
+        lang:
+          type: string
+        children:
+          $ref: '#/components/schemas/NodeChildren'
     ListBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-        - type: object
-          properties:
-            isOrdered:
-              description: Defines if the list is ordered or not
-              type: boolean
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - list
+        isOrdered:
+          description: Defines if the list is ordered or not
+          type: boolean
+        children:
+          $ref: '#/components/schemas/NodeChildren'
     ListItemBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - list_item
+        children:
+          $ref: '#/components/schemas/NodeChildren'
     Text:
-      allOf:
-        - $ref: '#/components/schemas/BaseNode'
-        - $ref: '#/components/schemas/BlockNode'
-        - type: object
-          properties:
-            text:
-              type: string
-            hardBreak:
-              description: >
-                If this property is true the end of this block should
-
-                be a carriage return and not concatenated to the next Text
-                block.
-              type: boolean
-            softBreak:
-              description: >
-                If this property is true the end of this block should should be
-
-                concatenated with a space caracter before the next block. This
-                is
-
-                the flag showing that the parsed markdown block was at the end
-                of
-
-                the line.
-              type: boolean
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - text
+        text:
+          type: string
+        hardBreak:
+          description: |
+            If this property is true the end of this block should
+            be a carriage return and not concatenated to the next Text block.
+          type: boolean
+        softBreak:
+          description: |
+            If this property is true the end of this block should should be
+            concatenated with a space caracter before the next block. This is
+            the flag showing that the parsed markdown block was at the end of
+            the line.
+          type: boolean
+        children:
+          $ref: '#/components/schemas/NodeChildren'
     Emphasis:
-      allOf:
-        - $ref: '#/components/schemas/BaseNode'
-        - $ref: '#/components/schemas/BlockNode'
-        - type: object
-          properties:
-            level:
-              type: number
-              minimum: 1
-              maximum: 2
-              description: |
-                Level of emphasis
-                1 - italic
-                2 - bold
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - emphasis
+        level:
+          type: number
+          minimum: 1
+          maximum: 2
+          description: |
+            Level of emphasis
+            1 - italic
+            2 - bold
+        children:
+          $ref: '#/components/schemas/NodeChildren'
     Code:
-      allOf:
-        - $ref: '#/components/schemas/BaseNode'
-        - $ref: '#/components/schemas/BlockNode'
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - code
+        children:
+          $ref: '#/components/schemas/NodeChildren'
     Link:
-      allOf:
-        - $ref: '#/components/schemas/BaseNode'
-        - type: object
-          properties:
-            href:
-              description: Target url of the link
-              type: string
-            title:
-              description: Title of the link
-              type: string
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - link
+        href:
+          description: Target url of the link
+          type: string
+        title:
+          description: Title of the link
+          type: string
     Image:
-      allOf:
-        - $ref: '#/components/schemas/BaseNode'
-        - type: object
-          properties:
-            url:
-              description: Url of the image
-              type: string
-            alt:
-              description: Alternate tag of the image
-              type: string
-            title:
-              description: Title of the image
-              type: string
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - image
+        url:
+          description: Url of the image
+          type: string
+        alt:
+          description: Alternate tag of the image
+          type: string
+        title:
+          description: Title of the image
+          type: string
     StrikeThrough:
-      allOf:
-        - $ref: '#/components/schemas/BaseNode'
-    TaskCheckbox:
-      allOf:
-        - $ref: '#/components/schemas/BaseNode'
-        - type: object
-          properties:
-            checked:
-              type: boolean
-              description: State of the checkbox
-          required:
-            - checked
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - strikethrough
     AlignmentKind:
       type: string
       enum:
@@ -2188,34 +2214,78 @@ components:
         - center
         - none
     TableAlignments:
-      type: object
-      properties:
-        alignments:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/AlignmentKind'
-      required:
-        - alignments
+      type: array
+      nullable: true
+      items:
+        $ref: '#/components/schemas/AlignmentKind'
     TableBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-        - $ref: '#/components/schemas/TableAlignments'
+      type: object
+      required:
+        - type
+        - alignments
+      properties:
+        type:
+          type: string
+          enum:
+            - table
+        alignments:
+          $ref: '#/components/schemas/TableAlignments'
+        children:
+          $ref: '#/components/schemas/NodeChildren'
     TableHeaderBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-        - $ref: '#/components/schemas/TableAlignments'
+      type: object
+      required:
+        - type
+        - alignments
+      properties:
+        type:
+          type: string
+          enum:
+            - table_header
+        alignments:
+          $ref: '#/components/schemas/TableAlignments'
+        children:
+          $ref: '#/components/schemas/NodeChildren'
     TableCellBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-        - type: object
-          properties:
-            alignment:
-              $ref: '#/components/schemas/AlignmentKind'
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - table_cell
+        alignment:
+          $ref: '#/components/schemas/AlignmentKind'
+        children:
+          $ref: '#/components/schemas/NodeChildren'
     TableRowBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-        - $ref: '#/components/schemas/TableAlignments'
+      type: object
+      required:
+        - type
+        - alignments
+      properties:
+        type:
+          type: string
+          enum:
+            - table_row
+        alignments:
+          $ref: '#/components/schemas/TableAlignments'
+        children:
+          $ref: '#/components/schemas/NodeChildren'
+    TaskCheckbox:
+      type: object
+      required:
+        - checked
+        - type
+      properties:
+        type:
+          type: string
+          enum:
+            - task_checkbox
+        checked:
+          type: boolean
+          description: State of the checkbox
     ConflictError:
       type: object
       properties:

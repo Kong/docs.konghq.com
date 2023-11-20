@@ -11,6 +11,8 @@ servers:
     description: US Region Konnect Platform Base URL
   - url: https://eu.api.konghq.com/v2
     description: EU Region Konnect Platform Base URL
+  - url: https://au.api.konghq.com/v2
+    description: AU Region Konnect Platform Base URL
 tags:
   - name: Custom Reports
 paths:
