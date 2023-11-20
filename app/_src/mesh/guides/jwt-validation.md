@@ -19,7 +19,7 @@ In this tutorial, you are a security engineer at your company. The company has c
 ## Prerequisites
 
 * [Deploy {{site.mesh_product_name}}](/mesh/{{page.kong_version}}/production/deployment/) in either standalone or multi-zone mode.
-* A valid JWT token
+* A valid JWT token stored securely?
 * install example app?:
     ```bash
     kubectl apply -f https://bit.ly/demokuma
@@ -89,7 +89,9 @@ spec:
 echo "
 type: OPAPolicy
 mesh: default
-name: opa-1
+metadata:
+  name: require-jwt
+  namespace: kuma-demo
 selectors:
 - match:
     kuma.io/service: '*'
@@ -153,6 +155,17 @@ verify that it won’t accept something without a JWT token
 verify that it will accept something with the token and any modifiers (if they were configured)
 
 troubleshooting if issues?
+
+{% navtabs %}
+{% navtab Kubernetes %}
+```yaml
+```
+{% endnavtab %}
+{% navtab Universal %}
+```yaml
+```
+{% endnavtab %}
+{% endnavtabs %}
 
 
 
