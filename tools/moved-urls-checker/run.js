@@ -20,8 +20,6 @@ const cheerio = require("cheerio");
     process.exit(1);
   }
 
-  const defaultIndex = "/gateway/latest/";
-
   const perPage = argv.perPage || 10;
   const page = argv.page;
 
@@ -32,15 +30,16 @@ const cheerio = require("cheerio");
   }
 
   let items = yaml.load(
-    fs.readFileSync(`../../app/_data/docs_nav_${nav}.yml`, "utf8")
+    fs.readFileSync(`../../app/_data/docs_nav_${nav}.yml`, "utf8"),
   );
+
+  const prefix = `/${items.product}/${items.release}`;
 
   // If it's a single sourced doc, extract the items directly
   if (items.items) {
     items = items.items;
   }
 
-  const prefix = `/${nav.replace("_", "/")}`;
   let urls = extractNav(items, prefix);
 
   if (page !== undefined) {
@@ -48,7 +47,12 @@ const cheerio = require("cheerio");
     urls = urls.slice(offset, offset + perPage);
   }
 
-  urls = urls.map((u) => `${host}${u}`);
+  urls = urls.map((u) => {
+    if (u.startsWith("http")) {
+      return u;
+    }
+    return `${host}${u}`;
+  });
 
   if (urls.length) {
     console.log(`Checking the following URLs:\n\n${urls.join("\n")}\n`);
@@ -58,11 +62,15 @@ const cheerio = require("cheerio");
 
     // Output report
     if (r.length) {
-      console.log("-----------------------------------------------------------------")
       console.log(
-        "Pages that link to themselves (no moved_urls.yml entry set):"
+        "-----------------------------------------------------------------",
       );
-      console.log("-----------------------------------------------------------------")
+      console.log(
+        "Pages that link to themselves (no moved_urls.yml entry set):",
+      );
+      console.log(
+        "-----------------------------------------------------------------",
+      );
       console.log(r.join("\n"));
       process.exit(1);
     }
@@ -81,16 +89,17 @@ async function checkUrls(urls, host) {
     const response = await fetch(u);
     const body = await response.text();
     const $ = cheerio.load(body);
-    const notice = $(".content-header+blockquote.important a");
+    const notice = $("#version-notice a");
 
     // If the page doesn't contain a notice, skip it
-    if (!notice.length){
+    if (!notice.length) {
       continue;
     }
 
     // Ensure both URLs are normalised
     const href = normaliseUrl(notice.attr("href"), host);
 
+    // If it links to itself
     if (u == href) {
       broken.push(u);
     }

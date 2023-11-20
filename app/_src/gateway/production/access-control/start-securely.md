@@ -71,11 +71,12 @@ can be used to log in to Kong Manager. This password may also be
 used as a `Kong-Admin-Token` to make Admin API requests.
 
 **Note:** only one Super Admin may be created using this method, and only
-on a fresh installation with an empty database. If one is not created during migrations,
-follow [this guide](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/add-admin/) to remediate.
+on a fresh installation with an empty database. If one is not created
+during migrations, revert configuration in [Prerequisites](#prerequisites),
+and [invite a new user as a Super Admin in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin/).
 
 Future migrations will not update the password or create additional Super Admins.
-To add additional Super Admins it is necessary to
+To add additional Super Admins, 
 [invite a new user as a Super Admin in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth//super-admin/).
 
 ## Step 2

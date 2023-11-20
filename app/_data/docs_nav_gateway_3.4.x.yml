@@ -164,6 +164,7 @@ items:
             url: /licenses/examples
           - text: Monitor Licenses Usage
             url: /licenses/report
+            src: /gateway/licenses/report-v2
       - text: Networking
         items:
           - text: Default Ports
@@ -237,7 +238,7 @@ items:
           - text: Breaking Changes
             url: /production/breaking-changes/
             generate: false
-  - title: Kong Enterprise
+  - title: Kong Gateway Enterprise
     icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
     items:
       - text: Overview
@@ -487,7 +488,7 @@ items:
       - text: (un)Installing your Plugin
         url: /plugin-development/distribution
       - text: Create a Proxy-Wasm filter
-        url: /plugin-development/wasm
+        url: /plugin-development/wasm/filter-development-guide
       - text: Plugin Development Kit
         items:
         - text: Overview

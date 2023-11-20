@@ -62,9 +62,10 @@ Once {{ site.base_gateway }} is running, you may want to do the following:
 
 * Optional: [Add your Enterprise license](/gateway/{{ page.kong_version }}/licenses/deploy).
 * [Enable Kong Manager](/gateway/{{ page.kong_version }}/kong-manager/enable/)
-* [Enable Dev Portal](/gateway/{{ page.kong_version }}/kong-enterprise/dev-portal/enable/)
 * [Create services and routes](/gateway/{{ page.kong_version }}/get-started/services-and-routes/).
-
+{% if_version lte:3.4.x %}
+* [Enable Dev Portal](/gateway/{{ page.kong_version }}/kong-enterprise/dev-portal/enable/)
+{% endif_version %}
 ## Advanced Installation
 
 ### Package Install

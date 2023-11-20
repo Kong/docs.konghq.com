@@ -45,7 +45,7 @@ again to see how decK interprets default values.
    ```yaml
    _format_version: "3.0"
    services:
-     - host: mockbin.org
+     - host: httpbin.org
        name: example_service
        routes:
          - name: mockpath
@@ -141,7 +141,7 @@ overwriting your current state file, specify a different filename:
      - https
    services:
    - connect_timeout: 60000
-     host: mockbin.org
+     host: httpbin.org
      name: example_service
      port: 80
      protocol: http
@@ -200,7 +200,7 @@ configuration would overwrite the value in your environment.
    _info:
      defaults:
    services:
-     - host: mockbin.org
+     - host: httpbin.org
        name: example_service
        routes:
          - name: mockpath
@@ -231,7 +231,7 @@ configuration would overwrite the value in your environment.
          protocol: https
          retries: 10
    services:
-     - host: mockbin.org
+     - host: httpbin.org
        name: example_service
        routes:
          - name: mockpath
@@ -264,7 +264,7 @@ configuration would overwrite the value in your environment.
          read_timeout: 60000
          retries: 10
    services:
-     - host: mockbin.org
+     - host: httpbin.org
        name: example_service
        routes:
          - name: mockpath

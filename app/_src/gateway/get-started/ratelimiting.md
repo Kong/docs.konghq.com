@@ -48,7 +48,7 @@ If you configured {{site.base_gateway}} with the [configure services and routes]
 {% navtab Admin API %}
 
 ```sh
-curl -i -X GET http://localhost:8000/mock/request
+curl -i -X GET http://localhost:8000/mock/anything
 ```
 
 {% endnavtab %}

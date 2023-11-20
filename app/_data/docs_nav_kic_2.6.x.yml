@@ -34,7 +34,7 @@ items:
       - text: Deployment Methods
         url: /concepts/deployment
         src: /kic-v2/concepts/deployment
-      - text: Kong for Kubernetes with Kong Enterprise
+      - text: Kong for Kubernetes with Kong Gateway Enterprise
         url: /concepts/k4k8s-with-kong-enterprise
         src: /kic-v2/concepts/k4k8s-with-kong-enterprise
       - text: High-Availability and Scaling
@@ -97,7 +97,7 @@ items:
       - text: Upgrading to Kong 3.x
         url: /guides/upgrade-kong-3x
         src: /kic-v2/guides/upgrade-kong-3x
-      - text: Using Kong Enterprise
+      - text: Using Kong Gateway Enterprise
         url: /guides/choose-gateway-image
         src: /kic-v2/guides/choose-gateway-image
       - text: Getting Started using Istio

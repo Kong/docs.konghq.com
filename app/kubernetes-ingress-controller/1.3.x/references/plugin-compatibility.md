@@ -44,15 +44,11 @@ non-default configuration for
 |  udp-log                |  <i class="fa fa-check"></i>  |  <i class="fa fa-check"></i>  |
 |  zipkin                 |  <i class="fa fa-check"></i>  |  <i class="fa fa-check"></i>  |
 
-## Kong Enterprise
-
-There are [two distributions of Kong Enterprise](https://github.com/Kong/kubernetes-ingress-controller/tree/master/docs/deployment#overview),
-`kong-enterprise-k8s` (used with Kong for Kubernetes Enterprise) and
-`kong-enterprise-edition` (used with Kong for Kubernetes with Kong Enterprise).
+## {{site.ee_product_name}}
 
 {% include md/enterprise/k8s-image-note.md %}
 
-|  Plugin                          |  Kong for Kubernetes with Kong Enterprise  |  Kong for Kubernetes Enterprise           |
+|  Plugin                          |  Kong for Kubernetes with {{site.ee_product_name}}  |  Kong for Kubernetes Enterprise           |
 |----------------------------------|--------------------------------------------|-------------------------------------------|
 |  acl                             |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |
 |  aws-lambda                      |  <i class="fa fa-check"></i>               |  <i class="fa fa-check"></i>              |

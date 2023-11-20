@@ -1,5 +1,5 @@
 ---
-title: Kong for Kubernetes with Kong Enterprise
+title: Kong for Kubernetes with Kong Gateway Enterprise
 ---
 
 This guide walks through setting up the {{site.kic_product_name}} with Kong
@@ -35,9 +35,9 @@ Next, create a `kong` namespace for your resources:
 kubectl create namespace kong
 ```
 
-### Create a Kong Enterprise License secret (optional)
+### Create a {{site.ee_product_name}} license secret (optional)
 
-If you have a Kong Enterprise license, save it to disk as `license.json` and create a secret:
+If you have an Enterprise license, save it to disk as `license.json` and create a secret:
 
 ```bash
 kubectl create secret generic kong-enterprise-license --from-file=license=./license.json -n kong

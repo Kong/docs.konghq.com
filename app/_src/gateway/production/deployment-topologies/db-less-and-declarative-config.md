@@ -248,7 +248,7 @@ environment variable:
 
 ```
 export KONG_DATABASE=off
-export KONG_DECLARATIVE_CONFIG_STRING='{"_format_version":"1.1", "services":[{"host":"mockbin.com","port":443,"protocol":"https", "routes":[{"paths":["/"]}]}],"plugins":[{"name":"rate-limiting", "config":{"policy":"local","limit_by":"ip","minute":3}}]}'
+export KONG_DECLARATIVE_CONFIG_STRING='{"_format_version":"1.1", "services":[{"host":"httpbin.org","port":443,"protocol":"https", "routes":[{"paths":["/"]}]}],"plugins":[{"name":"rate-limiting", "config":{"policy":"local","limit_by":"ip","minute":3}}]}'
 kong start
 ```
 
@@ -293,6 +293,10 @@ for inspecting entities work as usual, but attempts to `POST`, `PATCH`
 This restriction is limited to what would be otherwise database operations. In
 particular, using `POST` to set the health state of targets is still enabled,
 since this is a node-specific in-memory operation.
+
+#### Kong Manager compatibility
+
+Kong Manager cannot guarantee compatibility with {{site.base_gateway}} operating in DB-less mode. You cannot create, update, or delete entities with Kong Manager when {{site.base_gateway}} is running in this mode. Entity counters in the "Summary" section on the global and workspace overview pages will not function correctly as well.
 
 #### Plugin compatibility
 

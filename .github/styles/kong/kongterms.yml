@@ -6,6 +6,7 @@ scope: text
 swap:
 
   # Developer Portal: Dev Portal
+  Kong Gateway Enterprise: "{{site.ee_product_name}}"
   Kong Gateway: "{{site.base_gateway}}"
   Kong Konnect: "{{site.konnect_product_name}}"
   Kong Ingress Controller: "{{site.kic_product_name}}"

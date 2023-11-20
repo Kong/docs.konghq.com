@@ -1,0 +1,102 @@
+{% include_relative_once _data/tables/support/gateway/packages.yml %}
+{% include_relative_once _data/tables/support/gateway/third-party.yml %}
+{% include_relative_once _data/tables/support/gateway/browsers.yml %}
+
+lts: false
+distributions:
+  - <<: *amazonlinux2
+    docker: true
+    arm: true
+    graviton: true
+  - <<: *amazonlinux2023
+    docker: true
+    arm: true
+    graviton: true
+  - <<: *debian10
+    eol: June 2024
+  - <<: *debian11
+    docker: true
+    arm: true
+    graviton: true
+  - *rhel7
+  - <<: *rhel8
+    docker: false
+    fips: true
+  - <<: *rhel9
+    docker: true
+    arm: true
+    fips: true
+  - <<: *ubuntu2004
+    arm: false
+    docker: false
+    fips: true
+  - <<: *ubuntu2204
+    arm: true
+    graviton: true
+    docker: true
+    fips: true
+
+third-party:
+  datastore:
+    - <<: *postgres
+      versions:
+        - 15
+        - 14
+        - 13
+        - 12
+        - Amazon RDS
+        - Amazon Aurora
+    - *redis
+    - *kafka
+
+  metrics:
+    - *prometheus
+    - *statsd
+    - *opentelemetry
+    - *zipkin
+
+  vault:
+    - *vaultproject
+    - *aws-sm
+    - *gcp-sm
+
+  identity_provider:
+    - *auth0
+    - *cognito
+    - *connect2id
+    - *curity
+    - *dex
+    - *gluu
+    - *google
+    - *identityserver
+    - *keycloak
+    - *azure-ad
+    - *microsoft-adfs
+    - *microsoft-live-connect
+    - *okta
+    - *onelogin
+    - *openam
+    - *paypal
+    - *pingfederate
+    - *salesforce
+    - *wso2
+    - *yahoo
+
+  service_mesh:
+    - *kongmesh
+    - *istio
+
+  log_provider:
+    - *splunk
+    - *datadog
+    - *loggly
+
+  s3_api:
+    - *s3
+    - *minio
+
+browsers:
+  - *edge
+  - *chrome
+  - *firefox
+  - *safari

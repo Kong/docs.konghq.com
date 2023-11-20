@@ -29,7 +29,7 @@ It offers exclusive versions of OSS plugins like the [Rate Limiting Advanced plu
 * [API product tiers](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60#/consumer_groups/get-consumer_groups)
 {% endif_version %}
 [Get started with plugins &rarr;](/hub/)
-
+{% if_version lte:3.4.x %}
 ## Dev Portal
 
 The Dev Portal provides a single source of truth for all developers to locate, access and consume APIs, similar to a traditional API catalog. 
@@ -45,6 +45,7 @@ The Vitals platform provides deep insights into services, routes, and applicatio
 
 [Start monitoring with Vitals &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/analytics/)
 
+{% endif_version %}
 ## Role-based access control (RBAC)
 
 {{site.ee_product_name}} lets you configure users, roles, and permissions with built-in role-based access control (RBAC). With RBAC, you can streamline developer onboarding, and create apply fine-grained security and traffic policies using the [Admin API](/gateway/{{page.kong_version}}/admin-api/rbac/reference/), or [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/).

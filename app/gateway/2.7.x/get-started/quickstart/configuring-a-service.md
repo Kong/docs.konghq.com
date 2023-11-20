@@ -6,7 +6,7 @@ In this section, you'll be adding an API to Kong. In order to do this, you'll
 first need to add a _Service_; that is the name Kong uses to refer to the upstream APIs and microservices
 it manages.
 
-For the purpose of this guide, we'll create a Service pointing to the [Mockbin API][mockbin]. Mockbin is
+For the purpose of this guide, we'll create a Service pointing to the [httpbin API][httpbin]. Httpbin is
 an "echo" type public website which returns the requests it gets back to the requester, as responses. This
 makes it helpful for learning how Kong proxies your API requests.
 
@@ -24,14 +24,14 @@ You have installed and started {{site.base_gateway}}, either through the [Docker
 
 ## 1. Add your Service using the Admin API
 
-Issue the following cURL request to add your first Service (pointing to the [Mockbin API][mockbin])
+Issue the following cURL request to add your first Service (pointing to the [httpbin API][httpbin])
 to Kong:
 
 ```bash
 curl -i -X POST \
   --url http://localhost:8001/services/ \
   --data 'name=example-service' \
-  --data 'url=http://mockbin.org'
+  --data 'url=http://httpbin.org'
 ```
 
 You should receive a response similar to:
@@ -42,7 +42,7 @@ Content-Type: application/json
 Connection: keep-alive
 
 {
-   "host":"mockbin.org",
+   "host":"httpbin.org",
    "created_at":1519130509,
    "connect_timeout":60000,
    "id":"92956672-f5ea-4e9a-b096-667bf55bc40c",
@@ -129,4 +129,4 @@ Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 [API]: /gateway/{{page.kong_version}}/admin-api
 [enabling-plugins]: /gateway/{{page.kong_version}}/get-started/quickstart/enabling-plugins
 [proxy-port]: /gateway/{{page.kong_version}}/reference/configuration/#nginx-section
-[mockbin]: https://mockbin.com/
+[httpbin]: https://httpbin.org/

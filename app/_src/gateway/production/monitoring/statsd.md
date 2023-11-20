@@ -62,7 +62,7 @@ observe the collected monitoring data.
    requests over one minute. Run the following in a new terminal:
 
    ```sh
-   for _ in {1..60}; do {curl localhost:8000/mock/request; sleep 1; } done
+   for _ in {1..60}; do {curl localhost:8000/mock/anything; sleep 1; } done
    ```
 
 1. Query the StatsD management interface to see the collected metrics from {{site.base_gateway}}:

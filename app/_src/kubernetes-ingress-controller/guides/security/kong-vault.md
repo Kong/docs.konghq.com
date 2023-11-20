@@ -54,7 +54,7 @@ To learn more about the available vaults, see the [{{ site.base_gateway }} docum
     }'
     ```
 
-1. Use this value ` SECRET_REDIS_PASSWORD` in a `KongPlugin` definition.
+1. Use this value `SECRET_REDIS_PASSWORD` in a `KongPlugin` definition.
 
     ```yaml
     apiVersion: configuration.konghq.com/v1

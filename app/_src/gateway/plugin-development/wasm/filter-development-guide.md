@@ -66,7 +66,7 @@ e.g. `kong.yml`:
 _format_version: '3.0'
 services:
   - name: my-wasm-service
-    url: http://mockbin.org
+    url: http://httpbin.org
     routes:
       - name: my-wasm-route
         paths:

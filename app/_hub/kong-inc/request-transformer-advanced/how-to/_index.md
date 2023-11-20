@@ -10,7 +10,7 @@ title: Examples of different transforms
 Add multiple headers by passing each header:value pair separately:
 
 ```bash
-curl -X POST http://localhost:8001/services/mockbin/plugins \
+curl -X POST http://localhost:8001/services/httpbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.headers[1]=h1:v1" \
   --data "config.add.headers[2]=h2:v1"
@@ -25,7 +25,7 @@ curl -X POST http://localhost:8001/services/mockbin/plugins \
 Add multiple headers by passing comma separated header:value pair:
 
 ```bash
-curl -X POST http://localhost:8001/services/mockbin/plugins \
+curl -X POST http://localhost:8001/services/httpbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.headers=h1:v1,h2:v2"
 ```
@@ -39,7 +39,7 @@ curl -X POST http://localhost:8001/services/mockbin/plugins \
 Add multiple headers passing config as a JSON body:
 
 ```bash
-curl -X POST http://localhost:8001/services/mockbin/plugins \
+curl -X POST http://localhost:8001/services/httpbin/plugins \
   --header 'content-type: application/json' \
   --data '{"name": "request-transformer-advanced", "config": {"add": {"headers": ["h1:v2", "h2:v1"]}}}'
 ```
@@ -53,7 +53,7 @@ curl -X POST http://localhost:8001/services/mockbin/plugins \
 Add multiple headers and query string parameters if not already set:
 
 ```bash
-curl -X POST http://localhost:8001/services/mockbin/plugins \
+curl -X POST http://localhost:8001/services/httpbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.headers=h1:v1,h2:v1" \
   --data "config.add.querystring=q1:v2,q2:v1" \
@@ -73,7 +73,7 @@ curl -X POST http://localhost:8001/services/mockbin/plugins \
 ## Example: Adding a querystring and a header
 
 ```bash
-curl -X POST http://localhost:8001/services/mockbin/plugins \
+curl -X POST http://localhost:8001/services/httpbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.querystring=q1:v2,q2=v1" \
   --data "config.add.headers=h1:v1"
@@ -95,7 +95,7 @@ curl -X POST http://localhost:8001/services/mockbin/plugins \
 Append multiple headers and remove a body parameter:
 
 ```bash
-curl -X POST http://localhost:8001/services/mockbin/plugins \
+curl -X POST http://localhost:8001/services/httpbin/plugins \
   --data "name=request-transformer-advanced" \
   --data "config.add.headers=h1:v2,h2:v1" \
   --data "config.remove.body=p1" \

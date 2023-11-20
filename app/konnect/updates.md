@@ -10,7 +10,6 @@ from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## November 2023
-
 **Multi-geo support**
 : {{site.konnect_saas}} now allows you to host and operate your cloud instance in a geographic region that you specify. This is important for data privacy and regulatory compliance for you organization. Geographic regions allow you to also operate {{site.konnect_saas}} in a similar geo to your users and their infrastructure applications. 
 
@@ -22,6 +21,12 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
   * US
 
 : For more information, see [Geographic regions](/konnect/geo/).
+
+**Gateway Manager** 
+: The {{site.konnect_short_name}} Gateway Manager has been updated to pull the most accurate data and remain consistent across {{site.konnect_short_name}}.
+
+**Gateway 3.5 Support**
+: {{site.konnect_short_name}} now supports the latest Gateway release version of 3.5 including all [Konnect-compatible plugins](/konnect/compatibility/#plugin-compatibility) and now supports Azure key vault for [Secrets Manager](/konnect/gateway-manager/configuration/vaults/).
 
 ## October 2023
 **Portal Management API**

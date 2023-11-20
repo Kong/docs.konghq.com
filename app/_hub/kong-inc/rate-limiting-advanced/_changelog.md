@@ -5,6 +5,9 @@
 
 * The `/consumer_groups/:id/overrides` endpoint has been deprecated. While this endpoint will still function, we strongly recommend transitioning to the new and improved method for managing consumer groups, as documented in the [Enforcing rate limiting tiers with the Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/how-to/) guide. You can also find detailed information on creating consumer groups in the [API Documentation](/gateway/api/admin-ee/3.4.0.x/#/default/post-consumer_groups).
 
+* Fixed an issue that impacted the accuracy with the `redis` policy.
+  [#10559](https://github.com/Kong/kong/pull/10559)
+
 **{{site.base_gateway}} 3.2.1**
 * The shared Redis connector now supports username + password authentication for cluster connections, improving on the existing single-node connection support. This automatically applies to all plugins using the shared Redis configuration.
 
