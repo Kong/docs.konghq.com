@@ -3,23 +3,26 @@ title: Manage Approval and Assignment with the Portal Management API
 purpose: This doc helps portal administrators and developers understand how to integrate the API into their workflow for tasks like automating approvals, assigning permissions, and monitoring developer activity. 
 ---
 
-The Konnect Portal Management API helps Konnect user’s manage their Developer Portals. Users can manage their portal settings, appearance, and handle application registration. This enables streamlined automation of tasks such as approving developer and application requests, configuring appearance settings, and managing custom domain details using the API. This guide uses cURL to create examples that can be adapated into your existing automation workflow.
+The {{site.konnect_short_name}} Portal Management API helps {{site.konnect_short_name}} users manage their Developer Portals. 
+Users can manage their portal settings, appearance, and handle application registration. 
+This enables streamlined automation of tasks such as approving developer and application requests, configuring appearance settings, and managing custom domain details using the API. 
+
+This guide uses the {{site.konnect_short_name}} Portal Management API via cURL to create examples that can be adapted into your existing automation workflow.
 
 
 ## Streamlining developer approval and assignment
 
-Imagine you are tasked with managing developers across several partner soccer teams and need to ensure that those team's developers are approved quickly and given the appropriate permissions. 
-Rather than manually approving developer signups using Konnect, we can use the API to approve developer signups that come from trusted partner domains.
+Imagine you are tasked with managing developers across several partner soccer teams. In this scenario, you need to ensure that those teams' developers are approved quickly and given the appropriate permissions. 
+Rather than manually approving developer signups using {{site.konnect_short_name}}, you can use the API to approve developer signups that come from trusted partner domains.
 
-To check the approval status of developers, you can use the [List Portal Developers](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Developers/list-portal-developers) endpoint to return a list of all registered developers with the following cURL command:
-```
-curl --request GET \
-  --url https://us.api.konghq.com/v2/portals/{portal-id}/developers \
-  --header 'Authorization: kpat \
+To check the approval status of developers, you can use the [List Portal Developers](/konnect/api/portal-management/latest/#/Portal%20Developers/list-portal-developers) endpoint to return a list of all registered developers with the following cURL command:
+```sh
+curl -X GET https://{region}.api.konghq.com/v2/portals/{portalId}/developers \
+  --header 'Authorization: <your-kpat>' \
   --header 'Content-Type: application/json'
 ```
 
-This request will return a JSON object containing developer information, including their `status`:
+This request returns a JSON object containing developer information, including their `status`:
 
 ```json
 {
@@ -46,17 +49,16 @@ This request will return a JSON object containing developer information, includi
 }
 ```
 
-If you wanted to return only the developers who had a pending status, you can use a tool like [`jq`](https://jqlang.github.io/jq/) to filter out developers who have a status of `pending`: 
+If you want to return only the developers who had a pending status, you can use a tool like [`jq`](https://jqlang.github.io/jq/) to filter out developers who have a status of `pending`: 
 
 ```shell
-curl --request GET \
-  --url https://us.api.konghq.com/v2/portals/{portal-id}/developers \
-  --header 'Authorization: kpat' \
+curl -X GET https://{region}.api.konghq.com/v2/portals/{portalId}/developers \
+  --header 'Authorization: <your-kpat>' \
   --header 'Content-Type: application/json' | \
   jq '.data | map(select(.status == "pending"))'
 ```
 
-This request will return a JSON object containing developer information for developers who's `status`==`pending`:
+This request returns a JSON object containing developer information for developers whose `status` is `pending`:
 
 ```json
 {
@@ -84,49 +86,54 @@ This request will return a JSON object containing developer information for deve
 
 ```
 
-Once you have obtained a list of pending developers you can begin the approval process by comparing the email address of the developer with the addresses of the developers from your trusted partner domains. Using the [Update Developer](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Developers/update-developer) endpoint, you can use a PATCH request to change their status to 'approved' (or, `revoked`, `rejected`, and `pending`): 
+Once you have obtained a list of pending developers, you can begin the approval process by comparing the email address of the developer with the addresses of the developers from your trusted partner domains. 
+Using the [Update Developer](/konnect/api/portal-management/latest/#/Portal%20Developers/update-developer) endpoint, you can use a PATCH request to change their status to `approved` (or, `revoked`, `rejected`, and `pending`): 
 
 ```shell
-curl --request PATCH \
-  --url https://us.api.konghq.com/v2/portals/{portal-id}/developers/{developer-id} \
-  --header 'Authorization: kpat \
+curl -X PATCH https://{region}.api.konghq.com/v2/portals/{portalId}/developers/{developerId} \
+  --header 'Authorization: <your-kpat>' \
   --header 'Content-Type: application/json' \
   --data '{"status": "approved"}'
 ```
-This request can be use in combination with a list of trusted domains:
+You can use this request in combination with a list of trusted domains:
 ```
 trusted_domains = ["manchestercity.com", "liverpoolfc.com", "arsenal.com"]
 ```
 
-You can make sure that developers who are eligible can access your portals resources and services are given the correct access.
+By setting trusted domains, you can make sure that eligible developers are given the correct access, and can access your portal's resources and services.
 
-Assigning developers to teams works in a similar way using the [Update Team Mapping](https://docs.konghq.com/konnect/api/portal-management/latest/#/Portal%20Team%20Membership/add-developer-to-portal-team) endpoint, where you can issue a POST request and add a developer to a specific team. 
+Assigning developers to teams works in a similar way. 
+Using the [Update Team Mapping](/konnect/api/portal-management/latest/#/Portal%20Team%20Membership/add-developer-to-portal-team) endpoint, you can issue a POST request and add a developer to a specific team:
 
 ```shell
-curl --request POST \
-  --url https://us.api.konghq.com/v2/portals/{portal-id}/teams/{team-id}/developers \
-  --header 'Authorization: kpat \
+curl -X POST https://{region}.api.konghq.com/v2/portals/{portalId}/teams/{teamId}/developers \
+  --header 'Authorization: <your-kpat>' \
   --header 'Content-Type: application/json' \
   --data '{
-  "id": "{developer-id}"
+  "id": "{developerId}"
 }'
-
 ```
 
 ### Automation
 
-The examples above are simplified and in reality your organization may need to verify and approve developers in large quantities. You can use the API as part of your automation strategy to manage exponentially large quantities of developers who want to use your portal. Here are some recommendations on how to integrate this workflow to your developer onboarding process:
+The examples above are simplified to illustrate the concept of developer access management. 
+In reality, your organization may need to verify and approve developers in large quantities. 
+You can use the API as part of your automation strategy to manage exponentially large quantities of developers who want to use your portal. 
+Here are some recommendations on how to integrate this workflow into your developer onboarding process:
 
-1. **Continuous Integration/Continuous Deployment (CI/CD) Pipelines:**
-   - Integrate the developer approval and assignment workflow into your CI/CD pipelines. This ensures that every time a new developer signs up, they are automatically processed without manual intervention.
-   - Example: Trigger the approval process when a new developer account is created within your CI/CD pipeline. Issue a requests to check and approve the developer's status based on their email domain.
+* **Continuous Integration/Continuous Deployment (CI/CD) Pipelines:**
+   Integrate the developer approval and assignment workflow into your CI/CD pipelines. This ensures that every time a new developer signs up, they are automatically processed without manual intervention.
+   
+   **Example**: Trigger the approval process when a new developer account is created within your CI/CD pipeline. Issue requests to check and approve the developer's status based on their email domain.
 
-2. **Identity and Access Management (IAM) Systems:**
-   - Integrate with your IAM system to automatically approve and assign developers based on their roles and permissions within your organization.
-   - Example: When a developer is granted specific IAM roles, use the automation workflow to update their status to `approved` and assign them to the relevant teams.
+* **Identity and Access Management (IAM) Systems:**
+   Integrate with your IAM system to automatically approve and assign developers based on their roles and permissions within your organization.
+   
+   **Example**: When a developer is granted specific IAM roles, use the automation workflow to update their status to `approved` and assign them to the relevant teams.
 
-3. **Custom Developer Registration Portals:**
-   - If you have a custom developer registration portal, implement the automation workflow to handle developer approvals and team assignments.
-   - Example: When developers sign up through your custom portal, use the workflow to process their registrations and assign them to predefined teams.
+* **Custom Developer Registration Portals:**
+   If you have a custom developer registration portal, implement the automation workflow to handle developer approvals and team assignments.
+   
+   **Example:** When developers sign up through your custom portal, use the workflow to process their registrations and assign them to predefined teams.
 
-Using the [Konnect Portal Management API](https://docs.konghq.com/konnect/api/portal-management) you can significantly reduce manual overhead.
+In summary, you can significantly reduce manual overhead by using the [Konnect Portal Management API](/konnect/api/portal-management/latest/).
