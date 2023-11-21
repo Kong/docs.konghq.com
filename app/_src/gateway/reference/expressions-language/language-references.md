@@ -172,7 +172,7 @@ Here are the allowed combination of field types and constant types with each ope
 > **Notes:** 
   * The `~` operator is described as supporting both `String ~ String` and `String ~ Regex`.
   In reality, `Regex` constant values can only be written as `String` on the right hand side.
-  The presence of `~` operators makes the string literal and is treated as a regex constant value.
+  The presence of `~` operators makes the string to be parsed as a regex constant value.
   * The `~` operator does not automatically anchor the regex to the beginning of the input.
   Meaning `http.path ~ r#"/foo/\d"#` could match a path like `/foo/1` or `/some/thing/foo/1`.
   If you want to match from the beginning of the string (anchoring the regex), then you must
