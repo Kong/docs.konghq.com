@@ -159,7 +159,7 @@ This will match a `http.path` that looks like `/foo`, `/abc/foo`, or `/xfooy`, f
 
 Here are the allowed combination of field types and constant types with each operator:
 
-> **Note:** Rows represents field types that appears on the left-hand side (LHS) of the predicate where columns represents constant value types that appears on the right-hand side (RHS) of the predicate.
+> **Note:** Rows represents field types that display on the left-hand side (LHS) of the predicate where columns represents constant value types that display on the right-hand side (RHS) of the predicate.
 
 | Field (LHS)/Constant (RHS) types | `String`                                | `IpCidr`       | `IpAddr` | `Int`                            | `Regex` | `Expression` |
 |----------------------------------|-----------------------------------------|----------------|----------|----------------------------------|---------|--------------|
@@ -172,9 +172,9 @@ Here are the allowed combination of field types and constant types with each ope
 > **Notes:** 
   * The `~` operator is described as supporting both `String ~ String` and `String ~ Regex`.
   In reality, `Regex` constant values can only be written as `String` on the right hand side.
-  The presence of `~` operators makes the string value to be treated as a regex.
+  The presence of `~` operators treats the string value as a regex.
   Even with the `~` operator, [`String` escape rules described above](#string) still apply and it
-  is almost always easier to use raw string literals for `~` operator as described in the [`Regex` section](#regex).
+  is almost always easier to use raw string literals for the `~` operator as described in the [`Regex` section](#regex).
   * The `~` operator does not automatically anchor the regex to the beginning of the input.
   Meaning `http.path ~ r#"/foo/\d"#` could match a path like `/foo/1` or `/some/thing/foo/1`.
   If you want to match from the beginning of the string (anchoring the regex), then you must
