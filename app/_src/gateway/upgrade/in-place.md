@@ -1,8 +1,15 @@
 ---
 title: In-place upgrade
+content_type: how-to
+purpose: Learn how to perform an in-place upgrade for Kong Gateway
 ---
 
-The in-place upgrade reuses the existing database and has to shut down the cluster X first and then configure the new cluster Y to point to the database.
+The in-place upgrade strategy is a {{site.base_gateway}} upgrade option, used primarily for traditional mode deployments and for control planes in hybrid mode. In comparison to dual-cluster upgrades, the in-place upgrade uses less resources, but causes business downtime.
+
+This guide refers to the old version as cluster X and the new version as cluster Y.
+
+An in-place upgrade reuses the existing database.
+For this upgrade method, you have to shut down cluster X, then configure the new cluster Y to point to the database.
 
 ![In-place upgrade workflow](/assets/images/products/gateway/upgrade/in-place-upgrade.png)
 
@@ -15,10 +22,10 @@ There is business downtime as cluster X is stopped during the upgrade process. Y
 
 ## Prerequisites
 
-* You have reviewed the general upgrade guide
-* You have chosen this upgrade option because you have a traditional deployment, or you need to upgrade the control planes (CPs)
-in a hybrid mode deployment. 
-* You ruled out [Dual-cluster upgrades](/gateway/{{page.kong_version}}/upgrade/dual-cluster/) due to hardware or similar limitations.
+* You have reviewed the [general upgrade guide](/gateway/{{page.kong_version}}/upgrade/).
+* You have chosen this upgrade option because you have a traditional deployment, or you need to 
+upgrade the control planes (CPs) in a hybrid mode deployment. 
+* You ruled out [dual-cluster upgrades](/gateway/{{page.kong_version}}/upgrade/dual-cluster/) due to resource limitations.
 
 ## Upgrade steps
 

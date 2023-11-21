@@ -1,18 +1,21 @@
 ---
 title: Dual-cluster upgrade
+content_type: how-to
+purpose: Learn how to perform a dual-cluster upgrade for Kong Gateway
 ---
 
-The dual-cluster strategy refers to the practice that a new Kong cluster of version Y is deployed alongside the current version X, so that two clusters serve requests concurrently during the upgrade process, as illustrated in figure 1.
+The dual-cluster upgrade strategy is a {{site.base_gateway}} upgrade option, used primarily for traditional mode deployments and for control planes in hybrid mode. 
+With a dual-cluster upgrade, you deploy a new cluster of version Y alongside the current version X, so that two clusters serve requests concurrently during the upgrade process.
 
 ![Dual-cluster upgrade workflow](/assets/images/products/gateway/upgrade/dual-cluster-upgrade.png)
-
 > _Figure 1: Dual-cluster upgrade workflow_
 
 ## Prerequisites
 
-* You have reviewed the general upgrade guide
-* You have chosen this upgrade option because you have a traditional deployment, or you need to upgrade the control planes (CPs)
-in a hybrid mode deployment
+* You have reviewed the [general upgrade guide](/gateway/{{page.kong_version}}/upgrade/).
+* You have enough hardware/resources to temporarily run an additional {{site.base_gateway}} cluster.
+* You have chosen this upgrade option because you have a traditional deployment, or you need 
+to upgrade the control planes (CPs) in a hybrid mode deployment
 
 ## Upgrade steps
 

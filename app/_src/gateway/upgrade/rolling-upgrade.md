@@ -1,8 +1,16 @@
 ---
 title: Rolling upgrade
+content_type: how-to
+purpose: Learn how to perform a rolling upgrade for Kong Gateway
 ---
 
-Rolling Upgrade is an upgrade strategy designated specifically for the DB-less mode or the DP part of Hybrid mode, or DP part of Konnect. It builds on the fact that Kong nodes that do not use a database, and that are independent of each other. The upgrade is a process of continuously adding new nodes of version Y, while shutting down nodes of version X.
+The rolling upgrade strategy is a {{site.base_gateway}} upgrade option, specifically designed 
+for DB-less mode and for data planes running in hybrid mode. This strategy is meant for nodes that don't use a database, and that are independent of each other.
+
+This guide refers to the old version as cluster X and the new version as cluster Y.
+
+The rolling upgrade is a process of continuously adding new nodes of version Y, while shutting 
+down nodes of version X.
 
 ![Rolling upgrade workflow](/assets/images/products/gateway/upgrade/rolling-upgrade.png)
 
@@ -10,9 +18,9 @@ Rolling Upgrade is an upgrade strategy designated specifically for the DB-less m
 
 ## Prerequisites
 
-* You have reviewed the general upgrade guide
-* You have chosen this upgrade option because you have a DB-less deployment, or you need to upgrade the data planes (DPs)
-in a hybrid mode deployment. 
+* You have reviewed the [general upgrade guide](/gateway/{{page.kong_version}}/upgrade/).
+* You have chosen this upgrade option because you have a DB-less deployment, or you need to 
+upgrade the data planes (DPs) in a hybrid mode deployment. 
 
 ## Upgrade steps
 

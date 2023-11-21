@@ -1,18 +1,23 @@
 ---
 title: Blue-green upgrade
+content_type: how-to
+purpose: Learn how to perform a blue-green upgrade for Kong Gateway
 ---
 
-Derived from the In-place Upgrade strategy, blue-green upgrade benefits from the fact that “kong migrations up” leaves the database in a state where it can serve requests by either current cluster X or the new cluster Y.  Only when “kong migrations finish” is executed, the compatibility of the database with cluster X lost.
+The blue-green upgrade strategy is a {{site.base_gateway}} upgrade option, used primarily for traditional mode deployments and for control planes in hybrid mode. 
 
-This is a more advanced strategy than the Dual-cluster Upgrade in that there is no need to deploy a new database. It still supports gradually diverting traffic from the current cluster X to the new cluster Y, shown in figure 3. Furthermore, runtime metrics (e.g. Vitals or RLA plugin counters) are sent to the same database. Thus, metrics are continuously collected from both clusters during the upgrade process.
+Blue-green upgrades are derived from the in-place upgrade strategy. This upgrade strategy benefits from the fact that `kong migrations up` leaves the database in a state where it can serve requests by either current cluster X or the new cluster Y. The compatibility of the database with cluster X is only lost when `kong migrations finish` is executed.
+
+This is a more advanced strategy than the dual-cluster upgrade in that there is no need to deploy a new database. It still supports gradually diverting traffic from the current cluster X to the new cluster Y, shown in the following diagram. Furthermore, runtime metrics (for example, Rate Limiting Advanced plugin counters) are sent to the same database. Metrics are continuously collected from both clusters during the upgrade process.
 
 ![Blue-green upgrade workflow](/assets/images/products/gateway/upgrade/blue-green-upgrade.png)
 
 > _Figure 1: Blue-green upgrade workflow_
 
-Compared to Dual-cluster Upgrade and In-place Upgrade, blue-green upgrade consumes less resources (e.g. no extra database required), but still supports “no business downtime” upgrade. Though blue-green upgrade is a supported feature, it is nearly impossible to fully cover all migrations tests, because we have to cover all combinations, given the number of Kong Gateway versions, upgrade strategies and deployment modes.
+Compared to dual-cluster and in-place upgrades, blue-green upgrades consume less resources since there is no extra database required, and still allow for no business downtime.
 
-Considering the limited number of migration tests, please only use this strategy to upgrade between patch releases if customers do not have enough hardware resources but still want to keep “no business downtime” upgrade.  Also, a test run in a staging environment should be done.
+Support from Kong for upgrades using this strategy is limited.
+Though blue-green upgrades are supported, it is nearly impossible to fully cover all migration tests, because we have to cover all combinations, given the number of Kong Gateway versions, upgrade strategies, and deployment modes. 
 
 {:.important}
 > **Important**: Blue-green migration in traditional mode for versions below 2.8.2 to 3.0.x is not supported.
@@ -21,11 +26,11 @@ to perform migrations for traditional mode with no downtime, please upgrade to a
 
 ## Prerequisites
 
-* You have reviewed the general upgrade guide.
+* You have reviewed the [general upgrade guide](/gateway/{{page.kong_version}}/upgrade/).
 * You have chosen this upgrade option because you have a traditional deployment, or you need to upgrade the control planes (CPs)
 in a hybrid mode deployment.
 * You are running {{site.base_gateway}} 2.8.2.x or above.
-* You ruled out [Dual-cluster upgrades](/gateway/{{page.kong_version}}/upgrade/dual-cluster/) due to hardware or similar limitations.
+* You ruled out [dual-cluster upgrades](/gateway/{{page.kong_version}}/upgrade/dual-cluster/) due to resource limitations.
 
 ## Upgrade steps
 
