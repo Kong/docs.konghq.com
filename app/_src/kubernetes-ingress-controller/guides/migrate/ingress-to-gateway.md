@@ -27,9 +27,9 @@ migrate to the new API by creating copies that replace the `Ingress` resources
 with Gateway API resources. Then, use the `ingress2gateway` tool to create new manifests
 containing the gateway API configurations.
 
-> **Note**: when speaking of Ingress resources, the guide refers to Kubernetes
+> **Note**: In this guide the Ingress resources refers to Kubernetes
 > networkingv1 `Ingress`es, Kong `TCPIngress`es, and Kong `UDPIngress`es.
-> This means that **All** the aforementioned resources should be included in the
+> This means that **All** these resources should be included in the
 > files used as a source for the conversion.
 
 1. Export your source and destination paths.
