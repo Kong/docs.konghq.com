@@ -22,7 +22,8 @@ service gets to handle it based on the routes that are defined.  With
 release 3.0, {{site.base_gateway}} introduced a new router that can be
 running in two modes, the `traditional_compat` mode, which is
 configured like prior releases, and the `expressions` mode which uses
-a new configuration scheme.
+a new configuration scheme. It is recommended that new deployments use
+the expressions router as it is more powerful and expressive.
 
 The default mode of the router is `traditional_compat` and the
 following sections describe how it operates. `traditional_compat`
@@ -97,7 +98,9 @@ to route a request, the latency introduced by {{site.base_gateway}}
 can suffer and its CPU usage can increase. In installations with
 thousands of routes, replacing regular expression routes by simple
 prefix routes can improve throughput and latency of
-{{site.base_gateway}}.
+{{site.base_gateway}}. If regex must be used because an exact
+path match must be performed, using the [expressions router](expressions)
+will significantly improve {{site.base_gateway}}'s performance in this case.
 
 Starting with version 3.0, {{site.base_gateway}} uses the regular
 expression engine shipped with the [Rust](https://docs.rs/regex/latest/regex/) programming language if the
