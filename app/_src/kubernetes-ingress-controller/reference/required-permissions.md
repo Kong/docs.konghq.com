@@ -5,7 +5,7 @@ purpose: |
   What permissions are required to install {{ site.kic_product_name }} if I am not a super admin of the cluster? What permissions are required to run {{ site.kic_product_name }}?
 ---
 
-To install {{ site.kic_product_name }}, you need to have the permissions to WRITE (create, update, get, list, watch in Kubernetes's RBAC model) the following resources:
+To install {{ site.kic_product_name }}, you need to have the permissions to WRITE (create, update, get, list, watch in Kubernetes's RBAC model) these resources.
 
 For creating RBAC rules to enable {{ site.kic_product_name }} to access requried resources, you need to have the permissions to create or update `ClusterRole`, `ClusterRoleBinding` in the cluster scope, and create or update `Role`,`RoleBinding` in the namespace in which you want to install {{ site.kic_product_name }}.
 
