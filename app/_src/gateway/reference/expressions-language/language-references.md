@@ -159,14 +159,14 @@ This will match a `http.path` that looks like `/foo`, `/abc/foo`, or `/xfooy`, f
 
 Here are the allowed combination of field types and constant types with each operator:
 
-> **Note:** Rows represents field types where columns represents constant value types.
+> **Note:** Rows represents field types that appears on the left-hand side (LHS) of the predicate where columns represents constant value types that appears on the right-hand side (RHS) of the predicate.
 
-| LHS/RHS      | `String`                                | `IpCidr`       | `IpAddr` | `Int`                      | `Regex` | `Expression` |
-|--------------|-----------------------------------------|----------------|----------|----------------------------|---------|--------------|
-| `String`     | `==`, `!=`, `~`, `^=`, `=^`, `contains` | ❌              | ❌        | ❌                          | `~`     | ❌            |
-| `IpAddr`     | ❌                                       | `in`, `not in` | `==`     | ❌                          | ❌       | ❌            |
-| `Int`        | ❌                                       | ❌              | ❌        | `==`, `>=`, `>`, `<=`, `<` | ❌       | ❌            |
-| `Expression` | ❌                                       | ❌              | ❌        | ❌                          | ❌       | `&&`, `||` |
+| Field (LHS)/Constant (RHS) types | `String`                                | `IpCidr`       | `IpAddr` | `Int`                            | `Regex` | `Expression` |
+|----------------------------------|-----------------------------------------|----------------|----------|----------------------------------|---------|--------------|
+| `String`                         | `==`, `!=`, `~`, `^=`, `=^`, `contains` | ❌              | ❌        | ❌                                | `~`     | ❌            |
+| `IpAddr`                         | ❌                                       | `in`, `not in` | `==`     | ❌                                | ❌       | ❌            |
+| `Int`                            | ❌                                       | ❌              | ❌        | `==`, `!=`, `>=`, `>`, `<=`, `<` | ❌       | ❌            |
+| `Expression`                     | ❌                                       | ❌              | ❌        | ❌                                | ❌       | `&&`, `      |
 
 {:.note}
 > **Notes:** 
