@@ -125,6 +125,16 @@ items:
                 url: /install/linux/rhel
               - text: Ubuntu
                 url: /install/linux/ubuntu
+          - text: Post-installation
+            items:
+              - text: Set up a data store
+                url: /install/post-install/set-up-data-store/
+              - text: Apply Enterprise license
+                url: /install/post-install/enterprise-license/
+                generate: false
+              - text: Enable Kong Manager (Enterprise)
+                url: /install/post-install/kong-manager/
+                generate: false
       - text: Running Kong
         items:
           - text: Running Kong as a non-root user
