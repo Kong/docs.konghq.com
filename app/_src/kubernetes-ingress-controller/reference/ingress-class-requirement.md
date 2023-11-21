@@ -11,7 +11,7 @@ purpose: |
 
 ## Resource Requiring Setting Ingress Class or Gateway Class
 
-Some resources requires setting ingress class to get processed by {{site.kic_product_name}}. The ingress class need to be set to the same as specified in the flag `--ingress-class` to get processed. The table goes below.
+Some resources requires setting ingress class to get processed by {{site.kic_product_name}}. The ingress class need to be set to the same as specified in the flag `--ingress-class` to get processed. Here's the table with the details.
 
 | Resource Kind       | Resource Group and Version         | Method to set Ingress Class                     | 
 |---------------------|------------------------------------|-------------------------------------------------|
@@ -24,7 +24,7 @@ Some resources requires setting ingress class to get processed by {{site.kic_pro
 | `TCPIngress`        | `configuration.konghq.com/v1beta1` | Set in annotation `kubernetes.io/ingress.class` |
 | `UDPIngress`        | `configuration.konghq.com/v1beta1` | Set in annotation `kubernetes.io/ingress.class` |
 
-Note: If the `IngressClass` used by {{site.kic_product_name}} (specified in flag `--ingress-class`) has `ingressclass.kubernetes.io/is-default-class` set to `true`, the resources except for `Gateway` does not have ingress classes set will also get reconciled by {{site.kic_product_name}}.
+Note: If the `IngressClass` used by {{site.kic_product_name}} (specified in flag `--ingress-class`) has `ingressclass.kubernetes.io/is-default-class` set to `true`, the resources except for `Gateway` does not have ingress classes set are also reconciled by {{site.kic_product_name}}.
 
 [ingress_class]:https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class
 [gateway_class]:https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.GatewayClass
