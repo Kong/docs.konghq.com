@@ -11,6 +11,8 @@ servers:
     description: US Region Base URL
   - url: https://eu.api.konghq.com/v2
     description: EU Region Base URL
+  - url: https://au.api.konghq.com/v2
+    description: AU Region Base URL
 security:
   - personalAccessToken: []
   - systemAccountAccessToken: []
@@ -43,10 +45,8 @@ paths:
       summary: List Portals
       description: >-
         Lists developer portals defined in this region for this organization.
-        Each developer portal is available at a unique address
-
-        and has isolated appearance, configuration, developers, and
-        applications.
+        Each developer portal is available at a unique address and has isolated
+        appearance, configuration, developers, and applications.
       operationId: list-portals
       tags:
         - Portals
@@ -57,6 +57,19 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/ListPortals'
+        '400':
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                ListPortalsBadRequestExample1:
+                  $ref: '#/components/examples/ListPortalsBadRequestExample1'
+                ListPortalsBadRequestExample2:
+                  $ref: '#/components/examples/ListPortalsBadRequestExample2'
+                ListPortalsBadRequestExample3:
+                  $ref: '#/components/examples/ListPortalsBadRequestExample3'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -68,17 +81,53 @@ paths:
       summary: Get Portal
       description: >-
         Returns the configuration for a single developer portal. This allows you
-        to understand the current visibility, access,
-
-        and domain settings.
+        to understand the current visibility, access, and domain settings.
       operationId: get-portal
       tags:
         - Portals
       responses:
         '200':
           $ref: '#/components/responses/GetPortal'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      summary: Update Portal
+      description: >-
+        Updates the configuration for a single portal including the visibility,
+        access, and custom domain settings.
+      operationId: update-portal
+      requestBody:
+        $ref: '#/components/requestBodies/UpdatePortal'
+      tags:
+        - Portals
+      responses:
+        '200':
+          $ref: '#/components/responses/UpdatePortal'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                UpdatePortalBadRequestExample1:
+                  $ref: '#/components/examples/UpdatePortalBadRequestExample1'
+                UpdatePortalBadRequestExample2:
+                  $ref: '#/components/examples/UpdatePortalBadRequestExample2'
+                UpdatePortalBadRequestExample3:
+                  $ref: '#/components/examples/UpdatePortalBadRequestExample3'
+                UpdatePortalBadRequestExample4:
+                  $ref: '#/components/examples/UpdatePortalBadRequestExample4'
+                UpdatePortalBadRequestExample5:
+                  $ref: '#/components/examples/UpdatePortalBadRequestExample5'
+                UpdatePortalBadRequestExample6:
+                  $ref: '#/components/examples/UpdatePortalBadRequestExample6'
+                UpdatePortalBadRequestExample7:
+                  $ref: '#/components/examples/UpdatePortalBadRequestExample7'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -93,14 +142,11 @@ paths:
       operationId: list-portal-products
       description: >-
         Lists the API products that are published to this developer portal. An
-        API product packages together multiple versions of each API, displaying 
-
+        API product packages together multiple versions of each API, displaying
         each version with its set of operations and documentation. Developers
         can browse API Products to learn about and register for them. API
-        Products
-
-        access can be limited to certain developers using RBAC and developer
-        teams.
+        Products access can be limited to certain developers using RBAC and
+        developer teams.
       parameters:
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
@@ -110,7 +156,16 @@ paths:
         '200':
           $ref: '#/components/responses/ListPortalProducts'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                ListPortalProductsBadRequestExample1:
+                  $ref: '#/components/examples/ListPortalProductsBadRequestExample1'
+                ListPortalProductsBadRequestExample2:
+                  $ref: '#/components/examples/ListPortalProductsBadRequestExample2'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -125,12 +180,9 @@ paths:
       summary: Get Developer
       description: >-
         Returns information about a single developer in this portal. Each
-        developer manages a set applications, providing
-
-        them credentials to access registered API product versions. Developer
-        registration access can be limited to
-
-        specific API products using RBAC.
+        developer manages a set applications, providing them credentials to
+        access registered API product versions. Developer registration access
+        can be limited to specific API products using RBAC.
       operationId: get-developer
       parameters:
         - $ref: '#/components/parameters/PortalId'
@@ -151,13 +203,10 @@ paths:
       description: >-
         Updates the status of a particular developer. Approved developers have
         access to login to the portal. Revoked, rejected, or pending are not
-        allowed to login.
-
-        Even if a developer's status is no longer approved, they will still be
-        able to using any existing credentials generated while they were
-        approved, until each 
-
-        application registration is revoked or deleted.
+        allowed to login. Even if a developer's status is no longer approved,
+        they will still be able to using any existing credentials generated
+        while they were approved, until each application registration is revoked
+        or deleted.
       operationId: update-developer
       requestBody:
         $ref: '#/components/requestBodies/UpdateDeveloper'
@@ -167,7 +216,14 @@ paths:
         '200':
           $ref: '#/components/responses/UpdateDeveloper'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                UpdateDeveloperBadRequestExample1:
+                  $ref: '#/components/examples/UpdateDeveloperBadRequestExample1'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -178,13 +234,10 @@ paths:
       summary: Delete Developer
       description: >-
         Deletes a developer, which will discontinue their ability to login, view
-        any non-public resources, and delete all applications owned by them.
-
-        All credentials issued to the developer will no longer provide access to
-        any API Products.
-
-        A deleted developer's unique email must be re-registered and approved to
-        gain access again.
+        any non-public resources, and delete all applications owned by them. All
+        credentials issued to the developer will no longer provide access to any
+        API Products. A deleted developer's unique email must be re-registered
+        and approved to gain access again.
       operationId: delete-developer
       tags:
         - Portal Developers
@@ -203,11 +256,9 @@ paths:
       description: >-
         Lists applications created by developers in this portal. Each
         application can be registered for various API Products (by version),
-
         issuing credentials for API request access. If using DCR, an application
-        will be linked to an Identity Provider's application by
-
-        its `reference_id`.
+        will be linked to an Identity Provider's application by its
+        `reference_id`.
       operationId: list-applications
       parameters:
         - $ref: '#/components/parameters/PortalId'
@@ -236,7 +287,20 @@ paths:
         '200':
           $ref: '#/components/responses/ListApplications'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                ListApplicationsBadRequestExample1:
+                  $ref: '#/components/examples/ListApplicationsBadRequestExample1'
+                ListApplicationsBadRequestExample2:
+                  $ref: '#/components/examples/ListApplicationsBadRequestExample2'
+                ListApplicationsBadRequestExample3:
+                  $ref: '#/components/examples/ListApplicationsBadRequestExample3'
+                ListApplicationsBadRequestExample4:
+                  $ref: '#/components/examples/ListApplicationsBadRequestExample4'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -248,12 +312,9 @@ paths:
       summary: Get Application
       description: >-
         Returns the configuration of a single application in this portal. If an
-        application is linked to a DCR Provider,
-
-        the `dcr_provider.id` and `reference_id` can be used to correlate it. An
-        application manages a set of credentials
-
-        and registrations for specific API product versions.
+        application is linked to a DCR Provider, the `dcr_provider.id` and
+        `reference_id` can be used to correlate it. An application manages a set
+        of credentials and registrations for specific API product versions.
       operationId: get-application
       parameters:
         - $ref: '#/components/parameters/PortalId'
@@ -274,12 +335,10 @@ paths:
       summary: List Application Registrations by Portal
       description: >-
         Lists all of the application registrations and their current status
-        (e.g., approved or pending) for this portal. 
-
-        Each registration is associated with a single API product version.
-        Access is provided through the credentials issued
-
-        to the application that contains each registration.
+        (e.g., approved or pending) for this portal. Each registration is
+        associated with a single API product version. Access is provided through
+        the credentials issued to the application that contains each
+        registration.
       operationId: list-registrations
       parameters:
         - $ref: '#/components/parameters/PortalId'
@@ -308,7 +367,24 @@ paths:
         '200':
           $ref: '#/components/responses/ListApplicationRegistrations'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                ListApplicationRegistrationsByPortalBadRequestExample1:
+                  $ref: >-
+                    #/components/examples/ListApplicationRegistrationsByPortalBadRequestExample1
+                ListApplicationRegistrationsByPortalBadRequestExample2:
+                  $ref: >-
+                    #/components/examples/ListApplicationRegistrationsByPortalBadRequestExample2
+                ListApplicationRegistrationsByPortalBadRequestExample3:
+                  $ref: >-
+                    #/components/examples/ListApplicationRegistrationsByPortalBadRequestExample3
+                ListApplicationRegistrationsByPortalBadRequestExample4:
+                  $ref: >-
+                    #/components/examples/ListApplicationRegistrationsByPortalBadRequestExample4
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -344,7 +420,24 @@ paths:
         '200':
           $ref: '#/components/responses/ListApplicationRegistrations'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                ListRegistrationsByApplicationBadRequestExample1:
+                  $ref: >-
+                    #/components/examples/ListRegistrationsByApplicationBadRequestExample1
+                ListRegistrationsByApplicationBadRequestExample2:
+                  $ref: >-
+                    #/components/examples/ListRegistrationsByApplicationBadRequestExample2
+                ListRegistrationsByApplicationBadRequestExample3:
+                  $ref: >-
+                    #/components/examples/ListRegistrationsByApplicationBadRequestExample3
+                ListRegistrationsByApplicationBadRequestExample4:
+                  $ref: >-
+                    #/components/examples/ListRegistrationsByApplicationBadRequestExample4
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -377,10 +470,9 @@ paths:
       summary: Update Application Registration
       description: >-
         Updates the status of a particular application registration to an API
-        Product Version. Approved application registrations
-
-        will allow API traffic to the corresponding API. Revoked, rejected, or
-        pending will not allow API traffic.
+        Product Version. Approved application registrations will allow API
+        traffic to the corresponding API. Revoked, rejected, or pending will not
+        allow API traffic.
       operationId: update-application-registration
       requestBody:
         $ref: '#/components/requestBodies/UpdateApplicationRegistration'
@@ -390,7 +482,15 @@ paths:
         '200':
           $ref: '#/components/responses/UpdateApplicationRegistration'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                UpdateApplicationRegistrationBadRequestExample1:
+                  $ref: >-
+                    #/components/examples/UpdateApplicationRegistrationBadRequestExample1
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -449,8 +549,6 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/GetAppearanceDefaults'
-        '400':
-          $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -462,10 +560,9 @@ paths:
       summary: Get Appearance Configuration
       description: >-
         Returns the current portal appearance configuration including any custom
-        theme, colors, fonts, and image settings.
-
-        Portals using the fully-customizable portal client may override or
-        ignore these settings by disregarding them in the code.
+        theme, colors, fonts, and image settings. Portals using the
+        fully-customizable portal client may override or ignore these settings
+        by disregarding them in the code.
       operationId: get-portal-appearance
       parameters:
         - $ref: '#/components/parameters/PortalId'
@@ -474,8 +571,6 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/GetPortalAppearance'
-        '400':
-          $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -486,10 +581,9 @@ paths:
       summary: Update Appearance Configuration
       description: >-
         Updates the current appearance configuration for this portal including
-        setting pre-defined or custom themes, fonts, colors, and images.
-
-        Note that portals using the fully-customizable portal client may
-        override or ignore these settings by disregarding them in the code.
+        setting pre-defined or custom themes, fonts, colors, and images. Note
+        that portals using the fully-customizable portal client may override or
+        ignore these settings by disregarding them in the code.
       operationId: update-portal-appearance
       requestBody:
         $ref: '#/components/requestBodies/UpdatePortalAppearance'
@@ -501,7 +595,18 @@ paths:
         '200':
           $ref: '#/components/responses/UpdatePortalAppearance'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                UpdateAppearanceConfigurationBadRequestExample1:
+                  $ref: >-
+                    #/components/examples/UpdateAppearanceConfigurationBadRequestExample1
+                UpdateAppearanceConfigurationBadRequestExample2:
+                  $ref: >-
+                    #/components/examples/UpdateAppearanceConfigurationBadRequestExample2
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -513,10 +618,8 @@ paths:
       summary: Verify Custom Domains
       description: >-
         Verifies the current status of the custom hosted domain for this portal,
-        indicating whether the appropriate CNAME properties
-
-        have propagated and if a corresponding SSL certificate has been
-        generated.
+        indicating whether the appropriate CNAME properties have propagated and
+        if a corresponding SSL certificate has been generated.
       operationId: verify-portal-domains
       parameters:
         - $ref: '#/components/parameters/PortalId'
@@ -526,7 +629,14 @@ paths:
         '200':
           $ref: '#/components/responses/VerifyPortalDomains'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                VerifyPortalDomainsBadRequestExample1:
+                  $ref: '#/components/examples/VerifyPortalDomainsBadRequestExample1'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -554,12 +664,9 @@ paths:
       description: >-
         Updates the developer authentication configuration for a portal.
         Developers can be allowed to login using basic auth (email & password)
-        or use
-
-        Single-Sign-On (SSO) through an OIDC Identity Provider (IdP). Developers
-        can be automatically assigned to teams by mapping claims from thier
-
-        IdP account.
+        or use Single-Sign-On (SSO) through an OIDC Identity Provider (IdP).
+        Developers can be automatically assigned to teams by mapping claims from
+        thier IdP account.
       operationId: update-portal-authentication-settings
       requestBody:
         $ref: '#/components/requestBodies/UpdatePortalAuthenticationSettings'
@@ -569,7 +676,28 @@ paths:
         '200':
           $ref: '#/components/responses/PortalAuthenticationSettings'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                UpdateAuthSettingsBadRequestExample1:
+                  $ref: '#/components/examples/UpdateAuthSettingsBadRequestExample1'
+                UpdateAuthSettingsBadRequestExample2:
+                  $ref: '#/components/examples/UpdateAuthSettingsBadRequestExample2'
+                UpdateAuthSettingsBadRequestExample3:
+                  $ref: '#/components/examples/UpdateAuthSettingsBadRequestExample3'
+                UpdateAuthSettingsBadRequestExample4:
+                  $ref: '#/components/examples/UpdateAuthSettingsBadRequestExample4'
+                UpdateAuthSettingsBadRequestExample5:
+                  $ref: '#/components/examples/UpdateAuthSettingsBadRequestExample5'
+                UpdateAuthSettingsBadRequestExample6:
+                  $ref: '#/components/examples/UpdateAuthSettingsBadRequestExample6'
+                UpdateAuthSettingsBadRequestExample7:
+                  $ref: '#/components/examples/UpdateAuthSettingsBadRequestExample7'
+                UpdateAuthSettingsBadRequestExample8:
+                  $ref: '#/components/examples/UpdateAuthSettingsBadRequestExample8'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -581,9 +709,7 @@ paths:
       summary: List Team Group Mappings
       description: >-
         Lists mappings between Konnect portal teams and Identity Provider (IdP)
-        groups.
-
-        Returns a 400 error if an IdP has not yet been configured.
+        groups. Returns a 400 error if an IdP has not yet been configured.
       operationId: list-portal-team-group-mappings
       parameters:
         - $ref: '#/components/parameters/PageSize'
@@ -592,7 +718,18 @@ paths:
         '200':
           $ref: '#/components/responses/PortalTeamGroupMappingCollection'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                ListTeamGroupMappingsBadRequestExample1:
+                  $ref: >-
+                    #/components/examples/ListTeamGroupMappingsBadRequestExample1
+                ListTeamGroupMappingsBadRequestExample2:
+                  $ref: >-
+                    #/components/examples/ListTeamGroupMappingsBadRequestExample2
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -603,25 +740,26 @@ paths:
       summary: Update Team Group Mappings
       description: >-
         Allows partial updates to the mappings between Konnect portal teams and
-        Identity Provider (IdP) groups.
-
-        The request body must be keyed on team ID. For a given team ID, the
-        given group list is a
-
-        complete replacement. To remove all mappings for a given team, provide
-        an empty group list.
-
+        Identity Provider (IdP) groups. The request body must be keyed on team
+        ID. For a given team ID, the given group list is a complete replacement.
+        To remove all mappings for a given team, provide an empty group list.
 
         Returns a 400 error if an IdP has not yet been configured, or if a team
-        ID in
-
-        the request body is not found or is not a UUID.
+        ID in the request body is not found or is not a UUID.
       operationId: update-portal-team-group-mappings
       responses:
         '200':
           $ref: '#/components/responses/PortalTeamGroupMappingCollection'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                UpdateTeamGroupMappingsBadRequestExample1:
+                  $ref: >-
+                    #/components/examples/UpdateTeamGroupMappingsBadRequestExample1
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -670,7 +808,18 @@ paths:
         '201':
           $ref: '#/components/responses/PortalTeam'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                CreateTeamBadRequestExample1:
+                  $ref: '#/components/examples/CreateTeamBadRequestExample1'
+                CreateTeamBadRequestExample2:
+                  $ref: '#/components/examples/CreateTeamBadRequestExample2'
+                CreateTeamBadRequestExample3:
+                  $ref: '#/components/examples/CreateTeamBadRequestExample3'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -683,10 +832,8 @@ paths:
         $ref: '#/components/requestBodies/PortalCreateTeam'
       description: >-
         Creates a developer team in a portal. Developers can be added to teams
-        to provide RBAC access to API products.
-
-        Teams can be assigned roles that grant permissions to perform an action
-        on a resource.
+        to provide RBAC access to API products. Teams can be assigned roles that
+        grant permissions to perform an action on a resource.
   /portals/{portalId}/teams/{teamId}:
     parameters:
       - $ref: '#/components/parameters/TeamId'
@@ -728,10 +875,8 @@ paths:
       operationId: delete-portal-team
       description: >-
         Deletes a developer team from a portal. Deleting a team also deletes its
-        assigned roles.
-
-        Members of the team are not deleted, but they will lose any access
-        provided through the team.
+        assigned roles. Members of the team are not deleted, but they will lose
+        any access provided through the team.
       responses:
         '204':
           description: No Content
@@ -770,14 +915,22 @@ paths:
       operationId: add-developer-to-portal-team
       description: >-
         Adds a developer to a team. This associates them with all of the roles
-        that have been assigned to the team,
-
-        providing specific permissions to perform actions on resources.
+        that have been assigned to the team, providing specific permissions to
+        perform actions on resources.
       responses:
         '201':
           description: Created
         '400':
-          $ref: '#/components/responses/BadRequest'
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                AddDeveloperToTeamBadRequestExample1:
+                  $ref: '#/components/examples/AddDeveloperToTeamBadRequestExample1'
+                AddDeveloperToTeamBadRequestExample2:
+                  $ref: '#/components/examples/AddDeveloperToTeamBadRequestExample2'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -820,9 +973,7 @@ paths:
       summary: List Team Roles
       description: >-
         Lists the roles belonging to a developer team. Each role provides
-        permissions to perform actions
-
-        on a specified resource or collection.
+        permissions to perform actions on a specified resource or collection.
       tags:
         - Portal Team Roles
       responses:
@@ -840,15 +991,26 @@ paths:
       operationId: assign-role-to-portal-teams
       description: >-
         Assign a role to a developer team. This associates the set of
-        permissions in a role with the team,
-
-        so that they will be applied to any developer who is a member of the
-        team.
+        permissions in a role with the team, so that they will be applied to any
+        developer who is a member of the team.
       responses:
         '201':
           $ref: '#/components/responses/PortalAssignedRole'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                AssignRoleBadRequestExample1:
+                  $ref: '#/components/examples/AssignRoleBadRequestExample1'
+                AssignRoleBadRequestExample2:
+                  $ref: '#/components/examples/AssignRoleBadRequestExample2'
+                AssignRoleBadRequestExample3:
+                  $ref: '#/components/examples/AssignRoleBadRequestExample3'
+                AssignRoleBadRequestExample4:
+                  $ref: '#/components/examples/AssignRoleBadRequestExample4'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -871,14 +1033,10 @@ paths:
       operationId: remove-role-from-portal-team
       description: >-
         Removes an assigned role from a developer team. This deletes the
-        association of the role with team and each
-
-        of its members.
+        association of the role with team and each of its members.
       responses:
         '204':
           description: No Content
-        '400':
-          $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -895,7 +1053,6 @@ paths:
       description: >-
         Lists the developers that have registered for this portal. Each
         developer can be registered to one portal and must be approved to login
-
         unless using the developer auto-approve setting.
       operationId: list-portal-developers
       tags:
@@ -904,7 +1061,20 @@ paths:
         '200':
           $ref: '#/components/responses/ListDevelopers'
         '400':
-          $ref: '#/components/responses/BadRequest'
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                ListDevelopersBadRequestExample1:
+                  $ref: '#/components/examples/ListDevelopersBadRequestExample1'
+                ListDevelopersBadRequestExample2:
+                  $ref: '#/components/examples/ListDevelopersBadRequestExample2'
+                ListDevelopersBadRequestExample3:
+                  $ref: '#/components/examples/ListDevelopersBadRequestExample3'
+                ListDevelopersBadRequestExample4:
+                  $ref: '#/components/examples/ListDevelopersBadRequestExample4'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -938,9 +1108,8 @@ paths:
       operationId: list-portal-developer-teams
       description: >-
         Lists the teams to which a developer belongs. Each team a developer is a
-        member of grants them various roles
-
-        that provide permissions to perform actions on certain resources.
+        member of grants them various roles that provide permissions to perform
+        actions on certain resources.
       responses:
         '200':
           $ref: '#/components/responses/ListPortalTeams'
@@ -961,9 +1130,7 @@ paths:
       operationId: list-portal-roles
       description: >-
         List roles that can be assigned to teams in a portal. Each role provides
-        a set of permissions to perform
-
-        an action on a resource.
+        a set of permissions to perform an action on a resource.
       responses:
         '200':
           $ref: '#/components/responses/ListRoles'
@@ -1489,6 +1656,7 @@ components:
             name: App 1
             description: An easy to manage app in a Konnect developer portal
             reference_id: df66b180-97df-4ddb-8b45-8b7d5eac56da
+            registration_count: 2
             portal:
               id: 95606071-49c7-4c2e-ae49-8a86d72a8110
             dcr_provider: null
@@ -1504,6 +1672,7 @@ components:
               A Konnect application that is linked to an Identity Provider
               application using Dynamic Client Registration (DCR)
             reference_id: yr1k0d9kj3l0cl01hp4o0
+            registration_count: 3
             portal:
               id: 95606071-49c7-4c2e-ae49-8a86d72a8110
             dcr_provider:
@@ -1520,6 +1689,7 @@ components:
         name: App 1
         description: An easy to manage app in a Konnect developer portal
         reference_id: df66b180-97df-4ddb-8b45-8b7d5eac56da
+        registration_count: 4
         portal:
           id: 95606071-49c7-4c2e-ae49-8a86d72a8110
         dcr_provider: null
@@ -1537,6 +1707,7 @@ components:
           A Konnect application that is linked to an Identity Provider
           application using Dynamic Client Registration (DCR)
         reference_id: yr1k0d9kj3l0cl01hp4o0
+        registration_count: 1
         portal:
           id: 95606071-49c7-4c2e-ae49-8a86d72a8110
         dcr_provider:
@@ -1664,9 +1835,117 @@ components:
       value:
         themes:
           mint_rocket:
-            $ref: '#/components/examples/PortalThemeMintRocket/value'
+            colors:
+              section:
+                header:
+                  value: '#F8F8F8'
+                  description: Background for header
+                body:
+                  value: '#FFFFFF'
+                  description: Background for main content
+                hero:
+                  value: '#F8F8F8'
+                  description: Background for hero section
+                accent:
+                  value: '#F8F8F8'
+                  description: Subtle background
+                tertiary:
+                  value: '#FFFFFF'
+                  description: Tertiary background
+                stroke:
+                  value: rgba(0,0,0,0.1)
+                  description: Border color
+                footer:
+                  value: '#07A88D'
+                  description: Background for footer
+              text:
+                header:
+                  value: rgba(0,0,0,0.8)
+                  description: Header text
+                hero:
+                  value: '#FFFFFF'
+                  description: Hero text
+                headings:
+                  value: rgba(0,0,0,0.8)
+                  description: Headings text
+                primary:
+                  value: rgba(0,0,0,0.8)
+                  description: Main content text
+                secondary:
+                  value: rgba(0,0,0,0.8)
+                  description: Supporting text
+                accent:
+                  value: '#07A88D'
+                  description: Subtle text
+                link:
+                  value: '#07A88D'
+                  description: Link text
+                footer:
+                  value: '#FFFFFF'
+                  description: Footer text
+              button:
+                primary_fill:
+                  value: '#1155CB'
+                  description: Background for Primary Button
+                primary_text:
+                  value: '#FFFFFF'
+                  description: Text for Primary Button
           dark_mode:
-            $ref: '#/components/examples/PortalThemeDarkMode/value'
+            colors:
+              section:
+                header:
+                  value: '#0A161E'
+                  description: Background for header
+                body:
+                  value: '#0C0C0C'
+                  description: Background for main content
+                hero:
+                  value: '#1A1D21'
+                  description: Background for hero section
+                accent:
+                  value: '#1F1F1F'
+                  description: Subtle background
+                tertiary:
+                  value: '#222529'
+                  description: Tertiary background
+                stroke:
+                  value: '#34393F'
+                  description: Border color
+                footer:
+                  value: '#212429'
+                  description: Background for footer
+              text:
+                header:
+                  value: '#FFFFFF'
+                  description: Header text
+                hero:
+                  value: rgba(255,255,255,0.8)
+                  description: Hero text
+                headings:
+                  value: '#FFFFFF'
+                  description: Headings text
+                primary:
+                  value: '#C8C8C9'
+                  description: Main content text
+                secondary:
+                  value: '#919294'
+                  description: Supporting text
+                accent:
+                  value: '#FFFFFF'
+                  description: Subtle text
+                link:
+                  value: '#2977FF'
+                  description: Link text
+                footer:
+                  value: '#FFFFFF'
+                  description: Footer text
+              button:
+                primary_fill:
+                  value: '#1155CB'
+                  description: Background for Primary Button
+                primary_text:
+                  value: '#FFFFFF'
+                  description: Text for Primary Button
         fonts:
           base: Roboto
           code: Roboto Mono
@@ -1829,6 +2108,613 @@ components:
             filename: logo.png
           catalog_cover:
             data: data:image/jpeg;base64,bmljZV9sb29raW5nX3BpY3R1cmU=
+    VerifyPortalDomainsBadRequestExample1:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: custom_domain
+            reason: portal needs a custom_domain to be verified
+    UpdatePortalBadRequestExample1:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: my_property
+            rule: unknown_property
+            reason: '"my_property" is not allowed'
+            source: body
+    UpdatePortalBadRequestExample2:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: is_public
+            rule: is_boolean
+            reason: value of "is_public" must be true or false
+            source: body
+    UpdatePortalBadRequestExample3:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: rbac_enabled
+            rule: is_boolean
+            reason: value of "rbac_enabled" must be true or false
+            source: body
+    UpdatePortalBadRequestExample4:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: auto_approve_applications
+            rule: is_boolean
+            reason: value of "auto_approve_applications" must be true or false
+            source: body
+    UpdatePortalBadRequestExample5:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: auto_approve_developers
+            rule: is_boolean
+            reason: value of "auto_approve_developers" must be true or false
+            source: body
+    UpdatePortalBadRequestExample6:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: custom_domain
+            rule: max_length
+            reason: value of "custom_domain" must not exceed 1024 characters
+            source: body
+    UpdatePortalBadRequestExample7:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: custom_client_domain
+            rule: max_length
+            reason: value of "custom_client_domain" must not exceed 1024 characters
+            source: body
+    ListPortalProductsBadRequestExample1:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: page[size]
+            rule: is_number
+            reason: '"page[size]" must be a number'
+            source: query
+    ListPortalProductsBadRequestExample2:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: page[number]
+            rule: is_number
+            reason: '"page[number]" must be a number'
+            source: query
+    UpdateDeveloperBadRequestExample1:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: my_property
+            rule: unknown_property
+            reason: '"my_property" is not allowed'
+            source: body
+    ListApplicationsBadRequestExample1:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: page[size]
+            rule: is_number
+            reason: '"page[size]" must be a number'
+            source: query
+    ListApplicationsBadRequestExample2:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: page[number]
+            rule: is_number
+            reason: '"page[number]" must be a number'
+            source: query
+    ListApplicationsBadRequestExample3:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: sort
+            rule: enum
+            choices:
+              - created_at
+              - developer_id
+              - name
+            reason: must be one of [created_at, developer_id, name]
+            source: query
+    ListApplicationsBadRequestExample4:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: filter[my_attribute]
+            rule: unknown_property
+            reason: '"filter[my_attribute]" is not allowed'
+            source: query
+    ListApplicationRegistrationsByPortalBadRequestExample1:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: page[size]
+            rule: is_number
+            reason: '"page[size]" must be a number'
+            source: query
+    ListApplicationRegistrationsByPortalBadRequestExample2:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: page[number]
+            rule: is_number
+            reason: '"page[number]" must be a number'
+            source: query
+    ListApplicationRegistrationsByPortalBadRequestExample3:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: sort
+            rule: enum
+            choices:
+              - created_at
+              - updated_at
+              - developer_id
+              - status
+            reason: must be one of [created_at, updated_at, developer_id, status]
+            source: query
+    ListApplicationRegistrationsByPortalBadRequestExample4:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: filter[my_attribute]
+            rule: unknown_property
+            reason: '"filter[my_attribute]" is not allowed'
+            source: query
+    ListRegistrationsByApplicationBadRequestExample1:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: page[size]
+            rule: is_number
+            reason: '"page[size]" must be a number'
+            source: query
+    ListRegistrationsByApplicationBadRequestExample2:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: page[number]
+            rule: is_number
+            reason: '"page[number]" must be a number'
+            source: query
+    ListRegistrationsByApplicationBadRequestExample3:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: sort
+            rule: enum
+            choices:
+              - created_at
+              - updated_at
+              - status
+            reason: must be one of [created_at, updated_at, status]
+            source: query
+    ListRegistrationsByApplicationBadRequestExample4:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: filter[my_attribute]
+            rule: unknown_property
+            reason: '"filter[my_attribute]" is not allowed'
+            source: query
+    UpdateApplicationRegistrationBadRequestExample1:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: my_property
+            rule: unknown_property
+            reason: '"my_property" is not allowed'
+            source: body
+    UpdateAppearanceConfigurationBadRequestExample1:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: my_property
+            rule: unknown_property
+            reason: '"my_property" is not allowed'
+            source: body
+    UpdateAppearanceConfigurationBadRequestExample2:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: use_custom_fonts
+            rule: is_boolean
+            reason: value of "use_custom_fonts" must be true or false
+            source: body
+    UpdateAuthSettingsBadRequestExample1:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: basic_auth_enabled
+            rule: is_boolean
+            reason: value of "basic_auth_enabled" must be true or false
+            source: body
+    UpdateAuthSettingsBadRequestExample2:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: oidc_auth_enabled
+            rule: is_boolean
+            reason: value of "oidc_auth_enabled" must be true or false
+            source: body
+    UpdateAuthSettingsBadRequestExample3:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: oidc_team_mapping_enabled
+            rule: is_boolean
+            reason: value of "oidc_team_mapping_enabled" must be true or false
+            source: body
+    UpdateAuthSettingsBadRequestExample4:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: konnect_mapping_enabled
+            rule: is_boolean
+            reason: value of "konnect_mapping_enabled" must be true or false
+            source: body
+    UpdateAuthSettingsBadRequestExample5:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: oidc_issuer
+            rule: is_string
+            reason: value of "oidc_issuer" must be a utf-8 string
+            source: body
+    UpdateAuthSettingsBadRequestExample6:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: oidc_client_id
+            rule: is_string
+            reason: value of "oidc_client_id" must be a utf-8 string
+            source: body
+    UpdateAuthSettingsBadRequestExample7:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: oidc_client_secret
+            rule: is_string
+            reason: value of "oidc_client_secret" must be a utf-8 string
+            source: body
+    UpdateAuthSettingsBadRequestExample8:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: oidc_scopes
+            rule: is_array
+            reason: '"oidc_scopes" must be an array'
+            source: body
+    ListTeamGroupMappingsBadRequestExample1:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: page[size]
+            rule: is_number
+            reason: '"page[size]" must be a number'
+            source: query
+    ListTeamGroupMappingsBadRequestExample2:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: page[number]
+            rule: is_number
+            reason: '"page[number]" must be a number'
+            source: query
+    UpdateTeamGroupMappingsBadRequestExample1:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: data
+            rule: is_array
+            reason: '"data" must be an array'
+            source: body
+    CreateTeamBadRequestExample1:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: my_attribute
+            rule: required
+            reason: '"my_attribute" is required'
+            source: body
+    CreateTeamBadRequestExample2:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: name
+            rule: is_string
+            reason: value of "name" must be a utf-8 string
+            source: body
+    CreateTeamBadRequestExample3:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: description
+            rule: max_length
+            reason: value of "description" must not exceed 250 characters
+            source: body
+    AddDeveloperToTeamBadRequestExample1:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: my_attribute
+            rule: required
+            reason: '"my_attribute" is required'
+            source: body
+    AddDeveloperToTeamBadRequestExample2:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: id
+            rule: is_uuid
+            reason: value of "id" must be a UUID
+            source: body
+    AssignRoleBadRequestExample1:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: role_name
+            rule: is_string
+            reason: value of "role_name" must be a utf-8 string
+            source: body
+    AssignRoleBadRequestExample2:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: entity_id
+            rule: is_uuid
+            reason: value of "entity_id" must be a UUID
+            source: body
+    AssignRoleBadRequestExample3:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: entity_type_name
+            rule: is_string
+            reason: value of "entity_type_name" must be a utf-8 string
+            source: body
+    AssignRoleBadRequestExample4:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: entity_region
+            rule: enum
+            choices:
+              - us
+              - eu
+              - '*'
+            reason: must be one of [us, eu, *]
+            source: body
+    ListDevelopersBadRequestExample1:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: page[size]
+            rule: is_number
+            reason: '"page[size]" must be a number'
+            source: query
+    ListDevelopersBadRequestExample2:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: page[number]
+            rule: is_number
+            reason: '"page[number]" must be a number'
+            source: query
+    ListDevelopersBadRequestExample3:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: sort
+            rule: enum
+            choices:
+              - created_at
+              - updated_at
+              - email
+              - name
+              - status
+            reason: must be one of [created_at, updated_at, email, name, status]
+            source: query
+    ListDevelopersBadRequestExample4:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: filter[my_attribute]
+            rule: unknown_property
+            reason: '"filter[my_attribute]" is not allowed'
+            source: query
+    ListPortalsBadRequestExample1:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: page[size]
+            rule: is_number
+            reason: '"page[size]" must be a number'
+            source: query
+    ListPortalsBadRequestExample2:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: page[number]
+            rule: is_number
+            reason: '"page[number]" must be a number'
+            source: query
+    ListPortalsBadRequestExample3:
+      value:
+        status: 400
+        title: Invalid Request
+        instance: kong:trace:1433447772874964729
+        detail: Invalid Parameters
+        invalid_parameters:
+          - field: sort
+            rule: enum
+            choices:
+              - created_at
+              - updated_at
+            reason: must be one of [created_at, updated_at]
+            source: query
     UnauthorizedExample:
       value:
         status: 401
@@ -1912,6 +2798,24 @@ components:
           examples:
             Example 1:
               $ref: '#/components/examples/AddDeveloperToTeamExample1'
+    UpdatePortal:
+      description: Update a portal's settings.
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdatePortalRequest'
+          examples:
+            Example 1:
+              $ref: '#/components/examples/UpdatePortalExample1'
+            Public Portal:
+              $ref: '#/components/examples/UpdatePortalExamplePublic'
+            Enable RBAC:
+              $ref: '#/components/examples/UpdatePortalExampleRbacEnabled'
+            Auto Approve Settings:
+              $ref: '#/components/examples/UpdatePortalExampleAutoApprove'
+            Custom Domains:
+              $ref: '#/components/examples/UpdatePortalExampleCustomDomains'
     UpdateApplicationRegistration:
       description: Update an application registration.
       required: true
@@ -1987,7 +2891,6 @@ components:
         Sorts a collection of portals. Supported sort attributes are:
           - created_at
           - updated_at
-          - category
       in: query
       required: false
       schema:
@@ -2197,6 +3100,15 @@ components:
           examples:
             Example 1:
               $ref: '#/components/examples/GetPortalExample1'
+    UpdatePortal:
+      description: Details about the portal being updated.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdatePortalResponse'
+          examples:
+            Example 1:
+              $ref: '#/components/examples/UpdatePortalResponseExample1'
     VerifyPortalDomains:
       description: Details about the status of a portal's custom domain.
       content:
@@ -2335,12 +3247,6 @@ components:
           examples:
             UnauthorizedExample:
               $ref: '#/components/examples/ForbiddenExample'
-    BadRequest:
-      description: Bad Request
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/BadRequestError'
     NotFound:
       description: Not Found
       content:
@@ -2667,6 +3573,7 @@ components:
           enum:
             - us
             - eu
+            - au
             - '*'
           example: eu
       example:
@@ -2897,6 +3804,7 @@ components:
           enum:
             - us
             - eu
+            - au
             - '*'
           example: eu
       example:
@@ -2937,19 +3845,6 @@ components:
             auto_approve_developers: true
             custom_domain: api.example.com
             custom_client_domain: portal.example.com
-    ListCategoriesResponse:
-      additionalProperties: false
-      type: object
-      required:
-        - data
-        - meta
-      properties:
-        meta:
-          $ref: '#/components/schemas/PaginatedMeta'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CategoryResponseList'
     ListPortalProductsResponse:
       additionalProperties: false
       description: A paginated list of API products published to a portal.
@@ -2993,7 +3888,7 @@ components:
               location: cyberspace
             version_count: 21
     PublishedAPIProduct:
-      title: API Product
+      title: PublishedApiProduct
       type: object
       additionalProperties: false
       required:
@@ -3308,6 +4203,7 @@ components:
             name: App 1
             description: An easy to manage app in a Konnect developer portal
             reference_id: df66b180-97df-4ddb-8b45-8b7d5eac56da
+            registration_count: 2
             portal:
               id: 95606071-49c7-4c2e-ae49-8a86d72a8110
             dcr_provider: null
@@ -3323,6 +4219,7 @@ components:
               A Konnect application that is linked to an Identity Provider
               application using Dynamic Client Registration (DCR)
             reference_id: yr1k0d9kj3l0cl01hp4o0
+            registration_count: 3
             portal:
               id: 95606071-49c7-4c2e-ae49-8a86d72a8110
             dcr_provider:
@@ -3553,6 +4450,7 @@ components:
         - name
         - description
         - reference_id
+        - registration_count
         - dcr_provider
         - portal
         - developer
@@ -3575,6 +4473,13 @@ components:
             The ID used to linked the portal application to an Identity Provider
             application.
           type: string
+          readOnly: true
+        registration_count:
+          description: >-
+            The number of product version registrations that are associated with
+            the application. Registrations of any status are included in the
+            count.
+          type: number
           readOnly: true
         dcr_provider:
           description: >-
@@ -3619,6 +4524,7 @@ components:
         name: App 1
         description: An easy to manage app in a Konnect developer portal
         reference_id: df66b180-97df-4ddb-8b45-8b7d5eac56da
+        registration_count: 4
         portal:
           id: 95606071-49c7-4c2e-ae49-8a86d72a8110
         dcr_provider: null
@@ -3764,24 +4670,20 @@ components:
         is_public:
           description: >-
             Whether the portal catalog can be accessed publicly without any
-            developer authentication. Developer accounts and applications
-
-            cannot be created if the portal is public.
+            developer authentication. Developer accounts and applications cannot
+            be created if the portal is public.
           type: boolean
         rbac_enabled:
           description: >-
             Whether the portal resources are protected by Role Based Access
             Control (RBAC). If enabled, developers view or register for products
-            until
-
-            unless assigned to teams with access to view and consume specific
-            products.
+            until unless assigned to teams with access to view and consume
+            specific products.
           type: boolean
         auto_approve_applications:
           description: >-
             Whether the requests from applications to register for products will
             be automatically approved, or if they will be set to pending until
-
             approved by an admin.
           type: boolean
         auto_approve_developers:
@@ -3797,23 +4699,18 @@ components:
           description: >-
             The custom domain to access the developer portal. A CNAME for the
             portal's default domain must be able to be set for the custom domain
-
             for it to be valid. After setting a valid CNAME, an SSL/TLS
             certificate will be automatically manged for the custom domain, and
-            traffic
-
-            will be able to use the custom domain to route to the portal's web
-            client and API.
+            traffic will be able to use the custom domain to route to the
+            portal's web client and API.
         custom_client_domain:
           description: >-
             The custom domain to access a self-hosted customized developer
             portal client. If this is set, the Konnect-hosted portal client will
-            no longer be available.
-
-            `custom_domain` must be also set for this value to be set.
-
-            See https://github.com/Kong/konnect-portal for information on how to
-            get started deploying and customizing your own Konnect portal.
+            no longer be available. `custom_domain` must be also set for this
+            value to be set. See https://github.com/Kong/konnect-portal for
+            information on how to get started deploying and customizing your own
+            Konnect portal.
           nullable: true
           type: string
           format: hostname
@@ -3836,24 +4733,20 @@ components:
         is_public:
           description: >-
             Whether the portal catalog can be accessed publicly without any
-            developer authentication. Developer accounts and applications
-
-            cannot be created if the portal is public.
+            developer authentication. Developer accounts and applications cannot
+            be created if the portal is public.
           type: boolean
         rbac_enabled:
           description: >-
             Whether the portal resources are protected by Role Based Access
             Control (RBAC). If enabled, developers view or register for products
-            until
-
-            unless assigned to teams with access to view and consume specific
-            products.
+            until unless assigned to teams with access to view and consume
+            specific products.
           type: boolean
         auto_approve_applications:
           description: >-
             Whether the requests from applications to register for products will
             be automatically approved, or if they will be set to pending until
-
             approved by an admin.
           type: boolean
         auto_approve_developers:
@@ -3866,13 +4759,10 @@ components:
           description: >-
             The custom domain to access the developer portal. A CNAME for the
             portal's default domain must be able to be set for the custom domain
-
             for it to be valid. After setting a valid CNAME, an SSL/TLS
             certificate will be automatically manged for the custom domain, and
-            traffic
-
-            will be able to use the custom domain to route to the portal's web
-            client and API.
+            traffic will be able to use the custom domain to route to the
+            portal's web client and API.
           type: string
           format: hostname
           nullable: true
@@ -3881,12 +4771,10 @@ components:
           description: >-
             The custom domain to access a self-hosted customized developer
             portal client. If this is set, the Konnect-hosted portal will no
-            longer be available.
-
-            `custom_domain` must be also set for this value to be set.
-
-            See https://github.com/Kong/konnect-portal for information on how to
-            get started deploying and customizing your own Konnect portal.
+            longer be available.  `custom_domain` must be also set for this
+            value to be set. See https://github.com/Kong/konnect-portal for
+            information on how to get started deploying and customizing your own
+            Konnect portal.
           type: string
           format: hostname
           nullable: true
@@ -3938,9 +4826,117 @@ components:
       example:
         themes:
           mint_rocket:
-            $ref: '#/components/examples/PortalThemeMintRocket/value'
+            colors:
+              section:
+                header:
+                  value: '#F8F8F8'
+                  description: Background for header
+                body:
+                  value: '#FFFFFF'
+                  description: Background for main content
+                hero:
+                  value: '#F8F8F8'
+                  description: Background for hero section
+                accent:
+                  value: '#F8F8F8'
+                  description: Subtle background
+                tertiary:
+                  value: '#FFFFFF'
+                  description: Tertiary background
+                stroke:
+                  value: rgba(0,0,0,0.1)
+                  description: Border color
+                footer:
+                  value: '#07A88D'
+                  description: Background for footer
+              text:
+                header:
+                  value: rgba(0,0,0,0.8)
+                  description: Header text
+                hero:
+                  value: '#FFFFFF'
+                  description: Hero text
+                headings:
+                  value: rgba(0,0,0,0.8)
+                  description: Headings text
+                primary:
+                  value: rgba(0,0,0,0.8)
+                  description: Main content text
+                secondary:
+                  value: rgba(0,0,0,0.8)
+                  description: Supporting text
+                accent:
+                  value: '#07A88D'
+                  description: Subtle text
+                link:
+                  value: '#07A88D'
+                  description: Link text
+                footer:
+                  value: '#FFFFFF'
+                  description: Footer text
+              button:
+                primary_fill:
+                  value: '#1155CB'
+                  description: Background for Primary Button
+                primary_text:
+                  value: '#FFFFFF'
+                  description: Text for Primary Button
           dark_mode:
-            $ref: '#/components/examples/PortalThemeDarkMode/value'
+            colors:
+              section:
+                header:
+                  value: '#0A161E'
+                  description: Background for header
+                body:
+                  value: '#0C0C0C'
+                  description: Background for main content
+                hero:
+                  value: '#1A1D21'
+                  description: Background for hero section
+                accent:
+                  value: '#1F1F1F'
+                  description: Subtle background
+                tertiary:
+                  value: '#222529'
+                  description: Tertiary background
+                stroke:
+                  value: '#34393F'
+                  description: Border color
+                footer:
+                  value: '#212429'
+                  description: Background for footer
+              text:
+                header:
+                  value: '#FFFFFF'
+                  description: Header text
+                hero:
+                  value: rgba(255,255,255,0.8)
+                  description: Hero text
+                headings:
+                  value: '#FFFFFF'
+                  description: Headings text
+                primary:
+                  value: '#C8C8C9'
+                  description: Main content text
+                secondary:
+                  value: '#919294'
+                  description: Supporting text
+                accent:
+                  value: '#FFFFFF'
+                  description: Subtle text
+                link:
+                  value: '#2977FF'
+                  description: Link text
+                footer:
+                  value: '#FFFFFF'
+                  description: Footer text
+              button:
+                primary_fill:
+                  value: '#1155CB'
+                  description: Background for Primary Button
+                primary_text:
+                  value: '#FFFFFF'
+                  description: Text for Primary Button
         fonts:
           base: Roboto
           code: Roboto Mono
@@ -4081,7 +5077,6 @@ components:
       additionalProperties: false
       required:
         - value
-        - description
       properties:
         value:
           type: string
@@ -4421,9 +5416,7 @@ components:
     AppearanceImage:
       description: >-
         The image data to upload, along with an optional filename. Images must
-        be a data URL with binary image data in base 64 format.
-
-        See
+        be a data URL with binary image data in base 64 format. See
         https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URLs.
       type: object
       additionalProperties: false
@@ -4602,9 +5595,7 @@ components:
       description: >-
         The status of a developer in a portal. Approved developers can log in,
         create applications, and view and register for products they have access
-        to.
-
-        Pending, revoked, and rejected developers cannot login or view any
+        to. Pending, revoked, and rejected developers cannot login or view any
         non-public portal information, or create or modify applications or
         registrations.
       type: string
@@ -4619,9 +5610,7 @@ components:
       description: >-
         The status of an application registration request. Each registration is
         linked to a single version of a product, and application credentials
-        will
-
-        not grant access to the product version until the registration is
+        will not grant access to the product version until the registration is
         approved.
 
         Pending, revoked, and rejected registrations will not provide access to
@@ -4643,129 +5632,6 @@ components:
         - dark_mode
         - custom
       example: mint_rocket
-    CategoryResponseList:
-      additionalProperties: false
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/UUID'
-        internal_name:
-          type: string
-        external_name:
-          type: string
-        internal_description:
-          type: string
-        external_description:
-          type: string
-        has_content:
-          type: boolean
-        had_image:
-          type: boolean
-        created_at:
-          $ref: '#/components/schemas/CreatedAt'
-        updated_at:
-          $ref: '#/components/schemas/UpdatedAt'
-    GetCategoryResponse:
-      additionalProperties: false
-      type: object
-      properties:
-        internal_name:
-          type: string
-        external_name:
-          type: string
-        internal_description:
-          type: string
-        external_description:
-          type: string
-        image:
-          $ref: '#/components/schemas/AppearanceImage'
-        document:
-          $ref: '#/components/schemas/APIProductDocument'
-        created_at:
-          $ref: '#/components/schemas/CreatedAt'
-        updated_at:
-          $ref: '#/components/schemas/UpdatedAt'
-    CategoryWithDocumentRequest:
-      type: object
-      required:
-        - internal_name
-      properties:
-        internal_name:
-          type: string
-        external_name:
-          type: string
-        internal_description:
-          type: string
-        external_description:
-          type: string
-        image:
-          $ref: '#/components/schemas/AppearanceImage'
-        document:
-          $ref: '#/components/schemas/DocumentPayload'
-    PublishProductToPortalRequest:
-      type: object
-      required:
-        - api_product_id
-      properties:
-        api_product_id:
-          type: string
-          format: uuid
-        category_id:
-          type: string
-          format: uuid
-          nullable: true
-        public_catalog_enabled:
-          type: boolean
-          default: false
-    UpdatePortalProductRequest:
-      additionalProperties: false
-      type: object
-      properties:
-        category_id:
-          type: string
-          format: uuid
-          nullable: true
-        public_catalog_enabled:
-          type: boolean
-          nullable: false
-    GetPortalProductResponse:
-      additionalProperties: false
-      type: object
-      required:
-        - category_id
-        - public_catalog_enabled
-      properties:
-        category_id:
-          type: string
-          format: uuid
-          nullable: true
-        public_catalog_enabled:
-          type: boolean
-          nullable: false
-    DocumentPayload:
-      type: object
-      title: DocumentPayload
-      required:
-        - content
-        - title
-      properties:
-        title:
-          type: string
-          minLength: 1
-          description: document title
-          example: How to add a document to a category
-        content:
-          type: string
-          format: byte
-          description: Must be a base64 encoded string
-          example: YmFzZTY0LWVuY29kZWQgdGV4dCBzdHJpbmc=
-        metadata:
-          type: object
-          nullable: false
-          description: metadata of the document
-          example:
-            author: John Doe
-          default: {}
     PageMeta:
       type: object
       description: >-
@@ -4862,326 +5728,6 @@ components:
 
             provided as "Sentence case" for direct use in the UI.
           readOnly: true
-    UnauthorizedError:
-      type: object
-      properties:
-        status:
-          example: 401
-        title:
-          example: Unauthorized
-        type:
-          example: https://httpstatuses.com/401
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Invalid credentials
-      allOf:
-        - $ref: '#/components/schemas/BaseError'
-    ForbiddenError:
-      type: object
-      properties:
-        status:
-          example: 403
-        title:
-          example: Forbidden
-        type:
-          example: https://httpstatuses.com/403
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Forbidden
-      allOf:
-        - $ref: '#/components/schemas/BaseError'
-    ImageDataUri:
-      title: ImageDataUri
-      type: string
-      format: uri
-      pattern: >-
-        ^data:image/(png|jpeg|gif)(;base64)?,(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
-      description: >-
-        must be a data URL with base64 image data, e.g.,
-        data:image/jpeg;base64,<BASE64_IMAGE_DATA>
-      x-validation-message: >-
-        must be a data URL with base64 image data, e.g.,
-        data:image/jpeg;base64,<BASE64_IMAGE_DATA>
-      example: data:image/png,YW5faW1hZ2VfZmlsZQ==
-    BaseNode:
-      type: object
-      required:
-        - type
-      properties:
-        type:
-          type: string
-    AnyNode:
-      oneOf:
-        - $ref: '#/components/schemas/DocumentBlock'
-        - $ref: '#/components/schemas/HeadingBlock'
-        - $ref: '#/components/schemas/BlockQuoteBlock'
-        - $ref: '#/components/schemas/ParagraphBlock'
-        - $ref: '#/components/schemas/TextBlock'
-        - $ref: '#/components/schemas/BreakBlock'
-        - $ref: '#/components/schemas/CodeBlock'
-        - $ref: '#/components/schemas/ListBlock'
-        - $ref: '#/components/schemas/ListItemBlock'
-        - $ref: '#/components/schemas/Text'
-        - $ref: '#/components/schemas/Emphasis'
-        - $ref: '#/components/schemas/Code'
-        - $ref: '#/components/schemas/Link'
-        - $ref: '#/components/schemas/Image'
-        - $ref: '#/components/schemas/StrikeThrough'
-        - $ref: '#/components/schemas/TableBlock'
-        - $ref: '#/components/schemas/TableHeaderBlock'
-        - $ref: '#/components/schemas/TableCellBlock'
-        - $ref: '#/components/schemas/TableRowBlock'
-        - $ref: '#/components/schemas/TaskCheckbox'
-      discriminator:
-        propertyName: type
-        mapping:
-          document: '#/components/schemas/DocumentBlock'
-          heading: '#/components/schemas/HeadingBlock'
-          blockquote: '#/components/schemas/BlockQuoteBlock'
-          paragraph: '#/components/schemas/ParagraphBlock'
-          text_block: '#/components/schemas/TextBlock'
-          break: '#/components/schemas/BreakBlock'
-          code_block: '#/components/schemas/CodeBlock'
-          list: '#/components/schemas/ListBlock'
-          list_item: '#/components/schemas/ListItemBlock'
-          text: '#/components/schemas/Text'
-          emphasis: '#/components/schemas/Emphasis'
-          code: '#/components/schemas/Code'
-          link: '#/components/schemas/Link'
-          image: '#/components/schemas/Image'
-          strikethrough: '#/components/schemas/StrikeThrough'
-          task_checkbox: '#/components/schemas/TaskCheckbox'
-          table: '#/components/schemas/TableBlock'
-          table_header: '#/components/schemas/TableHeaderBlock'
-          table_cell: '#/components/schemas/TableCellBlock'
-          table_row: '#/components/schemas/TableRowBlock'
-    BlockNode:
-      allOf:
-        - $ref: '#/components/schemas/BaseNode'
-        - type: object
-          properties:
-            children:
-              description: List of children nodes of the current node
-              type: array
-              items:
-                $ref: '#/components/schemas/AnyNode'
-    DocumentBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-        - type: object
-          properties:
-            version:
-              type: string
-      description: content of the document
-      example:
-        type: doc
-        content:
-          - type: paragraph
-            content:
-              - type: text
-                text: Hello World
-    HeadingBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-        - type: object
-          properties:
-            level:
-              description: Level of the heading which maps to HTML <h> tag
-              type: number
-              minimum: 1
-              maximum: 6
-    BlockQuoteBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-    ParagraphBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-    TextBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-    BreakBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-    CodeBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-        - type: object
-          properties:
-            lang:
-              type: string
-    ListBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-        - type: object
-          properties:
-            isOrdered:
-              description: Defines if the list is ordered or not
-              type: boolean
-    ListItemBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-    Text:
-      allOf:
-        - $ref: '#/components/schemas/BaseNode'
-        - $ref: '#/components/schemas/BlockNode'
-        - type: object
-          properties:
-            text:
-              type: string
-            hardBreak:
-              description: >
-                If this property is true the end of this block should
-
-                be a carriage return and not concatenated to the next Text
-                block.
-              type: boolean
-            softBreak:
-              description: >
-                If this property is true the end of this block should should be
-
-                concatenated with a space caracter before the next block. This
-                is
-
-                the flag showing that the parsed markdown block was at the end
-                of
-
-                the line.
-              type: boolean
-    Emphasis:
-      allOf:
-        - $ref: '#/components/schemas/BaseNode'
-        - $ref: '#/components/schemas/BlockNode'
-        - type: object
-          properties:
-            level:
-              type: number
-              minimum: 1
-              maximum: 2
-              description: |
-                Level of emphasis
-                1 - italic
-                2 - bold
-    Code:
-      allOf:
-        - $ref: '#/components/schemas/BaseNode'
-        - $ref: '#/components/schemas/BlockNode'
-    Link:
-      allOf:
-        - $ref: '#/components/schemas/BaseNode'
-        - type: object
-          properties:
-            href:
-              description: Target url of the link
-              type: string
-            title:
-              description: Title of the link
-              type: string
-    Image:
-      allOf:
-        - $ref: '#/components/schemas/BaseNode'
-        - type: object
-          properties:
-            url:
-              description: Url of the image
-              type: string
-            alt:
-              description: Alternate tag of the image
-              type: string
-            title:
-              description: Title of the image
-              type: string
-    StrikeThrough:
-      allOf:
-        - $ref: '#/components/schemas/BaseNode'
-    TaskCheckbox:
-      allOf:
-        - $ref: '#/components/schemas/BaseNode'
-        - type: object
-          properties:
-            checked:
-              type: boolean
-              description: State of the checkbox
-          required:
-            - checked
-    AlignmentKind:
-      type: string
-      enum:
-        - left
-        - right
-        - center
-        - none
-    TableAlignments:
-      type: object
-      properties:
-        alignments:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/AlignmentKind'
-      required:
-        - alignments
-    TableBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-        - $ref: '#/components/schemas/TableAlignments'
-    TableHeaderBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-        - $ref: '#/components/schemas/TableAlignments'
-    TableCellBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-        - type: object
-          properties:
-            alignment:
-              $ref: '#/components/schemas/AlignmentKind'
-    TableRowBlock:
-      allOf:
-        - $ref: '#/components/schemas/BlockNode'
-        - $ref: '#/components/schemas/TableAlignments'
-    APIProductDocument:
-      type: object
-      title: ApiProductDocument
-      description: an api product document
-      required:
-        - id
-        - parent_document_id
-        - title
-        - slug
-        - status
-        - metadata
-        - ast
-        - updated_at
-        - created_at
-      properties:
-        id:
-          type: string
-          format: uuid
-        parent_document_id:
-          type: string
-          format: uuid
-          nullable: true
-        title:
-          type: string
-        slug:
-          type: string
-        status:
-          type: string
-          enum:
-            - unpublished
-            - published
-        metadata:
-          type: object
-        ast:
-          type: array
-          items:
-            $ref: '#/components/schemas/AnyNode'
-        created_at:
-          $ref: '#/components/schemas/CreatedAt'
-        updated_at:
-          $ref: '#/components/schemas/UpdatedAt'
     InvalidRules:
       description: invalid parameters rules
       type: string
@@ -5287,6 +5833,36 @@ components:
           example: Invalid request body
         invalid_parameters:
           $ref: '#/components/schemas/InvalidParameters'
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+    UnauthorizedError:
+      type: object
+      properties:
+        status:
+          example: 401
+        title:
+          example: Unauthorized
+        type:
+          example: https://httpstatuses.com/401
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Invalid credentials
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+    ForbiddenError:
+      type: object
+      properties:
+        status:
+          example: 403
+        title:
+          example: Forbidden
+        type:
+          example: https://httpstatuses.com/403
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Forbidden
       allOf:
         - $ref: '#/components/schemas/BaseError'
     NotFoundError:
@@ -5430,6 +6006,19 @@ components:
           oeq: some-potential,value
         example-6:
           neq: not-this-value
+    ImageDataUri:
+      title: ImageDataUri
+      type: string
+      format: uri
+      pattern: >-
+        ^data:image/(png|jpeg|x-icon|ico|icon|vnd.microsoft.icon|gif)(;base64)?,(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$
+      description: >-
+        must be a data URL with base64 image data, e.g.,
+        data:image/jpeg;base64,<BASE64_IMAGE_DATA>
+      x-validation-message: >-
+        must be a data URL with base64 image data, e.g.,
+        data:image/jpeg;base64,<BASE64_IMAGE_DATA>
+      example: data:image/png,YW5faW1hZ2VfZmlsZQ==
     ConflictError:
       type: object
       properties:
