@@ -1,10 +1,17 @@
 ---
 title: Upgrading Kong Gateway
+content_type: reference
+purpose: This guide walks you through upgrade paths for {{site.base_gateway}} and helps you prepare for an upgrade.
 ---
 
-This guide aims to assist you determining appropriate upgrade paths for {{site.base_gateway}} and offers useful advice along the way. 
+This guide aims to assist you determining appropriate upgrade paths for {{site.base_gateway}} and offers useful advice along the way.
 
-This guide presents four available upgrade strategies, nominating the best applicable strategy for each deployment mode Kong Gateway supports. Additionally, we list some fundamental factors that play important roles in the upgrade process, and also instruct how to back up and recover data.
+This guide presents four available upgrade strategies, nominating the best applicable strategy for each deployment mode {{site.base_gateway}} supports. Additionally, we list some fundamental factors that play important roles in the upgrade process, and also instruct how to back up and recover data.
+
+This guide uses the following terms in the context of Kong:
+* **Upgrade**: The overall process of switching from an older to a newer version of Kong. 
+* **Migration**: The migration of your data store data into a new environment. 
+For example, the process of moving 2.8.x data from an old PostgreSQL instance to a new one for 3.4.x is referred to as database migration.
 
 {:.note}
 > **Note**: If you are interested in upgrading between the {{site.ee_product_name}} 2.8.x and 3.4.x long-term 
@@ -12,21 +19,18 @@ support (LTS) versions, see the [LTS upgrade guide](/gateway/{{page.kong_version
 
 ## Upgrade journey overview
 
-### Preparation phase
+**Preparation phase**
 
-1. Work through any listed prerequisites.
-1. Back up your database or your declarative configuration files.
 1. Determine your upgrade path based on the release you're starting from and the release you're upgrading to.
+1. Back up your database or your declarative configuration files.
 1. Choose the right strategy for upgrading based on your deployment topology.
 1. Review the breaking changes for the version you're upgrading to.
 1. Test migration in a pre-production environment.
 
-### Performing the upgrade 
+**Performing the upgrade**
 
-The actual execution of the migration is dependent on the type of deployment you have with Kong. 
-In this guide, we offer recommendations for the type of strategy to use for each supported deployment type. 
-See the [Upgrade Strategies and Deployment Modes](#preparation-upgrade-strategies-and-deployment-modes) 
-section of this document to choose the right strategy for you.
+The actual execution of the upgrade is dependent on the type of deployment you have with Kong. 
+In this part of the upgrade journey, you will use the strategy you determined during the preparation phase.
 
 1. Execute your chosen upgrade strategy on dev.
 2. Move from dev to prod.
@@ -35,7 +39,7 @@ section of this document to choose the right strategy for you.
 
 Now, let's move on to preparation, starting determining your upgrade path.
 
-## Preparation: Upgrade paths
+## Preparation: Review upgrade paths
 
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
 distinction between major, minor, and patch versions.
@@ -47,45 +51,161 @@ The lowest version that Kong 3.0.x supports migrating from is 2.1.x.
 If you are running 1.x, upgrade to 2.1.0 first at minimum, then upgrade to 3.0.x from there.
 
 While you can upgrade directly to the latest version, be aware of any
-breaking changes between the 2.x and 3.x series noted in this document
+[breaking changes](/gateway/{{page.kong_version}}/breaking-changes/) 
+between the 2.x and 3.x series noted in the breaking changes 
 (both this version and prior versions) and in the
-[open-source (OSS)](https://github.com/Kong/kong/blob/release/3.0.x/CHANGELOG.md#300) and
-[Enterprise](/gateway/changelog/#3000) Gateway changelogs. Since {{site.base_gateway}}
+open-source (OSS) and Enterprise Gateway changelogs. Since {{site.base_gateway}}
 is built on an open-source foundation, any breaking changes in OSS affect all {{site.base_gateway}} packages.
 
 An upgrade path is subject to a wide spectrum of conditions, and there is not a one-size-fits-all way applicable to all customers, depending on the deployment modes, custom plugins, customers’ technical capabilities, hardware capacities, SLA, etc. Our engineers should discuss thoroughly and carefully with customers before taking any action.
 
-We encourage you to stay updated with Kong Gateway releases, as that helps maintain a smooth upgrade path. 
+We encourage you to stay updated with {{site.base_gateway}} releases, as that helps maintain a smooth upgrade path. 
 The smaller the version gap is, the less complex the upgrade process becomes.
 
 ### Guaranteed upgrade paths
 
-By default, Kong Gateway has migration tests between adjacent versions and hence the following upgrade paths are guaranteed officially:
+By default, {{site.base_gateway}} has migration tests between adjacent versions and hence the following upgrade paths are guaranteed officially:
 
 1. Between patch releases of the same major and minor version.
 2. Between adjacent minor releases of the same major version.
 3. Between LTS versions.
 
-    Kong Gateway plans to maintain LTS versions and guarantee upgrades between adjacent LTS versions. The current LTS in 2.x series is 2.8, and that in 3.x is 3.4. We may even maintain multiple LTS versions in the same major series.
+    {{site.base_gateway}} plans to maintain LTS versions and guarantee upgrades between adjacent LTS versions. 
+    The current LTS in the 2.x series is 2.8, and the current LTS in the 3.x series is 3.4.
 
-### Upgrade path exceptions
+    If you want to upgrade between the 2.8 and 3.4 LTS versions, 
+    see the [LTS Upgrade guide](/gateway/{{page.kong_version}}/upgrade/lts-upgrade/).
 
-#### Cassandra support
+The following table outlines various upgrade path scenarios to {{page.kong_version}} depending on the {{site.base_gateway}} version you are currently using:
 
-Kong has completely removed Cassandra support with 3.4.0.0, so affected customers can only upgrade to 3.3.x if Cassandra is the only choice. Please refer to the section Upgrade Considerations for migration from Cassandra to Postgres.
+{% if_version lte: 3.1.x %}
 
-#### Upgrades from 3.1.0.0 or 3.1.1.1
+| **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
+| ------------------- | ------------ | ---------------------------- | ---------------- |
+| 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#migrate-db). |
+| 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), then [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#migrate-db). |
+| 2.x–2.7.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#migrate-db). |
+| 2.8.x | Traditional | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#migrate-db). |
+| 2.8.x | Hybrid | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.1.3](#migrate-db). |
+| 2.8.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), and then [upgrade to 3.1.x](#migrate-db). |
+| 3.0.x | Traditional | Yes | [Upgrade to 3.1.x](#migrate-db). |
+| 3.0.x | Hybrid | Yes | [Upgrade to 3.1.x](#migrate-db). |
+| 3.0.x | DB less | Yes | [Upgrade to 3.1.x](#migrate-db). |
 
-There is a special case where you deploy Kong Gateway in hybrid mode and the version in use is 3.1.0.0 and 3.1.1.1. Kong Gateway removed the legacy WebSocket protocol, added a new WebSocket protocol between CP and DP in 3.1.0.0, and added back the legacy one in 3.1.1.2. So, please upgrade to 3.1.1.2 first before moving forward to higher versions. Additionally, the new WebSocket Protocol has been completely removed since 3.2.0.0 as shown in table 1. Please also read Memo: wRPC Deprecation and Upgrade Impacts.
+{% endif_version %}
 
-Kong Gateway Version | Legacy WebSocket (JSON) | New WebSocket (RPC)
+{% if_version eq: 3.2.x %}
+
+| **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
+| ------------------- | ------------ | ---------------------------- | ---------------- |
+| 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 2.x–2.7.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 2.8.x | Traditional | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 2.8.x | Hybrid | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 2.8.x | DB less | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 3.0.x | Traditional | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 3.0.x | Hybrid | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 3.0.x | DB less | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 3.1.x | Traditional | Yes | [Upgrade to 3.2.x](#migrate-db). |
+| 3.1.0.x-3.1.1.2 | Hybrid | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), and then [upgrade to 3.2.x](#migrate-db). |
+| 3.1.1.3 | Hybrid | Yes | [Upgrade to 3.2.x](#migrate-db). |
+| 3.1.x | DB less | Yes | [Upgrade to 3.2.x](#migrate-db). |
+
+{% endif_version %}
+
+{% if_version eq: 3.3.x %}
+
+| **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
+| ------------------- | ------------ | ---------------------------- | ---------------- |
+| 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 2.x–2.7.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 2.8.x | Traditional | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 2.8.x | Hybrid | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 2.8.x | DB less | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 3.0.x | Traditional | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 3.0.x | Hybrid | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 3.0.x | DB less | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 3.1.x | Traditional | No | [Upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 3.1.0.x-3.1.1.2 | Hybrid | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 3.1.1.3 | Hybrid | No | [Upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 3.1.x | DB less | No | [Upgrade to 3.2.x](#migrate-db), and then [upgrade to 3.3.x](#migrate-db). |
+| 3.2.x | Traditional | Yes | [Upgrade to 3.3.x](#migrate-db). |
+| 3.2.x | Hybrid | Yes | [Upgrade to 3.3.x](#migrate-db). |
+| 3.2.x | DB less | Yes | [Upgrade to 3.3.x](#migrate-db). |
+
+{% endif_version %}
+
+{% if_version eq: 3.4.x %}
+
+| **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
+| ------------------- | ------------ | ---------------------------- | ---------------- |
+| 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), [upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 2.x–2.7.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 2.8.x | Traditional | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 2.8.x | Hybrid | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 2.8.x | DB less | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.0.x | Traditional | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.0.x | Hybrid | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.0.x | DB less | No | [Upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.1.x | Traditional | No | [Upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.1.0.x-3.1.1.2 | Hybrid | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), [upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.1.1.3 | Hybrid | No | [Upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.1.x | DB less | No | [Upgrade to 3.2.x](#migrate-db), [upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.2.x | Traditional | No | [Upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.2.x | Hybrid | No | [Upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.2.x | DB less | No | [Upgrade to 3.3.x](#migrate-db), and then [upgrade to 3.4.x](#migrate-db). |
+| 3.3.x | Traditional | Yes | [Upgrade to 3.4.x](#migrate-db). |
+| 3.3.x | Hybrid | Yes | [Upgrade to 3.4.x](#migrate-db). |
+| 3.3.x | DB less | Yes | [Upgrade to 3.4.x](#migrate-db). |
+
+{% endif_version %}
+
+{% if_version eq: 3.5.x %}
+
+| **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
+| ------------------- | ------------ | ---------------------------- | ---------------- |
+| 2.x–2.7.x | Traditional | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/) (required for blue/green deployments only), upgrade to 3.4.x, and then upgrade to 3.5.x. |
+| 2.x–2.7.x | Hybrid | No | [Upgrade to 2.8.2.x](/gateway/2.8.x/install-and-run/upgrade-enterprise/), upgrade to 3.4.x, and then upgrade to 3.5.x. |
+| 2.x–2.7.x | DB less | No | [Upgrade to 3.0.x](/gateway/3.0.x/upgrade/), [upgrade to 3.1.x](/gateway/3.1.x/upgrade/#migrate-db), upgrade to 3.2.x, upgrade to 3.3.x upgrade to 3.4.x, and then upgrade to 3.5.x. |
+| 2.8.x | Hybrid | No | Upgrade to 3.4.x, and then upgrade to 3.5.x. |
+| 2.8.x | DB less | No | Upgrade to 3.4.x, and then upgrade to 3.5.x. |
+| 3.0.x | Traditional | No | Upgrade to 3.4.x, and then upgrade to 3.5.x. |
+| 3.0.x | Hybrid | No | Upgrade to 3.4.x, and then upgrade to 3.5.x. |
+| 3.0.x | DB less | No | Upgrade to 3.4.x, and then upgrade to 3.5.x. |
+| 3.1.x | Traditional | No | Upgrade to 3.4.x, and then upgrade to 3.5.x. |
+| 3.1.0.x-3.1.1.2 | Hybrid | No | [Upgrade to 3.1.1.3](/gateway/3.1.x/upgrade/#migrate-db), upgrade to 3.2.x, upgrade to 3.3.x, upgrade to 3.4.x, and then upgrade to 3.5.x. |
+| 3.1.1.3 | Hybrid | No | Upgrade to 3.4.x, and then upgrade to 3.5.x. |
+| 3.1.x | DB less | No | Upgrade to 3.4.x, and then upgrade to 3.5.x. |
+| 3.2.x | Traditional | No | Upgrade to 3.4.x, and then upgrade to 3.5.x. |
+| 3.2.x | Hybrid | No | Upgrade to 3.4.x, and then upgrade to 3.5.x. |
+| 3.2.x | DB less | No | Upgrade to 3.4.x, and then upgrade to 3.5.x. |
+| 3.3.x | Traditional | No | Upgrade to 3.4.x, and then upgrade to 3.5.x. |
+| 3.3.x | Hybrid | No | Upgrade to 3.4.x, and then upgrade to 3.5.x. |
+| 3.3.x | DB less | No | Upgrade to 3.4.x, and then upgrade to 3.5.x. |
+| 3.4.x | Traditional | Yes | Upgrade to 3.5.x. |
+| 3.4.x | Hybrid | Yes | Upgrade to 3.5.x. |
+| 3.4.x | DB less | Yes | Upgrade to 3.5.x. |
+
+{% endif_version %}
+
+### Upgrades from 3.1.0.0 or 3.1.1.1
+
+There is a special case if you deployed {{site.base_gateway}} in hybrid mode and the version in use is 3.1.0.0 and 3.1.1.1. {{site.base_gateway}} removed the legacy WebSocket protocol, added a new WebSocket protocol between CP and DP in 3.1.0.0, and added back the legacy one in 3.1.1.2. So, upgrade to 3.1.1.2 first before moving forward to higher versions. 
+
+Additionally, the new WebSocket Protocol has been completely removed since 3.2.0.0. 
+See the following table for the version breakdown:
+
+{{site.base_gateway}} Version | Legacy WebSocket (JSON) | New WebSocket (RPC)
 ---------------------|-------------------------|--------------------
 3.0.0.0 | Y | Y
 3.1.0.0 and 3.1.1.1 | N | Y
 3.1.1.2 | Y | Y
 3.2.0.0 | Y | N
 
-## Prepation: Choosing a backup strategy
+## Prepation: Choose a backup strategy
 
 The following instructions lay out how to back up your configuration for each supported deployment type. This is an important step prior to migrating. Each supported deployment mode has different instructions for backup.
 
@@ -96,17 +216,22 @@ The `kong migrations` commands in this guide are not reversible. We recommend ba
 
 Review the [Backup and Restore](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/) guide to prepare backups of your configuration.
 
-## Preparation: Upgrade strategies and deployment modes
+## Preparation: Choose an upgrade strategy based on deployment mode
 
-Upgrade strategies introduced in this section are generic and may or may not fit in with your deployment environment. We will nominate the best applicable strategies for each deployment mode in the section Choose Strategies, with detailed instructions.
+Though you could define their own upgrade procedures, nominated strategies from this section are recommended. Any custom upgrade requirements may require a well-tailored upgrade strategy. For example, if you would like only a small group of customer objects to be directed to the new cluster Y, please utilize the Canary plugin and a load balancer that supports traffic interception.
 
-Kong Gateway deployment with a database, including control planes:
-* Dual-cluster Upgrade
-* In-place Upgrade
-* Blue-green Upgrade (derived from an in-place upgrade)
+Whichever upgrade strategy you choose, you should account for management downtime for {{site.base_gateway}}, as Admin API operations and database updates are not allowed during the upgrade process.
 
-DB-less mode and data planes in a hybrid mode environment:
-* Rolling Upgrade
+Based on your deployment type, we recommend one of the following upgrade strategies.
+Carefully read the descriptions for each option to choose the upgrade strategy that works best for your situation.
+
+* Traditional or hybrid mode control planes:
+    * Dual-cluster upgrade
+    * In-place upgrade
+    * Blue-green upgrade (derived from an in-place upgrade)
+
+* DB-less mode or hybrid mode data planes:
+    * Rolling upgrade
 
 Here's a flow chart the breaks down how the decision process works:
 
@@ -117,9 +242,9 @@ See the following sections for breakdowns and links to each upgrade strategy gui
 
 ### Traditional mode
 
-A traditional mode deployment is when all Kong Gateway components are running in one environment, and there is no control plane/data plane separation.
+A traditional mode deployment is when all {{site.base_gateway}} components are running in one environment, and there is no control plane/data plane separation.
 
-You have two options when upgrading Kong Gateway in traditional mode:
+You have two options when upgrading {{site.base_gateway}} in traditional mode:
 * [Dual-cluster upgrade](/gateway/{{page.kong_version}}/upgrade/dual-cluster-upgrade): A new Kong cluster of version Y is deployed alongside the current version X, so that two clusters serve requests concurrently during the upgrade process.
 * [In-place upgrade](/gateway/{{page.kong_version}}/upgrade/in-place-upgrade): Similar to, but unlike the dual-cluster upgrade strategy, an in-place upgrade reuses the existing database and has to shut down the cluster X first, then configure the new cluster Y to point to the database.
 
@@ -127,62 +252,74 @@ We recommend using a dual cluster upgrade if the resources are available.
 
 ### DB-less mode
 
-DB-less mode is special in that each independent Kong node loads a copy of declarative Kong configuration data into memory, without persistent database storage, so failure of some nodes will not spread to other nodes.
+In DB-less mode, each independent Kong node loads a copy of declarative Kong configuration data into memory without persistent database storage, so failure of some nodes doesn't spread to other nodes.
 
-Deployments in this mode are recommended to adopt the [Rolling Upgrade](/gateway/{{page.kong_version}}/upgrade/rolling-upgrade/) strategy. As proposed, you could parse the validity of the declarative YAML contents with version Y, using the `deck validate` command.
-
-Backup of the declarative YAML file to a safe storage is still a recommended upgrade step.
+Deployments in this mode should use the [Rolling Upgrade](/gateway/{{page.kong_version}}/upgrade/rolling-upgrade/) strategy. You could parse the validity of the declarative YAML contents with version Y, using the `deck validate` command.
 
 ### Hybrid mode
 
-Hybrid mode comprises one or more control plane (CP) nodes, and one or more data plane (DP) nodes. Therefore, the recommended upgrade process is a combination of different upgrade strategies for each type of node, CP or DP.
+Hybrid mode comprises of one or more control plane (CP) nodes, and one or more data plane (DP) nodes. Therefore, the recommended upgrade process is a combination of different upgrade strategies for each type of node, CP or DP.
 
-The major challenge with a hybrid mode upgrade is the communication between CP and DP. As hybrid mode requires the minor version of CP to be no less than that of DP, you must upgrade CP nodes before DP nodes. Therefore, the upgrade will be carried out in two phases, as follows.
+The major challenge with a hybrid mode upgrade is the communication between CP and DP. As hybrid mode requires the minor version of CP to be no less than that of DP, you must upgrade CP nodes before DP nodes. Therefore, the upgrade must be carried out in two phases:
 
-* Upgrade CP first according to the recommendations in the section [Traditional Mode](#traditional-mode), while DP nodes are still serving API requests.
-* Upgrade DP next with exactly the same recommendations in the section [DB-less Mode](#db-less-mode). Please set new DP nodes pointing to the new CP to avoid version conflicts.
+1. First, upgrade the CP according to the recommendations in the section [Traditional Mode](#traditional-mode), while DP nodes are still serving API requests.
+2. Next, upgrade DP nodes using the recommendations from the section [DB-less Mode](#db-less-mode). Point the new DP nodes to the new CP to avoid version conflicts.
 
+The role decoupling feature between CP and DP enables DP nodes to serve API requests while upgrading CP. 
 With this method, there is no business downtime.
 
-The role decoupling feature between CP and DP enables DP nodes to serve API requests while upgrading CP. Consequently, upgrade of hybrid mode deployments bring no downtime to business.
+Custom plugins (either your own plugins or third-party plugins that are not shipped with {{site.base_gateway}})
+need to be installed on both the control plane and the data planes in hybrid mode. Install the
+plugins on the control plane first, and then the data planes.
 
-We will present the two phases in detail in the following two subsections.
+See the following sections for a breakdown of the options for hybrid mode deployments.
 
 #### Control planes
 
-As described in the previous section, we must upgrade the CP nodes before the DP nodes. CP nodes serve an Admin-only role and demand database support (e.g. PostgreSQL). So, we are free to select the same upgrade strategies nominated for the Traditional Mode, namely Dual-Cluster Strategy or In-place Strategy as described in figure 2 and figure 3 respectively.
+CP nodes must be upgraded before DP nodes. CP nodes serve an Admin-only role and require database support. So, you can select from the same upgrade strategies nominated for traditional mode, namely Dual-Cluster Strategy or In-place Strategy, as described in figure 2 and figure 3 respectively.
 
-Figure 2, by Dual-Cluster Strategy, has a new CP Y deployed alongside with current CP X, while current DP nodes X are still serving API requests.
-
+Using the dual-cluster strategy to upgrade a CP:
 ![Dual-cluster hybrid upgrade workflow](/assets/images/products/gateway/upgrade/dual-cluster-hybrid-upgrade.png)
-> _Figure 2: Upgrade CP by Dual-Cluster Strategy_
+> _Figure 2: Upgrade CP using the dual-cluster strategy: The diagram shows a new CP Y deployed alongside with current CP X, while current DP nodes X are still serving API requests._
 
-In figure 3, current CP X is replaced with a new CP Y. The upgrade is more or less the same as that in figure 2, but the database is reused by the new CP Y, and current CP X is shut down.
-
+Using an in-place strategy to upgrade a CP:
 ![In-place hybrid upgrade workflow](/assets/images/products/gateway/upgrade/in-place-hybrid-upgrade.png)
-> _Figure 3: Upgrade CP by In-place Strategy_
+> _Figure 3: Upgrade CP using the in-place strategy: The diagram shows how the current CP X is replaced with a new CP Y. The upgrade is mostly the same as that in figure 2, but the database is reused by the new CP Y, and current CP X is shut down._
 
-From the two figures, you can find DP nodes X remain connection to current CP node X, or alternatively switch to the new CP node Y. Kong Gateway guarantees that new minor versions of CP are compatible with old minor versions of DP, so that you can temporarily set DP nodes X pointing to the new CP node Y. This allows the upgrade process to be conducted over a longer period of time or to be paused. We do not recommend the combination between new version of CP nodes and old version of DP nodes as a long-term production deployment.
+From the two figures, you can see that DP nodes X remain connected to the current CP node X, or alternatively switch to the new CP node Y. 
 
-After the CP upgrade, current X can be decommissioned, although you can delay it to the very end of DP upgrade.
+{{site.base_gateway}} guarantees that new minor versions of CPs are compatible with old minor versions of DP, so that you can temporarily set DP nodes X pointing to the new CP node Y.
+This lets you pause the upgrade process if needed, or conduct it over a longer period of time. 
+
+After the CP upgrade, cluster X can be decommissioned. You can delay this task to the very end of the DP upgrade.
+
+{:.important}
+> We do not recommend the combination of new version of CP nodes and old version of DP nodes as a long-term production deployment. This setup is meant to be temporary, to be used only during the upgrade process.
 
 #### Data planes
 
-Once the CP nodes are upgraded, let’s move on to upgrade the DP nodes. The only strategy for DP upgrades is the Rolling Upgrade.
+Once the CP nodes are upgraded, you can move on to upgrade the DP nodes. 
+The only supported upgrade strategy for DP upgrades is the rolling upgrade.
 
-Figure 4 and 5 below are the counterparts of figure 2 and 3 respectively. The background colour of current CP X and/or current DB is white, signalling that the CP part has already been upgraded and might have been decommissioned.
+The following diagrams, figure 4 and 5, are the counterparts of figure 2 and 3 respectively. 
 
+Using the dual-cluster strategy with a rolling upgrade workflow:
 ![Dual-cluster and rolling upgrade workflow](/assets/images/products/gateway/upgrade/dual-cluster-rolling-hybrid-upgrade.png)
-> _Figure 4: Upgrade by Dual-Cluster Strategy and Rolling Strategy_
+> _Figure 4: Upgrade by Dual-Cluster Strategy and Rolling Strategy: The diagram shows a new CP Y deployed alongside with current CP X, while current DP nodes X are still serving API requests._
+_In the image, the background colour of the current CP X and/or current DB is white instead of blue, signalling that the CP part has already been upgraded and might have been decommissioned._
 
-The Rolling Upgrade Strategy applied to the DP side is self-explanatory, and rollback is quite fast.
-
+Using the in-place cluster strategy with a rolling upgrade workflow:
 ![In-place and rolling upgrade workflow](/assets/images/products/gateway/upgrade/in-place-rolling-hybrid-upgrade.png)
-> _Figure 5: Upgrade by In-place Strategy and Rolling Strategy_
+> _Figure 5: Upgrade by in-place strategy and rolling strategy_
 
-## Next steps
+## Prepation: Review breaking changes
 
-Once you have reviewed everything and chosen a strategy, proceed to upgrade using your chosen strategy:
+Review the [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/) for the release or releases that you are upgrading to. Make any preparations or adjustments as directed in the breaking changes.
+
+## Perform the upgrade
+
+Once you have reviewed everything and chosen a strategy, proceed to upgrade {{site.base_gateway}} 
+using your chosen strategy:
 
 * [Dual-cluster upgrade](/gateway/{{page.kong_version}}/upgrade/dual-cluster/)
 * [In-place upgrade](/gateway/{{page.kong_version}}/upgrade/in-place/)

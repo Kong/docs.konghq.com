@@ -29,8 +29,10 @@ items:
         absolute_url: true
       - text: Breaking Changes	
         items:
-          - text: Kong Gateway 3.4.x	
+          - text: List of versions
             url: /breaking-changes/
+          - text: Kong Gateway 3.4.x	
+            url: /breaking-changes/34x/
             src: /gateway/breaking-changes/34x
           - text: Kong Gateway 3.3.x	
             url: /breaking-changes/33x/
