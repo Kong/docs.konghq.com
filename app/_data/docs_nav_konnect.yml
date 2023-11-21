@@ -9,6 +9,8 @@
       url: /network-resiliency/
     - text: Port and Network Requirements
       url: /network/
+    - text: Geographic Regions
+      url: /geo/
     - text: Compatibility
       url: /compatibility/
     - text: Stages of Software Availability

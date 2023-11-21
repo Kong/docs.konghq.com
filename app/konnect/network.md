@@ -41,17 +41,42 @@ Data plane nodes initiate the connection to the {{site.konnect_short_name}} cont
 They require access through firewalls to communicate with the control plane.
 
 To let a data plane node request and receive configuration, and send telemetry data,
-add the following hostnames to the firewall allowlist:
+add the following hostnames to the firewall allowlist (depending on the [geographic regions](/konnect/geo) you use).
 
-* `cloud.konghq.com`: The {{site.konnect_short_name}} platform.
-* `<region>.api.konghq.com`: The {{site.konnect_short_name}} API.
-  Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations.
-  Region can be `us`, `eu`, or `global`.
-* `<controlPlaneId>.<region>.cp0.konghq.com`: Handles configuration for a control plane.
-  Data plane nodes connect to this host to receive configuration updates.
-  This hostname is unique to each organization and control plane.
-* `<controlPlaneId>.<region>.tp0.konghq.com`: Gathers telemetry data for a control plane.
-  This hostname is unique to each organization and control plane.
+### AU geo
+
+| Hostname      | Description |
+|:----------|:----------|
+| `cloud.konghq.com`    | The {{site.konnect_short_name}} platform. |
+| `global.api.konghq.com` | The {{site.konnect_short_name}} API for platform authentication, identity, permissions, teams, and organizational entitlements and settings. |
+| `au.api.konghq.com` | The {{site.konnect_short_name}} API for the AU geo. Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations. |
+| `PORTAL_ID.au.portal.konghq.com` | The URL for the Dev Portal in the AU geo. |
+| `CONTROL_PLANE_ID.au.cp0.konghq.com` | Handles configuration for a control plane in the AU geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_ID.au.tp0.konghq.com` | Gathers telemetry data for a control plane in the AU geo. This hostname is unique to each organization and control plane. |
+
+### EU geo
+
+| Hostname      | Description |
+|:----------|:----------|
+| `cloud.konghq.com`    | The {{site.konnect_short_name}} platform. |
+| `global.api.konghq.com` | The {{site.konnect_short_name}} API for platform authentication, identity, permissions, teams, and organizational entitlements and settings. |
+| `eu.api.konghq.com` | The {{site.konnect_short_name}} API for the EU geo. Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations. |
+| `PORTAL_ID.eu.portal.konghq.com` | The URL for the Dev Portal in the EU geo. |
+| `CONTROL_PLANE_ID.eu.cp0.konghq.com` | Handles configuration for a control plane in the EU geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_ID.eu.tp0.konghq.com` | Gathers telemetry data for a control plane in the EU geo. This hostname is unique to each organization and control plane. |
+
+### US geo
+
+| Hostname      | Description |
+|:----------|:----------|
+| `cloud.konghq.com`    | The {{site.konnect_short_name}} platform. |
+| `global.api.konghq.com` | The {{site.konnect_short_name}} API for platform authentication, identity, permissions, teams, and organizational entitlements and settings. |
+| `us.api.konghq.com` | The {{site.konnect_short_name}} API for the US geo. Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations. |
+| `PORTAL_ID.us.portal.konghq.com` | The URL for the Dev Portal in the US geo. |
+| `CONTROL_PLANE_ID.us.cp0.konghq.com` | Handles configuration for a control plane in the US geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_ID.us.tp0.konghq.com` | Gathers telemetry data for a control plane in the US geo. This hostname is unique to each organization and control plane. |
+
+### Find configuration and telemetry hostnames
 
 You can find the configuration and telemetry hostnames through the Gateway Manager:
 
@@ -78,12 +103,42 @@ You can find the configuration and telemetry hostnames through the Gateway Manag
 
 Data plane nodes initiate the connection to {{site.konnect_short_name}} APIs to report Analytics data.
 
-The following hostnames must be allowed through firewalls to enable these connections:
+Add the following hostnames to the firewall allowlist (depending on the [geographic regions](/konnect/geo) you use).
 
-* `cloud.konghq.com`: The {{site.konnect_short_name}} platform.
-* `<region>.api.konghq.com`: The {{site.konnect_short_name}} API.
-* `<controlPlaneId>.<region>.tp0.konghq.com`: Telemetry endpoint for a control plane, required for Analytics.
-  This hostname is unique to each organization and control plane. 
+### AU geo
+
+| Hostname      | Description |
+|:----------|:----------|
+| `cloud.konghq.com`    | The {{site.konnect_short_name}} platform. |
+| `global.api.konghq.com` | The {{site.konnect_short_name}} API for platform authentication, identity, permissions, teams, and organizational entitlements and settings. |
+| `au.api.konghq.com` | The {{site.konnect_short_name}} API for the AU geo. Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations. |
+| `PORTAL_ID.au.portal.konghq.com` | The URL for the Dev Portal in the AU geo. |
+| `CONTROL_PLANE_ID.au.cp0.konghq.com` | Handles configuration for a control plane in the AU geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_ID.au.tp0.konghq.com` | Gathers telemetry data for a control plane in the AU geo. This hostname is unique to each organization and control plane. |
+
+### EU geo
+
+| Hostname      | Description |
+|:----------|:----------|
+| `cloud.konghq.com`    | The {{site.konnect_short_name}} platform. |
+| `global.api.konghq.com` | The {{site.konnect_short_name}} API for platform authentication, identity, permissions, teams, and organizational entitlements and settings. |
+| `eu.api.konghq.com` | The {{site.konnect_short_name}} API for the EU geo. Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations. |
+| `PORTAL_ID.eu.portal.konghq.com` | The URL for the Dev Portal in the EU geo. |
+| `CONTROL_PLANE_ID.eu.cp0.konghq.com` | Handles configuration for a control plane in the EU geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_ID.eu.tp0.konghq.com` | Gathers telemetry data for a control plane in the EU geo. This hostname is unique to each organization and control plane. |
+
+### US geo
+
+| Hostname      | Description |
+|:----------|:----------|
+| `cloud.konghq.com`    | The {{site.konnect_short_name}} platform. |
+| `global.api.konghq.com` | The {{site.konnect_short_name}} API for platform authentication, identity, permissions, teams, and organizational entitlements and settings. |
+| `us.api.konghq.com` | The {{site.konnect_short_name}} API for the US geo. Necessary if you are using decK in your workflow, decK uses this API to access and apply configurations. |
+| `PORTAL_ID.us.portal.konghq.com` | The URL for the Dev Portal in the US geo. |
+| `CONTROL_PLANE_ID.us.cp0.konghq.com` | Handles configuration for a control plane in the US geo. Data plane nodes connect to this host to receive configuration updates. This hostname is unique to each organization and control plane. |
+| `CONTROL_PLANE_ID.us.tp0.konghq.com` | Gathers telemetry data for a control plane in the US geo. This hostname is unique to each organization and control plane. |
+
+### Find configuration and telemetry hostnames
 
 You can find the Telemetry hostname through the Gateway Manager:
 
@@ -102,4 +157,4 @@ You can find the Telemetry hostname through the Gateway Manager:
 
 ### Mesh Manager
 
-If you plan to use [Mesh Manager](/konnect/mesh-manager/) to manage your Kong service mesh, you must add the `{region}.mesh.sync.konghq.com:443` hostname to your firewall allowlist. The region can be `us`, `eu`, or `global`.
+If you plan to use [Mesh Manager](/konnect/mesh-manager/) to manage your Kong service mesh, you must add the `{geo}.mesh.sync.konghq.com:443` hostname to your firewall allowlist. The geo can be `au`, `eu`, `us`, or `global`.
