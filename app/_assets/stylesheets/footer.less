@@ -27,7 +27,7 @@
   #footer-form-button {
     width: 25%;
     font-size: 16px;
-    font-weight: normal;
+    font-weight: 500;
     color: #fff;
     background-color: #1155cb;
     height: 40px;
@@ -48,12 +48,6 @@
     #footer-form-button {
       padding-left: 5px;
       padding-right: 5px;
-    }
-  }
-
-  @media (max-width: 1045px) {
-    #footer-form-button {
-      font-size: 14px;
     }
   }
 
@@ -117,7 +111,7 @@
         justify-content: space-between;
 
         @media (min-width: @grid-width-xl) {
-          gap: 50px;
+          column-gap: 50px;
         }
       }
 
@@ -173,7 +167,6 @@
             color: #fff;
             border-radius: 3px;
             font-size: 16px;
-            font-weight: 400;
             font-family: Roboto;
             padding-left: 15px;
             padding-right: 15px;
@@ -306,7 +299,7 @@
       display: block;
     }
     img {
-      width: 100%;
+      width: 90%;
       max-height: 100%;
       border: 0;
       margin-bottom: 20px;
@@ -340,7 +333,8 @@
     font-size: 15px;
 
     .container {
-      max-width: 100%;
+      margin: auto;
+      max-width: 1280px;
       padding: 15px 0px;
       display: flex;
       justify-content: space-between;
@@ -377,16 +371,6 @@
             right: 0;
           }
         }
-      }
-    }
-    @media (min-width: 1279px) {
-      .container {
-        width: 1250px;
-      }
-    }
-    @media (min-width: 1379px) {
-      .container {
-        width: 1320px;
       }
     }
     .social-link {
@@ -465,7 +449,7 @@
     display: flex;
     flex-grow: 2;
 
-    @media (min-width: @grid-width-xl) {
+    @media (min-width: 1148px) {
       padding-top: 72px;
     }
   }
