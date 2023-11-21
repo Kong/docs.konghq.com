@@ -138,7 +138,7 @@ Expressions language support a rich set of operators that can be performed on va
 | `not in`       | Not in                | Field value is not inside the constant value                                              |
 | `contains`     | Contains              | Field value contains the constant value                                                   |
 | `&&`           | And                   | Returns `true` if **both** expressions on the left and right side evaluates to `true` |
-| `\|\|`         | Or                    | Returns `true` if **any** expressions on the left and right side evaluates to `true`  |
+| `||`           | Or                    | Returns `true` if **any** expressions on the left and right side evaluates to `true`  |
 | `(Expression)` | Parenthesis           | Groups expressions together to be evaluated first                                     |
 
 ### Extended descriptions
