@@ -7,10 +7,7 @@ The {{site.base_gateway}} software is governed by the
 {{site.ce_product_name}} is licensed under an
 [Apache 2.0 license](https://github.com/Kong/kong/blob/master/LICENSE).
 
-{:.note}
-> This page guides you through installing {{ site.base_gateway }} in traditional mode, where it acts as both the control plane and data plane. Running in this mode may have a small performance impact.
-> <br><br>
-> We recommend using [{{site.konnect_short_name}}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=install-ubuntu) as your control plane to allow your data plane to run at maximum performance and decrease your deployment complexity.
+{% include_cached /md/gateway/install-traditional-mode.md %}
 
 ## Prerequisites
 
@@ -39,7 +36,7 @@ Once you have everything you need, choose an installation path:
 
 ## Installation
 
-{% include /md/gateway/install-linux-os.md kong_version=page.kong_version versions_ce=page.versions.ce versions_ee=page.versions.ee %}
+{% include_cached /md/gateway/install-linux-os.md kong_version=page.kong_version versions_ce=page.versions.ce versions_ee=page.versions.ee %}
 
 ## Advanced installation
 
