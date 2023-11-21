@@ -25,6 +25,8 @@ in some other way, the new license will not apply.
 
 ## List all licenses
 
+Listing licenses depends on the license having been added using the Admin API previously. If a license was not added using the Admin API then the response seen will be as displayed on the `Response if there is no license` tab below.
+
 Submit the following request:
 
 ```bash
