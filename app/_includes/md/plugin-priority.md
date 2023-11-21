@@ -74,6 +74,7 @@ basic-auth                  | 1100
 openid-connect              | 1050
 hmac-auth                   | 1030
 jwt-signer                  | 1020
+saml                        | 1010
 request-validator           | 999
 websocket-size-limit        | 999
 websocket-validator         | 999
@@ -90,7 +91,6 @@ rate-limiting               | 910
 rate-limiting-advanced      | 910
 graphql-rate-limiting-advanced | 902
 response-ratelimiting       | 900
-saml                        | 900
 oas-validation              | 850
 route-by-header             | 850
 jq                          | 811
