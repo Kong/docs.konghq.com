@@ -4,54 +4,89 @@ content_type: how-to
 purpose: Learn how to perform a dual-cluster upgrade for Kong Gateway
 ---
 
-The dual-cluster upgrade strategy is a {{site.base_gateway}} upgrade option, used primarily for traditional mode deployments and for control planes in hybrid mode. 
+The dual-cluster upgrade strategy is a {{site.base_gateway}} upgrade option used primarily for traditional mode deployments and for control planes in hybrid mode. 
+
 With a dual-cluster upgrade, you deploy a new cluster of version Y alongside the current version X, so that two clusters serve requests concurrently during the upgrade process.
 
 ![Dual-cluster upgrade workflow](/assets/images/products/gateway/upgrade/dual-cluster-upgrade.png)
 > _Figure 1: Dual-cluster upgrade workflow_
+
+This method has limitations on automatically generated runtime metrics that rely on the database. 
+For example, if the Rate-Limiting-Advanced (RLA) plugin is configured to store request counters in 
+the database, the counters between database X and database Y are not synchronized. 
+The impact scope depends on the `window_size` parameter of the plugin. 
+{% if_version eq:3.4.x %}
+Similarly, the same limitation applies to Vitals if you have a large amount of buffered metrics in 
+PostgreSQL.
+{% endif_version %}
+{% if_version lte:3.3.x %}
+Similarly, the same limitation applies to Vitals if you have a large amount of buffered metrics in 
+PostgreSQL or Cassandra.
+{% endif_version %}
 
 ## Prerequisites
 
 * You have reviewed the [general upgrade guide](/gateway/{{page.kong_version}}/upgrade/).
 * You have enough hardware/resources to temporarily run an additional {{site.base_gateway}} cluster.
 * You have chosen this upgrade option because you have a traditional deployment, or you need 
-to upgrade the control planes (CPs) in a hybrid mode deployment
+to upgrade the control planes (CPs) in a hybrid mode deployment.
 
 ## Upgrade steps
 
-Upgrade is achieved by gradually adjusting traffic ratio between the two clusters. The following are the steps required to perform an upgrade using this strategy.
+This guide refers to the old version as cluster X and the new version as cluster Y.
 
-1. Stop any Kong configuration updates (e.g. Admin API calls), which is critical to guarantee the data consistency between cluster X and cluster Y.
+A dual-cluster upgrade involves gradually adjusting the traffic ratio between the two clusters. 
+See the following steps to perform an upgrade using this strategy.
 
-2. Back up the data of the current version X as instructed in section Backup and Restore.
+1. Stop any {{site.base_gateway}} configuration updates (e.g. Admin API calls). 
+This is critical to guarantee data consistency between cluster X and cluster Y.
 
-    1. Back up the existing database if Kong Gateway is deployed in Traditional or Hybrid mode.
-    2. Dump the declarative Kong configuration data using deck dump.
-    3. Back up keyring materials if the Keyring and Data Encryption feature is enabled.
-    4. Any other applicable static data (e.g. `kong.conf`).
+    To keep data consistency between the two clusters, you must not execute any write operations through Admin API, Kong Manager, or direct database updates. 
+    This upgrade strategy is the safest of all available strategies and ensures that there is no planned business downtime during the upgrade process.
 
-3. Evaluate factors that may impact the upgrade, as described in [Upgrade Considerations]. You may have to consider customization of both `kong.conf` and Kong configuration data.
+2. Back up data from the current cluster Y by following the 
+[Backup guide](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/).
 
-4. Deploy a new Kong cluster of version Y.
-    1. Install a new Kong cluster of version Y as instructed at Kong Gateway Installation Options.
+3. Evaluate factors that may impact the upgrade, as described in [Upgrade Considerations].
+You may have to consider customization of both `kong.conf` and Kong configuration data.
+
+4. Evaluate any [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/) that may 
+have happened between releases.
+
+5. Deploy a new Kong cluster of version Y:
+
+    1. Install a new {{site.base_gateway}} cluster running version Y as instructed in the 
+    [{{site.base_gateway Installation Options](/gateway/{{page.kong_version}}/install/) and 
+    point it at the existing database for cluster X.
+
     2. Install a new database of the same version.
-    3. Restore the backup data from step 2 above to the new database.
-    4. Configure cluster Y to point to the new database.
+
+    3. [Restore the backup data](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/#restore)
+    to the new database.
+
+    4. Configure the new cluster Y to point to the new database.
+
     5. Start cluster Y.
-    6. Perform appropriate staging tests against version Y to make sure it works for all use cases. For instance, does the plugin key-auth-enc authenticate requests properly? If the outcome is not as expected, please validate step 3.
 
-5. Divert traffic from cluster X to Y. 
+    6. Perform staging tests against version Y to make sure it works for all use cases. 
+    
+        For instance, does the Key Authentication plugin authenticate requests properly?
+        
+        If the outcome is not as expected, look over the 
+        [upgrade considerations](/gateway/{{page.kong_version}}/upgrade-considerations/) and the 
+        [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/)
+        again to see if you missed anything.
 
-    This is usually done gradually and incrementally, depending on the risk profile of the deployment. Any load balancers that support traffic splitting will suffice, like DNS, Nginx, Kubernetes rollout mechanisms, etc.
+6. Divert traffic from old cluster X to new cluster Y.
+    
+    This is usually done gradually and incrementally, depending on the risk profile of the deployment. 
+    Any load balancers that support traffic splitting will work here, such as DNS, Nginx, Kubernetes rollout mechanisms, and so on.
 
-6. Actively monitor all proxy metrics.
+7. Actively monitor all proxy metrics.
 
-7. If any issues are found, rollback by setting all traffic to cluster X, investigate issues and repeat steps above.
+8. If any issues arise, roll back by setting all traffic to cluster X, investigate the issues, 
+and repeat the steps above.
 
-8. When there are no more issues, decommission cluster X to complete the upgrade. Write updates to Kong can now be performed, though we suggest you keep monitoring metrics for a while.
+9. When there are no more issues, decommission the old cluster X to complete the upgrade. 
 
-To keep data consistency between the two clusters, you must not execute any write operations through Admin API, Kong Manager or direct database updates. This upgrade strategy is the safest of all available strategies and ensures that there is no planned business downtime during the upgrade process.
-
-This method has limitations on automatically generated runtime metrics that rely on the database. For example, if the Rate-Limiting-Advanced (RLA) plugin is configured to store request counters in the database, the counters between database X and database Y are not synchronized. The impact scope depends on the “window_size” parameter of the plugin. Similarly, the same limitation applies to Vitals if you have a large amount of buffered metrics in Postgres or Cassandra.
-
-The dual-cluster upgrade strategy was previously named the “DB-clone Upgrade Strategy” in previous versions.
+Write updates to Kong can now be performed, though we suggest you keep monitoring metrics for a while.
