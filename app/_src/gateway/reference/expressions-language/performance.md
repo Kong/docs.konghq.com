@@ -63,7 +63,7 @@ evaluate at runtime and hard to optimize. Therefore, there are some common
 scenarios where regex usages can be eliminated, resulting in significantly
 better matching performance.
 
-When performing exact matches (non-prefix patches) of a request path, use the `==` operator
+When performing exact matches (non-prefix matching) of a request path, use the `==` operator
 instead of regex.
 
 **Faster performance example:**

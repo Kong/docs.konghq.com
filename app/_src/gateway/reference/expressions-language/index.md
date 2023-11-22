@@ -125,7 +125,7 @@ You can define regex capture groups in any regex operation which will be made av
 later for plugins to use. Currently, this is only supported with the `http.path` field:
 
 ```
-http.path ~ "/foo/(?P<component>.+)"
+http.path ~ r#"/foo/(?P<component>.+)"#
 ```
 
 The matched value of `component` will be made available later to plugins such as
