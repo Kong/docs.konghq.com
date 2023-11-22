@@ -268,8 +268,10 @@ header.navbar-v2 {
       align-items: center;
       margin: 0 20px 0 30px;
       border-radius: 100px;
-      width: 208px;
-      min-width: 98px;
+
+      @media (min-width: 400px) {
+        min-width: 98px;
+      }
 
       @media (min-width: 1600px) {
         width: 368px;
