@@ -20,7 +20,7 @@ module Jekyll
         'oas' => ['Kong Gateway', 'Kong Konnect']
       }.freeze
 
-      def self.make_for(page)
+      def self.make_for(page) # rubocop:disable Metrics/MethodLength
         if page.data['edition']
           Doc.new(page)
         elsif page.url.start_with?('/hub')
