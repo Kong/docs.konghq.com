@@ -241,6 +241,10 @@ items:
         items:
           - text: Upgrade Kong Gateway 3.x.x
             url: /upgrade/
+          - text: Backup and Restore
+            url: /upgrade/backup-and-restore/
+          - text: Upgrade Considerations
+            url: /upgrade/upgrade-considerations/
           - text: Upgrade Strategies
             items:
               - text: Dual-Cluster Upgrade
@@ -251,10 +255,6 @@ items:
                 url: /upgrade/blue-green/
               - text: Rolling Upgrade
                 url: /upgrade/rolling-upgrade/
-          - text: Backup and Restore
-            url: /upgrade/backup-and-restore/
-          - text: Upgrade Considerations
-            url: /upgrade/upgrade-considerations/
           - text: Upgrade from 2.8 LTS to 3.4 LTS
             url: /upgrade/lts-upgrade/
           - text: Migrate from OSS to Enterprise
