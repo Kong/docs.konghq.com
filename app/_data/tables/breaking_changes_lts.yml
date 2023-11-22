@@ -2,42 +2,42 @@ categories:
   - name: New feature
     key: 1
     desc: |
-      A new feature introduced in a 3.x release. It may affect existing configurations.
+      The following table lists new features introduced in a 3.x release. 
+      These features may affect existing configurations.
   - name: Removed or deprecated
     key: 2
     desc: |
-      Feature or behavior is removed and we will not add it back.
-      By updating the setting accordingly, you can any potential 
-      issues that may arise from using the deprecated alias and ensure 
-      that their Kong instance functions correctly with the most recent changes and improvements. 
+      The feature or behaviors in the following table have been permanently removed.
+      By updating settings based on the table below, you can avoid any potential 
+      issues that may arise from using deprecated aliases and ensure
+      that your Kong instance functions correctly with the most recent changes and improvements.
       
       Keeping configurations up to date is essential for maintaining the system's stability, 
-      security, and optimal performance. 
-      
-      Customers need to understand the notification part and compare the
-      settings with the customer's real settings.
+      security, and optimal performance.
   - name: Compatible
     key: 3
     desc: |
-      Behavior change that may cause the customer's DB config or kong.conf to fail. 
+      The following table lists behavior changees that may cause your database configuration 
+      or `kong.conf` to fail. 
       This includes deprecated (but not removed) features.
   - name: Debateable
     key: 4
     desc: |
-      Customer might choose to seek assistance from the Kong, which offers paid services and 
-      additional support. 
+      Upgrades using the following features might require help from Kong.
       
-      Kong team provides advanced features and professional services tailored to meet 
+      Kong's support team provides advanced features and professional services tailored to meet 
       specific business needs, including data migration, custom plugin integration, 
       and seamless coordination with existing settings PDK.
   - name: Notifications of changed behavior
     key: 5
     desc: |
-      Changes that you should be aware of, but require no action.
+      The following table lists changes that you should be aware of, but require no action.
 entries:
   - area: Plugins
     category: 1
     description: |
+      **Request Validator plugin**
+
       The Request Validator plugin now allows requests carrying a 
       `content-type` with a parameter to match its `content-type` without a parameter.
     action: |
@@ -55,7 +55,7 @@ entries:
   - area: DB config
     category: 1
     description: |
-      Bumped the version number of declarative configuration to 3.0 for changes on route.path. 
+      Bumped the version number of declarative configuration to 3.0 for changes on `route.path`.
       
       Declarative configurations using older versions are upgraded to 3.0 during migrations.
     action: |
@@ -72,20 +72,20 @@ entries:
       The default value of `lua_ssl_trusted_certificate` has changed to system to automatically load the
       trusted CA list from the system CA store. 
     action: |
-      If this field is not configured by the client, they need to ensure they are happy that 
-      the new default of the system now pulling in all certs on the server. 
-      May not be behavior they want.
+      If you don't have this field explicitly configured, make sure that the new default value's behavior
+      of automatically pulling in all certs on the server suits your deployment. Otherwise, adjust the setting.ß
   - area: Plugins
     category: 1
     description: |
-      The default policy is now `local` for all deployment modes on Rate Limiting,
-      Rate Limiting Advanced, and Response Rate Limiting plugins.
+      **Rate Limiting, Rate Limiting Advanced, and Response Rate Limiting plugins**
+
+      The default policy for these plugins is now `local` for all deployment modes.
     action: |
       No
   - area: Plugins
     category: 1
     description: |
-      Plugin batch queuing: HTTP Log, StatsD, OpenTelemetry, and Datadog
+      Plugin batch queuing: **HTTP Log, StatsD, OpenTelemetry, and Datadog plugins**
       
       The queuing system has been reworked, causing some plugin parameters to not function as expected anymore.
     action: | 
@@ -124,7 +124,15 @@ entries:
       If you are using one of the convenience images, adjust your configuration for Ubuntu.
       Otherwise, switch to an image using a specific OS tag 
       (for example, `3.4.0.0-debian`).
-  
+
+  - area: Deployment
+    category: 2
+    description: |
+      Deprecated and stopped producing Ubuntu 18.04 (“Bionic”) packages, as Standard Support for 
+      Ubuntu 18.04 has ended as of June 2023.
+    action: |
+      Ubuntu 20.04 and 22.04 are available. Upgrade to one of these versions before upgrading to Kong 3.4.
+
   - area: Plugins
     category: 2
     description: |
@@ -162,7 +170,7 @@ entries:
       
       For example: `singletons.db.daos` -> `kong.db.daos`
       
-  - area: Templates?
+  - area: Tracing
     category: 2
     description: |
       `ngx.ctx.balancer_address` was removed in favor of `ngx.ctx.balancer_data`.
@@ -343,7 +351,9 @@ entries:
   - area: Plugins
     category: 2
     description: |
-      JWT plugin: The authenticated JWT is no longer put into the Nginx context (`ngx.ctx.authenticated_jwt_token`).
+      **JWT plugin**
+      
+      The authenticated JWT is no longer put into the Nginx context (`ngx.ctx.authenticated_jwt_token`).
     action: |
       Custom plugins which depend on that value being set under that name must be updated to use Kong's 
       shared context instead (`kong.ctx.shared.authenticated_jwt_token`) before upgrading to 3.4.
@@ -351,15 +361,19 @@ entries:
   - area: Plugins
     category: 2
     description: |
-      JWT plugin (jwt): 
-      The JWT plugin now denies any request that has different tokens in the JWT token search locations. 
+      **JWT plugin (jwt)**
+      
+      The JWT plugin now denies any request that has different tokens in the 
+      JWT token search locations. 
     action: |
       No
 
   - area: Plugins
     category: 2
     description: |
-      StatsD plugin: Any metric name that is related to a service now has a `service.` prefix: 
+      ** StatsD plugin** 
+      
+      Any metric name that is related to a service now has a `service.` prefix: 
 
       `kong.service.<service_identifier>.request.count`.
       * The metric `kong.<service_identifier>.request.status.<status>` has been renamed to 
@@ -373,8 +387,10 @@ entries:
   - area: Plugins
     category: 2
     description: |
-      Proxy Cache, Proxy Cache Advanced, and GraphQL Proxy Cache Advanced plugins 
-      don't store response data in `ngx.ctx.proxy_cache_hit` anymore. They store it in `kong.ctx.shared.proxy_cache_hit`.
+      **Proxy Cache, Proxy Cache Advanced, and GraphQL Proxy Cache Advanced plugins**
+
+      These plugins don't store response data in `ngx.ctx.proxy_cache_hit` anymore. 
+      They store it in `kong.ctx.shared.proxy_cache_hit`.
     action: |
       Logging plugins that need the response data must now read it from `kong.ctx.shared.proxy_cache_hit`.
 
@@ -393,7 +409,7 @@ entries:
   - area: Plugins
     category: 2
     description: |
-      The lua-resty-session library has been upgraded to v4.0.0. This version includes a full 
+      The `lua-resty-session` library has been upgraded to v4.0.0. This version includes a full 
       rewrite of the session library, and is not backwards compatible.
 
       This library is used by the following plugins: Session, OpenID Connect, and SAML. 
@@ -429,14 +445,6 @@ entries:
     action: |
       [Migrate to PostgreSQL](/gateway/latest/migrate-cassandra-to-postgres/).
 
-  - area: Deployment
-    category: 2
-    description: |
-      Support for running Kong Gateway on Ubuntu 18.04 (“Bionic”) is now deprecated, as Standard Support for 
-      Ubuntu 18.04 has ended as of June 2023.
-    action: |
-      Ubuntu 20.04 and 22.04 are available. Upgrade to one of these versions before upgrading to Kong 3.4.
-
   - area: Router
     category: 3
     description: | 
@@ -456,7 +464,8 @@ entries:
   - area: Plugins
     category: 3
     description: |
-      ACL, Bot Detection, and IP Restriction plugins: 
+      **ACL, Bot Detection, and IP Restriction plugins**
+
       Removed the deprecated `blacklist` and `whitelist` configuration parameters.
 
     action: |
@@ -466,7 +475,9 @@ entries:
   - area: Plugins
     category: 3
     description: |
-      ACME plugin: The default value of the `auth_method` configuration parameter is now `token`.
+      **ACME plugin** 
+      
+      The default value of the `auth_method` configuration parameter is now `token`.
 
     action: |
       Caution: Following the upgrade, the `auth_method` will persist as `null`
@@ -698,7 +709,9 @@ entries:
   - area: Plugins
     category: 5
     description: |
-      Zipkin plugin: This plugin now uses queues for internal buffering. 
+      **Zipkin plugin**
+      
+      This plugin now uses queues for internal buffering. 
       The standard queue parameter set is available to control queuing behavior.
     action: |
       No

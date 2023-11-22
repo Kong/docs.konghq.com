@@ -44,7 +44,7 @@ have happened between releases.
 5. Stop the {{site.base_gateway}} nodes of the old cluster X but keep the database running.
 
 6. Install a new cluster running version Y as instructed in the 
-    [{{site.base_gateway Installation Options](/gateway/{{page.kong_version}}/install/) and 
+    [{{site.base_gateway}} Installation Options](/gateway/{{page.kong_version}}/install/) and 
     point it at the existing database for cluster X.
 
 7. Migrate the database to the new version by running `kong migrations up`. 

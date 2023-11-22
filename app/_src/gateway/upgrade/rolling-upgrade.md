@@ -42,7 +42,7 @@ have happened between releases.
 5.  Deploy a new Kong cluster of version Y:
     
     1. Install a new cluster running version Y as instructed in the 
-    [{{site.base_gateway Installation Options](/gateway/{{page.kong_version}}/install/) and 
+    [{{site.base_gateway}} Installation Options](/gateway/{{page.kong_version}}/install/) and 
     point it at the existing database for cluster X.
     
     2. Perform staging tests against version Y to make sure it works for all use cases. 
@@ -52,7 +52,7 @@ have happened between releases.
     If it is a data plane node, ensure the communication with the control node succeeds.
 
     If the outcome is not as expected, look over the 
-    [upgrade considerations](/gateway/{{page.kong_version}}/upgrade-considerations/) and the 
+    [upgrade considerations](/gateway/{{page.kong_version}}/upgrade/upgrade-considerations/) and the 
     [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/)
     again to see if you missed anything.
 

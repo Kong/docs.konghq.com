@@ -149,7 +149,7 @@ Point the new DP nodes to the new CP to avoid version conflicts.
 
 We have categorized all changelog notices relevant to this migration below. This encapsulates all changes from 2.8.x.x to 3.4.x.x Kong. They are bucketed into five categories.
 
-{% include lts-changes.html %}
+{% include_cached lts-changes.html %}
 
 ### kong.conf changes
 

@@ -5,7 +5,9 @@
   <thead>
     <th>Change</th>
     <th>Category</th>
+    {% unless c.key == 5 %}
     <th>Action required</th>
+    {% endunless %}
   </thead>
   <tbody>
     {% for e in site.data.tables.breaking_changes_lts.entries %}
@@ -17,11 +19,13 @@
             <td>
                 <span>{{ e.area | markdownify }}</span>
             </td>
+            {% unless e.category == 5 %}
             <td>
                 <span>{{ e.action | strip-html | markdownify }}</span>
             </td>
+            {% endunless %}
         </tr>
-        {% endif %}
+      {% endif %}
     {% endfor %}
   </tbody>
 </table>
