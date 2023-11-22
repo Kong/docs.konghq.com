@@ -3,10 +3,8 @@
 module Jekyll
   module Algolia
     class Home < Base
-      FILTERS = ['Kong Gateway', 'Kong Konnect', 'Kong Mesh'].freeze
-
       def products
-        @products ||= FILTERS
+        @products ||= FILTERS['home']
       end
 
       def version

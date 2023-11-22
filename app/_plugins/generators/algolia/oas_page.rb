@@ -2,9 +2,9 @@
 
 module Jekyll
   module Algolia
-    class Hub < Base
+    class OasPage < Base
       def products
-        @products ||= FILTERS['hub']
+        @products ||= FILTERS['oas']
       end
 
       def version

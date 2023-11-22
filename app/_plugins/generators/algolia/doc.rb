@@ -3,16 +3,6 @@
 module Jekyll
   module Algolia
     class Doc < Base
-      FILTERS = {
-        'contributing' => ['Contribution guidelines'],
-        'deck' => ['deck'],
-        'gateway' => ['Kong Gateway', 'Plugin Hub', 'deck'],
-        'gateway-operator' => ['Kong Gateway Operator'],
-        'konnect' => ['Kong Konnect', 'Plugin Hub', 'deck'],
-        'kubernetes-ingress-controller' => ['Kong Ingress Controller', 'Kong Konnect'],
-        'mesh' => ['Kong Mesh']
-      }.freeze
-
       def products
         @products ||= FILTERS[edition]
       end
