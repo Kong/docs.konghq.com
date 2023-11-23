@@ -131,6 +131,7 @@
 /gateway/VERSION/reference/proxy/: "/gateway/VERSION/how-kong-works/routing-traffic/"
 /gateway/VERSION/reference/health-checks-circuit-breakers/: "/gateway/VERSION/how-kong-works/health-checks/"
 /gateway/VERSION/reference/clustering/: "/gateway/VERSION/production/clustering/"
+/gateway/VERSION/reference/router-expressions-language/: "/gateway/VERSION/reference/expressions-language/"
 /gateway/VERSION/pdk/: "/gateway/VERSION/plugin-development/pdk/"
 /gateway/VERSION/pdk/kong.client/: "/gateway/VERSION/plugin-development/pdk/kong.client/"
 /gateway/VERSION/pdk/kong.client.tls/: "/gateway/VERSION/plugin-development/pdk/kong.client.tls/"
