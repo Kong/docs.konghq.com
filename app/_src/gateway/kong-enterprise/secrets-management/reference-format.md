@@ -5,7 +5,7 @@ title: Reference Format
 We use the [URL syntax](https://en.wikipedia.org/wiki/URL) to describe references to a secret store.
 
 ```text
-{vault://<vault-backend|entity>/<secret-id>[/<secret-key][/][?query]}
+{vault://<vault-backend|entity>/<secret-id>[/<secret-key][/][?query][#version]}
 ```
 
 ### Protocol/Scheme
@@ -63,3 +63,13 @@ The `secret-key` is used to identify the secret within the `secret-id` object.
 ### Query
 
 Query arguments are used to denote configuration options in a `key=value` format to the [Vault Prefix](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/reference-format/#vault-prefix)
+
+
+### Version
+
+```text
+{vault://<vault-backend|entity>/<secret-id>[/<secret-key][/][?query][#version]}
+                                                                     ^^^^^^^^
+```
+
+Version, which is the fragment part of the Vault URL, is used to identify the version number of the secret stored in the vault backends which supports versioning.

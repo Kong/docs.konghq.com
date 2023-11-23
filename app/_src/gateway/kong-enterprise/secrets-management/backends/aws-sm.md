@@ -50,6 +50,7 @@ export KONG_VAULT_AWS_ROLE_SESSION_NAME=<aws_assume_role_session_name>
 
 The vault backend configuration field can also be configured in the `kong.conf` file. See [Gateway Enterprise configuration reference](/gateway/latest/reference/configuration).
 {% endif_version %}
+
 ### Examples
 
 For example, an AWS Secrets Manager secret with the name `secret-name` may have multiple key=value pairs:
@@ -66,6 +67,19 @@ Access these secrets from `secret-name` like this:
 ```bash
 {vault://aws/secret-name/foo}
 {vault://aws/secret-name/snip}
+```
+
+Moreover, for an AWS Secrets Manager secret that has multiple versions, accessing the current version(labeled as `AWSCURRENT`) of the secret or the previous version(labeled as`AWSPREVIOUS`) of the secret will be like this:
+
+```bash
+# For AWSCURRENT, not specifying version
+{vault://aws/secret-name/foo}
+
+# For AWSCURRENT, specifying version == 2
+{vault://aws/secret-name/foo#2}
+
+# For AWSPREVIOUS, specifying version == 1
+{vault://aws/secret-name/foo#1}
 ```
 
 ## Configuration via vaults entity

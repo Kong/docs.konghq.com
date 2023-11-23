@@ -132,6 +132,36 @@ Or, if you configured an entity:
 {vault://hashicorp-vault/hello/foo}
 ```
 
+If you've configured a secret value in multiple versions, like this:
+
+```text
+# Requires kv2 engine enabled
+vault kv patch secret/hello foo=world2
+
+======= Metadata =======
+Key                Value
+---                -----
+created_time       2022-01-16T01:40:03.740833Z
+custom_metadata    <nil>
+deletion_time      n/a
+destroyed          false
+version            2
+```
+
+Access an older version of the secret will be like this:
+
+```bash
+# For version 1
+{vault://hcv/hello/foo#1}
+
+# For version 2
+{vault://hcv/hello/foo#2}
+
+# Do not specify version number for the latest version
+{vault://hcv/hello/foo}
+```
+
+
 ## Vault configuration options
 
 Use the following configuration options to configure the vaults entity through
