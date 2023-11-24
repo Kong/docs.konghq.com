@@ -90,7 +90,7 @@ Once you have Auth0 configured, you can set up the Dev Portal to use Auth0 for d
    {:.note}
    > **Note:** You can find the value for your `AUTH0_TENANT_SUBDOMAIN` by visiting **Settings** from the Auth0 sidebar and finding the **Tenant Name** in the **General** tab.
 
-6. Enter the **Client Token Audience** as the identifier value you set when configuring the API entity above. If you’re using Developer Managed Scopes, this vlaue should map to the audience field of your associated Auth0 API.
+6. Enter the **Client Token Audience** as the identifier value you set when configuring the API entity above. If you’re using Developer Managed Scopes, this value should map to the audience field of your associated Auth0 API.
 
 7. Enter `openid` into the **Scopes** field. Note: If you’re using Developer Managed Scopes, check the “Developer Managed Scopes” box. Be sure to add the appropriate scopes (in addition to the mandatory openid scope) you wish your developers to be able to choose from, in string format like so: “openid”, “read:account_information”, “write:account_information”, etc. Note if you leave auth config scopes empty the developer will be able to choose from all valid scopes offered by that api.
 
