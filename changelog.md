@@ -2,6 +2,155 @@
 
 <!--vale off-->
 
+## Week 47
+
+### [style(expressions): fix typo in `performance.md`](https://github.com/Kong/docs.konghq.com/pull/6549) (2023-11-22)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/1.0.x/version-compatibility
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/performance
+
+
+### [Chore: Update Changelog for Gateway Milestone updates](https://github.com/Kong/docs.konghq.com/pull/6540) (2023-11-20)
+
+https://konghq.atlassian.net/browse/DOCU-3533
+https://konghq.aha.io/epics/KP-E-320
+
+Changelog update for this feature update.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/updates
+
+
+### [chore(deps): bump kumahq/kuma-website from 80fb6b2a to b3eeb1bc](https://github.com/Kong/docs.konghq.com/pull/6533) (2023-11-22)
+
+Auto upgrade PR log:
+
+b3eeb1bcc7bc398eab666dd1cfe94e960294906b chore(deps): update docs from repo source (kumahq/kuma-website#1534)
+
+Triggered by [action](https://github.com/Kong/docs.konghq.com/actions/runs/6951132041).
+labels: skip-changelog,review:general
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/performance
+
+
+### [kgo: add kgo version compatibility matrix](https://github.com/Kong/docs.konghq.com/pull/6518) (2023-11-20)
+
+Add KGO version compat matrix for 
+- Kubernetes versions
+- KIC versions
+- GW API versions
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/performance
+
+
+### [feat: Multi-geo GA](https://github.com/Kong/docs.konghq.com/pull/6499) (2023-11-21)
+
+Multi-geo is going GA, so we needed to pull in the current beta docs from the `konnect` branch, as well as add information about the newly added geo, AU. 
+
+DOCU-2593
+
+#### Added
+
+- https://docs.konghq.com/konnect/geo
+
+#### Modified
+
+- https://docs.konghq.com/deck/1.12.x/guides/konnect
+- https://docs.konghq.com/deck/1.13.x/guides/konnect
+- https://docs.konghq.com/deck/1.14.x/guides/konnect
+- https://docs.konghq.com/deck/1.15.x/guides/konnect
+- https://docs.konghq.com/deck/1.16.x/guides/konnect
+- https://docs.konghq.com/deck/1.17.x/guides/konnect
+- https://docs.konghq.com/deck/1.18.x/guides/konnect
+- https://docs.konghq.com/deck/1.19.x/guides/konnect
+- https://docs.konghq.com/deck/1.20.x/guides/konnect
+- https://docs.konghq.com/deck/1.21.x/guides/konnect
+- https://docs.konghq.com/deck/1.22.x/guides/konnect
+- https://docs.konghq.com/deck/1.23.x/guides/konnect
+- https://docs.konghq.com/deck/1.24.x/guides/konnect/
+- https://docs.konghq.com/deck/1.25.x/guides/konnect/
+- https://docs.konghq.com/deck/1.26.x/guides/konnect/
+- https://docs.konghq.com/deck/1.27.x/guides/konnect/
+- https://docs.konghq.com/deck/1.28.x/guides/konnect/
+- https://docs.konghq.com/deck/1.29.x/guides/konnect/
+- https://docs.konghq.com/konnect/account-management/
+- https://docs.konghq.com/konnect/api-products/service-documentation
+- https://docs.konghq.com/konnect/api/
+- https://docs.konghq.com/konnect/dev-portal/access
+- https://docs.konghq.com/konnect/dev-portal/applications/enable-app-reg
+- https://docs.konghq.com/konnect/dev-portal/dev-reg
+- https://docs.konghq.com/konnect/gateway-manager/configuration/
+- https://docs.konghq.com/konnect/getting-started/access-account
+- https://docs.konghq.com/konnect/getting-started/productize-service
+- https://docs.konghq.com/konnect/
+- https://docs.konghq.com/konnect/network
+- https://docs.konghq.com/konnect/org-management/teams-and-roles/
+- https://docs.konghq.com/konnect/org-management/teams-and-roles/manage
+- https://docs.konghq.com/konnect/org-management/teams-and-roles/roles-reference
+- https://docs.konghq.com/konnect/org-management/teams-and-roles/teams-reference
+- https://docs.konghq.com/konnect/updates
+
+
+### [update: Rewrite the expressions router Gateway doc](https://github.com/Kong/docs.konghq.com/pull/6437) (2023-11-21)
+
+This is a complete rewrite of the Expressions router doc to make it easier to understand and more comprehensive.
+
+![KAG-2288]
+
+[KAG-2288]: https://konghq.atlassian.net/browse/KAG-2288?atlOrigin=eyJpIjoiNWRkNTljNzYxNjVmNDY3MDlhMDU5Y2ZhYzA5YTRkZjUiLCJwIjoiZ2l0aHViLWNvbS1KU1cifQ
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/performance
+- https://docs.konghq.com/assets/images/products/gateway/reference/expressions-language/predicate.png
+- https://docs.konghq.com/assets/images/products/gateway/reference/expressions-language/router-matching-flow.png
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.1.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.2.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.3.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.4.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.5.x/key-concepts/routes/expressions
+
 ## Week 46
 
 
