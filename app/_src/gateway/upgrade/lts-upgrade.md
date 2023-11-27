@@ -32,11 +32,11 @@ Read this document thoroughly to successfully complete the upgrade process, as i
 
 There are a number of steps you must complete before upgrading to {{site.base_gateway}} 3.4.x.x LTS:
 
-1. Work through any listed prerequistes.
-1. Back up your database (if applicable), or your declarative configuration files.
-1. Choose the right strategy for upgrading based on your deployment topology.
-1. Review the gateway changes from 2.8 to 3.4 for any breaking changes that affect your deployments.
-1. Conduct a thorough examination of the modifications made to the `kong.conf` file between the LTS releases.
+1. Work through any listed prerequisites.
+1. [Back up](#preparation-choose-a-backup-strategy) your database or your declarative configuration files.
+1. Choose the right [strategy for upgrading](#preparation-choose-an-upgrade-strategy-based-on-deployment-mode) based on your deployment topology.
+1. Review the [{{site.base_gateway}} changes from 2.8 to 3.4](#preparation-review-gateway-changes) for any breaking changes that affect your deployments.
+1. Conduct a thorough examination of the [modifications made to the `kong.conf` file](#kongconf-changes) between the LTS releases.
 1. Using your chosen strategy, test migration in a pre-production environment.
 
 **Performing the upgrade**
@@ -51,7 +51,7 @@ In this part of the upgrade journey, you will use the strategy you determined du
 
 Now, let's move on to preparation, starting with your backup options.
 
-## Prepation: Choosing a backup strategy
+## Prepation: Choose a backup strategy
 
 The following instructions lay out how to back up your configuration for each supported deployment type. This is an important step prior to upgrading. Each supported deployment mode has different instructions for backup.
 
@@ -62,7 +62,7 @@ The `kong migrations` commands in this guide are not reversible. We recommend ba
 
 Review the [Backup and Restore](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/) guide to prepare backups of your configuration. If you run into any issues and need to roll back, you can also reference that guide to restore your old data store.
 
-## Preparation: Choosing an upgrade strategy
+## Preparation: Choose an upgrade strategy based on deployment mode
 
 Upgrade strategies introduced in this section are generic and may or may not fit in with your deployment environment. 
 

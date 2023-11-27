@@ -243,7 +243,7 @@ items:
         url: /key-concepts/routes/expressions
       - text: Upgrade and Migration
         items:
-          - text: Upgrade Kong Gateway 3.x.x
+          - text: Upgrading Kong Gateway 3.x.x
             url: /upgrade/
           - text: Backup and Restore
             url: /upgrade/backup-and-restore/
