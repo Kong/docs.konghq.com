@@ -159,7 +159,7 @@ consumers:
   - key: my-key
 ```
 
-See the [declarative configuration schema](https://github.com/Kong/deck/blob/main/file/kong_json_schema.json)
+See the [declarative configuration schema](https://github.com/Kong/go-database-reconciler/blob/main/pkg/file/kong_json_schema.json)
 for all configuration options.
 
 The only mandatory piece of metadata is `_format_version: "3.0"`, which
