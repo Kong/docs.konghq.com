@@ -127,6 +127,10 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.titl
     {% vite_javascript_tag oas %}
   {% endif %}
 
+  {% for entry_point in page.include_entrypoints %}
+    {% vite_javascript_tag {{ entry_point }} %}
+  {% endfor %}
+
   {% vite_stylesheet_tag application.less %}
 
   {% if layout.oas %}
