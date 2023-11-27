@@ -17,29 +17,30 @@ down nodes of version X.
 
 ## Prerequisites
 
-* You have reviewed the [general upgrade guide](/gateway/{{page.kong_version}}/upgrade/).
-* You have chosen this upgrade option because you have a DB-less deployment, or you need to 
-upgrade the data planes (DPs) in a hybrid mode deployment. 
+* Review the [general upgrade guide](/gateway/{{page.kong_version}}/upgrade/) to prepare for the upgrade and review your options.
+* You have a DB-less deployment or you need to upgrade the data planes (CPs) in a hybrid mode deployment.
 
-## Upgrade steps
+## Upgrade using the rolling method
 
 This guide refers to the old version as cluster X and the new version as cluster Y.
 
-The following steps follow the process outlined in the diagram, using DB-less mode as the example.
+{:.note}
+> The following steps are intended as a guideline.
+The exact execution of these steps will vary depending on your environment. 
 
-1. Stop any {{site.base_gateway}} configuration updates (e.g. Admin API calls). 
+1. Stop any {{site.base_gateway}} configuration updates (for example, Admin API calls). 
 This is critical to guarantee data consistency between cluster X and cluster Y.
 
 2. Back up data from the current cluster Y by following the 
 [declarative configuration backup instructions](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/#declarative-config-backup).
 
 3. Evaluate factors that may impact the upgrade, as described in [Upgrade Considerations].
-You may have to consider customization of both `kong.conf` and Kong configuration data.
+You may have to consider customization of both `kong.conf` and {{site.base_gateway}} configuration data.
 
 4. Evaluate any [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/) that may 
 have happened between releases.
 
-5.  Deploy a new Kong cluster of version Y:
+5.  Deploy a new {{site.base_gateway}} cluster of version Y:
     
     1. Install a new cluster running version Y as instructed in the 
     [{{site.base_gateway}} Installation Options](/gateway/{{page.kong_version}}/install/) and 
@@ -47,7 +48,7 @@ have happened between releases.
     
     2. Perform staging tests against version Y to make sure it works for all use cases. 
     
-    For instance, does the Key Authentication plugin authenticate requests properly?
+    For example, does the Key Authentication plugin authenticate requests properly?
 
     If it is a data plane node, ensure the communication with the control node succeeds.
 
@@ -68,4 +69,4 @@ and repeat the steps above.
 
 8. When there are no more issues, decommission the old cluster X to complete the upgrade. 
 
-Write updates to Kong can now be performed, though we suggest you keep monitoring metrics for a while.
+Write updates to {{site.base_gateway}} can now be performed, though we suggest you keep monitoring metrics for a while.

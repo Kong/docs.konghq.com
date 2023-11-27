@@ -4,7 +4,8 @@ content_type: how-to
 purpose: Learn how to perform an in-place upgrade for Kong Gateway
 ---
 
-The in-place upgrade strategy is a {{site.base_gateway}} upgrade option used primarily for traditional mode deployments and for control planes in hybrid mode. In comparison to dual-cluster upgrades, the in-place upgrade uses less resources, but causes business downtime.
+The in-place upgrade strategy is a {{site.base_gateway}} upgrade option used primarily for traditional mode deployments and for control planes in hybrid mode. 
+In comparison to dual-cluster upgrades, the in-place upgrade uses less resources, but causes business downtime.
 
 An in-place upgrade reuses the existing database.
 For this upgrade method, you have to shut down cluster X, then configure the new cluster Y to point to the database.
@@ -16,18 +17,24 @@ For this upgrade method, you have to shut down cluster X, then configure the new
 There is business downtime as cluster X is stopped during the upgrade process. You must carefully review the upgrade considerations in advance. The prescribed steps below are recommended for you.
 
 {:.important}
-> **Important**: We do not recommend using this strategy unless Kong Gateway is deployed under an extreme resource-constrained environment, or unless you are not able to obtain new resources in a timely manner for Dual-cluster Upgrade. However, this strategy does not prevent you from deploying the new cluster Y on a different machine.
+> **Important**: We do not recommend using this strategy unless {{site.base_gateway}} is deployed under 
+an extreme resource-constrained environment, or unless you are not able to obtain new resources in a 
+timely manner for a dual-cluster upgrade. 
+However, this strategy does not prevent you from deploying the new cluster Y on a different machine.
 
 ## Prerequisites
 
-* You have reviewed the [general upgrade guide](/gateway/{{page.kong_version}}/upgrade/).
-* You have chosen this upgrade option because you have a traditional deployment, or you need to 
-upgrade the control planes (CPs) in a hybrid mode deployment. 
-* You ruled out [dual-cluster upgrades](/gateway/{{page.kong_version}}/upgrade/dual-cluster/) due to resource limitations.
+* Review the [general upgrade guide](/gateway/{{page.kong_version}}/upgrade/) to prepare for the upgrade and review your options.
+* You have a traditional deployment or you need to upgrade the control planes (CPs) in a hybrid mode deployment.
+* You can't perform [dual-cluster upgrades](/gateway/{{page.kong_version}}/upgrade/dual-cluster/) due to resource limitations.
 
-## Upgrade steps
+## Upgrade using the in-place method
 
 This guide refers to the old version as cluster X and the new version as cluster Y.
+
+{:.note}
+> The following steps are intended as a guideline.
+The exact execution of these steps will vary depending on your environment. 
 
 1. Stop any {{site.base_gateway}} configuration updates (e.g. Admin API calls). 
 This is critical to guarantee data consistency between cluster X and cluster Y.
@@ -36,7 +43,7 @@ This is critical to guarantee data consistency between cluster X and cluster Y.
 [Backup guide](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/).
 
 3. Evaluate factors that may impact the upgrade, as described in [Upgrade Considerations].
-You may have to consider customization of both `kong.conf` and Kong configuration data.
+You may have to consider customization of both `kong.conf` and {{site.base_gateway}} configuration data.
 
 4. Evaluate any [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/) that may 
 have happened between releases.
@@ -60,6 +67,6 @@ Prioritize the database-level restoration method over the application-level meth
 
 12. When there are no more issues, decommission the old cluster X to complete the upgrade. 
 
-Write updates to Kong can now be performed, though we suggest you keep monitoring metrics for a while.
+Write updates to {{site.base_gateway}} can now be performed, though we suggest you keep monitoring metrics for a while.
 
 

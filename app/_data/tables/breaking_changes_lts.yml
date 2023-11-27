@@ -12,8 +12,8 @@ categories:
       issues that may arise from using deprecated aliases and ensure
       that your Kong instance functions correctly with the most recent changes and improvements.
       
-      Keeping configurations up to date is essential for maintaining the system's stability, 
-      security, and optimal performance.
+      It's essential to keep configurations up-to-date to maintain the system's stability, 
+      security, and optimal performance. 
   - name: Compatible
     key: 3
     desc: |

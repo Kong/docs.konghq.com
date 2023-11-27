@@ -4,8 +4,8 @@ content_type: how-to
 purpose: Learn how to back up and restore Kong Gateway
 ---
 
-Before any upgrade, back up your {{site.base_gateway}} data. 
-Kong supports two back up methods for Gateway entities: database backup and declarative backup.
+Before you start any upgrade, back up your {{site.base_gateway}} data. 
+Kong supports two back up methods for {{site.base_gateway}} entities: database backup and declarative backup.
 
 We recommend backing up data using both methods, as this offers recovery flexibility.
 * The native database tools are robust and can restore data instantly, compared to the declarative tool. 
@@ -41,7 +41,7 @@ Due to these limitations, we recommend always using the [database dump method](#
 
 ### Database backup
 
-When upgrading your {{site.base_gateway}} to a newer version, you have to perform a database migration using the `kong mnigrations` utility. The `kong migrations` commands are not reversible. We recommend backing up data before any starting any upgrade in case of any migration issues.
+When upgrading your {{site.base_gateway}} to a newer version, you have to perform a database migration using the `kong migrations` utility. The `kong migrations` commands are not reversible. We recommend backing up data before any starting any upgrade in case of any migration issues.
 
 If you are running {{site.base_gateway}} with a database, run a database dump of raw data so that you can recover the database quickly in a database-native way. 
 
@@ -82,7 +82,8 @@ You can back up a particular workspace or all workspaces at once:
 
 ### Database restore
 
-To recover Kong configuration data from a database dump, the operator must make sure the database is correctly prepared. For example, for PostgreSQL:
+To recover {{site.base_gateway}} configuration data from a database dump, the operator must make sure the database is correctly prepared. 
+For example, for PostgreSQL:
 
 1. In `kong.conf`, set a database user using the `pg_user` parameter:
 
@@ -100,7 +101,7 @@ To recover Kong configuration data from a database dump, the operator must make 
 
     Refer to the [`kong migrations` CLI reference](/gateway/{{page.kong_version}}/reference/cli/#kong-migrations) for more information.
 
-4. Corresponding to the Postgres database dump, you can now restore the data with the utility `pg_restore`:
+4. You can now restore the data using the utility `pg_restore`:
 
     ```sh
     pg_restore -U kong -C -d postgres --if-exists --clean kongdb_backup_20230816/
@@ -108,7 +109,8 @@ To recover Kong configuration data from a database dump, the operator must make 
 
 ### Declarative restore
 
-If you need to roll back, change the DB-less Kong instance back to the original version, validate the declarative config, then sync it back with your Kong instance.
+If you need to roll back, change the DB-less {{site.base_gateway}} instance back to the original version, 
+validate the declarative config, then sync it back with your {{site.base_gateway}} instance.
 
 1. Check that {{site.base_gateway}} is online:
 
@@ -150,4 +152,6 @@ Manually back up the following files:
 Although these files don't contain {{site.base_gateway}} entities, without them, you won't be able to launch {{site.base_gateway}}.
 
 {:.note}
-> **Note**: If you have built a commercial offering where Kong is stateless -- that is, where everything that gets configured on either the AMI or the Docker container is defined in version control and pushed into the platform that it's running on -- back up Kong's configuration parameters in your own operational or secure way.
+> **Note**: If you have built a commercial offering where {{site.base_gateway}} is stateless -- that is, where everything 
+that gets configured on either the AMI or the Docker container is defined in version control and pushed into the 
+platform that it's running on -- back up {{site.base_gateway}}'s configuration parameters in your own operational or secure way.

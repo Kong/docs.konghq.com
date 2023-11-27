@@ -4,12 +4,13 @@ content_type: reference
 purpose: This guide walks you through upgrade paths for {{site.base_gateway}} and helps you prepare for an upgrade.
 ---
 
-This guide aims to assist you determining appropriate upgrade paths for {{site.base_gateway}} and offers useful advice along the way.
+This guide helps you determine which {{site.base_gateway}} upgrade paths to use and offers other upgrade advice as well.
 
-This guide presents four available upgrade strategies, nominating the best applicable strategy for each deployment mode {{site.base_gateway}} supports. Additionally, we list some fundamental factors that play important roles in the upgrade process, and also instruct how to back up and recover data.
+This guide presents four available upgrade strategies, nominating the best applicable strategy for each deployment mode {{site.base_gateway}} supports. 
+Additionally, we list some fundamental factors that play important roles in the upgrade process, and also instruct how to back up and recover data.
 
-This guide uses the following terms in the context of Kong:
-* **Upgrade**: The overall process of switching from an older to a newer version of Kong. 
+This guide uses the following terms in the context of {{site.base_gateway}}:
+* **Upgrade**: The overall process of switching from an older to a newer version of {{site.base_gateway}}. 
 * **Migration**: The migration of your data store data into a new environment. 
 For example, the process of moving 2.8.x data from an old PostgreSQL instance to a new one for 3.4.x is referred to as database migration.
 
@@ -17,7 +18,7 @@ For example, the process of moving 2.8.x data from an old PostgreSQL instance to
 > **Note**: If you are interested in upgrading between the {{site.ee_product_name}} 2.8.x and 3.4.x long-term 
 support (LTS) versions, see the [LTS upgrade guide](/gateway/{{page.kong_version}}/upgrade/lts-upgrade/).
 
-## Upgrade journey overview
+## Upgrade overview
 
 **Preparation phase**
 
@@ -29,7 +30,7 @@ support (LTS) versions, see the [LTS upgrade guide](/gateway/{{page.kong_version
 
 **Performing the upgrade**
 
-The actual execution of the upgrade is dependent on the type of deployment you have with Kong. 
+The actual execution of the upgrade is dependent on the type of deployment you have with {{site.base_gateway}}. 
 In this part of the upgrade journey, you will use the strategy you determined during the preparation phase.
 
 1. Execute your chosen upgrade strategy on dev.
@@ -37,23 +38,22 @@ In this part of the upgrade journey, you will use the strategy you determined du
 3. Smoke test.
 4. Wrap up the upgrade or roll back and try again.
 
-Now, let's move on to preparation, starting determining your upgrade path.
+Now, let's move on to preparation, starting with determining your upgrade path.
 
 ## Preparation: Review upgrade paths
 
-Kong adheres to [semantic versioning](https://semver.org/), which makes a
+{{site.base_gateway}} adheres to [semantic versioning](https://semver.org/), which makes a
 distinction between major, minor, and patch versions.
 
 The upgrade to 3.0.x is a **major** upgrade.
-The lowest version that Kong 3.0.x supports migrating from is 2.1.x.
+The lowest version that {{site.base_gateway}} 3.0.x supports migrating from is 2.1.x.
 
 {{site.base_gateway}} does not support directly upgrading from 1.x to 3.0.x.
-If you are running 1.x, upgrade to 2.1.0 first at minimum, then upgrade to 3.0.x from there.
+If you are running 1.x, upgrade to 2.1.0 first at a minimum, then upgrade to 3.0.x from there.
 
 While you can upgrade directly to the latest version, be aware of any
-[breaking changes](/gateway/{{page.kong_version}}/breaking-changes/) 
-between the 2.x and 3.x series noted in the breaking changes 
-(both this version and prior versions) and in the
+[breaking changes](/gateway/{{page.kong_version}}/breaking-changes/)
+between the 2.x and 3.x series (both this version and prior versions) and in the
 open-source (OSS) and Enterprise Gateway changelogs. Since {{site.base_gateway}}
 is built on an open-source foundation, any breaking changes in OSS affect all {{site.base_gateway}} packages.
 
@@ -193,9 +193,12 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 
 ### Upgrades from 3.1.0.0 or 3.1.1.1
 
-There is a special case if you deployed {{site.base_gateway}} in hybrid mode and the version in use is 3.1.0.0 and 3.1.1.1. {{site.base_gateway}} removed the legacy WebSocket protocol, added a new WebSocket protocol between CP and DP in 3.1.0.0, and added back the legacy one in 3.1.1.2. So, upgrade to 3.1.1.2 first before moving forward to higher versions. 
+There is a special case if you deployed {{site.base_gateway}} in hybrid mode and the version you are using is 3.1.0.0 or 3.1.1.1.
+Kong removed the legacy WebSocket protocol, added a new WebSocket protocol between CP and DP in 3.1.0.0, 
+and added back the legacy one in 3.1.1.2. 
+So, upgrade to 3.1.1.2 first before moving forward to later versions. 
 
-Additionally, the new WebSocket Protocol has been completely removed since 3.2.0.0. 
+Additionally, the new WebSocket protocol has been completely removed since 3.2.0.0.
 See the following table for the version breakdown:
 
 {{site.base_gateway}} Version | Legacy WebSocket (JSON) | New WebSocket (RPC)
@@ -205,22 +208,33 @@ See the following table for the version breakdown:
 3.1.1.2 | Y | Y
 3.2.0.0 | Y | N
 
-## Prepation: Choose a backup strategy
+## Preparation: Choose a backup strategy
 
-The following instructions lay out how to back up your configuration for each supported deployment type. This is an important step prior to migrating. Each supported deployment mode has different instructions for backup.
+The following instructions lay out how to back up your configuration for each supported deployment type. 
+This is an important step prior to migrating. 
+Each supported deployment mode has different instructions for backup.
 
 The `kong migrations` commands in this guide are not reversible. We recommend backing up data before any migration. 
 
-* **Database backup** (_Traditional mode and control planes in hybrid mode_): PostgreSQL has native exporting and importing tools that are reliable and performant, and that ensure consistency when backing up or restoring data.
-* **Declarative backup** (_DB-less mode and data planes in hybrid mode_): In DB-less mode, configuration is managed declaratively using a tool called decK. decK allows you to import and export configuration using YAML or JSON files. 
+* **Database backup** (_Traditional mode and control planes in hybrid mode_): 
+PostgreSQL has native exporting and importing tools that are reliable and performant, and that ensure 
+consistency when backing up or restoring data.
+* **Declarative backup** (_DB-less mode and data planes in hybrid mode_): In DB-less mode, configuration 
+is managed declaratively using a tool called decK. decK allows you to import and export configuration 
+using YAML or JSON files. 
 
-Review the [Backup and Restore](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/) guide to prepare backups of your configuration.
+Review the [Backup and Restore](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/) guide to 
+prepare backups of your configuration.
 
 ## Preparation: Choose an upgrade strategy based on deployment mode
 
-Though you could define their own upgrade procedures, nominated strategies from this section are recommended. Any custom upgrade requirements may require a well-tailored upgrade strategy. For example, if you would like only a small group of customer objects to be directed to the new cluster Y, please utilize the Canary plugin and a load balancer that supports traffic interception.
+Though you could define your own upgrade procedures, we recommend using one of the nominated strategies in this section. 
+Any custom upgrade requirements may require a well-tailored upgrade strategy. 
+For example, if you only want a small group of customer objects to be directed to the new cluster Y, use the 
+Canary plugin and a load balancer that supports traffic interception.
 
-Whichever upgrade strategy you choose, you should account for management downtime for {{site.base_gateway}}, as Admin API operations and database updates are not allowed during the upgrade process.
+Whichever upgrade strategy you choose, you should account for management downtime for {{site.base_gateway}}, as 
+Admin API operations and database updates are not allowed during the upgrade process.
 
 Based on your deployment type, we recommend one of the following upgrade strategies.
 Carefully read the descriptions for each option to choose the upgrade strategy that works best for your situation.
@@ -242,59 +256,77 @@ See the following sections for breakdowns and links to each upgrade strategy gui
 
 ### Traditional mode
 
-A traditional mode deployment is when all {{site.base_gateway}} components are running in one environment, and there is no control plane/data plane separation.
+A traditional mode deployment is when all {{site.base_gateway}} components are running in one environment, 
+and there is no control plane/data plane separation.
 
 You have two options when upgrading {{site.base_gateway}} in traditional mode:
-* [Dual-cluster upgrade](/gateway/{{page.kong_version}}/upgrade/dual-cluster-upgrade): A new Kong cluster of version Y is deployed alongside the current version X, so that two clusters serve requests concurrently during the upgrade process.
-* [In-place upgrade](/gateway/{{page.kong_version}}/upgrade/in-place-upgrade): Similar to, but unlike the dual-cluster upgrade strategy, an in-place upgrade reuses the existing database and has to shut down the cluster X first, then configure the new cluster Y to point to the database.
+* [Dual-cluster upgrade](/gateway/{{page.kong_version}}/upgrade/dual-cluster-upgrade): 
+A new {{site.base_gateway}} cluster of version Y is deployed alongside the current version X, so that two 
+clusters serve requests concurrently during the upgrade process.
+* [In-place upgrade](/gateway/{{page.kong_version}}/upgrade/in-place-upgrade): An in-place upgrade reuses 
+the existing database and has to shut down cluster X first, then configure the new cluster Y to point 
+to the database.
 
-We recommend using a dual cluster upgrade if the resources are available.
+We recommend using a dual-cluster upgrade if you have the resources to run another cluster concurrently.
+Use the in-place method only if resources are limited, as it will cause business downtime.
 
 ### DB-less mode
 
-In DB-less mode, each independent Kong node loads a copy of declarative Kong configuration data into memory without persistent database storage, so failure of some nodes doesn't spread to other nodes.
+In DB-less mode, each independent {{site.base_gateway}} node loads a copy of declarative {{site.base_gateway}} 
+configuration data into memory without persistent database storage, so failure of some nodes doesn't spread to other nodes.
 
-Deployments in this mode should use the [Rolling Upgrade](/gateway/{{page.kong_version}}/upgrade/rolling-upgrade/) strategy. You could parse the validity of the declarative YAML contents with version Y, using the `deck validate` command.
+Deployments in this mode should use the [Rolling Upgrade](/gateway/{{page.kong_version}}/upgrade/rolling-upgrade/) strategy. 
+You could parse the validity of the declarative YAML contents with version Y, using the `deck validate` command.
 
 ### Hybrid mode
 
-Hybrid mode comprises of one or more control plane (CP) nodes, and one or more data plane (DP) nodes. Therefore, the recommended upgrade process is a combination of different upgrade strategies for each type of node, CP or DP.
+Hybrid mode comprises of one or more control plane (CP) nodes, and one or more data plane (DP) nodes. 
+CP nodes use a database to store Kong configuration data, whereas DP nodes don't, since they get all of the needed information from the CP.
+The recommended upgrade process is a combination of different upgrade strategies for each type of node, CP or DP.
 
-The major challenge with a hybrid mode upgrade is the communication between CP and DP. As hybrid mode requires the minor version of CP to be no less than that of DP, you must upgrade CP nodes before DP nodes. Therefore, the upgrade must be carried out in two phases:
+The major challenge with a hybrid mode upgrade is the communication between the CP and DP. 
+As hybrid mode requires the minor version of the CP to be no less than that of the DP, you must upgrade CP nodes before DP nodes. 
+The upgrade must be carried out in two phases:
 
-1. First, upgrade the CP according to the recommendations in the section [Traditional Mode](#traditional-mode), while DP nodes are still serving API requests.
-2. Next, upgrade DP nodes using the recommendations from the section [DB-less Mode](#db-less-mode). Point the new DP nodes to the new CP to avoid version conflicts.
+1. First, upgrade the CP according to the recommendations in the section [Traditional Mode](#traditional-mode), 
+while DP nodes are still serving API requests.
+2. Next, upgrade DP nodes using the recommendations from the section [DB-less Mode](#db-less-mode). 
+Point the new DP nodes to the new CP to avoid version conflicts.
 
 The role decoupling feature between CP and DP enables DP nodes to serve API requests while upgrading CP. 
 With this method, there is no business downtime.
 
 Custom plugins (either your own plugins or third-party plugins that are not shipped with {{site.base_gateway}})
-need to be installed on both the control plane and the data planes in hybrid mode. Install the
-plugins on the control plane first, and then the data planes.
+need to be installed on both the control plane and the data planes in hybrid mode. 
+Install the plugins on the control plane first, and then the data planes.
 
 See the following sections for a breakdown of the options for hybrid mode deployments.
 
 #### Control planes
 
-CP nodes must be upgraded before DP nodes. CP nodes serve an Admin-only role and require database support. So, you can select from the same upgrade strategies nominated for traditional mode, namely Dual-Cluster Strategy or In-place Strategy, as described in figure 2 and figure 3 respectively.
+CP nodes must be upgraded before DP nodes. CP nodes serve an admin-only role and require database support. 
+So, you can select from the same upgrade strategies nominated for traditional mode (dual-cluster or in-place), 
+as described in figure 2 and figure 3 respectively.
 
 Using the dual-cluster strategy to upgrade a CP:
 ![Dual-cluster hybrid upgrade workflow](/assets/images/products/gateway/upgrade/dual-cluster-hybrid-upgrade.png)
-> _Figure 2: Upgrade CP using the dual-cluster strategy: The diagram shows a new CP Y deployed alongside with current CP X, while current DP nodes X are still serving API requests._
+> _Figure 2: Upgrading the CP using the dual-cluster strategy. The diagram shows the new CP Y, deployed alongside the current CP X, while current DP nodes X are still serving API requests._
 
 Using an in-place strategy to upgrade a CP:
 ![In-place hybrid upgrade workflow](/assets/images/products/gateway/upgrade/in-place-hybrid-upgrade.png)
-> _Figure 3: Upgrade CP using the in-place strategy: The diagram shows how the current CP X is replaced with a new CP Y. The upgrade is mostly the same as that in figure 2, but the database is reused by the new CP Y, and current CP X is shut down._
+> _Figure 3: Upgrading the CP using the in-place strategy. The diagram shows how the current CP X is replaced with a new CP Y. The upgrade is mostly the same as that in figure 2, but the database is reused by the new CP Y, and current CP X is shut down._
 
 From the two figures, you can see that DP nodes X remain connected to the current CP node X, or alternatively switch to the new CP node Y. 
 
-{{site.base_gateway}} guarantees that new minor versions of CPs are compatible with old minor versions of DP, so that you can temporarily set DP nodes X pointing to the new CP node Y.
+{{site.base_gateway}} guarantees that new minor versions of CPs are compatible with old minor versions of the DP, 
+so you can temporarily point DP nodes X to the new CP node Y.
 This lets you pause the upgrade process if needed, or conduct it over a longer period of time. 
 
 After the CP upgrade, cluster X can be decommissioned. You can delay this task to the very end of the DP upgrade.
 
 {:.important}
-> We do not recommend the combination of new version of CP nodes and old version of DP nodes as a long-term production deployment. This setup is meant to be temporary, to be used only during the upgrade process.
+> We do not recommend running a combination of new versions of CP nodes and old versions of DP nodes in a long-term production deployment. 
+This setup is meant to be temporary, to be used only during the upgrade process.
 
 #### Data planes
 
@@ -305,8 +337,8 @@ The following diagrams, figure 4 and 5, are the counterparts of figure 2 and 3 r
 
 Using the dual-cluster strategy with a rolling upgrade workflow:
 ![Dual-cluster and rolling upgrade workflow](/assets/images/products/gateway/upgrade/dual-cluster-rolling-hybrid-upgrade.png)
-> _Figure 4: Upgrade by Dual-Cluster Strategy and Rolling Strategy: The diagram shows a new CP Y deployed alongside with current CP X, while current DP nodes X are still serving API requests._
-_In the image, the background colour of the current CP X and/or current DB is white instead of blue, signalling that the CP part has already been upgraded and might have been decommissioned._
+> _Figure 4: Upgrading using the dual-cluster and rolling strategies. The diagram shows the new CP Y, deployed alongside with current CP X, while current DP nodes X are still serving API requests._
+_In the image, the background color of the current CP X or current DB is white instead of blue, signaling that the CP part was already upgraded and might have been decommissioned._
 
 Using the in-place cluster strategy with a rolling upgrade workflow:
 ![In-place and rolling upgrade workflow](/assets/images/products/gateway/upgrade/in-place-rolling-hybrid-upgrade.png)

@@ -4,9 +4,13 @@ content_type: how-to
 purpose: Learn how to perform a dual-cluster upgrade for Kong Gateway
 ---
 
-The dual-cluster upgrade strategy is a {{site.base_gateway}} upgrade option used primarily for traditional mode deployments and for control planes in hybrid mode. 
+The dual-cluster upgrade strategy is a {{site.base_gateway}} upgrade option used primarily for traditional 
+mode deployments and for control planes in hybrid mode. 
 
-With a dual-cluster upgrade, you deploy a new cluster of version Y alongside the current version X, so that two clusters serve requests concurrently during the upgrade process.
+With a dual-cluster upgrade, you deploy a new cluster of version Y alongside the current version X, 
+so that two clusters serve requests concurrently during the upgrade process. 
+As you add nodes, you will gradually adjust the traffic ratio between the two clusters to 
+switch traffic over from the old cluster to the new one.
 
 ![Dual-cluster upgrade workflow](/assets/images/products/gateway/upgrade/dual-cluster-upgrade.png)
 > _Figure 1: Dual-cluster upgrade workflow_
@@ -26,17 +30,17 @@ PostgreSQL or Cassandra.
 
 ## Prerequisites
 
-* You have reviewed the [general upgrade guide](/gateway/{{page.kong_version}}/upgrade/).
-* You have enough hardware/resources to temporarily run an additional {{site.base_gateway}} cluster.
-* You have chosen this upgrade option because you have a traditional deployment, or you need 
-to upgrade the control planes (CPs) in a hybrid mode deployment.
+* Review the [general upgrade guide](/gateway/{{page.kong_version}}/upgrade/) to prepare for the upgrade and review your options.
+* You have a traditional deployment or you need to upgrade the control planes (CPs) in a hybrid mode deployment.
+* You have enough resources to temporarily run an additional {{site.base_gateway}} cluster alongside your existing cluster.
 
-## Upgrade steps
+## Upgrade using the dual-cluster method
 
 This guide refers to the old version as cluster X and the new version as cluster Y.
 
-A dual-cluster upgrade involves gradually adjusting the traffic ratio between the two clusters. 
-See the following steps to perform an upgrade using this strategy.
+{:.note}
+> The following steps are intended as a guideline.
+The exact execution of these steps will vary depending on your environment. 
 
 1. Stop any {{site.base_gateway}} configuration updates (e.g. Admin API calls). 
 This is critical to guarantee data consistency between cluster X and cluster Y.
@@ -48,12 +52,12 @@ This is critical to guarantee data consistency between cluster X and cluster Y.
 [Backup guide](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/).
 
 3. Evaluate factors that may impact the upgrade, as described in [Upgrade Considerations].
-You may have to consider customization of both `kong.conf` and Kong configuration data.
+You may have to consider customization of both `kong.conf` and {{site.base_gateway}} configuration data.
 
 4. Evaluate any [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/) that may 
 have happened between releases.
 
-5. Deploy a new Kong cluster of version Y:
+5. Deploy a new {{site.base_gateway}} cluster of version Y:
 
     1. Install a new {{site.base_gateway}} cluster running version Y as instructed in the 
     [{{site.base_gateway}} Installation Options](/gateway/{{page.kong_version}}/install/) and 
@@ -70,7 +74,7 @@ have happened between releases.
 
     6. Perform staging tests against version Y to make sure it works for all use cases. 
     
-        For instance, does the Key Authentication plugin authenticate requests properly?
+        For example, does the Key Authentication plugin authenticate requests properly?
         
         If the outcome is not as expected, look over the 
         [upgrade considerations](/gateway/{{page.kong_version}}/upgrade/upgrade-considerations/) and the 
@@ -89,4 +93,4 @@ and repeat the steps above.
 
 9. When there are no more issues, decommission the old cluster X to complete the upgrade. 
 
-Write updates to Kong can now be performed, though we suggest you keep monitoring metrics for a while.
+Write updates to {{site.base_gateway}} can now be performed, though we suggest you keep monitoring metrics for a while.
