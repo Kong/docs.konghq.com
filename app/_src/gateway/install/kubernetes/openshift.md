@@ -13,8 +13,8 @@ The {{site.base_gateway}} software is governed by the
 
 ## Prerequisites
 
-- A Kubernetes cluster v1.19 or later
-- `kubectl` v1.19 or later
+- An OpenShift cluster, v4 or later
+- OpenShift CLI `oc` v4 or later
 - (Enterprise only) A `license.json` file from Kong
 - Helm 3
 
