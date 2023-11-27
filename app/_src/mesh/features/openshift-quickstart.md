@@ -12,17 +12,16 @@ For OpenShfit, we'll be spinning up a ROSA 4.12 cluster. This tutorial does also
 
 This tutorial will cover:
 
-How to use the Red Hat Certified Kong Mesh Images
-How to implement the required OpenShift SecurityContextConstraints (SCC) for the kong-mesh sidecar
-Deploy and join the Kong for Kubernetes Ingress Controller (KIC) to the mesh
-Deploy a sample application, bookinfo, on the mesh and validate it's all working
-Fun! Let's do it!
+* How to use the Red Hat Certified Kong Mesh Images
+* How to implement the required OpenShift SecurityContextConstraints (SCC) for the kong-mesh sidecar
+* Deploy and join the Kong for Kubernetes Ingress Controller (KIC) to the mesh
+* Deploy a sample application, bookinfo, on the mesh and validate it's all working
 
 ## Prerequisites
-* ROSA cli or another OpenShift 4.12 cluster with the ability to create LoadBalancer type Kubernetes Services
-* kubectl cli
-* oc cli
-* Helm 3
+* [ROSA CLI installed](https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa_getting_started_iam/rosa-installing-rosa.html) or another OpenShift 4.12 cluster with the ability to create LoadBalancer type Kubernetes Services
+* [kubectl CLI installed](https://kubernetes.io/docs/tasks/tools/)
+* [OpenShift CLI installed](https://docs.openshift.com/container-platform/4.11/cli_reference/openshift_cli/getting-started-cli.html)
+* [Helm 3 installed](https://helm.sh/docs/intro/install/)
 
 ## Install ROSA
 
