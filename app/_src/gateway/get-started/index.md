@@ -43,7 +43,7 @@ This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://
    ```
 
    {:.note}
-   > **Note**: The quickstart script runs {{site.base_gateway}} Enterprise in Free mode. You may run Kong with a license by passing the license to the script via an environment variable. For instructions on this and other advanced usage, see the [code repository documentation](https://github.com/Kong/get.konghq.com).
+   > **Note**: The quickstart script runs {{site.ee_product_name}} in Free mode. You may run Kong with a license by passing the license to the script via an environment variable. For instructions on this and other advanced usage, see the [code repository documentation](https://github.com/Kong/get.konghq.com).
 
    This script runs Docker containers for {{site.base_gateway}} and the supporting PostgreSQL database.
    The script also creates a Docker network for those containers to communicate over. Finally, the database is 

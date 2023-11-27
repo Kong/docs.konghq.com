@@ -3,10 +3,15 @@ dbless_compatible: 'yes'
 free: false
 plus: false
 enterprise: true
+k8s_examples: false
 premium: true
 konnect: true
 network_config_opts: All
-notes: --
+notes: |
+  The Canary plugin is not designed for a Kubernetes-native framework,
+  and shouldn't be used with the Kong Ingress Controller. Instead, use the 
+  <a href="/kubernetes-ingress-controller/latest/concepts/gateway-api/">Gateway API</a> 
+  to manage canary deploys.
 categories:
   - traffic-control
 publisher: Kong Inc.

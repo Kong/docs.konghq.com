@@ -29,7 +29,7 @@ security, collaboration, performance at scale, and use of advanced protocols.
 
 Here’s the content covered in this guide, and how the pieces fit together:
 
-![Features in getting started guide](/assets/images/docs/getting-started-guide/Kong-GS-overview.png)
+![Features in getting started guide](/assets/images/products/gateway/getting-started-guide/Kong-GS-overview.png)
 
 | Concept/Feature    | Description {:width=75%:} |
 |:------------------ |:--------------------------|
@@ -63,7 +63,7 @@ authenticate. This delivers several benefits, including:
 processing invalid requests.
 * All requests are logged for central visibility of traffic.
 
-![API Gateway traffic](/assets/images/docs/getting-started-guide/gateway-traffic.png)
+![API Gateway traffic](/assets/images/products/gateway/getting-started-guide/gateway-traffic.png)
 
 ## Before you begin
 

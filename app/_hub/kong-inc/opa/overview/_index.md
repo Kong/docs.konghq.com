@@ -65,7 +65,7 @@ setup.
 Set up a Route and Service in {{site.base_gateway}} and then enable the plugin:
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/routes/<route>/plugins \
+curl -X POST http://localhost:8001/routes/<route>/plugins \
     --data "name=opa"  \
     --data "config.opa_path=/v1/data/example/allowBoolean" \
     --data "config.opa_host=<host-where-opa is running>"
@@ -118,7 +118,7 @@ The input to OPA has the following JSON structure:
           "connection": "keep-alive",
           "accept": "*\\/*"
         },
-        "uri_captures": {      # The regex capture groups captured on the Kong Gateway Route's path field in the current request. Injected only if `include_uri_captures_in_opa_input` is set to `true`.
+        "uri_captures": {      # The regex capture groups captured on the {{site.base_gateway}} Route's path field in the current request. Injected only if `include_uri_captures_in_opa_input` is set to `true`.
           "named": {},
           "unnamed": []
         }

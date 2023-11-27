@@ -11,6 +11,8 @@ toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk/table.lua
 ---
 
+<!-- vale off -->
+
 Utilities for Lua tables.
 
 

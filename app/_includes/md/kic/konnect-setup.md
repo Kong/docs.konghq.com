@@ -1,0 +1,2 @@
+{:.note}
+> To install {{ site.kic_product_name }} for Konnect, select a {{ site.kic_product_name }} Control Plane in [Gateway Manager](https://cloud.konghq.com/us/gateway-manager/) and follow the instructions in the UI

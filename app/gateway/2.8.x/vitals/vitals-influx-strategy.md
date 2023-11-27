@@ -14,7 +14,7 @@ For information about using Kong Vitals with a database as the backend, refer to
 
 ## Set up Kong Vitals with InfluxDB
 
-### Install Kong Gateway
+### Install {{site.base_gateway}}
 
 If you already have a {{site.base_gateway}} instance, skip to [deploying a license](#deploy-a-kong-gateway-license).
 
@@ -22,7 +22,7 @@ If you have not installed {{site.base_gateway}}, a Docker installation
 will work for the purposes of this guide.
 
 
-### Pull the Kong Gateway Docker image {#pull-image}
+### Pull the {{site.base_gateway}} Docker image {#pull-image}
 
 1. Pull the following Docker image.
 
@@ -45,7 +45,7 @@ will work for the purposes of this guide.
     ```
 
 
-### Start the database and Kong Gateway containers
+### Start the database and {{site.base_gateway}} containers
 
 1. Create a custom network to allow the containers to discover and communicate
 with each other.
@@ -142,7 +142,7 @@ InfluxDB 2.0 will **not** work.
 Writing Vitals data to InfluxDB requires that the `kong` database is created,
 this is done using the `INFLUXDB_DB` variable.
 
-### Configure Kong Gateway
+### Configure {{site.base_gateway}}
 
 {:.note}
 > **Note:** If you used the configuration in

@@ -50,7 +50,7 @@ When a limit is reached, the plugin returns an `HTTP/1.1 429` status code, with 
 ```
 
 {:.important}
-> The headers `RateLimit-Limit`, `RateLimit-Remaining`, and `RateLimit-Reset` are based on the Internet-Draft [RateLimit Header Fields for HTTP](https://tools.ietf.org/html/draft-polli-ratelimit-headers-02) and may change in the future to respect specification updates.
+> The headers `RateLimit-Limit`, `RateLimit-Remaining`, and `RateLimit-Reset` are based on the Internet-Draft [RateLimit Header Fields for HTTP](https://datatracker.ietf.org/doc/draft-ietf-httpapi-ratelimit-headers/) and may change in the future to respect specification updates.
 
 ## Implementation considerations
 
@@ -80,7 +80,7 @@ Two common use cases are:
 
 {:.warning}
 > **Note**: **Enterprise-Only**: The Kong Community Edition of this Rate Limiting plugin does not
-include [Redis Sentinel](https://redis.io/topics/sentinel) support. Only [{{site.base_gateway}} Enterprise](https://www.konghq.com/kong) customers can use Redis Sentinel with Kong Rate Limiting, enabling them to deliver highly available primary-replica deployments.
+include [Redis Sentinel](https://redis.io/topics/sentinel) support. Only [{{site.ee_product_name}}](https://www.konghq.com/kong) customers can use Redis Sentinel with Kong Rate Limiting, enabling them to deliver highly available primary-replica deployments.
 
 #### Every transaction counts
 

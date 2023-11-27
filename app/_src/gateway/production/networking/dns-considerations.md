@@ -274,5 +274,5 @@ help Kong Support pinpoint the cause. Please provide it in tickets if possible.
 [mdn-cookies]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
 [mdn-set-cookie]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie
 [mdn-cors]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-[oidc-plugin]: https://docs.konghq.com/hub/kong-inc/openid-connect/
-[session-plugin]: https://docs.konghq.com/hub/kong-inc/session/
+[oidc-plugin]: /hub/kong-inc/openid-connect/
+[session-plugin]: /hub/kong-inc/session/

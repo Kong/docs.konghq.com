@@ -1,4 +1,6 @@
 name: AWS Lambda
+search_aliases:
+  - aws-lambda
 dbless_compatible: 'yes'
 free: true
 enterprise: true

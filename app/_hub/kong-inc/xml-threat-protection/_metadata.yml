@@ -1,4 +1,6 @@
 name: XML Threat Protection
+search_aliases:
+  - xml-threat-protection
 dbless_compatible: 'yes'
 free: false
 plus: false

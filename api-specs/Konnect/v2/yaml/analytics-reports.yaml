@@ -1,0 +1,1007 @@
+openapi: 3.0.2
+info:
+  title: Konnect Analytics Reports
+  version: 2.0.0
+  description: The API for managing custom reports.
+  contact:
+    name: Kong
+    url: https://cloud.konghq.com
+servers:
+  - url: https://us.api.konghq.com/v2
+    description: US Region Konnect Platform Base URL
+  - url: https://eu.api.konghq.com/v2
+    description: EU Region Konnect Platform Base URL
+  - url: https://au.api.konghq.com/v2
+    description: AU Region Konnect Platform Base URL
+tags:
+  - name: Custom Reports
+paths:
+  /reports:
+    get:
+      summary: List Custom Reports
+      responses:
+        '200':
+          $ref: '#/components/responses/ReportCollection'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      operationId: get-reports
+      tags:
+        - Custom Reports
+      description: Returns a list of custom reports.
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+    post:
+      summary: New Custom Report
+      tags:
+        - Custom Reports
+      description: Creates a new custom report.
+      operationId: create-report
+      requestBody:
+        $ref: '#/components/requestBodies/CreateReport'
+      responses:
+        '201':
+          $ref: '#/components/responses/ReportSingle'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+  /reports/{reportId}:
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+          example: d32d905a-ed33-46a3-a093-d8f536af9a8a
+        name: reportId
+        in: path
+        required: true
+        description: The report's ID
+    get:
+      summary: Fetch Custom Report
+      operationId: get-report
+      tags:
+        - Custom Reports
+      description: Returns a single report.
+      responses:
+        '200':
+          $ref: '#/components/responses/ReportSingle'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+    put:
+      summary: Update Report
+      operationId: update-report
+      responses:
+        '200':
+          $ref: '#/components/responses/ReportSingle'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      description: Updates a custom report.
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateReport'
+      tags:
+        - Custom Reports
+    delete:
+      summary: Delete Custom Report
+      operationId: delete-report
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+      description: Deletes a custom report. Returns 404 if the report is not found.
+      tags:
+        - Custom Reports
+  /reports/{reportId}/export:
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+          example: d32d905a-ed33-46a3-a093-d8f536af9a8a
+        name: reportId
+        in: path
+        required: true
+        description: The ID of the report to export
+      - schema:
+          type: string
+          example: Etc/UTC
+        name: tz
+        in: query
+        description: >
+          The timezone to use for the report.  This impacts several things:
+
+
+          - The timestamps returned, if time is a dimension.
+
+          - Day boundaries for reports, meaning that if the report implicitly
+          has a granularity of DAILY or higher, the same query may return
+          different data depending on the timezone selected.
+      - schema:
+          type: boolean
+        name: utc_format
+        in: query
+        description: >
+          If true, export timestamps in "programmer friendly" format (ISO-8601,
+          UTC timezone).
+
+          If false, export in "spreadsheet friendly" format (local time without
+          timezone specifier).
+
+
+          Note: this does NOT impact the timezone of the report, merely the
+          format of the time column if one is present.
+    post:
+      summary: Export as CSV
+      tags:
+        - Custom Reports
+      description: Exports report data in CSV format.
+      operationId: export-csv
+      responses:
+        '200':
+          description: Report exported successfully
+          content:
+            text/csv:
+              schema:
+                type: string
+              examples:
+                timeseries:
+                  value: |
+                    TIMESTAMP,UTC_OFFSET,API_PRODUCT,TOTAL_REQUESTS
+                    2023-01-01 00:00:00,-04:00,ProductA,2497079
+                    2023-01-01 00:00:00,-04:00,ProductB,2029907
+                non-timeseries:
+                  value: |
+                    API_PRODUCT,TOTAL_REQUESTS
+                    ProductA,21007
+                    ProductB,16233
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+components:
+  schemas:
+    PaginatedMeta:
+      type: object
+      example:
+        page:
+          number: 2
+          size: 10
+          total: 100
+      title: PaginatedMeta
+      description: Returns pagination information
+      properties:
+        page:
+          type: object
+          description: >-
+            Contains pagination query parameters and the total number of
+            entities returned.
+          properties:
+            number:
+              type: integer
+              example: 2
+              description: Represents the current page number.
+            size:
+              type: integer
+              example: 10
+              maximum: 100
+              description: Represents the number of entities on the page.
+            total:
+              type: integer
+              example: 100
+              maximum: 1000
+              description: >-
+                Integer indicating the total number of entities in the list of
+                results that’s being paginated.
+    Report:
+      type: object
+      example:
+        summary: Bar chart of status codes by API product for the past 24 hours
+        description: >-
+          A vertical bar chart grouping data first by API product, then by
+          status code, for the past 24 hours.
+        value:
+          name: Status codes by service
+          chart_type: VERTICAL_BAR
+          time_range:
+            type: RELATIVE
+            time_period: 24H
+          query:
+            metrics:
+              - REQUEST_COUNT
+            dimensions:
+              - API_PRODUCT
+              - STATUS_CODE
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+          description: The ID of the report.
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          description: An ISO-8601 timestamp representing when the report was created.
+          example: '2022-11-04T20:10:06.927Z'
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          description: An ISO-8601 timestamp representing when the report was last updated.
+          example: '2022-11-04T20:10:06.927Z'
+          readOnly: true
+        created_by:
+          type: string
+          format: uuid
+          example: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+          description: The UUID of the Konnect user that created the report.
+          readOnly: true
+        name:
+          type: string
+          description: >
+            The user-provided name for the report.
+
+            If not provided, the report will be named "Untitled Report" with a
+            timestamp suffix.
+          maxLength: 255
+          minLength: 1
+        description:
+          type: string
+          description: An optional extended description for the report.
+        chart_type:
+          type: string
+          description: Visualization type selected for this report.
+          enum:
+            - HORIZONTAL_BAR
+            - VERTICAL_BAR
+            - LINE
+          default: HORIZONTAL_BAR
+        time_range:
+          $ref: '#/components/schemas/TimeRange'
+        query:
+          type: object
+          properties:
+            metrics:
+              type: array
+              minItems: 1
+              maxItems: 1
+              default:
+                - REQUEST_COUNT
+              items:
+                type: string
+                enum:
+                  - REQUEST_COUNT
+                  - REQUEST_PER_MINUTE
+                  - RESPONSE_LATENCY_P99
+                  - RESPONSE_LATENCY_P95
+                  - RESPONSE_LATENCY_P50
+                  - RESPONSE_SIZE_P99
+                  - RESPONSE_SIZE_P95
+                  - RESPONSE_SIZE_P50
+                  - REQUEST_SIZE_P99
+                  - REQUEST_SIZE_P95
+                  - REQUEST_SIZE_P50
+              description: >
+                A property of your API (such as request count or latency) that
+                you wish to report on.
+
+                Your chosen metric is aggregated within the specified
+                dimensions, meaning that if you query 'request count by
+                service', you'll receive the total number of requests each
+                service received within the given time frame.  Some metrics,
+                such as latency and response size, have more complicated
+                aggregations: selecting P99 will result in the 99th percentile
+                of the chosen metric.
+            dimensions:
+              type: array
+              items:
+                type: string
+                enum:
+                  - API_PRODUCT
+                  - API_PRODUCT_VERSION
+                  - ROUTE
+                  - APPLICATION
+                  - STATUS_CODE
+                  - STATUS_CODE_GROUPED
+                  - GATEWAY_SERVICE
+                  - CONTROL_PLANE
+                  - TIME
+              description: >
+                The dimensions for the report.  A report may have up to 2
+                dimensions, including time.
+
+                If the report has a timeseries graph, the time dimension will be
+                added automatically if not provided.
+
+                If no dimensions are provided, the report will simply return the
+                provided metric aggregated across
+
+                all available data.
+              maxItems: 2
+              default: []
+            granularity:
+              type: string
+              enum:
+                - MINUTELY
+                - HOURLY
+                - DAILY
+                - WEEKLY
+              description: >
+                `granularity` is only valid for queries that include a time
+                dimension, and it specifies the time buckets for the returned
+                data.  For example, `MINUTELY` granularity will return
+                datapoints for every minute.  Not all granularities are
+                available for all time ranges: for example, custom timeframes
+                only have `DAILY` granularity.
+
+
+                If unspecified, a default value for the given time range will be
+                chosen according to the following table:
+
+
+                - `FIFTEEN_MIN`: `MINUTELY`
+
+                - `ONE_HOUR`: `MINUTELY`
+
+                - `SIX_HOUR`: `HOURLY`
+
+                - `TWELVE_HOUR`: `HOURLY`
+
+                - `ONE_DAY`: `HOURLY`
+
+                - `SEVEN_DAY`: `DAILY`
+
+                - `THIRTY_DAY`: `DAILY`
+
+                - `CURRENT_WEEK`: `DAILY`
+
+                - `CURRENT_MONTH`: `DAILY`
+
+                - `PREVIOUS_WEEK`: `DAILY`
+
+                - `PREVIOUS_MONTH`: `DAILY`
+            filter:
+              type: array
+              items:
+                discriminator:
+                  propertyName: dimension
+                  mapping:
+                    API_PRODUCT: '#/components/schemas/ApiProductFilter'
+                    API_PRODUCT_VERSION: '#/components/schemas/ApiProductVersionFilter'
+                    ROUTE: '#/components/schemas/RouteFilter'
+                    APPLICATION: '#/components/schemas/ApplicationFilter'
+                    STATUS_CODE: '#/components/schemas/StatusCodeFilter'
+                    STATUS_CODE_GROUPED: '#/components/schemas/StatusCodeGroupedFilter'
+                    GATEWAY_SERVICE: '#/components/schemas/GatewayServiceFilter'
+                    CONTROL_PLANE: '#/components/schemas/ControlPlaneFilter'
+                oneOf:
+                  - $ref: '#/components/schemas/ApiProductFilter'
+                  - $ref: '#/components/schemas/ApiProductVersionFilter'
+                  - $ref: '#/components/schemas/RouteFilter'
+                  - $ref: '#/components/schemas/ApplicationFilter'
+                  - $ref: '#/components/schemas/StatusCodeFilter'
+                  - $ref: '#/components/schemas/StatusCodeGroupedFilter'
+                  - $ref: '#/components/schemas/GatewayServiceFilter'
+                  - $ref: '#/components/schemas/ControlPlaneFilter'
+              default: []
+    TimeRange:
+      description: >
+        The period of time to return data.  Relative time ranges are relative to
+        the current moment.  Absolute time ranges specify an unchanging period
+        of time.  If not specified, a default relative timeframe of last 24
+        hours will be chosen.
+      oneOf:
+        - $ref: '#/components/schemas/RelativeTimeRange'
+        - $ref: '#/components/schemas/AbsoluteTimeRange'
+      discriminator:
+        propertyName: type
+        mapping:
+          relative: '#/components/schemas/RelativeTimeRange'
+          absolute: '#/components/schemas/AbsoluteTimeRange'
+      default:
+        type: RELATIVE
+        time_period: 24H
+    RelativeTimeRange:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - RELATIVE
+        time_period:
+          type: string
+          description: Query data from the specified period relative to now.
+          enum:
+            - 15M
+            - 1H
+            - 6H
+            - 12H
+            - 24H
+            - 7D
+            - 30D
+            - CURRENT_WEEK
+            - CURRENT_MONTH
+            - PREVIOUS_WEEK
+            - PREVIOUS_MONTH
+      required:
+        - type
+        - time_period
+    AbsoluteTimeRange:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - ABSOLUTE
+        start:
+          type: string
+          format: date
+          description: >-
+            An ISO-8601 date value specifying the lower bound of the time range,
+            inclusive.
+          example: '2022-11-04'
+        end:
+          type: string
+          format: date
+          description: >-
+            An ISO-8601 date value specifying the upper bound of the time range,
+            inclusive.
+          example: '2022-11-04'
+      required:
+        - type
+        - start
+        - end
+    FilterType:
+      type: string
+      description: >-
+        The type of filter to apply.  `IN` filters will limit results to only
+        the specified values, while `NOT_IN` filters will exclude the specified
+        values.
+      enum:
+        - IN
+        - NOT_IN
+    ApiProductFilter:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.
+          type: string
+          enum:
+            - API_PRODUCT
+        type:
+          $ref: '#/components/schemas/FilterType'
+        values:
+          description: |
+            The UUIDs of the API products to include in the results.
+          type: array
+          items:
+            type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      required:
+        - dimension
+        - type
+        - values
+    ApiProductVersionFilter:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.
+          type: string
+          enum:
+            - API_PRODUCT_VERSION
+        type:
+          $ref: '#/components/schemas/FilterType'
+        values:
+          description: |
+            The UUIDs of the API product versions to include in the results.
+          type: array
+          items:
+            type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      required:
+        - dimension
+        - type
+        - values
+    RouteFilter:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.
+          type: string
+          enum:
+            - ROUTE
+        type:
+          $ref: '#/components/schemas/FilterType'
+        values:
+          description: >
+            The routes to include in the results.  Because route UUIDs are only
+            unique within a given control plane, the filter values must be of
+            the form "[control plane UUID]:[route UUID]".
+          type: array
+          items:
+            type: string
+            pattern: >-
+              ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      required:
+        - dimension
+        - type
+        - values
+    ApplicationFilter:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.
+          type: string
+          enum:
+            - APPLICATION
+        type:
+          $ref: '#/components/schemas/FilterType'
+        values:
+          description: |
+            The UUIDs of the dev portal applications to include in the results.
+          type: array
+          items:
+            type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      required:
+        - dimension
+        - type
+        - values
+    StatusCodeFilter:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.
+          type: string
+          enum:
+            - STATUS_CODE
+        type:
+          $ref: '#/components/schemas/FilterType'
+        values:
+          description: |
+            Only include requests with specific status codes in the results.
+          type: array
+          items:
+            type: integer
+            minimum: 100
+            maximum: 999
+      required:
+        - dimension
+        - type
+        - values
+    StatusCodeGroupedFilter:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.
+          type: string
+          enum:
+            - STATUS_CODE_GROUPED
+        type:
+          $ref: '#/components/schemas/FilterType'
+        values:
+          description: |
+            Only include the given groups of status codes in the results.
+          type: array
+          items:
+            type: string
+            pattern: ^\d[xX][xX]$
+      required:
+        - dimension
+        - type
+        - values
+    GatewayServiceFilter:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.
+          type: string
+          enum:
+            - GATEWAY_SERVICE
+        type:
+          $ref: '#/components/schemas/FilterType'
+        values:
+          description: >
+            The gateway services to include in the results.  Because gateway
+            service UUIDs are only unique within a given control plane, the
+            filter values must be in the form "[control plane UUID]:[service
+            UUID]".
+          type: array
+          items:
+            type: string
+            pattern: >-
+              ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      required:
+        - dimension
+        - type
+        - values
+    ControlPlaneFilter:
+      type: object
+      properties:
+        dimension:
+          description: The dimension to filter.
+          type: string
+          enum:
+            - CONTROL_PLANE
+        type:
+          $ref: '#/components/schemas/FilterType'
+        values:
+          description: |
+            The UUIDs of the control planes to include in the results.
+          type: array
+          items:
+            type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      required:
+        - dimension
+        - type
+        - values
+  parameters:
+    PageSize:
+      name: page[size]
+      description: How many items to include in a page.
+      in: query
+      required: false
+      schema:
+        type: integer
+        example: 10
+      allowEmptyValue: true
+    PageNumber:
+      name: page[number]
+      description: The specific page number in the collection results.
+      in: query
+      required: false
+      schema:
+        type: integer
+        example: 2
+      allowEmptyValue: true
+  requestBodies:
+    CreateReport:
+      description: >-
+        The request schema for the create report request.
+
+
+        If you pass the same `name` and `description` of an existing report in
+        the request, a report with the same `name` and `description` will be
+        created. The two reports will have different `id` values to
+        differentiate them.
+
+
+        Note that all fields are optional: if you pass an empty JSON object as
+        the request (`{}`), a new report will be created with a default
+        configuration.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Report'
+          examples:
+            basicBarChart:
+              summary: Bar chart of status codes by API product for the past 24 hours
+              description: >-
+                A vertical bar chart grouping data first by API product, then by
+                status code, for the past 24 hours.
+              value:
+                name: Status codes by service
+                chart_type: VERTICAL_BAR
+                time_range:
+                  type: RELATIVE
+                  time_period: 24H
+                query:
+                  metrics:
+                    - REQUEST_COUNT
+                  dimensions:
+                    - API_PRODUCT
+                    - STATUS_CODE
+            barChartWithFilter:
+              summary: Bar chart of status codes for one product
+              description: >-
+                A horizontal bar chart, showing status codes, filtered down to
+                only one API product.
+              value:
+                name: Status codes for product A
+                chart_type: HORIZONTAL_BAR
+                query:
+                  metrics:
+                    - REQUEST_COUNT
+                  dimensions:
+                    - STATUS_CODE
+                  filter:
+                    - dimension: API_PRODUCT
+                      type: IN
+                      values:
+                        - 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+            lineChartWithPercentiles:
+              summary: Line chart of p99 latencies by application
+              description: >-
+                A line chart showing p99 latency over time for each application
+                for the past 24 hours.
+              value:
+                name: Latency by application
+                chart_type: LINE
+                time_range:
+                  type: RELATIVE
+                  time_period: 24H
+                query:
+                  metrics:
+                    - RESPONSE_LATENCY_P99
+                  granularity: HOURLY
+                  dimensions:
+                    - TIME
+                    - APPLICATION
+            lineChartWithFixedPeriod:
+              summary: Line chart of p99 latencies by service
+              description: A line chart showing p99 latency for the first week of 2023.
+              value:
+                name: Latency by service
+                chart_type: LINE
+                time_range:
+                  type: ABSOLUTE
+                  start: '2023-01-01'
+                  end: '2023-01-07'
+                query:
+                  metrics:
+                    - RESPONSE_LATENCY_P99
+                  dimensions:
+                    - TIME
+                    - API_PRODUCT
+    UpdateReport:
+      description: The request schema for the update report request.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Report'
+          examples:
+            basicBarChart:
+              summary: Bar chart of status codes by API product for the past 24 hours
+              description: >-
+                A vertical bar chart grouping data first by API product, then by
+                status code, for the past 24 hours.
+              value:
+                name: Status codes by service
+                chart_type: VERTICAL_BAR
+                time_range:
+                  type: RELATIVE
+                  time_period: 24H
+                query:
+                  metrics:
+                    - REQUEST_COUNT
+                  dimensions:
+                    - API_PRODUCT
+                    - STATUS_CODE
+            barChartWithFilter:
+              summary: Bar chart of status codes for one product
+              description: >-
+                A horizontal bar chart, showing status codes, filtered down to
+                only one API product.
+              value:
+                name: Status codes for product A
+                chart_type: HORIZONTAL_BAR
+                query:
+                  metrics:
+                    - REQUEST_COUNT
+                  dimensions:
+                    - STATUS_CODE
+                  filter:
+                    - dimension: API_PRODUCT
+                      type: IN
+                      values:
+                        - 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+            lineChartWithPercentiles:
+              summary: Line chart of p99 latencies by application
+              description: >-
+                A line chart showing p99 latency over time for each application
+                for the past 24 hours.
+              value:
+                name: Latency by application
+                chart_type: LINE
+                time_range:
+                  type: RELATIVE
+                  time_period: 24H
+                query:
+                  metrics:
+                    - RESPONSE_LATENCY_P99
+                  granularity: HOURLY
+                  dimensions:
+                    - TIME
+                    - APPLICATION
+            lineChartWithFixedPeriod:
+              summary: Line chart of p99 latencies by service
+              description: A line chart showing p99 latency for the first week of 2023.
+              value:
+                name: Latency by service
+                chart_type: LINE
+                time_range:
+                  type: ABSOLUTE
+                  start: '2023-01-01'
+                  end: '2023-01-07'
+                query:
+                  metrics:
+                    - RESPONSE_LATENCY_P99
+                  dimensions:
+                    - TIME
+                    - API_PRODUCT
+  responses:
+    ReportSingle:
+      description: A response including a single report.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Report'
+    ReportCollection:
+      description: A paginated list response for a collection of reports.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              meta:
+                $ref: '#/components/schemas/PaginatedMeta'
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Report'
+    NotFound:
+      description: Not Found
+      content:
+        application/problem+json:
+          schema:
+            type: object
+            example:
+              Example 1:
+                status: 404
+                title: Not Found
+                instance: konnect:trace:2287285207635123011
+                detail: The requested report was not found
+            description: The error response object.
+            properties:
+              type:
+                type: string
+                description: Documentation for this error.
+              status:
+                type: integer
+                description: The HTTP status code.
+                example: 404
+              title:
+                type: string
+                description: The error response code.
+                example: Not Found
+              instance:
+                type: string
+                example: konnect:trace:2287285207635123011
+                description: The Konnect traceback code
+              detail:
+                type: string
+                example: The requested report was not found
+                description: Details about the error.
+    TooManyRequests:
+      description: Too many requests
+      content:
+        application/problem+json:
+          schema:
+            type: object
+            example:
+              status: 429
+              type: https://kongapi.info/konnect/too-many-requests
+              title: Too Many Requests
+              instance: konnect:trace:2287285207635123011
+              detail: >-
+                You have exceeded your rate limit for this time period.  Please
+                wait and try again.
+            description: The error response object.
+            properties:
+              type:
+                type: string
+                description: Documentation for this error.
+              status:
+                type: integer
+                description: The HTTP status code.
+                example: 429
+              title:
+                type: string
+                description: The error response code.
+                example: Too Many Requests
+              instance:
+                type: string
+                example: konnect:trace:2287285207635123011
+                description: The Konnect traceback code
+              detail:
+                type: string
+                example: >-
+                  You have exceeded your rate limit for this time period. 
+                  Please wait and try again.
+                description: Details about the error.
+    PermissionDenied:
+      description: Permission denied
+      content:
+        application/problem+json:
+          schema:
+            type: object
+            example:
+              status: 403
+              type: https://kongapi.info/konnect/permission-denied
+              title: Permission denied
+              instance: konnect:trace:2822394689570210664
+              detail: You do not have sufficient permissions to perform this action.
+            description: The error object.
+            properties:
+              type:
+                type: string
+                description: Documentation for this error.
+              status:
+                type: integer
+                description: HTTP status code.
+                example: 403
+              title:
+                type: string
+                example: Bad Request
+                description: HTTP status code
+              instance:
+                type: string
+                description: Konnect traceback error code.
+                example: konnect:trace:3674017986744198214
+              detail:
+                type: string
+                description: Information about the error response.
+                example: Only org admins or analytics admins can create reports.
+    BadRequest:
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            type: object
+            description: The error object
+            properties:
+              type:
+                type: string
+                description: Documentation for this error.
+              status:
+                type: integer
+                description: The HTTP response code
+                example: 400
+              title:
+                type: string
+                example: Bad Request
+                description: The Error response
+              instance:
+                type: string
+                description: The Konnect traceback ID.
+                example: konnect:trace:3674017986744198214
+              invalid_parameters:
+                type: array
+                description: >-
+                  An array of objects that contains information related to the
+                  error response.
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                    reason:
+                      type: string
+                    rule:
+                      type: string

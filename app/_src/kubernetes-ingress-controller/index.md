@@ -1,93 +1,54 @@
 ---
 title: Kong Ingress Controller
-subtitle: An ingress controller for the Kong Gateway
+type: explanation
+purpose: |
+  Provide an overview of KIC and what it's used for
 ---
 
-## Concepts
+{{ site.kic_product_name }} allows you to run {{ site.base_gateway }} as a Kubernetes Ingress to handle inbound requests for a Kubernetes cluster.
 
-### Architecture
+{{ site.kic_product_name }} takes Kubernetes resources such as `Ingress` and `HTTPRoute` and converts them into a valid {{ site.base_gateway }} configuration. It enables you to use all the [features](/gateway/latest/#features) of {{ site.base_gateway }}.
 
-The [design document][design] explains how the {{site.kic_product_name}} works
-inside a Kubernetes cluster and configures Kong to proxy traffic as per
-rules defined in the Ingress resources.
+## Architecture
 
-### Custom Resources
+A Kubernetes ingress controller is an application that runs in a cluster and configures a load balancer based on Kubernetes resources (`Ingress`, `HTTPRoute`, `TCPRoute` and more). {{ site.kic_product_name }} configures {{ site.base_gateway }} as a software load balancer which runs in the cluster and is typically exposed as a `LoadBalancer` service.
 
-The Ingress resource in Kubernetes is a fairly narrow and ambiguous API, and
-doesn't offer resources to describe the specifics of proxying.
-To overcome this limitation, the KongIngress Custom resource is used as an
-"extension" to the existing Ingress API.
+[Learn More &raquo;](/kubernetes-ingress-controller/{{ page.release }}/concepts/architecture/)
 
-A few custom resources are bundled with the {{site.kic_product_name}} to
-configure settings that are specific to Kong and provide fine-grained control
-over the proxying behavior.
+![KIC and {{ site.base_gateway }} Architecture Diagram](/assets/images/products/kubernetes-ingress-controller/kic-gateway-arch.png)
 
-Refer to the [custom resources concept document][crd] for more details.
 
-### Deployment Methods
+## Deployment Methods
 
-The {{site.kic_product_name}} can be deployed in a variety of deployment patterns.
-Refer to the [deployment documentation](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/deployment/),
-which explains all the components
-involved and different ways of deploying them based on the use-case.
+Kong recommends using the `kong/ingress` Helm chart to deploy {{ site.kic_product_name }}. This chart supports both [DB-less](/kubernetes-ingress-controller/{{ page.release }}/production/deployment-topologies/gateway-discovery/) and [DB-backed](/kubernetes-ingress-controller/{{ page.release }}/production/deployment-topologies/db-backed/) deployments. If you're not sure which to choose, we recommend choosing DB-less which treats the Kubernetes API server as the source of truth.
 
-### High-availability and Scaling
+[Learn More &raquo;](/kubernetes-ingress-controller/{{ page.release }}/production/deployment-topologies/gateway-discovery/)
 
-The {{site.kic_product_name}} is designed to scale with your traffic
-and infrastructure.
-Refer to the [High-availability and Scaling guide](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling/) to understand
-failures scenarios, recovery methods, as well as scaling considerations.
+## Common Use Cases
 
-### Ingress classes
+Many {{ site.kic_product_name }} users have the same questions when adding an ingress controller to their cluster:
 
-[Ingress classes](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ingress-classes) filter which resources the
-controller loads. They ensure that {{site.kic_product_name}} instances do not
-load configuration intended for other instances or other ingress controllers.
+* How do I expose my service on a specific path?
+* How do I protect the service with rate limiting?
+* How do I cache responses for a period of time to reduce load?
+* How do I add authentication to my service?
 
-### Security
+To do all of these in under 10 minutes, follow our [getting started guide](/kubernetes-ingress-controller/{{ page.release }}/get-started/) which takes you through step-by-step. Each page contains copy/paste instructions and links to further information if you want to learn more.
 
-Refer to the [Security concepts guide](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/security/) to understand the
-default security settings and how to further secure the Ingress Controller.
+## Gateway API Support
 
-## Guides and Tutorials
+Kong are proud to be a driving force behind the Kubernetes Gateway API standard. With multiple contributors in maintainer and reviewer roles, Kong is all-in on Gateway API as the future of Kubernetes networking.
 
-Browse through the [how-to guides][guides] to get started or understand how to configure
-a specific setting with the {{site.kic_product_name}}.
+{{ site.kic_product_name }} was the first submitted conformance report, and is 100% compliant with the core conformance tests (in addition to many extended tests). Kong has implemented the Gateway API resources as first-class citizens, converting them directly in to {{ site.base_gateway }} configuration rather than using intermediate CRDs. This makes the Gateway API CRDs a native language for {{ site.kic_product_name }}.
 
-## Configuration Reference
-
-The configurations in the {{site.kic_product_name}} can be tweaked using
-Custom Resources and annotations.
-Please refer to the following documents detailing this process:
-
-- [Custom Resource Definitions](/kubernetes-ingress-controller/{{page.kong_version}}/references/custom-resources/)
-- [Annotations](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/)
-- [CLI arguments](/kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments/)
-- [Version compatibility matrix](/kubernetes-ingress-controller/{{page.kong_version}}/references/version-compatibility/)
-- [Plugin compatibility matrix](/kubernetes-ingress-controller/{{page.kong_version}}/references/plugin-compatibility/)
-- [Prometheus metrics](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus/)
-
-## FAQs
-
-[FAQs][faqs] will help find answers to common problems quickly.
-Please feel free to open Pull Requests to contribute to the list.
+[Learn More &raquo;](/kubernetes-ingress-controller/{{ page.release }}/gateway-api/)
 
 ## Troubleshooting
 
-Please read through our [deployment guide][deployment] for a detailed
-understanding of how Ingress Controller is designed and deployed
-alongside Kong.
+The following pages may help if {{ site.kic_product_name }} is not working for you:
 
-- [FAQs][faqs] might help as well.
-- [Troubleshooting guide][troubleshooting] can help
-  resolve some issues.
-  Please contribute back if you feel your experience can help
-  the larger community.
-
-[annotations]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations
-[crd]: /kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources
-[deployment]: /kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview
-[design]: /kubernetes-ingress-controller/{{page.kong_version}}/concepts/design
-[faqs]: /kubernetes-ingress-controller/{{page.kong_version}}/faq
-[troubleshooting]: /kubernetes-ingress-controller/{{page.kong_version}}/troubleshooting
-[guides]: /kubernetes-ingress-controller/{{page.kong_version}}/guides/overview
+* [Troubleshooting](/kubernetes-ingress-controller/{{ page.release }}/reference/troubleshooting/): Common issues that people encounter when running {{ site.kic_product_name }}.
+* [FAQ](/kubernetes-ingress-controller/{{ page.release }}/reference/faq/router/): Specific questions about routing behavior, plugin compatibility and more.
+* [Feature Gates](/kubernetes-ingress-controller/{{ page.release }}/reference/feature-gates/): If something isn't working as expected, ensure that you have the correct feature gates enabled
+* [Create a GitHub issue](https://github.com/Kong/kubernetes-ingress-controller/issues/new/choose): Report a bug or make a feature request for {{ site.kic_product_name }}.
+* [Join the Kong Slack community](https://konghq.com/community#64fe8580b1a2f3c3804230f1): Get help from the team

@@ -77,7 +77,7 @@ You may also need to pass in as header the User-Agent that was used to create th
 :  Disable colorized output (Default: `false`)
 
 `--skip-workspace-crud`
-:  Skip API calls related to Workspaces (Kong Enterprise only). (Default: `false`)
+:  Skip API calls related to Workspaces ({{site.ee_product_name}} only). (Default: `false`)
 
 {% if_version gte:1.8.x %}
 

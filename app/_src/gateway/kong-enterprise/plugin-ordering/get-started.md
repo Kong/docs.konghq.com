@@ -23,7 +23,7 @@ Call the Admin API on port `8001` and enable the
 `rate-limiting` plugin, configuring it to run before `key-auth`:
 
 ```sh
-curl -i -X POST http://<admin-hostname>:8001/plugins \
+curl -i -X POST http://localhost:8001/plugins \
   --data name=rate-limiting \
   --data config.minute=5 \
   --data config.policy=local \
@@ -76,7 +76,7 @@ ordering:
     ``` yaml
     _format_version: "3.0"
     services:
-    - host: mockbin.org
+    - host: httpbin.org
       name: example_service
       port: 80
       protocol: http
@@ -160,7 +160,7 @@ Call the Admin API on port `8001` and enable the
 `basic-auth` plugin, configuring it to run after `request-transformer`:
 
 ```sh
-curl -i -X POST http://<admin-hostname>:8001/plugins \
+curl -i -X POST http://localhost:8001/plugins \
   --data name=basic-auth \
   --data ordering.after.access=request-transformer
 ```
@@ -203,7 +203,7 @@ ordering:
     ``` yaml
     _format_version: "3.0"
     services:
-    - host: mockbin.org
+    - host: httpbin.org
       name: example_service
       port: 80
       protocol: http

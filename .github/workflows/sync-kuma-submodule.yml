@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Check-out current repo'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: true
           ref: main
@@ -78,4 +78,5 @@ jobs:
             ${{ env.SUBMODULE_PR_LOG }}
 
             Triggered by [action](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+            labels: skip-changelog,review:general
           draft: false

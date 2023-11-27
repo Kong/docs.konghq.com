@@ -159,7 +159,7 @@ consumers:
   - key: my-key
 ```
 
-See the [declarative configuration schema](https://github.com/Kong/deck/blob/main/file/kong_json_schema.json)
+See the [declarative configuration schema](https://github.com/Kong/go-database-reconciler/blob/main/pkg/file/kong_json_schema.json)
 for all configuration options.
 
 The only mandatory piece of metadata is `_format_version: "3.0"`, which
@@ -248,7 +248,7 @@ environment variable:
 
 ```
 export KONG_DATABASE=off
-export KONG_DECLARATIVE_CONFIG_STRING='{"_format_version":"1.1", "services":[{"host":"mockbin.com","port":443,"protocol":"https", "routes":[{"paths":["/"]}]}],"plugins":[{"name":"rate-limiting", "config":{"policy":"local","limit_by":"ip","minute":3}}]}'
+export KONG_DECLARATIVE_CONFIG_STRING='{"_format_version":"1.1", "services":[{"host":"httpbin.org","port":443,"protocol":"https", "routes":[{"paths":["/"]}]}],"plugins":[{"name":"rate-limiting", "config":{"policy":"local","limit_by":"ip","minute":3}}]}'
 kong start
 ```
 
@@ -294,6 +294,10 @@ This restriction is limited to what would be otherwise database operations. In
 particular, using `POST` to set the health state of targets is still enabled,
 since this is a node-specific in-memory operation.
 
+#### Kong Manager compatibility
+
+Kong Manager cannot guarantee compatibility with {{site.base_gateway}} operating in DB-less mode. You cannot create, update, or delete entities with Kong Manager when {{site.base_gateway}} is running in this mode. Entity counters in the "Summary" section on the global and workspace overview pages will not function correctly as well.
+
 #### Plugin compatibility
 
 Not all Kong plugins are compatible with DB-less mode. By design, some plugins
@@ -303,6 +307,6 @@ entities.
 For current plugin compatibility, see [Plugin compatibility](/hub/plugins/compatibility/).
 
 ## See also
-* [Declarative configuration schema](https://github.com/Kong/deck/blob/main/file/kong_json_schema.json)
+* [Declarative configuration schema](https://github.com/Kong/go-database-reconciler/blob/main/pkg/file/kong_json_schema.json)
 * [decK documentation](/deck/latest/)
 * [Using decK with {{site.ee_product_name}}](/deck/latest/guides/kong-enterprise/)

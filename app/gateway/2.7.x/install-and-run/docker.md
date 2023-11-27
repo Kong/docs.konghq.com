@@ -7,8 +7,8 @@ title: Install Kong Gateway on Docker
 
 {:.install-banner}
 > See the list of Docker tags and pull the Docker image:
-> * [**Kong Gateway**](https://hub.docker.com/r/kong/kong-gateway/tags){:.install-listing-link}
-> * [**Kong Gateway (OSS)**](https://hub.docker.com/_/kong){:.install-listing-link}
+> * [**{{site.base_gateway}}**](https://hub.docker.com/r/kong/kong-gateway/tags){:.install-listing-link}
+> * [**{{site.base_gateway}} (OSS)**](https://hub.docker.com/_/kong){:.install-listing-link}
 >
 > (latest {{site.base_gateway}} version: {{page.kong_versions[page.version-index].ee-version}})
 
@@ -35,7 +35,7 @@ The {{site.base_gateway}} software is governed by the
 * A Docker-enabled system with proper Docker access
 * (Enterprise only) A `license.json` file from Kong
 
-Choose a path to install Kong Gateway:
+Choose a path to install {{site.base_gateway}}:
 * [With a database](#install-kong-gateway-with-a-database): Use a database to
 store Kong entity configurations. Can use the Admin API or declarative
 configuration files to configure Kong.
@@ -43,10 +43,10 @@ configuration files to configure Kong.
 Store Kong configuration in-memory on the node. In this mode, the Admin API is
 read only, and you have to manage Kong using declarative configuration.
 
-If this is your first time trying out Kong Gateway, we recommend installing it
+If this is your first time trying out {{site.base_gateway}}, we recommend installing it
 with a database.
 
-## Install Kong Gateway with a database
+## Install {{site.base_gateway}} with a database
 
 Set up a {{site.base_gateway}} container with a PostgreSQL database to store
 Kong configuration.
@@ -78,10 +78,10 @@ communicate with each other:
     ```
 
     * `POSTGRES_USER` and `POSTGRES_DB`: Set these values to `kong`. This is
-    the default value that Kong Gateway expects.
+    the default value that {{site.base_gateway}} expects.
     * `POSTGRES_PASSWORD`: Set the database password to any string.
 
-    In this example, the Postgres container named `kong-database` can
+    In this example, the PostgreSQL container named `kong-database` can
     communicate with any containers on the `kong-net` network.
 
 1. Prepare the Kong database:
@@ -115,18 +115,18 @@ kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kong migration
     * [`KONG_DATABASE`](/gateway/{{page.kong_version}}/reference/configuration/#database):
      Specifies the type of database that Kong is using.
     * [`KONG_PG_HOST`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings):
-    The name of the Postgres Docker container that is communicating over the
+    The name of the PostgreSQL Docker container that is communicating over the
     `kong-net` network, from the previous step.
     * [`KONG_PG_PASSWORD`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings):
-    The password that you set when bringing up the Postgres container in the
+    The password that you set when bringing up the PostgreSQL container in the
     previous step.
     * `KONG_PASSWORD` (Enterprise only): The default password for the admin
-    super user for Kong Gateway.
+    super user for {{site.base_gateway}}.
     * `{IMAGE-NAME:TAG} kong migrations bootstrap`:
-    In order, this is the Kong Gateway container name and tag, followed by the
-    command to Kong to prepare the Postgres database.
+    In order, this is the {{site.base_gateway}} container name and tag, followed by the
+    command to Kong to prepare the PostgreSQL database.
 
-### Start Kong Gateway
+### Start {{site.base_gateway}}
 
 {% include_cached /md/admin-listen.md kong_version=page.kong_version desc='long' %}
 
@@ -188,10 +188,10 @@ docker run -d --name kong-gateway \
     * [`KONG_DATABASE`](/gateway/{{page.kong_version}}/reference/configuration/#database):
     Specifies the type of database that Kong is using.
     * [`KONG_PG_HOST`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings):
-    The name of the Postgres Docker container that is communicating over the
+    The name of the PostgreSQL Docker container that is communicating over the
     `kong-net` network.
     * [`KONG_PG_USER` and `KONG_PG_PASSWORD`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings):
-     The Postgres username and password. Kong Gateway needs the login information
+     The PostgreSQL username and password. {{site.base_gateway}} needs the login information
      	to store configuration data in the `KONG_PG_HOST` database.
     * All [`_LOG`](/gateway/{{page.kong_version}}/reference/configuration/#general-section)
     parameters: set filepaths for the logs to output to, or use the values in
@@ -219,7 +219,7 @@ using the URL specified in `KONG_ADMIN_GUI_URL`:
     http://localhost:8002
     ```
 
-### Get started with Kong Gateway
+### Get started with {{site.base_gateway}}
 
 Now that you have a running Gateway instance, Kong provides a series of
 [getting started guides](/gateway/{{page.kong_version}}/get-started/comprehensive/)
@@ -233,7 +233,7 @@ In particular, right after installation you might want to:
 
 ### Clean up containers
 
-If you're done testing Kong Gateway and no longer need the containers, you
+If you're done testing {{site.base_gateway}} and no longer need the containers, you
 can clean them up using the following commands:
 
 ```
@@ -244,9 +244,9 @@ docker container rm kong-database
 docker network rm kong-net
 ```
 
-## Install Kong Gateway in DB-less mode
+## Install {{site.base_gateway}} in DB-less mode
 
-The following steps walk you through starting Kong Gateway in
+The following steps walk you through starting {{site.base_gateway}} in
 [DB-less mode](/gateway/{{page.kong_version}}/reference/db-less-and-declarative-config).
 
 ### Create a Docker network
@@ -280,7 +280,7 @@ backed up by a Redis cluster).
     _transform: true
 
     services:
-    - host: mockbin.org
+    - host: httpbin.org
       name: example_service
       port: 80
       protocol: http
@@ -295,7 +295,7 @@ backed up by a Redis cluster).
 
 1.  Save your declarative configuration locally, and note the filepath.
 
-### Start Kong Gateway in DB-less mode
+### Start {{site.base_gateway}} in DB-less mode
 
 {% include_cached /md/admin-listen.md kong_version=page.kong_version desc='long' %}
 
@@ -388,7 +388,7 @@ docker run -d --name kong-dbless \
 [Declarative Configuration format]: /gateway/{{page.kong_version}}/reference/db-less-and-declarative-config/#the-declarative-configuration-format
 [Docker Volume]: https://docs.docker.com/storage/volumes/
 
-### Get started with Kong Gateway
+### Get started with {{site.base_gateway}}
 
 Now that you have a running Gateway instance, Kong provides a series of
 [getting started guides](/gateway/{{page.kong_version}}/get-started/comprehensive/)
@@ -402,7 +402,7 @@ a Route configured. Here are a few more things to check out:
 
 ### Clean up containers
 
-If you're done testing Kong Gateway and no longer need the containers, you
+If you're done testing {{site.base_gateway}} and no longer need the containers, you
 can clean them up using the following commands:
 
 ```

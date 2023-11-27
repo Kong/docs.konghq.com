@@ -16,7 +16,7 @@ deck version [command-specific flags] [global flags]
 ## Flags
 
 `-h`, `--help`
-:  help for version (Default: `false`)
+:  help for version 
 
 ## Global flags
 

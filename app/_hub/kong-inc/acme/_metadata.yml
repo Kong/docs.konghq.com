@@ -1,4 +1,7 @@
 name: ACME
+search_aliases:
+  - let's encrypt
+  - certificates
 dbless_compatible: 'yes'
 free: true
 enterprise: true

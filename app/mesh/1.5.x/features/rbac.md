@@ -113,7 +113,7 @@ spec:
 
 Let's go through example roles in the organization that can be created using {{site.mesh_product_name}} RBAC.
 
-### Kong Mesh operator (admin)
+### {{site.mesh_product_name}} operator (admin)
 
 Mesh operator is a part of infrastructure team responsible for {{site.mesh_product_name}} deployment.
 
@@ -141,7 +141,7 @@ spec:
 
 This way {{site.mesh_product_name}} operators can execute any action.
 
-_Note: this role is precreated on the start of the control plane._
+_Note: this role is created on the start of the control plane._
 
 ### Service owner
 
@@ -323,7 +323,7 @@ The `subjects` in `AccessRoleBinding` are compatible with Kubernetes users and g
 
 In a standalone deployment, the `default` AccessRoleBinding assigns this role to every authenticated and unauthenticated user.
 
-In a multizone deployment, the `default` AccessRoleBinding on the global control plane assigns this role to every authenticated and unauthenticated user.
+In a multi-zone deployment, the `default` AccessRoleBinding on the global control plane assigns this role to every authenticated and unauthenticated user.
 However, on the zone control plane, the `default` AccessRoleBinding is restricted to the `admin` AccessRole only.
 
 {% navtabs %}
@@ -669,6 +669,6 @@ In order for this example to work you must either run the control plane with `KU
 {% endnavtab %}
 {% endnavtabs %}
 
-## Multizone
+## Multi-zone
 
-In a multizone setup, `AccessRole` and `AccessRoleBinding` are not synchronized between the global control plane and the zone control plane.
+In a multi-zone setup, `AccessRole` and `AccessRoleBinding` are not synchronized between the global control plane and the zone control plane.

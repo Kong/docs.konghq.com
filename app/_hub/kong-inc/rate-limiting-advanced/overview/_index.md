@@ -4,7 +4,7 @@ nav_title: Overview
 
 Rate limit how many HTTP requests can be made in a given time frame.
 
-The Rate Limiting Advanced plugin offers more functionality than the Kong Gateway (OSS) [Rate Limiting plugin](/hub/kong-inc/rate-limiting/), such as:
+The Rate Limiting Advanced plugin offers more functionality than the {{site.base_gateway}} (OSS) [Rate Limiting plugin](/hub/kong-inc/rate-limiting/), such as:
 * Enhanced capabilities to tune the rate limiter, provided by the parameters `limit` and `window_size`. Learn more in [Multiple Limits and Window Sizes](#multi-limits-windows)
 * Support for Redis Sentinel, Redis cluster, and Redis SSL
 * Increased performance: Rate Limiting Advanced has better throughput performance with better accuracy. The plugin allows you to tune performance and accuracy via a configurable synchronization of counter data with the backend storage. This can be controlled by setting the desired value on the `sync_rate` parameter.
@@ -60,7 +60,7 @@ expected to be unavailable to the client. When using `window_type=sliding` and `
 may increase due to the rate calculation for the sliding window.
 
 {:.important}
-> The headers `RateLimit-Limit`, `RateLimit-Remaining`, and `RateLimit-Reset` are based on the Internet-Draft [RateLimit Header Fields for HTTP](https://tools.ietf.org/html/draft-polli-ratelimit-headers-02) and may change in the future to respect specification updates.
+> The headers `RateLimit-Limit`, `RateLimit-Remaining`, and `RateLimit-Reset` are based on the Internet-Draft [RateLimit Header Fields for HTTP](https://datatracker.ietf.org/doc/draft-ietf-httpapi-ratelimit-headers) and may change in the future to respect specification updates.
 
 ## Multiple limits and window sizes {#multi-limits-windows}
 

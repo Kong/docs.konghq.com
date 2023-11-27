@@ -21,13 +21,13 @@ There are several benefits to keep in mind when deciding whether to use a {{site
 
 The following diagram explains how the self-hosted Dev Portal works by using the example frontend application:
 
-![self-hosted portal architecture](/assets/images/docs/konnect/konnect-self-hosted-portal-architecture.png)
+![self-hosted portal architecture](/assets/images/products/konnect/dev-portal/konnect-self-hosted-portal-architecture.png)
 
 > Figure 1: Diagram that shows how the example frontend application communicates with the developer's browser and {{site.konnect_short_name}}. The self-hosted Dev Portal is hosted in your infrastructure and the application is served to the developer browser. The developer browser communicates with the Portal API for API requests and {{site.konnect_short_name}} supplies the corresponding content. 
 
 The Dev Portal API is always hosted by {{site.konnect_short_name}}, no matter if you use the self-hosted or {{site.konnect_short_name}}-hosted Dev Portal. The Dev Portal API maps to the Portal Domain (and optional Custom Hosted Domain, which is a CNAME). Depending on which domain settings you configure and if you are self-hosting or not, the Dev Portal UI domain will differ.
 
-![Dev Portal URLs](/assets/images/docs/konnect/konnect-dev-portal-urls.png)
+![Dev Portal URLs](/assets/images/products/konnect/dev-portal/konnect-dev-portal-urls.png)
 
 > Figure 2: Diagram that shows that self-hosted and {{site.konnect_short_name}}-hosted Dev Portals use different UI domains, but both use the same {{site.konnect_short_name}}-hosted Dev Portal API.
  

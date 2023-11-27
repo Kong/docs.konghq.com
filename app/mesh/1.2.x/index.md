@@ -67,8 +67,8 @@ for both edge and internal API traffic.
   <img src="/assets/images/docs/mesh/gw_mesh.png" width="600px"/>
   <br>
   <i>Two different applications - "Banking" and "Trading" - run in their
-  own meshes "A" and "B" across different datacenters. In this example,
-  Kong Gateway is being used both for edge communication, and for internal
+  own meshes "A" and "B" across different data centers. In this example,
+  {{site.base_gateway}} is being used both for edge communication, and for internal
   communication between meshes.</i>
 </center>
 
@@ -128,11 +128,11 @@ hybrid Kubernetes/VMs:
   <img src="/assets/images/docs/mesh/multi-zone_old.jpg" width="600px"/>
   <br>
   <i>{{site.mesh_product_name}} can support multiple zones (like a Kubernetes
-    cluster, VPC, datacenter, etc.) together in the same distributed deployment.
+    cluster, VPC, data center, etc.) together in the same distributed deployment.
      Then, you can create multiple isolated virtual meshes with the same
      control plane in order to support every team and application in the
      organization.</i>
 </center>
 <br>
-[Learn more](https://kuma.io/docs/latest/introduction/deployments/) about the
+[Learn more](/mesh/latest/production/deployment/) about the
 standalone and multi-zone deployment modes in the Kuma documentation.

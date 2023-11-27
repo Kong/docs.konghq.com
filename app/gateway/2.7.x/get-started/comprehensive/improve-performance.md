@@ -50,7 +50,7 @@ Call the Admin API on port `8001` and configure plugins to enable in-memory cach
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X POST http://<admin-hostname>:8001/plugins \
+curl -i -X POST http://localhost:8001/plugins \
   --data name=proxy-cache \
   --data config.content_type="application/json; charset=utf-8" \
   --data config.cache_ttl=30 \
@@ -91,7 +91,7 @@ plugin with a timeout of 30 seconds for Content-Type
     ``` yaml
     _format_version: "1.1"
     services:
-    - host: mockbin.org
+    - host: httpbin.org
       name: example_service
       port: 80
       protocol: http
@@ -134,12 +134,12 @@ Access the */mock* route using the Admin API and note the response headers:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X GET http://<admin-hostname>:8000/mock/request
+curl -i -X GET http://localhost:8000/mock/anything
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-http :8000/mock/request
+http :8000/mock/anything
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -159,9 +159,9 @@ X-Kong-Upstream-Latency: 37
 
 Next, access the */mock* route one more time.
 
-This time, notice the differences in the values of `X-Cache-Status`, `X-Kong-Proxy-Latency`, and `X-Kong-Upstream-Latency`. Cache status is a `hit`, which means Kong Gateway is responding to the request directly from cache instead of proxying the request to the Upstream service.
+This time, notice the differences in the values of `X-Cache-Status`, `X-Kong-Proxy-Latency`, and `X-Kong-Upstream-Latency`. Cache status is a `hit`, which means {{site.base_gateway}} is responding to the request directly from cache instead of proxying the request to the Upstream service.
 
-Further, notice the minimal latency in the response, which allows Kong Gateway to deliver the best performance:
+Further, notice the minimal latency in the response, which allows {{site.base_gateway}} to deliver the best performance:
 
 ```
 HTTP/1.1 200 OK
@@ -179,7 +179,7 @@ To test more rapidly, the cache can be deleted by calling the Admin API:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X DELETE http://<admin-hostname>:8001/proxy-cache
+curl -i -X DELETE http://localhost:8001/proxy-cache
 ```
 {% endnavtab %}
 {% navtab HTTPie %}

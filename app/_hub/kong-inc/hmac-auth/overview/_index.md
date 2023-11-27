@@ -33,7 +33,7 @@ A Consumer can have many credentials.
 To create a Consumer, you can execute the following request:
 
 ```bash
-curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://kong:8001/consumers/
+curl -d "username=user123&custom_id=SOME_CUSTOM_ID" http://localhost:8001/consumers/
 ```
 {% endnavtab %}
 {% navtab Without a Database %}
@@ -64,7 +64,7 @@ You can provision new username/password credentials by making the following
 HTTP request:
 
 ```bash
-curl -X POST http://kong:8001/consumers/{consumer}/hmac-auth \
+curl -X POST http://localhost:8001/consumers/{consumer}/hmac-auth \
   --data "username=bob" \
   --data "secret=secret456"
 ```
@@ -172,7 +172,7 @@ body of 0 length.
 
 Note: In order to create the digest of a request body, the plugin needs to
 retain it in memory, which might cause pressure on the worker's Lua VM when
-dealing with large bodies (several MBs) or during high request concurrency.
+dealing with large bodies (several MB) or during high request concurrency.
 
 ### Enforcing Headers
 
@@ -317,7 +317,7 @@ Paginate through the `hmac-auth` Credentials for all Consumers using the
 following request:
 
 ```bash
-curl -X GET http://kong:8001/hmac-auths
+curl -X GET http://localhost:8001/hmac-auths
 ```
 
 Example output:
@@ -353,7 +353,7 @@ Example output:
 You can filter the list by consumer by using this other path:
 
 ```bash
-curl -X GET http://kong:8001/consumers/{username or id}/hmac-auth
+curl -X GET http://localhost:8001/consumers/{username or id}/hmac-auth
 ```
 
 Example output:
@@ -380,7 +380,7 @@ It is possible to retrieve a [Consumer][consumer-object] associated with an
 HMAC Credential using the following request:
 
 ```bash
-curl -X GET http://kong:8001/hmac-auths/{hmac username or id}/consumer
+curl -X GET http://localhost:8001/hmac-auths/{hmac username or id}/consumer
 ```
 
 Example output:

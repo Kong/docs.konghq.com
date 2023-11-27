@@ -47,14 +47,14 @@ the corresponding Route:
 
 1. **Create an example Service and a Route**
 
-    Issue the following cURL request to create `example-service` pointing to `mockbin.org`, which will echo
+    Issue the following cURL request to create `example-service` pointing to `httpbin.org`, which will echo
     the request:
 
     ```bash
     $ curl -i -X POST \
       --url http://localhost:8001/services/ \
       --data 'name=example-service' \
-      --data 'url=http://mockbin.org/request'
+      --data 'url=http://httpbin.org/anything'
     ```
 
     Add a Route to the Service:
@@ -158,7 +158,7 @@ the corresponding Route:
     This is the same request you made in step #3; however, this time the request should succeed because you
     enabled anonymous access in step #5.
 
-    The response (which is the request as Mockbin received it) should have these elements:
+    The response (which is the request as httpbin received it) should have these elements:
 
     ```json
     {
@@ -179,7 +179,7 @@ the corresponding Route:
 ## Multiple Authentication
 
 Kong supports multiple authentication plugins for a given Service, allowing
-different clients to utilize different authentication methods to access a given Service or Route.
+different clients to use different authentication methods to access a given Service or Route.
 
 The behaviour of the auth plugins can be set to do either a logical `AND`, or a logical `OR` when evaluating
 multiple authentication credentials. The key to the behaviour is the `config.anonymous` property.
@@ -209,5 +209,5 @@ and you want anonymous access to be forbidden, then the [Request Termination plu
 configured on the anonymous consumer. 
 Failure to do so will allow unauthorized requests.
 
-[plugins]: https://konghq.com/plugins/
+[plugins]: /hub/
 [key-auth]: /hub/kong-inc/key-auth

@@ -1,9 +1,11 @@
 ---
 title: Custom Resources
+type: explanation
+purpose: |
+  Custom Resources bundled with KIC to configure settings that are specific to Kong
 ---
 
-[Custom Resources][k8s-crd] in Kubernetes allow controllers
-to extend Kubernetes-style
+[Custom Resources][k8s-crd] in Kubernetes allow controllers to extend Kubernetes-style
 declarative APIs that are specific to certain applications.
 
 A few custom resources are bundled with the {{site.kic_product_name}} to
@@ -13,7 +15,7 @@ over the proxying behavior.
 The {{site.kic_product_name}} uses the `configuration.konghq.com` API group
 for storing configuration specific to Kong.
 
-The following CRDs allow users to declaratively configure all aspects of Kong:
+These CRDs allow users to declaratively configure all aspects of Kong:
 
 - [**KongIngress**](#kongingress)
 - [**KongPlugin**](#kongplugin)
@@ -29,12 +31,12 @@ The following CRDs allow users to declaratively configure all aspects of Kong:
 
 {:.note}
 > **Note:** Many fields available on KongIngress are also available as
-> [annotations](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/).
+> [annotations](/kubernetes-ingress-controller/{{page.kong_version}}/reference/annotations/).
 > You can add these annotations directly to Service and Ingress resources
 > without creating a separate KongIngress resource. When an annotation is
 > available, it is the preferred means of configuring that setting, and the
-> annotation value will take precedence over a KongIngress value if both set
-> the same setting.
+> annotation value takes precedence over a KongIngress value if both set
+> the same value.
 
 The standard Ingress and Service Kubernetes resources can't express the full
 range of Kong's routing capabilities. You can use KongIngress to extend these resources. 
@@ -48,7 +50,7 @@ and only functions when attached to another resource.
 
 Once a KongIngress resource is created, you can use the `konghq.com/override`
 annotation to associate the KongIngress resource with an Ingress or a Service
-resource:
+resource.
 
 - **Annotated Ingress resource:** All routes associated with the annotated
   Ingress are updated to use the values defined in the KongIngress's `route` section.
@@ -62,38 +64,37 @@ sections are only honored when a KongIngress is attached to a Service.
 Similarly, the `route` section has no effect when attached to a Service, only
 when attached to an Ingress.
 
-The following diagram shows how the resources are linked with one another:
+This diagram shows how the resources are linked with one another.
 
-![Associating Kong Ingress](/assets/images/docs/kubernetes-ingress-controller/kong-ingress-association.png "Associating Kong Ingress")
+![Associating Kong Ingress](/assets/images/products/kubernetes-ingress-controller/kong-ingress-association.png "Associating Kong Ingress")
 
 ## KongPlugin
 
 Kong is designed around an extensible [plugin][kong-plugin]
 architecture and comes with a
 wide variety of plugins already bundled inside it.
-These plugins can be used to modify the request/response or impose restrictions
+These plugins can be used to modify the request or impose restrictions
 on the traffic.
 
 Once this resource is created, the resource needs to be associated with an
 Ingress, Service, or KongConsumer resource in Kubernetes.
-For more details, read the reference documentation on [KongPlugin](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource/).
 
-The following diagram shows how you can link a KongPlugin resource to an
-Ingress, Service, or KongConsumer:
+This diagram shows how you can link a KongPlugin resource to an
+Ingress, Service, or KongConsumer.
 
 |  |  |
 :-:|:-:
-![](/assets/images/docs/kubernetes-ingress-controller/kong-plugin-association1.png)|![](/assets/images/docs/kubernetes-ingress-controller/kong-plugin-association2.png)
+![](/assets/images/products/kubernetes-ingress-controller/kong-plugin-association1.png)|![](/assets/images/products/kubernetes-ingress-controller/kong-plugin-association2.png)
 
 ## KongClusterPlugin
 
-_This resource requires the [`kubernetes.io/ingress.class` annotation](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/)._
+_This resource requires the [`kubernetes.io/ingress.class` annotation](/kubernetes-ingress-controller/{{page.kong_version}}/reference/annotations/)._
 
 KongClusterPlugin resource is exactly same as KongPlugin, except that it is a
-Kubernetes cluster-level resources instead of being a namespaced resource.
+Kubernetes cluster-level resources rather than a namespaced resource.
 This can help when the configuration of the plugin needs to be centralized
-and the permissions to add/update plugin configuration rests with a different
-persona than application owners.
+and the permissions to add or update plugin configuration rests with a different
+persona other than the application owners.
 
 This resource can be associated with an Ingress, Service, or KongConsumer, 
 and can be used in the exact same way as KongPlugin.
@@ -119,7 +120,7 @@ must match the value of the controller's `--ingress-class` argument, which is
 
 This Custom Resource is used for exposing non-HTTP
 and non-GRPC services running inside Kubernetes to
-the outside world via Kong. This proves to be useful when
+the outside world through Kong. This proves to be useful when
 you want to use a single cloud LoadBalancer for all kinds
 of traffic into your Kubernetes cluster.
 
@@ -132,7 +133,7 @@ must match the value of the controller's `--ingress-class` argument, which is
 `kong` by default._
 
 This Custom Resource is used for exposing [UDP][udp] services
-running inside Kubernetes to the outside world via Kong.
+running inside Kubernetes to the outside world through Kong.
 
 This is useful for services such as DNS servers, Game Servers,
 VPN software and a variety of other applications.
@@ -155,10 +156,10 @@ KongConsumerGroup creates a [consumer group][kong-consumer-group], which
 associates KongPlugin resources with a collection of KongConsumers.
 
 KongConsumers have a `consumerGroups` array. Adding a KongConsumerGroup's name
-to that array will add that consumer to that consumer group.
+to that array adds that consumer to that consumer group.
 
-Applying a `konghq.com/plugins: <KongPlugin name>` annotation to a KongConsumerGroup will
-then execute that plugin on every consumer in the consumer group.
+Applying a `konghq.com/plugins: <KongPlugin name>` annotation to a KongConsumerGroup 
+then executes that plugin on every consumer in the consumer group.
 
 {% endif_version %}
 

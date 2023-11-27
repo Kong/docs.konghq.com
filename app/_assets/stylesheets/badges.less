@@ -1,7 +1,5 @@
 .badge {
-  display: inline-flex;
-  margin: 0;
-  padding: 0;
+  display: flex;
   border-radius: 2px;
 
   &:after {
@@ -47,7 +45,7 @@
   }
 
   &.enterprise::after {
-    content: "GATEWAY ENTERPRISE";
+    content: "ENTERPRISE";
     color: @steel-700;
     background: @steel-100;
   }
@@ -156,6 +154,7 @@
 
 span.badge {
   vertical-align: text-bottom;
+  display: inline-flex;
 }
 
 h2.badge,
@@ -167,6 +166,10 @@ h5.badge {
     max-height: 12px;
     align-self: center;
     padding: 5px 12px 4px;
+  }
+
+  .tooltiptext {
+    margin-top: 2rem;
   }
 
   &:hover,

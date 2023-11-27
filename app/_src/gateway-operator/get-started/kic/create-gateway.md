@@ -69,10 +69,6 @@ spec:
 ' | kubectl apply -f -
 ```
 
-{:.note}
-> **Note:** There is a known issue where applying a `GatewayConfiguration` without
-> `spec.controlPlaneOptions` would cause the operator to perpetually update the `ControlPlane`.
-
 The results should look like this:
 
 ```text

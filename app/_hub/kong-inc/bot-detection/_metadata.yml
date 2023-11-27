@@ -1,4 +1,6 @@
 name: Bot Detection
+search_aliases:
+  - bot-detection
 dbless_compatible: 'yes'
 free: true
 enterprise: true

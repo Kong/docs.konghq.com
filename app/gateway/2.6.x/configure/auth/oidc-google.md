@@ -25,7 +25,7 @@ If you have not yet [added a **Service**][add-service], go ahead and do so. Agai
 Add a plugin with the configuration below to your Service using an HTTP client or Kong Manager. Make sure to use the same redirect URI as configured earlier:
 
 ```bash
-curl -i -X POST http://kong:8001/services/{SERVICE_NAME}/plugins \
+curl -i -X POST http://localhost:8001/services/{SERVICE_NAME}/plugins \
   --data name="openid-connect" \
   --data config.issuer="https://accounts.google.com/.well-known/openid-configuration" \
   --data config.client_id="YOUR_CLIENT_ID" \
@@ -44,11 +44,11 @@ Depending on your needs, it may not be necessary to associate clients with a con
 If you need to interact with other Kong plugins using consumer information, you must add configuration that maps account data received from the identity provider to a Kong consumer. For this example, we'll map the user's Google account email by setting a `custom_id` on their consumer, e.g.
 
 ```bash
-curl -i -X POST http://kong:8001/consumers/ \
+curl -i -X POST http://localhost:8001/consumers/ \
   --data username="Yoda" \
   --data custom_id="user@example.com"
 
-curl -i -X PATCH http://kong:8001/services/{SERVICE_NAME}/plugins/{OIDC_PLUGIN_ID} \
+curl -i -X PATCH http://localhost:8001/services/{SERVICE_NAME}/plugins/{OIDC_PLUGIN_ID} \
   --data config.consumer_by="custom_id" \
   --data config.consumer_claim="email"
 ```

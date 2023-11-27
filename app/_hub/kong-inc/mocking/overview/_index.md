@@ -11,15 +11,17 @@ Benefits of service mocking with the Kong Mocking plugin:
 - Conforms to a design-first approach since mock responses are within OAS.
 - Accelerates development of services and APIs.
 - Promotes parallel development of APIs across distributed teams.
+- Easily enable and disable the Mocking plugin for flexibility when testing API behavior.
+{% if_plugin_version lte:3.4.x %}
 - Provides an enhanced full lifecycle API development experience with Dev Portal
   integration.
-- Easily enable and disable the Mocking plugin for flexibility when
-  testing API behavior.
+{% endif_plugin_version %}
+
 
 This plugin can mock `200`, `201`, and `204` responses.
 
 {:.note}
-> **Note**: The plugin requires a spec to work. Depending on the Kong Gateway deployment mode, 
+> **Note**: The plugin requires a spec to work. Depending on the {{site.base_gateway}} deployment mode, 
 set either the [`api_specification_filename`](/hub/kong-inc/mocking/configuration/#config-api_specification_filename) 
 or the [`api_specification`](/hub/kong-inc/mocking/configuration/#config-api_specification) parameter. 
 
@@ -121,7 +123,7 @@ HTTP/1.1 500 Internal Server Error
     "message": "500"
 }
 ```
-
+{% if_plugin_version lte:3.4.x %}
 ## Tutorial Example
 
 This example tutorial steps you through testing a mock response for
@@ -173,7 +175,7 @@ Deploy the [Stock API spec example](#stock-spec) to either the [Dev Portal](#dep
 Follow these steps to deploy a spec to the Dev Portal using Kong Manager. You can
 copy and paste the `stock-01.json` example file into the Dev Portal using Editor Mode.
 
-![Dev Portal Specs](/assets/images/docs/dev-portal/stock-spec-mock-example.png)
+![Dev Portal Specs](/assets/images/products/gateway/dev-portal/stock-spec-mock-example.png)
 
 1. Open Editor Mode and click **New File**.
 2. Name the file `stock-01.json`.
@@ -187,14 +189,14 @@ to upload a spec to the Dev Portal.
 1. From the Insomnia dashboard, click **Create** > **Import from File** and select the
    `stock-0.1.json` file.
 
-   ![Insomnia Dashboard Import File](/assets/images/docs/insomnia/insomnia-import-spec.png)
+   ![Insomnia Dashboard Import File](/assets/images/products/insomnia/insomnia-import-spec.png)
 
 
 2. Click **Design Document**, then click OK on the success message.
 
 3. (Optional) Click **Deploy to Portal** to deploy the spec to the Dev Portal.
 
-   ![Insomnia Dashboard Deploy Spec to Portal](/assets/images/docs/insomnia/insomnia-deploy-spec-dev-portal.png)
+   ![Insomnia Dashboard Deploy Spec to Portal](/assets/images/products/insomnia/insomnia-deploy-spec-dev-portal.png)
 
 #### Stock API spec example {#stock-spec}
 
@@ -326,7 +328,7 @@ This example creates a service named `Stock-Service`.
 
 
 ```bash
-curl -i -X POST http://<admin-hostname>:8001/services \
+curl -i -X POST http://localhost:8001/services \
   --data name=Stock-Service \
   --data url='http://httpbin.org/anything'
 ```
@@ -429,7 +431,7 @@ vary: Origin
 This example enables the Mocking plugin on the `getStockQuote` route.
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
+curl -X POST http://localhost:8001/routes/getStockQuote/plugins \
     --data "name=mocking"  \
     --data "config.api_specification_filename=stock-0.1.json"
 ```
@@ -437,7 +439,7 @@ curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
 Optional configuration for random simulated delay:
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
+curl -X POST http://localhost:8001/routes/getStockQuote/plugins \
     --data "name=mocking"  \
     --data "config.api_specification_filename=stock-0.1.json" \
     --data "config.random_delay=true" \
@@ -448,7 +450,7 @@ curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
 DB-less or hybrid mode configuration must use `config.api_specification`:
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
+curl -X POST http://localhost:8001/routes/getStockQuote/plugins \
     --data "name=mocking"  \
     --data "config.api_specification=<spec_contents>"
 ```
@@ -458,7 +460,7 @@ a spec:
 
 ```bash
 mock_ex=$(cat example.yaml); \
-curl -X POST http://<admin-hostname>:8001/routes/<route_id>/plugins \
+curl -X POST http://localhost:8001/routes/<route_id>/plugins \
   --data name=mocking \
   --data config.api_specification="$mock_ex"
 ```
@@ -466,7 +468,7 @@ curl -X POST http://<admin-hostname>:8001/routes/<route_id>/plugins \
 In Kong Manager, you can copy and paste the contents of the spec directly into
 the `Config.Api Specification` text field.
 
-![Kong Manager Config API Spec Text Field](/assets/images/docs/dev-portal/km-config-api-spec-txt-fld.png)
+![Kong Manager Config API Spec Text Field](/assets/images/products/gateway/dev-portal/km-config-api-spec-txt-fld.png)
 
 Response (random delay not enabled):
 
@@ -558,7 +560,7 @@ Cross-origin resource sharing (CORS) is disabled by default for security reasons
 from the Dev Portal, enable the [CORS plugin](/hub/kong-inc/cors/) on the `getStockQuote` route.
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/routes/getStockQuote/plugins \
+curl -X POST http://localhost:8001/routes/getStockQuote/plugins \
     --data "name=cors"  \
     --data "config.origins=*"
 ```
@@ -630,14 +632,14 @@ Test the mock response from within the Dev Portal spec using the **Try it out** 
 
 1. From the Dev Portal home page, click the **Stock API** Service tile.
 
-   ![Dev Portal Services](/assets/images/docs/dev-portal/stock-service.png)
+   ![Dev Portal Services](/assets/images/products/gateway/dev-portal/stock-service.png)
 
 2. Click the **GET /stock/historical** method and the **Try it out** button.
 
 3. Enter the ticker sign **AAPL** in the **tickers** box and click **Execute** to see the server response.
 
 
-   ![Try it out Dev Portal](/assets/images/docs/dev-portal/tryitout-portal.png)
+   ![Try it out Dev Portal](/assets/images/products/gateway/dev-portal/tryitout-portal.png)
 
 #### Insomnia mock spec test {#insomnia}
 
@@ -645,19 +647,19 @@ Test the mock response from within the Insomnia spec using the **Try it out** fe
 
 1. From the Insomnia dashboard, click the **Stock API 0.1 Document** tile.
 
-   ![Insomnia Dashboard](/assets/images/docs/insomnia/insomnia-stock-spec.png)
+   ![Insomnia Dashboard](/assets/images/products/insomnia/insomnia-stock-spec.png)
 
 2. Click the **GET /stock/historical** method and the **Try it out** button.
 
 3. Enter the ticker sign **AAPL** in the **tickers** box and click **Execute** to see the server response.
 
 
-   ![Try it out Insomnia](/assets/images/docs/insomnia/tryitout-insomnia.png)
+   ![Try it out Insomnia](/assets/images/products/insomnia/tryitout-insomnia.png)
 
 #### Command line test
 
 ```bash
-curl -X GET "http://<admin-hostname>:8000/stock/historical?tickers=AAPL" \
+curl -X GET "http://localhost:8000/stock/historical?tickers=AAPL" \
   -H "accept: application/json"
 ```
 
@@ -707,7 +709,7 @@ URL.
 Disable the Mocking plugin either in Kong Manager by clicking **Disable** for the plugin,
 or by using a command. You can copy and paste the plugin ID from within Kong Manager.
 
-![Copy Plugin ID](/assets/images/docs/dev-portal/km-copy-plugin-id.png)
+![Copy Plugin ID](/assets/images/products/gateway/dev-portal/km-copy-plugin-id.png)
 
 ```
 curl -X PATCH http://localhost:8001/plugins/<plugin-id>  -i \
@@ -759,8 +761,8 @@ The `enabled` config reflects `false` in line `22`.
 The service URL can be anything for purposes of mocking. After you disable the Mocking plugin,
 ensure you set the actual URL for your service so that the response can be received.
 
- ![Set Real Service URL](/assets/images/docs/dev-portal/km-service-url.png)
-
+ ![Set Real Service URL](/assets/images/products/gateway/dev-portal/km-service-url.png)
+{% endif_plugin_version %}
 ## See also
 * [`inso` CLI documentation](https://support.insomnia.rest/collection/105-inso-cli)
 

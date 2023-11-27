@@ -2,11 +2,12 @@ RSpec.describe Jekyll::Drops::Plugins::Schema do
   let(:plugin_name) { 'application-registration' }
   let(:metadata_file) { 'app/_hub/kong-inc/application-registration/_metadata.yml' }
   let(:metadata) { SafeYAML.load(File.read(metadata_file)) }
+  let(:version) { '3.1.1' }
   let(:schema) do
     PluginSingleSource::Plugin::Schemas::Kong.new(
       plugin_name: plugin_name,
       vendor: 'kong-inc',
-      version: '3.1.1'
+      version: version
     )
   end
 
@@ -37,6 +38,16 @@ RSpec.describe Jekyll::Drops::Plugins::Schema do
     it 'returns an array containing the schema\'s fields - only config for now' do
       expect(subject.fields.size).to eq(1)
       expect(subject.fields.first.name).to eq('config')
+    end
+  end
+
+  describe '#deprecated_fields' do
+    let(:plugin_name) { 'saml' }
+    let(:version) { '3.2.2' }
+    let(:metadata_file) { 'app/_hub/kong-inc/saml/_metadata.yml' }
+
+    it 'returns an array containing the schema\'s shorthand_fields' do
+      expect(subject.deprecated_fields.size).to eq(14)
     end
   end
 

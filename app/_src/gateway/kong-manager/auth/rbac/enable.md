@@ -1,5 +1,6 @@
 ---
 title: Enable RBAC in Kong Manager
+badge: enterprise
 ---
 
 Enable role-based access control (RBAC) to secure Kong Manager.

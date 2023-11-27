@@ -44,7 +44,7 @@ spec:
 
 #### Default types
 
-By default, when `types` are not specified all types are taken into account except the one defined in the static Kong Mesh CP config in `kmesh.access.audit.skipDefaultTypes`.
+By default, when `types` are not specified all types are taken into account except the one defined in the static {{site.mesh_product_name}} CP config in `kmesh.access.audit.skipDefaultTypes`.
 Right now, those are insight resources (`DataplaneInsight`, `ZoneIngressInsight`, `ZoneEgressInsight`, `ZoneInsight`, `ServiceInsight`, `MeshInsight`).
 Those resources carry status information and are only managed by the control plane, not by a user.
 

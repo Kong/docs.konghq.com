@@ -5,6 +5,10 @@ on:
   schedule:
     - cron: "0 0 * * 0"
 
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}
+
 permissions:
   contents: write
   pull-requests: write
@@ -14,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           token: ${{ secrets.PAT }}
       - name: Run changelog script
@@ -27,7 +31,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          title: Automated Changelog update
+          title: Automated Changelog update [skip ci]
           body: |
             This is a scheduled pull request to update the changelog.
           labels: skip-changelog,review:copyedit

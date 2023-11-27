@@ -1,0 +1,198 @@
+product: kubernetes-ingress-controller
+release: 3.0.x
+generate: true
+items:
+  - title: Introduction
+    icon: /assets/images/icons/documentation/icn-flag.svg
+    items:
+      - text: Overview
+        url: /kubernetes-ingress-controller/3.0.x/
+        absolute_url: true
+      - text: Kubernetes Gateway API
+        url: /gateway-api
+      - text: Version Support Policy
+        url: /support-policy
+      - text: Changelog
+        url: >-
+          https://github.com/Kong/kubernetes-ingress-controller/blob/main/CHANGELOG.md
+        absolute_url: true
+        target_blank: true
+  - title: How KIC Works
+    icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
+    items:
+      - text: Architecture
+        url: /concepts/architecture
+      - text: Gateway API
+        url: /concepts/gateway-api
+      - text: Ingress
+        url: /concepts/ingress
+      - text: Custom Resources
+        url: /concepts/custom-resources
+      - text: Using Annotations
+        url: /concepts/annotations
+      - text: Admission Webhook
+        url: /concepts/admission-webhook
+  - title: Get Started
+    icon: /assets/images/icons/documentation/icn-learning.svg
+    items:
+      - text: Install KIC
+        url: /get-started/
+      - text: Services and Routes
+        url: /get-started/services-and-routes
+      - text: Rate Limiting
+        url: /get-started/rate-limiting
+      - text: Proxy Caching
+        url: /get-started/proxy-caching
+      - text: Key Authentication
+        url: /get-started/key-authentication
+
+  - title: KIC in Production
+    icon: /assets/images/icons/documentation/icn-deployment-color.svg
+    items:
+      - text: Deployment Topologies
+        items:
+          - text: Overview
+            url: /production/deployment-topologies/
+          - text: Gateway Discovery
+            url: /production/deployment-topologies/gateway-discovery
+          - text: Database Backed
+            url: /production/deployment-topologies/db-backed
+          - text: Traditional (sidecar)
+            url: /production/deployment-topologies/sidecar
+      - text: Installation Methods
+        items:
+          - text: Helm
+            url: /install/helm
+          - text: Kong Gateway Operator
+            url: /install/gateway-operator
+      - text: Cloud Deployment
+        items:
+          - text: Azure
+            url: /install/cloud/aks
+          - text: Amazon
+            url: /install/cloud/eks
+          - text: Google
+            url: /install/cloud/gke
+      - text: Enterprise License
+        url: /license
+      - text: Observability
+        items:
+          - text: Prometheus Metrics
+            url: /production/observability/prometheus
+          - text: Configuring Prometheus and Grafana
+            url: /production/observability/prometheus-grafana
+          - text: Kubernetes Events
+            url: /production/observability/events
+      - text: Upgrading
+        items:
+          - text: Kong Gateway
+            url: /upgrade/gateway
+          - text: Ingress Controller
+            url: /upgrade/kic
+
+  - title: Guides
+    icon: /assets/images/icons/documentation/icn-solution-guide.svg
+    items:
+      - text: Service Configuration
+        items:
+          - text: HTTP Service
+            url: /guides/services/http
+          - text: TCP Service
+            url: /guides/services/tcp
+          - text: UDP Service
+            url: /guides/services/udp
+          - text: gRPC Service
+            url: /guides/services/grpc
+          - text: TLS
+            url: /guides/services/tls
+          - text: External Service
+            url: /guides/services/external
+          - text: HTTPS Redirects
+            url: /guides/services/https-redirect
+          - text: Multiple Backend Services
+            url: /guides/services/multiple-backends
+      - text: Request Manipulation
+        items:
+          - text: Rewriting Hosts and Paths
+            url: /guides/requests/rewrite-host
+          - text: Rewrite Annotation
+            url: /guides/requests/rewrite-annotation
+          - text: Customizing load-balancing behavior
+            url: /guides/requests/customizing-load-balancing
+      - text: High Availability
+        items:
+          - text: KIC High Availability
+            url: /guides/high-availability/kic
+          - text: Service Health Checks
+            url: /guides/high-availability/health-checks
+      - text: Security
+        items:
+          - text: Kong Vaults
+            url: /guides/security/kong-vault
+          #- text: Cert Manager
+          #  url: /guides/security/cert-manager
+          - text: Using Workspaces
+            url: /guides/security/workspaces
+          - text: Preserving Client IP
+            url: /guides/security/client-ip
+      #- text: Service Mesh
+      #  items:
+      #    - text: Kong Mesh
+      #      url: /guides/mesh/kong-mesh
+      #    - text: Kuma
+      #      url: /guides/mesh/kuma
+      #    - text: Istio
+      #      url: /guides/mesh/istio
+      - text: Migrate
+        items:
+          - text: KongIngress to KongUpstreamPolicy
+            url: /guides/migrate/kongingress
+          - text: Migrating from Ingress to Gateway
+            url: /guides/migrate/ingress-to-gateway
+          - text: Credential Type Labels
+            url: /guides/migrate/credential-kongcredtype-label
+
+  - title: Plugins
+    icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
+    items:
+      - text: Custom Plugins
+        url: /plugins/custom
+      - text: Authentication
+        url: /plugins/authentication
+      - text: ACL
+        url: /plugins/acl
+      - text: Rate Limiting
+        url: /plugins/rate-limiting
+      - text: mTLS
+        url: /plugins/mtls
+      - text: OIDC
+        url: /plugins/oidc
+
+  - title: Reference
+    icon: /assets/images/icons/documentation/icn-references-color.svg
+    items:
+      - text: Troubleshooting
+        url: /reference/troubleshooting
+      - text: Version Compatibility
+        url: /reference/version-compatibility
+        src: /kic-v2/references/version-compatibility
+      - text: Annotations
+        url: /reference/annotations
+      - text: Configuration Options
+        url: /reference/cli-arguments
+      - text: Beta Feature Gates
+        url: /reference/feature-gates
+      - text: FAQ
+        items:
+          - text: Plugin Compatibility
+            url: /hub/plugins/compatibility/
+            absolute_url: true
+          - text: Kong Router
+            url: /reference/faq/router
+          - text: Custom nginx.conf
+            url: /reference/faq/nginx.conf
+      - text: Custom Resource Definitions
+        url: /reference/custom-resources
+        src: reference/custom-resources-3.0.x
+      - text: Gateway API migration
+        url: /reference/ingress-to-gateway-migration

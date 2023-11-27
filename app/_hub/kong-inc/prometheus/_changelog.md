@@ -1,5 +1,11 @@
 ## Changelog
 
+**{{site.base_gateway}} 3.4.x**
+* This plugin has been optimized to reduce proxy latency impacts during scraping.
+  [#10949](https://github.com/Kong/kong/pull/10949)
+  [#11040](https://github.com/Kong/kong/pull/11040)
+  [#11065](https://github.com/Kong/kong/pull/11065)
+
 **{{site.base_gateway}} 3.0.x**
 * High cardinality metrics are now disabled by default.
 * Decreased performance penalty to proxy traffic when collecting metrics.
@@ -42,4 +48,4 @@
 * Added the `per_consumer` configuration parameter to export per-consumer status.
 
 **{{site.base_gateway}} 2.3.x**
-* The plugin can now export Kong Enterprise licensing information.
+* The plugin can now export {{site.ee_product_name}} licensing information.

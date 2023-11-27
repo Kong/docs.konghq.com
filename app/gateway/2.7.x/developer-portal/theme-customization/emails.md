@@ -55,15 +55,15 @@ The body of the email is HTML content. You can reference the tokens allowed for 
 {% raw %}
 |Path	                  |Supported Tokens	                                                                                    |Required Tokens	                                                   |Description|
 |--- 	|---	|---	|---	|
-|emails/invite.txt	        |  `{{portal.gui_url}}` `{{email.developer_email}}`                                          | `{{portal.gui_url}}`                                                |email sent to developer who is invited to a portal from the manager	|
+|`emails/invite.txt`	        |  `{{portal.gui_url}}` `{{email.developer_email}}`                                          | `{{portal.gui_url}}`                                                |email sent to developer who is invited to a portal from the manager	|
 |---	|---	|---	|---	|
-|emails/request-access.txt	|`{{portal.gui_url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.admin_url}}`     	|`{{portal.gui_url}}` `{{email.developer_email}}`	                      |email sent to admin when a developer signs up for portal, in order to approve the developer	|
-|emails/approved-access.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}`	                            |`{{portal.gui_url}}`	                                                |email sent to developer when their account is approved	|
-|emails/password-reset.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.token}}` `{{email.token_exp}}` `{{email.reset_url}}`	|`{{portal.url}}` `{{email.token}}` or `{{email.reset_url}}`	|email sent to developer when a password reset  is requested (basic-auth only)	|
-|emails/password-reset-success.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}`	                    |`{{portal.url}}`	                                                    |email sent to developer when a password reset is successful (basic-auth only) 	|
-|emails/account-verification.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.token}}` `{{email.verify_url}}` `{{email.invalidate_url}}`	|`{{portal.url}}` `{{email.token}}` or  both `{{email.verify_url}}` and `{{email.invalidate_url}} `	|email sent to developer when portal_email_verification is on  to verify developer email (basic-auth only)	|
-|emails/account-verification-approved.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}`	              |`{{portal.url}}`	                                                    |email sent to developer when portal_email_verification is on and developer has verified email and developer has been approved by admin/auto-approve is on (basic-auth only)	|
-|emails/account-verification-pending.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}`	              |`{{portal.url}}`	                                                    |email sent to developer when portal_email_verification is on and developer has verified email and developer has yet to be approved by admin (basic-auth only)	|
+|`emails/request-access.txt`	|`{{portal.gui_url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}` `{{email.admin_url}}`     	|`{{portal.gui_url}}` `{{email.developer_email}}`	                      |email sent to admin when a developer signs up for portal, in order to approve the developer	|
+|`emails/approved-access.txt`	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}`	                            |`{{portal.gui_url}}`	                                                |email sent to developer when their account is approved	|
+|`emails/password-reset.txt`	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}` `{{email.token}}` `{{email.token_exp}}` `{{email.reset_url}}`	|`{{portal.url}}` `{{email.token}}` or `{{email.reset_url}}`	|email sent to developer when a password reset  is requested (basic-auth only)	|
+|`emails/password-reset-success.txt`	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}`	                    |`{{portal.url}}`	                                                    |email sent to developer when a password reset is successful (basic-auth only) 	|
+|emails/account-verification.txt	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}` `{{email.token}}` `{{email.verify_url}}` `{{email.invalidate_url}}`	|`{{portal.url}}` `{{email.token}}` or  both `{{email.verify_url}}` and `{{email.invalidate_url}} `	|email sent to developer when `portal_email_verification` is on  to verify developer email (basic-auth only)	|
+|`emails/account-verification-approved.txt`	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}`	              |`{{portal.url}}`	                                                    |email sent to developer when `portal_email_verification` is on and developer has verified email and developer has been approved by admin/auto-approve is on (basic-auth only)	|
+|`emails/account-verification-pending.txt`	|`{{portal.url}}` `{{email.developer_email}}` `{{email.developer_name}}` `{{email.developer_meta.*}}`	              |`{{portal.url}}`	                                                    |email sent to developer when `portal_email_verification` is on and developer has verified email and developer has yet to be approved by admin (basic-auth only)	|
 {% endraw %}
 
 ## Token Descriptions
@@ -73,9 +73,10 @@ The body of the email is HTML content. You can reference the tokens allowed for 
 |---	|---	|
 |`{{portal.url}}`	|Dev Portal URL for the workspace	|
 |---	|---	|
-|`{{email.developer_email}}`	|Developers email	|
-|`{{email.developer_name}}`	|Developers full name, this value is collected as part of registration by default. If meta-fields are edited to not include full_name then this will fallback to email 	|
-|`{{email.admin_url}}`	|Kong Manger URL	|
+|`{{email.developer_email}}`	|Developer's email	|
+|`{{email.developer_name}}`	|Developer's full name, this value is collected as part of registration by default. If meta-fields are edited to not include full_name then this will fallback to email 	|
+|`{{email.developer_meta.*}}`	|Developer's meta-fields, these value are collected as part of registration. They must be configured prior to registration. If the value doesn't exist or is optional and blank, it will display as an empty string. If the `developer_meta` configuration doesn't specify the field, it will appear as-is without replacement, e.g. `{{email.developer_meta.preferred_name}}`|
+|`{{email.admin_url}}`	|Kong Manager URL	|
 |`{{email.reset_url}}`	|Dev Portal full URL for resetting password (assumes default path for password reset) 	|
 |`{{email.token_exp}}`	|Human readable string for amount of time from sending of email, password reset token/url is valid.	|
 |`{{email.verify_url}}`	|Link to verify account (assumes default path for account verification))	|
@@ -86,7 +87,6 @@ The body of the email is HTML content. You can reference the tokens allowed for 
 ## Editing Email Templates
 
 The default email templates will be automatically loaded into the Kong Developer Portal's file system when the Dev Portal is activated. These templates can now be edited in Kong Manager via the **Portal Editor** or via the **Portal CLI** tool.
-**Note:** If you are using a Dev Portal initiated in a {{site.base_gateway}} version prior to 1.3.0.1, you will need to manually load the email templates into the file system. Follow the steps in [Loading Email Templates on Existing Dev Portals](#loading-email-templates-on-existing-dev-portals).
 
 ### Editing via the Portal Editor
 
@@ -117,7 +117,6 @@ The default email layout looks like:
 
 {% raw %}
 ```html
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -138,15 +137,14 @@ The default email layout looks like:
 
 The `img` tag loads the logo that can be set in the appearance tab in the manager. If you do not want to display a logo, remove the `<img>` tag. If you want to set different sizing for your logo, you can change the inline style attribute.
 
-> Note: Logo will not render for many email clients that pre-fetch images if portal is not set to be accessible from a public url (for example if you are testing the Portal with a localhost)
+{:.note}
+> The logo will not render for many email clients that pre-fetch images if portal is not set to be accessible from a public url (for example if you are testing the Portal with a localhost).
 
-By modifying the html of this file, you can change the appearance of your emails. For example if you wanted to add a footer that would show on all emails, add it under the `<p>` tag
+By modifying the HTML of this file, you can change the appearance of your emails. For example if you wanted to add a footer that would show on all emails, add it under the `<p>` tag
 
-Be sure to keep in mind the html support limitations of the email clients you plan to support.
+Be sure to keep in mind the HTML support limitations of the email clients you plan to support.
 
 ## Loading Email Templates on Existing Dev Portals
-
-**Note:** This is only necessary for existing Dev Portals created on {{site.base_gateway}} 1.3.0. New Portals created in 1.3.0.1 and later will have these files already loaded, unless manually deleted.
 
 Editable email templates can be loaded either via the editor or via the `kong-portal-cli` tool.
 
@@ -172,7 +170,6 @@ To create an email layout:
 
 {% raw %}
 ```html
-
 <!DOCTYPE html>
 <html>
   <head>

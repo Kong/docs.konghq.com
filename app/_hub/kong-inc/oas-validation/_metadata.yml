@@ -3,6 +3,7 @@ search_aliases:
   - specification
   - openapi
   - swagger
+  - oas-validation
 dbless_compatible: 'yes'
 konnect_examples: true
 free: false

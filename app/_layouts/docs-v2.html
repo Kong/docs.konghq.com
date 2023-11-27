@@ -84,7 +84,7 @@ id: documentation
       <div class="page-content">
         <div class="content show-anchor-links">
           {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
-              <blockquote class="important">
+              <blockquote id="version-notice" class="important">
                 {% if page.edition == 'mesh' and page.version_data['releaseDate'] == nil %}
                 You are browsing documentation of an unreleased version.
                 {% else %}
@@ -96,14 +96,18 @@ id: documentation
 
           <h1 tabindex="-1" id="main" class="page-content-title"
           >{{page.title | flatify }}
-          {% if page.badge %}
-            <a href="https://konghq.com/pricing" {%
-              if page.badge == 'paid' %}class="badge paid" aria-label="available with Konnect Paid subscription"{% endif %}{%
-              if page.badge == 'premium' %}class="badge premium" aria-label="available with Konnect Premium subscription"{% endif %}{%
-              if page.badge == 'enterprise' %}class="badge enterprise" aria-label="available with Kong Gateway Enterprise subscription"{% endif %}{%
-              if page.badge == 'free' %}class="badge free" aria-label="available in Kong Gateway free mode"{% endif %}{%
-              if page.badge == 'oss' %}class="badge oss" aria-label="open-source only"{% endif %}>
-            </a>
+            {% if page.github_star_button %}
+              {{ page.github_star_button }}
+            {% endif %}
+
+            {% if page.badge %}
+              <a href="https://konghq.com/pricing" {%
+                if page.badge == 'paid' %}class="badge paid" aria-label="available with Konnect Paid subscription"{% endif %}{%
+                if page.badge == 'premium' %}class="badge premium" aria-label="available with Konnect Premium subscription"{% endif %}{%
+                if page.badge == 'enterprise' %}class="badge enterprise" aria-label="available with Kong Gateway Enterprise subscription"{% endif %}{%
+                if page.badge == 'free' %}class="badge free" aria-label="available in Kong Gateway free mode"{% endif %}{%
+                if page.badge == 'oss' %}class="badge oss" aria-label="open-source only"{% endif %}>
+              </a>
             {% endif %}
           </h1>
 

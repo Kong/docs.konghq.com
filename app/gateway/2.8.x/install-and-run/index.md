@@ -6,47 +6,47 @@ disable_image_expand: true
 <div class="docs-grid-install">
 
   <a href="/gateway/{{page.kong_version}}/install-and-run/docker" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/docker.png" alt="" />
+    <img class="install-icon" src="/assets/images/icons/third-party/docker.png" alt="" />
     <div class="install-text">Docker</div>
   </a>
 
   <a href="/gateway/{{page.kong_version}}/install-and-run/kubernetes" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/kubernetes-logo.png" alt="" />
+    <img class="install-icon" src="/assets/images/icons/third-party/kubernetes-logo.png" alt="" />
     <div class="install-text">Kubernetes</div>
   </a>
 
   <a href="/gateway/{{page.kong_version}}/install-and-run/helm" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/helm-icon-color.svg" alt="" />
+    <img class="install-icon" src="/assets/images/icons/third-party/helm-icon-color.svg" alt="" />
     <div class="install-text">Helm</div>
   </a>
 
   <a href="/gateway/{{page.kong_version}}/install-and-run/openshift" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/openshift-logo.png" alt="" />
+    <img class="install-icon" src="/assets/images/icons/third-party/openshift-logo.png" alt="" />
     <div class="install-text">OpenShift</div>
   </a>
 
   <a href="/gateway/{{page.kong_version}}/install-and-run/centos" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/centos.gif" alt="" />
+    <img class="install-icon" src="/assets/images/icons/third-party/centos.gif" alt="" />
     <div class="install-text">CentOS</div>
   </a>
 
   <a href="/gateway/{{page.kong_version}}/install-and-run/ubuntu" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/ubuntu.png" alt="" />
+    <img class="install-icon" src="/assets/images/icons/third-party/ubuntu.png" alt="" />
     <div class="install-text">Ubuntu</div>
   </a>
 
   <a href="/gateway/{{page.kong_version}}/install-and-run/amazon-linux" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/amazon-linux.png" alt="" />
+    <img class="install-icon" src="/assets/images/icons/third-party/amazon-linux.png" alt="" />
     <div class="install-text">Amazon Linux 2</div>
   </a>
 
   <a href="/gateway/{{page.kong_version}}/install-and-run/rhel" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/rhel.jpg" alt="" />
+    <img class="install-icon" src="/assets/images/icons/third-party/rhel.jpg" alt="" />
     <div class="install-text">RHEL</div>
   </a>
 
   <a href="/gateway/{{page.kong_version}}/install-and-run/debian" class="docs-grid-install-block no-description">
-    <img class="install-icon" src="/assets/images/icons/documentation/debian-logo.jpg" alt="" />
+    <img class="install-icon" src="/assets/images/icons/third-party/debian-logo.jpg" alt="" />
     <div class="install-text">Debian
     </div>
   </a>
@@ -65,7 +65,7 @@ Choose your preferred mode when following installation steps:
 * **Free Mode**: Install {{site.base_gateway}} without a license, gaining access to Kong Manager.
 * **Enterprise**: Install {{site.base_gateway}} and add a license.
 
-If you install the {{site.base_gateway}} Enterprise in Free mode, you can add a license
+If you install the {{site.ee_product_name}} in Free mode, you can add a license
 at any time to gain access to Enterprise features.
 
 {:.note}

@@ -11,6 +11,8 @@ toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
+<!--vale off-->
+
 Nginx information module.
 
  A set of functions for retrieving Nginx-specific implementation

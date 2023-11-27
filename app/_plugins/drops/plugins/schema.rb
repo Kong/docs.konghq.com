@@ -80,16 +80,9 @@ module Jekyll
         end
 
         def fields
-          @fields ||= all_fields.map do |f|
+          @fields ||= @schema.fetch('fields', []).map do |f|
             SchemaField.new(name: f.keys.first, parent: anchor, schema: f.values.first)
           end
-        end
-
-        private
-
-        def all_fields
-          @all_fields ||= @schema.fetch('fields', [])
-                                 .concat(@schema.fetch('shorthand_fields', []))
         end
       end
 
@@ -123,6 +116,14 @@ module Jekyll
           return [] if @schema.config.empty?
 
           [SchemaField.new(name: 'config', parent: '', schema: @schema.config)]
+        end
+
+        def deprecated_fields
+          return [] if @schema.config.empty?
+
+          @deprecated_fields ||= @schema.config.fetch('shorthand_fields', []).map do |f|
+            SchemaField.new(name: f.keys.first, parent: f.keys.first, schema: f.values.first)
+          end
         end
       end
     end

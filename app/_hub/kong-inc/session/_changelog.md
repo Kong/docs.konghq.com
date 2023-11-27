@@ -1,4 +1,13 @@
 ## Changelog
+  
+**{{site.base_gateway}} 3.5.x**
+
+* Introduced the new configuration field `read_body_for_logout` with a default value of `false`. 
+This change alters the behavior of `logout_post_arg` in such a way that it is no longer considered, 
+unless `read_body_for_logout` is explicitly set to `true`. 
+
+  This adjustment prevents the Session plugin from automatically reading request bodies for 
+  logout detection, particularly on POST requests.
 
 **{{site.base_gateway}} 3.2.x**
 * The plugin has been updated to use version 4.0.0 of the `lua-resty-session` library. This introduced several new features, such as the possibility to specify an `audience` for the session.

@@ -299,7 +299,7 @@ If you're running in Universal mode, you can also use the [HTTP API][http-api] t
 
 ## Common name
 
-Kong Mesh uses Service Alternative Name with `spiffe://` format to verify secure connection between services. In this case, the common name in the certificate is not used.
+{{site.mesh_product_name}} uses Service Alternative Name with `spiffe://` format to verify secure connection between services. In this case, the common name in the certificate is not used.
 You may need to set a common name in the certificate, for compliance reasons. To do this, set the `commonName` field in the Vault mTLS backend configuration.
 The value contains the template that will be used to generate the name.
 
@@ -311,7 +311,9 @@ You can also use the `replace` function to replace `_` with `-`. For example, `{
 
 In a multi-zone environment, the global control plane provides the `Mesh` to the zone control planes. However, you must make sure that each zone control plane communicates with Vault over the same address. This is because certificates for data plane proxies are issued from the zone control plane, not from the global control plane.
 
+{% if_version lte:2.3.x %}
 You must also make sure the global control plane communicates with Vault. When a new Vault backend is configured, {{site.mesh_product_name}} validates the connection by issuing a test certificate. In a multi-zone environment, validation is performed on the global control plane.
+{% endif_version %}
 
 <!-- links -->
 {% if_version gte:2.0.x %}

@@ -11,6 +11,8 @@ toc: true
 source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 ---
 
+<!--vale off-->
+
 ## kong.ip
 
 Trusted IPs module
@@ -22,7 +24,7 @@ Trusted IPs module
  Trusted IP addresses are those that are known to send correct replacement
  addresses for clients (as per the chosen header field, e.g. X-Forwarded-*).
 
- See [docs.konghq.com/latest/configuration/#trusted_ips](https://docs.konghq.com/latest/configuration/#trusted_ips)
+ See [docs.konghq.com/latest/configuration/#trusted_ips](/gateway/latest/reference/configuration/#trusted_ips)
 
 
 

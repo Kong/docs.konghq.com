@@ -9,14 +9,45 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## November 2023
+**Multi-geo support**
+: {{site.konnect_saas}} now allows you to host and operate your cloud instance in a geographic region that you specify. This is important for data privacy and regulatory compliance for you organization. Geographic regions allow you to also operate {{site.konnect_saas}} in a similar geo to your users and their infrastructure applications. 
+
+: Geos are distinct deployments of {{site.konnect_short_name}} with objects, such as services and consumers, that are geo-specific. Only authentication, billing, and usage is shared between {{site.konnect_short_name}} geos.
+
+: {{site.konnect_saas}} currently supports the following geos:
+  * AU 
+  * EU
+  * US
+
+: For more information, see [Geographic regions](/konnect/geo/).
+
+**Gateway Manager** 
+: The {{site.konnect_short_name}} Gateway Manager has been updated to pull the most accurate data and remain consistent across {{site.konnect_short_name}}.
+
+**Gateway 3.5 Support**
+: {{site.konnect_short_name}} now supports the latest Gateway release version of 3.5 including all [Konnect-compatible plugins](/konnect/compatibility/#plugin-compatibility) and now supports Azure key vault for [Secrets Manager](/konnect/gateway-manager/configuration/vaults/).
+
+## October 2023
+**Portal Management API**
+: {{site.konnect_short_name}} portal administrators are now able to integrate portal management operations with their automation systems (such as CI/CD pipelines) by utilizing an officially published, documented, and supported [Portal Management API](/konnect/api/portal-management/latest/). Approving developer and application requests, configuring appearance settings, and managing custom domain details can all be driven entirely through API automation.
+
+**Combine multiple metrics inside the same custom report**
+: {{site.konnect_short_name}} users are now able to select multiple metrics in a custom report. This feature allows them to compare multiple metrics of the same category (e.g. latency) within the same report instead of creating multiple reports.
+
+**OIDC Teams for DevPortal**
+: {{site.konnect_short_name}} portal administrators can now automatically assign Developers to Teams to get the corresponding RBAC permissions based on their Identity Provider groups or claims. This reduces the onboarding experience for new developers and offers a secure and efficient Dev Portal experience for internal and external audiences. For more information, see [Add Developer Teams from IdPs](/konnect/dev-portal/access-and-approval/add-teams/).
+
+**PKI Certificates for CP/DP Authentication**
+: {{site.konnect_short_name}} now supports [pinned PKI certs for CP/DP authentication](/konnect/gateway-manager/data-plane-nodes/secure-communications). This means that Konnect supports digital certificates signed by a trusted CA in Konnect for CP/DP authentication. 
+
 ## September 2023
 
 **Custom plugin management**
 : Konnect now supports self-service custom plugins through the UI and API. 
 You can upload a plugin schema to Konnect and get started with custom plugins in a matter of minutes.
 
-: See the [Custom Plugins API](/konnect/api/control-plane-configuration/latest/#/Custom%20Plugin%20Schemas) 
-to get started.
+: See [Kong Gateway Plugins in Konnect](/konnect/gateway-manager/plugins/) to get started.
 
 **Auth0 DCR Configuration Audience Override**
 : API Product Versions can be each be assigned to a different Auth0 API instance allowing service teams to have more fine grained control over scopes and permissions of their services. See [Using Auth0 actions](/konnect/dev-portal/applications/dynamic-client-registration/auth0/#using-auth0-actions) for more details. 
@@ -28,10 +59,9 @@ to get started.
 : New Konnect organizations will benefit from an updated Konnect Plus product tier which includes every product capability available. New accounts are automatically given a month of free credits as part of 30-day trial. For more information review our [pricing page](https://konghq.com/pricing).
 
 **Social Login and Org Switcher**
-: New users can now signup for and login to Konnect organizations using their social identities from Google and GitHub. Users also have the ability to quickly switch between different Konnect organizations that they own or have been invited to.
+: New users can now sign up for and login to Konnect organizations using their social identities from Google and GitHub. Users also have the ability to quickly switch between different Konnect organizations that they own or have been invited to.
 : * [Social Login](/konnect/org-management/social-identity-login/) - Login with social identities has been added as part of the "built-in" authentication scheme in Konnect. Users can use their Google and GitHub credentials to create new organizations and sign in to existing Konnect accounts with a matching email. User invitations may also be accepted via social login.
 : * [Organization Switcher](/konnect/org-management/org-switcher/) - Users who have been invited to more than one organization will be able witch between orgs via the org switcher. In addition, users who wish to utilize more than one organization may create new organizations via org switcher. All organizations that have associated emails would be accessible to a login to via org switcher.
-
 
 **Renamed {{site.konnect_short_name}} capabilities**
 : We have renamed a number of core {{site.konnect_short_name}} capabilities to simplify user understanding:
@@ -138,7 +168,7 @@ With composite runtime groups, organizations can reduce infrastructure costs whi
 
 **Kong Ingress Controller for Kubernetes in {{site.konnect_short_name}}**
 : The read-only [Ingress Controller association with {{site.konnect_short_name}}](/konnect/gateway-manager/kic/) is now GA and can be deployed in a production environment. This release also includes the following features:
-* {{site.konnect_short_name}} now manages license and entitlement for KIC-managed Gateways so that you don't need to worry about license management. There is a [seamless upgrade path](/kubernetes-ingress-controller/latest/guides/choose-gateway-image/) available if you want to move from the OSS experience to the Enterprise experience.
+* {{site.konnect_short_name}} now manages license and entitlement for KIC-managed Gateways so that you don't need to worry about license management. There is a [seamless upgrade path](/kubernetes-ingress-controller/latest/license/) available if you want to move from the OSS experience to the Enterprise experience.
 * {{site.konnect_short_name}} now supports analytics for KIC runtime groups. You can get detailed visibility into your K8 native managed Gateways on the {{site.konnect_short_name}} platform.
 
 **Identity Management and Audit Log Roles**
@@ -442,7 +472,7 @@ Review the list of [breaking changes](/gateway/changelog/#breaking-changes-and-d
 
 **DevPortal Custom Domain Progress Indicator**
 
-: We've added an in interactive checklist when configuring a [custom domain](/konnect/dev-portal/customization/#custom-dev-portal-url) for your developer portal. There is now an indicator to help understand if your DNS changes have propogated, and when the SSL certificate has been generated by {{site.konnect_short_name}}.
+: We've added an in interactive checklist when configuring a [custom domain](/konnect/dev-portal/customization/#custom-dev-portal-url) for your developer portal. There is now an indicator to help understand if your DNS changes have propagated, and when the SSL certificate has been generated by {{site.konnect_short_name}}.
 
 **Download option to all reports**
 
