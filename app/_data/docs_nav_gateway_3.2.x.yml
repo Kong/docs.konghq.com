@@ -23,6 +23,17 @@ items:
       - text: Release Notes
         url: /gateway/changelog
         absolute_url: true
+      - text: Breaking Changes	
+        items:
+          - text: Kong Gateway 3.2.x
+            url: /breaking-changes/
+            src: /gateway/breaking-changes/32x
+          - text: Kong Gateway 3.1.x
+            url: /breaking-changes/31x/
+          - text: Kong Gateway 3.0.x
+            url: /breaking-changes/30x/
+          - text: Kong Gateway 2.8.x or earlier
+            url: /breaking-changes/28x/
       - text: Key Concepts
         items:
           - text: Services
