@@ -4,10 +4,10 @@ content_type: reference
 purpose: This guide walks you through upgrade paths for {{site.base_gateway}} and helps you prepare for an upgrade.
 ---
 
-This guide helps you determine which {{site.base_gateway}} upgrade paths to use and offers other upgrade advice as well.
+Using this guide, prepare for a {{site.base_gateway}} upgrade and determine which {{site.base_gateway}} upgrade paths to use.
 
-This guide presents four available upgrade strategies, nominating the best applicable strategy for each deployment mode {{site.base_gateway}} supports. 
-Additionally, we list some fundamental factors that play important roles in the upgrade process, and also instruct how to back up and recover data.
+This guide walks you through four available upgrade strategies and recommends the best strategy for each {{site.base_gateway}} deployment mode. 
+Additionally, we list some fundamental factors that play important roles in the upgrade process, and instruct how to back up and recover data.
 
 This guide uses the following terms in the context of {{site.base_gateway}}:
 * **Upgrade**: The overall process of switching from an older to a newer version of {{site.base_gateway}}. 
@@ -20,12 +20,15 @@ support (LTS) versions, see the [LTS upgrade guide](/gateway/{{page.kong_version
 
 ## Upgrade overview
 
+A {{site.base_gateway}} upgrade requires two phases of work: preparing for the upgrade and applying the upgrade.
+
 **Preparation phase**
 
-1. Determine your upgrade path based on the release you're starting from and the release you're upgrading to.
-1. Back up your database or your declarative configuration files.
-1. Choose the right strategy for upgrading based on your deployment topology.
-1. Review the breaking changes for the version you're upgrading to.
+1. Determine your [upgrade path](#preparation-review-upgrade-paths) based on the release you're starting from and the release you're upgrading to.
+1. [Back up](#preparation-choose-a-backup-strategy) your database or your declarative configuration files.
+1. Choose the right [strategy for upgrading](#preparation-choose-an-upgrade-strategy-based-on-deployment-mode) based on your deployment topology.
+1. Review the [breaking changes](#prepation-review-breaking-changes) for the version you're upgrading to.
+1. Review any remaining [upgrade considerations](#preparation-upgrade-considerations).
 1. Test migration in a pre-production environment.
 
 **Performing the upgrade**
@@ -347,6 +350,45 @@ Using the in-place cluster strategy with a rolling upgrade workflow:
 ## Prepation: Review breaking changes
 
 Review the [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/) for the release or releases that you are upgrading to. Make any preparations or adjustments as directed in the breaking changes.
+
+## Preparation: Upgrade considerations
+
+There are some universal factors that may also influence the upgrade, regardless of your deployment mode.
+
+Selecting a strategy for the target deployment mode doesn't guarantee that you can start the upgrade immediately.
+You must also account for the following factors:
+
+* During the upgrade process, no changes can be made to the configuration database. 
+Until the upgrade is completed:
+  * Don't write to the database via the Admin API.
+  * Don't operate on the database directly.
+  * Don't update configuration through Kong Manager, decK, or the `kong config` CLI.
+* Review the compatibility between the new version Y and your existing platform. 
+Factors may include, but are not limited to:
+  * [OS version](/gateway/{{page.kong_version}}/support/#supported-versions)
+  * [Database version](/gateway/{{page.kong_version}}/support/third-party/)
+  * [Kubernetes version and Helm prerequisites](/kubernetes-ingress-controller/latest/support-policy/)
+  * [Dependency versions](/gateway/{{page.kong_version}}/support/third-party/)
+  * [Hardware resources](/gateway/{{page.kong_version}}/production/sizing-guidelines/)
+* Carefully review all [changelogs](/gateway/changelog/) starting from your current version X,
+ all the way up to the target version Y. 
+  * Look for any potential conflicts, especially for schema changes and functionality removal.
+  * When configuring the new cluster, update `kong.conf` directly or via environment variables based on the changelog.
+
+    Breaking changes in `kong.conf` in a minor version upgrade are infrequent, but do happen.
+
+    For example, the parameter `pg_ssl_version` defaults to `tlsv1` in 2.8.2.4, but in 3.2.2.1, `tlsv1` is not a valid argument anymore.
+    If you were depending on this setting, you would have to adjust your environment to fit one of the new options.
+
+* If you have custom plugins, review the code against changelog and test the custom plugin using the new version Y.
+* If you have modified any Nginx templates like `nginx-kong.conf` and `nginx-kong-stream.conf`, also make those changes to the templates for the new version Y. 
+Refer to [Nginx Directives](/gateway/{{page.kong_version}}/reference/nginx-directives/) for a detailed customization guide.
+* If you're using {{site.ee_product_name}}, make sure to [apply the enterprise license] to the new Gateway cluster.
+* Always remember take a backup.
+{% if_version %}
+* Cassandra DB support has been removed from {{site.base_gateway}} with 3.4.0.0.
+Migrate to PostgreSQL according to the [Cassandra to PostgreSQL Migration Guidelines](/gateway/{{page.kong_version}}/migrate-cassandra-to-postgres/).
+{% endif_version %}
 
 ## Perform the upgrade
 

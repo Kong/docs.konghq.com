@@ -51,7 +51,7 @@ This is critical to guarantee data consistency between cluster X and cluster Y.
 2. Back up data from the current cluster Y by following the 
 [Backup guide](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/).
 
-3. Evaluate factors that may impact the upgrade, as described in [Upgrade Considerations].
+3. Evaluate factors that may impact the upgrade, as described in [Upgrade considerations](/gateway/{{page.kong_version}}/upgrade/#preparation-upgrade-considerations/).
 You may have to consider customization of both `kong.conf` and {{site.base_gateway}} configuration data.
 
 4. Evaluate any [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/) that may 
@@ -77,7 +77,7 @@ have happened between releases.
         For example, does the Key Authentication plugin authenticate requests properly?
         
         If the outcome is not as expected, look over the 
-        [upgrade considerations](/gateway/{{page.kong_version}}/upgrade/upgrade-considerations/) and the 
+        [upgrade considerations](/gateway/{{page.kong_version}}/upgrade/#preparation-upgrade-considerations/) and the 
         [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/)
         again to see if you missed anything.
 

@@ -243,8 +243,6 @@ items:
             url: /upgrade/
           - text: Backup and Restore
             url: /upgrade/backup-and-restore/
-          - text: Upgrade Considerations
-            url: /upgrade/upgrade-considerations/
           - text: Upgrade Strategies
             items:
               - text: Dual-Cluster Upgrade
