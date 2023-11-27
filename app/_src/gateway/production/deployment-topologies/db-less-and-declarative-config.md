@@ -159,7 +159,7 @@ consumers:
   - key: my-key
 ```
 
-See the [declarative configuration schema](https://github.com/Kong/deck/blob/main/file/kong_json_schema.json)
+See the [declarative configuration schema](https://github.com/Kong/go-database-reconciler/blob/main/pkg/file/kong_json_schema.json)
 for all configuration options.
 
 The only mandatory piece of metadata is `_format_version: "3.0"`, which
@@ -307,6 +307,6 @@ entities.
 For current plugin compatibility, see [Plugin compatibility](/hub/plugins/compatibility/).
 
 ## See also
-* [Declarative configuration schema](https://github.com/Kong/deck/blob/main/file/kong_json_schema.json)
+* [Declarative configuration schema](https://github.com/Kong/go-database-reconciler/blob/main/pkg/file/kong_json_schema.json)
 * [decK documentation](/deck/latest/)
 * [Using decK with {{site.ee_product_name}}](/deck/latest/guides/kong-enterprise/)
