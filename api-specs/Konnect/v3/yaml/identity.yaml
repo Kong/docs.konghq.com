@@ -1234,6 +1234,7 @@ components:
         application/json:
           schema:
             type: object
+            title: User Collection Response
             properties:
               meta:
                 $ref: '#/components/schemas/PaginatedMeta'
@@ -1259,6 +1260,7 @@ components:
         application/json:
           schema:
             type: object
+            title: Team Collection Response
             properties:
               meta:
                 $ref: '#/components/schemas/PaginatedMeta'
@@ -1287,6 +1289,7 @@ components:
         application/json:
           schema:
             type: object
+            title: Team Mapping Collection Response
             properties:
               data:
                 type: array
@@ -1301,6 +1304,7 @@ components:
         application/json:
           schema:
             type: object
+            title: Team Group Mapping Collection Response
             properties:
               meta:
                 $ref: '#/components/schemas/PaginatedMeta'
@@ -1326,6 +1330,7 @@ components:
         application/json:
           schema:
             type: object
+            title: Assigned Role Collection Response
             properties:
               meta:
                 $ref: '#/components/schemas/PaginatedMeta'
@@ -1343,6 +1348,7 @@ components:
         application/json:
           schema:
             type: object
+            title: Authentication Settings Response
             properties:
               basic_auth_enabled:
                 type: boolean
@@ -1425,6 +1431,7 @@ components:
         application/problem+json:
           schema:
             type: object
+            title: Precondition Failed Response
             description: The error response object.
             properties:
               status:
@@ -1452,6 +1459,7 @@ components:
         application/problem+json:
           schema:
             type: object
+            title: Rate Limited Response
             description: The error object
             properties:
               status:
@@ -1488,6 +1496,7 @@ components:
         application/problem+json:
           schema:
             type: object
+            title: Unauthorized Response
             description: The error response object.
             properties:
               status:
@@ -1524,6 +1533,7 @@ components:
         application/json:
           schema:
             type: object
+            title: Team Mapping Response
             properties:
               meta:
                 type: object
@@ -1569,6 +1579,7 @@ components:
         application/json:
           schema:
             type: object
+            title: Roles Response
             properties:
               control_planes:
                 type: object
@@ -2270,6 +2281,7 @@ components:
         application/json:
           schema:
             type: object
+            title: System Account Collection Response
             properties:
               meta:
                 $ref: '#/components/schemas/PaginatedMeta'
@@ -2329,6 +2341,7 @@ components:
         application/json:
           schema:
             type: object
+            title: System Account Access Token Collection Reponse
             properties:
               meta:
                 $ref: '#/components/schemas/PaginatedMeta'
@@ -2359,6 +2372,7 @@ components:
         application/json:
           schema:
             type: object
+            title: System Account Access Token Created Response
             example:
               id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
               name: Sample Access Token
