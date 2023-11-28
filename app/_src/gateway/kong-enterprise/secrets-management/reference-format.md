@@ -72,4 +72,4 @@ Query arguments are used to denote configuration options in a `key=value` format
                                                                      ^^^^^^^^
 ```
 
-Version, which is the fragment part of the Vault URL, is used to identify the version number of the secret stored in the vault backends which supports versioning.
+The version, specified as the fragment of the Vault URL, identifies the version number of the secret stored in a vault backend. Applies to any vault backend that supports versioning.

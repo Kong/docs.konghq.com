@@ -132,7 +132,7 @@ Or, if you configured an entity:
 {vault://hashicorp-vault/hello/foo}
 ```
 
-If you've configured a secret value in multiple versions, like this:
+If you have configured a secret value in multiple versions:
 
 ```text
 # Requires kv2 engine enabled
@@ -148,7 +148,7 @@ destroyed          false
 version            2
 ```
 
-Access an older version of the secret will be like this:
+Access an older version of the secret like this:
 
 ```bash
 # For version 1

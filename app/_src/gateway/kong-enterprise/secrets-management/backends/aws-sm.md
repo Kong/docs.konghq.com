@@ -69,7 +69,9 @@ Access these secrets from `secret-name` like this:
 {vault://aws/secret-name/snip}
 ```
 
-Moreover, for an AWS Secrets Manager secret that has multiple versions, accessing the current version(labeled as `AWSCURRENT`) of the secret or the previous version(labeled as`AWSPREVIOUS`) of the secret will be like this:
+If you have an AWS Secrets Manager secret with multiple versions, you can access the current version or any previous version of the secret by specifying a version in the reference. 
+
+In the following example, `AWSCURRENT` refers to the latest secret version and `AWSPREVIOUS` refers to an older version:
 
 ```bash
 # For AWSCURRENT, not specifying version
