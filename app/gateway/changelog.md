@@ -318,8 +318,6 @@ was called multiple times in a request lifecycle.
 * The default value of the [`dns_no_sync`](/gateway/3.5.x/reference/configuration/#dns_no_sync) option has been changed to `on`.
 [#11871](https://github.com/kong/kong/pull/11871).
 * Dismiss confusing log entry from Redis regarding rate limiting.
-  [#7077](https://github.com/Kong/kong-ee/issues/7077)
-  [#7101](https://github.com/Kong/kong-ee/issues/7101)
 
 #### Kong Manager 
 * Fixed an issue where some services were not showing the exact name or ID while configuring a route. 
@@ -2426,7 +2424,7 @@ The new router can be used in traditional-compatible mode, or use the new expres
 
   Learn more about the router:
   * [Configure routes using expressions](/gateway/3.0.x/key-concepts/routes/expressions/)
-  * [Router Expressions Language reference](/gateway/3.0.x/reference/router-expressions-language/)
+  * [Router Expressions Language reference](/gateway/3.0.x/reference/expressions-language/language-references/)
   * [#8938](https://github.com/Kong/kong/pull/8938)
 
 * Implemented delayed response in stream mode.
