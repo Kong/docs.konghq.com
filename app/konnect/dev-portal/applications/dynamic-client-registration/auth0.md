@@ -95,7 +95,7 @@ Once you have Auth0 configured, you can set up the Dev Portal to use Auth0 for d
 
 7. Enter `openid` into the **Scopes** field.
 
-1. If you’re using developer-managed scopes, select the **Use Developer Managed Scopes** checkbox. Add the appropriate scopes (in addition to the mandatory `openid` scope) you want your developers to be able to choose from. For example: `openid`, `read:account_information`, and `write:account_information`.
+1. If you’re using developer-managed scopes, select the **Use Developer Managed Scopes** checkbox. Add the appropriate scopes (in addition to the mandatory `openid` scope) you want your developers to be able to choose from. For example: `openid, read:account_information, write:account_information`.
 
 9. Enter `azp` into the **Consumer Claims** field, which will match the client ID of each Auth0 application
 
