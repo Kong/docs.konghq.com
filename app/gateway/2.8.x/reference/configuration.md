@@ -1759,19 +1759,18 @@ https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_requests
 
 ### Datastore section
 
+
+{% include_cached /md/enterprise/cassandra-deprecation.md %}
+
+
 Kong can run with a database to store coordinated data between Kong nodes in a
 cluster, or without a database, where each node stores its information
 independently in memory.
 
 When using a database, Kong will store data for all its entities (such as
-Routes, Services, Consumers, and Plugins) in either Cassandra or PostgreSQL, and
+Routes, Services, Consumers, and Plugins) in a database, and
 all Kong nodes belonging to the same cluster must connect themselves to the same
 database.
-
-Kong supports the following database versions:
-
-- **PostgreSQL**: 9.5 and above.
-- **Cassandra**: 2.2 and above.
 
 When not using a database, Kong is said to be in "DB-less mode": it will keep
 its entities in memory, and each node needs to have this data entered via a
@@ -1779,16 +1778,16 @@ declarative configuration file, which can be specified through the
 `declarative_config` property, or via the Admin API using the `/config`
 endpoint.
 
-When using Postgres as the backend storage, you can optionally enable Kong to
+When using PostgreSQL as the backend storage, you can optionally enable Kong to
 serve read queries from a separate database instance.
 
 When the number of proxies is large, this can greatly reduce the load on the
-main Postgres instance and achieve better scalability. It may also reduce the
-latency jitter if the Kong proxy node's latency to the main Postgres instance is
+main PostgreSQL instance and achieve better scalability. It may also reduce the
+latency jitter if the Kong proxy node's latency to the main PostgreSQL instance is
 high.
 
-The read-only Postgres instance only serves read queries and write queries
-still goes to the main connection. The read-only Postgres instance can be
+The read-only PostgreSQL instance only serves read queries and write queries
+still goes to the main connection. The read-only PostgreSQL instance can be
 eventually consistent while replicating changes from the main instance.
 
 At least the `pg_ro_host` config is needed to enable this feature.
@@ -1811,15 +1810,15 @@ Accepted values are `postgres`, `cassandra`, and `off`.
 ---
 
 
-#### Postgres settings
+#### PostgreSQL settings
 
 name   | description  | default
 -------|--------------|----------
-**pg_host** | Host of the Postgres server. | `127.0.0.1`
-**pg_port** | Port of the Postgres server. | `5432`
+**pg_host** | Host of the PostgreSQL server. | `127.0.0.1`
+**pg_port** | Port of the PostgreSQL server. | `5432`
 **pg_timeout** | Defines the timeout (in ms), for connecting, reading and writing. | `5000`
-**pg_user** | Postgres user. | `kong`
-**pg_password** | Postgres user's password. | none
+**pg_user** | PostgreSQL user. | `kong`
+**pg_password** | PostgreSQL user's password. | none
 **pg_database** | The database name to connect to. | `kong`
 **pg_schema** | The database schema to use. If unspecified, Kong will respect the `search_path` value of your PostgreSQL instance. | none
 **pg_ssl** | Toggles client-server TLS connections between Kong and PostgreSQL. Because PostgreSQL uses the same port for TLS and non-TLS, this is only a hint. If the server does not support TLS, the established connection will be a plain one. | `off`
@@ -1847,6 +1846,10 @@ name   | description  | default
 **pg_ro_keepalive_timeout** | Same as `pg_keepalive_timeout`, but for the read-only connection. | `<pg_keepalive_timeout>`
 
 #### Cassandra settings
+
+
+{% include_cached /md/enterprise/cassandra-deprecation.md %}
+
 
 name   | description  | default
 -------|--------------|----------
