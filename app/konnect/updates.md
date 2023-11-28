@@ -28,8 +28,8 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **Gateway 3.5 Support**
 : {{site.konnect_short_name}} now supports the latest Gateway release version of 3.5 including all [Konnect-compatible plugins](/konnect/compatibility/#plugin-compatibility) and now supports Azure key vault for [Secrets Manager](/konnect/gateway-manager/configuration/vaults/).
 
-**Developer Portal**
-Konnect customers using Auth0 DCR for their Developer Portal can now extend _their_ customers more fine grained control over their 3rd party applications' permissions. Developers can now configure unique scopes and permissions for each Auth0 DCR application they create, allowing them to set more fine grained permissions for each of their target audiences.
+**Developer-Managed Scopes for Dev Portal**
+You can now give your customers more control over 3rd party application permissions using Auth0 DCR developer-managed scopes for Dev Portal. Developers can now configure unique scopes and permissions for each Auth0 DCR application they create, allowing them to set more fine-grained permissions for each of their target audiences.
 
 ## October 2023
 **Portal Management API**
