@@ -3182,6 +3182,77 @@ openid-connect
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
 
+## 2.8.4.5
+**Release Date** 2023/11/28
+
+### Features
+#### Core
+* Added support for observing the time consumed by some components in the given request.
+* A unique Request ID is now populated in the error log, access log, error templates, log serializer, and in a new X-Kong-Request-Id header (configurable for upstream/downstream using the `headers` and `headers_upstream` configuration options).
+
+#### Enterprise
+* **Admin API:** Added counters such as routes, plugins, licenses, and deployment info to the report component. Also, added a checksum and timestamp to the output.
+* Backported the Request ID feature.
+
+#### Plugins
+* [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * New field `unauthorized_destroy_session`, which when set to true, it destroys the session (delete the user's session cookie) when the request is unauthorized. Default is set to true. Set to false to preserve the session.
+
+### Fixes
+#### Core
+* Dismissed confusing debug log from the Redis rate limiting tool.
+* Removed the asynchronous timer in `syncQuery()` to prevent hang risk.
+* Updated the DNS client to follow configured timeouts in a more predictable manner.
+* Ensured pluginserver protobuf includes are placed in the correct path in packages.
+* Added missing support for consumer group tags.
+* Fixed an issue that caused Kong Gateway to fail to start if `proxy_access_log` is `off`.
+* Removed asynchronous timer in `syncQuery()` to prevent hang risk.
+* Fixed an issue that called `store_connection` without passing `self`.
+* Now Kong Gateway uses deep copies of route, service, and consumer objects when log serialize.
+* Added per request debugging.
+* Fixed an issue that caused a failure to broadcast keyring material when using the cluster strategy.
+* Addressed a problem where an abnormal socket connection would be reused when querying the PostgreSQL database.
+
+#### Plugins
+* [mTLS Authentication](/hub/kong-inc/mtls-auth/) (`mtls-auth`)
+  * The plugin no longer caches the network failure when doing revocation check.
+* [AWS-Lambda](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
+  * Gradually initializes AWS library on a first use to remove startup delay caused by AWS metadata discovery.
+* [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Now allows preserving the session when there's a `401`.
+  * Fixed an issue on token revocation on logout where the code was revoking the refresh token when it was supposed to revoke the access token when using the discovered revocation endpoint.
+* Collector (`collector`)
+  * Fixed an issue where Kong cannot start after upgrading to versions greater than or equal to 2.8.4.1 because the deprecated Collector plugin was still being used.
+* [Request Validator](/hub/kong-inc/request-validator/) (`request-validator`)  
+  * Fixed an issue where the `allowed_content_types` configuration is unable to contain the "-" character caused by the over-strict validation rule.
+* [Rate Limiting](/hub/kong-inc/rate-limiting/)(`rate-limiting`)
+  * Dismissed confusing log entry from Redis regarding rate limiting.
+* [Prometheus](/hub/kong-inc/prometheus/) (`prometheus`) 
+  * Reduced upstream health iteration latency spike during scrape.
+
+#### Admin API
+* Fixed an issue where unique violation errors were reported while trying to update the `user_token` with the same value on the same RBAC user.
+* Unique violations are no longer reported on `user_token` self updates.
+
+### Dependencies
+#### Core
+* Bumped lua-kong-nginx-module from 0.2.0 to 0.2.2.
+* Bumped lua-resty-aws from 1.3.2 to 1.3.5.
+* Patched nginx-1.19.9_06-set-ssl-option-ignore-unexpected-eof
+
+#### Enterprise
+* Bumped jq to 1.7.
+* Bumped OpenSSL to 3.1.4.
+* The Postgres socket now closes actively when timeout happens during the query.
+* Added Dynatrace testcase.
+* Deprecated uses of `mockbin.com`.
+* Include `.proto` files in 2.8 packages. 
+* Update COPYRIGHT file for 2.8.
+
+#### Kong Manager Enterprise
+* Bumped kong_admin to v0.14.26 for GW v2.8.4.5.
+* Upgraded moment.js to v2.29.4 to fix a known CVE vulnerability.
+
 ## 2.8.4.4
 **Release Date** 2023/10/12
 
