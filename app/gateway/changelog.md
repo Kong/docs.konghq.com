@@ -3186,14 +3186,20 @@ openid-connect
 ### Features
 #### Core
 * Added support for observing the time consumed by some components in the given request.
-* A unique Request ID is now populated in the error log, access log, error templates, log serializer, and in a new X-Kong-Request-Id header (configurable for upstream/downstream using the `headers` and `headers_upstream` configuration options).
+* Added a unique Request ID that is now populated in the error log, access log, error templates, log serializer, and a new `X-Kong-Request-Id` header. 
+  This configuration can be customized for upstreams and downstreams using the 
+  [`headers`](/gateway/2.8.x/reference/configuration/#headers) and 
+  [`headers_upstream`](/gateway/2.8.x/reference/configuration/#headers_upstream) configuration options. 
+  [#11663](https://github.com/Kong/kong/pull/11663)
 
 #### Enterprise
-* **Admin API:** Added counters such as routes, plugins, licenses, and deployment info to the report component. Also, added a checksum and timestamp to the output.
+* License management:
+  * Added support for counters such as routes, plugins, licenses, and deployment information to the license report.
+  * Added a checksum to the output of the license endpoint.
 
 #### Plugins
 * [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
-  * New field `unauthorized_destroy_session`, which when set to true, it destroys the session (delete the user's session cookie) when the request is unauthorized. Default is set to true. Set to false to preserve the session.
+  * Added the new field `unauthorized_destroy_session`. When set to `true`, it destroys the session when receiving an unauthorized request by deleting the user's session cookie.
 
 ### Fixes
 #### Core
@@ -3205,27 +3211,33 @@ openid-connect
 * Fixed an issue that caused Kong Gateway to fail to start if `proxy_access_log` is `off`.
 * Removed asynchronous timer in `syncQuery()` to prevent hang risk.
 * Fixed an issue that called `store_connection` without passing `self`.
-* Now Kong Gateway uses deep copies of route, service, and consumer objects when log serialize.
-* Added per request debugging.
+* Kong Gateway now uses deep copies of route, service, and consumer objects for log serialization.
+* Added support for the debug request header `X-Kong-Request-Debug-Output`, 
+  which lets you observe the time consumed by specific components in a given request.
+  Enable it using the 
+  [`request_debug`](/gateway/2.8.x/reference/configuration/#request_debug) configuration parameter.
+  This header helps you diagnose the cause of any latency in Kong Gateway.
+  See the [Request Debugging](/gateway/latest/production/debug-request/) guide for more information.
+  [#11627](https://github.com/Kong/kong/pull/11627)
 * Fixed an issue that caused a failure to broadcast keyring material when using the cluster strategy.
 * Addressed a problem where an abnormal socket connection would be reused when querying the PostgreSQL database.
 * Fixed a plugin server issue that triggered invalidation when the instance was reset.
 
 #### Enterprise
-* Fixed an issue with the local variable `pkey` shadowing the package `pkey`. This caused the "attempt to call field 'new' (a nil value)" error message to display when calling `pkey.new`.
+* Fixed an issue with the local variable `pkey` shadowing the package `pkey`. This caused the `attempt to call field 'new' (a nil value)` error message to display when calling `pkey.new`.
 
 #### Plugins
 * [mTLS Authentication](/hub/kong-inc/mtls-auth/) (`mtls-auth`)
-  * The plugin no longer caches the network failure when doing revocation check.
+  * Fixed an issue to prevent caching network failures during revocation checks.
 * [AWS-Lambda](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
   * Gradually initializes AWS library on a first use to remove startup delay caused by AWS metadata discovery.
 * [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
   * Now allows preserving the session when there's a `401`.
-  * Fixed an issue on token revocation on logout where the code was revoking the refresh token when it was supposed to revoke the access token when using the discovered revocation endpoint.
+  * Fixed an issue with token revocation on logout, where the code was revoking the refresh token instead of the access token when using the discovered revocation endpoint.
 * Collector (`collector`)
-  * Fixed an issue where Kong cannot start after upgrading to versions greater than or equal to 2.8.4.1 because the deprecated Collector plugin was still being used.
+  * Fixed an issue where Kong Gateway couldn't start after upgrading to versions greater than or equal to 2.8.4.1 because the deprecated Collector plugin was still being used.
 * [Request Validator](/hub/kong-inc/request-validator/) (`request-validator`)  
-  * Fixed an issue where the `allowed_content_types` configuration is unable to contain the "-" character caused by the over-strict validation rule.
+  * Fixed an issue where the `allowed_content_types` configuration was unable to contain the `-` character.
 * [Rate Limiting](/hub/kong-inc/rate-limiting/)(`rate-limiting`)
   * Dismissed confusing log entry from Redis regarding rate limiting.
 * [Prometheus](/hub/kong-inc/prometheus/) (`prometheus`) 
