@@ -29,7 +29,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : {{site.konnect_short_name}} now supports the latest Gateway release version of 3.5 including all [Konnect-compatible plugins](/konnect/compatibility/#plugin-compatibility) and now supports Azure key vault for [Secrets Manager](/konnect/gateway-manager/configuration/vaults/).
 
 **Consumer Groups Enhancements**
-: {{site.konnect_saas}} now supports Consumer Groups Enhancements as part of GW 3.5 release. Customers can now apply consumer groups via the UI to 4 additional plugins:
+: {{site.konnect_saas}} now supports Consumer Groups Enhancements as part of GW 3.5 release. Customers can now apply consumer groups via the UI to the following plugins:
 
   * Request Transformer 
   * Request Transformer Advanced
