@@ -10,17 +10,21 @@ title: Compatibility
 
 ## {{site.base_gateway}} version compatibility
 
-|                                | {{site.konnect_saas}} | First supported patch version
-|--------------------------------|:---------------------:|-----------------------------
-| {{site.ee_product_name}} 3.3.x | <i class="fa fa-check"></i>    | 3.3.0.0
-| {{site.ee_product_name}} 3.2.x | <i class="fa fa-check"></i>    | 3.2.1.0
-| {{site.ee_product_name}} 3.1.x | <i class="fa fa-check"></i>    | 3.1.0.0
-| {{site.ee_product_name}} 3.0.x | <i class="fa fa-check"></i>    | 3.0.0.0
-| {{site.ee_product_name}} 2.8.x | <i class="fa fa-check"></i>    | 2.8.0.0
-| {{site.ee_product_name}} 2.7.x | <i class="fa fa-check"></i>    | 2.7.0.0
-| {{site.ee_product_name}} 2.6.x | <i class="fa fa-check"></i>    | 2.6.0.0
-| {{site.ee_product_name}} 2.5.x | <i class="fa fa-check"></i>    | 2.5.0.1
-| {{site.ee_product_name}} 2.4.x or earlier | <i class="fa fa-times"></i>    | --
+
+|                                | {{site.konnect_saas}} | Beginning with version | End of support | 
+|--------------------------------|:---------------------:|-------------------------------|----------------|
+| {{site.ee_product_name}} 3.5.x | <i class="fa fa-check"></i>    | 3.5.0.0 | Nov 2024 
+| {{site.ee_product_name}} 3.4.x (LTS)| <i class="fa fa-check"></i>    | 3.4.0.0 | Aug 2026 
+| {{site.ee_product_name}} 3.3.x | <i class="fa fa-check"></i>    | 3.3.0.0 | May 2024
+| {{site.ee_product_name}} 3.2.x | <i class="fa fa-check"></i>    | 3.2.1.0 | Feb 2024
+| {{site.ee_product_name}} 3.1.x | <i class="fa fa-check"></i>    | 3.1.0.0 | Feb 2024
+| {{site.ee_product_name}} 3.0.x | <i class="fa fa-check"></i>    | 3.0.0.0 | Feb 2024
+| {{site.ee_product_name}} 2.8.x (LTS)| <i class="fa fa-check"></i>    | 2.8.0.0 | Mar 2025 
+| {{site.ee_product_name}} 2.7.x | <i class="fa fa-check"></i>    | 2.7.0.0 | Feb 2024
+| {{site.ee_product_name}} 2.6.x | <i class="fa fa-check"></i>    | 2.6.0.0 | Feb 2024
+| {{site.ee_product_name}} 2.5.x | <i class="fa fa-check"></i>    | 2.5.0.1 | Feb 2024
+| {{site.ee_product_name}} 2.4.x or earlier | <i class="fa fa-times"></i>    | -- | -- 
+
 
 
 ## {{site.mesh_product_name}} compatibility

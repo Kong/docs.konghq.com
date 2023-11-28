@@ -47,11 +47,7 @@ items:
           - text: Services
             url: /key-concepts/services
           - text: Routes
-            items:
-              - text: Overview
-                url: /key-concepts/routes
-              - text: Configure Routes with Expressions
-                url: /key-concepts/routes/expressions
+            url: /key-concepts/routes
           - text: Upstreams
             url: /key-concepts/upstreams
           - text: Plugins
@@ -136,6 +132,19 @@ items:
                 url: /install/linux/rhel
               - text: Ubuntu
                 url: /install/linux/ubuntu
+          - text: Post-installation
+            items:
+              - text: Set up a data store
+                url: /install/post-install/set-up-data-store/
+              - text: Apply Enterprise license
+                url: /install/post-install/enterprise-license/
+                generate: false
+              - text: Enable Kong Manager (Enterprise)
+                url: /install/post-install/kong-manager/
+                generate: false
+              - text: Enable Kong Manager (OSS)
+                url: /install/post-install/kong-manager-oss/
+                generate: false
       - text: Running Kong
         items:
           - text: Running Kong as a non-root user
@@ -164,7 +173,7 @@ items:
             url: /licenses/examples
           - text: Monitor Licenses Usage
             url: /licenses/report
-            # src: /gateway/licenses/report-v2
+            src: /gateway/licenses/report-v2
       - text: Networking
         items:
           - text: Default Ports
@@ -226,6 +235,8 @@ items:
         url: /production/logging
       - text: Configure a gRPC service
         url: /production/configuring-a-grpc-service
+      - text: Use the Expressions Router
+        url: /key-concepts/routes/expressions
       - text: Upgrade and Migration
         items:
           - text: Upgrade Kong Gateway 3.x.x
@@ -658,8 +669,14 @@ items:
         url: /reference/key-management
       - text: Performance Testing Framework
         url: /reference/performance-testing-framework
-      - text: Router Expressions Language
-        url: /reference/router-expressions-language
+      - text: The Expressions Language
+        items:
+          - text: Overview
+            url: /reference/expressions-language
+          - text: Language References
+            url: /reference/expressions-language/language-references
+          - text: Performance Optimizations
+            url: /reference/expressions-language/performance
       - text: Rate Limiting Library
         url: /reference/rate-limiting/
       - text: WebAssembly

@@ -5,6 +5,8 @@ purpose: |
   Additional information needed to install KIC on AKS
 ---
 
+{% include /md/kic/konnect-setup.md %}
+
 ## Prerequisites
 
 * [Set up an AKS cluster](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough).

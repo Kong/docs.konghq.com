@@ -2195,7 +2195,7 @@ The router adds:
 Learn more about the router:
 
 [Configure routes using expressions](/gateway/{{page.kong_version}}/key-concepts/routes/expressions)
-[Router Expressions language reference](/gateway/{{page.kong_version}}/reference/router-expressions-language/)
+[Expressions language reference](/gateway/{{page.kong_version}}/reference/expressions-language/)
 
 
 #### Path handling algorithms

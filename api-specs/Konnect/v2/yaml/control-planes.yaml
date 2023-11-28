@@ -11,6 +11,8 @@ servers:
     description: US Region Base URL
   - url: https://eu.api.konghq.com/v2
     description: EU Region Base URL
+  - url: https://au.api.konghq.com/v2
+    description: AU Region Base URL
 security:
   - personalAccessToken: []
   - systemAccountAccessToken: []
@@ -245,6 +247,33 @@ paths:
       responses:
         '204':
           description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /control-planes/{id}/group-member-status:
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: ID of a control plane
+    get:
+      summary: Control Plane Group Member Status
+      operationId: get-control-planes-id-group-member-status
+      tags:
+        - Control Plane Groups
+      description: Determines the group membership status of a control plane.
+      responses:
+        '200':
+          $ref: '#/components/responses/GetGroupMemberStatus'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -618,6 +647,12 @@ components:
               $ref: '#/components/examples/GroupConflictStatusExample'
             Group No Conflict Status Example:
               $ref: '#/components/examples/GroupNoConflictStatusExample'
+    GetGroupMemberStatus:
+      description: Determines the group membership status of a control plane.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GroupMemberStatus'
     BadRequest:
       description: Bad Request
       content:
@@ -924,6 +959,22 @@ components:
       required:
         - id
         - type
+    GroupMemberStatus:
+      title: GroupMemberStatus
+      type: object
+      description: >-
+        Object with information determining the group membership status of a
+        control plane.
+      properties:
+        is_member:
+          type: boolean
+          example: true
+          description: >-
+            Boolean indicating if a control plane is a member of a control plane
+            group.
+          readOnly: true
+      required:
+        - is_member
     Labels:
       title: Labels
       type: object

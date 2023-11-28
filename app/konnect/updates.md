@@ -9,6 +9,24 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## November 2023
+**Multi-geo support**
+: {{site.konnect_saas}} now allows you to host and operate your cloud instance in a geographic region that you specify. This is important for data privacy and regulatory compliance for you organization. Geographic regions allow you to also operate {{site.konnect_saas}} in a similar geo to your users and their infrastructure applications. 
+
+: Geos are distinct deployments of {{site.konnect_short_name}} with objects, such as services and consumers, that are geo-specific. Only authentication, billing, and usage is shared between {{site.konnect_short_name}} geos.
+
+: {{site.konnect_saas}} currently supports the following geos:
+  * AU 
+  * EU
+  * US
+
+: For more information, see [Geographic regions](/konnect/geo/).
+
+**Gateway Manager** 
+: The {{site.konnect_short_name}} Gateway Manager has been updated to pull the most accurate data and remain consistent across {{site.konnect_short_name}}.
+
+**Gateway 3.5 Support**
+: {{site.konnect_short_name}} now supports the latest Gateway release version of 3.5 including all [Konnect-compatible plugins](/konnect/compatibility/#plugin-compatibility) and now supports Azure key vault for [Secrets Manager](/konnect/gateway-manager/configuration/vaults/).
 
 ## October 2023
 **Portal Management API**
@@ -150,7 +168,7 @@ With composite runtime groups, organizations can reduce infrastructure costs whi
 
 **Kong Ingress Controller for Kubernetes in {{site.konnect_short_name}}**
 : The read-only [Ingress Controller association with {{site.konnect_short_name}}](/konnect/gateway-manager/kic/) is now GA and can be deployed in a production environment. This release also includes the following features:
-* {{site.konnect_short_name}} now manages license and entitlement for KIC-managed Gateways so that you don't need to worry about license management. There is a [seamless upgrade path](/kubernetes-ingress-controller/latest/guides/choose-gateway-image/) available if you want to move from the OSS experience to the Enterprise experience.
+* {{site.konnect_short_name}} now manages license and entitlement for KIC-managed Gateways so that you don't need to worry about license management. There is a [seamless upgrade path](/kubernetes-ingress-controller/latest/license/) available if you want to move from the OSS experience to the Enterprise experience.
 * {{site.konnect_short_name}} now supports analytics for KIC runtime groups. You can get detailed visibility into your K8 native managed Gateways on the {{site.konnect_short_name}} platform.
 
 **Identity Management and Audit Log Roles**
