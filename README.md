@@ -41,7 +41,9 @@ git submodule update --init --recursive
 make run
 ```
 
-If you encounter some errors like:
+### Troubleshooting the local build
+
+If you encounter an error that looks like this:
 
 ```
 app/_plugins/generators/utils/frontmatter_parser.rb:8:in `match': invalid byte sequence in US-ASCII (ArgumentError)
