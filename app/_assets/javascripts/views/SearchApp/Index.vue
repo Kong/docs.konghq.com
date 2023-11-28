@@ -155,9 +155,8 @@ import {
 } from 'vue-instantsearch/vue3/es';
 
 import algoliasearch from 'algoliasearch/lite';
-import { history } from 'instantsearch.js/es/lib/routers';
-import { singleIndex } from 'instantsearch.js/es/lib/stateMappings';
 import NoResults from './NoResults.vue';
+import { routing } from './routing.js';
 
 import 'instantsearch.css/themes/reset.css';
 import './Theme.css';
@@ -181,10 +180,7 @@ export default {
         '05Y6TLHNFZ',
         '80483bfe28d9fd036a11a6f6a06454f8',
       ),
-      routing: {
-        router: history(),
-        stateMapping: singleIndex('konghq'),
-      },
+      routing
     };
   },
   created() {
