@@ -77,11 +77,11 @@ In the following example, `AWSCURRENT` refers to the latest secret version and `
 # For AWSCURRENT, not specifying version
 {vault://aws/secret-name/foo}
 
-# For AWSCURRENT, specifying version == 2
-{vault://aws/secret-name/foo#2}
-
-# For AWSPREVIOUS, specifying version == 1
+# For AWSCURRENT, specifying version == 1
 {vault://aws/secret-name/foo#1}
+
+# For AWSPREVIOUS, specifying version == 2
+{vault://aws/secret-name/foo#2}
 ```
 
 ## Configuration via vaults entity
