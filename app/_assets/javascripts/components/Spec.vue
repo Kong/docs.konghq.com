@@ -66,7 +66,7 @@ async function fetchSpec() {
 
   return await versionsAPI.getProductVersionSpec({
     productId: props.product?.id,
-    versionId: props.productVersionId
+    productVersionId: props.productVersionId
   }).then(async res => {
     const parsedSpec = jsyaml.load(res.data.content);
 

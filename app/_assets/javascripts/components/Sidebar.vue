@@ -79,7 +79,7 @@ async function fetchOperations () {
   try {
     const res = await versionsAPI.getProductVersionSpecOperations({
       productId,
-      versionId: props.activeProductVersionId
+      productVersionId: props.activeProductVersionId
     });
 
     operations.value = res.data.operations?.map(operation => ({
