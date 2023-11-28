@@ -3190,7 +3190,6 @@ openid-connect
 
 #### Enterprise
 * **Admin API:** Added counters such as routes, plugins, licenses, and deployment info to the report component. Also, added a checksum and timestamp to the output.
-* Backported the Request ID feature.
 
 #### Plugins
 * [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
@@ -3210,6 +3209,10 @@ openid-connect
 * Added per request debugging.
 * Fixed an issue that caused a failure to broadcast keyring material when using the cluster strategy.
 * Addressed a problem where an abnormal socket connection would be reused when querying the PostgreSQL database.
+* Fixed a plugin server issue that triggered invalidation when the instance was reset.
+
+#### Enterprise
+* Fixed an issue with the local variable `pkey` shadowing the package `pkey`. This caused the "attempt to call field 'new' (a nil value)" error message to display when calling `pkey.new`.
 
 #### Plugins
 * [mTLS Authentication](/hub/kong-inc/mtls-auth/) (`mtls-auth`)
