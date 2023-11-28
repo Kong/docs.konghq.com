@@ -3243,7 +3243,7 @@ openid-connect
 #### Enterprise
 * Bumped jq to 1.7.
 * Bumped OpenSSL to 3.1.4.
-* The Postgres socket now closes actively when timeout happens during the query.
+* The Postgres socket now closes actively when timeout happens during the query. [#11480](https://github.com/Kong/kong/pull/11480)
 * Added Dynatrace testcase.
 * Deprecated uses of `mockbin.com`.
 * Include `.proto` files in 2.8 packages. 
