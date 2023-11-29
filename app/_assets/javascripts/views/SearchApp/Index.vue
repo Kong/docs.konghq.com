@@ -10,7 +10,11 @@
       :attributes-to-snippet.camel="['content:25', 'description:25']"
     />
     <header class="header" id="header">
-      <ais-search-box placeholder="Search the docs..." />
+      <ais-search-box
+        placeholder="Search the docs..."
+        :autofocus=true
+        :show-loading-indicator=true
+      />
     </header>
 
     <main class="search-container">
