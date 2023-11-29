@@ -28,3 +28,7 @@ kong_version_compatibility:
       - 3.2.x
 
 dbless_compatible: yes
+
+search_aliases:
+  - the lego group
+  - aws-request-signing

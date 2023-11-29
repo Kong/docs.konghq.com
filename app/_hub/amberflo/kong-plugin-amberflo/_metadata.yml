@@ -27,3 +27,7 @@ kong_version_compatibility:
   enterprise_edition:
     compatible:
       - 3.0.x
+
+search_aliases:
+  - amberflo.io inc.
+  - kong-plugin-amberflow
