@@ -91,7 +91,7 @@
             <article class="hit">
 
               <div class="hit-info-container">
-                <a :href="item.url">
+                <a :href="item.url" target="_blank">
                    <p class="hit-category">
                       {{ item.hierarchy.lvl0 }}
                     </p>
