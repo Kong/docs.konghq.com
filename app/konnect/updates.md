@@ -29,14 +29,15 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : {{site.konnect_short_name}} now supports the latest Gateway release version of 3.5 including all [Konnect-compatible plugins](/konnect/compatibility/#plugin-compatibility) and now supports Azure key vault for [Secrets Manager](/konnect/gateway-manager/configuration/vaults/).
 
 **Consumer Groups Enhancements**
-: {{site.konnect_saas}} now supports enhancements to Consumer Groups as a part of the Kong Gateway 3.5 release. Customers can now apply the following plugins directly to consumer groups via the UI:
+: {{site.konnect_saas}} now supports enhancements to consumer groups as a part of the Kong Gateway 3.5 release. Customers can now apply the following plugins directly to consumer groups via the UI:
 
   * Request Transformer 
   * Request Transformer Advanced
   * Response Transformer 
   * Response Transformer Advanced
-  * Custom Plugins
-  See the consumer groups [documentation](/gateway/latest/kong-enterprise/consumer-groups/) to learn more.
+  * Custom plugins
+ 
+ : See the consumer groups [documentation](/gateway/latest/kong-enterprise/consumer-groups/) to learn more.
 
 ## October 2023
 **Portal Management API**
