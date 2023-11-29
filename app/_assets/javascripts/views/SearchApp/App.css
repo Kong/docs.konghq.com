@@ -131,6 +131,7 @@ mark {
   color: #21243d;
   font-size: 14px;
   line-height: 18px;
+  height: 100%;
 }
 
 .hit .hit-title {
@@ -145,22 +146,38 @@ mark {
   font-size: 12px;
   font-weight: 600;
   line-height: 1;
-  margin-bottom: 8px;
+  margin-bottom: 1em;
   opacity: 0.7;
   text-transform: uppercase;
-}
-
-.hit-description {
-  margin-top: 10px;
 }
 
 .hit-info-container {
   overflow-wrap: break-word;
   word-break: break-word;
+  display: flex;
+  height: 100%;
 }
 
 .hit-info-container a {
   color: unset;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.hit-info-container .hit-version {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0;
+}
+
+.hit-info-container .hit-em {
+  color: white;
+  background-color: var(--docsearch-primary-color);
+  padding: 4px;
+  border-radius: 4px;
+  min-width: 35px;
+  text-align: center;
 }
 
 .hits-empty-state {

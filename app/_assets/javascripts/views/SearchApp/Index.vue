@@ -7,7 +7,7 @@
   >
     <ais-configure
       :hits-per-page.camel="12"
-      :attributes-to-snippet.camel="['content:25', 'description:25']"
+      :attributes-to-snippet.camel="['content:15', 'description:15']"
       ruleContexts='landing'
     />
     <header class="header" id="header">
@@ -108,6 +108,10 @@
                   <p class="hit-description">
                     <ais-snippet attribute="content" :hit="item" />
                     <ais-snippet v-if="item.description" attribute="description" :hit="item" />
+                  </p>
+
+                  <p class="hit-version">
+                  <span class="hit-em">{{ item.version }}</span>
                   </p>
                 </a>
               </div>
