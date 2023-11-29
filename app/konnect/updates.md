@@ -24,6 +24,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 **Gateway Manager** 
 : The {{site.konnect_short_name}} Gateway Manager has been updated to pull the most accurate data and remain consistent across {{site.konnect_short_name}}.
+: Fuzzy filtering is now applied to return more accurate search results on the {{site.konnect_short_name}} Gateway Manager for Control Planes, Gateway Services, Routes, Consumers, and Plugins.
 
 **Gateway 3.5 Support**
 : {{site.konnect_short_name}} now supports the latest Gateway release version of 3.5 including all [Konnect-compatible plugins](/konnect/compatibility/#plugin-compatibility) and now supports Azure key vault for [Secrets Manager](/konnect/gateway-manager/configuration/vaults/).
