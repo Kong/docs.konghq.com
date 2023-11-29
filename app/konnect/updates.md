@@ -9,6 +9,12 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## December 2023
+**Improved visibility for Control Planes and Control Plane Groups**
+: Member control planes in a control plane group now have contextual analytics reporting available. That allows teams that own the configuration of an individual member control plane to better understand traffic towards their services, routes, and consumers.
+
+: Additionally, {{site.konnect_short_name}} Analytics custom reporting feature now provides users with the option to select between control planes, control plane groups, and data planes which allows for more granular insights into traffic patterns.
+
 ## November 2023
 **Multi-geo support**
 : {{site.konnect_saas}} now allows you to host and operate your cloud instance in a geographic region that you specify. This is important for data privacy and regulatory compliance for you organization. Geographic regions allow you to also operate {{site.konnect_saas}} in a similar geo to your users and their infrastructure applications. 
