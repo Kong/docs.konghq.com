@@ -4,15 +4,13 @@ content-type: tutorial
 description: Validate JWT tokens using an OPA policy in Kong Mesh.
 ---
 
-A common problem companies face is how to determine that a user is who they say they are when logging in, and how to ensure only authorized users have access to certain applications and enforce security policies over API requests and for upstream services. {{site.mesh_product_name}} uses a [MeshOPA (beta)](/mesh/{{page.kong_version}}/features/meshopa/) policy to authorize JWT tokens by using [Envoy's External authorization filter](https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/security/ext_authz_filter.html) with [OPA](https://www.openpolicyagent.org/docs/latest/envoy-introduction/). Keep in mind that OPA doesn't handle authentication, it only handles authorization.
+A companies commonly face the following security problems:
+* How to determine that a user is who they say they are when logging in
+* How to ensure that only authorized users have access to certain applications and enforce security policies over API requests and for upstream services. 
 
-In this tutorial, you are a security engineer at your company. The company has created a new application that employees can log in to, but it's an internal application, so they don't want the public to be able to access it. Your company already uses an IdP for authentication, so you figure you can use the JWT token presented by the IdP to authorize employees to use the internal application. You are already using {{site.mesh_product_name}} to proxy services, so you decide to use the [MeshOPA (beta)](/mesh/{{page.kong_version}}/features/meshopa/) policy to authorize JWT tokens because <!--what are the advantages of this over other options?-->.
+These problems can be solved by using a {{site.mesh_product_name}} [MeshOPA (beta)](/mesh/{{page.kong_version}}/features/meshopa/) policy to authorize JWT tokens by using [Envoy's External authorization filter](https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/security/ext_authz_filter.html) with [OPA](https://www.openpolicyagent.org/docs/latest/envoy-introduction/). Keep in mind that OPA doesn't handle authentication, it only handles authorization.
 
-<!--Use case ideas:
-* apply security policies for upstream services 
-* EnvoyFilter can be configured to include Envoy’s External Authorization filter to delegate authorization decisions to OPA. 
-* Envoy’s External authorization filter can be used with OPA as an authorization service to enforce security policies over API requests received by Envoy. The tutorial also covers examples of authoring custom policies over the HTTP request body.-->
-
+This guide explains how to configure and deploy a MeshOPA policy that authorizes users based on if they have a valid JWT token. <!--what are the advantages of this over other options?-->.
 
 {diagram that explains how the tech works}
 
@@ -27,10 +25,6 @@ In this tutorial, you are a security engineer at your company. The company has c
     why? what does this contain? maybe not since we want this to apply to a bunch of use cases?
 
 ## Use an OPA policy to validate JWT tokens
-
-Each of the following sections details a different use case for using an OPA policy to validate JWT tokens, along with an example policy.
-
-### general
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -132,19 +126,6 @@ conf:
 " | kumactl apply -f -
 ```
 1. Export the token to a variable and make the request (somehow not manually, like how would this be done in real life):
-{% endnavtab %}
-{% endnavtabs %}
-
-### with groups
-
-{% navtabs %}
-{% navtab Kubernetes %}
-```yaml
-```
-{% endnavtab %}
-{% navtab Universal %}
-```yaml
-```
 {% endnavtab %}
 {% endnavtabs %}
 
