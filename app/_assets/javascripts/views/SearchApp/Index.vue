@@ -8,6 +8,7 @@
     <ais-configure
       :hits-per-page.camel="12"
       :attributes-to-snippet.camel="['content:25', 'description:25']"
+      ruleContexts='landing'
     />
     <header class="header" id="header">
       <ais-search-box
