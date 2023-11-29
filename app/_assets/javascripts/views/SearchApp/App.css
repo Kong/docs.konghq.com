@@ -132,6 +132,7 @@ mark {
   font-size: 14px;
   line-height: 18px;
   height: 100%;
+  display: flex;
 }
 
 .hit .hit-title {
@@ -155,14 +156,17 @@ mark {
   overflow-wrap: break-word;
   word-break: break-word;
   display: flex;
-  height: 100%;
 }
 
 .hit-info-container a {
   color: unset;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+}
+
+.hit-info-container .hit-description {
+  margin-top: 0.5rem;
 }
 
 .hit-info-container .hit-version {
