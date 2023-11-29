@@ -43,6 +43,7 @@ third-party:
   datastore:
     - <<: *postgres
       versions:
+        - 16
         - 15
         - 14
         - 13

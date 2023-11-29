@@ -26,6 +26,8 @@ items:
         absolute_url: true
       - text: Support
         url: /support
+      - text: Version Compatibility
+        url: /version-compatibility
       - text: FAQ
         url: /faq
   - title: Get Started

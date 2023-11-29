@@ -1,5 +1,5 @@
 import { Configuration, PortalApi, SearchApi, VersionsApi, ProductsApi } from '@kong/sdk-portal-js'
-import axios, { AxiosInstance } from 'axios'
+import axios from 'axios'
 
 export default class ApiService {
   constructor () {

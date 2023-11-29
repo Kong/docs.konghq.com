@@ -68,6 +68,6 @@ jobs:
         run: |
           cd tools/broken-link-checker
           npm ci
-          node full.js --host http://localhost:8888
+          node full.js --host http://localhost:8888 --ignore linux.die.net
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}

@@ -131,6 +131,7 @@
 /gateway/VERSION/reference/proxy/: "/gateway/VERSION/how-kong-works/routing-traffic/"
 /gateway/VERSION/reference/health-checks-circuit-breakers/: "/gateway/VERSION/how-kong-works/health-checks/"
 /gateway/VERSION/reference/clustering/: "/gateway/VERSION/production/clustering/"
+/gateway/VERSION/reference/router-expressions-language/: "/gateway/VERSION/reference/expressions-language/"
 /gateway/VERSION/pdk/: "/gateway/VERSION/plugin-development/pdk/"
 /gateway/VERSION/pdk/kong.client/: "/gateway/VERSION/plugin-development/pdk/kong.client/"
 /gateway/VERSION/pdk/kong.client.tls/: "/gateway/VERSION/plugin-development/pdk/kong.client.tls/"
@@ -157,10 +158,13 @@
 # KIC 3.0
 # No new page available
 /kubernetes-ingress-controller/VERSION/concepts/expression-based-router/: /kubernetes-ingress-controller/VERSION/
+/kubernetes-ingress-controller/VERSION/concepts/ingress-versions/: /kubernetes-ingress-controller/VERSION/
 /kubernetes-ingress-controller/VERSION/availability-stages/: /kubernetes-ingress-controller/VERSION/
+/kubernetes-ingress-controller/VERSION/deployment/overview/: /kubernetes-ingress-controller/VERSION/
 /kubernetes-ingress-controller/VERSION/guides/configuring-fallback-service/: /kubernetes-ingress-controller/VERSION/ 
 /kubernetes-ingress-controller/VERSION/guides/using-kong-with-knative/: /kubernetes-ingress-controller/VERSION/
-/kubernetes-ingress-controller/VERSION/concepts/ingress-versions/: /kubernetes-ingress-controller/VERSION/
+/kubernetes-ingress-controller/VERSION/guides/choose-gateway-image/: /kubernetes-ingress-controller/VERSION/
+
 # Redirected to new page
 /kubernetes-ingress-controller/VERSION/references/annotations/: /kubernetes-ingress-controller/VERSION/reference/annotations/
 /kubernetes-ingress-controller/VERSION/references/custom-resources/: /kubernetes-ingress-controller/VERSION/reference/custom-resources/
@@ -168,6 +172,7 @@
 /kubernetes-ingress-controller/VERSION/concepts/k4k8s-with-kong-enterprise/: /kubernetes-ingress-controller/VERSION/license/
 /kubernetes-ingress-controller/VERSION/concepts/ha-and-scaling/: /kubernetes-ingress-controller/VERSION/guides/high-availability/kic/
 /kubernetes-ingress-controller/VERSION/concepts/ingress-classes/: /kubernetes-ingress-controller/VERSION/concepts/ingress/
+/kubernetes-ingress-controller/VERSION/concepts/deployment/: /kubernetes-ingress-controller/VERSION/production/deployment-topologies/
 /kubernetes-ingress-controller/VERSION/deployment/minikube/: /kubernetes-ingress-controller/VERSION/install/helm/
 /kubernetes-ingress-controller/VERSION/deployment/k4k8s/: /kubernetes-ingress-controller/VERSION/install/helm/
 /kubernetes-ingress-controller/VERSION/deployment/k4k8s-enterprise/: /kubernetes-ingress-controller/VERSION/install/helm/

@@ -11,6 +11,8 @@ servers:
     description: US Public API
   - url: https://eu.api.konghq.com/v1
     description: EU Public API
+  - url: https://au.api.konghq.com/v1
+    description: AU Public API
 security:
   - personalAccessToken: []
   - systemAccountAccessToken: []
