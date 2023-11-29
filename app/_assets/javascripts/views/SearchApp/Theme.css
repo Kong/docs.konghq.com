@@ -51,6 +51,10 @@ a[class^='ais-'] {
   background: var(--docsearch-modal-background);
 }
 
+.ais-Highlight-lvl3 {
+  color: rgba(33, 36, 61, 0.5);
+}
+
 /* Hits */
 
 .ais-Hits-list {
