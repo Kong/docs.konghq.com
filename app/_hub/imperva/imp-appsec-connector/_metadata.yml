@@ -20,3 +20,6 @@ kong_version_compatibility:
     compatible:
       - 3.0.x
       - 3.2.x
+
+search_aliases:
+  - imp-appsec-connector
