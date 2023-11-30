@@ -1,6 +1,6 @@
 # Search
 
-The Search is powered by [DocSearch](https://docsearch.algolia.com/docs/what-is-docsearch/) v3 which is a a free and automated solution provided by Algolia.
+The Search is powered by [DocSearch](https://docsearch.algolia.com/docs/what-is-docsearch/) v3 which is a free and automated solution provided by Algolia.
 
 ## What gets indexed
 
@@ -61,7 +61,7 @@ Once the Crawler finds the matching `action` for a page based on its URL, it ext
 We also set [custom variables](https://docsearch.algolia.com/docs/record-extractor/#custom-variables) to each record, so that we can use them to [filter](https://docsearch.algolia.com/docs/docsearch-v3/#filtering-your-search) the search results. For each page, we extract/set its `product` and `version`.
 
 For example, Gateway OAS pages match the following action:
-```json
+```js
     {
       indexName: "konghq",
       pathsToMatch: [
@@ -111,7 +111,7 @@ This setup creates records for headings, and all the nested elements under a hea
 
 The action for Gateway pages looks like this, note how the CSS selectors are different from the previous one (product pages share the same layout though). 
 
-```json
+```js
 {
       indexName: "konghq",
       pathsToMatch: [
@@ -168,11 +168,8 @@ Our plan has a limit of `1_000_000` records.
 
 ## Refining results
 
-We take the user's context into account, i.e. the product and version that the page in which the search was initiated has to provide better results.
-
 We [refine](https://www.algolia.com/doc/guides/managing-results/refine-results/sorting/) the search results by using a combination of [facets](https://www.algolia.com/doc/guides/managing-results/refine-results/faceting/) 
-and [optional filters](https://www.algolia.com/doc/api-reference/api-parameters/optionalFilters/).
-
+and [optional filters](https://www.algolia.com/doc/api-reference/api-parameters/optionalFilters/). A Jekyll generator sets the corresponding filters to every page. The reason is that records related to the current user's context need to be ranked higher than others.
 
 The `optionalFilters` give a higher score to records belonging to specific products. The main advantage of this type of filter is that they can promote/demote certain records without filtering out records from the result set.
 
@@ -180,6 +177,29 @@ The `optionalFilters` give a higher score to records belonging to specific produ
 For example, if the search initiates from any `gateway` doc, we give a higher score to records belonging to: `Kong Gateway`, `Plugin Hub`, and `deck` in that order.
 
 A `facetFilter` filters the search results so they have the same `version` as the page from which the search initiated.
+
+## Index configuration
+
+### Searchable attributes
+
+The list of [searchable attributes](https://www.algolia.com/doc/api-reference/api-parameters/searchableAttributes/) can be found [here](https://dashboard.algolia.com/apps/05Y6TLHNFZ/explorer/configuration/konghq/searchable-attributes).
+
+We use the default attribute list defined by DocSearch, i.e., `content` and `headings lvl0 - lvl5`, but we modified their priority order  so that the `content` has the highest priority and then the `lvl5` to `lvl0`.
+
+We found this priority to work best for us, mainly because of the types of queries we get and how our headings and content is written. We want records with paragraphs containing the query terms to rank higher than records that include  them just in the headings.
+
+
+### Synonyms
+
+We defined a [list](https://dashboard.algolia.com/apps/05Y6TLHNFZ/explorer/configuration/konghq/synonyms) of [synonyms](https://www.algolia.com/doc/guides/managing-results/optimize-search-results/adding-synonyms/) to improve the search results,  in particular for acronyms, e.g., `mTLS`, `RBAC`, etc.
+
+### Rules
+
+We defined a specific set of  [rules](https://dashboard.algolia.com/apps/05Y6TLHNFZ/rules/konghq) that changes the search results based on different conditions.
+ 
+Two rules pin specific records (API Reference pages) to the top of the results whenever the query contains `<product> API`.  The terms `<product API>` are mentioned in several places, so we wanted to increase the API reference pages discoverability.
+
+The other rule is for [handling empty queries](https://www.algolia.com/doc/guides/managing-results/rules/merchandising-and-promoting/how-to/merchandise-on-empty-query/) in the search page. By default, `InstantSearch` always shows you results, even when the query is empty. This rule pins a curated list of records when an empty query comes from `/search/`.
 
 ## How-tos
 
@@ -199,7 +219,7 @@ Whenever a new version of a product is released, we need to trigger a crawl manu
 
 Adding a new product requires updating the Crawler's configuration file using the Editor and adding a new entry to our custom ranking (if needed).
 
-A new action needs to be created for the product. Copying another product's action would be the best place to start, given that they share most of the logic. Make sure that the `pathsToMatch` matches the new product pages and that the `product` and `version` custom variables are setted.
+A new action needs to be created for the product. Copying another product's action would be the best place to start, given that they share most of the logic. Make sure that the `pathsToMatch` matches the new product pages and that the `product` and `version` custom variables are set.
 
 ### Adding a new OAS page
 
@@ -208,7 +228,7 @@ The new URL needs to be added to the `renderJavaScript` list and if an action al
 
 For example, if `https://docs.konghq.com/gateway/api/new-api-spec/latest/` were to be added, we add it to the end of the `renderJavaScript` list,
 
-```json
+```js
 renderJavaScript: [
     ..., 
     "https://docs.konghq.com/gateway/api/new-api-spec/**/"
@@ -217,7 +237,7 @@ renderJavaScript: [
 
 and we look for an action that handles all the OAS pages for gateway, if there is one, we add the URL to the corresponding `pathsToMatch`
 
-```json
+```js
    {
       pathsToMatch: [
         // Existing list..
