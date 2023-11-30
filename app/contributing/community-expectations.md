@@ -1,5 +1,6 @@
 ---
 title: Community expectations
+purpoae: Explore Kong's contribution community expectations - learn how to engage, collaborate, and contribute to Kong's open source projects efficiently.
 ---
 
 This section outlines our community expectations around inclusive language and accessibility. 
