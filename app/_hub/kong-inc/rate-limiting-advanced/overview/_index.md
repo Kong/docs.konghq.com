@@ -115,6 +115,23 @@ Two common use cases are:
    only to protect backend services from overloading that's caused either by specific
    users or by attacks.
 
+#### Other startegies   
+
+The _sliding window_ strategy ensures a resource is not consumed at a higher rate than the configured.
+
+For example, consider this configuration:
+
+Limit size = 10
+Window size = 60 seconds
+
+In a _fixed window_ strategy you can predict when the window is going to be reset and if the client sends a burst of traffic. For example, 12 request per minute, then 10 requests are accepted with a `response 200` and 2 requests are rejected with `response 429` in a minute.
+
+If you configure a _sliding window_ strategy and the client sends a burst of 12 requests per minute, the first 10 requests are accepted with `response 200` and the rest of the requests are rejected with `response 429`. In this case, it appears to the client that the window is never reset. The algorithm counts the `response 429` and the "API is blocked forever". This happens because the burst of traffic rate of 12 requests per minute is higher than the rate configured in the plugin which is 10 requests per minute. If the client reduces the number of requests, then you get the `response 200` again.
+
+When the client receives a `429 response`, it also receives a `Retry-After:<seconds>` header. Which means the client has to wait <seconds> before making a new request. If the client makes another request in less than this time, you get the `response 429` again. Otherwise, the window is reset.
+
+The _sliding window_ strategy ensures the API is consumed in the configured requests per second rate. This is not always true for the _fixed window_ strategy. Consider the same example with 10 requests per minute, if the client sends 10 requests at the 59th second of the window, then the window is reset and then it sends other 10 requests at the 1st second of the window, all the requests are accepted, making the acceptance rate higher than the configured in that time lapse. This does not happen with a _sliding window_ strategy, because the window "moves" during the last 60 seconds or the window size to ensure it meets the configured rate.
+
 #### Every transaction counts
 
 In this scenario, because accuracy is important, the `local` policy is not an option. Consider the support effort you might need
