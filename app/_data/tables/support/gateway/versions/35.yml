@@ -16,7 +16,7 @@ distributions:
     docker: false
     arm: false
     fips: false
-    graviton: true
+    graviton: false
   - <<: *debian10
     eol: June 2024
   - <<: *debian11
