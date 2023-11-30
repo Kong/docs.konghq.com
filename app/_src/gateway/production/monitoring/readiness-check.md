@@ -10,6 +10,34 @@ The readiness check endpoint returns a `200 OK` response when {{site.base_gatewa
 {:.note}
 > **Note:**  The readiness endpoint does not return detailed information about the node status.
 
+## Types of Health Checks
+
+For each {{site.base_gateway}} node, there exist two distinct health checks (also known as "probes"):
+
+* Liveness: This `/status` endpoint responds with a `200 OK` status if Kong is running. The request will fail either with a `500 Internal Server Error` or no response if Kong is not running. You can send a GET request to check the liveness of your {{site.base_gateway}} instance:
+  ```sh
+  # Replace `localhost:8100` with the appropriate host and port for
+  # your Status API server
+  
+  curl -i http://localhost:8100/status
+  ```
+
+* Readiness: This `/status/ready` endpoint responds with a `200 OK` status if Kong has successfully loaded a valid configuration and is ready to proxy traffic. The request will fail either with a `500 Internal Server Error` or no response if Kong is not ready to proxy traffic yet. You can send a GET request to check the readiness of your {{site.base_gateway}} instance:
+  ```sh
+  # Replace `localhost:8100` with the appropriate host and port for
+  # your Status API server
+  
+  curl -i http://localhost:8100/status/ready
+  ```
+
+These two types of health checks for {{site.base_gateway}} are modeled on how [Kubernetes defines](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) health check probes.
+
+It is strongly recommended that a component (i.e. load balancer) perform the readiness health check before sending traffic. This ensures that a {{site.base_gateway}} node has not only successfully started up but has also finished loading up the configuration and is ready to receive proxy traffic. 
+
+The liveness health check may return a 200 OK before the readiness health check does while it's running but still loading the full configuration. If a component only monitors the liveness probe to decide when to send traffic to {{site.base_gateway}}, then there will be a short period of time where requests will be met with a `404 Not Found` response the {{site.base_gateway}} is ready to proxy traffic. We recommend using the readiness probe over the liveness probe especially in production environments.
+
+
+
 ## Prerequisites
 
 * {{site.base_gateway}}
@@ -56,10 +84,10 @@ status_listen = 0.0.0.0:8100
 Once you've enabled the Node Readiness endpoint, you can send a GET request to check the readiness of your {{site.base_gateway}} instance:
 
 ```sh
-# Replace `localhost:8001` with the appropriate host and port for
+# Replace `localhost:8100` with the appropriate host and port for
 # your Status API server
 
-curl -i http://localhost:8001/status/ready
+curl -i http://localhost:8100/status/ready
 ```
 
 If the response code is `200`, the {{site.base_gateway}} instance is ready to serve requests:
@@ -111,8 +139,7 @@ Server: kong/3.3.0
 }
 ```
 
-
-## Updating Readiness Probes
+## Using readiness probes in Kubernetes
 
 If you're using Kubernetes or Helm, you may need to update the readiness probe configuration to use the new Node Readiness endpoint. Modify the `readinessProbe` section in your configuration file to look like this:
 
@@ -127,6 +154,39 @@ readinessProbe:
     periodSeconds: 5
 ```
 
+{:.note}
+> **Note:**  Failure to set an `initialDelaySeconds` may result in {{site.base_gateway}} entering a crash loop, as it requires a short time to fully load the configuration. The time to delay can depend on the size of the configuration.
+
+## Using a readiness check in version 3.2 or lower.
+
+The `/status/ready` endpoint was added in version 3.3, meaning versions 3.2 and lower do not benefit from this built-in readiness endpoint. However a workaround exists which is strongly recommended:
+
+1. Configure a new route in {{site.base_gateway}} with the path uniqely set for this purpose. For example, a path of `/health/ready` can be used. No need for a service, only the route is required.
+2. Configure the Request Termination plugin to respond to requests on that route with a HTTP 200 status code.
+
+Note that in this workaround, the port to send health-check requests to will be the proxy port (8000 & 8443 by default) instead of the status API port.
+
+## What is not covered by these health checks
+
+It is important to understand that a health check probe does not take into account the following:
+* If {{site.base_gateway}} is performing optimally or not
+* If {{site.base_gateway}} is throwing intermittent failures due to any reason
+* If {{site.base_gateway}} is throwing errors due to third-party systems like DNS, cloud provider outages, network failures, etc.
+* If any upstream services are throwing errors or responding too slow
+
+## Health-checking a cluster of {{site.base_gateway}} nodes
+
+Mutliple nodes of {{site.base_gateway}} are often deployed for scalability and high-availability. The readiness probes should be performed on each node within the cluster, including standalone nodes; control plane nodes; and data plane nodes. Checking only one data plane in a cluster for example cannot offer reliable insight into the health of other data plane nodes in the same cluster.
+
+## Recommendations
+
+* Enable the [`status_listen`](/gateway/latest/reference/configuration/#status_listen) configuration parameter
+* Always health-check {{site.base_gateway}} and track the health in monitoring dashboards such as Datadog, Grafana, AppDynamics, etc.
+* Configure the load balancer or other components immediately fronting {{site.base_gateway}} to use the readiness probe
+* In the case of Kubernetes, configure both liveness and readiness probes for {{site.base_gateway}}, ensuring a load balancer uses the correct [Kubernetes endpoints](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to forward traffic to Kong pods
+* Set up alerting if needed based on the response to the health checks
+* Do not use the `kong health` CLI command to validate the overall health of the {{site.base_gateway}}, as this command only ensures that the Kong process is running and doesn't ensure the ability or validity of the configuration
+* Do not expect {{site.base_gateway}} readiness endpoint to respond with a `200 OK` immediately after startup, as it will always take a short time for Kong to load the first configuration and build all the necessary data structures before it can successfully proxy traffic
 
 ## See also
 
