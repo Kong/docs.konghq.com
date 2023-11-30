@@ -100,6 +100,10 @@ mark {
   padding: 4px 48px 0 64px !important;
 }
 
+.header .ais-SearchBox .ais-SearchBox-input:focus {
+  box-shadow: var(--docsearch-searchbox-shadow);
+}
+
 .header .ais-SearchBox-submit {
   padding: 0 1rem 0 2rem;
   width: 64px;

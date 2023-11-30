@@ -211,6 +211,15 @@ export default {
   mounted() {
     this.resultsContainer = document.querySelector('.search-container-results');
     this.header = document.querySelector('#header');
+
+    this.$nextTick(function () {
+      window.addEventListener('keydown', event => {
+        if(event.metaKey && event.key === 'k') {
+          this.$el.querySelector('input').focus();
+          event.preventDefault();
+        }
+      })
+    })
   },
   methods: {
     openFilters() {
