@@ -195,3 +195,4 @@ For more information on Kong and related topics, check out the following resourc
 * [Kong Admin API Documentation](/gateway/latest/admin-api/)
 * [Get Started with {{site.kic_product_name}}](/kubernetes-ingress-controller/latest/deployment/overview/)
 * [Kong Helm Chart](https://github.com/Kong/charts/tree/main/charts/kong)
+* [Kong Hybrid Mode](/gateway/latest/production/deployment-topologies/hybrid-mode/)
