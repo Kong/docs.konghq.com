@@ -3,6 +3,7 @@
 :root {
   --docsearch-primary-color: #5468ff;
   --docsearch-modal-background: #f5f6f7;
+  --blue-500: #1155cb;
 }
 
 [class^='ais-'] {
@@ -340,7 +341,7 @@ a[class^='ais-'] {
 }
 
 .ais-Pagination-item--selected {
-  background-color:  var(--docsearch-primary-color);;
+  background-color:  var(--blue-500);;
   background-image: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.34),

@@ -83,8 +83,13 @@
 
   .search-container-filters-footer .button-primary {
     color: #fff;
-    background-color: var(--docsearch-primary-color);
+    background-color: var(--blue-500);
     background-image: unset;
+  }
+
+  .search-container-filters-footer .button-primary:hover {
+    color: white;
+    background: linear-gradient(90deg, #1155cb 0, #0a2b66 100%);
   }
 
   /* Filters button that triggers the overlay */
@@ -95,7 +100,7 @@
 
   .filters-button {
     align-items: center;
-    background-color: var(--docsearch-primary-color);
+    background-color: var(--blue-500);
     border: none;
     border-radius: 8px;
     bottom: 2rem;
@@ -113,6 +118,11 @@
     position: fixed;
     transform: translateX(-50%);
     z-index: 1;
+  }
+
+  .filters-button:hover {
+    color: white;
+    background: linear-gradient(90deg, #1155cb 0, #0a2b66 100%);
   }
 
   .filters-button svg {
