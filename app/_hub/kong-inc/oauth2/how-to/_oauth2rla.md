@@ -452,7 +452,7 @@ and advanced Redis support for greater performance. Ensure that you have install
    --header "content-type: application/json"
    ```
 
-   When you send a request for the fourth time, the results should look like this:
+   When you send a request for the fourth time, you should get a 429 response code, showing you that the last request was rate limited:
    ```txt
    HTTP/1.1 429 Too Many Requests
    Date: Thu, 09 Nov 2023 12:41:01 GMT
