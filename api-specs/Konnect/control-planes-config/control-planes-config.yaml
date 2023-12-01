@@ -724,6 +724,16 @@ paths:
         - $ref: '#/components/parameters/pagination-size'
         - $ref: '#/components/parameters/pagination-offset'
         - $ref: '#/components/parameters/pagination-tags-filter'
+        - schema:
+            type: object
+            properties:
+              name:
+                $ref: '#/components/schemas/StringFieldContainsFilter'
+          in: query
+          name: filter
+          description: Filter consumers returned in the response.
+          required: false
+          style: deepObject
       responses:
         '200':
           $ref: '#/components/responses/consumer-create-response'
@@ -1115,6 +1125,16 @@ paths:
         - $ref: '#/components/parameters/pagination-size'
         - $ref: '#/components/parameters/pagination-offset'
         - $ref: '#/components/parameters/pagination-tags-filter'
+        - schema:
+            type: object
+            properties:
+              name:
+                $ref: '#/components/schemas/StringFieldContainsFilter'
+          in: query
+          name: filter
+          description: Filter plugins returned in the response.
+          required: false
+          style: deepObject
       responses:
         '200':
           $ref: '#/components/responses/plugin-response'
@@ -1260,6 +1280,16 @@ paths:
         - $ref: '#/components/parameters/pagination-size'
         - $ref: '#/components/parameters/pagination-offset'
         - $ref: '#/components/parameters/pagination-tags-filter'
+        - schema:
+            type: object
+            properties:
+              name:
+                $ref: '#/components/schemas/StringFieldContainsFilter'
+          in: query
+          name: filter
+          description: Filter routes returned in the response.
+          required: false
+          style: deepObject
       responses:
         '200':
           content:
@@ -1468,6 +1498,16 @@ paths:
         - $ref: '#/components/parameters/pagination-size'
         - $ref: '#/components/parameters/pagination-offset'
         - $ref: '#/components/parameters/pagination-tags-filter'
+        - schema:
+            type: object
+            properties:
+              name:
+                $ref: '#/components/schemas/StringFieldContainsFilter'
+          in: query
+          name: filter
+          description: Filter services returned in the response.
+          required: false
+          style: deepObject
       responses:
         '200':
           $ref: '#/components/responses/service-response'
@@ -4102,6 +4142,15 @@ components:
           example: Not found
       allOf:
         - $ref: '#/components/schemas/BaseError'
+    StringFieldContainsFilter:
+      type: object
+      title: StringFieldContainsFilter
+      description: Filter a string value field by partial contains.
+      properties:
+        contains:
+          type: string
+      required:
+        - contains
   requestBodies:
     CA-cert-request:
       content:

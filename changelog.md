@@ -2,6 +2,151 @@
 
 <!--vale off-->
 
+## Week 47
+
+### [style(expressions): fix typo in `performance.md`](https://github.com/Kong/docs.konghq.com/pull/6549) (2023-11-22)
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/1.0.x/version-compatibility
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/performance
+
+
+### [Chore: Update Changelog for Gateway Milestone updates](https://github.com/Kong/docs.konghq.com/pull/6540) (2023-11-20)
+
+https://konghq.atlassian.net/browse/DOCU-3533
+https://konghq.aha.io/epics/KP-E-320
+
+Changelog update for this feature update.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/updates
+
+
+### [chore(deps): bump kumahq/kuma-website from 80fb6b2a to b3eeb1bc](https://github.com/Kong/docs.konghq.com/pull/6533) (2023-11-22)
+
+Auto upgrade PR log:
+
+b3eeb1bcc7bc398eab666dd1cfe94e960294906b chore(deps): update docs from repo source (kumahq/kuma-website#1534)
+
+Triggered by [action](https://github.com/Kong/docs.konghq.com/actions/runs/6951132041).
+labels: skip-changelog,review:general
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/performance
+
+
+### [kgo: add kgo version compatibility matrix](https://github.com/Kong/docs.konghq.com/pull/6518) (2023-11-20)
+
+Add KGO version compat matrix for 
+- Kubernetes versions
+- KIC versions
+- GW API versions
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/performance
+
+
+### [feat: Multi-geo GA](https://github.com/Kong/docs.konghq.com/pull/6499) (2023-11-21)
+
+Multi-geo is going GA, so we needed to pull in the current beta docs from the `konnect` branch, as well as add information about the newly added geo, AU. 
+
+DOCU-2593
+
+#### Added
+
+- https://docs.konghq.com/konnect/geo
+
+#### Modified
+
+- https://docs.konghq.com/deck/1.12.x/guides/konnect
+- https://docs.konghq.com/deck/1.13.x/guides/konnect
+- https://docs.konghq.com/deck/1.14.x/guides/konnect
+- https://docs.konghq.com/deck/1.15.x/guides/konnect
+- https://docs.konghq.com/deck/1.16.x/guides/konnect
+- https://docs.konghq.com/deck/1.17.x/guides/konnect
+- https://docs.konghq.com/deck/1.18.x/guides/konnect
+- https://docs.konghq.com/deck/1.19.x/guides/konnect
+- https://docs.konghq.com/deck/1.20.x/guides/konnect
+- https://docs.konghq.com/deck/1.21.x/guides/konnect
+- https://docs.konghq.com/deck/1.22.x/guides/konnect
+- https://docs.konghq.com/deck/1.23.x/guides/konnect
+- https://docs.konghq.com/deck/1.24.x/guides/konnect/
+- https://docs.konghq.com/deck/1.25.x/guides/konnect/
+- https://docs.konghq.com/deck/1.26.x/guides/konnect/
+- https://docs.konghq.com/deck/1.27.x/guides/konnect/
+- https://docs.konghq.com/deck/1.28.x/guides/konnect/
+- https://docs.konghq.com/deck/1.29.x/guides/konnect/
+- https://docs.konghq.com/konnect/account-management/
+- https://docs.konghq.com/konnect/api-products/service-documentation
+- https://docs.konghq.com/konnect/api/
+- https://docs.konghq.com/konnect/dev-portal/access
+- https://docs.konghq.com/konnect/dev-portal/applications/enable-app-reg
+- https://docs.konghq.com/konnect/dev-portal/dev-reg
+- https://docs.konghq.com/konnect/gateway-manager/configuration/
+- https://docs.konghq.com/konnect/getting-started/access-account
+- https://docs.konghq.com/konnect/getting-started/productize-service
+- https://docs.konghq.com/konnect/
+- https://docs.konghq.com/konnect/network
+- https://docs.konghq.com/konnect/org-management/teams-and-roles/
+- https://docs.konghq.com/konnect/org-management/teams-and-roles/manage
+- https://docs.konghq.com/konnect/org-management/teams-and-roles/roles-reference
+- https://docs.konghq.com/konnect/org-management/teams-and-roles/teams-reference
+- https://docs.konghq.com/konnect/updates
+
+
+### [update: Rewrite the expressions router Gateway doc](https://github.com/Kong/docs.konghq.com/pull/6437) (2023-11-21)
+
+This is a complete rewrite of the Expressions router doc to make it easier to understand and more comprehensive.
+
+![KAG-2288]
+
+[KAG-2288]: https://konghq.atlassian.net/browse/KAG-2288?atlOrigin=eyJpIjoiNWRkNTljNzYxNjVmNDY3MDlhMDU5Y2ZhYzA5YTRkZjUiLCJwIjoiZ2l0aHViLWNvbS1KU1cifQ
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/performance
+- https://docs.konghq.com/assets/images/products/gateway/reference/expressions-language/predicate.png
+- https://docs.konghq.com/assets/images/products/gateway/reference/expressions-language/router-matching-flow.png
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.1.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.2.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.3.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.4.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.5.x/key-concepts/routes/expressions
+
 ## Week 46
 
 
@@ -99,8 +244,6 @@ Updating gateway manager doc page since Plus and Enterprise users can create mul
 ### [(chore) 3.5.0.1 changelog](https://github.com/Kong/docs.konghq.com/pull/6508) (2023-11-16)
 
 Build changelog for 3.5.0.1 based on source from https://github.com/Kong/kong-ee/blob/next/3.5.x.x/changelog/3.5.0.1/3.5.0.1.md
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -112,10 +255,6 @@ Build changelog for 3.5.0.1 based on source from https://github.com/Kong/kong-ee
 Consolidate the lua-resty-aws version bump entries into one as both entries happened in the same release.
 
 This is for Gateway Enterprise 3.5.0.0 changelog.
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -172,8 +311,6 @@ Adds missing KIC 3.0 docs:
 - updates compatibility matrices (drops Kubernetes 1.23 and 1.24 support)
 - adds `konghq.com/upstream-policy` annotation to annotations reference
 - updates support policy table (not sure if we should also update [Supported versions table](https://deploy-preview-6486--kongdocs.netlify.app/kubernetes-ingress-controller/latest/support-policy/#supported-versions) - so far we've been recommending LTS releases so I didn't change that to recommend 3.0 @mheap). 
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -311,63 +448,6 @@ RateLimit header fields for HTTP -> https://datatracker.ietf.org/doc/draft-ietf-
 ## Description
 
 Release roll-up PR for Gateway 3.5 release.
-
-DO NOT COMMIT DIRECTLY TO THIS BRANCH. THIS PR IS FOR QA AND PREVIEW.
-
-Please open PRs against `release/gateway-3.5`
-
-Preview: https://deploy-preview-6433--kongdocs.netlify.app/
-
-
-## Release checklist
-
-### Release prep
-
-- [x] Release branch (in release/<product>-<version> format, e.g. release/gateway-3.5)
-- [x] Add release branch to Netlify preview branches
-- [x] Create release PR
-- [x] Update docs normally generated via autodocs: 
-  - [x] Config reference: https://github.com/Kong/docs.konghq.com/pull/6445
-  - [x] CLI reference: https://github.com/Kong/docs.konghq.com/pull/6419
-  - [x] Admin API: https://github.com/Kong/docs.konghq.com/pull/6419
-  - [x] PDK: https://github.com/Kong/docs.konghq.com/pull/6419
-- [x] Plugin updates:
-  - [x] Generate plugin schemas and examples from [docs-plugin-toolkit](https://github.com/Kong/docs-plugin-toolkit) : https://github.com/Kong/docs-plugin-toolkit/pull/10
-  - [x] Update the plugins submodule (Lena) https://github.com/Kong/docs.konghq.com/pull/6468
-  - [x] Check plugin priority list, update if needed - checked, no changes
-- [x] Update support matrix https://github.com/Kong/docs.konghq.com/pull/6470
-- [x] Upgrade:
-  - [x] Update upgrade paths (Diana)
-  - [x] List breaking changes in 3.5 (Angel) https://github.com/Kong/docs.konghq.com/pull/6471
-- [x] Pre-load API specs into dev portal. (Angel)
-- [x] Update Konnect compatibility errors table: https://github.com/Kong/docs.konghq.com/pull/6474
-- [x] Update the 3.5 nav with any changes made to 3.4:  https://github.com/Kong/docs.konghq.com/pull/6455
-- [x] Changelog (Angel) https://github.com/Kong/docs.konghq.com/pull/6471
-
-### Release day and post eng release
-
-Code freeze on all doc updates that aren't for this release.
-
-- [x] Update GPG keys: https://github.com/Kong/docs.konghq.com/pull/6434
-- [x] Merge all remaining PRs in 3.5 milestone into release branch
-- [x] (**Only after all packages are published**) Run [install instructions workflow](https://github.com/Kong/docs.konghq.com/actions/workflows/install-instructions-test.yml)
-- [x] Sync specs via [workflow](https://github.com/Kong/docs.konghq.com/actions/workflows/sync-konnect-oas-data.yml)
-- [x] Merge release PR
-- [x] Publish specs in Dev Portal
-
-### Post-merge
-
-- [x] Merge update to Get Started script tag (https://github.com/Kong/get.konghq.com/pull/5); ping Rick Spurgeon for this
-- [x] After merge, run [Algolia workflow](https://github.com/Kong/docs.konghq.com/actions/workflows/algolia.yml) to update all records
-- [x] After merge, generate new insomnia buttons and publish specs in the Dev Portal.
-- [x] SBOM links
-
-### Testing/QA
-
-- [x] Visual check that content renders correctly 
-- [x] Check for broken links 
-
-
 
 #### Added
 
@@ -1361,7 +1441,6 @@ Changelog for Gateway EE 3.4.1.1 and OSS 3.4.2 releases.
 
 Support for Gateway 3.0 was removed in September, so we needed to update our support version docs to reflect that.
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 DOCU-3519
 
 #### Modified
