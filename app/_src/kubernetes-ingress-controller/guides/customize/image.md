@@ -18,7 +18,7 @@ kubectl get pods -n kong -o jsonpath="{.items[*].spec.containers[*].image}"
 
 ## Common Images
 
-The following `values.yaml` files are commonly used by customers.
+These are some of the commonly used `values.yaml` files.
 
 ### {{ site.ee_product_name }}
 
