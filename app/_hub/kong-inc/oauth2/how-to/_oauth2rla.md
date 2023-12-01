@@ -10,7 +10,6 @@ You can limit the tokens created in the OAuth2 plugin by using the Rate Limiting
 
 ## Prerequisites
 
-* [curl](https://curl.se/) is used to send requests to {{site.base_gateway}}. `curl` is pre-installed on most systems
 * [jq](https://stedolan.github.io/jq/) is used to process JSON responses on the command line. While useful, this tool is 
 not necessary to complete the tasks of this tutorial. If you wish to proceed without `jq`, modify the commands to
 remove `jq` processing.
