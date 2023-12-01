@@ -26,6 +26,10 @@ module Jekyll
 
       private
 
+      def product_facet
+        @product_facet ||= products.first
+      end
+
       def latest_version?
         @page.data['is_latest'] || page_version.nil?
       end

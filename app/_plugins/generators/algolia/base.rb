@@ -43,7 +43,8 @@ module Jekyll
 
         @page.data['algolia'] = {
           'optional_filters' => optional_filters,
-          'facet_filters' => facet_filters
+          'facet_filters' => facet_filters,
+          'query_parameters' => query_parameters
         }
       end
 
@@ -57,6 +58,16 @@ module Jekyll
       def facet_filters
         "'version:#{version}'"
       end
+
+      def query_parameters
+        params = { 'version[0]': version }
+        params['product[0]'] = product_facet if product_facet
+        params
+      end
+
+      private
+
+      def product_facet; end
     end
   end
 end

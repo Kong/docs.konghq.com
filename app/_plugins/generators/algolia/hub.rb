@@ -14,6 +14,12 @@ module Jekyll
           @page.data['version']
         end
       end
+
+      private
+
+      def product_facet
+        @product_facet ||= products.first
+      end
     end
   end
 end
