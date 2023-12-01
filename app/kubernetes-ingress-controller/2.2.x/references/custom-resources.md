@@ -249,7 +249,7 @@ Please follow the
 [Using the KongIngress resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource)
 guide for details on how to use this resource.
 
-For reference, the following is a complete spec for KongIngress (for property documentation, see [Upstream](/gateway/latest/admin-api/#upstream-object), [Service](/gateway/latest/admin-api/#service-object) and [Route](/gateway/latest/admin-api/#route-object] entities))
+For reference, the following is a complete spec for KongIngress (for property documentation, see [Upstream](/gateway/api/admin-ee/latest/#/Upstreams/list-upstream/), [Service](/gateway/api/admin-ee/latest/#/Services/list-service/) and [Route](/gateway/api/admin-ee/latest/#/Routes/list-route/] entities))
 
 ```yaml
 apiVersion: configuration.konghq.com/v1
@@ -412,8 +412,8 @@ may share the same `username` or `custom_id` value.
 For help configuring credentials for the `KongConsumer` Please refer to the [using the Kong Consumer and Credential resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource/) guide.
 
 [k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/
-[kong-consumer]: /gateway/latest/admin-api/#consumer-object
-[kong-plugin]: /gateway/latest/admin-api/#plugin-object
-[kong-upstream]: /gateway/latest/admin-api/#upstream-object
-[kong-service]: /gateway/latest/admin-api/#service-object
-[kong-route]: /gateway/latest/admin-api/#route-object
+[kong-consumer]: /gateway/api/admin-ee/latest/#/Consumers/list-consumer/
+[kong-plugin]: /gateway/api/admin-ee/latest/#/Plugins/list-plugin
+[kong-upstream]: /gateway/api/admin-ee/latest/#/Upstreams/list-upstream/
+[kong-service]: /gateway/api/admin-ee/latest/#/Services/list-service/
+[kong-route]: /gateway/api/admin-ee/latest/#/Routes/list-route/

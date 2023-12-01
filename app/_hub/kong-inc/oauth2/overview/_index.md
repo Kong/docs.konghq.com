@@ -339,7 +339,7 @@ grpcurl -H 'authorization: bearer XXX' ...
 
 Note that the rest of the credentials flow uses HTTPS and not gRPC protocol.  Depending on your application, you might have to configure the `oauth2` plugin on two separate routes: one under `protocols: ["https"]` and another under `protocols: ["grpcs"]`.
 
-[consumer-object]: /gateway/latest/admin-api/#consumer-object
+[consumer-object]: /gateway/api/admin-ee/latest/#/Consumers/list-consumer/
 [proxy-port]: https://docs.konghq.com/latest/configuration/#proxy_listen
 
 ## WebSocket requests

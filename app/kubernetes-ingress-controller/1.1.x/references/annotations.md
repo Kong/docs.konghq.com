@@ -352,7 +352,7 @@ guide for details on how to use this annotation.
 This annotation can be set on a Kubernetes Service resource and indicates
 the protocol that should be used by Kong to communicate with the service.
 In other words, the protocol is used for communication between a
-[Kong Service](/gateway/latest/admin-api/#service-object) and
+[Kong Service](/gateway/api/admin-ee/latest/#/Services/list-service/) and
 a Kubernetes Service, internally in the Kubernetes cluster.
 
 Accepted values are:
@@ -391,7 +391,7 @@ resource which contains the TLS cert and key pair.
 
 Under the hood, the controller creates a Certificate in Kong and then
 sets the
-[`service.client_certificate`](/gateway/latest/admin-api/#service-object)
+[`service.client_certificate`](/gateway/api/admin-ee/latest/#/Services/list-service/)
 for the service.
 
 ### konghq.com/host-header

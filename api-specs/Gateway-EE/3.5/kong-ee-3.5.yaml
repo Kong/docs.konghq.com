@@ -10469,6 +10469,7 @@ paths:
         A requests to the entity endpoint using the given configuration may still fail due to other reasons, such as invalid foreign key relationships or uniqueness check failures against the contents of the data store.
       tags:
         - Information
+  
   '/schemas/plugins/{plugin_name}':
     parameters:
       - schema:
@@ -11090,6 +11091,36 @@ paths:
         The exported keyring should be stored in a safe location for disaster recovery purposes. It is not designed to be modified or decrypted before being used during a disaster recovery process.
       tags:
         - Keyring
+  /tags:
+    get:
+      summary: List all tags
+      tags:
+        - Tags
+      responses:
+        '200':
+          $ref: '#/components/responses/tags-response'
+      operationId: get-tags
+      description: |-
+        Returns a paginated list of all the tags in the system.
+
+        The list of entities will not be restricted to a single entity type: all the entities tagged with tags will be present on this list.
+
+        If an entity is tagged with more than one tag, the entity_id for that entity will appear more than once in the resulting list. Similarly, if several entities have been tagged with the same tag, the tag will appear in several items of this list.
+  '/tags/{tags}':
+    parameters:
+      - $ref: '#/components/parameters/tag'
+    get:
+      summary: List entity by tag
+      tags:
+        - Tags
+      responses:
+        '200':
+          $ref: '#/components/responses/tags-response'
+      operationId: get-tags-tags
+      description: |-
+        Returns the entities that have been tagged with the specified tag.
+
+        The list of entities will not be restricted to a single entity type: all the entities tagged with tags will be present on this list.
   /keyring/import:
     post:
       summary: Import Keyring
@@ -11775,8 +11806,6 @@ paths:
         List all users
 
          Note: RBAC Users associated with Admins will not be listed with `GET /rbac/users`. Instead, use `GET /admins` to list all Admins.
-      requestBody:
-        content: {}
     post:
       summary: Add a User
       operationId: post-rbac-users
@@ -11805,8 +11834,6 @@ paths:
           $ref: '#/components/responses/rbac-user-response'
       operationId: get-rbac-users-name_or_id
       description: Retrieve a user by passing a name or ID in the path.
-      requestBody:
-        $ref: '#/components/requestBodies/rbac-request'
     patch:
       summary: Update a User
       operationId: patch-rbac-users-name_or_id
@@ -12438,8 +12465,6 @@ paths:
           description: No Content
       description: |
         Delete a Role Endpoint Permission
-      requestBody:
-        content: {}
       tags:
         - rbac
   '/rbac/roles/{name_or_id}/entities':
@@ -13015,19 +13040,6 @@ paths:
       tags:
         - rbac
       description: Delete a Role from a User
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                roles:
-                  type: string
-                 
-                  description: |
-                    Comma-separated list of role names to assign to the user.
-              required:
-                - roles
   '/rbac/users/{name_or_id}/permissions':
     parameters:
       - schema:
