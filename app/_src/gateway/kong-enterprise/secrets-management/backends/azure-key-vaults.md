@@ -12,6 +12,9 @@ ways:
 * Environment variables
 * Managed identity authentication
 
+{:.note}
+> {{site.base_gateway}} only supports the `Secrets` Azure vault type. It doesn't support the `Keys` and `Certificates` vault types.
+
 ## Configure Azure Key Vaults
 
 {{site.base_gateway}} uses a key to automatically authenticate
@@ -38,14 +41,6 @@ export KONG_VAULT_AZURE_CLIENT_SECRET=client_secret
 
 
 ### Examples
-
-Note that Azure's Key Vault support three different secret types:
-
-- Keys
-- Secrets
-- Certificates
-
-Kong only supports the `Secrets` type.
 
 To use a [Secret](https://learn.microsoft.com/en-us/azure/key-vault/general/about-keys-secrets-certificates)
 with the name `secret-name`, create a JSON object in Azure Key Vault that contains one or more properties:
