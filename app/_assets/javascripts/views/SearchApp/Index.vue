@@ -9,6 +9,7 @@
       :hits-per-page.camel="12"
       :attributes-to-snippet.camel="['content:15', 'description:15']"
       ruleContexts='landing'
+      v-bind="searchParameters"
     />
     <header class="header" id="header">
       <ais-search-box
@@ -189,7 +190,10 @@ export default {
         '05Y6TLHNFZ',
         '80483bfe28d9fd036a11a6f6a06454f8',
       ),
-      routing
+      routing,
+      searchParameters: {
+        optionalFilters: 'version:latest<score=1>'
+      }
     };
   },
   created() {
