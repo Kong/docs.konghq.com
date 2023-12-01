@@ -29,6 +29,17 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **Gateway 3.5 Support**
 : {{site.konnect_short_name}} now supports the latest Gateway release version of 3.5 including all [Konnect-compatible plugins](/konnect/compatibility/#plugin-compatibility) and now supports Azure key vault for [Secrets Manager](/konnect/gateway-manager/configuration/vaults/).
 
+**Consumer Groups Enhancements**
+: {{site.konnect_saas}} now supports enhancements to consumer groups as a part of the Kong Gateway 3.5 release. Customers can now apply the following plugins directly to consumer groups via the UI:
+
+  * Request Transformer 
+  * Request Transformer Advanced
+  * Response Transformer 
+  * Response Transformer Advanced
+  * Custom plugins
+ 
+ : See the consumer groups [documentation](/gateway/latest/kong-enterprise/consumer-groups/) to learn more.
+
 ## October 2023
 **Portal Management API**
 : {{site.konnect_short_name}} portal administrators are now able to integrate portal management operations with their automation systems (such as CI/CD pipelines) by utilizing an officially published, documented, and supported [Portal Management API](/konnect/api/portal-management/latest/). Approving developer and application requests, configuring appearance settings, and managing custom domain details can all be driven entirely through API automation.
