@@ -449,7 +449,6 @@ and advanced Redis support for greater performance. Ensure that you have install
    ```bash
    curl -i -X POST 'http://localhost:8000/mockbin?apikey=123' \
    --header "authorization: Bearer <accesstoken>" \
-   --header "content-type: application/json"
    ```
 
    When you send a request for the fourth time, you should get a 429 response code, showing you that the last request was rate limited:
