@@ -10,9 +10,8 @@ You can limit the tokens created in the OAuth2 plugin by using the Rate Limiting
 
 ## Prerequisites
 
-* [jq](https://stedolan.github.io/jq/) is used to process JSON responses on the command line. While useful, this tool is 
-not necessary to complete the tasks of this tutorial. If you wish to proceed without `jq`, modify the commands to
-remove `jq` processing.
+* The JSON responses shown in this guide are formatted using [jq](https://stedolan.github.io/jq/) to make them easier to read. While useful, this tool is 
+not necessary to complete the tasks of this tutorial. If you want to use jq to format your responses, add `| jq` to the end of each command.
 * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) <span class="badge enterprise"></span> 
 plugin. The advanced version provides additional features like support for the sliding window algorithm
 and advanced Redis support for greater performance. Ensure that you have installed {{site.ee_product_name}}.
