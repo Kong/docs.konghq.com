@@ -60,19 +60,18 @@ conditions.
 When a leader controller shuts down, other instances will detect
 that there is no longer a leader, and one will promote itself to the leader.
 
-For this reason, the controller needs permission to create a ConfigMap.
-By default, the permission is given at Cluster level, but it can be narrowed
-down to a single namespace (using Role and RoleBinding) for a stricter RBAC
-policy.
+For this reason, the controller needs permission to create a `Lease` resource.
+By default, the permission is given at Namespace level.
 
-It also needs permission to read and update this ConfigMap.
-This permission can be specific to the ConfigMap that is being used
+It also needs permission to read and update this Lease.
+This permission can be specific to the Lease that is being used
 for leader-election purposes.
-The name of the ConfigMap is derived from the value of election-id CLI flag
-(default: `ingress-controller-leader`) and
-ingress-class (default: `kong`) as: "<election-id>-<ingress-class>".
-For example, the default ConfigMap that is used for leader election will
-be `ingress-controller-leader-kong`, and it will be present in the same
+The name of the Lease is derived from the value of election-id CLI flag
+(default: `5b374a9e.konghq.com`) and
+election-namespace (default: `""`) as: "<election-id>-<election-namespace>".
+For example, if the {{site.kic_product_name}} has been deployed by Helm chart,
+the default Lease that is used for leader election will
+be `kong-ingress-controller-leader-kong`, and it will be present in the same
 namespace that the controller is deployed in.
 
 ## Scaling

@@ -26,6 +26,8 @@ lightweight, fast, and flexible API gateway.
 
 * Providing a real-time, centralized view of all your services. Monitor golden signals such as error rate and latency for each service and route to gain deep insights into your API products.
 
+* Control which [geographic region](/konnect/geo) the universal API control plane is operated in. AU, EU, and US geos are currently supported. This allows you to operate {{site.konnect_short_name}} in a similar geographic region to your end-users, as well as ensure data privacy and regulatory compliance.
+
 
 <div class="docs-grid-install">
 

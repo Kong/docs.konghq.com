@@ -7,17 +7,32 @@ The {{site.base_gateway}} software is governed by the
 Kong is licensed under an
 [Apache 2.0 license](https://github.com/Kong/kong/blob/master/LICENSE).
 
+{% include_cached /md/gateway/install-traditional-mode.md %}
+
 ## Prerequisites
 
 * A [supported system](/gateway/{{page.kong_version}}/support-policy/#supported-versions) with root or [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user/) access.
 * (Enterprise only) A `license.json` file from Kong
 
-## Download and Install
-
-You can install {{site.base_gateway}} by downloading an installation package or using the yum repository.
+Once you have everything you need, choose an installation path: 
+  * [Quickstart](#installation): Install script for a {{site.base_gateway}} package and PostgreSQL database
+  * [Advanced installation](#advanced-installation): Choose your own pieces to install
 
 {:.note}
 > **Note:** In July of 2023 Kong announced that package hosting was shifting from {{ site.links.download }} to [{{ site.links.cloudsmith }}]({{ site.links.cloudsmith }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
+
+## Installation
+
+{% include_cached /md/gateway/install-linux-os.md kong_version=page.kong_version versions_ce=page.versions.ce versions_ee=page.versions.ee %}
+
+## Advanced installation
+
+### Package install
+
+You can install {{site.base_gateway}} by downloading an installation package or using the yum repository.
+
+The following steps install the package **only**, without a data store. 
+You will need to set one up after installation.
 
 {% navtabs %}
 {% navtab Package %}
@@ -111,4 +126,39 @@ sudo yum install -y kong-{{page.versions.ce}}
 {% endnavtab %}
 {% endnavtabs %}
 
-{% include_cached /md/gateway/setup.md kong_version=page.kong_version %}
+### Next steps
+
+Before starting {{site.base_gateway}}, [set up a data store](/gateway/{{page.kong_version}}/install/post-install/set-up-data-store/) 
+and update the `kong.conf.default` configuration property file with a reference to your data store.
+
+Depending on your desired environment, also see the following guides:
+* [Apply Enterprise license](/gateway/{{page.kong_version}}/licenses/deploy/) 
+{%- if_version gte:3.4.x -%}
+* Enable Kong Manager:
+  * [Kong Manager Enterprise](/gateway/{{ page.kong_version }}/kong-manager/enable/)
+  * [Kong Manager OSS](/gateway/{{ page.kong_version }}/kong-manager-oss/)
+{%- endif_version -%}
+{%- if_version lte:3.3.x -%}
+* [Enable Kong Manager](/gateway/{{ page.kong_version }}/kong-manager/enable/)
+{% endif_version %}
+
+You can also check out {{site.base_gateway}}'s series of
+[Getting Started](/gateway/{{ page.kong_version }}/get-started/) guides to learn how 
+get the most out of {{site.base_gateway}}.
+
+## Uninstall package
+
+{% navtabs_ee %}
+{% navtab Kong Gateway %}
+To uninstall the package, run: 
+```
+sudo yum remove kong-enterprise-edition
+```
+{% endnavtab %}
+{% navtab Kong Gateway (OSS) %}
+To uninstall the package, run: 
+```
+sudo yum remove kong
+```
+{% endnavtab %}
+{% endnavtabs_ee %}

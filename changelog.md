@@ -2,6 +2,920 @@
 
 <!--vale off-->
 
+## Week 47
+
+### [style(expressions): fix typo in `performance.md`](https://github.com/Kong/docs.konghq.com/pull/6549) (2023-11-22)
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/1.0.x/version-compatibility
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/performance
+
+
+### [Chore: Update Changelog for Gateway Milestone updates](https://github.com/Kong/docs.konghq.com/pull/6540) (2023-11-20)
+
+https://konghq.atlassian.net/browse/DOCU-3533
+https://konghq.aha.io/epics/KP-E-320
+
+Changelog update for this feature update.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/updates
+
+
+### [chore(deps): bump kumahq/kuma-website from 80fb6b2a to b3eeb1bc](https://github.com/Kong/docs.konghq.com/pull/6533) (2023-11-22)
+
+Auto upgrade PR log:
+
+b3eeb1bcc7bc398eab666dd1cfe94e960294906b chore(deps): update docs from repo source (kumahq/kuma-website#1534)
+
+Triggered by [action](https://github.com/Kong/docs.konghq.com/actions/runs/6951132041).
+labels: skip-changelog,review:general
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/performance
+
+
+### [kgo: add kgo version compatibility matrix](https://github.com/Kong/docs.konghq.com/pull/6518) (2023-11-20)
+
+Add KGO version compat matrix for 
+- Kubernetes versions
+- KIC versions
+- GW API versions
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/performance
+
+
+### [feat: Multi-geo GA](https://github.com/Kong/docs.konghq.com/pull/6499) (2023-11-21)
+
+Multi-geo is going GA, so we needed to pull in the current beta docs from the `konnect` branch, as well as add information about the newly added geo, AU. 
+
+DOCU-2593
+
+#### Added
+
+- https://docs.konghq.com/konnect/geo
+
+#### Modified
+
+- https://docs.konghq.com/deck/1.12.x/guides/konnect
+- https://docs.konghq.com/deck/1.13.x/guides/konnect
+- https://docs.konghq.com/deck/1.14.x/guides/konnect
+- https://docs.konghq.com/deck/1.15.x/guides/konnect
+- https://docs.konghq.com/deck/1.16.x/guides/konnect
+- https://docs.konghq.com/deck/1.17.x/guides/konnect
+- https://docs.konghq.com/deck/1.18.x/guides/konnect
+- https://docs.konghq.com/deck/1.19.x/guides/konnect
+- https://docs.konghq.com/deck/1.20.x/guides/konnect
+- https://docs.konghq.com/deck/1.21.x/guides/konnect
+- https://docs.konghq.com/deck/1.22.x/guides/konnect
+- https://docs.konghq.com/deck/1.23.x/guides/konnect
+- https://docs.konghq.com/deck/1.24.x/guides/konnect/
+- https://docs.konghq.com/deck/1.25.x/guides/konnect/
+- https://docs.konghq.com/deck/1.26.x/guides/konnect/
+- https://docs.konghq.com/deck/1.27.x/guides/konnect/
+- https://docs.konghq.com/deck/1.28.x/guides/konnect/
+- https://docs.konghq.com/deck/1.29.x/guides/konnect/
+- https://docs.konghq.com/konnect/account-management/
+- https://docs.konghq.com/konnect/api-products/service-documentation
+- https://docs.konghq.com/konnect/api/
+- https://docs.konghq.com/konnect/dev-portal/access
+- https://docs.konghq.com/konnect/dev-portal/applications/enable-app-reg
+- https://docs.konghq.com/konnect/dev-portal/dev-reg
+- https://docs.konghq.com/konnect/gateway-manager/configuration/
+- https://docs.konghq.com/konnect/getting-started/access-account
+- https://docs.konghq.com/konnect/getting-started/productize-service
+- https://docs.konghq.com/konnect/
+- https://docs.konghq.com/konnect/network
+- https://docs.konghq.com/konnect/org-management/teams-and-roles/
+- https://docs.konghq.com/konnect/org-management/teams-and-roles/manage
+- https://docs.konghq.com/konnect/org-management/teams-and-roles/roles-reference
+- https://docs.konghq.com/konnect/org-management/teams-and-roles/teams-reference
+- https://docs.konghq.com/konnect/updates
+
+
+### [update: Rewrite the expressions router Gateway doc](https://github.com/Kong/docs.konghq.com/pull/6437) (2023-11-21)
+
+This is a complete rewrite of the Expressions router doc to make it easier to understand and more comprehensive.
+
+![KAG-2288]
+
+[KAG-2288]: https://konghq.atlassian.net/browse/KAG-2288?atlOrigin=eyJpIjoiNWRkNTljNzYxNjVmNDY3MDlhMDU5Y2ZhYzA5YTRkZjUiLCJwIjoiZ2l0aHViLWNvbS1KU1cifQ
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/performance
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/performance
+- https://docs.konghq.com/assets/images/products/gateway/reference/expressions-language/predicate.png
+- https://docs.konghq.com/assets/images/products/gateway/reference/expressions-language/router-matching-flow.png
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.1.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.2.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.3.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.4.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.5.x/key-concepts/routes/expressions
+
+## Week 46
+
+
+### [(chore) Konnect + 3.5 support](https://github.com/Kong/docs.konghq.com/pull/6527) (2023-11-16)
+
+Adding statements of Konnect support for 3.5 to changelog + compatibility table, including Azure Key Vault support.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/compatibility
+- https://docs.konghq.com/konnect/updates
+
+
+### [Feat: Azure Key Vault docs for Konnect](https://github.com/Kong/docs.konghq.com/pull/6526) (2023-11-16)
+
+
+ Added Azure Key Vault as a supported secret manager for Konnect docs
+
+
+https://konghq.aha.io/features/KP-391
+This was hidden behind a feature flag from back in March. It is now ready to be turned on and released.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/configuration/vaults/how-to
+- https://docs.konghq.com/konnect/gateway-manager/configuration/vaults/
+
+
+### [Fix: custom Docker build instructions](https://github.com/Kong/docs.konghq.com/pull/6525) (2023-11-16)
+
+Fix custom Docker build instructions. `openresty` is now symlinked in the package, which caused the `Dockerfile` provided to fail.
+
+#### Modified
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/install/cloud/eks
+
+
+### [feat(dbless): add compatibility warning for Kong Manager](https://github.com/Kong/docs.konghq.com/pull/6522) (2023-11-17)
+
+Adding a section for the compatibility warning while using Kong Manager with Kong under DB-less mode.
+
+#### Modified
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/install/cloud/eks
+
+
+
+### [docs(mesh): update docs and changelog](https://github.com/Kong/docs.konghq.com/pull/6513) (2023-11-16)
+
+Syncing docs from source code.
+
+Generated by [action](https://github.com/Kong/kong-mesh/actions/runs/6887845559)
+
+#### Modified
+
+- https://docs.konghq.com/mesh/2.5.x/kuma-cp.yaml
+- https://docs.konghq.com/mesh/dev/crds/kuma.io_meshloadbalancingstrategies.yaml
+- https://docs.konghq.com/mesh/dev/kuma-cp.yaml
+- https://docs.konghq.com/mesh/raw/CHANGELOG
+
+
+### [(chore) Add end off support dates to Konnect/GW compatibility table](https://github.com/Kong/docs.konghq.com/pull/6512) (2023-11-16)
+
+Adding end of support column to Konnect's compatibility w/ Gateway matrix. Dates will match Gateway's dates starting with 3.2, prior versions will end support in Feb 2024.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/compatibility
+
+
+### [Update Konnect curl request in renew-certificates.md](https://github.com/Kong/docs.konghq.com/pull/6510) (2023-11-17)
+
+Modified curl example for Konnect:
+
+- needed to add double-quotes to properly expand $CERT envvar (curl was giving an error)
+https://superuser.com/questions/835587/how-to-include-environment-variable-in-bash-line-curl#:~:text=Inside%20single%2Dquotes%2C%20the%20shell,completed%22'.%22%7D'
+
+- Included the Authorization header in the Konnect request
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/data-plane-nodes/renew-certificates
+
+
+### [Update gw manager docs](https://github.com/Kong/docs.konghq.com/pull/6509) (2023-11-14)
+
+Updating gateway manager doc page since Plus and Enterprise users can create multiple control planes. This was new as part of KOD1 for API Summit.
+
+
+#### Modified
+
+- https://docs.konghq.com/konnect/gateway-manager/
+
+
+### [(chore) 3.5.0.1 changelog](https://github.com/Kong/docs.konghq.com/pull/6508) (2023-11-16)
+
+Build changelog for 3.5.0.1 based on source from https://github.com/Kong/kong-ee/blob/next/3.5.x.x/changelog/3.5.0.1/3.5.0.1.md
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [docs(changelog): consolidate the lua-resty-aws version bump changelog](https://github.com/Kong/docs.konghq.com/pull/6507) (2023-11-14)
+
+Consolidate the lua-resty-aws version bump entries into one as both entries happened in the same release.
+
+This is for Gateway Enterprise 3.5.0.0 changelog.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [chore: improve docs about support of gRPC in KIC](https://github.com/Kong/docs.konghq.com/pull/6497) (2023-11-15)
+
+Improve documentation for gRPC support in KIC
+- as long as https://github.com/Kong/kubernetes-ingress-controller/issues/4273 is not resolved only gRPC over HTTPS is supported, so mention it
+- remove the redundant annotation `konghq.com/protocol: grpcs` from the service, because in [examples/gateway-grpcroute.yaml](https://github.com/Kong/kubernetes-ingress-controller/blob/314951c3279dcd38cb7de7e53f71969379a0340a/examples/gateway-grpcroute.yaml#L5-L17) it's not specified and that configuration is tested in KIC CI so it works
+
+
+#### Modified
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/install/cloud/eks
+
+
+### [kic: fix the description of kic's leader election permission](https://github.com/Kong/docs.konghq.com/pull/6485) (2023-11-16)
+
+fixes: https://github.com/Kong/docs.konghq.com/issues/6410
+
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/install/docker/build-custom-images/
+- https://docs.konghq.com/gateway/3.1.x/install/docker/build-custom-images/
+- https://docs.konghq.com/gateway/3.2.x/install/docker/build-custom-images/
+- https://docs.konghq.com/gateway/3.3.x/install/docker/build-custom-images/
+- https://docs.konghq.com/gateway/3.4.x/install/docker/build-custom-images/
+- https://docs.konghq.com/gateway/3.5.x/install/docker/build-custom-images/
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/install/cloud/eks
+
+## Week 45
+
+
+### [Release Gateway 3.4.2.0](https://github.com/Kong/docs.konghq.com/pull/6490) (2023-11-10)
+
+Update changelog for the Gateway 3.4.2.0 release
+
+https://github.com/Kong/kong-ee/blob/next/3.4.x.x/changelog/3.4.2.0/3.4.2.0.md
+
+https://konghq.atlassian.net/browse/DOCU-3563
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+
+### [docs: add KIC 3.0 missing docs updates](https://github.com/Kong/docs.konghq.com/pull/6487) (2023-11-08)
+
+Adds missing KIC 3.0 docs:
+- updates compatibility matrices (drops Kubernetes 1.23 and 1.24 support)
+- adds `konghq.com/upstream-policy` annotation to annotations reference
+- updates support policy table (not sure if we should also update [Supported versions table](https://deploy-preview-6486--kongdocs.netlify.app/kubernetes-ingress-controller/latest/support-policy/#supported-versions) - so far we've been recommending LTS releases so I didn't change that to recommend 3.0 @mheap). 
+
+#### Modified
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/gateway-api
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/services/grpc
+
+
+### [fix: remove unnecessary brackets from proxy config](https://github.com/Kong/docs.konghq.com/pull/6486) (2023-11-08)
+
+Removes unnecessary brackets from example helm values proxy configuration that break it.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/plugin-development/pdk/kong.websocket.upstream
+- https://docs.konghq.com/gateway/3.1.x/plugin-development/pdk/kong.websocket.upstream
+- https://docs.konghq.com/gateway/3.2.x/plugin-development/pdk/kong.websocket.upstream
+- https://docs.konghq.com/gateway/3.3.x/plugin-development/pdk/kong.websocket.upstream
+- https://docs.konghq.com/gateway/3.4.x/plugin-development/pdk/kong.websocket.upstream
+- https://docs.konghq.com/gateway/3.5.x/plugin-development/pdk/kong.websocket.upstream
+
+
+
+
+### [removing warning about the websocket pdk](https://github.com/Kong/docs.konghq.com/pull/6477) (2023-11-07)
+
+This removes the unstable warning from the gateway's WebSocket client/upstream Lua PDKs.
+
+#### Modified
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/concepts/ingress
+
+
+### [KIC: Fix GRPC Guide](https://github.com/Kong/docs.konghq.com/pull/6473) (2023-11-08)
+
+Add GRPC guide to KIC 3.0 docs
+
+#### Modified
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/production/deployment-topologies/db-backed
+
+
+### [Release: KIC 3.0](https://github.com/Kong/docs.konghq.com/pull/6467) (2023-11-06)
+
+Merge the long-lived KIC 3.0 branch in to `main`
+
+#### Added
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/concepts/admission-webhook
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/concepts/annotations
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/concepts/architecture
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/concepts/custom-resources
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/concepts/gateway-api
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/concepts/ingress
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/gateway-api
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/get-started/key-authentication
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/get-started/proxy-caching
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/get-started/rate-limiting
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/get-started/services-and-routes
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/high-availability/health-checks
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/high-availability/kic
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/migrate/credential-kongcredtype-label
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/migrate/ingress-to-gateway
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/migrate/kongingress
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/requests/customizing-load-balancing
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/requests/rewrite-annotation
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/requests/rewrite-host
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/security/client-ip
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/security/kong-vault
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/security/workspaces
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/services/external
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/services/grpc
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/services/http
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/services/https-redirect
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/services/multiple-backends
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/services/tcp
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/services/tls
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/guides/services/udp
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/install/cloud/aks
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/install/cloud/eks
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/install/cloud/gke
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/install/gateway-operator
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/install/helm
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/license
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/plugins/acl
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/plugins/authentication
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/plugins/custom
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/plugins/mtls
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/plugins/oidc
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/plugins/rate-limiting
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/production/deployment-topologies/db-backed
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/production/deployment-topologies/gateway-discovery
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/production/deployment-topologies/sidecar
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/production/observability/events
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/production/observability/prometheus-grafana
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/production/observability/prometheus
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/reference/annotations
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/reference/cli-arguments
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/reference/faq/nginx.conf
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/reference/faq/router
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/reference/feature-gates
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/reference/ingress-to-gateway-migration
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/reference/troubleshooting
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/support-policy
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/upgrade/gateway
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/upgrade/kic
+- https://docs.konghq.com/assets/images/products/kubernetes-ingress-controller/kic-gateway-arch.png
+- https://docs.konghq.com/assets/images/products/kubernetes-ingress-controller/topology/db-backed-hybrid.png
+- https://docs.konghq.com/assets/images/products/kubernetes-ingress-controller/topology/db-backed-traditional.png
+- https://docs.konghq.com/assets/images/products/kubernetes-ingress-controller/topology/gateway-discovery.png
+- https://docs.konghq.com/assets/images/products/kubernetes-ingress-controller/topology/sidecar.png
+- https://docs.konghq.com/assets/kubernetes-ingress-controller/examples/httpbin-service.yaml
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/1.0.x/get-started/kic/install/
+- https://docs.konghq.com/assets/kubernetes-ingress-controller/examples/tcp-echo-service.yaml
+- https://docs.konghq.com/kubernetes-ingress-controller/2.2.x/deployment/install-gateway-apis
+
+
+### [Update: Link to IETF Draft](https://github.com/Kong/docs.konghq.com/pull/6464) (2023-11-06)
+
+RateLimit header fields for HTTP -> https://datatracker.ietf.org/doc/draft-ietf-httpapi-ratelimit-headers/
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/overview/
+- https://docs.konghq.com/hub/kong-inc/rate-limiting/overview/
+
+
+
+### [Release: Gateway 3.5](https://github.com/Kong/docs.konghq.com/pull/6433) (2023-11-08)
+
+## Description
+
+Release roll-up PR for Gateway 3.5 release.
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/cors/
+- https://docs.konghq.com/hub/kong-inc/oas-validation/
+- https://docs.konghq.com/hub/kong-inc/response-transformer/
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/secrets-management/backends/azure-key-vaults
+- https://docs.konghq.com/gateway/3.5.x/plugin-development/wasm/filter-configuration
+- https://docs.konghq.com/gateway/3.5.x/production/debug-request
+- https://docs.konghq.com/assets/images/products/gateway/km_workspace_3.5.png
+- https://docs.konghq.com/assets/images/products/plugins/openid-connect/keycloak-client-cert-bound-settings.png
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/acme/
+- https://docs.konghq.com/hub/kong-inc/acme/how-to/
+- https://docs.konghq.com/hub/kong-inc/aws-lambda/
+- https://docs.konghq.com/hub/kong-inc/aws-lambda/overview/
+- https://docs.konghq.com/hub/kong-inc/canary/
+- https://docs.konghq.com/hub/kong-inc/exit-transformer/overview/
+- https://docs.konghq.com/hub/kong-inc/graphql-rate-limiting-advanced/how-to/
+- https://docs.konghq.com/hub/kong-inc/grpc-gateway/
+- https://docs.konghq.com/hub/kong-inc/kafka-log/
+- https://docs.konghq.com/hub/kong-inc/mocking/
+- https://docs.konghq.com/hub/kong-inc/mocking/overview/
+- https://docs.konghq.com/hub/kong-inc/mtls-auth/
+- https://docs.konghq.com/hub/kong-inc/oauth2-introspection/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/overview/
+- https://docs.konghq.com/hub/kong-inc/opentelemetry/
+- https://docs.konghq.com/hub/kong-inc/opentelemetry/overview/
+- https://docs.konghq.com/hub/kong-inc/prometheus/
+- https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/
+- https://docs.konghq.com/hub/kong-inc/rate-limiting/overview/
+- https://docs.konghq.com/hub/kong-inc/request-transformer-advanced/how-to/
+- https://docs.konghq.com/hub/kong-inc/request-transformer-advanced/how-to/
+- https://docs.konghq.com/hub/kong-inc/request-transformer/how-to/
+- https://docs.konghq.com/hub/kong-inc/request-transformer/how-to/
+- https://docs.konghq.com/hub/kong-inc/request-validator/
+- https://docs.konghq.com/hub/kong-inc/response-ratelimiting/
+- https://docs.konghq.com/hub/kong-inc/saml/
+- https://docs.konghq.com/hub/kong-inc/session/
+- https://docs.konghq.com/hub/kong-inc/session/overview/
+- https://docs.konghq.com/hub/kong-inc/tcp-log/
+- https://docs.konghq.com/hub/kong-inc/zipkin/
+- https://docs.konghq.com/hub/kong-inc/zipkin/overview/
+- https://docs.konghq.com/deck/1.24.x/guides/apiops/
+- https://docs.konghq.com/deck/1.25.x/guides/apiops/
+- https://docs.konghq.com/deck/1.26.x/guides/apiops/
+- https://docs.konghq.com/deck/1.27.x/guides/apiops/
+- https://docs.konghq.com/deck/1.28.x/guides/apiops/
+- https://docs.konghq.com/deck/1.29.x/guides/apiops/
+- https://docs.konghq.com/deck/1.11.x/guides/defaults
+- https://docs.konghq.com/deck/1.12.x/guides/defaults
+- https://docs.konghq.com/deck/1.13.x/guides/defaults
+- https://docs.konghq.com/deck/1.14.x/guides/defaults
+- https://docs.konghq.com/deck/1.15.x/guides/defaults
+- https://docs.konghq.com/deck/1.16.x/guides/defaults
+- https://docs.konghq.com/deck/1.17.x/guides/defaults
+- https://docs.konghq.com/deck/1.18.x/guides/defaults
+- https://docs.konghq.com/deck/1.19.x/guides/defaults
+- https://docs.konghq.com/deck/1.20.x/guides/defaults
+- https://docs.konghq.com/deck/1.21.x/guides/defaults
+- https://docs.konghq.com/deck/1.22.x/guides/defaults
+- https://docs.konghq.com/deck/1.23.x/guides/defaults
+- https://docs.konghq.com/deck/1.24.x/guides/defaults/
+- https://docs.konghq.com/deck/1.25.x/guides/defaults/
+- https://docs.konghq.com/deck/1.26.x/guides/defaults/
+- https://docs.konghq.com/deck/1.27.x/guides/defaults/
+- https://docs.konghq.com/deck/1.28.x/guides/defaults/
+- https://docs.konghq.com/deck/1.29.x/guides/defaults/
+- https://docs.konghq.com/deck/1.16.x/guides/security
+- https://docs.konghq.com/deck/1.17.x/guides/security
+- https://docs.konghq.com/deck/1.18.x/guides/security
+- https://docs.konghq.com/deck/1.19.x/guides/security
+- https://docs.konghq.com/deck/1.20.x/guides/security
+- https://docs.konghq.com/deck/1.21.x/guides/security
+- https://docs.konghq.com/deck/1.22.x/guides/security
+- https://docs.konghq.com/deck/1.23.x/guides/security
+- https://docs.konghq.com/deck/1.24.x/guides/security/
+- https://docs.konghq.com/deck/1.25.x/guides/security/
+- https://docs.konghq.com/deck/1.26.x/guides/security/
+- https://docs.konghq.com/deck/1.27.x/guides/security/
+- https://docs.konghq.com/deck/1.28.x/guides/security/
+- https://docs.konghq.com/deck/1.29.x/guides/security/
+- https://docs.konghq.com/gateway-operator/1.0.x/faq
+- https://docs.konghq.com/gateway-operator/1.0.x/get-started/konnect/create-route/
+- https://docs.konghq.com/gateway-operator/1.0.x/topologies/dbless/
+- https://docs.konghq.com/gateway/3.0.x/admin-api/developers/reference
+- https://docs.konghq.com/gateway/3.1.x/admin-api/developers/reference
+- https://docs.konghq.com/gateway/3.2.x/admin-api/developers/reference
+- https://docs.konghq.com/gateway/3.3.x/admin-api/developers/reference
+- https://docs.konghq.com/gateway/3.4.x/admin-api/developers/reference
+- https://docs.konghq.com/gateway/3.0.x/get-started/key-authentication
+- https://docs.konghq.com/gateway/3.1.x/get-started/key-authentication
+- https://docs.konghq.com/gateway/3.2.x/get-started/key-authentication
+- https://docs.konghq.com/gateway/3.3.x/get-started/key-authentication
+- https://docs.konghq.com/gateway/3.4.x/get-started/key-authentication
+- https://docs.konghq.com/gateway/3.5.x/get-started/key-authentication
+- https://docs.konghq.com/gateway/3.0.x/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.1.x/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.2.x/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.3.x/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.4.x/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.5.x/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.0.x/get-started/proxy-caching
+- https://docs.konghq.com/gateway/3.1.x/get-started/proxy-caching
+- https://docs.konghq.com/gateway/3.2.x/get-started/proxy-caching
+- https://docs.konghq.com/gateway/3.3.x/get-started/proxy-caching
+- https://docs.konghq.com/gateway/3.4.x/get-started/proxy-caching
+- https://docs.konghq.com/gateway/3.5.x/get-started/proxy-caching
+- https://docs.konghq.com/gateway/3.0.x/get-started/rate-limiting
+- https://docs.konghq.com/gateway/3.1.x/get-started/rate-limiting
+- https://docs.konghq.com/gateway/3.2.x/get-started/rate-limiting
+- https://docs.konghq.com/gateway/3.3.x/get-started/rate-limiting
+- https://docs.konghq.com/gateway/3.4.x/get-started/rate-limiting
+- https://docs.konghq.com/gateway/3.5.x/get-started/rate-limiting
+- https://docs.konghq.com/gateway/3.0.x/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.1.x/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.2.x/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.3.x/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.4.x/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.5.x/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.0.x/how-kong-works/performance-testing
+- https://docs.konghq.com/gateway/3.1.x/how-kong-works/performance-testing
+- https://docs.konghq.com/gateway/3.2.x/how-kong-works/performance-testing
+- https://docs.konghq.com/gateway/3.3.x/how-kong-works/performance-testing
+- https://docs.konghq.com/gateway/3.4.x/how-kong-works/performance-testing
+- https://docs.konghq.com/gateway/3.0.x/
+- https://docs.konghq.com/gateway/3.1.x/
+- https://docs.konghq.com/gateway/3.2.x/
+- https://docs.konghq.com/gateway/3.3.x/
+- https://docs.konghq.com/gateway/3.4.x/
+- https://docs.konghq.com/gateway/3.5.x/
+- https://docs.konghq.com/gateway/3.0.x/install/kubernetes/deployment-options
+- https://docs.konghq.com/gateway/3.1.x/install/kubernetes/deployment-options
+- https://docs.konghq.com/gateway/3.2.x/install/kubernetes/deployment-options
+- https://docs.konghq.com/gateway/3.3.x/install/kubernetes/deployment-options
+- https://docs.konghq.com/gateway/3.4.x/install/kubernetes/deployment-options
+- https://docs.konghq.com/gateway/3.5.x/install/kubernetes/deployment-options
+- https://docs.konghq.com/gateway/3.0.x/install/kubernetes/helm-quickstart
+- https://docs.konghq.com/gateway/3.1.x/install/kubernetes/helm-quickstart
+- https://docs.konghq.com/gateway/3.2.x/install/kubernetes/helm-quickstart
+- https://docs.konghq.com/gateway/3.3.x/install/kubernetes/helm-quickstart
+- https://docs.konghq.com/gateway/3.4.x/install/kubernetes/helm-quickstart
+- https://docs.konghq.com/gateway/3.5.x/install/kubernetes/helm-quickstart
+- https://docs.konghq.com/gateway/3.0.x/install/linux/ubuntu
+- https://docs.konghq.com/gateway/3.1.x/install/linux/ubuntu
+- https://docs.konghq.com/gateway/3.2.x/install/linux/ubuntu
+- https://docs.konghq.com/gateway/3.3.x/install/linux/ubuntu
+- https://docs.konghq.com/gateway/3.4.x/install/linux/ubuntu
+- https://docs.konghq.com/gateway/3.5.x/install/linux/ubuntu
+- https://docs.konghq.com/gateway/3.0.x/key-concepts/upstreams
+- https://docs.konghq.com/gateway/3.1.x/key-concepts/upstreams
+- https://docs.konghq.com/gateway/3.2.x/key-concepts/upstreams
+- https://docs.konghq.com/gateway/3.3.x/key-concepts/upstreams
+- https://docs.konghq.com/gateway/3.4.x/key-concepts/upstreams
+- https://docs.konghq.com/gateway/3.5.x/key-concepts/upstreams
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/plugin-ordering/get-started
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/plugin-ordering/get-started
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/plugin-ordering/get-started
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/plugin-ordering/get-started
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/plugin-ordering/get-started
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/plugin-ordering/get-started
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/secrets-management/how-to/aws-secrets-manager
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/secrets-management/how-to/aws-secrets-manager
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/secrets-management/how-to/aws-secrets-manager
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/secrets-management/how-to/aws-secrets-manager
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/secrets-management/how-to/aws-secrets-manager
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/secrets-management/how-to/aws-secrets-manager
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/auth/rbac/enable
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/auth/rbac/enable
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/auth/rbac/enable
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/auth/rbac/enable
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/auth/rbac/enable
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/auth/rbac/enable
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/workspaces
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/workspaces
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/workspaces
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/workspaces
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/workspaces
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/workspaces
+- https://docs.konghq.com/gateway/3.0.x/kong-plugins/authentication/oidc/azure-ad
+- https://docs.konghq.com/gateway/3.1.x/kong-plugins/authentication/oidc/azure-ad
+- https://docs.konghq.com/gateway/3.2.x/kong-plugins/authentication/oidc/azure-ad
+- https://docs.konghq.com/gateway/3.3.x/kong-plugins/authentication/oidc/azure-ad
+- https://docs.konghq.com/gateway/3.4.x/kong-plugins/authentication/oidc/azure-ad
+- https://docs.konghq.com/gateway/3.5.x/kong-plugins/authentication/oidc/azure-ad
+- https://docs.konghq.com/gateway/3.0.x/kong-plugins/authentication/oidc/curity
+- https://docs.konghq.com/gateway/3.1.x/kong-plugins/authentication/oidc/curity
+- https://docs.konghq.com/gateway/3.2.x/kong-plugins/authentication/oidc/curity
+- https://docs.konghq.com/gateway/3.3.x/kong-plugins/authentication/oidc/curity
+- https://docs.konghq.com/gateway/3.4.x/kong-plugins/authentication/oidc/curity
+- https://docs.konghq.com/gateway/3.5.x/kong-plugins/authentication/oidc/curity
+- https://docs.konghq.com/gateway/3.0.x/kong-plugins/authentication/oidc/okta
+- https://docs.konghq.com/gateway/3.1.x/kong-plugins/authentication/oidc/okta
+- https://docs.konghq.com/gateway/3.2.x/kong-plugins/authentication/oidc/okta
+- https://docs.konghq.com/gateway/3.3.x/kong-plugins/authentication/oidc/okta
+- https://docs.konghq.com/gateway/3.4.x/kong-plugins/authentication/oidc/okta
+- https://docs.konghq.com/gateway/3.5.x/kong-plugins/authentication/oidc/okta
+- https://docs.konghq.com/gateway/3.0.x/kong-plugins/authentication/reference
+- https://docs.konghq.com/gateway/3.1.x/kong-plugins/authentication/reference
+- https://docs.konghq.com/gateway/3.2.x/kong-plugins/authentication/reference
+- https://docs.konghq.com/gateway/3.3.x/kong-plugins/authentication/reference
+- https://docs.konghq.com/gateway/3.4.x/kong-plugins/authentication/reference
+- https://docs.konghq.com/gateway/3.5.x/kong-plugins/authentication/reference
+- https://docs.konghq.com/gateway/3.0.x/licenses/report
+- https://docs.konghq.com/gateway/3.1.x/licenses/report
+- https://docs.konghq.com/gateway/3.2.x/licenses/report
+- https://docs.konghq.com/gateway/3.3.x/licenses/report
+- https://docs.konghq.com/gateway/3.0.x/migrate-ce-to-ke/
+- https://docs.konghq.com/gateway/3.1.x/migrate-ce-to-ke/
+- https://docs.konghq.com/gateway/3.2.x/migrate-ce-to-ke/
+- https://docs.konghq.com/gateway/3.3.x/migrate-ce-to-ke/
+- https://docs.konghq.com/gateway/3.4.x/migrate-ce-to-ke/
+- https://docs.konghq.com/gateway/3.5.x/migrate-ce-to-ke/
+- https://docs.konghq.com/gateway/3.0.x/plugin-development/access-the-datastore
+- https://docs.konghq.com/gateway/3.1.x/plugin-development/access-the-datastore
+- https://docs.konghq.com/gateway/3.2.x/plugin-development/access-the-datastore
+- https://docs.konghq.com/gateway/3.3.x/plugin-development/access-the-datastore
+- https://docs.konghq.com/gateway/3.4.x/plugin-development/access-the-datastore
+- https://docs.konghq.com/gateway/3.5.x/plugin-development/access-the-datastore
+- https://docs.konghq.com/gateway/3.0.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.1.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.2.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.3.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.4.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.5.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.0.x/plugin-development/entities-cache
+- https://docs.konghq.com/gateway/3.1.x/plugin-development/entities-cache
+- https://docs.konghq.com/gateway/3.2.x/plugin-development/entities-cache
+- https://docs.konghq.com/gateway/3.3.x/plugin-development/entities-cache
+- https://docs.konghq.com/gateway/3.4.x/plugin-development/entities-cache
+- https://docs.konghq.com/gateway/3.5.x/plugin-development/entities-cache
+- https://docs.konghq.com/gateway/3.0.x/plugin-development/pdk/kong.client
+- https://docs.konghq.com/gateway/3.1.x/plugin-development/pdk/kong.client
+- https://docs.konghq.com/gateway/3.2.x/plugin-development/pdk/kong.client
+- https://docs.konghq.com/gateway/3.3.x/plugin-development/pdk/kong.client
+- https://docs.konghq.com/gateway/3.4.x/plugin-development/pdk/kong.client
+- https://docs.konghq.com/gateway/3.5.x/plugin-development/pdk/kong.client
+- https://docs.konghq.com/gateway/3.0.x/plugin-development/pdk/kong.log
+- https://docs.konghq.com/gateway/3.1.x/plugin-development/pdk/kong.log
+- https://docs.konghq.com/gateway/3.2.x/plugin-development/pdk/kong.log
+- https://docs.konghq.com/gateway/3.3.x/plugin-development/pdk/kong.log
+- https://docs.konghq.com/gateway/3.4.x/plugin-development/pdk/kong.log
+- https://docs.konghq.com/gateway/3.5.x/plugin-development/pdk/kong.log
+- https://docs.konghq.com/gateway/3.0.x/plugin-development/pdk/kong.request
+- https://docs.konghq.com/gateway/3.1.x/plugin-development/pdk/kong.request
+- https://docs.konghq.com/gateway/3.2.x/plugin-development/pdk/kong.request
+- https://docs.konghq.com/gateway/3.3.x/plugin-development/pdk/kong.request
+- https://docs.konghq.com/gateway/3.4.x/plugin-development/pdk/kong.request
+- https://docs.konghq.com/gateway/3.5.x/plugin-development/pdk/kong.request
+- https://docs.konghq.com/gateway/3.0.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.1.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.2.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.3.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.4.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.5.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.0.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.1.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.2.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.3.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.4.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.5.x/production/deployment-topologies/hybrid-mode/setup
+- https://docs.konghq.com/gateway/3.0.x/production/monitoring/prometheus
+- https://docs.konghq.com/gateway/3.1.x/production/monitoring/prometheus
+- https://docs.konghq.com/gateway/3.2.x/production/monitoring/prometheus
+- https://docs.konghq.com/gateway/3.3.x/production/monitoring/prometheus
+- https://docs.konghq.com/gateway/3.4.x/production/monitoring/prometheus
+- https://docs.konghq.com/gateway/3.5.x/production/monitoring/prometheus
+- https://docs.konghq.com/gateway/3.0.x/production/monitoring/statsd
+- https://docs.konghq.com/gateway/3.1.x/production/monitoring/statsd
+- https://docs.konghq.com/gateway/3.2.x/production/monitoring/statsd
+- https://docs.konghq.com/gateway/3.3.x/production/monitoring/statsd
+- https://docs.konghq.com/gateway/3.4.x/production/monitoring/statsd
+- https://docs.konghq.com/gateway/3.5.x/production/monitoring/statsd
+- https://docs.konghq.com/gateway/3.0.x/production/networking/default-ports
+- https://docs.konghq.com/gateway/3.1.x/production/networking/default-ports
+- https://docs.konghq.com/gateway/3.2.x/production/networking/default-ports
+- https://docs.konghq.com/gateway/3.3.x/production/networking/default-ports
+- https://docs.konghq.com/gateway/3.4.x/production/networking/default-ports
+- https://docs.konghq.com/gateway/3.5.x/production/networking/default-ports
+- https://docs.konghq.com/gateway/3.0.x/production/running-kong/systemd
+- https://docs.konghq.com/gateway/3.1.x/production/running-kong/systemd
+- https://docs.konghq.com/gateway/3.2.x/production/running-kong/systemd
+- https://docs.konghq.com/gateway/3.3.x/production/running-kong/systemd
+- https://docs.konghq.com/gateway/3.4.x/production/running-kong/systemd
+- https://docs.konghq.com/gateway/3.5.x/production/running-kong/systemd
+- https://docs.konghq.com/gateway/3.0.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.1.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.2.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.3.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.4.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.5.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.0.x/reference/cli
+- https://docs.konghq.com/gateway/3.1.x/reference/cli
+- https://docs.konghq.com/gateway/3.2.x/reference/cli
+- https://docs.konghq.com/gateway/3.3.x/reference/cli
+- https://docs.konghq.com/gateway/3.4.x/reference/cli
+- https://docs.konghq.com/gateway/3.5.x/reference/cli
+- https://docs.konghq.com/gateway/3.4.x/reference/configuration
+- https://docs.konghq.com/gateway/3.5.x/reference/configuration
+- https://docs.konghq.com/gateway/3.0.x/reference/performance-testing-framework
+- https://docs.konghq.com/gateway/3.1.x/reference/performance-testing-framework
+- https://docs.konghq.com/gateway/3.2.x/reference/performance-testing-framework
+- https://docs.konghq.com/gateway/3.3.x/reference/performance-testing-framework
+- https://docs.konghq.com/gateway/3.4.x/reference/performance-testing-framework
+- https://docs.konghq.com/gateway/3.4.x/reference/wasm
+- https://docs.konghq.com/gateway/3.5.x/reference/wasm
+- https://docs.konghq.com/gateway/3.2.x/support/browser
+- https://docs.konghq.com/gateway/3.3.x/support/browser
+- https://docs.konghq.com/gateway/3.4.x/support/browser
+- https://docs.konghq.com/gateway/3.5.x/support/browser
+- https://docs.konghq.com/gateway/3.3.x/support/sbom
+- https://docs.konghq.com/gateway/3.4.x/support/sbom
+- https://docs.konghq.com/gateway/3.5.x/support/sbom
+- https://docs.konghq.com/gateway/3.2.x/support/third-party
+- https://docs.konghq.com/gateway/3.3.x/support/third-party
+- https://docs.konghq.com/gateway/3.4.x/support/third-party
+- https://docs.konghq.com/gateway/3.5.x/support/third-party
+- https://docs.konghq.com/gateway/3.0.x/upgrade/
+- https://docs.konghq.com/assets/images/products/plugins/openid-connect/keycloak.json
+- https://docs.konghq.com/contributing/variables
+- https://docs.konghq.com/contributing/word-choice
+- https://docs.konghq.com/deck/pre-1.7/commands
+- https://docs.konghq.com/deck/pre-1.7/design-architecture
+- https://docs.konghq.com/deck/pre-1.7/faqs
+- https://docs.konghq.com/deck/pre-1.7/guides/kong-enterprise
+- https://docs.konghq.com/gateway/2.6.x/configure/auth/
+- https://docs.konghq.com/gateway/2.6.x/get-started/comprehensive/expose-services
+- https://docs.konghq.com/gateway/2.6.x/get-started/comprehensive/improve-performance
+- https://docs.konghq.com/gateway/2.6.x/get-started/comprehensive/load-balancing
+- https://docs.konghq.com/gateway/2.6.x/get-started/comprehensive/protect-services
+- https://docs.konghq.com/gateway/2.6.x/get-started/comprehensive/secure-services
+- https://docs.konghq.com/gateway/2.6.x/get-started/quickstart/configuring-a-service
+- https://docs.konghq.com/gateway/2.6.x/install-and-run/docker
+- https://docs.konghq.com/gateway/2.6.x/plan-and-deploy/default-ports
+- https://docs.konghq.com/gateway/2.6.x/plugin-development/access-the-datastore
+- https://docs.konghq.com/gateway/2.6.x/reference/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/2.7.x/configure/auth/
+- https://docs.konghq.com/gateway/2.7.x/get-started/comprehensive/expose-services
+- https://docs.konghq.com/gateway/2.7.x/get-started/comprehensive/improve-performance
+- https://docs.konghq.com/gateway/2.7.x/get-started/comprehensive/load-balancing
+- https://docs.konghq.com/gateway/2.7.x/get-started/comprehensive/protect-services
+- https://docs.konghq.com/gateway/2.7.x/get-started/comprehensive/secure-services
+- https://docs.konghq.com/gateway/2.7.x/get-started/quickstart/configuring-a-service
+- https://docs.konghq.com/gateway/2.7.x/install-and-run/docker
+- https://docs.konghq.com/gateway/2.7.x/plan-and-deploy/default-ports
+- https://docs.konghq.com/gateway/2.7.x/plugin-development/access-the-datastore
+- https://docs.konghq.com/gateway/2.7.x/reference/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/2.8.x/admin-api/developers/reference
+- https://docs.konghq.com/gateway/2.8.x/configure/auth/
+- https://docs.konghq.com/gateway/2.8.x/get-started/comprehensive/expose-services
+- https://docs.konghq.com/gateway/2.8.x/get-started/comprehensive/improve-performance
+- https://docs.konghq.com/gateway/2.8.x/get-started/comprehensive/load-balancing
+- https://docs.konghq.com/gateway/2.8.x/get-started/comprehensive/protect-services
+- https://docs.konghq.com/gateway/2.8.x/get-started/comprehensive/secure-services
+- https://docs.konghq.com/gateway/2.8.x/get-started/quickstart/configuring-a-service
+- https://docs.konghq.com/gateway/2.8.x/install-and-run/centos
+- https://docs.konghq.com/gateway/2.8.x/install-and-run/docker
+- https://docs.konghq.com/gateway/2.8.x/install-and-run/helm-quickstart-enterprise
+- https://docs.konghq.com/gateway/2.8.x/install-and-run/
+- https://docs.konghq.com/gateway/2.8.x/plan-and-deploy/default-ports
+- https://docs.konghq.com/gateway/2.8.x/plugin-development/access-the-datastore
+- https://docs.konghq.com/gateway/2.8.x/reference/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/2.8.x/support-policy
+- https://docs.konghq.com/gateway/changelog
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/manage-teams
+- https://docs.konghq.com/konnect/gateway-manager/backup-restore
+- https://docs.konghq.com/konnect/gateway-manager/control-plane-groups/how-to
+- https://docs.konghq.com/konnect/gateway-manager/declarative-config
+- https://docs.konghq.com/konnect/gateway-manager/kic
+- https://docs.konghq.com/konnect/getting-started/deploy-service
+- https://docs.konghq.com/kubernetes-ingress-controller/1.0.x/concepts/deployment
+- https://docs.konghq.com/kubernetes-ingress-controller/1.0.x/concepts/k4k8s-with-kong-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/1.0.x/concepts/security
+- https://docs.konghq.com/kubernetes-ingress-controller/1.0.x/deployment/k4k8s-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/1.0.x/deployment/kong-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/1.0.x/deployment/overview
+- https://docs.konghq.com/kubernetes-ingress-controller/1.0.x/guides/using-oidc-plugin
+- https://docs.konghq.com/kubernetes-ingress-controller/1.0.x/references/cli-arguments
+- https://docs.konghq.com/kubernetes-ingress-controller/1.0.x/references/plugin-compatibility
+- https://docs.konghq.com/kubernetes-ingress-controller/1.0.x/references/version-compatibility
+- https://docs.konghq.com/kubernetes-ingress-controller/1.1.x/concepts/deployment
+- https://docs.konghq.com/kubernetes-ingress-controller/1.1.x/concepts/k4k8s-with-kong-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/1.1.x/concepts/security
+- https://docs.konghq.com/kubernetes-ingress-controller/1.1.x/deployment/k4k8s-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/1.1.x/deployment/kong-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/1.1.x/deployment/overview
+- https://docs.konghq.com/kubernetes-ingress-controller/1.1.x/guides/using-oidc-plugin
+- https://docs.konghq.com/kubernetes-ingress-controller/1.1.x/references/cli-arguments
+- https://docs.konghq.com/kubernetes-ingress-controller/1.1.x/references/plugin-compatibility
+- https://docs.konghq.com/kubernetes-ingress-controller/1.1.x/references/version-compatibility
+- https://docs.konghq.com/kubernetes-ingress-controller/1.2.x/concepts/deployment
+- https://docs.konghq.com/kubernetes-ingress-controller/1.2.x/concepts/k4k8s-with-kong-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/1.2.x/concepts/security
+- https://docs.konghq.com/kubernetes-ingress-controller/1.2.x/deployment/k4k8s-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/1.2.x/deployment/kong-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/1.2.x/deployment/overview
+- https://docs.konghq.com/kubernetes-ingress-controller/1.2.x/guides/using-oidc-plugin
+- https://docs.konghq.com/kubernetes-ingress-controller/1.2.x/references/cli-arguments
+- https://docs.konghq.com/kubernetes-ingress-controller/1.2.x/references/plugin-compatibility
+- https://docs.konghq.com/kubernetes-ingress-controller/1.2.x/references/version-compatibility
+- https://docs.konghq.com/kubernetes-ingress-controller/1.3.x/concepts/deployment
+- https://docs.konghq.com/kubernetes-ingress-controller/1.3.x/concepts/k4k8s-with-kong-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/1.3.x/concepts/security
+- https://docs.konghq.com/kubernetes-ingress-controller/1.3.x/deployment/k4k8s-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/1.3.x/deployment/kong-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/1.3.x/deployment/overview
+- https://docs.konghq.com/kubernetes-ingress-controller/1.3.x/guides/using-oidc-plugin
+- https://docs.konghq.com/kubernetes-ingress-controller/1.3.x/references/cli-arguments
+- https://docs.konghq.com/kubernetes-ingress-controller/1.3.x/references/plugin-compatibility
+- https://docs.konghq.com/kubernetes-ingress-controller/1.3.x/references/version-compatibility
+- https://docs.konghq.com/kubernetes-ingress-controller/2.0.x/concepts/deployment
+- https://docs.konghq.com/kubernetes-ingress-controller/2.0.x/concepts/k4k8s-with-kong-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/2.0.x/concepts/security
+- https://docs.konghq.com/kubernetes-ingress-controller/2.0.x/deployment/k4k8s-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/2.0.x/deployment/kong-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/2.0.x/deployment/overview
+- https://docs.konghq.com/kubernetes-ingress-controller/2.0.x/guides/using-oidc-plugin
+- https://docs.konghq.com/kubernetes-ingress-controller/2.0.x/references/cli-arguments
+- https://docs.konghq.com/kubernetes-ingress-controller/2.0.x/references/plugin-compatibility
+- https://docs.konghq.com/kubernetes-ingress-controller/2.0.x/references/version-compatibility
+- https://docs.konghq.com/kubernetes-ingress-controller/2.1.x/concepts/deployment
+- https://docs.konghq.com/kubernetes-ingress-controller/2.1.x/concepts/k4k8s-with-kong-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/2.1.x/concepts/security
+- https://docs.konghq.com/kubernetes-ingress-controller/2.1.x/deployment/k4k8s-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/2.1.x/deployment/kong-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/2.1.x/deployment/overview
+- https://docs.konghq.com/kubernetes-ingress-controller/2.1.x/guides/using-oidc-plugin
+- https://docs.konghq.com/kubernetes-ingress-controller/2.1.x/references/cli-arguments
+- https://docs.konghq.com/kubernetes-ingress-controller/2.1.x/references/plugin-compatibility
+- https://docs.konghq.com/kubernetes-ingress-controller/2.1.x/references/version-compatibility
+- https://docs.konghq.com/kubernetes-ingress-controller/2.2.x/concepts/deployment
+- https://docs.konghq.com/kubernetes-ingress-controller/2.2.x/concepts/k4k8s-with-kong-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/2.2.x/concepts/security
+- https://docs.konghq.com/kubernetes-ingress-controller/2.2.x/deployment/k4k8s-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/2.2.x/deployment/kong-enterprise
+- https://docs.konghq.com/kubernetes-ingress-controller/2.2.x/deployment/overview
+- https://docs.konghq.com/kubernetes-ingress-controller/2.2.x/guides/using-oidc-plugin
+- https://docs.konghq.com/kubernetes-ingress-controller/2.2.x/references/cli-arguments
+- https://docs.konghq.com/kubernetes-ingress-controller/2.2.x/references/plugin-compatibility
+- https://docs.konghq.com/kubernetes-ingress-controller/2.2.x/references/version-compatibility
+
 ## Week 44
 
 ### [Fix: 2.8.1.3 changelog entry for aws-lambda plugin changes to match 3.0.0.0](https://github.com/Kong/docs.konghq.com/pull/6440) (2023-11-02)
@@ -527,7 +1441,6 @@ Changelog for Gateway EE 3.4.1.1 and OSS 3.4.2 releases.
 
 Support for Gateway 3.0 was removed in September, so we needed to update our support version docs to reflect that.
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 DOCU-3519
 
 #### Modified

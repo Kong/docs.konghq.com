@@ -11,7 +11,7 @@ Kong are proud to be a driving force behind the Kubernetes Gateway API standard.
 
 The `Ingress` resource will continue to be supported in {{ site.kic_product_name }}, but we highly recommend that new users adopt Gateway API resources such as `HTTPRoute`.
 
-## GatewayClass + Gateway
+## GatewayClass and Gateway
 
 The `GatewayClass` object performs the same duties as the `IngressClass` resource. A `GatewayClass` represents a set of Gateways that are managed by the same Ingress Controller. They share any values provided in the `GatewayClass.spec.parametersRef` which control how the Gateways are deployed.
 

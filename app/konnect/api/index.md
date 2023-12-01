@@ -7,15 +7,11 @@ disable_image_expand: true
 
 ## Base URLs
 
-There are two types of base URLs that are used in {{site.konnect_short_name}} APIs:
+{{site.konnect_short_name}} API base URLs differ based on the geo they are hosted in or if they are global. For a list of the API base URLs by geo, see [Ports and Network Requirements](/konnect/network/).
 
-* **Global**: `https://global.api.konghq.com`
+The global endpoint is used to manage geo-agnostic {{site.konnect_short_name}} entities that live in a global database. These APIs interact with entities that are not geo-specific and therefore do not have any regional boundaries. For example, identity management and IdP settings are all geo-agnostic configurations applied to the organization as a whole.
 
-* **Region specific**: `https://{REGION_CODE}.api.konghq.com`
-
-The global endpoint is used to manage region-agnostic {{site.konnect_short_name}} entities that live in a global database. These APIs interact with entities that are not region specific and therefore do not have any regional boundaries. For example, identity management and IdP settings are all region-agnostic configurations applied to the organization as a whole.
-
-The region-specific endpoints are used to manage {{site.konnect_short_name}} entities that live in a specific {{site.konnect_short_name}} region. These APIs interact with entities specific to a region and do not have the ability to cross regional boundaries. For example, control planes, data plane nodes, and API product listings are all region-specific entities and therefore must use the region-specific endpoint.
+The geo-specific endpoints are used to manage {{site.konnect_short_name}} entities that live in a specific {{site.konnect_short_name}} geo. These APIs interact with entities specific to a geo and do not have the ability to cross regional boundaries. For example, control planes, data plane nodes, and API product listings are all geo-specific entities and therefore must use the geo-specific endpoint. See [Geographic Regions](/konnect/geo/) for more information. 
 
 
 
