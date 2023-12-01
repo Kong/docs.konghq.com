@@ -42,6 +42,42 @@ konnect_cta_card: true
 
 </div>
 
+### Upgrade flowchart
+{% mermaid %}
+flowchart TD
+    A{Deployment type?} --> B(Traditional mode)
+    A{Deployment type?} --> C(Hybrid mode)
+    A{Deployment type?} --> D(DB-less mode)
+    A{Deployment type?} --> E(Konnect DP)
+    B ---> F{Enough hardware?}
+    C --> G(Upgrade CP first) & H(Upgrade DP second)
+    D ----> K([Rolling upgrade])
+    E ----> K
+    G --> F
+    F ---Yes--->I([Dual-cluster upgrade])
+    F ---No--->J([In-place upgrade])
+    H ---> K
+    click I "/gateway/latest/upgrade/rolling-upgrade/"
+    click J "/gateway/latest/upgrade/dual-cluster/"
+    click K "/gateway/latest/upgrade/in-place/"
+{% endmermaid %}
+
+### In-place upgrade
+{% mermaid %}
+flowchart TD
+    A[(Current 
+    database)] <-..-> X(Current control plane X) <-..- DP
+    Admin(No admin writes) -.X.- X & Y
+    B[(New 
+    database)] <--pg_restore---> Y(New control plane Y) <--- DP[fa:fa-layer-group Current DP nodes] <--- API(API requests)
+    linkStyle 2,3 stroke:#d44324,color:#d44324
+    style Admin fill:none,stroke:none,color:#d44324
+    style API stroke:none
+    style A stroke-dasharray:3
+    style X stroke-dasharray:3
+
+{% endmermaid %}
+
 ## Introducing {{ site.base_gateway }}
 
 
