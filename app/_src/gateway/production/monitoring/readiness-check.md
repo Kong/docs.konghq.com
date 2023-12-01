@@ -79,6 +79,9 @@ Example `kong.conf`:
 status_listen = 0.0.0.0:8100
 ```
 
+{:.note}
+> **Note:**  Readiness probes should be utilized on each node within the cluster, including standalone nodes; control plane nodes; and data plane nodes. Checking only one node in a cluser is insufficient.
+
 ## Using the Node Readiness endpoint
 
 Once you've enabled the Node Readiness endpoint, you can send a GET request to check the readiness of your {{site.base_gateway}} instance:
@@ -174,24 +177,11 @@ It is important to understand that a health check probe does not take into accou
 * If {{site.base_gateway}} is throwing errors due to third-party systems like DNS, cloud provider outages, network failures, etc.
 * If any upstream services are throwing errors or responding too slow
 
-## Health-checking a cluster of {{site.base_gateway}} nodes
-
-Mutliple nodes of {{site.base_gateway}} are often deployed for scalability and high-availability. The readiness probes should be performed on each node within the cluster, including standalone nodes; control plane nodes; and data plane nodes. Checking only one data plane in a cluster for example cannot offer reliable insight into the health of other data plane nodes in the same cluster.
-
-## Recommendations
-
-* Enable the [`status_listen`](/gateway/latest/reference/configuration/#status_listen) configuration parameter
-* Always health-check {{site.base_gateway}} and track the health in monitoring dashboards such as Datadog, Grafana, AppDynamics, etc.
-* Configure the load balancer or other components immediately fronting {{site.base_gateway}} to use the readiness probe
-* In the case of Kubernetes, configure both liveness and readiness probes for {{site.base_gateway}}, ensuring a load balancer uses the correct [Kubernetes endpoints](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to forward traffic to Kong pods
-* Set up alerting if needed based on the response to the health checks
-* Do not use the `kong health` CLI command to validate the overall health of the {{site.base_gateway}}, as this command only ensures that the Kong process is running and doesn't ensure the ability or validity of the configuration
-* Do not expect {{site.base_gateway}} readiness endpoint to respond with a `200 OK` immediately after startup, as it will always take a short time for Kong to load the first configuration and build all the necessary data structures before it can successfully proxy traffic
-
 ## See also
 
 For more information on Kong and related topics, check out the following resources:
 
+* [Health Check / Monitoring Overview](/gateway/latest/production/monitoring/)
 * [Kong Admin API Documentation](/gateway/latest/admin-api/)
 * [Get Started with {{site.kic_product_name}}](/kubernetes-ingress-controller/latest/deployment/overview/)
 * [Kong Helm Chart](https://github.com/Kong/charts/tree/main/charts/kong)
