@@ -800,6 +800,7 @@ components:
             telemetry_endpoint: https://acfe5f253f.tp0.konghq.com
             cluster_type: CLUSTER_TYPE_CONTROL_PLANE
             auth_type: pinned_client_certs
+            cloud_gateway: false
           created_at: '2022-11-04T20:10:06.927Z'
           updated_at: '2022-11-04T20:10:06.927Z'
     ControlPlaneSummary:
@@ -864,11 +865,16 @@ components:
                 - pinned_client_certs
                 - pki_client_certs
               readOnly: true
+            cloud_gateway:
+              type: boolean
+              description: Whether the Control Plane can be used for cloud-gateways.
+              readOnly: true
           required:
             - control_plane_endpoint
             - telemetry_endpoint
             - cluster_type
             - auth_type
+            - cloud_gateway
         created_at:
           type: string
           format: date-time
@@ -1372,6 +1378,7 @@ components:
           telemetry_endpoint: https://acfe5f253f.tp0.konghq.com
           cluster_type: CLUSTER_TYPE_CONTROL_PLANE
           auth_type: pinned_client_certs
+          cloud_gateway: false
     GroupConflictStatusExample:
       value:
         id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
@@ -1432,6 +1439,7 @@ components:
               telemetry_endpoint: https://9e0353434a.us.tp0.konghq.com
               cluster_type: CLUSTER_TYPE_CONTROL_PLANE
               auth_type: pinned_client_certs
+              cloud_gateway: false
             created_at: '2023-03-20T22:23:45.873Z'
             updated_at: '2023-03-30T16:17:55.073Z'
           - id: e4a1917c-bb26-4aa1-9a3e-50ee366f13db
@@ -1445,6 +1453,7 @@ components:
               telemetry_endpoint: https://05459046af.us.tp0.konghq.com
               cluster_type: CLUSTER_TYPE_CONTROL_PLANE
               auth_type: pinned_client_certs
+              cloud_gateway: false
             created_at: '2023-03-23T22:25:30.907Z'
             updated_at: '2023-03-30T16:18:12.067Z'
     UnauthorizedExample:
