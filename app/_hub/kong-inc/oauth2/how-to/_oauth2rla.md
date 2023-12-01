@@ -445,7 +445,7 @@ and advanced Redis support for greater performance. Ensure that you have install
      "created_at": 1699528815
    }   
    ```
-1. Send a proxy request to the `Oauth/token` endpoint three times within a span of 30 seconds. Ensure that you replace `<accesstoken>` with the access toke that you made a note of.
+1. Send a proxy request to the `Oauth/token` endpoint three times within a span of 30 seconds. Ensure that you replace `<accesstoken>` with the access token that you made a note of:
    ```bash
    curl -i -X POST 'http://localhost:8000/mockbin?apikey=123' \
    --header "authorization: Bearer <accesstoken>" \
