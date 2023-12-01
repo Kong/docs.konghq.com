@@ -369,16 +369,11 @@ and advanced Redis support for greater performance. Ensure that you have install
      --url http://localhost:8001/teamA/services/mockbin/plugins \
      --header 'Content-Type: application/json' \
      --header 'kong-admin-token: admin' \
-     --data '{
-    "name": "rate-limiting-advanced",
-    "config":
-   	{
-   		"limit":[3], 
-   		"window_size":[30], 
-   		"sync_rate": -1,
-   		"strategy": "local"
-   }
-   }' | jq   
+     --data "name=rate-limiting-advanced" \
+     --data "config.limit=3" \
+     --data "config.window_size=30" \
+     --data "config.sync_rate=-1" \
+     --data "config.strategy=local"
    ```
    The results should look like this:
    ```txt
