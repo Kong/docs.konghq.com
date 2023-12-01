@@ -3,7 +3,7 @@ nav_title: Set rate limit for Oauth2 tokens
 title: Set rate limit for Oauth2 tokens 
 ---
 
-You can limit the tokens that are created in Oauth2 plugin using the Rate Limiting Advanced (RLA) plugin.
+You can limit the tokens created in the OAuth2 plugin by using the Rate Limiting Advanced (RLA) plugin.
 
 {:.note}
 > **Note**: You can't configure a limit on the number of tokens that are created in the OAuth2 plugin.
