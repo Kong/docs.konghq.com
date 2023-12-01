@@ -52,7 +52,7 @@ with the name `secret-name`, create a JSON object in Azure Key Vault that contai
 }
 ```
 
-Note that Azure AD tenant ID, client ID, `vault_uri` and client secret need to be specified. 
+The Azure AD tenant ID, client ID, `vault_uri`, and client secret must be specified. 
 You can configure these values with environment variables before starting {{site.base_gateway}}:
 
 ```bash
