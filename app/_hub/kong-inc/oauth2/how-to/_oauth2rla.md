@@ -15,7 +15,7 @@ not necessary to complete the tasks of this tutorial. If you wish to proceed wit
 remove `jq` processing.
 * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced) <span class="badge enterprise"></span> 
 plugin. The advanced version provides additional features like support for the sliding window algorithm
-and advanced Redis support for greater performance. Ensure that you have installed <span class="badge enterprise"></span> version of Kong Gateway.
+and advanced Redis support for greater performance. Ensure that you have installed {{site.ee_product_name}}.
 
 ## Configure rate limit for Oauth2 tokens
 
