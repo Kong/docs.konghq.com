@@ -135,7 +135,8 @@ The algorithm counts the response `429` and the API is blocked indefinitely.
 This happens because the burst of traffic rate of 12 requests per minute is higher than the rate configured in the plugin, which is 10 requests per minute. 
 If the client reduces the number of requests, then you get the `response 200` again.
 
-When the client receives a `429 response`, it also receives a `Retry-After:<seconds>` header. Which means the client has to wait <seconds> before making a new request. If the client makes another request in less than this time, you get the `response 429` again. Otherwise, the window is reset.
+When the client receives a `429` response, it also receives a `Retry-After:<seconds>` header. This means the client has to wait some number of seconds before making a new request. 
+If the client makes another request in less than this time, you get the `429` response again. Otherwise, the window is reset.
 
 The _sliding window_ strategy ensures the API is consumed in the configured requests per second rate. This is not always true for the _fixed window_ strategy. Consider the same example with 10 requests per minute, if the client sends 10 requests at the 59th second of the window, then the window is reset and then it sends other 10 requests at the 1st second of the window, all the requests are accepted, making the acceptance rate higher than the configured in that time lapse. This does not happen with a _sliding window_ strategy, because the window "moves" during the last 60 seconds or the window size to ensure it meets the configured rate.
 
