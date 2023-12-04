@@ -20,15 +20,7 @@ Set `if_version` on links to the APIOps decK guide, as it was added with 1.24.x.
 
 ### [Update: Gateway Manager filtering release note](https://github.com/Kong/docs.konghq.com/pull/6578) (2023-11-30)
 
-Changelog for Gateway manager filtering
-
-
-
-
-<!-- What did you change and why? -->
 Added to changelog for gateway manager filtering
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -62,12 +54,7 @@ Also updating the supported versions for Optum plugins. Versions are based on th
 
 ### [fix: update deck schema URL](https://github.com/Kong/docs.konghq.com/pull/6565) (2023-11-27)
 
-Update the URL of the deck JSON schema. This now resides in another repository.
-
-### Checklist 
-
-- [x] Review label added <!-- (see below) -->
-- [x] PR pointed to correct branch (`main` for immediate publishing, or a release branch: e.g. `release/gateway-3.2`, `release/deck-1.17`)
+Updated the URL of the deck JSON schema. This now resides in another repository.
 
 #### Modified
 
@@ -75,10 +62,6 @@ Update the URL of the deck JSON schema. This now resides in another repository.
 
 
 ### [docs(mesh): try to clarify what an AccessRole type is](https://github.com/Kong/docs.konghq.com/pull/6563) (2023-11-27)
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -201,9 +184,7 @@ I'm not 💯 sure about these changes though, so please review them carefully.
   ```
   In KIC v3 there's no `deployment/overview`. I couldn't find a similar page though.
 
-This also ignores `linux.die.net`, for some reason it returns `HTTP_403` in the CI - not locally though - 
-
-cc @lena-larionova @mheap
+This also ignores `linux.die.net`, for some reason it returns `HTTP_403` in the CI - not locally though.
 
 #### Modified
 
@@ -219,10 +200,6 @@ Gateway's vault supports accessing versioning secrets by specifying version numb
 Note that this is not a new feature added recently, it exists long time ago, only the doc part is missing.
 
 https://konghq.atlassian.net/browse/FTI-5168
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -257,10 +234,7 @@ We've had a few customer support cases where customers are confused by a null re
 
 ### [remove Kubernetes requirements and put the OpenShift requirements](https://github.com/Kong/docs.konghq.com/pull/6546) (2023-11-27)
 
-<!-- What did you change and why? -->
 https://github.com/Kong/docs.konghq.com/issues/5688
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -293,14 +267,10 @@ Includes 1.1.0 changelog and assets:
 
 ### [docs(KIC): improved KIC ingress to gateway migration guide](https://github.com/Kong/docs.konghq.com/pull/6542) (2023-11-29)
 
-<!-- What did you change and why? -->
-
 The guide to migrate from Ingress API to Gateway API has been improved under the following aspects:
 - it is no longer necessary to build the i2gw tool. We have a release with binary that can be directly downloaded
 - further information about the types of resources converted has been added
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/gateway/3.0.x/production/deployment-topologies/db-less-and-declarative-config
@@ -313,12 +283,8 @@ The guide to migrate from Ingress API to Gateway API has been improved under the
 
 ### [Add reference page for required permissions to install KIC](https://github.com/Kong/docs.konghq.com/pull/6524) (2023-11-30)
 
-<!-- What did you change and why? -->
-
 Add a reference page to list the permissions required to install KIC when user do not have the super admin permission.
 Fixes https://github.com/Kong/kubernetes-ingress-controller/issues/5166. 
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Added
 
@@ -358,24 +324,6 @@ Adds clarification that the basic rate-limiting plugin does not support Redis Cl
  
 [Context](https://github.com/Kong/kong/issues/11846#issuecomment-1810350623)
 
-### Checklist 
-
-- [x] Review label added <!-- (see below) -->
-- [x] PR pointed to correct branch (`main` for immediate publishing, or a release branch: e.g. `release/gateway-3.2`, `release/deck-1.17`)
-
-
-<!-- !!! Only Kong employees can add labels due to a GitHub limitation. If you're an OSS contributor, thank you! The maintainers will label this PR for you !!! -->
-
-<!-- When raising a pull request, indicate what type of review you need with one of the following labels:
-
-    review:copyedit: Request for writer review.
-    review:general: Review for general accuracy and presentation. Does the doc work? Does it output correctly?
-    review:tech: Request for technical review for a docs platform change.
-    review:sme: Request for review from an SME (engineer, PM, etc).
-
-At least one of these labels must be applied to a PR or the build will fail.
--->
-
 #### Modified
 
 - https://docs.konghq.com/hub/kong-inc/rate-limiting/overview/
@@ -391,11 +339,6 @@ indeed field `secret` is missing you can read about this requirement at https://
 ![image](https://github.com/Kong/docs.konghq.com/assets/9593424/a864abca-4a63-4d7b-ac09-83e8f396fe55)
 
 This PR adds it in the required places.
-
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
