@@ -124,7 +124,7 @@ For example, consider this configuration:
 * Limit size = 10
 * Window size = 60 seconds
 
-In a _fixed window_ strategy you can predict when the window is going to be reset and if the client sends a burst of traffic. For example, 12 request per minute, then 10 requests are accepted with a `response 200` and 2 requests are rejected with `response 429` in a minute.
+With a fixed window type, you can predict when the window is going to be reset and if the client sends a burst of traffic. For example, if 12 requests arrive in one minute, 10 requests are accepted with a `200` response and two requests are rejected with a `429` response.
 
 If you configure a _sliding window_ strategy and the client sends a burst of 12 requests per minute, the first 10 requests are accepted with `response 200` and the rest of the requests are rejected with `response 429`. In this case, it appears to the client that the window is never reset. The algorithm counts the `response 429` and the "API is blocked forever". This happens because the burst of traffic rate of 12 requests per minute is higher than the rate configured in the plugin which is 10 requests per minute. If the client reduces the number of requests, then you get the `response 200` again.
 
