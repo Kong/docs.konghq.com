@@ -73,8 +73,7 @@ Choose your deployment mode:
 
 Here's a flow chart the summarizes how the decision process works:
 
-![Choosing a strategy based on the deployment mode](/assets/images/products/gateway/upgrade/choose-your-deployment.png)
-> _Figure 1: Choosing an upgrade strategy based on deployment type_
+{% include md/gateway/upgrade-flow.md %}
 
 See the following sections for breakdowns of each strategy.
 

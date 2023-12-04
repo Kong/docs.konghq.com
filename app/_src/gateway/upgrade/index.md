@@ -250,10 +250,9 @@ Carefully read the descriptions for each option to choose the upgrade strategy t
 * DB-less mode or hybrid mode data planes:
     * Rolling upgrade
 
-Here's a flow chart the breaks down how the decision process works:
+Here's a flowchart that breaks down how the decision process works:
 
-![Choosing a strategy based on the deployment mode](/assets/images/products/gateway/upgrade/choose-your-deployment.png)
-> _Figure 1: Choosing an upgrade strategy based on deployment type_
+{% include md/gateway/upgrade-flow.md %}
 
 See the following sections for breakdowns and links to each upgrade strategy guide.
 
