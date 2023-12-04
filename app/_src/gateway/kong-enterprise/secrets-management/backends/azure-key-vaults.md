@@ -1,7 +1,7 @@
 ---
 title: Azure Key Vaults
 badge: enterprise
-content-type: how-to
+content_type: how-to
 ---
 
 The current version of {{site.base_gateway}}'s implementation supports
@@ -12,6 +12,9 @@ ways:
 * Environment variables
 * Managed identity authentication
 
+{:.note}
+> {{site.base_gateway}} only supports the `Secrets` Azure vault type. It doesn't support the `Keys` and `Certificates` vault types.
+
 ## Configure Azure Key Vaults
 
 {{site.base_gateway}} uses a key to automatically authenticate
@@ -19,33 +22,25 @@ with the [Azure Key Vaults API](https://learn.microsoft.com/en-us/rest/api/keyva
 
 You need to specify the following values: 
 
-- Azure ActiveDirectory Tenant Id
-- Azure Client Id
+- Azure ActiveDirectory Tenant ID
+- Azure Client ID
 - `vault_URI`
-- Azure Client Secret - This value can only be configured as an environment variable.
+- Azure Client Secret: This value can only be configured as an environment variable.
 
 You can configure these values with environment variables before starting {{site.base_gateway}}:
 
 ```bash
 export KONG_VAULT_AZURE_VAULT_URI=https://my-vault.vault.azure.com
-export AZURE_TENANT_ID=tenant_id
-export AZURE_CLIENT_ID=client_id
-export AZURE_CLIENT_SECRET=client_secret
+export KONG_VAULT_AZURE_TENANT_ID=tenant_id
+export KONG_VAULT_AZURE_CLIENT_ID=client_id
+export KONG_VAULT_AZURE_CLIENT_SECRET=client_secret
 ```
-{:.note}
 
+{:.note}
 > With `Instance Managed Identity Token`, setting the environment variables isn't necessary.
 
 
 ### Examples
-
-Note that Azure's Key Vault support three different secret types.
-
-- Keys
-- Secrets
-- Certificates
-
-Kong only supports the `Secrets` type.
 
 To use a [Secret](https://learn.microsoft.com/en-us/azure/key-vault/general/about-keys-secrets-certificates)
 with the name `secret-name`, create a JSON object in Azure Key Vault that contains one or more properties:
@@ -57,13 +52,14 @@ with the name `secret-name`, create a JSON object in Azure Key Vault that contai
 }
 ```
 
-Note that Azure AD tenant Id, client Id, `vault_uri` and client secret need to be specified. You can configure these values with environment variables before starting {{site.base_gateway}}:
+The Azure AD tenant ID, client ID, `vault_uri`, and client secret must be specified. 
+You can configure these values with environment variables before starting {{site.base_gateway}}:
 
 ```bash
 export KONG_VAULT_AZURE_VAULT_URI=https://my-vault.vault.azure.com
-export AZURE_TENANT_ID=tenant_id
-export AZURE_CLIENT_ID=client_id
-export AZURE_CLIENT_SECRET=client_secret
+export KONG_VAULT_AZURE_TENANT_ID=tenant_id
+export KONG_VAULT_AZURE_CLIENT_ID=client_id
+export KONG_VAULT_AZURE_CLIENT_SECRET=client_secret
 ```
 
 ```bash
@@ -71,11 +67,11 @@ export AZURE_CLIENT_SECRET=client_secret
 {vault://azure/secret-name/snip}
 ```
 
-alternatively, you can configure the vault via the `vaults entity`.
+Alternatively, you can configure the vault via the vaults entity.
 
 ## Configuration via vaults entity
 
-Once the database is initialized, a Vault entity can be created
+Once the database is initialized, a vault entity can be created
 to encapsulate the provider and the required Azure Key Vault information:
 
 {% navtabs %}
