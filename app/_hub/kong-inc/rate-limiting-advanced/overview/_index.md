@@ -138,7 +138,13 @@ If the client reduces the number of requests, then you get the `response 200` ag
 When the client receives a `429` response, it also receives a `Retry-After:<seconds>` header. This means the client has to wait some number of seconds before making a new request. 
 If the client makes another request in less than this time, you get the `429` response again. Otherwise, the window is reset.
 
-The _sliding window_ strategy ensures the API is consumed in the configured requests per second rate. This is not always true for the _fixed window_ strategy. Consider the same example with 10 requests per minute, if the client sends 10 requests at the 59th second of the window, then the window is reset and then it sends other 10 requests at the 1st second of the window, all the requests are accepted, making the acceptance rate higher than the configured in that time lapse. This does not happen with a _sliding window_ strategy, because the window "moves" during the last 60 seconds or the window size to ensure it meets the configured rate.
+The sliding window type ensures the API is consumed in the configured requests per second rate. 
+This is not always true for the fixed window strategy. 
+
+Consider the same example with 10 requests per minute instead of 12. 
+Let's say the client sends all 10 requests in the 59th second of the window:
+* In a fixed window, the window resets a second later, and the client can send another 10 requests in the first second of the following window. All of the requests are accepted, making the acceptance rate higher than the configured rate in that two-second time period.
+* In a sliding window, the window moves during the last 60 seconds to ensure it meets the configured rate.
 
 #### Every transaction counts
 
