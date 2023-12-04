@@ -121,8 +121,8 @@ The default (and recommended) sliding window type ensures a resource is not cons
 
 For example, consider this configuration:
 
-Limit size = 10
-Window size = 60 seconds
+* Limit size = 10
+* Window size = 60 seconds
 
 In a _fixed window_ strategy you can predict when the window is going to be reset and if the client sends a burst of traffic. For example, 12 request per minute, then 10 requests are accepted with a `response 200` and 2 requests are rejected with `response 429` in a minute.
 
