@@ -1,12 +1,12 @@
-module Jekyll
-    class RenderMermaid < Liquid::Block
-  
-      def render(context)
-        text = super
+# frozen_string_literal: true
 
-        "<script type='module'>"\
-        "import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';"\
-        "mermaid.initialize({ 
+module Jekyll
+  class RenderMermaid < Liquid::Block
+    def render(context)
+      text = super
+      "<script type='module'>" \
+        "import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';" \
+        "mermaid.initialize({
           startOnLoad: true,
           theme: 'base',
           themeVariables: {
@@ -20,13 +20,11 @@ module Jekyll
             'fontSize': '15px',
             'lineColor': '#99b0c0'
             }
-          });"\
-        "</script>"\
-        "<pre class='mermaid'> #{text}  </pre>"
-    
-      end
-  
+        });" \
+      '</script>' \
+      "<pre class='mermaid'> #{text}  </pre>"
     end
   end
-  
-  Liquid::Template.register_tag('mermaid', Jekyll::RenderMermaid)
+end
+
+Liquid::Template.register_tag('mermaid', Jekyll::RenderMermaid)
