@@ -720,6 +720,10 @@ components:
           enum:
             - pinned_client_certs
             - pki_client_certs
+        cloud_gateway:
+          type: boolean
+          description: Whether this control-plane can be used for cloud-gateways.
+          example: false
         labels:
           $ref: '#/components/schemas/Labels'
       required:
@@ -1358,6 +1362,7 @@ components:
         name: Test Control Plane
         description: A test control plane for exploration.
         cluster_type: CLUSTER_TYPE_K8S_INGRESS_CONTROLLER
+        cloud_gateway: false
         labels:
           env: test
     UpdateControlPlaneRequestExample:
