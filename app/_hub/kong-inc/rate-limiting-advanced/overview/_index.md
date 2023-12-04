@@ -129,7 +129,11 @@ For example, consider this configuration:
 
 With a fixed window type, you can predict when the window is going to be reset and if the client sends a burst of traffic. For example, if 12 requests arrive in one minute, 10 requests are accepted with a `200` response and two requests are rejected with a `429` response.
 
-If you configure a _sliding window_ strategy and the client sends a burst of 12 requests per minute, the first 10 requests are accepted with `response 200` and the rest of the requests are rejected with `response 429`. In this case, it appears to the client that the window is never reset. The algorithm counts the `response 429` and the "API is blocked forever". This happens because the burst of traffic rate of 12 requests per minute is higher than the rate configured in the plugin which is 10 requests per minute. If the client reduces the number of requests, then you get the `response 200` again.
+If you use a sliding window, the first instance is the same: the client sends a burst of 12 requests per minute, 10 requests are accepted with a `200` response and two requests are rejected with a `429` response. 
+In this case, it appears to the client that the window is never reset.
+The algorithm counts the response `429` and the API is blocked indefinitely.
+This happens because the burst of traffic rate of 12 requests per minute is higher than the rate configured in the plugin, which is 10 requests per minute. 
+If the client reduces the number of requests, then you get the `response 200` again.
 
 When the client receives a `429 response`, it also receives a `Retry-After:<seconds>` header. Which means the client has to wait <seconds> before making a new request. If the client makes another request in less than this time, you get the `response 429` again. Otherwise, the window is reset.
 
