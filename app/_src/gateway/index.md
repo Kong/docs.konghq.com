@@ -42,26 +42,6 @@ konnect_cta_card: true
 
 </div>
 
-
-### Upgrade flowchart
-{% mermaid %}
-flowchart TD
-    A{Deployment type?} --> B(Traditional mode)
-    A{Deployment type?} --> C(Hybrid mode)
-    A{Deployment type?} --> D(DB-less mode)
-    A{Deployment type?} --> E(Konnect DP)
-    B ---> F{Enough hardware?}
-    C --> G(Upgrade CP first) & H(Upgrade DP second)
-    D ----> K([Rolling upgrade])
-    E ----> K
-    G --> F
-    F ---Yes--->I([Dual-cluster upgrade])
-    F ---No--->J([In-place upgrade])
-    H ---> K
-    click I "/gateway/latest/upgrade/rolling-upgrade/"
-    click J "/gateway/latest/upgrade/dual-cluster/"
-    click K "/gateway/latest/upgrade/in-place/"
-{% endmermaid %}
 ## Introducing {{ site.base_gateway }}
 
 {{site.base_gateway}} is a lightweight, fast, and flexible cloud-native API
