@@ -117,7 +117,7 @@ Two common use cases are:
 
 #### Other startegies   
 
-The _sliding window_ strategy ensures a resource is not consumed at a higher rate than the configured.
+The default (and recommended) sliding window type ensures a resource is not consumed at a higher rate than what is configured.
 
 For example, consider this configuration:
 
