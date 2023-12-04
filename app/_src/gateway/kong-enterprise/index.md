@@ -5,7 +5,7 @@ content_type: explanation
 ---
 
 {{site.ee_product_name}} is the scalable, secure, and flexible API management solution that extends {{site.base_gateway}}, the fastest, most adopted API gateway. 
-It adds enterprise plugins, a developer portal, analytics, advanced security features, GUI's, and 24/7 support. 
+It adds enterprise plugins, advanced security features, GUI's, and 24/7 support. 
 It is the only solution that helps you accelerate your cloud journey by managing, securing, and monitoring connections between applications across hybrid and multi-cloud architectures, to help you scale faster and boost developer productivity.
 
 ## Enterprise Plugins
