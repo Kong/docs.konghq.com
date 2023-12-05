@@ -111,7 +111,7 @@ and advanced Redis support for greater performance. Ensure that you have install
      "id": "ce5a18dc-e0e2-474a-b622-5352e3689770",
      "preserve_host": false,
      "hosts": null,
-     "name": "mockbin",
+     "name": "httpbin",
      "regex_priority": 0,
      "service": {
        "id": "741903b5-d952-47fb-97d6-de48156b6603"
