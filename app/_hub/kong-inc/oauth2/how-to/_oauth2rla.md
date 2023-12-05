@@ -258,11 +258,9 @@ and advanced Redis support for greater performance. Ensure that you have install
    ```bash
    curl --request POST -k \
   --url 'https://localhost:8443/mockbin/oauth2/token' \
-  --header 'Content-Type: multipart/form-data' \
-  --header 'kong-admin-token: admin' \
-  --form client_id=456 \
-  --form client_secret=789 \
-  --form grant_type=client_credentials | jq
+  --data "client_id=456" \
+  --data "client_secret=789" \
+  --data "grant_type=client_credentials"
    ```
    The results should look like this:
    ```txt
