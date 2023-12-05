@@ -154,6 +154,7 @@
 /gateway/VERSION/reference/external-plugins/: "/gateway/VERSION/plugin-development/pluginserver/go/"
 /gateway/VERSION/get-started/secure-services/: "/gateway/VERSION/get-started/key-authentication/"
 /gateway/VERSION/install/linux/os-support/: "/gateway/VERSION/support-policy/#supported-versions"
+/gateway/VERSION/install/kubernetes/deployment-options/: /gateway/VERSION/install/kubernetes/
 
 # KIC 3.0
 # No new page available
