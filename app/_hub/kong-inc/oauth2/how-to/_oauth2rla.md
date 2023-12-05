@@ -121,7 +121,7 @@ and advanced Redis support for greater performance. Ensure that you have install
      "response_buffering": true,
      "created_at": 1699526004,
      "paths": [
-       "/mockbin"
+       "/httpbin"
      ],
      "strip_path": true,
      "https_redirect_status_code": 426,
