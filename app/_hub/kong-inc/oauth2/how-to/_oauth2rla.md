@@ -351,8 +351,6 @@ and advanced Redis support for greater performance. Ensure that you have install
    ```bash
    curl --request POST \
      --url http://localhost:8001/teamA/services/mockbin/plugins \
-     --header 'Content-Type: application/json' \
-     --header 'kong-admin-token: admin' \
      --data "name=rate-limiting-advanced" \
      --data "config.limit=3" \
      --data "config.window_size=30" \
