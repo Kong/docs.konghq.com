@@ -66,11 +66,9 @@ and advanced Redis support for greater performance. Ensure that you have install
 1. Create a service named `httpbin`:
    ```bash
    curl --request POST \
-  --url http://localhost:8001/teamA/services \
-  --header 'Content-Type: multipart/form-data' \
-  --header 'kong-admin-token: <token>' \
-  --form name=mockbin \
-  --form url=http://mockbin.org/request | jq 
+    --url http://localhost:8001/teamA/services \
+    --data "name=httpbin" \
+    --data "url=http://httpbin.org/anything"
    ```
    The results should look like this:
    ```txt
