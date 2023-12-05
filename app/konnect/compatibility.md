@@ -41,9 +41,9 @@ To use [Mesh Manager](/konnect/mesh-manager/), you must also use a compatible ve
 
 There are three tiers of plugins available in {{site.konnect_saas}}:
 
-* **Free tier**
-* **Paid tier** 
-* **Premium tier** 
+* [**Free tier**](https://docs.konghq.com/hub/?tier=free&compatibility=konnect)
+* [**Paid tier**](https://docs.konghq.com/hub/?tier=paid&compatibility=konnect)
+* [**Premium tier**](https://docs.konghq.com/hub/?tier=premium&compatibility=konnect)
 
 
 If you're looking for supported network protocols and entity scopes, see [Plugin Compatibility](/hub/plugins/compatibility/) on the Plugin Hub.
