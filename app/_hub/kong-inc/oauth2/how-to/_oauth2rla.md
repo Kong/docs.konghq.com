@@ -306,7 +306,7 @@ and advanced Redis support for greater performance. Ensure that you have install
      "write_timeout": 60000
    }   
    ```
-1. Create a route named `oauthRoute` for the service name `Oauth`.
+1. Create a route named `oauthRoute` for the `Oauth` service:
    ```bash
    curl --request POST \
   --url http://localhost:8001/teamA/services/Oauth/routes \
