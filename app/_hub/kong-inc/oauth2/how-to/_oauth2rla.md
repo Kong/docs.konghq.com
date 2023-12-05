@@ -282,16 +282,12 @@ and advanced Redis support for greater performance. Ensure that you have install
    ```bash
   curl --request POST \
     --url http://localhost:8001/teamA/services \
-    --header 'Content-Type: application/json' \
-    --header 'Kong-Admin-Token: admin' \
-    --data '{
-  	"name": "Oauth",
-  	"retries": 0,
-  	"host": "localhost",
-  	"path": "/mockbin/oauth2/token",
-  	"port": 8443,
-    "protocol":"https"
-  }' | jq
+    --data "name=Oauth" \
+    --data "retries=0" \
+    --data "host=localhost" \
+    --data "path=/mockbin/oauth2/token" \
+    --data "port=8443" \
+    --data "protocol=https"
    ```
    The results should look like this:
    ```txt
