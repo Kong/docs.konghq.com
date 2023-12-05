@@ -2,6 +2,365 @@
 
 <!--vale off-->
 
+## Week 48
+
+### [fix: Broken links to APIOps guide](https://github.com/Kong/docs.konghq.com/pull/6583) (2023-11-30)
+
+Set `if_version` on links to the APIOps decK guide, as it was added with 1.24.x.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/install/kubernetes/openshift
+- https://docs.konghq.com/gateway/3.1.x/install/kubernetes/openshift
+- https://docs.konghq.com/gateway/3.2.x/install/kubernetes/openshift
+- https://docs.konghq.com/gateway/3.3.x/install/kubernetes/openshift
+- https://docs.konghq.com/gateway/3.4.x/install/kubernetes/openshift
+- https://docs.konghq.com/gateway/3.5.x/install/kubernetes/openshift
+
+
+### [Update: Gateway Manager filtering release note](https://github.com/Kong/docs.konghq.com/pull/6578) (2023-11-30)
+
+Added to changelog for gateway manager filtering
+
+#### Modified
+
+- https://docs.konghq.com/konnect/updates
+
+
+### [chore: Add missing search aliases and supported versions for 3rd party plugins](https://github.com/Kong/docs.konghq.com/pull/6576) (2023-11-29)
+
+Keep expecting to find third-party plugins by filtering on publisher name, but that doesn't work. 
+
+Adding 3rd party plugin publisher names as search aliases, as well as literal plugin names (eg `aws-request-signing`). 
+
+Also updating the supported versions for Optum plugins. Versions are based on the plugins' source code repos.
+
+#### Modified
+
+- https://docs.konghq.com/hub/TheLEGOGroup/aws-request-signing/_metadata.yml
+- https://docs.konghq.com/hub/amberflo/kong-plugin-amberflo/_metadata.yml
+- https://docs.konghq.com/hub/datadome/kong-plugin-datadome/_metadata.yml
+- https://docs.konghq.com/hub/imperva/imp-appsec-connector/_metadata.yml
+- https://docs.konghq.com/hub/moesif/kong-plugin-moesif/_metadata.yml
+- https://docs.konghq.com/hub/nonamesecurity/nonamesecurity-kongprevention/_metadata.yml
+- https://docs.konghq.com/hub/nonamesecurity/nonamesecurity-kongtrafficsource/_metadata.yml
+- https://docs.konghq.com/hub/optum/kong-response-size-limiting/_metadata.yml
+- https://docs.konghq.com/hub/optum/kong-service-virtualization/_metadata.yml
+- https://docs.konghq.com/hub/optum/kong-spec-expose/_metadata.yml
+- https://docs.konghq.com/hub/optum/kong-splunk-log/_metadata.yml
+- https://docs.konghq.com/hub/optum/kong-upstream-jwt/_metadata.yml
+- https://docs.konghq.com/hub/salt/salt/_metadata.yml
+
+
+### [fix: update deck schema URL](https://github.com/Kong/docs.konghq.com/pull/6565) (2023-11-27)
+
+Updated the URL of the deck JSON schema. This now resides in another repository.
+
+#### Modified
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/plugins/acl
+
+
+### [docs(mesh): try to clarify what an AccessRole type is](https://github.com/Kong/docs.konghq.com/pull/6563) (2023-11-27)
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.1.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.2.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.3.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.4.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.5.x/production/deployment-topologies/db-less-and-declarative-config
+
+
+### [chore(deps): bump kumahq/kuma-website from 31bc302b to 74af1337](https://github.com/Kong/docs.konghq.com/pull/6557) (2023-11-28)
+
+Auto upgrade PR log:
+
+74af13372ca829dbdc9ee75f554ed3887043f1b6 ci(.github): automatic sync of files in kumahq/.github (kumahq/kuma-website#1536)
+
+Triggered by [action](https://github.com/Kong/docs.konghq.com/actions/runs/7012347070).
+labels: skip-changelog,review:general
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.1.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.2.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.3.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.4.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.5.x/production/deployment-topologies/db-less-and-declarative-config
+
+
+### [Fix broken links](https://github.com/Kong/docs.konghq.com/pull/6553) (2023-11-27)
+
+Just ran it locally and got this:
+```json
+[
+  {
+    "page": "http://localhost:8888/konnect/gateway-manager/kic/",
+    "text": "Kong Ingress Controller Deployment",
+    "target": "http://localhost:8888/kubernetes-ingress-controller/latest/concepts/deployment/",
+    "reason": "HTTP_404"
+  },
+  {
+    "page": "http://localhost:8888/konnect/gateway-manager/kic/",
+    "text": "Using Kong Gateway Enterprise",
+    "target": "http://localhost:8888/kubernetes-ingress-controller/latest/guides/choose-gateway-image/",
+    "reason": "HTTP_404"
+  },
+  {
+    "page": "http://localhost:8888/gateway/latest/how-kong-works/routing-traffic/",
+    "text": "Router Expressions language",
+    "target": "http://localhost:8888/gateway/latest/reference/router-expressions-language/",
+    "reason": "HTTP_404"
+  },
+  {
+    "page": "http://localhost:8888/gateway/latest/production/monitoring/readiness-check/",
+    "text": "Get Started with Kong Ingress Controller",
+    "target": "http://localhost:8888/kubernetes-ingress-controller/latest/deployment/overview/",
+    "reason": "HTTP_404"
+  },
+  {
+    "page": "http://localhost:8888/gateway/3.5.x/how-kong-works/routing-traffic/",
+    "text": "Router Expressions language",
+    "target": "http://localhost:8888/gateway/latest/reference/router-expressions-language/",
+    "reason": "HTTP_404"
+  },
+  {
+    "page": "http://localhost:8888/gateway/3.5.x/production/monitoring/readiness-check/",
+    "text": "Get Started with Kong Ingress Controller",
+    "target": "http://localhost:8888/kubernetes-ingress-controller/latest/deployment/overview/",
+    "reason": "HTTP_404"
+  }
+]
+```
+
+I'm not 💯 sure about these changes though, so please review them carefully.
+
+*
+   ```json
+    {
+      "page": "http://localhost:8888/konnect/gateway-manager/kic/",
+      "text": "Kong Ingress Controller Deployment",
+      "target": "http://localhost:8888/kubernetes-ingress-controller/latest/concepts/deployment/",
+      "reason": "HTTP_404"
+    }
+  ```
+   [prod URL](https://docs.konghq.com/konnect/gateway-manager/kic/)
+    <img width="1185" alt="Screenshot 2023-11-23 at 13 52 17" src="https://github.com/Kong/docs.konghq.com/assets/715229/ccf30331-bf62-43c1-8ffd-0ab5877c3d4d">
+  I don't think that `/kubernetes-ingress-controller/VERSION/concepts/deployment/: /kubernetes-ingress-controller/VERSION/production/deployment-topologies/` is the right call here, I couldn't find anything remotely similar to it though. We might want to update the `Note` though.
+
+*
+  ``` json
+  {
+    "page": "http://localhost:8888/konnect/gateway-manager/kic/",
+    "text": "Using Kong Gateway Enterprise",
+    "target": "http://localhost:8888/kubernetes-ingress-controller/latest/guides/choose-gateway-image/",
+    "reason": "HTTP_404"
+  }
+  ```
+  This guide no longer exists in KIC v3.
+
+* 
+  ```json
+  {
+    "page": "http://localhost:8888/gateway/latest/how-kong-works/routing-traffic/",
+    "text": "Router Expressions language",
+    "target": "http://localhost:8888/gateway/latest/reference/router-expressions-language/",
+    "reason": "HTTP_404"
+  }
+  ```
+  `reference/router-expressions-language` was removed in [this PR](https://github.com/Kong/docs.konghq.com/pull/6437/files#diff-6a9b955367a5ba2f6c4ad05d0a6feb8ad5980ef1aa26806e074a53c5437c7cba) and most of the references were updated but not all.
+
+* 
+  ```json
+    {
+      "page": "http://localhost:8888/gateway/latest/production/monitoring/readiness-check/",
+      "text": "Get Started with Kong Ingress Controller",
+      "target": "http://localhost:8888/kubernetes-ingress-controller/latest/deployment/overview/",
+      "reason": "HTTP_404"
+    }
+  ```
+  In KIC v3 there's no `deployment/overview`. I couldn't find a similar page though.
+
+This also ignores `linux.die.net`, for some reason it returns `HTTP_403` in the CI - not locally though.
+
+#### Modified
+
+- https://docs.konghq.com/moved_urls.yml
+
+
+### [fix: add the missing part of kong gateway vault's secrets versioning description](https://github.com/Kong/docs.konghq.com/pull/6551) (2023-11-30)
+
+The PR adds the missing part of Kong Gateway Vault's secrets versioning description.
+
+Gateway's vault supports accessing versioning secrets by specifying version number as a fragment in the vault reference URL.
+
+Note that this is not a new feature added recently, it exists long time ago, only the doc part is missing.
+
+https://konghq.atlassian.net/browse/FTI-5168
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.1.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.2.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.3.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.4.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.5.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/plugins/acl
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/secrets-management/reference-format
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/secrets-management/reference-format
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/secrets-management/reference-format
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/secrets-management/reference-format
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/secrets-management/reference-format
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/secrets-management/reference-format
+
+
+### [Update: Listing a license requires license added via Admin API to begin with](https://github.com/Kong/docs.konghq.com/pull/6547) (2023-11-27)
+
+We've had a few customer support cases where customers are confused by a null response from the /licenses endpoint when they're not actually using the Admin API to load the license in the first place which is a requirement for this to work properly. When using an environment variable to set the license instead, the /licenses endpoint will not work for listing licenses. This PR is to make this clearer in the documentation.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.1.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.2.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.3.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.4.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.5.x/production/deployment-topologies/db-less-and-declarative-config
+
+
+### [remove Kubernetes requirements and put the OpenShift requirements](https://github.com/Kong/docs.konghq.com/pull/6546) (2023-11-27)
+
+https://github.com/Kong/docs.konghq.com/issues/5688
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.1.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.2.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.3.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.4.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.5.x/production/deployment-topologies/db-less-and-declarative-config
+
+
+### [KGO: v1.1.0 docs](https://github.com/Kong/docs.konghq.com/pull/6544) (2023-12-01)
+
+Includes 1.1.0 changelog and assets:
+
+**BLOCKED** by https://github.com/Kong/docs.konghq.com/pull/6518
+
+#### Added
+
+- https://docs.konghq.com/gateway-operator/1.0.x/reference/version-compatibility
+- https://docs.konghq.com/gateway-operator/1.1.x/reference/version-compatibility
+- https://docs.konghq.com/assets/gateway-operator/v1.1.0/all_controllers.yaml
+- https://docs.konghq.com/assets/gateway-operator/v1.1.0/crds.yaml
+- https://docs.konghq.com/assets/gateway-operator/v1.1.0/default.yaml
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/changelog
+
+
+### [docs(KIC): improved KIC ingress to gateway migration guide](https://github.com/Kong/docs.konghq.com/pull/6542) (2023-11-29)
+
+The guide to migrate from Ingress API to Gateway API has been improved under the following aspects:
+- it is no longer necessary to build the i2gw tool. We have a release with binary that can be directly downloaded
+- further information about the types of resources converted has been added
+ 
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.1.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.2.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.3.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.4.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.5.x/production/deployment-topologies/db-less-and-declarative-config
+
+
+### [Add reference page for required permissions to install KIC](https://github.com/Kong/docs.konghq.com/pull/6524) (2023-11-30)
+
+Add a reference page to list the permissions required to install KIC when user do not have the super admin permission.
+Fixes https://github.com/Kong/kubernetes-ingress-controller/issues/5166. 
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+
+
+### [feat: Portal Management API documentation](https://github.com/Kong/docs.konghq.com/pull/6519) (2023-11-28)
+
+For Reviewers this needs: 
+
+* Testing
+* Copy Edit
+* Narrative structure review
+
+Questions: 
+* The original draft has another section, I have some of it commented out, I felt like what I had ended pretty nicely and in combination with a blog and a spec could make a complete package but let me know if you don't agree. 
+* I tried to write a purpose statement, does it answer it?
+
+AC: 
+This doc helps portal administrators and developers understand how to integrate the API into their workflow for tasks like automating approvals, assigning permissions, and monitoring developer activity. 
+
+https://konghq.atlassian.net/browse/DOCU-3527
+
+#### Added
+
+- https://docs.konghq.com/konnect/dev-portal/konnect-portal-management-automation
+
+
+### [docs: clarify on rate-limit redis cluster support](https://github.com/Kong/docs.konghq.com/pull/6511) (2023-11-30)
+
+Adds clarification that the basic rate-limiting plugin does not support Redis Cluster mode.
+ 
+[Context](https://github.com/Kong/kong/issues/11846#issuecomment-1810350623)
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/rate-limiting/overview/
+
+
+### [fix: mention required secret field for JWT plugin in KIC how to](https://github.com/Kong/docs.konghq.com/pull/6502) (2023-11-30)
+
+Fix how to guide, it was reported by the user in the discussion
+
+https://github.com/Kong/kubernetes-ingress-controller/discussions/5146
+
+indeed field `secret` is missing you can read about this requirement at https://docs.konghq.com/hub/kong-inc/jwt/#create-a-jwt-credential see
+![image](https://github.com/Kong/docs.konghq.com/assets/9593424/a864abca-4a63-4d7b-ac09-83e8f396fe55)
+
+This PR adds it in the required places.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/secrets-management/reference-format
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/secrets-management/reference-format
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/secrets-management/reference-format
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/secrets-management/reference-format
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/secrets-management/reference-format
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/secrets-management/reference-format
+- https://docs.konghq.com/kubernetes-ingress-controller/1.0.x/guides/configure-acl-plugin
+- https://docs.konghq.com/kubernetes-ingress-controller/1.1.x/guides/configure-acl-plugin
+- https://docs.konghq.com/kubernetes-ingress-controller/1.2.x/guides/configure-acl-plugin
+- https://docs.konghq.com/kubernetes-ingress-controller/1.3.x/guides/configure-acl-plugin
+- https://docs.konghq.com/kubernetes-ingress-controller/2.0.x/guides/configure-acl-plugin
+- https://docs.konghq.com/kubernetes-ingress-controller/2.2.x/guides/configure-acl-plugin
+
 ## Week 47
 
 ### [style(expressions): fix typo in `performance.md`](https://github.com/Kong/docs.konghq.com/pull/6549) (2023-11-22)

@@ -5,13 +5,12 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.titl
 | {{site.title}}{% endcapture %}
 {% endunless %}
 
-{% assign page_description = site.description %}
-{% if layout.description %}
-  {% assign page_description = layout.description %}
-{% endif %}
-
 {% if include.description %}
   {% assign page_description = include.description %}
+{% elsif layout.description %}
+  {% assign page_description = layout.description %}
+{% else %}
+  {% assign page_description = site.description %}
 {% endif %}
 
 <head>
