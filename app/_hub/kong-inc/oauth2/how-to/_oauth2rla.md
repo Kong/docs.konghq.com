@@ -230,9 +230,9 @@ and advanced Redis support for greater performance. Ensure that you have install
 1. Provision new OAuth 2.0 credentials with `client_id` set to `456` and `client_secret` set to `789`:
    ```bash
    curl -i -X POST http://localhost:8001/teamA/consumers/user1/oauth2 \
---data "name=demo" \
---data "client_id=456" \
---data "client_secret=789" \
+     --data "name=demo" \
+     --data "client_id=456" \
+     --data "client_secret=789" \
 --data "redirect_uris=http://mockbin.org/"
    ```
    The results should look like this:
