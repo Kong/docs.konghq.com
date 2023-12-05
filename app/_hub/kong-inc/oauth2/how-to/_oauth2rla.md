@@ -18,7 +18,7 @@ and advanced Redis support for greater performance. Ensure that you have install
 
 ## Configure rate limit for Oauth2 tokens
 
-1. Create a workspace named `teamA`.
+1. Create a workspace named `teamA`:
 
    ```bash
    curl --request POST \
