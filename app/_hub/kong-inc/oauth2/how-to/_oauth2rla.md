@@ -310,10 +310,8 @@ and advanced Redis support for greater performance. Ensure that you have install
    ```bash
    curl --request POST \
   --url http://localhost:8001/teamA/services/Oauth/routes \
-  --header 'Content-Type: multipart/form-data' \
-  --header 'kong-admin-token: admin' \
-  --form name=oauthRoute \
-  --form paths=/oauth | jq
+  --data "name=oauthRoute" \
+  --data "paths=/oauth"
    ```
    The results should look like this:
 
