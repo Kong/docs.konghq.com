@@ -209,7 +209,7 @@ and advanced Redis support for greater performance. Ensure that you have install
      "id": "691d8afc-b098-4374-937b-b1c36c8ef084"
    }  
   ```
-1. Create a key with the value `123` for the consumer `user1`.
+1. Create a key with the value `123` for the consumer `user1`:
    ```bash
    curl -i -X POST localhost:8001/teamA/consumers/user1/key-auth \
 --data "key=123"
