@@ -88,35 +88,9 @@ otherwise, an error occurs:
 ```plaintext
 You must provide the same number of windows and limits
 ```
+### Window sizes
 
-## Implementation considerations
-
-### Limit by IP Address
-
-If limiting by IP address, it's important to understand how the IP address is determined. The IP address is determined by the request header sent to Kong from downstream. In most cases, the header has a name of `X-Real-IP` or `X-Forwarded-For`. 
-
-By default, Kong uses the header name `X-Real-IP`. If a different header name is required, it needs to be defined using the [real_ip_header](/gateway/latest/reference/configuration/#real_ip_header) Nginx property. Depending on the environmental network setup, the [trusted_ips](/gateway/latest/reference/configuration/#trusted_ips) Nginx property may also need to be configured to include the load balancer IP address.
-
-### Strategies
-
-The plugin supports three strategies.
-
-| Strategy    | Pros | Cons   |
-| --------- | ---- | ------ |
-| `local`   | Minimal performance impact. | Less accurate. Unless there's a consistent-hashing load balancer in front of Kong, it diverges when scaling the number of nodes.
-| `cluster` | Accurate, no extra components to support. | Each request forces a read and a write on the data store. Therefore, relatively, the biggest performance impact. |
-| `redis`   | Accurate, less performance impact than a `cluster` policy. | Needs a Redis installation. Bigger performance impact than a `local` policy. |
-
-Two common use cases are:
-
-1. _Every transaction counts_. The highest level of accuracy is needed. An example is a transaction with financial
-   consequences.
-2. _Backend protection_. Accuracy is not as relevant. The requirement is
-   only to protect backend services from overloading that's caused either by specific
-   users or by attacks.
-
-#### Other startegies   
-The Rate Limiting Advanced plugin supports the following window types:
+The Rate Limiting Advanced plugin supports these window types:
 
 * **Fixed window**: Fixed windows consist of buckets that are statically assigned to a definitive time range. Each request is mapped to only one fixed window based on its timestamp and will affect only that window’s counters.
 * **Sliding window** (default): A sliding window tracks the number of hits assigned to a specific key (such as an IP address, consumer, credential) within a given time window, taking into account previous hit rates to create a dynamically calculated rate.
@@ -145,6 +119,32 @@ Consider the same example with 10 requests per minute instead of 12.
 Let's say the client sends all 10 requests in the 59th second of the window:
 * In a fixed window, the window resets a second later, and the client can send another 10 requests in the first second of the following window. All of the requests are accepted, making the acceptance rate higher than the configured rate in that two-second time period.
 * In a sliding window, the window moves during the last 60 seconds to ensure it meets the configured rate.
+
+## Implementation considerations
+
+### Limit by IP Address
+
+If limiting by IP address, it's important to understand how the IP address is determined. The IP address is determined by the request header sent to Kong from downstream. In most cases, the header has a name of `X-Real-IP` or `X-Forwarded-For`. 
+
+By default, Kong uses the header name `X-Real-IP`. If a different header name is required, it needs to be defined using the [real_ip_header](/gateway/latest/reference/configuration/#real_ip_header) Nginx property. Depending on the environmental network setup, the [trusted_ips](/gateway/latest/reference/configuration/#trusted_ips) Nginx property may also need to be configured to include the load balancer IP address.
+
+### Strategies
+
+The plugin supports three strategies.
+
+| Strategy    | Pros | Cons   |
+| --------- | ---- | ------ |
+| `local`   | Minimal performance impact. | Less accurate. Unless there's a consistent-hashing load balancer in front of Kong, it diverges when scaling the number of nodes.
+| `cluster` | Accurate, no extra components to support. | Each request forces a read and a write on the data store. Therefore, relatively, the biggest performance impact. |
+| `redis`   | Accurate, less performance impact than a `cluster` policy. | Needs a Redis installation. Bigger performance impact than a `local` policy. |
+
+Two common use cases are:
+
+1. _Every transaction counts_. The highest level of accuracy is needed. An example is a transaction with financial
+   consequences.
+2. _Backend protection_. Accuracy is not as relevant. The requirement is
+   only to protect backend services from overloading that's caused either by specific
+   users or by attacks.
 
 #### Every transaction counts
 
