@@ -133,7 +133,7 @@ and advanced Redis support for greater performance. Ensure that you have install
      "snis": null
    }  
   ```
-1. Enable the Oauth2 plugin.
+1. Enable the OAuth2 plugin:
    ```bash
    curl --request POST \
   --url http://localhost:8001/teamA/services/mockbin/plugins \
