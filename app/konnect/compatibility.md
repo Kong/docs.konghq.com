@@ -39,8 +39,8 @@ To use [Mesh Manager](/konnect/mesh-manager/), you must also use a compatible ve
 
 ## Plugin compatibility
 
-Each [subscription tier](https://konghq.com/pricing) gives you
-access to a subset of plugins:
+There are three tiers of plugins available in {{site.konnect_saas}}:
+
 * **Free tier**
 * **Paid tier** 
 * **Premium tier** 
