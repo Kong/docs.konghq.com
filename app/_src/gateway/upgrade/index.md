@@ -252,7 +252,7 @@ Carefully read the descriptions for each option to choose the upgrade strategy t
 
 Here's a flowchart that breaks down how the decision process works:
 
-{% include md/gateway/upgrade-flow.md %}
+{% include_cached md/gateway/upgrade-flow.md %}
 
 See the following sections for breakdowns and links to each upgrade strategy guide.
 
@@ -310,15 +310,65 @@ CP nodes must be upgraded before DP nodes. CP nodes serve an admin-only role and
 So, you can select from the same upgrade strategies nominated for traditional mode (dual-cluster or in-place), 
 as described in figure 2 and figure 3 respectively.
 
-Using the dual-cluster strategy to upgrade a CP:
-![Dual-cluster hybrid upgrade workflow](/assets/images/products/gateway/upgrade/dual-cluster-hybrid-upgrade.png)
-> _Figure 2: Upgrading the CP using the dual-cluster strategy. The diagram shows the new CP Y, deployed alongside the current CP X, while current DP nodes X are still serving API requests._
+No Admin API write operations can be performed during a CP upgrade.
 
-Using an in-place strategy to upgrade a CP:
-![In-place hybrid upgrade workflow](/assets/images/products/gateway/upgrade/in-place-hybrid-upgrade.png)
-> _Figure 3: Upgrading the CP using the in-place strategy. The diagram shows how the current CP X is replaced with a new CP Y. The upgrade is mostly the same as that in figure 2, but the database is reused by the new CP Y, and current CP X is shut down._
+Upgrading the CP nodes using the dual-cluster strategy:
 
-From the two figures, you can see that DP nodes X remain connected to the current CP node X, or alternatively switch to the new CP node Y. 
+{% mermaid %}
+flowchart TD
+    DBA[(Current
+    database)]
+    DBB[(New 
+    database)]
+    CPX(Current control plane X)
+    Admin(No admin 
+    write operations)
+    CPY(New control plane Y)
+    DPX(fa:fa-layer-group Current data plane X nodes)
+    API(API requests)
+
+    DBA -.- CPX -..- DPX
+    Admin -.X.- CPX & CPY
+    DBB --pg_restore--- CPY -..- DPX
+    API--> DPX
+
+    style API stroke:none
+    style DBA stroke-dasharray:3
+    style CPX stroke-dasharray:3
+    style Admin fill:none,stroke:none,color:#d44324
+    linkStyle 2,3 stroke:#d44324,color:#d44324
+{% endmermaid %}
+
+> _Figure 2: The diagram shows a CP upgrade using the dual-cluster strategy._
+_The new CP Y is deployed alongside the current CP X, while current DP nodes X are still serving API requests._
+
+Upgrading the CP nodes using the in-place strategy:
+
+{% mermaid %}
+flowchart 
+    DBA[(Database)]
+    CPX(Current control plane X \n #40;inactive#41;)
+    Admin(No admin \n write operations)
+    CPY(New control plane Y)
+    DPX(fa:fa-layer-group Current data plane X nodes)
+    API(API requests)
+
+    DBA -..- CPX -..- DPX
+    Admin -.X.- CPX & CPY
+    DBA --"kong migrations up \n kong migrations finish"--- CPY -..- DPX
+    API--> DPX
+
+    style API stroke:none
+    style CPX stroke-dasharray:3
+    style Admin fill:none,stroke:none,color:#d44324
+    linkStyle 2,3 stroke:#d44324,color:#d44324
+{% endmermaid %}
+
+> _Figure 3: The diagram shows a CP upgrade using the in-place strategy, where the current CP X is directly replaced by a new CP Y._
+_DP nodes are gradually diverted to the new CP Y._
+_The database is reused by the new CP Y, and the current CP X is shut down once all nodes are migrated._
+
+From the two figures, you can see that DP nodes X remain connected to the current CP node X, or alternatively switch to the new CP node Y.
 
 {{site.base_gateway}} guarantees that new minor versions of CPs are compatible with old minor versions of the DP, 
 so you can temporarily point DP nodes X to the new CP node Y.
@@ -338,13 +388,77 @@ The only supported upgrade strategy for DP upgrades is the rolling upgrade.
 The following diagrams, figure 4 and 5, are the counterparts of figure 2 and 3 respectively. 
 
 Using the dual-cluster strategy with a rolling upgrade workflow:
-![Dual-cluster and rolling upgrade workflow](/assets/images/products/gateway/upgrade/dual-cluster-rolling-hybrid-upgrade.png)
-> _Figure 4: Upgrading using the dual-cluster and rolling strategies. The diagram shows the new CP Y, deployed alongside with current CP X, while current DP nodes X are still serving API requests._
-_In the image, the background color of the current CP X or current DB is white instead of blue, signaling that the CP part was already upgraded and might have been decommissioned._
+
+{% mermaid %}
+flowchart TD
+    DBX[(Current \n database)]
+    DBY[(New \n database)]
+    CPX(Current control plane X)
+    CPY(New control plane Y)
+    DPX(Current data planes X \n #40;not yet migrated#41;)
+    DPY(New data planes Y \n #40;in migration#41;)
+    API(API requests)
+    LB(Load balancer)
+    
+    subgraph A
+        DBX -.- CPX
+        DBY --- CPY
+        CPX & CPY -.- DPX
+        DPX -.90%..- LB
+        CPY --- DPY --10%---- LB
+        
+    end
+    subgraph B
+        API --> LB & LB & LB
+    end
+
+    linkStyle 6,7 stroke:#b6d7a8
+    style CPX stroke-dasharray:3,fill:#eff0f1ff,stroke:#c1c6cdff
+    style DPX stroke-dasharray:3
+    style DBX stroke-dasharray:3,fill:#eff0f1ff,stroke:#c1c6cdff
+    style API stroke:none
+    style A stroke:none,color:#fff
+    style B stroke:none,color:#fff
+{% endmermaid %}
+
+> _Figure 4: The diagram shows a DP upgrade using the dual-cluster and rolling strategies._
+_The diagram shows the new CP Y, deployed alongside with the current CP X, while current DP nodes X are still serving API requests. DP nodes are gradually switched over to the new CP, until all API traffic is migrated._
+_In the image, the background color of the current database and CP X is grey instead of white, signaling that the old CP is already upgraded and might have been decommissioned._
 
 Using the in-place cluster strategy with a rolling upgrade workflow:
-![In-place and rolling upgrade workflow](/assets/images/products/gateway/upgrade/in-place-rolling-hybrid-upgrade.png)
-> _Figure 5: Upgrade by in-place strategy and rolling strategy_
+
+{% mermaid %}
+flowchart 
+    DBA(Database)
+    CPX(Current control plane X \n #40;inactive#41;)
+    CPY(New control plane Y)
+    DPX(Current data planes X \n #40;not yet migrated#41;)
+    DPY(New data planes Y \n #40;in migration#41;)
+    API(API requests)
+    LB(Load balancer)
+
+    subgraph A
+        DBA -.X.- CPX
+        DBA --- CPY
+        CPX -.- DPX
+        CPY -.- DPX -.90%..- LB
+        CPY --- DPY --10%---- LB
+    end
+    subgraph B
+        API --> LB & LB & LB
+    end
+
+    linkStyle 0 stroke:#d44324,color:#d44324
+    linkStyle 6,7 stroke:#b6d7a8
+    style CPX stroke-dasharray:3,fill:#eff0f1ff,stroke:#c1c6cdff
+    style DPX stroke-dasharray:3
+    style A stroke:none,color:#fff
+    style B stroke:none,color:#fff
+{% endmermaid %}
+
+> _Figure 5: The diagram shows a DP upgrade using the in-place and rolling strategies._
+_The diagram shows one database serving both the current CP X and the new CP Y, while current DP nodes X are still serving API requests._
+_DP nodes are gradually switched over to the new CP until all API traffic is migrated._
 
 ## Prepation: Review breaking changes
 

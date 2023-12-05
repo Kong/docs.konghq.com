@@ -71,9 +71,9 @@ Choose your deployment mode:
 * [DB-less](#db-less-mode)
 * [Hybrid](#hybrid-mode)
 
-Here's a flow chart the summarizes how the decision process works:
+Here's a flowchart that breaks down how the decision process works:
 
-{% include md/gateway/upgrade-flow.md %}
+{% include_cached md/gateway/upgrade-flow.md %}
 
 See the following sections for breakdowns of each strategy.
 
