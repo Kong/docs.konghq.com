@@ -22,10 +22,8 @@ and advanced Redis support for greater performance. Ensure that you have install
 
    ```bash
    curl --request POST \
-  --url http://localhost:8001/workspaces \
-  --header 'Content-Type: multipart/form-data' \
-  --header 'kong-admin-token: <token>' \
-  --form name=teamA | jq
+    --url http://localhost:8001/workspaces \
+    --data "name=teamA"
    ```
    The results should look like this:
    ```txt
