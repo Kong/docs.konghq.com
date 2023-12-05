@@ -96,11 +96,9 @@ and advanced Redis support for greater performance. Ensure that you have install
 1. Create a route for the service:
    ```bash
    curl --request POST \
-  --url http://localhost:8001/teamA/services/mockbin/routes \
-  --header 'Content-Type: multipart/form-data' \
-  --header 'kong-admin-token: <token>' \
-  --form name=mockbin \
-  --form paths=/mockbin | jq
+    --url http://localhost:8001/teamA/services/httpbin/routes \
+    --data "name=httpbin" \
+    --data "paths=/httpbin"
    ```
   The results should look like this:
   ```txt
