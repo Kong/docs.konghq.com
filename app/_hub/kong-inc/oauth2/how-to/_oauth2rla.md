@@ -137,12 +137,10 @@ and advanced Redis support for greater performance. Ensure that you have install
    ```bash
    curl --request POST \
   --url http://localhost:8001/teamA/services/mockbin/plugins \
-  --header 'Content-Type: multipart/form-data' \
-  --header 'kong-admin-token: admin' \
-  --form name=oauth2 \
-  --form config.scopes=email \
-  --form config.enable_authorization_code=true \
-  --form config.enable_client_credentials=true | jq
+  --data "name=oauth2" \
+  --data "config.scopes=email" \
+  --data "config.enable_authorization_code=true" \
+  --data "config.enable_client_credentials=true"
    ```
    The results should look like this:
    ```txt
