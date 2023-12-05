@@ -87,7 +87,7 @@ and advanced Redis support for greater performance. Ensure that you have install
      "created_at": 1699525785,
      "host": "httpbin.org",
      "connect_timeout": 60000,
-     "path": "/request",
+     "path": "/anything",
      "read_timeout": 60000,
      "retries": 5,
      "write_timeout": 60000
