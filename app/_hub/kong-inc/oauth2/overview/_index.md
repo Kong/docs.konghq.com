@@ -10,6 +10,7 @@ Add an OAuth 2.0 authentication layer with one of the following grant flows:
 
 {:.important}
 > **Important**: 
+* This implementation of OAuth2 in Kong is for experimental or testing purposes only and is not recommended for production environments.
 * Once applied, any user with a valid credential can access the service.
   To restrict usage to only some of the authenticated users, also add the
   [ACL](/hub/kong-inc/acl/) plugin (not covered here) and create allowed or
