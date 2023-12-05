@@ -63,7 +63,7 @@ and advanced Redis support for greater performance. Ensure that you have install
      "id": "9e829c45-f478-4d7e-8c81-e5c9072548f3"
    }
    ```
-1. Create a service named `mockbin`.
+1. Create a service named `httpbin`:
    ```bash
    curl --request POST \
   --url http://localhost:8001/teamA/services \
