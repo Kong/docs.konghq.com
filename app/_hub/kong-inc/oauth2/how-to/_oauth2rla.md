@@ -272,7 +272,7 @@ and advanced Redis support for greater performance. Ensure that you have install
    ```
    Make a note of this `access_token` to send proxy requests to the service.
 
-1. Create a service named `Oauth` with `oauth2/token` endpoint.
+1. Create a service named `Oauth` with `oauth2/token` endpoint:
    ```bash
   curl --request POST \
     --url http://localhost:8001/teamA/services \
