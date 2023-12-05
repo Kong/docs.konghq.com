@@ -256,7 +256,7 @@ and advanced Redis support for greater performance. Ensure that you have install
       "client_secret":"789"
    }   
    ```
-1. Get a token for the client credentials.
+1. Get a token for the client credentials:
    ```bash
    curl --request POST -k \
   --url 'https://localhost:8443/mockbin/oauth2/token' \
