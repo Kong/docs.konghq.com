@@ -212,7 +212,7 @@ and advanced Redis support for greater performance. Ensure that you have install
 1. Create a key with the value `123` for the consumer `user1`:
    ```bash
    curl -i -X POST localhost:8001/teamA/consumers/user1/key-auth \
---data "key=123"
+     --data "key=123"
    ```
    The results should look like this:
    ```txt
