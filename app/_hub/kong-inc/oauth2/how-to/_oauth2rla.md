@@ -85,7 +85,7 @@ and advanced Redis support for greater performance. Ensure that you have install
      "protocol": "http",
      "enabled": true,
      "created_at": 1699525785,
-     "host": "mockbin.org",
+     "host": "httpbin.org",
      "connect_timeout": 60000,
      "path": "/request",
      "read_timeout": 60000,
