@@ -19,8 +19,9 @@ This quickstart tutorial covers:
 
 ## Prerequisites
 * [ROSA CLI installed](https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa_getting_started_iam/rosa-installing-rosa.html) or another OpenShift 4.12 cluster with the ability to create LoadBalancer type Kubernetes Services
+* [An AWS account with ROSA permissions enabled](https://docs.aws.amazon.com/ROSA/latest/userguide/security-iam-awsmanpol.html)
 * [kubectl CLI installed](https://kubernetes.io/docs/tasks/tools/)
-* [OpenShift CLI installed](https://docs.openshift.com/container-platform/4.11/cli_reference/openshift_cli/getting-started-cli.html)
+* [OpenShift Container Platform CLI installed](https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html)
 * [Helm 3 installed](https://helm.sh/docs/intro/install/)
 
 ## Install ROSA
