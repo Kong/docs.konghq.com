@@ -190,7 +190,7 @@ and advanced Redis support for greater performance. Ensure that you have install
      "ordering": null
    }
    ```
-1. Create a consumer named `user1`.
+1. Create a consumer named `user1`:
    ```bash
    curl --request POST \
   --url http://localhost:8001/teamA/consumers \
