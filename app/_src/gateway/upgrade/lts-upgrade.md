@@ -5,7 +5,8 @@ badge: enterprise
 
 {{site.base_gateway}} supports direct upgrades between long-term support (LTS) versions of {{site.ee_product_name}}.
 
-This guide walks you through upgrading from {{site.ee_product_name}} 2.8 LTS to {{site.ee_product_name}} 3.4 LTS, specificaly covering 2.8.0.0-2.8.4.1 up to 3.4.0.0.
+This guide walks you through upgrading from {{site.ee_product_name}} 2.8 LTS to {{site.ee_product_name}} 3.4 LTS, 
+specifically covering 2.8.0.0-2.8.4.1 up to 3.4.0.0.
 Carefully review each entry and make changes to your configuration accordingly.
 
 There are three upgrade strategies available for the LTS to LTS upgrade. 
