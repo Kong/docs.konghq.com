@@ -7,6 +7,8 @@ purpose: Learn how to perform a blue-green upgrade for Kong Gateway
 The blue-green upgrade strategy is a {{site.base_gateway}} upgrade option used primarily for traditional mode deployments 
 and for control planes in hybrid mode. 
 
+This guide refers to the old version as cluster X and the new version as cluster Y.
+
 Blue-green upgrades are derived from the in-place upgrade strategy. 
 This upgrade strategy benefits from the fact that `kong migrations up` leaves the database in a state 
 where it can serve requests by either current cluster X or the new cluster Y. 
@@ -54,12 +56,12 @@ _Traffic is gradually switched over to the new deployment, until all API traffic
 Compared to dual-cluster and in-place upgrades, blue-green upgrades consume less resources since there is no extra database required, 
 and still allow for no business downtime.
 
-Support from Kong for upgrades using this strategy is limited.
-Though blue-green upgrades are supported, it is nearly impossible to fully cover all migration tests, because we have to cover all 
-combinations, given the number of {{site.base_gateway}} versions, upgrade strategies, and deployment modes. 
-
 {:.important}
-> **Important**: In traditional mode, blue-green migration support is available starting in 2.8.2.x.
+> **Important**: Support from Kong for upgrades using this strategy is limited.
+Though blue-green upgrades are supported, it is nearly impossible to fully cover all migration tests, because we have to cover all 
+combinations, given the number of {{site.base_gateway}} versions, upgrade strategies, features adopted, and deployment modes. 
+> <br><br>
+> In traditional mode, blue-green upgrades are available starting in 2.8.2.x.
 If you have a {{site.base_gateway}} 2.8.x version earlier than 2.8.2.x, upgrade to at least 2.8.2.0 before starting any upgrades to the 3.x series.
 
 ## Prerequisites
@@ -70,8 +72,6 @@ If you have a {{site.base_gateway}} 2.8.x version earlier than 2.8.2.x, upgrade 
 * You can't perform [dual-cluster upgrades](/gateway/{{page.kong_version}}/upgrade/dual-cluster/) due to resource limitations.
 
 ## Upgrade using the blue-green method
-
-This guide refers to the old (current) version as cluster X and the new version as cluster Y.
 
 In the following procedure, `kong migrations finish` is only executed at the end of the upgrade, 
 after you have verified that the new cluster Y is operating as expected.
@@ -89,8 +89,9 @@ This is critical to guarantee data consistency between cluster X and cluster Y.
 3. Evaluate factors that may impact the upgrade, as described in [Upgrade considerations](/gateway/{{page.kong_version}}/upgrade/#preparation-upgrade-considerations/).
 You may have to consider customization of both `kong.conf` and {{site.base_gateway}} configuration data.
 
-4. Evaluate any [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/) that may 
-have happened between releases.
+4. Evaluate any changes that have happened between releases:
+    * [Breaking changes](/gateway/{{page.kong_version}}/breaking-changes/)
+    * [Full changelog](/gateway/changelog/)
 
 5. Deploy a new {{site.base_gateway}} cluster of version Y:
 
@@ -132,4 +133,4 @@ Write updates to {{site.base_gateway}} can now be performed, though we suggest y
 
 {:.note}
 > **Note**: This upgrade strategy is not the same thing as the [Blue-green (Canary) Deployment](/gateway/{{page.kong_version}}/production/canary/). 
-That process targets your upstream services upgrade and is not related to {{site.base_gateway}} upgrades.
+That process is meant for upgrading your upstream services and is not related to {{site.base_gateway}} upgrades.

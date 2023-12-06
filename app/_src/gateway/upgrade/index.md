@@ -7,7 +7,7 @@ purpose: This guide walks you through upgrade paths for {{site.base_gateway}} an
 Using this guide, prepare for a {{site.base_gateway}} upgrade and determine which {{site.base_gateway}} upgrade paths to use.
 
 This guide walks you through four available upgrade strategies and recommends the best strategy for each {{site.base_gateway}} deployment mode. 
-Additionally, we list some fundamental factors that play important roles in the upgrade process, and instruct how to back up and recover data.
+Additionally, it lists some fundamental factors that play important roles in the upgrade process, and explains how to back up and recover data.
 
 This guide uses the following terms in the context of {{site.base_gateway}}:
 * **Upgrade**: The overall process of switching from an older to a newer version of {{site.base_gateway}}. 
@@ -27,7 +27,7 @@ A {{site.base_gateway}} upgrade requires two phases of work: preparing for the u
 1. Determine your [upgrade path](#preparation-review-upgrade-paths) based on the release you're starting from and the release you're upgrading to.
 1. [Back up](#preparation-choose-a-backup-strategy) your database or your declarative configuration files.
 1. Choose the right [strategy for upgrading](#preparation-choose-an-upgrade-strategy-based-on-deployment-mode) based on your deployment topology.
-1. Review the [breaking changes](#prepation-review-breaking-changes) for the version you're upgrading to.
+1. Review the [breaking changes](#preparation-review-breaking-changes-and-changelogs) for the version you're upgrading to.
 1. Review any remaining [upgrade considerations](#preparation-upgrade-considerations).
 1. Test migration in a pre-production environment.
 
@@ -36,7 +36,7 @@ A {{site.base_gateway}} upgrade requires two phases of work: preparing for the u
 The actual execution of the upgrade is dependent on the type of deployment you have with {{site.base_gateway}}. 
 In this part of the upgrade journey, you will use the strategy you determined during the preparation phase.
 
-1. Execute your chosen upgrade strategy on dev.
+1. [Execute your chosen upgrade strategy on dev](#perform-the-upgrade).
 2. Move from dev to prod.
 3. Smoke test.
 4. Wrap up the upgrade or roll back and try again.
@@ -57,7 +57,7 @@ If you are running 1.x, upgrade to 2.1.0 first at a minimum, then upgrade to 3.0
 While you can upgrade directly to the latest version, be aware of any
 [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/)
 between the 2.x and 3.x series (both this version and prior versions) and in the
-open-source (OSS) and Enterprise Gateway changelogs. Since {{site.base_gateway}}
+open-source (OSS) and Enterprise Gateway [changelogs](/gateway/changelog/). Since {{site.base_gateway}}
 is built on an open-source foundation, any breaking changes in OSS affect all {{site.base_gateway}} packages.
 
 An upgrade path is subject to a wide spectrum of conditions, and there is not a one-size-fits-all way applicable to all customers, depending on the deployment modes, custom plugins, customers’ technical capabilities, hardware capacities, SLA, etc. Our engineers should discuss thoroughly and carefully with customers before taking any action.
@@ -75,7 +75,6 @@ By default, {{site.base_gateway}} has migration tests between adjacent versions 
 
     {{site.base_gateway}} plans to maintain LTS versions and guarantee upgrades between adjacent LTS versions. 
     The current LTS in the 2.x series is 2.8, and the current LTS in the 3.x series is 3.4.
-
     If you want to upgrade between the 2.8 and 3.4 LTS versions, 
     see the [LTS Upgrade guide](/gateway/{{page.kong_version}}/upgrade/lts-upgrade/).
 
@@ -197,7 +196,7 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 ### Upgrades from 3.1.0.0 or 3.1.1.1
 
 There is a special case if you deployed {{site.base_gateway}} in hybrid mode and the version you are using is 3.1.0.0 or 3.1.1.1.
-Kong removed the legacy WebSocket protocol, added a new WebSocket protocol between CP and DP in 3.1.0.0, 
+Kong removed the legacy WebSocket protocol between the CP and DP, replaced it with a new WebSocket protocol in 3.1.0.0,
 and added back the legacy one in 3.1.1.2. 
 So, upgrade to 3.1.1.2 first before moving forward to later versions. 
 
@@ -245,7 +244,7 @@ Carefully read the descriptions for each option to choose the upgrade strategy t
 * Traditional or hybrid mode control planes:
     * Dual-cluster upgrade
     * In-place upgrade
-    * Blue-green upgrade (derived from an in-place upgrade)
+    * Blue-green upgrade (not recommended)
 
 * DB-less mode or hybrid mode data planes:
     * Rolling upgrade
@@ -258,211 +257,27 @@ See the following sections for breakdowns and links to each upgrade strategy gui
 
 ### Traditional mode
 
-A traditional mode deployment is when all {{site.base_gateway}} components are running in one environment, 
-and there is no control plane/data plane separation.
+{% include_cached /md/gateway/db-less-upgrade.md %}
 
-You have two options when upgrading {{site.base_gateway}} in traditional mode:
-* [Dual-cluster upgrade](/gateway/{{page.kong_version}}/upgrade/dual-cluster-upgrade): 
-A new {{site.base_gateway}} cluster of version Y is deployed alongside the current version X, so that two 
-clusters serve requests concurrently during the upgrade process.
-* [In-place upgrade](/gateway/{{page.kong_version}}/upgrade/in-place-upgrade): An in-place upgrade reuses 
-the existing database and has to shut down cluster X first, then configure the new cluster Y to point 
-to the database.
-
-We recommend using a dual-cluster upgrade if you have the resources to run another cluster concurrently.
-Use the in-place method only if resources are limited, as it will cause business downtime.
+{:.important}
+> **Important**: While the [blue-green upgrade strategy](/gateway/{{page.kong_version}}/upgrade/blue-green/) is an option,
+we do not recommend it. Support from Kong for upgrades using this strategy is limited. 
+It is nearly impossible to fully cover all migration tests, because we have to cover all 
+combinations, given the number of {{site.base_gateway}} versions, upgrade strategies, features adopted, and deployment modes. 
 
 ### DB-less mode
 
-In DB-less mode, each independent {{site.base_gateway}} node loads a copy of declarative {{site.base_gateway}} 
-configuration data into memory without persistent database storage, so failure of some nodes doesn't spread to other nodes.
-
-Deployments in this mode should use the [Rolling Upgrade](/gateway/{{page.kong_version}}/upgrade/rolling-upgrade/) strategy. 
-You could parse the validity of the declarative YAML contents with version Y, using the `deck validate` command.
+{% include_cached /md/gateway/db-less-upgrade.md %}
 
 ### Hybrid mode
 
-Hybrid mode comprises of one or more control plane (CP) nodes, and one or more data plane (DP) nodes. 
-CP nodes use a database to store Kong configuration data, whereas DP nodes don't, since they get all of the needed information from the CP.
-The recommended upgrade process is a combination of different upgrade strategies for each type of node, CP or DP.
+{% include_cached /md/gateway/hybrid-upgrade.md %}
 
-The major challenge with a hybrid mode upgrade is the communication between the CP and DP. 
-As hybrid mode requires the minor version of the CP to be no less than that of the DP, you must upgrade CP nodes before DP nodes. 
-The upgrade must be carried out in two phases:
+## Preparation: Review breaking changes and changelogs
 
-1. First, upgrade the CP according to the recommendations in the section [Traditional Mode](#traditional-mode), 
-while DP nodes are still serving API requests.
-2. Next, upgrade DP nodes using the recommendations from the section [DB-less Mode](#db-less-mode). 
-Point the new DP nodes to the new CP to avoid version conflicts.
-
-The role decoupling feature between CP and DP enables DP nodes to serve API requests while upgrading CP. 
-With this method, there is no business downtime.
-
-Custom plugins (either your own plugins or third-party plugins that are not shipped with {{site.base_gateway}})
-need to be installed on both the control plane and the data planes in hybrid mode. 
-Install the plugins on the control plane first, and then the data planes.
-
-See the following sections for a breakdown of the options for hybrid mode deployments.
-
-#### Control planes
-
-CP nodes must be upgraded before DP nodes. CP nodes serve an admin-only role and require database support. 
-So, you can select from the same upgrade strategies nominated for traditional mode (dual-cluster or in-place), 
-as described in figure 2 and figure 3 respectively.
-
-No Admin API write operations can be performed during a CP upgrade.
-
-Upgrading the CP nodes using the dual-cluster strategy:
-
-{% mermaid %}
-flowchart TD
-    DBA[(Current
-    database)]
-    DBB[(New 
-    database)]
-    CPX(Current control plane X)
-    Admin(No admin 
-    write operations)
-    CPY(New control plane Y)
-    DPX(fa:fa-layer-group Current data plane X nodes)
-    API(API requests)
-
-    DBA -.- CPX -..- DPX
-    Admin -.X.- CPX & CPY
-    DBB --pg_restore--- CPY -..- DPX
-    API--> DPX
-
-    style API stroke:none
-    style DBA stroke-dasharray:3
-    style CPX stroke-dasharray:3
-    style Admin fill:none,stroke:none,color:#d44324
-    linkStyle 2,3 stroke:#d44324,color:#d44324
-{% endmermaid %}
-
-> _Figure 2: The diagram shows a CP upgrade using the dual-cluster strategy._
-_The new CP Y is deployed alongside the current CP X, while current DP nodes X are still serving API requests._
-
-Upgrading the CP nodes using the in-place strategy:
-
-{% mermaid %}
-flowchart 
-    DBA[(Database)]
-    CPX(Current control plane X \n #40;inactive#41;)
-    Admin(No admin \n write operations)
-    CPY(New control plane Y)
-    DPX(fa:fa-layer-group Current data plane X nodes)
-    API(API requests)
-
-    DBA -..- CPX -..- DPX
-    Admin -.X.- CPX & CPY
-    DBA --"kong migrations up \n kong migrations finish"--- CPY -..- DPX
-    API--> DPX
-
-    style API stroke:none
-    style CPX stroke-dasharray:3
-    style Admin fill:none,stroke:none,color:#d44324
-    linkStyle 2,3 stroke:#d44324,color:#d44324
-{% endmermaid %}
-
-> _Figure 3: The diagram shows a CP upgrade using the in-place strategy, where the current CP X is directly replaced by a new CP Y._
-_DP nodes are gradually diverted to the new CP Y._
-_The database is reused by the new CP Y, and the current CP X is shut down once all nodes are migrated._
-
-From the two figures, you can see that DP nodes X remain connected to the current CP node X, or alternatively switch to the new CP node Y.
-
-{{site.base_gateway}} guarantees that new minor versions of CPs are compatible with old minor versions of the DP, 
-so you can temporarily point DP nodes X to the new CP node Y.
-This lets you pause the upgrade process if needed, or conduct it over a longer period of time. 
-
-After the CP upgrade, cluster X can be decommissioned. You can delay this task to the very end of the DP upgrade.
-
-{:.important}
-> We do not recommend running a combination of new versions of CP nodes and old versions of DP nodes in a long-term production deployment. 
-This setup is meant to be temporary, to be used only during the upgrade process.
-
-#### Data planes
-
-Once the CP nodes are upgraded, you can move on to upgrade the DP nodes. 
-The only supported upgrade strategy for DP upgrades is the rolling upgrade.
-
-The following diagrams, figure 4 and 5, are the counterparts of figure 2 and 3 respectively. 
-
-Using the dual-cluster strategy with a rolling upgrade workflow:
-
-{% mermaid %}
-flowchart TD
-    DBX[(Current \n database)]
-    DBY[(New \n database)]
-    CPX(Current control plane X)
-    CPY(New control plane Y)
-    DPX(Current data planes X \n #40;not yet migrated#41;)
-    DPY(New data planes Y \n #40;in migration#41;)
-    API(API requests)
-    LB(Load balancer)
-    
-    subgraph A
-        DBX -.- CPX
-        DBY --- CPY
-        CPX & CPY -.- DPX
-        DPX -.90%..- LB
-        CPY --- DPY --10%---- LB
-        
-    end
-    subgraph B
-        API --> LB & LB & LB
-    end
-
-    linkStyle 6,7 stroke:#b6d7a8
-    style CPX stroke-dasharray:3,fill:#eff0f1ff,stroke:#c1c6cdff
-    style DPX stroke-dasharray:3
-    style DBX stroke-dasharray:3,fill:#eff0f1ff,stroke:#c1c6cdff
-    style API stroke:none
-    style A stroke:none,color:#fff
-    style B stroke:none,color:#fff
-{% endmermaid %}
-
-> _Figure 4: The diagram shows a DP upgrade using the dual-cluster and rolling strategies._
-_The diagram shows the new CP Y, deployed alongside with the current CP X, while current DP nodes X are still serving API requests. DP nodes are gradually switched over to the new CP, until all API traffic is migrated._
-_In the image, the background color of the current database and CP X is grey instead of white, signaling that the old CP is already upgraded and might have been decommissioned._
-
-Using the in-place cluster strategy with a rolling upgrade workflow:
-
-{% mermaid %}
-flowchart 
-    DBA(Database)
-    CPX(Current control plane X \n #40;inactive#41;)
-    CPY(New control plane Y)
-    DPX(Current data planes X \n #40;not yet migrated#41;)
-    DPY(New data planes Y \n #40;in migration#41;)
-    API(API requests)
-    LB(Load balancer)
-
-    subgraph A
-        DBA -.X.- CPX
-        DBA --- CPY
-        CPX -.- DPX
-        CPY -.- DPX -.90%..- LB
-        CPY --- DPY --10%---- LB
-    end
-    subgraph B
-        API --> LB & LB & LB
-    end
-
-    linkStyle 0 stroke:#d44324,color:#d44324
-    linkStyle 6,7 stroke:#b6d7a8
-    style CPX stroke-dasharray:3,fill:#eff0f1ff,stroke:#c1c6cdff
-    style DPX stroke-dasharray:3
-    style A stroke:none,color:#fff
-    style B stroke:none,color:#fff
-{% endmermaid %}
-
-> _Figure 5: The diagram shows a DP upgrade using the in-place and rolling strategies._
-_The diagram shows one database serving both the current CP X and the new CP Y, while current DP nodes X are still serving API requests._
-_DP nodes are gradually switched over to the new CP until all API traffic is migrated._
-
-## Prepation: Review breaking changes
-
-Review the [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/) for the release or releases that you are upgrading to. Make any preparations or adjustments as directed in the breaking changes.
+Review the [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/) and [changelogs](/gateway/changelog/) for the release or 
+releases that you are upgrading to. 
+Make any preparations or adjustments as directed in the breaking changes.
 
 ## Preparation: Upgrade considerations
 
@@ -471,7 +286,7 @@ There are some universal factors that may also influence the upgrade, regardless
 Selecting a strategy for the target deployment mode doesn't guarantee that you can start the upgrade immediately.
 You must also account for the following factors:
 
-* During the upgrade process, no changes can be made to the configuration database. 
+* During the upgrade process, no changes can be made to the database. 
 Until the upgrade is completed:
   * Don't write to the database via the Admin API.
   * Don't operate on the database directly.
@@ -496,9 +311,9 @@ Factors may include, but are not limited to:
 * If you have custom plugins, review the code against changelog and test the custom plugin using the new version Y.
 * If you have modified any Nginx templates like `nginx-kong.conf` and `nginx-kong-stream.conf`, also make those changes to the templates for the new version Y. 
 Refer to [Nginx Directives](/gateway/{{page.kong_version}}/reference/nginx-directives/) for a detailed customization guide.
-* If you're using {{site.ee_product_name}}, make sure to [apply the enterprise license] to the new Gateway cluster.
-* Always remember take a backup.
-{% if_version %}
+* If you're using {{site.ee_product_name}}, make sure to [apply the enterprise license](/gateway/{{page.kong_version}}/licenses/deploy/) to the new Gateway cluster.
+* Always remember take a [backup](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/).
+{% if_version gte:3.4.x %}
 * Cassandra DB support has been removed from {{site.base_gateway}} with 3.4.0.0.
 Migrate to PostgreSQL according to the [Cassandra to PostgreSQL Migration Guidelines](/gateway/{{page.kong_version}}/migrate-cassandra-to-postgres/).
 {% endif_version %}

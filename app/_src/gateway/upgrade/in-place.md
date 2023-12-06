@@ -8,6 +8,7 @@ The in-place upgrade strategy is a {{site.base_gateway}} upgrade option used pri
 
 In comparison to dual-cluster upgrades, the in-place upgrade uses less resources, but causes business downtime.
 
+This guide refers to the old version as cluster X and the new version as cluster Y.
 For this upgrade method, you have to shut down cluster X, then configure the new cluster Y to point to the database.
 
 {% mermaid %}
@@ -35,8 +36,10 @@ There is business downtime as cluster X is stopped during the upgrade process. Y
 
 {:.important}
 > **Important**: We do not recommend using this strategy unless {{site.base_gateway}} is deployed under 
-an extreme resource-constrained environment, or unless you are not able to obtain new resources in a 
-timely manner for a dual-cluster upgrade. 
+an extremely resource-constrained environment, or unless you are not able to obtain new resources in a 
+timely manner for a dual-cluster upgrade.
+> <br><br>
+> The current cluster X can be substituted in place with the new cluster Y.
 However, this strategy does not prevent you from deploying the new cluster Y on a different machine.
 
 ## Prerequisites
@@ -46,8 +49,6 @@ However, this strategy does not prevent you from deploying the new cluster Y on 
 * You can't perform [dual-cluster upgrades](/gateway/{{page.kong_version}}/upgrade/dual-cluster/) due to resource limitations.
 
 ## Upgrade using the in-place method
-
-This guide refers to the old version as cluster X and the new version as cluster Y.
 
 {:.note}
 > The following steps are intended as a guideline.
@@ -62,10 +63,12 @@ This is critical to guarantee data consistency between cluster X and cluster Y.
 3. Evaluate factors that may impact the upgrade, as described in [Upgrade considerations](/gateway/{{page.kong_version}}/upgrade/#preparation-upgrade-considerations/).
 You may have to consider customization of both `kong.conf` and {{site.base_gateway}} configuration data.
 
-4. Evaluate any [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/) that may 
-have happened between releases.
+4. Evaluate any changes that have happened between releases:
+    * [Breaking changes](/gateway/{{page.kong_version}}/breaking-changes/)
+    * [Full changelog](/gateway/changelog/)
 
-5. Stop the {{site.base_gateway}} nodes of the old cluster X but keep the database running.
+5. Stop the {{site.base_gateway}} nodes of the old cluster X but keep the database running. 
+This will create a period of downtime until new nodes are deployed.
 
 6. Install a new cluster running version Y as instructed in the 
     [{{site.base_gateway}} Installation Options](/gateway/{{page.kong_version}}/install/) and 

@@ -5,11 +5,13 @@ purpose: Learn how to perform a dual-cluster upgrade for Kong Gateway
 ---
 
 The dual-cluster upgrade strategy is a {{site.base_gateway}} upgrade option used primarily for traditional 
-mode deployments and for control planes in hybrid mode. A dual-cluster upgrade 
+mode deployments and for control planes in hybrid mode.
+
+This guide refers to the old version as cluster X and the new version as cluster Y.
 
 With a dual-cluster upgrade, you deploy a new cluster of version Y alongside the current version X, 
 so that two clusters serve requests concurrently during the upgrade process. 
-As you add nodes, you will gradually adjust the traffic ratio between the two clusters to 
+As you add {{site.base_gateway}} nodes, you will gradually adjust the traffic ratio between the two clusters to 
 switch traffic over from the old cluster to the new one.
 
 {% mermaid %}
@@ -52,17 +54,15 @@ _A new database serves the new deployment._
 _Traffic is gradually switched over to the new deployment, until all API traffic is migrated._
 
 This method has limitations on automatically generated runtime metrics that rely on the database. 
-For example, if the Rate-Limiting-Advanced (RLA) plugin is configured to store request counters in 
+During the upgrade, some runtime metrics (for example, the number of requests) are sent to two databases separately.
+Since the metrics between the databases are not synced, metrics will not be accurate for the duration of the upgrade.
+
+For example, if the Rate Limiting Advanced (RLA) plugin is configured to store request counters in 
 the database, the counters between database X and database Y are not synchronized. 
-The impact scope depends on the `window_size` parameter of the plugin. 
-{% if_version eq:3.4.x %}
-Similarly, the same limitation applies to Vitals if you have a large amount of buffered metrics in 
-PostgreSQL.
-{% endif_version %}
-{% if_version lte:3.3.x %}
+The impact scope depends on the `window_size` parameter of the plugin.
+
 Similarly, the same limitation applies to Vitals if you have a large amount of buffered metrics in 
 PostgreSQL or Cassandra.
-{% endif_version %}
 
 ## Prerequisites
 
@@ -72,8 +72,6 @@ PostgreSQL or Cassandra.
 
 ## Upgrade using the dual-cluster method
 
-This guide refers to the old version as cluster X and the new version as cluster Y.
-
 {:.note}
 > The following steps are intended as a guideline.
 The exact execution of these steps will vary depending on your environment. 
@@ -81,7 +79,7 @@ The exact execution of these steps will vary depending on your environment.
 1. Stop any {{site.base_gateway}} configuration updates (e.g. Admin API calls). 
 This is critical to guarantee data consistency between cluster X and cluster Y.
 
-    To keep data consistency between the two clusters, you must not execute any write operations through Admin API, Kong Manager, or direct database updates. 
+    To keep data consistency between the two clusters, you must not execute any write operations through the Admin API, Kong Manager, decK, or direct database updates. 
     This upgrade strategy is the safest of all available strategies and ensures that there is no planned business downtime during the upgrade process.
 
 2. Back up data from the current cluster Y by following the 
@@ -90,14 +88,14 @@ This is critical to guarantee data consistency between cluster X and cluster Y.
 3. Evaluate factors that may impact the upgrade, as described in [Upgrade considerations](/gateway/{{page.kong_version}}/upgrade/#preparation-upgrade-considerations/).
 You may have to consider customization of both `kong.conf` and {{site.base_gateway}} configuration data.
 
-4. Evaluate any [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/) that may 
-have happened between releases.
+4. Evaluate any changes that have happened between releases:
+    * [Breaking changes](/gateway/{{page.kong_version}}/breaking-changes/)
+    * [Full changelog](/gateway/changelog/)
 
 5. Deploy a new {{site.base_gateway}} cluster of version Y:
 
     1. Install a new {{site.base_gateway}} cluster running version Y as instructed in the 
-    [{{site.base_gateway}} Installation Options](/gateway/{{page.kong_version}}/install/) and 
-    point it at the existing database for cluster X.
+    [{{site.base_gateway}} Installation Options](/gateway/{{page.kong_version}}/install/).
 
     2. Install a new database of the same version.
 

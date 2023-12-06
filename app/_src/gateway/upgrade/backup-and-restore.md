@@ -22,7 +22,7 @@ Revise the methods as necessary to fit your infrastructure, deployment, and busi
 Kong ships a tool named [decK](/deck/), which supports managing {{site.base_gateway}} entities in the declarative format. For database-backed deployments, backups taken with this tool serve as an extra safeguard layer. If the database backup or restore corrupts the database, you can fall back to declarative files for restoring data.
 
 * In **traditional and hybrid modes**, decK requires that the database is ready for data export and import. To import or export data using decK, ensure the user and password are initialized, and the database is bootstrapped.
-* In **DB-less mode**, decK is the only backup method, as configuration is already managed declaratively.
+* In **DB-less mode**, decK is not supported, as it requires the Admin API to function.
 
 However, decK has its limitations:
 
@@ -35,7 +35,7 @@ However, decK has its limitations:
 * **Entities managed by decK**: decK does not manage Enterprise-only entities, like RBAC roles, credentials, keyring, licence, etc. Configure these security related entities separately using Admin API or Kong Manager.
 See the reference for [Entities managed by decK](/deck/latest/reference/entities/) for a full list.
 
-Due to these limitations, we recommend always using the [database dump method](#database-backup) in deployments using a database.
+Due to these limitations, we recommend prioritizing the [database native method](#database-backup) in deployments using a database.
 
 ## Backup Gateway entities
 
@@ -54,6 +54,9 @@ pg_dump -U kong -d kong -F d -f kongdb_backup_20230816
 Use the CLI option `-d` to specify the database (for example, `kong`) to export, especially when the PostgreSQL instance also serves applications other than {{site.base_gateway}}.
 
 ### Declarative backup
+
+{% navtabs %}
+{% navtab Traditional or hybrid mode %}
 
 1. To back up data with decK, first make sure it successfully connects to {{site.base_gateway}}:
 
@@ -78,6 +81,14 @@ You can back up a particular workspace or all workspaces at once:
 
     Store the resulting file or files in a safe location.
 
+{% endnavtab %}
+{% navtab DB-less mode %}
+
+Make a copy of your declarative configuration file (`kong.yml` by default) and store it in a safe place.
+
+{% endnavtab %}
+{% endnavtabs %}
+
 ## Restore Gateway entities
 
 ### Database restore
@@ -97,9 +108,13 @@ For example, for PostgreSQL:
     pg_database = kong
     ```
 
-3. Bootstrap database entities by running `kong migrations bootstrap`.
+3. Bootstrap database entities using the `migrations` command. 
+Refer to the [`kong migrations` CLI reference](/gateway/{{page.kong_version}}/reference/cli/#kong-migrations) 
+for more information.
 
-    Refer to the [`kong migrations` CLI reference](/gateway/{{page.kong_version}}/reference/cli/#kong-migrations) for more information.
+    ```sh
+    kong migrations bootstrap
+    ```
 
 4. You can now restore the data using the utility `pg_restore`:
 
@@ -141,7 +156,7 @@ configuration data and there is no other way to recover it.
 
 For technical details, refer to the [manual backup method](/gateway/latest/kong-enterprise/db-encryption/#manual-export-and-manual-import) and the [automatic backup method](/gateway/latest/kong-enterprise/db-encryption/#automatic-backup-and-manual-recovery).
 
-## kong.conf backup
+## Other files
 
 Manually back up the following files:
 

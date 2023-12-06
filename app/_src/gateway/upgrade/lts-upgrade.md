@@ -5,12 +5,17 @@ badge: enterprise
 
 {{site.base_gateway}} supports direct upgrades between long-term support (LTS) versions of {{site.ee_product_name}}.
 
-This guide walks you through upgrading from {{site.ee_product_name}} 2.8.x.x LTS to {{site.ee_product_name}} 3.4.x.x LTS. It presents three available upgrade strategies, nominating the best applicable strategy for each deployment mode {{site.base_gateway}} supports. Additionally, we list some fundamental factors that play important roles in the upgrade process, and also instruct how to back up and recover data.
+This guide walks you through upgrading from {{site.ee_product_name}} 2.8 LTS to {{site.ee_product_name}} 3.4 LTS, specificaly covering 2.8.0.0-2.8.4.1 up to 3.4.0.0.
+Carefully review each entry and make changes to your configuration accordingly.
+
+There are three upgrade strategies available for the LTS to LTS upgrade. 
+This guide nominates the best applicable strategy for each deployment mode that {{site.base_gateway}} supports. 
+Additionally, it lists some fundamental factors that play important roles in the upgrade process, and explains how to back up and recover data.
 
 This guide uses the following terms in the context of {{site.base_gateway}}:
 * **Upgrade**: The overall process of switching from an older to a newer version of {{site.base_gateway}}. 
 * **Migration**: The migration of your data store data into a new environment. 
-For example, the process of moving 2.8.x data from an old PostgreSQL instance to a new one for 3.4.x is referred to as database migration.
+For example, the process of moving 2.8 data from an old PostgreSQL instance to a new one for 3.4 is referred to as database migration.
 
 To make sure your upgrade is successful, carefully review all the steps in this guide. It’s very important to understand all the preparation steps and choose the recommended upgrade path based on your deployment type.
 
@@ -20,9 +25,9 @@ To make sure your upgrade is successful, carefully review all the steps in this 
 ## Prerequisites
 
 * Starting from 3.4, Cassandra is not supported. 
-If you are using Cassandra as your data store, migrate off of Cassandra first and upgrade second.
-* [Review KIC upgrade compatibility](/kubernetes-ingress-controller/latest/guides/upgrade-kong-3x/)
-* decK upgrade compatibility? <!-- where is this? -->
+If you're using Cassandra as your data store, [migrate off of Cassandra](/gateway/{{page.kong_version}}/migrate-cassandra-to-postgres/) first and upgrade second.
+* [Review KIC upgrade compatibility](/kubernetes-ingress-controller/latest/guides/upgrade-kong-3x/).
+* If you're using decK, [upgrade it to the latest version](/deck/latest/installation/).
 
 Read this document thoroughly to successfully complete the upgrade process, as it includes all the necessary operational knowledge for the upgrade.
 
@@ -30,7 +35,7 @@ Read this document thoroughly to successfully complete the upgrade process, as i
 
 **Preparation phase**
 
-There are a number of steps you must complete before upgrading to {{site.base_gateway}} 3.4.x.x LTS:
+There are a number of steps you must complete before upgrading to {{site.base_gateway}} 3.4 LTS:
 
 1. Work through any listed prerequisites.
 1. [Back up](#preparation-choose-a-backup-strategy) your database or your declarative configuration files.
@@ -51,7 +56,7 @@ In this part of the upgrade journey, you will use the strategy you determined du
 
 Now, let's move on to preparation, starting with your backup options.
 
-## Prepation: Choose a backup strategy
+## Preparation: Choose a backup strategy
 
 The following instructions lay out how to back up your configuration for each supported deployment type. This is an important step prior to upgrading. Each supported deployment mode has different instructions for backup.
 
@@ -79,16 +84,7 @@ See the following sections for breakdowns of each strategy.
 
 ### Traditional mode
 
-A traditional mode deployment is when all {{site.base_gateway}} components are running in one environment, 
-and there is no control plane/data plane separation.
-
-You have two options when upgrading {{site.base_gateway}} in traditional mode:
-* [Dual-cluster upgrade](#dual-cluster-upgrade): 
-A new {{site.base_gateway}} cluster of version Y is deployed alongside the current version X, so that two 
-clusters serve requests concurrently during the upgrade process.
-* [In-place upgrade](#in-place-upgrade): An in-place upgrade reuses 
-the existing database and has to shut down cluster X first, then configure the new cluster Y to point 
-to the database.
+{% include_cached /md/gateway/db-less-upgrade.md %}
 
 We recommend using a dual-cluster upgrade if you have the resources to run another cluster concurrently.
 Use the in-place method only if resources are limited, as it will cause business downtime.
@@ -126,49 +122,20 @@ keeping in mind the additional resources and complexities.
 
 ### DB-less mode
 
-In DB-less mode, each independent {{site.base_gateway}} node loads a copy of declarative {{site.base_gateway}} 
-configuration data into memory without persistent database storage, so failure of some nodes doesn't spread to other nodes.
-
-Deployments in this mode should use the rolling upgrade strategy. 
-The rolling upgrade is a process of continuously adding new nodes of version Y, while shutting down nodes of version X.
-
-You must back up your current `kong.yaml` file before starting the upgrade.
+{% include_cached /md/gateway/db-less-upgrade.md %}
 
 ### Hybrid mode
 
-Hybrid mode comprises of one or more control plane (CP) nodes, and one or more data plane (DP) nodes. 
-CP nodes use a database to store Kong configuration data, whereas DP nodes don't, since they get all of the needed information from the CP.
-The recommended upgrade process is a combination of different upgrade strategies for each type of node, CP or DP.
-
-The major challenge with a hybrid mode upgrade is the communication between the CP and DP. 
-As hybrid mode requires the minor version of the CP to be no less than that of the DP, you must upgrade CP nodes before DP nodes. 
-The upgrade must be carried out in two phases:
-
-1. First, upgrade the CP according to the recommendations in the section [Traditional Mode](#traditional-mode), 
-while DP nodes are still serving API requests.
-2. Next, upgrade DP nodes using the recommendations from the section [DB-less Mode](#db-less-mode). 
-Point the new DP nodes to the new CP to avoid version conflicts.
-
-![Upgrading a hybrid mode deployment](/assets/images/products/gateway/upgrade/hybrid-mode-upgrade.png)
-> _Figure 2: Upgrading a hybrid mode deployment using a dual-cluster or in-place strategy for control planes,_
-_followed by a rolling upgrade strategy for data planes_.
-
-The role decoupling feature between CP and DP enables DP nodes to serve API requests while upgrading CP. 
-With this method, there is no business downtime.
-
-Custom plugins (either your own plugins or third-party plugins that are not shipped with {{site.base_gateway}})
-need to be installed on both the control plane and the data planes in hybrid mode. 
-Install the plugins on the control plane first, and then the data planes.
+{% include_cached /md/gateway/hybrid-upgrade.md %}
 
 ## Preparation: Review gateway changes
 
-We have categorized all changelog notices relevant to this migration below. This encapsulates all changes from 2.8.x.x to 3.4.x.x Kong. They are bucketed into five categories.
+The following tables categorize all relevant changelog entries from {{site.ee_product_name}} 2.8.0.0-2.8.4.1 up to 3.4.0.0.
+Carefully review each entry and make changes to your configuration accordingly.
 
 {% include_cached lts-changes.html %}
 
 ### kong.conf changes
-
-<!-- **If we're going to list new params here, this table needs _way_ more work.** -->
 
 2.8 | 3.4
 ----------------------|-----------------------
