@@ -11,9 +11,47 @@ This strategy is meant for nodes that don't use a database and are independent o
 The rolling upgrade is a process of continuously adding new nodes of version Y, while shutting 
 down nodes of version X.
 
-![Rolling upgrade workflow](/assets/images/products/gateway/upgrade/rolling-upgrade.png)
+{% mermaid %}
+flowchart TD
+    yml[fa:fa-file kong.yml]
+    CPX(Current 
+    Node X)
+    CPX2(Current 
+    Node X)
+    CPX3(Current 
+    Node X)
+    CPY(New 
+    Node Y)
+    CPY2(New 
+    Node Y)
+    CPY3(New 
+    Node Y)
+    LB(Load balancer)
+    API(API requests)
 
-> _Figure 1: Rolling upgrade workflow_
+    API --> LB & LB & LB & LB
+    LB -.-> CPX
+    LB -.90%.-> CPX2
+    LB -.-> CPX3
+    LB --> CPY
+    LB --10%--> CPY2
+    LB --> CPY3
+    CPX -.- yml
+    CPX2 -.- yml
+    CPX3 -.- yml
+    CPY -.- yml
+    CPY2 -.- yml
+    CPY3 -.- yml
+
+    style API stroke:none
+    style CPX stroke-dasharray:3
+    style CPX2 stroke-dasharray:3
+    style CPX3 stroke-dasharray:3
+    linkStyle 3,7,8,9,13,14,15 stroke:#b6d7a8
+{% endmermaid %}
+
+> _Figure 1: The diagram shows a {{site.base_gateway}} upgrade using the rolling strategy with no database._
+_New nodes are gradually deployed and pointed to the `kong.yml` file, while traffic is gradually rerouted to the new nodes._
 
 ## Prerequisites
 

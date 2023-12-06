@@ -17,16 +17,46 @@ It still supports gradually diverting traffic from the current cluster X to the 
 Furthermore, runtime metrics (for example, Rate Limiting Advanced plugin counters) are sent to the same database. 
 Metrics are continuously collected from both clusters during the upgrade process.
 
-![Blue-green upgrade workflow](/assets/images/products/gateway/upgrade/blue-green-upgrade.png)
+{% mermaid %}
+flowchart TD
+    DB[(Database)]
+    CPX(Current 
+    {{site.base_gateway}} X)
+    Admin(No admin 
+    write operations)
+    Admin2(No admin 
+    write operations)
+    CPY(New 
+    {{site.base_gateway}} Y)
+    LB(Load balancer)
+    API(API requests)
 
-> _Figure 1: Blue-green upgrade workflow_
+    API --> LB & LB & LB & LB
+    Admin2 -."X".- CPX
+    LB -.90%.-> CPX
+    LB --10%--> CPY
+    Admin -."X".- CPY
+    CPX -.-> DB
+    CPY --kong migrations up--> DB
+
+    style API stroke:none
+    style CPX stroke-dasharray:3
+    style Admin fill:none,stroke:none,color:#d44324
+    style Admin2 fill:none,stroke:none,color:#d44324
+    linkStyle 4,7 stroke:#d44324,color:#d44324
+    linkStyle 3,6,9 stroke:#b6d7a8
+{% endmermaid %}
+
+> _Figure 1: The diagram shows a {{site.base_gateway}} upgrade using the blue-green strategy._
+_The new {{site.base_gateway}} Y is deployed alongside the current {{site.base_gateway}} X. Both deployments use the same database._
+_Traffic is gradually switched over to the new deployment, until all API traffic is migrated._
 
 Compared to dual-cluster and in-place upgrades, blue-green upgrades consume less resources since there is no extra database required, 
 and still allow for no business downtime.
 
 Support from Kong for upgrades using this strategy is limited.
 Though blue-green upgrades are supported, it is nearly impossible to fully cover all migration tests, because we have to cover all 
-'combinations, given the number of {{site.base_gateway}} versions, upgrade strategies, and deployment modes. 
+combinations, given the number of {{site.base_gateway}} versions, upgrade strategies, and deployment modes. 
 
 {:.important}
 > **Important**: In traditional mode, blue-green migration support is available starting in 2.8.2.x.

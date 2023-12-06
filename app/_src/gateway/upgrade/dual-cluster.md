@@ -5,15 +5,51 @@ purpose: Learn how to perform a dual-cluster upgrade for Kong Gateway
 ---
 
 The dual-cluster upgrade strategy is a {{site.base_gateway}} upgrade option used primarily for traditional 
-mode deployments and for control planes in hybrid mode. 
+mode deployments and for control planes in hybrid mode. A dual-cluster upgrade 
 
 With a dual-cluster upgrade, you deploy a new cluster of version Y alongside the current version X, 
 so that two clusters serve requests concurrently during the upgrade process. 
 As you add nodes, you will gradually adjust the traffic ratio between the two clusters to 
 switch traffic over from the old cluster to the new one.
 
-![Dual-cluster upgrade workflow](/assets/images/products/gateway/upgrade/dual-cluster-upgrade.png)
-> _Figure 1: Dual-cluster upgrade workflow_
+{% mermaid %}
+flowchart TD
+    DBX[(Current
+    database)]
+    DBY[(New 
+    database)]
+    CPX(Current 
+    {{site.base_gateway}} X)
+    Admin(No admin 
+    write operations)
+    Admin2(No admin 
+    write operations)
+    CPY(New 
+    {{site.base_gateway}} Y)
+    LB(Load balancer)
+    API(API requests)
+
+    API --> LB & LB & LB & LB
+    Admin2 -."X".- CPX
+    LB -.90%.-> CPX
+    LB --10%--> CPY
+    Admin -."X".- CPY
+    CPX -.-> DBX
+    CPY --pg_restore--> DBY
+
+    style API stroke:none
+    style DBX stroke-dasharray:3
+    style CPX stroke-dasharray:3
+    style Admin fill:none,stroke:none,color:#d44324
+    style Admin2 fill:none,stroke:none,color:#d44324
+    linkStyle 4,7 stroke:#d44324,color:#d44324
+    linkStyle 3,6,9 stroke:#b6d7a8
+{% endmermaid %}
+
+> _Figure 1: The diagram shows a {{site.base_gateway}} upgrade using the dual-cluster strategy._
+_The new {{site.base_gateway}} Y is deployed alongside the current {{site.base_gateway}} X._
+_A new database serves the new deployment._
+_Traffic is gradually switched over to the new deployment, until all API traffic is migrated._
 
 This method has limitations on automatically generated runtime metrics that rely on the database. 
 For example, if the Rate-Limiting-Advanced (RLA) plugin is configured to store request counters in 

@@ -4,15 +4,32 @@ content_type: how-to
 purpose: Learn how to perform an in-place upgrade for Kong Gateway
 ---
 
-The in-place upgrade strategy is a {{site.base_gateway}} upgrade option used primarily for traditional mode deployments and for control planes in hybrid mode. 
+The in-place upgrade strategy is a {{site.base_gateway}} upgrade option used primarily for traditional mode deployments and for control planes in hybrid mode. An in-place upgrade reuses the existing database.
+
 In comparison to dual-cluster upgrades, the in-place upgrade uses less resources, but causes business downtime.
 
-An in-place upgrade reuses the existing database.
 For this upgrade method, you have to shut down cluster X, then configure the new cluster Y to point to the database.
 
-![In-place upgrade workflow](/assets/images/products/gateway/upgrade/in-place-upgrade.png)
+{% mermaid %}
+flowchart TD
+    DB[(Database)]
+    CPX(Current {{site.base_gateway}} X \n #40;inactive#41;)
+    Admin(No Admin API \n write operations)
+    CPY(New {{site.base_gateway}} Y)
+    API(API requests)
 
-> _Figure 1: In-place upgrade workflow_
+    CPX -.X.-> DB
+    API --> CPY
+    CPY --kong migrations up \n kong migrations finish--> DB
+    Admin -.X.- CPX & CPY
+
+    style API stroke:none
+    style CPX stroke-dasharray:3
+    style Admin fill:none,stroke:none,color:#d44324
+    linkStyle 0,3,4 stroke:#d44324,color:#d44324
+{% endmermaid %}
+
+> _Figure 1: The diagram shows an in-place upgrade workflow, where the current CP X is directly replaced by a new CP Y. DP nodes are gradually diverted to the new CP Y. The database is reused by the new CP Y, and the current CP X is shut down once all nodes are migrated. No Admin API write operations can be performed during the upgrade._
 
 There is business downtime as cluster X is stopped during the upgrade process. You must carefully review the upgrade considerations in advance. The prescribed steps below are recommended for you.
 
