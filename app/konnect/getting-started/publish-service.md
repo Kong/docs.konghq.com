@@ -126,6 +126,10 @@ then click **Settings**.
     ```
     https://{ORG_NAME}.portal.cloud.konghq.com/
     ```
+1. To view an API Product's documentation alongside its dynamic API reference (based on the API specification), navigate to {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products) and publish your API product along with its API version.
+    * In the API Products section, select your API Product. Then, click **Actions** and select **Publish to portal**.
+    * From the left-side navigation panel, select **Product Version** and click on the version you created previously. On the version's homepage, change the **Status** to **Published**.
+
 1. Open the service you published to check it out.
 
 {% endnavtab %}
