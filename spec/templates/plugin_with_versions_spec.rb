@@ -42,7 +42,7 @@ RSpec.describe 'Plugin page with multiple versions' do
 
     context 'plugins that are `paid` or `premium`' do
       it 'renders a banner for using the plugins in Konnect' do
-        expect(html).to have_css('blockquote', text: 'Did you know that you can try this plugin without talking to anyone with a free')
+        expect(html).to have_css('blockquote', text: 'Did you know that you can try this plugin without talking to anyone')
       end
     end
   end
