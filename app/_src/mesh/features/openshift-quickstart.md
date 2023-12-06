@@ -12,17 +12,23 @@ This quickstart tutorial covers:
 
 * How to use the Red Hat Certified {{site.mesh_product_name}} Images
 * How to implement the required OpenShift security context constraints (SCCs) for the `kong-mesh` sidecar
-* How to deploy {{site.kic_product_name}} in [standalone mode](/mesh/{{page.kong_version}}/production/deployment/stand-alone/)
-* How to deploy and join the {{site.kic_product_name}} (KIC) to the mesh
 * How to deploy a sample application, bookinfo, on the mesh and validate that the application is working
 * How to use the sample application to test the features of {{site.mesh_product_name}}
 
 ## Prerequisites
 * [ROSA CLI installed](https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa_getting_started_iam/rosa-installing-rosa.html) or another OpenShift 4.12 cluster with the ability to create LoadBalancer type Kubernetes Services
-* [An AWS account with ROSA permissions enabled](https://docs.aws.amazon.com/ROSA/latest/userguide/security-iam-awsmanpol.html)
+* [An AWS account with ROSA permissions enabled](https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa_getting_started_iam/rosa-config-aws-account.html)
 * [kubectl CLI installed](https://kubernetes.io/docs/tasks/tools/)
 * [OpenShift Container Platform CLI installed](https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html)
 * [Helm 3 installed](https://helm.sh/docs/intro/install/)
+* Clone the {{site.mesh_product_name}} OpenShift quickstart repository:
+    ```bash
+    git clone https://github.com/Kong/kong-mesh-quickstart-openshift.git
+    ```
+* Clone the `kuma-demo` app:
+    ```bash
+    git clone https://github.com/kumahq/kuma-counter-demo.git
+    ```
 
 ## Install ROSA
 
@@ -92,7 +98,7 @@ In this section, you'll install {{site.mesh_product_name}} in standalone mode. S
     You should be able to reach the {{site.mesh_product_name}} UI at `http://localhost:5681/gui`.
 
 
-1. Finally, you must do some prep work for the sidecar itself so sidecars will startup successfully. Apply the `kong-mesh-sidecar` SCCs and corresponding container patches:
+1. Finally, you must do some prep work for the sidecar itself so sidecars will start up successfully. Apply the `kong-mesh-sidecar` SCCs and corresponding container patches:
     ```bash
     kubectl create -f kong-mesh/kong-mesh-sidecar-scc.yaml
     kubectl apply -f kong-mesh/container-patch.yaml 
@@ -100,99 +106,92 @@ In this section, you'll install {{site.mesh_product_name}} in standalone mode. S
 
     In OpenShift, by default, all pods and containers are given the restricted SCC. This is insufficient for the {{site.mesh_product_name}} sidecars (containers). The sidecars need a slightly escalated permissions, these permissions are defined in the `kong-mesh-sidecar-scc` manifest. The `container-patch` file defines how to patch the sidecars with the SCCs.
 
-## Deploy KIC on {{site.mesh_product_name}}
+## Deploy the demo application
 
-In this section, you'll deploy KIC. Why??
+In this step, you'll deploy the [`kuma-demo` app](/mesh/{{page.kong_version}}/quickstart/kubernetes) to {{site.mesh_product_name}}. This allows you to quickly populate your mesh with services so you can test the capabilities of {{site.mesh_product_name}}.
 
-1. Deploy KIC as your ingress controller:
+The `kuma-demo` app consists of two services:
+
+* `demo-app`: A web application that lets you increment a numeric counter
+* `redis`: A data store for the counter
+
+
+
+1. Escalate the SCC of PostgreSQL SA to `privileged`:
+
+  ```bash
+  oc adm policy add-scc-to-user privileged -z kuma-demo-postgres -n kuma-demo
+  ```
+
+  Escalating the SCC allows you to ?. This is only recommended for this tutorial, do not escalate the SSC of PostgreSQL SA in a production environment.
+
+1. Escalate the SCC of the default SA (this is the SA for the rest of the `kuma-demo` application pods) to use the `kong-mesh-sidecar` SCC:
+  
+  ```bash
+  oc adm policy add-scc-to-user kong-mesh-sidecar -z default -n kuma-demo
+  ```
+
+1. In the `kuma-demo` directory, deploy the application:
+
+  ```bash
+  kubectl apply -f kuma-demo-aio-ocp.yaml
+  ```
+
+1. You should see four application pods, each with two containers, in the output:
+
+  ```bash
+  kuma-demo  $ oc get pods
+  NAME                                    READY   STATUS    RESTARTS   AGE
+  kuma-demo-app-5f5f455864-7bn5k          1/2     Running   0          9s
+  kuma-demo-backend-v0-68bc879754-hck4t   1/2     Running   0          10s
+  postgres-master-6576d699c8-f5wjn        2/2     Running   0          9s
+  redis-master-946d4d567-8fvn5            2/2     Running   0          10s
+  ```
+
+1. Use `port-forward` to view the application:
+
+  ```bash
+  kubectl port-forward service/frontend -n kuma-demo 8080
+  ```
+
+  You can see the applications in the {{site.mesh_product_name}} UI at `http://localhost:8080/gui`.
+
+## Test {{site.mesh_product_name}} capabilities
+
+Now that you've deployed {{site.mesh_product_name}} along with the demo application on your ROSA cluster, you can test {{site.mesh_product_name}}. The following list captures some testing ideas for you to try:
+
+* [Enable Mutual TLS and Traffic Permissions](/mesh/{{page.kong_version}}/quickstart/kubernetes/#enable-mutual-tls-and-traffic-permissions)
+* ?
+
+## Clean up 
+
+In this section, you will remove all components, including `kuma-demo` and {{site.mesh_product_name}}, and delete the ROSA cluster. Once all of these are removed, you can create a {{site.mesh_product_name}} production environment.
+
+1. Remove the `kuma-demo` application:
     ```bash
-    kubectl create namespace kong 
-    kubectl label namespace kong kuma.io/sidecar-injection=enabled
-    oc adm policy add-scc-to-user kong-mesh-sidecar system:serviceaccount:kong:kong-kong
+    kubectl delete deploy,svc --all -n kuma-demo
     ```
 
-1. Get the latest Helm chart:
-    ```bash
-    helm repo add kong https://charts.konghq.com
-    helm repo update
-    ```
-
-1. Install ? What is this installing? Kong Gateway?:
-    ```bash
-    helm install kong kong/kong -n kong \
-    --set ingressController.installCRDs=false \
-    --set podAnnotations."kuma\.io/mesh"=default \
-    --set podAnnotations."kuma\.io/gateway"=enabled
-    export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].hostname}" service -n kong kong-kong-proxy)
-    curl -i $PROXY_IP
-    ```
-
-    The expected output is:
-    ```json
-    HTTP/1.1 404 Not Found
-    Date: Tue, 02 May 2023 15:40:05 GMT
-    Content-Type: application/json; charset=utf-8
-    Connection: keep-alive
-    Content-Length: 48
-    X-Kong-Response-Latency: 0
-    Server: kong/3.2.2
-
-    {"message":"no Route matched with those values"}%
-    ```
-
-## Deploy Bookinfo
-
-1. Allow all the service accounts to use the kong-mesh-sidecar scc:
-    ```bash
-    oc adm policy add-scc-to-user kong-mesh-sidecar system:serviceaccount:bookinfo:bookinfo-details
-    oc adm policy add-scc-to-user kong-mesh-sidecar system:serviceaccount:bookinfo:bookinfo-productpage
-    oc adm policy add-scc-to-user kong-mesh-sidecar system:serviceaccount:bookinfo:bookinfo-ratings
-    oc adm policy add-scc-to-user kong-mesh-sidecar system:serviceaccount:bookinfo:bookinfo-reviews
-    ```
-
-1. Next, deploy bookinfo. This bookinfo app has been paired down to work with {{site.mesh_product_name}} in evaluation mode. We only have 5 sidecars we can deploy on evaluation mode is all.
-    ```bash
-    kubectl create namespace bookinfo
-    kubectl label namespace bookinfo kuma.io/sidecar-injection=enabled
-    kubectl apply -f bookinfo/bookinfo.yaml -n bookinfo
-    ```
-
-1. Last we want to create an ingress resource to expose bookinfo to the outside world.
-    ```bash
-    kubectl apply -f bookinfo/ingress-productpage.yaml -n bookinfo
-    ```
-
-1. Now! Validate it's all up and running. Navigate to your browswer to `http://$PROXY_IP/productpage` and you should be able to see productpage with a majority of the bells and whistles.
-
-## List of things to try now that the demo is installed, just as a jumping off point and then the customers can further their own research/testing
-
-## Clean Up 
-
-1. Tear Down bookinfo:
-    ```bash
-    kubectl delete deploy,svc,ingress --all -n bookinfo
-    ```
-
-1. Tear Down KIC:
-    ```bash
-    helm uninstall kong -n kong
-    ```
-
-1. Last Tear Down {{site.mesh_product_name}}:
+1. Remove {{site.mesh_product_name}}:
     ```bash
     helm uninstall kong-mesh -n kong-mesh-system
     ```
-    And all the components should be down! It's safe to destroy the ROSA cluster.
+    All the components are now removed, so it's safe to delete the ROSA cluster.
 
-1. Delete the ROSA cluster-admin user:
+1. Delete the ROSA cluster admin user:
     ```bash
     rosa delete admin --cluster $CLUSTER_NAME
     ```
 
-1. Delete ROSA cluster:
+1. Delete the ROSA cluster:
     ```bash
     rosa delete cluster --cluster $CLUSTER_NAME
     ```
+
+Now that you've deleted your demo cluster and components, you can deploy {{site.mesh_product_name}} in a production environment. Follow the instructions in one of the following guides to deploy {{site.mesh_product_name}} using your method of choice:
+
+* [Deploy a standalone control plane](/mesh/{{page.kong_version}}/production/cp-deployment/stand-alone/)
+* [Deploy a multi-zone global control plane](/mesh/{{page.kong_version}}/production/cp-deployment/multi-zone/)
 
 
 
