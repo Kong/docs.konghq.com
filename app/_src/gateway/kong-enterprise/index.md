@@ -56,6 +56,7 @@ The Vitals platform provides deep insights into services, routes, and applicatio
 {{site.ee_product_name}} offers out of the box secrets management with the following backends: 
 
 * [Amazon Web Services (AWS)](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/aws-sm/)
+* [Microsoft Azure](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/azure-key-vaults/)
 * [Google Cloud Platform (GCP)](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/gcp-sm/)
 * [Hashicorp Vault](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
 
