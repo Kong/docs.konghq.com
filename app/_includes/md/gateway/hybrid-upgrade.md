@@ -28,7 +28,7 @@ as described in figure 2 and figure 3 respectively.
 
 No Admin API write operations can be performed during a CP upgrade.
 
-Upgrading the CP nodes using the [dual-cluster strategy](/gateway/{{page.kong_version}}/upgrade/dual-cluster-upgrade/):
+Upgrading the CP nodes using the [dual-cluster strategy](/gateway/{{page.kong_version}}/upgrade/dual-cluster/):
 
 {% mermaid %}
 flowchart TD
@@ -58,7 +58,7 @@ flowchart TD
 > _Figure 2: The diagram shows a CP upgrade using the dual-cluster strategy._
 _The new CP Y is deployed alongside the current CP X, while current DP nodes X are still serving API requests._
 
-Upgrading the CP nodes using the [in-place strategy](/gateway/{{page.kong_version}}/upgrade/in-place-upgrade/):
+Upgrading the CP nodes using the [in-place strategy](/gateway/{{page.kong_version}}/upgrade/in-place/):
 
 {% mermaid %}
 flowchart 
@@ -143,7 +143,7 @@ _The new CP Y is deployed alongside with the current CP X, while current DP node
 _DP nodes are gradually switched over to the new CP, until all API traffic is migrated._
 _In the image, the background color of the current database and CP X is grey instead of white, signaling that the old CP is already upgraded and might have been decommissioned._
 
-Using the [in-place strategy](/gateway/{{page.kong_version}}/upgrade/in-place-upgrade/) 
+Using the [in-place strategy](/gateway/{{page.kong_version}}/upgrade/in-place/) 
 strategy with a [rolling upgrade](/gateway/{{page.kong_version}}/upgrade/rolling-upgrade/) workflow:
 
 {% mermaid %}
