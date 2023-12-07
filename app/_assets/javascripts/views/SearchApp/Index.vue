@@ -192,7 +192,7 @@ export default {
       ),
       routing,
       searchParameters: {
-        optionalFilters: 'version:latest<score=1>'
+        optionalFilters: ['version:latest<score=1>', 'product:Kong Gateway<score=3>', 'product:Kong Konnect<score=2>', 'product:Kong Mesh<score=1>']
       }
     };
   },
