@@ -122,7 +122,7 @@ If the client doesn't send SNIs in the ClientHello message or the SNI sent is
 unknown to {{site.base_gateway}}, then the CA DN list associated with "\*" is sent only when the client certificate is requested.
 {% endif_plugin_version %}
 
-### Create manual mappings between certificate and consumer object
+<!--### Create manual mappings between certificate and consumer object
 
 Sometimes, you might not want to use automatic consumer lookup, or you have certificates
 that contain a field value not directly associated with consumer objects. In those
@@ -213,7 +213,7 @@ When `skip_consumer_lookup` is set to `true`, consumer lookup is skipped and ins
 Once `skip_consumer_lookup` is applied, any client with a valid certificate can access the Service/API.
 To restrict usage to only some of the authenticated users, also add the ACL plugin (not covered here) and create
 allowed or denied groups of users using the same
-certificate property being set in `authenticated_group_by`.
+certificate property being set in `authenticated_group_by`.-->
 
 ### Troubleshooting
 
