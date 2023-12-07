@@ -1,9 +1,9 @@
 ---
-nav_title: Adding Certificate Authorities
-title: Adding Certificate Authorities
+nav_title: Add Certificate Authorities
+title: Add Certificate Authorities
 ---
 
-### Adding certificate authorities
+##Add certificate authorities
 
 To use this plugin, you must add certificate authority (CA) certificates. These are
 stored in a separate `ca_certificates` store rather than the main certificates store because
