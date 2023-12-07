@@ -20,16 +20,6 @@ If you don't pass a {{site.konnect_short_name}} flag to decK, decK looks for a l
 `--konnect-addr`
 :  Address of the {{site.konnect_short_name}} endpoint. (Default: `"https://us.api.konghq.com"`)
 
-`--konnect-email`
-:  Email address associated with your {{site.konnect_short_name}} account.
-
-`--konnect-password`
-:  Password associated with your {{site.konnect_short_name}} account.
-This takes precedence over the `--konnect-password-file` flag.
-
-`--konnect-password-file`
-:  File containing the password to your {{site.konnect_short_name}} account.
-
 {% if_version lte:1.26.x %}
 `--konnect-runtime-group-name`
 :  {{site.konnect_short_name}} runtime group name.
@@ -42,7 +32,7 @@ This takes precedence over the `--konnect-password-file` flag.
 
 {% if_version gte:1.14.x lte:1.17.x %}
 `--konnect-token`
-:  Personal access token associated with your {{site.konnect_short_name}} account, this takes precedence over the `--konnect-token-file` flag.
+:  Personal access token associated with your {{site.konnect_short_name}} account.
 
 
 `--konnect-token-file`
@@ -68,9 +58,11 @@ decK looks for {{site.konnect_short_name}} credentials in the following order of
 
 {% if_version gte:1.14.x %}
 
-1. Credentials set with a flag, either `--konnect-password` or `--konnect-token`
+1. Credential set with the `--konnect-token` flag 
 2. decK configuration file, if one exists (default lookup path: `$HOME/.deck.yaml`)
-3. Credential file passed with a flag, either `--konnect-password-file` or `--konnect-token-file`
+3. Credential file passed with the `--konnect-token-file` flag
+
+For example, if you have both a decK config file and a {{site.konnect_short_name}} token file, decK uses the token in the config file.
 
 {% endif_version %}
 
@@ -79,8 +71,6 @@ decK looks for {{site.konnect_short_name}} credentials in the following order of
 1.  Password set with the `--konnect-password` flag
 2. decK configuration file, if one exists (default lookup path: `$HOME/.deck.yaml`)
 3. File passed with the `--konnect-password-file` flag
-
-{% endif_version %}
 
 For example, if you have both a decK config file and a {{site.konnect_short_name}} password file, decK uses the password in the config file.
 
@@ -105,6 +95,8 @@ deck ping \
   --konnect-password-file /PATH/TO/FILE
 ```
 
+{% endif_version %}
+
 ### Authenticate using a decK config file
 
 By default, decK looks for a configuration file named `.deck.yaml` in the `$HOME` directory.
@@ -113,6 +105,9 @@ This file lets you specify flags to include with every decK command.
 You can create the file at the default location, or set a custom filename and path with [`--config`](/deck/{{page.kong_version}}/reference/deck/).
 
 If you store {{site.konnect_short_name}} credentials in the file, decK uses the credentials for every command.
+
+{% if_version lte:1.13.x %}
+
 Set either `konnect-password` or `konnect-password-file` in the decK config file.
 
 * Use `konnect-password` to store {{site.konnect_short_name}} credentials directly in the configuration file:
@@ -128,6 +123,28 @@ Set either `konnect-password` or `konnect-password-file` in the decK config file
     konnect-email: example@example.com
     konnect-password-file: PATH/TO/FILENAME
     ```
+
+{% endif_version %}
+
+{% if_version gte:1.14.x %}
+
+Set either `konnect-token` or `konnect-token-file` in the decK config file.
+
+* Use `konnect-token` to store {{site.konnect_short_name}} credentials directly in the configuration file:
+
+    ```
+    konnect-email: example@email.com
+    konnect-token: YOUR_TOKEN
+    ```
+
+* Store your token in a separate file, then specify the path to `konnect-token-file` instead of a literal token:
+
+    ```
+    konnect-email: example@example.com
+    konnect-token-file: PATH/TO/FILENAME
+    ```
+
+{% endif_version %}
 
 decK automatically uses the credentials from `$HOME/.deck.yaml` in any subsequent calls:
 
