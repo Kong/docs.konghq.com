@@ -88,6 +88,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 2
+      # Place a reviewdog binary in $HOME so that the vale action doesn't use it's own
+      - run: |
+          wget https://github.com/mheap/reviewdog/releases/download/v10.0.0/reviewdog_10.0.0_Linux_x86_64.tar.gz
+          tar xf reviewdog_10.0.0_Linux_x86_64.tar.gz
+          sudo chmod +x reviewdog
+          sudo mv reviewdog $HOME
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v40
@@ -107,9 +113,10 @@ jobs:
       - uses: errata-ai/vale-action@reviewdog
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
+
           fail_on_error: true
           files: '${{ steps.changed-files.outputs.all_changed_files }}'
           filter_mode: file
-          reporter: github-pr-review
+          reporter: github-pr-annotations
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
