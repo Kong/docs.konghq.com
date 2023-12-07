@@ -184,7 +184,7 @@ complete that before proceeding.
 The [Admin API documentation](/gateway/latest/admin-api/#update-service) provides
 the full service update specification. 
 
-You can also view the configuration for your services in the Kong Manager UI by navigating to the following URL in your browser: [http://localhost:8002/default/services](http://localhost:8002/default/services)
+You can also view the configuration for your services in the Kong Manager UI by navigating to the following URL in your browser: [http://localhost:8002/services](http://localhost:8002/services)
    
 ### Managing routes
 
