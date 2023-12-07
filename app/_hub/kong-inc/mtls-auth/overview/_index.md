@@ -45,7 +45,7 @@ the client certificate during every TLS handshake:
 
 SNIs must be set for all routes that mutual TLS authentication uses.
 
-### Adding certificate authorities
+<!--### Adding certificate authorities
 
 To use this plugin, you must add certificate authority (CA) certificates. These are
 stored in a separate `ca_certificates` store rather than the main certificates store because
@@ -88,7 +88,7 @@ curl -X POST https:konnect.konghq.com/api/control_planes/[Konnect-ID]/ca_certifi
 {% endnavtabs %}
 The `id` value returned can now be used for mTLS plugin configurations or consumer mappings.
 
-{% if_plugin_version gte:3.1.x %}
+{% if_plugin_version gte:3.1.x %}-->
 ### Sending the CA DNs during TLS handshake
 
 By default, {{site.base_gateway}} won't send the CA DN list during the TLS handshake. More specifically,
