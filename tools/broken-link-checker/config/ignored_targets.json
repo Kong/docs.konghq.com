@@ -49,5 +49,5 @@
   "https://your_okta_domain/",
   "https://github.com/Kong/kong-ee/edit/*",
   "https://linux.die.net",
-  "https://hub.docker.com/"
+  "https://hub.docker.com/*"
 ]
