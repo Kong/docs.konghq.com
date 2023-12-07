@@ -3,8 +3,6 @@ nav_title: Add Certificate Authorities
 title: Add Certificate Authorities
 ---
 
-##Add certificate authorities
-
 To use this plugin, you must add certificate authority (CA) certificates. These are
 stored in a separate `ca_certificates` store rather than the main certificates store because
 they do not require private keys. To add one, obtain a PEM-encoded copy of your CA certificate
