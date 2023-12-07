@@ -78,14 +78,11 @@ See the following sections for breakdowns of each strategy.
 
 ### Traditional mode
 
-{% include_cached /md/gateway/db-less-upgrade.md %}
-
-We recommend using a dual-cluster upgrade if you have the resources to run another cluster concurrently.
-Use the in-place method only if resources are limited, as it will cause business downtime.
+{% include_cached /md/gateway/traditional-upgrade.md %}
 
 #### Dual-cluster upgrade
 
-Upgrading {{site.base_gateway}} from one LTS version to another LTS version with zero downtime can be achieved through a dual-cluster deployment strategy. 
+Upgrading {{site.base_gateway}} from one LTS version to another LTS version with zero downtime can be achieved through a [dual-cluster upgrade strategy](/gateway/{{page.kong_version}}/upgrade/dual-cluster/). 
 This approach involves setting up a new cluster running the upgraded version of {{site.base_gateway}} alongside the existing cluster running the current version.
 
 At a high level, the process typically involves the following steps:
@@ -106,7 +103,7 @@ By following this dual cluster deployment strategy, you can achieve a smooth and
 
 #### In-place upgrade
 
-While an in-place upgrade deployment allows you to perform the upgrade on the same infrastructure, 
+While an [in-place upgrade](/gateway/{{page.kong_version}}/upgrade/dual-cluster/) allows you to perform the upgrade on the same infrastructure, 
 it does require some downtime during the actual upgrade process.
 Plan a suitable maintenance or downtime window during which you can perform the upgrade.
 During this period, the {{site.base_gateway}} will be temporarily unavailable.

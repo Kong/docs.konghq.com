@@ -226,7 +226,7 @@ See the following sections for breakdowns and links to each upgrade strategy gui
 
 ### Traditional mode
 
-{% include_cached /md/gateway/db-less-upgrade.md %}
+{% include_cached /md/gateway/traditional-upgrade.md %}
 
 {:.important}
 > **Important**: While the [blue-green upgrade strategy](/gateway/{{page.kong_version}}/upgrade/blue-green/) is an option,
