@@ -36,7 +36,8 @@ For example, `_app/_hub/kong-inc/your-plugin`.
             how-to
               _index.md
             _changelog.md
-            _index.md
+            overview
+              _index.md
             _metadata.yml
             versions.yml
     ```
@@ -46,7 +47,7 @@ For example, `_app/_hub/kong-inc/your-plugin`.
     * `_metadata.yml`: Sets the metadata for the plugin. 
     Follow the instructions in the file to fill it out.
 
-    * `_index.md`: Introduction for your plugin. This is where you
+    * `overview/_index.md`: Introduction for your plugin. This is where you
     explain how the plugin works and why someone would want to use it.
 
     * `_changelog.md`: A changelog for your plugin. For the first entry,
