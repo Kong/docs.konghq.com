@@ -39,7 +39,7 @@ flowchart TD
     LB --10%--> CPY
     Admin -."X".- CPY
     CPX -.-> DB
-    CPY --kong migrations up--> DB
+    CPY --"kong migrations up \n (NO kong migrations finish)"--> DB
 
     style API stroke:none
     style CPX stroke-dasharray:3

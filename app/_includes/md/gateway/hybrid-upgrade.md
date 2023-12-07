@@ -41,9 +41,9 @@ flowchart TD
     DPX(fa:fa-layer-group Current data plane X nodes)
     API(API requests)
 
-    DBA -.- CPX -..- DPX
+    DBA -.- CPX -."DP connects to either \nCP X...".- DPX
     Admin -.X.- CPX & CPY
-    DBB --pg_restore--- CPY -..- DPX
+    DBB --pg_restore--- CPY -."...OR to CP Y".- DPX
     API--> DPX
 
     style API stroke:none
@@ -67,9 +67,9 @@ flowchart
     DPX(fa:fa-layer-group Current data plane X nodes)
     API(API requests)
 
-    DBA -..- CPX -..- DPX
+    DBA -..- CPX -."DP connects to either \nCP X...".- DPX
     Admin -.X.- CPX & CPY
-    DBA --"kong migrations up \n kong migrations finish"--- CPY -..- DPX
+    DBA --"kong migrations up \n kong migrations finish"--- CPY -."...OR to CP Y".- DPX
     API--> DPX
 
     style API stroke:none
@@ -107,15 +107,20 @@ flowchart TD
     DBY[(New \n database)]
     CPX(Current control plane X)
     CPY(New control plane Y)
-    DPX(Current data planes X \n #40;not yet migrated#41;)
-    DPY(New data planes Y \n #40;in migration#41;)
+    DPX(Current data planes X)
+    DPY(New data planes Y)
     API(API requests)
     LB(Load balancer)
+    Admin(No admin \n write operations)
+    Admin2(No admin \n write operations)
     
     subgraph A
+        Admin -.X.- CPX
         DBX -.- CPX
         DBY --- CPY
-        CPX & CPY -.- DPX
+        CPX -."Current DP connects to \neither CP X...".- DPX
+        Admin2 -.X.- CPY
+        CPY -."...OR to CP Y".- DPX
         DPX -.90%..- LB
         CPY --- DPY --10%---- LB
         
@@ -124,13 +129,16 @@ flowchart TD
         API --> LB & LB & LB
     end
 
-    linkStyle 6,7 stroke:#b6d7a8
+    linkStyle 0,4 stroke:#d44324,color:#d44324
+    linkStyle 8,9 stroke:#b6d7a8
     style CPX stroke-dasharray:3,fill:#eff0f1ff,stroke:#c1c6cdff
     style DPX stroke-dasharray:3
     style DBX stroke-dasharray:3,fill:#eff0f1ff,stroke:#c1c6cdff
     style API stroke:none
     style A stroke:none,color:#fff
     style B stroke:none,color:#fff
+    style Admin fill:none,stroke:none,color:#d44324
+    style Admin2 fill:none,stroke:none,color:#d44324
 {% endmermaid %}
 
 > _Figure 4: The diagram shows a DP upgrade using the dual-cluster and rolling strategies._
@@ -142,31 +150,37 @@ strategy with a [rolling upgrade](/gateway/{{page.kong_version}}/upgrade/rolling
 
 {% mermaid %}
 flowchart 
-    DBA(Database)
+    DBA[(Database)]
     CPX(Current control plane X \n #40;inactive#41;)
     CPY(New control plane Y)
     DPX(Current data planes X)
     DPY(New data planes Y)
     API(API requests)
     LB(Load balancer)
+    Admin(No admin \n write operations)
+    Admin2(No admin \n write operations)
 
     subgraph A
+        Admin -.X.- CPX
         DBA -.X.- CPX
         DBA --- CPY
-        CPX -.- DPX
-        CPY -.- DPX -.90%..- LB
-        CPY --- DPY --10%---- LB
+        CPX -."Current DP connects to \neither CP X...".- DPX
+        Admin2 -.X.- CPY
+        CPY -."OR to CP Y".- DPX -.90%..- LB
+        CPY --- DPY --10%---- LB 
     end
     subgraph B
         API --> LB & LB & LB
     end
 
-    linkStyle 0 stroke:#d44324,color:#d44324
-    linkStyle 6,7 stroke:#b6d7a8
+    linkStyle 0,1,4 stroke:#d44324,color:#d44324
+    linkStyle 8,9 stroke:#b6d7a8
     style CPX stroke-dasharray:3,fill:#eff0f1ff,stroke:#c1c6cdff
     style DPX stroke-dasharray:3
     style A stroke:none,color:#fff
     style B stroke:none,color:#fff
+    style Admin fill:none,stroke:none,color:#d44324
+    style Admin2 fill:none,stroke:none,color:#d44324
 {% endmermaid %}
 
 > _Figure 5: The diagram shows a DP upgrade using the in-place and rolling strategies._
