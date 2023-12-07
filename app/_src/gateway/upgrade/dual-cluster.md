@@ -82,7 +82,7 @@ This is critical to guarantee data consistency between cluster X and cluster Y.
     To keep data consistency between the two clusters, you must not execute any write operations through the Admin API, Kong Manager, decK, or direct database updates. 
     This upgrade strategy is the safest of all available strategies and ensures that there is no planned business downtime during the upgrade process.
 
-2. Back up data from the current cluster Y by following the 
+2. Back up data from the current cluster X by following the 
 [Backup guide](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/).
 
 3. Evaluate factors that may impact the upgrade, as described in [Upgrade considerations](/gateway/{{page.kong_version}}/upgrade/#preparation-upgrade-considerations/).

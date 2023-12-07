@@ -59,14 +59,7 @@ Now, let's move on to preparation, starting with your backup options.
 
 ## Preparation: Choose a backup strategy
 
-The following instructions lay out how to back up your configuration for each supported deployment type. This is an important step prior to upgrading. Each supported deployment mode has different instructions for backup.
-
-The `kong migrations` commands in this guide are not reversible. We recommend backing up data before any migration. 
-
-* **Database backup** (_Traditional mode and control planes in hybrid mode_): PostgreSQL has native exporting and importing tools that are reliable and performant, and that ensure consistency when backing up or restoring data.
-* **Declarative backup** (_DB-less mode and data planes in hybrid mode_): In DB-less mode, configuration is managed declaratively using a tool called decK. decK allows you to import and export configuration using YAML or JSON files. 
-
-Review the [Backup and Restore](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/) guide to prepare backups of your configuration. If you run into any issues and need to roll back, you can also reference that guide to restore your old data store.
+{% include_cached /md/gateway/upgrade-backup.md %}
 
 ## Preparation: Choose an upgrade strategy based on deployment mode
 
@@ -165,36 +158,4 @@ DB-less mode or data planes in hybrid mode:
 
 ## Troubleshooting
 
-If you run into issues during the upgrade and need to roll back, select a restoration method based on the backup method.
-
-{% navtabs %}
-{% navtab Database %}
-Using direct database operation (PostgreSQL):
-
-```sh
-pg_restore -U kong -d kong --clean kongdb_backup_20230816/
-```
-
-{% endnavtab %}
-{% navtab Declarative configuration %}
-
-Using decK, apply your backup configuration files.
-{{site.base_gateway}} must be online before executing decK commands. 
-
-Ping the Gateway to make sure the connection is working:
-```sh
-deck ping
-```
-
-Validate the configuration:
-```sh
-deck validate --online -s /path/to/kong_backup.yaml
-```
-
-If valid, sync the backup configuration to {{site.base_gateway}} restore the previous state:
-```sh
-deck sync -s /path/to/kong_backup.yaml
-```
-{% endnavtab %}
-{% endnavtabs %}
-    
+If you run into issues during the upgrade and need to roll back, [restore {{site.base_gateway}}](/gateway/{{page.kong_version}}/backup-and-restore/#restore-gateway-entities) based on the backup method.

@@ -212,21 +212,7 @@ See the following table for the version breakdown:
 
 ## Preparation: Choose a backup strategy
 
-The following instructions lay out how to back up your configuration for each supported deployment type. 
-This is an important step prior to migrating. 
-Each supported deployment mode has different instructions for backup.
-
-The `kong migrations` commands in this guide are not reversible. We recommend backing up data before any migration. 
-
-* **Database backup** (_Traditional mode and control planes in hybrid mode_): 
-PostgreSQL has native exporting and importing tools that are reliable and performant, and that ensure 
-consistency when backing up or restoring data.
-* **Declarative backup** (_DB-less mode and data planes in hybrid mode_): In DB-less mode, configuration 
-is managed declaratively using a tool called decK. decK allows you to import and export configuration 
-using YAML or JSON files. 
-
-Review the [Backup and Restore](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/) guide to 
-prepare backups of your configuration.
+{% include_cached /md/gateway/backup-and-restore.md %}
 
 ## Preparation: Choose an upgrade strategy based on deployment mode
 

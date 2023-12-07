@@ -83,7 +83,7 @@ The exact execution of these steps will vary depending on your environment.
 1. Stop any {{site.base_gateway}} configuration updates (e.g. Admin API calls). 
 This is critical to guarantee data consistency between cluster X and cluster Y.
 
-2. Back up data from the current cluster Y by following the 
+2. Back up data from the current cluster X by following the 
 [Backup guide](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/).
 
 3. Evaluate factors that may impact the upgrade, as described in [Upgrade considerations](/gateway/{{page.kong_version}}/upgrade/#preparation-upgrade-considerations/).
