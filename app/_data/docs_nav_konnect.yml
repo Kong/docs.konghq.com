@@ -203,23 +203,35 @@
     - text: Troubleshoot
       url: /dev-portal/troubleshoot/
 
-- title: Analytics
+- title: Observability
   icon: /assets/images/icons/konnect/icn-analytics-nav.svg
-  items:
-    - text: Introduction to Analytics
-      url: /analytics/
-    - text: Report Use Cases
-      items:
-      - text: Analyze API Usage and Performance
-        url: /analytics/use-cases/
-      - text: Diagnosing Latency Issues
-        url: /analytics/use-cases/latency
-    - text: Reports Reference
-      url: /analytics/reference/
+  items: 
+    - text: Analytics
+      items: 
+        - text: Overview
+          url: /analytics/
+        - text: Dashboards
+          url: /analytics/dashboard
+        - text: Custom Reporting
+          items:
+            - text: Introduction to Custom Reporting
+              url: /analytics/custom-reporting
+            - text: Use Cases
+              url: /analytics/custom-reports-use-cases
+            - text: Reference
+              url: /analytics/reference/
     - text: API Requests
-      url: /analytics/api-requests
-    - text: Troubleshoot
-      url: /analytics/troubleshoot/
+      items: 
+        - text: Overview
+          url: /analytics/api-requests
+    - text: Integration
+      items: 
+        - text: Overview
+          url: /analytics/
+    - text: Troubleshooting
+      items: 
+        - text: Troubleshooting topics
+          url: /analytics/troubleshoot/
 
 - title: Org Management
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
