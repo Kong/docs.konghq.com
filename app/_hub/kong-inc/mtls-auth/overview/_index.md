@@ -86,9 +86,9 @@ curl -X POST https:konnect.konghq.com/api/control_planes/[Konnect-ID]/ca_certifi
 ```
 {% endnavtab %}
 {% endnavtabs %}
-The `id` value returned can now be used for mTLS plugin configurations or consumer mappings.
+The `id` value returned can now be used for mTLS plugin configurations or consumer mappings.-->
 
-{% if_plugin_version gte:3.1.x %}-->
+{% if_plugin_version gte:3.1.x %}
 ### Sending the CA DNs during TLS handshake
 
 By default, {{site.base_gateway}} won't send the CA DN list during the TLS handshake. More specifically,
