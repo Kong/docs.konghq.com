@@ -136,6 +136,7 @@ em {
   font-size: 14px;
   line-height: 18px;
   height: 100%;
+  width: 100%;
   display: flex;
 }
 
@@ -160,6 +161,7 @@ em {
   overflow-wrap: break-word;
   word-break: break-word;
   display: flex;
+  width: 100%;
 }
 
 .hit-info-container a {
@@ -167,6 +169,7 @@ em {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
 }
 
 .hit-info-container .hit-description {
