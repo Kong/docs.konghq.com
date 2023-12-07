@@ -21,7 +21,7 @@ For example, the process of moving 2.8 data from an old PostgreSQL instance to a
 To make sure your upgrade is successful, carefully review all the steps in this guide. It’s very important to understand all the preparation steps and choose the recommended upgrade path based on your deployment type.
 
 {:.important}
-> **Caution**: The migration pattern described in this document can only happen between two LTS versions, {{site.ee_product_name}} 2.8 LTS and {{site.ee_product_name}} 3.4 LTS. If you apply this document to other release intervals, database modifications may be run in the wrong sequence and leave the database schema in a broken state. To migrate between other versions, see the [general upgrade guide](/gateway/{{page.kong_version}}/upgrade/) for your target version.
+> **Caution**: The migration pattern described in this document can only happen between two LTS versions, {{site.ee_product_name}} 2.8 LTS and {{site.ee_product_name}} 3.4 LTS. If you apply this document to other release intervals, database modifications may be run in the wrong sequence and leave the database schema in a broken state. To migrate between other versions, see the [general upgrade guide](/gateway/{{page.kong_version}}/upgrade/).
 
 ## Prerequisites
 
@@ -103,12 +103,12 @@ By following this dual cluster deployment strategy, you can achieve a smooth and
 
 #### In-place upgrade
 
-While an [in-place upgrade](/gateway/{{page.kong_version}}/upgrade/dual-cluster/) allows you to perform the upgrade on the same infrastructure, 
+While an [in-place upgrade](/gateway/{{page.kong_version}}/upgrade/in-place/) allows you to perform the upgrade on the same infrastructure, 
 it does require some downtime during the actual upgrade process.
 Plan a suitable maintenance or downtime window during which you can perform the upgrade.
 During this period, the {{site.base_gateway}} will be temporarily unavailable.
 
-For scenarios where zero downtime is critical, consider the dual-cluster upgrade method, 
+For scenarios where zero downtime is critical, consider the [dual-cluster upgrade](#dual-cluster-upgrade) method, 
 keeping in mind the additional resources and complexities.
 
 ### DB-less mode

@@ -59,7 +59,8 @@ and still allow for no business downtime.
 {:.important}
 > **Important**: Support from Kong for upgrades using this strategy is limited.
 Though blue-green upgrades are supported, it is nearly impossible to fully cover all migration tests, because we have to cover all 
-combinations, given the number of {{site.base_gateway}} versions, upgrade strategies, features adopted, and deployment modes. 
+combinations, given the number of {{site.base_gateway}} versions, upgrade strategies, features adopted, and deployment modes.
+> If you must use this strategy, only use it to upgrade between patch versions.
 > <br><br>
 > In traditional mode, blue-green upgrades are available starting in 2.8.2.x.
 If you have a {{site.base_gateway}} 2.8.x version earlier than 2.8.2.x, upgrade to at least 2.8.2.0 before starting any upgrades to the 3.x series.
@@ -98,6 +99,9 @@ You may have to consider customization of both `kong.conf` and {{site.base_gatew
     1. Install a new {{site.base_gateway}} cluster running version Y as instructed in the 
     [{{site.base_gateway}} Installation Options](/gateway/{{page.kong_version}}/install/) and 
     point it at the existing database for cluster X.
+
+        Provision the new cluster Y with the same-sized resource capacity as that of 
+        the current cluster X.
     
     2. Migrate the database to the new version by running `kong migrations up`. 
     

@@ -18,4 +18,4 @@ flowchart TD
     click J "/gateway/latest/upgrade/in-place/"
 {% endmermaid %}
 
-> _Figure 1: Choose an upgrade strategy based on your deployment type. For traditional mode, choose a dual-cluster upgrade if you have enough resources, or an in-place upgrade if you don't have enough resources. For DB-less mode, use a rolling upgrade. For Konnect DPs, use a rolling upgrade. For hybrid mode, use one of the traditional mode strategies for CPs, and the rolling upgrade for DPs._
+> _Figure 1: Choose an upgrade strategy based on your deployment type. For traditional mode, choose a dual-cluster upgrade if you have enough resources, or an in-place upgrade if you don't have enough resources. For DB-less mode and {{site.konnect_short_name}} DPs, use a rolling upgrade. For hybrid mode, use one of the traditional mode strategies for CPs, and the rolling upgrade for DPs._

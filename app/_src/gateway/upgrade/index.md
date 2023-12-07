@@ -73,7 +73,7 @@ By default, {{site.base_gateway}} has migration tests between adjacent versions 
 2. Between adjacent minor releases of the same major version.
 3. Between LTS versions.
 
-    {{site.base_gateway}} plans to maintain LTS versions and guarantee upgrades between adjacent LTS versions. 
+    {{site.base_gateway}} maintains LTS versions and guarantees upgrades between adjacent LTS versions.
     The current LTS in the 2.x series is 2.8, and the current LTS in the 3.x series is 3.4.
     If you want to upgrade between the 2.8 and 3.4 LTS versions, 
     see the [LTS Upgrade guide](/gateway/{{page.kong_version}}/upgrade/lts-upgrade/).
@@ -201,7 +201,7 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 
 Though you could define your own upgrade procedures, we recommend using one of the nominated strategies in this section. 
 Any custom upgrade requirements may require a well-tailored upgrade strategy. 
-For example, if you only want a small group of customer objects to be directed to the new cluster Y, use the 
+For example, if you only want a small group of customer objects to be directed to the new version, use the 
 Canary plugin and a load balancer that supports traffic interception.
 
 Whichever upgrade strategy you choose, you should account for management downtime for {{site.base_gateway}}, as 
@@ -210,13 +210,13 @@ Admin API operations and database updates are not allowed during the upgrade pro
 Based on your deployment type, we recommend one of the following upgrade strategies.
 Carefully read the descriptions for each option to choose the upgrade strategy that works best for your situation.
 
-* Traditional or hybrid mode control planes:
-    * Dual-cluster upgrade
-    * In-place upgrade
-    * Blue-green upgrade (not recommended)
+* [Traditional](#traditional-mode) or [hybrid mode control planes](#control-planes):
+    * [Dual-cluster upgrade](/gateway/{{page.kong_version}}/upgrade/dual-cluster/)
+    * [In-place upgrade](/gateway/{{page.kong_version}}/upgrade/in-place/)
+    * [Blue-green upgrade](/gateway/{{page.kong_version}}/upgrade/blue-green/) (not recommended)
 
-* DB-less mode or hybrid mode data planes:
-    * Rolling upgrade
+* [DB-less mode](#db-less-mode) or [hybrid mode data planes](#data-planes):
+    * [Rolling upgrade](/gateway/{{page.kong_version}}/upgrade/rolling-upgrade/)
 
 Here's a flowchart that breaks down how the decision process works:
 
@@ -233,6 +233,7 @@ See the following sections for breakdowns and links to each upgrade strategy gui
 we do not recommend it. Support from Kong for upgrades using this strategy is limited. 
 It is nearly impossible to fully cover all migration tests, because we have to cover all 
 combinations, given the number of {{site.base_gateway}} versions, upgrade strategies, features adopted, and deployment modes. 
+If you must use this strategy, only use it to upgrade between patch versions.
 
 ### DB-less mode
 
@@ -274,9 +275,10 @@ You must also account for the following factors:
 
 * During the upgrade process, no changes can be made to the database. 
 Until the upgrade is completed:
-  * Don't write to the database via the Admin API.
+  * Don't write to the database via the [Admin API](/gateway/{{page.kong_version}}/admin-api).
   * Don't operate on the database directly.
-  * Don't update configuration through Kong Manager, decK, or the `kong config` CLI.
+  * Don't update configuration through [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/), 
+  [decK](/deck/), or the [`kong config` CLI](/gateway/{{page.kong_version}}/reference/cli/#kong-config).
 * Review the compatibility between the new version Y and your existing platform. 
 Factors may include, but are not limited to:
   * [OS version](/gateway/{{page.kong_version}}/support/#supported-versions)

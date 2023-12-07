@@ -30,7 +30,8 @@ flowchart TD
     linkStyle 0,3,4 stroke:#d44324,color:#d44324
 {% endmermaid %}
 
-> _Figure 1: The diagram shows an in-place upgrade workflow, where the current CP X is directly replaced by a new CP Y. DP nodes are gradually diverted to the new CP Y. The database is reused by the new CP Y, and the current CP X is shut down once all nodes are migrated. No Admin API write operations can be performed during the upgrade._
+> _Figure 1: The diagram shows an in-place upgrade workflow, where the current CP X is directly replaced by a new CP Y.+
+_The database is reused by the new CP Y, and the current CP X is shut down once all nodes are migrated. No Admin API write operations can be performed during the upgrade._
 
 There is business downtime as cluster X is stopped during the upgrade process. You must carefully review the upgrade considerations in advance. The prescribed steps below are recommended for you.
 
@@ -73,6 +74,9 @@ This will create a period of downtime until new nodes are deployed.
 6. Install a new cluster running version Y as instructed in the 
     [{{site.base_gateway}} Installation Options](/gateway/{{page.kong_version}}/install/) and 
     point it at the existing database for cluster X.
+    
+    Provision the new cluster Y with the same-sized resource capacity as that of 
+    the current cluster X.
 
 7. Migrate the database to the new version by running `kong migrations up`. 
 

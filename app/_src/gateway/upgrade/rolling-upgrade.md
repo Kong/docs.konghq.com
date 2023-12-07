@@ -58,7 +58,7 @@ _New nodes are gradually deployed and pointed to the `kong.yml` file, while traf
 ## Prerequisites
 
 * Review the [general upgrade guide](/gateway/{{page.kong_version}}/upgrade/) to prepare for the upgrade and review your options.
-* You have a DB-less deployment or you need to upgrade the data planes (CPs) in a hybrid mode deployment.
+* You have a DB-less deployment or you need to upgrade the data planes (DPs) in a hybrid mode deployment, or {{site.konnect_short_name}} DPs.
 
 ## Upgrade using the rolling method
 
@@ -66,7 +66,7 @@ _New nodes are gradually deployed and pointed to the `kong.yml` file, while traf
 > The following steps are intended as a guideline.
 The exact execution of these steps will vary depending on your environment. 
 
-1. Stop any {{site.base_gateway}} configuration updates (for example, Admin API calls). 
+1. Stop any {{site.base_gateway}} configuration updates (for example, Admin API calls to `:8001/config`). 
 This is critical to guarantee data consistency between cluster X and cluster Y.
 
 2. Back up data from the current cluster X by following the 
@@ -83,6 +83,9 @@ You may have to consider customization of both `kong.conf` and {{site.base_gatew
     
     1. Install a new cluster running version Y as instructed in the 
     [{{site.base_gateway}} Installation Options](/gateway/{{page.kong_version}}/install/).
+
+        Provision the new cluster Y with the same-sized resource capacity as that of 
+        the current cluster X.
 
     2. Perform staging tests against version Y to make sure it works for all use cases. 
     

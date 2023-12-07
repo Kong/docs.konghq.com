@@ -11,8 +11,8 @@ This guide refers to the old version as cluster X and the new version as cluster
 
 With a dual-cluster upgrade, you deploy a new cluster of version Y alongside the current version X, 
 so that two clusters serve requests concurrently during the upgrade process. 
-As you add {{site.base_gateway}} nodes, you will gradually adjust the traffic ratio between the two clusters to 
-switch traffic over from the old cluster to the new one.
+You will gradually adjust the traffic ratio between the two clusters to 
+switch traffic over from the old cluster to the new one based on the business metrics.
 
 {% mermaid %}
 flowchart TD
@@ -53,13 +53,16 @@ _The new {{site.base_gateway}} Y is deployed alongside the current {{site.base_g
 _A new database serves the new deployment._
 _Traffic is gradually switched over to the new deployment, until all API traffic is migrated._
 
+This upgrade strategy is the safest of all available strategies and 
+ensures that there is no planned business downtime during the upgrade process.
+
 This method has limitations on automatically generated runtime metrics that rely on the database. 
 During the upgrade, some runtime metrics (for example, the number of requests) are sent to two databases separately.
 Since the metrics between the databases are not synced, metrics will not be accurate for the duration of the upgrade.
 
 For example, if the Rate Limiting Advanced (RLA) plugin is configured to store request counters in 
 the database, the counters between database X and database Y are not synchronized. 
-The impact scope depends on the `window_size` parameter of the plugin.
+The impact scope depends on the `window_size` parameter of the plugin and the duration of the upgrade process.
 
 Similarly, the same limitation applies to Vitals if you have a large amount of buffered metrics in 
 PostgreSQL or Cassandra.
@@ -79,8 +82,9 @@ The exact execution of these steps will vary depending on your environment.
 1. Stop any {{site.base_gateway}} configuration updates (e.g. Admin API calls). 
 This is critical to guarantee data consistency between cluster X and cluster Y.
 
-    To keep data consistency between the two clusters, you must not execute any write operations through the Admin API, Kong Manager, decK, or direct database updates. 
-    This upgrade strategy is the safest of all available strategies and ensures that there is no planned business downtime during the upgrade process.
+    To keep data consistency between the two clusters, you must not execute any write operations through the 
+    [Admin API](/gateway/{{page.kong_version}}/admin-api/), [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/), 
+    [decK](/deck/), or direct database updates. 
 
 2. Back up data from the current cluster X by following the 
 [Backup guide](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/).
@@ -96,6 +100,9 @@ You may have to consider customization of both `kong.conf` and {{site.base_gatew
 
     1. Install a new {{site.base_gateway}} cluster running version Y as instructed in the 
     [{{site.base_gateway}} Installation Options](/gateway/{{page.kong_version}}/install/).
+
+        Provision the new cluster Y with the same-sized resource capacity as that of 
+        the current cluster X.
 
     2. Install a new database of the same version.
 
