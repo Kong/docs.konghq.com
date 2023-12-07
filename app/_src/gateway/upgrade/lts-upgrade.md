@@ -158,4 +158,4 @@ DB-less mode or data planes in hybrid mode:
 
 ## Troubleshooting
 
-If you run into issues during the upgrade and need to roll back, [restore {{site.base_gateway}}](/gateway/{{page.kong_version}}/backup-and-restore/#restore-gateway-entities) based on the backup method.
+If you run into issues during the upgrade and need to roll back, [restore {{site.base_gateway}}](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/#restore-gateway-entities) based on the backup method.
