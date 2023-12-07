@@ -100,8 +100,8 @@ jobs:
         with:
           sha: ${{ github.sha }}
           files: |
-            app/
-            docs/
+            app/**
+            docs/**
           files_ignore: |
             app/_src/.repos/kuma/**
             app/gateway/2.7.x/**
