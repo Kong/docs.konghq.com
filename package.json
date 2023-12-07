@@ -36,7 +36,7 @@
     "prettier": "3.1.1",
     "sass": "^1.63.6",
     "skeleton-css": "2.0.4",
-    "vite": "^4.5.1",
+    "vite": "^5.0.0",
     "vite-plugin-ruby": "^5.0.0"
   },
   "jest": {
