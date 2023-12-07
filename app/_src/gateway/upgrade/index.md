@@ -193,26 +193,9 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 
 {% endif_version %}
 
-### Upgrades from 3.1.0.0 or 3.1.1.1
-
-There is a special case if you deployed {{site.base_gateway}} in hybrid mode and the version you are using is 3.1.0.0 or 3.1.1.1.
-Kong removed the legacy WebSocket protocol between the CP and DP, replaced it with a new WebSocket protocol in 3.1.0.0,
-and added back the legacy one in 3.1.1.2. 
-So, upgrade to 3.1.1.2 first before moving forward to later versions. 
-
-Additionally, the new WebSocket protocol has been completely removed since 3.2.0.0.
-See the following table for the version breakdown:
-
-{{site.base_gateway}} Version | Legacy WebSocket (JSON) | New WebSocket (RPC)
----------------------|-------------------------|--------------------
-3.0.0.0 | Y | Y
-3.1.0.0 and 3.1.1.1 | N | Y
-3.1.1.2 | Y | Y
-3.2.0.0 | Y | N
-
 ## Preparation: Choose a backup strategy
 
-{% include_cached /md/gateway/backup-and-restore.md %}
+{% include_cached /md/gateway/upgrade-backup.md %}
 
 ## Preparation: Choose an upgrade strategy based on deployment mode
 
@@ -258,6 +241,23 @@ combinations, given the number of {{site.base_gateway}} versions, upgrade strate
 ### Hybrid mode
 
 {% include_cached /md/gateway/hybrid-upgrade.md %}
+
+#### Upgrades from 3.1.0.0 or 3.1.1.1
+
+There is a special case if you deployed {{site.base_gateway}} in hybrid mode and the version you are using is 3.1.0.0 or 3.1.1.1.
+Kong removed the legacy WebSocket protocol between the CP and DP, replaced it with a new WebSocket protocol in 3.1.0.0,
+and added back the legacy one in 3.1.1.2. 
+So, upgrade to 3.1.1.2 first before moving forward to later versions. 
+
+Additionally, the new WebSocket protocol has been completely removed since 3.2.0.0.
+See the following table for the version breakdown:
+
+{{site.base_gateway}} Version | Legacy WebSocket (JSON) | New WebSocket (RPC)
+---------------------|-------------------------|--------------------
+3.0.0.0 | Y | Y
+3.1.0.0 and 3.1.1.1 | N | Y
+3.1.1.2 | Y | Y
+3.2.0.0 | Y | N
 
 ## Preparation: Review breaking changes and changelogs
 
