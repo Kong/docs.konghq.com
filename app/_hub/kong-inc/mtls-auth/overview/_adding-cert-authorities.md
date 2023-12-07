@@ -45,5 +45,3 @@ curl -X POST https:konnect.konghq.com/api/control_planes/[Konnect-ID]/ca_certifi
 {% endnavtab %}
 {% endnavtabs %}
 The `id` value returned can now be used for mTLS plugin configurations or consumer mappings.
-
-{% if_plugin_version gte:3.1.x %}
