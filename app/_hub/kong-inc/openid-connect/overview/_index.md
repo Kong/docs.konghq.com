@@ -90,6 +90,7 @@ The plugin supports several types of credentials and grants:
 
 The plugin has been tested with several OpenID Connect providers:
 
+<!--vale off-->
 - [Auth0][auth0] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-auth0/))
 - [Amazon AWS Cognito][cognito] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-cognito/))
 - [Connect2id][connect2id]
@@ -140,6 +141,7 @@ want your provider to be tested and added to the list.
 [salesforce]: https://help.salesforce.com/articleView?id=sf.sso_provider_openid_connect.htm&type=5
 [wso2]: https://is.docs.wso2.com/en/latest/guides/identity-federation/configure-oauth2-openid-connect/
 [yahoo]: https://developer.yahoo.com/oauth2/guide/openid_connect/
+<!--vale on-->
 
 Once applied, any user with a valid credential can access the service.
 
@@ -937,6 +939,23 @@ We can use the output in `Authorization` header.
    }
    ```
 2. Done.
+   
+#### Test the JWT Access Token Authentication with access token in query string 
+
+To specify the bearer token as a query string parameter:
+
+```bash
+curl -i -X PATCH http://localhost:8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9  \
+  --data "config.bearer_token_param_type=query"                 \
+  --data "config.auth_methods=bearer"                           \
+  --data "config.auth_methods=password" # only enabled for demoing purposes
+```
+
+Test out the token by accessing the Kong proxy:
+
+```bash
+curl http://localhost:8000?access_token=<token>
+```
 
 ### Introspection Authentication
 
