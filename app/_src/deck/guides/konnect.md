@@ -50,8 +50,9 @@ decK looks for {{site.konnect_short_name}} credentials in the following order of
 
 For example, if you have both a decK config file and a {{site.konnect_short_name}} token file, decK uses the token in the config file.
 
+
 {:.note}
-> **Note:** decK also includes flags to authenticate to Konnect via email and password. This is no longer supported by Konnect; instead, use a token as described below.
+> **Note:** decK also includes flags to authenticate to {{site.konnect_short_name}} via email and password. This is no longer supported by {{site.konnect_short_name}}; instead, use a token as described below.
 
 ### Authenticate using a decK config file
 
