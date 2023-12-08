@@ -10,7 +10,7 @@ A database-native backup backs up the entire {{site.base_gateway}} database, whi
 
 We recommend backing up data using both methods, as this offers recovery flexibility:
 * The database-native tools are robust and can restore data instantly, compared to the declarative tools. 
-* In case of data corruption, try to do a database-level restore first, otherwise bootstrap a new database and [declarative tools](#declarative-tools-for-backup-and-restore) to load in entity data.
+* In case of data corruption, try to do a database-level restore first, otherwise bootstrap a new database and use [declarative tools](#declarative-tools-for-backup-and-restore) to load in entity data.
 
 [Keyring materials](#keyring-materials-backup-and-restore) and {{site.base_gateway}} [configuration files](#other-files) must be backed up separately. 
 See their respective sections below for details.
@@ -20,7 +20,7 @@ Revise the methods as necessary to fit your infrastructure, deployment, and busi
 
 ## Declarative tools for backup and restore
 
-Kong ships two declarative backup tools: [decK](/deck/) and the [Kong CLI](/gateway/{{page.kong_version}}/reference/cli/), which support managing {{site.base_gateway}} entities in the declarative format. 
+Kong ships two declarative backup tools: [decK](/deck/) and the [`kong config` CLI](/gateway/{{page.kong_version}}/reference/cli/), which support managing {{site.base_gateway}} entities in the declarative format. 
 
 * For **database-backed deployments** (traditional and hybrid mode), backups taken with either of these tools serve as an extra safeguard layer. If the database-native backup or restore corrupts the database, you can fall back to declarative files for restoring data.
 
@@ -28,11 +28,11 @@ Kong ships two declarative backup tools: [decK](/deck/) and the [Kong CLI](/gate
 
 * For **DB-less deployments**, no special tools are needed, so there is no declarative tool support. Back up your declarative files manually.
 
-decK is generally more powerful than the Kong CLI. It has more features, invalidates the cache automatically, and fetches entities from the database instead of the LRU cache. Additionally, it overwrites entities instead of patching, so that the database has the exact copy of the config that you provide.
+decK is generally more powerful than the `kong config` CLI. It has more features, invalidates the cache automatically, and fetches entities from the database instead of the LRU cache. Additionally, it overwrites entities instead of patching, so that the database has the exact copy of the config that you provide.
 
 However, decK also has its limitations:
 
-* **Availability**: decK requires {{site.base_gateway}} to be online, while the Kong CLI doesn't. 
+* **Availability**: decK requires {{site.base_gateway}} to be online, while the `kong config` CLI doesn't. 
 
 * **Performance**: decK uses the Admin API to read and write entities and might take longer than expected, especially when the number of entities is very large. 
 
@@ -99,7 +99,7 @@ You can back up a particular workspace or all workspaces at once:
 
 
 {% endnavtab %}
-{% navtab Traditional or hybrid mode - Kong CLI %}
+{% navtab Traditional or hybrid mode - kong config CLI %}
 
 As a final failsafe for a database-backed deployment, you can also back up the database using the Kong CLI.
 
@@ -231,13 +231,16 @@ In DB-less mode, use the Kong CLI to restore your configuration from a declarati
 2. Restart or reload your {{site.base_gateway}} instance using the backup configuration file:
 
     ```sh
-    kong restart -c /path/to/kong_backup.yaml
+    export KONG_DECLARATIVE_CONFIG=kong.yml; kong restart -c /path/to/kong_backup.yaml
+    # -or-
+    export KONG_DECLARATIVE_CONFIG=kong.yml; kong reload -c /path/to/kong_backup.yaml
     ```
 
-    or
+    Alternatively, post the declarative backup file to `:8001/config` endpoint:
 
     ```sh
-    kong reload -c /path/to/kong_backup.yaml
+    curl -sS http://localhost:8001/config?check_hash=1 \
+      -F 'config=@kong_backup.yaml' ; echo
     ```
 
 {% endnavtab %}

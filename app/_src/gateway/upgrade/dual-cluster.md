@@ -106,7 +106,7 @@ You may have to consider customization of both `kong.conf` and {{site.base_gatew
 
     2. Install a new database of the same version.
 
-    3. [Restore the backup data](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/#restore)
+    3. [Restore the backup data](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/#restore-gateway-entities)
     to the new database.
 
     4. Configure the new cluster Y to point to the new database.
