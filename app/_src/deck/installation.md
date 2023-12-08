@@ -17,9 +17,20 @@ Operating System (OS):
 
 If you are on macOS, install decK using brew:
 
-```shell
-$ brew tap kong/deck
-$ brew install deck
+1. Tap the `kong/deck` cask:
+    ```shell
+    brew tap kong/deck
+    ```
+
+2. Install decK:
+    ```sh
+    brew install deck
+    ```
+
+To update decK to the latest version:
+
+```sh
+brew upgrade deck
 ```
 
 ## Linux

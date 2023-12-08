@@ -44,3 +44,6 @@ kong_version_compatibility:
       - 0.34-x
 
 reference_param_name: salt-agent
+
+search_aliases: 
+  - salt-agent

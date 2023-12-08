@@ -41,3 +41,5 @@ konnect: true
 
 dbless_compatible: yes
 
+search_aliases:
+  - nonamesecurity-kongtrafficsource

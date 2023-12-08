@@ -20,16 +20,6 @@ If you don't pass a {{site.konnect_short_name}} flag to decK, decK looks for a l
 `--konnect-addr`
 :  Address of the {{site.konnect_short_name}} endpoint. (Default: `"https://us.api.konghq.com"`)
 
-`--konnect-email`
-:  Email address associated with your {{site.konnect_short_name}} account.
-
-`--konnect-password`
-:  Password associated with your {{site.konnect_short_name}} account.
-This takes precedence over the `--konnect-password-file` flag.
-
-`--konnect-password-file`
-:  File containing the password to your {{site.konnect_short_name}} account.
-
 {% if_version lte:1.26.x %}
 `--konnect-runtime-group-name`
 :  {{site.konnect_short_name}} runtime group name.
@@ -40,23 +30,11 @@ This takes precedence over the `--konnect-password-file` flag.
 :  {{site.konnect_short_name}} control plane name.
 {% endif_version %}
 
-{% if_version gte:1.14.x lte:1.17.x %}
-`--konnect-token`
-:  Personal access token associated with your {{site.konnect_short_name}} account, this takes precedence over the `--konnect-token-file` flag.
-
-
-`--konnect-token-file`
-:  File containing the personal access token to your {{site.konnect_short_name}} account.
-{% endif_version %}
-
-{% if_version gte:1.18.x %}
 `--konnect-token`
 :  Personal access token associated with your {{site.konnect_short_name}} account (`kpat_*`), or with a system account (`spat_*`). This takes precedence over the `--konnect-token-file` flag.
 
-
 `--konnect-token-file`
 :  File containing the personal access token to your {{site.konnect_short_name}} account, or to a system account.
-{% endif_version %}
 
 {:.note}
 > **Note:** Prior to decK 1.12, decK provided [`deck konnect`](/deck/1.11.x/reference/deck_konnect/) commands.
@@ -66,44 +44,15 @@ Those commands are deprecated and have been replaced with the flags in this guid
 
 decK looks for {{site.konnect_short_name}} credentials in the following order of precedence:
 
-{% if_version gte:1.14.x %}
-
-1. Credentials set with a flag, either `--konnect-password` or `--konnect-token`
+1. Credential set with the `--konnect-token` flag 
 2. decK configuration file, if one exists (default lookup path: `$HOME/.deck.yaml`)
-3. Credential file passed with a flag, either `--konnect-password-file` or `--konnect-token-file`
+3. Credential file passed with the `--konnect-token-file` flag
 
-{% endif_version %}
+For example, if you have both a decK config file and a {{site.konnect_short_name}} token file, decK uses the token in the config file.
 
-{% if_version lte:1.13.x %}
 
-1.  Password set with the `--konnect-password` flag
-2. decK configuration file, if one exists (default lookup path: `$HOME/.deck.yaml`)
-3. File passed with the `--konnect-password-file` flag
-
-{% endif_version %}
-
-For example, if you have both a decK config file and a {{site.konnect_short_name}} password file, decK uses the password in the config file.
-
-### Authenticate using a plaintext password
-
-You can use the `--konnect-password` flag to provide the password directly in the command:
-
-```sh
-deck ping \
-  --konnect-email example@example.com \
-  --konnect-password YOUR_PASSWORD
-```
-
-### Authenticate using a password file
-
-You can save your {{site.konnect_short_name}}
-password to a file, then pass the filename to decK with `--konnect-password-file`:
-
-```sh
-deck ping \
-  --konnect-email example@example.com \
-  --konnect-password-file /PATH/TO/FILE
-```
+{:.note}
+> **Note:** decK also includes flags to authenticate to {{site.konnect_short_name}} via email and password. This is no longer supported by {{site.konnect_short_name}}; instead, use a token as described below.
 
 ### Authenticate using a decK config file
 
@@ -112,51 +61,46 @@ This file lets you specify flags to include with every decK command.
 
 You can create the file at the default location, or set a custom filename and path with [`--config`](/deck/{{page.kong_version}}/reference/deck/).
 
-If you store {{site.konnect_short_name}} credentials in the file, decK uses the credentials for every command.
-Set either `konnect-password` or `konnect-password-file` in the decK config file.
+If you store a {{site.konnect_short_name}} token in the file, decK uses the token for every command.
 
-* Use `konnect-password` to store {{site.konnect_short_name}} credentials directly in the configuration file:
+Set either `konnect-token` or `konnect-token-file` in the decK config file.
 
-    ```
-    konnect-email: example@email.com
-    konnect-password: YOUR_PASSWORD
-    ```
-
-* Store your password in a separate file, then specify the path to `konnect-password-file` instead of a literal password:
+* Use `konnect-token` to store {{site.konnect_short_name}} credentials directly in the configuration file:
 
     ```
-    konnect-email: example@example.com
-    konnect-password-file: PATH/TO/FILENAME
+    konnect-token: YOUR_TOKEN
     ```
 
-decK automatically uses the credentials from `$HOME/.deck.yaml` in any subsequent calls:
+* Store your token in a separate file, then specify the path to `konnect-token-file` instead of a literal token:
+
+    ```
+    konnect-token-file: PATH/TO/FILENAME
+    ```
+
+decK automatically uses the token from `$HOME/.deck.yaml` in any subsequent calls:
 
 ```sh
 deck ping
 
 Successfully Konnected to the Example-Name organization!
 ```
-{% if_version gte:1.14.x %}
-### Authenticate using a personal access token
+### Authenticate using a token
 
-You can generate a personal access token (PAT) in {{site.konnect_short_name}} for authentication with decK commands. This is more secure than basic authentication, and can be useful for organizations with CI pipelines that can't use the standard username and password authentication. 
+You can generate a token in {{site.konnect_short_name}} for authentication with decK commands. 
 
-{% if_version gte:1.18.x %}
-There are two types of PATs available for {{site.konnect_short_name}}: 
-* Personal access tokens associated with user accounts
-* System account access tokens associated with system accounts
+There are two types of tokens available for {{site.konnect_short_name}}: 
+* Personal access tokens associated with user accounts (PATs)
+* System account access tokens associated with system accounts (SPATs)
 
 Learn more about system accounts in the [{{site.konnect_short_name}} System Accounts documentation](/konnect/org-management/system-accounts/).
-{% endif_version %}
 
-Before you generate a PAT, keep the following in mind:
+Before you generate a token, keep the following in mind:
 
-* A PAT is granted all of the permissions that the user has access to via their most up-to-date role assignment.
-* The PAT has a maximum duration of 12 months.
+* A token is granted all of the permissions that the user or system account has access to via their most up-to-date role assignment.
+* The token has a maximum duration of 12 months.
 * There is a limit of 10 personal access tokens per user.
 * Unused tokens are deleted and revoked after 12 months of inactivity.
 
-{% if_version gte:1.18.x %}
 {% navtabs %}
 {% navtab User Account Token %}
 
@@ -170,14 +114,6 @@ To generate a PAT for a user account in {{site.konnect_short_name}}, select your
 
 {% endnavtab %}
 {% endnavtabs %}
-{% endif_version %}
-
-{% if_version lte:1.17.x %}
-
-To generate a PAT for a user account in {{site.konnect_short_name}}, select your user icon to open the context menu 
- and click **Personal access tokens**, then click **Generate token**. 
-
-{% endif_version %}
 
 {:.important}
 > **Important**: The access token is only displayed once, so make sure you save it securely. 
@@ -190,13 +126,12 @@ deck ping \
 ```
 
 You can save your {{site.konnect_short_name}}
-PAT to a file, then pass the filename to decK with `--konnect-token-file`:
+token to a file, then pass the filename to decK with `--konnect-token-file`:
 
 ```sh
 deck ping \
   --konnect-token-file /PATH/TO/FILE
 ```
-{% endif_version %}
 
 ## Target a {{site.konnect_short_name}} API
 
@@ -257,25 +192,12 @@ or use a flag when running any decK command.
 
 ## Troubleshoot
 
-{% if_version gte:1.14.x %}
-### Authentication with a {{site.konnect_short_name}} password or token file is not working
+### Authentication with a {{site.konnect_short_name}} token file is not working
 
-If you have verified that your password or token is correct but decK can't connect to your account, check for conflicts with the decK config file (`$HOME/.deck.yaml`) and the {{site.konnect_short_name}} password or token file.
-A decK config file is likely conflicting with the password or token file and passing another set of credentials.
-
-To resolve, remove one of the duplicate sets of credentials.
-
-{% endif_version %}
-
-{% if_version lte:1.13.x %}
-### Authentication with a {{site.konnect_short_name}} password file is not working
-
-If you have verified that your password is correct but decK can't connect to your account, check for conflicts with the decK config file (`$HOME/.deck.yaml`) and the {{site.konnect_short_name}} password file.
-A decK config file is likely conflicting with the password or token file and passing another set of credentials.
+If you have verified that your token is correct but decK can't connect to your account, check for conflicts with the decK config file (`$HOME/.deck.yaml`) and the {{site.konnect_short_name}} token file.
+A decK config file is likely conflicting with the token file and passing another set of credentials.
 
 To resolve, remove one of the duplicate sets of credentials.
-
-{% endif_version %}
 
 ### Workspace connection refused
 
@@ -350,7 +272,7 @@ against {{site.konnect_short_name}}.
 
 2. If the `--kong-addr` flag is set to a non-default value, decK runs against {{site.base_gateway}}.
 
-3. If {{site.konnect_short_name}} credentials are set in any way (flag, file, or decK config), decK runs against {{site.konnect_short_name}}.
+3. If {{site.konnect_short_name}} token is set in any way (flag, file, or decK config), decK runs against {{site.konnect_short_name}}.
 
 4. If none of the above are present, decK runs against {{site.base_gateway}}.
 

@@ -36,7 +36,7 @@
     "prettier": "3.1.0",
     "sass": "^1.63.6",
     "skeleton-css": "2.0.4",
-    "vite": "^4.3.9",
+    "vite": "^4.5.1",
     "vite-plugin-ruby": "^3.2.2"
   },
   "jest": {
@@ -55,7 +55,7 @@
     "@kong-ui-public/spec-renderer": "^0.13.0",
     "@kong/kongponents": "^8.119.0",
     "@kong/sdk-portal-js": "^2.0.0",
-    "@segment/analytics-next": "1.61.0",
+    "@segment/analytics-next": "1.62.0",
     "jquery": "3.7.1",
     "js-cookie": "^3.0.1",
     "js-yaml": "^4.1.0",

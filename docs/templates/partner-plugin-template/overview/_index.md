@@ -1,3 +1,8 @@
+---
+nav_title: Overview
+title: Overview
+---
+
 <!-- 
 Introduce your plugin with a long description. What does it do, and why would someone want to use it? 
 
@@ -30,18 +35,18 @@ should already be installed in your system.
 Install the `.rock` in your LuaRocks tree, that is, the directory in which LuaRocks 
 installs Lua modules. 
 
-1. Install the {YOUR_PLUGIN_NAME} plugin:
+1. Install the <REPLACE_ME_WITH_PLUGIN_NAME> plugin:
 
     ```sh
-    luarocks install {YOUR_PLUGIN_NAME}
+    luarocks install <REPLACE_ME_WITH_PLUGIN_NAME>
     ```
 
 2. Update your loaded plugins list in {{site.base_gateway}}.
 
-    In your `kong.conf`, append `{YOUR_PLUGIN_NAME}` to the `plugins` field. Make sure the field is not commented out.
+    In your `kong.conf`, append `<REPLACE_ME_WITH_PLUGIN_NAME>` to the `plugins` field. Make sure the field is not commented out.
 
     ```yaml
-    plugins = bundled,{YOUR_PLUGIN_NAME}    # Comma-separated list of plugins this node
+    plugins = bundled,<REPLACE_ME_WITH_PLUGIN_NAME>    # Comma-separated list of plugins this node
                                             # should load. By default, only plugins
                                             # bundled in official distributions are
                                             # loaded via the `bundled` keyword.

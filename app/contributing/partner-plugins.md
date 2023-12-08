@@ -52,7 +52,8 @@ For example, `_app/_hub/company-name/example-plugin`.
             schemas
               _index.json
             _changelog.md
-            _index.md
+            overview
+              _index.md
             _metadata.yml
     ```
 
@@ -69,7 +70,7 @@ For example, `_app/_hub/company-name/example-plugin`.
     At minimum, this file must contain the plugin name, as well as any required
     parameters. This example is validated against the plugin's schema.
 
-    * `_index.md`: Markdown documentation for your plugin. This is where you
+    * `overview/_index.md`: Markdown documentation for your plugin. This is where you
     explain how the plugin works, how to install it, and how to use it.
 
     * `_changelog.md`: A changelog for your plugin. For the first entry, note when the 

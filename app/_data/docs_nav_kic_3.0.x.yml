@@ -196,3 +196,5 @@ items:
         src: reference/custom-resources-3.0.x
       - text: Gateway API migration
         url: /reference/ingress-to-gateway-migration
+      - text: Required Permissions for Installation
+        url: /reference/required-permissions
