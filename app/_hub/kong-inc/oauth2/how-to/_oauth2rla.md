@@ -26,7 +26,7 @@ and advanced Redis support for greater performance. Ensure that you have install
     --data "name=teamA"
    ```
    The results should look like this:
-   ```txt
+   ```json
    {
      "meta": {
        "color": null,
@@ -69,7 +69,7 @@ and advanced Redis support for greater performance. Ensure that you have install
     --data "url=http://httpbin.org/anything"
    ```
    The results should look like this:
-   ```txt
+   ```json
    {
      "updated_at": 1699525785,
      "tags": null,
@@ -99,7 +99,7 @@ and advanced Redis support for greater performance. Ensure that you have install
     --data "paths=/httpbin"
    ```
   The results should look like this:
-  ```txt
+  ```json
    {
      "updated_at": 1699526004,
      "tags": null,
@@ -141,7 +141,7 @@ and advanced Redis support for greater performance. Ensure that you have install
   --data "config.enable_client_credentials=true"
    ```
    The results should look like this:
-   ```txt
+   ```json
    {
      "updated_at": 1699526484,
      "tags": null,
@@ -195,7 +195,7 @@ and advanced Redis support for greater performance. Ensure that you have install
   --data "username=user1"
    ```
    The results should look like this:
-  ```txt
+  ```json
    {
      "username": "user1",
      "updated_at": 1699526969,
@@ -213,7 +213,7 @@ and advanced Redis support for greater performance. Ensure that you have install
      --data "key=123"
    ```
    The results should look like this:
-   ```txt
+   ```json
    {
       "consumer":{
          "id":"691d8afc-b098-4374-937b-b1c36c8ef084"
@@ -231,10 +231,10 @@ and advanced Redis support for greater performance. Ensure that you have install
      --data "name=demo" \
      --data "client_id=456" \
      --data "client_secret=789" \
---data "redirect_uris=http://mockbin.org/"
+     --data "redirect_uris=http://mockbin.org/"
    ```
    The results should look like this:
-   ```txt
+   ```json
    {
       "tags":null,
       "created_at":1699527585,
@@ -261,7 +261,7 @@ and advanced Redis support for greater performance. Ensure that you have install
   --data "grant_type=client_credentials"
    ```
    The results should look like this:
-   ```txt
+   ```json
    {
   "token_type": "bearer",
   "expires_in": 7200,
@@ -282,7 +282,7 @@ and advanced Redis support for greater performance. Ensure that you have install
     --data "protocol=https"
    ```
    The results should look like this:
-   ```txt
+   ```json
    {
      "updated_at": 1699528090,
      "tags": null,
@@ -313,7 +313,7 @@ and advanced Redis support for greater performance. Ensure that you have install
    ```
    The results should look like this:
 
-   ```txt
+   ```json
    {
      "updated_at": 1699528555,
      "tags": null,
@@ -356,7 +356,7 @@ and advanced Redis support for greater performance. Ensure that you have install
      --data "config.strategy=local"
    ```
    The results should look like this:
-   ```txt
+   ```json
    {
      "updated_at": 1699528815,
      "tags": null,
@@ -432,7 +432,7 @@ and advanced Redis support for greater performance. Ensure that you have install
    ```
 
    When you send a request for the fourth time, you should get a 429 response code, showing you that the last request was rate limited:
-   ```txt
+   ```json
    HTTP/1.1 429 Too Many Requests
    Date: Thu, 09 Nov 2023 12:41:01 GMT
    Content-Type: application/json; charset=utf-8
