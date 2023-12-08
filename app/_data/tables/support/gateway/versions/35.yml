@@ -12,7 +12,7 @@ distributions:
     docker: true
     arm: true
     graviton: true
-  - <<: *azurelinux2.x.x
+  - *azurelinux2.x.x
   - <<: *debian10
     eol: June 2024
   - <<: *debian11
