@@ -78,4 +78,40 @@ This can be verified by checking the CPU and memory usage of the upstream server
 If you deploy additional Kong nodes and the throughput or error rate remains the same, the Upstream server or a system other than Kong is likely bottlenecked.
 You also must ensure that Upstream servers are not autoscaled.
 
+### Client maxing out
+
+**Action:** The client must use keep-alive connections.
+
+Sometimes, the clients (such as k6 and Jmeter) max themselves out. Tuning them requires knowledge of the Client itself. Increasing the CPU, threads, and connections on these clients results in higher resource utilization and throughput.
+The Client must also use keep-alive connections. For example, [k6](https://k6.io/docs/using-k6/k6-options/reference/#no-connection-reuse) enables keep-alive by default, and [HTTPClient4](https://hc.apache.org/httpcomponents-client-4.5.x/index.html) implementation in Jmeter enables keep-alive by default. Please verify that this is set up appropriately for your test setup.
+
+### Custom plugins
+
+**Action:** Ensure custom plugins aren't interfering with performance.  
+
+Writing performant custom plugins requires care, attention, and some knowledge of Kong internals.
+
+Ruling out custom plugins should be your first order of business. You can do so by measuring three configuration variations:
+
+* Keep the necessary bundled plugins enabled and disable all custom plugins
+* And then configure appropriate custom plugins
+
+Sometimes, measuring Kong's baseline performance (no plugins) can help spot issues outside Kong.
+
+### Cloud-provider gotchas
+
+**Action:** Ensure you aren't using burstable instances or hitting bandwidth, TCP connection per unit time, or PPS limits. 
+
+While AWS is mentioned in the following recommendations, the same applies to most cloud providers:
+
+* Ensure that you are not using burstable instances like T instances in AWS. In this case, the CPU available to applications is variable, leading to noise in the stats. See [Burstable performance instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html).
+* Ensure you are not hitting bandwidth limits, TCP connections per unit time limits, or Packet Per Second (PPS) limits. See [Amazon EC2 instance network bandwidth](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-network-bandwidth.html).
+
+### Configuration changes during benchmarking
+
+**Action:** Don't change {{site.base_gateway}} configuration during a test.
+
+If you change the configuration during a test, Kong's tail latencies can increase sharply. Avoid doing this unless you are measuring Kong's performance under configuration change.
+
 ## Example kong.conf for benchmarking
+
