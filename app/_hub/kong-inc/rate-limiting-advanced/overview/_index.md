@@ -88,7 +88,7 @@ otherwise, an error occurs:
 ```plaintext
 You must provide the same number of windows and limits
 ```
-### Window sizes
+## Window types
 
 The Rate Limiting Advanced plugin supports these window types:
 
