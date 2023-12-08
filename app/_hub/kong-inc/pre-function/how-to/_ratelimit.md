@@ -15,7 +15,6 @@ plugin also known as Kong Functions, Pre-Plugin lets you dynamically run Lua cod
 ## Configure rate limit for peak or non-peak time
 
 1. Create a workspace named `teamA`:
-
    ```bash
    curl --request POST \
     --url http://localhost:8001/workspaces \
