@@ -49,7 +49,7 @@ flowchart TD
 {% endmermaid %}
 
 > _Figure 1: The diagram shows a {{site.base_gateway}} upgrade using the dual-cluster strategy._
-_The new {{site.base_gateway}} Y is deployed alongside the current {{site.base_gateway}} X._
+_The new {{site.base_gateway}} cluster Y is deployed alongside the current {{site.base_gateway}} cluster X._
 _A new database serves the new deployment._
 _Traffic is gradually switched over to the new deployment, until all API traffic is migrated._
 

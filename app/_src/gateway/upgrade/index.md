@@ -278,7 +278,7 @@ Until the upgrade is completed:
   * Don't write to the database via the [Admin API](/gateway/{{page.kong_version}}/admin-api).
   * Don't operate on the database directly.
   * Don't update configuration through [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/), 
-  [decK](/deck/), or the [`kong config` CLI](/gateway/{{page.kong_version}}/reference/cli/#kong-config).
+  [decK](/deck/), or the [kong config CLI](/gateway/{{page.kong_version}}/reference/cli/#kong-config).
 * Review the compatibility between the new version Y and your existing platform. 
 Factors may include, but are not limited to:
   * [OS version](/gateway/{{page.kong_version}}/support/#supported-versions)
@@ -300,7 +300,7 @@ Factors may include, but are not limited to:
 * If you have modified any Nginx templates like `nginx-kong.conf` and `nginx-kong-stream.conf`, also make those changes to the templates for the new version Y. 
 Refer to [Nginx Directives](/gateway/{{page.kong_version}}/reference/nginx-directives/) for a detailed customization guide.
 * If you're using {{site.ee_product_name}}, make sure to [apply the enterprise license](/gateway/{{page.kong_version}}/licenses/deploy/) to the new Gateway cluster.
-* Always remember take a [backup](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/).
+* Always remember to take a [backup](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/).
 {% if_version gte:3.4.x %}
 * Cassandra DB support has been removed from {{site.base_gateway}} with 3.4.0.0.
 Migrate to PostgreSQL according to the [Cassandra to PostgreSQL Migration Guidelines](/gateway/{{page.kong_version}}/migrate-cassandra-to-postgres/).

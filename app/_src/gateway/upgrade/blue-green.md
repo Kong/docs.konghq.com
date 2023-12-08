@@ -50,7 +50,7 @@ flowchart TD
 {% endmermaid %}
 
 > _Figure 1: The diagram shows a {{site.base_gateway}} upgrade using the blue-green strategy._
-_The new {{site.base_gateway}} Y is deployed alongside the current {{site.base_gateway}} X. Both deployments use the same database._
+_The new {{site.base_gateway}} cluster Y is deployed alongside the current {{site.base_gateway}} cluster X. Both clusters use the same database._
 _Traffic is gradually switched over to the new deployment, until all API traffic is migrated._
 
 Compared to dual-cluster and in-place upgrades, blue-green upgrades consume less resources since there is no extra database required, 

@@ -4,7 +4,8 @@ content_type: how-to
 purpose: Learn how to perform an in-place upgrade for Kong Gateway
 ---
 
-The in-place upgrade strategy is a {{site.base_gateway}} upgrade option used primarily for traditional mode deployments and for control planes in hybrid mode. An in-place upgrade reuses the existing database.
+The in-place upgrade strategy is a {{site.base_gateway}} upgrade option used primarily for traditional mode deployments and for control planes in hybrid mode. 
+An in-place upgrade reuses the existing database.
 
 In comparison to dual-cluster upgrades, the in-place upgrade uses less resources, but causes business downtime.
 
@@ -33,7 +34,8 @@ flowchart TD
 > _Figure 1: The diagram shows an in-place upgrade workflow, where the current cluster X is directly replaced by a new cluster Y._
 _The database is reused by the new cluster Y, and the current cluster X is shut down once all nodes are migrated. No Admin API write operations can be performed during the upgrade._
 
-There is business downtime as cluster X is stopped during the upgrade process. You must carefully review the upgrade considerations in advance. The prescribed steps below are recommended for you.
+There is business downtime as cluster X is stopped during the upgrade process. 
+You must carefully review the [upgrade considerations](/gateway/{{page.kong_version}}/upgrade/#preparation-upgrade-considerations) in advance.
 
 {:.important}
 > **Important**: We do not recommend using this strategy unless {{site.base_gateway}} is deployed under 
@@ -86,7 +88,7 @@ This will create a period of downtime until the upgrade completes.
 
 10. Actively monitor all proxy metrics.
 
-11. If you run into any issues, roll back the upgrade. 
+11. If you run into any issues, [roll back the upgrade](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/#restore-gateway-entities). 
 Prioritize the database-level restoration method over the application-level method.
 
 12. When there are no more issues, decommission the old cluster X to complete the upgrade. 

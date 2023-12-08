@@ -20,7 +20,7 @@ Revise the methods as necessary to fit your infrastructure, deployment, and busi
 
 ## Declarative tools for backup and restore
 
-Kong ships two declarative backup tools: [decK](/deck/) and the [`kong config` CLI](/gateway/{{page.kong_version}}/reference/cli/), which support managing {{site.base_gateway}} entities in the declarative format. 
+Kong ships two declarative backup tools: [decK](/deck/) and the [kong config CLI](/gateway/{{page.kong_version}}/reference/cli/), which support managing {{site.base_gateway}} entities in the declarative format. 
 
 * For **database-backed deployments** (traditional and hybrid mode), backups taken with either of these tools serve as an extra safeguard layer. If the database-native backup or restore corrupts the database, you can fall back to declarative files for restoring data.
 
@@ -28,11 +28,11 @@ Kong ships two declarative backup tools: [decK](/deck/) and the [`kong config` C
 
 * For **DB-less deployments**, no special tools are needed, so there is no declarative tool support. Back up your declarative files manually.
 
-decK is generally more powerful than the `kong config` CLI. It has more features, invalidates the cache automatically, and fetches entities from the database instead of the LRU cache. Additionally, it overwrites entities instead of patching, so that the database has the exact copy of the config that you provide.
+decK is generally more powerful than the kong config CLI. It has more features, invalidates the cache automatically, and fetches entities from the database instead of the LRU cache. Additionally, it overwrites entities instead of patching, so that the database has the exact copy of the config that you provide.
 
 However, decK also has its limitations:
 
-* **Availability**: decK requires {{site.base_gateway}} to be online, while the `kong config` CLI doesn't. 
+* **Availability**: decK requires {{site.base_gateway}} to be online, while the kong config CLI doesn't. 
 
 * **Performance**: decK uses the Admin API to read and write entities and might take longer than expected, especially when the number of entities is very large. 
 
@@ -101,7 +101,7 @@ You can back up a particular workspace or all workspaces at once:
 {% endnavtab %}
 {% navtab Traditional or hybrid mode - kong config CLI %}
 
-As a final failsafe for a database-backed deployment, you can also back up the database using the Kong CLI.
+As a final failsafe for a database-backed deployment, you can also back up the database using the kong config CLI.
 
 {:.important}
 > Never use this method as your primary backup, as it might not accurately represent the final state of your database.
@@ -188,10 +188,10 @@ In traditional or hybrid mode, use decK to restore your configuration from a bac
     ```
 
 {% endnavtab %}
-{% navtab Traditional or hybrid mode - Kong CLI %}
+{% navtab Traditional or hybrid mode - kong config CLI %}
 
 If you backed up {{site.base_gateway}} database using `kong config db_export`, 
-use the Kong CLI to restore your configuration from the backup declarative config file.
+use the kong config CLI to restore your configuration from the backup declarative config file.
 
 1. Validate the backup configuration file before restoring it:
 
@@ -220,7 +220,7 @@ use the Kong CLI to restore your configuration from the backup declarative confi
 {% endnavtab %}
 {% navtab DB-less mode %}
 
-In DB-less mode, use the Kong CLI to restore your configuration from a declarative config file.
+In DB-less mode, use the kong config CLI to restore your configuration from a declarative config file.
 
 1. Validate the backup configuration file before restoring it:
 
@@ -232,11 +232,15 @@ In DB-less mode, use the Kong CLI to restore your configuration from a declarati
 
     ```sh
     export KONG_DECLARATIVE_CONFIG=kong.yml; kong restart -c /path/to/kong_backup.yaml
-    # -or-
+    ```
+
+    or
+
+    ```
     export KONG_DECLARATIVE_CONFIG=kong.yml; kong reload -c /path/to/kong_backup.yaml
     ```
 
-    Alternatively, post the declarative backup file to `:8001/config` endpoint:
+    Alternatively, post the declarative backup file to the `:8001/config` endpoint:
 
     ```sh
     curl -sS http://localhost:8001/config?check_hash=1 \

@@ -17,7 +17,7 @@ categories:
   - name: Compatible
     key: 3
     desc: |
-      The following table lists behavior changees that may cause your database configuration 
+      The following table lists behavior changes that may cause your database configuration 
       or `kong.conf` to fail. 
       This includes deprecated (but not removed) features.
   - name: Debateable
@@ -61,7 +61,7 @@ entries:
     action: |
       If any configurations are stored in a repository (following a GitOps model),
       these need to be upgraded using [`deck convert`](/deck/latest/reference/deck_convert/).
-  - area: DB config?
+  - area: DB config
     category: 1
     description: Tags may now contain space characters.
     action: |
@@ -73,7 +73,7 @@ entries:
       trusted CA list from the system CA store. 
     action: |
       If you don't have this field explicitly configured, make sure that the new default value's behavior
-      of automatically pulling in all certs on the server suits your deployment. Otherwise, adjust the setting.ß
+      of automatically pulling in all certs on the server suits your deployment. Otherwise, adjust the setting.
   - area: Plugins
     category: 1
     description: |
@@ -264,7 +264,7 @@ entries:
     action: |
       If you are using Go plugin server, migrate your plugins to use the Go PDK before upgrading.
 
-  - area: Plugins?
+  - area: Plugins
     category: 2
     description: |
       The Kong constant `CREDENTIAL_USERNAME` with the value of `X-Credential-Username` has been removed. 
@@ -552,7 +552,7 @@ entries:
     action: |
       We recommend migrating over to the StatsD plugin, however StatsD Advanced continues to function in 3.4.
   - area: Plugins
-    category: 3?
+    category: 3
     description: | 
       **Serverless Functions (`post-function` or `pre-function`)**
 
