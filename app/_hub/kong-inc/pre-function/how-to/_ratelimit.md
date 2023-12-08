@@ -56,7 +56,6 @@ plugin also known as Kong Functions, Pre-Plugin lets you dynamically run Lua cod
   "created_at": 1702026459,
   "comment": null
   }
-
   ```
 1. Create a service named `httpbin`:
    ```bash
@@ -68,26 +67,26 @@ plugin also known as Kong Functions, Pre-Plugin lets you dynamically run Lua cod
    The results should look like this:
    ```json
    {
-  "path": "/anything",
-  "connect_timeout": 60000,
-  "read_timeout": 60000,
-  "host": "httpbin.org",
-  "protocol": "http",
-  "write_timeout": 60000,
-  "created_at": 1702026553,
-  "retries": 5,
-  "tls_verify": null,
-  "updated_at": 1702026553,
-  "tls_verify_depth": null,
-  "id": "0ce0d7f9-8b60-409f-b576-6361661adee4",
-  "port": 80,
-  "enabled": true,
-  "tags": null,
-  "ca_certificates": null,
-  "client_certificate": null,
-  "name": "httpbin"
-  }
-   ```
+   "path": "/anything",
+   "connect_timeout": 60000,
+   "read_timeout": 60000,
+   "host": "httpbin.org",
+   "protocol": "http",
+   "write_timeout": 60000,
+   "created_at": 1702026553,
+   "retries": 5,
+   "tls_verify": null,
+   "updated_at": 1702026553,
+   "tls_verify_depth": null,
+   "id": "0ce0d7f9-8b60-409f-b576-6361661adee4",
+   "port": 80,
+   "enabled": true,
+   "tags": null,
+   "ca_certificates": null,
+   "client_certificate": null,
+   "name": "httpbin"
+   }
+  ```
 1. Create a route named `route1` for the service `httpbin` and then set the value of `Headers` field to `X-Peak` with header value as `true`:
    ```bash
    curl --request POST \
