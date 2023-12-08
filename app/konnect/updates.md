@@ -9,6 +9,10 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## December 2023
+**Developer-Managed Scopes for Dev Portal**
+You can now give your customers more control over third-party application permissions using Auth0 DCR developer-managed scopes for Dev Portal. Developers can now configure unique scopes and permissions for each Auth0 DCR application they create, allowing them to set more fine-grained permissions for each of their target audiences. See [Configure Auth0 for Dynamic Client Registration](/konnect/dev-portal/applications/dynamic-client-registration/auth0/) for details.
+
 ## November 2023
 **Multi-geo support**
 : {{site.konnect_saas}} now allows you to host and operate your cloud instance in a geographic region that you specify. This is important for data privacy and regulatory compliance for you organization. Geographic regions allow you to also operate {{site.konnect_saas}} in a similar geo to your users and their infrastructure applications. 
