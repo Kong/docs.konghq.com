@@ -48,10 +48,10 @@ Now, let's move on to preparation, starting with determining your upgrade path.
 {{site.base_gateway}} adheres to [semantic versioning](https://semver.org/), which makes a
 distinction between major, minor, and patch versions.
 
-The upgrade to 3.0.x is a **major** upgrade.
+The upgrade from 2.x to 3.x is a **major** upgrade.
 The lowest version that {{site.base_gateway}} 3.0.x supports migrating from is 2.1.x.
 
-{{site.base_gateway}} does not support directly upgrading from 1.x to 3.0.x.
+{{site.base_gateway}} does not support directly upgrading from 1.x to 3.x.
 If you are running 1.x, upgrade to 2.1.0 first at a minimum, then upgrade to 3.0.x from there.
 
 While you can upgrade directly to the latest version, be aware of any
@@ -195,7 +195,7 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 
 ## Preparation: Choose a backup strategy
 
-{% include_cached /md/gateway/upgrade-backup.md %}
+{% include_cached /md/gateway/upgrade-backup.md kong_version=page.kong_version %}
 
 ## Preparation: Choose an upgrade strategy based on deployment mode
 
@@ -237,11 +237,11 @@ If you must use this strategy, only use it to upgrade between patch versions.
 
 ### DB-less mode
 
-{% include_cached /md/gateway/db-less-upgrade.md %}
+{% include_cached /md/gateway/db-less-upgrade.md kong_version=page.kong_version %}
 
 ### Hybrid mode
 
-{% include_cached /md/gateway/hybrid-upgrade.md %}
+{% include_cached /md/gateway/hybrid-upgrade.md kong_version=page.kong_version %}
 
 #### Upgrades from 3.1.0.0 or 3.1.1.1
 

@@ -59,7 +59,7 @@ Now, let's move on to preparation, starting with your backup options.
 
 ## Preparation: Choose a backup strategy
 
-{% include_cached /md/gateway/upgrade-backup.md %}
+{% include_cached /md/gateway/upgrade-backup.md kong_version=page.kong_version %}
 
 ## Preparation: Choose an upgrade strategy based on deployment mode
 
@@ -113,11 +113,11 @@ keeping in mind the additional resources and complexities.
 
 ### DB-less mode
 
-{% include_cached /md/gateway/db-less-upgrade.md %}
+{% include_cached /md/gateway/db-less-upgrade.md kong_version=page.kong_version %}
 
 ### Hybrid mode
 
-{% include_cached /md/gateway/hybrid-upgrade.md %}
+{% include_cached /md/gateway/hybrid-upgrade.md kong_version=page.kong_version %}
 
 ## Preparation: Review gateway changes
 
