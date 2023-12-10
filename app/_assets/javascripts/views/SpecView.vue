@@ -140,34 +140,32 @@ function initActiveProductVersionId () {
   top: 0;
   z-index: 1;
 }
-.product {
-  .deprecated-alert {
-    padding: 14px;
-    font-family: inherit;
-    font-size: 1rem;
-    border-radius: 4px;
-    color: var(--KAlertWarningColor, var(--yellow-500, color(yellow-500)));
-    border-color: var(--KAlertWarningBorder, var(--yellow-200, color(yellow-200)));
-    background-color: var(--KAlertWarningBackground, var(--yellow-100, color(yellow-100)));
-  }
+.product .deprecated-alert {
+  padding: 14px;
+  font-family: inherit;
+  font-size: 1rem;
+  border-radius: 4px;
+  color: var(--KAlertWarningColor, var(--yellow-500, color(yellow-500)));
+  border-color: var(--KAlertWarningBorder, var(--yellow-200, color(yellow-200)));
+  background-color: var(--KAlertWarningBackground, var(--yellow-100, color(yellow-100)));
+}
 
-  .container .breadcrumbs {
-    position: relative;
-    left: var(--spacing-xs)
-  }
+.product .container .breadcrumbs {
+  position: relative;
+  left: var(--spacing-xs)
+}
 
-  .swagger-ui .version-pragma {
-    display: none;
-  }
+.product .swagger-ui .version-pragma {
+  display: none;
+}
 
-  .header-anchor {
-    position: relative;
+.product .header-anchor {
+  position: relative;
+}
 
-    svg {
-      position: absolute;
-      left: -1.5rem;
-      bottom: 0;
-    }
-  }
+.product .header-anchor svg {
+  position: absolute;
+  left: -1.5rem;
+  bottom: 0;
 }
 </style>
