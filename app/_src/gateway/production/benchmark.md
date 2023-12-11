@@ -40,23 +40,23 @@ The subsections in this section detail recommendations to improve your {{site.ba
 
 ### Check the `ulimit` 
 
-**Action:** Increase the `ulimit` if it is less than `16384`. 
+**Action:** Increase the `ulimit` if it's less than `16384`. 
 
-While {{site.base_gateway}} can use as many resources as it can get from the system, one place it gets limited by the Operating System (OS) is the number of connections it can open with the Upstream (or any other) server or accept from the Client. The number of open connections in {{site.base_gateway}} defaults to ulimit with an upper bound of 16384 (meaning if the ulimit is unlimited or a value higher than 16384, {{site.base_gateway}} will limit itself to 16384). You can shell into {{site.base_gateway}}’s container or VM (you must shell into the container if {{site.base_gateway}} is running inside a container on top of a VM) and run ulimit -n to check the system’s ulimit. If the value is less than 16384, please bump it up. Please also check and set the appropriate ulimit in the Client and Upstream server since a connection bottleneck in these systems will lead to suboptimal performance. 
+While {{site.base_gateway}} can use as many resources as it can get from the system, the Operating System (OS) limits it in the number of connections it can open with the upstream (or any other) server or accept from the client. The number of open connections in {{site.base_gateway}} defaults to the `ulimit` with an upper bound of 16384. This means that if the `ulimit` is unlimited or a value higher than 16384, {{site.base_gateway}} will limit itself to 16384. You can shell into {{site.base_gateway}}’s container or VM and run `ulimit -n` to check the system’s `ulimit`. You must shell into the container if {{site.base_gateway}} is running inside a container on top of a VM. If the value of `ulimit` is less than 16384, increase it. Also check and set the appropriate `ulimit` in the client and upstream server since a connection bottleneck in these systems leads to suboptimal performance. 
 
 ### Increase connection re-use 
 
-**Action:** Configure `upstream_keepalive_max_requests = 100000` and `nginx_http_keepalive_requests = 100000` 
+**Action:** Configure `upstream_keepalive_max_requests = 100000` and `nginx_http_keepalive_requests = 100000`.
 
-In high-throughput (10k RPS+) scenarios, the overhead of setting up TCP and TLS connections or insufficient connections can result in underutilization of network bandwidth or the upstream server.
+In high-throughput scenarios with 10,000 or more RPS, the overhead of setting up TCP and TLS connections or insufficient connections can result in under utilization of network bandwidth or the upstream server.
 To increase connection re-use, you can increase `upstream_keepalive_max_requests` and `nginx_http_keepalive_requests` to `100000` or up to `500000`. 
 
 ### Avoid auto-scaling
 
 **Action:** Ensure that {{site.base_gateway}} is not scaled in/out (horizontal) or up/down (vertical).
 
-During a benchmarking run, ensure that {{site.base_gateway}} is not scaled in/out (horizontal) or up/down (vertical). This is commonly done in k8s using a Horizontal or Vertical Pod autoscaler. Autoscalers interfere with statistics in benchmarking and introduce unnecessary noise.
-Scale out {{site.base_gateway}} before the benchmarking run to avoid auto-scaling during the benchmark. Monitor the number of {{site.base_gateway}} nodes to ensure new nodes are spawned during the benchmark and existing nodes are not replaced.
+During a benchmarking run, ensure that {{site.base_gateway}} is not scaled in/out (horizontal) or up/down (vertical). In Kubernetes, this is commonly done using a Horizontal or Vertical Pod autoscaler. Autoscalers interfere with statistics in a benchmark and introduce unnecessary noise.
+Scale {{site.base_gateway}} out before testing the benchmark to avoid auto-scaling during the benchmark. Monitor the number of {{site.base_gateway}} nodes to ensure new nodes are spawned during the benchmark and existing nodes are not replaced.
 
 ### Use multiple cores effectively
 
