@@ -60,11 +60,12 @@ const state = reactive({ activeOperation });
 const productError = ref(null);
 const deprecatedProductVersion = ref(false);
 
-const breadcrumbs = [{
-  key: 'product-catalog',
-  to: '/api/',
-  text: 'Catalog'
-}]
+const breadcrumbs = computed(() => {
+  return [
+    { key: 'product-catalog', to: '/api/', text: 'Catalog' },
+    { key: 'api-product', title: product.value.name, text: product.value.name }
+  ];
+});
 
 function onOperationSelected(event) {
   activeOperation.value = event;
