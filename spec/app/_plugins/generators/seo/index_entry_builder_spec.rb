@@ -18,6 +18,12 @@ RSpec.describe SEO::IndexEntryBuilder do
       it { expect(subject).to be_a(SEO::IndexEntry::HubPage) }
     end
 
+    context 'non single-sourced plugin page' do
+      let(:page) { double('url' => '/hub/plugins/compatibility/', 'path' => '') }
+
+      it { expect(subject).to be_a(SEO::IndexEntry::HubHtmlPage) }
+    end
+
     context 'page belonging to a product that is versioned' do
       context 'global page' do
         let(:page_url) { '/gateway/changelog/' }
