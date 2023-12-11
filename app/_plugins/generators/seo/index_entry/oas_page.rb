@@ -19,8 +19,13 @@ module SEO
 
       def version
         # (\d+ match or /latest/)
+        segments = @page.url.split('/')
+
+        # Remove the errors page segment
+        segments.pop if segments.last == 'errors'
+
         @version ||= Utils::Version.to_version(
-          @page.url.split('/').last
+          segments.last
         )
       end
 
