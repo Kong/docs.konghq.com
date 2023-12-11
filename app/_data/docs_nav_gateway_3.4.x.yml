@@ -224,6 +224,8 @@ items:
         url: /production/canary
       - text: Clustering Reference
         url: /production/clustering
+      - text: Establish a Performance Benchmark
+        url: /production/benchmark
       - text: Logging
         items:
           - text: Log Reference
