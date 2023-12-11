@@ -136,6 +136,10 @@ function initActiveProductVersionId () {
   top: var(--spacing-xl);
 }
 
+.breadcrumbs :deep(.k-breadcrumbs .k-breadcrumbs-item .k-breadcrumb-divider) {
+  line-height: 0;
+}
+
 .sidebar-wrapper {
   flex: 0 0 auto;
   position: sticky;
