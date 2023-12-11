@@ -23,6 +23,11 @@
           class="deprecated-warning"
           alert-message="This product version is now deprecated. The endpoints will remain fully usable until this version is sunsetted."
         />
+
+        <div class="swagger-ui has-sidebar breadcrumbs">
+          <KBreadcrumbs :items="breadcrumbs" />
+        </div>
+
         <Spec
           :product="product"
           :product-version-id="activeProductVersionId"
@@ -54,6 +59,12 @@ const activeOperation = ref(null);
 const state = reactive({ activeOperation });
 const productError = ref(null);
 const deprecatedProductVersion = ref(false);
+
+const breadcrumbs = [{
+  key: 'product-catalog',
+  to: '/api/',
+  text: 'Catalog'
+}]
 
 function onOperationSelected(event) {
   activeOperation.value = event;
@@ -117,6 +128,13 @@ function initActiveProductVersionId () {
 .app-container {
   display: flex;
 }
+
+.app-container .breadcrumbs {
+  position: relative;
+  left: var(--spacing-xl);
+  top: var(--spacing-xl);
+}
+
 .sidebar-wrapper {
   flex: 0 0 auto;
   position: sticky;
