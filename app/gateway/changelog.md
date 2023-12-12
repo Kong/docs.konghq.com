@@ -384,6 +384,7 @@ was called multiple times in a request lifecycle.
     Enterprise functionality will be set to read-only mode.
   * Added support for counters such as routes, plugins, licenses, and deployment information to the license report.
   * Added a checksum to the output of the license endpoint.
+
 ### Fixes
 #### Core
 * Fixed an issue with the DNS client was not adhering to configured timeouts in a predictable manner. Also fixed a related issue that cause the DNS client to resolve incorrectly during transient network and DNS server failures. [#11386](https://github.com/Kong/kong/pull/11386)
