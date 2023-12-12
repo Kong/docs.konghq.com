@@ -22,7 +22,7 @@ request_debug = on | off # enable or disable request debugging
 request_debug_token <token> # Set debug token explicitly. Otherwise, it will be generated randomly when Kong starts, restarts, and reloads. 
 ```
 
-The debug token (`X-Kong-Request-Debug-Token`) is used to authenticate the client and send the debug request, preventing abuse. 
+The usage of debug token (`request-debug-token`) prevents abuse of the feature as only authorozied personnel are able to issue debug requests. 
 
 You can find the debug token in the following locations:
 * **{{site.base_gateway}} error log:** The debug token is logged in the error log (notice level) when {{site.base_gateway}} starts, restarts, or reloads. The log line will have the `[request-debug]` prefix to aid in searching.
