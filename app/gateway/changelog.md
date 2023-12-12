@@ -305,7 +305,7 @@ was called multiple times in a request lifecycle.
 
 ### Breaking Changes
 #### Plugins
-* [**SAML**](/hub/kong-inc/saml) (`saml`): adjust the priority of the SAML plugin to 1010 to correct the integration between the SAML plugin and other consumer-based plugins.
+* [**SAML**](/hub/kong-inc/saml) (`saml`): Adjusted the priority of the SAML plugin to 1010 to correct the integration between the SAML plugin and other consumer-based plugins.
  [#7359](https://github.com/Kong/kong-ee/issues/7359)
 
 ### Features
@@ -314,7 +314,7 @@ was called multiple times in a request lifecycle.
  [#7207](https://github.com/Kong/kong/issues/7207)
 
 #### Plugins
-* [**AWS Lambda**](/hub/kong-inc/aws-lambda) (`aws-lambda`): the AWS-Lambda plugin has been refactored by using `lua-resty-aws` as an underlying AWS library. The refactor simplifies the AWS-Lambda plugin code base and adding support for multiple IAM authenticating scenarios.
+* [**AWS Lambda**](/hub/kong-inc/aws-lambda) (`aws-lambda`): The AWS-Lambda plugin has been refactored by using `lua-resty-aws` as an underlying AWS library. The refactor simplifies the AWS-Lambda plugin code base and adds support for multiple IAM authenticating scenarios.
  [#7079](https://github.com/Kong/kong/issues/7079)
 
 ### Fixes
