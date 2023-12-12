@@ -328,22 +328,22 @@ was called multiple times in a request lifecycle.
  [#7491](https://github.com/Kong/kong/issues/7491)
 * Fixed Vault's try function to avoid using semaphore in non-yieldable phases.
  [#7114](https://github.com/Kong/kong/issues/7114)
-* Vault references can be used in Dbless mode in declarative config. 
+* Vault references can be used in DB-less mode in declarative config. 
  [#7483](https://github.com/Kong/kong/issues/7483)
 
 
 #### PDK
-* Fix a bug related to data interference between requests in the kong.log.serialize function.
+* Fixed a bug related to data interference between requests in the `kong.log.serialize` function.
  [#7327](https://github.com/Kong/kong/issues/7327)
 
 #### Plugins
-* [**AWS Lambda**](/hub/kong-inc/aws-lambda) (`aws-lambda`): Cache the AWS lambda service by those lambda service related fields.
+* [**AWS Lambda**](/hub/kong-inc/aws-lambda) (`aws-lambda`): Cached the AWS lambda service by those lambda service related fields.
  [#7079](https://github.com/Kong/kong/issues/7079)
 
 * [**TCP Log**](/hub/kong-inc/tcp-log) (`tcp-log`): Fixed an issue of unnecessary handshakes when reusing TLS connection.
  [#7114](https://github.com/Kong/kong/issues/7114)
 
-* [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`): Fixed a bug where the plugin throws a runtime error caused by the ref parameter schema not being dereferenced.
+* [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`): Fixed a bug where the plugin throws a runtime error when the ref parameter schema isn't dereferenced.
  [#7543](https://github.com/Kong/kong/issues/7543)
 
 * [**Rate Limiting**](/hub/kong-inc/rate-limiting/) (`rate-limiting`): Fixed an issuer where all counters are synced to the same DB at the same rate.
@@ -351,7 +351,7 @@ was called multiple times in a request lifecycle.
 
 ### Performance
 #### Configuration
-* Bumped `dns_stale_ttl` default to 1 hour so stale DNS record can be used for longer time in case of resolver downtime.
+* Bumped `dns_stale_ttl` default to 1 hour so the stale DNS record can be used for a longer amount of time in case there's resolver downtime.
 
 ### Dependencies
 #### Core
