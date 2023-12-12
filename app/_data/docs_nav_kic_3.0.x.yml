@@ -125,6 +125,8 @@ items:
             url: /guides/high-availability/kic
           - text: Service Health Checks
             url: /guides/high-availability/health-checks
+          - text: Last Known Good Config
+            url: /guides/high-availability/last-known-good-config
       - text: Security
         items:
           - text: Kong Vaults
@@ -151,6 +153,10 @@ items:
             url: /guides/migrate/ingress-to-gateway
           - text: Credential Type Labels
             url: /guides/migrate/credential-kongcredtype-label
+      - text: Customize Deployments
+        items:
+          - text: Images
+            url: /guides/customize/image
 
   - title: Plugins
     icon: /assets/images/icons/documentation/icn-api-plugins-color.svg

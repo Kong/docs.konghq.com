@@ -33,11 +33,11 @@
     "less": "^4.1.3",
     "lodash": "4.17.21",
     "node-fetch": "2.7.0",
-    "prettier": "3.1.0",
+    "prettier": "3.1.1",
     "sass": "^1.63.6",
     "skeleton-css": "2.0.4",
-    "vite": "^4.3.9",
-    "vite-plugin-ruby": "^3.2.2"
+    "vite": "^5.0.0",
+    "vite-plugin-ruby": "^5.0.0"
   },
   "jest": {
     "testMatch": [
@@ -55,7 +55,7 @@
     "@kong-ui-public/spec-renderer": "^0.13.0",
     "@kong/kongponents": "^8.119.0",
     "@kong/sdk-portal-js": "^2.0.0",
-    "@segment/analytics-next": "1.61.0",
+    "@segment/analytics-next": "1.62.0",
     "jquery": "3.7.1",
     "js-cookie": "^3.0.1",
     "js-yaml": "^4.1.0",

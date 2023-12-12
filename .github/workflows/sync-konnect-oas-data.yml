@@ -1,6 +1,10 @@
 name: Sync Konnect OAS Data
 on: workflow_dispatch
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   update_oas_data:
     runs-on: ubuntu-latest
@@ -17,3 +21,4 @@ jobs:
           title: Sync Konnect OAS Data
           commit-message: Sync Konnect OAS Data
           labels: 'review:tech'
+          token: ${{ secrets.PAT }}
