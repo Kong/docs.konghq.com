@@ -306,7 +306,6 @@ was called multiple times in a request lifecycle.
 ### Breaking Changes
 #### Plugins
 * [**SAML**](/hub/kong-inc/saml) (`saml`): Adjusted the priority of the SAML plugin to 1010 to correct the integration between the SAML plugin and other consumer-based plugins.
- [#7359](https://github.com/Kong/kong-ee/issues/7359)
 
 ### Features
 #### Core
@@ -353,7 +352,6 @@ was called multiple times in a request lifecycle.
 ### Performance
 #### Configuration
 * Bumped `dns_stale_ttl` default to 1 hour so stale DNS record can be used for longer time in case of resolver downtime.
- [#7549](https://github.com/Kong/kong-ee/issues/7549)
 
 ### Dependencies
 #### Core
