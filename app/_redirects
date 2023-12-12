@@ -926,3 +926,7 @@
 
 # COMMUNITY DOC REBRANDING
 /community   https://konghq.com/community-resources/
+
+# CODE SNIPPETS
+/code-snippets/spec-renderer.html https://github.com/Kong/docs.konghq.com/blob/main/app/code-snippets/_spec-renderer.html
+/code-snippets/spec-renderer https://github.com/Kong/docs.konghq.com/blob/main/app/code-snippets/_spec-renderer.html
