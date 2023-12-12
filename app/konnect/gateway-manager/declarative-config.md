@@ -20,6 +20,8 @@ parameters using a decK configuration file (`~/.deck.yaml` by default) to target
 `https://cloud.konghq.com`. If you don't pass any {{site.konnect_short_name}} parameters to decK,
 decK looks for a local {{site.base_gateway}} instance instead.
 
+A quick way to learn decK or quickly write a decK file is to see the YAML generated files in Kong Konnect. Kong Konnect generates YAML reflecting current Gateway Manager configuration. Within each section of Gateway Manager you can navigate to the “Configuration” tab to view and copy the current configuration. 
+
 Run `deck help` to see all available flags, or see the [decK CLI reference](/deck/latest/reference/deck/).
 
 You _cannot_ use decK to publish content to the Dev Portal, manage application
