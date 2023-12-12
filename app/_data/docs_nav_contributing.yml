@@ -11,6 +11,8 @@
       url: /word-choice/
     - text: Notes and other notices
       url: /notices/
+    - text: Diagrams
+      url: /diagrams/
     - text: Documenting user interfaces
       url: /user-interfaces/
     - text: Contribution templates
