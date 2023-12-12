@@ -7,11 +7,11 @@ purpose: |
 
 ## Ingress Class
 
-[Ingress class][ingress_class] is defined to distinguish ingresses to be processed by different controllers. {{site.kic_product_name}} has the flag `--ingress-class` (default:`kong`) to set the ingress class that the {{site.kic_product_name}} instance processes. In gateway API, [gateway class][gateway_class] has the same usage.
+[Ingress class][ingress_class] is defined to distinguish ingresses to be processed by different controllers. {{site.kic_product_name}} has the flag `--ingress-class` and by default it is set to `kong` for the {{site.kic_product_name}} instance processes. In gateway API, [gateway class][gateway_class] has a similar usage.
 
 ## Resource Requiring Setting Ingress Class or Gateway Class
 
-Some resources requires setting ingress class to get processed by {{site.kic_product_name}}. The ingress class need to be set to the same as specified in the flag `--ingress-class` to get processed. Here's the table with the details.
+Some resources requires that you set ingress class to be processed by {{site.kic_product_name}}. Set the ingress class to the same as specified in the flag `--ingress-class` to get processed. Here's the table with the details.
 
 | Resource Kind       | Resource Group and Version         | Method to set Ingress Class                     | 
 |---------------------|------------------------------------|-------------------------------------------------|
@@ -24,7 +24,7 @@ Some resources requires setting ingress class to get processed by {{site.kic_pro
 | `TCPIngress`        | `configuration.konghq.com/v1beta1` | Set in annotation `kubernetes.io/ingress.class` |
 | `UDPIngress`        | `configuration.konghq.com/v1beta1` | Set in annotation `kubernetes.io/ingress.class` |
 
-Note: If the `IngressClass` used by {{site.kic_product_name}} (specified in flag `--ingress-class`) has `ingressclass.kubernetes.io/is-default-class` set to `true`, the resources except for `Gateway` does not have ingress classes set are also reconciled by {{site.kic_product_name}}.
+**Note**: If the `IngressClass` used by {{site.kic_product_name}} (specified in flag `--ingress-class`) has `ingressclass.kubernetes.io/is-default-class` set to `true`, all the resources that does not have ingress classes set are also reconciled by {{site.kic_product_name}}, except for `Gateway`.
 
 [ingress_class]:https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class
 [gateway_class]:https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.GatewayClass
