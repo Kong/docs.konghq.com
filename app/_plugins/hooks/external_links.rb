@@ -15,8 +15,13 @@ module Jekyll
       next unless href.start_with?('http://') || href.start_with?('https://') # Not an external link, skip
 
       has_changes = true
-      link.set_attribute('target', '_blank')
-      link.set_attribute('rel', "noopener nofollow noreferrer #{link.attributes['rel']&.value}")
+
+      if link.attributes['data-skip-external-links-hook']&.value
+        link.remove_attribute('data-skip-external-links-hook')
+      else
+        link.set_attribute('target', '_blank')
+        link.set_attribute('rel', "noopener nofollow noreferrer #{link.attributes['rel']&.value}")
+      end
     end
 
     page.output = doc.to_html if has_changes
