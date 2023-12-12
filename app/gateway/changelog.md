@@ -300,6 +300,95 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+## 3.4.3.1
+**Release Date** 2023/12/15
+
+### Breaking Changes
+#### Plugin
+
+- **SAML**: adjust the priority of the SAML plugin to 1010 to correct the integration between the SAML plugin and other consumer-based plugins
+ [#7359](https://github.com/Kong/kong-ee/issues/7359)
+
+### Dependencies
+#### Core
+- Bumped OpenResty from 1.21.4.1 to 1.21.4.3
+ [#7206](https://github.com/Kong/kong/issues/7206)
+
+
+- Bump resty-openssl from 0.8.25 to 1.0.2
+ [#7417](https://github.com/Kong/kong/issues/7417)
+
+
+- Bump lua-resty-healthcheck from 1.6.2 to 1.6.3
+ [#7206](https://github.com/Kong/kong/issues/7206)
+
+
+- Bump lua-kong-nginx-module from 0.6.0 to 0.8.0
+ [#7207](https://github.com/Kong/kong/issues/7207)
+
+
+#### Default
+- Bumped lua-resty-aws from 1.2.3 to 1.3.0
+ [#7079](https://github.com/Kong/kong/issues/7079)
+
+
+- Bumped lua-resty-aws from 1.3.2 to 1.3.5
+ [#7318](https://github.com/Kong/kong/issues/7318)
+
+### Features
+#### Core
+- A unique Request ID is now populated in the error log, access log, error templates, log serializer, and in a new X-Kong-Request-Id header (configurable for upstream/downstream using the `headers` and `headers_upstream` configuration options).
+ [#7207](https://github.com/Kong/kong/issues/7207)
+
+#### Plugin
+- the AWS-Lambda plugin has been refactored by using `lua-resty-aws` as an underlying AWS library. The refactor simplifies the AWS-Lambda plugin code base and adding support for multiple IAM authenticating scenarios.
+ [#7079](https://github.com/Kong/kong/issues/7079)
+
+
+### Fixes
+#### Configuration
+- respect custom `proxy_access_log`
+ [#7436](https://github.com/Kong/kong/issues/7436)
+
+#### Core
+- print error message correctly when plugin fails
+ [#7079](https://github.com/Kong/kong/issues/7079)
+
+
+- fix ldoc intermittent failure caused by LuaJIT error.
+ [#7491](https://github.com/Kong/kong/issues/7491)
+
+
+- Fix Vault's try function to avoid using semaphore in non-yieldable phases.
+ [#7114](https://github.com/Kong/kong/issues/7114)
+
+
+- Vault references can be used in Dbless mode in declarative config
+ [#7483](https://github.com/Kong/kong/issues/7483)
+
+
+#### PDK
+- Fix a bug related to data interference between requests in the kong.log.serialize function.
+ [#7327](https://github.com/Kong/kong/issues/7327)
+
+#### Plugin
+- Cache the AWS lambda service by those lambda service related fields
+ [#7079](https://github.com/Kong/kong/issues/7079)
+
+- **tcp-log**: fix an issue of unnecessary handshakes when reusing TLS connection
+ [#7114](https://github.com/Kong/kong/issues/7114)
+
+- **OAS-Validation:** Fix a bug where the plugin throws a runtime error caused by the ref parameter schema not being dereferenced.
+ [#7543](https://github.com/Kong/kong/issues/7543)
+
+- **Rate Limiting**: fix an issuer where all counters are synced to the same DB at the same rate.
+ [#7314](https://github.com/Kong/kong/issues/7314)
+
+### Performance
+#### Configuration
+- Bump `dns_stale_ttl` default to 1 hour so stale DNS record can be used for longer time in case of resolver downtime.
+ [#7549](https://github.com/Kong/kong-ee/issues/7549)
+
 ## 3.4.2.0 
 **Release date** 2023/11/10
 
