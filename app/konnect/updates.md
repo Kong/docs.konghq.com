@@ -10,7 +10,7 @@ from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## December 2023
-** Konnect in Google Cloud Marketplace**
+**Konnect in Google Cloud Marketplace**
 : {{site.konnect_saas}} is now available for purchase through the Google Cloud (GCP) Marketplace including public and private offers. This allows Kong's customers to retire their existing GCP Credits through their purchase of {{site.konnect_saas}} and associated product capabilities.
 
 **Developer-Managed Scopes for Dev Portal**
