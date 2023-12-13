@@ -357,6 +357,13 @@
           absolute_url: true
           generate: false
           target_blank: true
+    - text: Konnect Search API (Beta)
+      items:
+        - text: API Spec
+          url: /konnect/api/search/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
     - text: Deprecated APIs
       items:
         - text: (Deprecated) Runtime Configuration API
