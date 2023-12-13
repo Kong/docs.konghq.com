@@ -28,6 +28,7 @@ RSpec.describe SEO::Index do
         '/hub/acme/unbundled-plugin/configuration/' => { 'url' => '/hub/acme/unbundled-plugin/configuration/', 'page' => find_page_by_url('/hub/acme/unbundled-plugin/configuration/') },
 
         '/' => { 'url' => '/', 'page' => find_page_by_url('/') },
+        '/search/' => { 'url' => '/search/', 'page' => find_page_by_url('/search/') },
         '/kuma-to-kong-mesh/' => { 'url' => '/kuma-to-kong-mesh/', 'page' => find_page_by_url('/kuma-to-kong-mesh/') },
         '/404.html' => { 'url' => '/404.html', 'page' => find_page_by_url('/404.html') },
         '/moved_urls.yml' => { 'url' => '/moved_urls.yml', 'page' => find_page_by_url('/moved_urls.yml') },
