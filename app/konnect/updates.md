@@ -19,7 +19,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
   * Developers
   * Developer Teams
 
-: You can also use the beta {{site.konnect_short_name}} Search API to search through all {{site.konnect_short_name}} entities with a common search query language. For more information, see [link to API](link to API).
+: You can also use the beta {{site.konnect_short_name}} Search API to search through all {{site.konnect_short_name}} entities with a common search query language. For more information, see the [Konnect Search API](/konnect/api/search/latest/).
 
 **Developer-Managed Scopes for Dev Portal**
 : You can now give your customers more control over third-party application permissions using Auth0 DCR developer-managed scopes for Dev Portal. Developers can now configure unique scopes and permissions for each Auth0 DCR application they create, allowing them to set more fine-grained permissions for each of their target audiences. See [Configure Auth0 for Dynamic Client Registration](/konnect/dev-portal/applications/dynamic-client-registration/auth0/) for details.
