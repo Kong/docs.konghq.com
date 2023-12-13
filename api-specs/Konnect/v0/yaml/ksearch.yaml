@@ -1,0 +1,378 @@
+openapi: 3.0.2
+info:
+  title: Konnect Search
+  version: 0.0.0
+  description: The search API for Kong Konnect.
+  contact:
+    name: Kong
+    url: https://konghq.com
+servers:
+  - url: https://global.api.konghq.com/v0
+    description: Global Base URL
+  - url: https://us.api.konghq.com/v0
+    description: US Region Base URL
+  - url: https://eu.api.konghq.com/v0
+    description: EU Region Base URL
+  - url: https://au.api.konghq.com/v0
+    description: AU Region Base URL
+security:
+  - personalAccessToken: []
+  - systemAccountAccessToken: []
+  - konnectAccessToken: []
+tags: []
+paths: {}
+components:
+  schemas:
+    SearchResponse:
+      title: Search response.
+      description: Search response schema.
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/KonnectEntity'
+        meta:
+          $ref: '#/components/schemas/CursorPaginatedMeta'
+    KonnectEntity:
+      title: Konnect entity.
+      description: Konnect entity schema.
+      type: object
+      required:
+        - id
+        - type
+        - name
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the record.
+        type:
+          type: string
+          description: Konnect entity type.
+        name:
+          type: string
+          description: Name of the entity.
+        description:
+          type: string
+          description: Description of the entity.
+        tags:
+          type: array
+          description: Tags for the entity.
+          items:
+            type: string
+        labels:
+          type: object
+          description: Labels for the entity.
+        relations:
+          type: object
+          description: Relations for the entity.
+    CursorPageMetaWithTotal:
+      type: object
+      description: >-
+        Pagination metadata with exact total. Useful when the collection size is
+        inexpensive to provide.
+      required:
+        - size
+        - next
+        - previous
+      properties:
+        first:
+          description: URI to the first page
+          type: string
+          format: uri
+        last:
+          description: URI to the last page
+          type: string
+          format: uri
+        next:
+          description: URI to the next page
+          type: string
+          format: uri
+        previous:
+          description: URI to the previous page
+          type: string
+          format: uri
+        size:
+          description: Requested page size
+          type: number
+          example: 10
+        total:
+          description: Total number of objects in the collection
+          type: number
+          example: 974
+    CursorPageMetaWithEstimatedTotal:
+      type: object
+      description: >-
+        Pagination metadata with estimated total. Useful when exact total cannot
+        be computed in reasonable time.
+      required:
+        - size
+        - next
+        - previous
+      properties:
+        first:
+          description: URI to the first page
+          type: string
+          format: uri
+        last:
+          description: URI to the last page
+          type: string
+          format: uri
+        next:
+          description: URI to the next page
+          type: string
+          format: uri
+        previous:
+          description: URI to the previous page
+          type: string
+          format: uri
+        size:
+          description: Requested page size
+          type: number
+          example: 10
+        estimated_total:
+          description: Approximate number of objects in the collection
+          type: number
+          example: 1000000000
+    CursorPaginatedMeta:
+      type: object
+      title: CursorPaginatedMeta
+      description: Returns the pagination information
+      properties:
+        page:
+          oneOf:
+            - $ref: '#/components/schemas/CursorPageMetaWithTotal'
+            - $ref: '#/components/schemas/CursorPageMetaWithEstimatedTotal'
+      required:
+        - page
+    BaseError:
+      type: object
+      title: Error
+      description: standard error
+      required:
+        - status
+        - title
+        - instance
+        - detail
+      properties:
+        status:
+          type: integer
+          description: >
+            The HTTP status code of the error. Useful when passing the response
+
+            body to child properties in a frontend UI. Must be returned as an
+            integer.
+          readOnly: true
+        title:
+          type: string
+          description: |
+            A short, human-readable summary of the problem. It should not
+            change between occurences of a problem, except for localization.
+            Should be provided as "Sentence case" for direct use in the UI.
+          readOnly: true
+        type:
+          type: string
+          description: The error type.
+          readOnly: true
+        instance:
+          type: string
+          description: |
+            Used to return the correlation ID back to the user, in the format
+            kong:trace:<correlation_id>. This helps us find the relevant logs
+            when a customer reports an issue.
+          readOnly: true
+        detail:
+          type: string
+          description: >
+            A human readable explanation specific to this occurence of the
+            problem.
+
+            This field may contain request/entity data to help the user
+            understand
+
+            what went wrong. Enclose variable values in square brackets. Should
+            be
+
+            provided as "Sentence case" for direct use in the UI.
+          readOnly: true
+    InvalidRules:
+      description: invalid parameters rules
+      type: string
+      readOnly: true
+      nullable: true
+      enum:
+        - required
+        - enum
+        - min_length
+        - max_length
+        - min_digits
+        - min_lowercase
+        - min_uppercase
+        - min_symbols
+        - is_array
+        - is_base64
+        - is_boolean
+        - is_date_time
+        - is_integer
+        - is_null
+        - is_number
+        - is_object
+        - is_string
+        - is_uuid
+        - unknown_property
+        - is_label
+        - matches_regex
+    InvalidParameterChoiceItem:
+      type: object
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          $ref: '#/components/schemas/InvalidRules'
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+        choices:
+          type: array
+          uniqueItems: true
+          nullable: true
+          items: {}
+          readOnly: true
+      required:
+        - field
+        - reason
+    InvalidParameterDependentItem:
+      type: object
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: true
+          enum:
+            - dependent_fields
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+        dependents:
+          type: array
+          uniqueItems: true
+          nullable: true
+          items: {}
+          readOnly: true
+      required:
+        - field
+        - rule
+        - reason
+        - dependents
+    InvalidParameters:
+      type: array
+      nullable: false
+      uniqueItems: true
+      minItems: 1
+      description: invalid parameters
+      items:
+        oneOf:
+          - $ref: '#/components/schemas/InvalidParameterChoiceItem'
+          - $ref: '#/components/schemas/InvalidParameterDependentItem'
+    BadRequestError:
+      type: object
+      required:
+        - invalid_parameters
+      properties:
+        status:
+          example: 400
+        title:
+          example: Bad Request
+        type:
+          example: https://httpstatuses.com/400
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Invalid request body
+        invalid_parameters:
+          $ref: '#/components/schemas/InvalidParameters'
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+  securitySchemes:
+    systemAccountAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Token
+      description: >
+        The system account access token is meant for automations and
+        integrations that are not directly associated with a human identity.
+
+        You can generate a system account Access Token by creating a system
+        account and then obtaining a system account access token for that
+        account.
+
+        The access token must be passed in the header of a request, for example:
+
+        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header
+        'Authorization: Bearer spat_i2Ej...'`
+    personalAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: Token
+      description: >
+        The personal access token is meant to be used as an alternative to
+        basic-auth when accessing Konnect via APIs.
+
+        You can generate a Personal Access Token (PAT) from the [personal access
+        token page](https://cloud.konghq.com/global/tokens/) in the Konnect
+        dashboard.
+
+        The PAT token must be passed in the header of a request, for example:
+
+        `curl -X GET 'https://global.api.konghq.com/v2/users/' --header
+        'Authorization: Bearer kpat_xgfT...'`
+    konnectAccessToken:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >
+        The Konnect access token is meant to be used by the Konnect dashboard
+        and the decK CLI authenticate with.
+  examples:
+    400-query-is-invalid:
+      value:
+        status: 400
+        title: Bad Request
+        detail: Invalid query.
+        instance: konnect:trace:3674017986744198214
+        invalid_parameters:
+          - field: query
+            reason: invalid query
+    Successful-Search-Example:
+      value:
+        data:
+          - id: c0010105-e840-4824-b7ee-787f22267c36
+            type: service
+            name: Sonar Readings
+            tags:
+              - us
+              - api
+            labels:
+              env: prod
+            relations:
+              control_plane: 0734a1d4-829d-423c-b95a-d3efe437baa8
+          - id: c0010105-e840-4824-b7ee-787f22267c37
+            type: user
+            name: Jason Developer
+          - id: c0010105-e840-4824-b7ee-787f22267c38
+            type: user
+            name: Sonia Engineer
+        meta:
+          page:
+            size: 3
+            previous: /search?query=son&page[before]=ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ
+            next: /search?query=son&page[after]=ewogICJpZCI6ICJoZWysbyB3b3JsZCIKgZ
