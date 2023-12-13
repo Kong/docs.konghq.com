@@ -35,6 +35,7 @@ Status Code | Group or filter the data by individual response status code. Indiv
 Status Code (grouped) | Group or filter the data by response status code category: 1XX, 2XX, 3XX, 4XX, and 5XX.
 Control Plane | Group or filter the data by control plane.
 Gateway Services | Group or filter the data by gateway services.
+Consumer | Group our filter the data by consumer. 
 
 ### Route entity format
 
