@@ -10,8 +10,8 @@ from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## December 2023
-**Analytics: New Consumer Group/Filter**
-: Konnect users are now able to group and filter by "Consumers" while creating custom reports.
+**Analytics: New Consumer Filter**
+: {{site.konnect_short_name}} users are now able to group and filter by Consumers while creating custom reports.
 
 **Developer-Managed Scopes for Dev Portal**
 : You can now give your customers more control over third-party application permissions using Auth0 DCR developer-managed scopes for Dev Portal. Developers can now configure unique scopes and permissions for each Auth0 DCR application they create, allowing them to set more fine-grained permissions for each of their target audiences. See [Configure Auth0 for Dynamic Client Registration](/konnect/dev-portal/applications/dynamic-client-registration/auth0/) for details.
