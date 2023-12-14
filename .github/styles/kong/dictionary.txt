@@ -87,6 +87,7 @@ Resty
 SAML
 SBOM
 SBOMs
+SCCs
 SDKs
 Splunk
 Stap

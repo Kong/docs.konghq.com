@@ -30,7 +30,7 @@ This quickstart tutorial covers:
 
 In this section, you will install a ROSA cluster called `kong-mesh-2` in the `us-west-2` region. Then, you'll create an admin user to get quick access to the cluster. 
 
-1. Navigate to the `kong-mesh-quickstart-openshift` repository that you just cloned in the prerequistes. All commands in this guide should be run from that repository.
+1. Navigate to the `kong-mesh-quickstart-openshift` repository that you just cloned in the prerequisites. All commands in this guide should be run from that repository.
 
 1. Create system variables for the cluster name and region:
     ```bash
