@@ -1,7 +1,7 @@
 <li class="sidebar-item" role="none">
   <span
     role="treeitem"
-    class="sidebar-label"
+    class="sidebar-label {% if include.item.items.size > 0 %}menubutton{% endif %}"
     {% if include.item.items.size > 0 %}
       aria-expanded="false"
       aria-owns="id-{{ include.item.label | slugify }}-subtree"
