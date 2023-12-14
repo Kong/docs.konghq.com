@@ -324,6 +324,13 @@
           url: /api/identity-management/identity-integration/
         - text: SSO Customization
           url: /api/identity-management/sso/
+    - text: Konnect Search API (Beta)
+      items:
+        - text: API Spec
+          url: /konnect/api/search/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
     - text: Mesh Manager API
       items:
         - text: API Spec
@@ -354,13 +361,6 @@
       items:
         - text: API Spec
           url: /konnect/api/portal-rbac/latest/
-          absolute_url: true
-          generate: false
-          target_blank: true
-    - text: Konnect Search API (Beta)
-      items:
-        - text: API Spec
-          url: /konnect/api/search/latest/
           absolute_url: true
           generate: false
           target_blank: true
