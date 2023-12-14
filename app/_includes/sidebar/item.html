@@ -4,7 +4,7 @@
     class="sidebar-label {% if include.item.items.size > 0 %}menubutton{% endif %}"
     {% if include.item.items.size > 0 %}
       aria-expanded="false"
-      aria-owns="id-{{ include.item.label | slugify }}-subtree"
+      aria-owns="id-{{ include.id}}-{{ include.item.label | slugify }}-subtree"
     {% endif %}
   >
     {% if include.item.url %}
@@ -22,7 +22,7 @@
   </span>
 
   {% if include.item.items.size > 0 %}
-    <ul class="items" id="id-{{ include.item.label | slugify }}-subtree" role="group" aria-label="{{ include.item.label }}">
+    <ul class="items" id="id-{{ include.id }}-{{ include.item.label | slugify }}-subtree" role="group" aria-label="{{ include.item.label }}">
       {% for sub_item in include.item.items %}
         {% assign id = include.id | append: '-' | append: forloop.index %}
         {% include_cached sidebar/item.html item=sub_item id=id %}
