@@ -78,4 +78,4 @@ By following the instructions in this guide, you've created a global control pla
 
 ## Next steps
 
-Now that you've configured a global control plane, you can continue to configure your service mesh in {{site.konnect_short_name}} by [enabling mTLS and traffic permissions](/mesh/latest/quickstart/kubernetes/#enable-mutual-tls-and-traffic-permissions) on your demo app services.
+Now that you've configured a global control plane, you can continue to configure your service mesh in {{site.konnect_short_name}} by [enabling traffic permissions](/mesh/latest/policies/traffic-permissions/) on your demo app services. 
