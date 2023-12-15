@@ -194,11 +194,19 @@ class Sidebar {
 
   expandTreeitem(treeItem) {
     // close other top-level menus
-    if (treeItem.parentNode.parentNode.role === "tree") {
+    let parentMenu = treeItem.parentNode.parentNode;
+    if (parentMenu.role === "tree") {
       let activeMenu = this.domNode.querySelector(':scope .sidebar-item.active [role=treeitem]');
       if (activeMenu) {
         this.collapseTreeItems(activeMenu);
       }
+    } else if (parentMenu.role === "group") {
+      // close other sibling menus
+      Array.from(parentMenu.querySelectorAll('.sidebar-item'))
+        .filter((child) => child !== treeItem.parentNode)
+        .forEach((sidebarItem) => {
+          this.collapseTreeItems(sidebarItem.querySelector('[role=treeitem]'));
+        });
     }
 
     if (treeItem.getAttribute('aria-owns')) {
