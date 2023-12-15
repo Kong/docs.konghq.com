@@ -59,7 +59,7 @@ Once you've enabled the Node Readiness endpoint, you can send a GET request to c
 # Replace `localhost:8001` with the appropriate host and port for
 # your Status API server
 
-curl -i http://localhost:8001/status/ready
+curl -i http://localhost:8100/status/ready
 ```
 
 If the response code is `200`, the {{site.base_gateway}} instance is ready to serve requests:
