@@ -28,7 +28,7 @@ sequenceDiagram
     Konnect Dev Portal->>Developer: Show credentials
 {% endmermaid %}
 
-> _**Figure 1:** This diagram shows how Kong's HTTP DCR bridge generates credentials from an IdP when a developer creates and application. First, a developer tries to create an application in {{site.konnect_short_name}} Dev Portal. This triggers Dev Portal to pass the information to the translation layer, which then sends a `POST fidm.oidc.createRP` request to the common domain cookie (CDC). Once the CDC recieves the request, it sends a `200` status code in return, if successful, as well as credentials for the developer. The translation layer then creates the app with the credentials from the CDC, and then the Dev Portal shows the credentials to the developer._
+> _**Figure 1:** This diagram shows how Kong's HTTP DCR bridge generates credentials from an IdP when a developer creates and application. First, a developer tries to create an application in {{site.konnect_short_name}} Dev Portal. This triggers Dev Portal to pass the information to the translation layer, which then sends a `POST fidm.oidc.createRP` request to the common domain cookie (CDC). Once the CDC receives the request, it sends a `200` status code in return, if successful, as well as credentials for the developer. The translation layer then creates the app with the credentials from the CDC, and then the Dev Portal shows the credentials to the developer._
 
 ## Configure custom DCR using the {{site.konnect_short_name}} Dev Portal DCR Handler
 
