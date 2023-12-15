@@ -1,7 +1,7 @@
 columns:
   - name: Kong OSS
     key: oss
-  - name: Kong Enterprise
+  - name: Kong Gateway Enterprise
     key: enterprise
   - name: Officially Supported
     key: support
@@ -13,25 +13,25 @@ features:
         oss: true
         enterprise: true
         support: true
-        icon: /assets/images/icons/documentation/debian-logo.jpg
+        icon: /assets/images/icons/third-party/debian-logo.jpg
       - name: "Ubuntu"
         url: /gateway/VERSION/install/linux/ubuntu/
         oss: true
         enterprise: true
         support: true
-        icon: /assets/images/icons/documentation/ubuntu.png
+        icon: /assets/images/icons/third-party/ubuntu.png
       - name: "RedHat"
         url: /gateway/VERSION/install/linux/rhel/
         oss: true
         enterprise: true
         support: true
-        icon: /assets/images/icons/documentation/rhel.jpg
+        icon: /assets/images/icons/third-party/rhel.jpg
       - name: "Amazon Linux 2"
         url: /gateway/VERSION/install/linux/amazon-linux/
         oss: true
         enterprise: true
         support: true
-        icon: /assets/images/icons/documentation/amazon-linux.png
+        icon: /assets/images/icons/third-party/amazon-linux.png
   - name: "Kubernetes"
     items:
       - name: "Kubernetes (YAML Manifests)"
@@ -39,19 +39,19 @@ features:
         oss: true
         enterprise: true
         support: false
-        icon: /assets/images/icons/documentation/kubernetes-logo.png
+        icon: /assets/images/icons/third-party/kubernetes-logo.png
       - name: "Kubernetes (Helm)"
         url: /gateway/VERSION/install/kubernetes/helm-quickstart/
         oss: true
         enterprise: true
         support: true
-        icon: /assets/images/icons/documentation/helm-icon-color.svg
+        icon: /assets/images/icons/third-party/helm-icon-color.svg
       - name: "OpenShift"
         url: /gateway/VERSION/install/kubernetes/openshift/
         oss: true
         enterprise: true
         support: true
-        icon: /assets/images/icons/documentation/openshift-logo.png
+        icon: /assets/images/icons/third-party/openshift-logo.png
 
   - name: "Docker"
     items:
@@ -59,14 +59,26 @@ features:
         oss: true
         enterprise: true
         support: true
-        url: /gateway/VERSION/install/docker/
-        icon: /assets/images/icons/documentation/debian-logo.jpg
+        url: /gateway/VERSION/install/docker/build-custom-images/
+        icon: /assets/images/icons/third-party/debian-logo.jpg
       - name: "RHEL (8-ubi)"
         oss: true
         enterprise: true
         support: true
         url: /gateway/VERSION/install/docker/build-custom-images/
-        icon: /assets/images/icons/documentation/rhel.jpg
+        icon: /assets/images/icons/third-party/rhel.jpg
+      - name: "Ubuntu"
+        oss: true
+        enterprise: true
+        support: true
+        url: /gateway/VERSION/install/docker/
+        icon: /assets/images/icons/third-party/ubuntu.png
+      - name: "Amazon Linux (2 and 2023)"
+        oss: true
+        enterprise: true
+        support: true
+        url: https://hub.docker.com/r/kong/kong-gateway/tags?page=1&name=amazonlinux
+        icon: /assets/images/icons/third-party/amazon-linux.png
 
   - name: "Other"
     items:
@@ -75,5 +87,5 @@ features:
         enterprise: true
         support: true
         url: https://github.com/kong/kong-terraform-aws
-        icon: /assets/images/icons/documentation/terraform.svg
+        icon: /assets/images/icons/third-party/terraform.svg
 

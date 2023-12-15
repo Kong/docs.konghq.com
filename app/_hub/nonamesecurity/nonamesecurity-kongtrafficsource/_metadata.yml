@@ -1,0 +1,45 @@
+name: Noname Security Kong Traffic Source
+publisher: Noname Security
+
+categories: 
+  - none
+
+type: integration
+
+desc: Noname Security machine learning for Kong API Gateway discovery
+
+support_url: https://success.nonamesecurity.com/
+
+kong_version_compatibility: 
+  community_edition:
+    compatible:
+      - 3.4.x
+      - 3.3.x
+      - 3.2.x
+      - 3.1.x
+      - 3.0.x
+      - 2.8.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
+  enterprise_edition:
+    compatible:
+      - 3.4.x
+      - 3.3.x
+      - 3.2.x
+      - 3.1.x
+      - 3.0.x
+      - 2.9.x
+      - 2.8.x
+      - 1.2.x
+      - 1.1.x
+      - 1.0.x
+
+enterprise: false
+
+konnect: true
+
+dbless_compatible: yes
+
+search_aliases:
+  - nonamesecurity-kongtrafficsource

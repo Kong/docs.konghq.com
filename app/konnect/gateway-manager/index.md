@@ -12,7 +12,7 @@ control planes currently owned by the organization. From here, you can add or
 delete control planes, or go into each individual control plane to manage 
 data plane nodes and their global configuration.
 
-![gateway manager dashboard](/assets/images/docs/konnect/konnect-control-plane-dashboard.png)
+![gateway manager dashboard](/assets/images/products/konnect/gateway-manager/konnect-control-plane-dashboard.png)
 > _**Figure 1:** Example Gateway Manager dashboard with several control planes, including the_
 _default control plane, a KIC control plane, and control planes for development and production._
 
@@ -59,8 +59,9 @@ entity-specific permissions. For more information, see [Administer teams](/konne
 Every region in every organization starts with one default control plane.
 This control plane can't be deleted, and its status as the default can't be changed.
 
-With an [Enterprise subscription](https://konghq.com/pricing/), you can configure additional
-custom control panes. Use multiple control planes in one {{site.konnect_short_name}} organization to
+With {{site.konnect_short_name}} you can configure additional {{site.base_gateway}}
+control panes, each of which will have isolated configuration.
+Use multiple control planes in one {{site.konnect_short_name}} organization to
 manage data plane nodes and their configuration in any groupings you want.
 
 Some common use cases for using multiple control planes include:
@@ -72,7 +73,7 @@ regions. Spin up data plane nodes in those regions for each control plane.
 * **Team separation:** Dedicate each control plane to a different team and share
 resources based on team purpose.
 
-![control planes](/assets/images/docs/konnect/konnect-control-planes-example.png)
+![control planes](/assets/images/products/konnect/gateway-manager/konnect-control-planes-example.png)
 > _**Figure 1:** Example control plane group configuration for three control planes: the default, a development CP, and a production CP. {{site.konnect_short_name}} is the SaaS-managed global management plane that manages all of the control planes, while the control planes manage configuration for data plane nodes._
 
 #### Control plane configuration

@@ -43,13 +43,13 @@ Once created, files will immediately be available from within the Editor.
 ## Authenticating files
 
 Authentication is handled by `readable_by` value on content pages (for gui view, go to permissions page)
-    - set readable_by: '*' to equal old authenticated
-    - to restrict access to certain roles, set readable_by to an array of accepted roles (you must first create roles on the permissions page)
-    - on specs, readable_by is set inside "x-headmatter" object
+    - set `readable_by`: '*' to equal old authenticated
+    - to restrict access to certain roles, set `readable_by` to an array of accepted roles (you must first create roles on the permissions page)
+    - for specs, `readable_by` is set inside the `x-headmatter` object
 
 
 ## Deleting files
 
-To delete a file from within the Editor, right click on the file name and select **Delete** from the popup menu.
+To delete a file from within the Editor, right click on the filename and select **Delete** from the popup menu.
 
 **NOTE:** This action cannot be undone.

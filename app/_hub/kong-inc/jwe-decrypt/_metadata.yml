@@ -1,4 +1,6 @@
 name: JWE Decrypt
+search_aliases:
+  - jwe-decrypt
 dbless_compatible: 'yes'
 free: false
 enterprise: true

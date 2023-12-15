@@ -39,14 +39,14 @@ You may also need to pass in as header the User-Agent that was used to create th
 `--konnect-addr`
 :  Address of the {{site.konnect_short_name}} endpoint. (Default: `"https://us.api.konghq.com"`)
 
-`--konnect-email`
-:  Email address associated with your {{site.konnect_short_name}} account.
 
-`--konnect-password`
-:  Password associated with your {{site.konnect_short_name}} account, this takes precedence over `--konnect-password-file` flag.
+`--konnect-token`
+:  Token associated with your {{site.konnect_short_name}} account. This takes precedence over the `--konnect-token-file` flag.
 
-`--konnect-password-file`
-:  File containing the password to your {{site.konnect_short_name}} account.
+
+`--konnect-token-file`
+:  File containing the token associated with your {{site.konnect_short_name}} account.
+
 
 {% if_version gte:1.12.x lte:1.26.x %}
 
@@ -62,22 +62,11 @@ You may also need to pass in as header the User-Agent that was used to create th
 
 {% endif_version %}
 
-{% if_version gte:1.14.x %}
-
-`--konnect-token`
-:  Personal access token associated with your {{site.konnect_short_name}} account, this takes precedence over the `--konnect-token-file` flag.
-
-
-`--konnect-token-file`
-:  File containing the personal access token to your {{site.konnect_short_name}} account.
-
-{% endif_version %}
-
 `--no-color`
 :  Disable colorized output (Default: `false`)
 
 `--skip-workspace-crud`
-:  Skip API calls related to Workspaces (Kong Enterprise only). (Default: `false`)
+:  Skip API calls related to Workspaces ({{site.ee_product_name}} only). (Default: `false`)
 
 {% if_version gte:1.8.x %}
 

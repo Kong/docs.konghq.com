@@ -1,0 +1,9 @@
+- output: ../../app/assets/images/products/konnect/api-products/api-products-overview.png
+  url: https://cloud.konghq.com/us/api-products/
+  wait: 4000
+  width: 1280
+  height: 1024
+  javascript: |
+    zoomPercentage(-5);
+    updateDivWithRandomNumberInRange('div[data-v-ee980c4c][style="font-size: 16px;"]', 30000, 600000);
+

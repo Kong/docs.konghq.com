@@ -27,7 +27,7 @@ metadata:
   name: role-1
 spec:
   rules:
-  - types: ["TrafficPermission", "TrafficRoute", "Mesh"] # list of types to which access is granted. If empty, then access is granted to all types
+  - types: ["TrafficPermission", "TrafficRoute", "Mesh"] # list of Kuma resource kinds to which access is granted. If empty, then access is granted to all kinds
     names: ["res-1"] # list of allowed names of types to which access is granted. If empty, then access is granted to resources regardless of the name.
     mesh: default # Mesh within which the access to resources is granted. It can only be used with the Mesh-scoped resources.
     access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN", "GENERATE_ZONE_TOKEN"] # an action that is bound to a type.
@@ -52,7 +52,7 @@ spec:
 type: AccessRole
 name: role-1
 rules:
-- types: ["TrafficPermission", "TrafficRoute", "Mesh"] # list of types to which access is granted. If empty, then access is granted to all types
+- types: ["TrafficPermission", "TrafficRoute", "Mesh"] # list of Kuma resource types to which access is granted. If empty, then access is granted to all types
   names: ["res-1"] # list of allowed names of types to which access is granted. If empty, then access is granted to resources regardless of the name.
   mesh: default # Mesh within which the access to resources is granted. It can only be used with the Mesh-scoped resources.
   access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN", "GENERATE_ZONE_TOKEN"] # an action that is bound to a type.
@@ -87,7 +87,7 @@ metadata:
   name: role-1
 spec:
   rules:
-  - types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # List of types that are granted access. If it's empty, access is granted to all types.
+  - types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # List of Kuma resource kinds that are granted access. If it's empty, access is granted to all kinds.
     names: ["res-1"] # List of allowed type names that are granted access. If it's empty, access is granted to resources regardless of the name.
     mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
     access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
@@ -110,7 +110,7 @@ metadata:
   name: role-1
 spec:
   rules:
-  - types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # List of types that are granted access. If it's empty, access is granted to all types.
+  - types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # List of Kuma resource kinds that are granted access. If it's empty, access is granted to all kinds.
     names: ["res-1"] # List of allowed type names that are granted access. If it's empty, access is granted to resources regardless of the name.
     mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
     access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
@@ -145,7 +145,7 @@ spec:
 type: AccessRole
 name: role-1
 rules:
-- types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # List of types that are granted access. If it's empty, access is granted to all types.
+- types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # List of Kuma resource types that are granted access. If it's empty, access is granted to all types.
   names: ["res-1"] # List of allowed type names that are granted access. If it's empty, access is granted to resources regardless of the name.
   mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
   access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
@@ -165,7 +165,7 @@ rules:
 type: AccessRole
 name: role-1
 rules:
-- types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # List of types that are granted access. If it's empty, access is granted to all types.
+- types: ["MeshTrafficPermission", "MeshTrace", "MeshAccessLog"] # List of Kuma resource types that are granted access. If it's empty, access is granted to all types.
   names: ["res-1"] # List of allowed type names that are granted access. If it's empty, access is granted to resources regardless of the name.
   mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
   access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
@@ -245,7 +245,7 @@ roles: # a list of roles that will be assigned to the list of subjects.
 
 Let's go through example roles in the organization that can be created using {{site.mesh_product_name}} RBAC.
 
-### Kong Mesh operator (admin)
+### {{site.mesh_product_name}} operator (admin)
 
 Mesh operator is a part of infrastructure team responsible for {{site.mesh_product_name}} deployment.
 
@@ -1096,7 +1096,7 @@ In a multi-zone setup, `AccessRole` and `AccessRoleBinding` are not synchronized
 ## Wildcard tag value matching
 
 {:.note}
-> **Note**: This feature is available starting in Kong Mesh 1.9.1
+> **Note**: This feature is available starting in {{site.mesh_product_name}} 1.9.1
 
 You can perform partial tag value matching using `*` wildcards.
 

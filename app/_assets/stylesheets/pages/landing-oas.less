@@ -21,8 +21,28 @@
     }
 
     .links-container {
-      align-items: flex-start;
+      justify-content: space-between;
+      flex-direction: row;
+
+      .insomnia-link {
+        opacity: 1;
+        align-self: flex-end;
+        margin-bottom: 10px;
+
+        &:hover, &:focus {
+         opacity: 0.8; 
+        }
+      }
+
+      @media (max-width: 1200px) {
+        flex-direction: column;
+        
+        .insomnia-link {
+          align-self: flex-start;
+      }
     }
+  }
+
 
     .link-text {
       padding: 8px 0px;

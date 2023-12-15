@@ -12,12 +12,12 @@ See the [Costs API reference](/hub/kong-inc/graphql-rate-limiting-advanced/api/)
 ### Add a GraphQL service and route
 
 ```sh
-curl -X POST http://kong:8001/services \
+curl -X POST http://localhost:8001/services \
   --data "name=example" \
-  --data "host=mockbin.org" \
+  --data "host=httpbin.org" \
   --data "port=443" \
   --data "protocol=https"
-curl -X POST http://kong:8001/services/example/routes \
+curl -X POST http://localhost:8001/services/example/routes \
   --data "hosts=example.com"
 ```
 
@@ -26,7 +26,7 @@ curl -X POST http://kong:8001/services/example/routes \
 Example using a single time window:
 
 ```sh
-curl -i -X POST http://kong:8001/services/example/plugins \
+curl -i -X POST http://localhost:8001/services/example/plugins \
   --data name=graphql-rate-limiting-advanced \
   --data config.limit=100 \
   --data config.window_size=60 \
@@ -36,7 +36,7 @@ curl -i -X POST http://kong:8001/services/example/plugins \
 Example using multiple time windows:
 
 ```sh
-curl -i -X POST --url http://kong:8001/services/example/plugins \
+curl -i -X POST --url http://localhost:8001/services/example/plugins \
   --data 'name=graphql-rate-limiting-advanced' \
   --data 'config.window_size[]=60' \
   --data 'config.window_size[]=3600' \
@@ -48,7 +48,7 @@ curl -i -X POST --url http://kong:8001/services/example/plugins \
 ### Changing the default strategy
 
 ```sh
-curl -X POST http://kong:8001/services/example/plugins \
+curl -X POST http://localhost:8001/services/example/plugins \
   --data name=graphql-rate-limiting-advanced \
   --data config.limit=100 \
   --data config.limit=10000 \
@@ -59,7 +59,7 @@ curl -X POST http://kong:8001/services/example/plugins \
 ```
 
 ```sh
-curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \
+curl -i -X PATCH http://localhost:8001/plugins/{plugin_id} \
   --data config.cost_strategy=node_quantifier
 ```
 
@@ -73,7 +73,7 @@ a cost higher than our set `max_cost`. By default it's set to 0, which means
 no limit.
 
 ```sh
-curl -X POST http://kong:8001/services/example/plugins \
+curl -X POST http://localhost:8001/services/example/plugins \
   --data name=graphql-rate-limiting-advanced \
   --data config.limit=100 \
   --data config.limit=10000 \
@@ -86,7 +86,7 @@ curl -X POST http://kong:8001/services/example/plugins \
 To update `max_cost`:
 
 ```sh
-curl -X PATCH http://kong:8001/plugins/{plugin_id} \
+curl -X PATCH http://localhost:8001/plugins/{plugin_id} \
   --data config.max_cost=10000
 ```
 
@@ -102,7 +102,7 @@ For example, a `score_factor` of `0.01` will divide the costs by 100, meaning
 every cost unit represents 100 nodes.
 
 ```sh
-curl -X POST http://kong:8001/services/example/plugins \
+curl -X POST http://localhost:8001/services/example/plugins \
   --data name=graphql-rate-limiting-advanced \
   --data config.limit=100 \
   --data config.limit=10000 \
@@ -116,7 +116,7 @@ curl -X POST http://kong:8001/services/example/plugins \
 To update `score_factor`:
 
 ```sh
-curl -i -X PATCH http://kong:8001/plugins/{plugin_id} \
+curl -i -X PATCH http://localhost:8001/plugins/{plugin_id} \
   --data config.score_factor=1
 ```
 

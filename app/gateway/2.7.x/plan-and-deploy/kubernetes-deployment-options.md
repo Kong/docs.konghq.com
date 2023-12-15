@@ -9,8 +9,8 @@ configuration to route and control traffic.
 
 The [kong-gateway][enterprise-download] proxy image supports DB-less
 operation and is recommended for all deployments.
-* [DB-less installation with the Kong Ingress Controller][k4k8s-enterprise-install]
-* [Database-backed installation with or without the Kong Ingress Controller](/gateway/{{page.kong_version}}/install-and-run/helm/)
+* [DB-less installation with the {{site.kic_product_name}}][k4k8s-enterprise-install]
+* [Database-backed installation with or without the {{site.kic_product_name}}](/gateway/{{page.kong_version}}/install-and-run/helm/)
 
 ### Migrating to 2.1.x and up
 
@@ -114,7 +114,7 @@ controller can render it into a complete configuration.
 
 On database-backed deployments, users can create or modify configuration
 through the Admin API. The ingress controller uses a tag (set by the
-`CONTROLLER_KONG_ADMIN_FILTER_TAG` environment variable) to to identify
+`CONTROLLER_KONG_ADMIN_FILTER_TAG` environment variable) to identify
 configuration that it manages. While the controller will revert changes to
 configuration with its tag, other configuration is left as-is.
 

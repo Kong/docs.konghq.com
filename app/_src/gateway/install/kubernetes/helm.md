@@ -148,12 +148,12 @@ Note that the Enterprise deployment includes a Postgres sub-chart provided by Bi
 1.  Run:
 
     ```sh
-    ## Kong Gateway
+    ## {{site.base_gateway}}
     helm install my-kong kong/kong -n kong --values ./values.yaml
     ```
 
     ```sh
-    ## Kong Gateway (OSS)
+    ## {{site.base_gateway}} (OSS)
     helm install kong/kong --generate-name --set ingressController.installCRDs=false
     ```
 

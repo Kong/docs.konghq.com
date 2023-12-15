@@ -232,11 +232,13 @@ See the [Kong Manager setup guide](/gateway/{{page.kong_version}}/kong-manager/e
 
 {% endif_version %}
 
+{% if_version lte:3.4.x %}
+
 ### Enable Dev Portal
 {:.badge .enterprise}
 
 If you're running {{site.base_gateway}} with a database (either in traditional
-or hybrid mode), you can enable the {% if_version lte:2.8.x %}[Dev Portal](/gateway/{{page.kong_version}}/developer-portal/).{% endif_version %}{% if_version gte:3.0.x
+or hybrid mode), you can enable the {% if_version lte:2.8.x %}[Dev Portal](/gateway/{{page.kong_version}}/developer-portal/).{% endif_version %}{% if_version gte:3.0.x lte:3.4.x
    %}[Dev Portal](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/){% endif_version %}
 
 1. Enable the Dev Portal in the `kong.conf` file by setting the `portal` property to `on` and the
@@ -268,6 +270,7 @@ or hybrid mode), you can enable the {% if_version lte:2.8.x %}[Dev Portal](/gate
     ```
     http://localhost:8003/default
     ```
+{% endif_version %}
 
 ## Troubleshooting and support
 {:.badge .enterprise}

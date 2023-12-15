@@ -21,7 +21,7 @@ deck konnect sync [command-specific flags] [global flags]
 ## Flags
 
 `-h`, `--help`
-:  help for sync (Default: `false`)
+:  help for sync 
 
 `--include-consumers`
 :  export consumers, associated credentials and any plugins associated with consumers. (Default: `false`)

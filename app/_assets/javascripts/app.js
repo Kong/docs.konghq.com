@@ -493,7 +493,7 @@ jQuery(function () {
    *
    * To disable for whole page you can add 'disable_image_expand: true' to page Front Matter block. Example:
    * ---
-   * title: Install Kong Enterprise
+   * title: Install Kong Gateway Enterprise
    * disable_image_expand: true
    * ---
    */
@@ -620,4 +620,11 @@ jQuery(function () {
       '<div class="tooltip"><span class="tooltiptext">Available with Konnect Premium subscription - <a target="_blank" href="https://konghq.com/contact-sales">Contact Sales</a></span></div>'
     );
   }
+});
+
+// Expand version list
+
+$(".see-more").on("click", function () { 
+  $(".compat-list").addClass("compat-list-expanded");
+  $(".compat-list").removeClass("compat-list-collapsed");
 });

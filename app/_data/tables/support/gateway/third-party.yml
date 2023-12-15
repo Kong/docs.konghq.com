@@ -6,9 +6,6 @@ _third_party:
       - 14
       - 13
       - 12
-      - 11
-      - 10
-      - 9
       - Amazon RDS
     icon: postgresql.svg
   cassandra: &cassandra
@@ -67,6 +64,9 @@ _third_party:
   aws-sm: &aws-sm
     name: AWS Secrets Manager
     icon: aws.svg
+  azure-key-vaults: &azure-key-vaults
+    name: Microsoft Azure Key Vault
+    icon: azure.svg
   gcp-sm: &gcp-sm
     name: Google Secrets Manager
     icon: gcp.svg
@@ -105,7 +105,7 @@ _third_party:
   openam: &openam
     name: OpenAM
   paypal: &paypal
-    name: Paypal
+    name: PayPal
   pingfederate: &pingfederate
     name: PingFederate
   salesforce: &salesforce

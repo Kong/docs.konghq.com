@@ -34,7 +34,7 @@ To generate the tokens you need and configure your clusters:
 
 ### Generate token for each remote zone
 
-On the global control plane, [authenticate](https://kuma.io/docs/latest/security/certificates/#user-to-control-plane-communication) and run the following command:
+On the global control plane, [authenticate](/mesh/latest/production/secure-deployment/certificates/#user-to-control-plane-communication) and run the following command:
 
 ```
 $ kumactl generate control-plane-token --zone=west > /tmp/token
@@ -280,4 +280,4 @@ The result looks like:
 
 ## Additional security
 
-By default, a connection from the zone control plane to the global control plane is secured with TLS. You should also configure the zone control plane to [verify the certificate authority (CA) of the global control plane](https://kuma.io/docs/latest/security/certificates/#control-plane-to-control-plane-multizone){:target="_blank"}.
+By default, a connection from the zone control plane to the global control plane is secured with TLS. You should also configure the zone control plane to [verify the certificate authority (CA) of the global control plane]((/mesh/latest/production/secure-deployment/certificates/#control-plane-to-control-plane-multizone){:target="_blank"}.

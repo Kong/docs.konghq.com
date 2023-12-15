@@ -60,6 +60,7 @@ jQuery(function () {
           snippet
             .find("code")
             .text()
+            .replace(/^ /gim, "")
             .replace(/^\s*\$\s*/gim, "")
       );
       copyInput.select();

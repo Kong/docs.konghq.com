@@ -23,7 +23,7 @@ If you have a plugin that's verified and ready to go, the following guide walks 
 
 ## Document a partner plugin
 
-1. In your local clone of the docs repostory, create a new branch for your plugin.
+1. In your local clone of the docs repository, create a new branch for your plugin.
 
 1. Create a publisher directory in the [`app/_hub/` directory](https://github.com/Kong/docs.konghq.com/tree/main/app/_hub/)
 of the docs GitHub repository.
@@ -52,7 +52,8 @@ For example, `_app/_hub/company-name/example-plugin`.
             schemas
               _index.json
             _changelog.md
-            _index.md
+            overview
+              _index.md
             _metadata.yml
     ```
 
@@ -69,13 +70,13 @@ For example, `_app/_hub/company-name/example-plugin`.
     At minimum, this file must contain the plugin name, as well as any required
     parameters. This example is validated against the plugin's schema.
 
-    * `_index.md`: Markdown documentation for your plugin. This is where you
+    * `overview/_index.md`: Markdown documentation for your plugin. This is where you
     explain how the plugin works, how to install it, and how to use it.
 
     * `_changelog.md`: A changelog for your plugin. For the first entry, note when the 
     plugin was published and which versions of Gateway it has been tested against.
 
-1. Add an icon for your plugin into the `/app/_assets/images/icons/hub/` directory. 
+1. Add an icon for your plugin into the `/app/assets/images/icons/hub/` directory. 
     
     Plugin icons are required for publication on the Kong plugin hub. Icons
     should be a square-format PNG or SVG file, 120x120 pixels in size. 
@@ -88,7 +89,7 @@ For example, `_app/_hub/company-name/example-plugin`.
 
 If you have any diagrams or screenshots that you want to add to your plugin documentation:
 
-1. Add to the images into the `app/_assets/images/docs/plugins` directory.
+1. Add to the images into the `app/assets/images/docs/plugins` directory.
 
    Make sure that any screenshots follow the [screenshot guidelines](/contributing/user-interfaces/#screenshots).
 

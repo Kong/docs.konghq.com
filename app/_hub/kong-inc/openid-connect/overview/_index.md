@@ -90,6 +90,7 @@ The plugin supports several types of credentials and grants:
 
 The plugin has been tested with several OpenID Connect providers:
 
+<!--vale off-->
 - [Auth0][auth0] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-auth0/))
 - [Amazon AWS Cognito][cognito] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-cognito/))
 - [Connect2id][connect2id]
@@ -105,7 +106,7 @@ The plugin has been tested with several OpenID Connect providers:
 - [Okta][okta] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-okta/))
 - [OneLogin][onelogin]
 - [OpenAM][openam]
-- [Paypal][paypal]
+- [PayPal][paypal]
 - [PingFederate][pingfederate]
 - [Salesforce][salesforce]
 - [WSO2][wso2]
@@ -140,6 +141,7 @@ want your provider to be tested and added to the list.
 [salesforce]: https://help.salesforce.com/articleView?id=sf.sso_provider_openid_connect.htm&type=5
 [wso2]: https://is.docs.wso2.com/en/latest/guides/identity-federation/configure-oauth2-openid-connect/
 [yahoo]: https://developer.yahoo.com/oauth2/guide/openid_connect/
+<!--vale on-->
 
 Once applied, any user with a valid credential can access the service.
 
@@ -384,23 +386,28 @@ difficulties during this phase, please refer to the [Keycloak documentation](htt
 1. Create a confidential client `kong` with `private_key_jwt` authentication and configure
    Keycloak to download the public keys from [the OpenID Connect Plugin JWKS endpoint][json-web-key-set]:
    <br><br>
-   <img src="/assets/images/docs/openid-connect/keycloak-client-kong-settings.png">
+   <img src="/assets/images/products/plugins/openid-connect/keycloak-client-kong-settings.png">
    <br>
-   <img src="/assets/images/docs/openid-connect/keycloak-client-kong-auth.png">
+   <img src="/assets/images/products/plugins/openid-connect/keycloak-client-kong-auth.png">
    <br>
-2. Create another confidential client `service` with `client_secret_basic` authentication.
+2. Create a confidential client `service` with `client_secret_basic` authentication.
    For this client, Keycloak will auto-generate a secret similar to the following: `cf4c655a-0622-4ce6-a0de-d3353ef0b714`.
    Enable the client credentials grant for the client:
    <br><br>
-   <img src="/assets/images/docs/openid-connect/keycloak-client-service-settings.png">
+   <img src="/assets/images/products/plugins/openid-connect/keycloak-client-service-settings.png">
    <br>
-   <img src="/assets/images/docs/openid-connect/keycloak-client-service-auth.png">
+   <img src="/assets/images/products/plugins/openid-connect/keycloak-client-service-auth.png">
    <br>
-3. Create a verified user with the name: `john` and the non-temporary password: `doe` that can be used with the password grant:
-   <br><br>
-   <img src="/assets/images/docs/openid-connect/keycloak-user-john.png">
+{% if_version gte:3.5.x %}
+3. Optional: Create another confidential client `cert-bound` with settings similar to the `service` client created previously.
+   From the **Advanced** tab, enable the **OAuth 2.0 Mutual TLS Certificate Bound Access Tokens Enabled** toggle.
+{% endif_version %}
 
-Alternatively you can [download the exported Keycloak configuration](/assets/images/docs/openid-connect/keycloak.json),
+4. Create a verified user with the name: `john` and the non-temporary password: `doe` that can be used with the password grant:
+   <br><br>
+   <img src="/assets/images/products/plugins/openid-connect/keycloak-user-john.png">
+
+Alternatively you can [download the exported Keycloak configuration](/assets/images/products/plugins/openid-connect/keycloak.json),
 and use it to configure the Keycloak. Please refer to [Keycloak import documentation](https://www.keycloak.org/docs/latest/server_admin/#_export_import)
 for more information.
 
@@ -418,6 +425,11 @@ to
 
 The Keycloak default `https` port conflicts with the default Kong TLS proxy port,
 and that can be a problem if both are started on the same host.
+
+{% if_version gte:3.5.x %}
+{:.note}
+> **Note:** The mTLS proof of possession feature that validates OAuth 2.0 Mutual TLS Certificate Bound Access Tokens requires configuring Keycloak to validate client certificates using mTLS with the `--https-client-auth=request` option. For more information, see the [Keycloak documentation](https://www.keycloak.org/server/enabletls).
+{% endif_version %}
 
 [keycloak]: http://www.keycloak.org/
 
@@ -544,7 +556,7 @@ The authorization code flow is the three-legged OAuth/OpenID Connect flow.
 The sequence diagram below describes the participants and their interactions
 for this usage scenario, including the use of session cookies:
 
-![Authorization code flow diagram](/assets/images/docs/openid-connect/authorization-code-flow.svg)
+![Authorization code flow diagram](/assets/images/products/plugins/openid-connect/authorization-code-flow.svg)
 
 {:.note}
 > If using PKCE, the identity provider *must* contain the `code_challenge_methods_supported` object in the `/.well-known/openid-configuration` issuer discovery endpoint response, as required by [RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html). If it is not included, the PKCE `code_challenge` query parameter will not be sent.
@@ -600,16 +612,16 @@ HTTP/1.1 200 OK
    ```bash
    open http://service.test:8000/?hello=world
    ```
-   <img src="/assets/images/docs/openid-connect/authorization-code-flow-1.png">
+   <img src="/assets/images/products/plugins/openid-connect/authorization-code-flow-1.png">
 
 2. See that the browser is redirected to the Keycloak login page:
    <br><br>
-   <img src="/assets/images/docs/openid-connect/authorization-code-flow-2.png">
+   <img src="/assets/images/products/plugins/openid-connect/authorization-code-flow-2.png">
    <br>
    > You may examine the query arguments passed to Keycloak with the browser developer tools.
 3. And finally you will be presented a response from httpbin.org:
    <br><br>
-   <img src="/assets/images/docs/openid-connect/authorization-code-flow-3.png">
+   <img src="/assets/images/products/plugins/openid-connect/authorization-code-flow-3.png">
 4. Done.
 
 It looks rather simple from the user point of view, but what really happened is
@@ -621,7 +633,7 @@ Password grant is a legacy authentication grant. This is a less secure way of
 authenticating end users than the authorization code flow, because, for example,
 the passwords are shared with third parties. The image below illustrates the grant:
 
-<img src="/assets/images/docs/openid-connect/password-grant.svg">
+<img src="/assets/images/products/plugins/openid-connect/password-grant.svg">
 
 #### Patch the Plugin
 
@@ -688,7 +700,7 @@ does not try to authenticate. It just forwards the credentials passed by the cli
 to the identity server's token endpoint. The client credentials grant is visualized
 below:
 
-<img src="/assets/images/docs/openid-connect/client-credentials-grant.svg">
+<img src="/assets/images/products/plugins/openid-connect/client-credentials-grant.svg">
 
 #### Patch the Plugin
 
@@ -756,7 +768,7 @@ is likely when Kong OpenID Connect is configured to use one client, and the refr
 with another. The grant itself is very similar to [password grant](#password-grant) and
 [client credentials grant](#client-credentials-grant):
 
-<img src="/assets/images/docs/openid-connect/refresh-token-grant.svg">
+<img src="/assets/images/products/plugins/openid-connect/refresh-token-grant.svg">
 
 #### Patch the Plugin
 
@@ -849,7 +861,7 @@ the signature verification using the identity provider published public keys and
 claims' verification (such as `exp` (or expiry)). The client may have received the token directly
 from the identity provider or by other means. It is simple:
 
-<img src="/assets/images/docs/openid-connect/bearer-authentication.svg">
+<img src="/assets/images/products/plugins/openid-connect/bearer-authentication.svg">
 
 #### Patch the Plugin
 
@@ -927,6 +939,23 @@ We can use the output in `Authorization` header.
    }
    ```
 2. Done.
+   
+#### Test the JWT Access Token Authentication with access token in query string 
+
+To specify the bearer token as a query string parameter:
+
+```bash
+curl -i -X PATCH http://localhost:8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9  \
+  --data "config.bearer_token_param_type=query"                 \
+  --data "config.auth_methods=bearer"                           \
+  --data "config.auth_methods=password" # only enabled for demoing purposes
+```
+
+Test out the token by accessing the Kong proxy:
+
+```bash
+curl http://localhost:8000?access_token=<token>
+```
 
 ### Introspection Authentication
 
@@ -936,7 +965,7 @@ JWT authentication is that the plugin needs to call the introspection endpoint o
 to find out whether the token is valid and active. This makes it possible to issue opaque tokens to
 the clients.
 
-<img src="/assets/images/docs/openid-connect/introspection-authentication.svg">
+<img src="/assets/images/products/plugins/openid-connect/introspection-authentication.svg">
 
 #### Patch the Plugin
 
@@ -1009,7 +1038,7 @@ as that is meant for retrieving information from the token itself, whereas the u
 meant for retrieving information about the user for whom the token was given. The sequence
 diagram below looks almost identical to introspection authentication:
 
-<img src="/assets/images/docs/openid-connect/userinfo-authentication.svg">
+<img src="/assets/images/products/plugins/openid-connect/userinfo-authentication.svg">
 
 #### Patch the Plugin
 
@@ -1081,7 +1110,7 @@ The OpenID Connect plugin can also verify the tokens issued by [Kong OAuth 2.0 P
 This is very similar to third party identity provider issued [JWT access token authentication](#jwt-access-token-authentication)
 or [introspection authentication](#introspection-authentication):
 
-<img src="/assets/images/docs/openid-connect/kong-oauth-authentication.svg">
+<img src="/assets/images/products/plugins/openid-connect/kong-oauth-authentication.svg">
 
 #### Prepare Kong OAuth Application
 
@@ -1214,7 +1243,7 @@ to first authenticate with one of the other grant / flows described above. In
 authentication when we used the redirect login action. The session authentication
 is described below:
 
-<img src="/assets/images/docs/openid-connect/session-authentication.svg">
+<img src="/assets/images/products/plugins/openid-connect/session-authentication.svg">
 
 #### Patch the Plugin
 
@@ -1735,6 +1764,120 @@ Nice, as you can see the plugin even added the `X-Consumer-Id` and `X-Consumer-U
 
 > It is possible to make consumer mapping optional and non-authorizing by setting the `config.consumer_optional=true`.
 
+{% if_version gte:3.5.x %}
+## Certificate-Bound Access Tokens
+
+One of the main vulnerabilities of OAuth are bearer tokens because presenting a valid bearer token is enough proof to access a resource. This can create problems since the client presenting the token isn't validated as the legitimate user that the token was issued to. 
+
+Certificate-bound access tokens can solve this problem by binding tokens to clients. This ensures the legitimacy of the token because it requires proof that the sender is authorized to use a particular token to access protected resources. 
+
+To enable certificate-bound access for OpenID Connect, it is necessary to ensure that the Auth server is configured to generate OAuth 2.0 Mutual TLS Certificate Bound Access Tokens. The Certificate Authority should be trusted by both the Auth server and Kong.
+For configuring this in Keycloak, refer to the [Keycloak configuration](#keycloak-configuration) section above.
+For alternative auth servers, consult their documentation to configure this functionality.
+
+Some of the instructions in the previous sections support validation of access tokens using mTLS proof of possession.
+Enabling the `proof_of_possession_mtls` configuration option in the plugin ensures that the supplied access token
+belongs to the client by verifying its binding with the client certificate provided in the request.
+
+The certificate-bound access tokens are supported by the following methods:
+
+- [JWT Access Token Authentication](#jwt-access-token-authentication)
+- [Introspection Authentication](#introspection-authentication)
+- [Session Authentication](#session-authentication)
+
+    {:.note}
+    > **Note:** Session Authentication is only compatible with certificate-bound access tokens when used along with one of the other supported authentication methods. When the configuration option `proof_of_possession_auth_methods_validation` is set to `false` and other non-compatible methods are enabled, if a valid session is found, the proof of possession validation will only be performed if the session was originally created using one of the compatible methods. If multiple `openid-connect` plugins are configured with the `session` auth method, we strongly recommend configuring different values of `config.session_secret` across plugins instances for additional security. This avoids sessions being shared across plugins and possibly bypassing the proof of possession validation.
+
+{:.note}
+> **Note:** The mTLS proof of possession feature relies on mutual TLS to be enabled in Kong. For more information refer to the [TLS Handshake Modifier plugin](/hub/kong-inc/tls-handshake-modifier/) or the [Mutual TLS Authentication plugin](/hub/kong-inc/mtls-auth/) documentation.
+
+The following example shows how to enable this feature for the JWT Access Token Authentication method. Similar steps can be followed for the other methods.
+
+1. Configure {{site.base_gateway}} to use mTLS client certificate authentication. This example uses the [TLS Handshake Modifier plugin](/hub/kong-inc/tls-handshake-modifier/):
+
+    ```bash
+    http -f post :8001/plugins    \
+    name=tls-handshake-modifier \
+    service.name=openid-connect
+    ```
+    If this is configured correctly, a `200` status code is returned, and a response similar to the following:
+    ```json
+    {
+        "id": "a7f676e6-580d-4841-80de-de46e1f79eb2",
+        "name": "tls-handshake-modifier",
+        "service": {
+            "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd"
+        }
+    }
+    ```
+
+2. To enable certificate-bound access tokens, use the `proof_of_possession_mtls` configuration option:
+
+    ```bash
+    http -f put :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
+    name=openid-connect                                          \
+    service.name=openid-connect                                  \
+    config.issuer=https://keycloak.test:8440/auth/realms/master  \
+    config.client_id=cert-bound                                  \
+    config.client_secret=cf4c655a-0622-4ce6-a0de-d3353ef0b714    \
+    config.auth_methods=bearer                                   \
+    config.proof_of_possession_mtls=strict
+    ```
+    If this is configured correctly, a `200` status code is returned, and a response similar to the following:
+    ```json
+    {
+        "id": "5f35b796-ced6-4c00-9b2a-90eef745f4f9",
+        "name": "openid-connect",
+        "service": {
+            "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd"
+        },
+        "config": {
+            "issuer": "https://keycloak.test:8440/auth/realms/master",
+            "client_id": [ "cert-bound" ],
+            "client_secret": [ "cf4c655a-0622-4ce6-a0de-d3353ef0b714" ],
+            "auth_methods": [ "bearer" ],
+            "proof_of_possession_mtls": "strict",
+        }
+    }
+    ```
+
+3. Obtain the token from the IdP, making sure to modify the following command appropriately:
+    ```bash
+    http --cert client-cert.pem --cert-key client-key.pem                                 \
+    -f post https://keycloak.test:8440/auth/realms/master/protocol/openid-connect/token \
+    client_id=cert-bound                                                                \
+    client_secret=cf4c655a-0622-4ce6-a0de-d3353ef0b714                                  \
+    grant_type=client_credentials
+    ```
+    If this is configured correctly, a `200` status code is returned, and a response similar to the following:
+    ```json
+    {
+        "access_token": "eyJhbG...",
+    }
+    ```
+
+    The token obtained should include a claim that consists of the hash of the client certificate:
+    ```json
+    {
+        "exp": 1622556713,
+        "typ": "Bearer",
+        "cnf": {
+            "x5t#S256": "hh_XBS..."
+        }
+    }
+    ```
+
+4. Access the service using the same client certificate and key used to obtain the token:
+    ```bash
+    http --cert client-cert.pem --cert-key client-key.pem \
+    -f post https://kong.test:8443                      \
+    Authorization:"Bearer eyJhbGc..."
+    ```
+    If this is configured correctly, it returns a `200` status code:
+    ```http
+    HTTP/1.1 200 OK
+    ```
+{% endif_version %}
 ## Headers
 
 Before you proceed, check that you have completed [the preparations](#preparations).

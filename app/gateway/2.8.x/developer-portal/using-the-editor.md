@@ -27,7 +27,7 @@ When enabled, the Dev Portal is pre-populated with Kong's default theme. The fil
 1. Portal Preview - View a live preview of the selected Dev Portal file.
 1. Toggle View - Choose between three different views: full screen code, split view, and full screen preview mode.
 
-![Dev Portal with Numbers](/assets/images/docs/dev-portal/editor-mode-numbered.png)
+![Dev Portal with Numbers](/assets/images/products/gateway/dev-portal/editor-mode-numbered.png)
 
 ## Editing Files
 
@@ -42,10 +42,10 @@ Once created, files will immediately be available from within the Editor.
 ## Authenticating files
 
 Authentication is handled by `readable_by` value on content pages (for gui view, go to permissions page)
-    - set readable_by: '*' to equal old authenticated
-    - to restrict access to certain roles, set readable_by to an array of accepted roles (you must first create roles on the permissions page)
-    - on specs, readable_by is set inside "x-headmatter" object
+    - set `readable_by`: '*' to equal old authenticated
+    - to restrict access to certain roles, set `readable_by` to an array of accepted roles (you must first create roles on the permissions page)
+    - for specs, `readable_by` is set inside the `x-headmatter` object
 
 ## Deleting files
 
-To _permanently_ delete a file from within the Editor, right click on the file name and select **Delete** from the popup menu.
+To _permanently_ delete a file from within the Editor, right click on the filename and select **Delete** from the popup menu.

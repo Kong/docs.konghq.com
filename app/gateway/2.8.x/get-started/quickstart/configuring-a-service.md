@@ -6,14 +6,14 @@ In this section, you'll be adding an API to Kong. In order to do this, you'll
 first need to add a [Service](/gateway/{{page.kong_version}}/admin-api/#service-object); that is the name Kong uses to refer to the upstream APIs and microservices
 it manages.
 
-For the purpose of this guide, we'll create a Service pointing to the [Mockbin API][mockbin]. Mockbin is
+For the purpose of this guide, we'll create a Service pointing to the [httpbin API][httpbin]. Httpbin is
 an "echo" type public website which returns the requests it gets back to the requester, as responses. This
 makes it helpful for learning how Kong proxies your API requests.
 
 Before you can start making requests against the Service, you will need to add a [Route](/gateway/{{page.kong_version}}/admin-api/#route-object) to it.
 Routes specify how (and if) requests are sent to their Services after they reach Kong. There can be multiple Routes to a Service.
 
-After configuring the Service and a Route, you'll be able to proxy a request through Kong to Mockbin.
+After configuring the Service and a Route, you'll be able to proxy a request through Kong to httpbin.
 
 By default, Kong exposes a [RESTful Admin API][API] on port `8001`. 
 You can use the Admin API to modify Kong's configuration, including adding 
@@ -25,13 +25,13 @@ You have installed and started {{site.base_gateway}}, either through the [Docker
 ## 1. Add a Service using the Admin API
 
 Issue the following `POST` request to add your first Service to Kong.
-This instructs Kong to create a new Service named `example-service` which will accept traffic at `http://mockbin.org`.
+This instructs Kong to create a new Service named `example-service` which will accept traffic at `http://httpbin.org`.
 
 ```bash
 curl -i -X POST \
   --url http://localhost:8001/services/ \
   --data 'name=example-service' \
-  --data 'url=http://mockbin.org'
+  --data 'url=http://httpbin.org'
 ```
 
 You should receive a response similar to:
@@ -42,7 +42,7 @@ Content-Type: application/json
 Connection: keep-alive
 
 {
-   "host":"mockbin.org",
+   "host":"httpbin.org",
    "created_at":1519130509,
    "connect_timeout":60000,
    "id":"92956672-f5ea-4e9a-b096-667bf55bc40c",
@@ -112,7 +112,7 @@ curl -i -X GET \
   --header 'Host: example.com'
 ```
 
-A successful response means Kong is now forwarding requests with a `Host: example.com` header to the Mockbin Service we configured in step #1.
+A successful response means Kong is now forwarding requests with a `Host: example.com` header to the httpbin Service we configured in step #1.
 
 <hr>
 
@@ -125,4 +125,4 @@ Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 [API]: /gateway/{{page.kong_version}}/admin-api
 [enabling-plugins]: /gateway/{{page.kong_version}}/get-started/quickstart/enabling-plugins
 [proxy-port]: /gateway/{{page.kong_version}}/reference/configuration/#nginx-section
-[mockbin]: https://mockbin.com/
+[httpbin]: https://httpbin.org/

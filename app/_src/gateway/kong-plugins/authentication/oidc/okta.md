@@ -5,15 +5,16 @@ badge: enterprise
 
 This guide covers an example OpenID Connect plugin configuration to authenticate browser clients using an Okta identity provider.
 
+{% if_version lte:3.4.x %}
 For information about configuring OIDC using Okta as an Identity provider
 in conjunction with the Application Registration plugin, see
 [Set Up External Portal Application Authentication with Okta and OIDC](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/okta-config).
-
+{% endif_version %}
 ## Authorization code flow with the OpenID Connect plugin and Okta
 
 ### Sign-in flow
 
-![OIDC sign-in flow](/assets/images/docs/ee/plugins/oidc-use-case/OIDCsignin.png)
+![OIDC sign-in flow](/assets/images/products/plugins/openid-connect/OIDCsignin.png)
 
 1. If the client does not have a session cookie, it initiates sign in with Kong.
 2. Kong responds to the client with an **authorization cookie** and a location to redirect (with Okta as the header).
@@ -24,7 +25,7 @@ At this point, the client has successfully signed in and has an **authorization 
 
 ### Access flow
 
-![OIDC access flow](/assets/images/docs/ee/plugins/oidc-use-case/OIDCaccess.png)
+![OIDC access flow](/assets/images/products/plugins/openid-connect/OIDCaccess.png)
 
 1. The client redirects to Kong and automatically sends the **authorization code** (from Okta) and an **authorization cookie** (from Kong).
 2. Kong verifies the **authorization code** with Okta.
@@ -37,7 +38,7 @@ At this point, the client now has a **session** with Kong that allows mediated a
 
 ### Session flow
 
-![OIDC session flow](/assets/images/docs/ee/plugins/oidc-use-case/OIDCsession.png)
+![OIDC session flow](/assets/images/products/plugins/openid-connect/OIDCsession.png)
 
 1. The client sends requests with a **session cookie**.
 2. Kong matches the session cookie to the associate **access token** and proxies the request.
@@ -208,6 +209,7 @@ For a list of all available configuration parameters and what they do, see the
 {% endnavtab %}
 {% endnavtabs %}
 
+
 Visiting a URL matched by that route in a browser will now redirect to Okta's authentication
 site and return you to the redirect URI after authenticating.
 
@@ -271,4 +273,4 @@ Similarly, setting `authenticated_groups_claim` will extract that claim's value 
 
 [okta-authorization-server]: https://developer.okta.com/docs/guides/customize-authz-server/create-authz-server/
 [okta-register-app]: https://developer.okta.com/docs/guides/add-an-external-idp/openidconnect/register-app-in-okta/
-[credential-claim]: https://docs.konghq.com/hub/kong-inc/openid-connect/#configcredential_claim
+[credential-claim]: /hub/kong-inc/openid-connect/#configcredential_claim

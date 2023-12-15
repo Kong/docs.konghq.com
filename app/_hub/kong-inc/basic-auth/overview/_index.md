@@ -20,7 +20,7 @@ A Consumer can have many credentials.
 To create a Consumer, you can execute the following request:
 
 ```bash
-curl -d "username={USER123}&custom_id={SOME_CUSTOM_ID}" http://kong:8001/consumers/
+curl -d "username={USER123}&custom_id={SOME_CUSTOM_ID}" http://localhost:8001/consumers/
 ```
 {% endnavtab %}
 {% navtab Without a Database %}
@@ -53,7 +53,7 @@ service, you must add the new consumer to the allowed group. See
 You can provision new username/password credentials by making the following HTTP request:
 
 ```bash
-curl -X POST http://kong:8001/consumers/{CONSUMER}/basic-auth \
+curl -X POST http://localhost:8001/consumers/{CONSUMER}/basic-auth \
   --data "username=Aladdin" \
   --data "password=OpenSesame"
 ```
@@ -118,7 +118,7 @@ following request:
 {% navtabs codeblock %}
 {% navtab Request %}
 ```bash
-curl -X GET http://kong:8001/basic-auths
+curl -X GET http://localhost:8001/basic-auths
 ```
 {% endnavtab %}
 {% navtab Response %}
@@ -158,7 +158,7 @@ You can filter the list by Consumer with the following endpoint:
 {% navtabs codeblock %}
 {% navtab Request %}
 ```bash
-curl -X GET http://kong:8001/consumers/{USERNAME_OR_ID}/basic-auth
+curl -X GET http://localhost:8001/consumers/{USERNAME_OR_ID}/basic-auth
 ```
 {% endnavtab %}
 {% navtab Response %}
@@ -190,7 +190,7 @@ basic-auth Credential using the following request:
 {% navtabs codeblock %}
 {% navtab Request %}
 ```bash
-curl -X GET http://kong:8001/basic-auths/{USERNAME_OR_ID}/consumer
+curl -X GET http://localhost:8001/basic-auths/{USERNAME_OR_ID}/consumer
 ```
 {% endnavtab %}
 {% navtab Response %}

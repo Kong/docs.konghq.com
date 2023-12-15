@@ -18,7 +18,7 @@ You can claim your Konnect Plus credits by [signing up](https://konghq.com/produ
 
 You can view service, Dev Portal, and API call usage from the [Billing and Usage](https://cloud.konghq.com/settings/billing-settings)
 
-![Billing Page](/assets/images/docs/konnect/billing/billing-and-usage.png)
+![Billing Page](/assets/images/products/konnect/billing/billing-and-usage.png)
 
 Here you can review your billable consumption of {{site.konnect_product_name}} and manage billing and payment information.
 
@@ -37,3 +37,7 @@ control plane. You should never have to deal with a license
 directly.
 
 For any license questions, contact your sales representative.
+
+## Geographic region management
+
+When you create a {{site.konnect_saas}} account, you select a [geographic region](/konnect/geo) for your instance. Geos are distinct deployments of {{site.konnect_short_name}} with objects, such as services and consumers, that are geo-specific. Only authentication is shared between {{site.konnect_short_name}} geos.

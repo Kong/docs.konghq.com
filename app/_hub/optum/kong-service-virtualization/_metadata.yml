@@ -4,7 +4,7 @@ dbless_compatible: yes
 publisher: Optum
 
 categories:
-  - traffic-control
+  - none
 
 desc: Mock virtual API request and response pairs through Kong Gateway
 
@@ -19,11 +19,11 @@ free: true
 kong_version_compatibility:
   community_edition:
     compatible:
-      - 0.14.x
-      - 0.13.x
+      - ">= 1.x"
 
   enterprise_edition:
     compatible:
-      - 0.34-x
-      - 0.33-x
-      - 0.32-x
+      - ">= 1.x"
+
+search_aliases:
+  - optum

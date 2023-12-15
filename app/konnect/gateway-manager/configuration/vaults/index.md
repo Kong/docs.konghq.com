@@ -23,7 +23,7 @@ platform never stores sensitive credentials.
 
 ## Vaults interface in {{site.konnect_short_name}}
 
-![Vaults interface](/assets/images/docs/konnect/konnect-vaults.png)
+![Vaults interface](/assets/images/products/konnect/gateway-manager/konnect-vaults.png)
 > Figure 1: Overview page for all vaults configured for a control plane.
 
 Number | Item | Description
@@ -57,6 +57,7 @@ Konnect supports the following vault backends:
 * AWS Secrets Manager
 * HashiCorp Vault
 * GCP Secret Manager
+* Azure Key Vault
 * Environment variables
 
 You can manage all of these vaults through the [Gateway Manager](/konnect/gateway-manager/configuration/vaults/how-to/) or with [decK](/deck/latest/guides/vaults/).
@@ -70,4 +71,5 @@ documentation:
 * [AWS Secrets Manager](/gateway/latest/kong-enterprise/secrets-management/backends/aws-sm/)
 * [GCP Secrets Manager](/gateway/latest/kong-enterprise/secrets-management/backends/gcp-sm/)
 * [HashiCorp Vault](/gateway/latest/kong-enterprise/secrets-management/backends/hashicorp-vault/)
+* [Azure Key Vault](/gateway/latest/kong-enterprise/secrets-management/backends/azure-key-vaults/)
 * [Environment variables](/gateway/latest/kong-enterprise/secrets-management/backends/env/)

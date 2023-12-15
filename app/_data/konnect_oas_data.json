@@ -20,27 +20,6 @@
       }
     ]
   },
-   {
-    "id": "51eda0ea-74ca-48c9-bf6e-80a413d620b4",
-    "title": "Konnect API Requests (Beta)",
-    "latestVersion": {
-      "name": "v2",
-      "id": "bf65b13d-d12e-42cb-8392-8d898d83b7a1"
-    },
-    "description": "API Requests provides access to detailed records for requests made to your API, in near real-time. This API is released as beta.",
-    "documentCount": 0,
-    "versionCount": 1,
-    "versions": [
-      {
-        "id": "bf65b13d-d12e-42cb-8392-8d898d83b7a1",
-        "created_at": "2023-09-22T11:11:00.000Z",
-        "updated_at": "2023-09-22T11:11:00.000Z",
-        "name": "v2",
-        "deprecated": false,
-        "registration_configs": []
-      }
-    ]
-  },
   {
     "id": "98e74b12-7b86-429f-9255-d4a33e40f13b",
     "title": "Konnect Control Planes",
@@ -63,6 +42,48 @@
     ]
   },
   {
+    "id": "f99f0f29-be4e-4fc8-8cec-64e5d3511bff",
+    "title": "Konnect Portal Management",
+    "latestVersion": {
+      "name": "v2",
+      "id": "43fca68c-f83d-4cf1-8c40-87574d423313"
+    },
+    "description": "Integrate portal management operations with  automation systems (such as CI/CD pipelines) utilizing this AIP-compliant API.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "43fca68c-f83d-4cf1-8c40-87574d423313",
+        "created_at": "2023-10-27T16:34:46.991Z",
+        "updated_at": "2023-11-02T22:42:46.657Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "51eda0ea-74ca-48c9-bf6e-80a413d620b4",
+    "title": "Konnect API Requests (Beta)",
+    "latestVersion": {
+      "name": "v2",
+      "id": "bf65b13d-d12e-42cb-8392-8d898d83b7a1"
+    },
+    "description": "API Requests provides access to detailed records for requests made to your API, in near real-time.\n\nThis API is released as beta.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "bf65b13d-d12e-42cb-8392-8d898d83b7a1",
+        "created_at": "2023-09-19T12:13:00.185Z",
+        "updated_at": "2023-09-26T18:13:52.394Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
     "id": "0267e60f-bf5d-4565-9618-b061f8398e14",
     "title": "Konnect Control Planes Config (Beta)",
     "latestVersion": {
@@ -76,8 +97,29 @@
       {
         "id": "fa795b03-e0fc-4d33-aa97-28632b41cc61",
         "created_at": "2023-09-19T15:03:02.006Z",
-        "updated_at": "2023-09-20T15:29:07.563Z",
+        "updated_at": "2023-09-25T21:38:59.893Z",
         "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "f3675942-dbc0-4298-bec2-cbcfdcc10fab",
+    "title": "Konnect Mesh Manager",
+    "latestVersion": {
+      "name": "v0",
+      "id": "0426ee88-bf76-45e3-9f89-fc03bea0c3a5"
+    },
+    "description": "The Mesh Manager API can be used to create and manage your global mesh control planes.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "0426ee88-bf76-45e3-9f89-fc03bea0c3a5",
+        "created_at": "2023-09-25T17:02:31.016Z",
+        "updated_at": "2023-09-26T21:30:47.305Z",
+        "name": "v0",
         "deprecated": false,
         "registration_configs": []
       }
@@ -108,12 +150,12 @@
     "id": "680541e5-de6e-46e5-b43d-0bd1b2369453",
     "title": "Gateway Admin - OSS (Beta)",
     "latestVersion": {
-      "name": "3.4.0",
-      "id": "7df4368a-a2d1-41a3-b8de-708e86c218f4"
+      "name": "3.5.0",
+      "id": "7323acff-61a5-4d95-9670-3cc30db88d94"
     },
     "description": "Kong Gateway (OSS) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
     "documentCount": 0,
-    "versionCount": 2,
+    "versionCount": 3,
     "versions": [
       {
         "id": "e2a0ef29-573d-4fc4-86df-216c417f4aa9",
@@ -130,6 +172,14 @@
         "name": "3.4.0",
         "deprecated": false,
         "registration_configs": []
+      },
+      {
+        "id": "7323acff-61a5-4d95-9670-3cc30db88d94",
+        "created_at": "2023-11-06T20:42:08.188Z",
+        "updated_at": "2023-11-07T16:36:32.325Z",
+        "name": "3.5.0",
+        "deprecated": false,
+        "registration_configs": []
       }
     ]
   },
@@ -137,12 +187,12 @@
     "id": "937dcdd7-4485-47dc-af5f-b805d562552f",
     "title": "Gateway Admin - EE (Beta)",
     "latestVersion": {
-      "name": "3.4.0.0",
-      "id": "25d728a0-cfe3-4cf4-8e90-93a5bb15cfd9"
+      "name": "3.5.0.0",
+      "id": "5363c8ea-e2ce-4670-9117-143b3b3d2bfb"
     },
     "description": "Kong Gateway (EE) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
-    "documentCount": 0,
-    "versionCount": 2,
+    "documentCount": 2,
+    "versionCount": 3,
     "versions": [
       {
         "id": "be79b812-46d5-4cc1-b757-b5270bf4fa60",
@@ -157,6 +207,14 @@
         "created_at": "2023-08-01T16:48:18.726Z",
         "updated_at": "2023-08-09T21:03:30.480Z",
         "name": "3.4.0.0",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "5363c8ea-e2ce-4670-9117-143b3b3d2bfb",
+        "created_at": "2023-11-06T20:40:21.660Z",
+        "updated_at": "2023-11-07T16:36:19.265Z",
+        "name": "3.5.0.0",
         "deprecated": false,
         "registration_configs": []
       }
@@ -186,27 +244,6 @@
         "created_at": "2023-09-19T19:16:31.138Z",
         "updated_at": "2023-09-19T19:17:05.882Z",
         "name": "v3",
-        "deprecated": false,
-        "registration_configs": []
-      }
-    ]
-  },
-  {
-    "id": "f3675942-dbc0-4298-bec2-cbcfdcc10fab",
-    "title": "Konnect Mesh Manager",
-    "latestVersion": {
-      "name": "v0",
-      "id": "0426ee88-bf76-45e3-9f89-fc03bea0c3a5"
-    },
-    "description": "The Mesh Manager API can be used to create and manage your global mesh control planes.",
-    "documentCount": 0,
-    "versionCount": 1,
-    "versions": [
-      {
-        "id": "0426ee88-bf76-45e3-9f89-fc03bea0c3a5",
-        "created_at": "2023-09-25T12:01:47.449Z",
-        "updated_at": "2023-09-25T12:02:03.266Z",
-        "name": "v0",
         "deprecated": false,
         "registration_configs": []
       }

@@ -9,7 +9,7 @@
     </div>
   </div> -->
   <div class="navbar-content">
-    <a href="https://konghq.com" class="navbar-brand col col-xl-auto">
+    <a href="https://konghq.com" class="navbar-brand col col-xl-auto" target="_blank" rel="noopener noreferrer" data-skip-external-links-hook=true>
       <img src="/assets/images/logos/kong-logo-blue.svg" alt="Kong Logo" id="kong-logo">
     </a>
     <span class="logo-divider">|</span>
@@ -18,9 +18,7 @@
     </a>
 
     <div class="separator mobile"></div>
-    <div class="search-input-wrapper">
-      <img src="/assets/images/landing-page/search.svg" alt="search">
-      <input id="getkong-algolia-search-input" type="text" role="search" placeholder="Search the docs...">
+      <div class="search-input-wrapper" id="getkong-algolia-search-input">
     </div>
 
     <div class="search-results-wrapper"></div>
@@ -28,14 +26,6 @@
     <div class="separator"></div>
     <div class="navbar-items" role="navigation" aria-label="Main menu">
       <ul class="navbar-items" role="menubar">
-        <li role="menuitem" class="main-menu-item hiring-badge">
-          <a target="_blank" href="https://konghq.com/careers" class="navbar-item">
-          <span>
-            We're Hiring!
-          </span>
-          </a>
-        </li>
-
         <li id="top-module-list" aria-haspopup="true" role="menuitem" aria-expanded="false"
           class="navbar-item main-menu-item with-submenu {% if include.layout != 'landing-page' %} active{% endif %}"
         >
@@ -43,12 +33,33 @@
           <span class="caret"></span>
           <ul class="navbar-item-submenu">
             <div class="submenu-section">
+              <li role="menuitem" class="docs-dropdown-li">
+                <a href="/api/" class="docs-dropdown-li__link" tabindex="-1">
+                  <div class="docs-dropdown-li__card">
+                    <span class="heading">Explore the API Specs</span>
+                    <div class="docs-dropdown-li__card-link">
+                      <img src="/assets/images/landing-page/view-all-api-specs.png" alt="View all API Specs">
+                      <span class="docs-dropdown-li__card-image">
+                        View all API Specs
+                        <img src="/assets/images/landing-page/arrow-right.svg" alt="View all API Specs arrow image">
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
 
               <li role="menuitem" class="docs-dropdown-li" tabindex="-1">
-
                 <div class="docs-dropdown-li__section">
-                  <div class="docs-dropdown-li__section-items">
+                  <div class="docs-dropdown-li__section-title">
+                    <span class="heading">Documentation</span>
+                  </div>
 
+                  <div class="docs-dropdown-li__section-items">
+                    <a class="item item-all" href="/api/" tabindex="-1">
+                      <div class="item__description">
+                        <div class="item__description-title">API Specs</div>
+                      </div>
+                    </a>
                     {% for doc_menu_item in site.data.docs_top_nav %}
                       <a class="item" href="{{ doc_menu_item.url }}" tabindex="-1">
                         {% if doc_menu_item.icon %}
@@ -70,20 +81,16 @@
           </ul>
         </li>
 
-        <li role="menuitem" class="main-menu-item">
-          <a href="/api/" class="navbar-item">API Specs</a>
-        </li>
-
         <li
           role="menuitem"
           aria-haspopup="true"
           aria-expanded="false"
-          class="navbar-item navbar-item-hub main-menu-item with-submenu"
+          class="navbar-item main-menu-item with-submenu navbar-item-hub"
         >
           <span id="plugin-link" class="main-menu-item-title" tabindex="0">Plugin Hub</span>
           <span class="caret"></span>
           <ul class="navbar-item-submenu">
-            <div class="submenu-section submenu-section__hub">
+            <div class="submenu-section">
               <li role="menuitem" class="docs-dropdown-li">
                 <a href="/hub/" class="docs-dropdown-li__link" tabindex="-1">
                   <div class="docs-dropdown-li__card">
@@ -109,7 +116,7 @@
                     </a>
                   </div>
 
-                  <div class="docs-dropdown-li__section-items docs-dropdown-li__section-items-hub">
+                  <div class="docs-dropdown-li__section-items">
                     <a class="item item-all" href="/hub/" tabindex="-1">
                       <div class="item__description">
                         <div class="item__description-title">View all plugins</div>
@@ -117,7 +124,7 @@
                     </a>
 
                     {% for category in site.extensions.categories %}
-                      <a class="item" href="/hub?category={{ category.slug }}" tabindex="-1">
+                      <a class="item" href="/hub/?category={{ category.slug }}" tabindex="-1">
                         <div>
                           <img src="{{ category.icon }}" alt="{{ category.name }}'s icon">
                         </div>
@@ -138,7 +145,7 @@
           <a href="https://support.konghq.com/" class="navbar-item">Support</a>
         </li>
         <li role="menuitem" class="main-menu-item">
-          <a href="https://konghq.com/community" class="navbar-item">Community</a>
+          <a href="https://konghq.com/community/" class="navbar-item" target="_blank" rel="noopener noreferrer" data-skip-external-links-hook=true>Community</a>
         </li>
         <li role="menuitem" class="main-menu-item">
           <a href="{{site.links.learn}}" class="navbar-item">Kong Academy</a>
@@ -158,46 +165,3 @@
     </div>
   </div>
 </header>
-
-{% if include.layout != "landing-page" %}
-<style>
-  @media (max-width: 768px) {
-    .algolia-docsearch-suggestion--subcategory-column {
-      display: none !important;
-    }
-
-    .algolia-autocomplete .ds-dropdown-menu {
-      max-width: calc(100% + 40px);
-      min-width: 300px;
-    }
-
-    .algolia-autocomplete.algolia-autocomplete-left .ds-dropdown-menu {
-      left: -40px !important;
-    }
-
-    .algolia-autocomplete.algolia-autocomplete-left .ds-dropdown-menu:before {
-      left: 88px;
-    }
-  }
-</style>
-
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
-
-<script type="text/javascript">
-  docsearch({
-    appId: 'T5JKD83LWT',
-    apiKey: '1390283021f26e36117242934deb8d9d',
-    indexName: 'prod_Full_Docs',
-    inputSelector: '#getkong-algolia-search-input',
-    algoliaOptions: {
-      hitsPerPage: 8
-    },
-    // Override selected event to allow for local environment navigation
-    handleSelected: function (input, event, suggestion) {
-      input.setVal('')
-      window.location.href = window.location.protocol + '//' + window.location.host + suggestion.url.split('docs.konghq.com')[1]
-    }
-    // ,debug: true // Set debug to true if you want to inspect the dropdown
-  })
-</script>
-{% endif %}

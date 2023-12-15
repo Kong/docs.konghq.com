@@ -7,9 +7,12 @@ content_type: reference
 The Federal Information Processing Standard (FIPS) 140-2 is a federal standard defined by the National Institute of Standards and Technology. It specifies the security requirements that must be satisfied by a cryptographic module. The FIPS {{site.base_gateway}} package is FIPS 140-2 compliant. Compliance means that {{site.base_gateway}} only uses FIPS 140-2 approved algorithms while running in FIPS mode, but the product has not been submitted to a NIST testing lab for validation.
 
 
-{{site.ee_product_name}} provides a FIPS 140-2 compliant package for **Ubuntu 20.04**, **Ubuntu 22.04**, and **Red Hat Enterprise 8**. This package provides compliance for the core {{site.base_gateway}} product{% if_version gte:3.2.x %} and all out of the box plugins{% endif_version %}.
+{{site.ee_product_name}} provides a FIPS 140-2 compliant package for **Ubuntu 20.04** {% if_version gte:3.1.x %}, **Ubuntu 22.04** {% if_version gte:3.4.x %}, **Red Hat Enterprise 9** {% endif_version %}, and **Red Hat Enterprise 8** {% endif_version %}. This package provides compliance for the core {{site.base_gateway}} product {% if_version gte:3.2.x %} and all out of the box plugins {% endif_version %}.
 
-The package replaces OpenSSL, the primary SSL library in {{site.base_gateway}}, with [BoringSSL](https://boringssl.googlesource.com/boringssl/), which at its core uses the FIPS 140-2 validated BoringCrypto for cryptographic operations.
+The package uses the OpenSSL FIPS 3.0 module OpenSSL to provide FIPS 140-2 validated cryptographic operations.
+
+{:.note}
+> **Note**: FIPS is not supported when running {{site.ee_product_name}} in free mode.
 
 ## FIPS implementation
 ### Password hashing
@@ -18,8 +21,8 @@ The following table describes how {{site.base_gateway}} uses key derivation func
 
 | Component | Normal mode | FIPS mode | Notes |
 |-----------|-------------|-----------|-------|
-| core/rbac | bcrypt | PBKDF2 <sup>1</sup> | PBKDF2 in BoringSSL isn't FIPS validated. |
-| plugins/oauth2 <sup>2</sup> | Argon2 or bcrypt (when `hash_secret=true`) | Disabled (`hash_secret` can’t be set to `true`) | PBKDF2 in BoringSSL isn't FIPS validated. |
+| core/rbac | bcrypt | PBKDF2 <sup>1</sup> | Compliant via OpenSSL 3.0 FIPS provider  |
+| plugins/oauth2 <sup>2</sup> | Argon2 or bcrypt (when `hash_secret=true`) | Disabled (`hash_secret` can’t be set to `true`) | Compliant via OpenSSL 3.0 FIPS provider |
 | plugins/key-auth-enc <sup>3</sup> | SHA1 | SHA256 | SHA1 is read-only in FIPS mode. |
 
 {:.note .no-icon}
@@ -47,6 +50,10 @@ The following table explains where cryptographic algorithms are used for non-cry
 | core/uuid | Lua random number generator | Lua random number generator | The RNG isn’t used for cryptographic purposes. |
 | core/declarative_config/uuid | UUIDv5 (namespaced SHA1) | UUIDv5 (namespaced SHA1) | Used to generate a unique identifier. |
 | core/declarative_config/config_hash and core/hybrid/hashes | MD5 | MD5 | Used to generate a unique identifier. |
+
+{% if_version gte:3.5.x %}
+| core/kong_request_id | rand(3) | rand(3) | The RNG isn’t used for cryptographic purposes. |
+{% endif_version %}
 
 ### SSL client
 

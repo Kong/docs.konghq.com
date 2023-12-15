@@ -5,7 +5,7 @@ badge: enterprise
 
 GraphQL decouples apps from services by introducing a flexible query language. Instead of a custom API for each screen, app developers describe the data they need, service developers describe what they can supply, and GraphQL automatically matches the two together. Teams ship faster across more platforms, with new levels of visibility and control over the use of their data. To learn more about how teams benefit, read why [GraphQL is important](https://www.apollographql.com/why-graphql/).
 
-{{site.base_gateway}} is an API gateway and platform. That means it is a form of middleware between computing clients and your API-based applications. {{site.base_gateway}} quickly and consistently extends the features of your APIs. Some of the popular features deployed through {{site.base_gateway}} include authentication, security, traffic control, serverless, analytics & monitoring, request/response transformations, and logging. To learn more about these features, see the [Hub page](https://docs.konghq.com/hub/) for plugins. For more about the benefits of Kong in general, please see the [FAQ](https://konghq.com/faqs).
+{{site.base_gateway}} is an API gateway and platform. That means it is a form of middleware between computing clients and your API-based applications. {{site.base_gateway}} quickly and consistently extends the features of your APIs. Some of the popular features deployed through {{site.base_gateway}} include authentication, security, traffic control, serverless, analytics & monitoring, request/response transformations, and logging. To learn more about these features, see the [Hub page](/hub/) for plugins. For more about the benefits of Kong in general, please see the [FAQ](https://konghq.com/faqs).
 
 The GraphQL paradigm differs from traditional API-based systems. Depending on the resolver implementation details, one query can potentially generate an arbitrary number of requests. Proxy caching and rate limiting on top of GraphQL is key but usually overlooked as a hard problem to solve, since traditional proxy-caching and rate-limiting is not a good fit for GraphQL.
 
@@ -44,7 +44,7 @@ $ curl -i -X POST \
 Protect your upstream GraphQL service with rate limiting. By introspecting your schema, it will analyze query costs and provide an enterprise-grade rate-limiting strategy.
 
 ```
-$ curl -i -X POST http://kong:8001/services/graphql-service/plugins \
+$ curl -i -X POST http://localhost:8001/services/graphql-service/plugins \
   --data name=graphql-rate-limiting-advanced \
   --data config.limit=100,10000 \
   --data config.window_size=60,3600 \

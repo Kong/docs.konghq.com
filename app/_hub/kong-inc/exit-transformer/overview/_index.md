@@ -175,15 +175,15 @@ end
 1. Create a service in Kong:
 
     ```bash
-    curl -i -X POST http://<admin-hostname>:8001/services \
+    curl -i -X POST http://localhost:8001/services \
       --data name=example.com \
-      --data url='http://mockbin.org'
+      --data url='http://httpbin.org'
     ```
 
 2. Create a route in Kong:
 
     ```bash
-    curl -i -X POST http://<admin-hostname>:8001/services/example.com/routes \
+    curl -i -X POST http://localhost:8001/services/example.com/routes \
       --data 'hosts[]=example.com'
     ```
 
@@ -210,7 +210,7 @@ end
 1. Configure the `exit-transformer` plugin with `transform.lua`.
 
     ```bash
-    curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
+    curl -X POST http://localhost:8001/services/example.com/plugins \
       -F "name=exit-transformer"  \
       -F "config.functions=@transform.lua"
     ```
@@ -219,7 +219,7 @@ end
 response in the following step:
 
     ```bash
-    curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
+    curl -X POST http://localhost:8001/services/example.com/plugins \
       --data "name=key-auth"
     ```
 
@@ -252,7 +252,7 @@ response in the following step:
 The plugin can also be applied globally:
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/plugins/ \
+curl -X POST http://localhost:8001/plugins/ \
   -F "name=exit-transformer"  \
   -F "config.handle_unknown=true" \
   -F "config.functions=@transform.lua"
@@ -342,7 +342,7 @@ end
 Configure the `exit-transformer` plugin with `custom-errors-by-mimetype.lua`:
 
 ```bash
-curl -X POST http://<admin-hostname>:8001/services/example.com/plugins \
+curl -X POST http://localhost:8001/services/example.com/plugins \
   -F "name=exit-transformer"  \
   -F "config.handle_unknown=true" \
   -F "config.handle_unexpected=true" \

@@ -2,12 +2,15 @@ name: Broken Links
 on:
   pull_request:
     types: [synchronize, ready_for_review, opened, labeled, unlabeled]
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
       - name: Check if manual review has been performed
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         id: labels
         with:
           script: |
@@ -20,11 +23,11 @@ jobs:
       result: ${{ steps.labels.outputs.result }}
   build:
     needs: [check]
-    if: needs.check.outputs.result == 'false'
+    if: needs.check.outputs.result == 'false' && !contains(github.event.pull_request.title, '[skip ci]')
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Wait for Pages changed to be neutral
         uses: fountainhead/action-wait-for-check@v1.1.0
         id: waitForCheck

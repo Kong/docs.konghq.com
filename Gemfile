@@ -13,6 +13,7 @@ gem 'nokogiri'
 gem 'jekyll-kuma-plugins', path: './app/_src/.repos/kuma/jekyll-kuma-plugins'
 gem 'jekyll-vite'
 
+
 group :development do
   gem 'pry'
   gem 'puma'
@@ -21,4 +22,5 @@ group :development do
   gem 'rspec'
   gem 'capybara'
   gem 'foreman'
+  gem 'ruby-lsp'
 end

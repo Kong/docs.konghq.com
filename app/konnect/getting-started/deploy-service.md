@@ -33,7 +33,7 @@ In the {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.co
        For example, you can use `example_service`, `ExampleService`, `Example-Service`.
        However, `Example Service` is invalid.
 
-    1. In the **add using upstream URL** field, enter `http://mockbin.org`.
+    1. In the **add using upstream URL** field, enter `http://httpbin.org`.
 
     1. Use the defaults for the remaining fields.
 
@@ -43,7 +43,7 @@ In the {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.co
 
     For this example, enter the following:
 
-    * **Name**: `mockbin`
+    * **Name**: `httpbin`
     * **Protocols**: `HTTP`, `HTTPS`
     * **Path(s)**: `/mock`
 
@@ -62,7 +62,7 @@ you just set. The final URL should look something like this:
 http://localhost:8000/mock
 ```
 
-If successful, you should see the homepage for `mockbin.org`. In the Gateway Manager you will now see a **200** responses recorded in the **Analytics** tab.
+If successful, you should see the homepage for `httpbin.org`. In the Gateway Manager you will now see a **200** responses recorded in the **Analytics** tab.
 
 And that's it! You have your first service set up, running, and routing
 traffic proxied through a {{site.base_gateway}} data plane node.
@@ -73,7 +73,7 @@ To summarize, in this topic you:
 
 * Implemented a Gateway service `example_gateway_service` and the route `/mock`. This means if an HTTP
 request is sent to the {{site.base_gateway}} node and it matches route `/mock`, that
-request is sent to `http://mockbin.org`.
+request is sent to `http://httpbin.org`.
 * Abstracted a backend/upstream service and put a route of your choice on the
 front end, which you can now give to clients to make requests.
 

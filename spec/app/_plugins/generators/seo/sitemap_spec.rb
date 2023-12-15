@@ -54,7 +54,8 @@ RSpec.describe SEO::Sitemap do
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/konnect/api/portal-rbac/latest/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/konnect/api/audit-logs/latest/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/gateway/api/admin-ee/latest/' },
-        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/api/' }
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/api/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/search/' }
       ])
     end
 

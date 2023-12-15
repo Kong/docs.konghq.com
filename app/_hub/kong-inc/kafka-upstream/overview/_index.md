@@ -12,7 +12,7 @@ See [Kafka Log](/hub/kong-inc/kafka-log/).
 ## Enable on a service-less route
 
 ```bash
-curl -X POST http://kong:8001/routes/my-route/plugins \
+curl -X POST http://localhost:8001/routes/my-route/plugins \
     --data "name=kafka-upstream" \
     --data "config.bootstrap_servers[1].host=localhost" \
     --data "config.bootstrap_servers[1].port=9092" \
@@ -57,7 +57,7 @@ Enable TLS by setting `config.security.ssl` to `true`.
 Enable mTLS by setting a valid UUID of a certificate in `config.security.certificate_id`.
 
 Note that this option needs `config.security.ssl` set to true.
-See [Certificate Object](https://docs.konghq.com/gateway/latest/admin-api/#certificate-object)
+See [Certificate Object](/gateway/latest/admin-api/#certificate-object)
 in the Admin API documentation for information on how to set up Certificates.
 
 ## SASL Authentication

@@ -15,6 +15,13 @@ selectors are given, all Kong entities are tagged.
 deck file add-tags [command-specific flags] [global flags] tag [...tag]
 ```
 
+## Examples
+
+```
+# adds tags 'tag1' and 'tag2' to all services in file 'kong.yml'
+cat kong.yml | deck file add-tags --selector='services[*]' tag1 tag2
+```
+
 ## Flags
 
 `--format`
@@ -48,5 +55,6 @@ for details on this issue.
 
 ## See also
 
-* [deck file](/deck/{{page.kong_version}}/reference/deck_file)	 - Sub-command to host the decK file manipulation operations
+{% include /md/deck-reference-links.md file_links='true' %}
+
 

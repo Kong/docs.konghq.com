@@ -5,7 +5,7 @@ publisher: Optum
 desc: Block responses with bodies greater than a specified size
 
 categories:
-  - traffic-control
+  - none
 
 support_url: https://github.com/Optum/kong-response-size-limiting/issues
 
@@ -18,8 +18,11 @@ free: true
 kong_version_compatibility:
   community_edition:
     compatible:
-      - 0.14.x
+      - ">= 1.x"
 
   enterprise_edition:
     compatible:
-      - 0.34-x
+      - ">= 1.x"
+
+search_aliases:
+  - optum

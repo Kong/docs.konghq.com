@@ -1,8 +1,13 @@
 ---
 title: deck reset
-source_url: https://github.com/Kong/deck/tree/main/cmd/reset.go
 content_type: reference
 ---
+
+{% if_version gte:1.28.x %}
+{:.warning}
+> **Warning**: This command is deprecated and will be removed in a future version.
+Use [deck gateway reset](/deck/{{page.kong_version}}/reference/deck_gateway_reset/) instead.
+{% endif_version %}
 
 The reset command deletes all entities in Kong's database.string.
 
@@ -20,21 +25,21 @@ deck reset [command-specific flags] [global flags]
 ## Flags
 
 `--all-workspaces`
-:  reset configuration of all workspaces (Kong Enterprise only). (Default: `false`)
+:  reset configuration of all workspaces ({{site.ee_product_name}} only). (Default: `false`)
 
 `-f`, `--force`
 :  Skip interactive confirmation prompt before reset. (Default: `false`)
 
 `-h`, `--help`
-:  help for reset (Default: `false`)
+:  help for reset 
 
 {% if_version gte:1.16.x %}
 `--no-mask-deck-env-vars-value`
-:  do not mask `DECK_` environment variable values at diff output. (Default: `false`)
+:  do not mask `DECK_` environment variable values in the diff output. (Default: `false`)
 {% endif_version %}
 
 `--rbac-resources-only`
-:  reset only the RBAC resources (Kong Enterprise only). (Default: `false`)
+:  reset only the RBAC resources ({{site.ee_product_name}} only). (Default: `false`)
 
 `--select-tag`
 :  only entities matching tags specified via this flag are deleted.
@@ -62,7 +67,7 @@ When this setting has multiple tag values, entities must match every tag.
 {% endif_version %}
 
 `-w`, `--workspace`
-:  reset configuration of a specific workspace(Kong Enterprise only).
+:  reset configuration of a specific workspace({{site.ee_product_name}} only).
 
 ## Global flags
 

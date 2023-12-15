@@ -2,13 +2,15 @@ name: Linting
 on:
   pull_request:
     types: [synchronize, ready_for_review, opened]
-
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
       - name: Check if manual review has been performed
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         id: labels
         with:
           result-encoding: string
@@ -27,17 +29,17 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 100
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 16
           cache: 'npm'
       - run: npm ci
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v38
+        uses: tj-actions/changed-files@v40
         with:
           sha: ${{ github.sha }}
           files: |
@@ -53,7 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
 
@@ -83,14 +85,32 @@ jobs:
     name: Vale
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: errata-ai/vale-action@reviewdog
+      - uses: actions/checkout@v4
         with:
-          #version: 2.24.0
-          # path where vale checks checking only modified files.
+          fetch-depth: 2
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v40
+        with:
+          sha: ${{ github.sha }}
+          files: |
+            app/**
+            docs/**
+          files_ignore: |
+            app/_src/.repos/kuma/**
+            app/gateway/2.7.x/**
+            app/gateway/2.6.x/**
+            app/mesh/raw/CHANGELOG.md
+          json: true
+          quotepath: false
+          escape_json: false
+      - uses: mheap/vale-action@reviewdog
+        if: steps.changed-files.outputs.any_changed == 'true'
+        with:
           fail_on_error: true
+          files: '${{ steps.changed-files.outputs.all_changed_files }}'
           filter_mode: file
-          vale_flags: "--glob=!app/_src/.repos/kuma/**"
-          reporter: github-pr-review
+          reporter: github-pr-annotations
+          reviewdog_url: https://github.com/mheap/reviewdog/releases/download/v10.0.0/reviewdog_10.0.0_Linux_x86_64.tar.gz
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

@@ -3,10 +3,11 @@ title: Kong Configuration File
 content-type: how-to
 ---
 
+{{site.base_gateway}} comes with a default configuration file `kong.conf`. If you installed {{site.base_gateway}} using an official package, this file can be found at `/etc/kong/kong.conf.default`. 
 
-{{site.base_gateway}} comes with a default configuration file `kong.conf`. If you installed {{site.base_gateway}} using an official package, this file can be found at:
-`/etc/kong/kong.conf.default`. The {{site.base_gateway}} configuration file is a YAML file that can be used to configure individual properties of your Kong instance. This guide will explain how to configure {{site.base_gateway}} using the `kong.conf` file.
+The {{site.base_gateway}} configuration file is a YAML file that can be used to configure individual properties of your Kong instance. This guide explains how to configure {{site.base_gateway}} using the `kong.conf` file.
 
+For all available parameters in `kong.conf`, see the [Configuration Parameter reference](/gateway/{{page.kong_version}}/reference/configuration/). 
 
 ## Configure {{site.base_gateway}}
 
@@ -50,7 +51,7 @@ Boolean values can be specified as `on`/`off` or `true`/`false`:
 > {{site.base_gateway}} will use the default settings for any value in `kong.conf` that is commented out.
 
 ## Verify configuration
-To verify that your configuration is usable, use the `check` command. The `check` command will evaluate the [environment variables](/gateway/latest/production/environment-variables/) you have
+To verify that your configuration is usable, use the `check` command. The `check` command will evaluate the [environment variables](/gateway/{{page.kong_version}}/production/environment-variables/) you have
 currently set, and will output an error if your settings are invalid. 
 
 ```bash
@@ -81,7 +82,7 @@ kong start --conf /path/to/kong.conf
 
 ### Debug mode
 
-You can use the [{{site.base_gateway}} CLI](/gateway/latest/reference/cli/) in debug-mode to output configuration properties in the shell:
+You can use the [{{site.base_gateway}} CLI](/gateway/{{page.kong_version}}/reference/cli/) in debug-mode to output configuration properties in the shell:
 
 ```bash
 kong start -c /etc/kong.conf --vv
@@ -97,6 +98,7 @@ kong start -c /etc/kong.conf --vv
 
 ## More Information
 
-* [Embedding Kong in OpenResty](/gateway/latest/production/kong-openresty/)
-* [Setting environment variables](/gateway/latest/production/environment-variables/)
-* [How to serve an API and a website with Kong](/gateway/latest/production/website-api-serving/)
+* [Embedding Kong in OpenResty](/gateway/{{page.kong_version}}/production/kong-openresty/)
+* [Setting environment variables](/gateway/{{page.kong_version}}/production/environment-variables/)
+* [How to serve an API and a website with Kong](/gateway/{{page.kong_version}}/production/website-api-serving/)
+* [Configuration parameter reference](/gateway/{{page.kong_version}}/reference/configuration/)

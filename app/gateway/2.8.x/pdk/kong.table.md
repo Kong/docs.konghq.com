@@ -13,7 +13,7 @@ source_url: https://github.com/Kong/kong/tree/master/kong/pdk
 
 Utilities for Lua tables.
 
-
+<!--vale off-->
 
 ## kong.table.new([narr[, nrec]])
 

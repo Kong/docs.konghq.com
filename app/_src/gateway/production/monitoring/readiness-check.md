@@ -43,7 +43,7 @@ In Hybrid Mode (`control_plane` role), this endpoint returns `200 OK` when the f
 
 ## Enabling the Status endpoint
 
-In order to use the Node Readiness endpoint, make sure that you have enabled the Status API server (disabled by default) via the [status_listen](/gateway/latest/reference/configuration/#status_listen) configuration parameter.
+In order to use the Node Readiness endpoint, make sure that you have enabled the Status API server (disabled by default) via the [`status_listen`](/gateway/latest/reference/configuration/#status_listen) configuration parameter.
 
 Example `kong.conf`:
 
@@ -56,10 +56,10 @@ status_listen = 0.0.0.0:8100
 Once you've enabled the Node Readiness endpoint, you can send a GET request to check the readiness of your {{site.base_gateway}} instance:
 
 ```sh
-# Replace `<status-api-host>` with the appropriate host for
-# your Status API server, including the port number
+# Replace `localhost:8001` with the appropriate host and port for
+# your Status API server
 
-curl -i <status-api-host>/status/ready
+curl -i http://localhost:8100/status/ready
 ```
 
 If the response code is `200`, the {{site.base_gateway}} instance is ready to serve requests:

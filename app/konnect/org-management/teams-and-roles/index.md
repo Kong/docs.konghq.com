@@ -31,7 +31,7 @@ instances of a particular resource type (for example, a particular service or al
 When you create a {{site.konnect_short_name}} account, you are automatically added to the Organization
 Admin team, which is one of the [predefined teams](/konnect/org-management/teams-and-roles/teams-reference/)
 in {{site.konnect_short_name}}. Predefined teams have sets of roles that can't be modified or
-deleted. You can add users to these teams, or create your own custom teams
+deleted. Users assigned to a predefined team also can access all [geographic regions](/konnect/geo/) in your {{site.konnect_short_name}} instance. You can add users to these teams, or create your own custom teams
 with any of the [supported roles](/konnect/org-management/teams-and-roles/roles-reference/).
 
 ### Access precedence
@@ -44,6 +44,10 @@ through API Products _and_ register applications through the Dev Portal.
 If two roles provide access to the same entity, the role with more access
 takes effect. For example, if you have the Service Admin and Service Deployer
 roles on the same service, the Service Admin role takes precedence.
+
+### Geographic region assignment
+
+Teams and roles can be assigned to a specific [geographic region](/konnect/geo) in {{site.konnect_short_name}}. Those teams and roles only access {{site.konnect_short_name}} objects, such as services, that are also located in the same geo they are assigned to.
 
 ## Get started with access management
 

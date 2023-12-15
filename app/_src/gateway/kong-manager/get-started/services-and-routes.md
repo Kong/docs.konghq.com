@@ -13,8 +13,8 @@ You need a {{site.base_gateway}} instance with Kong Manager [enabled](/gateway/{
 
 ## Add a service
 
-In this tutorial, you’ll create a service pointing to the Mockbin
-API. Mockbin is an “echo” type public website that returns requests back to the
+In this tutorial, you’ll create a service pointing to the httpbin
+API. Httpbin is an “echo” type public website that returns requests back to the
 requester as responses.
 
 On the Workspaces tab in Kong Manager:
@@ -27,7 +27,7 @@ On the Workspaces tab in Kong Manager:
 2. From the **Services** section, click **New Service**.
 
 3. In the **Create service** dialog, enter the name `example_service` and the
-URL `http://mockbin.org`.
+URL `http://httpbin.org`.
 
 4. Click **Create**.
 
@@ -61,7 +61,7 @@ The new route appears under the Routes section.
 
 By default, {{site.base_gateway}} handles proxy requests on port `8000`.
 
-From a web browser, navigate to `http://localhost:8000/mock/request`.
+From a web browser, navigate to `http://localhost:8000/mock/anything`.
 
 ## Next steps
 

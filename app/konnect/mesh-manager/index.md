@@ -69,6 +69,7 @@ After your service mesh is deployed in {{site.konnect_short_name}}, Mesh Manager
 
 The installer automatically chooses the installation option based on your current platform.
 
+
 ## Mesh Manager RBAC
 
 Mesh Manager has its own role-based access control (RBAC) settings that are separate from the [{{site.konnect_short_name}} RBAC settings](/konnect/org-management/teams-and-roles/roles-reference/). The Mesh Manager RBAC settings are specific to the meshes and mesh policies in Mesh Manager. 

@@ -1,17 +1,25 @@
 name: Imperva API Security 
-publisher: Imperva 
+publisher: Imperva
+support_url: https://www.imperva.com/support/technical-support/
 
 categories: 
   - security
+  - third-party
 
 type: plugin 
 
 desc: Integrate Kong Gateway with Imperva API Security to discover, monitor, and protect APIs
+
+free: false
 enterprise: true
 techpartner: true
+konnect: true
 
 kong_version_compatibility: 
   enterprise_edition: 
     compatible:
       - 3.0.x
       - 3.2.x
+
+search_aliases:
+  - imp-appsec-connector

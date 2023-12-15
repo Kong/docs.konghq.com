@@ -16,7 +16,7 @@ In order to use the plugin, you first need to create a Consumer to associate one
 You need to associate a credential to an existing [consumer](/gateway/api/admin-ee/latest/#/Consumers) object. To create a Consumer, you can execute the following request:
 
 ```bash
-$ curl -X POST http://kong:8001/consumers/ \
+$ curl -X POST http://localhost:8001/consumers/ \
     --data "username=<USERNAME>" \
     --data "custom_id=<CUSTOM_ID>"
 HTTP/1.1 201 Created
@@ -82,7 +82,7 @@ This assumes a Vault server is accessible via `127.0.0.1:8200`, and that a versi
 Token pairs can be managed either via the Kong Admin API, or independently via direct access with Vault. Token pairs must be associated with an existing Kong Consumer. Creating a token pair with the Kong Admin API can be done via the following request:
 
 ```bash
-$ curl -X POST http://kong:8001/vaults/{vault}/credentials/{consumer}
+$ curl -X POST http://localhost:8001/vaults/{vault}/credentials/{consumer}
 HTTP/1.1 201 Created
 
 {
@@ -105,7 +105,7 @@ When the `access_token` or `secret_token` values are not provided, token values 
 Vault objects are treated as foreign references in plugin configs, creating a seamless lifecycle relationship between Vault instances and plugins with which they're associated. `vault-auth` plugins require an association with a Vault object, which can be defined with the following HTTP request during plugin creation:
 
 ```bash
-$ curl -X POST http://kong:8001/plugins \
+$ curl -X POST http://localhost:8001/plugins \
   --data name=vault-auth \
   --data config.vault.id=<uuid>
 HTTP/1.1 201 Created
@@ -157,7 +157,7 @@ $ curl http://kong:8000/{proxy path} \
 Existing Vault credentials can be removed from the Vault server via the following API:
 
 ```bash
-$ curl -X DELETE http://kong:8001/vaults/{vault}/credentials/token/{access token}
+$ curl -X DELETE http://localhost:8001/vaults/{vault}/credentials/token/{access token}
 
 HTTP/1.1 204 No Content
 ```

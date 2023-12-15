@@ -14,7 +14,7 @@ For JSON Schema draft 4 type schemas, see the [JSON Schema documentation](https:
 {% if_plugin_version eq:3.1.x %}
 ## Enable the plugin
 
-In Kong Gateway versions 3.1.0.0-3.1.1.1, this plugin is not enabled by default.
+In {{site.base_gateway}} versions 3.1.0.0-3.1.1.1, this plugin is not enabled by default.
 
 To enable the plugin, use one of the following methods:
   * Package install: Set `plugins=bundled,oas-validation` in `kong.conf` before starting Kong
@@ -30,7 +30,7 @@ This example tutorial steps you through ensuring an API request conforms to the 
 1. Create a service called `Petstore-Service`:
 
     ```bash
-    curl -X POST http://<admin-hostname>:8001/services/ \
+    curl -X POST http://localhost:8001/services/ \
         --data name='Petstore-Service' \
         --data url='https://petstore.swagger.io/v2'
     ```
@@ -38,7 +38,7 @@ This example tutorial steps you through ensuring an API request conforms to the 
 2. Create a wildcard route called `Petstore-Route`:
 
     ```bash
-    curl -X POST http://<admin-hostname>:8001/services/Petstore-Service/routes \
+    curl -X POST http://localhost:8001/services/Petstore-Service/routes \
         --data name='Petstore-Route' \
         --data paths='/.*'
     ```
@@ -46,7 +46,7 @@ This example tutorial steps you through ensuring an API request conforms to the 
 3. Enable the Validation plugin on the service you configured:
 
     ```bash
-    curl -X POST http://<admin-hostname>:8001/services/Petstore-Service/plugins \
+    curl -X POST http://localhost:8001/services/Petstore-Service/plugins \
         --data name='oas-validation' \
         --data config.api_spec='<copy contents of https://petstore.swagger.io/v2/swagger.json here>' \
         --data config.verbose_response=true
@@ -56,7 +56,7 @@ This example tutorial steps you through ensuring an API request conforms to the 
  which is missing from the following request:
 
     ```bash
-    curl -X GET "http://<proxy-host>:8000/pet/findByStatus" \
+    curl -X GET "http://localhost:8000/pet/findByStatus" \
       -H "accept: application/json"
     ```
 
@@ -115,7 +115,7 @@ For the Validation plugin, event hook events can be enabled when a Validation fa
 
 2. Force a validation failure to a service or route to which the Validation plugin is applied. The Webhook URL will receive a response with JSON payload.
 
-    The following is an example JSON response which includes the forwarded IP address, service, consumer, and and error message:
+    The following is an example JSON response which includes the forwarded IP address, service, consumer, and error message:
 
     ```json
     {

@@ -161,15 +161,15 @@ Configuring {{site.base_gateway}} requires a namespace and configuration secrets
        
        {% endif_version %}
 
-4. Create a Kong Enterprise license secret:
+4. Create a {{site.ee_product_name}} license secret:
 
 {% navtabs %}
-{% navtab Kong Enterprise Free Mode%}
+{% navtab Kong Gateway Enterprise Free Mode%}
 
     kubectl create secret generic kong-enterprise-license --from-literal=license="'{}'" -n kong --dry-run=client -o yaml | kubectl apply -f -
 
 {% endnavtab %}
-{% navtab Kong Enterprise Licensed Mode%}
+{% navtab Kong Gateway Enterprise Licensed Mode%}
 
    >This command must be run in the directory that contains your `license.json` file.
 
@@ -333,7 +333,7 @@ Once all dependencies are installed and ready, deploy {{site.base_gateway}} to y
 
 For local deployments, Kong Manager is locally accessible at `https://kong.127-0-0-1.nip.io`. The [nip.io](https://nip.io) service resolves this domain to localhost also known as `127.0.0.1`.
 
-You can configure Kong via the Admin API with [decK](https://docs.konghq.com/deck/latest/), [Insomnia](https://docs.insomnia.rest/insomnia/get-started), HTTPie, or cURL, at `https://kong.127-0-0-1.nip.io/api`:
+You can configure Kong via the Admin API with [decK](/deck/), [Insomnia](https://docs.insomnia.rest/insomnia/get-started), HTTPie, or cURL, at `https://kong.127-0-0-1.nip.io/api`:
 
     curl --silent --insecure -X GET https://kong.127-0-0-1.nip.io/api -H 'kong-admin-token:kong'
 

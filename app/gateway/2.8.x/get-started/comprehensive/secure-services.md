@@ -61,7 +61,7 @@ created:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X POST http://<admin-hostname>:8001/routes/mocking/plugins \
+curl -X POST http://localhost:8001/routes/mocking/plugins \
   --data name=key-auth
 ```
 {% endnavtab %}
@@ -80,7 +80,7 @@ Try to access the service again:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i http://<admin-hostname>:8000/mock
+curl -i http://localhost:8000/mock
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
@@ -120,7 +120,7 @@ add a plugin section and enable the `key-auth` plugin:
     ``` yaml
     _format_version: "1.1"
     services:
-    - host: mockbin.org
+    - host: httpbin.org
       name: example_service
       port: 80
       protocol: http
@@ -150,7 +150,7 @@ add a plugin section and enable the `key-auth` plugin:
     deck sync
     ```
 
-Now, if you try to access the route at `http://<admin-hostname>:8000/mock`
+Now, if you try to access the route at `http://localhost:8000/mock`
 without providing an API key, the request will fail, and you’ll see the message
 `"No API key found in request".`
 
@@ -174,7 +174,7 @@ a consumer with an associated key first.
 5. On the Consumers page, find your new consumer and click **View**.
 6. Scroll down the page and click the **Credentials** tab.
 7. Click **New Key Auth Credential**.
-8. Set the key to **apikey** and click **Create**.
+8. Set the key to `apikey` and click **Create**.
 
   The new Key Authentication ID displays on the **Consumers** page under the **Credentials** tab.
 {% endnavtab %}
@@ -187,7 +187,7 @@ The following creates a new consumer called **consumer**:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X POST http://<admin-hostname>:8001/consumers/ \
+curl -i -X POST http://localhost:8001/consumers/ \
   --data username=consumer \
   --data custom_id=consumer
 ```
@@ -209,7 +209,7 @@ created above. For this example, set the key to `apikey`.
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i -X POST http://<admin-hostname>:8001/consumers/consumer/key-auth \
+curl -i -X POST http://localhost:8001/consumers/consumer/key-auth \
   --data key=apikey
 ```
 {% endnavtab %}
@@ -258,7 +258,7 @@ You now have a consumer with an API key provisioned to access the route.
     ``` yaml
     _format_version: "1.1"
     services:
-    - host: mockbin.org
+    - host: httpbin.org
       name: example_service
       port: 80
       protocol: http
@@ -306,7 +306,7 @@ You now have a consumer with an API key provisioned to access the route.
 
 To validate the Key Authentication plugin, access your route through your browser by appending `?apikey=apikey` to the url:
 ```
-http://<admin-hostname>:8000/mock?apikey=apikey
+http://localhost:8000/mock?apikey=apikey
 ```
 
 {% endnavtab %}
@@ -317,13 +317,13 @@ To validate the Key Authentication plugin, access the *mocking* route again, usi
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -i http://<admin-hostname>:8000/mock/request \
+curl -i http://localhost:8000/mock/anything \
   -H 'apikey:apikey'
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
 ```sh
-http :8000/mock/request apikey:apikey
+http :8000/mock/anything apikey:apikey
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -350,7 +350,7 @@ Find the plugin ID and copy it:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X GET http://<admin-hostname>:8001/routes/mocking/plugins/
+curl -X GET http://localhost:8001/routes/mocking/plugins/
 ```
 {% endnavtab %}
 {% navtab HTTPie %}
@@ -372,7 +372,7 @@ Disable the plugin:
 {% navtabs codeblock %}
 {% navtab cURL %}
 ```sh
-curl -X PATCH http://<admin-hostname>:8001/routes/mocking/plugins/{<plugin-id>} \
+curl -X PATCH http://localhost:8001/routes/mocking/plugins/{<plugin-id>} \
   --data enabled=false
 ```
 {% endnavtab %}

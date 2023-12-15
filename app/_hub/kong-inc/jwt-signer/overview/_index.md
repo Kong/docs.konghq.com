@@ -94,13 +94,13 @@ and published without revealing their secrets.
 View all of the public keys that Kong has loaded or generated:
 
 ```http
-GET kong:8001/jwt-signer/jwks
+GET localhost:8001/jwt-signer/jwks
 ```
 
 Example:
 
 ```bash
-curl -X GET http://<kong>:8001/jwt-signer/jwks
+curl -X GET http://localhost:8001/jwt-signer/jwks
 ```
 ```json
 {
@@ -173,13 +173,13 @@ curl -X GET http://<kong>:8001/jwt-signer/jwks
 A particular key set can be accessed in another endpoint:
 
 ```http
-GET kong:8001/jwt-signer/jwks/<name-or-id>
+GET localhost:8001/jwt-signer/jwks/<name-or-id>
 ```
 
 Example:
 
 ```bash
-curl -X GET http://<kong>:8001/jwt-signer/jwks/kong
+curl -X GET http://localhost:8001/jwt-signer/jwks/kong
 ```
 ```json
 {
@@ -205,7 +205,7 @@ curl -X GET http://<kong>:8001/jwt-signer/jwks/kong
 }
 ```
 
-The `http://<kong>:8001/jwt-signer/jwks/kong` is the URL that you can give to your
+The `http://localhost:8001/jwt-signer/jwks/kong` is the URL that you can give to your
 upstream services for them to verify Kong-issued tokens. The response is a standard
 JWKS endpoint response. The `kong` suffix in the URI is the one that you can specify
 with `config.access_token_issuer` or `config.channel_token_issuer`.
@@ -217,13 +217,13 @@ if that is needed.
 You can also `DELETE` a key set by issuing following:
 
 ```http
-DELETE kong:8001/jwt-signer/jwks/<name-or-id>
+DELETE localhost:8001/jwt-signer/jwks/<name-or-id>
 ```
 
 Example:
 
 ```bash
-curl -X DELETE http://<kong>:8001/jwt-signer/jwks/kong
+curl -X DELETE http://localhost:8001/jwt-signer/jwks/kong
 ```
 
 The plugin automatically reloads or regenerates missing JWKS if it cannot
@@ -246,13 +246,13 @@ an external URI.
 To rotate keys, send a `POST` request:
 
 ```http
-POST kong:8001/jwt-signer/jwks/<name-or-id>/rotate
+POST localhost:8001/jwt-signer/jwks/<name-or-id>/rotate
 ```
 
 Example:
 
 ```bash
-curl -X POST http://<kong>:8001/jwt-signer/jwks/kong/rotate
+curl -X POST http://localhost:8001/jwt-signer/jwks/kong/rotate
 ```
 Response:
 

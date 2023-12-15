@@ -21,7 +21,7 @@ All entities in Kong are represented by:
   This schema is a table described in the [plugin configuration]({{page.book.chapters.plugin-configuration}})
   chapter.
 - An instance of the `DAO` class mapping to the database currently in use
-  (Cassandra or Postgres). This class' methods consume the schema and expose
+  (Cassandra or PostgreSQL). This class' methods consume the schema and expose
   methods to insert, update, select and delete entities of that type.
 
 The core entities in Kong are: Services, Routes, Consumers and Plugins.
@@ -44,15 +44,15 @@ available through `kong.db.*`.
 
 The DAO class is responsible for the operations executed on a given table in
 the datastore, generally mapping to an entity in Kong. All the underlying
-supported databases (currently Cassandra and Postgres) comply to the same
+supported databases (currently Cassandra and PostgreSQL) comply to the same
 interface, thus making the DAO compatible with all of them.
 
 For example, inserting a Service and a Plugin is as easy as:
 
 ```lua
 local inserted_service, err = kong.db.services:insert({
-  name = "mockbin",
-  url  = "http://mockbin.org",
+  name = "httpbin",
+  url  = "http://httpbin.org",
 })
 
 local inserted_plugin, err = kong.db.plugins:insert({

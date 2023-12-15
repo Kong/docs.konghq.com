@@ -47,12 +47,12 @@ curl -i -X POST $KONG_ADMIN_API/services/mock/plugins \
 If successful the API will return a `201 Created` HTTP response code with a 
 JSON body including information about the new plugin instance.
 
-Next, use the `mock` service's `/requests` endpoint to test the behavior of the plugin.
-The `/requests` API will echo back helpful information from the request we send it, including
+Next, use the `mock` service's `/anything` endpoint to test the behavior of the plugin.
+The `/anything` API will echo back helpful information from the request we send it, including
 headers and the request body.
 
 ```sh
-curl -s -XPOST $KONG_PROXY/mock/requests \
+curl -s -XPOST $KONG_PROXY/mock/anything \
 	-H 'Content-Type: application/json' \
 	-d '{"existing-field": "abc123"}'
 ```
@@ -62,7 +62,7 @@ JSON body sent to the service. You can use `jq` to fully extract the request bod
 returned from the `mock` service, as follows:
 
 ```sh
-curl -s -XPOST $KONG_PROXY/mock/requests \
+curl -s -XPOST $KONG_PROXY/mock/anything \
 	-H 'Content-Type: application/json' \
 	-d '{"existing-field": "Kong FTW!"}' | \
 	jq -r '.postData.text'

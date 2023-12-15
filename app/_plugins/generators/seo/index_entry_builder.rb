@@ -3,7 +3,7 @@
 module SEO
   class IndexEntryBuilder
     VERSIONED_PRODUCTS = %w[
-      gateway mesh kubernetes-ingress-controller deck
+      gateway mesh kubernetes-ingress-controller deck gateway-operator
     ].freeze
 
     GLOBAL_PAGES = %w[changelog].freeze
@@ -52,7 +52,7 @@ module SEO
     end
 
     def versioned_page?
-      /^\d+\.\d+\.x$/.match(url_segments[1]) || url_segments[1] == 'latest'
+      /^\d+\.\d+\.x$/.match(url_segments[1]) || url_segments[1] == 'latest' || url_segments[1] == 'dev'
     end
 
     def url_segments

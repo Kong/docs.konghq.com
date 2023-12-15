@@ -12,7 +12,14 @@ proxying traffic to clients.
 
 Whenever a data plane node receives new configuration from the control plane,
 it immediately loads that config into memory. At the same time, it caches
-the config as `config.json.gz` into `/usr/local/kong` by default.
+the config to the file system. The location of the cache differs depending
+on the major release of your Gateway:
+
+* **2.x Gateway**: By default, data plane nodes store their configuration in an
+unencrypted cache file, `config.json.gz`, in {{site.base_gateway}}’s prefix path.
+* **3.x Gateway**: By default, data plane nodes store their configuration in an
+unencrypted LMDB database directory, `dbless.lmdb`, in {{site.base_gateway}}’s
+prefix path.
 
 ## Communication
 
@@ -87,7 +94,7 @@ configuration until it receives new instructions from the control plane.
 There are situations that can cause further problems:
 * If the license that the data plane node received from the control plane expires,
 the node stops working.
-* If the data plane node's configuration cache file (`config.json.gz`)
+* If the data plane node's configuration cache file (`config.json.gz`) or directory (`dbless.lmdb`)
 gets deleted, it loses access to the last known configuration and starts
 up empty.
 
@@ -116,7 +123,7 @@ Yes, if necessary, though any manual configuration will be overwritten the next
 time the control plane connects to the node.
 
 You can load configuration manually in one of the following ways:
-* Copy the configuration cache file (`config.json.gz`) from another data
+* Copy the configuration cache file (`config.json.gz`) or directory (`dbless.lmdb`) from another data
 plane node with a working connection and overwrite the cache file on disk
 for the disconnected node.
 * Remove the cache file, then start the data plane node with

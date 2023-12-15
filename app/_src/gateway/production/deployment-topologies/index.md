@@ -52,7 +52,7 @@ Running {{ site.base_gateway }} in traditional mode is the simplest way to get s
 
 When running in traditional mode, every {{ site.base_gateway }} node runs as both a Control Plane (CP) and Data Plane (DP). This means that if **any** of your nodes are compromised, the entire running gateway configuration is compromised. In contrast, [hybrid mode](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/) has distinct CP and DP nodes reducing the attack surface.
 
-In addition, if you're running Kong Enterprise with Kong Manager, request throughput may be reduced on nodes running Kong Manager due to expensive calculations being run to render analytics data and graphs.
+In addition, if you're running {{site.ee_product_name}} with Kong Manager, request throughput may be reduced on nodes running Kong Manager due to expensive calculations being run to render analytics data and graphs.
 
 You can use the [Admin API](/gateway/{{page.kong_version}}/admin-api/) or declarative configuration files [(decK)](/deck/latest/) to configure the {{site.base_gateway}} in traditional mode.
 

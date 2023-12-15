@@ -1,5 +1,5 @@
 ---
-title: Manage Dev Portal Teams
+title: Manage Dev Portal Team Access
 content_type: how-to
 ---
 
@@ -24,7 +24,12 @@ We recommend setting up your teams and permissions before enabling RBAC to allow
 
 ## Configure developer teams 
 
-In this scenario, you are a product manager at a pizza company, responsible for overseeing their online application. Your task is to create a Dev Portal intended for delivery companies. This portal will grant delivery companies access to your APIs, enabling them to incorporate your pizza offerings into their own delivery service offerings. One of your primary objectives is to ensure that only trusted delivery partners are granted access to develop applications using your APIs and deliver your pizzas.
+In this scenario, you are a product manager at a pizza company, responsible for overseeing their online application. Your task is to create a Dev Portal intended for delivery companies. This portal will grant delivery companies access to your APIs, enabling them to incorporate your pizza offerings into their own delivery service offerings. 
+
+![pizza ordering api flow](/assets/images/diagrams/diagram-dev-portal-team-access.png)
+> _**Figure 1:** Diagram that shows how the Pizza Ordering API works in this scenario. The diagram shows how a customer, Rosario, orders a pizza through the Pizza App, which triggers the Pizza Ordering API to be sent to the pizza restaurant. Once the restaurant receives the API request, they begin to make the pizza. When the pizza is ready, the Pizza restaurant's Dispatch Driver API alerts the Pizza App. The Pizza App assigns a delivery driver that picks up the pizza and delivers it to Rosario._
+
+One of your primary objectives is to ensure that only trusted delivery partners are granted access to develop applications using your APIs and deliver your pizzas.
 
 To achieve this, you must create two groups of developers, each with different levels of API access:
 * **Authorized Delivery Partners:** This group can access and consume your APIs so they can integrate them into their own delivery applications.
@@ -41,7 +46,7 @@ In {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.com/us
 1. Select **Gateway Services** from the side navigation bar, then **New Gateway Service**.
 1. From the **Add a Gateway Service** dialog, enter the following to create a new service:
     * **Name:** `pizza_ordering`
-    * **Upstream URL:** `http://mockbin.org`
+    * **Upstream URL:** `http://httpbin.org`
     * Use the defaults for the remaining fields.
 1. Click **Save**. 
 1. To create an API product for your service, navigate to **API Products** in the sidebar, click **Add API Product** and enter `Pizza Ordering` in the **Product Name** field.
@@ -69,7 +74,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       --header 'accept: application/json' \
       --data '{
           "name": "pizza_ordering",
-          "host": "mockbin.org",
+          "host": "httpbin.org",
           "path": "/pizza_ordering"
       }'
     ```
@@ -82,7 +87,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
         "connect_timeout": 60000,
         "created_at": 1692885974,
         "enabled": true,
-        "host": "mockbin.org",
+        "host": "httpbin.org",
         "id": "06acc4f4-c6d8-4daf-bef6-79866e88ca86",
         "name": "pizza_ordering",
         "path": "/pizza_ordering",

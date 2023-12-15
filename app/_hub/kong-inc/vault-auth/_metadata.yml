@@ -1,9 +1,10 @@
 name: Vault Authentication
+search_aliases:
+  - vault-auth
 dbless_compatible: 'yes'
 free: false
 plus: false
 enterprise: true
-premium: true
 konnect: false
 network_config_opts: Self-managed traditional, DB-less, and hybrid
 notes: --

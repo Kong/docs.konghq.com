@@ -9,14 +9,14 @@ Use Kong Vitals (Vitals) to monitor {{site.ee_product_name}} health and performa
 
 * Use Kong Manager to view visualizations of Vitals data, including the Workspaces Overview Dashboard, Workspace Charts, Vitals tab, and Status Codes, and to generate CSV Reports.
 
-![Vitals Overview](/assets/images/docs/ee/vitals_overview.png)
+![Vitals Overview](/assets/images/products/gateway/vitals/vitals_overview.png)
 
 ## Prerequisites
 Vitals is enabled by default in {{site.ee_product_name}} and available upon the first login of a Super Admin.
 
 You will need one of the following databases to use Vitals:
 * InfluxDB
-* PostgresSQL 9.5+
+* PostgreSQL 9.5+
 * Cassandra 2.1+
 
 ## Guidelines for viewing Vitals

@@ -14,7 +14,7 @@ nodes (and proxies in the case of {{site.mesh_product_name}}). The individual no
 cloud-hosted environments, and each data plane node stores the configuration 
 in-memory. 
 
-![{{site.konnect_product_name}}](/assets/images/docs/konnect/konnect-intro.png)
+![{{site.konnect_product_name}}](/assets/images/products/konnect/konnect-intro.png)
 
 > Figure 1: Diagram of {{site.konnect_short_name}} modules.
 

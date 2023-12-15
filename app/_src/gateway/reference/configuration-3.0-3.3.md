@@ -10,7 +10,7 @@
 # https://github.com/Kong/kong-ee/blob/master/kong.conf.default
 
 title: Configuration Reference for Kong Gateway
-source_url: https://github.com/Kong/kong/blob/master/kong.conf.default
+source_url: https://github.com/Kong/kong/edit/master/kong.conf.default
 ---
 <!-- vale off -->
 
@@ -3104,7 +3104,6 @@ Examples:
 
 - `<IP>:<PORT>` -> `portal_gui_host = 127.0.0.1:8003`
 - `<HOSTNAME>` -> `portal_gui_host = portal_api.domain.tld`
-- `<HOSTNAME>/<PATH>` -> `portal_gui_host = dev-machine/dev-285`
 
 **Default:** `127.0.0.1:8003`
 

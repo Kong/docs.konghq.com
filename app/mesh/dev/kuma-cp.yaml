@@ -1,7 +1,7 @@
 # Environment type. Available values are: "kubernetes" or "universal"
 environment: universal # ENV: KUMA_ENVIRONMENT
-# Mode in which Kuma CP is running. Available values are: "standalone", "global", "zone"
-mode: standalone # ENV: KUMA_MODE
+# Mode in which Kuma CP is running. Available values are: "global", "zone", "standalone" (deprecated, use "zone")
+mode: zone # ENV: KUMA_MODE
 # Resource Store configuration
 store:
   # Type of Store used in the Control Plane. Available values are: "kubernetes", "postgres" or "memory"
@@ -79,9 +79,11 @@ store:
   # Upsert (get and update) configuration
   upsert:
     # Base time for exponential backoff on upsert operations when retry is enabled
-    conflictRetryBaseBackoff: 100ms # ENV: KUMA_STORE_UPSERT_CONFLICT_RETRY_BASE_BACKOFF
+    conflictRetryBaseBackoff: 200ms # ENV: KUMA_STORE_UPSERT_CONFLICT_RETRY_BASE_BACKOFF
     # Max retries on upsert (get and update) operation when retry is enabled
-    conflictRetryMaxTimes: 5 # ENV: KUMA_STORE_UPSERT_CONFLICT_RETRY_MAX_TIMES
+    conflictRetryMaxTimes: 10 # ENV: KUMA_STORE_UPSERT_CONFLICT_RETRY_MAX_TIMES
+    # Percentage of jitter. For example: if backoff is 20s, and this value 10, the backoff will be between 18s and 22s.
+    conflictRetryJitterPercent: 30 # ENV: KUMA_STORE_UPSERT_CONFLICT_RETRY_JITTER_PERCENT
   # If true, skips validation of resource delete.
   # For example you don't have to delete all Dataplane objects before you delete a Mesh
   unsafeDelete: false # ENV: KUMA_STORE_UNSAFE_DELETE
@@ -334,7 +336,8 @@ runtime:
         enabled: true # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_BUILTIN_DNS_ENABLED
         # Redirect port for DNS
         port: 15053 # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_BUILTIN_DNS_PORT
-      transparentProxyV1: false # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_TRANSPARENT_PROXY_V1
+        # Enable coredns query logging if true
+        logging: false # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_BUILTIN_DNS_LOGGING
       # EBPF defines configuration for the ebpf, when transparent proxy is marked to be
       # installed using ebpf instead of iptables
       ebpf:
@@ -351,6 +354,11 @@ runtime:
         tcAttachIface: "" # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_EBPF_TC_ATTACH_IFACE
         # Path where compiled eBPF programs are placed
         programsSourcePath: /kuma/ebpf # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_EBPF_PROGRAMS_SOURCE_PATH
+      # IgnoredServiceSelectorLabels defines a list ignored labels in Service selector.
+      # If Pod matches a Service with ignored labels, but does not match it fully, it gets Ignored inbound.
+      # It is useful when you change Service selector and expect traffic to be sent immediately.
+      # An example of this is ArgoCD's BlueGreen deployment and "rollouts-pod-template-hash" selector.
+      ignoredServiceSelectorLabels: [] # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_IGNORED_SERVICE_SELECTOR_LABELS
     marshalingCacheExpirationTime: 5m # ENV: KUMA_RUNTIME_KUBERNETES_MARSHALING_CACHE_EXPIRATION_TIME
     # Kubernetes's resources reconciliation concurrency configuration
     controllersConcurrency:
@@ -395,6 +403,8 @@ metrics:
     subscriptionLimit: 10 # ENV: KUMA_METRICS_ZONE_SUBSCRIPTION_LIMIT
     # How long zone can stay Online without active KDS connection
     idleTimeout: 5m # ENV: KUMA_METRICS_ZONE_IDLE_TIMEOUT
+    # Compact finished metrics (do not store config and details of KDS exchange).
+    compactFinishedSubscriptions: false # ENV: KUMA_METRICS_ZONE_COMPACT_FINISHED_SUBSCRIPTIONS
   mesh:
     # Minimum time between 2 refresh of insights
     minResyncInterval: 1s # ENV: KUMA_METRICS_MESH_MIN_RESYNC_INTERVAL
@@ -469,6 +479,11 @@ multizone:
       msgSendTimeout: 60s # ENV: KUMA_MULTIZONE_GLOBAL_KDS_MSG_SEND_TIMEOUT
       # Backoff that is executed when the global control plane is sending the response that was previously rejected by zone control plane
       nackBackoff: 5s # ENV: KUMA_MULTIZONE_GLOBAL_KDS_NACK_BACKOFF
+      # DisableSOTW if true doesn't expose SOTW version of KDS. Default: false
+      disableSOTW: false # ENV: KUMA_MULTIZONE_GLOBAL_KDS_DISABLE_SOTW
+      # Response backoff is a time Global CP waits before sending ACK/NACK.
+      # This is a way to slow down Zone CP from sending resources too often.
+      responseBackoff: 0s # ENV: KUMA_MULTIZONE_GLOBAL_KDS_RESPONSE_BACKOFF
   zone:
     # Kuma Zone name used to mark the zone dataplane resources
     name: "" # ENV: KUMA_MULTIZONE_ZONE_NAME
@@ -489,6 +504,9 @@ multizone:
       msgSendTimeout: 60s # ENV: KUMA_MULTIZONE_ZONE_KDS_MSG_SEND_TIMEOUT
       # Backoff that is executed when the zone control plane is sending the response that was previously rejected by global control plane
       nackBackoff: 5s # ENV: KUMA_MULTIZONE_ZONE_KDS_NACK_BACKOFF
+      # Response backoff is a time Zone CP waits before sending ACK/NACK.
+      # This is a way to slow down Global CP from sending resources too often.
+      responseBackoff: 0s # ENV: KUMA_MULTIZONE_ZONE_KDS_RESPONSE_BACKOFF
 # Diagnostics configuration
 diagnostics:
   # Port of Diagnostic Server for checking health and readiness of the Control Plane
@@ -690,7 +708,7 @@ experimental:
   # format you can downgrade your cp
   useTagFirstVirtualOutboundModel: false # ENV: KUMA_EXPERIMENTAL_USE_TAG_FIRST_VIRTUAL_OUTBOUND_MODEL
   # If true, KDS will sync using incremental xDS updates
-  kdsDeltaEnabled: false # ENV: KUMA_EXPERIMENTAL_KDS_DELTA_ENABLED
+  kdsDeltaEnabled: true # ENV: KUMA_EXPERIMENTAL_KDS_DELTA_ENABLED
   # List of prefixes that will be used to filter out tags by keys from ingress' available services section.
   # This can trim the size of the ZoneIngress object significantly.
   # The drawback is that you cannot use filtered out tags for traffic routing.
@@ -706,6 +724,9 @@ experimental:
     fullResyncInterval: 60s # ENV: KUMA_EXPERIMENTAL_KDS_EVENT_BASED_WATCHDOG_FULL_RESYNC_INTERVAL
     # If true, then initial full resync is going to be delayed by 0 to FullResyncInterval.
     delayFullResync: false # ENV: KUMA_EXPERIMENTAL_KDS_EVENT_BASED_WATCHDOG_DELAY_FULL_RESYNC
+  # If true then control plane computes reachable services automatically based on MeshTrafficPermission.
+  # Lack of MeshTrafficPermission is treated as Deny the traffic.
+  autoReachableServices: false # ENV: KUMA_EXPERIMENTAL_AUTO_REACHABLE_SERVICES
 proxy:
   gateway:
     # Sets the envoy runtime value to limit maximum number of incoming
@@ -803,3 +824,21 @@ kmesh:
       # If the token TTL is shorter than 60s, you may need to decrease this value.
       # When only tokens with `inline` or `inlineString` are set, you can disable this.
       tokenChangeCheckInterval: 30s # ENV: KMESH_CA_VAULT_TOKEN_CHANGE_CHECK_INTERVAL
+  awsIAM:
+    # AuthorizedAccountIDs is a list of accounts that are authorized
+    # to authenticate with this CP. This is optional if
+    # RolesToAssumeForAccounts is set.
+    authorizedAccountIds: []
+    # RolesToAssumeForAccounts is a map of AWS account IDs to role names
+    # that the CP should use to verify dataplane identity in cross-account
+    # setups.
+    rolesToAssumeForAccounts: {}
+  limits:
+    # Default limits configuration
+    default:
+      # Maximum number of Dataplane resources that a user can create. Set to 0 to disable the limit.
+      dataplanes: 0 # ENV: KMESH_LIMITS_DEFAULT_DATAPLANES
+      # Maximum number of policy resources that a user can create. Set to 0 to disable the limit.
+      policies: 0 # ENV: KMESH_LIMITS_DEFAULT_POLICIES
+      # Maximum number of Zone control plane resources that a user can create. Set to 0 to disable the limit.
+      zones: 0 # ENV: KMESH_LIMITS_DEFAULT_ZONES
