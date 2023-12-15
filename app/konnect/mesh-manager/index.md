@@ -18,7 +18,7 @@ Mesh Manager is ideal for organizations who want to have one or more global cont
 Here are a few benefits of creating a mesh deployment in {{site.konnect_short_name}} instead of using a self-managed setup:
 
 * **Kong-managed global control plane:** By creating your mesh in {{site.konnect_short_name}}, your global control plane is managed by Kong. 
-* **All entities in one place:** You can view all your information, such as entities from Kong Ingress Controller (KIC) for Kubernetes, {{site.konnect_short_name}}-managed entities, and now service mesh data, all from one central platform. 
+* **All entities in one place:** You can view all your information, such as entities from {{site.kic_product_name}} (KIC) for Kubernetes, {{site.konnect_short_name}}-managed entities, and now service mesh data, all from one central platform. 
 * **Managed UI wizard setup:** {{site.konnect_short_name}} simplifies the process of creating a mesh by providing a setup wizard in the UI that guides you through the configuration steps.
 
 ## Create a mesh
