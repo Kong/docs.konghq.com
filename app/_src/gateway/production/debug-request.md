@@ -55,6 +55,11 @@ If this header isn't present or contains an unknown value, timing information wi
 
 If the `X-Kong-Request-Debug-Log` header is set to true, timing information will also be logged in the {{site.base_gateway}} error log with a log level of `notice`. By default, the `X-Kong-Request-Debug-Log` header is set to `false`. The log line will have the `[request-debug]` prefix to aid in searching.
 
+### X-Kong-Request-Debug-Token header
+
+Token for authenticating the client and making the debug request to prevent abuse. Debug requests originating from loopback addresses do not require this header.
+
+
 ## Debug request example 
 
 The following is an example debug request:
