@@ -300,6 +300,76 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+## 3.4.3.1
+**Release Date** 2023/12/15
+
+### Breaking Changes
+#### Plugins
+* [**SAML**](/hub/kong-inc/saml) (`saml`): Adjusted the priority of the SAML plugin to 1010 to correct the integration between the SAML plugin and other consumer-based plugins.
+
+### Features
+#### Core
+* A unique Request ID is now populated in the error log, access log, error templates, log serializer, and in a new X-Kong-Request-Id header (configurable for upstream/downstream using the `headers` and `headers_upstream` configuration options).
+ [#7207](https://github.com/Kong/kong/issues/7207)
+
+#### Plugins
+* [**AWS Lambda**](/hub/kong-inc/aws-lambda) (`aws-lambda`): The AWS-Lambda plugin has been refactored by using `lua-resty-aws` as an underlying AWS library. The refactor simplifies the AWS-Lambda plugin code base and adds support for multiple IAM authenticating scenarios.
+ [#7079](https://github.com/Kong/kong/issues/7079)
+
+### Fixes
+#### Configuration
+* Respect custom `proxy_access_log`.
+ [#7436](https://github.com/Kong/kong/issues/7436)
+
+#### Core
+* Print error message correctly when plugin fails.
+ [#7079](https://github.com/Kong/kong/issues/7079)
+* Fixed `ldoc` intermittent failure caused by LuaJIT error.
+ [#7491](https://github.com/Kong/kong/issues/7491)
+* Fixed Vault's try function to avoid using semaphore in non-yieldable phases.
+ [#7114](https://github.com/Kong/kong/issues/7114)
+* Vault references can be used in DB-less mode in declarative config. 
+ [#7483](https://github.com/Kong/kong/issues/7483)
+
+
+#### PDK
+* Fixed a bug related to data interference between requests in the `kong.log.serialize` function.
+ [#7327](https://github.com/Kong/kong/issues/7327)
+
+#### Plugins
+* [**AWS Lambda**](/hub/kong-inc/aws-lambda) (`aws-lambda`): Cached the AWS lambda service by those lambda service related fields.
+ [#7079](https://github.com/Kong/kong/issues/7079)
+
+* [**TCP Log**](/hub/kong-inc/tcp-log) (`tcp-log`): Fixed an issue of unnecessary handshakes when reusing TLS connection.
+ [#7114](https://github.com/Kong/kong/issues/7114)
+
+* [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`): Fixed a bug where the plugin throws a runtime error when the ref parameter schema isn't dereferenced.
+ [#7543](https://github.com/Kong/kong/issues/7543)
+
+* [**Rate Limiting**](/hub/kong-inc/rate-limiting/) (`rate-limiting`): Fixed an issuer where all counters are synced to the same DB at the same rate.
+ [#7314](https://github.com/Kong/kong/issues/7314)
+
+### Performance
+#### Configuration
+* Bumped `dns_stale_ttl` default to 1 hour so the stale DNS record can be used for a longer amount of time in case there's resolver downtime.
+
+### Dependencies
+#### Core
+* Bumped `openresty` from 1.21.4.1 to 1.21.4.3
+ [#7206](https://github.com/Kong/kong/issues/7206)
+* Bumped `resty-openssl` from 0.8.25 to 1.0.2
+ [#7417](https://github.com/Kong/kong/issues/7417)
+* Bumped `lua-resty-healthcheck` from 1.6.2 to 1.6.3
+ [#7206](https://github.com/Kong/kong/issues/7206)
+* Bumped `lua-kong-nginx-module` from 0.6.0 to 0.8.0
+ [#7207](https://github.com/Kong/kong/issues/7207)
+
+#### Default
+* Bumped `lua-resty-aws` from 1.2.3 to 1.3.0
+ [#7079](https://github.com/Kong/kong/issues/7079)
+* Bumped `lua-resty-aws` from 1.3.2 to 1.3.5
+ [#7318](https://github.com/Kong/kong/issues/7318)
+
 ## 3.4.2.0 
 **Release date** 2023/11/10
 
@@ -312,6 +382,7 @@ was called multiple times in a request lifecycle.
     Enterprise functionality will be set to read-only mode.
   * Added support for counters such as routes, plugins, licenses, and deployment information to the license report.
   * Added a checksum to the output of the license endpoint.
+
 ### Fixes
 #### Core
 * Fixed an issue with the DNS client was not adhering to configured timeouts in a predictable manner. Also fixed a related issue that cause the DNS client to resolve incorrectly during transient network and DNS server failures. [#11386](https://github.com/Kong/kong/pull/11386)
