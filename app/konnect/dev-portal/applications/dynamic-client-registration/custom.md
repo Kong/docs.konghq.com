@@ -12,7 +12,7 @@ description: Learn how to configure your custom IdP for Dynamic Client Registrat
 * Curity
 * Okta
 
-If your third-party IdP is not on this list, you can still use your IdP with {{site.konnect_short_name}} by using Kong’s open source HTTP DCR bridge. This HTTP DCR bridge acts as a proxy and translation layer between your IdP and DCR applications in the Dev Portal. This bridge allows you to enable a DCR integration between the Dev Portal and your third-party IdP or IdP that isn't exposed to the internet. This integration can act as either a translation layer to bridge to your network <!--either translation layer or....???-->.
+If your third-party IdP is not on this list, you can still use your IdP with {{site.konnect_short_name}} by using a custom HTTP DCR bridge. This HTTP DCR bridge acts as a proxy and translation layer between your IdP and DCR applications in the Dev Portal. When a developer creates a DCR application in the Dev Portal, Konnect calls your HTTP DCR bridge which can translate the application data into a format suitable for your third-party IdP. 
 
 {% mermaid %}
 sequenceDiagram
