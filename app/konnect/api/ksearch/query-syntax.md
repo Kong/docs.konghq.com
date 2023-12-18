@@ -65,36 +65,38 @@ By combining these selectors, reserved characters, and logical operators, users 
 
 1. Simple Search
 
-    This query searches for users with the name "John Doe". The type:user selector restricts the search to user entities, and the quotes around "John Doe" indicate an exact match.
+    This query searches for entities with the name "John".
     
-    **Query:** `type:user AND name:*smith*`
+    **Query:** `name:John`
+
+    This query searches for entities with the name "John Doe". The quotes around "John Doe" indicate an exact match to include spaces.
+    
+    **Query:** `name:"John Doe"`
 
 1. Complex Search
     
-    This query is for finding active developer teams in the Engineering department. It combines multiple selectors: type:developer_team to limit the search to developer teams, label.department:Engineering for an exact match on the department label, and tag:active to filter for teams that are currently active.
+    This query is for finding teams in the QA department. It combines multiple selectors: `type:team` to limit the search to teams entity type, `label.department:qa` for an exact match on the department label, and `name:*_qa` to filter for teams that are have a `_qa` suffix.
     
-    **Query:** `type:developer_team AND label.department:Engineering`
+    **Query:** `type:team AND label.department:qa AND name:*_qa`
+
+    This query is for finding users or teams with a `_qa` suffix in the name. It combines multiple `type:` selectors to limit the search to team or developer entity types and `name:*_qa` to filter for teams that are have a `_qa` suffix.
+    
+    **Query:** `type:user OR type:developer AND name:*_qa`
 
 1. Excluding Certain System Accounts
 
-    This query looks for system accounts that are not labeled as inactive. The NOT logical operator is used to exclude entities with the label.status:inactive.
+    This query looks for system accounts that do not contain `temp` in it's name and description. The NOT logical operator is used to exclude entities.
     
-    **Query:** `type:system_account NOT label.status:inactive`
+    **Query:** `type:system_account AND NOT *temp*`
 
 1. Searching with Wildcards
 
     This query uses a wildcard to find entities with names starting with "Project". The @ symbol indicates a "fuzzy" match on the name attribute, and the * serves as a wildcard.
     
-    **Query:** `@name:Project*`
-
-1. Grouped Logical Conditions
-
-    This query searches for either users or teams that have been tagged as urgent. The use of parentheses groups the types together, allowing for a combined search with the AND operator.
-    
-    **Query:** `(type:users OR type:teams) AND tag:urgent`
+    **Query:** `name:Project*`
 
 1. Fuzzy Match Across All Attributes
 
     This query performs a fuzzy match for the term "Beta" across all attributes. The @*: selector allows for searching across all available attributes.
     
-    **Query:** `@*:Beta`
+    **Query:** `@description:Beta`
