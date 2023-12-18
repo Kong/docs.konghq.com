@@ -1,3 +1,8 @@
+---
+nav_title: Overview
+title: Overview
+---
+
 <!-- 
 Introduce your plugin with a long description. What does it do, and why would someone want to use it? 
 

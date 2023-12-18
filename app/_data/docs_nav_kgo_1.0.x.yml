@@ -94,3 +94,5 @@ items:
             generate: false
       - text: License
         url: /reference/license
+      - text: Version Compatibility
+        url: /reference/version-compatibility

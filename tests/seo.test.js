@@ -116,6 +116,9 @@ describe("sitemap includes", () => {
     "/gateway/changelog/",
     "/mesh/changelog/",
     "/hub/",
+    "/hub/plugins/compatibility/",
+    "/hub/plugins/license-tiers/",
+    "/hub/plugins/overview/",
   ].forEach((t) => {
     test(t, async () => {
       const page = await fetchPageRaw("/sitemap.xml");

@@ -74,6 +74,12 @@ extensions:
     # - name: dev portal extension
     #   slug: dev-mod
 
+# Pricing
+pricing:
+  konnect:
+    paid_plugin: $5
+    premium_plugin: $10
+
 exclude:
   - app/assets
 

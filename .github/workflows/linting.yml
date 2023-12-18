@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check if manual review has been performed
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         id: labels
         with:
           result-encoding: string
@@ -94,8 +94,8 @@ jobs:
         with:
           sha: ${{ github.sha }}
           files: |
-            app/
-            docs/
+            app/**
+            docs/**
           files_ignore: |
             app/_src/.repos/kuma/**
             app/gateway/2.7.x/**
@@ -104,12 +104,13 @@ jobs:
           json: true
           quotepath: false
           escape_json: false
-      - uses: errata-ai/vale-action@reviewdog
+      - uses: mheap/vale-action@reviewdog
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           fail_on_error: true
           files: '${{ steps.changed-files.outputs.all_changed_files }}'
           filter_mode: file
-          reporter: github-pr-review
+          reporter: github-pr-annotations
+          reviewdog_url: https://github.com/mheap/reviewdog/releases/download/v10.0.0/reviewdog_10.0.0_Linux_x86_64.tar.gz
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

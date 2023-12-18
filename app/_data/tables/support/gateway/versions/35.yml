@@ -60,6 +60,7 @@ third-party:
   vault:
     - *vaultproject
     - *aws-sm
+    - *azure-key-vaults
     - *gcp-sm
 
   identity_provider:

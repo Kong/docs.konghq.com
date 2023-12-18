@@ -18,10 +18,6 @@ The {{site.base_gateway}} software is governed by the
   * [`apt-transport-https`](https://packages.debian.org/apt-transport-https) (Only if installing the APT repository)
 * (Enterprise only) A `license.json` file from Kong.
 
-Once you have everything you need, choose an installation path: 
-  * [Quickstart](#installation): Install script for a {{site.base_gateway}} package and PostgreSQL database
-  * [Advanced installation](#advanced-installation): Choose your own pieces to install
-
 {% if_version gte:3.2.x %}
 {:.note}
 > **Notes:**
@@ -34,13 +30,7 @@ Once you have everything you need, choose an installation path:
 > **Note:** In July of 2023, Kong announced that package hosting was shifting from {{ site.links.download }} to [{{ site.links.cloudsmith }}]({{ site.links.cloudsmith }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
 {% endif_version %}
 
-## Installation
-
-{% include_cached /md/gateway/install-linux-os.md kong_version=page.kong_version versions_ce=page.versions.ce versions_ee=page.versions.ee %}
-
-## Advanced installation
-
-### Package install
+## Package install
 
 You can install {{site.base_gateway}} by downloading an installation package or using the APT repository.
 

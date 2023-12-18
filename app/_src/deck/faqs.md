@@ -35,8 +35,9 @@ Kong can generate such a file with the `kong config db_export` command, which
 dumps almost the entire database of Kong into a file.
 
 You can use a file in this format to configure Kong when it is running in
-a DB-less or in-memory mode. If you're using Kong in the DB-less mode, you
-don't really need decK.
+a DB-less or in-memory mode. If you're using Kong in DB-less mode, you can't
+use decK for any sync, dump, or similar operations, as they require write 
+access to the Admin API.
 
 If you are using Kong alongside a database, you need decK because:
 
