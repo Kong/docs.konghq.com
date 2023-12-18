@@ -20,7 +20,7 @@
       {% include_cached sidebar/item_label.html icon=include.item.icon label=include.item.label items_size=include.item.items.size %}
 
         {% if include.item.items.size > 0 %}
-          <button class="sidebar-tree-toggle">
+          <button class="sidebar-tree-toggle" aria-label="toggle {{ include.item.label }} subtree">
             <i class="fa fa-chevron-down"></i>
           </button>
         {% endif %}
