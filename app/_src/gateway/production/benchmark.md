@@ -64,32 +64,32 @@ Scale {{site.base_gateway}} out before testing the benchmark to avoid auto-scali
 
 Make sure `nginx_worker_processes` is configured correctly:
 
-* Setting this to 'auto' (default) is appropriate for most VM setups. This ensures that Nginx spawns one worker process for each CPU core (desired).
-* Setting this explicitly in k8s is recommended. Ensure CPU requests and limits for {{site.base_gateway}} match the number of workers configured in {{site.base_gateway}}. For example, if configuring nginx_worker_processes=4, you must request 4 CPUs in your pod spec.
-    If you run {{site.base_gateway}} pods on k8s worker nodes with n CPUs, allocate n-2 or n-1 to {{site.base_gateway}} (and configure worker process count equal to this number). This ensures that any daemon set and k8s processes (such as kubelet) do not contend for resources with {{site.base_gateway}}.  
-    Please note that each additional worker uses additional memory, so you must ensure that {{site.base_gateway}} is not getting OOM killed.
+* On most VM setups, set this to `auto`. This is the default setting. This ensures that NGINX spawns one worker process for each CPU core, which is desired.
+* We recommend setting this explicitly in Kubernetes. Ensure CPU requests and limits for {{site.base_gateway}} match the number of workers configured in {{site.base_gateway}}. For example, if you configure `nginx_worker_processes=4`, you must request 4 CPUs in your pod spec.
+  If you run {{site.base_gateway}} pods on Kubernetes worker nodes with n CPUs, allocate n-2 or n-1 to {{site.base_gateway}}, and configure a worker process count equal to this number. This ensures that any configured daemons and Kubernetes processes, like kubelet, don't contend for resources with {{site.base_gateway}}.  
+  Each additional worker uses additional memory, so you must ensure that {{site.base_gateway}} isn't triggering the Linux Out-of-Memory Killer.
 
 ### Resource contention
 
-**Action:** Make sure the client (like JMeter or k6), {{site.base_gateway}}, and upstream servers on on different machinces (VM or bare metal) and run within the same local network with low latencies.
+**Action:** Make sure the client (like Apache JMeter or k6), {{site.base_gateway}}, and upstream servers are on different machinces (VM or bare metal) and run on the same local network with low latencies.
 
-1. Ensure that the Client (such as JMeter, k6), {{site.base_gateway}}, and the Upstream servers run on different machines (VM or bare-metal). If these are all running in a k8s cluster, ensure that the pods for these three systems are scheduled on dedicated nodes. Resource contention (of CPU and network usually) between these can lead to sub-optimal performance of any system. 
-1. Ensure the Client, {{site.base_gateway}}, and Upstream run within the same local network with low latencies. If requests between the Client and {{site.base_gateway}} or {{site.base_gateway}} and the Upstream server traverse the Internet, then the results will contain unnecessary noise. 
+* Ensure that the client (like Apache JMeter or k6), {{site.base_gateway}}, and the upstream servers run on different machines (VM or bare-metal). If these are all running in a Kubernetes cluster, ensure that the pods for these three systems are scheduled on dedicated nodes. Resource contention (of CPU and network usually) between these can lead to sub-optimal performance of any system. 
+* Ensure the client, {{site.base_gateway}}, and upstream servers run on the same local network with low latencies. If requests between the client and {{site.base_gateway}} or {{site.base_gateway}} and the upstream server traverse the internet, then the results will contain unnecessary noise. 
 
 ### Upstream servers maxing out
 
-**Action:** Verify that the upstream server is not maxing out.
+**Action:** Verify that the upstream server isn't maxing out.
 
-This can be verified by checking the CPU and memory usage of the upstream server.
-If you deploy additional {{site.base_gateway}} nodes and the throughput or error rate remains the same, the Upstream server or a system other than {{site.base_gateway}} is likely bottlenecked.
-You also must ensure that Upstream servers are not autoscaled.
+You can verify that the upstream server isn't maxing out by checking the CPU and memory usage of the upstream server.
+If you deploy additional {{site.base_gateway}} nodes and the throughput or error rate remains the same, the upstream server or a system other than {{site.base_gateway}} is likely the bottleneck.
+You must also ensure that upstream servers are not autoscaled.
 
 ### Client maxing out
 
 **Action:** The client must use keep-alive connections.
 
-Sometimes, the clients (such as k6 and Jmeter) max themselves out. Tuning them requires knowledge of the Client itself. Increasing the CPU, threads, and connections on these clients results in higher resource utilization and throughput.
-The Client must also use keep-alive connections. For example, [k6](https://k6.io/docs/using-k6/k6-options/reference/#no-connection-reuse) enables keep-alive by default, and [HTTPClient4](https://hc.apache.org/httpcomponents-client-4.5.x/index.html) implementation in Jmeter enables keep-alive by default. Please verify that this is set up appropriately for your test setup.
+Sometimes, the clients (such as k6 and Apache JMeter) max themselves out. To tune them, you need to understand the client. Increasing the CPU, threads, and connections on clients results in higher resource utilization and throughput.
+The client must also use keep-alive connections. For example, [k6](https://k6.io/docs/using-k6/k6-options/reference/#no-connection-reuse) enables keep-alive by default, and [HTTPClient4](https://hc.apache.org/httpcomponents-client-4.5.x/index.html) implementation in Apache JMeter enables keep-alive by default. Please verify that this is set up appropriately for your test setup.
 
 ### Custom plugins
 
@@ -141,7 +141,7 @@ Scale Redis vertically by giving it an additional CPU.
 
 DNS servers can bottleneck {{site.base_gateway}} since {{site.base_gateway}} depends on DNS to determine where to send the request.
 
-In the case of k8s, DNS TTLs are 5 seconds long and are known to cause problems.
+In the case of Kubernetes, DNS TTLs are 5 seconds long and are known to cause problems.
 Increasing `dns_stale_ttl` to `300` or even up to `86400` can help rule out DNS as the issue.
 
 If DNS servers are the root cause, you will see `coredns` pods bottlenecking on the CPU.
@@ -150,7 +150,7 @@ If DNS servers are the root cause, you will see `coredns` pods bottlenecking on 
 
 **Action:**
 
-{{site.base_gateway}} (and underlying Nginx) are programmed for non-blocking network I/O and avoid blocking disk I/O as much as possible. However, access logs are turned on by default, and if the disk powering a {{site.base_gateway}} node is slow for any reason, it can result in performance loss.
+{{site.base_gateway}} (and underlying NGINX) are programmed for non-blocking network I/O and avoid blocking disk I/O as much as possible. However, access logs are turned on by default, and if the disk powering a {{site.base_gateway}} node is slow for any reason, it can result in performance loss.
 Disable access logs for high throughput benchmarking tests by setting the `proxy_access_log` configuration parameter to `off`.
 
 ### Internal errors in {{site.base_gateway}}
@@ -166,7 +166,7 @@ All parameters referenced above are listed below
 ```bash
 # kong.conf values
 
-# change this for k8s setup to a number matching CPU limit. Suggested value is 4 or 8
+# change this for Kubernetes setup to a number matching CPU limit. Suggested value is 4 or 8
 nginx_worker_processes=auto
 
 upstream_keepalive_max_requests=100000
@@ -178,7 +178,7 @@ dns_stale_ttl=3600
 
 # kong.conf but in environment variable form
 
-# change this for k8s setup to a number matching CPU limit. Suggested value is 4 or 8
+# change this for Kubernetes setup to a number matching CPU limit. Suggested value is 4 or 8
 KONG_NGINX_WORKER_PROCESSES="auto"
 KONG_UPSTREAM_KEEPALIVE_MAX_REQUESTS="100000"
 KONG_NGINX_HTTP_KEEPALIVE_REQUESTS="100000"
