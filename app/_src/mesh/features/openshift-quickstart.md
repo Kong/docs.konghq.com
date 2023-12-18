@@ -16,7 +16,7 @@ This quickstart tutorial covers:
 * How to use the sample application to test the features of {{site.mesh_product_name}}
 
 ## Prerequisites
-* [ROSA CLI installed](https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa_getting_started_iam/rosa-installing-rosa.html) or another OpenShift 4.12 cluster with the ability to create LoadBalancer type Kubernetes Services
+* [Red Hat OpenShift Service on AWS (ROSA) CLI installed](https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa_getting_started_iam/rosa-installing-rosa.html) or another OpenShift 4.12 cluster with the ability to create LoadBalancer type Kubernetes Services
 * [An AWS account with ROSA permissions enabled](https://docs.openshift.com/rosa/rosa_install_access_delete_clusters/rosa_getting_started_iam/rosa-config-aws-account.html)
 * [kubectl CLI installed](https://kubernetes.io/docs/tasks/tools/)
 * [OpenShift Container Platform CLI installed](https://docs.openshift.com/container-platform/latest/cli_reference/openshift_cli/getting-started-cli.html)
@@ -49,7 +49,7 @@ In this section, you will install a ROSA cluster called `kong-mesh-2` in the `us
     ```
     Creating an admin user gives you quick access to the cluster for this quickstart. We recommend using a formal identity provider that you grant admin privileges to in a production environment.
 
-1. Validate you can log in to the cluster via the credentials provided by the ROSA CLI `stout`. Once you successfully login, you can proceed to the next section.
+1. Validate you can log in to the cluster using the credentials provided by the ROSA CLI `stout`. Once you successfully login, you can proceed to the next section.
 
 ## Install {{site.mesh_product_name}} in standalone mode
 
