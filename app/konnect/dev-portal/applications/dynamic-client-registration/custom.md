@@ -18,17 +18,17 @@ If your third-party IdP is not on this list, you can still use your IdP with {{s
 sequenceDiagram
     actor Developer
     participant Konnect Dev Portal
-    participant Translation layer
-    participant Common domain cookie
+    participant HTTP DCR Bridge
+    participant IdP
     Developer->>Konnect Dev Portal: Create application
-    Konnect Dev Portal->>Translation layer: Create application
-    Translation layer->>Common domain cookie: POST fidm.oidc.createRP
-    Common domain cookie--)Translation layer: 200 OK and credentials
-    Translation layer->>Konnect Dev Portal: Create app (with credentials from CDC)
+    Konnect Dev Portal->>HTTP DCR Bridge: POST Create application
+    HTTP DCR Bridge->>IdP: POST Create application
+    IdP--)HTTP DCR Bridge: 200 OK and credentials
+    HTTP DCR Bridge->>Konnect Dev Portal: Create application response (with credentials from IdP)
     Konnect Dev Portal->>Developer: Show credentials
 {% endmermaid %}
 
-> _**Figure 1:** This diagram shows how Kong's HTTP DCR bridge generates credentials from an IdP when a developer creates and application. First, a developer tries to create an application in {{site.konnect_short_name}} Dev Portal. This triggers Dev Portal to pass the information to the translation layer, which then sends a `POST fidm.oidc.createRP` request to the common domain cookie (CDC). Once the CDC receives the request, it sends a `200` status code in return, if successful, as well as credentials for the developer. The translation layer then creates the app with the credentials from the CDC, and then the Dev Portal shows the credentials to the developer._
+> _**Figure 1:** This diagram shows how an HTTP DCR bridge creates an application in an IdP when a developer creates an application in the Dev Portal. First, a developer tries to create an application in {{site.konnect_short_name}} Dev Portal. This triggers Dev Portal to pass the information to the HTTP DCR Bridge, which then sends a `POST create application` request to the IdP. Once the IdP receives the request, it sends a `200` status code in return, if successful, as well as credentials for the developer's application. These credentials are then shown to the developer in the Dev Portal._
 
 ## Configure custom DCR using the {{site.konnect_short_name}} Dev Portal DCR Handler
 
