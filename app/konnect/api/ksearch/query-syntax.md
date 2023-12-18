@@ -35,8 +35,7 @@ Selectors are used to define the criteria of the search. The table below summari
 |---------------------------|--------------------------------------------------|
 | `@{attr.sub_attr}:{value}`| "Fuzzy" match for an attribute and its value     |
 | `type:{entity_type}`      | Limits search results to a specific entity type  |
-| `label.{name}:{value}`    | Exact match for a label's value                  |
-| `tag:{value}`             | Exact match for a tag value                      |
+| `labels.{name}:{value}`   | Exact match for a label's value                  |
 | `{value}`                 | "Fuzzy" match equivalent to `@*:{value}`         |
 | `{value}*`                | Matches any value starting with `{value}`        |
 
@@ -56,10 +55,9 @@ Logical operators are used to combine multiple criteria in a search query:
 
 | Operator                          | Function                           |
 |-----------------------------------|------------------------------------|
-| `AND` or `&&`                     | Intersection of one or more fields |
-| `OR` or <code>&#124;&#124;</code> | Union of one or more fields        |
-| `NOT` or `-`                      | Exclusion of a field               |
-| `()`                              | Grouping of one or more fields     |
+| `AND`                             | Intersection of one or more fields |
+| `OR`                              | Union of one or more fields        |
+| `NOT`                             | Exclusion of a field               |
 
 By combining these selectors, reserved characters, and logical operators, users can construct complex and precise queries to effectively utilize the KSearch API.
 
