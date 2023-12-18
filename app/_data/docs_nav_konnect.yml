@@ -324,6 +324,10 @@
           url: /api/identity-management/identity-integration/
         - text: SSO Customization
           url: /api/identity-management/sso/
+    - text: KSearch API
+      items:
+        - text: KSearch Query Documentation
+          url: /api/ksearch/query-syntax/
     - text: Mesh Manager API
       items:
         - text: API Spec
