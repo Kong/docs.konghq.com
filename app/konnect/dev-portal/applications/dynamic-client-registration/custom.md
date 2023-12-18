@@ -12,7 +12,7 @@ description: Learn how to configure your custom IdP for Dynamic Client Registrat
 * Curity
 * Okta
 
-If your third-party IdP is not on this list, you can still use your IdP with {{site.konnect_short_name}} by using a custom HTTP DCR bridge. This HTTP DCR bridge acts as a proxy and translation layer between your IdP and DCR applications in the Dev Portal. When a developer creates a DCR application in the Dev Portal, Konnect calls your HTTP DCR bridge which can translate the application data into a format suitable for your third-party IdP. 
+If your third-party IdP is not on this list, you can still use your IdP with {{site.konnect_short_name}} by using a custom HTTP DCR bridge. This HTTP DCR bridge acts as a proxy and translation layer between your IdP and DCR applications in the Dev Portal. When a developer creates a DCR application in the Dev Portal, {{site.konnect_short_name}} calls your HTTP DCR bridge which can translate the application data into a suitable format for your third-party IdP. 
 
 {% mermaid %}
 sequenceDiagram
@@ -34,4 +34,4 @@ sequenceDiagram
 
 To use an unsupported IdP with DCR, you must implement the [{{site.konnect_short_name}} Dev Portal DCR Handler spec](https://github.com/Kong/konnect-portal-dcr-handler/blob/main/openapi/openapi.yaml). Kong provides an example reference implementation in the [{{site.konnect_short_name}} Dev Portal DCR Handler repository](https://github.com/Kong/konnect-portal-dcr-handler). This is an example HTTP DCR bridge implementation and is not meant to be deployed in production. We encourage you to use this implementation as a guide to create your own implementation. 
 
-Any request that does not return a `2xx` status code is considered failing and won't continue the process of trying to create an application in your {{site.konnect_short_name}} portal.
+Any request that does not return a `2xx` status code is considered failing and won't continue the process of trying to create an application in your {{site.konnect_short_name}} Dev Portal.
