@@ -34,4 +34,4 @@ sequenceDiagram
 
 To use this HTTP DCR bridge, you must integrate the [{{site.konnect_short_name}} Dev Portal DCR Handler spec](https://github.com/Kong/konnect-portal-dcr-handler/blob/main/openapi/openapi.yaml)<!--integrate with what? replace this link with a link to the spec in our docs-->. Kong provides an example reference implementation in the [{{site.konnect_short_name}} Dev Portal DCR Handler repository](https://github.com/Kong/konnect-portal-dcr-handler). This is an example bridge implementation and is not meant to be deployed in production. We encourage you to use this implementation as a guide to create your own implementation. 
 
-Any operation that does not return a `2xx` status code is considered failing and won't continue the process of trying to create an application in your {{site.konnect_short_name}} portal.
+Any request that does not return a `2xx` status code is considered failing and won't continue the process of trying to create an application in your {{site.konnect_short_name}} portal.
