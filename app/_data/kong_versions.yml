@@ -100,8 +100,8 @@
     pcre: 8.45
   lua_doc: true
 - release: "3.4.x"
-  ee-version: "3.4.1.1"
-  ce-version: "3.4.2"
+  ee-version: "3.4.3.1"
+  ce-version: "3.4.3"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
   dependencies:
