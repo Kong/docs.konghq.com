@@ -374,8 +374,16 @@ was called multiple times in a request lifecycle.
 ## 3.4.3.2
 **Release Date** 2023/12/22
 
-<!--SOURCE CHANGELOG TBD-->
+### Features
+#### Plugins
 
+* [**LDAP Authentication Advanced**](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
+  * The plugin now supports decoding non-standard `asn1` integer and enumerated encoded with redundant leading padding.
+
+### Fixes
+
+- Fixed an issue where clicking the spec upload input doesn't trigger file selection.
+ [#3098](https://github.com/Kong/kong-manager-ee/issues/3098)
 
 ## 3.4.3.1
 **Release Date** 2023/12/15
