@@ -1,5 +1,5 @@
 ---
-title: KSearch
+title: Konnect Search API
 content_type: reference
 ---
 
@@ -7,14 +7,14 @@ The {{site.konnect_short_name}} Search API [Beta] offers a powerful and flexible
 
 ## Features
 
-**Global and Regional Access:** The KSearch API is available in global and regional locations with regional awareness. This ensures that entities returned are entities that are relevant to their geographical location, improving response times and conform to data residency expectations.
+**Global and Regional Access:** The {{site.konnect_short_name}} Search API is available in global and regional locations with regional awareness. This ensures that entities returned are entities that are relevant to their geographical location, improving response times and conform to data residency expectations.
 
 **Comprehensive Response:** The responses of the search query are uniform and contain a fixed number of standard attributes: “id”, “type”, “labels/tags” and “name”. In addition, entity specific attributes are returned in a general attributes object.
 
-**Security and Accessibility** The KSearch API will only return entities that the user has permissions to access. If a user is able to retrieve the entity in the list endpoint, then the user will be able to see the entity in the search response.
+**Security and Accessibility** The {{site.konnect_short_name}} Search API will only return entities that the user has permissions to access. If a user is able to retrieve the entity in the list endpoint, then the user will be able to see the entity in the search response.
 
 **Advanced Query Language**
-The KSearch API supports an advanced query language with the selectors, reserved characters and and logical operators.
+The {{site.konnect_short_name}} Search API supports an advanced query language with the selectors, reserved characters and logical operators.
 
 
 ## Supported Entities
@@ -59,7 +59,7 @@ Logical operators are used to combine multiple criteria in a search query:
 | `OR`                              | Union of one or more fields        |
 | `NOT`                             | Exclusion of a field               |
 
-By combining these selectors, reserved characters, and logical operators, users can construct complex and precise queries to effectively utilize the KSearch API.
+By combining these selectors, reserved characters, and logical operators, users can construct complex and precise queries to effectively use the {{site.konnect_short_name}} Search API.
 
 ## Example Queries
 
