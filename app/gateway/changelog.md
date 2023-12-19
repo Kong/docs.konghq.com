@@ -9,6 +9,159 @@ Changelog for supported Kong Gateway versions.
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.5.0.2
+**Release Date** 2023/12/21
+
+
+
+### Dependencies
+#### Core
+
+- Bumped OpenResty from 1.21.4.2 to 1.21.4.3
+ [#7518](https://github.com/Kong/kong/issues/7518)
+
+
+- Bump resty-openssl from 0.8.25 to 1.0.2
+ [#7418](https://github.com/Kong/kong/issues/7418)
+
+
+
+### Fixes
+#### Configuration
+
+- respect custom `proxy_access_log`
+ [#7435](https://github.com/Kong/kong/issues/7435)
+
+#### Core
+
+- fix ldoc intermittent failure caused by LuaJIT error.
+ [#7494](https://github.com/Kong/kong/issues/7494)
+
+#### Plugin
+
+- **OAS-Validation:** Fix a bug where the plugin throws a runtime error caused by the ref parameter schema not being dereferenced.
+ [#7544](https://github.com/Kong/kong/issues/7544)
+
+
+- **Rate Limiting**: fix an issuer where all counters are synced to the same DB at the same rate.
+ [#7315](https://github.com/Kong/kong/issues/7315)
+ [KAG-2904](https://konghq.atlassian.net/browse/KAG-2904)
+## Kong-Enterprise
+
+
+### Performance
+#### Configuration
+
+- Bump `dns_stale_ttl` default to 1 hour so stale DNS record can be used for longer time in case of resolver downtime.
+ [#7550](https://github.com/Kong/kong-ee/issues/7550)
+
+
+### Breaking Changes
+#### Plugin
+
+- **SAML**: adjust the priority of the SAML plugin to 1010 to correct the integration between the SAML plugin and other consumer-based plugins
+ [#7360](https://github.com/Kong/kong-ee/issues/7360)
+
+
+
+### Dependencies
+#### Default
+
+- bump luasec to 1.3.2
+ [#7100](https://github.com/Kong/kong-ee/issues/7100)
+
+
+### Features
+#### Configuration
+
+- The default value of `dns_no_sync` option has been changed to `off`
+ [#7009](https://github.com/Kong/kong-ee/issues/7009)
+
+#### Plugin
+
+- **Openid-Connect:** configurations `scopes`, `login_redirect_uri`, `logout_redirect_uri` can now be referenced as a secret in the Kong Vault
+ [#7456](https://github.com/Kong/kong-ee/issues/7456)
+
+
+- **Openid-Connect**: extend `token_post_args_client` to support injection from headers
+ [#7496](https://github.com/Kong/kong-ee/issues/7496)
+
+
+### Fixes
+#### Core
+
+- Dismiss confusing debug log from Redis tool of rate limiting #7077 #7101
+ [#7203](https://github.com/Kong/kong-ee/issues/7203)
+
+
+- fix the missing workspace_id in the output of request debugging when using the filter
+ [#7536](https://github.com/Kong/kong-ee/issues/7536)
+ [KAG-2928](https://konghq.atlassian.net/browse/KAG-2928) [KAG-3279](https://konghq.atlassian.net/browse/KAG-3279)
+
+- Eliminate asynchronous timer in syncQuery() to prevent hang risk
+ [#7306](https://github.com/Kong/kong-ee/issues/7306)
+
+#### PDK
+
+- **Plugin Server**: fix an issue where every request causes a new plugin instance to be created
+ [#7282](https://github.com/Kong/kong-ee/issues/7282)
+ [KAG-2969](https://konghq.atlassian.net/browse/KAG-2969)
+#### Plugin
+
+- Mark the `authorization_value` in the `oauth2-introspection` plugin as an encrypted field
+ [#7334](https://github.com/Kong/kong-ee/issues/7334)
+
+
+- Fix typo in jwe-decrypt error message
+ [#7233](https://github.com/Kong/kong-ee/issues/7233)
+
+
+- **Openid-Connect**: Fix logout uri suffix detection by using normalized version of `kong.request.get_forwarded_path()` instead of `ngx.var.request_uri` (especially when passing query strings to logout)
+ [#7385](https://github.com/Kong/kong-ee/issues/7385)
+
+
+- **Forward-Proxy**: Fixed the issue where request payload is being discarded when payload exceeded the `client_body_buffer_size`.
+ [#7559](https://github.com/Kong/kong-ee/issues/7559)
+
+
+- **Mocking**: Fix an issue where valid recursive schemas are always rejected.
+ [#7646](https://github.com/Kong/kong-ee/issues/7646)
+
+
+- **OAS-Validation**: Fixed an issue that the plugin throws a runtime error while validating parameters with AnyType schema and style keyword defined.
+ [#7557](https://github.com/Kong/kong-ee/issues/7557)
+
+
+- **OAS-Validation**: Fixed an issue that the nullable keyword did not take effect.
+ [#7481](https://github.com/Kong/kong-ee/issues/7481)
+
+
+- **OAS-Validation**: Fixed an issue that the URI component escaped characters were incorrectly unescaped.
+ [#7530](https://github.com/Kong/kong-ee/issues/7530)
+
+
+- **OpenID-Connect**: update time when calculating token expire
+ [#7461](https://github.com/Kong/kong-ee/issues/7461)
+
+#### Admin API
+
+- Fix an issue where unique violation errors were reported while trying to update the user_token
+with the same value on the same RBAC user.
+ [#7154](https://github.com/Kong/kong-ee/issues/7154)
+
+#### Clustering
+
+- Fix an issue where the dataplane's log serializer output has workspace name under Hybrid mode
+ [#7285](https://github.com/Kong/kong-ee/issues/7285)
+ [FTI-5529](https://konghq.atlassian.net/browse/FTI-5529)
+#### Default
+
+- Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availibilty detection feature.
+ [#7382](https://github.com/Kong/kong-ee/issues/7382)
+ [KAG-2136](https://konghq.atlassian.net/browse/KAG-2136)
+
+
+
 ## 3.5.0.1
 **Release Date** 2023/11/14
 
