@@ -1997,7 +1997,10 @@ When disabled multiple requests for the same name/type will be synchronised to
 a single query.
 
 {% if_version gte:3.5.x %}
-**Default:** `on`
+**Default:** `off`
+
+{:.important}
+> **Important:** For version 3.5.0.0 and 3.5.0.1, the default value is `on`. 
 {% endif_version %}
 
 {% if_version lte:3.4.x %}
