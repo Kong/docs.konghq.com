@@ -13,7 +13,7 @@ For product versions that have reached the end of sunset support, see the [chang
 **Release Date** 2023/12/21
 
 ### Breaking Changes
-#### Plugin
+#### Plugins
 * [**SAML**](/hub/kong-inc/saml) (`saml`)
   * Adjusted the priority of the SAML plugin to 1010 to correct the integration between the SAML plugin and other consumer-based plugins.
 
@@ -21,7 +21,7 @@ For product versions that have reached the end of sunset support, see the [chang
 #### Configuration
 * The default value of `dns_no_sync` option has been changed to `off`.
 
-#### Plugin
+#### Plugins
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
   * Configurations `scopes`, `login_redirect_uri`, `logout_redirect_uri` can now be referenced as a secret in the Kong Vault.
   * Extend `token_post_args_client` to support injection from headers.
@@ -34,7 +34,7 @@ For product versions that have reached the end of sunset support, see the [chang
 - Fixed ldoc intermittent failure caused by LuaJIT error. [#7494](https://github.com/Kong/kong/issues/7494)
 
 #### PDK
--Fixed an issue in the plugin server where every request caused a new plugin instance to be created.
+- Fixed an issue in the plugin server where every request caused a new plugin instance to be created.
 
 #### Plugin
 * [**OAuth 2.0 Introspection**](/hub/kong-inc/oauth2-introspection/) (`oauth2-introspection`)
@@ -57,7 +57,7 @@ For product versions that have reached the end of sunset support, see the [chang
   * Fixed an issue where all counters are synced to the same DB at the same rate.[#7315](https://github.com/Kong/kong/issues/7315)
 
 #### Admin API
-- Fixed an issue where unique violation errors were reported while trying to update the user_token with the same value on the same RBAC user.
+- Fixed an issue where unique violation errors were reported while trying to update the `user_token` with the same value on the same RBAC user.
 
 #### Clustering
 - Fixed an issue where the dataplane's log serializer output has workspace name under Hybrid mode.
