@@ -300,6 +300,12 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+## 3.4.3.2
+**Release Date** 2023/12/22
+
+<!--SOURCE CHANGELOG TBD-->
+
+
 ## 3.4.3.1
 **Release Date** 2023/12/15
 
