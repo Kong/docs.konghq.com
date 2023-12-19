@@ -4,14 +4,14 @@ content_type: reference
 description: Learn how to use the Konnect Search API to search through all Konnect entities.
 ---
 
-The {{site.konnect_short_name}} Search API (Beta) offers a powerful and flexible way to search through all {{site.konnect_short_name}} entities. It is designed to cater to a wide range of search requirements, enabling users to quickly find the information they need across different areas of the product.
+The {{site.konnect_short_name}} Search API (Beta) allows you to search through all {{site.konnect_short_name}} entities. It is designed to cater to a wide range of search requirements, enabling you to find the information you need across different areas of the product.
 
-{{site.konnect_short_name}} Search provides the following features:
+{{site.konnect_short_name}} Search includes the following features:
 
-* **Global and Regional Access:** The {{site.konnect_short_name}} Search API is available in global and regional locations with regional awareness. This ensures that entities returned are entities that are relevant to their geographical location, improving response times and conform to data residency expectations.
-* **Comprehensive Response:** The responses of the search query are uniform and contain a fixed number of standard attributes: “id”, “type”, “labels/tags” and “name”. In addition, entity specific attributes are returned in a general attributes object.
-* **Security and Accessibility:** The {{site.konnect_short_name}} Search API will only return entities that the user has permissions to access. If a user is able to retrieve the entity in the list endpoint, then the user will be able to see the entity in the search response.
-* **Advanced Query Language:** The {{site.konnect_short_name}} Search API supports an advanced query language with the selectors, reserved characters and logical operators.
+* **Global and regional access:** The {{site.konnect_short_name}} Search API is available in global and regional locations with regional-awareness. This ensures that returned entities are relevant to their geographical location, improving response times and conforming to data residency expectations.
+* **Comprehensive response:** The responses of the search query are uniform and contain a fixed number of standard attributes: `id`, `type`, `labels/tags` and `name`. In addition, entity-specific attributes are returned in a general attributes object.
+* **Security and accessibility:** The {{site.konnect_short_name}} Search API will only return entities that the user has permissions to access. If a user is able to retrieve the entity in the [list endpoint](/konnect/api/search/latest/), then the user will be able to see the entity in the search response.
+* **Advanced query language:** The {{site.konnect_short_name}} Search API supports an advanced query language with selectors, reserved characters, and logical operators.
 
 ## Supported search entities
 
@@ -31,7 +31,7 @@ curl -X 'GET' \
 
 ## Query Syntax
 
-the {{site.konnect_short_name}} Search API provides selectors, reserved characters, and logical operators that you can use to narrow your entity search. By combining these selectors, reserved characters, and logical operators, you can construct complex and precise queries to effectively use the {{site.konnect_short_name}} Search API.
+The {{site.konnect_short_name}} Search API provides selectors, reserved characters, and logical operators that you can use to narrow your entity search. By combining these selectors, reserved characters, and logical operators, you can construct complex and precise queries to effectively use the {{site.konnect_short_name}} Search API.
 
 ### Selectors
 
@@ -65,42 +65,16 @@ Logical operators are used to combine multiple criteria in a search query. The f
 | `OR`        | Searches for entities that are in one or more of the listed fields.       |
 | `NOT`       | Searches for entities are not in a field.               |
 
-## Example Queries
+## Example search queries
 
-1. Simple Search
+The following table describes different example search queries:
 
-    This query searches for entities with the name "John".
-    
-    **Query:** `name:John`
-
-    This query searches for entities with the name "John Doe". The quotes around "John Doe" indicate an exact match to include spaces.
-    
-    **Query:** `name:"John Doe"`
-
-1. Complex Search
-    
-    This query is for finding teams in the QA department. It combines multiple selectors: `type:team` to limit the search to teams entity type, `label.department:qa` for an exact match on the department label, and `name:*_qa` to filter for teams that are have a `_qa` suffix.
-    
-    **Query:** `type:team AND label.department:qa AND name:*_qa`
-
-    This query is for finding users or teams with a `_qa` suffix in the name. It combines multiple `type:` selectors to limit the search to team or developer entity types and `name:*_qa` to filter for teams that are have a `_qa` suffix.
-    
-    **Query:** `type:user OR type:developer AND name:*_qa`
-
-1. Excluding Certain System Accounts
-
-    This query looks for system accounts that do not contain `temp` in it's name and description. The NOT logical operator is used to exclude entities.
-    
-    **Query:** `type:system_account AND NOT *temp*`
-
-1. Searching with Wildcards
-
-    This query uses a wildcard to find entities with names starting with "Project". The @ symbol indicates a "fuzzy" match on the name attribute, and the * serves as a wildcard.
-    
-    **Query:** `name:Project*`
-
-1. Fuzzy Match Across All Attributes
-
-    This query performs a fuzzy match for the term "Beta" across all attributes. The @*: selector allows for searching across all available attributes.
-    
-    **Query:** `@description:Beta`
+| Search type | Query | Description |
+| ----------- | ------ | ---------- |
+| Simple | `name:Dana` | This query searches for entities with the name "Dana". |
+| Simple | `name:"Dana H"` | This query searches for entities with the name "Dana H". The quotes around "Dana H" indicate an exact match, including spaces. |
+| Complex | `type:team AND label.department:qa AND name:*_qa` | This query finds teams in the QA department. It combines multiple selectors: `type:team` limits the search to the "teams" entity type, `label.department:qa` exactly matches the "department" label, and `name:*_qa` filters for teams that have a `_qa` suffix. |
+| Complex | `type:user OR type:developer AND name:*_qa` | This query finds users or teams with a `_qa` suffix in the name. It combines multiple `type:` selectors to limit the search to team or developer entity types and `name:*_qa` to filter for teams that have a `_qa` suffix. |
+| Exclude specific system accounts | `type:system_account AND NOT *temp*` | This query finds system accounts that don't contain `temp` in their name and description. The `NOT` logical operator is used to exclude entities. |
+| Wildcards | `name:Project*` | This query uses a wildcard to find entities starting with the name "Project". The `@` symbol indicates a fuzzy match on the name attribute, and the `*` serves as a wildcard. |
+| Fuzzy match across all attributes | `@description:Beta` | This query performs a fuzzy match for the term "Beta" across all attributes. The `@*:` selector allows searching across all available attributes. |
