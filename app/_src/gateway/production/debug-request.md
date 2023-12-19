@@ -57,7 +57,7 @@ If the `X-Kong-Request-Debug-Log` header is set to true, timing information will
 
 ### X-Kong-Request-Debug-Token header
 
-Token for authenticating the client and making the debug request to prevent abuse. Debug requests originating from loopback addresses do not require this header.
+The `X-Kong-Request-Debug-Token` is a token for authenticating the client and making the debug request to prevent abuse. Debug requests originating from loopback addresses don't require this header.
 
 
 ## Debug request example 
