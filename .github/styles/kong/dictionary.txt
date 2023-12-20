@@ -43,6 +43,7 @@ JsonPath
 JSONPath
 JSONObjects
 JSONObject
+ketama
 Keycloak
 knative
 Knative
