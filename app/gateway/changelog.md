@@ -376,7 +376,6 @@ was called multiple times in a request lifecycle.
 
 ### Features
 #### Plugins
-
 * [**LDAP Authentication Advanced**](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
   * The plugin now supports decoding non-standard `asn1` integer and enumerated encoded with redundant leading padding.
 
