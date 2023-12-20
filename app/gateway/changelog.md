@@ -310,12 +310,11 @@ was called multiple times in a request lifecycle.
 
 ### Fixes
 ### Core
-- Optimize the performance of querying plugins when accessing the `application_services/application_instances` endpoints. [#7582](https://github.com/Kong/kong-ee/issues/7582)
+- Optimize the performance of querying plugins when accessing the `application_services/application_instances` endpoints. 
   
 ### Kong Manager
-_ Fixed an issue where some services are missing from the Dev Portal's application list in Kong Manager. [#3097](https://github.com/Kong/kong-admin/issues/3097)
+_ Fixed an issue where some services are missing from the Dev Portal's application list in Kong Manager. 
 - Fixed an issue where clicking the spec upload input doesn't trigger file selection.
- [#3098](https://github.com/Kong/kong-manager-ee/issues/3098)
 
 ## 3.4.3.1
 **Release Date** 2023/12/15
@@ -347,7 +346,6 @@ _ Fixed an issue where some services are missing from the Dev Portal's applicati
  [#7114](https://github.com/Kong/kong/issues/7114)
 * Vault references can be used in DB-less mode in declarative config. 
  [#7483](https://github.com/Kong/kong/issues/7483)
-
 
 #### PDK
 * Fixed a bug related to data interference between requests in the `kong.log.serialize` function.
