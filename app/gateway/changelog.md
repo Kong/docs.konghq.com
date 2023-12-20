@@ -381,7 +381,7 @@ was called multiple times in a request lifecycle.
 
 ### Fixes
 #### Core
-- Optimize the performance of querying plugins when accessing the `application_services/application_instances` endpoints. 
+- Optimized the performance of querying plugins when accessing the `application_services/application_instances` endpoints. 
   
 #### Kong Manager
 - Fixed an issue where some services are missing from the Dev Portal's application list in Kong Manager. 
