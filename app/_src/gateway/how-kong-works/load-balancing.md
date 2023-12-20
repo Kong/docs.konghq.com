@@ -6,7 +6,7 @@ Kong provides multiple ways of load balancing requests to multiple backend
 services: the default DNS-based method, and an advanced set of load-balancing
 algorithms using the Upstream entity.
 
-The DNS loadbalancer is enabled by default and is limited to round-robin
+The DNS load balancer is enabled by default and is limited to round-robin
 load-balancing. The `upstream` entity has health-check and circuit-breaker
 functionalities, besides the more advanced algorithms like least-connections,
 consistent-hashing, and lowest-latency.
@@ -171,17 +171,17 @@ In orchestrated environments like k8s or docker-compose, the IP addresses and po
 are mostly ephemeral and SRV records must be used to find the appropriate backends and
 to stay up to date.
 
-On a DNS level many infrastructure tools can also provide loadbalancing type features.
+On a DNS level many infrastructure tools can also provide load-balancing type features.
 These are mostly service-discovery tools that will have their own health-checks and
 will randomize DNS records, or only return a small subset of available peers.
 
-The Kong loadbalancers and the DNS based tools often fight each other. The nameserver will
+The Kong load balancers and the DNS based tools often fight each other. The nameserver will
 provide as little information as possible to force clients to follow its scheme, where
-Kong tries to get all backends to properly set up its loadbalancers (and health-checks).
+Kong tries to get all backends to properly set up its load balancers (and health-checks).
 
 To make sure that Kong can properly do its job, check that;
 
-- the nameserver sets the truncation flag on the reponses when it cannot fit all
+- the nameserver sets the truncation flag on the responses when it cannot fit all
   records in the UDP response (this will force Kong to retry using TCP)
 - allow TCP queries on the nameserver.
 
@@ -229,7 +229,7 @@ server.
 
 A common example would be to use the `consumer` as a hash-input. Since this ID is
 the same for every request from that user, it will ensure that the same user will
-consistently be dealth with by the same backend server. This will allow for cache
+consistently be dealt with by the same backend server. This will allow for cache
 optimizations on the backend, since each of the servers only serves a fixed subset
 of the users, and hence can improve its cache-hit-ratio for user related data.
 
@@ -321,7 +321,7 @@ Weights will not be taken into account.
   resource starvation. For example; 2 servers, one a small capacity close by (low
   network latency), the other high capacity far away (high latency). Most traffic
   will be routed to the small one, until its latency starts going up. The latency
-  going up however means the small server is most likeley suffering from resource
+  going up however means the small server is most likely suffering from resource
   starvation. So in this case the algorithm will keep the small server in a constant
   state of resource starvation, which is most likely not efficient.
 
