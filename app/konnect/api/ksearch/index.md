@@ -5,7 +5,11 @@ description: Learn how to use the Konnect Search API to search through all Konne
 beta: true
 ---
 
-The {{site.konnect_short_name}} Search API (Beta) allows you to search through all {{site.konnect_short_name}} entities. It is designed to cater to a wide range of search requirements, enabling you to find the information you need across different areas of the product.
+The {{site.konnect_short_name}} Search API allows you to search through all {{site.konnect_short_name}} entities. It is designed to cater to a wide range of search requirements, enabling you to find the information you need across different areas of the product.
+
+Here are a few example use cases where you can use the {{site.konnect_short_name}} Search API in your automation:
+* Find entities that are "not compliant". For example, you can use search to find all routes that don't have a path that starts with `/api`.
+* Select from a list of available entities. For example, if you are attaching a route to a service, you can use search to find and identify which service to attach the route to. Or when you're adding members to a team, you can search for the user.
 
 {{site.konnect_short_name}} Search includes the following features:
 
