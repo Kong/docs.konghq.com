@@ -2,6 +2,7 @@
 title: Konnect Search API
 content_type: reference
 description: Learn how to use the Konnect Search API to search through all Konnect entities.
+beta: true
 ---
 
 The {{site.konnect_short_name}} Search API (Beta) allows you to search through all {{site.konnect_short_name}} entities. It is designed to cater to a wide range of search requirements, enabling you to find the information you need across different areas of the product.
