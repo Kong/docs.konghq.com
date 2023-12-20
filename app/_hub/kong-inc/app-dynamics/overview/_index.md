@@ -28,12 +28,21 @@ not distributed with {{site.base_gateway}}. AppDynamics
 must be downloaded from the
 [AppDynamics Download Portal](https://accounts.appdynamics.com/downloads).
 The `libappdynamics.so` shared
-library file is the only required file, it must be placed in one of the locations configured by
-the
-[system's shared library loader](https://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html).
-Alternatively, the `LD_LIBRARY_PATH` environment variable can be set
-to the directory containing the `libappdynamics.so` file when
-starting {{site.base_gateway}}.
+library file is the only required file.
+
+### Recommended installation
+
+If you are using Kong version 3.0.0.0 or later, the recommended way to installed the `libappdynamics.so` is placed it in the `/usr/local/kong/lib` directory.
+This directory is included in the Kong search path for shared libraries, so the `libappdynamics.so` file will be found automatically.
+
+### Alternative installation
+
+If you are using an older version of Kong, or if you prefer to install the `libappdynamics.so` file in a different location, you can do so.
+
+- If Kong is deployed in RHEL or CentOS, the `libappdynamics.so` file can be placed in the `/usr/lib64` directory, which is included in the default search path for shared libraries.
+- If Kong is deployed in Debian or Ubuntu, the `libappdynamics.so` file can be placed in the `/usr/lib` directory, which is included in the default search path for shared libraries.
+- If above options are not available, the `libappdynamics.so` file can be in one of the locations configured by the [system's shared library loader](https://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html).
+- Alternatively, the `LD_LIBRARY_PATH` environment variable can be set to the directory containing the `libappdynamics.so` file when starting {{site.base_gateway}}.
 
 If the AppDynamics plugin is enabled but the `libappdynamics.so` file cannot be loaded, {{site.base_gateway}} will refuse to start.
 You will receive an error message like this:
