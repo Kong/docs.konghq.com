@@ -56,7 +56,7 @@ status_listen = 0.0.0.0:8100
 Once you've enabled the Node Readiness endpoint, you can send a GET request to check the readiness of your {{site.base_gateway}} instance:
 
 ```sh
-# Replace `localhost:8001` with the appropriate host and port for
+# Replace `localhost:8100` with the appropriate host and port for
 # your Status API server
 
 curl -i http://localhost:8100/status/ready
