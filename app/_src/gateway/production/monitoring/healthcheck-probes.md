@@ -1,5 +1,5 @@
 ---
-title: Readiness Check
+title: Healthcheck Probes
 content_type: tutorial
 ---
 
