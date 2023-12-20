@@ -381,7 +381,11 @@ was called multiple times in a request lifecycle.
   * The plugin now supports decoding non-standard `asn1` integer and enumerated encoded with redundant leading padding.
 
 ### Fixes
-
+###Core
+- Optimize the performance of querying plugins when accessing the `application_services/application_instances` endpoints. [#7582](https://github.com/Kong/kong-ee/issues/7582)
+  
+###Kong Manager
+_ Fixed an issue where some services are missing from the Dev Portal's application list in Kong Manager. [#3097](https://github.com/Kong/kong-admin/issues/3097)
 - Fixed an issue where clicking the spec upload input doesn't trigger file selection.
  [#3098](https://github.com/Kong/kong-manager-ee/issues/3098)
 
