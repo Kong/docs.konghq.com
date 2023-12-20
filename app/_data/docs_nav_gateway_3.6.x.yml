@@ -7,7 +7,7 @@ items:
     icon: /assets/images/icons/documentation/icn-flag.svg
     items:
       - text: Overview of Kong Gateway
-        url: /gateway/3.5.x/
+        url: /gateway/3.6.x/
         absolute_url: true
       - text: Support
         items:
