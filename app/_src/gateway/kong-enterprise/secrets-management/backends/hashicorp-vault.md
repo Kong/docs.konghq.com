@@ -34,6 +34,19 @@ export KONG_VAULT_HCV_AUTH_METHOD=kubernetes
 export KONG_VAULT_HCV_KUBE_ROLE=<rolename>
 ```
 
+HashiCorp Vault Approle authentication:
+
+```bash
+export KONG_VAULT_HCV_PROTOCOL=<protocol(http|https)>
+export KONG_VAULT_HCV_HOST=<hostname>
+export KONG_VAULT_HCV_PORT=<portnumber>
+export KONG_VAULT_HCV_MOUNT=<mountpoint>
+export KONG_VAULT_HCV_KV=<v1|v2>
+export KONG_VAULT_HCV_AUTH_METHOD=approle
+export KONG_VAULT_HCV_APPROLE_ROLE_ID=<role_id>
+export KONG_VAULT_HCV_APPROLE_SECRET_ID=<secret_id>
+```
+
 You can also store this information in an entity.
 
 ## Configuration via vaults entity
@@ -191,8 +204,23 @@ Parameter | Field name | Description
 
 {% if_version gte:3.1.x %}
 | `vaults.config.namespace` | **namespace** | Namespace for the Vault. Vault Enterprise requires a namespace to successfully connect to it. |
-| `vaults.config.auth_method` | **auth-method** | Defines the authentication mechanism when connecting to the Hashicorp Vault service. Accepted values are: `token`, or `kubernetes`.  |
+| `vaults.config.auth_method` | **auth-method** | Defines the authentication mechanism when connecting to the Hashicorp Vault service. Accepted values are: `token`, `kubernetes` or `approle`.  |
 | `vaults.config.kube_role` | **kube-role** | Defines the HashiCorp Vault role for the Kubernetes service account of the running pod. `keyring_vault_auth_method` must be set to `kubernetes` for this to activate. |
+| `vaults.config.kube_api_token_file` | **kube-api-token-file** | Defines the file path for the Kubernetes service account token. If not specified then a default path `/run/secrets/kubernetes.io/serviceaccount/token` will be used. |
+{% endif_version %}
+
+
+{% if_version gte:3.5.x %}
+| `vaults.config.kube_auth_path` | **kube-auth-path** | Defines the path that enabled Kubernetes auth method. If not specified then a default path `kubernetes` will be used. If the value contains any single leading slash or single trailing slash then both of them will be trimmed. |
+{% endif_version %}
+
+
+{% if_version gte:3.6.x %}
+| `vaults.config.approle_auth_path` | **approle_auth_path** | Defines the path that enabled Approle auth method. If not specified then a default path `approle` will be used. If the value contains any single leading slash or single trailing slash then both of them will be trimmed. |
+| `vaults.config.approle_role_id` | **approle_role_id** | Defines the role id of the Approle in Hashicorp Vault. |
+| `vaults.config.approle_secret_id` | **approle_secret_id** | Defines the secret id of the Approle in Hashicorp Vault. |
+| `vaults.config.approle_secret_id_file` | **approle_secret_id_file** | Defines the path of the file whose content is the secret id value. |
+| `vaults.config.approle_respons_wrapping` | **approle_respons_wrapping** | Defines whether the secret_id configured in vault entity or secret id file is actually a response wrapping token. Default to `false`. When set to true, Kong will try to unwrap the response wrapping token to get the real secret id of the Approle. |
 {% endif_version %}
 
 Common options:
