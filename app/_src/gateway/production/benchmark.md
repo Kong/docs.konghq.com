@@ -95,62 +95,63 @@ The client must also use keep-alive connections. For example, [k6](https://k6.io
 
 **Action:** Ensure custom plugins aren't interfering with performance.  
 
-Writing performant custom plugins requires care, attention, and some knowledge of {{site.base_gateway}} internals.
+Custom plugins can sometimes cause issues with performance. First, you should determine if custom plugins are the source of the performance issues. You can do this by measuring three configuration variations:
 
-Ruling out custom plugins should be your first order of business. You can do so by measuring three configuration variations:
+* Keep the necessary bundled plugins enabled and disable all custom plugins<!--should you do a benchmark between this step and the next?-->
+* Configure appropriate custom plugins
+<!--are we missing the third config variation?-->
 
-* Keep the necessary bundled plugins enabled and disable all custom plugins
-* And then configure appropriate custom plugins
+Sometimes, measuring {{site.base_gateway}}'s baseline performance without any plugins enabled can help you find issues outside {{site.base_gateway}}.
 
-Sometimes, measuring {{site.base_gateway}}'s baseline performance (no plugins) can help spot issues outside {{site.base_gateway}}.
-
-### Cloud-provider gotchas
+### Cloud-provider performance issues
 
 **Action:** Ensure you aren't using burstable instances or hitting bandwidth, TCP connection per unit time, or PPS limits. 
 
-While AWS is mentioned in the following recommendations, the same applies to most cloud providers:
+While AWS is mentioned in the following, the same recommendations apply to most cloud providers:
 
-* Ensure that you are not using burstable instances like T instances in AWS. In this case, the CPU available to applications is variable, leading to noise in the stats. See [Burstable performance instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html).
-* Ensure you are not hitting bandwidth limits, TCP connections per unit time limits, or Packet Per Second (PPS) limits. See [Amazon EC2 instance network bandwidth](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-network-bandwidth.html).
+* Ensure that you are not using burstable instances, like T type instances, in AWS. In this case, the CPU available to applications is variable, which leads to noise in the stats. For more information, see the [Burstable performance instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html) AWS documentation.
+* Ensure you are not hitting bandwidth limits, TCP connections per unit time limits, or Packet Per Second (PPS) limits. For more information, see the [Amazon EC2 instance network bandwidth](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-network-bandwidth.html) AWS documentation.
 
-### Configuration changes during benchmarking
+### Configuration changes during benchmark tests
 
-**Action:** Don't change {{site.base_gateway}} configuration during a test.
+**Action:** Don't change the {{site.base_gateway}} configuration during a benchmark test.
 
-If you change the configuration during a test, {{site.base_gateway}}'s tail latencies can increase sharply. Avoid doing this unless you are measuring {{site.base_gateway}}'s performance under configuration change.
+If you change the configuration during a test, {{site.base_gateway}}'s tail latencies can increase sharply. Avoid doing this unless you are measuring {{site.base_gateway}}'s performance under a configuration change.
 
 ### Large request and response bodies
 
-**Action:** Keep request bodies less than eight KB and response bodies less than 32 KB.
+**Action:** Keep request bodies below eight KB and response bodies below 32 KB.
 
-Most benchmarking setups generally consist of an HTTP request with a small HTTP body and a corresponding HTTP response with a JSON or HTML response body. What is small? A request body of less than 8 kilobytes and a response body of less than 32 kilobytes. If your request or response bodies are larger, {{site.base_gateway}} will buffer the request/response using the disk, which significantly impacts {{site.base_gateway}}'s performance.
+Most benchmarking setups generally consist of an HTTP request with a small HTTP body and a corresponding HTTP response with a JSON or HTML response body. A request body of less than eight KB and a response body of less than 32 KB is considered small. If your request or response bodies are larger, {{site.base_gateway}} will buffer the request and response using the disk, which significantly impacts {{site.base_gateway}}'s performance.
 
 ### Bottlenecks in third-party systems
 
-**Action:**
-
-More often than not, the bottlenecks in {{site.base_gateway}} arise due to bottlenecks in third-party systems used in {{site.base_gateway}}. The following sub sections explain common third-party bottlenecks and how to fix them.
+More often than not, the bottlenecks in {{site.base_gateway}} are caused by bottlenecks in third-party systems used by {{site.base_gateway}}. The following sections explain common third-party bottlenecks and how to fix them.
 
 #### Redis
 
-If any plugin is enabled and Redis is used, ensure Redis is not bottlenecked.
-Redis generally gets bottlenecked by the CPU first, so check CPU utilization first.
-Scale Redis vertically by giving it an additional CPU.
+**Action:** If you use Redis and any plugin is enabled, the CPU can cause a bottleneck. Scale Redis vertically by giving it an additional CPU.
+
+If you use Redis and any plugin is enabled, ensure Redis is not a bottleneck.
+The CPU generally creates a bottleneck for Redis, so check CPU usage first.
+If this is the case, scale Redis vertically by giving it an additional CPU.
 
 #### DNS
 
+**Action:** Increase `dns_stale_ttl` to `300` or up to `86400`.
+
 DNS servers can bottleneck {{site.base_gateway}} since {{site.base_gateway}} depends on DNS to determine where to send the request.
 
-In the case of Kubernetes, DNS TTLs are 5 seconds long and are known to cause problems.
-Increasing `dns_stale_ttl` to `300` or even up to `86400` can help rule out DNS as the issue.
+In the case of Kubernetes, DNS TTLs are five seconds long and can cause problems.
+You can increase `dns_stale_ttl` to `300` or up to `86400` to rule out DNS as the issue.
 
-If DNS servers are the root cause, you will see `coredns` pods bottlenecking on the CPU.
+If DNS servers are the root cause, you will see `coredns` pods creating a bottleneck on the CPU.
 
 ### Blocking I/O for access logs
 
-**Action:**
+**Action:** Disable access logs for high throughput benchmarking tests by setting the `proxy_access_log` configuration parameter to `off`.
 
-{{site.base_gateway}} (and underlying NGINX) are programmed for non-blocking network I/O and avoid blocking disk I/O as much as possible. However, access logs are turned on by default, and if the disk powering a {{site.base_gateway}} node is slow for any reason, it can result in performance loss.
+{{site.base_gateway}} and the underlying NGINX are programmed for non-blocking network I/O and they avoid blocking disk I/O as much as possible. However, access logs are enabled by default, and if the disk powering a {{site.base_gateway}} node is slow for any reason, it can result in performance loss.
 Disable access logs for high throughput benchmarking tests by setting the `proxy_access_log` configuration parameter to `off`.
 
 ### Internal errors in {{site.base_gateway}}
