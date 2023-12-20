@@ -313,7 +313,7 @@ was called multiple times in a request lifecycle.
 - Optimize the performance of querying plugins when accessing the `application_services/application_instances` endpoints. 
   
 #### Kong Manager
-_ Fixed an issue where some services are missing from the Dev Portal's application list in Kong Manager. 
+- Fixed an issue where some services are missing from the Dev Portal's application list in Kong Manager. 
 - Fixed an issue where clicking the spec upload input doesn't trigger file selection.
 
 ## 3.4.3.1
