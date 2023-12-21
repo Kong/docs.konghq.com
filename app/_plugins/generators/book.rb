@@ -2,14 +2,16 @@
 
 module Jekyll
   class Books < Jekyll::Generator
-    priority :medium
+    priority :low
     def generate(site) # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/AbcSize, Metrics/MethodLength
       books = {}
 
       site.pages.each do |page|
-        if page.data.key?('book')
-          (books["#{page.data['edition']}/#{page.data['kong_version']}/#{page.data['book']}"] ||= []).push(page)
-        end
+        next unless page.data.key?('book')
+
+        v = page.data['kong_version']
+        v = 'latest' if page.data['is_latest']
+        (books["#{page.data['edition']}/#{v}/#{page.data['book']}"] ||= []).push(page)
       end
 
       books.each do |name, pages|
