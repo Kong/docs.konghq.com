@@ -71,7 +71,7 @@ Make sure `nginx_worker_processes` is configured correctly:
 
 ### Resource contention
 
-**Action:** Make sure the client (like Apache JMeter or k6), {{site.base_gateway}}, and upstream servers are on different machinces (VM or bare metal) and run on the same local network with low latencies.
+**Action:** Make sure the client (like Apache JMeter or k6), {{site.base_gateway}}, and upstream servers are on different machines (VM or bare metal) and run on the same local network with low latencies.
 
 * Ensure that the client (like Apache JMeter or k6), {{site.base_gateway}}, and the upstream servers run on different machines (VM or bare-metal). If these are all running in a Kubernetes cluster, ensure that the pods for these three systems are scheduled on dedicated nodes. Resource contention (of CPU and network usually) between these can lead to sub-optimal performance of any system. 
 * Ensure the client, {{site.base_gateway}}, and upstream servers run on the same local network with low latencies. If requests between the client and {{site.base_gateway}} or {{site.base_gateway}} and the upstream server traverse the internet, then the results will contain unnecessary noise. 
