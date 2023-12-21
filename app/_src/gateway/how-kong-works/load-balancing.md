@@ -11,7 +11,7 @@ load-balancing. The `upstream` entity has health-check and circuit-breaker
 functionalities, besides the more advanced algorithms like least-connections,
 consistent-hashing, and lowest-latency.
 
-Please read up on the [DNS caveats](#dns-caveats) depending on your infrastructure .
+Refer to the [DNS caveats](#dns-caveats) depending on your infrastructure .
 
 ## DNS-based load balancing
 
@@ -24,7 +24,7 @@ is refreshed. When using a `ttl` of 0, every request will be resolved using its
 own DNS query. Obviously this will have a performance penalty, but the latency of
 updates/changes will be very low.
 
-The (weighted) round-robin algorithm used depends on the DNS record type of the
+The round-robin algorithm used, weighted or not, depends on the DNS record type of the
 hostname.
 
 ### A records
@@ -100,11 +100,11 @@ expected to randomize the record entries.
 
 Advanced load-balancing algorithms are available through the `upstream` entity.
 
-When using these load-balancers, the adding and removing of backend services will
+When using these load balancers, the adding and removing of backend services will
 be handled by Kong, and no DNS updates will be necessary. Kong will act as the
 service registry.
 
-Configuring the load-balancers is done through the `upstream` and `target`
+Configuring the load balancers is done through the `upstream` and `target`
 entities.
 
   - `upstream`: a 'virtual hostname' which can be used in a Service `host`
@@ -154,13 +154,15 @@ __NOTE__: the weight is used for the individual entries, not for the whole!
 Would it resolve to an SRV record, then also the `port` and `weight` fields
 from the DNS record would be picked up, and would overrule the given port `123`
 and `weight=100`.
-__NOTE__: similar to the DNS based load-balancing, only the highest priority
+{:.note}
+> **Note**: similar to the DNS based load-balancing, only the highest priority
 entries (the lowest values) in an SRV record will be used.
 
 The balancer will honor the DNS record's `ttl` setting, upon expiry it queries the
 nameserver and updates the balancer.
 
-__Exception__: When a DNS record has `ttl=0`, the hostname will be added
+{:.important}
+> **Exception**: When a DNS record has `ttl=0`, the hostname will be added
 as a single target, with the specified weight. Upon every proxied request
 to this target it will query the nameserver again.
 
@@ -177,20 +179,20 @@ will randomize DNS records, or only return a small subset of available peers.
 
 The Kong load balancers and the DNS based tools often fight each other. The nameserver will
 provide as little information as possible to force clients to follow its scheme, where
-Kong tries to get all backends to properly set up its load balancers (and health-checks).
+Kong tries to get all backends to properly set up its load balancers and health-checks.
 
-To make sure that Kong can properly do its job, check that;
+In your environment, ensure that:
 
 - the nameserver sets the truncation flag on the responses when it cannot fit all
-  records in the UDP response (this will force Kong to retry using TCP)
-- allow TCP queries on the nameserver.
+  records in the UDP response. This will force Kong to retry using TCP. 
+- TCP queries are allowed on the nameserver.
 
 
 
 ## Balancing algorithms
 
 
-The load-balancers support the following load balancing algorithms:
+The load balancers support the following load-balancing algorithms:
 * `round-robin`
 * `consistent-hashing`
 * `least-connections`
@@ -201,14 +203,15 @@ The load-balancers support the following load balancing algorithms:
 These algorithms are only available when using the `upstream` entity, see
 [Advanced load-balancing](#advanced-load-balancing).
 
-__NOTE__: for all these algorithms it is important to understand how the weights
+{:.note}
+> **Note**: for all these algorithms it is important to understand how the weights
 and ports of the individual backends are being set up. See the [Target](#target)
 paragraph on how the actual weights and ports are being determined based on user
 configuration as well DNS results.
 
 ### Round-Robin
 
-The Round Robin algorithm will be done in a weighted manner. It will be identical
+The round-robin algorithm will be done in a weighted manner. It will be identical
 in results to the DNS based load-balancing, but due to it being an `upstream`
 the additional features for health-checks and circuit-breakers will be available
 in this case.
@@ -218,7 +221,7 @@ in this case.
 - good distribution of requests.
 - fairly static, as only DNS updates or `target` updates can influence the
   distribution of traffic.
-- does not improve cache-hit ratio's.
+- does not improve cache-hit ratios.
 
 
 ### Consistent-Hashing
@@ -234,7 +237,7 @@ optimizations on the backend, since each of the servers only serves a fixed subs
 of the users, and hence can improve its cache-hit-ratio for user related data.
 
 This algorithm implements the [ketama principle](https://github.com/RJ/ketama) to
-maximize hashing stability (minimize consistency loss) upon changes to the list
+maximize hashing stability and minimize consistency loss upon changes to the list
 of known backends.
 
 When using the `consistent-hashing` algorithm, the input for the hash can be either
@@ -265,13 +268,15 @@ Supported hashing attributes are:
 The consistent-hashing balancer is designed to work both with a single node as well
 as in a cluster. When using the hash based algorithm it is important that all nodes
 build the exact same balancer-layout to make sure they all work identical. To do
-this the balancer must be build in a deterministic way (see DNS considerations below).
+this the balancer must be built in a deterministic way. 
+
+When choosing this algorithm, consider the following: 
 
 #### Considerations
 
-- improves backend cache-hit ratio's.
-- requires enough cardinality in the hash-inputs to distribute evenly. Eg. hashing on
-  a header that only has 2 possible values does not make sense.
+- improves backend cache-hit ratios.
+- requires enough cardinality in the hash-inputs to distribute evenly (for example, hashing on
+  a header that only has 2 possible values does not make sense).
 - the cookie based approach will work well for browser based requests, but less so
   for machine-2-machine clients which will often omit the cookie.
 - avoid using hostnames in the balancer as the
@@ -310,19 +315,19 @@ Weights will not be taken into account.
 #### Considerations
 
 - good distribution of traffic provided there is enough base-load to keep the
-  metrics alive (since they are "decaying")
+  metrics alive, since they are "decaying".
 - not suitable for long-lived connections like websockets or server-sent events (SSE)
 - very dynamic since it will constantly optimize.
-- ideally this works best with low variance in latencies. This means mostly similar
-  shaped traffic and even workloads for the backends. For example usage
+- ideally, this works best with low variance in latencies. This means mostly similar
+  shaped traffic and even workloads for the backends. For example, usage
   with a GraphQL backend serving small-fast queries as well big-slow ones will result
   in high variance in the latency metrics, which will skew the metrics.
 - properly set up the backend capacity and ensure proper network latency to prevent
-  resource starvation. For example; 2 servers, one a small capacity close by (low
+  resource starvation. For example, use 2 servers: one a small capacity close by (low
   network latency), the other high capacity far away (high latency). Most traffic
   will be routed to the small one, until its latency starts going up. The latency
   going up however means the small server is most likely suffering from resource
-  starvation. So in this case the algorithm will keep the small server in a constant
+  starvation. So, in this case, the algorithm will keep the small server in a constant
   state of resource starvation, which is most likely not efficient.
 
 {% endif_version %}
