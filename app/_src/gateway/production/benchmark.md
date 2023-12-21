@@ -7,8 +7,8 @@ description: This documentation provides a comprehensive guide for optimizing th
 While {{site.base_gateway}} is optimized out-of-the-box, there are still situations where tweaking some configuration options for {{site.base_gateway}} can substantially increase its performance. You can establish a baseline for performance by performing an initial benchmark of {{site.base_gateway}}, optimizing the `kong.conf` file using the recommendations in this guide, and then conducting several additional benchmark tests.
 
 This guide explains the following:
-* How to establish an initial {{site.base_gateway}} peformance benchmark
-* How to optimize {{site.base_gateway}} peformance before performing additional benchmarks
+* How to establish an initial {{site.base_gateway}} performance benchmark
+* How to optimize {{site.base_gateway}} performance before performing additional benchmarks
 * How to configure your kong.conf for benchmarking
 
 {% if_version eq:3.4.x %}
@@ -26,7 +26,7 @@ Before you conduct a benchmark test, you must make sure the testbed is configure
 Once you have implemented those recommendations, you can begin the benchmark test: 
 
 1. Configure a route with a [Request Termination plugin](/hub/kong-inc/request-termination/) and measure {{site.base_gateway}}'s performance. In this case, {{site.base_gateway}} responds to the request and doesn't send any traffic to the upstream server.
-1. Run this test a few times to spot unexpected bottlenecks. Either {{site.base_gateway}}, the benchmarking client (such as k6 or jmeter), or some other component will likely be an unexpected bottleneck. You should not expect higher performance from {{site.base_gateway}} until you solve these bottlenecks. Proceed to the next step only after this baseline performance is acceptable to you.
+1. Run this test a few times to spot unexpected bottlenecks. Either {{site.base_gateway}}, the benchmarking client (such as k6 or Apache JMeter), or some other component will likely be an unexpected bottleneck. You should not expect higher performance from {{site.base_gateway}} until you solve these bottlenecks. Proceed to the next step only after this baseline performance is acceptable to you.
 1. Once you have established the baseline, configure a route to send traffic to the upstream server without any plugins. This measures {{site.base_gateway}}'s proxy and your upstream server's performance.
 1. Verify that no components are unexpectedly causing a bottleneck before proceeding.
 1. Run the benchmark multiple times to gain confidence in the data. Ensure that the difference between observations isn't high (there's a low standard deviation).
@@ -34,7 +34,7 @@ Once you have implemented those recommendations, you can begin the benchmark tes
 
 Only after the previous steps are completed should you proceed with benchmarking {{site.base_gateway}} with additional configuration. Read the optimization recommendations in the following sections and make any changes to the configuration as needed before performing additional benchmarks.
 
-## Optimize {{site.base_gateway}} peformance
+## Optimize {{site.base_gateway}} performance
 
 The subsections in this section detail recommendations to improve your {{site.base_gateway}} performance for additional benchmark tests. Read each section carefully and make any adjustments to your configuration file.
 
