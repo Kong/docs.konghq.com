@@ -371,6 +371,22 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+## 3.4.3.2
+**Release Date** 2023/12/22
+
+### Features
+#### Plugins
+* [**LDAP Authentication Advanced**](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
+  * The plugin now supports decoding non-standard `asn1` integer and enumerated encoded with redundant leading padding.
+
+### Fixes
+#### Core
+- Optimized the performance of querying plugins when accessing the `application_services/application_instances` endpoints. 
+  
+#### Kong Manager
+- Fixed an issue where some services are missing from the Dev Portal's application list in Kong Manager. 
+- Fixed an issue where clicking the spec upload input doesn't trigger file selection.
+
 ## 3.4.3.1
 **Release Date** 2023/12/15
 
@@ -401,7 +417,6 @@ was called multiple times in a request lifecycle.
  [#7114](https://github.com/Kong/kong/issues/7114)
 * Vault references can be used in DB-less mode in declarative config. 
  [#7483](https://github.com/Kong/kong/issues/7483)
-
 
 #### PDK
 * Fixed a bug related to data interference between requests in the `kong.log.serialize` function.
