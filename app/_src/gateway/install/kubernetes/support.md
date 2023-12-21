@@ -4,4 +4,7 @@ book: kubernetes-install
 chapter: 2
 ---
 
-Works on both k8s and openshift
+{{ site.base_gateway }} runs on all supported versions of Kubernetes and RedHat OpenShift.
+
+{% include_cached md/kic/support.md %}
+
