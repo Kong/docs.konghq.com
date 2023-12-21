@@ -216,8 +216,7 @@ in results to the DNS based load-balancing, but due to it being an `upstream`
 the additional features for health-checks and circuit-breakers will be available
 in this case.
 
-#### Considerations
-
+When choosing this algorithm, consider the following:
 - good distribution of requests.
 - fairly static, as only DNS updates or `target` updates can influence the
   distribution of traffic.
@@ -272,8 +271,6 @@ this the balancer must be built in a deterministic way.
 
 When choosing this algorithm, consider the following: 
 
-#### Considerations
-
 - improves backend cache-hit ratios.
 - requires enough cardinality in the hash-inputs to distribute evenly (for example, hashing on
   a header that only has 2 possible values does not make sense).
@@ -294,8 +291,7 @@ This algorithm keeps track of the number of in-flight requests for each backend.
 The weights are used to calculate "connection-capacity" of a backend. Requests are
 routed towards the backend with the highest spare capacity.
 
-#### Considerations
-
+When choosing this algorithm, consider the following:
 - good distribution of traffic.
 - does not improve cache-hit ratio's.
 - more dynamic since slower backends will have more connections open, and hence
@@ -312,8 +308,7 @@ TCP connect to body response time. Since it is a moving average, the metrics wil
 
 Weights will not be taken into account.
 
-#### Considerations
-
+When choosing this algorithm, consider the following:
 - good distribution of traffic provided there is enough base-load to keep the
   metrics alive, since they are "decaying".
 - not suitable for long-lived connections like websockets or server-sent events (SSE)
