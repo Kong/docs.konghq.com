@@ -156,18 +156,17 @@ Disable access logs for high throughput benchmarking tests by setting the `proxy
 
 ### Internal errors in {{site.base_gateway}}
 
-**Action:**
+**Action:** Make sure that there are no errors in {{site.base_gateway}}’s error log.
 
-Make sure that there are no errors in {{site.base_gateway}}’s error log. Internal errors can highlight issues within {{site.base_gateway}} or a third-party system that {{site.base_gateway}} relies on to proxy traffic.
+Check {{site.base_gateway}}’s error log for internal errors. Internal errors can highlight issues within {{site.base_gateway}} or a third-party system that {{site.base_gateway}} relies on to proxy traffic.
 
 ## Example kong.conf for benchmarking
 
-All parameters referenced above are listed below
+The following `kong.conf` file examples contain all the recommended parameters from the previous section:
 
+### Configuration values
 ```bash
-# kong.conf values
-
-# change this for Kubernetes setup to a number matching CPU limit. Suggested value is 4 or 8
+# change this for Kubernetes setup to a number matching the CPU limit. Suggested value is 4 or 8.
 nginx_worker_processes=auto
 
 upstream_keepalive_max_requests=100000
@@ -176,10 +175,12 @@ nginx_http_keepalive_requests=100000
 proxy_access_log=off
 
 dns_stale_ttl=3600
+```
 
-# kong.conf but in environment variable form
+### Environment variable format
 
-# change this for Kubernetes setup to a number matching CPU limit. Suggested value is 4 or 8
+```bash
+# Change this for Kubernetes setup to a number matching CPU limit. We recommend four or eight.
 KONG_NGINX_WORKER_PROCESSES="auto"
 KONG_UPSTREAM_KEEPALIVE_MAX_REQUESTS="100000"
 KONG_NGINX_HTTP_KEEPALIVE_REQUESTS="100000"
@@ -187,11 +188,13 @@ KONG_NGINX_HTTP_KEEPALIVE_REQUESTS="100000"
 KONG_PROXY_ACCESS_LOG="off"
 
 KONG_DNS_STALE_TTL="3600"
+```
 
-# kong.conf for Kong Gateway's official Helm chart values.yaml
+### Configuration for Helm chart values.yaml
 
-# The value of 4 for worker process is a suggest value. You can use 8 as well.
-# Please make sure to allocate the same amount of CPU and appropriate memory to avoid OOM killing.
+```bash
+# The value of four for worker process is a suggested value. You can use eight as well.
+# Allocate the same amount of CPU and appropriate memory to avoid OOM killer.
 env:
   nginx_worker_processes: "4"
   upstream_keepalive_max_requests: "100000"
@@ -208,7 +211,7 @@ resources:
     memory: ""
 ```
 
-## Conclusion
+## Next steps
 
-Macro/micro benchmarking is not scientific, given it is not usually a good proxy for real-world scenarios. But, it is the best tool that our customers have today. As with performance, always measure, make some changes, and measure again. Maintaining a log of changes will help you figure out the following steps when you get stuck or trace back another approach.
+Now that you've optimized the performance of {{site.base_gateway}}, you can perform additional benchmarks. Always measure, make some changes, and measure again. Maintain a log of changes to help you figure out the next steps when you get stuck or trace back to another approach.
 
