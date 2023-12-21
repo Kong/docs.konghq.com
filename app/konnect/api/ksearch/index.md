@@ -44,11 +44,10 @@ Selectors are used to define the criteria of the search. The following table des
 
 | Selector    | Function     |
 |---------------------------|----------------------|
-| `@{attr.sub_attr}:{value}`| Searches for a fuzzy match for an attribute and its value. |
 | `type:{entity_type}`      | Searches for a specific entity type.  |
-| `labels.{name}:{value}` | Searches for an exact match for a label's value. |
-| `{value}` | Searches for a fuzzy match equivalent to `@*:{value}`. |
-| `{value}*`  | Searches for any value starting with `{value}`. |
+| `{value}` | Searches for a match in `{value}` on any all searchable attributes. |
+| `name:{value}` | Searches for an exact match for a `name`. |
+| `description:{value}` | Searches for an exact match for a `description`. |
 
 ### Reserved Characters
 
@@ -57,7 +56,6 @@ The following table describes the characters with special meanings in the query 
 | Character | Function                                     |
 |-----------|----------------------------------------------|
 | `*`       | Use as a wildcard.                           |
-| `@`       | Indicates that fuzzy matching should be used for the attributes.    |
 | `""`      | Denotes an exact match. This is case insensitive and includes spaces. |
 
 ### Logical Operators
@@ -76,10 +74,12 @@ The following table describes different example search queries:
 
 | Search type | Query | Description |
 | ----------- | ------ | ---------- |
+| Simple | `Dana` | This query searches for entities with the a searchable attribute containing the value "Dana". |
 | Simple | `name:Dana` | This query searches for entities with the name "Dana". |
 | Simple | `name:"Dana H"` | This query searches for entities with the name "Dana H". The quotes around "Dana H" indicate an exact match, including spaces. |
-| Complex | `type:team AND label.department:qa AND name:*_qa` | This query finds teams in the QA department. It combines multiple selectors: `type:team` limits the search to the "teams" entity type, `label.department:qa` exactly matches the "department" label, and `name:*_qa` filters for teams that have a `_qa` suffix. |
-| Complex | `type:user OR type:developer AND name:*_qa` | This query finds users or teams with a `_qa` suffix in the name. It combines multiple `type:` selectors to limit the search to team or developer entity types and `name:*_qa` to filter for teams that have a `_qa` suffix. |
-| Exclude specific system accounts | `type:system_account AND NOT *temp*` | This query finds system accounts that don't contain `temp` in their name and description. The `NOT` logical operator is used to exclude entities. |
-| Wildcards | `name:Project*` | This query uses a wildcard to find entities starting with the name "Project". The `@` symbol indicates a fuzzy match on the name attribute, and the `*` serves as a wildcard. |
-| Fuzzy match across all attributes | `@description:Beta` | This query performs a fuzzy match for the term "Beta" across all attributes. The `@*:` selector allows searching across all available attributes. |
+| Logical | `type:team AND label.department:qa AND name:*_qa` | This query finds teams in the QA department. It combines multiple selectors: `type:team` limits the search to the "teams" entity type, `label.department:qa` exactly matches the "department" label, and `name:*_qa` filters for teams that have a `_qa` suffix. |
+| Logical | `name:*dev* OR name:*qa* OR name:*test` | This query finds any entities that contain `dev` or `qa` or `test` in its name. It combines multiple `name:` selectors to limit the results to entities that match one of these terms. |
+| Exclusion | `type:system_account AND NOT *temp*` | This query finds system accounts that don't contain `temp` in their name and description. The `NOT` logical operator is used to exclude entities. |
+| Exclusion | `type:team AND NOT name:team-blue AND NOT description:*blue*` | This query finds teams that are not named `team-blue` and don't contain "blue" in its description. The `NOT` logical operator is used to exclude entities. |
+| Wildcards | `name:Project*` | This query uses a wildcard to find entities starting with the prefix "Project". The `*` serves as a wildcard. |
+| Wildcards | `description:*_prod` | This query uses a wildcard to find entities ending with the description "_prod". The `*` serves as a wildcard. |
