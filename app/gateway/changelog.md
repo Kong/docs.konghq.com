@@ -420,8 +420,8 @@ was called multiple times in a request lifecycle.
  [#7114](https://github.com/Kong/kong/issues/7114)
 * Vault references can be used in DB-less mode in declarative config. 
  [#7483](https://github.com/Kong/kong/issues/7483)
-* Correctly invalidate caches based on names and IDs for Consumer Groups
-* Eliminate asynchronous timer in syncQuery() to prevent hang risk
+* Correctly invalidate caches based on names and IDs for consumer groups.
+* Eliminated the asynchronous timer in syncQuery() to prevent hang risk.
 * Fixed critical level logs when starting external plugin servers. Those logs cannot be suppressed due to the limitation of OpenResty. We choose to remove the socket availibilty detection feature.
 
 #### Admin API
@@ -434,8 +434,8 @@ was called multiple times in a request lifecycle.
 
 #### Clustering
 
-* Fixed an issue where the dataplane's log serializer output has workspace name under Hybrid mode
-* Fixed an issue where the dataplane hostname is `nil` in Vitals under Hybrid mode
+* Fixed an issue where the dataplane's log serializer output has a workspace name under hybrid mode.
+* Fixed an issue where the dataplane hostname is `nil` in Vitals under hybrid mode.
 
 #### PDK
 * Fixed a bug related to data interference between requests in the `kong.log.serialize` function.
@@ -459,19 +459,19 @@ was called multiple times in a request lifecycle.
   * Fixed a bug where the plugin throws a runtime error when the ref parameter schema isn't dereferenced. [#7543](https://github.com/Kong/kong/issues/7543)
   * Fixed an issue where valid recursive schemas are always rejected.
   * Fixed an issue that the plugin throws a runtime error while validating parameters with AnyType schema and style keyword defined.
-  * Fixed an issue that the nullable keyword did not take effect.
-  * Fixed an issue that the URI component escaped characters were incorrectly unescaped.
+  * Fixed an issue where the nullable keyword did not take effect.
+  * Fixed an issue where the URI component escaped characters were incorrectly unescaped.
   * Fixed an issue where path parameter cannot match non-ascii characters.
 
 * [**OAuth 2.0 Introspection**](/hub/kong-inc/oauth2-introspection/) (`oauth2-introspection`):
   * Marked the `authorization_value` in the `oauth2-introspection` plugin as an encrypted field.
 
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`):
-  * Fixed a bug when the Dev Portal is enabled with OIDC where a 500 error would be thrown when the administrator logins successfully and retrieves the session.
+  * Fixed a issue where an 500 error is thrown when the Dev Portal is enabled with OIDC and the administrator logs in successfully and retrieves the session.
   * Fixed the update time when calculating token expiry.
 
 * [**Rate Limiting**](/hub/kong-inc/rate-limiting/) (`rate-limiting`):
-  * Fixed an issuer where all counters are synced to the same DB at the same rate. [#7314](https://github.com/Kong/kong/issues/7314)
+  * Fixed an issue where all counters are synced to the same DB at the same rate. [#7314](https://github.com/Kong/kong/issues/7314)
 
 * [**TCP Log**](/hub/kong-inc/tcp-log) (`tcp-log`):
   * Fixed an issue of unnecessary handshakes when reusing TLS connection. [#7114](https://github.com/Kong/kong/issues/7114)
