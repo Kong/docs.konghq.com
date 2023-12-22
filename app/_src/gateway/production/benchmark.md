@@ -97,11 +97,12 @@ The client must also use keep-alive connections. For example, [k6](https://k6.io
 
 Custom plugins can sometimes cause issues with performance. First, you should determine if custom plugins are the source of the performance issues. You can do this by measuring three configuration variations:
 
-* Keep the necessary bundled plugins enabled and disable all custom plugins<!--should you do a benchmark between this step and the next?-->
-* Configure appropriate custom plugins
-<!--are we missing the third config variation?-->
+1. Measure {{site.base_gateway}}’s performance without enabling any plugins. This provides a baseline for {{site.base_gateway}}’s performance.
+1. Enable necessary bundled plugins (plugins that come with the product), and then measure {{site.base_gateway}}’s performance.
+1. Next, enable custom plugins (in addition to bundled plugins), and then measure {{site.base_gateway}}’s performance once again.
 
-Sometimes, measuring {{site.base_gateway}}'s baseline performance without any plugins enabled can help you find issues outside {{site.base_gateway}}.
+If {{site.base_gateway}}’s baseline performance is poor, then it's likely that either {{site.base_gateway}}’s configuration needs tuning or external factors are affecting it. For external factors, see the other sections in this guide.
+A large difference between the performance in the second and and third steps indicates that performance problems could be due to custom plugins.
 
 ### Cloud-provider performance issues
 
