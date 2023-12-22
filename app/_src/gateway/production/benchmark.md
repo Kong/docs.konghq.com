@@ -102,7 +102,7 @@ Custom plugins can sometimes cause issues with performance. First, you should de
 1. Next, enable custom plugins (in addition to bundled plugins), and then measure {{site.base_gateway}}’s performance once again.
 
 If {{site.base_gateway}}’s baseline performance is poor, then it's likely that either {{site.base_gateway}}’s configuration needs tuning or external factors are affecting it. For external factors, see the other sections in this guide.
-A large difference between the performance in the second and and third steps indicates that performance problems could be due to custom plugins.
+A large difference between the performance in the second and third steps indicates that performance problems could be due to custom plugins.
 
 ### Cloud-provider performance issues
 
