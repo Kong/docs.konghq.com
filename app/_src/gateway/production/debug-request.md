@@ -74,8 +74,6 @@ Here's an example of the output of the response header:
 
 ```json
 {
-    "request_id": "2effa21fb2d36d31f80ed02635cde86b",
-    "workspace_id": "7b7f79f2-8d52-470c-a307-e76f986041cf",
     "child": {
         "rewrite": {
             "total_time": 0
@@ -84,7 +82,7 @@ Here's an example of the output of the response header:
             "child": {
                 "dns": {
                     "child": {
-                        "example.host": {
+                        "example.com": {
                             "child": {
                                 "resolve": {
                                     "total_time": 0,
@@ -95,28 +93,137 @@ Here's an example of the output of the response header:
                         }
                     },
                     "total_time": 0
+                },
+                "plugins": {
+                    "child": {
+                        "rate-limiting": {
+                            "child": {
+                                "176928d4-0949-47c8-8114-19cac8f86aab": {
+                                    "child": {
+                                        "redis": {
+                                            "total_time": 1,
+                                            "child": {
+                                                "connections": {
+                                                    "child": {
+                                                        "tcp://localhost:6379": {
+                                                            "child": {
+                                                                "connect": {
+                                                                    "child": {
+                                                                        "dns": {
+                                                                            "child": {
+                                                                                "localhost": {
+                                                                                    "child": {
+                                                                                        "resolve": {
+                                                                                            "total_time": 0,
+                                                                                            "cache_hit": true
+                                                                                        }
+                                                                                    },
+                                                                                    "total_time": 0
+                                                                                }
+                                                                            },
+                                                                            "total_time": 0
+                                                                        }
+                                                                    },
+                                                                    "total_time": 0
+                                                                }
+                                                            },
+                                                            "total_time": 0
+                                                        }
+                                                    },
+                                                    "total_time": 0
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "total_time": 2
+                                }
+                            },
+                            "total_time": 2
+                        },
+                        "request-transformer": {
+                            "child": {
+                                "cfd2d953-ad82-453c-9979-b7573f52c226": {
+                                    "total_time": 0
+                                }
+                            },
+                            "total_time": 0
+                        }
+                    },
+                    "total_time": 2
+                }
+            },
+            "total_time": 3
+        },
+        "log": {
+            "child": {
+                "plugins": {
+                    "child": {
+                        "http-log": {
+                            "child": {
+                                "22906259-2963-4c6d-96a1-6d36d21714e3": {
+                                    "total_time": 4
+                                }
+                            },
+                            "total_time": 4
+                        }
+                    },
+                    "total_time": 4
+                }
+            },
+            "total_time": 4
+        },
+        "header_filter": {
+            "child": {
+                "plugins": {
+                    "child": {
+                        "response-transformer": {
+                            "child": {
+                                "dee98076-a58f-490d-8f7b-8523506bf96d": {
+                                    "total_time": 1
+                                }
+                            },
+                            "total_time": 1
+                        }
+                    },
+                    "total_time": 1
                 }
             },
             "total_time": 1
         },
-        "header_filter": {
-            "total_time": 0
+        "body_filter": {
+            "child": {
+                "plugins": {
+                    "child": {
+                        "response-transformer": {
+                            "child": {
+                                "dee98076-a58f-490d-8f7b-8523506bf96d": {
+                                    "total_time": 0
+                                }
+                            },
+                            "total_time": 1
+                        }
+                    },
+                    "total_time": 1
+                }
+            },
+            "total_time": 1
         },
         "balancer": {
             "total_time": 0
         },
         "upstream": {
-            "total_time": 100,
+            "total_time": 152,
             "child": {
                 "time_to_first_byte": {
-                    "total_time": 20
+                    "total_time": 151
                 },
                 "streaming": {
-                    "Total_time": 80
+                    "total_time": 1
                 }
             }
         }
-    }
+    },
+    "request_id": "0208903e83001d216bee5435dbc5ed25"
 }
 ```
 
