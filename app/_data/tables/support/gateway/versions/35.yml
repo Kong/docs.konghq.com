@@ -18,6 +18,10 @@ distributions:
     docker: true
     arm: true
     graviton: true
+  - <<: *debian12
+    docker: true
+    arm: true
+    graviton: true
   - *rhel7
   - <<: *rhel8
     docker: false
