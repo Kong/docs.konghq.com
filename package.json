@@ -24,7 +24,7 @@
     "@rollup/plugin-inject": "^5.0.3",
     "@vitejs/plugin-vue": "^4.2.3",
     "broken-link-checker": "0.7.8",
-    "browser-sync": "2.29.3",
+    "browser-sync": "3.0.2",
     "cheerio": "1.0.0-rc.12",
     "cloudflare": "2.9.1",
     "del": "6.1.1",
