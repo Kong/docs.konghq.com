@@ -12,7 +12,7 @@
   "dependencies": {
     "fast-glob": "^3.2.5",
     "js-yaml": "^4.1.0",
-    "pdf-merger-js": "^4.0.0",
+    "pdf-merger-js": "^5.0.0",
     "puppeteer": "^21.0.0",
     "serve-static": "^1.14.1"
   }
