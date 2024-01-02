@@ -4,11 +4,9 @@ title: Amazon EKS
 
 Amazon EKS is a supported runtime for {{ site.base_gateway }}.
 
-## Configuring Kong
-
 ## Creating an ALB
 
-This guide creates ALBs using the Kubernetes `Ingress` resource. You will need the `aws-load-balancer-controller` [installed in your cluster](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.6/deploy/installation/) before following this guide.
+This guide creates ALBs using the Kubernetes `Ingress` resource. You will need the `aws-load-balancer-controller` [installed in your cluster](https://kubernetes-sigs.github.io/aws-load-balancer-controller/latest/deploy/installation/) before following this guide.
 
 1. Check that your cluster is running the `aws-load-balancer-controller`
 
@@ -16,59 +14,88 @@ This guide creates ALBs using the Kubernetes `Ingress` resource. You will need t
     kubectl get deployments.apps -n kube-system aws-load-balancer-controller
     ```
 
-1. Create an `alb-public-ingress.yaml` file, replacing `example.com` with your domain.
+## Configuring Kong
+
+### Expose the Proxy
+
+1. Update your `values-dp.yaml` file and configure the `proxy.ingress` section:
 
     ```yaml
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-      name: alb-ingress-public
-      namespace: kong
-      annotations:
-        alb.ingress.kubernetes.io/load-balancer-name: kong-alb-public
-        alb.ingress.kubernetes.io/group.name: demo.kong-group
-        alb.ingress.kubernetes.io/target-type: instance
-        alb.ingress.kubernetes.io/scheme: internet-facing
-        alb.ingress.kubernetes.io/healthcheck-path: /healthz
-        alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
-    spec:
-      ingressClassName: alb
-      rules:
-        - host: example.com
-          http:
-            paths:
-              - path: /
-                pathType: Prefix
-                backend:
-                  service:
-                    name: kong-dp-kong-proxy
-                    port:
-                      number: 80
-    {%- if_version gte:3.0.x lte:3.4.x -%}
-        - host: portal.example.com
-          http:
-            paths:
-              - path: /
-                pathType: Prefix
-                backend:
-                  service:
-                    name: kong-portal-kong-portal
-                    port:
-                      number: 8003
-        - host: portalapi.example.com
-          http:
-            paths:
-              - path: /
-                pathType: Prefix
-                backend:
-                  service:
-                    name: kong-portal-kong-portalapi
-                    port:
-                      number: 8004
-   {% endif_version %}
+    proxy:
+      enabled: true
+      type: NodePort
+      ingress:
+        enabled: true
+        hostname: example.com
+        path: /
+        pathType: Prefix
+        ingressClassName: alb
+        annotations:
+          alb.ingress.kubernetes.io/load-balancer-name: kong-alb-public
+          alb.ingress.kubernetes.io/group.name: demo.kong-group
+          alb.ingress.kubernetes.io/target-type: instance
+          alb.ingress.kubernetes.io/scheme: internet-facing
+          alb.ingress.kubernetes.io/healthcheck-path: /healthz
+          alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+      tls:
+        enabled: false
     ```
 
-1. Create an `alb-private-ingress.yaml` file, replacing `example.com` with your domain.
+1. Run `helm upgrade` to update the release.
+
+    ```bash
+    helm upgrade kong-dp kong/kong -n kong --values ./values-dp.yaml
+    ```
+
+{% if_version gte:3.0.x lte:3.4.x %}
+### Expose Developer Portal
+
+1. Update your `values-portal.yaml` file and configure the `portal.ingress` and `portalapi.ingress` sections:
+
+    ```yaml
+    portal:
+      enabled: true
+      ingress:
+        enabled: true
+        hostname: portal.example.com
+        path: /
+        pathType: Prefix
+        ingressClassName: alb
+        annotations:
+          alb.ingress.kubernetes.io/load-balancer-name: kong-alb-public
+          alb.ingress.kubernetes.io/group.name: demo.kong-group
+          alb.ingress.kubernetes.io/target-type: instance
+          alb.ingress.kubernetes.io/scheme: internet-facing
+          alb.ingress.kubernetes.io/healthcheck-path: /healthz
+          alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    portalapi:
+      enabled: true
+      ingress:
+        enabled: true
+        hostname: portalapi.example.com
+        path: /
+        pathType: Prefix
+        ingressClassName: alb
+        annotations:
+          alb.ingress.kubernetes.io/load-balancer-name: kong-alb-public
+          alb.ingress.kubernetes.io/group.name: demo.kong-group
+          alb.ingress.kubernetes.io/target-type: instance
+          alb.ingress.kubernetes.io/scheme: internet-facing
+          alb.ingress.kubernetes.io/healthcheck-path: /healthz
+          alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    ```
+
+1. Run `helm upgrade` to update the release.
+
+    ```bash
+    helm upgrade kong-portal kong/kong -n kong --values ./values-portal.yaml
+    ```
+
+{% endif_version %}
+
+### Expose the Admin API
+
+1. Update your `values-cp.yaml` file and configure the `admin.ingress` section:
 
     {:.note}
     > If you are testing and do not have a VPN set up for your VPC, you may change the
@@ -76,49 +103,63 @@ This guide creates ALBs using the Kubernetes `Ingress` resource. You will need t
     > This is **not recommended for long running deployments**
 
     ```yaml
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-      name: alb-ingress-private
-      namespace: kong
-      annotations:
-        alb.ingress.kubernetes.io/load-balancer-name: kong-alb-private
-        alb.ingress.kubernetes.io/group.name: demo.kong-group-private
-        alb.ingress.kubernetes.io/target-type: instance
-        alb.ingress.kubernetes.io/scheme: internal
-        alb.ingress.kubernetes.io/healthcheck-path: /healthz
-        alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
-    spec:
-      ingressClassName: alb
-      rules:
-        - host: manager.example.com
-          http:
-            paths:
-              - path: /
-                pathType: Prefix
-                backend:
-                  service:
-                    name: kong-manager-kong-manager
-                    port:
-                      number: 8002
-        - host: admin.example.com
-          http:
-            paths:
-              - path: /
-                pathType: Prefix
-                backend:
-                  service:
-                    name: kong-cp-kong-admin
-                    port:
-                      number: 8001
+    admin:
+      enabled: true
+      ingress:
+        enabled: true
+        hostname: admin.example.com
+        path: /
+        pathType: Prefix
+        ingressClassName: alb
+        annotations:
+          alb.ingress.kubernetes.io/load-balancer-name: kong-alb-private
+          alb.ingress.kubernetes.io/group.name: demo.kong-group-private
+          alb.ingress.kubernetes.io/target-type: instance
+          alb.ingress.kubernetes.io/scheme: internal
+          alb.ingress.kubernetes.io/healthcheck-path: /healthz
+          alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     ```
 
-1. Create the ALBs using `kubectl apply`
+1. Run `helm upgrade` to update the release.
 
     ```bash
-    kubectl apply -f alb-public-ingress.yaml
-    kubectl apply -f alb-private-ingress.yaml
+    helm upgrade kong-cp kong/kong -n kong --values ./values-cp.yaml
     ```
+
+### Expose Kong Manager
+
+1. Update your `values-cp.yaml` file and configure the `manager.ingress` section:
+
+    {:.note}
+    > If you are testing and do not have a VPN set up for your VPC, you may change the
+    > `alb.ingress.kubernetes.io/scheme` annotation to `internet-facing` to add a public IP.
+    > This is **not recommended for long running deployments**
+
+    ```yaml
+    manager:
+      enabled: true
+      ingress:
+        enabled: true
+        hostname: manager.example.com
+        path: /
+        pathType: Prefix
+        ingressClassName: alb
+        annotations:
+          alb.ingress.kubernetes.io/load-balancer-name: kong-alb-private
+          alb.ingress.kubernetes.io/group.name: demo.kong-group-private
+          alb.ingress.kubernetes.io/target-type: instance
+          alb.ingress.kubernetes.io/scheme: internal
+          alb.ingress.kubernetes.io/healthcheck-path: /healthz
+          alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    ```
+
+1. Run `helm upgrade` to update the release.
+
+    ```bash
+    helm upgrade kong-cp kong/kong -n kong --values ./values-cp.yaml
+    ```
+
+## Test the Ingress
 
 1. Wait until the `ADDRESS` field is populated for both ingresses.
 

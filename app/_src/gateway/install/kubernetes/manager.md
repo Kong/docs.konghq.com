@@ -37,13 +37,13 @@ Kong Manager is served from the same node as the Admin API. To enable Kong Manag
 
 1. Enable Kong Manager authentication under the `enterprise` key.
 
-```yaml
-  rbac:
-    enabled: true
-    admin_gui_auth: basic-auth
-```
+    ```yaml
+      rbac:
+        enabled: true
+        admin_gui_auth: basic-auth
+    ```
 
-1. Run `helm upgrade` to create the release.
+1. Run `helm upgrade` to update the release.
 
     ```bash
     helm upgrade kong-cp kong/kong -n kong --values ./values-cp.yaml

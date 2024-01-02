@@ -105,7 +105,7 @@ The control plane contains all {{ site.base_gateway }} configuration. The config
       pg_user: kong
       pg_password: demo123
       pg_host: kong-cp-postgresql.kong.svc.cluster.local
-      pg_ssl: "off"
+      pg_ssl: "on"
     
       # Kong Manager password
       password: kong_admin_password
@@ -258,6 +258,9 @@ The {{ site.base_gateway }} data plane is responsible for handling incoming traf
 {{ site.base_gateway }} is now running. To send some test traffic, try the following:
 
 1. Fetch the `LoadBalancer` address for the `kong-dp` service and store it in the `PROXY_IP` environment variable
+
+    {:.note}
+    > You may need to replace `.status.loadBalancer.ingress[0].ip` with `.status.loadBalancer.ingress[0].hostname` if your provider allocates a DNS hostname for load balancers.
 
     ```bash
     PROXY_IP=$(kubectl get service --namespace kong kong-dp-kong-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
