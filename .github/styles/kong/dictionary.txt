@@ -6,6 +6,8 @@ Amberflo
 apiVersion
 Arya
 Autonegotiation
+autoscale
+autoscaling
 APIOps
 Bagdi
 Bintray
