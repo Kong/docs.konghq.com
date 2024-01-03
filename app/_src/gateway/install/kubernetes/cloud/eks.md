@@ -18,6 +18,8 @@ This guide creates ALBs using the Kubernetes `Ingress` resource. You will need t
 
 ### Expose the Proxy
 
+> This ingress requires [{{ site.base_gateway }}](/gateway/{{ page.release }}/install/kubernetes/proxy/) to be installed
+
 1. Update your `values-dp.yaml` file and configure the `proxy.ingress` section:
 
     ```yaml
@@ -49,6 +51,8 @@ This guide creates ALBs using the Kubernetes `Ingress` resource. You will need t
 
 {% if_version gte:3.0.x lte:3.4.x %}
 ### Expose Developer Portal
+
+> This ingress requires [{{ site.base_gateway }} Dev Portal](/gateway/{{ page.release }}/install/kubernetes/portal/) to be installed
 
 1. Update your `values-portal.yaml` file and configure the `portal.ingress` and `portalapi.ingress` sections:
 
@@ -95,6 +99,8 @@ This guide creates ALBs using the Kubernetes `Ingress` resource. You will need t
 
 ### Expose the Admin API
 
+> This ingress requires [{{ site.base_gateway }}](/gateway/{{ page.release }}/install/kubernetes/proxy/) to be installed
+
 1. Update your `values-cp.yaml` file and configure the `admin.ingress` section:
 
     {:.note}
@@ -127,6 +133,8 @@ This guide creates ALBs using the Kubernetes `Ingress` resource. You will need t
     ```
 
 ### Expose Kong Manager
+
+> This ingress requires [Kong Manager](/gateway/{{ page.release }}/install/kubernetes/manager/) to be installed
 
 1. Update your `values-cp.yaml` file and configure the `manager.ingress` section:
 
