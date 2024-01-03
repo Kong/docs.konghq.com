@@ -25,6 +25,8 @@ This guide creates ALBs using the Kubernetes `Ingress` resource. You will need t
     ```yaml
     proxy:
       enabled: true
+      tls:
+        enabled: false
       type: NodePort
       ingress:
         enabled: true
@@ -37,10 +39,9 @@ This guide creates ALBs using the Kubernetes `Ingress` resource. You will need t
           alb.ingress.kubernetes.io/group.name: demo.kong-group
           alb.ingress.kubernetes.io/target-type: instance
           alb.ingress.kubernetes.io/scheme: internet-facing
-          alb.ingress.kubernetes.io/healthcheck-path: /healthz
+          alb.ingress.kubernetes.io/healthcheck-path: /status/ready
+          alb.ingress.kubernetes.io/healthcheck-port: '8100'
           alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
-      tls:
-        enabled: false
     ```
 
 1. Run `helm upgrade` to update the release.
@@ -48,54 +49,6 @@ This guide creates ALBs using the Kubernetes `Ingress` resource. You will need t
     ```bash
     helm upgrade kong-dp kong/kong -n kong --values ./values-dp.yaml
     ```
-
-{% if_version gte:3.0.x lte:3.4.x %}
-### Expose Developer Portal
-
-> This ingress requires [{{ site.base_gateway }} Dev Portal](/gateway/{{ page.release }}/install/kubernetes/portal/) to be installed
-
-1. Update your `values-portal.yaml` file and configure the `portal.ingress` and `portalapi.ingress` sections:
-
-    ```yaml
-    portal:
-      enabled: true
-      ingress:
-        enabled: true
-        hostname: portal.example.com
-        path: /
-        pathType: Prefix
-        ingressClassName: alb
-        annotations:
-          alb.ingress.kubernetes.io/load-balancer-name: kong-alb-public
-          alb.ingress.kubernetes.io/group.name: demo.kong-group
-          alb.ingress.kubernetes.io/target-type: instance
-          alb.ingress.kubernetes.io/scheme: internet-facing
-          alb.ingress.kubernetes.io/healthcheck-path: /healthz
-          alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
-    portalapi:
-      enabled: true
-      ingress:
-        enabled: true
-        hostname: portalapi.example.com
-        path: /
-        pathType: Prefix
-        ingressClassName: alb
-        annotations:
-          alb.ingress.kubernetes.io/load-balancer-name: kong-alb-public
-          alb.ingress.kubernetes.io/group.name: demo.kong-group
-          alb.ingress.kubernetes.io/target-type: instance
-          alb.ingress.kubernetes.io/scheme: internet-facing
-          alb.ingress.kubernetes.io/healthcheck-path: /healthz
-          alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
-    ```
-
-1. Run `helm upgrade` to update the release.
-
-    ```bash
-    helm upgrade kong-portal kong/kong -n kong --values ./values-portal.yaml
-    ```
-
-{% endif_version %}
 
 ### Expose the Admin API
 
@@ -111,6 +64,10 @@ This guide creates ALBs using the Kubernetes `Ingress` resource. You will need t
     ```yaml
     admin:
       enabled: true
+      http:
+        enabled: false
+      tls:
+        enabled: false
       ingress:
         enabled: true
         hostname: admin.example.com
@@ -122,7 +79,7 @@ This guide creates ALBs using the Kubernetes `Ingress` resource. You will need t
           alb.ingress.kubernetes.io/group.name: demo.kong-group-private
           alb.ingress.kubernetes.io/target-type: instance
           alb.ingress.kubernetes.io/scheme: internal
-          alb.ingress.kubernetes.io/healthcheck-path: /healthz
+          alb.ingress.kubernetes.io/healthcheck-path: /
           alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     ```
 
@@ -146,6 +103,8 @@ This guide creates ALBs using the Kubernetes `Ingress` resource. You will need t
     ```yaml
     manager:
       enabled: true
+      tls:
+        enabled: false
       ingress:
         enabled: true
         hostname: manager.example.com
@@ -167,12 +126,74 @@ This guide creates ALBs using the Kubernetes `Ingress` resource. You will need t
     helm upgrade kong-cp kong/kong -n kong --values ./values-cp.yaml
     ```
 
+
+{% if_version gte:3.0.x lte:3.4.x %}
+### Expose Developer Portal
+
+This ingress requires [{{ site.base_gateway }} Dev Portal](/gateway/{{ page.release }}/install/kubernetes/portal/) to be installed
+
+{:.important}
+> Only enable the `portal` and `portalapi` services if you intend to use the Kong Developer Portal.
+
+1. Update your `values-cp.yaml` file and configure the `portal.ingress` and `portalapi.ingress` sections:
+
+    ```yaml
+    portal:
+      enabled: true
+      tls:
+        enabled: false
+      ingress:
+        enabled: true
+        hostname: portal.example.com
+        path: /
+        pathType: Prefix
+        ingressClassName: alb
+        annotations:
+          alb.ingress.kubernetes.io/load-balancer-name: kong-alb-public
+          alb.ingress.kubernetes.io/group.name: demo.kong-group
+          alb.ingress.kubernetes.io/target-type: instance
+          alb.ingress.kubernetes.io/scheme: internet-facing
+          alb.ingress.kubernetes.io/healthcheck-path: /
+          alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    portalapi:
+      enabled: true
+      tls:
+        enabled: false
+      ingress:
+        enabled: true
+        hostname: portalapi.example.com
+        path: /
+        pathType: Prefix
+        ingressClassName: alb
+        annotations:
+          alb.ingress.kubernetes.io/load-balancer-name: kong-alb-public
+          alb.ingress.kubernetes.io/group.name: demo.kong-group
+          alb.ingress.kubernetes.io/target-type: instance
+          alb.ingress.kubernetes.io/scheme: internet-facing
+          alb.ingress.kubernetes.io/healthcheck-path: /developer/meta_fields
+          alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
+    ```
+
+1. Run `helm upgrade` to update the release.
+
+    ```bash
+    helm upgrade kong-cp kong/kong -n kong --values ./values-cp.yaml
+    ```
+
+{% endif_version %}
+
 ## Test the Ingress
 
-1. Wait until the `ADDRESS` field is populated for both ingresses.
+1. Wait until the `ADDRESS` field is populated for all ingresses.
 
     ```bash
     kubectl get ingress -n kong
     ```
 
 1. Update your DNS to point to the ALB addresses
+
+1. Make a request to the admin API endpoint to view your Control Plane configuration.
+
+  ```
+  curl http://admin.example.com/
+  ```

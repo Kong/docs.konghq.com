@@ -29,15 +29,19 @@ Kong Manager is served from the same node as the Admin API. To enable Kong Manag
 1. Set `admin_gui_url`, `admin_gui_api_url` and `admin_gui_session_conf` under the `env` key.
 
     ```yaml
-    admin_gui_url: http://manager.example.com
-    admin_gui_api_url: http://admin.example.com
-    # Change the secret and set cookie_secure to true if using a HTTPS endpoint
-    admin_gui_session_conf: '{"secret":"secret","storage":"kong","cookie_secure":false}'
+    env:
+      admin_gui_url: http://manager.example.com
+      admin_gui_api_url: http://admin.example.com
+      # Change the secret and set cookie_secure to true if using a HTTPS endpoint
+      admin_gui_session_conf: '{"secret":"secret","storage":"kong","cookie_secure":false}'
     ```
+
+1. Replace `example.com` in the configuration with your domain.
 
 1. Enable Kong Manager authentication under the `enterprise` key.
 
     ```yaml
+    enterprise:
       rbac:
         enabled: true
         admin_gui_auth: basic-auth

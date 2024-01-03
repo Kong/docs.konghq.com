@@ -13,29 +13,12 @@ This guide shows how to deploy Kong Developer Portal, which is a self-hosted por
 
 ## Installation
 
-...
+Kong Developer portal is deployed as part of the `kong-cp` deployment as it needs access to the database for the Portal API to manage API specifications and content.
 
-1. Create a `values-portal.yaml` file.
+1. Update the `values-cp.yaml` file to enable Dev Portal, merging the following values in to your existing `values-cp.yaml` file.
 
     ```yaml
-    # Do not use {{ site.kic_product_name }}
-    ingressController:
-      enabled: false
-    
-    image:
-      repository: kong/kong-gateway
-      tag: "3.4"
-    
     env:
-      # Database
-      # CHANGE THESE VALUES
-      database: postgres
-      pg_database: kong
-      pg_user: kong
-      pg_password: demo123
-      pg_host: kong-cp-postgresql.kong.svc.cluster.local
-      pg_ssl: "on"
-
       # Portal configuration
       # CHANGE THESE VALUES
       portal_gui_protocol: http
@@ -43,46 +26,19 @@ This guide shows how to deploy Kong Developer Portal, which is a self-hosted por
       portal_api_url: http://portalapi.example.com
       portal_session_conf: '{"cookie_name": "portal_session", "secret": "PORTAL_SUPER_SECRET", "storage": "kong"}'
     
-    # Enable enterprise functionality
-    enterprise:
-      enabled: true
-      license_secret: kong-enterprise-license
-    
     # Enable Developer Portal
+    enterprise:
+      portal:
+        enabled: true
+    
+    # Enable the portal + portalapi services
+    # Only needed if you didn't enable them when creating ingresses
     portal:
       enabled: true
 
     portalapi:
       enabled: true
-    
-    # These roles will be served by different Helm releases
-    migrations:
-      preUpgrade: false
-      postUpgrade: false
-
-    cluster:
-      enabled: false
-    
-    clustertelemetry:
-      enabled: false
-    
-    proxy:
-      enabled: false
-    
-    admin:
-      enabled: false
-
-    manager:
-      enabled: false
     ```
-
-1. Update the database connection values in `values-portal.yaml`.
-
-    - `env.pg_database`: The database name to use
-    - `env.pg_user`: Your database username
-    - `env.pg_password`: Your database password
-    - `env.pg_host`: The hostname of your Postgres database
-    - `env.pg_ssl`: Use SSL to connect to the database
 
 1. Update the portal hostname values in `values-portal.yaml`.
 
@@ -91,23 +47,26 @@ This guide shows how to deploy Kong Developer Portal, which is a self-hosted por
     - `env.portal_api_url`: The publicly accessible API URL for dev portal data
     - `env.portal_session_conf`: Update the value in `secret`
 
-1. Run `helm install` to create the release.
+1. Ensure that your portal is accessible by creating ingress rules for your cloud provider if you have not already done so.
+
+    * [EKS](/gateway/{{ page.release }}/install/kubernetes/cloud/eks/#expose-developer-portal)
+    * [GKE](/gateway/{{ page.release }}/install/kubernetes/cloud/gke/#expose-developer-portal)
+    * [AKS](/gateway/{{ page.release }}/install/kubernetes/cloud/aks/#expose-developer-portal)
+
+1. Run `helm upgrade` to update the CP release.
 
     ```bash
-    helm install kong-portal kong/kong -n kong --values ./values-portal.yaml
+    helm upgrade kong-cp kong/kong -n kong --values ./values-cp.yaml
     ```
 
-1. Run `kubectl get pods -n kong`. Ensure that the control plane is running as expected.
+## Enable the Dev Portal
 
-    ```
-    NAME                                 READY   STATUS
-    kong-cp-kong-7bb77dfdf9-x28xf        1/1     Running
-    ```
+The Kong Developer Portal is not enabled by default in a new {{ site.base_gateway }} installation. Use the Admin API to enable the portal. Ensure you change the domain and `Kong-Admin-Token` values to match your installation.
+
+```bash
+curl -X PATCH http://admin.example.com/default/workspaces/default -d config.portal=true -H 'Kong-Admin-User: kong_admin' -H 'Kong-Admin-Token: YOUR_PASSWORD'
+```
 
 ## Testing
 
-...
-
-## Next Steps
-
-...
+Visit <http://portal.example.com/> in a browser. You will see a page that says "Built with Kong" with three sample OpenAPI specifications.
