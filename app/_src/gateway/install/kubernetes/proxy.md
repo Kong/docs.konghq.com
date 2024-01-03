@@ -85,7 +85,7 @@ The control plane contains all {{ site.base_gateway }} configuration. The config
 
     image:
       repository: kong/kong-gateway
-      tag: "3.4"
+      tag: "{{ page.versions.ee }}"
 
     # Mount the secret created earlier
     secretVolumes:
@@ -198,7 +198,7 @@ The {{ site.base_gateway }} data plane is responsible for handling incoming traf
 
     image:
       repository: kong/kong-gateway
-      tag: "3.4"
+      tag: "{{ page.versions.ee }}"
 
     # Mount the secret created earlier
     secretVolumes:
