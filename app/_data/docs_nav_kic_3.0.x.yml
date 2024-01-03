@@ -157,6 +157,10 @@ items:
         items:
           - text: Images
             url: /guides/customize/image
+      - text: Custom Ingress Class
+        items:
+          - text: Internal / External Traffic
+            url: /guides/custom-class/internal-external
 
   - title: Plugins
     icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
