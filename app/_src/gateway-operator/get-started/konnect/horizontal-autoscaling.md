@@ -148,4 +148,18 @@ LAST SEEN   TYPE      REASON                         OBJECT                     
 85s         Normal    SuccessfulRescale              horizontalpodautoscaler/horizontal-autoscaling   New size: 2; reason: All metrics below target
 ```
 
+The above will accordingly updated in `DataPlane`'s `status` field:
+
+```bash
+$ kubectl get dataplanes.gateway-operator.konghq.com horizontal-autoscaling -o jsonpath-as-json='{.status}'
+[
+    {
+        ...
+        "readyReplicas": 2,
+        "replicas": 2,
+        ...
+    }
+]
+```
+
 {% endif_version %}
