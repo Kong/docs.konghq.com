@@ -5,8 +5,6 @@ book: kgo-konnect-get-started
 chapter: 4
 ---
 
-{% if_version gte:1.2.0 %}
-
 {{ site.kgo_product_name }} can deploy data planes that will horizontally autoscale based on user defined criteria.
 
 If you'd like to configure your data planes based on their average CPU utilization, this is how you can do it.
@@ -159,5 +157,3 @@ $ kubectl get dataplanes.gateway-operator.konghq.com horizontal-autoscaling -o j
     }
 ]
 ```
-
-{% endif_version %}
