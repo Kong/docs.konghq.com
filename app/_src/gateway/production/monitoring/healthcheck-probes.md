@@ -32,7 +32,7 @@ For each {{site.base_gateway}} node, there are two distinct health checks (also 
 
 These two types of health checks for {{site.base_gateway}} are modeled on how [Kubernetes defines](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) health check probes.
 
-It is strongly recommended that a component (i.e. load balancer) perform the readiness health check before sending traffic. This ensures that a {{site.base_gateway}} node has not only successfully started up but has also finished loading up the configuration and is ready to receive proxy traffic. 
+We strongly recommend that a component (that is, a load balancer) perform the readiness health check before sending traffic. This ensures that a {{site.base_gateway}} node has not only successfully started up but has also finished loading up the configuration and is ready to receive proxy traffic. 
 
 The liveness health check may return a 200 OK before the readiness health check does while it's running but still loading the full configuration. If a component only monitors the liveness probe to decide when to send traffic to {{site.base_gateway}}, then there will be a short period of time where requests will be met with a `404 Not Found` response the {{site.base_gateway}} is ready to proxy traffic. We recommend using the readiness probe over the liveness probe especially in production environments.
 
