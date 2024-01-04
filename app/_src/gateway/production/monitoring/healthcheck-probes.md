@@ -14,7 +14,7 @@ The readiness check endpoint returns a `200 OK` response when {{site.base_gatewa
 
 For each {{site.base_gateway}} node, there are two distinct health checks (also known as "probes"):
 
-* Liveness: This `/status` endpoint responds with a `200 OK` status if Kong is running. The request will fail either with a `500 Internal Server Error` or no response if Kong is not running. You can send a GET request to check the liveness of your {{site.base_gateway}} instance:
+* Liveness: The `/status` endpoint responds with a `200 OK` status if Kong is running. The request will fail either with a `500 Internal Server Error` or no response if Kong is not running. You can send a GET request to check the liveness of your {{site.base_gateway}} instance:
   ```sh
   # Replace `localhost:8100` with the appropriate host and port for
   # your Status API server
