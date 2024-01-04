@@ -1,6 +1,6 @@
 ---
-nav_title: Manual Mappings Between Certificate and Consumer Object
-title: Manual Mappings Between Certificate and Consumer Object
+nav_title: Manual Mappings Between Certificate and Consumer Objects
+title: Manual Mappings Between Certificate and Consumer Objects
 ---
 Sometimes, you might not want to use automatic consumer lookup, or you have certificates
 that contain a field value not directly associated with consumer objects. In those
