@@ -39,6 +39,6 @@ While every environment is unique and can have its own set of circumstances, the
 * Configure the load balancer or other components immediately fronting {{site.base_gateway}} to use the [readiness probe](/gateway/latest/production/monitoring/healthcheck-probes/).
 * In the case of Kubernetes, configure both [liveness and readiness probes](/gateway/latest/production/monitoring/healthcheck-probes/) for {{site.base_gateway}}, ensuring a load balancer uses the correct [Kubernetes endpoints](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to forward traffic to {{site.base_gateway}} pods. 
 Don't expect the {{site.base_gateway}} readiness endpoint to respond with a `200 OK` immediately after startup, as it always takes a short time for {{site.base_gateway}} to load the first configuration and build all the necessary data structures before it can successfully proxy traffic.
-* Set up alerting based on the response to the health checks to be proactive in case of an incident
+* Set up alerting based on responses to the health checks to be proactive in case of an incident.
 * Do not use the `kong health` CLI command to validate the overall health of the {{site.base_gateway}}, as this command only ensures that the Kong process is running and doesn't ensure the ability or validity of the configuration
 * Ensure that all nodes in a cluster are monitored. Checking only one data plane in a cluster, for example, cannot offer reliable insight into the health of other data plane nodes in the same cluster.
