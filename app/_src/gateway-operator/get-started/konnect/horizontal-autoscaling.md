@@ -82,10 +82,8 @@ spec:
           # Konnect related environment variables, volumes etc...
 ```
 
-> TODO: add CRD reference section link when [KGO#1281][autoscaling_pr] is merged
-> and CRD reference docs are updated ( in reference/custom-resources/1.2.x.md which is yet to be created).
-
-[autoscaling_pr]: https://github.com/Kong/gateway-operator/pull/1281
+{:.note}
+> Please consult the [CRD reference]( /gateway-operator/{{ page.release }}/reference/custom-resources/#scaling ) for all scaling options.
 
 When the manifest above is applied you should be able to observe a `DataPlane` resource being created,
 which will in turn trigger the creation of 2 `Pod`s, running {{site.base_gateway}} (initially)
