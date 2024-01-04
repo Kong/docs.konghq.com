@@ -22,7 +22,7 @@ For each {{site.base_gateway}} node, there are two distinct health checks (also 
   curl -i http://localhost:8100/status
   ```
 
-* Readiness: This `/status/ready` endpoint responds with a `200 OK` status if Kong has successfully loaded a valid configuration and is ready to proxy traffic. The request will fail either with a `500 Internal Server Error` or no response if Kong is not ready to proxy traffic yet. You can send a GET request to check the readiness of your {{site.base_gateway}} instance:
+* Readiness: The `/status/ready` endpoint responds with a `200 OK` status if Kong has successfully loaded a valid configuration and is ready to proxy traffic. The request will fail either with a `500 Internal Server Error` or no response if Kong is not ready to proxy traffic yet. You can send a GET request to check the readiness of your {{site.base_gateway}} instance:
   ```sh
   # Replace `localhost:8100` with the appropriate host and port for
   # your Status API server
