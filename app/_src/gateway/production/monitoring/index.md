@@ -26,16 +26,18 @@ multiple solutions:
 Closely related to monitoring is tracing. See the {{site.base_gateway}} [Tracing Reference](/gateway/latest/production/tracing/)
 for details about instrumenting your API gateway.
 
-# What is health checking
+# What is health checking?
 
-Health checking is an activity performed by infrastructure components (i.e. load balancers) to determine the health of a {{site.base_gateway}} node. This helps determine if a {{site.base_gateway}} node is operational and ready to process incoming requests. These health checks are also referred to as "probes" and are explained further in the [Readiness Check](/gateway/latest/production/monitoring/healthcheck-probes/) page.
+Health checking is an activity performed by infrastructure components (that is, load balancers) to monitor the health of a {{site.base_gateway}} node.
+This helps determine if a {{site.base_gateway}} node is operational and ready to process incoming requests. 
+You can learn more about health checks (also known as "probes") in the [Readiness Check](/gateway/latest/production/monitoring/healthcheck-probes/) guide.
 
 # Best practices
 
-While every environment is unique and can have its own set of circumstances, the following are general recommendations from Kong that are encouraged to be followed whenever possible.
+While every environment is unique and can have its own set of circumstances, we encourage you to follow these general recommendations:
 
-* Enable the [`status_listen`](/gateway/latest/reference/configuration/#status_listen) configuration parameter
-* Always health-check {{site.base_gateway}} and track the health in monitoring dashboards such as Datadog, Grafana, AppDynamics, etc.
+* Enable the [`status_listen`](/gateway/latest/reference/configuration/#status_listen) configuration parameter.
+* Always health check {{site.base_gateway}} and track the health in monitoring dashboards such as Datadog, Grafana, AppDynamics, and so on.
 * Configure the load balancer or other components immediately fronting {{site.base_gateway}} to use the [readiness probe](/gateway/latest/production/monitoring/healthcheck-probes/).
 * In the case of Kubernetes, configure both [liveness and readiness probes](/gateway/latest/production/monitoring/healthcheck-probes/) for {{site.base_gateway}}, ensuring a load balancer uses the correct [Kubernetes endpoints](https://kubernetes.io/docs/concepts/services-networking/service/#endpoints) to forward traffic to {{site.base_gateway}} pods. 
 Don't expect the {{site.base_gateway}} readiness endpoint to respond with a `200 OK` immediately after startup, as it always takes a short time for {{site.base_gateway}} to load the first configuration and build all the necessary data structures before it can successfully proxy traffic.
