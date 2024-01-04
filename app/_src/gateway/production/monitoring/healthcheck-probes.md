@@ -10,7 +10,7 @@ The readiness check endpoint returns a `200 OK` response when {{site.base_gatewa
 {:.note}
 > **Note:**  The readiness endpoint does not return detailed information about the node status.
 
-## Types of Health Checks
+## Types of health checks
 
 For each {{site.base_gateway}} node, there exist two distinct health checks (also known as "probes"):
 
