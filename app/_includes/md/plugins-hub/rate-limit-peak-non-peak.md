@@ -1,16 +1,16 @@
 
-You can set the rate limit based on peak or non-peak time using the [Pre-function](/hub/kong-inc/pre-function/) and the [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugins together.
+You can set the rate limit based on peak or non-peak time by using the [Pre-function](/hub/kong-inc/pre-function/) and the [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugins together.
 
-This example uses two {{site.base_gateway}} routes: one to handle peak traffic, and one to handle off-peak traffic. Each route has a different rate limit, which gets applied by the Rate Limiting Advanced plugin.
-
+This example creates two {{site.base_gateway}} routes: one to handle peak traffic, and one to handle off-peak traffic. 
+Each route has a different rate limit, which gets applied by the Rate Limiting Advanced plugin.
 The Pre-function plugin runs a Lua function in the rewrite phase, sending traffic to one of these {{site.base_gateway}} routes based on your defined peak and off-peak settings.
-
-The Pre-function plugin can be applied to individual services, routes, or globally. In the following example, we apply it to a service.
 
 ## Configure rate limit for peak and non-peak times
 
-The names and values of any of these entities and attributes (service, route, header name, header value, and so on) are entirely up to you. 
-They just need to match the routing rules you later set up using the Pre-function plugin.
+Set up two routes and apply separate rate limits to each one using the Rate Limiting Advanced plugin.
+
+The names and values of any entities and attributes (service, route, header name, header value, and so on) 
+in the following examples are entirely up to you.
 
 1. Create a service named `httpbin`:
 
@@ -20,7 +20,7 @@ They just need to match the routing rules you later set up using the Pre-functio
       --data "url=http://httpbin.org/anything"
     ```
 
-1. Create the first route to handle peak traffic. 
+1. Create a route to handle peak traffic.
 Name the route `peak`, attach it to the service `httpbin`, and set a header with the name `X-Peak` and the value `true`:
  
     ```bash
@@ -40,7 +40,7 @@ This example sets the limit to 10 requests per 30 second window:
       --data "config.window_size=30"
     ```
 
-1. Create the second route to handle off-peak traffic. 
+1. Create another route to handle off-peak traffic. 
 Name the route `off-peak`, attach it to the service `httpbin`, and set a header with the name `X-Off-Peak` and the value `true`:
 
     ```bash
@@ -62,7 +62,7 @@ This example sets the limit to 5 requests per 30 second window:
 
 ## Apply the Pre-function plugin to route peak and off-peak traffic
 
-1. Create a `.lua` file with the following code:
+1. Create a `ratelimit.lua` file with the following code:
 
     ```lua
     local hour = os.date("*t").hour 
@@ -74,11 +74,12 @@ This example sets the limit to 5 requests per 30 second window:
     end
     ```
 
+    This function determines the time of day based on the operating system's time, 
+    then sets a request header based on the determined time.
+
     Set the hours based on your own preferred peak times.
 
-    For the purposes of this example, the file is named `ratelimit.lua`.
-
-1. Apply the Pre-function plugin globally and run the plugin in the rewrite phase:
+1. Apply the Pre-function plugin globally and run it in the rewrite phase:
    
     ```bash
     curl -i -X POST http://localhost:8001/plugins \
