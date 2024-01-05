@@ -4,12 +4,13 @@ content_type: reference
 description: This documentation provides a comprehensive guide for optimizing the performance of Kong Gateway by establishing a benchmark.
 ---
 
-While {{site.base_gateway}} is optimized out-of-the-box, there are still situations where tweaking some configuration options for {{site.base_gateway}} can substantially increase its performance. You can establish a baseline for performance by performing an initial benchmark of {{site.base_gateway}}, optimizing the `kong.conf` file using the recommendations in this guide, and then conducting several additional benchmark tests.
+While {{site.base_gateway}} is optimized out-of-the-box, there are still situations where tweaking some configuration options for {{site.base_gateway}} can substantially increase its performance. 
+You can establish a baseline for performance by running an initial benchmark of {{site.base_gateway}}, optimizing the `kong.conf` file using the recommendations in this guide, and then conducting several additional benchmark tests.
 
 This guide explains the following:
 * How to establish an initial {{site.base_gateway}} performance benchmark
 * How to optimize {{site.base_gateway}} performance before performing additional benchmarks
-* How to configure your kong.conf for benchmarking
+* How to configure your `kong.conf` for benchmarking
 
 {% if_version eq:3.4.x %}
 ## Prerequisites
@@ -42,21 +43,30 @@ The subsections in this section detail recommendations to improve your {{site.ba
 
 **Action:** Increase the `ulimit` if it's less than `16384`. 
 
-While {{site.base_gateway}} can use as many resources as it can get from the system, the Operating System (OS) limits it in the number of connections it can open with the upstream (or any other) server or accept from the client. The number of open connections in {{site.base_gateway}} defaults to the `ulimit` with an upper bound of 16384. This means that if the `ulimit` is unlimited or a value higher than 16384, {{site.base_gateway}} will limit itself to 16384. You can shell into {{site.base_gateway}}’s container or VM and run `ulimit -n` to check the system’s `ulimit`. You must shell into the container if {{site.base_gateway}} is running inside a container on top of a VM. If the value of `ulimit` is less than 16384, increase it. Also check and set the appropriate `ulimit` in the client and upstream server since a connection bottleneck in these systems leads to suboptimal performance. 
+While {{site.base_gateway}} can use as many resources as it can get from the system, the operating system (OS) limits the number of connections {{site.base_gateway}} can open with the upstream (or any other) server, or that it can accept from the client. 
+The number of open connections in {{site.base_gateway}} defaults to the `ulimit` with an upper bound of 16384. 
+This means that if the `ulimit` is unlimited or is a value higher than 16384, {{site.base_gateway}} limits itself to 16384. 
 
-### Increase connection re-use 
+You can shell into {{site.base_gateway}}’s container or VM and run `ulimit -n` to check the system’s `ulimit`.  If {{site.base_gateway}} is running inside a container on top of a VM, you must shell into the container. If the value of `ulimit` is less than 16384, increase it. 
+Also check and set the appropriate `ulimit` in the client and upstream server, since a connection bottleneck in these systems leads to suboptimal performance.
+
+### Increase connection reuse
 
 **Action:** Configure `upstream_keepalive_max_requests = 100000` and `nginx_http_keepalive_requests = 100000`.
 
-In high-throughput scenarios with 10,000 or more RPS, the overhead of setting up TCP and TLS connections or insufficient connections can result in under utilization of network bandwidth or the upstream server.
-To increase connection re-use, you can increase `upstream_keepalive_max_requests` and `nginx_http_keepalive_requests` to `100000` or up to `500000`. 
+In high throughput scenarios with 10 000 or more RPS, the overhead of setting up TCP and TLS connections or insufficient connections can result in under utilization of network bandwidth or the upstream server.
+To increase connection re-use, you can increase `upstream_keepalive_max_requests` and `nginx_http_keepalive_requests` to `100000`, or all the way up to `500000`.
 
 ### Avoid auto-scaling
 
 **Action:** Ensure that {{site.base_gateway}} is not scaled in/out (horizontal) or up/down (vertical).
 
-During a benchmarking run, ensure that {{site.base_gateway}} is not scaled in/out (horizontal) or up/down (vertical). In Kubernetes, this is commonly done using a Horizontal or Vertical Pod autoscaler. Autoscalers interfere with statistics in a benchmark and introduce unnecessary noise.
-Scale {{site.base_gateway}} out before testing the benchmark to avoid auto-scaling during the benchmark. Monitor the number of {{site.base_gateway}} nodes to ensure new nodes are spawned during the benchmark and existing nodes are not replaced.
+During a benchmarking run, ensure that {{site.base_gateway}} is not scaled in/out (horizontal) or up/down (vertical). 
+In Kubernetes, this is commonly done using a Horizontal or Vertical Pod autoscaler. 
+Autoscalers interfere with statistics in a benchmark and introduce unnecessary noise.
+
+Scale {{site.base_gateway}} out before testing the benchmark to avoid auto-scaling during the benchmark. 
+Monitor the number of {{site.base_gateway}} nodes to ensure new nodes are spawned during the benchmark and existing nodes are not replaced.
 
 ### Use multiple cores effectively
 
@@ -66,14 +76,16 @@ Make sure `nginx_worker_processes` is configured correctly:
 
 * On most VM setups, set this to `auto`. This is the default setting. This ensures that NGINX spawns one worker process for each CPU core, which is desired.
 * We recommend setting this explicitly in Kubernetes. Ensure CPU requests and limits for {{site.base_gateway}} match the number of workers configured in {{site.base_gateway}}. For example, if you configure `nginx_worker_processes=4`, you must request 4 CPUs in your pod spec.
+  
   If you run {{site.base_gateway}} pods on Kubernetes worker nodes with n CPUs, allocate n-2 or n-1 to {{site.base_gateway}}, and configure a worker process count equal to this number. This ensures that any configured daemons and Kubernetes processes, like kubelet, don't contend for resources with {{site.base_gateway}}.  
+  
   Each additional worker uses additional memory, so you must ensure that {{site.base_gateway}} isn't triggering the Linux Out-of-Memory Killer.
 
 ### Resource contention
 
 **Action:** Make sure the client (like Apache JMeter or k6), {{site.base_gateway}}, and upstream servers are on different machines (VM or bare metal) and run on the same local network with low latencies.
 
-* Ensure that the client (like Apache JMeter or k6), {{site.base_gateway}}, and the upstream servers run on different machines (VM or bare-metal). If these are all running in a Kubernetes cluster, ensure that the pods for these three systems are scheduled on dedicated nodes. Resource contention (of CPU and network usually) between these can lead to sub-optimal performance of any system. 
+* Ensure that the client (like Apache JMeter or k6), {{site.base_gateway}}, and the upstream servers run on different machines (VM or bare-metal). If these are all running in a Kubernetes cluster, ensure that the pods for these three systems are scheduled on dedicated nodes. Resource contention (usually CPU and network) between these can lead to suboptimal performance of any system. 
 * Ensure the client, {{site.base_gateway}}, and upstream servers run on the same local network with low latencies. If requests between the client and {{site.base_gateway}} or {{site.base_gateway}} and the upstream server traverse the internet, then the results will contain unnecessary noise. 
 
 ### Upstream servers maxing out
@@ -82,6 +94,7 @@ Make sure `nginx_worker_processes` is configured correctly:
 
 You can verify that the upstream server isn't maxing out by checking the CPU and memory usage of the upstream server.
 If you deploy additional {{site.base_gateway}} nodes and the throughput or error rate remains the same, the upstream server or a system other than {{site.base_gateway}} is likely the bottleneck.
+
 You must also ensure that upstream servers are not autoscaled.
 
 ### Client maxing out
@@ -89,7 +102,9 @@ You must also ensure that upstream servers are not autoscaled.
 **Action:** The client must use keep-alive connections.
 
 Sometimes, the clients (such as k6 and Apache JMeter) max themselves out. To tune them, you need to understand the client. Increasing the CPU, threads, and connections on clients results in higher resource utilization and throughput.
-The client must also use keep-alive connections. For example, [k6](https://k6.io/docs/using-k6/k6-options/reference/#no-connection-reuse) enables keep-alive by default, and [HTTPClient4](https://hc.apache.org/httpcomponents-client-4.5.x/index.html) implementation in Apache JMeter enables keep-alive by default. Please verify that this is set up appropriately for your test setup.
+
+The client must also use keep-alive connections. For example, [k6](https://k6.io/docs/using-k6/k6-options/reference/#no-connection-reuse) and the [HTTPClient4](https://hc.apache.org/httpcomponents-client-4.5.x/index.html) implementation in Apache JMeter both enable keep-alive by default. 
+Verify that this is set up appropriately for your test setup.
 
 ### Custom plugins
 
@@ -121,9 +136,10 @@ If you change the configuration during a test, {{site.base_gateway}}'s tail late
 
 ### Large request and response bodies
 
-**Action:** Keep request bodies below eight KB and response bodies below 32 KB.
+**Action:** Keep request bodies below 8 KB and response bodies below 32 KB.
 
-Most benchmarking setups generally consist of an HTTP request with a small HTTP body and a corresponding HTTP response with a JSON or HTML response body. A request body of less than eight KB and a response body of less than 32 KB is considered small. If your request or response bodies are larger, {{site.base_gateway}} will buffer the request and response using the disk, which significantly impacts {{site.base_gateway}}'s performance.
+Most benchmarking setups generally consist of an HTTP request with a small HTTP body and a corresponding HTTP response with a JSON or HTML response body. 
+A request body of less than 8 KB and a response body of less than 32 KB is considered small. If your request or response bodies are larger, {{site.base_gateway}} will buffer the request and response using the disk, which significantly impacts {{site.base_gateway}}'s performance.
 
 ### Bottlenecks in third-party systems
 
