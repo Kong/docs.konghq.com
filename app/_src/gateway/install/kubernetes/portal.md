@@ -30,14 +30,6 @@ Kong Developer portal is deployed as part of the `kong-cp` deployment as it need
     enterprise:
       portal:
         enabled: true
-    
-    # Enable the portal + portalapi services
-    # Only needed if you didn't enable them when creating ingresses
-    portal:
-      enabled: true
-
-    portalapi:
-      enabled: true
     ```
 
 1. Update the portal hostname values in `values-cp.yaml`.

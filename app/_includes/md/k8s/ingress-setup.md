@@ -19,6 +19,10 @@
 1. Fetch the `Ingress` IP address and update your DNS records to point at the Ingress address.
 
     ```bash
+    # Cloud providers
     kubectl get ingress -n kong
+
+    # or when using {{ site.kic_product_name }}
+    echo $PROXY_IP
     ```
 {% endunless %}
