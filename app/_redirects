@@ -97,6 +97,8 @@
 /gateway/:version/kong-plugins/grpc/     /hub/kong-inc/grpc-gateway/
 /gateway/:version/kong-plugins/configuring-a-grpc-service/    /gateway/:version/production/configuring-a-grpc-service/
 /gateway/:version/kong-plugins/algorithms/rate-limiting/      /gateway/:version/reference/rate-limiting/
+/gateway/:version/install/kubernetes/kubectl/  /gateway/:version/install/kubernetes/
+/gateway/:version/install/kubernetes/helm-quickstart/  /gateway/:version/install/kubernetes/
 
 # CONTRIBUTING & STYLE GUIDE
 /contributing/plugin-docs/               /contributing/contribution-templates/

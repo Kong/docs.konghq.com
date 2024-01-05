@@ -40,20 +40,14 @@ features:
         icon: /assets/images/icons/third-party/amazon-linux.png
   - name: "Kubernetes"
     items:
-      - name: "Kubernetes (YAML Manifests)"
-        url: /gateway/VERSION/install/kubernetes/kubectl/
-        oss: true
-        enterprise: true
-        support: false
-        icon: /assets/images/icons/third-party/kubernetes-logo.png
-      - name: "Kubernetes (Helm)"
-        url: /gateway/VERSION/install/kubernetes/helm-quickstart/
+      - name: "Kubernetes"
+        url: /gateway/VERSION/install/kubernetes/
         oss: true
         enterprise: true
         support: true
-        icon: /assets/images/icons/third-party/helm-icon-color.svg
+        icon: /assets/images/icons/third-party/kubernetes-logo.png
       - name: "OpenShift"
-        url: /gateway/VERSION/install/kubernetes/openshift/
+        url: /gateway/VERSION/install/kubernetes/
         oss: true
         enterprise: true
         support: true
