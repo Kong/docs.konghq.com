@@ -206,8 +206,8 @@ items:
             url: /production/monitoring/statsd
           - text: Datadog
             url: /production/monitoring/datadog
-          - text: Readiness Check
-            url: /production/monitoring/readiness-check
+          - text: Health Check Probes
+            url: /production/monitoring/healthcheck-probes
       - text: Tracing
         items:
           - text: Overview
