@@ -40,24 +40,16 @@ Kong Developer portal is deployed as part of the `kong-cp` deployment as it need
       enabled: true
     ```
 
-1. Update the portal hostname values in `values-portal.yaml`.
+1. Update the portal hostname values in `values-cp.yaml`.
 
     - `env.portal_gui_protocol`: The protocol to use for the GUI (http or https)
     - `env.portal_gui_host`: The hostname that you'll use to reach the portal
     - `env.portal_api_url`: The publicly accessible API URL for dev portal data
     - `env.portal_session_conf`: Update the value in `secret`
 
-1. Ensure that your portal is accessible by creating ingress rules for your cloud provider if you have not already done so.
+{% include md/k8s/ingress-setup.md service="portal" release="cp" type="private" skip_release=true %}
 
-    * [EKS](/gateway/{{ page.release }}/install/kubernetes/cloud/eks/#expose-developer-portal)
-    * [GKE](/gateway/{{ page.release }}/install/kubernetes/cloud/gke/#expose-developer-portal)
-    * [AKS](/gateway/{{ page.release }}/install/kubernetes/cloud/aks/#expose-developer-portal)
-
-1. Run `helm upgrade` to update the CP release.
-
-    ```bash
-    helm upgrade kong-cp kong/kong -n kong --values ./values-cp.yaml
-    ```
+{% include md/k8s/ingress-setup.md service="portalapi" release="cp" type="private" %}
 
 ## Enable the Dev Portal
 

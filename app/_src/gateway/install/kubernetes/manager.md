@@ -9,13 +9,6 @@ Kong Manager is the graphical user interface (GUI) for Kong Gateway. It uses the
 {:.important}
 > Kong's Admin API must be accessible over HTTP from your local machine to use Kong Manager
 
-Kong Manager calls the Kong Admin API from your local browser. To configure public access, see the following guides: 
-
-* [EKS](/gateway/{{ page.release }}/install/kubernetes/cloud/eks/)
-* [GKE](/gateway/{{ page.release }}/install/kubernetes/cloud/gke/)
-* [AKS](/gateway/{{ page.release }}/install/kubernetes/cloud/aks/)
-
-If you are testing in a non-production environment, you can make the `kong-cp-kong-admin` service a `LoadBalancer` to provide public access instead.
 
 ## Prerequisites
 
@@ -47,11 +40,7 @@ Kong Manager is served from the same node as the Admin API. To enable Kong Manag
         admin_gui_auth: basic-auth
     ```
 
-1. Run `helm upgrade` to update the release.
-
-    ```bash
-    helm upgrade kong-cp kong/kong -n kong --values ./values-cp.yaml
-    ```
+{% include md/k8s/ingress-setup.md service="manager" release="cp" type="private" %}
 
 ## Testing
 
