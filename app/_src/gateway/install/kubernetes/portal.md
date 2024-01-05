@@ -47,9 +47,9 @@ Kong Developer portal is deployed as part of the `kong-cp` deployment as it need
     - `env.portal_api_url`: The publicly accessible API URL for dev portal data
     - `env.portal_session_conf`: Update the value in `secret`
 
-{% include md/k8s/ingress-setup.md service="portal" release="cp" type="private" skip_release=true %}
+{% include md/k8s/ingress-setup.md service="portal" release="cp" type="private" skip_release=true skip_ingress_controller_install=true %}
 
-{% include md/k8s/ingress-setup.md service="portalapi" release="cp" type="private" %}
+{% include md/k8s/ingress-setup.md service="portalapi" release="cp" type="private" skip_ingress_controller_install=true %}
 
 ## Enable the Dev Portal
 

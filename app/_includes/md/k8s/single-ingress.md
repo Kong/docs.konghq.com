@@ -9,6 +9,10 @@
     enabled: true
   tls:
     enabled: false
+  {% if include.provider == "gke" -%}
+  annotations:
+    beta.cloud.google.com/backend-config='{"default":"kong-hc"}'
+  {%- endif %}
   ingress:
     enabled: true
     hostname: {{ include.service }}.example.com

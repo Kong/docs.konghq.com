@@ -1,0 +1,1 @@
+Set `ingressController.enabled` to `true` in your `values-{{ include.release }}.yaml` file to enable {{ site.kic_product_name }}.

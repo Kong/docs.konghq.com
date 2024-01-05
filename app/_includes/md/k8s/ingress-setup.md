@@ -1,5 +1,11 @@
+{% unless include.skip_ingress_controller_install %}
+1. Configure your Ingress Controller:
 
-1. Configure the `{{ include.service }}.ingress` section:
+  {% include md/k8s/controller-install-tabs.md indent=true service=include.service release=include.release %}
+
+{% endunless %}
+
+1. Configure the `{{ include.service }}` section in `values-{{ include.release }}.yaml`:
 
   {% include md/k8s/ingress-tabs.md indent=true service=include.service type=include.type %}
 
