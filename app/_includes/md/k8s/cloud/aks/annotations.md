@@ -1,6 +1,6 @@
 {%- assign private = "false" -%}
 {%- if include.type == "private" -%}
- {%- assign private = "false" -%}
+ {%- assign private = "true" -%}
 {%- endif %}
     ingressClassName: azure-application-gateway
     annotations:
