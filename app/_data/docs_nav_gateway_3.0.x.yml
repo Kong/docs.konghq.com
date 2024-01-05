@@ -103,14 +103,6 @@ items:
                 url: /install/kubernetes/manager/
               - text: Install Developer Portal
                 url: /install/kubernetes/portal/
-              - text: Cloud
-                items:
-                  - text: EKS
-                    url: /install/kubernetes/cloud/eks/
-                  - text: AKS
-                    url: /install/kubernetes/cloud/aks/
-                  - text: GKE
-                    url: /install/kubernetes/cloud/gke/
           - text: Docker
             items:
               - text: Using docker run

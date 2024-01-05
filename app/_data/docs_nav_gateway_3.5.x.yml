@@ -116,14 +116,6 @@ items:
                 url: /install/kubernetes/proxy/
               - text: Install Kong Manager
                 url: /install/kubernetes/manager/
-              - text: Cloud
-                items:
-                  - text: EKS
-                    url: /install/kubernetes/cloud/eks/
-                  - text: AKS
-                    url: /install/kubernetes/cloud/aks/
-                  - text: GKE
-                    url: /install/kubernetes/cloud/gke/
           - text: Docker
             items:
               - text: Using docker run
