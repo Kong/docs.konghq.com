@@ -26,13 +26,13 @@ multiple solutions:
 Closely related to monitoring is tracing. See the {{site.base_gateway}} [Tracing Reference](/gateway/latest/production/tracing/)
 for details about instrumenting your API gateway.
 
-# What is health checking?
+## What is health checking?
 
 Health checking is an activity performed by infrastructure components (that is, load balancers) to monitor the health of a {{site.base_gateway}} node.
 This helps determine if a {{site.base_gateway}} node is operational and ready to process incoming requests. 
 You can learn more about health checks (also known as "probes") in the [Readiness Check](/gateway/latest/production/monitoring/healthcheck-probes/) guide.
 
-# Best practices
+## Best practices
 
 While every environment is unique and can have its own set of circumstances, we encourage you to follow these general recommendations:
 

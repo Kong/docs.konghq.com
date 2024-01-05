@@ -1,30 +1,32 @@
 ---
-title: Healthcheck Probes
+title: Health Check Probes
 content_type: tutorial
 ---
 
-This tutorial guides you through the process of using the Node Readiness endpoint, which provides a reliable way to determine if {{site.base_gateway}} is ready to serve user requests.
+This tutorial guides you through the process of using the node readiness endpoint, which provides a reliable way to determine if {{site.base_gateway}} is ready to serve user requests.
 
 The readiness check endpoint returns a `200 OK` response when {{site.base_gateway}} is ready, or a `503 Service Temporarily Unavailable` response when it's not. This is useful for load balancers and other tools that need to monitor the readiness of Kong instances. When Kong is not ready, the endpoint responds back with a `message` field with the reason for unreadiness. This can be helpful to debug situations where the user expects that the node should be ready but is not.
 
 {:.note}
-> **Note:**  The readiness endpoint does not return detailed information about the node status.
+> **Note:** The readiness endpoint does not return detailed information about the node status.
 
 ## Types of health checks
 
 For each {{site.base_gateway}} node, there are two distinct health checks (also known as "probes"):
 
-* Liveness: The `/status` endpoint responds with a `200 OK` status if Kong is running. The request will fail either with a `500 Internal Server Error` or no response if Kong is not running. You can send a GET request to check the liveness of your {{site.base_gateway}} instance:
+* **Liveness**: The `/status` endpoint responds with a `200 OK` status if Kong is running. The request will fail either with a `500 Internal Server Error` or no response if Kong is not running. You can send a GET request to check the liveness of your {{site.base_gateway}} instance:
+  
   ```sh
-  # Replace `localhost:8100` with the appropriate host and port for
+  # Replace localhost:8100 with the appropriate host and port for
   # your Status API server
   
   curl -i http://localhost:8100/status
   ```
 
-* Readiness: The `/status/ready` endpoint responds with a `200 OK` status if Kong has successfully loaded a valid configuration and is ready to proxy traffic. The request will fail either with a `500 Internal Server Error` or no response if Kong is not ready to proxy traffic yet. You can send a GET request to check the readiness of your {{site.base_gateway}} instance:
+* **Readiness**: The `/status/ready` endpoint responds with a `200 OK` status if Kong has successfully loaded a valid configuration and is ready to proxy traffic. The request will fail either with a `500 Internal Server Error` or no response if Kong is not ready to proxy traffic yet. You can send a GET request to check the readiness of your {{site.base_gateway}} instance:
+  
   ```sh
-  # Replace `localhost:8100` with the appropriate host and port for
+  # Replace localhost:8100 with the appropriate host and port for
   # your Status API server
   
   curl -i http://localhost:8100/status/ready
@@ -39,42 +41,41 @@ Even if {{site.base_gateway}} is running, it may still be loading the full confi
 If a component only monitors the liveness probe to decide when to send traffic to {{site.base_gateway}}, there will be a short period of time where requests will be met with a `404 Not Found` response before the {{site.base_gateway}} is ready to proxy traffic. 
 We recommend using the readiness probe over the liveness probe, especially in production environments.
 
+## Understanding the node readiness endpoint
 
+Before diving into the steps, it's important to understand the purpose of the node readiness endpoint and how it determines whether a Kong instance is ready or not. The endpoint acts differently depending on the node type.
 
-## Prerequisites
+{% navtabs %}
+{% navtab Traditional mode %}
 
-* {{site.base_gateway}}
-* A basic understanding of {{site.base_gateway}} configuration and deployment modes (traditional, DB-less, and hybrid)
-
-## Understanding the Node Readiness endpoint
-
-Before diving into the steps, it's important to understand the purpose of the Node Readiness endpoint and how it determines whether a Kong instance is ready or not.
-
-### Traditional mode
-
-In traditional mode, the endpoint returns `200 OK` when all of the following conditions are met:
+In [traditional mode](/gateway/{{page.kong_version}}/production/deployment-topologies/traditional/), the endpoint returns `200 OK` when all of the following conditions are met:
 
 1. Successful connection to the database
 2. All Kong workers are ready to route requests
 3. All routes and services have their plugins ready to process requests
 
-### Hybrid mode (`data_plane` role) or DB-less mode
+{% endnavtab %}
+{% navtab Hybrid mode (data plane role) or DB-less mode %}
 
-In Hybrid mode (`data_plane` role) or DB-less mode, the endpoint returns `200 OK` when the following conditions are met:
+In [hybrid mode](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/) (`data_plane` role) or [DB-less mode](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config/), the endpoint returns `200 OK` when the following conditions are met:
 
 1. Kong has loaded a valid and non-empty config (`kong.yaml`)
 2. All Kong workers are ready to route requests
 3. All routes and services have their plugins ready to process requests
 
-### Hybrid mode (`control_plane` role)
+{% endnavtab %}
+{% navtab Hybrid mode (control plane role) %}
 
-In Hybrid Mode (`control_plane` role), this endpoint returns `200 OK` when the following condition is met:
+In [hybrid mode](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/) (`control_plane` role), this endpoint returns `200 OK` when the following condition is met:
 
 1. Successful connection to the database
 
-## Enabling the Status endpoint
+{% endnavtab %}
+{% endnavtabs %}
 
-In order to use the Node Readiness endpoint, make sure that you have enabled the Status API server (disabled by default) via the [`status_listen`](/gateway/latest/reference/configuration/#status_listen) configuration parameter.
+## Enabling the node readiness endpoint
+
+To use the node readiness endpoint, make sure that you have enabled the Status API server (disabled by default) via the [`status_listen`](/gateway/latest/reference/configuration/#status_listen) configuration parameter.
 
 Example `kong.conf`:
 
@@ -85,12 +86,12 @@ status_listen = 0.0.0.0:8100
 {:.note}
 > **Note:** Readiness probes should be used on every node within the cluster, including standalone, control plane, and data plane nodes. Checking only one node in a cluster is insufficient.
 
-## Using the Node Readiness endpoint
+## Using the node readiness endpoint
 
-Once you've enabled the Node Readiness endpoint, you can send a GET request to check the readiness of your {{site.base_gateway}} instance:
+Once you've enabled the node readiness endpoint, you can send a GET request to check the readiness of your {{site.base_gateway}} instance:
 
 ```sh
-# Replace `localhost:8100` with the appropriate host and port for
+# Replace localhost:8100 with the appropriate host and port for
 # your Status API server
 
 curl -i http://localhost:8100/status/ready
@@ -145,9 +146,9 @@ Server: kong/3.3.0
 }
 ```
 
-## Using readiness probes in Kubernetes
+### Using readiness probes in Kubernetes
 
-If you're using Kubernetes or Helm, you may need to update the readiness probe configuration to use the new Node Readiness endpoint. Modify the `readinessProbe` section in your configuration file to look like this:
+If you're using Kubernetes or Helm, you may need to update the readiness probe configuration to use the new node readiness endpoint. Modify the `readinessProbe` section in your configuration file to look like this:
 
 ```yaml
 readinessProbe:
@@ -163,7 +164,7 @@ readinessProbe:
 {:.note}
 > **Note:** Failure to set an `initialDelaySeconds` may result in {{site.base_gateway}} entering a crash loop, as it requires a short time to fully load the configuration. The time to delay can depend on the size of the configuration.
 
-## Using a readiness check in version 3.2 or lower
+### Using a readiness check in version 3.2 or lower
 
 The `/status/ready` endpoint was added in version 3.3, so prior versions don't benefit from this built-in readiness endpoint. 
 We recommend the following workaround for those versions:
