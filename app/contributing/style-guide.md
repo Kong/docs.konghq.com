@@ -9,7 +9,7 @@ There are some spelling, grammar, and vocabulary differences between American En
 
 Here are some examples:
 
-| ✅&nbsp; Do use (American) | ❌&nbsp; Don't use (others) |
+| ✅&nbsp; Do use (American English) | ❌&nbsp; Don't use (other variations) |
 |---                         | ---                         | 
 | The response **should** look like... |   The response **shall** look like...|
 | In the previous section, you **learned**...   | In the previous section, you **learnt**...  |
@@ -69,7 +69,7 @@ Whenever possible, use present tense instead of past or future.
 Don't be afraid to use contractions (*can't*, *isn't*, *you'll*, and so on)! It adds to the conversational tone.
 
 As with everything, there are exceptions to the rule.
-You can leave contractions out when you want a more serious tone, usually to emphasize a warning or caution. 
+You can omit contractions when aiming for a more serious tone, typically to emphasize a warning or caution.
 
 For example, you might use a contraction in a phrase like "This plugin **isn't** available in Konnect" to let a reader know about plugin availability.
 On the other hand, you might say "**Do not** use this plugin in Konnect because it will break things" to warn them about potential consequences.
@@ -96,7 +96,7 @@ When recommending a course of action, use the phrase "we recommend".
 | ✅&nbsp; Do use    | ❌&nbsp; Don't use |
 |---                 | ---                | 
 | **We recommend** using an access token **because it's more secure**. | **Kong recommends** using an access token. |
-| **We don't recommend** using a password in plaintext **because it's not secure**. | **It is recommended** that you use an access token. |
+| **We don't recommend** storing a password in plaintext **because it's not secure**. | **It is recommended** that you use an access token. |
 
 ## Grammar and syntax
 
