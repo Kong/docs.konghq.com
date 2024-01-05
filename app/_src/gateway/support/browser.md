@@ -20,9 +20,6 @@ Kong supports N-1 versions of Edge, Chrome, Firefox and Safari on desktop plus a
   {% navtab 3.2 %}
     {% include_cached gateway-support-browsers.html data=site.data.tables.support.gateway.versions.32 %}
   {% endnavtab %}
-  {% navtab 3.1 %}
-    {% include_cached gateway-support-browsers.html data=site.data.tables.support.gateway.versions.31 %}
-  {% endnavtab %}
   {% navtab 2.8 LTS %}
     {% include_cached gateway-support-browsers.html data=site.data.tables.support.gateway.versions.28 %}
   {% endnavtab %}

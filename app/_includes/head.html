@@ -5,13 +5,12 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.titl
 | {{site.title}}{% endcapture %}
 {% endunless %}
 
-{% assign page_description = site.description %}
-{% if layout.description %}
-  {% assign page_description = layout.description %}
-{% endif %}
-
 {% if include.description %}
   {% assign page_description = include.description %}
+{% elsif layout.description %}
+  {% assign page_description = layout.description %}
+{% else %}
+  {% assign page_description = site.description %}
 {% endif %}
 
 <head>
@@ -103,10 +102,7 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.titl
   <link rel="dns-prefetch" href="https://cdn.segment.com" />
 
   <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"
-  />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/>
 
   {% if include.canonical_url %}
     <link rel="canonical" href="{{site.links.web}}{{ include.canonical_url }}" />
@@ -130,6 +126,10 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.titl
   {% if layout.oas %}
     {% vite_javascript_tag oas %}
   {% endif %}
+
+  {% for entry_point in page.include_entrypoints %}
+    {% vite_javascript_tag {{ entry_point }} %}
+  {% endfor %}
 
   {% vite_stylesheet_tag application.less %}
 

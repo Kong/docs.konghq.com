@@ -23,6 +23,11 @@
           class="deprecated-warning"
           alert-message="This product version is now deprecated. The endpoints will remain fully usable until this version is sunsetted."
         />
+
+        <div class="swagger-ui has-sidebar breadcrumbs">
+          <KBreadcrumbs :items="breadcrumbs" />
+        </div>
+
         <Spec
           :product="product"
           :product-version-id="activeProductVersionId"
@@ -54,6 +59,13 @@ const activeOperation = ref(null);
 const state = reactive({ activeOperation });
 const productError = ref(null);
 const deprecatedProductVersion = ref(false);
+
+const breadcrumbs = computed(() => {
+  return [
+    { key: 'product-catalog', to: '/api/', text: 'Catalog' },
+    { key: 'api-product', title: product.value.name, text: product.value.name }
+  ];
+});
 
 function onOperationSelected(event) {
   activeOperation.value = event;
@@ -117,6 +129,17 @@ function initActiveProductVersionId () {
 .app-container {
   display: flex;
 }
+
+.app-container .breadcrumbs {
+  position: relative;
+  left: var(--spacing-xl);
+  top: var(--spacing-xl);
+}
+
+.breadcrumbs :deep(.k-breadcrumbs .k-breadcrumbs-item .k-breadcrumb-divider) {
+  line-height: 0;
+}
+
 .sidebar-wrapper {
   flex: 0 0 auto;
   position: sticky;
@@ -140,34 +163,32 @@ function initActiveProductVersionId () {
   top: 0;
   z-index: 1;
 }
-.product {
-  .deprecated-alert {
-    padding: 14px;
-    font-family: inherit;
-    font-size: 1rem;
-    border-radius: 4px;
-    color: var(--KAlertWarningColor, var(--yellow-500, color(yellow-500)));
-    border-color: var(--KAlertWarningBorder, var(--yellow-200, color(yellow-200)));
-    background-color: var(--KAlertWarningBackground, var(--yellow-100, color(yellow-100)));
-  }
+.product .deprecated-alert {
+  padding: 14px;
+  font-family: inherit;
+  font-size: 1rem;
+  border-radius: 4px;
+  color: var(--KAlertWarningColor, var(--yellow-500, color(yellow-500)));
+  border-color: var(--KAlertWarningBorder, var(--yellow-200, color(yellow-200)));
+  background-color: var(--KAlertWarningBackground, var(--yellow-100, color(yellow-100)));
+}
 
-  .container .breadcrumbs {
-    position: relative;
-    left: var(--spacing-xs)
-  }
+.product .container .breadcrumbs {
+  position: relative;
+  left: var(--spacing-xs)
+}
 
-  .swagger-ui .version-pragma {
-    display: none;
-  }
+.product .swagger-ui .version-pragma {
+  display: none;
+}
 
-  .header-anchor {
-    position: relative;
+.product .header-anchor {
+  position: relative;
+}
 
-    svg {
-      position: absolute;
-      left: -1.5rem;
-      bottom: 0;
-    }
-  }
+.product .header-anchor svg {
+  position: absolute;
+  left: -1.5rem;
+  bottom: 0;
 }
 </style>

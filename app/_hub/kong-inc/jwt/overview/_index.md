@@ -72,16 +72,16 @@ Response:
 ```json
 HTTP/1.1 201 Created
 {
-	"id": "0701ad83-949c-423f-b553-091d5a6bae52",
-	"secret": "C50k0bcahDhLNhLKSUBSR1OMiFGzNZ7X",
-	"key": "YJdmaDvVTJxtcWRCvkMikc8oELgAVNcz",
-	"tags": null,
-	"rsa_public_key": null,
-	"consumer": {
-		"id": "8a21c1fa-e65e-4558-8673-540e85e67b33"
-	},
-	"algorithm": "HS256",
-	"created_at": 1664462115
+    "algorithm": "HS256",
+    "consumer": {
+        "id": "789955d4-7cbf-469a-bb64-8cd00bd0f0db"
+    },
+    "created_at": 1652208453,
+    "id": "95d4ee08-c68c-4b69-aa18-e6efad3a4ff0",
+    "key": "H8WBDhQlcfjoFmIiYymmkRm1y0A2c5WU",
+    "rsa_public_key": null,
+    "secret": "n415M6OrVnR4Dr1gyErpta0wSKQ2cMzK",
+    "tags": null
 }
 ```
 {% endnavtab %}
@@ -153,21 +153,21 @@ HTTP/1.1 200 OK
 
 ```json
 {
-	"next": null,
 	"data": [
-		{
-			"id": "0701ad83-949c-423f-b553-091d5a6bae52",
-			"secret": "C50k0bcahDhLNhLKSUBSR1OMiFGzNZ7X",
-			"key": "YJdmaDvVTJxtcWRCvkMikc8oELgAVNcz",
-			"tags": null,
-			"rsa_public_key": null,
-			"consumer": {
-				"id": "8a21c1fa-e65e-4558-8673-540e85e67b33"
-			},
-			"algorithm": "HS256",
-			"created_at": 1664462115
-		}
-	]
+        {
+            "algorithm": "HS256",
+            "consumer": {
+                "id": "789955d4-7cbf-469a-bb64-8cd00bd0f0db"
+            },
+            "created_at": 1652208453,
+            "id": "95d4ee08-c68c-4b69-aa18-e6efad3a4ff0",
+            "key": "H8WBDhQlcfjoFmIiYymmkRm1y0A2c5WU",
+            "rsa_public_key": null,
+            "secret": "n415M6OrVnR4Dr1gyErpta0wSKQ2cMzK",
+            "tags": null
+        }
+    ],
+    "next": null
 }
 ```
 

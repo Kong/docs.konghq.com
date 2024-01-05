@@ -64,6 +64,9 @@ _third_party:
   aws-sm: &aws-sm
     name: AWS Secrets Manager
     icon: aws.svg
+  azure-key-vaults: &azure-key-vaults
+    name: Microsoft Azure Key Vault
+    icon: azure.svg
   gcp-sm: &gcp-sm
     name: Google Secrets Manager
     icon: gcp.svg

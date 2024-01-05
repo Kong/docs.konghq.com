@@ -16,7 +16,8 @@ module SEO
       @page = page
     end
 
-    def build
+    def build # rubocop:disable Metrics/MethodLength
+      return IndexEntry::UnprocessablePage.new(@page) if asset?
       return IndexEntry::HubPage.for(@page) if hub_page?
       return IndexEntry::OasPage.new(@page) if oas_page?
       return IndexEntry::UnversionedProductPage.new(@page) unless versioned_product?
@@ -34,6 +35,10 @@ module SEO
     end
 
     private
+
+    def asset?
+      @page.url.start_with?('/assets/')
+    end
 
     def oas_page?
       @page.relative_path.start_with?('_api/')

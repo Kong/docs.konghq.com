@@ -32,3 +32,9 @@ This means that if consumers and credentials are created dynamically, they are n
 [kube-proxy]: https://kubernetes.io/docs/reference/command-line-tools-reference/kube-proxy
 [k8s-endpointslices]: https://kubernetes.io/docs/concepts/services-networking/endpoint-slices/
 [k8s-endpoints]: https://kubernetes.io/docs/concepts/services-networking/service/#endpoints
+
+### Is it possible to deploy {{site.kic_product_name}} with {{site.base_gateway}} as DaemonSet?
+
+You can deploy {{ site.base_gateway }} as a DaemonSet instead of a Deployment. This runs a {{ site.base_gateway }} Pod on every kubelet in the Kubernetes cluster. These Pods can use the network of the host they run on instead of a dedicated network namespace. This allows Kong to bind ports directly to the Kubernetes nodes' network interfaces, without the extra network translation imposed by NodePort Services. Learn more in the [dedicated Helm chart docs section][chart-using-a-daemonset].
+
+[chart-using-a-daemonset]: (https://github.com/Kong/charts/blob/main/charts/kong/README.md#using-a-daemonset)

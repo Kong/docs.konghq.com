@@ -39,12 +39,13 @@ To use [Mesh Manager](/konnect/mesh-manager/), you must also use a compatible ve
 
 ## Plugin compatibility
 
-Each [subscription tier](https://konghq.com/pricing) gives you
-access to a subset of plugins:
-* **Free tier**
-* **Paid tier** 
-* **Premium tier** 
+There are three tiers of plugins available in {{site.konnect_saas}}:
 
+* [**Free tier**](https://docs.konghq.com/hub/?tier=free&compatibility=konnect)
+* [**Paid tier**](https://docs.konghq.com/hub/?tier=paid&compatibility=konnect)
+* [**Premium tier**](https://docs.konghq.com/hub/?tier=premium&compatibility=konnect)
+
+The tiers denote plugin pricing. See the [{{site.konnect_short_name}} pricing page](https://konghq.com/pricing) for more detail. 
 
 If you're looking for supported network protocols and entity scopes, see [Plugin Compatibility](/hub/plugins/compatibility/) on the Plugin Hub.
 
