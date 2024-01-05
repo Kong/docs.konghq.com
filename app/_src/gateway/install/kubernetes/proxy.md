@@ -13,8 +13,6 @@ This guide shows how to deploy {{ site.base_gateway }} on Kubernetes without [{{
 
 These instructions configure {{ site.base_gateway }} to use separate containers for each role (e.g. Control Plane, Data Plane, Kong Manager). This is the recommended production installation method.
 
-If you're looking to test {{ site.base_gateway }} and want to run a single node, follow the [Kubernetes quickstart](/gateway/{{ page.release }}/install/kubernetes/quickstart/)
-
 ## Prerequisites
 
 - [`Helm 3`](https://helm.sh/)
