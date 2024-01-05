@@ -40,6 +40,7 @@ third-party:
   datastore:
     - <<: *postgres
       versions:
+        - 16
         - 15
         - 14
         - 13
@@ -58,6 +59,7 @@ third-party:
   vault:
     - *vaultproject
     - *aws-sm
+    - *azure-key-vaults
     - *gcp-sm
 
   identity_provider:

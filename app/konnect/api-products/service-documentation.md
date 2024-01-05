@@ -1,5 +1,5 @@
 ---
-title: Dev Portal Service Documentation
+title: Dev Portal API Product Documentation
 content_type: how-to
 ---
 

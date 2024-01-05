@@ -87,6 +87,7 @@ Resty
 SAML
 SBOM
 SBOMs
+SCCs
 SDKs
 Splunk
 Stap
@@ -254,6 +255,7 @@ kustomization
 kv
 lapis
 libxml2
+liveness
 loggly
 lookup
 lookups

@@ -709,6 +709,11 @@
 /mesh/:version/installation/* /mesh/:version/production/install-kumactl/
 /mesh/:version/install/* /mesh/:version/production/install-kumactl/
 /docs/:version/policies/proxy-template/ /docs/:version/reference/proxy-template/
+/mesh/:version/crds/* /assets/mesh/:version/raw/crds/:splat
+/mesh/:version/protos/* /assets/mesh/:version/raw/protos/:splat
+/mesh/:version/helm-values.yaml /assets/mesh/:version/raw/helm-values.yaml
+/mesh/:version/kuma-cp.yaml /assets/mesh/:version/raw/kuma-cp.yaml
+/mesh/raw/CHANGELOG /assets/mesh/raw/CHANGELOG.md
 
 # ABOUT
 /about/faq                 https://konghq.com/faqs/
@@ -951,3 +956,7 @@
 
 # COMMUNITY DOC REBRANDING
 /community   https://konghq.com/community-resources/
+
+# CODE SNIPPETS
+/code-snippets/spec-renderer.html https://github.com/Kong/docs.konghq.com/blob/main/app/code-snippets/_spec-renderer.html
+/code-snippets/spec-renderer https://github.com/Kong/docs.konghq.com/blob/main/app/code-snippets/_spec-renderer.html

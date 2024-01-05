@@ -1,5 +1,5 @@
 ---
-title: HTTPS Rediect
+title: HTTPS Redirect
 type: how-to
 purpose: |
   Force HTTP requests to use a HTTPS endpoint

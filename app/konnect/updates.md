@@ -9,6 +9,10 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## December 2023
+**Developer-Managed Scopes for Dev Portal**
+: You can now give your customers more control over third-party application permissions using Auth0 DCR developer-managed scopes for Dev Portal. Developers can now configure unique scopes and permissions for each Auth0 DCR application they create, allowing them to set more fine-grained permissions for each of their target audiences. See [Configure Auth0 for Dynamic Client Registration](/konnect/dev-portal/applications/dynamic-client-registration/auth0/) for details.
+
 ## November 2023
 **Multi-geo support**
 : {{site.konnect_saas}} now allows you to host and operate your cloud instance in a geographic region that you specify. This is important for data privacy and regulatory compliance for you organization. Geographic regions allow you to also operate {{site.konnect_saas}} in a similar geo to your users and their infrastructure applications. 
@@ -24,9 +28,21 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 **Gateway Manager** 
 : The {{site.konnect_short_name}} Gateway Manager has been updated to pull the most accurate data and remain consistent across {{site.konnect_short_name}}.
+: Fuzzy filtering is now applied to return more accurate search results on the {{site.konnect_short_name}} Gateway Manager for control planes, gateway services, routes, consumers, and plugins. Fuzzy Filtering is not supported for entities nested within another entity at this time (i.e - Services that belong to a control plane group, routes/plugins from inside a Gateway service, etc.)
 
 **Gateway 3.5 Support**
 : {{site.konnect_short_name}} now supports the latest Gateway release version of 3.5 including all [Konnect-compatible plugins](/konnect/compatibility/#plugin-compatibility) and now supports Azure key vault for [Secrets Manager](/konnect/gateway-manager/configuration/vaults/).
+
+**Consumer Groups Enhancements**
+: {{site.konnect_saas}} now supports enhancements to consumer groups as a part of the Kong Gateway 3.5 release. Customers can now apply the following plugins directly to consumer groups via the UI:
+
+  * Request Transformer 
+  * Request Transformer Advanced
+  * Response Transformer 
+  * Response Transformer Advanced
+  * Custom plugins
+ 
+ : See the consumer groups [documentation](/gateway/latest/kong-enterprise/consumer-groups/) to learn more.
 
 ## October 2023
 **Portal Management API**

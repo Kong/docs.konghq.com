@@ -31,17 +31,23 @@ For [Gateway Enterprise configuration reference](https://docs.konghq.com/gateway
 For anything other than minor changes, [clone the repository onto your local machine and build locally](docs/platform-install.md). Once you've installed all of the tools required, you can use our `Makefile` to build the docs:
 
 ```bash
+# Install prerequisites
+make install-prerequisites
+
 # Install dependencies
 make install
 
-# Make sure to update submodules
-git submodule update --init --recursive
+# Create local .env file
+# OAS Pages require VITE_PORTAL_API_URL to be set in your current environment, it should match the Kong supplied portal URL
+cp .env.example .env
 
 # Build the site and watch for changes 
 make run
 ```
 
 ### Troubleshooting the local build
+
+#### Invalid byte sequence in US-ASCII 
 
 If you encounter an error that looks like this:
 
@@ -58,16 +64,6 @@ You can try setting the `LANG` or `LC_ALL` environment variable to `en_US.UTF-8`
 ```bash
 export LANG=en_US.UTF-8
 ```
-
-### OAS Pages
-
-Create local .env file
-
-```bash
-cp .env.example .env
-```
-
-OAS Pages require `VITE_PORTAL_API_URL` to be set in your current environment, it should match the Kong supplied portal URL.
 
 ### Generating specific products
 

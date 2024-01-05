@@ -295,6 +295,7 @@ $ kubectl create secret \
   --from-literal=kongCredType=jwt  \
   --from-literal=key="admin-issuer" \
   --from-literal=algorithm=RS256 \
+  --from-literal=secret="dummy" \
   --from-literal=rsa_public_key="-----BEGIN PUBLIC KEY-----
   MIIBIjA....
   -----END PUBLIC KEY-----"
@@ -305,10 +306,14 @@ $ kubectl create secret \
   --from-literal=kongCredType=jwt  \
   --from-literal=key="user-issuer" \
   --from-literal=algorithm=RS256 \
+  --from-literal=secret="dummy" \
   --from-literal=rsa_public_key="-----BEGIN PUBLIC KEY-----
   qwerlkjqer....
   -----END PUBLIC KEY-----"
 ```
+
+Validation requirements impose that even if the `secret` is not used for algorithm
+`RS256` or `ES256` the field `secret` must be present, so put some dummy value for it.
 
 ## Assign the credentials
 

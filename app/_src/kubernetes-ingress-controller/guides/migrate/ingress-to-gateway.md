@@ -7,25 +7,30 @@ purpose: |
 
 ## Prerequisites
 
-- Ensure that you have installed `Make`, `git`, and [Go][go] to download and execute the [`ingress2gateway`][ingress2gateway] tool.
+Download the [Kong preview][kong-ingress2gateway] of the [kubernetes-sigs/ingress2Gateway][ingress2gateway]
+CLI tool:
 
-    ```bash
-    git clone --branch preview https://github.com/kong/ingress2gateway
-    cd ingress2gateway
-    make build
-    export PATH=${PATH}:$(pwd)
-    ```
+```bash
+mkdir ingress2gateway && cd ingress2gateway
+curl -L https://github.com/Kong/ingress2gateway/releases/download/v0.1.0/ingress2gateway_$(uname)_$(uname -m).tar.gz | tar -xzv
+export PATH=${PATH}:$(pwd)
+```
 
-   [go]: https://go.dev/dl/
-   [ingress2gateway]: https://github.com/kubernetes-sigs/ingress2gateway
+[kong-ingress2gateway]: https://github.com/kong/ingress2gateway
+[ingress2gateway]: https://github.com/kubernetes-sigs/ingress2gateway
 
-## Convert all the yaml files
+## Convert all the YAML files
 
 In order to migrate your resources from `Ingress` API to Gateway API you need all
-the `Ingress`-based `yaml` manifests. You can use these manifests as source to
+the `Ingress`-based `yaml` manifests. You can use these manifests as the source to
 migrate to the new API by creating copies that replace the `Ingress` resources
 with Gateway API resources. Then, use the `ingress2gateway` tool to create new manifests
 containing the gateway API configurations.
+
+> **Note**: In this guide the Ingress resources refers to Kubernetes
+> networkingv1 `Ingress`es, Kong `TCPIngress`es, and Kong `UDPIngress`es.
+> This means that **All** these resources should be included in the
+> files used as a source for the conversion.
 
 1. Export your source and destination paths.
 
