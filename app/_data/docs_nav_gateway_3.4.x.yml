@@ -29,10 +29,10 @@ items:
         absolute_url: true
       - text: Breaking Changes	
         items:
-          - text: Kong Gateway 3.4.x	
+          - text: Kong Gateway 3.4.x
             url: /breaking-changes/
             src: /gateway/breaking-changes/34x
-          - text: Kong Gateway 3.3.x	
+          - text: Kong Gateway 3.3.x
             url: /breaking-changes/33x/
           - text: Kong Gateway 3.2.x
             url: /breaking-changes/32x/
@@ -206,8 +206,8 @@ items:
             url: /production/monitoring/statsd
           - text: Datadog
             url: /production/monitoring/datadog
-          - text: Readiness Check
-            url: /production/monitoring/readiness-check
+          - text: Health Check Probes
+            url: /production/monitoring/healthcheck-probes
       - text: Tracing
         items:
           - text: Overview
@@ -224,6 +224,8 @@ items:
         url: /production/canary
       - text: Clustering Reference
         url: /production/clustering
+      - text: Establish a Performance Benchmark
+        url: /production/benchmark
       - text: Logging
         items:
           - text: Log Reference
@@ -239,13 +241,26 @@ items:
         url: /key-concepts/routes/expressions
       - text: Upgrade and Migration
         items:
-          - text: Upgrade Kong Gateway 3.x.x
+          - text: Upgrading Kong Gateway 3.x.x
             url: /upgrade/
-            src: /gateway/upgrade-v2
+          - text: Backup and Restore
+            url: /upgrade/backup-and-restore/
+          - text: Upgrade Strategies
+            items:
+              - text: Dual-Cluster Upgrade
+                url: /upgrade/dual-cluster/
+              - text: In-Place Upgrade
+                url: /upgrade/in-place/
+              - text: Blue-Green Upgrade
+                url: /upgrade/blue-green/
+              - text: Rolling Upgrade
+                url: /upgrade/rolling-upgrade/
+          - text: Upgrade from 2.8 LTS to 3.4 LTS
+            url: /upgrade/lts-upgrade/
           - text: Migrate from OSS to Enterprise
             url: /migrate-ce-to-ke/
           - text: Migration Guidelines Cassandra to PostgreSQL
-            url: /migrate-cassandra-to-postgres
+            url: /migrate-cassandra-to-postgres/
           - text: Breaking Changes
             url: /production/breaking-changes/
             generate: false

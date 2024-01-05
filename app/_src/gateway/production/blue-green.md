@@ -3,7 +3,7 @@ title: Blue-green Deployments
 content_type: tutorial
 ---
 
-Using the [ring-balancer](/gateway/latest/how-kong-works/load-balancing/#ring-balancer), a blue-green deployment can be easily orchestrated for
+Using [advanced load-balancing](/gateway/latest/how-kong-works/load-balancing/#advanced-load-balancing), a blue-green deployment can be easily orchestrated for
 a service. Switching target infrastructure only requires a `PATCH` request on a
 service to change its `host` value.
 

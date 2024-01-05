@@ -18,6 +18,10 @@ distributions:
     docker: true
     arm: true
     graviton: true
+  - <<: *debian12
+    docker: true
+    arm: true
+    graviton: true
   - *rhel7
   - <<: *rhel8
     docker: false
@@ -40,6 +44,7 @@ third-party:
   datastore:
     - <<: *postgres
       versions:
+        - 16
         - 15
         - 14
         - 13
@@ -58,6 +63,7 @@ third-party:
   vault:
     - *vaultproject
     - *aws-sm
+    - *azure-key-vaults
     - *gcp-sm
 
   identity_provider:

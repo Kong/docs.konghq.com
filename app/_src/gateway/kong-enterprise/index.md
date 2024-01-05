@@ -5,7 +5,7 @@ content_type: explanation
 ---
 
 {{site.ee_product_name}} is the scalable, secure, and flexible API management solution that extends {{site.base_gateway}}, the fastest, most adopted API gateway. 
-It adds enterprise plugins, a developer portal, analytics, advanced security features, GUI's, and 24/7 support. 
+It adds enterprise plugins, advanced security features, GUI's, and 24/7 support. 
 It is the only solution that helps you accelerate your cloud journey by managing, securing, and monitoring connections between applications across hybrid and multi-cloud architectures, to help you scale faster and boost developer productivity.
 
 ## Enterprise Plugins
@@ -56,6 +56,9 @@ The Vitals platform provides deep insights into services, routes, and applicatio
 {{site.ee_product_name}} offers out of the box secrets management with the following backends: 
 
 * [Amazon Web Services (AWS)](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/aws-sm/)
+{% if_version gte:3.5.x %}
+* [Microsoft Azure](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/azure-key-vaults/)
+{% endif_version %}
 * [Google Cloud Platform (GCP)](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/gcp-sm/)
 * [Hashicorp Vault](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
 

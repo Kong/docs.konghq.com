@@ -1740,6 +1740,8 @@ components:
             developer:
               id: 6cd9feff-b4da-4a9f-ba49-cbe83c75ff22
               name: Jane Dev
+            granted_scopes:
+              - openid
             created_at: '2022-12-22T20:13:07.305Z'
             updated_at: '2022-12-22T20:13:36.710Z'
           - id: d200cc33-2d33-4754-b086-a98e0fcd36fb
@@ -1756,6 +1758,7 @@ components:
             developer:
               id: 6cd9feff-b4da-4a9f-ba49-cbe83c75ff22
               name: Jane Dev
+            granted_scopes: null
             created_at: '2022-12-22T20:13:07.305Z'
             updated_at: '2022-12-22T20:13:36.710Z'
           - id: d300cc33-2d33-4754-b086-a98e0fcd36fb
@@ -1772,6 +1775,9 @@ components:
             developer:
               id: 6cd9feff-b4da-4a9f-ba49-cbe83c75ff22
               name: Jane Dev
+            granted_scopes:
+              - openid
+              - read:myscope
             created_at: '2022-12-22T20:13:07.305Z'
             updated_at: '2022-12-22T20:13:36.710Z'
           - id: d300cc33-2d33-4754-b086-a98e0fcd36fb
@@ -1788,6 +1794,7 @@ components:
             developer:
               id: 6cd9feff-b4da-4a9f-ba49-cbe83c75ff22
               name: Jane Dev
+            granted_scopes: []
             created_at: '2022-12-22T20:13:07.305Z'
             updated_at: '2022-12-22T20:13:36.710Z'
     GetApplicationRegistrationExample1:
@@ -1806,6 +1813,8 @@ components:
         developer:
           id: ecd9feff-b4da-4a9f-ba49-cbe83c75ff22
           name: Jane Dev
+        granted_scopes:
+          - openid
         created_at: '2022-12-22T20:13:07.305Z'
         updated_at: '2022-12-22T20:13:36.710Z'
     UpdateApplicationRegistrationResponseExample1:
@@ -1824,6 +1833,8 @@ components:
         developer:
           id: ecd9feff-b4da-4a9f-ba49-cbe83c75ff22
           name: Jane Dev
+        granted_scopes:
+          - openid
         created_at: '2022-12-22T20:13:07.305Z'
         updated_at: '2022-12-22T20:13:36.710Z'
     ListGrantedScopesExample1:
@@ -4271,6 +4282,8 @@ components:
             developer:
               id: 6cd9feff-b4da-4a9f-ba49-cbe83c75ff22
               name: Jane Dev
+            granted_scopes:
+              - openid
             created_at: '2022-12-22T20:13:07.305Z'
             updated_at: '2022-12-22T20:13:36.710Z'
           - id: d200cc33-2d33-4754-b086-a98e0fcd36fb
@@ -4287,6 +4300,7 @@ components:
             developer:
               id: 6cd9feff-b4da-4a9f-ba49-cbe83c75ff22
               name: Jane Dev
+            granted_scopes: null
             created_at: '2022-12-22T20:13:07.305Z'
             updated_at: '2022-12-22T20:13:36.710Z'
           - id: d300cc33-2d33-4754-b086-a98e0fcd36fb
@@ -4303,6 +4317,9 @@ components:
             developer:
               id: 6cd9feff-b4da-4a9f-ba49-cbe83c75ff22
               name: Jane Dev
+            granted_scopes:
+              - openid
+              - read:myscope
             created_at: '2022-12-22T20:13:07.305Z'
             updated_at: '2022-12-22T20:13:36.710Z'
           - id: d300cc33-2d33-4754-b086-a98e0fcd36fb
@@ -4319,6 +4336,7 @@ components:
             developer:
               id: 6cd9feff-b4da-4a9f-ba49-cbe83c75ff22
               name: Jane Dev
+            granted_scopes: []
             created_at: '2022-12-22T20:13:07.305Z'
             updated_at: '2022-12-22T20:13:36.710Z'
     ListGrantedScopesResponse:
@@ -4548,6 +4566,7 @@ components:
         - product_version
         - application
         - developer
+        - granted_scopes
       properties:
         id:
           $ref: '#/components/schemas/UUID'
@@ -4615,6 +4634,14 @@ components:
             name:
               description: The name of the developer that created the registration.
               type: string
+        granted_scopes:
+          description: >-
+            List of granted scopes for the registration. Null if application
+            type does not support returning granted scopes.
+          type: array
+          nullable: true
+          items:
+            type: string
       example:
         id: c300cc33-2d33-4754-b086-a98e0fcd36fb
         status: approved
@@ -4630,6 +4657,8 @@ components:
         developer:
           id: ecd9feff-b4da-4a9f-ba49-cbe83c75ff22
           name: Jane Dev
+        granted_scopes:
+          - openid
         created_at: '2022-12-22T20:13:07.305Z'
         updated_at: '2022-12-22T20:13:36.710Z'
     Portal:
@@ -4714,6 +4743,8 @@ components:
           nullable: true
           type: string
           format: hostname
+        default_application_auth_strategy_id:
+          $ref: '#/components/schemas/DefaultApplicationAuthStratID'
       example:
         id: 9f9fd312-a987-4628-b4c5-bb4f4fddd5f7
         created_at: '2022-02-07T17:46:57.52Z'
@@ -4726,6 +4757,12 @@ components:
         auto_approve_developers: true
         custom_domain: api.example.com
         custom_client_domain: portal.example.com
+    DefaultApplicationAuthStratID:
+      description: Default strategy ID applied on applications for the portal
+      nullable: true
+      type: string
+      format: uuid
+      example: 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7
     UpdatePortalRequest:
       additionalProperties: false
       type: object
@@ -4779,6 +4816,8 @@ components:
           format: hostname
           nullable: true
           maxLength: 1024
+        default_application_auth_strategy_id:
+          $ref: '#/components/schemas/DefaultApplicationAuthStratID'
       example:
         is_public: false
         rbac_enabled: true
@@ -4786,6 +4825,7 @@ components:
         auto_approve_developers: false
         custom_domain: api.example.com
         custom_client_domain: portal.example.com
+        default_application_auth_strategy_id: 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7
     UpdateDeveloperRequest:
       title: UpdateDeveloperRequest
       additionalProperties: false

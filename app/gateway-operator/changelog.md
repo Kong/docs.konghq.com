@@ -5,6 +5,24 @@ no_version: true
 
 Changelog for supported {{ site.kgo_product_name }} versions.
 
+## 1.1.0
+
+**Release Date** 2023/11/20
+
+### Added
+
+* Add support for `ControlPlane` `v3.0` by updating the generated `ClusterRole`.
+
+### Changes
+
+* Bump `ControlPlane` default version to `v3.0`.
+* Bump Gateway API to v1.0.
+
+### Fixes
+
+* Operator `Role` generation is fixed. As a result it contains now less rules
+  hence the operator needs less permissions to run.
+
 ## 1.0.3
 
 **Release Date** 2023/11/06

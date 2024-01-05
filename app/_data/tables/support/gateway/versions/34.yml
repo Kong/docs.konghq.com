@@ -19,7 +19,10 @@ distributions:
     docker: true
     arm: true
     graviton: true
-    eol: June 2026
+  - <<: *debian12
+    docker: true
+    arm: true
+    graviton: true
   - *rhel7
   - <<: *rhel8
     docker: false
@@ -43,6 +46,7 @@ third-party:
   datastore:
     - <<: *postgres
       versions:
+        - 16
         - 15
         - 14
         - 13

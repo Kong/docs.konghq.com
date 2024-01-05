@@ -1,5 +1,6 @@
 ---
 title: Community expectations
+description: Explore Kong's contribution community expectations - learn how to engage, collaborate, and contribute to Kong's open source docs project efficiently.
 ---
 
 This section outlines our community expectations around inclusive language and accessibility. 

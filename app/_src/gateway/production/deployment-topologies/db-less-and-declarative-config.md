@@ -7,7 +7,9 @@ Traditionally, {{site.base_gateway}} has always required a database, to store it
 services and plugins. Kong uses its configuration file, `kong.conf`, to
 specify the use of the database and its [various settings](/gateway/{{page.kong_version}}/reference/configuration/#datastore-section).
 
-{{site.base_gateway}} can be run without a database using only in-memory storage for entities. We call this DB-less mode. When running {{site.base_gateway}} DB-less, the configuration of entities is done in a second configuration file, in YAML or JSON, using declarative configuration.
+{{site.base_gateway}} can be run without a database using only in-memory storage for entities. 
+We call this DB-less mode. When running {{site.base_gateway}} DB-less, the configuration of 
+entities is done in a second configuration file, in YAML or JSON, using declarative configuration.
 
 The combination of DB-less mode and declarative configuration has a number
 of benefits:
@@ -18,6 +20,11 @@ of benefits:
   entities can be kept in a single source of truth managed via a Git
   repository.
 * Enables more deployment options for {{site.base_gateway}}.
+
+{:.note}
+> **Note**: [decK](/deck/) also manages configuration declaratively, but it requires
+a database to perform any of its sync, dump, or similar operations. Therefore, decK 
+can't be used in DB-less mode.
 
 ## Declarative configuration
 
@@ -115,10 +122,6 @@ Server: kong/{{page.versions.ce}}
 
 ## Creating a declarative configuration file
 
-{:.note}
-> **Note:** We recommend using decK to manage your declarative configuration.
-See the [decK documentation](/deck/) for more information.
-
 To load entities into DB-less Kong, you need a declarative configuration
 file. The following command creates a skeleton file to get you
 started:
@@ -159,7 +162,7 @@ consumers:
   - key: my-key
 ```
 
-See the [declarative configuration schema](https://github.com/Kong/deck/blob/main/file/kong_json_schema.json)
+See the [declarative configuration schema](https://github.com/Kong/go-database-reconciler/blob/main/pkg/file/kong_json_schema.json)
 for all configuration options.
 
 The only mandatory piece of metadata is `_format_version: "3.0"`, which
@@ -307,6 +310,4 @@ entities.
 For current plugin compatibility, see [Plugin compatibility](/hub/plugins/compatibility/).
 
 ## See also
-* [Declarative configuration schema](https://github.com/Kong/deck/blob/main/file/kong_json_schema.json)
-* [decK documentation](/deck/latest/)
-* [Using decK with {{site.ee_product_name}}](/deck/latest/guides/kong-enterprise/)
+* [Declarative configuration schema](https://github.com/Kong/go-database-reconciler/blob/main/pkg/file/kong_json_schema.json)

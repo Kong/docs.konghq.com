@@ -43,6 +43,10 @@
       url: /install-and-run/upgrade-enterprise
     - text: Upgrade Kong Gateway OSS
       url: /install-and-run/upgrade-oss
+    - text: Upgrade from 2.8 LTS to 3.4 LTS
+      url: /gateway/3.4.x/upgrade/lts-upgrade/
+      absolute_url: true
+      generate: false
 
 - title: Get Started
   icon: /assets/images/icons/documentation/icn-quickstart-color.svg
