@@ -5,7 +5,7 @@
 
 {% endunless %}
 
-1. Configure the `{{ include.service }}` section in `values-{{ include.release }}.yaml`:
+1. Configure the `{{ include.service }}` section in `values-{{ include.release }}.yaml`. Replace `example.com` with your custom domain name.
 
   {% include md/k8s/ingress-tabs.md indent=true service=include.service type=include.type %}
 
