@@ -4,7 +4,7 @@ book: kubernetes-install
 chapter: 4
 ---
 
-Kong Manager is the graphical user interface (GUI) for Kong Gateway. It uses the Kong Admin API under the hood to administer and control Kong Gateway.
+Kong Manager is the graphical user interface (GUI) for {{ site.base_gateway }}. It uses the Kong Admin API under the hood to administer and control {{ site.base_gateway }}.
 
 {:.important}
 > Kong's Admin API must be accessible over HTTP from your local machine to use Kong Manager

@@ -19,7 +19,7 @@ If you're looking to test {{ site.base_gateway }} and want to run a single node,
 
 - [`Helm 3`](https://helm.sh/)
 - [`kubectl`](https://kubernetes.io/docs/tasks/tools/) v1.19 or later
-- A running Postgresql database
+- A running PostgreSQL database
 - A `kong` namespace in Kubernetes. `kubectl create namespace kong`
 
 ### Helm Setup
@@ -74,7 +74,7 @@ Create a {{site.ee_product_name}} license secret:
 
 ### Control Plane
 
-The control plane contains all {{ site.base_gateway }} configuration. The configuration is stored in a Postgresql database.
+The control plane contains all {{ site.base_gateway }} configuration. The configuration is stored in a PostgreSQL database.
 
 1. Create a `values-cp.yaml` file.
 
