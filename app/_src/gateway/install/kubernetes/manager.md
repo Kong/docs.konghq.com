@@ -40,8 +40,6 @@ Kong Manager is served from the same node as the Admin API. To enable Kong Manag
         admin_gui_auth: basic-auth
     ```
 
-## Ingress Configuration
-
 {% include md/k8s/ingress-setup.md service="manager" release="cp" type="private" skip_ingress_controller_install=true %}
 
 ## Testing
