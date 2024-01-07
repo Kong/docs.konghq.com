@@ -112,7 +112,7 @@ will begin to scrape metrics data from {{site.base_gateway}}.
    ...
    ```
 
-   See the [Kong Prometheus Plugin documentation](https://docs.konghq.com/hub/kong-inc/prometheus/)
+   See the [Kong Prometheus Plugin documentation](/hub/kong-inc/prometheus/)
    for details on the available metrics and configurations.
 
 1. Prometheus provides multiple ways to query collected metric data. 
