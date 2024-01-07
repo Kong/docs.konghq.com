@@ -2,6 +2,145 @@
 
 <!--vale off-->
 
+## Week 1
+
+### [Automated submodule update (app/_src/.repos/kong-plugins)](https://github.com/Kong/docs.konghq.com/pull/6718) (2024-01-04)
+
+
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.5.x/production/debug-request
+
+
+### [fix: typo in ingress redirect docs](https://github.com/Kong/docs.konghq.com/pull/6714) (2024-01-03)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.5.x/production/debug-request
+
+
+### [Fix: Spacing on gateway overview page](https://github.com/Kong/docs.konghq.com/pull/6711) (2024-01-02)
+
+`if_version` tags aren't spaced out correctly, so they're causing the following issues:
+
+3.5:
+![Screenshot 2024-01-02 at 9 46 10 AM](https://github.com/Kong/docs.konghq.com/assets/54370747/538c4d26-510e-4b07-ba39-f4321d7c33e7)
+
+3.4 and earlier:
+![Screenshot 2024-01-02 at 9 45 55 AM](https://github.com/Kong/docs.konghq.com/assets/54370747/eaa019ac-e6bf-4242-8686-8701161a7be5)
+
+Fixing by splitting out `if_version` tags, so that they don't encompass part of a still-existing section. The previous approach is harder to maintain + causes these spacing issues.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.5.x/production/debug-request
+
+
+### [fix: use more informative example for request-debug docs](https://github.com/Kong/docs.konghq.com/pull/6702) (2024-01-02)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+Currently, the example output of request-debug in docs is too simple, so I replace it with a more better one.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.5.x/production/debug-request
+
+
+### [rewrite the loadbalancing document](https://github.com/Kong/docs.konghq.com/pull/6689) (2024-01-05)
+
+<!-- What did you change and why? -->
+
+Rewrite of the outdated page on loadbalancing
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.1.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.2.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.3.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.4.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.5.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.0.x/production/blue-green
+- https://docs.konghq.com/gateway/3.1.x/production/blue-green
+- https://docs.konghq.com/gateway/3.2.x/production/blue-green
+- https://docs.konghq.com/gateway/3.3.x/production/blue-green
+- https://docs.konghq.com/gateway/3.4.x/production/blue-green
+- https://docs.konghq.com/gateway/3.5.x/production/blue-green
+- https://docs.konghq.com/gateway/3.0.x/production/canary
+- https://docs.konghq.com/gateway/3.1.x/production/canary
+- https://docs.konghq.com/gateway/3.2.x/production/canary
+- https://docs.konghq.com/gateway/3.3.x/production/canary
+- https://docs.konghq.com/gateway/3.4.x/production/canary
+- https://docs.konghq.com/gateway/3.5.x/production/canary
+
+
+### [Add KIC configFrom guide](https://github.com/Kong/docs.konghq.com/pull/6680) (2024-01-03)
+
+Add a guide that shows how to use `configFrom` when configuring a plugin config from k8s secrets
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.5.x/production/debug-request
+
+
+### [feat: Plugin guide to rate limit requests based on peak and off-peak times](https://github.com/Kong/docs.konghq.com/pull/6634) (2024-01-05)
+
+Created a how to guide based on https://konghq.atlassian.net/browse/DOCU-3546 for “How to rate limit Kong Gateway based on peak/non-peak time”.
+
+Uses the pre-function and rate limiting advanced plugins together.
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/pre-function/how-to/
+- https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/how-to/
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/pre-function/overview/
+
+
+### [feat: Create Benchmark Guide for Kong Gateway](https://github.com/Kong/docs.konghq.com/pull/6630) (2024-01-05)
+
+<!-- What did you change and why? -->
+Harry created an internal KB about benchmark testing for Kong Gateway as well as some recommendations to improve benchmark performance, so this PR converts that into documentation.
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.1.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.2.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.3.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.4.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.5.x/how-kong-works/load-balancing
+
+
+### [(feat) how to guides for mTLS-auth plugin ](https://github.com/Kong/docs.konghq.com/pull/6626) (2024-01-04)
+
+Split out content from the mTLS-auth landing page into a how-to section + some cleanup.
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/mtls-auth/how-to/
+- https://docs.konghq.com/hub/kong-inc/mtls-auth/how-to/
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/mtls-auth/overview/
+
 ## Week 50
 
 ### [Make port 8100 consistent in all examples](https://github.com/Kong/docs.konghq.com/pull/6666) (2023-12-15)
