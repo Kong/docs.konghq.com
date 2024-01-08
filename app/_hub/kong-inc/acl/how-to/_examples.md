@@ -8,23 +8,22 @@ title: ACL Examples
 
 ### Simple ACL Examples
 
-**Use-Case: As an API Owner, I want to allow GET/POST/PUT access all consumers with who are in Consumer Group `dev`. In addition I want only DELETE to be available to consumers who are in Consumer Group `admin`**
+**Use-Case: As an API Owner, I want to allow `GET`/`POST`/`PUT` access across all consumers who are in consumer group `dev`. In addition I want only `DELETE` to be available to consumers who are in consumer group `admin`**
 
+#### Step 1: Setup consumers and consumer groups
 
-Step 1: Setup Consumers and Consumer Groups
-
-Create two Consumer Groups that represent the two roles: dev and admin.
-Add Consumers to that group
+Create two consumer groups that represent the two roles: `dev` and `admin`.
+Add a consumers to that group
 
 (link to consumer groups for further explanation)
 
 Step 2: Setup routes
 
-Setup two routes, one that only matches GET, POST and PUT, one that only matches DELETE
+Setup two routes, one that only matches `GET`, `POST` and `PUT`, one that only matches `DELETE`
 
 (note that this examples uses expressions router (link to this article https://docs.konghq.com/gateway/3.5.x/key-concepts/routes/expressions/ ))
 
-A route that matches when the method is _not_ DELETE
+A route that matches when the method is _not_ `DELETE`
 ```bash
 curl --request POST \
   --url http://localhost:8001/services/example-service/routes \
@@ -42,8 +41,7 @@ curl --request POST \
 
 Step 3: Setup ACL plugins
 
-Scope the plugin to to each of these routes with the respective `allow` configuration
-
+Scope the plugin to each of these routes with the respective `allow` configuration
 
 The `devs-and-admin` route will have the `allow` field set to both of the groups
 
