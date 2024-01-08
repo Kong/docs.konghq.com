@@ -11,7 +11,7 @@ Your organization is considered inactive when:
 (30 day increments).
 
 To close a Plus or Enterprise account, you can:
-* Go to My Account in Konnect and click Delete Account. 
+* Go to [**My Account**](https://cloud.konghq.com/global/account) > **Delete Account**. 
 * Request deactivation from [Kong Support](https://support.konghq.com/). 
 
 ## What happens if an organization is deactivated?
