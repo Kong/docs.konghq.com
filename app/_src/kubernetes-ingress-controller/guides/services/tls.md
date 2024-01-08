@@ -20,7 +20,7 @@ For `HTTPRoute` or `GRPCRoute`, the route's `hostname` must match the listener h
 
 ## Ingress
 
-The Ingress API supports TLS temination using the `.spec.tls` field. To terminate TLS with the Ingress API, provide `.spec.tls.secretName` that contains a TLS certificate and a list of `.spec.tls.hosts` to match in your Ingress definition. 
+The Ingress API supports TLS termination using the `.spec.tls` field. To terminate TLS with the Ingress API, provide `.spec.tls.secretName` that contains a TLS certificate and a list of `.spec.tls.hosts` to match in your Ingress definition. 
 
 ## Examples
 
