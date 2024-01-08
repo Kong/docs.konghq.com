@@ -18,7 +18,6 @@ These instructions configure {{ site.base_gateway }} to use separate containers 
 - [`Helm 3`](https://helm.sh/)
 - [`kubectl`](https://kubernetes.io/docs/tasks/tools/) v1.19 or later
 - A running PostgreSQL database
-- A `kong` namespace in Kubernetes. `kubectl create namespace kong`
 
 ### Helm Setup
 
@@ -34,6 +33,12 @@ helm repo update
 {{ site.base_gateway }} requires specific secrets in order to run.
 
 ### {{ site.ee_product_name }} License
+
+Create the `kong` namespace:
+
+```bash
+kubectl create namespace kong
+```
 
 Create a {{site.ee_product_name}} license secret:
 
