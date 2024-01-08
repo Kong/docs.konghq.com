@@ -40,3 +40,6 @@ konnect: false
 
 dbless_compatible: yes
 
+search_alises: 
+  - noname-prevention
+  - nonamesecurity-kongprevention

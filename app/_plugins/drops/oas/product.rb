@@ -27,6 +27,14 @@ module Jekyll
         def as_json
           { id: }
         end
+
+        def deprecated?
+          version = @product.fetch('versions', []).detect do |v|
+            v.fetch('name') == latest_version
+          end
+
+          version&.fetch('deprecated')
+        end
       end
     end
   end

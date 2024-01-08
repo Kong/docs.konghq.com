@@ -1,5 +1,5 @@
 ---
-title: Kong Enterprise Version Support
+title: Kong Gateway Enterprise Version Support
 breadcrumb: Distributions
 ---
 
@@ -47,6 +47,9 @@ Customers with platinum or higher subscriptions may request fixes outside of the
 Kong supports the following versions of {{site.ee_product_name}}: 
 
 {% navtabs %}
+  {% navtab 3.5 %}
+    {% include_cached gateway-support.html version="3.5" data=site.data.tables.support.gateway.versions.35 eol="Nov 2024" %}
+  {% endnavtab %}
   {% navtab 3.4 LTS %}
     {% include_cached gateway-support.html version="3.4" data=site.data.tables.support.gateway.versions.34 eol="August 2026" %}
   {% endnavtab %}
@@ -55,9 +58,6 @@ Kong supports the following versions of {{site.ee_product_name}}:
   {% endnavtab %}
   {% navtab 3.2 %}
     {% include_cached gateway-support.html version="3.2" data=site.data.tables.support.gateway.versions.32 eol="Feb 2024" %}
-  {% endnavtab %}
-  {% navtab 3.1 %}
-    {% include_cached gateway-support.html version="3.1" data=site.data.tables.support.gateway.versions.31 eol="Dec 2023" %}
   {% endnavtab %}
   {% navtab 2.8 LTS %}
     {% include_cached gateway-support.html version="2.8 LTS" data=site.data.tables.support.gateway.versions.28  eol="March 2025" %}
@@ -70,6 +70,7 @@ These versions have reached the end of full support.
 
 | Version  | Released Date | End of Full Support | End of Sunset Support |
 |:--------:|:-------------:|:-------------------:|:---------------------:|
+|  3.1.x.x |  2022-12-06   |     2023-12-06      |      2024-12-06       |
 |  3.0.x.x |  2022-09-09   |     2023-09-09      |      2024-09-09       |
 |  2.7.x.x |  2021-12-16   |     2023-02-24      |      2024-08-24       |
 |  2.6.x.x |  2021-10-14   |     2023-02-24      |      2024-08-24       |

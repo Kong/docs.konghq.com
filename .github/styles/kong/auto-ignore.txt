@@ -57,6 +57,7 @@ role_endpoint
 role_entity
 saml
 search_by_username
+sequenceDiagram
 ssl_client_verify
 start_cmd
 stream_listen

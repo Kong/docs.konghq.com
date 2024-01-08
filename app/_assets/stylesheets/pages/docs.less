@@ -236,85 +236,6 @@
   }
 }
 
-#getkong-algolia-search {
-  input {
-    vertical-align: inherit !important;
-    height: 40px;
-    margin-bottom: 0;
-  }
-
-  float: right;
-  /* auto complete */
-
-  .algolia-autocomplete {
-    width: 220px;
-  }
-
-  /* Bottom border of each suggestion */
-
-  .algolia-docsearch-suggestion {
-    border-bottom-color: @blue-light;
-  }
-
-  /* Highlighted search terms */
-
-  .algolia-docsearch-suggestion--highlight {
-    color: @blue-light;
-  }
-
-  /* Currently selected suggestion */
-
-  .aa-cursor .algolia-docsearch-suggestion--content {
-    color: @blue-light;
-  }
-
-  @media (max-width: 800px) {
-    float: initial;
-    display: inline-block;
-    margin-right: 5px;
-    .algolia-docsearch-suggestion--subcategory-column {
-      display: none !important;
-    }
-  }
-  @media (max-width: 476px) {
-    margin: 10px 0 0;
-    float: left;
-    clear: both;
-  }
-}
-
-.search-input {
-  i,
-  .icon {
-    position: absolute;
-    z-index: 1;
-    padding: 11px 0 0 12px;
-  }
-
-  .icon {
-    width: 16px;
-    height: 16px;
-    padding-top: 13px;
-  }
-
-  input {
-    width: 100%;
-    padding-left: 34px;
-  }
-
-  &.v2 {
-    input {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-  }
-}
-
-.search-version-row {
-  display: flex;
-  justify-content: center;
-}
-
 .dropdown-button {
   height: 32px;
   color: @gray-dark;
@@ -362,132 +283,6 @@
       max-width: 100%;
       white-space: normal;
     }
-  }
-}
-
-// Left side navigation
-
-.docs-sidebar {
-  float: left;
-  width: 280px;
-  position: sticky;
-  top: 54px;
-  height: ~"calc(100vh - 56px)";
-  // border-right: 1px solid @gray;
-  overflow-y: auto;
-
-  .sidebar-title-container {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-
-    .sidebar-title {
-      margin: 8px 0;
-      color: @navy-text;
-      font: bold 20px/28px Roboto;
-    }
-  }
-
-  .close-sidebar {
-    display: block;
-    height: 0;
-    padding: 0;
-    overflow: hidden;
-    color: rgba(0, 0, 0, 0.2);
-    font-size: 18px;
-    text-align: right;
-
-    &:before {
-      cursor: pointer;
-      -webkit-text-stroke: 2px white;
-    }
-  }
-
-  &::-webkit-scrollbar {
-    width: 2px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: @blue-200;
-    outline: 1px solid @blue-200;
-  }
-
-  ul.items {
-    margin: 0;
-
-    li {
-      list-style: none;
-      margin: 0;
-      padding: 9px 0;
-
-      &.accordion-item {
-        padding: 0;
-
-        label {
-          padding: 9px;
-        }
-      }
-
-      ul {
-        margin: 0;
-        padding-left: 0.6em;
-      }
-
-      a {
-        color: #043558;
-        font-weight: normal;
-        font-size: 14px;
-        line-height: 22px;
-        padding-right: 8px;
-
-        &:hover {
-          color: #1155cb;
-        }
-
-        &.active {
-          color: @blue-text;
-          font-weight: 600;
-        }
-      }
-    }
-  }
-
-  .accordion-container {
-    #accordion-opened {
-      display: none;
-    }
-
-    > li.accordion-item > div > ul.items {
-      padding: 0 0 8px 0;
-    }
-  }
-
-  @media screen and (max-width: 800px) {
-    position: fixed;
-    left: 0;
-    padding: 0;
-    height: ~"calc(100% - 56px)";
-    box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.15);
-    border: 0 none;
-    background: #fff;
-    overflow-y: auto;
-    z-index: 100;
-    transform: translateX(-105%);
-    -webkit-transform: translateX(-105%);
-    transition: all 300ms ease-in-out;
-
-    .close-sidebar {
-      height: auto;
-      padding: 16px;
-    }
-
-    &.sidebar-open {
-      transform: translateX(0);
-    }
-  }
-
-  @media screen and (max-width: 400px) {
-    width: 100%;
   }
 }
 
@@ -750,7 +545,7 @@
 
 // External link icons in both left and right sidebars
 .docs-sidebar,
-.landing-page {
+.landing-page:not(.search-page) {
   a:not([href^='https://konghq.com']):not([href^='https://docs.konghq.com']):not([href^='https://insomnia.rest/run']):not([href^='#']):not([href^='/']):not([data-filter]):after
   {
     font-family: "FontAwesome";
@@ -762,7 +557,7 @@
 
 // External icons in content body, excluding badges
 .content {
-  a:not(.badge, .install-link, .install-listing-link, .feature-cta):not([href^='https://docs.konghq.com']):not([href^='https://insomnia.rest/run']):not([href^='#']):not([href^='/']):not([data-filter]):after
+  a:not(.badge, .install-link, .install-listing-link, .feature-cta, .no-link-icon):not([href^='https://docs.konghq.com']):not([href^='https://insomnia.rest/run']):not([href^='#']):not([href^='/']):not([data-filter]):after
   {
     font-family: "FontAwesome";
     content: " \f35d";

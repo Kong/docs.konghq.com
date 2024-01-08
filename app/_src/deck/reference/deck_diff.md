@@ -1,8 +1,14 @@
 ---
 title: deck diff
-source_url: https://github.com/Kong/deck/tree/main/cmd/diff.go
 content_type: reference
+short_desc: The diff command is similar to a dry run of the decK sync command.
 ---
+
+{% if_version gte:1.28.x %}
+{:.warning}
+> **Warning**: This command is deprecated and will be removed in a future version.
+Use [deck gateway diff](/deck/{{page.kong_version}}/reference/deck_gateway_diff/) instead.
+{% endif_version %}
 
 The diff command is similar to a dry run of the 'decK sync' command.
 
@@ -20,7 +26,7 @@ deck diff [command-specific flags] [global flags]
 ## Flags
 
 `-h`, `--help`
-:  help for diff (Default: `false`)
+:  help for diff 
 
 {% if_version gte:1.16.x %}
 `--no-mask-deck-env-vars-value`
@@ -36,7 +42,7 @@ and exit code 1 if an error occurs. (Default: `false`)
 :  Maximum number of concurrent operations. (Default: `10`)
 
 `--rbac-resources-only`
-:  sync only the RBAC resources (Kong Enterprise only). (Default: `false`)
+:  sync only the RBAC resources **{{site.ee_product_name}} only**. (Default: `false`)
 
 `--select-tag`
 :  only entities matching tags specified via this flag are diffed.
@@ -65,7 +71,7 @@ This flag can be specified multiple times for multiple files.
 Use `-` to read from stdin. (Default: `[kong.yaml]`)
 
 `-w`, `--workspace`
-:  Diff configuration with a specific workspace (Kong Enterprise only).
+:  Diff configuration with a specific workspace ({{site.ee_product_name}} only).
 This takes precedence over _workspace fields in state files.
 
 

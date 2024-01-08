@@ -111,12 +111,14 @@ describe("sitemap includes", () => {
     "/deck/latest/",
     "/gateway/latest/install/kubernetes/helm-quickstart/",
     "/mesh/latest/installation/ecs/",
-    "/kubernetes-ingress-controller/latest/deployment/k4k8s/",
     "/deck/latest/installation/",
     "/hub/kong-inc/application-registration/",
     "/gateway/changelog/",
     "/mesh/changelog/",
     "/hub/",
+    "/hub/plugins/compatibility/",
+    "/hub/plugins/license-tiers/",
+    "/hub/plugins/overview/",
   ].forEach((t) => {
     test(t, async () => {
       const page = await fetchPageRaw("/sitemap.xml");

@@ -9,7 +9,7 @@ Starting with {{site.base_gateway}} 2.8.0.0, Kong is not building new open-sourc
 > If you need to install {{site.base_gateway}} (OSS) on CentOS, see the documentation for
 [previous versions](/gateway/2.7.x/install-and-run/centos/).
 > <br><br>
-> {{site.base_gateway}} Enterprise subscriptions can still use CentOS in 2.8, but support
+> {{site.ee_product_name}} subscriptions can still use CentOS in 2.8, but support
 for CentOS is planned to be removed in 3.0.
 
 The {{site.base_gateway}} software is governed by the

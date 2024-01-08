@@ -6,6 +6,8 @@ module SEO
       def self.for(page)
         if page.url == '/hub/'
           HubIndex.new(page)
+        elsif !page.is_a?(PluginSingleSource::SingleSourcePage)
+          HubHtmlPage.new(page)
         elsif page.data['is_latest']
           HubLatest.new(page)
         else

@@ -7,7 +7,7 @@ Learn to configure the Kong ACL Plugin. To use the ACL Plugin you need at least 
 
 {% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false%}
 
-{% include_cached /md/kic/http-test-service.md kong_version=page.kong_version %}
+{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
 
 {% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/lemon' name='lemon' %}
 
@@ -111,6 +111,7 @@ C6V0e/O3LEuJrP+XrEndtLsCAwEAAQ==
       --from-literal=kongCredType=jwt  \
       --from-literal=key="admin-issuer" \
       --from-literal=algorithm=RS256 \
+      --from-literal=secret="dummy" \
       --from-literal=rsa_public_key="{{ public_key }}"
     
     kubectl create secret \
@@ -118,15 +119,20 @@ C6V0e/O3LEuJrP+XrEndtLsCAwEAAQ==
       --from-literal=kongCredType=jwt  \
       --from-literal=key="user-issuer" \
       --from-literal=algorithm=RS256 \
+      --from-literal=secret="dummy" \
       --from-literal=rsa_public_key="{{ public_key }}"
     ```
 
+Validation requirements impose that even if the `secret` is not used for algorithm
+`RS256` or `ES256` the field `secret` must be present, so put some dummy value for it.
+
    The results should look like this:
-    
-    ```text
-    secret/admin-jwt created
-    secret/user-jwt created
-    ```
+
+  ```text
+  secret/admin-jwt created
+  secret/user-jwt created
+  ```
+  
    To associate the JWT Secrets with your consumers, you must add their name to the `credentials` array in the KongConsumers.
 
 1. Assign the credentials `admin-jwt` to the `admin`.     
@@ -246,7 +252,7 @@ kubectl annotate ingress lemon konghq.com/plugins=admin-acl
 kubectl annotate ingress lime konghq.com/plugins=anyone-acl
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 kubectl annotate httproute lemon konghq.com/plugins=admin-acl
 kubectl annotate httproute lime konghq.com/plugins=anyone-acl
@@ -266,7 +272,7 @@ ingress.networking.k8s.io/lemon annotated
 ingress.networking.k8s.io/lime annotated
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 httproute.gateway.networking.k8s.io/lemon annotated
 httproute.gateway.networking.k8s.io/lime annotated

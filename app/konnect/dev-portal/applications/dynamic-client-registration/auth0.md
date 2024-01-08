@@ -14,8 +14,8 @@ content_type: how-to
 > **Note:** When using Auth0 DCR for Dev Portal, each application in Auth0 will have the following metadata. This can be viewed via the auth0 dashboard, or accessed from the Auth0 API.
 > 
 > * `konnect_portal_id`: ID of the Portal the application belongs to
-> * `konnect_developer_id`: ID of the developer in the Dev Portal
-> * `konnect_org_id`: ID of the Dev Portal the application belongs to
+> * `konnect_developer_id`: ID of the developer in the Dev Portal that this application belongs to
+> * `konnect_org_id`: ID of the Konnect Organization the application belongs to
 > * `konnect_application_id`: ID of the application in the Dev Portal
 
 ## Configure Auth0
@@ -48,6 +48,9 @@ To get started configuring Auth0, log in to your Auth0 dashboard and complete th
    * `delete:clients`
    * `update:clients`
    * `update:client_keys`
+  
+   {:.note}
+   > **Note:** If you’re using Developer Managed Scopes, add `read:resource_servers` to the permissions for your initial client application.
 
 7. On the application's page, visit the **Settings** tab and note where you can view the values for **Client ID** and **Client Secret**, which you will use in a later step.
 
@@ -88,17 +91,19 @@ Once you have Auth0 configured, you can set up the Dev Portal to use Auth0 for d
    {:.note}
    > **Note:** You can find the value for your `AUTH0_TENANT_SUBDOMAIN` by visiting **Settings** from the Auth0 sidebar and finding the **Tenant Name** in the **General** tab.
 
-6. Enter the **Client Token Audience** as the identifier value you set when configuring the API entity above
+6. Enter the **Client Token Audience** as the identifier value you set when configuring the API entity above. If you’re using Developer Managed Scopes, this value should map to the audience field of your associated Auth0 API.
 
-7. Enter `openid` into the **Scopes** field
+7. Enter `openid` into the **Scopes** field.
 
-8. Enter `azp` into the **Consumer Claims** field, which will match the client ID of each Auth0 application
+1. If you’re using developer-managed scopes, select the **Use Developer Managed Scopes** checkbox. Add the appropriate scopes (in addition to the mandatory `openid` scope) you want your developers to be able to choose from. For example: `openid, read:account_information, write:account_information`.
 
-9. Enter the Client ID from the admin application created in Auth0 above into the **Initial Client ID** field.
+9. Enter `azp` into the **Consumer Claims** field, which will match the client ID of each Auth0 application
 
-10. Enter the Client secret from the admin application created in Auth0 above into the **Initial Client Secret** field.
+10. Enter the Client ID from the admin application created in Auth0 above into the **Initial Client ID** field.
 
-11. Click **Save**.
+11. Enter the Client secret from the admin application created in Auth0 above into the **Initial Client Secret** field.
+
+12. Click **Save**.
 
    If you previously configured any DCR settings, this will
    overwrite them.

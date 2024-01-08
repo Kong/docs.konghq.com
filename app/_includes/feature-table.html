@@ -23,6 +23,7 @@
   </thead>
   <tbody>
     {% for f in include.config.features %}
+      {% if f.name != "Observability" %}
       <tr>
         <td class="header-row">
           <span>{{ f.name }}</span>
@@ -58,6 +59,7 @@
           {% endfor %}
         </tr>
       {% endfor %}
+      {% endif %}
     {% endfor %}
   </tbody>
 </table>

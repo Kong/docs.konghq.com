@@ -180,7 +180,7 @@ Following are the different options to consider while deploying the
 - [**Multiple Ingress Controllers**](#multiple-ingress-controllers):
   Running multiple {{site.kic_product_name}}s inside the same Kubernetes cluster
 - [**Runtime**](#runtime):
-  Using Kong or Kong Enterprise (for Kong Enterprise customers)
+  Using {{site.ce_product_name}} or {{site.ee_product_name}} (for Enterprise customers)
 {% if_version gte: 2.9.x %}
 - [**Gateway Discovery**](#gateway-discovery):
   Dynamically discovering Kong's Admin API endpoints
@@ -292,11 +292,11 @@ There are a few different ways of accomplishing this:
   {{site.kic_product_name}} supports a deployment option where it will satisfy
   Ingress resources in a specific namespace. With this model, one can deploy
   a controller in multiple namespaces and they will run in an isolated manner.
-- If you are using Kong Enterprise, you can run multiple Ingress Controllers
-  pointing to the same database and configuring different Workspaces inside
-  Kong Enterprise. With such a deployment, one can use either of the above
+- If you are using {{site.ee_product_name}}, you can run multiple Ingress Controllers
+  pointing to the same database and configuring different workspaces inside
+  {{site.ee_product_name}}. With such a deployment, one can use either of the above
   two approaches to segment Ingress resources into different Workspaces in
-  Kong Enterprise.
+  {{site.ee_product_name}}.
 
 ### Runtime
 
@@ -308,10 +308,10 @@ This is the [Open-Source Gateway](https://github.com/kong/kong) runtime.
 The Ingress Controller is primarily developed against releases of the
 open-source gateway.
 
-#### Kong Enterprise
+#### {{site.ee_product_name}}
 
 The {{site.kic_product_name}} is also compatible with the full-blown version of
-Kong Enterprise. This runtime ships with Kong Manager, Kong Portal, and a
+{{site.ee_product_name}}. This runtime ships with Kong Manager, Kong Portal, and a
 number of other enterprise-only features.
 [This doc](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise) provides a high-level
 overview of the architecture.
@@ -356,9 +356,6 @@ For more hands on experience with Gateway Discovery please see [our guide][gd-gu
 [gd-guide]: /kubernetes-ingress-controller/{{page.kong_version}}/guides/using-gateway-discovery
 
 ### {{site.konnect_short_name}} Integration
-
-{:.warning .no-icon}
-> This feature is released as [beta](/gateway/latest/availability-stages/#beta) and should not be deployed in a production environment.
 
 {{site.kic_product_name}} can be integrated with Kong's [{{site.konnect_short_name}}][konnect] platform. It's an
 optional feature that allows configuring a {{site.konnect_short_name}} control plane with the same configuration as the one used

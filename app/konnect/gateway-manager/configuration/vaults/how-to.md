@@ -24,6 +24,7 @@ Set up a new vault. For this example, we're going to use the environment variabl
     * [AWS vault configuration options](/gateway/latest/kong-enterprise/secrets-management/backends/aws-sm/#vault-configuration-options)
     * [Google Cloud vault configuration options](/gateway/latest/kong-enterprise/secrets-management/backends/gcp-sm/#vault-entity-configuration-options)
     * [HashiCorp vault configuration options](/gateway/latest/kong-enterprise/secrets-management/backends/hashicorp-vault/#vault-configuration-options)
+    * [Azure Key Vault configuration options](/gateway/latest/kong-enterprise/secrets-management/backends/azure-key-vaults/#vault-entity-configuration-options)
 1. Enter an environment variable prefix. This will be the prefix that the vault
 uses to recognize relevant values on the data plane.
 

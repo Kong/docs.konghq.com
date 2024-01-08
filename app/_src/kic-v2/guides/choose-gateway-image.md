@@ -1,5 +1,5 @@
 ---
-title: Using Kong Enterprise
+title: Using Kong Gateway Enterprise
 ---
 
 {{ site.kic_product_name }} supports both {{ site.base_gateway }} OSS and Enterprise. If you install {{ site.kic_product_name }} using the default Helm charts, {{ site.base_gateway }} OSS will be installed.

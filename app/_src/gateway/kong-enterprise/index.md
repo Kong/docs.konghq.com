@@ -5,7 +5,7 @@ content_type: explanation
 ---
 
 {{site.ee_product_name}} is the scalable, secure, and flexible API management solution that extends {{site.base_gateway}}, the fastest, most adopted API gateway. 
-It adds enterprise plugins, a developer portal, analytics, advanced security features, GUI's, and 24/7 support. 
+It adds enterprise plugins, advanced security features, GUI's, and 24/7 support. 
 It is the only solution that helps you accelerate your cloud journey by managing, securing, and monitoring connections between applications across hybrid and multi-cloud architectures, to help you scale faster and boost developer productivity.
 
 ## Enterprise Plugins
@@ -29,7 +29,7 @@ It offers exclusive versions of OSS plugins like the [Rate Limiting Advanced plu
 * [API product tiers](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60#/consumer_groups/get-consumer_groups)
 {% endif_version %}
 [Get started with plugins &rarr;](/hub/)
-
+{% if_version lte:3.4.x %}
 ## Dev Portal
 
 The Dev Portal provides a single source of truth for all developers to locate, access and consume APIs, similar to a traditional API catalog. 
@@ -45,6 +45,7 @@ The Vitals platform provides deep insights into services, routes, and applicatio
 
 [Start monitoring with Vitals &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/analytics/)
 
+{% endif_version %}
 ## Role-based access control (RBAC)
 
 {{site.ee_product_name}} lets you configure users, roles, and permissions with built-in role-based access control (RBAC). With RBAC, you can streamline developer onboarding, and create apply fine-grained security and traffic policies using the [Admin API](/gateway/{{page.kong_version}}/admin-api/rbac/reference/), or [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/).
@@ -54,8 +55,11 @@ The Vitals platform provides deep insights into services, routes, and applicatio
 ## Secrets management
 {{site.ee_product_name}} offers out of the box secrets management with the following backends: 
 
-* [Amazon Web Services](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/aws-sm/)
-* [Google Cloud Platform](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/gcp-sm/)
+* [Amazon Web Services (AWS)](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/aws-sm/)
+{% if_version gte:3.5.x %}
+* [Microsoft Azure](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/azure-key-vaults/)
+{% endif_version %}
+* [Google Cloud Platform (GCP)](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/gcp-sm/)
 * [Hashicorp Vault](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
 
 To configure secrets management, {{site.base_gateway}} consumes your key for the backend provider, authenticates with the backend provider, and uses the backend to centrally manage and store application secrets, sensitive data, passwords, keys, certifications, tokens, and other items.

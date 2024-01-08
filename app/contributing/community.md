@@ -1,5 +1,6 @@
 ---
 title: Community
+description: Join the Kong Documentation Contribution Community to collaborate, learn, and contribute to open source projects. Start your journey with Kong today!
 ---
 
 This section contains information on how to contribute using our docs-as-code approach. You may also be interested in [Community Expectations](/contributing/community-expectations/) and [Hackathons](/contributing/hackathons/).

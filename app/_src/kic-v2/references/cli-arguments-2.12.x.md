@@ -43,9 +43,11 @@ and not CLI flags.
 | `--dump-sensitive-config` | `bool` | Include credentials and TLS secrets in configs exposed with --dump-config. | `false` |
 | `--election-id` | `string` | Election id to use for status update. | `5b374a9e.konghq.com` |
 | `--election-namespace` | `string` | Leader election namespace to use when running outside a cluster. |  |
+| `--emit-kubernetes-events` | `bool` | Emit Kubernetes events for successful configuration applies, translation failures and configuration apply failures on managed objects. | `true` |
 | `--enable-controller-ingress-class-networkingv1` | `bool` | Enable the networking.k8s.io/v1 IngressClass controller. | `true` |
 | `--enable-controller-ingress-class-parameters` | `bool` | Enable the IngressClassParameters controller. | `true` |
 | `--enable-controller-ingress-networkingv1` | `bool` | Enable the networking.k8s.io/v1 Ingress controller. | `true` |
+| `--enable-controller-knativeingress` | `bool` | Enable the KnativeIngress controller. | `true` |
 | `--enable-controller-kongclusterplugin` | `bool` | Enable the KongClusterPlugin controller. | `true` |
 | `--enable-controller-kongconsumer` | `bool` | Enable the KongConsumer controller. . | `true` |
 | `--enable-controller-kongingress` | `bool` | Enable the KongIngress controller. | `true` |
@@ -59,6 +61,7 @@ and not CLI flags.
 | `--gateway-discovery-dns-strategy` | `dns-strategy` | DNS strategy to use when creating Gateway's Admin API addresses. One of: ip, service, pod. | `"ip"` |
 | `--health-probe-bind-address` | `string` | The address the probe endpoint binds to. | `:10254` |
 | `--ingress-class` | `string` | Name of the ingress class to route through this controller. | `kong` |
+| `--init-cache-sync-duration` | `duration` | The initial delay to wait for Kubernetes object caches to be synced before the initial configuration. | `5s` |
 | `--kong-admin-ca-cert` | `string` | PEM-encoded CA certificate to verify Kong's Admin SSL certificate. |  |
 | `--kong-admin-ca-cert-file` | `string` | Path to PEM-encoded CA certificate file to verify Kong's Admin SSL certificate. |  |
 | `--kong-admin-concurrency` | `int` | Max number of concurrent requests sent to Kong's Admin API. | `10` |
@@ -74,9 +77,9 @@ and not CLI flags.
 | `--kong-admin-tls-client-key-file` | `string` | MTLS client key file for authentication. |  |
 | `--kong-admin-tls-server-name` | `string` | SNI name to use to verify the certificate presented by Kong in TLS. |  |
 | `--kong-admin-tls-skip-verify` | `bool` | Disable verification of TLS certificate of Kong's Admin endpoint. | `false` |
-| `--kong-admin-token` | `string` | The Kong Enterprise RBAC token used by the controller. |  |
+| `--kong-admin-token` | `string` | The {{site.ee_product_name}} RBAC token used by the controller. |  |
 | `--kong-admin-url` | `stringSlice` | Kong Admin URL(s) to connect to in the format "protocol://address:port". More than 1 URL can be provided, in such case the flag should be used multiple times or a corresponding env variable should use comma delimited addresses. | `[http://localhost:8001]` |
-| `--kong-workspace` | `string` | Kong Enterprise workspace to configure. Leave this empty if not using Kong workspaces. |  |
+| `--kong-workspace` | `string` | {{site.ee_product_name}} workspace to configure. Leave this empty if not using Kong workspaces. |  |
 | `--konnect-address` | `string` | Base address of Konnect API. | `https://us.kic.api.konghq.com` |
 | `--konnect-initial-license-polling-period` | `duration` | Polling period to be used before the first license is retrieved. | `1m0s` |
 | `--konnect-license-polling-period` | `duration` | Polling period to be used after the first license is retrieved. | `12h0m0s` |
@@ -104,6 +107,6 @@ and not CLI flags.
 | `--term-delay` | `duration` | The time delay to sleep before SIGTERM or SIGINT will shut down the Ingress Controller. | `0s` |
 | `--update-status` | `bool` | Indicates if the ingress controller should update the status of resources (e.g. IP/Hostname for v1.Ingress, e.t.c.). | `true` |
 | `--update-status-queue-buffer-size` | `int` | Buffer size of the underlying channels used to update the status of resources. | `8192` |
-| `--watch-namespace` | `stringSlice` | Namespace(s) to watch for Kubernetes resources. Defaults to all namespaces. To watch multiple namespaces, use a comma-separated list of namespaces. | `[]` |
+| `--watch-namespace` | `stringSlice` | Namespace(s) in comma-separated format (or specify this flag multiple times) to watch for Kubernetes resources. Defaults to all namespaces. | `[]` |
 
 <!-- vale on -->

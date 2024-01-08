@@ -165,7 +165,7 @@ The results should look like this:
 tcpingress.configuration.konghq.com/echo-plaintext created
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```bash
 echo "apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: TCPRoute
@@ -205,7 +205,7 @@ receives on port 9000 to `echo` service on port 1025.
 kubectl get tcpingress
 ```
 {% endnavtab %}
-{% navtab Gateway APIs%}
+{% navtab Gateway API %}
 ```bash
 kubectl get tcproute echo-plaintext -ojsonpath='{.status.parents[0].conditions[?(@.reason=="Accepted")]}'
 ```
@@ -225,7 +225,7 @@ echo-plaintext   <PROXY_IP>   3m18s
 
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 {"lastTransitionTime":"2022-11-14T19:48:51Z","message":"","observedGeneration":2,"reason":"Accepted","status":"True","type":"Accepted"}
 
@@ -287,7 +287,7 @@ spec:
 " | kubectl apply -f -
 ```
 {% endnavtab %}
-{% navtab Gateway APIs%}
+{% navtab Gateway API %}
 ```bash
 echo "apiVersion: gateway.networking.k8s.io/v1alpha2
 kind: TLSRoute
@@ -318,7 +318,7 @@ spec:
 tcpingress.configuration.konghq.com/echo-tls created
 ```
 {% endnavtab %}
-{% navtab Gateway APIs %}
+{% navtab Gateway API %}
 ```text
 tcproute.gateway.networking.k8s.io/echo-tls created
 ```

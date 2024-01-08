@@ -6,6 +6,10 @@ content_type: reference
 
 Convert OpenAPI files to Kong's decK format.
 
+{:.important}
+> **Important**: Due to compatibility issues with the older `inso` tool, we strongly recommend
+using the `--inso-compatible` flag when converting OpenAPI files.
+
 The example file at [Kong/go-apiops](https://github.com/Kong/go-apiops/blob/main/docs/learnservice_oas.yaml)
 has extensive annotations explaining the conversion process, as well as all supported 
 custom annotations (`x-kong-...` directives).
@@ -14,6 +18,13 @@ custom annotations (`x-kong-...` directives).
 
 ```
 deck file openapi2kong [command-specific flags] [global flags]
+```
+
+## Examples
+
+```
+# Convert an OAS file, adding 2 tags, with inso compatibility enabled
+cat service_oas.yml | deck file openapi2kong --inso-compatible --select-tag=serviceA,teamB
 ```
 
 ## Flags
@@ -44,5 +55,6 @@ uses the root-level `"x-kong-name"` directive, or falls back to `info.title`.
 
 ## See also
 
-* [deck file](/deck/{{page.kong_version}}/reference/deck_file)	 - Sub-command to host the decK file manipulation operations
+{% include /md/deck-reference-links.md file_links='true' %}
+
 

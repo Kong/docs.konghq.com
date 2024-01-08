@@ -54,7 +54,7 @@ This means that if you have multiple zones that you are migrating, services in z
    meshfaultinjections meshgateways meshgatewayroutes meshhealthchecks meshhttproutes meshloadbalancingstrategies
    meshproxypatches meshratelimits meshretries meshtcproutes meshtimeouts meshtraces meshtrafficpermissions
    proxytemplates rate-limits retries timeouts traffic-logs traffic-permissions traffic-routes traffic-traces
-   virtual-outbounds"
+   virtual-outbounds access-role-bindings access-roles accessaudits meshglobalratelimits meshopas opa-policies"
     
    meshes=$(kumactl get meshes -oyaml | yq '.items[].name')
    

@@ -24,6 +24,7 @@ tags:
   - name: System Accounts - Access Tokens
   - name: System Accounts - Roles
   - name: System Accounts - Team Membership
+  - name: Authentication
 paths:
   /authentication-settings:
     get:
@@ -1190,6 +1191,32 @@ paths:
           style: deepObject
       tags:
         - System Accounts - Team Membership
+  /authenticate/{organizationLoginPath}:
+    get:
+      summary: SSO Callback
+      description: Callback for authenticating via an organization's IdP
+      operationId: authenticate-sso
+      tags:
+        - Authentication
+      parameters:
+        - in: path
+          name: organizationLoginPath
+          description: The login path for the organization.
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: return_to
+          description: Return destination for the callback.
+          schema:
+            type: string
+      responses:
+        '302':
+          description: Found
+        '400':
+          $ref: '#/components/responses/IdentityBadRequest'
+        '401':
+          $ref: '#/components/responses/IdentityUnauthenticated'
 components:
   responses:
     UserSingle:
@@ -1207,6 +1234,7 @@ components:
         application/json:
           schema:
             type: object
+            title: User Collection Response
             properties:
               meta:
                 $ref: '#/components/schemas/PaginatedMeta'
@@ -1232,6 +1260,7 @@ components:
         application/json:
           schema:
             type: object
+            title: Team Collection Response
             properties:
               meta:
                 $ref: '#/components/schemas/PaginatedMeta'
@@ -1252,6 +1281,8 @@ components:
                     name: IDM - Developers
                     description: The developers for the IDM API.
                     system_team: false
+                    labels:
+                      env: test
                     created_at: '2022-02-07T17:46:57.52Z'
                     updated_at: '2022-09-25T13:00:00.00Z'
     TeamMappingCollection:
@@ -1260,6 +1291,7 @@ components:
         application/json:
           schema:
             type: object
+            title: Team Mapping Collection Response
             properties:
               data:
                 type: array
@@ -1274,6 +1306,7 @@ components:
         application/json:
           schema:
             type: object
+            title: Team Group Mapping Collection Response
             properties:
               meta:
                 $ref: '#/components/schemas/PaginatedMeta'
@@ -1299,6 +1332,7 @@ components:
         application/json:
           schema:
             type: object
+            title: Assigned Role Collection Response
             properties:
               meta:
                 $ref: '#/components/schemas/PaginatedMeta'
@@ -1316,6 +1350,7 @@ components:
         application/json:
           schema:
             type: object
+            title: Authentication Settings Response
             properties:
               basic_auth_enabled:
                 type: boolean
@@ -1398,6 +1433,7 @@ components:
         application/problem+json:
           schema:
             type: object
+            title: Precondition Failed Response
             description: The error response object.
             properties:
               status:
@@ -1425,6 +1461,7 @@ components:
         application/problem+json:
           schema:
             type: object
+            title: Rate Limited Response
             description: The error object
             properties:
               status:
@@ -1461,6 +1498,7 @@ components:
         application/problem+json:
           schema:
             type: object
+            title: Unauthorized Response
             description: The error response object.
             properties:
               status:
@@ -1497,6 +1535,7 @@ components:
         application/json:
           schema:
             type: object
+            title: Team Mapping Response
             properties:
               meta:
                 type: object
@@ -1542,6 +1581,7 @@ components:
         application/json:
           schema:
             type: object
+            title: Roles Response
             properties:
               control_planes:
                 type: object
@@ -2243,6 +2283,7 @@ components:
         application/json:
           schema:
             type: object
+            title: System Account Collection Response
             properties:
               meta:
                 $ref: '#/components/schemas/PaginatedMeta'
@@ -2302,6 +2343,7 @@ components:
         application/json:
           schema:
             type: object
+            title: System Account Access Token Collection Reponse
             properties:
               meta:
                 $ref: '#/components/schemas/PaginatedMeta'
@@ -2332,6 +2374,7 @@ components:
         application/json:
           schema:
             type: object
+            title: System Account Access Token Created Response
             example:
               id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
               name: Sample Access Token
@@ -2441,6 +2484,8 @@ components:
                 example: The Identity Management (IDM) team.
                 description: The description of the new team.
                 writeOnly: true
+              labels:
+                $ref: '#/components/schemas/Labels'
             required:
               - name
           examples:
@@ -2465,6 +2510,8 @@ components:
                 example: The Identity Management (IDM) API team.
                 description: The description of the team.
                 writeOnly: true
+              labels:
+                $ref: '#/components/schemas/LabelsUpdate'
           examples:
             Example Request Body:
               $ref: '#/components/examples/Update-Team-Request'
@@ -2570,6 +2617,7 @@ components:
                 enum:
                   - us
                   - eu
+                  - au
                   - '*'
                 example: eu
                 description: The region of the team.
@@ -2889,6 +2937,8 @@ components:
         name: IDM - Developers
         description: The developers for the IDM API.
         system_team: false
+        labels:
+          env: test
         created_at: '1992-02-07T17:46:57.52Z'
         updated_at: '2022-08-31T17:00:00.52Z'
       properties:
@@ -2917,6 +2967,8 @@ components:
             teams that can manage Konnect objects, like "Organization Admin", or
             "Service"
           readOnly: true
+        labels:
+          $ref: '#/components/schemas/Labels'
         created_at:
           type: string
           format: date-time
@@ -3008,6 +3060,7 @@ components:
           enum:
             - us
             - eu
+            - au
             - '*'
           example: eu
           description: Region of the entity.
@@ -3050,6 +3103,7 @@ components:
           enum:
             - us
             - eu
+            - au
             - '*'
           example: eu
           description: Region of the entity.
@@ -3403,6 +3457,39 @@ components:
       oneOf:
         - $ref: '#/components/schemas/StringFieldEqualsFilter'
         - $ref: '#/components/schemas/StringFieldContainsFilter'
+    Labels:
+      title: Labels
+      type: object
+      example:
+        env: test
+      description: >
+        Labels store metadata of an entity that can be used for filtering an
+        entity list or for searching across entity types. 
+
+
+        Keys must be of length 1-63 characters, and cannot start with "kong",
+        "konnect", "mesh", "kic", or "_".
+      additionalProperties:
+        type: string
+        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z\-\.\_]*[a-z0-9A-Z]+)?$
+        maxItems: 50
+        minLength: 1
+        maxLength: 63
+    LabelsUpdate:
+      type: object
+      nullable: true
+      description: >
+        Labels store metadata of an entity that can be used for filtering an
+        entity list or for searching across entity types. 
+
+
+        Keys must be of length 1-63 characters, and cannot start with "kong",
+        "konnect", "mesh", "kic", or "_".
+      example:
+        env: test
+      maxItems: 50
+      maxLength: 63
+      writeOnly: true
   securitySchemes:
     systemAccountAccessToken:
       type: http
@@ -3657,6 +3744,9 @@ components:
         name: IDM - Developers
         description: The developers for the IDM API.
         system_team: false
+        labels:
+          env: test
+          service: test
         created_at: '2022-02-07T17:46:57.52Z'
         updated_at: '2022-09-25T13:00:00.00Z'
     team-mapping-collection:
@@ -3711,10 +3801,15 @@ components:
       value:
         name: IDM - Developers
         description: The Identity Management (IDM) team.
+        labels:
+          env: test
+          service: test
     Update-Team-Request:
       value:
         name: IDM - Developers
         description: The Identity Management (IDM) API team.
+        labels:
+          env: prod
     Update-Team-Mappings:
       value:
         mappings:
@@ -3751,6 +3846,10 @@ components:
       value:
         owner_id: df120cb4-f60b-47bc-a2f8-6a28e6a3c63b
         name: Kong Inc
+    AWS-Resolve-Customer-Request:
+      value:
+        token: >-
+          A1B2C3D4E5F6G7H8I9J0K+LMNOPQRSTUVWXYZabcd+efghijklmnopqrstuv+wxyz0123456789+
   parameters:
     PageSize:
       name: page[size]

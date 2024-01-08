@@ -131,6 +131,7 @@
 /gateway/VERSION/reference/proxy/: "/gateway/VERSION/how-kong-works/routing-traffic/"
 /gateway/VERSION/reference/health-checks-circuit-breakers/: "/gateway/VERSION/how-kong-works/health-checks/"
 /gateway/VERSION/reference/clustering/: "/gateway/VERSION/production/clustering/"
+/gateway/VERSION/reference/router-expressions-language/: "/gateway/VERSION/reference/expressions-language/"
 /gateway/VERSION/pdk/: "/gateway/VERSION/plugin-development/pdk/"
 /gateway/VERSION/pdk/kong.client/: "/gateway/VERSION/plugin-development/pdk/kong.client/"
 /gateway/VERSION/pdk/kong.client.tls/: "/gateway/VERSION/plugin-development/pdk/kong.client.tls/"
@@ -153,3 +154,65 @@
 /gateway/VERSION/reference/external-plugins/: "/gateway/VERSION/plugin-development/pluginserver/go/"
 /gateway/VERSION/get-started/secure-services/: "/gateway/VERSION/get-started/key-authentication/"
 /gateway/VERSION/install/linux/os-support/: "/gateway/VERSION/support-policy/#supported-versions"
+
+# KIC 3.0
+# No new page available
+/kubernetes-ingress-controller/VERSION/concepts/expression-based-router/: /kubernetes-ingress-controller/VERSION/
+/kubernetes-ingress-controller/VERSION/concepts/ingress-versions/: /kubernetes-ingress-controller/VERSION/
+/kubernetes-ingress-controller/VERSION/availability-stages/: /kubernetes-ingress-controller/VERSION/
+/kubernetes-ingress-controller/VERSION/deployment/overview/: /kubernetes-ingress-controller/VERSION/
+/kubernetes-ingress-controller/VERSION/guides/configuring-fallback-service/: /kubernetes-ingress-controller/VERSION/ 
+/kubernetes-ingress-controller/VERSION/guides/using-kong-with-knative/: /kubernetes-ingress-controller/VERSION/
+/kubernetes-ingress-controller/VERSION/guides/choose-gateway-image/: /kubernetes-ingress-controller/VERSION/
+
+# Redirected to new page
+/kubernetes-ingress-controller/VERSION/references/annotations/: /kubernetes-ingress-controller/VERSION/reference/annotations/
+/kubernetes-ingress-controller/VERSION/references/custom-resources/: /kubernetes-ingress-controller/VERSION/reference/custom-resources/
+/kubernetes-ingress-controller/VERSION/concepts/design/: /kubernetes-ingress-controller/VERSION/concepts/architecture/ 
+/kubernetes-ingress-controller/VERSION/concepts/k4k8s-with-kong-enterprise/: /kubernetes-ingress-controller/VERSION/license/
+/kubernetes-ingress-controller/VERSION/concepts/ha-and-scaling/: /kubernetes-ingress-controller/VERSION/guides/high-availability/kic/
+/kubernetes-ingress-controller/VERSION/concepts/ingress-classes/: /kubernetes-ingress-controller/VERSION/concepts/ingress/
+/kubernetes-ingress-controller/VERSION/concepts/deployment/: /kubernetes-ingress-controller/VERSION/production/deployment-topologies/
+/kubernetes-ingress-controller/VERSION/deployment/minikube/: /kubernetes-ingress-controller/VERSION/install/helm/
+/kubernetes-ingress-controller/VERSION/deployment/k4k8s/: /kubernetes-ingress-controller/VERSION/install/helm/
+/kubernetes-ingress-controller/VERSION/deployment/k4k8s-enterprise/: /kubernetes-ingress-controller/VERSION/install/helm/
+/kubernetes-ingress-controller/VERSION/deployment/kong-enterprise/: /kubernetes-ingress-controller/VERSION/install/helm/
+/kubernetes-ingress-controller/VERSION/deployment/aks/: /kubernetes-ingress-controller/VERSION/install/cloud/aks/
+/kubernetes-ingress-controller/VERSION/deployment/gke/: /kubernetes-ingress-controller/VERSION/install/cloud/gke/
+/kubernetes-ingress-controller/VERSION/deployment/eks/: /kubernetes-ingress-controller/VERSION/install/cloud/eks/
+/kubernetes-ingress-controller/VERSION/deployment/admission-webhook/: /kubernetes-ingress-controller/VERSION/concepts/admission-webhook/
+/kubernetes-ingress-controller/VERSION/deployment/install-gateway-apis/: /kubernetes-ingress-controller/VERSION/concepts/gateway-api/
+/kubernetes-ingress-controller/VERSION/guides/getting-started/: /kubernetes-ingress-controller/VERSION/get-started/
+/kubernetes-ingress-controller/VERSION/guides/upgrade/: /kubernetes-ingress-controller/VERSION/upgrade/kic/
+/kubernetes-ingress-controller/VERSION/guides/upgrade-kong-3x/: /kubernetes-ingress-controller/VERSION/upgrade/gateway/
+/kubernetes-ingress-controller/VERSION/guides/using-kongplugin-resource/: /kubernetes-ingress-controller/VERSION/concepts/custom-resources/
+/kubernetes-ingress-controller/VERSION/guides/using-kongingress-resource/: /kubernetes-ingress-controller/VERSION/guides/migrate/kongingress/
+/kubernetes-ingress-controller/VERSION/guides/using-consumer-credential-resource/: /kubernetes-ingress-controller/VERSION/concepts/custom-resources/
+/kubernetes-ingress-controller/VERSION/guides/using-tcpingress/: /kubernetes-ingress-controller/VERSION/guides/services/tcp/
+/kubernetes-ingress-controller/VERSION/guides/using-udpingress/: /kubernetes-ingress-controller/VERSION/guides/services/udp/
+/kubernetes-ingress-controller/VERSION/guides/configure-acl-plugin/: /kubernetes-ingress-controller/VERSION/plugins/acl/
+/kubernetes-ingress-controller/VERSION/guides/allowing-multiple-authentication-methods/: /kubernetes-ingress-controller/VERSION/plugins/authentication/
+/kubernetes-ingress-controller/VERSION/guides/using-external-service/: /kubernetes-ingress-controller/VERSION/guides/services/external/
+/kubernetes-ingress-controller/VERSION/guides/configuring-https-redirect/: /kubernetes-ingress-controller/VERSION/guides/services/https-redirect/
+/kubernetes-ingress-controller/VERSION/guides/redis-rate-limiting/: /kubernetes-ingress-controller/VERSION/plugins/rate-limiting/
+/kubernetes-ingress-controller/VERSION/guides/prometheus-grafana/: /kubernetes-ingress-controller/VERSION/production/observability/prometheus-grafana/
+/kubernetes-ingress-controller/VERSION/guides/configuring-health-checks/: /kubernetes-ingress-controller/VERSION/guides/high-availability/health-checks/
+/kubernetes-ingress-controller/VERSION/guides/setting-up-custom-plugins/: /kubernetes-ingress-controller/VERSION/plugins/custom/
+/kubernetes-ingress-controller/VERSION/guides/using-ingress-with-grpc/: /kubernetes-ingress-controller/VERSION/guides/services/grpc/
+/kubernetes-ingress-controller/VERSION/guides/using-mtls-auth-plugin/: /kubernetes-ingress-controller/VERSION/plugins/mtls/
+/kubernetes-ingress-controller/VERSION/guides/using-oidc-plugin/: /kubernetes-ingress-controller/VERSION/plugins/oidc/
+/kubernetes-ingress-controller/VERSION/guides/using-rewrites/: /kubernetes-ingress-controller/VERSION/guides/requests/rewrite-host/
+/kubernetes-ingress-controller/VERSION/guides/preserve-client-ip/: /kubernetes-ingress-controller/VERSION/guides/security/client-ip/
+/kubernetes-ingress-controller/VERSION/guides/using-multiple-backends/: /kubernetes-ingress-controller/VERSION/guides/services/multiple-backends/
+/kubernetes-ingress-controller/VERSION/guides/using-gateway-discovery/: /kubernetes-ingress-controller/VERSION/production/deployment-topologies/gateway-discovery/
+/kubernetes-ingress-controller/VERSION/references/cli-arguments/: /kubernetes-ingress-controller/VERSION/reference/cli-arguments/
+/kubernetes-ingress-controller/VERSION/references/plugin-compatibility/: /hub/plugins/compatibility/
+/kubernetes-ingress-controller/VERSION/references/version-compatibility/: /kubernetes-ingress-controller/VERSION/reference/version-compatibility/
+/kubernetes-ingress-controller/VERSION/references/supported-router-flavors/: /kubernetes-ingress-controller/VERSION/reference/faq/router/
+/kubernetes-ingress-controller/VERSION/troubleshooting/: /kubernetes-ingress-controller/VERSION/reference/troubleshooting/
+/kubernetes-ingress-controller/VERSION/references/kubernetes-events/: /kubernetes-ingress-controller/VERSION/production/observability/events/
+/kubernetes-ingress-controller/VERSION/references/prometheus/: /kubernetes-ingress-controller/VERSION/production/observability/prometheus/
+/kubernetes-ingress-controller/VERSION/references/feature-gates/: /kubernetes-ingress-controller/VERSION/reference/feature-gates/
+/kubernetes-ingress-controller/VERSION/references/gateway-api-support/: /kubernetes-ingress-controller/VERSION/gateway-api/
+/kubernetes-ingress-controller/VERSION/concepts/security/: /kubernetes-ingress-controller/VERSION/guides/security/kong-vault/
+/kubernetes-ingress-controller/VERSION/faq/: /kubernetes-ingress-controller/VERSION/reference/faq/router/

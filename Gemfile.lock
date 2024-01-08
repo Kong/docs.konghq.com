@@ -74,6 +74,7 @@ GEM
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
     kwalify (0.7.2)
+    language_server-protocol (3.17.0.3)
     liquid (4.0.4)
     liquid-c (4.0.1)
       liquid (>= 3.0.0)
@@ -95,6 +96,7 @@ GEM
       ast (~> 2.4.1)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
+    prism (0.17.1)
     pry (0.14.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -146,16 +148,21 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.24.1)
       parser (>= 3.1.1.0)
+    ruby-lsp (0.12.3)
+      language_server-protocol (~> 3.17.0)
+      prism (>= 0.17.1, < 0.18)
+      sorbet-runtime (>= 0.5.5685)
     ruby-progressbar (1.13.0)
     safe_yaml (1.0.5)
     sassc (2.4.0)
       ffi (~> 1.9)
+    sorbet-runtime (0.5.11128)
     terminal-table (2.0.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (1.8.0)
-    vite_ruby (3.3.4)
+    vite_ruby (3.5.0)
       dry-cli (>= 0.7, < 2)
       rack-proxy (~> 0.6, >= 0.6.1)
       zeitwerk (~> 2.2)
@@ -186,6 +193,7 @@ DEPENDENCIES
   rouge (= 3.30.0)
   rspec
   rubocop
+  ruby-lsp
 
 BUNDLED WITH
    2.4.21

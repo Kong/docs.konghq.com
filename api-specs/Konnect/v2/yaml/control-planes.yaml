@@ -11,6 +11,8 @@ servers:
     description: US Region Base URL
   - url: https://eu.api.konghq.com/v2
     description: EU Region Base URL
+  - url: https://au.api.konghq.com/v2
+    description: AU Region Base URL
 security:
   - personalAccessToken: []
   - systemAccountAccessToken: []
@@ -245,6 +247,33 @@ paths:
       responses:
         '204':
           description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+  /control-planes/{id}/group-member-status:
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: ID of a control plane
+    get:
+      summary: Control Plane Group Member Status
+      operationId: get-control-planes-id-group-member-status
+      tags:
+        - Control Plane Groups
+      description: Determines the group membership status of a control plane.
+      responses:
+        '200':
+          $ref: '#/components/responses/GetGroupMemberStatus'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -618,6 +647,12 @@ components:
               $ref: '#/components/examples/GroupConflictStatusExample'
             Group No Conflict Status Example:
               $ref: '#/components/examples/GroupNoConflictStatusExample'
+    GetGroupMemberStatus:
+      description: Determines the group membership status of a control plane.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GroupMemberStatus'
     BadRequest:
       description: Bad Request
       content:
@@ -685,6 +720,10 @@ components:
           enum:
             - pinned_client_certs
             - pki_client_certs
+        cloud_gateway:
+          type: boolean
+          description: Whether this control-plane can be used for cloud-gateways.
+          example: false
         labels:
           $ref: '#/components/schemas/Labels'
       required:
@@ -765,6 +804,7 @@ components:
             telemetry_endpoint: https://acfe5f253f.tp0.konghq.com
             cluster_type: CLUSTER_TYPE_CONTROL_PLANE
             auth_type: pinned_client_certs
+            cloud_gateway: false
           created_at: '2022-11-04T20:10:06.927Z'
           updated_at: '2022-11-04T20:10:06.927Z'
     ControlPlaneSummary:
@@ -829,11 +869,16 @@ components:
                 - pinned_client_certs
                 - pki_client_certs
               readOnly: true
+            cloud_gateway:
+              type: boolean
+              description: Whether the Control Plane can be used for cloud-gateways.
+              readOnly: true
           required:
             - control_plane_endpoint
             - telemetry_endpoint
             - cluster_type
             - auth_type
+            - cloud_gateway
         created_at:
           type: string
           format: date-time
@@ -924,6 +969,22 @@ components:
       required:
         - id
         - type
+    GroupMemberStatus:
+      title: GroupMemberStatus
+      type: object
+      description: >-
+        Object with information determining the group membership status of a
+        control plane.
+      properties:
+        is_member:
+          type: boolean
+          example: true
+          description: >-
+            Boolean indicating if a control plane is a member of a control plane
+            group.
+          readOnly: true
+      required:
+        - is_member
     Labels:
       title: Labels
       type: object
@@ -1301,6 +1362,7 @@ components:
         name: Test Control Plane
         description: A test control plane for exploration.
         cluster_type: CLUSTER_TYPE_K8S_INGRESS_CONTROLLER
+        cloud_gateway: false
         labels:
           env: test
     UpdateControlPlaneRequestExample:
@@ -1321,6 +1383,7 @@ components:
           telemetry_endpoint: https://acfe5f253f.tp0.konghq.com
           cluster_type: CLUSTER_TYPE_CONTROL_PLANE
           auth_type: pinned_client_certs
+          cloud_gateway: false
     GroupConflictStatusExample:
       value:
         id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
@@ -1381,6 +1444,7 @@ components:
               telemetry_endpoint: https://9e0353434a.us.tp0.konghq.com
               cluster_type: CLUSTER_TYPE_CONTROL_PLANE
               auth_type: pinned_client_certs
+              cloud_gateway: false
             created_at: '2023-03-20T22:23:45.873Z'
             updated_at: '2023-03-30T16:17:55.073Z'
           - id: e4a1917c-bb26-4aa1-9a3e-50ee366f13db
@@ -1394,6 +1458,7 @@ components:
               telemetry_endpoint: https://05459046af.us.tp0.konghq.com
               cluster_type: CLUSTER_TYPE_CONTROL_PLANE
               auth_type: pinned_client_certs
+              cloud_gateway: false
             created_at: '2023-03-23T22:25:30.907Z'
             updated_at: '2023-03-30T16:18:12.067Z'
     UnauthorizedExample:

@@ -37,10 +37,10 @@ kong_version_compatibility: # (Required)
 # 'enterprise_edition' (Kong Gateway Enterprise) below and list the compatible versions 
 # in n.n.x format. For example, 3.2.x.
 
-  #community_edition: # (Optional)
+  #community_edition:
     #compatible:
        #- 3.0.x
-  #enterprise_edition: # (Optional)
+  #enterprise_edition:
     #compatible:
        #- 3.0.x
 

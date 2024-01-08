@@ -14,7 +14,7 @@ See the [Costs API reference](/hub/kong-inc/graphql-rate-limiting-advanced/api/)
 ```sh
 curl -X POST http://localhost:8001/services \
   --data "name=example" \
-  --data "host=mockbin.org" \
+  --data "host=httpbin.org" \
   --data "port=443" \
   --data "protocol=https"
 curl -X POST http://localhost:8001/services/example/routes \

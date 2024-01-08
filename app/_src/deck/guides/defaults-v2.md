@@ -62,7 +62,7 @@ want to use, skip to [setting defaults](#set-defaults).
     ```yaml
     _format_version: "3.0"
     services:
-      - host: mockbin.org
+      - host: httpbin.org
         name: example_service
         routes:
           - name: mockpath
@@ -114,7 +114,7 @@ deck diff
 ```sh
 updating service example_service  {
    "connect_timeout": 60000,
-   "host": "mockbin.org",
+   "host": "httpbin.org",
    "id": "1c088e59-b5fb-4c14-8d3a-401c02fc50b7",
    "name": "example_service",
    "port": 80,
@@ -169,7 +169,7 @@ Summary:
     _info:
       defaults:
     services:
-      - host: mockbin.org
+      - host: httpbin.org
         name: example_service
         routes:
           - name: mockpath
@@ -213,7 +213,7 @@ Summary:
           read_timeout: 60000
           retries: 5
     services:
-      - host: mockbin.org
+      - host: httpbin.org
         name: example_service
         routes:
           - name: mockpath

@@ -45,11 +45,11 @@ Following table describes all the flags that are available:
 | --kong-admin-concurrency             |`int`      | `10`                            | Max number of concurrent requests sent to Kong's Admin API.|
 | --kong-admin-filter-tag              |`string`   | `managed-by-ingress-controller` | The tag used to manage entities in Kong.|
 | --kong-admin-header                  |`string`   | none                            | Add a header (key:value) to every Admin API call, this flag can be used multiple times to specify multiple headers.|
-| --kong-admin-token                   |`string`   | none                            | Set the Kong Enterprise RBAC token to be used by the controller.|
+| --kong-admin-token                   |`string`   | none                            | Set the {{site.ee_product_name}} RBAC token to be used by the controller.|
 | --kong-admin-tls-server-name         |`string`   | none                            | SNI name to use to verify the certificate presented by Kong in TLS.|
 | --kong-admin-tls-skip-verify         |`boolean`  | `false`                         | Disable verification of TLS certificate of Kong's Admin endpoint.|
 | --kong-admin-url                     |`string`   | `http://localhost:8001`         | The address of the Kong Admin URL to connect to in the format of `protocol://address:port`.|
-| --kong-workspace                     |`string`   | `default`                       | Workspace in Kong Enterprise to be configured.|
+| --kong-workspace                     |`string`   | `default`                       | Workspace in {{site.ee_product_name}} to be configured.|
 | --kong-custom-entities-secret        |`string`   | none                            | Secret containing custom entities to be populated in DB-less mode, takes the form `namespace/name`.|
 | --log-format                         |`string`   | `text`                          | Format of logs of the controller. Allowed values are `text` and `json`. |
 | --log-level                          |`string`   | `info`                          | Level of logging for the controller. Allowed values are `trace`, `debug`, `info`, `warn`, `error`, `fatal` and `panic`. |

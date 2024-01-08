@@ -23,7 +23,7 @@ messages:
     Description: |
       For the `canary` plugin, `config.hash` field has been set to `header`. This is
       not supported in Kong Gateway versions < 2.6.0.0. The plugin configuration has
-      been changed to `config.hash=consumer` in the data-plane.
+      been changed to `config.hash=consumer` in the data plane node.
     Resolution: |
       Please upgrade Kong Gateway to version `2.6.0.0` or above.
     DocumentationURL: |
@@ -55,7 +55,7 @@ messages:
     Description: |
       For the `rate-limiting-advanced` plugin, either `config.strategy` is set to
       `local` or `config.identifier` is set to `path` or both. These settings are not
-      supported in Kong Gateway versions < 2.6.0.0. In the data-plane, the plugin
+      supported in Kong Gateway versions < 2.6.0.0. In the data plane node, the plugin
       configuration has one or more of the following changes: (a) `config.strategy`
       has been updated to `redis`, (b) `config.sync_rate` has been updated to `1`, (c)
       `config.identifier has been updated to `consumer`.
@@ -220,7 +220,7 @@ messages:
     Description: |
       For the `kafka-log` plugin `config.authentication.mechanism` is set to
       `SCRAM-SHA-512`. This is not supported in Kong Gateway versions < 2.8.1.1. The
-      value for the field has been changed to `SCRAM-SHA-256 in the data-plane.
+      value for the field has been changed to `SCRAM-SHA-256 in the data plane node.
     Resolution: |
       Please upgrade Kong Gateway to version `2.8.1.1` or above.
     DocumentationURL: |
@@ -230,7 +230,7 @@ messages:
     Description: |
       For the `kafka-upstream` plugin `config.authentication.mechanism` is set to
       `SCRAM-SHA-512`. This is not supported in Kong Gateway versions < 2.8.1.1. The
-      value for the field has been changed to `SCRAM-SHA-256 in the data-plane.
+      value for the field has been changed to `SCRAM-SHA-256 in the data plane node.
     Resolution: |
       Please upgrade Kong Gateway to version `2.8.1.1` or above.
     DocumentationURL: |
@@ -341,7 +341,7 @@ messages:
     Description: |
       For the `service` entity, `protocol` field has been set to `ws` or `wss`. This
       is not supported in Kong Gateway versions < 3.0.0.0. The service and all
-      associated route(s) and plugin(s) have been removed in the data-plane.
+      associated route(s) and plugin(s) have been removed in the data plane node.
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
@@ -351,7 +351,7 @@ messages:
     Description: |
       For the `route` entity or associated `service`, `protocol` field has been set to
       `ws` or `wss`. This is not supported in Kong Gateway versions < 3.0.0.0. The
-      route and all associated plugin(s) have been removed in the data-plane.
+      route and all associated plugin(s) have been removed in the data plane node.
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
@@ -361,7 +361,7 @@ messages:
     Description: |
       For the `plugin` entity, `protocol` field has been set to `ws` or `wss`. This is
       not supported in Kong Gateway versions < 3.0.0.0. The plugin has been removed in
-      the data-plane.
+      the data plane node.
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
@@ -580,7 +580,8 @@ messages:
       For the `openid-connect` plugin, `config.authorization_cookie_same_site` has
       been set to `Default`. This is not supported in Kong Gateway versions < 3.2.0.0.
       The plugin configuration has been changed to
-      `config.authorization_cookie_same_site=Lax` in the data-plane (default value).
+      `config.authorization_cookie_same_site=Lax` in the data plane node (default
+      value).
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
@@ -591,7 +592,7 @@ messages:
       For the `openid-connect` plugin, `config.session_cookie_same_site` has been set
       to `Default`. This is not supported in Kong Gateway versions < 3.2.0.0. The
       plugin configuration has been changed to the
-      `config.session_cookie_same_site=Lax` in the data-plane (default value).
+      `config.session_cookie_same_site=Lax` in the data plane node (default value).
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
@@ -602,18 +603,18 @@ messages:
       For the `openid-connect` plugin, one or more `config` fields are set but Kong
       Gateway versions < 3.2.0.0 do not support these fields. The plugin configuration
       has been updated and these fields have been mapped to their old names:
-      `authorization_rolling_timeout` => `authorization_cookie_lifetime`,
-      `session_cookie_same_site` => `session_cookie_samesite`,
-      `session_memcached_host` => `session_memcache_host`, `session_memcached_port` =>
-      `session_memcache_port`, `session_redis_cluster_max_redirections` =>
-      `session_redis_cluster_maxredirections`, `session_memcached_socket` =>
-      `session_memcache_socket`, `authorization_cookie_same_site` =>
-      `authorization_cookie_samesite`, `authorization_cookie_http_only` =>
-      `authorization_cookie_httponly`, `session_rolling_timeout` =>
-      `session_cookie_lifetime`, `session_idling_timeout` =>
-      `session_cookie_idletime`, `session_cookie_http_only` =>
+      `authorization_cookie_same_site` => `authorization_cookie_samesite`,
+      `session_rolling_timeout` => `session_cookie_lifetime`, `session_memcached_host` =>
+      `session_memcache_host`, `authorization_rolling_timeout` =>
+      `authorization_cookie_lifetime`, `session_idling_timeout` =>
+      `session_cookie_idletime`, `session_cookie_same_site` =>
+      `session_cookie_samesite`, `session_cookie_http_only` =>
       `session_cookie_httponly`, `session_memcached_prefix` =>
-      `session_memcache_prefix`
+      `session_memcache_prefix`, `session_memcached_socket` =>
+      `session_memcache_socket`, `session_memcached_port` => `session_memcache_port`,
+      `session_redis_cluster_max_redirections` =>
+      `session_redis_cluster_maxredirections`, `authorization_cookie_http_only` =>
+      `authorization_cookie_httponly`
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
@@ -651,7 +652,7 @@ messages:
       For the `openid-connect` plugin, `config.session_storage` field has been set to
       `memcached`. This is not supported in Kong Gateway versions < 3.2.0.0. The
       plugin configuration has been changed to `config.session_storage=memcache` in
-      the data-plane.
+      the data plane node.
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
@@ -677,15 +678,15 @@ messages:
       For the `saml` plugin, one or more `config` fields are set but Kong Gateway
       versions < 3.2.0.0 do not support these fields. The plugin configuration has
       been updated and these fields have been mapped to their old names:
-      `session_idling_timeout` => `session_cookie_idletime`,
+      `session_memcached_prefix` => `session_memcache_prefix`,
       `session_memcached_socket` => `session_memcache_socket`,
-      `session_memcached_port` => `session_memcache_port`,
-      `session_redis_cluster_max_redirections` =>
-      `session_redis_cluster_maxredirections`, `session_rolling_timeout` =>
+      `session_memcached_port` => `session_memcache_port`, `session_rolling_timeout` =>
       `session_cookie_lifetime`, `session_cookie_same_site` =>
       `session_cookie_samesite`, `session_cookie_http_only` =>
-      `session_cookie_httponly`, `session_memcached_prefix` =>
-      `session_memcache_prefix`, `session_memcached_host` => `session_memcache_host`
+      `session_cookie_httponly`, `session_idling_timeout` =>
+      `session_cookie_idletime`, `session_memcached_host` => `session_memcache_host`,
+      `session_redis_cluster_max_redirections` =>
+      `session_redis_cluster_maxredirections`
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
@@ -708,7 +709,7 @@ messages:
       For the `saml` plugin, `config.session_storage` field has been set to
       `memcached`. This is not supported in Kong Gateway versions < 3.2.0.0. The
       plugin configuration has been changed to `config.session_storage=memcache` in
-      the data-plane.
+      the data plane node.
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
@@ -719,7 +720,7 @@ messages:
       For the `saml` plugin, `config.session_cookie_same_site` has been set to
       `Default`. This is not supported in Kong Gateway versions < 3.2.0.0. The plugin
       configuration has been changed to `config.session_cookie_same_site=Lax` in the
-      data-plane (default value).
+      data plane node (default value).
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
@@ -729,10 +730,10 @@ messages:
     Description: |
       For the `app-dynamics` plugin, instances have been configured on a specific
       consumer. This is not supported in Kong Gateway versions < 3.2.0.0. The plugin
-      has been removed in the data-plane.
+      has been removed in the data plane node.
     Resolution: |
-      Unset the `consumer` fields for the plugin, or upgrade Kong Gateway to a version
-      >= 3.2.0.0.
+      Unset the `consumer` fields for the plugin, or upgrade Kong Gateway to a version >=
+      3.2.0.0.
     DocumentationURL: |
       [App Dynamics plugin](/hub/kong-inc/app-dynamics/)
   - ID: D168
@@ -749,8 +750,8 @@ messages:
       For the `service` entity, one of `tls_verify`, `tls_verify_depth`,
       `ca_certificates` or `client_certificate` fields has been set with `protocol`
       set to `TLS`. This is not supported in Kong Gateway versions < 3.2.0.0. These
-      fields have been removed from the service configuration in the data-plane and
-      the service has been disabled.
+      fields have been removed from the service configuration in the data plane node
+      and the service has been disabled.
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
@@ -761,7 +762,7 @@ messages:
       For the `rate-limiting-advanced` plugin, `config.strategy` field has been set to
       `cluster`. This is not supported in Kong Gateway versions < 3.2.0.0. The plugin
       configuration has been changed to `config.strategy=local` and `sync_rate=null`
-      in the data-plane and might not work as intended.
+      in the data plane node and might not work as intended.
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
@@ -773,7 +774,7 @@ messages:
       `ca_certificates` or `client_certificate` fields has been set with `protocol`
       set to `TLS`. This is not supported in Kong Gateway versions < 3.2.0.0. These
       services and the associated plugins and routes have been removed from the
-      configuration in the data-plane.
+      configuration in the data plane node.
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
@@ -845,7 +846,7 @@ messages:
     Description: |
       For the `rate-limiting-advanced` plugin, instances have been configured on a
       specific consumer_group. This is not supported in Kong Gateway versions <
-      3.4.0.0. The plugin has been removed in the data-plane.
+      3.4.0.0. The plugin has been removed in the data plane node.
     Resolution: |
       Unset the `consumer_group` fields for the plugin, or upgrade Kong Gateway to a
       version >= 3.4.0.0.
@@ -856,7 +857,7 @@ messages:
     Description: |
       For the `request-transformer-advanced` plugin, instances have been configured on
       a specific consumer_group. This is not supported in Kong Gateway versions <
-      3.4.0.0. The plugin has been removed in the data-plane.
+      3.4.0.0. The plugin has been removed in the data plane node.
     Resolution: |
       Unset the `consumer_group` fields for the plugin, or upgrade Kong Gateway to a
       version >= 3.4.0.0.
@@ -867,7 +868,7 @@ messages:
     Description: |
       For the `response-transformer-advanced` plugin, instances have been configured
       on a specific consumer_group. This is not supported in Kong Gateway versions <
-      3.4.0.0. The plugin has been removed in the data-plane.
+      3.4.0.0. The plugin has been removed in the data plane node.
     Resolution: |
       Unset the `consumer_group` fields for the plugin, or upgrade Kong Gateway to a
       version >= 3.4.0.0.
@@ -878,7 +879,7 @@ messages:
     Description: |
       For the `request-transformer` plugin, instances have been configured on a
       specific consumer_group. This is not supported in Kong Gateway versions <
-      3.4.0.0. The plugin has been removed in the data-plane.
+      3.4.0.0. The plugin has been removed in the data plane node.
     Resolution: |
       Unset the `consumer_group` fields for the plugin, or upgrade Kong Gateway to a
       version >= 3.4.0.0.
@@ -889,7 +890,7 @@ messages:
     Description: |
       For the `response-transformer` plugin, instances have been configured on a
       specific consumer_group. This is not supported in Kong Gateway versions <
-      3.4.0.0. The plugin has been removed in the data-plane.
+      3.4.0.0. The plugin has been removed in the data plane node.
     Resolution: |
       Unset the `consumer_group` fields for the plugin, or upgrade Kong Gateway to a
       version >= 3.4.0.0.
@@ -928,6 +929,208 @@ messages:
       Please upgrade Kong Gateway to version `3.4.0.0` or above.
     DocumentationURL: |
       [OpenID Connect plugin](/hub/kong-inc/openid-connect/)
+  - ID: D186
+    Severity: error
+    Description: |
+      For the `forward-proxy` plugin, one or more of the following `config` fields are
+      set in a reference format: `auth_username`, `auth_password` but Konnect only
+      supports Vaults starting from Kong Gateway version 3.1.0.0. This plugin instance
+      will cause the Kong Gateway to fail payload validation, causing payload updates
+      to fail and potentially getting the data plane into an out-of-sync state.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.1.0.0` or above.
+    DocumentationURL: |
+      [Forward Proxy plugin](/hub/kong-inc/forward-proxy/)
+  - ID: D187
+    Severity: error
+    Description: |
+      For the `kafka-upstream` plugin, one or more of the following `config` fields
+      are set in a reference format: `authentication.user`, `authentication.password`
+      but Konnect only supports Vaults starting from Kong Gateway version 3.1.0.0.
+      This plugin instance will cause the Kong Gateway to fail payload validation,
+      causing payload updates to fail and potentially getting the data plane into an
+      out-of-sync state.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.1.0.0` or above.
+    DocumentationURL: |
+      [Kafka Upstream plugin](/hub/kong-inc/kafka-upstream/)
+  - ID: D188
+    Severity: error
+    Description: |
+      For the `kafka-log` plugin, one or more of the following `config` fields are set
+      in a reference format: `authentication.user`, `authentication.password` but
+      Konnect only supports Vaults starting from Kong Gateway version 3.1.0.0. This
+      plugin instance will cause the Kong Gateway to fail payload validation, causing
+      payload updates to fail and potentially getting the data plane into an
+      out-of-sync state.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.1.0.0` or above.
+    DocumentationURL: |
+      [Kafka Log plugin](/hub/kong-inc/kafka-log/)
+  - ID: D189
+    Severity: error
+    Description: |
+      For the `ldap-auth-advanced` plugin, one or more of the following `config`
+      fields are set in a reference format: `ldap_password`, `bind_dn` but Konnect
+      only supports Vaults starting from Kong Gateway version 3.1.0.0. This plugin
+      instance will cause the Kong Gateway to fail payload validation, causing payload
+      updates to fail and potentially getting the data plane into an out-of-sync
+      state.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.1.0.0` or above.
+    DocumentationURL: |
+      [LDAP Authentication Advanced plugin](/hub/kong-inc/ldap-auth-advanced/)
+  - ID: D190
+    Severity: error
+    Description: |
+      For the `openid-connect` plugin, one or more of the following `config` fields
+      are set in a reference format: `client_id`, `client_secret`, `session_secret`,
+      `session_redis_username`, `session_redis_password` but Konnect only supports
+      Vaults starting from Kong Gateway version 3.1.0.0. This plugin instance will
+      cause the Kong Gateway to fail payload validation, causing payload updates to
+      fail and potentially getting the data plane into an out-of-sync state.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.1.0.0` or above.
+    DocumentationURL: |
+      [OpenID Connect plugin](/hub/kong-inc/openid-connect/)
+  - ID: D191
+    Severity: error
+    Description: |
+      For the `request-transformer-advanced` plugin, one or more of the following
+      `config` fields are set in a reference format: `rename.body`, `rename.headers`,
+      `rename.querystring`, `replace.body`, `replace.headers`, `replace.querystring`,
+      `add.body`, `add.headers`, `add.querystring`, `append.body`, `append.headers`,
+      `append.querystring` but Konnect only supports Vaults starting from Kong Gateway
+      version 3.1.0.0. This plugin instance will cause the Kong Gateway to fail
+      payload validation, causing payload updates to fail and potentially getting the
+      data plane into an out-of-sync state.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.1.0.0` or above.
+    DocumentationURL: |
+      [Request Transformer Advanced plugin](/hub/kong-inc/request-transformer-advanced/)
+  - ID: D192
+    Severity: error
+    Description: |
+      For the `graphql-rate-limiting-advanced` plugin, instances have been configured
+      with `strategy=redis` and the `cluster_addresses` field set. This is not
+      supported in Kong Gateway versions < 3.4.1.0. For data plane nodes with version
+      < 3.2.0.0, the plugin has been completely removed.
+    Resolution: |
+      Unset the `cluster_addresses` field for the plugin, or upgrade Kong Gateway to a
+      version >= 3.4.1.0.
+    DocumentationURL: |
+      [Graphql Rate Limiting Advanced plugin](/hub/kong-inc/graphql-rate-limiting-advanced/)
+  - ID: D193
+    Severity: error
+    Description: |
+      For the `graphql-rate-limiting-advanced` plugin, instances have been configured
+      with `strategy=redis` and the `cluster_addresses` field set. This is not
+      supported in Kong Gateway versions < 3.4.1.0. For data plane nodes with version >=
+      3.2.0.0 and < 3.4.1.0, the plugin configuration has been changed to
+      `config.strategy=cluster` and `config.sync_rate=-1`.
+    Resolution: |
+      Unset the `redis` fields for the plugin, or upgrade Kong Gateway to a version >=
+      3.4.1.0.
+    DocumentationURL: |
+      [Graphql Rate Limiting Advanced plugin](/hub/kong-inc/graphql-rate-limiting-advanced/)
+  - ID: D194
+    Severity: error
+    Description: |
+      For the `canary` plugin, a configuration `start` time is in the past and will be
+      sent to the data plane node(s). This is not supported in Kong Gateway versions <
+      3.4.1.0.
+    Resolution: |
+      Fix the `canary` plugin configuration or upgrade dataplane to 3.4.1.0+.
+    DocumentationURL: |
+      [Canary plugin](/hub/kong-inc/canary/)
+  - ID: D195
+    Severity: error
+    Description: |
+      For the `openid-connect` plugin, one or more of the following `config` fields
+      are set: `using_pseudo_issuer` but Kong Gateway versions < 3.4.1.0 do not
+      support these fields. Plugin features that rely on these fields are not working
+      as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.4.1.0` or above.
+    DocumentationURL: |
+      [OpenID Connect plugin](/hub/kong-inc/openid-connect/)
+  - ID: D196
+    Severity: error
+    Description: |
+      For the `proxy-cache-advanced` plugin, one or more of the following `config`
+      fields are set: `response_headers` but Kong Gateway versions < 3.5.0.0 do not
+      support these fields. Plugin features that rely on these fields are not working
+      as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.5.0.0` or above.
+    DocumentationURL: |
+      [Proxy Cache Advanced plugin](/hub/kong-inc/proxy-cache-advanced/)
+  - ID: D197
+    Severity: error
+    Description: |
+      For the `oas-validation` plugin, one or more of the following `config` fields
+      are set: `include_base_path` but Kong Gateway versions < 3.5.0.0 do not support
+      these fields. Plugin features that rely on these fields are not working as
+      intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.5.0.0` or above.
+    DocumentationURL: |
+      [OAS Validation plugin](/hub/kong-inc/oas-validation/)
+  - ID: D198
+    Severity: error
+    Description: |
+      For the `mocking` plugin, one or more of the following `config` fields are set:
+      `include_base_path` but Kong Gateway versions < 3.5.0.0 do not support these
+      fields. Plugin features that rely on these fields are not working as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.5.0.0` or above.
+    DocumentationURL: |
+      [Mocking plugin](/hub/kong-inc/mocking/)
+  - ID: D199
+    Severity: error
+    Description: |
+      For the `openid-connect` plugin, one or more of the following `config` fields
+      are set: `introspection_token_param_name`, `revocation_token_param_name` but
+      Kong Gateway versions < 3.5.0.0 do not support these fields. Plugin features
+      that rely on these fields are not working as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.5.0.0` or above.
+    DocumentationURL: |
+      [OpenID Connect plugin](/hub/kong-inc/openid-connect/)
+  - ID: D200
+    Severity: error
+    Description: |
+      For the `openid-connect` plugin, the `unauthorized_destroy_session` config field
+      is set, but only Kong Gateway versions >=3.4.1.0 and >=2.8.4.5 for the 2.8 serie
+      support this field. Plugin features that rely on this field are not working as
+      intended.
+    Resolution: |
+      Please upgrade Kong Gateway or remove this field from configuration.
+    DocumentationURL: |
+      [OpenID Connect plugin](/hub/kong-inc/openid-connect/)
+  - ID: D201
+    Severity: error
+    Description: |
+      For the `openid-connect` plugin, one or more of the following `config` fields
+      are set: `proof_of_possession_mtls`,
+      `proof_of_possession_auth_methods_validation` but Kong Gateway versions <
+      3.5.0.0 do not support these fields. Plugin features that rely on these fields
+      are not working as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.5.0.0` or above.
+    DocumentationURL: |
+      [OpenID Connect plugin](/hub/kong-inc/openid-connect/)
+  - ID: E999
+    Severity: error
+    Description: |
+      For the `jwt-signer` plugin, this is not compatible with Konnect. The plugin
+      configuration will still be sent to the data plane node; however it is
+      recommended you remove the plugin until it is officially available and supported
+      in Konnect.
+    Resolution: |
+      Remove the `jwt-signer` plugin from the configuration.
+    DocumentationURL: |
+      [JWT Signer plugin](/hub/kong-inc/jwt-signer/)
   - ID: P101
     Severity: error
     Description: |
@@ -1202,8 +1405,8 @@ messages:
       For the `upstreams` entity, one or more of the `hash_on, hash_fallback` schema
       fields are set with one of the following values: path, query_arg, uri_capture,
       but Kong Gateway versions < 3.0.0.0 do not support these values. Because of
-      this, `hash_on` and `hash_fallback'have been changed in the data-plane to `none`
-      and hashing is not working as expected.
+      this, `hash_on` and `hash_fallback` have been changed in the data plane node to
+      `none` and hashing is not working as expected.
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
@@ -1385,14 +1588,14 @@ messages:
   - ID: P145
     Severity: error
     Description: |
-      For the `pre-function` plugin, one or more of the following `config` fields are
+      For the `post-function` plugin, one or more of the following `config` fields are
       set: `ws_handshake`, `ws_client_frame`, `ws_upstream_frame`, `ws_close` but Kong
       Gateway versions < 3.0.0.0 do not support these fields. Plugin features that
       rely on these fields are not working as intended.
     Resolution: |
       Please upgrade Kong Gateway to version `3.0.0.0` or above.
     DocumentationURL: |
-      [Pre-function plugin](/hub/kong-inc/pre-function/)
+      [Post-function plugin](/hub/kong-inc/post-function/)
   - ID: P146
     Severity: error
     Description: |
@@ -1447,8 +1650,8 @@ messages:
   - ID: P151
     Severity: error
     Description: |
-      For the `upstreams` entity, the `algorithm` field is set to `latency'but Kong
-      Gateway versions < 3.2.0.0 do not support this value.Because of this,
+      For the `upstreams` entity, the `algorithm` field is set to `latency` but Kong
+      Gateway versions < 3.2.0.0 do not support this value. Because of this,
       `algorithm` has been set to the default value `round-robin` and features
       depending on the `latency` algorithm may not work as expected.
     Resolution: |
@@ -1556,9 +1759,9 @@ messages:
     Severity: error
     Description: |
       For the `aws-lambda` plugin, the following `config` field is set:
-      aws_imds_protocol_version, but Kong Gateway versions <2.8.3.0 and
-      >=3.0.0.0,<3.2.0.0 do not support it. Plugin features that rely on this field
-      are not working as intended.
+      aws_imds_protocol_version, but Kong Gateway versions <2.8.3.0 and >=3.0.0.0,<3.2.0.0
+      do not support it. Plugin features that rely on this field are not working as
+      intended.
     Resolution: |
       Please upgrade Kong Gateway to version `3.2.0.0` or above.
     DocumentationURL: |
@@ -1856,11 +2059,13 @@ messages:
   - ID: P189
     Severity: error
     Description: |
-      Only Kong Gateway versions >= 3.1.0.0 and < 3.1.1.2 support the wRPC protocol which 
-      has been removed from Kong Gateway >= 3.2.0.0. Konnect will be removing support for 
-      these releases of Kong Gateway on 2023/09/30. After this date these versions of 
-      Kong Gateway will not be able to establish connections with Konnect to retrieve 
-      configuration changes. Kong recommends upgrading to Kong Gateway 3.4.0.0 LTS.
+      Kong Gateway versions >= 3.1.0.0 and < 3.1.1.2 only support the wRPC protocol
+      which has been removed from Kong Gateway >= 3.2.0.0. Konnect will be removing
+      support for these releases of Kong Gateway on 2023/09/30. After this date these
+      versions of Kong Gateway will no longer be able to establish connections with
+      Konnect and will not receive configuration changes. You may upgrade to Kong
+      Gateway >= 3.1.1.2; however Kong recommends upgrading to Kong Gateway 3.4.0.0
+      LTS.
     Resolution: |
       Please upgrade Kong Gateway to version `3.4.0.0` or above.
     DocumentationURL: |
@@ -1876,3 +2081,260 @@ messages:
       Gateway versions >= 3.3.0.0 which automatically convert hyphens to underscores.
     DocumentationURL: |
       [Vaults entity](/gateway/latest/admin-api/#vaults-object)
+  - ID: P191
+    Severity: error
+    Description: |
+      One or more certificates have expired. Resources that use an expired certificate
+      are not behaving as expected. Data planes < v3.2.0.0 may be inoperable.
+    Resolution: |
+      Remove or replace expired certificates.
+    DocumentationURL: |
+      [Renew Certificates plugin](/hub/kong-inc/renew-certificates/)
+  - ID: P192
+    Severity: error
+    Description: |
+      For the `response-ratelimiting` plugin, one or more of the following `config`
+      fields are set in a reference format: `redis_password`, `redis_username` but
+      Konnect only supports Vaults starting from Kong Gateway version 3.1.0.0. This
+      plugin instance will cause the Kong Gateway to fail payload validation, causing
+      payload updates to fail and potentially getting the data plane into an
+      out-of-sync state.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.1.0.0` or above.
+    DocumentationURL: |
+      [Response Rate Limiting plugin](/hub/kong-inc/response-ratelimiting/)
+  - ID: P193
+    Severity: error
+    Description: |
+      For the `session` plugin, one or more of the following `config` fields are set
+      in a reference format: `secret` but Konnect only supports Vaults starting from
+      Kong Gateway version 3.1.0.0. This plugin instance will cause the Kong Gateway
+      to fail payload validation, causing payload updates to fail and potentially
+      getting the data plane into an out-of-sync state.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.1.0.0` or above.
+    DocumentationURL: |
+      [Session plugin](/hub/kong-inc/session/)
+  - ID: P194
+    Severity: error
+    Description: |
+      For the `rate-limiting` plugin, one or more of the following `config` fields are
+      set in a reference format: `redis_password`, `redis_username` but Konnect only
+      supports Vaults starting from Kong Gateway version 3.1.0.0. This plugin instance
+      will cause the Kong Gateway to fail payload validation, causing payload updates
+      to fail and potentially getting the data plane into an out-of-sync state.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.1.0.0` or above.
+    DocumentationURL: |
+      [Rate Limiting plugin](/hub/kong-inc/rate-limiting/)
+  - ID: P195
+    Severity: error
+    Description: |
+      For the `loggly` plugin, one or more of the following `config` fields are set in
+      a reference format: `key` but Konnect only supports Vaults starting from Kong
+      Gateway version 3.1.0.0. This plugin instance will cause the Kong Gateway to
+      fail payload validation, causing payload updates to fail and potentially getting
+      the data plane into an out-of-sync state.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.1.0.0` or above.
+    DocumentationURL: |
+      [Loggly plugin](/hub/kong-inc/loggly/)
+  - ID: P196
+    Severity: error
+    Description: |
+      For the `acme` plugin, one or more of the following `config` fields are set in a
+      reference format: `account_email`, `eab_kid`, `eab_hmac_key`,
+      `storage_config.redis.auth`, `storage_config.consul.token` but Konnect only
+      supports Vaults starting from Kong Gateway version 3.1.0.0. This plugin instance
+      will cause the Kong Gateway to fail payload validation, causing payload updates
+      to fail and potentially getting the data plane into an out-of-sync state.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.1.0.0` or above.
+    DocumentationURL: |
+      [ACME plugin](/hub/kong-inc/acme/)
+  - ID: P197
+    Severity: error
+    Description: |
+      For the `aws-lambda` plugin, one or more of the following `config` fields are
+      set in a reference format: `aws_key`, `aws_secret`, `aws_assume_role_arn` but
+      Konnect only supports Vaults starting from Kong Gateway version 3.1.0.0. This
+      plugin instance will cause the Kong Gateway to fail payload validation, causing
+      payload updates to fail and potentially getting the data plane into an
+      out-of-sync state.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.1.0.0` or above.
+    DocumentationURL: |
+      [AWS Lambda plugin](/hub/kong-inc/aws-lambda/)
+  - ID: P198
+    Severity: error
+    Description: |
+      For the `azure-functions` plugin, one or more of the following `config` fields
+      are set in a reference format: `apikey`, `clientid` but Konnect only supports
+      Vaults starting from Kong Gateway version 3.1.0.0. This plugin instance will
+      cause the Kong Gateway to fail payload validation, causing payload updates to
+      fail and potentially getting the data plane into an out-of-sync state.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.1.0.0` or above.
+    DocumentationURL: |
+      [Azure Functions plugin](/hub/kong-inc/azure-functions/)
+  - ID: P199
+    Severity: error
+    Description: |
+      For the `datadog` plugin, one or more of the following `config` fields are set
+      in a reference format: `host` but Kong Gateway versions < 3.3.0.0 do not support
+      the reference format for these fields. This plugin instance will cause the Kong
+      Gateway to fail payload validation, causing payload updates to fail and
+      potentially getting the data plane into an out-of-sync state.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.3.0.0` or above.
+    DocumentationURL: |
+      [Datadog plugin](/hub/kong-inc/datadog/)
+  - ID: P200
+    Severity: error
+    Description: |
+      For the `http-log` plugin, one or more of the following `config` fields are set
+      in a reference format: `http_endpoint`, `headers` but Kong Gateway versions <
+      3.2.0.0 do not support the reference format for these fields. This plugin
+      instance will cause the Kong Gateway to fail payload validation, causing payload
+      updates to fail and potentially getting the data plane into an out-of-sync
+      state.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.2.0.0` or above.
+    DocumentationURL: |
+      [Http Log plugin](/hub/kong-inc/http-log/)
+  - ID: P201
+    Severity: error
+    Description: |
+      For the `opentelemetry` plugin, one or more of the following `config` fields are
+      set in a reference format: `headers` but Kong Gateway versions < 3.1.0.0 do not
+      support the reference format for these fields. This plugin instance will cause
+      the Kong Gateway to fail payload validation, causing payload updates to fail and
+      potentially getting the data plane into an out-of-sync state.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.1.0.0` or above.
+    DocumentationURL: |
+      [OpenTelemetry plugin](/hub/kong-inc/opentelemetry/)
+  - ID: P202
+    Severity: error
+    Description: |
+      For the `opentelemetry` plugin, one or more of the following `config` fields are
+      set in a reference format: `endpoint` but Kong Gateway versions < 3.4.0.0 do not
+      support the reference format for these fields. This plugin instance will cause
+      the Kong Gateway to fail payload validation, causing payload updates to fail and
+      potentially getting the data plane into an out-of-sync state.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.4.0.0` or above.
+    DocumentationURL: |
+      [OpenTelemetry plugin](/hub/kong-inc/opentelemetry/)
+  - ID: P203
+    Severity: error
+    Description: |
+      For the `opentelemetry` plugin, the config field `header_type` has been set to
+      `datadog`. This is not supported in Kong Gateway versions < 3.4.1.0. Impacted
+      fields have been updated to their default values: `header_type=preserve`
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.4.1.0` or above.
+    DocumentationURL: |
+      [OpenTelemetry plugin](/hub/kong-inc/opentelemetry/)
+  - ID: P204
+    Severity: error
+    Description: |
+      For the `acme` plugin, one or more of the following `config` fields are set:
+      `storage_config.redis.scan_count` but Kong Gateway versions < 3.5.0.0 do not
+      support these fields. Plugin features that rely on these fields are not working
+      as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.5.0.0` or above.
+    DocumentationURL: |
+      [ACME plugin](/hub/kong-inc/acme/)
+  - ID: P205
+    Severity: error
+    Description: |
+      For the `proxy-cache` plugin, one or more of the following `config` fields are
+      set: `response_headers` but Kong Gateway versions < 3.5.0.0 do not support these
+      fields. Plugin features that rely on these fields are not working as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.5.0.0` or above.
+    DocumentationURL: |
+      [Proxy Cache plugin](/hub/kong-inc/proxy-cache/)
+  - ID: P206
+    Severity: error
+    Description: |
+      For the `cors` plugin, one or more of the following `config` fields are set:
+      `private_network` but Kong Gateway versions < 3.5.0.0 do not support these
+      fields. Plugin features that rely on these fields are not working as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.5.0.0` or above.
+    DocumentationURL: |
+      [Cors plugin](/hub/kong-inc/cors/)
+  - ID: P207
+    Severity: error
+    Description: |
+      For the `opentelemetry` plugin, the config field `header_type` has been set to
+      `gcp`. This is not supported in Kong Gateway versions < 3.5.0.0. Impacted fields
+      have been updated to their default values: `header_type=preserve`
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.5.0.0` or above.
+    DocumentationURL: |
+      [OpenTelemetry plugin](/hub/kong-inc/opentelemetry/)
+  - ID: P208
+    Severity: error
+    Description: |
+      For the `zipkin` plugin, one or more of the fields `header_type`,
+      `default_header_type` has been set to `gcp`. This is not supported in Kong
+      Gateway versions < 3.5.0.0. Impacted fields have been updated to their default
+      values: `header_type=preserve` and/or `default_header_type=b3`
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.5.0.0` or above.
+    DocumentationURL: |
+      [Zipkin plugin](/hub/kong-inc/zipkin/)
+  - ID: P209
+    Severity: error
+    Description: |
+      For the `vault` entity, one or more of the following schema fields are set:
+      `endpoint_url`, `assume_role_arn`, `role_session_name` but Kong Gateway versions
+      < 3.5.0.0 do not support these fields.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.5.0.0` or above.
+    DocumentationURL: |
+      [Vaults entity](/gateway/latest/admin-api/#vaults-object)
+  - ID: P210
+    Severity: error
+    Description: |
+      For the `vault` entity, the config contains one or more Azure vault entity. This
+      is not supported in Kong Gateway versions < 3.5.0.0. The impacted configuration
+      has been removed from the `vault` entity.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.5.0.0` or above.
+    DocumentationURL: |
+      [Vaults entity](/gateway/latest/admin-api/#vaults-object)
+  - ID: P211
+    Severity: error
+    Description: |
+      For the `session` plugin, one or more of the following `config` fields are set:
+      `read_body_for_logout` but Kong Gateway versions < 3.5.0.0 do not support these
+      fields. Plugin features that rely on these fields are not working as intended.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.5.0.0` or above.
+    DocumentationURL: |
+      [Session plugin](/hub/kong-inc/session/)
+  - ID: P212
+    Severity: error
+    Description: |
+      For the `vault` entity, one or more of the following schema fields are set:
+      `kube_auth_path` but Kong Gateway versions < 3.5.0.0 do not support these
+      fields.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.5.0.0` or above.
+    DocumentationURL: |
+      [Vaults entity](/gateway/latest/admin-api/#vaults-object)
+  - ID: P213
+    Severity: warning
+    Description: |
+      One or more services have been configured with an underscore in the `host`
+      field. This is only supported for Kong Gateway parity and it is not compliant
+      with RFC0952.
+    Resolution: |
+      Remove underscores in services `host` field.
+    DocumentationURL: |
+      [Service entity](/gateway/latest/admin-api/#service-object)

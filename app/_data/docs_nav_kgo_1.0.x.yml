@@ -26,6 +26,8 @@ items:
         absolute_url: true
       - text: Support
         url: /support
+      - text: Version Compatibility
+        url: /version-compatibility
       - text: FAQ
         url: /faq
   - title: Get Started
@@ -80,11 +82,17 @@ items:
         items:
           - text: Overview
             url: /reference/custom-resources/
+            src: reference/custom-resources/1.0.x
           - text: GatewayConfiguration
             url: /reference/custom-resources/#gatewayconfiguration
+            generate: false
           - text: ControlPlane
             url: /reference/custom-resources/#controlplane
+            generate: false
           - text: DataPlane
             url: /reference/custom-resources/#dataplane
+            generate: false
       - text: License
         url: /reference/license
+      - text: Version Compatibility
+        url: /reference/version-compatibility

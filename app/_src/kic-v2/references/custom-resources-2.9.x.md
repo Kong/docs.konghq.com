@@ -40,7 +40,7 @@ KongClusterPlugin is the Schema for the kongclusterplugins API.
 | `plugin` _string_ | PluginName is the name of the plugin to which to apply the config. |
 | `run_on` _string_ | RunOn configures the plugin to run on the first or the second or both nodes in case of a service mesh deployment. |
 | `protocols` _[KongProtocol](#kongprotocol) array_ | Protocols configures plugin to run on requests received on specific protocols. |
-| `ordering` _PluginOrdering_ | Ordering overrides the normal plugin execution order. It's only available on Kong Enterprise. `<phase>` is a request processing phase (for example, `access` or `body_filter`) and `<plugin>` is the name of the plugin that will run before or after the KongPlugin. For example, a KongPlugin with `plugin: rate-limiting` and `before.access: ["key-auth"]` will create a rate limiting plugin that limits requests _before_ they are authenticated. |
+| `ordering` _PluginOrdering_ | Ordering overrides the normal plugin execution order. It's only available on {{site.ee_product_name}}. `<phase>` is a request processing phase (for example, `access` or `body_filter`) and `<plugin>` is the name of the plugin that will run before or after the KongPlugin. For example, a KongPlugin with `plugin: rate-limiting` and `before.access: ["key-auth"]` will create a rate limiting plugin that limits requests _before_ they are authenticated. |
 
 
 
@@ -105,7 +105,7 @@ KongPlugin is the Schema for the kongplugins API.
 | `plugin` _string_ | PluginName is the name of the plugin to which to apply the config. |
 | `run_on` _string_ | RunOn configures the plugin to run on the first or the second or both nodes in case of a service mesh deployment. |
 | `protocols` _[KongProtocol](#kongprotocol) array_ | Protocols configures plugin to run on requests received on specific protocols. |
-| `ordering` _[PluginOrdering](#pluginordering)_ | Ordering overrides the normal plugin execution order. It's only available on Kong Enterprise. `<phase>` is a request processing phase (for example, `access` or `body_filter`) and `<plugin>` is the name of the plugin that will run before or after the KongPlugin. For example, a KongPlugin with `plugin: rate-limiting` and `before.access: ["key-auth"]` will create a rate limiting plugin that limits requests _before_ they are authenticated. |
+| `ordering` _[PluginOrdering](#pluginordering)_ | Ordering overrides the normal plugin execution order. It's only available on {{site.ee_product_name}}. `<phase>` is a request processing phase (for example, `access` or `body_filter`) and `<plugin>` is the name of the plugin that will run before or after the KongPlugin. For example, a KongPlugin with `plugin: rate-limiting` and `before.access: ["key-auth"]` will create a rate limiting plugin that limits requests _before_ they are authenticated. |
 
 
 

@@ -30,3 +30,6 @@ kong_version_compatibility:
       - 3.2.x
       - 3.0.x
       - 2.8.x
+
+search_aliases:
+  - kong-plugin-datadome

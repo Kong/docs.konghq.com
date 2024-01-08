@@ -14,13 +14,14 @@ breadcrumbs:
 {% endunless %}
 
 {% unless page.free %}
-  {% if page.paid and page.extn_publisher == "kong-inc" %}
-    <blockquote class="note" role="alert">
-      <p>
-        Did you know that you can try this plugin without talking to anyone with a free
-        trial of Kong Konnect? <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content={{ extn_slug }}">Get started in under 5 minutes</a>.
-      </p>
-    </blockquote>
+  {% if page.extn_publisher == "kong-inc" %}
+    {% if page.paid or page.premium %}
+      <blockquote class="note" role="alert">
+        <p>
+          Did you know that you can try this plugin without talking to anyone for just {% if page.paid %}{{ site.pricing.konnect.paid_plugin }}{% else %}{{ site.pricing.konnect.premium_plugin }}{% endif %}/month with Kong Konnect? <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content={{ extn_slug }}">Get started in under 5 minutes</a>.
+        </p>
+      </blockquote>
+    {% endif %}
   {% endif %}
 {% endunless %}
 
@@ -46,9 +47,9 @@ breadcrumbs:
     <summary style="cursor:pointer;"><strong>This plugin is not enabled by default</strong>. Click here for instructions to enable it &nbsp;&nbsp;⬇️</summary>
 
     <ul>
-      <li>Package install: Set <strong>plugins=bundled,{{ page.name }}</strong> in <strong>kong.conf</strong> before starting Kong</li>
-      <li>Docker: Set <strong>KONG_PLUGINS=bundled,{{ page.name }}</strong> in the environment</li>
-      <li>Kubernetes: Set <strong>KONG_PLUGINS=bundled,{{ page.name }}</strong> using <a href="/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/#modify-configuration">these instructions</a></li>
+      <li>Package install: Set <strong>plugins=bundled,{{ page.extn_slug }}</strong> in <strong>kong.conf</strong> before starting Kong</li>
+      <li>Docker: Set <strong>KONG_PLUGINS=bundled,{{ page.extn_slug }}</strong> in the environment</li>
+      <li>Kubernetes: Set <strong>KONG_PLUGINS=bundled,{{ page.extn_slug }}</strong> using <a href="/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/#modify-configuration">these instructions</a></li>
     </ul>
     </details>
   </blockquote>

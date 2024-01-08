@@ -20,10 +20,10 @@ $ kubectl create namespace kong
 namespace/kong created
 ```
 
-### Kong Enterprise License secret
+### {{site.ee_product_name}} License secret
 
 Enterprise version requires a valid license to run.  
-As part of sign up for Kong Enterprise, you should have received a license file.
+As part of sign up for {{site.ee_product_name}}, you should have received a license file.
 If you do not have one, please contact your sales representative.
 Save the license file temporarily to disk with filename `license`
 and execute the following:

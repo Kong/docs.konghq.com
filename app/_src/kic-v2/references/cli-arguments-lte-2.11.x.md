@@ -72,7 +72,7 @@ Following table describes all the flags that are available:
 | `--kong-admin-init-retry-delay`          | `duration`         | The time delay between every attempt (on controller startup) to connect to the Kong Admin API.                                                      |                                   |
 | `--kong-admin-tls-server-name`           | `string`           | SNI name to use to verify the certificate presented by Kong in TLS.                                                                                 |                                   |
 | `--kong-admin-tls-skip-verify`           | `boolean`          | Disable verification of TLS certificate of Kong's Admin endpoint.                                                                                   | `false`                           |
-| `--kong-admin-token`                     | `string`           | The Kong Enterprise RBAC token used by the controller.                                                                                              |                                   |
+| `--kong-admin-token`                     | `string`           | The {{site.ee_product_name}} RBAC token used by the controller.                                                                                              |                                   |
 
 {% if_version lte:2.8.x %}
 | `--kong-admin-url`                       | `string`           | The Kong Admin URL to connect to in the format "protocol://address:port".                                                                           | `"http://localhost:8001"`         |
@@ -88,7 +88,7 @@ Following table describes all the flags that are available:
 | `--kong-custom-entities-secret`          | `string`           | A Secret containing custom entities for DB-less mode, in "namespace/name" format.                                                                   |                                   |
 {% endif_version %}
 
-| `--kong-workspace`                       | `string`           | Kong Enterprise workspace to configure. Leave this empty if not using Kong workspaces.                                                              |                                   |
+| `--kong-workspace`                       | `string`           | {{site.ee_product_name}} workspace to configure. Leave this empty if not using Kong workspaces.                                                              |                                   |
 | `--kubeconfig`                           | `string`           | Path to the kubeconfig file.                                                                                                                        |                                   |
 | `--log-format`                           | `string`           | Format of logs of the controller. Allowed values are text and json.                                                                                 | `"text"`                          |
 | `--log-level`                            | `string`           | Level of logging for the controller. Allowed values are trace, debug, info, warn, error, fatal and panic.                                           | `"info"`                          |

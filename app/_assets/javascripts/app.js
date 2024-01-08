@@ -8,54 +8,6 @@ jQuery(function () {
   var $window = $(window);
   var $docs = $("#documentation");
 
-  // Active link
-  var url = $(".page.v2").data("url");
-  if (url) {
-    var urlNoSlash = url.slice(0, -1);
-    var activeNav = $(
-      ".docs-sidebar li a[href='" +
-        url +
-        "'], .docs-sidebar li a[href='" +
-        urlNoSlash +
-        "'] "
-    ).addClass("active");
-    activeNav.parents(".accordion-item").addClass("active");
-  }
-
-  // Open active sidebar section in left nav
-  $(".docs-sidebar a.active, li.accordion-item.active").each(function (
-    index,
-    a
-  ) {
-    $(a)
-      .parents("li.accordion-item")
-      .each(function (index, item) {
-        $(item).addClass("active");
-        $(item).find("> input").prop("checked", true);
-      });
-  });
-
-  $('.docs-sidebar .accordion-item input').each(function(index, input) {
-    $(input).on('click', function(event) {
-      var value = $('#accordion-opened').val();
-      var id = input.id.split('-')[1];
-
-      if (value === '') {
-        if ($('.accordion-item.active')[0]) {
-          value = $('.accordion-item.active')[0].firstElementChild.id.split('-')[1];
-        } else {
-          $('#accordion-opened').val(id.toString());
-          return;
-        }
-      }
-      if (value !== id.toString()) {
-        $('#accordion-' + value).prop('checked', false);
-        $('#accordion-opened').val(id.toString());
-      }
-
-    });
-  });
-
   $('.dropdown-button').on('click', function(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -88,6 +40,7 @@ jQuery(function () {
     }
   }
 
+  // TODO: move this
   // Enables tabbing through the version menu
   $(".dropdown-button:not(#version-dropdown)").on("keypress keydown", function (e) {
     if (e.keyCode == 13) {
@@ -105,6 +58,7 @@ jQuery(function () {
     });
   });
 
+  // TODO: move this
   // Enables tabbing through the module menu
   $("#module-dropdown").on("keypress keydown", function (e) {
     if (e.keyCode == 13) {
@@ -126,12 +80,6 @@ jQuery(function () {
     // close docs dropdown menu when tabbing to the version dropdown
     $("#version-dropdown").on("focus", function (e) {
       $("#module-list").removeClass("open");
-    });
-
-    // close product or version dropdown menu when tabbing on the first navigation menu item
-    $(".accordion-link").on("focus", function (e) {
-      $("#module-list").removeClass("open");
-      $("#version-list").removeClass("open");
     });
 
     $(document).on("keypress keydown", function (e) {
@@ -493,7 +441,7 @@ jQuery(function () {
    *
    * To disable for whole page you can add 'disable_image_expand: true' to page Front Matter block. Example:
    * ---
-   * title: Install Kong Enterprise
+   * title: Install Kong Gateway Enterprise
    * disable_image_expand: true
    * ---
    */

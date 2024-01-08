@@ -9,6 +9,8 @@
       url: /network-resiliency/
     - text: Port and Network Requirements
       url: /network/
+    - text: Geographic Regions
+      url: /geo/
     - text: Compatibility
       url: /compatibility/
     - text: Stages of Software Availability
@@ -179,12 +181,16 @@
               url: /dev-portal/applications/dynamic-client-registration/auth0/
             - text: Azure
               url: /dev-portal/applications/dynamic-client-registration/azure/
+            - text: Custom IdP
+              url: /dev-portal/applications/dynamic-client-registration/custom/
         - text: Create, Edit, and Delete an Application
           url: /dev-portal/applications/dev-apps/
         - text: Register an Application with an API product
           url: /dev-portal/applications/dev-reg-app-service/
         - text: Generate Credentials for an Application
           url: /dev-portal/applications/dev-gen-creds/
+    - text: Konnect Portal Management API Automation Guide
+      url: /dev-portal/konnect-portal-management-automation/
     - text: Customize Dev Portal
       items:
         - text: Overview
@@ -336,6 +342,13 @@
       items:
         - text: API Spec
           url: /konnect/api/portal/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
+    - text: Portal Management API
+      items:
+        - text: API Spec
+          url: /konnect/api/portal-management/latest/
           absolute_url: true
           generate: false
           target_blank: true

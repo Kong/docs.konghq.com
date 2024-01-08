@@ -1,7 +1,7 @@
 columns:
   - name: Kong OSS
     key: oss
-  - name: Kong Enterprise
+  - name: Kong Gateway Enterprise
     key: enterprise
   - name: Officially Supported
     key: support
@@ -59,7 +59,7 @@ features:
         oss: true
         enterprise: true
         support: true
-        url: /gateway/VERSION/install/docker/
+        url: /gateway/VERSION/install/docker/build-custom-images/
         icon: /assets/images/icons/third-party/debian-logo.jpg
       - name: "RHEL (8-ubi)"
         oss: true
@@ -67,6 +67,18 @@ features:
         support: true
         url: /gateway/VERSION/install/docker/build-custom-images/
         icon: /assets/images/icons/third-party/rhel.jpg
+      - name: "Ubuntu"
+        oss: true
+        enterprise: true
+        support: true
+        url: /gateway/VERSION/install/docker/
+        icon: /assets/images/icons/third-party/ubuntu.png
+      - name: "Amazon Linux (2 and 2023)"
+        oss: true
+        enterprise: true
+        support: true
+        url: https://hub.docker.com/r/kong/kong-gateway/tags?page=1&name=amazonlinux
+        icon: /assets/images/icons/third-party/amazon-linux.png
 
   - name: "Other"
     items:
