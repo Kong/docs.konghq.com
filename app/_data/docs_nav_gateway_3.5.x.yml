@@ -584,7 +584,7 @@ items:
           absolute_url: true
           generate: false
         - text: Targets
-          url: /admin-api/#target-object
+          url: /gateway/api/admin-ee/latest/#/Targets/list-target-with-upstream
           absolute_url: true
           generate: false
         - text: Vaults
@@ -612,7 +612,7 @@ items:
           absolute_url: true
           generate: false
         - text: Admins
-          url: /gateway/api/admine-ee/latest/#/admins/get-admins
+          url: /gateway/api/admin-ee/latest/#/admins/get-admins
           absolute_url: true
           generate: false
         - text: Consumer Groups
@@ -628,7 +628,7 @@ items:
           absolute_url: true
           generate: false
         - text: Audit Logs
-          url: /gateway/api/admine-ee/latest/#/audit-logs/get-audit-requests
+          url: /gateway/api/admin-ee/latest/#/audit-logs/get-audit-requests
           absolute_url: true
           generate: false
         - text: Status API
@@ -636,7 +636,7 @@ items:
           absolute_url: true
           generate: false
       - text: Open Source API
-        url: gateway/api/admin-oss/latest/
+        url: /gateway/api/admin-oss/latest/
         absolute_url: true
         generate: false
   - title: Reference

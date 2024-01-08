@@ -42,7 +42,7 @@
 /konnect/getting-started/configure-runtime/ /konnect/getting-started/configure-data-plane-node/
 /konnect/api/runtime-groups-config/overview/ /konnect/api/
 
-# API deprecation
+# API markdown doc deprecation
 /gateway/latest/admin-api/#information-routes   /gateway/api/admin-ee/latest/#/Information/get-endpoints/
 /gateway/latest/admin-api/#health-routes    /gateway/api/admin-ee/latest/#/Information/get-status/
 /gateway/latest/admin-api/#tags        /gateway/api/admin-ee/latest/#/tags/get-tags/
@@ -64,8 +64,8 @@
 /gateway/latest/admin-api/rbac/reference/        /gateway/api/admin-ee/latest/#/rbac/get-rbac-users/
 /gateway/latest/admin-api/event-hooks/reference/ /gateway/api/admin-ee/latest/#/Event-hooks/get-event-hooks/
 /gateway/latest/admin-api/db-encyrption/     /gateway/api/admin-ee/latest/#/Keyring/get-keyring/
-/gateway/latest/admin-api/audit-logs/        /gatewau/api/admine-ee/latest/#/audit-logs/get-audit-requests/
-/gateway/latest/admin-api/admins/reference/   /gateway/api/admine-ee/latest/#/admins/get-admins/
+/gateway/latest/admin-api/audit-logs/        /gateway/api/admin-ee/latest/#/audit-logs/get-audit-requests/
+/gateway/latest/admin-api/admins/reference/   /gateway/api/admin-ee/latest/#/admins/get-admins/
 
 
 # 3.5
