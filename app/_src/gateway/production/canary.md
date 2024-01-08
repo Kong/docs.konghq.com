@@ -3,7 +3,7 @@ title: Canary Deployments
 content-type: reference
 ---
 
-Using the [ring-balancer](/gateway/latest/how-kong-works/load-balancing/#ring-balancer), target weights can be adjusted granularly, allowing
+Using [advanced load-balancing](/gateway/latest/how-kong-works/load-balancing/#advanced-load-balancing), target weights can be adjusted granularly, allowing
 for a smooth, controlled canary release.
 
 Using a very simple two target example:

@@ -47,9 +47,9 @@ breadcrumbs:
     <summary style="cursor:pointer;"><strong>This plugin is not enabled by default</strong>. Click here for instructions to enable it &nbsp;&nbsp;⬇️</summary>
 
     <ul>
-      <li>Package install: Set <strong>plugins=bundled,{{ page.name }}</strong> in <strong>kong.conf</strong> before starting Kong</li>
-      <li>Docker: Set <strong>KONG_PLUGINS=bundled,{{ page.name }}</strong> in the environment</li>
-      <li>Kubernetes: Set <strong>KONG_PLUGINS=bundled,{{ page.name }}</strong> using <a href="/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/#modify-configuration">these instructions</a></li>
+      <li>Package install: Set <strong>plugins=bundled,{{ page.extn_slug }}</strong> in <strong>kong.conf</strong> before starting Kong</li>
+      <li>Docker: Set <strong>KONG_PLUGINS=bundled,{{ page.extn_slug }}</strong> in the environment</li>
+      <li>Kubernetes: Set <strong>KONG_PLUGINS=bundled,{{ page.extn_slug }}</strong> using <a href="/kubernetes-ingress-controller/latest/guides/setting-up-custom-plugins/#modify-configuration">these instructions</a></li>
     </ul>
     </details>
   </blockquote>

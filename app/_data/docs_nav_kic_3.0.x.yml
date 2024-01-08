@@ -137,6 +137,8 @@ items:
             url: /guides/security/workspaces
           - text: Preserving Client IP
             url: /guides/security/client-ip
+          - text: Kubernetes Secrets in Plugins
+            url: /guides/security/plugin-secrets
       #- text: Service Mesh
       #  items:
       #    - text: Kong Mesh
@@ -157,6 +159,10 @@ items:
         items:
           - text: Images
             url: /guides/customize/image
+      - text: Custom Ingress Class
+        items:
+          - text: Internal / External Traffic
+            url: /guides/custom-class/internal-external
 
   - title: Plugins
     icon: /assets/images/icons/documentation/icn-api-plugins-color.svg

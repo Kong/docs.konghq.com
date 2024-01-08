@@ -23,6 +23,8 @@ Variable | Output | Definition
 {% raw %}`{{site.ce_product_name}}`{% endraw %} | {{site.ce_product_name}} | Kong's open-source API gateway. Use when referring to something that's _only_ available in open-source.
 {% raw %}`{{site.konnect_product_name}}`{% endraw %}| {{site.konnect_product_name}} | The full name of Kong Konnect.
 {% raw %}`{{site.konnect_short_name}}`{% endraw %} | {{site.konnect_short_name}} | The short name of the SaaS Konnect control plane.
+{% raw %}`{{site.mesh_product_name}}`{% endraw %} | {{site.mesh_product_name}}| The enterprise product offering built on top of CNCF's Kuma.
+{% raw %}`{{site.kic_product_name}}`{% endraw %} | {{site.kic_product_name}}| The Kong Ingress Controller (KIC) for Kubernetes.
 {% raw %}`{{site.company_name}}`{% endraw %} | {{site.company_name}} | The name of the company. <br><br> Sometimes "Kong" is used to refer to Kong Gateway. For branding reasons, we should avoid using this term to refer to Kong Gateway going forward, however, user communities will continue to use this term as shorthand.
 
 ## Links

@@ -18,7 +18,7 @@ Mesh Manager is ideal for organizations who want to have one or more global cont
 Here are a few benefits of creating a mesh deployment in {{site.konnect_short_name}} instead of using a self-managed setup:
 
 * **Kong-managed global control plane:** By creating your mesh in {{site.konnect_short_name}}, your global control plane is managed by Kong. 
-* **All entities in one place:** You can view all your information, such as entities from Kong Ingress Controller (KIC) for Kubernetes, {{site.konnect_short_name}}-managed entities, and now service mesh data, all from one central platform. 
+* **All entities in one place:** You can view all your information, such as entities from {{site.kic_product_name}} (KIC) for Kubernetes, {{site.konnect_short_name}}-managed entities, and now service mesh data, all from one central platform. 
 * **Managed UI wizard setup:** {{site.konnect_short_name}} simplifies the process of creating a mesh by providing a setup wizard in the UI that guides you through the configuration steps.
 
 ## Create a mesh
@@ -27,12 +27,30 @@ Creating a fully-functioning {{site.mesh_product_name}} deployment in {{site.kon
 
 1. Create the global control plane in {{site.konnect_short_name}} by going to [Mesh Manager](https://cloud.konghq.com/mesh-manager).
 1. Add and configure a zone for your control plane from the mesh global control plane dashboard.
+    {:.note}
+    > **Note:** You can't create multiple zones in the same cluster.
 1. Configure `kumactl` to connect to your global control plane following the wizard in the UI.
 1. Add services to your mesh.
     * If you're using Kubernetes, you must add the [kuma.io/sidecar-injection](/mesh/latest/reference/kubernetes-annotations/#kumaiosidecar-injection) label to the namespace or deployments you want to bring into the mesh. This will automatically enable {{site.product_mesh_name}} and register the service pods in the mesh.
     * If you are using universal, you must create a [dataplane definition](/mesh/latest/production/dp-config/dpp-on-universal/), pass it to the `kuma-dp run` command on a virtual machine, and point it to the local zone control plane.
 
 Mesh zones are priced based on consumption. For more information about the pricing and consumption of zones, see Kong's [Pricing](https://konghq.com/pricing) page.
+
+### Mesh Manager dashboard
+
+After your service mesh is deployed in {{site.konnect_short_name}}, Mesh Manager displays the following information for each control plane:
+
+* Meshes and data plane proxies with [mTLS](/mesh/latest/policies/mutual-tls/)
+* RBAC
+* Zone control planes
+* [Zone Ingresses](/mesh/latest/explore/zone-ingress/)
+* [Zone Egresses](/mesh/latest/explore/zoneegress/)
+* Services associated with your mesh
+* [Gateways](/mesh/latest/explore/gateway/) associated with your mesh
+* Policies
+
+![mesh control plane dashboard](/assets/images/products/konnect/mesh-manager/konnect-mesh-control-plane-dashboard.png)
+> _**Figure 1:** Example control plane dashboard with several zones and services, a service mesh, and data plane proxies._
 
 ## Supported installation options
 
@@ -49,21 +67,8 @@ Mesh zones are priced based on consumption. For more information about the prici
 * Ubuntu
 * macOS
 
-## View service mesh entities
+The installer automatically chooses the installation option based on your current platform.
 
-After your mesh is deployed in {{site.mesh_product_name}}, Mesh Manager displays the following information for each control plane:
-
-* Meshes and data plane proxies with [mTLS](/mesh/latest/policies/mutual-tls/)
-* RBAC
-* Zone control planes
-* [Zone Ingresses](/mesh/latest/explore/zone-ingress/)
-* [Zone Egresses](/mesh/latest/explore/zoneegress/)
-* Services associated with your mesh
-* [Gateways](/mesh/latest/explore/gateway/) associated with your mesh
-* Policies
-
-![mesh control plane dashboard](/assets/images/products/konnect/mesh-manager/konnect-mesh-control-plane-dashboard.png)
-> _**Figure 1:** Example control plane dashboard with several zones and services, a service mesh, and data plane proxies._
 
 ## Mesh Manager RBAC
 

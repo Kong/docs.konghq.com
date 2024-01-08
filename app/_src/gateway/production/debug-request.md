@@ -22,7 +22,7 @@ request_debug = on | off # enable or disable request debugging
 request_debug_token <token> # Set debug token explicitly. Otherwise, it will be generated randomly when Kong starts, restarts, and reloads. 
 ```
 
-The usage of debug token (`request-debug-token`) prevents abuse of the feature as only authorozied personnel are able to issue debug requests. 
+The usage of debug token (`request-debug-token`) prevents abuse of the feature as only authorized personnel are able to issue debug requests. 
 
 You can find the debug token in the following locations:
 * **{{site.base_gateway}} error log:** The debug token is logged in the error log (notice level) when {{site.base_gateway}} starts, restarts, or reloads. The log line will have the `[request-debug]` prefix to aid in searching.
@@ -55,6 +55,11 @@ If this header isn't present or contains an unknown value, timing information wi
 
 If the `X-Kong-Request-Debug-Log` header is set to true, timing information will also be logged in the {{site.base_gateway}} error log with a log level of `notice`. By default, the `X-Kong-Request-Debug-Log` header is set to `false`. The log line will have the `[request-debug]` prefix to aid in searching.
 
+### X-Kong-Request-Debug-Token header
+
+The `X-Kong-Request-Debug-Token` is a token for authenticating the client and making the debug request to prevent abuse. Debug requests originating from loopback addresses don't require this header.
+
+
 ## Debug request example 
 
 The following is an example debug request:
@@ -69,8 +74,6 @@ Here's an example of the output of the response header:
 
 ```json
 {
-    "request_id": "2effa21fb2d36d31f80ed02635cde86b",
-    "workspace_id": "7b7f79f2-8d52-470c-a307-e76f986041cf",
     "child": {
         "rewrite": {
             "total_time": 0
@@ -79,7 +82,7 @@ Here's an example of the output of the response header:
             "child": {
                 "dns": {
                     "child": {
-                        "example.host": {
+                        "example.com": {
                             "child": {
                                 "resolve": {
                                     "total_time": 0,
@@ -90,28 +93,137 @@ Here's an example of the output of the response header:
                         }
                     },
                     "total_time": 0
+                },
+                "plugins": {
+                    "child": {
+                        "rate-limiting": {
+                            "child": {
+                                "176928d4-0949-47c8-8114-19cac8f86aab": {
+                                    "child": {
+                                        "redis": {
+                                            "total_time": 1,
+                                            "child": {
+                                                "connections": {
+                                                    "child": {
+                                                        "tcp://localhost:6379": {
+                                                            "child": {
+                                                                "connect": {
+                                                                    "child": {
+                                                                        "dns": {
+                                                                            "child": {
+                                                                                "localhost": {
+                                                                                    "child": {
+                                                                                        "resolve": {
+                                                                                            "total_time": 0,
+                                                                                            "cache_hit": true
+                                                                                        }
+                                                                                    },
+                                                                                    "total_time": 0
+                                                                                }
+                                                                            },
+                                                                            "total_time": 0
+                                                                        }
+                                                                    },
+                                                                    "total_time": 0
+                                                                }
+                                                            },
+                                                            "total_time": 0
+                                                        }
+                                                    },
+                                                    "total_time": 0
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "total_time": 2
+                                }
+                            },
+                            "total_time": 2
+                        },
+                        "request-transformer": {
+                            "child": {
+                                "cfd2d953-ad82-453c-9979-b7573f52c226": {
+                                    "total_time": 0
+                                }
+                            },
+                            "total_time": 0
+                        }
+                    },
+                    "total_time": 2
+                }
+            },
+            "total_time": 3
+        },
+        "log": {
+            "child": {
+                "plugins": {
+                    "child": {
+                        "http-log": {
+                            "child": {
+                                "22906259-2963-4c6d-96a1-6d36d21714e3": {
+                                    "total_time": 4
+                                }
+                            },
+                            "total_time": 4
+                        }
+                    },
+                    "total_time": 4
+                }
+            },
+            "total_time": 4
+        },
+        "header_filter": {
+            "child": {
+                "plugins": {
+                    "child": {
+                        "response-transformer": {
+                            "child": {
+                                "dee98076-a58f-490d-8f7b-8523506bf96d": {
+                                    "total_time": 1
+                                }
+                            },
+                            "total_time": 1
+                        }
+                    },
+                    "total_time": 1
                 }
             },
             "total_time": 1
         },
-        "header_filter": {
-            "total_time": 0
+        "body_filter": {
+            "child": {
+                "plugins": {
+                    "child": {
+                        "response-transformer": {
+                            "child": {
+                                "dee98076-a58f-490d-8f7b-8523506bf96d": {
+                                    "total_time": 0
+                                }
+                            },
+                            "total_time": 1
+                        }
+                    },
+                    "total_time": 1
+                }
+            },
+            "total_time": 1
         },
         "balancer": {
             "total_time": 0
         },
         "upstream": {
-            "total_time": 100,
+            "total_time": 152,
             "child": {
                 "time_to_first_byte": {
-                    "total_time": 20
+                    "total_time": 151
                 },
                 "streaming": {
-                    "Total_time": 80
+                    "total_time": 1
                 }
             }
         }
-    }
+    },
+    "request_id": "0208903e83001d216bee5435dbc5ed25"
 }
 ```
 

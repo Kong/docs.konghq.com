@@ -181,6 +181,8 @@
               url: /dev-portal/applications/dynamic-client-registration/auth0/
             - text: Azure
               url: /dev-portal/applications/dynamic-client-registration/azure/
+            - text: Custom IdP
+              url: /dev-portal/applications/dynamic-client-registration/custom/
         - text: Create, Edit, and Delete an Application
           url: /dev-portal/applications/dev-apps/
         - text: Register an Application with an API product
