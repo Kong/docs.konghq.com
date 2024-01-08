@@ -49,7 +49,10 @@ The Ingress API supports TLS temination using the `.spec.tls` field. To terminat
         protocol: HTTPS
         hostname: "demo.example.com"
         tls:
-          mode: Passthrough
+          mode: Terminate
+          certificateRefs:
+            - kind: Secret
+              name: demo-example-com-cert
     ```
 
 2. Bind a `HTTPRoute` to the `Gateway`.
@@ -130,13 +133,10 @@ The Ingress API supports TLS temination using the `.spec.tls` field. To terminat
       listeners:
       - name: https
         port: 443
-        protocol: HTTPS
+        protocol: TLS
         hostname: "demo.example.com"
         tls:
           mode: Passthrough
-          certificateRefs:
-          - kind: Secret
-            name: example-com
     ```
 
 2. Bind a `TLSRoute` to the `Gateway`.
