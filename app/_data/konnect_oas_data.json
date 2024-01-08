@@ -374,5 +374,26 @@
         "registration_configs": []
       }
     ]
+  },
+  {
+    "id": "97cb97c2-0824-4e87-a13f-2fad352d698f",
+    "title": "Konnect Search (Beta)",
+    "latestVersion": {
+      "name": "v0",
+      "id": "ad43ee2d-dd83-448a-90ec-ec0570bad622"
+    },
+    "description": "The search API for Kong Konnect. This API is released as beta.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "ad43ee2d-dd83-448a-90ec-ec0570bad622",
+        "created_at": "2023-12-13T09:50:05.266Z",
+        "updated_at": "2023-12-13T11:41:47.234Z",
+        "name": "v0",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
   }
 ]
