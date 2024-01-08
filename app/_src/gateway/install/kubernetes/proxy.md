@@ -258,11 +258,8 @@ The {{ site.base_gateway }} data plane is responsible for handling incoming traf
 
 1. Fetch the `LoadBalancer` address for the `kong-dp` service and store it in the `PROXY_IP` environment variable
 
-    {:.note}
-    > You may need to replace `.status.loadBalancer.ingress[0].ip` with `.status.loadBalancer.ingress[0].hostname` if your provider allocates a DNS hostname for load balancers.
-
     ```bash
-    PROXY_IP=$(kubectl get service --namespace kong kong-dp-kong-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+    PROXY_IP=$(kubectl get service --namespace kong kong-dp-kong-proxy -o jsonpath='{range .status.loadBalancer.ingress[0]}{@.ip}{@.hostname}{end}')
     ```
 
 1. Make a HTTP request to your `$PROXY_IP`. This will return a `HTTP 404` served by {{ site.base_gateway }}
