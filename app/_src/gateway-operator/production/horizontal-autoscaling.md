@@ -1,8 +1,5 @@
 ---
 title: Horizontally autoscale a Data Plane
-content-type: tutorial
-book: kgo-konnect-get-started
-chapter: 4
 ---
 
 {{ site.kgo_product_name }} can deploy data planes that will horizontally autoscale based on user defined criteria.

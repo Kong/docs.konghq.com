@@ -39,8 +39,6 @@ items:
             url: /get-started/konnect/deploy-data-plane/
           - text: Create a Route
             url: /get-started/konnect/create-route/
-          - text: Horizontally autoscale a Data Plane
-            url: /get-started/konnect/horizontal-autoscaling/
       - text: Kong Ingress Controller
         items:
           - text: Install Gateway Operator
@@ -75,6 +73,8 @@ items:
             url: /production/upgrade/data-plane/rolling/
           - text: Blue / Green Deployment
             url: /production/upgrade/data-plane/blue-green/
+      - text: Horizontally autoscale a Data Plane
+        url: /production/horizontal-autoscaling/
   - title: Reference
     icon: /assets/images/icons/icn-magnifying-glass.svg
     items:
