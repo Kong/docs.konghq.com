@@ -4,20 +4,11 @@
 
 ## Week 1
 
-### [Automated submodule update (app/_src/.repos/kong-plugins)](https://github.com/Kong/docs.konghq.com/pull/6718) (2024-01-04)
-
-
-
-#### Modified
-
-- https://docs.konghq.com/gateway/3.5.x/production/debug-request
 
 
 ### [fix: typo in ingress redirect docs](https://github.com/Kong/docs.konghq.com/pull/6714) (2024-01-03)
 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+Fix type in redirect docs
 
 #### Modified
 
@@ -43,9 +34,7 @@ Fixing by splitting out `if_version` tags, so that they don't encompass part of 
 
 ### [fix: use more informative example for request-debug docs](https://github.com/Kong/docs.konghq.com/pull/6702) (2024-01-02)
 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
 
 Currently, the example output of request-debug in docs is too simple, so I replace it with a more better one.
 
@@ -56,11 +45,10 @@ Currently, the example output of request-debug in docs is too simple, so I repla
 
 ### [rewrite the loadbalancing document](https://github.com/Kong/docs.konghq.com/pull/6689) (2024-01-05)
 
-<!-- What did you change and why? -->
 
 Rewrite of the outdated page on loadbalancing
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
 
 #### Modified
 
@@ -84,7 +72,7 @@ Rewrite of the outdated page on loadbalancing
 - https://docs.konghq.com/gateway/3.5.x/production/canary
 
 
-### [Add KIC configFrom guide](https://github.com/Kong/docs.konghq.com/pull/6680) (2024-01-03)
+### [feat: Add KIC configFrom guide](https://github.com/Kong/docs.konghq.com/pull/6680) (2024-01-03)
 
 Add a guide that shows how to use `configFrom` when configuring a plugin config from k8s secrets
 
@@ -111,10 +99,8 @@ Uses the pre-function and rate limiting advanced plugins together.
 
 ### [feat: Create Benchmark Guide for Kong Gateway](https://github.com/Kong/docs.konghq.com/pull/6630) (2024-01-05)
 
-<!-- What did you change and why? -->
-Harry created an internal KB about benchmark testing for Kong Gateway as well as some recommendations to improve benchmark performance, so this PR converts that into documentation.
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+Convert internal benchmark performance KB into documentation. 
+
 
 #### Added
 
@@ -130,7 +116,6 @@ Harry created an internal KB about benchmark testing for Kong Gateway as well as
 
 Split out content from the mTLS-auth landing page into a how-to section + some cleanup.
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Added
 
