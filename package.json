@@ -22,9 +22,9 @@
   },
   "devDependencies": {
     "@rollup/plugin-inject": "^5.0.3",
-    "@vitejs/plugin-vue": "^4.2.3",
+    "@vitejs/plugin-vue": "^5.0.0",
     "broken-link-checker": "0.7.8",
-    "browser-sync": "2.29.3",
+    "browser-sync": "3.0.2",
     "cheerio": "1.0.0-rc.12",
     "cloudflare": "2.9.1",
     "del": "6.1.1",
@@ -56,10 +56,13 @@
     "@kong/kongponents": "^8.119.0",
     "@kong/sdk-portal-js": "^2.0.0",
     "@segment/analytics-next": "1.62.0",
+    "algoliasearch": "^4.20.0",
+    "instantsearch.css": "^8.1.0",
     "jquery": "3.7.1",
     "js-cookie": "^3.0.1",
     "js-yaml": "^4.1.0",
     "vue": "^3.3.4",
+    "vue-instantsearch": "^4.12.1",
     "vue-router": "^4.2.4"
   }
 }

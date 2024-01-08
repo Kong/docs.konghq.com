@@ -111,6 +111,8 @@ items:
             url: /guides/services/https-redirect
           - text: Multiple Backend Services
             url: /guides/services/multiple-backends
+          - text: Configuring Gateway API resources across namespaces
+            url: /guides/services/cross-namespace
       - text: Request Manipulation
         items:
           - text: Rewriting Hosts and Paths
@@ -137,6 +139,8 @@ items:
             url: /guides/security/workspaces
           - text: Preserving Client IP
             url: /guides/security/client-ip
+          - text: Kubernetes Secrets in Plugins
+            url: /guides/security/plugin-secrets
       #- text: Service Mesh
       #  items:
       #    - text: Kong Mesh
@@ -157,6 +161,10 @@ items:
         items:
           - text: Images
             url: /guides/customize/image
+      - text: Custom Ingress Class
+        items:
+          - text: Internal / External Traffic
+            url: /guides/custom-class/internal-external
 
   - title: Plugins
     icon: /assets/images/icons/documentation/icn-api-plugins-color.svg

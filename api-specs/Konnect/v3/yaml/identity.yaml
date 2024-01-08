@@ -1281,6 +1281,8 @@ components:
                     name: IDM - Developers
                     description: The developers for the IDM API.
                     system_team: false
+                    labels:
+                      env: test
                     created_at: '2022-02-07T17:46:57.52Z'
                     updated_at: '2022-09-25T13:00:00.00Z'
     TeamMappingCollection:
@@ -2482,6 +2484,8 @@ components:
                 example: The Identity Management (IDM) team.
                 description: The description of the new team.
                 writeOnly: true
+              labels:
+                $ref: '#/components/schemas/Labels'
             required:
               - name
           examples:
@@ -2506,6 +2510,8 @@ components:
                 example: The Identity Management (IDM) API team.
                 description: The description of the team.
                 writeOnly: true
+              labels:
+                $ref: '#/components/schemas/LabelsUpdate'
           examples:
             Example Request Body:
               $ref: '#/components/examples/Update-Team-Request'
@@ -2931,6 +2937,8 @@ components:
         name: IDM - Developers
         description: The developers for the IDM API.
         system_team: false
+        labels:
+          env: test
         created_at: '1992-02-07T17:46:57.52Z'
         updated_at: '2022-08-31T17:00:00.52Z'
       properties:
@@ -2959,6 +2967,8 @@ components:
             teams that can manage Konnect objects, like "Organization Admin", or
             "Service"
           readOnly: true
+        labels:
+          $ref: '#/components/schemas/Labels'
         created_at:
           type: string
           format: date-time
@@ -3447,6 +3457,39 @@ components:
       oneOf:
         - $ref: '#/components/schemas/StringFieldEqualsFilter'
         - $ref: '#/components/schemas/StringFieldContainsFilter'
+    Labels:
+      title: Labels
+      type: object
+      example:
+        env: test
+      description: >
+        Labels store metadata of an entity that can be used for filtering an
+        entity list or for searching across entity types. 
+
+
+        Keys must be of length 1-63 characters, and cannot start with "kong",
+        "konnect", "mesh", "kic", or "_".
+      additionalProperties:
+        type: string
+        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z\-\.\_]*[a-z0-9A-Z]+)?$
+        maxItems: 50
+        minLength: 1
+        maxLength: 63
+    LabelsUpdate:
+      type: object
+      nullable: true
+      description: >
+        Labels store metadata of an entity that can be used for filtering an
+        entity list or for searching across entity types. 
+
+
+        Keys must be of length 1-63 characters, and cannot start with "kong",
+        "konnect", "mesh", "kic", or "_".
+      example:
+        env: test
+      maxItems: 50
+      maxLength: 63
+      writeOnly: true
   securitySchemes:
     systemAccountAccessToken:
       type: http
@@ -3701,6 +3744,9 @@ components:
         name: IDM - Developers
         description: The developers for the IDM API.
         system_team: false
+        labels:
+          env: test
+          service: test
         created_at: '2022-02-07T17:46:57.52Z'
         updated_at: '2022-09-25T13:00:00.00Z'
     team-mapping-collection:
@@ -3755,10 +3801,15 @@ components:
       value:
         name: IDM - Developers
         description: The Identity Management (IDM) team.
+        labels:
+          env: test
+          service: test
     Update-Team-Request:
       value:
         name: IDM - Developers
         description: The Identity Management (IDM) API team.
+        labels:
+          env: prod
     Update-Team-Mappings:
       value:
         mappings:

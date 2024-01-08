@@ -18,9 +18,7 @@
     </a>
 
     <div class="separator mobile"></div>
-    <div class="search-input-wrapper">
-      <img src="/assets/images/landing-page/search.svg" alt="search">
-      <input id="getkong-algolia-search-input" type="text" role="search" placeholder="Search the docs...">
+      <div class="search-input-wrapper" id="getkong-algolia-search-input">
     </div>
 
     <div class="search-results-wrapper"></div>
@@ -33,7 +31,7 @@
         >
           <span tabindex="0" id="docs-link" class="main-menu-item-title">Docs</span>
           <span class="caret"></span>
-          <ul class="navbar-item-submenu">
+          <ul class="navbar-item-submenu" role="menu">
             <div class="submenu-section">
               <li role="menuitem" class="docs-dropdown-li">
                 <a href="/api/" class="docs-dropdown-li__link" tabindex="-1">
@@ -91,7 +89,7 @@
         >
           <span id="plugin-link" class="main-menu-item-title" tabindex="0">Plugin Hub</span>
           <span class="caret"></span>
-          <ul class="navbar-item-submenu">
+          <ul class="navbar-item-submenu" role="menu">
             <div class="submenu-section">
               <li role="menuitem" class="docs-dropdown-li">
                 <a href="/hub/" class="docs-dropdown-li__link" tabindex="-1">
@@ -167,46 +165,3 @@
     </div>
   </div>
 </header>
-
-<style>
-  @media (max-width: 768px) {
-    .algolia-docsearch-suggestion--subcategory-column {
-      display: none !important;
-    }
-
-    .algolia-autocomplete .ds-dropdown-menu {
-      max-width: calc(100% + 40px);
-      min-width: 300px;
-    }
-
-    .algolia-autocomplete.algolia-autocomplete-left .ds-dropdown-menu {
-      left: -40px !important;
-    }
-
-    .algolia-autocomplete.algolia-autocomplete-left .ds-dropdown-menu:before {
-      left: 88px;
-    }
-  }
-</style>
-
-{% if include.layout != "landing-page" %}
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
-
-<script type="text/javascript">
-  docsearch({
-    appId: 'T5JKD83LWT',
-    apiKey: '1390283021f26e36117242934deb8d9d',
-    indexName: 'prod_Full_Docs',
-    inputSelector: '#getkong-algolia-search-input',
-    algoliaOptions: {
-      hitsPerPage: 8
-    },
-    // Override selected event to allow for local environment navigation
-    handleSelected: function (input, event, suggestion) {
-      input.setVal('')
-      window.location.href = window.location.protocol + '//' + window.location.host + suggestion.url.split('docs.konghq.com')[1]
-    }
-    // ,debug: true // Set debug to true if you want to inspect the dropdown
-  })
-</script>
-{% endif %}
