@@ -6,26 +6,29 @@ purpose: |
   namespaces.
 ---
 
-Unlike Ingress, Gateway API routing resources and use Services in another
+Unlike Ingress, Gateway API routing resources can use Services in another
 namespace if the Service's namespace permits it. This guide shows how to create
-an HTTPRoute in one namespace that routes to a Service in another, bound to a
+a `HTTPRoute` in one namespace that routes to a Service in another, bound to a
 Gateway in a third namespace.
 
 {% include /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
 
 ## Create namespaces and allow references
 
-1. Create separate namespaces to hold the HTTPRoute and target Service:
+1. Create separate namespaces to hold the `HTTPRoute` and target Service:
+
    ```bash
-   kubectl create namespace test-source; kubectl create namespace test-destination
+   kubectl create namespace test-source
+   kubectl create namespace test-destination
    ```
+
    The results should look like this:
    ```text
    namespace/test-source created
    namespace/test-destination created
    ```
 
-1. Create [a ReferenceGrant resource](https://gateway-api.sigs.k8s.io/api-types/referencegrant/)
+1. Create [a `ReferenceGrant` resource](https://gateway-api.sigs.k8s.io/api-types/referencegrant/)
    in the destination namespace:
 
    ```bash
@@ -56,13 +59,13 @@ namespaces that can talk to specific resources in the ReferenceGrant's
 namespace. The above example allows HTTPRoutes in the `test-source` namespace
 to reference Services in the `test-destination` namespace.
 
-## Update Gateway allowed routes
+## Using a Gateway resource in a different namespace
 
-Gateway resources may also allow references from resources (HTTPRoute,
-TCPRoute, etc.) in other namespaces. However, these references _do not_ use
-ReferenceGrants, as they are defined per listener, not for the entire Gateway.
+Gateway resources may also allow references from resources (`HTTPRoute`,
+`TCPRoute`, etc.) in other namespaces. However, these references _do not_ use
+ReferenceGrants, as they are defined per listener in the Gateway resource, not for the entire Gateway.
 A listener's [`allowedRoutes` field](https://gateway-api.sigs.k8s.io/concepts/security-model/#1-route-binding)
-lets you define where routing resources can bind to that listener.
+lets you define which routing resources can bind to that listener.
 
 The default Gateway in this guide only allows routes from its same namespace
 (`default`). You'll need to expand its scope to allow routes from the
@@ -77,22 +80,43 @@ The results should look like this:
 gateway.gateway.networking.k8s.io/kong patched
 ```
 
-Listeners can allow routes in their own (`from: Same`), any (`from: Any`), or a
+This results in a `Gateway` resource with the following configuration:
+
+```yaml
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: kong
+spec:
+  gatewayClassName: kong
+  listeners:
+  - name: proxy
+    port: 80
+    protocol: HTTP
+    allowedRoutes:
+      namespaces:
+        from: All
+```
+
+Listeners can allow routes in their own namespace (`from: Same`), any namespace (`from: Any`), or a
 labeled set of namespaces (`from: Selector`).
 
 ## Deploy a Service and HTTPRoute
 
-1. Deploy an echo Services to the `test-destination` resource:
+1. Deploy an echo Service to the `test-destination` resource.
+
    ```bash
    kubectl apply -f {{site.links.web}}/assets/kubernetes-ingress-controller/examples/echo-service.yaml -n test-destination
    ```
+
    The results should look like this:
+
    ```text
    service/echo created
    deployment.apps/echo created
    ```
 
-1. Deploy a HTTPRoute that sends traffic to both the services. By default, traffic is distributed evenly across all services:
+1. Deploy a HTTPRoute that sends traffic to the service.
 
    ```bash
    echo 'apiVersion: gateway.networking.k8s.io/v1
@@ -118,6 +142,7 @@ labeled set of namespaces (`from: Selector`).
          namespace: test-destination
    ' | kubectl apply -f -
    ```
+
    The results should look like this:
    ```text
    httproute.gateway.networking.k8s.io/echo created
@@ -127,12 +152,14 @@ labeled set of namespaces (`from: Selector`).
    default, entries here attempt to use the same namespace as the HTTPRoute if
    you do not specify a namespace.
 
-1. Send requests through the route:
+1. Send requests through the route.
 
    ```bash
    curl -s "$PROXY_IP/echo"
    ```
+
    The results should look like this:
+
    ```text
    Welcome, you are connected to node kind-control-plane.
    Running on Pod echo-965f7cf84-z9jv2.
