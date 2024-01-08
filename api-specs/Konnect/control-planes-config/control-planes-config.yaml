@@ -2712,7 +2712,7 @@ paths:
             schema:
               type: object
               properties:
-                consumer_group_id:
+                group:
                   type: string
                   description: The consumer group UUID.
                   example: 1e965e47-d185-4e9e-8bc7-94ea6ae75b2e
