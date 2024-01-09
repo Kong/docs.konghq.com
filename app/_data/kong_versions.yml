@@ -127,6 +127,7 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
+  latest: true
 - release: "pre-1.7"
   version: "1.6.0"
   edition: "deck"
@@ -199,6 +200,7 @@
 - release: "1.29.x"
   version: "1.29.2"
   edition: "deck"
+  latest: true
 - edition: "konnect"
 - edition: "contributing"
 - release: "1.0.x"
@@ -255,12 +257,14 @@
 - release: "3.0.x"
   version: "3.0.0"
   edition: "kubernetes-ingress-controller"
+  latest: true
 - edition: gateway-operator
   version: 1.0.3
   release: 1.0.x
 - edition: gateway-operator
   version: 1.1.0
   release: 1.1.x
+  latest: true
 - edition: mesh
   version: 1.2.6
   release: 1.2.x
@@ -347,6 +351,7 @@
   endOfLifeDate: "2024-11-15"
   branch: release-2.5
 - edition: mesh
-  version: preview
-  release: dev
+  version: 2.6.0
+  release: 2.6.x
+  label: dev
   branch: master
