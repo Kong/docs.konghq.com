@@ -60,7 +60,7 @@ The following table describes the characters with special meanings in the query 
 
 ### Logical Operators
 
-Logical operators are used to combine multiple criteria in a search query. The following table describes each operator and how it functions in the query syntax:
+Logical operators are used to combine multiple criteria in a search query. Operators are case-sensitive. The following table describes each operator and how it functions in the query syntax:
 
 | Operator    | Function                           |
 |-------------|------------------------------------|
