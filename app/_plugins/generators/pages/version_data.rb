@@ -20,6 +20,8 @@ module Jekyll
         set_data
       end
 
+      private
+
       def set_data # rubocop:disable Metrics/AbcSize
         @page.data['edition'] ||= edition.name
         @page.data['releases'] = edition.releases.map(&:to_liquid)
@@ -34,8 +36,6 @@ module Jekyll
         @edition ||= Jekyll::GeneratorSingleSource::Product::Edition
                      .new(edition: product, site: @site)
       end
-
-      private
 
       def set_release_data # rubocop:disable Metrics/AbcSize
         return unless version?
