@@ -73,7 +73,7 @@ items:
             url: /production/upgrade/data-plane/rolling/
           - text: Blue / Green Deployment
             url: /production/upgrade/data-plane/blue-green/
-      - text: Horizontally autoscale a Data Plane
+      - text: Autoscaling Data Planes
         url: /production/horizontal-autoscaling/
   - title: Reference
     icon: /assets/images/icons/icn-magnifying-glass.svg
