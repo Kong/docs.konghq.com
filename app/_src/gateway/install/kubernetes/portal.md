@@ -39,9 +39,17 @@ Kong Developer portal is deployed as part of the `kong-cp` deployment as it need
     - `env.portal_api_url`: The publicly accessible API URL for dev portal data
     - `env.portal_session_conf`: Update the value in `secret`
 
-{% include md/k8s/ingress-setup.md service="portal" release="cp" type="private" skip_release=true skip_ingress_controller_install=true %}
+{% include md/k8s/ingress-setup.md service="portal" release="cp" type="public" skip_release=true skip_ingress_controller_install=true skip_dns=true %}
 
-{% include md/k8s/ingress-setup.md service="portalapi" release="cp" type="private" skip_ingress_controller_install=true %}
+{% include md/k8s/ingress-setup.md service="portalapi" release="cp" type="public" skip_ingress_controller_install=true skip_dns=true %}
+
+1. Fetch the `Ingress` IP address and update your DNS records to point at the Ingress address. You can configure DNS manually, or use a tool such as [external-dns](https://github.com/kubernetes-sigs/external-dns) to automate DNS configuration.
+
+    Both `portal` and `portalapi` are accessible using the same `LoadBalancer`. Use the endpoint returned by the following command to configure both `portal.example.com` and `portalapi.example.com`.
+
+    ```bash
+    kubectl get ingress -n kong kong-cp-kong-portal -o jsonpath='{range .status.loadBalancer.ingress[0]}{@.ip}{@.hostname}{end}'
+    ```
 
 ## Enable the Dev Portal
 

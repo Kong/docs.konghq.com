@@ -300,4 +300,4 @@ To make the admin API accessible without using `kubectl port-forward`, you can c
 
 Update your `values-cp.yaml` file with the following Ingress configuration.
 
-{% include md/k8s/ingress-setup.md service="admin" release="cp" type="private"  %}
+{% include md/k8s/ingress-setup.md service="admin" release="cp" type="private" %}
