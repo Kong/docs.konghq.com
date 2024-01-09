@@ -1,0 +1,266 @@
+info:
+  contact:
+    email: support@konghq.com
+    name: Kong Inc
+    url: 'https://konghq.com'
+  description: The API for interfacing with the Basic-auth plugin.
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+  title: Basic Auth API
+  version: 2.0.0
+openapi: 3.0.2
+servers:
+  - description: Default Admin API URL
+    url: '{protocol}://{hostname}:{port}{path}'
+    variables:
+      hostname:
+        default: localhost
+        description: Hostname for Kong's Admin API
+      path:
+        default: /
+        description: Base path for Kong's Admin API
+      port:
+        default: '8001'
+        description: Port for Kong's Admin API
+      protocol:
+        default: http
+        description: Protocol for requests to Kong's Admin API
+        enum:
+          - http
+          - https
+components:
+  parameters:
+    controlPlaneId:
+      name: controlPlaneId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        example: 9524ec7d-36d9-465d-a8c5-83a3c9390458
+      description: The UUID of your control plane. This variable is available in the Konnect manager
+    consumer_id:
+      name: consumer_id
+      in: path
+      schema:
+        type: string
+        example: e94215b0-9198-42ce-bf0b-98afff31b2a7
+      description: The unique identifier or the username of the Consumer to retrieve.
+      required: true
+    pagination-offset:
+      description: Offset from which to return the next set of resources. Use the value of the 'offset' field from the response of a list operation as input here to paginate through all the resources
+      in: query
+      name: offset
+      schema:
+        type: string
+    pagination-size:
+      description: Number of resources to be returned.
+      in: query
+      name: size
+      schema:
+        default: 100
+        maximum: 1000
+        minimum: 1
+        type: integer
+    pagination-tags-filter:
+      description: 'A list of tags to filter the list of resources on. Multiple tags can be concatenated using '','' to mean AND or using ''/'' to mean OR.'
+      example: 'tag1,tag2'
+      in: query
+      name: tags
+      schema:
+        type: string
+  schemas:
+    Basic-auth-credential:
+      example:
+        consumer:
+          id: 84a73fb8-50fc-44a7-a4d5-aa17728ee83f
+        id: b2f34145-0343-41a4-9602-4c69dec2f269
+        password: hashedsoopersecretvalue
+        username: darius
+      properties:
+        consumer:
+          additionalProperties: false
+          properties:
+            id:
+              type: string
+          type: object
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: integer
+        id:
+          type: string
+        password:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        username:
+          type: string
+      type: object
+    pagination-offset-response:
+      description: Offset is used to paginate through the API. Provide this value to the next list operation to fetch the next page
+      type: string
+paths:
+  /basic-auths:
+    get:
+      description: List all Basic-auth credentials
+      operationId: list-basic-auth
+      parameters:
+        - $ref: '#/components/parameters/pagination-size'
+        - $ref: '#/components/parameters/pagination-offset'
+        - $ref: '#/components/parameters/pagination-tags-filter'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/Basic-auth-credential'
+                    type: array
+                  offset:
+                    $ref: '#/components/schemas/pagination-offset-response'
+          description: A successful response listing Basic-auth credentials
+      summary: List all Basic-auth credentials
+      tags:
+        - Basic-auth
+    post:
+      description: Create a new Basic-auth credential
+      operationId: create-basic-auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Basic-auth-credential'
+        description: Description of the new Basic-auth credential for creation
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Basic-auth-credential'
+          description: Successfully created Basic-auth credential
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Invalid Basic-auth credential
+      summary: Create a new Basic-auth credential
+      tags:
+        - Basic-auth
+    parameters: []
+  '/basic-auths/{basic-auth_id}':
+    delete:
+      description: Delete a Basic-auth credential
+      operationId: delete-basic-auth
+      parameters:
+        - description: ID of the Basic-auth credential to delete
+          in: path
+          name: basic-auth_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Successfully deleted Basic-auth credential or the resource didn't exist
+      summary: Delete a Basic-auth credential
+      tags:
+        - Basic-auth
+    get:
+      description: Get a Basic-auth credential using ID.
+      operationId: get-basic-auth
+      parameters:
+        - description: ID of the Basic-auth credential to lookup
+          in: path
+          name: basic-auth_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Basic-auth-credential'
+          description: Successfully fetched Basic-auth credential
+        '404':
+          description: Resource does not exist
+      summary: Fetch a Basic-auth credential
+      tags:
+        - Basic-auth
+    patch:
+      description: Update a Basic-auth credential
+      operationId: update-basic-auth
+      parameters:
+        - description: ID of the Basic-auth credential to update
+          in: path
+          name: basic-auth_id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Basic-auth-credential'
+        description: Fields of the Basic-auth credential that need to be updated
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Basic-auth-credential'
+          description: Successfully updated Basic-auth credential
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Invalid Basic-auth credential
+        '404':
+          description: Resource does not exist
+      summary: Update a Basic-auth credential
+      tags:
+        - Basic-auth
+    put:
+      description: Create or Update Basic-auth credential using ID.
+      operationId: upsert-basic-auth
+      parameters:
+        - description: Name or ID of the Basic-auth credential to lookup
+          in: path
+          name: basic-auth_id
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Basic-auth-credential'
+        description: Description of the Basic-auth credential
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Basic-auth-credential'
+          description: Successfully upserted Basic-auth credential
+        '400':
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Invalid Basic-auth credential
+      summary: Upsert a Basic-auth credential
+      tags:
+        - Basic-auth
+tags:
+  - description: Basic-auth
+    name: Basic-auth
