@@ -3,9 +3,17 @@
 As this is an auth plugin, you need to create a credential for the plugin. Create a secret with the following command:
 
 ```bash
-kubectl create secret generic alex-{{ include.hub_example.plugin_name }} \
-  --from-literal=kongCredType={{ include.hub_example.plugin_name }}{%- for field in include.hub_example.auth_fields %} \
-  --from-literal={{ field[0] }}={{ field[1] }}{%- endfor %}
+echo '
+apiVersion: v1
+kind: Secret
+metadata:
+  name: alex-{{ include.hub_example.plugin_name }}
+  labels:
+    konghq.com/credential: {{ include.hub_example.plugin_name }}
+stringData:
+{%- for field in include.hub_example.auth_fields %}
+  {{ field[0] }}: {{ field[1] }}{%- endfor %}
+' | kubectl apply -f -
 ```
 
 Finally, create a consumer that will use this credential:
