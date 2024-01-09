@@ -110,19 +110,19 @@ C6V0e/O3LEuJrP+XrEndtLsCAwEAAQ==
     ```bash
     kubectl create secret \
       generic admin-jwt  \
-      --from-literal=kongCredType=jwt  \
       --from-literal=key="admin-issuer" \
       --from-literal=algorithm=RS256 \
       --from-literal=secret="dummy" \
       --from-literal=rsa_public_key="{{ public_key }}"
-    
+    kubectl label secret admin-jwt konghq.com/credential=jwt
+
     kubectl create secret \
       generic user-jwt  \
-      --from-literal=kongCredType=jwt  \
       --from-literal=key="user-issuer" \
       --from-literal=algorithm=RS256 \
       --from-literal=secret="dummy" \
       --from-literal=rsa_public_key="{{ public_key }}"
+    kubectl label secret user-jwt konghq.com/credential=jwt
     ```
 
 Validation requirements impose that even if the `secret` is not used for algorithm
@@ -132,7 +132,9 @@ Validation requirements impose that even if the `secret` is not used for algorit
 
   ```text
   secret/admin-jwt created
+  secret/admin-jwt labeled
   secret/user-jwt created
+  secret/user-jwt labeled
   ```
 
    To associate the JWT Secrets with your consumers, you must add their name to the `credentials` array in the KongConsumers.
@@ -287,15 +289,27 @@ ingress.networking.k8s.io/lime annotated
 1. Add consumers to groups through credentials.
 
     ```bash
-    kubectl create secret \
-      generic admin-acl \
-      --from-literal=kongCredType=acl  \
-      --from-literal=group=admin
+    echo '
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: admin-acl
+      labels:
+        konghq.com/credential: acl
+    stringData:
+      group: admin
+    ' | kubectl apply -f -
     
-    kubectl create secret \
-      generic user-acl \
-      --from-literal=kongCredType=acl  \
-      --from-literal=group=user
+    echo '
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: user-acl
+      labels:
+        konghq.com/credential: acl
+    stringData:
+      group: user
+    ' | kubectl apply -f -
     ```
     The results should look like this:
     ```text

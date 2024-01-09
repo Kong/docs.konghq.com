@@ -26,10 +26,17 @@ Create two consumers that use different authentication methods:
 1. Create a secret to add `basic-auth` credential for `consumer-1`.
 
     ```bash
-    kubectl create secret generic consumer-1-basic-auth  \
-      --from-literal=kongCredType=basic-auth  \
-      --from-literal=username=consumer-1 \
-      --from-literal=password=consumer-1-password
+    echo '
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: consumer-1-basic-auth
+      labels:
+        konghq.com/credential: basic-auth
+    stringData:
+        username: consumer-1
+        password: consumer-1-password
+    ' | kubectl apply -f -
     ```
     The results should look like this:
     ```text
@@ -40,7 +47,7 @@ Create two consumers that use different authentication methods:
     {% include /md/kic/consumer.md kong_version=page.kong_version name='consumer-1' credName='consumer-1-basic-auth' %}
 
 1. Create a secret to add `key-auth` credential for `consumer-2`. 
-    {% include /md/kic/key-auth.md kong_version=page.kong_version credName='consumer-2-key-auth' key='consumer-2-password' %}
+    {% include /md/kic/key-auth-v3.md kong_version=page.kong_version credName='consumer-2-key-auth' key='consumer-2-password' %}
 
 1. Create a consumer named `consumer-2`.
     {% include /md/kic/consumer.md kong_version=page.kong_version name='consumer-2' credName='consumer-2-key-auth' %}
