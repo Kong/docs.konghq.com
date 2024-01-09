@@ -2,18 +2,15 @@
 
 module SEO
   module IndexEntry
-    class UnversionedProductPage < Base
+    class NonProductPage < Base
       def key
         @key ||= @page.url
       end
 
       def process!(index)
         super(index)
-        @page.data['canonical_url'] = @page.url
-      end
 
-      def indexable?(_pages_index)
-        super && url_segments[1] != 'pre-1.7'
+        @page.data['canonical_url'] = @page.url
       end
 
       def attributes

@@ -1,0 +1,10 @@
+product: mesh
+release: 2.6.x
+generate: true
+items:
+  - title: Introduction
+    icon: /assets/images/icons/documentation/icn-flag.svg
+    items:
+      - text: Introduction to Kong Mesh
+        url: /mesh/dev/
+        absolute_url: true

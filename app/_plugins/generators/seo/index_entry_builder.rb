@@ -2,10 +2,6 @@
 
 module SEO
   class IndexEntryBuilder
-    VERSIONED_PRODUCTS = %w[
-      gateway mesh kubernetes-ingress-controller deck gateway-operator
-    ].freeze
-
     GLOBAL_PAGES = %w[changelog].freeze
 
     def self.for(page)
@@ -16,21 +12,26 @@ module SEO
       @page = page
     end
 
-    def build # rubocop:disable Metrics/MethodLength
+    def build # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       return IndexEntry::UnprocessablePage.new(@page) if asset?
       return IndexEntry::HubPage.for(@page) if hub_page?
       return IndexEntry::OasPage.new(@page) if oas_page?
-      return IndexEntry::UnversionedProductPage.new(@page) unless versioned_product?
 
       # We only want to process the following cases:
       # * It's a global page e.g. /changelog/
       # * It's a versioned page, in the format /x.y.z/ or /latest/
       if global_page?
         IndexEntry::GlobalPage.new(@page)
-      elsif versioned_page?
-        IndexEntry::VersionedPage.new(@page)
-      else
+      elsif product_page?
+        if versioned_page?
+          IndexEntry::VersionedPage.new(@page)
+        else
+          IndexEntry::UnversionedProductPage.new(@page)
+        end
+      elsif unprocessable_page?
         IndexEntry::UnprocessablePage.new(@page)
+      else
+        IndexEntry::NonProductPage.new(@page)
       end
     end
 
@@ -48,8 +49,12 @@ module SEO
       @page.path.start_with?('_hub') || @page.url.start_with?('/hub/')
     end
 
-    def versioned_product?
-      VERSIONED_PRODUCTS.include?(url_segments[0])
+    def product_page?
+      return false unless @page.data['edition']
+
+      Jekyll::GeneratorSingleSource::Product::Edition
+        .all(site: @page.site)
+        .keys.include?(@page.data['edition'])
     end
 
     def global_page?
@@ -57,7 +62,13 @@ module SEO
     end
 
     def versioned_page?
-      /^\d+\.\d+\.x$/.match(url_segments[1]) || url_segments[1] == 'latest' || url_segments[1] == 'dev'
+      return false unless @page.data['has_version']
+
+      Gem::Version.correct?(Utils::Version.to_semver(@page.data['release'].value))
+    end
+
+    def unprocessable_page?
+      ['/404.html', '/moved_urls.yml', '/redirects.json', '/robots.txt'].include?(@page.url)
     end
 
     def url_segments

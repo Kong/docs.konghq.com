@@ -4,7 +4,7 @@ sitemap: true
 id: documentation
 ---
 
-{% assign latest_page_url = page.url | replace: page.kong_version, "latest" %}
+{% assign latest_page_url = page.url | replace: page.release, "latest" %}
 
 <div class="page v2 {{ page.class }}" data-url={{ page.url }}>
   <div class="page--header-background page--header-background-doc"></div>
@@ -23,8 +23,8 @@ id: documentation
         </div>
         {% unless page.no_version == true %}
         <div class="version">
-          {{page.kong_version}}
-          {% if page.kong_version == page.kong_latest.release %}
+          {{ page.release }}
+          {% if page.release.latest? %}
             <span>(latest)</span>
           {% endif %}
         </div>
@@ -38,7 +38,7 @@ id: documentation
         {% endunless %}
 
         {% capture edit_link %}
-          {% assign default_edit_link = page.path | replace: "latest", page.kong_version %}
+          {% assign default_edit_link = page.path | replace: "latest", page.release %}
           {% assign edit_link_no_https = page.edit_link | remove: "https://" %}
 
           {% if page.source_url %}
@@ -57,7 +57,15 @@ id: documentation
       </div>
     </header>
 
-    {% include_cached docs-sidebar.html sidenav=page.sidenav is_latest=page.is_latest url=page.url kong_version=page.kong_version edition=page.edition no_version=page.no_version has_version=page.has_version nav_items=page.nav_items edition=page.edition kong_version=page.kong_version kong_latest=page.kong_latest kong_versions=page.kong_versions badge=page.badge version_index=page.version_index %}
+    {% include_cached docs-sidebar.html
+        sidenav=page.sidenav
+        release=page.release
+        edition=page.edition
+        no_version=page.no_version
+        has_version=page.has_version
+        nav_items=page.nav_items
+        edition=page.edition
+        releases_dropdown=page.releases_dropdown %}
 
       <aside class="docs-toc">
         <i class="fa fa-times close-sidebar"></i>
@@ -83,7 +91,7 @@ id: documentation
 
       <div class="page-content">
         <div class="content show-anchor-links">
-          {% if page.kong_version != page.kong_latest.release and page.no_version != true %}
+          {% unless page.release.latest? or page.no_version == true %}
               <blockquote id="version-notice" class="important">
                 {% if page.edition == 'mesh' and page.version_data['releaseDate'] == nil %}
                 You are browsing documentation of an unreleased version.
@@ -92,7 +100,7 @@ id: documentation
                 {% endif %}
                 See the <a href="{{ page.canonical_url }}">latest documentation here</a>.
               </blockquote>
-          {% endif %}
+          {% endunless %}
 
           <h1 tabindex="-1" id="main" class="page-content-title"
           >{{page.title | flatify }}

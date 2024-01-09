@@ -18,6 +18,7 @@ module PluginSingleSource
           .merge!(page_attributes)
           .merge!(frontmatter_overrides)
           .merge!(extn_data)
+          .merge!(release_data)
 
         @data
       end
@@ -83,6 +84,19 @@ module PluginSingleSource
 
       def extn_data
         { 'extn_data' => @release.ext_data.slice('strategy', 'releases') }
+      end
+
+      def release_data
+        release = Jekyll::GeneratorSingleSource::Product::Edition
+                  .new(edition: 'gateway', site: @release.site)
+                  .releases
+                  .detect { |r| r.value == Utils::Version.to_release(@release.version) }
+
+        if release
+          { 'release' => release.to_liquid, 'versions' => release.versions }
+        else
+          {}
+        end
       end
 
       def badges

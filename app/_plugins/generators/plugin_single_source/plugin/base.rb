@@ -32,7 +32,7 @@ module PluginSingleSource
 
       def create_pages # rubocop:disable Metrics/AbcSize
         releases.map do |version, _|
-          is_latest = KongVersions.to_semver(version) == max_version
+          is_latest = Utils::Version.to_semver(version) == max_version
           # Skip if a markdown file exists for this version
           # and we're not generating the index version
           version_file = File.join(site.source, Generator::PLUGINS_FOLDER, dir, "#{version}.md")
@@ -54,7 +54,7 @@ module PluginSingleSource
 
       def max_version
         @max_version ||= releases
-                         .map { |v| KongVersions.to_semver(v) }
+                         .map { |v| Utils::Version.to_semver(v) }
                          .max_by { |v| Gem::Version.new(v) }
       end
     end

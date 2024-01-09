@@ -10,7 +10,7 @@ module SEO
       end
 
       def attributes
-        super.merge('version' => Utils::Version.to_version('latest'))
+        super.merge('version' => version)
       end
 
       def process!(index)
@@ -23,6 +23,15 @@ module SEO
 
       def url
         @url ||= @page.url
+      end
+
+      def version
+        Utils::Version.to_version(
+          Jekyll::GeneratorSingleSource::Product::Edition
+          .new(edition: 'gateway', site: @page.site)
+          .latest_release
+          .value
+        )
       end
     end
   end
