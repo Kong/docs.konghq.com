@@ -24,7 +24,7 @@ module DocsSingleSource
       if @page.data['is_latest']
         'latest'
       else
-        @page.data['kong_version']
+        @page.data['release']
       end
     end
   end

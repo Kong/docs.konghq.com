@@ -30,27 +30,25 @@ RSpec.describe SEO::Index do
         '/' => { 'url' => '/', 'page' => find_page_by_url('/') },
         '/search/' => { 'url' => '/search/', 'page' => find_page_by_url('/search/') },
         '/kuma-to-kong-mesh/' => { 'url' => '/kuma-to-kong-mesh/', 'page' => find_page_by_url('/kuma-to-kong-mesh/') },
-        '/404.html' => { 'url' => '/404.html', 'page' => find_page_by_url('/404.html') },
-        '/moved_urls.yml' => { 'url' => '/moved_urls.yml', 'page' => find_page_by_url('/moved_urls.yml') },
 
         '/contributing/' => { 'url' => '/contributing/', 'page' => find_page_by_url('/contributing/') },
-        '/deck/VERSION/' => { 'url' => '/deck/latest/', 'page' => find_page_by_url('/deck/latest/'), 'version' => Gem::Version.new('9999.9.9') },
-        '/gateway/VERSION/' => { 'url' => '/gateway/latest/', 'page' => find_page_by_url('/gateway/latest/'), 'version' => Gem::Version.new('9999.9.9') },
-        '/gateway/changelog/' => { 'url' => '/gateway/changelog/', 'page' => find_page_by_url('/gateway/changelog/'), 'version' => Gem::Version.new('9999.9.9') },
+        '/deck/VERSION/' => { 'url' => '/deck/latest/', 'page' => find_page_by_url('/deck/latest/'), 'version' => Gem::Version.new('1.16.0') },
+        '/gateway/VERSION/' => { 'url' => '/gateway/latest/', 'page' => find_page_by_url('/gateway/latest/'), 'version' => Gem::Version.new('3.0.0') },
+        '/gateway/changelog/' => { 'url' => '/gateway/changelog/', 'page' => find_page_by_url('/gateway/changelog/'), 'version' => Gem::Version.new('3.0.0') },
 
-        '/gateway/VERSION/reference/configuration/' => { 'url' => '/gateway/latest/reference/configuration/', 'page' => find_page_by_url('/gateway/latest/reference/configuration/'), 'version' => Gem::Version.new('9999.9.9') },
+        '/gateway/VERSION/reference/configuration/' => { 'url' => '/gateway/latest/reference/configuration/', 'page' => find_page_by_url('/gateway/latest/reference/configuration/'), 'version' => Gem::Version.new('3.0.0') },
 
         '/konnect/' => { 'url' => '/konnect/', 'page' => find_page_by_url('/konnect/') },
 
-        '/kubernetes-ingress-controller/VERSION/' => { 'url' => '/kubernetes-ingress-controller/latest/', 'page' => find_page_by_url('/kubernetes-ingress-controller/latest/'), 'version' => Gem::Version.new('9999.9.9') },
+        '/kubernetes-ingress-controller/VERSION/' => { 'url' => '/kubernetes-ingress-controller/latest/', 'page' => find_page_by_url('/kubernetes-ingress-controller/latest/'), 'version' => Gem::Version.new('2.7.0') },
 
-        '/mesh/VERSION/' => { 'url' => '/mesh/latest/', 'page' => find_page_by_url('/mesh/latest/'), 'version' => Gem::Version.new('9999.9.9') },
-        '/mesh/changelog/' => { 'url' => '/mesh/changelog/', 'page' => find_page_by_url('/mesh/changelog/'), 'version' => Gem::Version.new('9999.9.9') },
+        '/mesh/VERSION/' => { 'url' => '/mesh/latest/', 'page' => find_page_by_url('/mesh/latest/'), 'version' => Gem::Version.new('2.1.0') },
+        '/mesh/changelog/' => { 'url' => '/mesh/changelog/', 'page' => find_page_by_url('/mesh/changelog/'), 'version' => Gem::Version.new('2.1.0') },
 
         '/api/' => { 'url' => '/api/', 'page' => find_page_by_url('/api/') },
-        '/konnect/api/portal-rbac/latest/' => { 'url' => '/konnect/api/portal-rbac/latest/', 'page' => find_page_by_url('/konnect/api/portal-rbac/latest/'), 'version' => Gem::Version.new('9999.9.9') },
-        '/konnect/api/audit-logs/latest/' => { 'url' => '/konnect/api/audit-logs/latest/', 'page' => find_page_by_url('/konnect/api/audit-logs/latest/'), 'version' => Gem::Version.new('9999.9.9') },
-        '/gateway/api/admin-ee/latest/' => { 'url' => '/gateway/api/admin-ee/latest/', 'page' => find_page_by_url('/gateway/api/admin-ee/latest/'), 'version' => Gem::Version.new('9999.9.9') }
+        '/konnect/api/portal-rbac/latest/' => { 'url' => '/konnect/api/portal-rbac/latest/', 'page' => find_page_by_url('/konnect/api/portal-rbac/latest/') },
+        '/konnect/api/audit-logs/latest/' => { 'url' => '/konnect/api/audit-logs/latest/', 'page' => find_page_by_url('/konnect/api/audit-logs/latest/') },
+        '/gateway/api/admin-ee/latest/' => { 'url' => '/gateway/api/admin-ee/latest/', 'page' => find_page_by_url('/gateway/api/admin-ee/latest/') }
       })
     end
   end

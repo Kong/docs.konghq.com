@@ -29,7 +29,6 @@ RSpec.describe SEO::Sitemap do
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/gateway/latest/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/konnect/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/kuma-to-kong-mesh/' },
-        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/moved_urls.yml' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/deck/latest/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/gateway/latest/reference/configuration/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/kong-inc/jq/' },

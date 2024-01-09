@@ -20,19 +20,19 @@ RSpec.describe Jekyll::Versions do
   end
 
   let(:latest_gateway) do
-    { 'release' => '3.0.x', 'ee-version' => '3.0.1.0', 'ce-version' => '3.0.1' }
+    { 'release' => '3.0.x', 'ee-version' => '3.0.1.0', 'ce-version' => '3.0.1', 'latest' => true }
   end
 
   let(:latest_mesh) do
-    { 'release' => '2.0.x', 'version' => '2.0.0', 'edition' => 'mesh', 'latest' => true }
+    { 'release' => '2.1.x', 'version' => '2.1.0', 'edition' => 'mesh', 'latest' => true }
   end
 
   let(:latest_kic) do
-    { 'release' => '2.7.x', 'version' => '2.7.0', 'edition' => 'kubernetes-ingress-controller' }
+    { 'release' => '2.7.x', 'version' => '2.7.0', 'edition' => 'kubernetes-ingress-controller', 'latest' => true }
   end
 
   let(:latest_deck) do
-    { 'release' => '1.16.x', 'version' => '1.16.1', 'edition' => 'deck' }
+    { 'release' => '1.16.x', 'version' => '1.16.1', 'edition' => 'deck', 'latest' => true }
   end
 
   shared_examples_for 'does not set `release` and `version` to the page' do
@@ -44,7 +44,7 @@ RSpec.describe Jekyll::Versions do
 
   shared_examples_for 'sets `release` and `version` to the page' do |release, version|
     it do
-      expect(page.data['release']).to eq(release)
+      expect(page.data['release'].to_s).to eq(release)
       expect(page.data['version']).to eq(version)
     end
   end
@@ -175,7 +175,7 @@ RSpec.describe Jekyll::Versions do
         end
 
         it 'sets `release` and `version` to the page' do
-          expect(page.data['release']).to eq('pre-1.7')
+          expect(page.data['release'].to_s).to eq('pre-1.7')
           expect(page.data['version']).to eq('1.6.0')
         end
       end
@@ -194,7 +194,7 @@ RSpec.describe Jekyll::Versions do
           end
 
           it 'sets `release` and `version` to the page' do
-            expect(page.data['release']).to eq('2.6.x')
+            expect(page.data['release'].to_s).to eq('2.6.x')
             expect(page.data['version']).to be_nil
           end
         end
@@ -250,14 +250,6 @@ RSpec.describe Jekyll::Versions do
         end
       end
 
-      context 'plugins' do
-        let(:relative_path) { '_hub/acme/kong-plugin/overview/_index.md' }
-
-        it 'does not set `release' do
-          expect(page.data['release']).to be_nil
-        end
-      end
-
       context 'single sourced pages' do
         context 'deck' do
           let(:relative_path) { '_src/deck/index.md' }
@@ -271,7 +263,7 @@ RSpec.describe Jekyll::Versions do
           end
 
           it 'does not change the `release` and `version` set in the single sourced generator ' do
-            expect(page.data['release']).to eq('1.16.x')
+            expect(page.data['release'].to_s).to eq('1.16.x')
             expect(page.data['version']).to eq('1.16.1')
           end
 
@@ -292,7 +284,7 @@ RSpec.describe Jekyll::Versions do
           end
 
           it 'does not change the `release` and `version` set in the single sourced generator ' do
-            expect(page.data['release']).to eq('3.0.x')
+            expect(page.data['release'].to_s).to eq('3.0.x')
             expect(page.data['version']).to be_nil
           end
 
@@ -313,7 +305,7 @@ RSpec.describe Jekyll::Versions do
           end
 
           it 'does not change the `release` and `version` set in the single sourced generator ' do
-            expect(page.data['release']).to eq('2.7.x')
+            expect(page.data['release'].to_s).to eq('2.7.x')
             expect(page.data['version']).to eq('2.7.0')
           end
 
@@ -334,7 +326,7 @@ RSpec.describe Jekyll::Versions do
           end
 
           it 'does not change the `release` and `version` set in the single sourced generator ' do
-            expect(page.data['release']).to eq('2.0.x')
+            expect(page.data['release'].to_s).to eq('2.0.x')
             expect(page.data['version']).to eq('2.0.0')
           end
 

@@ -17,7 +17,12 @@ module SEO
         # by definition so it always needs adding to the list of pages.
         # We set the version to "latest" for this URL to ensure that it's
         # always added to the index
-        @version ||= Utils::Version.to_version('latest')
+        @version ||= Utils::Version.to_version(
+          Jekyll::GeneratorSingleSource::Product::Edition
+          .new(edition: @page.data['edition'], site: @page.site)
+          .latest_release
+          .value
+        )
       end
 
       def url
