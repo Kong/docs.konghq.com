@@ -55,6 +55,26 @@ acls:
 * `group`: The arbitrary group name to associate to the Consumer.
 * `tags`: Optional descriptor tags for the group.
 {% endnavtab %}
+{% navtab Konnect %}
+After you have added an authentication plugin to a Service or a Route, and you have
+created your [consumers](/gateway/latest/admin-api/#consumer-object), you can now
+associate a group to a consumer using the following request:
+
+```bash
+curl -X POST https://{us|eu}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/consumers/{CONSUMER}/acls \
+    --data "group=group1" \
+    --data "tags[]=tag1" \
+    --data "tags[]=tag2"
+```
+
+`CONSUMER`: The `username` property of the consumer entity to associate the credentials with.
+
+form parameter        | default| description
+---                   | ---    | ---
+`group`               |        | The arbitrary group name to associate with the consumer.
+`tags`                |        | Optional descriptor tags for the group.
+
+{% endnavtab %}
 {% endnavtabs %}
 
 You can have more than one group associated to a consumer.
