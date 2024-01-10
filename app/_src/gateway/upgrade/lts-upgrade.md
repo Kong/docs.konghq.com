@@ -27,6 +27,11 @@ To make sure your upgrade is successful, carefully review all the steps in this 
 
 * Starting from 3.4, Cassandra is not supported. 
 If you're using Cassandra as your data store, [migrate off of Cassandra](/gateway/{{page.kong_version}}/migrate-cassandra-to-postgres/) first and upgrade second.
+* Review version compatibility between your platform version and the version of {{site.kong_gateway}} that you are upgrading to:
+    * [OS version](/gateway/{{page.kong_version}}/support-policy/#supported-versions)
+    * [Database version](/gateway/{{page.kong_version}}/support/third-party/)
+    * [Kubernetes version and Helm prerequisites](/kubernetes-ingress-controller/latest/support-policy/)
+    * [Dependency versions](/gateway/{{page.kong_version}}/support/third-party/)
 * [Review KIC upgrade compatibility](/kubernetes-ingress-controller/latest/guides/upgrade-kong-3x/).
 * If you're using decK, [upgrade it to the latest version](/deck/latest/installation/).
 

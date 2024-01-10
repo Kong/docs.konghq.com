@@ -24,6 +24,11 @@ A {{site.base_gateway}} upgrade requires two phases of work: preparing for the u
 
 **Preparation phase**
 
+1. Review version compatibility between your platform version and the version of {{site.kong_gateway}} that you are upgrading to:
+    * [OS version](/gateway/{{page.kong_version}}/support-policy/#supported-versions)
+    * [Database version](/gateway/{{page.kong_version}}/support/third-party/)
+    * [Kubernetes version and Helm prerequisites](/kubernetes-ingress-controller/latest/support-policy/)
+    * [Dependency versions](/gateway/{{page.kong_version}}/support/third-party/)
 1. Determine your [upgrade path](#preparation-review-upgrade-paths) based on the release you're starting from and the release you're upgrading to.
 1. [Back up](#preparation-choose-a-backup-strategy) your database or your declarative configuration files.
 1. Choose the right [strategy for upgrading](#preparation-choose-an-upgrade-strategy-based-on-deployment-mode) based on your deployment topology.
