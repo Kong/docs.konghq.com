@@ -281,7 +281,7 @@ Until the upgrade is completed:
   [decK](/deck/), or the [kong config CLI](/gateway/{{page.kong_version}}/reference/cli/#kong-config).
 * Review the compatibility between the new version Y and your existing platform. 
 Factors may include, but are not limited to:
-  * [OS version](/gateway/{{page.kong_version}}/support/#supported-versions)
+  * [OS version](/gateway/{{page.kong_version}}/support-policy/#supported-versions)
   * [Database version](/gateway/{{page.kong_version}}/support/third-party/)
   * [Kubernetes version and Helm prerequisites](/kubernetes-ingress-controller/latest/support-policy/)
   * [Dependency versions](/gateway/{{page.kong_version}}/support/third-party/)
