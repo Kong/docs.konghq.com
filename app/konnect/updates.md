@@ -9,12 +9,15 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
-## December 2023
+## January 2024
 
 **Group and filter API request and usage data by consumers**
 : With {{site.konnect_short_name}} Analytics, you can now breakdown API usage data and individual requests by consumers. This feature extends the existing support for Applications, providing users with a holistic understanding of all APIs and their consumer base, whether internal or external.
 
 : In addition, we've streamlined the filtering experience. Users can now conveniently input either the name or UUID into the filter dropdown, enhancing the overall usability.
+
+
+## December 2023
 
 **Konnect in Google Cloud Marketplace**
 : {{site.konnect_saas}} is now available for purchase through the Google Cloud (GCP) Marketplace including public and private offers. This allows you to retire your existing GCP Credits through your purchase of {{site.konnect_saas}} and associated product capabilities.
