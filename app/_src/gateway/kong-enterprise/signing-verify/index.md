@@ -28,7 +28,7 @@ For both examples, you will need to:
 
 2. Collect the necessary image details
 
-3. Set the `COSIGN_REPOSITORY` environment variable
+3. Set the `COSIGN_REPOSITORY` environment variable:
 
    ```sh
    export COSIGN_REPOSITORY=kong/notary
