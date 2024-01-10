@@ -1,5 +1,5 @@
 ---
-title: Verify signatures for Signed Kong Images
+title: Verify Signatures for Signed Kong Images
 badge: enterprise
 ---
 
