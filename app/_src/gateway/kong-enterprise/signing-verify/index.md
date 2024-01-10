@@ -5,7 +5,9 @@ badge: enterprise
 
 Starting with {{site.ee_product_name}} 3.5.0.2, Docker container images are now signed using `cosign` with signatures published to a Docker Hub repository.
 
-This guide provides steps to verify signatures for signed {{site.ee_product_name}} Docker container images in 2 different ways. The first is the minimal example, used to verify an image without leveraging any annotations. The second is the complete example, leveraging optional annotations for increased trust.
+This guide provides steps to verify signatures for signed {{site.ee_product_name}} Docker container images in two different ways:
+* A minimal example, used to verify an image without leveraging any annotations
+* A complete example, leveraging optional annotations for increased trust
 
 For the minimal example, you only need: Docker details, Github repo name, and Github workflow filename.
 For the complete example, you will need the same details from above, as well as any of the optional annotations you wish to verify:
