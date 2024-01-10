@@ -54,6 +54,14 @@ consumers:
 ```
 
 {% endnavtab %}
+{% navtab Konnect %}
+To create a Consumer, you can execute the following request:
+
+```bash
+curl -d "username={USER123}&custom_id={SOME_CUSTOM_ID}" https://{us|eu}.api.konghq.com/konnect-api/api/runtime_groups/{controlPlaneId}/consumers
+```
+
+{% endnavtab %}
 {% endnavtabs %}
 
 In both cases, the parameters are as described below:
@@ -120,6 +128,15 @@ keyauth_credentials:
     - example_tag
   key: example_apikey
 ```
+
+{% endnavtab %}
+{% navtab Konnect %}
+Provision new credentials by making the following HTTP request:
+
+```bash
+curl -X POST https://{us|eu}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/consumers/{CONSUMER}/key-auth
+```
+
 {% endnavtab %}
 {% endnavtabs %}
 
