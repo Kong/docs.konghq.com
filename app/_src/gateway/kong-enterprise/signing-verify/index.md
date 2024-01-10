@@ -37,7 +37,7 @@ For both examples, you will need to:
 {:.important .no-icon}
 > Github owner is case-sensitive (`Kong/kong-ee` vs `kong/kong-ee`).
 
-### Minimal Example
+### Minimal example
 
 Run the `cosign verify ...` command:
 
