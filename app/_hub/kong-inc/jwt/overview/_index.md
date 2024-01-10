@@ -48,6 +48,13 @@ consumers:
   custom_id: <SOME_CUSTOM_ID>
 ```
 {% endnavtab %}
+{% navtab Konnect %}
+To create a Consumer, you can execute the following request:
+
+```bash
+curl -d "username=<user123>&custom_id=<SOME_CUSTOM_ID>" https://{us|eu}.api.konghq.com/konnect-api/api/runtime_groups/{controlPlaneId}/consumers
+```
+{% endnavtab %}
 {% endnavtabs %}
 
 In both cases, the parameters are as described below:
@@ -91,6 +98,30 @@ You can add JWT credentials on your declarative config file on the `jwt_secrets:
 ``` yaml
 jwt_secrets:
 - consumer: <consumer>
+```
+{% endnavtab %}
+{% navtab Konnect %}
+You can provision a new HS256 JWT credential by issuing the following HTTP request:
+
+```bash
+curl -X POST https://{us|eu}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/consumers/{CONSUMER}/jwt -H "Content-Type: application/x-www-form-urlencoded" \
+```
+
+Response:
+```json
+HTTP/1.1 201 Created
+{
+    "algorithm": "HS256",
+    "consumer": {
+        "id": "789955d4-7cbf-469a-bb64-8cd00bd0f0db"
+    },
+    "created_at": 1652208453,
+    "id": "95d4ee08-c68c-4b69-aa18-e6efad3a4ff0",
+    "key": "H8WBDhQlcfjoFmIiYymmkRm1y0A2c5WU",
+    "rsa_public_key": null,
+    "secret": "n415M6OrVnR4Dr1gyErpta0wSKQ2cMzK",
+    "tags": null
+}
 ```
 {% endnavtab %}
 {% endnavtabs %}
