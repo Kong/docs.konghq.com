@@ -3,25 +3,52 @@ nav_title: ACL Examples
 title: ACL Examples
 ---
 
-## Examples
+## ACL Configuration with Kong Gateway
+
+In these examples, we will cover a common use case: As an API Owner, you want to regulate access based on the type of request methods (GET, POST, PUT, DELETE) and the consumer group (dev, admin) the consumer belongs to. Specifically, our goal is to allow consumers in the dev group to perform GET, POST, and PUT requests on all routes, while reserving the DELETE request functionality exclusively for consumers in the admin group.
 
 
-### Simple ACL Examples
+### Create consumer groups 
 
-**Use-Case: As an API Owner, I want to allow `GET`/`POST`/`PUT` access across all consumers who are in consumer group `dev`. In addition I want only `DELETE` to be available to consumers who are in consumer group `admin`**
+Using the API, create two consumer groups named `dev` and `admin`: 
 
-#### Step 1: Setup consumers and consumer groups
+```bash
+curl --request POST \
+     --url http://localhost:8001/consumer_groups \
+     --header 'Content-Type: application/json' \
+     --header 'accept: application/json' \
+     --data '{"name":"dev"}'
+```
 
-Create two consumer groups that represent the two roles: `dev` and `admin`.
-Add a consumers to that group
+```bash
+curl --request POST \
+     --url http://localhost:8001/consumer_groups \
+     --header 'Content-Type: application/json' \
+     --header 'accept: application/json' \
+     --data '{"name":"admin",}'
+```
 
-(link to consumer groups for further explanation)
+Then populate those consumer groups with consumers using the UUID of the specific consumer:
 
-Step 2: Setup routes
+```bash
+curl --request POST \
+  --url http://localhost:8001/consumer_groups/admin/consumers \
+  --header 'Content-Type: application/json' \
+  --header 'accept: application/json' \
+  --data '{"consumer":"8a4bba3c-7f82-45f0-8121-ed4d2847c4a4"}'
+```
 
-Setup two routes, one that only matches `GET`, `POST` and `PUT`, one that only matches `DELETE`
+```bash
+curl --request POST \
+  --url http://localhost:8001/consumer_groups/dev/consumers \
+  --header 'Content-Type: application/json' \
+  --header 'accept: application/json' \
+  --data '{"consumer":"8a4bba3c-7f82-45f0-8121-ed4d2847c4a4"}'
+```
 
-(note that this examples uses expressions router (link to this article https://docs.konghq.com/gateway/3.5.x/key-concepts/routes/expressions/ ))
+### Create Routes 
+
+Using the Admin API and the [expressions router](/gateway/latest/key-concepts/routes/expressions/) create two routes, one that matches `GET`, `POST` and `PUT`, and one that only matches `DELETE`. 
 
 A route that matches when the method is _not_ `DELETE`
 ```bash
@@ -39,7 +66,12 @@ curl --request POST \
   --form-string expression='http.path == "/example" && http.method == "DELETE"'
 ```
 
-Step 3: Setup ACL plugins
+
+2. Setting up routes: Using Kong's expression router configure two routes – one that matches GET, POST, and PUT requests, and another that exclusively matches DELETE requests. 
+
+3. Setting up the ACL plugin: Associate the ACL plugin with each route, and specifying which consumers groups are allowed to access which routes. 
+
+### Setup the ACL plugin
 
 Scope the plugin to each of these routes with the respective `allow` configuration
 
