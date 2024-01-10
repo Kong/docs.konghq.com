@@ -94,7 +94,7 @@ features:
         oss: false
         enterprise: true
       - name: Signed Kong Images
-        tooltip: Kong Gateway container images are signed and verifiable in accordance SLSA guidelines.
+        tooltip: Kong Gateway container images are signed and verifiable in accordance with SLSA guidelines.
         oss: false
         enterprise: true
   - name: Observability
