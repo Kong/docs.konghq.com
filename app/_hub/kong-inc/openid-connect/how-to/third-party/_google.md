@@ -1,6 +1,6 @@
 ---
 title: OpenID Connect with Google
-badge: enterprise
+nav_title: OpenID Connect with Google
 ---
 
 This guide covers an example OpenID Connect plugin configuration to authenticate browser clients using Google's identity provider.
@@ -44,7 +44,7 @@ Depending on your needs, it may not be necessary to associate clients with a con
 If you need to interact with other Kong plugins using consumer information, you must add configuration that maps account data received from the identity provider to a Kong consumer. For this example, we'll map the user's Google account email by setting a `custom_id` on their consumer, e.g.
 
 ```bash
-curl -i -X POST http://localhost:8001/consumers/ \
+curl -i -X POST http://kong:8001/consumers/ \
   --data username="Yoda" \
   --data custom_id="user@example.com"
 

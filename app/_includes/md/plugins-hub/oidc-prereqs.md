@@ -9,23 +9,23 @@ difficulties during this phase, please refer to the [Keycloak documentation](htt
 1. Create a confidential client `kong` with `private_key_jwt` authentication and configure
    Keycloak to download the public keys from [the OpenID Connect Plugin JWKS endpoint][json-web-key-set]:
    <br><br>
-   <img src="/assets/images/docs/openid-connect/keycloak-client-kong-settings.png">
+   <img src="/assets/images/products/plugins/openid-connect/keycloak-client-kong-settings.png">
    <br>
-   <img src="/assets/images/docs/openid-connect/keycloak-client-kong-auth.png">
+   <img src="/assets/images/products/plugins/openid-connect/keycloak-client-kong-auth.png">
    <br>
 2. Create another confidential client `service` with `client_secret_basic` authentication.
    For this client, Keycloak will auto-generate a secret similar to the following: `cf4c655a-0622-4ce6-a0de-d3353ef0b714`.
    Enable the client credentials grant for the client:
    <br><br>
-   <img src="/assets/images/docs/openid-connect/keycloak-client-service-settings.png">
+   <img src="/assets/images/products/plugins/openid-connect/keycloak-client-service-settings.png">
    <br>
-   <img src="/assets/images/docs/openid-connect/keycloak-client-service-auth.png">
+   <img src="/assets/images/products/plugins/openid-connect/keycloak-client-service-auth.png">
    <br>
 3. Create a verified user with the name: `john` and the non-temporary password: `doe` that can be used with the password grant:
    <br><br>
-   <img src="/assets/images/docs/openid-connect/keycloak-user-john.png">
+   <img src="/assets/images/products/plugins/openid-connect/keycloak-user-john.png">
 
-Alternatively you can [download the exported Keycloak configuration](/assets/images/docs/openid-connect/keycloak.json),
+Alternatively you can [download the exported Keycloak configuration](/assets/images/products/plugins/openid-connect/keycloak.json),
 and use it to configure the Keycloak. Please refer to [Keycloak import documentation](https://www.keycloak.org/docs/latest/server_admin/#_export_import)
 for more information.
 

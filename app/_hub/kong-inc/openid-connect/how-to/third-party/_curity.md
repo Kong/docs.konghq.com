@@ -29,7 +29,7 @@ If access is granted, the JWT from the introspection response is added to a head
 Create a service that can be used to test the integration.
 
 ```bash
-curl -i -X POST http://kong:8001/services/ \
+curl -i -X POST http://localhost:8001/services/ \
   --data name="httpbin" \
   --data protocol="http" \
   --data url="http://httpbin.org"
@@ -40,7 +40,7 @@ curl -i -X POST http://kong:8001/services/ \
 Add a route to the service.
 
 ```bash
-curl -i -X POST http://kong:8001/services/httpbin/routes \
+curl -i -X POST http://localhost:8001/services/httpbin/routes \
   --data "paths[]=/httpbin"
 ```
 
@@ -49,7 +49,7 @@ curl -i -X POST http://kong:8001/services/httpbin/routes \
 The Kong OpenID Connect plugin is enabled for the previously created service. In the example below, the `openid` scope is required in order for access to be granted. As noted by the `config.upstream_headers_claims` configuration, the plugin looks for the `JWT` (the phantom token) claim in the introspection response. The `config.upstream_headers_names` configuration extracts the `JWT` from the introspection response and adds it to a `phantom_token` header in the call to the upstream API.
 
 ```bash
-curl -X POST http://kong:8001/services/httpbin/plugins \
+curl -X POST http://localhost:8001/services/httpbin/plugins \
 --data name="openid-connect" \
 --data config.issuer="https://idsvr.example.com/oauth/v2/oauth-anonymous" \
 --data config.client_id="gateway-client" \
