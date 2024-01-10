@@ -48,6 +48,7 @@ cosign verify \
    --certificate-identity-regexp='https://github.com/Kong/<repo>/.github/workflows/<workflow filename>'
 ```
 
+Here's the same example using sample values instead of placeholders:
 ```sh
 cosign verify \
    'kong/kong-gateway:3.5.0.2-ubuntu@sha256:208c23d88fa9f563a907dbb29c629c10c6183637898b34cbbafef779ff0965f2' \
