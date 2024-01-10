@@ -24,7 +24,7 @@ Kong Developer portal is deployed as part of the `kong-cp` deployment as it need
       portal_gui_protocol: http
       portal_gui_host: portal.example.com
       portal_api_url: http://portalapi.example.com
-      portal_session_conf: '{"cookie_name": "portal_session", "secret": "PORTAL_SUPER_SECRET", "storage": "kong"}'
+      portal_session_conf: '{"cookie_name": "portal_session", "secret": "PORTAL_SUPER_SECRET", "storage": "kong", "cookie_secure": false, "cookie_domain":".example.com"}'
     
     # Enable Developer Portal
     enterprise:
@@ -37,7 +37,7 @@ Kong Developer portal is deployed as part of the `kong-cp` deployment as it need
     - `env.portal_gui_protocol`: The protocol to use for the GUI (http or https)
     - `env.portal_gui_host`: The hostname that you'll use to reach the portal
     - `env.portal_api_url`: The publicly accessible API URL for dev portal data
-    - `env.portal_session_conf`: Update the value in `secret`
+    - `env.portal_session_conf`: Update the value in `secret` and `cookie_domain`
 
 {% include md/k8s/ingress-setup.md service="portal" release="cp" type="public" skip_release=true skip_ingress_controller_install=true skip_dns=true %}
 
