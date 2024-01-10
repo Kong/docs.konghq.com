@@ -40,7 +40,8 @@ include a `YOUR_CLIENT_ID/.default` scope in your plugin configuration as shown 
 Add a plugin with the configuration below to your Route using an HTTP client or [Kong Manager][enable-plugin].
 
 ```bash
-curl -i -X POST https://admin.kong.example/routes/ROUTE_ID/plugins --data name="openid-connect" \
+curl -i -X POST https://localhost:8001/routes/{ROUTE_ID}/plugins \
+  --data name="openid-connect" \
   --data config.issuer="https://login.microsoftonline.com/YOUR_DIRECTORY_ID/v2.0/.well-known/openid-configuration" \
   --data config.client_id="YOUR_CLIENT_ID" \
   --data config.client_secret="YOUR_CLIENT_SECRET" \
@@ -92,13 +93,13 @@ For this example, the user's Azure AD account GUID is mapped to a Consumer by se
 it as the `custom_id` on their Consumer:
 
 ```bash
-curl -i -X POST http://admin.kong.example/consumers/ \
+curl -i -X POST http://localhost:8001/consumers/ \
   --data username="Yoda" \
   --data custom_id="e5634b31-d67f-4661-a6fb-b6cb77849bcf"
 ```
 
 ```bash
-curl -i -X PATCH http://admin.kong.example/plugins/OIDC_PLUGIN_ID \
+curl -i -X PATCH http://localhost:8001/plugins/OIDC_PLUGIN_ID \
   --data config.consumer_by="custom_id" \
   --data config.consumer_claim="oid"
 ```

@@ -13,7 +13,7 @@ in conjunction with the Application Registration plugin, see
 
 ### Sign-in flow
 
-![OIDC sign-in flow](/assets/images/docs/ee/plugins/oidc-use-case/OIDCsignin.png)
+![OIDC sign-in flow](/assets/images/products/plugins/openid-connect/OIDCsignin.png)
 
 1. If the client does not have a session cookie, it initiates sign in with Kong.
 2. Kong responds to the client with an **authorization cookie** and a location to redirect (with Okta as the header).
@@ -24,7 +24,7 @@ At this point, the client has successfully signed in and has an **authorization 
 
 ### Access flow
 
-![OIDC access flow](/assets/images/docs/ee/plugins/oidc-use-case/OIDCaccess.png)
+![OIDC access flow](/assets/images/products/plugins/openid-connect/OIDCaccess.png)
 
 1. The client redirects to Kong and automatically sends the **authorization code** (from Okta) and an **authorization cookie** (from Kong).
 2. Kong verifies the **authorization code** with Okta.
@@ -37,7 +37,7 @@ At this point, the client now has a **session** with Kong that allows mediated a
 
 ### Session flow
 
-![OIDC session flow](/assets/images/docs/ee/plugins/oidc-use-case/OIDCsession.png)
+![OIDC session flow](/assets/images/products/plugins/openid-connect/OIDCsession.png)
 
 1. The client sends requests with a **session cookie**.
 2. Kong matches the session cookie to the associate **access token** and proxies the request.
@@ -178,7 +178,7 @@ For a list of all available configuration parameters and what they do, see the
 Configure the OpenID Connect plugin using the following sample values:
 
 ```bash
-curl -i -X POST https://KONG_ADMIN_URL/routes/ROUTE_ID/plugins \
+curl -i -X POST https://localhost:8001/routes/ROUTE_ID/plugins \
   --data name="openid-connect"                                                                             \
   --data config.issuer="https://YOUR_OKTA_DOMAIN/oauth2/YOUR_AUTH_SERVER/.well-known/openid-configuration" \
   --data config.client_id="YOUR_CLIENT_ID"                                                                 \
@@ -242,13 +242,13 @@ For this example, the user's Okta's AD account GUID is mapped to a Consumer by s
 as the `custom_id` on their consumer:
 
 ```bash
-curl -i -X POST http://admin.kong.example/consumers/ \
+curl -i -X POST http://localhost:8001/consumers/ \
   --data username="Yoda" \
   --data custom_id="e5634b31-d67f-4661-a6fb-b6cb77849bcf"
 ```
 
 ```bash
-curl -i -X PATCH http://admin.kong.example/plugins/OIDC_PLUGIN_ID \
+curl -i -X PATCH http://localhost:8001/plugins/OIDC_PLUGIN_ID \
   --data config.consumer_by="custom_id" \
   --data config.consumer_claim="sub"
 ```
