@@ -62,3 +62,9 @@ curl -X PATCH http://admin.example.com/default/workspaces/default -d config.port
 ## Testing
 
 Visit <http://portal.example.com/> in a browser. You will see a page that says "Built with Kong" with three sample OpenAPI specifications.
+
+## Troubleshooting
+
+### I can't log in
+
+If the screen refreshes but you are not logged in to the dev portal, check that `cookie_domain` is set correctly in `values-cp.yaml`. Cookies are set on the portal API domain by default. `cookie_domain` is required to allow the portal to read authentication cookies from the portal API.
