@@ -152,7 +152,9 @@ Starting in version 3.2, {{site.base_gateway}} can be configured to support conf
 
 ## Docker container image signing
 
-Starting with {{site.ee_product_name}} 3.5.0.2, Docker container images are signed, and can be verified using `cosign` with signatures published to a Docker Hub repository. Read the [Verify signatures for Signed Kong Images](/gateway/latest/kong-enterprise/signing-verify/) documentation to learn more.
+{% if_version gte:3.5.x %}
+Starting with {{site.ee_product_name}} 3.5.0.2, Docker container images are signed, and can be verified using `cosign` with signatures published to a Docker Hub repository. Read the [Verify signatures for Signed Kong Images](/gateway/{{ page.release }}/kong-enterprise/signing-verify/) documentation to learn more.
+{% endif_version %}
 
 ## More information
 
