@@ -176,7 +176,7 @@
       {
         "id": "7323acff-61a5-4d95-9670-3cc30db88d94",
         "created_at": "2023-11-06T20:42:08.188Z",
-        "updated_at": "2023-11-07T16:36:32.325Z",
+        "updated_at": "2023-11-08T19:39:53.374Z",
         "name": "3.5.0",
         "deprecated": false,
         "registration_configs": []
@@ -213,7 +213,7 @@
       {
         "id": "5363c8ea-e2ce-4670-9117-143b3b3d2bfb",
         "created_at": "2023-11-06T20:40:21.660Z",
-        "updated_at": "2023-11-07T16:36:19.265Z",
+        "updated_at": "2023-11-08T19:39:15.438Z",
         "name": "3.5.0.0",
         "deprecated": false,
         "registration_configs": []
