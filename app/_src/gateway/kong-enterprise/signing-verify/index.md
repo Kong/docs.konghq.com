@@ -56,7 +56,7 @@ cosign verify \
    --certificate-identity-regexp='https://github.com/Kong/kong-ee/.github/workflows/release.yml'
 ```
 
-### Complete Example
+### Complete example
 
 ```sh
 cosign verify \
