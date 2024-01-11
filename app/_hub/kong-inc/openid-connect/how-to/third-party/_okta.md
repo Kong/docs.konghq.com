@@ -13,7 +13,23 @@ in conjunction with the Application Registration plugin, see
 
 ### Sign-in flow
 
-![OIDC sign-in flow](/assets/images/products/plugins/openid-connect/OIDCsignin.png)
+{% mermaid %}
+sequenceDiagram
+    autonumber
+    participant client as Client <br>(e.g. mobile app)
+    participant kong as Kong
+    participant okta as Okta
+    activate client
+    activate kong
+    client->>kong: Client initiates sign-in
+    kong->>client: Kong sends auth cookie<br>and redirects to Okta
+    deactivate kong
+    activate okta
+    client->>okta: Client signs in to Okta
+    okta->>client: Okta sends auth code<br>and redirects to Kong
+    deactivate okta
+    deactivate client
+{% endmermaid %}
 
 1. If the client does not have a session cookie, it initiates sign in with Kong.
 2. Kong responds to the client with an **authorization cookie** and a location to redirect (with Okta as the header).
@@ -24,7 +40,30 @@ At this point, the client has successfully signed in and has an **authorization 
 
 ### Access flow
 
-![OIDC access flow](/assets/images/products/plugins/openid-connect/OIDCaccess.png)
+{% mermaid %}
+sequenceDiagram
+    autonumber 5
+    participant client as Client <br>(e.g. mobile app)
+    participant kong as Kong
+    participant okta as Okta
+    participant service as Upstream service
+    activate client
+    activate kong
+    client->>kong: Client forwards auth code from Okta<br>and auth cookie from Kong
+    deactivate client
+    activate okta
+    kong->>okta: Kong verifies auth code with Okta
+    okta->>kong: Okta sends access token and ID token
+    deactivate okta
+    activate service
+    kong->>service: Kong sends<br> client request<br>with access token
+    service->>kong: Service sends<br>response to Kong
+    deactivate service
+    activate client
+    kong->>client: Kong sends service response<br>with a session cookie
+    deactivate client
+    deactivate kong
+{% endmermaid %}
 
 1. The client redirects to Kong and automatically sends the **authorization code** (from Okta) and an **authorization cookie** (from Kong).
 2. Kong verifies the **authorization code** with Okta.
@@ -37,7 +76,25 @@ At this point, the client now has a **session** with Kong that allows mediated a
 
 ### Session flow
 
-![OIDC session flow](/assets/images/products/plugins/openid-connect/OIDCsession.png)
+{% mermaid %}
+sequenceDiagram
+    autonumber 11
+    participant client as Client <br>(e.g. mobile app)
+    participant kong as Kong
+    participant service as Upstream service
+    activate client
+    activate kong
+    client->>kong: Client sends request<br>with session cookie (from Kong)
+    deactivate client
+    activate service
+    kong->>service: Kong sends access token<br>(from Okta)
+    service->>kong: Service sends response to Kong
+    deactivate service
+    activate client
+    kong->>client: Kong sends service response to client
+    deactivate kong
+    deactivate client
+{% endmermaid %}
 
 1. The client sends requests with a **session cookie**.
 2. Kong matches the session cookie to the associate **access token** and proxies the request.
