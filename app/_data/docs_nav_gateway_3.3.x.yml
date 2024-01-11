@@ -103,10 +103,10 @@ items:
             items:
               - text: Overview
                 url: /install/kubernetes/
-              - text: Supported Versions
-                url: /install/kubernetes/support/
               - text: Install Kong Gateway
                 url: /install/kubernetes/proxy/
+              - text: Configure the Admin API
+                url: /install/kubernetes/admin/
               - text: Install Kong Manager
                 url: /install/kubernetes/manager/
               - text: Install Developer Portal

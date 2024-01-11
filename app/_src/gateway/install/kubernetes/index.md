@@ -12,3 +12,9 @@ chapter: 1
 * Traditional mode, where each node connects to a PostgreSQL database
 
 This documentation offers instructions for deploying {{ site.base_gateway }} in Hybrid mode within a Kubernetes cluster.
+
+## Supported Versions
+
+{{ site.base_gateway }} is compatible with all supported versions of Kubernetes and Red Hat OpenShift.
+
+{% include_cached md/kic/support.md %}
