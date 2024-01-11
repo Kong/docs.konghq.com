@@ -18,7 +18,7 @@
 {% endunless %}
 
 {% unless include.skip_dns %}
-1. Fetch the `Ingress` IP address and update your DNS records to point at the Ingress address. You can configure DNS manually, or use a tool such as [external-dns](https://github.com/kubernetes-sigs/external-dns) to automate DNS configuration.
+1. Fetch the `Ingress` IP address and update your DNS records to point at the Ingress address. You can configure DNS manually, or use a tool like [external-dns](https://github.com/kubernetes-sigs/external-dns) to automate DNS configuration.
 
     ```bash
     kubectl get ingress -n kong kong-{{ include.release }}-kong-{{ include.service }} -o jsonpath='{.spec.rules[0].host}{": "}{range .status.loadBalancer.ingress[0]}{@.ip}{@.hostname}{end}'

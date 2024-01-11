@@ -1,17 +1,17 @@
 ---
 title: Install Kong Gateway
 book: kubernetes-install
-chapter: 3
+chapter: 2
 ---
 
-This guide shows how to deploy {{ site.base_gateway }} on Kubernetes without [{{ site.konnect_saas }}](/konnect/gateway-manager/data-plane-nodes/) or [{{ site.kic_product_name }}](/kubernetes-ingress-controller/latest/get-started/).
+This guide explains how to deploy {{ site.base_gateway }} on Kubernetes without using [{{ site.konnect_saas }}](/konnect/gateway-manager/data-plane-nodes/) or [{{ site.kic_product_name }}](/kubernetes-ingress-controller/latest/get-started/).
 
 {:.important}
 > **{{ site.konnect_saas }} is recommended for new installations to reduce deployment complexity.**
 > <br />
 > Let Kong run the control plane and database for you. With {{ site.konnect_saas }}, you only need to run the data planes. <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=kubernetes-install">Get started in under 5 minutes</a>.
 
-These instructions configure {{ site.base_gateway }} to use separate containers for each role (e.g. Control Plane, Data Plane, Kong Manager). This is the recommended production installation method.
+These instructions configure {{ site.base_gateway }} to use separate control plane and data plane deployments. This is the recommended production installation method.
 
 ## Prerequisites
 
@@ -21,26 +21,25 @@ These instructions configure {{ site.base_gateway }} to use separate containers 
 
 ### Helm Setup
 
-Kong provide a Helm chart to deploy {{ site.base_gateway }}. Add the `charts.konghq.com` repository and run `helm repo update` to ensure that you have the latest version of the chart.
+Kong provides a Helm chart for deploying  {{ site.base_gateway }}. Add the `charts.konghq.com` repository and run `helm repo update` to ensure that you have the latest version of the chart.
 
 ```bash
 helm repo add kong https://charts.konghq.com
 helm repo update
 ```
 
-## Required secrets
+## Secrets
 
-{{ site.base_gateway }} requires specific secrets in order to run.
 
 ### {{ site.ee_product_name }} License
 
-Create the `kong` namespace:
+First, create the `kong` namespace:
 
 ```bash
 kubectl create namespace kong
 ```
 
-Create a {{site.ee_product_name}} license secret:
+Next, create a {{site.ee_product_name}} license secret:
 
 {% navtabs %}
 {% navtab Kong Gateway Enterprise Free Mode%}
@@ -50,7 +49,7 @@ Create a {{site.ee_product_name}} license secret:
 {% endnavtab %}
 {% navtab Kong Gateway Enterprise Licensed Mode%}
 
-   >This command must be run in the directory that contains your `license.json` file.
+   > Ensure you are in the directory that contains a `license.json` file before running this command. 
 
     kubectl create secret generic kong-enterprise-license --from-file=license=license.json -n kong
 
@@ -61,7 +60,7 @@ Create a {{site.ee_product_name}} license secret:
 
 {{ site.base_gateway }} uses mTLS to secure the control plane/data plane communication when running in hybrid mode.
 
-1. Generate a TLS certificate using `openssl`.
+1. Generate a TLS certificate using OpenSSL.
 
     ```bash
     openssl req -new -x509 -nodes -newkey ec:<(openssl ecparam -name secp384r1) -keyout ./tls.key -out ./tls.crt -days 1095 -subj "/CN=kong_clustering"
@@ -77,7 +76,7 @@ Create a {{site.ee_product_name}} license secret:
 
 ### Control Plane
 
-The control plane contains all {{ site.base_gateway }} configuration. The configuration is stored in a PostgreSQL database.
+The control plane contains all {{ site.base_gateway }} configurations. The configuration is stored in a PostgreSQL database.
 
 1. Create a `values-cp.yaml` file.
 
@@ -150,12 +149,12 @@ The control plane contains all {{ site.base_gateway }} configuration. The config
       enabled: false
     ```
 
-1. _(Optional)_ Add the following to the bottom of `values-cp.yaml` if you want to deploy a Postgres database in the cluster for testing purposes.
+1. _(Optional)_ If you want to deploy a Postgres database within the cluster for testing purposes, add the following to the bottom of `values-cp.yaml`.
 
     ```yaml
     # This is for testing purposes only
     # DO NOT DO THIS IN PRODUCTION
-    # Your cluster needs a way to create persistantvolumeclaims
+    # Your cluster needs a way to create PersistantVolumeClaims
     # if this option is enabled
     postgresql:
       enabled: true
@@ -190,7 +189,7 @@ The control plane contains all {{ site.base_gateway }} configuration. The config
 
 ### Data Plane
 
-The {{ site.base_gateway }} data plane is responsible for handling incoming traffic. It receives routing configuration from the control plane using the clustering endpoint.
+The {{ site.base_gateway }} data plane is responsible for processing incoming traffic. It receives the routing configuration from the control plane using the clustering endpoint.
 
 1. Create a `values-dp.yaml` file.
 
@@ -273,7 +272,7 @@ The {{ site.base_gateway }} data plane is responsible for handling incoming traf
     curl $PROXY_IP/mock/anything
     ```
 
-1. Use `kubectl port-forward` to access the admin API.
+1. In another terminal, run `kubectl port-forward` to set up port forwarding and access the admin API.
 
     ```bash
     kubectl port-forward -n kong service/kong-cp-kong-admin 8001
@@ -296,7 +295,7 @@ The {{ site.base_gateway }} data plane is responsible for handling incoming traf
 
 {{ site.base_gateway }} is now running on Kubernetes. The Admin API is a `NodePort` service, which means it's not publicly available. The proxy service is a `LoadBalancer` which provides a public address.
 
-To make the admin API accessible without using `kubectl port-forward`, you can create an internal load balancer on your chosen cloud. This is required to [use Kong Manager]({{ page.book.next.url }}) to view or edit your configuration.
+To make the admin API accessible without using `kubectl port-forward`, you can create an internal load balancer on your chosen cloud. This is required to use [Kong Manager]({{ page.book.next.url }}) to view or edit your configuration.
 
 Update your `values-cp.yaml` file with the following Ingress configuration.
 
