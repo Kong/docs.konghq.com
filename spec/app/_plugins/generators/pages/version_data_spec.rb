@@ -45,10 +45,6 @@ RSpec.describe Jekyll::Pages::VersionData do
         expect(page.data['kong_latest']).to eq(latest_release)
       end
 
-      it 'sets kong_version' do
-        expect(page.data['kong_version']).to eq('3.0.x')
-      end
-
       it 'sets the default version if any' do
         expect(page.data['version']).to be_nil
       end

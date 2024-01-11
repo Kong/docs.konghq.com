@@ -33,7 +33,7 @@ RSpec.describe Jekyll::ReferenceableFieldsTable do
 
   describe '#render' do
     let(:site) { OpenStruct.new('data' => { 'ssg_hub' => hub }) }
-    let(:page) { { 'kong_version' => '3.2.x' } }
+    let(:page) { { 'release' => '3.2.x' } }
     let(:environment) { { 'page' => page } }
     let(:liquid_context) { Liquid::Context.new(environment, {}, site: site) }
     let(:tag) do
