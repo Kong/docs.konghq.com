@@ -74,9 +74,9 @@ http --session=john --follow -a john: post :8000/logout
 HTTP/1.1 200 OK
 ```
 
-> We needed to pass `-a john:` as there seems to be a feature with `HTTPie`
-> that makes it to store the original basic authentication credentials in
-> a session - not just the session cookies.
+We needed to pass `-a john:` as there seems to be a feature with `HTTPie`
+that makes it to store the original basic authentication credentials in
+a session - not just the session cookies.
 
 At this point the client has logged out from both Kong and the identity provider (Keycloak).
 

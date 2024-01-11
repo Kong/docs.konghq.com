@@ -97,5 +97,6 @@ HTTP/1.1 200 OK
 }
 ```
 
-> If you make another request using the same credentials, you should see that Kong adds less
-> latency to the request as it has cached the token endpoint call to Keycloak.
+
+If you make another request using the same credentials, you should see that Kong adds less
+latency to the request as it has cached the token endpoint call to Keycloak.

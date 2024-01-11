@@ -77,4 +77,4 @@ HTTP/1.1 200 OK
 }
 ```
 
-See the [configuration parameters](#parameters) for other options.
+See the [configuration parameters](/hub/kong-inc/openid-connect/configuration/) for other options.

@@ -111,19 +111,29 @@ HTTP/1.1 200 OK
 ### Test the authorization code flow
 
 1. Open the service page with some query arguments:
+
    ```bash
    open http://service.test:8000/?hello=world
    ```
-   <img src="/assets/images/products/plugins/openid-connect/authorization-code-flow-1.png">
 
-2. See that the browser is redirected to the Keycloak login page:
-   <br><br>
-   <img src="/assets/images/products/plugins/openid-connect/authorization-code-flow-2.png">
-   <br>
-   > You may examine the query arguments passed to Keycloak with the browser developer tools.
-3. And finally you will be presented a response from `httpbin.org`:
-   <br><br>
-   <img src="/assets/images/products/plugins/openid-connect/authorization-code-flow-3.png">
+2. The browser should be redirected to the Keycloak login page.
+
+   You may examine the query arguments passed to Keycloak with the browser developer tools.
+
+3. And finally you will be presented a response from `httpbin.org` that looks something like this:
+
+   ```json
+   {
+    "args": {
+        "hello": "world"
+    },
+    "headers": {
+        "Authorization": "Bearer <access-token>",
+    },
+    "method": "GET",
+    "url": "http://service.test/anything?hello=world"
+   }
+   ```
 
 It looks rather simple from the user point of view, but what really happened is
 described in the [diagram](#authorization-code-flow) above.

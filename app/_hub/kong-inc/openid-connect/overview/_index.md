@@ -158,15 +158,24 @@ In summary, start with the following parameters:
 
 ## How-to guides and demos
 
+{:.important}
+> The examples in these guides are built with simplicity in mind, and 
+are not meant for a production environment.
+> Because `httpbin.org` is the upstream service in these examples, we highly 
+recommended that you **do not** run these examples with a production identity 
+provider as there is a high chance of leaking information.
+> The examples also use the plain HTTP protocol, which you should
+**never** use in production. 
+
 ### Authentication flows and grants
 
 We use [HTTPie](https://httpie.org/) to execute the examples. The output is stripped
-for a better readability. [httpbin.org](https://httpbin.org/) is used as an upstream service.
+for better readability. [httpbin.org](https://httpbin.org/) is used as an upstream service.
 
-Using Admin API is convenient when testing the plugin, but similar configs can
-be done in declarative format as well.
+Using the Admin API is convenient when testing the plugin, but you can set up similar configs 
+in declarative format as well.
 
-When this plugin is configured with multiple grants/flows there is a hard-coded search
+When this plugin is configured with multiple grants/flows, there is a hardcoded search
 order for the credentials:
 
 1. [Session Authentication](/hub/kong-inc/openid-connect/how-to/authentication/session/)
@@ -182,13 +191,6 @@ order for the credentials:
 Once credentials are found, the plugin will stop searching further. Multiple grants may
 share the same credentials. For example, both the password and client credentials grants can use 
 basic access authentication through the `Authorization` header.
-
-{:.warning}
-> The choices made in the examples below are solely aimed at simplicity.
-Because `httpbin.org` is used as an upstream service, it is highly recommended that you do
-not run these usage examples with a production identity provider as there is a great chance
-of leaking information. Also the examples below use the plain HTTP protocol that you should
-never use in production. 
 
 ### Authorization
 
@@ -213,6 +215,7 @@ To set up RBAC in Kong Manager with OIDC, see:
 * [Enable OIDC for Kong Manager](/gateway/latest/kong-manager/auth/oidc/configure/)
 * [OIDC Authenticated Group Mapping](/gateway/latest/kong-manager/auth/oidc/mapping/)
 
+{% if_plugin_version lte:3.4.x %}
 ### OIDC authentication in Dev Portal
 
 The OpenID Connect plugin allows the Kong Dev Portal to hook into existing authentication 
@@ -246,6 +249,7 @@ Application registration in self-managed {{site.base_gateway}}:
 * [Third-party OAuth2 Support for Application Registration](/gateway/latest/kong-enterprise/dev-portal/authentication/3rd-party-oauth/)
 * [External Portal Application Authentication with Azure AD and OIDC](/gateway/latest/kong-enterprise/dev-portal/authentication/azure-oidc-config/)
 * [Set Up External Portal Application Authentication with Okta and OIDC](/gateway/latest/kong-enterprise/dev-portal/authentication/okta-config/)
+{% endif_plugin_version %}
 
 ### More information
 

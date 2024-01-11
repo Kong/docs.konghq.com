@@ -9,12 +9,13 @@ nav_title: Session
 
 ## Session authentication
 
-Kong OpenID Connect plugin can issue a session cookie that can be used for further
+The OpenID Connect plugin can issue a session cookie that can be used for further
 session authentication. To make OpenID Connect issue a session cookie, you need
-to first authenticate with one of the other grant / flows described above. In
-[authorization code flow](#authorization-code-flow) we already demonstrated session
-authentication when we used the redirect login action. The session authentication
-is described below:
+to first authenticate with one of the other grants or flows that this plugin supports. 
+For example, the [authorization code flow](/hub/kong-inc/openid-connect/how-to/authentication/authorization-code-flow)
+demonstrates session authentication when it uses the redirect login action.
+
+The session authentication portion of the flow works like this:
 
 {% mermaid %}
 sequenceDiagram
