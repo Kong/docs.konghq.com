@@ -15,6 +15,7 @@ JWT authentication is that the plugin needs to call the introspection endpoint o
 to find out whether the token is valid and active. This makes it possible to issue opaque tokens to
 the clients.
 
+<!--vale off-->
 {% mermaid %}
 sequenceDiagram
     autonumber
@@ -44,6 +45,7 @@ sequenceDiagram
     deactivate kong
     deactivate client
 {% endmermaid %}
+<!--vale on-->
 
 ### Patch the plugin
 

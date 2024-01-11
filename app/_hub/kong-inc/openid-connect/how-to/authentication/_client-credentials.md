@@ -15,6 +15,7 @@ does not try to authenticate. It just forwards the credentials passed by the cli
 to the identity server's token endpoint. The client credentials grant is visualized
 below:
 
+<!--vale off-->
 {% mermaid %}
 sequenceDiagram
     autonumber
@@ -44,6 +45,7 @@ sequenceDiagram
     deactivate kong
     deactivate client
 {% endmermaid %}
+<!--vale on-->
 
 ### Patch the plugin
 

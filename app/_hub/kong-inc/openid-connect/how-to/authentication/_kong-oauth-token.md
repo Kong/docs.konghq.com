@@ -13,6 +13,7 @@ The OpenID Connect plugin can also verify the tokens issued by [Kong OAuth 2.0 P
 This is very similar to third party identity provider issued [JWT access token authentication](/hub/kong-inc/openid-connect/how-to/authentication/jwt-access-token/)
 or [introspection authentication](/hub/kong-inc/openid-connect/how-to/authentication/introspection/):
 
+<!--vale off-->
 {% mermaid %}
 sequenceDiagram
     autonumber
@@ -34,6 +35,7 @@ sequenceDiagram
     deactivate kong
     deactivate client
 {% endmermaid %}
+<!--vale on-->
 
 ### Prepare Kong OAuth application
 

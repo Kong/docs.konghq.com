@@ -118,5 +118,5 @@ HTTP/1.1 200 OK
 You can see that the plugin added the `X-Consumer-Id` and `X-Consumer-Username` as request headers.
 
 {:.note}
-> It is possible to make consumer mapping optional and non-authorizing by setting the configiration parameter 
+> It is possible to make consumer mapping optional and non-authorizing by setting the configuration parameter 
 [`config.consumer_optional=true`](/hub/kong-inc/openid-connect/configuration/#consumer_optional).

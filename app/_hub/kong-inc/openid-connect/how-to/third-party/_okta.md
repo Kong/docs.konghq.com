@@ -13,6 +13,7 @@ in conjunction with the Application Registration plugin, see
 
 ### Sign-in flow
 
+<!--vale off-->
 {% mermaid %}
 sequenceDiagram
     autonumber
@@ -30,6 +31,7 @@ sequenceDiagram
     deactivate okta
     deactivate client
 {% endmermaid %}
+<!--vale on-->
 
 1. If the client does not have a session cookie, it initiates sign in with Kong.
 2. Kong responds to the client with an **authorization cookie** and a location to redirect (with Okta as the header).
@@ -40,6 +42,7 @@ At this point, the client has successfully signed in and has an **authorization 
 
 ### Access flow
 
+<!--vale off-->
 {% mermaid %}
 sequenceDiagram
     autonumber 5
@@ -64,6 +67,7 @@ sequenceDiagram
     deactivate client
     deactivate kong
 {% endmermaid %}
+<!--vale on-->
 
 1. The client redirects to Kong and automatically sends the **authorization code** (from Okta) and an **authorization cookie** (from Kong).
 2. Kong verifies the **authorization code** with Okta.
@@ -76,6 +80,7 @@ At this point, the client now has a **session** with Kong that allows mediated a
 
 ### Session flow
 
+<!--vale off-->
 {% mermaid %}
 sequenceDiagram
     autonumber 11
@@ -95,6 +100,7 @@ sequenceDiagram
     deactivate kong
     deactivate client
 {% endmermaid %}
+<!--vale on-->
 
 1. The client sends requests with a **session cookie**.
 2. Kong matches the session cookie to the associate **access token** and proxies the request.

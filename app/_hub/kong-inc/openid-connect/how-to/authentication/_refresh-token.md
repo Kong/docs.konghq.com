@@ -16,6 +16,7 @@ is likely when Kong OpenID Connect is configured to use one client, and the refr
 with another. The grant itself is very similar to the [password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/) and
 the [client credentials grant](/hub/kong-inc/openid-connect/how-to/authentication/client-credentials-grant/):
 
+<!--vale off-->
 {% mermaid %}
 sequenceDiagram
     autonumber
@@ -45,6 +46,7 @@ sequenceDiagram
     deactivate kong
     deactivate client
 {% endmermaid %}
+<!--vale on-->
 
 ### Patch the plugin
 

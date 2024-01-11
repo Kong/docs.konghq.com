@@ -15,6 +15,7 @@ as that is meant for retrieving information from the token itself, whereas the u
 meant for retrieving information about the user for whom the token was given. The sequence
 diagram below looks almost identical to introspection authentication:
 
+<!--vale off-->
 {% mermaid %}
 sequenceDiagram
     autonumber
@@ -44,6 +45,7 @@ sequenceDiagram
     deactivate kong
     deactivate client
 {% endmermaid %}
+<!--vale on-->
 
 ### Patch the plugin
 

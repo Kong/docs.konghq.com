@@ -17,6 +17,7 @@ demonstrates session authentication when it uses the redirect login action.
 
 The session authentication portion of the flow works like this:
 
+<!--vale off-->
 {% mermaid %}
 sequenceDiagram
     autonumber
@@ -38,6 +39,7 @@ sequenceDiagram
     deactivate kong
     deactivate client
 {% endmermaid %}
+<!--vale on-->
 
 ### Patch the plugin
 

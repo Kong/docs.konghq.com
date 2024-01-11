@@ -13,6 +13,7 @@ Password grant is a legacy authentication grant. This is a less secure way of
 authenticating end users than the authorization code flow, because, for example,
 the passwords are shared with third parties. The image below illustrates the grant:
 
+<!--vale off-->
 {% mermaid %}
 sequenceDiagram
     autonumber
@@ -42,6 +43,7 @@ sequenceDiagram
     deactivate kong
     deactivate client
 {% endmermaid %}
+<!--vale on-->
 
 ### Patch the plugin
 

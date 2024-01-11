@@ -15,6 +15,7 @@ the signature verification using the identity provider published public keys and
 claims' verification (such as `exp` (or expiry)). The client may have received the token directly
 from the identity provider or by other means. It is simple:
 
+<!--vale off-->
 {% mermaid %}
 sequenceDiagram
     autonumber
@@ -37,6 +38,7 @@ sequenceDiagram
     deactivate kong
     deactivate client
 {% endmermaid %}
+<!--vale on-->
 
 ### Patch the plugin
 

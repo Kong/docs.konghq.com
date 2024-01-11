@@ -129,7 +129,7 @@ enabled OpenID Connect plugin on the service.
 In most cases, the OpenID Connect plugin relies on a third party identity provider (IdP).
 The examples in this guide use Keycloak as a sample IdP. 
 
-Expand the following sections to configure Keycloak and Kong Gateway.
+Expand the following sections to configure Keycloak and {{site.base_gateway}}.
 
 <blockquote class="note no-icon"><details><summary>
     <strong>Configure Keycloak &nbsp;<i class="fas fa-arrow-right"></i> </strong>
