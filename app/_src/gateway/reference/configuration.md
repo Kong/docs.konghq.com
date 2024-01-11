@@ -17,9 +17,9 @@ source_url: https://github.com/Kong/kong/edit/master/kong.conf.default
 
 Reference for {{site.base_gateway}} configuration parameters. Set these parameters in `kong.conf`.
 
-To learn more about the `kong.conf` file, see the guide on using the [Kong Configuration File](/gateway/{{page.kong_version}}/production/kong-conf/).
+To learn more about the `kong.conf` file, see the guide on using the [Kong Configuration File](/gateway/{{page.release}}/production/kong-conf/).
 
-You can also manage all {{site.base_gateway}} configuration parameters using [environment variables](/gateway/{{page.kong_version}}/production/environment-variables/).
+You can also manage all {{site.base_gateway}} configuration parameters using [environment variables](/gateway/{{page.release}}/production/environment-variables/).
 
 ---
 

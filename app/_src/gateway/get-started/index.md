@@ -17,11 +17,11 @@ This page will walk you through running {{site.base_gateway}} and verifying it w
 [Admin API](/gateway/latest/admin-api). Once complete, the following tasks 
 can be performed to complete the tutorial:
 
-* [Understanding and configuring Services and Routes](/gateway/{{ page.kong_version }}/get-started/services-and-routes)
-* [Configuring Rate Limiting to protect upstream Services](/gateway/{{ page.kong_version }}/get-started/rate-limiting)
-* [Increase system performance with Proxy Caching](/gateway/{{ page.kong_version }}/get-started/proxy-caching)
-* [Load Balancing for horizontal Service scaling](/gateway/{{ page.kong_version }}/get-started/load-balancing)
-* [Protecting Services with Key Authentication](/gateway/{{ page.kong_version }}/get-started/key-authentication)
+* [Understanding and configuring Services and Routes](/gateway/{{ page.release }}/get-started/services-and-routes)
+* [Configuring Rate Limiting to protect upstream Services](/gateway/{{ page.release }}/get-started/rate-limiting)
+* [Increase system performance with Proxy Caching](/gateway/{{ page.release }}/get-started/proxy-caching)
+* [Load Balancing for horizontal Service scaling](/gateway/{{ page.release }}/get-started/load-balancing)
+* [Protecting Services with Key Authentication](/gateway/{{ page.release }}/get-started/key-authentication)
 
 ### Prerequisites
 
@@ -95,7 +95,7 @@ This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://
 
     {% if_version gte:3.4.x %}
     {:.note}
-    > **Note:** If you install {{site.ce_product_name}}, you will use [Kong Manager Open Source](/gateway/{{page.kong_version}}/kong-manager-oss/). All other {{site.base_gateway}} installations use [Kong Manager Enterprise](/gateway/{{page.kong_version}}/kong-manager/).
+    > **Note:** If you install {{site.ce_product_name}}, you will use [Kong Manager Open Source](/gateway/{{page.release}}/kong-manager-oss/). All other {{site.base_gateway}} installations use [Kong Manager Enterprise](/gateway/{{page.release}}/kong-manager/).
     {% endif_version %}
 
 Every step in this tutorial requires a running {{site.base_gateway}}, so leave

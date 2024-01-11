@@ -7,7 +7,7 @@ content_type: reference
 {:.important}
 > `deck reset` functionality has moved to `deck gateway reset`. 
 `deck reset` will be removed in a future major version of decK (decK 2.x).
-We recommend migrating to [deck gateway reset](/deck/{{page.kong_version}}/reference/deck_gateway_reset/).
+We recommend migrating to [deck gateway reset](/deck/{{ page.release }}/reference/deck_gateway_reset/).
 {% endif_version %}
 
 
@@ -73,8 +73,8 @@ When this setting has multiple tag values, entities must match every tag.
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## See also
 
-* [deck](/deck/{{page.kong_version}}/reference/deck/)	 - Administer your Kong clusters declaratively
+* [deck](/deck/{{page.release}}/reference/deck/)	 - Administer your Kong clusters declaratively

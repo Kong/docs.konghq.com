@@ -60,7 +60,7 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
    ```
 
 4. Configure a Portal Application Registration plugin on the Service as well. See
-[Application Registration](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration#config-app-reg-plugin).
+[Application Registration](/gateway/{{page.release}}/developer-portal/administration/application-registration/enable-application-registration#config-app-reg-plugin).
 
 ## Register an application in Okta
 
@@ -74,7 +74,7 @@ your Okta application will vary:
 
     - **Create a new app integration**: Select `API Services` when prompted for an application type. In the **New API Services App Integration** modal, enter your app integration name.
 
-    You will need your `client_id` and `client_secret` later on when you [authenticate with the proxy](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth#cc-flow).
+    You will need your `client_id` and `client_secret` later on when you [authenticate with the proxy](/gateway/{{page.release}}/developer-portal/administration/application-registration/3rd-party-oauth#cc-flow).
 
     - **Implicit Grant**: Select `Single-Page App`, `Native`, or `Web` when
   prompted for an application type. Make sure `Implicit` is selected for
@@ -104,4 +104,4 @@ This example assumes Client Credentials is the chosen OAuth flow.
 
 Now that the application has been created, developers can authenticate with the
 endpoint using the supported and recommended
-[third-party OAuth flows](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth).
+[third-party OAuth flows](/gateway/{{page.release}}/developer-portal/administration/application-registration/3rd-party-oauth).

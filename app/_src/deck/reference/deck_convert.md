@@ -8,7 +8,7 @@ short_desc: The convert command changes configuration files from one format into
 {:.important}
 > `deck convert` functionality has moved to `deck file convert`. 
 > <br> `deck convert` will be removed in a future major version of decK (decK 2.x).
-We recommend migrating to [deck file convert](/deck/{{page.kong_version}}/reference/deck_file_convert/).
+We recommend migrating to [deck file convert](/deck/{{ page.release }}/reference/deck_file_convert/).
 {% endif_version %}
 
 The convert command changes configuration files from one format
@@ -50,8 +50,8 @@ deck convert [command-specific flags] [global flags]
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## See also
 
-* [deck](/deck/{{page.kong_version}}/reference/deck/)	 - Administer your Kong clusters declaratively
+* [deck](/deck/{{page.release}}/reference/deck/)	 - Administer your Kong clusters declaratively

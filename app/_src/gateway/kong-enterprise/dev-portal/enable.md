@@ -14,7 +14,7 @@ For example, for the `default` workspace, the URL is: `http://localhost:8003/def
 * Dev Portal files endpoint: `http://localhost:8001/files`
 * Public Dev Portal files API: `http://localhost:8004/files`
 
-To enable the Dev Portal, you must first [deploy a license](/gateway/{{page.kong_version}}/licenses/deploy/).
+To enable the Dev Portal, you must first [deploy a license](/gateway/{{page.release}}/licenses/deploy/).
 
 {% navtabs %}
 {% navtab Docker %}
@@ -49,7 +49,7 @@ in the `KONG_PORTAL_GUI_HOST` variable:
 {% navtab Linux (kong.conf) %}
 
 1. To enable the Dev Portal, the following property must be set in the Kong
-configuration file ([`kong.conf`](/gateway/{{page.kong_version}}/production/kong-conf/)):
+configuration file ([`kong.conf`](/gateway/{{page.release}}/production/kong-conf/)):
 
    ```
    portal = on

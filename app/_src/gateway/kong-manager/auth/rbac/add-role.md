@@ -15,17 +15,17 @@ This guide describes how to create a custom role in Kong
 Manager for a unique use case. As an alternative, if a
 super admin wants to create a role with the Admin API,
 it is possible to do so using
-[`/rbac/roles`](/gateway/{{page.kong_version}}/admin-api/rbac/reference/#add-a-role).
+[`/rbac/roles`](/gateway/{{page.release}}/admin-api/rbac/reference/#add-a-role).
 To add permissions to the new role, use
-[`/rbac/roles/{name_or_id}/endpoints`](/gateway/{{page.kong_version}}/admin-api/rbac/reference/#add-a-role-endpoint-permission)
+[`/rbac/roles/{name_or_id}/endpoints`](/gateway/{{page.release}}/admin-api/rbac/reference/#add-a-role-endpoint-permission)
 for endpoints or
-[`/rbac/roles/{name_or_id}/entities`](/gateway/{{page.kong_version}}/admin-api/rbac/reference/#add-a-role-entity-permission)
+[`/rbac/roles/{name_or_id}/entities`](/gateway/{{page.release}}/admin-api/rbac/reference/#add-a-role-entity-permission)
 for specific entities.
 
 ## Prerequisites
 
-* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable/)
-* You have [super admin permissions](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin/)
+* Authentication and RBAC are [enabled](/gateway/{{page.release}}/kong-manager/auth/rbac/enable/)
+* You have [super admin permissions](/gateway/{{page.release}}/kong-manager/auth/super-admin/)
 or a user that has `/admins` and `/rbac` read and write access
 
 ## Add a role and permissions

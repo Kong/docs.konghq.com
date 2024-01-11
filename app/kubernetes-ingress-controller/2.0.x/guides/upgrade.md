@@ -92,7 +92,7 @@ Kong Ingress controller
 
 W0825 14:48:18.084560       1 client_config.go:614] Neither --kubeconfig nor --master was specified.  Using the inClusterConfig.  This might not work.
 time="2021-08-25T14:48:18Z" level=info msg="version of kubernetes api-server: 1.21" api-server-host="https://10.96.0.1:443" git_commit=5e58841cce77d4bc13713ad2b91fa0d961e69192 git_tree_state=clean git_version=v1.21.1 major=1 minor=21 platform=linux/amd64
-time="2021-08-25T14:48:19Z" level=info msg="kong version: 2.5.0" kong_version=2.5.0
+time="2021-08-25T14:48:19Z" level=info msg="kong version: 2.5.0" release=2.5.0
 time="2021-08-25T14:48:19Z" level=info msg="datastore strategy for kong: off"
 time="2021-08-25T14:48:19Z" level=info msg="chosen Ingress API version: networking.k8s.io/v1"
 time="2021-08-25T14:48:55Z" level=info msg="started leading" component=status-syncer
@@ -147,7 +147,7 @@ the default value of `networking/v1`.
 See the [CLI Arguments Reference][flags] for a full list of these new options
 and their default values.
 
-[flags]:/kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments/
+[flags]:/kubernetes-ingress-controller/{{page.release}}/references/cli-arguments/
 
 
 ## Testing environment
@@ -293,4 +293,4 @@ consider using a [testing environment](#testing-environment) to
 identify and correct these issues, or reference the
 [troubleshooting documentation][troubleshooting].
 
-[troubleshooting]:/kubernetes-ingress-controller/{{page.kong_version}}/troubleshooting/
+[troubleshooting]:/kubernetes-ingress-controller/{{page.release}}/troubleshooting/

@@ -11,7 +11,7 @@ Kong is licensed under an
 
 ## Prerequisites
 
-* A [supported system](/gateway/{{page.kong_version}}/support-policy/#supported-versions) with root or [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user/) access.
+* A [supported system](/gateway/{{page.release}}/support-policy/#supported-versions) with root or [root-equivalent](/gateway/{{page.release}}/production/running-kong/kong-user/) access.
 * (Enterprise only) A `license.json` file from Kong
 
 Once you have everything you need, choose an installation path: 
@@ -66,17 +66,17 @@ You should receive a `200` status code.
 
 Once {{ site.base_gateway }} is running, you may want to do the following:
 
-* Optional: [Add your Enterprise license](/gateway/{{ page.kong_version }}/licenses/deploy/)
+* Optional: [Add your Enterprise license](/gateway/{{ page.release }}/licenses/deploy/)
 {%- if_version gte:3.4.x -%}
 * Enable Kong Manager:
-  * [Kong Manager Enterprise](/gateway/{{ page.kong_version }}/kong-manager/enable/)
-  * [Kong Manager OSS](/gateway/{{ page.kong_version }}/kong-manager-oss/)
+  * [Kong Manager Enterprise](/gateway/{{ page.release }}/kong-manager/enable/)
+  * [Kong Manager OSS](/gateway/{{ page.release }}/kong-manager-oss/)
 {%- endif_version -%}{%- if_version lte:3.3.x -%}
-* [Enable Kong Manager](/gateway/{{ page.kong_version }}/kong-manager/enable/)
+* [Enable Kong Manager](/gateway/{{ page.release }}/kong-manager/enable/)
 {%- endif_version -%}{%- if_version lte:3.4.x -%}
-* [Enable Dev Portal](/gateway/{{ page.kong_version }}/kong-enterprise/dev-portal/enable/)
+* [Enable Dev Portal](/gateway/{{ page.release }}/kong-enterprise/dev-portal/enable/)
 {%- endif_version -%}
-* [Create services and routes](/gateway/{{ page.kong_version }}/get-started/services-and-routes/)
+* [Create services and routes](/gateway/{{ page.release }}/get-started/services-and-routes/)
 
 ## Advanced installation
 
@@ -204,22 +204,22 @@ sudo apt-mark hold kong
 
 ### Next steps
 
-Before starting {{site.base_gateway}}, [set up a data store](/gateway/{{page.kong_version}}/install/post-install/set-up-data-store/) 
+Before starting {{site.base_gateway}}, [set up a data store](/gateway/{{page.release}}/install/post-install/set-up-data-store/) 
 and update the `kong.conf.default` configuration property file with a reference to your data store.
 
 Depending on your desired environment, also see the following guides:
-* Optional: [Add your Enterprise license](/gateway/{{ page.kong_version }}/licenses/deploy/)
+* Optional: [Add your Enterprise license](/gateway/{{ page.release }}/licenses/deploy/)
 {%- if_version gte:3.4.x -%}
 * Enable Kong Manager:
-  * [Kong Manager Enterprise](/gateway/{{ page.kong_version }}/kong-manager/enable/)
-  * [Kong Manager OSS](/gateway/{{ page.kong_version }}/kong-manager-oss/)
+  * [Kong Manager Enterprise](/gateway/{{ page.release }}/kong-manager/enable/)
+  * [Kong Manager OSS](/gateway/{{ page.release }}/kong-manager-oss/)
 {%- endif_version -%}
 {%- if_version lte:3.3.x -%}
-* [Enable Kong Manager](/gateway/{{ page.kong_version }}/kong-manager/enable/)
+* [Enable Kong Manager](/gateway/{{ page.release }}/kong-manager/enable/)
 {% endif_version %}
 
 You can also check out {{site.base_gateway}}'s series of
-[Getting Started](/gateway/{{ page.kong_version }}/get-started/) guides to learn how 
+[Getting Started](/gateway/{{ page.release }}/get-started/) guides to learn how 
 get the most out of {{site.base_gateway}}.
 
 ## Uninstall package

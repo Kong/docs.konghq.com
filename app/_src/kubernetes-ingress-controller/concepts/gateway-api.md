@@ -138,7 +138,7 @@ Each {{ site.kic_product_name }} can be provided with a controller name; if no c
 
 To configure {{site.kic_product_name}} to reconcile the Gateway resource, you must set the `konghq.com/gatewayclass-unmanaged=true` annotation in your GatewayClass resource.
 
-In addition, the `spec.controllerName` in your GatewayClass needs to be properly configured, as explained in the section [above](#listener-compatibility-and-handling-multiple-gateways). For more information, see [kic-flags](/kubernetes-ingress-controller/{{page.kong_version}}/reference/cli-arguments/#flags).
+In addition, the `spec.controllerName` in your GatewayClass needs to be properly configured, as explained in the section [above](#listener-compatibility-and-handling-multiple-gateways). For more information, see [kic-flags](/kubernetes-ingress-controller/{{page.release}}/reference/cli-arguments/#flags).
 
 Finally, the `spec.gatewayClassName` value in your Gateway resource should match the value in `metadata.name` from your `GatewayClass`.
 

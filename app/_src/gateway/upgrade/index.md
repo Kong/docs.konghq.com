@@ -16,7 +16,7 @@ For example, the process of moving 2.8.x data from an old PostgreSQL instance to
 
 {:.note}
 > **Note**: If you are interested in upgrading between the {{site.ee_product_name}} 2.8.x and 3.4.x long-term 
-support (LTS) versions, see the [LTS upgrade guide](/gateway/{{page.kong_version}}/upgrade/lts-upgrade/).
+support (LTS) versions, see the [LTS upgrade guide](/gateway/{{page.release}}/upgrade/lts-upgrade/).
 
 ## Upgrade overview
 
@@ -25,11 +25,11 @@ A {{site.base_gateway}} upgrade requires two phases of work: preparing for the u
 **Preparation phase**
 
 1. Review version compatibility between your platform version and the version of {{site.kong_gateway}} that you are upgrading to:
-    * [OS version](/gateway/{{page.kong_version}}/support-policy/#supported-versions)
+    * [OS version](/gateway/{{page.release}}/support-policy/#supported-versions)
     * [Kubernetes version and Helm prerequisites](/kubernetes-ingress-controller/latest/support-policy/)
     {% if_version gte:3.2.x %}
-    * [Database version](/gateway/{{page.kong_version}}/support/third-party/)
-    * [Dependency versions](/gateway/{{page.kong_version}}/support/third-party/)
+    * [Database version](/gateway/{{page.release}}/support/third-party/)
+    * [Dependency versions](/gateway/{{page.release}}/support/third-party/)
     {% endif_version %}
 1. Determine your [upgrade path](#preparation-review-upgrade-paths) based on the release you're starting from and the release you're upgrading to.
 1. [Back up](#preparation-choose-a-backup-strategy) your database or your declarative configuration files.
@@ -62,7 +62,7 @@ The lowest version that {{site.base_gateway}} 3.0.x supports migrating from is 2
 If you are running 1.x, upgrade to 2.1.0 first at a minimum, then upgrade to 3.0.x from there.
 
 While you can upgrade directly to the latest version, be aware of any
-[breaking changes](/gateway/{{page.kong_version}}/breaking-changes/)
+[breaking changes](/gateway/{{page.release}}/breaking-changes/)
 between the 2.x and 3.x series (both this version and prior versions) and in the
 open-source (OSS) and Enterprise Gateway [changelogs](/gateway/changelog/). Since {{site.base_gateway}}
 is built on an open-source foundation, any breaking changes in OSS affect all {{site.base_gateway}} packages.
@@ -83,9 +83,9 @@ By default, {{site.base_gateway}} has migration tests between adjacent versions 
     {{site.base_gateway}} maintains LTS versions and guarantees upgrades between adjacent LTS versions.
     The current LTS in the 2.x series is 2.8, and the current LTS in the 3.x series is 3.4.
     If you want to upgrade between the 2.8 and 3.4 LTS versions, 
-    see the [LTS Upgrade guide](/gateway/{{page.kong_version}}/upgrade/lts-upgrade/).
+    see the [LTS Upgrade guide](/gateway/{{page.release}}/upgrade/lts-upgrade/).
 
-The following table outlines various upgrade path scenarios to {{page.kong_version}} depending on the {{site.base_gateway}} version you are currently using:
+The following table outlines various upgrade path scenarios to {{page.release}} depending on the {{site.base_gateway}} version you are currently using:
 
 {% if_version lte: 3.1.x %}
 
@@ -202,7 +202,7 @@ The following table outlines various upgrade path scenarios to {{page.kong_versi
 
 ## Preparation: Choose a backup strategy
 
-{% include_cached /md/gateway/upgrade-backup.md kong_version=page.kong_version %}
+{% include_cached /md/gateway/upgrade-backup.md release=page.release %}
 
 ## Preparation: Choose an upgrade strategy based on deployment mode
 
@@ -218,12 +218,12 @@ Based on your deployment type, we recommend one of the following upgrade strateg
 Carefully read the descriptions for each option to choose the upgrade strategy that works best for your situation.
 
 * [Traditional](#traditional-mode) or [hybrid mode control planes](#control-planes):
-    * [Dual-cluster upgrade](/gateway/{{page.kong_version}}/upgrade/dual-cluster/)
-    * [In-place upgrade](/gateway/{{page.kong_version}}/upgrade/in-place/)
-    * [Blue-green upgrade](/gateway/{{page.kong_version}}/upgrade/blue-green/) (not recommended)
+    * [Dual-cluster upgrade](/gateway/{{page.release}}/upgrade/dual-cluster/)
+    * [In-place upgrade](/gateway/{{page.release}}/upgrade/in-place/)
+    * [Blue-green upgrade](/gateway/{{page.release}}/upgrade/blue-green/) (not recommended)
 
 * [DB-less mode](#db-less-mode) or [hybrid mode data planes](#data-planes):
-    * [Rolling upgrade](/gateway/{{page.kong_version}}/upgrade/rolling-upgrade/)
+    * [Rolling upgrade](/gateway/{{page.release}}/upgrade/rolling-upgrade/)
 
 Here's a flowchart that breaks down how the decision process works:
 
@@ -236,7 +236,7 @@ See the following sections for breakdowns and links to each upgrade strategy gui
 {% include_cached /md/gateway/traditional-upgrade.md %}
 
 {:.important}
-> **Important**: While the [blue-green upgrade strategy](/gateway/{{page.kong_version}}/upgrade/blue-green/) is an option,
+> **Important**: While the [blue-green upgrade strategy](/gateway/{{page.release}}/upgrade/blue-green/) is an option,
 we do not recommend it. Support from Kong for upgrades using this strategy is limited. 
 It is nearly impossible to fully cover all migration tests, because we have to cover all 
 combinations, given the number of {{site.base_gateway}} versions, upgrade strategies, features adopted, and deployment modes. 
@@ -244,11 +244,11 @@ If you must use this strategy, only use it to upgrade between patch versions.
 
 ### DB-less mode
 
-{% include_cached /md/gateway/db-less-upgrade.md kong_version=page.kong_version %}
+{% include_cached /md/gateway/db-less-upgrade.md release=page.release %}
 
 ### Hybrid mode
 
-{% include_cached /md/gateway/hybrid-upgrade.md kong_version=page.kong_version %}
+{% include_cached /md/gateway/hybrid-upgrade.md release=page.release %}
 
 #### Upgrades from 3.1.0.0 or 3.1.1.1
 
@@ -269,7 +269,7 @@ See the following table for the version breakdown:
 
 ## Preparation: Review breaking changes and changelogs
 
-Review the [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/) and [changelogs](/gateway/changelog/) for the release or 
+Review the [breaking changes](/gateway/{{page.release}}/breaking-changes/) and [changelogs](/gateway/changelog/) for the release or 
 releases that you are upgrading to. 
 Make any preparations or adjustments as directed in the breaking changes.
 
@@ -282,18 +282,18 @@ You must also account for the following factors:
 
 * During the upgrade process, no changes can be made to the database. 
 Until the upgrade is completed:
-  * Don't write to the database via the [Admin API](/gateway/{{page.kong_version}}/admin-api).
+  * Don't write to the database via the [Admin API](/gateway/{{page.release}}/admin-api).
   * Don't operate on the database directly.
-  * Don't update configuration through [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/), 
-  [decK](/deck/), or the [kong config CLI](/gateway/{{page.kong_version}}/reference/cli/#kong-config).
+  * Don't update configuration through [Kong Manager](/gateway/{{page.release}}/kong-manager/), 
+  [decK](/deck/), or the [kong config CLI](/gateway/{{page.release}}/reference/cli/#kong-config).
 * Review the compatibility between the new version Y and your existing platform. 
 Factors may include, but are not limited to:
-  * [OS version](/gateway/{{page.kong_version}}/support-policy/#supported-versions)
+  * [OS version](/gateway/{{page.release}}/support-policy/#supported-versions)
   * [Kubernetes version and Helm prerequisites](/kubernetes-ingress-controller/latest/support-policy/)
-  * [Hardware resources](/gateway/{{page.kong_version}}/production/sizing-guidelines/)
+  * [Hardware resources](/gateway/{{page.release}}/production/sizing-guidelines/)
   {% if_version gte:3.2.x %}
-  * [Database version](/gateway/{{page.kong_version}}/support/third-party/)
-  * [Dependency versions](/gateway/{{page.kong_version}}/support/third-party/)
+  * [Database version](/gateway/{{page.release}}/support/third-party/)
+  * [Dependency versions](/gateway/{{page.release}}/support/third-party/)
   {% endif_version %}
 * Carefully review all [changelogs](/gateway/changelog/) starting from your current version X,
  all the way up to the target version Y. 
@@ -307,12 +307,12 @@ Factors may include, but are not limited to:
 
 * If you have custom plugins, review the code against changelog and test the custom plugin using the new version Y.
 * If you have modified any Nginx templates like `nginx-kong.conf` and `nginx-kong-stream.conf`, also make those changes to the templates for the new version Y. 
-Refer to [Nginx Directives](/gateway/{{page.kong_version}}/reference/nginx-directives/) for a detailed customization guide.
-* If you're using {{site.ee_product_name}}, make sure to [apply the enterprise license](/gateway/{{page.kong_version}}/licenses/deploy/) to the new Gateway cluster.
-* Always remember to take a [backup](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/).
+Refer to [Nginx Directives](/gateway/{{page.release}}/reference/nginx-directives/) for a detailed customization guide.
+* If you're using {{site.ee_product_name}}, make sure to [apply the enterprise license](/gateway/{{page.release}}/licenses/deploy/) to the new Gateway cluster.
+* Always remember to take a [backup](/gateway/{{page.release}}/upgrade/backup-and-restore/).
 {% if_version gte:3.4.x %}
 * Cassandra DB support has been removed from {{site.base_gateway}} with 3.4.0.0.
-Migrate to PostgreSQL according to the [Cassandra to PostgreSQL Migration Guidelines](/gateway/{{page.kong_version}}/migrate-cassandra-to-postgres/).
+Migrate to PostgreSQL according to the [Cassandra to PostgreSQL Migration Guidelines](/gateway/{{page.release}}/migrate-cassandra-to-postgres/).
 {% endif_version %}
 
 ## Perform the upgrade
@@ -320,7 +320,7 @@ Migrate to PostgreSQL according to the [Cassandra to PostgreSQL Migration Guidel
 Once you have reviewed everything and chosen a strategy, proceed to upgrade {{site.base_gateway}} 
 using your chosen strategy:
 
-* [Dual-cluster upgrade](/gateway/{{page.kong_version}}/upgrade/dual-cluster/)
-* [In-place upgrade](/gateway/{{page.kong_version}}/upgrade/in-place/)
-* [Blue-green upgrade](/gateway/{{page.kong_version}}/upgrade/blue-green/)
-* [Rolling upgrade](/gateway/{{page.kong_version}}/upgrade/rolling-upgrade/)
+* [Dual-cluster upgrade](/gateway/{{page.release}}/upgrade/dual-cluster/)
+* [In-place upgrade](/gateway/{{page.release}}/upgrade/in-place/)
+* [Blue-green upgrade](/gateway/{{page.release}}/upgrade/blue-green/)
+* [Rolling upgrade](/gateway/{{page.release}}/upgrade/rolling-upgrade/)

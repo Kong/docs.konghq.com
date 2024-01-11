@@ -6,7 +6,7 @@ title: Deploy Kong Gateway in Hybrid Mode
 
 To get started with a hybrid mode deployment, first install an instance of
 {{site.base_gateway}} with TLS to be your control plane (CP) node. See the
-[installation documentation](/gateway/{{page.kong_version}}/install-and-run/)
+[installation documentation](/gateway/{{page.release}}/install-and-run/)
 for details.
 
 We will bring up any subsequent data plane (DP) instances in this topic.
@@ -365,7 +365,7 @@ is disabled.
 
 In addition, the certificate from `cluster_cert` (in `shared` mode) or `cluster_ca_cert`
 (in `pki` mode) is automatically added to the trusted chain in
-[`lua_ssl_trusted_certificate`](/gateway/{{page.kong_version}}/reference/configuration/#lua_ssl_trusted_certificate).
+[`lua_ssl_trusted_certificate`](/gateway/{{page.release}}/reference/configuration/#lua_ssl_trusted_certificate).
 
 {:.important}
 > **Important:** Data plane nodes receive updates from the control plane via a format
@@ -378,10 +378,10 @@ on how data plane nodes process configuration.
 
 {% navtabs %}
 {% navtab Using Docker %}
-1. Using the [Docker installation documentation](/gateway/{{page.kong_version}}/install-and-run/docker/),
+1. Using the [Docker installation documentation](/gateway/{{page.release}}/install-and-run/docker/),
 follow the instructions to:
-    1. [Download {{site.base_gateway}}](/gateway/{{page.kong_version}}/install-and-run/docker/).
-    2. [Create a Docker network](/gateway/{{page.kong_version}}/install-and-run/docker/#install-gateway-in-db-less-mode).
+    1. [Download {{site.base_gateway}}](/gateway/{{page.release}}/install-and-run/docker/).
+    2. [Create a Docker network](/gateway/{{page.release}}/install-and-run/docker/#install-gateway-in-db-less-mode).
 
     {:.warning}
     > **Warning:** Do not start or create a database on this node.
@@ -405,7 +405,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/cluster.key" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
-kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+kong/kong-gateway:{{page.releases[page.version-index].ee-version}}-alpine
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -420,7 +420,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/cluster.key" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
-kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
+kong:{{page.releases[page.version-index].ce-version}}-alpine
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -446,7 +446,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_CA_CERT=/<path-to-file>/ca-cert.pem" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
-kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+kong/kong-gateway:{{page.releases[page.version-index].ee-version}}-alpine
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -464,7 +464,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_CA_CERT=/<path-to-file>/ca-cert.pem" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
-kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
+kong:{{page.releases[page.version-index].ce-version}}-alpine
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -516,7 +516,7 @@ kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
 {% endnavtab %}
 {% navtab Using kong.conf %}
 
-1. Find the documentation for [your platform](/gateway/{{page.kong_version}}/install-and-run/),
+1. Find the documentation for [your platform](/gateway/{{page.release}}/install-and-run/),
 and follow the instructions in Steps 1 and 2 **only** to download
 {{site.base_gateway}} and install Kong.
 
@@ -672,24 +672,24 @@ in hybrid mode.
 
 Parameter | Description | CP or DP {:width=10%:}
 --------- | ----------- | ----------------------
-[`role`](/gateway/{{page.kong_version}}/reference/configuration/#role) <br>*Required* | Determines whether the {{site.base_gateway}} instance is a control plane or a data plane. Valid values are `control_plane` or `data_plane`. | Both
-[`cluster_listen`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_listen) <br>*Optional* <br><br>**Default:** `0.0.0.0:8005`| List of addresses and ports on which the control plane will listen for incoming data plane connections. This port is always protected with Mutual TLS (mTLS) encryption. Ignored on data plane nodes. | CP
-[`proxy_listen`](/gateway/{{page.kong_version}}/reference/configuration/#proxy_listen) <br>*Required* | Comma-separated list of addresses and ports on which the proxy server should listen for HTTP/HTTPS traffic. Ignored on control plane nodes. | DP
-[`cluster_telemetry_listen`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_telemetry_listen) <span class="badge enterprise"/> <br>*Optional* <br><br>**Default:** `0.0.0.0:8006`| List of addresses and ports on which the control plane will listen for data plane telemetry data. This port is always protected with Mutual TLS (mTLS) encryption. Ignored on data plane nodes. | CP
-[`cluster_telemetry_endpoint`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_telemetry_endpoint) <span class="badge enterprise"/> <br>*Required for Enterprise deployments* | The port that the data plane uses to send telemetry data to the control plane. Ignored on control plane nodes. | DP
-[`cluster_control_plane`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_control_plane) <br>*Required* | Address and port that the data plane nodes use to connect to the control plane. Must point to the port configured using the [`cluster_listen`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_listen) property on the control plane node. Ignored on control plane nodes. | DP
-[`cluster_mtls`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_mtls) <br>*Optional* <br><br>**Default:** `shared` | One of `shared` or `pki`. Indicates whether hybrid mode will use a shared certificate/key pair for CP/DP mTLS or if PKI mode will be used. See below sections for differences in mTLS modes. | Both
-[`data_plane_config_cache_mode`](/gateway/{{page.kong_version}}/reference/configuration/#data_plane_config_cache_mode) <span class="badge enterprise"/> <br>*Optional* <br><br>**Default:** `unencrypted` | Determines how the data plane configuration cache is stored. <br> &#8226; `unencrypted`: Stores configuration without encrypting it in `config.cache.json.gz` <br> &#8226; `encrypted`: Encrypts and stores the configuration cache in `.config.cache.jwt` (hidden file). <br> &#8226; `off`: The data plane does not cache configuration | DP
-[`data_plane_config_cache_path`](/gateway/{{page.kong_version}}/reference/configuration/#data_plane_config_cache_path) <span class="badge enterprise"/> <br>*Optional* <br><br>**Default:** Kong [`prefix` path](/gateway/{{page.kong_version}}/reference/configuration/#prefix) | Path to the data plane config cache file, for example `/tmp/kong-config-cache`. If the cache mode is `encrypted`, the filename is `.config.cache.jwt` (hidden file). If the cache mode is `unencrypted`, the filename is `config.cache.json.gz`. | DP
+[`role`](/gateway/{{page.release}}/reference/configuration/#role) <br>*Required* | Determines whether the {{site.base_gateway}} instance is a control plane or a data plane. Valid values are `control_plane` or `data_plane`. | Both
+[`cluster_listen`](/gateway/{{page.release}}/reference/configuration/#cluster_listen) <br>*Optional* <br><br>**Default:** `0.0.0.0:8005`| List of addresses and ports on which the control plane will listen for incoming data plane connections. This port is always protected with Mutual TLS (mTLS) encryption. Ignored on data plane nodes. | CP
+[`proxy_listen`](/gateway/{{page.release}}/reference/configuration/#proxy_listen) <br>*Required* | Comma-separated list of addresses and ports on which the proxy server should listen for HTTP/HTTPS traffic. Ignored on control plane nodes. | DP
+[`cluster_telemetry_listen`](/gateway/{{page.release}}/reference/configuration/#cluster_telemetry_listen) <span class="badge enterprise"/> <br>*Optional* <br><br>**Default:** `0.0.0.0:8006`| List of addresses and ports on which the control plane will listen for data plane telemetry data. This port is always protected with Mutual TLS (mTLS) encryption. Ignored on data plane nodes. | CP
+[`cluster_telemetry_endpoint`](/gateway/{{page.release}}/reference/configuration/#cluster_telemetry_endpoint) <span class="badge enterprise"/> <br>*Required for Enterprise deployments* | The port that the data plane uses to send telemetry data to the control plane. Ignored on control plane nodes. | DP
+[`cluster_control_plane`](/gateway/{{page.release}}/reference/configuration/#cluster_control_plane) <br>*Required* | Address and port that the data plane nodes use to connect to the control plane. Must point to the port configured using the [`cluster_listen`](/gateway/{{page.release}}/reference/configuration/#cluster_listen) property on the control plane node. Ignored on control plane nodes. | DP
+[`cluster_mtls`](/gateway/{{page.release}}/reference/configuration/#cluster_mtls) <br>*Optional* <br><br>**Default:** `shared` | One of `shared` or `pki`. Indicates whether hybrid mode will use a shared certificate/key pair for CP/DP mTLS or if PKI mode will be used. See below sections for differences in mTLS modes. | Both
+[`data_plane_config_cache_mode`](/gateway/{{page.release}}/reference/configuration/#data_plane_config_cache_mode) <span class="badge enterprise"/> <br>*Optional* <br><br>**Default:** `unencrypted` | Determines how the data plane configuration cache is stored. <br> &#8226; `unencrypted`: Stores configuration without encrypting it in `config.cache.json.gz` <br> &#8226; `encrypted`: Encrypts and stores the configuration cache in `.config.cache.jwt` (hidden file). <br> &#8226; `off`: The data plane does not cache configuration | DP
+[`data_plane_config_cache_path`](/gateway/{{page.release}}/reference/configuration/#data_plane_config_cache_path) <span class="badge enterprise"/> <br>*Optional* <br><br>**Default:** Kong [`prefix` path](/gateway/{{page.release}}/reference/configuration/#prefix) | Path to the data plane config cache file, for example `/tmp/kong-config-cache`. If the cache mode is `encrypted`, the filename is `.config.cache.jwt` (hidden file). If the cache mode is `unencrypted`, the filename is `config.cache.json.gz`. | DP
 
 The following properties are used differently between `shared` and `pki` modes:
 
 Parameter | Description | Shared Mode {:width=12%:} | PKI Mode {:width=30%:}
 --------- | ----------- | ------------------------- | ----------------------
-[`cluster_cert`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_cert) and [`cluster_cert_key`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_cert_key) <br>*Required* | Certificate/key pair used for mTLS between CP/DP nodes. | Same between CP/DP nodes. | Unique certificate for each node, generated from the CA specified by `cluster_ca_cert`.
-[`cluster_ca_cert`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_ca_cert) <br>*Required in PKI mode* | The trusted CA certificate file in PEM format used to verify the `cluster_cert`. | *Ignored* | CA certificate used to verify `cluster_cert`, same between CP/DP nodes. *Required*
-[`cluster_server_name`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_server_name) <br>*Required in PKI mode* | The SNI presented by the DP node mTLS handshake. | *Ignored* | In PKI mode, the DP nodes will also verify that the Common Name (CN) or Subject Alternative Name (SAN) inside the certificate presented by CP matches the `cluster_server_name` value.
-[`cluster_telemetry_server_name`](/gateway/{{page.kong_version}}/reference/configuration/#cluster_telemetry_server_name) <span class="badge enterprise"/>|  The telemetry SNI presented by the DP node mTLS handshake. If not specified, falls back on SNI set in `cluster_server_name`. | *Ignored* | In PKI mode, the DP nodes will also verify that the Common Name (CN) or Subject Alternative Name (SAN) inside the certificate presented by CP matches the `cluster_telemetry_server_name` value.
+[`cluster_cert`](/gateway/{{page.release}}/reference/configuration/#cluster_cert) and [`cluster_cert_key`](/gateway/{{page.release}}/reference/configuration/#cluster_cert_key) <br>*Required* | Certificate/key pair used for mTLS between CP/DP nodes. | Same between CP/DP nodes. | Unique certificate for each node, generated from the CA specified by `cluster_ca_cert`.
+[`cluster_ca_cert`](/gateway/{{page.release}}/reference/configuration/#cluster_ca_cert) <br>*Required in PKI mode* | The trusted CA certificate file in PEM format used to verify the `cluster_cert`. | *Ignored* | CA certificate used to verify `cluster_cert`, same between CP/DP nodes. *Required*
+[`cluster_server_name`](/gateway/{{page.release}}/reference/configuration/#cluster_server_name) <br>*Required in PKI mode* | The SNI presented by the DP node mTLS handshake. | *Ignored* | In PKI mode, the DP nodes will also verify that the Common Name (CN) or Subject Alternative Name (SAN) inside the certificate presented by CP matches the `cluster_server_name` value.
+[`cluster_telemetry_server_name`](/gateway/{{page.release}}/reference/configuration/#cluster_telemetry_server_name) <span class="badge enterprise"/>|  The telemetry SNI presented by the DP node mTLS handshake. If not specified, falls back on SNI set in `cluster_server_name`. | *Ignored* | In PKI mode, the DP nodes will also verify that the Common Name (CN) or Subject Alternative Name (SAN) inside the certificate presented by CP matches the `cluster_telemetry_server_name` value.
 
 ## Next steps
 

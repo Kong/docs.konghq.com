@@ -115,7 +115,7 @@ Example:
 into the provided text area.
 4. Click **Save Changes**.
 
->**Warning** When Dev Portal Authentication is enabled, content files will remain unauthenticated until a role is applied to them. The exception to this is `settings.txt` and `dashboard.txt` which begin with the `*` role. Please visit the <a href="/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/developer-permissions">Developer Roles and Content Permissions</a> section for more info.
+>**Warning** When Dev Portal Authentication is enabled, content files will remain unauthenticated until a role is applied to them. The exception to this is `settings.txt` and `dashboard.txt` which begin with the `*` role. Please visit the <a href="/gateway/{{page.release}}/kong-enterprise/dev-portal/authentication/developer-permissions">Developer Roles and Content Permissions</a> section for more info.
 
 ## Enable OIDC using the Command Line
 
@@ -128,7 +128,7 @@ curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE NAME> \
   "config.portal_auth_conf=<REPLACE WITH JSON CONFIG OBJECT>
 ```
 
->**Warning** When Dev Portal Authentication is enabled, content files will remain unauthenticated until a role is applied to them. The exception to this is `settings.txt` and `dashboard.txt` which begin with the `*` role. Please visit the <a href="/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/developer-permissions">Developer Roles and Content Permissions</a> section for more info.
+>**Warning** When Dev Portal Authentication is enabled, content files will remain unauthenticated until a role is applied to them. The exception to this is `settings.txt` and `dashboard.txt` which begin with the `*` role. Please visit the <a href="/gateway/{{page.release}}/kong-enterprise/dev-portal/authentication/developer-permissions">Developer Roles and Content Permissions</a> section for more info.
 
 ## Enable OIDC using kong.conf
 

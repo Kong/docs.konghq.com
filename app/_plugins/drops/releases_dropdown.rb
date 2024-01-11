@@ -57,7 +57,7 @@ module Jekyll
       end
 
       def hash
-        "#{@page.data['edition']}-#{@page.data['release']}"
+        @hash ||= "#{@page.data['edition']}-#{@page.data['release']}".hash
       end
     end
   end

@@ -68,7 +68,7 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
    ```
 
 8. Configure a Portal Application Registration plugin on the Service as well. See
-[Application Registration](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration#config-app-reg-plugin).
+[Application Registration](/gateway/{{page.release}}/developer-portal/administration/application-registration/enable-application-registration#config-app-reg-plugin).
 
 ## Register an application in Okta
 
@@ -84,7 +84,7 @@ your Okta application will vary:
 
      ![Okta Create New Application](/assets/images/products/gateway/dev-portal/okta-client-creds-app.png)
 
-    You will need your `client_id` and `client_secret` later on when you [authenticate with the proxy](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth#cc-flow).
+    You will need your `client_id` and `client_secret` later on when you [authenticate with the proxy](/gateway/{{page.release}}/developer-portal/administration/application-registration/3rd-party-oauth#cc-flow).
 
     ![Okta Client Credentials](/assets/images/products/gateway/dev-portal/okta-client-id-secret.png)
 
@@ -116,4 +116,4 @@ This example assumes Client Credentials is the chosen OAuth flow.
 
 Now that the application has been created, developers can authenticate with the
 endpoint using the supported and recommended
-[third-party OAuth flows](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth).
+[third-party OAuth flows](/gateway/{{page.release}}/developer-portal/administration/application-registration/3rd-party-oauth).

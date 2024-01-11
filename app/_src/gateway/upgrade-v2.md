@@ -7,7 +7,7 @@ releases using the `kong migrations` commands.
 
 You can also use the commands to migrate all {{site.base_gateway}} open-source entities
 to {{site.base_gateway}} (Enterprise). See
-[Migrating from {{site.ce_product_name}} to {{site.base_gateway}}](/gateway/{{page.kong_version}}/migrate-ce-to-ke/).
+[Migrating from {{site.ce_product_name}} to {{site.base_gateway}}](/gateway/{{page.release}}/migrate-ce-to-ke/).
 
 If you experience any issues when running migrations, contact
 [Kong Support](https://support.konghq.com/support/s/) for assistance.
@@ -17,13 +17,13 @@ If you experience any issues when running migrations, contact
 Kong adheres to [semantic versioning](https://semver.org/), which makes a
 distinction between major, minor, and patch versions.
 
-The upgrade to {{page.kong_version}} is a **minor** upgrade.
+The upgrade to {{page.release}} is a **minor** upgrade.
 
 {:.important}
 > **Important**: Blue-green migration in traditional mode for versions below 2.8.2 to 3.0.x is not supported.
 The 2.8.2 release includes blue-green migration support. If you want
 to perform migrations for traditional mode with no downtime,
-upgrade to 2.8.2, [then migrate to {{page.kong_version}}](#migrate-db).
+upgrade to 2.8.2, [then migrate to {{page.release}}](#migrate-db).
 
 While you can upgrade directly to the latest version, be aware of any
 breaking changes between the 2.x and 3.x series noted in this document
@@ -31,16 +31,16 @@ breaking changes between the 2.x and 3.x series noted in this document
 [open-source (OSS) and Enterprise Gateway changelogs](/gateway/changelog/). Since {{site.base_gateway}}
 is built on an open-source foundation, any breaking changes in OSS affect all {{site.base_gateway}} packages.
 
-{{site.base_gateway}} does not support directly upgrading from 1.x to {{page.kong_version}}.
+{{site.base_gateway}} does not support directly upgrading from 1.x to {{page.release}}.
 If you are running 1.x, upgrade to 2.8.2 first and then to 3.0.x and 3.1.x at a minimum. Finally, upgrade to
-{{page.kong_version}} from there.
+{{page.release}} from there.
 
 In either case, you can review the {% if_version lte:3.2.x %}[upgrade considerations and breaking changes](#upgrade-considerations-and-breaking-changes){% endif_version %} breaking changes for your version,
 then follow the [database migration](#migrate-db) instructions.
 
-## Upgrade path for {{site.base_gateway}} {{page.kong_version}} 
+## Upgrade path for {{site.base_gateway}} {{page.release}} 
 
-The following table outlines various upgrade path scenarios to {{page.kong_version}} depending on the {{site.base_gateway}} version you are currently using:
+The following table outlines various upgrade path scenarios to {{page.release}} depending on the {{site.base_gateway}} version you are currently using:
 
 {% if_version lte: 3.1.x %}
 
@@ -179,7 +179,7 @@ The plugin queuing system was reworked in {{site.base_gateway}} 3.3.x, so some p
 * [StatsD](/hub/kong-inc/statsd/)
 * [Zipkin](/hub/kong-inc/zipkin/)
 
-For more information about how plugin queuing works and the plugin queuing parameters you can configure, see [About Plugin Queuing](/gateway/{{page.kong_version}}/kong-plugins/queue/) and [Plugin Queuing Reference](/gateway/{{page.kong_version}}/kong-plugins/queue/reference/).
+For more information about how plugin queuing works and the plugin queuing parameters you can configure, see [About Plugin Queuing](/gateway/{{page.release}}/kong-plugins/queue/) and [Plugin Queuing Reference](/gateway/{{page.release}}/kong-plugins/queue/reference/).
 
 ### Traditional compatibility router
 
@@ -392,12 +392,12 @@ This ensures that all instances are using the new {{site.base_gateway}} package 
 ### Hybrid mode considerations
 
 {:.important}
-> **Important:** If you are currently running in [hybrid mode](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/),
+> **Important:** If you are currently running in [hybrid mode](/gateway/{{page.release}}/production/deployment-topologies/hybrid-mode/),
 upgrade the control plane first, and then the data planes.
 
 * If you are currently running the previous version in classic (traditional)
   mode and want to run in hybrid mode instead, follow the hybrid mode
-  [installation instructions](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/setup/)
+  [installation instructions](/gateway/{{page.release}}/production/deployment-topologies/hybrid-mode/setup/)
   after running the migration.
 * Custom plugins (either your own plugins or third-party plugins that are not shipped with {{site.base_gateway}})
   need to be installed on both the control plane and the data planes in hybrid mode. Install the

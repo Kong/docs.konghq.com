@@ -5,15 +5,15 @@ content_type: tutorial
 
 Learn to configure the Kong ACL Plugin. To use the ACL Plugin you need at least one Authentication plugin. This example uses the JWT Auth Plugin.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false%}
+{% include_cached /md/kic/prerequisites.md release=page.release disable_gateway_api=false%}
 
-{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
+{% include_cached /md/kic/test-service-echo.md release=page.release %}
 
-{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/lemon' name='lemon' %}
+{% include_cached /md/kic/http-test-routing.md release=page.release path='/lemon' name='lemon' %}
 
 After the first route is working, create a second pointing to the same Service:
 
-{% include_cached /md/kic/http-test-routing-resource.md kong_version=include.kong_version path='/lime' name='lime' %}
+{% include_cached /md/kic/http-test-routing-resource.md release=include.release path='/lime' name='lime' %}
 
 ## Add JWT authentication to the service
 
@@ -67,10 +67,10 @@ To access the protected endpoints, create two consumers.
 
 1. Create a consumer named `admin`:
 
-{% include_cached /md/kic/consumer.md kong_version=page.kong_version name='admin' %}
+{% include_cached /md/kic/consumer.md release=page.release name='admin' %}
 
 1. Create a consumer named `user`:
-{% include_cached /md/kic/consumer.md kong_version=page.kong_version name='user' %}
+{% include_cached /md/kic/consumer.md release=page.release name='user' %}
 
 ## Provision JWT credentials
 

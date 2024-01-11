@@ -4,7 +4,7 @@ title: Kong Mesh with Amazon Linux
 
 {:.note}
 > If you want to use {{site.mesh_product_name}} on Amazon EKS, follow the
-[Kubernetes instructions](/mesh/{{page.kong_version}}/installation/kubernetes/)
+[Kubernetes instructions](/mesh/{{page.release}}/installation/kubernetes/)
 instead.
 
 To install and run {{site.mesh_product_name}} on Amazon Linux (**x86_64**):

@@ -11,7 +11,7 @@ backing the Kong cluster.
 
 For information about using Kong Vitals with a database as the backend (for example,
 PostgreSQL, Cassandra), refer to
-[Kong Vitals](/gateway/{{page.kong_version}}/vitals/).
+[Kong Vitals](/gateway/{{page.release}}/vitals/).
 
 ## Set up Kong Vitals with InfluxDB
 
@@ -28,7 +28,7 @@ will work for the purposes of this guide.
 1. Pull the following Docker image.
 
     ```bash
-    docker pull kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+    docker pull kong/kong-gateway:{{page.releases[page.version-index].ee-version}}-alpine
     ```
 
     {:.important}
@@ -42,7 +42,7 @@ will work for the purposes of this guide.
 1. Tag the image.
 
     ```bash
-    docker tag kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine kong-ee
+    docker tag kong/kong-gateway:{{page.releases[page.version-index].ee-version}}-alpine kong-ee
     ```
 
 
@@ -81,7 +81,7 @@ with each other.
 
 1. Start the gateway with Kong Manager:
 
-{% include_cached /md/admin-listen.md kong_version=page.kong_version desc='long' %}
+{% include_cached /md/admin-listen.md release=page.release desc='long' %}
 
     ```sh
     docker run -d --name kong-ee --network=kong-ee-net \
@@ -120,7 +120,7 @@ instance, skip to [starting an InfluxDB database](#start-an-influxdb-database).
 You will not be able to access the Kong Vitals functionality without a valid
 {{site.ee_product_name}} license attached to your {{site.base_gateway}} instance.
 
-{% include_cached /md/enterprise/deploy-license.md heading="####" kong_version=page.kong_version %}
+{% include_cached /md/enterprise/deploy-license.md heading="####" release=page.release %}
 
 ### Start an InfluxDB database
 
@@ -159,8 +159,8 @@ $ echo "KONG_VITALS_STRATEGY=influxdb KONG_VITALS_TSDB_ADDRESS=influxdb:8086 kon
 ```
 
 {:.note}
-> **Note**: In Hybrid Mode, configure [`vitals_strategy`](/gateway/{{page.kong_version}}/reference/configuration/#vitals_strategy) 
-and [`vitals_tsdb_address`](/gateway/{{page.kong_version}}/reference/configuration/#vitals_tsdb_address) 
+> **Note**: In Hybrid Mode, configure [`vitals_strategy`](/gateway/{{page.release}}/reference/configuration/#vitals_strategy) 
+and [`vitals_tsdb_address`](/gateway/{{page.release}}/reference/configuration/#vitals_tsdb_address) 
 on both the control plane and all data planes.
 
 ## Understanding Vitals data using InfluxDB measurements
@@ -271,7 +271,7 @@ worker process flushes its buffer of metrics every 5 seconds or 5000 data points
 whichever comes first.
 
 Metrics points are written with microsecond (`u`) precision. To comply with
-the [Vitals API](/gateway/{{page.kong_version}}/vitals/vitalsSpec.yaml), measurement
+the [Vitals API](/gateway/{{page.release}}/vitals/vitalsSpec.yaml), measurement
 values are read back grouped by second.
 
 {:.note}

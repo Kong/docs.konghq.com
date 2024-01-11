@@ -49,4 +49,4 @@ $ sudo apt install -y kong
 {% endnavtab %}
 {% endnavtabs %}
 
-{% include_cached /md/installation.md kong_version=page.kong_version %}
+{% include_cached /md/installation.md release=page.release %}

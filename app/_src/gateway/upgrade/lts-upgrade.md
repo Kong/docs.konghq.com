@@ -21,18 +21,18 @@ For example, the process of moving 2.8 data from an old PostgreSQL instance to a
 To make sure your upgrade is successful, carefully review all the steps in this guide. It’s very important to understand all the preparation steps and choose the recommended upgrade path based on your deployment type.
 
 {:.important}
-> **Caution**: The migration pattern described in this document can only happen between two LTS versions, {{site.ee_product_name}} 2.8 LTS and {{site.ee_product_name}} 3.4 LTS. If you apply this document to other release intervals, database modifications may be run in the wrong sequence and leave the database schema in a broken state. To migrate between other versions, see the [general upgrade guide](/gateway/{{page.kong_version}}/upgrade/).
+> **Caution**: The migration pattern described in this document can only happen between two LTS versions, {{site.ee_product_name}} 2.8 LTS and {{site.ee_product_name}} 3.4 LTS. If you apply this document to other release intervals, database modifications may be run in the wrong sequence and leave the database schema in a broken state. To migrate between other versions, see the [general upgrade guide](/gateway/{{page.release}}/upgrade/).
 
 ## Prerequisites
 
 * Starting from 3.4, Cassandra is not supported. 
-If you're using Cassandra as your data store, [migrate off of Cassandra](/gateway/{{page.kong_version}}/migrate-cassandra-to-postgres/) first and upgrade second.
+If you're using Cassandra as your data store, [migrate off of Cassandra](/gateway/{{page.release}}/migrate-cassandra-to-postgres/) first and upgrade second.
 * Review version compatibility between your platform version and the version of {{site.kong_gateway}} that you are upgrading to:
-    * [OS version](/gateway/{{page.kong_version}}/support-policy/#supported-versions)
+    * [OS version](/gateway/{{page.release}}/support-policy/#supported-versions)
     * [Kubernetes version and Helm prerequisites](/kubernetes-ingress-controller/latest/support-policy/)
     {% if_version gte:3.2.x %}
-    * [Database version](/gateway/{{page.kong_version}}/support/third-party/)
-    * [Dependency versions](/gateway/{{page.kong_version}}/support/third-party/)
+    * [Database version](/gateway/{{page.release}}/support/third-party/)
+    * [Dependency versions](/gateway/{{page.release}}/support/third-party/)
     {% endif_version %}
 * [Review KIC upgrade compatibility](/kubernetes-ingress-controller/latest/guides/upgrade-kong-3x/).
 * If you're using decK, [upgrade it to the latest version](/deck/latest/installation/).
@@ -66,7 +66,7 @@ Now, let's move on to preparation, starting with your backup options.
 
 ## Preparation: Choose a backup strategy
 
-{% include_cached /md/gateway/upgrade-backup.md kong_version=page.kong_version %}
+{% include_cached /md/gateway/upgrade-backup.md release=page.release %}
 
 ## Preparation: Choose an upgrade strategy based on deployment mode
 
@@ -89,7 +89,7 @@ See the following sections for breakdowns of each strategy.
 
 #### Dual-cluster upgrade
 
-Upgrading {{site.base_gateway}} from one LTS version to another LTS version with zero downtime can be achieved through a [dual-cluster upgrade strategy](/gateway/{{page.kong_version}}/upgrade/dual-cluster/). 
+Upgrading {{site.base_gateway}} from one LTS version to another LTS version with zero downtime can be achieved through a [dual-cluster upgrade strategy](/gateway/{{page.release}}/upgrade/dual-cluster/). 
 This approach involves setting up a new cluster running the upgraded version of {{site.base_gateway}} alongside the existing cluster running the current version.
 
 At a high level, the process typically involves the following steps:
@@ -110,7 +110,7 @@ By following this dual cluster deployment strategy, you can achieve a smooth and
 
 #### In-place upgrade
 
-While an [in-place upgrade](/gateway/{{page.kong_version}}/upgrade/in-place/) allows you to perform the upgrade on the same infrastructure, 
+While an [in-place upgrade](/gateway/{{page.release}}/upgrade/in-place/) allows you to perform the upgrade on the same infrastructure, 
 it does require some downtime during the actual upgrade process.
 Plan a suitable maintenance or downtime window during which you can perform the upgrade.
 During this period, the {{site.base_gateway}} will be temporarily unavailable.
@@ -120,11 +120,11 @@ keeping in mind the additional resources and complexities.
 
 ### DB-less mode
 
-{% include_cached /md/gateway/db-less-upgrade.md kong_version=page.kong_version %}
+{% include_cached /md/gateway/db-less-upgrade.md release=page.release %}
 
 ### Hybrid mode
 
-{% include_cached /md/gateway/hybrid-upgrade.md kong_version=page.kong_version %}
+{% include_cached /md/gateway/hybrid-upgrade.md release=page.release %}
 
 ## Preparation: Review gateway changes
 
@@ -154,12 +154,12 @@ Now that you have chosen an upgrade strategy, reviewed all the relevant changes 
 you can move on to performing the upgrade with your chosen strategy:
 
 Traditional mode or control planes in hybrid mode:
-* [Dual-cluster upgrade](/gateway/{{page.kong_version}}/upgrade/dual-cluster/)
-* [In-place upgrade](/gateway/{{page.kong_version}}/upgrade/in-place/)
+* [Dual-cluster upgrade](/gateway/{{page.release}}/upgrade/dual-cluster/)
+* [In-place upgrade](/gateway/{{page.release}}/upgrade/in-place/)
 
 DB-less mode or data planes in hybrid mode:
-* [Rolling upgrade](/gateway/{{page.kong_version}}/upgrade/rolling-upgrade/)
+* [Rolling upgrade](/gateway/{{page.release}}/upgrade/rolling-upgrade/)
 
 ## Troubleshooting
 
-If you run into issues during the upgrade and need to roll back, [restore {{site.base_gateway}}](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/#restore-gateway-entities) based on the backup method.
+If you run into issues during the upgrade and need to roll back, [restore {{site.base_gateway}}](/gateway/{{page.release}}/upgrade/backup-and-restore/#restore-gateway-entities) based on the backup method.

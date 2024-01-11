@@ -4389,9 +4389,9 @@ HTTP 204 No Content
 
 ---
 
-[clustering]: /gateway/{{page.kong_version}}/reference/clustering
-[cli]: /gateway/{{page.kong_version}}/reference/cli
-[active]: /gateway/{{page.kong_version}}/reference/health-checks-circuit-breakers/#active-health-checks
-[healthchecks]: /gateway/{{page.kong_version}}/reference/health-checks-circuit-breakers
-[secure-admin-api]: /gateway/{{page.kong_version}}/admin-api/secure-admin-api
-[proxy-reference]: /gateway/{{page.kong_version}}/reference/proxy
+[clustering]: /gateway/{{page.release}}/reference/clustering
+[cli]: /gateway/{{page.release}}/reference/cli
+[active]: /gateway/{{page.release}}/reference/health-checks-circuit-breakers/#active-health-checks
+[healthchecks]: /gateway/{{page.release}}/reference/health-checks-circuit-breakers
+[secure-admin-api]: /gateway/{{page.release}}/admin-api/secure-admin-api
+[proxy-reference]: /gateway/{{page.release}}/reference/proxy

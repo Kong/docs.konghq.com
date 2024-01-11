@@ -17,6 +17,6 @@ Routes are configured using Gateway API or Ingress resources, such as `HTTPRoute
 
 In this tutorial, you will deploy an `echo` service which returns information about the Kubernetes cluster and route traffic to the service.
 
-{% include /md/kic/test-service-echo.md kong_version=page.kong_version %}
+{% include /md/kic/test-service-echo.md release=page.release %}
 
-{% include /md/kic/http-test-routing.md kong_version=page.release path='/echo' name='echo' service='echo' port='80' skip_host=true %}
+{% include /md/kic/http-test-routing.md release=page.release path='/echo' name='echo' service='echo' port='80' skip_host=true %}

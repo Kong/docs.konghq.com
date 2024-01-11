@@ -30,12 +30,12 @@ Then, choose one of the following options to set up your data store:
 ### Using a database
 
 Configure {{site.base_gateway}} using the `kong.conf.default` file so it can connect to your database.
-See the data store section of the [Configuration Property Reference](/gateway/{{ page.kong_version }}/reference/configuration/#datastore-section) 
+See the data store section of the [Configuration Property Reference](/gateway/{{ page.release }}/reference/configuration/#datastore-section) 
 for all relevant configuration parameters.
 
 {% if_version gte:2.7.x lte:3.3.x %}
 
-{% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
+{% include_cached /md/enterprise/cassandra-deprecation.md length='short' release=page.release %}
 
 {% endif_version %}
 
@@ -104,7 +104,7 @@ path to your `kong.yml`:
 
 ## Start {{site.base_gateway}}
 
-{% include_cached /md/gateway/root-user-note.md kong_version=page.kong_version %}
+{% include_cached /md/gateway/root-user-note.md release=page.release %}
 
 Start {{site.base_gateway}} using the following command:
 
@@ -127,17 +127,17 @@ You should receive a `200` status code.
 ## Related information and next steps
 
 Depending on your desired environment, see the following guides:
-* [Add your Enterprise license](/gateway/{{ page.kong_version }}/licenses/deploy)
+* [Add your Enterprise license](/gateway/{{ page.release }}/licenses/deploy)
 {% if_version gte:3.4.x %}
 * Enable Kong Manager:
-  * [Kong Manager Enterprise](/gateway/{{ page.kong_version }}/kong-manager/enable/)
-  * [Kong Manager OSS](/gateway/{{ page.kong_version }}/kong-manager-oss/)
+  * [Kong Manager Enterprise](/gateway/{{ page.release }}/kong-manager/enable/)
+  * [Kong Manager OSS](/gateway/{{ page.release }}/kong-manager-oss/)
 {% endif_version %}
 {% if_version lte:3.3.x %}
-* [Enable Kong Manager](/gateway/{{ page.kong_version }}/kong-manager/enable/)
+* [Enable Kong Manager](/gateway/{{ page.release }}/kong-manager/enable/)
 {% endif_version %}
-* [Default ports reference](/gateway/{{page.kong_version}}/production/networking/default-ports/)
+* [Default ports reference](/gateway/{{page.release}}/production/networking/default-ports/)
 
 You can also check out {{site.base_gateway}}'s series of
-[Getting Started](/gateway/{{page.kong_version}}/get-started/) guides to learn how 
+[Getting Started](/gateway/{{page.release}}/get-started/) guides to learn how 
 get the most out of {{site.base_gateway}}.
