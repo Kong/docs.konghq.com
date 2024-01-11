@@ -11,6 +11,7 @@ concurrency:
 
 env:
   VITE_PORTAL_API_URL: ${{ vars.VITE_PORTAL_API_URL }}
+  BUNDLE_GITHUB__COM: x-access-token:${{ secrets.BUNDLE_GITHUB__COM }}
 
 jobs:
   smoke-test:
