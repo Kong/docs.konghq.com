@@ -41,7 +41,7 @@ module Jekyll
       end
 
       def hash
-        @hash||= "#{@options['docs_url']}-#{@options['version']}-#{@options['plugin-key']}-#{url}".hash
+        @hash ||= "#{@options['docs_url']}-#{@options['version']}-#{@options['plugin-key']}-#{url}".hash
       end
 
       private
