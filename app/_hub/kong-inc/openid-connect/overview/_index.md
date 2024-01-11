@@ -57,19 +57,19 @@ The plugin supports several types of credentials and grants:
 
 The plugin has been tested with several OpenID Connect providers:
 
-- [Auth0][auth0] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-auth0/))
-- [Amazon AWS Cognito][cognito] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-cognito/))
+- [Auth0][auth0] ([Kong Integration Guide](/hub/kong-inc/openid-connect/how-to/third-party/auth0/))
+- [Amazon AWS Cognito][cognito] ([Kong Integration Guide](/hub/kong-inc/openid-connect/how-to/third-party/cognito/))
 - [Connect2id][connect2id]
-- [Curity][curity]
+- [Curity][curity] ([Kong Integration Guide](/hub/kong-inc/openid-connect/how-to/third-party/curity/))
 - [Dex][dex]
 - [Gluu][gluu]
-- [Google][google] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-google/))
+- [Google][google] ([Kong Integration Guide](/hub/kong-inc/openid-connect/how-to/third-party/google/))
 - [IdentityServer][identityserver]
 - [Keycloak][keycloak]
-- [Microsoft Azure Active Directory][azure] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-azuread/))
+- [Microsoft Azure Active Directory][azure] ([Kong Integration Guide](/hub/kong-inc/openid-connect/how-to/third-party/azure-ad/))
 - [Microsoft Active Directory Federation Services][adfs]
 - [Microsoft Live Connect][liveconnect]
-- [Okta][okta] ([Kong Integration Guide](/gateway/latest/configure/auth/oidc-okta/))
+- [Okta][okta] ([Kong Integration Guide](/hub/kong-inc/openid-connect/how-to/third-party/okta/))
 - [OneLogin][onelogin]
 - [OpenAM][openam]
 - [PayPal][paypal]
