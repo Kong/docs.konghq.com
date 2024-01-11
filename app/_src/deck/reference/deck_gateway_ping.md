@@ -25,7 +25,7 @@ Useful when RBAC permissions are scoped to a workspace.
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## See also
 

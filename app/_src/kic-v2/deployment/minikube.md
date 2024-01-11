@@ -108,6 +108,6 @@ export PROXY_IP=${HOST}:${PORT}
    }
    ```
 After you've installed the {{site.kic_product_name}}, please follow the
-[getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn
+[getting started](/kubernetes-ingress-controller/{{page.release}}/guides/getting-started) tutorial to learn
 about how to use the Ingress Controller.
 

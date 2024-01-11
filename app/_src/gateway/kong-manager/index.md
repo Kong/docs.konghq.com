@@ -21,7 +21,7 @@ Here are some of the things you can do with Kong Manager:
 {% endif_version %}
 
 {:.note}
-> **Note**: If you are running Kong in [traditional mode](/gateway/{{page.kong_version}}/production/deployment-topologies/traditional/), increased traffic could lead to potential performance issues for the Kong proxy.
+> **Note**: If you are running Kong in [traditional mode](/gateway/{{page.release}}/production/deployment-topologies/traditional/), increased traffic could lead to potential performance issues for the Kong proxy.
 > Server-side sorting and filtering large quantities of entities can also cause increased CPU usage in both {{site.base_gateway}} and its database.
 
 ## Kong Manager interface

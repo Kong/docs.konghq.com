@@ -20,12 +20,12 @@ konnect_cta_card: true
     <div class="install-text">Quick Start (Cloud)</div>
   </a>
 
-  <a href="/gateway/{{page.kong_version}}/get-started/" class="docs-grid-install-block no-description">
+  <a href="/gateway/{{page.release}}/get-started/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-learning.svg" alt="">
     <div class="install-text">Quick Start (Docker)</div>
   </a>
 
-  <a href="/gateway/{{page.kong_version}}/install/" class="docs-grid-install-block no-description">
+  <a href="/gateway/{{page.release}}/install/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-deployment-color.svg" alt="">
     <div class="install-text">Install</div>
   </a>
@@ -35,7 +35,7 @@ konnect_cta_card: true
     <div class="install-text">Plugins</div>
   </a>
 
-  <a href="/gateway/{{page.kong_version}}/admin-api/" class="docs-grid-install-block no-description">
+  <a href="/gateway/{{page.release}}/admin-api/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-admin-api-color.svg" alt="">
     <div class="install-text">API Reference</div>
   </a>
@@ -84,8 +84,8 @@ into the request lifecycle, all with a few lines of code.
 Kong provides many [plugins](#kong-gateway-plugins) for you to use in your
 Gateway deployments. You can also create your own custom plugins. For more
 information, see the
-[plugin development guide](/gateway/{{page.kong_version}}/plugin-development),
-the [PDK reference](/gateway/{{page.kong_version}}/plugin-development/pdk/), and the guide on creating plugins with other languages ([JavaScript](/gateway/{{page.kong_version}}/plugin-development/pluginserver/javascript), [Go](/gateway/{{page.kong_version}}/plugin-development/pluginserver/go), and [Python](/gateway/{{page.kong_version}}/plugin-development/pluginserver/python/)).
+[plugin development guide](/gateway/{{page.release}}/plugin-development),
+the [PDK reference](/gateway/{{page.release}}/plugin-development/pdk/), and the guide on creating plugins with other languages ([JavaScript](/gateway/{{page.release}}/plugin-development/pluginserver/javascript), [Go](/gateway/{{page.release}}/plugin-development/pluginserver/go), and [Python](/gateway/{{page.release}}/plugin-development/pluginserver/python/)).
 
 ## Packages and modes
 
@@ -118,7 +118,7 @@ For more information, visit the [pricing page](https://konghq.com/pricing).
 
 **{{site.ce_product_name}}**: An open-source package containing the basic API gateway
 functionality and open-source plugins. You can manage the open-source Gateway
-with Kong's [Admin API](#kong-admin-api){% if_version gte:3.4.x %}, [Kong Manager Open Source](/gateway/{{page.kong_version}}/kong-manager-oss/),{% endif_version %} or with [declarative configuration](#deck).
+with Kong's [Admin API](#kong-admin-api){% if_version gte:3.4.x %}, [Kong Manager Open Source](/gateway/{{page.release}}/kong-manager-oss/),{% endif_version %} or with [declarative configuration](#deck).
 
 **{{site.ee_product_name}}** (available in
 [Free or Enterprise mode](https://konghq.com/pricing)): Kong's API gateway
@@ -130,7 +130,7 @@ with added functionality.
   {% if_version lte:3.4.x %}
     * [Dev Portal](#kong-dev-portal)
     * [Vitals](#kong-vitals){% endif_version %}
-    * [RBAC](/gateway/{{page.kong_version}}/admin-api/rbac/reference/)
+    * [RBAC](/gateway/{{page.release}}/admin-api/rbac/reference/)
     * [Enterprise plugins](/hub/)
 
 You can manage {{site.ee_product_name}} in Free or Enterprise mode with Kong's
@@ -150,7 +150,7 @@ configuration, and forwarded to upstream services._
 
 ### Kong Admin API
 
-[Kong Admin API](/gateway/{{page.kong_version}}/admin-api) provides a RESTful
+[Kong Admin API](/gateway/{{page.release}}/admin-api) provides a RESTful
 interface for administration and configuration of Gateway entities such as services, 
 routes, plugins, consumers, and more. All of the tasks you can perform against the 
 Gateway can be automated using the Kong Admin API.
@@ -164,7 +164,7 @@ Gateway can be automated using the Kong Admin API.
 > Server-side sorting and filtering large quantities of entities will also cause increased CPU usage in both Kong CP and database.
 
 
-[Kong Manager](/gateway/{{page.kong_version}}/kong-manager/) is
+[Kong Manager](/gateway/{{page.release}}/kong-manager/) is
 the graphical user interface (GUI) for {{site.base_gateway}}. It uses the Kong
 Admin API under the hood to administer and control {{site.base_gateway}}.
 
@@ -183,12 +183,12 @@ object-level health using intuitive, customizable dashboards
 ### Kong Dev Portal
 {:.badge .enterprise}
 
-[Kong Dev Portal](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/) is used to onboard new developers and to generate API documentation, create custom pages, manage API versions, and secure developer access.
+[Kong Dev Portal](/gateway/{{page.release}}/kong-enterprise/dev-portal/) is used to onboard new developers and to generate API documentation, create custom pages, manage API versions, and secure developer access.
 
 ### Kong Vitals
 {:.badge .enterprise}
 
-[Kong Vitals](/gateway/{{page.kong_version}}/kong-enterprise/analytics/) provides useful metrics about the health and performance of your {{site.base_gateway}} nodes, as well as metrics about the usage of your proxied APIs. You can visually monitor vital signs and pinpoint anomalies in real-time, and use visual API analytics to see exactly how your APIs and Gateway are performing and access key statistics. Kong Vitals is part of the Kong Manager UI.
+[Kong Vitals](/gateway/{{page.release}}/kong-enterprise/analytics/) provides useful metrics about the health and performance of your {{site.base_gateway}} nodes, as well as metrics about the usage of your proxied APIs. You can visually monitor vital signs and pinpoint anomalies in real-time, and use visual API analytics to see exactly how your APIs and Gateway are performing and access key statistics. Kong Vitals is part of the Kong Manager UI.
 {% endif_version %}
 
 ### Kubernetes
@@ -216,11 +216,11 @@ the Kong Admin API.
 
 ## Get started with {{site.base_gateway}}
 
-[Download and install {{site.base_gateway}}](/gateway/{{page.kong_version}}/install/).
+[Download and install {{site.base_gateway}}](/gateway/{{page.release}}/install/).
 To test it out, you can choose either the open-source package, or
 run {{site.ee_product_name}} in free mode and also try out Kong Manager.
 
-After installation, get started with the introductory [quickstart guide](/gateway/{{page.kong_version}}/get-started/).
+After installation, get started with the introductory [quickstart guide](/gateway/{{page.release}}/get-started/).
 
 ### Try in {{site.konnect_short_name}}
 
@@ -241,4 +241,4 @@ Kong primarily follows a [semantic versioning](https://semver.org/) (SemVer)
 model for its products.
 
 For the latest version support information for {{site.ee_product_name}} and
-{{site.mesh_product_name}}, see the [version support policy](/gateway/{{page.kong_version}}/support-policy/).
+{{site.mesh_product_name}}, see the [version support policy](/gateway/{{page.release}}/support-policy/).

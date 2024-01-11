@@ -34,7 +34,7 @@ id: documentation
         <i class="sidebar-toggle"></i>
 
         {% unless page.no_breadcrumbs %}
-          {% include_cached breadcrumbs.html is_latest=page.is_latest edition=page.edition no_version=page.no_version has_version=page.has_version kong_version=page.kong_version url=page.url dir=page.dir%}
+          {% include_cached breadcrumbs.html is_latest=page.is_latest edition=page.edition no_version=page.no_version has_version=page.has_version release=page.release url=page.url dir=page.dir%}
         {% endunless %}
 
         {% capture edit_link %}

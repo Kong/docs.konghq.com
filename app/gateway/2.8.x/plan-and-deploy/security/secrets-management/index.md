@@ -28,7 +28,7 @@ In this way, secrets management becomes centralized.
 
 ## Referenceable values
 
-The Kong Admin API [certificate object](/gateway/{{page.kong_version}}/admin-api/#certificate-object)
+The Kong Admin API [certificate object](/gateway/{{page.release}}/admin-api/#certificate-object)
 can be stored as a secret.
 
 The following plugins have fields that can be stored as secrets in a
@@ -53,7 +53,7 @@ documentation for each plugin to identify the referenceable fields:
 * GCP Secrets Manager
 * HashiCorp Vault
 
-See the [backends overview](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/backends/)
+See the [backends overview](/gateway/{{page.release}}/plan-and-deploy/security/secrets-management/backends/)
 for more information about each option.
 
 ## Beta and general availability phases
@@ -71,7 +71,7 @@ If you are running a {{site.base_gateway}} 2.8.x version before 2.8.1.3:
 ## Get started
 
 For further information on secrets management, see the following topics:
-* [Get started with secrets management](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/getting-started/)
-* [Backends overview](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/backends/)
-* [Reference format](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/reference-format/)
-* [Advanced usage](/gateway/{{page.kong_version}}/plan-and-deploy/security/secrets-management/advanced-usage/)
+* [Get started with secrets management](/gateway/{{page.release}}/plan-and-deploy/security/secrets-management/getting-started/)
+* [Backends overview](/gateway/{{page.release}}/plan-and-deploy/security/secrets-management/backends/)
+* [Reference format](/gateway/{{page.release}}/plan-and-deploy/security/secrets-management/reference-format/)
+* [Advanced usage](/gateway/{{page.release}}/plan-and-deploy/security/secrets-management/advanced-usage/)

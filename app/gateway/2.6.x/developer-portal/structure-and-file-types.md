@@ -69,7 +69,7 @@ collections:
 - `collections`
   - **required**: false
   - **type**: `object`
-  - **description**: Collections are a powerful tool enabling you to render sets of content as a group.  Content rendered as a collection share a configurable route pattern, as well as a layout. For more information check out the [collections](/gateway/{{page.kong_version}}/developer-portal/working-with-templates/#collections) section of our [Working with Templates](/gateway/{{page.kong_version}}/developer-portal/working-with-templates/) guide.
+  - **description**: Collections are a powerful tool enabling you to render sets of content as a group.  Content rendered as a collection share a configurable route pattern, as well as a layout. For more information check out the [collections](/gateway/{{page.release}}/developer-portal/working-with-templates/#collections) section of our [Working with Templates](/gateway/{{page.release}}/developer-portal/working-with-templates/) guide.
 
 
 ## Router Configuration File (Optional)
@@ -281,7 +281,7 @@ The example below shows what a typical layout could look like.
 ```
 {% endraw %}
 
-To learn more about the templating syntax used in this example, check out our [templating guide](/gateway/{{page.kong_version}}/developer-portal/working-with-templates/).
+To learn more about the templating syntax used in this example, check out our [templating guide](/gateway/{{page.release}}/developer-portal/working-with-templates/).
 
 ### Theme Partials
 

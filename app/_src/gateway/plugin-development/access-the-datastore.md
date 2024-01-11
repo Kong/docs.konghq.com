@@ -12,7 +12,7 @@ Kong supports two primary data stores: [PostgreSQL
 {{site.data.kong_latest.dependencies.postgres}}](http://www.postgresql.org/) and [Cassandra
 {{site.data.kong_latest.dependencies.cassandra}}](http://cassandra.apache.org/).
 
-{% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
+{% include_cached /md/enterprise/cassandra-deprecation.md length='short' release=page.release %}
 {% endif_version %}
 
 {% if_version gte:3.4.x %}
@@ -73,4 +73,4 @@ local inserted_plugin, err = kong.db.plugins:insert({
 For a real-life example of the DAO being used in a plugin, see the
 [Key-Auth plugin source code](https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/handler.lua).
 
-[plugin development kit]: /gateway/{{page.kong_version}}/plugin-development/pdk
+[plugin development kit]: /gateway/{{page.release}}/plugin-development/pdk

@@ -5,7 +5,7 @@ content_type: reference
 
 ## Log Levels
 
-Log levels are set in [Kong's configuration](/gateway/{{page.kong_version}}/reference/configuration/#log_level). Following are the log levels in increasing order of their severity: `debug`, `info`,
+Log levels are set in [Kong's configuration](/gateway/{{page.release}}/reference/configuration/#log_level). Following are the log levels in increasing order of their severity: `debug`, `info`,
 `notice`, `warn`, `error` and `crit`.
 
 - *`debug`:* It provides debug information about the plugin's run loop and each individual plugin or other components. This should only be used during debugging, the `debug` option, if left on for extended periods of time, can result in excess disk space consumption.
@@ -19,7 +19,7 @@ Log levels are set in [Kong's configuration](/gateway/{{page.kong_version}}/refe
 
 ## More Information
 
-* [Remove elements from {{site.base_gateway}} logs](/gateway/{{page.kong_version}}/production/logging/customize-gateway-logs/)
+* [Remove elements from {{site.base_gateway}} logs](/gateway/{{page.release}}/production/logging/customize-gateway-logs/)
 {% if_version gte:3.1.x %}
-* [Dynamic log level updates](/gateway/{{page.kong_version}}/production/logging/update-log-level-dynamically/)
+* [Dynamic log level updates](/gateway/{{page.release}}/production/logging/update-log-level-dynamically/)
 {% endif_version %}

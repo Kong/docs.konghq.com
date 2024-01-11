@@ -207,5 +207,5 @@ Please refer to the [OpenTelemetry plugin](/hub/kong-inc/opentelemetry/) to see 
 
 ## References
 
-- [Tracing PDK](/gateway/{{page.kong_version}}/plugin-development/pdk/kong.tracing/)
+- [Tracing PDK](/gateway/{{page.release}}/plugin-development/pdk/kong.tracing/)
 - [OpenTelemetry plugin](/hub/kong-inc/opentelemetry/)

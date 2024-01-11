@@ -20,7 +20,7 @@ Revise the methods as necessary to fit your infrastructure, deployment, and busi
 
 ## Declarative tools for backup and restore
 
-Kong ships two declarative backup tools: [decK](/deck/) and the [kong config CLI](/gateway/{{page.kong_version}}/reference/cli/), which support managing {{site.base_gateway}} entities in the declarative format.
+Kong ships two declarative backup tools: [decK](/deck/) and the [kong config CLI](/gateway/{{page.release}}/reference/cli/), which support managing {{site.base_gateway}} entities in the declarative format.
 
 * For **database-backed deployments** (traditional and hybrid mode), backups taken with either of these tools serve as an extra safeguard layer. If the database-native backup or restore corrupts the database, you can fall back to declarative files for restoring data.
 
@@ -49,7 +49,7 @@ Due to these limitations, we recommend prioritizing the [database-native method]
 
 ### Database-native backup
 
-When upgrading your {{site.base_gateway}} to a newer version, you have to perform a database migration using the [`kong migrations`](/gateway/{{page.kong_version}}/reference/cli/#kong-migrations) utility. The `kong migrations` commands are not reversible. We recommend backing up data before any starting any upgrade in case of any migration issues.
+When upgrading your {{site.base_gateway}} to a newer version, you have to perform a database migration using the [`kong migrations`](/gateway/{{page.release}}/reference/cli/#kong-migrations) utility. The `kong migrations` commands are not reversible. We recommend backing up data before any starting any upgrade in case of any migration issues.
 
 If you are running {{site.base_gateway}} with a database, run a database dump of raw data so that you can recover the database quickly in a database-native way. This is the recommended way to back up {{site.base_gateway}}.
 
@@ -116,7 +116,7 @@ This is also not recommended as a primary backup, but can be used to provide an 
 
 To back up a DB-less deployment, make a copy of your declarative configuration file (`kong.yml` by default) and store it in a safe place.
 
-You can find your declarative config file at the path set via the [`declarative_config`](/gateway/{{page.kong_version}}/reference/configuration/#declarative_config) gateway setting.
+You can find your declarative config file at the path set via the [`declarative_config`](/gateway/{{page.release}}/reference/configuration/#declarative_config) gateway setting.
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -142,7 +142,7 @@ For PostgreSQL:
     ```
 
 3. Bootstrap database entities using the `migrations` command.
-Refer to the [`kong migrations` CLI reference](/gateway/{{page.kong_version}}/reference/cli/#kong-migrations)
+Refer to the [`kong migrations` CLI reference](/gateway/{{page.release}}/reference/cli/#kong-migrations)
 for more information.
 
     ```sh

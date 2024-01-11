@@ -5,7 +5,7 @@ title: Expose your Services with Kong Gateway
 In this topic, you’ll learn how to expose your Services using Routes.
 
 If you are following the Getting Started workflow, make sure you have completed
-[Prepare to Administer {{site.base_gateway}}](/gateway/{{page.kong_version}}/get-started//prepare)
+[Prepare to Administer {{site.base_gateway}}](/gateway/{{page.release}}/get-started//prepare)
 before moving on.
 
 If you are not following the Getting Started workflow, make sure you have
@@ -96,4 +96,4 @@ sent to `http://httpbin.org`.
 * Abstracted a backend/upstream service and put a route of your choice on the
 front end, which you can now give to clients to make requests.
 
-Next, go on to learn about [enforcing rate limiting](/gateway/{{page.kong_version}}/get-started//protect-services/).
+Next, go on to learn about [enforcing rate limiting](/gateway/{{page.release}}/get-started//protect-services/).

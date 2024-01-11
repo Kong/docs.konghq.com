@@ -82,7 +82,7 @@ will begin to scrape metrics data from {{site.base_gateway}}.
    ```
 
 1. You can view the metric data directly from {{site.base_gateway}} by querying the
-   `/metrics` endpoint on the [Admin API](/gateway/{{page.kong_version}}/admin-api/):
+   `/metrics` endpoint on the [Admin API](/gateway/{{page.release}}/admin-api/):
 
    ```sh
    curl -s localhost:8001/metrics
@@ -141,9 +141,9 @@ curl -Ls https://get.konghq.com/quickstart | bash -s -- -d
 ```
 
 ### More information
-* [How to monitor with StatsD](/gateway/{{page.kong_version}}/production/monitoring/statsd/)
+* [How to monitor with StatsD](/gateway/{{page.release}}/production/monitoring/statsd/)
 provides a guide to using [StatsD](https://github.com/statsd/statsd) for monitoring with the
 [{{site.base_gateway}} Plugin](/hub/kong-inc/statsd/)
-* See the [Tracing API Reference](/gateway/{{page.kong_version}}/production/tracing/api/) for information
+* See the [Tracing API Reference](/gateway/{{page.release}}/production/tracing/api/) for information
 on {{site.base_gateway}}'s tracing capabilities 
 

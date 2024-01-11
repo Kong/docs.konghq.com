@@ -99,10 +99,10 @@ For specific Gateway API resources support, please refer to the [Gateway API Sup
 [gateway-api-supported-versions]:https://gateway-api.sigs.k8s.io/concepts/versioning/#supported-versions
 
 {% if_version gte:3.0.x %}
-[gateway-api-support]:/kubernetes-ingress-controller/{{page.kong_version}}/concepts/gateway-api/
+[gateway-api-support]:/kubernetes-ingress-controller/{{page.release}}/concepts/gateway-api/
 {% endif_version %}
 {% if_version lte:2.12.x %}
-[gateway-api-support]:/kubernetes-ingress-controller/{{page.kong_version}}/references/gateway-api-support/
+[gateway-api-support]:/kubernetes-ingress-controller/{{page.release}}/references/gateway-api-support/
 {% endif_version %}
 
 {% endif_version %}

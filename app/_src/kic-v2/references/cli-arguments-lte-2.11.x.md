@@ -115,4 +115,4 @@ Following table describes all the flags that are available:
 | `--update-status`                        | `boolean`          | Indicates if the ingress controller should update the status of resources (e.g. IP/Hostname for v1.Ingress, e.t.c.).                                 | `true`                            |
 | `--watch-namespace`                      | `strings`          | Namespace(s) to watch for Kubernetes resources. Defaults to all namespaces. To watch multiple namespaces, use a comma-separated list of namespaces. | `all`                             |
 
-[fg]: /kubernetes-ingress-controller/{{page.kong_version}}/references/feature-gates
+[fg]: /kubernetes-ingress-controller/{{page.release}}/references/feature-gates

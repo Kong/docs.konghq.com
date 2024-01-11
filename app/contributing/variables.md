@@ -58,11 +58,11 @@ Depends on the page
 
 The release-level version of the page that you’re on - eg 1.5.x, 1.3-x.
 
-{{page.kong_version}}
+{{page.release}}
 
 Use this variable in links, eg:
 
-/enterprise/{{page.kong_version}}/introduction
+/enterprise/{{page.release}}/introduction
 
 page.kong_latest.version
 

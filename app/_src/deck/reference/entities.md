@@ -44,7 +44,7 @@ If you attempt to delete a service that has an associated document via decK, it 
 > <br><br>
 > **\[2\]**: decK can create workspaces and manage entities in a given workspace. 
 However, decK can't delete workspaces, and it can't update multiple workspaces simultaneously.
-See [Manage multiple workspaces](/deck/{{page.kong_version}}/guides/kong-enterprise/#manage-multiple-workspaces) for more information.
+See [Manage multiple workspaces](/deck/{{page.release}}/guides/kong-enterprise/#manage-multiple-workspaces) for more information.
 
 While deck can manage a majority of {{site.base_gateway}}'s configuration, we recommend additional arrangements for deployment, backup, and restoring unmanaged entities for a more comprehensive approach.
 

@@ -7,7 +7,7 @@ content-type: how-to
 
 {{site.base_gateway}} can be fully configured with environment variables. 
 
-[All parameters defined in `kong.conf`](/gateway/{{page.kong_version}}/reference/configuration/) 
+[All parameters defined in `kong.conf`](/gateway/{{page.release}}/reference/configuration/) 
 can be managed via environment variables.
 When loading properties from `kong.conf`, {{site.base_gateway}} checks existing
 environment variables first.
@@ -29,6 +29,6 @@ export KONG_LOG_LEVEL=error
 
 ## More information
 
-* [How to use `kong.conf`](/gateway/{{page.kong_version}}/production/kong-conf/)
-* [How to serve an API and a website with Kong](/gateway/{{page.kong_version}}/production/website-api-serving/)
-* [Configuration parameter reference](/gateway/{{page.kong_version}}/reference/configuration/)
+* [How to use `kong.conf`](/gateway/{{page.release}}/production/kong-conf/)
+* [How to serve an API and a website with Kong](/gateway/{{page.release}}/production/website-api-serving/)
+* [Configuration parameter reference](/gateway/{{page.release}}/reference/configuration/)

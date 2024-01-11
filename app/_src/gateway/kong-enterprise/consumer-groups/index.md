@@ -71,7 +71,7 @@ the plugin accepts
 configuration
 
 For all possible requests, see the
-[Consumer Groups reference](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference).
+[Consumer Groups reference](/gateway/{{page.release}}/admin-api/consumer-groups/reference).
 
 ## Set up consumer group
 

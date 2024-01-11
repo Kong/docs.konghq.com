@@ -7,7 +7,7 @@ for all requests without regard for whether a request has been authenticated
 via some other plugin. Configuring an anonymous consumer on your authentication
 plugins allows you to offer clients multiple options for authentication.
 
-To begin, [create a Service](/gateway/{{page.kong_version}}/admin-api/#service-object) and then create three consumers:
+To begin, [create a Service](/gateway/{{page.release}}/admin-api/#service-object) and then create three consumers:
 
 ```bash
 curl -sX POST localhost:8001/consumers \

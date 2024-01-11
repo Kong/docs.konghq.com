@@ -74,7 +74,7 @@ KONG_PG_RO_IAM_AUTH=on
 
 ### Enable AWS IAM authentication in the configuration file
 
-The [`kong.conf` file](/gateway/{{page.kong_version}}/production/kong-conf/) contains the `pg_iam_auth` and `pg_ro_iam_auth` properties.
+The [`kong.conf` file](/gateway/{{page.release}}/production/kong-conf/) contains the `pg_iam_auth` and `pg_ro_iam_auth` properties.
 Just like the environment variable, you can set them to `on` accordingly, if you want to enable the IAM Authentication on both read and write connection, or just read-only connection to the RDS Postgres database.
 
 To enable AWS IAM authentication in read-write mode, set `pg_iam_auth` to `on`:

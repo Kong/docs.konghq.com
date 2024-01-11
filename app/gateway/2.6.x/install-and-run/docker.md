@@ -10,7 +10,7 @@ title: Install Kong Gateway on Docker
 > * [**{{site.base_gateway}}**](https://hub.docker.com/r/kong/kong-gateway/tags){:.install-listing-link}
 > * [**{{site.base_gateway}} (OSS)**](https://hub.docker.com/_/kong){:.install-listing-link}
 >
-> (latest {{site.base_gateway}} version: {{page.kong_versions[page.version-index].ee-version}})
+> (latest {{site.base_gateway}} version: {{page.releases[page.version-index].ee-version}})
 
 {{site.base_gateway}} supports both PostgreSQL 9.5+ and Cassandra 3.11.* as its
 datastore. This guide provides steps to configure PostgreSQL.
@@ -93,7 +93,7 @@ docker run --rm --network=kong-net \
  -e "KONG_PG_HOST=kong-database" \
  -e "KONG_PG_PASSWORD=kongpass" \
  -e "KONG_PASSWORD=test" \
-kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine kong migrations bootstrap
+kong/kong-gateway:{{page.releases[page.version-index].ee-version}}-alpine kong migrations bootstrap
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -102,7 +102,7 @@ docker run --rm --network=kong-net \
  -e "KONG_DATABASE=postgres" \
  -e "KONG_PG_HOST=kong-database" \
  -e "KONG_PG_PASSWORD=kongpass" \
-kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kong migrations bootstrap
+kong:{{page.releases[page.version-index].ce-version}}-alpine kong migrations bootstrap
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -110,12 +110,12 @@ kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kong migration
 {{ migrations | indent | replace: " </code>", "</code>" }}
 
     Where:
-    * [`KONG_DATABASE`](/gateway/{{page.kong_version}}/reference/configuration/#database):
+    * [`KONG_DATABASE`](/gateway/{{page.release}}/reference/configuration/#database):
      Specifies the type of database that Kong is using.
-    * [`KONG_PG_HOST`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings):
+    * [`KONG_PG_HOST`](/gateway/{{page.release}}/reference/configuration/#postgres-settings):
     The name of the PostgreSQL Docker container that is communicating over the
     `kong-net` network, from the previous step.
-    * [`KONG_PG_PASSWORD`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings):
+    * [`KONG_PG_PASSWORD`](/gateway/{{page.release}}/reference/configuration/#postgres-settings):
     The password that you set when bringing up the PostgreSQL container in the
     previous step.
     * `KONG_PASSWORD` (Enterprise only): The default password for the admin
@@ -126,7 +126,7 @@ kong:{{page.kong_versions[page.version-index].ce-version}}-alpine kong migration
 
 ### Start {{site.base_gateway}}
 
-{% include_cached /md/admin-listen.md kong_version=page.kong_version desc='long' %}
+{% include_cached /md/admin-listen.md release=page.release desc='long' %}
 
 1. Run the following command to start a container with {{site.base_gateway}}:
 {% capture start_container %}
@@ -153,7 +153,7 @@ docker run -d --name kong-gateway \
  -p 8445:8445 \
  -p 8003:8003 \
  -p 8004:8004 \
- kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+ kong/kong-gateway:{{page.releases[page.version-index].ee-version}}-alpine
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -173,7 +173,7 @@ docker run -d --name kong-gateway \
  -p 8443:8443 \
  -p 127.0.0.1:8001:8001 \
  -p 127.0.0.1:8444:8444 \
- kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
+ kong:{{page.releases[page.version-index].ce-version}}-alpine
  ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -183,20 +183,20 @@ docker run -d --name kong-gateway \
     Where:
     * `--name` and `--network`: The name of the container to create,
     and the Docker network it communicates on.
-    * [`KONG_DATABASE`](/gateway/{{page.kong_version}}/reference/configuration/#database):
+    * [`KONG_DATABASE`](/gateway/{{page.release}}/reference/configuration/#database):
     Specifies the type of database that Kong is using.
-    * [`KONG_PG_HOST`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings):
+    * [`KONG_PG_HOST`](/gateway/{{page.release}}/reference/configuration/#postgres-settings):
     The name of the PostgreSQL Docker container that is communicating over the
     `kong-net` network.
-    * [`KONG_PG_USER` and `KONG_PG_PASSWORD`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings):
+    * [`KONG_PG_USER` and `KONG_PG_PASSWORD`](/gateway/{{page.release}}/reference/configuration/#postgres-settings):
      The PostgreSQL username and password. {{site.base_gateway}} needs the login information
      	to store configuration data in the `KONG_PG_HOST` database.
-    * All [`_LOG`](/gateway/{{page.kong_version}}/reference/configuration/#general-section)
+    * All [`_LOG`](/gateway/{{page.release}}/reference/configuration/#general-section)
     parameters: set filepaths for the logs to output to, or use the values in
     the example to  print messages and errors to `stdout` and `stderr`.
-    * [`KONG_ADMIN_LISTEN`](/gateway/{{page.kong_version}}/reference/configuration/#admin_listen):
+    * [`KONG_ADMIN_LISTEN`](/gateway/{{page.release}}/reference/configuration/#admin_listen):
     The port that the Kong Admin API listens on for requests.
-    * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url):
+    * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.release}}/reference/configuration/#admin_gui_url):
     (Enterprise only) The URL for accessing Kong Manager, preceded by a protocol
     (for example, `http://`).
 
@@ -220,14 +220,14 @@ using the URL specified in `KONG_ADMIN_GUI_URL`:
 ### Get started with {{site.base_gateway}}
 
 Now that you have a running Gateway instance, Kong provides a series of
-[getting started guides](/gateway/{{page.kong_version}}/get-started/comprehensive/)
+[getting started guides](/gateway/{{page.release}}/get-started/comprehensive/)
 to help you set up and enhance your first Service.
 
 In particular, right after installation you might want to:
-* [Create a service and a route](/gateway/{{page.kong_version}}/get-started/comprehensive/expose-services/)
-* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/comprehensive/protect-services/)
-* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/comprehensive/secure-services/)
-* [Load balance traffic across targets](/gateway/{{page.kong_version}}/get-started/comprehensive/load-balancing/)
+* [Create a service and a route](/gateway/{{page.release}}/get-started/comprehensive/expose-services/)
+* [Configure a plugin](/gateway/{{page.release}}/get-started/comprehensive/protect-services/)
+* [Secure your services with authentication](/gateway/{{page.release}}/get-started/comprehensive/secure-services/)
+* [Load balance traffic across targets](/gateway/{{page.release}}/get-started/comprehensive/load-balancing/)
 
 ### Clean up containers
 
@@ -245,7 +245,7 @@ docker network rm kong-net
 ## Install {{site.base_gateway}} in DB-less mode
 
 The following steps walk you through starting {{site.base_gateway}} in
-[DB-less mode](/gateway/{{page.kong_version}}/reference/db-less-and-declarative-config).
+[DB-less mode](/gateway/{{page.release}}/reference/db-less-and-declarative-config).
 
 ### Create a Docker network
 
@@ -295,7 +295,7 @@ backed up by a Redis cluster).
 
 ### Start {{site.base_gateway}} in DB-less mode
 
-{% include_cached /md/admin-listen.md kong_version=page.kong_version desc='long' %}
+{% include_cached /md/admin-listen.md release=page.release desc='long' %}
 
 1. From the same directory where you just created the `kong.yml` file,
 run the following command to start a container with {{site.base_gateway}}:
@@ -323,7 +323,7 @@ docker run -d --name kong-dbless \
  -p 8445:8445 \
  -p 8003:8003 \
  -p 8004:8004 \
- kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+ kong/kong-gateway:{{page.releases[page.version-index].ee-version}}-alpine
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -342,7 +342,7 @@ docker run -d --name kong-dbless \
  -p 8443:8443 \
  -p 127.0.0.1:8001:8001 \
  -p 127.0.0.1:8444:8444 \
- kong:{{page.kong_versions[page.version-index].ce-version}}-alpine
+ kong:{{page.releases[page.version-index].ce-version}}-alpine
  ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -355,18 +355,18 @@ docker run -d --name kong-dbless \
     * `-v $(pwd):/path/to/target/`: Mount the current directory on your
     local filesystem to a directory in the Docker container. This makes the
     `kong.yml` file visible from the Docker container.
-    * [`KONG_DATABASE`](/gateway/{{page.kong_version}}/reference/configuration/#database):
+    * [`KONG_DATABASE`](/gateway/{{page.release}}/reference/configuration/#database):
      Sets the database to `off` to tell Kong not to use any
     backing database for configuration storage.
-    * [`KONG_DECLARATIVE_CONFIG`](/gateway/{{page.kong_version}}/reference/configuration/#declarative_config):
+    * [`KONG_DECLARATIVE_CONFIG`](/gateway/{{page.release}}/reference/configuration/#declarative_config):
     The path to a declarative configuration file inside the container.
     This path should match the target path that you're mapping with `-v`.
-    * All [`_LOG`](/gateway/{{page.kong_version}}/reference/configuration/#general-section)
+    * All [`_LOG`](/gateway/{{page.release}}/reference/configuration/#general-section)
     parameters: set filepaths for the logs to output to, or use the values in
     the example to  print messages and errors to `stdout` and `stderr`.
-    * [`KONG_ADMIN_LISTEN`](/gateway/{{page.kong_version}}/reference/configuration/#admin_listen):
+    * [`KONG_ADMIN_LISTEN`](/gateway/{{page.release}}/reference/configuration/#admin_listen):
     The port that the Kong Admin API listens on for requests.
-    * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url):
+    * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.release}}/reference/configuration/#admin_gui_url):
     (Enterprise only) The URL for accessing Kong Manager, preceded by a protocol
     (for example, `http://`).
 
@@ -382,21 +382,21 @@ docker run -d --name kong-dbless \
     curl -i http://localhost:8001/services
     ```
 
-[DB-less mode]: /gateway/{{page.kong_version}}/reference/db-less-and-declarative-config/
-[Declarative Configuration format]: /gateway/{{page.kong_version}}/reference/db-less-and-declarative-config/#the-declarative-configuration-format
+[DB-less mode]: /gateway/{{page.release}}/reference/db-less-and-declarative-config/
+[Declarative Configuration format]: /gateway/{{page.release}}/reference/db-less-and-declarative-config/#the-declarative-configuration-format
 [Docker Volume]: https://docs.docker.com/storage/volumes/
 
 ### Get started with {{site.base_gateway}}
 
 Now that you have a running Gateway instance, Kong provides a series of
-[getting started guides](/gateway/{{page.kong_version}}/get-started/comprehensive/)
+[getting started guides](/gateway/{{page.release}}/get-started/comprehensive/)
 to help you set up and enhance your first Service.
 
 If you use the sample `kong.yml` in this guide, you already have a Service and
 a Route configured. Here are a few more things to check out:
-* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/comprehensive/protect-services/?tab=using-deck-yaml/)
-* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/comprehensive/secure-services/?tab=using-deck-yaml/)
-* [Load balance traffic across targets](/gateway/{{page.kong_version}}/get-started/comprehensive/load-balancing/?tab=using-deck-yaml/)
+* [Configure a plugin](/gateway/{{page.release}}/get-started/comprehensive/protect-services/?tab=using-deck-yaml/)
+* [Secure your services with authentication](/gateway/{{page.release}}/get-started/comprehensive/secure-services/?tab=using-deck-yaml/)
+* [Load balance traffic across targets](/gateway/{{page.release}}/get-started/comprehensive/load-balancing/?tab=using-deck-yaml/)
 
 ### Clean up containers
 

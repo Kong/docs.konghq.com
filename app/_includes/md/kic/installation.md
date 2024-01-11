@@ -1,20 +1,20 @@
 
 ## Installation
 
-Follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install the {{site.kic_product_name}} on the Kubernetes cluster.
+Follow the [deployment](/kubernetes-ingress-controller/{{page.release}}/deployment/overview/) documentation to install the {{site.kic_product_name}} on the Kubernetes cluster.
 
 {% unless include.disable_gateway_api %}
 ## Installing the Gateway APIs
 
 If you wish to use the Gateway APIs examples, follow the [supplemental
-Gateway APIs installation instructions](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/install-gateway-apis).
+Gateway APIs installation instructions](/kubernetes-ingress-controller/{{page.release}}/deployment/install-gateway-apis).
 {% endunless %}
 
 ## Testing connectivity to {{site.base_gateway}}
 
 Ensure that the `PROXY_IP` environment variable is
 set to contain the IP address or URL pointing to {{site.base_gateway}}.
-The [deployment guide](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) that you used to install the {{site.kic_product_name}} on the Kubernetes cluster provides the instructions to configure this environment variable.
+The [deployment guide](/kubernetes-ingress-controller/{{page.release}}/deployment/overview) that you used to install the {{site.kic_product_name}} on the Kubernetes cluster provides the instructions to configure this environment variable.
 
 If everything is set correctly, a request to {{site.base_gateway}} returns
 a HTTP `404 Not Found` status code:

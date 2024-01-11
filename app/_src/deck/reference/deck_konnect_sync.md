@@ -47,8 +47,8 @@ This flag can be specified multiple times for multiple files. (Default: `[konnec
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## See also
 
-* [Deck {{site.base_gateway}}](/deck/{{page.kong_version}}/reference/deck_konnect/)	 - Configuration tool for {{site.konnect_short_name}} (in alpha)
+* [Deck {{site.base_gateway}}](/deck/{{page.release}}/reference/deck_konnect/)	 - Configuration tool for {{site.konnect_short_name}} (in alpha)

@@ -770,7 +770,7 @@ key_set_data: |
 ## DB-less Mode
 
 
-In [DB-less mode](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config/),
+In [DB-less mode](/gateway/{{page.release}}/production/deployment-topologies/db-less-and-declarative-config/),
 the Admin API can be used to load a new declarative
 configuration, and for inspecting the current configuration. In DB-less mode,
 the Admin API for each Kong node functions independently, reflecting the memory state
@@ -819,7 +819,7 @@ are erased from memory, and the entities specified in the
 given file take their place.
 
 To learn more about the file format, see the
-[declarative configuration](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config) documentation.
+[declarative configuration](/gateway/{{page.release}}/production/deployment-topologies/db-less-and-declarative-config) documentation.
 
 
 <div class="endpoint post indent">/config</div>
@@ -2110,8 +2110,8 @@ The router adds:
 
 Learn more about the router:
 
-[Configure routes using expressions](/gateway/{{page.kong_version}}/key-concepts/routes/expressions)
-[Expressions language reference](/gateway/{{page.kong_version}}/reference/expressions-language/)
+[Configure routes using expressions](/gateway/{{page.release}}/key-concepts/routes/expressions)
+[Expressions language reference](/gateway/{{page.release}}/reference/expressions-language/)
 
 
 #### Path handling algorithms
@@ -5445,11 +5445,11 @@ HTTP 204 No Content
 
 ---
 
-[clustering]: /gateway/{{page.kong_version}}/reference/clustering
-[cli]: /gateway/{{page.kong_version}}/reference/cli
-[active]: /gateway/{{page.kong_version}}/how-kong-works/health-checks/#active-health-checks
-[healthchecks]: /gateway/{{page.kong_version}}/how-kong-works/health-checks
-[secure-admin-api]: /gateway/{{page.kong_version}}/production/running-kong/secure-admin-api
-[proxy-reference]: /gateway/{{page.kong_version}}/how-kong-works/routing-traffic/
+[clustering]: /gateway/{{page.release}}/reference/clustering
+[cli]: /gateway/{{page.release}}/reference/cli
+[active]: /gateway/{{page.release}}/how-kong-works/health-checks/#active-health-checks
+[healthchecks]: /gateway/{{page.release}}/how-kong-works/health-checks
+[secure-admin-api]: /gateway/{{page.release}}/production/running-kong/secure-admin-api
+[proxy-reference]: /gateway/{{page.release}}/how-kong-works/routing-traffic/
 
 

@@ -4,7 +4,7 @@ content_type: tutorial
 description: This guide explains how to get started on Kong Mesh with Red Hat OpenShift.
 ---
 
-In this guide, you will learn how to get {{site.mesh_product_name}} up and running quickly in [standalone mode](/mesh/{{page.kong_version}}/production/deployment/stand-alone/) on [Red Hat OpenShift](https://www.redhat.com/technologies/cloud-computing/openshift). This tutorial assumes some base-level OpenShift knowledge.
+In this guide, you will learn how to get {{site.mesh_product_name}} up and running quickly in [standalone mode](/mesh/{{page.release}}/production/deployment/stand-alone/) on [Red Hat OpenShift](https://www.redhat.com/technologies/cloud-computing/openshift). This tutorial assumes some base-level OpenShift knowledge.
 
 This tutorial doesn't require a license because {{site.mesh_product_name}} can start in evaluation mode, which allows you to have up to five data planes or sidecars. This provides just enough data planes to get comfortable with the product and test it out.
 
@@ -124,7 +124,7 @@ In this section, you'll install {{site.mesh_product_name}} in standalone mode. S
 
 ## Deploy the demo application
 
-In this step, you'll deploy the [`kuma-demo` app](/mesh/{{page.kong_version}}/quickstart/kubernetes) to {{site.mesh_product_name}}. This allows you to quickly populate your mesh with services so you can test the capabilities of {{site.mesh_product_name}}.
+In this step, you'll deploy the [`kuma-demo` app](/mesh/{{page.release}}/quickstart/kubernetes) to {{site.mesh_product_name}}. This allows you to quickly populate your mesh with services so you can test the capabilities of {{site.mesh_product_name}}.
 
 The `kuma-demo` app consists of two services:
 
@@ -166,7 +166,7 @@ The `kuma-demo` app consists of two services:
 
 ## Test {{site.mesh_product_name}} capabilities
 
-Now that you've deployed {{site.mesh_product_name}} along with the demo application on your ROSA cluster, you can test {{site.mesh_product_name}}. You can follow the instructions in [Enable Mutual TLS and Traffic Permissions](/mesh/{{page.kong_version}}/quickstart/kubernetes/#enable-mutual-tls-and-traffic-permissions) to learn how to use policies in {{site.mesh_product_name}}.
+Now that you've deployed {{site.mesh_product_name}} along with the demo application on your ROSA cluster, you can test {{site.mesh_product_name}}. You can follow the instructions in [Enable Mutual TLS and Traffic Permissions](/mesh/{{page.release}}/quickstart/kubernetes/#enable-mutual-tls-and-traffic-permissions) to learn how to use policies in {{site.mesh_product_name}}.
 
 ## Clean up 
 
@@ -197,8 +197,8 @@ In this section, you will remove all components, including `kuma-demo` and {{sit
 
 Now that you've deleted your demo cluster and components, you can deploy {{site.mesh_product_name}} in a production environment. Follow the instructions in one of the following guides to deploy {{site.mesh_product_name}} using your method of choice:
 
-* [Deploy a standalone control plane](/mesh/{{page.kong_version}}/production/cp-deployment/stand-alone/)
-* [Deploy a multi-zone global control plane](/mesh/{{page.kong_version}}/production/cp-deployment/multi-zone/)
+* [Deploy a standalone control plane](/mesh/{{page.release}}/production/cp-deployment/stand-alone/)
+* [Deploy a multi-zone global control plane](/mesh/{{page.release}}/production/cp-deployment/multi-zone/)
 
 
 

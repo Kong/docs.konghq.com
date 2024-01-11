@@ -62,4 +62,4 @@ If a queue fails to process, the queue library can automatically retry to proces
 
 ## More information
 
-[Plugin Queuing Reference](/gateway/{{page.kong_version}}/kong-plugins/queue/reference/) - Learn more about the plugin queuing parameters you can configure.
+[Plugin Queuing Reference](/gateway/{{page.release}}/kong-plugins/queue/reference/) - Learn more about the plugin queuing parameters you can configure.

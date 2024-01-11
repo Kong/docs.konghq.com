@@ -9,7 +9,7 @@ and for a specific user of the API.
 
 ## Installation
 
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install
+Please follow the [deployment](/kubernetes-ingress-controller/{{page.release}}/deployment/overview/) documentation to install
 the {{site.kic_product_name}} onto your Kubernetes cluster.
 
 ## Testing connectivity to Kong
@@ -17,7 +17,7 @@ the {{site.kic_product_name}} onto your Kubernetes cluster.
 This guide assumes that `PROXY_IP` environment variable is
 set to contain the IP address or URL pointing to Kong.
 If you've not done so, please follow one of the
-[deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
+[deployment guides](/kubernetes-ingress-controller/{{page.release}}/deployment/overview) to configure this environment variable.
 
 If everything is setup correctly, making a request to Kong should return
 HTTP 404 Not Found.
@@ -287,7 +287,7 @@ matched one of the rules defined in the `demo` `Ingress` resource.
 
 ## Configure consumer and credential
 
-Follow the [Using Consumers and Credentials](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource/)
+Follow the [Using Consumers and Credentials](/kubernetes-ingress-controller/{{page.release}}/guides/using-consumer-credential-resource/)
 guide to provision a user and an apikey.
 Once you have it, please continue:
 

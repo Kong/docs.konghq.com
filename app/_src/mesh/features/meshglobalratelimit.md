@@ -21,7 +21,7 @@ local and global rate limit.
 
 Local rate limit is applied per service instance. Because of this, counters can be stored in memory and rate limit 
 decisions can be made instantaneously. Local rate limiting should be enough in most cases (for example, DoS protection and controlling traffic throughput).
-You can find more information about local rate limit and how to configure it in [MeshRateLimit docs](/mesh/{{page.kong_version}}/policies/meshratelimit).
+You can find more information about local rate limit and how to configure it in [MeshRateLimit docs](/mesh/{{page.release}}/policies/meshratelimit).
 
 There are some cases when local rate limit won't solve your problems. For example, you may want to limit the number of requests that non-paying users can 
 make to your public API. To do that, you must coordinate request counting between service instances, which the global rate limit can help you with.
@@ -116,7 +116,7 @@ TODO: document how to generate and use zone token on universal.-->
 | MeshServiceSubset | ❌        | ❌  | ❌   |
 | MeshGatewayRoute  | ❌        | ❌  | ❌   |
 
-To learn more about the information in this table, see the [matching docs](/mesh/{{page.kong_version}}/policies/targetref).
+To learn more about the information in this table, see the [matching docs](/mesh/{{page.release}}/policies/targetref).
 
 ## Configuration
 
@@ -325,7 +325,7 @@ When the local rate limit is reached, the data plane proxy will stop sending req
 
 This could lower network traffic between the data plane proxy and the ratelimit service. Also, it can protect your ratelimit service from a DDoS "attack" by your services. 
 Moreover, this could be used to more evenly distribute traffic to the ratelimit service and mitigate the problem of depleting whole limit at the beginning of the counter window.
-This is described in the [previous section](/mesh/{{page.kong_version}}/features/meshglobalratelimit/#rate-limiting-algorithm).
+This is described in the [previous section](/mesh/{{page.release}}/features/meshglobalratelimit/#rate-limiting-algorithm).
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -412,7 +412,7 @@ spec:
 
 ### External service support
 
-To rate limit requests to [External Service](/mesh/{{page.kong_version}}/policies/external-services) you must deploy [ZoneEgress](/mesh/{{page.kong_version}}/production/cp-deployment/zoneegress/).
+To rate limit requests to [External Service](/mesh/{{page.release}}/policies/external-services) you must deploy [ZoneEgress](/mesh/{{page.release}}/production/cp-deployment/zoneegress/).
 
 After deploying Zone Egress, you must enable mTLS in your mesh and configure zone egress routing. Here's an example mesh configuration:
 

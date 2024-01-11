@@ -24,7 +24,7 @@ Manager. The mapping removes the task of manually managing access in
 ## Prerequisites
 
 * An IdP with an authorization server and users with groups assigned
-* [{{site.base_gateway}} installed and configured](/gateway/{{page.kong_version}}/get-started/)
+* [{{site.base_gateway}} installed and configured](/gateway/{{page.release}}/get-started/)
 * Kong Manager enabled
 * RBAC enabled
 * (Kubernetes) [Helm](https://helm.sh/docs/intro/install/) installed

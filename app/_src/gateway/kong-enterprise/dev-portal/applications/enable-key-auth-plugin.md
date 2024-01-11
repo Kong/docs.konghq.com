@@ -12,7 +12,7 @@ You can use the same Client ID credential for a Service that has the OAuth2 plug
 ## Prerequisites
 
 * Create a Service.
-* Enable the [Application Registration plugin](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/applications/enable-application-registration/) on a Service.
+* Enable the [Application Registration plugin](/gateway/{{page.release}}/kong-enterprise/dev-portal/applications/enable-application-registration/) on a Service.
 * Activate your application for a Service if you have not already done so. The
 Service Contract must be approved by an Admin if auto approve is not enabled.
 * [Generate a credential](#gen-client-id-cred) if you don't want to use the default credential initially created for you.

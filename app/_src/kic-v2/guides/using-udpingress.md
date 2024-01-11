@@ -8,7 +8,7 @@ content_type: tutorial
 Deploy a simple [Service][svc] that listens for [UDP datagrams][udp], and exposes this service outside of the cluster using
 {{site.base_gateway}}.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
+{% include_cached /md/kic/prerequisites.md release=page.release disable_gateway_api=false %}
 
 
 ## Add UDP listens

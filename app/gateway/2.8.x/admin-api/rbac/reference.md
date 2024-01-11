@@ -4,7 +4,7 @@ badge: enterprise
 ---
 
 Kong {{site.base_gateway}}'s RBAC feature is configurable through Kong's
-[Admin API](/gateway/{{page.kong_version}}/admin-api/) or via the [Kong Manager](/gateway/{{page.kong_version}}/configure/auth/rbac/).
+[Admin API](/gateway/{{page.release}}/admin-api/) or via the [Kong Manager](/gateway/{{page.release}}/configure/auth/rbac/).
 
 There are 4 basic entities involving RBAC.
 
@@ -122,7 +122,7 @@ HTTP 200 OK
 
 ⚠️ **Note**: **RBAC Users** associated with **Admins** will _not_ be
 listed with **`GET`** `/rbac/users`. Instead, use
-[**`GET`** `/admins`](/gateway/{{page.kong_version}}/admin-api/admins/reference/#list-admins)
+[**`GET`** `/admins`](/gateway/{{page.release}}/admin-api/admins/reference/#list-admins)
 to list all **Admins**.
 
 ___

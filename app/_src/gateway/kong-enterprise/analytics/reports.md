@@ -16,7 +16,7 @@ When generating a Vitals report, you can:
 ## Prerequisites
 
 InfluxDB database installed and configured. For more information, see
-[Vitals with InfluxDB](/gateway/{{page.kong_version}}/kong-enterprise/analytics/influx-strategy/).
+[Vitals with InfluxDB](/gateway/{{page.release}}/kong-enterprise/analytics/influx-strategy/).
 
 **Important**: The Vitals Reports feature is not compatible with any other database. If you're not using InfluxDB,  the Reports button will not display on the Vitals view.
 
@@ -38,7 +38,7 @@ To create a time-series report containing Vitals data, complete the steps in thi
     | *Interval*               | Select the time interval to display in the report: weeks, hours, days, minutes. If you select an interval that is out of the available range, the results return zeroes. |
 
 
-4. A Vitals report generates, starting with a summary of data in your report, including Id, Name, App Name, App Id, and Total. Note that the App Name and App Id are dependent on the Dev Portal App Registration plugin. For more information about status codes (2XX, 4XX, etc), see [_Vitals Metrics_](/gateway/{{page.kong_version}}/kong-enterprise/analytics/metrics/).
+4. A Vitals report generates, starting with a summary of data in your report, including Id, Name, App Name, App Id, and Total. Note that the App Name and App Id are dependent on the Dev Portal App Registration plugin. For more information about status codes (2XX, 4XX, etc), see [_Vitals Metrics_](/gateway/{{page.release}}/kong-enterprise/analytics/metrics/).
 
 5. To download your report, click **Export**. A CSV file containing your Vitals report data downloads to your system.  
 

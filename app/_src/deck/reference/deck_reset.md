@@ -6,7 +6,7 @@ content_type: reference
 {% if_version gte:1.28.x %}
 {:.warning}
 > **Warning**: This command is deprecated and will be removed in a future version.
-Use [deck gateway reset](/deck/{{page.kong_version}}/reference/deck_gateway_reset/) instead.
+Use [deck gateway reset](/deck/{{page.release}}/reference/deck_gateway_reset/) instead.
 {% endif_version %}
 
 The reset command deletes all entities in Kong's database.string.
@@ -71,8 +71,8 @@ When this setting has multiple tag values, entities must match every tag.
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## See also
 
-* [deck](/deck/{{page.kong_version}}/reference/deck/)	 - Administer your Kong clusters declaratively
+* [deck](/deck/{{page.release}}/reference/deck/)	 - Administer your Kong clusters declaratively

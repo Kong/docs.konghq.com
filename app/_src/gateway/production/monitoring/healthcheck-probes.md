@@ -48,7 +48,7 @@ Before diving into the steps, it's important to understand the purpose of the no
 {% navtabs %}
 {% navtab Traditional mode %}
 
-In [traditional mode](/gateway/{{page.kong_version}}/production/deployment-topologies/traditional/), the endpoint returns `200 OK` when all of the following conditions are met:
+In [traditional mode](/gateway/{{page.release}}/production/deployment-topologies/traditional/), the endpoint returns `200 OK` when all of the following conditions are met:
 
 1. Successful connection to the database
 2. All Kong workers are ready to route requests
@@ -57,7 +57,7 @@ In [traditional mode](/gateway/{{page.kong_version}}/production/deployment-topol
 {% endnavtab %}
 {% navtab Hybrid mode (data plane role) or DB-less mode %}
 
-In [hybrid mode](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/) (`data_plane` role) or [DB-less mode](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config/), the endpoint returns `200 OK` when the following conditions are met:
+In [hybrid mode](/gateway/{{page.release}}/production/deployment-topologies/hybrid-mode/) (`data_plane` role) or [DB-less mode](/gateway/{{page.release}}/production/deployment-topologies/db-less-and-declarative-config/), the endpoint returns `200 OK` when the following conditions are met:
 
 1. Kong has loaded a valid and non-empty config (`kong.yaml`)
 2. All Kong workers are ready to route requests
@@ -66,7 +66,7 @@ In [hybrid mode](/gateway/{{page.kong_version}}/production/deployment-topologies
 {% endnavtab %}
 {% navtab Hybrid mode (control plane role) %}
 
-In [hybrid mode](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/) (`control_plane` role), this endpoint returns `200 OK` when the following condition is met:
+In [hybrid mode](/gateway/{{page.release}}/production/deployment-topologies/hybrid-mode/) (`control_plane` role), this endpoint returns `200 OK` when the following condition is met:
 
 1. Successful connection to the database
 

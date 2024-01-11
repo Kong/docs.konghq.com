@@ -34,7 +34,7 @@ it from unauthorized access.
 
 * `8001` provides Kong's **Admin API** that you can use to operate Kong with HTTP. See [admin_listen].
 
-{% include_cached /md/admin-listen.md kong_version=page.kong_version desc='short' %}
+{% include_cached /md/admin-listen.md release=page.release desc='short' %}
 
 * `8444` provides the same Kong **Admin API** but using HTTPS. See [admin_listen] and the `ssl` suffix.
 
@@ -65,7 +65,7 @@ macOS/BSDs allow transparent proxying without `transparent` listen option. With 
 to start Kong as a `root` user or set the needed capabilities for the executable.
 
 
-[proxy_listen]: /gateway/{{page.kong_version}}/reference/configuration/#proxy_listen
-[stream_listen]: /gateway/{{page.kong_version}}/reference/configuration/#stream_listen
-[admin_listen]: /gateway/{{page.kong_version}}/reference/configuration/#admin_listen
-[secure_admin_api]: /gateway/{{page.kong_version}}/admin-api/secure-admin-api
+[proxy_listen]: /gateway/{{page.release}}/reference/configuration/#proxy_listen
+[stream_listen]: /gateway/{{page.release}}/reference/configuration/#stream_listen
+[admin_listen]: /gateway/{{page.release}}/reference/configuration/#admin_listen
+[secure_admin_api]: /gateway/{{page.release}}/admin-api/secure-admin-api
