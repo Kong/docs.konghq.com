@@ -16,7 +16,35 @@ is likely when Kong OpenID Connect is configured to use one client, and the refr
 with another. The grant itself is very similar to the [password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/) and
 the [client credentials grant](/hub/kong-inc/openid-connect/how-to/authentication/client-credentials-grant/):
 
-<img src="/assets/images/products/plugins/openid-connect/refresh-token-grant.svg">
+{% mermaid %}
+sequenceDiagram
+    autonumber
+    participant client as Client <br>(e.g. mobile app)
+    participant kong as API Gateway <br>(Kong)
+    participant idp as IDP <br>(e.g. Keycloak)
+    participant httpbin as Upstream <br>(backend service,<br> e.g. httpbin)
+    activate client
+    activate kong
+    client->>kong: service with<br>refresh token
+    deactivate client
+    kong->>kong: load refresh token
+    activate idp
+    kong->>idp: keycloak/token with<br>client credentials and<br>refresh token
+    deactivate kong
+    idp->>idp: authenticate client and<br>verify refresh token
+    activate kong
+    idp->>kong: return tokens
+    deactivate idp
+    kong->>kong: verify tokens
+    activate httpbin
+    kong->>httpbin: request with access token
+    httpbin->>kong: response
+    deactivate httpbin
+    activate client
+    kong->>client: response
+    deactivate kong
+    deactivate client
+{% endmermaid %}
 
 ### Patch the plugin
 

@@ -13,7 +13,35 @@ Password grant is a legacy authentication grant. This is a less secure way of
 authenticating end users than the authorization code flow, because, for example,
 the passwords are shared with third parties. The image below illustrates the grant:
 
-<img src="/assets/images/products/plugins/openid-connect/password-grant.svg">
+{% mermaid %}
+sequenceDiagram
+    autonumber
+    participant client as Client <br>(e.g. mobile app)
+    participant kong as API Gateway <br>(Kong)
+    participant idp as IDP <br>(e.g. Keycloak)
+    participant httpbin as Upstream <br>(backend service,<br> e.g. httpbin)
+    activate client
+    activate kong
+    client->>kong: service with<br>basic authentication
+    deactivate client
+    kong->>kong: load <br>basic authentication<br>credentials
+    activate idp
+    kong->>idp: keycloak/token with<br>client credentials and<br>password grant
+    deactivate kong
+    idp->>idp: authenticate client and<br>verify password grant
+    activate kong
+    idp->>kong: return tokens
+    deactivate idp
+    kong->>kong: verify tokens
+    activate httpbin
+    kong->>httpbin: request with access token
+    httpbin->>kong: response
+    deactivate httpbin
+    activate client
+    kong->>client: response
+    deactivate kong
+    deactivate client
+{% endmermaid %}
 
 ### Patch the plugin
 

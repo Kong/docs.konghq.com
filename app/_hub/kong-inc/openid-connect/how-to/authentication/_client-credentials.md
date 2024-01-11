@@ -15,7 +15,35 @@ does not try to authenticate. It just forwards the credentials passed by the cli
 to the identity server's token endpoint. The client credentials grant is visualized
 below:
 
-<img src="/assets/images/products/plugins/openid-connect/client-credentials-grant.svg">
+{% mermaid %}
+sequenceDiagram
+    autonumber
+    participant client as Client <br>(e.g. mobile app)
+    participant kong as API Gateway <br>(Kong)
+    participant idp as IDP <br>(e.g. Keycloak)
+    participant httpbin as Upstream <br>(backend service,<br> e.g. httpbin)
+    activate client
+    activate kong
+    client->>kong: service with<br>basic authentication
+    deactivate client
+    kong->>kong: load basic<br>authentication credentials
+    activate idp
+    kong->>idp: keycloak/token<br>with client credentials
+    deactivate kong
+    idp->>idp: authenticate client
+    activate kong
+    idp->>kong: return tokens
+    deactivate idp
+    kong->>kong: verify tokens
+    activate httpbin
+    kong->>httpbin: request with access token
+    httpbin->>kong: response
+    deactivate httpbin
+    activate client
+    kong->>client: response
+    deactivate kong
+    deactivate client
+{% endmermaid %}
 
 ### Patch the plugin
 

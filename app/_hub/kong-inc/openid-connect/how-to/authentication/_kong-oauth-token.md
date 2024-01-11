@@ -13,7 +13,27 @@ The OpenID Connect plugin can also verify the tokens issued by [Kong OAuth 2.0 P
 This is very similar to third party identity provider issued [JWT access token authentication](/hub/kong-inc/openid-connect/how-to/authentication/jwt-access-token/)
 or [introspection authentication](/hub/kong-inc/openid-connect/how-to/authentication/introspection/):
 
-<img src="/assets/images/products/plugins/openid-connect/kong-oauth-authentication.svg">
+{% mermaid %}
+sequenceDiagram
+    autonumber
+    participant client as Client <br>(e.g. mobile app)
+    participant kong as API Gateway <br>(Kong)
+    participant httpbin as Upstream <br>(backend service,<br> e.g. httpbin)
+    activate client
+    activate kong
+    client->>kong: service with<br>access token
+    deactivate client
+    kong->>kong: load access token
+    kong->>kong: verify kong<br>oauth token
+    activate httpbin
+    kong->>httpbin: request with<br>access token
+    httpbin->>kong: response
+    deactivate httpbin
+    activate client
+    kong->>client: response
+    deactivate kong
+    deactivate client
+{% endmermaid %}
 
 ### Prepare Kong OAuth application
 

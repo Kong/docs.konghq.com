@@ -15,7 +15,28 @@ the signature verification using the identity provider published public keys and
 claims' verification (such as `exp` (or expiry)). The client may have received the token directly
 from the identity provider or by other means. It is simple:
 
-<img src="/assets/images/products/plugins/openid-connect/bearer-authentication.svg">
+{% mermaid %}
+sequenceDiagram
+    autonumber
+    participant client as Client <br>(e.g. mobile app)
+    participant kong as API Gateway <br>(Kong)
+    participant httpbin as Upstream <br>(backend service,<br> e.g. httpbin)
+    activate client
+    activate kong
+    client->>kong: service with<br>access token
+    deactivate client
+    kong->>kong: load access token
+    kong->>kong: verify signature
+    kong->>kong: verify claims
+    activate httpbin
+    kong->>httpbin: request with<br>access token
+    httpbin->>kong: response
+    deactivate httpbin
+    activate client
+    kong->>client: response
+    deactivate kong
+    deactivate client
+{% endmermaid %}
 
 ### Patch the plugin
 

@@ -4,7 +4,7 @@ All the `*.test` domains in the following examples point to the `localhost` (`12
 
 We use [Keycloak][keycloak] as the identity provider in the following examples,
 but the steps will be similar in other standard identity providers. If you encounter
-difficulties during this phase, please refer to the [Keycloak documentation](https://www.keycloak.org/documentation).
+difficulties during this phase, refer to the [Keycloak documentation](https://www.keycloak.org/documentation).
 
 1. Create a confidential client `kong` with `private_key_jwt` authentication and configure
    Keycloak to download the public keys from [the OpenID Connect Plugin JWKS endpoint][json-web-key-set]:
