@@ -43,7 +43,7 @@
 /konnect/api/runtime-groups-config/overview/ /konnect/api/
 
 # API markdown doc deprecation
-/gateway/latest/admin-api/#information-routes   /gateway/api/admin-ee/latest/#/Information/get-endpoints/
+/gateway/latest/admin-api/ /gateway/api/admin-ee/latest/#/
 /gateway/latest/admin-api/#health-routes    /gateway/api/admin-ee/latest/#/Information/get-status/
 /gateway/latest/admin-api/#tags        /gateway/api/admin-ee/latest/#/tags/get-tags/
 /gateway/latest/admin-api/#debug-routes /gateway/api/admin-ee/latest/#/debug/put-debug-cluster-control-planes-nodes-log-level-log_level/
