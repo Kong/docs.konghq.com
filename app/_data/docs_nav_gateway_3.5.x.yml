@@ -335,7 +335,7 @@ items:
       - text: Authenticate your Kong Gateway Amazon RDS database with AWS IAM
         url: /kong-enterprise/aws-iam-auth-to-rds-database
       - text: Verify Signatures for Signed Kong Images
-        url: /kong-enterprise/signing-verify
+        url: /kong-enterprise/signed-images
 
   - title: Kong Manager
     icon: /assets/images/icons/documentation/icn-manager-color.svg
