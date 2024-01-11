@@ -5,7 +5,7 @@ nav_title: Authorization code flow
 
 ## Prerequisites
 
-{% include /md/plugins-hub/oidc-prereqs.md %}
+{% include_cached /md/plugins-hub/oidc-prereqs.md %}
 
 ## Authorization code flow
 

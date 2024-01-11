@@ -5,7 +5,7 @@ nav_title: Debugging
 
 ## Prerequisites
 
-{% include /md/plugins-hub/oidc-prereqs.md %}
+{% include_cached /md/plugins-hub/oidc-prereqs.md %}
 
 ## Debugging
 

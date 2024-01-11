@@ -5,7 +5,7 @@ nav_title: Introspection
 
 ## Prerequisites
 
-{% include /md/plugins-hub/oidc-prereqs.md %}
+{% include_cached /md/plugins-hub/oidc-prereqs.md %}
 
 ## Introspection authentication
 

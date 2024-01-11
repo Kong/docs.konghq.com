@@ -5,7 +5,7 @@ nav_title: Session
 
 ## Prerequisites
 
-{% include /md/plugins-hub/oidc-prereqs.md %}
+{% include_cached /md/plugins-hub/oidc-prereqs.md %}
 
 ## Session authentication
 

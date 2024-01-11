@@ -5,7 +5,7 @@ nav_title: Kong OAuth token
 
 ## Prerequisites
 
-{% include /md/plugins-hub/oidc-prereqs.md %}
+{% include_cached /md/plugins-hub/oidc-prereqs.md %}
 
 ## Kong OAuth token authentication
 

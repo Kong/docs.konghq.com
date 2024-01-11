@@ -5,7 +5,7 @@ nav_title: Consumer
 
 ## Prerequisites
 
-{% include /md/plugins-hub/oidc-prereqs.md %}
+{% include_cached /md/plugins-hub/oidc-prereqs.md %}
 
 ## Consumer authorization
 

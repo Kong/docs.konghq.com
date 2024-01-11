@@ -5,7 +5,7 @@ nav_title: Client credentials grant
 
 ## Prerequisites
 
-{% include /md/plugins-hub/oidc-prereqs.md %}
+{% include_cached /md/plugins-hub/oidc-prereqs.md %}
 
 ## Client credentials grant
 

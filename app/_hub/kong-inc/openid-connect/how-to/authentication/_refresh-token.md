@@ -5,7 +5,7 @@ nav_title: Refresh token grant
 
 ## Prerequisites
 
-{% include /md/plugins-hub/oidc-prereqs.md %}
+{% include_cached /md/plugins-hub/oidc-prereqs.md %}
 
 ## Refresh token grant
 
