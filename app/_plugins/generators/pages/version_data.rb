@@ -40,7 +40,6 @@ module Jekyll
       def set_release_data # rubocop:disable Metrics/AbcSize
         return unless version?
 
-        @page.data['kong_version'] = release.to_s
         @page.data['version'] ||= release.default_version
         @page.data['version_data'] = release.to_h
         @page.data['release'] ||= release.to_liquid
