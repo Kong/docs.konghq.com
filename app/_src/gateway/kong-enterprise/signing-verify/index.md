@@ -9,8 +9,9 @@ This guide provides steps to verify signatures for signed {{site.ee_product_name
 * A minimal example, used to verify an image without leveraging any annotations
 * A complete example, leveraging optional annotations for increased trust
 
-For the minimal example, you only need: Docker details, Github repo name, and Github workflow filename.
-For the complete example, you will need the same details from above, as well as any of the optional annotations you wish to verify:
+For the minimal example, you only need Docker details, a GitHub repo name, and a GitHub workflow filename.
+
+For the complete example, you need the same details as the minimal example, as well as any of the optional annotations you wish to verify:
 
 | Shorthand | Description | Example Value |
 |---|---|---|
@@ -18,15 +19,15 @@ For the complete example, you will need the same details from above, as well as 
 | `<workflow filename>` | Github workflow filename | `release.yml` |
 | `<workflow name>` | Github workflow name | `Package & Release` |
 
-Because Kong uses Github Actions to build and release, Kong also uses Github's OIDC identity to sign images; thus many of these details are Github-related.
+Because Kong uses Github Actions to build and release, Kong also uses Github's OIDC identity to sign images, which is why many of these details are Github-related.
 
 ## Examples
+### Prerequisites
+For both examples, you need to:
 
-For both examples, you will need to:
+1. Ensure `cosign` is installed.
 
-1. Ensure `cosign` is installed
-
-2. Collect the necessary image details
+2. Collect the necessary image details.
 
 3. Set the `COSIGN_REPOSITORY` environment variable:
 
