@@ -93,7 +93,7 @@ id: documentation
         <div class="content show-anchor-links">
           {% unless page.release.latest? or page.no_version == true %}
               <blockquote id="version-notice" class="important">
-                {% if page.version_data['releaseDate'] == nil %}
+                {% if page.release.label != nil %}
                   You are browsing documentation of an unreleased version.
                 {% else %}
                   You are browsing documentation for an outdated version.
