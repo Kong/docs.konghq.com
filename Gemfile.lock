@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Kong/jekyll-generator-single-source
-  revision: 39f189177d7e2517874905120fa9feebe6e95e45
+  revision: 82966bb101a62400839d35c06c0d406d5a1439d5
   branch: refactor-version-is
   specs:
     jekyll-generator-single-source (0.0.10)
