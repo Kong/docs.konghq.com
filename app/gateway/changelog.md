@@ -369,6 +369,48 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+## 3.4.3.3 
+**Release Date** 2024/01/12
+
+### Features
+#### Core
+
+* The Debian variant of kong docker image is built using Debian 12 now. [#7672](https://github.com/Kong/kong/issues/7672)
+
+#### Admin API
+
+* Added gateway edition to the root endpoint of the admin API. [#7674](https://github.com/Kong/kong/issues/7674)
+
+#### Plugins
+* **[AppDymanics](/hub/kong-inc/app-dynamics/)** Added CONTROLLER_CERTIFICATE_FILE and CONTROLLER_CERTIFICATE_DIR env config for AppDynamics plugin to use a self-signed certificate
+
+### Fixes
+#### Portal
+* Implemented relative URLs for portal root path redirection to prevent erroneous redirections to incorrect domains or protocols.
+
+#### Core
+* Fixed an RBAC issue that required adding missing endpoints to all workspaces.
+
+#### Plugins
+* **[OAS-Validation](/hub/kong-inc/oas-validation/)**: Fixed an issue where cookie parameters were not being validated.
+
+#### Admin API
+* It is no longer possible for admins or RBAC users to update their own roles.
+
+#### Kong Manager
+
+* Fixed an issue where the dynamic ordering dropdown list does not show custom plugins.
+
+* Fixed an issue where the role of the current workspace couldn't be created by the role `workspace-super-admin`'s admin.
+
+### Dependencies
+#### Default
+* Bump kong-redis-cluster to '1.5.3'
+
+* Bump lua-resty-healthcheck to 1.6.4 to fix a bug where the healthcheck
+  module would not work correctly when multiple healthchecks instance were
+  not dealy cleared.
+
 ## 3.4.3.2
 **Release Date** 2023/12/22
 
