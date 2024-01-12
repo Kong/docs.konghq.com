@@ -24,6 +24,7 @@ RSpec.describe SEO::Sitemap do
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/hub/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/contributing/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/kubernetes-ingress-controller/latest/' },
+        { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/kubernetes-ingress-controller/latest/introduction/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/mesh/latest/' },
         { 'changefreq' => 'weekly', 'priority' => '1.0', 'url' => '/gateway/latest/' },
