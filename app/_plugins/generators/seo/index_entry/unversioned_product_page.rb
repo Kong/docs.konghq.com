@@ -13,6 +13,8 @@ module SEO
       end
 
       def indexable?(_pages_index)
+        # Prevent /deck/pre-1.7/ pages
+        # from being added to the sitemap
         super && url_segments[1] != 'pre-1.7'
       end
 
