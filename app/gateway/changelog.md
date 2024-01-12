@@ -375,14 +375,14 @@ was called multiple times in a request lifecycle.
 ### Features
 #### Core
 
-* The Debian variant of kong docker image is built using Debian 12 now. [#7672](https://github.com/Kong/kong/issues/7672)
+* The Debian variant of Kong Gateway Docker image is now built using Debian 12. [#7672](https://github.com/Kong/kong/issues/7672)
 
 #### Admin API
 
-* Added gateway edition to the root endpoint of the admin API. [#7674](https://github.com/Kong/kong/issues/7674)
+* Added the Kong Gateway edition to the root endpoint of the Admin API. [#7674](https://github.com/Kong/kong/issues/7674)
 
 #### Plugins
-* **[AppDymanics](/hub/kong-inc/app-dynamics/)** Added CONTROLLER_CERTIFICATE_FILE and CONTROLLER_CERTIFICATE_DIR env config for AppDynamics plugin to use a self-signed certificate
+* **[AppDynamics](/hub/kong-inc/app-dynamics/)**: Added `CONTROLLER_CERTIFICATE_FILE` and `CONTROLLER_CERTIFICATE_DIR` environment variable config for the AppDynamics plugin to use a self-signed certificate.
 
 ### Fixes
 #### Portal
@@ -399,17 +399,15 @@ was called multiple times in a request lifecycle.
 
 #### Kong Manager
 
-* Fixed an issue where the dynamic ordering dropdown list does not show custom plugins.
+* Fixed an issue where the dynamic ordering dropdown list didn't show custom plugins.
 
 * Fixed an issue where the role of the current workspace couldn't be created by the role `workspace-super-admin`'s admin.
 
 ### Dependencies
-#### Default
-* Bump kong-redis-cluster to '1.5.3'
+* Bump `kong-redis-cluster` to 1.5.3
 
-* Bump lua-resty-healthcheck to 1.6.4 to fix a bug where the healthcheck
-  module would not work correctly when multiple healthchecks instance were
-  not dealy cleared.
+* Bump `lua-resty-healthcheck` to 1.6.4 to fix a bug where the health check
+  module would not work correctly when multiple health check instances were not cleared.
 
 ## 3.4.3.2
 **Release Date** 2023/12/22
