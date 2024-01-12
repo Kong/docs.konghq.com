@@ -87,4 +87,4 @@ once again.
 This basic configuration permits any user with a valid Google account to access
 the dummy service.
 For setting up more complicated authentication and authorization flows, see the
-[plugin docs](/gateway/latest/kong-plugins/authentication/oidc/google).
+[plugin docs](/hub/kong-inc/openid-connect/how-to/third-party/google/).
