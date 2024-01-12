@@ -99,6 +99,7 @@
 /gateway/:version/kong-plugins/algorithms/rate-limiting/      /gateway/:version/reference/rate-limiting/
 /gateway/:version/install/kubernetes/kubectl/  /gateway/:version/install/kubernetes/
 /gateway/:version/install/kubernetes/helm-quickstart/  /gateway/:version/install/kubernetes/
+/gateway/:version/install/kubernetes/openshift/  /gateway/:version/install/kubernetes/
 
 # CONTRIBUTING & STYLE GUIDE
 /contributing/plugin-docs/               /contributing/contribution-templates/
