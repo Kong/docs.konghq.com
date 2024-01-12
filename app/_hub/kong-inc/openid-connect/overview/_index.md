@@ -2,10 +2,14 @@
 nav_title: Overview
 ---
 
-The OpenID Connect ([1.0][connect]) plugin (also known as OIDC) allows for integration with a third party
+The OpenID Connect ([1.0](chttp://openid.net/specs/openid-connect-core-1_0.html)) plugin 
+(also known as OIDC) allows for integration with a third party
 identity provider (IdP) in a standardized way. This plugin can be used to implement
-Kong as a (proxying) [OAuth 2.0][oauth2] resource server (RS) and/or as an OpenID
-Connect relying party (RP) between the client and the upstream service.
+Kong as a (proxying) [OAuth 2.0](https://tools.ietf.org/html/rfc6749) resource server 
+(RS) and/or as an OpenID Connect relying party (RP) between the client and the upstream service.
+
+The plugin supports several types of credentials and grants. 
+Review the [support reference](/hub/kong-inc/openid-connect/support/) to see all of them.
 
 ## About OpenID Connect
 
@@ -43,119 +47,6 @@ While the OpenID Connect plugin can suit many different use cases and extends to
 such as JWT (JSON Web Token) and 0Auth 2.0, the most common use case is the 
 [authorization code flow](/hub/kong-inc/openid-connect/how-to/authentication/authorization-code-flow/).
 
-## Supported credentials, grants, and tested IdPs
-
-The plugin supports several types of credentials and grants:
-
-- Signed [JWT][jwt] access tokens ([JWS][jws])
-- Opaque access tokens
-- Refresh tokens
-- Authorization code with client secret or PKCE
-- Username and password
-- Client credentials
-- Session cookies
-
-The plugin has been tested with several OpenID Connect providers:
-
-- [Auth0][auth0] ([Kong Integration Guide](/hub/kong-inc/openid-connect/how-to/third-party/auth0/))
-- [Amazon AWS Cognito][cognito] ([Kong Integration Guide](/hub/kong-inc/openid-connect/how-to/third-party/cognito/))
-- [Connect2id][connect2id]
-- [Curity][curity] ([Kong Integration Guide](/hub/kong-inc/openid-connect/how-to/third-party/curity/))
-- [Dex][dex]
-- [Gluu][gluu]
-- [Google][google] ([Kong Integration Guide](/hub/kong-inc/openid-connect/how-to/third-party/google/))
-- [IdentityServer][identityserver]
-- [Keycloak][keycloak]
-- [Microsoft Azure Active Directory][azure] ([Kong Integration Guide](/hub/kong-inc/openid-connect/how-to/third-party/azure-ad/))
-- [Microsoft Active Directory Federation Services][adfs]
-- [Microsoft Live Connect][liveconnect]
-- [Okta][okta] ([Kong Integration Guide](/hub/kong-inc/openid-connect/how-to/third-party/okta/))
-- [OneLogin][onelogin]
-- [OpenAM][openam]
-- [PayPal][paypal]
-- [PingFederate][pingfederate]
-- [Salesforce][salesforce]
-- [WSO2][wso2]
-- [Yahoo!][yahoo]
-
-As long as your provider supports OpenID Connect standards, the plugin should
-work, even if it is not specifically tested against it. Let Kong know if you
-want your provider to be tested and added to the list.
-
-[curity]: https://curity.io/resources/learn/openid-connect-overview/
-[connect]: http://openid.net/specs/openid-connect-core-1_0.html
-[oauth2]: https://tools.ietf.org/html/rfc6749
-[jwt]: https://tools.ietf.org/html/rfc7519
-[jws]: https://tools.ietf.org/html/rfc7515
-[auth0]: https://auth0.com/docs/protocols/openid-connect-protocol
-[cognito]: https://aws.amazon.com/cognito/
-[connect2id]: https://connect2id.com/products/server
-[curity]: https://curity.io/resources/learn/openid-connect-overview/
-[dex]: https://dexidp.io/docs/openid-connect/
-[gluu]: https://gluu.org/docs/ce/api-guide/openid-connect-api/
-[google]: https://developers.google.com/identity/protocols/oauth2/openid-connect
-[identityserver]: https://duendesoftware.com/
-[keycloak]: http://www.keycloak.org/documentation.html
-[azure]: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc
-[adfs]: https://docs.microsoft.com/en-us/windows-server/identity/ad-fs/development/ad-fs-openid-connect-oauth-concepts
-[liveconnect]: https://docs.microsoft.com/en-us/advertising/guides/authentication-oauth-live-connect
-[okta]: https://developer.okta.com/docs/api/resources/oidc.html
-[onelogin]: https://developers.onelogin.com/openid-connect
-[openam]: https://backstage.forgerock.com/docs/openam/13.5/admin-guide/#chap-openid-connect
-[paypal]: https://developer.paypal.com/docs/log-in-with-paypal/integrate/
-[pingfederate]: https://docs.pingidentity.com/r/en-us/pingfederate-112/pf_pingfederate_landing_page
-[salesforce]: https://help.salesforce.com/articleView?id=sf.sso_provider_openid_connect.htm&type=5
-[wso2]: https://is.docs.wso2.com/en/latest/guides/identity-federation/configure-oauth2-openid-connect/
-[yahoo]: https://developer.yahoo.com/oauth2/guide/openid_connect/
-
-Once applied, any user with a valid credential can access the service.
-
-## Important configuration parameters
-
-This plugin includes many configuration parameters that allow finely grained customization.
-The following steps will help you get started setting up the plugin:
-
-1. Configure: `config.issuer`.
-
-    This parameter tells the plugin where to find discovery information, and it is
-    the only required parameter. You should set the value `realm` or `iss` on this
-    parameter if you don't have a discovery endpoint.
-
-    {:.note}
-    > **Note**: This does not have
-    to match the URL of the `iss` claim in the access tokens being validated. To set
-    URLs supported in the `iss` claim, use `config.issuers_allowed`.
-
-2. Decide what authentication grants to use with this plugin and configure
-    the `config.auth_methods` field accordingly.
-
-    In order to restrict the scope of potential attacks, the parameter should only 
-    contain the grants that you want to use. 
-
-3. In many cases, you also need to specify `config.client_id`, and if your identity provider
-    requires authentication, such as on a token endpoint, you will need to specify the client
-    authentication credentials too, for example `config.client_secret`.
-
-4. If you are using a public identity provider, such as Google, you should limit
-    the audience with `config.audience_required` to contain only your `config.client_id`.
-    You may also need to adjust `config.audience_claim` in case your identity provider
-    uses a non-standard claim (other than `aud` as specified in JWT standard). This is
-    important because some identity providers, such as Google, share public keys
-    with different clients.
-
-5. If you are using Kong in DB-less mode with a declarative configuration and 
-    session cookie authentication, you should set `config.session_secret`.
-    Leaving this parameter unset will result in every Nginx worker across your
-    nodes encrypting and signing the cookies with their own secrets.
-
-In summary, start with the following parameters:
-
-1. `config.issuer`
-2. `config.auth_methods`
-3. `config.client_id` (and in many cases the client authentication credentials)
-4. `config.audience_required` (if using a public identity provider)
-5. `config.session_secret` (if using Kong in DB-less mode)
-
 ## How-to guides and demos
 
 {:.important}
@@ -166,6 +57,9 @@ recommended that you **do not** run these examples with a production identity
 provider as there is a high chance of leaking information.
 > The examples also use the plain HTTP protocol, which you should
 **never** use in production. 
+
+We recommend reviewing the [important configuration parameters](/hub/kong-inc/openid-connect/primary-config-params/) 
+before implementing any flows or grants.
 
 ### Authentication flows and grants
 
@@ -253,6 +147,8 @@ Application registration in self-managed {{site.base_gateway}}:
 
 ### More information
 
+* [Supported credentials, grants, and tested IdPs](/hub/kong-inc/openid-connect/support/)
+* [Important parameters to get started with OIDC config](/hub/kong-inc/openid-connect/primary-config-params/)
 * [Configuration reference](/hub/kong-inc/openid-connect/configuration/)
 * [Basic configuration example](/hub/kong-inc/openid-connect/how-to/basic-example/)
 * [OpenID Connect plugin API reference](/hub/kong-inc/openid-connect/api/)
