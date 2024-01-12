@@ -71,21 +71,23 @@ components:
               mapping:
                 api_product: '#/components/schemas/RequestsApiProductFilter'
                 api_product_version: '#/components/schemas/RequestsApiProductVersionFilter'
-                route: '#/components/schemas/RequestsRouteFilter'
                 application: '#/components/schemas/RequestsApplicationFilter'
+                consumer: '#/components/schemas/RequestsConsumerFilter'
+                control_plane: '#/components/schemas/RequestsControlPlaneFilter'
+                gateway_service: '#/components/schemas/RequestsGatewayServiceFilter'
+                route: '#/components/schemas/RequestsRouteFilter'
                 status_code: '#/components/schemas/RequestsStatusCodeFilter'
                 status_code_grouped: '#/components/schemas/RequestsStatusCodeGroupedFilter'
-                gateway_service: '#/components/schemas/RequestsGatewayServiceFilter'
-                control_plane: '#/components/schemas/RequestsControlPlaneFilter'
             oneOf:
               - $ref: '#/components/schemas/RequestsApiProductFilter'
               - $ref: '#/components/schemas/RequestsApiProductVersionFilter'
-              - $ref: '#/components/schemas/RequestsRouteFilter'
               - $ref: '#/components/schemas/RequestsApplicationFilter'
+              - $ref: '#/components/schemas/RequestsConsumerFilter'
+              - $ref: '#/components/schemas/RequestsControlPlaneFilter'
+              - $ref: '#/components/schemas/RequestsGatewayServiceFilter'
+              - $ref: '#/components/schemas/RequestsRouteFilter'
               - $ref: '#/components/schemas/RequestsStatusCodeFilter'
               - $ref: '#/components/schemas/RequestsStatusCodeGroupedFilter'
-              - $ref: '#/components/schemas/RequestsGatewayServiceFilter'
-              - $ref: '#/components/schemas/RequestsControlPlaneFilter'
           default: []
         time_range:
           description: >-
@@ -172,6 +174,31 @@ components:
         - dimension
         - type
         - values
+    RequestsConsumerFilter:
+      type: object
+      additionalProperties: false
+      properties:
+        dimension:
+          description: The dimension to filter.
+          type: string
+          enum:
+            - consumer
+        type:
+          $ref: '#/components/schemas/RequestsFilterType'
+        values:
+          description: >
+            The consumers to include in the results. Because consumer UUIDs are
+            only unique within a given control plane, the filter values must be
+            of the form `CONTROL_PLANE_UUID:CONSUMER_UUID`.
+          type: array
+          items:
+            type: string
+            pattern: >-
+              ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      required:
+        - dimension
+        - type
+        - values
     RequestsRouteFilter:
       type: object
       additionalProperties: false
@@ -185,7 +212,7 @@ components:
           $ref: '#/components/schemas/RequestsFilterType'
         values:
           description: >
-            The routes to include in the results.  Because route UUIDs are only
+            The routes to include in the results. Because route UUIDs are only
             unique within a given control plane, the filter values must be of
             the form `CONTROL_PLANE_UUID:ROUTE_UUID`.
           type: array
@@ -277,7 +304,7 @@ components:
           $ref: '#/components/schemas/RequestsFilterType'
         values:
           description: >
-            The gateway services to include in the results.  Because gateway
+            The gateway services to include in the results. Because gateway
             service UUIDs are only unique within a given control plane, the
             filter values must be of the form `CONTROL_PLANE_UUID:`.
           type: array
@@ -309,6 +336,7 @@ components:
       required:
         - dimension
         - type
+        - values
     RequestsRelativeTimeRange:
       type: object
       additionalProperties: false
@@ -456,7 +484,7 @@ components:
           consumer:
             type: string
             description: >-
-              Consumer ID associated with the request.In the format
+              Consumer ID associated with the request. In the format
               `control_plane_uuid:consumer_uuid`.
             nullable: true
           control_plane:
@@ -465,7 +493,6 @@ components:
           gateway_instance_id:
             type: string
             description: Gateway Instance ID associated with the request.
-            nullable: true
           gateway_service:
             type: string
             description: >-
@@ -603,7 +630,7 @@ components:
           route:
             type: string
             description: >-
-              Route ID associated with the request.In the format
+              Route ID associated with the request. In the format
               `control_plane_uuid:route_uuid`.
             nullable: true
           service_port:
