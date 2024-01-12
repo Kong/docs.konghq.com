@@ -19,10 +19,10 @@ module Jekyll
       end
 
       def url
-        if @release.latest?
-          "/#{@page.data['edition']}/latest/"
+        if page_exists?(version_page_url)
+          version_page_url
         else
-          "/#{@page.data['edition']}/#{@release}/"
+          root_url
         end
       end
 
@@ -38,6 +38,25 @@ module Jekyll
                    else
                      @release
                    end
+      end
+
+      def page_exists?(url)
+        !@page.site.pages.detect { |p| p.url == url }.nil?
+      end
+
+      def root_url
+        "/#{@page.data['edition']}/#{@release}/"
+      end
+
+      def version_page_url
+        version_url = @page
+                      .url
+                      .gsub(@page.data['release'], @release)
+                      .gsub('/latest/', "/#{@release}/")
+
+        version_url << "/#{@release}/" unless version_url.include?(@release.to_s)
+
+        version_url
       end
     end
 
@@ -57,7 +76,7 @@ module Jekyll
       end
 
       def hash
-        @hash ||= "#{@page.data['edition']}-#{@page.data['release']}".hash
+        @hash ||= "#{@page.data['edition']}-#{@page.data['release']}-#{@page.url}".hash
       end
     end
   end

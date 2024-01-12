@@ -31,16 +31,53 @@ RSpec.describe Jekyll::Drops::Option do
   end
 
   describe '#url' do
-    context 'when it is the latest page' do
-      it 'replaces the release with `latest`' do
-        expect(subject.url).to eq('/gateway/latest/')
+    context 'previous version' do
+      let(:page) { find_page_by_url('/gateway/latest/reference/configuration/') }
+      let(:release) do
+        Jekyll::GeneratorSingleSource::Product::Release.new(
+          'edition' => 'gateway', 'release' => '2.5.x'
+        ).to_liquid
+      end
+
+      context 'when the url exists' do
+        before do
+          site.pages = [double('url' => '/gateway/2.5.x/reference/configuration/'), page]
+        end
+
+        it 'it links to it' do
+          expect(subject.url).to eq('/gateway/2.5.x/reference/configuration/')
+        end
+      end
+
+      context 'when the url does not exist' do
+        it 'links to the root page' do
+          expect(subject.url).to eq('/gateway/2.5.x/')
+        end
       end
     end
 
-    context 'when it is not the latest page' do
-      let(:page) { find_page_by_url('/gateway/2.6.x/') }
+    context 'future versions' do
+      let!(:page) { find_page_by_url('/kubernetes-ingress-controller/2.2.x/introduction/') }
 
-      it { expect(subject.url).to eq('/gateway/2.6.x/') }
+      let(:release) do
+        Jekyll::GeneratorSingleSource::Product::Release.new(
+          'edition' => 'kubernetes-ingress-controller', 'release' => '2.7.x', 'latest' => true
+        ).to_liquid
+      end
+
+      context 'when the url exists' do
+        it 'it links to it' do
+          expect(subject.url).to eq('/kubernetes-ingress-controller/2.7.x/introduction/')
+        end
+      end
+
+      context 'when the url does not exist' do
+        before { site.pages = [] }
+
+        it 'links to the root page' do
+          expect(subject.url).to eq('/kubernetes-ingress-controller/2.7.x/')
+        end
+      end
     end
   end
 
