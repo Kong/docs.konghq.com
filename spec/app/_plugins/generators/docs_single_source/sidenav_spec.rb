@@ -24,7 +24,7 @@ RSpec.describe DocsSingleSource::Sidenav do
           .to receive(:new)
           .with(
             page.data['nav_items'],
-            { 'docs_url' => 'mesh', 'version' => kind_of(Jekyll::GeneratorSingleSource::Liquid::Drops::Release) }
+            { 'docs_url' => 'mesh', 'version' => '2.0.x' }
           )
 
         subject.generate
