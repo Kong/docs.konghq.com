@@ -12,11 +12,7 @@ module Jekyll
         return unless @item['url']
 
         @url ||= if @item['absolute_url']
-                   if @item['url'].end_with?('/')
-                     @item['url']
-                   else
-                     @item['url'].concat('/')
-                   end
+                   handle_index_page(add_trailing_slash(@item['url']))
                  else
                    standardize_url([@options['docs_url'], @options['version'], @item['url']].join('/'))
                  end
@@ -46,11 +42,42 @@ module Jekyll
 
       private
 
+      def handle_index_page(url)
+        return url if url.start_with?('http')
+        return url unless release&.label
+        return url if url != "/#{release.edition}/#{release.value}/"
+
+        # Product index pages that are unreleased
+        # have the actual release number in them,
+        # replace it with its label
+        url.gsub("/#{release.value}/", "/#{release.label}/")
+      end
+
+      def add_trailing_slash(url)
+        if url.end_with?('/')
+          url
+        else
+          url.concat('/')
+        end
+      end
+
       def standardize_url(url)
         # Make sure that we add the trailing / before any URL fragment
         parts = url.split('#')
         parts[0] = parts[0].prepend('/').concat('/').gsub(%r{/+}, '/')
         parts.join('#')
+      end
+
+      def release
+        @release ||= edition.releases.detect do |r|
+          r.label == @options['version'] ||
+            r.value == ::Utils::Version.to_release(@options['version'])
+        end
+      end
+
+      def edition
+        @edition ||= Jekyll::GeneratorSingleSource::Product::Edition
+                     .new(edition: @options['docs_url'], site: Jekyll.sites.first)
       end
     end
 
