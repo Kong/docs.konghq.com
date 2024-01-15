@@ -17,6 +17,8 @@ Make the following request:
 
 Replace `ROUTE_NAME|ID` with the `id` or `name` of the route that this plugin configuration will target.
 
+{% include_cached plugins/create-consumer/curl.html hub_example=hub_example %}
+
   {% endnavtab %}
   {% endif %}
 
@@ -29,6 +31,8 @@ Make the following request, substituting your own access token, region, control 
 {% include_cached plugins/hub-examples/konnect.html example=hub_example.konnect %}
 
 See the [Konnect API reference](/konnect/api/) to learn about region-specific URLs and personal access tokens.
+
+{% include_cached plugins/create-consumer/konnect.html hub_example=hub_example %}
 
   {% endnavtab %}
   {% endif %}
@@ -75,6 +79,9 @@ Add this section to your declarative configuration file:
 
 Replace `ROUTE_NAME|ID` with the `id` or `name` of the route that this plugin configuration
   will target.
+
+{% include_cached plugins/create-consumer/yaml.html hub_example=hub_example %}
+
 {% endnavtab %}
 {% endif %}
 {% endunless %}
