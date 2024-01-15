@@ -8,7 +8,6 @@ on:
 
 env:
   VITE_PORTAL_API_URL: ${{ vars.VITE_PORTAL_API_URL }}
-  TODAY: "$(date +'%Y-%m-%d')"
 
 jobs:
   pdf:
@@ -58,6 +57,10 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
 
       - run: npm ci
+
+      - name: Set date
+        run: |
+           echo "TODAY=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
 
       # Build the PDF
       - name: Generate PDF for Docs "${{ github.event.inputs.version }}"
