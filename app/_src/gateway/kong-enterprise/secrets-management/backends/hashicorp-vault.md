@@ -220,7 +220,7 @@ Parameter | Field name | Description
 | `vaults.config.approle_role_id` | **approle_role_id** | Defines the role id of the Approle in Hashicorp Vault. |
 | `vaults.config.approle_secret_id` | **approle_secret_id** | Defines the secret id of the Approle in Hashicorp Vault. |
 | `vaults.config.approle_secret_id_file` | **approle_secret_id_file** | Defines the path of the file whose content is the secret id value. |
-| `vaults.config.approle_respons_wrapping` | **approle_respons_wrapping** | Defines whether the secret_id configured in vault entity or secret id file is actually a response wrapping token. Default to `false`. When set to true, Kong will try to unwrap the response wrapping token to get the real secret id of the Approle. |
+| `vaults.config.approle_respons_wrapping` | **approle_respons_wrapping** | Defines whether the secret_id configured in vault entity or secret id file is actually a response wrapping token. Default to `false`. When set to true, Kong will try to unwrap the response wrapping token to get the real secret id of the Approle. Note that response wrapping token can be unwrapped only once, so make sure individual tokens are distributed for each Kong node in a typical cluster. |
 {% endif_version %}
 
 Common options:
