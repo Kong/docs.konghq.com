@@ -405,7 +405,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/cluster.key" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
-kong/kong-gateway:{{page.releases[page.version-index].ee-version}}-alpine
+kong/kong-gateway:{{page.releases_hash[page.version-index].ee-version}}-alpine
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -420,7 +420,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_CERT_KEY=/<path-to-file>/cluster.key" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
-kong:{{page.releases[page.version-index].ce-version}}-alpine
+kong:{{page.releases_hash[page.version-index].ce-version}}-alpine
 ```
 {% endnavtab %}
 {% endnavtabs %}
@@ -446,7 +446,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_CA_CERT=/<path-to-file>/ca-cert.pem" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
-kong/kong-gateway:{{page.releases[page.version-index].ee-version}}-alpine
+kong/kong-gateway:{{page.releases_hash[page.version-index].ee-version}}-alpine
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -464,7 +464,7 @@ docker run -d --name kong-dp --network=kong-net \
 -e "KONG_CLUSTER_CA_CERT=/<path-to-file>/ca-cert.pem" \
 --mount type=bind,source="$(pwd)"/cluster,target=<path-to-keys-and-certs>,readonly \
 -p 8000:8000 \
-kong:{{page.releases[page.version-index].ce-version}}-alpine
+kong:{{page.releases_hash[page.version-index].ce-version}}-alpine
 ```
 {% endnavtab %}
 {% endnavtabs %}

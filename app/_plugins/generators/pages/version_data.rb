@@ -25,7 +25,7 @@ module Jekyll
       def set_data # rubocop:disable Metrics/AbcSize
         @page.data['edition'] ||= edition.name
         @page.data['releases'] = edition.releases.map(&:to_liquid)
-        @page.data['kong_versions'] = edition.releases.map(&:to_h)
+        @page.data['releases_hash'] = edition.releases.map(&:to_h)
         @page.data['kong_latest'] = edition.latest_release&.to_h
         @page.data['has_version'] = version?
 

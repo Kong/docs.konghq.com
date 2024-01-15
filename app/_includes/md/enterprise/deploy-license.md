@@ -139,7 +139,7 @@ substituting your own license key.
      --network=kong-net \
      ...
      -e KONG_LICENSE_DATA \
-     kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+     kong/kong-gateway:{{page.releases_hash[page.version-index].ee-version}}-alpine
     ```
 {% endnavtab %}
 {% navtab Environment variable (file path) %}
@@ -173,7 +173,7 @@ docker run -d --name kong-gateway \
  ...
  -v "$(pwd)/kong-license/:/kong-license/" \
  -e "KONG_LICENSE_PATH=/kong-license/license.json" \
- kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+ kong/kong-gateway:{{page.releases_hash[page.version-index].ee-version}}-alpine
 ```
 
 {% endnavtab %}
