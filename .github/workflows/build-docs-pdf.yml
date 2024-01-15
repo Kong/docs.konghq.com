@@ -40,6 +40,8 @@ jobs:
         run: bundle config path ${{ github.workspace }}/vendor/bundle
       - name: Bundle Install
         run: bundle install --jobs 4 --retry 3
+      - name: Install foreman
+        run: gem install foreman
 
       # Configure Node to build assets
       - uses: actions/setup-node@v4
