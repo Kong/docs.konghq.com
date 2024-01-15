@@ -16,7 +16,7 @@ module SEO
       def process!(index)
         super(index)
 
-        @page.data['canonical_url'] ||= url
+        @page.data['canonical_url'] ||= Utils::CanonicalUrl.generate(url)
       end
 
       private
