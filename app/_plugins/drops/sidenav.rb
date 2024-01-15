@@ -12,7 +12,7 @@ module Jekyll
         return unless @item['url']
 
         @url ||= if @item['absolute_url']
-                   handle_index_page(add_trailing_slash(@item['url']))
+                   handle_index_page(::Utils::CanonicalUrl.generate(@item['url']))
                  else
                    standardize_url([@options['docs_url'], @options['version'], @item['url']].join('/'))
                  end
@@ -51,14 +51,6 @@ module Jekyll
         # have the actual release number in them,
         # replace it with its label
         url.gsub("/#{release.value}/", "/#{release.label}/")
-      end
-
-      def add_trailing_slash(url)
-        if url.end_with?('/')
-          url
-        else
-          url.concat('/')
-        end
       end
 
       def standardize_url(url)

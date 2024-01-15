@@ -9,7 +9,8 @@ module SEO
 
       def process!(index)
         super(index)
-        @page.data['canonical_url'] = @page.url
+
+        @page.data['canonical_url'] = Utils::CanonicalUrl.generate(@page.url)
       end
 
       def indexable?(_pages_index)
