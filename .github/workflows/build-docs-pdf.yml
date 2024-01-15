@@ -8,6 +8,7 @@ on:
 
 env:
   VITE_PORTAL_API_URL: ${{ vars.VITE_PORTAL_API_URL }}
+  TODAY: "$(date +'%Y-%m-%d')"
 
 jobs:
   pdf:
@@ -54,12 +55,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
 
-      # Build the Docs
-      - name: Build Docs
-        run: |
-          npm ci
-          exe/build
-
       # Build the PDF
       - name: Generate PDF for Docs "${{ github.event.inputs.version }}"
         env:
@@ -74,5 +69,5 @@ jobs:
       # Upload build PDFs
       - uses: actions/upload-artifact@v4
         with:
-          name: pdfs
+          name: "pdfs-${{ env.TODAY }}"
           path: pdf-generation/pdfs/*.pdf
