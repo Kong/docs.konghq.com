@@ -85,7 +85,7 @@ docker run --rm --network=kong-net \
  -e "KONG_PG_HOST=kong-database" \
  -e "KONG_PG_PASSWORD=kongpass" \
  -e "KONG_PASSWORD=test" \
-kong/kong-gateway:{{page.releases[page.version-index].ee-version}}-alpine kong migrations bootstrap
+kong/kong-gateway:{{page.releases_hash[page.version-index].ee-version}}-alpine kong migrations bootstrap
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -94,7 +94,7 @@ docker run --rm --network=kong-net \
  -e "KONG_DATABASE=postgres" \
  -e "KONG_PG_HOST=kong-database" \
  -e "KONG_PG_PASSWORD=kongpass" \
-kong:{{page.releases[page.version-index].ce-version}}-alpine kong migrations bootstrap
+kong:{{page.releases_hash[page.version-index].ce-version}}-alpine kong migrations bootstrap
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -161,7 +161,7 @@ docker run -d --name kong-gateway \
  -p 8445:8445 \
  -p 8003:8003 \
  -p 8004:8004 \
- kong/kong-gateway:{{page.releases[page.version-index].ee-version}}-alpine
+ kong/kong-gateway:{{page.releases_hash[page.version-index].ee-version}}-alpine
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -181,7 +181,7 @@ docker run -d --name kong-gateway \
  -p 8443:8443 \
  -p 127.0.0.1:8001:8001 \
  -p 127.0.0.1:8444:8444 \
- kong:{{page.releases[page.version-index].ce-version}}-alpine
+ kong:{{page.releases_hash[page.version-index].ce-version}}-alpine
  ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -349,7 +349,7 @@ docker run -d --name kong-dbless \
  -p 8445:8445 \
  -p 8003:8003 \
  -p 8004:8004 \
- kong/kong-gateway:{{page.releases[page.version-index].ee-version}}-alpine
+ kong/kong-gateway:{{page.releases_hash[page.version-index].ee-version}}-alpine
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
@@ -368,7 +368,7 @@ docker run -d --name kong-dbless \
  -p 8443:8443 \
  -p 127.0.0.1:8001:8001 \
  -p 127.0.0.1:8444:8444 \
- kong:{{page.releases[page.version-index].ce-version}}-alpine
+ kong:{{page.releases_hash[page.version-index].ce-version}}-alpine
  ```
 {% endnavtab %}
 {% endnavtabs_ee %}

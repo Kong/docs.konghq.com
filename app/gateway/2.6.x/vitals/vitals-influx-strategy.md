@@ -28,7 +28,7 @@ will work for the purposes of this guide.
 1. Pull the following Docker image.
 
     ```bash
-    docker pull kong/kong-gateway:{{page.releases[page.version-index].ee-version}}-alpine
+    docker pull kong/kong-gateway:{{page.releases_hash[page.version-index].ee-version}}-alpine
     ```
 
     {:.important}
@@ -42,7 +42,7 @@ will work for the purposes of this guide.
 1. Tag the image.
 
     ```bash
-    docker tag kong/kong-gateway:{{page.releases[page.version-index].ee-version}}-alpine kong-ee
+    docker tag kong/kong-gateway:{{page.releases_hash[page.version-index].ee-version}}-alpine kong-ee
     ```
 
 

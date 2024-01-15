@@ -83,7 +83,7 @@ RSpec.describe Jekyll::Versions do
           it 'adds version properties' do
             expect(page.data['has_version']).to eq(true)
             expect(page.data['edition']).to eq('mesh')
-            expect(page.data['kong_versions']).to eq(mesh_versions)
+            expect(page.data['releases_hash']).to eq(mesh_versions)
             expect(page.data['kong_latest']).to eq(latest_mesh)
             expect(page.data['nav_items']).to eq(site.data.fetch('docs_nav_mesh_16x'))
           end
@@ -102,7 +102,7 @@ RSpec.describe Jekyll::Versions do
           it 'adds version properties' do
             expect(page.data['has_version']).to eq(false)
             expect(page.data['edition']).to eq('mesh')
-            expect(page.data['kong_versions']).to eq(mesh_versions)
+            expect(page.data['releases_hash']).to eq(mesh_versions)
             expect(page.data['kong_latest']).to eq(latest_mesh)
             expect(page.data['nav_items']).to be_nil
           end
@@ -117,7 +117,7 @@ RSpec.describe Jekyll::Versions do
         it 'adds version properties' do
           expect(page.data['has_version']).to eq(false)
           expect(page.data['edition']).to eq('konnect')
-          expect(page.data['kong_versions']).to eq(['edition' => 'konnect'])
+          expect(page.data['releases_hash']).to eq(['edition' => 'konnect'])
           expect(page.data['nav_items']).to eq(site.data.fetch('docs_nav_konnect'))
         end
 
@@ -131,7 +131,7 @@ RSpec.describe Jekyll::Versions do
           it 'adds version properties' do
             expect(page.data['has_version']).to eq(true)
             expect(page.data['edition']).to eq('kubernetes-ingress-controller')
-            expect(page.data['kong_versions']).to eq(kubernetes_ingress_controller_versions)
+            expect(page.data['releases_hash']).to eq(kubernetes_ingress_controller_versions)
             expect(page.data['kong_latest']).to eq(latest_kic)
             expect(page.data['nav_items']).to eq(site.data.fetch('docs_nav_kic_22x'))
           end
@@ -145,7 +145,7 @@ RSpec.describe Jekyll::Versions do
           it 'adds version properties' do
             expect(page.data['has_version']).to eq(true)
             expect(page.data['edition']).to eq('kubernetes-ingress-controller')
-            expect(page.data['kong_versions']).to eq(kubernetes_ingress_controller_versions)
+            expect(page.data['releases_hash']).to eq(kubernetes_ingress_controller_versions)
             expect(page.data['kong_latest']).to eq(latest_kic)
             expect(page.data['nav_items']).to eq(site.data.fetch('docs_nav_kic_21x'))
           end
@@ -160,7 +160,7 @@ RSpec.describe Jekyll::Versions do
         it 'adds version properties' do
           expect(page.data['has_version']).to eq(true)
           expect(page.data['edition']).to eq('deck')
-          expect(page.data['kong_versions']).to eq(deck_versions)
+          expect(page.data['releases_hash']).to eq(deck_versions)
           expect(page.data['kong_latest']).to eq(latest_deck)
           expect(page.data['nav_items']).to eq(site.data['docs_nav_deck_pre-1.7'])
         end
@@ -178,7 +178,7 @@ RSpec.describe Jekyll::Versions do
           it 'adds version properties' do
             expect(page.data['has_version']).to eq(true)
             expect(page.data['edition']).to eq('gateway')
-            expect(page.data['kong_versions']).to eq(gateway_versions)
+            expect(page.data['releases_hash']).to eq(gateway_versions)
             expect(page.data['kong_latest']).to include(latest_gateway)
             expect(page.data['nav_items']).to eq(site.data.fetch('docs_nav_gateway_26x'))
           end
@@ -195,7 +195,7 @@ RSpec.describe Jekyll::Versions do
           it 'adds version properties' do
             expect(page.data['has_version']).to eq(false)
             expect(page.data['edition']).to eq('gateway')
-            expect(page.data['kong_versions']).to eq(gateway_versions)
+            expect(page.data['releases_hash']).to eq(gateway_versions)
             expect(page.data['kong_latest']).to include(latest_gateway)
             expect(page.data['nav_items']).to be_nil
           end
@@ -210,7 +210,7 @@ RSpec.describe Jekyll::Versions do
         it 'adds version properties' do
           expect(page.data['has_version']).to eq(false)
           expect(page.data['edition']).to eq('contributing')
-          expect(page.data['kong_versions']).to eq(['edition' => 'contributing'])
+          expect(page.data['releases_hash']).to eq(['edition' => 'contributing'])
           expect(page.data['kong_latest']).to be_nil
           expect(page.data['nav_items']).to eq(site.data['docs_nav_contributing'])
         end
@@ -223,7 +223,7 @@ RSpec.describe Jekyll::Versions do
           it do
             expect(page.data['has_version']).to eq(false)
             expect(page.data['edition']).to be_nil
-            expect(page.data['kong_versions']).to be_nil
+            expect(page.data['releases_hash']).to be_nil
             expect(page.data['kong_latest']).to be_nil
             expect(page.data['nav_items']).to be_nil
           end
@@ -244,7 +244,7 @@ RSpec.describe Jekyll::Versions do
           it 'adds version properties' do
             expect(page.data['has_version']).to eq(true)
             expect(page.data['edition']).to eq('deck')
-            expect(page.data['kong_versions']).to eq(deck_versions)
+            expect(page.data['releases_hash']).to eq(deck_versions)
             expect(page.data['kong_latest']).to eq(latest_deck)
           end
 
@@ -264,7 +264,7 @@ RSpec.describe Jekyll::Versions do
           it 'adds version properties' do
             expect(page.data['has_version']).to eq(true)
             expect(page.data['edition']).to eq('gateway')
-            expect(page.data['kong_versions']).to eq(gateway_versions)
+            expect(page.data['releases_hash']).to eq(gateway_versions)
             expect(page.data['kong_latest']).to include(latest_gateway)
           end
 
@@ -284,7 +284,7 @@ RSpec.describe Jekyll::Versions do
           it 'adds version properties' do
             expect(page.data['has_version']).to eq(true)
             expect(page.data['edition']).to eq('kubernetes-ingress-controller')
-            expect(page.data['kong_versions']).to eq(kubernetes_ingress_controller_versions)
+            expect(page.data['releases_hash']).to eq(kubernetes_ingress_controller_versions)
             expect(page.data['kong_latest']).to eq(latest_kic)
           end
 
@@ -304,7 +304,7 @@ RSpec.describe Jekyll::Versions do
           it 'adds version properties' do
             expect(page.data['has_version']).to eq(true)
             expect(page.data['edition']).to eq('mesh')
-            expect(page.data['kong_versions']).to eq(mesh_versions)
+            expect(page.data['releases_hash']).to eq(mesh_versions)
             expect(page.data['kong_latest']).to eq(latest_mesh)
           end
 

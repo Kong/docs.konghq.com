@@ -37,8 +37,8 @@ RSpec.describe Jekyll::Pages::VersionData do
         expect(page.data['releases'].map(&:value)).to match_array(['2.6.x', '2.7.x', '2.8.x', '3.0.x'])
       end
 
-      it 'sets kong_versions' do
-        expect(page.data['kong_versions']).to match_array(releases)
+      it 'sets releases_hash' do
+        expect(page.data['releases_hash']).to match_array(releases)
       end
 
       it 'sets kong_latest' do
