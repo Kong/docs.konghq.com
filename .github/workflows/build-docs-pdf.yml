@@ -57,6 +57,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
 
+      - run: npm ci
+
       # Build the PDF
       - name: Generate PDF for Docs "${{ github.event.inputs.version }}"
         env:
