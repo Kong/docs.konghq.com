@@ -370,7 +370,7 @@ was called multiple times in a request lifecycle.
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
 ## 3.4.3.3 
-**Release Date** 2024/01/12
+**Release Date** 2024/01/17
 
 ### Features
 #### Core
@@ -404,9 +404,9 @@ was called multiple times in a request lifecycle.
 * Fixed an issue where the role of the current workspace couldn't be created by the role `workspace-super-admin`'s admin.
 
 ### Dependencies
-* Bump `kong-redis-cluster` to 1.5.3
+* Bumped `kong-redis-cluster` to 1.5.3
 
-* Bump `lua-resty-healthcheck` to 1.6.4 to fix a bug where the health check
+* Bumped `lua-resty-healthcheck` to 1.6.4 to fix a bug where the health check
   module would not work correctly when multiple health check instances were not cleared.
 
 ## 3.4.3.2
