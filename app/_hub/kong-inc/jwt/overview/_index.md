@@ -104,7 +104,7 @@ jwt_secrets:
 You can provision a new HS256 JWT credential by issuing the following HTTP request:
 
 ```bash
-curl -X POST https://{us|eu}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/consumers/{CONSUMER}/jwt -H "Content-Type: application/x-www-form-urlencoded" \
+curl -X POST https://{us|eu}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/consumers/{CONSUMER_ID}/jwt -H "Content-Type: application/x-www-form-urlencoded" \
 ```
 
 Response:

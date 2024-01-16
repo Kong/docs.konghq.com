@@ -35,10 +35,10 @@ consumers:
 
 {% endnavtab %}
 {% navtab Konnect %}
-To create a Consumer, you can execute the following request:
+To create a consumer, you can execute the following request:
 
 ```bash
-curl -d "username={USER123}&custom_id={SOME_CUSTOM_ID}" https://{us|eu}.api.konghq.com/konnect-api/api/runtime_groups/{controlPlaneId}/consumers
+curl -d "username={USER123}&custom_id={SOME_CUSTOM_ID}" https://{us|eu}.api.konghq.com/konnect-api/api/runtime_groups/{controlPlaneId}/consumers/
 ```
 
 {% endnavtab %}
@@ -81,10 +81,10 @@ basicauth_credentials:
 
 {% endnavtab %}
 {% navtab Konnect %}
-You can provision new username/password credentials by making the following HTTP request:
+You can provision new username and password credentials by making the following HTTP request:
 
 ```bash
-curl -X POST https://{us|eu}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/consumers/{CONSUMER}/basic-auth \
+curl -X POST https://{us|eu}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/consumers/{CONSUMER_ID}/basic-auth \
   --data "username=Aladdin" \
   --data "password=OpenSesame"
 ```

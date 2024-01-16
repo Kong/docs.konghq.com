@@ -134,7 +134,7 @@ keyauth_credentials:
 Provision new credentials by making the following HTTP request:
 
 ```bash
-curl -X POST https://{us|eu}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/consumers/{CONSUMER}/key-auth
+curl -X POST https://{us|eu}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/consumers/{CONSUMER_ID}/key-auth
 ```
 
 {% endnavtab %}

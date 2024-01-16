@@ -89,11 +89,11 @@ hmacauth_credentials:
 ```
 {% endnavtab %}
 {% navtab Konnect %}
-You can provision new username/password credentials by making the following
+You can provision new username and password credentials by making the following
 HTTP request:
 
 ```bash
-curl -X POST https://{us|eu}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/consumers/{CONSUMER}/hmac-auth \
+curl -X POST https://{us|eu}.api.konghq.com/v2/control-planes/{controlPlaneId}/core-entities/consumers/{CONSUMER_ID}/hmac-auth \
   --data "username=bob" \
   --data "secret=secret456"
 ```
