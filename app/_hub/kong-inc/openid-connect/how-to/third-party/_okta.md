@@ -1,20 +1,37 @@
 ---
 title: OpenID Connect with Okta
-badge: enterprise
+nav_title: OpenID Connect with Okta
 ---
 
 This guide covers an example OpenID Connect plugin configuration to authenticate browser clients using an Okta identity provider.
 
-{% if_version lte:3.4.x %}
 For information about configuring OIDC using Okta as an Identity provider
 in conjunction with the Application Registration plugin, see
-[Set Up External Portal Application Authentication with Okta and OIDC](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/okta-config).
-{% endif_version %}
+[Set Up External Portal Application Authentication with Okta and OIDC](/gateway/latest/kong-enterprise/dev-portal/authentication/okta-config).
+
 ## Authorization code flow with the OpenID Connect plugin and Okta
 
 ### Sign-in flow
 
-![OIDC sign-in flow](/assets/images/products/plugins/openid-connect/OIDCsignin.png)
+<!--vale off-->
+{% mermaid %}
+sequenceDiagram
+    autonumber
+    participant client as Client <br>(e.g. mobile app)
+    participant kong as Kong
+    participant okta as Okta
+    activate client
+    activate kong
+    client->>kong: Client initiates sign-in
+    kong->>client: Kong sends auth cookie<br>and redirects to Okta
+    deactivate kong
+    activate okta
+    client->>okta: Client signs in to Okta
+    okta->>client: Okta sends auth code<br>and redirects to Kong
+    deactivate okta
+    deactivate client
+{% endmermaid %}
+<!--vale on-->
 
 1. If the client does not have a session cookie, it initiates sign in with Kong.
 2. Kong responds to the client with an **authorization cookie** and a location to redirect (with Okta as the header).
@@ -25,7 +42,32 @@ At this point, the client has successfully signed in and has an **authorization 
 
 ### Access flow
 
-![OIDC access flow](/assets/images/products/plugins/openid-connect/OIDCaccess.png)
+<!--vale off-->
+{% mermaid %}
+sequenceDiagram
+    autonumber 5
+    participant client as Client <br>(e.g. mobile app)
+    participant kong as Kong
+    participant okta as Okta
+    participant service as Upstream service
+    activate client
+    activate kong
+    client->>kong: Client forwards auth code from Okta<br>and auth cookie from Kong
+    deactivate client
+    activate okta
+    kong->>okta: Kong verifies auth code with Okta
+    okta->>kong: Okta sends access token and ID token
+    deactivate okta
+    activate service
+    kong->>service: Kong sends<br> client request<br>with access token
+    service->>kong: Service sends<br>response to Kong
+    deactivate service
+    activate client
+    kong->>client: Kong sends service response<br>with a session cookie
+    deactivate client
+    deactivate kong
+{% endmermaid %}
+<!--vale on-->
 
 1. The client redirects to Kong and automatically sends the **authorization code** (from Okta) and an **authorization cookie** (from Kong).
 2. Kong verifies the **authorization code** with Okta.
@@ -38,7 +80,27 @@ At this point, the client now has a **session** with Kong that allows mediated a
 
 ### Session flow
 
-![OIDC session flow](/assets/images/products/plugins/openid-connect/OIDCsession.png)
+<!--vale off-->
+{% mermaid %}
+sequenceDiagram
+    autonumber 11
+    participant client as Client <br>(e.g. mobile app)
+    participant kong as Kong
+    participant service as Upstream service
+    activate client
+    activate kong
+    client->>kong: Client sends request<br>with session cookie (from Kong)
+    deactivate client
+    activate service
+    kong->>service: Kong sends access token<br>(from Okta)
+    service->>kong: Service sends response to Kong
+    deactivate service
+    activate client
+    kong->>client: Kong sends service response to client
+    deactivate kong
+    deactivate client
+{% endmermaid %}
+<!--vale on-->
 
 1. The client sends requests with a **session cookie**.
 2. Kong matches the session cookie to the associate **access token** and proxies the request.
@@ -56,15 +118,15 @@ The steps in the guide offer an example of configuring OIDC with Okta on a speci
 * A [developer account](https://developer.okta.com) with Okta.
 * A running version of {{site.base_gateway}}.
 * Access to the [OpenID Connect plugin](/hub/kong-inc/openid-connect/).
-* A [service](/gateway/{{page.kong_version}}/admin-api/#service-object)
-and [route](/gateway/{{page.kong_version}}/admin-api/#route-object) in
+* A [service](/gateway/latest/admin-api/#service-object)
+and [route](/gateway/latest/admin-api/#route-object) in
 {{site.base_gateway}} whose access you want to protect with Okta. For this
 guide, assume the route is in the default workspace.
 * If using {{site.base_gateway}} locally, you need Internet access.
 * Any network access control to your Kong node must allow traffic to and from Okta, the upstream service, and the client.
 
     For security reasons, make sure all requests are sent over HTTPS, and make the Kong proxy available
-     with a fully-qualified domain name and [properly configured certificate](/gateway/{{page.kong_version}}/admin-api/#certificate-object).
+     with a fully-qualified domain name and [properly configured certificate](/gateway/latest/admin-api/#certificate-object).
      Authorization tokens should also be stored securely.
 
 ### Configure Okta
@@ -80,7 +142,7 @@ guide, assume the route is in the default workspace.
     1. Create a unique name for your application.
     1. Under **Grant Type**, select **Authorization Code**.
     1. In both the **Sign-in redirect URIs** and
-    **Sign-out redirect URIs** fields, enter a location handled by your Route
+    **Sign-out redirect URIs** fields, enter a location handled by your route
     in {{site.base_gateway}}.
 
         For this example, you can enter `https://kong.com/api`.
@@ -168,7 +230,7 @@ following, at minimum:
     The `redirect_uri` should be the URI you specified earlier when configuring
      your app. This is the `redirect_uri` of the client defined with `client_id` (also used as a redirection URI for the authorization code flow).
 
-1. Click **Create** to save and apply the plugin to the Route.
+1. Click **Create** to save and apply the plugin to the route.
 
 For a list of all available configuration parameters and what they do, see the
 [OIDC plugin reference](/hub/kong-inc/openid-connect).
@@ -179,7 +241,7 @@ For a list of all available configuration parameters and what they do, see the
 Configure the OpenID Connect plugin using the following sample values:
 
 ```bash
-curl -i -X POST https://KONG_ADMIN_URL/routes/ROUTE_ID/plugins \
+curl -i -X POST https://localhost:8001/routes/ROUTE_ID/plugins \
   --data name="openid-connect"                                                                             \
   --data config.issuer="https://YOUR_OKTA_DOMAIN/oauth2/YOUR_AUTH_SERVER/.well-known/openid-configuration" \
   --data config.client_id="YOUR_CLIENT_ID"                                                                 \
@@ -209,11 +271,10 @@ For a list of all available configuration parameters and what they do, see the
 {% endnavtab %}
 {% endnavtabs %}
 
-
 Visiting a URL matched by that route in a browser will now redirect to Okta's authentication
 site and return you to the redirect URI after authenticating.
 
-### Test Your Configuration
+### Test your configuration
 
 Test the following conditions to ensure a successful integration of the OIDC plugin with Okta:
 
@@ -226,17 +287,17 @@ Test the following conditions to ensure a successful integration of the OIDC plu
 * Previously authorized access is no longer allowed after cookie terminates
     * Set a very short TTL on the session to ensure the tester doesn’t need to wait long to get locked out
 
-### Access Restrictions
+### Access restrictions
 
-The example configuration allows users to authenticate and access the Route even though
+The example configuration allows users to authenticate and access the route even though
 no Consumer was created for them. Any user with a valid account in the directory
-will have access to the Route. The OIDC plugin allows this as the simplest authentication option,
+will have access to the route. The OIDC plugin allows this as the simplest authentication option,
 but you may wish to restrict access further. There are several options for this:
 
 - Consumer Mapping
 - Pseudo-Consumer Mapping
 
-#### Consumer Mapping
+#### Consumer mapping
 
 If you need to interact with other Kong plugins using consumer information, you
 can add configuration that maps account data received from the identity provider to a Kong consumer.
@@ -244,13 +305,13 @@ For this example, the user's Okta's AD account GUID is mapped to a Consumer by s
 as the `custom_id` on their consumer:
 
 ```bash
-curl -i -X POST http://admin.kong.example/consumers/ \
+curl -i -X POST http://localhost:8001/consumers/ \
   --data username="Yoda" \
   --data custom_id="e5634b31-d67f-4661-a6fb-b6cb77849bcf"
 ```
 
 ```bash
-curl -i -X PATCH http://admin.kong.example/plugins/OIDC_PLUGIN_ID \
+curl -i -X PATCH http://localhost:8001/plugins/OIDC_PLUGIN_ID \
   --data config.consumer_by="custom_id" \
   --data config.consumer_claim="sub"
 ```
@@ -259,7 +320,7 @@ Now, if a user logs into an Okta account with the GUID `e5634b31-d67f-4661-a6fb-
 
 This also requires that clients login using an account mapped to some Consumer, which might
 not be desirable (e.g., you apply OpenID Connect to a service, but only use plugins
-requiring a Consumer on some Routes). To deal with this, you can set the `anonymous` parameter
+requiring a Consumer on some routes). To deal with this, you can set the `anonymous` parameter
 in your OIDC plugin configuration to the ID of a generic Consumer, which will
 then be used for all authenticated users that cannot be mapped to some other Consumer.
 You can alternately set `consumer_optional` to `true` to allow similar logins

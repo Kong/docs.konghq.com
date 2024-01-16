@@ -1,9 +1,9 @@
 ---
 title: OpenID Connect with Amazon Cognito
-badge: enterprise
+nav_title: OpenID Connect with Amazon Cognito
 ---
 
-## Amazon Cognito Configuration
+## Amazon Cognito configuration
 
 Amazon Cognito has two significant components: Identity Pools and User Pools. Identity Pools are the original functionality deployed in 2014; they mainly use proprietary AWS interfaces and libraries to accomplish the task of authenticating users. Furthermore, Identity Pools have no concept of claims (standard or custom) stored in the system; it is entirely a federated identity construct. User Pools are the more recent addition to the Cognito feature set; User Pools are a multi-tenant LDAP-like user repository combined with an OAuth2 and an OpenID Connect interface.
 
@@ -11,23 +11,11 @@ In this configuration, we use User Pools.
 
 1. Log in to AWS Console.
 1. Navigate to the Amazon Cognito Service.
-
-
 1. Click on **Manage User Pools**.
-
-
 1. Click the **Create a user pool** button on the right-hand side.
-
-
 1. Enter a pool name; we use “test-pool” for this example.
-
-
 1. Click **Step Through Settings**.
-
-
 1. Select **Email address or phone number**, and under that, select **Allow email addresses**. Select the following standard attributes as required: email, family name, given name.
-
-
 1. Click **Next step**.
 1. Accept the defaults for **Password settings**, then click **Next step**.
 1. Accept the defaults for **MFA and verifications**, then click **Next step**.
@@ -36,47 +24,27 @@ In this configuration, we use User Pools.
 1. Select **No** for **Do you want to remember your user’s devices**, then click **Next step**.
 1. We can create an application definition later. Keep things simple for now and click **Next step**.
 1. We don’t have any need for Triggers or customized Sign Up/Sign In behavior for this example. Scroll down and click **Save Changes**.
-
-
 1. Click **Create pool**. Wait a moment for the success message.
 1. Make a note of the **Pool ID**. You will need this when configuring the application later.
 
-## Application Definition
+## Application definition
 
 You need to add an OAuth2 application definition to the User Pool we just created.
 
 1. Go to the App clients screen in the AWS Cognito management screen for the User Pool we just created.
-
-
-1. Click “Add an app client”.
-
-
-1. Enter an App client name. This demo is using “kong-api”
-
-
-1. Enter a Refresh token expiration (in days). We will use the default of 30 days.
-1. Do not select “Generate client secret”. This example will use a public client.
-
-
+1. Click **Add an app client**.
+1. Enter an App client name. This demo uses `kong-api`.
+1. Enter a **Refresh token expiration** (in days). We will use the default of 30 days.
+1. Do not select **Generate client secret**. This example will use a public client.
 1. Do not select any other checkboxes.
-
-
-1. Click the “Set attribute read and write permissions” button.
-
-
-
-1. Let’s make this simple and only give the user read and write access to the required attributes. So, uncheck everything except the email, given name, and family name fields.
-
-
-1. Click “Create app client”
-
-
-1. Click “Show Details”.
-
-
+1. Click the **Set attribute read and write permissions** button.
+1. Let’s make this simple and only give the user read and write access to the required attributes. 
+So, uncheck everything except the email, given name, and family name fields.
+1. Click **Create app client**.
+1. Click **Show Details**.
 1. Take note of the App client ID. We will need that later.
-1. Go to the App integration -> App client settings screen.
-1. Click the “Cognito User Pool” checkbox under Enabled Identity Providers.
+1. Go to the **App integration** -> **App client** settings screen.
+1. Click the **Cognito User Pool** checkbox under Enabled Identity Providers.
 1. Add the following to the Callback URLs field:
 
     ```
@@ -86,19 +54,13 @@ You need to add an OAuth2 application definition to the User Pool we just create
     Note that AWS Cognito doesn’t support HTTP callback URLs. This field should
     include the API and Dev Portal URLs that you want to secure using AWS Cognito.
 
-
-1. Click the “Authorization code grant” checkbox under Allowed OAuth Flows.
-
-
-1. Click the checkboxes next to email, OpenID, aws.cognito.signin.user.admin, and profile.
-1. Click the “Save changes” button.
-1. Click on the domain name tab.
-1. Add a sub-domain name.
-1. Click the Check Availability button.
-1. As long as it reports “This domain is available”, the name you have chosen will work.
-
-
-1. Click the “Save changes” button.
+1. Click the **Authorization code grant** checkbox under Allowed OAuth Flows.
+1. Click the checkboxes next to `email`, `OpenID`, `aws.cognito.signin.user.admin`, and `profile`.
+1. Click the **Save changes** button.
+1. Click on the domain name tab and add a subdomain name.
+1. Click the **Check Availability** button. 
+   If it reports `This domain is available`, the name you have chosen will work.
+1. Click the **Save changes** button.
 
 Now that you have created an Amazon Cognito User Pool and Application Definition, we can configure the OpenID Connect plugin in Kong. We can then test integration between Dev Portal and Amazon Cognito.
 
@@ -115,9 +77,9 @@ https://cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_ie577myCv/.well-
 
 The OAuth + OIDC debugger is a handy utility that you may use to test the authorization flow before configurations in Kong.
 
-## OIDC Plugin Configuration
+## OIDC plugin configuration
 
-Identify the Route or Service to be secured. In our example, we created a new route called /cognito to which we added the OpenID Connect plug-in.  
+Identify the route or service to be secured. In our example, we created a new route called /cognito to which we added the OpenID Connect plug-in.  
 The number of options in the plug-in can seem overwhelming but the configuration is rather simple. All you need to do is configure:
 * `issuer` - You can use the OIDC discovery endpoint here, e.g.
     ```
@@ -127,19 +89,20 @@ The number of options in the plug-in can seem overwhelming but the configuration
 * `config.client_secret` - This is the client secret noted when the application was created. In this demo we are leaving this blank as we didn’t create a client secret.
 * `config.auth_methods` - If this is left blank, all flows will be enabled. If only specific flows are in scope, configure the appropriate flows accordingly.  
 
-## Validating the Flows
+## Validating the flows
 
 You can test the route by accessing URL “https://kong-ee:8443/cognito/anything”, and you should redirect to the Amazon Cognito login page. You need to click “Sign up” link to create a user first using your email address. The application sends a verification code to your email. Once you enter the verification code, Amazon Cognito acknowledges the account.
 
 You can verify the confirmed user from the Cognito page under “General settings” -> “Users and groups”.
 
-## Dev Portal Integration
+{% if_version lte:3.4.x %}
+## Dev Portal integration
 
 {% include_cached /md/admin-listen.md desc='long' kong_version=page.kong_version %}
 
 Since AWS Cognito only supports the HTTPS protocol, when you start {{site.base_gateway}}, ensure that HTTPS protocol for Dev Portal is enabled. For example:
 
-```
+```sh
 docker run -d --name kong-ee --link kong-ee-database:kong-ee-database \
   -e "KONG_DATABASE=postgres" \
   -e "KONG_PG_HOST=kong-ee-database" \
@@ -164,7 +127,7 @@ Under Dev Portal settings, select “Open ID Connect” as the authentication pl
 
 Copy and paste the following Auth Config JSON object:
 
-```
+```json
 {
     "leeway": 100,
     "consumer_by": [
@@ -213,3 +176,5 @@ Please also note that the developer signed up from Dev Portal doesn’t get crea
 * The developer signs up from Dev Portal itself, so a Kong Admin needs to approve the developer access.
 * The developer signs up from Amazon Cognito. Please make sure that you use the _same email address_ for both sign-ups.
 Now you should be able to login to Dev Portal using the Amazon Cognito user and credential.
+
+{% endif_version %}

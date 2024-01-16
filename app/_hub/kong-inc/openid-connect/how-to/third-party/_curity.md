@@ -1,9 +1,9 @@
 ---
 title: OpenID Connect with Curity
-badge: enterprise
+nav_title: OpenID Connect with Curity
 ---
 
-## Phantom Token Integration
+## Phantom token integration
 
 This guide describes how to integrate {{site.ee_product_name}} and the Curity Identity Server using the Kong [OpenID Connect](/hub/kong-inc/openid-connect/) plugin.
 
@@ -113,11 +113,12 @@ Kong introspects the opaque token and receives the JWT in the response. The JWT 
 
 ----
 {% if_version lte:3.4.x %}
+
 ## Kong Dev Portal Authentication
 
 The [Kong Dev Portal][kong-dev-portal-doc] is a part of {{site.ee_product_name}}. The portal enables developers to access and manage configured services and documentation to provide a streamlined onboarding process. The Kong Dev Portal supports various options for user authentication and access control. This guide outlines how to configure the Kong OpenID Connect Plugin to leverage the Curity Identity Server as a third-party Identity Provider for user Authentication to the Dev Portal.
 
-### Curity Setup
+### Curity setup
 
 The Kong Dev Portal needs a client configured in the Curity Identity Server. The [Curity Getting Started Guide][curity-getting-started] outlines details on how to configure a client. The configuration details below should be sufficient:
 
@@ -134,9 +135,9 @@ More information is available in the [Code Flow][curity-code-flow-tutorial] tuto
 
 ### Configure OpenID Connect in the Kong Dev Portal
 
-Enabling the Kong Dev Portal is outlined in the [Kong Dev Portal Documentation][kong-dev-portal-doc] and not covered in this article. The documentation also covers how to configure the [OpenID Connect Plugin][kong-dev-portal-doc-oidc].
+Enabling the Kong Dev Portal is outlined in the [Kong Dev Portal Documentation][kong-dev-portal-doc] and not covered in this article. The documentation also covers how to configure the [OpenID Connect plugin][kong-dev-portal-doc-oidc].
 
-#### Example Configuration Object
+#### Example configuration object
 
 Below is an example configuration object that is used to configure the OIDC plugin for the Dev Portal.
 
@@ -161,7 +162,7 @@ Below is an example configuration object that is used to configure the OIDC plug
 }
 ```
 
-![Enable OIDC in Kong Dev Portal](/assets/images/products/gateway/dev-portal/kong-dev-portal.png)
+![Enable OIDC in Kong Dev Portal](/assets/images/docs/dev-portal/curity/kong-dev-portal.png)
 
 ### Curity Authentication Action
 
@@ -175,15 +176,15 @@ This Action is straightforward to configure. An HTTP Client is needed to communi
 
 The Action also configures the URL to the registration endpoint of the Kong Dev Portal. Here the scheme needs to match what's configured in the HTTP Client used.
 
-![Kong Dev Portal User Provisioner](/assets/images/products/gateway/dev-portal/kong-dev-portal-action.png)
+![Kong Dev Portal User Provisioner](/assets/images/docs/dev-portal/curity/kong-dev-portal-action.png)
 
 When the action is created, it can be assigned to the Authenticators used in the client configured in the Curity Identity Server as described above.
 
-#### Action to Resolve Additional User Information
+#### Action to resolve additional user information
 
 Depending on the Authenticator used, an additional Action may be needed to resolve additional information. By default, The Kong Dev Portal provisioning requires `Full Name` and `email`. If the Authenticator does not provide this, it's possible to use an Action to resolve the data. This could be as simple as a **Data Source** action configured to use a Data Source that provides the information.
 
-![Chain Actions](/assets/images/products/gateway/dev-portal/authentication-and-actions.png)
+![Chain Actions](/assets/images/docs/dev-portal/curity/authentication-and-actions.png)
 
 By default, the Kong Dev Portal Provisioner Action works on the default account table schema of the Curity Identity Server database. This provides `email` as a column, but the `Full Name` is not readily available. The Action operates on the `attributes` column and parse the information to pass the user's Full Name to the Kong Dev Portal.
 
@@ -202,12 +203,14 @@ select * from "accounts" where "username"= :subject
 ### Conclusion
 
 With relatively simple configurations in both the Curity Identity Server and the Kong Dev Portal, it's possible to leverage Curity as the Identity Provider for the Kong Dev Portal. This provides a very seamless flow for user authentication to the Kong Dev Portal. With the added capability of an Authentication Action, it is possible to automatically provision the user to the Kong Dev Portal for an even more streamlined experience.
+
 {% endif_version %}
-[kong-add-service]: /gateway/{{page.kong_version}}/admin-api/#service-object
+
+[kong-add-service]: /gateway/latest/admin-api/#service-object
 [curity-phantom-token-introspection]: https://curity.io/resources/learn/introspect-with-phantom-token
 [curity-getting-started]: https://curity.io/resources/getting-started
 [curity-phantom-token-pattern]: https://curity.io/resources/learn/phantom-token-pattern
 [curity-code-flow-tutorial]: https://curity.io/resources/learn/code-flow
 [curity-kong-dev-portal-user-provisioner]: https://curity.io/resources/learn/provision-kong-dev-portal-user
-[kong-dev-portal-doc]: /gateway/{{page.kong_version}}/kong-enterprise/dev-portal
-[kong-dev-portal-doc-oidc]: /gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/oidc
+[kong-dev-portal-doc]: /gateway/latest/kong-enterprise/dev-portal
+[kong-dev-portal-doc-oidc]: /gateway/latest/kong-enterprise/dev-portal/authentication/oidc

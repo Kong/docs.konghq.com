@@ -1,27 +1,28 @@
 ---
 title: OpenID Connect with Auth0
-badge: enterprise
+nav_title: OpenID Connect with Auth0
 ---
 
 This guide covers an example OpenID Connect plugin configuration to authenticate headless service consumers using Auth0's identity provider.
 
-## Auth0 IDP Configuration
+## Auth0 IdP configuration
 
 This configuration will use a [client credentials grant][client-credentials-grant] as it is non-interactive, and because we expect clients to authenticate on behalf of themselves, not an end-user. To do so, you will need to [create an Auth0 API][create-auth0-api] and a [non-interactive client][non-interactive-client].
 
-### API Configuration
+### API configuration
 
 When creating your API, you will need to specify an Identifier. Using the URL that your consumer makes requests to is generally appropriate, so this will typically be the hostname/path combination configured as an API in Kong.
 
 After creating your API, you will also need to add the `openid` scope at `https://manage.auth0.com/#/apis/<API ID>/scopes`.
 
-### Client Configuration
+### Client configuration
 
 You will need to authorize your client to access your API. Auth0 will prompt you to do so after client creation if you select the API you created previously from the client's Quick Start menu. After toggling the client to Authorized, expand its authorization settings and enable the `openid` scope.
 
-## Kong Configuration
+## Kong configuration
 
-If you have not done so already, [create a **Service**][add-service] to protect. The `url` configuration should match the Identifier you used when configuring Auth0.
+If you have not done so already, [create a **service**][add-service] to apply AuthO authentication to. 
+The `url` configuration should match the Identifier you used when configuring Auth0.
 
 Add an OpenID plugin configuration using the parameters in the example below using an HTTP client or Kong Manager. Auth0's token endpoint [requires passing the API identifier in the `audience` parameter][audience-required], which must be added as a custom argument:
 
@@ -45,5 +46,5 @@ For basic authentication, use your client ID as the username and your client sec
 [client-credentials-grant]: https://auth0.com/docs/api-auth/tutorials/client-credentials
 [create-auth0-api]: https://auth0.com/docs/apis#how-to-configure-an-api-in-auth0
 [non-interactive-client]: https://auth0.com/docs/clients
-[add-service]: /gateway/{{page.kong_version}}/admin-api/#service-object
+[add-service]: /gateway/latest/admin-api/#service-object
 [audience-required]: https://auth0.com/docs/api/authentication#client-credentials

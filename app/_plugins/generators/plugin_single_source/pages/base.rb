@@ -3,7 +3,7 @@
 module PluginSingleSource
   module Pages
     class Base
-      attr_reader :site, :release
+      attr_reader :site, :release, :file
       attr_accessor :sidenav
 
       def initialize(release:, file:, source_path:)
