@@ -2,6 +2,154 @@
 
 <!--vale off-->
 
+## Week 2
+
+
+### [Update: Prerequisite to review version compatibility before Gateway upgrade](https://github.com/Kong/docs.konghq.com/pull/6740) (2024-01-10)
+
+Customer noted that the instructions to review OS compatibility are buried too deeply within the upgrade guide, and they missed them on their first read through the guide.
+
+Adding the links/instructions to review compatibility as the first step, as no upgrade can be performed if your system doesn't support it.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/signed-images
+- https://docs.konghq.com/gateway/3.0.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.1.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.2.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.3.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.4.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.5.x/upgrade/lts-upgrade/
+
+
+### [Add enterprise image signing verification docs](https://github.com/Kong/docs.konghq.com/pull/6730) (2024-01-12)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+These are the customer-facing docs needed to allow customers to take full advantage of the recent changes to the Kong Enterprise build that implement `cosign`-based image signing.
+
+- Confluence: [Solutions Document](https://konghq.atlassian.net/wiki/spaces/KS/pages/3261333515/Solution+-+Image+Container+Signing+-+Cosign#Verifying-the-EE-GW-image-integrity)
+- Jira: [SEC-973](https://konghq.atlassian.net/browse/SEC-973)
+- https://github.com/Kong/kong-ee/pull/6797
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.1.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.2.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.3.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.4.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.5.x/upgrade/lts-upgrade/
+
+
+### [Update: Rework style guide and add guidelines for writing recommendations](https://github.com/Kong/docs.konghq.com/pull/6717) (2024-01-08)
+
+The Kong docs style guide was missing info on writing recommendations. I ran into some phrasing during a review and wanted to reference our guide, and realized that we never documented it (even though [we did discuss it and decided on a style](https://konghq.atlassian.net/wiki/spaces/KD/pages/2797568009/Standards+and+guidelines#:~:text=Standardize%20recommendations)).
+
+Also took this opportunity to split up the "best practices" table into separate sections and add more info. 
+* One of the main benefits of having a style guide is being able to link to specific guidelines, and that table made it difficult to do that + didn't have room to add more explanation. 
+* As well, when you scrolled past a certain point, you couldn't tell which column was "Do" and which was "Do not" anymore.
+* Removed the "Not british english" phrase from the language section. Seemed strange that we were singling out just British English, and there's no sense in trying to exhaustively list all varieties of English that are docs are not.
+* Did some reorganization.
+
+#### Modified
+
+- https://docs.konghq.com/contributing/style-guide
+
+
+### [Add internal/external traffic KIC guide](https://github.com/Kong/docs.konghq.com/pull/6715) (2024-01-08)
+
+Add a guide that explains how to run internal/external ingresses using KIC
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.1.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.2.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.3.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.4.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.5.x/upgrade/lts-upgrade/
+
+
+### [Revamped Gateway on Kubernetes install guide](https://github.com/Kong/docs.konghq.com/pull/6695) (2024-01-11)
+
+Rework the Kubernetes installation guide for Kong Gateway
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/install/kubernetes/admin/
+- https://docs.konghq.com/gateway/3.1.x/install/kubernetes/admin/
+- https://docs.konghq.com/gateway/3.2.x/install/kubernetes/admin/
+- https://docs.konghq.com/gateway/3.3.x/install/kubernetes/admin/
+- https://docs.konghq.com/gateway/3.4.x/install/kubernetes/admin/
+- https://docs.konghq.com/gateway/3.5.x/install/kubernetes/admin/
+- https://docs.konghq.com/gateway/3.0.x/install/kubernetes/manager/
+- https://docs.konghq.com/gateway/3.1.x/install/kubernetes/manager/
+- https://docs.konghq.com/gateway/3.2.x/install/kubernetes/manager/
+- https://docs.konghq.com/gateway/3.3.x/install/kubernetes/manager/
+- https://docs.konghq.com/gateway/3.4.x/install/kubernetes/manager/
+- https://docs.konghq.com/gateway/3.5.x/install/kubernetes/manager/
+- https://docs.konghq.com/gateway/3.0.x/install/kubernetes/portal/
+- https://docs.konghq.com/gateway/3.1.x/install/kubernetes/portal/
+- https://docs.konghq.com/gateway/3.2.x/install/kubernetes/portal/
+- https://docs.konghq.com/gateway/3.3.x/install/kubernetes/portal/
+- https://docs.konghq.com/gateway/3.4.x/install/kubernetes/portal/
+- https://docs.konghq.com/gateway/3.0.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.1.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.2.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.3.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.4.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.5.x/install/kubernetes/proxy/
+
+#### Modified
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/support-policy
+- https://docs.konghq.com/moved_urls.yml
+
+
+### [feat(acl): add consumer-group support and examples](https://github.com/Kong/docs.konghq.com/pull/6694) (2024-01-12)
+
+For: https://github.com/Kong/kong-ee/pull/7603
+Add support for the ACL plugin to understand consumer-groups. This allows to use (core) consumer-groups to be used in the "allow|deny" fields.
+
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/acl/how-to/
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/acl/overview/
+
+
+### [doc(kic) add reference grant guide](https://github.com/Kong/docs.konghq.com/pull/6677) (2024-01-08)
+
+For https://github.com/Kong/kubernetes-ingress-controller/issues/5154
+ 
+Add a guide that covers using Gateway API resources with KIC across namespaces, including references to a Gateway from another namespace using listener allowedRoutes and references from an HTTPRoute to a Service in another namespace using a ReferenceGrant.
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.1.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.2.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.3.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.4.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.5.x/upgrade/lts-upgrade/
+
+
+### [feat(new-consumer): release notes and reference updates](https://github.com/Kong/docs.konghq.com/pull/6663) (2024-01-11)
+
+For the [new Consumer dimension](https://konghq.aha.io/features/KP-277) coming next week, I added release notes and also updated our reference doc.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/analytics/reference
+- https://docs.konghq.com/konnect/updates
+
+
 ## Week 1
 
 
