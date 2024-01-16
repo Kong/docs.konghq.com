@@ -79,7 +79,7 @@ order for the credentials:
 5. [User Info Authentication](/hub/kong-inc/openid-connect/how-to/authentication/user-info/)
 6. [Refresh Token Grant](/hub/kong-inc/openid-connect/how-to/authentication/refresh-token-grant/)
 7. [Password Grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/)
-8. [Client Credentials Grant](/hub/kong-inc/openid-connect/how-to/authentication/client-credentials-grant/)
+8. [Client Credentials Grant](/hub/kong-inc/openid-connect/how-to/authentication/client-credentials/)
 9. [Authorization Code Flow](/hub/kong-inc/openid-connect/how-to/authentication/authorization-code-flow/)
 
 Once credentials are found, the plugin will stop searching further. Multiple grants may
