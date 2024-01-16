@@ -3,7 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.13.0
+    controller-gen.kubebuilder.io/version: v0.14.0
   name: meshopas.kuma.io
 spec:
   group: kuma.io
@@ -28,14 +28,19 @@ spec:
       openAPIV3Schema:
         properties:
           apiVersion:
-            description: 'APIVersion defines the versioned schema of this representation
-              of an object. Servers should convert recognized schemas to the latest
-              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
             type: string
           kind:
-            description: 'Kind is a string value representing the REST resource this
-              object represents. Servers may infer this from the endpoint the client
-              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
             type: string
           metadata:
             type: object
@@ -91,24 +96,24 @@ spec:
                     description: AuthConfig are configurations specific to the filter.
                     properties:
                       onAgentFailure:
-                        description: OnAgentFailure either 'allow' or 'deny' (default
-                          to deny) whether to allow requests when the authorization
-                          agent failed.
+                        description: |-
+                          OnAgentFailure either 'allow' or 'deny' (default to deny) whether
+                          to allow requests when the authorization agent failed.
                         enum:
                         - Allow
                         - Deny
                         type: string
                       requestBody:
-                        description: RequestBody configuration to apply on the request
-                          body sent to the authorization agent (if absent, the body
-                          is not sent).
+                        description: |-
+                          RequestBody configuration to apply on the request body sent to the
+                          authorization agent (if absent, the body is not sent).
                         properties:
                           maxSize:
-                            description: 'MaxSize defines the maximum payload size
-                              sent to authorization agent. If the payload is larger
-                              it will be truncated and there will be a header `x-envoy-auth-partial-body:
-                              true`. If it is set to 0 no body will be sent to the
-                              agent.'
+                            description: |-
+                              MaxSize defines the maximum payload size sent to authorization agent. If the payload
+                              is larger it will be truncated and there will be a header
+                              `x-envoy-auth-partial-body: true`. If it is set to 0 no body will be
+                              sent to the agent.
                             format: int32
                             type: integer
                           sendRawBody:
@@ -117,9 +122,9 @@ spec:
                             type: boolean
                         type: object
                       statusOnError:
-                        description: StatusOnError is the http status to return when
-                          there's a connection failure between the dataplane and the
-                          authorization agent
+                        description: |-
+                          StatusOnError is the http status to return when there's a connection
+                          failure between the dataplane and the authorization agent
                         format: int32
                         type: integer
                       timeout:
@@ -129,9 +134,10 @@ spec:
                     type: object
                 type: object
               targetRef:
-                description: TargetRef is a reference to the resource the policy takes
-                  an effect on. The resource could be either a real store object or
-                  virtual resource defined inplace.
+                description: |-
+                  TargetRef is a reference to the resource the policy takes an effect on.
+                  The resource could be either a real store object or virtual resource
+                  defined inplace.
                 properties:
                   kind:
                     description: Kind of the referenced resource
@@ -148,14 +154,16 @@ spec:
                       mesh resources.
                     type: string
                   name:
-                    description: 'Name of the referenced resource. Can only be used
-                      with kinds: `MeshService`, `MeshServiceSubset` and `MeshGatewayRoute`'
+                    description: |-
+                      Name of the referenced resource. Can only be used with kinds: `MeshService`,
+                      `MeshServiceSubset` and `MeshGatewayRoute`
                     type: string
                   tags:
                     additionalProperties:
                       type: string
-                    description: Tags used to select a subset of proxies by tags.
-                      Can only be used with kinds `MeshSubset` and `MeshServiceSubset`
+                    description: |-
+                      Tags used to select a subset of proxies by tags. Can only be used with kinds
+                      `MeshSubset` and `MeshServiceSubset`
                     type: object
                 type: object
             required:
