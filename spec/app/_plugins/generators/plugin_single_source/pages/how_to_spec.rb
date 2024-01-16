@@ -143,7 +143,7 @@ RSpec.describe PluginSingleSource::Pages::HowTo do
           { text: 'Authentication', url: '/hub/?category=authentication' },
           { text: 'Kong JWT Signer', url: '/hub/kong-inc/jwt-signer/' },
           { text: 'How to', url: '/hub/kong-inc/jwt-signer/how-to/' },
-          { text: 'Nested tutorial', url: '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/' }
+          { text: 'Nested Tutorial Nav title', url: '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/' }
         ])
       end
 
