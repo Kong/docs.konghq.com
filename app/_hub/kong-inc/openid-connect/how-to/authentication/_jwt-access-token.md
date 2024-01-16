@@ -3,11 +3,7 @@ title: JWT access token authentication
 nav_title: JWT access token
 ---
 
-## Prerequisites
-
-{% include_cached /md/plugins-hub/oidc-prereqs.md %}
-
-## JWT access token authentication
+## JWT access token auth flow
 
 For legacy reasons, the stateless `JWT Access Token` authentication is named `bearer` with the Kong
 OpenID Connect plugin (see: `config.auth_methods`). Stateless authentication basically means
@@ -40,7 +36,13 @@ sequenceDiagram
 {% endmermaid %}
 <!--vale on-->
 
-### Patch the plugin
+## Prerequisites
+
+{% include_cached /md/plugins-hub/oidc-prereqs.md %}
+
+## Set up JWT access token authentication
+
+{% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
 Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step:
 

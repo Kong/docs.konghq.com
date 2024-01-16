@@ -3,17 +3,13 @@ title: Introspection authentication
 nav_title: Introspection
 ---
 
-## Prerequisites
+## Introspection authentication flow
 
-{% include_cached /md/plugins-hub/oidc-prereqs.md %}
-
-## Introspection authentication
-
-As with [JWT Access Token Authentication](/hub/kong-inc/openid-connect/how-to/authentication/jwt-access-token/)), the introspection authentication
-relies on a bearer token that the client has already gotten from somewhere. The difference to stateless
-JWT authentication is that the plugin needs to call the introspection endpoint of the identity provider
-to find out whether the token is valid and active. This makes it possible to issue opaque tokens to
-the clients.
+As with [JWT Access Token Authentication](/hub/kong-inc/openid-connect/how-to/authentication/jwt-access-token/), 
+the introspection authentication relies on a bearer token that the client has already gotten from somewhere. 
+The difference to stateless JWT authentication is that the plugin needs to call the introspection endpoint of 
+the identity provider to find out whether the token is valid and active. 
+This makes it possible to issue opaque tokens to the clients.
 
 <!--vale off-->
 {% mermaid %}
@@ -47,7 +43,13 @@ sequenceDiagram
 {% endmermaid %}
 <!--vale on-->
 
-### Patch the plugin
+## Prerequisites
+
+{% include_cached /md/plugins-hub/oidc-prereqs.md %}
+
+## Set up introspection authentication
+
+{% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
 Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step:
 

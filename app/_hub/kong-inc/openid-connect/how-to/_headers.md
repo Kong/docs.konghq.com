@@ -3,20 +3,22 @@ title: Headers
 nav_title: Headers
 ---
 
+The OpenID Connect plugin can pass claim values, tokens, JWKs, and the session identifier to the upstream service
+in request headers, and to the downstream client in response headers. By default, the plugin passes an access token
+in `Authorization: Bearer <access-token>` header to the upstream service (this can be controlled with
+[`config.upstream_access_token_header`](/hub/kong-inc/openid-connect/configuration/#configupstream_access_token_header)). 
+
+The claim values can be taken from:
+- An access token
+- An ID token
+- An introspection response
+- A user info response
+
 ## Prerequisites
 
 {% include_cached /md/plugins-hub/oidc-prereqs.md %}
 
-## Headers
-
-The OpenID Connect plugin can pass claim values, tokens, JWKs, and the session identifier to the upstream service
-in request headers, and to the downstream client in response headers. By default, the plugin passes an access token
-in `Authorization: Bearer <access-token>` header to the upstream service (this can be controlled with
-`config.upstream_access_token_header`). The claim values can be taken from:
-- an access token,
-- an id token,
-- an introspection response, or
-- a user info response
+## Pass metadata in headers
 
 Let's take a look for an access token payload:
 

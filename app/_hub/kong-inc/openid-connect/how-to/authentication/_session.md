@@ -3,11 +3,7 @@ title: Session authentication
 nav_title: Session
 ---
 
-## Prerequisites
-
-{% include_cached /md/plugins-hub/oidc-prereqs.md %}
-
-## Session authentication
+## Session auth workflow
 
 The OpenID Connect plugin can issue a session cookie that can be used for further
 session authentication. To make OpenID Connect issue a session cookie, you need
@@ -41,7 +37,13 @@ sequenceDiagram
 {% endmermaid %}
 <!--vale on-->
 
-### Patch the plugin
+## Prerequisites
+
+{% include_cached /md/plugins-hub/oidc-prereqs.md %}
+
+## Set up session authentication
+
+{% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
 Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step.
 

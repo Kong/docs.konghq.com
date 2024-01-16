@@ -8,7 +8,8 @@ identity provider (IdP) in a standardized way. This plugin can be used to implem
 Kong as a (proxying) [OAuth 2.0](https://tools.ietf.org/html/rfc6749) resource server 
 (RS) and/or as an OpenID Connect relying party (RP) between the client and the upstream service.
 
-The plugin supports several types of credentials and grants. 
+The plugin supports several types of credentials and grants, and has been tested with several 
+OpenID Connect providers.
 Review the [support reference](/hub/kong-inc/openid-connect/support/) to see all of them.
 
 ## About OpenID Connect
@@ -49,14 +50,7 @@ such as JWT (JSON Web Token) and 0Auth 2.0, the most common use case is the
 
 ## How-to guides and demos
 
-{:.important}
-> The examples in these guides are built with simplicity in mind, and 
-are not meant for a production environment.
-> Because `httpbin.org` is the upstream service in these examples, we highly 
-recommended that you **do not** run these examples with a production identity 
-provider as there is a high chance of leaking information.
-> The examples also use the plain HTTP protocol, which you should
-**never** use in production. 
+{% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
 We recommend reviewing the [important configuration parameters](/hub/kong-inc/openid-connect/primary-config-params/) 
 before implementing any flows or grants.

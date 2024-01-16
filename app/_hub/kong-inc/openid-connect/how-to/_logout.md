@@ -3,20 +3,20 @@ title: Logout
 nav_title: Logout
 ---
 
-## Prerequisites
-
-{% include_cached /md/plugins-hub/oidc-prereqs.md %}
-
-## Logout
-
 The logout functionality is mostly useful together with the [session authentication](/hub/kong-inc/openid-connect/how-to/authentication/session/)
 that is mostly useful with the [authorization code flow](/hub/kong-inc/openid-connect/how-to/authentication/authorization-code-flow/).
 
 As part of the logout, the OpenID Connect plugin implements several features:
 
-- session invalidation
-- token revocation
-- relying party (RP) initiated logout
+- Session invalidation
+- Token revocation
+- Relying party (RP) initiated logout
+
+## Prerequisites
+
+{% include_cached /md/plugins-hub/oidc-prereqs.md %}
+
+## Set up logout with OIDC
 
 Let's patch the OpenID Connect plugin to provide the logout functionality:
 

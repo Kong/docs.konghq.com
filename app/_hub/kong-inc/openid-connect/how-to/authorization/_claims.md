@@ -3,12 +3,6 @@ title: Claims-based authorization
 nav_title: Claims
 ---
 
-## Prerequisites
-
-{% include_cached /md/plugins-hub/oidc-prereqs.md %}
-
-## Claims-based authorization
-
 The following options can be configured to manage claims verification during authorization:
 
 1. `config.scopes_claim` and `config.scopes_required`
@@ -18,6 +12,14 @@ The following options can be configured to manage claims verification during aut
 
 For example, the first configuration option, `config.scopes_claim`, points to a source, from which the value is
 retrieved and checked against the value of the second configuration option: `config.scopes_required`.
+
+## Prerequisites
+
+{% include_cached /md/plugins-hub/oidc-prereqs.md %}
+
+## Claims-based authorization
+
+{% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
 Let's take a look at a JWT access token:
 

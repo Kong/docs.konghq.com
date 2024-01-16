@@ -3,13 +3,9 @@ title: Password grant
 nav_title: Password grant
 ---
 
-## Prerequisites
+## Password grant workflow
 
-{% include_cached /md/plugins-hub/oidc-prereqs.md %}
-
-## Password grant
-
-Password grant is a legacy authentication grant. This is a less secure way of
+Password grant is a **legacy** authentication grant. This is a less secure way of
 authenticating end users than the authorization code flow, because, for example,
 the passwords are shared with third parties. The image below illustrates the grant:
 
@@ -45,7 +41,13 @@ sequenceDiagram
 {% endmermaid %}
 <!--vale on-->
 
-### Patch the plugin
+## Prerequisites
+
+{% include_cached /md/plugins-hub/oidc-prereqs.md %}
+
+## Set up password grant auth
+
+{% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
 Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step:
 

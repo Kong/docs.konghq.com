@@ -3,10 +3,6 @@ title: Authorization code flow
 nav_title: Authorization code flow
 ---
 
-## Prerequisites
-
-{% include_cached /md/plugins-hub/oidc-prereqs.md %}
-
 ## Authorization code flow
 
 The authorization code flow is the three-legged OAuth/OpenID Connect flow.
@@ -67,7 +63,13 @@ sequenceDiagram
 {:.note}
 > If using PKCE, the identity provider *must* contain the `code_challenge_methods_supported` object in the `/.well-known/openid-configuration` issuer discovery endpoint response, as required by [RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html). If it is not included, the PKCE `code_challenge` query parameter will not be sent.
 
-### Patch the plugin
+## Prerequisites
+
+{% include_cached /md/plugins-hub/oidc-prereqs.md %}
+
+## Set up the authorization code flow
+
+{% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
 Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step with the following changes:
 

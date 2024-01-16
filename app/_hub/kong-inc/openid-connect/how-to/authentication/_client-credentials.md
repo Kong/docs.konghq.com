@@ -3,11 +3,7 @@ title: Client credentials grant
 nav_title: Client credentials grant
 ---
 
-## Prerequisites
-
-{% include_cached /md/plugins-hub/oidc-prereqs.md %}
-
-## Client credentials grant
+## Client credentials grant workflow
 
 The client credentials grant is very similar to [the password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/).
 The most important difference in the Kong OpenID Connect plugin is that the plugin itself
@@ -47,7 +43,13 @@ sequenceDiagram
 {% endmermaid %}
 <!--vale on-->
 
-### Patch the plugin
+## Prerequisites
+
+{% include_cached /md/plugins-hub/oidc-prereqs.md %}
+
+## Set up the client credential grant
+
+{% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
 Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step:
 

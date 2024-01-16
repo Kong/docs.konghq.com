@@ -3,11 +3,7 @@ title: Kong OAuth token authentication
 nav_title: Kong OAuth token
 ---
 
-## Prerequisites
-
-{% include_cached /md/plugins-hub/oidc-prereqs.md %}
-
-## Kong OAuth token authentication
+## Kong OAuth token auth flow
 
 The OpenID Connect plugin can also verify the tokens issued by [Kong OAuth 2.0 Plugin](/hub/kong-inc/oauth2/).
 This is very similar to third party identity provider issued [JWT access token authentication](/hub/kong-inc/openid-connect/how-to/authentication/jwt-access-token/)
@@ -37,7 +33,13 @@ sequenceDiagram
 {% endmermaid %}
 <!--vale on-->
 
-### Prepare Kong OAuth application
+## Prerequisites
+
+{% include_cached /md/plugins-hub/oidc-prereqs.md %}
+
+## Prepare Kong OAuth application
+
+{% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
 1. Create a Consumer:
    ```bash
@@ -94,7 +96,7 @@ Output:
 <access-token>
 ```
 
-### Patch the plugin
+## Set up Kong OAuth token authentication
 
 Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step:
 

@@ -3,11 +3,7 @@ title: User info authentication
 nav_title: User info
 ---
 
-## Prerequisites
-
-{% include_cached /md/plugins-hub/oidc-prereqs.md %}
-
-## User info authentication
+## User info auth flow
 
 The user info authentication uses OpenID Connect standard user info endpoint to verify the access token.
 In most cases it is preferable to use [Introspection Authentication](/hub/kong-inc/openid-connect/how-to/authentication/introspection/)
@@ -47,7 +43,13 @@ sequenceDiagram
 {% endmermaid %}
 <!--vale on-->
 
-### Patch the plugin
+## Prerequisites
+
+{% include_cached /md/plugins-hub/oidc-prereqs.md %}
+
+## Set up user info authentication
+
+{% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
 Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step:
 

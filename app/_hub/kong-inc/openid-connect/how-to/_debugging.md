@@ -3,16 +3,11 @@ title: Debugging
 nav_title: Debugging
 ---
 
-## Prerequisites
+The OpenID Connect plugin is complex, so integrating with third-party identity providers can present challenges. 
 
-{% include_cached /md/plugins-hub/oidc-prereqs.md %}
+If you have issues with the OIDC plugin, try the following:
 
-## Debugging
-
-The OpenID Connect plugin is complex, integrating with third-party identity providers can present challenges. If you have
-issues with the plugin or integration, try the following:
-
-1. Set Kong [log level](/gateway/latest/reference/configuration/#log_level) to `debug`, and check the Kong `error.log` (you can filter it with `openid-connect`)
+1. Set Kong [log level](/gateway/latest/reference/configuration/#log_level) to `debug`, and check the Kong `error.log` (you can filter it with `openid-connect`):
    ```bash
    KONG_LOG_LEVEL=debug kong restart
    ```

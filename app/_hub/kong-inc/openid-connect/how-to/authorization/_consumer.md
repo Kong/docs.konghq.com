@@ -3,17 +3,19 @@ title: Consumer authorization
 nav_title: Consumer
 ---
 
+You can use Kong consumers for authorization and dynamically map
+claim values to Kong consumers. This means that we restrict the access to
+only those that do have a matching Kong consumer. Kong consumers can have ACL
+groups attached to them and be further authorized with the
+[Kong ACL plugin](/hub/kong-inc/acl/).
+
 ## Prerequisites
 
 {% include_cached /md/plugins-hub/oidc-prereqs.md %}
 
 ## Consumer authorization
 
-The third option for authorization is to use Kong consumers and dynamically map
-from a claim value to a Kong consumer. This means that we restrict the access to
-only those that do have a matching Kong consumer. Kong consumers can have ACL
-groups attached to them and be further authorized with the
-[Kong ACL Plugin](/hub/kong-inc/acl/).
+{% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
 Let's use the following token payload:
 

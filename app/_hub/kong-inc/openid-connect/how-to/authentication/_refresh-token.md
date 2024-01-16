@@ -3,11 +3,7 @@ title: Refresh token grant
 nav_title: Refresh token grant
 ---
 
-## Prerequisites
-
-{% include_cached /md/plugins-hub/oidc-prereqs.md %}
-
-## Refresh token grant
+## Refresh token grant workflow
 
 The refresh token grant can be used when the client has a refresh token available. There is a caveat
 with this: identity providers in general only allow refresh token grant to be executed with the same
@@ -48,7 +44,13 @@ sequenceDiagram
 {% endmermaid %}
 <!--vale on-->
 
-### Patch the plugin
+## Prerequisites
+
+{% include_cached /md/plugins-hub/oidc-prereqs.md %}
+
+## Set up the refresh token grant
+
+{% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
 Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step:
 
