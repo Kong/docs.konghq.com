@@ -29,9 +29,10 @@ module PluginSingleSource
         pages.flatten.compact.map { |p| { 'text' => p.nav_title, 'url' => p.permalink } }
       end
 
-      def nested_items(prefix, pages) # rubocop:disable Metrics/MethodLength
+      def nested_items(prefix, pages) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
         pages
           .group_by { |h| Pathname.new(h.file.gsub("#{prefix}/", '')).dirname.to_s }
+          .sort_by(&:first).rotate.to_h # Process nested folders first
           .each_with_object([]) do |(folder, nested_pages), array|
             if folder == '.'
               nested_pages.map do |page|
