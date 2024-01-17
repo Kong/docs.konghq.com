@@ -3,9 +3,9 @@ nav_title: ACL Examples
 title: ACL Examples
 ---
 
-## ACL Configuration with Kong Gateway
+## ACL configuration with {{site.base_gateway}}
 
-In this example, we will cover a common use case: As an API Owner, you want to regulate access based on the type of request methods and consumer groups. Specifically, our goal is to allow consumers in the dev group to perform GET, POST, and PUT requests on all routes, while reserving the DELETE request functionality exclusively for consumers in the admin group.
+This example covers a common use case: as an API owner, you want to regulate access based on the type of request methods and consumer groups. Specifically, the goal is to allow consumers in the dev group to perform GET, POST, and PUT requests on all routes, while reserving the DELETE request functionality exclusively for consumers in the admin group.
 
 
 ### Create consumer groups 
@@ -19,7 +19,7 @@ curl --request POST \
     --data '{"name":"dev"}'
 ```
 
-Then create a consumer group for `admin`
+Then create a consumer group for `admin`:
 
 ```bash
 curl --request POST \
@@ -29,7 +29,7 @@ curl --request POST \
   --data '{"name":"admin",}'
 ``` 
 
-Add a consumer to the `admin` group. Then populate those consumer groups with consumers using the UUID of the specific consumer:
+Add a consumer to the `admin` group by using the UUID of the specific consumer:
 
 ```bash
         curl --request POST \
@@ -48,11 +48,11 @@ curl --request POST \
   --data '{"consumer":"8a4bba3c-7f82-45f0-8121-ed4d2847c4a4"}'
 ```
 
-### Create Routes 
+### Create routes 
 
-Using the Admin API and the [expressions router](/gateway/latest/key-concepts/routes/expressions/) create two routes, one that matches `GET`, `POST` and `PUT`, and one that only matches `DELETE`. 
+Using the Admin API and the [expressions router](/gateway/latest/key-concepts/routes/expressions/), create two routes: one that matches `GET`, `POST` and `PUT`, and one that only matches `DELETE`. 
 
-A route that matches when the method is _not_ `DELETE`
+Create a route that matches when the method is _not_ `DELETE`:
 
 ```bash
 curl --request POST \
@@ -61,7 +61,7 @@ curl --request POST \
   --form-string expression='http.path == "/example" && http.method != "DELETE"'
 ```
 
-A route that matches when the method _is_ DELETE
+Create a route that matches when the method _is_ DELETE:
 ```bash
 curl --request POST \
   --url http://localhost:8001/services/example-service/routes \
@@ -70,23 +70,23 @@ curl --request POST \
 ```
 
 
-### Setup the ACL plugin
+### Set up the ACL plugin
 
-Scope the plugin to each of these routes with the respective `allow` configuration
+Scope the plugin to each of these routes with the respective `allow` configuration.
 
-The `devs-and-admin` route will have the `allow` field set to both of the groups
+Enable the ACL plugin on the `devs-and-admin` route, setting the `allow` field to accept both groups:
 
 ```bash
 curl -X POST http://localhost:8001/routes/devs-and-admin/plugins \
     --data "name=acl"  \
-    --data "config.allow=dev"  \
-    --data "config.allow=admin" \
+    --data "config.allow[]=dev"  \
+    --data "config.allow[]=admin"
 ```
 
-The `only-admins` route will have the `allow` field set to only the `admin` group.
+Enable another ACL plugin instance on the `only-admins` route, setting the `allow` field set to only accept the `admin` group:
 
 ```bash
 curl -X POST http://localhost:8001/routes/admins-only/plugins \
     --data "name=acl"  \
-    --data "config.allow=admin" \
+    --data "config.allow=admin"
 ```
