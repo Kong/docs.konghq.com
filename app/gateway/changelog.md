@@ -3414,11 +3414,48 @@ openid-connect
   [#8845](https://github.com/Kong/kong/pull/8845)
 * Bumped `penlight` from 1.12.0 to 1.13.1
   [#9206](https://github.com/Kong/kong/pull/9206)
-* Bumped `lua-resty-mlcach`e from 2.5.0 to 2.6.0
+* Bumped `lua-resty-mlcache` from 2.5.0 to 2.6.0
   [#9287](https://github.com/Kong/kong/pull/9287)
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
+## 2.8.4.5
+**Release Date** 2024/01/17
+
+### Fixes
+
+#### Core
+
+* Respect custom `proxy_access_log`.
+ [#7437](https://github.com/Kong/kong/issues/7437)
+* Fixed intermittent ldoc failures caused by a LuaJIT error.
+ [#7492](https://github.com/Kong/kong/issues/7492)
+
+#### Enterprise
+
+* Bumped the `dns_stale_ttl` default to 1 hour so that stale DNS records can be used for a longer period of time in case of resolver downtime.
+* Fixed a bug where a vault with a GCP backend would hide the error message when secrets couldn't be fetched.
+* Fixed an issue where a GCP vault couldn't fetch secrets due to SSL verification failure in CLI mode.
+Users who use secrets management based on GCP should also ensure the `system` CA store is included in the `lua_ssl_trusted_certificate` configuration.
+
+#### Plugins
+
+* [OpenID Connect](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Updated the time used when calculating token expiration.
+
+### Dependencies
+
+#### Core
+
+* Bumped `resty-openssl` from 0.8.25 to 1.0.2.
+ [#7414](https://github.com/Kong/kong/issues/7414)
+* Bumped the Alpine base image from 3.16 to 3.19.
+ [#7732](https://github.com/Kong/kong/issues/7732)
+
+#### Enterprise
+
+* Bumped `lua-resty-healthcheck` to 1.6.4 to fix a bug where the health check
+  module wouldn't work correctly when multiple health check instances weren't cleared.
 
 ## 2.8.4.5
 **Release Date** 2023/11/28
