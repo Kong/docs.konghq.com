@@ -28,7 +28,8 @@ If associating with an IAM role and if the backup node does not reside on the AW
 
 {% if_version lte:3.5.x %}
 
-A backup node should not be used to proxy traffic. A single backup node is sufficient for all deployments. For more information about the data that is set in the environment variables, review the [AWS environment variable configuration documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html).
+{:.important}
+> We do not recommend using backup nodes to proxy traffic. The backup job enlarges the attack surface of a proxying DP and contributes significantly to the P99 delay. You need to know the risk if you want to deploy a node this way, and a DP acting as a backup node cannot be provisioned with backup configurations.
 
 {% endif_version %}
 {% if_version gte:3.6.x %}
