@@ -231,7 +231,7 @@ components:
       required: true
       schema:
         type: string
-      description: The unique identifier of the Filter Chain to retrieve.
+      description: The unique identifier of the filter chain to retrieve.
   schemas:
     CA-Certificate:
       description: A CA certificate object represents a trusted CA. These objects are used by Kong to verify the validity of a client or server certificate.
@@ -457,7 +457,7 @@ components:
         id:
           type: string
         name:
-          description: "The name of the Plugin that's going to be added. Currently, the Plugin must be installed in every Kong instance separately."
+          description: "The name of the plugin that's going to be added. The plugin must be installed in every Kong instance separately."
           type: string
         ordering:
           type: object
@@ -551,7 +551,7 @@ components:
           type: array
         preserve_host:
           default: false
-          description: "When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service's `host`."
+          description: "When matching a route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the service's `host`."
           type: boolean
         protocols:
           default:
@@ -1061,7 +1061,7 @@ components:
         id:
           type: string
         name:
-          description: The name of the Vault that's going to be added. Currently, the Vault implementation must be installed in every Kong instance.
+          description: The name of the vault that's going to be added. The vault implementation must be installed in every Kong instance.
           type: string
         prefix:
           description: The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
@@ -1217,7 +1217,7 @@ components:
       properties:
         id:
           type: string
-          description: The unique identifier or the name attribute of the Route that should be associated to the newly-created Filter Chain.
+          description: The unique identifier or the name attribute of the route that should be associated to the newly created filter chain.
           example: ce44eef5-41ed-47f6-baab-f725cecf98c7
           format: uuid
         name:
@@ -1237,15 +1237,15 @@ components:
             Whether the filter chain is applied. Default: true.
           default: true
         route:
-          description: The route to which this chain is applied. A filter chain must be applied to either a single route or a single service. Default `null`. With form-encoded, the notation is route.id=<route id> or route.name=<route name>. With JSON, use “"route":{"id":"<route id>"} or "route":{"name":"<route name>"}.
+          description: The route to which this chain is applied. A filter chain must be applied to either a single route or a single service. Default `null`. In form-encoded format, the notation is `route.id=<route id>` or `route.name=<route name>`. In JSON format, use `"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
           nullable: true
         service:
           type: string
-          description: The service to which this chain is applied. A filter chain must be applied to either a single route or a single service. Default `null`. With form-encoded, the notation is service.id=<service id> or service.name=<service name>. With JSON, use “"service":{"id":"<service id>"} or "service":{"name":"<service name>"}.
+          description: The service to which this chain is applied. A filter chain must be applied to either a single route or a single service. Default `null`. In form-encoded format, the notation is `service.id=<service id>` or `service.name=<service name>`. In JSON format, use `"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
           example: 20487393-41ed-47f6-93a8-3407cade2002
         filters:
           type: array
-          description: An array of filter definitions. Each filter is an object containing a mandatory name, an optional config and a boolean enabled setting.
+          description: An array of filter definitions. Each filter is an object containing a mandatory name, an optional config, and a boolean enabled setting.
           items:
             type: object
             properties:
@@ -3459,7 +3459,7 @@ components:
                     user_token_ident: 4d870
                 next: 'null'
     audit-objects-response:
-      description: Example response generated for checking the /status endpoint without RBAC enabled.
+      description: Example response generated for checking the `/status` endpoint without RBAC enabled.
       content:
         application/json:
           schema:
@@ -3679,7 +3679,7 @@ components:
                 type: object
                 properties:
                   event:
-                    description: A string describing the Kong entity the event-hook will listen to for events.
+                    description: A string describing the Kong entity the event hook listens to for events.
                     type: object
                     properties:
                       type:
@@ -3687,7 +3687,7 @@ components:
                       description:
                         type: string
                   handler:
-                    description: A string describing one of four handler options webhook, webhook-custom, log, or lambda.
+                    description: A string describing one of four handler options: webhook, webhook-custom, log, or lambda.
                     type: object
                     properties:
                       type:
@@ -3736,7 +3736,7 @@ components:
                         type: string
                   config.payload:
                     type: object
-                    description: An object that includes key/value pairs that describe the configurable payload body. Supports templating. The full list of available template parameters can be found in the /sources API output, under the fields JSON object.
+                    description: An object that includes key/value pairs that describe the configurable payload body. Supports templating. The full list of available template parameters can be found in the `/sources` API output, under the `fields` JSON object.
                     properties:
                       type:
                         type: string
@@ -3747,7 +3747,7 @@ components:
                     properties:
                       type:
                         type: string
-                        description: A optional boolean (defaults to true) indicating whether to format the config.payload with resty templating. When set to false, the payload is sent as a raw object.
+                        description: A optional boolean (defaults to true) indicating whether to format the `config.payload` with resty templating. When set to false, the payload is sent as a raw object.
                       description:
                         type: string
                   config.body:
@@ -3797,10 +3797,10 @@ components:
                 data:
                   event:
                     type: string
-                    description: A string describing the Kong entity the event-hook will listen to for events. (optional)
+                    description: A string describing the Kong entity the event hook listens to for events. (optional)
                   handler:
                     type: string
-                    description: A string describing one of four handler options webhook, webhook-custom, log, or lambda. (required)
+                    description: A string describing one of four handler options: webhook, webhook-custom, log, or lambda. (required)
                   source:
                     type: string
                     description: A string describing the action that triggers the event hook. (required)
@@ -3821,22 +3821,22 @@ components:
                     description: An object that includes key/value pairs that describe the configurable payload body. Supports templating. (optional)
                   config.payload_format:
                     type: boolean
-                    description: An optional boolean indicating whether to format the config.payload with resty templating. When set to false, the payload is sent as a raw object. (optional, defaults to true)
+                    description: An optional boolean indicating whether to format the`config.payload` with resty templating. When set to false, the payload is sent as a raw object. (optional, defaults to true)
                   config.body:
                     type: string
                     description: An optional string sent in the remote request. (optional)
                   config.body_format:
                     type: boolean
-                    description: An optional boolean indicating whether to format the config.body with resty templating. When set to false, the body is sent as a raw object. (optional, defaults to true)
+                    description: An optional boolean indicating whether to format `config.body` with resty templating. When set to false, the body is sent as a raw object. (optional, defaults to true)
                   config.headers:
                     type: object
                     description: An object defining additional HTTP headers to send in the webhook request. (optional)
                   config.headers_format:
                     type: boolean
-                    description: An optional boolean indicating whether to format the config.headers with resty templating. When set to true, the config.headers value will be treated as a template. (optional, defaults to false)
+                    description: An optional boolean indicating whether to format `config.headers` with resty templating. When set to true, the `config.headers` value is treated as a template. (optional, defaults to false)
                   config.secret:
                     type: string
-                    description: An optional string used to sign the remote webhook for remote verification. When set, Kong will sign the body of the event hook with HMAC-SHA1 and include it in a header, x-kong-signature, to the remote endpoint. (optional)
+                    description: An optional string used to sign the remote webhook for remote verification. When set, Kong signs the body of the event hook with HMAC-SHA1 and includes it in a header, `x-kong-signature`, sent to the remote endpoint. (optional)
                   config.ssl_verify:
                     type: boolean
                     description: A boolean indicating whether to verify the SSL certificate of the remote HTTPS server where the event hook will be sent. The default value is false. (optional)
@@ -3929,7 +3929,7 @@ components:
               Example 1:
                 prefix: env
                 name: env
-                description: This vault is used to retrieve redis database access credentials
+                description: This vault is used to retrieve Redis database access credentials.
                 config:
                   prefix: SSL_
                 tags:
@@ -3939,22 +3939,22 @@ components:
               prefix:
                 type: string
                 description: |
-                  The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
+                  The unique prefix (or identifier) for this vault configuration. Use this prefix to load the right vault configuration and implementation when referencing secrets with the other entities.
                 example: env
               name:
                 type: string
                 description: |
-                  The name of the Vault that's going to be added. Currently, the Vault implementation must be installed in every Kong instance.
+                  The name of the vault that's being added. The vault implementation must be installed in every Kong instance.
                 example: env
               description:
                 type: string
                 description: |
-                  The description of the Vault object.
-                example: This vault is used to retrieve redis database access credentials
+                  The description of the vault object.
+                example: This vault is used to retrieve Redis database access credentials.
               config:
                 type: object
                 description: |
-                  The configuration properties for the Vault which can be found on the vaults' documentation page.
+                  The configuration properties for the vault, which can be found on the vaults' documentation page.
                 properties:
                   prefix:
                     type: string
@@ -3962,7 +3962,7 @@ components:
               tags:
                 type: array
                 description: |
-                  An optional set of strings associated with the Vault for grouping and filtering.
+                  An optional set of strings associated with the vault, used for grouping and filtering.
                 items:
                   type: string
           examples:
@@ -3970,7 +3970,7 @@ components:
               value:
                 prefix: env
                 name: env
-                description: This vault is used to retrieve redis database access credentials
+                description: This vault is used to retrieve Redis database access credentials.
                 config:
                   prefix: SSL_
                 tags:
@@ -4003,13 +4003,13 @@ components:
                     description: The unique identifier or the name of the upstream for which to update the target.
               weight:
                 default: 100
-                description: The weight this target gets within the upstream loadbalancer (`0`-`65535`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.
+                description: The weight this target gets within the upstream load balancer (`0`-`65535`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.
                 type: integer
                 minimum: 0
                 maximum: 65535
               tags:
                 type: array
-                description: An optional set of strings associated with the Target for grouping and filtering.
+                description: An optional set of strings associated with the target for grouping and filtering.
                 items:
                   type: string
           examples:
@@ -4405,7 +4405,7 @@ components:
                         default: /
                       https_sni:
                         type: string
-                        description: The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host''s certificate can be verified with the proper SNI.''
+                        description: "The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI."
                   threshold:
                     type: integer
                     description: The minimum percentage of the upstream's targets' weight that must be available for the whole upstream to be considered healthy.
@@ -4814,7 +4814,7 @@ components:
                 example: v0
               preserve_host:
                 type: boolean
-                description: When matching a route via one of the `hosts` domain names, use the request `host` header in the upstream request headers. If set to `false`, the upstream Host header will be that of the service''s host.''
+                description: "When matching a route via one of the `hosts` domain names, use the request `host` header in the upstream request headers. If set to `false`, the upstream Host header will be that of the service's host."
                 default: true
               request_buffering:
                 type: boolean
@@ -5024,7 +5024,7 @@ components:
             properties:
               name:
                 type: string
-                description: The name of the plugin that''s going to be added. Currently, the plugin must be installed in every Kong instance separately.
+                description: "The name of the plugin that's being added. The plugin must be installed in every Kong instance separately."
                 example: rate-limiting
               route:
                 type: string
@@ -5382,16 +5382,27 @@ components:
               route:
                 type: string
                 
-                description: The route to which this chain is applied. A filter chain must be applied to either a single route or a single service. Default null. With form-encoded, the notation is route.id=<route id> or route.name=<route name>. With JSON, use “"route":{"id":"<route id>"} or "route":{"name":"<route name>"}.
+                description: |
+                  The route to which this chain is applied. 
+                  A filter chain must be applied to either a single route or a single service. 
+                  Default: `null`. 
+                  
+                  In form-encoded format, the notation is `route.id=<route id>` or `route.name=<route name>`. 
+                  In JSON format, use `"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
               service:
                 type: string
                
-                description: The service to which this chain is applied. A filter chain must be applied to either a single route or a single service. Default null. With form-encoded, the notation is service.id=<service id> or service.name=<service name>. With JSON, use “"service":{"id":"<service id>"} or "service":{"name":"<service name>"}.
+                description: |
+                  The service to which this chain is applied. 
+                  A filter chain must be applied to either a single route or a single service. Default: `null`. 
+                  
+                  In form-encoded format, the notation is `service.id=<service id>` or `service.name=<service name>`. 
+                  In JSON format, use `"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
                 example: 20487393-41ed-47f6-93a8-3407cade2002
               filters:
                 type: string
                 
-                description: An array of filter definitions. Each filter is an object containing a mandatory name, an optional config and a boolean enabled setting.
+                description: An array of filter definitions. Each filter is an object containing a mandatory name, an optional config, and a boolean enabled setting.
               tags:
                 type: string
                 
@@ -5417,7 +5428,7 @@ components:
                 type: string
                
                 description: |
-                  A string describing the Kong entity the event hook will listen to for events.
+                  A string describing the Kong entity the event hook listens to for events.
                 example: consumers
               handler:
                 type: string
@@ -5453,7 +5464,7 @@ components:
                 type: object
               
                 description: |
-                  An object defining additional HTTP headers to send in the webhook request, for example {"X-Custom-Header": "My Value"}.
+                  An object defining additional HTTP headers to send in the webhook request. For example `{"X-Custom-Header": "My Value"}`.
                 properties:
                   headers:
                     type: string
@@ -5464,7 +5475,7 @@ components:
                 type: string
                
                 description: |
-                  An optional string used to sign the remote webhook for remote verification. When set, Kong will sign the body of the event hook with HMAC-SHA1 and include it in a header, x-kong-signature, to the remote endpoint.
+                  An optional string used to sign the remote webhook for remote verification. When set, Kong signs the body of the event hook with HMAC-SHA1 and includes it in a header, `x-kong-signature`, sent to the remote endpoint.
               config.ssl_verify:
                 type: string
                
@@ -5498,7 +5509,7 @@ components:
                 type: string
                
                 description: |
-                  A string describing the Kong entity the event-hook will listen to for events.
+                  A string describing the Kong entity the event hook listens to for events.
                 example: admins
               handler:
                 type: string
@@ -5550,7 +5561,7 @@ components:
                 type: boolean
                 
                 description: |
-                  A optional boolean (defaults to true) indicating whether to format the config.payload with resty templating. When set to false, the payload is sent as a raw object.
+                  A optional boolean (defaults to true) indicating whether to format `config.payload` with resty templating. When set to false, the payload is sent as a raw object.
               config.body:
                 type: string
                 
@@ -5560,22 +5571,22 @@ components:
                 type: boolean
                 
                 description: |
-                  An optional boolean (defaults to true) indicating whether to format the config.body with resty templating. When set to false, the body is sent as a raw object. To see all the available parameters defined for a specific source, check the source fields displayed by the /event-hooks/source endpoint.
+                  An optional boolean (defaults to true) indicating whether to format `config.body` with resty templating. When set to false, the body is sent as a raw object. To see all the available parameters defined for a specific source, check the source fields displayed by the `/event-hooks/source` endpoint.
               config.headers:
                 type: object
                
                 description: |
-                  An object defining additional HTTP headers to send in the webhook request, for example {"Content-type": "application/json", "X-Custom-Header": "My Value"}.
+                  An object defining additional HTTP headers to send in the webhook request. For example `{"Content-type": "application/json", "X-Custom-Header": "My Value"}`.
               config.headers_format:
                 type: string
                 
                 description: |
-                  An optional boolean (defaults to false) indicating whether to format the config.headers with resty templating. When set to true, the config.headers value will be treated as a template. To see all the available parameters defined for a specific source, check the source fields displayed by the /event-hooks/sources endpoint.
+                  An optional boolean (defaults to false) indicating whether to format `config.headers` with resty templating. When set to true, the `config.headers` value is treated as a template. To see all the available parameters defined for a specific source, check the source fields displayed by the `/event-hooks/sources` endpoint.
               config.secret:
                 type: string
                 
                 description: |
-                  An optional string used to sign the remote webhook for remote verification. When set, Kong will sign the body of the event hook with HMAC-SHA1 and include it in a header, x-kong-signature, to the remote endpoint.
+                  An optional string used to sign the remote webhook for remote verification. When set, Kong signs the body of the event hook with HMAC-SHA1 and includes it in a header, `x-kong-signature`, to the remote endpoint.
               config.ssl_verify:
                 type: boolean
                 
@@ -5595,7 +5606,7 @@ components:
                 type: string
                 
                 description: |
-                  A string describing the Kong entity the event hook will listen to for events.
+                  A string describing the Kong entity the event hook listens to for events.
                 example: routes
               handler:
                 type: string
@@ -5641,7 +5652,7 @@ components:
                 type: string
                 
                 description: |
-                  A string describing the Kong entity the event hook will listen to for events.
+                  A string describing the Kong entity the event hook listens to for events.
                 example: consumers
               handler:
                 type: string
@@ -11103,9 +11114,9 @@ paths:
       description: |-
         Returns a paginated list of all the tags in the system.
 
-        The list of entities will not be restricted to a single entity type: all the entities tagged with tags will be present on this list.
+        The list of entities isn't restricted to a single entity type. All the entities tagged with tags are present in this list.
 
-        If an entity is tagged with more than one tag, the entity_id for that entity will appear more than once in the resulting list. Similarly, if several entities have been tagged with the same tag, the tag will appear in several items of this list.
+        If an entity is tagged with more than one tag, the `entity_id` for that entity appears more than once in the resulting list. Similarly, if several entities have been tagged with the same tag, the tag appears in several items of this list.
   '/tags/{tags}':
     parameters:
       - $ref: '#/components/parameters/tag'
@@ -11120,7 +11131,7 @@ paths:
       description: |-
         Returns the entities that have been tagged with the specified tag.
 
-        The list of entities will not be restricted to a single entity type: all the entities tagged with tags will be present on this list.
+        The list of entities isn't restricted to a single entity type. All the entities tagged with tags are present in this list.
   /keyring/import:
     post:
       summary: Import Keyring
@@ -11281,17 +11292,17 @@ paths:
                 email:
                   type: string
                   example: email@example.com
-                  description: The Admin's email address.
+                  description: The admin's email address.
                 username:
                   type: string
-                  description: The Admin's username
+                  description: The admin's username
                   example: myusername
                 custom_id:
                   type: string
-                  description: The Admin's custom ID
+                  description: The admin's custom ID
                 rbac_token_enabled:
                   type: boolean
-                  description: Allows the Admin to use and reset their RBAC token; `true` by default
+                  description: Allows the admin to use and reset their RBAC token.
                   default: true
             examples:
               Invite an admin:
@@ -11341,14 +11352,14 @@ paths:
         - admins
   /admins/password_resets:
     post:
-      summary: Send a Password-Reset Email to an Admin
+      summary: Send a Password Reset Email to an Admin
       tags:
         - admins
       responses:
         '201':
           description: Created
       operationId: get-admins-password_resets
-      description: Using a registered admin's email address issue a password-reset email to the admin.
+      description: Using a registered admin's email address issue a password reset email to the admin.
       requestBody:
         content:
           application/json:
@@ -11371,7 +11382,7 @@ paths:
       responses:
         '200':
           description: OK
-      description: Reset's an admin's password.
+      description: Reset an admin's password.
       requestBody:
         content:
           application/json:
@@ -11402,7 +11413,7 @@ paths:
         name: name_or_id
         in: path
         required: true
-        description: The Admin’s username or ID
+        description: The admin’s username or ID.
     get:
       summary: Retrieve an Admin
       tags:
@@ -11449,7 +11460,7 @@ paths:
                     email: test@test.com
                     rbac_token_enabled: true
       operationId: get-admins-name_or_id
-      description: Retrieve an admin using their name, or ID. Using `generate_register_url` you can generate a unique registration URL if the Admin''s invitation status is `4`. `generate_register_url` will override the previous registration URL for the particular Admin each time it is requested. 
+      description: Retrieve an admin using their name or ID. Using `generate_register_url`, you can generate a unique registration URL if the admin's invitation status is `4`. `generate_register_url` overrides the previous registration URL for the particular admin each time it is requested. 
     patch:
       tags:
         - admins
@@ -11494,7 +11505,7 @@ paths:
       responses:
         '204':
           description: No Content
-      description: Delete an admin by specifying the Admin's username or ID.
+      description: Delete an admin by specifying the admin's username or ID.
   '/admins/{name_or_id}/roles':
     parameters:
       - schema:
@@ -11502,7 +11513,7 @@ paths:
         name: name_or_id
         in: path
         required: true
-        description: The Admin’s username or ID
+        description: The admin’s username or ID
     get:
       summary: List an Admin’s Roles
       tags:
@@ -11558,7 +11569,7 @@ paths:
                         name: admin
                         is_default: false
       operationId: get-admins-name_or_id-roles
-      description: List all roles related to a registered Admin.
+      description: List all roles related to a registered admin.
     post:
       summary: Create or Update an Admin’s Roles
       operationId: post-admins-name_or_id-roles
@@ -11635,7 +11646,7 @@ paths:
               x-examples:
                 Example 1:
                   Roles: read-only
-        description: (comma separated) string of names of Roles to create or update for an Admin
+        description: Comma-separated string of role names to create or update for an admin.
       description: Create or update roles for an admin
     delete:
       tags:
@@ -11645,7 +11656,7 @@ paths:
       responses:
         '204':
           description: No Content
-      description: Delete an admin's roles by passing a comma seperated string of names of specific roles to remove from an admin.
+      description: Delete an admin's roles by passing a comma-separated string of names of specific roles to remove from an admin.
   '/admins/{name_or_id}/workspaces':
     parameters:
       - schema:
@@ -11653,7 +11664,7 @@ paths:
         name: name_or_id
         in: path
         required: true
-        description: The Admin’s username or ID
+        description: The admin’s username or ID
     get:
       summary: List an Admin’s Workspaces
       tags:
@@ -11685,14 +11696,16 @@ paths:
         '200':
           description: log level changed
       description: |-
-        Change the log level of all Control Plane nodes deployed in Hybrid (CP/DP) cluster.
-        Care must be taken when changing the log level of a node to debug in a production environment because the disk could fill up quickly. As soon as the debug logging finishes, revert back to a higher level such as notice.
-        It’s currently not possible to change the log level of DP and DB-less nodes.
-        This endpoint can be protected with RBAC, and changes will be reflected in the audit logs.The log level change is propagated to all Nginx workers of a node, including to newly spawned workers.
+        Change the log level of all control plane nodes deployed in a hybrid (CP/DP) cluster.
+        Be careful when changing the log level of a node to debug in a production environment because the disk could fill up quickly. As soon as the debug logging finishes, revert back to a higher level, such as notice.
+        It’s currently not possible to change the log level of data plane and DB-less nodes.
 
-        Log levels are set in Kong’s configuration. Following are the log levels in increasing order of their severity: `debug`, `info`, `notice`, `warn`, `error` and `crit`. For more information review the [logging reference](https://docs.konghq.com/gateway/latest/production/logging/).
+        This endpoint can be protected with RBAC, and changes will be reflected in the audit logs. 
+        The log level change is propagated to all Nginx workers of a node, including to newly spawned workers.
 
-        Currently, when a user dynamically changes the log level for the entire cluster, if a new node joins the cluster, the new node will run at the previous log level, not at the log level that was previously set dynamically for the entire cluster. To work around that, make sure the new node starts with the proper level by setting the startup kong.conf setting [KONG_LOG_LEVEL](https://docs.konghq.com/gateway/latest/reference/configuration/#log_level).
+        Log levels are set in Kong’s configuration. Possible log levels in increasing order of severity: `debug`, `info`, `notice`, `warn`, `error`, and `crit`. For more information, review the [logging reference](https://docs.konghq.com/gateway/latest/production/logging/).
+
+        When a user dynamically changes the log level for the entire cluster, if a new node joins the cluster, the new node will run at the previous log level, not at the log level that was previously set dynamically for the entire cluster. To work around that, make sure the new node starts with the proper level by setting the startup `kong.conf` setting [`KONG_LOG_LEVEL`](https://docs.konghq.com/gateway/latest/reference/configuration/#log_level).
       tags:
         - debug
   '/debug/cluster/log-level/{log_level}':
@@ -11720,13 +11733,16 @@ paths:
         - debug
       description: |-
         Change the log level of all nodes in a cluster.
-        Care must be taken when changing the log level of a node to debug in a production environment because the disk could fill up quickly. As soon as the debug logging finishes, revert back to a higher level such as notice.
-        It’s currently not possible to change the log level of DP and DB-less nodes.
-        This endpoint can be protected with RBAC, and changes will be reflected in the audit logs.The log level change is propagated to all Nginx workers of a node, including to newly spawned workers.
+        
+        Be careful when changing the log level of a node to debug in a production environment because the disk could fill up quickly. As soon as the debug logging finishes, revert back to a higher level, such as notice.
+        It’s currently not possible to change the log level of data plane and DB-less nodes.
+        
+        This endpoint can be protected with RBAC, and changes will be reflected in the audit logs. 
+        The log level change is propagated to all Nginx workers of a node, including to newly spawned workers.
 
-        Log levels are set in Kong’s configuration. Following are the log levels in increasing order of their severity: `debug`, `info`, `notice`, `warn`, `error` and `crit`. For more information review the [logging reference](https://docs.konghq.com/gateway/latest/production/logging/).
+        Log levels are set in Kong’s configuration. Possible log levels in increasing order of severity: `debug`, `info`, `notice`, `warn`, `error`, and `crit`. For more information, review the [logging reference](https://docs.konghq.com/gateway/latest/production/logging/).
 
-        Currently, when a user dynamically changes the log level for the entire cluster, if a new node joins the cluster, the new node will run at the previous log level, not at the log level that was previously set dynamically for the entire cluster. To work around that, make sure the new node starts with the proper level by setting the startup kong.conf setting [KONG_LOG_LEVEL](https://docs.konghq.com/gateway/latest/reference/configuration/#log_level).
+        Currently, when a user dynamically changes the log level for the entire cluster, if a new node joins the cluster, the new node will run at the previous log level, not at the log level that was previously set dynamically for the entire cluster. To work around that, make sure the new node starts with the proper level by setting the startup `kong.conf` setting [`KONG_LOG_LEVEL`](https://docs.konghq.com/gateway/latest/reference/configuration/#log_level).
   /debug/node/log-level:
     get:
       summary: Retrieve Node Log Level of A Node
@@ -11803,9 +11819,9 @@ paths:
           $ref: '#/components/responses/rbac-user-response'
       operationId: get-rbac-users
       description: |-
-        List all users
+        List all users.
 
-         Note: RBAC Users associated with Admins will not be listed with `GET /rbac/users`. Instead, use `GET /admins` to list all Admins.
+        Note: RBAC users associated with admin aren't listed with `GET /rbac/users`. Instead, use `GET /admins` to list all admins.
     post:
       summary: Add a User
       operationId: post-rbac-users
@@ -11824,7 +11840,7 @@ paths:
         name: name_or_id
         in: path
         required: true
-        description: The RBAC user name or UUID.
+        description: The RBAC username or UUID.
     get:
       summary: Retrieve a User
       tags:
@@ -11842,7 +11858,7 @@ paths:
           $ref: '#/components/responses/rbac-user-response'
       tags:
         - rbac
-      description: Update a user
+      description: Update a user.
       requestBody:
         $ref: '#/components/requestBodies/rbac-request'
     delete:
@@ -11852,7 +11868,7 @@ paths:
         '204':
           description: No Content
       description: |
-        Delete a User
+        Delete a user.
       tags:
         - rbac
   /rbac/roles:
@@ -11925,7 +11941,7 @@ paths:
                         name: doc_lord
                     next: 'null'
       operationId: get-rbac-roles
-      description: List all roles
+      description: List all roles.
     post:
       summary: Add a Role
       operationId: post-rbac-roles
@@ -11980,7 +11996,7 @@ paths:
                  
                   description: A string describing the RBAC user object.
         description: The request body contains the name of the role and an optional attribute. 
-      description: Add a Role
+      description: Add a role.
   '/rbac/roles/{name_or_id}':
     parameters:
       - schema:
@@ -12077,7 +12093,7 @@ paths:
                   type: string
                  
       description: |
-        The behavior of the PUT endpoints is the following: if the request payload does contain an entity’s primary key, the payload will “replace” the entity specified by the given primary key. If the primary key is not that of an existing entity, the entity will be created with the given payload.
+        With a `PUT` request, if the request payload contains an existing entity’s primary key, the payload replaces the entity specified by the given primary key. If the primary key is not that of an existing entity, the entity is created with the given payload.
     patch:
       summary: Update a Role
       operationId: patch-rbac-roles-name_or_id
@@ -12203,7 +12219,7 @@ paths:
                           id: 23df9f20-e7cc-4da4-bc89-d3a08f976e50
                         workspace: default
       operationId: get-rbac-roles-name_or_id-endpoints
-      description: Lists all a role's associated endpoint permissions.
+      description: Lists all of a role's associated endpoint permissions.
     post:
       summary: Add a Role Endpoint Permission
       operationId: post-rbac-roles-name_or_id-endpoints
@@ -12262,17 +12278,18 @@ paths:
       tags:
         - rbac
       description: |-
-        endpoint must be the path of the associated endpoint. They can be exact matches, or contain wildcards, represented by *.
+        Add a role endpoint permission for the path of the associated endpoint. Permissions can be exact matches, or contain wildcards, represented by `*`.
 
         Exact matches:
-        /services/
-        /services/foo
+        - `/services/`
+        - `/services/foo`
+        
         Wildcards:
-        /services/*
-        /services/*/plugins
-        Where * replaces exactly one segment between slashes (or the end of the path).
+        - `/services/*`
+        - `/services/*/plugins`
+        Where `*` replaces exactly one segment between slashes (or the end of the path).
 
-        Note that wildcards can be nested (/rbac/*, /rbac/*/*, /rbac/*/*/* would refer to all paths under /rbac/)
+        Note that wildcards can be nested. For example, `/rbac/*`, `/rbac/*/*`, `/rbac/*/*/*` would refer to all paths under `/rbac/`.
       requestBody:
         content:
           application/json:
@@ -12282,7 +12299,7 @@ paths:
                 workspace:
                   type: string
                 
-                  description: Workspace tied to the endpoint. Defaults to the default permission. Special value of “*” means all workspaces are affected
+                  description: Workspace tied to the endpoint. Defaults to the default permission. Using the wildcard `*` means all workspaces are affected.
                 endpoint:
                   type: string
                 
@@ -12292,12 +12309,13 @@ paths:
                   type: string
                 
                   description: |
-                    If true, explicitly disallow the actions associated with the permissions tied to this endpoint. By default this value is false.
+                    If true, explicitly disallow the actions associated with the permissions tied to this endpoint. By default, this value is false.
                 actions:
                   type: string
                 
                   description: |
-                    One or more actions associated with this permission. This is a comma separated string (read,create,update,delete)
+                    One or more actions associated with this permission, written as a comma-separated string. 
+                    For example, `read,create,update,delete`.
                 comment:
                   type: string
                  
@@ -12594,7 +12612,7 @@ paths:
                       id: bba049fa-bf7e-40ef-8e89-553dda292e99
       tags:
         - rbac
-      description: The `entity_id` must be the ID of an entity in Kong; if the ID of a workspace is given, the permission will apply to all entities in that workspace. Future entities belonging to that workspace will get the same permissions. A wildcard * will be interpreted as all entities in the system.
+      description: The `entity_id` must be the ID of an entity in Kong. If you provide the ID of a workspace, the permission applies to all entities in that workspace. Future entities belonging to that workspace will get the same permissions. A wildcard (`*`) will be interpreted as all entities in the system.
       requestBody:
         content:
           application/json:
@@ -12605,11 +12623,11 @@ paths:
                 negative:
                   type: string
                  
-                  description: id of the entity associated with this permission.
+                  description: ID of the entity associated with this permission.
                 entity_id:
                   type: string
                  
-                  description: Type of the entity of a given entity_id.
+                  description: Type of the entity of a given `entity_id`.
                 entity_type:
                   type: string
                  
@@ -12622,7 +12640,7 @@ paths:
                 comment:
                   type: string
                   
-                  description: A string describing the RBAC permission object
+                  description: A string describing the RBAC permission object.
         description: |
           Request Body
   '/rbac/roles/{name_or_id}/entities/{entity_id}':
@@ -12638,7 +12656,7 @@ paths:
         name: entity_id
         in: path
         required: true
-        description: id of the entity associated with this permission.
+        description: ID of the entity associated with this permission.
     get:
       summary: Retrieve a Role Entity Permission
       tags:
@@ -13263,11 +13281,11 @@ paths:
       tags:
         - filter-chains
       description: |-
-        Inserts (or replaces) the Filter Chain under the requested resource with the definition specified in the body. The Filter Chain will be identified via the name or id attribute.
+        Inserts (or replaces) the filter chain under the requested resource with the definition specified in the body. The filter chain is identified via the name or ID attribute.
 
-        When the name or id attribute has the structure of a UUID, the Filter Chain being inserted/replaced will be identified by its id. Otherwise it will be identified by its name.
+        When the name or ID attribute has the structure of a UUID, the filter chain being inserted or replaced is identified by its ID. Otherwise, it is identified by its name.
 
-        When creating a new Filter Chain without specifying id (neither in the URL nor in the body), then it will be auto-generated.
+        When creating a new filter chain without specifying an ID (neither in the URL nor in the body), the ID will be auto-generated.
 
         Notice that specifying a name in the URL and a different one in the request body is not allowed.
       requestBody:
@@ -13279,7 +13297,7 @@ paths:
         '204':
           description: No Content
       description: |
-        Delete Filter Chain
+        Delete filter chain.
       tags:
         - filter-chains
   '/routes/{route_id_or_name}/filter-chains/{filter_chain_id}':
@@ -13299,7 +13317,7 @@ paths:
                 $ref: '#/components/schemas/Filter-chains'
       operationId: get-routes-route_id_or_name-filter-chains-filter_chain_id
       description: |
-        Retrieve Filter Chain Associated to a Specific Route
+        Retrieve filter chain associated to a specific route.
     put:
       summary: Create Or Update Filter Chain Associated to a Specific Route
       operationId: put-routes-route_id_or_name-filter-chains-filter_chain_id
@@ -13307,7 +13325,7 @@ paths:
         '200':
           description: OK
       description: |
-        Create Or Update Filter Chain Associated to a Specific Route
+        Create or update filter chain associated to a specific route.
       requestBody:
         $ref: '#/components/requestBodies/filter-chains-request'
       tags:
@@ -13325,7 +13343,7 @@ paths:
           description: No Content
       operationId: get-routes-route_id_or_name-filter_chain_id
       description: |
-        Delete Filter Chain Associated to a Specific Route
+        Delete filter chain associated to a specific route.
   '/services/{service_id_or_name}/filter-chains/{filter_chain_id}':
     parameters:
       - $ref: '#/components/parameters/service_id_or_name'
@@ -13337,7 +13355,7 @@ paths:
         '204':
           description: No Content
       description: |
-        Delete Filter Chain Associated to a Specific Service
+        Delete filter chain associated to a specific service.
       tags:
         - filter-chains
   /audit/requests:
@@ -13351,7 +13369,7 @@ paths:
       operationId: get-audit-requests
       description: |-
         You can access request and database audit logs through the Admin API.
-        For usage examples, see [Audit Logging in Kong Gateway](https://docs.konghq.com/gateway/3.5.x/kong-enterprise/audit-log/).
+        For usage examples, see [Audit Logging in Kong Gateway](https://docs.konghq.com/gateway/latest/kong-enterprise/audit-log/).
   /audit/objects:
     get:
       summary: List database audit logs
@@ -13489,13 +13507,13 @@ paths:
                             - string
       operationId: get-event-hooks-sources
       description: |
-        Sources are the actions that trigger the event hook. The /sources JSON output follows the following pattern:
+        Sources are the actions that trigger the event hook. The `/sources` JSON output follows the following pattern:
 
         * 1st level = The source, which is the action that triggers the event hook.
-        * 2nd level = The event, which is the Kong entity the event hook will listen to for events.
-        * 3rd level = The available template parameters for use in webhook-custom payloads.
+        * 2nd level = The event, which is the Kong entity the event hook listens to for events.
+        * 3rd level = The available template parameters for use in `webhook-custom` payloads.
 
-        For instance, in the example below balancer is the source, health is the event, and upstream_id, ip, port, hostname, and health are the available template parameters.
+        For instance, in the example below `balancer` is the source, `health` is the event, and `upstream_id`, `ip`, `port`, `hostname`, and `health` are the available template parameters.
   '/event-hooks/sources/{source}':
     parameters:
       - schema:
@@ -13503,7 +13521,7 @@ paths:
         name: source
         in: path
         required: true
-        description: The source you want to list events from
+        description: The source you want to list events from.
     get:
       summary: List all events for a source
       tags:
@@ -13562,7 +13580,7 @@ paths:
                           - old_entity
                           - schema
       operationId: get-event-hooks-sources-source
-      description: Events are the Kong entities the event hook will listen to for events. With this endpoint you can list all of the events associated with a particular source.
+      description: Events are the Kong entities the event hook listens for events. With this endpoint, you can list all of the events associated with a particular source.
   '/event-hooks/{event-hook-id}/test':
     parameters:
       - schema:
@@ -13580,7 +13598,7 @@ paths:
       description: |-
         It’s useful to manually trigger an event hook without provoking the event to be triggered. For instance, you might want to test the integration, or see if your hook’s service is receiving a payload from Kong.
 
-        POST any data to `/event-hooks/:id-of-hook/test`, and the /test endpoint executes the with the provided data as the event payload.
+        POST any data to `/event-hooks/:id-of-hook/test`, and the `/test` endpoint executes the with the provided data as the event payload.
       tags:
         - Event-hooks
   '/event-hooks/{event-hook-id/ping':
@@ -13593,7 +13611,7 @@ paths:
           $ref: '#/components/responses/event-hooks-response'
       operationId: get-event-hooks-event-hook-id-ping
       description: |
-        Ping a webhook event hook
+        Ping a webhook event hook.
 servers:
   - description: Default Admin API URL
     url: '{protocol}://{hostname}:{port}{path}'
@@ -13731,12 +13749,12 @@ tags:
   - description: |
       Kong Gateway's RBAC feature is configurable through Kong's Admin API or using Kong Manager.
       <br><br>
-      There are 4 basic entities involving RBAC.
+      There are four basic entities involving RBAC:
       <br><br>
-      * User: The entity interacting with the system. Can be associated with zero, one or more roles. Example: user `bob` has token `1234`
-      * Role: Set of permissions (`role_endpoint` and `role_entity`). Has a name and can be associated with zero, one or more permissions. Example: user bob is associated with role developer.
-      * role_endpoint: a set of enabled or disabled actions. Example Role `developer` has 1 `role_endpoint` and reads and writes to `/routes`. 
-      * role_entity: A set of enabled or disabled actions. Example: Role `developer` has 1 `role_entity` attached to a UUID.
+      * User: The entity interacting with the system. Can be associated with zero, one, or more roles. For example: The user `bob` has the token `1234`.
+      * Role: Set of permissions (`role_endpoint` and `role_entity`). Has a name and can be associated with zero, one, or more permissions. For example: The user `bob` is associated with the role `developer`.
+      * `role_endpoint`: A set of enabled or disabled actions. For example: The role `developer` has one `role_endpoint` and reads and writes to `/routes`.
+      * `role_entity`: A set of enabled or disabled actions. For example: The role `developer` has one `role_entity` attached to a UUID.
     name: rbac
   - description: |
       A filter chain is the database entity representing one or more WebAssembly filters executed for each request to a particular service or route, each one with its configuration.
