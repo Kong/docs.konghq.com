@@ -26,7 +26,15 @@ The backup node is responsible for communicating the state of the {{site.base_ga
 Nodes are initialized with fallback configs via environment variables, including `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_DEFAULT_REGION`. 
 If associating with an IAM role and if the backup node does not reside on the AWS platform, an additional environment variable `AWS_SESSION_TOKEN` may be necessary. 
 
-We do not recommend using backup nodes to proxy traffic though it's possible. The backup job enlarges the attack surface of a proxying DP, and contribute significantly to the P99 delay. You need to know the risk if you want to deloy it this way, and the DP needs to be at least `3.6.0.0` to be provisioned with backup configuration when it's configured as a backup node. 
+{% if_version lte:3.5.x %}
+
+A backup node should not be used to proxy traffic. A single backup node is sufficient for all deployments. For more information about the data that is set in the environment variables, review the [AWS environment variable configuration documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html).
+
+{% endif_version %}
+{% if_version gte:3.6.x %}
+
+{:.important}
+> We do not recommend using backup nodes to proxy traffic. The backup job enlarges the attack surface of a proxying DP, and contributes significantly to the P99 delay. You need to know the risk if you want to deploy a node this way, and the DP needs to be at least `3.6.0.0` to be provisioned with backup configuration when it's configured as a backup node. 
 
 
 Although a single backup node is sufficient for all deployments, you can also configure additional backup nodes. A leader election algorithm selects one node from the group of designated backup nodes to do the backup job.
