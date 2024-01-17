@@ -64,7 +64,7 @@ PLATFORMS
 DEPENDENCIES
   jekyll (= 3.9.0)
   jekyll-redirect-from
-  kramdown-parser-gfm (= 1.1.0)
+  kramdown-parser-gfm
   redcarpet (= 3.5.0)
   rouge (= 3.24.0)
 
