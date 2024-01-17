@@ -5,7 +5,7 @@ content_type: how-to
 toc: false
 ---
 
-Starting in version 3.2, {{site.base_gateway}} can be configured to support configuring new data planes in the event of a control plane outage. This feature works by designating 1 or more backup nodes and allowing it read/write access to a data store. This backup node will automatically push valid {{site.base_gateway}} configurations to the data store. In the event of a control plane outage when a new node is created, it will pull the latest {{site.base_gateway}} configuration from the data store, configure itself, and start proxying requests. 
+Starting in version 3.2, {{site.base_gateway}} can be configured to support configuring new data planes in the event of a control plane outage. This feature works by designating one or more backup nodes and allowing it read/write access to a data store. This backup node will automatically push valid {{site.base_gateway}} configurations to the data store. In the event of a control plane outage when a new node is created, it will pull the latest {{site.base_gateway}} configuration from the data store, configure itself, and start proxying requests. 
 
 This option is only recommended for customers who have to adhere to strict availability SLAs, because it requires a larger maintenance load. 
 
@@ -28,7 +28,10 @@ If associating with an IAM role and if the backup node does not reside on the AW
 
 We do not recommend using backup nodes to proxy traffic though it's possible. The backup job enlarges the attack surface of a proxying DP, and contribute significantly to the P99 delay. You need to know the risk if you want to deloy it this way, and the DP needs to be at least `3.6.0.0` to be provisioned with backup configuration when it's configured as a backup node. 
 
-Although a single backup node is sufficient for all deployments, if you want multiple backup nodes it's well supported since `3.6.0.0`. A leader election algorithm is applied to select one from designated backup nodes to do the backup job.
+
+Although a single backup node is sufficient for all deployments, you can also configure additional backup nodes. A leader election algorithm selects one node from the group of designated backup nodes to do the backup job.
+
+{% endif_version %}
 
 For more information about the data that is set in the environment variables, review the [AWS environment variable configuration documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html).
 
@@ -52,9 +55,11 @@ kong-exporter:
 
 All the object keynames/prefixes mentioned in the following paragraphs are parametized with the prefix given in the config and the gateway version. Let's say the node has a version of `3.6.0.0`,  
 
-Since `3.6.0.0`, the backup nodes will create registering files to run the leader election with a prefix `test-prefix/3.6.0.0/election/`. You can set up a lifecycle rule to delete objects with this prefix that is not updated for days.
+The backup nodes will create registering files to run the leader election with a prefix `test-prefix/3.6.0.0/election/`. You can set up a lifecycle rule to delete objects with this prefix if it's not updated for days.
 
-The selected nodes is responsible for writing to the S3 bucket when it receives new configuration. The file structure is automatically created inside of the bucket and should not be created manually. The key name here will be `test-prefix/3.6.0.0/config.json`.
+The selected node is responsible for writing to the S3 bucket when it receives new configuration. The file structure is automatically created inside of the bucket and should not be created manually. The key name is `test-prefix/3.6.0.0/config.json`.
+
+{% endif_version %}
 
 Both the control plane and data plane can be configured to export configurations.
 
