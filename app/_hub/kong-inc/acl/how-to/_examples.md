@@ -1,6 +1,6 @@
 ---
-nav_title: ACL Examples
-title: ACL Examples
+nav_title: Using ACLs with consumer groups
+title: Using ACLs with consumer groups
 ---
 
 ## ACL configuration with {{site.base_gateway}}
