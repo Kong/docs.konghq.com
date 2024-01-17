@@ -59,7 +59,12 @@ kong-exporter:
 
 ```
 
-All the object keynames/prefixes mentioned in the following paragraphs are parametized with the prefix given in the config and the gateway version. Let's say the node has a version of `3.6.0.0`,  
+{% if_version lte:3.5.x %}
+This node is responsible for writing to the S3 bucket when it receives new configuration. The file structure is automatically created inside of the bucket and should not be created manually. If the node version is `3.2.0.0`, using the example above, the key name will be `test-prefix/3.2.0.0/config.json`. 
+{% endif_version %}
+
+{% if_version gte:3.6.x %}
+All the object keynames/prefixes mentioned in the following paragraphs are parameterized with the prefix given in the config and the gateway version. For example, let's say the node has a version of `3.6.0.0`.
 
 The backup nodes will create registering files to run the leader election with a prefix `test-prefix/3.6.0.0/election/`. You can set up a lifecycle rule to delete objects with this prefix if it's not updated for days.
 
