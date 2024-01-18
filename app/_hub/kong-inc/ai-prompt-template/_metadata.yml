@@ -1,7 +1,11 @@
 name: AI Prompt Template
 search_aliases:
+  - ai
   - llm
-  - large language models
+  - artificial
+  - intelligence
+  - language
+  - model
 dbless_compatible: yes
 free: true
 enterprise: true

@@ -6,7 +6,7 @@ search_aliases:
   - intelligence
   - language
   - model
-dbless_compatible: 'yes'
+dbless_compatible: yes
 free: true
 enterprise: true
 paid: true
@@ -16,4 +16,5 @@ notes: --
 categories:
   - ai
 publisher: Kong Inc.
-desc: Call many supported Large Language Model vendors and models via Kong Gateway, using mediated data formats and authentication
+desc: Call supported Large Language Model vendors and models via Kong Gateway, using mediated data formats and authentication
+type: plugin
