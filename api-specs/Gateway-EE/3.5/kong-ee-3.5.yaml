@@ -3805,43 +3805,50 @@ components:
                      A string describing one of four handler options: webhook, webhook-custom, log, or lambda. (required)
                   source:
                     type: string
-                    description: A string describing the action that triggers the event hook. (required)
+                    description: A string describing the action that triggers the event 'https://hooks.slack.com/services/foo/bar/baz'
+                    requried: true
                   snooze:
                     type: integer
-                    description: An optional integer describing the time in seconds to delay an event trigger to avoid spamming an integration. (optional)
+                    description: An optional integer describing the time in seconds to delay an event trigger to avoid spamming an integration.
                   on_change:
                     type: boolean
-                    description: An optional boolean indicating whether to trigger an event when key parts of a payload have changed. (optional)
+                    description: An optional boolean indicating whether to trigger an event when key parts of a payload have changed.
                   config.url:
                     type: string
-                    description: The URL the JSON POST request is made to with the event data as the payload. (required)
+                    description: The URL the JSON POST request is made to with the event data as the payloads.
+                    required: true
                   config.method:
                     type: string
-                    description: The HTTP method used to create the custom webhook. (required)
+                    description: The HTTP method used to create the custom webhook.
+                    required: true
                   config.payload:
                     type: object
-                    description: An object that includes key/value pairs that describe the configurable payload body. Supports templating. (optional)
+                    description: An object that includes key/value pairs that describe the configurable payload body. Supports templating.
                   config.payload_format:
                     type: boolean
-                    description: An optional boolean indicating whether to format the`config.payload` with resty templating. When set to false, the payload is sent as a raw object. (optional, defaults to true)
+                    description: An optional boolean indicating whether to format the config.payload with resty templating. When set to false, the payload is sent as a raw object.
+                    default: true
                   config.body:
                     type: string
-                    description: An optional string sent in the remote request. (optional)
+                    description: An optional string sent in the remote request.
                   config.body_format:
                     type: boolean
-                    description: An optional boolean indicating whether to format `config.body` with resty templating. When set to false, the body is sent as a raw object. (optional, defaults to true)
+                    description: An optional boolean indicating whether to format `config.body` with resty templating. When set to false, the body is sent as a raw object. 
+                    default: true
                   config.headers:
                     type: object
-                    description: An object defining additional HTTP headers to send in the webhook request. (optional)
+                    description: An object defining additional HTTP headers to send in the webhook request.
                   config.headers_format:
                     type: boolean
-                    description: An optional boolean indicating whether to format `config.headers` with resty templating. When set to true, the `config.headers` value is treated as a template. (optional, defaults to false)
+                    description: An optional boolean indicating whether to format `config.headers` with resty templating. When set to true, the `config.headers` value is treated as a template.
+                    default: false
                   config.secret:
                     type: string
                     description: An optional string used to sign the remote webhook for remote verification. When set, Kong signs the body of the event hook with HMAC-SHA1 and includes it in a header, `x-kong-signature`, sent to the remote endpoint. (optional)
                   config.ssl_verify:
                     type: boolean
-                    description: A boolean indicating whether to verify the SSL certificate of the remote HTTPS server where the event hook will be sent. The default value is false. (optional)
+                    description: A boolean indicating whether to verify the SSL certificate of the remote HTTPS server where the event hook will be sent.
+                    default: false
     ping-event-hook:
       description: Example response
       content:
@@ -4120,7 +4127,7 @@ components:
               algorithm:
                 type: string
                 description: |
-                  Which load balancing algorithm to use. Accepted values are: `"consistent-hashing"`, `"least-connections"`,` "round-robin"`. Default: `"round-robin"`.
+                  Which load balancing algorithm to use.
                 enum:
                   - consistent-hashing
                   - least-connections
@@ -4407,7 +4414,7 @@ components:
                         default: /
                       https_sni:
                         type: string
-                        description: "The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI."
+                        description: The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI.
                   threshold:
                     type: integer
                     description: The minimum percentage of the upstream's targets' weight that must be available for the whole upstream to be considered healthy.
@@ -4816,7 +4823,7 @@ components:
                 example: v0
               preserve_host:
                 type: boolean
-                description: "When matching a route via one of the `hosts` domain names, use the request `host` header in the upstream request headers. If set to `false`, the upstream Host header will be that of the service's host."
+                description: When matching a route via one of the `hosts` domain names, use the request `host` header in the upstream request headers. If set to `false`, the upstream Host header will be that of the service's host.
                 default: true
               request_buffering:
                 type: boolean
@@ -5026,7 +5033,7 @@ components:
             properties:
               name:
                 type: string
-                description: "The name of the plugin that's being added. The plugin must be installed in every Kong instance separately."
+                description: The name of the plugin that's being added. The plugin must be installed in every Kong instance separately.
                 example: rate-limiting
               route:
                 type: string
@@ -10985,7 +10992,6 @@ paths:
                 value:
                   key: t6NWgbj3g9cbNVC3/D6oZ2Md1Br5gWtRrqb1T2FZy44=
                   id: 8zgITLQh
-        description: ''
   /keyring/activate:
     post:
       summary: Activate key
@@ -11349,7 +11355,6 @@ paths:
                   username: string
                   email: user@example.com
                   password: pa$$word
-        description: ''
       tags:
         - admins
   /admins/password_resets:
@@ -11377,7 +11382,6 @@ paths:
               Example reset body:
                 value:
                   email: admin@example.com
-        description: ''
     patch:
       summary: Reset an Admin’s Password
       operationId: patch-admins-password_resets
@@ -12322,7 +12326,6 @@ paths:
                   type: string
                  
                   description: A string describing the RBAC permission object.
-        description: ''
   '/rbac/roles/{name_or_id}/endpoints/{workspace_name_or_id}/{endpoint}':
     parameters:
       - schema:
