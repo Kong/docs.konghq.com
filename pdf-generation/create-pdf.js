@@ -5,7 +5,7 @@ async function createPDF(name, urls) {
   const merger = new PDFMerger();
   const browser = await launch({
     headless: "new",
-    defaultViewport: null,
+    defaultViewport: { "width": 595, "height": 842 } // A4 size in pixels
   });
   const page = await browser.newPage();
 
@@ -16,6 +16,9 @@ async function createPDF(name, urls) {
     await page.goto(url, {
       waitUntil: "domcontentloaded",
     });
+
+    // Reflect CSS used for screens instead of print
+    await page.emulateMediaType("screen");
 
     // Wait until all images and fonts have loaded
     // via https://github.blog/2021-06-22-framework-building-open-graph-images/
@@ -54,6 +57,7 @@ async function createPDF(name, urls) {
       ]);
     });
 
+
     // Handle OpenAPI pages that can't be rendered as PDF
     const isOpenApiPage = await page.evaluate(() => {
       return !!document.querySelector("elements-api");
@@ -66,7 +70,7 @@ async function createPDF(name, urls) {
         <h1>${document.querySelector("title").innerText}</h1>
 
         <p>This content is not available in PDF format. Please see ${url.replace(
-          "http://localhost:3000",
+          "http://localhost:8888",
           "https://docs.konghq.com",
         )} for more details</p>
         `;
@@ -83,7 +87,22 @@ async function createPDF(name, urls) {
         .navtab-content { display: block !important } /* Expand tabbed content */
         .navtab-contents { padding: 0 !important; }
         h4 { margin-top: 0 !important; }
+
+        .page-content-container { padding: 0 !important; }
+        .content table { display: table !important; }
+        .content thead { display: table-header-group !important; }
+        .content tbody { display: table-row-group !important; }
+        .content tr { display: table-row !important; }
+        .content td { display: table-cell !important; }
+        .content th { display: table-cell !important; }
       `,
+    });
+
+    // Remove mobile css class from tables
+    await page.evaluate(() => {
+      Array.from(document.querySelectorAll("table.mobile")).forEach((t) => {
+        t.classList.remove("mobile");
+      });
     });
 
     // Move header if we're on a plugin page
@@ -94,15 +113,6 @@ async function createPDF(name, urls) {
       }
       const content = document.querySelector(".page-content");
       content.insertBefore(header, content.firstChild);
-    });
-
-    // Move page content to be in body
-    await page.evaluate(() => {
-      const content = document.querySelector(".page-content");
-      if (!content) {
-        return;
-      }
-      document.querySelector("body").innerHTML = content.innerHTML;
     });
 
     // Convert tabs to be sequential with a header in each
@@ -124,6 +134,17 @@ async function createPDF(name, urls) {
         ".content-header",
         ".copy-action",
         ".navtab-titles",
+        "header",
+        ".page--header-background",
+        ".page-header",
+        ".docs-sidebar",
+        ".docs-toc",
+        "footer",
+        ".modal",
+        ".feedback-widget-container",
+        "#scroll-to-top-button",
+        "#version-notice",
+        ".toggles"
       ].join(", ");
       const elements = document.querySelectorAll(toRemove);
       for (let i = 0; i < elements.length; i++) {
