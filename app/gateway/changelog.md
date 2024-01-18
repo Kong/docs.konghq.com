@@ -3419,7 +3419,7 @@ openid-connect
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
-## 2.8.4.5
+## 2.8.4.6
 **Release Date** 2024/01/17
 
 ### Fixes
