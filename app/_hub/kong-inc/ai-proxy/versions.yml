@@ -1,0 +1,4 @@
+strategy: gateway
+releases:
+  minimum_version: '3.6.0'
+
