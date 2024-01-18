@@ -33,8 +33,8 @@ export KONG_VAULT_HCV_KV=<v1|v2>
 export KONG_VAULT_HCV_AUTH_METHOD=kubernetes
 export KONG_VAULT_HCV_KUBE_ROLE=<rolename>
 ```
-
-HashiCorp Vault Approle authentication:
+{% if_version gte:3.6.x %}
+HashiCorp Vault AppRole authentication:
 
 ```bash
 export KONG_VAULT_HCV_PROTOCOL=<protocol(http|https)>
@@ -46,6 +46,7 @@ export KONG_VAULT_HCV_AUTH_METHOD=approle
 export KONG_VAULT_HCV_APPROLE_ROLE_ID=<role_id>
 export KONG_VAULT_HCV_APPROLE_SECRET_ID=<secret_id>
 ```
+{% endif_version %}
 
 You can also store this information in an entity.
 
@@ -189,18 +190,17 @@ any of the supported tools:
 
 Configuration options for a HashiCorp vault in {{site.base_gateway}}:
 
-Parameter | Field name | Description
-----------|------------|------------
-`vaults.config.protocol` | **config-protocol** (Kong Manager) <br> **Protocol** ({{site.konnect_short_name}}) | The protocol to connect with. Accepts one of `http` or `https`.
-`vaults.config.host` | **config-host** (Kong Manager) <br> **Host** ({{site.konnect_short_name}}) | The hostname of your HashiCorp vault.
-`vaults.config.port` | **config-port** (Kong Manager) <br> **Port** ({{site.konnect_short_name}}) | The port number of your HashiCorp vault.
-`vaults.config.mount` | **config-mount** (Kong Manager) <br> **Mount** ({{site.konnect_short_name}}) | The mount point.
-`vaults.config.kv` | **config-kv** (Kong Manager) <br> **Kv** ({{site.konnect_short_name}}) | The secrets engine version. Accepts `v1` or `v2`.
-`vaults.config.token` | **config-token** (Kong Manager) <br> **Token** ({{site.konnect_short_name}}) | A token string.
-`vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the vault when it's cached. The special value of 0 means "no rotation" and it's the default. When using non-zero values, it is recommended that they're at least 1 minute.
-`vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a vault miss (no secret). Negatively cached secrets will remain valid until `neg_ttl` is reached, after which Kong will attempt to refresh the secret again. The default value for `neg_ttl` is 0, meaning no negative caching occurs.
-`vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for how long secrets will remain in use after they are expired (`config.ttl` is over). This is useful when a vault becomes unreachable, or when a secret is deleted from the Vault and isn't replaced immediately. On this both cases, the Gateway will keep trying to refresh the secret for `resurrect_ttl` seconds. After that, it will stop trying to refresh. We recommend assigning a sufficiently high value to this configuration option to ensure a seamless transition in case there are unexpected issues with the Vault. The default value for `resurrect_ttl` is 1e8 seconds, which is about 3 years.
-
+|Parameter | Field name | Description 
+|----------|------------|------------ 
+|`vaults.config.protocol` | **config-protocol** (Kong Manager) <br> **Protocol** ({{site.konnect_short_name}}) | The protocol to connect with. Accepts one of `http` or `https`. 
+|`vaults.config.host` | **config-host** (Kong Manager) <br> **Host** ({{site.konnect_short_name}}) | The hostname of your HashiCorp vault. 
+|`vaults.config.port` | **config-port** (Kong Manager) <br> **Port** ({{site.konnect_short_name}}) | The port number of your HashiCorp vault. 
+|`vaults.config.mount` | **config-mount** (Kong Manager) <br> **Mount** ({{site.konnect_short_name}}) | The mount point. 
+|`vaults.config.kv` | **config-kv** (Kong Manager) <br> **Kv** ({{site.konnect_short_name}}) | The secrets engine version. Accepts `v1` or `v2`. 
+|`vaults.config.token` | **config-token** (Kong Manager) <br> **Token** ({{site.konnect_short_name}}) | A token string. 
+|`vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the vault when it's cached. The special value of 0 means "no rotation" and it's the default. When using non-zero values, it is recommended that they're at least 1 minute. 
+|`vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a vault miss (no secret). Negatively cached secrets will remain valid until `neg_ttl` is reached, after which Kong will attempt to refresh the secret again. The default value for `neg_ttl` is 0, meaning no negative caching occurs. 
+|`vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for how long secrets will remain in use after they are expired (`config.ttl` is over). This is useful when a vault becomes unreachable, or when a secret is deleted from the Vault and isn't replaced immediately. On this both cases, the Gateway will keep trying to refresh the secret for `resurrect_ttl` seconds. After that, it will stop trying to refresh. We recommend assigning a sufficiently high value to this configuration option to ensure a seamless transition in case there are unexpected issues with the Vault. The default value for `resurrect_ttl` is 1e8 seconds, which is about 3 years. |
 
 {% if_version gte:3.1.x %}
 | `vaults.config.namespace` | **namespace** | Namespace for the Vault. Vault Enterprise requires a namespace to successfully connect to it. |
@@ -208,13 +208,9 @@ Parameter | Field name | Description
 | `vaults.config.kube_role` | **kube-role** | Defines the HashiCorp Vault role for the Kubernetes service account of the running pod. `keyring_vault_auth_method` must be set to `kubernetes` for this to activate. |
 | `vaults.config.kube_api_token_file` | **kube-api-token-file** | Defines the file path for the Kubernetes service account token. If not specified then a default path `/run/secrets/kubernetes.io/serviceaccount/token` will be used. |
 {% endif_version %}
-
-
 {% if_version gte:3.5.x %}
 | `vaults.config.kube_auth_path` | **kube-auth-path** | Defines the path that enabled Kubernetes auth method. If not specified then a default path `kubernetes` will be used. If the value contains any single leading slash or single trailing slash then both of them will be trimmed. |
 {% endif_version %}
-
-
 {% if_version gte:3.6.x %}
 | `vaults.config.approle_auth_path` | **approle_auth_path** | Defines the path that enabled Approle auth method. If not specified then a default path `approle` will be used. If the value contains any single leading slash or single trailing slash then both of them will be trimmed. |
 | `vaults.config.approle_role_id` | **approle_role_id** | Defines the role id of the Approle in Hashicorp Vault. |
