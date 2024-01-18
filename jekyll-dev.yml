@@ -66,6 +66,10 @@ extensions:
       slug: logging
       desc: Log request and response data using the best transport for your infrastructure
       icon: /assets/images/nav/hub/list_alt.svg
+    - name: AI
+      slug: ai
+      desc: placeholder
+      icon: /assets/images/nav/hub/ai.svg
   types:
     - name: plugin
       slug: plugin
