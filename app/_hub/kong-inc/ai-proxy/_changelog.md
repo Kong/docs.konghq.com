@@ -1,5 +1,5 @@
 ## Changelog
 
-### {{site.base_gateway}} 3.6.0.0
+### {{site.base_gateway}} 3.6.x
 
-* Introduced the new **AI Proxy** plugin, which enables simplified integration with various AI provider Large Language Models (LLM).
+* Introduced the *AI Proxy* plugin, which can mediate request and response formats, and authentication, between users and a number of supported Large Language Model AI services and models.

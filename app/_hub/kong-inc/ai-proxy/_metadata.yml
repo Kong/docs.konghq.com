@@ -1,8 +1,12 @@
 name: AI Proxy
 search_aliases:
+  - ai
   - llm
-  - large language models
-dbless_compatible: yes
+  - artificial
+  - intelligence
+  - language
+  - model
+dbless_compatible: 'yes'
 free: true
 enterprise: true
 paid: true
@@ -12,5 +16,4 @@ notes: --
 categories:
   - ai
 publisher: Kong Inc.
-desc: 
-type: plugin
+desc: Call many supported Large Language Model vendors and models via Kong Gateway, using mediated data formats and authentication
