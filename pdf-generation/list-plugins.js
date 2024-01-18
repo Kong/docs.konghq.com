@@ -11,12 +11,13 @@ export default async function (plugin, version) {
     `/hub/kong-inc/${plugin}/${version}/how-to/basic-example/`,
   ];
 
-  let urlsFromFiles = await fg(`../app/_hub/kong-inc/${plugin}/how-to/*`);
+  let urlsFromFiles = await fg(`../app/_hub/kong-inc/${plugin}/how-to/**/*`);
   urlsFromFiles = urlsFromFiles.map((f) => {
     return f
       .replace('../app/_hub/', '/hub/')
       .replace('/how-to/', `/${version}/how-to/`)
       .replace('_index', '')
+      .replace('_', '')
       .replace('.md', '');
   });
 
