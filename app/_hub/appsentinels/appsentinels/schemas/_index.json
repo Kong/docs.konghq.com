@@ -1,0 +1,256 @@
+{
+  "fields" : [
+     {
+        "protocols" : "typedefs.protocols_http"
+     },
+     {
+        "config" : {
+           "type" :"record",
+           "fields" : [
+              {
+                 "http_endpoint" : {
+                    "type" : "string",
+                    "required": true
+                 }
+              },
+              {
+                 "method" : {
+                    "type" : "string",
+                    "default" : "POST",
+                    "one_of" : [
+                       "POST",
+                       "PUT",
+                       "PATCH"
+                    ]
+                 }
+              },
+              {
+                 "content_type" : {
+                    "type" :  "string",
+                    "default" : "application/json",
+                    "one_of" : [
+                       "application/json"
+                    ]
+                 }
+              },
+              {
+                 "timeout" : {
+                    "type"  :  "number",
+                    "default" : 100
+                 }
+              },
+              {
+                 "log_timeout" : {
+                    "type"  :  "number",
+                    "default" : 150
+                 }
+              },
+              {
+                 "connect_timeout" : {
+                    "type"  :  "number",
+                    "default" : 1000
+                 }
+              },
+              {
+                 "stats_timeout" : {
+                    "type"  :  "number",
+                    "default" : 5
+                 }
+              },
+              {
+                 "keepalive" : {
+                    "type"  :  "number",
+                    "default" : 60000
+                 }
+              },
+              {
+                 "retry_count" : {
+                    "type"  :  "integer",
+                    "default" : 0
+                 }
+              },
+              {
+                 "queue_size" : {
+                    "type"  :  "integer",
+                    "default" : 5
+                 }
+              },
+              {
+                 "queue_num" : {
+                    "type"  :  "integer",
+                    "default" : 5
+                 }
+              },
+              {
+                 "queue_max_entries" : {
+                    "type"  :  "integer",
+                    "default" : 10000
+                 }
+              },
+              {
+                 "flush_timeout" : {
+                    "type"  :  "number",
+                    "default" : 1
+                 }
+              },
+              {
+                 "no_self_signed" : {
+                    "type"    :  "boolean",
+                    "default" : false
+                 }
+              },
+              {
+                 "authz" : {
+                    "type"    :  "boolean",
+                    "default" : false
+                 }
+              },
+              {
+                 "authz_fail_allow" : {
+                    "type"  :  "boolean",
+                    "default" : true
+                 }
+              },
+              {
+                 "authz_fail_msg" : {
+                    "type"  :  "string",
+                    "default"  :  "Unauthorized by Appsentinels"
+                 }
+              },
+              {
+                 "path_requestlog" : {
+                    "type"  :  "string",
+                    "default"  :  "/auth"
+                 }
+              },
+              {
+                 "path_responselog" : {
+                    "type"  :  "string",
+                    "default"  :  "/nginxlog"
+                 }
+              },
+              {
+                 "path_mergedlog" : {
+                    "type"  :  "string",
+                    "default"  :  "/mergedlog"
+                 }
+              },
+              {
+                 "path_stats" : {
+                    "type"  :  "string",
+                    "default"  :  "/nginxstats"
+                 }
+              },
+              {
+                 "compress_logs" : {
+                    "type"  :  "boolean",
+                    "default" : true
+                 }
+              },
+              {
+                 "unhealthy_threshold" : {
+                    "type"  :  "integer",
+                    "default" : 3
+                 }
+              },
+              {
+                 "shaper_type" : {
+                    "type"  :  "string",
+                    "default"  :  "linear"
+                 }
+              },
+              {
+                 "shaper_max_stages" : {
+                    "type"  :  "number",
+                    "default" : 180
+                 }
+              },
+              {
+                 "shaper_base" : {
+                    "type"  :  "number",
+                    "default" : 3
+                 }
+              },
+              {
+                 "shaper_multiplier" : {
+                    "type"  :  "number",
+                    "default" : 1
+                 }
+              },
+              {
+                 "shaper_step_duration" : {
+                    "type"  :  "number",
+                    "default" : 1000
+                 }
+              },
+              {
+                 "shaper_fallback_rate" : {
+                    "type"  :  "number",
+                    "default" : 1.25
+                 }
+              },
+              {
+                 "shaper_idle_timeout" : {
+                    "type"  :  "number",
+                    "default" : 60000
+                 }
+              },
+              {
+                 "console_error_supp_rate" : {
+                    "type"  :  "number",
+                    "default" : 10
+                 }
+              },
+              {
+                 "normalize_factor" : {
+                    "type"  :  "number",
+                    "default" : 0
+                 }
+              },
+              {
+                 "max_payload" : {
+                    "type"  :  "number",
+                    "default" : 131072
+                 }
+              },
+              {
+                 "early_payload_threshold" : {
+                    "type"  :  "number",
+                    "default" : 32768
+                 }
+              },
+              {
+                 "content_regex" : {
+                    "type"  :  "string",
+                    "default"  :  "(json|form|xml|graphql)"
+                 }
+              },
+              {
+                 "force_read_client_payload" : {
+                    "type"  :  "boolean",
+                    "default" : false
+                 }
+              },
+              {
+                 "instance_name" : {
+                    "type"  :  "string",
+                    "default"  :  "NA"
+                 }
+              },
+              {
+                 "stats_send_timeout" : {
+                    "type"  :  "number",
+                    "default" : 4000
+                 }
+              },
+              {
+                 "trace" : {
+                    "type"  :  "boolean",
+                    "default" : false
+                 }
+              }
+            ]
+        }
+     }
+  ]
+}

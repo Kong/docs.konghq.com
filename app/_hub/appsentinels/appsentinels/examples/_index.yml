@@ -1,0 +1,3 @@
+name: appsentinels
+config:
+  http_endpoint: <Logging endpoint URL (scheme,uri,port)>
