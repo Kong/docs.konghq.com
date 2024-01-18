@@ -18,3 +18,5 @@ categories:
 publisher: Kong Inc.
 desc: Call supported Large Language Model vendors and models via Kong Gateway, using mediated data formats and authentication
 type: plugin
+
+beta: true

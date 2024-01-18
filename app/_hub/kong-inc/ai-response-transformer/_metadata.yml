@@ -18,3 +18,5 @@ categories:
 publisher: Kong Inc.
 desc: 
 type: plugin
+
+beta: true
