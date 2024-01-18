@@ -3687,7 +3687,8 @@ components:
                       description:
                         type: string
                   handler:
-                    description: A string describing one of four handler options: webhook, webhook-custom, log, or lambda.
+                    description: |
+                      A string describing one of four handler options: webhook, webhook-custom, log, or lambda.
                     type: object
                     properties:
                       type:
@@ -3800,7 +3801,8 @@ components:
                     description: A string describing the Kong entity the event hook listens to for events. (optional)
                   handler:
                     type: string
-                    description: A string describing one of four handler options: webhook, webhook-custom, log, or lambda. (required)
+                    description: |
+                     A string describing one of four handler options: webhook, webhook-custom, log, or lambda. (required)
                   source:
                     type: string
                     description: A string describing the action that triggers the event hook. (required)
