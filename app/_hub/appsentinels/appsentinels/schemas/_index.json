@@ -1,9 +1,23 @@
 {
   "fields" : [
-     {
-        "protocols" : "typedefs.protocols_http"
-     },
-     {
+      {
+         "protocols": {
+         "elements": {
+            "one_of": [ 
+               "http",
+               "https"
+            ],
+            "type": "string"
+         },
+         "required": true,
+         "type": "set",
+         "default": [
+            "http",
+            "https"
+         ]
+         }
+      },
+      {
         "config" : {
            "type" :"record",
            "fields" : [
