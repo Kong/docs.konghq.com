@@ -4,10 +4,12 @@ content_type: reference
 ---
 
 {% if_version gte:1.28.x %}
-{:.warning}
-> **Warning**: This command is deprecated and will be removed in a future version.
-Use [deck gateway reset](/deck/{{page.kong_version}}/reference/deck_gateway_reset/) instead.
+{:.important}
+> `deck reset` functionality has moved to `deck gateway reset`. 
+`deck reset` will be removed in a future major version of decK (decK 2.x).
+We recommend migrating to [deck gateway reset](/deck/{{page.kong_version}}/reference/deck_gateway_reset/).
 {% endif_version %}
+
 
 The reset command deletes all entities in Kong's database.string.
 

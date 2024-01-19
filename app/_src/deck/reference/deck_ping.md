@@ -4,9 +4,10 @@ content_type: reference
 ---
 
 {% if_version gte:1.28.x %}
-{:.warning}
-> **Warning**: This command is deprecated and will be removed in a future version.
-Use [deck gateway ping](/deck/{{page.kong_version}}/reference/deck_gateway_ping/) instead.
+{:.important}
+> `deck ping` functionality has moved to `deck gateway ping`. 
+> <br>`deck ping` will be removed in a future major version of decK (decK 2.x).
+We recommend migrating to [deck gateway ping](/deck/{{page.kong_version}}/reference/deck_gateway_ping/).
 {% endif_version %}
 
 The ping command can be used to verify if decK

@@ -7,6 +7,9 @@ content_type: reference
 The ping command can be used to verify if decK
 can connect to Kong's Admin API.
 
+{:.note}
+> `deck gateway ping` is the replacement for `deck ping`. 
+
 ## Syntax
 
 ```

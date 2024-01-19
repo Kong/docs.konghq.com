@@ -70,9 +70,10 @@ items:
         url: /reference/deck/
       - text: deck completion
         url: /reference/deck_completion/
-      - text: deck file
-        url: /reference/deck_file/
+      - text: deck file commands
         items:
+          - text: deck file
+            url: /reference/deck_file/
           - text: deck file add-plugins
             url: /reference/deck_file_add-plugins/
           - text: deck file add-tags
@@ -95,9 +96,10 @@ items:
             url: /reference/deck_file_render/
           - text: deck file validate
             url: /reference/deck_file_validate/
-      - text: deck gateway
-        url: /reference/deck_gateway/
+      - text: deck gateway commands
         items:
+          - text: deck gateway
+            url: /reference/deck_gateway/
           - text: deck gateway diff
             url: /reference/deck_gateway_diff/
           - text: deck gateway dump
