@@ -9,7 +9,7 @@ module Jekyll
 
       super
 
-      version = context.environments.first['page']['release']
+      version = context.environments.first['page']['release'].value
       hub = context.registers[:site].data['ssg_hub']
 
       @referenceable_fields = ReferenceableFields.run(version:, hub:)
