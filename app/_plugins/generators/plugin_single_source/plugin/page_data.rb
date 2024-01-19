@@ -31,6 +31,7 @@ module PluginSingleSource
           'extn_slug' => @release.name,
           'extn_publisher' => @release.vendor,
           'extn_release' => @release.version,
+          'extn_latest' => extn_latest,
           'extn_icon' => extn_icon,
           'layout' => layout,
           'page_type' => 'plugin',
@@ -87,9 +88,7 @@ module PluginSingleSource
       end
 
       def release_data
-        release = Jekyll::GeneratorSingleSource::Product::Edition
-                  .new(edition: 'gateway', site: @release.site)
-                  .releases
+        release = gateway_releases
                   .detect { |r| r.value == Utils::Version.to_release(@release.version) }
 
         if release
@@ -99,11 +98,25 @@ module PluginSingleSource
         end
       end
 
+      def extn_latest
+        @extn_latest ||= gateway_releases
+                         .select { |r| @release.ext_data.fetch('releases', []).include?(r.value) }
+                         .select { |r| r.label.nil? }
+                         .max_by(&:value)
+                         .to_liquid
+      end
+
       def badges
         Jekyll::Drops::Plugins::Badges.new(
           metadata: @release.metadata,
           publisher: @release.vendor
         )
+      end
+
+      def gateway_releases
+        @gateway_releases ||= Jekyll::GeneratorSingleSource::Product::Edition
+                              .new(edition: 'gateway', site: @release.site)
+                              .releases
       end
     end
   end
