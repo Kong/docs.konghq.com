@@ -65,7 +65,7 @@ jobs:
         with:
           ruby-version: .ruby-version
       - name: Ruby gem cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ github.workspace }}/vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
