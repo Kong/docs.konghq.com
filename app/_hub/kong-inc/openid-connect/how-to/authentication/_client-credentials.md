@@ -51,56 +51,57 @@ sequenceDiagram
 
 {% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
-Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step:
+Using the Keycloak and {{site.base_gateway}} configuration from the [prerequisites](#prerequisites), 
+set up an instance of the OpenID Connect plugin with the client credentials grant.
 
-1. We want to only use the client credentials grant.
-2. We want to search credentials for client credentials from the headers only.
+For the demo, we're going to set up the following:
+* Issuer, client ID, and client auth: settings that connect the plugin to your IdP (in this case, the sample Keycloak app).
+* Auth method: client credentials grant.
+* We want to search credentials for client credentials from the headers only.
 
-```bash
-http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
-  config.auth_methods=client_credentials                         \
-  config.client_credentials_param_type=header
-```
-```http
-HTTP/1.1 200 OK
-```
-```json
-{
-    "id": "5f35b796-ced6-4c00-9b2a-90eef745f4f9",
-    "name": "openid-connect",
-    "service": {
-        "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd"
-    },
-    "config": {
-        "auth_methods": [ "client_credentials" ],
-        "client_credentials_param_type": [ "header" ]
-    }
-}
-```
+With all of the above in mind, let's test out the client credentials grant with Keycloak. 
+Enable the OpenID Connect plugin on the `openid-connect` service:
+
+<!-- vale off-->
+{% plugin_example %}
+plugin: kong-inc/openid-connect
+name: openid-connect
+config:
+  issuer: "http://keycloak.test:8080/auth/realms/master"
+  client_id: "kong"
+  client_auth: "private_key_jwt"
+  auth_methods:
+    - "client_credentials"
+  client_credentials_param_type: 
+    - "header"
+targets:
+  - service
+formats:
+  - konnect
+  - curl
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on -->
 
 ### Test the client credentials grant
 
-Request the service with client credentials created in the [Keycloak configuration](#prerequisites) step:
+At this point you have created a service, routed traffic to the service, and 
+enabled the OpenID Connect plugin on the service. You can now test the client credentials grant.
 
-```bash
-http -v -a service:cf4c655a-0622-4ce6-a0de-d3353ef0b714 :8000
-```
-```http
-GET / HTTP/1.1
-Authorization: Basic c2VydmljZTpjZjRjNjU1YS0wNjIyLTRjZTYtYTBkZS1kMzM1M2VmMGI3MTQ=
-```
-```http
-HTTP/1.1 200 OK
-```
-```json
-{
-    "headers": {
-        "Authorization": "Bearer <access-token>"
-    },
-    "method": "GET"
-}
-```
+1. Check the discovery cache: 
 
+    ```sh
+    curl -i -X GET http://localhost:8001/openid-connect/issuers
+    ```
+
+    It should contain Keycloak OpenID Connect discovery document and the keys.
+
+2. Request the service using the client credentials created in the [Keycloak configuration](#prerequisites) step:
+
+    ```sh
+    curl http://localhost:8000/openid-connect --user service:cf4c655a-0622-4ce6-a0de-d3353ef0b714
+    ```
 
 If you make another request using the same credentials, you should see that Kong adds less
 latency to the request as it has cached the token endpoint call to Keycloak.

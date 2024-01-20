@@ -51,62 +51,65 @@ sequenceDiagram
 
 {% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
-Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step:
+Using the Keycloak and {{site.base_gateway}} configuration from the [prerequisites](#prerequisites), 
+set up an instance of the OpenID Connect plugin with introspection authentication.
 
-1. We want to only use the introspection authentication, but we also enable the 
-[password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/) for demoing purposes.
-2. We want to search the bearer token for the introspection from the headers only.
+For the demo, we're going to set up the following:
+* Issuer, client ID, and client auth: settings that connect the plugin to your IdP (in this case, the sample Keycloak app).
+* Auth method: you only need introspection authentication for this flow. 
+For the purposes of the demo, the examle also enables the
+[password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/).
+* We want to only search headers for the bearer token for introspection.
 
-```bash
-http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
-  config.bearer_token_param_type=header                          \
-  config.auth_methods=introspection                              \
-  config.auth_methods=password # only enabled for demoing purposes
-```
-```http
-HTTP/1.1 200 OK
-```
-```json
-{
-    "id": "5f35b796-ced6-4c00-9b2a-90eef745f4f9",
-    "name": "openid-connect",
-    "service": {
-        "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd"
-    },
-    "config": {
-        "auth_methods": [
-            "introspection",
-            "password"
-        ],
-        "bearer_token_param_type": [ "header" ]
-    }
-}
-```
+With all of the above in mind, let's test out the introspection auth flow with Keycloak. 
+Enable the OpenID Connect plugin on the `openid-connect` service:
+
+<!-- vale off-->
+{% plugin_example %}
+plugin: kong-inc/openid-connect
+name: openid-connect
+config:
+  issuer: "http://keycloak.test:8080/auth/realms/master"
+  client_id: "kong"
+  client_auth: "private_key_jwt"
+  auth_methods:
+    - "introspection"
+    - "password"
+  client_credentials_param_type: 
+    - "header"
+targets:
+  - service
+formats:
+  - konnect
+  - curl
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on -->
 
 ### Test the introspection authentication
 
-Request the service with a bearer token:
+At this point you have created a service, routed traffic to the service, and 
+enabled the OpenID Connect plugin on the service. You can now test the introspection auth flow.
 
-```bash
-http -v :8000 Authorization:"$(http -a john:doe :8000 | \
-    jq -r .headers.Authorization)"
-```
-or
-```bash
-http -v :8000 Authorization:"Bearer <access-token>"
-```
-```http
-GET / HTTP/1.1
-Authorization: Bearer <access-token>
-```
-```http
-HTTP/1.1 200 OK
-```
-```json
-{
-    "headers": {
-        "Authorization": "Bearer <access-token>"
-    },
-    "method": "GET"
-}
-```
+1. Check the discovery cache: 
+
+    ```sh
+    curl -i -X GET http://localhost:8001/openid-connect/issuers
+    ```
+
+    It should contain Keycloak OpenID Connect discovery document and the keys.
+
+2. Request the service with a bearer token:
+
+    ```sh
+    curl -I http://localhost:8000/openid-connect \
+      -H "Authorization: \
+      '$(curl --user user:pass http://localhost:8000/openid-connect \
+      | jq -r .headers.Authorization)'"
+    ```
+
+    or:
+    ```sh
+    curl -I http://localhost:8000/openid-connect -H "Authorization: Bearer <access-token>"
+    ```
