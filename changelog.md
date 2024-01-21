@@ -2,6 +2,340 @@
 
 <!--vale off-->
 
+## Week 3
+
+### [Release: decK 1.30.0](https://github.com/Kong/docs.konghq.com/pull/6785) (2024-01-19)
+
+Version bump for decK 1.30 + any relevant updates to decK CLI docs. Mainly, this update softens the language of the warnings to make it clear that the old decK commands will still work.
+
+To do: add some migration info to the new deck gateway commands (currently appears only on the deprecated commands).
+
+#### Modified
+
+- https://docs.konghq.com/deck/1.10.x/reference/deck_convert
+- https://docs.konghq.com/deck/1.11.x/reference/deck_convert
+- https://docs.konghq.com/deck/1.12.x/reference/deck_convert
+- https://docs.konghq.com/deck/1.13.x/reference/deck_convert
+- https://docs.konghq.com/deck/1.14.x/reference/deck_convert
+- https://docs.konghq.com/deck/1.15.x/reference/deck_convert
+- https://docs.konghq.com/deck/1.16.x/reference/deck_convert
+- https://docs.konghq.com/deck/1.17.x/reference/deck_convert
+- https://docs.konghq.com/deck/1.18.x/reference/deck_convert
+- https://docs.konghq.com/deck/1.19.x/reference/deck_convert
+- https://docs.konghq.com/deck/1.20.x/reference/deck_convert
+- https://docs.konghq.com/deck/1.21.x/reference/deck_convert
+- https://docs.konghq.com/deck/1.22.x/reference/deck_convert
+- https://docs.konghq.com/deck/1.23.x/reference/deck_convert
+- https://docs.konghq.com/deck/1.24.x/reference/deck_convert/
+- https://docs.konghq.com/deck/1.25.x/reference/deck_convert/
+- https://docs.konghq.com/deck/1.26.x/reference/deck_convert/
+- https://docs.konghq.com/deck/1.27.x/reference/deck_convert/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_convert/
+- https://docs.konghq.com/deck/1.29.x/reference/deck_convert/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_convert/
+- https://docs.konghq.com/deck/1.7.x/reference/deck_convert
+- https://docs.konghq.com/deck/1.8.x/reference/deck_convert
+- https://docs.konghq.com/deck/1.9.x/reference/deck_convert
+- https://docs.konghq.com/deck/1.10.x/reference/deck_diff
+- https://docs.konghq.com/deck/1.11.x/reference/deck_diff
+- https://docs.konghq.com/deck/1.12.x/reference/deck_diff
+- https://docs.konghq.com/deck/1.13.x/reference/deck_diff
+- https://docs.konghq.com/deck/1.14.x/reference/deck_diff
+- https://docs.konghq.com/deck/1.15.x/reference/deck_diff
+- https://docs.konghq.com/deck/1.16.x/reference/deck_diff
+- https://docs.konghq.com/deck/1.17.x/reference/deck_diff
+- https://docs.konghq.com/deck/1.18.x/reference/deck_diff
+- https://docs.konghq.com/deck/1.19.x/reference/deck_diff
+- https://docs.konghq.com/deck/1.20.x/reference/deck_diff
+- https://docs.konghq.com/deck/1.21.x/reference/deck_diff
+- https://docs.konghq.com/deck/1.22.x/reference/deck_diff
+- https://docs.konghq.com/deck/1.23.x/reference/deck_diff
+- https://docs.konghq.com/deck/1.24.x/reference/deck_diff/
+- https://docs.konghq.com/deck/1.25.x/reference/deck_diff/
+- https://docs.konghq.com/deck/1.26.x/reference/deck_diff/
+- https://docs.konghq.com/deck/1.27.x/reference/deck_diff/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_diff/
+- https://docs.konghq.com/deck/1.29.x/reference/deck_diff/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_diff/
+- https://docs.konghq.com/deck/1.7.x/reference/deck_diff
+- https://docs.konghq.com/deck/1.8.x/reference/deck_diff
+- https://docs.konghq.com/deck/1.9.x/reference/deck_diff
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_diff/
+- https://docs.konghq.com/deck/1.29.x/reference/deck_gateway_diff/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_diff/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_dump/
+- https://docs.konghq.com/deck/1.29.x/reference/deck_gateway_dump/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_dump/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_ping/
+- https://docs.konghq.com/deck/1.29.x/reference/deck_gateway_ping/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_ping/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_reset/
+- https://docs.konghq.com/deck/1.29.x/reference/deck_gateway_reset/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_reset/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_sync/
+- https://docs.konghq.com/deck/1.29.x/reference/deck_gateway_sync/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_sync/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_validate/
+- https://docs.konghq.com/deck/1.29.x/reference/deck_gateway_validate/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_validate/
+- https://docs.konghq.com/deck/1.10.x/reference/deck_ping
+- https://docs.konghq.com/deck/1.11.x/reference/deck_ping
+- https://docs.konghq.com/deck/1.12.x/reference/deck_ping
+- https://docs.konghq.com/deck/1.13.x/reference/deck_ping
+- https://docs.konghq.com/deck/1.14.x/reference/deck_ping
+- https://docs.konghq.com/deck/1.15.x/reference/deck_ping
+- https://docs.konghq.com/deck/1.16.x/reference/deck_ping
+- https://docs.konghq.com/deck/1.17.x/reference/deck_ping
+- https://docs.konghq.com/deck/1.18.x/reference/deck_ping
+- https://docs.konghq.com/deck/1.19.x/reference/deck_ping
+- https://docs.konghq.com/deck/1.20.x/reference/deck_ping
+- https://docs.konghq.com/deck/1.21.x/reference/deck_ping
+- https://docs.konghq.com/deck/1.22.x/reference/deck_ping
+- https://docs.konghq.com/deck/1.23.x/reference/deck_ping
+- https://docs.konghq.com/deck/1.24.x/reference/deck_ping/
+- https://docs.konghq.com/deck/1.25.x/reference/deck_ping/
+- https://docs.konghq.com/deck/1.26.x/reference/deck_ping/
+- https://docs.konghq.com/deck/1.27.x/reference/deck_ping/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_ping/
+- https://docs.konghq.com/deck/1.29.x/reference/deck_ping/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_ping/
+- https://docs.konghq.com/deck/1.7.x/reference/deck_ping
+- https://docs.konghq.com/deck/1.8.x/reference/deck_ping
+- https://docs.konghq.com/deck/1.9.x/reference/deck_ping
+- https://docs.konghq.com/deck/1.10.x/reference/deck_reset
+- https://docs.konghq.com/deck/1.11.x/reference/deck_reset
+- https://docs.konghq.com/deck/1.12.x/reference/deck_reset
+- https://docs.konghq.com/deck/1.13.x/reference/deck_reset
+- https://docs.konghq.com/deck/1.14.x/reference/deck_reset
+- https://docs.konghq.com/deck/1.15.x/reference/deck_reset
+- https://docs.konghq.com/deck/1.16.x/reference/deck_reset
+- https://docs.konghq.com/deck/1.17.x/reference/deck_reset
+- https://docs.konghq.com/deck/1.18.x/reference/deck_reset
+- https://docs.konghq.com/deck/1.19.x/reference/deck_reset
+- https://docs.konghq.com/deck/1.20.x/reference/deck_reset
+- https://docs.konghq.com/deck/1.21.x/reference/deck_reset
+- https://docs.konghq.com/deck/1.22.x/reference/deck_reset
+- https://docs.konghq.com/deck/1.23.x/reference/deck_reset
+- https://docs.konghq.com/deck/1.24.x/reference/deck_reset/
+- https://docs.konghq.com/deck/1.25.x/reference/deck_reset/
+- https://docs.konghq.com/deck/1.26.x/reference/deck_reset/
+- https://docs.konghq.com/deck/1.27.x/reference/deck_reset/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_reset/
+- https://docs.konghq.com/deck/1.29.x/reference/deck_reset/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_reset/
+- https://docs.konghq.com/deck/1.7.x/reference/deck_reset
+- https://docs.konghq.com/deck/1.8.x/reference/deck_reset
+- https://docs.konghq.com/deck/1.9.x/reference/deck_reset
+- https://docs.konghq.com/deck/1.10.x/reference/deck_sync
+- https://docs.konghq.com/deck/1.11.x/reference/deck_sync
+- https://docs.konghq.com/deck/1.12.x/reference/deck_sync
+- https://docs.konghq.com/deck/1.13.x/reference/deck_sync
+- https://docs.konghq.com/deck/1.14.x/reference/deck_sync
+- https://docs.konghq.com/deck/1.15.x/reference/deck_sync
+- https://docs.konghq.com/deck/1.16.x/reference/deck_sync
+- https://docs.konghq.com/deck/1.17.x/reference/deck_sync
+- https://docs.konghq.com/deck/1.18.x/reference/deck_sync
+- https://docs.konghq.com/deck/1.19.x/reference/deck_sync
+- https://docs.konghq.com/deck/1.20.x/reference/deck_sync
+- https://docs.konghq.com/deck/1.21.x/reference/deck_sync
+- https://docs.konghq.com/deck/1.22.x/reference/deck_sync
+- https://docs.konghq.com/deck/1.23.x/reference/deck_sync
+- https://docs.konghq.com/deck/1.24.x/reference/deck_sync/
+- https://docs.konghq.com/deck/1.25.x/reference/deck_sync/
+- https://docs.konghq.com/deck/1.26.x/reference/deck_sync/
+- https://docs.konghq.com/deck/1.27.x/reference/deck_sync/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_sync/
+- https://docs.konghq.com/deck/1.29.x/reference/deck_sync/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_sync/
+- https://docs.konghq.com/deck/1.7.x/reference/deck_sync
+- https://docs.konghq.com/deck/1.8.x/reference/deck_sync
+- https://docs.konghq.com/deck/1.9.x/reference/deck_sync
+- https://docs.konghq.com/deck/1.10.x/reference/deck_validate
+- https://docs.konghq.com/deck/1.11.x/reference/deck_validate
+- https://docs.konghq.com/deck/1.12.x/reference/deck_validate
+- https://docs.konghq.com/deck/1.13.x/reference/deck_validate
+- https://docs.konghq.com/deck/1.14.x/reference/deck_validate
+- https://docs.konghq.com/deck/1.15.x/reference/deck_validate
+- https://docs.konghq.com/deck/1.16.x/reference/deck_validate
+- https://docs.konghq.com/deck/1.17.x/reference/deck_validate
+- https://docs.konghq.com/deck/1.18.x/reference/deck_validate
+- https://docs.konghq.com/deck/1.19.x/reference/deck_validate
+- https://docs.konghq.com/deck/1.20.x/reference/deck_validate
+- https://docs.konghq.com/deck/1.21.x/reference/deck_validate
+- https://docs.konghq.com/deck/1.22.x/reference/deck_validate
+- https://docs.konghq.com/deck/1.23.x/reference/deck_validate
+- https://docs.konghq.com/deck/1.24.x/reference/deck_validate/
+- https://docs.konghq.com/deck/1.25.x/reference/deck_validate/
+- https://docs.konghq.com/deck/1.26.x/reference/deck_validate/
+- https://docs.konghq.com/deck/1.27.x/reference/deck_validate/
+- https://docs.konghq.com/deck/1.28.x/reference/deck_validate/
+- https://docs.konghq.com/deck/1.29.x/reference/deck_validate/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_validate/
+- https://docs.konghq.com/deck/1.7.x/reference/deck_validate
+- https://docs.konghq.com/deck/1.8.x/reference/deck_validate
+- https://docs.konghq.com/deck/1.9.x/reference/deck_validate
+
+
+### [Feat: AppDynamics certificate env variables](https://github.com/Kong/docs.konghq.com/pull/6784) (2024-01-19)
+
+Document missing certificate environment variables for AppDynamics, [added in 3.4.3.3.](https://docs.konghq.com/gateway/changelog/#plugins-4)
+
+Values only appear in the 3.4.x version table. Will add to 3.5 when the patch is released as well.
+
+Also adding a conditional for 3.6, which will remain hidden until we have a 3.6 version.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/app-dynamics/overview/
+
+
+### [Fix 2.8.4.6  changelog.md](https://github.com/Kong/docs.konghq.com/pull/6777) (2024-01-18)
+
+Fix version number in changelog.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Changelog and version bump for Gateway 2.8.4.6](https://github.com/Kong/docs.konghq.com/pull/6762) (2024-01-17)
+
+Changelog and version bump for upcoming 2.8.4.6 patch.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [docs(mesh): update docs and changelog](https://github.com/Kong/docs.konghq.com/pull/6760) (2024-01-16)
+
+Syncing docs from source code.
+
+Generated by [action](https://github.com/Kong/kong-mesh/actions/runs/7540542509)
+
+#### Modified
+
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_circuitbreakers.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_containerpatches.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_dataplaneinsights.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_dataplanes.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_externalservices.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_faultinjections.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_healthchecks.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshaccesslogs.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshcircuitbreakers.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshes.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshfaultinjections.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshgatewayconfigs.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshgatewayinstances.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshgatewayroutes.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshgateways.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshglobalratelimits.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshhealthchecks.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshhttproutes.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshinsights.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshloadbalancingstrategies.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshmetrics.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshopas.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshproxypatches.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshratelimits.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshretries.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshtcproutes.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshtimeouts.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshtraces.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshtrafficpermissions.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_proxytemplates.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_ratelimits.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_retries.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_serviceinsights.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_timeouts.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_trafficlogs.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_trafficpermissions.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_trafficroutes.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_traffictraces.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_virtualoutbounds.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_zoneegresses.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_zoneegressinsights.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_zoneingresses.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_zoneingressinsights.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_zoneinsights.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_zones.yaml
+
+
+### [Fix linked to `Verify signatures for Signed Images`](https://github.com/Kong/docs.konghq.com/pull/6757) (2024-01-16)
+
+Fix the broken link that came up in the last [scheduled broken link action](https://github.com/Kong/docs.konghq.com/actions/runs/7515703424/job/20459932899) run.
+
+#### Modified
+
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_diff/
+- https://docs.konghq.com/deck/1.29.x/reference/deck_gateway_diff/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_diff/
+
+
+### [Release: Gateway version 3.4.3.3](https://github.com/Kong/docs.konghq.com/pull/6750) (2024-01-17)
+
+EE changelog here: https://github.com/Kong/kong-ee/pull/7816
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Feat: Split+consolidate OIDC plugin docs into many guides](https://github.com/Kong/docs.konghq.com/pull/6747) (2024-01-16)
+
+Let's try this again! This PR replaces https://github.com/Kong/docs.konghq.com/pull/5883, attempting to revive the OIDC plugin clean-up/split project.
+
+#### Summary
+Big OpenID Connect doc consolidation + split out how-to guides + cleanup.
+https://konghq.atlassian.net/browse/DOCU-3384
+
+Changes in this PR:
+* Moving the OpenID Connect guides that are buried in Gateway into the OIDC plugin doc
+* Splitting out all the flow guides into their own pages for better discoverability/navigation
+* Keycloak + gateway setup are now collapsible prereq sections that we can reuse in every OIDC demo
+* Cross-linking to all the other OIDC content that's scattered all over our docs, for all the bits where OIDC is used internally
+* Remade all the diagrams with mermaid.js; deleted all the images that are no longer in use
+
+The scope of the work is scaled back here somewhat to get this project moving. Not doing yet:
+* Use opinionated examples in how-to guides
+* Convert everything httpie into curl
+* All the testing
+* All the cleanup
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authorization/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authorization/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authorization/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/overview/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/overview/
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/overview/
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/dev-portal/authentication/oidc
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/dev-portal/authentication/oidc
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/dev-portal/authentication/oidc
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/dev-portal/authentication/oidc
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/dev-portal/authentication/oidc
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/plugins/oidc
+- https://docs.konghq.com/breadcrumb_titles.yml
+
 ## Week 2
 
 
