@@ -21,6 +21,13 @@ role also changes in {{site.base_gateway}} the next time they log in to Kong
 Manager. The mapping removes the task of manually managing access in
 {{site.base_gateway}}, because it makes the IdP the system of record.
 
+<!-- FIXME !!! Should DISPLAY the following content when >= 3.6.x -->
+
+When using OIDC group mapping, roles assigned to admins will be managed by the IdP. If you manually
+assign or unassign roles to admins, changes will be overwritten on next login.
+
+<!-- END OF FIXME -->
+
 ## Prerequisites
 
 * An IdP with an authorization server and users with groups assigned

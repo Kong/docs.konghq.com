@@ -14,6 +14,13 @@ How service directory mapping works in Kong:
 
 For example, if a user's group changes in the service directory, their Kong admin account's associated role also changes in {{site.base_gateway}} the next time they log in to Kong Manager. The mapping removes the task of manually managing access in {{site.base_gateway}}, as it makes the service directory the system of record.
 
+<!-- FIXME !!! Should DISPLAY the following content when >= 3.6.x -->
+
+When using LDAP service directory mapping, roles assigned to admins will be managed by the service directory.
+If you manually assign or unassign roles to admins, changes will be overwritten on next login.
+
+<!-- END OF FIXME -->
+
 ## Prerequisites
 
 * {{site.base_gateway}} installed and configured
