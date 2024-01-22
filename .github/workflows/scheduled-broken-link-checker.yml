@@ -42,7 +42,7 @@ jobs:
       # Configure Node to build assets
       - uses: actions/setup-node@v4
         with:
-          node-version: "16"
+          node-version: "20"
       - name: Cache node modules
         uses: actions/cache@v4
         env:
