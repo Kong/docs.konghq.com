@@ -337,6 +337,7 @@ SBOMs
 SCCs
 schema's
 SDKs
+secret_id
 serializer
 serverless
 shm
