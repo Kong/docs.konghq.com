@@ -97,11 +97,11 @@ inherit:
     - path: [ Policies ]
       action: modify
       icon: /assets/images/icons/documentation/icn-documentation-small.svg
-    - path: [ Policies, General notes about Kuma policies ]
+    - path: [ Policies, Previous Policies, General notes about Kuma policies ]
       text: General notes about Kong Mesh policies
       url: /policies/general-notes-about-kong-mesh-policies
       action: modify
-    - path: [ Policies, How Kuma chooses the right policy to apply ]
+    - path: [ Policies, Previous Policies, How Kuma chooses the right policy to apply ]
       text: How Kong Mesh chooses the right policy to apply
       action: modify
       url: /policies/how-kong-mesh-chooses-the-right-policy-to-apply
@@ -111,7 +111,7 @@ inherit:
       action: modify
       url: /policies/protocol-support-in-kong-mesh
       items: []
-    - path: [ Policies ]
+    - path: [ Policies, Previous Policies ]
       action: insert
       index: -1
       text: OPA policy
@@ -119,13 +119,13 @@ inherit:
       generate: false
     - path: [ Policies ]
       action: insert
-      index: -1
+      index: -2
       text: MeshOPA (beta)
       url: /features/meshopa
       generate: false
     - path: [ Policies ]
       action: insert
-      index: -1
+      index: -2
       text: MeshGlobalRateLimit (beta)
       url: /features/meshglobalratelimit
       generate: false
