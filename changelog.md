@@ -6,175 +6,23 @@
 
 ### [Release: decK 1.30.0](https://github.com/Kong/docs.konghq.com/pull/6785) (2024-01-19)
 
-Version bump for decK 1.30 + any relevant updates to decK CLI docs. Mainly, this update softens the language of the warnings to make it clear that the old decK commands will still work.
-
-To do: add some migration info to the new deck gateway commands (currently appears only on the deprecated commands).
+Version bump for decK 1.30 + any relevant updates to decK CLI docs. 
+Mainly, this update softens the language of the warnings to make it clear that the old decK commands will still work.
 
 #### Modified
 
-- https://docs.konghq.com/deck/1.10.x/reference/deck_convert
-- https://docs.konghq.com/deck/1.11.x/reference/deck_convert
-- https://docs.konghq.com/deck/1.12.x/reference/deck_convert
-- https://docs.konghq.com/deck/1.13.x/reference/deck_convert
-- https://docs.konghq.com/deck/1.14.x/reference/deck_convert
-- https://docs.konghq.com/deck/1.15.x/reference/deck_convert
-- https://docs.konghq.com/deck/1.16.x/reference/deck_convert
-- https://docs.konghq.com/deck/1.17.x/reference/deck_convert
-- https://docs.konghq.com/deck/1.18.x/reference/deck_convert
-- https://docs.konghq.com/deck/1.19.x/reference/deck_convert
-- https://docs.konghq.com/deck/1.20.x/reference/deck_convert
-- https://docs.konghq.com/deck/1.21.x/reference/deck_convert
-- https://docs.konghq.com/deck/1.22.x/reference/deck_convert
-- https://docs.konghq.com/deck/1.23.x/reference/deck_convert
-- https://docs.konghq.com/deck/1.24.x/reference/deck_convert/
-- https://docs.konghq.com/deck/1.25.x/reference/deck_convert/
-- https://docs.konghq.com/deck/1.26.x/reference/deck_convert/
-- https://docs.konghq.com/deck/1.27.x/reference/deck_convert/
-- https://docs.konghq.com/deck/1.28.x/reference/deck_convert/
-- https://docs.konghq.com/deck/1.29.x/reference/deck_convert/
 - https://docs.konghq.com/deck/1.30.x/reference/deck_convert/
-- https://docs.konghq.com/deck/1.7.x/reference/deck_convert
-- https://docs.konghq.com/deck/1.8.x/reference/deck_convert
-- https://docs.konghq.com/deck/1.9.x/reference/deck_convert
-- https://docs.konghq.com/deck/1.10.x/reference/deck_diff
-- https://docs.konghq.com/deck/1.11.x/reference/deck_diff
-- https://docs.konghq.com/deck/1.12.x/reference/deck_diff
-- https://docs.konghq.com/deck/1.13.x/reference/deck_diff
-- https://docs.konghq.com/deck/1.14.x/reference/deck_diff
-- https://docs.konghq.com/deck/1.15.x/reference/deck_diff
-- https://docs.konghq.com/deck/1.16.x/reference/deck_diff
-- https://docs.konghq.com/deck/1.17.x/reference/deck_diff
-- https://docs.konghq.com/deck/1.18.x/reference/deck_diff
-- https://docs.konghq.com/deck/1.19.x/reference/deck_diff
-- https://docs.konghq.com/deck/1.20.x/reference/deck_diff
-- https://docs.konghq.com/deck/1.21.x/reference/deck_diff
-- https://docs.konghq.com/deck/1.22.x/reference/deck_diff
-- https://docs.konghq.com/deck/1.23.x/reference/deck_diff
-- https://docs.konghq.com/deck/1.24.x/reference/deck_diff/
-- https://docs.konghq.com/deck/1.25.x/reference/deck_diff/
-- https://docs.konghq.com/deck/1.26.x/reference/deck_diff/
-- https://docs.konghq.com/deck/1.27.x/reference/deck_diff/
-- https://docs.konghq.com/deck/1.28.x/reference/deck_diff/
-- https://docs.konghq.com/deck/1.29.x/reference/deck_diff/
 - https://docs.konghq.com/deck/1.30.x/reference/deck_diff/
-- https://docs.konghq.com/deck/1.7.x/reference/deck_diff
-- https://docs.konghq.com/deck/1.8.x/reference/deck_diff
-- https://docs.konghq.com/deck/1.9.x/reference/deck_diff
-- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_diff/
-- https://docs.konghq.com/deck/1.29.x/reference/deck_gateway_diff/
 - https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_diff/
-- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_dump/
-- https://docs.konghq.com/deck/1.29.x/reference/deck_gateway_dump/
 - https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_dump/
-- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_ping/
-- https://docs.konghq.com/deck/1.29.x/reference/deck_gateway_ping/
 - https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_ping/
-- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_reset/
-- https://docs.konghq.com/deck/1.29.x/reference/deck_gateway_reset/
 - https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_reset/
-- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_sync/
-- https://docs.konghq.com/deck/1.29.x/reference/deck_gateway_sync/
 - https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_sync/
-- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_validate/
-- https://docs.konghq.com/deck/1.29.x/reference/deck_gateway_validate/
 - https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_validate/
-- https://docs.konghq.com/deck/1.10.x/reference/deck_ping
-- https://docs.konghq.com/deck/1.11.x/reference/deck_ping
-- https://docs.konghq.com/deck/1.12.x/reference/deck_ping
-- https://docs.konghq.com/deck/1.13.x/reference/deck_ping
-- https://docs.konghq.com/deck/1.14.x/reference/deck_ping
-- https://docs.konghq.com/deck/1.15.x/reference/deck_ping
-- https://docs.konghq.com/deck/1.16.x/reference/deck_ping
-- https://docs.konghq.com/deck/1.17.x/reference/deck_ping
-- https://docs.konghq.com/deck/1.18.x/reference/deck_ping
-- https://docs.konghq.com/deck/1.19.x/reference/deck_ping
-- https://docs.konghq.com/deck/1.20.x/reference/deck_ping
-- https://docs.konghq.com/deck/1.21.x/reference/deck_ping
-- https://docs.konghq.com/deck/1.22.x/reference/deck_ping
-- https://docs.konghq.com/deck/1.23.x/reference/deck_ping
-- https://docs.konghq.com/deck/1.24.x/reference/deck_ping/
-- https://docs.konghq.com/deck/1.25.x/reference/deck_ping/
-- https://docs.konghq.com/deck/1.26.x/reference/deck_ping/
-- https://docs.konghq.com/deck/1.27.x/reference/deck_ping/
-- https://docs.konghq.com/deck/1.28.x/reference/deck_ping/
-- https://docs.konghq.com/deck/1.29.x/reference/deck_ping/
 - https://docs.konghq.com/deck/1.30.x/reference/deck_ping/
-- https://docs.konghq.com/deck/1.7.x/reference/deck_ping
-- https://docs.konghq.com/deck/1.8.x/reference/deck_ping
-- https://docs.konghq.com/deck/1.9.x/reference/deck_ping
-- https://docs.konghq.com/deck/1.10.x/reference/deck_reset
-- https://docs.konghq.com/deck/1.11.x/reference/deck_reset
-- https://docs.konghq.com/deck/1.12.x/reference/deck_reset
-- https://docs.konghq.com/deck/1.13.x/reference/deck_reset
-- https://docs.konghq.com/deck/1.14.x/reference/deck_reset
-- https://docs.konghq.com/deck/1.15.x/reference/deck_reset
-- https://docs.konghq.com/deck/1.16.x/reference/deck_reset
-- https://docs.konghq.com/deck/1.17.x/reference/deck_reset
-- https://docs.konghq.com/deck/1.18.x/reference/deck_reset
-- https://docs.konghq.com/deck/1.19.x/reference/deck_reset
-- https://docs.konghq.com/deck/1.20.x/reference/deck_reset
-- https://docs.konghq.com/deck/1.21.x/reference/deck_reset
-- https://docs.konghq.com/deck/1.22.x/reference/deck_reset
-- https://docs.konghq.com/deck/1.23.x/reference/deck_reset
-- https://docs.konghq.com/deck/1.24.x/reference/deck_reset/
-- https://docs.konghq.com/deck/1.25.x/reference/deck_reset/
-- https://docs.konghq.com/deck/1.26.x/reference/deck_reset/
-- https://docs.konghq.com/deck/1.27.x/reference/deck_reset/
-- https://docs.konghq.com/deck/1.28.x/reference/deck_reset/
-- https://docs.konghq.com/deck/1.29.x/reference/deck_reset/
 - https://docs.konghq.com/deck/1.30.x/reference/deck_reset/
-- https://docs.konghq.com/deck/1.7.x/reference/deck_reset
-- https://docs.konghq.com/deck/1.8.x/reference/deck_reset
-- https://docs.konghq.com/deck/1.9.x/reference/deck_reset
-- https://docs.konghq.com/deck/1.10.x/reference/deck_sync
-- https://docs.konghq.com/deck/1.11.x/reference/deck_sync
-- https://docs.konghq.com/deck/1.12.x/reference/deck_sync
-- https://docs.konghq.com/deck/1.13.x/reference/deck_sync
-- https://docs.konghq.com/deck/1.14.x/reference/deck_sync
-- https://docs.konghq.com/deck/1.15.x/reference/deck_sync
-- https://docs.konghq.com/deck/1.16.x/reference/deck_sync
-- https://docs.konghq.com/deck/1.17.x/reference/deck_sync
-- https://docs.konghq.com/deck/1.18.x/reference/deck_sync
-- https://docs.konghq.com/deck/1.19.x/reference/deck_sync
-- https://docs.konghq.com/deck/1.20.x/reference/deck_sync
-- https://docs.konghq.com/deck/1.21.x/reference/deck_sync
-- https://docs.konghq.com/deck/1.22.x/reference/deck_sync
-- https://docs.konghq.com/deck/1.23.x/reference/deck_sync
-- https://docs.konghq.com/deck/1.24.x/reference/deck_sync/
-- https://docs.konghq.com/deck/1.25.x/reference/deck_sync/
-- https://docs.konghq.com/deck/1.26.x/reference/deck_sync/
-- https://docs.konghq.com/deck/1.27.x/reference/deck_sync/
-- https://docs.konghq.com/deck/1.28.x/reference/deck_sync/
-- https://docs.konghq.com/deck/1.29.x/reference/deck_sync/
 - https://docs.konghq.com/deck/1.30.x/reference/deck_sync/
-- https://docs.konghq.com/deck/1.7.x/reference/deck_sync
-- https://docs.konghq.com/deck/1.8.x/reference/deck_sync
-- https://docs.konghq.com/deck/1.9.x/reference/deck_sync
-- https://docs.konghq.com/deck/1.10.x/reference/deck_validate
-- https://docs.konghq.com/deck/1.11.x/reference/deck_validate
-- https://docs.konghq.com/deck/1.12.x/reference/deck_validate
-- https://docs.konghq.com/deck/1.13.x/reference/deck_validate
-- https://docs.konghq.com/deck/1.14.x/reference/deck_validate
-- https://docs.konghq.com/deck/1.15.x/reference/deck_validate
-- https://docs.konghq.com/deck/1.16.x/reference/deck_validate
-- https://docs.konghq.com/deck/1.17.x/reference/deck_validate
-- https://docs.konghq.com/deck/1.18.x/reference/deck_validate
-- https://docs.konghq.com/deck/1.19.x/reference/deck_validate
-- https://docs.konghq.com/deck/1.20.x/reference/deck_validate
-- https://docs.konghq.com/deck/1.21.x/reference/deck_validate
-- https://docs.konghq.com/deck/1.22.x/reference/deck_validate
-- https://docs.konghq.com/deck/1.23.x/reference/deck_validate
-- https://docs.konghq.com/deck/1.24.x/reference/deck_validate/
-- https://docs.konghq.com/deck/1.25.x/reference/deck_validate/
-- https://docs.konghq.com/deck/1.26.x/reference/deck_validate/
-- https://docs.konghq.com/deck/1.27.x/reference/deck_validate/
-- https://docs.konghq.com/deck/1.28.x/reference/deck_validate/
-- https://docs.konghq.com/deck/1.29.x/reference/deck_validate/
 - https://docs.konghq.com/deck/1.30.x/reference/deck_validate/
-- https://docs.konghq.com/deck/1.7.x/reference/deck_validate
-- https://docs.konghq.com/deck/1.8.x/reference/deck_validate
-- https://docs.konghq.com/deck/1.9.x/reference/deck_validate
-
 
 ### [Feat: AppDynamics certificate env variables](https://github.com/Kong/docs.konghq.com/pull/6784) (2024-01-19)
 
@@ -284,8 +132,6 @@ EE changelog here: https://github.com/Kong/kong-ee/pull/7816
 
 ### [Feat: Split+consolidate OIDC plugin docs into many guides](https://github.com/Kong/docs.konghq.com/pull/6747) (2024-01-16)
 
-Let's try this again! This PR replaces https://github.com/Kong/docs.konghq.com/pull/5883, attempting to revive the OIDC plugin clean-up/split project.
-
 #### Summary
 Big OpenID Connect doc consolidation + split out how-to guides + cleanup.
 https://konghq.atlassian.net/browse/DOCU-3384
@@ -357,10 +203,6 @@ Adding the links/instructions to review compatibility as the first step, as no u
 
 
 ### [Add enterprise image signing verification docs](https://github.com/Kong/docs.konghq.com/pull/6730) (2024-01-12)
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 These are the customer-facing docs needed to allow customers to take full advantage of the recent changes to the Kong Enterprise build that implement `cosign`-based image signing.
 
@@ -614,13 +456,6 @@ Split out content from the mTLS-auth landing page into a how-to section + some c
 
 Port 8001 is used in the example curl command, but port 8100 is the one used in the rest of the documentation. Changing curl port to 8100.
 
-
-
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/gateway/3.3.x/production/monitoring/readiness-check
@@ -632,8 +467,6 @@ Port 8001 is used in the example curl command, but port 8100 is the one used in 
 
 3.1 is moving into sunset support, 12 months after the initial release. 
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/gateway/3.0.x/kong-enterprise/dev-portal/customize/alternate-openapi-renderer
@@ -712,23 +545,12 @@ to those. See https://answers.netlify.com/t/my-url-paths-are-forced-into-lowerca
 
 The previous wording is confusing as it mentioned client.  This feature is for admins or internal teams monitoring gateway performance. It is not for a enduser who is making API calls. The usage of `client` in the previous statement may cause confusion as to who this feature is meant for.
 
-
-
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/gateway/3.5.x/production/debug-request
 
 
 ### [docs(gateway-upgrade): fix an argument error](https://github.com/Kong/docs.konghq.com/pull/6639) (2023-12-11)
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 Fix an error from https://github.com/Kong/docs.konghq.com/pull/6534.
 
@@ -844,7 +666,6 @@ Remove references to username/password auth for latest versions of decK in order
 
 ### [Add a step to publish API Product and version docs](https://github.com/Kong/docs.konghq.com/pull/6620) (2023-12-07)
 
-<!-- What did you change and why? -->
 The step-by-step process is clear; however, one critical step was missing - guiding users on how to publish the API documentation and a dynamic API reference to the public portal. To address this issue, I am adding an extra step that instructs users on how to publish their API Product and version documentation.
 
 #### Modified
@@ -927,8 +748,6 @@ hopefully addressing the issue related to method length
 Add a note about not recommended for Production environment.
 Fixes: https://konghq.atlassian.net/browse/DOCU-2310
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/hub/kong-inc/oauth2/overview/
@@ -1005,10 +824,6 @@ Turn KB into doc: https://support.konghq.com/support/s/article/What-is-the-expec
 
 ### [kic: update and extend gRPC how-to](https://github.com/Kong/docs.konghq.com/pull/6567) (2023-12-04)
 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 closes https://github.com/Kong/kubernetes-ingress-controller/issues/5134
 
 For HTTPRoute (support was added in https://github.com/Kong/kubernetes-ingress-controller/pull/5128, so KIC >= 3.1.0 wii support it). For ingress, it works for older versions too
@@ -1024,10 +839,6 @@ For HTTPRoute (support was added in https://github.com/Kong/kubernetes-ingress-c
 
 
 ### [Update auth0.md to include developer managed scopes UI steps](https://github.com/Kong/docs.konghq.com/pull/6550) (2023-12-08)
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
