@@ -57,7 +57,7 @@ set up an instance of the OpenID Connect plugin with introspection authenticatio
 For the demo, we're going to set up the following:
 * Issuer, client ID, and client auth: settings that connect the plugin to your IdP (in this case, the sample Keycloak app).
 * Auth method: you only need introspection authentication for this flow. 
-For the purposes of the demo, the examle also enables the
+For the purposes of the demo, the example also enables the
 [password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/).
 * We want to only search headers for the bearer token for introspection.
 
