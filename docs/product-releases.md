@@ -63,3 +63,9 @@ It has several methods available for use in the templates:
 * `to_s`: when `page.release` is interpolated, `to_s` gets called under the hood. It returns the release's label if it has one or the actual release value.
 
 The only time when we can't rely on the `to_s` method and need to use `page.release.value` is when it is used as key when accessing hashes, like in the [compatibility table](https://github.com/Kong/docs.konghq.com/blob/8508a4d9479b73a40390af8eeae0ba65598f73c8/app/gateway/2.6.x/compatibility.md#L12).
+
+## Preventing a labeled version from being generated
+
+A labeled version can be prevented from being generated using ENV variables
+in the following format `SKIP_<product>_<label>=1`. For example, for gateway
+it would be `SKIP_GATEWAY_DEV=1`.
