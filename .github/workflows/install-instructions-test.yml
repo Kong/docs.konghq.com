@@ -1,5 +1,10 @@
 name: Install Instructions
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        type: string
+        description: URL to test against. Defaults to http://localhost:8888
 
 jobs:
   install-instructions:
@@ -28,6 +33,7 @@ jobs:
           CONTINUE_ON_ERROR: 1
           IGNORE_SKIPS: 1
           EXPECTED_FAILURES_EXIT_CODE: 0
+          BASE_URL: ${{ github.event.inputs.base_url || env.BASE_URL }}
         run: |
           cd tools/install-tester
           npm ci
