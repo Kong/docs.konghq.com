@@ -4,9 +4,13 @@ content_type: reference
 ---
 
 {% if_version gte:1.28.x %}
-{:.warning}
-> **Warning**: This command is deprecated and will be removed in a future version.
-Use [deck gateway sync](/deck/{{page.kong_version}}/reference/deck_gateway_sync/) instead.
+{:.important}
+> `deck sync` functionality has moved to `deck gateway sync`. 
+> <br> `deck sync` will be removed in a future major version of decK (decK 2.x).
+We recommend migrating to [deck gateway sync](/deck/{{page.kong_version}}/reference/deck_gateway_sync/).
+> <br><br> In the new command:
+> * Files changed to positional arguments without the `-s/--state` flag
+> * The default write location changed from `kong.yaml` to `-` (stdin/stdout)
 {% endif_version %}
 
 The sync command reads the state file and performs operation on Kong

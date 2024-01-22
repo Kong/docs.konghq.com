@@ -225,6 +225,13 @@ components:
       name: tags
       schema:
         type: string
+    filter_chain_id:
+      name: filter_chain_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The unique identifier of the filter chain to retrieve.
   schemas:
     CA-Certificate:
       description: A CA certificate object represents a trusted CA. These objects are used by Kong to verify the validity of a client or server certificate.
@@ -450,7 +457,7 @@ components:
         id:
           type: string
         name:
-          description: The name of the Plugin that's going to be added. Currently, the Plugin must be installed in every Kong instance separately.'
+          description: "The name of the plugin that's going to be added. The plugin must be installed in every Kong instance separately."
           type: string
         ordering:
           type: object
@@ -544,7 +551,7 @@ components:
           type: array
         preserve_host:
           default: false
-          description: When matching a Route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the Service'''s `host`.'
+          description: "When matching a route via one of the `hosts` domain names, use the request `Host` header in the upstream request headers. If set to `false`, the upstream `Host` header will be that of the service's `host`."
           type: boolean
         protocols:
           default:
@@ -699,7 +706,7 @@ components:
           description: Whether to enable verification of upstream server TLS certificate. If set to `null`, then the Nginx default is respected.
           type: boolean
         tls_verify_depth:
-          description: Maximum depth of chain while verifying Upstream server's TLS certificate. If set to `null`, then the Nginx default is respected.'
+          description: Maximum depth of chain while verifying Upstream server's TLS certificate. If set to `null`, then the Nginx default is respected.
           type: integer
         updated_at:
           description: Unix epoch when the resource was last updated.
@@ -1054,7 +1061,7 @@ components:
         id:
           type: string
         name:
-          description: The name of the Vault that'''s going to be added. Currently, the Vault implementation must be installed in every Kong instance.'
+          description: The name of the vault that's going to be added. The vault implementation must be installed in every Kong instance.
           type: string
         prefix:
           description: The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
@@ -1185,6 +1192,79 @@ components:
     pagination-offset-response:
       description: Offset is used to paginate through the API. Provide this value to the next list operation to fetch the next page
       type: string
+    Filter-chains:
+      type: object
+      x-examples:
+        Example 1:
+          id: ce44eef5-41ed-47f6-baab-f725cecf98c7
+          name: my-chain
+          created_at: 1422386534
+          updated_at: 1422386534
+          enabled: true
+          route: null
+          service: 20487393-41ed-47f6-93a8-3407cade2002
+          filters:
+            - name: go-rate-limiting
+              enabled: true
+              config: '{ "minute": 30 }'
+            - name: rust-response-transformer
+              enabled: true
+              config: '{ "remove_header": "X-Example" }'
+          tags:
+            - my-tag
+      description: A filter chain is the database entity representing one or more WebAssembly filters executed for each request to a particular service or route, each one with its configuration.
+      title: Filter-chains
+      properties:
+        id:
+          type: string
+          description: The unique identifier or the name attribute of the route that should be associated to the newly created filter chain.
+          example: ce44eef5-41ed-47f6-baab-f725cecf98c7
+          format: uuid
+        name:
+          type: string
+          description: |
+            The name of the filter chain.
+          example: my-chain
+        created_at:
+          type: integer
+          example: 1422386534
+        updated_at:
+          type: integer
+          example: 1422386534
+        enabled:
+          type: boolean
+          description: |
+            Whether the filter chain is applied. Default: true.
+          default: true
+        route:
+          description: The route to which this chain is applied. A filter chain must be applied to either a single route or a single service. Default `null`. In form-encoded format, the notation is `route.id=<route id>` or `route.name=<route name>`. In JSON format, use `"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
+          nullable: true
+        service:
+          type: string
+          description: The service to which this chain is applied. A filter chain must be applied to either a single route or a single service. Default `null`. In form-encoded format, the notation is `service.id=<service id>` or `service.name=<service name>`. In JSON format, use `"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
+          example: 20487393-41ed-47f6-93a8-3407cade2002
+        filters:
+          type: array
+          description: An array of filter definitions. Each filter is an object containing a mandatory name, an optional config, and a boolean enabled setting.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: |
+                  The name of the filter
+                example: go-rate-limiting
+              enabled:
+                type: boolean
+                description: Enable the filter
+              config:
+                type: string
+                description: configuration filter headers
+                example: '{ \"minute\": 30 }'
+        tags:
+          type: array
+          items:
+            type: string
   responses:
     tags-response:
       description: Tags response body
@@ -3267,6 +3347,587 @@ components:
                   - workspace_/workspaces
                   - 'workspace_/workspaces/{workspaces}'
                   - 'workspace_/workspaces/{workspaces}/meta'
+    admins-response:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                data:
+                  - created_at: 1556638385
+                    id: 665b4070-541f-48bf-82c1-53030babaa81
+                    updated_at: 1556638385
+                    status: 4
+                    username: test-admin
+                    email: test@test.com
+                    rbac_token_enabled: true
+                  - created_at: 1556563122
+                    id: a93ff120-9e6c-4198-b47e-f779104c7eac
+                    updated_at: 1556563122
+                    status: 0
+                    username: kong_admin
+                    rbac_token_enabled: false
+                next: null
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    created_at:
+                      type: integer
+                    id:
+                      type: string
+                    updated_at:
+                      type: integer
+                    status:
+                      type: integer
+                      description: The status field indicates the state of the invitation.
+                    username:
+                      type: string
+                    email:
+                      type: string
+                    rbac_token_enabled:
+                      type: boolean
+              next:
+                nullable: true
+    rbac-user-response:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    comment:
+                      type: string
+                    created_at:
+                      type: integer
+                    enabled:
+                      type: boolean
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    user_token:
+                      type: string
+                    user_token_ident:
+                      type: string
+              next:
+                type: string
+            x-examples:
+              Example 1:
+                data:
+                  - comment: null
+                    created_at: 1557512629
+                    enabled: true
+                    id: f035f120-a95e-4327-b2ae-8fa264601d75
+                    name: doc_lord
+                    user_token: $2b$09$TIMneYcTosdG9WbzRsqcweAS2zote8g6I8HqXAtbFHR1pds2ymsh6
+                    user_token_ident: 88ea3
+                  - comment: null
+                    created_at: 1557522650
+                    enabled: true
+                    id: fa6881b2-f49f-4007-9475-577cd21d34f4
+                    name: doc_knight
+                    user_token: $2b$09$Za30VKAAAmyoB9zF2PNEF.9hgKcN2BdKkptPMCubPK/Ps08lzZjYG
+                    user_token_ident: 4d870
+                next: null
+          examples:
+            Returned user:
+              value:
+                data:
+                  - comment: 'null'
+                    created_at: 1557512629
+                    enabled: true
+                    id: f035f120-a95e-4327-b2ae-8fa264601d75
+                    name: doc_lord
+                    user_token: $2b$09$TIMneYcTosdG9WbzRsqcweAS2zote8g6I8HqXAtbFHR1pds2ymsh6
+                    user_token_ident: 88ea3
+                  - comment: 'null'
+                    created_at: 1557522650
+                    enabled: true
+                    id: fa6881b2-f49f-4007-9475-577cd21d34f4
+                    name: doc_knight
+                    user_token: $2b$09$Za30VKAAAmyoB9zF2PNEF.9hgKcN2BdKkptPMCubPK/Ps08lzZjYG
+                    user_token_ident: 4d870
+                next: 'null'
+    audit-objects-response:
+      description: Example response generated for checking the `/status` endpoint without RBAC enabled.
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                data:
+                  - client_ip: 127.0.0.1
+                    method: GET
+                    path: /status
+                    payload: null
+                    rbac_user_id: null
+                    rbac_user_name: null
+                    removed_from_payload: null
+                    request_id: OjOcUBvt6q6XJlX3dd6BSpy1uUkTyctC
+                    request_source: null
+                    request_timestamp: 1676424547
+                    signature: null
+                    status: 200
+                    ttl: 2591997
+                    workspace: 1065b6d6-219f-4002-b3e9-334fc3eff46c
+                total: 1
+            properties:
+              data:
+                type: array
+                description: The client IP address
+                items:
+                  type: object
+                  properties:
+                    client_ip:
+                      type: string
+                      description: The client IP address
+                    method:
+                      type: string
+                      description: The HTTP method
+                    path:
+                      type: string
+                      description: The path of the endpoint
+                    payload:
+                      nullable: true
+                    rbac_user_id:
+                      nullable: true
+                    rbac_user_name:
+                      nullable: true
+                    removed_from_payload:
+                      nullable: true
+                    request_id:
+                      type: string
+                    request_source:
+                      nullable: true
+                    request_timestamp:
+                      type: integer
+                    signature:
+                      nullable: true
+                    status:
+                      type: integer
+                    ttl:
+                      type: integer
+                    workspace:
+                      type: string
+              total:
+                type: integer
+    database-audit-log-response:
+      description: Example response for a consumer creation log entry
+      content:
+        application/json:
+          schema:
+            properties:
+              id:
+                type: string
+    event-hooks-response:
+      description: Example event hooks response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    config:
+                      type: object
+                      properties:
+                        body:
+                          type: string
+                        body_format:
+                          type: boolean
+                        headers:
+                          type: object
+                          properties:
+                            content-type:
+                              type: string
+                        headers_format:
+                          type: boolean
+                        method:
+                          type: string
+                        payload:
+                          type: object
+                          properties:
+                            text:
+                              type: string
+                        payload_format:
+                          type: boolean
+                        secret:
+                          type: string
+                        ssl_verify:
+                          type: boolean
+                        url:
+                          type: string
+                        functions:
+                          type: array
+                          items:
+                            type: string
+                    created_at:
+                      type: integer
+                    event:
+                      type: string
+                    handler:
+                      type: string
+                    id:
+                      type: string
+                    on_change:
+                      type: string
+                    snooze:
+                      type: integer
+                    source:
+                      type: string
+              next:
+                type: string
+            x-examples:
+              Example 1:
+                data:
+                  - config:
+                      body: null
+                      body_format: true
+                      headers:
+                        content-type: application/json
+                      headers_format: false
+                      method: POST
+                      payload:
+                        text: payload_text
+                      payload_format: true
+                      secret: null
+                      ssl_verify: false
+                      url: 'https://hooks.slack.com/services/foo/bar/baz'
+                    created_at: 1627588552
+                    event: admins
+                    handler: webhook-custom
+                    id: 937df175-3db2-4e6d-8aa1-d95c94a76089
+                    on_change: null
+                    snooze: null
+                    source: crud
+                  - config:
+                      headers: {}
+                      secret: null
+                      ssl_verify: false
+                      url: 'https://webhook.site/a1b2c3-d4e5-g6h7-i8j9-k1l2m3n4o5p6'
+                    created_at: 1627581575
+                    event: consumers
+                    handler: webhook
+                    id: c57340ab-9fed-40fd-bb7e-1cef8d37c2df
+                    on_change: null
+                    snooze: null
+                    source: crud
+                  - config:
+                      functions:
+                        - |
+                          return function (data, event, source, pid)
+                            local user = data.entity.username
+                            error("Event hook on consumer " .. user .. "")
+                          end
+                    created_at: 1627595513
+                    event: consumers
+                    handler: lambda
+                    id: c9fdd58d-5416-4d3a-9467-51e5cfe4ca0e
+                    on_change: null
+                    snooze: null
+                    source: crud
+                next: null
+          examples:
+            Example event hooks response:
+              value:
+                data:
+                  - config:
+                      body: "null"
+                      body_format: true
+                      headers:
+                        content-type: string
+                      headers_format: true
+                      method: string
+                      payload:
+                        text: string
+                      payload_format: true
+                      secret: "null"
+                      ssl_verify: true
+                      url: string
+                      functions:
+                        - string
+                    created_at: 0
+                    event: string
+                    handler: string
+                    id: string
+                    on_change: "string"
+                    snooze: 0
+                    source: string
+                next: "null"
+    event-hooks-request:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: object
+                properties:
+                  event:
+                    description: A string describing the Kong entity the event hook listens to for events.
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      description:
+                        type: string
+                  handler:
+                    description: |
+                      A string describing one of four handler options: webhook, webhook-custom, log, or lambda.
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      description:
+                        type: string
+                  source:
+                    type: object
+                    description: A string describing the action that triggers the event hook.
+                    properties:
+                      type:
+                        type: string
+                      description:
+                        type: string
+                  snooze:
+                    type: object
+                    description: An optional integer describing the time in seconds to delay an event trigger to avoid spamming an integration.
+                    properties:
+                      type:
+                        type: string
+                      description:
+                        type: string
+                  on_change:
+                    type: object
+                    description: An optional boolean indicating whether to trigger an event when key parts of a payload have changed.
+                    properties:
+                      type:
+                        type: string
+                      description:
+                        type: string
+                  config.url:
+                    type: object
+                    description: The URL the JSON POST request is made to with the event data as the payload.
+                    properties:
+                      type:
+                        type: string
+                      description:
+                        type: string
+                  config.method:
+                    type: object
+                    description: The HTTP method used to create the custom webhook.
+                    properties:
+                      type:
+                        type: string
+                      description:
+                        type: string
+                  config.payload:
+                    type: object
+                    description: An object that includes key/value pairs that describe the configurable payload body. Supports templating. The full list of available template parameters can be found in the `/sources` API output, under the `fields` JSON object.
+                    properties:
+                      type:
+                        type: string
+                      description:
+                        type: string
+                  config.payload_format:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        description: A optional boolean (defaults to true) indicating whether to format the `config.payload` with resty templating. When set to false, the payload is sent as a raw object.
+                      description:
+                        type: string
+                  config.body:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      description:
+                        type: string
+                  config.body_format:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      description:
+                        type: string
+                  config.headers:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      description:
+                        type: string
+                  config.headers_format:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      description:
+                        type: string
+                  config.secret:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      description:
+                        type: string
+                  config.ssl_verify:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      description:
+                        type: string
+            x-examples:
+              Example 1:
+                data:
+                  event:
+                    type: string
+                    description: A string describing the Kong entity the event hook listens to for events. (optional)
+                  handler:
+                    type: string
+                    description: |
+                     A string describing one of four handler options: webhook, webhook-custom, log, or lambda. (required)
+                  source:
+                    type: string
+                    description: A string describing the action that triggers the event 'https://hooks.slack.com/services/foo/bar/baz'
+                    requried: true
+                  snooze:
+                    type: integer
+                    description: An optional integer describing the time in seconds to delay an event trigger to avoid spamming an integration.
+                  on_change:
+                    type: boolean
+                    description: An optional boolean indicating whether to trigger an event when key parts of a payload have changed.
+                  config.url:
+                    type: string
+                    description: The URL the JSON POST request is made to with the event data as the payloads.
+                    required: true
+                  config.method:
+                    type: string
+                    description: The HTTP method used to create the custom webhook.
+                    required: true
+                  config.payload:
+                    type: object
+                    description: An object that includes key/value pairs that describe the configurable payload body. Supports templating.
+                  config.payload_format:
+                    type: boolean
+                    description: An optional boolean indicating whether to format the config.payload with resty templating. When set to false, the payload is sent as a raw object.
+                    default: true
+                  config.body:
+                    type: string
+                    description: An optional string sent in the remote request.
+                  config.body_format:
+                    type: boolean
+                    description: An optional boolean indicating whether to format `config.body` with resty templating. When set to false, the body is sent as a raw object. 
+                    default: true
+                  config.headers:
+                    type: object
+                    description: An object defining additional HTTP headers to send in the webhook request.
+                  config.headers_format:
+                    type: boolean
+                    description: An optional boolean indicating whether to format `config.headers` with resty templating. When set to true, the `config.headers` value is treated as a template.
+                    default: false
+                  config.secret:
+                    type: string
+                    description: An optional string used to sign the remote webhook for remote verification. When set, Kong signs the body of the event hook with HMAC-SHA1 and includes it in a header, `x-kong-signature`, sent to the remote endpoint. (optional)
+                  config.ssl_verify:
+                    type: boolean
+                    description: A boolean indicating whether to verify the SSL certificate of the remote HTTPS server where the event hook will be sent.
+                    default: false
+    ping-event-hook:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              source:
+                type: string
+              event_hooks:
+                type: object
+                properties:
+                  source:
+                    type: string
+                  id:
+                    type: string
+                  on_change:
+                    type: string
+                  event:
+                    type: string
+                  handler:
+                    type: string
+                  created_at:
+                    type: integer
+                  config:
+                    type: object
+                    properties:
+                      headers:
+                        type: object
+                        properties:
+                          content-type:
+                            type: string
+                      ssl_verify:
+                        type: boolean
+                      url:
+                        type: string
+                      secret:
+                        type: string
+                  snooze:
+                    type: string
+              event:
+                type: string
+            x-examples:
+              Example 1:
+                source: 'kong:event_hooks'
+                event_hooks:
+                  source: crud
+                  id: c57340ab-9fed-40fd-bb7e-1cef8d37c2df
+                  on_change: null
+                  event: consumers
+                  handler: webhook
+                  created_at: 1627581575
+                  config:
+                    headers:
+                      content-type: application/json
+                    ssl_verify: false
+                    url: 'https://webhook.site/a1b2c3-d4e5-g6h7-i8j9-k1l2m3n4o5p6'
+                    secret: null
+                  snooze: null
+                event: ping
+          examples:
+            Pinged event hook:
+              value:
+                source: 'kong:event_hooks'
+                event_hooks:
+                  source: crud
+                  id: c57340ab-9fed-40fd-bb7e-1cef8d37c2df
+                  on_change: "string"
+                  event: consumers
+                  handler: webhook
+                  created_at: 1627581575
+                  config:
+                    headers:
+                      content-type: application/json
+                    ssl_verify: false
+                    url: 'https://webhook.site/a1b2c3-d4e5-g6h7-i8j9-k1l2m3n4o5p6'
+                    secret: "secret"
+                  snooze: "null"
+                event: ping
   requestBodies:
     vault-request:
       content:
@@ -3277,7 +3938,7 @@ components:
               Example 1:
                 prefix: env
                 name: env
-                description: This vault is used to retrieve redis database access credentials
+                description: This vault is used to retrieve Redis database access credentials.
                 config:
                   prefix: SSL_
                 tags:
@@ -3287,22 +3948,22 @@ components:
               prefix:
                 type: string
                 description: |
-                  The unique prefix (or identifier) for this Vault configuration. The prefix is used to load the right Vault configuration and implementation when referencing secrets with the other entities.
+                  The unique prefix (or identifier) for this vault configuration. Use this prefix to load the right vault configuration and implementation when referencing secrets with the other entities.
                 example: env
               name:
                 type: string
                 description: |
-                  The name of the Vault that's going to be added. Currently, the Vault implementation must be installed in every Kong instance.
+                  The name of the vault that's being added. The vault implementation must be installed in every Kong instance.
                 example: env
               description:
                 type: string
                 description: |
-                  The description of the Vault object.
-                example: This vault is used to retrieve redis database access credentials
+                  The description of the vault object.
+                example: This vault is used to retrieve Redis database access credentials.
               config:
                 type: object
                 description: |
-                  The configuration properties for the Vault which can be found on the vaults' documentation page.
+                  The configuration properties for the vault, which can be found on the vaults' documentation page.
                 properties:
                   prefix:
                     type: string
@@ -3310,7 +3971,7 @@ components:
               tags:
                 type: array
                 description: |
-                  An optional set of strings associated with the Vault for grouping and filtering.
+                  An optional set of strings associated with the vault, used for grouping and filtering.
                 items:
                   type: string
           examples:
@@ -3318,7 +3979,7 @@ components:
               value:
                 prefix: env
                 name: env
-                description: This vault is used to retrieve redis database access credentials
+                description: This vault is used to retrieve Redis database access credentials.
                 config:
                   prefix: SSL_
                 tags:
@@ -3351,13 +4012,13 @@ components:
                     description: The unique identifier or the name of the upstream for which to update the target.
               weight:
                 default: 100
-                description: The weight this target gets within the upstream loadbalancer (`0`-`65535`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.
+                description: The weight this target gets within the upstream load balancer (`0`-`65535`). If the hostname resolves to an SRV record, the `weight` value will be overridden by the value from the DNS record.
                 type: integer
                 minimum: 0
                 maximum: 65535
               tags:
                 type: array
-                description: An optional set of strings associated with the Target for grouping and filtering.
+                description: An optional set of strings associated with the target for grouping and filtering.
                 items:
                   type: string
           examples:
@@ -3466,7 +4127,7 @@ components:
               algorithm:
                 type: string
                 description: |
-                  Which load balancing algorithm to use. Accepted values are: `"consistent-hashing"`, `"least-connections"`,` "round-robin"`. Default: `"round-robin"`.
+                  Which load balancing algorithm to use.
                 enum:
                   - consistent-hashing
                   - least-connections
@@ -3753,7 +4414,7 @@ components:
                         default: /
                       https_sni:
                         type: string
-                        description: The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI.'
+                        description: The hostname to use as an SNI (Server Name Identification) when performing active health checks using HTTPS. This is particularly useful when Targets are configured using IPs, so that the target host's certificate can be verified with the proper SNI.
                   threshold:
                     type: integer
                     description: The minimum percentage of the upstream's targets' weight that must be available for the whole upstream to be considered healthy.
@@ -4162,7 +4823,7 @@ components:
                 example: v0
               preserve_host:
                 type: boolean
-                description: When matching a route via one of the `hosts` domain names, use the request `host` header in the upstream request headers. If set to `false`, the upstream Host header will be that of the service's host.'
+                description: When matching a route via one of the `hosts` domain names, use the request `host` header in the upstream request headers. If set to `false`, the upstream Host header will be that of the service's host.
                 default: true
               request_buffering:
                 type: boolean
@@ -4372,7 +5033,7 @@ components:
             properties:
               name:
                 type: string
-                description: The name of the plugin that's going to be added. Currently, the plugin must be installed in every Kong instance separately.
+                description: The name of the plugin that's being added. The plugin must be installed in every Kong instance separately.
                 example: rate-limiting
               route:
                 type: string
@@ -4667,6 +5328,388 @@ components:
                 example: my-workspace
       description: |
         The workspace object describes the workspace entity, which has an ID and a name.
+    rbac-request:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              
+                description: |
+                  The RBAC user name.
+              user_token:
+                type: string
+               
+                description: The authentication token to be presented to the Admin API. The value will be hashed and cannot be fetched in plaintext.
+              enabled:
+                type: string
+               
+                description: |
+                  A flag to enable or disable the user. By default, users are enabled.
+              comment:
+                type: string
+               
+                description: |
+                  A string describing the RBAC user object.
+    filter-chains-request:
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                id: ce44eef5-41ed-47f6-baab-f725cecf98c7
+                name: my-chain
+                created_at: 1422386534
+                updated_at: 1422386534
+                enabled: true
+                route: null
+                service: 20487393-41ed-47f6-93a8-3407cade2002
+                filters:
+                  - name: go-rate-limiting
+                    enabled: true
+                    config: '{ "minute": 30 }'
+                  - name: rust-response-transformer
+                    enabled: true
+                    config: '{ "remove_header": "X-Example" }'
+                tags:
+                  - my-tag
+            properties:
+              ' name':
+                type: string
+                
+                description: |
+                  The name of the filter chain.
+                example: my-chain
+              enabled:
+                type: string
+                
+                description: |
+                  Whether the filter chain is applied. Default: true.
+              route:
+                type: string
+                
+                description: |
+                  The route to which this chain is applied. 
+                  A filter chain must be applied to either a single route or a single service. 
+                  Default: `null`. 
+                  
+                  In form-encoded format, the notation is `route.id=<route id>` or `route.name=<route name>`. 
+                  In JSON format, use `"route":{"id":"<route id>"}` or `"route":{"name":"<route name>"}`.
+              service:
+                type: string
+               
+                description: |
+                  The service to which this chain is applied. 
+                  A filter chain must be applied to either a single route or a single service. Default: `null`. 
+                  
+                  In form-encoded format, the notation is `service.id=<service id>` or `service.name=<service name>`. 
+                  In JSON format, use `"service":{"id":"<service id>"}` or `"service":{"name":"<service name>"}`.
+                example: 20487393-41ed-47f6-93a8-3407cade2002
+              filters:
+                type: string
+                
+                description: An array of filter definitions. Each filter is an object containing a mandatory name, an optional config, and a boolean enabled setting.
+              tags:
+                type: string
+                
+                description: |
+                  An optional set of strings associated with the filter chain for grouping and filtering.
+          examples:
+            Example 1:
+              value:
+                ' name': my-chain
+                enabled: string
+                route: string
+                service: 20487393-41ed-47f6-93a8-3407cade2002
+                filters: string
+                tags: string
+      description: A filter chain is the database entity representing one or more WebAssembly filters executed for each request to a particular service or route, each one with its configuration.
+    add-webhook:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              event:
+                type: string
+               
+                description: |
+                  A string describing the Kong entity the event hook listens to for events.
+                example: consumers
+              handler:
+                type: string
+               
+                description: |
+                  A string describing one of four handler options: webhook, webhook-custom, log, or lambda.
+                example: webhook
+              source:
+                type: string
+                
+                description: |
+                  A string describing the action that triggers the event hook.
+                example: crud
+              snooze:
+                type: integer
+                
+                description: |
+                  An optional integer describing the time in seconds to delay an event trigger to avoid spamming an integration.
+                example: 0
+                default: 0
+              on_change:
+                type: boolean
+                
+                description: |
+                  An optional boolean indicating whether to trigger an event when key parts of a payload have changed.
+              config.url:
+                type: string
+                
+                description: |
+                  The URL the JSON POST request is made to with the event data as the payload.
+                example: 'https://webhook.site/a1b2c3-d4e5-g6h7-i8j9-k1l2m3n4o5p6'
+              config.headers:
+                type: object
+              
+                description: |
+                  An object defining additional HTTP headers to send in the webhook request. For example `{"X-Custom-Header": "My Value"}`.
+                properties:
+                  headers:
+                    type: string
+                   
+                    description: |
+                      Optional configuration header
+              config.secret:
+                type: string
+               
+                description: |
+                  An optional string used to sign the remote webhook for remote verification. When set, Kong signs the body of the event hook with HMAC-SHA1 and includes it in a header, `x-kong-signature`, sent to the remote endpoint.
+              config.ssl_verify:
+                type: string
+               
+                description: |
+                  A boolean indicating whether to verify the SSL certificate of the remote HTTPS server where the event hook will be sent. The default is false.
+            required:
+              - handler
+              - source
+              - config.url
+          examples:
+            Example 2:
+              value:
+                event: consumers
+                handler: webhook
+                source: crud
+                snooze: 0
+                on_change: true
+                config.url: 'https://webhook.site/a1b2c3-d4e5-g6h7-i8j9-k1l2m3n4o5p6'
+                config.headers:
+                  headers: string
+                config.secret: string
+                config.ssl_verify: string
+      description: Request body for adding a webhook
+    add-custom-webhook:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              event:
+                type: string
+               
+                description: |
+                  A string describing the Kong entity the event hook listens to for events.
+                example: admins
+              handler:
+                type: string
+               
+                description: |
+                  A string describing one of four handler options: webhook, webhook-custom, log, or lambda.
+                example: webhook-custom
+              source:
+                type: string
+              
+                description: |
+                  A string describing one of four handler options: webhook, webhook-custom, log, or lambda.
+                example: crud
+              snooze:
+                type: integer
+                
+                description: |
+                  An optional integer describing the time in seconds to delay an event trigger to avoid spamming an integration.
+                default: 1
+              on_change:
+                type: boolean
+                
+                description: |
+                  An optional boolean indicating whether to trigger an event when key parts of a payload have changed.
+                default: true
+              config.url:
+                type: string
+                
+                description: |
+                  The URL the JSON POST request is made to with the event data as the payload.
+                example: 'https://hooks.slack.com/services/foo/bar/baz'
+              config.method:
+                type: string
+                
+                description: |
+                  The HTTP method used to create the custom webhook.
+                example: GET
+              config.payload:
+                type: object
+                
+                description: |
+                  An object that includes key/value pairs that describe the configurable payload body. Supports templating. The full list of available template parameters can be found in the /sources API output, under the fields JSON object.
+                properties:
+                  text:
+                    type: string
+                   
+                    description: Configuration payload
+              config.payload_format:
+                type: boolean
+                
+                description: |
+                  A optional boolean (defaults to true) indicating whether to format `config.payload` with resty templating. When set to false, the payload is sent as a raw object.
+              config.body:
+                type: string
+                
+                description: |
+                  An optional string sent in the remote request.
+              config.body_format:
+                type: boolean
+                
+                description: |
+                  An optional boolean (defaults to true) indicating whether to format `config.body` with resty templating. When set to false, the body is sent as a raw object. To see all the available parameters defined for a specific source, check the source fields displayed by the `/event-hooks/source` endpoint.
+              config.headers:
+                type: object
+               
+                description: |
+                  An object defining additional HTTP headers to send in the webhook request. For example `{"Content-type": "application/json", "X-Custom-Header": "My Value"}`.
+              config.headers_format:
+                type: string
+                
+                description: |
+                  An optional boolean (defaults to false) indicating whether to format `config.headers` with resty templating. When set to true, the `config.headers` value is treated as a template. To see all the available parameters defined for a specific source, check the source fields displayed by the `/event-hooks/sources` endpoint.
+              config.secret:
+                type: string
+                
+                description: |
+                  An optional string used to sign the remote webhook for remote verification. When set, Kong signs the body of the event hook with HMAC-SHA1 and includes it in a header, `x-kong-signature`, to the remote endpoint.
+              config.ssl_verify:
+                type: boolean
+                
+            required:
+              - handler
+              - source
+              - config.url
+              - config.method
+      description: Request body for adding a custom webhook
+    add-log:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              event:
+                type: string
+                
+                description: |
+                  A string describing the Kong entity the event hook listens to for events.
+                example: routes
+              handler:
+                type: string
+                
+                description: |
+                  A string describing one of four handler options: webhook, webhook-custom, log, or lambda.
+                example: log
+              source:
+                type: string
+               
+                description: |
+                  A string describing the action that triggers the event hook.
+                example: crud
+              snooze:
+                type: integer
+               
+                description: |
+                  An optional integer describing the time in seconds to delay an event trigger to avoid spamming an integration.
+              on_change:
+                type: boolean
+               
+                description: |
+                  An optional boolean indicating whether to trigger an event when key parts of a payload have changed.
+            required:
+              - handler
+              - source
+          examples:
+            Example log request:
+              value:
+                event: routes
+                handler: log
+                source: crud
+                snooze: 0
+                on_change: true
+      description: Add a log event hook request body
+    lambda-event-hook:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              event:
+                type: string
+                
+                description: |
+                  A string describing the Kong entity the event hook listens to for events.
+                example: consumers
+              handler:
+                type: string
+                
+                description: |
+                  A string describing one of four handler options: webhook, webhook-custom, log, or lambda.
+                example: lambda
+              source:
+                type: string
+                
+                description: |
+                  A string describing the action that triggers the event hook.
+                example: crud
+              snooze:
+                type: boolean
+                
+                description: |
+                  An optional integer describing the time in seconds to delay an event trigger to avoid spamming an integration.
+              on_change:
+                type: boolean
+                
+                description: |
+                  An optional boolean indicating whether to trigger an event when key parts of a payload have changed.
+              config.functions:
+                type: array
+               
+                description: |
+                  An array of Lua code functions to execute on the event hook.
+                items:
+                 
+                  type: string
+                  example: '"functions": [             "return function (data, event, source, pid)\n  local user = data.entity.username\n  error(\"Event hook on consumer \" .. user .. \"\")\nend\n"         ]'
+            required:
+              - handler
+              - source
+              - config.functions
+          examples:
+            lambda-event-hook:
+              value:
+                event: consumers
+                handler: lambda
+                source: crud
+                snooze: true
+                on_change: true
+                config.functions:
+                  - '"functions": [             "return function (data, event, source, pid)\n  local user = data.entity.username\n  error(\"Event hook on consumer \" .. user .. \"\")\nend\n"         ]'
+      description: Request body for adding a lambda event hook
+
 externalDocs:
   description: Kong Gateway Enterprise Admin API
   url: 'https://docs.konghq.com'
@@ -5184,7 +6227,7 @@ paths:
                   Example 1:
                     fields:
                       username: stri22ng
-                    message: 'UNIQUE violation detected on ''{username="stri22ng"}'''
+                    message: UNIQUE violation detected on `{username="stri22ng"}`
                     name: unique constraint violation
                     code: 5
                 properties:
@@ -5199,7 +6242,7 @@ paths:
                   message:
                     type: string
                     description: Detail about the conflict.
-                    example: 'UNIQUE violation detected on ''{username=\"stri22ng\"}'''
+                    example: UNIQUE violation detected on `{username=\"stri22ng\"}`
                   name:
                     type: string
                     description: THe name of the violation.
@@ -5213,7 +6256,7 @@ paths:
                   value:
                     fields:
                       username: stri22ng
-                    message: 'UNIQUE violation detected on ''{username="stri22ng"}'''
+                    message: UNIQUE violation detected on `{username="stri22ng"}`
                     name: unique constraint violation
                     code: 5
       summary: Create a new Consumer
@@ -5470,7 +6513,7 @@ paths:
                   Example 1:
                     fields:
                       name: my-key_set
-                    message: 'UNIQUE violation detected on ''{name="my-key_set"}'''
+                    message: UNIQUE violation detected on `{name="my-key_set"}`
                     name: unique constraint violation
                     code: 5
               examples:
@@ -5478,7 +6521,7 @@ paths:
                   value:
                     fields:
                       name: my-key_set
-                    message: 'UNIQUE violation detected on ''{name="my-key_set"}'''
+                    message: UNIQUE violation detected on `{name="my-key_set"}`
                     name: unique constraint violation
                     code: 5
       summary: Create a new Key-set
@@ -9446,6 +10489,7 @@ paths:
         A requests to the entity endpoint using the given configuration may still fail due to other reasons, such as invalid foreign key relationships or uniqueness check failures against the contents of the data store.
       tags:
         - Information
+  
   '/schemas/plugins/{plugin_name}':
     parameters:
       - schema:
@@ -9948,7 +10992,6 @@ paths:
                 value:
                   key: t6NWgbj3g9cbNVC3/D6oZ2Md1Br5gWtRrqb1T2FZy44=
                   id: 8zgITLQh
-        description: ''
   /keyring/activate:
     post:
       summary: Activate key
@@ -10067,6 +11110,36 @@ paths:
         The exported keyring should be stored in a safe location for disaster recovery purposes. It is not designed to be modified or decrypted before being used during a disaster recovery process.
       tags:
         - Keyring
+  /tags:
+    get:
+      summary: List all tags
+      tags:
+        - Tags
+      responses:
+        '200':
+          $ref: '#/components/responses/tags-response'
+      operationId: get-tags
+      description: |-
+        Returns a paginated list of all the tags in the system.
+
+        The list of entities isn't restricted to a single entity type. All the entities tagged with tags are present in this list.
+
+        If an entity is tagged with more than one tag, the `entity_id` for that entity appears more than once in the resulting list. Similarly, if several entities have been tagged with the same tag, the tag appears in several items of this list.
+  '/tags/{tags}':
+    parameters:
+      - $ref: '#/components/parameters/tag'
+    get:
+      summary: List entity by tag
+      tags:
+        - Tags
+      responses:
+        '200':
+          $ref: '#/components/responses/tags-response'
+      operationId: get-tags-tags
+      description: |-
+        Returns the entities that have been tagged with the specified tag.
+
+        The list of entities isn't restricted to a single entity type. All the entities tagged with tags are present in this list.
   /keyring/import:
     post:
       summary: Import Keyring
@@ -10156,6 +11229,2394 @@ paths:
           description: No vault named
       operationId: get-schemas-vaults-vault_name
       description: Retrieve the schema of a vault.
+  /admins:
+    get:
+      summary: List Admins
+      tags:
+        - admins
+      responses:
+        '200':
+          $ref: '#/components/responses/admins-response'
+      operationId: get-admins
+      description: Returns a list of admins. The `status` field in the response indicates the state of the admins invitation. `0`= Approved, `1`= Pending, `2`= Rejected, `3`= Revoked, `4` = Invited, `5`= Unverified.
+    post:
+      summary: Invite an Admin
+      operationId: post-admins
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  admin:
+                    type: object
+                    properties:
+                      created_at:
+                        type: integer
+                      id:
+                        type: string
+                      updated_at:
+                        type: integer
+                      status:
+                        type: integer
+                      username:
+                        type: string
+                      email:
+                        type: string
+                      rbac_token_enabled:
+                        type: boolean
+                x-examples:
+                  Example 1:
+                    admin:
+                      created_at: 1556638641
+                      id: 8f0a742f-07f3-49e0-90d7-4fc7eea7e6a4
+                      updated_at: 1556638641
+                      status: 4
+                      username: test-case-3
+                      email: test3@test.com
+                      rbac_token_enabled: true
+              examples:
+                Example admin response:
+                  value:
+                    admin:
+                      created_at: 0
+                      id: string
+                      updated_at: 0
+                      status: 0
+                      username: string
+                      email: string
+                      rbac_token_enabled: true
+      tags:
+        - admins
+      description: Invite an admin to your organization.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: email@example.com
+                  description: The admin's email address.
+                username:
+                  type: string
+                  description: The admin's username
+                  example: myusername
+                custom_id:
+                  type: string
+                  description: The admin's custom ID
+                rbac_token_enabled:
+                  type: boolean
+                  description: Allows the admin to use and reset their RBAC token.
+                  default: true
+            examples:
+              Invite an admin:
+                value:
+                  admin:
+                    username: test-case-3
+                    email: test3@test.com
+                    custom_id: customId
+                    rbac_token_enabled: true
+  /admins/register:
+    post:
+      summary: Register an Admin’s Credentials
+      operationId: post-admins-register
+      responses:
+        '201':
+          description: Created
+      description: Register an Admin's Credentials
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                 
+                username:
+                  type: string
+                  
+                email:
+                  type: string
+                  
+                  format: email
+                password:
+                  type: string
+                  
+                  format: password
+            examples:
+              Example registration request:
+                value:
+                  token: string
+                  username: string
+                  email: user@example.com
+                  password: pa$$word
+      tags:
+        - admins
+  /admins/password_resets:
+    post:
+      summary: Send a Password Reset Email to an Admin
+      tags:
+        - admins
+      responses:
+        '201':
+          description: Created
+      operationId: get-admins-password_resets
+      description: Using a registered admin's email address issue a password reset email to the admin.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                 
+                  description: The registered admin's email.
+                  example: admin@example.com
+            examples:
+              Example reset body:
+                value:
+                  email: admin@example.com
+    patch:
+      summary: Reset an Admin’s Password
+      operationId: patch-admins-password_resets
+      responses:
+        '200':
+          description: OK
+      description: Reset an admin's password.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  
+                password:
+                  type: string
+                 
+                token:
+                  type: string
+                  
+            examples:
+              Example 1:
+                value:
+                  email: string
+                  password: string
+                  token: string
+      tags:
+        - admins
+  '/admins/{name_or_id}':
+    parameters:
+      - schema:
+          type: string
+        name: name_or_id
+        in: path
+        required: true
+        description: The admin’s username or ID.
+    get:
+      summary: Retrieve an Admin
+      tags:
+        - admins
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  created_at:
+                    type: integer
+                  id:
+                    type: string
+                  updated_at:
+                    type: integer
+                  status:
+                    type: integer
+                  username:
+                    type: string
+                  email:
+                    type: string
+                  rbac_token_enabled:
+                    type: boolean
+                x-examples:
+                  Example 1:
+                    created_at: 1556638385
+                    id: 665b4070-541f-48bf-82c1-53030babaa81
+                    updated_at: 1556638385
+                    status: 4
+                    username: test-admin
+                    email: test@test.com
+                    rbac_token_enabled: true
+              examples:
+                Example response body:
+                  value:
+                    created_at: 1556638385
+                    id: 665b4070-541f-48bf-82c1-53030babaa81
+                    updated_at: 1556638385
+                    status: 4
+                    username: test-admin
+                    email: test@test.com
+                    rbac_token_enabled: true
+      operationId: get-admins-name_or_id
+      description: Retrieve an admin using their name or ID. Using `generate_register_url`, you can generate a unique registration URL if the admin's invitation status is `4`. `generate_register_url` overrides the previous registration URL for the particular admin each time it is requested. 
+    patch:
+      tags:
+        - admins
+      summary: Update an Admin
+      operationId: patch-admins-name_or_id-generate_register_url
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name_or_id:
+                  type: string
+                username:
+                  type: string
+                email:
+                  type: string
+                rbac_token_enabled:
+                  type: boolean
+              x-examples:
+                Example 1:
+                  name_or_id: 665b4070-541f-48bf-82c1-53030babaa81
+                  username: test-renamed
+                  email: test@test.com
+                  rbac_token_enabled: true
+            examples:
+              Example 1:
+                value:
+                  name_or_id: string
+                  username: string
+                  email: string
+                  rbac_token_enabled: true
+      description: Update information about an admin
+    delete:
+      tags:
+        - admins
+      summary: Delete an Admin
+      operationId: delete-admins-name_or_id
+      responses:
+        '204':
+          description: No Content
+      description: Delete an admin by specifying the admin's username or ID.
+  '/admins/{name_or_id}/roles':
+    parameters:
+      - schema:
+          type: string
+        name: name_or_id
+        in: path
+        required: true
+        description: The admin’s username or ID
+    get:
+      summary: List an Admin’s Roles
+      tags:
+        - admins
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  roles:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        comment:
+                          type: string
+                        created_at:
+                          type: integer
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        is_default:
+                          type: boolean
+                x-examples:
+                  Example 1:
+                    roles:
+                      - comment: 'Read access to all endpoints, across all workspaces'
+                        created_at: 1556563122
+                        id: 7574eb1d-c9fa-46a9-bd3a-3f1b4b196287
+                        name: read-only
+                        is_default: false
+                      - comment: 'Full access to all endpoints, across all workspaces—except RBAC Admin API'
+                        created_at: 1556563122
+                        id: 7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d
+                        name: admin
+                        is_default: false
+              examples:
+                Example role list:
+                  value:
+                    roles:
+                      - comment: 'Read access to all endpoints, across all workspaces'
+                        created_at: 1556563122
+                        id: 7574eb1d-c9fa-46a9-bd3a-3f1b4b196287
+                        name: read-only
+                        is_default: false
+                      - comment: 'Full access to all endpoints, across all workspaces—except RBAC Admin API'
+                        created_at: 1556563122
+                        id: 7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d
+                        name: admin
+                        is_default: false
+      operationId: get-admins-name_or_id-roles
+      description: List all roles related to a registered admin.
+    post:
+      summary: Create or Update an Admin’s Roles
+      operationId: post-admins-name_or_id-roles
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  roles:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        comment:
+                          type: string
+                        created_at:
+                          type: integer
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        is_default:
+                          type: boolean
+                x-examples:
+                  Example 1:
+                    roles:
+                      - comment: 'Read access to all endpoints, across all workspaces'
+                        created_at: 1556563122
+                        id: 7574eb1d-c9fa-46a9-bd3a-3f1b4b196287
+                        name: read-only
+                        is_default: false
+                      - comment: 'Full access to all endpoints, across all workspaces—except RBAC Admin API'
+                        created_at: 1556563122
+                        id: 7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d
+                        name: admin
+                        is_default: false
+                      - comment: 'Full access to all endpoints, across all workspaces'
+                        created_at: 1556563122
+                        id: 99bd8d18-f5b6-410e-aefe-d75f4252f13c
+                        name: super-admin
+                        is_default: false
+              examples:
+                Example role assignment:
+                  value:
+                    roles:
+                      - comment: 'Read access to all endpoints, across all workspaces'
+                        created_at: 1556563122
+                        id: 7574eb1d-c9fa-46a9-bd3a-3f1b4b196287
+                        name: read-only
+                        is_default: false
+                      - comment: 'Full access to all endpoints, across all workspaces—except RBAC Admin API'
+                        created_at: 1556563122
+                        id: 7fdea5c8-2bfa-4aa9-9c21-7bb9e607186d
+                        name: admin
+                        is_default: false
+                      - comment: 'Full access to all endpoints, across all workspaces'
+                        created_at: 1556563122
+                        id: 99bd8d18-f5b6-410e-aefe-d75f4252f13c
+                        name: super-admin
+                        is_default: false
+      tags:
+        - admins
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                Roles:
+                  type: string
+              x-examples:
+                Example 1:
+                  Roles: read-only
+        description: Comma-separated string of role names to create or update for an admin.
+      description: Create or update roles for an admin
+    delete:
+      tags:
+        - admins
+      summary: Delete an Admin’s Role
+      operationId: delete-admins-name_or_id-roles
+      responses:
+        '204':
+          description: No Content
+      description: Delete an admin's roles by passing a comma-separated string of names of specific roles to remove from an admin.
+  '/admins/{name_or_id}/workspaces':
+    parameters:
+      - schema:
+          type: string
+        name: name_or_id
+        in: path
+        required: true
+        description: The admin’s username or ID
+    get:
+      summary: List an Admin’s Workspaces
+      tags:
+        - admins
+      responses:
+        '200':
+          $ref: '#/components/responses/workspace-response'
+      operationId: get-admins-name_or_id-workspaces
+      description: Return workspaces associated with an admin.
+  '/debug/cluster/control-planes-nodes/log-level/{log_level}':
+    parameters:
+      - schema:
+          type: string
+          enum:
+            - debug
+            - info
+            - notice
+            - warn
+            - error
+            - crit
+        name: log_level
+        in: path
+        required: true
+        description: The log level
+    put:
+      summary: Set Node Log Level of All Control Plane Nodes
+      operationId: put-debug-cluster-control-planes-nodes-log-level-log_level
+      responses:
+        '200':
+          description: log level changed
+      description: |-
+        Change the log level of all control plane nodes deployed in a hybrid (CP/DP) cluster.
+        Be careful when changing the log level of a node to debug in a production environment because the disk could fill up quickly. As soon as the debug logging finishes, revert back to a higher level, such as notice.
+        It’s currently not possible to change the log level of data plane and DB-less nodes.
+
+        This endpoint can be protected with RBAC, and changes will be reflected in the audit logs. 
+        The log level change is propagated to all Nginx workers of a node, including to newly spawned workers.
+
+        Log levels are set in Kong’s configuration. Possible log levels in increasing order of severity: `debug`, `info`, `notice`, `warn`, `error`, and `crit`. For more information, review the [logging reference](https://docs.konghq.com/gateway/latest/production/logging/).
+
+        When a user dynamically changes the log level for the entire cluster, if a new node joins the cluster, the new node will run at the previous log level, not at the log level that was previously set dynamically for the entire cluster. To work around that, make sure the new node starts with the proper level by setting the startup `kong.conf` setting [`KONG_LOG_LEVEL`](https://docs.konghq.com/gateway/latest/reference/configuration/#log_level).
+      tags:
+        - debug
+  '/debug/cluster/log-level/{log_level}':
+    parameters:
+      - schema:
+          type: string
+          enum:
+            - debug
+            - info
+            - notice
+            - warn
+            - error
+            - crit
+        name: log_level
+        in: path
+        required: true
+        description: The log level
+    put:
+      summary: Set Node Log Level of All Nodes
+      operationId: put-debug-cluster-log-level-log_level
+      responses:
+        '200':
+          description: log level changed
+      tags:
+        - debug
+      description: |-
+        Change the log level of all nodes in a cluster.
+        
+        Be careful when changing the log level of a node to debug in a production environment because the disk could fill up quickly. As soon as the debug logging finishes, revert back to a higher level, such as notice.
+        It’s currently not possible to change the log level of data plane and DB-less nodes.
+        
+        This endpoint can be protected with RBAC, and changes will be reflected in the audit logs. 
+        The log level change is propagated to all Nginx workers of a node, including to newly spawned workers.
+
+        Log levels are set in Kong’s configuration. Possible log levels in increasing order of severity: `debug`, `info`, `notice`, `warn`, `error`, and `crit`. For more information, review the [logging reference](https://docs.konghq.com/gateway/latest/production/logging/).
+
+        Currently, when a user dynamically changes the log level for the entire cluster, if a new node joins the cluster, the new node will run at the previous log level, not at the log level that was previously set dynamically for the entire cluster. To work around that, make sure the new node starts with the proper level by setting the startup `kong.conf` setting [`KONG_LOG_LEVEL`](https://docs.konghq.com/gateway/latest/reference/configuration/#log_level).
+  /debug/node/log-level:
+    get:
+      summary: Retrieve Node Log Level of A Node
+      tags:
+        - debug
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                x-examples:
+                  Example 1:
+                    message: 'log level: debug'
+              examples:
+                Retrieved debug level:
+                  value:
+                    message: string
+      operationId: get-debug-node-log-level
+      description: |
+        Retrieve the current log level of a node.
+
+        See the [Nginx Documentation](ttp://nginx.org/en/docs/ngx_core_module.html#error_log) for the list of possible return values.
+  '/debug/node/log-level/{log_level}':
+    parameters:
+      - schema:
+          type: string
+          enum:
+            - debug
+            - info
+            - notice
+            - warn
+            - error
+            - crit
+        name: log_level
+        in: path
+        required: true
+        description: The log level
+    put:
+      summary: Set Log Level of A Single Node
+      tags:
+        - debug
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                x-examples:
+                  Example 1:
+                    message: log level changed
+              examples:
+                Example 1:
+                  value:
+                    message: log level changed
+      operationId: get-debug-node-log-level-log_level
+      description: |
+        Change the log level of a node.
+  /rbac/users:
+    get:
+      summary: List Users
+      tags:
+        - rbac
+      responses:
+        '200':
+          $ref: '#/components/responses/rbac-user-response'
+      operationId: get-rbac-users
+      description: |-
+        List all users.
+
+        Note: RBAC users associated with admin aren't listed with `GET /rbac/users`. Instead, use `GET /admins` to list all admins.
+    post:
+      summary: Add a User
+      operationId: post-rbac-users
+      responses:
+        '200':
+          $ref: '#/components/responses/rbac-user-response'
+      tags:
+        - rbac
+      requestBody:
+        $ref: '#/components/requestBodies/rbac-request'
+      description: Add a User
+  '/rbac/users/{name_or_id}':
+    parameters:
+      - schema:
+          type: string
+        name: name_or_id
+        in: path
+        required: true
+        description: The RBAC username or UUID.
+    get:
+      summary: Retrieve a User
+      tags:
+        - rbac
+      responses:
+        '200':
+          $ref: '#/components/responses/rbac-user-response'
+      operationId: get-rbac-users-name_or_id
+      description: Retrieve a user by passing a name or ID in the path.
+    patch:
+      summary: Update a User
+      operationId: patch-rbac-users-name_or_id
+      responses:
+        '200':
+          $ref: '#/components/responses/rbac-user-response'
+      tags:
+        - rbac
+      description: Update a user.
+      requestBody:
+        $ref: '#/components/requestBodies/rbac-request'
+    delete:
+      summary: Delete a User
+      operationId: delete-rbac-users-name_or_id
+      responses:
+        '204':
+          description: No Content
+      description: |
+        Delete a user.
+      tags:
+        - rbac
+  /rbac/roles:
+    get:
+      summary: List Roles
+      tags:
+        - rbac
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        comment:
+                          type: string
+                        created_at:
+                          type: integer
+                        id:
+                          type: string
+                        name:
+                          type: string
+                  next:
+                    type: string
+                x-examples:
+                  Example 1:
+                    data:
+                      - comment: 'Full access to all endpoints, across all workspaces—except RBAC Admin API'
+                        created_at: 1557506249
+                        id: 38a03d47-faae-4366-b430-f6c10aee5029
+                        name: admin
+                      - comment: 'Read access to all endpoints, across all workspaces'
+                        created_at: 1557506249
+                        id: 4141675c-8beb-41a5-aa04-6258ab2d2f7f
+                        name: read-only
+                      - comment: 'Full access to all endpoints, across all workspaces'
+                        created_at: 1557506249
+                        id: 888117e0-f2b3-404d-823b-dee595423505
+                        name: super-admin
+                      - comment: null
+                        created_at: 1557532241
+                        id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
+                        name: doc_lord
+                    next: null
+              examples:
+                Multiple roles:
+                  value:
+                    data:
+                      - comment: 'Full access to all endpoints, across all workspaces—except RBAC Admin API'
+                        created_at: 1557506249
+                        id: 38a03d47-faae-4366-b430-f6c10aee5029
+                        name: admin
+                      - comment: 'Read access to all endpoints, across all workspaces'
+                        created_at: 1557506249
+                        id: 4141675c-8beb-41a5-aa04-6258ab2d2f7f
+                        name: read-only
+                      - comment: 'Full access to all endpoints, across all workspaces'
+                        created_at: 1557506249
+                        id: 888117e0-f2b3-404d-823b-dee595423505
+                        name: super-admin
+                      - comment: 'null'
+                        created_at: 1557532241
+                        id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
+                        name: doc_lord
+                    next: 'null'
+      operationId: get-rbac-roles
+      description: List all roles.
+    post:
+      summary: Add a Role
+      operationId: post-rbac-roles
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  comment:
+                    type: string
+                  created_at:
+                    type: integer
+                  id:
+                    type: string
+                  is_default:
+                    type: boolean
+                  name:
+                    type: string
+                x-examples:
+                  Example 1:
+                    comment: null
+                    created_at: 1557532241
+                    id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
+                    is_default: false
+                    name: service_reader
+              examples:
+                New role response body:
+                  value:
+                    comment: 'null'
+                    created_at: 1557532241
+                    id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
+                    is_default: false
+                    name: service_reader
+      tags:
+        - rbac
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                 
+
+                  description: The RBAC role name.
+                comment:
+                  type: string
+                 
+                  description: A string describing the RBAC user object.
+        description: The request body contains the name of the role and an optional attribute. 
+      description: Add a role.
+  '/rbac/roles/{name_or_id}':
+    parameters:
+      - schema:
+          type: string
+        name: name_or_id
+        in: path
+        required: true
+        description: The RBAC role name or UUID.
+    get:
+      summary: Retrieve a Role
+      tags:
+        - rbac
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  created_at:
+                    type: integer
+                  id:
+                    type: string
+                  is_default:
+                    type: boolean
+                  name:
+                    type: string
+                x-examples:
+                  Example 1:
+                    created_at: 1557532241
+                    id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
+                    is_default: false
+                    name: service_reader
+              examples:
+                Example 1:
+                  value:
+                    created_at: 1557532241
+                    id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
+                    is_default: false
+                    name: service_reader
+      operationId: get-rbac-roles-name_or_id
+      description: Retrieve a role by passing the name or UUID as a path parameter.
+    put:
+      summary: Update or Create a Role
+      operationId: put-rbac-roles-name_or_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  comment:
+                    type: string
+                  created_at:
+                    type: integer
+                  id:
+                    type: string
+                  is_default:
+                    type: boolean
+                  name:
+                    type: string
+                x-examples:
+                  Example 1:
+                    comment: the best
+                    created_at: 1557532566
+                    id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
+                    is_default: false
+                    name: doc_lord
+              examples:
+                Example entity replacement:
+                  value:
+                    comment: the best
+                    created_at: 1557532566
+                    id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
+                    is_default: false
+                    name: doc_lord
+        '201':
+          description: Created
+      tags:
+        - rbac
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                 
+                comment:
+                  type: string
+                 
+      description: |
+        With a `PUT` request, if the request payload contains an existing entity’s primary key, the payload replaces the entity specified by the given primary key. If the primary key is not that of an existing entity, the entity is created with the given payload.
+    patch:
+      summary: Update a Role
+      operationId: patch-rbac-roles-name_or_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  comment:
+                    type: string
+                  created_at:
+                    type: integer
+                  id:
+                    type: string
+                  is_default:
+                    type: boolean
+                  name:
+                    type: string
+                x-examples:
+                  Example 1:
+                    comment: comment from patch request
+                    created_at: 1557532566
+                    id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
+                    is_default: false
+                    name: service_reader
+              examples:
+                Patch request response:
+                  value:
+                    comment: comment from patch request
+                    created_at: 1557532566
+                    id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
+                    is_default: false
+                    name: service_reader
+      tags:
+        - rbac
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                attribute:
+                  type: string
+                
+                  description: |
+                    A string describing the RBAC role object.
+        description: Attribute request body
+      description: Updates a role by passing an optional attribute.
+    delete:
+      summary: Delete a Role
+      operationId: delete-rbac-roles-name_or_id
+      responses:
+        '204':
+          description: No Content
+      tags:
+        - rbac
+      description: Delete a role
+  '/rbac/roles/{name_or_id}/endpoints':
+    parameters:
+      - schema:
+          type: string
+        name: name_or_id
+        in: path
+        required: true
+        description: The RBAC role name or UUID.
+    get:
+      summary: List Role Endpoints Permissions
+      tags:
+        - rbac
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        actions:
+                          type: array
+                          items:
+                            type: string
+                        created_at:
+                          type: integer
+                        endpoint:
+                          type: string
+                        negative:
+                          type: boolean
+                        role:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                        workspace:
+                          type: string
+                x-examples:
+                  Example 1:
+                    data:
+                      - actions:
+                          - delete
+                          - create
+                          - update
+                          - read
+                        created_at: 1557764505
+                        endpoint: /consumers
+                        negative: false
+                        role:
+                          id: 23df9f20-e7cc-4da4-bc89-d3a08f976e50
+                        workspace: default
+                      - actions:
+                          - read
+                        created_at: 1557764438
+                        endpoint: /services
+                        negative: false
+                        role:
+                          id: 23df9f20-e7cc-4da4-bc89-d3a08f976e50
+                        workspace: default
+      operationId: get-rbac-roles-name_or_id-endpoints
+      description: Lists all of a role's associated endpoint permissions.
+    post:
+      summary: Add a Role Endpoint Permission
+      operationId: post-rbac-roles-name_or_id-endpoints
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  actions:
+                    type: array
+                    items:
+                      type: string
+                  created_at:
+                    type: integer
+                  endpoint:
+                    type: string
+                  negative:
+                    type: boolean
+                  role:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                  workspace:
+                    type: string
+                x-examples:
+                  Example 1:
+                    actions:
+                      - delete
+                      - create
+                      - update
+                      - read
+                    created_at: 1557764505
+                    endpoint: /consumers
+                    negative: false
+                    role:
+                      id: 23df9f20-e7cc-4da4-bc89-d3a08f976e50
+                    workspace: default
+              examples:
+                Basic example:
+                  value:
+                    actions:
+                      - delete
+                      - create
+                      - update
+                      - read
+                    created_at: 1557764505
+                    endpoint: /consumers
+                    negative: false
+                    role:
+                      id: 23df9f20-e7cc-4da4-bc89-d3a08f976e50
+                    workspace: default
+      tags:
+        - rbac
+      description: |-
+        Add a role endpoint permission for the path of the associated endpoint. Permissions can be exact matches, or contain wildcards, represented by `*`.
+
+        Exact matches:
+        - `/services/`
+        - `/services/foo`
+        
+        Wildcards:
+        - `/services/*`
+        - `/services/*/plugins`
+        Where `*` replaces exactly one segment between slashes (or the end of the path).
+
+        Note that wildcards can be nested. For example, `/rbac/*`, `/rbac/*/*`, `/rbac/*/*/*` would refer to all paths under `/rbac/`.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                workspace:
+                  type: string
+                
+                  description: Workspace tied to the endpoint. Defaults to the default permission. Using the wildcard `*` means all workspaces are affected.
+                endpoint:
+                  type: string
+                
+                  description: |
+                    Endpoint associated with this permission.
+                negative:
+                  type: string
+                
+                  description: |
+                    If true, explicitly disallow the actions associated with the permissions tied to this endpoint. By default, this value is false.
+                actions:
+                  type: string
+                
+                  description: |
+                    One or more actions associated with this permission, written as a comma-separated string. 
+                    For example, `read,create,update,delete`.
+                comment:
+                  type: string
+                 
+                  description: A string describing the RBAC permission object.
+  '/rbac/roles/{name_or_id}/endpoints/{workspace_name_or_id}/{endpoint}':
+    parameters:
+      - schema:
+          type: string
+        name: name_or_id
+        in: path
+        required: true
+        description: The RBAC role name or UUID.
+      - schema:
+          type: string
+        name: workspace_name_or_id
+        in: path
+        required: true
+        description: The workspace name or UUID.
+      - schema:
+          type: string
+        name: endpoint
+        in: path
+        required: true
+        description: The endpoint associated with this permission.
+    get:
+      summary: Retrieve a Role Endpoint Permission
+      tags:
+        - rbac
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  actions:
+                    type: array
+                    items:
+                      type: string
+                  created_at:
+                    type: integer
+                  endpoint:
+                    type: string
+                  negative:
+                    type: boolean
+                  role:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                  workspace:
+                    type: string
+                x-examples:
+                  Example 1:
+                    actions:
+                      - delete
+                      - create
+                      - update
+                      - read
+                    created_at: 1557764505
+                    endpoint: /consumers
+                    negative: false
+                    role:
+                      id: 23df9f20-e7cc-4da4-bc89-d3a08f976e50
+                    workspace: default
+              examples:
+                basic example:
+                  value:
+                    actions:
+                      - delete
+                      - create
+                      - update
+                      - read
+                    created_at: 1557764505
+                    endpoint: /consumers
+                    negative: false
+                    role:
+                      id: 23df9f20-e7cc-4da4-bc89-d3a08f976e50
+                    workspace: default
+      operationId: get-rbac-roles-name_or_id-endpoints-workspace_name_or_id-endpoint
+      description: |
+        Retrieve a Role Endpoint Permission
+    patch:
+      summary: Update a Role Endpoint Permission
+      operationId: patch-rbac-roles-name_or_id-endpoints-workspace_name_or_id-endpoint
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  actions:
+                    type: array
+                    items:
+                      type: string
+                  created_at:
+                    type: integer
+                  endpoint:
+                    type: string
+                  negative:
+                    type: boolean
+                  role:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                  workspace:
+                    type: string
+                x-examples:
+                  Example 1:
+                    actions:
+                      - delete
+                      - create
+                      - update
+                      - read
+                    created_at: 1557764438
+                    endpoint: /services
+                    negative: false
+                    role:
+                      id: 23df9f20-e7cc-4da4-bc89-d3a08f976e50
+                    workspace: default
+              examples:
+                Example 1:
+                  value:
+                    actions:
+                      - delete
+                      - create
+                      - update
+                      - read
+                    created_at: 1557764438
+                    endpoint: /services
+                    negative: false
+                    role:
+                      id: 23df9f20-e7cc-4da4-bc89-d3a08f976e50
+                    workspace: default
+      tags:
+        - rbac
+      description: |
+        Update a Role Endpoint Permission
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                negative:
+                  type: string
+                 
+                  description: |
+                    If true, explicitly disallow the actions associated with the permissions tied to this resource. By default this value is false.
+                actions:
+                  type: string
+                 
+                  description: |
+                    One or more actions associated with this permission.
+    delete:
+      summary: Delete a Role Endpoint Permission
+      operationId: delete-rbac-roles-name_or_id-endpoints-workspace_name_or_id-endpoint
+      responses:
+        '204':
+          description: No Content
+      description: |
+        Delete a Role Endpoint Permission
+      tags:
+        - rbac
+  '/rbac/roles/{name_or_id}/entities':
+    parameters:
+      - schema:
+          type: string
+        name: name_or_id
+        in: path
+        required: true
+        description: The RBAC role name or UUID.
+    get:
+      summary: List Entity Permissions
+      tags:
+        - rbac
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        actions:
+                          type: array
+                          items:
+                            type: string
+                        created_at:
+                          type: integer
+                        entity_id:
+                          type: string
+                        entity_type:
+                          type: string
+                        negative:
+                          type: boolean
+                        role:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                x-examples:
+                  Example 1:
+                    data:
+                      - actions:
+                          - delete
+                          - create
+                          - read
+                        created_at: 1557771505
+                        entity_id: '*'
+                        entity_type: wildcard
+                        negative: false
+                        role:
+                          id: bba049fa-bf7e-40ef-8e89-553dda292e99
+              examples:
+                Example 1:
+                  value:
+                    data:
+                      - actions:
+                          - delete
+                          - create
+                          - read
+                        created_at: 1557771505
+                        entity_id: '*'
+                        entity_type: wildcard
+                        negative: false
+                        role:
+                          id: bba049fa-bf7e-40ef-8e89-553dda292e99
+      operationId: get-rbac-roles-name_or_id-entities
+      description: |
+        Add a Role Entity Permission
+    post:
+      summary: Add a Role Entity Permission
+      operationId: post-rbac-roles-name_or_id-entities
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  actions:
+                    type: array
+                    items:
+                      type: string
+                  created_at:
+                    type: integer
+                  entity_id:
+                    type: string
+                  entity_type:
+                    type: string
+                  negative:
+                    type: boolean
+                  role:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                x-examples:
+                  Example 1:
+                    actions:
+                      - delete
+                      - create
+                      - read
+                    created_at: 1557771505
+                    entity_id: '*'
+                    entity_type: wildcard
+                    negative: false
+                    role:
+                      id: bba049fa-bf7e-40ef-8e89-553dda292e99
+              examples:
+                example response:
+                  value:
+                    actions:
+                      - delete
+                      - create
+                      - read
+                    created_at: 1557771505
+                    entity_id: '*'
+                    entity_type: wildcard
+                    negative: false
+                    role:
+                      id: bba049fa-bf7e-40ef-8e89-553dda292e99
+      tags:
+        - rbac
+      description: The `entity_id` must be the ID of an entity in Kong. If you provide the ID of a workspace, the permission applies to all entities in that workspace. Future entities belonging to that workspace will get the same permissions. A wildcard (`*`) will be interpreted as all entities in the system.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              description: If true, explicitly disallow the actions associated with the permissions tied to this resource. By default this value is false.
+              properties:
+                negative:
+                  type: string
+                 
+                  description: ID of the entity associated with this permission.
+                entity_id:
+                  type: string
+                 
+                  description: Type of the entity of a given `entity_id`.
+                entity_type:
+                  type: string
+                 
+                  description: One or more actions associated with this permission.
+                actions:
+                  type: string
+                 
+                  description: |
+                    One or more actions associated with this permission.
+                comment:
+                  type: string
+                  
+                  description: A string describing the RBAC permission object.
+        description: |
+          Request Body
+  '/rbac/roles/{name_or_id}/entities/{entity_id}':
+    parameters:
+      - schema:
+          type: string
+        name: name_or_id
+        in: path
+        required: true
+        description: The RBAC permission name or UUID.
+      - schema:
+          type: string
+        name: entity_id
+        in: path
+        required: true
+        description: ID of the entity associated with this permission.
+    get:
+      summary: Retrieve a Role Entity Permission
+      tags:
+        - rbac
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  actions:
+                    type: array
+                    items:
+                      type: string
+                  created_at:
+                    type: integer
+                  entity_id:
+                    type: string
+                  entity_type:
+                    type: string
+                  negative:
+                    type: boolean
+                  role:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                x-examples:
+                  Example 1:
+                    actions:
+                      - delete
+                      - create
+                      - read
+                    created_at: 1557771505
+                    entity_id: '*'
+                    entity_type: wildcard
+                    negative: false
+                    role:
+                      id: bba049fa-bf7e-40ef-8e89-553dda292e99
+              examples:
+                example-response:
+                  value:
+                    actions:
+                      - string
+                    created_at: 0
+                    entity_id: string
+                    entity_type: string
+                    negative: true
+                    role:
+                      id: string
+      operationId: get-rbac-roles-name_or_id-entities-entity_id
+      description: |
+        Retrieve a Role Entity Permission
+    patch:
+      summary: Update an Entity Permission
+      operationId: patch-rbac-roles-name_or_id-entities-entity_id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  actions:
+                    type: array
+                    items:
+                      type: string
+                  created_at:
+                    type: integer
+                  entity_id:
+                    type: string
+                  entity_type:
+                    type: string
+                  negative:
+                    type: boolean
+                  role:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                x-examples:
+                  Example 1:
+                    actions:
+                      - update
+                    created_at: 1557771505
+                    entity_id: '*'
+                    entity_type: wildcard
+                    negative: false
+                    role:
+                      id: bba049fa-bf7e-40ef-8e89-553dda292e99
+              examples:
+                example-response:
+                  value:
+                    actions:
+                      - update
+                    created_at: 1557771505
+                    entity_id: '*'
+                    entity_type: wildcard
+                    negative: false
+                    role:
+                      id: bba049fa-bf7e-40ef-8e89-553dda292e99
+      tags:
+        - rbac
+      description: Update an Entity Permission
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                negative:
+                  type: boolean
+                 
+                  description: |
+                    If true, explicitly disallow the actions associated with the permissions tied to this resource. By default this value is false.
+                actions:
+                  type: string
+                 
+                  description: One or more actions associated with this permission.
+    delete:
+      summary: Delete an Entity Permission
+      operationId: delete-rbac-roles-name_or_id-entities-entity_id
+      responses:
+        '204':
+          description: No Content
+      description: |
+        Delete an Entity Permission
+      tags:
+        - rbac
+  '/rbac/roles/{name_or_id}/permissions':
+    parameters:
+      - schema:
+          type: string
+        name: name_or_id
+        in: path
+        required: true
+        description: The RBAC role name or UUID.
+    get:
+      summary: List Role Permissions
+      tags:
+        - rbac
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  endpoints:
+                    type: object
+                    properties:
+                      '*':
+                        type: object
+                        properties:
+                          '*':
+                            type: object
+                            properties:
+                              actions:
+                                type: array
+                                items:
+                                  type: string
+                              negative:
+                                type: boolean
+                          /*/rbac/*:
+                            type: object
+                            properties:
+                              actions:
+                                type: array
+                                items:
+                                  type: string
+                              negative:
+                                type: boolean
+                  entities:
+                    type: object
+                    properties: {}
+                x-examples:
+                  Example 1:
+                    endpoints:
+                      '*':
+                        '*':
+                          actions:
+                            - delete
+                            - create
+                            - update
+                            - read
+                          negative: false
+                        /*/rbac/*:
+                          actions:
+                            - delete
+                            - create
+                            - update
+                            - read
+                          negative: true
+                    entities: {}
+              examples:
+                role-permission-example:
+                  value:
+                    endpoints:
+                      '*':
+                        '*':
+                          actions:
+                            - delete
+                            - create
+                            - update
+                            - read
+                          negative: false
+                        /*/rbac/*:
+                          actions:
+                            - delete
+                            - create
+                            - update
+                            - read
+                          negative: true
+                    entities: {}
+      operationId: get-rbac-roles-name_or_id-permissions
+      description: List Role Permissions
+  '/rbac/users/{name_or_id}/roles':
+    parameters:
+      - schema:
+          type: string
+        name: name_or_id
+        in: path
+        required: true
+        description: The RBAC user name or UUID.
+    get:
+      summary: List a User’s Roles
+      tags:
+        - rbac
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  roles:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        comment:
+                          type: string
+                        created_at:
+                          type: integer
+                        id:
+                          type: string
+                        name:
+                          type: string
+                  user:
+                    type: object
+                    properties:
+                      comment:
+                        type: string
+                      created_at:
+                        type: integer
+                      enabled:
+                        type: boolean
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      user_token:
+                        type: string
+                      user_token_ident:
+                        type: string
+                x-examples:
+                  Example 1:
+                    roles:
+                      - comment: 'Read access to all endpoints, across all workspaces'
+                        created_at: 1557765500
+                        id: a1c810ee-8366-4654-ba0c-963ffb9ccf2e
+                        name: read-only
+                      - created_at: 1557772263
+                        id: aae80073-095f-4553-ba9a-bee5ed3b8b91
+                        name: doc-knight
+                    user:
+                      comment: null
+                      created_at: 1557772232
+                      enabled: true
+                      id: b65ca712-7ceb-4114-87f4-5c310492582c
+                      name: gruce-wayne
+                      user_token: $2b$09$gZnMKK/mm/d2rAXN7gL63uL43mjdX/62iwMqdyCQwLyC0af3ce/1K
+                      user_token_ident: 88ea3
+              examples:
+                Example 1:
+                  value:
+                    roles:
+                      - comment: 'Read access to all endpoints, across all workspaces'
+                        created_at: 1557765500
+                        id: a1c810ee-8366-4654-ba0c-963ffb9ccf2e
+                        name: read-only
+                      - created_at: 1557772263
+                        id: aae80073-095f-4553-ba9a-bee5ed3b8b91
+                        name: doc-knight
+                    user:
+                      comment: 'null'
+                      created_at: 1557772232
+                      enabled: true
+                      id: b65ca712-7ceb-4114-87f4-5c310492582c
+                      name: gruce-wayne
+                      user_token: $2b$09$gZnMKK/mm/d2rAXN7gL63uL43mjdX/62iwMqdyCQwLyC0af3ce/1K
+                      user_token_ident: 88ea3
+      operationId: get-rbac-users-name_or_id-roles
+      description: |
+        Add a User to a Role
+    post:
+      summary: Add a User to a Role
+      operationId: post-rbac-users-name_or_id-roles
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  roles:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        created_at:
+                          type: integer
+                        id:
+                          type: string
+                        name:
+                          type: string
+                  user:
+                    type: object
+                    properties:
+                      comment:
+                        type: string
+                      created_at:
+                        type: integer
+                      enabled:
+                        type: boolean
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      user_token:
+                        type: string
+                      user_token_ident:
+                        type: string
+                x-examples:
+                  Example 1:
+                    roles:
+                      - created_at: 1557772263
+                        id: aae80073-095f-4553-ba9a-bee5ed3b8b91
+                        name: doc-knight
+                    user:
+                      comment: null
+                      created_at: 1557772232
+                      enabled: true
+                      id: b65ca712-7ceb-4114-87f4-5c310492582c
+                      name: gruce-wayne
+                      user_token: $2b$09$gZnMKK/mm/d2rAXN7gL63uL43mjdX/62iwMqdyCQwLyC0af3ce/1K
+                      user_token_ident: 88ea3
+              examples:
+                example-role-created:
+                  value:
+                    roles:
+                      - created_at: 1557772263
+                        id: aae80073-095f-4553-ba9a-bee5ed3b8b91
+                        name: doc-knight
+                    user:
+                      comment: 'null'
+                      created_at: 1557772232
+                      enabled: true
+                      id: b65ca712-7ceb-4114-87f4-5c310492582c
+                      name: gruce-wayne
+                      user_token: $2b$09$gZnMKK/mm/d2rAXN7gL63uL43mjdX/62iwMqdyCQwLyC0af3ce/1K
+                      user_token_ident: 88ea3
+      description: |
+        Add a User to a Role
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                roles:
+                  type: string
+                  
+                  description: Comma-separated list of role names to assign to the user.
+      tags:
+        - rbac
+    delete:
+      summary: Delete a Role from a User
+      operationId: delete-rbac-users-name_or_id-roles
+      responses:
+        '204':
+          description: No Content
+      tags:
+        - rbac
+      description: Delete a Role from a User
+  '/rbac/users/{name_or_id}/permissions':
+    parameters:
+      - schema:
+          type: string
+        name: name_or_id
+        in: path
+        required: true
+        description: The RBAC user name or UUID.
+    get:
+      summary: List a User’s Permissions
+      tags:
+        - rbac
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  endpoints:
+                    type: object
+                    properties:
+                      '*':
+                        type: object
+                        properties:
+                          '*':
+                            type: object
+                            properties:
+                              actions:
+                                type: array
+                                items:
+                                  type: string
+                              negative:
+                                type: boolean
+                  entities:
+                    type: object
+                    properties: {}
+                x-examples:
+                  Example 1:
+                    endpoints:
+                      '*':
+                        '*':
+                          actions:
+                            - read
+                          negative: false
+                    entities: {}
+              examples:
+                Example 1:
+                  value:
+                    endpoints:
+                      '*':
+                        '*':
+                          actions:
+                            - read
+                          negative: false
+                    entities: {}
+      operationId: get-rbac-users-name_or_id-permissions
+      description: |
+        List a User’s Permissions
+  /filter-chains:
+    post:
+      summary: Add Filter Chain
+      operationId: post-filter-chains
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+      tags:
+        - filter-chains
+      description: |
+        Create Filter Chain
+        Note: This API is not available in DB-less mode.
+      requestBody:
+        $ref: '#/components/requestBodies/filter-chains-request'
+    get:
+      summary: List Filter Chains
+      operationId: get-filter-chains
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+      tags:
+        - filter-chains
+      description: |
+        List All Filter Chains
+  '/routes/{route_id_or_name}/filter-chains':
+    parameters:
+      - name: route_id_or_name
+        in: path
+        required: true
+        schema:
+          type: string
+          example: my-route
+        description: The unique identifier or the name of the route to retrieve.
+    post:
+      summary: Add Filter Chain
+      tags:
+        - filter-chains
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+      operationId: get-routes-route_name_or_id-filter-chains
+      description: |
+        Create Filter Chain Associated to a Specific Route
+      requestBody:
+        $ref: '#/components/requestBodies/filter-chains-request'
+    get:
+      summary: List Filter Chains Associated to a Specific Route
+      operationId: get-routes-route_id_or_name-filter-chains
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+      tags:
+        - filter-chains
+      description: |
+        List Filter Chains Associated to a Specific Route
+    patch:
+      summary: Update Filter Chain Associated to a Specific Route
+      operationId: patch-routes-route_id_or_name-filter-chains
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+      tags:
+        - filter-chains
+      description: |
+        Update Filter Chain Associated to a Specific Route
+      requestBody:
+        $ref: '#/components/requestBodies/filter-chains-request'
+  '/services/{service_id_or_name}/filter-chains':
+    parameters:
+      - $ref: '#/components/parameters/service_id_or_name'
+    post:
+      summary: Create Filter Chain Associated to a Specific Service
+      tags:
+        - filter-chains
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+      operationId: get-services-service_id_or_name-filter-chains
+      description: |
+        Add filter chain Associated to a Specific Service
+      requestBody:
+        $ref: '#/components/requestBodies/filter-chains-request'
+    get:
+      summary: List Filter Chains Associated to a Specific Service
+      operationId: get-service_id_or_name-filter-chains
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+      description: |
+        List Filter Chains Associated to a Specific Service
+      tags:
+        - filter-chains
+  '/filter-chains/{filter_chain_id}':
+    parameters:
+      - $ref: '#/components/parameters/filter_chain_id'
+    get:
+      summary: Retrieve Filter Chain
+      tags:
+        - filter-chains
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+      operationId: get-filter-chains-filter_chain_id
+      description: |
+        Retrieve Filter Chain
+    patch:
+      summary: Update Filter Chain
+      operationId: patch-filter-chains-filter_chain_id
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+      tags:
+        - filter-chains
+      description: |
+        Update Filter Chain
+        Note: This API is not available in DB-less mode.
+      requestBody:
+        $ref: '#/components/requestBodies/filter-chains-request'
+    put:
+      summary: Update Or Create Filter Chain
+      operationId: put-filter-chains-filter_chain_id
+      responses:
+        '200':
+          description: OK
+      tags:
+        - filter-chains
+      description: |-
+        Inserts (or replaces) the filter chain under the requested resource with the definition specified in the body. The filter chain is identified via the name or ID attribute.
+
+        When the name or ID attribute has the structure of a UUID, the filter chain being inserted or replaced is identified by its ID. Otherwise, it is identified by its name.
+
+        When creating a new filter chain without specifying an ID (neither in the URL nor in the body), the ID will be auto-generated.
+
+        Notice that specifying a name in the URL and a different one in the request body is not allowed.
+      requestBody:
+        $ref: '#/components/requestBodies/filter-chains-request'
+    delete:
+      summary: Delete Filter Chain
+      operationId: delete-filter-chains-filter_chain_id
+      responses:
+        '204':
+          description: No Content
+      description: |
+        Delete filter chain.
+      tags:
+        - filter-chains
+  '/routes/{route_id_or_name}/filter-chains/{filter_chain_id}':
+    parameters:
+      - $ref: '#/components/parameters/route_id_or_name'
+      - $ref: '#/components/parameters/filter_chain_id'
+    get:
+      summary: List Filter Chains Associated to a Specific Route
+      tags:
+        - filter-chains
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Filter-chains'
+      operationId: get-routes-route_id_or_name-filter-chains-filter_chain_id
+      description: |
+        Retrieve filter chain associated to a specific route.
+    put:
+      summary: Create Or Update Filter Chain Associated to a Specific Route
+      operationId: put-routes-route_id_or_name-filter-chains-filter_chain_id
+      responses:
+        '200':
+          description: OK
+      description: |
+        Create or update filter chain associated to a specific route.
+      requestBody:
+        $ref: '#/components/requestBodies/filter-chains-request'
+      tags:
+        - filter-chains
+  '/routes/{route_id_or_name}/{filter_chain_id}':
+    parameters:
+      - $ref: '#/components/parameters/filter_chain_id'
+      - $ref: '#/components/parameters/route_id_or_name'
+    delete:
+      summary: Delete Filter Chain Associated to a Specific Route
+      tags:
+        - filter-chains
+      responses:
+        '204':
+          description: No Content
+      operationId: get-routes-route_id_or_name-filter_chain_id
+      description: |
+        Delete filter chain associated to a specific route.
+  '/services/{service_id_or_name}/filter-chains/{filter_chain_id}':
+    parameters:
+      - $ref: '#/components/parameters/service_id_or_name'
+      - $ref: '#/components/parameters/filter_chain_id'
+    delete:
+      summary: Delete Filter Chain Associated to a Specific Service
+      operationId: delete-services-service_id_or_name-filter-chains-filter_chain_id
+      responses:
+        '204':
+          description: No Content
+      description: |
+        Delete filter chain associated to a specific service.
+      tags:
+        - filter-chains
+  /audit/requests:
+    get:
+      summary: List request audit logs
+      tags:
+        - audit-logs
+      responses:
+        '200':
+          $ref: '#/components/responses/audit-objects-response'
+      operationId: get-audit-requests
+      description: |-
+        You can access request and database audit logs through the Admin API.
+        For usage examples, see [Audit Logging in Kong Gateway](https://docs.konghq.com/gateway/latest/kong-enterprise/audit-log/).
+  /audit/objects:
+    get:
+      summary: List database audit logs
+      responses:
+        '200':
+          $ref: '#/components/responses/database-audit-log-response'
+      operationId: get-audit-objects
+      tags:
+        - audit-logs
+      description: List database audit logs
+  /event-hooks:
+    get:
+      summary: List all event hooks
+      tags:
+        - Event-hooks
+      responses:
+        '200':
+          $ref: '#/components/responses/event-hooks-response'
+      operationId: get-event-hooks
+      description: List all event hooks and return information about the event hooks.
+    post:
+      summary: Add a webhook
+      operationId: post-event-hooks
+      responses:
+        '200':
+          $ref: '#/components/responses/event-hooks-response'
+      tags:
+        - Event-hooks
+      description: |
+        Add a webhook
+      requestBody:
+        $ref: '#/components/requestBodies/add-webhook'
+  /event-hooks/sources:
+    get:
+      summary: List all sources
+      tags:
+        - Event-hooks
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      balancer:
+                        type: object
+                        properties:
+                          health:
+                            type: object
+                            properties:
+                              fields:
+                                type: array
+                                items:
+                                  type: string
+                      crud:
+                        type: object
+                        properties:
+                          acls:
+                            type: object
+                            properties:
+                              fields:
+                                type: array
+                                items:
+                                  type: string
+                      rate-limiting-advanced:
+                        type: object
+                        properties:
+                          rate-limit-exceeded:
+                            type: object
+                            properties:
+                              description:
+                                type: string
+                              fields:
+                                type: array
+                                items:
+                                  type: string
+                              unique:
+                                type: array
+                                items:
+                                  type: string
+                x-examples:
+                  Example 1:
+                    data:
+                      balancer:
+                        health:
+                          fields:
+                            - upstream_id
+                            - ip
+                            - port
+                            - hostname
+                            - health
+                      crud:
+                        acls:
+                          fields:
+                            - operation
+                            - entity
+                            - old_entity
+                            - schema
+                      rate-limiting-advanced:
+                        rate-limit-exceeded:
+                          description: Run an event when a rate limit has been exceeded
+                          fields:
+                            - consumer
+                            - ip
+                            - service
+                            - rate
+                            - limit
+                            - window
+                          unique:
+                            - consumer
+                            - ip
+                            - service
+              examples:
+                sources example:
+                  value:
+                    data:
+                      balancer:
+                        health:
+                          fields:
+                            - string
+                      crud:
+                        acls:
+                          fields:
+                            - string
+                      rate-limiting-advanced:
+                        rate-limit-exceeded:
+                          description: string
+                          fields:
+                            - string
+                          unique:
+                            - string
+      operationId: get-event-hooks-sources
+      description: |
+        Sources are the actions that trigger the event hook. The `/sources` JSON output follows the following pattern:
+
+        * 1st level = The source, which is the action that triggers the event hook.
+        * 2nd level = The event, which is the Kong entity the event hook listens to for events.
+        * 3rd level = The available template parameters for use in `webhook-custom` payloads.
+
+        For instance, in the example below `balancer` is the source, `health` is the event, and `upstream_id`, `ip`, `port`, `hostname`, and `health` are the available template parameters.
+  '/event-hooks/sources/{source}':
+    parameters:
+      - schema:
+          type: string
+        name: source
+        in: path
+        required: true
+        description: The source you want to list events from.
+    get:
+      summary: List all events for a source
+      tags:
+        - Event-hooks
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      create:
+                        type: object
+                        properties:
+                          fields:
+                            type: array
+                            items:
+                              type: string
+                      delete:
+                        type: object
+                        properties:
+                          fields:
+                            type: array
+                            items:
+                              type: string
+                      update:
+                        type: object
+                        properties:
+                          fields:
+                            type: array
+                            items:
+                              type: string
+                x-examples:
+                  Example 1:
+                    data:
+                      create:
+                        fields:
+                          - operation
+                          - entity
+                          - old_entity
+                          - schema
+                      delete:
+                        fields:
+                          - operation
+                          - entity
+                          - old_entity
+                          - schema
+                      update:
+                        fields:
+                          - operation
+                          - entity
+                          - old_entity
+                          - schema
+      operationId: get-event-hooks-sources-source
+      description: Events are the Kong entities the event hook listens for events. With this endpoint, you can list all of the events associated with a particular source.
+  '/event-hooks/{event-hook-id}/test':
+    parameters:
+      - schema:
+          type: string
+        name: event-hook-id
+        in: path
+        required: true
+        description: The event hook id
+    post:
+      summary: Test an event hook
+      operationId: post-event-hooks-event-hook-id-test
+      responses:
+        '200':
+          $ref: '#/components/responses/event-hooks-response'
+      description: |-
+        It’s useful to manually trigger an event hook without provoking the event to be triggered. For instance, you might want to test the integration, or see if your hook’s service is receiving a payload from Kong.
+
+        POST any data to `/event-hooks/:id-of-hook/test`, and the `/test` endpoint executes the with the provided data as the event payload.
+      tags:
+        - Event-hooks
+  '/event-hooks/{event-hook-id/ping':
+    get:
+      summary: Ping a webhook event hook
+      tags:
+        - Event-hooks
+      responses:
+        '200':
+          $ref: '#/components/responses/event-hooks-response'
+      operationId: get-event-hooks-event-hook-id-ping
+      description: |
+        Ping a webhook event hook.
 servers:
   - description: Default Admin API URL
     url: '{protocol}://{hostname}:{port}{path}'
@@ -10282,5 +13743,42 @@ tags:
       By grouping consumers together, you eliminate the need to manage them individually, providing a scalable, efficient approach to managing configurations.
     name: consumer_groups
   - description: |
-      Information routes.
+      Information routes
     name: Information
+  - description: |
+      Admin routes
+    name: admins
+  - description: |
+      Debug Routes
+    name: debug
+  - description: |
+      Kong Gateway's RBAC feature is configurable through Kong's Admin API or using Kong Manager.
+      <br><br>
+      There are four basic entities involving RBAC:
+      <br><br>
+      * User: The entity interacting with the system. Can be associated with zero, one, or more roles. For example: The user `bob` has the token `1234`.
+      * Role: Set of permissions (`role_endpoint` and `role_entity`). Has a name and can be associated with zero, one, or more permissions. For example: The user `bob` is associated with the role `developer`.
+      * `role_endpoint`: A set of enabled or disabled actions. For example: The role `developer` has one `role_endpoint` and reads and writes to `/routes`.
+      * `role_entity`: A set of enabled or disabled actions. For example: The role `developer` has one `role_entity` attached to a UUID.
+    name: rbac
+  - description: |
+      A filter chain is the database entity representing one or more WebAssembly filters executed for each request to a particular service or route, each one with its configuration.
+    name: filter-chains
+  - description: |
+      You can access request and database audit logs through the Admin API.
+      <br><br>
+      For usage examples, see [Audit Logging in Kong Gateway](https://docs.konghq.com/gateway/latest/admin-api/audit-logs/).
+    name: audit-logs
+  - description: |
+      Event hooks are outbound calls from Kong Gateway. With event hooks, the Kong Gateway can communicate with target services or resources, letting the target know that an event was triggered. When an event is triggered in Kong, it calls a URL with information about that event. Event hooks add a layer of configuration for subscribing to worker events using the admin interface. Worker events are integrated into Kong Gateway to communicate within the gateway context. For example, when an entity is created, the Kong Gateway fires an event with information about the entity. Parts of the Kong Gateway codebase can subscribe to these events, then process the events using callbacks.
+      <br><br>
+      Depending on the protocol, one of the following attributes must be set:
+      <br>
+      * `webhook`: Makes a JSON POST request to a provided URL with the event data as a payload. Useful for building a middle tier integration (your own webhook that receives Kong hooks). Specific headers can be configured for the request.
+      * `webhook-custom`: Fully configurable request. Useful for building a direct integration with a service (for example, a Slack webhook). Because it’s fully configurable, it’s more complex to configure. It supports templating on a configurable body, a configurable form payload, and headers.
+      *  `log`: This handler, which requires no configuration, logs the event and the content of the payload into the Kong Gateway logs. If using hybrid mode, the crud and dao:crud sources will log on the control plane logs and the balancer and rate-limiting-advanced sources will log on the data plane logs.
+      * `lambda`: This handler runs specified Lua code after an event is triggered.
+      <br><br>
+      Event hooks do not work with Konnect yet.
+      <br><br>
+    name: Event-hooks

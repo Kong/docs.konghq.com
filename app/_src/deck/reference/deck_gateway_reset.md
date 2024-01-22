@@ -11,6 +11,9 @@ Use this command with extreme care as it's equivalent to running
 
 By default, this command will ask for confirmation.
 
+{:.note}
+> `deck gateway reset` is the replacement for `deck reset`. 
+
 ## Syntax
 
 ```

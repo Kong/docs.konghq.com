@@ -93,6 +93,10 @@ features:
         tooltip: Kong Gateway now provides a FIPS mode, which at its core uses the FIPS 140-2 compliant BoringCrypto for cryptographic operations.
         oss: false
         enterprise: true
+      - name: Signed Kong Images
+        tooltip: Kong Gateway container images are signed and verifiable in accordance with SLSA guidelines.
+        oss: false
+        enterprise: true
   - name: Observability
     items:
       - name: Simple logging

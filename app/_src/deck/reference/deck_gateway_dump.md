@@ -10,6 +10,10 @@ and writes them to a local file.
 The file can then be read using the sync command or diff command to
 configure Kong.
 
+{:.note}
+> `deck gateway dump` is the replacement for `deck dump`. 
+> <br><br> In `deck gateway dump`, the default write location changed from `kong.yaml` to `-` (stdin/stdout).
+
 ## Syntax
 
 ```
