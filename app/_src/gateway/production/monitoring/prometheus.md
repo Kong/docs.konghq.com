@@ -37,7 +37,7 @@ and Prometheus locally.
    Once the {{site.base_gateway}} is ready, you will see the following message:
 
    ```text
-   ✔ Kong is ready!
+   Kong Gateway Ready
    ```
 
 1. Install the Prometheus {{site.base_gateway}} plugin:

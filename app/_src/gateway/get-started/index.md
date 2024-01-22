@@ -51,7 +51,7 @@ This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://
    and once the {{site.base_gateway}} is ready, you will see the following message:
 
    ```text
-   ✔ Kong is ready!
+   Kong Gateway Ready 
    ```
 
 1. Verify that {{site.base_gateway}} is running:
