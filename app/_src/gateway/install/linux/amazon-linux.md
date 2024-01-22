@@ -43,12 +43,12 @@ Install {{site.base_gateway}} on Amazon Linux from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/amzn/%{amzn}/x86_64/kong-enterprise-edition-{{page.versions.ee}}.aws.x86_64.rpm)
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/amzn/%{amzn}/%{_arch}/kong-enterprise-edition-{{page.versions.ee}}.aws.%{_arch}.rpm)
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/amzn/%{amzn}/x86_64/kong-{{page.versions.ce}}.aws.x86_64.rpm)
+curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/amzn/%{amzn}/%{_arch}/kong-{{page.versions.ce}}.aws.%{_arch}.rpm)
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}
