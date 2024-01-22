@@ -30,6 +30,7 @@ jobs:
       - name: Run Install tests
         env:
           DISTRO: ${{ matrix.distro }}
+          ARCH: ${{ matrix.arch }}
           CONTINUE_ON_ERROR: 1
           IGNORE_SKIPS: 1
           EXPECTED_FAILURES_EXIT_CODE: 0
