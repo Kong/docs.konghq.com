@@ -73,6 +73,14 @@ components:
         type: string
         example: my-username
       description: The unique identifier or the username of the Consumer to retrieve.
+    filter_chain_name_or_id:
+      name: filter_chain_name_or_id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: my-filter-chain
+      description: The unique identifier or name of the Filter Chain to create or update.
     plugin_id:
       name: plugin_id
       in: path
@@ -277,6 +285,76 @@ components:
           type: string
       type: object
       title: Consumer
+    Filter-chain:
+      description: A Filter Chain entity represents a list of one or more WebAssembly filters that will be executed during the HTTP request/response lifecycle.
+      example:
+        id: "ce44eef5-41ed-47f6-baab-f725cecf98c7"
+        name: "my-filter-chain"
+        created_at: 1422386534
+        updated_at: 1422386534
+        enabled: true
+        route: null
+        service: "20487393-41ed-47f6-93a8-3407cade2002"
+        filters:
+          - name: "go-rate-limiting",
+            enabled: true,
+            config: '{ \"minute\": 30 }'
+          - name: "rust-response-transformer",
+            enabled: true,
+            config: '{ \"remove_header\": \"X-Example\" }'
+        tags: ["my-tag"]
+
+      properties:
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: integer
+        enabled:
+          description: Whether the filter chain is applied.
+          type: boolean
+        filters:
+          description: "An array of filter definitions that will be executed in order."
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                description: "The name of the filter. This name matches the basename of the WebAssembly module file: for a filter file called `my-filter.wasm`, then filter name will be `my-filter`."
+                type: string
+              config:
+                description: "The configuration for the filter. Proxy-Wasm does not define a configuration format, so this field accepts either a raw string, or a JSON object. A raw string is passed uninterpreted to the filter, to be validated at request time. If a JSON object is used, there must be a metadata file called `my-filter.meta.json` in the same folder as your `my-filter.wasm` file. The metadata file must contain an object with a field `\"config_schema\"`, and its value must the JSON Schema for the filter configuration. This schema will be used for validating the configuration upon insertion in the filter chain, ahead of execution."
+                type: ["string", "object"]
+              enabled:
+                description: Whether the filter is to be applied.
+                type: boolean
+        id:
+          type: string
+        name:
+          description: The name of the filter chain.
+          type: string
+        route:
+          additionalProperties: false
+          description: "The route to which this chain is applied. A filter chain must be applied to either a single route or a single service."
+          properties:
+            id:
+              type: string
+          type: object
+        service:
+          additionalProperties: false
+          description: "The service to which this chain is applied. A filter chain must be applied to either a single route or a single service."
+          properties:
+            id:
+              type: string
+          type: object
+        tags:
+          description: An optional set of strings associated with the Filter Chain for grouping and filtering.
+          items:
+            type: string
+          type: array
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          type: integer
+      type: object
+      title: Filter Chain
     Key:
       description: A Key object holds a representation of asymmetric keys in various formats. When Kong or a Kong plugin requires a specific public or private key to perform certain operations, it can use this entity.
       example:
@@ -1257,6 +1335,88 @@ components:
               - username
               - custom_id
       description: Consumer request body
+    filter-chain-request:
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                id: "ce44eef5-41ed-47f6-baab-f725cecf98c7"
+                name: "my-filter-chain"
+                enabled: true
+                route: null
+                service: "20487393-41ed-47f6-93a8-3407cade2002"
+                filters:
+                  - name: "go-rate-limiting",
+                    enabled: true,
+                    config: '{ \"minute\": 30 }'
+                  - name: "rust-response-transformer",
+                    enabled: true,
+                    config: '{ \"remove_header\": \"X-Example\" }'
+                tags: ["my-tag"]
+            properties:
+              enabled:
+                description: Whether the filter chain is applied.
+                type: boolean
+                example: true
+              filters:
+                description: "An array of filter definitions that will be executed in order."
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      description: "The name of the filter. This name matches the basename of the WebAssembly module file: for a filter file called `my-filter.wasm`, then filter name will be `my-filter`."
+                      type: string
+                    config:
+                      description: "The configuration for the filter. Proxy-Wasm does not define a configuration format, so this field is a raw string, intended to contain the configuration in the format expected by the particular filter in use."
+                      type: string
+                    enabled:
+                      description: Whether the filter is to be applied.
+                      type: boolean
+              id:
+                type: string
+              name:
+                description: The name of the filter chain.
+                type: string
+                example: "my-filter-chain"
+              route:
+                additionalProperties: false
+                description: "The route to which this chain is applied. A filter chain must be applied to either a single route or a single service."
+                properties:
+                  id:
+                    type: string
+                type: object
+              service:
+                additionalProperties: false
+                description: "The service to which this chain is applied. A filter chain must be applied to either a single route or a single service."
+                properties:
+                  id:
+                    type: string
+                type: object
+              tags:
+                description: An optional set of strings associated with the Filter Chain for grouping and filtering.
+                items:
+                  type: string
+                type: array
+          examples:
+            request example:
+              value:
+                id: "ce44eef5-41ed-47f6-baab-f725cecf98c7"
+                name: "my-filter-chain"
+                enabled: true
+                route: null
+                service: "20487393-41ed-47f6-93a8-3407cade2002"
+                filters:
+                  - name: "go-rate-limiting",
+                    enabled: true,
+                    config: '{ \"minute\": 30 }'
+                  - name: "rust-response-transformer",
+                    enabled: true,
+                    config: '{ \"remove_header\": \"X-Example\" }'
+                tags: ["my-tag"]
+      description: Filter Chain request body
     plugin-request:
       content:
         application/json:
@@ -2707,6 +2867,7 @@ components:
                   - '/routes/{routes}/plugins'
                   - '/routes/{routes}/plugins/{plugins}'
                   - '/routes/{routes}/service'
+                  - '/schemas/filters/{name}'
                   - /schemas/plugins/validate
                   - '/schemas/plugins/{name}'
                   - '/schemas/{db_entity_name}/validate'
@@ -6930,6 +7091,45 @@ paths:
         A requests to the entity endpoint using the given configuration may still fail due to other reasons, such as invalid foreign key relationships or uniqueness check failures against the contents of the data store.
       tags:
         - Information
+  '/schemas/filters/{filter_name}':
+    parameters:
+      - schema:
+          type: string
+          example: go-rate-limiting
+        name: filter_name
+        in: path
+        required: true
+        description: The name of a Proxy-Wasm filter
+    get:
+      summary: Retrieve Proxy-Wasm Filter JSON Schema
+      tags:
+        - Information
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: JSON Schema object describing the expected configuration for the filter. This endpoints always returns a JSON Schema object describing the filter configuration, even if the filter does not include JSON Schema metadata: if the configuration is expected as a raw string, the JSON Schema configuration returned by this endpoint will indicate so.
+              examples:
+                filter returning a JSON Schema included in the filter metadata:
+                  value:
+                    $schema: "http://json-schema.org/draft-04/schema#"
+                    type: "object"
+                    properties:
+                      add:
+                        type: "object"
+                        properties:
+                          headers:
+                            type: "array"
+                            elements:
+                              type: "string"
+                        required: "headers"
+                    required: "add"
+      operationId: get-schemas-filters-filter_name
+      description: |
+        Retrieve the JSON Schema of a Proxy-Wasm filter's configuration. This is useful to understand what fields a filter accepts, and can be used for building third-party integrations to the Kong's filter chain system.
   '/schemas/plugins/{plugin_name}':
     parameters:
       - schema:
