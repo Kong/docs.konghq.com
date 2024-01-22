@@ -20,7 +20,7 @@
     preset = "desktop"
 
   [[context.deploy-preview.plugins.inputs.audits]]
-    path = "hub"
+    path = "hub/"
 
   [[context.deploy-preview.plugins.inputs.audits]]
     path = "hub/kong-inc/jwt-signer/"
@@ -32,7 +32,7 @@
     path = "gateway/latest/"
 
   [[context.deploy-preview.plugins.inputs.audits]]
-    path = "konnect"
+    path = "konnect/"
 
   [[context.deploy-preview.plugins.inputs.audits]]
     path = "mesh/latest/"
@@ -53,7 +53,7 @@
     preset = "desktop"
 
   [[context.production.plugins.inputs.audits]]
-    path = "hub"
+    path = "hub/"
 
   [[context.production.plugins.inputs.audits]]
     path = "hub/kong-inc/jwt-signer/"
@@ -65,7 +65,7 @@
     path = "gateway/latest/"
 
   [[context.production.plugins.inputs.audits]]
-    path = "konnect"
+    path = "konnect/"
 
   [[context.production.plugins.inputs.audits]]
     path = "mesh/latest/"
