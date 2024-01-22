@@ -34,7 +34,7 @@ observe the collected monitoring data.
    Once the {{site.base_gateway}} is ready, you will see the following message:
 
    ```text
-   ✔ Kong is ready!
+   Kong Gateway Ready 
    ```
 
 1. Run a StatsD container to capture monitoring data:
