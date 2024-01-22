@@ -2,15 +2,23 @@ if (!process.env.BASE_URL) {
   process.env.BASE_URL = "http://localhost:8888";
 }
 
-// Parse a format like [2.6.x/rhel/oss/yum-repository] into
+if (!process.env.ARCH) {
+  process.env.ARCH = "linux/amd64";
+}
+
+// Parse a format like [2.6.x/rhel/oss/yum-repository](linux/amd64) into
 // individual conditions
 if (process.env.ONLY) {
-  const only = process.env.ONLY.replace("[", "").replace("]", "");
+  let only = process.env.ONLY.replace("[", "")
+    .replace("]", "")
+    .replace(")", "");
+  [only, arch] = only.split("(");
   const [version, distro, package, method] = only.split("/");
   process.env.VERSION = version;
   process.env.DISTRO = distro;
   process.env.PACKAGE = package;
   process.env.METHOD = method;
+  process.env.ARCH = arch;
 }
 
 const conditions = {
@@ -18,6 +26,7 @@ const conditions = {
   distro: (process.env.DISTRO || "").split(",").filter((v) => v),
   method: (process.env.METHOD || "").split(",").filter((v) => v),
   package: (process.env.PACKAGE || "").split(",").filter((v) => v),
+  arch: process.env.ARCH,
 };
 
 const debug = require("debug")("install-tester");
@@ -58,16 +67,12 @@ const expectedFailures = yaml.load(
   }
 })();
 
-async function runSingleJob2(distro, job, installOption, conditions) {
-  console.log(installOption);
-}
-
 async function runSingleJob(distro, job, installOption, conditions) {
-  const marker = `${installOption.package}@${job.version} via ${installOption.type}`;
+  const marker = `${installOption.package}@${job.version} via ${installOption.type} on ${conditions.arch}`;
   const ref = `${job.version}/${distro}/${
     installOption.package
   }/${installOption.type.replace(/\w+\-repository/, "repository")}`;
-  const summary = `[${ref}]`;
+  const summary = `[${ref}](${conditions.arch})`;
 
   debug(`====== START ${marker} ======`);
 
@@ -97,6 +102,7 @@ async function runSingleJob(distro, job, installOption, conditions) {
     const { jobConfig, version, stdout, stderr } = await run(
       distro,
       installOption.blocks,
+      conditions.arch,
     );
     debug(`Got: ${version}`);
 
