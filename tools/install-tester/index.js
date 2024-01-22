@@ -2,10 +2,6 @@ if (!process.env.BASE_URL) {
   process.env.BASE_URL = "http://localhost:8888";
 }
 
-if (!process.env.ARCH) {
-  process.env.ARCH = "linux/amd64";
-}
-
 // Parse a format like [2.6.x/rhel/oss/yum-repository](linux/amd64) into
 // individual conditions
 if (process.env.ONLY) {
@@ -50,14 +46,16 @@ const expectedFailures = yaml.load(
   const config = loadConfig();
   for (let job of config) {
     for (let distro of job.distros) {
-      let installOptions;
-      if (job.version.slice(0, 2) === "2.") {
-        installOptions = await extractV2(job.version, distro);
-      } else {
-        installOptions = await extractV3(job.version, distro);
-      }
-      for (let installOption of installOptions) {
-        await runSingleJob(distro, job, installOption, conditions);
+      for (let arch of job.arch) {
+        let installOptions;
+        if (job.version.slice(0, 2) === "2.") {
+          installOptions = await extractV2(job.version, distro);
+        } else {
+          installOptions = await extractV3(job.version, distro);
+        }
+        for (let installOption of installOptions) {
+          await runSingleJob(distro, job, arch, installOption, conditions);
+        }
       }
     }
   }
@@ -67,17 +65,30 @@ const expectedFailures = yaml.load(
   }
 })();
 
-async function runSingleJob(distro, job, installOption, conditions) {
-  const marker = `${installOption.package}@${job.version} via ${installOption.type} on ${conditions.arch}`;
+async function runSingleJob2(distro, job, arch, installOption, conditions) {
+  console.log(arch);
+  console.log(installOption);
+}
+
+async function runSingleJob(distro, job, arch, installOption, conditions) {
+  const marker = `${installOption.package}@${job.version} via ${installOption.type}`;
   const ref = `${job.version}/${distro}/${
     installOption.package
   }/${installOption.type.replace(/\w+\-repository/, "repository")}`;
-  const summary = `[${ref}](${conditions.arch})`;
+  const summary = `[${ref}](${arch})`;
 
-  debug(`====== START ${marker} ======`);
+  debug(`====== START ${marker}  ======`);
 
   if (
-    (skip = shouldSkip(conditions, job, distro, installOption, ref, summary))
+    (skip = shouldSkip(
+      conditions,
+      job,
+      distro,
+      arch,
+      installOption,
+      ref,
+      summary,
+    ))
   ) {
     if (!process.env.IGNORE_SKIPS) {
       console.log(skip);
@@ -102,7 +113,7 @@ async function runSingleJob(distro, job, installOption, conditions) {
     const { jobConfig, version, stdout, stderr } = await run(
       distro,
       installOption.blocks,
-      conditions.arch,
+      arch,
     );
     debug(`Got: ${version}`);
 
@@ -142,9 +153,21 @@ async function runSingleJob(distro, job, installOption, conditions) {
   debug(`====== END ${marker} ======`);
 }
 
-function shouldSkip(conditions, job, distro, installOption, ref, summary) {
+function shouldSkip(
+  conditions,
+  job,
+  distro,
+  arch,
+  installOption,
+  ref,
+  summary,
+) {
   if (job.skip.includes(ref)) {
     return `⌛ ${summary} skipped | Explicitly marked as skipped in jobs.yaml`;
+  }
+
+  if (conditions.arch && conditions.arch != arch) {
+    return `⌛ ${summary} skipped | Arch ${arch} not equal to '${conditions.arch}'`;
   }
 
   if (conditions.version.length && !conditions.version.includes(job.version)) {
@@ -179,6 +202,12 @@ function shouldSkip(conditions, job, distro, installOption, ref, summary) {
     } not in [${conditions.package.join(", ")}]`;
   }
 
+  if (!job.match.package.includes(installOption.package)) {
+    return `⌛ ${summary} skipped | Package ${
+      installOption.package
+    } not in job config [${job.match.package.join(", ")}]`;
+  }
+
   return false;
 }
 
@@ -195,21 +224,34 @@ function loadConfig() {
   const jobs = [];
   for (const v of gatewayVersions) {
     for (let j of jobConfig) {
-      if (new RegExp(j.match).test(v.release)) {
-        outputs = {
-          enterprise: j.outputs.enterprise.replace(
+      if (new RegExp(j.match.version).test(v.release)) {
+        let oss = null;
+        let enterprise = null;
+
+        if (j.match.package.includes("oss")) {
+          oss = j.outputs.oss.replace("{{ version }}", v["ce-version"]);
+        }
+
+        if (j.match.package.includes("enterprise")) {
+          enterprise = j.outputs.enterprise.replace(
             "{{ version }}",
             v["ee-version"],
-          ),
-          oss: j.outputs.oss.replace("{{ version }}", v["ce-version"]),
+          );
+        }
+
+        outputs = {
+          enterprise,
+          oss,
         };
+
         jobs.push({
           version: v.release,
+          match: j.match,
           distros: j.distros,
+          arch: j.arch,
           skip: j.skip || [],
           outputs,
         });
-        break;
       }
     }
   }
