@@ -16,6 +16,8 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 : In addition, we've streamlined the filtering experience. Users can now conveniently input either the name or UUID into the filter dropdown, enhancing the overall usability.
 
+**Gateway Manager** 
+: On the Gateway Manager Overview pages, you can now see the configured consumers and plugins. Consumers are listed in topN order based on their traffic, while plugins are displayed in the order of their configuration.
 
 ## December 2023
 
@@ -25,6 +27,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 **Developer-Managed Scopes for Dev Portal**
 : You can now give your customers more control over third-party application permissions using Auth0 DCR developer-managed scopes for Dev Portal. Developers can now configure unique scopes and permissions for each Auth0 DCR application they create, allowing them to set more fine-grained permissions for each of their target audiences. See [Configure Auth0 for Dynamic Client Registration](/konnect/dev-portal/applications/dynamic-client-registration/auth0/) for details.
+
+**Gateway Manager** 
+: Navigation within nested entities has been enhanced. Now, any plugin configured for a service, route, or consumer is directly hyperlinked in the configuration. 
 
 ## November 2023
 **Multi-geo support**
