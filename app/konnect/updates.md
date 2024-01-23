@@ -17,7 +17,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : In addition, we've streamlined the filtering experience. Users can now conveniently input either the name or UUID into the filter dropdown, enhancing the overall usability.
 
 **Gateway Manager** 
-: On the Gateway Manager Overview pages, configured consumers and plugins are now visible. Consumers are ordered in topN order by traffic. Plugins are displayed in last order of configuration.
+: On the Gateway Manager Overview pages, you can now see the configured consumers and plugins. Consumers are listed in topN order based on their traffic, while plugins are displayed in the order of their configuration.
 
 ## December 2023
 
