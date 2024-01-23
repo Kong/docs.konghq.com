@@ -150,7 +150,7 @@ async function runSingleJob(distro, job, arch, installOption, conditions) {
         if (installOption.package == "enterprise" && expectedVersion[0] == "2") {
           packageArch = "noarch";
         }
-        url = `https://download.konghq.com/gateway-2.x-rhel-7/Packages/k/${packageName}-${expectedVersion}.rhel7.${packageArch}.rpm`;
+        url = `https://download.konghq.com/gateway-${expectedVersion[0]}.x-rhel-7/Packages/k/${packageName}-${expectedVersion}.rhel7.${packageArch}.rpm`;
 
         const response = await fetch(url, { method: "HEAD" });
         existsOnOldSite = response.status != 404 ? "✅" : "❌";
