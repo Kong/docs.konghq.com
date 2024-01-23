@@ -5709,6 +5709,21 @@ components:
                 config.functions:
                   - '"functions": [             "return function (data, event, source, pid)\n  local user = data.entity.username\n  error(\"Event hook on consumer \" .. user .. \"\")\nend\n"         ]'
       description: Request body for adding a lambda event hook
+  securitySchemes:
+    kongAdminToken:
+      type: apiKey
+      in: header
+      name: Kong-Admin-Token
+      description: |
+        When RBAC is enabled, an admin token is required to use the Kong Admin API. 
+        This token is passed in a `Kong-Admin-Token` header by default. 
+        To configure the header name, adjust `rbac_auth_header` in `kong.conf`.
+        <br><br>
+        Each admin has their own token.
+        The admin associated with the token must have relevant permissions for the object they're interacting with.
+        Generate tokens using the `/admins` API.
+        <br><br>
+        If RBAC isn't enabled, this token isn't required.
 
 externalDocs:
   description: Kong Gateway Enterprise Admin API
@@ -13636,6 +13651,8 @@ servers:
         enum:
           - http
           - https
+security:
+  - kongAdminToken: []
 tags:
   - description: |
       Service entities are abstractions of your microservice interfaces or formal APIs. For example, a service could be a data transformation microservice or a billing API.
