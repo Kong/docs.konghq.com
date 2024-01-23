@@ -29,7 +29,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : You can now give your customers more control over third-party application permissions using Auth0 DCR developer-managed scopes for Dev Portal. Developers can now configure unique scopes and permissions for each Auth0 DCR application they create, allowing them to set more fine-grained permissions for each of their target audiences. See [Configure Auth0 for Dynamic Client Registration](/konnect/dev-portal/applications/dynamic-client-registration/auth0/) for details.
 
 **Gateway Manager** 
-: Navigation around nested entities has been improved. For any plugin that the service, route, or consumer is configured for, it is now directly hyperlinked in the configuration.
+: Navigation within nested entities has been enhanced. Now, any plugin configured for a service, route, or consumer is directly hyperlinked in the configuration. 
 
 ## November 2023
 **Multi-geo support**
