@@ -1,19 +1,54 @@
-- match: "3\\..*"
+- match:
+    version: "3\\.[2-99]\\.*"
+    package:
+      - enterprise
   distros:
+    - amazon-linux
+    - ubuntu
+    - debian
+    - rhel
+  skip:
+    - 3.2.x/debian/enterprise/package
+    - 3.2.x/debian/enterprise/repository
+    - 3.3.x/debian/enterprise/package
+    - 3.3.x/debian/enterprise/repository
+    - 3.2.x/rhel/enterprise/package
+    - 3.2.x/rhel/enterprise/repository
+    - 3.3.x/rhel/enterprise/package
+    - 3.3.x/rhel/enterprise/repository
+  arch:
+    - linux/arm64
+  outputs:
+    enterprise: "Kong Enterprise {{ version }}"
+
+- match:
+    version: "3\\..*"
+    package:
+      - oss
+      - enterprise
+  distros:
+    - amazon-linux
     - ubuntu
     - rhel
-    - amazon-linux
     - debian
+  arch:
+    - linux/amd64
   outputs:
     enterprise: "Kong Enterprise {{ version }}"
     oss: "{{ version }}"
-- match: "2\\..*"
+- match:
+    version: "2\\..*"
+    package:
+      - oss
+      - enterprise
   distros:
     - ubuntu
     - rhel
     - amazon-linux
     - debian
     - centos
+  arch:
+    - linux/amd64
   skip:
     - 2.8.x/centos/oss/package # No OSS package for 2.8
     - 2.8.x/centos/oss/repository # No OSS package for 2.8

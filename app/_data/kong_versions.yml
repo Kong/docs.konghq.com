@@ -101,7 +101,7 @@
   lua_doc: true
 - release: "3.4.x"
   ee-version: "3.4.3.3"
-  ce-version: "3.4.3"
+  ce-version: "3.4.2"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
   dependencies:
