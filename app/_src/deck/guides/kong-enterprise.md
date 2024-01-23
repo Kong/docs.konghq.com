@@ -45,6 +45,52 @@ It is advised that you do not use an RBAC token with super admin privileges
 with decK, and always scope down the exact permissions you need to give
 decK.
 
+### Endpoints used by decK
+
+decK uses Kong's Admin API to communicate with {{site.base_gateway}}. 
+If you have RBAC enabled, you need to give decK permissions to perform operations, or use an admin account that has these permissions. 
+
+Here are some common endpoints hit by decK for normal operations:
+
+* `GET, POST, PATCH, PUT, DELETE /$ws/$entity_type`: Perform read and write operations on entities inside workspaces. 
+See the [Entities managed by decK](/deck/{{page.release}}/reference/entities/) reference for the full list.
+* `GET /`: Get the {{site.base_gateway}} version.
+* `GET /$ws/kong`: List 
+* `GET /$ws/workspaces/$entity_type`: Check whether the workspace/other entity exists or not.
+* `POST /workspaces`: Create missing workspaces.
+* `GET /$ws/schemas/$entity_type`: Get entity schemas and inject defaults.
+* `GET /$ws/schemas/plugins/$plugin_name`: Get plugin schemas and inject defaults.
+
+To find out which endpoints your instance of decK is hitting, run any decK command with the `--verbose 1` flag. 
+This prints out all of the queries being made. For example, here's a snippet from `deck gateway dump --verbose 1`:
+
+```sh
+...
+GET /routes?size=1000 HTTP/1.1
+Host: localhost:8001
+User-Agent: Go-http-client/1.1
+Accept-Encoding: gzip
+
+
+GET /consumers?size=1000 HTTP/1.1
+Host: localhost:8001
+User-Agent: Go-http-client/1.1
+Accept-Encoding: gzip
+
+
+GET /mtls-auths?size=1000 HTTP/1.1
+Host: localhost:8001
+User-Agent: Go-http-client/1.1
+Accept-Encoding: gzip
+
+
+GET /snis?size=1000 HTTP/1.1
+Host: localhost:8001
+User-Agent: Go-http-client/1.1
+Accept-Encoding: gzip
+...
+```
+
 ## Workspaces
 
 decK is workspace-aware, meaning it can interact with multiple workspaces.
