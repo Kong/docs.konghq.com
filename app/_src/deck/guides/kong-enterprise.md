@@ -52,14 +52,14 @@ If you have RBAC enabled, you need to give decK permissions to perform operation
 
 Here are some common endpoints hit by decK for normal operations:
 
-* `GET, POST, PATCH, PUT, DELETE /$ws/$entity_type`: Perform read and write operations on entities inside workspaces. 
+* `GET, POST, PATCH, PUT, DELETE /{workspace}/{entityType}`: Perform read and write operations on entities inside workspaces. 
 See the [Entities managed by decK](/deck/{{page.release}}/reference/entities/) reference for the full list.
 * `GET /`: Get the {{site.base_gateway}} version.
-* `GET /$ws/kong`: List 
-* `GET /$ws/workspaces/$entity_type`: Check whether the workspace/other entity exists or not.
+* `GET /{workspace}/kong`: Get entities in a workspace.
+* `GET /{workspace}/workspaces/{entityType}`: Check whether the workspace or other entity exists or not.
+* `GET /{workspace}/schemas/{entityType}`: Get entity schemas and inject defaults.
+* `GET /{workspace}/schemas/plugins/{pluginName}`: Get plugin schemas and inject defaults.
 * `POST /workspaces`: Create missing workspaces.
-* `GET /$ws/schemas/$entity_type`: Get entity schemas and inject defaults.
-* `GET /$ws/schemas/plugins/$plugin_name`: Get plugin schemas and inject defaults.
 
 To find out which endpoints your instance of decK is hitting, run any decK command with the `--verbose 1` flag. 
 This prints out all of the queries being made. For example, here's a snippet from `deck gateway dump --verbose 1`:
