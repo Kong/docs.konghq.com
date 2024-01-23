@@ -1,29 +1,23 @@
 - match:
-    version: "3\\..*"
-    package:
-      - oss
-      - enterprise
-  distros:
-    - amazon-linux
-  arch:
-    - linux/amd64
-  outputs:
-    oss: "{{ version }}"
-    enterprise: "Kong Enterprise {{ version }}"
-
-- match:
-    version: "3\\..*"
+    version: "3\\.[2-99]\\.*"
     package:
       - enterprise
   distros:
     - amazon-linux
+    - ubuntu
+    - debian
+    - rhel
+  skip:
+    - 3.2.x/debian/enterprise/package
+    - 3.2.x/debian/enterprise/repository
+    - 3.3.x/debian/enterprise/package
+    - 3.3.x/debian/enterprise/repository
+    - 3.2.x/rhel/enterprise/package
+    - 3.2.x/rhel/enterprise/repository
+    - 3.3.x/rhel/enterprise/package
+    - 3.3.x/rhel/enterprise/repository
   arch:
     - linux/arm64
-  skip:
-    - 3.0.x/amazon-linux/enterprise/package
-    - 3.0.x/amazon-linux/enterprise/repository
-    - 3.1.x/amazon-linux/enterprise/package
-    - 3.1.x/amazon-linux/enterprise/repository
   outputs:
     enterprise: "Kong Enterprise {{ version }}"
 
@@ -33,6 +27,7 @@
       - oss
       - enterprise
   distros:
+    - amazon-linux
     - ubuntu
     - rhel
     - debian

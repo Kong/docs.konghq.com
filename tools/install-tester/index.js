@@ -120,7 +120,7 @@ async function runSingleJob(distro, job, arch, installOption, conditions) {
     // Create a file to re-run the command in one + debug
     fs.writeFileSync(
       `./output/${job.version}-${distro}-${installOption.package}-${installOption.type}.txt`,
-      `docker run --platform linux/amd64 -it ${
+      `docker run --platform ${arch} -it ${
         jobConfig.image
       } bash -c "${jobConfig.commands
         .replace(/"/g, '\\"')
