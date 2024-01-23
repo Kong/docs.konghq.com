@@ -9,7 +9,7 @@ See the [version compatibility reference][compat] for the
 tested compatible versions of {{site.kic_product_name}} and Istio.
 
 [istio]:https://istio.io
-[compat]:/kubernetes-ingress-controller/{{page.kong_version}}/references/version-compatibility/#istio
+[compat]:/kubernetes-ingress-controller/{{page.release}}/references/version-compatibility/#istio
 
 ## Overview
 
@@ -396,9 +396,9 @@ service. The plugin adds rate limiting to the `BookInfo` application and limits 
 For more examples of Kong features to add to your environment, see the 
 [available guides][kic-guides].
 
-[kongplugin]:/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource/
+[kongplugin]:/kubernetes-ingress-controller/{{page.release}}/guides/using-kongplugin-resource/
 [anns]:https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
-[kic-guides]:/kubernetes-ingress-controller/{{page.kong_version}}/guides/overview/
+[kic-guides]:/kubernetes-ingress-controller/{{page.release}}/guides/overview/
 
 ### Mesh network observability with Kiali
 

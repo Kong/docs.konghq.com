@@ -12,7 +12,7 @@ toc: false
 - If you have a very large installation, then it is recommended to split out
   your configuration into smaller subsets. You can find more info for it
   in the guide to practicing
-  [distributed configuration](/deck/{{page.kong_version}}/guides/distributed-configuration/).
+  [distributed configuration](/deck/{{page.release}}/guides/distributed-configuration/).
 - Always use a pinned version of decK and Kong.
   Achieving declarative configuration is
   not easy because details matter a lot. Use a specific version of decK in
@@ -30,7 +30,7 @@ toc: false
   thousands or millions.
 - Always run a `deck diff` command before running a `deck sync`
   to ensure the change that is taking place.
-- Adopt a [CI-driven configuration](/deck/{{page.kong_version}}/guides/ci-driven-configuration/) practice.
+- Adopt a [CI-driven configuration](/deck/{{page.release}}/guides/ci-driven-configuration/) practice.
 - Always secure Kong's Admin API with some kind of authentication method.
 - Do not write the state file by hand, it will be very error-prone.
   Instead, use Kong's Admin API to

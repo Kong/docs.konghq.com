@@ -12,8 +12,8 @@ delimit the types of actions and entities available to an admin.
 
 ## Prerequisites
 
-* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/)
-* You are logged into Kong Manager as a [super admin](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin/)
+* Authentication and RBAC are [enabled](/gateway/{{page.release}}/kong-manager/auth/rbac/)
+* You are logged into Kong Manager as a [super admin](/gateway/{{page.release}}/kong-manager/auth/super-admin/)
 or a user that has `/admins` and `/rbac` read and write access
 
 ## Default workspace
@@ -33,7 +33,7 @@ depending on preference.
 ## Create a Workspace
 
 This guide describes how to create workspaces in Kong
-Manager. You can also use the Admin API [`/workspaces/` route](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/#add-workspace) to create a workspace.
+Manager. You can also use the Admin API [`/workspaces/` route](/gateway/{{page.release}}/admin-api/workspaces/reference/#add-workspace) to create a workspace.
 
 1. Log in as the **Super Admin**. On the **Workspaces** page, click the **New Workspace**
 button to see the **Create Workspace** form. Name and choose a
@@ -114,7 +114,7 @@ all files from a folder will remove the folder.
     --data "config.portal=false"
    ```
 
-1. [Delete each role](/gateway/{{page.kong_version}}/admin-api/rbac/reference/#delete-a-role)
+1. [Delete each role](/gateway/{{page.release}}/admin-api/rbac/reference/#delete-a-role)
 from the workspace:
 
     ```bash
@@ -134,7 +134,7 @@ from the workspace:
 {% endif_version %}
 
 {% if_version gte:3.4.x %}
-Delete the workspace and [all entities associated with the workspace](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/#delete-a-workspace):
+Delete the workspace and [all entities associated with the workspace](/gateway/{{page.release}}/admin-api/workspaces/reference/#delete-a-workspace):
 
 ```bash
 curl -i -X DELETE http://localhost:8001/{WORKSPACE_NAME}?cascade=true
@@ -190,7 +190,7 @@ This will automatically delete all entities (teams, roles, services, and routes,
 
 {% endnavtab %}
 {% navtab Admin API %}
-Delete the workspace and [all entities associated with the workspace](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/#delete-a-workspace):
+Delete the workspace and [all entities associated with the workspace](/gateway/{{page.release}}/admin-api/workspaces/reference/#delete-a-workspace):
 
 ```bash
 curl -i -X DELETE http://localhost:8001/{WORKSPACE_NAME}?cascade=true
@@ -227,4 +227,4 @@ workspace are already visible, and new roles specific
 to the workspace can be assigned from this page.
 
 For more information about admins and roles, see
-[RBAC in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/).
+[RBAC in Kong Manager](/gateway/{{page.release}}/kong-manager/auth/rbac/).

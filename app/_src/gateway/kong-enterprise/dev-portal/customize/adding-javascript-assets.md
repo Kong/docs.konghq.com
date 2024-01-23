@@ -7,13 +7,13 @@ The Kong Dev Portal ships with Vue, React, and jQuery already loaded.
 You may want to make use of these libraries to write custom interactive
 webpages or load additional JavaScript.
 
-> Note: This guide is for adding/using JavaScript assets without changing server-side routing. [Learn more about a SPA to the Dev Portal](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/customize/single-page-app/).
+> Note: This guide is for adding/using JavaScript assets without changing server-side routing. [Learn more about a SPA to the Dev Portal](/gateway/{{page.release}}/kong-enterprise/dev-portal/customize/single-page-app/).
 
 ## Prerequisites
 
 * Portal Legacy is turned off
 * The Kong Dev Portal is enabled and running
-* The [kong-portal-cli tool](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/cli/) is installed locally
+* The [kong-portal-cli tool](/gateway/{{page.release}}/kong-enterprise/dev-portal/cli/) is installed locally
 
 
 ## Adding JS Assets
@@ -22,7 +22,7 @@ webpages or load additional JavaScript.
 To add JavaScript assets:
 1. Clone the [kong-portal-templates](https://github.com/Kong/kong-portal-templates) repo.
 2. Add any JavaScript files to the `themes/base/js` folder.
-3. Deploy using the [kong-portal-cli-tool](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/cli/).
+3. Deploy using the [kong-portal-cli-tool](/gateway/{{page.release}}/kong-enterprise/dev-portal/cli/).
 
 
 ## Loading JS Assets

@@ -8,17 +8,17 @@ content_type: tutorial
 Deploy an upstream HTTP application, create a configuration group, add a route, and add a plugin using 
 {{site.base_gateway}} and {{site.kic_product_name}}.
 
-{% include_cached /md/kic/installation.md kong_version=page.kong_version %}
+{% include_cached /md/kic/installation.md release=page.release %}
 
-{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
+{% include_cached /md/kic/test-service-echo.md release=page.release %}
 
-{% include_cached /md/kic/class.md kong_version=page.kong_version %}
+{% include_cached /md/kic/class.md release=page.release %}
 
-{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version %}
+{% include_cached /md/kic/http-test-routing.md release=page.release %}
 
 ## Add TLS configuration
 
-{% include_cached /md/kic/add-tls-conf.md hostname='kong.example' kong_version=page.kong_version %}
+{% include_cached /md/kic/add-tls-conf.md hostname='kong.example' release=page.release %}
 
 ## Using plugins on Ingress / Gateway API Routes
 
@@ -179,9 +179,9 @@ plugin configuration on all requests to that Service, without configuring the sa
 
 ## Next steps
 
-* To learn how to secure proxied routes, see the [ACL and JWT Plugins Guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/configure-acl-plugin/).
-* The [External Services Guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-external-service/) explains how to proxy services outside of your Kubernetes cluster.
+* To learn how to secure proxied routes, see the [ACL and JWT Plugins Guide](/kubernetes-ingress-controller/{{page.release}}/guides/configure-acl-plugin/).
+* The [External Services Guide](/kubernetes-ingress-controller/{{page.release}}/guides/using-external-service/) explains how to proxy services outside of your Kubernetes cluster.
 {% if_version gte:2.4.x %}
 * [Gateway API](https://gateway-api.sigs.k8s.io/) is a set of resources for
-configuring networking in Kubernetes. The {{site.kic_product_name}} supports Gateway API by default. To learn how to use Gateway API supported by the {{site.kic_product_name}}, see [Using Gateway API](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-gateway-api/).
+configuring networking in Kubernetes. The {{site.kic_product_name}} supports Gateway API by default. To learn how to use Gateway API supported by the {{site.kic_product_name}}, see [Using Gateway API](/kubernetes-ingress-controller/{{page.release}}/guides/using-gateway-api/).
 {% endif_version %}

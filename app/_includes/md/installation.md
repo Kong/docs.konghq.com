@@ -42,7 +42,7 @@ file for specifying the entities as a declarative configuration.
 
 ### Without a database
 
-If you are going to run Kong in [DB-less mode](/gateway/{{include.kong_version}}/reference/db-less-and-declarative-config/),
+If you are going to run Kong in [DB-less mode](/gateway/{{include.release}}/reference/db-less-and-declarative-config/),
 you should start by generating declarative config file.
 
 1. Generate a `kong.yml` file in your current folder using the following command:
@@ -68,7 +68,7 @@ to `off` and the `declarative_config` option to the path of your `kong.yml` file
 as `root` and the worker processes as `kong` by default.
 If this is not the desired behavior, you can switch the NGINX master process to run on the built-in
 `kong` user or to a custom non-root user before starting Kong. For more
-information, see [Running Kong as a Non-Root User](/gateway/{{include.kong_version}}/production/running-kong/kong-user/).
+information, see [Running Kong as a Non-Root User](/gateway/{{include.release}}/production/running-kong/kong-user/).
 
 1. Start {{site.base_gateway}}:
     ```bash
@@ -84,7 +84,7 @@ information, see [Running Kong as a Non-Root User](/gateway/{{include.kong_versi
 ## Next steps
 
 Check out {{site.base_gateway}}'s series of
-[Getting Started](/gateway/{{include.kong_version}}/get-started/comprehensive) guides to get the most
+[Getting Started](/gateway/{{include.release}}/get-started/comprehensive) guides to get the most
 out of {{site.base_gateway}}.
 
-[configuration]: /gateway/{{include.kong_version}}/reference/configuration/#database
+[configuration]: /gateway/{{include.release}}/reference/configuration/#database

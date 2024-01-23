@@ -23,7 +23,7 @@ It offers exclusive versions of OSS plugins like the [Rate Limiting Advanced plu
 * [Advanced data transformation](/hub/kong-inc/jq/)
 * [OPA Policy driven traffic management](/hub/kong-inc/opa/)
 {% if_version lte:3.3.x %}
-* [API product tiers](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference/)
+* [API product tiers](/gateway/{{page.release}}/admin-api/consumer-groups/reference/)
 {% endif_version %}
 {% if_version gte:3.4.x %}
 * [API product tiers](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/be79b812-46d5-4cc1-b757-b5270bf4fa60#/consumer_groups/get-consumer_groups)
@@ -37,34 +37,34 @@ Dev Portal streamlines developer onboarding by offering a self-service developer
 This customizable experience can be used to match your own unique branding and highlights the documentation and interactive API specifications of your services.
 In addition, you can secure your APIs with a variety of authorization providers by enabling application registration.
 
-[Learn more about Dev Portal &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/)
+[Learn more about Dev Portal &rarr;](/gateway/{{page.release}}/kong-enterprise/dev-portal/)
 
 ## Monitoring and analytics
 
 The Vitals platform provides deep insights into services, routes, and application usage data. You can view the health of your API products with custom reports and contextual dashboards, and you can enhance the native monitoring and analytics capabilities with {{site.base_gateway}} plugins that enable streaming monitoring metrics to third-party analytics providers, such as [Datadog](/hub/kong-inc/datadog/) and [Prometheus](/hub/kong-inc/prometheus/).
 
-[Start monitoring with Vitals &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/analytics/)
+[Start monitoring with Vitals &rarr;](/gateway/{{page.release}}/kong-enterprise/analytics/)
 
 {% endif_version %}
 ## Role-based access control (RBAC)
 
-{{site.ee_product_name}} lets you configure users, roles, and permissions with built-in role-based access control (RBAC). With RBAC, you can streamline developer onboarding, and create apply fine-grained security and traffic policies using the [Admin API](/gateway/{{page.kong_version}}/admin-api/rbac/reference/), or [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/).
+{{site.ee_product_name}} lets you configure users, roles, and permissions with built-in role-based access control (RBAC). With RBAC, you can streamline developer onboarding, and create apply fine-grained security and traffic policies using the [Admin API](/gateway/{{page.release}}/admin-api/rbac/reference/), or [Kong Manager](/gateway/{{page.release}}/kong-manager/auth/rbac/).
 
-[Manage teams with RBAC &rarr;](/gateway/{{page.kong_version}}/kong-manager/auth/rbac)
+[Manage teams with RBAC &rarr;](/gateway/{{page.release}}/kong-manager/auth/rbac)
 
 ## Secrets management
 {{site.ee_product_name}} offers out of the box secrets management with the following backends: 
 
-* [Amazon Web Services (AWS)](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/aws-sm/)
+* [Amazon Web Services (AWS)](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/aws-sm/)
 {% if_version gte:3.5.x %}
-* [Microsoft Azure](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/azure-key-vaults/)
+* [Microsoft Azure](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/azure-key-vaults/)
 {% endif_version %}
-* [Google Cloud Platform (GCP)](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/gcp-sm/)
-* [Hashicorp Vault](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
+* [Google Cloud Platform (GCP)](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/gcp-sm/)
+* [Hashicorp Vault](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
 
 To configure secrets management, {{site.base_gateway}} consumes your key for the backend provider, authenticates with the backend provider, and uses the backend to centrally manage and store application secrets, sensitive data, passwords, keys, certifications, tokens, and other items.
 
-[Secure your application secrets &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/)
+[Secure your application secrets &rarr;](/gateway/{{page.release}}/kong-enterprise/secrets-management/)
 
 
 ## Keyring and data encryption
@@ -74,32 +74,32 @@ Keyring and data encryption functionality provides transparent, symmetric encryp
 {{site.base_gateway}} allows you to store sensitive data fields, such as consumer secrets, in an encrypted format within the database.
 This provides encryption-at-rest security controls in a {{site.base_gateway}} cluster.
 
-[Set up keyring and data encryption &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/db-encryption/)
+[Set up keyring and data encryption &rarr;](/gateway/{{page.release}}/kong-enterprise/db-encryption/)
 
 ## Audit logging
 
 {{site.base_gateway}} provides granular logging of the Admin API. You can keep detailed track of changes made to the
 cluster configuration throughout its lifetime, for compliance efforts and for
 providing valuable data points during forensic investigations. Generated audit
-log trails are [workspace](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/) and [RBAC](/gateway/{{page.kong_version}}/admin-api/rbac/reference/)-aware,
+log trails are [workspace](/gateway/{{page.release}}/admin-api/workspaces/reference/) and [RBAC](/gateway/{{page.release}}/admin-api/rbac/reference/)-aware,
 providing {{site.base_gateway}} operators a deep and wide look into changes happening within
 the cluster.
 
-[Get started with audit logging &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/audit-log/)
+[Get started with audit logging &rarr;](/gateway/{{page.release}}/kong-enterprise/audit-log/)
 
 ## FIPS support
 
 {{site.ee_product_name}} features a self-managed FIPS 140-2 gateway package, making it ideal for highly regulated industries with strict compliance and security considerations. 
 Compliance with this standard is typically required for working with U.S. federal government agencies and their contractors.
 
-[Learn more about FIPS support &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/fips-support/)
+[Learn more about FIPS support &rarr;](/gateway/{{page.release}}/kong-enterprise/fips-support/)
 
 ## Workspaces
 
 Workspaces provide a way to segment or group {{site.base_gateway}} entities. Entities in a workspace are isolated from those in other workspaces.
 {{site.ce_product_name}} is limited to one workspace. With {{site.ee_product_name}}, you can leverage multiple workspaces to allow developers to easily transition between projects, and to separate services and routes belonging to different upstreams. 
 
-[Learn more about workspaces &rarr;](/gateway/{{page.kong_version}}/kong-manager/workspaces/)
+[Learn more about workspaces &rarr;](/gateway/{{page.release}}/kong-manager/workspaces/)
 
 ## Dynamic plugin ordering
 
@@ -107,7 +107,7 @@ Dynamic plugin ordering allows you to override the priority for any {{site.base_
 This determines plugin ordering during the `access` phase
 and lets you create _dynamic_ dependencies between plugins.
 
-[Get started with dynamic plugin ordering &rarr;](/gateway/{{page.kong_version}}/kong-enterprise/plugin-ordering/)
+[Get started with dynamic plugin ordering &rarr;](/gateway/{{page.release}}/kong-enterprise/plugin-ordering/)
 ## Event hooks
 
 Event hooks are outbound calls from {{site.base_gateway}}. With event hooks, the {{site.base_gateway}} can communicate with target services or resources, letting the target know that an event was triggered. When an event is triggered in the {{site.base_gateway}}, it calls a URL with information about that event. Event hooks add a layer of configuration for subscribing to worker events using the admin interface. 
@@ -121,7 +121,7 @@ In {{site.base_gateway}}, these callbacks can be defined using one of the follow
 
 You can configure event hooks through the Admin API.
 
-[Learn more about event hooks &rarr;](/gateway/{{page.kong_version}}/admin-api/event-hooks/reference/)
+[Learn more about event hooks &rarr;](/gateway/{{page.release}}/admin-api/event-hooks/reference/)
 
 ## Consumer groups
 
@@ -136,7 +136,7 @@ For example, you could define three consumer groups:
 
 {% if_version lte:3.3.x %}
 [Set up consumer groups &rarr;](/hub/kong-inc/rate-limiting-advanced/how-to/)
-[Consumer groups API reference](/gateway/{{page.kong_version}}/admin-api/consumer-groups/reference/)
+[Consumer groups API reference](/gateway/{{page.release}}/admin-api/consumer-groups/reference/)
 {% endif_version %}
 {% if_version gte:3.4.x %}
 [Set up consumer groups &rarr;](/hub/kong-inc/rate-limiting-advanced/how-to/)

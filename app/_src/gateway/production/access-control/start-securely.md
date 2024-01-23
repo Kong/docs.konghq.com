@@ -15,7 +15,7 @@ following the guide below. It may only be added once.
 
 ## Prerequisites
 
-After [installing {{site.base_gateway}}](/gateway/{{page.kong_version}}/install/),
+After [installing {{site.base_gateway}}](/gateway/{{page.release}}/install/),
 either modify the configuration file or set environment variables for
 the following properties:
 
@@ -26,12 +26,12 @@ must have adequate Permissions in order for the request to succeed.
 * If using Kong Manager, select the type of authentication that Admins
 should use to log in. For the purpose of this guide, `admin_gui_auth`
 may be set to `basic-auth`. See
-[Securing Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/) for other types
+[Securing Kong Manager](/gateway/{{page.release}}/kong-manager/auth/) for other types
 of authentication.
 
 Configure RBAC with basic authentication:
 
-{% include_cached /md/admin-listen.md desc='long' kong_version=page.kong_version %}
+{% include_cached /md/admin-listen.md desc='long' release=page.release %}
 
 ```
 enforce_rbac = on
@@ -52,7 +52,7 @@ This plugin (configured with `admin_gui_session_conf`) requires a secret and is 
 * If using different domains for the Admin API and Kong Manager, `cookie_same_site` must be set to `Lax`.
 {% endif_version %}
 
-Learn more about these properties in [Session Security in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/sessions/#session-security), and see [example configurations](/gateway/{{page.kong_version}}/kong-manager/auth/sessions#example-configurations).
+Learn more about these properties in [Session Security in Kong Manager](/gateway/{{page.release}}/kong-manager/auth/sessions/#session-security), and see [example configurations](/gateway/{{page.release}}/kong-manager/auth/sessions#example-configurations).
 
 ## Step 1
 
@@ -73,11 +73,11 @@ used as a `Kong-Admin-Token` to make Admin API requests.
 **Note:** only one Super Admin may be created using this method, and only
 on a fresh installation with an empty database. If one is not created
 during migrations, revert configuration in [Prerequisites](#prerequisites),
-and [invite a new user as a Super Admin in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin/).
+and [invite a new user as a Super Admin in Kong Manager](/gateway/{{page.release}}/kong-manager/auth/super-admin/).
 
 Future migrations will not update the password or create additional Super Admins.
 To add additional Super Admins, 
-[invite a new user as a Super Admin in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth//super-admin/).
+[invite a new user as a Super Admin in Kong Manager](/gateway/{{page.release}}/kong-manager/auth//super-admin/).
 
 ## Step 2
 
@@ -96,7 +96,7 @@ kong start [-c /path/to/kong.conf]
 ```
 
 **Note:** the CLI accepts a configuration option (`-c /path/to/kong.conf`)
-allowing you to point to [your own configuration](/gateway/{{page.kong_version}}/reference/configuration/#configuration-loading).
+allowing you to point to [your own configuration](/gateway/{{page.release}}/reference/configuration/#configuration-loading).
 
 ## Step 4
 

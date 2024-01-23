@@ -19,7 +19,7 @@ make a copy of the file, rename it (for example `kong.conf`), make your updates,
 ### Using a database
 
 First, configure {{site.base_gateway}} using the `kong.conf` configuration file so it can connect to your database.
-See the data store section of the [Configuration Property Reference](/gateway/{{ include.kong_version }}/reference/configuration/#datastore-section) for all relevant configuration parameters.
+See the data store section of the [Configuration Property Reference](/gateway/{{ include.release}}/reference/configuration/#datastore-section) for all relevant configuration parameters.
 
 {% if_version lte:2.6.x %}
 
@@ -30,7 +30,7 @@ and [Cassandra {{site.data.kong_latest.dependencies.cassandra}}](http://cassandr
 
 {% if_version gte:2.7.x lte:3.3.x %}
 
-{% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
+{% include_cached /md/enterprise/cassandra-deprecation.md length='short' release=page.release %}
 
 {% endif_version %}
 
@@ -85,7 +85,7 @@ declarative_config = {PATH_TO_KONG.CONF_FILE}
 
 ## Start {{site.base_gateway}}
 
-{% include_cached /md/gateway/root-user-note.md kong_version=page.kong_version %}
+{% include_cached /md/gateway/root-user-note.md release=page.release %}
 
 Start {{site.base_gateway}} using the following command:
 
@@ -191,7 +191,7 @@ If you're running {{site.base_gateway}} with a database (either in traditional
 or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
 (GUI), Kong Manager.
 
-See the [Kong Manager setup guide](/gateway/{{page.kong_version}}/kong-manager/enable/){% if_version gte:3.4.x %} or the [Kong Manager OSS guide](/gateway/{{page.kong_version}}/kong-manager-oss){% endif_version %} for more information.
+See the [Kong Manager setup guide](/gateway/{{page.release}}/kong-manager/enable/){% if_version gte:3.4.x %} or the [Kong Manager OSS guide](/gateway/{{page.release}}/kong-manager-oss){% endif_version %} for more information.
 
 {% endif_version %}
 {% if_version lte:2.8.x %}
@@ -208,7 +208,7 @@ See the [Kong Manager setup guide](/gateway/{{page.kong_version}}/kong-manager/e
 2. Update the Admin API setting in the `kong.conf` file to listen on the needed network interfaces on the OS host.
    A setting of `0.0.0.0:8001` will listen on port `8001` on all available network interfaces.
 
-    {% include_cached /md/admin-listen.md kong_version=page.kong_version desc='long' %}
+    {% include_cached /md/admin-listen.md release=page.release desc='long' %}
 
     Example configuration:
 
@@ -238,8 +238,8 @@ See the [Kong Manager setup guide](/gateway/{{page.kong_version}}/kong-manager/e
 {:.badge .enterprise}
 
 If you're running {{site.base_gateway}} with a database (either in traditional
-or hybrid mode), you can enable the {% if_version lte:2.8.x %}[Dev Portal](/gateway/{{page.kong_version}}/developer-portal/).{% endif_version %}{% if_version gte:3.0.x lte:3.4.x
-   %}[Dev Portal](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/){% endif_version %}
+or hybrid mode), you can enable the {% if_version lte:2.8.x %}[Dev Portal](/gateway/{{page.release}}/developer-portal/).{% endif_version %}{% if_version gte:3.0.x lte:3.4.x
+   %}[Dev Portal](/gateway/{{page.release}}/kong-enterprise/dev-portal/){% endif_version %}
 
 1. Enable the Dev Portal in the `kong.conf` file by setting the `portal` property to `on` and the
    `portal_gui_host` property to the DNS or IP address of the system.
@@ -278,9 +278,9 @@ or hybrid mode), you can enable the {% if_version lte:2.8.x %}[Dev Portal](/gate
 {% if_version gte:3.0.x %}
 
 For troubleshooting license issues, see:
-* [Deployment options for licenses](/gateway/{{page.kong_version}}/licenses/deploy/)
-* [`/licenses` API reference](/gateway/{{page.kong_version}}/admin-api/licenses/reference/)
-* [`/licenses` API examples](/gateway/{{page.kong_version}}/licenses/examples/)
+* [Deployment options for licenses](/gateway/{{page.release}}/licenses/deploy/)
+* [`/licenses` API reference](/gateway/{{page.release}}/admin-api/licenses/reference/)
+* [`/licenses` API examples](/gateway/{{page.release}}/licenses/examples/)
 
 If you did not receive an `HTTP/1.1 200 OK` message or need assistance completing
 your setup, reach out to your Kong Support contact or go to the
@@ -289,16 +289,16 @@ your setup, reach out to your Kong Support contact or go to the
 ## Next steps
 
 Check out {{site.base_gateway}}'s series of
-[Getting Started](/gateway/{{include.kong_version}}/get-started/) guides to get the most
+[Getting Started](/gateway/{{include.release}}/get-started/) guides to get the most
 out of {{site.base_gateway}}.
 
 {% endif_version %}
 {% if_version lte:2.8.x %}
 
 For troubleshooting license issues, see:
-* [Deployment options for licenses](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/deploy-license/)
-* [`/licenses` API reference](/gateway/{{page.kong_version}}/admin-api/licenses/reference/)
-* [`/licenses` API examples](/gateway/{{page.kong_version}}/admin-api/licenses/examples/)
+* [Deployment options for licenses](/gateway/{{page.release}}/plan-and-deploy/licenses/deploy-license/)
+* [`/licenses` API reference](/gateway/{{page.release}}/admin-api/licenses/reference/)
+* [`/licenses` API examples](/gateway/{{page.release}}/admin-api/licenses/examples/)
 
 If you did not receive an `HTTP/1.1 200 OK` message or need assistance completing
 your setup, reach out to your Kong Support contact or go to the
@@ -307,7 +307,7 @@ your setup, reach out to your Kong Support contact or go to the
 ## Next steps
 
 Check out {{site.base_gateway}}'s series of
-[Getting Started](/gateway/{{include.kong_version}}/get-started/comprehensive/) guides to get the most
+[Getting Started](/gateway/{{include.release}}/get-started/comprehensive/) guides to get the most
 out of {{site.base_gateway}}.
 
 {% endif_version %}

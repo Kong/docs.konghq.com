@@ -3,8 +3,8 @@ title: Cassandra to PostgreSQL Migration Guidelines
 ---
 
 This guide walks you through migrating {{site.base_gateway}} from a Cassandra DB-backed 
-[traditional](/gateway/{{page.kong_version}}/production/deployment-topologies/traditional/) deployment to a PostgreSQL-backed
-[hybrid](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/) deployment.
+[traditional](/gateway/{{page.release}}/production/deployment-topologies/traditional/) deployment to a PostgreSQL-backed
+[hybrid](/gateway/{{page.release}}/production/deployment-topologies/hybrid-mode/) deployment.
 
 This guide uses a blue-green migration approach. In this approach, DNS switching helps cut traffic over from a Blue environment to a Green environment. This provides the ability to roll back faster if an issue is detected. 
 
@@ -28,7 +28,7 @@ While the document provides high level guidelines, actual migration steps may di
 * External touch points to the Gateway (for example, OIDC with external IdPs)
 * Number of configuration entities, for example services and routes
 * If running an older version of {{site.base_gateway}}, we recommend doing a {{site.base_gateway}} version upgrade before the database migration. This reduces the moving parts in the upgrade procedure.
-* If you're using Cassandra, you likely have a traditional deployment. We recommend taking this opportunity to review the [deployment topology options](/gateway/{{page.kong_version}}/production/deployment-topologies/) for {{site.base_gateway}} and converting to a hybrid mode deployment, if possible.
+* If you're using Cassandra, you likely have a traditional deployment. We recommend taking this opportunity to review the [deployment topology options](/gateway/{{page.release}}/production/deployment-topologies/) for {{site.base_gateway}} and converting to a hybrid mode deployment, if possible.
 
 The following diagram shows the architecture of a hybrid mode deployment, which means there is a split between the {{site.base_gateway}} control and data planes. You can follow the same database migration approach for {{site.base_gateway}} instances deployed in traditional mode.
 
@@ -104,5 +104,5 @@ The purpose of this phase is to migrate traffic in a controlled manner, with a r
 
 After migration, basic authentication credentials can be managed by decK. See the following topics to learn how to manage secrets with deck:
 
-* [Gateway secret management GCP](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/gcp-sm/)
+* [Gateway secret management GCP](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/gcp-sm/)
 * [Secrets management with decK](/deck/latest/guides/vaults/#configure-a-secret-vault)

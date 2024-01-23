@@ -26,7 +26,7 @@ Package v1 contains API Schema definitions for the konghq.com v1 API group.
 
 KongClusterPlugin is the Schema for the kongclusterplugins API.
 
-{% include md/kic/crd-ref/kong_cluster_plugin_description.md kong_version=page.kong_version %}
+{% include md/kic/crd-ref/kong_cluster_plugin_description.md release=page.release %}
 
 | Field | Description |
 | --- | --- |
@@ -52,7 +52,7 @@ KongClusterPlugin is the Schema for the kongclusterplugins API.
 
 KongConsumer is the Schema for the kongconsumers API.
 
-{% include md/kic/crd-ref/kong_consumer_description.md kong_version=page.kong_version %}
+{% include md/kic/crd-ref/kong_consumer_description.md release=page.release %}
 
 | Field | Description |
 | --- | --- |
@@ -73,7 +73,7 @@ KongConsumer is the Schema for the kongconsumers API.
 
 KongIngress is the Schema for the kongingresses API.
 
-{% include md/kic/crd-ref/kong_ingress_description.md kong_version=page.kong_version %}
+{% include md/kic/crd-ref/kong_ingress_description.md release=page.release %}
 
 | Field | Description |
 | --- | --- |
@@ -93,7 +93,7 @@ KongIngress is the Schema for the kongingresses API.
 
 KongPlugin is the Schema for the kongplugins API.
 
-{% include md/kic/crd-ref/kong_plugin_description.md kong_version=page.kong_version %}
+{% include md/kic/crd-ref/kong_plugin_description.md release=page.release %}
 
 | Field | Description |
 | --- | --- |
@@ -294,7 +294,7 @@ Package v1alpha1 contains API Schema definitions for the configuration.konghq.co
 
 IngressClassParameters is the Schema for the IngressClassParameters API.
 
-{% include md/kic/crd-ref/ingress_class_parameters_description.md kong_version=page.kong_version %}
+{% include md/kic/crd-ref/ingress_class_parameters_description.md release=page.release %}
 
 | Field | Description |
 | --- | --- |
@@ -339,7 +339,7 @@ Package v1beta1 contains API Schema definitions for the configuration.konghq.com
 
 KongConsumerGroup is the Schema for the kongconsumergroups API.
 
-{% include md/kic/crd-ref/kong_consumer_group_description.md kong_version=page.kong_version %}
+{% include md/kic/crd-ref/kong_consumer_group_description.md release=page.release %}
 
 | Field | Description |
 | --- | --- |
@@ -356,7 +356,7 @@ KongConsumerGroup is the Schema for the kongconsumergroups API.
 
 KongUpstreamPolicy allows configuring algorithm that should be used for load balancing traffic between Kong Upstream's Targets. It also allows configuring health checks for Kong Upstream's Targets. <br /><br /> Its configuration is similar to Kong Upstream object (https://docs.konghq.com/gateway/latest/admin-api/#upstream-object), and it is applied to Kong Upstream objects created by the controller. <br /><br /> It can be attached to Services. To attach it to a Service, it has to be annotated with `konghq.com/upstream-policy: <name>`, where `<name>` is the name of the KongUpstreamPolicy object in the same namespace as the Service. <br /><br /> When attached to a Service, it will affect all Kong Upstreams created for the Service. <br /><br /> When attached to a Service used in a Gateway API *Route rule with multiple BackendRefs, all of its Services MUST be configured with the same KongUpstreamPolicy. Otherwise, the controller will *ignore* the KongUpstreamPolicy. <br /><br /> Note: KongUpstreamPolicy doesn't implement Gateway API's GEP-713 strictly. In particular, it doesn't use the TargetRef for attaching to Services and Gateway API *Routes - annotations are used instead. This is to allow reusing the same KongUpstreamPolicy for multiple Services and Gateway API *Routes.
 
-{% include md/kic/crd-ref/kong_upstream_policy_description.md kong_version=page.kong_version %}
+{% include md/kic/crd-ref/kong_upstream_policy_description.md release=page.release %}
 
 | Field | Description |
 | --- | --- |
@@ -374,7 +374,7 @@ KongUpstreamPolicy allows configuring algorithm that should be used for load bal
 
 TCPIngress is the Schema for the tcpingresses API.
 
-{% include md/kic/crd-ref/tcp_ingress_description.md kong_version=page.kong_version %}
+{% include md/kic/crd-ref/tcp_ingress_description.md release=page.release %}
 
 | Field | Description |
 | --- | --- |
@@ -392,7 +392,7 @@ TCPIngress is the Schema for the tcpingresses API.
 
 UDPIngress is the Schema for the udpingresses API.
 
-{% include md/kic/crd-ref/udp_ingress_description.md kong_version=page.kong_version %}
+{% include md/kic/crd-ref/udp_ingress_description.md release=page.release %}
 
 | Field | Description |
 | --- | --- |

@@ -25,7 +25,7 @@ This is available only for enterprise customers of Kong, Inc.
 
 ### Installing {{site.ee_product_name}}
 
-Kong for Kubernetes Enterprise can be installed using an installer of your choice. After the installation is complete, see the [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn more.
+Kong for Kubernetes Enterprise can be installed using an installer of your choice. After the installation is complete, see the [getting started](/kubernetes-ingress-controller/{{page.release}}/guides/getting-started) tutorial to learn more.
 
 {% navtabs %}
 {% navtab YAML manifests %}

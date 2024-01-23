@@ -6,7 +6,7 @@ content_type: how-to
 You can use decK to back up and restore a subset or the entirety of
 {{site.base_gateway}}'s entity configuration. 
 
-See the reference for [Entities Managed by decK](/deck/{{page.kong_version}}/reference/entities/)
+See the reference for [Entities Managed by decK](/deck/{{page.release}}/reference/entities/)
 to find out which entity configurations can be backed up.
 
 ## Back up {{site.base_gateway}}'s entire configuration
@@ -36,7 +36,7 @@ Then, restore this file back to {{site.base_gateway}} using the `sync` command:
 
 You can export, import, and manage a subset of {{site.base_gateway}}'s configuration using decK's
 `select-tag` feature. This is similar to adopting
-[distributed configuration](/deck/{{page.kong_version}}/guides/distributed-configuration) for {{site.base_gateway}}.
+[distributed configuration](/deck/{{page.release}}/guides/distributed-configuration) for {{site.base_gateway}}.
 
 The `select-tag` feature assumes that all the entities you would like to manage
 in {{site.base_gateway}} share a common tag(s).

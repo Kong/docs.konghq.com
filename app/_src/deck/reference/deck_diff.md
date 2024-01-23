@@ -8,7 +8,7 @@ short_desc: The diff command is similar to a dry run of the decK sync command.
 {:.important}
 > `deck diff` functionality has moved to `deck gateway diff`. 
 > <br>`deck diff` will be removed in a future major version of decK (decK 2.x).
-We recommend migrating to [deck gateway diff](/deck/{{page.kong_version}}/reference/deck_gateway_diff/).
+We recommend migrating to [deck gateway diff](/deck/{{ page.release }}/reference/deck_gateway_diff/).
 > <br><br> In the new command:
 > * Files changed to positional arguments without the `-s/--state` flag
 > * The default write location changed from `kong.yaml` to `-` (stdin/stdout)
@@ -81,8 +81,8 @@ This takes precedence over _workspace fields in state files.
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## See also
 
-* [deck](/deck/{{page.kong_version}}/reference/deck/)	 - Administer your Kong clusters declaratively
+* [deck](/deck/{{page.release}}/reference/deck/)	 - Administer your Kong clusters declaratively

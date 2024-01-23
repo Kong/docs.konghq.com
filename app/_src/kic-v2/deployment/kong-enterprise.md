@@ -2,7 +2,7 @@
 title: Kong for Kubernetes Enterprise (DB Mode)
 ---
 
-Learn to set up the {{site.kic_product_name}} using {{site.ee_product_name}}. This architecture is described in detail in [Kong for Kubernetes with {{site.ee_product_name}}](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise/).
+Learn to set up the {{site.kic_product_name}} using {{site.ee_product_name}}. This architecture is described in detail in [Kong for Kubernetes with {{site.ee_product_name}}](/kubernetes-ingress-controller/{{page.release}}/concepts/k4k8s-with-kong-enterprise/).
 
 To start from scratch deploy {{site.ee_product_name}} and its database in Kubernetes itself. You can safely run them outside
 Kubernetes as well.
@@ -90,7 +90,7 @@ Kubernetes as well.
     $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}" service -n kong kong-proxy)
     ```
 
-After you've installed Kong for {{site.ee_product_name}}, follow our [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn more.
+After you've installed Kong for {{site.ee_product_name}}, follow our [getting started](/kubernetes-ingress-controller/{{page.release}}/guides/getting-started) tutorial to learn more.
 
 ## Customizing by use-case
 

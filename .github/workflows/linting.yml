@@ -5,6 +5,10 @@ on:
 concurrency:
   cancel-in-progress: true
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+
+env:
+  BUNDLE_GITHUB__COM: x-access-token:${{ secrets.BUNDLE_GITHUB__COM }}
+
 jobs:
   check:
     runs-on: ubuntu-latest

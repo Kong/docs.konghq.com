@@ -100,7 +100,7 @@ RSpec.describe SEO::IndexEntry::VersionedPage do
   describe '#attributes' do
     let(:page) { find_page_by_url('/mesh/latest/') }
 
-    it { expect(subject.attributes).to eq({ 'url' => '/mesh/latest/', 'page' => page, 'version' => Gem::Version.new('9999.9.9') }) }
+    it { expect(subject.attributes).to eq({ 'url' => '/mesh/latest/', 'page' => page, 'version' => Gem::Version.new('2.1.0') }) }
   end
 
   describe '#key' do
@@ -113,8 +113,8 @@ RSpec.describe SEO::IndexEntry::VersionedPage do
     context 'when it is the latest version of the page' do
       let(:page) { find_page_by_url('/mesh/latest/') }
 
-      it 'sets its version to 9999.9.9' do
-        expect(subject.version).to eq(Gem::Version.new('9999.9.9'))
+      it 'sets its version to the one that has `latest: true` set' do
+        expect(subject.version).to eq(Gem::Version.new('2.1.0'))
       end
     end
 

@@ -329,7 +329,7 @@ port-forward <POD_NAME> 10256:10256`, and visit `http://localhost:10256/debug/pp
 
 Kubernetes resources can request configuration that {{site.kic_product_name}}
 can't translate into a valid {{site.base_gateway}} configuration. While the
-[admission webhook](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/admission-webhook/)
+[admission webhook](/kubernetes-ingress-controller/{{page.release}}/deployment/admission-webhook/)
 can reject some invalid configurations during creation and the controller can
 fix some invalid configurations on its own, some configuration issues require
 you to review and fix them. When such issues arise, {{site.kic_product_name}}
@@ -337,11 +337,11 @@ creates Kubernetes Events to help you identify problem resources and understand
 how to fix them.
 
 To determine if there are any translation failures that you might want to fix, you
-can monitor the `ingress_controller_translation_count` [Prometheus metric](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus/).
+can monitor the `ingress_controller_translation_count` [Prometheus metric](/kubernetes-ingress-controller/{{page.release}}/references/prometheus/).
 
 ### Monitor for issues that require manual fixes
 
-{{site.kic_product_name}}'s [Prometheus metrics](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus)
+{{site.kic_product_name}}'s [Prometheus metrics](/kubernetes-ingress-controller/{{page.release}}/references/prometheus)
 include `ingress_controller_translation_count` and
 `ingress_controller_configuration_push_count` counters. Issues that require
 human intervention add `success=false` tallies to these counters.

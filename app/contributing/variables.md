@@ -58,11 +58,11 @@ Depends on the page
 
 The release-level version of the page that you’re on - eg 1.5.x, 1.3-x.
 
-{{page.kong_version}}
+{{page.release}}
 
 Use this variable in links, eg:
 
-/enterprise/{{page.kong_version}}/introduction
+/enterprise/{{page.release}}/introduction
 
 page.kong_latest.version
 
@@ -80,16 +80,16 @@ The URL and folder name of the latest version (eg 2.1.x) for the product on the 
 
 {{page.kong_latest.release}}
 
-page.kong_versions[x].version
+page.releases_hash[x].version
 
 Outputs the specified version in the array
 
 Turns the list of versions into an array and pulls the specified version.
 
-E.g., if you want to pull the first version of the doc, you would use {{page.kong_versions[0].version}}, if you want to use the third published version, you would use {{page.kong_versions[2].version}}, etc
+E.g., if you want to pull the first version of the doc, you would use {{page.releases_hash[0].version}}, if you want to use the third published version, you would use {{page.releases_hash[2].version}}, etc
 
-{{page.kong_versions[0].version}}
+{{page.releases_hash[0].version}}
 
-{{page.kong_versions[1].version}} -->
+{{page.releases_hash[1].version}} -->
 
 <!-- vale on -->

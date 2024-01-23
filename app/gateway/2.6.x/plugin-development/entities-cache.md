@@ -38,7 +38,7 @@ kong.plugins.<plugin_name>.daos
 ## Cache custom entities
 
 Once you have defined your custom entities, you can cache them in-memory in
-your code by using the [kong.cache](/gateway/{{page.kong_version}}/pdk/#kong-cache)
+your code by using the [kong.cache](/gateway/{{page.release}}/pdk/#kong-cache)
 module provided by the [Plugin Development Kit]:
 
 ```
@@ -282,7 +282,7 @@ module will store the miss just as if it was a hit. This means that a
 propagated by Kong so that all nodes that stored the miss can evict it, and
 properly fetch the newly created API key from the datastore.
 
-See the [Clustering Guide](/gateway/{{page.kong_version}}/reference/clustering/) to ensure
+See the [Clustering Guide](/gateway/{{page.release}}/reference/clustering/) to ensure
 that you have properly configured your cluster for such invalidation events.
 
 ### Manual cache invalidation
@@ -340,5 +340,5 @@ example, creating and deleting API keys). The way you would do this is by
 extending the Admin API, which we will detail in the next chapter:
 [Extending the Admin API]({{page.book.next.url}}).
 
-[Admin API]: /gateway/{{page.kong_version}}/admin-api/
-[Plugin Development Kit]: /gateway/{{page.kong_version}}/pdk
+[Admin API]: /gateway/{{page.release}}/admin-api/
+[Plugin Development Kit]: /gateway/{{page.release}}/pdk

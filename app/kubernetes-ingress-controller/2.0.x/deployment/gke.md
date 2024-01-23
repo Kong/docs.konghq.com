@@ -124,5 +124,5 @@ $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip
 IP address to the `kong-proxy` Service.
 
 Once you've installed the {{site.kic_product_name}}, please follow our
-[getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn
+[getting started](/kubernetes-ingress-controller/{{page.release}}/guides/getting-started) tutorial to learn
 about how to use the Ingress Controller.

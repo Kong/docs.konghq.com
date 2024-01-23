@@ -7,7 +7,7 @@ content_type: reference
 {:.important}
 > `deck ping` functionality has moved to `deck gateway ping`. 
 > <br>`deck ping` will be removed in a future major version of decK (decK 2.x).
-We recommend migrating to [deck gateway ping](/deck/{{page.kong_version}}/reference/deck_gateway_ping/).
+We recommend migrating to [deck gateway ping](/deck/{{ page.release }}/reference/deck_gateway_ping/).
 {% endif_version %}
 
 The ping command can be used to verify if decK
@@ -30,8 +30,8 @@ Useful when RBAC permissions are scoped to a Workspace.
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## See also
 
-* [deck](/deck/{{page.kong_version}}/reference/deck/)	 - Administer your Kong clusters declaratively
+* [deck](/deck/{{page.release}}/reference/deck/)	 - Administer your Kong clusters declaratively

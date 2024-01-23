@@ -1,5 +1,5 @@
 
-{% include_cached /md/kic/add-certificate.md hostname=include.hostname kong_version=page.kong_version %}
+{% include_cached /md/kic/add-certificate.md hostname=include.hostname releasen=page.release %}
 
 1. Update your routing configuration to use this certificate.
  {% capture the_code %}

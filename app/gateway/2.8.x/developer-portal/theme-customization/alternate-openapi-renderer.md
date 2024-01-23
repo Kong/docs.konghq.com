@@ -3,7 +3,7 @@ title: Alternate OpenAPI Renderer
 badge: enterprise
 ---
 
-Through Kong Manager, use the Dev Portal [Editor](/gateway/{{page.kong_version}}/developer-portal/using-the-editor/) to customize how your API specs render in your Dev Portal.
+Through Kong Manager, use the Dev Portal [Editor](/gateway/{{page.release}}/developer-portal/using-the-editor/) to customize how your API specs render in your Dev Portal.
 
 To do this, add some custom code and update your config, as follows:
 

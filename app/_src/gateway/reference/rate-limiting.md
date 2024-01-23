@@ -58,7 +58,7 @@ Define configurations for a new namespace. The following options are accepted:
 {% if_version lte:3.3.x %}
 - `strategy`: Storage strategy to use. Cassandra, PostgresSQL, and Redis are supported. Strategies must provide several public—functions defined below.
 
-    {% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
+    {% include_cached /md/enterprise/cassandra-deprecation.md length='short' release=page.release %}
   
 {% endif_version %}
 {% if_version gte:3.4.x %}

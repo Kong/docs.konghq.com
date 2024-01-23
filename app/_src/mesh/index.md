@@ -158,10 +158,10 @@ For more information, see the [contribution guide](https://kuma.io/community).
 <!-- links -->
 {% if_version gte:2.0.x %}
 {% if_version lte:2.1.x %}
-[deployments]: /mesh/{{page.kong_version}}/introduction/deployments/
+[deployments]: /mesh/{{page.release}}/introduction/deployments/
 {% endif_version %}
 {% if_version gte:2.2.x %}
-[deployments]: /mesh/{{page.kong_version}}/production/deployment/
+[deployments]: /mesh/{{page.release}}/production/deployment/
 {% endif_version %}
 {% endif_version %}
 

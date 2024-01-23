@@ -76,7 +76,7 @@ which allows you to more easily build OpenResty with the necessary patches and m
 ### Deprecations
 
 The external `go-pluginserver` project is considered deprecated in favor of
-the [embedded server approach](/gateway/{{page.kong_version}}/reference/external-plugins/).
+the [embedded server approach](/gateway/{{page.release}}/reference/external-plugins/).
 
 Starting with {{site.base_gateway}} 2.8.0.0, Kong is not building new open-source
 CentOS images. Support for running open-source {{site.base_gateway}} on CentOS on is now

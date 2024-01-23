@@ -9,7 +9,7 @@ The {{site.base_gateway}} software is governed by the
 
 ## Prerequisites
 
-* A [supported system](/gateway/{{page.kong_version}}/compatibility/) with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user/) access.
+* A [supported system](/gateway/{{page.release}}/compatibility/) with root or [root-equivalent](/gateway/{{page.release}}/plan-and-deploy/kong-user/) access.
 * The following tools are installed:
   * [`curl`](https://curl.se/)
   * [`lsb-release`](https://packages.debian.org/lsb-release)
@@ -112,4 +112,4 @@ sudo apt install -y kong={{page.versions.ce}}
 {% endnavtab %}
 {% endnavtabs %}
 
-{% include_cached /md/gateway/setup.md kong_version=page.kong_version %}
+{% include_cached /md/gateway/setup.md release=page.release %}

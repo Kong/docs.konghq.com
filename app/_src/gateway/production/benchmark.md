@@ -239,7 +239,7 @@ Disable access logs for high throughput benchmarking tests by setting the `proxy
 
 ### Internal errors in {{site.base_gateway}}
 
-**Action:** Make sure that there are no errors in {{site.base_gateway}}’s [error log](/gateway/{{page.kong_version}}/reference/configuration/#log_level).
+**Action:** Make sure that there are no errors in {{site.base_gateway}}’s [error log](/gateway/{{page.release}}/reference/configuration/#log_level).
 
 **Explanation:** Check {{site.base_gateway}}’s error log for internal errors. 
 Internal errors can highlight issues within {{site.base_gateway}} or a third-party system that {{site.base_gateway}} relies on to proxy traffic.

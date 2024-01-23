@@ -8,7 +8,7 @@ module PluginSingleSource
                         ['1.0.0'] # If there's no version, assume it's 1.0.0
                       else
                         # If there's no version, assume it's latest
-                        [KongVersions.to_semver(KongVersions.gateway(site).max)]
+                        [latest_release.to_semver]
                       end
       end
 
@@ -20,6 +20,12 @@ module PluginSingleSource
 
       def replacements
         []
+      end
+
+      def latest_release
+        Jekyll::GeneratorSingleSource::Product::Edition
+          .new(edition: 'gateway', site: @site)
+          .latest_release
       end
     end
   end

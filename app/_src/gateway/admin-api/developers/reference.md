@@ -126,7 +126,7 @@ HTTP/1.1 200 OK
 ### Invite developers
 
 Send invitations to a list of emails.
-[SMTP](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/smtp/) must
+[SMTP](/gateway/{{page.release}}/kong-enterprise/dev-portal/smtp/) must
 be enabled to send invite emails.
 
 **Endpoint**
@@ -460,7 +460,7 @@ Applications consume Services in {{site.base_gateway}} via application-level
 authentication. Developers, or the persona that logs into the Dev Portal,
 create and manage applications through the Dev Portal.
 
-Admins must first [enable application registration](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/applications/enable-application-registration/) through so that Developers can associate Services with applications.
+Admins must first [enable application registration](/gateway/{{page.release}}/kong-enterprise/dev-portal/applications/enable-application-registration/) through so that Developers can associate Services with applications.
 
 ### List all applications for a developer
 
@@ -1367,7 +1367,7 @@ HTTP/1.1 204 No Content
 ## Application authentication
 
 When application registration is enabled, it requires an
-[authentication strategy](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/applications/auth-provider-strategy).
+[authentication strategy](/gateway/{{page.release}}/kong-enterprise/dev-portal/applications/auth-provider-strategy).
 By default, this strategy is `kong-oauth2`, and it is set in `kong.conf`:
 
 ```
@@ -1376,7 +1376,7 @@ portal_app_auth = kong-oauth2
 
 If you use the default strategy, you can configure authentication for applications
 using the following APIs. If using the `external-oauth2` strategy,
-[manage it through your IdP](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/applications/auth-provider-strategy).
+[manage it through your IdP](/gateway/{{page.release}}/kong-enterprise/dev-portal/applications/auth-provider-strategy).
 
 ### Inspect all credentials for an application
 

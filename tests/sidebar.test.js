@@ -13,7 +13,7 @@ describe("Version Switcher", () => {
         "links to the root page if the page does not exist in previous versions",
       page: "/gateway/2.8.x/admin-api/consumer-groups/examples/",
       selector: 'a[data-version-id="2.6.x"]',
-      href: "/gateway/2.6.x",
+      href: "/gateway/2.6.x/",
     },
   ].forEach((t) => {
     test(t.title, async () => {
@@ -41,6 +41,7 @@ describe("Outdated version documentation", () => {
     const $ = await fetchPage(`/gateway/2.7.x/install-and-run/rhel/`);
     const s = $(oldVersionSelector);
     await expect(s).toHaveCount(1);
+    console.log(s.attr("href"))
     await expect(s.attr("href")).toMatch(
       new RegExp(`^/gateway/latest/install/linux/rhel/$`)
     );
