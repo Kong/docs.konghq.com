@@ -9,6 +9,21 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## February 2024
+
+**Additional plugin support for consumer groups**
+: Along with {{site.base_gateway}} 3.6 support in {{site.konnect_short_name}}, additional plugins are now supported for consumer groups.
+
+: The following plugins can be applied to consumer groups using the Admin API and the Gateway Manager UI:
+* [Rate Limiting (OSS)](/hub/kong-inc/rate-limiting/)
+* [Request Termination](/hub/kong-inc/request-termination/)
+* [Proxy Cache](/hub/kong-inc/proxy-cache/)
+* [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/)
+* Improved [ACL plugin](/hub/kong-inc/acl/)
+
+: In addition, {{site.base_gateway}} 3.6 support introduces an improved ACL plugin and allows you to centralize your Redis configurations for plugins via Partials.
+
+
 ## January 2024
 
 **Group and filter API request and usage data by consumers**
