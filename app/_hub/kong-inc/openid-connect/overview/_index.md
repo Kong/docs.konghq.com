@@ -71,7 +71,7 @@ order for the credentials:
 3. [Kong OAuth Token Authentication](/hub/kong-inc/openid-connect/how-to/authentication/kong-oauth-token/)
 4. [Introspection Authentication](/hub/kong-inc/openid-connect/how-to/authentication/introspection/)
 5. [User Info Authentication](/hub/kong-inc/openid-connect/how-to/authentication/user-info/)
-6. [Refresh Token Grant](/hub/kong-inc/openid-connect/how-to/authentication/refresh-token-grant/)
+6. [Refresh Token Grant](/hub/kong-inc/openid-connect/how-to/authentication/refresh-token)
 7. [Password Grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/)
 8. [Client Credentials Grant](/hub/kong-inc/openid-connect/how-to/authentication/client-credentials/)
 9. [Authorization Code Flow](/hub/kong-inc/openid-connect/how-to/authentication/authorization-code-flow/)
