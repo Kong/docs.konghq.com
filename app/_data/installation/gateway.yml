@@ -1,3 +1,7 @@
+# e.g.: https://cloudsmith.io/~kong/repos/internal-gateway-37/pub-keys/
+"37":
+  rsa_key: 4C3E847EC336BAB7
+  gpg_key: 6973875013D1931E
 "36":
   rsa_key: 6D312E174BE30B5A
   gpg_key: 1D935A6039ECFC53
