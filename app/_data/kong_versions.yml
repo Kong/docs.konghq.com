@@ -272,6 +272,10 @@
   version: 1.1.0
   release: 1.1.x
   latest: true
+- edition: gateway-operator
+  version: 1.2.0
+  release: 1.2.x
+  label: dev
 - edition: mesh
   version: 1.2.6
   release: 1.2.x
