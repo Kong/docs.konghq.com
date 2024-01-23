@@ -296,12 +296,12 @@ components:
         route: null
         service: "20487393-41ed-47f6-93a8-3407cade2002"
         filters:
-          - name: "go-rate-limiting",
-            enabled: true,
-            config: '{ \"minute\": 30 }'
-          - name: "rust-response-transformer",
-            enabled: true,
-            config: '{ \"remove_header\": \"X-Example\" }'
+          - name: "go-rate-limiting"
+            enabled: true
+            config: '{ "minute": 30 }'
+          - name: "rust-response-transformer"
+            enabled: true
+            config: '{ "remove_header": "X-Example" }'
         tags: ["my-tag"]
 
       properties:
@@ -1348,12 +1348,12 @@ components:
                 route: null
                 service: "20487393-41ed-47f6-93a8-3407cade2002"
                 filters:
-                  - name: "go-rate-limiting",
-                    enabled: true,
-                    config: '{ \"minute\": 30 }'
-                  - name: "rust-response-transformer",
-                    enabled: true,
-                    config: '{ \"remove_header\": \"X-Example\" }'
+                  - name: "go-rate-limiting"
+                    enabled: true
+                    config: '{ "minute": 30 }'
+                  - name: "rust-response-transformer"
+                    enabled: true
+                    config: '{ "remove_header": "X-Example" }'
                 tags: ["my-tag"]
             properties:
               enabled:
@@ -1409,12 +1409,12 @@ components:
                 route: null
                 service: "20487393-41ed-47f6-93a8-3407cade2002"
                 filters:
-                  - name: "go-rate-limiting",
-                    enabled: true,
-                    config: '{ \"minute\": 30 }'
-                  - name: "rust-response-transformer",
-                    enabled: true,
-                    config: '{ \"remove_header\": \"X-Example\" }'
+                  - name: "go-rate-limiting"
+                    enabled: true
+                    config: '{ "minute": 30 }'
+                  - name: "rust-response-transformer"
+                    enabled: true
+                    config: '{ "remove_header": "X-Example" }'
                 tags: ["my-tag"]
       description: Filter Chain request body
     plugin-request:

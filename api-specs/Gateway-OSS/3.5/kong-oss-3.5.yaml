@@ -296,14 +296,13 @@ components:
         route: null
         service: "20487393-41ed-47f6-93a8-3407cade2002"
         filters:
-          - name: "go-rate-limiting",
-            enabled: true,
-            config: '{ \"minute\": 30 }'
-          - name: "rust-response-transformer",
-            enabled: true,
-            config: '{ \"remove_header\": \"X-Example\" }'
+          - name: "go-rate-limiting"
+            enabled: true
+            config: '{ "minute": 30 }'
+          - name: "rust-response-transformer"
+            enabled: true
+            config: '{ "remove_header": "X-Example" }'
         tags: ["my-tag"]
-
       properties:
         created_at:
           description: Unix epoch when the resource was created.
@@ -322,7 +321,9 @@ components:
                 type: string
               config:
                 description: "The configuration for the filter. Proxy-Wasm does not define a configuration format, so this field accepts either a raw string, or a JSON object. A raw string is passed uninterpreted to the filter, to be validated at request time. If a JSON object is used, there must be a metadata file called `my-filter.meta.json` in the same folder as your `my-filter.wasm` file. The metadata file must contain an object with a field `\"config_schema\"`, and its value must the JSON Schema for the filter configuration. This schema will be used for validating the configuration upon insertion in the filter chain, ahead of execution."
-                type: ["string", "object"]
+                oneOf:
+                  - type: string
+                  - type: object
               enabled:
                 description: Whether the filter is to be applied.
                 type: boolean
@@ -1348,12 +1349,12 @@ components:
                 route: null
                 service: "20487393-41ed-47f6-93a8-3407cade2002"
                 filters:
-                  - name: "go-rate-limiting",
-                    enabled: true,
-                    config: '{ \"minute\": 30 }'
-                  - name: "rust-response-transformer",
-                    enabled: true,
-                    config: '{ \"remove_header\": \"X-Example\" }'
+                  - name: "go-rate-limiting"
+                    enabled: true
+                    config: '{ "minute": 30 }'
+                  - name: "rust-response-transformer"
+                    enabled: true
+                    config: '{ "remove_header": "X-Example" }'
                 tags: ["my-tag"]
             properties:
               enabled:
@@ -1409,12 +1410,12 @@ components:
                 route: null
                 service: "20487393-41ed-47f6-93a8-3407cade2002"
                 filters:
-                  - name: "go-rate-limiting",
-                    enabled: true,
-                    config: '{ \"minute\": 30 }'
-                  - name: "rust-response-transformer",
-                    enabled: true,
-                    config: '{ \"remove_header\": \"X-Example\" }'
+                  - name: "go-rate-limiting"
+                    enabled: true
+                    config: '{ "minute": 30 }'
+                  - name: "rust-response-transformer"
+                    enabled: true
+                    config: '{ "remove_header": "X-Example" }'
                 tags: ["my-tag"]
       description: Filter Chain request body
     plugin-request:
@@ -7111,7 +7112,8 @@ paths:
             application/json:
               schema:
                 type: object
-                description: JSON Schema object describing the expected configuration for the filter. This endpoints always returns a JSON Schema object describing the filter configuration, even if the filter does not include JSON Schema metadata: if the configuration is expected as a raw string, the JSON Schema configuration returned by this endpoint will indicate so.
+                description: |
+                  JSON Schema object describing the expected configuration for the filter. This endpoints always returns a JSON Schema object describing the filter configuration, even if the filter does not include JSON Schema metadata: if the configuration is expected as a raw string, the JSON Schema configuration returned by this endpoint will indicate so.
               examples:
                 filter returning a JSON Schema included in the filter metadata:
                   value:
@@ -7123,10 +7125,10 @@ paths:
                         properties:
                           headers:
                             type: "array"
-                            elements:
+                            items:
                               type: "string"
-                        required: "headers"
-                    required: "add"
+                        required: [headers]
+                    required: [add]
       operationId: get-schemas-filters-filter_name
       description: |
         Retrieve the JSON Schema of a Proxy-Wasm filter's configuration. This is useful to understand what fields a filter accepts, and can be used for building third-party integrations to the Kong's filter chain system.
