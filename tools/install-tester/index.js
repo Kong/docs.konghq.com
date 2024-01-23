@@ -31,6 +31,7 @@ const fs = require("fs");
 if (!fs.existsSync("./output")) {
   fs.mkdirSync("./output");
 }
+const fetch = require("node-fetch");
 
 const { extractV2, extractV3 } = require("./instruction-extractor");
 const run = require("./execute-in-docker");
@@ -131,7 +132,33 @@ async function runSingleJob(distro, job, arch, installOption, conditions) {
     );
 
     if (expected !== version) {
-      console.log(`❌ ${summary} Expected: ${expected}, Got: ${version}`);
+
+      // Check if the package exists on download.konghq.com
+      // Only supports RHEL at the moment
+      let existsOnOldSite = "❓";
+      const expectedParts = expected.split(" ");
+      const expectedVersion = expectedParts[expectedParts.length - 1];
+      let packageArch = arch.replace("linux/", "");
+
+      let packageName = "kong";
+      if (installOption.package == "enterprise") {
+        packageName = "kong-enterprise-edition";
+      }
+
+      if (distro === "rhel") {
+        // 2.x packages are noarch for enterprise on RHEL
+        if (installOption.package == "enterprise" && expectedVersion[0] == "2") {
+          packageArch = "noarch";
+        }
+        url = `https://download.konghq.com/gateway-2.x-rhel-7/Packages/k/${packageName}-${expectedVersion}.rhel7.${packageArch}.rpm`;
+
+        const response = await fetch(url, { method: "HEAD" });
+        existsOnOldSite = response.status != 404 ? "✅" : "❌";
+      }
+
+      console.log(
+        `❌ ${summary} Expected: ${expected}, Got: ${version}, Exists on download.konghq.com: ${existsOnOldSite}`,
+      );
       process.exitCode = 1;
 
       allStderr += `\n\n---------------------------------------\n❌ ${summary}\n---------------------------------------\n${stderr}`;
