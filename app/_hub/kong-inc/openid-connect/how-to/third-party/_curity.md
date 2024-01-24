@@ -206,7 +206,7 @@ With relatively simple configurations in both the Curity Identity Server and the
 
 {% endif_version %}
 
-[kong-add-service]: /gateway/latest/admin-api/#service-object
+[kong-add-service]: /gateway/api/admin-ee/latest/#/Services/create-service
 [curity-phantom-token-introspection]: https://curity.io/resources/learn/introspect-with-phantom-token
 [curity-getting-started]: https://curity.io/resources/getting-started
 [curity-phantom-token-pattern]: https://curity.io/resources/learn/phantom-token-pattern

@@ -5,9 +5,11 @@ nav_title: OpenID Connect with Okta
 
 This guide covers an example OpenID Connect plugin configuration to authenticate browser clients using an Okta identity provider.
 
+{% if_plugin_version lte:3.4.x %}
 For information about configuring OIDC using Okta as an Identity provider
 in conjunction with the Application Registration plugin, see
 [Set Up External Portal Application Authentication with Okta and OIDC](/gateway/latest/kong-enterprise/dev-portal/authentication/okta-config).
+{% endif_plugin_version %}
 
 ## Authorization code flow with the OpenID Connect plugin and Okta
 
@@ -220,7 +222,7 @@ following, at minimum:
 
 1. On the **Authorization** tab, configure the following, at a minimum:
 
-    1. For **config.scopes required**, enter `openid, email, profile`. This parameter is the scope of what OpenID Connect checks.
+    1. For **config.scopes**, enter `openid, email, profile`. This parameter is the scope of what OpenID Connect checks.
 
     1. For **config.scopes claim**, enter `scp`.
 
@@ -261,12 +263,12 @@ In this example, the configuration contains the following values:
 * **`auth_method`**: A list of authentication methods to use with the plugin, such as passwords, introspection tokens, etc. The majority of cases use `authorization_code`, and {{site.base_gateway}} will accept all methods if no methods are specified.
 * **`client_id`**: The `client_id` of the OpenID Connect client registered in OpenID Connect Provider. Okta provides one to identify itself.  
 * **`client_secret`**: The `client_secret` of the OpenID Connect client registered in OpenID Connect Provider. These credentials should never be publicly exposed.
-* **`config.scopes_required`**:  The scope of what OpenID Connect checks. This is set to `openid` by default. You must also set `email` and `profile` for this example. 
+* **`config.scopes`**:  The scope of what OpenID Connect checks. This is set to `openid` by default. You must also set `email` and `profile` for this example. 
 * **`config.scopes_claim`**: This should be set to `scp`.
 * **`config.redirect_uri`**: The `redirect_uri` of the client defined with `client_id` (also used as a redirection URI for the authorization code flow).
 
 For a list of all available configuration parameters and what they do, see the
-[OIDC plugin reference](/hub/kong-inc/openid-connect).
+[OIDC plugin reference](/hub/kong-inc/openid-connect/configuration/).
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -334,4 +336,4 @@ Similarly, setting `authenticated_groups_claim` will extract that claim's value 
 
 [okta-authorization-server]: https://developer.okta.com/docs/guides/customize-authz-server/create-authz-server/
 [okta-register-app]: https://developer.okta.com/docs/guides/add-an-external-idp/openidconnect/register-app-in-okta/
-[credential-claim]: /hub/kong-inc/openid-connect/#configcredential_claim
+[credential-claim]: /hub/kong-inc/openid-connect/configuration/#configcredential_claim
