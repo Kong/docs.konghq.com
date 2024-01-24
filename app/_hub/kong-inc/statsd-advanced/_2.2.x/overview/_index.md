@@ -51,7 +51,7 @@ Field         | Description                                             | Dataty
 `name`          | StatsD metrics name. Required.                       | String   | [Metrics](#metrics)          
 `stat_type`     | Determines what sort of event a metric represents. Required.  | String   | `gauge`, `timer`, `counter`, `histogram`, `meter` and `set`|
 `sample_rate`<br>*conditional*   | Sampling rate. Required.              | Number        | `number`                 
-`consumer_identifier`<br>*conditional* | Authenticated user detail. Required.  | String   | One of the following options: `consumer_id`, `custom_id`, `username`
+`consumer_identifier`<br>*conditional* | Authenticated user detail. Required.  | String   | One of the following options: `consumer_id`, `custom_id`, `username`, `credential`
 `service_identifier`<br>*conditional* | Service detail. Required.  | String   |  One of the following options:`service_id`, `service_name`, `service_host`, `service_name_or_host`
 `workspace_identifier`<br>*conditional* | Workspace detail. Required.  | String | One of the following options:`workspace_id`, `workspace_name`
 
