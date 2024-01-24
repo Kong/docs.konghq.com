@@ -1,6 +1,6 @@
 {% unless include.name and include.path contains '_hub' %}
 {% capture page_title %}{{
-include.title | escape }}{% if include.kong_version and include.no_version != true %} - v{{ include.kong_version | escape }}{% endif %}{% if include.title %} | {% endif %}{{
+include.title | escape }}{% if include.release and include.no_version != true %} - v{{ include.release | escape }}{% endif %}{% if include.title %} | {% endif %}{{
 site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.title }}
 | {{site.title}}{% endcapture %}
 {% endunless %}
@@ -34,9 +34,6 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.titl
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-NL48VKT');</script>
     <!-- End Google Tag Manager -->
-
-    <!-- Recaptcha -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   {% endif %}
 
   <meta charset="utf-8" />
@@ -94,18 +91,11 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.titl
 
   <!-- Preload assets -->
   <link rel="dns-prefetch" href="https://cloud.typography.com" />
-  <link
-    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
-    rel="stylesheet"
-  />
   <link rel="dns-prefetch" href="https://dev.visualwebsiteoptimizer.com" />
   <link rel="dns-prefetch" href="https://cdn.segment.com" />
 
   <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"
-  />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"/>
 
   {% if include.canonical_url %}
     <link rel="canonical" href="{{site.links.web}}{{ include.canonical_url }}" />
@@ -129,6 +119,10 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.titl
   {% if layout.oas %}
     {% vite_javascript_tag oas %}
   {% endif %}
+
+  {% for entry_point in page.include_entrypoints %}
+    {% vite_javascript_tag {{ entry_point }} %}
+  {% endfor %}
 
   {% vite_stylesheet_tag application.less %}
 

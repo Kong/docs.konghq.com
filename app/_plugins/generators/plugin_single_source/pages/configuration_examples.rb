@@ -15,7 +15,7 @@ module PluginSingleSource
         if @release.latest?
           canonical_url
         else
-          "#{base_url}#{@release.version}/how-to/basic-example/"
+          "#{base_url}#{gateway_release}/how-to/basic-example/"
         end
       end
 

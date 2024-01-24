@@ -3,8 +3,8 @@ describe("Canonical links", () => {
     {
       title:
         "contains a canonical link pointing to itself if it's the latest version",
-      src: "/gateway/latest/install/kubernetes/helm-quickstart/",
-      href: "/gateway/latest/install/kubernetes/helm-quickstart/",
+      src: "/gateway/latest/install/kubernetes/proxy/",
+      href: "/gateway/latest/install/kubernetes/proxy/",
     },
     {
       title:
@@ -109,13 +109,16 @@ describe("sitemap includes", () => {
     "/mesh/latest/",
     "/kubernetes-ingress-controller/latest/",
     "/deck/latest/",
-    "/gateway/latest/install/kubernetes/helm-quickstart/",
+    "/gateway/latest/install/kubernetes/proxy/",
     "/mesh/latest/installation/ecs/",
     "/deck/latest/installation/",
     "/hub/kong-inc/application-registration/",
     "/gateway/changelog/",
     "/mesh/changelog/",
     "/hub/",
+    "/hub/plugins/compatibility/",
+    "/hub/plugins/license-tiers/",
+    "/hub/plugins/overview/",
   ].forEach((t) => {
     test(t, async () => {
       const page = await fetchPageRaw("/sitemap.xml");

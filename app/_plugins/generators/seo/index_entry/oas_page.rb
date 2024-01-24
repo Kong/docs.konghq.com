@@ -12,16 +12,7 @@ module SEO
       end
 
       def attributes
-        attrs = { 'url' => @page.url, 'page' => @page }
-        attrs.merge!('version' => version) unless index?
-        attrs
-      end
-
-      def version
-        # (\d+ match or /latest/)
-        @version ||= Utils::Version.to_version(
-          @page.url.split('/').last
-        )
+        { 'url' => @page.url, 'page' => @page }
       end
 
       def index?

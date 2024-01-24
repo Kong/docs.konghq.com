@@ -39,7 +39,7 @@ module SEO
       # Set the frequency and priority values for the sitemap to use
       filtered_entries.map do |entry|
         {
-          'url' => entry['page']['url'],
+          'url' => entry['page']['url'].downcase,
           'changefreq' => 'weekly',
           'priority' => '1.0'
         }

@@ -9,7 +9,7 @@ A single service can have many routes. Once a route is matched, {{site.base_gate
 
 ## Route and service interaction
 
-Routes, in conjunction with [services](/gateway/{{page.kong_version}}/key-concepts/services/), let you expose your services to applications with {{site.base_gateway}}. {{site.base_gateway}} abstracts the service from the applications by using routes. Since the application always uses the route to make a request, changes to the services, like versioning, don't impact how applications make the request. Routes also allow the same service to be used by multiple applications and apply different policies based on the route used.
+Routes, in conjunction with [services](/gateway/{{page.release}}/key-concepts/services/), let you expose your services to applications with {{site.base_gateway}}. {{site.base_gateway}} abstracts the service from the applications by using routes. Since the application always uses the route to make a request, changes to the services, like versioning, don't impact how applications make the request. Routes also allow the same service to be used by multiple applications and apply different policies based on the route used.
 
 For example, if you have an external application and an internal application that need to access the `example_service` service, but the external application should be limited in how often it can query the service to assure no denial of service. If a rate limit policy is configured for the service when the internal application calls the service, the internal application is limited as well. Routes can solve this problem.
 
@@ -119,7 +119,7 @@ Routes can be configured dynamically to rewrite the requested URL to a different
 
 {{site.base_gateway}} can also handle more complex URL rewriting cases by using regular expression capture groups in the route path and the [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) plugin. For example, this can be used when you must replace `/api/<function>/old` with `/new/api/<function>`.
 
-{{site.base_gateway}} 3.0.x or later ships with a new router. The new router can use regex expression capture groups to describe routes using a domain-specific language called Expressions. Expressions can describe routes or paths as patterns using regular expressions. For more information about how to configure the router using Expressions, see [How to configure routes using expressions](/gateway/{{page.kong_version}}/key-concepts/routes/expressions/).
+{{site.base_gateway}} 3.0.x or later ships with a new router. The new router can use regex expression capture groups to describe routes using a domain-specific language called Expressions. Expressions can describe routes or paths as patterns using regular expressions. For more information about how to configure the router using Expressions, see [How to configure routes using expressions](/gateway/{{page.release}}/key-concepts/routes/expressions/).
 
 ## Plugins for routes
 
@@ -137,5 +137,5 @@ Before you can start making requests against a service, you must add a route to 
 
 You can add routes to a service in {{site.base_gateway}} using the following methods:
 
-* [Send an HTTP request using the Admin API](/gateway/{{page.kong_version}}/get-started/services-and-routes/)
-* [Create a route using the Kong Manager user interface](/gateway/{{page.kong_version}}/kong-manager/get-started/services-and-routes/)
+* [Send an HTTP request using the Admin API](/gateway/{{page.release}}/get-started/services-and-routes/)
+* [Create a route using the Kong Manager user interface](/gateway/{{page.release}}/kong-manager/get-started/services-and-routes/)

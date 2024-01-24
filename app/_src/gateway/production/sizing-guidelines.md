@@ -55,7 +55,7 @@ those of compute environments running {{site.base_gateway}}.
 Query patterns are typically simple and follow schema indexes. Provision
 sufficient database resources in order to handle spiky query patterns.
 
-There are [settings](/gateway/{{page.kong_version}}/reference/configuration/#datastore-section/)
+There are [settings](/gateway/{{page.release}}/reference/configuration/#datastore-section/)
 that you can adjust to keep database access minimal (also see [in-memory caching](#in-memory-caching)), or
 [keep {{site.base_gateway}} operational](https://support.konghq.com/support/s/article/Keeping-Kong-Functional-During-DB-Down-Times)
 if the DB is down for maintenance. If you choose to keep the database
@@ -102,7 +102,7 @@ use internal, in-memory queues to decouple production of data from
 the transmission to an upstream server. These queues reduce the
 number of concurrent requests that are made to an upstream server
 under high load conditions and provide for buffering during temporary
-network and upstream outages. For more information about {{site.base_gateway}}'s internal queueing system, see [About Plugin Queuing](/gateway/{{page.kong_version}}/kong-plugins/queue/).
+network and upstream outages. For more information about {{site.base_gateway}}'s internal queueing system, see [About Plugin Queuing](/gateway/{{page.release}}/kong-plugins/queue/).
 
 As queues use main memory to store queued entries, it is important
 to understand how many queues exist in the system and how many entries
@@ -177,7 +177,7 @@ When enabled, certain CPU-intensive steps of the data plane reconfiguration oper
 to a dedicated worker process. This reduces proxy latency during reconfigurations at the cost of a
 slight increase in memory usage. The benefits of this mechanism are most apparent with configurations
 consisting of more than a thousand configuration entities. See the
-configuration reference for [`dedicated_config_processing`](/gateway/{{page.kong_version}}/reference/configuration/#dedicated_config_processing) for more information.
+configuration reference for [`dedicated_config_processing`](/gateway/{{page.release}}/reference/configuration/#dedicated_config_processing) for more information.
 
 {% endif_version %}
 

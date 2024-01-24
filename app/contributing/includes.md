@@ -48,10 +48,10 @@ where this `include` is being used. For example:
 
 ### Page variables
 If using page variables inside an `include`, replace `page` in the variable with
-`include`. For example, `page.kong_version` becomes `include.kong_version`.
+`include`. For example, `page.release` becomes `include.release`.
 
 ```
-This is an include that uses {% raw %}{{ include.kong_version }}{% endraw %}.
+This is an include that uses {% raw %}{{ include.release }}{% endraw %}.
 ```
 
 This is necessary because we use the `jekyll_include_cache` plugin on the docs
@@ -71,10 +71,10 @@ To add an `include`, use the `include` tag with the following basic syntax:
 Depending on the content of the snippet, you can pass various parameters to the `include` tag. If the `include` content has a variable anywhere in the text, map it to the [page variable](#page-variables):
 
 ```
-{% raw %}{% include_cached /md/install.md kong_version=page.kong_version %}{% endraw %}
+{% raw %}{% include_cached /md/install.md release=page.release %}{% endraw %}
 ```
 
-This maps `page.kong_version` to the `include.kong_version` from the source include file.
+This maps `page.release` to the `include.release` from the source include file.
 
 
 ### Conditional content

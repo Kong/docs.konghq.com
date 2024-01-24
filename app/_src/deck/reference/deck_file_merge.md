@@ -41,7 +41,7 @@ deck file patch -o merged.yaml file1.yaml file2.yaml file3.yaml
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## See also
 

@@ -46,7 +46,7 @@ You can also configure routes with:
 * Redirect status codes: HTTPS status codes
 * Tags: Optional set of strings to group routes with 
 
-See [Routes](/gateway/{{page.kong_version}}/key-concepts/routes/) for a description of how
+See [Routes](/gateway/{{page.release}}/key-concepts/routes/) for a description of how
 {{site.base_gateway}} routes requests.
 
 ## Managing services and routes

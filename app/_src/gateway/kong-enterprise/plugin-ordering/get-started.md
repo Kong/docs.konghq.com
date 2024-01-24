@@ -4,7 +4,7 @@ badge: enterprise
 content_type: how-to
 ---
 
-Here are some common use cases for [dynamic plugin ordering](/gateway/{{page.kong_version}}/kong-enterprise/plugin-ordering/).
+Here are some common use cases for [dynamic plugin ordering](/gateway/{{page.release}}/kong-enterprise/plugin-ordering/).
 
 ## Rate limiting before authentication
 

@@ -1799,6 +1799,7 @@ paths:
           required: true
           schema:
             type: string
+            format: uuid
       responses:
         '201':
           content:
@@ -2712,7 +2713,7 @@ paths:
             schema:
               type: object
               properties:
-                consumer_group_id:
+                group:
                   type: string
                   description: The consumer group UUID.
                   example: 1e965e47-d185-4e9e-8bc7-94ea6ae75b2e
@@ -2759,12 +2760,13 @@ components:
         type: string
     service_id:
       name: service_id
-      description: ID **or** name of the service to lookup
+      description: UUID of the service to lookup
       example: 7fca84d6-7d37-4a74-a7b0-93e576089a41
       in: path
       required: true
       schema:
         type: string
+        format: uuid
     ca_certificate_id:
       name: ca_certificate_id
       description: ID of the related certificate
@@ -2869,10 +2871,11 @@ components:
       required: true
       schema:
         type: string
+        format: uuid
         example: 9524ec7d-36d9-465d-a8c5-83a3c9390458
       description: >-
-        The ID of your control plane. This variable is available in the Konnect
-        manager
+        The UUID of your control plane. This variable is available in the
+        Konnect manager
     route_id:
       name: route_id
       in: path

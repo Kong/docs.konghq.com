@@ -256,8 +256,8 @@ To start using {{site.mesh_product_name}}, see the
 
 <!-- links -->
 {% if_version gte:2.0.x %}
-[deployments]: /mesh/{{page.kong_version}}/introduction/deployments/
-[get-started-k8s]: /mesh/{{page.kong_version}}/quickstart/kubernetes/
+[deployments]: /mesh/{{page.release}}/introduction/deployments/
+[get-started-k8s]: /mesh/{{page.release}}/quickstart/kubernetes/
 {% endif_version %}
 
 {% if_version lte:1.9.x %}

@@ -3,7 +3,7 @@ title: Advanced Secrets Configuration
 ---
 
 Vault implementations offer a variety of advanced configuration options.
-For specific configuration parameters for your vault backend, see the [backend reference](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/).
+For specific configuration parameters for your vault backend, see the [backend reference](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/).
 
 {% if_version lte:3.0.x %}
 
@@ -23,7 +23,7 @@ For example, the following query uses an option called `prefix` with the value `
 ```
 
 For more information on available configuration options,
-refer to respective [vault backend documentation](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/).
+refer to respective [vault backend documentation](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/).
 
 ## Environment variables
 
@@ -67,7 +67,7 @@ Result:
 }
 ```
 
-Config options depend on the associated [backend](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/) used.
+Config options depend on the associated [backend](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/) used.
 
 This lets you drop the configuration from environment variables and query arguments and use the entity name in the reference:
 
@@ -133,5 +133,5 @@ Parameter | Field name | Description
 `vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for how long secrets will remain in use after they are expired (`config.ttl` is over). This is useful when a vault becomes unreachable, or when a secret is deleted from the Vault and isn't replaced immediately. On this both cases, the Gateway will keep trying to refresh the secret for `resurrect_ttl` seconds. After that, it will stop trying to refresh. We recommend assigning a sufficiently high value to this configuration option to ensure a seamless transition in case there are unexpected issues with the Vault. The default value for `resurrect_ttl` is 1e8 seconds, which is about 3 years.
 
 {% if_version gte:3.4.x %}
-[Read more about secrets rotation](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/secrets-rotation/).
+[Read more about secrets rotation](/gateway/{{page.release}}/kong-enterprise/secrets-management/secrets-rotation/).
 {% endif_version %}

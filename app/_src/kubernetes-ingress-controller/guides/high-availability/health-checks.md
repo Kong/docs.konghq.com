@@ -19,7 +19,7 @@ These options highlight the fact that once a circuit is opened because of errors
 You can use active health-check, where each instance of Kong actively probes Pods to check if they are healthy.
 
 
-{% include /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
+{% include /md/kic/prerequisites.md release=page.release disable_gateway_api=false %}
 
 {% include /md/kic/test-service-httpbin.md %}
 

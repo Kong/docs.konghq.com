@@ -5,12 +5,16 @@ on:
 concurrency:
   cancel-in-progress: true
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+
+env:
+  BUNDLE_GITHUB__COM: x-access-token:${{ secrets.BUNDLE_GITHUB__COM }}
+
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
       - name: Check if manual review has been performed
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         id: labels
         with:
           result-encoding: string
@@ -34,12 +38,12 @@ jobs:
           fetch-depth: 100
       - uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 20
           cache: 'npm'
       - run: npm ci
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v40
+        uses: tj-actions/changed-files@v42
         with:
           sha: ${{ github.sha }}
           files: |
@@ -65,7 +69,7 @@ jobs:
         with:
           ruby-version: .ruby-version
       - name: Ruby gem cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ github.workspace }}/vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
@@ -90,26 +94,27 @@ jobs:
           fetch-depth: 2
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v40
+        uses: tj-actions/changed-files@v42
         with:
           sha: ${{ github.sha }}
           files: |
-            app/
-            docs/
+            app/**
+            docs/**
           files_ignore: |
             app/_src/.repos/kuma/**
             app/gateway/2.7.x/**
             app/gateway/2.6.x/**
-            app/mesh/raw/CHANGELOG.md
+            app/assets/mesh/raw/CHANGELOG.md
           json: true
           quotepath: false
           escape_json: false
-      - uses: errata-ai/vale-action@reviewdog
+      - uses: mheap/vale-action@reviewdog
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           fail_on_error: true
           files: '${{ steps.changed-files.outputs.all_changed_files }}'
           filter_mode: file
-          reporter: github-pr-review
+          reporter: github-pr-annotations
+          reviewdog_url: https://github.com/mheap/reviewdog/releases/download/v10.0.0/reviewdog_10.0.0_Linux_x86_64.tar.gz
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}

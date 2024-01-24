@@ -48,11 +48,11 @@ control and monitor the status of the entire Kong cluster.
 ## Platform Compatibility
 
 You can run {{site.base_gateway}} in hybrid mode on any platform where
-{{site.base_gateway}} is [supported](/gateway/{{page.kong_version}}/install/).
+{{site.base_gateway}} is [supported](/gateway/{{page.release}}/install/).
 
 ### Kubernetes Support and Additional Documentation
 
-[{{site.base_gateway}} on Kubernetes](/gateway/{{page.kong_version}}/install/kubernetes/helm-quickstart)
+[{{site.base_gateway}} on Kubernetes](/gateway/{{page.release}}/install/kubernetes/helm-quickstart)
 fully supports hybrid mode deployments, with or without the {{site.kic_product_name}}.
 
 For the full Kubernetes hybrid mode documentation, see
@@ -225,15 +225,15 @@ multiple control planes and redirecting the traffic using a TCP proxy.
 
 ## Readonly Status API endpoints on data plane
 
-Several readonly endpoints from the [Admin API](/gateway/{{page.kong_version}}/admin-api/)
-are exposed to the [Status API](/gateway/{{page.kong_version}}/reference/configuration/#status_listen) on data planes, including the following:
+Several readonly endpoints from the [Admin API](/gateway/{{page.release}}/admin-api/)
+are exposed to the [Status API](/gateway/{{page.release}}/reference/configuration/#status_listen) on data planes, including the following:
 
-- [GET /upstreams/{upstream}/targets/](/gateway/{{page.kong_version}}/admin-api/#list-targets)
-- [GET /upstreams/{upstream}/health/](/gateway/{{page.kong_version}}/admin-api/#show-upstream-health-for-node)
-- [GET /upstreams/{upstream}/targets/all/](/gateway/{{page.kong_version}}/admin-api/#list-all-targets)
+- [GET /upstreams/{upstream}/targets/](/gateway/{{page.release}}/admin-api/#list-targets)
+- [GET /upstreams/{upstream}/health/](/gateway/{{page.release}}/admin-api/#show-upstream-health-for-node)
+- [GET /upstreams/{upstream}/targets/all/](/gateway/{{page.release}}/admin-api/#list-all-targets)
 - GET /upstreams/{upstream}/targets/{target}
 
-Please refer to [Upstream objects](/gateway/{{page.kong_version}}/admin-api/#upstream-object) in the Admin API documentation for more information about the
+Please refer to [Upstream objects](/gateway/{{page.release}}/admin-api/#upstream-object) in the Admin API documentation for more information about the
 endpoints.
 
 ## Keyring encryption in hybrid mode

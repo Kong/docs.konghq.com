@@ -4,9 +4,14 @@ content_type: reference
 ---
 
 {% if_version gte:1.28.x %}
-{:.warning}
-> **Warning**: This command is deprecated and will be removed in a future version.
-Use [deck gateway validate](/deck/{{page.kong_version}}/reference/deck_gateway_validate/) instead.
+{:.important}
+> `deck validate` functionality has moved to `deck gateway validate`. 
+> <br>`deck validate` will be removed in a future major version of decK (decK 2.x).
+We recommend migrating to [deck gateway validate](/deck/{{ page.release }}/reference/deck_gateway_validate/).
+> <br><br> In the new command:
+> * Files changed to positional arguments without the `-s/--state` flag
+> * The default write location changed from `kong.yaml` to `-` (stdin/stdout)
+> * The `--online` flag is removed, use either `deck file` or `deck gateway`
 {% endif_version %}
 
 The validate command reads the state file and ensures validity.
@@ -61,8 +66,8 @@ This takes precedence over _workspace fields in state files.
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## See also
 
-* [deck](/deck/{{page.kong_version}}/reference/deck/)	 - Administer your Kong clusters declaratively
+* [deck](/deck/{{page.release}}/reference/deck/)	 - Administer your Kong clusters declaratively

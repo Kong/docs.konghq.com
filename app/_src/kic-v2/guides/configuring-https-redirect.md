@@ -9,17 +9,17 @@ Learn to configure the {{site.kic_product_name}} to redirect HTTP requests to
 HTTPS so that all communication from the external world to your APIs and
 microservices is encrypted.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
+{% include_cached /md/kic/prerequisites.md release=page.release disable_gateway_api=false %}
 
-{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
+{% include_cached /md/kic/test-service-echo.md release=page.release %}
 
-{% include_cached /md/kic/class.md kong_version=page.kong_version %}
+{% include_cached /md/kic/class.md release=page.release %}
 
-{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version %}
+{% include_cached /md/kic/http-test-routing.md release=page.release %}
 
 ## Add TLS configuration
 
-{% include_cached /md/kic/add-tls-conf.md hostname='kong.example' kong_version=page.kong_version %}
+{% include_cached /md/kic/add-tls-conf.md hostname='kong.example' release=page.release %}
 
 ## Configure an HTTPS redirect
 
@@ -179,6 +179,6 @@ properties for it, then the flag won't be necessary.
 
 If you have a domain that you control but don't have TLS/SSL certificates for
 it, see [Using cert-manager with
-Kong](/kubernetes-ingress-controller/{{page.kong_version}}/guides/cert-manager)
+Kong](/kubernetes-ingress-controller/{{page.release}}/guides/cert-manager)
 guide which can get TLS certificates setup for you automatically. And it's
 free, thanks to Let's Encrypt!

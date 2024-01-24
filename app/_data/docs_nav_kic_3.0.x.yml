@@ -111,6 +111,8 @@ items:
             url: /guides/services/https-redirect
           - text: Multiple Backend Services
             url: /guides/services/multiple-backends
+          - text: Configuring Gateway API resources across namespaces
+            url: /guides/services/cross-namespace
       - text: Request Manipulation
         items:
           - text: Rewriting Hosts and Paths
@@ -125,6 +127,8 @@ items:
             url: /guides/high-availability/kic
           - text: Service Health Checks
             url: /guides/high-availability/health-checks
+          - text: Last Known Good Config
+            url: /guides/high-availability/last-known-good-config
       - text: Security
         items:
           - text: Kong Vaults
@@ -135,6 +139,8 @@ items:
             url: /guides/security/workspaces
           - text: Preserving Client IP
             url: /guides/security/client-ip
+          - text: Kubernetes Secrets in Plugins
+            url: /guides/security/plugin-secrets
       #- text: Service Mesh
       #  items:
       #    - text: Kong Mesh
@@ -151,6 +157,14 @@ items:
             url: /guides/migrate/ingress-to-gateway
           - text: Credential Type Labels
             url: /guides/migrate/credential-kongcredtype-label
+      - text: Customize Deployments
+        items:
+          - text: Images
+            url: /guides/customize/image
+      - text: Custom Ingress Class
+        items:
+          - text: Internal / External Traffic
+            url: /guides/custom-class/internal-external
 
   - title: Plugins
     icon: /assets/images/icons/documentation/icn-api-plugins-color.svg
@@ -194,6 +208,9 @@ items:
       - text: Custom Resource Definitions
         url: /reference/custom-resources
         src: reference/custom-resources-3.0.x
+      - text: Resources Requiring Setting Ingress Class
+        url: /reference/resource-requiring-ingress-class
+        src: reference/ingress-class-requirement
       - text: Gateway API migration
         url: /reference/ingress-to-gateway-migration
       - text: Required Permissions for Installation

@@ -124,13 +124,13 @@ substituting your own license key.
     {% if_version gte:2.6.x lte:2.8.x %}
     {:.note}
     > **Note:** This is only a snippet. For a full working example, see the instructions to
-    [Install {{site.base_gateway}} on Docker](/gateway/{{page.kong_version}}/install-and-run/docker/).
+    [Install {{site.base_gateway}} on Docker](/gateway/{{page.release}}/install-and-run/docker/).
 
     {% endif_version %}
     {% if_version gte:3.0.x %}
     {:.note}
     > **Note:** This is only a snippet. For a full working example, see the instructions to
-    [Install {{site.base_gateway}} on Docker](/gateway/{{page.kong_version}}/install/docker/).
+    [Install {{site.base_gateway}} on Docker](/gateway/{{page.release}}/install/docker/).
 
     {% endif_version %}
 
@@ -139,7 +139,7 @@ substituting your own license key.
      --network=kong-net \
      ...
      -e KONG_LICENSE_DATA \
-     kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+     kong/kong-gateway:{{page.releases_hash[page.version-index].ee-version}}-alpine
     ```
 {% endnavtab %}
 {% navtab Environment variable (file path) %}
@@ -157,13 +157,13 @@ from the container:
 {% if_version gte:2.6.x lte:2.8.x %}
 {:.note}
 > **Note:** This is only a snippet. For a full working example, see the instructions to
-[Install {{site.base_gateway}} on Docker](/gateway/{{page.kong_version}}/install-and-run/docker).
+[Install {{site.base_gateway}} on Docker](/gateway/{{page.release}}/install-and-run/docker).
 
 {% endif_version %}
 {% if_version gte:3.0.x %}
 {:.note}
 > **Note:** This is only a snippet. For a full working example, see the instructions to
-[Install {{site.base_gateway}} on Docker](/gateway/{{page.kong_version}}/install/docker).
+[Install {{site.base_gateway}} on Docker](/gateway/{{page.release}}/install/docker).
 
 {% endif_version %}
 
@@ -173,7 +173,7 @@ docker run -d --name kong-gateway \
  ...
  -v "$(pwd)/kong-license/:/kong-license/" \
  -e "KONG_LICENSE_PATH=/kong-license/license.json" \
- kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+ kong/kong-gateway:{{page.releases_hash[page.version-index].ee-version}}-alpine
 ```
 
 {% endnavtab %}

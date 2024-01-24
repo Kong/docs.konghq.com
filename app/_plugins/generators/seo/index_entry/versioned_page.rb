@@ -8,8 +8,7 @@ module SEO
       LEGACY_GATEWAY_ENDPOINTS = ['/gateway-oss/', '/enterprise/'].freeze
 
       def version
-        # (\d+ match or /latest/)
-        @version ||= Utils::Version.to_version(url_segments[1])
+        @version ||= Utils::Version.to_version(@page.data['release'].value)
       end
 
       def url
@@ -59,7 +58,7 @@ module SEO
         # a different URL without a canonical tag
         canonical_url ||= @page.url
 
-        @page.data['canonical_url'] = canonical_url
+        @page.data['canonical_url'] = Utils::CanonicalUrl.generate(canonical_url)
       end
 
       def urls_to_check
