@@ -123,23 +123,26 @@ http.path ~ r#"/foo/bar/.+"#
 
 Expressions language support a rich set of operators that can be performed on various data types.
 
-| Operator       | Name                  | Description                                                                           |
-|----------------|-----------------------|---------------------------------------------------------------------------------------|
-| `==`           | Equals                | Field value is equal to the constant value                                                  |
-| `!=`           | Not equals            | Field value does not equal the constant value                                         |
-| `~`            | Regex match           | Field value matches regex                                                             |
-| `^=`           | Prefix match          | Field value starts with the constant value                                                |
-| `=^`           | Postfix match         | Field value ends with the constant value                                                  |
-| `>=`           | Greater than or equal | Field value is greater than or equal to the constant value                                   |
-| `>`            | Greater than          | Field value is greater than the constant value                                               |
-| `<=`           | Less than or equal    | Field value is less than or equal to the constant value                                      |
-| `<`            | Less than             | Field value is less than the constant value                                                  |
-| `in`           | In                    | Field value is inside the constant value                                                 |
-| `not in`       | Not in                | Field value is not inside the constant value                                              |
-| `contains`     | Contains              | Field value contains the constant value                                                   |
-| `&&`           | And                   | Returns `true` if **both** expressions on the left and right side evaluates to `true` |
-| `||`           | Or                    | Returns `true` if **any** expressions on the left and right side evaluates to `true`  |
-| `(Expression)` | Parenthesis           | Groups expressions together to be evaluated first                                     |
+| Operator       | Name                  | Description                                                                                                                                                                                                  |
+|----------------|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `==`           | Equals                | Field value is equal to the constant value                                                                                                                                                                   |
+| `!=`           | Not equals            | Field value does not equal the constant value                                                                                                                                                                |
+| `~`            | Regex match           | Field value matches regex                                                                                                                                                                                    |
+| `^=`           | Prefix match          | Field value starts with the constant value                                                                                                                                                                   |
+| `=^`           | Postfix match         | Field value ends with the constant value                                                                                                                                                                     |
+| `>=`           | Greater than or equal | Field value is greater than or equal to the constant value                                                                                                                                                   |
+| `>`            | Greater than          | Field value is greater than the constant value                                                                                                                                                               |
+| `<=`           | Less than or equal    | Field value is less than or equal to the constant value                                                                                                                                                      |
+| `<`            | Less than             | Field value is less than the constant value                                                                                                                                                                  |
+| `in`           | In                    | Field value is inside the constant value                                                                                                                                                                     |
+| `not in`       | Not in                | Field value is not inside the constant value                                                                                                                                                                 |
+| `contains`     | Contains              | Field value contains the constant value                                                                                                                                                                      |
+| `&&`           | And                   | Returns `true` if **both** expressions on the left and right side evaluates to `true`                                                                                                                        |
+| `\|\|`         | Or                    | Returns `true` if **any** expressions on the left and right side evaluates to `true`                                                                                                                         |
+| `(Expression)` | Parenthesis           | Groups expressions together to be evaluated first                                                                                                                                                            |
+{% if_version gte: 3.6.x %}
+| `!`            | Not                   | Negates the result of a parenthesized expression. **Note:** The `!` operator can only be used with parenthesized expression like `!(foo == 1)`, it can **not** be used with bare predicate like `! foo == 1` |
+{% endif_version %}
 
 ### Extended descriptions
 
@@ -165,8 +168,8 @@ Here are the allowed combination of field types and constant types with each ope
 |----------------------------------|-----------------------------------------|----------------|----------|----------------------------------|---------|--------------|
 | `String`                         | `==`, `!=`, `~`, `^=`, `=^`, `contains` | ❌              | ❌        | ❌                                | `~`     | ❌            |
 | `IpAddr`                         | ❌                                       | `in`, `not in` | `==`     | ❌                                | ❌       | ❌            |
-| `Int`                            | ❌                                       | ❌              | ❌        | `==`, `!=`, `>=`, `>`, `<=`, `<` | ❌       | ❌            |
-| `Expression`                     | ❌                                       | ❌              | ❌        | ❌                                | ❌       | `&&`, `      |
+| `Int`                            | ❌                                       | ❌              | ❌        | `==`, `!=`, `>=`, `>`, `<=`, `<` | ❌       | ❌           |
+| `Expression`                     | ❌                                       | ❌              | ❌        | ❌                                | ❌       | `&&`, `||`  |
 
 {:.note}
 > **Notes:** 
