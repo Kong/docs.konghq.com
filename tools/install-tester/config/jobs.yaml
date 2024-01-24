@@ -6,7 +6,7 @@
     - amazon-linux
     - ubuntu
     - debian
-    - rhel
+    - rhel:9
   skip:
     - 3.2.x/debian/enterprise/package
     - 3.2.x/debian/enterprise/repository
@@ -29,7 +29,7 @@
   distros:
     - amazon-linux
     - ubuntu
-    - rhel
+    - rhel:9
     - debian
   arch:
     - linux/amd64
@@ -43,7 +43,7 @@
       - enterprise
   distros:
     - ubuntu
-    - rhel
+    - rhel:7
     - amazon-linux
     - debian
     - centos
