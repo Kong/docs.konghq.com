@@ -48,7 +48,8 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
 
       ![OIDC with Okta Issuer URL](/assets/images/products/gateway/dev-portal/oidc-issuer-url.png)
 
-   2. In the `Config.Consumer Claim` field, enter your `<application_id>`.
+   2. In the `Config.Consumer Claim` field, enter the name of the field from the Okta payload that contains the application ID. 
+   This is usually `sub`.
 
    **Tip:** Because Okta's discovery document does not include all supported
    auth types by default, ensure the
@@ -58,11 +59,11 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
 
    The core configuration should be:
 
-   ```
+   ```json
    {
      "issuer": "<auth_server_issuer_url>",
      "verify_credentials": false,
-     "consumer_claim": "<application_id>",
+     "consumer_claim": "sub",
    }
 
    ```
