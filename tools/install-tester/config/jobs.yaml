@@ -29,7 +29,7 @@
   distros:
     - amazon-linux
     - ubuntu
-    - rhel:9
+    - rhel:7
     - debian
   arch:
     - linux/amd64
