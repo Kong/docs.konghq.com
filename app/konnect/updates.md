@@ -9,6 +9,11 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## February 2024
+
+**Improved Proxy URL experience**
+: Customers are now able to configure and view their Proxy URLs directly from {{site.konnect_short_name}}, and use it them to connect to data planes directly.
+
 ## January 2024
 
 **Group and filter API request and usage data by consumers**
