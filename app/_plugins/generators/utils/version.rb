@@ -7,7 +7,7 @@ module Utils
     end
 
     def self.to_release(input)
-      input.split('.').take(2).push('x').join('.')
+      input.split('.').tap(&:pop).push('x').join('.')
     end
 
     def self.to_semver(input)
