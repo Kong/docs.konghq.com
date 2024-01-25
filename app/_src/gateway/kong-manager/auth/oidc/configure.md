@@ -75,11 +75,11 @@ The following are configuration parameters in `admin_gui_auth_conf` for `openid-
 | `ssl_verify`<br>*optional*     | Boolean   | false   | Verify identity provider server certificate.    |
 {% endif_version %}
 
-<!-- FIXME !!! Should DISPLAY the following content when >= 3.6.x -->
+{% if_version gte:3.6.x %}
 
 {:.note}
-> **Note**: If you are using the configuration from prior versions, you might need to follow the [migration guide]
-> (/gateway/{{page.kong_version}}/kong-manager/auth/oidc/migrate) to review and update your configuration.
+> **Note**: If you are using configuration from previous versions, you may need to follow the [migration guide](/gateway/{{page.release}}/kong-manager/auth/oidc/migrate/)
+> to review and update your configuration.
 
 The `admin_gui_auth_config` value must be valid JSON. The following is an example of the configuration:
 
@@ -135,11 +135,11 @@ documentation for parameters prefixed by `session_` to learn more.
 * Considering upgrading the [`session_cookie_same_site`](/hub/kong-inc/openid-connect/configuration/#config-session_cookie_same_site)
   to `Strict` when using the same domain for the Admin API and Kong Manager.
 
-Learn more about these concepts in [Session Security in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/sessions/#session-security).
+Learn more about these concepts in [Session Security in Kong Manager](/gateway/{{page.release}}/kong-manager/auth/sessions/#session-security).
 
-<!-- END OF FIXME -->
+{% endif_version %}
 
-<!-- FIXME !!! Should HIDE the following content when >= 3.6.x -->
+{% if_version lte:3.5.x %}
 
 The **Sessions plugin** (configured with `admin_gui_session_conf`) requires a secret and is configured securely by default.
 * Under all circumstances, the `secret` must be manually set to a string.
@@ -153,7 +153,7 @@ The **Sessions plugin** (configured with `admin_gui_session_conf`) requires a se
 
 Learn more about these properties in [Session Security in Kong Manager](/gateway/{{page.release}}/kong-manager/auth/sessions/#session-security), and see [example configurations](/gateway/{{page.release}}/kong-manager/auth/sessions/#example-configurations).
 
-<!-- END OF FIXME -->
+{% endif_version %}
 
 Replace the entries surrounded by `<>` with values that are valid for your IdP.
 For example, Google credentials can be found here:
