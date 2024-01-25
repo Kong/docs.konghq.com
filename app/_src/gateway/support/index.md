@@ -47,6 +47,9 @@ Customers with platinum or higher subscriptions may request fixes outside of the
 Kong supports the following versions of {{site.ee_product_name}}: 
 
 {% navtabs %}
+  {% navtab 3.6 %}
+    {% include_cached gateway-support.html version="3.6" data=site.data.tables.support.gateway.versions.36 eol="Feb 2025" %}
+  {% endnavtab %}
   {% navtab 3.5 %}
     {% include_cached gateway-support.html version="3.5" data=site.data.tables.support.gateway.versions.35 eol="Nov 2024" %}
   {% endnavtab %}
