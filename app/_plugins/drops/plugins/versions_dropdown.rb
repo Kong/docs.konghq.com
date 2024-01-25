@@ -29,6 +29,8 @@ module Jekyll
         end
 
         def text
+          return @release unless @latest
+
           if @release == @latest
             "#{@release} <em>(latest)</em>"
           else
