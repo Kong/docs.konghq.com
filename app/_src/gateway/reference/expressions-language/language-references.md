@@ -142,7 +142,7 @@ Expressions language support a rich set of operators that can be performed on va
 | `(Expression)` | Parenthesis           | Groups expressions together to be evaluated first                                                                                                                                                            |
 
 {% if_version gte:3.6.x %}
-| `!`            | Not                   | Negates the result of a parenthesized expression. **Note:** The `!` operator can only be used with parenthesized expression like `!(foo == 1)`, it can **not** be used with bare predicate like `! foo == 1` |
+| `!`            | Not                   | Negates the result of a parenthesized expression. **Note:** The `!` operator can only be used with parenthesized expression like `!(foo == 1)`, it **cannot** be used with a bare predicate like `! foo == 1` |
 {% endif_version %}
 
 ### Extended descriptions
