@@ -30,7 +30,7 @@ You need to specify the following values:
 You can configure these values with environment variables before starting {{site.base_gateway}}:
 
 ```bash
-export KONG_VAULT_AZURE_VAULT_URI=https://my-vault.vault.azure.com
+export AZURE_VAULT_URI=https://my-vault.vault.azure.com
 export AZURE_TENANT_ID=tenant_id
 export AZURE_CLIENT_ID=client_id
 export AZURE_CLIENT_SECRET=client_secret
@@ -56,7 +56,7 @@ The Azure AD tenant ID, client ID, `vault_uri`, and client secret must be specif
 You can configure these values with environment variables before starting {{site.base_gateway}}:
 
 ```bash
-export KONG_VAULT_AZURE_VAULT_URI=https://my-vault.vault.azure.com
+export AZURE_VAULT_URI=https://my-vault.vault.azure.com
 export AZURE_TENANT_ID=tenant_id
 export AZURE_CLIENT_ID=client_id
 export AZURE_CLIENT_SECRET=client_secret
