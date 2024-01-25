@@ -35,6 +35,9 @@ documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-i
 {:.note}
 > With Workload Identity, setting the `GCP_SERVICE_ACCOUNT` isn't necessary.
 
+{:.note}
+> **Notice:** When using GCP Vault as a backend, make sure you have configured `system` as part of the [`lua_ssl_trusted_certificate` configuration directive](/gateway/latest/reference/configuration#lua_ssl_trusted_certificate) so that the SSL certificates used by official GCP API can be trusted by Kong.
+
 ### Examples
 
 To use a GCP Secret Manager

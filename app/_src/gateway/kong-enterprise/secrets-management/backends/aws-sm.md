@@ -51,6 +51,9 @@ export KONG_VAULT_AWS_ROLE_SESSION_NAME=<aws_assume_role_session_name>
 The vault backend configuration field can also be configured in the `kong.conf` file. See [Gateway Enterprise configuration reference](/gateway/latest/reference/configuration).
 {% endif_version %}
 
+{:.note}
+> **Notice:** When using AWS Vault as a backend, make sure you have configured `system` as part of the [`lua_ssl_trusted_certificate` configuration directive](/gateway/latest/reference/configuration#lua_ssl_trusted_certificate) so that the SSL certificates used by official AWS API can be trusted by Kong.
+
 ### Examples
 
 For example, an AWS Secrets Manager secret with the name `secret-name` may have multiple key=value pairs:
