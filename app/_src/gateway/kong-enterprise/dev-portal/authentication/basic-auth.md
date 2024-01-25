@@ -17,10 +17,10 @@ Basic Authentication for the Dev Portal can be enabled using any of the followin
 - Enabling authentication in the Dev Portal requires use of the
 Sessions plugin. Developers will not be able to log in if this is not properly set.
 For more information, see
-[Sessions in the Dev Portal](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/sessions).
+[Sessions in the Dev Portal](/gateway/{{page.release}}/kong-enterprise/dev-portal/authentication/sessions).
 
 - When Dev Portal Authentication is enabled, content files remain unauthenticated until a role is applied to them. The exceptions are `settings.txt` and `dashboard.txt`, which begin with the `*` role. For more information, see
-[Developer Roles and Content Permissions](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/developer-permissions).
+[Developer Roles and Content Permissions](/gateway/{{page.release}}/kong-enterprise/dev-portal/authentication/developer-permissions).
 
 
 ## Enable Portal Session Config
@@ -58,10 +58,10 @@ portal_session_conf={ "cookie_name":"portal_session","secret":"<CHANGE_THIS>","s
 ### See Also
 
 - For more information about portal session configuration, see
-[Sessions](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/sessions#portal-session-conf).
+[Sessions](/gateway/{{page.release}}/kong-enterprise/dev-portal/authentication/sessions#portal-session-conf).
 
 - For more information about domains and cookies in Dev Portal sessions, see
-[Domains](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/sessions#domains).
+[Domains](/gateway/{{page.release}}/kong-enterprise/dev-portal/authentication/sessions#domains).
 
 ## Enable Basic Auth Using Kong Manager
 

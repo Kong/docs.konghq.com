@@ -75,5 +75,5 @@ into the system itself, use the Docker based environment, or pull the binaries
 from [Github](https://github.com/Kong/deck/releases) for each job.
 
 ## See also
-For more information about how to manage decK using the Docker image, see [Run decK with Docker](/deck/{{page.kong_version}}/guides/run-with-docker/).
+For more information about how to manage decK using the Docker image, see [Run decK with Docker](/deck/{{page.release}}/guides/run-with-docker/).
 

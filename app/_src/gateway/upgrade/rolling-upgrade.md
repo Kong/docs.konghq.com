@@ -57,7 +57,7 @@ _New nodes are gradually deployed and pointed to the `kong.yml` file, while traf
 
 ## Prerequisites
 
-* Review the [general upgrade guide](/gateway/{{page.kong_version}}/upgrade/) to prepare for the upgrade and review your options.
+* Review the [general upgrade guide](/gateway/{{page.release}}/upgrade/) to prepare for the upgrade and review your options.
 * You have a DB-less deployment or you need to upgrade the data planes (DPs) in a hybrid mode deployment, or {{site.konnect_short_name}} DPs.
 
 ## Upgrade using the rolling method
@@ -70,19 +70,19 @@ The exact execution of these steps will vary depending on your environment.
 This is critical to guarantee data consistency between cluster X and cluster Y.
 
 2. Back up data from the current cluster X by following the 
-[declarative configuration backup instructions](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/#declarative-config-backup).
+[declarative configuration backup instructions](/gateway/{{page.release}}/upgrade/backup-and-restore/#declarative-config-backup).
 
-3. Evaluate factors that may impact the upgrade, as described in [Upgrade considerations](/gateway/{{page.kong_version}}/upgrade/#preparation-upgrade-considerations/).
+3. Evaluate factors that may impact the upgrade, as described in [Upgrade considerations](/gateway/{{page.release}}/upgrade/#preparation-upgrade-considerations/).
 You may have to consider customization of both `kong.conf` and {{site.base_gateway}} configuration data.
 
 4. Evaluate any changes that have happened between releases:
-    * [Breaking changes](/gateway/{{page.kong_version}}/breaking-changes/)
+    * [Breaking changes](/gateway/{{page.release}}/breaking-changes/)
     * [Full changelog](/gateway/changelog/)
 
 5.  Deploy a new {{site.base_gateway}} cluster of version Y:
     
     1. Install a new cluster running version Y as instructed in the 
-    [{{site.base_gateway}} Installation Options](/gateway/{{page.kong_version}}/install/).
+    [{{site.base_gateway}} Installation Options](/gateway/{{page.release}}/install/).
 
         Provision the new cluster Y with the same-sized resource capacity as that of 
         the current cluster X.
@@ -94,8 +94,8 @@ You may have to consider customization of both `kong.conf` and {{site.base_gatew
         If it is a data plane node, ensure the communication with the control node succeeds.
 
         If the outcome is not as expected, look over the 
-        [upgrade considerations](/gateway/{{page.kong_version}}/upgrade/#preparation-upgrade-considerations/) and the 
-        [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/)
+        [upgrade considerations](/gateway/{{page.release}}/upgrade/#preparation-upgrade-considerations/) and the 
+        [breaking changes](/gateway/{{page.release}}/breaking-changes/)
         again to see if you missed anything.
 
     3. Continuously install and launch more Y nodes.

@@ -7,7 +7,7 @@ releases using the `kong migrations` commands.
 
 You can also use the commands to migrate all {{site.base_gateway}} open-source entities
 to {{site.base_gateway}} (Enterprise). See
-[Migrating from {{site.ce_product_name}} to {{site.base_gateway}}](/gateway/{{page.kong_version}}/migrate-ce-to-ke/).
+[Migrating from {{site.ce_product_name}} to {{site.base_gateway}}](/gateway/{{page.release}}/migrate-ce-to-ke/).
 
 If you experience any issues when running migrations, contact
 [Kong Support](https://support.konghq.com/support/s/) for assistance.
@@ -62,7 +62,7 @@ for the gateway are bundled and you can skip this section.
 As of {{ site.base_gateway }} 3.0, our Debian and RHEL images are built with minimal dependencies and run through automated security scanners before being published.
 They only contain the bare minimum required to run {{site.base_gateway}}.
 If you would like further customize the base image and any dependencies, you can
-[build your own Docker images](/gateway/{{page.kong_version}}/install/docker/build-custom-images).
+[build your own Docker images](/gateway/{{page.release}}/install/docker/build-custom-images).
 
 If you are using Debian, RHEL, or building your dependencies by hand, there are changes since the
 previous release, so you will need to rebuild them with the latest patches.
@@ -351,12 +351,12 @@ This ensures that all instances are using the new {{site.base_gateway}} package 
 ### Hybrid mode considerations
 
 {:.important}
-> **Important:** If you are currently running in [hybrid mode](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/),
+> **Important:** If you are currently running in [hybrid mode](/gateway/{{page.release}}/production/deployment-topologies/hybrid-mode/),
 upgrade the control plane first, and then the data planes.
 
 * If you are currently running 2.8.x in classic (traditional)
   mode and want to run in hybrid mode instead, follow the hybrid mode
-  [installation instructions](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/setup/)
+  [installation instructions](/gateway/{{page.release}}/production/deployment-topologies/hybrid-mode/setup/)
   after running the migration.
 * Custom plugins (either your own plugins or third-party plugins that are not shipped with {{site.base_gateway}})
   need to be installed on both the control plane and the data planes in hybrid mode. Install the
@@ -479,7 +479,7 @@ kong start [-c /path/to/kong.conf]
 ```
 
 Assuming that {{site.base_gateway}} is already running on your system, acquire the latest
-version from any of the available [installation methods](/gateway/{{page.kong_version}}/install/)
+version from any of the available [installation methods](/gateway/{{page.release}}/install/)
 and install it, overriding your previous installation.
 
 **If you are planning to make modifications to your configuration, this is a
@@ -493,7 +493,7 @@ kong migrations up [-c configuration_file]
 
 If the command is successful, and no migration ran
 (no output), then you only have to
-[reload](/gateway/{{page.kong_version}}/reference/cli/#kong-reload) {{site.base_gateway}}:
+[reload](/gateway/{{page.release}}/reference/cli/#kong-reload) {{site.base_gateway}}:
 
 ```shell
 kong reload [-c configuration_file]

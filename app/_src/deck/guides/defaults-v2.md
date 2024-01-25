@@ -179,8 +179,8 @@ Summary:
 
     {:.note}
     > For production use in larger systems, we recommend that you break out
-    your defaults into a [separate `defaults.yaml` file](/deck/{{page.kong_version}}/guides/multi-file-state/)
-    or use [tags](/deck/{{page.kong_version}}/guides/distributed-configuration/)
+    your defaults into a [separate `defaults.yaml` file](/deck/{{page.release}}/guides/multi-file-state/)
+    or use [tags](/deck/{{page.release}}/guides/distributed-configuration/)
     to apply the defaults wherever they are needed.
 
 2. Define the properties you want to set for core {{site.base_gateway}} objects.
@@ -403,7 +403,7 @@ curl -i -X GET http://localhost:8001/schemas/targets
 ```
 
 ## See also
-* [Deduplicate plugin configuration](/deck/{{page.kong_version}}/guides/deduplicate-plugin-configuration/)
-* [Distributed configuration for {{site.base_gateway}} using decK](/deck/{{page.kong_version}}/guides/distributed-configuration/)
-* [Using multiple files to store configuration](/deck/{{page.kong_version}}/guides/multi-file-state/)
+* [Deduplicate plugin configuration](/deck/{{page.release}}/guides/deduplicate-plugin-configuration/)
+* [Distributed configuration for {{site.base_gateway}} using decK](/deck/{{page.release}}/guides/distributed-configuration/)
+* [Using multiple files to store configuration](/deck/{{page.release}}/guides/multi-file-state/)
 * {{site.base_gateway}} admin API: [`/schemas` endpoint](/gateway/latest/admin-api/#retrieve-entity-schema)

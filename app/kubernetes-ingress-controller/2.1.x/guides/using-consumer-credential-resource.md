@@ -8,7 +8,7 @@ consumers.
 
 ## Installation
 
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install
+Please follow the [deployment](/kubernetes-ingress-controller/{{page.release}}/deployment/overview/) documentation to install
 the {{site.kic_product_name}} on your Kubernetes cluster.
 
 ## Testing Connectivity to Kong
@@ -16,7 +16,7 @@ the {{site.kic_product_name}} on your Kubernetes cluster.
 This guide assumes that the `PROXY_IP` environment variable is
 set to contain the IP address or URL pointing to Kong.
 Please follow one of the
-[deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
+[deployment guides](/kubernetes-ingress-controller/{{page.release}}/deployment/overview) to configure this environment variable.
 
 If everything is setup correctly, making a request to Kong should return
 HTTP 404 Not Found.

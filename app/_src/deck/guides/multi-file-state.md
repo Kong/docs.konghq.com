@@ -30,7 +30,7 @@ split the configuration into different files as you see fit for your use case.
 
 
 Please note that having the state split across different files is not same
-as [distributed configuration](/deck/{{page.kong_version}}/guides/distributed-configuration/).
+as [distributed configuration](/deck/{{page.release}}/guides/distributed-configuration/).
 
 {% if_version gte:1.11.x %}
 ## Multiple files and `--select-tag`

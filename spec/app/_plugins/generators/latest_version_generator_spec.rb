@@ -12,8 +12,6 @@ RSpec.describe LatestVersion::Generator do
     Jekyll::GeneratorSingleSource::Generator.new.generate(site)
   end
 
-  let(:page) { site.pages.detect { |p| p.relative_path == relative_path } }
-
   describe '#generate' do
     subject { described_class.new.generate(site) }
 
@@ -23,20 +21,20 @@ RSpec.describe LatestVersion::Generator do
     end
 
     context 'products without latest' do
-      let(:relative_path) { 'mesh/changelog.md' }
+      let(:page) { find_page_by_url('/mesh/changelog/') }
 
       it { expect{ subject }.not_to change { site.pages.size } }
     end
 
     context 'products with latest' do
       context 'when the page is not the latest version' do
-        let(:relative_path) { 'mesh/1.6.x/index.md' }
+        let(:page) { find_page_by_url('/mesh/1.6.x/') }
 
         it_behaves_like 'does not create a latest page'
       end
 
       context 'when the page has a permalink set' do
-        let(:relative_path) { 'mesh/2.0.x/index.md' }
+        let(:page) { find_page_by_url('/mesh/2.1.x/') }
 
         before { page.data['permalink'] = '/mesh/' }
 
@@ -44,7 +42,7 @@ RSpec.describe LatestVersion::Generator do
       end
 
       context 'when the page is marked as `is_latest`' do
-        let(:relative_path) { 'mesh/2.0.x/index.md' }
+        let(:page) { find_page_by_url('/mesh/2.1.x/') }
 
         before { page.data['is_latest'] = true }
 
@@ -52,7 +50,7 @@ RSpec.describe LatestVersion::Generator do
       end
 
       context 'when the page is the latest version' do
-        let(:relative_path) { 'mesh/2.0.x/index.md' }
+        let(:page) { find_page_by_url('/mesh/2.1.x/') }
 
         it_behaves_like 'creates a latest page'
 
@@ -67,31 +65,31 @@ RSpec.describe LatestVersion::Generator do
           expect(latest.data['version-index']).to be_nil
           expect(latest.data['edit-link']).to be_nil
           expect(latest.data['alias']).to eq(['/mesh/'])
-          expect(latest.relative_path).to eq('mesh/2.0.x/index.md')
+          expect(latest.relative_path).to eq('_src/mesh/index.md')
           expect(latest.content).to eq(page.content)
         end
 
         context 'gateway' do
-          let(:relative_path) { '_src/gateway/index.md' }
+          let(:page) { find_page_by_url('/gateway/3.0.x/') }
 
           it_behaves_like 'creates a latest page'
         end
 
         context 'kic' do
-          let(:relative_path) { '_src/kubernetes-ingress-controller/index.md' }
+          let(:page) { find_page_by_url('/kubernetes-ingress-controller/2.7.x/') }
 
           it_behaves_like 'creates a latest page'
         end
 
         context 'deck' do
-          let(:relative_path) { '_src/deck/index.md' }
+          let(:page) { find_page_by_url('/deck/1.16.x/') }
 
           it_behaves_like 'creates a latest page'
         end
 
         context 'pages that do not belong to products with latest versions' do
-          ['404.html', 'contributing/index.md'].each do |path|
-            let(:relative_path) { path }
+          ['/404.html', '/contributing/'].each do |p|
+            let(:page) { find_page_by_url(p) }
 
             it_behaves_like 'does not create a latest page'
           end

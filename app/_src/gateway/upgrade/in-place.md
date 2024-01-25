@@ -35,7 +35,7 @@ flowchart TD
 _The database is reused by the new cluster Y, and the current cluster X is shut down once all nodes are migrated. No Admin API write operations can be performed during the upgrade._
 
 There is business downtime as cluster X is stopped during the upgrade process. 
-You must carefully review the [upgrade considerations](/gateway/{{page.kong_version}}/upgrade/#preparation-upgrade-considerations) in advance.
+You must carefully review the [upgrade considerations](/gateway/{{page.release}}/upgrade/#preparation-upgrade-considerations) in advance.
 
 {:.important}
 > **Important**: We do not recommend using this strategy unless {{site.base_gateway}} is deployed under 
@@ -47,9 +47,9 @@ However, this strategy does not prevent you from deploying the new cluster Y on 
 
 ## Prerequisites
 
-* Review the [general upgrade guide](/gateway/{{page.kong_version}}/upgrade/) to prepare for the upgrade and review your options.
+* Review the [general upgrade guide](/gateway/{{page.release}}/upgrade/) to prepare for the upgrade and review your options.
 * You have a traditional deployment or you need to upgrade the control planes (CPs) in a hybrid mode deployment.
-* You can't perform [dual-cluster upgrades](/gateway/{{page.kong_version}}/upgrade/dual-cluster/) due to resource limitations.
+* You can't perform [dual-cluster upgrades](/gateway/{{page.release}}/upgrade/dual-cluster/) due to resource limitations.
 
 ## Upgrade using the in-place method
 
@@ -61,20 +61,20 @@ The exact execution of these steps will vary depending on your environment.
 This is critical to guarantee data consistency between cluster X and cluster Y.
 
 2. Back up data from the current cluster X by following the 
-[Backup guide](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/).
+[Backup guide](/gateway/{{page.release}}/upgrade/backup-and-restore/).
 
-3. Evaluate factors that may impact the upgrade, as described in [Upgrade considerations](/gateway/{{page.kong_version}}/upgrade/#preparation-upgrade-considerations/).
+3. Evaluate factors that may impact the upgrade, as described in [Upgrade considerations](/gateway/{{page.release}}/upgrade/#preparation-upgrade-considerations/).
 You may have to consider customization of both `kong.conf` and {{site.base_gateway}} configuration data.
 
 4. Evaluate any changes that have happened between releases:
-    * [Breaking changes](/gateway/{{page.kong_version}}/breaking-changes/)
+    * [Breaking changes](/gateway/{{page.release}}/breaking-changes/)
     * [Full changelog](/gateway/changelog/)
 
 5. Stop the {{site.base_gateway}} nodes of the old cluster X but keep the database running. 
 This will create a period of downtime until the upgrade completes.
 
 6. Install a new cluster running version Y as instructed in the 
-    [{{site.base_gateway}} Installation Options](/gateway/{{page.kong_version}}/install/) and 
+    [{{site.base_gateway}} Installation Options](/gateway/{{page.release}}/install/) and 
     point it at the existing database for cluster X.
     
     Provision the new cluster Y with the same-sized resource capacity as that of 
@@ -88,7 +88,7 @@ This will create a period of downtime until the upgrade completes.
 
 10. Actively monitor all proxy metrics.
 
-11. If you run into any issues, [roll back the upgrade](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/#restore-gateway-entities). 
+11. If you run into any issues, [roll back the upgrade](/gateway/{{page.release}}/upgrade/backup-and-restore/#restore-gateway-entities). 
 Prioritize the database-level restoration method over the application-level method.
 
 12. When there are no more issues, decommission the old cluster X to complete the upgrade. 

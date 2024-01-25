@@ -29,7 +29,7 @@ The following CRDs allow users to declaratively configure all aspects of Kong:
 
 {:.note}
 > **Note:** Many fields available on KongIngress are also available as
-> [annotations](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/).
+> [annotations](/kubernetes-ingress-controller/{{page.release}}/references/annotations/).
 > You can add these annotations directly to Service and Ingress resources
 > without creating a separate KongIngress resource. When an annotation is
 > available, it is the preferred means of configuring that setting, and the
@@ -76,7 +76,7 @@ on the traffic.
 
 Once this resource is created, the resource needs to be associated with an
 Ingress, Service, or KongConsumer resource in Kubernetes.
-For more details, read the reference documentation on [KongPlugin](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource/).
+For more details, read the reference documentation on [KongPlugin](/kubernetes-ingress-controller/{{page.release}}/guides/using-kongplugin-resource/).
 
 The following diagram shows how you can link a KongPlugin resource to an
 Ingress, Service, or KongConsumer:
@@ -87,7 +87,7 @@ Ingress, Service, or KongConsumer:
 
 ## KongClusterPlugin
 
-_This resource requires the [`kubernetes.io/ingress.class` annotation](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/)._
+_This resource requires the [`kubernetes.io/ingress.class` annotation](/kubernetes-ingress-controller/{{page.release}}/references/annotations/)._
 
 KongClusterPlugin resource is exactly same as KongPlugin, except that it is a
 Kubernetes cluster-level resources instead of being a namespaced resource.

@@ -54,7 +54,7 @@ those of compute environments running {{site.base_gateway}}.
 Query patterns are typically simple and follow schema indexes. Provision
 sufficient database resources in order to handle spiky query patterns.
 
-There are [settings](/gateway/{{page.kong_version}}/reference/configuration/#datastore-section/)
+There are [settings](/gateway/{{page.release}}/reference/configuration/#datastore-section/)
 that you can adjust to keep database access minimal (also see [in-memory caching](#in-memory-caching)), or
 [keep {{site.base_gateway}} operational](https://support.konghq.com/support/s/article/Keeping-Kong-Functional-During-DB-Down-Times)
 if the DB is down for maintenance. If you choose to keep the database

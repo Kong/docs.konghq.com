@@ -3,7 +3,7 @@
 module PluginSingleSource
   module Pages
     class Base
-      attr_reader :site, :release
+      attr_reader :site, :release, :file
       attr_accessor :sidenav
 
       def initialize(release:, file:, source_path:)
@@ -36,8 +36,10 @@ module PluginSingleSource
         @dir ||= "hub/#{@release.dir}"
       end
 
-      def version
-        @version ||= @release.version
+      def gateway_release
+        @gateway_release ||= Jekyll::GeneratorSingleSource::Product::Edition
+                             .new(edition: 'gateway', site: @site)
+                             .releases.detect { |r| r.value == @release.version }&.to_s || @release.version
       end
 
       def source_file

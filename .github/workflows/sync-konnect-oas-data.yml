@@ -20,5 +20,5 @@ jobs:
         with:
           title: Sync Konnect OAS Data
           commit-message: Sync Konnect OAS Data
-          labels: 'review:tech'
+          labels: skip-changelog,review:general
           token: ${{ secrets.PAT }}

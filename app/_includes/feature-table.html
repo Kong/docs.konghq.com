@@ -37,7 +37,7 @@
         <tr>
           <td>
             {% if i.url %}
-              <a href="{{ i.url | replace: 'VERSION', page.kong_version}}"> {{ i.name }}</a>
+              <a href="{{ i.url | replace: 'VERSION', page.release }}"> {{ i.name }}</a>
             {% else %}
               {{ i.name }}
             {% endif %}

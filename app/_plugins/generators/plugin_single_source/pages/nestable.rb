@@ -11,7 +11,7 @@ module PluginSingleSource
         if @release.latest?
           canonical_url
         else
-          "#{base_url}#{@release.version}/#{file_to_url_segment}/"
+          "#{base_url}#{gateway_release}/#{file_to_url_segment}/"
         end.gsub('//', '/')
       end
 

@@ -7,6 +7,9 @@ content_type: reference
 The ping command can be used to verify if decK
 can connect to Kong's Admin API.
 
+{:.note}
+> `deck gateway ping` is the replacement for `deck ping`. 
+
 ## Syntax
 
 ```
@@ -25,7 +28,7 @@ Useful when RBAC permissions are scoped to a workspace.
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## See also
 

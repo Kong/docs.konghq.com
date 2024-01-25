@@ -3,23 +3,29 @@ title: Load Balancing Reference
 ---
 
 Kong provides multiple ways of load balancing requests to multiple backend
-services: a straightforward DNS-based method, and a more dynamic ring-balancer
-that also allows for service registry without needing a DNS server.
+services: the default DNS-based method, and an advanced set of load-balancing
+algorithms using the Upstream entity.
+
+The DNS load balancer is enabled by default and is limited to round-robin
+load-balancing. The `upstream` entity has health-check and circuit-breaker
+functionalities, besides the more advanced algorithms like least-connections,
+consistent-hashing, and lowest-latency.
+
+Refer to the [DNS caveats](#dns-caveats) depending on your infrastructure .
 
 ## DNS-based load balancing
 
-When using DNS-based load balancing, the registration of the backend services
-is done outside of Kong, and Kong only receives updates from the DNS server.
-
 Every Service that has been defined with a `host` containing a hostname
 (instead of an IP address) will automatically use DNS-based load balancing
-if the name resolves to multiple IP addresses, provided the hostname does not
-resolve to an `upstream` name or a name in your DNS hosts file.
+if the name resolves to multiple IP addresses.
 
 The DNS record `ttl` setting (time to live) determines how often the information
 is refreshed. When using a `ttl` of 0, every request will be resolved using its
 own DNS query. Obviously this will have a performance penalty, but the latency of
 updates/changes will be very low.
+
+The round-robin algorithm used, weighted or not, depends on the DNS record type of the
+hostname.
 
 ### A records
 
@@ -37,6 +43,10 @@ A backend service can be identified by a unique combination of IP address
 and port number. Hence, a single IP address can host multiple instances of the
 same service on different ports.
 
+SRV records also feature a `priority` property. Kong will only use the entries with
+the highest priority, and ignore all others (note that the "highest priority" in an
+SRV record actually is the record with the lowest `priority` value).
+
 Because the `weight` information is available, each entry will get its own
 weight in the load balancer and it will perform a weighted round-robin.
 
@@ -46,25 +56,18 @@ and `myhost.com` resolves to an SRV record with `127.0.0.1:456`, then the reques
 will be proxied to `http://127.0.0.1:456/somepath`, as port `123` will be
 overridden by `456`.
 
-### DNS priorities
-
-The DNS resolver will start resolving the following record types in order:
-
-  1. The last successful type previously resolved
-  2. SRV record
-  3. A record
-  4. CNAME record
-
-This order is configurable through the [`dns_order` configuration property][dns-order-config].
-
 ### DNS caveats
+
+- Kong will trust the nameserver. This means that information retrieved via a DNS
+query will have higher precedence than the configured values. This mostly relates
+to SRV records which carry `port` and `weight` information.
 
 - Whenever the DNS record is refreshed a list is generated to handle the
 weighting properly. Try to keep the weights as multiples of each other to keep
-the algorithm performance, e.g., 2 weights of 17 and 31 would result in a structure
+the algorithm performant, e.g., 2 weights of 17 and 31 would result in a structure
 with 527 entries, whereas weights 16 and 32 (or their smallest relative
-counterparts 1 and 2) would result in a structure with merely 3 entries,
-especially with a very small (or even 0) `ttl` value.
+counterparts 1 and 2) would result in a structure with merely 3 entries. This is
+especially relevant with a very small (or even 0) `ttl` value.
 
 - DNS is carried over UDP with a default limit of 512 Bytes. If there are many entries
 to be returned, a DNS Server will respond with partial data and set a truncate flag,
@@ -93,45 +96,38 @@ queried for, and second check your nameserver configuration.
 randomized. So when using records with a `ttl` of 0, the nameserver is
 expected to randomize the record entries.
 
-## Ring-balancer
+## Advanced load-balancing
 
-When using the ring-balancer, the adding and removing of backend services will
+Advanced load-balancing algorithms are available through the `upstream` entity.
+
+When using these load balancers, the adding and removing of backend services will
 be handled by Kong, and no DNS updates will be necessary. Kong will act as the
-service registry. Nodes can be added/deleted with a single HTTP request and
-will instantly start/stop receiving traffic.
+service registry.
 
-Configuring the ring-balancer is done through the `upstream` and `target`
+Configuring the load balancers is done through the `upstream` and `target`
 entities.
 
+  - `upstream`: a 'virtual hostname' which can be used in a Service `host`
+    field, e.g., an `upstream` named `weather.v2.service` would get all requests
+    from a `service` with `host=weather.v2.service`. The `upstream` carries the
+    properties that determine the load-balancing behaviour (as well
+    as the health-checks and circuit-breaker configuration).
+
   - `target`: an IP address or hostname with a port number where a backend
-    service resides, e.g. "192.168.100.12:80". Each target gets an additional
+    service resides, e.g. "192.168.100.12:80". Each `target` gets an additional
     `weight` to indicate the relative load it gets. IP addresses can be
     in both IPv4 and IPv6 format.
 
-  - `upstream`: a 'virtual hostname' which can be used in a Route `host`
-    field, e.g., an upstream named `weather.v2.service` would get all requests
-    from a Service with `host=weather.v2.service`.
 
 ### Upstream
 
-Each upstream gets its own ring-balancer. Each `upstream` can have many
-`target` entries attached to it, and requests proxied to the 'virtual hostname'
-(which can be overwritten before proxying, using `upstream`'s property
-`host_header`) will be load balanced over the targets. A ring-balancer has a
-maximum predefined number of slots, and based on the target weights the slots get
-assigned to the targets of the upstream.
+Each `upstream` can have many `target` entries attached to it, and requests proxied
+to the 'virtual hostname' will be load balanced over the targets.
 
 Adding and removing targets can be done with a simple HTTP request on the
 Admin API. This operation is relatively cheap. Changing the upstream
 itself is more expensive as the balancer will need to be rebuilt when the
 number of slots change for example.
-
-Within the balancer there are the positions (from 1 up to the value defined in the `slots` attribute),
-which are __randomly distributed__ on the ring.
-The randomness is required to make invoking the ring-balancer cheap at
-runtime. A simple round-robin over the wheel (the positions) will do to
-provide a well distributed weighted round-robin over the `targets`, while
-also having cheap operations when inserting/deleting targets.
 
 Detailed information on adding and manipulating
 upstreams is available in the `upstream` section of the
@@ -158,17 +154,45 @@ __NOTE__: the weight is used for the individual entries, not for the whole!
 Would it resolve to an SRV record, then also the `port` and `weight` fields
 from the DNS record would be picked up, and would overrule the given port `123`
 and `weight=100`.
+{:.note}
+> **Note**: similar to the DNS based load-balancing, only the highest priority
+entries (the lowest values) in an SRV record will be used.
 
-The balancer will honor the DNS record's `ttl` setting, and queries and updates
-the balancer when it expires.
+The balancer will honor the DNS record's `ttl` setting, upon expiry it queries the
+nameserver and updates the balancer.
 
-__Exception__: When a DNS record has `ttl=0`, the hostname will be added
+{:.important}
+> **Exception**: When a DNS record has `ttl=0`, the hostname will be added
 as a single target, with the specified weight. Upon every proxied request
 to this target it will query the nameserver again.
 
-### Balancing algorithms
+### Fighting load-balancers
 
-The ring-balancer supports the following load balancing algorithms:
+As described in the [target](#target) paragraph, the targets can be specified as hostnames.
+In orchestrated environments like k8s or docker-compose, the IP addresses and ports
+are mostly ephemeral and SRV records must be used to find the appropriate backends and
+to stay up to date.
+
+On a DNS level many infrastructure tools can also provide load-balancing type features.
+These are mostly service-discovery tools that will have their own health-checks and
+will randomize DNS records, or only return a small subset of available peers.
+
+The Kong load balancers and the DNS based tools often fight each other. The nameserver will
+provide as little information as possible to force clients to follow its scheme, where
+Kong tries to get all backends to properly set up its load balancers and health-checks.
+
+In your environment, ensure that:
+
+- the nameserver sets the truncation flag on the responses when it cannot fit all
+  records in the UDP response. This will force Kong to retry using TCP. 
+- TCP queries are allowed on the nameserver.
+
+
+
+## Balancing algorithms
+
+
+The load balancers support the following load-balancing algorithms:
 * `round-robin`
 * `consistent-hashing`
 * `least-connections`
@@ -176,17 +200,51 @@ The ring-balancer supports the following load balancing algorithms:
 * `latency`
 {% endif_version %}
 
+These algorithms are only available when using the `upstream` entity, see
+[Advanced load-balancing](#advanced-load-balancing).
 
-By default, a ring-balancer
-uses the `round-robin` algorithm, which provides a well-distributed weighted
-round-robin over the targets.
+{:.note}
+> **Note**: for all these algorithms it is important to understand how the weights
+and ports of the individual backends are being set up. See the [Target](#target)
+paragraph on how the actual weights and ports are being determined based on user
+configuration as well DNS results.
+
+### Round-Robin
+
+The round-robin algorithm will be done in a weighted manner. It will be identical
+in results to the DNS based load-balancing, but due to it being an `upstream`
+the additional features for health-checks and circuit-breakers will be available
+in this case.
+
+When choosing this algorithm, consider the following:
+- good distribution of requests.
+- fairly static, as only DNS updates or `target` updates can influence the
+  distribution of traffic.
+- does not improve cache-hit ratios.
+
+
+### Consistent-Hashing
+
+With the consistent-hashing algorithm a configurable client-input will be used to
+calculate a hash-value. This hash-value will then be tied to a specific backend
+server.
+
+A common example would be to use the `consumer` as a hash-input. Since this ID is
+the same for every request from that user, it will ensure that the same user will
+consistently be dealt with by the same backend server. This will allow for cache
+optimizations on the backend, since each of the servers only serves a fixed subset
+of the users, and hence can improve its cache-hit-ratio for user related data.
+
+This algorithm implements the [ketama principle](https://github.com/RJ/ketama) to
+maximize hashing stability and minimize consistency loss upon changes to the list
+of known backends.
 
 When using the `consistent-hashing` algorithm, the input for the hash can be either
 `none`, `consumer`, `ip`, `header`, or `cookie`. When set to `none`, the
 `round-robin` scheme will be used, and hashing will be disabled. The `consistent-hashing`
 algorithm supports a primary and a fallback hashing attribute; in case the primary
 fails (e.g., if the primary is set to `consumer`, but no Consumer is authenticated),
-the fallback attribute is used.
+the fallback attribute is used. This maximizes upstream cache hits.
 
 Supported hashing attributes are:
 
@@ -203,51 +261,75 @@ Supported hashing attributes are:
   specified in the `hash_on_cookie_path` field. If the specified cookie is not
   present in the request, it will be set by the response. Hence, the `hash_fallback`
   setting is invalid if `cookie` is the primary hashing mechanism.
+  The generated cookie will have a random UUID value. So the first assignment will
+  be random, but then sticks because it is preserved in the cookie.
 
-The `consistent-hashing` algorithm is based on _Consistent Hashing_, which ensures that when the balancer gets modified by
-a change in its targets (adding, removing, failing, or changing weights), only
-the minimum number of hashing losses occur. This maximizes upstream cache hits.
+The consistent-hashing balancer is designed to work both with a single node as well
+as in a cluster. When using the hash based algorithm it is important that all nodes
+build the exact same balancer-layout to make sure they all work identical. To do
+this the balancer must be built in a deterministic way. 
+
+When choosing this algorithm, consider the following: 
+
+- improves backend cache-hit ratios.
+- requires enough cardinality in the hash-inputs to distribute evenly (for example, hashing on
+  a header that only has 2 possible values does not make sense).
+- the cookie based approach will work well for browser based requests, but less so
+  for machine-2-machine clients which will often omit the cookie.
+- avoid using hostnames in the balancer as the
+  balancers might/will slowly diverge because the DNS ttl has only second precision
+  and renewal is determined by when a name is actually requested. On top of this is
+  the issue with some nameservers not returning all entries, which exacerbates
+  this problem. So when using the hashing approach in a Kong cluster, preferably add
+  `target` entities by their IP address. This problem can be mitigated by balancer
+  rebuilds and higher ttl settings. 
+
+
+### Least-Connections
+
+This algorithm keeps track of the number of in-flight requests for each backend.
+The weights are used to calculate "connection-capacity" of a backend. Requests are
+routed towards the backend with the highest spare capacity.
+
+When choosing this algorithm, consider the following:
+- good distribution of traffic.
+- does not improve cache-hit ratio's.
+- more dynamic since slower backends will have more connections open, and hence
+  new requests will be routed to other backends automatically.
 
 {% if_version gte:3.2.x %}
+### Latency
 
-The `latency` algorithm is based on peak EWMA (exponentially weighted moving average), which ensures that the balancer selects the upstream target
-by lowest latency (`upstream_response_time`). This latency is not only TCP connect time, but also includes
-body response time. In the `latency` algorithm, the latency is the service response latency because it describes the combined score of service load and network latency. This balancer algorithm is suitable for a single type upstream service. If the backend service has different requests with different body types (for example, video data, audio data, or text data), it causes the `latency` algorithm loss load balancing function. Before using the `latency` algorithm, make sure that the QPS of your requests is as large as possible because sharing data between multiple workers in Nginx is difficult and this algorithm only stores data on a single worker. So, the more requests there are, the more data Kong will uncover and the more `latency` balanced it will be.
+The `latency` algorithm is based on peak EWMA (exponentially weighted moving average),
+which ensures that the balancer selects the backend by lowest latency
+(`upstream_response_time`). The latency metric used is the full request cycle, from
+TCP connect to body response time. Since it is a moving average, the metrics will
+"decay" over time.
+
+Weights will not be taken into account.
+
+When choosing this algorithm, consider the following:
+- good distribution of traffic provided there is enough base-load to keep the
+  metrics alive, since they are "decaying".
+- not suitable for long-lived connections like websockets or server-sent events (SSE)
+- very dynamic since it will constantly optimize.
+- ideally, this works best with low variance in latencies. This means mostly similar
+  shaped traffic and even workloads for the backends. For example, usage
+  with a GraphQL backend serving small-fast queries as well big-slow ones will result
+  in high variance in the latency metrics, which will skew the metrics.
+- properly set up the backend capacity and ensure proper network latency to prevent
+  resource starvation. For example, use 2 servers: one a small capacity close by (low
+  network latency), the other high capacity far away (high latency). Most traffic
+  will be routed to the small one, until its latency starts going up. The latency
+  going up however means the small server is most likely suffering from resource
+  starvation. So, in this case, the algorithm will keep the small server in a constant
+  state of resource starvation, which is most likely not efficient.
 
 {% endif_version %}
 
-The ring-balancer also supports the `least-connections` algorithm, which selects
-the target with the lowest number of connections, weighted by the Target's
-`weight` attribute.
 
-For more information on the exact settings see the `upstream` section of the
-[Admin API reference][upstream-object-reference].
 
-### Balancing caveats
-
-The ring-balancer is designed to work both with a single node as well as in a cluster.
-For the weighted-round-robin algorithm there isn't much difference, but when using
-the hash based algorithm it is important that all nodes build the exact same
-ring-balancer to make sure they all work identical. To do this the balancer
-must be build in a deterministic way.
-
-- Do not use hostnames in the balancer as the
-balancers might/will slowly diverge because the DNS ttl has only second precision
-and renewal is determined by when a name is actually requested. On top of this is
-the issue with some nameservers not returning all entries, which exacerbates
-this problem. So when using the hashing approach in a Kong cluster, add `target`
-entities only by their IP address, and never by name.
-
-- When picking your hash input make sure the input has enough variance to get
-to a well distributed hash. Hashes will be calculated using the CRC-32 digest.
-So for example, if your system has thousands of users, but only a few consumers, defined
-per platform (e.g. 3 consumers: Web, iOS and Android) then picking the `consumer`
-hash input will not suffice, using the remote IP address by setting the hash to
-`ip` would provide more variance in the input and hence a better distribution
-in the hash output. However, if many clients will be behind the same NAT gateway (e.g. in
-call center), `cookie` will provide a better distribution than `ip`.
-
-[upstream-object-reference]: /gateway/{{page.kong_version}}/admin-api#upstream-object
-[target-object-reference]: /gateway/{{page.kong_version}}/admin-api#target-object
-[dns-order-config]: /gateway/{{page.kong_version}}/reference/configuration/#dns_order
-[real-ip-config]: /gateway/{{page.kong_version}}/reference/configuration/#real_ip_header
+[upstream-object-reference]: /gateway/{{page.release}}/admin-api#upstream-object
+[target-object-reference]: /gateway/{{page.release}}/admin-api#target-object
+[dns-order-config]: /gateway/{{page.release}}/reference/configuration/#dns_order
+[real-ip-config]: /gateway/{{page.release}}/reference/configuration/#real_ip_header

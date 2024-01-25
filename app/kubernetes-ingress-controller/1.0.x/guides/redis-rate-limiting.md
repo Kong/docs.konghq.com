@@ -16,7 +16,7 @@ a multi-node Kong deployment.
 
 ## Installation
 
-Please follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install
+Please follow the [deployment](/kubernetes-ingress-controller/{{page.release}}/deployment/overview/) documentation to install
 the {{site.kic_product_name}} on your Kubernetes cluster.
 
 ## Testing Connectivity to Kong
@@ -24,7 +24,7 @@ the {{site.kic_product_name}} on your Kubernetes cluster.
 This guide assumes that the `PROXY_IP` environment variable is
 set to contain the IP address or URL pointing to Kong.
 Please follow one of the
-[deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
+[deployment guides](/kubernetes-ingress-controller/{{page.release}}/deployment/overview) to configure this environment variable.
 
 If everything is setup correctly, making a request to Kong should return
 HTTP 404 Not Found.
@@ -121,7 +121,7 @@ any client to 5 requests per minute, and we are applying this policy in a
 global sense, meaning the rate-limit will apply across all services.
 
 You can set this up for a specific Ingress or a specific service as well,
-please follow [using KongPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource/)
+please follow [using KongPlugin resource](/kubernetes-ingress-controller/{{page.release}}/guides/using-kongplugin-resource/)
 guide on steps for doing that.
 
 Next, test the rate-limiting policy by executing the following command

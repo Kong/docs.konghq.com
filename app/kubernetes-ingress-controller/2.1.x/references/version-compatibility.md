@@ -77,4 +77,4 @@ For each {{site.kic_product_name}} release, tests are run to verify this documen
 | Istio 1.11                | <i class="fa fa-times"></i> | <i class="fa fa-times"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 
 [istio]:https://istio.io
-[istio-guide]:/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started-istio/
+[istio-guide]:/kubernetes-ingress-controller/{{page.release}}/guides/getting-started-istio/

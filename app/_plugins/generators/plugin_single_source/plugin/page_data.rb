@@ -18,6 +18,7 @@ module PluginSingleSource
           .merge!(page_attributes)
           .merge!(frontmatter_overrides)
           .merge!(extn_data)
+          .merge!(release_data)
 
         @data
       end
@@ -30,6 +31,7 @@ module PluginSingleSource
           'extn_slug' => @release.name,
           'extn_publisher' => @release.vendor,
           'extn_release' => @release.version,
+          'extn_latest' => extn_latest,
           'extn_icon' => extn_icon,
           'layout' => layout,
           'page_type' => 'plugin',
@@ -85,11 +87,36 @@ module PluginSingleSource
         { 'extn_data' => @release.ext_data.slice('strategy', 'releases') }
       end
 
+      def release_data
+        release = gateway_releases
+                  .detect { |r| r.value == Utils::Version.to_release(@release.version) }
+
+        if release
+          { 'release' => release.to_liquid, 'versions' => release.versions }
+        else
+          {}
+        end
+      end
+
+      def extn_latest
+        @extn_latest ||= gateway_releases
+                         .select { |r| @release.ext_data.fetch('releases', []).include?(r.value) }
+                         .select { |r| r.label.nil? }
+                         .max_by(&:value)
+                         .to_liquid
+      end
+
       def badges
         Jekyll::Drops::Plugins::Badges.new(
           metadata: @release.metadata,
           publisher: @release.vendor
         )
+      end
+
+      def gateway_releases
+        @gateway_releases ||= Jekyll::GeneratorSingleSource::Product::Edition
+                              .new(edition: 'gateway', site: @release.site)
+                              .releases
       end
     end
   end

@@ -9,7 +9,7 @@ This page explains how to install {{site.base_gateway}} with {{site.kic_product_
 
 Configuration for both options is flexible and depends on your environment.
 
-The documentation on installing with a [flat Kubernetes manifest](/gateway/{{page.kong_version}}/install-and-run/kubernetes/) also explains how to install in DB-less mode for both Enterprise and OSS deployments.
+The documentation on installing with a [flat Kubernetes manifest](/gateway/{{page.release}}/install-and-run/kubernetes/) also explains how to install in DB-less mode for both Enterprise and OSS deployments.
 
 The {{site.base_gateway}} software is governed by the
 [Kong Software License Agreement](https://konghq.com/kongsoftwarelicense).

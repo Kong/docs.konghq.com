@@ -62,7 +62,7 @@ The `secret-key` is used to identify the secret within the `secret-id` object.
 
 ### Query
 
-Query arguments are used to denote configuration options in a `key=value` format to the [Vault Prefix](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/reference-format/#vault-prefix)
+Query arguments are used to denote configuration options in a `key=value` format to the [Vault Prefix](/gateway/{{page.release}}/kong-enterprise/secrets-management/reference-format/#vault-prefix)
 
 
 ### Version

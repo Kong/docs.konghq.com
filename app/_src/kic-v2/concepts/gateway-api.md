@@ -25,7 +25,7 @@ Gateway on behalf of users: creating a Gateway resource will trigger automatic
 provisioning of Deployments/Services/etc. with configuration matching the
 Gateway's listeners and addresses. The Kong alpha implementation does _not_
 automatically manage Gateway provisioning: you must create the Kong and ingress
-controller Deployment and proxy Service yourself following the [Gateway installation guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-gateway-api/).
+controller Deployment and proxy Service yourself following the [Gateway installation guide](/kubernetes-ingress-controller/{{page.release}}/guides/using-gateway-api/).
 
 Because the Kong Deployment and its configuration are not managed
 automatically, listener and address configuration are not set for you. You must
@@ -170,7 +170,7 @@ To configure KIC to reconcile the Gateway resource, you must set the
 `konghq.com/gatewayclass-unmanaged` annotation as the example in GatewayClass resource used in 
 `spec.gatewayClassName` in Gateway resource. Also, the 
 `spec.controllerName` of GatewayClass needs to be same as the value of the
-`--gateway-api-controller-name` flag configured in KIC. For more information, see [kic-flags](/kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments/#flags).
+`--gateway-api-controller-name` flag configured in KIC. For more information, see [kic-flags](/kubernetes-ingress-controller/{{page.release}}/references/cli-arguments/#flags).
 {% endif_version %}
 
 You can check to confirm if KIC has updated the bound Gateway by 

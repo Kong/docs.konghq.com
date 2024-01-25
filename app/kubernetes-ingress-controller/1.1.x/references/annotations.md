@@ -201,7 +201,7 @@ following resources:
   the same annotation to both of the resources.
 
 Please follow the
-[Using the KongPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource)
+[Using the KongPlugin resource](/kubernetes-ingress-controller/{{page.release}}/guides/using-kongplugin-resource)
 guide for details on how this annotation can be used.
 
 
@@ -342,7 +342,7 @@ with fine-grained controlled using the properties of Service, Route
 and Upstream entities in Kong.
 
 Please follow the
-[Using the KongIngress resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource)
+[Using the KongIngress resource](/kubernetes-ingress-controller/{{page.release}}/guides/using-kongingress-resource)
 guide for details on how to use this annotation.
 
 ### konghq.com/protocol

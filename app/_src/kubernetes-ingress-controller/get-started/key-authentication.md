@@ -77,12 +77,19 @@ Key authentication in {{site.base_gateway}} works by using the consumer object. 
 
 Keys are stored as Kubernetes `Secrets` and consumers are managed with the `KongConsumer` CRD.
 
-1. Create a new `Secret` where `kongCredType=key-auth`. 
+1. Create a new `Secret` labeled to use `key-auth` credential type.
 
     ```bash
-    kubectl create secret generic alex-key-auth \
-      --from-literal=kongCredType=key-auth \
-      --from-literal=key=hello_world
+    echo '
+    apiVersion: v1
+    kind: Secret
+    metadata:
+       name: alex-key-auth
+       labels:
+          konghq.com/credential: key-auth
+    stringData:
+       key: hello_world
+    ' | kubectl apply -f -
     ```
 
 1. Create a new consumer and attach the credential.

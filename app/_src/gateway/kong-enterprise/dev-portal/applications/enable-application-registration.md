@@ -17,13 +17,13 @@ admit access to services using Kong Manager.
   developers.
 * The `portal_app_auth` configuration option is configured for your OAuth provider
   and strategy (`kong-oauth2` default or `external-oauth2`). See
-[Configure the Authorization Provider Strategy](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/applications/auth-provider-strategy) for the Portal Application Registration plugin.
+[Configure the Authorization Provider Strategy](/gateway/{{page.release}}/kong-enterprise/dev-portal/applications/auth-provider-strategy) for the Portal Application Registration plugin.
 * Authorization provider configured if using a supported third-party
   identity provider with the OIDC plugin:
   * For example instructions using Okta as an identity provider, refer to the
-    [Okta example](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/okta-config/).
+    [Okta example](/gateway/{{page.release}}/kong-enterprise/dev-portal/authentication/okta-config/).
   * For example instructions using Azure AD as an identity provider, refer to the
-    [Azure example](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/azure-oidc-config/).
+    [Azure example](/gateway/{{page.release}}/kong-enterprise/dev-portal/authentication/azure-oidc-config/).
 
 ## Enable application registration on a service using Kong Manager {#enable-app-reg-plugin}
 
@@ -44,7 +44,7 @@ In Kong Manager, access the service for which you want to enable application reg
 
    {:.important}
    > **Important:** Exposing the Issuer URL is essential for the
-   [Authorization Code Flow](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/3rd-party-oauth/#ac-flow)
+   [Authorization Code Flow](/gateway/{{page.release}}/kong-enterprise/dev-portal/authentication/3rd-party-oauth/#ac-flow)
    workflow configured for third-party identity providers.
 
 6. Click **Create**.
@@ -58,9 +58,9 @@ In Kong Manager, access the service for which you want to enable application reg
 | `Auto Approve` | If enabled, all new service contract requests are automatically approved. Otherwise, Dev Portal admins must manually approve requests. Default: `false`. |
 | `Description` | Description displayed in the information about a service in the Dev Portal. Optional. |
 | `Display Name` | Unique name displayed in the information about a service in the Dev Portal. Required. |
-| `Show Issuer` | Displays the Issuer URL in the Service Details page. Default: `false`. **Important:** Exposing the **Issuer URL** is essential for the [Authorization Code Flow](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/3rd-party-oauth/#ac-flow) workflow configured for third-party identity providers. |
+| `Show Issuer` | Displays the Issuer URL in the Service Details page. Default: `false`. **Important:** Exposing the **Issuer URL** is essential for the [Authorization Code Flow](/gateway/{{page.release}}/kong-enterprise/dev-portal/authentication/3rd-party-oauth/#ac-flow) workflow configured for third-party identity providers. |
 
 ## Next steps
 
-Choose an [authorization strategy](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/applications/auth-provider-strategy/) 
+Choose an [authorization strategy](/gateway/{{page.release}}/kong-enterprise/dev-portal/applications/auth-provider-strategy/) 
 and configure the appropriate plugin: OAuth2, Key Authentication, or OpenID Connect.

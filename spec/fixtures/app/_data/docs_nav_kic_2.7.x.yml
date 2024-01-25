@@ -6,3 +6,5 @@ items:
     icon: /assets/images/icons/documentation/icn-kubernetes-color.svg
     url: /kubernetes-ingress-controller/
     absolute_url: true
+  - title: KIC Introduction
+    url: /introduction/

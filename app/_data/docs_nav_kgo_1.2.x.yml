@@ -1,0 +1,98 @@
+product: gateway-operator
+release: 1.2.x
+generate: true
+assume_generated: true
+items:
+  - title: Introduction
+    icon: /assets/images/icons/documentation/icn-flag.svg
+    items:
+      - text: Overview
+        url: /gateway-operator/1.2.x/
+        absolute_url: true
+      - text: Deployment Topologies
+        items:
+          - text: Hybrid Mode
+            url: /topologies/hybrid/
+          - text: DB-less Mode
+            url: /topologies/dbless/
+      - text: Key Concepts
+        items:
+          - text: Gateway API
+            url: /concepts/gateway-api
+          - text: Gateway Configuration
+            url: /concepts/gateway-configuration
+      - text: Changelog
+        url: /gateway-operator/changelog
+        absolute_url: true
+      - text: Support
+        url: /support
+      - text: FAQ
+        url: /faq
+  - title: Get Started
+    icon: /assets/images/icons/documentation/icn-learning.svg
+    items:
+      - text: Konnect
+        items:
+          - text: Install Gateway Operator
+            url: /get-started/konnect/install/
+          - text: Deploy a Data Plane
+            url: /get-started/konnect/deploy-data-plane/
+          - text: Create a Route
+            url: /get-started/konnect/create-route/
+      - text: Kong Ingress Controller
+        items:
+          - text: Install Gateway Operator
+            url: /get-started/kic/install/
+          - text: Create a Gateway
+            url: /get-started/kic/create-gateway/
+          - text: Create a Route
+            url: /get-started/kic/create-route/
+  - title: Customization
+    icon: /assets/images/icons/documentation/icn-solution-guide.svg
+    items:
+      - text: Set data plane image
+        url: /customization/data-plane-image/
+      - text: Deploying Sidecars
+        url: /customization/sidecars/
+      - text: Customizing PodTemplateSpec
+        url: /customization/pod-template-spec/
+  - title: Production Deployment
+    icon: /assets/images/icons/icn-server.svg
+    items:
+      - text: Overview
+        url: /production/
+      - text: Install
+        url: /install/
+      - text: Monitoring
+        url: /production/monitoring/
+      - text: Upgrade Gateway Operator
+        url: /production/upgrade/gateway-operator/
+      - text: Upgrading Data Planes
+        items:
+          - text: Rolling Deployment
+            url: /production/upgrade/data-plane/rolling/
+          - text: Blue / Green Deployment
+            url: /production/upgrade/data-plane/blue-green/
+      - text: Autoscaling Data Planes
+        url: /production/horizontal-autoscaling/
+  - title: Reference
+    icon: /assets/images/icons/icn-magnifying-glass.svg
+    items:
+      - text: Custom Resources
+        items:
+          - text: Overview
+            url: /reference/custom-resources/
+            src: reference/custom-resources/1.2.x
+          - text: GatewayConfiguration
+            url: /reference/custom-resources/#gatewayconfiguration
+            generate: false
+          - text: ControlPlane
+            url: /reference/custom-resources/#controlplane
+            generate: false
+          - text: DataPlane
+            url: /reference/custom-resources/#dataplane
+            generate: false
+      - text: License
+        url: /reference/license
+      - text: Version Compatibility
+        url: /reference/version-compatibility
