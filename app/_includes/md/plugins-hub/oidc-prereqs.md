@@ -26,7 +26,7 @@ difficulties during this phase, refer to the [Keycloak documentation](https://ww
    From the **Advanced** tab, enable the **OAuth 2.0 Mutual TLS Certificate Bound Access Tokens Enabled** toggle.
 {% endif_plugin_version %}
 {% if_plugin_version gte:3.6.x %}
-4. (Optional, to test mTLS Client Authentication): Create another confidential client `client-tls-auth` with settings similar to the `service` client created above. 
+4. (Optional, to test mTLS Client Authentication) Create another confidential client `client-tls-auth` with settings similar to the `service` client created above. 
    From the **Credentials** tab, select the **X509 Certificate** Client Authenticator and fill the Subject DN field so that it matches the Kong client certificate's, e.g.: `CN=JohnDoe, OU=IT`.
 {% endif_plugin_version %}
 

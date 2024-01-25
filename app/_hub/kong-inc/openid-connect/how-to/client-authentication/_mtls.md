@@ -8,7 +8,7 @@ nav_title: Mutual TLS Client Authentication
 The OpenID Connect plugin supports mutual TLS (mTLS) client authentication with the IdP. 
 When mTLS authentication is enabled, Kong establishes mTLS connections with the IdP using the configured client certificate.
 
-You can use mTLS client with with the following IdP endpoints and corresponding flows:
+You can use mTLS client with the following IdP endpoints and corresponding flows:
 
 * `token`
   * [Authorization Code Flow](/hub/kong-inc/openid-connect/how-to/authentication/authorization-code-flow/)
@@ -54,7 +54,7 @@ When set to `true` (the default value), ensure [trusted certificate](/gateway/la
 ## Demo
 ### Prerequisites
 
-Follow these prerequisities to set up a demo Keycloak app and a Kong service and route for testing mTLS client auth.
+Follow these prerequisites to set up a demo Keycloak app and a Kong service and route for testing mTLS client auth.
 
 {% include_cached /md/plugins-hub/oidc-prereqs.md %}
 
@@ -65,23 +65,23 @@ set up an instance of the OpenID Connect plugin.
 
 For the demo, we're going to set up the following:
 
-* Issuer, client ID: settings that connect the plugin to your IdP (in this case, the sample Keycloak app).
+* Issuer, client ID: Settings that connect the plugin to your IdP (in this case, the sample Keycloak app).
 * `client_auth` and `tls_client_auth_cert_id`: Both of these options must use TLS.
-* Auth methods: for demo purposes, we use the password grant, but you can use any supported auth method.
+* Auth methods: For demo purposes, we use the password grant, but you can use any supported auth method.
 
 With all of the above in mind, let's test out mTLS client auth with the password grant, using Keycloak as the IdP. 
 Enable the OpenID Connect plugin on the `openid-connect` service:
 
+<!-- vale off -->
 {% plugin_example %}
 plugin: kong-inc/openid-connect
 name: openid-connect
 config:
   issuer: "http://keycloak.test:8080/auth/realms/master"
-  client_id: "kong"
-  client_auth: "client-tls-auth"
+  client_id: "client-tls-auth"
+  client_auth: "tls_client_auth"
   auth_methods:
     - "password"
-  client_auth: "tls_client_auth"
   tls_client_auth_cert_id: "1e0721c1-fd43-494c-9864-007bbba98c8c"
 targets:
   - service
@@ -91,6 +91,7 @@ formats:
   - yaml
   - kubernetes
 {% endplugin_example %}
+<!-- vale on -->
 
 ### Test mTLS client auth
 
