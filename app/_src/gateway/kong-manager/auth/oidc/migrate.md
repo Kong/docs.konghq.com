@@ -3,8 +3,6 @@ title: Migrate from Previous Configurations
 badge: enterprise
 ---
 
-# Breaking changes
-
 As of Gateway v3.6, Kong Manager uses the session management mechanism in the OpenID Connect plugin.
 `admin_gui_session_conf` is no longer required when authenticating with OIDC. Instead, session-related
 configuration parameters are set in `admin_gui_auth_conf` (like `session_secret`).
@@ -12,9 +10,11 @@ configuration parameters are set in `admin_gui_auth_conf` (like `session_secret`
 We recommend reviewing your configuration, as some session-related parameters in `admin_gui_auth_conf`
 have different default values compared to the ones in `admin_gui_session_conf`.
 
-## `admin_gui_auth_conf`
+<!-- vale off -->
+## admin_gui_auth_conf
 
-### `scopes`
+### scopes
+<!-- vale on -->
 
 While using the OpenID Connect plugin with Kong Manager, `scopes` now have a default value of
 `["openid", "email", "offline_access"]` if not specified.
@@ -27,33 +27,43 @@ This parameter can be modified according to your needs. However, `"openid"` and 
 always be included to ensure the OpenID Connect plugin works normally. Also, make sure that `scopes`
 contains sufficient scopes for the claim specified by this parameter.
 
-### `admin_claim`
+<!-- vale off -->
+### admin_claim
+<!-- vale on -->
 
 `admin_claim` is now an optional parameter. If not set, it defaults to `["email"]`.
 
 This parameter is used while looking up the admin's username from the ID token. When configuring this setting,
 make sure that `scopes` contains sufficient scopes for the claim specified by this parameter.
 
-### `authenticated_groups_claim`
+<!-- vale off -->
+### authenticated_groups_claim
+<!-- vale on -->
 
 `authenticated_groups_claim` is now an optional parameter. If not set, it defaults to `["groups"]`.
 
 This parameter is used while looking up the admin's associated groups from the ID token.
 
-### `redirect_uri`
+<!-- vale off -->
+### redirect_uri
+<!-- vale on -->
 
 `redirect_uri` now should be configured as an array of URLs that points to Admin API's authentication
 endpoint (for example,`["http://localhost:8001/auth"]`). 
 Previously, `redirect_uri` was a list of URLs
 pointing to Kong Manager (for example,`["http://localhost:8002"]`).
 
-### `login_redirect_uri`
+<!-- vale off -->
+### login_redirect_uri
+<!-- vale on -->
 
 `login_redirect_uri` is now a **required** parameter to configure the destination after authenticating
 with the IdP. It should be always be an array of URLs that points to the Kong Manager
 (for example, `["http://localhost:8002"]`).
 
-### `logout_redirect_uri`
+<!-- vale off -->
+### logout_redirect_uri
+<!-- vale on -->
 
 `logout_redirect_uri` is now a **required** parameter to configure the destination after logging
 out from the IdP. It should be always be an array of URLs that points to the Kong Manager
@@ -63,7 +73,9 @@ Previously, Kong Manager didn't perform an [RP-initiated logout](https://openid.
 from the IdP when a user request to logout. From Gateway v3.6 and onwards, Kong Manager will perform
 an RP-initiated logout upon user logout.
 
-## `admin_gui_session_conf`
+<!-- vale off -->
+## admin_gui_session_conf
+<!-- vale on -->
 
 As the OpenID Connect plugin now has a built-in session management mechanism, `admin_gui_session_conf`
 is no longer used while authenticating with OIDC. You should also update your configuration
@@ -72,13 +84,17 @@ if you have previously configured session management via `admin_gui_session_conf
 Additionally, the default values of some parameters have been changed. 
 See the following for more details:
 
-### `secret`
+<!-- vale off -->
+### secret
+<!-- vale on -->
 
 You should now configure this via `admin_gui_auth_conf.session_secret`.
 
 If not set, {{site.base_gateway}} will randomly generate a secret.
 
-### `cookie_secure`
+<!-- vale off -->
+### cookie_secure
+<!-- vale on -->
 
 You should now configure this via `admin_gui_auth_conf.session_cookie_secure`.
 
@@ -86,7 +102,9 @@ Previously, `cookie_secure` was set to `true` if not specified. However, `admin_
 now has a default value of `false`. 
 If you are using HTTPS rather than HTTP, we recommend enabling this option to enhance security.
 
-### `cookie_samesite`
+<!-- vale off -->
+### cookie_samesite
+<!-- vale on -->
 
 You should now configure this via `admin_gui_auth_conf.session_cookie_same_site`.
 
