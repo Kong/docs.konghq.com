@@ -8,7 +8,7 @@ nav_title: Mutual TLS Client Authentication
 The OpenID Connect plugin supports mutual TLS (mTLS) client authentication with the IdP. 
 When mTLS authentication is enabled, Kong establishes mTLS connections with the IdP using the configured client certificate.
 
-You can use mTLS client with the following IdP endpoints and corresponding flows:
+You can use mTLS client authentication with the following IdP endpoints and corresponding flows:
 
 * `token`
   * [Authorization Code Flow](/hub/kong-inc/openid-connect/how-to/authentication/authorization-code-flow/)
@@ -38,8 +38,7 @@ The feature requires the IdP to be enabled to use mTLS and X.509 client certific
 
 #### Certificates
 
-For mTLS connections, you need to pass a certificate and key to {{site.base_gateway}}. 
-Set this up using the `/certificates` Admin API endpoint:
+For mTLS connections, create a certificate and key pair for {{site.base_gateway}} to use when connecting to the IdP:
 
 ```bash
 http -f post :8001/certificates cert@crt.pem key@key.pem
@@ -66,8 +65,9 @@ set up an instance of the OpenID Connect plugin.
 For the demo, we're going to set up the following:
 
 * Issuer, client ID: Settings that connect the plugin to your IdP (in this case, the sample Keycloak app).
-* `client_auth` and `tls_client_auth_cert_id`: Both of these options must use TLS.
+* `client_auth`: Must use TLS (`tls_client_auth`).
 * Auth methods: For demo purposes, we use the password grant, but you can use any supported auth method.
+* `tls_client_auth_cert_id`: Pass the ID of the certificate object [you created via `/certificates`](#certificates).
 
 With all of the above in mind, let's test out mTLS client auth with the password grant, using Keycloak as the IdP. 
 Enable the OpenID Connect plugin on the `openid-connect` service:
