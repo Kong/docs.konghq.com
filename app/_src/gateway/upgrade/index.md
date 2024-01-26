@@ -67,7 +67,7 @@ between the 2.x and 3.x series (both this version and prior versions) and in the
 open-source (OSS) and Enterprise Gateway [changelogs](/gateway/changelog/). Since {{site.base_gateway}}
 is built on an open-source foundation, any breaking changes in OSS affect all {{site.base_gateway}} packages.
 
-An upgrade path is subject to a wide spectrum of conditions, and there is not a one-size-fits-all way applicable to all customers, depending on the deployment modes, custom plugins, customers’ technical capabilities, hardware capacities, SLA, etc. Our engineers should discuss thoroughly and carefully with customers before taking any action.
+An upgrade path is subject to a wide spectrum of conditions, and there is not a one-size-fits-all way applicable to all customers, depending on the deployment modes, custom plugins, customers’ technical capabilities, hardware capacities, SLA, etc. Our engineers should discuss the upgrade process thoroughly and carefully with you before you take any action.
 
 We encourage you to stay updated with {{site.base_gateway}} releases, as that helps maintain a smooth upgrade path. 
 The smaller the version gap is, the less complex the upgrade process becomes.
@@ -197,6 +197,36 @@ The following table outlines various upgrade path scenarios to {{page.release}} 
 | 3.4.x | Traditional | Yes | Upgrade to 3.5.x. |
 | 3.4.x | Hybrid | Yes | Upgrade to 3.5.x. |
 | 3.4.x | DB-less | Yes | Upgrade to 3.5.x. |
+
+{% endif_version %}
+
+{% if_version eq: 3.6.x %}
+| **Current version** | **Topology** | **Direct upgrade possible?** | **Upgrade path** |
+| ------------------- | ------------ | ---------------------------- | ---------------- |
+| 2.x–2.7.x | Traditional | No | Upgrade to 2.8.2.x (required for blue/green deployments only), upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 2.x–2.7.x | Hybrid | No | Upgrade to 2.8.2.x, upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 2.x–2.7.x | DB-less | No | Upgrade to 3.0.x, upgrade to 3.1.x, upgrade to 3.2.x, upgrade to 3.3.x upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 2.8.x | Hybrid | No | Upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 2.8.x | DB-less | No | Upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 3.0.x | Traditional | No | Upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 3.0.x | Hybrid | No | Upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 3.0.x | DB-less | No | Upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 3.1.x | Traditional | No | Upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 3.1.0.x-3.1.1.2 | Hybrid | No | Upgrade to 3.1.1.3, upgrade to 3.2.x, upgrade to 3.3.x, upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 3.1.1.3 | Hybrid | No | Upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 3.1.x | DB-less | No | Upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 3.2.x | Traditional | No | Upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 3.2.x | Hybrid | No | Upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 3.2.x | DB-less | No | Upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 3.3.x | Traditional | No | Upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 3.3.x | Hybrid | No | Upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 3.3.x | DB-less | No | Upgrade to 3.4.x, upgrade to 3.5.x, and then upgrade to 3.6.x. |
+| 3.4.x | Traditional | No | Upgrade to 3.5.x and then upgrade to 3.6.x. |
+| 3.4.x | Hybrid | No | Upgrade to 3.5.x and then upgrade to 3.6.x. |
+| 3.4.x | DB-less | No | Upgrade to 3.5.x and then upgrade to 3.6.x. |
+| 3.5.x | Traditional | Yes | Upgrade to 3.6.x. |
+| 3.5.x | Hybrid | Yes | Upgrade to 3.6.x. |
+| 3.5.x | DB-less | Yes | Upgrade to 3.6.x. |
 
 {% endif_version %}
 
