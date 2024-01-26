@@ -43,7 +43,7 @@ admin_gui_auth_conf={                                      \
 }
 ```
 {% endif_version %}
-{% if_version gte:3.5.x %}
+{% if_version eq:3.5.x %}
 
 The `admin_gui_auth_config` value must be valid JSON. The following is an example of the configuration:
 
@@ -73,13 +73,13 @@ The following are configuration parameters in `admin_gui_auth_conf` for `openid-
 | `admin_claim`<br>*required*    | Array     | ["email"]     | Retrieve the field as a username.      |
 | `admin_auto_create`<br>*optional*  | Boolean   | true   | This parameter is used to enable the automatic creation of administrators.    |
 | `ssl_verify`<br>*optional*     | Boolean   | false   | Verify identity provider server certificate.    |
-{% endif_version %}
 
+{% endif_version %}
 {% if_version gte:3.6.x %}
 
 {:.note}
-> **Note**: If you are using configuration from previous versions, you may need to follow the [migration guide](/gateway/{{page.release}}/kong-manager/auth/oidc/migrate/)
-> to review and update your configuration.
+> **Note**: If you are using configuration from previous versions, you may need to follow the 
+[migration guide](/gateway/{{page.release}}/kong-manager/auth/oidc/migrate/) to review and update your configuration.
 
 The `admin_gui_auth_config` value must be valid JSON. The following is an example of the configuration:
 
@@ -108,12 +108,12 @@ for using OIDC with Kong Manager:
 
 | parameter                                  | data type | default value                           | notes                                                                                                                                                                           |
 |--------------------------------------------|-----------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `issuer`<br>*required*                     | String    | *this field is required*                | The base URL to resolve metadata about the IdP (Identity Provider). e.g., `"https://dev-xxxx.okta.com/oauth2/default"`                                                          |
-| `client_id`<br>*required*                  | Array     | *this field is required*                | The client id(s) that the plugin uses while communicating with the IdP.                                                                                                         |
-| `client_secret`<br>*required*              | Array     | *this field is required*                | The client secret.                                                                                                                                                              |
-| `redirect_uri`<br>*required*               | Array     | *this field is required*                | The URI to redirect after authentication with the IdP. Should point to Admin API's /auth endpoint. e.g., `"http://localhost:8001/auth"`                                         |
-| `login_redirect_uri`<br>*required*         | Array     | *this field is required*                | The URI to redirect after authentication with the Admin API. Should point to Kong Manager's endpoint. e.g., `"http://localhost:8002"`                                           |
-| `logout_redirect_uri`<br>*required*        | Array     | *this field is required*                | The URI to redirect after logging out from the IdP. Should point to Kong Manager's endpoint. e.g., `"http://localhost:8002"`                                                    |
+| `issuer`<br>*required*                     | String    | --                | The base URL to resolve metadata about the IdP (Identity Provider). e.g., `"https://dev-xxxx.okta.com/oauth2/default"`                                                          |
+| `client_id`<br>*required*                  | Array     | --                | The client id(s) that the plugin uses while communicating with the IdP.                                                                                                         |
+| `client_secret`<br>*required*              | Array     | --                | The client secret.                                                                                                                                                              |
+| `redirect_uri`<br>*required*               | Array     | --                | The URI to redirect after authentication with the IdP. Should point to Admin API's /auth endpoint. e.g., `"http://localhost:8001/auth"`                                         |
+| `login_redirect_uri`<br>*required*         | Array     | --                | The URI to redirect after authentication with the Admin API. Should point to Kong Manager's endpoint. e.g., `"http://localhost:8002"`                                           |
+| `logout_redirect_uri`<br>*required*        | Array     | --                | The URI to redirect after logging out from the IdP. Should point to Kong Manager's endpoint. e.g., `"http://localhost:8002"`                                                    |
 | `admin_auto_create`<br>*optional*          | Boolean   | `true`                                  | This parameter is used to enable the automatic creation of administrators.                                                                                                      |
 | `admin_claim`<br>*optional*                | String    | `"email"`                               | The claim to use while looking up for the admin's username.                                                                                                                     |
 | `authenticated_groups_claim`<br>*optional* | Array     | `["groups"]`                            | The claim to use while looking up for authenticated groups.                                                                                                                     |
@@ -127,7 +127,7 @@ When authenticating Kong Manager with OpenID Connect, session mechanism inside
 the plugin will be used to persist the authorization state. Please refer to the
 documentation for parameters prefixed by `session_` to learn more.
 
-### Recommendations to enhance the session security
+### Recommendations to enhance session security
 
 * `session_secret` is recommended to be set. A randomly generated secret will be used if unspecified.
 * `session_cookie_secure` (default value is `false`) is recommended to be enabled when using HTTPS
