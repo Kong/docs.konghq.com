@@ -12,7 +12,9 @@ Preview link: <!-- Netlify will generate a preview link after PR is opened. Add 
 ### Checklist 
 
 - [ ] Review label added <!-- (see below) -->
-- [ ] PR pointed to correct branch (`main` for immediate publishing, or a release branch: e.g. `release/gateway-3.2`, `release/deck-1.17`)
+- [ ] For unreleased versions: [conditional version tags](https://docs.konghq.com/contributing/conditional-rendering/#conditionally-render-content-by-version) added, if applicable.
+
+    For example, if this change is for an upcoming 3.6 release, surround your change in `{% if_version gte:3.6.x %} <content> {% endif_version %}` tags (or `if_plugin_version` tags for plugins). 
 
 
 <!-- !!! Only Kong employees can add labels due to a GitHub limitation. If you're an OSS contributor, thank you! The maintainers will label this PR for you !!! -->
