@@ -12,9 +12,17 @@ when you map your identity provider (IdP) groups to Kong roles. You do
 not need to create the users, groups, and roles separately. These users then accept invitations to join
 Kong Manager and log in with their IdP credentials.
 
+{% if_version lte:2.7.x %}
 {:.important}
 > **Important:** In v2.7.x, the `admin_claim` parameter replaces the `consumer_claim` parameter required by
 previous versions.
+{% endif_version %}
+
+{% if_version gte:3.6.x %}
+{:.important}
+> **Important:** In v3.6.x, many of the parameters under `admin_gui_auth_conf` have changed their behavior.
+[Review the changes](/gateway/{{page.release}}/kong-manager/auth/oidc/migrate/) and adjust your configuration accordingly.
+{% endif_version %}
 
 If an admin's group changes in the IdP, their Kong admin account's associated
 role also changes in {{site.base_gateway}} the next time they log in to Kong
