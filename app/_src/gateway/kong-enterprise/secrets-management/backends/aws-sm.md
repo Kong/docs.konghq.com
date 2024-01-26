@@ -52,7 +52,7 @@ The vault backend configuration field can also be configured in the `kong.conf` 
 {% endif_version %}
 
 {:.note}
-> **Notice:** When using AWS Vault as a backend, make sure you have configured `system` as part of the [`lua_ssl_trusted_certificate` configuration directive](/gateway/latest/reference/configuration#lua_ssl_trusted_certificate) so that the SSL certificates used by official AWS API can be trusted by Kong.
+> **Note:** When using AWS Vault as a backend, make sure you have configured `system` as part of the [`lua_ssl_trusted_certificate` configuration directive](/gateway/{{page.release}}/reference/configuration/#lua_ssl_trusted_certificate) so that the SSL certificates used by the official AWS API can be trusted by Kong.
 
 ### Examples
 
