@@ -377,7 +377,6 @@
   endOfLifeDate: "2024-11-15"
   branch: release-2.5
 - edition: mesh
-  version: 2.6.0
-  release: 2.6.x
-  label: dev
+  version: preview
+  release: dev
   branch: master
