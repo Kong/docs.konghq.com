@@ -12,7 +12,20 @@ have different default values compared to the ones in `admin_gui_session_conf`.
 
 <!-- vale off -->
 ## admin_gui_auth_conf
+<!-- vale on -->
 
+See the following summary of changes to attributes of `admin_gui_auth_conf`, and follow the individual links for further information:
+
+Parameter | Old behavior | New behavior 
+---|---|---|---|---
+[`scopes`](#scopes) | Old default: `["openid", "profile", "email"]` | New default: `["openid", "email", "offline_access"]` 
+[`admin_claim`](#admin_claim) | Required | Optional
+[`authenticated_groups_claim`](#authenticated_groups_claim) | Required | Optional 
+[`redirect_uri`](#redirect_uri) | Takes an array of URLs pointing to Kong Manager | Takes an array of URLs pointing to `/auth` endpoint
+[`login_redirect_uri`](#login_redirect_uri) | Optional | Required 
+[`logout_redirect_uri`](#logout_redirect_uri) | Optional | Required
+
+<!-- vale off -->
 ### scopes
 <!-- vale on -->
 
@@ -83,6 +96,12 @@ if you have previously configured session management via `admin_gui_session_conf
 
 Additionally, the default values of some parameters have been changed. 
 See the following for more details:
+
+Old parameter name and location | New parameter name and location | Old default | New default
+---|---|---|---|---
+[`admin_gui_session_conf.secret`](#secret) | `admin_gui_auth_conf.session_secret` | -- | -- |
+[`admin_gui_session_conf.cookie_secure`](#cookie_secure) | `admin_gui_auth_conf.session_cookie_secure`| `true` | `false` | 
+[`admin_gui_session_conf.cookie_samesite`](#cookie_samesite) | `admin_gui_auth_conf.session_cookie_same_site` | `Strict` | `Lax` |
 
 <!-- vale off -->
 ### secret
