@@ -13,7 +13,7 @@ badge: enterprise
 
 An RBAC user has the ability to access the {{site.base_gateway}} Admin API. The permissions assigned to their role will define the types of actions they can perform with various Admin API objects.
 
-An [admin](/gateway/{{page.kong_version}}/kong-manager/auth/), like an RBAC user, has the ability to access the {{site.base_gateway}} Admin API. The admin also has the ability log in to Kong Manager. Like an RBAC user, an admin’s role determines the types of actions it can perform, except that they also have the ability to benefit from Kong Manager’s interface and visualizations.
+An [admin](/gateway/{{page.release}}/kong-manager/auth/), like an RBAC user, has the ability to access the {{site.base_gateway}} Admin API. The admin also has the ability log in to Kong Manager. Like an RBAC user, an admin’s role determines the types of actions it can perform, except that they also have the ability to benefit from Kong Manager’s interface and visualizations.
 
 If creating a *service account* for {{site.base_gateway}}, e.g., for a machine as part of an automated process, then an RBAC User is adequate.
 
@@ -21,8 +21,8 @@ If creating a *personal account* for {{site.base_gateway}}, then admin may be pr
 
 ## Prerequisites
 
-* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable/)
-* You have [super admin permissions](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin/)
+* Authentication and RBAC are [enabled](/gateway/{{page.release}}/kong-manager/auth/rbac/enable/)
+* You have [super admin permissions](/gateway/{{page.release}}/kong-manager/auth/super-admin/)
 or a user that has `/admins` and `/rbac` read and write access
 
 ## Add an RBAC user in Kong Manager

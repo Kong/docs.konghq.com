@@ -28,7 +28,9 @@ module Jekyll
               'edgeLabelBackground': '#fff',
               'fontFamily': 'Roboto',
               'fontSize': '15px',
-              'lineColor': '#99b0c0'
+              'lineColor': '#99b0c0',
+              'activationBorderColor': '#c2d4e0',
+              'sequenceNumberColor': '#fff'
             }
           });
         </script>

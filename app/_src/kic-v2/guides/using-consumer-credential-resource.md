@@ -5,13 +5,13 @@ content_type: tutorial
 
 Learn how to use the KongConsumer custom resource and use Secret resources to associate credentials with those consumers.
 
-{% include_cached /md/kic/installation.md kong_version=page.kong_version %}
+{% include_cached /md/kic/installation.md release=page.release %}
 
-{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
+{% include_cached /md/kic/test-service-echo.md release=page.release %}
 
-{% include_cached /md/kic/class.md kong_version=page.kong_version %}
+{% include_cached /md/kic/class.md release=page.release %}
 
-{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version %}
+{% include_cached /md/kic/http-test-routing.md release=page.release %}
 
 ## Add authentication to the service
 
@@ -100,11 +100,11 @@ Credential Secrets include a `kongCredType` key, whose value indicates what auth
 
 1. Create a credential Secret:
 
-{% include_cached /md/kic/key-auth.md kong_version=page.kong_version credName='kotenok-key-auth' %}
+{% include_cached /md/kic/key-auth.md release=page.release credName='kotenok-key-auth' %}
 
 1. Create a KongConsumer resource that uses the Secret:
 
-{% include_cached /md/kic/consumer.md kong_version=page.kong_version credName='kotenok-key-auth' %}
+{% include_cached /md/kic/consumer.md release=page.release credName='kotenok-key-auth' %}
   
 ## Use the credential
 

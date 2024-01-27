@@ -10,7 +10,7 @@ These changes affect the output of the NGINX access logs. This doesn't have any 
 
 For this example, let’s say you want to remove any instances of an email address from your Kong logs. The email addresses may come through in different ways, for example `/servicename/v2/verify/alice@example.com` or `/v3/verify?alice@example.com`. To keep all of these formats from being added to the logs, you need to use a custom NGINX template.
 
-First, make a copy of {{site.base_gateway}}'s NGINX template. This template can be found in the [Nginx directives reference](/gateway/{{page.kong_version}}/reference/nginx-directives/#custom-nginx-templates-and-embedding-kong-gateway/) or copied from below:
+First, make a copy of {{site.base_gateway}}'s NGINX template. This template can be found in the [Nginx directives reference](/gateway/{{page.release}}/reference/nginx-directives/#custom-nginx-templates-and-embedding-kong-gateway/) or copied from below:
 
 ```nginx
 # ---------------------

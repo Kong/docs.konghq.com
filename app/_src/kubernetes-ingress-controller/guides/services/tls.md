@@ -64,7 +64,7 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
       name: demo-example 
     spec:
       parentRefs:
-      - name: kong
+      - name: example-gateway
         sectionName: https
       hostnames:
       - demo.example.com
@@ -148,7 +148,7 @@ The Ingress API supports TLS termination using the `.spec.tls` field. To termina
       name: demo-example-passthrough
     spec:
       parentRefs:
-      - name: kong
+      - name: example-gateway
         sectionName: https
       hostnames:
       - demo.example.com

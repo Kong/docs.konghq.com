@@ -95,7 +95,7 @@ Following table describes all the flags that are available:
 | `--metrics-bind-address`                 | `string`           | The address the metric endpoint binds to.                                                                                                           | `":10255"`                        |
 | `--profiling`                            | `boolean`          | Enable profiling via web interface `host:10256/debug/pprof/`.                                                                                       | `false`                           |
 | `--proxy-sync-seconds`                   | `float32`          | Define the rate (in seconds) in which configuration updates will be applied to the Kong Admin API.                                                  | `3`                               |
-| `--proxy-timeout-seconds`                | `float32`          | Define the rate (in seconds) in which the timeout configuration will be applied to the Kong client.                                                 | `10`                              |
+| `--proxy-timeout-seconds`                | `float32`          | Define the rate (in seconds) in which the timeout configuration will be applied to the Kong client.                                                 | `30`                              |
 | `--publish-service`                      | `string`           | Service fronting Ingress resources in "namespace/name" format. The controller will update Ingress status information with this Service's endpoints. |                                   |
 | `--publish-status-address`               | `strings`          | User-provided addresses in comma-separated string format, for use in lieu of "publish-service" when that Service lacks useful address information.  |                                   |
 
@@ -115,4 +115,4 @@ Following table describes all the flags that are available:
 | `--update-status`                        | `boolean`          | Indicates if the ingress controller should update the status of resources (e.g. IP/Hostname for v1.Ingress, e.t.c.).                                 | `true`                            |
 | `--watch-namespace`                      | `strings`          | Namespace(s) to watch for Kubernetes resources. Defaults to all namespaces. To watch multiple namespaces, use a comma-separated list of namespaces. | `all`                             |
 
-[fg]: /kubernetes-ingress-controller/{{page.kong_version}}/references/feature-gates
+[fg]: /kubernetes-ingress-controller/{{page.release}}/references/feature-gates

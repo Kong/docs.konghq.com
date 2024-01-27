@@ -8,6 +8,9 @@ The convert command changes configuration files from one format
 into another compatible format. For example, a configuration for 'kong-gateway-2.x'
 can be converted into a 'kong-gateway-3.x' configuration file.
 
+{:.note}
+> `deck file convert` is the replacement for `deck convert`. 
+
 ## Syntax
 
 ```
@@ -41,7 +44,7 @@ deck file convert [command-specific flags] [global flags]
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## See also
 

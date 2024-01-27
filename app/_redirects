@@ -97,6 +97,9 @@
 /gateway/:version/kong-plugins/grpc/     /hub/kong-inc/grpc-gateway/
 /gateway/:version/kong-plugins/configuring-a-grpc-service/    /gateway/:version/production/configuring-a-grpc-service/
 /gateway/:version/kong-plugins/algorithms/rate-limiting/      /gateway/:version/reference/rate-limiting/
+/gateway/:version/install/kubernetes/kubectl/  /gateway/:version/install/kubernetes/
+/gateway/:version/install/kubernetes/helm-quickstart/  /gateway/:version/install/kubernetes/
+/gateway/:version/install/kubernetes/openshift/  /gateway/:version/install/kubernetes/
 
 # CONTRIBUTING & STYLE GUIDE
 /contributing/plugin-docs/               /contributing/contribution-templates/
@@ -167,6 +170,20 @@
 
 
 # PLUGINS
+/gateway/:version/kong-plugins/authentication/oidc/           /hub/kong-inc/openid-connect/
+/gateway/latest/kong-plugins/authentication/oidc/           /hub/kong-inc/openid-connect/
+/gateway/:version/kong-plugins/authentication/oidc/curity/    /hub/kong-inc/openid-connect/how-to/third-party/curity/
+/gateway/latest/kong-plugins/authentication/oidc/curity/    /hub/kong-inc/openid-connect/how-to/third-party/curity/
+/gateway/:version/kong-plugins/authentication/oidc/azure-ad/  /hub/kong-inc/openid-connect/how-to/third-party/azure-ad/
+/gateway/latest/kong-plugins/authentication/oidc/azure-ad/  /hub/kong-inc/openid-connect/how-to/third-party/azure-ad/
+/gateway/:version/kong-plugins/authentication/oidc/google/    /hub/kong-inc/openid-connect/how-to/third-party/google/
+/gateway/latest/kong-plugins/authentication/oidc/google/    /hub/kong-inc/openid-connect/how-to/third-party/google/
+/gateway/:version/kong-plugins/authentication/oidc/okta/      /hub/kong-inc/openid-connect/how-to/third-party/okta/
+/gateway/latest/kong-plugins/authentication/oidc/okta/      /hub/kong-inc/openid-connect/how-to/third-party/okta/
+/gateway/:version/kong-plugins/authentication/oidc/auth0/     /hub/kong-inc/openid-connect/how-to/third-party/auth0/
+/gateway/latest/kong-plugins/authentication/oidc/auth0/     /hub/kong-inc/openid-connect/how-to/third-party/auth0/
+/gateway/:version/kong-plugins/authentication/oidc/cognito/   /hub/kong-inc/openid-connect/how-to/third-party/cognito/
+/gateway/latest/kong-plugins/authentication/oidc/cognito/   /hub/kong-inc/openid-connect/how-to/third-party/cognito/
 /hub/api-fortress/api-fortress-http-log/    /hub/
 /hub/api-fortress/api-fortress-http-log/*   /hub/
 /enterprise/latest/plugins/statsd-advanced/ /hub/kong-inc/statsd-advanced/

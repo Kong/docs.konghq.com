@@ -13,7 +13,7 @@ module PluginSingleSource
         if @release.latest?
           canonical_url
         else
-          "#{base_url}#{@release.version}/changelog/"
+          "#{base_url}#{gateway_release}/changelog/"
         end
       end
 

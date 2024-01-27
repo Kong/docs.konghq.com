@@ -11,7 +11,7 @@ This guide walks you through setting up monitoring for
 > As of {{site.kic_product_name}} 2.0, there are additional
 > performance metrics associated with the configuration process
 > (as opposed to the runtime performance of the Gateway), described in detail
-> in the [Prometheus metrics reference](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus/).
+> in the [Prometheus metrics reference](/kubernetes-ingress-controller/{{page.release}}/references/prometheus/).
 
 This guide was originally posted on [Kong Inc's blog](https://konghq.com/blog/observability-kubernetes-kong).
 
@@ -185,7 +185,7 @@ We will set up three services: billing, invoice, and comments.
 Execute the following to spin these services up:
 
 ```bash
-curl -s https://docs.konghq.com/kubernetes-ingress-controller/{{page.kong_version}}/examples/001_multiple-services.yaml | kubectl apply -f -
+curl -s https://docs.konghq.com/kubernetes-ingress-controller/{{page.release}}/examples/001_multiple-services.yaml | kubectl apply -f -
 ```
 
 ### Install Ingress for the Services

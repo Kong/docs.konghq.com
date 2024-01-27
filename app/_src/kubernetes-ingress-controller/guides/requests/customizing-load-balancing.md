@@ -5,9 +5,9 @@ title: Customizing load-balancing behavior with KongUpstreamPolicy
 In this guide, we will learn how to use KongUpstreamPolicy resource to control
 proxy load-balancing behavior.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
+{% include_cached /md/kic/prerequisites.md release=page.release disable_gateway_api=false %}
 
-{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
+{% include_cached /md/kic/test-service-echo.md release=page.release %}
 
 ### Deploy additional echo replicas
 
@@ -17,7 +17,7 @@ To demonstrate Kong's load balancing functionality we need multiple `echo` Pods.
 kubectl scale --replicas 2 deployment echo
 ```
 
-{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/echo' name='echo' service='echo' port='1027' skip_host=true no_indent=true %}
+{% include_cached /md/kic/http-test-routing.md release=page.release path='/echo' name='echo' service='echo' port='1027' skip_host=true no_indent=true %}
 
 ## Use KongUpstreamPolicy with a Service resource
 
@@ -26,7 +26,7 @@ run `curl -s $PROXY_IP/echo | grep "Pod"` repeatedly, you should see the
 reported Pod name alternate between two values.
 
 You can configure the Kong upstream associated with the Service to use a
-different [load balancing strategy](/gateway/latest/how-kong-works/load-balancing/#balancing-algorithms), such as consistently sending requests to the same upstream based on a header value (please see the [KongUpstreamPolicy reference](/kubernetes-ingress-controller/{{page.kong_version}}/reference/custom-resources/#kongupstreampolicy) for the full list of supported algorithms and their configuration options).
+different [load balancing strategy](/gateway/latest/how-kong-works/load-balancing/#balancing-algorithms), such as consistently sending requests to the same upstream based on a header value (please see the [KongUpstreamPolicy reference](/kubernetes-ingress-controller/{{page.release}}/reference/custom-resources/#kongupstreampolicy) for the full list of supported algorithms and their configuration options).
 
 To modify these behaviours, let's first create a KongUpstreamPolicy resource
 defining the new behaviour:

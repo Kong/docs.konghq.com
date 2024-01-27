@@ -18,7 +18,7 @@ decK manages only the core proxy entities in {{site.ee_product_name}}. It doesn'
 manage enterprise-only entities such as admins, RBAC permissions, RBAC roles,
 or any entities related to Dev Portal.
 
-For a full list, see the reference for [entities managed by decK](/deck/{{page.kong_version}}/reference/entities/).
+For a full list, see the reference for [entities managed by decK](/deck/{{page.release}}/reference/entities/).
 
 ## RBAC
 
@@ -51,11 +51,11 @@ decK is workspace-aware, meaning it can interact with multiple workspaces.
 
 ### Manage one workspace at a time
 
-To manage the configuration of a specific workspace, use the `--workspace` flag with [`sync`](/deck/{{page.kong_version}}/reference/deck_sync/),
-[`diff`](/deck/{{page.kong_version}}/reference/deck_diff),
-[`ping`](/deck/{{page.kong_version}}/reference/deck_ping),
-[`dump`](/deck/{{page.kong_version}}/reference/deck_dump), or
-[`reset`](/deck/{{page.kong_version}}/reference/deck_reset). For example, to
+To manage the configuration of a specific workspace, use the `--workspace` flag with [`sync`](/deck/{{page.release}}/reference/deck_sync/),
+[`diff`](/deck/{{page.release}}/reference/deck_diff),
+[`ping`](/deck/{{page.release}}/reference/deck_ping),
+[`dump`](/deck/{{page.release}}/reference/deck_dump), or
+[`reset`](/deck/{{page.release}}/reference/deck_reset). For example, to
 export the configuration of the workspace `my-workspace`:
 
 ```sh

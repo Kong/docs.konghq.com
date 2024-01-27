@@ -15,6 +15,10 @@ module Jekyll
           !!@metadata['konnect']
         end
 
+        def oss?
+          !!@metadata['free'] && @publisher == KONG_INC
+        end
+
         def paid?
           !@metadata['free'] && !!@metadata['paid'] && @publisher == KONG_INC
         end
@@ -37,7 +41,8 @@ module Jekyll
             "paid:#{paid?}-" \
             "premium:#{premium?}-" \
             "enterprise:#{enterprise?}-" \
-            "techpartner:#{techpartner?}"
+            "techpartner:#{techpartner?}-" \
+            "oss:#{oss?}"
         end
       end
     end

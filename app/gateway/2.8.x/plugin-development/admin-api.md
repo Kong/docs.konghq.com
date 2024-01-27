@@ -165,4 +165,4 @@ three functions:
 - The `PUT` function populates `self.args.post.consumer` before calling the `endpoints`-provided
   `put_entity_endpoint` function.
 
-[Admin API]: /gateway/{{page.kong_version}}/admin-api/
+[Admin API]: /gateway/{{page.release}}/admin-api/

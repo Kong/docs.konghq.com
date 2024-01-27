@@ -6,7 +6,7 @@ Learn to configure multiple authentication options for consumers using the {{sit
 The default behavior for Kong authentication plugins is to require credentials
 for all requests even if a request has been authenticated through another plugin. Configure an anonymous consumer on your authentication plugins to set clients authentication options.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=true %}
+{% include_cached /md/kic/prerequisites.md release=page.release disable_gateway_api=true %}
 
 ## Create a Kubernetes service
 
@@ -77,13 +77,13 @@ Create two consumers that use different authentication methods:
     ```
 
 1. Create a consumer named `consumer-1`.
-    {% include_cached /md/kic/consumer.md kong_version=page.kong_version name='consumer-1' credName='consumer-1-basic-auth' %}
+    {% include_cached /md/kic/consumer.md release=page.release name='consumer-1' credName='consumer-1-basic-auth' %}
 
 1. Create a secret to add `key-auth` credential for `consumer-2`. 
-    {% include_cached /md/kic/key-auth.md kong_version=page.kong_version credName='consumer-2-key-auth' key='consumer-2-password' %}
+    {% include_cached /md/kic/key-auth.md release=page.release credName='consumer-2-key-auth' key='consumer-2-password' %}
 
 1. Create a consumer named `consumer-2`.
-    {% include_cached /md/kic/consumer.md kong_version=page.kong_version name='consumer-2' credName='consumer-2-key-auth' %}
+    {% include_cached /md/kic/consumer.md release=page.release name='consumer-2' credName='consumer-2-key-auth' %}
 
 ## Secure the Ingress
 
@@ -145,7 +145,7 @@ Your endpoints are now secure, but neither consumer can access the endpoint when
 To allow multiple authentication methods, create an anonymous consumer which is the default user if no valid credentials are provided:
 
 1. Create a consumer named `anonymous`.
-    {% include_cached /md/kic/consumer.md kong_version=page.kong_version name='anonymous' %}
+    {% include_cached /md/kic/consumer.md release=page.release name='anonymous' %}
 
     All requests to the API will now succeed as the anonymous consumer is being used as a default.
 

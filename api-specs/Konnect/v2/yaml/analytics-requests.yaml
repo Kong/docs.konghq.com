@@ -71,21 +71,27 @@ components:
               mapping:
                 api_product: '#/components/schemas/RequestsApiProductFilter'
                 api_product_version: '#/components/schemas/RequestsApiProductVersionFilter'
-                route: '#/components/schemas/RequestsRouteFilter'
                 application: '#/components/schemas/RequestsApplicationFilter'
+                consumer: '#/components/schemas/RequestsConsumerFilter'
+                control_plane: '#/components/schemas/RequestsControlPlaneFilter'
+                control_plane_group: '#/components/schemas/RequestsControlPlaneGroupFilter'
+                data_plane_node: '#/components/schemas/RequestsDataPlaneNodeFilter'
+                gateway_service: '#/components/schemas/RequestsGatewayServiceFilter'
+                route: '#/components/schemas/RequestsRouteFilter'
                 status_code: '#/components/schemas/RequestsStatusCodeFilter'
                 status_code_grouped: '#/components/schemas/RequestsStatusCodeGroupedFilter'
-                gateway_service: '#/components/schemas/RequestsGatewayServiceFilter'
-                control_plane: '#/components/schemas/RequestsControlPlaneFilter'
             oneOf:
               - $ref: '#/components/schemas/RequestsApiProductFilter'
               - $ref: '#/components/schemas/RequestsApiProductVersionFilter'
-              - $ref: '#/components/schemas/RequestsRouteFilter'
               - $ref: '#/components/schemas/RequestsApplicationFilter'
+              - $ref: '#/components/schemas/RequestsConsumerFilter'
+              - $ref: '#/components/schemas/RequestsControlPlaneFilter'
+              - $ref: '#/components/schemas/RequestsControlPlaneGroupFilter'
+              - $ref: '#/components/schemas/RequestsDataPlaneNodeFilter'
+              - $ref: '#/components/schemas/RequestsGatewayServiceFilter'
+              - $ref: '#/components/schemas/RequestsRouteFilter'
               - $ref: '#/components/schemas/RequestsStatusCodeFilter'
               - $ref: '#/components/schemas/RequestsStatusCodeGroupedFilter'
-              - $ref: '#/components/schemas/RequestsGatewayServiceFilter'
-              - $ref: '#/components/schemas/RequestsControlPlaneFilter'
           default: []
         time_range:
           description: >-
@@ -172,6 +178,31 @@ components:
         - dimension
         - type
         - values
+    RequestsConsumerFilter:
+      type: object
+      additionalProperties: false
+      properties:
+        dimension:
+          description: The dimension to filter.
+          type: string
+          enum:
+            - consumer
+        type:
+          $ref: '#/components/schemas/RequestsFilterType'
+        values:
+          description: >
+            The consumers to include in the results. Because consumer UUIDs are
+            only unique within a given control plane, the filter values must be
+            of the form `CONTROL_PLANE_UUID:CONSUMER_UUID`.
+          type: array
+          items:
+            type: string
+            pattern: >-
+              ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      required:
+        - dimension
+        - type
+        - values
     RequestsRouteFilter:
       type: object
       additionalProperties: false
@@ -185,7 +216,7 @@ components:
           $ref: '#/components/schemas/RequestsFilterType'
         values:
           description: >
-            The routes to include in the results.  Because route UUIDs are only
+            The routes to include in the results. Because route UUIDs are only
             unique within a given control plane, the filter values must be of
             the form `CONTROL_PLANE_UUID:ROUTE_UUID`.
           type: array
@@ -277,7 +308,7 @@ components:
           $ref: '#/components/schemas/RequestsFilterType'
         values:
           description: >
-            The gateway services to include in the results.  Because gateway
+            The gateway services to include in the results. Because gateway
             service UUIDs are only unique within a given control plane, the
             filter values must be of the form `CONTROL_PLANE_UUID:`.
           type: array
@@ -309,6 +340,56 @@ components:
       required:
         - dimension
         - type
+        - values
+    RequestsControlPlaneGroupFilter:
+      type: object
+      additionalProperties: false
+      properties:
+        dimension:
+          description: The dimension to filter.
+          type: string
+          enum:
+            - control_plane_group
+        type:
+          $ref: '#/components/schemas/RequestsFilterType'
+        values:
+          description: The UUIDs of the control plane groups to include in the results.
+          type: array
+          items:
+            type: string
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      required:
+        - dimension
+        - type
+        - values
+    RequestsDataPlaneNodeFilter:
+      type: object
+      additionalProperties: false
+      properties:
+        dimension:
+          description: The dimension to filter.
+          type: string
+          enum:
+            - data_plane_node
+        type:
+          $ref: '#/components/schemas/RequestsFilterType'
+        values:
+          description: >
+            The data plane nodes to include in the results. Because data plane
+            node UUIDs are only unique within a given control plane or control
+            plane group, the filter values must be of the form
+            `CONTROL_PLANE_UUID:DATA_PLANE_NODE_UUID` if the node belongs to a
+            control plane or `CONTROL_PLANE_GROUP_UUID:DATA_PLANE_NODE_UUID` if
+            the node belongs to a control plane group.
+          type: array
+          items:
+            type: string
+            pattern: >-
+              ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      required:
+        - dimension
+        - type
+        - values
     RequestsRelativeTimeRange:
       type: object
       additionalProperties: false
@@ -456,16 +537,23 @@ components:
           consumer:
             type: string
             description: >-
-              Consumer ID associated with the request.In the format
+              Consumer ID associated with the request. In the format
               `control_plane_uuid:consumer_uuid`.
             nullable: true
           control_plane:
             type: string
             description: Control Plane ID associated with the request.
-          gateway_instance_id:
+          control_plane_group:
             type: string
-            description: Gateway Instance ID associated with the request.
+            description: Control Plane Group ID associated with the request.
             nullable: true
+          data_plane_node:
+            type: string
+            description: >-
+              Data Plane Node ID associated with the request. In the format
+              `control_plane_uuid:data_plane_node_uuid` if the node belongs to a
+              control plane or `control_plane_group_uuid:data_plane_node_uuid`
+              if the node belongs to a control plane group.
           gateway_service:
             type: string
             description: >-
@@ -603,7 +691,7 @@ components:
           route:
             type: string
             description: >-
-              Route ID associated with the request.In the format
+              Route ID associated with the request. In the format
               `control_plane_uuid:route_uuid`.
             nullable: true
           service_port:
@@ -807,7 +895,9 @@ components:
             consumer: >-
               d5ac5d88-efed-4e10-9dfe-0b0a6646c219:d69557ff-277c-4579-a821-4f8d158ae070
             control_plane: d5ac5d88-efed-4e10-9dfe-0b0a6646c219
-            gateway_instance_id: fa69413f-1a63-426c-8d00-5a3c6323371d
+            control_plane_group: cafe2d4f-95ec-458c-8c88-62417018678d
+            data_plane_node: >-
+              cafe2d4f-95ec-458c-8c88-62417018678d:122a0f86-029c-4292-82fd-f3b38e1cfa60
             gateway_service: >-
               d5ac5d88-efed-4e10-9dfe-0b0a6646c219:523468b1-2e74-4b58-b30e-6f904e99e4d0
             header_host: google.com
@@ -858,7 +948,9 @@ components:
             client_ip: 131.174.120.249
             consumer: null
             control_plane: d5ac5d88-efed-4e10-9dfe-0b0a6646c219
-            gateway_instance_id: fa69413f-1a63-426c-8d00-5a3c6323371d
+            control_plane_group: null
+            data_plane_node: >-
+              d5ac5d88-efed-4e10-9dfe-0b0a6646c219:a3e0692c-2351-4c8e-acbe-e7a5185147de
             gateway_service: >-
               d5ac5d88-efed-4e10-9dfe-0b0a6646c219:523468b1-2e74-4b58-b30e-6f904e99e4d0
             header_host: proxy-zyq.com

@@ -28,7 +28,7 @@ Following CRDs enables users to declaratively configure all aspects of Kong:
 This resource provides an API to configure plugins inside Kong using
 Kubernetes-style resources.
 
-Please see the [concept](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/#KongPlugin)
+Please see the [concept](/kubernetes-ingress-controller/{{page.release}}/concepts/custom-resources/#KongPlugin)
 document for how the resource should be used.
 
 The following snippet shows the properties available in KongPlugin resource:
@@ -137,7 +137,7 @@ A plugin can also be applied to a specific KongConsumer by adding
 `konghq.com/plugins` annotation to the KongConsumer resource.
 
 Please follow the
-[Using the KongPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource)
+[Using the KongPlugin resource](/kubernetes-ingress-controller/{{page.release}}/guides/using-kongplugin-resource)
 guide for details on how to use this resource.
 
 #### Applying a plugin with a secret configuration
@@ -216,7 +216,7 @@ sometimes, users may want more control over routing at the Ingress level.
 It is not meant as a replacement to the
 `Ingress` resource in Kubernetes.
 
-Please read the [concept](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/#kongingress)
+Please read the [concept](/kubernetes-ingress-controller/{{page.release}}/concepts/custom-resources/#kongingress)
 document for why this resource exists and how it relates to the existing
 Ingress resource.
 
@@ -241,7 +241,7 @@ Specifically,
   add the annotation to the Ingress resource.
 
 Please follow the
-[Using the KongIngress resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource)
+[Using the KongIngress resource](/kubernetes-ingress-controller/{{page.release}}/guides/using-kongingress-resource)
 guide for details on how to use this resource.
 
 For reference, the following is a complete spec for KongIngress:
@@ -408,7 +408,7 @@ Please ensure that all fields related to the credential in Kong
 are present in the definition of KongCredential's `config` section.
 
 Please refer to the
-[using the Kong Consumer and Credential resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource)
+[using the Kong Consumer and Credential resource](/kubernetes-ingress-controller/{{page.release}}/guides/using-consumer-credential-resource)
 guide for details on how to use this resource.
 
 [k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/

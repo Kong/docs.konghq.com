@@ -24,7 +24,7 @@ $ deck sync # actually re-creates the entities in Kong
 
 You can export/import/manage a subset of Kong's configuration using decK's
 `select-tag` feature. This is similar to adopting
-[distributed configuration](/deck/{{page.kong_version}}/guides/distributed-configuration) for Kong.
+[distributed configuration](/deck/{{page.release}}/guides/distributed-configuration) for Kong.
 
 The `select-tag` feature assumes that all the entities you would like to manage
 in Kong share a common tag(s).

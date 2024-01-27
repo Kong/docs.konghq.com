@@ -25,7 +25,7 @@ node. The method you use may depend on your deployment type.
 
 * **Hybrid mode deployment:** The license file must be deployed to
 control plane nodes. The control planes then distribute the license to the data
-planes in their clusters. Use the [`/licenses`](/gateway/{{page.kong_version}}/admin-api/licenses/reference/)
+planes in their clusters. Use the [`/licenses`](/gateway/{{page.release}}/admin-api/licenses/reference/)
 endpoint to apply the license to the control plane.
 
 * **Traditional deployment with no separate control plane:** License files must
@@ -50,7 +50,7 @@ of any `kong` CLI commands. License file environment variables must be
 exported to the shell in which the Nginx process will run, ahead of the `kong`
 CLI tool.
 
-For more information, see [Deploy Your License](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/deploy-license/).
+For more information, see [Deploy Your License](/gateway/{{page.release}}/plan-and-deploy/licenses/deploy-license/).
 
 ## Examining the license data on a {{site.base_gateway}} node
 

@@ -9,10 +9,10 @@ Please see [{{site.base_gateway}} Version Support](/gateway/latest/support-polic
 for more information about Kong's support for {{site.base_gateway}} and our
 [Support & Maintenance Policy](https://konghq.com/supportandmaintenancepolicy).
 
-{% assign compat_data = site.data.tables.compat[page.kong_version] %}
+{% assign compat_data = site.data.tables.compat[page.release.value] %}
 
 {% unless compat_data %}
-{% assign msg = "compat.json data is missing for Gateway " | append: page.kong_version %}
+{% assign msg = "compat.json data is missing for Gateway " | append: page.release %}
 {{ msg | raise_error }}
 {% endunless %}
 

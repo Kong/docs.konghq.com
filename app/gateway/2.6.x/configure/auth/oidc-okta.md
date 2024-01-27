@@ -7,7 +7,7 @@ This guide covers an example OpenID Connect plugin configuration to authenticate
 
 For information about configuring OIDC using Okta as an Identity provider
 in conjunction with the Application Registration plugin, see
-[Set Up External Portal Application Authentication with Okta and OIDC](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config).
+[Set Up External Portal Application Authentication with Okta and OIDC](/gateway/{{page.release}}/developer-portal/administration/application-registration/okta-config).
 
 ## Prerequisites
 
@@ -120,6 +120,6 @@ Similarly, setting `authenticated_groups_claim` will extract that claim's value 
 [okta-authorization-server]: https://developer.okta.com/docs/guides/customize-authz-server/create-authz-server/
 [okta-register-app]: https://developer.okta.com/docs/guides/add-an-external-idp/openidconnect/register-app-in-okta/
 [add-certificate]: /gateway/latest/admin-api/#add-certificate
-[add-service]: /gateway/{{page.kong_version}}/admin-api/#service-object
+[add-service]: /gateway/{{page.release}}/admin-api/#service-object
 [credential-claim]: /hub/kong-inc/openid-connect/#configcredential_claim
-[enable-plugin]: /gateway/{{page.kong_version}}/admin-api/#plugin-object
+[enable-plugin]: /gateway/{{page.release}}/admin-api/#plugin-object

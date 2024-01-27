@@ -35,7 +35,7 @@ module Jekyll
       end
 
       def page_version
-        @page_version ||= @page.data['kong_version']
+        @page_version ||= @page.data['release']
       end
     end
   end

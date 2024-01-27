@@ -14,10 +14,10 @@ plane certificates.
 
 {{site.mesh_product_name}} adds:
 
-* [`vault`](/mesh/{{page.kong_version}}/features/vault/): {{site.mesh_product_name}} generates data plane certificates
+* [`vault`](/mesh/{{page.release}}/features/vault/): {{site.mesh_product_name}} generates data plane certificates
 using a CA root certificate and key stored in a HashiCorp Vault
 server.
-* [`acmpca`](/mesh/{{page.kong_version}}/features/acmpca/): {{site.mesh_product_name}} generates data plane certificates
+* [`acmpca`](/mesh/{{page.release}}/features/acmpca/): {{site.mesh_product_name}} generates data plane certificates
 using Amazon Certificate Manager Private CA.
 * `certmanager`: {{site.mesh_product_name}} generates data plane certificates
 using Kubernetes [cert-manager](https://cert-manager.io) certificate controller.
@@ -113,7 +113,7 @@ In a multi-zone environment, validation is performed on the global control plane
 
 <!-- links -->
 {% if_version gte:2.0.x %}
-[mtls-policy]: /mesh/{{page.kong_version}}/policies/mutual-tls/
+[mtls-policy]: /mesh/{{page.release}}/policies/mutual-tls/
 {% endif_version %}
 
 {% if_version lte:1.9.x %}

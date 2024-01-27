@@ -438,7 +438,7 @@ regard to other plugins' phases (such as `:access()`, `:log()`, etc.).
 
 All of the plugins bundled with {{site.base_gateway}} have a static priority.
 This can be adjusted dynamically using the `ordering` option. See
-[Dynamic Plugin Ordering](/gateway/{{page.kong_version}}/kong-enterprise/plugin-ordering/)
+[Dynamic Plugin Ordering](/gateway/{{page.release}}/kong-enterprise/plugin-ordering/)
 for more information.
 
 {% navtabs %}
@@ -469,7 +469,7 @@ The current order of execution for the bundled plugins is:
 {% endnavtabs %}
 
 [lua-nginx-module]: https://github.com/openresty/lua-nginx-module
-[pdk]: /gateway/{{page.kong_version}}/plugin-development/pdk
+[pdk]: /gateway/{{page.release}}/plugin-development/pdk
 [HTTP Module]: https://github.com/openresty/lua-nginx-module
 [Stream Module]: https://github.com/openresty/stream-lua-nginx-module
 [init_worker]: https://github.com/openresty/lua-nginx-module#init_worker_by_lua_block
@@ -480,7 +480,7 @@ The current order of execution for the bundled plugins is:
 [body_filter]: https://github.com/openresty/lua-nginx-module#body_filter_by_lua_block
 [log]: https://github.com/openresty/lua-nginx-module#log_by_lua_block
 [preread]: https://github.com/openresty/stream-lua-nginx-module#preread_by_lua_block
-[enable_buffering]: /gateway/{{page.kong_version}}/plugin-development/pdk/kong.service.request/#kongservicerequestenable_buffering
+[enable_buffering]: /gateway/{{page.release}}/plugin-development/pdk/kong.service.request/#kongservicerequestenable_buffering
 [content]: https://github.com/openresty/lua-nginx-module#content_by_lua_block
 
 <!-- vale on -->

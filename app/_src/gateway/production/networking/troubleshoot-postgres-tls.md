@@ -112,7 +112,7 @@ The server and client versions are not in sync. Check the version that the Postg
 Error: [PostgreSQL error] failed to retrieve PostgreSQL server_version_num: the server does not support SSL connections
 ```
 
-This error occurs when SSL is not supported by PostgreSQL. Configure PostgreSQL according to [the configuration instructions](/gateway/{{page.kong_version}}/production/networking/configure-postgres-tls/).
+This error occurs when SSL is not supported by PostgreSQL. Configure PostgreSQL according to [the configuration instructions](/gateway/{{page.release}}/production/networking/configure-postgres-tls/).
 
 
 

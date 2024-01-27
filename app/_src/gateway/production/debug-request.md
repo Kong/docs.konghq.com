@@ -15,7 +15,7 @@ Request debugging provides the following insights:
 
 ## Enable request debugging
 
-Request debugging is enabled by default and has the following configurations in [`kong.conf`](/gateway/{{page.kong_version}}/reference/configuration/):
+Request debugging is enabled by default and has the following configurations in [`kong.conf`](/gateway/{{page.release}}/reference/configuration/):
 
 ```
 request_debug = on | off # enable or disable request debugging
