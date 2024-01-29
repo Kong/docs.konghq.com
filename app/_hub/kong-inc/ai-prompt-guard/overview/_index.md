@@ -2,7 +2,7 @@
 nav_title: Overview
 ---
 
-The Prompt Guard Decorator plugin lets you to configure a series of regular expressions as allow or deny lists to verify `llm/v1/chat` or `llm/v1/completions` requests.
+The Prompt Guard plugin lets you to configure a series of regular expressions as allow or deny lists to verify `llm/v1/chat` or `llm/v1/completions` requests.
 You can use this plugin to block specific prompts, words, phrases, or otherwise have more control over how an AI / LLM model is used when called via Kong.
 
 This plugin extends the functionality of the [AI Proxy plugin](/hub/kong-inc/ai-proxy/), and requires AI Proxy to be configured first.
