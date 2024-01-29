@@ -33,7 +33,7 @@ While using the OpenID Connect plugin with Kong Manager, `scopes` now have a def
 `["openid", "email", "offline_access"]` if not specified.
 
 * `openid`: Essential for OpenID Connect.
-* `email`: Retrieves the user's email address and includes it in the ID token
+* `email`: Retrieves the user's email address and includes it in the ID token.
 * `offline_access`: Essential refresh tokens to refresh the access tokens and sessions.
 
 This parameter can be modified according to your needs. However, `"openid"` and `"offline_access"` should
