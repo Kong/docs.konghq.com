@@ -1,13 +1,9 @@
 ---
-title: About API Products
+title: API Products
 content_type: explanation
 ---
 
-API Products bundles and manages multiple services. Each API product consists of at least one API product version, and each API product version is connected to a Gateway service. You can document your services and publish API products to a Dev Portal for consumption.
-
-**[Access {{site.konnect_short_name}} API Products](https://cloud.konghq.com/api-products).**
-
-![{{site.konnect_short_name}} API Products](/assets/images/products/konnect/api-products/api-products-overview.png)
+API Products in {{site.konnect_short_name}} are collections of API product versions, documentation and API specs. Each API product consists of at least one API product version, and each API product version is composed to an existing Gateway service. 
 
 ## API Products Dashboard
 
@@ -28,7 +24,7 @@ Here are some of the things you can do from the API Products Dashboard:
 -------|------|------------
 **Overview** | Analytics data for the API product. You can configure the analytics options using the [**Analytics tool**](/konnect/analytics/).
 **Product Versions** | This section displays the status of an API product version. From the context menu you can **Delete** an API product version, or use the **View Details** button to navigate to that version's dashboard. 
-**Documentation** | You can add markdown documentation for your API product, as well as an API specification for each version of the API product. You can control the individual publishing status of each document you upload to a API product.
+**Documentation** | In this section you can manage documentation for your API product, this includes API specs and comprehensive markdown documentation.
 
 
 ### API product versions
@@ -57,7 +53,7 @@ Learn more:
 
 ### Documentation
 
-The API product **Documentation** can be used to manage documentation for your API product. Once the documentation is uploaded it can be edited from the dashboard. The documentation can be accessed once the API product is published.
+{{site.konnect_short_name}} enhances API product management by offering comprehensive documentation capabilities within the {{site.konnect_short_name}} manager and hosting it on the Dev Portal for consumption. The editor utilizes rich markdown rendering offering built-in syntax highlighting, support for Mermaid.js and PlantUML. 
 
 Learn more: 
 

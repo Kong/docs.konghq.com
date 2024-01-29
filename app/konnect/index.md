@@ -95,7 +95,7 @@ Through the Gateway Manager, increase the security of your APIs with out-of-the-
 
 ### API Products
 
-Use API Products to bundle and manage multiple services via API products. You can use API products to version your services as well as upload documentation for your API product. This allows you to prepare to productize your services by publishing your API products to Dev Portal.
+Use API Products to bundle and manage multiple services via API products. You can use API products to version your services as well as edit and upload documentation for your API products. This allows you to prepare to productize your services by publishing your API products to the Dev Portal.
 [Start productizing services with API Products &rarr;](/konnect/api-products)
 
 ### Dev Portal
