@@ -19,9 +19,9 @@ See the following summary of changes to attributes of `admin_gui_auth_conf`, and
 Parameter | Old behavior | New behavior 
 ---|---|---|---|---
 [`scopes`](#scopes) | Old default: `["openid", "profile", "email"]` | New default: `["openid", "email", "offline_access"]` 
-[`admin_claim`](#admin_claim) | Required | Optional
-[`authenticated_groups_claim`](#authenticated_groups_claim) | Required | Optional 
-[`redirect_uri`](#redirect_uri) | Takes an array of URLs pointing to Kong Manager | Takes an array of URLs pointing to `/auth` endpoint
+[`admin_claim`](#admin_claim) | Required | Optional (Default: `"email"`)
+[`authenticated_groups_claim`](#authenticated_groups_claim) | Required | Optional (Default: `["groups"]`)
+[`redirect_uri`](#redirect_uri) | Takes an array of URLs pointing to Kong Manager | Takes an array of URLs pointing to the Admin API's `/auth` endpoint
 [`login_redirect_uri`](#login_redirect_uri) | Optional | Required 
 [`logout_redirect_uri`](#logout_redirect_uri) | Optional | Required
 
@@ -38,13 +38,13 @@ While using the OpenID Connect plugin with Kong Manager, `scopes` now have a def
 
 This parameter can be modified according to your needs. However, `"openid"` and `"offline_access"` should
 always be included to ensure the OpenID Connect plugin works normally. Also, make sure that `scopes`
-contains sufficient scopes for the claim specified by this parameter.
+contains sufficient scopes for the claim specified by this parameter (for example, `"email"` in the default scopes).
 
 <!-- vale off -->
 ### admin_claim
 <!-- vale on -->
 
-`admin_claim` is now an optional parameter. If not set, it defaults to `["email"]`.
+`admin_claim` is now an optional parameter. If not set, it defaults to `"email"`.
 
 This parameter is used while looking up the admin's username from the ID token. When configuring this setting,
 make sure that `scopes` contains sufficient scopes for the claim specified by this parameter.

@@ -94,7 +94,7 @@ admin_gui_auth_conf={                                                           
   "scopes": ["openid","email","offline_access"], # "email" is for the admin_claim, may vary in different IdPs \
   "login_redirect_uri": ["http://localhost:8002"],                                                            \
   "logout_redirect_uri": ["http://localhost:8002"],                                                           \
-  "admin_claim": ["email"],                                                                                   \
+  "admin_claim": "email",                                                                                   \
   "authenticated_groups_claim": ["groups"],                                                                   \
 }
 ```
