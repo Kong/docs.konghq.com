@@ -1,8 +1,5 @@
 ## Changelog
 
-**{{site.base_gateway}} 3.6.x**
-* Added support for mTLS client authentication.
-
 **{{site.base_gateway}} 3.5.x**
 * Added the new field `unauthorized_destroy_session`. 
 When set to `true`, it destroys the session when receiving an unauthorized request by deleting the user's session cookie.
