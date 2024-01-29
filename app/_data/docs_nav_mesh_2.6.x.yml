@@ -85,6 +85,7 @@ inherit:
     - path: [ Using Kuma ]
       title: Using Kong Mesh
       action: modify
+      icon: /assets/images/icons/documentation/icn-overview-color.svg
     - path: [ Using Kong Mesh, Route & Traffic shaping, Protocol support in Kuma ]
       text: Protocol support in Kong Mesh
       action: modify
@@ -121,6 +122,7 @@ inherit:
       url: /features/meshglobalratelimit
       generate: false
     - path: [ Guides ]
+      action: modify
       icon: /assets/images/icons/documentation/icn-learning.svg
     - title: Enterprise Features
       action: insert
