@@ -75,15 +75,11 @@ inherit:
     - path: [ Kong Mesh in Production, Upgrades and tuning, Upgrade Kuma ]
       action: modify
       text: Upgrade Kong Mesh
-    - path: [ Deploy ]
+    - path: [ Quickstart ]
       action: modify
       icon: /assets/images/icons/documentation/icn-manager-color.svg
-    - path: [ Deploy, Explore Kuma with the Kubernetes demo app ]
-      text: Explore Kong Mesh with the Kubernetes demo app
-      action: modify
-      items: []
-    - path: [ Deploy, Explore Kuma with the Universal demo app ]
-      text: Explore Kong Mesh with the Universal demo app
+    - path: [ Quickstart, Deploy Kuma on Kubernetes ]
+      text: Deploy Kong Mesh on Kubernetes
       action: modify
       items: []
     - path: [ Explore ]
