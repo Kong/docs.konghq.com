@@ -178,7 +178,15 @@ Here are the allowed combination of field types and constant types with each ope
 | `String`                         | `==`, `!=`, `~`, `^=`, `=^`, `contains` | ❌              | ❌        | ❌                                | `~`     | ❌            |
 | `IpAddr`                         | ❌                                       | `in`, `not in` | `==`     | ❌                                | ❌       | ❌            |
 | `Int`                            | ❌                                       | ❌              | ❌        | `==`, `!=`, `>=`, `>`, `<=`, `<` | ❌       | ❌           |
+
+{% if_version lte:3.5.x %}
 | `Expression`                     | ❌                                       | ❌              | ❌        | ❌                                | ❌       | `&&`, `||`  |
+{% endif_version %}
+
+{% if_version gte:3.6.x %}
+| `Expression`                     | ❌                                       | ❌              | ❌        | ❌                                | ❌       | `&&`, `\|\|`  |
+{% endif_version %}
+
 
 {:.note}
 > **Notes:** 
