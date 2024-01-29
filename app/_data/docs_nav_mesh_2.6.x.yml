@@ -82,15 +82,15 @@ inherit:
       text: Deploy Kong Mesh on Kubernetes
       action: modify
       items: []
-    - path: [ Explore ]
+    - path: [ Using Kuma ]
+      title: Using Kong Mesh
       action: modify
-      icon: /assets/images/icons/documentation/icn-solution-guide.svg
-    - path: [ Networking ]
+      icon: /assets/images/icons/documentation/icn-overview-color.svg
+    - path: [ Using Kong Mesh, Route & Traffic shaping, Protocol support in Kuma ]
+      text: Protocol support in Kong Mesh
       action: modify
-      icon: /assets/images/icons/documentation/icn-brain-color.svg
-    - path: [ Monitor & manage ]
-      action: modify
-      icon: /assets/images/icons/konnect/icn-analytics-nav.svg
+      url: /policies/protocol-support-in-kong-mesh
+      items: []
     - path: [ Policies ]
       action: modify
       icon: /assets/images/icons/documentation/icn-documentation-small.svg
@@ -102,11 +102,6 @@ inherit:
       text: How Kong Mesh chooses the right policy to apply
       action: modify
       url: /policies/how-kong-mesh-chooses-the-right-policy-to-apply
-      items: []
-    - path: [ Policies, Protocol support in Kuma ]
-      text: Protocol support in Kong Mesh
-      action: modify
-      url: /policies/protocol-support-in-kong-mesh
       items: []
     - path: [ Policies, Previous Policies ]
       action: insert
@@ -126,6 +121,9 @@ inherit:
       text: MeshGlobalRateLimit (beta)
       url: /features/meshglobalratelimit
       generate: false
+    - path: [ Guides ]
+      action: modify
+      icon: /assets/images/icons/documentation/icn-learning.svg
     - title: Enterprise Features
       action: insert
       index: -3
