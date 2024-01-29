@@ -184,9 +184,7 @@ Using Kong Manager, complete the following:
 
 1. Click **Settings** and then **Delete**.
 
-1. In the **Delete Workspace** dialog, enter the name of the workspace, select **Confirm: delete all associated resources**, and then click **Delete**. 
-
-This will automatically delete all entities (teams, roles, services, and routes, for example) associated with the workspace as well as the workspace itself.
+1. Please note that the workspace must be empty to be deleted via the Kong Manager GUI. If it is not, the admin-api instructions must be followed to delete the workspace and associated entities.
 
 {% endnavtab %}
 {% navtab Admin API %}
