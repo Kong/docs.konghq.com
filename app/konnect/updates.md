@@ -39,6 +39,8 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **Gateway Manager** 
 : Navigation within nested entities has been enhanced. Now, any plugin configured for a service, route, or consumer is directly hyperlinked in the configuration. 
 
+: Customers are now able to connect to their gateway proxy APIs by using either the public edge DNS that points to all regions, or the private IPs pointing to specific regions from directly within Konnect.
+
 
 ## November 2023
 **Multi-geo support**
