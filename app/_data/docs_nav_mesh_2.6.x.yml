@@ -75,7 +75,7 @@ inherit:
     - path: [ Kong Mesh in Production, Upgrades and tuning, Upgrade Kuma ]
       action: modify
       text: Upgrade Kong Mesh
-    - path: [ Deploy ]
+    - path: [ Quickstart ]
       action: modify
       icon: /assets/images/icons/documentation/icn-manager-color.svg
     - path: [ Quickstart, Deploy Kuma on Kubernetes ]
