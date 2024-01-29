@@ -12,7 +12,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## February 2024
 
 **Improved Proxy URL experience**
-: Customers are now able to configure and view their Proxy URLs directly from {{site.konnect_short_name}}, and use it them to connect to data planes directly.
+: You can now configure and view your Proxy URLs directly from {{site.konnect_short_name}}, and use them to connect to data planes directly.
 
 ## January 2024
 
