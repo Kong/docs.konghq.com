@@ -4,7 +4,7 @@ toc: true
 content_type: explanation
 ---
 
-Multiple services can be registered to a single application. In the {{site.konnect_short_name}} Dev Portal, services registered to an application are listed in an application's detail page. You can find all applications in your account by clicking  **My Apps** from the dropdown menu beneath your login email in the Dev Portal.
+Multiple services can be registered to a single application as long as they share the same authentication strategy. In the {{site.konnect_short_name}} Dev Portal, services registered to an application are listed in an application's detail page. You can find all applications in your account by clicking  **My Apps** from the dropdown menu beneath your login email in the Dev Portal.
 
 The purpose of registering services to an application is to consume those services using application-level authentication. Grouping authentication enables direct access to multiple services. The application can host multiple credentials or API keys. For more information about application credentials, refer to [Generate Credentials for an Application](/konnect/dev-portal/applications/dev-gen-creds/).
 
