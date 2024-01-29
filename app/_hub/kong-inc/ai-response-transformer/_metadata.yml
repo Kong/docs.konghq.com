@@ -16,7 +16,7 @@ notes: --
 categories:
   - ai
 publisher: Kong Inc.
-desc: 
+desc: Use a configured LLM service to introspect the upstream's HTTP(S) response before sending the response back to the client
 type: plugin
 
 beta: true

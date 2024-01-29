@@ -16,7 +16,7 @@ notes: --
 categories:
   - ai
 publisher: Kong Inc.
-desc: 
+desc: Add an array of `llm/v1/chat` messages to either the start or end of a caller's chat history
 type: plugin
 
 beta: true
