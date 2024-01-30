@@ -184,7 +184,8 @@ Using Kong Manager, complete the following:
 
 1. Click **Settings** and then **Delete**.
 
-1. Please note that the workspace must be empty to be deleted via the Kong Manager GUI. If it is not, the admin-api instructions must be followed to delete the workspace and associated entities.
+{:.note}
+> To delete a workspace using the Kong Manager GUI, the workspace must first be empty. If the workspace contains any entities, you will need to follow the admin-api instructions to delete both the workspace and any associated entities.
 
 {% endnavtab %}
 {% navtab Admin API %}
