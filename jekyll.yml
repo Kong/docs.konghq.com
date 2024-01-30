@@ -68,7 +68,7 @@ extensions:
       icon: /assets/images/nav/hub/list_alt.svg
     - name: AI
       slug: ai
-      desc: placeholder
+      desc: Govern, secure, and control AI traffic with multi-LLM AI Gateway plugins
       icon: /assets/images/nav/hub/ai.svg
   types:
     - name: plugin
