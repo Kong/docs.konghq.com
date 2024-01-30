@@ -17,6 +17,10 @@
  
 ######################################################################
 
+# API
+
+/konnect/api/portal-rbac/latest/    /konnect/api/portal-management/latest/
+
 # Konnect plugins
 
 /konnect/gateway-manager/enable-route-plugin/    /konnect/gateway-manager/plugins/
