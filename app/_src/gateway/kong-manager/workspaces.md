@@ -96,7 +96,10 @@ all files from a folder will remove the folder.
 1. In the workspace you want to delete, navigate to the **Dashboard** page.
 1. Click the **Settings** button to open the **Edit Workspace** page.
 1. Click **Delete**.
-    The deletion will fail if you have any data in your workspace.
+
+{:.note}
+> To delete a workspace using the Kong Manager GUI, the workspace must first be empty. If the workspace contains any entities, you will need to follow the admin API instructions to delete both the workspace and any associated entities.
+
 {% endnavtab %}
 {% navtab Admin API %}
 
@@ -184,8 +187,10 @@ Using Kong Manager, complete the following:
 
 1. Click **Settings** and then **Delete**.
 
-{:.note}
-> To delete a workspace using the Kong Manager GUI, the workspace must first be empty. If the workspace contains any entities, you will need to follow the admin API instructions to delete both the workspace and any associated entities.
+1. In the **Delete Workspace** dialog, enter the name of the workspace, select **Confirm: delete all associated resources**, and then click **Delete**. 
+
+This will automatically delete all entities (teams, roles, services, and routes, for example) associated with the workspace as well as the workspace itself.
+
 
 {% endnavtab %}
 {% navtab Admin API %}
