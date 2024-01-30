@@ -521,7 +521,6 @@ items:
     items:
       - text: Overview
         url: /admin-api/index_latest/
-        src: /gateway/admin-api/
       - text: Declarative Configuration
         url: /admin-api/declarative-configuration
       - text: Enterprise API
