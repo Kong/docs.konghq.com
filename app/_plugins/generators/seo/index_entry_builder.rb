@@ -68,7 +68,7 @@ module SEO
     end
 
     def unprocessable_page?
-      ['/404.html', '/moved_urls.yml', '/redirects.json', '/robots.txt'].include?(@page.url)
+      ['/sitemap.xml', '/404.html', '/moved_urls.yml', '/redirects.json', '/robots.txt'].include?(@page.url)
     end
 
     def url_segments
