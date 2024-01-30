@@ -37,7 +37,7 @@ type: plugin
         {% unless page.is_latest %}
             {% if page.release.label %}
               <blockquote id="version-notice" class="warning no-icon">
-              You are browsing documentation for an <strong>unreleased</strong> plugin version.
+                You are browsing <strong>{{page.release.label}}</strong> documentation.
             {% else %}
               <blockquote id="version-notice" class="important">
               You are browsing documentation for an outdated plugin version.

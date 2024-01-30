@@ -94,7 +94,7 @@ id: documentation
           {% unless page.release.latest? or page.no_version == true %}
             {% if page.release.label != nil %}
               <blockquote id="version-notice" class="warning no-icon">
-                You are browsing documentation of an <strong>unreleased</strong> version.
+                You are browsing <strong>{{page.release.label}}</strong> documentation.
             {% else %}
               <blockquote id="version-notice" class="important">
                 You are browsing documentation for an outdated version.
