@@ -94,7 +94,12 @@ id: documentation
           {% unless page.release.latest? or page.no_version == true %}
             {% if page.release.label != nil %}
               <blockquote id="version-notice" class="warning no-icon">
-                You are browsing <strong>{{page.release.label}}</strong> documentation.
+                {% if page.edition == 'mesh' and page.release.label == 'dev' %}
+                 <!-- Special case for Mesh, since Kuma uses "dev" -->
+                  You are browsing <strong>unreleased</strong> documentation.
+                {% else %}
+                  You are browsing <strong>{{page.release.label}}</strong> documentation.
+                {% endif %}
             {% else %}
               <blockquote id="version-notice" class="important">
                 You are browsing documentation for an outdated version.

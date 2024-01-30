@@ -379,5 +379,5 @@
 - edition: mesh
   version: 2.6.0
   release: 2.6.x
-  label: unreleased
+  label: dev
   branch: master
