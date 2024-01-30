@@ -96,8 +96,10 @@ all files from a folder will remove the folder.
 1. In the workspace you want to delete, navigate to the **Dashboard** page.
 1. Click the **Settings** button to open the **Edit Workspace** page.
 1. Click **Delete**.
-    {:.note}
-    > To delete a workspace using the Kong Manager GUI, the workspace must first be empty. If the workspace contains any entities, you will need to follow the admin API instructions to delete both the workspace and any associated entities.
+
+{:.note}
+> To delete a workspace using the Kong Manager GUI, the workspace must first be empty. If the workspace contains any entities, you will need to follow the admin API instructions to delete both the workspace and any associated entities.
+
 {% endnavtab %}
 {% navtab Admin API %}
 
