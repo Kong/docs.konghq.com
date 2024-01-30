@@ -19,7 +19,7 @@
 
 # API
 
-/konnect/api/portal-rbac/latest/    /konnect/api/portal-management/latest/
+/konnect/api/portal-rbac/latest/*    /konnect/api/portal-management/latest/
 
 # Konnect plugins
 
