@@ -32,7 +32,7 @@ curl -L https://docs.konghq.com/mesh/installer.sh | VERSION={{page.version}} sh 
 ```
 {% endnavtab %}
 {% navtab Manually %}
-You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-rhel-amd64.tar.gz) the distribution manually.
+You can also [download]({{site.links.direct}}/kong-mesh-legacy/raw/names/kong-mesh-rhel-amd64/versions/{{page.version}}/kong-mesh-{{page.version}}-rhel-amd64.tar.gz) the distribution manually.
 
 Then, extract the archive with:
 
