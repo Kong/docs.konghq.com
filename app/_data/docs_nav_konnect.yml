@@ -120,6 +120,8 @@
       url: /mesh-manager/
     - text: Create a mesh with the Kubernetes demo app
       url: /mesh-manager/service-mesh/
+    - text: Federate a zone control plane to Konnect
+      url: /mesh-manager/federate-zone/
     - text: Migrate a self-managed zone control plane to Konnect
       url: /mesh-manager/migrate-zone/
 
