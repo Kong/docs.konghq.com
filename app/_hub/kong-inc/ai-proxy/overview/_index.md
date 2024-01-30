@@ -2,16 +2,19 @@
 nav_title: Overview
 ---
 
-The AI Proxy plugin let you transform and proxy requests to a number of AI LLM providers and models.
+The AI Proxy plugin lets you transform and proxy requests to a number of AI providers and models.
 
 The plugin accepts requests in one of a few defined and standardised formats, translates them to the configured target format, and then transforms the response back into a standard format.
 
-_[need list of formats and tested providers here]_
-
-_[Do we have a diagram we can put here?]_
+The AI Proxy plugin supports `v1/chat` and `v1/completion` style requests for all of the following providers:
+* OpenAI
+* Cohere
+* Azure
+* Anthropic
+* Mistral
+* Llama2
 
 The request and response formats are based on OpenAI.
-
 See the [sample OpenAPI specification](https://github.com/kong/kong/blob/master/spec/fixtures/ai-proxy/oas.yaml) for descriptions of the supported formats.
 
 ## How it works
@@ -25,8 +28,6 @@ The plugin can then do the following:
 * Capturing and storing metrics from the upstream responses into normalised `kong.log` entries, which can then output via any configured logging platform (for example, [File Log](/hub/kong-inc/file-log/) or [Kafka Log](/hub/kong-inc/kafka-log/)).
 
 Flattening all of the provider formats allows for standardised manipulation of the data before and after transmission.
-
-The AI Proxy plugin supports `v1/chat` and `v1/completion` style requests for all available providers. Each provider implementation class is in its own module under `kong.plugins.ai-proxy.drivers`.
 
 This plugin only supports REST-based full text responses.
 
