@@ -30,20 +30,8 @@
   items:
     - text: Overview
       url: /getting-started/
-    - text: Create a Konnect Account
-      url: /getting-started/access-account/
-    - text: Set up a Data Plane Node
-      url: /getting-started/configure-data-plane-node/
-    - text: Proxy and Test a Service
-      url: /getting-started/deploy-service/
-    - text: Productize a Service
-      url: /getting-started/productize-service/
-    - text: Get Started with the Dev Portal
-      items:
-        - text: Add Documentation
-          url: /getting-started/publish-service/
-        - text: Register Applications
-          url: /getting-started/app-registration/
+    - text: Add your API
+      url: /getting-started/add-api/
     - text: Import Kong Gateway Entities into Konnect
       url: /getting-started/import/
 
@@ -68,6 +56,8 @@
           url: /gateway-manager/data-plane-nodes/parameter-reference/
         - text: Using Custom DP Labels
           url: /gateway-manager/data-plane-nodes/custom-dp-labels
+    - text: Proxy and Test a Service
+      url: /konnect/gateway-manager/deploy-service/
     - text: Control Plane Groups
       items:
         - text: Overview
@@ -147,6 +137,8 @@
       url: /dev-portal/access/
     - text: Sign Up for a Dev Portal Account
       url: /dev-portal/dev-reg/
+    - text: Productize a Service
+      url: /konnect/dev-portal/publish-service/ 
     - text: Access and Approval
       items:
         - text: Manage Developer Access

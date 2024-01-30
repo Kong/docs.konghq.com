@@ -168,3 +168,19 @@ contact Kong Support to get the plugin manually added to your account.
 {{site.base_gateway}} teams and roles. Set up teams to mirror your
 {{site.base_gateway}} groups, then invite users to your {{iste.konnect_saas}}
 org and assign them to a team on invite.
+
+## What to do next?
+
+<div class="docs-grid-install max-2">
+
+  <a href="#features" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
+    <div class="install-text">Protect my APIs with authentication</div>
+  </a>
+
+  <a href="#features" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
+    <div class="install-text">Rate limit my APIs</div>
+  </a>
+
+</div>

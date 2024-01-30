@@ -42,6 +42,17 @@
 /konnect/getting-started/configure-runtime/ /konnect/getting-started/configure-data-plane-node/
 /konnect/api/runtime-groups-config/overview/ /konnect/api/
 
+# Konnect get started rework
+
+/konnect/getting-started/access-account/    /konnect/getting-started/
+/konnect/getting-started/configure-data-plane-node/ /konnect/getting-started/
+/konnect/getting-started/deploy-service/    /konnect/gateway-manager/deploy-service/
+/konnect/getting-started/publish-service/   /konnect/dev-portal/publish-service/  
+/konnect/getting-started/app-registration/  /konnect/dev-portal/applications/dev-apps/
+/konnect/getting-started/productize-service/    /konnect/api-products/productize-service/
+
+
+
 
 # 3.5
 /gateway/latest/kong-enterprise/analytics/* /gateway/3.4.x/kong-enterprise/analytics/:splat
