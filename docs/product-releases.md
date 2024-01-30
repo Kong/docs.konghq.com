@@ -11,7 +11,7 @@ Labels provide flexibility in handling releases. Specifying `label: unreleased` 
 
 Adding a new unreleased version involves two steps:
 * Add a new `release` to `app/_data/_kong_versions.yml` with a `label`, e.g. `label: unreleased`.
-* Add the correspoding nav file, `app/_data/docs_nav_<product>_<release number>.yml`.
+* Add the corresponding nav file, `app/_data/docs_nav_<product>_<release number>.yml`.
 * `Gateway` only: ensure plugin schemas for the new release are available.
 
 For example, if `3.0.x` is the `latest` KIC release, the `app/_data/kong_versions.yml` should look like this:
