@@ -19,9 +19,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 * [Request Termination](/hub/kong-inc/request-termination/)
 * [Proxy Cache](/hub/kong-inc/proxy-cache/)
 * [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/)
-* Improved [ACL plugin](/hub/kong-inc/acl/)
-
-: In addition, {{site.base_gateway}} 3.6 support introduces an improved ACL plugin and allows you to centralize your Redis configurations for plugins via Partials.
 
 
 ## January 2024
