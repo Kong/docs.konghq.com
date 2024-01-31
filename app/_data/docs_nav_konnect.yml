@@ -57,7 +57,7 @@
         - text: Using Custom DP Labels
           url: /gateway-manager/data-plane-nodes/custom-dp-labels
     - text: Proxy and Test a Service
-      url: /konnect/gateway-manager/deploy-service/
+      url: /gateway-manager/deploy-service/
     - text: Control Plane Groups
       items:
         - text: Overview
@@ -138,7 +138,7 @@
     - text: Sign Up for a Dev Portal Account
       url: /dev-portal/dev-reg/
     - text: Productize a Service
-      url: /konnect/dev-portal/publish-service/ 
+      url: /dev-portal/publish-service/ 
     - text: Access and Approval
       items:
         - text: Manage Developer Access
