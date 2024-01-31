@@ -328,7 +328,7 @@ schema value must be `false`. If set to `true`, deck returns a schema
 violation error.
 
 For documentation on all available properties, see the
-[Route object](gateway/api/admin-ee/latest/#/Routes/list-route/) documentation.
+[Route object](/gateway/api/admin-ee/latest/#/Routes/list-route/) documentation.
 
 {% endnavtab %}
 {% navtab Service %}

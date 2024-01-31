@@ -275,7 +275,7 @@ _info:
 ```
 
 For all available properties, see the
-[Route object](gateway/api/admin-ee/latest/#/Routes/list-route/) documentation.
+[Route object](/gateway/api/admin-ee/latest/#/Routes/list-route/) documentation.
 
 {% endnavtab %}
 {% navtab Service %}
