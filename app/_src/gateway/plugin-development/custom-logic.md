@@ -454,7 +454,7 @@ open-source package.
 
 The current order of execution for the bundled plugins is:
 
-{% include /md/plugin-priority.md edition='oss' %}
+{% plugins_priority_table oss %}
 
 {% endnavtab %}
 {% navtab Enterprise %}
@@ -463,7 +463,7 @@ Enterprise subscription.
 
 The current order of execution for the bundled plugins is:
 
-{% include /md/plugin-priority.md edition='enterprise' %}
+{% plugins_priority_table enterprise %}
 
 {% endnavtab %}
 {% endnavtabs %}
