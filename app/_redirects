@@ -14,7 +14,7 @@
 /gateway/latest/install/post-install/kong-manager/          /gateway/latest/kong-manager/enable/
 /gateway/:version/install/post-install/kong-manager-oss/    /gateway/:version/kong-manager-oss/
 /gateway/latest/install/post-install/kong-manager-oss/      /gateway/latest/kong-manager-oss/
- 
+/gateway/latest/kong-production/db-encryption/ /gateway/latest/kong-enterprise/db-encryption/
 ######################################################################
 
 # API
