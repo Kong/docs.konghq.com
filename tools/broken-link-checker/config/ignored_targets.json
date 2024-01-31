@@ -52,5 +52,6 @@
   "https://linux.die.net",
   "https://hub.docker.com/*",
   "http://portal.example.com/",
-  "http://lua-users.org/*"
+  "http://lua-users.org/*",
+  "*/gateway/dev/install/*"
 ]
