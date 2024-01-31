@@ -380,6 +380,8 @@ items:
                 url: /kong-manager/auth/oidc/configure
               - text: OIDC Authenticated Group Mapping
                 url: /kong-manager/auth/oidc/mapping
+              - text: Migrate from previous configurations
+                url: /kong-manager/auth/oidc/migrate
           - text: Sessions
             url: /kong-manager/auth/sessions
           - text: RBAC
