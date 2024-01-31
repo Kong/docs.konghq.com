@@ -35,7 +35,6 @@
   "http://localhost:9090/*",
   "insomnia://*",
   "insomniad://",
-  "*/hub/*",
   "https://linkedin.com/*",
   "https://aws.amazon.com/*",
   "http://xip.io",
