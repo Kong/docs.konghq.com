@@ -12,40 +12,28 @@ This example covers a common use case: as an API owner, you want to regulate acc
 
 1. Using the API, create a consumer group for `dev`:
      ```bash
-     curl --request POST \
-         --url http://localhost:8001/consumer_groups \
-         --header 'Content-Type: application/json' \
-         --header 'accept: application/json' \
-         --data '{"name":"dev"}'
+     curl -i -X POST http://localhost:8001/consumer_groups \
+         --data "name=dev"
      ```
 
 1. Then create a consumer group for `admin`:
      
      ```bash
-     curl --request POST \
-       --url http://localhost:8001/consumer_groups \
-       --header 'Content-Type: application/json' \
-       --header 'accept: application/json' \
-       --data '{"name":"admin",}'
+     curl -i -X POST http://localhost:8001/consumer_groups \
+       --data "name=admin"
      ```
 
 1. Add a consumer to the `admin` group by using the UUID of the specific consumer:
 
     ```bash
-    curl --request POST \
-      --url http://localhost:8001/consumer_groups/admin/consumers \
-      --header 'Content-Type: application/json' \
-      --header 'accept: application/json' \
-      --data '{"consumer":"8a4bba3c-7f82-45f0-8121-ed4d2847c4a4"}'
+    curl -i -X POST http://localhost:8001/consumer_groups/admin/consumers \
+      --data "consumer=8a4bba3c-7f82-45f0-8121-ed4d2847c4a4"
     ```
-1. Then add a consumer to the `dev` group. 
+1. Add a different consumer to the `dev` group:
 
     ```bash
-    curl --request POST \
-      --url http://localhost:8001/consumer_groups/dev/consumers \
-      --header 'Content-Type: application/json' \
-      --header 'accept: application/json' \
-      --data '{"consumer":"8a4bba3c-7f82-45f0-8121-ed4d2847c4a4"}'
+    curl -i -X POST http://localhost:8001/consumer_groups/dev/consumers \
+      --data "consumer=8a4bba3c-7f82-45f0-8121-ed4d2847c4a4"
     ```
 
 ### Create routes 
@@ -75,19 +63,43 @@ Using the Admin API and the [expressions router](/gateway/latest/key-concepts/ro
 
 Scope the plugin to each of these routes with the respective `allow` configuration.
 
-1. Enable the ACL plugin on the `devs-and-admin` route, setting the `allow` field to accept both groups:
+Enable the ACL plugin on the `devs-and-admin` route, setting the `allow` field to accept both groups:
 
-    ```bash
-    curl -X POST http://localhost:8001/routes/devs-and-admin/plugins \
-        --data "name=acl"  \
-        --data "config.allow[]=dev"  \
-        --data "config.allow[]=admin"
-    ```
+<!--vale off-->
+{% plugin_example %}
+plugin: kong-inc/acl
+name: acl
+config:
+  include_consumer_groups: true
+  allow:
+    - dev
+    - admin
+targets:
+  - route
+formats:
+  - curl
+  - konnect
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on-->
 
-1. Enable another ACL plugin instance on the `only-admins` route, setting the `allow` field set to only accept the `admin` group:
+Enable another ACL plugin instance on the `only-admins` route, setting the `allow` field set to only accept the `admin` group:
 
-    ```bash
-    curl -X POST http://localhost:8001/routes/admins-only/plugins \
-        --data "name=acl"  \
-        --data "config.allow=admin"
-    ```
+<!--vale off-->
+{% plugin_example %}
+plugin: kong-inc/acl
+name: acl
+config:
+  include_consumer_groups: true
+  allow:
+    - admin
+targets:
+  - route
+formats:
+  - curl
+  - konnect
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on-->
