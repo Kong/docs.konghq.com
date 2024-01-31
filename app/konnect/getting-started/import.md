@@ -22,6 +22,7 @@ You cannot import [unsupported plugins](/konnect/servicehub/plugins/#plugin-limi
 ## Prerequisites
 * {{site.konnect_saas}} [account credentials](/konnect/getting-started/access-account/).
 * decK v1.12 or later [installed](/deck/latest/installation/).
+* [Authenticate decK with {{site.konnect_short_name}} using your method of choice](/deck/latest/guides/konnect/#authenticate-with-konnect)<!--maybe we do one of those expandable prereqs, like in KIC, that displays in page how to authenticate?-->
 
 ## Generate a Personal Access Token
 
@@ -29,42 +30,13 @@ To use decK to import entity configurations, we recommend that you use a persona
 
 {% include_cached /md/personal-access-token.md %}
 
+<!--Question: Is this section still accurate? Is PAT still the recommended method or can they use whatever from that decK auth page linked above in the prereqs-->
+
 ## Import entity configuration
 
 Use decK to import entity configurations into a control plane.
 
 When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.konghq.com` environment by default.
-
-1. Make sure that decK can connect to your {{site.konnect_short_name}} account:
-
-    ```sh
-    deck ping \
-      --konnect-control-plane-name default \
-      --konnect-token {YOUR_PERSONAL_ACCESS_TOKEN}
-    ```
-
-    If the connection is successful, the terminal displays the full name of the
-    user associated with the account:
-
-    ```sh
-    Successfully Konnected to the Example-Name organization!
-    ```
-
-    You can also use decK with {{site.konnect_short_name}} more securely by storing
-    your personal access token in a file, then either calling it with
-    `--konnect-token-file /path/{FILENAME}.txt`, or adding it to your decK configuration
-    file under the `konnect-token` option:
-
-    ```yaml
-    konnect-token: {YOUR_PERSONAL_ACCESS_TOKEN}
-    ```
-
-    The default location for this file is `$HOME/.deck.yaml`. You can target a
-    different configuration file with the `--config /path/{FILENAME}.yaml` flag,
-    if needed.
-
-    The following steps all use a `.deck.yaml` file to store the
-    {{site.konnect_short_name}} credentials instead of flags.
 
 1. Run [`deck dump`](/deck/latest/reference/deck_dump/) to export configuration into a file:
 
@@ -169,18 +141,25 @@ contact Kong Support to get the plugin manually added to your account.
 {{site.base_gateway}} groups, then invite users to your {{iste.konnect_saas}}
 org and assign them to a team on invite.
 
-## What to do next?
+## Next steps
+
+Now that you've imported your {{site.base_gateway}} entities to {{site.konnect_short_name}}, you can continue to test {{site.konnect_short_name}}'s capabilities:
 
 <div class="docs-grid-install max-2">
 
-  <a href="#features" class="docs-grid-install-block no-description">
+  <a href="/hub/kong-inc/key-auth/how-to/basic-example/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
     <div class="install-text">Protect my APIs with authentication</div>
   </a>
 
-  <a href="#features" class="docs-grid-install-block no-description">
+  <a href="/hub/kong-inc/rate-limiting/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
     <div class="install-text">Rate limit my APIs</div>
+  </a>
+
+  <a href="/konnect/dev-portal/applications/enable-app-reg/" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
+    <div class="install-text">Make my APIs available to customers</div>
   </a>
 
 </div>
