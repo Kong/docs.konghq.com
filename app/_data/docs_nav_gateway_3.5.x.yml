@@ -520,8 +520,8 @@ items:
     icon: /assets/images/icons/documentation/icn-admin-api-color.svg
     items:
       - text: Overview
-        url: /admin-api/index_latest/
-        src: /admin-api/index
+        url: /admin-api/
+        src: /gateway/admin-api/index_latest
       - text: Declarative Configuration
         url: /admin-api/declarative-configuration
       - text: Enterprise API
