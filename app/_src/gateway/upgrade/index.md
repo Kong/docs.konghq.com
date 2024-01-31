@@ -67,7 +67,7 @@ between the 2.x and 3.x series (both this version and prior versions) and in the
 open-source (OSS) and Enterprise Gateway [changelogs](/gateway/changelog/). Since {{site.base_gateway}}
 is built on an open-source foundation, any breaking changes in OSS affect all {{site.base_gateway}} packages.
 
-An upgrade path is subject to a wide spectrum of conditions, and there is not a one-size-fits-all way applicable to all customers, depending on the deployment modes, custom plugins, customers’ technical capabilities, hardware capacities, SLA, etc. Our engineers should discuss the upgrade process thoroughly and carefully with you before you take any action.
+An upgrade path is subject to a wide spectrum of conditions, and there is not a one-size-fits-all way applicable to all users, depending on the deployment modes, custom plugins, technical capabilities, hardware capacities, SLA, and so on. You should discuss the upgrade process thoroughly and carefully with our engineers before you take any action.
 
 We encourage you to stay updated with {{site.base_gateway}} releases, as that helps maintain a smooth upgrade path. 
 The smaller the version gap is, the less complex the upgrade process becomes.
