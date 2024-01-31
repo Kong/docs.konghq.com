@@ -16,7 +16,7 @@ Following annotations are supported on Ingress resources:
 | [`konghq.com/protocols`](#konghqcomprotocols) | Set protocols to handle for each Ingress resource. |
 | [`konghq.com/preserve-host`](#konghqcompreserve-host) | Pass the `host` header as is to the upstream service. |
 | [`konghq.com/strip-path`](#konghqcomstrip-path) | Strip the path defined in Ingress resource and then forward the request to the upstream service. |
-| [`konghq.com/https-redirect-status-code`](#konghqcomhttps-redirect-status-code) | Set the HTTPS redirect status code to use when an HTTP request is recieved. |
+| [`konghq.com/https-redirect-status-code`](#konghqcomhttps-redirect-status-code) | Set the HTTPS redirect status code to use when an HTTP request is received. |
 | [`konghq.com/regex-priority`](#konghqcomregex-priority) | Set the route's regex priority. |
 | [`konghq.com/methods`](#konghqcommethods) | Set methods matched by this Ingress. |
 | [`konghq.com/snis`](#konghqcomsnis) | Set SNI criteria for routes created from this Ingress. |
@@ -50,7 +50,7 @@ Following annotations are supported on Service resources:
 
 ## KongConsumer resource
 
-Following annotaitons are supported on KongConsumer resources:
+Following annotations are supported on KongConsumer resources:
 
 | Annotation name | Description |
 |-----------------|-------------|

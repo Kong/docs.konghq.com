@@ -44,7 +44,7 @@ Following annotations are supported on Service resources:
 
 ## KongConsumer resource
 
-Following annotaitons are supported on KongConsumer resources:
+Following annotations are supported on KongConsumer resources:
 
 | Annotation name | Description |
 |-----------------|-------------|

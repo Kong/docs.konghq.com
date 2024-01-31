@@ -397,12 +397,12 @@ config:
 The following credential types can be provisioned using the KongCredential
 resource:
 
-- `key-auth` for [Key authentication](https://docs.konghq.com/hub/kong-inc/key-auth/)
-- `basic-auth` for [Basic authentication](https://docs.konghq.com/hub/kong-inc/basic-auth/)
-- `hmac-auth` for [HMAC authentication](http://docs.konghq.com/hub/kong-inc/hmac-auth/)
-- `jwt` for [JWT based authentication](http://docs.konghq.com/hub/kong-inc/jwt/)
-- `oauth2` for [Oauth2 Client credentials](https://docs.konghq.com/hub/kong-inc/oauth2/)
-- `acl` for [ACL group associations](https://docs.konghq.com/hub/kong-inc/acl/)
+- `key-auth` for [Key authentication](/hub/kong-inc/key-auth/)
+- `basic-auth` for [Basic authentication](/hub/kong-inc/basic-auth/)
+- `hmac-auth` for [HMAC authentication](/hub/kong-inc/hmac-auth/)
+- `jwt` for [JWT based authentication](/hub/kong-inc/jwt/)
+- `oauth2` for [Oauth2 Client credentials](/hub/kong-inc/oauth2/)
+- `acl` for [ACL group associations](/hub/kong-inc/acl/)
 
 Please ensure that all fields related to the credential in Kong
 are present in the definition of KongCredential's `config` section.
