@@ -43,26 +43,29 @@ Once you have Azure configured, you can set up the Dev Portal to use Azure for d
 
 1. Sign in to {{site.konnect_short_name}}, then select {% konnect_icon dev-portal %} **Dev Portal** from the menu.
 
-2. Click **Settings** to open the Dev Portal settings.
+2. Click **Application Auth** to open the authentication settings for your API Products in your Portal.
 
-3. Click the **Application Setup** tab to open the DCR settings for your Dev Portal.
+3. Click the **DCR Providers** tab to see all your DCR Providers.
 
-4. Select **Azure** as the external identity provider..
+4. Click the **New DCR Provider** button to begin creating your AzureAD config. Enter a Name to be seen only in Konnect and a Display Name that will be displayed on your Portal.
 
-5. Enter the Issuer for your Azure tenant, it will look something like `https://sts.windows.net/YOUR_TENANT_ID`.
+5. Enter the **Issuer URL** for your Azure tenant, it will look something like `https://sts.windows.net/YOUR_TENANT_ID`.
 
-6. Enter `appid` in the **Consumer claims** field.
+6. Select AzureAD as your **Provider Type**.
 
-7. Select the auth method you want to enable.
+7. Enter your Application (Client) ID from Azure in the **Initial Client ID** field. Enter the Client secret from the admin application created in Azure into the **Initial Client Secret** field..
 
-8. Enter your Application (client) ID from Azure in the **Initial Client ID** field.
+8. Save your DCR Provider. You should now see it in the list of DCR Providers.
 
-9. Enter the Client secret from the admin application created in Azure into the **Initial Client Secret** field..
+9. Click the **Auth Strategy** tab to see all your Auth Strategies. Select **New Auth Strategy** to create an auth strategy that uses the DCR Provider you just added.
 
-10. Click **Save**.
+10. Enter a Name to be seen only in Konnect and a Display Name that will be displayed on your Portal. In the **Auth Type** dropdown menu select DCR. In the **DCR Provider** dropdown, select the name of the DCR Provider config you just created. Your **Issuer URL** will be prepopulated with the Issuer URL you added to the DCR Provider.
 
-   If you previously configured any DCR settings, this will
-   overwrite them.
+11. Enter `appid` in the **Credential Claims** field.
+
+12. Select the relevant **Auth Methods** you need (client_credentials, bearer, session, etc).
+
+13. Click **Save**.
 
 ## Create an application with DCR
 
