@@ -82,10 +82,9 @@ Once you have Okta configured, you can set up the Dev Portal to use Okta for dyn
    scope prevents you from using client credentials. If the **Scopes** field is empty, `openid`
    will be used.
 
-10. Click **Save**.
+10. Select the relevant **Auth Methods** you need (client_credentials, bearer, session, etc).
 
-   If you previously configured any DCR settings, this will
-   overwrite them.
+11. Click **Save**.
 
 ## Create an application with DCR
 
