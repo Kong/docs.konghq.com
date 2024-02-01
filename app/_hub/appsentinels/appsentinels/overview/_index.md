@@ -2,7 +2,8 @@
 nav_title: Overview
 title: Overview
 ---
-AppSentinels API Security Platform is purpose built keeping security needs of next generation applications in mind. At its core it's AI/ML engine, Al Sentinels, that combines multiple intelligence inputs to completely understand and baseline unique application business logic, user contexts and intents as well as data flow within the application, to provide complete protection your application needs.
+The AppSentinels API Security Platform is purpose-built for keeping the security needs of next-generation applications in mind.
+At the platform's core is an AI/ML engine, AI Sentinels, which combines multiple intelligence inputs to completely understand and baseline unique application business logic, user contexts, and intents, as well as data flow within the application, to provide the complete protection your application needs.
 
 ## How it works
 
