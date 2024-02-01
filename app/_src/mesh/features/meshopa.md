@@ -29,7 +29,7 @@ When the `MeshOPA` policy is applied, the control plane configures the following
 | MeshServiceSubset | ✅        | ❌  | ❌   |
 | MeshGatewayRoute  | ❌        | ❌  | ❌   |
 
-To learn more about the information in this table, see the [matching docs](/mesh/{{page.kong_version}}/policies/targetref).
+To learn more about the information in this table, see the [matching docs](/mesh/{{page.release}}/policies/targetref).
 
 ## Configuration
 
@@ -963,12 +963,12 @@ The following example shows how to deploy and test a sample MeshOPA policy on Ku
 
 <!-- links -->
 {% if_version gte:2.0.x %}
-[protocols]: /mesh/{{page.kong_version}}/policies/protocol-support-in-kong-mesh/
+[protocols]: /mesh/{{page.release}}/policies/protocol-support-in-kong-mesh/
 {% if_version lte:2.1.x %}
-[secrets]: /mesh/{{page.kong_version}}/security/secrets/
+[secrets]: /mesh/{{page.release}}/security/secrets/
 {% endif_version %}
 {% if_version gte:2.2.x %}
-[secrets]: /mesh/{{page.kong_version}}/production/secure-deployment/secrets/
+[secrets]: /mesh/{{page.release}}/production/secure-deployment/secrets/
 {% endif_version %}
 {% endif_version %}
 

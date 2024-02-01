@@ -138,7 +138,7 @@ Each {{ site.kic_product_name }} can be provided with a controller name; if no c
 
 To configure {{site.kic_product_name}} to reconcile the Gateway resource, you must set the `konghq.com/gatewayclass-unmanaged=true` annotation in your GatewayClass resource.
 
-In addition, the `spec.controllerName` in your GatewayClass needs to be properly configured, as explained in the section [above](#listener-compatibility-and-handling-multiple-gateways). For more information, see [kic-flags](/kubernetes-ingress-controller/{{page.kong_version}}/reference/cli-arguments/#flags).
+In addition, the `spec.controllerName` in your GatewayClass needs to be properly configured, as explained in the section [above](#listener-compatibility-and-handling-multiple-gateways). For more information, see [kic-flags](/kubernetes-ingress-controller/{{page.release}}/reference/cli-arguments/#flags).
 
 Finally, the `spec.gatewayClassName` value in your Gateway resource should match the value in `metadata.name` from your `GatewayClass`.
 
@@ -159,4 +159,22 @@ kubectl get gateway kong -o=jsonpath='{.status.addresses}' | jq
     "value": "172.18.0.240"
   }
 ]
+```
+
+### Gateway's "publish" Service
+
+When an unmanaged Gateway is reconciled by KIC, it gets annotated with `konghq.com/publish-service` equal to a Service’s
+namespaced name configured in `--publish-service` (and optionally in `--publish-service-udp`) CLI flag. The annotation value is used by the Gateway controller to
+determine its Listeners’ statuses.
+ 
+{:.note}
+> Once the Gateway's `konghq.com/publish-service` annotation is assigned, it will no longer be auto-updated by {{site.kic_product_name}} 
+> to match the `--publish-service` CLI flag. If, for any reason, any of those change after the annotation is assigned, the Gateway controller will not be able to
+> determine the Gateway's Listeners' statuses. Manual intervention will be required to update the annotation to match the CLI flag.
+
+If you’d like to migrate an already annotated Gateway to a KIC installation that uses another `--publish-service` (or `--publish-service-udp`), you should modify 
+the Gateway’s annotation to match the CLI flag. Otherwise, you may experience the Gateway controller getting stuck looking up the Service:
+
+```console
+One of publish services defined in Gateway's "konghq.com/publish-service" annotation didn't match controller manager's configuration    {"GatewayV1Gateway": {"name":"kong","namespace":"default"}, "namespace": "default", "name": "kong", "service": "kong/kong-proxy", "error": "publish service reference \"kong/kong-proxy\" from Gateway's annotations did not match configured controller manager's publish services (\"kong/new-kong-proxy\")"}
 ```

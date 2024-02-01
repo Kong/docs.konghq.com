@@ -139,4 +139,4 @@ Response:
 }
 ```
 
-[services]: /gateway/{{page.kong_version}}/admin-api/#service-object
+[services]: /gateway/{{page.release}}/admin-api/#service-object

@@ -7,7 +7,7 @@ badge: enterprise
 allows cluster administrators to keep detailed track of changes made to the
 cluster configuration throughout its lifetime, aiding in compliance efforts and
 providing valuable data points during forensic investigations. Generated audit
-log trails are [Workspace](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/) and [RBAC](/gateway/{{page.kong_version}}/admin-api/rbac/reference/)-aware,
+log trails are [Workspace](/gateway/{{page.release}}/admin-api/workspaces/reference/) and [RBAC](/gateway/{{page.release}}/admin-api/rbac/reference/)-aware,
 providing Kong operators a deep and wide look into changes happening within
 the cluster.
 
@@ -432,7 +432,7 @@ audit_log_ignore_tables = consumers
 ## Audit log retention
 
 Audit log records are kept in the database for a duration defined by the
-[`audit_log_record_ttl`](/gateway/{{page.kong_version}}/reference/configuration/#audit_log_record_ttl)
+[`audit_log_record_ttl`](/gateway/{{page.release}}/reference/configuration/#audit_log_record_ttl)
 Kong configuration property. Records in the database older than `audit_log_record_ttl` 
 seconds are automatically purged.
 
@@ -590,6 +590,6 @@ implementation written in Lua:
 ## More information
 
 * For {{site.base_gateway}} `kong.conf` options, 
-see the [Data & Admin Audit](/gateway/{{page.kong_version}}/reference/configuration/#data--admin-audit-section)
+see the [Data & Admin Audit](/gateway/{{page.release}}/reference/configuration/#data--admin-audit-section)
 section of the Configuration Property Reference.
-* For the `/audit` API reference, see [Audit Logs](/gateway/{{page.kong_version}}/admin-api/audit-logs/).
+* For the `/audit` API reference, see [Audit Logs](/gateway/{{page.release}}/admin-api/audit-logs/).

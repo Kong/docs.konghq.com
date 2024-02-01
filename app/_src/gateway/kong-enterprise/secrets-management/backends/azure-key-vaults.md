@@ -33,7 +33,7 @@ You can configure these values with environment variables before starting {{site
 export KONG_VAULT_AZURE_VAULT_URI=https://my-vault.vault.azure.com
 export KONG_VAULT_AZURE_TENANT_ID=tenant_id
 export KONG_VAULT_AZURE_CLIENT_ID=client_id
-export KONG_VAULT_AZURE_CLIENT_SECRET=client_secret
+export AZURE_CLIENT_SECRET=client_secret
 ```
 
 {:.note}
@@ -59,7 +59,7 @@ You can configure these values with environment variables before starting {{site
 export KONG_VAULT_AZURE_VAULT_URI=https://my-vault.vault.azure.com
 export KONG_VAULT_AZURE_TENANT_ID=tenant_id
 export KONG_VAULT_AZURE_CLIENT_ID=client_id
-export KONG_VAULT_AZURE_CLIENT_SECRET=client_secret
+export AZURE_CLIENT_SECRET=client_secret
 ```
 
 ```bash

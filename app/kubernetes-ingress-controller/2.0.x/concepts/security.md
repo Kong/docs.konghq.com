@@ -11,7 +11,7 @@ and the controller integrates with them gracefully.
 ## Kubernetes RBAC
 
 The {{site.kic_product_name}} is deployed with RBAC permissions as explained in the
-[deployment](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/deployment) document.
+[deployment](/kubernetes-ingress-controller/{{page.release}}/concepts/deployment) document.
 It has read and list permissions on most resources but requires update
 and create permission for a few resources to provide seamless integration.
 The permissions can be locked down further if needed depending on the specific

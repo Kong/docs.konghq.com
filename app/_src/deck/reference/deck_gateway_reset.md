@@ -11,6 +11,9 @@ Use this command with extreme care as it's equivalent to running
 
 By default, this command will ask for confirmation.
 
+{:.note}
+> `deck gateway reset` is the replacement for `deck reset`. 
+
 ## Syntax
 
 ```
@@ -54,7 +57,7 @@ When this setting has multiple tag values, entities must match every tag.
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## See also
 

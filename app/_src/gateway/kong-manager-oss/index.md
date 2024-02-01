@@ -16,7 +16,7 @@ Here are some of the things you can do with Kong Manager OSS:
 * Centrally store and easily access key sets and keys. 
 
 {:.note}
-> **Note:** If you are using the Enterprise image of {{site.base_gateway}}, you can use the [Kong Manager Enterprise](/gateway/{{page.kong_version}}/kong-manager/). 
+> **Note:** If you are using the Enterprise image of {{site.base_gateway}}, you can use the [Kong Manager Enterprise](/gateway/{{page.release}}/kong-manager/). 
 
 ## Kong Manager OSS interface
 
@@ -27,11 +27,11 @@ Here are some of the things you can do with Kong Manager OSS:
  Item | Description
 ------|------------
 **Overview** | Dashboard that contains information about your {{site.ce_product_name}}.
-[**Gateway Services**](/gateway/{{page.kong_version}}/key-concepts/services/) | Overview of all services associated with your {{site.ce_product_name}}. From this dashboard, you can add new services, manage existing services, and see all services at a glance.
-[**Routes**](/gateway/{{page.kong_version}}/key-concepts/routes/) | Overview of all routes associated with your {{site.ce_product_name}}. From this dashboard, you can add new routes, manage existing routes, and see all routes at a glance. 
+[**Gateway Services**](/gateway/{{page.release}}/key-concepts/services/) | Overview of all services associated with your {{site.ce_product_name}}. From this dashboard, you can add new services, manage existing services, and see all services at a glance.
+[**Routes**](/gateway/{{page.release}}/key-concepts/routes/) | Overview of all routes associated with your {{site.ce_product_name}}. From this dashboard, you can add new routes, manage existing routes, and see all routes at a glance. 
 **Consumers** | Overview of all consumers associated with your {{site.ce_product_name}}. From this dashboard, you can add new consumers, manage existing consumers, and see all consumers at a glance.
-[**Plugins**](/gateway/{{page.kong_version}}/key-concepts/plugins/) | Overview of all plugins associated with your {{site.ce_product_name}}. From this dashboard, you can enable or disable plugins. 
-[**Upstreams**](/gateway/{{page.kong_version}}/key-concepts/upstreams/) | Overview of all upstreams associated with your {{site.ce_product_name}}. From this dashboard, you can add new upstreams, manage existing upstreams, and see all upstreams at a glance.
+[**Plugins**](/gateway/{{page.release}}/key-concepts/plugins/) | Overview of all plugins associated with your {{site.ce_product_name}}. From this dashboard, you can enable or disable plugins. 
+[**Upstreams**](/gateway/{{page.release}}/key-concepts/upstreams/) | Overview of all upstreams associated with your {{site.ce_product_name}}. From this dashboard, you can add new upstreams, manage existing upstreams, and see all upstreams at a glance.
 **Certificates** | Manage your certificates for SSL/TLS termination for encrypted requests.
 **CA Certificates** | Manage your CA certificates for client and server certificate validation.
 **SNIs** | Manage SNI object one-to-many mappings of hostnames to a certificate. 

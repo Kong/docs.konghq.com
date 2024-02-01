@@ -9,7 +9,7 @@ title: Sessions in the Dev Portal
 
 When a user logs in to the Dev Portal with their credentials, the Sessions plugin creates a session cookie. The cookie is used for all subsequent requests and is valid to authenticate the user. The session has a limited duration and renews at a configurable interval, which helps prevent an attacker from obtaining and using a stale cookie after the session has ended.
 
-The session configuration is secure by default, which may [require alteration](#session-security) if using HTTP or different domains for [`portal_api_url`](/gateway/{{page.kong_version}}/reference/configuration/#portal_api_url) and [`portal_gui_host`](/gateway/{{page.kong_version}}/reference/configuration/#portal_gui_host). Even if an attacker were to obtain a stale cookie, it would not benefit them since the cookie is encrypted. The encrypted session data may be stored either in Kong or the cookie itself.
+The session configuration is secure by default, which may [require alteration](#session-security) if using HTTP or different domains for [`portal_api_url`](/gateway/{{page.release}}/reference/configuration/#portal_api_url) and [`portal_gui_host`](/gateway/{{page.release}}/reference/configuration/#portal_gui_host). Even if an attacker were to obtain a stale cookie, it would not benefit them since the cookie is encrypted. The encrypted session data may be stored either in Kong or the cookie itself.
 
 ## Configuration to use the Sessions plugin with the Dev Portal
 
@@ -87,7 +87,7 @@ directives.
 
 The following properties must be altered depending on the protocol and domains in use:
 * If using HTTP instead of HTTPS: `"cookie_secure": false`
-* If using different subdomains for the [`portal_api_url`](/gateway/{{page.kong_version}}/reference/configuration/#portal_api_url) and [`portal_gui_host`](/gateway/{{page.kong_version}}/reference/configuration/#portal_gui_host), see the example below for [Domains](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/sessions/#domains).
+* If using different subdomains for the [`portal_api_url`](/gateway/{{page.release}}/reference/configuration/#portal_api_url) and [`portal_gui_host`](/gateway/{{page.release}}/reference/configuration/#portal_gui_host), see the example below for [Domains](/gateway/{{page.release}}/kong-enterprise/dev-portal/authentication/sessions/#domains).
 
 {:.important}
 > **Important:** Sessions are not invalidated when a user logs out if `"storage": "cookie"` (the default) is used. In that case, the cookie is deleted client-side. Only when session data is stored server-side with `"storage": "kong"` set is the session actively invalidated.

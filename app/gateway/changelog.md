@@ -9,6 +9,28 @@ Changelog for supported Kong Gateway versions.
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.5.0.3
+**Release Date** 2024/01/26
+
+### Features
+
+* The Debian variant of the Kong Gateway Docker image is now built using Debian 12.
+ [#7673](https://github.com/Kong/kong/issues/7673)
+
+* Added pagination support for nested consumer lists and consumer group lists, 
+both in the Admin API and in Kong Manager.
+
+### Fixes
+#### Kong Manager
+
+* Fixed an issue where the dynamic ordering dropdown list didn't show custom plugins.
+* Fixed an issue where the targets page showed a 404 error in any workspace except `default`.
+* Fixed an issue where the role of the current workspace couldn't be created by the `workspace-super-admin`.
+
+### Dependencies
+
+* Bumped `kong-redis-cluster` to 1.5.3.
+
 ## 3.5.0.2
 **Release Date** 2023/12/21
 
@@ -3419,7 +3441,7 @@ openid-connect
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
-## 2.8.4.5
+## 2.8.4.6
 **Release Date** 2024/01/17
 
 ### Fixes

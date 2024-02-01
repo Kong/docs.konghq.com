@@ -10,7 +10,7 @@ for use with the Kong OIDC and Portal Application Registration plugins.
 
 - The `portal_app_auth` configuration option is configured for your OAuth provider
   and strategy (`kong-oauth2` or `external-oauth2`). See
-  [Configure the Authorization Provider Strategy](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/applications/auth-provider-strategy/) for the Portal Application Registration plugin.
+  [Configure the Authorization Provider Strategy](/gateway/{{page.release}}/kong-enterprise/dev-portal/applications/auth-provider-strategy/) for the Portal Application Registration plugin.
 
 ## Create an application in Azure
 
@@ -109,7 +109,7 @@ into a JSON Web Token (JWT). Replace the placeholder values with your values for
    you want to use.
 
    Because you enabled
-   [Auto-approve](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/applications/enable-application-registration##aa)
+   [Auto-approve](/gateway/{{page.release}}/kong-enterprise/dev-portal/applications/enable-application-registration##aa)
    on the associated Application Registration Plugin, an admin won't need to
    approve the request.
 

@@ -1,5 +1,6 @@
 generate: true
 assume_generated: true
+release: 2.6.x
 max_depth: 3
 inherit:
   path: /.repos/kuma/app/_src
@@ -74,44 +75,35 @@ inherit:
     - path: [ Kong Mesh in Production, Upgrades and tuning, Upgrade Kuma ]
       action: modify
       text: Upgrade Kong Mesh
-    - path: [ Deploy ]
+    - path: [ Quickstart ]
       action: modify
       icon: /assets/images/icons/documentation/icn-manager-color.svg
-    - path: [ Deploy, Explore Kuma with the Kubernetes demo app ]
-      text: Explore Kong Mesh with the Kubernetes demo app
+    - path: [ Quickstart, Deploy Kuma on Kubernetes ]
+      text: Deploy Kong Mesh on Kubernetes
       action: modify
       items: []
-    - path: [ Deploy, Explore Kuma with the Universal demo app ]
-      text: Explore Kong Mesh with the Universal demo app
+    - path: [ Using Kuma ]
+      title: Using Kong Mesh
       action: modify
-      items: []
-    - path: [ Explore ]
-      action: modify
-      icon: /assets/images/icons/documentation/icn-solution-guide.svg
-    - path: [ Networking ]
-      action: modify
-      icon: /assets/images/icons/documentation/icn-brain-color.svg
-    - path: [ Monitor & manage ]
-      action: modify
-      icon: /assets/images/icons/konnect/icn-analytics-nav.svg
-    - path: [ Policies ]
-      action: modify
-      icon: /assets/images/icons/documentation/icn-documentation-small.svg
-    - path: [ Policies, General notes about Kuma policies ]
-      text: General notes about Kong Mesh policies
-      url: /policies/general-notes-about-kong-mesh-policies
-      action: modify
-    - path: [ Policies, How Kuma chooses the right policy to apply ]
-      text: How Kong Mesh chooses the right policy to apply
-      action: modify
-      url: /policies/how-kong-mesh-chooses-the-right-policy-to-apply
-      items: []
-    - path: [ Policies, Protocol support in Kuma ]
+      icon: /assets/images/icons/documentation/icn-overview-color.svg
+    - path: [ Using Kong Mesh, Route & Traffic shaping, Protocol support in Kuma ]
       text: Protocol support in Kong Mesh
       action: modify
       url: /policies/protocol-support-in-kong-mesh
       items: []
     - path: [ Policies ]
+      action: modify
+      icon: /assets/images/icons/documentation/icn-documentation-small.svg
+    - path: [ Policies, Previous Policies, General notes about Kuma policies ]
+      text: General notes about Kong Mesh policies
+      url: /policies/general-notes-about-kong-mesh-policies
+      action: modify
+    - path: [ Policies, Previous Policies, How Kuma chooses the right policy to apply ]
+      text: How Kong Mesh chooses the right policy to apply
+      action: modify
+      url: /policies/how-kong-mesh-chooses-the-right-policy-to-apply
+      items: []
+    - path: [ Policies, Previous Policies ]
       action: insert
       index: -1
       text: OPA policy
@@ -119,16 +111,19 @@ inherit:
       generate: false
     - path: [ Policies ]
       action: insert
-      index: -1
+      index: -2
       text: MeshOPA (beta)
       url: /features/meshopa
       generate: false
     - path: [ Policies ]
       action: insert
-      index: -1
+      index: -2
       text: MeshGlobalRateLimit (beta)
       url: /features/meshglobalratelimit
       generate: false
+    - path: [ Guides ]
+      action: modify
+      icon: /assets/images/icons/documentation/icn-learning.svg
     - title: Enterprise Features
       action: insert
       index: -3

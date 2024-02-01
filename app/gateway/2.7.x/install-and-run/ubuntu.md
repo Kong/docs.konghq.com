@@ -9,7 +9,7 @@ Kong is licensed under an
 
 ## Prerequisites
 
-* A supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user/) access.
+* A supported system with root or [root-equivalent](/gateway/{{page.release}}/plan-and-deploy/kong-user/) access.
 * (Enterprise only) A `license.json` file from Kong
 
 ## Download and install
@@ -113,4 +113,4 @@ sudo apt install -y kong={{page.versions.ce}}
 {% endnavtab %}
 {% endnavtabs %}
 
-{% include_cached /md/gateway/setup.md kong_version=page.kong_version %}
+{% include_cached /md/gateway/setup.md release=page.release %}

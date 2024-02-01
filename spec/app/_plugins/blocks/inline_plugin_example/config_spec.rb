@@ -1,5 +1,5 @@
 RSpec.describe Jekyll::InlinePluginExample::Config do
-  let(:page) { { 'kong_version' => '3.2.x' } }
+  let(:page) { { 'release' => double('value' => '3.2.x') } }
   let(:config) do
     SafeYAML.load(
       <<~CONFIG
@@ -98,7 +98,7 @@ RSpec.describe Jekyll::InlinePluginExample::Config do
   end
 
   describe '#schema' do
-    context 'when the page has `version` set instead of `kong_version`' do
+    context 'when the page has `version` set instead of `release`' do
       let(:page) { { 'version' => '3.2.x' } }
 
       it 'returns the schema' do
@@ -106,8 +106,8 @@ RSpec.describe Jekyll::InlinePluginExample::Config do
       end
     end
 
-    context 'when the page has `kong_version` set' do
-      let(:page) { { 'kong_version' => '3.2.x' } }
+    context 'when the page has `release` set' do
+      let(:page) { { 'release' => double('value' => '3.2.x') } }
 
       it 'returns the schema' do
         expect(subject.schema).to be_an_instance_of(::PluginSingleSource::Plugin::Schemas::Kong)

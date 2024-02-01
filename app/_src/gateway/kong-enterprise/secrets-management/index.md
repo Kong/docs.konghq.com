@@ -63,9 +63,9 @@ to a reference so that it is properly sent to the vault API:
 
 ## What can be stored as a secret?
 
-Most of the [Kong configuration](/gateway/{{page.kong_version}}/reference/configuration/) values
-can be stored as a secret, such as [`pg_user`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings) and
-[`pg_password`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings).
+Most of the [Kong configuration](/gateway/{{page.release}}/reference/configuration/) values
+can be stored as a secret, such as [`pg_user`](/gateway/{{page.release}}/reference/configuration/#postgres-settings) and
+[`pg_password`](/gateway/{{page.release}}/reference/configuration/#postgres-settings).
 
 {% if_version gte:3.1.x %}
 
@@ -84,14 +84,14 @@ kong prepare
 {% if_version lte:3.0.x %}
 
 {:.note}
-> **Limitation:** {{site.base_gateway}} doesn't currently support storing certificate key content into vaults or environment variables for `kong.conf` settings that use file paths. For example, [ssl_cert_key](/gateway/{{page.kong_version}}/reference/configuration/#ssl_cert_key) configures a certificate key `file path` which can't be stored as a reference.
+> **Limitation:** {{site.base_gateway}} doesn't currently support storing certificate key content into vaults or environment variables for `kong.conf` settings that use file paths. For example, [ssl_cert_key](/gateway/{{page.release}}/reference/configuration/#ssl_cert_key) configures a certificate key `file path` which can't be stored as a reference.
 
 {% endif_version %}
 
-The [Kong license](/gateway/{{page.kong_version}}/licenses/), usually configured with
+The [Kong license](/gateway/{{page.release}}/licenses/), usually configured with
 a `KONG_LICENSE_DATA` environment variable, can be stored as a secret.
 
-The Kong Admin API [certificate object](/gateway/{{page.kong_version}}/admin-api/#certificate-object)
+The Kong Admin API [certificate object](/gateway/{{page.release}}/admin-api/#certificate-object)
 can be stored as a secret.
 
 ### Referenceable plugin fields
@@ -113,14 +113,14 @@ See each plugin's documentation for more information on each field:
 * Azure Key Vaults
 * HashiCorp Vault
 
-See the [backends overview](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/)
+See the [backends overview](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/)
 for more information about each option.
 
 ## Get started
 
 For further information on secrets management, see the following topics:
-* [Get started with secrets management](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/getting-started/)
-* [Secrets rotation](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/secrets-rotation/)
-* [Backends overview](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/)
-* [Reference format](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/reference-format/)
-* [Advanced usage](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/advanced-usage/)
+* [Get started with secrets management](/gateway/{{page.release}}/kong-enterprise/secrets-management/getting-started/)
+* [Secrets rotation](/gateway/{{page.release}}/kong-enterprise/secrets-management/secrets-rotation/)
+* [Backends overview](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/)
+* [Reference format](/gateway/{{page.release}}/kong-enterprise/secrets-management/reference-format/)
+* [Advanced usage](/gateway/{{page.release}}/kong-enterprise/secrets-management/advanced-usage/)

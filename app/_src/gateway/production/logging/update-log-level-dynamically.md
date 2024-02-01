@@ -4,7 +4,7 @@ content_type: reference
 ---
 
 
-You can change the log level of {{site.base_gateway}} dynamically, without restarting {{site.base_gateway}}, using the Admin API. This set of endpoints can be protected using [RBAC](/gateway/{{page.kong_version}}/admin-api/rbac/reference/#add-a-role-endpoint-permission) and changes in log level are reflected in the [audit log](/gateway/{{page.kong_version}}/kong-enterprise/audit-log/).
+You can change the log level of {{site.base_gateway}} dynamically, without restarting {{site.base_gateway}}, using the Admin API. This set of endpoints can be protected using [RBAC](/gateway/{{page.release}}/admin-api/rbac/reference/#add-a-role-endpoint-permission) and changes in log level are reflected in the [audit log](/gateway/{{page.release}}/kong-enterprise/audit-log/).
 
 The log level change is propagated to all NGINX worker nodes, including the newly spawned workers.
 
@@ -34,7 +34,7 @@ If you have the appropriate permissions, this request returns information about 
 
 ## Modify the log level for an individual {{site.base_gateway}} node
 
-To change the log level of an individual node, issue a `PUT` request passing the desired `node` and [`log-level`](/gateway/{{page.kong_version}}/production/logging/log-reference/) as path parameters:
+To change the log level of an individual node, issue a `PUT` request passing the desired `node` and [`log-level`](/gateway/{{page.release}}/production/logging/log-reference/) as path parameters:
 
 ```bash
 curl --request PUT \
@@ -51,7 +51,7 @@ If you have the appropriate permissions and the request is successful, you will 
 
 ## Change the log level of the {{site.base_gateway}} cluster
 
-To change the log level of every node in your cluster, issue a `PUT` request with the desired [`log-level`](/gateway/{{page.kong_version}}/production/logging/log-reference/) specified as a path parameter:
+To change the log level of every node in your cluster, issue a `PUT` request with the desired [`log-level`](/gateway/{{page.release}}/production/logging/log-reference/) specified as a path parameter:
 
 ```bash
 curl --request PUT \
@@ -68,11 +68,11 @@ If you have the appropriate permissions and the request is successful, you will 
 
 ### Manage new nodes in the cluster
 
-To ensure that the log level of new nodes that are added to the cluster remain in sync the other nodes in the cluster, change the `log_level` entry in [`kong.conf`](/gateway/{{page.kong_version}}/reference/configuration/#log_level) to `KONG_LOG_LEVEL`. This setting allows new nodes to join the cluster with the same log level as all the existing nodes.
+To ensure that the log level of new nodes that are added to the cluster remain in sync the other nodes in the cluster, change the `log_level` entry in [`kong.conf`](/gateway/{{page.release}}/reference/configuration/#log_level) to `KONG_LOG_LEVEL`. This setting allows new nodes to join the cluster with the same log level as all the existing nodes.
 
 ## Change the log level of all control plane {{site.base_gateway}} nodes
 
-To change the log level of the control plane nodes in your cluster, issue a `PUT` request with the desired [`log-level`](/gateway/{{page.kong_version}}/production/logging/log-reference/) specified as a path parameter:
+To change the log level of the control plane nodes in your cluster, issue a `PUT` request with the desired [`log-level`](/gateway/{{page.release}}/production/logging/log-reference/) specified as a path parameter:
 
 ```bash
 curl --request PUT \

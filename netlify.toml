@@ -1,13 +1,15 @@
 [build]
   publish = "dist"
   command = "exe/build"
-  environment = { JEKYLL_ENV = "development", BUNDLE_WITHOUT = "development", NODE_OPTIONS = "--max_old_space_size=8192" }
+  environment = { JEKYLL_ENV = "development", NODE_OPTIONS = "--max_old_space_size=8192" }
 
 [context.production.environment]
   JEKYLL_ENV = "production"
+  BUNDLE_WITHOUT = "development"
 
 [context.deploy-preview.environment]
   JEKYLL_ENV = "preview"
+  BUNDLE_WITHOUT = "development"
 
 [dev]
   autoLaunch = false
@@ -20,7 +22,7 @@
     preset = "desktop"
 
   [[context.deploy-preview.plugins.inputs.audits]]
-    path = "hub"
+    path = "hub/"
 
   [[context.deploy-preview.plugins.inputs.audits]]
     path = "hub/kong-inc/jwt-signer/"
@@ -32,7 +34,7 @@
     path = "gateway/latest/"
 
   [[context.deploy-preview.plugins.inputs.audits]]
-    path = "konnect"
+    path = "konnect/"
 
   [[context.deploy-preview.plugins.inputs.audits]]
     path = "mesh/latest/"
@@ -53,7 +55,7 @@
     preset = "desktop"
 
   [[context.production.plugins.inputs.audits]]
-    path = "hub"
+    path = "hub/"
 
   [[context.production.plugins.inputs.audits]]
     path = "hub/kong-inc/jwt-signer/"
@@ -65,7 +67,7 @@
     path = "gateway/latest/"
 
   [[context.production.plugins.inputs.audits]]
-    path = "konnect"
+    path = "konnect/"
 
   [[context.production.plugins.inputs.audits]]
     path = "mesh/latest/"

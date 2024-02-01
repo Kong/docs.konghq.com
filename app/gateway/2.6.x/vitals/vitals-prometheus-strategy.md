@@ -11,7 +11,7 @@ requests per second), without placing addition write load on the database
 backing the Kong cluster.
 
 For using Vitals with a database as the backend (i.e. PostgreSQL, Cassandra),
-refer to [Kong Vitals](/gateway/{{page.kong_version}}/vitals/).
+refer to [Kong Vitals](/gateway/{{page.release}}/vitals/).
 
 ## Lifecycle Overview
 
@@ -79,7 +79,7 @@ socket support which are not supported in the public project.
 StatsD exporter needed to configured with a set of mapping rules to translate
 the StatsD UDP events to Prometheus metrics. A default set of mapping rules can
 be downloaded at
-[statsd.rules.yaml](/gateway/{{page.kong_version}}/statsd.rules.yaml).
+[statsd.rules.yaml](/gateway/{{page.release}}/statsd.rules.yaml).
 Then start StatsD exporter with
 
 ```bash
@@ -161,8 +161,8 @@ export KONG_VITALS_TSDB_ADDRESS=prometheus-node:9090
 ```
 
 {:.note}
-> **Note**: In Hybrid Mode, configure [`vitals_strategy`](/gateway/{{page.kong_version}}/reference/configuration/#vitals_strategy) 
-and [`vitals_tsdb_address`](/gateway/{{page.kong_version}}/reference/configuration/#vitals_tsdb_address) 
+> **Note**: In Hybrid Mode, configure [`vitals_strategy`](/gateway/{{page.release}}/reference/configuration/#vitals_strategy) 
+and [`vitals_tsdb_address`](/gateway/{{page.release}}/reference/configuration/#vitals_tsdb_address) 
 on both the control plane and all data planes.
 
 Please update `statsd-node` and `prometheus-node` with the actual hostname that
@@ -284,7 +284,7 @@ By default the socket is created with permission `0755`, so that StatsD exporter
 ## Exported Metrics
 
 With the above configuration, the Prometheus StatsD exporter will make available all
-metrics as provided by the [standard Vitals configuration](/gateway/{{page.kong_version}}/vitals/vitalsSpec.yaml).
+metrics as provided by the [standard Vitals configuration](/gateway/{{page.release}}/vitals/vitalsSpec.yaml).
 
 Additionally, the exporter process provides access to the default metrics exposed by the [Golang
 Prometheus client library](https://prometheus.io/docs/guides/go-application/). These metric names

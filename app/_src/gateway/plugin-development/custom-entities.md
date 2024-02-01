@@ -34,7 +34,7 @@ entity will be stored.
 If your plugin is intended to support both Cassandra and PostgreSQL, then both
 migrations must be written.
 
-{% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
+{% include_cached /md/enterprise/cassandra-deprecation.md length='short' release=page.release %}
 {% endif_version %}
 
 If your plugin doesn't have it already, you should add a `<plugin_name>/migrations`
@@ -773,5 +773,5 @@ to cache it in-memory by leveraging the in-memory cache API provided by Kong.
 The next chapter will focus on caching custom entities, and invalidating them
 when they change in the data stores: [Caching custom entities]({{page.book.next.url}}).
 
-[Admin API]: /gateway/{{page.kong_version}}/admin-api/
-[Plugin Development Kit]: /gateway/{{page.kong_version}}/plugin-development/pdk
+[Admin API]: /gateway/{{page.release}}/admin-api/
+[Plugin Development Kit]: /gateway/{{page.release}}/plugin-development/pdk

@@ -11,7 +11,7 @@ namespace if the Service's namespace permits it. This guide shows how to create
 a `HTTPRoute` in one namespace that routes to a Service in another, bound to a
 Gateway in a third namespace.
 
-{% include /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
+{% include /md/kic/prerequisites.md release=page.release disable_gateway_api=false %}
 
 ## Create namespaces and allow references
 

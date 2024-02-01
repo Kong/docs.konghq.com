@@ -9,7 +9,7 @@ module Jekyll
       site.pages.each do |page|
         next unless page.data.key?('book')
 
-        v = page.data['kong_version']
+        v = page.data['release']
         v = 'latest' if page.data['is_latest']
         (books["#{page.data['edition']}/#{v}/#{page.data['book']}"] ||= []).push(page)
       end

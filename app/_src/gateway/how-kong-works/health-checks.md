@@ -353,12 +353,12 @@ All counter thresholds and intervals in `healthchecks` are zero by default,
 meaning that health checks are completely disabled by default in newly created
 upstreams.
 
-[ringbalancer]: /gateway/{{page.kong_version}}/how-kong-works/load-balancing#ring-balancer
-[ringtarget]: /gateway/{{page.kong_version}}/how-kong-works/load-balancing#target
-[upstream]: /gateway/{{page.kong_version}}/how-kong-works/load-balancing#upstream
-[targetobject]: /gateway/{{page.kong_version}}/admin-api#target-object
-[addupstream]: /gateway/{{page.kong_version}}/admin-api#add-upstream
-[clustering]: /gateway/{{page.kong_version}}/production/deployment-topologies/traditional
-[upstreamobject]: /gateway/{{page.kong_version}}/admin-api#upstream-object
-[balancercaveats]: /gateway/{{page.kong_version}}/how-kong-works/load-balancing#balancing-caveats
-[dnscaveats]: /gateway/{{page.kong_version}}/how-kong-works/load-balancing#dns-caveats
+[ringbalancer]: /gateway/{{page.release}}/how-kong-works/load-balancing#ring-balancer
+[ringtarget]: /gateway/{{page.release}}/how-kong-works/load-balancing#target
+[upstream]: /gateway/{{page.release}}/how-kong-works/load-balancing#upstream
+[targetobject]: /gateway/{{page.release}}/admin-api#target-object
+[addupstream]: /gateway/{{page.release}}/admin-api#add-upstream
+[clustering]: /gateway/{{page.release}}/production/deployment-topologies/traditional
+[upstreamobject]: /gateway/{{page.release}}/admin-api#upstream-object
+[balancercaveats]: /gateway/{{page.release}}/how-kong-works/load-balancing#balancing-caveats
+[dnscaveats]: /gateway/{{page.release}}/how-kong-works/load-balancing#dns-caveats

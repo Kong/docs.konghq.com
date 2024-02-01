@@ -15,7 +15,7 @@ traffic through.
 
 ## Set up forward proxy connection
 
-In [`kong.conf`](/gateway/{{page.kong_version}}/production/kong-conf/),
+In [`kong.conf`](/gateway/{{page.release}}/production/kong-conf/),
 configure the following parameters:
 
 ```
@@ -38,7 +38,7 @@ URL defined in `proxy_server` to connect.
 
 * `lua_ssl_trusted_certificate` (*Optional*): If using HTTPS, you can also
 specify a custom certificate authority with `lua_ssl_trusted_certificate`. If
-using the [system default CA](/gateway/{{page.kong_version}}/reference/configuration/#lua_ssl_trusted_certificate),
+using the [system default CA](/gateway/{{page.release}}/reference/configuration/#lua_ssl_trusted_certificate),
 you don't need to change this value.
 
 Reload {{site.base_gateway}} for the connection to take effect:

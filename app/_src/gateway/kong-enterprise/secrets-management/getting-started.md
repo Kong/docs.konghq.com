@@ -12,7 +12,7 @@ secrets which makes your {{site.base_gateway}} installation more secure.
 The following example uses the most basic form of secrets management: storing secrets in environment variables.
 In this example, you will replace a plaintext password to your PostgreSQL database with a reference to an environment variable.
 
-You can also store secrets in a secure vault backend. For a list of supported vault backend implementations, see the [Backends Overview](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/).
+You can also store secrets in a secure vault backend. For a list of supported vault backend implementations, see the [Backends Overview](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/).
 
 In this example we'll replace our plaintext password to our PostgreSQL database with a reference. To do so, define your environment variable and assign a secret value to it.
 
@@ -35,7 +35,7 @@ In this case, the reference would look like this:
 Where:
 
 * `vault` is the scheme (protocol) that we use to indicate that this is a secret.
-* `env` is the name of the backend [(Environment Variables)](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/env/), since we're storing the secret in a ENV variable.
+* `env` is the name of the backend [(Environment Variables)](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/env/), since we're storing the secret in a ENV variable.
 * `my-secret-postgres-password` corresponds to the environment variable that you just defined.
 
 Note that the reference is wrapped in curly braces.
@@ -64,6 +64,6 @@ pg_password={vault://env/my-secret-postgres-password}
 Upon startup, {{site.base_gateway}} tries to detect and transparently resolve references.
 
 {:.note}
-> For quick debugging or testing, you can use the [CLI for vaults](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/advanced-usage/#vaults-cli).
+> For quick debugging or testing, you can use the [CLI for vaults](/gateway/{{page.release}}/kong-enterprise/secrets-management/advanced-usage/#vaults-cli).
 
-See the [Advanced Usage](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/advanced-usage/) documentation for more information on the configuration options for each vault backend.
+See the [Advanced Usage](/gateway/{{page.release}}/kong-enterprise/secrets-management/advanced-usage/) documentation for more information on the configuration options for each vault backend.

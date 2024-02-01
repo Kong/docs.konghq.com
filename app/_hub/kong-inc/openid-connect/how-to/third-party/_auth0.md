@@ -46,5 +46,5 @@ For basic authentication, use your client ID as the username and your client sec
 [client-credentials-grant]: https://auth0.com/docs/api-auth/tutorials/client-credentials
 [create-auth0-api]: https://auth0.com/docs/apis#how-to-configure-an-api-in-auth0
 [non-interactive-client]: https://auth0.com/docs/clients
-[add-service]: /gateway/latest/admin-api/#service-object
+[add-service]: /gateway/api/admin-ee/latest/#/Services/create-service
 [audience-required]: https://auth0.com/docs/api/authentication#client-credentials

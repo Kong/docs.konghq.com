@@ -89,8 +89,8 @@ deck completion [command-specific flags] [global flags]
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## See also
 
-* [deck](/deck/{{page.kong_version}}/reference/deck/)	 - Administer your Kong clusters declaratively
+* [deck](/deck/{{page.release}}/reference/deck/)	 - Administer your Kong clusters declaratively

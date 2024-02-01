@@ -92,7 +92,7 @@ If you haven't completed these steps already, complete them before proceeding.
 You've completed the Get Started with Kong guide, but a lot more is possible with [{{site.base_gateway}}](/gateway/latest/). 
 The following are guides to advanced features of {{site.base_gateway}}:
 
-* [Monitoring with {{site.base_gateway}}](/gateway/{{ page.kong_version }}/production/monitoring/)
-* [Securing {{site.base_gateway}} with RBAC](/gateway/{{ page.kong_version }}/kong-manager/auth/rbac/enable/) <span class="badge enterprise"></span>
-* [Managing Workspaces and Team with {{site.base_gateway}}](/gateway/{{ page.kong_version }}/kong-manager/auth/workspaces-and-teams/) <span class="badge enterprise"></span>
+* [Monitoring with {{site.base_gateway}}](/gateway/{{ page.release }}/production/monitoring/)
+* [Securing {{site.base_gateway}} with RBAC](/gateway/{{ page.release }}/kong-manager/auth/rbac/enable/) <span class="badge enterprise"></span>
+* [Managing Workspaces and Team with {{site.base_gateway}}](/gateway/{{ page.release }}/kong-manager/auth/workspaces-and-teams/) <span class="badge enterprise"></span>
 

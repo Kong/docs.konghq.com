@@ -11,10 +11,10 @@ To use consumer groups for rate limiting, configure the plugin with the
 `enforce_consumer_groups` and `consumer_groups` parameters, then use the
 `/consumer_groups` endpoint to manage the groups.
 
-Consumer groups can be [tagged and filtered by tags](/gateway/{{page.kong_version}}/admin-api/#tags).
+Consumer groups can be [tagged and filtered by tags](/gateway/{{page.release}}/admin-api/#tags).
 
 For more information and examples of setting up and managing consumer groups, see the
-[Consumer Groups examples](/gateway/{{page.kong_version}}/kong-enterprise/consumer-groups).
+[Consumer Groups examples](/gateway/{{page.release}}/kong-enterprise/consumer-groups).
 
 
 ## List consumer groups

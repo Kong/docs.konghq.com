@@ -20,7 +20,7 @@ purpose: |
 
 KongClusterPlugin is the Schema for the kongclusterplugins API.
 
-{% include md/kic/crd-ref/kong_cluster_plugin_description.md kong_version=page.kong_version %}
+{% include md/kic/crd-ref/kong_cluster_plugin_description.md release=page.release %}
 
 | Field | Description |
 | --- | --- |
@@ -41,7 +41,7 @@ KongClusterPlugin is the Schema for the kongclusterplugins API.
 
 KongPlugin is the Schema for the kongplugins API.
 
-{% include md/kic/crd-ref/kong_plugin_description.md kong_version=page.kong_version %}
+{% include md/kic/crd-ref/kong_plugin_description.md release=page.release %}
 
 | Field | Description |
 | --- | --- |

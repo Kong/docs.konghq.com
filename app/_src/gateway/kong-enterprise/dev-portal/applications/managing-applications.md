@@ -20,7 +20,7 @@ generate more credentials, and view your application status against a list of
 Services.
 6. Before you can use your application, you must activate it to create a Service
 Contract for the Service. In the Services section of the Application Dashboard,
-click **Activate** on the Service you want to use. If [Auto-approve](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/applications/enable-application-registration##aa) is not
+click **Activate** on the Service you want to use. If [Auto-approve](/gateway/{{page.release}}/kong-enterprise/dev-portal/applications/enable-application-registration##aa) is not
 enabled, your application will remain pending until an admin approves your
 request.
 

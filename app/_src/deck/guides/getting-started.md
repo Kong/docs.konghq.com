@@ -3,10 +3,10 @@ title: Get Started with decK
 tag: how-to
 ---
 
-Once you have [installed](/deck/{{page.kong_version}}/installation/) decK, use this guide to get started with it.
+Once you have [installed](/deck/{{page.release}}/installation/) decK, use this guide to get started with it.
 
 You can find help in the terminal for any command using the `--help`
-flag, or see the [CLI reference](/deck/{{page.kong_version}}/reference/deck/).
+flag, or see the [CLI reference](/deck/{{page.release}}/reference/deck/).
 
 ## Install {{site.base_gateway}}
 
@@ -314,6 +314,6 @@ This will delete all configuration from Kong's database.
 ```
 
 ## Next steps
-See decK [best practices](/deck/{{page.kong_version}}/guides/best-practices/), and check out the individual guides for getting :
-* [Backup and restore of {{site.base_gateway}}'s configuration](/deck/{{page.kong_version}}/guides/backup-restore/)
+See decK [best practices](/deck/{{page.release}}/guides/best-practices/), and check out the individual guides for getting :
+* [Backup and restore of {{site.base_gateway}}'s configuration](/deck/{{page.release}}/guides/backup-restore/)
 * Deduplicate plugin configuration

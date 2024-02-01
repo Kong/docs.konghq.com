@@ -9,7 +9,7 @@ For Admin API instructions, check out the [{{site.base_gateway}} getting started
 
 ## Prerequisites
 
-You need a {{site.base_gateway}} instance with Kong Manager [enabled](/gateway/{{page.kong_version}}/kong-manager/enable/).
+You need a {{site.base_gateway}} instance with Kong Manager [enabled](/gateway/{{page.release}}/kong-manager/enable/).
 
 ## Set up upstreams and targets
 
@@ -41,6 +41,6 @@ To test that {{site.base_gateway}} is load balancing traffic across the two targ
 ## Next steps
 
 Next, check out some guides on what else you can do in Kong Manager:
-* [Set up authentication for Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/)
-* [Manage workspaces and teams with role-based access control (RBAC)](/gateway/{{page.kong_version}}/kong-manager/auth/workspaces-and-teams/)
-* [Create custom workspaces](/gateway/{{page.kong_version}}/kong-manager/workspaces/)
+* [Set up authentication for Kong Manager](/gateway/{{page.release}}/kong-manager/auth/)
+* [Manage workspaces and teams with role-based access control (RBAC)](/gateway/{{page.release}}/kong-manager/auth/workspaces-and-teams/)
+* [Create custom workspaces](/gateway/{{page.release}}/kong-manager/workspaces/)

@@ -8,7 +8,7 @@ releases using the `kong migrations` commands.
 
 You can also use the commands to migrate all {{site.ce_product_name}} entities
 to {{site.ee_product_name}}. See
-[Migrating from {{site.ce_product_name}} to {{site.base_gateway}}](/gateway/{{page.kong_version}}/install-and-run/migrate-ce-to-ke/).
+[Migrating from {{site.ce_product_name}} to {{site.base_gateway}}](/gateway/{{page.release}}/install-and-run/migrate-ce-to-ke/).
 
 If you experience any issues when running migrations, contact
 [Kong Support](https://support.konghq.com/support/s/) for assistance.
@@ -50,7 +50,7 @@ If you are adding a new plugin to your installation, you need to run
 
 Version 2.7.x introduced a new way to configure the OIDC plugin to map IdP roles to Kong Manager admin accounts.
 You must now specify the `admin_claim` instead of the `consumer_claim` in your OIDC config file. For more information,
-see [OIDC Authenticated Group Mapping](/gateway/{{page.kong_version}}/configure/auth/kong-manager/oidc-mapping/).
+see [OIDC Authenticated Group Mapping](/gateway/{{page.release}}/configure/auth/kong-manager/oidc-mapping/).
 
 ### Dev Portal migrations
 
@@ -64,12 +64,12 @@ to version 2.1.x before continuing.
 ### Hybrid mode considerations
 
 {:.important}
-> **Important:** If you are currently running in [hybrid mode](/gateway/{{page.kong_version}}/plan-and-deploy/hybrid-mode/),
+> **Important:** If you are currently running in [hybrid mode](/gateway/{{page.release}}/plan-and-deploy/hybrid-mode/),
 upgrade the control plane first, and then the data planes.
 
 * If you are currently running 2.6.x in classic (traditional)
   mode and want to run in hybrid mode instead, follow the hybrid mode
-  [installation instructions](/gateway/{{page.kong_version}}/plan-and-deploy/hybrid-mode/hybrid-mode-setup/)
+  [installation instructions](/gateway/{{page.release}}/plan-and-deploy/hybrid-mode/hybrid-mode-setup/)
   after running the migration.
 * Custom plugins (either your own plugins or third-party plugins that are not shipped with Kong)
   need to be installed on both the control plane and the data planes in hybrid mode. Install the

@@ -329,7 +329,7 @@ When choosing this algorithm, consider the following:
 
 
 
-[upstream-object-reference]: /gateway/{{page.kong_version}}/admin-api#upstream-object
-[target-object-reference]: /gateway/{{page.kong_version}}/admin-api#target-object
-[dns-order-config]: /gateway/{{page.kong_version}}/reference/configuration/#dns_order
-[real-ip-config]: /gateway/{{page.kong_version}}/reference/configuration/#real_ip_header
+[upstream-object-reference]: /gateway/{{page.release}}/admin-api#upstream-object
+[target-object-reference]: /gateway/{{page.release}}/admin-api#target-object
+[dns-order-config]: /gateway/{{page.release}}/reference/configuration/#dns_order
+[real-ip-config]: /gateway/{{page.release}}/reference/configuration/#real_ip_header

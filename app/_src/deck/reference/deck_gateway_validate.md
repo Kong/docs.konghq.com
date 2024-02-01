@@ -13,6 +13,12 @@ Validates against the Kong API, via communication with Kong. This increases the
 time for validation but catches significant errors. No resource is created in Kong.
 For offline validation, see `deck file validate`.
 
+{:.note}
+> `deck gateway validate` is the replacement for `deck validate`. 
+> <br><br> In `deck gateway validate`, the following has changed:
+> * Files changed to positional arguments without the `-s/--state` flag
+> * The default write location changed from `kong.yaml` to `-` (stdin/stdout)
+> * The `--online` flag is removed, use either `deck file` or `deck gateway`
 
 ## Syntax
 
@@ -41,7 +47,7 @@ This takes precedence over _workspace fields in state files.
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## See also
 

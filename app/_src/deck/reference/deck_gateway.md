@@ -15,7 +15,7 @@ Subcommand to host the decK network operations.
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## decK gateway commands
 
