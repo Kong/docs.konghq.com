@@ -22,7 +22,7 @@ You can use this plugin in one of the following modes: logging/transparent mode 
 Replace `localhost:8001` in the following examples with your own Kong admin URL. 
 
 Enable logging/transparent mode:
-```
+```sh
 curl -X POST http://<kong-admin-endpoint>/plugins/ --data name=appsentinels --data config.http_endpoint=http://onprem-controller:9004
 ```
 
