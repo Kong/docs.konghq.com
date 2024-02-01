@@ -660,9 +660,12 @@
 
 # KONG MESH
 /policies /mesh/latest/policies/introduction
+/features/ /mesh/latest/features/
 /mesh/:version/documentation/introduction/  /mesh/:version/
 /mesh/:version/introduction/overview-of-kong-mesh /mesh/:version/
 /mesh/:version/overview /mesh/:version/
+/mesh/:version/quickstart/kubernetes/ /mesh/:version/quickstart/kubernetes-demo/
+
 # Make GUI docs link work
 /mesh/konnect/* /mesh/latest/:splat
 /mesh/:version/installation/windows   /mesh/:version/features/windows

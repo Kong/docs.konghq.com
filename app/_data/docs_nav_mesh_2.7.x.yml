@@ -1,10 +1,10 @@
 generate: true
 assume_generated: true
-release: 2.6.x
+release: 2.7.x
 max_depth: 3
 inherit:
   path: /.repos/kuma/app/_src
-  nav: ../_src/.repos/kuma/app/_data/docs_nav_kuma_2.6.x.yml
+  nav: ../_src/.repos/kuma/app/_data/docs_nav_kuma_dev.yml
   patches:
     - path: [ Introduction ]
       action: modify
