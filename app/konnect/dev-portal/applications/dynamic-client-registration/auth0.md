@@ -86,7 +86,7 @@ Once you have Auth0 configured, you can set up the Dev Portal to use Auth0 for d
 
 4. Click the **New DCR Provider** button to begin creating your Auth0 config. Enter a Name to be seen only in Konnect and a Display Name that will be displayed on your Portal.
 
-5. Enter the **Issuer** for your Auth0 tenant, it will look something like `https://AUTH0_TENANT_SUBDOMAIN.us.auth0.com`
+5. Enter the **Issuer URL** for your Auth0 tenant, it will look something like `https://AUTH0_TENANT_SUBDOMAIN.us.auth0.com`
 
    {:.note}
    > **Note:** You can find the value for your `AUTH0_TENANT_SUBDOMAIN` by visiting **Settings** from the Auth0 sidebar and finding the **Tenant Name** in the **General** tab.
