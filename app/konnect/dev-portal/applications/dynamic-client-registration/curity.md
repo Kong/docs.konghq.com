@@ -79,24 +79,30 @@ Once you have Curity configured, you can set up the Dev Portal to use Curity for
 
 1. Sign in to {{site.konnect_short_name}}, then select {% konnect_icon dev-portal %} **Dev Portal** from the menu.
 
-2. Click **Settings** to open the Dev Portal settings.
+2. Click **Application Auth** to open the authentication settings for your API Products in your Portal.
 
-3. Click the **Application Setup** tab to open the DCR settings for your Dev Portal.
+3. Click the **DCR Providers** tab to see all your DCR Providers.
 
-4. Select **Curity** as the external identity provider.
+4. Click the **New DCR Provider** button to begin creating your Curity config. Enter a Name to be seen only in Konnect and a Display Name that will be displayed on your Portal.
 
 5. Enter the **Issuer URL** for your authorization server, it will look something like `https://CURITY_INSTANCE_DOMAIN/oauth/v2/oauth-anonymous/.well-known/openid-configuration`
 
-6. If you are using the Curity configuration described in the previous sections, enter the `sub` into the **Claims** field and leave the **Scopes** field empty. If you configured Curity differently, then ensure you add the correct **Scopes** and **Claims**.
+6. Select Curity as your **Provider Type**.
 
-7. Enter the Client ID of the admin client created in Curity above into the **Initial Client ID** field.
+7. Enter the Client ID of the admin client created in Curity above into the **Initial Client ID** field. Enter the value you saved for the Client secret into the **Initial Client Secret** field.
 
-8. Enter the value you saved for the Client secret into the **Initial Client Secret** field.
+8. Save your DCR Provider. You should now see it in the list of DCR Poviders.
 
-9. Click **Save**.
+9. Click the **Auth Strategy** tab to see all your Auth Strategies. Select **New Auth Strategy** to create an auth strategy that uses the DCR Provider you just added.
 
-   If you previously configured any DCR settings, this will
-   overwrite them.
+10. Enter a Name to be seen only in Konnect and a Display Name that will be displayed on your Portal. In the **Auth Type** dropdown menu select DCR. In the **DCR Provider** dropdown, select the name of the DCR Provider config you just created. Your **Issuer URL** will be prepopulated with the Issuer URL you added to the DCR Provider.
+
+11. If you are using the Curity configuration described in the previous sections, enter the `sub` into the **Claims** field and leave the **Scopes** field empty. If you configured Curity differently, then ensure you add the correct **Scopes** and **Claims**.
+
+12. Select the relevant **Auth Methods** you need (client_credentials, bearer, session, etc).
+
+13. Click **Save**.
+
 
 ## Create an application with DCR
 
