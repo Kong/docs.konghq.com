@@ -80,33 +80,37 @@ Once you have Auth0 configured, you can set up the Dev Portal to use Auth0 for d
 
 1. Sign in to {{site.konnect_short_name}}, then select {% konnect_icon dev-portal %} **Dev Portal** from the menu.
 
-2. Click **Settings** to open the Dev Portal settings.
+2. Click **Application Auth** to open the authentication settings for your API Products in your Portal.
 
-3. Click the **Application Setup** tab to open the DCR settings for your Dev Portal.
+3. Click the **DCR Providers** tab to see all your DCR Providers.
 
-4. Select **Auth0** as the external identity provider.
+4. Click the **New DCR Provider** button to begin creating your Auth0 config. Enter a Name to be seen only in Konnect and a Display Name that will be displayed on your Portal.
 
 5. Enter the **Issuer** for your Auth0 tenant, it will look something like `https://AUTH0_TENANT_SUBDOMAIN.us.auth0.com`
 
    {:.note}
    > **Note:** You can find the value for your `AUTH0_TENANT_SUBDOMAIN` by visiting **Settings** from the Auth0 sidebar and finding the **Tenant Name** in the **General** tab.
 
-6. Enter the **Client Token Audience** as the identifier value you set when configuring the API entity above. If you’re using Developer Managed Scopes, this value should map to the audience field of your associated Auth0 API.
+6. Select Auth0 as your **Provider Type**.
 
-7. Enter `openid` into the **Scopes** field.
+7. Enter the Client ID from the admin application created in Auth0 above into the **Initial Client ID** field. Enter the Client secret from the admin application created in Auth0 above into the **Initial Client Secret** field.
 
-1. If you’re using developer-managed scopes, select the **Use Developer Managed Scopes** checkbox. Add the appropriate scopes (in addition to the mandatory `openid` scope) you want your developers to be able to choose from. For example: `openid, read:account_information, write:account_information`.
+8. Enter the **Client Token Audience** as the identifier value you set when configuring the API entity above. If you’re using Developer Managed Scopes, this value should map to the audience field of your associated Auth0 API.
 
-9. Enter `azp` into the **Consumer Claims** field, which will match the client ID of each Auth0 application
+9. If you’re using developer-managed scopes, select the **Use Developer Managed Scopes** checkbox.
 
-10. Enter the Client ID from the admin application created in Auth0 above into the **Initial Client ID** field.
+10. Save your DCR Provider. You should now see it in the list of DCR Poviders.
 
-11. Enter the Client secret from the admin application created in Auth0 above into the **Initial Client Secret** field.
+11. Click the **Auth Strategy** tab to see all your Auth Strategies. Select **New Auth Strategy** to create an auth strategy that uses the DCR Provider you just added.
 
-12. Click **Save**.
+12. Enter a Name to be seen only in Konnect and a Display Name that will be displayed on your Portal. In the **Auth Type** dropdown menu select DCR. In the **DCR Provider** dropdown, select the name of the DCR Provider config you just created. Your **Issuer URL** will be prepopulated with the Issuer URL you added to the DCR Provider.
 
-   If you previously configured any DCR settings, this will
-   overwrite them.
+13. Enter the mandatory `openid` scope into the **Scopes** field in addition to any other scopes your developers may need access to (e.g. `openid, read:account_information, write:account_information`, etc). Note if you’re using developer-managed scopes, these are the scopes your developers will be able to _choose_ from in Dev Portal.
+
+14. Enter `azp` into the **Consumer Claims** field, which will match the client ID of each Auth0 application
+
+15. Click **Save**.
+
 
 ## Create an application with DCR
 
