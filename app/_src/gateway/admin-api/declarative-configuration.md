@@ -32,7 +32,7 @@ are erased from memory, and the entities specified in the
 given file take their place.
 
 To learn more about the file format, see the
-[declarative configuration](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config) documentation.
+[declarative configuration](/gateway/{{page.release}}/production/deployment-topologies/db-less-and-declarative-config) documentation.
 
 <div class="endpoint post indent">/config</div>
 
