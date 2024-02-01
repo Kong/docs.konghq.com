@@ -107,7 +107,7 @@ Once you have Auth0 configured, you can set up the Dev Portal to use Auth0 for d
 
 13. Enter the mandatory `openid` scope into the **Scopes** field in addition to any other scopes your developers may need access to (e.g. `openid, read:account_information, write:account_information`, etc). Note if you’re using developer-managed scopes, these are the scopes your developers will be able to _choose_ from in Dev Portal.
 
-14. Enter `azp` into the **Consumer Claims** field, which will match the client ID of each Auth0 application
+14. Enter `azp` into the **Credential Claims** field, which will match the client ID of each Auth0 application
 
 15. Select the relevant **Auth Methods** you need (client_credentials, bearer, session, etc).
 
