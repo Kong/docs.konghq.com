@@ -3,7 +3,7 @@ title: Enable or Disable Application Registration for an API Product Version
 content_type: how-to
 ---
 
-To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service/), you must enable application registration for an API product version.
+To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service/), you must enable application registration for an API product version. 
 When you enable application registration, {{site.konnect_saas}} enables plugins automatically to support the desired mode, either key authentication or OpenID Connect.
 These plugins run inside the data plane to support application registration for the API product version and are managed by
 {{site.konnect_saas}}.
@@ -11,6 +11,8 @@ These plugins run inside the data plane to support application registration for 
 Enabling application registration is specific to the [geographic region](/konnect/geo). 
 You must enable application registration in each geo that you want to allow developers to register with.
 Each geo has their own API keys and specifications for application registration in their respective geo.
+
+As the underlying auth strategies powering application registration actually map to a unique set of permissions in your IdP, Konnect supports the creation and application of many auth strategies. You can create and use one auth strategy and for all your API Products, or you can use a unique auth strategy for each API Product.
 
 ## Support for any control plane
 
