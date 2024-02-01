@@ -442,7 +442,7 @@ This can be adjusted dynamically using the `ordering` option. See
 for more information.
 
 {% navtabs %}
-{% navtab Open-source or Free mode %}
+{% navtab OSS %}
 
 The following list includes all plugins bundled with open-source
 {{site.base_gateway}} or {{site.base_gateway}} running in Free mode.
