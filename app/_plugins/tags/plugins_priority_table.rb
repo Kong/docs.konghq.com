@@ -29,7 +29,7 @@ module Jekyll
     private
 
     def plugins
-      @plugins ||= JSON.parse(File.read("#{PRIORITIES_PATH}/#{type}/#{version}.json"))
+      @plugins = JSON.parse(File.read("#{PRIORITIES_PATH}/#{type}/#{version}.json"))
     end
 
     def template
@@ -37,11 +37,11 @@ module Jekyll
     end
 
     def version
-      @version ||= if @page['release']
-                     @page['release'].value
-                   else
-                     latest_release
-                   end
+      @version = if @page['release']
+                   @page['release'].value
+                 else
+                   latest_release
+                 end
     end
 
     def type
