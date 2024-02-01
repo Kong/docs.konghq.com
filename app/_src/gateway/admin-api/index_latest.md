@@ -18,7 +18,6 @@ title: Kong Gateway Admin API
 
 ## Documentation
 
-
 The Kong Admin API is documented in OpenAPI format:
 
 | Spec | Insomnia link |
@@ -30,8 +29,6 @@ See the following links for individual entity documentation:
 
 {% navtabs %}
 {% navtab Enterprise endpoints %}
-
-
 
 | [Information Routes](/gateway/api/admin-ee/latest/#/Information/get-endpoints) | [Health Routes](/gateway/api/admin-ee/latest/#/Information/get-status) | [Tags](/gateway/api/admin-ee/latest/#/tags/get-tags) |
 | [Debug Routes](/gateway/api/admin-ee/latest/#/debug/put-debug-cluster-control-planes-nodes-log-level-log_level) | [Services](/gateway/api/admin-ee/latest/#/Services/list-service) | [Routes](/gateway/api/admin-ee/latest/#/Routes/list-route) |
@@ -51,26 +48,18 @@ See the following links for individual entity documentation:
 {% endnavtab %}
 {% endnavtabs %}
 
-
-
 ## DB-less mode
 
-
 In [DB-less mode](/gateway/{{page.release}}/production/deployment-topologies/db-less-and-declarative-config/),
-the Admin API can be used to load a new declarative
-configuration, and for inspecting the current configuration. In DB-less mode,
-the Admin API for each Kong node functions independently, reflecting the memory state
-of that particular Kong node. This is the case because there is no database
-coordination between Kong nodes.
+you [configure {{site.base_gateway}} declaratively](/gateway/{{page.release}}/admin-api/declarative-configuration/).
+The Admin API for each Kong node functions independently, reflecting the memory state of that particular Kong node. 
+This is the case because there is no database coordination between Kong nodes. 
+Therefore, the Admin API is mostly read-only. 
 
-In DB-less mode, you configure {{site.base_gateway}} declaratively.
-Therefore, the Admin API is mostly read-only. The only tasks it can perform are all
-related to handling the declarative config, including:
-
-* [Validating configurations against schemas](#validate-a-configuration-against-a-schema)
-* [Validating plugin configurations against schemas](#validate-a-plugin-configuration-against-the-schema)
-* [Reloading the declarative configuration](#reload-declarative-configuration)
-* [Setting a target's health status in the load balancer](#set-target-as-healthy)
+When running {{site.base_gateway}} in DB-less mode, the Admin API can only perform tasks related to handling the declarative config:
+* [Validating configurations against schemas](/gateway/api/admin-oss/latest/#/Information/post-schemas-entity-validate)
+* [Validating plugin configurations against schemas](/gateway/api/admin-oss/latest/#/Information/post-schemas-plugins-validate)
+* [Reloading the declarative configuration](/gateway/{{page.release}}/admin-api/declarative-configuration/)
 
 ## Supported content types
 
@@ -135,7 +124,6 @@ curl -i -X POST http://localhost:8001/services/test-service/routes \
     -d "paths=/path/two"
 ```
 
-
 ### multipart/form-data
 
 The `multipart/form-data` content type is similar to URL-encoded. This content type uses dotted keys to reference nested
@@ -157,9 +145,7 @@ curl -i -X POST http://localhost:8001/services/test-service/routes \
      -F "paths[2]=/path/two"
 ```
 
-
-
-### Using the API in workspaces 
+## Using the API in workspaces 
 {:.badge .enterprise}
 
 {% include_cached /md/gateway/admin-api-workspaces.md %}
