@@ -1,22 +1,3 @@
-{% if include.type == 'oss' %}
-  <table>
-    <thead>
-      <tr>
-        <th>correlation-id</th>
-        <th>Priority</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for type in include.correlation_id %}
-        <tr>
-          <td><span class="badge {{ type[0] }}"></span></td>
-          <td>{{ type[1] }}</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-{% endif %}
-
 <table>
   <thead>
     <tr>
@@ -26,14 +7,10 @@
   </thead>
   <tbody>
     {%- for plugin in include.plugins -%}
-      {% if include.type == 'oss' and plugin[0] == 'correlation-id' %}
-        {% continue %}
-      {% else %}
-        <tr>
-          <td>{{ plugin[0] }}</td>
-          <td>{{ plugin[1] }}</td>
-        </tr>
-      {% endif %}
+      <tr>
+        <td>{{ plugin[0] }}</td>
+        <td>{{ plugin[1] }}</td>
+      </tr>
     {%- endfor -%}
   </tbody>
 </table>
