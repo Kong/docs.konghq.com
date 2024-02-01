@@ -34,4 +34,4 @@ enterprise: false
 
 konnect: true
 
-dbless_compatible: no
+dbless_compatible: 'yes'
