@@ -7,7 +7,7 @@ At the platform's core is an AI/ML engine, AI Sentinels, which combines multiple
 
 ## How it works
 
-AppSentinels plugin performs logging as well as enforcement (blocking) of API transactions
+The AppSentinels plugin performs logging and enforcement (blocking) of API transactions.
 
 ## How to install
 
