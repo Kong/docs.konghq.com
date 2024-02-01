@@ -26,7 +26,7 @@ Enable logging/transparent mode:
 curl -X POST http://<kong-admin-endpoint>/plugins/ --data name=appsentinels --data config.http_endpoint=http://onprem-controller:9004
 ```
 
-* To enable authz/enforcement mode
+Enable authz/enforcement mode:
 ```
 curl -X POST http://localhost:8001/plugins \
   --data name=appsentinels \
