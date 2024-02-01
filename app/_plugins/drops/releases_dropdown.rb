@@ -41,7 +41,7 @@ module Jekyll
       end
 
       def page_exists?(url)
-        !@page.site.pages.detect { |p| p.url == url }.nil?
+        @page.site.data['pages_urls'].include?(url)
       end
 
       def root_url
