@@ -45,8 +45,6 @@ See the following links for individual entity documentation:
 | [Event Hooks](/gateway/api/admin-ee/latest/#/Event-hooks/get-event-hooks) | [Keyring and Data Encryption](/gateway/api/admin-ee/latest/#/Keyring/get-keyring) | [Audit Logs](/gateway/api/admin-ee/latest/#/audit-logs/get-audit-requests) |
 {% endnavtab %}
 {% navtab OSS endpoints %}
-| Endpoints    |           | |
-| ------------------------------- | ------------------------------- | ----- | 
 | [Information Routes](/gateway/api/admin-oss/latest/#/Information/get-endpoints) | [Health Routes](/gateway/api/admin-oss/latest/#/Information/get-status) | [Tags](/gateway/api/admin-oss/latest/#/tags/get-tags) |
 | [Debug Routes](/gateway/api/admin-oss/latest/#/debug/put-debug-cluster-control-planes-nodes-log-level-log_level) | [Services](/gateway/api/admin-oss/latest/#/Services/list-service) | [Routes](/gateway/api/admin-oss/latest/#/Routes/list-route) |
 | [Consumers](/gateway/api/admin-oss/latest/#/Consumers/list-consumer) | [Plugins](/gateway/api/admin-oss/latest/#/Plugins/list-plugins-with-consumer) | [Certificates](/gateway/api/admin-oss/latest/#/Certificates/list-certificate) |
