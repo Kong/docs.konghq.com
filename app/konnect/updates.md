@@ -12,7 +12,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## February 2024
 
 **Download button added the documents UI**
-: You can now click the “Download” button to download the markdown file currently being viewed from the documents UI.
+: You can now click the **Download** button to download the markdown file currently being viewed from the documents UI.
 
 ## January 2024
 
