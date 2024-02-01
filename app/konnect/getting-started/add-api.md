@@ -4,11 +4,11 @@ title: Add your API to Konnect
 
 Some explanation of how you created a demo service etc. in wizard onboarding, and this will help you add your own APIs to Konnect to test.
 
-Should we do more explaning in this topic? Like what services, routes, etc are. 
+Should we do more explaining in this topic? Like what services, routes, etc are. 
 
 Feels like there's two groups here who would want this topic: 1. I use an API gateway (that isn't Kong) and know about APIs and just want to test my existing one and 2. I have no API gateway and don't know much about them and I'm exploring Konnect as an option. 
 
-Maybe optional expandable explainers if they want more info, but they choose if they want to consume that info?
+Maybe optional expandable explanations if they want more info, but they choose if they want to consume that info?
 
 ## Add your API
 
