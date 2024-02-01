@@ -24,5 +24,8 @@ curl -X POST http://<kong-admin-endpoint>/plugins/ --data name=appsentinels --da
 
 * To enable authz/enforcement mode
 ```
-curl -X POST http://<kong-admin-endpoint>/plugins/ --data name=appsentinels --data config.http_endpoint=http://onprem-controller:9004 --data config.authz=true
+curl -X POST http://localhost:8001/plugins \
+  --data name=appsentinels \
+  --data config.http_endpoint=http://onprem-controller:9004 \
+  --data config.authz=true
 ```
