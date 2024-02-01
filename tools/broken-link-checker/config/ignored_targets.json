@@ -53,5 +53,5 @@
   "https://hub.docker.com/*",
   "http://portal.example.com/",
   "http://lua-users.org/*",
-  "*/gateway/dev/install/*"
+  "*/gateway/unreleased/install/*"
 ]
