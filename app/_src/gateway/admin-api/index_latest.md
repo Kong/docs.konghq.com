@@ -1,8 +1,6 @@
 ---
 title: Kong Gateway Admin API
-no_version: true
 ---
-
 
 <!-- vale off -->
 
