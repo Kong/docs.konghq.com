@@ -14,6 +14,15 @@ module Jekyll
       konnect = Jekyll::GeneratorSingleSource::Product::Edition.new(edition: 'konnect', site:)
       contributing = Jekyll::GeneratorSingleSource::Product::Edition.new(edition: 'contributing', site:)
 
+      site.data['editions'] = {}
+      site.data['editions']['deck'] = deck
+      site.data['editions']['mesh'] = mesh
+      site.data['editions']['kubernetes-ingress-controller'] = kic
+      site.data['editions']['gateway'] = gateway
+      site.data['editions']['gateway-operator'] = gateway_operator
+      site.data['editions']['konnect'] = konnect
+      site.data['editions']['contributing'] = contributing
+
       site.data['kong_versions_deck'] = deck.releases.map(&:to_h)
       site.data['kong_versions_mesh'] = mesh.releases.map(&:to_h)
       site.data['kong_versions_konnect'] = konnect.releases.map(&:to_h)
