@@ -11,7 +11,7 @@ The AppSentinels plugin performs logging and enforcement (blocking) of API trans
 
 ## How to install
 
-* Download the kong plugin code provided by AppSentinels
+* Download the Kong plugin code provided by AppSentinels
 * Mount or create an image using the Lua files (usually mounted at `/usr/local/share/lua/5.1/kong/plugins/`)
 * Configure the plugin to enable it
 
