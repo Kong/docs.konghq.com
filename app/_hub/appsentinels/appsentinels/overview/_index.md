@@ -23,7 +23,9 @@ Replace `localhost:8001` in the following examples with your own Kong admin URL.
 
 Enable logging/transparent mode:
 ```sh
-curl -X POST http://<kong-admin-endpoint>/plugins/ --data name=appsentinels --data config.http_endpoint=http://onprem-controller:9004
+curl -X POST http://localhost:8001/plugins \
+  --data name=appsentinels \
+  --data config.http_endpoint=http://onprem-controller:9004
 ```
 
 Enable authz/enforcement mode:
