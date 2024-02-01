@@ -99,7 +99,7 @@ Once you have Auth0 configured, you can set up the Dev Portal to use Auth0 for d
 
 9. If you’re using developer-managed scopes, select the **Use Developer Managed Scopes** checkbox.
 
-10. Save your DCR Provider. You should now see it in the list of DCR Poviders.
+10. Save your DCR Provider. You should now see it in the list of DCR Providers.
 
 11. Click the **Auth Strategy** tab to see all your Auth Strategies. Select **New Auth Strategy** to create an auth strategy that uses the DCR Provider you just added.
 
@@ -109,7 +109,9 @@ Once you have Auth0 configured, you can set up the Dev Portal to use Auth0 for d
 
 14. Enter `azp` into the **Consumer Claims** field, which will match the client ID of each Auth0 application
 
-15. Click **Save**.
+15. Select the relevant **Auth Methods** you need (client_credentials, bearer, session, etc).
+
+16. Click **Save**.
 
 
 ## Create an application with DCR
