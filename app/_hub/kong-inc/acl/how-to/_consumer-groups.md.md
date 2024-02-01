@@ -8,6 +8,25 @@ title: Using ACLs with consumer groups
 This example covers a common use case: as an API owner, you want to regulate access based on the type of request methods and consumer groups. Specifically, the goal is to allow consumers in the dev group to perform GET, POST, and PUT requests on all routes, while reserving the DELETE request functionality exclusively for consumers in the admin group.
 
 
+### Create consumers
+
+1. Using the API, create two consumers, `admin` and `dev`: 
+     ```bash
+     curl --request POST \
+        --url http://localhost:8001/consumers \
+        --header 'Content-Type: application/json' \
+        --header 'accept: application/json' \
+        --data '{"username":"admin"}'
+     ```
+     ```bash
+     curl --request POST \
+        --url http://localhost:8001/consumers \
+        --header 'Content-Type: application/json' \
+        --header 'accept: application/json' \
+        --data '{"username":"dev"}'
+    ```
+The response will contain a UUID in the `id` field that you will need for the rest of the guide. 
+
 ### Create consumer groups 
 
 1. Using the API, create a consumer group for `dev`:
