@@ -384,6 +384,5 @@
   branch: release-2.6
 - edition: mesh
   version: preview
-  release: 2.7.x
-  label: dev
+  release: dev
   branch: master
