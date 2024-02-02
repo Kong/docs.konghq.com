@@ -48,7 +48,7 @@ The Vitals platform provides deep insights into services, routes, and applicatio
 {% endif_version %}
 ## Role-based access control (RBAC)
 
-{{site.ee_product_name}} lets you configure users, roles, and permissions with built-in role-based access control (RBAC). With RBAC, you can streamline developer onboarding, and create apply fine-grained security and traffic policies using the [Admin API](/gateway/{{page.release}}/admin-api/rbac/reference/), or [Kong Manager](/gateway/{{page.release}}/kong-manager/auth/rbac/).
+{{site.ee_product_name}} lets you configure users, roles, and permissions with built-in role-based access control (RBAC). With RBAC, you can streamline developer onboarding, and create apply fine-grained security and traffic policies using the [Admin API](/gateway/api/admin-ee/latest/), or [Kong Manager](/gateway/{{page.release}}/kong-manager/auth/rbac/).
 
 [Manage teams with RBAC &rarr;](/gateway/{{page.release}}/kong-manager/auth/rbac)
 
@@ -81,7 +81,7 @@ This provides encryption-at-rest security controls in a {{site.base_gateway}} cl
 {{site.base_gateway}} provides granular logging of the Admin API. You can keep detailed track of changes made to the
 cluster configuration throughout its lifetime, for compliance efforts and for
 providing valuable data points during forensic investigations. Generated audit
-log trails are [workspace](/gateway/{{page.release}}/admin-api/workspaces/reference/) and [RBAC](/gateway/{{page.release}}/admin-api/rbac/reference/)-aware,
+log trails are [workspace](/gateway/api/admin-ee/latest/#/Workspaces) and [RBAC](/gateway/api/admin-ee/latest/)-aware,
 providing {{site.base_gateway}} operators a deep and wide look into changes happening within
 the cluster.
 
@@ -121,7 +121,7 @@ In {{site.base_gateway}}, these callbacks can be defined using one of the follow
 
 You can configure event hooks through the Admin API.
 
-[Learn more about event hooks &rarr;](/gateway/{{page.release}}/admin-api/event-hooks/reference/)
+[Learn more about event hooks &rarr;](/gateway/api/admin-ee/latest/#/Event-hooks/)
 
 ## Consumer groups
 
