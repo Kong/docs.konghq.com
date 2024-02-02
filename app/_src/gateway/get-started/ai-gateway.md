@@ -10,7 +10,7 @@ designed to help organizations effectively adopt AI capabilities quickly and sec
 
 With the rapid emergence of multiple AI providers (including OSS self hosted models), 
 the AI technology landscape is fragmented and lacking in standards and controls. This 
-significantly complicates how organizations utilize and govern AI services. {{site.base_gateway}}'s 
+significantly complicates how organizations use and govern AI services. {{site.base_gateway}}'s 
 broad API management capabilities and plugin extensibility model make it well suited to 
 provide AI specific API management and governance services.
 
@@ -39,7 +39,8 @@ However, to help you get started quickly, we have provided a script that automat
 deploying a {{site.base_gateway}} configured as an AI Gateway to a local Docker container, 
 allowing you to evaluate the core AI provider capabilities before exploring the full suite of AI plugins.
 
-The quickstart script supports deploying {{site.base_gateway}} on Kong Konnect or on Docker only.
+The quickstart script supports deploying {{site.base_gateway}} on {{site.konnect_product_name}} or 
+on Docker only.
 
 {:.note}
 > **Note:**
@@ -53,7 +54,7 @@ Download and run script shell in one step:
 curl -Ls https://get.konghq.com/ai | bash
 ```
 This script prompts you for information about the AI providers you wish to configure and proceeds to 
-run a {{site.base_gateway}} container and configure the AI plugins appropriately. The script is interacive
+run a {{site.base_gateway}} container and configure the AI plugins appropriately. The script is interactive 
 allowing you to selectively configure the AI providers. 
 
 After the AI Gateway is deployed, the script will display information you can use to evaluate the 
@@ -93,7 +94,8 @@ In Addition to the above hosted AI Providers, self hosted models are supported a
 
 {:.note}
 > **Note:**
-> TODO: Document how to configure Local models
+> By default local models are configured on the following endpoint `http://host.docker.internal:11434`
+> which allows {{site.base_gateway}} to connect to the host machine. 
 
 This core AI Gateway feature is enabled with the [AI Proxy](hub/ai-proxy) plugin, which is
 deployed by default in the getting started script referenced above. See the 
@@ -111,25 +113,21 @@ TODO
 
 TODO
 
-### Prompt Engineering
-
-#### Tranformation plugins
-
 -   Description of AI Request Transformer
     Link to AI Request Transformer
 
 -   Description of AI Response Transformer
     Link ti AI REsponse transformer
 
-#### AI Prompt Template
+### Prompt Engineering
+
+
 -   Description of AI Prompt Template
-    link to AI Prompt template
+    Link to AI Prompt template
 
-#### AI Prompt Decorator
 -   Description of AI Prompt Decorator
-    Linnk to AI Prompt Decorator
+    Link to AI Prompt Decorator
 
-#### AI Prompt Guard
 -   Description of AI Prompt Guard
-    link to AK Prompt Guard
+    Link to AK Prompt Guard
 
