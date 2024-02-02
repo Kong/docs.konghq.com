@@ -53,5 +53,7 @@
   "https://hub.docker.com/*",
   "http://portal.example.com/",
   "http://lua-users.org/*",
-  "*/gateway/unreleased/install/*"
+  "*/gateway/unreleased/install/*",
+  "/hub/kong-inc/konnect-application-auth/",
+  "/hub/kong-inc/renew-certificates/"
 ]
