@@ -150,22 +150,12 @@ The examples in this guide use Keycloak as a sample IdP.
 
 Expand the following sections to configure Keycloak and {{site.base_gateway}}.
 
-<blockquote class="note no-icon"><details><summary>
-    <strong>Configure Keycloak &nbsp;<i class="fas fa-arrow-right"></i> </strong>
-  </summary>
-
-<br>
+<details><summary>Configure Keycloak</summary>
 {{ prereqs_keycloak | markdownify }}
 
 </details>
-</blockquote>
 
-<blockquote class="note no-icon"><details><summary>
-   <strong> Configure {{site.base_gateway}} &nbsp;<i class="fas fa-arrow-right"></i> </strong>
-  </summary>
-
-<br>
+<details><summary>Configure {{site.base_gateway}} </summary>
 {{ prereqs_kong | markdownify }}
 
 </details>
-</blockquote>
