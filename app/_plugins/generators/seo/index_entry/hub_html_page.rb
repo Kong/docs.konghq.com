@@ -27,8 +27,7 @@ module SEO
 
       def version
         Utils::Version.to_version(
-          Jekyll::GeneratorSingleSource::Product::Edition
-          .new(edition: 'gateway', site: @page.site)
+          @page.site.data.dig('editions', 'gateway')
           .latest_release
           .value
         )

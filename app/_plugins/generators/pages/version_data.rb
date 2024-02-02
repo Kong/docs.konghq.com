@@ -33,8 +33,7 @@ module Jekyll
       end
 
       def edition
-        @edition ||= Jekyll::GeneratorSingleSource::Product::Edition
-                     .new(edition: product, site: @site)
+        @edition ||= @site.data.dig('editions', product)
       end
 
       def set_release_data # rubocop:disable Metrics/AbcSize
