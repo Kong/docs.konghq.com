@@ -16,6 +16,7 @@ on:
 
 jobs:
   get-current-do-not-close-pr:
+    timeout-minutes: ${{ fromJSON(vars.GHA_DEFAULT_TIMEOUT) }}
     name: 'Get current do-not-close PR'
     # Runs for the two dispatch triggers. Also runs for merged pull requests **if** they have the “do-not-close” label.
     if: github.event_name != 'pull_request' || (github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'do-not-close'))
@@ -32,6 +33,7 @@ jobs:
           echo number=$number >> $GITHUB_OUTPUT
 
   update-submodule:
+    timeout-minutes: ${{ fromJSON(vars.GHA_DEFAULT_TIMEOUT) }}
     name: 'Update submodule'
     needs: get-current-do-not-close-pr
     if: ${{ ! needs.get-current-do-not-close-pr.outputs.number }} # Do not overwrite the PR if there's a do-not-close label
