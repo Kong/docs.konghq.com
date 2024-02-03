@@ -11,6 +11,7 @@ env:
 
 jobs:
   check:
+    timeout-minutes: ${{ fromJSON(vars.GHA_DEFAULT_TIMEOUT) }}
     runs-on: ubuntu-latest
     steps:
       - name: Check if manual review has been performed
@@ -84,6 +85,7 @@ jobs:
         run: |
           bundle exec rubocop app
   vale:
+    timeout-minutes: ${{ fromJSON(vars.GHA_DEFAULT_TIMEOUT) }}
     needs: check
     if: needs.check.outputs.result == 'false'
     name: Vale
