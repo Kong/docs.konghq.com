@@ -16,7 +16,7 @@ jobs:
           npm ci
           node run.js --url ${{ vars.VITE_PORTAL_API_URL }}
       - name: Create pull request
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v6
         with:
           title: Sync Konnect OAS Data
           commit-message: Sync Konnect OAS Data
