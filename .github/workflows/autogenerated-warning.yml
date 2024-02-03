@@ -4,6 +4,7 @@ on:
     types: [opened, synchronize, labeled, unlabeled]
 jobs:
   check:
+    timeout-minutes: ${{ fromJSON(vars.GHA_DEFAULT_TIMEOUT) }}
     runs-on: ubuntu-latest
     steps:
       - name: Check if manual review has been performed
@@ -34,6 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
 
   prevent-merge-if-labeled:
+    timeout-minutes: ${{ fromJSON(vars.GHA_DEFAULT_TIMEOUT) }}
     needs: [check]
     if: needs.check.outputs.result == 'false'
     runs-on: ubuntu-latest
