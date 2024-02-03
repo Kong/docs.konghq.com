@@ -7,6 +7,7 @@ permissions:
 
 jobs:
   update_oas_data:
+    timeout-minutes: ${{ fromJSON(vars.GHA_DEFAULT_TIMEOUT) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
