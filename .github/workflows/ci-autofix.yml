@@ -4,6 +4,7 @@ on:
    types: [labeled]
 jobs:
   prettier-autofix:
+    timeout-minutes: ${{ fromJSON(vars.GHA_DEFAULT_TIMEOUT) }}
     if: github.event.label.name == 'ci:autofix:prettier'
     runs-on: ubuntu-latest
     steps:
