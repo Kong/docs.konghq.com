@@ -5,6 +5,7 @@ on:
 
 jobs:
   auto-close-org-issues:
+    timeout-minutes: ${{ fromJSON(vars.GHA_DEFAULT_TIMEOUT) }}
     name: Auto Close Org Issues
     runs-on: ubuntu-latest
     steps:
