@@ -74,6 +74,7 @@ jobs:
           ./tools/missing-markdown-anchor/run.sh
 
   rspec:
+    timeout-minutes: ${{ fromJSON(vars.GHA_DEFAULT_TIMEOUT) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
