@@ -10,6 +10,7 @@ permissions:
 
 jobs:
   submodule-sync:
+    timeout-minutes: ${{ fromJSON(vars.GHA_DEFAULT_TIMEOUT) }}
     name: Submodule Sync
     runs-on: ubuntu-latest
     steps:
