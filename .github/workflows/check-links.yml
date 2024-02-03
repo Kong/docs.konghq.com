@@ -10,6 +10,7 @@ env:
   BUNDLE_GITHUB__COM: x-access-token:${{ secrets.BUNDLE_GITHUB__COM }}
 jobs:
   check:
+    timeout-minutes: ${{ fromJSON(vars.GHA_DEFAULT_TIMEOUT) }}
     runs-on: ubuntu-latest
     steps:
       - name: Check if manual review has been performed
