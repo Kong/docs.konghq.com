@@ -2,6 +2,73 @@
 
 <!--vale off-->
 
+## Week 5
+
+### [Adding Konnect CTA](https://github.com/Kong/docs.konghq.com/pull/6870) (2024-02-02)
+
+This Konnect call to action makes sense given this path has fewer dependencies (control plane, postgres) relative to the GW setup script.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.2.x/support/browser
+- https://docs.konghq.com/gateway/3.3.x/support/browser
+- https://docs.konghq.com/gateway/3.4.x/support/browser
+- https://docs.konghq.com/gateway/3.5.x/support/browser
+- https://docs.konghq.com/gateway/3.6.x/support/browser
+
+
+### [Plugin priorities](https://github.com/Kong/docs.konghq.com/pull/6866) (2024-02-02)
+
+To generate the table, use the priorities defined in `app/_src/.repos/kong-plugins/app/data/priorities/`.
+Add a new liquid tag `plugins_priority_table`, that takes `enterprise` or `oss` as an argument and uses the page's release (or latest for Konnect) to fetch the data. 
+
+
+@lena-larionova I wasn't sure how we wanted to handle the case for `correlation-id`, so I added a separate table for it 🤷. From what I understand `free mode` uses the enterprise value and `oss` well, the oss one.
+
+WDYT?
+We could try to replicate the current behaviour too, it's a bit more complex though, but definitely doable.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.1.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.2.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.3.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.4.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.5.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.6.x/plugin-development/custom-logic
+- https://docs.konghq.com/konnect/reference/plugins
+
+
+### [Update: Change dev label and banner color](https://github.com/Kong/docs.konghq.com/pull/6859) (2024-01-31)
+
+Changing the "dev" label to "unreleased" to make it clearer what this doc version is supposed to be. 
+
+Also changing the banner colour to red, as the previous banner looked too similar to the "outdated version" banner.
+
+Some minor version/conditionals cleanup here as well.
+
+#### Modified
+
+- https://docs.konghq.com/contributing/conditional-rendering
+
+
+### [kic: add explanation for Gateway's publish service](https://github.com/Kong/docs.konghq.com/pull/6853) (2024-01-30)
+
+Adds an explanation of `--publish-service` vs. `konghq.com/publish-service` Gateway's annotation relation.
+
+Part of https://github.com/Kong/kubernetes-ingress-controller/issues/5328.
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.2.x/support/browser
+- https://docs.konghq.com/gateway/3.3.x/support/browser
+- https://docs.konghq.com/gateway/3.4.x/support/browser
+- https://docs.konghq.com/gateway/3.5.x/support/browser
+- https://docs.konghq.com/gateway/3.6.x/support/browser
+
 ## Week 4
 
 ### [KIC: Use standard repository in Helm example instructions](https://github.com/Kong/docs.konghq.com/pull/6842) (2024-01-26)
