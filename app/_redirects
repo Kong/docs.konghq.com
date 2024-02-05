@@ -48,21 +48,6 @@
 
 # API markdown doc deprecation
 
-/gateway/latest/admin-api/#health-routes    /gateway/api/admin-ee/latest/#/Information/get-status/
-/gateway/latest/admin-api/#tags        /gateway/api/admin-ee/latest/#/tags/get-tags/
-/gateway/latest/admin-api/#debug-routes /gateway/api/admin-ee/latest/#/debug/put-debug-cluster-control-planes-nodes-log-level-log_level/
-/gateway/latest/admin-api/#service-object   /gateway/api/admin-ee/latest/#/Services/list-service/
-/gateway/latest/admin-api/#route-object /gateway/api/admin-ee/latest/#/Routes/list-route/
-/gateway/latest/admin-api/#consumer-object  /gateway/api/admin-ee/latest/#/Consumers/list-consumer/
-/gateway/latest/admin-api/#plugin-object    /gateway/api/admin-ee/latest/#/Plugins/list-plugin
-/gateway/latest/admin-api/#certificate-object   /gateway/api/admin-ee/latest/#/Certificates/list-certificate/
-/gateway/latest/admin-api/#ca-certificate-object    /gateway/api/admin-ee/latest/#/CA%20Certificates/list-ca_certificate/
-/gateway/latest/admin-api/#sni-object   /gateway/api/admin-ee/latest/#/SNIs/list-sni-with-certificate/
-/gateway/latest/admin-api/#upstream-object  /gateway/api/admin-ee/latest/#/Upstreams/list-upstream/
-/gateway/latest/admin-api/#target-object    /gateway/api/admin-ee/latest/#/Targets/list-target-with-upstream/
-/gateway/latest/admin-api/#vaults-object    /gateway/api/admin-ee/latest/#/Vaults/list-vault/
-/gateway/latest/admin-api/#keys-object      /gateway/api/admin-ee/latest/#/Keys/list-key/
-/gateway/latest/admin-api/#filter-chains    /gateway/api/admin-ee/latest/#/filter-chains/get-filter-chains/
 /gateway/latest/admin-api/licenses/reference   /gateway/api/admin-ee/latest/#/licenses/get-licenses/
 /gateway/latest/admin-api/workspaces/reference/   /gateway/api/admin-ee/latest/#/Workspaces/list-workspace/
 /gateway/latest/admin-api/rbac/reference/        /gateway/api/admin-ee/latest/#/rbac/get-rbac-users/
