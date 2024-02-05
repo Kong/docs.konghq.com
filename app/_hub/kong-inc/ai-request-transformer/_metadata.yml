@@ -16,7 +16,7 @@ notes: --
 categories:
   - ai
 publisher: Kong Inc.
-desc: Use a configured LLM service to introspect and transform the consumer's request body before proxying the request upstream
+desc: Use a configured LLM service to introspect and transform the client's request body before proxying the request upstream
 type: plugin
 
 beta: true
