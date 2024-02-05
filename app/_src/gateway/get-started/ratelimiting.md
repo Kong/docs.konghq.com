@@ -124,7 +124,7 @@ If you did not follow the [configure services and routes](/gateway/latest/get-st
 
 ### Consumer-level rate limiting
 
-Consumer-level rate limiting can be used when trying to apply rate limiting rules to specific consumer. Consumers are created using the [consumer object](/gateway/latest/admin-api/#consumer-object) in the Admin API. Because you haven't created a consumer yet, to try this type of rate limiting out you will have to first create a consumer:
+Consumer-level rate limiting can be used when trying to apply rate limiting rules to specific consumer. Consumers are created using the [consumer object](/gateway/api/admin-ee/latest/#/Consumers/list-consumer/) in the Admin API. Because you haven't created a consumer yet, to try this type of rate limiting out you will have to first create a consumer:
 
 
 ```sh

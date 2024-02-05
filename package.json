@@ -6,7 +6,7 @@
   "repository": "Kong/docs.konghq.com",
   "license": "proprietary",
   "scripts": {
-    "dev": "foreman start",
+    "dev": "bundle exec foreman start",
     "test": "jest",
     "test:smoke": "npm run test"
   },

@@ -81,6 +81,7 @@ If the client doesn't send SNIs in the ClientHello message or the SNI sent is
 unknown to {{site.base_gateway}}, then the CA DN list associated with `\*` is sent only when the client certificate is requested.
 {% endif_plugin_version %}
 
+
 ### Troubleshooting
 
 When authentication fails, the client does not have access to any details that explain the

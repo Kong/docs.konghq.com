@@ -65,10 +65,9 @@ module Jekyll
         end
 
         def gateway_releases
-          @gateway_releases ||= Jekyll::GeneratorSingleSource::Product::Edition
-                                .new(edition: 'gateway', site: @page.site)
-                                .releases
-                                .select { |r| extn_releases.include?(r.value) }
+          @gateway_releases ||= @page.site.data.dig('editions', 'gateway')
+                                     .releases
+                                     .select { |r| extn_releases.include?(r.value) }
         end
       end
     end

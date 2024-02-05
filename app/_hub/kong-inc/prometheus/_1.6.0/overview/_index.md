@@ -172,7 +172,7 @@ allow access to the `/metrics` endpoint to Prometheus:
 
 1. The `/metrics` endpoint is also available on the Admin API, which can be used
    if the Status API is not enabled. Note that this endpoint is unavailable
-   when [RBAC](/gateway/latest/admin-api/rbac/reference/) is enabled on the
+   when [RBAC](/gateway/api/admin-ee/latest/#/rbac/get-rbac-users/) is enabled on the
    Admin API (Prometheus does not support Key-Auth to pass the token).
 
 ---

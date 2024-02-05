@@ -19,6 +19,9 @@ module SharedContexts
     let(:site) do
       site = Jekyll::Site.new(config)
       site.read
+
+      Jekyll::SiteProductData.new.generate(site)
+
       site
     end
 

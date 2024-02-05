@@ -52,9 +52,7 @@ module SEO
     def product_page?
       return false unless @page.data['edition']
 
-      Jekyll::GeneratorSingleSource::Product::Edition
-        .all(site: @page.site)
-        .keys.include?(@page.data['edition'])
+      @page.site.data['editions'].keys.include?(@page.data['edition'])
     end
 
     def global_page?
