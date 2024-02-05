@@ -86,7 +86,17 @@ breadcrumbs:
 
 {% unless page.extn_publisher == "kong-inc" %}{{ content }}{% endunless %}
 
-{% if page.extn_publisher == "kong-inc" %}{{ content }}{% endif %}
+{% if page.extn_publisher == "kong-inc" %}
+{{ content }}
+
+{% if page.kong_beta %}
+<p>
+  <em style="color: rgb(73, 78, 80)">
+  This plugin is in beta. <a href="https://github.com/Kong/kong/discussions">Let us know what you think</a> on GitHub.
+  </em>
+</p>
+{% endif %}
+{% endif %}
 
 {% if page.terms_of_service %}
   <h3 id="terms-of-service">Terms of Service</h3>

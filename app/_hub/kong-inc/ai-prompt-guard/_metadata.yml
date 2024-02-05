@@ -20,4 +20,4 @@ desc: Verify llm/v1/chat or llm/v1/completions requests against a list of allowe
 
 type: plugin
 
-beta: true
+kong_beta: true
