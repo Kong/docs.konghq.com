@@ -10,6 +10,11 @@ from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
+## February 2024
+
+**Konnect API Products**
+: Konnect now supports reusable Auth Strategies that can be applied to one or more API Product Versions, and Konnect now supports multiple DCR providers. Users can now create separate DCR providers and apply them selectively to API Product Versions while still using non-DCR Auth strategies for other API Product versions.
+
 ## January 2024
 
 **Improved Proxy URL experience**
