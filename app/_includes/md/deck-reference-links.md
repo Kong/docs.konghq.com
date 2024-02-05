@@ -20,6 +20,7 @@ File subcommands:
 * [deck file add-tags](/deck/{{page.release}}/reference/deck_file_add-tags)	 - Add tags to objects in a decK file
 {%- if_version gte:1.28.x -%}
 * [deck file convert](/deck/{{page.release}}/reference/deck_file_convert)	 - Convert files from one format into another format
+* [deck file kong2kic](/deck/{{page.release}}/reference/deck_file_kong2kic)	 - Convert decK state files to Kong Ingress Controller kubernetes manifests.
 * [deck file lint](/deck/{{page.release}}/reference/deck_file_lint)	 - Validate a file against a ruleset
 {% endif_version %}
 * [deck file list-tags](/deck/{{page.release}}/reference/deck_file_list-tags)	 - List current tags from objects in a decK file
