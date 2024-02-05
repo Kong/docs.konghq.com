@@ -24,11 +24,6 @@ designed around LLM API use cases. When deployed alongside existing [{{site.base
 {{site.base_gateway}} users can quickly assemble a sophisticated AI management platform 
 without custom code or deploying new and unfamiliar tools.
 
-{:.note}
-> **Note:**
-> As of {{site.base_gateway}} `3.6`, the AI Gateway plugins are release as BETA and should not be 
-> deployed in production environments.
-
 ## Getting Started
 
 The AI Gateway is built using {{site.base_gateway}}'s standard plugin model and the AI Plugins are bundled 
