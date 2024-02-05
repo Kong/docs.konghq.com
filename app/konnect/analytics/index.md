@@ -71,6 +71,11 @@ Graphs can be interacted with, including hovering over chart items to display mo
 
 You can select a time period using the **time period** drop-down menu. The intervals aggregate data at different increments of time.
 
+## Interactive data exploration
+
+{{site.konnect_short_name}} offers the capability to explore and visualize any data collected by {{site.konnect_short_name}}, including traffic metrics, within **Analytics** using a straightforward, interactive interface. This feature supports the creation of custom reports. You can leverage this tool to create dashboards analysis and visualization efforts, enabling detailed exploration and enhanced understanding of their data directly from the web interface. This facilitates a more personalized approach to monitoring and optimizing API performance based on comprehensive data insights.
+
+
 ### Export analytics data
 
 Export API traffic data into a CSV file for any graph in Konnect.
