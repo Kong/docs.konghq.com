@@ -77,8 +77,8 @@ manner. This normalized API layer affords developers and the organization multip
 The AI Gateway supports two types of LLM requests: 
 
 * completion : A type of request where the AI system is asked to generate a textual output based on a single prompt. 
-* chat : A type of request that is part of a conversational AI interface. In a `chat` request, the AI is epxected to return
-  a dialgo response to user input. The AI system bases its reponse on the conversational history. 
+* chat : A type of request that is part of a conversational AI interface. In a `chat` request, the AI is expected to return
+  a dialog response to user input. The AI system bases its response on the conversational history. 
 
 The initial set of AI Providers supported by the core proxy behavior are:
 
@@ -119,7 +119,7 @@ the egress of offending requests.
 #### Prompt Engineering
 
 AI systems are built around prompts, and manipulating those prompts is important to successful adoption of the technologies.
-Prompt engineering is the methodology of manipulating the linquistic inputs that guide the AI system. The AI Gateway 
+Prompt engineering is the methodology of manipulating the linguistic inputs that guide the AI system. The AI Gateway 
 supports a set of plugins that allow you to create a simplified and enhanced experience by setting default prompts or manipulating
 prompts from clients as they pass through the gateway.
 
@@ -127,9 +127,9 @@ The [AI Prompt Template](/hub/kong-inc/ai-prompt-template) plugin enables admini
 placeholders in the format `{{variable}}` which users fill to adapt the template to their specific needs. This functionality 
 prohibits arbitrary prompt injection by sanitizing string inputs to ensure that JSON control characters are escaped. 
 
-The [AI Prompt Decorator](/hub/kong-inc/ai-prompt-decorator) plugin plugin injects an array of `llm/v1/chat` messages at the 
+The [AI Prompt Decorator](/hub/kong-inc/ai-prompt-decorator) plugin injects an array of `llm/v1/chat` messages at the 
 start or end of a caller’s chat history. This capability allows the caller to create more complex prompts and have more control 
-over how a Large Language Model (LLM) is used when called via Kong Gateway.
+over how a Large Language Model (LLM) is used when called via {{site.base_gateway}}.
 
 These plugins must be used in combination with the AI Proxy plugin, allowing you to build specialized AI experiences for your users.
 
