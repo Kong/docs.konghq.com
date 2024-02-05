@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './how_to'
+require_relative 'how_to'
 
 module PluginSingleSource
   module Pages

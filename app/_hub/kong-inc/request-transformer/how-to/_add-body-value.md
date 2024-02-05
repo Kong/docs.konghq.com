@@ -19,7 +19,7 @@ request to verify the transformation process.
 * This document is best used after following the companion 
 [{{site.base_gateway}} in minutes](/gateway/latest/get-started/) guide, which
 walks you through running a local {{site.base_gateway}} in Docker, setting up
-a mock [service](/gateway/latest/admin-api/#service-object), and the necessary connection details. 
+a mock [service](/gateway/api/admin-ee/latest/#/Services), and the necessary connection details. 
 If you'd like to use an existing {{site.base_gateway}} or a different service, you will need to adjust the 
 commands in this guide as necessary.
 * You have [`curl`](https://curl.se/) installed on your system, which is used to send 

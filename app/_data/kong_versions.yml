@@ -101,7 +101,7 @@
   lua_doc: true
 - release: "3.4.x"
   ee-version: "3.4.3.3"
-  ce-version: "3.4.3"
+  ce-version: "3.4.2"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
   dependencies:
@@ -114,7 +114,7 @@
     pcre: 8.45
   lua_doc: true
 - release: "3.5.x"
-  ee-version: "3.5.0.2"
+  ee-version: "3.5.0.3"
   ce-version: "3.5.0"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -128,6 +128,21 @@
     pcre: 8.45
   lua_doc: true
   latest: true
+- release: "3.6.x"
+  ee-version: "3.6.0.0"
+  ce-version: "3.6.0"
+  edition: "gateway"
+  luarocks_version: "3.0.0-0"
+  dependencies:
+    luajit: "2.1-20220411"
+    luarocks: "3.9.1"
+    postgres: "9.5+"
+    openresty: "1.21.4.1"
+    openssl: "1.1.1.q"
+    libyaml: "0.2.5"
+    pcre: 8.45
+  lua_doc: true
+  label: unreleased
 - release: "pre-1.7"
   version: "1.6.0"
   edition: "deck"
@@ -264,7 +279,7 @@
 - release: "3.1.x"
   version: "3.1.0"
   edition: "kubernetes-ingress-controller"
-  label: dev
+  label: unreleased
 - edition: gateway-operator
   version: 1.0.3
   release: 1.0.x
@@ -275,7 +290,7 @@
 - edition: gateway-operator
   version: 1.2.0
   release: 1.2.x
-  label: dev
+  label: unreleased
 - edition: mesh
   version: 1.2.6
   release: 1.2.x
@@ -357,12 +372,18 @@
 - edition: mesh
   version: 2.5.1
   release: 2.5.x
-  latest: true
   releaseDate: "2023-11-15"
   endOfLifeDate: "2024-11-15"
   branch: release-2.5
 - edition: mesh
   version: 2.6.0
   release: 2.6.x
+  latest: true
+  releaseDate: "2024-02-01"
+  endOfLifeDate: "2025-02-01"
+  branch: release-2.6
+- edition: mesh
+  version: preview
+  release: 2.7.x
   label: dev
   branch: master

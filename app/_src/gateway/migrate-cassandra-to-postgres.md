@@ -15,7 +15,7 @@ Migration steps:
 1. Build a target {{site.base_gateway}} hybrid environment with PostgreSQL. This acts as your blank canvas.
 1. Use decK to export (`dump`) configuration from the old traditional Cassandra-backed deployment. 
 1. Use decK to import (`sync`) the configuration to the new hybrid PostgreSQL-backed deployment.
-1. Create basic auth credentials and local RBAC users using either the Admin Api or Kong Manager.
+1. Create basic auth credentials and local RBAC users using either the Admin API or Kong Manager.
 1. When the {{site.base_gateway}} configuration has been migrated over to the green environment, slowly redirect traffic via canary into the green environment. This lowers the risk of the release with a fast rollback mechanism in place.
 
 

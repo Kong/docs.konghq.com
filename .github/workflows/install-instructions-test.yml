@@ -1,5 +1,10 @@
 name: Install Instructions
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        type: string
+        description: URL to test against. Defaults to http://localhost:8888
 
 jobs:
   install-instructions:
@@ -9,6 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         distro: [ubuntu, rhel, amazon-linux, debian, centos]
+        arch: ["linux/amd64", "linux/arm64"]
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -16,12 +22,19 @@ jobs:
         with:
           submodules: "recursive"
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: arm64
+
       - name: Run Install tests
         env:
           DISTRO: ${{ matrix.distro }}
+          ARCH: ${{ matrix.arch }}
           CONTINUE_ON_ERROR: 1
           IGNORE_SKIPS: 1
           EXPECTED_FAILURES_EXIT_CODE: 0
+          BASE_URL: ${{ github.event.inputs.base_url || env.BASE_URL }}
         run: |
           cd tools/install-tester
           npm ci

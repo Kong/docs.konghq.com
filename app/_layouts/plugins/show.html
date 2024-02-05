@@ -20,6 +20,8 @@ type: plugin
                       paid=page.paid
                       premium=page.premium
                       enterprise=page.enterprise
+                      free=page.free
+                      oss=page.oss
                       konnect=page.konnect
                       techpartner=page.techpartner
                       extn_publisher=page.extn_publisher
@@ -33,14 +35,15 @@ type: plugin
     {% capture full_content %}
       {% if extn_versions %}
         {% unless page.is_latest %}
-          <div class="old-version-banner">
             {% if page.release.label %}
-              You are browsing documentation for an unreleased plugin version.
+              <blockquote id="version-notice" class="warning no-icon">
+                You are browsing <strong>{{page.release.label}}</strong> documentation.
             {% else %}
+              <blockquote id="version-notice" class="important">
               You are browsing documentation for an outdated plugin version.
             {% endif %}
-          See the <a href="{{ page.canonical_url }}">latest documentation here</a>.
-          </div>
+              See the <a href="{{ page.canonical_url }}">latest documentation here</a>.
+            </blockquote>
         {% endunless %}
       {% endif %}
 

@@ -4,14 +4,14 @@
 
 In the file `app/_data/kong_versions.yml`, every product release and its corresponding versions are listed. Ensure that the `latest` release for each product is marked with `latest: true`. This informs the platform about the release to use for generating evergreen URLs.
 
-Labels provide flexibility in handling releases. Specifying `label: dev` on a release, alters the URL structure from `/<product>/<release number>/**/` to `/<product>/<label>/**/`, such as `/<product>/dev/**/`. Labels are particularly useful for working on unreleased versions of products. Once a label is added to a release, the content can be edited using [conditional rendering](https://docs.konghq.com/contributing/single-sourced-versions/) and merged it into the `main` branch without the need for long-standing release branches. The content will be rendered only in `/<product>/<label>/`.
+Labels provide flexibility in handling releases. Specifying `label: unreleased` on a release, alters the URL structure from `/<product>/<release number>/**/` to `/<product>/<label>/**/`, such as `/<product>/unreleased/**/`. Labels are particularly useful for working on unreleased versions of products. Once a label is added to a release, the content can be edited using [conditional rendering](https://docs.konghq.com/contributing/single-sourced-versions/) and merged it into the `main` branch without the need for long-standing release branches. The content will be rendered only in `/<product>/<label>/`.
 
 
 ## Adding a new unreleased version
 
 Adding a new unreleased version involves two steps:
-* Add a new `release` to `app/_data/_kong_versions.yml` with a `label`, e.g. `label: dev`.
-* Add the correspoding nav file, `app/_data/docs_nav_<product>_<release number>.yml`.
+* Add a new `release` to `app/_data/_kong_versions.yml` with a `label`, e.g. `label: unreleased`.
+* Add the corresponding nav file, `app/_data/docs_nav_<product>_<release number>.yml`.
 * `Gateway` only: ensure plugin schemas for the new release are available.
 
 For example, if `3.0.x` is the `latest` KIC release, the `app/_data/kong_versions.yml` should look like this:
@@ -20,28 +20,28 @@ For example, if `3.0.x` is the `latest` KIC release, the `app/_data/kong_version
 ...
 - release: "3.0.x"
   version: "3.0.0"
-  edition: "kubernetes-ingress-controller"
+  edition: kubernetes-ingress-controller
   latest: true
 ...
 ```
 
-Adding a new unreleased version (e.g., `3.1.x`) labeled `dev` requires adding a new labeled release to `app/_data/kong_versions.yml`:
+Adding a new unreleased version (e.g., `3.1.x`) labeled `unreleased` requires adding a new labeled release to `app/_data/kong_versions.yml`:
 
 ```yaml
 ...
 - release: "3.0.x"
   version: "3.0.0"
-  edition: "kubernetes-ingress-controller"
+  edition: kubernetes-ingress-controller
   latest: true
 - release: "3.1.x"
   version: "3.1.0"
-  edition: "kubernetes-ingress-controller"
-  label: "dev"
+  edition: kubernetes-ingress-controller
+  label: unreleased
 ...
 ```
 
 and the corresponding nav file `app/_data/docs_nav_kic_3.1.x`.
-The changes for 3.1.x will be rendered in `/kubernetes-ingress-controller/dev/**/`.
+The changes for 3.1.x will be rendered in `/kubernetes-ingress-controller/unreleased/**/`.
 
 ## Releasing a version
 
@@ -68,4 +68,4 @@ The only time when we can't rely on the `to_s` method and need to use `page.rele
 
 A labeled version can be prevented from being generated using ENV variables
 in the following format `SKIP_<product>_<label>=1`. For example, for gateway
-it would be `SKIP_GATEWAY_DEV=1`.
+it would be `SKIP_GATEWAY_UNRELEASED=1`.

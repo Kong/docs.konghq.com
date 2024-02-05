@@ -39,7 +39,9 @@ running {{site.mesh_product_name}} containers instead of Kuma containers:
 {% endif_version %}
 
 * [Getting started with Kubernetes][get-started-k8s]
+{% if_version lte:2.5.x %}
 * [Getting started with Universal][get-started-universal]
+{% endif_version %}
 
 ## 3. Learn more
 
@@ -63,7 +65,11 @@ If you are a {{site.mesh_product_name}} customer, you can also open a support
 ticket with any questions or feedback you may have.
 
 <!-- links -->
-{% if_version gte:2.0.x %}
+{% if_version gte:2.6.x %}
+[get-started-k8s]: /mesh/{{page.release}}/quickstart/kubernetes-demo/
+{% endif_version %}
+
+{% if_version lte:2.5.x gte:2.0.x %}
 [get-started-k8s]: /mesh/{{page.release}}/quickstart/kubernetes/
 [get-started-universal]: /mesh/{{page.release}}/quickstart/universal/
 {% endif_version %}

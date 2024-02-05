@@ -36,6 +36,11 @@ remove `jq` processing.
 For the purposes of this tutorial, a `quickstart` script is provided to quickly run {{site.base_gateway}} and its supporting database.
 This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://www.postgresql.org/) database as the backing database.
 
+{:.note}
+> **Note:**
+> This quickstart script is intended for experimentation and learning. If you want to run {{ site.base_gateway }} as a part of a production-ready API platform, [you can get started with {{site.konnect_short_name}}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-quickstart-install) in under 5 minutes.
+
+
 1. Run {{site.base_gateway}} with the `quickstart` script:
 
    ```sh

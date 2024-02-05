@@ -20,23 +20,39 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 * [Proxy Cache](/hub/kong-inc/proxy-cache/)
 * [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/)
 
-
 ## January 2024
+
+**Improved Proxy URL experience**
+: Customers are now able to connect to their gateway proxy APIs by using either the public edge DNS that points to all regions, or the private IPs pointing to specific regions from directly within {{site.konnect_short_name}}.
 
 **Group and filter API request and usage data by consumers**
 : With {{site.konnect_short_name}} Analytics, you can now breakdown API usage data and individual requests by consumers. This feature extends the existing support for Applications, providing users with a holistic understanding of all APIs and their consumer base, whether internal or external.
 
 : In addition, we've streamlined the filtering experience. Users can now conveniently input either the name or UUID into the filter dropdown, enhancing the overall usability.
 
+**Improved visibility for Control Planes and Control Plane Groups**
+: Member control planes in a control plane group now have contextual analytics reporting available. That allows teams that own the configuration of an individual member control plane to better understand traffic towards their services, routes, and consumers.
+
+: Additionally, {{site.konnect_short_name}} Analytics custom reporting feature now provides users with the option to select between control planes, control plane groups, and data planes which allows for more granular insights into traffic patterns.
+
+**Gateway Manager** 
+: On the Gateway Manager Overview pages, you can now see the configured consumers and plugins. Consumers are listed in topN order based on their traffic, while plugins are displayed in the order of their configuration.
 
 ## December 2023
+
 
 **Konnect in Google Cloud Marketplace**
 : {{site.konnect_saas}} is now available for purchase through the Google Cloud (GCP) Marketplace including public and private offers. This allows you to retire your existing GCP Credits through your purchase of {{site.konnect_saas}} and associated product capabilities.
 
 
+
 **Developer-Managed Scopes for Dev Portal**
 : You can now give your customers more control over third-party application permissions using Auth0 DCR developer-managed scopes for Dev Portal. Developers can now configure unique scopes and permissions for each Auth0 DCR application they create, allowing them to set more fine-grained permissions for each of their target audiences. See [Configure Auth0 for Dynamic Client Registration](/konnect/dev-portal/applications/dynamic-client-registration/auth0/) for details.
+
+
+**Gateway Manager** 
+: Navigation within nested entities has been enhanced. Now, any plugin configured for a service, route, or consumer is directly hyperlinked in the configuration. 
+
 
 ## November 2023
 **Multi-geo support**

@@ -11,7 +11,7 @@ module Utils
     end
 
     def self.to_semver(input)
-      input.gsub('-x', '.x').gsub(/\.x/, '.0')
+      input.gsub('-x', '.x').gsub('.x', '.0')
     end
   end
 end

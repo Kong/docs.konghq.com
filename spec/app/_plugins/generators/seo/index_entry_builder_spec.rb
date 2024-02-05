@@ -63,5 +63,13 @@ RSpec.describe SEO::IndexEntryBuilder do
 
       it { expect(subject).to be_a(SEO::IndexEntry::UnprocessablePage) }
     end
+
+    context 'sitemap' do
+      let(:page) do
+        double(url: '/sitemap.xml', path: '/sitemap.xml', relative_path: '/sitemap.xml', data: {})
+      end
+
+      it { expect(subject).to be_a(SEO::IndexEntry::UnprocessablePage) }
+    end
   end
 end
