@@ -1,25 +1,35 @@
 .hub {
     details {
-    border-top: 1px solid #e0e4ea;
+        border-top: 1px solid #e0e4ea;
 
-    summary {
-        margin-top: 8px;
-        margin-bottom: 8px;
-        font-size: 1.1em;
-        font-weight: 500;
+        summary {
+            margin-top: 8px;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+            font-weight: 500;
 
-        &:after {
-        content: "\f107";
-        font-family: FontAwesome, "Font Awesome", FontAwesome;
-        margin-right: 8px;
-        float: right;
+            &:after {
+            content: "\f107";
+            font-family: FontAwesome, "Font Awesome", FontAwesome;
+            margin-right: 8px;
+            float: right;
+            }
+            
+            &:hover {
+            cursor: pointer;
+            opacity: 0.7;
+            }
         }
-        
-        &:hover {
-        cursor: pointer;
-        opacity: 0.7;
+
+    &.collapsible-note {
+        border-top: none;
+
+        summary {
+            font-size: unset;
+            font-weight: unset;
+            margin: unset;
+            }
         }
-    }
     }
 
     details[open] summary {
