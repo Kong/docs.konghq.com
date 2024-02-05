@@ -43,27 +43,27 @@ Once you have Azure configured, you can set up the Dev Portal to use Azure for d
 
 1. Sign in to {{site.konnect_short_name}}, then select {% konnect_icon dev-portal %} **Dev Portal** from the menu.
 
-2. Click **Application Auth** to open the authentication settings for your API Products in your Portal.
+2. Navigate to **Application Auth** to access the authentication settings for your API Products.
 
-3. Click the **DCR Providers** tab to see all your DCR Providers.
+3. Open the **DCR Providers** to view all configured DCR Providers
 
-4. Click the **New DCR Provider** button to begin creating your AzureAD config. Enter a Name to be seen only in Konnect and a Display Name that will be displayed on your Portal.
+4. Select **New DCR Provider** button to create an Auth0 configuration. Enter a name for internal use in {{site.konnect_short_name}} and a display name for visibility on your portal.
 
-5. Enter the **Issuer URL** for your Azure tenant, it will look something like `https://sts.windows.net/YOUR_TENANT_ID`.
+5. Input the **Issuer URL** of your Azure tenant, formatted as: `https://sts.windows.net/YOUR_TENANT_ID`.
 
-6. Select AzureAD as your **Provider Type**.
+6. Choose AzureAD as the **Provider Type**.
 
-7. Enter your Application (Client) ID from Azure in the **Initial Client ID** field. Enter the Client secret from the admin application created in Azure into the **Initial Client Secret** field..
+7. Enter your Application (Client) ID from Azure in the **Initial Client ID** field. Enter the client secret from the admin application created in Azure into the **Initial Client Secret** field.
 
-8. Save your DCR Provider. You should now see it in the list of DCR Providers.
+8. Save the DCR Provider. You should now see it in the list of DCR Providers.
 
 9. Click the **Auth Strategy** tab to see all your Auth Strategies. Select **New Auth Strategy** to create an auth strategy that uses the DCR Provider you just added.
 
-10. Enter a Name to be seen only in Konnect and a Display Name that will be displayed on your Portal. In the **Auth Type** dropdown menu select DCR. In the **DCR Provider** dropdown, select the name of the DCR Provider config you just created. Your **Issuer URL** will be prepopulated with the Issuer URL you added to the DCR Provider.
+10.Enter a name for internal use in {{site.konnect_short_name}} and a display name that will be visible in your Portal. In the **Auth Type** dropdown menu select DCR. In the **DCR Provider** dropdown, select the name of the DCR Provider configuration you created. Your **Issuer URL** will be prepopulated with the issuer URL you added to the DCR Provider.
 
 11. Enter `appid` in the **Credential Claims** field.
 
-12. Select the relevant **Auth Methods** you need (client_credentials, bearer, session, etc).
+12. Select the relevant **Auth Methods** you need (`client_credentials`, bearer, session, etc).
 
 13. Click **Save**.
 

@@ -12,7 +12,7 @@ Enabling application registration is specific to the [geographic region](/konnec
 You must enable application registration in each geo that you want to allow developers to register with.
 Each geo has their own API keys and specifications for application registration in their respective geo.
 
-As the underlying auth strategies powering application registration actually map to a unique set of permissions in your IdP, Konnect supports the creation and application of many auth strategies. You can create and use one auth strategy and for all your API Products, or you can use a unique auth strategy for each API Product.
+The authentication strategies that facilitate application registration correspond to specific permissions within your Identity Provider (IdP). {{site.konnect_short_name}} enables you to develop and apply various authentication strategies. You have the flexibility to either implement a single auth strategy across all your API Products or to assign a distinct auth strategy for each API Product.
 
 ## Support for any control plane
 

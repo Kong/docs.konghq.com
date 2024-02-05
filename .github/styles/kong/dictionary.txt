@@ -225,6 +225,7 @@ filetypes
 firewalled
 flamegraph
 full_name
+geo
 gevent
 gibibytes
 Github
