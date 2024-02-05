@@ -325,7 +325,7 @@ For more information, see the documentation for [Audit Logging](/konnect/org-man
 * **API viewer**: Allows the Dev Portal developer to view the documentation of services.
 * **API consumer**: Allows the Dev Portal developer to register their applications with the consumer services.
 
-: For more information, see [Portal RBAC Setup](/konnect/api/portal-auth/portal-rbac-guide/) and the [Portal RBAC API documentation](/konnect/api/portal-rbac/v2/).
+: For more information, see [Portal RBAC Setup](/konnect/api/portal-auth/portal-rbac-guide/) and the [Portal RBAC API documentation](/konnect/api/portal-rbac/latest/).
 
 ## January 2023
 
