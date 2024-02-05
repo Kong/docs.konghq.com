@@ -10,6 +10,11 @@ from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 
+## February 2024
+
+**Interactive Data Exploration experience**
+: Konnect users can now explore and visualize analytics data via an easy to use, point-and-click web interface. Explore allows you to drill-down deeply into interesting data and easily discover how issues may impact your business.
+
 ## January 2024
 
 **Improved Proxy URL experience**
