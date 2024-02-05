@@ -2,13 +2,13 @@
 title: Get started with Konnect
 ---
 
-New to {{site.konnect_saas}}? You can get started with the basics by following the steps in the [onboarding wizard in the web app](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-quickstart-install). 
+New to {{site.konnect_saas}}? Use our in-app onboarding wizard for a streamlined setup process: [Start now!](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-quickstart-install). 
 
-## What do you want to do first?
+## Start your {{site.konnect_short_name}} journey
 
-Once you've completed the onboarding wizard in the {{site.konnect_short_name}} UI, you should have a demo service configured as well as a plugin specific to your use case.
+If you've completed the onboarding wizard in the {{site.konnect_short_name}} UI, you should have a demo service configured as well as a plugin specific to your use case.
 
-Now, you can do one of the following to start adding your own APIs and entities to test {{site.konnect_short_name}}'s capabilities:
+Whether you complete the onboarding wizard in {{site.konnect_short_name}} or not, you can do one of the following to start adding your own APIs and entities to test {{site.konnect_short_name}}'s capabilities:
 
 <div class="docs-grid-install max-2">
 
