@@ -8,8 +8,6 @@ denied lists using arbitrary ACL groups. This plugin requires an [authentication
 [OAuth 2.0](/hub/kong-inc/oauth2/) or [OpenID Connect](/hub/kong-inc/openid-connect/)) to have been already
 enabled on the service or route.
 
-You can also enable the usage of consumer groups by setting the config option [`include_consumer_groups`](/hub/kong-inc/acl/configuration/#include_consumer_groups) to `true`.
-This option lets {{site.base_gateway}} take both ACL groups and consumer groups into consideration when evaluating the `allow` and `deny` fields.
 
 You can't configure an ACL with both `allow` and `deny` configurations. An ACL with an `allow` provides a positive security model, in which the configured groups are allowed access to the resources, and all others are inherently rejected. By contrast, a `deny` configuration provides a negative security model, in which certain groups are explicitly denied access to the resource (and all others are allowed).
 
