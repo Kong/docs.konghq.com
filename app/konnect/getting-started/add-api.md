@@ -47,17 +47,70 @@ In this guide, you will take this one step further by adding your own API to {{s
 
 {% endnavtab %}
 {% navtab Konnect API %}
-1. Create service with your API:
+{:.note}
+The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
 
-```sh
-curl --request POST \
-  --url https://us.api.konghq.com/v2/control-planes/9524ec7d-36d9-465d-a8c5-83a3c9390458/core-entities/services \
-  --header 'Content-Type: application/json' \
-  --header 'accept: application/json' \
-  --data '{"name":"my-service","retries":5,"protocol":"http","host":"example.com","port":80,"path":"/some_api","connect_timeout":6000,"write_timeout":6000,"read_timeout":6000,"tags":["user-level"],"client_certificate":{"id":"4e3ad2e4-0bc4-4638-8e34-c84a417ba39b"},"tls_verify":true,"tls_verify_depth":null,"ca_certificates":["4e3ad2e4-0bc4-4638-8e34-c84a417ba39b"],"enabled":true}'
-```
-2. Add route.
-3. Verify? 
+1. Get the [list of all control planes](https://docs.konghq.com/konnect/api/control-planes/latest/#/Control%20Planes/list-control-planes) so you can copy the control plane ID associated with the `default` control plane:
+
+  ```sh
+  curl --request GET \
+    --url https://us.api.konghq.com/v2/control-planes \
+    --header 'Authorization: Bearer <personal-access-token>' \
+    --header 'accept: application/json'
+  ```
+
+  In this guide, we will assign your service to the `default` control plane for the sake of simplicity.
+
+1. [Create a service](https://docs.konghq.com/konnect/api/control-plane-configuration/latest/#/Services/create-service) for your API that is assigned to the `default` control plane:
+
+    ```bash
+    curl --request POST \
+      --url https://{region}.api.konghq.com/v2/control-planes/{defaultControlPlaneId}/core-entities/services \
+      --header 'Authorization: Bearer <personal-access-token>' \
+      --header 'Content-Type: application/json' \
+      --header 'accept: application/json' \
+      --data '{
+          "name": "my_service",
+          "host": "httpbin.org",
+          "path": "/my_api"
+      }'
+    ```
+
+    This service represents your backend API. Be sure to replace the PAT as well as the following placeholders with your own values:
+
+    * `defaultControlPlaneId`: The ID of the default control plane. This associates the service with that control plane.
+    * `name`: The name you want to display for your service.
+    * `host`: The host of the upstream server. This is case sensitive.
+    * `path`: The path to be used in requests to the upstream server.
+
+    Be sure to save the service ID from the response to use it in the next step.
+
+1. [Add a route](https://docs.konghq.com/konnect/api/control-plane-configuration/latest/#/Routes/create-route) to your service:
+
+  ```bash
+  curl --request POST \
+    --url https://{region}.api.konghq.com/v2/control-planes/{defaultControlPlaneId}/core-entities/routes \
+    --header 'Authorization: Bearer <personal-access-token>' \
+    --header 'Content-Type: application/json' \
+    --header 'accept: application/json' \
+    --data '{
+        "name": "my_route",
+        "host": "httpbin.org",
+        "path": "/my_api"
+        "service": {
+          "id": "af8330d3-dbdc-48bd-b1be-55b98693834b"
+        }
+    }'
+  ```
+
+    This route defines what is exposed to clients. Be sure to replace the PAT as well as the following placeholders with your own values:
+
+    * `defaultControlPlaneId`: The ID of the default control plane. This associates the service with that control plane.
+    * `name`: The name you want to display for your route.
+    * `host`: A list of domain names that match this route. This is case sensitive.
+    * `path`: A list of paths that match this route.
+    * `"service": "id"`: The ID of the service you created in the previous step. This should be part of the response from the previous request.
+
 {% endnavtab %}
 {% endnavtabs %}
 
