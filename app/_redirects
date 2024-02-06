@@ -57,6 +57,9 @@
 /gateway/latest/admin-api/admins/reference/   /gateway/api/admin-ee/latest/#/admins/get-admins/
 /gateway/latest/admin-api/*                   /gateway/api/admin-ee/latest/
 
+# 3.6
+
+/gateway/3.6.x/production/benchmark /gateway/3.6.x/production/performance/benchmark
 
 # 3.5
 /gateway/latest/kong-enterprise/analytics/* /gateway/3.4.x/kong-enterprise/analytics/:splat
