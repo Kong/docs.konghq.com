@@ -41,8 +41,8 @@ kuma:
       cpId: ""
   plugins:
     policies:
-      meshglobalratelimits: {}
-      meshopas: {}
+      meshglobalratelimits: true
+      meshopas: true
 ratelimit:
   # -- Whether Ratelimit Service should be deployed
   enabled: false
