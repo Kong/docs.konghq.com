@@ -3,10 +3,11 @@ nav_title: Overview
 ---
 
 The AI Prompt Guard plugin lets you to configure a series of regular expressions as allow or deny lists to verify `llm/v1/chat` or `llm/v1/completions` requests.
-You can use this plugin to _block_ specific prompts, words, phrases, or otherwise have more control over how an LLM model is used when called via {{site.base_gateway}}.
+You can use this plugin to _block_ specific prompts, words, phrases, or otherwise have more control over how an LLM service is used when called via {{site.base_gateway}}.
 
 {:.note}
-> This plugin extends the functionality of the [AI Proxy plugin](/hub/kong-inc/ai-proxy/), and requires AI Proxy to be configured first. Check out the [AI Gateway quickstart](/) to get an AI proxy up and running within minutes!
+> This plugin extends the functionality of the [AI Proxy plugin](/hub/kong-inc/ai-proxy/), and requires AI Proxy to be configured first. 
+Check out the [AI Gateway quickstart](/) to get an AI proxy up and running within minutes!
 
 ## How it works
 
@@ -20,7 +21,7 @@ The matching behavior is as follows:
 
 ## Get started with the AI Prompt Guard plugin
 
-* [AI Gateway quickstart](/)
+* [AI Gateway quickstart: Set up AI Proxy](/gateway/latest/get-started/ai-gateway/)
 * [Configuration reference](/hub/kong-inc/ai-prompt-guard/configuration/{{page.release}})
 * [Basic configuration example](/hub/kong-inc/ai-prompt-guard/how-to/basic-example/{{page.release}})
 * [Learn how to use the plugin](/hub/kong-inc/ai-prompt-guard/how-to/{{page.release}})

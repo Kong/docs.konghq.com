@@ -2,12 +2,15 @@
 nav_title: Overview
 ---
 
-The AI Prompt Template plugin lets you provide tuned AI prompts to users. Users only need to fill in the blanks with variable placeholders in the following format: `{% raw %}{{variable}}{% endraw %}`. This lets admins set up templates, which can be then be used by anyone in the organization.
+The AI Prompt Template plugin lets you provide tuned AI prompts to users. 
+Users only need to fill in the blanks with variable placeholders in the following format: `{% raw %}{{variable}}{% endraw %}`. 
+This lets admins set up templates, which can be then be used by anyone in the organization.
 
 This plugin also sanitises string inputs to ensure that JSON control characters are escaped, preventing arbitrary prompt injection.
 
 {:.note}
-> This plugin extends the functionality of the [AI Proxy plugin](/hub/kong-inc/ai-proxy/), and requires AI Proxy to be configured first. Check out the [AI Gateway quickstart](/) to get an AI proxy up and running within minutes!
+> This plugin extends the functionality of the [AI Proxy plugin](/hub/kong-inc/ai-proxy/), and requires AI Proxy to be configured first. 
+Check out the [AI Gateway quickstart](/) to get an AI proxy up and running within minutes!
 
 ## How it works
 
@@ -66,7 +69,7 @@ plugins:
 
 ## Get started with the AI Prompt Template plugin
 
-* [AI Gateway quickstart](/)
+* [AI Gateway quickstart: Set up AI Proxy](/gateway/latest/get-started/ai-gateway/)
 * [Configuration reference](/hub/kong-inc/ai-prompt-template/configuration/)
 * [Basic configuration example](/hub/kong-inc/ai-prompt-template/how-to/basic-example/)
 * [Learn how to use the plugin](/hub/kong-inc/ai-prompt-template/how-to/)

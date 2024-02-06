@@ -6,7 +6,7 @@ The AI Proxy plugin lets you transform and proxy requests to a number of AI prov
 
 The plugin accepts requests in one of a few defined and standardised formats, translates them to the configured target format, and then transforms the response back into a standard format.
 
-The AI Proxy plugin supports `v1/chat` and `v1/completion` style requests for all of the following providers:
+The AI Proxy plugin supports `llm/v1/chat` and `llm/v1/completion` style requests for all of the following providers:
 * OpenAI
 * Cohere
 * Azure
@@ -36,7 +36,7 @@ This plugin only supports REST-based full text responses.
 
 ## Get started with the AI Proxy plugin
 
-* [AI Gateway quickstart](/)
+* [AI Gateway quickstart: Set up AI Proxy](/gateway/latest/get-started/ai-gateway/)
 * [Configuration reference](/hub/kong-inc/ai-proxy/configuration/)
 * [Basic configuration example](/hub/kong-inc/ai-proxy/how-to/basic-example/)
 * [Learn how to use the plugin](/hub/kong-inc/ai-proxy/how-to/)
