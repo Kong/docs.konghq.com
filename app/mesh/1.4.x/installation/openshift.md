@@ -262,4 +262,4 @@ is fully compatible with {{site.mesh_product_name}}, except that you are
 running {{site.mesh_product_name}} containers instead of Kuma containers.
 
 To start using {{site.mesh_product_name}}, see the
-[quickstart guide for Kubernetes deployments](https://kuma.io/docs/latest/quickstart/kubernetes/).
+[quickstart guide for Kubernetes deployments](https://kuma.io/docs/1.4.x/quickstart/kubernetes/).
