@@ -145,7 +145,9 @@ With the growing adoption of AI technologies, organizations are exposed to a set
 organizations are at risk of having sensitive data leaked to AI Providers, exposing them and 
 their customers to data breaches and other security risks. 
 
-Kong's AI Gateway provides additional capabilities to aid the organization in controlling AI data and usage.
+Kong's AI Gateway provides additional plugins to aid the organization in controlling AI data and usage. These 
+plugins are used in combination with the AI Proxy plugin, allowing you to build secure and specialized AI 
+experiences for your users.
 
 #### Data Governance
 
@@ -169,13 +171,12 @@ The [AI Prompt Decorator](/hub/kong-inc/ai-prompt-decorator) plugin injects an a
 start or end of a caller’s chat history. This capability allows the caller to create more complex prompts and have more control 
 over how a Large Language Model (LLM) is used when called via {{site.base_gateway}}.
 
-These plugins must be used in combination with the AI Proxy plugin, allowing you to build specialized AI experiences for your users.
 
 #### Request Transformations
 
 Kong's AI Gateway also allows you to use AI technology to augment other API traffic. One example may be routing API responses 
 through an AI language translation prompt before returning it to the client.  Kong's AI Gateway provides two plugins that can be 
-used in conjuction with other upstream API services to weave AI capabilities into API request processing.
+used in conjunction with other upstream API services to weave AI capabilities into API request processing.
 
 [AI Request Transformer](/hub/kong-inc/ai-request-transformer): The AI Request Transformer plugin uses a configured LLM service to transform and introspect the 
 consumer's request body before proxying the request upstream. It extends the function of the AI Proxy plugin and runs after all of the 
