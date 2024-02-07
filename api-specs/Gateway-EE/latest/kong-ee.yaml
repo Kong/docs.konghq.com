@@ -14568,6 +14568,8 @@ paths:
                   total:
                     type: integer
                     description: The total number of roles.
+      tags:
+      - developers
     post:
       summary: Create a Dev Portal role
       requestBody:
@@ -14583,6 +14585,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DeveloperRole'
+      tags:
+      - developers
   /developers/roles/{roleId}:
     get:
       summary: Inspect a specific Dev Portal RBAC role
@@ -14603,6 +14607,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DeveloperRole'
+      tags:
+      - developers
     patch:
       summary: Update a specific Dev Portal RBAC role
       parameters:
@@ -14628,6 +14634,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DeveloperRole'
+      tags:
+      - developers
     delete:
       summary: Delete a specific Dev Portal RBAC role
       parameters:
@@ -14641,6 +14649,8 @@ paths:
       responses:
         '204':
           description: Dev Portal RBAC role deleted successfully.
+      tags:
+      - developers
 servers:
   - description: Default Admin API URL
     url: '{protocol}://{hostname}:{port}{path}'
