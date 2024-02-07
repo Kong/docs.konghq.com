@@ -23,7 +23,9 @@ AppSentinels plugin is provided as a set of lua scripts.
 
 1. Obtain the plugin directly from AppSentinels or a distributor.
 
-2. Update your loaded plugins list in {{site.base_gateway}}.
+2. Mount/copy the lua files or create a Kong container image with lua files (usually at `/usr/local/share/lua/5.1/kong/plugins/appsentinels`).
+
+3. Update your loaded plugins list in {{site.base_gateway}}.
 
     In your `kong.conf`, append `appsentinels` to the `plugins` field. Make sure the field is not commented out.
 
@@ -33,8 +35,6 @@ AppSentinels plugin is provided as a set of lua scripts.
                                             # bundled in official distributions are
                                             # loaded via the `bundled` keyword.
     ```
-
-3. Mount/copy the lua files or create a Kong container image with lua files (usually at `/usr/local/share/lua/5.1/kong/plugins/appsentinels`).
 
 4. Restart {{site.base_gateway}}:
 
