@@ -62,9 +62,12 @@ This parameter is used while looking up the admin's associated groups from the I
 <!-- vale on -->
 
 `redirect_uri` now should be configured as an array of URLs that points to Admin API's authentication
-endpoint (for example,`["http://localhost:8001/auth"]`). 
+endpoint `<ADMIN_API>/auth` (for example,`["http://localhost:8001/auth"]`). 
 Previously, `redirect_uri` was a list of URLs
 pointing to Kong Manager (for example,`["http://localhost:8002"]`).
+
+Users are recommended to update the client/application settings in their IdP to ensure that `<ADMIN_API>/auth`
+(for example,`http://localhost:8001/auth`) is in the allow list for redirect URIs.
 
 <!-- vale off -->
 ### login_redirect_uri

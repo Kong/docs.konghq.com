@@ -77,8 +77,8 @@ The following are configuration parameters in `admin_gui_auth_conf` for `openid-
 {% endif_version %}
 {% if_version gte:3.6.x %}
 
-{:.note}
-> **Note**: If you are using configuration from previous versions, you may need to follow the 
+{:.important}
+> **Important:**: If you are using configuration from previous versions, you may need to follow the 
 [migration guide](/gateway/{{page.release}}/kong-manager/auth/oidc/migrate/) to review and update your configuration.
 
 The `admin_gui_auth_config` value must be valid JSON. The following is an example of the configuration:
