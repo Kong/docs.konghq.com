@@ -9,9 +9,11 @@ At the platform's core is an AI/ML engine, AI Sentinels, which combines multiple
 The AppSentinels plugin performs logging and enforcement (blocking) of API transactions. The plugin seamlessly integrates with {{site.base-gateway}} to provide visibility and protection.
 
 The AppSentinels plugin works in the following two modes:
-1. **Logging or transparent mode**: A copy of the request and response transactions is made and asynchronously shared with AppSentinels Edge Controller to provide visibility and security. Integrations can help provide enforcement, such as blocking of bad IPs and threat actors.
+* **Logging or transparent mode**: A copy of the request and response transactions is made and asynchronously shared with AppSentinels Edge Controller to provide visibility and security. Integrations can help provide enforcement, such as blocking of bad IPs and threat actors.
 
-2. **Enforcement mode**: This mode provides transaction level blocking. Incoming requests are held until the AppSentinels Edge Controller provides a verdict. If the Controller provides a negative enforcement response of enforcement, the request is dropped from further processing. In case of higher latency of a verdict, the plugin performs a fail open to ensure business continuity.
+* **Enforcement mode**: This mode provides transaction level blocking. Incoming requests are held until the AppSentinels Edge Controller provides a verdict.
+If the Controller provides a negative enforcement response of enforcement, the request is dropped from further processing.
+In case of higher latency of a verdict, the plugin performs a fail open to ensure business continuity.
 
 The same plugin supports both modes.
 
