@@ -17,4 +17,3 @@ You can't configure an ACL with both `allow` and `deny` configurations. An ACL w
 * [Basic configuration example](/hub/kong-inc/acl/how-to/basic-example/)
 * [Learn how to use the plugin](/hub/kong-inc/acl/how-to/)
 * [ACME plugin API reference](/hub/kong-inc/acl/api/)
-* [Using ACLs with consumer groups](/hub/kong-inc/acl/how-to/consumer-groups/)
