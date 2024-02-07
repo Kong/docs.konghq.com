@@ -238,9 +238,12 @@ kong.response.set_status(404)
 ```
 
 
-
+{% if_version lte:3.5.x %}
 ## kong.response.set_header(name, value)
-
+{% endif_version %}
+{% if_version gte:3.6.x %}
+## kong.response.set_header(name, of)
+{% endif_version %}
 Sets a response header with the given value.  This function overrides any
  existing header with the same name.
 
@@ -264,8 +267,12 @@ Sets a response header with the given value.  This function overrides any
 **Parameters**
 
 * **name** (`string`):  The name of the header
+{% if_version lte:3.5.x %}
 * **value** (`string|number|boolean`):  The new value for the header.
-
+{% endif_version %}
+{% if_version gte:3.6.x %}
+* **of** (`array`):  strings|string|number|boolean value The new value for the header.
+{% endif_version %}
 **Returns**
 
 *  Nothing; throws an error on invalid input.
@@ -278,8 +285,13 @@ kong.response.set_header("X-Foo", "value")
 ```
 
 
-
+{% if_version lte:3.5.x %}
 ## kong.response.add_header(name, value)
+{% endif_version %}
+{% if_version gte:3.6.x %}
+## kong.response.add_header(name, of)
+{% endif_version %}
+
 
 Adds a response header with the given value.  Unlike
  `kong.response.set_header()`, this function does not remove any existing
@@ -296,8 +308,12 @@ Adds a response header with the given value.  Unlike
 **Parameters**
 
 * **name** (`string`):  The header name.
+{% if_version lte:3.5.x %}
 * **value** (`string|number|boolean`):  The header value.
-
+{% endif_version %}
+{% if_version gte:3.6.x %}
+* **of** (`array`):  strings|string|number|boolean value The header value.
+{% endif_version %}
 **Returns**
 
 *  Nothing; throws an error on invalid input.

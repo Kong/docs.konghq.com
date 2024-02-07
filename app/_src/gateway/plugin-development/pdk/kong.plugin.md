@@ -30,8 +30,14 @@ Returns the instance ID of the plugin.
 
 **Usage**
 
+{% if_version lte:3.5.x %}
 ``` lua
 kong.request.get_id() -- "123e4567-e89b-12d3-a456-426614174000"
 ```
+{% endif_version %}
 
-
+{% if_version gte:3.6.x %}
+``` lua
+kong.plugin.get_id() -- "123e4567-e89b-12d3-a456-426614174000"
+```
+{% endif_version %}
