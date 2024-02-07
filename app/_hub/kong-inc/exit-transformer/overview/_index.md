@@ -190,7 +190,7 @@ end
 1. Create a file named `transform.lua` with the transformation code. The
   following example adds a header, appends "arr!" to any message, and adds
   `error` and `status` fields on the response body. Save this file in a
-   location referenced by the lua_package_path variable.
+   location referenced by the [`lua_package_path`](/gateway/latest/reference/configuration/#lua_package_path) variable.
 
     ```lua
         -- transform.lua
