@@ -9,10 +9,10 @@ At the platform's core is an AI/ML engine, AI Sentinels, which combines multiple
 The AppSentinels plugin performs logging and enforcement (blocking) of API transactions. The plugin seamlessly integrates with Kong to provide for visibility and protection.
 
 AppSentinels plugin works in 2 modes,
-1. Logging or Transparent Mode
+1. Logging or transparent mode
 A copy of the request and response transactions is made and asynchronously shared with AppSentinels Edge Controller to provide for visibility and security. Integrations can help provide for enforcement like blocking of bad IPs and threat actors.
 
-2. Authz or Enforcement Mode
+2. Enforcement or authz mode
 This mode provides for transaction level blocking. Incoming requests are held until a verdict is given by the AppSentinels Edge Controller. A negative response of enforcement from the latter will result in the request being dropped from further processing. In case of higher latency of a verdict, the plugin performs a fail open to ensure business continuity.
 
 The same plugin supports both the above modes.
