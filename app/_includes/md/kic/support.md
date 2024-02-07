@@ -15,7 +15,7 @@
   <tr>
     <td>1.29</td>
     <td>N/A</td>
-    <td>Feb 2022</td>
+    <td>Dec 2024</td>
   {%- if include.show_kic -%}
     <td>2.8 LTS, 3.x</td>
     <td>2.12 LTS</td>

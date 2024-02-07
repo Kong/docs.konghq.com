@@ -279,11 +279,10 @@
 - release: "3.0.x"
   version: "3.0.2"
   edition: "kubernetes-ingress-controller"
-  latest: true
 - release: "3.1.x"
   version: "3.1.0"
   edition: "kubernetes-ingress-controller"
-  label: unreleased
+  latest: true
 - edition: gateway-operator
   version: 1.0.3
   release: 1.0.x
