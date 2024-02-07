@@ -12503,7 +12503,7 @@ paths:
           $ref: '#/components/responses/HTTP401Error'
       tags:
         - rbac
-      description: Update a user.
+      description: Update a user. Users are unable to update their own roles.
       requestBody:
         $ref: '#/components/requestBodies/rbac-request'
     delete:
