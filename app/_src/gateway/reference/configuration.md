@@ -1058,7 +1058,13 @@ built with. This value is ignored if `ssl_cipher_suite` is not `custom`.
 
 See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols
 
-**Default:** `TLSv1.1 TLSv1.2 TLSv1.3`
+**Default:**
+
+- if `ssl_cipher_suite` is `modern`, the default value would be `TLSv1.3`
+- if `ssl_cipher_suite` is `intermediate`, the default value would be `TLSv1.2 TLSv1.3`
+- if `ssl_cipher_suite` is `old`, the default value would be `TLSv1 TLSv1.1 TLSv1.2 TLSv1.3`
+- if `ssl_cipher_suite` is `custom`, the default value would be the value of environment variable `KONG_SSL_PROTOCOLS` if it is set.
+- Otherwise, the default value would be `TLSv1.2 TLSv1.3`.
 
 
 ### ssl_prefer_server_ciphers
