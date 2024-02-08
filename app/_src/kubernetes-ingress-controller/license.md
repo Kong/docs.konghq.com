@@ -5,18 +5,16 @@ purpose: |
   How to get your license and apply it to KIC managed Gateways
 ---
 
-{{ site.kic_product_name }} can manage {{ site.ee_product_name }} instances. To make the {{ site.ee_product_name }} instances licensed,
-you need to provide a license. This guide explains how you can do it.
+{{ site.kic_product_name }} can manage {{ site.ee_product_name }} instances. This guide explains how to apply an enterprise license to running Gateways.
 
 {% if_version gte:3.1.x %}
-## Applying a license using `KongLicense` CRD
+## Applying a license using the KongLicense CRD
 
-In {{ site.kic_product_name }} v3.1 we introduced `KongLicense` (see its [reference](/kubernetes-ingress-controller/{{page.release}}/reference/custom-resources/#konglicense)) CRD that allows dynamic propagation
-of license to all managed {{ site.ee_product_name }} replicas using their Admin API.
+{{ site.kic_product_name }} v3.1 introduced a `KongLicense` CRD ([reference](/kubernetes-ingress-controller/{{page.release}}/reference/custom-resources/#konglicense)) that applies a license to {{ site.ee_product_name }} using the Admin API.
 
 1. Create a file named `license.json` containing your {{site.ee_product_name}} license.
 
-1. Create a `KongLicense` object with `rawLicenseString` field set to your license: 
+1. Create a `KongLicense` object with the `rawLicenseString` field set to your license:
 
    ```bash
    echo "
@@ -28,7 +26,7 @@ of license to all managed {{ site.ee_product_name }} replicas using their Admin 
    " | kubectl apply -f -
    ```
 
-1. Verify the created `KongLicense` was picked up by the {{ site.kic_product_name }}:
+1. Verify that {{ site.kic_product_name }} is using the license:
 
    ```bash
    kubectl describe konglicense kong-license
@@ -60,16 +58,13 @@ of license to all managed {{ site.ee_product_name }} replicas using their Admin 
      Controller Name:        konghq.com/kong-ingress-controller/5b374a9e.konghq.com
    ```
 
-From now on, all Gateways that are managed by the {{ site.kic_product_name }} will be licensed with the provided license.
-Once the license approaches its expiration, you can simply update the `KongLicense` object with a new license string and 
-{{ site.kic_product_name }} will dynamically propagate it to all {{site.ee_product_name}} instances with no downtime.
+All {{ site.base_gateway }} instances that are configured by the {{ site.kic_product_name }} will have the license provided in `KongLicense` applied. To update your license, update the `KongLicense` resource and {{ site.kic_product_name }} will dynamically propagate it to all {{site.ee_product_name}} instances with no downtime. There is no need to restart your Pods when updating a license.
 {% endif_version %}
 
 ## Applying a static license
 
 {% if_version gte:3.1.x %}
-An alternate and less flexible option is to use a static license Secret that will be used to populate {{ site.ee_product_name }}'s
-`KONG_LICENSE_DATA` environment variable.
+An alternative option is to use a static license Secret that will be used to populate {{ site.ee_product_name }}'s `KONG_LICENSE_DATA` environment variable. This option allows you to store the license in Kubernetes secrets, but requires a Pod restart when the value of the secret changes.
 {% endif_version %}
 
 1. Create a file named `license.json` containing your {{site.ee_product_name}} license and store it in a Kubernetes secret:
