@@ -281,12 +281,8 @@ kong.response.set_header("X-Foo", "value")
 ```
 
 
-{% if_version lte:3.5.x %}
+
 ## kong.response.add_header(name, value)
-{% endif_version %}
-{% if_version gte:3.6.x %}
-## kong.response.add_header(name, of)
-{% endif_version %}
 
 
 Adds a response header with the given value.  Unlike

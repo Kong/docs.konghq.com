@@ -201,12 +201,9 @@ kong.service.request.set_query({
 ```
 
 
-{% if_version lte:3.5.x %}
+
 ## kong.service.request.set_header(header, value)
-{% endif_version %}
-{% if_version gte:3.6.x %}
-## kong.service.request.set_header(header, of)
-{% endif_version %}
+
 
 Sets a header in the request to the Service with the given value.  Any existing header
  with the same name will be overridden.
@@ -240,12 +237,9 @@ kong.service.request.set_header("X-Foo", "value")
 ```
 
 
-{% if_version lte:3.5.x %}
+
 ## kong.service.request.add_header(header, value)
-{% endif_version %}
-{% if_version gte:3.6.x %}
-## kong.service.request.add_header(header, of)
-{% endif_version %}
+
 
 Adds a request header with the given value to the request to the Service.  Unlike
  `kong.service.request.set_header()`, this function doesn't remove any existing
