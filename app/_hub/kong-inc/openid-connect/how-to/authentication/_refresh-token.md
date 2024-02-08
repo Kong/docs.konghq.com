@@ -10,7 +10,7 @@ with this: identity providers in general only allow refresh token grant to be ex
 client that originally got the refresh token, and if there is a mismatch, it may not work. The mismatch
 is likely when Kong OpenID Connect is configured to use one client, and the refresh token is retrieved
 with another. The grant itself is very similar to the [password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/) and
-the [client credentials grant](/hub/kong-inc/openid-connect/how-to/authentication/client-credentials-grant/):
+the [client credentials grant](/hub/kong-inc/openid-connect/how-to/authentication/client-credentials/):
 
 <!--vale off-->
 {% mermaid %}

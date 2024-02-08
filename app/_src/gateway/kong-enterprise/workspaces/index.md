@@ -189,7 +189,7 @@ operation that is allowed in the non-workspaced Kong world.
 
 ## See also
 
-* [Workspaces API reference](/gateway/{{page.release}}/admin-api/workspaces/reference/)
+* [Workspaces API reference](/gateway/api/admin-ee/latest/#/Workspaces)
 
 ---
 

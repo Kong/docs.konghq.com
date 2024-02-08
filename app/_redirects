@@ -14,12 +14,13 @@
 /gateway/latest/install/post-install/kong-manager/          /gateway/latest/kong-manager/enable/
 /gateway/:version/install/post-install/kong-manager-oss/    /gateway/:version/kong-manager-oss/
 /gateway/latest/install/post-install/kong-manager-oss/      /gateway/latest/kong-manager-oss/
- 
+/gateway/latest/kong-production/db-encryption/ /gateway/latest/kong-enterprise/db-encryption/
 ######################################################################
 
 # API
 
 /konnect/api/portal-rbac/latest/*    /konnect/api/portal-management/latest/
+/konnect/api/portal-rbac/:version/*    /konnect/api/portal-management/latest/
 
 # Konnect plugins
 
@@ -56,7 +57,29 @@
 /gateway/latest/admin-api/audit-logs/        /gateway/api/admin-ee/latest/#/audit-logs/get-audit-requests/
 /gateway/latest/admin-api/admins/reference/   /gateway/api/admin-ee/latest/#/admins/get-admins/
 /gateway/latest/admin-api/*                   /gateway/api/admin-ee/latest/
-
+/gateway/3.5.x/admin-api/#health-routes    /gateway/api/admin-ee/latest/#/Information/get-status/
+/gateway/3.5.x/admin-api/#tags        /gateway/api/admin-ee/latest/#/tags/get-tags/
+/gateway/3.5.x/admin-api/#debug-routes /gateway/api/admin-ee/latest/#/debug/put-debug-cluster-control-planes-nodes-log-level-log_level/
+/gateway/3.5.x/admin-api/#service-object   /gateway/api/admin-ee/latest/#/Services/list-service/
+/gateway/3.5.x/admin-api/#route-object /gateway/api/admin-ee/latest/#/Routes/list-route/
+/gateway/3.5.x/admin-api/#consumer-object  /gateway/api/admin-ee/latest/#/Consumers/list-consumer/
+/gateway/3.5.x/admin-api/#plugin-object    /gateway/api/admin-ee/latest/#/Plugins/list-plugin
+/gateway/3.5.x/admin-api/#certificate-object   /gateway/api/admin-ee/latest/#/Certificates/list-certificate/
+/gateway/3.5.x/admin-api/#ca-certificate-object    /gateway/api/admin-ee/latest/#/CA%20Certificates/list-ca_certificate/
+/gateway/3.5.x/admin-api/#sni-object   /gateway/api/admin-ee/latest/#/SNIs/list-sni-with-certificate/
+/gateway/3.5.x/admin-api/#upstream-object  /gateway/api/admin-ee/latest/#/Upstreams/list-upstream/
+/gateway/3.5.x/admin-api/#target-object    /gateway/api/admin-ee/latest/#/Targets/list-target-with-upstream/
+/gateway/3.5.x/admin-api/#vaults-object    /gateway/api/admin-ee/latest/#/Vaults/list-vault/
+/gateway/3.5.x/admin-api/#keys-object      /gateway/api/admin-ee/latest/#/Keys/list-key/
+/gateway/3.5.x/admin-api/#filter-chains    /gateway/api/admin-ee/latest/#/filter-chains/get-filter-chains/
+/gateway/3.5.x/admin-api/licenses/reference   /gateway/api/admin-ee/latest/#/licenses/get-licenses/
+/gateway/3.5.x/admin-api/workspaces/reference/   /gateway/api/admin-ee/latest/#/Workspaces/list-workspace/
+/gateway/3.5.x/admin-api/rbac/reference/        /gateway/api/admin-ee/latest/#/rbac/get-rbac-users/
+/gateway/3.5.x/admin-api/event-hooks/reference/ /gateway/api/admin-ee/latest/#/Event-hooks/get-event-hooks/
+/gateway/3.5.x/admin-api/db-encryption/     /gateway/api/admin-ee/latest/#/Keyring/get-keyring/
+/gateway/3.5.x/admin-api/audit-logs/        /gateway/api/admin-ee/latest/#/audit-logs/get-audit-requests/
+/gateway/3.5.x/admin-api/admins/reference/   /gateway/api/admin-ee/latest/#/admins/get-admins/
+/gateway/3.5.x/admin-api/*                   /gateway/api/admin-ee/latest/
 
 # 3.5
 /gateway/latest/kong-enterprise/analytics/* /gateway/3.4.x/kong-enterprise/analytics/:splat

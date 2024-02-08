@@ -42,7 +42,10 @@ type: plugin
               <blockquote id="version-notice" class="important">
               You are browsing documentation for an outdated plugin version.
             {% endif %}
-              See the <a href="{{ page.canonical_url }}">latest documentation here</a>.
+              {% capture canonical_exists %}{% page_exists {{ page.canonical_url }} %}{% endcapture %}
+              {% if canonical_exists == true %}
+                See the <a href="{{ page.canonical_url }}">latest documentation here</a>.
+              {% endif %}
             </blockquote>
         {% endunless %}
       {% endif %}

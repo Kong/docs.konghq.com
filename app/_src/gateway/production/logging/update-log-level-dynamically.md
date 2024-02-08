@@ -4,7 +4,7 @@ content_type: reference
 ---
 
 
-You can change the log level of {{site.base_gateway}} dynamically, without restarting {{site.base_gateway}}, using the Admin API. This set of endpoints can be protected using [RBAC](/gateway/{{page.release}}/admin-api/rbac/reference/#add-a-role-endpoint-permission) and changes in log level are reflected in the [audit log](/gateway/{{page.release}}/kong-enterprise/audit-log/).
+You can change the log level of {{site.base_gateway}} dynamically, without restarting {{site.base_gateway}}, using the Admin API. This set of endpoints can be protected using [RBAC](/gateway/api/admin-ee/latest/#/rbac/post-rbac-roles-name_or_id-endpoints) and changes in log level are reflected in the [audit log](/gateway/{{page.release}}/kong-enterprise/audit-log/).
 
 The log level change is propagated to all NGINX worker nodes, including the newly spawned workers.
 
