@@ -77,6 +77,7 @@ Returns a Lua table holding the headers from the Service response.  Keys are
 
 **Usage**
 
+{% if_version lte:3.5.x %}
 ``` lua
 -- Given a response with the following headers:
 -- X-Custom-Header: bla
@@ -89,6 +90,23 @@ if headers then
   kong.log.inspect(headers["X-Another"][2]) -- "baz"
 end
 ```
+{% endif_version %}
+{% if_version gte:3.6.x %}
+``` lua
+-- Given a response with the following headers:
+-- X-Custom-Header: bla
+-- X-Another: foo bar
+-- X-Another: baz
+local headers = kong.service.response.get_headers()
+if headers then
+  kong.log.inspect(headers.x_custom_header) -- "bla"
+  kong.log.inspect(headers.x_another[1])    -- "foo bar"
+  kong.log.inspect(headers["X-Another"][2]) -- "baz"
+end
+Note that this function returns a proxy table
+which cannot be iterated with `pairs` or used as operand of `#`.
+```
+{% endif_version %}
 
 
 
