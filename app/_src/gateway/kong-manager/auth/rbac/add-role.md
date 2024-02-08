@@ -15,11 +15,11 @@ This guide describes how to create a custom role in Kong
 Manager for a unique use case. As an alternative, if a
 super admin wants to create a role with the Admin API,
 it is possible to do so using
-[`/rbac/roles`](/gateway/{{page.release}}/admin-api/rbac/reference/#add-a-role).
+[`/rbac/roles`](/gateway/api/admin-ee/latest/#/rbac/post-rbac-roles).
 To add permissions to the new role, use
-[`/rbac/roles/{name_or_id}/endpoints`](/gateway/{{page.release}}/admin-api/rbac/reference/#add-a-role-endpoint-permission)
+[`/rbac/roles/{name_or_id}/endpoints`](/gateway/api/admin-ee/latest/#/rbac/post-rbac-roles-name_or_id-endpoints)
 for endpoints or
-[`/rbac/roles/{name_or_id}/entities`](/gateway/{{page.release}}/admin-api/rbac/reference/#add-a-role-entity-permission)
+[`/rbac/roles/{name_or_id}/entities`](/gateway/api/admin-ee/latest/#/rbac/post-rbac-roles-name_or_id-entities)
 for specific entities.
 
 ## Prerequisites

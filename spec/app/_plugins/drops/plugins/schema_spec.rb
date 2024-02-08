@@ -81,4 +81,18 @@ RSpec.describe Jekyll::Drops::Plugins::Schema do
       it { expect(subject.global?).to eq(true) }
     end
   end
+
+  describe '#defined?' do
+    context 'when there is a schema present' do
+      it { expect(subject.defined?).to eq(true) }
+    end
+
+    context 'when there is not one' do
+      before do
+        allow(schema).to receive(:config).and_return({})
+      end
+
+      it { expect(subject.defined?).to eq(false) }
+    end
+  end
 end

@@ -1,0 +1,3 @@
+name: appsentinels
+config:
+  http_endpoint: http://onprem-controller:9004

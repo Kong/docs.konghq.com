@@ -2,6 +2,17 @@ strategy: gateway
 releases:
   minimum_version: '2.1.x'
 
+sources:
+  3.5.x: _3.5.x
+  3.4.x: _3.5.x
+  3.3.x: _3.5.x
+  3.2.x: _3.5.x
+  3.1.x: _3.5.x
+  3.0.x: _3.5.x
+  2.8.x: _3.5.x
+  2.7.x: _3.5.x
+  2.6.x: _3.5.x
+
 overrides:
   2.8.x: 3.0.1
   2.7.x: 3.0.1
@@ -11,3 +22,4 @@ overrides:
   2.3.x: 3.0.1
   2.2.x: 3.0.1
   2.1.x: 3.0.1
+

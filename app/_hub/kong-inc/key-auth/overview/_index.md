@@ -156,7 +156,7 @@ Make a request with the key in the body:
 
 ```bash
 curl http://localhost:8000/{proxy path} \
-    --data 'apikey: {some_key}'
+    --data 'apikey={some_key}'
 ```
 
 **Note:** The `key_in_body` plugin parameter must be set to `true` (default is `false`).

@@ -2,9 +2,40 @@
 
 <!--vale off-->
 
+## Week 5
+
+### [Update: Change dev label and banner color](https://github.com/Kong/docs.konghq.com/pull/6859) (2024-01-31)
+
+Changing the "dev" label to "unreleased" to make it clearer what this doc version is supposed to be. 
+
+Also changing the banner colour to red, as the previous banner looked too similar to the "outdated version" banner.
+
+Some minor version/conditionals cleanup here as well.
+
+#### Modified
+
+- https://docs.konghq.com/contributing/conditional-rendering
+
+
+### [Fix: kic - add explanation for Gateway's publish service](https://github.com/Kong/docs.konghq.com/pull/6853) (2024-01-30)
+
+Adds an explanation of `--publish-service` vs. `konghq.com/publish-service` Gateway's annotation relation.
+
+Part of https://github.com/Kong/kubernetes-ingress-controller/issues/5328.
+ 
+
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.2.x/support/browser
+- https://docs.konghq.com/gateway/3.3.x/support/browser
+- https://docs.konghq.com/gateway/3.4.x/support/browser
+- https://docs.konghq.com/gateway/3.5.x/support/browser
+- https://docs.konghq.com/gateway/3.6.x/support/browser
+
 ## Week 4
 
-### [KIC: Use standard repository in Helm example instructions](https://github.com/Kong/docs.konghq.com/pull/6842) (2024-01-26)
+### [Fix: kic - Use standard repository in Helm example instructions](https://github.com/Kong/docs.konghq.com/pull/6842) (2024-01-26)
 
 The KIC Helm install docs showed how to customise the image by using the nightly KIC image. This confused some users who actually tried to use the nightly image in a non-test environment.
 
@@ -42,7 +73,7 @@ This was changed to use multipart/form-data (--form)
 
 This PR adds a notice in the AWS/GCP vault backend doc page, to remind user to trust system ca-certificates store so that SSL certificate returned by those cloud providers are being trusted by kong.
 
-https://konghq.atlassian.net/browse/FTI-5700
+
 
 #### Modified
 
@@ -130,28 +161,6 @@ Updating the Azure Vault variable names as with the existing naming the Vault co
 - https://docs.konghq.com/gateway/3.6.x/production/deployment-topologies/db-less-and-declarative-config
 
 
-### [kgo: merge 1.2.x related changes](https://github.com/Kong/docs.konghq.com/pull/6809) (2024-01-23)
-
-Merge KGO 1.2 related changes and hide them from publishing using docs `latest` version feature.
-
-#### Added
-
-- https://docs.konghq.com/gateway/3.0.x/install/linux/rhel
-- https://docs.konghq.com/gateway/3.1.x/install/linux/rhel
-- https://docs.konghq.com/gateway/3.2.x/install/linux/rhel
-- https://docs.konghq.com/gateway/3.3.x/install/linux/rhel
-- https://docs.konghq.com/gateway/3.4.x/install/linux/rhel
-- https://docs.konghq.com/gateway/3.5.x/install/linux/rhel
-- https://docs.konghq.com/gateway/3.6.x/install/linux/rhel
-- https://docs.konghq.com/gateway/3.0.x/install/linux/ubuntu
-- https://docs.konghq.com/gateway/3.1.x/install/linux/ubuntu
-- https://docs.konghq.com/gateway/3.2.x/install/linux/ubuntu
-- https://docs.konghq.com/gateway/3.3.x/install/linux/ubuntu
-- https://docs.konghq.com/gateway/3.4.x/install/linux/ubuntu
-- https://docs.konghq.com/gateway/3.5.x/install/linux/ubuntu
-- https://docs.konghq.com/gateway/3.6.x/install/linux/ubuntu
-
-
 ### [Chore: fixes for a minor change in the Quickstart script output](https://github.com/Kong/docs.konghq.com/pull/6803) (2024-01-22)
 
 Where the quickstart is used, the output changed slightly to indicate the gateway was ready.
@@ -206,7 +215,7 @@ labels: skip-changelog,review:general
 - https://docs.konghq.com/gateway/3.6.x/production/deployment-topologies/db-less-and-declarative-config
 
 
-### [Add ARM support to install-instructions-test](https://github.com/Kong/docs.konghq.com/pull/6795) (2024-01-23)
+### [Feat: Add ARM support to install-instructions-test](https://github.com/Kong/docs.konghq.com/pull/6795) (2024-01-23)
 
 Use `qemu` to add arm64 tests for the install pages using GH Actions.
 
