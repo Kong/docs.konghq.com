@@ -318,7 +318,7 @@ action items when certain conditions are met.
 
 * Added a new handler for plugins to implement, where configs will be `nil` if there are no active configurations for the plugin. This change can be seen in the Acme, Prometheus, and Rate Limiting Advanced plugins.
 * Kong Gateway now requires a license to use dynamic plugin ordering.
-* [**Mutual TLS Authentication**](hub/kong-inc/mtls-auth/) (`mtls-auth`)
+* [**Mutual TLS Authentication**](/hub/kong-inc/mtls-auth/) (`mtls-auth`)
   * Fixed an issue to prevent caching network failures during revocation checks.
 * [**Response Transformer**](/hub/kong-inc/response-transformer/) (`response-transformer`)
   * Resolved warning logs related to flooded JSON decoding issues.
@@ -1792,7 +1792,7 @@ See the documentation for more detail on [interpreting audit logs](/gateway/late
     If not set, the start time defaults to the current timestamp.
     
 * **Improved Plugin Documentation**
-    * Split the plugin compatibility table into a [technical compatibility page](/hub/plugins/compatibility/) and a [license tiers](hub/plugins/license-tiers) page. 
+    * Split the plugin compatibility table into a [technical compatibility page](/hub/plugins/compatibility/) and a [license tiers](/hub/plugins/license-tiers/) page. 
     * Updated the plugin compatibility information for more clarity on [supported network protocols](/hub/plugins/compatibility/#protocols) and on [entity scopes](/hub/plugins/compatibility/#scopes). 
     * Revised docs for the following plugins to include examples:
       * [CORS](/hub/kong-inc/cors/)
