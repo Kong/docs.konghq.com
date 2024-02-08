@@ -238,12 +238,8 @@ kong.response.set_status(404)
 ```
 
 
-{% if_version lte:3.5.x %}
 ## kong.response.set_header(name, value)
-{% endif_version %}
-{% if_version gte:3.6.x %}
-## kong.response.set_header(name, of)
-{% endif_version %}
+
 Sets a response header with the given value.  This function overrides any
  existing header with the same name.
 
