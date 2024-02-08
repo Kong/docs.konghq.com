@@ -164,20 +164,9 @@ Batch process spans
 **Parameters**
 
 * **processor** (`function`):  a function that accecpt a span as the parameter
-
+  
 
 {% if_version gte:3.3.x %}
-## span:set_should_sample(should_sample)
-
-Update the value of should_sample for all spans
-
-**Parameters**
-
-* **should_sample** (`bool`):  value for the sample parameter
-
-{% endif_version %}
-
-{% if_version gte:3.4.x %}
 ## kong.tracing:set_should_sample(should_sample)
 
 Update the value of should_sample for all spans
