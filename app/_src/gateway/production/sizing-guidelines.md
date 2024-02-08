@@ -242,4 +242,4 @@ as the cardinality of plugins _and_ the number of Workspaces increases.
 ## More information
 * [Establish a Kong Gateway performance benchmark](/production/performance/benchmark): Learn how to optimize {{site.base_gateway}} for performance.
 * [Performance testing benchmarks](/production/performance/performance-testing): See Kong's performance testing benchmark results for the current version and learn how to use Kong's test suite to conduct your own performance tests.
-{% endif_version}
+{% endif_version %}
