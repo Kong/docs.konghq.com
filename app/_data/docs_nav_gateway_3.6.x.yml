@@ -228,10 +228,10 @@ items:
         url: /production/clustering
       - text: Performance Testing
         items:
+        - text: Performance Testing Benchmarks
+          url: /production/performance/performance-testing
         - text: Establish a Performance Benchmark
           url: /production/performance/benchmark
-        - text: Conduct Performance Testing
-          url: /production/performance/performance-testing
       - text: Logging and Debugging
         items:
           - text: Log Reference

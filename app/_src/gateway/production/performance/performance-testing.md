@@ -1,29 +1,31 @@
 ---
-title: Conduct performance testing
+title: Performance testing benchmarks
 content_type: reference
 description: This documentation provides a comprehensive guide for conducting Kong Gateway performance testing using Kong's test suite, including Kong's own benchmark for the current version.
 ---
 
-As of {{site.base_gateway}} 3.6.x, Kong will start to publish performance results on {{site.base_gateway}}, along with the test methodology and details. Kong will conduct and publish {{site.base_gateway}} performance results for each minor release.
+As of {{site.base_gateway}} 3.6.x, Kong now publishes performance results on {{site.base_gateway}}, along with the test methodology and details. Kong will conduct and publish {{site.base_gateway}} performance results for each subsequent minor release.
 
-In addition to publishing performance test results, you can use [our public test suite](https://github.com/Kong/kong-gateway-performance-benchmark/tree/main) to conduct your own performance tests with {{site.base_gateway}}.
+In addition to viewing our performance test results, you can use [our public test suite](https://github.com/Kong/kong-gateway-performance-benchmark/tree/main) to conduct your own performance tests with {{site.base_gateway}}.
 
 ## {{site.base_gateway}} peformance testing method and results for {{page.release}}
 
-Kong tests performance results for {{site.base_gateway}} using the [our public test suite](https://github.com/Kong/kong-gateway-performance-benchmark/tree/main). The following sections explain the test methodology, results, and configuration.  
+Kong tests performance results for {{site.base_gateway}} using [our public test suite](https://github.com/Kong/kong-gateway-performance-benchmark/tree/main). The following sections explain the test methodology, results, and configuration.  
 
 ### Test method
 
-These performance tests cover a number of baseline configurations and common use cases of {{site.base_gateway}}. 
+The performance tests cover a number of baseline configurations and common use cases of {{site.base_gateway}}. The following describes the test cases used and the configuration methodology: 
 
-| Decription              | Method  |
-| ----------------------- | --------------------------- |
-| **Environment**        | Kubernetes environment on AWS infrastructure       |
-| **Test use cases**        | The following use cases were tested:<br><ul><li>Basic {{site.base_gateway}} proxy</li><li>[Rate limiting](/hub/kong-inc/rate-limiting/) a request with no authentication</li><li>Authentication using the [basic auth plugin](/hub/kong-inc/basic-auth/) and Rate Limiting</li><li>Authentication using the [key auth plugin](/hub/kong-inc/key-auth/) and rate limiting</li></ul>       |
-| **Routes and consumers**        | Each case was tested with two different options, one with one route and one consumer, and one with 100 routes and 100 consumers, for a total of eight test cases. For test cases that didn't require authentication, no consumers were used.       |
-| **Traffic distribution**       | Normal distribution across both routes and consumers       |
-| **Protocol**        | HTTPS       |
-| **Sample size**        | Each test case was run five times, each for a duration of 15 minutes. The results are an average across the five different test runs.        |
+* **Environment**: Kubernetes environment on AWS infrastructure
+* **Test use cases**: 
+    * Basic {{site.base_gateway}} proxy
+    * [Rate limiting](/hub/kong-inc/rate-limiting/) a request with no authentication
+    * Authentication using the [basic auth plugin](/hub/kong-inc/basic-auth/) and rate limiting
+    * Authentication using the [key auth plugin](/hub/kong-inc/key-auth/) and rate limiting
+* **Routes and consumers**: Each case was tested with two different options: one with one route and one consumer, and one with 100 routes and 100 consumers, for a total of eight test cases. For test cases that didn't require authentication, no consumers were used.
+* **Traffic distribution**: Normal distribution across both routes and consumers
+* **Protocol**: HTTPS only
+* **Sample size**: Each test case was run five times, each for a duration of 15 minutes. The results are an average of the five different test runs.
 
 ### {{site.base_gateway}} performance benchmark results
 
@@ -31,14 +33,14 @@ These performance tests cover a number of baseline configurations and common use
 
 | Test type               | Number of routes/consumers  | Requests per second (RPS) | P99 (ms) | P95 (ms) |
 | ----------------------- | --------------------------- | ------------------------- | -------- | -------- |
-| Basic Kong Proxy        | 1 Route, No Consumers       | 137850.4                  | 6.25     | 3.82     |
-| Basic Kong Proxy        | 100 Routes, No Consumers    | 132302.8                  | 6.55     | 3.99     |
-| Rate Limit + No Auth    | 1 Route, No Consumers       | 116413.8                  | 7.59     | 4.56     |
-| Rate Limit + No Auth    | 100 Routes, No Consumers    | 111615.8                  | 7.62     | 4.54     |
-| Rate Limit + Key Auth   | 1 Route, 1 Consumer         | 102261.6                  | 8.47     | 5.05     |
-| Rate Limit + Key Auth   | 100 Routes, 100 Consumers   | 96289.6                   | 8.82     | 5.25     |
-| Rate Limit + Basic Auth | 1 Route, 1 Consumer         | 95297.8                   | 8.75     | 5.66     |
-| Rate Limit + Basic Auth | 100 Routes, 100 Consumers   | 89777.4                   | 9.34     | 5.89     |
+| Basic Kong Proxy        | 1 route, 0 consumers       | 137850.4                  | 6.25     | 3.82     |
+| Basic Kong Proxy        | 100 routes, 0 consumers    | 132302.8                  | 6.55     | 3.99     |
+| Rate Llimit and no auth | 1 route, 0 consumers       | 116413.8                  | 7.59     | 4.56     |
+| Rate limit and no auth    | 100 routes, 0 consumers    | 111615.8                  | 7.62     | 4.54     |
+| Rate limit and key auth   | 1 route, 1 consumer         | 102261.6                  | 8.47     | 5.05     |
+| Rate limit and key auth   | 100 routes, 100 consumers   | 96289.6                   | 8.82     | 5.25     |
+| Rate limit and basic auth | 1 route, 1 consumer         | 95297.8                   | 8.75     | 5.66     |
+| Rate limit and basic auth | 100 routes, 100 consumers   | 89777.4                   | 9.34     | 5.89     |
 {% endif_version %}
 
 ### Test environment
@@ -53,13 +55,13 @@ For these tests, we changed the number of worker processes to match the number o
 
 ## Conduct your own performance test using Kong's test suite
 
-Kong has published a public repo with our test suite [here](https://github.com/Kong/kong-gateway-performance-benchmark/tree/main). The repo will help you spin up an EKS cluster with Kong, Redis, Prometheus, and Grafana installed. Additionally, it will configure [K6](https://k6.io/), a popular open source load testing tool.
+You can use [Kong's public test suite repo](https://github.com/Kong/kong-gateway-performance-benchmark/tree/main) to help you spin up an EKS cluster with {{site.base_gateway}}, Redis, Prometheus, and Grafana installed. Additionally, it will configure [K6](https://k6.io/), a popular open source load testing tool. You can use this test suite to conduct your own performance tests.
 
-Once the cluster is generated, you can apply the provided yaml to configure the Gateway for the included test cases and the observability plugins for metrics scraping by the prometheus instance already provisioned in the cluster.
+Once the cluster is generated, you can apply the [provided `yaml`](https://github.com/Kong/kong-gateway-performance-benchmark/tree/main/deploy-k8s-resources/kong_helm) to configure the {{site.base_gateway}} for the included test cases and the observability plugins for metrics scraping by the Prometheus instance already provisioned in the cluster. If you’d rather define your own test scenarios, you can also define the {{site.base_gateway}} configuration you want to test and apply it to the cluster.
 
-If you’d rather define your own test scenarios, now would be the time to define the {{site.base_gateway}} configuration you want to test and apply it to the cluster!
+From there, you can use the [included bash scripts to run K6 tests](https://github.com/Kong/kong-gateway-performance-benchmark/tree/main/deploy-k8s-resources/k6_tests). After the tests complete, you can `port-forward` into the cluster and view the Grafana dashboard with the performance results.
 
-From there you can use the included bash scripts to run K6 tests. After the tests have completed, you can port-forward your way into the cluster and view the grafana dashboard we created with the results.
-
+## More information
+* [Establish a Kong Gateway performance benchmark](/production/performance/benchmark): Learn how to optimize {{site.base_gateway}} for performance.
 
 
