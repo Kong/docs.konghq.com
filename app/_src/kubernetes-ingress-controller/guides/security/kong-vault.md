@@ -15,66 +15,6 @@ This guide uses the environment variable backend, which requires minimal
 configuration and integrates well with Kubernetes' standard Secret-sourced
 environment variables.
 
-{% if_version gte:3.1.x %}
-## Configuring Vaults dynamically with `KongVault` CRD
-
-From {{ site.kic_product_name }} v3.1 onwards, you can configure Kong vaults by creating `KongVault` objects in your Kubernetes cluster.
-The `KongVault` CRD allows you to configure a vault backend details (its type, prefix, description) and the vault's connection details
-that are specific to the backend type.
-
-{:.note}
-> Please note that you still need to configure credentials used by your vault backend in your `values.yaml` file
-> (e.g. `aws_secret_access_key`, `vault_hcv_token` etc.).
-
-The following YAML is an example of a `KongVault` definition for the AWS backend in `us-west-2` region:
-
-```yaml
-apiVersion: configuration.konghq.com/v1alpha1
-kind: KongVault
-metadata:
-  name: aws-us-west-vault
-spec:
-  backend: aws
-  prefix: aws-us-west
-  description: "AWS Secrets Manager vault for us-west-2 region"
-  config:
-    region: us-west-2
-```
-
-You can also create another `KongVault` using the same backend type, but with different configuration details (e.g. a different region):
-
-```yaml
-apiVersion: configuration.konghq.com/v1alpha1
-kind: KongVault
-metadata:
-  name: aws-us-east-vault
-spec:
-    backend: aws
-    prefix: aws-us-east
-    description: "AWS Secrets Manager vault for us-east-1 region"
-    config:
-        region: us-east-1 
-```
-
-To refer to secrets stored in your vaults, you can use a `vault://<kong-vault-prefix>` prefix (with `<kong-vault-prefix>`
-substituted by `aws-us-east` or `aws-us-west`)
-in your plugin configuration. For example:
-
-```yaml
-apiVersion: configuration.konghq.com/v1
-kind: KongPlugin
-metadata:
-  name: rate-limiting-example
-plugin: rate-limiting
-config:
-  second: 5
-  hour: 10000
-  policy: redis
-  redis_host: <redis_host>
-  redis_password: "vault://aws-us-east/secret-redis-password"
-```
-{% endif_version %}
-
 ## Available Vaults
 
 {{ site.base_gateway }} supports environment variables, Hashicorp Vault, AWS Secrets Manager and Google Secrets Manager as a source for secret configuration. These vaults can be configured using environment variables on your `gateway` deployments.
@@ -149,7 +89,7 @@ gateway:
 ```
 {% endnavtab %}
 {% if_version gte:3.1.x %}
-{% navtab Environment variables + KongVault %}
+{% navtab KongVault CRD%}
 Configure the following in your `values.yaml`:
 
 ```yaml
@@ -199,7 +139,7 @@ gateway:
 ```
 {% endnavtab %}
 {% if_version gte:3.1.x %}
-{% navtab Environment variables + KongVault %}
+{% navtab KongVault CRD %}
 Configure the following in your `values.yaml`:
 
 ```yaml
@@ -237,3 +177,62 @@ gateway:
   customEnv:
     gcp_service_account: '{"credentials": "here in JSON format. See gcp-project-RANDOM_ID.json"}'
 ```
+
+
+{% if_version gte:3.1.x %}
+## Configuring Vaults dynamically with the KongVault CRD
+
+Kong vaults can be configured by creating `KongVault` objects in your Kubernetes cluster.
+The `KongVault` CRD allows you to configure a vault backend details (its type, prefix, description) and the vault's connection details that are specific to the backend type.
+
+{:.note}
+> Please note that you still need to configure credentials used by your vault backend in your `values.yaml` file
+> (e.g. `aws_secret_access_key`, `vault_hcv_token` etc.).
+
+The following is an example of a `KongVault` definition for the AWS backend in `us-west-2` region:
+
+```yaml
+apiVersion: configuration.konghq.com/v1alpha1
+kind: KongVault
+metadata:
+  name: aws-us-west-vault
+spec:
+  backend: aws
+  prefix: aws-us-west
+  description: "AWS Secrets Manager vault for us-west-2 region"
+  config:
+    region: us-west-2
+```
+
+You can also create another `KongVault` using the same backend type, but with different configuration details (e.g. a different region):
+
+```yaml
+apiVersion: configuration.konghq.com/v1alpha1
+kind: KongVault
+metadata:
+  name: aws-us-east-vault
+spec:
+    backend: aws
+    prefix: aws-us-east
+    description: "AWS Secrets Manager vault for us-east-1 region"
+    config:
+        region: us-east-1
+```
+
+To refer to secrets stored in your vaults, you can use a `vault://<kong-vault-prefix>` prefix (with `<kong-vault-prefix>` substituted by `aws-us-east` or `aws-us-west`)
+in your plugin configuration. For example:
+
+```yaml
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: rate-limiting-example
+plugin: rate-limiting
+config:
+  second: 5
+  hour: 10000
+  policy: redis
+  redis_host: <redis_host>
+  redis_password: "vault://aws-us-east/secret-redis-password"
+```
+{% endif_version %}
