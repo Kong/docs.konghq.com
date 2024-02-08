@@ -45,7 +45,7 @@ detail page from {% konnect_icon runtimes %} **Gateway Manager** > **Gateway Ser
 an API product you will see the name of the API product under **API Product**, and the API product version under **API product version**.
 
 Learn more about [Gateway services in {{site.konnect_short_name}}](/konnect/gateway-manager/configuration/#gateway-services) or
-check out the [service object API reference](/gateway/latest/admin-api/#service-object)
+check out the [service object API reference](/gateway/api/admin-ee/latest/#/Services/list-service/)
 for all configuration options.
 
 ## Routes
@@ -54,7 +54,7 @@ The **Routes** configuration page lists all routes in the control plane. A route
 requests, and is associated with a Gateway service. You can edit any
 routes in the control plane from here.
 
-See the [route object API reference](/gateway/latest/admin-api/#route-object)
+See the [route object API reference](/gateway/api/admin-ee/latest/#/Routes/list-route/)
 for all configuration options.
 
 {:.important}
@@ -69,7 +69,7 @@ Consumer objects represent users of a service, and are most often used for
 authentication. They provide a way to divide access to your services, and make
 it easy to revoke that access without disturbing a service’s function.
 
-See the [consumer object API reference](/gateway/latest/admin-api/#consumer-object)
+See the [consumer object API reference](/gateway/api/admin-ee/latest/#/Consumers/list-consumer/)
 for all configuration options.
 
 ## Plugins
@@ -85,7 +85,7 @@ _consumer-scoped_ plugins through the Gateway Manager.
 through the Gateway Manager.
 
 Learn more about [using plugins in {{site.konnect_short_name}}](/konnect/gateway-manager/plugins/),
-check out the [plugin object API reference](/gateway/latest/admin-api/#plugin-object),
+check out the [plugin object API reference](/gateway/api/admin-ee/latest/#/Plugins/list-plugin),
 or see all available plugins on the [Plugin Hub](/hub/) for specific configuration
 options for each plugin.
 
@@ -98,7 +98,7 @@ An upstream object represents a virtual hostname referring to your own
 service/API. Upstreams can be used to health check, circuit break, and load
 balance incoming requests over multiple services (targets).
 
-See the [upstream object API reference](/gateway/latest/admin-api/#upstream-object)
+See the [upstream object API reference](/gateway/api/admin-ee/latest/#/Upstreams/list-upstream/)
 for all configuration options.
 
 ## Certificates
@@ -118,7 +118,7 @@ Here you can manage data plane certificates,
 including the creation, renewal, and removal of certificates, as well as uploading up to 16 
 certificates per control plane. 
 
-See the [certificate object API reference](/gateway/latest/admin-api/#certificate-object)
+See the [certificate object API reference](/gateway/api/admin-ee/latest/#/Certificates/list-certificate/)
 for all configuration options.
 
 ## SNIs
@@ -130,7 +130,7 @@ A certificate object can have many hostnames associated with it, so when a
 data plane node receives an SSL request, it uses the SNI field in the
 ClientHello to look up the associated certificate object.
 
-See the [SNI object API reference](/gateway/latest/admin-api/#sni-object)
+See the [SNI object API reference](/gateway/api/admin-ee/latest/#/SNIs/list-sni-with-certificate/)
 for all configuration options.
 
 

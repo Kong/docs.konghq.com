@@ -156,7 +156,7 @@ Make a request with the key in the body:
 
 ```bash
 curl http://localhost:8000/{proxy path} \
-    --data 'apikey: {some_key}'
+    --data 'apikey={some_key}'
 ```
 
 **Note:** The `key_in_body` plugin parameter must be set to `true` (default is `false`).
@@ -288,7 +288,7 @@ Response:
 ```
 
 [configuration]: /gateway/latest/reference/configuration
-[consumer-object]: /gateway/latest/admin-api/#consumer-object
+[consumer-object]: /gateway/api/admin-ee/latest/#/Consumers/list-consumer/
 [acl-associating]: /plugins/acl/#associating-consumers
 
 

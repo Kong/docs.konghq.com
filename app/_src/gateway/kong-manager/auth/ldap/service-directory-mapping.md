@@ -14,6 +14,13 @@ How service directory mapping works in Kong:
 
 For example, if a user's group changes in the service directory, their Kong admin account's associated role also changes in {{site.base_gateway}} the next time they log in to Kong Manager. The mapping removes the task of manually managing access in {{site.base_gateway}}, as it makes the service directory the system of record.
 
+{% if_version gte:3.6.x %}
+
+When using LDAP service directory mapping, roles assigned to admins are managed by the service directory.
+If you manually assign or unassign admin roles, changes will be overwritten during the next login.
+
+{% endif_version %}
+
 ## Prerequisites
 
 * {{site.base_gateway}} installed and configured
@@ -92,7 +99,7 @@ Attribute | Description
 
 ## Define roles with permissions
 
-Define roles with permissions in {{site.base_gateway}}, using the Admin API's [RBAC endpoints](/gateway/{{page.release}}/admin-api/rbac/reference/#update-or-create-a-role) or using Kong Manager's [Teams page](/gateway/{{page.release}}/kong-manager/auth/rbac/add-user/). You must manually define which Kong roles correspond to each of the service directory's groups using either of the following:
+Define roles with permissions in {{site.base_gateway}}, using the Admin API's [RBAC endpoints](/gateway/api/admin-ee/latest/#/rbac/put-rbac-roles-name_or_id) or using Kong Manager's [Teams page](/gateway/{{page.release}}/kong-manager/auth/rbac/add-user/). You must manually define which Kong roles correspond to each of the service directory's groups using either of the following:
 
 * In Kong Manager's directory mapping section. Find it under **Teams** > **Groups** tab.
 * With the Admin API's directory mapping endpoints.
@@ -101,7 +108,7 @@ Define roles with permissions in {{site.base_gateway}}, using the Admin API's [R
 
 ## User-admin mapping
 
-To map a service directory user to a Kong admin, map the admin's username to the **name** value corresponding to the attribute configured in `admin_gui_auth_conf`. Create an admin account in [Kong Manager](/gateway/{{page.release}}/kong-manager/auth/rbac/add-admin/) or use the [Admin API](/gateway/{{page.release}}/admin-api/admins/reference/#invite-an-admin).
+To map a service directory user to a Kong admin, map the admin's username to the **name** value corresponding to the attribute configured in `admin_gui_auth_conf`. Create an admin account in [Kong Manager](/gateway/{{page.release}}/kong-manager/auth/rbac/add-admin/) or use the [Admin API](/gateway/api/admin-ee/latest/#/admins/post-admins).
 
 For instructions on how to pair the bootstrapped super admin with a directory user, see [Set up a directory user as the first super admin](#set-up-a-directory-user-as-the-first-super-admin).
 

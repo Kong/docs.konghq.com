@@ -81,6 +81,7 @@ If the client doesn't send SNIs in the ClientHello message or the SNI sent is
 unknown to {{site.base_gateway}}, then the CA DN list associated with `\*` is sent only when the client certificate is requested.
 {% endif_plugin_version %}
 
+
 ### Troubleshooting
 
 When authentication fails, the client does not have access to any details that explain the
@@ -90,9 +91,9 @@ filter.
 
 ## Get started with the mTLS Authentication plugin
 
-* [Add certificate authorities](/hub/kong-inc/mtls-auth/add-cert-authorities/): 
+* [Add certificate authorities](/hub/kong-inc/mtls-auth/how-to/add-cert-authorities/): 
 To use this plugin, you must add certificate authority (CA) certificates. 
 Set them up before configuring the plugin.
 * [Configuration reference](/hub/kong-inc/mtls-auth/configuration/)
 * [Basic configuration example](/hub/kong-inc/mtls-auth/how-to/basic-example/)
-* [Create manual mappings between certificate and consumer objects](/hub/kong-inc/mtls-auth/manual-mapping-cert-consumers/)
+* [Create manual mappings between certificate and consumer objects](/hub/kong-inc/mtls-auth/how-to/manual-mapping-cert-consumers/)

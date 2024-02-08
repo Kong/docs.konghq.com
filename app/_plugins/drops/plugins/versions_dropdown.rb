@@ -14,7 +14,13 @@ module Jekyll
         def url
           @url ||= begin
             release = @latest && @latest == @release ? '' : @release
-            @page.dropdown_url.gsub('VERSION', release).gsub('//', '/')
+            url = @page.dropdown_url.gsub('VERSION', release).gsub('//', '/')
+
+            if page_exists?(url)
+              url
+            else
+              @page.base_url
+            end
           end
         end
 
@@ -28,6 +34,12 @@ module Jekyll
           else
             @release
           end
+        end
+
+        private
+
+        def page_exists?(url)
+          !@page.site.pages.detect { |p| p.url == url }.nil?
         end
       end
 
@@ -65,10 +77,9 @@ module Jekyll
         end
 
         def gateway_releases
-          @gateway_releases ||= Jekyll::GeneratorSingleSource::Product::Edition
-                                .new(edition: 'gateway', site: @page.site)
-                                .releases
-                                .select { |r| extn_releases.include?(r.value) }
+          @gateway_releases ||= @page.site.data.dig('editions', 'gateway')
+                                     .releases
+                                     .select { |r| extn_releases.include?(r.value) }
         end
       end
     end

@@ -90,7 +90,7 @@ the [PDK reference](/gateway/{{page.release}}/plugin-development/pdk/), and the 
 ## Packages and modes
 
 There are two ways to deploy {{site.base_gateway}}: Managed with {{ site.konnect_saas }}, and self-managed. If you're trying
-out {{site.base_gateway}} for the first time, we recommends starting with [{{ site.konnect_saas }}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-mode-overview).
+out {{site.base_gateway}} for the first time, we recommend starting with [{{ site.konnect_saas }}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-mode-overview).
 
 ### {{site.konnect_short_name}}
 
@@ -130,7 +130,7 @@ with added functionality.
   {% if_version lte:3.4.x %}
     * [Dev Portal](#kong-dev-portal)
     * [Vitals](#kong-vitals){% endif_version %}
-    * [RBAC](/gateway/{{page.release}}/admin-api/rbac/reference/)
+    * [RBAC](/gateway/api/admin-ee/latest/#/rbac/get-rbac-users)
     * [Enterprise plugins](/hub/)
 
 You can manage {{site.ee_product_name}} in Free or Enterprise mode with Kong's

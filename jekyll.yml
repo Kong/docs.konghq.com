@@ -210,6 +210,8 @@ konnect_saas: Kong Konnect
 package_name: Kong Konnect
 company_name: Kong Inc.
 mesh_product_name: Kong Mesh
+deck_product_name: decK
+contributing_product_name: Contribution Guidelines
 # Mesh specific config
 mesh_namespace: kong-mesh-system
 mesh_cp_name: kong-mesh-control-plane

@@ -28,7 +28,7 @@ categories:
 
 For example, an Ingress is translated directly into a Kong route, and a
 KongConsumer is translated directly into a
-[Kong consumer](/gateway/latest/admin-api/#consumer-object). A Secret containing
+[Kong consumer](/gateway/api/admin-ee/latest/#/Consumers/list-consumer/). A Secret containing
 an authentication plugin credential is _not_ translated directly: it is only
 translated into Kong configuration if a KongConsumer resource references it.
 
@@ -44,7 +44,7 @@ Most resources use a [kubernetes.io/ingress-class annotation][class-annotation]
 to indicate their class. There are several exceptions:
 
 - v1 Ingress resources have a [dedicated `ingressClassName` field][ingress-class-name].
-- Knative Services [use the class specifed][knative-class] by the
+- Knative Services [use the class specified][knative-class] by the
   `ingress.class` key of the Knative installation's `config-network` ConfigMap.
   You can optionally [override this on a per-Service basis][knative-override]
   by adding a `networking.knative.dev/ingress.class` annotation to the Service.

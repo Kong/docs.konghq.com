@@ -397,12 +397,12 @@ config:
 The following credential types can be provisioned using the KongCredential
 resource:
 
-- `key-auth` for [Key authentication](https://docs.konghq.com/hub/kong-inc/key-auth/)
-- `basic-auth` for [Basic authentication](https://docs.konghq.com/hub/kong-inc/basic-auth/)
-- `hmac-auth` for [HMAC authentication](http://docs.konghq.com/hub/kong-inc/hmac-auth/)
-- `jwt` for [JWT based authentication](http://docs.konghq.com/hub/kong-inc/jwt/)
-- `oauth2` for [Oauth2 Client credentials](https://docs.konghq.com/hub/kong-inc/oauth2/)
-- `acl` for [ACL group associations](https://docs.konghq.com/hub/kong-inc/acl/)
+- `key-auth` for [Key authentication](/hub/kong-inc/key-auth/)
+- `basic-auth` for [Basic authentication](/hub/kong-inc/basic-auth/)
+- `hmac-auth` for [HMAC authentication](/hub/kong-inc/hmac-auth/)
+- `jwt` for [JWT based authentication](/hub/kong-inc/jwt/)
+- `oauth2` for [Oauth2 Client credentials](/hub/kong-inc/oauth2/)
+- `acl` for [ACL group associations](/hub/kong-inc/acl/)
 
 Please ensure that all fields related to the credential in Kong
 are present in the definition of KongCredential's `config` section.
@@ -412,8 +412,8 @@ Please refer to the
 guide for details on how to use this resource.
 
 [k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/
-[kong-consumer]: /gateway/latest/admin-api/#consumer-object
-[kong-plugin]: /gateway/latest/admin-api/#plugin-object
-[kong-upstream]: /gateway/latest/admin-api/#upstream-object
-[kong-service]: /gateway/latest/admin-api/#service-object
-[kong-route]: /gateway/latest/admin-api/#route-object
+[kong-consumer]: /gateway/api/admin-ee/latest/#/Consumers/list-consumer/
+[kong-plugin]: /gateway/api/admin-ee/latest/#/Plugins/list-plugin
+[kong-upstream]: /gateway/api/admin-ee/latest/#/Upstreams/list-upstream/
+[kong-service]: /gateway/api/admin-ee/latest/#/Services/list-service/
+[kong-route]: /gateway/api/admin-ee/latest/#/Routes/list-route/

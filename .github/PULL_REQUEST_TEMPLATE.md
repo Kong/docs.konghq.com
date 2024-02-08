@@ -12,10 +12,16 @@ Preview link: <!-- Netlify will generate a preview link after PR is opened. Add 
 ### Checklist 
 
 - [ ] Review label added <!-- (see below) -->
-- [ ] For unreleased versions: [conditional version tags](https://docs.konghq.com/contributing/conditional-rendering/#conditionally-render-content-by-version) added, if applicable.
+- [ ] [Conditional version tags](https://docs.konghq.com/contributing/conditional-rendering/#conditionally-render-content-by-version) added, if applicable.
 
-    For example, if this change is for an upcoming 3.6 release, surround your change in `{% if_version gte:3.6.x %} <content> {% endif_version %}` tags (or `if_plugin_version` tags for plugins). 
+For example, if this change is for an upcoming 3.6 release, enclose your content in `{% if_version gte:3.6.x %} <content> {% endif_version %}` tags (or `if_plugin_version` tags for plugins). 
 
+Use any of the following keys:
+* `gte:<version>` - greater than or equal to a specific version
+* `lte:<version>` - less than or equal to a specific version
+* `eq:<version>` - exactly equal to a specific version
+
+You can do the same for older versions.
 
 <!-- !!! Only Kong employees can add labels due to a GitHub limitation. If you're an OSS contributor, thank you! The maintainers will label this PR for you !!! -->
 
