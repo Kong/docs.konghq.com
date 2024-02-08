@@ -166,7 +166,7 @@ Batch process spans
 * **processor** (`function`):  a function that accecpt a span as the parameter
 
 
-{% if_version gte:3.3.x lte:3.5.x %}
+{% if_version gte:3.3.x %}
 ## span:set_should_sample(should_sample)
 
 Update the value of should_sample for all spans
