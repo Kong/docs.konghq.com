@@ -32,34 +32,34 @@ When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.
 1. Save the PAT to a file and run: 
 
     ```sh
-    deck ping
+    deck gateway ping
     --konnect-token-file /PATH/TO/FILE
     ```
 
-1. Run [`deck dump`](/deck/latest/reference/deck_dump/) to export configuration into a file:
+1. Run [`deck gateway dump`](/deck/latest/reference/deck_gateway_dump/) to export configuration into a file:
 
     ```sh
-    deck dump
+    deck gateway dump
     ```
 
     This command outputs {{site.base_gateway}}'s object configuration into
-    `kong.yaml` by default. You can also set `--output-file /path/{FILENAME}.yaml`
+    `-` to write to stdout by default. You can also set `--output-file /path/{FILENAME}.yaml`
     to set a custom filename or location.
 
-1. Preview the import with the [`deck diff`](/deck/latest/reference/deck_diff/)
+1. Preview the import with the [`deck gateway diff`](/deck/latest/reference/deck_gateway_diff/)
 command, pointing to the control plane that you want to target:
 
     ```sh
-    deck diff --konnect-control-plane-name default
+    deck gateway diff --konnect-control-plane-name default
     ```
 
     If you're not using the default `kong.yaml` file, specify the filename and
     path with `--state /path/{FILENAME}.yaml`.
 
-1. If you're satisfied with the preview, run [`deck sync`](/deck/latest/reference/deck_sync/):
+1. If you're satisfied with the preview, run [`deck gateway sync`](/deck/latest/reference/deck_gateway_sync/):
 
     ```sh
-    deck sync --konnect-control-plane-name default
+    deck gateway sync --konnect-control-plane-name default
     ```
 
     If you don't specify the `--konnect-control-plane-name` flag, decK targets the
