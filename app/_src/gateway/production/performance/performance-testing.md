@@ -8,7 +8,7 @@ As of {{site.base_gateway}} 3.6.x, Kong now publishes performance results on {{s
 
 In addition to viewing our performance test results, you can use [our public test suite](https://github.com/Kong/kong-gateway-performance-benchmark/tree/main) to conduct your own performance tests with {{site.base_gateway}}.
 
-## {{site.base_gateway}} peformance testing method and results for {{page.release}}
+## {{site.base_gateway}} performance testing method and results for {{page.release}}
 
 Kong tests performance results for {{site.base_gateway}} using [our public test suite](https://github.com/Kong/kong-gateway-performance-benchmark/tree/main). The following sections explain the test methodology, results, and configuration.  
 
@@ -35,7 +35,7 @@ The performance tests cover a number of baseline configurations and common use c
 | ----------------------- | --------------------------- | ------------------------- | -------- | -------- |
 | Basic Kong Proxy        | 1 route, 0 consumers       | 137850.4                  | 6.25     | 3.82     |
 | Basic Kong Proxy        | 100 routes, 0 consumers    | 132302.8                  | 6.55     | 3.99     |
-| Rate Llimit and no auth | 1 route, 0 consumers       | 116413.8                  | 7.59     | 4.56     |
+| Rate limit and no auth | 1 route, 0 consumers       | 116413.8                  | 7.59     | 4.56     |
 | Rate limit and no auth    | 100 routes, 0 consumers    | 111615.8                  | 7.62     | 4.54     |
 | Rate limit and key auth   | 1 route, 1 consumer         | 102261.6                  | 8.47     | 5.05     |
 | Rate limit and key auth   | 100 routes, 100 consumers   | 96289.6                   | 8.82     | 5.25     |
@@ -62,6 +62,6 @@ Once the cluster is generated, you can apply the [provided `yaml`](https://githu
 From there, you can use the [included bash scripts to run K6 tests](https://github.com/Kong/kong-gateway-performance-benchmark/tree/main/deploy-k8s-resources/k6_tests). After the tests complete, you can `port-forward` into the cluster and view the Grafana dashboard with the performance results.
 
 ## More information
-* [Establish a Kong Gateway performance benchmark](/production/performance/benchmark): Learn how to optimize {{site.base_gateway}} for performance.
+* [Establish a {{site.base_gateway}} performance benchmark](/production/performance/benchmark): Learn how to optimize {{site.base_gateway}} for performance.
 
 
