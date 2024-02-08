@@ -6,7 +6,7 @@ title: Getting started with AI Proxy
 ## Using the plugin
 
 You can follow the [basic examples](/hub/kong-inc/ai-proxy/how-to/basic-example/), enabling
-Kong to proxy requests to your chosen AI/LLM service.
+{{site.base_gateway}} to proxy requests to your chosen AI/LLM service.
 
 ### Prerequisites
 

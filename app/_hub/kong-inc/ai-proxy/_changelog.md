@@ -2,4 +2,4 @@
 
 ### {{site.base_gateway}} 3.6.x
 
-* Introduced the *AI Proxy* plugin, which can mediate request and response formats, and authentication, between users and a number of supported Large Language Model AI services and models.
+* Introduced the AI Proxy plugin, which can mediate request and response formats, as well as authentication between users. This plugin supports a variety of Large Language Model (LLM) AI services.

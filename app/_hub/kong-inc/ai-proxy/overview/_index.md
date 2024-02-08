@@ -21,13 +21,13 @@ See the [sample OpenAPI specification](https://github.com/kong/kong/blob/master/
 
 Set up connections to an AI service using:
 * The backend URL (unless it's a self-hosted model, in which case set [`config.model.options.upstream_url`](/hub/kong-inc/ai-proxy/#configmodel-options-upstream_url)).
-* API key.
+* The API key
 
 The plugin can then do the following:
-* Request and response body transformation.
-* Capturing and storing metrics from the upstream responses into normalised `kong.log` entries, which can then output via any configured logging platform (for example, [File Log](/hub/kong-inc/file-log/) or [Kafka Log](/hub/kong-inc/kafka-log/)).
+* Request and response body transformation
+* Capture and store metrics from the upstream responses into normalized `kong.log` entries, which can then output via any configured logging platform (for example, [File Log](/hub/kong-inc/file-log/) or [Kafka Log](/hub/kong-inc/kafka-log/))
 
-Flattening all of the provider formats allows for standardised manipulation of the data before and after transmission.
+Flattening all of the provider formats allows you to standardize the manipulation of the data before and after transmission.
 
 This plugin only supports REST-based full text responses.
 
