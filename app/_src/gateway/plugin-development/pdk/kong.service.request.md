@@ -226,7 +226,7 @@ Sets a header in the request to the Service with the given value.  Any existing 
 * **value** (`string|boolean|number`):  The header value. Example: "hello world".
 {% endif_version %}
 {% if_version gte:3.6.x %}
-* **of** (`array`):  strings|string|boolean|number value The header value. Example: "hello world".
+* **value** (`array of strings|string|boolean|number`) The header value. Example: "hello world".
 {% endif_version %}
 **Returns**
 
@@ -264,7 +264,7 @@ Adds a request header with the given value to the request to the Service.  Unlik
 * **value** (`string|number|boolean`):  The header value. Example: "no-cache".
 {% endif_version %}
 {% if_version gte:3.6.x %}
-* **of** (`array`):  strings|string|number|boolean value The header value. Example: "no-cache".
+* **value** (`array of strings|string|number|boolean`): The header value. Example: "no-cache".
 {% endif_version %}
 **Returns**
 

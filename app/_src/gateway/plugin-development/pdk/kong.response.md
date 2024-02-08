@@ -271,7 +271,7 @@ Sets a response header with the given value.  This function overrides any
 * **value** (`string|number|boolean`):  The new value for the header.
 {% endif_version %}
 {% if_version gte:3.6.x %}
-* **of** (`array`):  strings|string|number|boolean value The new value for the header.
+* **value** (`array of strings|string|number|boolean`): The new value for the header.
 {% endif_version %}
 **Returns**
 
@@ -312,7 +312,7 @@ Adds a response header with the given value.  Unlike
 * **value** (`string|number|boolean`):  The header value.
 {% endif_version %}
 {% if_version gte:3.6.x %}
-* **of** (`array`):  strings|string|number|boolean value The header value.
+* **value** (`array of strings|string|number|boolean`): The header value.
 {% endif_version %}
 **Returns**
 
