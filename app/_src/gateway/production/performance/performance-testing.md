@@ -16,38 +16,38 @@ Kong tests performance results for {{site.base_gateway}} using [our public test 
 
 The performance tests cover a number of baseline configurations and common use cases of {{site.base_gateway}}. The following describes the test cases used and the configuration methodology: 
 
-* **Environment**: Kubernetes environment on AWS infrastructure
+* **Environment**: Kubernetes environment on AWS infrastructure.
 * **Test use cases**: 
-    * Basic {{site.base_gateway}} proxy
-    * [Rate limiting](/hub/kong-inc/rate-limiting/) a request with no authentication
-    * Authentication using the [basic auth plugin](/hub/kong-inc/basic-auth/) and rate limiting
-    * Authentication using the [key auth plugin](/hub/kong-inc/key-auth/) and rate limiting
+    * Basic {{site.base_gateway}} proxy.
+    * [Rate limiting](/hub/kong-inc/rate-limiting/) a request with no authentication.
+    * Authentication using the [Basic Auth plugin](/hub/kong-inc/basic-auth/) and rate limiting.
+    * Authentication using the [Key Auth plugin](/hub/kong-inc/key-auth/) and rate limiting.
 * **Routes and consumers**: Each case was tested with two different options: one with one route and one consumer, and one with 100 routes and 100 consumers, for a total of eight test cases. For test cases that didn't require authentication, no consumers were used.
-* **Traffic distribution**: Normal distribution across both routes and consumers
-* **Protocol**: HTTPS only
+* **Traffic distribution**: Normal distribution across both routes and consumers.
+* **Protocol**: HTTPS only.
 * **Sample size**: Each test case was run five times, each for a duration of 15 minutes. The results are an average of the five different test runs.
 
 ### {{site.base_gateway}} performance benchmark results
 
 {% if_version eq:3.6.x %}
 
-| Test type               | Number of routes/consumers  | Requests per second (RPS) | P99 (ms) | P95 (ms) |
-| ----------------------- | --------------------------- | ------------------------- | -------- | -------- |
-| Basic Kong Proxy        | 1 route, 0 consumers       | 137850.4                  | 6.25     | 3.82     |
-| Basic Kong Proxy        | 100 routes, 0 consumers    | 132302.8                  | 6.55     | 3.99     |
-| Rate limit and no auth | 1 route, 0 consumers       | 116413.8                  | 7.59     | 4.56     |
-| Rate limit and no auth    | 100 routes, 0 consumers    | 111615.8                  | 7.62     | 4.54     |
-| Rate limit and key auth   | 1 route, 1 consumer         | 102261.6                  | 8.47     | 5.05     |
-| Rate limit and key auth   | 100 routes, 100 consumers   | 96289.6                   | 8.82     | 5.25     |
-| Rate limit and basic auth | 1 route, 1 consumer         | 95297.8                   | 8.75     | 5.66     |
-| Rate limit and basic auth | 100 routes, 100 consumers   | 89777.4                   | 9.34     | 5.89     |
+| Test type                   | Number of routes/consumers  | Requests per second (RPS) | P99 (ms) | P95 (ms) |
+| --------------------------- | --------------------------- | ------------------------- | -------- | -------- |
+| Kong proxy with no plugins  | 1 route, 0 consumers       | 137850.4                  | 6.25     | 3.82     |
+| Kong proxy with no plugins  | 100 routes, 0 consumers    | 132302.8                  | 6.55     | 3.99     |
+| Rate limit and no auth      | 1 route, 0 consumers       | 116413.8                  | 7.59     | 4.56     |
+| Rate limit and no auth      | 100 routes, 0 consumers    | 111615.8                  | 7.62     | 4.54     |
+| Rate limit and key auth     | 1 route, 1 consumer         | 102261.6                  | 8.47     | 5.05     |
+| Rate limit and key auth     | 100 routes, 100 consumers   | 96289.6                   | 8.82     | 5.25     |
+| Rate limit and basic auth   | 1 route, 1 consumer         | 95297.8                   | 8.75     | 5.66     |
+| Rate limit and basic auth   | 100 routes, 100 consumers   | 89777.4                   | 9.34     | 5.89     |
 {% endif_version %}
 
 ### Test environment
 
-Kong runs these tests in AWS using EC2 machines. We used [Kubernetes taints](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) to ensure that {{site.base_gateway}} is on its own node while the load testing and observability tools are on their own separate nodes in the same cluster.
+Kong ran these tests in AWS using EC2 machines. We used [Kubernetes taints](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) to ensure that {{site.base_gateway}} is on its own node while the load testing and observability tools are on their own separate nodes in the same cluster.
 
-The {{site.base_gateway}} runs on a single dedicated instance of c5.4xlarge, and the two nodes for the observability stack and K6 ran on dedicated c5.metal instances. We used the metal instances for the observability load generation toolchain to ensure they are not resource constrained in any way. Since [K6 is very resource demanding](https://k6.io/docs/testing-guides/running-large-tests/#hardware-considerations) when generating a high amount of traffic during tests, we observed that using smaller or less powerful instances for the toolchain caused the observability load generation tools to be a bottleneck for {{site.base_gateway}} performance.
+The {{site.base_gateway}} ran on a single dedicated instance of c5.4xlarge, and the two nodes for the observability stack and K6 ran on dedicated c5.metal instances. We used the metal instances for the observability load generation toolchain to ensure they aren't resource constrained in any way. Since [K6 is very resource demanding](https://k6.io/docs/testing-guides/running-large-tests/#hardware-considerations) when generating a high amount of traffic during tests, we observed that using smaller or less powerful instances for the toolchain caused the observability load generation tools to be a bottleneck for {{site.base_gateway}} performance.
 
 ### Test configuration
 
