@@ -41,15 +41,21 @@ For non-`default` control planes, app registration is supported using the `konne
 To enable app registration with key authentication, from the {{site.konnect_short_name}} menu, click {% konnect_icon api-product %} **API Products**, select a
 service, and follow these steps:
 
-1. Click **Product Versions** to select a version.
+1. Click **Product Versions** to select a version
 
 2. Select **Disabled** under **App Registration**
 
-3. Select `key-auth` from the **Auth Type** list.
+3. Select `Key Auth` from the **Auth Strategy** list
 
-4. Optional: click to enable [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) for application registration requests.
+4. Toggle the **Application registration enabled** button to true
 
-5. Click **Enable**.
+5. Optional: click to enable [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) for application registration requests
+
+6. Click save to enable application registration and save the auth strategy for that product version
+
+7. Click **Status** and update it to **Published** in order to enable developers to begin registering to your API Product version
+
+8. Click **Enable**
 
     This version of the API products now includes a
     read-only entry for the `konnect-application-auth` plugin.
@@ -64,20 +70,55 @@ support for {{site.base_gateway}} versions less than 3.0.
 To enable app registration with OpenID Connect, from the {{site.konnect_short_name}} menu, click {% konnect_icon api-product %} **API Products**, select a
 service, and follow these steps:
 
+If you already have an OIDC Auth Strategy created in the **Application Auth**:
 
-1. Click **Versions** to select a version.
+1. In your API Product, click **Versions** to select a version
 
 2. Select **Disabled** under **App Registration**
 
-3. Select `openid-connect` from the **Auth Type** list.
+3. Select the name of your auth strategy from the **Auth Strategy** list
 
-   Refer to the [configuration parameters section](#openid-config-parameters) for information
-   about each field.
+4. Optional: click to enable [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) for application registration requests
 
-4. Click **Enable**.
+5. Toggle the **Application registration enabled** button to True
 
-    This versions of this service packages now includes
-    read-only entries for the `konnect-application-auth` and `openid-connect` plugins.
+6. Click **Save**
+
+
+If you do _not_ already have an OIDC Auth Strategy created, we will first create an OIDC Auth strategy, and then apply it to our API Product:
+
+
+1. In the Dev Portal menu, navigate to the the Application Auth Strategy tab. Select New Auth Strategy to create an auth strategy. Please refer to the [configuration parameters section]([url](https://docs.konghq.com/konnect/dev-portal/applications/enable-app-reg/#openid-config-parameters)) for more information about each field.
+
+2. Enter a Name to be seen only in Konnect and a Display Name that will be displayed on your Portal
+
+3. In the Auth Type dropdown menu select `OpenID-Connect`. Enter the Issuer URL for your OIDC tenant
+
+4. Enter any scopes your developers may need access to (e.g. openid, read:account_information, write:account_information, etc). Note the required scopes may differ depending on your IdP
+
+5. Enter the Credential Claims which will match the client ID of the corresponding application in your IdP
+
+6. Select the relevant Auth Methods you need (client_credentials, bearer, session, etc)
+
+7. Click **Save**
+
+8. In your API Product, click **Versions** to select a version
+
+9. Select **Disabled** under **App Registration**
+
+10. Select the name of your auth strategy from the **Auth Strategy** list
+
+11. Optional: click to enable [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) for application registration requests
+
+12. Toggle the **Application registration enabled** button to be True
+
+13. Click **Save**
+
+
+
+
+
+
 
 {:.note}
 > **Note:** If the API product version is in the `default` control plane group, it will
@@ -98,20 +139,22 @@ In the `default` control plane group, **Credential claim** is used as a **Consum
    | `Auto Approve`| **Default: disabled** <br>Automatically approve developer application requests for an application.| **False**
 
    
-## Disable application registration for a service {#disable}
+## Disable application registration for an API Product version {#disable}
 
 Disabling application registration removes all plugins that were initially enabled through application registration for this service.
 To remove a plugin by disabling application registration, follow these steps:
 
-1. Click a service to open the **Service** menu.
+1. Select an API Product from the **API Product** menu
 
-2. From the **Service** menu, select **Version** to display all of the registered versions.
+2. Select **Product Versions** to display all of relevant versions
 
-3. Click the version you intend to disable.
+3. Click the version you intend to disable
 
-4. From the **Version actions** drop-down menu, select **Disable app registration**.
+4. Select **Enabled** under **App Registration**
 
-5. Click **Disable** from the pop-up modal.
+5. Toggle the "Application registration enabled" button to be False
+
+6. Click **Save** to apply your changes
 
 
 You can
