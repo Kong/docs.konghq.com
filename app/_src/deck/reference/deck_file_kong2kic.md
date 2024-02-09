@@ -4,9 +4,9 @@ source_url: https://github.com/Kong/deck/tree/main/cmd/file_kong2kic.go
 content_type: reference
 ---
 
-Convert decK state files to Kong Ingress Controller kubernetes manifests.
+Convert decK state files to {{site.kic_product_name}} kubernetes manifests.
 
-The `kong2kic` subcommand transforms Kong's configuration files, written in the deck format, into Kubernetes manifests suitable for the Kong Ingress Controller. This tool serves as a bridge for deploying API configurations from deck files directly to a Kubernetes cluster running Kong Ingress Controller, facilitating  integration into the final stages of an APIOps pipeline. Essentially, `kong2kic` translates the desired API configurations into a format that `kubectl` can deploy, ensuring that the API's intended state is accurately reflected in the Kubernetes environment.
+The `kong2kic` subcommand transforms Kong's configuration files, written in the deck format, into Kubernetes manifests suitable for the {{site.kic_product_name}}. This tool serves as a bridge for deploying API configurations from deck files directly to a Kubernetes cluster running {{site.kic_product_name}}, facilitating  integration into the final stages of an APIOps pipeline. Essentially, `kong2kic` translates the desired API configurations into a format that `kubectl` can deploy, ensuring that the API's intended state is accurately reflected in the Kubernetes environment.
 
 `kong2kic` integrates API management within kubernetes environments, offering support for both Gateway API and Ingress API standards.
 Currently supports the HTTP/HTTPS protocol.
