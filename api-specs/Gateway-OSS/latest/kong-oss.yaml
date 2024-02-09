@@ -160,6 +160,16 @@ components:
         example: warn
       description: Log levels are set in Kong's configuration. Log levels increase in order of their severity
   schemas:
+    UnauthorizedError:
+      type: object
+      properties:
+        status:
+          type: integer
+        message:
+          type: string
+      required:
+        - status
+        - message
     CA-Certificate:
       description: A CA certificate object represents a trusted CA. These objects are used by Kong to verify the validity of a client or server certificate. CA Certificates can be both tagged and filtered by tags.
       example:
@@ -2603,6 +2613,28 @@ components:
                   - database-credentials
                   - data-plane
   responses:
+    HTTP401Error:
+      content:
+        application/json:
+          examples:
+            DuplicateApiKey:
+              summary: Duplicate API key found
+              value:
+                message: Duplicate API key found
+                status: 401
+            InvalidAuthCred:
+              summary: Invalid authentication credentials
+              value:
+                message: Unauthorized
+                status: 401
+            NoAPIKey:
+              summary: No API key found
+              value:
+                message: No API key found in request
+                status: 401
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+      description: Unauthorized
     get-endpoints:
       description: Example response
       content:
@@ -3565,6 +3597,8 @@ paths:
           description: The created certificate object.
         '400':
           description: Invalid CA certificate
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Create a new CA certificate
       tags:
         - CA Certificates
@@ -3577,6 +3611,8 @@ paths:
       responses:
         '204':
           description: Successfully deleted CA Certificate or the resource didn't exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Delete a CA Certificate
       tags:
         - CA Certificates
@@ -3601,6 +3637,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/CA-Certificate'
           description: The specified CA certificate exists in the system, and the response includes details about the certificate.
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Fetch a CA certificate
@@ -3625,6 +3663,8 @@ paths:
               schema:
                 type: object
           description: Invalid CA Certificate
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Update a CA Certificate
@@ -3648,6 +3688,8 @@ paths:
               schema:
                 type: object
           description: Invalid CA Certificate
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Update a CA Certificate
       tags:
         - CA Certificates
@@ -3676,6 +3718,8 @@ paths:
                   offset:
                     $ref: '#/components/schemas/pagination-offset-response'
           description: A successful response listing Certificates
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: List all certificates
       tags:
         - Certificates
@@ -3698,6 +3742,8 @@ paths:
               schema:
                 type: object
           description: Invalid Certificate
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Create a new Certificate
       tags:
         - Certificates
@@ -3720,6 +3766,8 @@ paths:
       responses:
         '204':
           description: Successfully deleted Certificate or the resource didn't exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Delete a Certificate
       tags:
         - Certificates
@@ -3733,6 +3781,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Certificate'
           description: HTTP 200 OK
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Fetch a Certificate
@@ -3764,6 +3814,8 @@ paths:
           description: Successfully updated Certificate
         '400':
           description: Invalid Certificate
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Update a Certificate
@@ -3796,6 +3848,8 @@ paths:
               schema:
                 type: object
           description: Invalid Certificate
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Update a Certificate
       tags:
         - Certificates
@@ -3813,6 +3867,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/sni-response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: List SNIs associated with a certificate
       tags:
         - SNIs
@@ -3832,6 +3888,8 @@ paths:
               schema:
                 type: object
           description: Invalid SNI
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Create a new SNI associated with a Certificate
       tags:
         - SNIs
@@ -3847,6 +3905,8 @@ paths:
       responses:
         '204':
           description: Successfully deleted SNI or the resource didn't exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Delete a an SNI associated with a Certificate
       tags:
         - SNIs
@@ -3860,6 +3920,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/SNI'
           description: Successfully fetched SNI
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Fetch an SNI associated with a certificate
@@ -3886,6 +3948,8 @@ paths:
               schema:
                 type: object
           description: Invalid SNI
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Update SNI associated to a certificate
@@ -3916,6 +3980,8 @@ paths:
               schema:
                 type: object
           description: Invalid SNI
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Upsert an SNI associated with a certificate
       tags:
         - SNIs
@@ -3958,6 +4024,8 @@ paths:
                   offset:
                     $ref: '#/components/schemas/pagination-offset-response'
           description: A successful response listing Consumers
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: List all Consumers
       tags:
         - Consumers
@@ -3977,6 +4045,8 @@ paths:
               schema:
                 type: object
           description: Invalid Consumer
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Create a new Consumer
       tags:
         - Consumers
@@ -3989,6 +4059,8 @@ paths:
       responses:
         '204':
           description: Successfully deleted Consumer or the resource didn't exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Delete a Consumer
       tags:
         - Consumers
@@ -4002,6 +4074,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Consumer'
           description: Successfully fetched Consumer
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Fetch a Consumer
@@ -4023,6 +4097,8 @@ paths:
               schema:
                 type: object
           description: Invalid Consumer
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Update a Consumer
@@ -4047,6 +4123,8 @@ paths:
           $ref: '#/components/responses/consumer-response-data'
         '400':
           description: Bad Request
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Not Found
       summary: Update a Consumer
@@ -4091,6 +4169,8 @@ paths:
               schema:
                 type: object
           description: Invalid Plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Create a new Plugin associated with a Consumer
       tags:
         - Plugins
@@ -4105,6 +4185,8 @@ paths:
       responses:
         '204':
           description: Successfully deleted Plugin or the resource didn't exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Delete a Plugin associated with a Consumer
       tags:
         - Plugins
@@ -4118,6 +4200,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Plugin'
           description: Successfully fetched Plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Fetch a Plugin associated with a Consumer
@@ -4135,6 +4219,8 @@ paths:
               schema:
                 type: object
           description: Invalid Plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Update a Plugin associated with a Consumer
@@ -4148,6 +4234,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/plugin-response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Upsert a Plugin associated with a Consumer
       tags:
         - Plugins
@@ -4169,6 +4257,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/key-set-response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: List all Key-sets
       tags:
         - Key-sets
@@ -4180,6 +4270,8 @@ paths:
           $ref: '#/components/responses/key-set-response'
         '400':
           description:  Returned if the request contains invalid data.
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Create a new Key-set
       tags:
         - Key-sets
@@ -4195,6 +4287,8 @@ paths:
       responses:
         '204':
           description: Successfully deleted Key-set or the resource didn't exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Delete a Key-set
       tags:
         - Key-sets
@@ -4206,6 +4300,8 @@ paths:
           $ref: '#/components/responses/key-set-response'
         '404':
           description: Resource does not exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Fetch a Key-set
       tags:
         - Key-sets
@@ -4232,6 +4328,8 @@ paths:
               schema:
                 type: object
           description: Invalid Key-set
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Update a Key-set
@@ -4254,6 +4352,8 @@ paths:
               schema:
                 type: object
           description: Invalid Key-set
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Update a Key-set
       tags:
         - Key-sets
@@ -4282,6 +4382,8 @@ paths:
                   offset:
                     $ref: '#/components/schemas/pagination-offset-response'
           description: A successful response listing Keys
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: List all Keys
       tags:
         - Keys
@@ -4304,6 +4406,8 @@ paths:
               schema:
                 type: object
           description: Invalid Key
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Create a new Key
       tags:
         - Keys
@@ -4316,6 +4420,8 @@ paths:
       responses:
         '204':
           description: Successfully deleted Key or the resource didn't exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Delete a Key
       tags:
         - Keys
@@ -4341,6 +4447,8 @@ paths:
                     set:
                       id: b86b331c-dcd0-4b3e-97ce-47c5a9543031
           description: Successfully fetched Key
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Fetch a Key
@@ -4379,6 +4487,8 @@ paths:
               schema:
                 type: object
           description: Invalid Key
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Update a Key
@@ -4414,6 +4524,8 @@ paths:
               schema:
                 type: object
           description: Invalid Key
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Upsert a Key
       tags:
         - Keys
@@ -4432,6 +4544,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/plugin-response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: List all Plugins
       tags:
         - Plugins
@@ -4474,6 +4588,8 @@ paths:
               schema:
                 type: object
           description: Invalid Plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Create a new Plugin
       tags:
         - Plugins
@@ -4486,6 +4602,8 @@ paths:
       responses:
         '204':
           description: Successfully deleted Plugin or the resource didn't exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Delete a Plugin
       tags:
         - Plugins
@@ -4499,6 +4617,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Plugin'
           description: Successfully fetched Plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Fetch a Plugin
@@ -4540,6 +4660,8 @@ paths:
               schema:
                 type: object
           description: Invalid Plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Update a Plugin
@@ -4583,6 +4705,8 @@ paths:
               schema:
                 type: object
           description: Invalid Plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Upsert a Plugin
       tags:
         - Plugins
@@ -4616,6 +4740,8 @@ paths:
                   offset:
                     $ref: '#/components/schemas/pagination-offset-response'
           description: A successful response listing routes
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: List all routes
       tags:
         - Routes
@@ -4635,6 +4761,8 @@ paths:
               schema:
                 type: object
           description: Invalid route
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Create a new route
       tags:
         - Routes
@@ -4651,6 +4779,8 @@ paths:
       responses:
         '204':
           description: Successfully deleted route or the resource didn't exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Delete a route
       tags:
         - Routes
@@ -4664,6 +4794,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Route'
           description: Successfully fetched route
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Fetch a route
@@ -4688,6 +4820,8 @@ paths:
               schema:
                 type: object
           description: Invalid route
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Update a route
@@ -4715,6 +4849,8 @@ paths:
               schema:
                 type: object
           description: Invalid route
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Update a route
       tags:
         - Routes
@@ -4742,6 +4878,8 @@ paths:
                   offset:
                     $ref: '#/components/schemas/pagination-offset-response'
           description: A successful response listing Plugins
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: List all Plugins associated with a route
       tags:
         - Plugins
@@ -4775,6 +4913,8 @@ paths:
                       - http
                       - https
           description: Successfully created Plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '400':
           content:
             application/json:
@@ -4801,6 +4941,8 @@ paths:
       responses:
         '204':
           description: Successfully deleted Plugin or the resource didn't exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Delete a Plugin associated with a route
       tags:
         - Plugins
@@ -4827,6 +4969,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Plugin'
           description: Successfully fetched Plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Fetch a Plugin associated with a route
@@ -4848,6 +4992,8 @@ paths:
               schema:
                 type: object
           description: Invalid Plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Update a Plugin associated with a route
@@ -4871,6 +5017,8 @@ paths:
               schema:
                 type: object
           description: Invalid Plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Upsert a Plugin associated with a route
       tags:
         - Plugins
@@ -4899,6 +5047,8 @@ paths:
                 type: object
                 properties: {}
           description: A successful response listing services
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: List all services
       tags:
         - Services
@@ -4918,6 +5068,8 @@ paths:
               schema:
                 type: object
           description: Invalid service
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Create a new service
       tags:
         - Services
@@ -4937,6 +5089,8 @@ paths:
       responses:
         '204':
           description: Successfully deleted service or the resource didn't exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Delete a service
       tags:
         - Services
@@ -4950,6 +5104,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Service'
           description: Successfully fetched service
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Fetch a service
@@ -4978,6 +5134,8 @@ paths:
               schema:
                 type: object
           description: Invalid service
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Update a service
@@ -5008,6 +5166,8 @@ paths:
               schema:
                 type: object
           description: Invalid service
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Upsert a service
       tags:
         - Services
@@ -5054,6 +5214,8 @@ paths:
               schema:
                 type: object
           description: Invalid Plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Create a new Plugin associated with a service
       tags:
         - Plugins
@@ -5068,6 +5230,8 @@ paths:
       responses:
         '204':
           description: Successfully deleted Plugin or the resource didn't exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Delete a plugin associated with a service
       tags:
         - Plugins
@@ -5083,6 +5247,8 @@ paths:
           description: Successfully fetched Plugin
         '404':
           description: Resource does not exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Fetch a Plugin associated with a service
       tags:
         - Plugins
@@ -5102,6 +5268,8 @@ paths:
               schema:
                 type: object
           description: Invalid Plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Update a plugin associated with a service
@@ -5125,6 +5293,8 @@ paths:
               schema:
                 type: object
           description: Invalid Plugin
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Upsert a plugin associated with a service
       tags:
         - Plugins
@@ -5175,6 +5345,8 @@ paths:
                           id: bd380f99-659d-415e-b0e7-72ea05df3218
                     offset: string
           description: A successful response listing routes
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: List all routes associated with a service
       tags:
         - Routes
@@ -5214,6 +5386,8 @@ paths:
               schema:
                 type: object
           description: Invalid route
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Create a new route associated with a service
       tags:
         - Routes
@@ -5228,6 +5402,8 @@ paths:
       responses:
         '204':
           description: Successfully deleted route or the resource didn't exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Delete a route associated with a service
       tags:
         - Routes
@@ -5254,6 +5430,8 @@ paths:
                     service:
                       id: bd380f99-659d-415e-b0e7-72ea05df3218
           description: Successfully fetched route
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Fetch a route associated with a service
@@ -5288,6 +5466,8 @@ paths:
               schema:
                 type: object
           description: Invalid route
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Update a route associated with a service
@@ -5324,6 +5504,8 @@ paths:
               schema:
                 type: object
           description: Invalid route
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Upsert a route associated with a service
       tags:
         - Routes
@@ -5344,6 +5526,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/sni-response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: List all SNIs
       tags:
         - SNIs
@@ -5359,6 +5543,8 @@ paths:
               schema:
                 type: object
           description: Invalid SNI
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Create a new SNI
       tags:
         - SNIs
@@ -5371,6 +5557,8 @@ paths:
       responses:
         '204':
           description: Successfully deleted SNI or the resource didn't exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Delete an SNI
       tags:
         - SNIs
@@ -5380,6 +5568,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/sni-response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Fetch an SNI
@@ -5397,6 +5587,8 @@ paths:
               schema:
                 type: object
           description: Invalid SNI
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Update an SNI
@@ -5416,6 +5608,8 @@ paths:
               schema:
                 type: object
           description: Invalid SNI
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Update an SNI
       tags:
         - SNIs
@@ -5517,6 +5711,8 @@ paths:
                         slots: 10000
                     offset: string
           description: A successful response listing Upstreams
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: List all Upstreams
       tags:
         - Upstreams
@@ -5537,6 +5733,8 @@ paths:
               schema:
                 type: object
           description: Invalid Upstream
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Create a new Upstream
       tags:
         - Upstreams
@@ -5549,6 +5747,8 @@ paths:
       responses:
         '204':
           description: Successfully deleted Upstream or the resource didn't exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Delete an Upstream
       tags:
         - Upstreams
@@ -5562,6 +5762,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Upstream'
           description: Successfully fetched Upstream
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Fetch an Upstream
@@ -5668,6 +5870,8 @@ paths:
               schema:
                 type: object
           description: Invalid Upstream
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Update an Upstream
@@ -5783,6 +5987,8 @@ paths:
               schema:
                 type: object
           description: Invalid Upstream
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Update an Upstream
       tags:
         - Upstreams
@@ -5816,6 +6022,8 @@ paths:
                   offset:
                     $ref: '#/components/schemas/pagination-offset-response'
           description: A successful response listing Targets
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: List all Targets associated with an Upstream
       tags:
         - Targets
@@ -5854,6 +6062,8 @@ paths:
               schema:
                 type: object
           description: Invalid Target
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Create a new Target associated with an Upstream
       tags:
         - Targets
@@ -5874,6 +6084,8 @@ paths:
       responses:
         '204':
           description: Successfully deleted Target or the resource didn't exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Delete a Target associated with a an Upstream
       tags:
         - Targets
@@ -5887,6 +6099,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Target'
           description: Successfully fetched Target
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Fetch a Target associated with an Upstream
@@ -5908,6 +6122,8 @@ paths:
               schema:
                 type: object
           description: Invalid Target
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Update a target associated with an Upstream
@@ -5931,6 +6147,8 @@ paths:
               schema:
                 type: object
           description: Invalid Target
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Upsert a Target associated with an Upstream
       tags:
         - Targets
@@ -5961,6 +6179,8 @@ paths:
                   offset:
                     $ref: '#/components/schemas/pagination-offset-response'
           description: A successful response listing Vaults
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: List all Vaults
       tags:
         - Vaults
@@ -5980,6 +6200,8 @@ paths:
               schema:
                 type: object
           description: Invalid Vault
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Create a new Vault
       tags:
         - Vaults
@@ -5999,6 +6221,8 @@ paths:
       responses:
         '204':
           description: Successfully deleted Vault or the resource didn't exist
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Delete a Vault
       tags:
         - Vaults
@@ -6015,6 +6239,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Vault'
           description: Successfully fetched Vault
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Fetch a Vault
@@ -6043,6 +6269,8 @@ paths:
               schema:
                 type: object
           description: Invalid Vault
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Resource does not exist
       summary: Update a Vault
@@ -6073,6 +6301,8 @@ paths:
               schema:
                 type: object
           description: Invalid Vault
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       summary: Upsert a Vault
       tags:
         - Vaults
@@ -6088,6 +6318,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/get-endpoints'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       operationId: get-endpoints
       description: List all available endpoints provided by the Admin API.
   '/{endpoint}':
@@ -6144,6 +6376,8 @@ paths:
               schema:
                 type: string
                 example: kong/3.2.2.0-enterprise-edition
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: Endpoint does not exist
           headers: {}
@@ -6208,6 +6442,8 @@ paths:
                 example: kong/3.2.2.0-enterprise-edition
         '400':
           description: Bad Request
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       description: |
         List all the supported HTTP methods by an endpoint. This can also be used with a CORS preflight request.
       tags:
@@ -6269,8 +6505,11 @@ paths:
                           auto: true
                           timestamp: true
                           type: integer
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       operationId: get-schemas-entity
       description: Retrieve the schema of an entity. This is useful to understand what fields an entity accepts, and can be used for building third-party integrations with Kong.
+
     post:
       summary: Validate a configuration against a schema
       operationId: post-schemas-entity-validate
@@ -6290,6 +6529,8 @@ paths:
                 schema validation successful:
                   value:
                     Message: schema validation successful
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       description: |-
         Check validity of a configuration against its entity schema. This allows you to test your input before submitting a request to the entity endpoints of the Admin API.
 
@@ -6333,6 +6574,8 @@ paths:
                               type: "string"
                         required: [headers]
                     required: [add]
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       operationId: get-schemas-filters-filter_name
       description: |
         Retrieve the JSON Schema of a Proxy-Wasm filter's configuration. This is useful to understand what fields a filter accepts, and can be used for building third-party integrations to the Kong's filter chain system.
@@ -6352,6 +6595,8 @@ paths:
       responses:
         '200':
           description: OK
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       operationId: get-schemas-plugins-plugin_name
       description: |
         Retrieve the schema of a plugin's configuration. This is useful to understand what fields a plugin accepts, and can be used for building third-party integrations to the Kong's plugin system.
@@ -6378,6 +6623,8 @@ paths:
                 schema validation successful:
                   value:
                     message: schema validation successful
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       description: |-
         Check validity of a plugin configuration against the plugins entity schema. This allows you to test your input before submitting a request to the entity endpoints of the Admin API.
 
@@ -6518,6 +6765,8 @@ paths:
                       count:
                         type: integer
                         description: The total number of the Nginx worker processes.
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       operationId: get-timers
       description: Retrieve runtime stats data from [lua-resty-timer-ng](https://github.com/Kong/lua-resty-timer-ng).
   /status:
@@ -6770,6 +7019,8 @@ paths:
                       connections_handled: 15
                       connections_active: 6
                       connections_accepted: 15
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       operationId: get-status
       description: |-
         Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process, the status of the database connection, and node's memory usage.
@@ -6783,6 +7034,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/tags-response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       operationId: get-tags
       description: |-
         Returns a paginated list of all the tags in the system.
@@ -6800,6 +7053,8 @@ paths:
       responses:
         '200':
           $ref: '#/components/responses/tags-response'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       operationId: get-tags-tags
       description: |-
         Returns the entities that have been tagged with the specified tag.
@@ -6830,6 +7085,8 @@ paths:
                 log level changed:
                   value:
                     message: log level changed
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       description: |
         Change the log level of all Control Plane nodes deployed in Hybrid (CP/DP) cluster.
 
@@ -6865,6 +7122,8 @@ paths:
                 log level changed:
                   value:
                     message: log level changed
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       description: |
         Change the log level of all nodes in a cluster.
 
@@ -6899,6 +7158,8 @@ paths:
                 Example 1:
                   value:
                     message: 'log level: debug'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       operationId: get-debug-node-log-level
       description: |-
         Retrieve the current log level of a node.
@@ -6932,6 +7193,8 @@ paths:
                 log level changed:
                   value:
                     message: log level changed
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
       description: |
         Change the log level of a node.
 
@@ -6957,6 +7220,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Vault'
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
         '404':
           description: No vault named
       operationId: get-schemas-vaults-vault_name
