@@ -391,6 +391,46 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+## 3.4.3.4
+**Release Date** 2024/02/12
+
+### Features
+
+#### Core
+
+* Added support for namespaced authentication and user-defined authentication paths when using HashiCorp Vault on Kubernetes.
+
+#### Clustering
+
+* Added resilience support for homogeneous data plane deployments. Data planes can now act as importers and exporters at the same time, 
+and Kong Gateway will try to control the concurrency when exporting the config.
+
+### Fixes
+
+#### Core
+
+* Fixed an issue where workload identity didn't work for dataplane resilience.
+* Fixed an issue where the GCP backend vault would hide the error message when secrets couldn't be fetched.
+* Fixed an issue that caused spans to not be instrumented with `http.status_code` when the request was not proxied to an upstream.
+
+#### Configuration
+
+* Fixed a data loss error caused by a weakly-typed `of` function in the `declarative_config_flattened` function.
+
+#### Plugins
+
+* [**LDAP Authentication Advanced**](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
+  * Fixed some cache-related issues which caused `groups_required` to return unexpected codes after a non-200 response.
+  * Fixed an issue where, if the credential was encoded with no username, Kong Gateway would return a 500 error code.
+
+### Dependencies
+
+* Bumped OpenSSL from 3.1.4 to 3.2.1
+ [#7762](https://github.com/Kong/kong/issues/7762)
+* Bumped `resty-openssl` from 0.8.25 to 1.2.0
+ [#7741](https://github.com/Kong/kong/issues/7741)
+* Bumped `lua-resty-aws` from 1.3.5 to 1.3.6
+
 ## 3.4.3.3 
 **Release Date** 2024/01/17
 
