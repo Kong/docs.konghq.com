@@ -3441,6 +3441,20 @@ openid-connect
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
+## 2.8.4.7
+**Release Date** 2024/02/08
+
+### Fixes
+
+#### Plugins
+
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed timer-related issues where the counter syncing timer couldn't be created or destroyed properly.
+  * The plugin now creates counter syncing timers when being executed instead of at plugin creation time, which reduces meaningless error logs.
+  * The plugin now returns `info` and `log` level messages when Redis connections fail. These error messages were previously missing.
+  * The plugin now checks for query errors in the Redis pipeline.
+  * Fixed an issue where changing `sync_rate` from a value greater than 0 to 0 would clear the namespace unexpectedly.
+
 ## 2.8.4.6
 **Release Date** 2024/01/17
 
