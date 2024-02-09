@@ -62,6 +62,6 @@ Once the cluster is generated, you can apply the [provided `yaml`](https://githu
 From there, you can use the [included bash scripts to run K6 tests](https://github.com/Kong/kong-gateway-performance-benchmark/tree/main/deploy-k8s-resources/k6_tests). After the tests complete, you can `port-forward` into the cluster and view the Grafana dashboard with the performance results.
 
 ## More information
-* [Establish a {{site.base_gateway}} performance benchmark](/production/performance/benchmark): Learn how to optimize {{site.base_gateway}} for performance.
+* [Establish a {{site.base_gateway}} performance benchmark](/gateway/{{page.release}}/production/performance/benchmark): Learn how to optimize {{site.base_gateway}} for performance.
 
 

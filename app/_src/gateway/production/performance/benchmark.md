@@ -313,5 +313,5 @@ Maintain a log of changes to help you figure out the next steps when you get stu
 
 {% if_version gte:3.6.x %}
 ## More information
-* [Performance testing benchmarks](/production/performance/performance-testing): See Kong's performance testing benchmark results for the current version and learn how to use Kong's test suite to conduct your own performance tests.
+* [Performance testing benchmark results](/gateway/{{page.release}}/production/performance/performance-testing): See Kong's performance testing benchmark results for the current version and learn how to use Kong's test suite to conduct your own performance tests.
 {% endif_version %}
