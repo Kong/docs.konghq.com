@@ -30,7 +30,7 @@ See the following links for individual entity documentation:
 {% navtabs %}
 {% navtab Enterprise endpoints %}
 
-| [Information Routes](/gateway/api/admin-ee/latest/#/Information/get-endpoints) | [Health Routes](/gateway/api/admin-ee/latest/#/Information/get-status) | [Tags](/gateway/api/admin-ee/latest/#/tags/get-tags) |
+| [Information Routes](href="https://docs.konghq.com/gateway/api/admin-ee/latest/#/Information/get-endpoints" target="_blank") | [Health Routes](/gateway/api/admin-ee/latest/#/Information/get-status) | [Tags](/gateway/api/admin-ee/latest/#/tags/get-tags) |
 | [Debug Routes](/gateway/api/admin-ee/latest/#/debug/put-debug-cluster-control-planes-nodes-log-level-log_level) | [Services](/gateway/api/admin-ee/latest/#/Services/list-service) | [Routes](/gateway/api/admin-ee/latest/#/Routes/list-route) |
 | [Consumers](/gateway/api/admin-ee/latest/#/Consumers/list-consumer) | [Plugins](/gateway/api/admin-ee/latest/#/Plugins/list-plugins-with-consumer) | [Certificates](/gateway/api/admin-ee/latest/#/Certificates/list-certificate) |
 | [CA Certificates](/gateway/api/admin-ee/latest/#/CA%20Certificates/list-ca_certificate) | [SNIs](/gateway/api/admin-ee/latest/#/SNIs/list-sni-with-certificate) | [Upstreams](/gateway/api/admin-ee/latest/#/Upstreams/list-upstream) |
