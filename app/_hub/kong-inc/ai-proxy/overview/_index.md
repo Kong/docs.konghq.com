@@ -64,7 +64,9 @@ The following upstream URL patterns are used:
 | Llama2    | As defined in `config.model.options.upstream_url`                                                      |
 | Mistral   | As defined in  `config.model.options.upstream_url`                                                     |
 
-> ⚠️ Whilst only the **Llama2** and **Mistral** models are classed as "self-hosted", the target URL can be overridden for any of the supported providers.
+
+{:.important}
+> While only the **Llama2** and **Mistral** models are classed as "self-hosted", the target URL can be overridden for any of the supported providers.
 > For example, a self-hosted or otherwise "OpenAI-compatible" endpoint can be called by setting the same `config.model.options.upstream_url` plugin option.
 
 ### Input Formats
