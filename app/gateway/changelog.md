@@ -392,7 +392,7 @@ was called multiple times in a request lifecycle.
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
 ## 3.4.3.4
-**Release Date** 2024/02/12
+**Release Date** 2024/02/10
 
 ### Features
 
