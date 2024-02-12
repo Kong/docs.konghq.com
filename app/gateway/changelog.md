@@ -33,7 +33,8 @@ For product versions that have reached the end of sunset support, see the [chang
 * The recent OpenResty bump includes TLS 1.3 and deprecates TLS 1.1. 
 If you still need to still support TLS 1.1, set the [`ssl_cipher_suite`](/gateway/latest/reference/configuration/#ssl_cipher_suite) setting to `old`.
 
-* If you are using `ngx.var.http_*` in custom code in order to access HTTP headers, the behavior of that variable changed slightly when the same header is used multiple times in a single request. Previously it would return the first value only, now it returns all the values, separated by commas. Kong's PDK header getters and setters work as before.
+* If you are using `ngx.var.http_*` in custom code to access HTTP headers, the behavior of that variable changes slightly when the same header is used multiple times in a single request. 
+Previously, it would return the first value only; now it returns all of the values, separated by commas. Kong Gateway's PDK header getters and setters work as before.
 
 #### Plugins
 
@@ -69,7 +70,7 @@ Introduced a new endpoint, `/fips-status`, to show its current status.
 
 #### CLI
 
-* Automatically reinitialize the workspace entity counters after executing the CLI change migrations commands.
+* Automatically reinitializes the workspace entity counters after executing the CLI change migrations commands.
 
 #### Clustering
 
@@ -294,7 +295,7 @@ routes using fields like `http.path` even for stream routes. This is no longer a
 * Fixed an issue where the GCP backend vault would hide the error message when secrets couldn't be fetched.
 * Added the missing `workspace_id` to the output of request debugging when using a filter.
 * Fixed an issue where the IAM auth token was not refreshed when the underlying AWS credential expired.
-* Print Redis's `timeout` warning message only if the timeout is set explicitly, and use the default timeout value if it isn't set.
+* Redis's `timeout` warning message is only printed if the timeout is set explicitly. If it isn't set, the default timeout value is used.
 * Removed inaccurate critical level logs which appeared when starting external plugin servers.
 These logs can't be suppressed due to a limitation of OpenResty. We chose to remove the socket availibilty detection feature.
 

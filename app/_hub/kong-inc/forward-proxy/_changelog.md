@@ -1,8 +1,8 @@
 ## Changelog
 
 ### {{site.base_gateway}} 3.6.x
-* The plugin now falls back to the non-streaming proxy when the request body has already been read.
-* Fixed an issue where request payload was being discarded when the payload exceeded the `client_body_buffer_size`.
+* The plugin now falls back to the non-streaming proxy when the request body was already read.
+* Fixed an issue where request payload was discarded when the payload exceeded the `client_body_buffer_size`.
 
 ### {{site.base_gateway}} 3.1.x
 
