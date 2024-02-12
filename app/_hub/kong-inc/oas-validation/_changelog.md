@@ -3,9 +3,7 @@
 ### {{site.base_gateway}} 3.6.x
 * The plugin now bypasses schema validation when the content type is not `application/json`.
 * Fixed a bug where the plugin throws a runtime error caused by the ref parameter schema not being dereferenced.
-[#7259](https://github.com/Kong/kong/issues/7259)
 * Exposed metrics for serviceless routes.
-[#7055](https://github.com/Kong/kong/issues/7055)
 * Fixed an issue where the plugin threw a runtime error while validating parameters with the AnyType schema and style keyword defined.
 * Fixed an issue where the cookie parameters weren't being validated.
 * Fixed an issue where the `nullable` keyword didn't take effect.

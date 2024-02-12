@@ -14,7 +14,7 @@ For product versions that have reached the end of sunset support, see the [chang
 
 ### Breaking changes and deprecations
 
-* To avoid ambiguity with other Wasm-related `nginx.conf` directives, the prefix for Wasm `shm_kv` nginx.conf directives was changed from `nginx_wasm_shm_` to `nginx_wasm_shm_kv_`
+* To avoid ambiguity with other Wasm-related `nginx.conf` directives, the prefix for Wasm `shm_kv` nginx.conf directives was changed from `nginx_wasm_shm_` to `nginx_wasm_shm_kv_`.
  [#11919](https://github.com/Kong/kong/issues/11919)
 
 * The listing endpoints for consumer groups (`/consumer_groups`) and consumers (`/consumers`) now respond
@@ -354,9 +354,7 @@ These logs can't be suppressed due to a limitation of OpenResty. We chose to rem
 
 * [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`) 
   * Fixed a bug where the plugin throws a runtime error caused by the ref parameter schema not being dereferenced.
-   [#7259](https://github.com/Kong/kong/issues/7259)
   * Exposed metrics for serviceless routes.
-   [#7055](https://github.com/Kong/kong/issues/7055)
   * Fixed an issue where the plugin threw a runtime error while validating parameters with the AnyType schema and style keyword defined.
   * Fixed an issue where the cookie parameters weren't being validated.
   * Fixed an issue where the `nullable` keyword didn't take effect.
