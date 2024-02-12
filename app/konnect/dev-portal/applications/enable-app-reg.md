@@ -47,15 +47,13 @@ service, and follow these steps:
 
 3. Select `Key Auth` from the **Auth Strategy** list
 
-4. Toggle the **Application registration enabled** button to true
+4. Toggle the **Application registration enabled** button to true to allow Dev Portal developers to register their applications for the API product version.
 
 5. Optional: click to enable [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) for application registration requests
 
-6. Click save to enable application registration and save the auth strategy for that product version
+6. Click save to enable application registration and apply the auth strategy for that product version
 
-7. Click **Status** and update it to **Published** in order to enable developers to begin registering to your API Product version
-
-8. Click **Enable**
+7. Click **Status** and update it to **Published** to publish the product version to the Dev Portal product catalog
 
     This version of the API products now includes a
     read-only entry for the `konnect-application-auth` plugin.
@@ -80,7 +78,7 @@ If you already have an OIDC Auth Strategy created in the **Application Auth**:
 
 4. Optional: click to enable [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) for application registration requests
 
-5. Toggle the **Application registration enabled** button to True
+5. Toggle the **Application registration enabled** button to True to allow Dev Portal developers to register their applications for the API product version.
 
 6. Click **Save**
 
@@ -110,7 +108,7 @@ If you do _not_ already have an OIDC Auth Strategy created, we will first create
 
 11. Optional: click to enable [**Auto Approve**](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps/) for application registration requests
 
-12. Toggle the **Application registration enabled** button to be True
+12. Toggle the **Application registration enabled** button to be True to allow Dev Portal developers to register their applications for the API product version.
 
 13. Click **Save**
 
@@ -141,7 +139,7 @@ In the `default` control plane group, **Credential claim** is used as a **Consum
    
 ## Disable application registration for an API Product version {#disable}
 
-Disabling application registration removes all plugins that were initially enabled through application registration for this service.
+Disabling application registration ensures Dev Portal developers can no longer request new registrations for the API product version. Existing registrations are not affected.
 To remove a plugin by disabling application registration, follow these steps:
 
 1. Select an API Product from the **API Product** menu
@@ -156,6 +154,23 @@ To remove a plugin by disabling application registration, follow these steps:
 
 6. Click **Save** to apply your changes
 
+## Remove an Auth Strategy from an API Product Version
+
+Removing an auth strategy from a product version removes the plugins that were initially applied when adding the auth strategy to the version. This opens the API traffic directly to any upstream if there are no other plugins to control request traffic.
+
+To remove the auth strategy and open up API traffic, follow these steps:
+
+1. Select an API Product from the **API Product** menu
+
+2. Select **Product Versions** to display all of relevant versions
+
+3. Click the version you intend to remove the auth strategy from
+
+4. Select **Enabled** under **App Registration**
+
+5. Remove any auth strategy selection
+
+6. Click **Save** to apply your changes. Note: removing the auth strategy will also disable application registration for the product version.
 
 You can
 [re-enable application registration](/konnect/dev-portal/applications/enable-app-reg)
