@@ -20,11 +20,14 @@ Here are a few example use cases where you can use the {{site.konnect_short_name
 
 ## Supported search entities
 
-- Users
-- Teams
-- System Accounts
-- Developers
-- Developer Teams
+- API Product
+- API Product Version
+- Control Plane
+- Developer
+- Developer Team
+- User
+- Team
+- Report
 
 Additional entities will be added in future releases. You can view a list of all the supported entities by sending the following API request:
 
@@ -42,12 +45,15 @@ The {{site.konnect_short_name}} Search API provides selectors, reserved characte
 
 Selectors are used to define the criteria of the search. The following table describes the different selectors and their functions:
 
-| Selector    | Function     |
-|---------------------------|----------------------|
-| `type:{entity_type}`      | Searches for a specific entity type.  |
-| `{value}` | Searches for a match in `{value}` on any all searchable attributes. |
-| `name:{value}` | Searches for an exact match for a `name`. |
-| `description:{value}` | Searches for an exact match for a `description`. |
+| Selector    | Function     | Example |
+|---------------------------|----------------------|---|
+| `type:{entity_type}`      | Searches for a specific entity type.  |`type:control_plane`|
+| `{value}` | Searches for a match in `{value}` on any all searchable attributes. |`foobar`|
+| `id:{value}` | Searches for an exact match for an `id`. |`id:df968c45-3f20-4b80-8980-e223b250dec5`|
+| `name:{value}` | Searches for an exact match for a `name`. |`name:default`|
+| `description:{value}` | Searches for an exact match for a `description`. |`description:temporary`|
+| `labels.{label_key}:{label_value}` | Searches for an exact match for a labeled entity. |`labels.env:prod`|
+| `@{attribute_key}:{attribute_value}` | Searches for an exact match for an entity specific attribute. |`@email:admin@domain.com`|
 
 ### Reserved Characters
 
