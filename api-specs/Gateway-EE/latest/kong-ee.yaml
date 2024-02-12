@@ -11444,6 +11444,8 @@ paths:
       description: |-
         Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process, the status of the database connection, and node's memory usage.
 
+        This endpoint now listens on `127.0.0.1:8007` by default for status checks. It provides detailed metrics regarding memory usage, worker process stats, database connection status, and server connection metrics.
+
         If you want to monitor the Kong process, since Kong is built on top of nginx, every existing nginx monitoring tool or agent can be used.
         '401': 
           $ref: '#/components/responses/HTTP401Error'
