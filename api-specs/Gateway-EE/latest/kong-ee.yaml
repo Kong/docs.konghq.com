@@ -5777,6 +5777,53 @@ info:
   version: 3.6.0
 openapi: 3.0.0
 paths:
+  /:
+    get:
+      summary: Get Kong's instance information
+      tags:
+        - System Information
+      operationId: getRootInfo
+      description: |
+        Returns basic information about the Kong gateway instance, including the version, edition (enterprise or community), a tagline, and the unique node identifier.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    description: The version number of the Kong instance.
+                    example: "2.3.3"
+                  edition:
+                    type: string
+                    description: Indicates whether the Kong instance is the Community or Enterprise edition.
+                    example: "enterprise"
+                  tagline:
+                    type: string
+                    description: A tagline or slogan for the Kong instance.
+                    example: "Welcome to Kong"
+                  node_id:
+                    type: string
+                    description: A unique identifier for the node, in UUID format.
+                    pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+                    example: "a74d7c4f-ef83-4bbe-a5e7-3f5409f4a0b9"
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+        '405':
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+          headers:
+            Server:
+              description: Kong's server tokens.
+              schema:
+                type: string
+                example: "kong/2.3.3"
   /ca_certificates:
     get:
       description: Retrieve a list of all available Certificate Authority (CA) certificates, including the certificate ID, creation date, and other details. You can use query parameters to filter the results by size or tags, for example `/ca-certificates?size=50&tags=enterprise`.
