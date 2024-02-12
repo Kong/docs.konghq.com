@@ -5808,7 +5808,7 @@ paths:
                   node_id:
                     type: string
                     description: A unique identifier for the node, in UUID format.
-                    pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
+                    format: uuid
                     example: "a74d7c4f-ef83-4bbe-a5e7-3f5409f4a0b9"
         '401': 
           $ref: '#/components/responses/HTTP401Error'
