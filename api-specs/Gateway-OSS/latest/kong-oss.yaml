@@ -3570,7 +3570,7 @@ paths:
         - Information
       operationId: geInfo
       description: |
-        Returns basic information about the Kong gateway instance, including the version, edition (enterprise or community), a tagline, and the unique node identifier.
+        Returns detailed information about the Kong gateway instance, including the full Kong configuration, available and unavailable plugins, version, edition (enterprise or community), a tagline, the unique node identifier, and other metadata.
       responses:
         '200':
           description: Success
