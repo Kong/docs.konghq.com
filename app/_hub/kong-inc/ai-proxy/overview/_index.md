@@ -24,6 +24,7 @@ The AI Proxy will mediate for you:
   * Host name
   * Port
   * Path
+  * HTTP Method
 * Authentication on behalf of the Kong API consumer
 * Decorating the request with parameters from the `config.options` block, appropriate for the chosen provider
 * Recording of usage statistics of the configured LLM provider and model ([see detail below](hyperlink)) into your selected [Kong Log](hyperlink-to-log-plugins-category) plugin output
