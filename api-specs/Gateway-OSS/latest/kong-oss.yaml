@@ -3567,8 +3567,8 @@ paths:
     get:
       summary: Get Kong's instance information
       tags:
-        - System Information
-      operationId: getRootInfo
+        - Information
+      operationId: geInfo
       description: |
         Returns basic information about the Kong gateway instance, including the version, edition (enterprise or community), a tagline, and the unique node identifier.
       responses:
@@ -3596,6 +3596,106 @@ paths:
                     description: A unique identifier for the node, in UUID format.
                     format: uuid
                     example: "a74d7c4f-ef83-4bbe-a5e7-3f5409f4a0b9"
+                  hostname:
+                    type: string
+                    description: The hostname of the Kong node.
+                    example: "kong-node.example.com"
+                  timers:
+                    type: object
+                    description: Information about running and pending timers.
+                    properties:
+                      running:
+                        type: integer
+                        description: The number of running timers.
+                        example: 5
+                      pending:
+                        type: integer
+                        description: The number of pending timers.
+                        example: 2
+                  plugins:
+                    type: object
+                    description: Information about plugins.
+                    properties:
+                      available_on_server:
+                        type: object
+                        additionalProperties:
+                          type: object
+                          properties:
+                            version:
+                              type: string
+                              description: The version of the plugin.
+                            priority:
+                              type: integer
+                              description: The priority of the plugin.
+                      enabled_in_cluster:
+                        type: array
+                        items:
+                          type: string
+                        description: A list of distinct plugin names enabled in the cluster.
+                        example: ["jwt", "acl"]
+                  lua_version:
+                    type: string
+                    description: The version of Lua used by the Kong instance.
+                    example: "LuaJIT 2.1.0-beta3"
+                  configuration:
+                    type: object
+                    description: A sanitized version of the Kong configuration, excluding sensitive values.
+                    additionalProperties: true
+                  pids:
+                    type: object
+                    description: Process IDs for the master process and worker processes.
+                    properties:
+                      master:
+                        type: integer
+                        description: The PID of the master process.
+                        example: 4321
+                      workers:
+                        type: array
+                        items:
+                          type: integer
+                        description: An array of worker process PIDs.
+                        example: [1234, 5678]
+              examples:
+                fullExample:
+                  summary: Example response
+                  value: 
+                    configuration:
+                      _debug_pg_ttl_cleanup_interval: 300
+                      admin_acc_logs: "/usr/local/kong/logs/admin_access.log"
+                      admin_access_log: "/dev/stdout"
+                      admin_approved_email: "true"
+                      admin_emails_from: "\"\""
+                      admin_error_log: "/dev/stderr"
+                      admin_gui_access_log: "logs/admin_gui_access.log"
+                      admin_gui_auth_header: "******"
+                      admin_gui_auth_login_attempts: 0
+                      admin_gui_error_log: "logs/admin_gui_error.log"
+                      admin_gui_flags: "{}"
+                      admin_gui_listen:
+                        - "0.0.0.0:8002"
+                        - "0.0.0.0:8445 ssl"
+                      admin_gui_origin: "http://localhost:8002"
+                    edition: "enterprise"
+                    hostname: "8a487998603b"
+                    lua_version: "LuaJIT 2.1.0-20231117"
+                    node_id: "1f257156-5e44-46e2-a618-767f5c7529e3"
+                    pids:
+                      master: 1
+                      workers:
+                        - 2382
+                        - 2383
+                    plugins:
+                      available_on_server:
+                        acl: true
+                        acme: true
+                      disabled_on_server:
+                        application-registration: true
+                      enabled_in_cluster: []
+                    tagline: "Welcome to kong"
+                    timers:
+                      pending: 1
+                      running: 1128
+                    version: "3.6.0.0"
         '401': 
           $ref: '#/components/responses/HTTP401Error'
         '405':
