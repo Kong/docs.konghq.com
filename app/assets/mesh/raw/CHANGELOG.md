@@ -32,6 +32,36 @@
 * fix(vault): remove error when renewing token on removed mesh [#5162](https://github.com/Kong/kong-mesh/pull/5162) @lahabana
 
 
+## 2.5.2
+> Released on 2024/02/05
+
+* chore(deps): bump kumahq/kuma from d2ced55cd241 to bd64b43ef [#5028](https://github.com/Kong/kong-mesh/pull/5028) [#5039](https://github.com/Kong/kong-mesh/pull/5039) [#5064](https://github.com/Kong/kong-mesh/pull/5064) [#5069](https://github.com/Kong/kong-mesh/pull/5069) [#5087](https://github.com/Kong/kong-mesh/pull/5087) [#5220](https://github.com/Kong/kong-mesh/pull/5220) [#5226](https://github.com/Kong/kong-mesh/pull/5226) [#5231](https://github.com/Kong/kong-mesh/pull/5231) [#5299](https://github.com/Kong/kong-mesh/pull/5299) [#5340](https://github.com/Kong/kong-mesh/pull/5340) @kong-mesh
+
+
+## 2.4.5
+> Released on 2024/02/05
+
+* chore(deps): bump kumahq/kuma from b3131e7b6555 to 41284773c [#4799](https://github.com/Kong/kong-mesh/pull/4799) [#4825](https://github.com/Kong/kong-mesh/pull/4825) [#4830](https://github.com/Kong/kong-mesh/pull/4830) [#4865](https://github.com/Kong/kong-mesh/pull/4865) [#4869](https://github.com/Kong/kong-mesh/pull/4869) [#4934](https://github.com/Kong/kong-mesh/pull/4934) [#5031](https://github.com/Kong/kong-mesh/pull/5031) [#5062](https://github.com/Kong/kong-mesh/pull/5062) [#5088](https://github.com/Kong/kong-mesh/pull/5088) [#5091](https://github.com/Kong/kong-mesh/pull/5091) [#5225](https://github.com/Kong/kong-mesh/pull/5225) [#5297](https://github.com/Kong/kong-mesh/pull/5297) [#5314](https://github.com/Kong/kong-mesh/pull/5314) [#5338](https://github.com/Kong/kong-mesh/pull/5338) @kong-mesh
+* chore(deps): bump shadow-utils (backport of #4768) [#4772](https://github.com/Kong/kong-mesh/pull/4772) @kong-mesh
+* chore(deps): security update [#4907](https://github.com/Kong/kong-mesh/pull/4907) @kong-mesh
+
+
+## 2.3.4
+> Released on 2024/02/05
+
+* chore(deps): bump kumahq/kuma from 815b26399692 to baa08aefa [#4618](https://github.com/Kong/kong-mesh/pull/4618) [#4666](https://github.com/Kong/kong-mesh/pull/4666) [#4676](https://github.com/Kong/kong-mesh/pull/4676) [#4687](https://github.com/Kong/kong-mesh/pull/4687) [#4798](https://github.com/Kong/kong-mesh/pull/4798) [#4826](https://github.com/Kong/kong-mesh/pull/4826) [#4867](https://github.com/Kong/kong-mesh/pull/4867) [#4888](https://github.com/Kong/kong-mesh/pull/4888) [#5029](https://github.com/Kong/kong-mesh/pull/5029) [#5061](https://github.com/Kong/kong-mesh/pull/5061) [#5065](https://github.com/Kong/kong-mesh/pull/5065) [#5089](https://github.com/Kong/kong-mesh/pull/5089) [#5223](https://github.com/Kong/kong-mesh/pull/5223) [#5298](https://github.com/Kong/kong-mesh/pull/5298) [#5315](https://github.com/Kong/kong-mesh/pull/5315) [#5339](https://github.com/Kong/kong-mesh/pull/5339) @kong-mesh
+* chore(deps): bump shadow-utils (backport of #4768) [#4773](https://github.com/Kong/kong-mesh/pull/4773) @kong-mesh
+* chore(deps): security update [#4654](https://github.com/Kong/kong-mesh/pull/4654) [#4707](https://github.com/Kong/kong-mesh/pull/4707) [#4839](https://github.com/Kong/kong-mesh/pull/4839) @kong-mesh
+
+
+## 2.2.6
+> Released on 2024/02/05
+
+* chore(deps): bump kumahq/kuma from 467b9011abcf to e4d77e6a0 [#4617](https://github.com/Kong/kong-mesh/pull/4617) [#4665](https://github.com/Kong/kong-mesh/pull/4665) [#4679](https://github.com/Kong/kong-mesh/pull/4679) [#4688](https://github.com/Kong/kong-mesh/pull/4688) [#4699](https://github.com/Kong/kong-mesh/pull/4699) [#4800](https://github.com/Kong/kong-mesh/pull/4800) [#4827](https://github.com/Kong/kong-mesh/pull/4827) [#4874](https://github.com/Kong/kong-mesh/pull/4874) [#4930](https://github.com/Kong/kong-mesh/pull/4930) [#5030](https://github.com/Kong/kong-mesh/pull/5030) [#5063](https://github.com/Kong/kong-mesh/pull/5063) [#5066](https://github.com/Kong/kong-mesh/pull/5066) [#5094](https://github.com/Kong/kong-mesh/pull/5094) [#5095](https://github.com/Kong/kong-mesh/pull/5095) [#5224](https://github.com/Kong/kong-mesh/pull/5224) [#5300](https://github.com/Kong/kong-mesh/pull/5300) [#5337](https://github.com/Kong/kong-mesh/pull/5337) @kong-mesh
+* chore(deps): bump shadow-utils (backport of #4768) [#4770](https://github.com/Kong/kong-mesh/pull/4770) @kong-mesh
+* chore(deps): security update [#4655](https://github.com/Kong/kong-mesh/pull/4655) [#4840](https://github.com/Kong/kong-mesh/pull/4840) @kong-mesh
+
+
 ## 2.5.1
 > Released on 2023/12/12
 

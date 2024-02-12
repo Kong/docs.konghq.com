@@ -91,9 +91,9 @@ filter.
 
 ## Get started with the mTLS Authentication plugin
 
-* [Add certificate authorities](/hub/kong-inc/mtls-auth/add-cert-authorities/): 
+* [Add certificate authorities](/hub/kong-inc/mtls-auth/how-to/add-cert-authorities/): 
 To use this plugin, you must add certificate authority (CA) certificates. 
 Set them up before configuring the plugin.
 * [Configuration reference](/hub/kong-inc/mtls-auth/configuration/)
 * [Basic configuration example](/hub/kong-inc/mtls-auth/how-to/basic-example/)
-* [Create manual mappings between certificate and consumer objects](/hub/kong-inc/mtls-auth/manual-mapping-cert-consumers/)
+* [Create manual mappings between certificate and consumer objects](/hub/kong-inc/mtls-auth/how-to/manual-mapping-cert-consumers/)

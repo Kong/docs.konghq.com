@@ -318,7 +318,7 @@ action items when certain conditions are met.
 
 * Added a new handler for plugins to implement, where configs will be `nil` if there are no active configurations for the plugin. This change can be seen in the Acme, Prometheus, and Rate Limiting Advanced plugins.
 * Kong Gateway now requires a license to use dynamic plugin ordering.
-* [**Mutual TLS Authentication**](hub/kong-inc/mtls-auth/) (`mtls-auth`)
+* [**Mutual TLS Authentication**](/hub/kong-inc/mtls-auth/) (`mtls-auth`)
   * Fixed an issue to prevent caching network failures during revocation checks.
 * [**Response Transformer**](/hub/kong-inc/response-transformer/) (`response-transformer`)
   * Resolved warning logs related to flooded JSON decoding issues.
@@ -390,6 +390,46 @@ was called multiple times in a request lifecycle.
 * Kong CLI dependencies:
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
+
+## 3.4.3.4
+**Release Date** 2024/02/10
+
+### Features
+
+#### Core
+
+* Added support for namespaced authentication and user-defined authentication paths when using HashiCorp Vault on Kubernetes.
+
+#### Clustering
+
+* Added resilience support for homogeneous data plane deployments. Data planes can now act as importers and exporters at the same time, 
+and Kong Gateway will try to control the concurrency when exporting the config.
+
+### Fixes
+
+#### Core
+
+* Fixed an issue where workload identity didn't work for dataplane resilience.
+* Fixed an issue where the GCP backend vault would hide the error message when secrets couldn't be fetched.
+* Fixed an issue that caused spans to not be instrumented with `http.status_code` when the request was not proxied to an upstream.
+
+#### Configuration
+
+* Fixed a data loss error caused by a weakly-typed `of` function in the `declarative_config_flattened` function.
+
+#### Plugins
+
+* [**LDAP Authentication Advanced**](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
+  * Fixed some cache-related issues which caused `groups_required` to return unexpected codes after a non-200 response.
+  * Fixed an issue where, if the credential was encoded with no username, Kong Gateway would return a 500 error code.
+
+### Dependencies
+
+* Bumped OpenSSL from 3.1.4 to 3.2.1
+ [#7762](https://github.com/Kong/kong/issues/7762)
+* Bumped `resty-openssl` from 0.8.25 to 1.2.0
+ [#7741](https://github.com/Kong/kong/issues/7741)
+* Bumped `lua-resty-aws` from 1.3.5 to 1.3.6
 
 ## 3.4.3.3 
 **Release Date** 2024/01/17
@@ -1792,7 +1832,7 @@ See the documentation for more detail on [interpreting audit logs](/gateway/late
     If not set, the start time defaults to the current timestamp.
     
 * **Improved Plugin Documentation**
-    * Split the plugin compatibility table into a [technical compatibility page](/hub/plugins/compatibility/) and a [license tiers](hub/plugins/license-tiers) page. 
+    * Split the plugin compatibility table into a [technical compatibility page](/hub/plugins/compatibility/) and a [license tiers](/hub/plugins/license-tiers/) page. 
     * Updated the plugin compatibility information for more clarity on [supported network protocols](/hub/plugins/compatibility/#protocols) and on [entity scopes](/hub/plugins/compatibility/#scopes). 
     * Revised docs for the following plugins to include examples:
       * [CORS](/hub/kong-inc/cors/)
@@ -3440,6 +3480,20 @@ openid-connect
   [#9287](https://github.com/Kong/kong/pull/9287)
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
+
+## 2.8.4.7
+**Release Date** 2024/02/08
+
+### Fixes
+
+#### Plugins
+
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed timer-related issues where the counter syncing timer couldn't be created or destroyed properly.
+  * The plugin now creates counter syncing timers when being executed instead of at plugin creation time, which reduces meaningless error logs.
+  * The plugin now returns `info` and `log` level messages when Redis connections fail. These error messages were previously missing.
+  * The plugin now checks for query errors in the Redis pipeline.
+  * Fixed an issue where changing `sync_rate` from a value greater than 0 to 0 would clear the namespace unexpectedly.
 
 ## 2.8.4.6
 **Release Date** 2024/01/17
