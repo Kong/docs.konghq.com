@@ -3586,7 +3586,7 @@ paths:
                   edition:
                     type: string
                     description: Indicates whether the Kong instance is the Community or Enterprise edition.
-                    example: "enterprise"
+                    example: "community"
                   tagline:
                     type: string
                     description: A tagline or slogan for the Kong instance.
@@ -3656,46 +3656,30 @@ paths:
                         description: An array of worker process PIDs.
                         example: [1234, 5678]
               examples:
-                fullExample:
-                  summary: Example response
-                  value: 
+                openSourceExample:
+                  summary: Open Source Edition Example Response
+                  value:
                     configuration:
                       _debug_pg_ttl_cleanup_interval: 300
                       admin_acc_logs: "/usr/local/kong/logs/admin_access.log"
                       admin_access_log: "/dev/stdout"
-                      admin_approved_email: "true"
-                      admin_emails_from: "\"\""
-                      admin_error_log: "/dev/stderr"
-                      admin_gui_access_log: "logs/admin_gui_access.log"
-                      admin_gui_auth_header: "******"
-                      admin_gui_auth_login_attempts: 0
-                      admin_gui_error_log: "logs/admin_gui_error.log"
-                      admin_gui_flags: "{}"
-                      admin_gui_listen:
-                        - "0.0.0.0:8002"
-                        - "0.0.0.0:8445 ssl"
-                      admin_gui_origin: "http://localhost:8002"
-                    edition: "enterprise"
-                    hostname: "8a487998603b"
-                    lua_version: "LuaJIT 2.1.0-20231117"
-                    node_id: "1f257156-5e44-46e2-a618-767f5c7529e3"
+                    hostname: "b8f553cfbd0c"
+                    lua_version: "LuaJIT 2.1.0-20230410"
+                    node_id: "39bfa49d-3394-4f8e-b9db-94b786bc4e5f"
                     pids:
                       master: 1
-                      workers:
-                        - 2382
-                        - 2383
+                      workers: [1278, 1279, 1280, 1281, 1282, 1283, 1284, 1285]
                     plugins:
                       available_on_server:
-                        acl: true
-                        acme: true
-                      disabled_on_server:
-                        application-registration: true
+                        acl:
+                          priority: 950
+                          version: "3.6.0"
                       enabled_in_cluster: []
                     tagline: "Welcome to kong"
                     timers:
                       pending: 1
-                      running: 1128
-                    version: "3.6.0.0"
+                      running: 145
+                    version: "3.6.0"
         '401': 
           $ref: '#/components/responses/HTTP401Error'
         '405':
