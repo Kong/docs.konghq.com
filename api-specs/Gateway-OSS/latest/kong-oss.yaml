@@ -3586,7 +3586,7 @@ paths:
                   edition:
                     type: string
                     description: Indicates whether the Kong instance is the Community or Enterprise edition.
-                    example: "community"
+                    example: "Community"
                   tagline:
                     type: string
                     description: A tagline or slogan for the Kong instance.
@@ -3663,6 +3663,7 @@ paths:
                       _debug_pg_ttl_cleanup_interval: 300
                       admin_acc_logs: "/usr/local/kong/logs/admin_access.log"
                       admin_access_log: "/dev/stdout"
+                    edition: "enterprise"
                     hostname: "b8f553cfbd0c"
                     lua_version: "LuaJIT 2.1.0-20230410"
                     node_id: "39bfa49d-3394-4f8e-b9db-94b786bc4e5f"
