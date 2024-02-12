@@ -84,7 +84,7 @@ Once you have Auth0 configured, you can configure the Dev Portal to use Auth0 fo
 
 3. Open the **DCR Providers** to view all configured DCR Providers
 
-4. Select **New DCR Provider** button to create an Auth0 configuration. Provide a name for internal use within {{site.konnect_short_name}} and a display name for visibility on your Portal.
+4. Select **New DCR Provider** button to create an Auth0 configuration. Provide a name for internal use within {{site.konnect_short_name}}. The name and provider type information will not be exposed to Dev Portal developers.
 
 5. Input the **Issuer URL** of your Auth0 tenant, formatted as: `https://AUTH0_TENANT_SUBDOMAIN.us.auth0.com`
 
@@ -93,7 +93,7 @@ Once you have Auth0 configured, you can configure the Dev Portal to use Auth0 fo
 
 6. Choose Auth0 as the **Provider Type**.
 
-7. Enter the Client ID from the admin application created in Auth0 above into the **Initial Client ID** field. Enter the Client secret from the admin application created in Auth0 above into the **Initial Client Secret** field.
+7. Enter the Client ID from the admin application created in Auth0 above into the **Initial Client ID** field. Enter the Client secret from the admin application created in Auth0 above into the **Initial Client Secret** field. Note: The Initial Client Secret will be stored in isolated, encrypted storage and will not be readable through any Konnect API.
 
 8. Enter the **Client Token Audience** as the identifier value you set when configuring the API entity above. If you’re using developer managed scopes, this value should map to the audience field of your associated Auth0 API.
 

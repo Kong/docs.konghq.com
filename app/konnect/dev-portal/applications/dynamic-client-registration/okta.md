@@ -57,7 +57,7 @@ In order to map an application from the Dev Portal to Okta, you have to create a
 
 ## Configure the Dev Portal
 
-Once you have Okta configured, you can set up the Dev Portal to use Okta for dynamic client registration (DCR). This will require two flows, one to create the DCR Provider, and one to create the Auth Strategy. DCR Providers are standalone configurations, meaning after you set up the Okta DCR Provider, you can reuse that config in many auth strategies.
+Once you have Okta configured, you can set up the Dev Portal to use Okta for dynamic client registration (DCR). This will require two flows, one to create the DCR provider, and one to create the auth strategy. DCR providers are standalone configurations, meaning after you set up the Okta DCR provider, you can reuse that config in other auth strategies.
 
 1. Sign in to {{site.konnect_short_name}}, then select {% konnect_icon dev-portal %} **Dev Portal** from the menu.
 
@@ -65,15 +65,15 @@ Once you have Okta configured, you can set up the Dev Portal to use Okta for dyn
 
 3. Open the **DCR Providers** to view all configured DCR Providers
 
-4. Select **New DCR Provider** button to create an Okta configuration. Provide a name for internal use within {{site.konnect_short_name}} and a display name for visibility on your Portal.
+4. Select **New DCR Provider** button to create an Okta configuration. Provide a name for internal use within {{site.konnect_short_name}}. The name and provider type information will not be exposed to Dev Portal developers.
 
-5. Enter the **Issuer URL** for your authorization server and the **DCR Token** that you created in Okta. Select Okta as the **Provider Type**.
+5. Enter the **Issuer URL** for your authorization server and the **DCR Token** that you created in Okta. Select Okta as the **Provider Type**. Note: The DCR token will be stored in isolated, encrypted storage and will not be readable through any Konnect API.
 
 6. Save your DCR Provider. You should now see it in the list of DCR providers.
 
-7. Navigate to the **Auth Strategy** tab, then select **New Auth Strategy** to create an auth strategy that uses the DCR Provider you added.
+7. Navigate to the **Auth Strategy** tab, then select **New Auth Strategy** to create an auth strategy that uses the DCR provider you added.
 
-8. Provide a name for internal use within {{site.konnect_short_name}} and a display name for visibility on your Portal. In the **Auth Type** dropdown menu select DCR. In the **DCR Provider** dropdown, select the name of the DCR Provider config you just created. Your **Issuer URL** will be prepopulated with the Issuer URL you added to the DCR Provider.
+8. Provide a name for internal use within {{site.konnect_short_name}} and a display name for visibility on your Portal. In the **Auth Type** dropdown menu select DCR. In the **DCR Provider** dropdown, select the name of the DCR provider config you just created. Your **Issuer URL** will be prepopulated with the Issuer URL you added to the DCR provider.
 
 9. Enter the names of the **Scopes** and **Claims** as comma-separated values in their corresponding fields. The values should match the scopes or claims that were created in Okta.
 

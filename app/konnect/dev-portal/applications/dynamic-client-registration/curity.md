@@ -83,13 +83,13 @@ Once you have Curity configured, you can set up the Dev Portal to use Curity for
 
 3. Open the **DCR Providers** to view all configured DCR Providers
 
-4. Select **New DCR Provider** button to create a Curity configuration. Provide a name for internal use within {{site.konnect_short_name}} and a display name for visibility on your Portal.
+4. Select **New DCR Provider** button to create a Curity configuration. Provide a name for internal use within {{site.konnect_short_name}}. The name and provider type information will not be exposed to Dev Portal developers.
 
 5. Input the **Issuer URL** of your Curity authorization server, formatted as `https://CURITY_INSTANCE_DOMAIN/oauth/v2/oauth-anonymous/.well-known/openid-configuration`
 
 6. Select Curity as the **Provider Type**.
 
-7. Enter the Client ID of the admin client created in Curity above into the **Initial Client ID** field. Enter the value you saved for the Client secret into the **Initial Client Secret** field.
+7. Enter the Client ID of the admin client created in Curity above into the **Initial Client ID** field. Enter the value you saved for the Client secret into the **Initial Client Secret** field.  Note: The Initial Client Secret will be stored in isolated, encrypted storage and will not be readable through any Konnect API.
 
 8. Save your DCR Provider. You should now see it in the list of DCR providers.
 

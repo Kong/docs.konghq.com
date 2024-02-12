@@ -13,7 +13,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## February 2024
 
 **Konnect API Products**
-: Konnect now supports reusable Auth Strategies that can be applied to one or more API Product Versions, and Konnect now supports multiple DCR providers. Users can now create separate DCR providers and apply them selectively to API Product Versions while still using non-DCR Auth strategies for other API Product versions.
+: Konnect now supports reusable auth strategies that can be applied to one or more API product versions. Konnect now also supports multiple DCR providers for portal applications. Users can now create separate DCR providers with various Identity Providers and apply them selectively to API Product Versions while still using non-DCR auth strategies for other API product versions.
 
 ## January 2024
 

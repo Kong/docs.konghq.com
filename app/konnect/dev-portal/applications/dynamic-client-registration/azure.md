@@ -47,13 +47,13 @@ Once you have Azure configured, you can set up the Dev Portal to use Azure for d
 
 3. Open the **DCR Providers** to view all configured DCR Providers
 
-4. Select **New DCR Provider** button to create an Auth0 configuration. Enter a name for internal use in {{site.konnect_short_name}} and a display name for visibility on your portal.
+4. Select **New DCR Provider** button to create an Auth0 configuration. Enter a name for internal use in {{site.konnect_short_name}}. The name and provider type information will not be exposed to Dev Portal developers.
 
 5. Input the **Issuer URL** of your Azure tenant, formatted as: `https://sts.windows.net/YOUR_TENANT_ID`.
 
 6. Choose AzureAD as the **Provider Type**.
 
-7. Enter your Application (Client) ID from Azure in the **Initial Client ID** field. Enter the client secret from the admin application created in Azure into the **Initial Client Secret** field.
+7. Enter your Application (Client) ID from Azure in the **Initial Client ID** field. Enter the client secret from the admin application created in Azure into the **Initial Client Secret** field. Note: The Initial Client Secret will be stored in isolated, encrypted storage and will not be readable through any Konnect API.
 
 8. Save the DCR Provider. You should now see it in the list of DCR Providers.
 

@@ -3,8 +3,8 @@ title: Enable or Disable Application Registration for an API Product Version
 content_type: how-to
 ---
 
-To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service/), you must enable application registration for an API product version. 
-When you enable application registration, {{site.konnect_saas}} enables plugins automatically to support the desired mode, either key authentication or OpenID Connect.
+To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service/), you must apply an authentication strategy and enable application registration for an API product version. 
+When you apply an auth strategy, {{site.konnect_saas}} enables plugins automatically to support the desired mode, either key authentication or OpenID Connect.
 These plugins run inside the data plane to support application registration for the API product version and are managed by
 {{site.konnect_saas}}.
 
@@ -12,7 +12,7 @@ Enabling application registration is specific to the [geographic region](/konnec
 You must enable application registration in each geo that you want to allow developers to register with.
 Each geo has their own API keys and specifications for application registration in their respective geo.
 
-The authentication strategies that facilitate application registration correspond to specific permissions within your Identity Provider (IdP). {{site.konnect_short_name}} enables you to develop and apply various authentication strategies. You have the flexibility to either implement a single auth strategy across all your API Products or to assign a distinct auth strategy for each API Product.
+{{site.konnect_short_name}} enables you to configure and apply various auth strategies. When using an OpenID Connect auth strategy, specific permissions can be configured within your Identity Provider (IdP). You have the flexibility to either implement a single auth strategy across all your API Products or to assign a distinct auth strategy for each API Product.
 
 ## Support for any control plane
 
