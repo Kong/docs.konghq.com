@@ -608,7 +608,53 @@ curl -i -X GET http://localhost:8001/clustering/data-planes
 
 The output shows all of the connected data plane instances in the cluster:
 
-{% if_version gte:3.5.x %}
+{% if_version gte:3.6.x %}
+```json
+{
+    "data": [
+        {
+            "ip": "172.24.0.10",
+            "updated_at": 1689266492,
+            "config_hash": "595214af5fb356cc569313184c64d9b7",
+            "sync_status": "normal",
+            "version": "3.3.0.0",
+            "id": "10424658-f139-476c-b74f-e0a6e6ec9402",
+            "hostname": "kongDP1",
+            "ttl": 1209593,
+            "last_seen": 1689266492,
+            "labels": {
+                "deployment": "cloud1",
+                "region": "us-east-1"
+            },
+            "cert_details": {
+                "expiry_timestamp": 1897136778,
+            }
+        },
+        {
+            "ip": "172.24.0.11",
+            "updated_at": 1689266472,
+            "config_hash": "595214af5fb356cc569313184c64d9b7",
+            "sync_status": "normal",
+            "version": "3.3.0.0",
+            "id": "3487f520-4f52-4ee5-ad6f-50756822f0c5",
+            "hostname": "kongDP2",
+            "ttl": 1209572,
+            "last_seen": 1689266472,
+            "labels": {
+                "deployment": "cloud2",
+                "region": "us-west-2"
+            },
+            "cert_details": {
+                "expiry_timestamp": 1897136778,
+            }
+        }
+    ],
+    "next": null
+}
+```
+{% endif_version %}
+
+{% if_version eq:3.5.x %}
 ```json
 {
     "data": [
