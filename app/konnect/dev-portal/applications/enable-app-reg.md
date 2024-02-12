@@ -12,7 +12,20 @@ Enabling application registration is specific to the [geographic region](/konnec
 You must enable application registration in each geo that you want to allow developers to register with.
 Each geo has their own API keys and specifications for application registration in their respective geo.
 
-{{site.konnect_short_name}} enables you to configure and apply various auth strategies. When using an OpenID Connect auth strategy, specific permissions can be configured within your Identity Provider (IdP). You have the flexibility to either implement a single auth strategy across all your API Products or to assign a distinct auth strategy for each API Product.
+{{site.konnect_short_name}} enables you to configure and apply various auth strategies. When using an OpenID Connect auth strategy, specific permissions can be configured within your Identity Provider (IdP). You have the flexibility to either implement a single auth strategy across all your API Products or to assign a distinct auth strategy for each API Product. Note, with the coming of Multi Portal, you will be able to set different auth strategies in different portals for the same API Product version. Here is a useful example to help visualize what's possible:
+
+Staging Portal
+- Weather API v1 use key-auth
+- Weather API v2 use okta-oidc
+- Maps API v2 use okta-oidc
+
+Prod Portal
+- Weather API v2 use okta-dcr
+- Maps API v4 use auth0-oidc
+
+Note: With the independent auth config functionality from App Reg v2, the Weather v2 API can use an Okta OIDC Auth Config in Staging Portal, and an Okta DCR Auth Config in Prod Portal.
+
+While setting different auth configs per API Product version, please note your developers can only create applications with one auth strategy. This mean they could create one application to register for Weather v2 and Maps v2 (because they both use okta-oidc), but they could not register for both Weather v1 and Weather v2 in the same application (because they use different auth configs).
 
 ## Support for any control plane
 
