@@ -189,6 +189,8 @@ deduplication
 degraphql
 denylist
 deployer
+dereference
+dereferenced
 deserialization
 deserialize
 deserialized
@@ -225,6 +227,8 @@ filetypes
 firewalled
 flamegraph
 full_name
+getter
+getters
 gevent
 gibibytes
 Github
@@ -458,6 +462,7 @@ SDKs
 secret_id
 serializer
 serverless
+serviceless
 shm
 slas
 slos

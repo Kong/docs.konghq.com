@@ -2,13 +2,13 @@
 
 ### {{site.base_gateway}} 3.6.x
 * Tracing sampling rate can now be set via the [`config.sampling_rate`](/hub/kong-inc/opentelemetry/configuration/#configsampling_rate) property of the OpenTelemetry plugin 
-instead of just being a global setting for Kong Gateway.
+instead of just being a global setting for {{site.base_gateway}}.
 [#12054](https://github.com/Kong/kong/issues/12054)
 
 ### {{site.base_gateway}} 3.5.x
 * Added support for [Google Cloud Project's X-Cloud-Trace-Context header](https://cloud.google.com/trace/docs/setup#force-trace)
 
-* Added a new value to the parameter `header_type`, which allows Kong Gateway to inject Datadog headers into the headers of requests forwarding to the upstream.
+* Added a new value to the parameter `header_type`, which allows {{site.base_gateway}} to inject Datadog headers into the headers of requests forwarding to the upstream.
 
 * Fixed an issue that resulted in traces with invalid parent IDs when `balancer` instrumentation was enabled. 
 [#11830](https://github.com/Kong/kong/pull/11830)
