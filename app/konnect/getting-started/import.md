@@ -19,6 +19,10 @@ Afterward, you must manually move over:
 
 You cannot import [unsupported plugins](/konnect/servicehub/plugins/#plugin-limitations).
 
+## Prerequisites
+
+* [decK 1.28 or later](/deck/latest/installation/)
+
 ## Import entity configuration
 
 Use decK to import entity configurations into a control plane.
@@ -39,7 +43,7 @@ When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.
 1. Run [`deck gateway dump`](/deck/latest/reference/deck_gateway_dump/) to export configuration into a file:
 
     ```sh
-    deck gateway dump
+    deck gateway dump -o kong.yaml
     ```
 
     This command outputs {{site.base_gateway}}'s object configuration into
@@ -50,7 +54,7 @@ When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.
 command, pointing to the control plane that you want to target:
 
     ```sh
-    deck gateway diff --konnect-control-plane-name default
+    deck gateway diff kong.yaml
     ```
 
     If you're not using the default `kong.yaml` file, specify the filename and
@@ -59,7 +63,7 @@ command, pointing to the control plane that you want to target:
 1. If you're satisfied with the preview, run [`deck gateway sync`](/deck/latest/reference/deck_gateway_sync/):
 
     ```sh
-    deck gateway sync --konnect-control-plane-name default
+    deck gateway sync kong.yaml
     ```
 
     If you don't specify the `--konnect-control-plane-name` flag, decK targets the
@@ -117,12 +121,12 @@ Now that you've imported your {{site.base_gateway}} entities to {{site.konnect_s
     <div class="install-text">Review and set up teams and roles</div>
   </a>
   
-  <a href="/hub/kong-inc/key-auth/how-to/basic-example/" class="docs-grid-install-block no-description">
+  <a href="/hub/kong-inc/key-auth/how-to/basic-example/?tab=konnect-api" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
     <div class="install-text">Protect my APIs with authentication</div>
   </a>
 
-  <a href="/hub/kong-inc/rate-limiting/" class="docs-grid-install-block no-description">
+  <a href="/hub/kong-inc/rate-limiting/?tab=konnect-api" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
     <div class="install-text">Rate limit my APIs</div>
   </a>
