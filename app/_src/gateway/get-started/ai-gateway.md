@@ -49,8 +49,8 @@ in traditional mode on Docker only.
 {:.note}
 > **Note:**
 > Running this script prompts you for AI Provider API Keys which are used to configure authentication with
-> hosted AI providers. These keys are passed to the {{site.base_gateway}} Docker container and are 
-> not transmitted outside the host machine.
+> hosted AI providers. These keys are only passed to the {{site.base_gateway}} Docker container and are 
+> not otherwise transmitted outside the host machine.
 
 1. Run AI Gateway with the interactive `ai` quickstart script:
 
