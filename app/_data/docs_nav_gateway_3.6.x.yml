@@ -226,8 +226,12 @@ items:
         url: /production/canary
       - text: Clustering Reference
         url: /production/clustering
-      - text: Establish a Performance Benchmark
-        url: /production/benchmark
+      - text: Performance Testing
+        items:
+        - text: Performance Testing Benchmarks
+          url: /production/performance/performance-testing
+        - text: Establish a Performance Benchmark
+          url: /production/performance/benchmark
       - text: Logging and Debugging
         items:
           - text: Log Reference
