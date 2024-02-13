@@ -6,23 +6,32 @@ chapter: 7
 ---
 
 Kong AI Gateway is a powerful set of new features built on top of [{{site.base_gateway}}](/gateway/latest/), 
-designed to help organizations effectively adopt AI capabilities quickly and securely.
+designed to help developers and organizations effectively adopt AI capabilities quickly and securely.
 
-With the rapid emergence of multiple AI providers (including OSS self-hosted models), 
+Quick Links
+* [Get Started](#getting-started) in one minute with our guide
+* [Watch demonstration tutorials](https://konghq.com/products/kong-ai-gateway#videos) in the AI Gateway product page
+* [View the AI plugins](/hub/?category=ai) in the Kong Gateway Plugin Hub
+
+With the rapid emergence of multiple AI LLM providers (including open source and self-hosted models), 
 the AI technology landscape is fragmented and lacking in standards and controls. This 
-significantly complicates how organizations use and govern AI services. {{site.base_gateway}}'s 
+significantly complicates how developers and organizations use and govern AI services. {{site.base_gateway}}'s 
 broad API management capabilities and plugin extensibility model make it well suited to 
 provide AI-specific API management and governance services.
 
 While AI providers don't conform to a standard API specification, the AI Gateway provides a 
-normalized API layer allowing clients to consume AI services in a provider-agnostic manner. The
-AI Gateway provides additional capabilities for governance and tuning through request and response 
-transformations, prompt engineering, and AI usage observability.
+normalized API layer allowing clients to consume multiple AI services from the same client code base. 
+The AI Gateway provides additional capabilities for credential management, AI usage observability, 
+governance, and tuning through prompt engineering. Developers can use no-code AI Plugins to enrich
+existing API traffic, easily enhancing their existing application functionality.
 
 You can enable the AI Gateway features through a set of modern and specialized plugins, 
-designed around LLM API use cases. When deployed alongside existing [{{site.base_gateway}} plugins](/hub/), 
+using the same model you use for any other {{site.base_gateway}} plugin. 
+When deployed alongside existing [{{site.base_gateway}} plugins](/hub/?category=ai), 
 {{site.base_gateway}} users can quickly assemble a sophisticated AI management platform 
 without custom code or deploying new and unfamiliar tools.
+
+![AI Gateway](/assets/images/products/gateway/getting-started-guide/ai-gateway.png)
 
 ## Getting started
 
@@ -43,53 +52,70 @@ in traditional mode on Docker only.
 > hosted AI providers. These keys are passed to the {{site.base_gateway}} Docker container and are 
 > not transmitted outside the host machine.
 
-The script runs interactively and prompts you for information about the AI providers you want to configure.
+1. Run AI Gateway with the interactive `ai` quickstart script:
 
-Download and run an AI Gateway in one step:
+    ```sh
+    curl -Ls https://get.konghq.com/ai | bash
+    ```
 
-```sh
-curl -Ls https://get.konghq.com/ai | bash
-```
+2. Configure the deployment to target {{site.konnect_product_name}} or Docker only and configure your
+   desired AI Provider API keys:
 
-Once the AI Gateway is deployed, you will see some information displayed to help you evaluate the AI provider 
-proxy behavior. For example, the script will output a sample command helping you route a chat request
+    ```sh
+    ...
+    Do you want to deploy on Kong Konnect (y/n) y
+    ...
+    Provide a key for each provider you want to enable and press Enter.
+    Not providing a key and pressing Enter will skip configuring that provider.
+
+    → Enter API Key for OpenAI    :
+    ...
+    ```
+
+3. Once the AI Gateway is deployed, you will see information displayed to help you evaluate the AI proxy 
+plugin behavior. For example, the script will output a sample command helping you route a chat request
 to OpenAI:
 
-```sh
-=======================================================
- ⚒️                                 Routing LLM Requests
-=======================================================
+    ```sh
+    =======================================================
+     ⚒️                                 Routing LLM Requests
+    =======================================================
+    
+    Your AI Gateway is ready. You can now route AI requests
+    to the configured AI providers. For example to route a
+    chat request to OpenAI you can use the following
+    curl command:
+    
+    curl -s -X POST localhost:8000/openai/chat \
+     -H "Content-Type: application/json" -d '{
+       "messages": [{
+       "role": "user",
+       "content": "What is Kong Gateway?"
+     }] }'
+    ```
 
-Your AI Gateway is ready. You can now route AI requests
-to the configured AI providers. For example to route a
-chat request to OpenAI you can use the following
-curl command:
-
-curl -s -X POST localhost:8000/openai/chat \
- -H "Content-Type: application/json" -d '{
-   "messages": [{
-   "role": "user",
-   "content": "What is Kong Gateway?"
- }] }'
-```
-
-Additionally, the script will display information about deployment
+4. Finally, the script will display information about deployment
 files it generates, which can be used for future AI Gateway configurations. 
 
-```sh
-=======================================================
- ⚒️                What is next with the Kong AI Gateway
-=======================================================
+    ```sh
+    =======================================================
+     ⚒️                What is next with the Kong AI Gateway
+    =======================================================
+    
+    This script demonstrated the installation and usage
+    of only one of the many AI plugins that Kong Gateway
+    provides (the 'ai-proxy' plugin).
+    
+    See the output directory to reference the files
+    used during the installation process and modify for
+    your production deployment.
+    ℹ /tmp/kong/ai-gateway
+    ```
 
-This script demonstrated the installation and usage
-of only one of the many AI plugins that Kong Gateway
-provides (the 'ai-proxy' plugin).
-
-See the output directory to reference the files
-used during the installation process and modify for
-your production deployment.
-ℹ /tmp/kong/ai-gateway
-```
+{:.note}
+> **Note:**
+> By default, local models are configured on the endpoint `http://host.docker.internal:11434`,
+> which allows {{site.base_gateway}} running in Docker to connect to the host machine. 
 
 ## AI Gateway Capabilities 
 
@@ -99,12 +125,12 @@ in the AI Gateway plugins found in the {{site.base_gateway}} [Plugin Hub](/hub/?
 ### AI Provider Proxy
 
 The core of the AI Gateway is the ability to route AI requests to various providers exposed via 
-a provider-agnostic API. This normalized API layer affords organizations and their developers 
-multiple benefits:
+a provider-agnostic API. This normalized API layer affords developers and organizations multiple benefits:
 
 * Client applications are shielded from AI provider API specifics, promoting code reusability
-* The AI Gateway gives the organization a central point of governance and observability over AI data and usage
-* Request routing can be dynamic, so AI usage can be easily optimized based on various metrics: cost, usage, response accuracy, and so on.
+* Centralized AI provider credential management
+* The AI Gateway gives the developers and organizations a central point of governance and observability over AI data and usage
+* Request routing can be dynamic, allowing AI usage to be optimized based on various metrics: cost, usage, response accuracy, and so on.
 * AI services can be used by other {{site.base_gateway}} plugins to augment non-AI API traffic 
 
 This core AI Gateway feature is enabled with the [AI Proxy](/hub/kong-inc/ai-proxy/) plugin, which is
@@ -134,18 +160,13 @@ models are supported:
 
 See the [AI Proxy plugin configuration](/hub/kong-inc/ai-proxy/configuration/) for details on modifying the proxy behavior.
 
-{:.note}
-> **Note:**
-> By default, local models are configured on the endpoint `http://host.docker.internal:11434`,
-> which allows {{site.base_gateway}} running in Docker to connect to the host machine. 
-
 ### AI usage governance
 
-With the growing adoption of AI technologies, organizations are exposed to a set of new risk vectors. In particular,
-organizations are at risk of having sensitive data leaked to AI Providers, exposing them and 
-their customers to data breaches and other security risks. 
+With the growing adoption of AI technologies, developers and their organizations are exposed to a set of new risk vectors. 
+In particular, the risk of having sensitive data leaked to AI Providers, exposing organizations and their customers to 
+data breaches and other security risks. 
 
-Kong's AI Gateway provides additional plugins to aid the organization in controlling AI data and usage. These 
+Kong's AI Gateway provides additional plugins to aid the developers in controlling AI data and usage. These 
 plugins are used in combination with the AI Proxy plugin, allowing you to build secure and specialized AI 
 experiences for your users.
 
@@ -170,7 +191,6 @@ prohibits arbitrary prompt injection by sanitizing string inputs to ensure that 
 The [AI Prompt Decorator](/hub/kong-inc/ai-prompt-decorator) plugin injects an array of `llm/v1/chat` messages at the 
 start or end of a caller’s chat history. This capability allows the caller to create more complex prompts and have more control 
 over how a Large Language Model (LLM) is used when called via {{site.base_gateway}}.
-
 
 #### Request transformations
 
