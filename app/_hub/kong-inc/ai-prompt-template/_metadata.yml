@@ -19,4 +19,4 @@ publisher: Kong Inc.
 desc: Provide fill-in-the-blank AI prompts to users
 type: plugin
 
-beta: true
+kong_beta: true
