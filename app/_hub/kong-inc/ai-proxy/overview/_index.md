@@ -39,20 +39,20 @@ This plugin currently only supports REST-based full text responses.
 
 The plugin's `config.route_type` should be set based on the target upstream endpoint and model, based on this capability matrix:
 
-| Provider Name | Provider Upstream Path                                 | Kong `route_type`    | Example Model Name     |
-|---------------|--------------------------------------------------------|----------------------|------------------------|
-| OpenAI        | /v1/chat/completions                                   | `llm/v1/chat`        | gpt-4                  |
-| OpenAI        | /v1/completions                                        | `llm/v1/completions` | gpt-3.5-turbo-instruct |
-| Cohere        | /v1/chat                                               | `llm/v1/chat`        | command                |
-| Cohere        | /v1/generate                                           | `llm/v1/completions` | command                |
-| Azure         | /openai/deployments/{deployment_name}/chat/completions | `llm/v1/chat`        | gpt-4                  |
-| Azure         | /openai/deployments/{deployment_name}/completions      | `llm/v1/completions` | gpt-3.5-turbo-instruct |
-| Anthropic     | /v1/complete                                           | `llm/v1/chat`        | claude-2.1             |
-| Anthropic     | /v1/complete                                           | `llm/v1/completions` | claude-2.1             |
-| Llama2        | User-defined                                           | `llm/v1/chat`        | User-defined           |
-| Llama2        | User-defined                                           | `llm/v1/completions` | User-defined           |
-| Mistral       | User-defined                                           | `llm/v1/chat`        | User-defined           |
-| Mistral       | User-defined                                           | `llm/v1/completions` | User-defined           |
+| Provider Name | Provider Upstream Path                                   | Kong `route_type`    | Example Model Name     |
+|---------------|----------------------------------------------------------|----------------------|------------------------|
+| OpenAI        | `/v1/chat/completions`                                   | `llm/v1/chat`        | gpt-4                  |
+| OpenAI        | `/v1/completions`                                        | `llm/v1/completions` | gpt-3.5-turbo-instruct |
+| Cohere        | `/v1/chat`                                               | `llm/v1/chat`        | command                |
+| Cohere        | `/v1/generate`                                           | `llm/v1/completions` | command                |
+| Azure         | `/openai/deployments/{deployment_name}/chat/completions` | `llm/v1/chat`        | gpt-4                  |
+| Azure         | `/openai/deployments/{deployment_name}/completions`      | `llm/v1/completions` | gpt-3.5-turbo-instruct |
+| Anthropic     | `/v1/complete`                                           | `llm/v1/chat`        | claude-2.1             |
+| Anthropic     | `/v1/complete`                                           | `llm/v1/completions` | claude-2.1             |
+| Llama2        | User-defined                                             | `llm/v1/chat`        | User-defined           |
+| Llama2        | User-defined                                             | `llm/v1/completions` | User-defined           |
+| Mistral       | User-defined                                             | `llm/v1/chat`        | User-defined           |
+| Mistral       | User-defined                                             | `llm/v1/completions` | User-defined           |
 
 The following upstream URL patterns are used:
 
@@ -163,14 +163,20 @@ The request and response formats are loosely based on OpenAI.
 See the [sample OpenAPI specification](https://github.com/kong/kong/blob/master/spec/fixtures/ai-proxy/oas.yaml) for more detail on the supported formats.
 
 {:.note}
-> Check out the [AI Gateway quickstart](/) to get an AI proxy up and running within minutes!
+> Check out the [AI Gateway quickstart](/gateway/latest/get-started/ai-gateway/) to get an AI proxy up and running within minutes!
 
 ## Get started with the AI Proxy plugin
 
 * [AI Gateway quickstart: Set up AI Proxy](/gateway/latest/get-started/ai-gateway/)
 * [Configuration reference](/hub/kong-inc/ai-proxy/configuration/)
 * [Basic configuration example](/hub/kong-inc/ai-proxy/how-to/basic-example/)
-* [Learn how to use the plugin](/hub/kong-inc/ai-proxy/how-to/)
+* Learn how to use the plugin with different providers:
+  * [OpenAI](/hub/kong-inc/ai-proxy/how-to/open-ai/)
+  * [Cohere](/hub/kong-inc/ai-proxy/how-to/cohere/)
+  * [Azure](/hub/kong-inc/ai-proxy/how-to/azure/)
+  * [Anthropic](/hub/kong-inc/ai-proxy/how-to/anthropic/)
+  * [Mistral](/hub/kong-inc/ai-proxy/how-to/mistral/)
+  * [Llama2](/hub/kong-inc/ai-proxy/how-to/llama2/)
 
 ### Other AI plugins
 
