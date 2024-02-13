@@ -10,8 +10,7 @@ This guide will walk you through creating an API product and productizing it by 
 
 ## Prerequisites
 
-If you're following the {{site.konnect_short_name}} quickstart guide,
-make sure you have followed the steps in [Proxy and test a service](/konnect/getting-started/deploy-service).
+* [A service created](/konnect/gateway-manager/deploy-service).
 
 ## Create an API product <!--these steps will need to be verified once customer 0 happens-->
 
@@ -53,9 +52,10 @@ API products can be published to the Dev Portal. To publish your new API product
 Your API product is now consumable by developers from the **Dev Portal**.
 
 
-## Next steps
+## Summary
 
 In this section, you added an API product, linked a Gateway service via an API product version to it, and published it to the Dev Portal. 
 
-Next, [add documentation](/konnect/getting-started/publish-service/)
-and test out the Dev Portal from the perspective of a developer.
+## More information
+
+* [Add API product documentation](/konnect/dev-portal/publish-service/): Learn how to add API product documentation and test out the Dev Portal from the perspective of a developer.
