@@ -8,9 +8,9 @@ chapter: 7
 Kong AI Gateway is a powerful set of new features built on top of [{{site.base_gateway}}](/gateway/latest/), 
 designed to help developers and organizations effectively adopt AI capabilities quickly and securely.
 
-Quick Links
+Quick Links:
 * [Get Started](#getting-started) in one minute with our guide
-* [Watch demonstration tutorials](https://konghq.com/products/kong-ai-gateway#videos) in the AI Gateway product page
+* [Watch video tutorials](https://konghq.com/products/kong-ai-gateway#videos) in the AI Gateway product page
 * [View the AI plugins](/hub/?category=ai) in the {{site.base_gateway}} Plugin Hub
 
 With the rapid emergence of multiple AI LLM providers (including open source and self-hosted models), 
