@@ -2,10 +2,12 @@
 nav_title: Overview
 ---
 
-The AI Prompt Decorator plugin adds an array of `llm/v1/chat` messages to either the start or end of a caller's chat history.
-This lets the caller create more complex prompts.
+The AI Prompt Decorator plugin adds an array of `llm/v1/chat` messages to either the start or end of an LLM consumer's chat history.
+This allows you to pre-engineer complex prompts, or steer (and guard) prompts in such a way that the modification to the consumer's
+LLM message is completely transparent.
 
-You can use this plugin to set up specific prompt history, words, phrases, or otherwise have more control over how an LLM service is used when called via {{site.base_gateway}}.
+You can use this plugin to pre-set a system prompt, set up specific prompt history, add words and phrases, or otherwise have more
+control over how an LLM service is used when called via {{site.base_gateway}}.
 
 {:.note}
 > This plugin extends the functionality of the [AI Proxy plugin](/hub/kong-inc/ai-proxy/), and requires AI Proxy to be configured first. 
