@@ -69,7 +69,7 @@ plugins:
 
 ### Test the configuration
 
-Mke an `llm/v1/chat` type request to test your new endpoint:
+Make an `llm/v1/chat` type request to test your new endpoint:
 
 ```bash
 curl -X POST http://localhost:8000/openai-chat \

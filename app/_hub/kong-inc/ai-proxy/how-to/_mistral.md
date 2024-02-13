@@ -20,7 +20,7 @@ The "upstream" request and response formats are different between various implem
 
 For this provider, the following should be used for the [`config.model.options.mistral_format`](/hub/kong-inc/ai-proxy/configuration/#config-model-options-mistral_format) parameter:
 
-| Mistral Hosting  | mistral_format Config Value | Auth Header?            |
+| Mistral Hosting  | `mistral_format` Config Value | Auth Header?            |
 |------------------|-----------------------------|-------------------------|
 | OLLAMA           | `ollama`                    | Not required by default |
 | Self-Hosted GGUF | `openai`                    | Not required by default |
@@ -32,7 +32,7 @@ as defined in its [API documentation](https://github.com/ollama/ollama/blob/main
 
 ### OpenAI Format
 
-The `openai` format option follows the same upstream formats as the equivalent OpenAI route_type operation.
+The `openai` format option follows the same upstream formats as the equivalent OpenAI `route_type` operation.
 
 ## Using the plugin with Mistral
 
@@ -92,7 +92,7 @@ plugins:
 
 ### Test the configuration
 
-Mke an `llm/v1/chat` type request to test your new endpoint:
+Make an `llm/v1/chat` type request to test your new endpoint:
 
 ```bash
 curl -X POST http://localhost:8000/mistral-chat \

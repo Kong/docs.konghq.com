@@ -154,6 +154,7 @@ booleans
 burstable
 CAs
 certificate_admin
+chatbot
 cleartext
 client_payload
 client_status
@@ -325,6 +326,8 @@ lapis
 Librato
 libxml2
 liveness
+LLM
+LLMs
 Loggly
 loggly
 lookup
