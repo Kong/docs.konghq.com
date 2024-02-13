@@ -19,9 +19,7 @@ Package v1 contains API Schema definitions for the konghq.com v1 API group.
 - [KongConsumer](#kongconsumer)
 - [KongIngress](#kongingress)
 - [KongPlugin](#kongplugin)
-
 ### KongClusterPlugin
-
 
 
 KongClusterPlugin is the Schema for the kongclusterplugins API.
@@ -46,9 +44,7 @@ KongClusterPlugin is the Schema for the kongclusterplugins API.
 
 
 
-
 ### KongConsumer
-
 
 
 KongConsumer is the Schema for the kongconsumers API.
@@ -67,9 +63,7 @@ KongConsumer is the Schema for the kongconsumers API.
 
 
 
-
 ### KongIngress
-
 
 
 KongIngress is the Schema for the kongingresses API.
@@ -87,9 +81,7 @@ KongIngress is the Schema for the kongingresses API.
 
 
 
-
 ### KongPlugin
-
 
 
 KongPlugin is the Schema for the kongplugins API.
@@ -114,13 +106,14 @@ KongPlugin is the Schema for the kongplugins API.
 
 
 
+### Types
+
+In this section you will find types that the CRDs rely on.
 
 
 
 
-
-### ConfigPatch
-
+#### ConfigPatch
 
 
 ConfigPatch is a JSON patch (RFC6902) to add values from Secret to the generated configuration.
@@ -138,8 +131,7 @@ It is an equivalent of the following patch:
 _Appears in:_
 - [KongPlugin](#kongplugin)
 
-### ConfigSource
-
+#### ConfigSource
 
 
 ConfigSource is a wrapper around SecretValueFromSource.
@@ -159,8 +151,7 @@ _Appears in:_
 
 
 
-### KongIngressRoute
-
+#### KongIngressRoute
 
 
 KongIngressRoute contains KongIngress route configuration.
@@ -187,8 +178,7 @@ Deprecated: use Ingress' annotations instead.
 _Appears in:_
 - [KongIngress](#kongingress)
 
-### KongIngressService
-
+#### KongIngressService
 
 
 KongIngressService contains KongIngress service configuration.
@@ -210,8 +200,7 @@ Deprecated: use Service's annotations instead.
 _Appears in:_
 - [KongIngress](#kongingress)
 
-### KongIngressUpstream
-
+#### KongIngressUpstream
 
 
 KongIngressUpstream contains KongIngress upstream configuration.
@@ -242,8 +231,7 @@ _Appears in:_
 
 
 
-### KongProtocol
-
+#### KongProtocol
 _Underlying type:_ `string`
 
 KongProtocol is a valid Kong protocol.
@@ -258,8 +246,7 @@ _Appears in:_
 - [KongIngressRoute](#kongingressroute)
 - [KongPlugin](#kongplugin)
 
-### NamespacedConfigPatch
-
+#### NamespacedConfigPatch
 
 
 NamespacedConfigPatch is a JSON patch to add values from secrets to KongClusterPlugin
@@ -276,8 +263,7 @@ to the generated configuration of plugin in Kong.
 _Appears in:_
 - [KongClusterPlugin](#kongclusterplugin)
 
-### NamespacedConfigSource
-
+#### NamespacedConfigSource
 
 
 NamespacedConfigSource is a wrapper around NamespacedSecretValueFromSource.
@@ -293,8 +279,7 @@ _Appears in:_
 - [KongClusterPlugin](#kongclusterplugin)
 - [NamespacedConfigPatch](#namespacedconfigpatch)
 
-### NamespacedSecretValueFromSource
-
+#### NamespacedSecretValueFromSource
 
 
 NamespacedSecretValueFromSource represents the source of a secret value specifying the secret namespace.
@@ -311,8 +296,7 @@ NamespacedSecretValueFromSource represents the source of a secret value specifyi
 _Appears in:_
 - [NamespacedConfigSource](#namespacedconfigsource)
 
-### SecretValueFromSource
-
+#### SecretValueFromSource
 
 
 SecretValueFromSource represents the source of a secret value.
@@ -336,9 +320,7 @@ Package v1alpha1 contains API Schema definitions for the configuration.konghq.co
 - [IngressClassParameters](#ingressclassparameters)
 - [KongLicense](#konglicense)
 - [KongVault](#kongvault)
-
 ### IngressClassParameters
-
 
 
 IngressClassParameters is the Schema for the IngressClassParameters API.
@@ -354,9 +336,7 @@ IngressClassParameters is the Schema for the IngressClassParameters API.
 
 
 
-
 ### KongLicense
-
 
 
 KongLicense stores a Kong enterprise license to apply to managed Kong gateway instances.
@@ -373,9 +353,7 @@ KongLicense stores a Kong enterprise license to apply to managed Kong gateway in
 
 
 
-
 ### KongVault
-
 
 
 KongVault is the schema for kongvaults API which defines a custom Kong vault.
@@ -393,9 +371,10 @@ See: https://docs.konghq.com/gateway/latest/kong-enterprise/secrets-management/
 
 
 
+### Types
 
-### ControllerReference
-
+In this section you will find types that the CRDs rely on.
+#### ControllerReference
 
 
 
@@ -413,8 +392,7 @@ See: https://docs.konghq.com/gateway/latest/kong-enterprise/secrets-management/
 _Appears in:_
 - [KongLicenseControllerStatus](#konglicensecontrollerstatus)
 
-### Group
-
+#### Group
 _Underlying type:_ `string`
 
 Group refers to a Kubernetes Group. It must either be an empty string or a
@@ -427,8 +405,7 @@ RFC 1123 subdomain.
 _Appears in:_
 - [ControllerReference](#controllerreference)
 
-### IngressClassParametersSpec
-
+#### IngressClassParametersSpec
 
 
 
@@ -444,8 +421,7 @@ _Appears in:_
 _Appears in:_
 - [IngressClassParameters](#ingressclassparameters)
 
-### Kind
-
+#### Kind
 _Underlying type:_ `string`
 
 Kind refers to a Kubernetes kind.
@@ -457,8 +433,7 @@ Kind refers to a Kubernetes kind.
 _Appears in:_
 - [ControllerReference](#controllerreference)
 
-### KongLicenseControllerStatus
-
+#### KongLicenseControllerStatus
 
 
 KongLicenseControllerStatus is the status of owning KongLicense being processed
@@ -480,8 +455,7 @@ _Appears in:_
 
 
 
-### KongVaultSpec
-
+#### KongVaultSpec
 
 
 KongVaultSpec defines specification of a custom Kong vault.
@@ -501,8 +475,7 @@ _Appears in:_
 
 
 
-### Namespace
-
+#### Namespace
 _Underlying type:_ `string`
 
 Namespace refers to a Kubernetes namespace. It must be a RFC 1123 label.
@@ -514,8 +487,7 @@ Namespace refers to a Kubernetes namespace. It must be a RFC 1123 label.
 _Appears in:_
 - [ControllerReference](#controllerreference)
 
-### ObjectName
-
+#### ObjectName
 _Underlying type:_ `string`
 
 ObjectName refers to the name of a Kubernetes object.
@@ -538,9 +510,7 @@ Package v1beta1 contains API Schema definitions for the configuration.konghq.com
 - [KongUpstreamPolicy](#kongupstreampolicy)
 - [TCPIngress](#tcpingress)
 - [UDPIngress](#udpingress)
-
 ### KongConsumerGroup
-
 
 
 KongConsumerGroup is the Schema for the kongconsumergroups API.
@@ -555,9 +525,7 @@ KongConsumerGroup is the Schema for the kongconsumergroups API.
 
 
 
-
 ### KongUpstreamPolicy
-
 
 
 KongUpstreamPolicy allows configuring algorithm that should be used for load balancing traffic between Kong
@@ -585,9 +553,7 @@ used instead. This is to allow reusing the same KongUpstreamPolicy for multiple 
 
 
 
-
 ### TCPIngress
-
 
 
 TCPIngress is the Schema for the tcpingresses API.
@@ -603,9 +569,7 @@ TCPIngress is the Schema for the tcpingresses API.
 
 
 
-
 ### UDPIngress
-
 
 
 UDPIngress is the Schema for the udpingresses API.
@@ -621,9 +585,10 @@ UDPIngress is the Schema for the udpingresses API.
 
 
 
+### Types
 
-### HTTPStatus
-
+In this section you will find types that the CRDs rely on.
+#### HTTPStatus
 _Underlying type:_ `integer`
 
 HTTPStatus is an HTTP status code.
@@ -636,8 +601,7 @@ _Appears in:_
 - [KongUpstreamHealthcheckHealthy](#kongupstreamhealthcheckhealthy)
 - [KongUpstreamHealthcheckUnhealthy](#kongupstreamhealthcheckunhealthy)
 
-### HashInput
-
+#### HashInput
 _Underlying type:_ `string`
 
 HashInput is the input for consistent-hashing load balancing algorithm.
@@ -650,8 +614,7 @@ Can be one of: "ip", "consumer", "path".
 _Appears in:_
 - [KongUpstreamHash](#kongupstreamhash)
 
-### IngressBackend
-
+#### IngressBackend
 
 
 IngressBackend describes all endpoints for a given service and port.
@@ -668,8 +631,7 @@ _Appears in:_
 - [IngressRule](#ingressrule)
 - [UDPIngressRule](#udpingressrule)
 
-### IngressRule
-
+#### IngressRule
 
 
 IngressRule represents a rule to apply against incoming requests.
@@ -687,8 +649,7 @@ Matching is performed based on an (optional) SNI and port.
 _Appears in:_
 - [TCPIngressSpec](#tcpingressspec)
 
-### IngressTLS
-
+#### IngressTLS
 
 
 IngressTLS describes the transport layer security.
@@ -706,8 +667,7 @@ _Appears in:_
 
 
 
-### KongUpstreamActiveHealthcheck
-
+#### KongUpstreamActiveHealthcheck
 
 
 KongUpstreamActiveHealthcheck configures active health check probing.
@@ -730,8 +690,7 @@ KongUpstreamActiveHealthcheck configures active health check probing.
 _Appears in:_
 - [KongUpstreamHealthcheck](#kongupstreamhealthcheck)
 
-### KongUpstreamHash
-
+#### KongUpstreamHash
 
 
 KongUpstreamHash defines how to calculate hash for consistent-hashing load balancing algorithm.
@@ -752,8 +711,7 @@ Only one of the fields must be set.
 _Appears in:_
 - [KongUpstreamPolicySpec](#kongupstreampolicyspec)
 
-### KongUpstreamHealthcheck
-
+#### KongUpstreamHealthcheck
 
 
 KongUpstreamHealthcheck represents a health-check config of an Upstream in Kong.
@@ -770,8 +728,7 @@ KongUpstreamHealthcheck represents a health-check config of an Upstream in Kong.
 _Appears in:_
 - [KongUpstreamPolicySpec](#kongupstreampolicyspec)
 
-### KongUpstreamHealthcheckHealthy
-
+#### KongUpstreamHealthcheckHealthy
 
 
 KongUpstreamHealthcheckHealthy configures thresholds and HTTP status codes to mark targets healthy for an upstream.
@@ -789,8 +746,7 @@ _Appears in:_
 - [KongUpstreamActiveHealthcheck](#kongupstreamactivehealthcheck)
 - [KongUpstreamPassiveHealthcheck](#kongupstreampassivehealthcheck)
 
-### KongUpstreamHealthcheckUnhealthy
-
+#### KongUpstreamHealthcheckUnhealthy
 
 
 KongUpstreamHealthcheckUnhealthy configures thresholds and HTTP status codes to mark targets unhealthy.
@@ -810,8 +766,7 @@ _Appears in:_
 - [KongUpstreamActiveHealthcheck](#kongupstreamactivehealthcheck)
 - [KongUpstreamPassiveHealthcheck](#kongupstreampassivehealthcheck)
 
-### KongUpstreamPassiveHealthcheck
-
+#### KongUpstreamPassiveHealthcheck
 
 
 KongUpstreamPassiveHealthcheck configures passive checks around
@@ -829,8 +784,7 @@ passive health checks.
 _Appears in:_
 - [KongUpstreamHealthcheck](#kongupstreamhealthcheck)
 
-### KongUpstreamPolicySpec
-
+#### KongUpstreamPolicySpec
 
 
 KongUpstreamPolicySpec contains the specification for KongUpstreamPolicy.
@@ -849,8 +803,7 @@ KongUpstreamPolicySpec contains the specification for KongUpstreamPolicy.
 _Appears in:_
 - [KongUpstreamPolicy](#kongupstreampolicy)
 
-### TCPIngressSpec
-
+#### TCPIngressSpec
 
 
 TCPIngressSpec defines the desired state of TCPIngress.
@@ -868,8 +821,7 @@ _Appears in:_
 
 
 
-### UDPIngressRule
-
+#### UDPIngressRule
 
 
 UDPIngressRule represents a rule to apply against incoming requests
@@ -887,8 +839,7 @@ is used to match requests.
 _Appears in:_
 - [UDPIngressSpec](#udpingressspec)
 
-### UDPIngressSpec
-
+#### UDPIngressSpec
 
 
 UDPIngressSpec defines the desired state of UDPIngress.
