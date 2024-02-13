@@ -4,7 +4,9 @@ nav_title: Overview
 
 The AI Prompt Template plugin lets you provide tuned AI prompts to users. 
 Users only need to fill in the blanks with variable placeholders in the following format: `{% raw %}{{variable}}{% endraw %}`. 
-This lets admins set up templates, which can be then be used by anyone in the organization.
+
+This lets admins set up templates, which can be then be used by anyone in the organization. It also allows admins to present an LLM
+as an API in its own right - for example, a bot that can provide software class examples and/or suggestions.
 
 This plugin also sanitises string inputs to ensure that JSON control characters are escaped, preventing arbitrary prompt injection.
 
@@ -14,57 +16,18 @@ Check out the [AI Gateway quickstart](/) to get an AI proxy up and running withi
 
 ## How it works
 
-When activated, the AI Prompt Template plugin looks for template references in the following forms:
+When calling a template, simply replace the "messages" (`llm/v1/chat`) or "prompt" (`llm/v1/completions`) with a template reference, in the
+format: `{template://TEMPLATE_NAME}`
 
-Chat:
+When activated the template restricts an LLM usage to just those pre-defined templates, which are called in the following example format:
+
 ```json
 {
-	"messages": "{template://developer-chat}",
-	"properties": {
-		"language": "python",
-		"program": "flask web server"
-	}
+  "prompt": "{template://sample-template}",
+  "properties": {
+    "thing": "gravity"
+  }
 }
-```
-
-Prompt:
-```json
-{
-	"prompt": "{template://developer-prompt}",
-	"properties": {
-		"language": "python",
-		"program": "flask web server"
-	}
-}
-```
-
-Based on the following plugin configuration, where `program` and `language` are defined as template variables:
-
-```yaml
-plugins:
-- name: ai-prompt-template
-  config:
-    allow_untemplated_requests: true
-    templates:
-    - name: "developer-chat"
-      template:  |-
-        {
-            "messages": [
-            {
-                "role": "system",
-                "content": "You are a {{program}} expert, in {{language}} programming language."
-            },
-            {
-                "role": "user",
-                "content": "Write me a {{program}} program."
-            }
-            ]
-        }
-    - name: "developer-prompt"
-      template:  |-
-        {
-            "prompt": "You are a {{language}} programming language expert. Write me a {{program}} program."
-        }
 ```
 
 ## Get started with the AI Prompt Template plugin
