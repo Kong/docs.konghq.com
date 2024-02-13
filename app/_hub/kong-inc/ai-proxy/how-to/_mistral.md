@@ -3,7 +3,7 @@ nav_title: Mistral
 title: Set up AI Proxy with Mistral
 ---
 
-Set up the AI Proxy plugin to use [Mistral](https://mistral.ai/).
+This guide walks you through setting up the AI Proxy plugin with [Mistral](https://mistral.ai/).
 
 {:.important}
 > Mistral is a self-hosted model. As such, it requires setting model option `upstream_url`, pointing to the absolute
@@ -28,7 +28,7 @@ For this provider, the following should be used for the `config.model.options.mi
 ### Ollama Format
 
 The `ollama` format option adheres to the "chat" and "chat-completion" request formats,
-[as defined in its API documentation](https://github.com/ollama/ollama/blob/main/docs/api.md).
+as defined in its [API documentation](https://github.com/ollama/ollama/blob/main/docs/api.md).
 
 ### OpenAI Format
 
@@ -36,16 +36,41 @@ The `openai` format option follows the same upstream formats as the equivalent O
 
 ## Using the plugin with Mistral
 
+{% include_cached /md/plugins-hub/ai-providers-prereqs.md snippet='intro' %}
+
 ### Prerequisites
 
-{% include_cached /md/plugins-hub/ai-providers-prereqs.md %}
+{% include_cached /md/plugins-hub/ai-providers-prereqs.md snippet='service' %}
 
-Now you can create a **route** and accompanying **AI Proxy plugin** for your AI provider.
+### Set up route and plugin
 
-### Provider configuration
+After installing and starting your Mistral instance, you can then create an
+AI Proxy route and plugin configuration.
 
-After installing and starting your Mistral instance
+{% navtabs %}
+{% navtab Kong Admin API %}
 
+Create the route:
+
+```bash
+curl -X POST http://localhost:8001/services/ai-proxy/routes \
+  --data "name=mistral-chat" \
+  --data "paths[]=~/mistral-chat$"
+```
+
+Enable and configure the AI Proxy plugin for Mistral (using `ollama` format in this example):
+
+```bash
+curl -X POST http://localhost:8001/routes/mistral-chat/plugins \
+  --data "name=ai-proxy" \
+  --data "config.route_type=llm/v1/chat" \
+  --data "config.model.provider=mistral" \
+  --data "config.model.name=mistral" \
+  --data "config.model.options.mistral_format=ollama" \
+  --data "config.model.options.upstream_url=http://ollama-server.local:11434/v1/chat" \ 
+```
+{% endnavtab %}
+{% navtab YAML %}
 ```yaml
 name: mistral-chat
 paths:
@@ -62,30 +87,12 @@ plugins:
         mistral_format: "ollama"
         upstream_url: "http://ollama-server.local:11434/v1/chat"
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
-### Plugin Installation
+### Test the configuration
 
-Create the resources:
-
-```bash
-curl -X POST http://localhost:8001/services/ai-proxy/routes \
-    --data "name=mistral-chat" \
-    --data "paths[]=~/mistral-chat$"
-```
-
-```bash
-curl -X POST http://localhost:8001/routes/mistral-chat/plugins \
-    --data "name=ai-proxy" \
-    --data "config.route_type=llm/v1/chat" \
-    --data "config.model.provider=mistral" \
-    --data "config.model.name=mistral" \
-    --data "config.model.options.mistral_format=ollama" \
-    --data "config.model.options.upstream_url=http://ollama-server.local:11434/v1/chat" \ 
-```
-
-### Test
-
-Finally, make an `llm/v1/chat` type request to your new endpoint:
+Mke an `llm/v1/chat` type request to test your new endpoint:
 
 ```bash
 curl -X POST http://localhost:8000/mistral-chat \

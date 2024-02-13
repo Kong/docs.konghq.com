@@ -3,7 +3,7 @@ nav_title: Llama2
 title: Set up AI Proxy with Llama2
 ---
 
-Set up the AI Proxy plugin to use the Llama2 LLM.
+This guide walks you through setting up the AI Proxy plugin with the Llama2 LLM.
 
 {:.important}
 > Llama2 is a self-hosted model. As such, it requires setting the model option `upstream_url`, pointing to the absolute
@@ -53,16 +53,44 @@ The `openai` format option follows the same upstream formats as the equivalent O
 
 ## Using the plugin with Llama2
 
+{% include_cached /md/plugins-hub/ai-providers-prereqs.md snippet='intro' %}
+
 ### Prerequisites
 
-{% include_cached /md/plugins-hub/ai-providers-prereqs.md %}
-
-Now you can create a **route** and accompanying **AI Proxy plugin** for your AI provider.
+{% include_cached /md/plugins-hub/ai-providers-prereqs.md snippet='service' %}
 
 ### Provider configuration
 
-After installing and starting your Llama2 instance:
+### Set up route and plugin
 
+After installing and starting your Llama2 instance, you can then create an
+AI Proxy route and plugin configuration.
+
+{% navtabs %}
+{% navtab Kong Admin API %}
+
+Create the route:
+
+```bash
+curl -X POST http://localhost:8001/services/ai-proxy/routes \
+  --data "name=llama2-chat" \
+  --data "paths[]=~/llama2-chat$"
+```
+
+Enable and configure the AI Proxy plugin for Llama2:
+
+```bash
+curl -X POST http://localhost:8001/routes/llama2-chat/plugins \
+  --data "name=ai-proxy" \
+  --data "config.route_type=llm/v1/chat" \
+  --data "config.model.provider=llama2" \
+  --data "config.model.name=llama2" \
+  --data "config.model.options.llama2_format=ollama" \
+  --data "config.model.options.upstream_url=http://ollama-server.local:11434/v1/chat" \ 
+```
+
+{% endnavtab %}
+{% navtab YAML %}
 ```yaml
 name: llama2-chat
 paths:
@@ -79,30 +107,12 @@ plugins:
         llama2_format: "ollama"
         upstream_url: "http://llama2-server.local:11434/v1/chat"
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
-### Plugin installation
+### Test the configuration
 
-Create the resources:
-
-```bash
-curl -X POST http://localhost:8001/services/ai-proxy/routes \
-    --data "name=llama2-chat" \
-    --data "paths[]=~/llama2-chat$"
-```
-
-```bash
-curl -X POST http://localhost:8001/routes/llama2-chat/plugins \
-    --data "name=ai-proxy" \
-    --data "config.route_type=llm/v1/chat" \
-    --data "config.model.provider=llama2" \
-    --data "config.model.name=llama2" \
-    --data "config.model.options.llama2_format=ollama" \
-    --data "config.model.options.upstream_url=http://ollama-server.local:11434/v1/chat" \ 
-```
-
-### Test
-
-Finally, make an `llm/v1/chat` type request to your new endpoint:
+Make an `llm/v1/chat` type request to test your new endpoint:
 
 ```bash
 curl -X POST http://localhost:8000/llama2-chat \

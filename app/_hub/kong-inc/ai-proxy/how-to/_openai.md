@@ -3,19 +3,47 @@ nav_title: OpenAI
 title: Set up AI Proxy with OpenAI
 ---
 
-Set up the AI Proxy plugin to use [OpenAI](https://openai.com/).
+This guide walks you through setting up the AI Proxy plugin with [OpenAI](https://openai.com/).
+
+{% include_cached /md/plugins-hub/ai-providers-prereqs.md snippet='intro' %}
 
 ## Prerequisites
 
-{% include_cached /md/plugins-hub/ai-providers-prereqs.md %}
-
-Now you can create a **route** and accompanying **AI Proxy plugin** for your AI provider.
+{% include_cached /md/plugins-hub/ai-providers-prereqs.md snippet='service' provider='OpenAI' %}
 
 ## Provider configuration
 
-After creating an OpenAI account, and purchasing a subscription, you can then create an
-AI Proxy route and plugin configuration (based off this configuration YAML):
+### Set up route and plugin
 
+After creating an OpenAI account, and purchasing a subscription, you can then create an
+AI Proxy route and plugin configuration.
+
+{% navtabs %}
+{% navtab Kong Admin API %}
+
+Create a route:
+
+```bash
+curl -X POST http://localhost:8001/services/ai-proxy/routes \
+  --data "name=openai-chat" \
+  --data "paths[]=~/openai-chat$"
+```
+
+Enable and configure the AI Proxy plugin for OpenAI, replacing the `<openai_key> with your own API key:
+
+```bash
+curl -X POST http://localhost:8001/routes/openai-chat/plugins \
+  --data "name=ai-proxy" \
+  --data "config.route_type=llm/v1/chat" \
+  --data "config.auth.header_name=Authorization" \
+  --data "config.auth.header_value=Bearer <openai_key>" \
+  --data "config.model.provider=openai" \
+  --data "config.model.name=gpt-4" \
+  --data "config.model.options.max_tokens=512" \
+  --data "config.model.options.temperature=1.0"
+```
+{% endnavtab %}
+{% navtab YAML %}
 ```yaml
 name: openai-chat
 paths:
@@ -36,32 +64,12 @@ plugins:
           max_tokens: 512
           temperature: 1.0
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
-### Plugin Installation
+### Test the configuration
 
-Create the resources:
-
-```bash
-curl -X POST http://localhost:8001/services/ai-proxy/routes \
-    --data "name=openai-chat" \
-    --data "paths[]=~/openai-chat$"
-```
-
-```bash
-curl -X POST http://localhost:8001/routes/openai-chat/plugins \
-    --data "name=ai-proxy" \
-    --data "config.route_type=llm/v1/chat" \
-    --data "config.auth.header_name=Authorization" \
-    --data "config.auth.header_value=Bearer <openai_key>" \
-    --data "config.model.provider=openai" \
-    --data "config.model.name=gpt-4" \
-    --data "config.model.options.max_tokens=512" \
-    --data "config.model.options.temperature=1.0"
-```
-
-### Test
-
-Finally, make an `llm/v1/chat` type request to your new endpoint:
+Mke an `llm/v1/chat` type request to test your new endpoint:
 
 ```bash
 curl -X POST http://localhost:8000/openai-chat \

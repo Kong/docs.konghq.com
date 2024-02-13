@@ -3,21 +3,47 @@ nav_title: Cohere
 title: Set up AI Proxy with Cohere
 ---
 
-Set up the AI Proxy plugin to use [Cohere](https://cohere.com/).
+This guide walks you through setting up the AI Proxy plugin with [Cohere](https://cohere.com/).
+
+{% include_cached /md/plugins-hub/ai-providers-prereqs.md snippet='intro' %}
 
 ## Prerequisites
 
-{% include_cached /md/plugins-hub/ai-providers-prereqs.md %}
-
-* You have a Cohere account and subscription
-
-Now you can create a **route** and accompanying **AI Proxy plugin** for your AI provider.
+{% include_cached /md/plugins-hub/ai-providers-prereqs.md snippet='service' provider='Cohere' %}
 
 ## Provider configuration
 
 After creating a Cohere account, and purchasing a subscription, you can then create an
-AI Proxy route and plugin configuration (based off this configuration YAML):
+AI Proxy route and plugin configuration.
 
+### Set up route and plugin
+
+{% navtabs %}
+{% navtab Kong Admin API %}
+
+Create the route:
+
+```bash
+curl -X POST http://localhost:8001/services/ai-proxy/routes \
+  --data "name=cohere-chat" \
+  --data "paths[]=~/cohere-chat$"
+```
+
+Enable and configure the AI Proxy plugin for Cohere, replacing the `<cohere_key> with your own API key:
+
+```bash
+curl -X POST http://localhost:8001/routes/cohere-chat/plugins \
+  --data "name=ai-proxy" \
+  --data "config.route_type=llm/v1/chat" \
+  --data "config.auth.header_name=Authorization" \
+  --data "config.auth.header_value=Bearer <cohere_key>" \
+  --data "config.model.provider=cohere" \
+  --data "config.model.name=command" \
+  --data "config.model.options.max_tokens=512" \
+  --data "config.model.options.temperature=1.0"
+```
+{% endnavtab %}
+{% navtab YAML %}
 ```yaml
 name: cohere-chat
 paths:
@@ -38,32 +64,12 @@ plugins:
           max_tokens: 512
           temperature: 1.0
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
-### Plugin Installation
+### Test the configuration
 
-Create the resources:
-
-```bash
-curl -X POST http://localhost:8001/services/ai-proxy/routes \
-    --data "name=cohere-chat" \
-    --data "paths[]=~/cohere-chat$"
-```
-
-```bash
-curl -X POST http://localhost:8001/routes/cohere-chat/plugins \
-    --data "name=ai-proxy" \
-    --data "config.route_type=llm/v1/chat" \
-    --data "config.auth.header_name=Authorization" \
-    --data "config.auth.header_value=Bearer <cohere_key>" \
-    --data "config.model.provider=cohere" \
-    --data "config.model.name=command" \
-    --data "config.model.options.max_tokens=512" \
-    --data "config.model.options.temperature=1.0"
-```
-
-### Test
-
-Finally, make an `llm/v1/chat` type request to your new endpoint:
+Make an `llm/v1/chat` type request to test your new endpoint:
 
 ```bash
 curl -X POST http://localhost:8000/cohere-chat \
