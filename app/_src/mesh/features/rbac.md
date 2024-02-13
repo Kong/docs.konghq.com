@@ -1189,6 +1189,6 @@ conf:
 
 If you remove the default `AccessRoleBinding` and `AccessRole`, you might find yourself locked out, unable to edit any resources. If you encounter this situation, you can regain access to the cluster by following these steps:
 
-1. Set the environment variable for the control-plane: `KUMA_ACCESS_TYPE: static`, and then restart the control-plane.
+1. [Configure the control-plane](/mesh/{{page.release}}/documentation/configuration/#modifying-the-configuration) by setting the: `KUMA_ACCESS_TYPE` environment variable to `static`, and then restart the control-plane.
 2. Create the default `AccessRoleBinding` and `AccessRole` (as presented in the section [link](/mesh/{{page.release}}/features/rbac/#default)), or add new groups if necessary.
 3. Remove the environment variable for the control-plane: `KUMA_ACCESS_TYPE`, and restart the control-plane.
