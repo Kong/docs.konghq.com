@@ -16,14 +16,14 @@ Flow 1: From Catalog (if you're not sure which auth strategy to use)
 
 3. Fill out the **Create New Application** form with your application name, reference ID, and description. Note: Kong will auto select the appropriate auth strategy for the API product version you're registering for.
 
- {:.note}
+   {:.note}
    > Note that the Reference ID must be unique. If your organization is using the
    [OIDC](/konnect/dev-portal/applications/enable-app-reg#oidc-flow)
    flow for application registration, enter the ID of your third-party OAuth2 claim.
 
-4. Click **Create** and you will be redirected back to the Register modal.
+5. Click **Create** and you will be redirected back to the Register modal.
 
-5. Select your application name and click **Request Access**
+6. Select your application name and click **Request Access**
 
 
 Flow 2: From My Apps (if you know which auth strategy to use)
@@ -38,10 +38,7 @@ Flow 2: From My Apps (if you know which auth strategy to use)
    flow for application registration, enter the ID of your third-party OAuth2 claim.
 
    {:.note}
-   > Note: your application can only register for API Product vresions that share the same auth strategy.
-
-    {:.note}
-   > If you aren't sure which auth strategy your application should use, use the first flow described above.
+   > Note: your application be only be able to register for API Product versions that share the same auth strategy.
 
 3. Click **Create** to save your application. You will automatically be sent to the new application's details page. 
 
