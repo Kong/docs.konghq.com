@@ -484,6 +484,3 @@ curl -X POST http://localhost:8000/mistral-chat \
 {% endnavtab %}
 
 {% endnavtabs %}
-
-
-Placeholder.
