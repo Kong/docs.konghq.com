@@ -32,9 +32,9 @@ The matching behavior is as follows:
 ## Get started with the AI Prompt Guard plugin
 
 * [AI Gateway quickstart: Set up AI Proxy](/gateway/latest/get-started/ai-gateway/)
-* [Configuration reference](/hub/kong-inc/ai-prompt-guard/configuration/{{page.release}})
-* [Basic configuration example](/hub/kong-inc/ai-prompt-guard/how-to/basic-example/{{page.release}})
-* [Learn how to use the plugin](/hub/kong-inc/ai-prompt-guard/how-to/{{page.release}})
+* [Configuration reference](/hub/kong-inc/ai-prompt-guard/configuration/)
+* [Basic configuration example](/hub/kong-inc/ai-prompt-guard/how-to/basic-example/)
+* [Learn how to use the plugin](/hub/kong-inc/ai-prompt-guard/how-to/)
 
 ### Other AI plugins
 

@@ -19,23 +19,23 @@ The AI Proxy plugin supports `llm/v1/chat` and `llm/v1/completion` style request
 The AI Proxy will mediate for you:
 
 * Request and response formats appropriate for the configured `provider` and `route_type`
-* The following service request coordinates (unless model is self-hosted):
+* The following service request coordinates (unless the model is self-hosted):
   * Protocol
   * Host name
   * Port
   * Path
-  * HTTP Method
+  * HTTP method
 * Authentication on behalf of the Kong API consumer
 * Decorating the request with parameters from the `config.options` block, appropriate for the chosen provider
-* Recording of usage statistics of the configured LLM provider and model ([see detail below](hyperlink)) into your selected [Kong Log](hyperlink-to-log-plugins-category) plugin output
+* Recording of usage statistics of the configured LLM provider and model into your selected [Kong log](/hub/?category=logging) plugin output
 * Optionally, additionally recording all post-transformation request and response messages from users, to and from the configured LLM
 * Fulfilment of requests to self-hosted models, based on select supported format transformations
 
-Flattening all of the provider formats allows you to standardize the manipulation of the data before and after transmission. It also allows your to provide a choice of LLMs to the Kong consumers, using consistent request/response formats, regardless of the backend provider (or model).
+Flattening all of the provider formats allows you to standardize the manipulation of the data before and after transmission. It also allows your to provide a choice of LLMs to the Kong consumers, using consistent request and response formats, regardless of the backend provider or model.
 
 This plugin currently only supports REST-based full text responses.
 
-## Request and Response Formats
+## Request and response formats
 
 The plugin's `config.route_type` should be set based on the target upstream endpoint and model, based on this capability matrix:
 
@@ -67,14 +67,14 @@ The following upstream URL patterns are used:
 
 
 {:.important}
-> While only the **Llama2** and **Mistral** models are classed as "self-hosted", the target URL can be overridden for any of the supported providers.
-> For example, a self-hosted or otherwise "OpenAI-compatible" endpoint can be called by setting the same `config.model.options.upstream_url` plugin option.
+> While only the **Llama2** and **Mistral** models are classed as self-hosted, the target URL can be overridden for any of the supported providers.
+> For example, a self-hosted or otherwise OpenAI-compatible endpoint can be called by setting the same `config.model.options.upstream_url` plugin option.
 
-### Input Formats
+### Input formats
 
 Kong will mediate the request and response format based on the selected `config.provider` and `config.route_type`, as outlined in the table above.
 
-The Kong AI Proxy accepts the following inputs formats, standardised across all providers; the `config.route_type` must be configured respective to the required request/response format examples:
+The Kong AI Proxy accepts the following inputs formats, standardised across all providers; the `config.route_type` must be configured respective to the required request and response format examples:
 
 {% navtabs %}
 {% navtab llm/v1/chat %}
@@ -103,7 +103,7 @@ The Kong AI Proxy accepts the following inputs formats, standardised across all 
 {% endnavtab %}
 {% endnavtabs %}
 
-### Response Formats
+### Response formats
 
 Conversely, the response formats are also transformed to a standard format across all providers:
 
@@ -171,7 +171,7 @@ See the [sample OpenAPI specification](https://github.com/kong/kong/blob/master/
 * [Configuration reference](/hub/kong-inc/ai-proxy/configuration/)
 * [Basic configuration example](/hub/kong-inc/ai-proxy/how-to/basic-example/)
 * Learn how to use the plugin with different providers:
-  * [OpenAI](/hub/kong-inc/ai-proxy/how-to/open-ai/)
+  * [OpenAI](/hub/kong-inc/ai-proxy/how-to/openai/)
   * [Cohere](/hub/kong-inc/ai-proxy/how-to/cohere/)
   * [Azure](/hub/kong-inc/ai-proxy/how-to/azure/)
   * [Anthropic](/hub/kong-inc/ai-proxy/how-to/anthropic/)

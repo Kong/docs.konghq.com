@@ -7,10 +7,10 @@ proxying the request upstream.
 
 This plugin supports `llm/v1/chat` style requests for all of the same providers as the [AI Proxy plugin](/hub/kong-inc/ai-proxy/).
 
-It also uses all of the same configuration and tuning parameters as the [AI Proxy plugin](/hub/kong-inc/ai-proxy/), under the `config.llm` block.
+It also uses all of the same configuration and tuning parameters as the AI Proxy plugin, under the `config.llm` block.
 
 The AI Request Transformer plugin runs **after** all of the [AI Prompt](/hub/?search=ai%2520prompt) plugins, but **before** the
-[AI Proxy plugin](/hub/kong-inc/ai-proxy/), allowing it to also introspect LLM requests against the same, or a different, LLM.
+AI Proxy plugin, allowing it to also introspect LLM requests against the same, or a different, LLM.
 
 ## How it works
 

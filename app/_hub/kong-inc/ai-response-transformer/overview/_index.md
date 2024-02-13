@@ -7,9 +7,9 @@ It can also be configured to terminate or otherwise nullify the response, should
 
 This plugin supports `llm/v1/chat` style requests for all of the same providers as the [AI Proxy plugin](/hub/kong-inc/ai-proxy/).
 
-It also uses all of the same configuration and tuning parameters as the [AI Proxy plugin](/hub/kong-inc/ai-proxy/), under the `config.llm` block.
+It also uses all of the same configuration and tuning parameters as the AI Proxy plugin, under the `config.llm` block.
 
-The AI Response Transformer plugin runs **after** the [AI Proxy plugin](/hub/kong-inc/ai-proxy/), and **after** proxying to the upstream (backend) service, allowing it to also introspect LLM responses against the same, or a different, LLM service.
+The AI Response Transformer plugin runs **after** the AI Proxy plugin, and **after** proxying to the upstream (backend) service, allowing it to also introspect LLM responses against the same, or a different, LLM service.
 
 ## How it works
 

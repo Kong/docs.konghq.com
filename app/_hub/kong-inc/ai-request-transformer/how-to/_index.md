@@ -8,11 +8,11 @@ title: Using the AI Request Transformer Plugin
 The AI Request Transformer plugin is designed to operate in two ways:
 
 * As a transformer / security arbiter for your existing upstream APIs
-* As an extension of another "AI Proxy" LLM route, inspecting and transforming the requests before sending to the upstream LLM service
+* As an extension of another AI Proxy LLM route, inspecting and transforming the requests before sending to the upstream LLM service
 
 The plugin configuration consists of two distinct sections:
 
-* The LLM configuration, that uses the same [configuration options](/hub/kong-inc/ai-proxy/configuration/) as the AI Proxy plugin.
+* The LLM configuration, which uses the same [configuration options](/hub/kong-inc/ai-proxy/configuration/) as the AI Proxy plugin.
 * The prompt (and additional options) containing the **instructions** for the LLM, which will transform your request.
 
 See the same LLM block in the context of the `AI Proxy` plugin, and the `AI Request Transformer` plugin:
@@ -54,87 +54,86 @@ prompt: "Transform my message to XML - return me ONLY the XML output."
 
 {% endnavtabs %}
 
-When the plugin is accessed in any scope (global / service / route / consumer), it will **always** set the caller's request
-body as the "user" prompt in a chat message, and then send it to the configured `llm:` configuration block.
+When the plugin is accessed in any scope (global / service / route / consumer), it **always** sets the caller's request
+body as the "user" prompt in a chat message, and then sends it to the configured `llm:` configuration block.
 
 ## Examples
 
-### Transforming Existing API Traffic
+### Transforming existing API traffic
 
-In this example, we'll use `ai-request-transformer` on an *existing* API, e.g. something that you have developed and maintain internally.
+This example uses `ai-request-transformer` on an *existing* API, for example, something that you have already developed and maintain internally.
 
-#### 1. Design the prompt
+1. **Design the prompt**.
 
-We want to intercept requests to our "customers" API - on each request, first forward it to our configured large language model, and ask
-it to add the country name field to anywhere in the JSON where there is a city, and no associated country.
+    For this example, we want to intercept requests to our `customers` API. 
+    On each request, we want to first forward the request to our configured large language model, and ask the LLM to add the country name field to anywhere in the JSON where there is a city, but no associated country.
 
-The plugin would be configured like so:
+    The plugin would be configured like this:
 
-```yaml
-config:
-  prompt: >
-    In my JSON message, anywhere there is a JSON tag for a "city" also add a "country" tag with the name of the country in which the city
-    resides. Return me only the JSON message, no extra text.
-  llm:
-    # see `ai-proxy` plugin documentation for compatible fields for the "llm" block
-```
+    ```yaml
+    config:
+      prompt: >
+        In my JSON message, anywhere there is a JSON tag for a "city", also add a "country" tag with the name of the country in which the city
+        resides. Return me only the JSON message, no extra text.
+      llm:
+        # see `ai-proxy` plugin documentation for compatible fields for the "llm" block
+    ```
 
-and that should be all that's required.
+2. **Attach the plugin**.
 
-#### 2. Attach the Plugin
+    Attach the `ai-request-transformer` plugin to the global level, route, service, or consumer on which you want to inspect or transform all requests.
 
-Attach the `ai-request-transformer` plugin to the global level, route, service, or consumer on which you want to inspect/transform all requests.
+3. **What happens next?**
 
-#### 3. What Happens?
+    First, a Kong client makes a request. For example:
 
-Firstly, a Kong client makes a request, for example:
-
-```json
-{
-  "user": {
-    "name": "Kong User",
-    "city": "London"
-  }
-}
-```
-
-Next, Kong parses this into an `llm/v1/chat` type message, based on your `config.prompt`:
-
-```json
-{
-  "messages": [
+    ```json
     {
-      "role": "system",
-      "content": "In my JSON message, anywhere there is a JSON tag for a \"city\" also add a \"country\" tag with the name of the country in which the city resides. Return me only the JSON message, no extra text."
-    },
-    {
-      "role": "user",
-      "content": "{\n\"user\":{\n\"name\":\"Kong User\",\n\"city\":\"London\"\n}\n}"
+      "user": {
+        "name": "Kong User",
+        "city": "London"
+      }
     }
-  ]
-}
-```
+    ```
 
-Finally, it sends this to the configured LLM. On the response, it takes the trailing "assistant" response back from the LLM, and
-**sets it as the outgoing HTTP body**:
+    Next, {{site.base_gateway}} parses this into an `llm/v1/chat` type message, based on your `config.prompt`:
 
-```json
-{
-  "user": {
-    "name": "Kong User",
-    "city": "London",
-    "country": "United Kingdom"
-  }
-}
-```
+    ```json
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "In my JSON message, anywhere there is a JSON tag for a \"city\" also add a \"country\" tag with the name of the country in which the city resides. Return me only the JSON message, no extra text."
+        },
+        {
+          "role": "user",
+          "content": "{\n\"user\":{\n\"name\":\"Kong User\",\n\"city\":\"London\"\n}\n}"
+        }
+      ]
+    }
+    ```
 
-#### 4. Extraction Patterns
+    Finally, it sends this to the configured LLM. 
+    On the response, it takes the trailing "assistant" response back from the LLM, and
+    sets it as the outgoing HTTP body:
 
-In the case that your LLM is a chat-bot type, or is unpredictable in responses, you can configure the additional field `transformation_extract_pattern`
+    ```json
+    {
+      "user": {
+        "name": "Kong User",
+        "city": "London",
+        "country": "United Kingdom"
+      }
+    }
+    ```
+
+#### Extraction patterns
+
+If your LLM is a chat-bot type, or is unpredictable in responses, you can configure the additional field `transformation_extract_pattern`
 with a (PCRE) regular expression to extract the first match from the LLM's response.
 
 For example, if you have asked for a JSON response but you know that your LLM may add its own text around your answer, use this extraction pattern to
-withdraw **only** the JSON object from the LLm's response:
+withdraw **only** the JSON object from the LLM's response:
 
 ```yaml
 config:

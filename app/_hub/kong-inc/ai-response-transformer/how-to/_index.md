@@ -8,11 +8,11 @@ title: Using the AI Response Transformer Plugin
 The AI Response Transformer plugin is designed to operate in two ways:
 
 * As a transformer / security arbiter for your existing upstream APIs
-* As an extension of another "AI Proxy" LLM route, inspecting and transforming the responses before sending to the upstream LLM service
+* As an extension of another AI Proxy LLM route, inspecting and transforming the responses before sending to the upstream LLM service
 
 The plugin configuration consists of two distinct sections:
 
-* The LLM configuration, that uses the same [configuration options](/hub/kong-inc/ai-proxy/configuration/) as the AI Proxy plugin.
+* The LLM configuration, which uses the same [configuration options](/hub/kong-inc/ai-proxy/configuration/) as the AI Proxy plugin.
 * The prompt (and additional options) containing the **instructions** for the LLM, which will transform your request.
 
 See the same LLM block in the context of the `AI Proxy` plugin, and the `AI Response Transformer` plugin:
@@ -58,85 +58,84 @@ prompt: "Mask all credit card numbers in my JSON message with '*'. Return me ONL
 
 {% endnavtabs %}
 
-When the plugin is accessed in any scope (global / service / route / consumer), it will **always** set the upstream's response
-body as the "user" prompt in a chat message, and then send it to the configured `llm:` configuration block for inspection / transformation.
+When the plugin is accessed in any scope (global / service / route / consumer), it **always** sets the upstream's response
+body as the "user" prompt in a chat message, and then sends it to the configured `llm:` configuration block for inspection or transformation.
 
 ## Examples
 
-### Transforming Existing API Traffic
+### Transforming existing API traffic
 
-In this example, we'll use `ai-response-transformer` on an *existing* API, e.g. something that you have developed and maintain internally.
+This example uses `ai-response-transformer` on an *existing* API, for example, something that you have already developed and maintain internally.
 
-#### 1. Design the prompt
+1. **Design the prompt**.
 
-We want to intercept *responses from* our "customers" API - on each client response, forward it to our configured large language model, and ask
-it to mask all credit card numbers with asterisk characters.
+    For this example, we want to intercept *responses from* the `customers` API. 
+    On each client response, the plugin needs to forward it to the configured large language model, and ask
+    the LLM to mask all credit card numbers with asterisk characters.
 
-The plugin would be configured like so:
+    The plugin would be configured like this:
 
-```yaml
-config:
-  prompt: >
-    Mask all credit card numbers in my JSON message with '*'. Return me ONLY the resulting JSON.
-  llm:
-    # see `ai-proxy` plugin documentation for compatible fields for the "llm" block
-```
+    ```yaml
+    config:
+      prompt: >
+        Mask all credit card numbers in my JSON message with '*'. Return me ONLY the resulting JSON.
+      llm:
+        # see `ai-proxy` plugin documentation for compatible fields for the "llm" block
+    ```
 
-and that should be all that's required.
+2. **Attach the plugin**.
 
-#### 2. Attach the Plugin
+    Attach the `ai-response-transformer` plugin to the global level, route, service, or consumer on which you want to inspect/transform all responses.
 
-Attach the `ai-response-transformer` plugin to the global level, route, service, or consumer on which you want to inspect/transform all responses.
+    It can even be used on APIs that already have the `ai-request-transformer` plugin, or it can be used on its own.
 
-It can even be used on APIs that already have the `ai-request-transformer` plugin, or it can be used on its own.
+3. **What happens next?**
 
-#### 3. What Happens?
+    First, an upstream API responds to a client request. For example:
 
-Firstly, an upstream API responds to a client request, for example:
-
-```json
-{
-  "user": {
-    "name": "Kong User",
-    "city": "London",
-    "credit_card_no": "1234-5678-9012-3456"
-  }
-}
-```
-
-Next, Kong parses this into an `llm/v1/chat` type message, based on your `config.prompt`:
-
-```json
-{
-  "messages": [
+    ```json
     {
-      "role": "system",
-      "content": "Mask all credit card numbers in my JSON message with '*'. Return me ONLY the resulting JSON."
-    },
-    {
-      "role": "user",
-      "content": "{\n\"user\":{\n\"name\":\"Kong User\",\n\"city\":\"London\"\n\"credit_card_no\":\"1234-5678-9012-3456\"}\n}"
+      "user": {
+        "name": "Kong User",
+        "city": "London",
+        "credit_card_no": "1234-5678-9012-3456"
+      }
     }
-  ]
-}
-```
+    ```
 
-Finally, it sends this to the configured LLM. On the response, it takes the trailing "assistant" response back from the LLM, and
-**sets it as the HTTP body that will return to the original client**:
+    Next, Kong parses this into an `llm/v1/chat` type message, based on your `config.prompt`:
 
-```json
-{
-  "user": {
-    "name": "Kong User",
-    "city": "London",
-    "credit_card_no": "****-****-****-****"
-  }
-}
-```
+    ```json
+    {
+      "messages": [
+        {
+          "role": "system",
+          "content": "Mask all credit card numbers in my JSON message with '*'. Return me ONLY the resulting JSON."
+        },
+        {
+          "role": "user",
+          "content": "{\n\"user\":{\n\"name\":\"Kong User\",\n\"city\":\"London\"\n\"credit_card_no\":\"1234-5678-9012-3456\"}\n}"
+        }
+      ]
+    }
+    ```
 
-#### 4. Extraction Patterns
+    Finally, it sends this to the configured LLM. On the response, it takes the trailing "assistant" response back from the LLM, and
+    **sets it as the HTTP body that will return to the original client**:
 
-In the case that your LLM is a chat-bot type, or is unpredictable in responses, you can configure the additional field `transformation_extract_pattern`
+    ```json
+    {
+      "user": {
+        "name": "Kong User",
+        "city": "London",
+        "credit_card_no": "****-****-****-****"
+      }
+    }
+    ```
+
+#### Extraction patterns
+
+If your LLM is a chatbot type, or is unpredictable in responses, you can configure the additional field `transformation_extract_pattern`
 with a (PCRE) regular expression to extract the first match from the LLM's response.
 
 For example, if you have asked for a JSON response but you know that your LLM may add its own text around your answer, use this extraction pattern to
@@ -149,73 +148,70 @@ config:
   transformation_extract_pattern: '\\{((.|\n)*)\\}'
 ```
 
-### Setting Body, Headers, and Status Code
+### Setting body, headers, and status code
 
-The `ai-response-transformer` has the additional feature that it can be used to modify:
+The `ai-response-transformer` can modify any of the following response sections independently:
 
 * headers
 * status code
 * body
 
-all independently.
+This allows the Kong admin to configure the LLM to fully orchestrate the response phase inside {{site.base_gateway}}.
 
-This allows the Kong admin to configure the LLM to fully orchestrate the response phase inside the Kong Gateway.
+Enable this feature by setting the config option [`parse_llm_response_json_instructions`](/hub/kong-inc/ai-response-transformer/configuration/#configparse_llm_response_json_instructions).
 
-This feature is enabled by setting the config option `parse_llm_response_json_instructions`.
+1. **Design the prompt**.
 
-#### 1. Design the prompt
+    For this example, we want to intercept *responses from* our `customers` API. 
+    On each client response, the plugin forwards the response to the configured large language model, and asks
+    the LLM to mask all credit card numbers with asterisk characters.
 
-We want to intercept *responses from* our "customers" API - on each client response, forward it to our configured large language model, and ask
-it to mask all credit card numbers with asterisk characters.
+    The plugin would be configured like this:
 
-The plugin would be configured like so:
+    ```yaml
+    config:
+      prompt: >
+        If my JSON message has the user's name 'Kong User', then return me this exact JSON message: 
+        {"status": 400, "headers": {"x-failed": "true"}, "body": "VALIDATION_FAILURE"}
+      parse_llm_response_json_instructions: true
+      llm:
+        # see `ai-proxy` plugin documentation for compatible fields for the "llm" block
+    ```
 
-```yaml
-config:
-  prompt: >
-    If my JSON message has the user's name 'Kong User', then return me this exact JSON message: 
-    {"status": 400, "headers": {"x-failed": "true"}, "body": "VALIDATION_FAILURE"}
-  parse_llm_response_json_instructions: true
-  llm:
-    # see `ai-proxy` plugin documentation for compatible fields for the "llm" block
-```
+2. **Attach the plugin**.
 
-and that should be all that's required.
+    Attach the `ai-response-transformer` plugin to the global level, route, service, or consumer on which you want to inspect/transform all responses.
 
-#### 2. Attach the Plugin
+    It can even be used on APIs that already have the `ai-request-transformer` plugin, or it can be used on its own.
 
-Attach the `ai-response-transformer` plugin to the global level, route, service, or consumer on which you want to inspect/transform all responses.
+3. **What happens next?**
 
-It can even be used on APIs that already have the `ai-request-transformer` plugin, or it can be used on its own.
+    First, an upstream API responds to a client request, for example:
 
-#### 3. What Happens?
+    ```json
+    {
+      "user": {
+        "name": "Kong User",
+        "city": "London",
+        "credit_card_no": "1234-5678-9012-3456"
+      }
+    }
+    ```
 
-Firstly, an upstream API responds to a client request, for example:
+    Once sent to the LLM, the response will be:
 
-```json
-{
-  "user": {
-    "name": "Kong User",
-    "city": "London",
-    "credit_card_no": "1234-5678-9012-3456"
-  }
-}
-```
+    ```json
+    {
+      "status": 400,
+      "headers": {
+        "x-failed": "true"
+      },
+      "body": "VALIDATION_FAILURE"
+    }
+    ```
 
-Once sent to the LLM, the response will be:
+    Kong will do the following actions:
 
-```json
-{
-  "status": 400,
-  "headers": {
-    "x-failed": "true"
-  },
-  "body": "VALIDATION_FAILURE"
-}
-```
-
-Kong will do the following actions:
-
-* Set each response header from the `headers` object
-* Set the HTTP status code to the `status` integer
-* Set the body to be the `body` string
+    * Set each response header from the `headers` object
+    * Set the HTTP status code to the `status` integer
+    * Set the body to be the `body` string
