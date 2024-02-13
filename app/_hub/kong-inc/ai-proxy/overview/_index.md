@@ -76,8 +76,8 @@ Kong will mediate the request and response format based on the selected `config.
 
 The Kong AI Proxy accepts the following inputs formats, standardised across all providers; the `config.route_type` must be configured respective to the required request/response format examples:
 
-#### llm/v1/chat
-
+{% navtabs %}
+{% navtab llm/v1/chat %}
 ```json
 {
     "messages": [
@@ -92,19 +92,23 @@ The Kong AI Proxy accepts the following inputs formats, standardised across all 
     ]
 }
 ```
+{% endnavtab %}
 
-#### llm/v1/completions
-
+{% navtab llm/v1/completions %}
 ```json
 {
     "prompt": "You are a scientist. What is the theory of relativity?"
 }
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 ### Response Formats
 
 Conversely, the response formats are also transformed to a standard format across all providers:
 
+{% navtabs %}
+{% navtab llm/v1/chat %}
 ```json
 {
     "choices": [
@@ -128,8 +132,9 @@ Conversely, the response formats are also transformed to a standard format acros
     }
 }
 ```
+{% endnavtab %}
 
-#### llm/v1/completions
+{% navtab llm/v1/completions %}
 
 ```json
 {
@@ -151,6 +156,8 @@ Conversely, the response formats are also transformed to a standard format acros
     }
 }
 ```
+{% endnavtab %}
+{% endnavtabs %}
 
 The request and response formats are loosely based on OpenAI.
 See the [sample OpenAPI specification](https://github.com/kong/kong/blob/master/spec/fixtures/ai-proxy/oas.yaml) for more detail on the supported formats.

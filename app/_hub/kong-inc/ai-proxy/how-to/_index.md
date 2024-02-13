@@ -337,7 +337,7 @@ The `raw` format option emits the full Llama2 prompt format, under the JSON fiel
 It expects the response to be in the `responses` JSON field. If using `llama.cpp`, it should
 also be set to `RAW`mode.
 
-### Ollama Format
+### Ollama Format
 
 The `ollama` format option adheres to the "chat" and "chat-completion" request formats,
 [as defined in its API documentation](https://github.com/ollama/ollama/blob/main/docs/api.md).
@@ -421,7 +421,7 @@ For this provider, the following should be used for the `config.model.options.mi
 | OLLAMA           | `ollama`                    | Not required by default |
 | Self-Hosted GGUF | `openai`                    | Not required by default |
 
-### Ollama Format
+### Ollama Format
 
 The `ollama` format option adheres to the "chat" and "chat-completion" request formats,
 [as defined in its API documentation](https://github.com/ollama/ollama/blob/main/docs/api.md).
