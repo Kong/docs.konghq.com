@@ -176,7 +176,8 @@ over how a Large Language Model (LLM) is used when called via {{site.base_gatewa
 
 Kong's AI Gateway also allows you to use AI technology to augment other API traffic. One example may be routing API responses 
 through an AI language translation prompt before returning it to the client.  Kong's AI Gateway provides two plugins that can be 
-used in conjunction with other upstream API services to weave AI capabilities into API request processing.
+used in conjunction with other upstream API services to weave AI capabilities into API request processing. These plugins
+can be configured independently of the AI Proxy plugin.
 
 [AI Request Transformer](/hub/kong-inc/ai-request-transformer): The AI Request Transformer plugin uses a configured LLM service to transform and introspect the 
 consumer's request body before proxying the request upstream. It extends the function of the AI Proxy plugin and runs after all of the 
