@@ -2,21 +2,14 @@
 nav_title: Overview
 ---
 
-The AI Response Transformer plugin uses a configured LLM service to introspect and transform the upstream's HTTP(S) response before sending back to the client.
+The AI Response Transformer plugin uses a configured LLM service to introspect and transform the upstream's HTTP(S) response before returning it back to the client.
+It can also be configured to terminate or otherwise nullify the response, should it fail (for example) a compliance or formatting check from the configured LLM service.
 
-This plugin supports `llm/v1/chat` and `llm/v1/completion` style requests for all of the following providers:
-* OpenAI
-* Cohere
-* Azure
-* Anthropic
-* Mistral
-* Llama2
+This plugin supports `llm/v1/chat` style requests for all of the same providers as the [AI Proxy plugin](/hub/kong-inc/ai-proxy/).
 
-The request and response formats are based on OpenAI.
-This plugin follows the same schema format as the [AI Proxy plugin](/hub/kong-inc/ai-proxy/).
-See the [sample OpenAPI specification for AI Proxy](https://github.com/kong/kong/blob/master/spec/fixtures/ai-proxy/oas.yaml) for descriptions of the supported formats.
+It also uses all of the same configuration and tuning parameters as the [AI Proxy plugin](/hub/kong-inc/ai-proxy/), under the `config.llm` block.
 
-The AI Response Transformer plugin runs **after** all of the [AI Prompt](/hub/?search=ai%2520prompt) plugins, allowing it to also introspect LLM responses against a different LLM.
+The AI Response Transformer plugin runs **after** the [AI Proxy plugin](/hub/kong-inc/ai-proxy/), and **after** proxying to the upstream (backend) service, allowing it to also introspect LLM responses against the same, or a different, LLM service.
 
 ## How it works
 
@@ -54,10 +47,12 @@ sequenceDiagram
 > _**Figure 1**: The diagram shows the journey of a client's request through {{site.base_gateway}} to the backend service, 
  where it is transformed by both an AI LLM service and Kong's AI Request Transformer and the AI Response Transformer plugins._
 
-1. The {{site.base_gateway}} admin sets up an `llm:` configuration block, following the same [schema format](https://github.com/kong/kong/blob/master/spec/fixtures/ai-proxy/oas.yaml)
-as the AI Proxy plugin, and the same `driver` capabilities.
-1. The {{site.base_gateway}} admin sets up a `"prompt"` for the response introspection. 
-The prompt becomes the `"system"` message in the LLM chat request.
+1. The {{site.base_gateway}} admin sets up an `llm:` configuration block, following the same 
+[configuration format](/hub/kong-inc/ai-proxy/configuration/) as the AI Proxy plugin, 
+and the same `driver` capabilities.
+1. The {{site.base_gateway}} admin sets up a `"prompt"` for the request introspection. 
+The prompt becomes the `"system"` message in the LLM chat request, and prepares the LLM with transformation
+instructions for the returning upstream response body.
 1. The user makes an HTTP(S) call.
 1. *After* proxying the user's request to the backend, {{site.base_gateway}} sets the entire response body as the 
 `"user"` message in the LLM chat request, then sends it to the configured LLM service.
@@ -66,7 +61,7 @@ The prompt becomes the `"system"` message in the LLM chat request.
 
 ### Adjusting response headers, status codes, and body
 
-You can instruct the LLM to respond in the following format, which lets you adjust the response headers, response status code, and response body:
+You can additionally instruct the LLM to respond in the following format, which lets you adjust the response headers, response status code, and response body:
 
 ```json
 {

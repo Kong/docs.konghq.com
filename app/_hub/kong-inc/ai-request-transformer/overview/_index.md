@@ -2,21 +2,15 @@
 nav_title: Overview
 ---
 
-The AI Request Transformer plugin uses a configured LLM service to introspect and transform the client's request body before proxying the request upstream.
+The AI Request Transformer plugin uses a configured LLM service to introspect and transform the client's request body before
+proxying the request upstream.
 
-This plugin supports `llm/v1/chat` and `llm/v1/completion` style requests for all of the following providers:
-* OpenAI
-* Cohere
-* Azure
-* Anthropic
-* Mistral
-* Llama2
+This plugin supports `llm/v1/chat` style requests for all of the same providers as the [AI Proxy plugin](/hub/kong-inc/ai-proxy/).
 
-The request and response formats are based on OpenAI.
-This plugin follows the same schema format as the [AI Proxy plugin](/hub/kong-inc/ai-proxy/).
-See the [sample OpenAPI specification for AI Proxy](https://github.com/kong/kong/blob/master/spec/fixtures/ai-proxy/oas.yaml) for descriptions of the supported formats.
+It also uses all of the same configuration and tuning parameters as the [AI Proxy plugin](/hub/kong-inc/ai-proxy/), under the `config.llm` block.
 
-The AI Request Transformer plugin runs **after** all of the [AI Prompt](/hub/?search=ai%2520prompt) plugins, allowing it to also introspect LLM requests against a different LLM.
+The AI Request Transformer plugin runs **after** all of the [AI Prompt](/hub/?search=ai%2520prompt) plugins, but **before** the
+[AI Proxy plugin](/hub/kong-inc/ai-proxy/), allowing it to also introspect LLM requests against the same, or a different, LLM.
 
 ## How it works
 
@@ -55,10 +49,11 @@ sequenceDiagram
 backend service, where it is transformed by both an AI LLM service and Kong's AI Request Transformer and the AI Response Transformer plugins._
 
 1. The {{site.base_gateway}} admin sets up an `llm:` configuration block, following the same 
-[schema format](https://github.com/kong/kong/blob/master/spec/fixtures/ai-proxy/oas.yaml) as the AI Proxy plugin, 
+[configuration format](/hub/kong-inc/ai-proxy/configuration/) as the AI Proxy plugin, 
 and the same `driver` capabilities.
 1. The {{site.base_gateway}} admin sets up a `"prompt"` for the request introspection. 
-The prompt becomes the `"system"` message in the LLM chat request.
+The prompt becomes the `"system"` message in the LLM chat request, and prepares the LLM with transformation
+instructions for the incoming user request body.
 1. The user makes an HTTP(S) call.
 1. Before proxying the user's request to the backend, {{site.base_gateway}} sets the entire request body as the 
 `"user"` message in the LLM chat request, and then sends it to the configured LLM service.
