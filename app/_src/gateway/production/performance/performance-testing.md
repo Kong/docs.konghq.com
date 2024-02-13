@@ -4,7 +4,7 @@ content_type: reference
 description: This documentation provides a comprehensive guide for conducting Kong Gateway performance testing using Kong's test suite, including Kong's own benchmark for the current version.
 ---
 
-As of {{site.base_gateway}} 3.6.x, Kong now publishes performance results on {{site.base_gateway}}, along with the test methodology and details. Kong will conduct and publish {{site.base_gateway}} performance results for each subsequent minor release.
+As of {{site.base_gateway}} 3.6.x, Kong now publishes performance results on {{site.base_gateway}}, along with the test methodology and details. <!--Kong will conduct and publish {{site.base_gateway}} performance results for each subsequent minor release.-->
 
 In addition to viewing our performance test results, you can use [our public test suite](https://github.com/Kong/kong-gateway-performance-benchmark/tree/main) to conduct your own performance tests with {{site.base_gateway}}.
 
