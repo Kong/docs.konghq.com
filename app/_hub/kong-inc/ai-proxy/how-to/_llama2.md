@@ -18,9 +18,9 @@ There are a number of hosting/format options for running this LLM. Popular optio
 
 ## Upstream formats
 
-The "upstream" request and response formats are different between various implementations of Llama2, and/or its accompanying web-server.
+The upstream request and response formats are different between various implementations of Llama2, and its accompanying web server.
 
-For this provider, the following should be used for the `config.model.options.llama2_format` parameter:
+For this provider, the following should be used for the [`config.model.options.llama2_format`](/hub/kong-inc/ai-proxy/configuration/#config-model-options-llama2_format) parameter:
 
 | Llama2 Hosting   | llama2_format Config Value | Auth Header?            |
 |------------------|----------------------------|-------------------------|
@@ -40,7 +40,7 @@ The `raw` format option emits the full Llama2 prompt format, under the JSON fiel
 ```
 
 It expects the response to be in the `responses` JSON field. If using `llama.cpp`, it should
-also be set to `RAW`mode.
+also be set to `RAW` mode.
 
 ### Ollama format
 
@@ -49,7 +49,7 @@ The `ollama` format option adheres to the "chat" and "chat-completion" request f
 
 ### OpenAI format
 
-The `openai` format option follows the same upstream formats as the equivalent OpenAI route_type operation.
+The `openai` format option follows the same upstream formats as the equivalent OpenAI `route_type` operation.
 
 ## Using the plugin with Llama2
 

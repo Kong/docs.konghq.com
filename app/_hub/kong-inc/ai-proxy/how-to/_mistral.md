@@ -18,7 +18,7 @@ There are a number of hosting/format options for running this LLM. Popular optio
 
 The "upstream" request and response formats are different between various implementations of Mistral, and/or its accompanying web-server.
 
-For this provider, the following should be used for the `config.model.options.mistral_format` parameter:
+For this provider, the following should be used for the [`config.model.options.mistral_format`](/hub/kong-inc/ai-proxy/configuration/#config-model-options-mistral_format) parameter:
 
 | Mistral Hosting  | mistral_format Config Value | Auth Header?            |
 |------------------|-----------------------------|-------------------------|

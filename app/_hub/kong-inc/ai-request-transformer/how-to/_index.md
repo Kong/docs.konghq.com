@@ -96,7 +96,7 @@ This example uses `ai-request-transformer` on an *existing* API, for example, so
     }
     ```
 
-    Next, {{site.base_gateway}} parses this into an `llm/v1/chat` type message, based on your `config.prompt`:
+    Next, {{site.base_gateway}} parses this into an `llm/v1/chat` type message, based on your [`config.prompt`](/hub/kong-inc/ai-request-transformer/configuration/#config-prompt):
 
     ```json
     {

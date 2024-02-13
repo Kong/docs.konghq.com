@@ -29,7 +29,7 @@ curl -X POST http://localhost:8001/services/ai-proxy/routes \
   --data "paths[]=~/openai-chat$"
 ```
 
-Enable and configure the AI Proxy plugin for OpenAI, replacing the `<openai_key> with your own API key:
+Enable and configure the AI Proxy plugin for OpenAI, replacing the `<openai_key>` with your own API key:
 
 ```bash
 curl -X POST http://localhost:8001/routes/openai-chat/plugins \

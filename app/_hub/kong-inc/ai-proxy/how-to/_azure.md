@@ -15,14 +15,15 @@ This guide walks you through setting up the AI Proxy plugin with [Azure OpenAI S
 
 ### Create or locate OpenAI instance
 
-Log in to your Azure Subscription, and (if necessary) create your OpenAI instance. Record its name as your **"azure_instance"**.
-Also record one of the access keys as its **"header_value"**:
+Log in to your Azure Subscription, and (if necessary) create your OpenAI instance. 
+Record its name as your `azure_instance`, and record one of the access keys as its `header_value`:
 
 ![Azure setup 1](/assets/images/products/plugins/ai-proxy/ai-proxy-azure-1.png)
 
 ### Create or locate model deployment
 
-Once it has instantiated, create (if necessary) a model deployment in this instance. Record its name as your **"azure_deployment_id"**:
+Once it has instantiated, create (if necessary) a model deployment in this instance. 
+Record its name as your `azure_deployment_id`:
 
 ![Azure setup 2](/assets/images/products/plugins/ai-proxy/ai-proxy-azure-2.png)
 
@@ -41,7 +42,7 @@ curl -X POST http://localhost:8001/services/ai-proxy/routes \
   --data "paths[]=~/azure-chat$"
 ```
 
-Enable and configure the AI Proxy plugin for Azure, replacing the `<azure_ai_access_key> with your own API key:
+Enable and configure the AI Proxy plugin for Azure, replacing the `<azure_ai_access_key>` with your own API key:
 
 ```bash
 curl -X POST http://localhost:8001/routes/azure-chat/plugins \

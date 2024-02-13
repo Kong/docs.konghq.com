@@ -103,7 +103,7 @@ This example uses `ai-response-transformer` on an *existing* API, for example, s
     }
     ```
 
-    Next, Kong parses this into an `llm/v1/chat` type message, based on your `config.prompt`:
+    Next, Kong parses this into an `llm/v1/chat` type message, based on your [`config.prompt`](/hub/kong-inc/ai-response-transformer/configuration/#config-prompt):
 
     ```json
     {
@@ -158,7 +158,7 @@ The `ai-response-transformer` can modify any of the following response sections 
 
 This allows the Kong admin to configure the LLM to fully orchestrate the response phase inside {{site.base_gateway}}.
 
-Enable this feature by setting the config option [`parse_llm_response_json_instructions`](/hub/kong-inc/ai-response-transformer/configuration/#configparse_llm_response_json_instructions).
+Enable this feature by setting the config option [`parse_llm_response_json_instructions`](/hub/kong-inc/ai-response-transformer/configuration/#config-parse_llm_response_json_instructions).
 
 1. **Design the prompt**.
 

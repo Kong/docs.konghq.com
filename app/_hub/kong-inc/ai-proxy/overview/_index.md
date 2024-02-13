@@ -37,7 +37,7 @@ This plugin currently only supports REST-based full text responses.
 
 ## Request and response formats
 
-The plugin's `config.route_type` should be set based on the target upstream endpoint and model, based on this capability matrix:
+The plugin's [`config.route_type`](/hub/kong-inc/ai-proxy/configuration/#config-route_type) should be set based on the target upstream endpoint and model, based on this capability matrix:
 
 | Provider Name | Provider Upstream Path                                   | Kong `route_type`    | Example Model Name     |
 |---------------|----------------------------------------------------------|----------------------|------------------------|
@@ -68,11 +68,11 @@ The following upstream URL patterns are used:
 
 {:.important}
 > While only the **Llama2** and **Mistral** models are classed as self-hosted, the target URL can be overridden for any of the supported providers.
-> For example, a self-hosted or otherwise OpenAI-compatible endpoint can be called by setting the same `config.model.options.upstream_url` plugin option.
+> For example, a self-hosted or otherwise OpenAI-compatible endpoint can be called by setting the same [`config.model.options.upstream_url`](/hub/kong-inc/ai-proxy/configuration/#config-model-options-upstream_url) plugin option.
 
 ### Input formats
 
-Kong will mediate the request and response format based on the selected `config.provider` and `config.route_type`, as outlined in the table above.
+Kong will mediate the request and response format based on the selected [`config.provider`](/hub/kong-inc/ai-proxy/configuration/#config-provider) and [`config.route_type`](/hub/kong-inc/ai-proxy/configuration/#config-route_type), as outlined in the table above.
 
 The Kong AI Proxy accepts the following inputs formats, standardised across all providers; the `config.route_type` must be configured respective to the required request and response format examples:
 
