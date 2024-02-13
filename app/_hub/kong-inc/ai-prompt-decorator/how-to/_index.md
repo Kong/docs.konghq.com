@@ -5,30 +5,30 @@ title: Using the AI Prompt Decorator plugin
 
 ## Overview
 
-The AI Prompt Decorator configuration takes two arrays of objects: one for "prepending" messages, and
-one for "appending" messages, in the following standardised format:
+The AI Prompt Decorator configuration takes two arrays of objects: one for prepending messages, and
+one for appending messages, in the following standardized format:
 
 ```yaml
-- role: "<system, assitant, or user>"
+- role: "<system, assistant, or user>"
   content: "<message content>"
 ```
 
-This translates into the corresponding JSON format, and will be attached to the beginning, or the end,
+This translates into the corresponding JSON format, and is attached to the beginning, or the end,
 of the caller's chat `messages` array, depending on the plugin configuration.
 
 {:.note}
 > This plugin currently supports the `llm/v1/chat` type request only.
 
-## Usage
+## Prerequisites
 
 First, as in the [AI Proxy](/hub/kong-inc/ai-proxy/) documentation, create a service, route, and `ai-proxy` plugin
 that will serve as your LLM access point.
 
-Now create the `ai-prompt-decorator` plugin at global, service, or route level, using the examples that follow.
-
+You can now creat the `ai-prompt-decorator` plugin at global, service, or route level, using the following examples.
+s
 ## Examples
 
-### Prompt Engineering
+### Prompt engineering
 
 To engineer a prompt that will always respond in French, configure the plugin to always prepend the system
 prompt as required:
@@ -40,7 +40,7 @@ config:
       content: "You will always respond in the French (France) language."
 ```
 
-Now a Kong consumer will make a call to the configured LLM, and this message will be prepended to each call:
+Now a Kong consumer makes a call to the configured LLM, and this message is prepended to each call:
 
 ```json
 {
@@ -64,7 +64,7 @@ Now a Kong consumer will make a call to the configured LLM, and this message wil
 }
 ```
 
-### Chat History
+### Chat history
 
 To engineer a complex chat history that can be continued by any user, configure the plugin to both prepend
 and append **multiple** messages.
@@ -75,14 +75,14 @@ The ordering on each side is preserved in all cases (first in, first out):
 config:
   prepend:
     - role: "system"
-      content: "You are scientist, specialising in survey analytics."
+      content: "You are a scientist, specialising in survey analytics."
     - role: "user"
       content: "Classify this test result set as positive, negative, or neutral."
     - role: "assistant"
       content: "These tests are NEUTRAL."
   append:
     - role: "user"
-      content: "Do not mention any real participants name in your justification."
+      content: "Do not mention any real participants' names in your justification."
 ```
 
 After plugin execution, the LLM request will look like this:
@@ -93,7 +93,7 @@ After plugin execution, the LLM request will look like this:
     // Plugin-injected prepend messages:
     {
       "role": "system",
-      "content": "You are scientist, specialising in survey analytics."
+      "content": "You are a scientist, specialising in survey analytics."
     },
     {
       "role": "user",
@@ -113,7 +113,7 @@ After plugin execution, the LLM request will look like this:
     // Plugin-injected append message:
     {
       "role": "user",
-      "content": "Do not mention any real participants' name in your justification."
+      "content": "Do not mention any real participants' names in your justification."
     }
   ]
 }

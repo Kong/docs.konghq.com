@@ -3,15 +3,15 @@ nav_title: Using the AI Prompt Template plugin
 title: Using the AI Prompt Template plugin
 ---
 
-## Variable Syntax
+## Variable syntax
 
-Currently, only "double-curley-brace" mustache-style string placeholders are supported.
+Currently, only "double-curly-brace" mustache-style (`{% raw %}{{ }}{% endraw %}`) string placeholders are supported.
 
 For example, in the template, define the prompt and the variable:
 
 ```yaml
 - name: sample-template
-  template: "Explain to me what {{thing}} is."
+  template: "Explain to me what {% raw %}{{thing}}{% endraw %} is."
 ```
 
 The template call from the consumer would contain a map of the variables to fill in, and must look like:
@@ -25,7 +25,7 @@ The template call from the consumer would contain a map of the variables to fill
 }
 ```
 
-## Allowing Un-Templated Requests
+## Allowing Un-templated requests
 
 Enable config option `config.allow_untemplated_requests` to allow consumers to continue to call the LLM, even when an explicit template
 hasn't been referenced in their request.
@@ -70,17 +70,17 @@ plugins:
             "messages": [
             {
                 "role": "system",
-                "content": "You are a {{program}} expert, in {{language}} programming language."
+                "content": "You are a {% raw %}{{program}}{% endraw %} expert, in {% raw %}{{language}}{% endraw %} programming language."
             },
             {
                 "role": "user",
-                "content": "Write me a {{program}} program."
+                "content": "Write me a {% raw %}{{program}}{% endraw %} program."
             }
             ]
         }
     - name: "developer-prompt"
       template:  |-
         {
-            "prompt": "You are a {{language}} programming language expert. Write me a {{program}} program."
+            "prompt": "You are a {% raw %}{{language}}{% endraw %} programming language expert. Write me a {% raw %}{{program}}{% endraw %} program."
         }
 ```

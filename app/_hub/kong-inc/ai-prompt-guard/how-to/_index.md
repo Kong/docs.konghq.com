@@ -3,22 +3,24 @@ nav_title: Using the AI Prompt Guard plugin
 title: Using the AI Prompt Guard plugin
 ---
 
-The AI Prompt Guard configuration takes two arrays of objects: one for "allow" patterns, and
-one for "deny" patterns, for example in a financial processing/auditing model:
+The AI Prompt Guard configuration takes two arrays of objects: one for `allow` patterns, and
+one for `deny` patterns.
 
-## Usage
+## Prerequisites
 
 First, as in the [AI Proxy](/hub/kong-inc/ai-proxy/) documentation, create a service, route, and `ai-proxy` plugin
 that will serve as your LLM access point.
 
-Now create the `ai-prompt-decorator` plugin at global, service, or route level, using the examples that follow.
+You can now create the `ai-prompt-decorator` plugin at global, service, or route level, using the followin examples.
 
 ## Examples
 
-### Card Numbers Adherence ("Allow Only")
+The following examples show allow and deny patterns used in a financial processing auditing model.
 
-For requests to pass through in this example, any of the "user" role messages in the prompt
-must have all "card" fields adhering to this standard (starts with integer 4, then 3 integers,
+### Card numbers adherence ("Allow Only")
+
+For requests to pass through in this example, any of the `user` role messages in the prompt
+must have all `card` fields adhering to this standard (starts with integer 4, then 3 integers,
 and finally 12 asterisks).
 
 This plugin would prevent accidental processing (and/or subsequent model training) where full
@@ -67,10 +69,10 @@ allow_patterns:
 
 {% endnavtabs %}
 
-### Card Numbers Adherence ("Deny Only")
+### Card numbers adherence ("Deny Only")
 
-For requests to pass through in this example, an inverse of the above, any of the "user" role messages
-in the prompt **must not** be a card number field that starts with "5". 
+For requests to pass through in this example, an inverse of the above, any of the `user` role messages
+in the prompt **must not** be a card number field that starts with `5`. 
 
 ```yaml
 deny_patterns:
@@ -115,16 +117,15 @@ deny_patterns:
 
 {% endnavtabs %}
 
-### Valid Products ("Allow AND Deny Rules")
+### Valid products ("Allow AND Deny rules")
 
 {:.note}
-> This example uses an `ai-proxy` plugin that has been configured for the `llm/v1/completions` route_type.
-> It expects only one JSON field: a "prompt" string.
+> This example uses an `ai-proxy` plugin that has been configured for the `llm/v1/completions` route type.
+> It expects only one JSON field: a `prompt` string.
 
 For requests to pass through in this example, the message(s) from the callers to our audit LLM request:
-
-* **must** contain at least one of the product names in the "allow" list
-* but **must not** contain any of the product names in the "deny" list
+* **Must** contain at least one of the product names in the allow list
+* **Must not** contain any of the product names in the deny list
 
 ```yaml
 allow_patterns:
