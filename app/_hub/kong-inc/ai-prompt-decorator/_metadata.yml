@@ -19,4 +19,4 @@ publisher: Kong Inc.
 desc: Add an array of llm/v1/chat messages to either the start or end of a caller's chat history
 type: plugin
 
-kong_beta: true
+beta: true

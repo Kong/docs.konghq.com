@@ -19,4 +19,4 @@ publisher: Kong Inc.
 desc: Use a configured LLM service to introspect the upstream's HTTP(S) response before sending the response back to the client
 type: plugin
 
-kong_beta: true
+beta: true

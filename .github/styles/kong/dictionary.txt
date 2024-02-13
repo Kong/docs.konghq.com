@@ -82,6 +82,7 @@ Noname
 OAuth
 Okta
 Okta's
+Ollama
 OpenSSL
 Openwhisk
 PayPal
@@ -436,6 +437,7 @@ repo
 requery
 Resty
 retryOn
+reusability
 rockspec
 rockspecs
 rolling_timeout
