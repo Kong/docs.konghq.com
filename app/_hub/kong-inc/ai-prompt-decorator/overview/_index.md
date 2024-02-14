@@ -11,7 +11,7 @@ control over how an LLM service is used when called via {{site.base_gateway}}.
 
 {:.note}
 > This plugin extends the functionality of the [AI Proxy plugin](/hub/kong-inc/ai-proxy/), and requires AI Proxy to be configured first. 
-Check out the [AI Gateway quickstart](/) to get an AI proxy up and running within minutes!
+Check out the [AI Gateway quickstart](/gateway/latest/get-started/ai-gateway/) to get an AI proxy up and running within minutes!
 
 ## Get started with the AI Prompt Decorator plugin
 

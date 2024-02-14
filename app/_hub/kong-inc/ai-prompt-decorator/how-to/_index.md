@@ -24,7 +24,7 @@ of the caller's chat `messages` array, depending on the plugin configuration.
 First, as in the [AI Proxy](/hub/kong-inc/ai-proxy/) documentation, create a service, route, and `ai-proxy` plugin
 that will serve as your LLM access point.
 
-You can now create the `ai-prompt-decorator` plugin at global, service, or route level, using the following examples.
+You can now create the AI Prompt Decorator plugin at the global, service, or route level, using the following examples.
 
 ## Examples
 

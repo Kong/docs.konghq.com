@@ -51,13 +51,13 @@ backend service, where it is transformed by both an AI LLM service and Kong's AI
 1. The {{site.base_gateway}} admin sets up an `llm:` configuration block, following the same 
 [configuration format](/hub/kong-inc/ai-proxy/configuration/) as the AI Proxy plugin, 
 and the same `driver` capabilities.
-1. The {{site.base_gateway}} admin sets up a `"prompt"` for the request introspection. 
-The prompt becomes the `"system"` message in the LLM chat request, and prepares the LLM with transformation
+1. The {{site.base_gateway}} admin sets up a `prompt` for the request introspection. 
+The prompt becomes the `system` message in the LLM chat request, and prepares the LLM with transformation
 instructions for the incoming user request body.
 1. The user makes an HTTP(S) call.
 1. Before proxying the user's request to the backend, {{site.base_gateway}} sets the entire request body as the 
-`"user"` message in the LLM chat request, and then sends it to the configured LLM service.
-1. The LLM service returns a response `"assistant"` message, which is subsequently set as the upstream request body.
+`user` message in the LLM chat request, and then sends it to the configured LLM service.
+1. The LLM service returns a response `assistant` message, which is subsequently set as the upstream request body.
 
 ## Get started with the AI Request Transformer plugin
 

@@ -140,7 +140,7 @@ The AI Proxy supports two types of LLM requests:
 
 * _Completion_: A type of request where the AI system is asked to generate a textual output based on a single prompt.
   Completions are configured using the configuration key `route_type` and a value of `llm/v1/completions`.
-* _Chat_: A type of request that is part of a conversational AI interface. In a "chat" request, the AI is expected to return
+* _Chat_: A type of request that is part of a conversational AI interface. In a `chat` request, the AI is expected to return
   a dialog response to user input and the AI system bases its response on the conversational history. Chats are
   configured using the configuration key `route_type` and a value of `llm/v1/chat`.
 
@@ -152,7 +152,7 @@ The core proxy behavior supports the following hosted AI providers:
 * [Anthropic](https://www.anthropic.com/)
 
 In addition to the hosted AI providers, self hosted models are supported as well. An example
-tool that allows the running of local models is [Ollama](https://ollama.ai/).  The following local
+tool that allows the running of local models is [Ollama](https://ollama.ai/). The following local
 models are supported:
 
 * [Mistral](https://mistral.ai/)
@@ -184,27 +184,27 @@ Prompt engineering is the methodology of manipulating the linguistic inputs that
 supports a set of plugins that allow you to create a simplified and enhanced experience by setting default prompts or manipulating
 prompts from clients as they pass through the gateway.
 
-The [AI Prompt Template](/hub/kong-inc/ai-prompt-template) plugin enables administrators to provide pre-configured AI prompts to users. These prompts contain variable 
+* The [AI Prompt Template](/hub/kong-inc/ai-prompt-template) plugin enables administrators to provide pre-configured AI prompts to users. These prompts contain variable 
 placeholders in the format `{{variable}}` which users fill to adapt the template to their specific needs. This functionality 
 prohibits arbitrary prompt injection by sanitizing string inputs to ensure that JSON control characters are escaped. 
 
-The [AI Prompt Decorator](/hub/kong-inc/ai-prompt-decorator) plugin injects an array of `llm/v1/chat` messages at the 
+* The [AI Prompt Decorator](/hub/kong-inc/ai-prompt-decorator) plugin injects an array of `llm/v1/chat` messages at the 
 start or end of a caller’s chat history. This capability allows the caller to create more complex prompts and have more control 
 over how a Large Language Model (LLM) is used when called via {{site.base_gateway}}.
 
 #### Request transformations
 
 Kong's AI Gateway also allows you to use AI technology to augment other API traffic. One example may be routing API responses 
-through an AI language translation prompt before returning it to the client.  Kong's AI Gateway provides two plugins that can be 
+through an AI language translation prompt before returning it to the client. Kong's AI Gateway provides two plugins that can be 
 used in conjunction with other upstream API services to weave AI capabilities into API request processing. These plugins
 can be configured independently of the AI Proxy plugin.
 
-[AI Request Transformer](/hub/kong-inc/ai-request-transformer): The AI Request Transformer plugin uses a configured LLM service to transform and introspect the 
+* The [AI Request Transformer](/hub/kong-inc/ai-request-transformer) plugin uses a configured LLM service to transform and introspect the 
 consumer's request body before proxying the request upstream. It extends the function of the AI Proxy plugin and runs after all of the 
 AI Prompt plugins, allowing it to introspect LLM requests against a different LLM. The transformed request is then sent to the backend service. 
 Once the LLM service returns a response, this is set as the upstream's request body. 
 
-[AI Response Transformer](/hub/kong-inc/ai-response-transformer): The AI Response Transformer plugin uses a configured LLM service to introspect and transform the 
+* The [AI Response Transformer](/hub/kong-inc/ai-response-transformer) plugin uses a configured LLM service to introspect and transform the 
 HTTP(S) response from upstream before sending it back to the client. This plugin complements the AI Proxy plugin, facilitating 
 introspection of LLM responses against a different LLM. Importantly, it adjusts response headers, response status codes, and the body of the 
 response based on instructions from the LLM. The adjusted response is then sent back to the client. 

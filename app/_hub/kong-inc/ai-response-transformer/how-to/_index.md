@@ -15,7 +15,7 @@ The plugin configuration consists of two distinct sections:
 * The LLM configuration, which uses the same [configuration options](/hub/kong-inc/ai-proxy/configuration/) as the AI Proxy plugin.
 * The prompt (and additional options) containing the **instructions** for the LLM, which will transform your request.
 
-See the same LLM block in the context of the `AI Proxy` plugin, and the `AI Response Transformer` plugin:
+See the same LLM block in the context of the AI Proxy plugin, and the AI Response Transformer plugin:
 
 {% navtabs %}
 
@@ -58,8 +58,8 @@ prompt: "Mask all credit card numbers in my JSON message with '*'. Return me ONL
 
 {% endnavtabs %}
 
-When the plugin is accessed in any scope (global / service / route / consumer), it **always** sets the upstream's response
-body as the "user" prompt in a chat message, and then sends it to the configured `llm:` configuration block for inspection or transformation.
+When the plugin is accessed in any scope (global, service, route, or consumer), it **always** sets the upstream's response
+body as the `user` prompt in a chat message, and then sends it to the configured `llm:` configuration block for inspection or transformation.
 
 ## Examples
 
@@ -119,9 +119,9 @@ This example uses `ai-response-transformer` on an *existing* API, for example, s
       ]
     }
     ```
-
-    Finally, it sends this to the configured LLM. On the response, it takes the trailing "assistant" response back from the LLM, and
-    **sets it as the HTTP body that will return to the original client**:
+    
+    Finally, it sends this to the configured LLM. On the response, it takes the trailing `assistant` response back from the LLM, and
+    sets it as the HTTP body that will return to the original client:
 
     ```json
     {
@@ -150,11 +150,11 @@ config:
 
 ### Setting body, headers, and status code
 
-The `ai-response-transformer` can modify any of the following response sections independently:
+The AI Response Transformer can modify any of the following response sections independently:
 
-* headers
-* status code
-* body
+* Headers
+* Status code
+* Body
 
 This allows the Kong admin to configure the LLM to fully orchestrate the response phase inside {{site.base_gateway}}.
 

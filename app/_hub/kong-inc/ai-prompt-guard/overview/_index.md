@@ -13,7 +13,7 @@ It does this by scanning all chat messages (where the role is `user`) for the sp
 You can use a combination of `allow` and `deny` rules to preserve integrity and compliance when serving an LLM service using {{site.base_gateway}}.
 
 * **For `llm/v1/chat` type models**: You can optionally configure the plugin to **ignore existing chat history**, wherein it will only scan the trailing `user` message.
-* **For `llm/v1/completions` type models**: There is only one "prompt" field, thus the whole prompt is scanned on every request.
+* **For `llm/v1/completions` type models**: There is only one `prompt` field, thus the whole prompt is scanned on every request.
 
 {:.note}
 > This plugin extends the functionality of the [AI Proxy plugin](/hub/kong-inc/ai-proxy/), and requires AI Proxy to be configured first. 

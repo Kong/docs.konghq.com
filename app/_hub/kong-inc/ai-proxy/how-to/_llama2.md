@@ -6,7 +6,8 @@ title: Set up AI Proxy with Llama2
 This guide walks you through setting up the AI Proxy plugin with the Llama2 LLM.
 
 {:.important}
-> Llama2 is a self-hosted model. As such, it requires setting the model option `upstream_url` to point to the absolute
+> Llama2 is a self-hosted model. As such, it requires setting the model option 
+> [`upstream_url`](/hub/kong-inc/ai-proxy/configuration/#config-model-options-upstream_url) to point to the absolute
 > HTTP(S) endpoint for this model implementation.
 
 There are a number of hosting/format options for running this LLM. Popular options include:
@@ -44,12 +45,14 @@ also be set to `RAW` mode.
 
 ### Ollama format
 
-The `ollama` format option adheres to the "chat" and "chat-completion" request formats,
+The `ollama` format option adheres to the `chat` and `chat-completion` request formats,
 [as defined in its API documentation](https://github.com/ollama/ollama/blob/main/docs/api.md).
 
 ### OpenAI format
 
-The `openai` format option follows the same upstream formats as the equivalent OpenAI `route_type` operation.
+The `openai` format option follows the same upstream formats as the equivalent 
+[OpenAI route type operation](https://github.com/kong/kong/blob/master/spec/fixtures/ai-proxy/oas.yaml) 
+(that is, `llm/v1/chat` or `llm/v1/completions`).
 
 ## Using the plugin with Llama2
 

@@ -16,8 +16,8 @@ Check out the [AI Gateway quickstart](/gateway/latest/get-started/ai-gateway/) t
 
 ## How it works
 
-When calling a template, simply replace the "messages" (`llm/v1/chat`) or "prompt" (`llm/v1/completions`) with a template reference, in the
-format: `{template://TEMPLATE_NAME}`
+When calling a template, simply replace the `messages` (`llm/v1/chat`) or `prompt` (`llm/v1/completions`) with a template reference, in the
+folllowing format: `{template://TEMPLATE_NAME}`
 
 When activated the template restricts an LLM usage to just those pre-defined templates, which are called in the following example format:
 

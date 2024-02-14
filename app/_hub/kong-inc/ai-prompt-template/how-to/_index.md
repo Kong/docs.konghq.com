@@ -5,7 +5,7 @@ title: Using the AI Prompt Template plugin
 
 ## Variable syntax
 
-Currently, only "double-curly-brace" mustache-style (`{% raw %}{{ }}{% endraw %}`) string placeholders are supported.
+Currently, only double-curly-brace style (`{% raw %}{{ }}{% endraw %}`) string placeholders are supported.
 
 For example, in the template, define the prompt and the variable:
 
