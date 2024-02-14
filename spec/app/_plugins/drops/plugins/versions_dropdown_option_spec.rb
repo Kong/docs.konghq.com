@@ -31,15 +31,15 @@ RSpec.describe Jekyll::Drops::Plugins::VersionsDropdownOption do
       it { expect(subject.url).to eq('/hub/kong-inc/jwt-signer/2.8.x/') }
     end
 
-    context 'when there is no latest - only release is dev' do
+    context 'when there is no latest - only release is unreleased' do
       let(:latest) { nil }
       let(:release) do
         Jekyll::GeneratorSingleSource::Product::Release.new(
-          'edition' => 'gateway', 'release' => '3.6.x', 'label' => 'dev'
+          'edition' => 'gateway', 'release' => '3.6.x', 'label' => 'unreleased'
         ).to_liquid
       end
 
-      it { expect(subject.url).to eq('/hub/kong-inc/jwt-signer/dev/') }
+      it { expect(subject.url).to eq('/hub/kong-inc/jwt-signer/unreleased/') }
     end
   end
 
@@ -70,15 +70,15 @@ RSpec.describe Jekyll::Drops::Plugins::VersionsDropdownOption do
       it { expect(subject.text).to eq('2.8.x') }
     end
 
-    context 'when there is no latest - only release is dev' do
+    context 'when there is no latest - only release is unreleased' do
       let(:latest) { nil }
       let(:release) do
         Jekyll::GeneratorSingleSource::Product::Release.new(
-          'edition' => 'gateway', 'release' => '3.6.x', 'label' => 'dev'
+          'edition' => 'gateway', 'release' => '3.6.x', 'label' => 'unreleased'
         ).to_liquid
       end
 
-      it { expect(subject.text.to_s).to eq('dev') }
+      it { expect(subject.text.to_s).to eq('unreleased') }
     end
   end
 end
