@@ -15,7 +15,7 @@ The plugin configuration consists of two distinct sections:
 * The LLM configuration, which uses the same [configuration options](/hub/kong-inc/ai-proxy/configuration/) as the AI Proxy plugin.
 * The prompt (and additional options) containing the **instructions** for the LLM, which will transform your request.
 
-See the same LLM block in the context of the AI Proxy plugin, and the AI Response Transformer plugin:
+See the same LLM block in the context of the AI Proxy plugin and the AI Response Transformer plugin:
 
 {% navtabs %}
 
