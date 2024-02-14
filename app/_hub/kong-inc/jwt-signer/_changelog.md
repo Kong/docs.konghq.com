@@ -1,6 +1,9 @@
 ## Changelog
 
-### 2.7.x
+### {{site.base_gateway}} 3.6.x
+* Added support for consumer group scoping by using the PDK `kong.client.authenticate` function.
+
+### {{site.base_gateway}} 2.7.x
 > handler.lua version: 1.9.0
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,

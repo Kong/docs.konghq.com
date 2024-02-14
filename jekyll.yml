@@ -38,6 +38,10 @@ repos:
 # for Kong platform extensions (not Jekyll)
 extensions:
   categories: &plugin_categories
+    - name: AI
+      slug: ai
+      desc: Govern, secure, and control AI traffic with multi-LLM AI Gateway plugins
+      icon: /assets/images/nav/hub/ai.svg
     - name: Authentication
       slug: authentication
       desc: Protect your services with an authentication layer

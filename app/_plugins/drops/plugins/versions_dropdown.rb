@@ -14,7 +14,13 @@ module Jekyll
         def url
           @url ||= begin
             release = @latest && @latest == @release ? '' : @release
-            @page.dropdown_url.gsub('VERSION', release).gsub('//', '/')
+            url = @page.dropdown_url.gsub('VERSION', release).gsub('//', '/')
+
+            if page_exists?(url)
+              url
+            else
+              @page.base_url
+            end
           end
         end
 
@@ -23,11 +29,19 @@ module Jekyll
         end
 
         def text
+          return @release unless @latest
+
           if @release == @latest
             "#{@release} <em>(latest)</em>"
           else
             @release
           end
+        end
+
+        private
+
+        def page_exists?(url)
+          !@page.site.pages.detect { |p| p.url == url }.nil?
         end
       end
 

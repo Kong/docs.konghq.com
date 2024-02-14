@@ -228,6 +228,7 @@ items:
         url: /production/clustering
       - text: Establish a Performance Benchmark
         url: /production/benchmark
+        src: /gateway/production/performance/benchmark
       - text: Logging
         items:
           - text: Log Reference
