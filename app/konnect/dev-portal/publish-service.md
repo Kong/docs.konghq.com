@@ -1,5 +1,5 @@
 ---
-title: Add Documentation
+title: Add and publish API Product documentation
 ---
 
 The Dev Portal is an API catalog that lets you document your {{site.konnect_short_name}} API products
@@ -140,33 +140,11 @@ then click **Settings**.
 {% endnavtab %}
 {% endnavtabs %}
 
+## Summary
 
-## Customize your Dev Portal
+In this topic, you added documentation for your API product and logged into the Dev Portal to check out the API product documentation live.
 
-You can customize the Dev Portal to make it your own.
-Let's change up a couple of things:
+## More information
 
-1. Return to {{site.konnect_short_name}}. From the left side menu, open {% konnect_icon dev-portal %}
-**Dev Portal**, then [**Appearance**](https://cloud.konghq.com/portal/portal-appearance).
-
-1. Try out a couple of customization options - whatever you like.
-
-    * Choose a preset theme and adjust it to your needs
-    * Set some home page text
-    * Upload header, logo, or favicon images
-    * Play around with the colours and fonts of your site
-
-    You could also [add a custom domain](/konnect/dev-portal/customization/),
-    if you have one you want to use.
-
-1. Click **Save** to apply the changes.
-
-1. Switch back to the Dev Portal to see your changes live.
-
-## Summary and next steps
-
-In this topic, you:
-* Logged into the Dev Portal to check out the API product documentation live
-* Customized the Dev Portal
-
-Next, [register an application against the API product](/konnect/getting-started/app-registration/).
+* [Register an application against the API product](/konnect/dev-portal/applications/dev-apps/).
+* [Customize Dev Portal](/konnect/customization/)
