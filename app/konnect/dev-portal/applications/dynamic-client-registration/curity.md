@@ -93,13 +93,13 @@ Once you have Curity configured, you can set up the Dev Portal to use Curity for
 
 8. Save your DCR Provider. You should now see it in the list of DCR providers.
 
-9. Click the **Auth Strategy** tab to see all your Auth Strategies. Select **New Auth Strategy** to create an auth strategy that uses the DCR Provider you just added.
+9. Click the **Auth Strategy** tab to see all your Auth Strategies. Select **New Auth Strategy** to create an auth strategy that uses the DCR Provider you created.
 
 10. Enter a name for internal use in {{site.konnect_short_name}} and a display name that will be displayed the portal. In the **Auth Type** dropdown menu select DCR. In the **DCR Provider** dropdown, select the name of the DCR Provider config you created. Your **Issuer URL** will be prepopulated with the issuer URL you added to the DCR Provider.
 
 11. If you are using the Curity configuration described in the previous sections, enter the `sub` into the **Claims** field and leave the **Scopes** field empty. If you configured Curity differently, then ensure you add the correct **Scopes** and **Claims**.
 
-12. Select the relevant **Auth Methods** you need (`client_credentials`, bearer, session, etc).
+12. Select the relevant **Auth Methods** you need (`client_credentials`, bearer, session).
 
 13. Click **Save**.
 

@@ -12,20 +12,26 @@ Enabling application registration is specific to the [geographic region](/konnec
 You must enable application registration in each geo that you want to allow developers to register with.
 Each geo has their own API keys and specifications for application registration in their respective geo.
 
-{{site.konnect_short_name}} enables you to configure and apply various auth strategies. When using an OpenID Connect auth strategy, specific permissions can be configured within your Identity Provider (IdP). You have the flexibility to either implement a single auth strategy across all your API Products or to assign a distinct auth strategy for each API Product. Note, with the coming of Multi Portal, you will be able to set different auth strategies in different portals for the same API Product version. Here is a useful example to help visualize what's possible:
+{{site.konnect_short_name}} provides the capability to configure and implement a range of authentication strategies. Utilizing the OpenID Connect authentication strategy allows for specific permissions to be set within your Identity Provider (IdP). This system offers the versatility to either apply a unified authentication strategy across all API Products or to designate a unique authentication strategy to individual API Products.
 
-Staging Portal
-- Weather API v1 use key-auth
-- Weather API v2 use okta-oidc
-- Maps API v2 use okta-oidc
+{% mermaid %}
+flowchart TB
+    subgraph Staging Portal
+    WeatherAPIv1["Weather API v1"] --> key-auth
+    WeatherAPIv2["Weather API v2"] --> okta-oidc
+    MapsAPIv2["Maps API v2"] --> okta-oidc
+    end
+    subgraph Production Portal
+    WeatherAPIv3["Weather API v3"] --> okta-dcr
+    MapsAPIv4["Maps API v4"] --> auth0-oidc
+    end
 
-Prod Portal
-- Weather API v2 use okta-dcr
-- Maps API v4 use auth0-oidc
+{% endmermaid %}
 
-Note: With the independent auth config functionality from App Reg v2, the Weather v2 API can use an Okta OIDC Auth Config in Staging Portal, and an Okta DCR Auth Config in Prod Portal.
+{:.note}
+**Note**: With the independent auth config functionality from App Reg v2, the Weather v2 API can use an Okta OIDC Auth Config in the staging Portal, and an Okta DCR Auth Config in the production portal.
 
-While setting different auth configs per API Product version, please note your developers can only create applications with one auth strategy. This mean they could create one application to register for Weather v2 and Maps v2 (because they both use okta-oidc), but they could not register for both Weather v1 and Weather v2 in the same application (because they use different auth configs).
+ Developers are limited to using a single auth strategy per application. This means they can create an application to register for both Weather v2 and Maps v2, as both employ `okta-oidc`. However, registering for Weather v1 and Weather v2 within the same application isn't possible due to their differing auth configurations.
 
 ## Support for any control plane
 
@@ -101,7 +107,7 @@ If you already have an OIDC Auth Strategy created in the **Application Auth**:
 If you do _not_ already have an OIDC Auth Strategy created, we will first create an OIDC Auth strategy, and then apply it to our API Product:
 
 
-1. In the Dev Portal menu, navigate to the the Application Auth Strategy tab. Select New Auth Strategy to create an auth strategy. Please refer to the [configuration parameters section]([url](https://docs.konghq.com/konnect/dev-portal/applications/enable-app-reg/#openid-config-parameters)) for more information about each field.
+1. In the Dev Portal menu, navigate to the **Application Auth Strategy** tab. Select New Auth Strategy to create an auth strategy. Please refer to the [configuration parameters section](#openid-config-parameters) for more information about each field.
 
 2. Enter a Name to be seen only in Konnect and a Display Name that will be displayed on your Portal
 
@@ -111,7 +117,7 @@ If you do _not_ already have an OIDC Auth Strategy created, we will first create
 
 5. Enter the Credential Claims which will match the client ID of the corresponding application in your IdP
 
-6. Select the relevant Auth Methods you need (client_credentials, bearer, session, etc)
+6. Select the relevant Auth Methods you need (`client_credentials`, bearer, session)
 
 7. Click **Save**
 
@@ -165,7 +171,7 @@ To remove a plugin by disabling application registration, follow these steps:
 
 4. Select **Enabled** under **App Registration**
 
-5. Toggle the "Application registration enabled" button to be False
+5. Toggle the **Application Registration Enabled** button to be **False**
 
 6. Click **Save** to apply your changes
 

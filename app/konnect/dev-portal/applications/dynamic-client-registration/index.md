@@ -4,7 +4,8 @@ content-type: explanation
 ---
 
 Dynamic Client Registration (DCR) within {{site.konnect_short_name}} Dev Portal allows applications created in the portal to automatically create a linked application in a third-party Identity Provider (IdP).
-This outsources the issuer and management of application credentials to a third party, allowing for additional configuration options and compatibility with various OIDC features provided by the IdP. You have the flexibility to create and apply as many DCR configurations as you see fit. For example, you can use the same DCR configuration for all new applications in your Dev Portal, you can create a unique DCR configuration per API Product in your portal, or something in between.
+
+This outsources the issuer and management of application credentials to a third party, allowing for additional configuration options and compatibility with various OIDC features provided by the IdP. {{site.konnect_short_name}} offers the flexibility to create and multiple DCR configurations.
 
 ## Authentication Methods
 

@@ -41,29 +41,29 @@ In Azure, create the main application:
 
 Once you have Azure configured, you can set up the Dev Portal to use Azure for dynamic client registration (DCR).
 
-1. Sign in to {{site.konnect_short_name}}, then select {% konnect_icon dev-portal %} **Dev Portal** from the menu.
+1. Log in to {{site.konnect_short_name}} and select the **Dev Portal** {% konnect_icon dev-portal %} from the menu.
 
-2. Navigate to **Application Auth** to access the authentication settings for your API Products.
+2. Go to **Application Auth** to find the authentication settings for your API products.
 
-3. Open the **DCR Providers** to view all configured DCR Providers
+3. Open the **DCR Providers** to review existing DCR Providers.
 
-4. Select **New DCR Provider** button to create an Auth0 configuration. Enter a name for internal use in {{site.konnect_short_name}}. The name and provider type information will not be exposed to Dev Portal developers.
+4. Select **New DCR Provider** button to create an Azure configuration. Enter a name for internal reference in {{site.konnect_short_name}}. This name, along with the provider type, will remain internal and not be visible to developers on the Dev Portal.
 
-5. Input the **Issuer URL** of your Azure tenant, formatted as: `https://sts.windows.net/YOUR_TENANT_ID`.
+5. Provide the Issuer URL for your Azure tenant, using the format  `https://sts.windows.net/YOUR_TENANT_ID`.
 
-6. Choose AzureAD as the **Provider Type**.
+6. For **Provider Type**, select AzureAD.
 
-7. Enter your Application (Client) ID from Azure in the **Initial Client ID** field. Enter the client secret from the admin application created in Azure into the **Initial Client Secret** field. Note: The Initial Client Secret will be stored in isolated, encrypted storage and will not be readable through any Konnect API.
+7. Enter your Application (Client) ID from Azure into the **Initial Client ID** field and the Azure admin application's client secret into the **Intial Client Secret** field. The Initial Client Secret will be stored in isolated, encrypted storage and will not be readable through any Konnect API.
 
-8. Save the DCR Provider. You should now see it in the list of DCR Providers.
+8. After saving, your new DCR Provider will appear in the list.
 
-9. Click the **Auth Strategy** tab to see all your Auth Strategies. Select **New Auth Strategy** to create an auth strategy that uses the DCR Provider you just added.
+9. Click the **Auth Strategy** tab, then select **New Auth Strategy** to create an auth strategy that uses the DCR Provider you just added.
 
-10.Enter a name for internal use in {{site.konnect_short_name}} and a display name that will be visible in your Portal. In the **Auth Type** dropdown menu select DCR. In the **DCR Provider** dropdown, select the name of the DCR Provider configuration you created. Your **Issuer URL** will be prepopulated with the issuer URL you added to the DCR Provider.
+10. Name it for internal reference in {{site.konnect_short_name}} and provide a display name for visibility in the Portal. Select DCR as the **Auth Type** and choose your newly created DCR provider from the dropdown. The  **Issuer URL** entered earlier will be will be prepopulated.
 
-11. Enter `appid` in the **Credential Claims** field.
+11. In the **Credential Claims** field, enter `appid`.
 
-12. Select the relevant **Auth Methods** you need (`client_credentials`, bearer, session, etc).
+12. Select the relevant **Auth Methods** you need (`client_credentials`, bearer, session).
 
 13. Click **Save**.
 

@@ -179,7 +179,7 @@ Executing these requests accomplishes several things:
 Air Traffic v3 and Maps v3 APIs are now published to the Flight Portal and each is configured with their respective authentication settings. To ensure everything is correctly set up, querying the[`v2/portals/{portalId}/product-versions`](https://kong-platform-api.netlify.app/konnect/application-auth-strategies/v2/openapi.yaml/#tag/Portal-Product-Versions/operation/list-portal-product-versions) to verify. 
 
 
-A succesful response will contain the following fields:
+A successful response will contain the following fields:
 
 * **Timestamps**: Both the creation (`created_at`) and last update (`updated_at`) timestamps indicate when each product version was configured and published.
 * **Id**: Each product version is assigned a unique id, distinguishing them within the system for management and reference purposes.
