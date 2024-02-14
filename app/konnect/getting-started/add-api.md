@@ -51,42 +51,35 @@ In this guide, you will take this one step further by adding your own API to {{s
 The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
 
 1. Get the [list of all control planes](https://docs.konghq.com/konnect/api/control-planes/latest/#/Control%20Planes/list-control-planes) so you can copy the control plane ID associated with the `default` control plane:
-
   ```sh
   curl --request GET \
     --url https://us.api.konghq.com/v2/control-planes \
     --header 'Authorization: Bearer <personal-access-token>' \
     --header 'accept: application/json'
   ```
-
   In this guide, we will assign your service to the `default` control plane for the sake of simplicity.
 
 1. [Create a service](https://docs.konghq.com/konnect/api/control-plane-configuration/latest/#/Services/create-service) for your API that is assigned to the `default` control plane:
-
-    ```bash
-    curl --request POST \
-      --url https://{region}.api.konghq.com/v2/control-planes/{defaultControlPlaneId}/core-entities/services \
-      --header 'Authorization: Bearer <personal-access-token>' \
-      --header 'Content-Type: application/json' \
-      --header 'accept: application/json' \
-      --data '{
-          "name": "my_service",
-          "host": "httpbin.org",
-          "path": "/my_api"
-      }'
-    ```
-
-    This service represents your backend API. Be sure to replace the PAT as well as the following placeholders with your own values:
-
-    * `defaultControlPlaneId`: The ID of the default control plane. This associates the service with that control plane.
-    * `name`: The name you want to display for your service.
-    * `host`: The host of the upstream server. This is case sensitive.
-    * `path`: The path to be used in requests to the upstream server.
-
-    Be sure to save the service ID from the response to use it in the next step.
+  ```bash
+  curl --request POST \
+    --url https://{region}.api.konghq.com/v2/control-planes/{defaultControlPlaneId}/core-entities/services \
+    --header 'Authorization: Bearer <personal-access-token>' \
+    --header 'Content-Type: application/json' \
+    --header 'accept: application/json' \
+    --data '{
+        "name": "my_service",
+        "host": "httpbin.org",
+        "path": "/my_api"
+    }'
+  ```
+  This service represents your backend API. Be sure to replace the PAT as well as the following placeholders with your own values:
+  * `defaultControlPlaneId`: The ID of the default control plane. This associates the service with that control plane.
+  * `name`: The name you want to display for your service.
+  * `host`: The host of the upstream server. This is case sensitive.
+  * `path`: The path to be used in requests to the upstream server.
+  Be sure to save the service ID from the response to use it in the next step.
 
 1. [Add a route](https://docs.konghq.com/konnect/api/control-plane-configuration/latest/#/Routes/create-route) to your service:
-
   ```bash
   curl --request POST \
     --url https://{region}.api.konghq.com/v2/control-planes/{defaultControlPlaneId}/core-entities/routes \
@@ -95,21 +88,23 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
     --header 'accept: application/json' \
     --data '{
         "name": "my_route",
-        "host": "httpbin.org",
-        "path": "/my_api"
+        "hosts": [
+          "httpbin.org"
+        ],
+        "paths": [
+          "/my_api"
+        ],
         "service": {
-          "id": "af8330d3-dbdc-48bd-b1be-55b98693834b"
+          "id": "49248arf-b90c-4c0b-9529-3a949dfc10d1"
         }
     }'
   ```
-
-    This route defines what is exposed to clients. Be sure to replace the PAT as well as the following placeholders with your own values:
-
-    * `defaultControlPlaneId`: The ID of the default control plane. This associates the service with that control plane.
-    * `name`: The name you want to display for your route.
-    * `host`: A list of domain names that match this route. This is case sensitive.
-    * `path`: A list of paths that match this route.
-    * `"service": "id"`: The ID of the service you created in the previous step. This should be part of the response from the previous request.
+  This route defines what is exposed to clients. Be sure to replace the PAT as well as the following placeholders with your own values:
+  * `defaultControlPlaneId`: The ID of the default control plane. This associates the service with that control plane.
+  * `name`: The name you want to display for your route.
+  * `host`: A list of domain names that match this route. This is case sensitive.
+  * `path`: A list of paths that match this route.
+  * `"service": "id"`: The ID of the service you created in the previous step. This should be part of the response from the previous request.
 
 {% endnavtab %}
 {% endnavtabs %}
