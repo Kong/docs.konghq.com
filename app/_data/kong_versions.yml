@@ -127,6 +127,7 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
+  latest: true
 - release: "3.6.x"
   ee-version: "3.6.0.0"
   ce-version: "3.6.0"
@@ -141,7 +142,7 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
-  latest: true
+  label: unreleased
 - release: "pre-1.7"
   version: "1.6.0"
   edition: "deck"
