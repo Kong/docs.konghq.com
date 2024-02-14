@@ -8,11 +8,11 @@ Users only need to fill in the blanks with variable placeholders in the followin
 This lets admins set up templates, which can be then be used by anyone in the organization. It also allows admins to present an LLM
 as an API in its own right - for example, a bot that can provide software class examples and/or suggestions.
 
-This plugin also sanitises string inputs to ensure that JSON control characters are escaped, preventing arbitrary prompt injection.
+This plugin also sanitizes string inputs to ensure that JSON control characters are escaped, preventing arbitrary prompt injection.
 
 {:.note}
 > This plugin extends the functionality of the [AI Proxy plugin](/hub/kong-inc/ai-proxy/), and requires AI Proxy to be configured first. 
-Check out the [AI Gateway quickstart](/) to get an AI proxy up and running within minutes!
+Check out the [AI Gateway quickstart](/gateway/latest/get-started/ai-gateway/) to get an AI proxy up and running within minutes!
 
 ## How it works
 

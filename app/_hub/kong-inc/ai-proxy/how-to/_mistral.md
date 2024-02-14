@@ -6,7 +6,7 @@ title: Set up AI Proxy with Mistral
 This guide walks you through setting up the AI Proxy plugin with [Mistral](https://mistral.ai/).
 
 {:.important}
-> Mistral is a self-hosted model. As such, it requires setting model option `upstream_url`, pointing to the absolute
+> Mistral is a self-hosted model. As such, it requires setting model option `upstream_url` to point to the absolute
 > HTTP(S) endpoint for this model implementation.
 
 There are a number of hosting/format options for running this LLM. Popular options include:
@@ -20,7 +20,7 @@ The "upstream" request and response formats are different between various implem
 
 For this provider, the following should be used for the [`config.model.options.mistral_format`](/hub/kong-inc/ai-proxy/configuration/#config-model-options-mistral_format) parameter:
 
-| Mistral Hosting  | `mistral_format` Config Value | Auth Header?            |
+| Mistral Hosting  | `mistral_format` Config Value | Auth Header           |
 |------------------|-----------------------------|-------------------------|
 | OLLAMA           | `ollama`                    | Not required by default |
 | Self-Hosted GGUF | `openai`                    | Not required by default |

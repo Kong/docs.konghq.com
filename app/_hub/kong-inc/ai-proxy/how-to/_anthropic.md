@@ -13,7 +13,7 @@ This guide walks you through setting up the AI Proxy plugin with [Anthropic](htt
 
 ## Provider configuration
 
-After creating an Anthropic account, and purchasing a subscription, you can then create an
+After creating an Anthropic account and purchasing a subscription, you can then create an
 AI Proxy route and plugin configuration.
 
 ### Set up route and plugin

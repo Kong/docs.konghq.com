@@ -7,7 +7,7 @@ title: Using the AI Request Transformer Plugin
 
 The AI Request Transformer plugin is designed to operate in two ways:
 
-* As a transformer / security arbiter for your existing upstream APIs
+* As a transformer/security arbiter for your existing upstream APIs
 * As an extension of another AI Proxy LLM route, inspecting and transforming the requests before sending to the upstream LLM service
 
 The plugin configuration consists of two distinct sections:
@@ -54,7 +54,7 @@ prompt: "Transform my message to XML - return me ONLY the XML output."
 
 {% endnavtabs %}
 
-When the plugin is accessed in any scope (global / service / route / consumer), it **always** sets the caller's request
+When the plugin is accessed in any scope (global, service, route, or consumer), it **always** sets the caller's request
 body as the "user" prompt in a chat message, and then sends it to the configured `llm:` configuration block.
 
 ## Examples
@@ -66,7 +66,7 @@ This example uses `ai-request-transformer` on an *existing* API, for example, so
 1. **Design the prompt**.
 
     For this example, we want to intercept requests to our `customers` API. 
-    On each request, we want to first forward the request to our configured large language model, and ask the LLM to add the country name field to anywhere in the JSON where there is a city, but no associated country.
+    On each request, we want to first forward the request to our configured large language model and ask the LLM to add the country name field to anywhere in the JSON where there is a city, but no associated country.
 
     The plugin would be configured like this:
 
@@ -103,7 +103,7 @@ This example uses `ai-request-transformer` on an *existing* API, for example, so
       "messages": [
         {
           "role": "system",
-          "content": "In my JSON message, anywhere there is a JSON tag for a \"city\" also add a \"country\" tag with the name of the country in which the city resides. Return me only the JSON message, no extra text."
+          "content": "In my JSON message, anywhere there is a JSON tag for a \"city\" also add a \"country\" tag with the name of the country in which the city resides. Only return the JSON message, no extra text."
         },
         {
           "role": "user",
@@ -139,6 +139,6 @@ withdraw **only** the JSON object from the LLM's response:
 config:
   prompt: >
     In my JSON message, anywhere there is a JSON tag for a "city" also add a "country" tag with the name of the country in which the city
-    resides. Return me only the JSON message, no extra text.
+    resides. Only return the JSON message, no extra text.
   transformation_extract_pattern: '\\{((.|\n)*)\\}'
 ```

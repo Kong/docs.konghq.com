@@ -7,7 +7,7 @@ title: Using the AI Response Transformer Plugin
 
 The AI Response Transformer plugin is designed to operate in two ways:
 
-* As a transformer / security arbiter for your existing upstream APIs
+* As a transformer/security arbiter for your existing upstream APIs
 * As an extension of another AI Proxy LLM route, inspecting and transforming the responses before sending to the upstream LLM service
 
 The plugin configuration consists of two distinct sections:
@@ -139,7 +139,7 @@ If your LLM is a chatbot type, or is unpredictable in responses, you can configu
 with a (PCRE) regular expression to extract the first match from the LLM's response.
 
 For example, if you have asked for a JSON response but you know that your LLM may add its own text around your answer, use this extraction pattern to
-withdraw **only** the JSON object from the LLm's response:
+withdraw **only** the JSON object from the LLM's response:
 
 ```yaml
 config:
@@ -171,7 +171,7 @@ Enable this feature by setting the config option [`parse_llm_response_json_instr
     ```yaml
     config:
       prompt: >
-        If my JSON message has the user's name 'Kong User', then return me this exact JSON message: 
+        If my JSON message has the user's name 'Kong User', then return this exact JSON message: 
         {"status": 400, "headers": {"x-failed": "true"}, "body": "VALIDATION_FAILURE"}
       parse_llm_response_json_instructions: true
       llm:

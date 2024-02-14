@@ -16,7 +16,7 @@ The AI Proxy plugin supports `llm/v1/chat` and `llm/v1/completion` style request
 
 ## How it works
 
-The AI Proxy will mediate for you:
+The AI Proxy will mediate the following for you:
 
 * Request and response formats appropriate for the configured `provider` and `route_type`
 * The following service request coordinates (unless the model is self-hosted):
@@ -29,7 +29,7 @@ The AI Proxy will mediate for you:
 * Decorating the request with parameters from the `config.options` block, appropriate for the chosen provider
 * Recording of usage statistics of the configured LLM provider and model into your selected [Kong log](/hub/?category=logging) plugin output
 * Optionally, additionally recording all post-transformation request and response messages from users, to and from the configured LLM
-* Fulfilment of requests to self-hosted models, based on select supported format transformations
+* Fulfillment of requests to self-hosted models, based on select supported format transformations
 
 Flattening all of the provider formats allows you to standardize the manipulation of the data before and after transmission. It also allows your to provide a choice of LLMs to the Kong consumers, using consistent request and response formats, regardless of the backend provider or model.
 
@@ -74,7 +74,7 @@ The following upstream URL patterns are used:
 
 Kong will mediate the request and response format based on the selected [`config.provider`](/hub/kong-inc/ai-proxy/configuration/#config-provider) and [`config.route_type`](/hub/kong-inc/ai-proxy/configuration/#config-route_type), as outlined in the table above.
 
-The Kong AI Proxy accepts the following inputs formats, standardised across all providers; the `config.route_type` must be configured respective to the required request and response format examples:
+The Kong AI Proxy accepts the following inputs formats, standardized across all providers; the `config.route_type` must be configured respective to the required request and response format examples:
 
 {% navtabs %}
 {% navtab llm/v1/chat %}

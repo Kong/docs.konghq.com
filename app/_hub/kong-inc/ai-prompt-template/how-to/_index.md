@@ -25,7 +25,7 @@ The template call from the consumer would contain a map of the variables to fill
 }
 ```
 
-## Allowing Un-templated requests
+## Allowing un-templated requests
 
 Enable config option `config.allow_untemplated_requests` to allow consumers to continue to call the LLM, even when an explicit template
 hasn't been referenced in their request.

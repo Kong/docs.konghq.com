@@ -5,7 +5,7 @@ book: get-started
 chapter: 7
 ---
 
-Kong AI Gateway is a powerful set of new features built on top of [{{site.base_gateway}}](/gateway/latest/), 
+Kong AI Gateway is a powerful set of features built on top of [{{site.base_gateway}}](/gateway/latest/), 
 designed to help developers and organizations effectively adopt AI capabilities quickly and securely.
 
 Quick Links:
@@ -36,7 +36,7 @@ without custom code or deploying new and unfamiliar tools.
 ## Getting started
 
 The AI Gateway is built using {{site.base_gateway}}'s standard plugin model. The AI plugins are bundled 
-with {{site.base_gateway}} as of version `3.6`. This means you can deploy the AI Gateway
+with {{site.base_gateway}} as of version 3.6.x. This means you can deploy the AI Gateway
 capabilities by following the documented configuration instructions for [each plugin](/hub/?category=ai). 
 
 To help you get started quickly, we have provided a script that automates the task of 
