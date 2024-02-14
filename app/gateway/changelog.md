@@ -36,6 +36,12 @@ If you still need to still support TLS 1.1, set the [`ssl_cipher_suite`](/gatewa
 * If you are using `ngx.var.http_*` in custom code to access HTTP headers, the behavior of that variable changes slightly when the same header is used multiple times in a single request. 
 Previously, it would return the first value only; now it returns all of the values, separated by commas. Kong Gateway's PDK header getters and setters work as before.
 
+* Kong Manager now uses the session management mechanism in the OpenID Connect plugin.
+`admin_gui_session_conf` is no longer required when authenticating with OIDC. Instead, session-related
+configuration parameters are set in `admin_gui_auth_conf` (like `session_secret`).
+
+   See the [migration guide](/gateway/3.6.x/kong-manager/auth/oidc/migrate/) for more information.
+
 #### Plugins
 
 * [**ACME**](/hub/kong-inc/acme/) (`acme`), [**Rate Limiting**](/hub/kong-inc/rate-limiting/) (`rate-limiting`), and [**Response Rate Limiting**](/hub/kong-inc/response-ratelimiting/) (`response-ratelimiting`)
@@ -139,7 +145,8 @@ and singular keys (for example, `password`) are excluded recursively.
 
 #### Kong Manager Enterprise
 
-* You can now use an RBAC token to authenticate while using group mapping with Kong Manager (for example, with OIDC or LDAP).
+* You can now use an RBAC token to authenticate while using 
+[group mapping with Kong Manager](/gateway/3.6.x/kong-manager/auth/oidc/mapping/) (for example, with OIDC or LDAP).
 * Added support for creating and editing the Route by Header plugin from the UI.
 * Added an onboarding flow to make it easier for new users to start using Kong Gateway.
 * The workspace and overview summary pages now have a new design.
