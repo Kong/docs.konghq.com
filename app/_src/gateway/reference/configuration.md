@@ -4749,9 +4749,16 @@ configuration of these directives via its Nginx directive injection mechanism.
 The following namespaces are supported:
 
 - `nginx_wasm_<directive>`: Injects `<directive>` into the `wasm {}` block.
+{% if_version gte:3.6.x %}
 - `nginx_wasm_shm_kv_<name>`: Injects `shm_kv <name>` into the `wasm {}` block,
   allowing operators to define custom shared memory zones which are usable by
   the `get_shared_data`/`set_shared_data` Proxy-Wasm SDK functions.
+{% endif_version %}
+{% if_version lte:3.5.x %}
+- `nginx_wasm_shm_<name>`: Injects `shm_kv <name>` into the `wasm {}` block,
+  allowing operators to define custom shared memory zones which are usable by
+  the `get_shared_data`/`set_shared_data` Proxy-Wasm SDK functions.
+{% endif_version %}
 - `nginx_wasm_wasmtime_<flag>`: Injects `flag <flag>` into the `wasmtime {}`
   block, allowing various Wasmtime-specific flags to be set.
 - `nginx_<http|proxy>_<directive>`: Injects `<directive>` into the `http {}` or
