@@ -147,4 +147,4 @@ In this topic, you added documentation for your API product and logged into the 
 ## More information
 
 * [Register an application against the API product](/konnect/dev-portal/applications/dev-apps/).
-* [Customize Dev Portal](/konnect/customization/)
+* [Customize Dev Portal](/konnect/dev-portal/customization/)
