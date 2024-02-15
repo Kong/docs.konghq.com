@@ -10,8 +10,10 @@ This guide walks you through setting up the AI Proxy plugin with [Mistral](https
 > [`upstream_url`](/hub/kong-inc/ai-proxy/configuration/#config-model-options-upstream_url) to point to the absolute
 > HTTP(S) endpoint for this model implementation.
 
-There are a number of hosting/format options for running this LLM. Popular options include:
+There are a number of hosting/format options for running this LLM. Mistral offers a cloud-hosted service for consuming
+the LLM, available at [Mistral.ai](https://mistral.ai/)
 
+Self-hosted options include:
 * [OLLAMA](https://ollama.com/)
 * [Hosting the GGUF model yourself, with an e.g. Python Web Server](https://huggingface.co/mistralai/Mixtral-8x7B-v0.1)
 
