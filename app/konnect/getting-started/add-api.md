@@ -10,19 +10,15 @@ In this guide, you will take this one step further by adding your own API to {{s
 
 If you didn't use the in-app onboarding wizard in {{site.konnect_short_name}}, make sure you [create a data plane node](/konnect/gateway-manager/data-plane-nodes/#supported-installation-options).
 
-<blockquote class="note no-icon"><details><summary>
-<strong>Konnect concepts &nbsp;<i class="fas fa-arrow-right"></i> </strong>
-  </summary>
-
-<br>
+<details><summary>Konnect concepts</summary>
 
 {{ konnect_concepts | markdownify }}
 
 [**Services:**](/gateway/latest/key-concepts/services/) A service is an entity representing an external upstream API or microservice. For example, a data transformation microservice, a billing API, and so on.
 
 [**Routes:**](/gateway/latest/key-concepts/routes/) Routes determine how (and if) requests are sent to their services after they reach the gateway. Where a service represents the backend API, a route defines what is exposed to clients. A single service can have many routes. Once a route is matched, the gateway proxies the request to its associated service. 
+
 </details>
-</blockquote>
 
 ## Add your API
 
@@ -34,22 +30,19 @@ If you didn't use the in-app onboarding wizard in {{site.konnect_short_name}}, m
 
 1. From the **Add a Gateway Service** dialog, create a new service:
 
-  1. Enter a unique name for the Gateway service, or
-  specify a Gateway service that doesn't yet have a version connected to it.
+    1. Enter a unique name for the Gateway service, or specify a Gateway service that doesn't yet have a version connected to it.
 
-       For the purpose of this example, enter `example_gateway_service`.
+        For the purpose of this example, enter `example_gateway_service`.
+    
+        The name can be any string containing letters, numbers, or the following characters: `.`, `-`, `_`, `~`, or `:`. Do not use spaces.
+    
+        For example, you can use `example_service`, `ExampleService`, `Example-Service`. However, `Example Service` is invalid.
 
-       The name can be any string containing letters, numbers, or the following
-       characters: `.`, `-`, `_`, `~`, or `:`. Do not use spaces.
+    1. In the **Upstream URL** field, enter `http://httpbin.org`.
 
-       For example, you can use `example_service`, `ExampleService`, `Example-Service`.
-       However, `Example Service` is invalid.
+    1. Use the defaults for the remaining fields.
 
-  1. In the **add using upstream URL** field, enter `http://httpbin.org`.
-
-  1. Use the defaults for the remaining fields.
-
-  1. Click **Save**.
+    1. Click **Save**.
 
 1. Add a route to your service implementation by clicking the **Add a Route** button now visible from the Gateway service dashboard.
 

@@ -126,6 +126,8 @@
       url: /api-products/
     - text: Manage API Product Documentation
       url: /api-products/service-documentation/
+    - text: Productize a Service
+      url: /api-products/productize-service/
 
 
 - title: Dev Portal

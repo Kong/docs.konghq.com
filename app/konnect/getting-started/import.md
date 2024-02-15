@@ -30,7 +30,7 @@ Use decK to import entity configurations into a control plane.
 
 When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.konghq.com` environment by default.
 
-1. Generate a {{site.konnect_short_name}} personal access token (PAT) for a user account: In {{site.konnect_short_name}} in your [**Personal Access Token** account settings](https://cloud.konghq.com/global/account/tokens), click **Generate Token**.
+1. Generate a {{site.konnect_short_name}} personal access token (PAT) for a user account. In {{site.konnect_short_name}} in your [**Personal Access Token** account settings](https://cloud.konghq.com/global/account/tokens), click **Generate Token**.
   
     The PAT allows you to authenticate with decK.
 
@@ -40,7 +40,7 @@ When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.
     deck gateway ping --konnect-token-file /PATH/TO/FILE
     ```
 
-1. Run [`deck gateway dump`](/deck/latest/reference/deck_gateway_dump/) to export configuration into a file:
+1. Run [`deck gateway dump`](/deck/latest/reference/deck_gateway_dump/) to export the configuration into a file:
 
     ```sh
     deck gateway dump -o kong.yaml
@@ -79,7 +79,7 @@ they were migrated successfully.
 ## Migrate data planes
 
 You can keep any data plane nodes that are:
-* Running {{site.base_gateway}} (Enterprise, include _free_ mode)
+* Running {{site.base_gateway}} (Enterprise, including _free_ mode)
 * Are at least version 2.5 or higher
 
 Turn any self-managed nodes into cloud data plane nodes by registering them
@@ -97,9 +97,11 @@ you can shut them down now.
 
 ## Next steps
 
-Now that you've imported your {{site.base_gateway}} entities to {{site.konnect_short_name}}, you can migrate additional settings from {{site.base_gateway}} or continue to test {{site.konnect_short_name}}'s capabilities:
+Now that you've imported your {{site.base_gateway}} entities to {{site.konnect_short_name}}, you can migrate additional settings from {{site.base_gateway}} or continue to test {{site.konnect_short_name}}'s capabilities.
 
-<div class="docs-grid-install max-3">
+### Migrate additional settings
+
+<div class="docs-grid-install max-4">
 
   <a href="/konnect/api-products/service-documentation/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
@@ -120,6 +122,12 @@ Now that you've imported your {{site.base_gateway}} entities to {{site.konnect_s
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
     <div class="install-text">Review and set up teams and roles</div>
   </a>
+
+</div>
+
+### Test other {{site.konnect_short_name}} use cases
+
+<div class="docs-grid-install max-3">
   
   <a href="/hub/kong-inc/key-auth/how-to/basic-example/?tab=konnect-api" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">

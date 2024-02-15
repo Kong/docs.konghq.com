@@ -14,7 +14,7 @@ This guide will walk you through creating an API product and productizing it by 
 
 ## Create an API product <!--these steps will need to be verified once customer 0 happens-->
 
-Let's set up your first API product and API product version, by clicking {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products) from the {{site.konnect_short_name}} side navigation bar.
+You can set up an API product and API product version by clicking {% konnect_icon api-product %} [**API Products**](https://cloud.konghq.com/api-products) from the {{site.konnect_short_name}} side navigation bar.
 
 1. Select **API Product** from the API products dashboard to add a new API product.
 

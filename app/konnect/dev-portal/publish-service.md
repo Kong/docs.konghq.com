@@ -1,5 +1,5 @@
 ---
-title: Add and publish API Product documentation
+title: Add and publish API product documentation
 ---
 
 The Dev Portal is an API catalog that lets you document your {{site.konnect_short_name}} API products
