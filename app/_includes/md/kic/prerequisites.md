@@ -34,7 +34,7 @@
 {% assign gwapi_version = "v1beta1" %}
 {% endif_version %}
 
-    ```bash
+   ```bash
    echo "
    ---
    apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}
