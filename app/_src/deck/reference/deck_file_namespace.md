@@ -8,16 +8,16 @@ Apply a namespace to routes in a decK file by prefixing the path.
 
 By prefixing paths with a specific segment, colliding paths to services can be
 namespaced to prevent collisions. For example, two API definitions that both expose a
-'/list' path. By prefixing one with '/addressbook' and the other with '/cookbook',
-the resulting paths '/addressbook/list' and '/cookbook/list' can be exposed without
+`/list` path. By prefixing one with `/addressbook` and the other with `/cookbook`,
+the resulting paths `/addressbook/list` and `/cookbook/list` can be exposed without
 colliding.
 
 To remove the prefix from the path before the request is routed to the service, the
 following approaches are used:
-- If the route has 'strip_path=true,' then the added prefix will already be stripped.
-- If the related service has a 'path' property that matches the prefix, then the
-  'service.path' property is updated to remove the prefix.
-- A "pre-function" plugin will be added to remove the prefix from the path.
+- If the route has `strip_path=true`, then the added prefix will already be stripped.
+- If the related service has a `path` property that matches the prefix, then the
+  `service.path` property is updated to remove the prefix.
+- A `pre-function` plugin will be added to remove the prefix from the path.
 
 ## Syntax
 
