@@ -933,13 +933,21 @@ The following suffix can be specified for each pair:
   address/port be made with TLS enabled.
 - `http2` will allow for clients to open HTTP/2 connections to Kong's Status
   API server.
+{% if_version gte:3.6.x %}
+- `proxy_protocol` will enable usage of the PROXY protocol.
+{% endif_version %}
 
 This value can be set to `off`, disabling the Status API for this node.
 
 Example: `status_listen = 0.0.0.0:8100 ssl http2`
 
-**Default:** `off`
+{% if_version gte:3.6.x %}
+**Default:** `127.0.0.1:8007 reuseport backlog=16384`
+{% endif_version %}
 
+{% if_version lte:3.5.x %}
+**Default:** `off`
+{% endif_version %}
 
 ### debug_listen
 {:.badge .enterprise}
@@ -1479,6 +1487,10 @@ The following namespaces are supported:
 - `nginx_http_<directive>`: Injects `<directive>` in Kong's `http {}` block.
 - `nginx_proxy_<directive>`: Injects `<directive>` in Kong's proxy `server {}`
   block.
+{% if_version gte:3.6.x %}
+- `nginx_location_<directive>`: Injects `<directive>` in Kong's proxy `/`
+  location block (nested under Kong's proxy server {} block).
+{% endif_version %}
 - `nginx_upstream_<directive>`: Injects `<directive>` in Kong's proxy `upstream
   {}` block.
 - `nginx_admin_<directive>`: Injects `<directive>` in Kong's Admin API `server
@@ -1627,10 +1639,12 @@ ensure at worst any regex Kong executes could finish within roughly 2 seconds.
 ### nginx_http_lua_regex_cache_max_entries
 
 Specifies the maximum number of entries allowed in the worker process level
-compiled regex cache.
+PCRE JIT compiled regex cache.
 
 It is recommended to set it to at least (number of regex paths * 2) to avoid
-high CPU usages.
+high CPU usages. If you manually specified `router_flavor` to `traditional`,
+`expressions` and `traditional_compat` router does not make use of the PCRE
+library and their behavior is unaffected by this setting.
 
 **Default:** `8192`
 
@@ -1649,8 +1663,14 @@ in excessive memory usage and not recommended.
 See:
 https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_requests
 
-**Default:** `1000`
+{% endif_version %}
 
+{% if_version eq:3.5.x %}
+**Default:** `1000`
+{% endif_version %}
+
+{% if_version gte:3.6.x %}
+**Default:** `10000`
 {% endif_version %}
 
 ---
@@ -1960,7 +1980,15 @@ value will be used while the new DNS record is fetched in the background.
 Stale data will be used from expiry of a record until either the refresh query
 completes, or the `dns_stale_ttl` number of seconds have passed.
 
+This configuration enables Kong to be more resilient during resolver downtime.
+
+{% if_version gte:3.6.x %}
+**Default:** `3600`
+{% endif_version %}
+
+{% if_version lte:3.5.x %}
 **Default:** `4`
+{% endif_version %}
 
 
 ### dns_cache_size
@@ -2225,7 +2253,13 @@ A token string.
 Defines the authentication mechanism when connecting to the Hashicorp Vault
 service.
 
+{% if_version gte:3.6.x %}
+Accepted values are: `token`, `kubernetes` or `approle`.
+{% endif_version %}
+
+{% if_version lte:3.5.x %}
 Accepted values are: `token`, or `kubernetes`.
+{% endif_version %}
 
 **Default:** `token`
 
@@ -2260,6 +2294,50 @@ pod's filesystem, if using a non-standard container platform setup.
 
 **Default:** none
 
+### vault_hcv_approle_auth_path
+{:.badge .enterprise}
+
+Place where the Approle auth method will be accessible:
+/v1/auth/<vault_hcv_approle_auth_path>
+
+**Default:** `approle`
+
+{% if_version gte:3.6.x %}
+
+### vault_hcv_approle_role_id
+{:.badge .enterprise}
+
+The Role ID of the Approle in HashiCorp Vault.
+
+**Default:** none
+
+
+### vault_hcv_approle_secret_id
+{:.badge .enterprise}
+
+The Secret ID of the Approle in HashiCorp Vault.
+
+**Default:** none
+
+
+### vault_hcv_approle_secret_id_file
+{:.badge .enterprise}
+
+Defines where the Secret ID should be read from the pod's filesystem. This is
+usually used with HashiCorp Vault's response wrapping.
+
+**Default:** none
+
+
+### vault_hcv_approle_response_wrapping
+{:.badge .enterprise}
+
+Defines whether the Secret ID read from configuration or file is actually a
+response-wrapping token instead of a real Secret ID.
+
+**Default:** `false`
+
+{% endif_version %}
 
 ### vault_hcv_ttl
 {:.badge .enterprise}
@@ -3225,6 +3303,9 @@ Examples:
 
 - `<IP>:<PORT>` -> `portal_gui_host = 127.0.0.1:8003`
 - `<HOSTNAME>` -> `portal_gui_host = portal_api.domain.tld`
+{% if_version gte:3.6.x %}
+- `<HOSTNAME>/<PATH>` -> `portal_gui_host = dev-machine/dev-285`
+{% endif_version %}
 
 **Default:** `127.0.0.1:8003`
 
@@ -3721,9 +3802,10 @@ Please visit <DEV PORTAL URL/login> to login.
 When enabled, developers will be able to use the Reset Password flow on a Dev
 Portal and will receive an email with password reset instructions.
 
-When disabled, developers will *not* be able to reset their account passwords.
-Kong Admins will have to manually create new credentials for the Developer in
-the Kong Manager.
+{:.note}
+> Note: When disabled, developers will *not* be able to reset their account
+passwords. The password resetting email is the only way to reset developer
+passwords.
 
 The email looks like the following:
 
@@ -4667,9 +4749,16 @@ configuration of these directives via its Nginx directive injection mechanism.
 The following namespaces are supported:
 
 - `nginx_wasm_<directive>`: Injects `<directive>` into the `wasm {}` block.
+{% if_version gte:3.6.x %}
+- `nginx_wasm_shm_kv_<name>`: Injects `shm_kv <name>` into the `wasm {}` block,
+  allowing operators to define custom shared memory zones which are usable by
+  the `get_shared_data`/`set_shared_data` Proxy-Wasm SDK functions.
+{% endif_version %}
+{% if_version lte:3.5.x %}
 - `nginx_wasm_shm_<name>`: Injects `shm_kv <name>` into the `wasm {}` block,
   allowing operators to define custom shared memory zones which are usable by
   the `get_shared_data`/`set_shared_data` Proxy-Wasm SDK functions.
+{% endif_version %}
 - `nginx_wasm_wasmtime_<flag>`: Injects `flag <flag>` into the `wasmtime {}`
   block, allowing various Wasmtime-specific flags to be set.
 - `nginx_<http|proxy>_<directive>`: Injects `<directive>` into the `http {}` or
@@ -4755,13 +4844,19 @@ proxy request:
   present or contains unknown value, timing information will not be collected
   for the current request. You can also specify a list of filters, separated by
   commas, to filter the scope of the time information that is collected. The
-  following filters are supported: - `rewrite`: Collect timing information from
-  the `rewrite` phase. - `access`: Collect timing information from the `access`
-  phase. - `balancer`: Collect timing information from the `balancer` phase. -
-  `response`: Collect timing information from the `response` phase. -
-  `header_filter`: Collect timing information from the `header_filter` phase. -
-  `body_filter`: Collect timing information from the `body_filter` phase. -
-  `log`: Collect timing information from the `log` phase.
+  following filters are supported: 
+    - `rewrite`: Collect timing information from
+  the `rewrite` phase. 
+    - `access`: Collect timing information from the `access`
+  phase. 
+    - `balancer`: Collect timing information from the `balancer` phase. 
+    - `response`: Collect timing information from the `response` phase. 
+    - `header_filter`: Collect timing information from the `header_filter` phase. 
+    - `body_filter`: Collect timing information from the `body_filter` phase. 
+    - `log`: Collect timing information from the `log` phase.
+    {% if_version gte:3.6.x %}
+    - `upstream`: Collect timing information from the `upstream` phase.
+    {% endif_version %}
 
 - `X-Kong-Request-Debug-Log`: If set to `true`, timing information will also be
   logged in the Kong error log with a log level of `notice`. Defaults to

@@ -11,7 +11,7 @@ to [Enterprise-specific features](/gateway/{{page.release}}/licenses/).
 ## Troubleshooting and support
 
 For troubleshooting license issues, see:
-* [`/licenses` API reference](/gateway/{{page.release}}/admin-api/licenses/reference/)
+* [`/licenses` API reference](/gateway/api/admin-ee/latest/#/licenses)
 * [`/licenses` API examples](/gateway/{{page.release}}/licenses/examples/)
 
 If you did not receive an `HTTP/1.1 200 OK` message or need assistance completing

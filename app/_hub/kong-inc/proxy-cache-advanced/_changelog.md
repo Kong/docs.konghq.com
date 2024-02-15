@@ -1,13 +1,18 @@
 ## Changelog
 
-**{{site.base_gateway}} 3.3.x**
+### {{site.base_gateway}} 3.6.x
+* This plugin can now be scoped to consumer groups.
+* Removed the undesired `proxy-cache-advanced/migrations/001_035_to_050.lua` file, which blocked migration from OSS to Enterprise. 
+This is a breaking change only if you are upgrading from a {{site.base_gateway}} version between `0.3.5` and `0.5.0`.
+
+### {{site.base_gateway}} 3.3.x
 * Added the `ignore_uri_case` configuration parameter.
 * Added wildcard and parameter match support for `config.content_type`.
 
-**{{site.base_gateway}} 3.1.x**
+### {{site.base_gateway}} 3.1.x
 * Added support for integrating with redis clusters using the `config.redis.cluster_addresses` configuration parameter.
 
-**{{site.base_gateway}} 2.8.x**
+### {{site.base_gateway}} 2.8.x
 
 * Added the `redis.sentinel_username` and `redis.sentinel_password` configuration
 parameters.

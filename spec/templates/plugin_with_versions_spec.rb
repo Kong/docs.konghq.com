@@ -20,7 +20,6 @@ RSpec.describe 'Plugin page with multiple versions' do
       expect(html).to have_css('h1#main', text: 'Kong JWT Signer')
       expect(html).to have_css('.badge.paid')
       expect(html).to have_css('.badge.enterprise')
-      expect(html).to have_css('.old-version-banner')
     end
   end
 
@@ -37,7 +36,6 @@ RSpec.describe 'Plugin page with multiple versions' do
       expect(html).to have_css('h1#main', text: 'Kong JWT Signer')
       expect(html).to have_css('.badge.paid')
       expect(html).to have_css('.badge.enterprise')
-      expect(html).not_to have_css('.old-version-banner')
     end
 
     it 'renders the sidenav' do

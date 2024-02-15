@@ -1,4 +1,4 @@
-- output: ../../app/assets/images/products/konnect/gateway-manager/konnect-control-plane-dashboard.png
+- output: ../../../app/assets/images/products/konnect/gateway-manager/konnect-control-plane-dashboard.png
   url: https://cloud.konghq.com/us/gateway-manager/
   wait: 4000
   width: 1920
