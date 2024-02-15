@@ -30,7 +30,6 @@ deck file namespace [command-specific flags] [global flags] filename [...filenam
 ```sh
 # Apply namespace to a decK file
 cat kong.yml | deck file namespace --path-prefix=/kong
-
 ```
 
 ## Flags
