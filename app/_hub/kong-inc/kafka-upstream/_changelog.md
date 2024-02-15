@@ -9,7 +9,7 @@
 * The `authentication.user` and `authentication.password` configuration fields are now marked as
 referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format/).
+in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
 
 **{{site.base_gateway}} 2.7.x**
 

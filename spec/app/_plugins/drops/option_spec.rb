@@ -31,6 +31,11 @@ RSpec.describe Jekyll::Drops::Option do
   end
 
   describe '#url' do
+    before do
+      allow(site.data).to receive(:[]).and_call_original
+      allow(site.data).to receive(:[]).with('pages_urls').and_return(Set.new(urls))
+    end
+
     context 'previous version' do
       let(:page) { find_page_by_url('/gateway/latest/reference/configuration/') }
       let(:release) do
@@ -40,9 +45,7 @@ RSpec.describe Jekyll::Drops::Option do
       end
 
       context 'when the url exists' do
-        before do
-          site.pages = [double('url' => '/gateway/2.5.x/reference/configuration/'), page]
-        end
+        let(:urls) { ['/gateway/2.5.x/reference/configuration/'] }
 
         it 'it links to it' do
           expect(subject.url).to eq('/gateway/2.5.x/reference/configuration/')
@@ -50,6 +53,8 @@ RSpec.describe Jekyll::Drops::Option do
       end
 
       context 'when the url does not exist' do
+        let(:urls) { [] }
+
         it 'links to the root page' do
           expect(subject.url).to eq('/gateway/2.5.x/')
         end
@@ -66,13 +71,15 @@ RSpec.describe Jekyll::Drops::Option do
       end
 
       context 'when the url exists' do
+        let(:urls) { ['/kubernetes-ingress-controller/2.7.x/introduction/'] }
+
         it 'it links to it' do
           expect(subject.url).to eq('/kubernetes-ingress-controller/2.7.x/introduction/')
         end
       end
 
       context 'when the url does not exist' do
-        before { site.pages = [] }
+        let(:urls) { [] }
 
         it 'links to the root page' do
           expect(subject.url).to eq('/kubernetes-ingress-controller/2.7.x/')

@@ -143,7 +143,7 @@ curl -X POST http://localhost:8001/routes/example_route/plugins \
 
 ### Consumer level proxy caching
 
-In {{site.base_gateway}}, [consumers](/gateway/latest/admin-api/#consumer-object) are an abstraction that defines a user of a service.
+In {{site.base_gateway}}, [consumers](/gateway/api/admin-ee/latest/#/Consumers/list-consumer/) are an abstraction that defines a user of a service.
 Consumer-level proxy caching can be used to cache responses per consumer.
 
 1. **Create a consumer**

@@ -31,6 +31,7 @@ Following annotations are supported on Ingress resources:
 | [`konghq.com/path-handling`](#konghqcompathhandling)                                 | Set the path handling algorithm                                                                                 |
 | [`konghq.com/headers.*`](#konghqcomheaders)                                          | Set header values required to match rules in this Ingress                                                       |
 | [`konghq.com/rewrite`](#konghqcomrewrite)                                            | Rewrite the path of a URL                                                                                       |
+| [`konghq.com/tags`](#konghqcomtags)                                                  | Assign custom tags to Kong entities generated out of this Ingress                                               |
 
 `kubernetes.io/ingress.class` is required, and its value should match
 the value of the `--ingress-class` controller argument (`kong` by default).
@@ -53,15 +54,17 @@ These annotations are supported on Service resources.
 | [`konghq.com/read-timeout`](#konghqcomreadtimeout)                               | Set the timeout for receiving an HTTP response after sending a request                                                                 |
 | [`konghq.com/write-timeout`](#konghqcomwritetimeout)                             | Set the timeout for writing data                                                                                                       |
 | [`konghq.com/retries`](#konghqcomretries)                                        | Set the number of times to retry requests that failed                                                                                  |
+| [`konghq.com/tags`](#konghqcomtags)                                              | Assign custom tags to Kong entities generated out of this Service                                                                      |
 
 ## KongConsumer resource
 
 These annotations are supported on KongConsumer resources.
 
-| Annotation name | Description |
-|-----------------|-------------|
-| REQUIRED [`kubernetes.io/ingress.class`](#kubernetesioingressclass) | Restrict the KongConsumers that a controller should satisfy |
-| [`konghq.com/plugins`](#konghqcomplugins) | Run plugins for a specific consumer |
+| Annotation name                                                     | Description                                                            |
+|---------------------------------------------------------------------|------------------------------------------------------------------------|
+| REQUIRED [`kubernetes.io/ingress.class`](#kubernetesioingressclass) | Restrict the KongConsumers that a controller should satisfy            |
+| [`konghq.com/plugins`](#konghqcomplugins)                           | Run plugins for a specific consumer                                    |
+| [`konghq.com/tags`](#konghqcomtags)                                 | Assign custom tags to Kong entities generated out of this KongConsumer |
 
 `kubernetes.io/ingress.class` is normally required, and its value should match
 the value of the `--ingress-class` controller argument (`kong` by default).
@@ -440,7 +443,7 @@ Results in two routes:
 This annotation can be set on a Kubernetes Service resource and indicates
 the protocol that should be used by Kong to communicate with the service.
 In other words, the protocol is used for communication between a
-[Kong Service](/gateway/latest/admin-api/#service-object) and
+[Kong Service](/gateway/api/admin-ee/latest/#/Services/list-service/) and
 a Kubernetes Service, internally in the Kubernetes cluster.
 
 Accepted values are:
@@ -479,7 +482,7 @@ resource which contains the TLS cert and key pair.
 
 Under the hood, the controller creates a Certificate in Kong and then
 sets the
-[`service.client_certificate`](/gateway/latest/admin-api/#service-object)
+[`service.client_certificate`](/gateway/api/admin-ee/latest/#/Services/list-service/)
 for the service.
 
 ### konghq.com/host-header
@@ -599,6 +602,15 @@ data before closing a kept-alive connection.
 Sets the max retries on a request. For example, setting this annotation to `3`
 will re-send the request up to three times if it encounters a failure, such as
 a timeout.
+
+### konghq.com/tags
+
+> Available since controller 2.9
+
+This annotation can be used to assign custom tags to Kong entities generated out of a
+resource the annotation is applied to. The value of the annotation is a comma-separated
+list of tags. For example, setting this annotation to `tag1,tag2` will assign the tags
+`tag1` and `tag2` to the Kong entity.
 
 ### konghq.com/rewrite
 
