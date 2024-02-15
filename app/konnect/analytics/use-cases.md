@@ -1,8 +1,6 @@
 ---
 title: Analyze API Usage and Performance
 content_type: tutorial
-book: use-cases
-chapter: 1
 ---
 
 Custom reporting in {{site.konnect_saas}} gives you the power to monitor your API data in detail and export that data to CSV. 

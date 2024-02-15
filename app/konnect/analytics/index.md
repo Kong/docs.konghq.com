@@ -3,32 +3,134 @@ title: Introduction to Monitoring Health with Analytics
 ---
 
 
-You can monitor the health and performance of any API product, route, or application managed by {{site.konnect_saas}}.
+You can monitor the health and performance of any API product, route, or application managed by Kong Konnect.
 
-Analytics provides traffic reports to help you track the performance and
-behavior of your APIs and data plane nodes. Use these reports to quickly access key
-statistics, monitor vital signs, and pinpoint anomalies in real time.
-
-With **Konnect Plus** Analytics retains historical data for up to 3 months. If you need a longer storage period, [contact a sales representative](https://konghq.com/contact-sales) about upgrading to {{site.konnect_product_name}} Enterprise.
-
-## Contextual analytics for services and routes
-
-In the [Gateway Manager](/konnect/gateway-manager/), you can see
-activity graphs for gateway services or routes for the past 30 days.
-For gateway services and routes, the graphs show requests broken down by status codes.
-
+Konnect provides embedded reports at various different levels throughout its user interface. Our embedded reports help to stop switching away from your current page to start investigating or derive insights. For example, in the Gateway Manager, you can see activity graphs for gateway services or routes. For gateway services and routes, the graphs show requests broken down by status codes.
 
 ![service graph](/assets/images/products/konnect/analytics/konnect-analytics-gateway-service.png){:.image-border}
 
-> _**Figure 1:** Graph showing traffic for the last 15 minutes by status code for a gateway service._
+## Analyze API usage and performance data
+
+{{site.konnect_short_name}}  Analytics {% konnect_icon analytics %} Analytics provides different tools to help you track the performance and behavior of your APIs and data plane nodes. You can use these tools to access key statistics, monitor vitals and pinpoint anomalies in real time. 
 
 
-You can also [export historical data in CSV](#export-analytics-data) format from any graph.
+
+### Charts and limitations
+
+{{site.konnect_short_name}} charts offer interactive features such as the ability to hover over elements to reveal additional details, and to filter data by selecting items with the chart. {{site.konnect_short_name}} caps the number of entities showing in any activity graph or [use custom reports](/konnect/analytics/generate-reports/) to 50. If this limit is exceeded, a warning icon will appear at the top of the affected graph, or report. 
+
+
+### Team permissions
+
+You can assign {{site.konnect_short_name}} users to specific, predefined Analytic teams. This gives you the ability to allow certain users to only view or manage the Analytics area of your {{site.konnect_short_name}} instance. For more information about the Analytics Admin and Analytics Viewer teams, see the [Teams Reference](/konnect/org-management/teams-and-roles/teams-reference/).
 
 
 
-## Summary dashboard and custom reports
+## Explorer 
 
+
+
+The Explorer is an intuitive web-based interface that enables easy access to API usage data gathered by {{site.konnect_short_name}} Analytics from your data plane nodes. It's an efficient tool for promptly diagnosing performance issues or capturing essential usage metrics. The Explorer also provides the option to save your views as custom reports.
+
+![Explorer Dashboard](/assets/images/products/konnect/analytics/konnect-explorer-dashboard.png){:.image-border}
+
+To begin using Explorer, simply go to the **Analytics** {% konnect_icon analytics %} section and select **Explorer**. 
+
+### Grouping and filtering
+
+This is an overview of the different grouping and filtering categories available: 
+
+Category | Description
+---------|------------
+None | Aggregate all of the data in the organization without any grouping.
+API Product | Group or filter the data by {{site.konnect_short_name}} API product.
+API Product Version | Group or filter the data by {{site.konnect_short_name}} API product version.
+Route | Group or filter the data by route.
+Application | Group or filter the data by application.
+Status Code | Group or filter the data by individual response status code. Individual status codes can range from 100 to 599.
+Status Code (grouped) | Group or filter the data by response status code category: 1XX, 2XX, 3XX, 4XX, and 5XX.
+Control Plane | Group or filter the data by control plane.
+Gateway Services | Group or filter the data by gateway services.
+Consumer | Group or filter the data by consumer.
+
+
+### Metrics
+
+Traffic metrics provide insight into which of your services are being used and how they are responding. Within a single report, you have the flexibility to choose one or multiple metrics from the same category.
+
+Metric | Category | Description
+-------|------------
+Request Count | Count | Total number of API calls within the selected time frame. This includes requests that were rejected due to rate limiting, failed authentication, and so on.
+Requests per Minute | Rate | Number of API calls per minute within the selected time frame.
+Response Latency | Latency | The amount of time, in milliseconds, that it takes to process an API request. Users can select between average (avg) or different percentiles (p99, p95, and p50). For example, a 99th percentile response latency of 10 milliseconds means that every 1 in 100 requests took at least 10 milliseconds from request received until response returned. 
+Upstream Latency | Latency | The amount of time, in milliseconds, that {{site.base_gateway}} was waiting for the first byte of the upstream service response. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile response latency of 10 milliseconds means that every 1 in 100 requests took at least 10 milliseconds from sending the request to the upstream service until the response returned.
+Kong latency | Latency | The amount of time, in milliseconds, that {{site.base_gateway}} was waiting for the first byte of the upstream service response. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile response latency of 10 milliseconds means that every 1 in 100 requests took at least 10 milliseconds from the time the {{site.base_gateway}} received the request up to when it sends it back to the upstream service.
+Request Size | Size | The size of the request payload received from the client, in bytes. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile request size of 100 bytes means that the payload size for every 1 in 100 requests was at least 100 bytes.
+Response Size | Size | The size of the response payload returned to the client, in bytes. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile response size of 100 bytes means that the payload size for every 1 in 100 response back to the original caller was at least 100 bytes.
+
+### Time intervals
+
+The time frame selector controls the time frame of data visualized, which indirectly controls the
+granularity of the data. For example, the “5M” selection displays 5 minutes in
+1-second resolution data, while longer time frames display minute, hour, or days resolution data.
+
+All time interval presets are **relative**. 
+For custom reports, you can also choose a **custom** date range.
+
+* **Relative** time frames are dynamic and the report captures a snapshot of data
+relative to when a user views the report.
+* **Custom** time frames are static and the report captures a snapshot of data
+during the specified time frame. You can see the exact range below
+the time frame selector. For example:
+
+    ```
+    Jan 26, 2023 12:00 AM - Feb 01, 2023 12:00 AM (PST)
+    ```
+
+Interval | Description  
+---------|-------------
+Last 15 minutes | Data is aggregated in one minute increments.
+Last hour| Data is aggregated in one minute increments.
+Last 6 hours | Data is aggregated in one minute increments.
+Last 12 hours| Data is aggregated in one hour increments.
+Last 24 hours| Data is aggregated in one hour increments.
+Last 7 days | Data is aggregated in one hour increments.
+Last 30 days | Data is aggregated in daily increments.
+Current week | Data is aggregated in one hour increments. Logs any traffic in the current calendar week. 
+Current month | Data is aggregated in one hour increments. Logs any traffic in the current calendar month. 
+Previous week | Data is aggregated in one hour increments. Logs any traffic in the previous calendar week.
+Previous month | Data is aggregated in daily increments. Logs any traffic in the previous calendar month. 
+
+
+### Actions
+
+After customizing a view using Explorer's metrics and filters, there are several actions that can be performed:
+
+**Save as a Report**: This function creates a new custom report based on your current view, allowing you to revisit these specific insights at a later time.
+**Export as CSV**: If you prefer to analyze your data using other tools, you can download the current view as a CSV file, making it portable and ready for further analysis elsewhere.
+
+You can see this example of [diagnosing latency issues](/konnect/analytics/use-cases/latency)
+
+
+## Custom Reports
+
+
+Custom reporting in {{site.konnect_saas}} enables you to save and revisit views created during data exploration, facilitating analysis over different time intervals. These reports can be used to analyze metrics, investigate anomalies and sharing. 
+When your reports are ready to be shared:
+
+You can do this in a few different ways:
+
+* **Analytics Viewer/Editor role**: Assign stakeholders the Analytics Viewer [role](/konnect/org-management/teams-and-roles/teams-reference) for read-only access or the Analytics Editor role for report customization within the {{site.konnect_short_name}} organization.
+* **Screenshots**:  Capture and share screenshots of your reports.
+* **Export as CSV**: Export reports to CSV files for integration with external dashboards or visualization tools from the **Reports Actions** drop-down, select **Export Report as CSV**.
+
+
+## Dashboards
+
+![service graph](/assets/images/products/konnect/analytics/konnect-summary-dashboard.png){:.image-border}
+
+
+You can access a summary dashboard by navigating to Analytics -> Summary. The summary dashboard shows performance and health statistics of all your APIs across your organization on a single page.
 For greater insights into your service usage, access the dedicated {% konnect_icon analytics %} [Analytics](https://cloud.konghq.com/analytics) page.
 
 From {% konnect_icon analytics %} Analytics, you can view dashboards, access historical data for a range greater than 30 days, and customize the entities in a report:
@@ -71,21 +173,46 @@ Graphs can be interacted with, including hovering over chart items to display mo
 
 You can select a time period using the **time period** drop-down menu. The intervals aggregate data at different increments of time.
 
-### Export analytics data
+## API Requests
 
-Export API traffic data into a CSV file for any graph in Konnect.
+API Requests in {{site.konnect_short_name}} Analytics provides a fully integrated and intuitive web experience that allows you to view detailed records for requests made to your API, in near real-time.
 
-Follow these steps: 
+Here are a couple of benefits of using API Requests:
+* **Understand usage behavior:** By analyzing API requests, organizations can derive insights about consumer behavior, popular endpoints, peak usage times, and more. This information can be crucial for making informed decisions about product development and marketing strategies.
+* **Built-in troubleshooting:** API requests can provide valuable insights into the sequence of events leading up to a problem. They can help identify what went wrong and where, making it easier to diagnose and fix issues. All that, out of the box within Konnect.
 
-1. On the graph, click the **Export** button on the top right.
-1. Select the time frame to include in the report. To customize the time frame,
-click **Custom** and select a date range.
-1. Click **Export** to generate and download a CSV file.
+![api requests](/assets/images/products/konnect/analytics/konnect-analytics-api-requests.png)
+> _**Figure 1:** Example API Requests list filtered by error codes and a single request selected._
 
-## Limits
+## Inspect and filter API requests
 
-Konnect Analytics limits the number of entities returned and displayed in any activity graph or custom report to only 50 to provide a smooth experience. A warning icon at the top of a graph or report indicates that. Please [use custom reports](/konnect/analytics/generate-reports/) to filter and decrease the number of entities if required.  
+Each API request on the **Requests** page shows the following information:
+* Timestamp when the API request was made.
+* Status code returned for the API request.
+* HTTP method of the API request.
+* Path that was requested.
+* Latency numbers for:
+  * Response: how long it took to return the request
+  * Kong: how long it took for Kong to process the request
+  * Upstream: how long it took for your upstream service to return the request back to Kong.
 
-## Team permissions
+By clicking on a single API request, you can further inspect that request and see, for example, which API Product, Application, Consumer, or Control Plane is associated with this request. You can now continue to investigate each associated entity to see its configuration and adjust it if necessary.
 
-You can assign {{site.konnect_short_name}} users to specific, predefined Analytic teams. This gives you the ability to allow certain users to only view or manage the Analytics area of your {{site.konnect_short_name}} instance. For more information about the Analytics Admin and Analytics Viewer teams, see the [Teams Reference](/konnect/org-management/teams-and-roles/teams-reference/).
+You can filter API requests by specific properties such as a certain Gateway service or only a particular route of interest. You can also filter API requests for up to seven days.
+
+
+## Troubleshooting
+
+### The latency graph on the analytics dashboard is empty
+
+You may run into an issue where requests are being proxied through services, but the latency tab on the Analytics page displays the message **No data to display**.
+
+This issue may be happening for one of the following reasons:
+
+* The {{site.base_gateway}} version is incompatible.
+
+  Latency data is available starting with {{site.base_gateway}} 3.0.0.0. To collect latency information, [upgrade a data plane node](/konnect/gateway-manager/data-plane-nodes/upgrade/) to the latest version.
+
+* No requests were proxied in the requested time period.
+
+  Select another time period to see requests.

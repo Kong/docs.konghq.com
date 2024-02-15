@@ -210,18 +210,11 @@
   items:
     - text: Introduction to Analytics
       url: /analytics/
-    - text: Report Use Cases
-      items:
-      - text: Analyze API Usage and Performance
-        url: /analytics/use-cases/
-      - text: Diagnosing Latency Issues
-        url: /analytics/use-cases/latency
+    - text: Analyze API Usage and Performance
+      url: /analytics/use-cases/
     - text: Reports Reference
       url: /analytics/reference/
-    - text: API Requests
-      url: /analytics/api-requests
-    - text: Troubleshoot
-      url: /analytics/troubleshoot/
+
 
 - title: Org Management
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
