@@ -43,8 +43,8 @@ breadcrumbs:
 
 {% if page.bundled == false or page.bundled == false %}
   <blockquote class="important">
-    <details>
-    <summary style="cursor:pointer;"><strong>This plugin is not enabled by default</strong>. Click here for instructions to enable it &nbsp;&nbsp;⬇️</summary>
+    <details class="collapsible-note">
+    <summary style="cursor:pointer;"><strong>This plugin is not enabled by default</strong>. Click here for instructions to enable it</summary>
 
     <ul>
       <li>Package install: Set <strong>plugins=bundled,{{ page.extn_slug }}</strong> in <strong>kong.conf</strong> before starting Kong</li>
