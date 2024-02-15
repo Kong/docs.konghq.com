@@ -22,6 +22,7 @@ You cannot import [unsupported plugins](/konnect/servicehub/plugins/#plugin-limi
 ## Prerequisites
 
 * [decK 1.28 or later](/deck/latest/installation/)
+* Make sure that if you're using a `.deck.yaml` config file that it doesn't contain a {{site.konnect_short_name}} personal access token (PAT)
 
 ## Import entity configuration
 
@@ -36,8 +37,7 @@ When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.
 1. Save the PAT to a file and run: 
 
     ```sh
-    deck gateway ping
-    --konnect-token-file /PATH/TO/FILE
+    deck gateway ping --konnect-token-file /PATH/TO/FILE
     ```
 
 1. Run [`deck gateway dump`](/deck/latest/reference/deck_gateway_dump/) to export configuration into a file:
@@ -54,7 +54,7 @@ When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.
 command, pointing to the control plane that you want to target:
 
     ```sh
-    deck gateway diff kong.yaml
+    deck gateway diff kong.yaml --konnect-token-file /PATH/TO/FILE
     ```
 
     If you're not using the default `kong.yaml` file, specify the filename and
@@ -63,7 +63,7 @@ command, pointing to the control plane that you want to target:
 1. If you're satisfied with the preview, run [`deck gateway sync`](/deck/latest/reference/deck_gateway_sync/):
 
     ```sh
-    deck gateway sync kong.yaml
+    deck gateway sync kong.yaml --konnect-token-file /PATH/TO/FILE
     ```
 
     If you don't specify the `--konnect-control-plane-name` flag, decK targets the
