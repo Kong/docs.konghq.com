@@ -86,6 +86,8 @@ items:
             url: /reference/deck_file_list-tags/
           - text: deck file merge
             url: /reference/deck_file_merge/
+          - text: deck file namespace
+            url: /reference/deck_file_namespace/
           - text: deck file openapi2kong
             url: /reference/deck_file_openapi2kong/
           - text: deck file patch
