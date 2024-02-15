@@ -1,8 +1,16 @@
 ---
+{% if_version gte:2.6.x %}
+title: MeshGlobalRateLimit Policy
+content_type: reference
+beta: false
+badge: enterprise
+{% endif_version %}
+{% if_version lte:2.5.x %}
 title: MeshGlobalRateLimit Policy (beta)  
 content_type: reference
 beta: true
 badge: enterprise
+{% endif_version %}
 ---
 
 This policy adds Global Rate Limit support for {{site.mesh_product_name}}.

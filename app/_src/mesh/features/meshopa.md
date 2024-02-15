@@ -1,7 +1,14 @@
 ---
+{% if_version gte:2.6.x %}
+title: MeshOPA - OPA Policy Integration
+content_type: reference
+beta: false
+{% endif_version %}
+{% if_version lte:2.5.x %}
 title: MeshOPA (beta) - OPA Policy Integration
 content_type: reference
 beta: true
+{% endif_version %}
 ---
 
 {:.warning}
