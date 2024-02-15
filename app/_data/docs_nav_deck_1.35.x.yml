@@ -4,9 +4,10 @@ generate: true
 items:
   - title: Introduction
     icon: /assets/images/icons/documentation/icn-flag.svg
-    url: /deck/1.35.x/
-    absolute_url: true
     items:
+      - text: Overview of decK
+        url: /deck/1.35.x/
+        absolute_url: true
       - text: Terminology
         url: /terminology/
       - text: Architecture
