@@ -33,7 +33,7 @@ The `openai` format option follows the same upstream formats as the equivalent
 [OpenAI route type operation](https://github.com/kong/kong/blob/master/spec/fixtures/ai-proxy/oas.yaml) 
 (that is, `llm/v1/chat` or `llm/v1/completions`).
 
-This format should be used when configuring the cloud-based https://mistral.ai/
+This format should be used when configuring the cloud-based [https://mistral.ai/](https://mistral.ai/).
 
 It will transform both `llm/v1/chat` and `llm/v1/completions` type route requests, into the same format.
 
