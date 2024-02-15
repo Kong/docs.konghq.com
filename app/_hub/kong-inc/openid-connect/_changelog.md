@@ -1,9 +1,27 @@
 ## Changelog
 
-**{{site.base_gateway}} 3.6.x**
-* Added support for mTLS client authentication.
+### {{site.base_gateway}} 3.6.x
 
-**{{site.base_gateway}} 3.5.x**
+Features:
+* The configuration parameters `scopes`, `login_redirect_uri`, `logout_redirect_uri`, and `introspection_headers_values` 
+can now be referenced as secrets in the Kong Vault.
+* Extended the `token_post_args_client` configuration parameter to support injection from headers.
+* Added support for explicit proof key for code exchange (PKCE).
+* Added support for pushed authorization requests (PAR).
+* Added support for the `tls_client_auth` and `self_signed_tls_client_auth` authentication methods, allowing 
+[mTLS client authentication](/hub/kong-inc/openid-connect/how-to/client-authentication/mtls/) with the IdP.
+
+Fixes:
+* Fixed logout URI suffix detection by using the normalized version of `kong.request.get_forwarded_path()` instead of 
+`ngx.var.request_uri`, especially when passing query strings to logout.
+* The `introspection_headers_values` configuration parameter can now be encrypted.
+* Removed the unwanted argument `ignore_signature.userinfo` from the `userinfo_load` function.
+* Added support for consumer group scoping by using the PDK `kong.client.authenticate` function.
+* Fixed the cache key collision when config `issuer` and `extra_jwks_uris` contain the same URI.
+* The plugin now correctly handled boundary conditions for token expiration time checking.
+* The plugin now updates the time when calculating token expiration.
+
+### {{site.base_gateway}} 3.5.x
 * Added the new field `unauthorized_destroy_session`. 
 When set to `true`, it destroys the session when receiving an unauthorized request by deleting the user's session cookie.
 * Added the new field `using_pseudo_issuer`. 
@@ -12,7 +30,7 @@ When set to `true`, the plugin instance will not discover configuration from the
 * Added support for designating parameter names `introspection_token_param_name` and `revocation_token_param_name`.
 * Added support for mTLS proof of possession. The feature is available by enabling `proof_of_possession_mtls`.
 
-**{{site.base_gateway}} 3.4.x**
+### {{site.base_gateway}} 3.4.x
 * This plugin now supports the error reason header. 
 This header can be turned off by setting `expose_error_code` to `false`.
 * OpenID Connect now supports adding scope to the token cache key by 
@@ -21,7 +39,7 @@ setting `token_cache_key_include_scope` to `true`.
 * Correctly set the right table key on `log` and `message`.
 * If an invalid opaque token is provided but verification fails, the plugin now prints the correct error.
 
-**{{site.base_gateway}} 3.2.x**
+### {{site.base_gateway}} 3.2.x
 * The plugin has been updated to use version 4.0.0 of the `lua-resty-session` library which introduced several new features such as the possibility to specify audiences.
 The following configuration parameters have been affected:
 
@@ -59,10 +77,10 @@ Removed:
   * `session_strategy`
   * `session_compressor`
 
-**{{site.base_gateway}} 3.0.x**
+### {{site.base_gateway}} 3.0.x
 * The deprecated `session_redis_auth` field has been removed from the plugin.
 
-**{{site.base_gateway}} 2.8.x**
+### {{site.base_gateway}} 2.8.x
 
 * Added the `session_redis_username` and `session_redis_password` configuration
 parameters.
@@ -79,7 +97,7 @@ referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started/)
 in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
 
-**{{site.base_gateway}} 2.7.x**
+### {{site.base_gateway}} 2.7.x
 
 * Starting with {{site.base_gateway}} 2.7.0.0, if keyring encryption is enabled,
  the `config.client_id`, `config.client_secret`, `config.session_auth`, and
@@ -98,7 +116,7 @@ in a vault. References must follow a [specific format](/gateway/latest/kong-ente
 the `session_redis_cluster_nodes` field, which is helpful if the cluster IPs are
 not static.
 
-**{{site.base_gateway}} 2.6.x**
+### {{site.base_gateway}} 2.6.x
 
 * The OpenID Connect plugin can now handle JWT responses from a `userinfo` endpoint.
 * Added support for JWE introspection.

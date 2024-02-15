@@ -8,6 +8,6 @@ konnect: true
 network_config_opts: All
 notes: --
 categories:
-  - logging
+  - analytics-monitoring
 publisher: Kong Inc.
 desc: Send metrics to StatsD
