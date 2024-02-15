@@ -72,6 +72,8 @@ Enable and configure the AI Proxy plugin for Mistral (using `ollama` format in t
 curl -X POST http://localhost:8001/routes/mistral-chat/plugins \
   --data "name=ai-proxy" \
   --data "config.route_type=llm/v1/chat" \
+  --data "config.auth.header_name=Authorization" \
+  --data "config.auth.header_value=Bearer <MISTRAL_AI_KEY>" \
   --data "config.model.provider=mistral" \
   --data "config.model.name=mistral-tiny" \
   --data "config.model.options.mistral_format=openai" \
@@ -89,6 +91,9 @@ plugins:
   - name: ai-proxy
     config:
       route_type: "llm/v1/chat"
+      auth:
+        header_name: "Authorization"
+        header_value: "Bearer <MISTRAL_AI_KEY>"
       model:
         provider: "mistral"
         name: "mistral-tiny"
