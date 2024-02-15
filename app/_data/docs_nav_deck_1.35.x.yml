@@ -80,6 +80,8 @@ items:
             url: /reference/deck_file_add-tags/
           - text: deck file convert
             url: /reference/deck_file_convert/
+          - text: deck file kong2kic
+            url: /reference/deck_file_kong2kic/
           - text: deck file lint
             url: /reference/deck_file_lint/
           - text: deck file list-tags
