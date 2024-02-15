@@ -6,7 +6,7 @@ If you used the [in-app onboarding wizard in {{site.konnect_short_name}}](https:
 
 In this guide, you will take this one step further by adding your own API to {{site.konnect_short_name}}.
 
-## Prerequisities
+## Prerequisites
 
 If you didn't use the in-app onboarding wizard in {{site.konnect_short_name}}, make sure you [create a data plane node](/konnect/gateway-manager/data-plane-nodes/#supported-installation-options).
 
@@ -66,7 +66,7 @@ If you didn't use the in-app onboarding wizard in {{site.konnect_short_name}}, m
 {:.note}
 The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
 
-1. Get the [list of all control planes](https://docs.konghq.com/konnect/api/control-planes/latest/#/Control%20Planes/list-control-planes) so you can copy the control plane ID associated with the `default` control plane:
+1. Get the [list of all control planes](/konnect/api/control-planes/latest/#/Control%20Planes/list-control-planes) so you can copy the control plane ID associated with the `default` control plane:
   ```sh
   curl --request GET \
     --url https://us.api.konghq.com/v2/control-planes \
@@ -75,7 +75,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
   ```
   In this guide, we will assign your service to the `default` control plane for the sake of simplicity.
 
-1. [Create a service](https://docs.konghq.com/konnect/api/control-plane-configuration/latest/#/Services/create-service) for your API that is assigned to the `default` control plane:
+1. [Create a service](/konnect/api/control-plane-configuration/latest/#/Services/create-service) for your API that is assigned to the `default` control plane:
   ```bash
   curl --request POST \
     --url https://{region}.api.konghq.com/v2/control-planes/{defaultControlPlaneId}/core-entities/services \
@@ -95,7 +95,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
   * `path`: The path to be used in requests to the upstream server.
   Be sure to save the service ID from the response to use it in the next step.
 
-1. [Add a route](https://docs.konghq.com/konnect/api/control-plane-configuration/latest/#/Routes/create-route) to your service:
+1. [Add a route](/konnect/api/control-plane-configuration/latest/#/Routes/create-route) to your service:
   ```bash
   curl --request POST \
     --url https://{region}.api.konghq.com/v2/control-planes/{defaultControlPlaneId}/core-entities/routes \
