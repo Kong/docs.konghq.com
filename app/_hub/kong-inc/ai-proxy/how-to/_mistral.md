@@ -12,6 +12,7 @@ This guide walks you through setting up the AI Proxy plugin with [Mistral](https
 
 There are a number of hosting/format options for running this LLM. Popular options include:
 
+* [Mistral.ai](https://mistral.ai/)
 * [OLLAMA](https://ollama.com/)
 * [Hosting the GGUF model yourself, with an e.g. Python Web Server](https://huggingface.co/mistralai/Mixtral-8x7B-v0.1)
 
