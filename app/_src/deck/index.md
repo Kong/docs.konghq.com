@@ -4,6 +4,8 @@ subtitle: Manage {{site.konnect_product_name}}, {{site.base_gateway}} and {{site
 content_type: explanation
 ---
 
+## What is decK?
+
 decK is a command line tool that facilitates API Lifecycle Automation (APIOps) 
 by offering a comprehensive toolkit of commands 
 designed to orchestrate and automate the entire process of API delivery. 
@@ -17,6 +19,11 @@ decK operates on state files. decK state files describe the configuration of Kon
 State files encapsulate the complete configuration of Kong in a declarative format, 
 including services, routes, plugins, consumers, and other entities that define how requests
 are processed and routed through Kong.
+
+decK is compatible with {{site.ce_product_name}} >= 1.x and
+{{site.ee_product_name}} >= 0.35.
+
+## decK commands
 
 The decK commands are structured into three main categories:
 
@@ -48,7 +55,9 @@ or Kong Ingress Controller. Key commands include:
 Through these categories and their associated commands, decK offers a comprehensive suite of tools 
 for configuration and management within the Kong platform.
 
-Explore how KongAir, an imaginary airline, leverages decK to streamline its API management processes. The KongAir API Community of Practice has established a set of governance rules to ensure uniformity and efficiency across all API teams:
+## Use case
+
+Let's explore how KongAir, an imaginary airline, leverages decK to streamline its API management processes. The KongAir API Community of Practice has established a set of governance rules to ensure uniformity and efficiency across all API teams:
 
 - Every API team within KongAir, including those responsible for the Flights and Routes APIs, adopts OpenAPI specifications to define their API contracts.
 - These teams maintain the flexibility to employ Kong's Transformation and Validation plugins to enhance their APIs. They manage these plugins' configurations through modular decK state files, promoting autonomy and customization.
@@ -133,39 +142,27 @@ The diagram below delineates KongAir's structured approach to deploying decK, st
     k8s_manifests --> kubectl([kubectl apply])
 {% endmermaid %}
 
-## Compatibility
-decK is compatible with {{site.ce_product_name}} >= 1.x and
-{{site.ee_product_name}} >= 0.35.
+## Looking for help or need to report an issue?
 
-## References
+### Find help
 
-The command line `--help` flag on the main command or a subcommand (like diff,
-sync, reset, etc.) shows the help text along with supported flags for those
-commands.
+One of the design goals of decK is to deliver a good developer experience.
+To find help, use the following resources:
+- The `--help` flag gives you the necessary help in the terminal itself and should
+  solve most of your problems.
+- If you still need help, [open a Github issue](https://github.com/kong/deck/issues/new) to ask your
+  question.
+- decK has very wide adoption by Kong's community and you can seek help
+  from the larger community at [Kong Nation](https://discuss.konghq.com).
 
-[See a list of all commands available with decK](/deck/{{page.release}}/reference/deck).
+### Report a bug
 
-## Frequently Asked Questions (FAQs)
+If you believe you have run into a bug with decK, [open a Github issue](https://github.com/kong/deck/issues/new).
 
-[Access our FAQs page](/deck/{{page.release}}/faqs).
+If you think you've found a security issue with decK, read the
+[Security](#security) section.
 
-## Video: Kong Summit motivation behind decK
-
-[Harry Bagdi gave a talk on the motivation behind decK](https://www.youtube.com/watch?v=fzpNC5vWE3g) and demonstrated a few key
-features of decK at Kong Summit 2019.
-
-## Changelog
-
-The changelog can be found in the
-[CHANGELOG](https://github.com/kong/deck/blob/main/CHANGELOG.md) file.
-
-## Licensing
-
-decK is licensed with Apache License Version 2.0.
-Please read the
-[LICENSE](https://github.com/kong/deck/blob/main/LICENSE) file for more details.
-
-## Security
+### Security
 
 decK does not offer to secure your Kong deployment but only configures it.
 It encourages you to protect your Kong Admin API implementation with authentication but
@@ -179,20 +176,19 @@ If you believe that you have found a security vulnerability in decK,
 submit a detailed report, along with reproducible steps
 to [security@konghq.com](mailto:security@konghq.com).
 
-## Get help
+## Licensing
 
-One of the design goals of decK is to deliver a good developer experience.
-To get help, use the following resources:
-- [--help` flag gives you the necessary help in the terminal itself and should
-  solve most of your problems.
-- If you still need help, [open a Github issue](https://github.com/kong/deck/issues/new) to ask your
-  question.
-- decK has very wide adoption by Kong's community and you can seek help
-  from the larger community at [Kong Nation](https://discuss.konghq.com).
+decK is licensed with Apache License Version 2.0.
+Read the [LICENSE](https://github.com/kong/deck/blob/main/LICENSE) file for more details.
 
-## Report a bug
+## More resources
 
-If you believe you have run into a bug with decK, [open a Github issue](https://github.com/kong/deck/issues/new).
-
-If you think you've found a security issue with decK, read the
-[Security](#security) section.
+* [**decK FAQs**](/deck/{{page.release}}/faqs)
+* **References:** The command line `--help` flag on the main command or a subcommand (like `diff`,
+`sync`, `reset`, and so on) shows the help text along with supported flags for those
+commands. You can also see the references for all [commands available with decK](/deck/{{page.release}}/reference/deck)
+in the decK documentation.
+* **Video:** Kong Summit [motivation behind decK](https://www.youtube.com/watch?v=fzpNC5vWE3g). 
+  Harry Bagdi gave a talk on the motivation behind decK
+  and demonstrated a few key features of decK at Kong Summit 2019.
+* **Changelog**: See the [CHANGELOG](https://github.com/kong/deck/blob/main/CHANGELOG.md) file in the Kong/deck repository.
