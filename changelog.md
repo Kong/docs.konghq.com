@@ -15,10 +15,6 @@ Changelog and version bump for Gateway 3.4.3.4.
 
 ### [fix(rt-plugin): fix description of variables](https://github.com/Kong/docs.konghq.com/pull/6931) (2024-02-09)
 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Modified
 
 - https://docs.konghq.com/hub/kong-inc/request-transformer-advanced/how-to/
@@ -30,7 +26,6 @@ Changelog and version bump for Gateway 3.4.3.4.
 Extends `Using Kubernetes Secrets in Plugins` guide to describe the new `configPatches` fields and its usage.
  
 Fixes https://github.com/Kong/kubernetes-ingress-controller/issues/5572.
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -80,7 +75,6 @@ The `=`, not `:`, must be used to attach the 'body'.
 #### Modified
 
 - https://docs.konghq.com/hub/kong-inc/key-auth/overview/
-
 
 ### [Fix: Reference lua package path location in Exit Transformer plugin](https://github.com/Kong/docs.konghq.com/pull/6922) (2024-02-08)
 
@@ -208,26 +202,6 @@ labels: skip-changelog,review:general
 ### [Run the broken links checker against the plugin hub](https://github.com/Kong/docs.konghq.com/pull/6868) (2024-02-08)
 
 Fix all the broken links reported by the full scan.
-
-### Checklist 
-
-- [ ] Review label added <!-- (see below) -->
-- [ ] For unreleased versions: [conditional version tags](https://docs.konghq.com/contributing/conditional-rendering/#conditionally-render-content-by-version) added, if applicable.
-
-    For example, if this change is for an upcoming 3.6 release, surround your change in `{% if_version gte:3.6.x %} <content> {% endif_version %}` tags (or `if_plugin_version` tags for plugins). 
-
-
-<!-- !!! Only Kong employees can add labels due to a GitHub limitation. If you're an OSS contributor, thank you! The maintainers will label this PR for you !!! -->
-
-<!-- When raising a pull request, indicate what type of review you need with one of the following labels:
-
-    review:copyedit: Request for writer review.
-    review:general: Review for general accuracy and presentation. Does the doc work? Does it output correctly?
-    review:tech: Request for technical review for a docs platform change.
-    review:sme: Request for review from an SME (engineer, PM, etc).
-
-At least one of these labels must be applied to a PR or the build will fail.
--->
 
 #### Added
 
