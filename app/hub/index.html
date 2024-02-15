@@ -45,7 +45,10 @@ body_id: page-hub
         </div>
 
         {% for cat in categories %}
-        {% assign extns = kong_extns | where_exp: "extn", "extn.categories contains cat.slug" %}
+        {% assign weighted_extns = kong_extns | where_exp: "extn", "extn.categories contains cat.slug and extn.weight != nil" | sort: "weight", "last" %}
+        {% assign extns = kong_extns | where_exp: "extn", "extn.categories contains cat.slug and extn.weight == nil" | sort: "name" %}
+        {% assign extns = weighted_extns | concat: extns %}
+
         {% assign third_extns = third_party_extns | where_exp: "extn", "extn.categories contains cat.slug" %}
           {% if extns.size > 0 or third_extns.size > 0 %}
             <div class="page-hub--category active" id="{{cat.slug}}">

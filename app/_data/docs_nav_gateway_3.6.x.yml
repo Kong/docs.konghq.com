@@ -27,11 +27,13 @@ items:
       - text: Release Notes
         url: /gateway/changelog
         absolute_url: true
-      - text: Breaking Changes	
+      - text: Breaking Changes
         items:
-          - text: Kong Gateway 3.5.x
+          - text: Kong Gateway 3.6.x
             url: /breaking-changes/
-            src: /gateway/breaking-changes/35x
+            src: /gateway/breaking-changes/36x
+          - text: Kong Gateway 3.5.x
+            url: /breaking-changes/35x/
           - text: Kong Gateway 3.4.x
             url: /breaking-changes/34x/
           - text: Kong Gateway 3.3.x
@@ -85,6 +87,8 @@ items:
         url: /get-started/key-authentication
       - text: Load-Balancing
         url: /get-started/load-balancing
+      - text: AI Gateway
+        url: /get-started/ai-gateway
   - title: Kong in Production
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
     items:

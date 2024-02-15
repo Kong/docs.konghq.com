@@ -82,6 +82,7 @@ Noname
 OAuth
 Okta
 Okta's
+Ollama
 OpenSSL
 Openwhisk
 PayPal
@@ -154,6 +155,7 @@ booleans
 burstable
 CAs
 certificate_admin
+chatbot
 cleartext
 client_payload
 client_status
@@ -190,6 +192,8 @@ deduplication
 degraphql
 denylist
 deployer
+dereference
+dereferenced
 deserialization
 deserialize
 deserialized
@@ -226,6 +230,8 @@ filetypes
 firewalled
 flamegraph
 full_name
+getter
+getters
 gevent
 gibibytes
 Github
@@ -325,6 +331,8 @@ lapis
 Librato
 libxml2
 liveness
+LLM
+LLMs
 Loggly
 loggly
 lookup
@@ -437,6 +445,7 @@ repo
 requery
 Resty
 retryOn
+reusability
 rockspec
 rockspecs
 rolling_timeout
@@ -459,6 +468,7 @@ SDKs
 secret_id
 serializer
 serverless
+serviceless
 shm
 slas
 slos
