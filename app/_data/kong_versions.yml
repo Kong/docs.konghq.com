@@ -217,7 +217,6 @@
 - release: "1.30.x"
   version: "1.30.0"
   edition: "deck"
-  latest: true
 - release: "1.34.x"
   version: "1.34.0"
   edition: "deck"
