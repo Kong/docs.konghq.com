@@ -4,7 +4,34 @@ subtitle: Manage {{site.konnect_product_name}}, {{site.base_gateway}} and {{site
 content_type: explanation
 ---
 
-## What is decK?
+## Quick links
+
+<div class="docs-grid-install max-4">
+
+  <a href="/deck/{{page.release}}/installation/" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-deployment-color.svg" alt="">
+    <div class="install-text">Install decK</div>
+  </a>
+  {% if_version gte:1.35.x %}
+  <a href="/deck/{{page.release}}/guides/apiops/" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/konnect/icn-cogwheel-nav.svg" alt="">
+    <div class="install-text">APIOps with decK</div>
+  </a>
+  {% endif_version %}
+  {% if_version gte:1.24.x %}
+  <a href="/deck/{{page.release}}/use-case/" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-solution-guide.svg" alt="">
+    <div class="install-text">decK Use Case: Streamlining KongAir APIs</div>
+  </a>
+  {% endif_version %}
+  <a href="/deck/{{page.release}}/reference/deck/" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-admin-api-color.svg" alt="">
+    <div class="install-text">CLI Reference</div>
+  </a>
+
+</div>
+
+## Introducing decK
 
 decK is a command line tool that facilitates API Lifecycle Automation (APIOps) 
 by offering a comprehensive toolkit of commands 
@@ -20,9 +47,15 @@ State files encapsulate the complete configuration of Kong in a declarative form
 including services, routes, plugins, consumers, and other entities that define how requests
 are processed and routed through Kong.
 
+{% if_version gte:1.35.x %}
+Check out our [KongAir use case](/deck/latest/use-case/) to learn how decK can be used to
+streamline API management processes for an (imaginary) airline.
+{% endif_version %}
+
 decK is compatible with {{site.ce_product_name}} >= 1.x and
 {{site.ee_product_name}} >= 0.35.
 
+{% if_version gte:1.35.x %}
 ## decK commands
 
 The decK commands are structured into three main categories:
@@ -56,92 +89,7 @@ or {{site.kic_product_name}}. Key commands include:
 Through these categories and their associated commands, decK offers a comprehensive suite of tools 
 for configuration and management within the Kong platform.
 
-## Use case
-
-Let's explore how KongAir, an imaginary airline, leverages decK to streamline its API management processes. The KongAir API Community of Practice has established a set of governance rules to ensure uniformity and efficiency across all API teams:
-
-- Every API team within KongAir, including those responsible for the Flights and Routes APIs, adopts OpenAPI specifications to define their API contracts.
-- These teams maintain the flexibility to employ Kong's Transformation and Validation plugins to enhance their APIs. They manage these plugins' configurations through modular decK state files, promoting autonomy and customization.
-- The KongAir API Community of Practice has also embraced a comprehensive set of API Design Guidelines to standardize API development. These guidelines are implemented and monitored through a linting file overseen by the dedicated API Platform Team, ensuring adherence to best practices.
-- The API Platform Team assumes a pivotal role in configuring critical plugins related to Observability, Security, and Traffic Control within Kong, centralizing expertise and governance for these essential aspects.
-- Furthermore, this team is tasked with the management of environment-specific variables, ensuring seamless deployment and operation across different stages of the development lifecycle.
-
-The diagram below delineates KongAir's structured approach to deploying decK, steered by their established governance protocols:
-
-1. The Flights API team initiates the process by converting their OpenAPI Specification into a decK state file using the `deck file openapi2kong` command.
-2. Next, they enhance the state file by integrating Transformation Plugins (such as Request Transformer Advanced and Correlation ID) and Validation plugins (like OAS Validation) using the `deck file add-plugins` command.
-3. To track the configuration's creation time, they apply relevant tags using `deck file add-tags`.
-4. The state file undergoes a quality check against a predefined linting ruleset with `deck file lint`, ensuring adherence to best practices.
-5. Environment-specific adjustments, including upstream API URLs, are made using the `deck file patch` command.
-6. The Platform Team then merges global plugins for Observability, Authentication, Authorization, and Traffic Control into the main state file with `deck file merge`.
-7. At this stage, a comprehensive state file for the Flights API is ready. This file is combined with the Routes API's state file using `deck file render`, creating a unified configuration.
-8. The final state file is subjected to an offline validation through `deck file validate`.
-
-   For deployments:
-   - To {{site.konnect_product_name}} or {{site.base_gateway}} deployments, the process involves:
-     1. Ensuring connectivity with the Admin API via `deck gateway ping`.
-     2. Performing an online validation with `deck gateway validate`.
-     3. Backing up the current Kong state with `deck gateway dump`.
-     4. Previewing changes with `deck gateway diff`.
-     5. Applying the new configuration with `deck gateway sync`.
-   - For {{site.kic_product_name}} deployments, the sequence is:
-     1. Transforming the decK state file into Kubernetes manifests using `deck file kong2kic`.
-     2. Deploying the configuration with `kubectl apply`.
-
-{% mermaid %}
-        flowchart TB
-    subgraph KongAir Flights API Team
-        oas_flights[[Open API Specification]]
-        trans_plugins_flights[[Transformation Plugins]]
-        validation_plugins_flights[[Validation Plugins]]
-    end
-    subgraph KongAir API Platform Team
-        obs_plugins_platform[[Observability Plugins]]
-        auth_plugins_platform[[AuthN/AuthZ Plugins]]
-        traffic_plugins_platform[[Traffic Control Plugins]]
-        linting_platform[[Linting rules]]
-        env_vars[[Environment Variables]]
-    end
-    subgraph KongAir Routes API Team
-        routes_api[[Routes API Kong Conf]]
-    end
-    oas_flights_o2k([deck file openapi2kong])
-    deck_flights_plugins([deck file add-plugins])
-    oas_flights --> oas_flights_o2k
-    oas_flights_o2k --> flights_kong_config[[Flights API Kong Conf]]
-    flights_kong_config --> deck_flights_plugins
-    trans_plugins_flights --> deck_flights_plugins
-    validation_plugins_flights --> deck_flights_plugins
-    deck_flights_plugins --> flights_plugins[[Flights API Kong Conf]]
-    flights_plugins --> deck_flights_tags([deck file add-tags])
-    deck_flights_tags --> flights_plugins_tags[[Flights API Kong Conf]]
-    flights_plugins_tags --> deck_flights_lint([deck file lint])
-    linting_platform --> deck_flights_lint
-    deck_flights_lint --> flights_linted[[Flights API Kong Conf]]
-    flights_linted --> deck_flights_patch([deck file patch])
-    env_vars --> deck_flights_patch
-    deck_flights_patch --> flights_patched[[Flights API Kong Conf]]
-    flights_patched --> deck_flights_merge([deck file merge])
-    obs_plugins_platform --> deck_flights_merge
-    auth_plugins_platform --> deck_flights_merge
-    traffic_plugins_platform --> deck_flights_merge
-    deck_flights_merge --> flights_merged[[Flights API Kong Conf]]
-    flights_merged --> deck_flights_render([deck file render])
-    routes_api --> deck_flights_render
-    deck_flights_render --> kongair_complete[[KongAir APIs Kong Conf]]
-    kongair_complete --> deck_complete_validate([deck file validate])
-    deck_complete_validate --> kongair_valid[[KongAir APIs Kong Conf]]
-    kongair_valid --> target_platform
-    target_platform{Target<br/>Platform}
-    target_platform -->|Kong Admin API| deck_ping([deck gateway ping])
-    deck_ping --> deck_validate([deck gateway validate])
-    deck_validate --> deck_dump([deck gateway dump])
-    deck_dump --> deck_diff([deck gateway diff])
-    deck_diff --> deck_sync([deck gateway sync])
-    target_platform -->|Kubernetes API| deck_kic([deck file kong2kic])
-    deck_kic --> k8s_manifests[[KongAir APIs K8s Manifests]]
-    k8s_manifests --> kubectl([kubectl apply])
-{% endmermaid %}
+{% endif_version %}
 
 ## Looking for help or need to report an issue?
 
@@ -185,6 +133,11 @@ Read the [LICENSE](https://github.com/kong/deck/blob/main/LICENSE) file for more
 ## More resources
 
 * [**decK FAQs**](/deck/{{page.release}}/faqs)
+
+{% if_version gte:1.35.x inline:true %}
+* **Use case:** [Streamlining KongAir APIs](/deck/{{page.release}}/use-case/)
+{% endif_version %}
+
 * **References:** The command line `--help` flag on the main command or a subcommand (like `diff`,
 `sync`, `reset`, and so on) shows the help text along with supported flags for those
 commands. You can also see the references for all [commands available with decK](/deck/{{page.release}}/reference/deck)

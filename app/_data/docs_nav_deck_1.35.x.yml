@@ -12,6 +12,8 @@ items:
         url: /terminology/
       - text: Architecture
         url: /design-architecture/
+      - text: Use Case - Streamlining KongAir APIs
+        url: /use-case/
       - text: Compatibility Promise
         url: /compatibility-promise/
 
