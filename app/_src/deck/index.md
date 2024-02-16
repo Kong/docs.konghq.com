@@ -41,11 +41,11 @@ The decK commands are structured into three main categories:
    - [deck file namespace](/deck/{{page.release}}/reference/deck_file_namespace) - Apply a namespace to routes in a decK file by prefixing the path.
    - [deck file render](/deck/{{page.release}}/reference/deck_file_render/): Fuses multiple complete decK files, rendering a singular, unified configuration.
    - [deck file validate](/deck/{{page.release}}/reference/deck_file_validate/): Conducts an offline validation of the state file, pinpointing potential issues.
-   - [deck file kong2kic](/deck/{{page.release}}/reference/deck_file_kong2kic/): Converts decK state files into Kong Ingress Controller manifests.
+   - [deck file kong2kic](/deck/{{page.release}}/reference/deck_file_kong2kic/): Converts decK state files into {{site.kic_product_name}} manifests.
 
 3. **Gateway State Management**: This category encompasses commands that facilitate
-the synchronization of the final decK file with the target platform, be it Konnect, Kong Gateway, 
-or Kong Ingress Controller. Key commands include:
+the synchronization of the final decK file with the target platform, be it {{site.konnect_product_name}}, {{site.base_gateway}}, 
+or {{site.kic_product_name}}. Key commands include:
    - [deck gateway ping](/deck/{{page.release}}/reference/deck_gateway_ping/): Confirms connectivity with Kong’s Admin API.
    - [deck gateway validate](/deck/{{page.release}}/reference/deck_gateway_validate/): Validates the state file against the Kong Admin API in an online setting.
    - [deck gateway dump](/deck/{{page.release}}/reference/deck_gateway_dump/): Extracts all entities from Kong and archives them in a local file.
@@ -91,7 +91,7 @@ The diagram below delineates KongAir's structured approach to deploying decK, st
 {% mermaid %}
         flowchart TB
     subgraph KongAir Flights API Team
-        oas_flights[[Open API Specificiation]]
+        oas_flights[[Open API Specification]]
         trans_plugins_flights[[Transformation Plugins]]
         validation_plugins_flights[[Validation Plugins]]
     end
