@@ -38,6 +38,7 @@ The decK commands are structured into three main categories:
    - [deck file lint](/deck/{{page.release}}/reference/deck_file_lint/): Assesses a decK file against a set of linting rules, identifying any discrepancies.
    - [deck file patch](/deck/{{page.release}}/reference/deck_file_patch/): Applies modifications to a decK file without overhauling the entire configuration.
    - [deck file merge](/deck/{{page.release}}/reference/deck_file_merge/): Combines several partial decK files into a comprehensive one.
+   - [deck file namespace](/deck/{{page.release}}/reference/deck_file_namespace) - Apply a namespace to routes in a decK file by prefixing the path.
    - [deck file render](/deck/{{page.release}}/reference/deck_file_render/): Fuses multiple complete decK files, rendering a singular, unified configuration.
    - [deck file validate](/deck/{{page.release}}/reference/deck_file_validate/): Conducts an offline validation of the state file, pinpointing potential issues.
    - [deck file kong2kic](/deck/{{page.release}}/reference/deck_file_kong2kic/): Converts decK state files into Kong Ingress Controller manifests.
