@@ -4,11 +4,11 @@ For all providers, the Kong AI Proxy plugin attaches to **route** entities.
 
 It can be installed into one route per operation, for example:
 
-* OpenAI "Chat" route
-* Cohere "Chat" route
-* Cohere "Completions" route
+* OpenAI `chat` route
+* Cohere `chat` route
+* Cohere `completions` route
 
-Each of these AI-enabled routes must point to a "null" service. This service doesn't need to map to any real upstream URL,
+Each of these AI-enabled routes must point to a *null* service. This service doesn't need to map to any real upstream URL,
 it can point somewhere empty (for example, `http://localhost:32000`), because the AI Proxy plugin overwrites the upstream URL.
 **This requirement will be removed in a later Kong revision.**
 {% endif %}
@@ -17,8 +17,7 @@ it can point somewhere empty (for example, `http://localhost:32000`), because th
 
 {% if include.provider %}
 * {{include.provider}} account and subscription
-{% endif %}
-* You need a service to contain the route for the LLM provider. Create a service **first**:
+* {% endif %}You need a service to contain the route for the LLM provider. Create a service **first**:
 
 ```bash
 curl -X POST http://localhost:8001/services \

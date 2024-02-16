@@ -8,10 +8,10 @@ chapter: 7
 Kong AI Gateway is a powerful set of features built on top of [{{site.base_gateway}}](/gateway/latest/), 
 designed to help developers and organizations effectively adopt AI capabilities quickly and securely.
 
-Quick Links:
-* [Get Started](#getting-started) in one minute with our guide
+Quick links:
+* [Get started](#getting-started) in one minute with our guide
 * [Watch video tutorials](https://konghq.com/products/kong-ai-gateway#videos) in the AI Gateway product page
-* [View the AI plugins](/hub/?category=ai) in the {{site.base_gateway}} Plugin Hub
+* [View the AI plugins](/hub/?category=ai) in the Kong Plugin Hub
 
 With the rapid emergence of multiple AI LLM providers (including open source and self-hosted models), 
 the AI technology landscape is fragmented and lacking in standards and controls. This 
@@ -120,7 +120,7 @@ files it generates, which can be used for future AI Gateway configurations.
 ## AI Gateway Capabilities 
 
 The following describes the broad capabilities of the AI Gateway. More details can be found
-in the AI Gateway plugins found in the {{site.base_gateway}} [Plugin Hub](/hub/?category=ai).
+in the AI Gateway plugins found in the Kong [Plugin Hub](/hub/?category=ai).
 
 ### AI Provider Proxy
 
@@ -185,7 +185,7 @@ supports a set of plugins that allow you to create a simplified and enhanced exp
 prompts from clients as they pass through the gateway.
 
 * The [AI Prompt Template](/hub/kong-inc/ai-prompt-template) plugin enables administrators to provide pre-configured AI prompts to users. These prompts contain variable 
-placeholders in the format `{{variable}}` which users fill to adapt the template to their specific needs. This functionality 
+placeholders in the format `{% raw %}{{variable}}{% endraw %}` which users fill to adapt the template to their specific needs. This functionality 
 prohibits arbitrary prompt injection by sanitizing string inputs to ensure that JSON control characters are escaped. 
 
 * The [AI Prompt Decorator](/hub/kong-inc/ai-prompt-decorator) plugin injects an array of `llm/v1/chat` messages at the 

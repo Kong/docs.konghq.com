@@ -1,5 +1,5 @@
 {% unless include.disable_accordian %}
-<details markdown="1">
+<details class="custom" markdown="1">
 <summary>
 <blockquote class="note">
   <p style="cursor: pointer">Before you begin ensure that you have <u>Installed {{site.kic_product_name}}</u> {% unless include.disable_gateway_api %}with Gateway API support {% endunless %}in your Kubernetes cluster and are able to connect to Kong. {% if include.enterprise %}This guide requires <strong>{{site.ee_product_name}}</strong>.{% endif %}</p>
@@ -34,7 +34,7 @@
 {% assign gwapi_version = "v1beta1" %}
 {% endif_version %}
 
-    ```bash
+   ```bash
    echo "
    ---
    apiVersion: gateway.networking.k8s.io/{{ gwapi_version }}

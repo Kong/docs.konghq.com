@@ -1,23 +1,24 @@
-.hub {
-    details {
-        border-top: 1px solid #e0e4ea;
+details {
+    &:not(.custom) {
 
         summary {
-            margin-top: 8px;
+            border-radius: 3px;
             margin-bottom: 8px;
             font-size: 1.1em;
             font-weight: 500;
+            background-color: #f8f8fa;
+            padding: 8px;
 
-            &:after {
-            content: "\f107";
+            &:before {
+            content: "\f105";
             font-family: FontAwesome, "Font Awesome", FontAwesome;
             margin-right: 8px;
-            float: right;
+            float: left;
             }
             
             &:hover {
             cursor: pointer;
-            opacity: 0.7;
+            opacity: 0.8;
             }
         }
 
@@ -31,13 +32,18 @@
             }
         }
     }
+}
 
-    details[open] summary {
-        &:after {
-            content: "\f107";
-            font-family: FontAwesome, "Font Awesome", FontAwesome;
-            transform: rotate(180deg);
-            float: right;
+details[open] { 
+    &:not(.custom) {
+        summary {
+            &:before {
+                content: "\f105";
+                font-family: FontAwesome, "Font Awesome", FontAwesome;
+                transform: rotate(90deg);
+                float: left;
+            }
+
         }
     }
 }
