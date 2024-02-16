@@ -169,12 +169,16 @@ vault policy write kmesh-default-dataplane-proxies kmesh-default-dataplane-proxi
 
 #### Step 4. Configure authentication method:
 
-To authorize {{site.mesh_product_name}} to vault using a token, generate the token and pass it to mesh:
+To authorize {{site.mesh_product_name}} to vault using a token, generate the following orphan token and pass it to mesh:
 
 ```sh
-vault token create -format=json -policy="kmesh-default-dataplane-proxies" | jq -r ".auth.client_token"
+vault token create -type=service -orphan -format=json -policy="kmesh-default-dataplane-proxies" | jq -r ".auth.client_token"
 ```
 
+We suggest using an [orphan token](https://developer.hashicorp.com/vault/docs/concepts/tokens#token-hierarchies-and-orphan-tokens)
+to avoid surprising behavior around expiration. Creating them requires root/sudo
+permissions, Therefore you need those permissions to execute the above command. If you understand the
+implications, you can use a non-orphan token as well.
 The output should print a Vault token that you then provide as the `conf.fromCp.auth.token` value of the `Mesh` object.
 
 {:.note}
