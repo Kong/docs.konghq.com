@@ -30,9 +30,9 @@ Use decK to import entity configurations into a control plane.
 
 When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.konghq.com` environment by default.
 
-1. Generate a {{site.konnect_short_name}} personal access token (PAT) for a user account. In {{site.konnect_short_name}} in your [**Personal Access Token** account settings](https://cloud.konghq.com/global/account/tokens), click **Generate Token**.
+1. Generate a {{site.konnect_short_name}} personal access token (PAT) for a user account.
   
-    The PAT allows you to authenticate with decK.
+    In {{site.konnect_short_name}} in your [**Personal Access Token** account settings](https://cloud.konghq.com/global/account/tokens), click **Generate Token**.
 
 1. Save the PAT to a file and run: 
 
@@ -47,11 +47,11 @@ When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.
     ```
 
     This command outputs {{site.base_gateway}}'s object configuration into
-    `-` to write to stdout by default. You can also set `--output-file /path/{FILENAME}.yaml`
+    to ` by default. You can also set `--output-file /path/{FILENAME}.yaml`
     to set a custom filename or location.
 
 1. Preview the import with the [`deck gateway diff`](/deck/latest/reference/deck_gateway_diff/)
-command, pointing to the control plane that you want to target:
+command.
 
     ```sh
     deck gateway diff kong.yaml --konnect-token-file /PATH/TO/FILE
