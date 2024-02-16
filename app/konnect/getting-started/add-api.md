@@ -12,11 +12,13 @@ If you didn't use the in-app onboarding wizard in {{site.konnect_short_name}}, m
 
 <details><summary>Konnect concepts</summary>
 
-{{ konnect_concepts | markdownify }}
-
+{% capture konnect_concepts %}
 [**Services:**](/gateway/latest/key-concepts/services/) A service is an entity representing an external upstream API or microservice. For example, a data transformation microservice, a billing API, and so on.
 
 [**Routes:**](/gateway/latest/key-concepts/routes/) Routes determine how (and if) requests are sent to their services after they reach the gateway. Where a service represents the backend API, a route defines what is exposed to clients. A single service can have many routes. Once a route is matched, the gateway proxies the request to its associated service. 
+{% endcapture %}
+
+{{ konnect_concepts | markdownify }}
 
 </details>
 
