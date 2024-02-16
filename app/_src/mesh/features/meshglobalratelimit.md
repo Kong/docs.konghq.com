@@ -108,7 +108,7 @@ TODO: document how to generate and use zone token on universal.-->
 
 ## TargetRef support matrix
 
-{% if_version gte:2.6.x %}
+{% if_version gte:2.7.x %}
 {% tabs targetRef useUrlFragment=false %}
 {% tab targetRef Sidecar %}
 | `targetRef`             | Allowed kinds                         |
@@ -121,7 +121,7 @@ TODO: document how to generate and use zone token on universal.-->
 | `targetRef`             | Allowed kinds                                             |
 | ----------------------- | --------------------------------------------------------- |
 | `targetRef.kind`        | `Mesh`, `MeshGateway`                                     |
-| `from[].targetRef.kind` | `Mesh`                                                    |
+| `to[].targetRef.kind` | `Mesh`                                                    |
 {% endtab %}
 {% endtabs %}
 
