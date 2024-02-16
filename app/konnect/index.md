@@ -39,17 +39,17 @@ lightweight, fast, and flexible API gateway.
 
   <a href="https://cloud.konghq.com/quick-start" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-learning.svg" alt="">
-    <div class="install-text">Get Started</div>
+    <div class="install-text">Use the quickstart wizard</div>
   </a>
 
-  <a href="/konnect/gateway-manager/data-plane-nodes/" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/konnect/icn-runtimes-nav.svg" alt="">
-    <div class="install-text">Set up Data Plane Nodes</div>
+  <a href="/konnect/getting-started/add-api" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-admin-api-color.svg" alt="">
+    <div class="install-text">Add an API to {{site.konnect_short_name}}</div>
   </a>
 
-  <a href="/deck/guides/konnect/" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-references-color.svg" alt="">
-    <div class="install-text">Manage {{site.konnect_short_name}} with decK</div>
+  <a href="/konnect/getting-started/import" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-deployment-color.svg" alt="">
+    <div class="install-text">Import {{site.base_gateway}} entities to {{site.konnect_short_name}}</div>
   </a>
 
   <a href="/hub/" class="docs-grid-install-block no-description">

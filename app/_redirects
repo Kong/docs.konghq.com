@@ -55,6 +55,7 @@
 /konnect/getting-started/publish-service/   /konnect/dev-portal/publish-service/  
 /konnect/getting-started/app-registration/  /konnect/dev-portal/applications/dev-apps/
 /konnect/getting-started/productize-service/    /konnect/api-products/productize-service/
+/konnect/getting-started/   /konnect/
 
 
 # API markdown doc deprecation

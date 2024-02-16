@@ -71,29 +71,8 @@ command.
     organization, we recommend always setting this flag to avoid accidentally
     pushing configuration to the wrong control plane.
 
-1. Log in to your {{site.konnect_saas}} account and open the control plane you just migrated in [**Gateway Manager**](https://cloud.konghq.com/gateway-manager/).
-
-1. Look through the configuration details of any imported entities to make sure
+1. Log in to your {{site.konnect_saas}} account and open the control plane you just migrated in [**Gateway Manager**](https://cloud.konghq.com/gateway-manager/). Look through the configuration details of any imported entities to make sure
 they were migrated successfully.
-
-## Migrate data planes
-
-You can keep any data plane nodes that are:
-* Running {{site.base_gateway}} (Enterprise, including _free_ mode)
-* Are at least version 2.5 or higher
-
-Turn any self-managed nodes into cloud data plane nodes by registering them
-through the Gateway Manager and adjusting their configurations, or power down
-the old data plane nodes and deploy new nodes through {{site.konnect_saas}}.
-
-1. Follow the [data plane node setup guide](/konnect/gateway-manager/#data-plane-nodes) for
-your preferred deployment type.
-
-2. Once you have created or converted the data plane nodes, `kong stop` your
-old Gateway data plane nodes, then shut them down.
-
-3. If any of the old nodes have connected database instances,
-you can shut them down now.
 
 ## Next steps
 

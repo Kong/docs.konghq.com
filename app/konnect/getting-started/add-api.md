@@ -8,19 +8,7 @@ In this guide, you will build on your Konnect environment by adding your own API
 
 ## Prerequisites
 
-If you didn't use the in-app onboarding wizard in {{site.konnect_short_name}}, make sure you [create a data plane node](/konnect/gateway-manager/data-plane-nodes/#supported-installation-options).
-
-<details><summary>Konnect concepts</summary>
-
-{% capture konnect_concepts %}
-[**Services:**](/gateway/latest/key-concepts/services/) A service is an entity representing an external upstream API or microservice. For example, a data transformation microservice, a billing API, and so on.
-
-[**Routes:**](/gateway/latest/key-concepts/routes/) Routes determine how (and if) requests are sent to their services after they reach the gateway. Where a service represents the backend API, a route defines what is exposed to clients. A single service can have many routes. Once a route is matched, the gateway proxies the request to its associated service. 
-{% endcapture %}
-
-{{ konnect_concepts | markdownify }}
-
-</details>
+If you didn't use the in-app onboarding wizard in {{site.konnect_short_name}}, open the Konnect [Gateway Manager](https://cloud.konghq.com/gateway-manager), and create a new data plane node.
 
 ## Add your API
 
@@ -123,8 +111,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 ## Verify the implementation
 
 If you used the Docker script to connect a data plane
-earlier in [Configure a data plane node](/konnect/getting-started/configure-data-plane-node/),
-your default proxy URL is `localhost:8000`.
+earlier, your default proxy URL is `localhost:8000`.
 
 Enter the proxy URL into your browser’s address bar and append the route path
 you just set. The final URL should look something like this:
@@ -137,6 +124,18 @@ If successful, you should see the homepage for `httpbin.org`. In the Gateway Man
 
 And that's it! You have your first service set up, running, and routing
 traffic proxied through a {{site.base_gateway}} data plane node.
+
+<details><summary>What are services and routes?</summary>
+
+{% capture konnect_concepts %}
+[**Services:**](/gateway/latest/key-concepts/services/) A service is an entity representing an external upstream API or microservice. For example, a data transformation microservice, a billing API, and so on.
+
+[**Routes:**](/gateway/latest/key-concepts/routes/) Routes determine how (and if) requests are sent to their services after they reach the gateway. Where a service represents the backend API, a route defines what is exposed to clients. A single service can have many routes. Once a route is matched, the gateway proxies the request to its associated service. 
+{% endcapture %}
+
+{{ konnect_concepts | markdownify }}
+
+</details>
 
 ## Next steps
 
