@@ -19,7 +19,7 @@ The following table details how Kong configuration entities will be mapped to Ku
 | Route                                                        | Ingress (Ingress API) or HTTPRoute (Gateway API) with annotations |
 | Global Plugin                                                | KongClusterPlugin                                                 |
 | Plugin                                                       | KongPlugin                                                        |
-| Auth Plugins (key auth, hmac, jwt, basic, oauth2, acl, mtls) | KongPlugin and Secret with credentials section in KongConsumer    |
+| Auth Plugins <br>(`key-auth`, `hmac-auth`, `jwt`, `basic-auth`, `oauth2`, `acl`, `mtls-auth`) | KongPlugin and Secret with credentials section in KongConsumer    |
 | Upstream                                                     | KongIngress or kongUpstreamPolicy                                 |
 | Consumer                                                     | KongConsumer                                                      |
 | ConsumerGroup                                                | KongConsumerGroup                                                 |
