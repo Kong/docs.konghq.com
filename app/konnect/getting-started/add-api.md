@@ -80,7 +80,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
     --data '{
         "name": "my_service",
         "host": "httpbin.org",
-        "path": "/my_api"
+        "path": "/mock"
     }'
   ```
   This service represents your backend API. Be sure to replace the PAT as well as the following placeholders with your own values:
@@ -103,7 +103,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
           "httpbin.org"
         ],
         "paths": [
-          "/my_api"
+          "/mock"
         ],
         "service": {
           "id": "49248arf-b90c-4c0b-9529-3a949dfc10d1"
