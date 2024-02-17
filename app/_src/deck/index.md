@@ -78,7 +78,7 @@ The decK commands are structured into three main categories:
 
 3. **Gateway State Management**: This category encompasses commands that facilitate
 the synchronization of the final decK file with the target platform, be it {{site.konnect_product_name}}, {{site.base_gateway}}, 
-or {{site.kic_product_name}}. Key commands include:
+or {{site.kic_product_name}}. This category includes:
    - [deck gateway ping](/deck/{{page.release}}/reference/deck_gateway_ping/): Confirms connectivity with Kong’s Admin API.
    - [deck gateway validate](/deck/{{page.release}}/reference/deck_gateway_validate/): Validates the state file against the Kong Admin API in an online setting.
    - [deck gateway dump](/deck/{{page.release}}/reference/deck_gateway_dump/): Extracts all entities from Kong and archives them in a local file.
