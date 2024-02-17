@@ -17,7 +17,7 @@ The diagram below delineates KongAir's structured approach to deploying decK, st
 3. To track the configuration's creation time, they apply relevant tags using `deck file add-tags`.
 4. The state file undergoes a quality check against a predefined linting ruleset with `deck file lint`, ensuring adherence to best practices.
 5. Environment-specific adjustments, including upstream API URLs, are made using the `deck file patch` command.
-6. The Platform Team then merges global plugins for Observability, Authentication, Authorization, and Traffic Control into the main state file with `deck file merge`.
+6. The Platform Team then merges global plugins for observability, authentication, authorization, and traffic control into the main state file with `deck file merge`.
 7. At this stage, a comprehensive state file for the Flights API is ready. This file is combined with the Routes API's state file using `deck file render`, creating a unified configuration.
 8. The final state file is subjected to an offline validation through `deck file validate`.
 
