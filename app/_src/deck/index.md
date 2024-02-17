@@ -63,7 +63,7 @@ The decK commands are structured into three main categories:
 1. **Configuration Generation**: This category focuses on the initial creation of decK state files from industry-standard API specification formats. This category includes the following command: 
    - [deck file openapi2kong](/deck/{{page.release}}/reference/deck_file_openapi2kong/): Converts OpenAPI specification files into decK state files.
 
-2. **Configuration Transformation**: This set of commands provides the tools needed to refine and restructure decK configuration files. It allows for the segmentation of a full configuration into smaller, manageable parts and their subsequent reassembly. This category includes commands such as:
+2. **Configuration Transformation**: This set of commands provides the tools needed to refine and restructure decK configuration files. It allows for the segmentation of a full configuration into smaller, manageable parts and their subsequent reassembly. This category includes the following commands:
    - [deck file add-plugins](/deck/{{page.release}}/reference/deck_file_add-plugins/): Incorporates plugins into decK objects.
    - [deck file add-tags](/deck/{{page.release}}/reference/deck_file_add-tags/): Attaches tags to decK objects for enhanced organization.
    - [deck file list-tags](/deck/{{page.release}}/reference/deck_file_list-tags/): Enumerates tags associated with decK objects.
