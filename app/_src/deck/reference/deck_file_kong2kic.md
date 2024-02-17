@@ -446,7 +446,7 @@ metadata:
 ```
 
 {% endnavtab %}
-{% navtab Convert to Ingress API %}
+{% navtab Converted to Ingress API %}
 
 ```yaml
 apiVersion: configuration.konghq.com/v1
