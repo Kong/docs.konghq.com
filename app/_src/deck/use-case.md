@@ -13,7 +13,7 @@ Let's explore how KongAir, an imaginary airline, leverages decK to streamline it
 The diagram below delineates KongAir's structured approach to deploying decK, steered by their established governance protocols:
 
 1. The Flights API team initiates the process by converting their OpenAPI Specification into a decK state file using the `deck file openapi2kong` command.
-2. Next, they enhance the state file by integrating Transformation Plugins (such as Request Transformer Advanced and Correlation ID) and Validation plugins (like OAS Validation) using the `deck file add-plugins` command.
+2. Next, they enhance the state file by integrating transformation plugins (such as [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) and [Correlation ID](/hub/kong-inc/correlation-id/) and validation plugins (like [OAS Validation](/hub/kong-inc/oas-validation/) using the `deck file add-plugins` command.
 3. To track the configuration's creation time, they apply relevant tags using `deck file add-tags`.
 4. The state file undergoes a quality check against a predefined linting ruleset with `deck file lint`, ensuring adherence to best practices.
 5. Environment-specific adjustments, including upstream API URLs, are made using the `deck file patch` command.
