@@ -24,7 +24,7 @@ The diagram below delineates KongAir's structured approach to deploying decK, st
 {% capture validate %}
 {% navtabs %}
 {% navtab Konnect or Gateway %}
-For deployments to {{site.konnect_product_name}} or {{site.base_gateway}} deployments, the process involves:
+For {{site.konnect_product_name}} or {{site.base_gateway}} deployments, the process involves:
 
 1. Ensuring connectivity with the Admin API via `deck gateway ping`.
 2. Performing an online validation with `deck gateway validate`.
