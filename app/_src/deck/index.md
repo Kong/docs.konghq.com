@@ -1,6 +1,6 @@
 ---
 title: decK
-subtitle: Manage {{site.konnect_product_name}}, {{site.base_gateway}} and {{site.kic_product_name}} configuration declaratively
+subtitle: Manage {{site.konnect_product_name}}, {{site.base_gateway}}, and {{site.kic_product_name}} configuration declaratively
 content_type: explanation
 ---
 
