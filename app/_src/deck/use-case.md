@@ -7,7 +7,7 @@ Let's explore how KongAir, an imaginary airline, leverages decK to streamline it
 - Every API team within KongAir, including those responsible for the Flights and Routes APIs, adopts OpenAPI specifications to define their API contracts.
 - These teams maintain the flexibility to employ Kong's Transformation and Validation plugins to enhance their APIs. They manage these plugins' configurations through modular decK state files, promoting autonomy and customization.
 - The KongAir API Community of Practice has also embraced a comprehensive set of API Design Guidelines to standardize API development. These guidelines are implemented and monitored through a linting file overseen by the dedicated API Platform Team, ensuring adherence to best practices.
-- The API Platform Team assumes a pivotal role in configuring critical plugins related to Observability, Security, and Traffic Control within Kong, centralizing expertise and governance for these essential aspects.
+- The API Platform Team assumes a pivotal role in configuring critical plugins related to observability, security, and traffic control within Kong, centralizing expertise and governance for these essential aspects.
 - Furthermore, this team is tasked with the management of environment-specific variables, ensuring seamless deployment and operation across different stages of the development lifecycle.
 
 The diagram below delineates KongAir's structured approach to deploying decK, steered by their established governance protocols:
