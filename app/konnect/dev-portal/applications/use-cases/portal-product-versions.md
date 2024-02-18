@@ -1,6 +1,5 @@
 ---
 title: Configuring API Product Versions with App Reg v2
-
 ---
 
 
@@ -12,9 +11,9 @@ This guide will introduce you to using App Reg v2's API endpoints to create Dyna
 
 ## Configure DCR
 
-Begin by setting up a DCR Provider, applicable for both the Air Traffic API and any other API requiring authentication. If your setup already uses OIDC or Key Auth you can skip this step. 
+To begin, let's set up a DCR provider. This provider will be used to authenticate APIs, including the Air Traffic API we'll configure. If your setup already uses OIDC or Key Auth, you can skip this step. 
 
-To establish a DCR Provider, execute a `POST` request to [v2/dcr-providers](https://kong-platform-api.netlify.app/konnect/application-auth-strategies/v2/openapi.yaml/#tag/DCR-Providers/operation/create-dcr-provider) with the necessary DCR configuration details. The same DCR Provider can be shared across multiple APIs. For example: 
+To configure a DCR Provider, execute a `POST` request to [v2/dcr-providers](https://kong-platform-api.netlify.app/konnect/application-auth-strategies/v2/openapi.yaml/#tag/DCR-Providers/operation/create-dcr-provider) with the necessary DCR configuration details. The same DCR Provider can be shared across multiple APIs. For example: 
 
 ```sh
 curl --request POST \
@@ -110,7 +109,7 @@ curl --request POST \
 
 ```
 
-## Applying Authentication Strategies to API Products
+## Applying authentication strategies to API products
 
 Using the [`v2/portals/{portalId}/product-versions`](https://kong-platform-api.netlify.app/konnect/application-auth-strategies/v2/openapi.yaml/#tag/Portal-Product-Versions/operation/create-portal-product-version) endpoint we can link the authentication strategies created previously with our API products. Before making a request to this endpoint, ensure you have gathered the following details from earlier steps:
 
@@ -163,9 +162,9 @@ curl --request POST \
 
 Executing these requests accomplishes several things: 
 
-* Published API Product Versions: Versions v3 of both Air Traffic and Maps APIs are now accessible through our Flight Portal. This step makes the latest iterations of these APIs available to developers.
+* Published API Product Versions: Version v3 of both the Air Traffic and Maps APIs are now accessible through our Flight Portal. This makes the latest iterations of these APIs available to developers.
 
-* Enabled Application Registration: Developers now have the capability to register for access to Air Traffic v3 and Maps v3, facilitating their integration into applications.
+* Enabled Application Registration: Developers can now register for access to v3 of the Air Traffic API and Maps API. This allows them to integrate these APIs into their own apps.
 
 * Configured Authentication Strategies: We've applied specific Auth0 authentication strategies to each API version within the Flight Portal. For Air Traffic v3, the Air Traffic auth strategy is in place, and for Maps v3, the Maps auth strategy is applied. This ensures that each API enforces the correct authentication requirements, including credentials and claims, tailored to its own specific use case.
 
@@ -174,9 +173,9 @@ Executing these requests accomplishes several things:
 
 
 
-## Confirm publication and Authentication status
+## Confirm API publication and authentication status
 
-Air Traffic v3 and Maps v3 APIs are now published to the Flight Portal and each is configured with their respective authentication settings. To ensure everything is correctly set up, querying the[`v2/portals/{portalId}/product-versions`](https://kong-platform-api.netlify.app/konnect/application-auth-strategies/v2/openapi.yaml/#tag/Portal-Product-Versions/operation/list-portal-product-versions) to verify. 
+Air Traffic v3 and Maps v3 APIs are now published to the Flight Portal and each is configured with their respective authentication settings. To ensure everything is correctly set up, query the[`v2/portals/{portalId}/product-versions`](https://kong-platform-api.netlify.app/konnect/application-auth-strategies/v2/openapi.yaml/#tag/Portal-Product-Versions/operation/list-portal-product-versions) to verify. 
 
 
 A successful response will contain the following fields:
