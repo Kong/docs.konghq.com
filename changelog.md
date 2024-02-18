@@ -2,6 +2,123 @@
 
 <!--vale off-->
 
+## Week 7
+
+### [chore: Uncomment links to benchmarking repo](https://github.com/Kong/docs.konghq.com/pull/6963) (2024-02-16)
+
+The performance benchmark repo is now public:  https://github.com/Kong/kong-gateway-performance-benchmark
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.6.x/production/performance/performance-testing
+
+
+### [chore: Add gateway version to konnect compat list](https://github.com/Kong/docs.konghq.com/pull/6962) (2024-02-15)
+
+See docs.konghq.com/konnect/compatibility/#plugin-compatibility.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/compatibility
+
+
+### [fix(mistral): docs are a copy of llama2](https://github.com/Kong/docs.konghq.com/pull/6955) (2024-02-15)
+
+The `mistral` provider docs are accidentally a copy of the `llama2` docs!
+
+They need to specifically reference cloud-hosted mistral.ai, as the most common usage.
+
+### Checklist 
+
+- [x] Review label added <!-- (see below) -->
+- [x] [Conditional version tags](https://docs.konghq.com/contributing/conditional-rendering/#conditionally-render-content-by-version) added, if applicable.
+
+For example, if this change is for an upcoming 3.6 release, enclose your content in `{% if_version gte:3.6.x %} <content> {% endif_version %}` tags (or `if_plugin_version` tags for plugins). 
+
+Use any of the following keys:
+* `gte:<version>` - greater than or equal to a specific version
+* `lte:<version>` - less than or equal to a specific version
+* `eq:<version>` - exactly equal to a specific version
+
+You can do the same for older versions.
+
+<!-- !!! Only Kong employees can add labels due to a GitHub limitation. If you're an OSS contributor, thank you! The maintainers will label this PR for you !!! -->
+
+<!-- When raising a pull request, indicate what type of review you need with one of the following labels:
+
+    review:copyedit: Request for writer review.
+    review:general: Review for general accuracy and presentation. Does the doc work? Does it output correctly?
+    review:tech: Request for technical review for a docs platform change.
+    review:sme: Request for review from an SME (engineer, PM, etc).
+
+At least one of these labels must be applied to a PR or the build will fail.
+-->
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/ai-proxy/how-to/
+
+
+### [release deck 1.34.0](https://github.com/Kong/docs.konghq.com/pull/6952) (2024-02-15)
+
+Add deck 1.34 release information with new` deck file namespace` command
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.6.x/kong-manager/auth/oidc/configure
+
+
+### [kic: split CRD reference types into sections](https://github.com/Kong/docs.konghq.com/pull/6943) (2024-02-13)
+
+Splits the top-level CRDs and the types that they rely on into separate sections to make it clear which types are meant to be used to create objects in the Kubernetes API.
+
+Addresses @liyangau concern about the reference not signaling clearly which types are meant to be used to create objects in a cluster. 
+
+It's propagated from the KIC repo: https://github.com/Kong/kubernetes-ingress-controller/pull/5611
+
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.6.x/kong-manager/auth/oidc/configure
+
+
+### [Feat: Add new performance testing results doc for Gateway 3.6](https://github.com/Kong/docs.konghq.com/pull/6928) (2024-02-13)
+
+<!-- What did you change and why? -->
+Beginning in Gateway 3.6, Kong is now publishing performance testing results for several use cases. This PR adds a doc that publishes those results, covers the testing methodology, and provides info for customers to use the Kong test suite to conduct their own tests. This PR also creates a new Performance section of the docs so it's easier to find performance related docs.
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+DOCU-3625
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.6.x/production/performance/performance-testing
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.1.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.2.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.3.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.4.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.5.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.6.x/production/sizing-guidelines
+
 ## Week 6
 
 ### [Release: Gateway 3.4.3.4](https://github.com/Kong/docs.konghq.com/pull/6932) (2024-02-10)
