@@ -38,7 +38,8 @@ In Azure, create the main application:
 7. On the **Overview** view, note your Directory (tenant) ID and Application (client) ID.
 
 ## Configure the Dev Portal
-
+{% navtabs %}
+{% navtab Konnect UI %}
 Once you have Azure configured, you can set up the Dev Portal to use Azure for dynamic client registration (DCR).
 
 1. Log in to {{site.konnect_short_name}} and select the **Dev Portal** {% konnect_icon dev-portal %} from the menu.
@@ -63,9 +64,12 @@ Once you have Azure configured, you can set up the Dev Portal to use Azure for d
 
 11. In the **Credential Claims** field, enter `appid`.
 
-12. Select the relevant **Auth Methods** you need (`client_credentials`, bearer, session).
+12. Select the relevant **Auth Methods** you need (`client_credentials`, bearer, session), and **save**. 
 
-13. Click **Save**.
+{% endnavtab %}
+{% navtab API %}
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Create an application with DCR
 

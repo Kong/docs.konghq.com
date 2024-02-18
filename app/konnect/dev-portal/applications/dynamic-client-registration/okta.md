@@ -57,6 +57,9 @@ In order to map an application from the Dev Portal to Okta, you have to create a
 
 ## Configure the Dev Portal
 
+{% navtabs %}
+{% navtab Konnect UI %}
+
 After configuring Okta, you can integrate it with the Dev Portal for dynamic client registration (DCR). This process involves two main steps: first, creating the DCR provider, and second, establishing the authentication strategy. DCR providers are designed to be reusable configurations. This means once you've configured the Okta DCR provider, it can be utilized across multiple authentication strategies without needing to be set up again.
 
 1. Log in to {{site.konnect_short_name}} and select the Dev Portal {% konnect_icon dev-portal %} from the menu.
@@ -80,9 +83,12 @@ After configuring Okta, you can integrate it with the Dev Portal for dynamic cli
    {:.note}
    > **Note:**  Avoid using the `openid` scope with client credentials as it restricts the use. If no scopes are specified, `openid` will be the default.
 
-10. Select the relevant **Auth Methods** you need (`client_credentials`, bearer, session).
+10. Select the relevant **Auth Methods** you need (`client_credentials`, bearer, session), and **Save**. 
 
-11. Click **Save**.
+{% endnavtab %}
+{% navtab API %}
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Create an application with DCR
 

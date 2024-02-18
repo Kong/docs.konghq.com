@@ -75,6 +75,9 @@ To get started configuring Curity, log in to your Curity dashboard and complete 
 
 ## Configure the Dev Portal
 
+{% navtabs %}
+{% navtab Konnect UI %}
+
 Once you have Curity configured, you can set up the Dev Portal to use Curity for dynamic client registration (DCR).
 
 1. Sign in to {{site.konnect_short_name}}, then select {% konnect_icon dev-portal %} **Dev Portal** from the menu.
@@ -99,10 +102,12 @@ Once you have Curity configured, you can set up the Dev Portal to use Curity for
 
 11. If you are using the Curity configuration described in the previous sections, enter the `sub` into the **Claims** field and leave the **Scopes** field empty. If you configured Curity differently, then ensure you add the correct **Scopes** and **Claims**.
 
-12. Select the relevant **Auth Methods** you need (`client_credentials`, bearer, session).
+12. Select the relevant **Auth Methods** you need (`client_credentials`, bearer, session) and **Save**. 
 
-13. Click **Save**.
-
+{% endnavtab %}
+{% navtab API %}
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Create an application with DCR
 

@@ -78,6 +78,9 @@ To create a new API audience:
 
 Once you have Auth0 configured, you can configure the Dev Portal to use Auth0 for dynamic client registration (DCR).
 
+{% navtabs %}
+{% navtab Konnect UI %}
+
 1. Sign in to {{site.konnect_short_name}}, then select {% konnect_icon dev-portal %} **Dev Portal** from the menu.
 
 2. Navigate to **Application Auth** to access the authentication settings for your API Products.
@@ -109,11 +112,11 @@ Once you have Auth0 configured, you can configure the Dev Portal to use Auth0 fo
 
 14. Enter `azp` into the **Credential Claims** field, which will match the client ID of each Auth0 application
 
-15. Choose the **Auth Methods** required (`client_credentials`, bearer, session).
-
-16. Click **Save**.
-
-
+15. Choose the **Auth Methods** required (`client_credentials`, bearer, session), and **save**.
+{% endnavtab %}
+{% navtab API %} 
+{% endnavtab %}
+{% endnavtabs %}
 ## Create an application with DCR
 
 From the **My Apps** page in the Dev Portal, follow these instructions:
