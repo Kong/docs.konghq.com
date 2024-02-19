@@ -682,7 +682,7 @@ deck file kong2kic -s kong-config.yaml -o gateway.yaml
 # Transform kong configuration file into KIC v2.x
 # manifests using the Ingress API and output
 # in yaml format (default)
-deck file kong2kic -s kong-config.yaml -o ingress.yaml --kicv2 --ingress
+deck file kong2kic -s kong-config.yaml -o ingress.yaml --kic-version 2 --ingress
 
 # transform openapi configuration into kong configuration file
 # and then into KIC v3.x manifests using Gateway API and  
@@ -708,8 +708,8 @@ deck file openapi2kong -s petstore-openapi.json | deck file kong2kic -s - --clas
 `--ingress`
 : Use Kubernetes Ingress API manifests instead of Gateway API manifests.
 
-`--kicv2`
-:  Generate manifests compatible with KIC v2.x.
+`--kic-version`
+:  Generate manifests for KIC v3 or v2. Possible values are 2 or 3. (default "3").
 
 `--class-name`
 : String to use for "kubernetes.io/ingress.class" ObjectMeta.Annotations and for "parentRefs.name" in the case of HTTPRoute.
