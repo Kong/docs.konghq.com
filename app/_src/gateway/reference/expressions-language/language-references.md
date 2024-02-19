@@ -138,15 +138,7 @@ Expressions language support a rich set of operators that can be performed on va
 | `not in`       | Not in                | Field value is not inside the constant value                                                                                                                                                                 |
 | `contains`     | Contains              | Field value contains the constant value                                                                                                                                                                      |
 | `&&`           | And                   | Returns `true` if **both** expressions on the left and right side evaluates to `true`                                                                                                                        |
-
-{% if_version lte:3.5.x %}
-| `||` | Or | Returns `true` if **any** expressions on the left and right side evaluates to `true` |
-{% endif_version %}
-
-{% if_version gte:3.6.x %}
-| `\|\|`         | Or                    | Returns `true` if **any** expressions on the left and right side evaluates to `true`                                                                                                                         |
-{% endif_version %}
-
+| `||` | Or | Returns `true` if **any** expressions on the left and right side evaluates to `true` |                                                                                                                    |
 | `(Expression)` | Parenthesis           | Groups expressions together to be evaluated first                                                                                                                                                            |
 
 {% if_version gte:3.6.x %}
@@ -178,7 +170,7 @@ Here are the allowed combination of field types and constant types with each ope
 | `String`                         | `==`, `!=`, `~`, `^=`, `=^`, `contains` | ❌              | ❌        | ❌                                | `~`     | ❌            |
 | `IpAddr`                         | ❌                                       | `in`, `not in` | `==`     | ❌                                | ❌       | ❌            |
 | `Int`                            | ❌                                       | ❌              | ❌        | `==`, `!=`, `>=`, `>`, `<=`, `<` | ❌       | ❌           |
-| `Expression`                     | ❌                                       | ❌              | ❌        | ❌                                | ❌       | `&&`,{% if_version lte:3.5.x inline:true %} `{% raw %}||{% endraw %}`{% endif_version %}{% if_version gte:3.6.x inline:true %} `\|\|`{% endif_version %}  |
+| `Expression`                     | ❌                                       | ❌              | ❌        | ❌                                | ❌       | `&&`, `||`|
 
 
 {:.note}
