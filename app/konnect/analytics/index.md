@@ -41,7 +41,8 @@ The Explorer is an intuitive web-based interface that enables easy access to API
 ![Explorer Dashboard](/assets/images/products/konnect/analytics/konnect-explorer-dashboard.png){:.image-border}
 
 To begin using Explorer, simply go to the **Analytics** {% konnect_icon analytics %} section and select **Explorer**. 
-
+{% navtabs %}
+{% navtab Grouping and Filtering %}
 ### Grouping and filtering
 
 This is an overview of the different grouping and filtering categories available: 
@@ -58,7 +59,8 @@ Status Code (grouped) | Group or filter the data by response status code categor
 Control Plane | Group or filter the data by control plane.
 Gateway Services | Group or filter the data by gateway services.
 Consumer | Group or filter the data by consumer.
-
+{% endnavtab %}
+{% navtab Metrics %}
 
 ### Metrics
 
@@ -74,6 +76,8 @@ Kong latency | Latency | The amount of time, in milliseconds, that {{site.base_g
 Request Size | Size | The size of the request payload received from the client, in bytes. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile request size of 100 bytes means that the payload size for every 1 in 100 requests was at least 100 bytes.
 Response Size | Size | The size of the response payload returned to the client, in bytes. Users can select between different percentiles (p99, p95, and p50). For example, a 99th percentile response size of 100 bytes means that the payload size for every 1 in 100 response back to the original caller was at least 100 bytes.
 
+{% endnavtab %}
+{% navtab Time intervals %}
 ### Time intervals
 
 The time frame selector controls the time frame of data visualized, which indirectly controls the
@@ -107,7 +111,8 @@ Current month | Data is aggregated in one hour increments. Logs any traffic in t
 Previous week | Data is aggregated in one hour increments. Logs any traffic in the previous calendar week.
 Previous month | Data is aggregated in daily increments. Logs any traffic in the previous calendar month. 
 
-
+{% endnavtab %}
+{% endnavtabs %}
 ### Actions
 
 After customizing a view using Explorer's metrics and filters, there are several actions that can be performed:
@@ -143,12 +148,6 @@ From {% konnect_icon analytics %} Analytics, you can view dashboards, access his
 * View the Analytics summary dashboard to track traffic, errors by error code, and latency across all services in your organization.
 * [Export historical data in CSV format](#export-analytics-data) for any individual service.
 * [Create a custom report](/konnect/analytics/generate-reports/) for any number of services, routes, or applications, filtered by time frame and grouped by metric.
-
-The summary dashboard provides metrics across all services in your organization within a selected time interval for the following categories:
-
-* **Traffic**
-* **Errors**
-* **Latency**
 
 These categories measure trends by comparing metrics across fixed comparable time intervals and plotting the data points. For example, hour-over-hour, day-over-day, week-over-week, and month-over-month.
 You can view a graph for each category by clicking **Traffic**, **Errors**, or **Latency**, and switching between the views.
