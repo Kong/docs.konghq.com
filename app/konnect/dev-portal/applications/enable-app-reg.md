@@ -158,6 +158,56 @@ In the `default` control plane group, **Credential claim** is used as a **Consum
    | `Auto Approve`| **Default: disabled** <br>Automatically approve developer application requests for an application.| **False**
 
    
+## Enable app registration with multiple IdPs
+
+In {{site.konnect_short_name}} can configure and manage multiple authentication strategies across various API products and their versions, allowing you to apply distinct authentication scopes for different API versions.
+
+This section will introduce you to the functionality portal product versions using Dynamic client registration (DCR). Using the Application Registration API, you can manage multiple APIs and configure different DCRs on a per API product basis.
+
+Using the [`v2/portals/{portalId}/product-versions`](https://kong-platform-api.netlify.app/konnect/application-auth-strategies/v2/openapi.yaml/#tag/Portal-Product-Versions/operation/create-portal-product-version) endpoint, you can link authentication strategies with your API products. 
+
+1. Configure the auth strategies of your choice:
+  * [Okta](/konnect/dev-portal/applications/dynamic-client-registration/okta/)
+  * [Curity](/konnect/dev-portal/applications/dynamic-client-registration/curity/)
+  * [Auth0](/konnect/dev-portal/applications/dynamic-client-registration/auth0/)
+  * [Azure](/konnect/dev-portal/applications/dynamic-client-registration/azure/)
+  * [Custom IdP](/konnect/dev-portal/applications/dynamic-client-registration/custom/)
+
+1. Before making a request to this endpoint, ensure you have gathered the following details from the previous step:
+  * `PortalId`: ID of the Dev Portal
+  * `product_version_ids`: API Product version ID.
+  * `auth_strategy_id`: The ID of the auth strategies you configured.
+
+1. Apply the auth strategy to your API, making sure to replace `your_product_version_id` and `your_auth_strategy_id` with the actual IDs you intend to use: 
+
+  ```bash
+  curl --request POST \
+    --url https://us.api.konghq.tech/v2/portals/{portalId}/product-versions/ \
+    --header 'Authorization: $KPAT' \
+    --header 'content-type: application/json' \
+    --data '{
+    "product_version_id": "your_product_version_id",
+    "auth_strategy_ids": [
+      "your_auth_strategy_id"
+    ],
+    "publish_status": "published",
+    "application_registration_enabled": true,
+    "auto_approve_registration": true,
+    "deprecated": false
+  }
+  ```
+
+Executing this request does the following: 
+
+* Published API Product Versions: This makes the latest iterations of these APIs available to developers through the Dev Portal.
+
+* Enabled Application Registration: Developers can now register for access to your API. This allows them to integrate this API into their own apps.
+
+* Configured Authentication Strategies: The auth strategies you configured are now all applied to your published API.
+
+{:.note}
+>**Note**: If your API Products are not yet published, you will need to publish the API Product itself in order for the API Product versions to be published to your Dev Portal.
+
 ## Disable application registration for an API Product version {#disable}
 
 Disabling application registration ensures Dev Portal developers can no longer request new registrations for the API product version. Existing registrations are not affected.

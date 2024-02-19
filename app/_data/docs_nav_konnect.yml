@@ -179,8 +179,6 @@
       items:
         - text: Overview
           url: /dev-portal/applications/dynamic-client-registration/
-        - text: Portal product versions
-          url: /dev-portal/applications/use-cases/portal-product-versions
         - text: Okta
           url: /dev-portal/applications/dynamic-client-registration/okta/
         - text: Curity
