@@ -1,12 +1,12 @@
 ---
-title: Configuring API Product Versions with App Reg v2
+title: Portal Product Versions
 ---
 
+In {{site.konnect_short_name}} you have the ability to configure and manage multiple authentication strategies across various API products and their versions, allowing you to apply distinct authentication scopes for different API versions.
 
 
-With App Reg v2, developers gain the ability to configure and manage multiple authentication strategies across various API products and their versions, allowing you to apply distinct authentication scopes for different API versions.
+This guide will introduce you to the functionality portal product versions using Dynamic client registration (DCR). Using the Application Registration API you can manage multiple APIs and configure different DCRs on a per API produdct basis.
 
-This guide will introduce you to using App Reg v2's API endpoints to create Dynamic Client Registration (DCR) within the scenario of managing two different APIs: the Air Traffic API and the Maps API, publishing the latest version to the Flights Dev Portal and configuring different DCR strategies for each API. The examples in the guide serve as templates for your actual requests.
 
 
 ## Configure DCR

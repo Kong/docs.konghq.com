@@ -147,7 +147,7 @@
       url: /dev-portal/access/
     - text: Sign Up for a Dev Portal Account
       url: /dev-portal/dev-reg/
-    - text: Access and Approval
+    - text: Access And Permissions
       items:
         - text: Manage Developer Access
           url: /dev-portal/access-and-approval/manage-devs/
@@ -163,7 +163,7 @@
           url: /dev-portal/access-and-approval/auto-approve-devs-apps/
         - text: Azure OIDC
           url: /dev-portal/access-and-approval/azure/
-    - text: Manage Applications
+    - text: Application Lifecycle
       items:
         - text: Overview
           url: /dev-portal/applications/application-overview/
@@ -179,6 +179,8 @@
       items:
         - text: Overview
           url: /dev-portal/applications/dynamic-client-registration/
+        - text: Portal product versions
+          url: /dev-portal/applications/use-cases/portal-product-versions
         - text: Okta
           url: /dev-portal/applications/dynamic-client-registration/okta/
         - text: Curity
@@ -189,13 +191,10 @@
           url: /dev-portal/applications/dynamic-client-registration/azure/
         - text: Custom IdP
           url: /dev-portal/applications/dynamic-client-registration/custom/
-        - text: Use cases
-          items:
-          - text: Configuring API Product Versions with App Reg v2
-            url: /dev-portal/applications/use-cases/portal-product-versions
-    - text: Konnect Portal Management API Automation Guide
+          
+    - text: Portal Management API Automation Guide
       url: /dev-portal/konnect-portal-management-automation/
-    - text: Customize Dev Portal
+    - text: Portal Customization
       items:
         - text: Overview
           url: /dev-portal/customization/
