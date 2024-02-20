@@ -25,7 +25,7 @@ content_type: how-to
 1. Choose your application from the list and click **Request Access** to proceed with the registration.
 
 
-### Using My Apps 
+### Using my apps 
 
 1. Sign in to the Dev Portal and click **My Apps**. From the **My Apps** page, click the **New App** button to start creating a new application.
 

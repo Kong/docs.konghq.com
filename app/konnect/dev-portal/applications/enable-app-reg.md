@@ -182,7 +182,7 @@ Using the [`v2/portals/{portalId}/product-versions`](https://kong-platform-api.n
 
   ```bash
   curl --request POST \
-    --url https://us.api.konghq.tech/v2/portals/{portalId}/product-versions/ \
+    --url https://us.api.konghq.com/v2/portals/{portalId}/product-versions/ \
     --header 'Authorization: $KPAT' \
     --header 'content-type: application/json' \
     --data '{

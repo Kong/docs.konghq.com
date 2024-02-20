@@ -87,9 +87,9 @@ After configuring Okta, you can integrate it with the Dev Portal for dynamic cli
 
 {% endnavtab %}
 {% navtab API %}
-After configuring Okta, you can integrate it with the Dev Portal for dynamic client registration (DCR). This process involves two steps: creating the DCR provider and establishing the authentication strategy. DCR providers are designed to be reusable configurations. This means once you've configured the Okta DCR provider, it can be utilized across multiple authentication strategies without needing to be set up again.
+After configuring Okta, you can integrate it with the Dev Portal for dynamic client registration (DCR). This process involves two steps: creating the DCR provider and establishing the authentication strategy. DCR providers are designed to be reusable configurations. This means once you've configured the Okta DCR provider, it can be used across multiple authentication strategies without needing to be set up again.
 
-1. Start by creating the DCR provider. Send a `POST` request to the[`v2/dcr-providers`](https://kong-platform-api.netlify.app/konnect/application-auth-strategies/v2/openapi.yaml/#tag/DCR-Providers/operation/create-dcr-provider) endpoint with your DCR configuration details. 
+1. Start by creating the DCR provider. Send a `POST` request to the [`v2/dcr-providers`](https://kong-platform-api.netlify.app/konnect/application-auth-strategies/v2/openapi.yaml/#tag/DCR-Providers/operation/create-dcr-provider) endpoint with your DCR configuration details: 
 ```sh
 curl --request POST \
   --url https://us.api.konghq.com/v2/dcr-providers \
@@ -115,11 +115,11 @@ You will receive a response that includes a `dcr_provider` object similar to the
    ```
 Save the `id` value for creating the authentication strategy.
 
-2. With the `dcr_id` obtained from the first step, create an authentication strategy. Construct a `POST` request to the [`v2/create-auth-stratgies`](https://kong-platform-api.netlify.app/konnect/application-auth-strategies/v2/openapi.yaml/#tag/App-Auth-Strategies/operation/create-app-auth-strategy) endpoint describing an authentiaction strategy: 
+2. Now that you've obtained the `dcr_id` in the first step, create an authentication strategy. Construct a `POST` request to the [`v2/create-auth-stratgies`](https://kong-platform-api.netlify.app/konnect/application-auth-strategies/v2/openapi.yaml/#tag/App-Auth-Strategies/operation/create-app-auth-strategy) endpoint describing an authentication strategy: 
 
    ```sh
    curl --request POST \
-   --url https://us.api.konghq.tech/v2/application-auth-strategies \
+   --url https://us.api.konghq.com/v2/application-auth-strategies \
    --header 'Authorization: $KPAT' \
    --header 'content-type: application/json' \
    --data '{
