@@ -113,7 +113,7 @@ If you do _not_ already have an OIDC Auth Strategy created, we will first create
 
 3. In the Auth Type dropdown menu select `OpenID-Connect`. Enter the Issuer URL for your OIDC tenant
 
-4. Enter any scopes your developers may need access to (e.g. openid, read:account_information, write:account_information, etc). Note the required scopes may differ depending on your IdP
+4. Enter any scopes your developers may need access to (e.g. openid, profile, email, etc). Note the required scopes may differ depending on your IdP
 
 5. Enter the Credential Claims which will match the client ID of the corresponding application in your IdP
 
