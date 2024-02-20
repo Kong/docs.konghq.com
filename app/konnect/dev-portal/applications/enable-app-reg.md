@@ -117,7 +117,7 @@ If you do _not_ already have an OIDC Auth Strategy created, we will first create
 
 5. Enter the Credential Claims which will match the client ID of the corresponding application in your IdP
 
-6. Select the relevant Auth Methods you need (`client_credentials`, bearer, session)
+6. Select the relevant Auth Methods you need (`client_credentials`, `bearer`, `session`)
 
 7. Click **Save**
 
