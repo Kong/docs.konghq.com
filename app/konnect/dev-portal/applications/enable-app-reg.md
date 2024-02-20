@@ -19,11 +19,11 @@ flowchart TB
     subgraph Staging Portal
     WeatherAPIv1["Weather API v1"] --> key-auth
     WeatherAPIv2["Weather API v2"] --> okta-oidc
-    MapsAPIv2["Maps API v2"] --> okta-oidc
+    MapsAPIv2-1["Maps API v2"] --> okta-oidc
     end
     subgraph Production Portal
     WeatherAPIv3["Weather API v3"] --> okta-dcr
-    MapsAPIv2["Maps API v2"] --> auth0-oidc
+    MapsAPIv2-2["Maps API v2"] --> auth0-oidc
     end
 
 {% endmermaid %}
