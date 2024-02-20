@@ -8,8 +8,6 @@
 
 Add deck 1.34 release information with new` deck file namespace` command
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
 #### Added
 
 - https://docs.konghq.com/gateway/3.0.x/kong-manager/auth/oidc/configure
@@ -20,6 +18,12 @@ Add deck 1.34 release information with new` deck file namespace` command
 - https://docs.konghq.com/gateway/3.5.x/kong-manager/auth/oidc/configure
 - https://docs.konghq.com/gateway/3.6.x/kong-manager/auth/oidc/configure
 
+### [Release: Gateway 3.6](https://github.com/Kong/docs.konghq.com/pull/6929) (2024-02-14)
+
+Releasing the docs for for Gateway 3.6.
+
+List of changes in this release:
+https://github.com/Kong/docs.konghq.com/milestone/56?closed=1
 
 ### [kic: split CRD reference types into sections](https://github.com/Kong/docs.konghq.com/pull/6943) (2024-02-13)
 
