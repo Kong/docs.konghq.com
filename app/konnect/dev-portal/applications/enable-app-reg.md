@@ -23,15 +23,15 @@ flowchart TB
     end
     subgraph Production Portal
     WeatherAPIv3["Weather API v3"] --> okta-dcr
-    MapsAPIv4["Maps API v4"] --> auth0-oidc
+    MapsAPIv2["Maps API v2"] --> auth0-oidc
     end
 
 {% endmermaid %}
 
 {:.note}
-**Note**: With the independent auth config functionality from App Reg v2, the Weather v2 API can use an Okta OIDC Auth Config in the staging Portal, and an Okta DCR Auth Config in the production portal.
+Auth Configs are independently configured entities, meaning they can be used by multiple API Products (for example, Weather API v2 and Maps API v2 in Staging Portal both use the Okta OIDC config). Independently configured Auth Configs also give you the flexibility to configure the same API Product version to use different auth strategies in different portals. For example, Maps v2 uses the Okta OIDC Auth Config in the Staging Portal, and the Auth0 OIDC Auth Config in the Production portal.
 
- Developers are limited to using a single auth strategy per application. This means they can create an application to register for both Weather v2 and Maps v2, as both employ `okta-oidc`. However, registering for Weather v1 and Weather v2 within the same application isn't possible due to their differing auth configurations.
+Developers are limited to using a single auth strategy per application. For example, they can create an application to register for both Weather v2 and Maps v2, as both employ `okta-oidc`, however, registering for Weather v1 and Weather v2 within the same application isn't possible due to their differing auth configurations.
 
 ## Support for any control plane
 
