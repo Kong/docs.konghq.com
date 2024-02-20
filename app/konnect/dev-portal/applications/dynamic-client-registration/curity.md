@@ -17,7 +17,7 @@ This feature requires Curity v7.x.
 
 ## Configure Curity
 
-To use dynamic client registration (DCR) with Curity as the identity provider (IdP), there are three important configurations to prepare in Curity. In the following sections, you will configure the ten issuer, create a client, and enable dynamic client registration for the client.
+To use dynamic client registration (DCR) with Curity as the identity provider (IdP), there are three important configurations to prepare in Curity. In the following sections, you will configure the token issuer, create a client, and enable dynamic client registration for the client.
 
 To get started configuring Curity, log in to your Curity dashboard and complete the following:
 
