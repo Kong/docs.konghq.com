@@ -158,7 +158,7 @@ Save the `id` value for creating the authentication strategy.
 
    ```sh
    curl --request POST \
-   --url https://us.api.konghq.tech/v2/application-auth-strategies \
+   --url https://us.api.konghq.com/v2/application-auth-strategies \
    --header 'Authorization: $KPAT' \
    --header 'content-type: application/json' \
    --data '{
