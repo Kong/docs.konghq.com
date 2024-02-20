@@ -68,6 +68,75 @@ Once you have Azure configured, you can set up the Dev Portal to use Azure for d
 
 {% endnavtab %}
 {% navtab API %}
+After configuring Azure, you can integrate it with the Dev Portal for dynamic client registration (DCR). This process involves two steps: creating the DCR provider and establishing the authentication strategy. DCR providers are designed to be reusable configurations. This means once you've configured the Azure DCR provider, it can be utilized across multiple authentication strategies without needing to be set up again.
+
+1. Start by creating the DCR provider. Send a `POST` request to the[`v2/dcr-providers`](https://kong-platform-api.netlify.app/konnect/application-auth-strategies/v2/openapi.yaml/#tag/DCR-Providers/operation/create-dcr-provider) endpoint with your DCR configuration details. 
+```sh
+   curl --request POST \
+   --url https://us.api.konghq.com/v2/dcr-providers \
+   --header 'Authorization: $KPAT' \
+   --header 'content-type: application/json' \
+   --data '{
+   "name": "Azure DCR Provider",
+   "provider_type": "Azure",
+   "issuer": "https://sts.windows.net/YOUR_TENANT_ID",
+   "dcr_config": {
+      "initial_client_id": "abc123",
+      "initial_client_secret": "abc123xyz098!",
+      "initial_client_audience": "https://my-custom-domain.com/api/v2/"
+   }
+   }'
+```
+You will receive a response that includes a `dcr_provider` object similar to the following:
+
+   ```sh
+   {
+      "created_at": "2024-02-29T23:38:00.861Z",
+      "updated_at": "2024-02-29T23:38:00.861Z",
+      "id": "93f8380e-7798-4566-99e3-2edf2b57d289",
+      "name": "Azure DCR Provider",
+      "provider_type": "Azure",
+      "issuer": "https://sts.windows.net/YOUR_TENANT_ID",
+      "dcr_config": {
+         "initial_client_id": "abc123",
+         "initial_client_audience": "https://my-custom-domain.com/api/v2/"
+      },
+      "active": false
+   }
+
+   ```
+Save the `id` value for creating the authentication strategy.
+
+2. With the `dcr_id` obtained from the first step, create an authentication strategy. Construct a `POST` request to the [`v2/create-auth-stratgies`](https://kong-platform-api.netlify.app/konnect/application-auth-strategies/v2/openapi.yaml/#tag/App-Auth-Strategies/operation/create-app-auth-strategy) endpoint describing an authentiaction strategy: 
+
+   ```sh
+      curl --request POST \
+      --url https://us.api.konghq.tech/v2/application-auth-strategies \
+      --header 'Authorization: $KPAT' \
+      --header 'content-type: application/json' \
+      --data '{
+      "name": "Azure Auth",
+      "display_name": "Azure Auth",
+      "strategy_type": "openid_connect",
+      "configs": {
+         "openid-connect": {
+            "issuer": "https://sts.windows.net/YOUR_TENANT_ID",
+            "credential_claim": [
+            "client_id"
+            ],
+            "scopes": [
+            "openid",
+            "email"
+            ],
+            "auth_methods": [
+            "client_credentials",
+            "bearer"
+            ]
+         }
+      },
+      "dcr_provider_id": "93f8380e-7798-4566-99e3-2edf2b57d289"
+      }
+   ```
 {% endnavtab %}
 {% endnavtabs %}
 

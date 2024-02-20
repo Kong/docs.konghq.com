@@ -17,7 +17,7 @@ This feature requires Curity v7.x.
 
 ## Configure Curity
 
-To use dynamic client registration (DCR) with Curity as the identity provider (IdP), there are three important configurations to prepare in Curity. In the following sections, you will configure the token issuer, create a client, and enable dynamic client registration for the client.
+To use dynamic client registration (DCR) with Curity as the identity provider (IdP), there are three important configurations to prepare in Curity. In the following sections, you will configure the ten issuer, create a client, and enable dynamic client registration for the client.
 
 To get started configuring Curity, log in to your Curity dashboard and complete the following:
 
@@ -106,6 +106,66 @@ Once you have Curity configured, you can set up the Dev Portal to use Curity for
 
 {% endnavtab %}
 {% navtab API %}
+After configuring Curity, you can integrate it with the Dev Portal for dynamic client registration (DCR). This process involves two steps: creating the DCR provider and establishing the authentication strategy. DCR providers are designed to be reusable configurations. This means once you've configured the Curity DCR provider, it can be utilized across multiple authentication strategies without needing to be set up again.
+
+1. Start by creating the DCR provider. Send a `POST` request to the[`v2/dcr-providers`](https://kong-platform-api.netlify.app/konnect/application-auth-strategies/v2/openapi.yaml/#tag/DCR-Providers/operation/create-dcr-provider) endpoint with your DCR configuration details. 
+```sh
+curl --request POST \
+  --url https://us.api.konghq.com/v2/dcr-providers \
+  --header 'Authorization: $KPAT' \
+  --header 'content-type: application/json' \
+  --data '{
+  "name": "DCR Curity",
+  "provider_type": "Curity",
+  "issuer": "https://CURITY_INSTANCE_DOMAIN/oauth/v2/oauth-anonymous/.well-known/openid-configuration",
+  "dcr_config": {
+    "dcr_token": "my_dcr_token"
+  }'
+```
+You will receive a response that includes a `dcr_provider` object similar to the following:
+
+   ```sh
+   "dcr_provider": {
+   "id": "33f8380e-7798-4566-99e3-2edf2b57d289",
+   "name": "DCR Curity",
+   "display_name": "Credentials",
+   "provider_type": "Curity"
+   }
+   ```
+Save the `id` value for creating the authentication strategy.
+
+2. With the `dcr_id` obtained from the first step, create an authentication strategy. Construct a `POST` request to the [`v2/create-auth-stratgies`](https://kong-platform-api.netlify.app/konnect/application-auth-strategies/v2/openapi.yaml/#tag/App-Auth-Strategies/operation/create-app-auth-strategy) endpoint describing an authentiaction strategy: 
+
+   ```sh
+   curl --request POST \
+   --url https://us.api.konghq.tech/v2/application-auth-strategies \
+   --header 'Authorization: $KPAT' \
+   --header 'content-type: application/json' \
+   --data '{
+   "name": "Curity auth strategy",
+   "display_name": "Curity",
+   "strategy_type": "Curity",
+   "configs": {
+      "openid-connect": {
+         "issuer": "https://my-issuer.auth0.com/api/v2/",
+         "credential_claim": [
+         "client_id"
+         ],
+         "scopes": [
+         "openid",
+         "email"
+         ],
+         "auth_methods": [
+         "client_credentials",
+         "bearer"
+         ]
+      }
+   },
+   "dcr_provider_id": "93f8380e-7798-4566-99e3-2edf2b57d289"
+   }'
+
+   ```
+
 {% endnavtab %}
 {% endnavtabs %}
 
