@@ -4,7 +4,19 @@ title: Add your API to Konnect
 
 If you used the [in-app onboarding wizard in {{site.konnect_short_name}}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-quickstart-install), you should already have a demo service.
 
-In this guide, you will build on your Konnect environment by adding your own API to {{site.konnect_short_name}}.
+In this guide, you will build on your Konnect environment by adding your own API to {{site.konnect_short_name}} using services and routes.
+
+<details><summary>What are services and routes?</summary>
+
+{% capture konnect_concepts %}
+[**Services:**](/gateway/latest/key-concepts/services/) A service is an entity representing an external upstream API or microservice. For example, a data transformation microservice, a billing API, and so on.
+
+[**Routes:**](/gateway/latest/key-concepts/routes/) Routes determine how (and if) requests are sent to their services after they reach the gateway. Where a service represents the backend API, a route defines what is exposed to clients. A single service can have many routes. Once a route is matched, the gateway proxies the request to its associated service. 
+{% endcapture %}
+
+{{ konnect_concepts | markdownify }}
+
+</details>
 
 ## Prerequisites
 
@@ -124,18 +136,6 @@ If successful, you should see the homepage for `httpbin.org`. In the Gateway Man
 
 And that's it! You have your first service set up, running, and routing
 traffic proxied through a {{site.base_gateway}} data plane node.
-
-<details><summary>What are services and routes?</summary>
-
-{% capture konnect_concepts %}
-[**Services:**](/gateway/latest/key-concepts/services/) A service is an entity representing an external upstream API or microservice. For example, a data transformation microservice, a billing API, and so on.
-
-[**Routes:**](/gateway/latest/key-concepts/routes/) Routes determine how (and if) requests are sent to their services after they reach the gateway. Where a service represents the backend API, a route defines what is exposed to clients. A single service can have many routes. Once a route is matched, the gateway proxies the request to its associated service. 
-{% endcapture %}
-
-{{ konnect_concepts | markdownify }}
-
-</details>
 
 ## Next steps
 

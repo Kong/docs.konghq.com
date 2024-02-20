@@ -37,10 +37,11 @@ lightweight, fast, and flexible API gateway.
     <div class="install-text">Features</div>
   </a> -->
 
+  <!-- Uncomment once wizard is fixed to allow repeating it
   <a href="https://cloud.konghq.com/quick-start" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-learning.svg" alt="">
-    <div class="install-text">Use the quickstart wizard</div>
-  </a>
+    <div class="install-text">Use the onboarding wizard</div>
+  </a> -->
 
   <a href="/konnect/getting-started/add-api" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-admin-api-color.svg" alt="">
