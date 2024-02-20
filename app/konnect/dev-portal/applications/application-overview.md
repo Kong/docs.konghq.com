@@ -4,9 +4,9 @@ toc: true
 content_type: explanation
 ---
 
-An application can register multiple services, provided they utilize the same authentication strategy. In the {{site.konnect_short_name}} Dev Portal, an application's associated services are displayed on its details page. To view all applications linked to your account, select **My Apps** from the dropdown menu beneath your login email in the Dev Portal.
+The purpose of registering services to an application is to consume those services using application-level authentication. An application can register multiple services, provided they use the same authentication strategy. Grouping authentication enables direct access to multiple services. The application can host multiple credentials or API keys. For more information about application credentials, refer to [Generate Credentials for an Application](/konnect/dev-portal/applications/dev-gen-creds/).
 
-The purpose of registering services to an application is to consume those services using application-level authentication. Grouping authentication enables direct access to multiple services. The application can host multiple credentials or API keys. For more information about application credentials, refer to [Generate Credentials for an Application](/konnect/dev-portal/applications/dev-gen-creds/).
+In the {{site.konnect_short_name}} Dev Portal, an application's associated services are displayed on its details page. To view all applications linked to your account, select **My Apps** from the dropdown menu beneath your login email in the Dev Portal.
 
 In [cloud.konghq.com](https://cloud.konghq.com), admins can access a list of the installed authentication plugins via the **Gateway Manager**. See [Enable Application Registration for a Service](/konnect/dev-portal/applications/enable-app-reg/) for more information about authentication flows.
 
