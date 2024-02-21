@@ -43,8 +43,8 @@ breadcrumbs:
 
 {% if page.bundled == false or page.bundled == false %}
   <blockquote class="important">
-    <details>
-    <summary style="cursor:pointer;"><strong>This plugin is not enabled by default</strong>. Click here for instructions to enable it &nbsp;&nbsp;⬇️</summary>
+    <details class="collapsible-note">
+    <summary style="cursor:pointer;"><strong>This plugin is not enabled by default</strong>. Click here for instructions to enable it</summary>
 
     <ul>
       <li>Package install: Set <strong>plugins=bundled,{{ page.extn_slug }}</strong> in <strong>kong.conf</strong> before starting Kong</li>
@@ -55,19 +55,7 @@ breadcrumbs:
   </blockquote>
 {% endif %}
 
-{% if page.alpha %}
-  <blockquote class="warning no-icon">
-    This plugin is released as a <a href="/gateway/latest/availability-stages/#tech-preview"><span class="badge alpha" role="link" aria-label="tech preview"></span></a> (alpha-quality) and should not be deployed in a production environment.
-  </blockquote>
-{% endif %}
-
-{% if page.beta %}
-  <blockquote class="warning no-icon">
-    This plugin is released as <a href="/gateway/latest/availability-stages/#beta"><span class="badge beta" role="link" aria-label="beta"></span></a> and should not be deployed in a production environment.
-  </blockquote>
-{% endif %}
-
-{% if page.extn_publisher == "kong-inc" and page.schema.defined? %}
+{% if page.extn_publisher == "kong-inc" %}
 <blockquote>
   <p>
     <em>Looking for the plugin's configuration parameters? You can find them in the <a href="{{ page.configuration_url }}">{{page.name}} configuration reference</a> doc.</em>
@@ -86,7 +74,17 @@ breadcrumbs:
 
 {% unless page.extn_publisher == "kong-inc" %}{{ content }}{% endunless %}
 
-{% if page.extn_publisher == "kong-inc" %}{{ content }}{% endif %}
+{% if page.extn_publisher == "kong-inc" %}
+{{ content }}
+
+{% if page.kong_beta %}
+<p>
+  <em style="color: rgb(73, 78, 80)">
+  This plugin is in beta. <a href="https://github.com/Kong/kong/discussions">Let us know what you think</a> on GitHub.
+  </em>
+</p>
+{% endif %}
+{% endif %}
 
 {% if page.terms_of_service %}
   <h3 id="terms-of-service">Terms of Service</h3>

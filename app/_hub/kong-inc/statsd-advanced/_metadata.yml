@@ -7,6 +7,6 @@ konnect: true
 network_config_opts: All
 notes: --
 categories:
-  - logging
+  - analytics-monitoring
 publisher: Kong Inc.
 desc: (Deprecated) Send metrics to StatsD with more flexible options
