@@ -108,8 +108,6 @@ Kong Ingress Controller control planes can't be part of a control plane group.
 
 One control plane group cannot be a member of another control plane group. 
 
-Analytics for a control plane group are only available at the group level. 
-Member standard control planes have no individual analytics reporting.
 
 Conflict detection in a control plane group happens only after you have added a data plane node to the control plane group.
 ## More information

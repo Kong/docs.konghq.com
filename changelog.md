@@ -2,6 +2,67 @@
 
 <!--vale off-->
 
+## Week 7
+
+### [release deck 1.34.0](https://github.com/Kong/docs.konghq.com/pull/6952) (2024-02-15)
+
+Add deck 1.34 release information with new` deck file namespace` command
+ 
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.6.x/kong-manager/auth/oidc/configure
+
+### [Release: Gateway 3.6](https://github.com/Kong/docs.konghq.com/pull/6929) (2024-02-14)
+
+Releasing the docs for for Gateway 3.6.
+
+List of changes in this release:
+https://github.com/Kong/docs.konghq.com/milestone/56?closed=1
+
+### [kic: split CRD reference types into sections](https://github.com/Kong/docs.konghq.com/pull/6943) (2024-02-13)
+
+Splits the top-level CRDs and the types that they rely on into separate sections to make it clear which types are meant to be used to create objects in the Kubernetes API.
+
+Addresses @liyangau concern about the reference not signaling clearly which types are meant to be used to create objects in a cluster. 
+
+It's propagated from the KIC repo: https://github.com/Kong/kubernetes-ingress-controller/pull/5611
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.6.x/kong-manager/auth/oidc/configure
+
+
+### [Feat: Add new performance testing results doc for Gateway 3.6](https://github.com/Kong/docs.konghq.com/pull/6928) (2024-02-13)
+
+Beginning in Gateway 3.6, Kong is now publishing performance testing results for several use cases. This PR adds a doc that publishes those results, covers the testing methodology, and provides info for customers to use the Kong test suite to conduct their own tests. This PR also creates a new Performance section of the docs so it's easier to find performance related docs.
+
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.6.x/production/performance/performance-testing
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.1.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.2.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.3.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.4.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.5.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.6.x/production/sizing-guidelines
+
 ## Week 6
 
 ### [Release: Gateway 3.4.3.4](https://github.com/Kong/docs.konghq.com/pull/6932) (2024-02-10)
