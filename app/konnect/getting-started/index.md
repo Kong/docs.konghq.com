@@ -4,11 +4,18 @@ title: Get started with Konnect
 
 {% mermaid %}
 flowchart TD
-    A{Start my {{site.konnect_short_name}} journey} -->B(Set up an API for me)
-    A{Start my {{site.konnect_short_name}} journey} -->C(I want to do it myself)
-    B --> D(Use the onboarding wizard for the first time)
-    C --> E(Add an API to {{site.konnect_short_name}})
-    C --> F(Import {{site.base_gateway}} entities to {{site.konnect_short_name}})
+    A((fa:fa-flag-checkered \n Start my {{site.konnect_short_name}} journey ))
+    B(Set up an API for me)
+    C(I want to do it myself)
+    D(fa:fa-graduation-cap Use the onboarding wizard)
+    E(fa:fa-plus Add an API to {{site.konnect_short_name}})
+    F(fa:fa-file-import Import {{site.base_gateway}} entities to {{site.konnect_short_name}})
+
+    A --> B
+    A --> C
+    B --> D
+    C --> E
+    C --> F
 
     %% this section defines node interactions
     click D "https://cloud.konghq.com/quick-start"

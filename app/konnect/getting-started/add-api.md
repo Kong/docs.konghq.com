@@ -141,7 +141,7 @@ traffic proxied through a {{site.base_gateway}} data plane node.
 
 Now that you've added your API to {{site.konnect_short_name}}, you can continue to test {{site.konnect_short_name}}'s capabilities:
 
-<div class="docs-grid-install max-2">
+<div class="docs-grid-install max-3">
 
   <a href="/hub/kong-inc/key-auth/how-to/basic-example/?tab=konnect-api" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
