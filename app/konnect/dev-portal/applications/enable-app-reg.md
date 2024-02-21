@@ -174,7 +174,7 @@ Using the [`v2/portals/{portalId}/product-versions`](https://kong-platform-api.n
   * [Custom IdP](/konnect/dev-portal/applications/dynamic-client-registration/custom/)
 
 1. Before making a request to this endpoint, ensure you have gathered the following details from the previous step:
-  * `PortalId`: ID of the Dev Portal
+  * `portalId`: ID of the Dev Portal
   * `product_version_ids`: API Product version ID.
   * `auth_strategy_id`: The ID of the auth strategies you configured.
 
