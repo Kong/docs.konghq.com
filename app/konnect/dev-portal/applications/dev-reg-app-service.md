@@ -6,7 +6,7 @@ Dev Portal users can request to use API products with their application by submi
 
 ## Register an application
 
-From the Dev Portal, you can register your application to multiple API product versions. These actions are performed from the **My Apps** section of the Dev Portal.
+From the Dev Portal, you can register your application to one or more API product versions, as long as they share the same authentication strategy. These actions are performed from the **My Apps** section of the Dev Portal.
 To register an application, select the **My Apps** option by clicking the drop-down menu below your email address in the Dev Portal, then follow these instructions: 
 
 1. Select the application you want to register. 
