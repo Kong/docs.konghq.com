@@ -3,7 +3,7 @@ title: Enable or Disable Application Registration for an API Product Version
 content_type: how-to
 ---
 
-To grant developers access to [register an application](/konnect/dev-portal/applications/dev-reg-app-service/), you must apply an authentication strategy and enable application registration for an API product version. 
+To grant developers access to [register an application](/konnect/dev-portal/applications/dev-apps/), you must apply an authentication strategy and enable application registration for an API product version. 
 When you apply an auth strategy, {{site.konnect_saas}} enables plugins automatically to support the desired mode, either key authentication or OpenID Connect.
 These plugins run inside the data plane to support application registration for the API product version and are managed by
 {{site.konnect_saas}}.

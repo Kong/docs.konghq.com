@@ -171,8 +171,6 @@
           url: /dev-portal/applications/enable-app-reg/
         - text: Create, Edit, and Delete an Application
           url: /dev-portal/applications/dev-apps/
-        - text: Register an Application with an API product
-          url: /dev-portal/applications/dev-reg-app-service/
         - text: Generate Credentials for an Application
           url: /dev-portal/applications/dev-gen-creds/
     - text: Dynamic Client Registration

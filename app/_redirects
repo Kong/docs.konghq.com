@@ -17,6 +17,10 @@
 /gateway/latest/kong-production/db-encryption/ /gateway/latest/kong-enterprise/db-encryption/
 ######################################################################
 
+## App reg v2 
+
+/konnect/dev-portal/applications/dev-reg-app-service/ /konnect/dev-portal/applications/dev-apps/
+
 # API
 
 /konnect/api/portal-rbac/latest/*    /konnect/api/portal-management/latest/
