@@ -176,7 +176,7 @@ Using the [`v2/portals/{portalId}/product-versions`](https://kong-platform-api.n
 1. Before making a request to this endpoint, ensure you have gathered the following details from the previous step:
   * `portalId`: ID of the Dev Portal
   * `product_version_id`: API Product version ID.
-  * `auth_strategy_id`: The ID of the auth strategies you configured.
+  * `auth_strategy_id`: The ID of the auth strategy you configured.
 
 1. Apply the auth strategy to your API, making sure to replace `your_product_version_id` and `your_auth_strategy_id` with the actual IDs you intend to use: 
 
