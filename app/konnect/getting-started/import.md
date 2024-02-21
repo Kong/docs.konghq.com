@@ -80,25 +80,25 @@ Now that you've imported your {{site.base_gateway}} entities to {{site.konnect_s
 
 ### Migrate additional settings
 
-<div class="docs-grid-install max-4">
+<div class="docs-grid-install max-4" >
 
-  <a href="/konnect/api-products/service-documentation/" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
+  <a href="/konnect/api-products/service-documentation/" class="docs-grid-install-block no-description" style="min-height:150px">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-upload.png" alt="">
     <div class="install-text">Migrate API specs and markdown service descriptions</div>
   </a>
 
-  <a href="/konnect/dev-portal/dev-reg/" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
+  <a href="/konnect/dev-portal/dev-reg/" class="docs-grid-install-block no-description" style="min-height:150px">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-users.png" alt="">
     <div class="install-text">Create Dev Portal accounts for developers</div>
   </a>
 
-  <a href="/konnect/gateway-manager/plugins/#custom-plugins" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
+  <a href="/konnect/gateway-manager/plugins/#custom-plugins" class="docs-grid-install-block no-description" style="min-height:150px">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-extensibility.png" alt="">
     <div class="install-text">Prepare custom plugins for migration</div>
   </a>
 
-  <a href="/konnect/org-management/teams-and-roles/" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
+  <a href="/konnect/org-management/teams-and-roles/" class="docs-grid-install-block no-description" style="min-height:150px">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-teams.png" alt="">
     <div class="install-text">Review and set up teams and roles</div>
   </a>
 
@@ -107,19 +107,19 @@ Now that you've imported your {{site.base_gateway}} entities to {{site.konnect_s
 ### Test other {{site.konnect_short_name}} use cases
 
 <div class="docs-grid-install max-3">
-  
-  <a href="/hub/kong-inc/key-auth/how-to/basic-example/?tab=konnect-api" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
-    <div class="install-text">Protect my APIs with authentication</div>
+
+  <a href="/hub/kong-inc/key-auth/how-to/basic-example/?tab=konnect-api" class="docs-grid-install-block no-description" style="min-height:150px">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-key-auth.png" alt="">
+    <div class="install-text">Protect my APIs with key authentication</div>
   </a>
 
-  <a href="/hub/kong-inc/rate-limiting/?tab=konnect-api" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
+  <a href="/hub/kong-inc/rate-limiting/?tab=konnect-api" class="docs-grid-install-block no-description" style="min-height:150px">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-rl.png" alt="">
     <div class="install-text">Rate limit my APIs</div>
   </a>
 
-  <a href="/konnect/dev-portal/applications/enable-app-reg/" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
+  <a href="/konnect/dev-portal/applications/enable-app-reg/" class="docs-grid-install-block no-description" style="min-height:150px">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-operation.png" alt="">
     <div class="install-text">Make my APIs available to customers</div>
   </a>
 
