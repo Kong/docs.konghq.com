@@ -37,7 +37,7 @@ content_type: how-to
    flow for application registration, enter the ID of your third-party OAuth2 claim.
 
    {:.important}
-   > Your application may only be able to register for API Product versions that shares the same auth strategy.
+   > Your application may only be able to register for API Product versions that share the same auth strategy.
 
 1. After filling in the details, click **Create**. You'll be directed to your new application's details page where you can [generate credentials](/konnect/dev-portal/applications/dev-gen-creds/) and view registered services. 
 
