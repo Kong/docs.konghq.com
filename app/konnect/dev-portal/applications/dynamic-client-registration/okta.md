@@ -60,11 +60,11 @@ In order to map an application from the Dev Portal to Okta, you have to create a
 {% navtabs %}
 {% navtab Konnect UI %}
 
-After configuring Okta, you can integrate it with the Dev Portal for dynamic client registration (DCR). This process involves two main steps: first, creating the DCR provider, and second, establishing the authentication strategy. DCR providers are designed to be reusable configurations. This means once you've configured the Okta DCR provider, it can be utilized across multiple authentication strategies without needing to be set up again.
+After configuring Okta, you can integrate it with the Dev Portal for Dynamic Client Registration (DCR). This process involves two main steps: first, creating the DCR provider, and second, establishing the authentication strategy. DCR providers are designed to be reusable configurations. This means once you've configured the Okta DCR provider, it can be used across multiple authentication strategies without needing to be set up again.
 
-1. Log in to {{site.konnect_short_name}} and select the Dev Portal {% konnect_icon dev-portal %} from the menu.
+1. Log in to {{site.konnect_short_name}} and select Dev Portal {% konnect_icon dev-portal %} from the menu.
 
-2. Navigate to **Application Auth** for the authentication settings of your API Products.
+2. Navigate to **Application Auth** to see the authentication strategies for your API Products.
 
 3. Open the **DCR Providers** to see all existing DCR providers.
 
@@ -83,7 +83,7 @@ After configuring Okta, you can integrate it with the Dev Portal for dynamic cli
    {:.note}
    > **Note:**  Avoid using the `openid` scope with client credentials as it restricts the use. If no scopes are specified, `openid` will be the default.
 
-10. Select the relevant **Auth Methods** you need (`client_credentials`, bearer, session), and **Save**. 
+10. Select the relevant **Auth Methods** you need (`client_credentials`, `bearer`, `session`), and **Save**. 
 
 {% endnavtab %}
 {% navtab API %}
@@ -156,7 +156,7 @@ From the **My Apps** page in the Dev Portal, follow these instructions:
 
 1. Click the **New App** button.
 
-2. Fill out the **Create New Application** form with your application name, redirect URI, and a description.
+2. Fill out the **Create New Application** form with your application name, auth strategy, and description.
 
 3. Click **Create** to save your application.
 
