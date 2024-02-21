@@ -38,7 +38,9 @@ key = md5(UUID | method | request | query_params | headers | consumer_groups)
 ```
 
 Where `method` is defined via the OpenResty `ngx.req.get_method()` call, `request` is defined via the Nginx `$request` variable.
-`query_params` and `headers` are controlled via configuration parameters `vary_query_params` and `vary_headers`.
+You can control `query_params` and `headers` via the configuration parameters 
+[`vary_query_params`](/hub/kong-inc/proxy-cache-advanced/configuration/#config-vary_query_params) and 
+[`vary_headers`](/hub/kong-inc/proxy-cache-advanced/configuration/#config-vary_headers).
 
 Kong will return the cache key associated with a given request as the `X-Cache-Key` response header.
 It is also possible to precalculate the cache key for a given request as noted above.
