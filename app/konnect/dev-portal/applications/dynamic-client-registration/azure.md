@@ -40,7 +40,7 @@ In Azure, create the main application:
 ## Configure the Dev Portal
 {% navtabs %}
 {% navtab Konnect UI %}
-Once you have Azure configured, you can set up the Dev Portal to use Azure for dynamic client registration (DCR).
+Once you have Azure configured, you can set up the Dev Portal to use Azure for Dynamic Client Registration (DCR). This process involves two steps: creating the DCR provider and establishing the authentication strategy. DCR providers are designed to be reusable configurations. This means once you've configured the Azure DCR provider, it can be used across multiple authentication strategies without needing to be set up again.
 
 1. Log in to {{site.konnect_short_name}} and select the **Dev Portal** {% konnect_icon dev-portal %} from the menu.
 
@@ -64,11 +64,10 @@ Once you have Azure configured, you can set up the Dev Portal to use Azure for d
 
 11. In the **Credential Claims** field, enter `appid`.
 
-12. Select the relevant **Auth Methods** you need (`client_credentials`, bearer, session), and **save**. 
+12. Select the relevant **Auth Methods** you need (`client_credentials`, `bearer`, `session`), and **save**. 
 
 {% endnavtab %}
 {% navtab API %}
-After configuring Azure, you can integrate it with the Dev Portal for dynamic client registration (DCR). This process involves two steps: creating the DCR provider and establishing the authentication strategy. DCR providers are designed to be reusable configurations. This means once you've configured the Azure DCR provider, it can be used across multiple authentication strategies without needing to be set up again.
 
 1. Start by creating the DCR provider. Send a `POST` request to the [`v2/dcr-providers`](https://kong-platform-api.netlify.app/konnect/application-auth-strategies/v2/openapi.yaml/#tag/DCR-Providers/operation/create-dcr-provider) endpoint with your DCR configuration details:
 ```sh
@@ -148,7 +147,7 @@ From the **My Apps** page in the Dev Portal, follow these instructions:
 
 1. Click the **New App** button.
 
-2. Fill out the **Create New Application** form with your application name and a description.
+2. Fill out the **Create New Application** form with your application name, authentication strategy, and description.
 
 3. Click **Create** to save your application.
 
