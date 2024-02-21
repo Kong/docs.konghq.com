@@ -102,7 +102,7 @@ Once you have Curity configured, you can set up the Dev Portal to use Curity for
 
 11. If you are using the Curity configuration described in the previous sections, enter the `sub` into the **Claims** field and leave the **Scopes** field empty. If you configured Curity differently, then ensure you add the correct **Scopes** and **Claims**.
 
-12. Select the relevant **Auth Methods** you need (`client_credentials`, bearer, session) and **Save**. 
+12. Select the relevant **Auth Methods** you need (`client_credentials`, `bearer`, `session`) and **Save**. 
 
 {% endnavtab %}
 {% navtab API %}
@@ -175,7 +175,7 @@ From the **My Apps** page in the Dev Portal, follow these instructions:
 
 1. Click **New App**.
 
-2. Fill out the **Create New Application** form with your application name, redirect URI, and a description.
+2. Fill out the **Create New Application** form with your application name, authentication strategy, and description.
 
 3. Click **Create** to save your application.
 
