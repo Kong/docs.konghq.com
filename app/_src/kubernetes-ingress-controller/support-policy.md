@@ -63,33 +63,19 @@ chart indicates a single app version, this is just the default
 metadata does not support indicating a range.
 
 New chart releases are, however, tested against only a select group of recent
-dependency and Kubernetes versions, and may have unknown incompatibilies with
-older versions. If you discover a set of incompatible versions where
+dependency and Kubernetes versions, and may have unknown compatibility problems
+with older versions. If you discover a set of incompatible versions where
 dependencies are not past their end of support, please [file an
 issue](https://github.com/Kong/charts/issues/) with your {{site.base_gateway}},
 {{site.kic_product_name}}, and Kubernetes versions and any special values.yaml
-configuration needed to trigger the problem.
+configuration needed to trigger the problem. Some issues may require using an
+older chart version for LTS releases of other products, in which case Kong can
+backport fixes to an older chart release as needed.
 
-The chart includes [custom resource
-definitions](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
-(CRDs) that are not compatible with older Kubernetes versions. Helm's CRD
-installer does not support the same version-aware logic used elsewhere to
-provide older-version compatibility, so the chart cannot install a the
-definitions for an older, compatible controller version automatically. If you
-use an older version of {{site.kic_product_name}} compatible with your
-Kubernetes version, you can install its definitions separately. For example, to
-install the 2.5.1 definitions and install with Helm's CRD installer disabled:
+The chart includes [custom resource definitions](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
+(CRDs) that are not compatible with older Kubernetes versions. 
 
-```bash
-kubectl kustomize https://github.com/Kong/kubernetes-ingress-controller/config/crd?ref=v2.5.1 | kubectl apply -f -
-
-helm install myrelease kong/ingress --skip-crds
-```
-
-Note that even when you _do_ use Helm to install CRDs, Helm does not update
-CRDs when running `helm upgrade`. You must separately install updated CRDs using
-the above `kubectl` command versions before running a `helm ugprade` that
-installs a newer controller release.
+{% include /md/kic-crd-upgrades.md %}
 
 ## See also
 * [Version support policy for {{site.base_gateway}}](/gateway/latest/support-policy/)
