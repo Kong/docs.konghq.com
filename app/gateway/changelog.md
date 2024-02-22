@@ -14,6 +14,7 @@ For product versions that have reached the end of sunset support, see the [chang
 
 ### Breaking changes and deprecations
 
+* Kong Gateway 3.6.0.0 requires a ulimit higher than 1024 to function properly. This requirement will be removed in a subsequent version. We recommend setting the ulimit to at least 4096 when running Kong Gateway 3.6.0.0.
 * To avoid ambiguity with other Wasm-related `nginx.conf` directives, the prefix for Wasm `shm_kv` nginx.conf directives was changed from `nginx_wasm_shm_` to `nginx_wasm_shm_kv_`.
  [#11919](https://github.com/Kong/kong/issues/11919)
 

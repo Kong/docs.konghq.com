@@ -408,6 +408,6 @@
   branch: release-2.6
 - edition: mesh
   version: preview
-  release: 2.7.0
+  release: 2.7.x
   branch: master
   label: dev
