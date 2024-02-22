@@ -169,7 +169,7 @@ vault policy write kmesh-default-dataplane-proxies kmesh-default-dataplane-proxi
 
 #### Step 4. Configure authentication method:
 
-To authorize {{site.mesh_product_name}} to vault using a token, generate the following orphan token and pass it to mesh:
+To authorize {{site.mesh_product_name}} to vault using a token, generate the following orphan token and pass it to the mesh:
 
 ```sh
 vault token create -type=service -orphan -format=json -policy="kmesh-default-dataplane-proxies" | jq -r ".auth.client_token"
