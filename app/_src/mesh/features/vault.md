@@ -176,8 +176,8 @@ vault token create -type=service -orphan -format=json -policy="kmesh-default-dat
 ```
 
 We suggest using an [orphan token](https://developer.hashicorp.com/vault/docs/concepts/tokens#token-hierarchies-and-orphan-tokens)
-to avoid surprising behavior around expiration. Creating them requires root/sudo
-permissions, Therefore you need those permissions to execute the above command. If you understand the
+to avoid surprising behavior around expiration. You need root/sudo
+permissions to execute the previous command. If you understand the
 implications, you can use a non-orphan token as well.
 The output should print a Vault token that you then provide as the `conf.fromCp.auth.token` value of the `Mesh` object.
 
