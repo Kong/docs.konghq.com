@@ -62,6 +62,7 @@ configuration field to construct the request path when requesting the Azure API.
 
 * [**SAML**](/hub/kong-inc/saml) (`saml`)
   * Adjusted the priority of the SAML plugin to 1010 to correct the integration between the SAML plugin and other consumer-based plugins.
+* [**OAS Validation**](/hub/kong-inc/oas-validation) (`oas-validation`): The field `api_spec` no longer accepts URl-encoded content. Please use the raw content instead.
 
 ### Features
 
@@ -485,6 +486,7 @@ both in the Admin API and in Kong Manager.
 #### Plugins
 * [**SAML**](/hub/kong-inc/saml) (`saml`)
   * Adjusted the priority of the SAML plugin to 1010 to correct the integration between the SAML plugin and other consumer-based plugins.
+* [**OAS Validation**](/hub/kong-inc/oas-validation) (`oas-validation`): The field `api_spec` no longer accepts URl-encoded content. Please use the raw content instead.
 
 ### Features
 #### Configuration
@@ -940,6 +942,7 @@ and Kong Gateway will try to control the concurrency when exporting the config.
 ### Breaking Changes
 #### Plugins
 * [**SAML**](/hub/kong-inc/saml) (`saml`): Adjusted the priority of the SAML plugin to 1010 to correct the integration between the SAML plugin and other consumer-based plugins.
+* [**OAS Validation**](/hub/kong-inc/oas-validation) (`oas-validation`): The field `api_spec` no longer accepts URl-encoded content. Please use the raw content instead.
 
 ### Features
 #### Core
