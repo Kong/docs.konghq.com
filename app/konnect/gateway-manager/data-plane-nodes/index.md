@@ -45,7 +45,7 @@ Advanced setup:
 {{site.konnect_product_name}} supports using non-transparent forward proxies to connect your {{site.base_gateway}} data plane with the {{site.konnect_saas}} control plane. See the [Forward proxy connections](/gateway/latest/production/networking/cp-dp-proxy/) {{site.base_gateway}} documentation for more information.
 
 ## Data plane node dashboard
-### Data plane node dashboard
+
 ![gateway data plane node dashboard](/assets/images/products/konnect/gateway-manager/konnect-runtime-instance-gateway.png)
 > **Figure 1:** This image shows the Gateway data plane node dashboard. For each Gateway data plane node, you can see analytics, and host details.
 
