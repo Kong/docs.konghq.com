@@ -24,7 +24,31 @@ instead of a specific host. For the purposes of our example, the upstream will p
 
 Here is a diagram illustrating the setup:
 
-![Upstream targets](/assets/images/products/gateway/getting-started-guide/upstream-targets.png)
+<!--vale off-->
+
+{% mermaid %}
+flowchart LR
+  A("`Route 
+  (/mock)`")
+  B("`Service
+  (example_service)`")
+  C(Load balancer)
+  D(httpbin.org)
+  E(httpbun.com)
+  
+  subgraph id1 ["`**KONG GATEWAY**`"]
+    A --> B --> C
+  end
+
+  subgraph id2 [Targets]
+    C --> D & E
+  end
+
+  style id1 stroke:#CCD2D6
+  style id2 stroke:none
+{% endmermaid %}
+
+<!--vale on-->
 
 ## Enable load balancing
 
