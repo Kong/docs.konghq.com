@@ -210,10 +210,20 @@
   items:
     - text: Introduction to Analytics
       url: /analytics/
-    - text: Analyze API Usage and Performance
-      url: /analytics/use-cases/
-    - text: Reports Reference
-      url: /analytics/reference/
+    - text: Dashboard
+      url: /analytics/dashboard/
+    - text: Explorer
+      url: /analytics/explorer/
+    - text: Reports
+      items:
+        - text: Overview
+          url: /analytics/reports/
+        - text: Analyze API Usage and Performance
+          url: /analytics/use-cases/
+        - text: Reports Reference
+          url: /analytics/reference/
+    - text: Requests
+      url: /analytics/api-requests/
 - title: Org Management
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
   items:

@@ -27,11 +27,11 @@ This brings you to a list of all custom reports in the organization. From here, 
 To build a report that displays the total number of requests across all of your APIs over the last 30 days, set the following options in the UI: 
 
 * **Name**:  API usage (last 30 days)
-* **Chart type**: Horizontal bar chart
 * **Date/Time**: Last 30 days
-* **Select a metric**: Request Count
-* **Group by**: API Product
-* **Then by**: None
+* **Show**: Horizontal Bar
+* **With**: Request Count
+* **By**: API Product 
+* **And**: None
 
 ![API usage (last 30 days)](/assets/images/products/konnect/analytics/custom-reports/total-api-requests.png){:.image-border}
 > _**Figure 1:** Horizontal bar chart showing the total number of requests across all APIs in the organization over the last 30 days._
@@ -57,17 +57,17 @@ To gain further insight into the Accounts API, let's build a report that display
 Set the following options in the UI:
 
 * **Name**: Daily Accounts API Usage (last 30 days)
-* **Chart type**: Line chart
+* **Show**: Line chart
 * **Date/Time**: Last 30 days
-* **Select a metric**: Request Count
-* **Group by**: API Product
-* **Choose granularity**: Daily
+* **With**: Request Count
+* **By**: API Product
+* **And**: Daily
 
 Add a filter for the Accounts API. Click **Add Filter**, then set the following options:
 
-* **Filter by**: API Product
-* **Operator**: In
-* **Filter value**: Accounts API (or your own API name)
+* **Filter By**: API Product
+* **Choose Operator**: In
+* **Filter Value**: Accounts API (or your own API name)
 
 ![Daily Accounts API Usage (last 30 days)](/assets/images/products/konnect/analytics/custom-reports/total-usage-accounts-api-30.png){:.image-border}
 > _**Figure 2:** Line chart showing the daily usage for the Accounts API over the last 30 days._
@@ -100,11 +100,11 @@ You can track requests per minute, per day, and even differentiate it across dif
 To configure the {{site.konnect_saas}} to create a look back report of total traffic across different applications, set the following options in the UI: 
 
 * **Name**: API Usage by Application (last 30 days)
-* **Chart type**: Vertical bar chart
+* **Show**: Vertical bar chart
 * **Date/Time**: Last 30 days
-* **Select a metric**: Request Count
-* **Group by**: API Product
-* **Then by**: Application
+* **With**: Request Count
+* **By**: API Product
+* **And**: Application
 
 
 ![API Usage by Application (last 30 days)](/assets/images/products/konnect/analytics/custom-reports/api-usage-by-application.png){:.image-border}
@@ -126,17 +126,16 @@ Your company determines that it is critical that payments are processed quickly 
 
 * **Name**: Payment API - Latency (last 30 days)
 * **Date/Time**: Last 30 days
-* **Chart type**: Line chart
-* **Select a metric**: Response Latency (p99)
-* **Group by**: API Product
-* **Choose granularity**: Daily
-* **Entity Selection**: Payment 
+* **Show**: Line chart
+* **With**: Response Latency (p99)
+* **By**: API Product 
+* **And**: None
 
 Add a filter for the Payment API. Click **Add Filter**, then set the following options:
  
-* **Filter by**: API Product
-* **Operator**: In
-* **Filter value**: Payment
+* **Filter By**: API Product
+* **Choose Operator**: In
+* **Filter Value**: Payment
 
 ![Payment API - Latency (last 30 days)](/assets/images/products/konnect/analytics/custom-reports/latency-payments-api-30.png){:.image-border}
 > _**Figure 5:** Line chart showing the latency for the Payments API over the last 30 days._

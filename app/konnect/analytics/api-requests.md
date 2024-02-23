@@ -14,7 +14,7 @@ Here are a couple of benefits of using API Requests:
 
 ## Inspect and filter API requests
 
-At a glance, each API request on the Requests page shows the following information:
+Each API request on the **Requests** page shows the following information:
 * Timestamp when the API request was made.
 * Status code returned for the API request.
 * HTTP method of the API request.
@@ -27,7 +27,3 @@ At a glance, each API request on the Requests page shows the following informati
 By clicking on a single API request, you can further inspect that request and see, for example, which API Product, Application, Consumer, or Control Plane is associated with this request. You can now continue to investigate each associated entity to see its configuration and adjust it if necessary.
 
 You can filter API requests by specific properties such as a certain Gateway service or only a particular route of interest. You can also filter API requests for up to seven days.
-
-## Share
-
-API Requests encodes your filters into the browser URL which allows you to easily bookmark or share common filter criteria for quicker access to the exact requests you’d like to view at any given time.
