@@ -83,7 +83,6 @@
 
 # 3.6
 /gateway/3.6.x/production/benchmark/  /gateway/3.6.x/production/performance/benchmark/
-/gateway/latest/production/benchmark/ /gateway/latest/production/performance/benchmark/
 
 # 3.5
 /gateway/latest/kong-enterprise/analytics/* /gateway/3.4.x/kong-enterprise/analytics/:splat
