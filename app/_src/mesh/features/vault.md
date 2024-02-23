@@ -175,10 +175,8 @@ To authorize {{site.mesh_product_name}} to vault using a token, generate the fol
 vault token create -type=service -orphan -format=json -policy="kmesh-default-dataplane-proxies" | jq -r ".auth.client_token"
 ```
 
-We suggest using an [orphan token](https://developer.hashicorp.com/vault/docs/concepts/tokens#token-hierarchies-and-orphan-tokens)
-to avoid surprising behavior around expiration. You need root/sudo
-permissions to execute the previous command. If you understand the
-implications, you can use a non-orphan token as well.
+We suggest using an [orphan token to avoid surprising behavior around expiration in token hierarchies](https://developer.hashicorp.com/vault/docs/concepts/tokens#token-hierarchies-and-orphan-tokens).
+You need root/sudo permissions to execute the previous command.
 The output should print a Vault token that you then provide as the `conf.fromCp.auth.token` value of the `Mesh` object.
 
 {:.note}
