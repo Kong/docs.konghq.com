@@ -40,11 +40,11 @@ flowchart LR
     A --> B --> C
   end
 
-  subgraph id2 [Targets]
+  subgraph id2 ["`Targets (example_upstream)`"]
     C --> D & E
   end
 
-  style id1 stroke:#CCD2D6
+  style id1 rx:10,ry:10
   style id2 stroke:none
 {% endmermaid %}
 

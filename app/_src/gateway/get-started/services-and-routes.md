@@ -37,7 +37,7 @@ flowchart LR
   C <--requests
   responses--> D
 
-  style id1 stroke:#CCD2D6
+  style id1 rx:10,ry:10
   
 {% endmermaid %}
   

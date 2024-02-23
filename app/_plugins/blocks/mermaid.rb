@@ -25,6 +25,7 @@ module Jekyll
               'primaryTextColor': '#495c64',
               'secondaryColor': '#fff',
               'secondaryTextColor': '#5096f2',
+              'tertiaryBorderColor': '#CCD2D6',
               'edgeLabelBackground': '#fff',
               'fontFamily': 'Roboto',
               'fontSize': '15px',
