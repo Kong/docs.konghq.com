@@ -2,7 +2,7 @@
 title: Add your API to Konnect
 ---
 
-If you used the [in-app onboarding wizard in {{site.konnect_short_name}}](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=gateway-quickstart-install), you should already have a demo service.
+If you used the in-app onboarding wizard when you logged in to {{site.konnect_short_name}} for the first time, you should already have a demo service.
 
 In this guide, you will build on your Konnect environment by adding your own API to {{site.konnect_short_name}} using services and routes.
 
