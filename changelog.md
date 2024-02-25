@@ -2,6 +2,170 @@
 
 <!--vale off-->
 
+## Week 8
+
+### [fix: Remove inaccurate note in OAuth2 plugin](https://github.com/Kong/docs.konghq.com/pull/6988) (2024-02-22)
+
+The note was added based on an old ticket that doesn't apply now. The OAuth2 plugin can be run in production.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/oauth2/overview/
+
+
+### [Add documentation on higher ulimit requirement for 3.6.0.0](https://github.com/Kong/docs.konghq.com/pull/6984) (2024-02-21)
+
+Document missing entry for ulimit breaking change.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.6.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.7.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/changelog
+
+
+### [add more info about cache key generation in proxy-cache-advanced](https://github.com/Kong/docs.konghq.com/pull/6982) (2024-02-21)
+
+Adding more info about how cache key is generated based on
+https://github.com/Kong/kong-ee/blob/3.6.0.0/plugins-ee/proxy-cache-advanced/kong/plugins/proxy-cache-advanced/cache_key.lua#L110-L122
+
+Preview: https://deploy-preview-6982--kongdocs.netlify.app/hub/kong-inc/proxy-cache-advanced/#cache-key
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/proxy-cache-advanced/overview/
+
+
+### [Fix: Links to KIC cli-arguments reference](https://github.com/Kong/docs.konghq.com/pull/6979) (2024-02-21)
+
+Flagged in https://github.com/Kong/docs.konghq.com/actions/runs/7945193457/job/21691549272. Links have no `src`, so they're not being generated properly.
+
+Generator will need adjusting to add a space between the end of the table and `<!--vale off-->`, otherwise the table breaks and looks like this: 
+![Screenshot 2024-02-20 at 10 42 57 AM](https://github.com/Kong/docs.konghq.com/assets/54370747/10d3eb74-124b-4b14-9fee-9bc5098e7489)
+
+Ran into a couple other cross-folder issues (kic-v2 vs kubernetes-ingress-controller): 
+* Why is https://github.com/Kong/docs.konghq.com/blob/main/app/_src/kic-v2/references/version-compatibility.md being maintained in `kic-v2` and not in the current folder?
+* This PR was opened against kic-v2 because the same FAQ page doesn't exist in 3.x: https://github.com/Kong/docs.konghq.com/pull/6403 - should this info be in 3.x?
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.6.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.7.x/reference/expressions-language/language-references
+
+
+### [Automated submodule update (app/_src/.repos/kong-plugins)](https://github.com/Kong/docs.konghq.com/pull/6976) (2024-02-20)
+
+
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.6.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.7.x/reference/expressions-language/language-references
+
+
+### [Fix: remove if_version on the Or operator in the table](https://github.com/Kong/docs.konghq.com/pull/6975) (2024-02-20)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+Remove the `if_version` on OR operator in expression language reference page to let the OR operator (`||`) displayed correctly.
+fixes #6972.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.6.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.7.x/reference/expressions-language/language-references
+
+
+### [fix: Add 3.6 conditional rendering for single backup nodes](https://github.com/Kong/docs.konghq.com/pull/6974) (2024-02-21)
+
+<!-- What did you change and why? -->
+We missed some conditional rendering for a note about single backup nodes. It should only apply to 3.6 and later? (waiting on confirmation for the correct version, so this PR might change a little)
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+https://kongstrong.slack.com/archives/CDSTDSG9J/p1708369514356029?thread_ts=1708368658.991799&cid=CDSTDSG9J
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.6.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.7.x/reference/expressions-language/language-references
+
+
+### [fix(kong-manager): add ignored params to the OIDC migration guide](https://github.com/Kong/docs.konghq.com/pull/6971) (2024-02-20)
+
+This pull request adds the ignored parameters to the migration guide for Kong Manager's OIDC feature.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.6.x/kong-manager/auth/oidc/migrate
+- https://docs.konghq.com/gateway/3.7.x/kong-manager/auth/oidc/migrate
+
+
+### [docs(mesh): in Vault docs switch to orphan tokens](https://github.com/Kong/docs.konghq.com/pull/6964) (2024-02-23)
+
+<!-- What did you change and why? -->
+As described in the PR changes, it's likely users want to create orphan tokens to authenticate to vault.
+
+See also https://github.com/Kong/kong-mesh/issues/5412
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.6.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.7.x/reference/expressions-language/language-references
+
+
+### [docs(mesh/rbac): add information how to unlock yourself](https://github.com/Kong/docs.konghq.com/pull/6944) (2024-02-23)
+
+Added docs how to unlock yourself in case you remove default rbac
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.6.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.7.x/reference/expressions-language/language-references
+
 ## Week 7
 
 ### [release deck 1.34.0](https://github.com/Kong/docs.konghq.com/pull/6952) (2024-02-15)
