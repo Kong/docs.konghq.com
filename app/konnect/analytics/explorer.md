@@ -2,11 +2,11 @@
 title: Explorer
 ---
 
-The Explorer is an intuitive web-based interface that enables easy access to API usage data gathered by {{site.konnect_short_name}} Analytics from your data plane nodes. It's an efficient tool for promptly diagnosing performance issues or capturing essential usage metrics. The Explorer also provides the option to save your views as custom reports.
+Explorer is an intuitive web-based interface that displays API usage data gathered by {{site.konnect_short_name}} Analytics from your data plane nodes. You can use this tool to promptly diagnose performance issues or capture essential usage metrics. Explorer also provides the option to save the output as custom reports.
 
 ![Explorer Dashboard](/assets/images/products/konnect/analytics/konnect-explorer-dashboard.png){:.image-border}
 
-To begin using Explorer, simply go to the **Analytics** {% konnect_icon analytics %} section and select **Explorer**. 
+To begin using Explorer, go to the **Analytics** {% konnect_icon analytics %} section and select **Explorer**. 
 {% navtabs %}
 {% navtab Grouping and Filtering %}
 ### Grouping and filtering
@@ -16,8 +16,8 @@ This is an overview of the different grouping and filtering categories available
 Category | Description
 ---------|------------
 None | Aggregate all of the data in the organization without any grouping.
-API Product | Group or filter the data by {{site.konnect_short_name}} API product.
-API Product Version | Group or filter the data by {{site.konnect_short_name}} API product version.
+API Product | Group or filter the data by the {{site.konnect_short_name}} API product.
+API Product Version | Group or filter the data by the {{site.konnect_short_name}} API product version.
 Route | Group or filter the data by route.
 Application | Group or filter the data by application.
 Status Code | Group or filter the data by individual response status code. Individual status codes can range from 100 to 599.
@@ -47,8 +47,8 @@ Response Size | Size | The size of the response payload returned to the client, 
 ### Time intervals
 
 The time frame selector controls the time frame of data visualized, which indirectly controls the
-granularity of the data. For example, the “5M” selection displays 5 minutes in
-1-second resolution data, while longer time frames display minute, hour, or days resolution data.
+granularity of the data. For example, the “5M” selection displays five minutes in
+one-second resolution data, while longer time frames display minute, hour, or days resolution data.
 
 All time interval presets are **relative**. 
 For custom reports, you can also choose a **custom** date range.
@@ -67,10 +67,10 @@ Interval | Description
 ---------|-------------
 Last 15 minutes | Data is aggregated in one minute increments.
 Last hour| Data is aggregated in one minute increments.
-Last 6 hours | Data is aggregated in one minute increments.
+Last six hours | Data is aggregated in one minute increments.
 Last 12 hours| Data is aggregated in one hour increments.
 Last 24 hours| Data is aggregated in one hour increments.
-Last 7 days | Data is aggregated in one hour increments.
+Last seven days | Data is aggregated in one hour increments.
 Last 30 days | Data is aggregated in daily increments.
 Current week | Data is aggregated in one hour increments. Logs any traffic in the current calendar week. 
 Current month | Data is aggregated in one hour increments. Logs any traffic in the current calendar month. 
@@ -81,9 +81,9 @@ Previous month | Data is aggregated in daily increments. Logs any traffic in the
 {% endnavtabs %}
 ### Actions
 
-After customizing a view using Explorer's metrics and filters, there are several actions that can be performed:
+After customizing a view using Explorer's metrics and filters, you can perform several actions:
 
 **Save as a Report**: This function creates a new custom report based on your current view, allowing you to revisit these specific insights at a later time.
 **Export as CSV**: If you prefer to analyze your data using other tools, you can download the current view as a CSV file, making it portable and ready for further analysis elsewhere.
 
-You can see this example of [diagnosing latency issues](/konnect/analytics/use-cases/latency)
+You can see this example of [diagnosing latency issues](/konnect/analytics/use-cases/latency).

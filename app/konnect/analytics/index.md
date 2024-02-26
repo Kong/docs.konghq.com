@@ -11,17 +11,16 @@ Konnect provides embedded reports at various different levels throughout its use
 
 ## Analyze API usage and performance data
 
-{{site.konnect_short_name}}  Analytics {% konnect_icon analytics %} Analytics provides different tools to help you track the performance and behavior of your APIs and data plane nodes. You can use these tools to access key statistics, monitor vitals and pinpoint anomalies in real time. 
+{{site.konnect_short_name}}  Analytics {% konnect_icon analytics %} provides different tools to help you track the performance and behavior of your APIs and data plane nodes. You can use these tools to access key statistics, monitor vitals, and pinpoint anomalies in real time. 
 
-### Analytics tool guide
-When navigating API analytics certain goals require different tools
+You can use the following diagram to help you determine which analytics tools are best for your use case:
 
 {% mermaid %}
 flowchart TD
     A((What is your goal?)) -->B(Quickly understand API usage and performance at a glance)
     A((What is your goal?)) -->C(In-depth analytics of API data)
-    B --> D([Follow a quickstart in Konnect])
-    C --> E([Add a new API to Konnect])
+    B --> D([Summary Dashboard])
+    C --> E([Explorer])
 
     %% this section defines node interactions
     click D "/konnect/analytics/dashboard/"
@@ -31,9 +30,9 @@ flowchart TD
 
 ### Charts and limitations
 
-{{site.konnect_short_name}} charts offer interactive features such as the ability to hover over elements to reveal additional details, and to filter data by selecting items with the chart. {{site.konnect_short_name}} caps the number of entities showing in any activity graph or [use custom reports](/konnect/analytics/generate-reports/) to 50. If this limit is exceeded, a warning icon will appear at the top of the affected graph, or report. 
+{{site.konnect_short_name}} charts offer interactive features such as the ability to hover over elements to reveal additional details, and to filter data by selecting items with the chart. {{site.konnect_short_name}} caps the number of entities showing in any activity graph or [custom reports](/konnect/analytics/generate-reports/) to 50. If this limit is exceeded, a warning icon displays at the top of the affected graph or report. 
 
 
 ### Team permissions
 
-You can assign {{site.konnect_short_name}} users to specific, predefined Analytic teams. This gives you the ability to allow certain users to only view or manage the Analytics area of your {{site.konnect_short_name}} instance. For more information about the Analytics Admin and Analytics Viewer teams, see the [Teams Reference](/konnect/org-management/teams-and-roles/teams-reference/).
+You can assign {{site.konnect_short_name}} users to specific, predefined Analytic teams. This allows you to give certain users access to only view or manage the Analytics area of your {{site.konnect_short_name}} instance. For more information about the Analytics Admin and Analytics Viewer teams, see the [Teams Reference](/konnect/org-management/teams-and-roles/teams-reference/).
