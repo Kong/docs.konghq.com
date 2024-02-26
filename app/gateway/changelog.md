@@ -17,8 +17,6 @@ For product versions that have reached the end of sunset support, see the [chang
 #### Configuration
 
 * TLSv1.1 and lower is now disabled by default in OpenSSL 3.x.
- [#8216](https://github.com/Kong/kong-ee/issues/8216)
- [KAG-3259](https://konghq.atlassian.net/browse/KAG-3259)
 
 #### Plugins
 
