@@ -2,7 +2,6 @@
 title: Custom Reports
 ---
 
-
 Custom reporting in {{site.konnect_saas}} enables you to save and revisit views created during data exploration, facilitating analysis over different time intervals. These reports can be used to analyze metrics, investigate anomalies and sharing. 
 When your reports are ready to be shared:
 

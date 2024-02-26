@@ -217,7 +217,7 @@
     - text: Reports
       items:
         - text: Overview
-          url: /analytics/reports/
+          url: /analytics/custom-reports/
         - text: Analyze API Usage and Performance
           url: /analytics/use-cases/
         - text: Reports Reference
