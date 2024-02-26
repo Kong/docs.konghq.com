@@ -9,6 +9,46 @@ Changelog for supported Kong Gateway versions.
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.6.1.0
+**Release Date** 02/26/2024
+
+### Features
+
+#### Configuration
+
+* TLSv1.1 and lower is now disabled by default in OpenSSL 3.x.
+ [#8216](https://github.com/Kong/kong-ee/issues/8216)
+ [KAG-3259](https://konghq.atlassian.net/browse/KAG-3259)
+
+#### Plugins
+
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
+  * Increased queue max batch size to 200.
+
+### Fixes
+
+#### General 
+
+* Fixed a bug where a low ulimit setting (open files) caused Kong to fail to start, 
+as the `lua-resty-timer-ng` exhausted the available `worker_connections`. 
+Decreased the concurrency range of the `lua-resty-timer-ng` library from `[512, 2048]` to `[256, 1024]` to fix this bug.
+
+#### Configuration
+
+* Set the security level of gRPC's TLS to `0` when `ssl_cipher_suite` is set to `old`.
+
+#### Clustering
+
+* Adjusted a clustering compatibility check related to HCV Kubernetes authentication paths.
+
+#### Plugins
+
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
+  * Fixed an OTEL sampling mode Lua panic bug that occurred when the `http_response_header_for_traceid` option was enabled.
+
+* [**LDAP Authentication Advanced**](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
+  * Fixed an issue where, if the credential was encoded with no username, Kong Gateway threw an error and returned a 500 code.
+
 ## 3.6.0.0
 **Release Date** 02/12/2024
 
