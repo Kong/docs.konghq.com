@@ -28,7 +28,7 @@ module Jekyll
       ::Jekyll.logger.debug "Missing version for #{page['path']}" unless page['version']
       return contents unless page['version']
 
-      page_version = page['version'].to_s.gsub('-', '.').gsub(/\.x/, '.0')
+      page_version = page['version'].to_s.gsub('-', '.').gsub('.x', '.0')
 
       begin
         current_version = to_version(page_version) # Handle 3.0.x etc

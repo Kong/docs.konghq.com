@@ -237,8 +237,8 @@ Kong node with the Admin API, using the `/config` endpoint. The
 following example loads `kong.yml`:
 
 ```sh
-curl -i -X GET http://localhost:8001/config \
-  --data config=@kong.yml
+curl -i -X POST http://localhost:8001/config \
+  --form config=@kong.yml
 ```
 
 {:.important}

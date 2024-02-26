@@ -17,6 +17,7 @@ on:
 jobs:
   get-current-do-not-close-pr:
     name: 'Get current do-not-close PR'
+    timeout-minutes: 10
     # Runs for the two dispatch triggers. Also runs for merged pull requests **if** they have the “do-not-close” label.
     if: github.event_name != 'pull_request' || (github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'do-not-close'))
     runs-on: ubuntu-latest
@@ -33,6 +34,7 @@ jobs:
 
   update-submodule:
     name: 'Update submodule'
+    timeout-minutes: 10
     needs: get-current-do-not-close-pr
     if: ${{ ! needs.get-current-do-not-close-pr.outputs.number }} # Do not overwrite the PR if there's a do-not-close label
     runs-on: ubuntu-latest
@@ -60,7 +62,7 @@ jobs:
           echo "EOF" >> $GITHUB_ENV
       - name: 'Create pull request'
         # https://github.com/peter-evans/create-pull-request
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v6
         id: newPR
         with:
           base: main

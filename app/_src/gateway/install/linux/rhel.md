@@ -35,12 +35,12 @@ Install {{site.base_gateway}} on RHEL from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/el/%{rhel}/x86_64/kong-enterprise-edition-{{page.versions.ee}}.el%{rhel}.x86_64.rpm)
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/el/%{rhel}/%{_arch}/kong-enterprise-edition-{{page.versions.ee}}.el%{rhel}.%{_arch}.rpm)
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/el/%{rhel}/x86_64/kong-{{page.versions.ce}}.el%{rhel}.x86_64.rpm)
+curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/el/%{rhel}/%{_arch}/kong-{{page.versions.ce}}.el%{rhel}.%{_arch}.rpm)
  ```
 {% endnavtab %}
 {% endnavtabs_ee %}

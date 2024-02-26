@@ -37,9 +37,8 @@ module PluginSingleSource
       end
 
       def gateway_release
-        @gateway_release ||= Jekyll::GeneratorSingleSource::Product::Edition
-                             .new(edition: 'gateway', site: @site)
-                             .releases.detect { |r| r.value == @release.version }&.to_s || @release.version
+        @gateway_release ||= @site.data.dig('editions', 'gateway')
+                                  .releases.detect { |r| r.value == @release.version }&.to_s || @release.version
       end
 
       def source_file

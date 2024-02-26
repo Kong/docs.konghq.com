@@ -162,8 +162,6 @@ Below is an example configuration object that is used to configure the OIDC plug
 }
 ```
 
-![Enable OIDC in Kong Dev Portal](/assets/images/docs/dev-portal/curity/kong-dev-portal.png)
-
 ### Curity Authentication Action
 
 An Authentication Action to automatically provision the user to the Kong Dev Portal is available in the Curity GitHub repository. Using the Action is not mandatory as the user could be provisioned in other ways, such as manually through the Kong Dev Portal login page. However, using the Authentication Action would streamline the user flow since the Action takes the user's full name and the email from the Curity Authenticator and automatically provision that to the Kong Dev Portal using the exposed API.
@@ -176,15 +174,13 @@ This Action is straightforward to configure. An HTTP Client is needed to communi
 
 The Action also configures the URL to the registration endpoint of the Kong Dev Portal. Here the scheme needs to match what's configured in the HTTP Client used.
 
-![Kong Dev Portal User Provisioner](/assets/images/docs/dev-portal/curity/kong-dev-portal-action.png)
-
 When the action is created, it can be assigned to the Authenticators used in the client configured in the Curity Identity Server as described above.
 
 #### Action to resolve additional user information
 
 Depending on the Authenticator used, an additional Action may be needed to resolve additional information. By default, The Kong Dev Portal provisioning requires `Full Name` and `email`. If the Authenticator does not provide this, it's possible to use an Action to resolve the data. This could be as simple as a **Data Source** action configured to use a Data Source that provides the information.
 
-![Chain Actions](/assets/images/docs/dev-portal/curity/authentication-and-actions.png)
+![Chain Actions](/assets/images/products/gateway/dev-portal/authentication-and-actions.png)
 
 By default, the Kong Dev Portal Provisioner Action works on the default account table schema of the Curity Identity Server database. This provides `email` as a column, but the `Full Name` is not readily available. The Action operates on the `attributes` column and parse the information to pass the user's Full Name to the Kong Dev Portal.
 
@@ -206,7 +202,7 @@ With relatively simple configurations in both the Curity Identity Server and the
 
 {% endif_version %}
 
-[kong-add-service]: /gateway/latest/admin-api/#service-object
+[kong-add-service]: /gateway/api/admin-ee/latest/#/Services/create-service
 [curity-phantom-token-introspection]: https://curity.io/resources/learn/introspect-with-phantom-token
 [curity-getting-started]: https://curity.io/resources/getting-started
 [curity-phantom-token-pattern]: https://curity.io/resources/learn/phantom-token-pattern

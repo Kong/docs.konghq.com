@@ -80,7 +80,7 @@ curl -i -X POST http://{HOSTNAME}:8001/consumers \
 Custom webhook event hooks are fully customizable requests. Custom webhooks are useful for building direct
 integration with a service. Because custom webhooks are fully configurable, they have more complex configurations.
 Custom webhooks support Lua templating on a configurable body, form payload, and headers. For a list of
-possible fields for templating, see the [sources](/gateway/{{ page.release }}/admin-api/event-hooks/reference/#list-all-sources) endpoint.
+possible fields for templating, see the [sources](/gateway/api/admin-ee/latest/#/Event-hooks/get-event-hooks-sources) endpoint.
 
 The following example sends a message to Slack any time a new administrator is invited to {{site.base_gateway}}.
 Slack allows for [incoming webhooks](https://slack.com/help/articles/115005265063-Incoming-webhooks-for-Slack#set-up-incoming-webhooks)

@@ -11,14 +11,6 @@ statistics, monitor vital signs, and pinpoint anomalies in real time.
 
 With **Konnect Plus** Analytics retains historical data for up to 3 months. If you need a longer storage period, [contact a sales representative](https://konghq.com/contact-sales) about upgrading to {{site.konnect_product_name}} Enterprise.
 
-
-{:.note}
-> **Note**:
-Member control planes in a control plane group have no individual analytics reporting. This means that:
-* In the Gateway Manager, contextual analytics are logged in the control plane group only.
-* When creating custom reports, control planes won't show up as individual entities. 
-Reports will only show the control plane group.
-
 ## Contextual analytics for services and routes
 
 In the [Gateway Manager](/konnect/gateway-manager/), you can see

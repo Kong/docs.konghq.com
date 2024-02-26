@@ -14,8 +14,13 @@
 /gateway/latest/install/post-install/kong-manager/          /gateway/latest/kong-manager/enable/
 /gateway/:version/install/post-install/kong-manager-oss/    /gateway/:version/kong-manager-oss/
 /gateway/latest/install/post-install/kong-manager-oss/      /gateway/latest/kong-manager-oss/
- 
+/gateway/latest/kong-production/db-encryption/ /gateway/latest/kong-enterprise/db-encryption/
 ######################################################################
+
+# API
+
+/konnect/api/portal-rbac/latest/*    /konnect/api/portal-management/latest/
+/konnect/api/portal-rbac/:version/*    /konnect/api/portal-management/latest/
 
 # Konnect plugins
 
@@ -42,6 +47,42 @@
 /konnect/getting-started/configure-runtime/ /konnect/getting-started/configure-data-plane-node/
 /konnect/api/runtime-groups-config/overview/ /konnect/api/
 
+# API markdown doc deprecation
+
+/gateway/latest/admin-api/licenses/reference   /gateway/api/admin-ee/latest/#/licenses/get-licenses/
+/gateway/latest/admin-api/workspaces/reference/   /gateway/api/admin-ee/latest/#/Workspaces/list-workspace/
+/gateway/latest/admin-api/rbac/reference/        /gateway/api/admin-ee/latest/#/rbac/get-rbac-users/
+/gateway/latest/admin-api/event-hooks/reference/ /gateway/api/admin-ee/latest/#/Event-hooks/get-event-hooks/
+/gateway/latest/admin-api/db-encryption/     /gateway/api/admin-ee/latest/#/Keyring/get-keyring/
+/gateway/latest/admin-api/audit-logs/        /gateway/api/admin-ee/latest/#/audit-logs/get-audit-requests/
+/gateway/latest/admin-api/admins/reference/   /gateway/api/admin-ee/latest/#/admins/get-admins/
+/gateway/latest/admin-api/*                   /gateway/api/admin-ee/latest/
+/gateway/3.5.x/admin-api/#health-routes    /gateway/api/admin-ee/latest/#/Information/get-status/
+/gateway/3.5.x/admin-api/#tags        /gateway/api/admin-ee/latest/#/tags/get-tags/
+/gateway/3.5.x/admin-api/#debug-routes /gateway/api/admin-ee/latest/#/debug/put-debug-cluster-control-planes-nodes-log-level-log_level/
+/gateway/3.5.x/admin-api/#service-object   /gateway/api/admin-ee/latest/#/Services/list-service/
+/gateway/3.5.x/admin-api/#route-object /gateway/api/admin-ee/latest/#/Routes/list-route/
+/gateway/3.5.x/admin-api/#consumer-object  /gateway/api/admin-ee/latest/#/Consumers/list-consumer/
+/gateway/3.5.x/admin-api/#plugin-object    /gateway/api/admin-ee/latest/#/Plugins/list-plugin
+/gateway/3.5.x/admin-api/#certificate-object   /gateway/api/admin-ee/latest/#/Certificates/list-certificate/
+/gateway/3.5.x/admin-api/#ca-certificate-object    /gateway/api/admin-ee/latest/#/CA%20Certificates/list-ca_certificate/
+/gateway/3.5.x/admin-api/#sni-object   /gateway/api/admin-ee/latest/#/SNIs/list-sni-with-certificate/
+/gateway/3.5.x/admin-api/#upstream-object  /gateway/api/admin-ee/latest/#/Upstreams/list-upstream/
+/gateway/3.5.x/admin-api/#target-object    /gateway/api/admin-ee/latest/#/Targets/list-target-with-upstream/
+/gateway/3.5.x/admin-api/#vaults-object    /gateway/api/admin-ee/latest/#/Vaults/list-vault/
+/gateway/3.5.x/admin-api/#keys-object      /gateway/api/admin-ee/latest/#/Keys/list-key/
+/gateway/3.5.x/admin-api/#filter-chains    /gateway/api/admin-ee/latest/#/filter-chains/get-filter-chains/
+/gateway/3.5.x/admin-api/licenses/reference   /gateway/api/admin-ee/latest/#/licenses/get-licenses/
+/gateway/3.5.x/admin-api/workspaces/reference/   /gateway/api/admin-ee/latest/#/Workspaces/list-workspace/
+/gateway/3.5.x/admin-api/rbac/reference/        /gateway/api/admin-ee/latest/#/rbac/get-rbac-users/
+/gateway/3.5.x/admin-api/event-hooks/reference/ /gateway/api/admin-ee/latest/#/Event-hooks/get-event-hooks/
+/gateway/3.5.x/admin-api/db-encryption/     /gateway/api/admin-ee/latest/#/Keyring/get-keyring/
+/gateway/3.5.x/admin-api/audit-logs/        /gateway/api/admin-ee/latest/#/audit-logs/get-audit-requests/
+/gateway/3.5.x/admin-api/admins/reference/   /gateway/api/admin-ee/latest/#/admins/get-admins/
+/gateway/3.5.x/admin-api/*                   /gateway/api/admin-ee/latest/
+
+# 3.6
+/gateway/3.6.x/production/benchmark /gateway/3.6.x/production/performance/benchmark
 
 # 3.5
 /gateway/latest/kong-enterprise/analytics/* /gateway/3.4.x/kong-enterprise/analytics/:splat
@@ -66,10 +107,10 @@
 
 # 3.2
 
-/gateway/latest/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
-/gateway/latest/admin-api/index/#vaults-entity  /gateway/latest/admin-api/#vaults-object
-/gateway/3.2.x/admin-api/index/#keys-entity     /gateway/latest/admin-api/keys-object
-/gateway/3.2.x/admin-api/index/#vaults-entity  /gateway/latest/admin-api/#vaults-object
+/gateway/latest/admin-api/index/#keys-entity    /gateway/api/admin-ee/latest/#/Keys/list-key/
+/gateway/latest/admin-api/index/#vaults-entity  /gateway/api/admin-ee/latest/#/Vaults/list-vault/
+/gateway/3.2.x/admin-api/index/#keys-entity     /gateway/api/admin-ee/latest/#/Keys/list-key/
+/gateway/3.2.x/admin-api/index/#vaults-entity  /gateway/api/admin-ee/latest/#/Vaults/list-vault/
 /gateway/latest/os-support/                     /gateway/latest/support-policy/
 /gateway/latest/install-support/                /gateway/latest/support-policy/
 /gateway/3.2.x/os-support/                     /gateway/latest/support-policy/
@@ -89,7 +130,7 @@
 /gateway/2.8.x/get-started/quickstart/configuring-a-grpc-service/       /gateway/latest/get-started/ratelimiting/
 /gateway/2.8.x/get-started/quickstart/enabling-plugins/                /gateway/latest/key-concepts/plugins/
 /gateway/2.8.x/get-started/quickstart/adding-consumers/               /gateway/latest/get-started/key-authentication
-/gateway/2.8.x/admin-api/rbac/examples/                              /gateway/latest/admin-api/rbac/reference/
+/gateway/2.8.x/admin-api/rbac/examples/                              /gateway/api/admin-ee/latest/#/rbac/get-rbac-users/
 
 #3.x
 /gateway/:version/kong-plugins/request-transformer/add-body-value/  /hub/kong-inc/request-transformer/how-to/add-body-value/
@@ -436,14 +477,14 @@
 /gateway/2.7.x/developer-portal/files-api/                 /gateway/2.7.x/developer-portal/portal-api/
 
 # GATEWAY REFERENCES
-/vaults/                               /gateway/latest/vaults
-/admin-api/                            /gateway/latest/admin-api
-/admin-api/*                           /gateway/latest/admin-api/:splat
-/2.6.x/admin-api/                      /gateway/latest/admin-api
-/2.7.x/admin-api/                      /gateway/latest/admin-api
-/latest/admin-api/*                    /gateway/latest/admin-api/:splat
-/2.6.x/api-admin-gui/                  /gateway/latest/admin-api
-/2.7.x/api-admin-gui/                  /gateway/latest/admin-api
+/vaults/                               /gateway/api/admin-ee/latest/#/Vaults/list-vault
+/admin-api/                            /gateway/api/admin-ee/latest/
+/admin-api/*                           /gateway/api/admin-ee/latest/
+/2.6.x/admin-api/                      /gateway/api/admin-ee/latest/
+/2.7.x/admin-api/                      /gateway/api/admin-ee/latest/
+/latest/admin-api/*                    /gateway/api/admin-oss/latest/
+/2.6.x/api-admin-gui/                  /gateway/api/admin-oss/latest/
+/2.7.x/api-admin-gui/                  /gateway/api/admin-oss/latest/
 /gateway-oss/2.6.x/admin-api           /gateway/2.6.x/admin-api/
 /gateway-oss/2.6.x/admin-api/*         /gateway/2.6.x/admin-api/:splat
 /enterprise/2.6.x/admin-api            /gateway/2.6.x/admin-api/
@@ -452,19 +493,19 @@
 /gateway-oss/2.7.x/admin-api/*         /gateway/2.7.x/admin-api/:splat
 /enterprise/2.7.x/admin-api            /gateway/2.7.x/admin-api/
 /enterprise/2.7.x/admin-api/*          /gateway/2.7.x/admin-api/:splat
-/enterprise/*/admin-gui/               /gateway/latest/admin-api
-/enterprise/latest/admin-api/          /gateway/latest/admin-api/
-/enterprise/latest/admin-api/*         /gateway/latest/admin-api/:splat
-/gateway-oss/latest/admin-api/         /gateway/latest/admin-api/
-/gateway-oss/latest/admin-api/*        /gateway/latest/admin-api/:splat
+/enterprise/*/admin-gui/               /gateway/api/admin-ee/latest/
+/enterprise/latest/admin-api/          /gateway/api/admin-ee/latest/
+/enterprise/latest/admin-api/*         /gateway/api/admin-ee/latest/
+/gateway-oss/latest/admin-api/         /gateway/api/admin-oss/latest/
+/gateway-oss/latest/admin-api/*        /gateway/api/admin-oss/latest/
 
 /enterprise/*/kong-implementation-checklist/    /gateway/latest/plan-and-deploy
 /enterprise/*/organization-management/managing-admins  /gateway/latest/configuration/auth/rbac/add-admin
 /enterprise/*/plugins/rbac-api/        /gateway/latest/configure/auth/rbac
 /enterprise/*/organization-management/rbac-and-perms/  /gateway/latest/configuration/auth/rbac
-/admin-api/workspaces   /gateway/latest/admin-api/workspaces/reference
+/admin-api/workspaces   /gateway/api/admin-ee/latest/#/Workspaces/list-workspace
 
-/enterprise/latest/setting-up-admin-api-rbac  /gateway/latest/admin-api/rbac/reference/
+/enterprise/latest/setting-up-admin-api-rbac  /gateway/api/admin-ee/latest/#/rbac/get-rbac-users
 /enterprise/2.6.x/property-reference/   /gateway/2.6.x/reference/configuration
 /enterprise/2.7.x/property-reference/   /gateway/2.7.x/reference/configuration
 /enterprise/latest/reference/configuration/  /gateway/latest/reference/configuration
@@ -660,9 +701,12 @@
 
 # KONG MESH
 /policies /mesh/latest/policies/introduction
+/features/ /mesh/latest/features/
 /mesh/:version/documentation/introduction/  /mesh/:version/
 /mesh/:version/introduction/overview-of-kong-mesh /mesh/:version/
 /mesh/:version/overview /mesh/:version/
+/mesh/:version/quickstart/kubernetes/ /mesh/:version/quickstart/kubernetes-demo/
+
 # Make GUI docs link work
 /mesh/konnect/* /mesh/latest/:splat
 /mesh/:version/installation/windows   /mesh/:version/features/windows
@@ -818,10 +862,10 @@
 /enterprise/latest/deployment/licensing/*   /gateway/latest/plan-and-deploy/licenses/:splat
 /enterprise/2.6.x/secure-admin-api/       /gateway/2.6.x/admin-api/secure-admin-api
 /enterprise/2.7.x/secure-admin-api/       /gateway/2.7.x/admin-api/secure-admin-api
-/enterprise/latest/secure-admin-api/      /gateway/latest/admin-api/secure-admin-api
+/enterprise/latest/secure-admin-api/      /gateway/latest/production/running-kong/secure-admin-api
 /gateway-oss/2.6.x/secure-admin-api/      /gateway/2.6.x/admin-api/secure-admin-api
 /gateway-oss/2.7.x/secure-admin-api/      /gateway/2.7.x/admin-api/secure-admin-api
-/gateway-oss/latest/secure-admin-api/     /gateway/latest/admin-api/secure-admin-api
+/gateway-oss/latest/secure-admin-api/     /gateway/latest/production/running-kong/secure-admin-api
 /enterprise/2.6.x/db-encryption/       /gateway/2.6.x/plan-and-deploy/security/db-encryption
 /enterprise/2.7.x/db-encryption/       /gateway/2.7.x/plan-and-deploy/security/db-encryption
 /enterprise/latest/db-encryption/      /gateway/latest/plan-and-deploy/security/db-encryption
