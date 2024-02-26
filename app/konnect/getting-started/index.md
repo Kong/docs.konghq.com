@@ -7,9 +7,9 @@ flowchart TD
     A((fa:fa-flag-checkered \n Start my {{site.konnect_short_name}} journey ))
     B(Set up an API for me)
     C(I want to do it myself)
-    D(fa:fa-graduation-cap Use the onboarding wizard in {{site.konnect_short_name}})
-    E(fa:fa-plus Add an API to {{site.konnect_short_name}})
-    F(fa:fa-file-import Import {{site.base_gateway}} entities to {{site.konnect_short_name}})
+    D(fa:fa-graduation-cap Sign up for {{site.konnect_short_name}} <br> and use the onboarding wizard)
+    E(fa:fa-plus Add an API)
+    F(fa:fa-file-import Import {{site.base_gateway}} entities)
 
     A --> B
     A --> C
