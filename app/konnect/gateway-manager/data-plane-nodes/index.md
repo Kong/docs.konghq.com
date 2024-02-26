@@ -49,7 +49,7 @@ Advanced setup:
 ![gateway data plane node dashboard](/assets/images/products/konnect/gateway-manager/konnect-runtime-instance-gateway.png)
 > **Figure 1:** This image shows the Gateway data plane node dashboard. For each Gateway data plane node, you can see analytics, and host details.
 
-### KIC data plane node dashboard
+## KIC data plane node dashboard
 ![KIC data plane node dashboard](/assets/images/products/konnect/gateway-manager/konnect-runtime-instance-kic.png)
 > **Figure 2:** This image shows a KIC data plane node dashboard. For each KIC data plane node, you can see details about the data plane node, analytics, and KIC status details.
 
