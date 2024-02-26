@@ -13,7 +13,7 @@ The note was added based on an old ticket that doesn't apply now. The OAuth2 plu
 - https://docs.konghq.com/hub/kong-inc/oauth2/overview/
 
 
-### [Add documentation on higher ulimit requirement for 3.6.0.0](https://github.com/Kong/docs.konghq.com/pull/6984) (2024-02-21)
+### [Feat: Add documentation on higher ulimit requirement for 3.6.0.0](https://github.com/Kong/docs.konghq.com/pull/6984) (2024-02-21)
 
 Document missing entry for ulimit breaking change.
 
@@ -30,7 +30,7 @@ Document missing entry for ulimit breaking change.
 - https://docs.konghq.com/gateway/changelog
 
 
-### [add more info about cache key generation in proxy-cache-advanced](https://github.com/Kong/docs.konghq.com/pull/6982) (2024-02-21)
+### [Fix:Add more information about cache key generation in proxy-cache-advanced](https://github.com/Kong/docs.konghq.com/pull/6982) (2024-02-21)
 
 Adding more info about how cache key is generated based on
 https://github.com/Kong/kong-ee/blob/3.6.0.0/plugins-ee/proxy-cache-advanced/kong/plugins/proxy-cache-advanced/cache_key.lua#L110-L122
@@ -65,23 +65,7 @@ Ran into a couple other cross-folder issues (kic-v2 vs kubernetes-ingress-contro
 - https://docs.konghq.com/gateway/3.7.x/reference/expressions-language/language-references
 
 
-### [Automated submodule update (app/_src/.repos/kong-plugins)](https://github.com/Kong/docs.konghq.com/pull/6976) (2024-02-20)
-
-
-
-#### Modified
-
-- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/language-references
-- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/language-references
-- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/language-references
-- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/language-references
-- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/language-references
-- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/language-references
-- https://docs.konghq.com/gateway/3.6.x/reference/expressions-language/language-references
-- https://docs.konghq.com/gateway/3.7.x/reference/expressions-language/language-references
-
-
-### [Fix: remove if_version on the Or operator in the table](https://github.com/Kong/docs.konghq.com/pull/6975) (2024-02-20)
+### [Fix: remove if_version on the Or operator in the expressions router table](https://github.com/Kong/docs.konghq.com/pull/6975) (2024-02-20)
 
 <!-- What did you change and why? -->
  
@@ -131,7 +115,7 @@ This pull request adds the ignored parameters to the migration guide for Kong Ma
 - https://docs.konghq.com/gateway/3.7.x/kong-manager/auth/oidc/migrate
 
 
-### [docs(mesh): in Vault docs switch to orphan tokens](https://github.com/Kong/docs.konghq.com/pull/6964) (2024-02-23)
+### [Fix: docs(mesh)- in Vault docs switch to orphan tokens](https://github.com/Kong/docs.konghq.com/pull/6964) (2024-02-23)
 
 <!-- What did you change and why? -->
 As described in the PR changes, it's likely users want to create orphan tokens to authenticate to vault.
@@ -151,7 +135,7 @@ See also https://github.com/Kong/kong-mesh/issues/5412
 - https://docs.konghq.com/gateway/3.7.x/reference/expressions-language/language-references
 
 
-### [docs(mesh/rbac): add information how to unlock yourself](https://github.com/Kong/docs.konghq.com/pull/6944) (2024-02-23)
+### [Fix: docs(mesh/rbac): add information how to unlock yourself](https://github.com/Kong/docs.konghq.com/pull/6944) (2024-02-23)
 
 Added docs how to unlock yourself in case you remove default rbac
 
