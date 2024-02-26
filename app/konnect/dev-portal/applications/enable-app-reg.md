@@ -164,7 +164,7 @@ In {{site.konnect_short_name}} can configure and manage multiple authentication 
 
 This section will introduce you to the functionality portal product versions using Dynamic client registration (DCR). Using the Application Registration API, you can manage multiple APIs and configure different DCRs on a per API product basis.
 
-Using the [`v2/portals/{portalId}/product-versions`](https://kong-platform-api.netlify.app/konnect/application-auth-strategies/v2/openapi.yaml/#tag/Portal-Product-Versions/operation/create-portal-product-version) endpoint, you can link authentication strategies with your API products. 
+Using the [`product-versions`](/konnect/api/portal-management/latest/#/Portal%product%version/#/create-portal-product-version) endpoint, you can link authentication strategies with your API products. 
 
 1. Configure the auth strategies of your choice:
   * [Okta](/konnect/dev-portal/applications/dynamic-client-registration/okta/)

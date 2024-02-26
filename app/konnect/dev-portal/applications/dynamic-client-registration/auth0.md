@@ -116,7 +116,7 @@ Once you have Auth0 configured, you can configure the Dev Portal to use Auth0 fo
 {% endnavtab %}
 {% navtab API %} 
 
-1. Start by creating the DCR provider. Send a `POST` request to the [`v2/dcr-providers`](https://kong-platform-api.netlify.app/konnect/application-auth-strategies/v2/openapi.yaml/#tag/DCR-Providers/operation/create-dcr-provider) endpoint with your DCR configuration details:
+1. Start by creating the DCR provider. Send a `POST` request to the [`dcr-providers`](/konnect/api/application-auth-strategies/latest/#/DCR%20Providers/create-dcr-provider) endpoint with your DCR configuration details:
 ```sh
    curl --request POST \
    --url https://us.api.konghq.com/v2/dcr-providers \
@@ -153,7 +153,7 @@ You will receive a response that includes a `dcr_provider` object similar to the
    ```
 Save the `id` value for creating the authentication strategy.
 
-2. With the `dcr_id` obtained from the first step, create an authentication strategy. Construct a `POST` request to the [`v2/create-auth-stratgies`](https://kong-platform-api.netlify.app/konnect/application-auth-strategies/v2/openapi.yaml/#tag/App-Auth-Strategies/operation/create-app-auth-strategy) endpoint describing an authentication strategy: 
+2. With the `dcr_id` obtained from the first step, create an authentication strategy. Send a `POST` request to the [`create-auth-stratgies`](/konnect/api/application-auth-strategies/latest/#/App%20Auth%20Strategies/create-app-auth-strategy) endpoint describing an authentication strategy: 
 
    ```sh
    curl --request POST \
