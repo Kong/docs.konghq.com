@@ -38,106 +38,31 @@ In Azure, create the main application:
 7. On the **Overview** view, note your Directory (tenant) ID and Application (client) ID.
 
 ## Configure the Dev Portal
-{% navtabs %}
-{% navtab Konnect UI %}
-Once you have Azure configured, you can set up the Dev Portal to use Azure for Dynamic Client Registration (DCR). This process involves two steps: creating the DCR provider and establishing the authentication strategy. DCR providers are designed to be reusable configurations. This means once you've configured the Azure DCR provider, it can be used across multiple authentication strategies without needing to be set up again.
 
-1. Log in to {{site.konnect_short_name}} and select the **Dev Portal** {% konnect_icon dev-portal %} from the menu.
+Once you have Azure configured, you can set up the Dev Portal to use Azure for dynamic client registration (DCR).
 
-2. Go to **Application Auth** to find the authentication settings for your API products.
+1. Sign in to {{site.konnect_short_name}}, then select {% konnect_icon dev-portal %} **Dev Portal** from the menu.
 
-3. Open the **DCR Providers** to review existing DCR Providers.
+2. Click **Settings** to open the Dev Portal settings.
 
-4. Select **New DCR Provider** button to create an Azure configuration. Enter a name for internal reference in {{site.konnect_short_name}}. This name, along with the provider type, will remain internal and not be visible to developers on the Dev Portal.
+3. Click the **Application Setup** tab to open the DCR settings for your Dev Portal.
 
-5. Provide the Issuer URL for your Azure tenant, using the format  `https://sts.windows.net/YOUR_TENANT_ID`.
+4. Select **Azure** as the external identity provider..
 
-6. For **Provider Type**, select AzureAD.
+5. Enter the Issuer for your Azure tenant, it will look something like `https://sts.windows.net/YOUR_TENANT_ID`.
 
-7. Enter your Application (Client) ID from Azure into the **Initial Client ID** field and the Azure admin application's client secret into the **Initial Client Secret** field. The Initial Client Secret will be stored in isolated, encrypted storage and will not be readable through any Konnect API.
+6. Enter `appid` in the **Consumer claims** field.
 
-8. After saving, your new DCR Provider will appear in the list.
+7. Select the auth method you want to enable.
 
-9. Click the **Auth Strategy** tab, then select **New Auth Strategy** to create an auth strategy that uses the DCR Provider you just added.
+8. Enter your Application (client) ID from Azure in the **Initial Client ID** field.
 
-10. Name it for internal reference in {{site.konnect_short_name}} and provide a display name for visibility in the Portal. Select DCR as the **Auth Type** and choose your newly created DCR provider from the dropdown. The  **Issuer URL** entered earlier will be will be prepopulated.
+9. Enter the Client secret from the admin application created in Azure into the **Initial Client Secret** field..
 
-11. In the **Credential Claims** field, enter `appid`.
+10. Click **Save**.
 
-12. Select the relevant **Auth Methods** you need (`client_credentials`, `bearer`, `session`), and **save**. 
-
-{% endnavtab %}
-{% navtab API %}
-
-1. Start by creating the DCR provider. Send a `POST` request to the [`dcr-providers`](/konnect/api/application-auth-strategies/latest/#/DCR%20Providers/create-dcr-provider) endpoint with your DCR configuration details:
-```sh
-   curl --request POST \
-   --url https://us.api.konghq.com/v2/dcr-providers \
-   --header 'Authorization: $KPAT' \
-   --header 'content-type: application/json' \
-   --data '{
-   "name": "Azure DCR Provider",
-   "provider_type": "Azure",
-   "issuer": "https://sts.windows.net/YOUR_TENANT_ID",
-   "dcr_config": {
-      "initial_client_id": "abc123",
-      "initial_client_secret": "abc123xyz098!",
-      "initial_client_audience": "https://my-custom-domain.com/api/v2/"
-   }
-   }'
-```
-You will receive a response that includes a `dcr_provider` object similar to the following:
-
-   ```sh
-   {
-      "created_at": "2024-02-29T23:38:00.861Z",
-      "updated_at": "2024-02-29T23:38:00.861Z",
-      "id": "93f8380e-7798-4566-99e3-2edf2b57d289",
-      "name": "Azure DCR Provider",
-      "provider_type": "Azure",
-      "issuer": "https://sts.windows.net/YOUR_TENANT_ID",
-      "dcr_config": {
-         "initial_client_id": "abc123",
-         "initial_client_audience": "https://my-custom-domain.com/api/v2/"
-      },
-      "active": false
-   }
-
-   ```
-Save the `id` value for creating the authentication strategy.
-
-2. With the `dcr_id` obtained from the first step, create an authentication strategy. Send a `POST` request to the [`create-auth-stratgies`](/konnect/api/application-auth-strategies/latest/#/App%20Auth%20Strategies/create-app-auth-strategy) endpoint describing an authentication strategy: 
-
-   ```sh
-      curl --request POST \
-      --url https://us.api.konghq.com/v2/application-auth-strategies \
-      --header 'Authorization: $KPAT' \
-      --header 'content-type: application/json' \
-      --data '{
-      "name": "Azure Auth",
-      "display_name": "Azure Auth",
-      "strategy_type": "openid_connect",
-      "configs": {
-         "openid-connect": {
-            "issuer": "https://sts.windows.net/YOUR_TENANT_ID",
-            "credential_claim": [
-            "client_id"
-            ],
-            "scopes": [
-            "openid",
-            "email"
-            ],
-            "auth_methods": [
-            "client_credentials",
-            "bearer"
-            ]
-         }
-      },
-      "dcr_provider_id": "93f8380e-7798-4566-99e3-2edf2b57d289"
-      }
-   ```
-{% endnavtab %}
-{% endnavtabs %}
+   If you previously configured any DCR settings, this will
+   overwrite them.
 
 ## Create an application with DCR
 
@@ -147,7 +72,7 @@ From the **My Apps** page in the Dev Portal, follow these instructions:
 
 1. Click the **New App** button.
 
-2. Fill out the **Create New Application** form with your application name, authentication strategy, and description.
+2. Fill out the **Create New Application** form with your application name and a description.
 
 3. Click **Create** to save your application.
 
