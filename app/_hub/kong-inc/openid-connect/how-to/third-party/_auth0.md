@@ -31,8 +31,7 @@ curl -i -X POST http://localhost:8001/kong-admin/services/{SERVICE_NAME}/plugins
   --data name="openid-connect" \
   --data config.auth_methods="client_credentials" \
   --data config.issuer="https://<auth0 API name>.auth0.com/.well-known/openid-configuration" \
-  --data config.token_post_args_names="audience" \
-  --data config.token_post_args_values="https://example.com/"
+  --data config.audience="<auth0 API identifier>"
 ```
 
 ## Downstream configuration
