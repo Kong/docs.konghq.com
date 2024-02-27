@@ -221,7 +221,7 @@
         - text: Analyze API Usage and Performance
           url: /analytics/use-cases/
         - text: Diagnosing Latency Issues
-          url: /analytics/use-case/latency/
+          url: /analytics/use-cases/latency/
         - text: Reports Reference
           url: /analytics/reference/
     - text: Requests
