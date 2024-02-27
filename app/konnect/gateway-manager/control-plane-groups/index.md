@@ -193,7 +193,7 @@ The following are exceptions to the read-only rule:
 * A data plane node client certificate can be generated in the UI or uploaded to a control plane group.
 * Data plane nodes can be connected to a control plane group, however, members of a control plane group cannot have any data plane nodes connected to them.
 
-Kong Ingress Controller control planes can't be part of a control plane group.
+{{site.kic_product_name}} control planes can't be part of a control plane group.
 
 One control plane group cannot be a member of another control plane group. 
 
