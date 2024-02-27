@@ -37,9 +37,9 @@ The following diagram shows the architecture of a hybrid mode deployment, which 
 flowchart LR
 A[api.customer.com]
 B[(Cassandra)]
-C(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px"/> {{site.base_gateway}} VM)
-D(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px"/> {{site.base_gateway}} DP)
-E(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px"/> {{site.base_gateway}} CP)
+C(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> {{site.base_gateway}} VM)
+D(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> {{site.base_gateway}} DP)
+E(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> {{site.base_gateway}} CP)
 F[(Postgres)]
 
 H[[decK]]

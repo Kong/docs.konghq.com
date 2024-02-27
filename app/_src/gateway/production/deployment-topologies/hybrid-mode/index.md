@@ -20,10 +20,10 @@ connection with CP nodes to receive the latest configuration.
 flowchart LR
 
 A[(Database)]
-B(<img src="/assets/images/logos/kogo-white.svg" style="max-height:20px"/> {{site.base_gateway}} instance \n #40;control plane#41;)
-C(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px"/> {{site.base_gateway}} instance \n #40;data plane 3#41; \n\n Kong proxy configurations)
-D(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px"/> {{site.base_gateway}} instance \n #40;data plane 1#41; \n\n Kong proxy configurations)
-E(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px"/> {{site.base_gateway}} instance \n #40;data plane 2#41; \n\n Kong proxy configurations)
+B(<img src="/assets/images/logos/kogo-white.svg" style="max-height:20px" class="no-image-expand"/> {{site.base_gateway}} instance \n #40;control plane#41;)
+C(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> {{site.base_gateway}} instance \n #40;data plane 3#41; \n\n Kong proxy configurations)
+D(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> {{site.base_gateway}} instance \n #40;data plane 1#41; \n\n Kong proxy configurations)
+E(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> {{site.base_gateway}} instance \n #40;data plane 2#41; \n\n Kong proxy configurations)
 
 subgraph id1 [cloud node]
 A---B
