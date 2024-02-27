@@ -350,7 +350,7 @@ ul.navbar-item-submenu {
       a {
         .nodeLabel {
           fill: @blue-500 !important;
-          color: @blue-500 !important;
+          color: @blue-500 !important; 
         }
       }
 
@@ -362,6 +362,26 @@ ul.navbar-item-submenu {
       .noteText {
         font-family: @family-code !important;
         font-size: 12px !important;
+      }
+
+      i {
+        display: inline-block;
+        font-size: 20px;
+        margin-right: 3px;
+      }
+
+      .mermaid-icon {
+        display: inline-block;
+        margin: 4px;
+        width: 20px;
+        max-height: 24px;
+
+        &__inactive {
+          margin: 4px;
+          width: 20px;
+          max-height: 24px;
+          filter: grayscale(1);
+        }
       }
     }
 
@@ -780,10 +800,11 @@ Generic Styling for Desktop
       background-color: #fff;
       box-shadow: 4px 4px 14px rgba(0, 48, 130, 0.12);
       border-radius: 8px;
-      max-width: 300px;
+      max-width: 500px;
 
       .install-icon {
-        height: 50px;
+        min-height: 50px;
+        max-height: 70px;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
