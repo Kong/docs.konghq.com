@@ -54,7 +54,7 @@ Once you have Azure configured, you can set up the Dev Portal to use Azure for D
 
 6. For **Provider Type**, select AzureAD.
 
-7. Enter your Application (Client) ID from Azure into the **Initial Client ID** field and the Azure admin application's client secret into the **Intial Client Secret** field. The Initial Client Secret will be stored in isolated, encrypted storage and will not be readable through any Konnect API.
+7. Enter your Application (Client) ID from Azure into the **Initial Client ID** field and the Azure admin application's client secret into the **Initial Client Secret** field. The Initial Client Secret will be stored in isolated, encrypted storage and will not be readable through any Konnect API.
 
 8. After saving, your new DCR Provider will appear in the list.
 
@@ -106,7 +106,7 @@ You will receive a response that includes a `dcr_provider` object similar to the
    ```
 Save the `id` value for creating the authentication strategy.
 
-2. With the `dcr_id` obtained from the first step, create an authentication strategy. Send a `POST` request to the [`create-auth-stratgies`](/konnect/api/application-auth-strategies/latest/#/App%20Auth%20Strategies/create-app-auth-strategy) endpoint describing an authentiaction strategy: 
+2. With the `dcr_id` obtained from the first step, create an authentication strategy. Send a `POST` request to the [`create-auth-stratgies`](/konnect/api/application-auth-strategies/latest/#/App%20Auth%20Strategies/create-app-auth-strategy) endpoint describing an authentication strategy: 
 
    ```sh
       curl --request POST \

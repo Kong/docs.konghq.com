@@ -13,7 +13,7 @@ You must enable application registration in each geo that you want to allow deve
 Each geo has their own API keys and specifications for application registration in their respective geo.
 
 {{site.konnect_short_name}} provides the capability to configure and implement a range of authentication strategies. Utilizing the OpenID Connect authentication strategy allows for specific permissions to be set within your Identity Provider (IdP). This system offers the versatility to either apply a unified authentication strategy across all API Products or to designate a unique authentication strategy to individual API Products.
-
+<!--vale off-->
 {% mermaid %}
 flowchart TB
     subgraph Staging Portal
@@ -27,7 +27,7 @@ flowchart TB
     end
 
 {% endmermaid %}
-
+<!--vale on-->
 {:.note}
 Auth Configs are independently configured entities, meaning they can be used by multiple API Products (for example, Weather API v2 and Maps API v2 in Staging Portal both use the Okta OIDC config). Independently configured Auth Configs also give you the flexibility to configure the same API Product version to use different auth strategies in different portals. For example, Maps v2 uses the Okta OIDC Auth Config in the Staging Portal, and the Auth0 OIDC Auth Config in the Production portal.
 
@@ -162,7 +162,7 @@ In the `default` control plane group, **Credential claim** is used as a **Consum
 
 In {{site.konnect_short_name}} can configure and manage multiple authentication strategies across various API products and their versions, allowing you to apply distinct authentication scopes for different API versions.
 
-This section will introduce you to the functionality portal product versions using Dynamic client registration (DCR). Using the Application Registration API, you can manage multiple APIs and configure different DCRs on a per API product basis.
+This section will introduce you to the functionality portal product versions using Dynamic client registration (DCR). Using the Application Registration API, you can manage multiple APIs and configure a different DCR on a per API product basis.
 
 Using the [`product-versions`](/konnect/api/portal-management/latest/#/Portal%product%version/#/create-portal-product-version) endpoint, you can link authentication strategies with your API products. 
 
