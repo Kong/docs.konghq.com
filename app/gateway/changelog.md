@@ -3335,7 +3335,7 @@ Kong Gateway version.
     Validate individual WebSocket messages against a user-specified schema
     before proxying them.
 
-* [ACME](/hub/kong-inc/ACME/) (`acme`)
+* [ACME](/hub/kong-inc/acme/) (`acme`)
   * Added the `allow_any_domain` field. It defaults to false and if set to true, the gateway will
   ignore the `domains` field.
   [#9047](https://github.com/Kong/kong/pull/9047)
@@ -3613,7 +3613,7 @@ Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020
   * Removed the deprecated `blacklist` and `whitelist` configuration parameters.
    [#8560](https://github.com/Kong/kong/pull/8560)
 
-* [ACME](/hub/kong-inc/ACME/) (`acme`)
+* [ACME](/hub/kong-inc/acme/) (`acme`)
   * The default value of the `auth_method` configuration parameter is now `token`.
 
 * [AWS Lambda](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
@@ -3832,7 +3832,7 @@ during the initialization of the [keyring module](/gateway/latest/kong-enterpris
 * External plugins: Kong Gateway now handles logging better when a plugin instance loses the `instances_id` in an event handler.
   [#8652](https://github.com/Kong/kong/pull/8652)
 
-* [ACME](/hub/kong-inc/ACME/) (`acme`)
+* [ACME](/hub/kong-inc/acme/) (`acme`)
   * The default value of the `auth_method` configuration parameter is now set to `token`.
   [#8565](https://github.com/Kong/kong/pull/8565)
   * Added a cache for `domains_matcher`.
@@ -4940,7 +4940,7 @@ making your environment more secure.
 * [jq](/hub/kong-inc/jq/) (`jq`)
   * Use response buffering from the PDK.
 
-* [ACME](/hub/kong-inc/ACME/) (`acme`)
+* [ACME](/hub/kong-inc/acme/) (`acme`)
   * Added the `rsa_key_size` configuration parameter.
 
     Thanks, [lodrantl](https://github.com/lodrantl)!
