@@ -61,9 +61,6 @@ Kong supports the following versions of {{site.ee_product_name}}:
   {% navtab 3.3 %}
     {% include_cached gateway-support.html version="3.3" data=site.data.tables.support.gateway.versions.33 eol="May 2024" %}
   {% endnavtab %}
-  {% navtab 3.2 %}
-    {% include_cached gateway-support.html version="3.2" data=site.data.tables.support.gateway.versions.32 eol="Feb 2024" %}
-  {% endnavtab %}
   {% navtab 2.8 LTS %}
     {% include_cached gateway-support.html version="2.8 LTS" data=site.data.tables.support.gateway.versions.28  eol="March 2025" %}
   {% endnavtab %}
@@ -75,6 +72,7 @@ These versions have reached the end of full support.
 
 | Version  | Released Date | End of Full Support | End of Sunset Support |
 |:--------:|:-------------:|:-------------------:|:---------------------:|
+|  3.2.x.x |  2023-02-28   |     2024-02-28      |      2025-02-28       |
 |  3.1.x.x |  2022-12-06   |     2023-12-06      |      2024-12-06       |
 |  3.0.x.x |  2022-09-09   |     2023-09-09      |      2024-09-09       |
 |  2.7.x.x |  2021-12-16   |     2023-02-24      |      2024-08-24       |
