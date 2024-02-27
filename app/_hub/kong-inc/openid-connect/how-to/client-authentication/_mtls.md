@@ -1,6 +1,8 @@
 ---
 title:  Mutual TLS Client Authentication
 nav_title: Mutual TLS Client Authentication
+
+minimum_version: 3.6.x
 ---
 
 ## Mutual TLS client authentication
