@@ -9,11 +9,50 @@ Changelog for supported Kong Gateway versions.
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.6.1.0
+**Release Date** 02/26/2024
+
+### Features
+
+#### Configuration
+
+* TLSv1.1 and lower is now disabled by default in OpenSSL 3.x.
+
+#### Plugins
+
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
+  * Increased queue max batch size to 200.
+
+### Fixes
+
+#### General 
+
+* Fixed a bug where a low ulimit setting (open files) caused Kong to fail to start, 
+as the `lua-resty-timer-ng` exhausted the available `worker_connections`. 
+Decreased the concurrency range of the `lua-resty-timer-ng` library from `[512, 2048]` to `[256, 1024]` to fix this bug.
+
+#### Configuration
+
+* Set the security level of gRPC's TLS to `0` when `ssl_cipher_suite` is set to `old`.
+
+#### Clustering
+
+* Adjusted a clustering compatibility check related to HCV Kubernetes authentication paths.
+
+#### Plugins
+
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
+  * Fixed an OTEL sampling mode Lua panic bug that occurred when the `http_response_header_for_traceid` option was enabled.
+
+* [**LDAP Authentication Advanced**](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
+  * Fixed an issue where, if the credential was encoded with no username, Kong Gateway threw an error and returned a 500 code.
+
 ## 3.6.0.0
 **Release Date** 02/12/2024
 
 ### Breaking changes and deprecations
 
+* Kong Gateway 3.6.0.0 requires a ulimit higher than 1024 to function properly. This requirement will be removed in a subsequent version. We recommend setting the ulimit to at least 4096 when running Kong Gateway 3.6.0.0.
 * To avoid ambiguity with other Wasm-related `nginx.conf` directives, the prefix for Wasm `shm_kv` nginx.conf directives was changed from `nginx_wasm_shm_` to `nginx_wasm_shm_kv_`.
  [#11919](https://github.com/Kong/kong/issues/11919)
 
@@ -3296,7 +3335,7 @@ Kong Gateway version.
     Validate individual WebSocket messages against a user-specified schema
     before proxying them.
 
-* [ACME](/hub/kong-inc/ACME/) (`acme`)
+* [ACME](/hub/kong-inc/acme/) (`acme`)
   * Added the `allow_any_domain` field. It defaults to false and if set to true, the gateway will
   ignore the `domains` field.
   [#9047](https://github.com/Kong/kong/pull/9047)
@@ -3574,7 +3613,7 @@ Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020
   * Removed the deprecated `blacklist` and `whitelist` configuration parameters.
    [#8560](https://github.com/Kong/kong/pull/8560)
 
-* [ACME](/hub/kong-inc/ACME/) (`acme`)
+* [ACME](/hub/kong-inc/acme/) (`acme`)
   * The default value of the `auth_method` configuration parameter is now `token`.
 
 * [AWS Lambda](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
@@ -3793,7 +3832,7 @@ during the initialization of the [keyring module](/gateway/latest/kong-enterpris
 * External plugins: Kong Gateway now handles logging better when a plugin instance loses the `instances_id` in an event handler.
   [#8652](https://github.com/Kong/kong/pull/8652)
 
-* [ACME](/hub/kong-inc/ACME/) (`acme`)
+* [ACME](/hub/kong-inc/acme/) (`acme`)
   * The default value of the `auth_method` configuration parameter is now set to `token`.
   [#8565](https://github.com/Kong/kong/pull/8565)
   * Added a cache for `domains_matcher`.
@@ -4901,7 +4940,7 @@ making your environment more secure.
 * [jq](/hub/kong-inc/jq/) (`jq`)
   * Use response buffering from the PDK.
 
-* [ACME](/hub/kong-inc/ACME/) (`acme`)
+* [ACME](/hub/kong-inc/acme/) (`acme`)
   * Added the `rsa_key_size` configuration parameter.
 
     Thanks, [lodrantl](https://github.com/lodrantl)!

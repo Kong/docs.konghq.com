@@ -10,7 +10,9 @@ In addition to viewing our performance test results, you can use [our public tes
 
 ## {{site.base_gateway}} performance testing method and results for {{page.release}}
 
-Kong tests performance results for {{site.base_gateway}} using [our public test suite](https://github.com/Kong/kong-gateway-performance-benchmark/tree/main). The following sections explain the test methodology, results, and configuration.  
+Kong tests performance results for {{site.base_gateway}} using [our public test suite](https://github.com/Kong/kong-gateway-performance-benchmark/tree/main).
+
+The following sections explain the test methodology, results, and configuration.  
 
 ### Test method
 

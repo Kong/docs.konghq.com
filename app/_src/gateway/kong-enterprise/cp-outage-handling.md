@@ -34,10 +34,9 @@ and a DP acting as a backup node cannot be provisioned with backup configuration
 {% endif_version %}
 {% if_version gte:3.6.x %}
 and the DP needs to be at least `3.6.0.0` to be provisioned with backup configuration when it's configured as a backup node. 
-{% endif_version %}
 
 Although a single backup node is sufficient for all deployments, you can also configure additional backup nodes. A leader election algorithm selects one node from the group of designated backup nodes to do the backup job.
-
+{% endif_version %}
 
 For more information about the data that is set in the environment variables, review the [AWS environment variable configuration documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html).
 

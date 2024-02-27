@@ -1,7 +1,11 @@
 RSpec.describe Jekyll::Drops::Plugins::VersionsDropdownOption do
   subject { described_class.new(page:, release:, latest:, current:) }
 
-  let(:page) { double(dropdown_url: '/hub/kong-inc/jwt-signer/VERSION/') }
+  let(:site) { double(data: { 'pages_urls' => Set.new(urls) }) }
+  let(:urls) { [] }
+  let(:page) do
+    double(dropdown_url: '/hub/kong-inc/jwt-signer/VERSION/', site:, base_url: '/hub/kong-inc/jwt-signer/unreleased/')
+  end
   let(:current) do
     Jekyll::GeneratorSingleSource::Product::Release.new(
       'edition' => 'gateway', 'release' => '3.5.x'
@@ -18,7 +22,14 @@ RSpec.describe Jekyll::Drops::Plugins::VersionsDropdownOption do
     ).to_liquid
   end
 
-  xdescribe '#url' do
+  describe '#url' do
+    let(:urls) do
+      [
+        '/hub/kong-inc/jwt-signer/',
+        '/hub/kong-inc/jwt-signer/2.8.x/'
+      ]
+    end
+
     context 'when the release is the latest' do
       let(:release) { latest }
 

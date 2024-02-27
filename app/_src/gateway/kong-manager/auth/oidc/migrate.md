@@ -25,6 +25,22 @@ Parameter | Old behavior | New behavior
 [`login_redirect_uri`](#login_redirect_uri) | Optional | Required 
 [`logout_redirect_uri`](#logout_redirect_uri) | Optional | Required
 
+The following parameters are not required and controlled internally, and the provided values for them will be ignored:
+
+- `auth_methods`
+- `login_action`
+- `login_methods`
+- `login_tokens`
+- `logout_methods`
+- `logout_query_arg`
+- `logout_revoke_access_token`
+- `logout_revoke_refresh_token`
+- `logout_revoke`
+- `refresh_tokens`
+- `upstream_access_token_header`
+- `upstream_id_token_header`
+- `upstream_user_info_header` (while `search_user_info` is `true`)
+
 <!-- vale off -->
 ### scopes
 <!-- vale on -->

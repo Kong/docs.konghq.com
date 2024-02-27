@@ -2,7 +2,7 @@
 title: Proxy and Test a Service
 ---
 
-Create a {{site.konnect_short_name}} Gateway service to proxy your APIs. In this guide, you will create, proxy, and test a gateway service using Gateway Manager in {{site.konnect_short_name}}. 
+You can create a {{site.konnect_short_name}} Gateway service to proxy your APIs. In this guide, you will create, proxy, and test an example gateway service using Gateway Manager in {{site.konnect_short_name}}. 
 
 When you create a service, you also specify the route to it. This route,
 combined with the proxy URL for the service, will lead to the endpoint
@@ -10,9 +10,7 @@ specified in the API product deployment.
 
 ## Prerequisites
 
-If you're following the {{site.konnect_short_name}} quickstart guide,
-make sure you have
-[configured a data plane node](/konnect/getting-started/configure-data-plane-node).
+* A [configured a data plane node](/konnect/gateway-manager/data-plane-nodes/).
 
 ## Implement a Gateway service
 
@@ -51,8 +49,7 @@ In the {% konnect_icon runtimes %} [**Gateway Manager**](https://cloud.konghq.co
 
 ## Verify the implementation
 
-If you used the Docker script to connect a data plane
-earlier in [Configure a data plane node](/konnect/getting-started/configure-data-plane-node/),
+If you used the Docker script to connect a data plane,
 your default proxy URL is `localhost:8000`.
 
 Enter the proxy URL into your browser’s address bar and append the route path
@@ -77,4 +74,6 @@ request is sent to `http://httpbin.org`.
 * Abstracted a backend/upstream service and put a route of your choice on the
 front end, which you can now give to clients to make requests.
 
-Next, [productize your service with an API product](/konnect/getting-started/productize-service/).
+## More information
+
+* [Productize your service with an API product](/konnect/api-products/productize-service/)

@@ -1184,3 +1184,13 @@ conf:
 ```
 {% endnavtab %}
 {% endnavtabs %}
+
+{% if_version gte:2.0.x %}
+## What should I do if I've locked myself out?
+
+If you remove the default `AccessRoleBinding` and `AccessRole`, you might find yourself locked out and unable to edit any resources. If you encounter this situation, you can regain access to the cluster by following these steps:
+
+1. [Configure the control-plane](/mesh/{{page.release}}/documentation/configuration/#modifying-the-configuration) by setting the: `KUMA_ACCESS_TYPE` environment variable to `static`, and then restart the control-plane.
+2. Create the default `AccessRoleBinding` and `AccessRole` (as described in the [default section](/mesh/{{page.release}}/features/rbac/#default)), or add new groups if necessary.
+3. Remove the `KUMA_ACCESS_TYPE` environment variable for the control-plane and restart the control-plane.
+{% endif_version %}

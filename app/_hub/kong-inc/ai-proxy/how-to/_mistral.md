@@ -10,8 +10,10 @@ This guide walks you through setting up the AI Proxy plugin with [Mistral](https
 > [`upstream_url`](/hub/kong-inc/ai-proxy/configuration/#config-model-options-upstream_url) to point to the absolute
 > HTTP(S) endpoint for this model implementation.
 
-There are a number of hosting/format options for running this LLM. Popular options include:
+There are a number of hosting/format options for running this LLM. Mistral offers a cloud-hosted service for consuming
+the LLM, available at [Mistral.ai](https://mistral.ai/)
 
+Self-hosted options include:
 * [OLLAMA](https://ollama.com/)
 * [Hosting the GGUF model yourself, with an e.g. Python Web Server](https://huggingface.co/mistralai/Mixtral-8x7B-v0.1)
 
@@ -21,21 +23,26 @@ The "upstream" request and response formats are different between various implem
 
 For this provider, the following should be used for the [`config.model.options.mistral_format`](/hub/kong-inc/ai-proxy/configuration/#config-model-options-mistral_format) parameter:
 
-| Mistral Hosting  | `mistral_format` Config Value | Auth Header           |
-|------------------|-----------------------------|-------------------------|
-| OLLAMA           | `ollama`                    | Not required by default |
-| Self-Hosted GGUF | `openai`                    | Not required by default |
-
-### Ollama Format
-
-The `ollama` format option adheres to the `chat` and `chat-completion` request formats,
-as defined in its [API documentation](https://github.com/ollama/ollama/blob/main/docs/api.md).
+| Mistral Hosting  | `mistral_format` Config Value | Auth Header             |
+|------------------|-------------------------------|-------------------------|
+| Mistral.ai       | `openai`                      | `Authorization`         |
+| OLLAMA           | `ollama`                      | Not required by default |
+| Self-Hosted GGUF | `openai`                      | Not required by default |
 
 ### OpenAI Format
 
 The `openai` format option follows the same upstream formats as the equivalent 
 [OpenAI route type operation](https://github.com/kong/kong/blob/master/spec/fixtures/ai-proxy/oas.yaml) 
 (that is, `llm/v1/chat` or `llm/v1/completions`).
+
+This format should be used when configuring the cloud-based [https://mistral.ai/](https://mistral.ai/).
+
+It will transform both `llm/v1/chat` and `llm/v1/completions` type route requests, into the same format.
+
+### Ollama Format
+
+The `ollama` format option adheres to the `chat` and `chat-completion` request formats,
+as defined in its [API documentation](https://github.com/ollama/ollama/blob/main/docs/api.md).
 
 ## Using the plugin with Mistral
 
@@ -67,10 +74,12 @@ Enable and configure the AI Proxy plugin for Mistral (using `ollama` format in t
 curl -X POST http://localhost:8001/routes/mistral-chat/plugins \
   --data "name=ai-proxy" \
   --data "config.route_type=llm/v1/chat" \
+  --data "config.auth.header_name=Authorization" \
+  --data "config.auth.header_value=Bearer <MISTRAL_AI_KEY>" \
   --data "config.model.provider=mistral" \
-  --data "config.model.name=mistral" \
-  --data "config.model.options.mistral_format=ollama" \
-  --data "config.model.options.upstream_url=http://ollama-server.local:11434/v1/chat" \ 
+  --data "config.model.name=mistral-tiny" \
+  --data "config.model.options.mistral_format=openai" \
+  --data "config.model.options.upstream_url=https://api.mistral.ai/v1/chat/completions" \ 
 ```
 {% endnavtab %}
 {% navtab YAML %}
@@ -84,11 +93,14 @@ plugins:
   - name: ai-proxy
     config:
       route_type: "llm/v1/chat"
+      auth:
+        header_name: "Authorization"
+        header_value: "Bearer <MISTRAL_AI_KEY>"
       model:
         provider: "mistral"
-        name: "mistral"
-        mistral_format: "ollama"
-        upstream_url: "http://ollama-server.local:11434/v1/chat"
+        name: "mistral-tiny"
+        mistral_format: "openai"
+        upstream_url: "https://api.mistral.ai/v1/chat/completions"
 ```
 {% endnavtab %}
 {% endnavtabs %}
