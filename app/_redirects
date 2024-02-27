@@ -47,6 +47,10 @@
 /konnect/getting-started/configure-runtime/ /konnect/getting-started/configure-data-plane-node/
 /konnect/api/runtime-groups-config/overview/ /konnect/api/
 
+# Konnect Analytics Explorer revision
+
+/konnect/analytics/troubleshoot/    /konnect/analytics/dashboard/#troubleshooting
+
 # API markdown doc deprecation
 
 /gateway/latest/admin-api/licenses/reference   /gateway/api/admin-ee/latest/#/licenses/get-licenses/
