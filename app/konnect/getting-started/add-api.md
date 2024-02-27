@@ -144,17 +144,17 @@ Now that you've added your API to {{site.konnect_short_name}}, you can continue 
 <div class="docs-grid-install max-3">
 
   <a href="/hub/kong-inc/key-auth/how-to/basic-example/?tab=konnect-api" class="docs-grid-install-block no-description" style="min-height:150px">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-key-auth.png" alt="">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-key-auth.png" alt="" style="max-height:50px">
     <div class="install-text">Protect my APIs with key authentication</div>
   </a>
 
   <a href="/hub/kong-inc/rate-limiting/?tab=konnect-api" class="docs-grid-install-block no-description" style="min-height:150px">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-rl.png" alt="">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-rl.png" alt="" style="max-height:50px">
     <div class="install-text">Rate limit my APIs</div>
   </a>
 
   <a href="/konnect/dev-portal/applications/enable-app-reg/" class="docs-grid-install-block no-description" style="min-height:150px">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-operation.png" alt="">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-operation.svg" alt="">
     <div class="install-text">Make my APIs available to customers</div>
   </a>
 

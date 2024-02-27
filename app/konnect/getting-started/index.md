@@ -6,7 +6,7 @@ title: Get started with Konnect
   <tr style="background-color:#fff;border:none">
     <td rowspan="3" style="border-right:1px solid #e0e4ea;vertical-align:top;border-bottom:none;background-color:#F9FAFB">
         <br>
-        <p style="font-size:16px;">How to get started with <img style="min-height:18px" src="/assets/images/logos/kong-konnect-logo.svg" alt="{{site.konnect_product_name}}"/> </p>
+        <p style="font-size:16px;">How to get started with <img style="min-height:18px" src="/assets/images/logos/kong-konnect-logo.svg" alt="{{site.konnect_product_name}}" class="no-image-expand" /> </p>
     </td>
   </tr>
     <tr style="background-color:#fff;border:none">

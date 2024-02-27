@@ -83,22 +83,22 @@ Now that you've imported your {{site.base_gateway}} entities to {{site.konnect_s
 <div class="docs-grid-install max-4" >
 
   <a href="/konnect/api-products/service-documentation/" class="docs-grid-install-block no-description" style="min-height:150px">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-upload.png" alt="">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-upload.svg" alt="">
     <div class="install-text">Migrate API specs and markdown service descriptions</div>
   </a>
 
   <a href="/konnect/dev-portal/dev-reg/" class="docs-grid-install-block no-description" style="min-height:150px">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-users.png" alt="">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-customers.svg" alt="">
     <div class="install-text">Create Dev Portal accounts for developers</div>
   </a>
 
   <a href="/konnect/gateway-manager/plugins/#custom-plugins" class="docs-grid-install-block no-description" style="min-height:150px">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-extensibility.png" alt="">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-extensibility.svg" alt="">
     <div class="install-text">Prepare custom plugins for migration</div>
   </a>
 
   <a href="/konnect/org-management/teams-and-roles/" class="docs-grid-install-block no-description" style="min-height:150px">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-teams.png" alt="">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-teams.svg" alt="">
     <div class="install-text">Review and set up teams and roles</div>
   </a>
 
@@ -109,17 +109,17 @@ Now that you've imported your {{site.base_gateway}} entities to {{site.konnect_s
 <div class="docs-grid-install max-3">
 
   <a href="/hub/kong-inc/key-auth/how-to/basic-example/?tab=konnect-api" class="docs-grid-install-block no-description" style="min-height:150px">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-key-auth.png" alt="">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-key-auth.png" alt="" style="max-height:50px">
     <div class="install-text">Protect my APIs with key authentication</div>
   </a>
 
   <a href="/hub/kong-inc/rate-limiting/?tab=konnect-api" class="docs-grid-install-block no-description" style="min-height:150px">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-rl.png" alt="">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-rl.png" alt="" style="max-height:50px">
     <div class="install-text">Rate limit my APIs</div>
   </a>
 
   <a href="/konnect/dev-portal/applications/enable-app-reg/" class="docs-grid-install-block no-description" style="min-height:150px">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-operation.png" alt="">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-operation.svg" alt="">
     <div class="install-text">Make my APIs available to customers</div>
   </a>
 
