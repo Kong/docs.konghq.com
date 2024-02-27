@@ -6,14 +6,14 @@ title: Get started with Konnect
   <tr style="background-color:#fff;border:none">
     <td rowspan="3" style="border-right:1px solid #e0e4ea;vertical-align:top;border-bottom:none;background-color:#F9FAFB">
         <br>
-        <p style="font-size:16px;">How to get started with <img src="/assets/images/logos/kong-konnect-logo.svg" alt="Kong Konnect"/></p>
+        <p style="font-size:16px;">How to get started with <img style="min-height:18px" src="/assets/images/logos/kong-konnect-logo.svg" alt="{{site.konnect_product_name}}"/> </p>
     </td>
   </tr>
     <tr style="background-color:#fff;border:none">
     <td style="border-bottom:1px solid #e0e4ea;">
         <br>
         <p><b>Help me set up an API</b></p>
-        <p>When you sign up for Kong Konnect, you can get started quickly with our onboarding wizard.</p>
+        <p>When you sign up for {{site.konnect_product_name}}, you can get started quickly with our onboarding wizard.</p>
         <p><a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs">Sign up today</a></p>
     </td>
 </tr>
@@ -21,7 +21,7 @@ title: Get started with Konnect
     <td style="border-bottom:none">
         <p><b>I know how to get started</b></p>
         <p><a href="/konnect/getting-started/add-api/"><i class="fas fa-plus"></i> Add an API &rarr;</a></p>
-        <p><a href="/konnect/getting-started/import/"><i class="fas fa-file-import"></i> Import Kong Gateway entities &rarr;</a></p>
+        <p><a href="/konnect/getting-started/import/"><i class="fas fa-file-import"></i> Import {{site.base_gateway}} entities &rarr;</a></p>
     </td>
   </tr>
 </table>
