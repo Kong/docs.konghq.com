@@ -57,97 +57,27 @@ In order to map an application from the Dev Portal to Okta, you have to create a
 
 ## Configure the Dev Portal
 
-{% navtabs %}
-{% navtab Konnect UI %}
+Once you have Okta configured, you can set up the Dev Portal to use Okta for dynamic client registration (DCR).
 
-After configuring Okta, you can integrate it with the Dev Portal for Dynamic Client Registration (DCR). This process involves two main steps: first, creating the DCR provider, and second, establishing the authentication strategy. DCR providers are designed to be reusable configurations. This means once you've configured the Okta DCR provider, it can be used across multiple authentication strategies without needing to be set up again.
+1. Sign in to {{site.konnect_short_name}}, then select {% konnect_icon dev-portal %} **Dev Portal** from the menu.
 
-1. Log in to {{site.konnect_short_name}} and select Dev Portal {% konnect_icon dev-portal %} from the menu.
+2. Click **Settings** to open the Dev Portal settings.
 
-2. Navigate to **Application Auth** to see the authentication strategies for your API Products.
+3. Click the **Application Setup** tab to open the DCR settings for your Dev Portal.
 
-3. Open the **DCR Providers** to see all existing DCR providers.
+4. Enter the **Issuer URL** for your authorization server, and the **Token** that were created in Okta.
 
-4. Select **New DCR Provider** to create a new Okta configuration. Name it for internal reference within {{site.konnect_short_name}}. This name and the provider type won't be visible to developers on the Dev Portal.
-
-5. Enter the **Issuer URL** of your authorization server and the **DCR Token** that you created in Okta. Select Okta as the **Provider Type**. The DCR token will be stored in isolated, encrypted storage and will not be readable through any Konnect API.
-
-6. Save your DCR provider. You should now see it in the list of DCR providers.
-
-7. Navigate to the **Auth Strategy** tab, then select **New Auth Strategy** to create an auth strategy that uses the DCR provider.
-
-8. Provide a name for internal use within {{site.konnect_short_name}} and a display name for visibility on your Portal. In the **Auth Type** dropdown menu select DCR. In the **DCR Provider** dropdown, select the name of the DCR provider config you just created. Your **Issuer URL** will be prepopulated with the Issuer URL you added to the DCR provider.
-
-9. Enter the names of the **Scopes** and **Claims** as comma-separated values in their corresponding fields. The values should match the scopes or claims that were created in Okta.
+5. Enter the names of the **Scopes** and **Claims** as comma-separated values in their corresponding fields. The values should match the scopes or claims that were created in Okta.
 
    {:.note}
-   > **Note:**  Avoid using the `openid` scope with client credentials as it restricts the use. If no scopes are specified, `openid` will be the default.
+   > **Note:** You can use any of the existing scopes besides **`openid`**, as using the `openid`
+   scope prevents you from using client credentials. If the **Scopes** field is empty, `openid`
+   will be used.
 
-10. Select the relevant **Auth Methods** you need (`client_credentials`, `bearer`, `session`), and **Save**. 
+6. Click **Save**.
 
-{% endnavtab %}
-{% navtab API %}
-After configuring Okta, you can integrate it with the Dev Portal for dynamic client registration (DCR). This process involves two steps: creating the DCR provider and establishing the authentication strategy. DCR providers are designed to be reusable configurations. This means once you've configured the Okta DCR provider, it can be used across multiple authentication strategies without needing to be set up again.
-
-1. Start by creating the DCR provider. Send a `POST` request to the [`dcr-providers`](/konnect/api/application-auth-strategies/latest/#/DCR%20Providers/create-dcr-provider) endpoint with your DCR configuration details:
-```sh
-curl --request POST \
-  --url https://us.api.konghq.com/v2/dcr-providers \
-  --header 'Authorization: $KPAT' \
-  --header 'content-type: application/json' \
-  --data '{
-  "name": "DCR Okta",
-  "provider_type": "okta",
-  "issuer": "https://my-issuer.okta.com/default",
-  "dcr_config": {
-    "dcr_token": "my_dcr_token"
-  }'
-```
-You will receive a response that includes a `dcr_provider` object similar to the following:
-
-   ```sh
-   "dcr_provider": {
-   "id": "33f8380e-7798-4566-99e3-2edf2b57d289",
-   "name": "DCR Okta",
-   "display_name": "Credentials",
-   "provider_type": "okta"
-   }
-   ```
-Save the `id` value for creating the authentication strategy.
-
-2. Now that you've obtained the `dcr_id` in the first step, create an authentication strategy. Send a `POST` request to the [`create-auth-stratgies`](/konnect/api/application-auth-strategies/latest/#/App%20Auth%20Strategies/create-app-auth-strategy) endpoint describing an authentication strategy: 
-   ```sh
-   curl --request POST \
-   --url https://us.api.konghq.com/v2/application-auth-strategies \
-   --header 'Authorization: $KPAT' \
-   --header 'content-type: application/json' \
-   --data '{
-   "name": "Okta auth strategy",
-   "display_name": "Okta",
-   "strategy_type": "okta",
-   "configs": {
-      "openid-connect": {
-         "issuer": "https://my-issuer.auth0.com/api/v2/",
-         "credential_claim": [
-         "client_id"
-         ],
-         "scopes": [
-         "openid",
-         "email"
-         ],
-         "auth_methods": [
-         "client_credentials",
-         "bearer"
-         ]
-      }
-   },
-   "dcr_provider_id": "93f8380e-7798-4566-99e3-2edf2b57d289"
-   }'
-
-   ```
-
-{% endnavtab %}
-{% endnavtabs %}
+   If you previously configured any DCR settings, this will
+   overwrite them.
 
 ## Create an application with DCR
 
@@ -155,7 +85,7 @@ From the **My Apps** page in the Dev Portal, follow these instructions:
 
 1. Click the **New App** button.
 
-2. Fill out the **Create New Application** form with your application name, auth strategy, and description.
+2. Fill out the **Create New Application** form with your application name, redirect URI, and a description.
 
 3. Click **Create** to save your application.
 
