@@ -230,6 +230,7 @@ filetypes
 firewalled
 flamegraph
 full_name
+geo
 getter
 getters
 gevent
@@ -390,6 +391,7 @@ onwards
 opa
 openresty
 OpenSSL
+openid
 Openwhisk
 outbounds
 passthrough

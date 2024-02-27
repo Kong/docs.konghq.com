@@ -126,6 +126,27 @@
     ]
   },
   {
+    "id": "ccb264be-1963-49a4-b6e8-bc7c98a6e4c2",
+    "title": "Application Auth Strategies",
+    "latestVersion": {
+      "name": "v2",
+      "id": "f683716f-218d-4fab-9eef-b453cf795130"
+    },
+    "description": "Application Auth Strategies are used to manage authentication to your APIs.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "f683716f-218d-4fab-9eef-b453cf795130",
+        "created_at": "2024-02-21T17:28:17.757Z",
+        "updated_at": "2024-02-26T21:22:23.095Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
     "id": "3e65edbc-364d-4762-9d3e-f13083e1b534",
     "title": "Gateway Dev Portal",
     "latestVersion": {

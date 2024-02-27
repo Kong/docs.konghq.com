@@ -157,35 +157,34 @@
           url: /dev-portal/access-and-approval/auto-approve-devs-apps/
         - text: Azure OIDC
           url: /dev-portal/access-and-approval/azure/
-    - text: Working with Applications
+    - text: Application Lifecycle
       items:
-        - text: Application Overview
+        - text: Overview
           url: /dev-portal/applications/application-overview/
         - text: Enable and Disable App Registration for API Product Versions
           url: /dev-portal/applications/enable-app-reg/
-        - text: Dynamic Client Registration
-          items:
-            - text: Overview
-              url: /dev-portal/applications/dynamic-client-registration/
-            - text: Okta
-              url: /dev-portal/applications/dynamic-client-registration/okta/
-            - text: Curity
-              url: /dev-portal/applications/dynamic-client-registration/curity/
-            - text: Auth0
-              url: /dev-portal/applications/dynamic-client-registration/auth0/
-            - text: Azure
-              url: /dev-portal/applications/dynamic-client-registration/azure/
-            - text: Custom IdP
-              url: /dev-portal/applications/dynamic-client-registration/custom/
         - text: Create, Edit, and Delete an Application
           url: /dev-portal/applications/dev-apps/
-        - text: Register an Application with an API product
-          url: /dev-portal/applications/dev-reg-app-service/
         - text: Generate Credentials for an Application
           url: /dev-portal/applications/dev-gen-creds/
-    - text: Konnect Portal Management API Automation Guide
+    - text: Dynamic Client Registration
+      items:
+        - text: Overview
+          url: /dev-portal/applications/dynamic-client-registration/
+        - text: Okta
+          url: /dev-portal/applications/dynamic-client-registration/okta/
+        - text: Curity
+          url: /dev-portal/applications/dynamic-client-registration/curity/
+        - text: Auth0
+          url: /dev-portal/applications/dynamic-client-registration/auth0/
+        - text: Azure
+          url: /dev-portal/applications/dynamic-client-registration/azure/
+        - text: Custom IdP
+          url: /dev-portal/applications/dynamic-client-registration/custom/
+          
+    - text: Portal Management API Automation Guide
       url: /dev-portal/konnect-portal-management-automation/
-    - text: Customize Dev Portal
+    - text: Portal Customization
       items:
         - text: Overview
           url: /dev-portal/customization/
