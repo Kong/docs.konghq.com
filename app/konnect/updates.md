@@ -12,6 +12,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## February 2024
 
+**New Analytics Explorer page**
+: You can now explore and visualize analytics data via an easy to use, point-and-click web interface. The [Explorer page](https://cloud.konghq.com/analytics/explorer) allows you to drill-down into data and easily discover how issues may impact your business. For more information, see the [Explorer overview](/konnect/analytics/explorer/).
+
 **Improved Analytics summary dashboard**
 : A new version of the Analytics summary dashboard is now available for all {{site.konnect_short_name}} users. This new version displays all analytics information on one page, which allows you to focus on your most critical API usage data.
 
