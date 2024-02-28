@@ -47,7 +47,7 @@ The plugin's [`config.route_type`](/hub/kong-inc/ai-proxy/configuration/#config-
 | Cohere        | `/v1/generate`                                           | `llm/v1/completions` | command                |
 | Azure         | `/openai/deployments/{deployment_name}/chat/completions` | `llm/v1/chat`        | gpt-4                  |
 | Azure         | `/openai/deployments/{deployment_name}/completions`      | `llm/v1/completions` | gpt-3.5-turbo-instruct |
-| Anthropic     | `/v1/complete`                                           | `llm/v1/chat`        | claude-2.1             |
+| Anthropic     | `/v1/messages`                                           | `llm/v1/chat`        | claude-2.1             |
 | Anthropic     | `/v1/complete`                                           | `llm/v1/completions` | claude-2.1             |
 | Llama2        | User-defined                                             | `llm/v1/chat`        | User-defined           |
 | Llama2        | User-defined                                             | `llm/v1/completions` | User-defined           |
