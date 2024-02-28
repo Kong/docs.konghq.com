@@ -2,12 +2,7 @@
 title: Konnect Architecture
 ---
 
-The {{site.konnect_product_name}} platform provides a hosted control plane
-that manages all service configurations. It propagates those configurations to
-the data plane, which is composed of self-managed data plane 
-nodes. The individual nodes can be running either on-premise or in 
-cloud-hosted environments, and each data plane node stores the configuration 
-in-memory. 
+{% include_cached /md/konnect/konnect-architecture.md %} 
 
 ![{{site.konnect_product_name}}](/assets/images/products/konnect/konnect-intro.png)
 

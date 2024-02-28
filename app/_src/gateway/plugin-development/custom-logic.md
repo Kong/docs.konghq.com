@@ -77,7 +77,7 @@ To reduce unexpected behaviour changes, {{site.base_gateway}} does not start if 
 | Function name       | Phase               | Request Protocol              | Description
 |---------------------|---------------------|-------------------------------|------------
 | `init_worker`       | [init_worker]       | *                             | Executed upon every Nginx worker process's startup.
-| `configure`         | [init_worker]/timer | *                             | Executed everytime Kong plugin iterator is rebuild (aka after changes to configure plugins)
+| `configure`         | [init_worker]/timer | *                             | Executed every time the Kong plugin iterator is rebuilt (after changes to configure plugins).
 | `certificate`       | [ssl_certificate]   | `https`, `grpcs`, `wss`       | Executed during the SSL certificate serving phase of the SSL handshake.
 | `rewrite`           | [rewrite]           | *                             | Executed for every request upon its reception from a client as a rewrite phase handler. <br> In this phase, neither the `Service` nor the `Consumer` have been identified, hence this handler will only be executed if the plugin was configured as a global plugin.
 | `access`            | [access]            | `http(s)`, `grpc(s)`, `ws(s)` | Executed for every request from a client and before it is being proxied to the upstream service.
@@ -100,7 +100,7 @@ To reduce unexpected behaviour changes, {{site.base_gateway}} does not start if 
 | Function name   | Phase                                                                        | Description
 |-----------------|------------------------------------------------------------------------------|------------
 | `init_worker`   | [init_worker]                                                                | Executed upon every Nginx worker process's startup.
-| `configure`     | [init_worker]/timer                                                         | Executed everytime Kong plugin iterator is rebuild (aka after changes to configure plugins)
+| `configure`     | [init_worker]/timer                                                         | Executed every time the Kong plugin iterator is rebuilt (after changes to configure plugins).
 | `preread`       | [preread]                                                                    | Executed once for every connection.
 | `log`           | [log](https://github.com/openresty/stream-lua-nginx-module#log_by_lua_block) | Executed once for each connection after it has been closed.
 | `certificate`   | [ssl_certificate]                                                            | Executed during the SSL certificate serving phase of the SSL handshake.
@@ -438,38 +438,40 @@ regard to other plugins' phases (such as `:access()`, `:log()`, etc.).
 
 All of the plugins bundled with {{site.base_gateway}} have a static priority.
 This can be adjusted dynamically using the `ordering` option. See
-[Dynamic Plugin Ordering](/gateway/{{page.kong_version}}/kong-enterprise/plugin-ordering/)
+[Dynamic Plugin Ordering](/gateway/{{page.release}}/kong-enterprise/plugin-ordering/)
 for more information.
 
 {% navtabs %}
-{% navtab Open-source or Free mode %}
+{% navtab OSS %}
 
 The following list includes all plugins bundled with open-source
-{{site.base_gateway}} or {{site.base_gateway}} running in Free mode.
+{{site.base_gateway}}.
 
 {:.note}
-> **Note:** The correlation-id plugin's execution order is different depending
-on whether you're running {{site.base_gateway}} in Free mode or using the
-open-source package.
+> **Note:** The Correlation ID plugin's priority changes depending on
+> whether you're running it in open-source or Free mode.
+> Free mode uses the {{site.ee_product_name}} package.
+> Switch to the **Enterprise** tab to see the correct priority for this plugin.
 
 The current order of execution for the bundled plugins is:
 
-{% include /md/plugin-priority.md edition='oss' %}
+{% plugins_priority_table oss %}
 
 {% endnavtab %}
 {% navtab Enterprise %}
-The following list includes all plugins bundled with a {{site.base_gateway}}
-Enterprise subscription.
+The following list includes all plugins bundled with a {{site.ee_product_name}}
+subscription. This priority order also applies to plugins running in Free mode, 
+which uses the {{site.ee_product_name}} package.
 
 The current order of execution for the bundled plugins is:
 
-{% include /md/plugin-priority.md edition='enterprise' %}
+{% plugins_priority_table enterprise %}
 
 {% endnavtab %}
 {% endnavtabs %}
 
 [lua-nginx-module]: https://github.com/openresty/lua-nginx-module
-[pdk]: /gateway/{{page.kong_version}}/plugin-development/pdk
+[pdk]: /gateway/{{page.release}}/plugin-development/pdk
 [HTTP Module]: https://github.com/openresty/lua-nginx-module
 [Stream Module]: https://github.com/openresty/stream-lua-nginx-module
 [init_worker]: https://github.com/openresty/lua-nginx-module#init_worker_by_lua_block
@@ -480,7 +482,7 @@ The current order of execution for the bundled plugins is:
 [body_filter]: https://github.com/openresty/lua-nginx-module#body_filter_by_lua_block
 [log]: https://github.com/openresty/lua-nginx-module#log_by_lua_block
 [preread]: https://github.com/openresty/stream-lua-nginx-module#preread_by_lua_block
-[enable_buffering]: /gateway/{{page.kong_version}}/plugin-development/pdk/kong.service.request/#kongservicerequestenable_buffering
+[enable_buffering]: /gateway/{{page.release}}/plugin-development/pdk/kong.service.request/#kongservicerequestenable_buffering
 [content]: https://github.com/openresty/lua-nginx-module#content_by_lua_block
 
 <!-- vale on -->

@@ -156,8 +156,12 @@ inherit:
         - text: Role-Based Access Control
           url: /features/rbac
           generate: false
-        - text: UBI Images
-          url: /features/ubi-images
+        - text: Red Hat
+          items:
+            - text: UBI Images
+              url: /features/ubi-images
+            - text: Red Hat OpenShift Quickstart
+              url: /features/openshift-quickstart
         - text: ECS Support
           url: /installation/ecs
         - text: Auditing

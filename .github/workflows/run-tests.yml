@@ -11,6 +11,7 @@ concurrency:
 
 env:
   VITE_PORTAL_API_URL: ${{ vars.VITE_PORTAL_API_URL }}
+  BUNDLE_GITHUB__COM: x-access-token:${{ secrets.BUNDLE_GITHUB__COM }}
 
 jobs:
   smoke-test:
@@ -29,7 +30,7 @@ jobs:
         with:
           ruby-version: .ruby-version
       - name: Ruby gem cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ github.workspace }}/vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
@@ -45,9 +46,9 @@ jobs:
       # Configure Node to build assets
       - uses: actions/setup-node@v4
         with:
-          node-version: "16"
+          node-version: "20"
       - name: Cache node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-node-modules
         with:
@@ -74,6 +75,7 @@ jobs:
 
   rspec:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
@@ -81,9 +83,9 @@ jobs:
       # Configure Node to build assets
       - uses: actions/setup-node@v4
         with:
-          node-version: "16"
+          node-version: "20"
       - name: Cache node modules
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-node-modules
         with:

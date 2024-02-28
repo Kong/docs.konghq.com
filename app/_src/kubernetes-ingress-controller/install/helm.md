@@ -17,9 +17,8 @@ You can use any of the [configuration options](https://github.com/Kong/charts/bl
 controller:
   ingressController:
     image:
-      repository: kong/nightly-ingress-controller
-      tag: nightly
-      effectiveSemver: "{{ site.data.kong_latest_KIC.version }}"
+      repository: kong/kubernetes-ingress-controller
+      tag: "{{ site.data.kong_latest_KIC.version }}"
 ```
 
 
@@ -33,4 +32,4 @@ gateway:
 
 ## Installation
 
-{% include /md/kic/prerequisites.md kong_version=page.kong_version disable_accordian=true %}
+{% include /md/kic/prerequisites.md release=page.release disable_accordian=true %}

@@ -10,7 +10,7 @@ or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
 {% navtabs %}
 {% navtab Docker %}
 
-1. Set the [`KONG_ADMIN_GUI_PATH`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_path) and [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url) properties in the ([`kong.conf`](/gateway/{{page.kong_version}}/production/kong-conf/)) configuration file to the DNS or IP address of your system, then restart {{site.base_gateway}} for the setting to take effect. For example:
+1. Set the [`KONG_ADMIN_GUI_PATH`](/gateway/{{page.release}}/reference/configuration/#admin_gui_path) and [`KONG_ADMIN_GUI_URL`](/gateway/{{page.release}}/reference/configuration/#admin_gui_url) properties in the ([`kong.conf`](/gateway/{{page.release}}/production/kong-conf/)) configuration file to the DNS or IP address of your system, then restart {{site.base_gateway}} for the setting to take effect. For example:
 
     ```bash
     echo "-e 'KONG_ADMIN_GUI_PATH=/manager' \
@@ -25,7 +25,7 @@ or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
 {% endnavtab %}
 {% navtab Linux (kong.conf) %}
 
-1. Update the [`admin_gui_url`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url) property
+1. Update the [`admin_gui_url`](/gateway/{{page.release}}/reference/configuration/#admin_gui_url) property
   in the `kong.conf` configuration file to the DNS, or IP address, of your system. For example:
 
     ```
@@ -48,6 +48,6 @@ or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
 
 ## Next steps
 
-* [Get started with managing {{site.base_gateway}}](/gateway/{{page.kong_version}}/kong-manager/get-started/services-and-routes/)
-* [Set up authentication for Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/)
-* [Set up role-based access control to {{site.base_gateway}} resources](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/)
+* [Get started with managing {{site.base_gateway}}](/gateway/{{page.release}}/kong-manager/get-started/services-and-routes/)
+* [Set up authentication for Kong Manager](/gateway/{{page.release}}/kong-manager/auth/)
+* [Set up role-based access control to {{site.base_gateway}} resources](/gateway/{{page.release}}/kong-manager/auth/rbac/)

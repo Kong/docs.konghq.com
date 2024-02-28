@@ -93,6 +93,10 @@ features:
         tooltip: Kong Gateway now provides a FIPS mode, which at its core uses the FIPS 140-2 compliant BoringCrypto for cryptographic operations.
         oss: false
         enterprise: true
+      - name: Signed Kong Images
+        tooltip: Kong Gateway container images are signed and verifiable in accordance with SLSA guidelines.
+        oss: false
+        enterprise: true
   - name: Observability
     items:
       - name: Simple logging
@@ -106,6 +110,24 @@ features:
       - name: Gateway Event Hooks
         tooltip: Automatically log out or send web hooks on changes to the gateway, such as administrators added or rate limits exceeded
         oss: false
+        enterprise: true
+  - name: AI Gateway
+    items:
+      - name: Multi-LLM support
+        tooltip: Switch between different AI providers and models without having to change your application code
+        oss: true
+        enterprise: true
+      - name: AI traffic control
+        tooltip: Proxy AI traffic through the Kong Gateway and manage it with AI plugins
+        oss: true
+        enterprise: true
+      - name: AI prompt security
+        tooltip: Enforce secure and compliant AI prompts with the AI Prompt Decorator, AI Prompt Guard, and AI Prompt Template plugins
+        oss: true
+        enterprise: true
+      - name: AI observability
+        tooltip: Collect metrics from AI traffic, and use any Kong Gateway logging plugin to send it to your logging provider of choice
+        oss: true
         enterprise: true
   - name: Enterprise Support and Services
     items:

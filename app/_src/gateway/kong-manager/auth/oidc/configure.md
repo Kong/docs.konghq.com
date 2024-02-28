@@ -9,9 +9,9 @@ Provider using the
 [OpenID Connect Plugin](/hub/kong-inc/openid-connect/).
 
 {:.note}
-> **Note**: By using the configuration below, it is unnecessary to
-manually enable the plugin. The configuration alone will enable
-OIDC for Kong Manager.
+> **Note**: By using the configuration below, OpenID Connect authentication
+> will be enabled for Kong Manager. It is unnecessary to manually enable the
+> OpenID Connect plugin via Admin API or Kong Manager.
 
 ## Set up RBAC with OIDC
 
@@ -43,7 +43,7 @@ admin_gui_auth_conf={                                      \
 }
 ```
 {% endif_version %}
-{% if_version gte:3.5.x %}
+{% if_version eq:3.5.x %}
 
 The `admin_gui_auth_config` value must be valid JSON. The following is an example of the configuration:
 
@@ -73,7 +73,73 @@ The following are configuration parameters in `admin_gui_auth_conf` for `openid-
 | `admin_claim`<br>*required*    | Array     | ["email"]     | Retrieve the field as a username.      |
 | `admin_auto_create`<br>*optional*  | Boolean   | true   | This parameter is used to enable the automatic creation of administrators.    |
 | `ssl_verify`<br>*optional*     | Boolean   | false   | Verify identity provider server certificate.    |
+
 {% endif_version %}
+{% if_version gte:3.6.x %}
+
+{:.important}
+> **Important:**: If you are using configuration from previous versions, you may need to follow the 
+[migration guide](/gateway/{{page.release}}/kong-manager/auth/oidc/migrate/) to review and update your configuration.
+
+The `admin_gui_auth_config` value must be valid JSON. The following is an example of the configuration:
+
+```
+enforce_rbac = on
+admin_gui_auth=openid-connect # specify the plugin
+admin_gui_auth_conf={                                                                                         \
+  "issuer": "https://dev-xxxx.okta.com/oauth2/default",                                                       \
+  "client_id": ["<ENTER_YOUR_CLIENT_ID>"],                                                                    \
+  "client_secret": ["<ENTER_YOUR_CLIENT_SECRET_HERE>"],                                                       \
+  "redirect_uri": ["http://localhost:8001/auth"],                                                             \
+  "scopes": ["openid","email","offline_access"], # "email" is for the admin_claim, may vary in different IdPs \
+  "login_redirect_uri": ["http://localhost:8002"],                                                            \
+  "logout_redirect_uri": ["http://localhost:8002"],                                                           \
+  "admin_claim": "email",                                                                                   \
+  "authenticated_groups_claim": ["groups"],                                                                   \
+}
+```
+
+While authenticating Kong Manager with OpenID Connect, make sure that your IdP supports the
+`authorization_code` grant type and is enabled for the associated client.
+
+While authenticating Kong Manager with OpenID Connect, `admin_gui_auth_conf` will be used to configure
+the OIDC plugin. Besides the common parameters, there are some parameters that are important and/or specific
+for using OIDC with Kong Manager:
+
+| parameter                                  | data type | default value                           | notes                                                                                                                                                                           |
+|--------------------------------------------|-----------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `issuer`<br>*required*                     | String    | --                | The base URL to resolve metadata about the IdP (Identity Provider). e.g., `"https://dev-xxxx.okta.com/oauth2/default"`                                                          |
+| `client_id`<br>*required*                  | Array     | --                | The client id(s) that the plugin uses while communicating with the IdP.                                                                                                         |
+| `client_secret`<br>*required*              | Array     | --                | The client secret.                                                                                                                                                              |
+| `redirect_uri`<br>*required*               | Array     | --                | The URI to redirect after authentication with the IdP. Should point to Admin API's /auth endpoint. e.g., `"http://localhost:8001/auth"`                                         |
+| `login_redirect_uri`<br>*required*         | Array     | --                | The URI to redirect after authentication with the Admin API. Should point to Kong Manager's endpoint. e.g., `"http://localhost:8002"`                                           |
+| `logout_redirect_uri`<br>*required*        | Array     | --                | The URI to redirect after logging out from the IdP. Should point to Kong Manager's endpoint. e.g., `"http://localhost:8002"`                                                    |
+| `admin_auto_create`<br>*optional*          | Boolean   | `true`                                  | This parameter is used to enable the automatic creation of administrators.                                                                                                      |
+| `admin_claim`<br>*optional*                | String    | `"email"`                               | The claim to use while looking up for the admin's username.                                                                                                                     |
+| `authenticated_groups_claim`<br>*optional* | Array     | `["groups"]`                            | The claim to use while looking up for authenticated groups.                                                                                                                     |
+| `scopes`<br>*optional*                     | Array     | `["openid", "email", "offline_access"]` | Scopes to use in while authenticating with the IdP. Must contain `"openid"` and `"offline_access"`. Should also contain necessary scopes for the claim `admin_claim` specifies. |
+| `ssl_verify`<br>*optional*                 | Boolean   | `false`                                 | Verify identity provider server certificate.                                                                                                                                    |
+
+You may also refer to the [documentation of the plugin](/hub/kong-inc/openid-connect/configuration/)
+and modify the configuration according to your requirements.
+
+When authenticating Kong Manager with OpenID Connect, session mechanism inside
+the plugin will be used to persist the authorization state. Please refer to the
+documentation for parameters prefixed by `session_` to learn more.
+
+### Recommendations to enhance session security
+
+* `session_secret` is recommended to be set. A randomly generated secret will be used if unspecified.
+* `session_cookie_secure` (default value is `false`) is recommended to be enabled when using HTTPS
+  instead of HTTP.
+* Considering upgrading the [`session_cookie_same_site`](/hub/kong-inc/openid-connect/configuration/#config-session_cookie_same_site)
+  to `Strict` when using the same domain for the Admin API and Kong Manager.
+
+Learn more about these concepts in [Session Security in Kong Manager](/gateway/{{page.release}}/kong-manager/auth/sessions/#session-security).
+
+{% endif_version %}
+
+{% if_version lte:3.5.x %}
 
 The **Sessions plugin** (configured with `admin_gui_session_conf`) requires a secret and is configured securely by default.
 * Under all circumstances, the `secret` must be manually set to a string.
@@ -85,7 +151,9 @@ The **Sessions plugin** (configured with `admin_gui_session_conf`) requires a se
 * If using different domains for the Admin API and Kong Manager, `cookie_same_site` must be set to `Lax`.
 {% endif_version %}
 
-Learn more about these properties in [Session Security in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth//sessions/#session-security), and see [example configurations](/gateway/{{page.kong_version}}/kong-manager/auth/sessions/#example-configurations).
+Learn more about these properties in [Session Security in Kong Manager](/gateway/{{page.release}}/kong-manager/auth/sessions/#session-security), and see [example configurations](/gateway/{{page.release}}/kong-manager/auth/sessions/#example-configurations).
+
+{% endif_version %}
 
 Replace the entries surrounded by `<>` with values that are valid for your IdP.
 For example, Google credentials can be found here:

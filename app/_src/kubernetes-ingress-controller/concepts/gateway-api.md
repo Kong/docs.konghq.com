@@ -31,11 +31,11 @@ Gateway's listeners and addresses. The Kong's implementation does _not_
 automatically manage Gateway provisioning.
 
 Because the Kong Deployment and its configuration are not managed
-automatically, listener and address configuration are not set for you. You must
+automatically, listeners and address configuration are not set for you. You must
 configure your Deployment and Service to match your Gateway's configuration.
 For example, with this Gateway.
 
-```
+```yaml
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
@@ -59,9 +59,10 @@ spec:
     port: 9903
     protocol: TLS
 ```
+
 It requires a proxy Service that includes all the requested listener ports.
 
-```
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -84,9 +85,10 @@ spec:
     protocol: TCP
     targetPort: 9903
 ```
+
 It also matches Kong `proxy_listen` configuration in the container environment.
 
-```
+```console
 KONG_PROXY_LISTEN="0.0.0.0:8000 reuseport backlog=16384, 0.0.0.0:8443 http2 ssl reuseport backlog=16384 http2"
 KONG_STREAM_LISTEN="0.0.0.0:9901 reuseport backlog=16384, 0.0.0.0:9902 reuseport backlog=16384 udp", 0.0.0.0:9903 reuseport backlog=16384 ssl"
 ```
@@ -130,16 +132,13 @@ reason: PortUnavailable
 
 ### Listener compatibility and handling multiple Gateways
 
-Each {{ site.kic_product_name }} can only handle a single GatewayClass, and only one Gateway in that GatewayClass. Although the controller attempts to handle configuration from all Gateways in its GatewayClass, adding more than one Gateway is not yet supported and results in unexpected behavior.
-
-If you wish to use multiple Gateways, define multiple GatewayClasses and create a separate {{ site.kic_product_name }}
-Deployment for each.
+Each {{ site.kic_product_name }} can be provided with a controller name; if no controller name is provided through the `--gateway-api-controller-name` field (or `CONTROLLER_GATEWAY_API_CONTROLLER_NAME` environment variable) the default `konghq.com/kic-gateway-controller` is used. All the `GatewayClass`es referencing such a controller in the `controllerName` field are reconciled by the {{ site.kic_product_name }}. Similarly, all the `Gateway`s referencing a `GatewayClass` that specifies a matching `controllerName` are reconciled.
 
 ### Binding {{site.base_gateway}} to a Gateway resource
 
 To configure {{site.kic_product_name}} to reconcile the Gateway resource, you must set the `konghq.com/gatewayclass-unmanaged=true` annotation in your GatewayClass resource.
 
-In addition, the `spec.controllerName` in your GatewayClass needs to be same as the value of the `--gateway-api-controller-name` flag (or `CONTROLLER_GATEWAY_API_CONTROLLER_NAME` environment variable) configured in {{site.kic_product_name}}. You should set `spec.controllerName=konghq.com/kic-gateway-controller` if using the default values. For more information, see [kic-flags](/kubernetes-ingress-controller/{{page.kong_version}}/reference/cli-arguments/#flags).
+In addition, the `spec.controllerName` in your GatewayClass needs to be properly configured, as explained in the section [above](#listener-compatibility-and-handling-multiple-gateways). For more information, see [kic-flags](/kubernetes-ingress-controller/{{page.release}}/reference/cli-arguments/#flags).
 
 Finally, the `spec.gatewayClassName` value in your Gateway resource should match the value in `metadata.name` from your `GatewayClass`.
 
@@ -149,7 +148,7 @@ You can check to confirm if {{site.kic_product_name}} has updated the Gateway by
 kubectl get gateway kong -o=jsonpath='{.status.addresses}' | jq
 ```
 
-```
+```json
 [
   {
     "type": "IPAddress",
@@ -160,4 +159,22 @@ kubectl get gateway kong -o=jsonpath='{.status.addresses}' | jq
     "value": "172.18.0.240"
   }
 ]
+```
+
+### Gateway's "publish" Service
+
+When an unmanaged Gateway is reconciled by KIC, it gets annotated with `konghq.com/publish-service` equal to a Service’s
+namespaced name configured in `--publish-service` (and optionally in `--publish-service-udp`) CLI flag. The annotation value is used by the Gateway controller to
+determine its Listeners’ statuses.
+ 
+{:.note}
+> Once the Gateway's `konghq.com/publish-service` annotation is assigned, it will no longer be auto-updated by {{site.kic_product_name}} 
+> to match the `--publish-service` CLI flag. If, for any reason, any of those change after the annotation is assigned, the Gateway controller will not be able to
+> determine the Gateway's Listeners' statuses. Manual intervention will be required to update the annotation to match the CLI flag.
+
+If you’d like to migrate an already annotated Gateway to a KIC installation that uses another `--publish-service` (or `--publish-service-udp`), you should modify 
+the Gateway’s annotation to match the CLI flag. Otherwise, you may experience the Gateway controller getting stuck looking up the Service:
+
+```console
+One of publish services defined in Gateway's "konghq.com/publish-service" annotation didn't match controller manager's configuration    {"GatewayV1Gateway": {"name":"kong","namespace":"default"}, "namespace": "default", "name": "kong", "service": "kong/kong-proxy", "error": "publish service reference \"kong/kong-proxy\" from Gateway's annotations did not match configured controller manager's publish services (\"kong/new-kong-proxy\")"}
 ```

@@ -1,10 +1,3 @@
-{% unless include.name and include.path contains '_hub' %}
-{% capture page_title %}{{
-include.title | escape }}{% if include.kong_version and include.no_version != true %} - v{{ include.kong_version | escape }}{% endif %}{% if include.title %} | {% endif %}{{
-site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.title }}
-| {{site.title}}{% endcapture %}
-{% endunless %}
-
 {% if include.description %}
   {% assign page_description = include.description %}
 {% elsif layout.description %}
@@ -34,19 +27,16 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.titl
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-NL48VKT');</script>
     <!-- End Google Tag Manager -->
-
-    <!-- Recaptcha -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   {% endif %}
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>{{ page_title }}</title>
+  <title>{{ include.title }}</title>
   <meta name="description" content="{{ page_description }}" />
   <meta name="author" content="KongHQ" />
-  <meta property="og:title" content="{{ page_title }}" />
+  <meta property="og:title" content="{{ include.title }}" />
   <meta property="og:site_name" content="{{ site.name }}" />
   <!-- use share link for facebook -->
   <meta property="og:url" content="{{ site.links.share }}" />
@@ -94,10 +84,6 @@ site.title }}{% endcapture %} {% else %} {% capture page_title %}{{ include.titl
 
   <!-- Preload assets -->
   <link rel="dns-prefetch" href="https://cloud.typography.com" />
-  <link
-    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
-    rel="stylesheet"
-  />
   <link rel="dns-prefetch" href="https://dev.visualwebsiteoptimizer.com" />
   <link rel="dns-prefetch" href="https://cdn.segment.com" />
 

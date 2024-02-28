@@ -10,8 +10,8 @@ and Seed Super Admin.
 > run as `kong` by default. If this is not the desired behavior, you can switch the NGINX master process
 > to run on the built-in `kong` user or to a custom non-root user before starting {{site.base_gateway}}.
 > {% if_version lte:2.8.x %}
-> For more information, see [Running Kong as a Non-Root User](/gateway/{{include.kong_version}}/plan-and-deploy/kong-user/).
+> For more information, see [Running Kong as a Non-Root User](/gateway/{{include.release}}/plan-and-deploy/kong-user/).
 > {% endif_version %}
 > {% if_version gte:3.0.x %}
-> For more information, see [Running Kong as a Non-Root User](/gateway/{{include.kong_version}}/production/running-kong/kong-user/).
+> For more information, see [Running Kong as a Non-Root User](/gateway/{{include.release}}/production/running-kong/kong-user/).
 > {% endif_version %}

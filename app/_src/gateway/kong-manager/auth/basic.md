@@ -7,12 +7,12 @@ content_type: how-to
 Enable [basic authentication](/hub/kong-inc/basic-auth/) on a Kong Manager instance.
 
 ## Prerequisites
-You have [super admin permissions](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin/)
+You have [super admin permissions](/gateway/{{page.release}}/kong-manager/auth/super-admin/)
 or a user that has `/admins` and `/rbac` read and write access.
 
 ## Set up basic authentication
 
-1. In [`kong.conf`](/gateway/{{page.kong_version}}/reference/configuration/), configure the following properties:
+1. In [`kong.conf`](/gateway/{{page.release}}/reference/configuration/), configure the following properties:
 
     ```
     enforce_rbac = on
@@ -34,7 +34,7 @@ or a user that has `/admins` and `/rbac` read and write access.
     * If using different domains for the Admin API and Kong Manager, `cookie_same_site` must be set to `Lax`.
     {% endif_version %}
     
-    Learn more about these properties in [Session Security in Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/sessions/#session-security), and see [example configurations](/gateway/{{page.kong_version}}/kong-manager/auth/sessions/#example-configurations).
+    Learn more about these properties in [Session Security in Kong Manager](/gateway/{{page.release}}/kong-manager/auth/sessions/#session-security), and see [example configurations](/gateway/{{page.release}}/kong-manager/auth/sessions/#example-configurations).
 
 
 2. Start or reload Kong and point to the `kong.conf` file:
@@ -47,10 +47,10 @@ or a user that has `/admins` and `/rbac` read and write access.
 
     * If you created a super admin via database migration, log in to Kong
     Manager with the username `kong_admin` and the password
-    set in the [environment variable](/gateway/{{page.kong_version}}/production/access-control/start-securely/).
+    set in the [environment variable](/gateway/{{page.release}}/production/access-control/start-securely/).
 
     * If you created a super admin via the Kong Manager **Teams** tab
     as described in
-    [How to Create a Super Admin](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin/),
+    [How to Create a Super Admin](/gateway/{{page.release}}/kong-manager/auth/super-admin/),
     log in with the credentials you created after accepting the email
     invitation.

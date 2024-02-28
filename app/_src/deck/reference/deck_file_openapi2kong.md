@@ -51,7 +51,7 @@ uses the root-level `"x-kong-name"` directive, or falls back to `info.title`.
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## See also
 

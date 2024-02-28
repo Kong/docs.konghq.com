@@ -33,7 +33,7 @@ If a database is not used, then the Controller and Kong can be deployed:
   To learn more about this approach please see
   [the Gateway Discovery section on Deployments page][concepts-gd].
 
-[concepts-gd]: /kubernetes-ingress-controller/{{page.kong_version}}/concepts/deployment/#gateway-discovery
+[concepts-gd]: /kubernetes-ingress-controller/{{page.release}}/concepts/deployment/#gateway-discovery
 {% endif_version %}
 
 For cases when a database is necessary, the Controllers can be deployed

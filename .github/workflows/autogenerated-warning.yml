@@ -5,6 +5,7 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Check if manual review has been performed
         uses: actions/github-script@v7
@@ -37,6 +38,7 @@ jobs:
     needs: [check]
     if: needs.check.outputs.result == 'false'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: mheap/github-action-required-labels@v5
         env:

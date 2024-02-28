@@ -107,7 +107,7 @@ the path, such as an Service's name or id, or a Consumer's username or id.
 If `endpoints`-provided are functions not enough, a regular Lua function can be used instead. From there you can use:
 
 - Several functions provided by the `endpoints` module.
-- All the functionality provided by the [PDK](/gateway/{{page.kong_version}}/plugin-development/pdk/)
+- All the functionality provided by the [PDK](/gateway/{{page.release}}/plugin-development/pdk/)
 - The `self` parameter, which is the [Lapis request object](http://leafo.net/lapis/reference/actions.html#request-object).
 - And of course you can `require` any Lua modules if needed. Make sure they are compatible with OpenResty if you choose this route.
 
@@ -165,4 +165,4 @@ three functions:
 - The `PUT` function populates `self.args.post.consumer` before calling the `endpoints`-provided
   `put_entity_endpoint` function.
 
-[Admin API]: /gateway/{{page.kong_version}}/admin-api/
+[Admin API]: /gateway/{{page.release}}/admin-api/

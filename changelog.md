@@ -2,6 +2,1748 @@
 
 <!--vale off-->
 
+## Week 8
+
+### [fix: Remove inaccurate note in OAuth2 plugin](https://github.com/Kong/docs.konghq.com/pull/6988) (2024-02-22)
+
+The note was added based on an old ticket that doesn't apply now. The OAuth2 plugin can be run in production.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/oauth2/overview/
+
+
+### [Feat: Add documentation on higher ulimit requirement for 3.6.0.0](https://github.com/Kong/docs.konghq.com/pull/6984) (2024-02-21)
+
+Document missing entry for ulimit breaking change.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.6.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.7.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Fix:Add more information about cache key generation in proxy-cache-advanced](https://github.com/Kong/docs.konghq.com/pull/6982) (2024-02-21)
+
+Adding more info about how cache key is generated based on
+https://github.com/Kong/kong-ee/blob/3.6.0.0/plugins-ee/proxy-cache-advanced/kong/plugins/proxy-cache-advanced/cache_key.lua#L110-L122
+
+Preview: https://deploy-preview-6982--kongdocs.netlify.app/hub/kong-inc/proxy-cache-advanced/#cache-key
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/proxy-cache-advanced/overview/
+
+
+### [Fix: Links to KIC cli-arguments reference](https://github.com/Kong/docs.konghq.com/pull/6979) (2024-02-21)
+
+Flagged in https://github.com/Kong/docs.konghq.com/actions/runs/7945193457/job/21691549272. Links have no `src`, so they're not being generated properly.
+
+Generator will need adjusting to add a space between the end of the table and `<!--vale off-->`, otherwise the table breaks and looks like this: 
+![Screenshot 2024-02-20 at 10 42 57 AM](https://github.com/Kong/docs.konghq.com/assets/54370747/10d3eb74-124b-4b14-9fee-9bc5098e7489)
+
+Ran into a couple other cross-folder issues (kic-v2 vs kubernetes-ingress-controller): 
+* Why is https://github.com/Kong/docs.konghq.com/blob/main/app/_src/kic-v2/references/version-compatibility.md being maintained in `kic-v2` and not in the current folder?
+* This PR was opened against kic-v2 because the same FAQ page doesn't exist in 3.x: https://github.com/Kong/docs.konghq.com/pull/6403 - should this info be in 3.x?
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.6.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.7.x/reference/expressions-language/language-references
+
+
+### [Fix: remove if_version on the Or operator in the expressions router table](https://github.com/Kong/docs.konghq.com/pull/6975) (2024-02-20)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+Remove the `if_version` on OR operator in expression language reference page to let the OR operator (`||`) displayed correctly.
+fixes #6972.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.6.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.7.x/reference/expressions-language/language-references
+
+
+### [fix: Add 3.6 conditional rendering for single backup nodes](https://github.com/Kong/docs.konghq.com/pull/6974) (2024-02-21)
+
+<!-- What did you change and why? -->
+We missed some conditional rendering for a note about single backup nodes. It should only apply to 3.6 and later? (waiting on confirmation for the correct version, so this PR might change a little)
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+https://kongstrong.slack.com/archives/CDSTDSG9J/p1708369514356029?thread_ts=1708368658.991799&cid=CDSTDSG9J
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.6.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.7.x/reference/expressions-language/language-references
+
+
+### [fix(kong-manager): add ignored params to the OIDC migration guide](https://github.com/Kong/docs.konghq.com/pull/6971) (2024-02-20)
+
+This pull request adds the ignored parameters to the migration guide for Kong Manager's OIDC feature.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.6.x/kong-manager/auth/oidc/migrate
+- https://docs.konghq.com/gateway/3.7.x/kong-manager/auth/oidc/migrate
+
+
+### [Fix: docs(mesh)- in Vault docs switch to orphan tokens](https://github.com/Kong/docs.konghq.com/pull/6964) (2024-02-23)
+
+<!-- What did you change and why? -->
+As described in the PR changes, it's likely users want to create orphan tokens to authenticate to vault.
+
+See also https://github.com/Kong/kong-mesh/issues/5412
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.6.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.7.x/reference/expressions-language/language-references
+
+
+### [Fix: docs(mesh/rbac): add information how to unlock yourself](https://github.com/Kong/docs.konghq.com/pull/6944) (2024-02-23)
+
+Added docs how to unlock yourself in case you remove default rbac
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.6.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.7.x/reference/expressions-language/language-references
+
+## Week 7
+
+### [release deck 1.34.0](https://github.com/Kong/docs.konghq.com/pull/6952) (2024-02-15)
+
+Add deck 1.34 release information with new` deck file namespace` command
+ 
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.6.x/kong-manager/auth/oidc/configure
+
+### [Release: Gateway 3.6](https://github.com/Kong/docs.konghq.com/pull/6929) (2024-02-14)
+
+Releasing the docs for for Gateway 3.6.
+
+List of changes in this release:
+https://github.com/Kong/docs.konghq.com/milestone/56?closed=1
+
+### [kic: split CRD reference types into sections](https://github.com/Kong/docs.konghq.com/pull/6943) (2024-02-13)
+
+Splits the top-level CRDs and the types that they rely on into separate sections to make it clear which types are meant to be used to create objects in the Kubernetes API.
+
+Addresses @liyangau concern about the reference not signaling clearly which types are meant to be used to create objects in a cluster. 
+
+It's propagated from the KIC repo: https://github.com/Kong/kubernetes-ingress-controller/pull/5611
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.6.x/kong-manager/auth/oidc/configure
+
+
+### [Feat: Add new performance testing results doc for Gateway 3.6](https://github.com/Kong/docs.konghq.com/pull/6928) (2024-02-13)
+
+Beginning in Gateway 3.6, Kong is now publishing performance testing results for several use cases. This PR adds a doc that publishes those results, covers the testing methodology, and provides info for customers to use the Kong test suite to conduct their own tests. This PR also creates a new Performance section of the docs so it's easier to find performance related docs.
+
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.6.x/production/performance/performance-testing
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.1.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.2.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.3.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.4.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.5.x/production/sizing-guidelines
+- https://docs.konghq.com/gateway/3.6.x/production/sizing-guidelines
+
+## Week 6
+
+### [Release: Gateway 3.4.3.4](https://github.com/Kong/docs.konghq.com/pull/6932) (2024-02-10)
+
+Changelog and version bump for Gateway 3.4.3.4.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [fix(rt-plugin): fix description of variables](https://github.com/Kong/docs.konghq.com/pull/6931) (2024-02-09)
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-transformer-advanced/how-to/
+- https://docs.konghq.com/hub/kong-inc/request-transformer/how-to/
+
+
+### [kic: extend secrets in plugins guide with configFrom field](https://github.com/Kong/docs.konghq.com/pull/6926) (2024-02-08)
+
+Extends `Using Kubernetes Secrets in Plugins` guide to describe the new `configPatches` fields and its usage.
+ 
+Fixes https://github.com/Kong/kubernetes-ingress-controller/issues/5572.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.4.x/reference/configuration
+- https://docs.konghq.com/gateway/3.5.x/reference/configuration
+- https://docs.konghq.com/gateway/3.6.x/reference/configuration
+
+
+### [Fix a typo](https://github.com/Kong/docs.konghq.com/pull/6925) (2024-02-08)
+
+Fixed a mistake in attaching json data to curl command.  
+The `=`, not `:`, must be used to attach the 'body'.
+
+>       -d, --data <data>
+>              (HTTP MQTT) Sends the specified data in a POST request to the HTTP server, in the same way that a browser does when a
+>              user has filled in an HTML form and presses the submit button. This makes curl pass the data to the server using the
+>              content-type application/x-www-form-urlencoded. Compare to -F, --form.
+>
+>              --data-raw is almost the same but does not have a special interpretation of the @ character. To post data purely
+>              binary, you should instead use the --data-binary option. To URL-encode the value of a form field you may use
+>              --data-urlencode.
+>
+>              If any of these options is used more than once on the same command line, the data pieces specified are merged with a
+>              separating &-symbol. Thus, using '-d name=daniel -d skill=lousy' would generate a post chunk that looks like
+>              'name=daniel&skill=lousy'.
+>
+>              If you start the data with the letter @, the rest should be a file name to read the data from, or - if you want curl
+>              to read the data from stdin. Posting data from a file named 'foobar' would thus be done with -d, --data @foobar. When
+>              -d, --data is told to read from a file like that, carriage returns and newlines are stripped out. If you do not want
+>              the @ character to have a special interpretation use --data-raw instead.
+>
+>              The data for this option is passed on to the server exactly as provided on the command line. curl does not convert,
+>              change or improve it. It is up to the user to provide the data in the correct form.
+>
+>              -d, --data can be used several times in a command line
+>
+>              Examples:
+>               curl -d "name=curl" https://example.com
+>               curl -d "name=curl" -d "tool=cmdline" https://example.com
+>               curl -d @filename https://example.com
+>
+>              See also --data-binary, --data-urlencode and --data-raw. This option is mutually exclusive to -F, --form and -I,
+>              --head and -T, --upload-file.
+>               
+>man curl
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/key-auth/overview/
+
+### [Fix: Reference lua package path location in Exit Transformer plugin](https://github.com/Kong/docs.konghq.com/pull/6922) (2024-02-08)
+
+Original document assumed knowledge about location for reference of .lua files. Added instruction to save file in referenced lua package path location as per https://docs.konghq.com/gateway/latest/plugin-development/distribution/#manually
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/exit-transformer/overview/
+
+
+### [kic: extend vault guide with KongVault CRD usage](https://github.com/Kong/docs.konghq.com/pull/6917) (2024-02-08)
+
+Updates the "Kong Vault" guide with `KongVault` CRD usage.
+
+Fixes https://github.com/Kong/kubernetes-ingress-controller/issues/5571.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/
+- https://docs.konghq.com/gateway/3.1.x/
+- https://docs.konghq.com/gateway/3.2.x/
+- https://docs.konghq.com/gateway/3.3.x/
+- https://docs.konghq.com/gateway/3.4.x/
+- https://docs.konghq.com/gateway/3.5.x/
+- https://docs.konghq.com/gateway/3.6.x/
+
+
+### [Update docs for KIC 3.1.0](https://github.com/Kong/docs.konghq.com/pull/6915) (2024-02-08)
+
+Prepares documentation for KIC 3.1.0 release.
+
+#### Added
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.1.x/reference/cli-arguments-3.1.x
+- https://docs.konghq.com/kubernetes-ingress-controller/3.2.x/reference/cli-arguments-3.1.x
+
+#### Modified
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/support-policy
+- https://docs.konghq.com/kubernetes-ingress-controller/3.1.x/support-policy
+- https://docs.konghq.com/kubernetes-ingress-controller/3.2.x/support-policy
+
+
+### [Release: Gateway 2.8.4.7](https://github.com/Kong/docs.konghq.com/pull/6911) (2024-02-09)
+
+Version bump and changelog for Gateway 2.8.4.7.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [kic: extend license guide with KongLicense CRD](https://github.com/Kong/docs.konghq.com/pull/6910) (2024-02-08)
+
+Adds a section describing `KongLicense` CRD usage to the license guide.
+
+Fixes https://github.com/Kong/kubernetes-ingress-controller/issues/5570.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/
+- https://docs.konghq.com/gateway/3.1.x/
+- https://docs.konghq.com/gateway/3.2.x/
+- https://docs.konghq.com/gateway/3.3.x/
+- https://docs.konghq.com/gateway/3.4.x/
+- https://docs.konghq.com/gateway/3.5.x/
+- https://docs.konghq.com/gateway/3.6.x/
+
+
+### [kic: document konghq.com/tags annotation](https://github.com/Kong/docs.konghq.com/pull/6909) (2024-02-06)
+
+Documents KIC's `konghq.com/tags` annotation.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/
+- https://docs.konghq.com/gateway/3.1.x/
+- https://docs.konghq.com/gateway/3.2.x/
+- https://docs.konghq.com/gateway/3.3.x/
+- https://docs.konghq.com/gateway/3.4.x/
+- https://docs.konghq.com/gateway/3.5.x/
+- https://docs.konghq.com/gateway/3.6.x/
+
+
+### [Chore: Plan and usage UI changes ](https://github.com/Kong/docs.konghq.com/pull/6904) (2024-02-07)
+
+https://konghq.atlassian.net/browse/DOCU-3674
+
+Update shot scraper and add new screenshots. 
+**There is no script for /assets/images/products/konnect/billing/billing-and-usage.png** our environment doesn't let us generate it.
+
+#### Modified
+
+- https://docs.konghq.com/assets/images/products/konnect/api-products/api-products-manage.png
+- https://docs.konghq.com/assets/images/products/konnect/api-products/api-products-overview.png
+- https://docs.konghq.com/assets/images/products/konnect/billing/billing-and-usage.png
+- https://docs.konghq.com/assets/images/products/konnect/dashboard/konnect-dashboard.png
+- https://docs.konghq.com/assets/images/products/konnect/gateway-manager/konnect-control-plane-dashboard.png
+- https://docs.konghq.com/assets/images/products/konnect/gateway-manager/konnect-runtime-instance-gateway.png
+
+
+### [chore(deps): bump kumahq/kuma-website from 316d2427 to 9948b52a](https://github.com/Kong/docs.konghq.com/pull/6884) (2024-02-07)
+
+Auto upgrade PR log:
+
+9948b52a52d83b0f4b7ce7800229b3dda25e2060 feat(installer): Source Packages from Cloudsmith (kumahq/kuma-website#1625)
+b64d438edaa1116ab5d398c54c0bebda168f710e chore(deps): update docs from repo source (kumahq/kuma-website#1640)
+ac7644c178787d64a74d01964b5a48673bf6b72e chore(deps): update docs from repo source (kumahq/kuma-website#1636)
+050de0c32b1606761518411b8db082831c4efb0c chore(blog) add release 2.6.0 blogpost (kumahq/kuma-website#1620)
+
+Triggered by [action](https://github.com/Kong/docs.konghq.com/actions/runs/7807937407).
+labels: skip-changelog,review:general
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/
+- https://docs.konghq.com/gateway/3.1.x/
+- https://docs.konghq.com/gateway/3.2.x/
+- https://docs.konghq.com/gateway/3.3.x/
+- https://docs.konghq.com/gateway/3.4.x/
+- https://docs.konghq.com/gateway/3.5.x/
+- https://docs.konghq.com/gateway/3.6.x/
+
+
+### [Run the broken links checker against the plugin hub](https://github.com/Kong/docs.konghq.com/pull/6868) (2024-02-08)
+
+Fix all the broken links reported by the full scan.
+
+#### Added
+
+- https://docs.konghq.com/assets/images/docs/diagram-delegated-gateway-detailed@3x.jpg
+
+#### Modified
+
+- https://docs.konghq.com/hub/amberflo/kong-plugin-amberflo/overview/
+- https://docs.konghq.com/hub/kong-inc/forward-proxy/
+- https://docs.konghq.com/hub/kong-inc/graphql-rate-limiting-advanced/
+- https://docs.konghq.com/hub/kong-inc/http-log/overview/
+- https://docs.konghq.com/hub/kong-inc/kafka-log/
+- https://docs.konghq.com/hub/kong-inc/kafka-upstream/
+- https://docs.konghq.com/hub/kong-inc/ldap-auth-advanced/
+- https://docs.konghq.com/hub/kong-inc/mtls-auth/overview/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/third-party/
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/audit-log
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/audit-log
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/audit-log
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/audit-log
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/audit-log
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/audit-log
+- https://docs.konghq.com/gateway/3.6.x/kong-enterprise/audit-log
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/aws-iam-auth-to-rds-database
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/aws-iam-auth-to-rds-database
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/aws-iam-auth-to-rds-database
+- https://docs.konghq.com/gateway/3.6.x/kong-enterprise/aws-iam-auth-to-rds-database
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/auth/ldap/service-directory-mapping
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/auth/ldap/service-directory-mapping
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/auth/ldap/service-directory-mapping
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/auth/ldap/service-directory-mapping
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/auth/ldap/service-directory-mapping
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/auth/ldap/service-directory-mapping
+- https://docs.konghq.com/gateway/3.6.x/kong-manager/auth/ldap/service-directory-mapping
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/auth/rbac/add-admin
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/auth/rbac/add-admin
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/auth/rbac/add-admin
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/auth/rbac/add-admin
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/auth/rbac/add-admin
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/auth/rbac/add-admin
+- https://docs.konghq.com/gateway/3.6.x/kong-manager/auth/rbac/add-admin
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/auth/rbac/add-role
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/auth/rbac/add-role
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/auth/rbac/add-role
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/auth/rbac/add-role
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/auth/rbac/add-role
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/auth/rbac/add-role
+- https://docs.konghq.com/gateway/3.6.x/kong-manager/auth/rbac/add-role
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/workspaces
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/workspaces
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/workspaces
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/workspaces
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/workspaces
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/workspaces
+- https://docs.konghq.com/gateway/3.6.x/kong-manager/workspaces
+- https://docs.konghq.com/gateway/3.0.x/licenses/deploy
+- https://docs.konghq.com/gateway/3.1.x/licenses/deploy
+- https://docs.konghq.com/gateway/3.2.x/licenses/deploy
+- https://docs.konghq.com/gateway/3.3.x/licenses/deploy
+- https://docs.konghq.com/gateway/3.4.x/licenses/deploy
+- https://docs.konghq.com/gateway/3.5.x/licenses/deploy
+- https://docs.konghq.com/gateway/3.6.x/licenses/deploy
+- https://docs.konghq.com/gateway/3.1.x/production/logging/update-log-level-dynamically
+- https://docs.konghq.com/gateway/3.2.x/production/logging/update-log-level-dynamically
+- https://docs.konghq.com/gateway/3.3.x/production/logging/update-log-level-dynamically
+- https://docs.konghq.com/gateway/3.4.x/production/logging/update-log-level-dynamically
+- https://docs.konghq.com/gateway/3.5.x/production/logging/update-log-level-dynamically
+- https://docs.konghq.com/gateway/3.6.x/production/logging/update-log-level-dynamically
+- https://docs.konghq.com/gateway/changelog
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/manage-teams
+
+
+### [Refactor title tag generation](https://github.com/Kong/docs.konghq.com/pull/6841) (2024-02-05)
+
+[Jira ticket](https://konghq.atlassian.net/browse/DOCU-3405)
+Automate title tag generation.
+
+It follows the following format:
+```
+H1 - <product> - <optional version> | site title
+```
+
+where:
+* evergreen urls (/latest/) don't include the optional version
+* if H1 contains <product> don't include - <product> - so we don't repeat text
+
+#### Modified
+
+- https://docs.konghq.com/search.html
+
+## Week 5
+
+### [Update: Change dev label and banner color](https://github.com/Kong/docs.konghq.com/pull/6859) (2024-01-31)
+
+Changing the "dev" label to "unreleased" to make it clearer what this doc version is supposed to be. 
+
+Also changing the banner colour to red, as the previous banner looked too similar to the "outdated version" banner.
+
+Some minor version/conditionals cleanup here as well.
+
+#### Modified
+
+- https://docs.konghq.com/contributing/conditional-rendering
+
+
+### [Fix: kic - add explanation for Gateway's publish service](https://github.com/Kong/docs.konghq.com/pull/6853) (2024-01-30)
+
+Adds an explanation of `--publish-service` vs. `konghq.com/publish-service` Gateway's annotation relation.
+
+Part of https://github.com/Kong/kubernetes-ingress-controller/issues/5328.
+ 
+
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.2.x/support/browser
+- https://docs.konghq.com/gateway/3.3.x/support/browser
+- https://docs.konghq.com/gateway/3.4.x/support/browser
+- https://docs.konghq.com/gateway/3.5.x/support/browser
+- https://docs.konghq.com/gateway/3.6.x/support/browser
+
+## Week 4
+
+### [Fix: kic - Use standard repository in Helm example instructions](https://github.com/Kong/docs.konghq.com/pull/6842) (2024-01-26)
+
+The KIC Helm install docs showed how to customise the image by using the nightly KIC image. This confused some users who actually tried to use the nightly image in a non-test environment.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.1.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.2.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.3.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.4.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.5.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.6.x/production/deployment-topologies/db-less-and-declarative-config
+
+
+### [Fix: Incorrect request format in DB-less and declarative config doc](https://github.com/Kong/docs.konghq.com/pull/6837) (2024-01-26)
+
+Corrected the command to send the config to the Gateway. It was using a GET instead of POST and when using form-urlencoded data (--data) it throws a 400 error.  
+
+{"message":"declarative config is invalid: {error=\"failed parsing declarative configuration: 1:1: found character that cannot start any token\"}","name":"invalid declarative configuration","code":14,"fields":{"error":"failed parsing declarative configuration: 1:1: found character that cannot start any token"}}
+
+This was changed to use multipart/form-data (--form)
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/monitoring/prometheus
+- https://docs.konghq.com/gateway/3.1.x/production/monitoring/prometheus
+- https://docs.konghq.com/gateway/3.2.x/production/monitoring/prometheus
+- https://docs.konghq.com/gateway/3.3.x/production/monitoring/prometheus
+- https://docs.konghq.com/gateway/3.4.x/production/monitoring/prometheus
+- https://docs.konghq.com/gateway/3.5.x/production/monitoring/prometheus
+- https://docs.konghq.com/gateway/3.6.x/production/monitoring/prometheus
+
+
+### [chore: add notice for trusting vault backend's ssl certificate](https://github.com/Kong/docs.konghq.com/pull/6831) (2024-01-26)
+
+This PR adds a notice in the AWS/GCP vault backend doc page, to remind user to trust system ca-certificates store so that SSL certificate returned by those cloud providers are being trusted by kong.
+
+
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.6.x/kong-enterprise/secrets-management/backends/aws-sm
+
+
+### [Fix: Use config.scopes instead of config.scopes_required in OIDC okta guide](https://github.com/Kong/docs.konghq.com/pull/6821) (2024-01-24)
+
+The OIDC Okta guide incorrectly references `config.scopes_required` when it's actually configuring `config.scopes`.
+Fixing that + some broken/outdated links + Dev Portal info that should be behind a conditional tag.
+Also fixing the same links in the rest of the OIDC 3rd party guides.
+
+https://konghq.atlassian.net/browse/DOCU-2277
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/third-party/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/third-party/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/third-party/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/third-party/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/third-party/
+
+
+### [Fix: Incorrect value listed for OIDC consumer claim field](https://github.com/Kong/docs.konghq.com/pull/6819) (2024-01-24)
+
+Fix okta config doc bug, where the consumer claim field was listed as needing an application ID, but actually needs the name of the field that _contains_ the application ID.
+
+https://konghq.atlassian.net/browse/DOCU-1456
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.1.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.2.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.3.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.4.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.5.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.6.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/2.6.x/developer-portal/administration/application-registration/okta-config
+- https://docs.konghq.com/gateway/2.7.x/developer-portal/administration/application-registration/okta-config
+- https://docs.konghq.com/gateway/2.8.x/developer-portal/administration/application-registration/okta-config
+
+
+### [Update: Fix broken link](https://github.com/Kong/docs.konghq.com/pull/6818) (2024-01-23)
+
+Fixed the broken link for the refresh grant type, previously pointing at
+ /hub/kong-inc/openid-connect/how-to/authentication/refresh-token-grant 
+but should be
+/hub/kong-inc/openid-connect/how-to/authentication/refresh-token/
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/overview/
+
+
+### [Release: Gateway 3.5.0.3](https://github.com/Kong/docs.konghq.com/pull/6813) (2024-01-26)
+
+Changelog and version bump for Gateway 3.5.0.3.
+
+https://konghq.atlassian.net/browse/DOCU-3654
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Fix: update azure vault variable names](https://github.com/Kong/docs.konghq.com/pull/6810) (2024-01-25)
+
+Updating the Azure Vault variable names as with the existing naming the Vault configuration doesn't work.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.1.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.2.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.3.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.4.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.5.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.6.x/production/deployment-topologies/db-less-and-declarative-config
+
+
+### [Chore: fixes for a minor change in the Quickstart script output](https://github.com/Kong/docs.konghq.com/pull/6803) (2024-01-22)
+
+Where the quickstart is used, the output changed slightly to indicate the gateway was ready.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.1.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.2.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.3.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.4.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.5.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.6.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.0.x/production/monitoring/prometheus
+- https://docs.konghq.com/gateway/3.1.x/production/monitoring/prometheus
+- https://docs.konghq.com/gateway/3.2.x/production/monitoring/prometheus
+- https://docs.konghq.com/gateway/3.3.x/production/monitoring/prometheus
+- https://docs.konghq.com/gateway/3.4.x/production/monitoring/prometheus
+- https://docs.konghq.com/gateway/3.5.x/production/monitoring/prometheus
+- https://docs.konghq.com/gateway/3.6.x/production/monitoring/prometheus
+- https://docs.konghq.com/gateway/3.0.x/production/monitoring/statsd
+- https://docs.konghq.com/gateway/3.1.x/production/monitoring/statsd
+- https://docs.konghq.com/gateway/3.2.x/production/monitoring/statsd
+- https://docs.konghq.com/gateway/3.3.x/production/monitoring/statsd
+- https://docs.konghq.com/gateway/3.4.x/production/monitoring/statsd
+- https://docs.konghq.com/gateway/3.5.x/production/monitoring/statsd
+- https://docs.konghq.com/gateway/3.6.x/production/monitoring/statsd
+
+
+### [chore(deps): bump kumahq/kuma-website from 79481f3c to e2f955bb](https://github.com/Kong/docs.konghq.com/pull/6802) (2024-01-22)
+
+Auto upgrade PR log:
+
+e2f955bb34bbb0ea6d34c798055fd240c06560bd fix(policies): update /policies page to /features (kumahq/kuma-website#1595)
+df6130cd578a74487a7d5b15aab4d3c77d02d207 feat(dns): add instructions for customizing DNS configuration template (kumahq/kuma-website#1576)
+42ee81041b9ef710d52400ba0f00ad40caeedd69 docs(policy): improve targetRef table (kumahq/kuma-website#1579)
+e76bc74e24f3f3a7ce78fe18bcae8d062da553d1 chore(deps): update docs from repo source (kumahq/kuma-website#1586)
+dc13a6856c94acf46d542f49b048ed15ef289422 docs(website): change button order (kumahq/kuma-website#1596)
+37c87e64c8731cd3130e850bb016df2435ff5747 chore(policies): move all non targetRef policies in a subsection (kumahq/kuma-website#1592)
+
+Triggered by [action](https://github.com/Kong/docs.konghq.com/actions/runs/7617451539).
+labels: skip-changelog,review:general
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.1.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.2.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.3.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.4.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.5.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.6.x/production/deployment-topologies/db-less-and-declarative-config
+
+
+### [Feat: Add ARM support to install-instructions-test](https://github.com/Kong/docs.konghq.com/pull/6795) (2024-01-23)
+
+Use `qemu` to add arm64 tests for the install pages using GH Actions.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/install/linux/amazon-linux
+- https://docs.konghq.com/gateway/3.1.x/install/linux/amazon-linux
+- https://docs.konghq.com/gateway/3.2.x/install/linux/amazon-linux
+- https://docs.konghq.com/gateway/3.3.x/install/linux/amazon-linux
+- https://docs.konghq.com/gateway/3.4.x/install/linux/amazon-linux
+- https://docs.konghq.com/gateway/3.5.x/install/linux/amazon-linux
+- https://docs.konghq.com/gateway/3.6.x/install/linux/amazon-linux
+- https://docs.konghq.com/gateway-operator/1.2.x/production/horizontal-autoscaling/
+- https://docs.konghq.com/gateway/3.0.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.1.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.2.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.3.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.4.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.5.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.6.x/key-concepts/routes/expressions
+
+
+### [DOCU-3511: Refactor version is](https://github.com/Kong/docs.konghq.com/pull/6733) (2024-01-23)
+
+Related [Jira ticket](https://konghq.atlassian.net/browse/DOCU-3511)
+
+* Point jekyll-generator-single-source to the feature branch
+* Set `latest: true` to the corresponding versions in `kong_versions.yml`
+* Refactor Versions generators, we now have specific classes that handle
+  setting the releases and versions information.
+* Rename `app/_data/docs_nav_mesh_dev.yml` to
+  `app/_data/docs_nav_mesh_2.6.x.yml`.
+* Refactor Versions dropdown, we no longer need to maintain the routes
+  and version info in the template.
+* Don't include URLs from versions that are labeled to the sitemap
+* Add `label: dev` to the unreleased version of mesh
+
+### How it works
+
+* We need to explicitly set `latest: true` to the corresponding versions in `app/_data/kong_versions.yml`
+* For adding a new unreleased version, we need to add a new entry in `app/_data/kong_versions.yml`  with a label (it could be any string, e.g. `dev`, `next`, etc) and a new nav file, e.g. for gateway 
+
+In `app/_data/kong_versions.yml`
+```yaml 
+- release: "3.5.x"
+  ee-version: "3.5.0.2"
+  ce-version: "3.5.0"
+  edition: "gateway"
+  latest: true # <- Set latest to the right version
+  ...
+- release: "3.6.x"
+  ee-version: "3.6.0.0"
+  ce-version: "3.6.0"
+  edition: "gateway"
+  label: dev # <- label the new unreleased version 
+  ...
+```
+and we need to create the file `app/_data/docs_nav_gateway_3.6.x.yml`
+The URLs generated for this version would be: `/gateway/dev/.../`, i.e. `/<edition>/<label or release>/...`.
+
+Note that the file includes the actual release name in its name and not the label. 
+This simplifies the release process. We just need to remove the `label` and set `latest: true` to it. 
+
+
+### `page.release`
+
+`page.release` is a [Liquid Drop](https://github.com/Shopify/liquid/wiki/Introduction-to-Drops) which is essentially an object that can be used in the templates (code [here](https://github.com/Kong/jekyll-generator-single-source/blob/82966bb101a62400839d35c06c0d406d5a1439d5/lib/jekyll/generator-single-source/liquid/drops/release.rb)). 
+
+It's a replacement for `page.kong_version`, and whenever it is used in a template the [to_s](https://github.com/Kong/jekyll-generator-single-source/blob/82966bb101a62400839d35c06c0d406d5a1439d5/lib/jekyll/generator-single-source/product/release.rb#L45-L52) method gets called. It returns the release's label if it has one, or the release's value, e.g `3.4.x`.
+
+It has a few other methods defined that should be useful:
+* `value`: the actual release defined in `kong_versions.yml`, e.g. `3.4.x`.
+* `label`: the name of the label.
+* `latest?`: returns true if the release is marked as `latest` in `kong_versions.yml`.
+* `versions`:  returns a hash with the corresponding versions defined in `kong_versions.yml`. For `gateway` it returns the versions without the suffix, i.e.  `{ 'ee' => '3.0.0.0', 'ce' => '3.0.0'  }`, for products that only have one version it returns a has with `default` as key, e.g. `{ 'default' => '2.6.x' }`.
+
+The only time when we can't rely on the `to_s` method and we need to use `page.release.value` is when it is used as key when accessing hashes, like the [compatibility table](https://github.com/Kong/docs.konghq.com/blob/8508a4d9479b73a40390af8eeae0ba65598f73c8/app/gateway/2.6.x/compatibility.md#L12).
+
+#### Modified
+
+Nearly every page. See:
+- https://docs.konghq.com/deck/
+- https://docs.konghq.com/gateway/unreleased/
+- https://docs.konghq.com/gateway-operator/unreleased/
+- https://docs.konghq.com/kubernetes-ingress-controller/unreleased/
+- https://docs.konghq.com/mesh/dev/
+- https://docs.konghq.com/hub/
+
+## Week 3
+
+### [Release: decK 1.30.0](https://github.com/Kong/docs.konghq.com/pull/6785) (2024-01-19)
+
+Version bump for decK 1.30 + any relevant updates to decK CLI docs. 
+Mainly, this update softens the language of the warnings to make it clear that the old decK commands will still work.
+
+#### Modified
+
+- https://docs.konghq.com/deck/1.30.x/reference/deck_convert/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_diff/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_diff/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_dump/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_ping/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_reset/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_sync/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_validate/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_ping/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_reset/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_sync/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_validate/
+
+### [Feat: AppDynamics certificate env variables](https://github.com/Kong/docs.konghq.com/pull/6784) (2024-01-19)
+
+Document missing certificate environment variables for AppDynamics, [added in 3.4.3.3.](https://docs.konghq.com/gateway/changelog/#plugins-4)
+
+Values only appear in the 3.4.x version table. Will add to 3.5 when the patch is released as well.
+
+Also adding a conditional for 3.6, which will remain hidden until we have a 3.6 version.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/app-dynamics/overview/
+
+
+### [Fix 2.8.4.6  changelog.md](https://github.com/Kong/docs.konghq.com/pull/6777) (2024-01-18)
+
+Fix version number in changelog.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Changelog and version bump for Gateway 2.8.4.6](https://github.com/Kong/docs.konghq.com/pull/6762) (2024-01-17)
+
+Changelog and version bump for upcoming 2.8.4.6 patch.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [docs(mesh): update docs and changelog](https://github.com/Kong/docs.konghq.com/pull/6760) (2024-01-16)
+
+Syncing docs from source code.
+
+Generated by [action](https://github.com/Kong/kong-mesh/actions/runs/7540542509)
+
+#### Modified
+
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_circuitbreakers.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_containerpatches.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_dataplaneinsights.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_dataplanes.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_externalservices.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_faultinjections.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_healthchecks.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshaccesslogs.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshcircuitbreakers.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshes.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshfaultinjections.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshgatewayconfigs.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshgatewayinstances.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshgatewayroutes.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshgateways.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshglobalratelimits.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshhealthchecks.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshhttproutes.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshinsights.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshloadbalancingstrategies.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshmetrics.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshopas.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshproxypatches.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshratelimits.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshretries.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshtcproutes.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshtimeouts.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshtraces.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_meshtrafficpermissions.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_proxytemplates.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_ratelimits.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_retries.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_serviceinsights.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_timeouts.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_trafficlogs.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_trafficpermissions.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_trafficroutes.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_traffictraces.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_virtualoutbounds.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_zoneegresses.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_zoneegressinsights.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_zoneingresses.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_zoneingressinsights.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_zoneinsights.yaml
+- https://docs.konghq.com/assets/mesh/dev/raw/crds/kuma.io_zones.yaml
+
+
+### [Fix linked to `Verify signatures for Signed Images`](https://github.com/Kong/docs.konghq.com/pull/6757) (2024-01-16)
+
+Fix the broken link that came up in the last [scheduled broken link action](https://github.com/Kong/docs.konghq.com/actions/runs/7515703424/job/20459932899) run.
+
+#### Modified
+
+- https://docs.konghq.com/deck/1.28.x/reference/deck_gateway_diff/
+- https://docs.konghq.com/deck/1.29.x/reference/deck_gateway_diff/
+- https://docs.konghq.com/deck/1.30.x/reference/deck_gateway_diff/
+
+
+### [Release: Gateway version 3.4.3.3](https://github.com/Kong/docs.konghq.com/pull/6750) (2024-01-17)
+
+EE changelog here: https://github.com/Kong/kong-ee/pull/7816
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Feat: Split+consolidate OIDC plugin docs into many guides](https://github.com/Kong/docs.konghq.com/pull/6747) (2024-01-16)
+
+#### Summary
+Big OpenID Connect doc consolidation + split out how-to guides + cleanup.
+https://konghq.atlassian.net/browse/DOCU-3384
+
+Changes in this PR:
+* Moving the OpenID Connect guides that are buried in Gateway into the OIDC plugin doc
+* Splitting out all the flow guides into their own pages for better discoverability/navigation
+* Keycloak + gateway setup are now collapsible prereq sections that we can reuse in every OIDC demo
+* Cross-linking to all the other OIDC content that's scattered all over our docs, for all the bits where OIDC is used internally
+* Remade all the diagrams with mermaid.js; deleted all the images that are no longer in use
+
+The scope of the work is scaled back here somewhat to get this project moving. Not doing yet:
+* Use opinionated examples in how-to guides
+* Convert everything httpie into curl
+* All the testing
+* All the cleanup
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authorization/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authorization/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authorization/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/overview/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/overview/
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/overview/
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/dev-portal/authentication/oidc
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/dev-portal/authentication/oidc
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/dev-portal/authentication/oidc
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/dev-portal/authentication/oidc
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/dev-portal/authentication/oidc
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/plugins/oidc
+- https://docs.konghq.com/breadcrumb_titles.yml
+
+## Week 2
+
+
+### [Update: Prerequisite to review version compatibility before Gateway upgrade](https://github.com/Kong/docs.konghq.com/pull/6740) (2024-01-10)
+
+Customer noted that the instructions to review OS compatibility are buried too deeply within the upgrade guide, and they missed them on their first read through the guide.
+
+Adding the links/instructions to review compatibility as the first step, as no upgrade can be performed if your system doesn't support it.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/signed-images
+- https://docs.konghq.com/gateway/3.0.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.1.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.2.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.3.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.4.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.5.x/upgrade/lts-upgrade/
+
+
+### [Add enterprise image signing verification docs](https://github.com/Kong/docs.konghq.com/pull/6730) (2024-01-12)
+
+These are the customer-facing docs needed to allow customers to take full advantage of the recent changes to the Kong Enterprise build that implement `cosign`-based image signing.
+
+- Confluence: [Solutions Document](https://konghq.atlassian.net/wiki/spaces/KS/pages/3261333515/Solution+-+Image+Container+Signing+-+Cosign#Verifying-the-EE-GW-image-integrity)
+- Jira: [SEC-973](https://konghq.atlassian.net/browse/SEC-973)
+- https://github.com/Kong/kong-ee/pull/6797
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.1.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.2.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.3.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.4.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.5.x/upgrade/lts-upgrade/
+
+
+### [Update: Rework style guide and add guidelines for writing recommendations](https://github.com/Kong/docs.konghq.com/pull/6717) (2024-01-08)
+
+The Kong docs style guide was missing info on writing recommendations. I ran into some phrasing during a review and wanted to reference our guide, and realized that we never documented it (even though [we did discuss it and decided on a style](https://konghq.atlassian.net/wiki/spaces/KD/pages/2797568009/Standards+and+guidelines#:~:text=Standardize%20recommendations)).
+
+Also took this opportunity to split up the "best practices" table into separate sections and add more info. 
+* One of the main benefits of having a style guide is being able to link to specific guidelines, and that table made it difficult to do that + didn't have room to add more explanation. 
+* As well, when you scrolled past a certain point, you couldn't tell which column was "Do" and which was "Do not" anymore.
+* Removed the "Not british english" phrase from the language section. Seemed strange that we were singling out just British English, and there's no sense in trying to exhaustively list all varieties of English that are docs are not.
+* Did some reorganization.
+
+#### Modified
+
+- https://docs.konghq.com/contributing/style-guide
+
+
+### [Add internal/external traffic KIC guide](https://github.com/Kong/docs.konghq.com/pull/6715) (2024-01-08)
+
+Add a guide that explains how to run internal/external ingresses using KIC
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.1.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.2.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.3.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.4.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.5.x/upgrade/lts-upgrade/
+
+
+### [Revamped Gateway on Kubernetes install guide](https://github.com/Kong/docs.konghq.com/pull/6695) (2024-01-11)
+
+Rework the Kubernetes installation guide for Kong Gateway
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/install/kubernetes/admin/
+- https://docs.konghq.com/gateway/3.1.x/install/kubernetes/admin/
+- https://docs.konghq.com/gateway/3.2.x/install/kubernetes/admin/
+- https://docs.konghq.com/gateway/3.3.x/install/kubernetes/admin/
+- https://docs.konghq.com/gateway/3.4.x/install/kubernetes/admin/
+- https://docs.konghq.com/gateway/3.5.x/install/kubernetes/admin/
+- https://docs.konghq.com/gateway/3.0.x/install/kubernetes/manager/
+- https://docs.konghq.com/gateway/3.1.x/install/kubernetes/manager/
+- https://docs.konghq.com/gateway/3.2.x/install/kubernetes/manager/
+- https://docs.konghq.com/gateway/3.3.x/install/kubernetes/manager/
+- https://docs.konghq.com/gateway/3.4.x/install/kubernetes/manager/
+- https://docs.konghq.com/gateway/3.5.x/install/kubernetes/manager/
+- https://docs.konghq.com/gateway/3.0.x/install/kubernetes/portal/
+- https://docs.konghq.com/gateway/3.1.x/install/kubernetes/portal/
+- https://docs.konghq.com/gateway/3.2.x/install/kubernetes/portal/
+- https://docs.konghq.com/gateway/3.3.x/install/kubernetes/portal/
+- https://docs.konghq.com/gateway/3.4.x/install/kubernetes/portal/
+- https://docs.konghq.com/gateway/3.0.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.1.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.2.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.3.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.4.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.5.x/install/kubernetes/proxy/
+
+#### Modified
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/support-policy
+- https://docs.konghq.com/moved_urls.yml
+
+
+### [feat(acl): add consumer-group support and examples](https://github.com/Kong/docs.konghq.com/pull/6694) (2024-01-12)
+
+For: https://github.com/Kong/kong-ee/pull/7603
+Add support for the ACL plugin to understand consumer-groups. This allows to use (core) consumer-groups to be used in the "allow|deny" fields.
+
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/acl/how-to/
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/acl/overview/
+
+
+### [doc(kic) add reference grant guide](https://github.com/Kong/docs.konghq.com/pull/6677) (2024-01-08)
+
+For https://github.com/Kong/kubernetes-ingress-controller/issues/5154
+ 
+Add a guide that covers using Gateway API resources with KIC across namespaces, including references to a Gateway from another namespace using listener allowedRoutes and references from an HTTPRoute to a Service in another namespace using a ReferenceGrant.
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.1.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.2.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.3.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.4.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.5.x/upgrade/lts-upgrade/
+
+
+### [feat(new-consumer): release notes and reference updates](https://github.com/Kong/docs.konghq.com/pull/6663) (2024-01-11)
+
+For the [new Consumer dimension](https://konghq.aha.io/features/KP-277) coming next week, I added release notes and also updated our reference doc.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/analytics/reference
+- https://docs.konghq.com/konnect/updates
+
+
+## Week 1
+
+
+
+### [fix: typo in ingress redirect docs](https://github.com/Kong/docs.konghq.com/pull/6714) (2024-01-03)
+
+Fix type in redirect docs
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.5.x/production/debug-request
+
+
+### [Fix: Spacing on gateway overview page](https://github.com/Kong/docs.konghq.com/pull/6711) (2024-01-02)
+
+`if_version` tags aren't spaced out correctly, so they're causing the following issues:
+
+3.5:
+![Screenshot 2024-01-02 at 9 46 10 AM](https://github.com/Kong/docs.konghq.com/assets/54370747/538c4d26-510e-4b07-ba39-f4321d7c33e7)
+
+3.4 and earlier:
+![Screenshot 2024-01-02 at 9 45 55 AM](https://github.com/Kong/docs.konghq.com/assets/54370747/eaa019ac-e6bf-4242-8686-8701161a7be5)
+
+Fixing by splitting out `if_version` tags, so that they don't encompass part of a still-existing section. The previous approach is harder to maintain + causes these spacing issues.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.5.x/production/debug-request
+
+
+### [fix: use more informative example for request-debug docs](https://github.com/Kong/docs.konghq.com/pull/6702) (2024-01-02)
+
+
+
+Currently, the example output of request-debug in docs is too simple, so I replace it with a more better one.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.5.x/production/debug-request
+
+
+### [rewrite the loadbalancing document](https://github.com/Kong/docs.konghq.com/pull/6689) (2024-01-05)
+
+
+Rewrite of the outdated page on loadbalancing
+ 
+
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.1.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.2.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.3.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.4.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.5.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.0.x/production/blue-green
+- https://docs.konghq.com/gateway/3.1.x/production/blue-green
+- https://docs.konghq.com/gateway/3.2.x/production/blue-green
+- https://docs.konghq.com/gateway/3.3.x/production/blue-green
+- https://docs.konghq.com/gateway/3.4.x/production/blue-green
+- https://docs.konghq.com/gateway/3.5.x/production/blue-green
+- https://docs.konghq.com/gateway/3.0.x/production/canary
+- https://docs.konghq.com/gateway/3.1.x/production/canary
+- https://docs.konghq.com/gateway/3.2.x/production/canary
+- https://docs.konghq.com/gateway/3.3.x/production/canary
+- https://docs.konghq.com/gateway/3.4.x/production/canary
+- https://docs.konghq.com/gateway/3.5.x/production/canary
+
+
+### [feat: Add KIC configFrom guide](https://github.com/Kong/docs.konghq.com/pull/6680) (2024-01-03)
+
+Add a guide that shows how to use `configFrom` when configuring a plugin config from k8s secrets
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.5.x/production/debug-request
+
+
+### [feat: Plugin guide to rate limit requests based on peak and off-peak times](https://github.com/Kong/docs.konghq.com/pull/6634) (2024-01-05)
+
+Created a how to guide based on https://konghq.atlassian.net/browse/DOCU-3546 for “How to rate limit Kong Gateway based on peak/non-peak time”.
+
+Uses the pre-function and rate limiting advanced plugins together.
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/pre-function/how-to/
+- https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/how-to/
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/pre-function/overview/
+
+
+### [feat: Create Benchmark Guide for Kong Gateway](https://github.com/Kong/docs.konghq.com/pull/6630) (2024-01-05)
+
+Convert internal benchmark performance KB into documentation. 
+
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.1.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.2.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.3.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.4.x/how-kong-works/load-balancing
+- https://docs.konghq.com/gateway/3.5.x/how-kong-works/load-balancing
+
+
+### [(feat) how to guides for mTLS-auth plugin ](https://github.com/Kong/docs.konghq.com/pull/6626) (2024-01-04)
+
+Split out content from the mTLS-auth landing page into a how-to section + some cleanup.
+ 
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/mtls-auth/how-to/
+- https://docs.konghq.com/hub/kong-inc/mtls-auth/how-to/
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/mtls-auth/overview/
+
+## Week 50
+
+### [Make port 8100 consistent in all examples](https://github.com/Kong/docs.konghq.com/pull/6666) (2023-12-15)
+
+Port 8001 is used in the example curl command, but port 8100 is the one used in the rest of the documentation. Changing curl port to 8100.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.3.x/production/monitoring/readiness-check
+- https://docs.konghq.com/gateway/3.4.x/production/monitoring/readiness-check
+- https://docs.konghq.com/gateway/3.5.x/production/monitoring/readiness-check
+
+
+### [(chore) remove 3.1 from supported versions](https://github.com/Kong/docs.konghq.com/pull/6659) (2023-12-14)
+
+3.1 is moving into sunset support, 12 months after the initial release. 
+ 
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/dev-portal/customize/alternate-openapi-renderer
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/dev-portal/customize/alternate-openapi-renderer
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/dev-portal/customize/alternate-openapi-renderer
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/dev-portal/customize/alternate-openapi-renderer
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/dev-portal/customize/alternate-openapi-renderer
+- https://docs.konghq.com/gateway/3.2.x/support/third-party
+- https://docs.konghq.com/gateway/3.3.x/support/third-party
+- https://docs.konghq.com/gateway/3.4.x/support/third-party
+- https://docs.konghq.com/gateway/3.5.x/support/third-party
+
+
+### [docs(mesh): update docs and changelog](https://github.com/Kong/docs.konghq.com/pull/6658) (2023-12-14)
+
+Syncing docs from source code.
+
+Generated by [action](https://github.com/Kong/kong-mesh/actions/runs/7206065291)
+
+#### Added
+
+- https://docs.konghq.com/mesh/dev/crds/kuma.io_meshmetrics.yaml
+
+#### Modified
+
+- https://docs.konghq.com/mesh/dev/crds/kuma.io_meshfaultinjections.yaml
+- https://docs.konghq.com/mesh/dev/crds/kuma.io_meshloadbalancingstrategies.yaml
+- https://docs.konghq.com/mesh/dev/crds/kuma.io_meshretries.yaml
+- https://docs.konghq.com/mesh/dev/crds/kuma.io_meshtraces.yaml
+- https://docs.konghq.com/mesh/dev/kuma-cp.yaml
+
+
+### [(feat) 3.4.3.1 changelog](https://github.com/Kong/docs.konghq.com/pull/6651) (2023-12-16)
+
+Changelog for CE/EE release of 3.4.3.1
+
+Source file  https://github.com/Kong/kong-ee/pull/7567/files
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [docs(mesh): update docs and changelog](https://github.com/Kong/docs.konghq.com/pull/6648) (2023-12-12)
+
+Syncing docs from source code.
+
+Generated by [action](https://github.com/Kong/kong-mesh/actions/runs/7181558457)
+
+#### Modified
+
+- https://docs.konghq.com/mesh/raw/CHANGELOG
+
+
+### [Fix some SEO issues](https://github.com/Kong/docs.konghq.com/pull/6647) (2023-12-12)
+
+Fix some of the issues listed in the latest SEO audit.
+* Add trailing `/` to plugin categories in the main nav
+* Add non-single-sourced plugin pages to the sitemap
+* Remove `nofollow` from Kong's logo and community link
+* Downcase URLs in the sitemap: By default, Netlify downcases all the URLs segments and adds redirects
+to those. See https://answers.netlify.com/t/my-url-paths-are-forced-into-lowercase/1659/
+* Prevent `code-snippets/spec-renderer.html` from being rendered and update all its references to point to github. Added redirects to github too.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.2.x/support/third-party
+- https://docs.konghq.com/gateway/3.3.x/support/third-party
+- https://docs.konghq.com/gateway/3.4.x/support/third-party
+- https://docs.konghq.com/gateway/3.5.x/support/third-party
+- https://docs.konghq.com/gateway/2.7.x/developer-portal/theme-customization/alternate-openapi-renderer
+- https://docs.konghq.com/gateway/2.8.x/developer-portal/theme-customization/alternate-openapi-renderer
+
+
+### [Update debug-request.md](https://github.com/Kong/docs.konghq.com/pull/6645) (2023-12-12)
+
+The previous wording is confusing as it mentioned client.  This feature is for admins or internal teams monitoring gateway performance. It is not for a enduser who is making API calls. The usage of `client` in the previous statement may cause confusion as to who this feature is meant for.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.5.x/production/debug-request
+
+
+### [docs(gateway-upgrade): fix an argument error](https://github.com/Kong/docs.konghq.com/pull/6639) (2023-12-11)
+
+Fix an error from https://github.com/Kong/docs.konghq.com/pull/6534.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.2.x/support/third-party
+- https://docs.konghq.com/gateway/3.3.x/support/third-party
+- https://docs.konghq.com/gateway/3.4.x/support/third-party
+- https://docs.konghq.com/gateway/3.5.x/support/third-party
+
+
+### [Feat: Add some basic docs for making diagrams with mermaid](https://github.com/Kong/docs.konghq.com/pull/6637) (2023-12-12)
+
+Instructions on using mermaid.js to make diagrams in the docs.
+
+#### Added
+
+- https://docs.konghq.com/contributing/diagrams
+
+
+### [chore(deps): bump kumahq/kuma-website from 6c4168f4 to 58bbbaca](https://github.com/Kong/docs.konghq.com/pull/6611) (2023-12-11)
+
+Auto upgrade PR log:
+
+58bbbacaac6aa63bf9241a3e98495cfa99378122 chore(deps): update docs from repo source (kumahq/kuma-website#1544)
+a8b0a77ab74eefb3030f497a47d9929d28fe76da chore(deps): update docs from repo source (kumahq/kuma-website#1543)
+
+Triggered by [action](https://github.com/Kong/docs.konghq.com/actions/runs/7161247872).
+labels: skip-changelog,review:general
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.2.x/support/third-party
+- https://docs.konghq.com/gateway/3.3.x/support/third-party
+- https://docs.konghq.com/gateway/3.4.x/support/third-party
+- https://docs.konghq.com/gateway/3.5.x/support/third-party
+
+## Week 49
+
+### [Fix: Remove inaccurate note and links about decK in db-less mode doc](https://github.com/Kong/docs.konghq.com/pull/6633) (2023-12-08)
+
+decK is not meant for DB-less mode, since it uses the Admin API to manage configs. There was some inaccurate info in the docs about this, suggesting that decK _can_ be used for DB-less. Removing that and adding a note on the difference between declarative and decK config.
+
+Issue reported on Slack.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/secrets-management/backends/azure-key-vaults
+- https://docs.konghq.com/deck/1.12.x/guides/konnect
+- https://docs.konghq.com/deck/1.13.x/guides/konnect
+- https://docs.konghq.com/deck/1.14.x/guides/konnect
+- https://docs.konghq.com/deck/1.15.x/guides/konnect
+- https://docs.konghq.com/deck/1.16.x/guides/konnect
+- https://docs.konghq.com/deck/1.17.x/guides/konnect
+- https://docs.konghq.com/deck/1.18.x/guides/konnect
+- https://docs.konghq.com/deck/1.19.x/guides/konnect
+- https://docs.konghq.com/deck/1.20.x/guides/konnect
+- https://docs.konghq.com/deck/1.21.x/guides/konnect
+- https://docs.konghq.com/deck/1.22.x/guides/konnect
+- https://docs.konghq.com/deck/1.23.x/guides/konnect
+- https://docs.konghq.com/deck/1.24.x/guides/konnect/
+- https://docs.konghq.com/deck/1.25.x/guides/konnect/
+- https://docs.konghq.com/deck/1.26.x/guides/konnect/
+- https://docs.konghq.com/deck/1.27.x/guides/konnect/
+- https://docs.konghq.com/deck/1.28.x/guides/konnect/
+- https://docs.konghq.com/deck/1.29.x/guides/konnect/
+
+
+### [Fix: Add cross-links between kong.conf guides and reference](https://github.com/Kong/docs.konghq.com/pull/6631) (2023-12-07)
+
+There are no links to the kong.conf reference from the kong.conf guides, so users are having trouble finding the reference.
+Adding links to fix that.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.1.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.2.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.3.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.4.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/gateway/3.5.x/production/deployment-topologies/db-less-and-declarative-config
+- https://docs.konghq.com/deck/1.12.x/guides/konnect
+- https://docs.konghq.com/deck/1.13.x/guides/konnect
+- https://docs.konghq.com/deck/1.14.x/guides/konnect
+- https://docs.konghq.com/deck/1.15.x/guides/konnect
+- https://docs.konghq.com/deck/1.16.x/guides/konnect
+- https://docs.konghq.com/deck/1.17.x/guides/konnect
+- https://docs.konghq.com/deck/1.18.x/guides/konnect
+- https://docs.konghq.com/deck/1.19.x/guides/konnect
+- https://docs.konghq.com/deck/1.20.x/guides/konnect
+- https://docs.konghq.com/deck/1.21.x/guides/konnect
+- https://docs.konghq.com/deck/1.22.x/guides/konnect
+- https://docs.konghq.com/deck/1.23.x/guides/konnect
+- https://docs.konghq.com/deck/1.24.x/guides/konnect/
+- https://docs.konghq.com/deck/1.25.x/guides/konnect/
+- https://docs.konghq.com/deck/1.26.x/guides/konnect/
+- https://docs.konghq.com/deck/1.27.x/guides/konnect/
+- https://docs.konghq.com/deck/1.28.x/guides/konnect/
+- https://docs.konghq.com/deck/1.29.x/guides/konnect/
+- https://docs.konghq.com/gateway/3.4.x/reference/configuration
+- https://docs.konghq.com/gateway/3.5.x/reference/configuration
+
+
+### [doc(decK): Update authentication instructions](https://github.com/Kong/docs.konghq.com/pull/6629) (2023-12-08)
+
+Remove references to username/password auth for latest versions of decK in order to promote usage of tokens instead of passwords for authentication.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.4.x/reference/configuration
+- https://docs.konghq.com/gateway/3.5.x/reference/configuration
+
+
+### [Add a step to publish API Product and version docs](https://github.com/Kong/docs.konghq.com/pull/6620) (2023-12-07)
+
+The step-by-step process is clear; however, one critical step was missing - guiding users on how to publish the API documentation and a dynamic API reference to the public portal. To address this issue, I am adding an extra step that instructs users on how to publish their API Product and version documentation.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/getting-started/publish-service
+
+
+### [tls-handshake-modifier is compatible with Konnect](https://github.com/Kong/docs.konghq.com/pull/6618) (2023-12-06)
+
+Reported by @hbagdi; this plugin is compatible with Konnect.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/tls-handshake-modifier/_metadata.yml
+
+
+### [fix: add missing references to Azure Key Vault](https://github.com/Kong/docs.konghq.com/pull/6614) (2023-12-07)
+
+Support for Azure Key Vault as a secrets backend was added in Gateway 3.5. This PR adds references to this support in the 3rd party tools page and Gateway Enterprise index.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.1.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.2.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.3.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.4.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.5.x/production/environment-variables
+
+
+### [docs(mesh): update docs and changelog](https://github.com/Kong/docs.konghq.com/pull/6613) (2023-12-06)
+
+Syncing docs from source code.
+
+Generated by [action](https://github.com/Kong/kong-mesh/actions/runs/7111781984)
+
+#### Modified
+
+- https://docs.konghq.com/mesh/2.5.x/kuma-cp.yaml
+- https://docs.konghq.com/mesh/dev/crds/kuma.io_meshaccesslogs.yaml
+- https://docs.konghq.com/mesh/dev/kuma-cp.yaml
+
+
+### [Update:JWT plugin overview section](https://github.com/Kong/docs.konghq.com/pull/6612) (2023-12-08)
+
+Fixes: https://konghq.atlassian.net/browse/DOCU-2347
+updated the incorrect examples section.
+No validation done.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/jwt/overview/
+
+
+### [tls-metadata-headers is compatible with Konnect](https://github.com/Kong/docs.konghq.com/pull/6607) (2023-12-05)
+
+Reported by Fero. This is a DP only plugin which _is_ compatible with Konnect
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/tls-metadata-headers/_metadata.yml
+
+
+### [fix: Mermaid rubocop fail ](https://github.com/Kong/docs.konghq.com/pull/6602) (2023-12-04)
+
+hopefully addressing the issue related to method length
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.1.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.2.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.3.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.4.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.5.x/production/environment-variables
+
+
+### [update: OAuth 2.0 Authentication](https://github.com/Kong/docs.konghq.com/pull/6600) (2023-12-04)
+
+Add a note about not recommended for Production environment.
+Fixes: https://konghq.atlassian.net/browse/DOCU-2310
+ 
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/oauth2/overview/
+
+
+### [docs(mesh): update docs and changelog](https://github.com/Kong/docs.konghq.com/pull/6599) (2023-12-04)
+
+Syncing docs from source code.
+
+Generated by [action](https://github.com/Kong/kong-mesh/actions/runs/7087328167)
+
+#### Modified
+
+- https://docs.konghq.com/mesh/dev/kuma-cp.yaml
+
+
+### [chore(deps): bump kumahq/kuma-website from 74af1337 to 609a37e9](https://github.com/Kong/docs.konghq.com/pull/6598) (2023-12-04)
+
+Auto upgrade PR log:
+
+609a37e902fe7d2691df3e9c7830f5ad220de450 chore(deps): bump @adobe/css-tools from 4.3.1 to 4.3.2 (kumahq/kuma-website#1540)
+2e440e044271ca41d4619b194783836c1c067dfe chore(deps): update docs from repo source (kumahq/kuma-website#1541)
+
+Triggered by [action](https://github.com/Kong/docs.konghq.com/actions/runs/7080323180).
+labels: skip-changelog,review:general
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.1.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.2.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.3.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.4.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.5.x/production/environment-variables
+
+
+### [Fix: Azure vault env variables](https://github.com/Kong/docs.konghq.com/pull/6595) (2023-12-04)
+
+To set any environment variables to configure Kong Gateway (kong.conf), each env variable must be prefixed with `KONG_`. These prefixes, along with the `VAULT` portion of each config parameter, are missing from the example codeblocks in the Azure Vaults doc.
+
+See https://docs.konghq.com/gateway/latest/reference/configuration/#vault_azure_vault_uri for the relevant parameter names, which all start with `vault`.
+
+#### Modified
+
+- https://docs.konghq.com/deck/1.12.x/guides/konnect
+- https://docs.konghq.com/deck/1.13.x/guides/konnect
+- https://docs.konghq.com/deck/1.14.x/guides/konnect
+- https://docs.konghq.com/deck/1.15.x/guides/konnect
+- https://docs.konghq.com/deck/1.16.x/guides/konnect
+- https://docs.konghq.com/deck/1.17.x/guides/konnect
+- https://docs.konghq.com/deck/1.18.x/guides/konnect
+- https://docs.konghq.com/deck/1.19.x/guides/konnect
+- https://docs.konghq.com/deck/1.20.x/guides/konnect
+- https://docs.konghq.com/deck/1.21.x/guides/konnect
+- https://docs.konghq.com/deck/1.22.x/guides/konnect
+- https://docs.konghq.com/deck/1.23.x/guides/konnect
+- https://docs.konghq.com/deck/1.24.x/guides/konnect/
+- https://docs.konghq.com/deck/1.25.x/guides/konnect/
+- https://docs.konghq.com/deck/1.26.x/guides/konnect/
+- https://docs.konghq.com/deck/1.27.x/guides/konnect/
+- https://docs.konghq.com/deck/1.28.x/guides/konnect/
+- https://docs.konghq.com/deck/1.29.x/guides/konnect/
+
+
+### [feat(plugin): Rate Limiting Advanced window types explanation](https://github.com/Kong/docs.konghq.com/pull/6586) (2023-12-08)
+
+https://konghq.atlassian.net/browse/DOCU-3397
+Turn KB into doc: https://support.konghq.com/support/s/article/What-is-the-expected-behaviour-for-the-Rate-Limiting-Advanced-plugin-with-sliding-window-strategy
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/overview/
+
+
+### [kic: update and extend gRPC how-to](https://github.com/Kong/docs.konghq.com/pull/6567) (2023-12-04)
+
+closes https://github.com/Kong/kubernetes-ingress-controller/issues/5134
+
+For HTTPRoute (support was added in https://github.com/Kong/kubernetes-ingress-controller/pull/5128, so KIC >= 3.1.0 wii support it). For ingress, it works for older versions too
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.1.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.2.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.3.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.4.x/production/environment-variables
+- https://docs.konghq.com/gateway/3.5.x/production/environment-variables
+
+
+### [Update auth0.md to include developer managed scopes UI steps](https://github.com/Kong/docs.konghq.com/pull/6550) (2023-12-08)
+
+#### Modified
+
+- https://docs.konghq.com/konnect/dev-portal/applications/dynamic-client-registration/auth0
+- https://docs.konghq.com/konnect/updates
+
+
+### [Feat: Gateway Upgrade Refactoring + LTS upgrade guide](https://github.com/Kong/docs.konghq.com/pull/6534) (2023-12-08)
+
+This PR add general Gateway upgrade docs and an LTS 2.8 > LTS 3.4 upgrade guide. These two pieces of content are extremely interdependent, so they have to be published together.
+
+https://konghq.atlassian.net/browse/DOCU-3244
+https://konghq.atlassian.net/browse/DOCU-3193
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.0.x/upgrade/backup-and-restore/
+- https://docs.konghq.com/gateway/3.1.x/upgrade/backup-and-restore/
+- https://docs.konghq.com/gateway/3.2.x/upgrade/backup-and-restore/
+- https://docs.konghq.com/gateway/3.3.x/upgrade/backup-and-restore/
+- https://docs.konghq.com/gateway/3.4.x/upgrade/backup-and-restore/
+- https://docs.konghq.com/gateway/3.5.x/upgrade/backup-and-restore/
+- https://docs.konghq.com/gateway/3.0.x/upgrade/blue-green/
+- https://docs.konghq.com/gateway/3.1.x/upgrade/blue-green/
+- https://docs.konghq.com/gateway/3.2.x/upgrade/blue-green/
+- https://docs.konghq.com/gateway/3.3.x/upgrade/blue-green/
+- https://docs.konghq.com/gateway/3.4.x/upgrade/blue-green/
+- https://docs.konghq.com/gateway/3.5.x/upgrade/blue-green/
+- https://docs.konghq.com/gateway/3.0.x/upgrade/dual-cluster/
+- https://docs.konghq.com/gateway/3.1.x/upgrade/dual-cluster/
+- https://docs.konghq.com/gateway/3.2.x/upgrade/dual-cluster/
+- https://docs.konghq.com/gateway/3.3.x/upgrade/dual-cluster/
+- https://docs.konghq.com/gateway/3.4.x/upgrade/dual-cluster/
+- https://docs.konghq.com/gateway/3.5.x/upgrade/dual-cluster/
+- https://docs.konghq.com/gateway/3.0.x/upgrade/in-place/
+- https://docs.konghq.com/gateway/3.1.x/upgrade/in-place/
+- https://docs.konghq.com/gateway/3.2.x/upgrade/in-place/
+- https://docs.konghq.com/gateway/3.3.x/upgrade/in-place/
+- https://docs.konghq.com/gateway/3.4.x/upgrade/in-place/
+- https://docs.konghq.com/gateway/3.5.x/upgrade/in-place/
+- https://docs.konghq.com/gateway/3.0.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.1.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.2.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.3.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.4.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.5.x/upgrade/lts-upgrade/
+- https://docs.konghq.com/gateway/3.0.x/upgrade/rolling-upgrade/
+- https://docs.konghq.com/gateway/3.1.x/upgrade/rolling-upgrade/
+- https://docs.konghq.com/gateway/3.2.x/upgrade/rolling-upgrade/
+- https://docs.konghq.com/gateway/3.3.x/upgrade/rolling-upgrade/
+- https://docs.konghq.com/gateway/3.4.x/upgrade/rolling-upgrade/
+- https://docs.konghq.com/gateway/3.5.x/upgrade/rolling-upgrade/
+
+#### Modified
+
+- https://docs.konghq.com/deck/1.10.x/installation
+- https://docs.konghq.com/deck/1.11.x/installation
+- https://docs.konghq.com/deck/1.12.x/installation
+- https://docs.konghq.com/deck/1.13.x/installation
+- https://docs.konghq.com/deck/1.14.x/installation
+- https://docs.konghq.com/deck/1.15.x/installation
+- https://docs.konghq.com/deck/1.16.x/installation
+- https://docs.konghq.com/deck/1.17.x/installation
+- https://docs.konghq.com/deck/1.18.x/installation
+- https://docs.konghq.com/deck/1.19.x/installation
+- https://docs.konghq.com/deck/1.20.x/installation
+- https://docs.konghq.com/deck/1.21.x/installation
+- https://docs.konghq.com/deck/1.22.x/installation
+- https://docs.konghq.com/deck/1.23.x/installation
+- https://docs.konghq.com/deck/1.24.x/installation
+- https://docs.konghq.com/deck/1.25.x/installation
+- https://docs.konghq.com/deck/1.26.x/installation
+- https://docs.konghq.com/deck/1.27.x/installation
+- https://docs.konghq.com/deck/1.28.x/installation
+- https://docs.konghq.com/deck/1.29.x/installation
+- https://docs.konghq.com/deck/1.7.x/installation
+- https://docs.konghq.com/deck/1.8.x/installation
+- https://docs.konghq.com/deck/1.9.x/installation
+- https://docs.konghq.com/gateway/3.0.x/breaking-changes/28x/
+- https://docs.konghq.com/gateway/3.1.x/breaking-changes/28x/
+- https://docs.konghq.com/gateway/3.2.x/breaking-changes/28x/
+- https://docs.konghq.com/gateway/3.3.x/breaking-changes/28x
+- https://docs.konghq.com/gateway/3.4.x/breaking-changes/28x/
+- https://docs.konghq.com/gateway/3.5.x/breaking-changes/28x/
+- https://docs.konghq.com/gateway/3.1.x/breaking-changes/30x/
+- https://docs.konghq.com/gateway/3.2.x/breaking-changes/30x/
+- https://docs.konghq.com/gateway/3.3.x/breaking-changes/30x
+- https://docs.konghq.com/gateway/3.4.x/breaking-changes/30x/
+- https://docs.konghq.com/gateway/3.5.x/breaking-changes/30x/
+- https://docs.konghq.com/gateway/3.2.x/breaking-changes/31x/
+- https://docs.konghq.com/gateway/3.3.x/breaking-changes/31x
+- https://docs.konghq.com/gateway/3.4.x/breaking-changes/31x/
+- https://docs.konghq.com/gateway/3.5.x/breaking-changes/31x/
+- https://docs.konghq.com/gateway/3.3.x/breaking-changes/32x
+- https://docs.konghq.com/gateway/3.4.x/breaking-changes/32x/
+- https://docs.konghq.com/gateway/3.5.x/breaking-changes/32x/
+- https://docs.konghq.com/gateway/3.4.x/breaking-changes/33x/
+- https://docs.konghq.com/gateway/3.5.x/breaking-changes/33x/
+- https://docs.konghq.com/gateway/3.5.x/breaking-changes/34x/
+
 ## Week 48
 
 ### [fix: Broken links to APIOps guide](https://github.com/Kong/docs.konghq.com/pull/6583) (2023-11-30)

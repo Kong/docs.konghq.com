@@ -22,10 +22,10 @@ on using it.
 
 Please pick one of the following guides depending on your platform:
 
-- [Minikube](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/minikube/)
-- [Google Kubernetes Engine(GKE) by Google](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/gke/)
-- [Elastic Kubernetes Service(EKS) by Amazon](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/eks/)
-- [Azure Kubernetes Service(AKS) by Microsoft](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/aks/)
+- [Minikube](/kubernetes-ingress-controller/{{page.release}}/deployment/minikube/)
+- [Google Kubernetes Engine(GKE) by Google](/kubernetes-ingress-controller/{{page.release}}/deployment/gke/)
+- [Elastic Kubernetes Service(EKS) by Amazon](/kubernetes-ingress-controller/{{page.release}}/deployment/eks/)
+- [Azure Kubernetes Service(AKS) by Microsoft](/kubernetes-ingress-controller/{{page.release}}/deployment/aks/)
 
 ### Kustomize
 
@@ -73,4 +73,4 @@ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip}"
 ## Using Kong for Kubernetes
 
 Once you've installed Kong for Kubernetes, please follow our
-[getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn more.
+[getting started](/kubernetes-ingress-controller/{{page.release}}/guides/getting-started) tutorial to learn more.

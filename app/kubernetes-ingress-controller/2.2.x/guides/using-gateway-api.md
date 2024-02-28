@@ -33,7 +33,7 @@ resources.
 This guide assumes that the `PROXY_IP` environment variable is
 set to contain the IP address or URL pointing to Kong.
 Follow one of the
-[deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
+[deployment guides](/kubernetes-ingress-controller/{{page.release}}/deployment/overview) to configure this environment variable.
 
 If everything is set up correctly, making a request to Kong should return
 HTTP 404 Not Found.

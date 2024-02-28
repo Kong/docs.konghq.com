@@ -35,7 +35,7 @@ may need to make some manual adjustments to some of the provided instructions.
 
 ## Installation
 
-Follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install
+Follow the [deployment](/kubernetes-ingress-controller/{{page.release}}/deployment/overview/) documentation to install
 the {{site.kic_product_name}} on your Kubernetes cluster.
 
 > **Note**: This feature is compatible with:

@@ -46,7 +46,7 @@ Set up a {{site.base_gateway}} container with a PostgreSQL database to store
 Kong configuration.
 
 {% if_version lte:3.3.x %}
-{% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
+{% include_cached /md/enterprise/cassandra-deprecation.md length='short' release=page.release %}
 {% endif_version %}
 
 ### Prepare the database
@@ -109,12 +109,12 @@ kong:{{page.versions.ce}} kong migrations bootstrap
 {{ migrations | indent | replace: " </code>", "</code>" }}
 
     Where:
-    * [`KONG_DATABASE`](/gateway/{{page.kong_version}}/reference/configuration/#database):
+    * [`KONG_DATABASE`](/gateway/{{page.release}}/reference/configuration/#database):
      Specifies the type of database that Kong is using.
-    * [`KONG_PG_HOST`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings):
+    * [`KONG_PG_HOST`](/gateway/{{page.release}}/reference/configuration/#postgres-settings):
     The name of the Postgres Docker container that is communicating over the
     `kong-net` network, from the previous step.
-    * [`KONG_PG_PASSWORD`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings):
+    * [`KONG_PG_PASSWORD`](/gateway/{{page.release}}/reference/configuration/#postgres-settings):
     The password that you set when bringing up the Postgres container in the
     previous step.
     * `KONG_PASSWORD` (Enterprise only): The default password for the admin
@@ -125,7 +125,7 @@ kong:{{page.versions.ce}} kong migrations bootstrap
 <!-- vale on -->
 ### Start {{site.base_gateway}}
 
-{% include_cached /md/admin-listen.md desc='long' kong_version=page.kong_version %}
+{% include_cached /md/admin-listen.md desc='long' release=page.release %}
 
 1. (Optional) If you have an Enterprise license for {{site.base_gateway}},
 export the license key to a variable:
@@ -223,20 +223,20 @@ docker run -d --name kong-gateway \
     Where:
     * `--name` and `--network`: The name of the container to create,
     and the Docker network it communicates on.
-    * [`KONG_DATABASE`](/gateway/{{page.kong_version}}/reference/configuration/#database):
+    * [`KONG_DATABASE`](/gateway/{{page.release}}/reference/configuration/#database):
     Specifies the type of database that Kong is using.
-    * [`KONG_PG_HOST`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings):
+    * [`KONG_PG_HOST`](/gateway/{{page.release}}/reference/configuration/#postgres-settings):
     The name of the Postgres Docker container that is communicating over the
     `kong-net` network.
-    * [`KONG_PG_USER` and `KONG_PG_PASSWORD`](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings):
+    * [`KONG_PG_USER` and `KONG_PG_PASSWORD`](/gateway/{{page.release}}/reference/configuration/#postgres-settings):
      The Postgres username and password. Kong Gateway needs the login information
      	to store configuration data in the `KONG_PG_HOST` database.
-    * All [`_LOG`](/gateway/{{page.kong_version}}/reference/configuration/#general-section)
+    * All [`_LOG`](/gateway/{{page.release}}/reference/configuration/#general-section)
     parameters: set filepaths for the logs to output to, or use the values in
     the example to  print messages and errors to `stdout` and `stderr`.
-    * [`KONG_ADMIN_LISTEN`](/gateway/{{page.kong_version}}/reference/configuration/#admin_listen):
+    * [`KONG_ADMIN_LISTEN`](/gateway/{{page.release}}/reference/configuration/#admin_listen):
     The port that the Kong Admin API listens on for requests.
-    * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url): {% if_version lte:3.3.x %}(Not available in OSS) {% endif_version %}The URL for accessing Kong Manager, preceded by a protocol
+    * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.release}}/reference/configuration/#admin_gui_url): {% if_version lte:3.3.x %}(Not available in OSS) {% endif_version %}The URL for accessing Kong Manager, preceded by a protocol
     (for example, `http://`).
     * `KONG_LICENSE_DATA`: (Enterprise only) If you have a license file and have saved it
     as an environment variable, this parameter pulls the license from your environment.
@@ -270,14 +270,14 @@ using the URL specified in `KONG_ADMIN_GUI_URL`:
 ### Get started with {{site.base_gateway}}
 
 Now that you have a running Gateway instance, Kong provides a series of
-[getting started guides](/gateway/{{page.kong_version}}/get-started/services-and-routes/)
+[getting started guides](/gateway/{{page.release}}/get-started/services-and-routes/)
  to help you set up and enhance your first Service.
 
 
 In particular, right after installation you might want to:
-* [Create a service and a route](/gateway/{{page.kong_version}}/get-started/services-and-routes/)
-* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/rate-limiting/)
-* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/key-authentication/)
+* [Create a service and a route](/gateway/{{page.release}}/get-started/services-and-routes/)
+* [Configure a plugin](/gateway/{{page.release}}/get-started/rate-limiting/)
+* [Secure your services with authentication](/gateway/{{page.release}}/get-started/key-authentication/)
 
 ### Clean up containers
 
@@ -295,7 +295,7 @@ docker network rm kong-net
 ## Install {{site.base_gateway}} in DB-less mode
 
 The following steps walk you through starting {{site.base_gateway}} in
-[DB-less mode](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config).
+[DB-less mode](/gateway/{{page.release}}/production/deployment-topologies/db-less-and-declarative-config).
 
 ### Create a Docker network
 
@@ -345,7 +345,7 @@ backed up by a Redis cluster).
 
 ### Start {{site.base_gateway}} in DB-less mode
 
-{% include_cached /md/admin-listen.md desc='long' kong_version=page.kong_version %}
+{% include_cached /md/admin-listen.md desc='long' release=page.release %}
 
 1. (Optional) If you have an Enterprise license for {{site.base_gateway}},
 export the license key to a variable:
@@ -443,18 +443,18 @@ docker run -d --name kong-dbless \
     * `-v $(pwd):/path/to/target/`: Mount the current directory on your
     local filesystem to a directory in the Docker container. This makes the
     `kong.yml` file visible from the Docker container.
-    * [`KONG_DATABASE`](/gateway/{{page.kong_version}}/reference/configuration/#database):
+    * [`KONG_DATABASE`](/gateway/{{page.release}}/reference/configuration/#database):
      Sets the database to `off` to tell Kong not to use any
     backing database for configuration storage.
-    * [`KONG_DECLARATIVE_CONFIG`](/gateway/{{page.kong_version}}/reference/configuration/#declarative_config):
+    * [`KONG_DECLARATIVE_CONFIG`](/gateway/{{page.release}}/reference/configuration/#declarative_config):
     The path to a declarative configuration file inside the container.
     This path should match the target path that you're mapping with `-v`.
-    * All [`_LOG`](/gateway/{{page.kong_version}}/reference/configuration/#general-section)
+    * All [`_LOG`](/gateway/{{page.release}}/reference/configuration/#general-section)
     parameters: set filepaths for the logs to output to, or use the values in
     the example to  print messages and errors to `stdout` and `stderr`.
-    * [`KONG_ADMIN_LISTEN`](/gateway/{{page.kong_version}}/reference/configuration/#admin_listen):
+    * [`KONG_ADMIN_LISTEN`](/gateway/{{page.release}}/reference/configuration/#admin_listen):
     The port that the Kong Admin API listens on for requests.
-    * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.kong_version}}/reference/configuration/#admin_gui_url): {% if_version lte:3.3.x %}(Not available in OSS) {% endif_version %}The URL for accessing Kong Manager, preceded by a protocol
+    * [`KONG_ADMIN_GUI_URL`](/gateway/{{page.release}}/reference/configuration/#admin_gui_url): {% if_version lte:3.3.x %}(Not available in OSS) {% endif_version %}The URL for accessing Kong Manager, preceded by a protocol
     (for example, `http://`).
     * `KONG_LICENSE_DATA`: (Enterprise only) If you have a license file and have saved it
     as an environment variable, this parameter pulls the license from your environment.
@@ -471,21 +471,21 @@ docker run -d --name kong-dbless \
     curl -i http://localhost:8001/services
     ```
 
-[DB-less mode]: /gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config/
-[Declarative Configuration format]: /gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config/#the-declarative-configuration-format
+[DB-less mode]: /gateway/{{page.release}}/production/deployment-topologies/db-less-and-declarative-config/
+[Declarative Configuration format]: /gateway/{{page.release}}/production/deployment-topologies/db-less-and-declarative-config/#the-declarative-configuration-format
 [Docker Volume]: https://docs.docker.com/storage/volumes/
 
 ### Get started with {{site.base_gateway}}
 
 Now that you have a running Gateway instance, Kong provides a series of
-[getting started guides](/gateway/{{page.kong_version}}/get-started/services-and-routes/)
+[getting started guides](/gateway/{{page.release}}/get-started/services-and-routes/)
 to help you set up and enhance your first Service.
 
 If you use the sample `kong.yml` in this guide, you already have a Service and
 a Route configured. Here are a few more things to check out:
-* [Configure a plugin](/gateway/{{page.kong_version}}/get-started/rate-limiting?tab=using-deck-yaml/)
-* [Secure your services with authentication](/gateway/{{page.kong_version}}/get-started/key-authentication?tab=using-deck-yaml/)
-* [Load balance traffic across targets](/gateway/{{page.kong_version}}/get-started/load-balancing/?tab=using-deck-yaml/)
+* [Configure a plugin](/gateway/{{page.release}}/get-started/rate-limiting?tab=using-deck-yaml/)
+* [Secure your services with authentication](/gateway/{{page.release}}/get-started/key-authentication?tab=using-deck-yaml/)
+* [Load balance traffic across targets](/gateway/{{page.release}}/get-started/load-balancing/?tab=using-deck-yaml/)
 
 ### Clean up containers
 
@@ -558,9 +558,9 @@ docker run --read-only -d --name kong-dbless \
 ## Troubleshooting
 
 For troubleshooting license issues, see:
-* [Deployment options for licenses](/gateway/{{page.kong_version}}/licenses/deploy/)
-* [`/licenses` API reference](/gateway/{{page.kong_version}}/admin-api/licenses/reference/)
-* [`/licenses` API examples](/gateway/{{page.kong_version}}/licenses/examples/)
+* [Deployment options for licenses](/gateway/{{page.release}}/licenses/deploy/)
+* [`/licenses` API reference](/gateway/{{page.release}}/admin-api/licenses/reference/)
+* [`/licenses` API examples](/gateway/{{page.release}}/licenses/examples/)
 
 If you did not receive a `200 OK` status code or need assistance completing
 setup, reach out to your support contact or head over to the

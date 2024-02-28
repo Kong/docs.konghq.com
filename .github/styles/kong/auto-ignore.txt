@@ -23,6 +23,7 @@ endpoint_key
 eventTime
 firstTimestamp
 foogineer
+geos
 if_version
 ingress_controller_configuration_push_count
 ingress_controller_configuration_push_duration_milliseconds
@@ -57,12 +58,14 @@ role_endpoint
 role_entity
 saml
 search_by_username
+sequenceDiagram
 ssl_client_verify
 start_cmd
 stream_listen
 stringified
 subcomponent
 trusted_ips
+DECK_
 Gateway
 GatewayClass
 HTTPRoute

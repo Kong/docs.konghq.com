@@ -59,6 +59,7 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
+  latest: true
 - release: "pre-1.7"
   version: "1.6.0"
   edition: "deck"
@@ -93,6 +94,7 @@
   release: "1.16.x"
   version: "1.16.1"
   edition: "deck"
+  latest: true
 -
   release: "1.0.x"
   version: "1.0.4"
@@ -129,11 +131,15 @@
 - release: "2.0.x"
   version: "2.0.0"
   edition: "mesh"
+- release: "2.1.x"
+  version: "2.1.0"
+  edition: "mesh"
   latest: true
-- release: "dev"
-  version: "preview"
+- release: "2.6.x"
+  version: "2.6.0"
   edition: "mesh"
   branch: "master"
+  label: "dev"
 - release: "1.0.x"
   version: "1.0.0"
   edition: "kubernetes-ingress-controller"
@@ -170,3 +176,4 @@
 - release: "2.7.x"
   version: "2.7.0"
   edition: "kubernetes-ingress-controller"
+  latest: true

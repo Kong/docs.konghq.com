@@ -762,11 +762,11 @@ paths:
   /control-planes/{controlPlaneId}/core-entities/consumers/{consumer_id}:
     delete:
       description: >-
-        Delete a specific consumer from the system using either the consumer ID
-        or the consumer username. This operation is irreversible and permanently
-        removes all data associated with the specified consumer. If the consumer
-        was deleted succesfully the endpoint will return a 204 response
-        indicating that the resource did not exist.
+        Delete a specific consumer from the system using the Consumer UUID. This
+        operation is irreversible and permanently removes all data associated
+        with the specified consumer. If the consumer was deleted succesfully the
+        endpoint will return a 204 response indicating that the resource did not
+        exist.
       operationId: delete-consumer
       responses:
         '204':
@@ -776,10 +776,9 @@ paths:
         - Consumers
     get:
       description: >-
-        Retrieve the details of a specific consumer in the system using either
-        the consumer ID or the consumer username. If the consumer with the
-        specified ID or username cannot be found, the endpoint will return a
-        404.
+        Retrieve the details of a specific consumer in the system using the
+        Consumer UUID ID. If the consumer with the specified ID cannot be found,
+        the endpoint will return a 404.
       operationId: get-consumer
       responses:
         '200':
@@ -795,23 +794,13 @@ paths:
         - $ref: '#/components/parameters/pagination-tags-filter'
     put:
       description: >-
-        Create or Update Consumer using ID or username. The consumer will be
-        identified via the username or id attribute.If the consumer with the
-        specified ID or username cannot be found, the endpoint will return a
-        404.
-
-
-        When the username or id attribute has the structure of a UUID, the
-        Consumer being inserted/replaced will be identified by its id. Otherwise
-        it will be identified by its username.
+        Create or Update Consumer using the consumer UUID. The consumer will be
+        identified via the id attribute. If the consumer with the specified ID
+        cannot be found, the endpoint will return a 404.
 
 
         When creating a new Consumer without specifying id (neither in the URL
         nor in the body), then it will be auto-generated.
-
-
-        Notice that specifying a username in the URL and a different one in the
-        request body is not allowed.
       operationId: upsert-consumer
       responses:
         '200':
@@ -1799,6 +1788,7 @@ paths:
           required: true
           schema:
             type: string
+            format: uuid
       responses:
         '201':
           content:
@@ -2712,7 +2702,7 @@ paths:
             schema:
               type: object
               properties:
-                consumer_group_id:
+                group:
                   type: string
                   description: The consumer group UUID.
                   example: 1e965e47-d185-4e9e-8bc7-94ea6ae75b2e
@@ -2759,12 +2749,13 @@ components:
         type: string
     service_id:
       name: service_id
-      description: ID **or** name of the service to lookup
+      description: UUID of the service to lookup
       example: 7fca84d6-7d37-4a74-a7b0-93e576089a41
       in: path
       required: true
       schema:
         type: string
+        format: uuid
     ca_certificate_id:
       name: ca_certificate_id
       description: ID of the related certificate
@@ -2809,7 +2800,7 @@ components:
       schema:
         type: string
         example: e94215b0-9198-42ce-bf0b-98afff31b2a7
-      description: The unique identifier or the username of the Consumer to retrieve.
+      description: The unique identifier (UUID) of the consumer to retrieve.
       required: true
     plugin_id_or_instance_name:
       name: plugin_id_or_instance_name
@@ -2869,10 +2860,11 @@ components:
       required: true
       schema:
         type: string
+        format: uuid
         example: 9524ec7d-36d9-465d-a8c5-83a3c9390458
       description: >-
-        The ID of your control plane. This variable is available in the Konnect
-        manager
+        The UUID of your control plane. This variable is available in the
+        Konnect manager
     route_id:
       name: route_id
       in: path

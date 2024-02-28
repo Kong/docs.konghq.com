@@ -75,7 +75,7 @@ The below diagram shows how you can link `KongPlugin` resource to an
 
 ## KongClusterPlugin
 
-_This resource requires the [`kubernetes.io/ingress.class` annotation](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/)._
+_This resource requires the [`kubernetes.io/ingress.class` annotation](/kubernetes-ingress-controller/{{page.release}}/references/annotations/)._
 
 KongClusterPlugin resource is exactly same as KongPlugin, except that it is a
 Kubernetes cluster-level resources instead of being a namespaced resource.
@@ -124,8 +124,8 @@ release.
 Instead, please use secret-based credentials.
 
 [k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/
-[kong-consumer]: /gateway/latest/admin-api/#consumer-object
-[kong-plugin]: /gateway/latest/admin-api/#plugin-object
-[kong-route]: /gateway/latest/admin-api/#route-object
-[kong-service]: /gateway/latest/admin-api/#service-object
-[kong-upstream]: /gateway/latest/admin-api/#upstream-object
+[kong-consumer]: /gateway/api/admin-ee/latest/#/Consumers/list-consumer/
+[kong-plugin]: /gateway/api/admin-ee/latest/#/Plugins/list-plugin
+[kong-route]: /gateway/api/admin-ee/latest/#/Routes/list-route/
+[kong-service]: /gateway/api/admin-ee/latest/#/Services/list-service/
+[kong-upstream]: /gateway/api/admin-ee/latest/#/Upstreams/list-upstream/

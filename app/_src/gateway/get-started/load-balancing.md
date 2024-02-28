@@ -16,7 +16,7 @@ it automatically detects the problem and routes all traffic to the working serve
 An [upstream](/gateway/latest/key-concepts/upstreams/) 
 refers to the service applications sitting behind {{site.base_gateway}}, 
 to which client requests are forwarded. In {{site.base_gateway}}, an upstream represents a virtual hostname and can be 
-used to health check, circuit break, and load balance incoming requests over multiple [target](/gateway/latest/admin-api/#target-object) backend services.
+used to health check, circuit break, and load balance incoming requests over multiple [target](/gateway/api/admin-ee/latest/#/Targets/list-target-with-upstream/) backend services.
 
 In this section, you’ll re-configure the service created earlier, (`example_service`) to point to an upstream 
 instead of a specific host. For the purposes of our example, the upstream will point to two different targets, 
@@ -92,7 +92,7 @@ If you haven't completed these steps already, complete them before proceeding.
 You've completed the Get Started with Kong guide, but a lot more is possible with [{{site.base_gateway}}](/gateway/latest/). 
 The following are guides to advanced features of {{site.base_gateway}}:
 
-* [Monitoring with {{site.base_gateway}}](/gateway/{{ page.kong_version }}/production/monitoring/)
-* [Securing {{site.base_gateway}} with RBAC](/gateway/{{ page.kong_version }}/kong-manager/auth/rbac/enable/) <span class="badge enterprise"></span>
-* [Managing Workspaces and Team with {{site.base_gateway}}](/gateway/{{ page.kong_version }}/kong-manager/auth/workspaces-and-teams/) <span class="badge enterprise"></span>
+* [Monitoring with {{site.base_gateway}}](/gateway/{{ page.release }}/production/monitoring/)
+* [Securing {{site.base_gateway}} with RBAC](/gateway/{{ page.release }}/kong-manager/auth/rbac/enable/) <span class="badge enterprise"></span>
+* [Managing Workspaces and Team with {{site.base_gateway}}](/gateway/{{ page.release }}/kong-manager/auth/workspaces-and-teams/) <span class="badge enterprise"></span>
 

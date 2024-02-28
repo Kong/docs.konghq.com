@@ -17,7 +17,7 @@ You have a license for {{site.mesh_product_name}}.
 {:.note}
 > **Note:** {{site.mesh_product_name}} ships with a FIPS 140-2 compliant
 build of Envoy. This build is only available on Red Hat 8 and later. For any previous
-versions, use [Docker](/mesh/{{page.kong_version}}/installation/docker/). 
+versions, use [Docker](/mesh/{{page.release}}/installation/docker/). 
 
 ## 1. Download {{site.mesh_product_name}}
 
@@ -42,7 +42,7 @@ tar xvzf kong-mesh-{{page.version}}*.tar.gz
 {% endnavtab %}
 {% endnavtabs %}
 
-{% include_cached /md/mesh/install-universal-run.md kong_version=page.kong_version %}
+{% include_cached /md/mesh/install-universal-run.md release=page.release %}
 
 {% include /md/mesh/install-universal-verify.md %}
 

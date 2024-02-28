@@ -157,7 +157,7 @@ Service][external-name] with an [RFC 2606][rfc-2606] invalid hostname, e.g.
 v1beta1 Ingresses.
 
 [kubernetes-ingress-doc]: https://kubernetes.io/docs/concepts/services-networking/ingress/
-[ingress-class]: /kubernetes-ingress-controller/{{page.kong_version}}/concepts/ingress-classes
+[ingress-class]: /kubernetes-ingress-controller/{{page.release}}/concepts/ingress-classes
 [uri-rfc-paths]: https://tools.ietf.org/html/rfc3986#section-3.3
 [posix-regex]: https://www.boost.org/doc/libs/1_38_0/libs/regex/doc/html/boost_regex/syntax/basic_extended.html
 [path-types]: https://kubernetes.io/docs/concepts/services-networking/ingress/#path-types

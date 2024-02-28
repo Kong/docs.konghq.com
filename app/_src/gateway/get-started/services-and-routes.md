@@ -7,8 +7,8 @@ chapter: 2
 
 {{site.base_gateway}} administrators work with an object model to define their
 desired traffic management policies. Two important objects in that model are 
-[services](/gateway/latest/admin-api/#service-object) and 
-[routes](/gateway/latest/admin-api/#route-object). Services and routes are configured in a 
+[services](/gateway/api/admin-ee/latest/#/Services) and 
+[routes](/gateway/api/admin-ee/latest/#/Routes/list-route). Services and routes are configured in a 
 coordinated manner to define the routing path that requests and responses will take 
 through the system.
 
@@ -46,7 +46,7 @@ You can also configure routes with:
 * Redirect status codes: HTTPS status codes
 * Tags: Optional set of strings to group routes with 
 
-See [Routes](/gateway/{{page.kong_version}}/key-concepts/routes/) for a description of how
+See [Routes](/gateway/{{page.release}}/key-concepts/routes/) for a description of how
 {{site.base_gateway}} routes requests.
 
 ## Managing services and routes
@@ -370,7 +370,7 @@ You can also view the configuration for your services in the Kong Manager UI by 
    }
    ```
 
-The [Admin API documentation](/gateway/latest/admin-api/#route-object) has the 
+The [Admin API documentation](/gateway/api/admin-ee/latest/#/Routes/list-route/) has the 
 full specification for managing route objects.
 
 You can also view the configuration for your routes in the Kong Manager UI by navigating to the following URL in your browser: [http://localhost:8002/default/routes](http://localhost:8002/default/routes)

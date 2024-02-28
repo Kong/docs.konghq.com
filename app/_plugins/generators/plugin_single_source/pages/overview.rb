@@ -45,7 +45,7 @@ module PluginSingleSource
         if @release.latest?
           base_url
         else
-          "#{base_url}#{@release.version}/"
+          "#{base_url}#{gateway_release}/"
         end
       end
 

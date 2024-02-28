@@ -28,7 +28,7 @@ Following CRDs enables users to declaratively configure all aspects of Kong:
 This resource provides an API to configure plugins inside Kong using
 Kubernetes-style resources.
 
-Please see the [concept](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/#KongPlugin)
+Please see the [concept](/kubernetes-ingress-controller/{{page.release}}/concepts/custom-resources/#KongPlugin)
 document for how the resource should be used.
 
 The following snippet shows the properties available in KongPlugin resource:
@@ -137,7 +137,7 @@ A plugin can also be applied to a specific KongConsumer by adding
 `konghq.com/plugins` annotation to the KongConsumer resource.
 
 Please follow the
-[Using the KongPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource)
+[Using the KongPlugin resource](/kubernetes-ingress-controller/{{page.release}}/guides/using-kongplugin-resource)
 guide for details on how to use this resource.
 
 #### Applying a plugin with a secret configuration
@@ -216,7 +216,7 @@ sometimes, users may want more control over routing at the Ingress level.
 It is not meant as a replacement to the
 `Ingress` resource in Kubernetes.
 
-Please read the [concept](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/#kongingress)
+Please read the [concept](/kubernetes-ingress-controller/{{page.release}}/concepts/custom-resources/#kongingress)
 document for why this resource exists and how it relates to the existing
 Ingress resource.
 
@@ -241,7 +241,7 @@ Specifically,
   add the annotation to the Ingress resource.
 
 Please follow the
-[Using the KongIngress resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource)
+[Using the KongIngress resource](/kubernetes-ingress-controller/{{page.release}}/guides/using-kongingress-resource)
 guide for details on how to use this resource.
 
 For reference, the following is a complete spec for KongIngress:
@@ -397,23 +397,23 @@ config:
 The following credential types can be provisioned using the KongCredential
 resource:
 
-- `key-auth` for [Key authentication](https://docs.konghq.com/hub/kong-inc/key-auth/)
-- `basic-auth` for [Basic authentication](https://docs.konghq.com/hub/kong-inc/basic-auth/)
-- `hmac-auth` for [HMAC authentication](http://docs.konghq.com/hub/kong-inc/hmac-auth/)
-- `jwt` for [JWT based authentication](http://docs.konghq.com/hub/kong-inc/jwt/)
-- `oauth2` for [Oauth2 Client credentials](https://docs.konghq.com/hub/kong-inc/oauth2/)
-- `acl` for [ACL group associations](https://docs.konghq.com/hub/kong-inc/acl/)
+- `key-auth` for [Key authentication](/hub/kong-inc/key-auth/)
+- `basic-auth` for [Basic authentication](/hub/kong-inc/basic-auth/)
+- `hmac-auth` for [HMAC authentication](/hub/kong-inc/hmac-auth/)
+- `jwt` for [JWT based authentication](/hub/kong-inc/jwt/)
+- `oauth2` for [Oauth2 Client credentials](/hub/kong-inc/oauth2/)
+- `acl` for [ACL group associations](/hub/kong-inc/acl/)
 
 Please ensure that all fields related to the credential in Kong
 are present in the definition of KongCredential's `config` section.
 
 Please refer to the
-[using the Kong Consumer and Credential resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-consumer-credential-resource)
+[using the Kong Consumer and Credential resource](/kubernetes-ingress-controller/{{page.release}}/guides/using-consumer-credential-resource)
 guide for details on how to use this resource.
 
 [k8s-crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/
-[kong-consumer]: /gateway/latest/admin-api/#consumer-object
-[kong-plugin]: /gateway/latest/admin-api/#plugin-object
-[kong-upstream]: /gateway/latest/admin-api/#upstream-object
-[kong-service]: /gateway/latest/admin-api/#service-object
-[kong-route]: /gateway/latest/admin-api/#route-object
+[kong-consumer]: /gateway/api/admin-ee/latest/#/Consumers/list-consumer/
+[kong-plugin]: /gateway/api/admin-ee/latest/#/Plugins/list-plugin
+[kong-upstream]: /gateway/api/admin-ee/latest/#/Upstreams/list-upstream/
+[kong-service]: /gateway/api/admin-ee/latest/#/Services/list-service/
+[kong-route]: /gateway/api/admin-ee/latest/#/Routes/list-route/

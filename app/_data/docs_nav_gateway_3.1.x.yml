@@ -95,14 +95,16 @@ items:
             url: /install/
           - text: Kubernetes
             items:
-              - text: Helm
-                url: /install/kubernetes/helm-quickstart
-              - text: OpenShift with Helm
-                url: /install/kubernetes/openshift
-              - text: kubectl apply
-                url: /install/kubernetes/kubectl
-              - text: Kubernetes Deployment Options
-                url: /install/kubernetes/deployment-options
+              - text: Overview
+                url: /install/kubernetes/
+              - text: Install Kong Gateway
+                url: /install/kubernetes/proxy/
+              - text: Configure the Admin API
+                url: /install/kubernetes/admin/
+              - text: Install Kong Manager
+                url: /install/kubernetes/manager/
+              - text: Install Developer Portal
+                url: /install/kubernetes/portal/
           - text: Docker
             items:
               - text: Using docker run
@@ -529,28 +531,10 @@ items:
     items:
       - text: Overview
         url: /kong-plugins/
-      - text: Authentication
-        items:
-          - text: Open ID Connect Plugin
-            items:
-              - text: Overview
-                url: /kong-plugins/authentication/oidc/
-              - text: OpenID Connect with Curity
-                url: /kong-plugins/authentication/oidc/curity
-              - text: OpenID Connect with Azure AD
-                url: /kong-plugins/authentication/oidc/azure-ad
-              - text: OpenID Connect with Google
-                url: /kong-plugins/authentication/oidc/google
-              - text: OpenID Connect with Okta
-                url: /kong-plugins/authentication/oidc/okta
-              - text: OpenID Connect with Auth0
-                url: /kong-plugins/authentication/oidc/auth0
-              - text: OpenID Connect with Cognito
-                url: /kong-plugins/authentication/oidc/cognito
-          - text: Authentication Reference
-            url: /kong-plugins/authentication/reference
-          - text: Allow Multiple Authentication Plugins
-            url: /kong-plugins/authentication/allowing-multiple-authentication-methods/
+      - text: Authentication Reference
+        url: /kong-plugins/authentication/reference
+      - text: Allow Multiple Authentication Plugins
+        url: /kong-plugins/authentication/allowing-multiple-authentication-methods/
 
   - title: Admin API
     icon: /assets/images/icons/documentation/icn-admin-api-color.svg

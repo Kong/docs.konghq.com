@@ -14,7 +14,7 @@ properties:
 - `admin_listen`, which also defines a list of addresses and ports, but those
   should be restricted to only be accessed by administrators, as they expose
   Kong's configuration capabilities: the **Admin API** (`8001` by default).
-{% include_cached /md/admin-listen.md desc='short' kong_version=page.kong_version %}
+{% include_cached /md/admin-listen.md desc='short' release=page.release %}
 - `stream_listen`, which is similar to `proxy_listen` but for Layer 4 (TCP, TLS)
   generic proxy. This is turned off by default.
 
@@ -552,7 +552,7 @@ request headers will indicate the matched route ID in the response headers for
 {% if_version gte:3.2.x %}
 If you see unexpected behavior, use the Kong debug header to help track down the source:
 
-1. In `kong.conf`, set [`allow_debug_header: on`](/gateway/{{page.kong_version}}/reference/configuration/#allow_debug_header).
+1. In `kong.conf`, set [`allow_debug_header: on`](/gateway/{{page.release}}/reference/configuration/#allow_debug_header).
 1. Send `Kong-Debug: 1` in your request headers to indicate the matched route ID in the response headers for
 troubleshooting purposes.
 {% endif_version %}
@@ -1084,8 +1084,8 @@ subdomains, instead of creating an SNI for each.
 Valid wildcard positions are `mydomain.*`, `*.mydomain.com`, and `*.www.mydomain.com`.
 
 A default certificate can be added using the following parameters in {{site.base_gateway}} configuration:
-1. [`ssl_cert`](/gateway/{{page.kong_version}}/reference/configuration/#ssl_cert)
-2. [`ssl_cert_key`](/gateway/{{page.kong_version}}/reference/configuration/#ssl_cert_key)
+1. [`ssl_cert`](/gateway/{{page.release}}/reference/configuration/#ssl_cert)
+2. [`ssl_cert_key`](/gateway/{{page.release}}/reference/configuration/#ssl_cert_key)
 
 Or, by dynamically configuring the default certificate with an SNI of `*`:
 
@@ -1306,7 +1306,7 @@ In addition to HTTP services and routes, {{site.ee_product_name}} includes
 the `ws` (WebSocket-over-http) and `wss` (WebSocket-over-https) options for
 service `protocol` and route `protocols`. In contrast to `http`/`https`, `ws`
 and `wss` services have full control over the underlying WebSocket connection.
-This means that they can use WebSocket plugins and the [WebSocket PDK](/gateway/{{page.kong_version}}/plugin-development/pdk/kong.websocket.client/) to
+This means that they can use WebSocket plugins and the [WebSocket PDK](/gateway/{{page.release}}/plugin-development/pdk/kong.websocket.client/) to
 perform business logic on a per-message basis (message validation, accounting,
 rate-limiting, etc).
 
@@ -1444,17 +1444,17 @@ If you haven't already, we suggest that you also read the [Load balancing
 Reference][load-balancing-reference], as it closely relates to the topic we
 just covered.
 
-[plugin-configuration-object]: /gateway/{{page.kong_version}}/admin-api#plugin-object
-[plugin-development-guide]: /gateway/{{page.kong_version}}/plugin-development
-[plugin-association-rules]: /gateway/{{page.kong_version}}/admin-api/#precedence
-[proxy-websocket]: /gateway/{{page.kong_version}}/how-kong-works/routing-traffic#proxy-websocket-traffic
-[load-balancing-reference]: /gateway/{{page.kong_version}}/how-kong-works/load-balancing
-[configuration-reference]: /gateway/{{page.kong_version}}/reference/configuration/
-[configuration-trusted-ips]: /gateway/{{page.kong_version}}/reference/configuration/#trusted_ips
-[configuring-a-service]: /gateway/{{page.kong_version}}/get-started/services-and-routes
-[API]: /gateway/{{page.kong_version}}/admin-api
-[service-entity]: /gateway/{{page.kong_version}}/admin-api/#add-service
-[route-entity]: /gateway/{{page.kong_version}}/admin-api/#add-route
+[plugin-configuration-object]: /gateway/{{page.release}}/admin-api#plugin-object
+[plugin-development-guide]: /gateway/{{page.release}}/plugin-development
+[plugin-association-rules]: /gateway/{{page.release}}/admin-api/#precedence
+[proxy-websocket]: /gateway/{{page.release}}/how-kong-works/routing-traffic#proxy-websocket-traffic
+[load-balancing-reference]: /gateway/{{page.release}}/how-kong-works/load-balancing
+[configuration-reference]: /gateway/{{page.release}}/reference/configuration/
+[configuration-trusted-ips]: /gateway/{{page.release}}/reference/configuration/#trusted_ips
+[configuring-a-service]: /gateway/{{page.release}}/get-started/services-and-routes
+[API]: /gateway/{{page.release}}/admin-api
+[service-entity]: /gateway/{{page.release}}/admin-api/#add-service
+[route-entity]: /gateway/{{page.release}}/admin-api/#add-route
 
 [ngx-http-proxy-module]: http://nginx.org/en/docs/http/ngx_http_proxy_module.html
 [ngx-http-realip-module]: http://nginx.org/en/docs/http/ngx_http_realip_module.html

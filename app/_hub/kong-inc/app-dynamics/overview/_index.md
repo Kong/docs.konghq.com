@@ -28,12 +28,21 @@ not distributed with {{site.base_gateway}}. AppDynamics
 must be downloaded from the
 [AppDynamics Download Portal](https://accounts.appdynamics.com/downloads).
 The `libappdynamics.so` shared
-library file is the only required file, it must be placed in one of the locations configured by
-the
-[system's shared library loader](https://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html).
-Alternatively, the `LD_LIBRARY_PATH` environment variable can be set
-to the directory containing the `libappdynamics.so` file when
-starting {{site.base_gateway}}.
+library file is the only required file.
+
+### Recommended installation
+
+If you are using {{site.base_gateway}} 3.0.0.0 or later, we recommended installing the `libappdynamics.so` in the `/usr/local/kong/lib` directory.
+This directory is included in the {{site.base_gateway}} search path for shared libraries, so the `libappdynamics.so` file will be found automatically.
+
+### Alternative installation
+
+If you are using an older version of {{site.base_gateway}}, or if you prefer to install the `libappdynamics.so` file in a different location, you can do so.
+
+- If {{site.base_gateway}} is deployed in RHEL or CentOS, the `libappdynamics.so` file can be in the `/usr/lib64` directory, which is included in the default search path for shared libraries.
+- If {{site.base_gateway}} is deployed in Debian or Ubuntu, the `libappdynamics.so` file can be in the `/usr/lib` directory, which is included in the default search path for shared libraries.
+- If above options are not available, the `libappdynamics.so` file can be in one of the locations configured by the [system's shared library loader](https://tldp.org/HOWTO/Program-Library-HOWTO/shared-libraries.html).
+- Alternatively, the `LD_LIBRARY_PATH` environment variable can be set to the directory containing the `libappdynamics.so` file when starting {{site.base_gateway}}.
 
 If the AppDynamics plugin is enabled but the `libappdynamics.so` file cannot be loaded, {{site.base_gateway}} will refuse to start.
 You will receive an error message like this:
@@ -75,6 +84,14 @@ for more information about the configuration parameters.
 | `KONG_APPD_CONTROLLER_HTTP_PROXY_PORT` | Port number of controller proxy. | Integer |  |
 | `KONG_APPD_CONTROLLER_HTTP_PROXY_USERNAME` | Username to use to identify to proxy. This value is a string that is never shown in logs. This value can be specified as a vault reference.| String |  |
 | `KONG_APPD_CONTROLLER_HTTP_PROXY_PASSWORD` | Password to use to identify to proxy. This value is a string that is never shown in logs. This value can be specified as a vault reference.| String |  |
+{% if_plugin_version eq:3.4.x %}
+| `KONG_CONTROLLER_CERTIFICATE_FILE` | Path to a self-signed certificate file. For example, `/etc/kong/certs/ca-certs.pem`. <br><br>_Available starting in {{site.base_gateway}} 3.4.3.3_ | String | | 
+| `KONG_CONTROLLER_CERTIFICATE_DIR` | Path to a certificate directory. For example, `/etc/kong/certs/`. <br><br> _Available starting in {{site.base_gateway}} 3.4.3.3_ | String | | 
+{% endif_plugin_version %}
+{% if_plugin_version gte:3.6.x %}
+| `KONG_CONTROLLER_CERTIFICATE_FILE` | Path to a self-signed certificate file. For example, `/etc/kong/certs/ca-certs.pem`. | String | | 
+| `KONG_CONTROLLER_CERTIFICATE_DIR` | Path to a certificate directory. For example, `/etc/kong/certs/`. | String | | 
+{% endif_plugin_version %}
 
 #### Possible values for the `KONG_APPD_LOGGING_LEVEL` parameter
 

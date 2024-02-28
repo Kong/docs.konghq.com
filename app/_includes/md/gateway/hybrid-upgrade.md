@@ -26,7 +26,7 @@ CP nodes must be upgraded before DP nodes. CP nodes serve an admin-only role and
 So, you can select from the same upgrade strategies nominated for traditional mode (dual-cluster or in-place), 
 as described in figure 2 and figure 3 respectively.
 
-Upgrading the CP nodes using the [dual-cluster strategy](/gateway/{{include.kong_version}}/upgrade/dual-cluster/):
+Upgrading the CP nodes using the [dual-cluster strategy](/gateway/{{include.release}}/upgrade/dual-cluster/):
 
 {% mermaid %}
 flowchart TD
@@ -56,7 +56,7 @@ flowchart TD
 > _Figure 2: The diagram shows a CP upgrade using the dual-cluster strategy._
 _The new CP Y is deployed alongside the current CP X, while current DP nodes X are still serving API requests._
 
-Upgrading the CP nodes using the [in-place strategy](/gateway/{{include.kong_version}}/upgrade/in-place/):
+Upgrading the CP nodes using the [in-place strategy](/gateway/{{include.release}}/upgrade/in-place/):
 
 {% mermaid %}
 flowchart 
@@ -98,8 +98,8 @@ Once the CP nodes are upgraded, you can move on to upgrade the DP nodes.
 The only supported upgrade strategy for DP upgrades is the rolling upgrade.
 The following diagrams, figure 4 and 5, are the counterparts of figure 2 and 3 respectively. 
 
-Using the [dual-cluster strategy](/gateway/{{include.kong_version}}/upgrade/dual-cluster/) with a 
-[rolling upgrade](/gateway/{{include.kong_version}}/upgrade/rolling-upgrade/) workflow:
+Using the [dual-cluster strategy](/gateway/{{include.release}}/upgrade/dual-cluster/) with a 
+[rolling upgrade](/gateway/{{include.release}}/upgrade/rolling-upgrade/) workflow:
 
 {% mermaid %}
 flowchart TD
@@ -145,8 +145,8 @@ flowchart TD
 _The new CP Y is deployed alongside with the current CP X, while current DP nodes X are still serving API requests._
 _In the image, the background color of the current database and CP X is grey instead of white, signaling that the old CP is already upgraded and might have been decommissioned._
 
-Using the [in-place strategy](/gateway/{{include.kong_version}}/upgrade/in-place/) 
-strategy with a [rolling upgrade](/gateway/{{include.kong_version}}/upgrade/rolling-upgrade/) workflow:
+Using the [in-place strategy](/gateway/{{include.release}}/upgrade/in-place/) 
+strategy with a [rolling upgrade](/gateway/{{include.release}}/upgrade/rolling-upgrade/) workflow:
 
 {% mermaid %}
 flowchart 

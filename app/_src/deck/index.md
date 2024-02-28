@@ -17,7 +17,7 @@ Features include:
 * Manage Kong’s configuration in a distributed way using tags, helping you split
 the configuration across various teams
 {% if_version gte:1.24.x %}
-* Build pipelines of automation with [APIOps](/deck/{{page.kong_version}}/guides/apiops/)
+* Build pipelines of automation with [APIOps](/deck/{{page.release}}/guides/apiops/)
 {% endif_version %}
 
 
@@ -47,7 +47,7 @@ Specifications.
 {% if_version gte:1.24.x %}
 * **Configuration transformations**: decK provides multiple transformation commands 
 to manipulate full and partial configuration files. This feature allows you to build 
-API delivery automations, or [APIOps](/deck/{{page.kong_version}}/guides/apiops/).
+API delivery automations, or [APIOps](/deck/{{page.release}}/guides/apiops/).
 {% endif_version %}
 
 * **Validation**: decK can validate YAML files that you backup or modify to
@@ -78,11 +78,11 @@ The command line `--help` flag on the main command or a subcommand (like diff,
 sync, reset, etc.) shows the help text along with supported flags for those
 commands.
 
-[See a list of all commands available with decK](/deck/{{page.kong_version}}/reference/deck).
+[See a list of all commands available with decK](/deck/{{page.release}}/reference/deck).
 
 ## Frequently Asked Questions (FAQs)
 
-[Access our FAQs page](/deck/{{page.kong_version}}/faqs).
+[Access our FAQs page](/deck/{{page.release}}/faqs).
 
 ## Video: Kong Summit motivation behind decK
 

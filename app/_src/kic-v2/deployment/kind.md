@@ -3,7 +3,7 @@ title: Kong for Kubernetes with Kong Gateway Enterprise
 ---
 
 This guide walks through setting up the {{site.kic_product_name}} with Kong
-Enterprise. This architecture is described in detail in [this doc](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise).
+Enterprise. This architecture is described in detail in [this doc](/kubernetes-ingress-controller/{{page.release}}/concepts/k4k8s-with-kong-enterprise).
 
 ## Set up Kind cluster
 
@@ -59,7 +59,7 @@ Once these resources have been created, you're ready to deploy {{site.kic_produc
 ## Install {{site.base_gateway}}
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.kong_version | replace: ".x", ".0" }}/deploy/single/all-in-one-postgres-enterprise.yaml
+kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-controller/v{{ page.release | replace: ".x", ".0" }}/deploy/single/all-in-one-postgres-enterprise.yaml
 ```
 
 This may take a few minutes.
@@ -186,4 +186,4 @@ Output:
 ```
 
 This `$PROXY_IP` variable will be used in future guides. Follow our
-[getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn more.
+[getting started](/kubernetes-ingress-controller/{{page.release}}/guides/getting-started) tutorial to learn more.

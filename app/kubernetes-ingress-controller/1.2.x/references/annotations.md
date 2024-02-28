@@ -16,7 +16,7 @@ Following annotations are supported on Ingress resources:
 | [`konghq.com/protocols`](#konghqcomprotocols) | Set protocols to handle for each Ingress resource. |
 | [`konghq.com/preserve-host`](#konghqcompreserve-host) | Pass the `host` header as is to the upstream service. |
 | [`konghq.com/strip-path`](#konghqcomstrip-path) | Strip the path defined in Ingress resource and then forward the request to the upstream service. |
-| [`konghq.com/https-redirect-status-code`](#konghqcomhttps-redirect-status-code) | Set the HTTPS redirect status code to use when an HTTP request is recieved. |
+| [`konghq.com/https-redirect-status-code`](#konghqcomhttps-redirect-status-code) | Set the HTTPS redirect status code to use when an HTTP request is received. |
 | [`konghq.com/regex-priority`](#konghqcomregex-priority) | Set the route's regex priority. |
 | [`konghq.com/methods`](#konghqcommethods) | Set methods matched by this Ingress. |
 | [`konghq.com/snis`](#konghqcomsnis) | Set SNI criteria for routes created from this Ingress. |
@@ -50,7 +50,7 @@ Following annotations are supported on Service resources:
 
 ## KongConsumer resource
 
-Following annotaitons are supported on KongConsumer resources:
+Following annotations are supported on KongConsumer resources:
 
 | Annotation name | Description |
 |-----------------|-------------|
@@ -203,7 +203,7 @@ following resources:
   the same annotation to both of the resources.
 
 Please follow the
-[Using the KongPlugin resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongplugin-resource)
+[Using the KongPlugin resource](/kubernetes-ingress-controller/{{page.release}}/guides/using-kongplugin-resource)
 guide for details on how this annotation can be used.
 
 
@@ -370,7 +370,7 @@ with fine-grained controlled using the properties of Service, Route
 and Upstream entities in Kong.
 
 Please follow the
-[Using the KongIngress resource](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource)
+[Using the KongIngress resource](/kubernetes-ingress-controller/{{page.release}}/guides/using-kongingress-resource)
 guide for details on how to use this annotation.
 
 ### konghq.com/protocol
@@ -380,7 +380,7 @@ guide for details on how to use this annotation.
 This annotation can be set on a Kubernetes Service resource and indicates
 the protocol that should be used by Kong to communicate with the service.
 In other words, the protocol is used for communication between a
-[Kong Service](/gateway/latest/admin-api/#service-object) and
+[Kong Service](/gateway/api/admin-ee/latest/#/Services/list-service/) and
 a Kubernetes Service, internally in the Kubernetes cluster.
 
 Accepted values are:
@@ -419,7 +419,7 @@ resource which contains the TLS cert and key pair.
 
 Under the hood, the controller creates a Certificate in Kong and then
 sets the
-[`service.client_certificate`](/gateway/latest/admin-api/#service-object)
+[`service.client_certificate`](/gateway/api/admin-ee/latest/#/Services/list-service/)
 for the service.
 
 ### konghq.com/host-header

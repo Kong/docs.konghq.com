@@ -30,6 +30,8 @@ Make the following request:
 
 {% include_cached plugins/hub-examples/curl.html example=hub_example.curl %}
 
+{% include_cached plugins/create-consumer/curl.html hub_example=hub_example %}
+
     {% endnavtab %}
     {% endif %}
 
@@ -42,6 +44,8 @@ Make the following request, substituting your own access token, region, and cont
 {% include_cached plugins/hub-examples/konnect.html example=hub_example.konnect %}
 
 See the [Konnect API reference](/konnect/api/) to learn about region-specific URLs and personal access tokens.
+
+{% include_cached plugins/create-consumer/konnect.html hub_example=hub_example %}
 
     {% endnavtab %}
     {% endif %}
@@ -69,7 +73,7 @@ config:
 plugin: {{ hub_example.plugin_name }}
 ```
 
-{% include_cached plugins/kubernetes_consumer.html hub_example=hub_example %}
+{% include_cached plugins/create-consumer/kubernetes.html hub_example=hub_example %}
 
       {% endnavtab %}
       {% endif %}
@@ -83,6 +87,8 @@ Add a <code>plugins</code> entry in the declarative
 configuration file:
 
 {% include_cached plugins/hub-examples/yaml.html example=hub_example.yaml %}
+
+{% include_cached plugins/create-consumer/yaml.html hub_example=hub_example %}
 
       {% endnavtab %}
       {% endif %}

@@ -28,6 +28,13 @@ _packages:
     arm: false
     fips: false
     graviton: false
+  azurelinux2xx: &azurelinux2xx
+    os: Azure Linux
+    version: 2.x.x
+    package: true
+    arm: false
+    fips: false
+    graviton: false
   centos7: &centos7
     os: CentOS
     version: 7
@@ -68,6 +75,13 @@ _packages:
   debian11: &debian11
     os: Debian
     version: 11
+    package: true
+    arm: false
+    fips: false
+    graviton: false
+  debian12: &debian12
+    os: Debian
+    version: 12
     package: true
     arm: false
     fips: false

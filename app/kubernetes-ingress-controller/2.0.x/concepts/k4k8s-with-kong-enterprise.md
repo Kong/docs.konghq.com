@@ -39,5 +39,5 @@ If you are following this model, please keep in mind the following:
   connected to the same database must use the
   same version of {{site.ee_product_name}} package.
 
-[This guide](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/kong-enterprise)
+[This guide](/kubernetes-ingress-controller/{{page.release}}/deployment/kong-enterprise)
 walks through the setup of the above architecture.

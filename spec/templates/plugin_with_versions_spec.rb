@@ -20,7 +20,6 @@ RSpec.describe 'Plugin page with multiple versions' do
       expect(html).to have_css('h1#main', text: 'Kong JWT Signer')
       expect(html).to have_css('.badge.paid')
       expect(html).to have_css('.badge.enterprise')
-      expect(html).to have_css('.old-version-banner')
     end
   end
 
@@ -37,7 +36,21 @@ RSpec.describe 'Plugin page with multiple versions' do
       expect(html).to have_css('h1#main', text: 'Kong JWT Signer')
       expect(html).to have_css('.badge.paid')
       expect(html).to have_css('.badge.enterprise')
-      expect(html).not_to have_css('.old-version-banner')
+    end
+
+    it 'renders the sidenav' do
+      expect(html).to have_css('.docs-sidebar .sidebar-item:nth-of-type(2)', text: 'Introduction')
+      expect(html).to have_css('.docs-sidebar .sidebar-item:nth-of-type(3)', text: 'Configuration reference')
+      expect(html).to have_css('.docs-sidebar .sidebar-item:nth-of-type(4)', text: 'Using the plugin')
+      expect(html).to have_css('.docs-sidebar .sidebar-item:nth-of-type(5)', text: 'Changelog')
+
+      how_tos = html.find('.docs-sidebar .sidebar-item:nth-of-type(4)', text: 'Using the plugin')
+      expect(how_tos).to have_css('.sidebar-item:nth-of-type(1)', text: 'Basic config examples')
+      expect(how_tos).to have_css('.sidebar-item:nth-of-type(2)', text: 'Nested')
+      expect(how_tos).to have_css('.sidebar-item:nth-of-type(3)', text: 'Manage key signing')
+
+      nested_how_to = how_tos.find('.sidebar-item:nth-of-type(2)')
+      expect(nested_how_to).to have_css('.sidebar-item', text: 'Nested Tutorial Nav title')
     end
 
     context 'plugins that are `paid` or `premium`' do

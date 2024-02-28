@@ -34,7 +34,7 @@ observe the collected monitoring data.
    Once the {{site.base_gateway}} is ready, you will see the following message:
 
    ```text
-   ✔ Kong is ready!
+   Kong Gateway Ready 
    ```
 
 1. Run a StatsD container to capture monitoring data:
@@ -99,8 +99,8 @@ curl -Ls https://get.konghq.com/quickstart | bash -s -- -d
 ```
 
 ### More information
-* [How to monitor with Prometheus](/gateway/{{page.kong_version}}/production/monitoring/prometheus/) 
+* [How to monitor with Prometheus](/gateway/{{page.release}}/production/monitoring/prometheus/) 
 describes how to use [Prometheus](https://prometheus.io/docs/introduction/overview/) to monitor {{site.base_gateway}} using the  
 [Prometheus plugin](/hub/kong-inc/prometheus/).
-* See the [Tracing API Reference](/gateway/{{page.kong_version}}/production/tracing/api/) for information
+* See the [Tracing API Reference](/gateway/{{page.release}}/production/tracing/api/) for information
 about {{site.base_gateway}}'s tracing capabilities.

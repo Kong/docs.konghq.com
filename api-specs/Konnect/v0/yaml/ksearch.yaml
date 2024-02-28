@@ -24,7 +24,7 @@ paths: {}
 components:
   schemas:
     SearchResponse:
-      title: Search response.
+      title: SearchResponse
       description: Search response schema.
       type: object
       properties:
@@ -34,8 +34,17 @@ components:
             $ref: '#/components/schemas/KonnectEntity'
         meta:
           $ref: '#/components/schemas/CursorPaginatedMeta'
+    SearchTypesResponse:
+      title: SearchableEntityTypesResponse
+      description: The collection of searchable entity types.
+      type: object
+      properties:
+        types:
+          type: array
+          items:
+            type: string
     KonnectEntity:
-      title: Konnect entity.
+      title: KonnectEntity
       description: Konnect entity schema.
       type: object
       required:
@@ -350,8 +359,9 @@ components:
         detail: Invalid query.
         instance: konnect:trace:3674017986744198214
         invalid_parameters:
-          - field: query
+          - field: q
             reason: invalid query
+            source: query
     Successful-Search-Example:
       value:
         data:
@@ -374,5 +384,12 @@ components:
         meta:
           page:
             size: 3
-            previous: /search?query=son&page[before]=ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ
-            next: /search?query=son&page[after]=ewogICJpZCI6ICJoZWysbyB3b3JsZCIKgZ
+            next: /search?q=son&page[after]=ewogICJpZCI6ICJoZWysbyB3b3JsZCIKgZ
+    Searchable-Entity-Types:
+      value:
+        types:
+          - developer
+          - developer_team
+          - user
+          - team
+          - system_account

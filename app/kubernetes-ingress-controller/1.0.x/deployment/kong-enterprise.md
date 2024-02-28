@@ -3,7 +3,7 @@ title: Kong for Kubernetes with {{site.ee_product_name}}
 ---
 
 This guide walks through setting up the {{site.kic_product_name}} using Kong
-Enterprise. This architecture is described in detail in [this doc](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise/).
+Enterprise. This architecture is described in detail in [this doc](/kubernetes-ingress-controller/{{page.release}}/concepts/k4k8s-with-kong-enterprise/).
 
 We assume that we start from scratch and you don't have {{site.ee_product_name}}
 deployed. For the sake of simplicity, we will deploy {{site.ee_product_name}} and
@@ -123,7 +123,7 @@ $ export PROXY_IP=$(kubectl get -o jsonpath="{.status.loadBalancer.ingress[0].ip
 ```
 
 Once you've installed Kong for Kubernetes Enterprise, please follow our
-[getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn more.
+[getting started](/kubernetes-ingress-controller/{{page.release}}/guides/getting-started) tutorial to learn more.
 
 ## Customizing by use-case
 

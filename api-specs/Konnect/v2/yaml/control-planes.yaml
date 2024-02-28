@@ -724,6 +724,8 @@ components:
           type: boolean
           description: Whether this control-plane can be used for cloud-gateways.
           example: false
+        proxy_urls:
+          $ref: '#/components/schemas/ProxyURLs'
         labels:
           $ref: '#/components/schemas/Labels'
       required:
@@ -751,6 +753,8 @@ components:
           enum:
             - pinned_client_certs
             - pki_client_certs
+        proxy_urls:
+          $ref: '#/components/schemas/ProxyURLs'
         labels:
           $ref: '#/components/schemas/Labels'
     ControlPlane:
@@ -805,6 +809,10 @@ components:
             cluster_type: CLUSTER_TYPE_CONTROL_PLANE
             auth_type: pinned_client_certs
             cloud_gateway: false
+            proxy_urls:
+              - host: example.com
+                port: 443
+                protocol: https
           created_at: '2022-11-04T20:10:06.927Z'
           updated_at: '2022-11-04T20:10:06.927Z'
     ControlPlaneSummary:
@@ -873,6 +881,8 @@ components:
               type: boolean
               description: Whether the Control Plane can be used for cloud-gateways.
               readOnly: true
+            proxy_urls:
+              $ref: '#/components/schemas/ProxyURLs'
           required:
             - control_plane_endpoint
             - telemetry_endpoint
@@ -999,6 +1009,43 @@ components:
         pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z\-\.\_]*[a-z0-9A-Z]+)?$
         minLength: 1
         maxLength: 63
+    ProxyURL:
+      title: ProxyURL
+      description: >-
+        Proxy URL associated with reaching the data-planes connected to a
+        control-plane.
+      type: object
+      additionalProperties: false
+      properties:
+        host:
+          type: string
+          description: Hostname of the proxy URL.
+        port:
+          type: integer
+          description: Port of the proxy URL.
+        protocol:
+          type: string
+          description: Protocol of the proxy URL.
+      required:
+        - host
+        - port
+        - protocol
+      example:
+        host: example.com
+        port: 443
+        protocol: https
+    ProxyURLs:
+      title: ProxyURLs
+      description: >-
+        Array of proxy URLs associated with reaching the data-planes connected
+        to a control-plane.
+      type: array
+      items:
+        $ref: '#/components/schemas/ProxyURL'
+      example:
+        - host: example.com
+          port: 443
+          protocol: https
     PageMeta:
       type: object
       description: >-
@@ -1363,12 +1410,20 @@ components:
         description: A test control plane for exploration.
         cluster_type: CLUSTER_TYPE_K8S_INGRESS_CONTROLLER
         cloud_gateway: false
+        proxy_urls:
+          - host: example.com
+            port: 443
+            protocol: https
         labels:
           env: test
     UpdateControlPlaneRequestExample:
       value:
         name: Test Control Plane
         description: A test control plane for exploration.
+        proxy_urls:
+          - host: example.com
+            port: 443
+            protocol: https
         labels:
           env: development
     ControlPlaneExample:
@@ -1384,6 +1439,10 @@ components:
           cluster_type: CLUSTER_TYPE_CONTROL_PLANE
           auth_type: pinned_client_certs
           cloud_gateway: false
+          proxy_urls:
+            - host: example.com
+              port: 443
+              protocol: https
     GroupConflictStatusExample:
       value:
         id: 7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
@@ -1445,6 +1504,10 @@ components:
               cluster_type: CLUSTER_TYPE_CONTROL_PLANE
               auth_type: pinned_client_certs
               cloud_gateway: false
+              proxy_urls:
+                - host: example.com
+                  port: 443
+                  protocol: https
             created_at: '2023-03-20T22:23:45.873Z'
             updated_at: '2023-03-30T16:17:55.073Z'
           - id: e4a1917c-bb26-4aa1-9a3e-50ee366f13db
@@ -1459,6 +1522,10 @@ components:
               cluster_type: CLUSTER_TYPE_CONTROL_PLANE
               auth_type: pinned_client_certs
               cloud_gateway: false
+              proxy_urls:
+                - host: example.com
+                  port: 443
+                  protocol: https
             created_at: '2023-03-23T22:25:30.907Z'
             updated_at: '2023-03-30T16:18:12.067Z'
     UnauthorizedExample:

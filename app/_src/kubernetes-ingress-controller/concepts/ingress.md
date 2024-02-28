@@ -22,7 +22,7 @@ The {{site.kic_product_name}} translates a number of Kubernetes resources into K
 - Resources referenced by some other resource, where the other resource is
   directly translated into Kong configuration.
 
-For example, an Ingress is translated directly into a Kong route, and a KongConsumer is translated directly into a [Kong consumer](/gateway/latest/admin-api/#consumer-object). A Secret containing an authentication plugin credential is _not_ translated directly: it is only translated into Kong configuration if a KongConsumer resource references it.
+For example, an Ingress is translated directly into a Kong route, and a KongConsumer is translated directly into a [Kong consumer](/gateway/api/admin-ee/latest/#/Consumers/list-consumer/). A Secret containing an authentication plugin credential is _not_ translated directly: it is only translated into Kong configuration if a KongConsumer resource references it.
 
 Because they create Kong configuration independent of any other resources,
 directly-translated resources require an ingress class, and their class must
@@ -116,5 +116,5 @@ resources that the controller uses as a basis for building Kong configuration.
 The Secret and KongPlugin _do not_ have class annotations, as they are
 referenced by other resources that do.
 
-[class-annotation]:/kubernetes-ingress-controller/{{page.kong_version}}/reference/annotations/#kubernetesioingressclass
+[class-annotation]:/kubernetes-ingress-controller/{{page.release}}/reference/annotations/#kubernetesioingressclass
 [ingress-class-name]:https://kubernetes.io/docs/concepts/services-networking/ingress/#deprecated-annotation

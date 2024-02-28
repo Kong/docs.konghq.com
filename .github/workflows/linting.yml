@@ -5,9 +5,14 @@ on:
 concurrency:
   cancel-in-progress: true
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+
+env:
+  BUNDLE_GITHUB__COM: x-access-token:${{ secrets.BUNDLE_GITHUB__COM }}
+
 jobs:
   check:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Check if manual review has been performed
         uses: actions/github-script@v7
@@ -34,12 +39,12 @@ jobs:
           fetch-depth: 100
       - uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 20
           cache: 'npm'
       - run: npm ci
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v40
+        uses: tj-actions/changed-files@v42
         with:
           sha: ${{ github.sha }}
           files: |
@@ -65,7 +70,7 @@ jobs:
         with:
           ruby-version: .ruby-version
       - name: Ruby gem cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${{ github.workspace }}/vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
@@ -84,23 +89,23 @@ jobs:
     if: needs.check.outputs.result == 'false'
     name: Vale
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 2
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v40
+        uses: tj-actions/changed-files@v42
         with:
           sha: ${{ github.sha }}
           files: |
             app/**
-            docs/**
           files_ignore: |
             app/_src/.repos/kuma/**
             app/gateway/2.7.x/**
             app/gateway/2.6.x/**
-            app/mesh/raw/CHANGELOG.md
+            app/assets/mesh/raw/CHANGELOG.md
           json: true
           quotepath: false
           escape_json: false

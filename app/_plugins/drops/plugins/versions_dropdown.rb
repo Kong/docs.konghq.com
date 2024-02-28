@@ -4,30 +4,44 @@ module Jekyll
   module Drops
     module Plugins
       class VersionsDropdownOption < Liquid::Drop
-        def initialize(page:, version:, latest:, current:) # rubocop:disable Lint/MissingSuper
+        def initialize(page:, release:, latest:, current:) # rubocop:disable Lint/MissingSuper
           @page = page
-          @version = version
+          @release = release
           @latest = latest
           @current = current
         end
 
         def url
           @url ||= begin
-            version = @version == @latest ? '' : @version
-            @page.dropdown_url.gsub('VERSION', version).gsub('//', '/')
+            release = @latest && @latest == @release ? '' : @release
+            url = @page.dropdown_url.gsub('VERSION', release).gsub('//', '/')
+
+            if page_exists?(url)
+              url
+            else
+              @page.base_url
+            end
           end
         end
 
         def css_class
-          @current == @version ? 'active' : ''
+          @current == @release ? 'active' : ''
         end
 
         def text
-          if @version == @latest
-            "#{@version} <em>(latest)</em>"
+          return @release unless @latest
+
+          if @release == @latest
+            "#{@release} <em>(latest)</em>"
           else
-            @version
+            @release
           end
+        end
+
+        private
+
+        def page_exists?(url)
+          @page.site.data['pages_urls'].include?(url)
         end
       end
 
@@ -37,8 +51,8 @@ module Jekyll
         end
 
         def versions
-          @versions ||= extn_releases.map do |version|
-            VersionsDropdownOption.new(page: @page, version:, latest:, current:)
+          @versions ||= extn_releases.map do |r|
+            VersionsDropdownOption.new(page: @page, release: release(r), latest:, current:)
           end
         end
 
@@ -47,11 +61,27 @@ module Jekyll
         end
 
         def current
-          @current ||= @page.version
+          @current ||= gateway_releases
+                       .detect { |r| r.value == @page.gateway_release || r.label == @page.gateway_release }
+                       .to_liquid
         end
 
         def latest
-          @latest ||= extn_releases.first
+          @latest ||= @page.data['extn_latest']
+        end
+
+        private
+
+        def release(release)
+          gateway_releases
+            .detect { |r| r.value == release || r.label == release }
+            .to_liquid
+        end
+
+        def gateway_releases
+          @gateway_releases ||= @page.site.data.dig('editions', 'gateway')
+                                     .releases
+                                     .select { |r| extn_releases.include?(r.value) }
         end
       end
     end
