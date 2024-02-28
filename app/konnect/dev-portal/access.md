@@ -4,7 +4,7 @@ content_type: reference
 ---
 
 Access the Dev Portal to view any [Published API Product](/konnect/api-products/service-documentation/)
-and [register applications against API Products](/konnect/dev-portal/applications/dev-apps/).
+and [register applications against API Products](/konnect/dev-portal/applications/dev-reg-app-service/).
 
 ## Access the Dev Portal
 
