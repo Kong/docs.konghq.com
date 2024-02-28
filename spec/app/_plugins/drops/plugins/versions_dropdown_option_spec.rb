@@ -4,7 +4,7 @@ RSpec.describe Jekyll::Drops::Plugins::VersionsDropdownOption do
   let(:site) { double(data: { 'pages_urls' => Set.new(urls) }) }
   let(:urls) { [] }
   let(:page) do
-    double(dropdown_url: '/hub/kong-inc/jwt-signer/VERSION/', site:, base_url: '/hub/kong-inc/jwt-signer/unreleased/')
+    double(dropdown_url: '/hub/kong-inc/jwt-signer/VERSION/', site:, base_url: '/hub/kong-inc/jwt-signer/')
   end
   let(:current) do
     Jekyll::GeneratorSingleSource::Product::Release.new(
@@ -51,6 +51,24 @@ RSpec.describe Jekyll::Drops::Plugins::VersionsDropdownOption do
       end
 
       it { expect(subject.url).to eq('/hub/kong-inc/jwt-signer/unreleased/') }
+    end
+
+    context 'when the page does not exist for an older version' do
+      let(:urls) do
+        [
+          '/hub/kong-inc/jwt-signer/',
+          '/hub/kong-inc/jwt-signer/how-to/',
+          '/hub/kong-inc/jwt-signer/2.8.x/',
+          '/hub/kong-inc/jwt-signer/2.8.x/how-to',
+          '/hub/kong-inc/jwt-signer/2.7.x/'
+        ]
+      end
+      let(:release_value) { '2.7.x' }
+      let(:page) do
+        double(dropdown_url: '/hub/kong-inc/jwt-signer/VERSION/how-to/', site:, base_url: '/hub/kong-inc/jwt-signer/')
+      end
+
+      it { expect(subject.url).to eq('/hub/kong-inc/jwt-signer/2.7.x/') }
     end
   end
 
