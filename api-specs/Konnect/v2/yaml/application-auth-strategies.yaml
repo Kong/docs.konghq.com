@@ -1,0 +1,2332 @@
+openapi: 3.0.3
+info:
+  title: Konnect Application Auth Strategies
+  version: 2.0.0
+  description: The API for Kong Konnect Portal Application Configuration
+  contact:
+    name: Kong
+    url: https://cloud.konghq.com
+servers:
+  - url: https://us.api.konghq.com/v2
+    description: US Region Base URL
+  - url: https://eu.api.konghq.com/v2
+    description: EU Region Base URL
+  - url: https://au.api.konghq.com/v2
+    description: AU Region Base URL
+tags:
+  - name: DCR Providers
+    description: >
+      Dynamic Client Registration Providers are configurations representing an
+      external Identity Provider whose clients (i.e. Applications) Konnect will
+      be authorized to manage.
+
+      For instance, they will be able to perform dynamic client registration
+      (DCR) with the provider. 
+
+      The DCR provider provides credentials to each DCR-enabled application in
+      Konnect that can be used to access Product Versions that the app is
+      registered for.
+  - name: App Auth Strategies
+    description: >
+      Application Auth Strategies are sets of plugin configurations that
+      represent how the gateway will perform authentication and authorization
+      for a Product Version. 
+
+      Called “Auth Strategy” for short in the context of portals/applications. 
+
+      The plugins are synced to any Gateway Service that is currently linked or
+      becomes linked to the Product Version.
+paths:
+  /dcr-providers:
+    post:
+      summary: Create DCR provider
+      operationId: create-dcr-provider
+      description: Creates a DCR provider.
+      requestBody:
+        $ref: '#/components/requestBodies/CreateDcrProvider'
+      responses:
+        '201':
+          $ref: '#/components/responses/CreateDcrProvider'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      tags:
+        - DCR Providers
+    get:
+      summary: List DCR Providers
+      operationId: list-dcr-providers
+      description: Returns a paginated collection of DCR providers.
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/SortDcrProviders'
+        - $ref: '#/components/parameters/FilterDcrProvidersById'
+        - $ref: '#/components/parameters/FilterDcrProvidersByIdShort'
+        - $ref: '#/components/parameters/FilterDcrProvidersByIdContains'
+        - $ref: '#/components/parameters/FilterDcrProvidersByIssuer'
+        - $ref: '#/components/parameters/FilterDcrProvidersByIssuerShort'
+        - $ref: '#/components/parameters/FilterDcrProvidersByIssuerContains'
+        - $ref: '#/components/parameters/FilterDcrProvidersByName'
+        - $ref: '#/components/parameters/FilterDcrProvidersByNameShort'
+        - $ref: '#/components/parameters/FilterDcrProvidersByNameContains'
+        - $ref: '#/components/parameters/FilterDcrProvidersByProviderType'
+        - $ref: '#/components/parameters/FilterDcrProvidersByProviderTypeShort'
+        - $ref: '#/components/parameters/FilterDcrProvidersByInitialClientId'
+        - $ref: '#/components/parameters/FilterDcrProvidersByInitialClientIdShort'
+        - $ref: '#/components/parameters/FilterDcrProvidersByInitialClientIdContains'
+        - $ref: '#/components/parameters/FilterDcrProvidersByInitialClientAudience'
+        - $ref: >-
+            #/components/parameters/FilterDcrProvidersByInitialClientAudienceShort
+        - $ref: >-
+            #/components/parameters/FilterDcrProvidersByInitialClientAudienceContains
+      responses:
+        '200':
+          $ref: '#/components/responses/ListDcrProviders'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      tags:
+        - DCR Providers
+  /dcr-providers/{dcrProviderId}:
+    parameters:
+      - $ref: '#/components/parameters/DcrProviderId'
+    get:
+      summary: Fetch DCR provider
+      description: Returns a DCR provider.
+      operationId: get-dcr-provider
+      responses:
+        '200':
+          $ref: '#/components/responses/GetDcrProvider'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - DCR Providers
+    patch:
+      summary: Update DCR provider
+      description: Updates a DCR provider.
+      operationId: update-dcr-provider
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateDcrProvider'
+      responses:
+        '200':
+          $ref: '#/components/responses/GetDcrProvider'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - DCR Providers
+    delete:
+      summary: Delete DCR provider
+      description: Deletes a DCR provider.
+      operationId: delete-dcr-provider
+      responses:
+        '204':
+          description: No Content.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - DCR Providers
+  /dcr-providers/{dcrProviderId}/verify:
+    parameters:
+      - $ref: '#/components/parameters/DcrProviderId'
+    post:
+      summary: Verify DCR provider configuration.
+      description: >-
+        Verifies if a DCR provider is configured properly. Returns 200 for
+        success, 4xx for failure.
+      operationId: verify-dcr-provider
+      responses:
+        '200':
+          $ref: '#/components/responses/VerifyDcrProvider'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - DCR Providers
+  /application-auth-strategies:
+    post:
+      summary: Create App Auth Strategy
+      operationId: create-app-auth-strategy
+      description: Creates an application auth strategy.
+      requestBody:
+        $ref: '#/components/requestBodies/CreateAppAuthStrategy'
+      responses:
+        '201':
+          $ref: '#/components/responses/CreateAppAuthStrategy'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      tags:
+        - App Auth Strategies
+    get:
+      summary: List App Auth Strategies
+      operationId: list-app-auth-strategies
+      description: Returns a paginated collection of application auth strategies.
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+        - $ref: '#/components/parameters/SortAppAuthStrategies'
+        - schema:
+            type: object
+            properties:
+              strategy_type:
+                $ref: '#/components/schemas/StringFieldFilter'
+              name:
+                $ref: '#/components/schemas/StringFieldFilter'
+              display_name:
+                $ref: '#/components/schemas/StringFieldFilter'
+              dcr_provider_id:
+                $ref: '#/components/schemas/UuidFieldFilter'
+              dcr_provider_name:
+                $ref: '#/components/schemas/StringFieldFilter'
+              dcr_provider_type:
+                $ref: '#/components/schemas/StringFieldFilter'
+          in: query
+          name: filter
+          description: Filter application auth strategies returned in the response.
+          required: false
+          style: deepObject
+      responses:
+        '200':
+          $ref: '#/components/responses/ListAppAuthStrategies'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      tags:
+        - App Auth Strategies
+  /application-auth-strategies/{authStrategyId}:
+    parameters:
+      - $ref: '#/components/parameters/AuthStrategyId'
+    get:
+      summary: Get App Auth Strategy
+      description: Returns an application auth strategy.
+      operationId: get-app-auth-strategy
+      responses:
+        '200':
+          $ref: '#/components/responses/GetAppAuthStrategy'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - App Auth Strategies
+    put:
+      summary: Replace App Auth Strategy
+      operationId: replace-app-auth-strategy
+      description: Replaces an application auth strategy.
+      requestBody:
+        $ref: '#/components/requestBodies/CreateAppAuthStrategy'
+      responses:
+        '201':
+          $ref: '#/components/responses/CreateAppAuthStrategy'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+      tags:
+        - App Auth Strategies
+    patch:
+      summary: Update App Auth Strategy
+      operationId: update-app-auth-strategy
+      description: Updates an application auth strategy.
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateAppAuthStrategy'
+      responses:
+        '200':
+          $ref: '#/components/responses/UpdateAppAuthStrategy'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - App Auth Strategies
+    delete:
+      summary: Delete App Auth Strategy
+      description: >-
+        Deletes an application auth strategy. An application auth strategy can
+        be deleted ONLY if it's not used by any product version within any
+        portal regardless of their publication statuses. If an application auth
+        strategy is still in use the request will result in an HTTP 409
+        CONFLICT.
+      operationId: delete-app-auth-strategy
+      responses:
+        '204':
+          description: No Content.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+      tags:
+        - App Auth Strategies
+components:
+  parameters:
+    DcrProviderId:
+      name: dcrProviderId
+      description: DCR provider identifier
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/UUID'
+    AuthStrategyId:
+      name: authStrategyId
+      description: Application auth strategy identifier
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/UUID'
+    SortDcrProviders:
+      name: sort
+      description: |
+        Sorts a collection of DCR Providers. Supported sort attributes are:
+          - created_at
+          - updated_at
+          - provider_type
+          - issuer
+          - name
+      in: query
+      required: false
+      schema:
+        type: string
+    SortAppAuthStrategies:
+      name: sort
+      description: >
+        Sorts a collection of application auth strategies. Supported sort
+        attributes are:
+          - created_at
+          - updated_at
+          - strategy_type
+          - name
+          - display_name
+          - dcr_provider_id
+          - dcr_provider_name
+          - dcr_provider_type
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDcrProvidersById:
+      name: filter[id][eq]
+      description: filters DCR Providers by their id
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDcrProvidersByIdShort:
+      name: filter[id]
+      description: filters DCR Providers by their id (alias for filter[id][eq])
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDcrProvidersByIdContains:
+      name: filter[id][contains]
+      description: filters DCR Providers by their id with a supplied substring
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDcrProvidersByIssuer:
+      name: filter[issuer][eq]
+      description: filters DCR Providers by their issuer
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDcrProvidersByIssuerShort:
+      name: filter[issuer]
+      description: filters DCR Providers by their issuer (alias for filter[issuer][eq])
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDcrProvidersByIssuerContains:
+      name: filter[issuer][contains]
+      description: filters DCR Providers by their issuer with a supplied substring
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDcrProvidersByName:
+      name: filter[name][eq]
+      description: filters DCR Providers by their name
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDcrProvidersByNameShort:
+      name: filter[name]
+      description: filters DCR Providers by their name (alias for filter[name][eq])
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDcrProvidersByNameContains:
+      name: filter[name][contains]
+      description: filters DCR Providers by their name with a supplied substring
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDcrProvidersByProviderType:
+      name: filter[provider_type][eq]
+      description: filters DCR Providers by their provider type
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDcrProvidersByProviderTypeShort:
+      name: filter[provider_type]
+      description: >-
+        filters DCR Providers by their provider type (alias for
+        filter[provider_type][eq])
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDcrProvidersByInitialClientId:
+      name: filter[initial_client_id][eq]
+      description: filters DCR Providers by their initial client id
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDcrProvidersByInitialClientIdShort:
+      name: filter[initial_client_id]
+      description: >-
+        filters DCR Providers by their initial client id (alias for
+        filter[initial_client_id][eq])
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDcrProvidersByInitialClientIdContains:
+      name: filter[initial_client_id][contains]
+      description: >-
+        filters DCR Providers by their initial client id with a supplied
+        substring
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDcrProvidersByInitialClientAudience:
+      name: filter[initial_client_audience][eq]
+      description: filters DCR Providers by their initial client audience
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDcrProvidersByInitialClientAudienceShort:
+      name: filter[initial_client_audience]
+      description: >-
+        filters DCR Providers by their initial client audience (alias for
+        filter[initial_client_audience][eq])
+      in: query
+      required: false
+      schema:
+        type: string
+    FilterDcrProvidersByInitialClientAudienceContains:
+      name: filter[initial_client_audience][contains]
+      description: >-
+        filters DCR Providers by their initial client audience with a supplied
+        substring
+      in: query
+      required: false
+      schema:
+        type: string
+    PageSize:
+      name: page[size]
+      description: >-
+        The maximum number of items to include per page. The last page of a
+        collection may include fewer items.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: integer
+        example: 10
+    PageNumber:
+      name: page[number]
+      description: Determines which page of the entities to retrieve.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: integer
+        example: 1
+  requestBodies:
+    CreateDcrProvider:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateDcrProviderRequest'
+          examples:
+            DcrProviderOktaCreateRequest:
+              $ref: '#/components/examples/DcrProviderOktaCreateRequest'
+            DcrProviderAuth0CreateRequest:
+              $ref: '#/components/examples/DcrProviderAuth0CreateRequest'
+            DcrProviderAzureAdCreateRequest:
+              $ref: '#/components/examples/DcrProviderAzureAdCreateRequest'
+            DcrProviderCurityCreateRequest:
+              $ref: '#/components/examples/DcrProviderCurityCreateRequest'
+            DcrProviderHttpCreateRequest:
+              $ref: '#/components/examples/DcrProviderHttpCreateRequest'
+    UpdateDcrProvider:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateDcrProviderRequest'
+          examples:
+            DcrProviderRequest:
+              $ref: '#/components/examples/DcrProviderOktaUpdateRequest'
+    CreateAppAuthStrategy:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateAppAuthStrategyRequest'
+          examples:
+            CreateAppAuthStrategyKeyAuthRequest:
+              $ref: '#/components/examples/CreateAppAuthStrategyKeyAuthRequest'
+            CreateAppAuthStrategyOpenIDConnectRequest:
+              $ref: '#/components/examples/CreateAppAuthStrategyOpenIDConnectRequest'
+            CreateAppAuthStrategyOpenIDConnectDCRRequest:
+              $ref: >-
+                #/components/examples/CreateAppAuthStrategyOpenIDConnectDCRRequest
+    UpdateAppAuthStrategy:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateAppAuthStrategyRequest'
+          examples:
+            UpdateAppAuthStrategyKeyAuthRequest:
+              $ref: '#/components/examples/UpdateAppAuthStrategyKeyAuthRequest'
+            UpdateAppAuthStrategyOpenIDConnectRequest:
+              $ref: '#/components/examples/UpdateAppAuthStrategyOpenIDConnectRequest'
+  responses:
+    CreateDcrProvider:
+      description: A response containing the newly created DCR provider object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateDcrProviderResponse'
+          examples:
+            DcrProviderOkta:
+              $ref: '#/components/examples/DcrProviderOktaResponse'
+            DcrProviderAuth0:
+              $ref: '#/components/examples/DcrProviderAuth0Response'
+            DcrProviderAzureAd:
+              $ref: '#/components/examples/DcrProviderAzureAdResponse'
+            DcrProviderCurity:
+              $ref: '#/components/examples/DcrProviderCurityResponse'
+            DcrProviderHttp:
+              $ref: '#/components/examples/DcrProviderHttpResponse'
+    GetDcrProvider:
+      description: >-
+        A response containing a single DCR provider object. Sensitive fields
+        will be removed from the response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DcrProviderResponse'
+          examples:
+            DcrProviderAuth0:
+              $ref: '#/components/examples/DcrProviderAuth0Response'
+            DcrProviderAzureAd:
+              $ref: '#/components/examples/DcrProviderAzureAdResponse'
+            DcrProviderCurity:
+              $ref: '#/components/examples/DcrProviderCurityResponse'
+            DcrProviderHttp:
+              $ref: '#/components/examples/DcrProviderHttpResponse'
+            DcrProviderOkta:
+              $ref: '#/components/examples/DcrProviderOktaResponse'
+    ListDcrProviders:
+      description: A paginated list response for a collection of DCR providers
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ListDcrProvidersResponse'
+          examples:
+            ListDcrProviders:
+              $ref: '#/components/examples/ListDcrProvidersResponse'
+    VerifyDcrProvider:
+      description: >-
+        A response containing the result of attempting to verify a DCR provider
+        configuration.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/VerifyDcrProviderResponse'
+          examples:
+            VerifyDcrProviderSuccess:
+              $ref: '#/components/examples/VerifyDcrProviderResponseSuccess'
+            VerifyDcrProviderFailed:
+              $ref: '#/components/examples/VerifyDcrProviderResponseFailed'
+    CreateAppAuthStrategy:
+      description: >-
+        A response containing the newly created application auth strategy
+        object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateAppAuthStrategyResponse'
+          examples:
+            AppAuthStrategyResponseExample1:
+              $ref: '#/components/examples/AppAuthStrategyResponseExample1'
+    GetAppAuthStrategy:
+      description: A response containing a single application auth strategy object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/GetAppAuthStrategyResponse'
+          examples:
+            AppAuthStrategyResponseExample1:
+              $ref: '#/components/examples/AppAuthStrategyResponseExample1'
+    UpdateAppAuthStrategy:
+      description: A response containing a single updated application auth strategy object.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateAppAuthStrategyResponse'
+          examples:
+            AppAuthStrategyResponseExample1:
+              $ref: '#/components/examples/AppAuthStrategyResponseExample1'
+    ListAppAuthStrategies:
+      description: >-
+        A paginated list response for a collection of application auth
+        strategies.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ListAppAuthStrategiesResponse'
+          examples:
+            AppAuthStrategyResponseExample1:
+              $ref: '#/components/examples/ListAppAuthStrategyResponseExample1'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BadRequestError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/UnauthorizedError'
+          examples:
+            UnauthorizedExample:
+              $ref: '#/components/examples/UnauthorizedExample'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ForbiddenError'
+          examples:
+            UnauthorizedExample:
+              $ref: '#/components/examples/ForbiddenExample'
+    NotFound:
+      description: Not Found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/NotFoundError'
+          examples:
+            NotFoundExample:
+              $ref: '#/components/examples/NotFoundExample'
+    Conflict:
+      description: Conflict
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ConflictError'
+  schemas:
+    DcrConfigPropertyInitialClientId:
+      title: DcrConfigPropertyInitialClientId
+      type: string
+      maxLength: 256
+      description: >
+        This ID should be copied from your identity provider's settings after
+        you create a client
+
+        and assign it as the management client for DCR for this developer portal
+    DcrConfigPropertyInitialClientSecret:
+      title: DcrConfigPropertyInitialClientSecret
+      type: string
+      maxLength: 256
+      description: >
+        This secret should be copied from your identity provider's settings
+        after you create a client
+
+        and assign it as the management client for DCR for this developer portal
+    DcrConfigPropertyDcrToken:
+      title: DcrConfigPropertyInitialDcrToken
+      type: string
+      maxLength: 256
+      description: >
+        This secret should be copied from your identity provider's settings
+        after you create a client
+
+        and assign it as the management client for DCR for this developer portal
+    DcrConfigPropertyInitialClientAudience:
+      title: DcrConfigPropertyInitialClientAudience
+      type: string
+      maxLength: 256
+      nullable: true
+      description: >
+        This is the audience value used for the initial client.
+
+        If using a custom domain on Auth0, this must be set as to the Auth0
+        Management API audience value.
+
+        If left blank, the issuer will be used instead.
+    DcrConfigPropertyApiKey:
+      title: DcrConfigPropertyApiKey
+      type: string
+      pattern: ^[a-zA-Z0-9_]+$
+      minLength: 12
+      maxLength: 256
+      description: >
+        This is the API Key that will be sent with each HTTP request to the
+        custom DCR server. It can be
+
+        verified on the server to ensure that incoming requests are coming from
+        Konnect.
+    DcrConfigAuth0InResponse:
+      title: DcrConfigAuth0InResponse
+      type: object
+      description: A DCR provider configuration for Auth0
+      additionalProperties: false
+      required:
+        - initial_client_id
+        - initial_client_audience
+        - use_developer_managed_scopes
+      properties:
+        initial_client_id:
+          $ref: '#/components/schemas/DcrConfigPropertyInitialClientId'
+        initial_client_audience:
+          $ref: '#/components/schemas/DcrConfigPropertyInitialClientAudience'
+        use_developer_managed_scopes:
+          type: boolean
+    CreateDcrConfigAuth0InRequest:
+      title: DcrConfigAuth0InRequest
+      type: object
+      description: Payload to create an Auth0 DCR provider.
+      additionalProperties: false
+      required:
+        - initial_client_id
+        - initial_client_secret
+      properties:
+        initial_client_id:
+          $ref: '#/components/schemas/DcrConfigPropertyInitialClientId'
+        initial_client_secret:
+          $ref: '#/components/schemas/DcrConfigPropertyInitialClientSecret'
+        initial_client_audience:
+          $ref: '#/components/schemas/DcrConfigPropertyInitialClientAudience'
+        use_developer_managed_scopes:
+          type: boolean
+    UpdateDcrConfigAuth0InRequest:
+      title: DcrConfigAuth0InRequest
+      type: object
+      description: Payload to update an Auth0 DCR provider.
+      additionalProperties: false
+      properties:
+        initial_client_id:
+          $ref: '#/components/schemas/DcrConfigPropertyInitialClientId'
+        initial_client_secret:
+          $ref: '#/components/schemas/DcrConfigPropertyInitialClientSecret'
+        initial_client_audience:
+          $ref: '#/components/schemas/DcrConfigPropertyInitialClientAudience'
+        use_developer_managed_scopes:
+          type: boolean
+    DcrConfigAzureAdInResponse:
+      title: DcrConfigAzureAdInResponse
+      type: object
+      description: A DCR provider configuration for Azure AD
+      additionalProperties: false
+      required:
+        - initial_client_id
+      properties:
+        initial_client_id:
+          $ref: '#/components/schemas/DcrConfigPropertyInitialClientId'
+    CreateDcrConfigAzureAdInRequest:
+      title: DcrConfigAzureAdInRequest
+      type: object
+      description: Payload to create an Azure AD DCR provider.
+      additionalProperties: false
+      required:
+        - initial_client_id
+        - initial_client_secret
+      properties:
+        initial_client_id:
+          $ref: '#/components/schemas/DcrConfigPropertyInitialClientId'
+        initial_client_secret:
+          $ref: '#/components/schemas/DcrConfigPropertyInitialClientSecret'
+    UpdateDcrConfigAzureAdInRequest:
+      title: DcrConfigAzureAdInRequest
+      type: object
+      description: Payload to update an Azure AD DCR provider.
+      additionalProperties: false
+      properties:
+        initial_client_id:
+          $ref: '#/components/schemas/DcrConfigPropertyInitialClientId'
+        initial_client_secret:
+          $ref: '#/components/schemas/DcrConfigPropertyInitialClientSecret'
+    DcrConfigCurityInResponse:
+      title: DcrConfigCurityInResponse
+      type: object
+      description: A DCR provider configuration for Curity
+      additionalProperties: false
+      required:
+        - initial_client_id
+      properties:
+        initial_client_id:
+          $ref: '#/components/schemas/DcrConfigPropertyInitialClientId'
+    CreateDcrConfigCurityInRequest:
+      title: DcrConfigCurityInRequest
+      type: object
+      description: Payload to create a Curity DCR provider.
+      additionalProperties: false
+      required:
+        - initial_client_id
+        - initial_client_secret
+      properties:
+        initial_client_id:
+          $ref: '#/components/schemas/DcrConfigPropertyInitialClientId'
+        initial_client_secret:
+          $ref: '#/components/schemas/DcrConfigPropertyInitialClientSecret'
+    UpdateDcrConfigCurityInRequest:
+      title: DcrConfigCurityInRequest
+      type: object
+      description: Payload to update a Curity DCR provider.
+      additionalProperties: false
+      properties:
+        initial_client_id:
+          $ref: '#/components/schemas/DcrConfigPropertyInitialClientId'
+        initial_client_secret:
+          $ref: '#/components/schemas/DcrConfigPropertyInitialClientSecret'
+    DcrConfigOktaInResponse:
+      title: DcrConfigOktaInResponse
+      type: object
+      description: A DCR provider configuration for Okta
+      additionalProperties: false
+    CreateDcrConfigOktaInRequest:
+      title: DcrConfigOktaInRequest
+      type: object
+      description: Payload to create an Okta DCR provider.
+      additionalProperties: false
+      required:
+        - dcr_token
+      properties:
+        dcr_token:
+          $ref: '#/components/schemas/DcrConfigPropertyDcrToken'
+    UpdateDcrConfigOktaInRequest:
+      title: DcrConfigOktaInRequest
+      type: object
+      description: Payload to update an Okta DCR provider.
+      additionalProperties: false
+      properties:
+        dcr_token:
+          $ref: '#/components/schemas/DcrConfigPropertyDcrToken'
+    DcrConfigHttpInResponse:
+      title: DcrConfigHttpInResponse
+      type: object
+      description: A DCR provider configuration for HTTP
+      additionalProperties: false
+      required:
+        - dcr_base_url
+      properties:
+        dcr_base_url:
+          type: string
+          format: url
+    CreateDcrConfigHttpInRequest:
+      title: CreateDcrConfigHttpInRequest
+      type: object
+      description: Payload to create an HTTP DCR provider.
+      additionalProperties: false
+      required:
+        - dcr_base_url
+        - api_key
+      properties:
+        dcr_base_url:
+          $ref: '#/components/schemas/DcrBaseUrl'
+        api_key:
+          $ref: '#/components/schemas/DcrConfigPropertyApiKey'
+    UpdateDcrConfigHttpInRequest:
+      title: CreateDcrConfigHttpInRequest
+      type: object
+      description: Payload to update an HTTP DCR provider.
+      additionalProperties: false
+      properties:
+        dcr_base_url:
+          $ref: '#/components/schemas/DcrBaseUrl'
+        api_key:
+          $ref: '#/components/schemas/DcrConfigPropertyApiKey'
+    DcrProviderType:
+      title: DcrProviderType
+      type: string
+      description: >-
+        The type of DCR provider. Can be one of the following - auth0, azureAd,
+        curity, okta, http
+      enum:
+        - auth0
+        - azureAd
+        - curity
+        - okta
+        - http
+    DcrProviderBase:
+      type: object
+      description: Properties common to all DCR Providers.
+      additionalProperties: false
+      required:
+        - id
+        - name
+        - provider_type
+        - issuer
+        - active
+        - dcr_config
+        - created_at
+        - updated_at
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        name:
+          $ref: '#/components/schemas/DcrProviderName'
+        display_name:
+          $ref: '#/components/schemas/DcrProviderDisplayName'
+        provider_type:
+          type: string
+          description: >-
+            The type of DCR provider. Can be one of the following - auth0,
+            azureAd, curity, okta, http
+        issuer:
+          type: string
+          description: The issuer of the DCR provider.
+          format: url
+          maxLength: 256
+        active:
+          readOnly: true
+          type: boolean
+          description: At least one active auth strategy is using this DCR provider.
+        dcr_config:
+          type: object
+          description: The DCR configuration for this DCR provider.
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+    DcrProviderAuth0:
+      title: DCR provider - Auth0
+      type: object
+      description: >-
+        A DCR provider for Auth0 -- only properties not included in
+        DcrProviderBase
+      required:
+        - provider_type
+        - dcr_config
+      properties:
+        provider_type:
+          type: string
+          enum:
+            - auth0
+        dcr_config:
+          $ref: '#/components/schemas/DcrConfigAuth0InResponse'
+    DcrProviderAzureAd:
+      title: DCR provider - Azure AD
+      type: object
+      description: >-
+        A DCR provider for Azure AD -- only properties not included in
+        DcrProviderBase
+      required:
+        - provider_type
+        - dcr_config
+      properties:
+        provider_type:
+          type: string
+          enum:
+            - azureAd
+        dcr_config:
+          $ref: '#/components/schemas/DcrConfigAzureAdInResponse'
+    DcrProviderCurity:
+      title: DCR provider - Curity
+      type: object
+      description: >-
+        A DCR provider for Curity -- only properties not included in
+        DcrProviderBase
+      required:
+        - provider_type
+        - dcr_config
+      properties:
+        provider_type:
+          type: string
+          enum:
+            - curity
+        dcr_config:
+          $ref: '#/components/schemas/DcrConfigCurityInResponse'
+    DcrProviderOkta:
+      title: DCR provider - OKTA
+      type: object
+      description: >-
+        A DCR provider for Okta -- only properties not included in
+        DcrProviderBase
+      required:
+        - provider_type
+        - dcr_config
+      properties:
+        provider_type:
+          type: string
+          enum:
+            - okta
+        dcr_config:
+          $ref: '#/components/schemas/DcrConfigOktaInResponse'
+    DcrProviderHttp:
+      title: DCR provider - HTTP
+      type: object
+      description: >-
+        A DCR provider for HTTP -- only properties not included in
+        DcrProviderBase
+      required:
+        - provider_type
+        - dcr_config
+      properties:
+        provider_type:
+          type: string
+          enum:
+            - http
+        dcr_config:
+          $ref: '#/components/schemas/DcrConfigHttpInResponse'
+    CreateDcrProviderResponse:
+      type: object
+      description: A response containing the newly created DCR provider object.
+      allOf:
+        - $ref: '#/components/schemas/DcrProviderBase'
+        - discriminator:
+            propertyName: provider_type
+          type: object
+          oneOf:
+            - $ref: '#/components/schemas/DcrProviderAuth0'
+            - $ref: '#/components/schemas/DcrProviderAzureAd'
+            - $ref: '#/components/schemas/DcrProviderCurity'
+            - $ref: '#/components/schemas/DcrProviderOkta'
+            - $ref: '#/components/schemas/DcrProviderHttp'
+    DcrProviderResponse:
+      type: object
+      description: >-
+        A response containing a single DCR provider object. Sensitive fields
+        will be removed from the response.
+      allOf:
+        - $ref: '#/components/schemas/DcrProviderBase'
+        - discriminator:
+            propertyName: provider_type
+          type: object
+          oneOf:
+            - $ref: '#/components/schemas/DcrProviderAuth0'
+            - $ref: '#/components/schemas/DcrProviderAzureAd'
+            - $ref: '#/components/schemas/DcrProviderCurity'
+            - $ref: '#/components/schemas/DcrProviderOkta'
+            - $ref: '#/components/schemas/DcrProviderHttp'
+    CreateDcrProviderRequestAuth0:
+      title: CreateDcrProviderRequestAuth0
+      type: object
+      description: Request body for creating an Auth0 DCR provider.
+      required:
+        - provider_type
+        - dcr_config
+        - name
+        - issuer
+      properties:
+        provider_type:
+          type: string
+          enum:
+            - auth0
+        dcr_config:
+          $ref: '#/components/schemas/CreateDcrConfigAuth0InRequest'
+        name:
+          $ref: '#/components/schemas/DcrProviderName'
+        display_name:
+          $ref: '#/components/schemas/DcrProviderDisplayName'
+        issuer:
+          type: string
+          format: url
+          maxLength: 256
+    CreateDcrProviderRequestAzureAd:
+      title: CreateDcrProviderRequestAzureAd
+      type: object
+      description: Request body for creating an Azure AD DCR provider.
+      required:
+        - provider_type
+        - dcr_config
+        - name
+        - issuer
+      properties:
+        provider_type:
+          type: string
+          enum:
+            - azureAd
+        dcr_config:
+          $ref: '#/components/schemas/CreateDcrConfigAzureAdInRequest'
+        name:
+          $ref: '#/components/schemas/DcrProviderName'
+        display_name:
+          $ref: '#/components/schemas/DcrProviderDisplayName'
+        issuer:
+          type: string
+          format: url
+          maxLength: 256
+    CreateDcrProviderRequestCurity:
+      title: CreateDcrProviderRequestCurity
+      type: object
+      description: Request body for creating a Curity DCR provider.
+      required:
+        - provider_type
+        - dcr_config
+        - name
+        - issuer
+      properties:
+        provider_type:
+          type: string
+          enum:
+            - curity
+        dcr_config:
+          $ref: '#/components/schemas/CreateDcrConfigCurityInRequest'
+        name:
+          $ref: '#/components/schemas/DcrProviderName'
+        display_name:
+          $ref: '#/components/schemas/DcrProviderDisplayName'
+        issuer:
+          type: string
+          format: url
+          maxLength: 256
+    CreateDcrProviderRequestOkta:
+      title: CreateDcrProviderRequestOkta
+      type: object
+      description: Request body for creating an Okta DCR provider.
+      required:
+        - provider_type
+        - dcr_config
+        - name
+        - issuer
+      properties:
+        provider_type:
+          type: string
+          enum:
+            - okta
+        dcr_config:
+          $ref: '#/components/schemas/CreateDcrConfigOktaInRequest'
+        name:
+          $ref: '#/components/schemas/DcrProviderName'
+        display_name:
+          $ref: '#/components/schemas/DcrProviderDisplayName'
+        issuer:
+          type: string
+          format: url
+          maxLength: 256
+    CreateDcrProviderRequestHttp:
+      title: CreateDcrProviderRequestHttp
+      type: object
+      description: Request body for creating an HTTP DCR provider.
+      required:
+        - provider_type
+        - dcr_config
+        - name
+        - issuer
+      properties:
+        provider_type:
+          type: string
+          enum:
+            - http
+        dcr_config:
+          $ref: '#/components/schemas/CreateDcrConfigHttpInRequest'
+        name:
+          $ref: '#/components/schemas/DcrProviderName'
+        display_name:
+          $ref: '#/components/schemas/DcrProviderDisplayName'
+        issuer:
+          type: string
+          format: url
+          maxLength: 256
+    CreateDcrProviderRequest:
+      title: CreateDcrProviderRequest
+      description: >-
+        Request body for creating a DCR provider. The provider_type cannot be
+        updated after creation.
+      type: object
+      discriminator:
+        propertyName: provider_type
+      oneOf:
+        - $ref: '#/components/schemas/CreateDcrProviderRequestAuth0'
+        - $ref: '#/components/schemas/CreateDcrProviderRequestAzureAd'
+        - $ref: '#/components/schemas/CreateDcrProviderRequestCurity'
+        - $ref: '#/components/schemas/CreateDcrProviderRequestOkta'
+        - $ref: '#/components/schemas/CreateDcrProviderRequestHttp'
+    UpdateDcrProviderRequest:
+      type: object
+      title: UpdateDcrProviderRequest
+      description: >-
+        A set of updates to a DCR provider. The provider_type cannot be updated
+        after creation.
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/DcrProviderName'
+        display_name:
+          $ref: '#/components/schemas/DcrProviderDisplayName'
+        issuer:
+          type: string
+          format: url
+          maxLength: 256
+        dcr_config:
+          anyOf:
+            - $ref: '#/components/schemas/UpdateDcrConfigAuth0InRequest'
+            - $ref: '#/components/schemas/UpdateDcrConfigAzureAdInRequest'
+            - $ref: '#/components/schemas/UpdateDcrConfigCurityInRequest'
+            - $ref: '#/components/schemas/UpdateDcrConfigOktaInRequest'
+            - $ref: '#/components/schemas/UpdateDcrConfigHttpInRequest'
+    ListDcrProvidersResponse:
+      title: ListDcrProvidersResponse
+      type: object
+      description: A paginated list response for a collection of DCR providers
+      additionalProperties: false
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/DcrProviderResponse'
+        meta:
+          $ref: '#/components/schemas/PaginatedMeta'
+    VerifyDcrProviderResponse:
+      title: VerifyDcrProviderResponse
+      type: object
+      description: >-
+        A response containing the result of attempting to verify a DCR provider
+        configuration.
+      additionalProperties: false
+      required:
+        - status
+        - errors
+      properties:
+        status:
+          type: string
+          enum:
+            - success
+            - failed
+        errors:
+          type: array
+          items:
+            type: string
+    AppAuthStrategyConfigKeyAuth:
+      title: AppAuthStrategyConfigKeyAuth
+      description: >
+        The most basic mode to configure an Application Auth Strategy for an API
+        Product Version. 
+
+        Using this mode will allow developers to generate API keys that will
+        authenticate their application requests. 
+
+        Once authenticated, an application will be granted access to any Product
+        Version it is registered for that is configured for Key Auth.
+      type: object
+      additionalProperties: false
+      properties:
+        key_names:
+          type: array
+          maxItems: 10
+          minItems: 1
+          items:
+            type: string
+            maxLength: 256
+          description: >-
+            The names of the headers containing the API key. You can specify
+            multiple header names.
+    PartialAppAuthStrategyConfigOpenIDConnect:
+      title: PartialAppAuthStrategyConfigOpenIDConnect
+      description: >
+        A more advanced mode to configure an API Product Version’s Application
+        Auth Strategy. 
+
+        Using this mode will allow developers to use API credentials issued from
+        an external IdP that will authenticate their application requests. 
+
+        Once authenticated, an application will be granted access to any Product
+        Version it is registered for that is configured for the same Auth
+        Strategy. 
+
+        An OIDC strategy may be used in conjunction with a DCR provider to
+        automatically create the IdP application.
+      type: object
+      additionalProperties: true
+      properties:
+        issuer:
+          type: string
+          format: url
+          maxLength: 256
+        credential_claim:
+          type: array
+          maxItems: 10
+          items:
+            type: string
+            maxLength: 128
+        scopes:
+          type: array
+          maxItems: 50
+          items:
+            type: string
+            maxLength: 128
+        auth_methods:
+          type: array
+          maxItems: 10
+          items:
+            type: string
+            maxLength: 64
+    AppAuthStrategyConfigOpenIDConnect:
+      title: AppAuthStrategyConfigOpenIDConnect
+      description: >
+        A more advanced mode to configure an API Product Version’s Application
+        Auth Strategy. 
+
+        Using this mode will allow developers to use API credentials issued from
+        an external IdP that will authenticate their application requests. 
+
+        Once authenticated, an application will be granted access to any Product
+        Version it is registered for that is configured for the same Auth
+        Strategy. 
+
+        An OIDC strategy may be used in conjunction with a DCR provider to
+        automatically create the IdP application.
+      type: object
+      additionalProperties: true
+      required:
+        - issuer
+        - credential_claim
+        - scopes
+        - auth_methods
+      properties:
+        issuer:
+          type: string
+          format: url
+          maxLength: 256
+        credential_claim:
+          type: array
+          maxItems: 10
+          items:
+            type: string
+            maxLength: 128
+        scopes:
+          type: array
+          maxItems: 50
+          items:
+            type: string
+            maxLength: 128
+        auth_methods:
+          type: array
+          maxItems: 10
+          items:
+            type: string
+            maxLength: 64
+    AppAuthStrategyKeyAuthRequest:
+      title: AppAuthStrategyKeyAuthRequest
+      description: Request for creating a Key Auth Application Auth Strategy
+      type: object
+      additionalProperties: false
+      required:
+        - name
+        - display_name
+        - strategy_type
+        - configs
+      properties:
+        name:
+          $ref: '#/components/schemas/AuthStrategyName'
+        display_name:
+          $ref: '#/components/schemas/AuthStrategyDisplayName'
+        strategy_type:
+          type: string
+          enum:
+            - key_auth
+        configs:
+          type: object
+          description: JSON-B object containing the configuration for the Key Auth strategy
+          additionalProperties: false
+          required:
+            - key-auth
+          properties:
+            key-auth:
+              $ref: '#/components/schemas/AppAuthStrategyConfigKeyAuth'
+    AppAuthStrategyKeyAuthResponse:
+      title: AppAuthStrategyKeyAuthResponse
+      description: >-
+        Response payload from creating or updating a Key Auth Application Auth
+        Strategy
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - name
+        - display_name
+        - strategy_type
+        - configs
+        - active
+        - dcr_provider
+        - created_at
+        - updated_at
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        name:
+          $ref: '#/components/schemas/AuthStrategyName'
+        display_name:
+          $ref: '#/components/schemas/AuthStrategyDisplayName'
+        strategy_type:
+          type: string
+          enum:
+            - key_auth
+        configs:
+          type: object
+          description: JSON-B object containing the configuration for the Key Auth strategy
+          additionalProperties: false
+          required:
+            - key-auth
+          properties:
+            key-auth:
+              $ref: '#/components/schemas/AppAuthStrategyConfigKeyAuth'
+        active:
+          type: boolean
+          description: At least one published product version is using this auth strategy.
+        dcr_provider:
+          nullable: true
+          type: object
+          additionalProperties: false
+          required:
+            - id
+            - name
+            - provider_type
+          properties:
+            id:
+              $ref: '#/components/schemas/UUID'
+            name:
+              type: string
+            display_name:
+              $ref: '#/components/schemas/DcrProviderDisplayName'
+            provider_type:
+              $ref: '#/components/schemas/DcrProviderType'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+    AppAuthStrategyOpenIDConnectRequest:
+      title: AppAuthStrategyOpenIDConnectRequest
+      description: Payload for creating an OIDC Application Auth Strategy
+      type: object
+      additionalProperties: false
+      required:
+        - name
+        - display_name
+        - strategy_type
+        - configs
+      properties:
+        name:
+          $ref: '#/components/schemas/AuthStrategyName'
+        display_name:
+          $ref: '#/components/schemas/AuthStrategyDisplayName'
+        strategy_type:
+          type: string
+          enum:
+            - openid_connect
+        configs:
+          type: object
+          description: JSON-B object containing the configuration for the OIDC strategy
+          additionalProperties: false
+          required:
+            - openid-connect
+          properties:
+            openid-connect:
+              $ref: '#/components/schemas/AppAuthStrategyConfigOpenIDConnect'
+        dcr_provider_id:
+          nullable: true
+          type: string
+          format: uuid
+    AppAuthStrategyOpenIDConnectResponse:
+      title: AppAuthStrategyOpenIDConnectResponse
+      description: Response payload from creating an OIDC Application Auth Strategy
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - name
+        - display_name
+        - strategy_type
+        - configs
+        - active
+        - dcr_provider
+        - created_at
+        - updated_at
+      properties:
+        id:
+          $ref: '#/components/schemas/UUID'
+        name:
+          $ref: '#/components/schemas/AuthStrategyName'
+        display_name:
+          $ref: '#/components/schemas/AuthStrategyDisplayName'
+        strategy_type:
+          type: string
+          enum:
+            - openid_connect
+        configs:
+          type: object
+          description: JSON-B object containing the configuration for the OIDC strategy
+          additionalProperties: false
+          required:
+            - openid-connect
+          properties:
+            openid-connect:
+              $ref: '#/components/schemas/AppAuthStrategyConfigOpenIDConnect'
+        active:
+          type: boolean
+          description: At least one published product version is using this auth strategy.
+        dcr_provider:
+          nullable: true
+          type: object
+          additionalProperties: false
+          required:
+            - id
+            - name
+            - provider_type
+          properties:
+            id:
+              $ref: '#/components/schemas/UUID'
+            name:
+              type: string
+            display_name:
+              $ref: '#/components/schemas/DcrProviderDisplayName'
+            provider_type:
+              $ref: '#/components/schemas/DcrProviderType'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+    CreateAppAuthStrategyRequest:
+      title: CreateAppAuthStrategyRequest
+      description: Request body for creating an Application Auth Strategy
+      type: object
+      discriminator:
+        propertyName: strategy_type
+      required:
+        - strategy_type
+      oneOf:
+        - $ref: '#/components/schemas/AppAuthStrategyKeyAuthRequest'
+        - $ref: '#/components/schemas/AppAuthStrategyOpenIDConnectRequest'
+    AppAuthStrategy:
+      title: AppAuthStrategy
+      description: >-
+        A set of plugin configurations that represent how the gateway will
+        perform authentication and authorization for a Product Version. Called
+        “Auth Strategy” for short in the context of portals/applications. The
+        plugins are synced to any Gateway Service that is currently linked or
+        becomes linked to the Product Version.
+      type: object
+      discriminator:
+        propertyName: strategy_type
+      required:
+        - strategy_type
+      oneOf:
+        - $ref: '#/components/schemas/AppAuthStrategyKeyAuthResponse'
+        - $ref: '#/components/schemas/AppAuthStrategyOpenIDConnectResponse'
+    UpdateAppAuthStrategyRequest:
+      title: UpdateAppAuthStrategyRequest
+      description: Request body for updating an Application Auth Strategy
+      type: object
+      additionalProperties: false
+      properties:
+        name:
+          $ref: '#/components/schemas/AuthStrategyName'
+        display_name:
+          $ref: '#/components/schemas/AuthStrategyDisplayName'
+        dcr_provider_id:
+          nullable: true
+          type: string
+          format: uuid
+        configs:
+          type: object
+          description: >-
+            JSON-B object containing the configuration for the OIDC strategy
+            under the key 'openid-connect' or the configuration for the Key Auth
+            strategy under the key 'key-auth'
+          oneOf:
+            - type: object
+              additionalProperties: false
+              required:
+                - openid-connect
+              properties:
+                openid-connect:
+                  $ref: >-
+                    #/components/schemas/PartialAppAuthStrategyConfigOpenIDConnect
+            - type: object
+              additionalProperties: false
+              required:
+                - key-auth
+              properties:
+                key-auth:
+                  $ref: '#/components/schemas/AppAuthStrategyConfigKeyAuth'
+    CreateAppAuthStrategyResponse:
+      $ref: '#/components/schemas/AppAuthStrategy'
+    UpdateAppAuthStrategyResponse:
+      $ref: '#/components/schemas/AppAuthStrategy'
+    GetAppAuthStrategyResponse:
+      $ref: '#/components/schemas/AppAuthStrategy'
+    ListAppAuthStrategiesResponse:
+      title: ListAppAuthStrategiesResponse
+      description: >-
+        A paginated list response for a collection of Application Auth
+        Strategies
+      type: object
+      additionalProperties: false
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AppAuthStrategy'
+        meta:
+          $ref: '#/components/schemas/PaginatedMeta'
+    DcrBaseUrl:
+      type: string
+      description: >
+        The base URL of the DCR server. This is the URL that will be used to
+        make the HTTP requests from Konnect to the DCR provider.
+
+        This URL must be accessible from the Konnect service.
+      format: url
+      maxLength: 256
+    DcrProviderDisplayName:
+      type: string
+      description: >
+        The display name of the DCR provider. This is used to identify the DCR
+        provider in the Portal UI.
+      minLength: 1
+      maxLength: 256
+    DcrProviderName:
+      type: string
+      description: >
+        The name of the DCR provider. This is used to identify the DCR provider
+        in the Konnect UI.
+      minLength: 1
+      maxLength: 256
+    AuthStrategyName:
+      type: string
+      description: >
+        The name of the auth strategy. This is used to identify the auth
+        strategy in the Konnect UI.
+      minLength: 1
+      maxLength: 256
+    AuthStrategyDisplayName:
+      type: string
+      description: >
+        The display name of the Auth strategy. This is used to identify the Auth
+        strategy in the Portal UI.
+      maxLength: 256
+    UUID:
+      type: string
+      format: uuid
+      example: 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+      description: Contains a unique identifier used by the API for this resource.
+      readOnly: true
+    CreatedAt:
+      type: string
+      format: date-time
+      example: '2022-11-04T20:10:06.927Z'
+      description: An ISO-8601 timestamp representation of entity creation date.
+      readOnly: true
+    UpdatedAt:
+      type: string
+      format: date-time
+      example: '2022-11-04T20:10:06.927Z'
+      description: An ISO-8601 timestamp representation of entity update date.
+      readOnly: true
+    PageMeta:
+      type: object
+      description: >-
+        Contains pagination query parameters and the total number of objects
+        returned.
+      required:
+        - number
+        - size
+        - total
+      properties:
+        number:
+          type: number
+          example: 1
+        size:
+          type: number
+          example: 10
+        total:
+          type: number
+          example: 100
+    PaginatedMeta:
+      type: object
+      title: PaginatedMeta
+      description: returns the pagination information
+      properties:
+        page:
+          $ref: '#/components/schemas/PageMeta'
+      required:
+        - page
+    BaseError:
+      type: object
+      title: Error
+      description: standard error
+      required:
+        - status
+        - title
+        - instance
+        - detail
+      properties:
+        status:
+          type: integer
+          description: >
+            The HTTP status code of the error. Useful when passing the response
+
+            body to child properties in a frontend UI. Must be returned as an
+            integer.
+          readOnly: true
+        title:
+          type: string
+          description: |
+            A short, human-readable summary of the problem. It should not
+            change between occurences of a problem, except for localization.
+            Should be provided as "Sentence case" for direct use in the UI.
+          readOnly: true
+        type:
+          type: string
+          description: The error type.
+          readOnly: true
+        instance:
+          type: string
+          description: |
+            Used to return the correlation ID back to the user, in the format
+            kong:trace:<correlation_id>. This helps us find the relevant logs
+            when a customer reports an issue.
+          readOnly: true
+        detail:
+          type: string
+          description: >
+            A human readable explanation specific to this occurence of the
+            problem.
+
+            This field may contain request/entity data to help the user
+            understand
+
+            what went wrong. Enclose variable values in square brackets. Should
+            be
+
+            provided as "Sentence case" for direct use in the UI.
+          readOnly: true
+    InvalidRules:
+      description: invalid parameters rules
+      type: string
+      readOnly: true
+      nullable: true
+      enum:
+        - required
+        - enum
+        - min_length
+        - max_length
+        - min_digits
+        - min_lowercase
+        - min_uppercase
+        - min_symbols
+        - is_array
+        - is_base64
+        - is_boolean
+        - is_date_time
+        - is_integer
+        - is_null
+        - is_number
+        - is_object
+        - is_string
+        - is_uuid
+        - unknown_property
+        - is_label
+        - matches_regex
+    InvalidParameterChoiceItem:
+      type: object
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          $ref: '#/components/schemas/InvalidRules'
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+        choices:
+          type: array
+          uniqueItems: true
+          nullable: true
+          items: {}
+          readOnly: true
+      required:
+        - field
+        - reason
+    InvalidParameterDependentItem:
+      type: object
+      properties:
+        field:
+          type: string
+          example: name
+          readOnly: true
+        rule:
+          description: invalid parameters rules
+          type: string
+          readOnly: true
+          nullable: true
+          enum:
+            - dependent_fields
+        reason:
+          type: string
+          example: is a required field
+          readOnly: true
+        dependents:
+          type: array
+          uniqueItems: true
+          nullable: true
+          items: {}
+          readOnly: true
+      required:
+        - field
+        - rule
+        - reason
+        - dependents
+    InvalidParameters:
+      type: array
+      nullable: false
+      uniqueItems: true
+      minItems: 1
+      description: invalid parameters
+      items:
+        oneOf:
+          - $ref: '#/components/schemas/InvalidParameterChoiceItem'
+          - $ref: '#/components/schemas/InvalidParameterDependentItem'
+    BadRequestError:
+      type: object
+      required:
+        - invalid_parameters
+      properties:
+        status:
+          example: 400
+        title:
+          example: Bad Request
+        type:
+          example: https://httpstatuses.com/400
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Invalid request body
+        invalid_parameters:
+          $ref: '#/components/schemas/InvalidParameters'
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+    UnauthorizedError:
+      type: object
+      properties:
+        status:
+          example: 401
+        title:
+          example: Unauthorized
+        type:
+          example: https://httpstatuses.com/401
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Invalid credentials
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+    ForbiddenError:
+      type: object
+      properties:
+        status:
+          example: 403
+        title:
+          example: Forbidden
+        type:
+          example: https://httpstatuses.com/403
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Forbidden
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+    NotFoundError:
+      type: object
+      properties:
+        status:
+          example: 404
+        title:
+          example: Not Found
+        type:
+          example: https://httpstatuses.com/404
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Not found
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+    StringFieldEqualsFilter:
+      title: StringFieldEqualsFilter
+      description: Filters on the given string field value by exact match.
+      oneOf:
+        - type: string
+        - type: object
+          title: StringFieldEqualsComparison
+          additionalProperties: false
+          properties:
+            eq:
+              type: string
+          required:
+            - eq
+      x-examples:
+        example-1: equals-some-value
+        example-2:
+          eq: some-value
+    StringFieldContainsFilter:
+      title: StringFieldContainsFilter
+      description: Filters on the given string field value by fuzzy match.
+      type: object
+      additionalProperties: false
+      properties:
+        contains:
+          type: string
+      required:
+        - contains
+      x-examples:
+        example-1:
+          contains: some-value
+    StringFieldOContainsFilter:
+      title: StringFieldOContainsFilter
+      description: >-
+        Returns entities that fuzzy-match any of the comma-delimited phrases in
+        the filter string.
+      type: object
+      additionalProperties: false
+      properties:
+        ocontains:
+          type: string
+      required:
+        - ocontains
+      x-examples:
+        example-1:
+          ocontains: this-value,or-that-value
+    StringFieldOEQFilter:
+      title: StringFieldOEQFilter
+      description: >-
+        Returns entities that exact match any of the comma-delimited phrases in
+        the filter string.
+      type: object
+      additionalProperties: false
+      properties:
+        oeq:
+          type: string
+      required:
+        - oeq
+      x-examples:
+        example-1:
+          oeq: some-value,some-other-value
+    StringFieldNEQFilter:
+      title: StringFieldNEQFilter
+      description: Filters on the given string field value by exact match inequality.
+      type: object
+      additionalProperties: false
+      properties:
+        neq:
+          type: string
+      required:
+        - neq
+      x-examples:
+        example-1:
+          neq: not-this-value
+    StringFieldFilter:
+      title: StringFieldFilter
+      description: Filters on the given string field value by either exact or fuzzy match.
+      oneOf:
+        - $ref: '#/components/schemas/StringFieldEqualsFilter'
+        - $ref: '#/components/schemas/StringFieldContainsFilter'
+        - $ref: '#/components/schemas/StringFieldOContainsFilter'
+        - $ref: '#/components/schemas/StringFieldOEQFilter'
+        - $ref: '#/components/schemas/StringFieldNEQFilter'
+      x-examples:
+        example-1: equals-some-value
+        example-2:
+          eq: some-value
+        example-3:
+          contains: some-value
+        example-4:
+          ocontains: some-potential,value
+        example-5:
+          oeq: some-potential,value
+        example-6:
+          neq: not-this-value
+    UuidFieldFilter:
+      title: UuidFieldFilter
+      description: Filters on the given UUID field value by exact match.
+      oneOf:
+        - $ref: '#/components/schemas/StringFieldEqualsFilter'
+        - $ref: '#/components/schemas/StringFieldOEQFilter'
+        - $ref: '#/components/schemas/StringFieldNEQFilter'
+      x-examples:
+        example-1: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
+        example-2:
+          eq: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
+        example-3:
+          oeq: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
+        example-4:
+          neq: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
+    ConflictError:
+      type: object
+      properties:
+        status:
+          example: 409
+        title:
+          example: Conflict
+        type:
+          example: https://httpstatuses.com/409
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Conflict
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
+  examples:
+    DcrProviderOktaCreateRequest:
+      summary: DCR provider Okta Create Request
+      value:
+        name: DCR Okta 1 - Segment A
+        provider_type: okta
+        issuer: https://my-issuer.okta.com/default
+        dcr_config:
+          dcr_token: abc123xyz098!
+    DcrProviderAuth0CreateRequest:
+      summary: DCR provider Auth0 Create Request
+      value:
+        name: DCR Auth0 1 - Segment A
+        provider_type: auth0
+        issuer: https://my-issuer.auth0.com/api/v2/
+        dcr_config:
+          initial_client_id: abc123
+          initial_client_secret: abc123xyz098!
+          initial_client_audience: https://my-custom-domain.com/api/v2/
+    DcrProviderAzureAdCreateRequest:
+      summary: DCR provider AzureAd Create Request
+      value:
+        name: DCR Azure 1 - Segment A
+        provider_type: azureAd
+        issuer: https://sts.windows.net/my-tenant
+        dcr_config:
+          initial_client_id: abc123
+          initial_client_secret: abc123xyz098!
+    DcrProviderCurityCreateRequest:
+      summary: DCR provider Curity Create Request
+      value:
+        name: DCR Curity 1 - Segment A
+        provider_type: curity
+        issuer: >-
+          https://my-curity-instance.com/oauth/v2/oauth-anonymous/.well-known/openid-configuration
+        dcr_config:
+          initial_client_id: abc123
+          initial_client_secret: abc123xyz098!
+    DcrProviderHttpCreateRequest:
+      summary: DCR provider HTTP Create Request
+      value:
+        name: DCR HTTP 1 - Segment A
+        provider_type: http
+        issuer: https://my-issuer-server.com
+        dcr_config:
+          dcr_base_url: https://my-http-dcr-server.com/v1/dcr
+          api_key: gYmrbDfu_7PTsZWH
+    DcrProviderOktaUpdateRequest:
+      summary: DCR provider Create Request
+      value:
+        name: DCR Okta 1 - Segment A
+        issuer: https://my-issuer.okta.com/default
+    DcrProviderAuth0Response:
+      summary: DCR provider Response for Auth0
+      value:
+        id: 93f8380e-7798-4566-99e3-2edf2b57d289
+        name: DCR Auth0 1 - Segment A
+        display_name: Auth0 DCR provider
+        provider_type: auth0
+        issuer: https://my-issuer.auth0.com/api/v2/
+        active: true
+        dcr_config:
+          initial_client_id: abc123
+          initial_client_audience: https://my-custom-domain.com/api/v2/
+          use_developer_managed_scopes: false
+        created_at: '2023-01-01T00:00:00.000Z'
+        updated_at: '2023-01-01T00:00:00.000Z'
+    DcrProviderAzureAdResponse:
+      summary: DCR provider Response for AzureAd
+      value:
+        id: 93f8380e-7798-4566-99e3-2edf2b57d289
+        name: DCR AzureAd 1 - Segment A
+        display_name: Client Credentials
+        provider_type: azureAd
+        issuer: https://sts.windows.net/my-tenant
+        active: true
+        dcr_config:
+          initial_client_id: abc123
+        created_at: '2023-01-01T00:00:00.000Z'
+        updated_at: '2023-01-01T00:00:00.000Z'
+    DcrProviderCurityResponse:
+      summary: DCR provider Response for Curity
+      value:
+        id: 93f8380e-7798-4566-99e3-2edf2b57d289
+        name: DCR Curity 1 - Segment A
+        display_name: Client Credentials
+        provider_type: curity
+        issuer: >-
+          https://my-curity-instance.com/oauth/v2/oauth-anonymous/.well-known/openid-configuration
+        active: true
+        dcr_config:
+          initial_client_id: abc123
+        created_at: '2023-01-01T00:00:00.000Z'
+        updated_at: '2023-01-01T00:00:00.000Z'
+    DcrProviderHttpResponse:
+      summary: DCR provider Response for HTTP
+      value:
+        id: 93f8380e-7798-4566-99e3-2edf2b57d289
+        name: DCR HTTP 1 - Segment A
+        display_name: Client Credentials
+        provider_type: http
+        issuer: https://my-issuer-server.com
+        active: true
+        dcr_config:
+          dcr_base_url: https://my-http-dcr-server.com/v1/dcr
+        created_at: '2023-01-01T00:00:00.000Z'
+        updated_at: '2023-01-01T00:00:00.000Z'
+    DcrProviderOktaResponse:
+      summary: DCR provider Response for Okta
+      value:
+        id: 93f8380e-7798-4566-99e3-2edf2b57d289
+        name: DCR Okta 1 - Segment A
+        provider_type: okta
+        issuer: https://my-issuer.okta.com/default
+        active: true
+        dcr_config: {}
+        created_at: '2023-01-01T00:00:00.000Z'
+        updated_at: '2023-01-01T00:00:00.000Z'
+    ListDcrProvidersResponse:
+      summary: List DCR Providers Response
+      value:
+        data:
+          - id: 93f8380e-7798-4566-99e3-2edf2b57d289
+            name: DCR Okta 1 - Segment A
+            provider_type: okta
+            issuer: https://my-issuer.okta.com/default
+            active: true
+            dcr_config: {}
+            created_at: '2023-01-01T00:00:00.000Z'
+            updated_at: '2023-01-01T00:00:00.000Z'
+          - id: 93f8380e-7798-4566-99e3-2edf2b57d289
+            name: DCR Okta 1 - Segment B
+            display_name: Client Credentials
+            provider_type: okta
+            issuer: https://my-issuer.okta.com/e19c13a9485e
+            active: true
+            dcr_config: {}
+            created_at: '2023-01-01T00:00:00.000Z'
+            updated_at: '2023-01-01T00:00:00.000Z'
+          - id: 93f8380e-7798-4566-99e3-2edf2b57d290
+            name: DCR HTTP 1 - Segment A
+            display_name: Client Credentials
+            provider_type: http
+            issuer: https://my-issuer-server.com
+            active: true
+            dcr_config:
+              dcr_base_url: https://my-http-dcr-server.com/v1/dcr
+            created_at: '2023-01-01T00:00:00.000Z'
+            updated_at: '2023-01-01T00:00:00.000Z'
+        meta:
+          page:
+            number: 1
+            size: 2
+            total: 10
+    VerifyDcrProviderResponseSuccess:
+      summary: Verify DCR provider Success Response
+      value:
+        status: success
+        errors: []
+    VerifyDcrProviderResponseFailed:
+      summary: Verify DCR provider Failed Response
+      value:
+        status: failed
+        errors:
+          - Unable to create the DCR application
+    CreateAppAuthStrategyKeyAuthRequest:
+      value:
+        name: auth strategy 1
+        display_name: API Key Auth
+        strategy_type: key_auth
+        configs:
+          key-auth:
+            key_names:
+              - apikey
+              - api-key
+              - x-api-key
+    CreateAppAuthStrategyOpenIDConnectRequest:
+      value:
+        name: auth strategy 2
+        display_name: Enterprise Auth
+        strategy_type: openid_connect
+        configs:
+          openid-connect:
+            issuer: https://oidc.example.com
+            credential_claim:
+              - client_id
+            scopes:
+              - openid
+              - email
+            auth_methods:
+              - client_credentials
+              - bearer
+    CreateAppAuthStrategyOpenIDConnectDCRRequest:
+      value:
+        name: auth strategy 3
+        display_name: Enterprise Auth with DCR
+        strategy_type: openid_connect
+        configs:
+          openid-connect:
+            issuer: https://oidc-dcr.example.com
+            credential_claim:
+              - client_id
+            scopes:
+              - openid
+              - email
+            auth_methods:
+              - client_credentials
+              - bearer
+        dcr_provider_id: 73f8380e-7798-4566-99e3-2edf2b57d281
+    UpdateAppAuthStrategyKeyAuthRequest:
+      value:
+        display_name: API Key
+    UpdateAppAuthStrategyOpenIDConnectRequest:
+      value:
+        display_name: Client Credentials
+    AppAuthStrategyResponseExample1:
+      value:
+        id: 22f8380e-7798-4566-99e3-2edf2b57d289
+        name: auth strategy 1
+        display_name: Client Credentials
+        strategy_type: openid_connect
+        active: false
+        configs:
+          openid-connect:
+            issuer: https://my-issuer.example.com/default
+            auth_methods:
+              - client_credentials
+            credential_claim:
+              - client_id
+            scopes:
+              - openid
+              - email
+        dcr_provider:
+          id: 33f8380e-7798-4566-99e3-2edf2b57d289
+          name: DCR provider 1
+          display_name: Credentials
+          provider_type: http
+        created_at: '2023-01-01T00:00:00.000Z'
+        updated_at: '2023-01-01T00:00:00.000Z'
+    ListAppAuthStrategyResponseExample1:
+      value:
+        data:
+          - id: 22f8380e-7798-4566-99e3-2edf2b57d289
+            name: auth strategy 1
+            display_name: Client Credentials
+            strategy_type: openid_connect
+            active: false
+            configs:
+              openid-connect:
+                issuer: https://my-issuer.example.com/default
+                auth_methods:
+                  - client_credentials
+                credential_claim:
+                  - client_id
+                scopes:
+                  - openid
+                  - email
+            dcr_provider:
+              id: 33f8380e-7798-4566-99e3-2edf2b57d289
+              name: DCR provider 1
+              display_name: Credentials
+              provider_type: http
+            created_at: '2023-01-01T00:00:00.000Z'
+            updated_at: '2023-01-01T00:00:00.000Z'
+        meta:
+          page:
+            number: 1
+            size: 1
+            total: 10
+    UnauthorizedExample:
+      value:
+        status: 401
+        title: Unauthorized
+        instance: kong:trace:8347343766220159418
+        detail: Unauthorized
+    ForbiddenExample:
+      value:
+        status: 403
+        title: Forbidden
+        instance: kong:trace:2723154947768991354
+        detail: You do not have permission to perform this action
+    NotFoundExample:
+      value:
+        status: 404
+        title: Not Found
+        instance: kong:trace:6816496025408232265
+        detail: Not Found
