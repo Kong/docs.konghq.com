@@ -15,15 +15,12 @@ distributions:
     docker: true
   - <<: *centos7
     docker: true
-    eol: June 2024
-  - <<: *centos8
-    eol: December 2021
+  - *centos8
   - <<: *debian10
     docker: true
     eol: June 2024
   - *debian11
-  - <<: *ubuntu1804
-    eol: April 2023
+  - *ubuntu1804
   - *ubuntu2004
   - <<: *ubuntu2204
     docker: true
