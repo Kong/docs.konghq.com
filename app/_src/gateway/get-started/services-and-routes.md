@@ -24,8 +24,8 @@ flowchart LR
   (/mock)`")
   C("`Service
   (example_service)`")
-  D(Backend/
-  upstream API)
+  D(Upstream 
+  application)
   
   A <--requests
   responses--> B
