@@ -16,12 +16,10 @@ distributions:
     docker: true
     arm: true
     graviton: true
-  - <<: *debian10
-    eol: June 2024
+  - *debian10
   - <<: *debian11
     docker: true
-  - <<: *rhel7
-    eol: June 2024
+  - *rhel7
   - <<: *rhel8
     docker: true
     fips: true
