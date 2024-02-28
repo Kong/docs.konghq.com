@@ -54,9 +54,6 @@ replacements:
   2.3.x:
     - 2.3.x-CE
     - 2.3.x-EE
-sources:
-  2.2.x-CE: _1.0
-  2.2.x: _1.0
 overrides:
   2.4.x: 2.0.x
   2.3.x-EE: 2.0.x
@@ -64,7 +61,7 @@ overrides:
   2.2.x: 1.0.x
 ```
 
-`2.3.x-EE` and `2.4.x` both use plugin version `2.0.x` and the default `_index` source file. `2.3.x-CE` and `2.2.x` use plugin version `1.0.x` and the `_1.0` source file.
+`2.3.x-EE` and `2.4.x` both use plugin version `2.0.x` and the default `_index` source file. `2.3.x-CE` and `2.2.x` use plugin version `1.0.x`.
 
 If you want to use `releases` but have one or two versions that you need to override, you can use `replacements`:
 
@@ -76,8 +73,6 @@ replacements:
   2.3.x:
     - 2.3.x-CE
     - 2.3.x-EE
-sources:
-  2.3.x-CE: _foo
 overrides:
   2.3.x-EE: 2.0.x
   2.3.x-CE: 1.0.x
