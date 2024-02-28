@@ -19,7 +19,7 @@ module Jekyll
             if page_exists?(url)
               url
             else
-              @page.base_url
+              "#{@page.base_url}#{release}/"
             end
           end
         end
