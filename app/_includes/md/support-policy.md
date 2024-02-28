@@ -13,7 +13,11 @@ Unfortunately, all software is susceptible to bugs. Kong seeks to remedy bugs th
 Customers with platinum or higher subscriptions may request fixes outside of the above and Kong will assess them at its sole discretion.
 
 ## Deprecation guidelines
-From time to time as part of the evolution of our products, we deprecate (in other words, remove or discontinue) product features or functionality. We aim to provide customers with at least 6 months’ notice of the removal or phasing out of a significant feature or functionality. We may provide less or no notice if the change is necessary for security or legal reasons, though such situations should be rare. We may provide notice in our documentation, product update emails, or in-product notifications if applicable. Once we’ve announced we will deprecate a significant feature or functionality, in general, we won’t extend or enhance the feature or functionality.
+From time to time as part of the evolution of our products, we deprecate (in other words, remove or discontinue) product features or functionality. 
+
+We aim to provide customers with at least 6 months’ notice of the removal or phasing out of a significant feature or functionality. We may provide less or no notice if the change is necessary for security or legal reasons, though such situations should be rare. We may provide notice in our documentation, product update emails, or in-product notifications if applicable. 
+
+Once we’ve announced we will deprecate a significant feature or functionality, in general, we won’t extend or enhance the feature or functionality.
 
 ## Additional terms
 - The above is a summary only and is qualified by Kong’s [Support and Maintenance Policy](https://konghq.com/supportandmaintenancepolicy).
