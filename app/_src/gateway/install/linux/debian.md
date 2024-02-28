@@ -143,6 +143,11 @@ get the most out of {{site.base_gateway}}.
 
 ## Uninstall package
 
+Stop {{site.base_gateway}}:
+```
+kong stop
+```
+
 {% navtabs_ee %}
 {% navtab Kong Gateway %}
 To uninstall the package, run: 
