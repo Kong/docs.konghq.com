@@ -134,14 +134,12 @@ apply them to subsets of consumers, instead of managing each consumer
 individually.
 
 {% if_version lte:3.3.x %}
-[Set up consumer groups &rarr;](/hub/kong-inc/rate-limiting-advanced/how-to/)
-
-[Consumer groups API reference &rarr;](/gateway/{{page.release}}/admin-api/consumer-groups/reference/)
+* [Set up consumer groups &rarr;](/hub/kong-inc/rate-limiting-advanced/how-to/)
+* [Consumer groups API reference &rarr;](/gateway/{{page.release}}/admin-api/consumer-groups/reference/)
 {% endif_version %}
 {% if_version gte:3.4.x %}
-[Consumer groups API documentation &rarr;](/gateway/api/admin-ee/latest/#/consumer_groups/get-consumer_groups)
-
-[Plugins with consumer groups support &rarr;](/hub/plugins/compatibility/#scopes)
+* [Consumer groups API documentation &rarr;](/gateway/api/admin-ee/latest/#/consumer_groups/get-consumer_groups)
+* [Plugins with consumer groups support &rarr;](/hub/plugins/compatibility/#scopes)
 {% endif_version %}
 
 {% if_version gte:3.2.x %}
