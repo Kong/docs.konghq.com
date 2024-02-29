@@ -22,29 +22,29 @@ The Kong Admin API is documented in OpenAPI format:
 
 | Spec | Insomnia link |
 |-------|---------------|
-| [Enterprise beta API spec](/gateway/api/admin-ee/latest/) |<a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Enterprise%203.4&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-EE%2F3.4%2Fkong-ee-3.4.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>  |
-|  [Open source beta API spec](/gateway/api/admin-oss/latest/) |  <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Open%20Source%203.4&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-OSS%2F3.4%2Fkong-oss-3.4.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
+| [Enterprise beta API spec](/gateway/api/admin-ee/latest/){:target="_blank"} |<a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Enterprise%203.4&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-EE%2F3.4%2Fkong-ee-3.4.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>  |
+|  [Open source beta API spec](/gateway/api/admin-oss/latest/){:target="_blank"} |  <a href="https://insomnia.rest/run/?label=Kong%20Gateway%20Open%20Source%203.4&uri=https%3A%2F%2Fraw.githubusercontent.com%2FKong%2Fdocs.konghq.com%2Fmain%2Fapi-specs%2FGateway-OSS%2F3.4%2Fkong-oss-3.4.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>|
 
 See the following links for individual entity documentation:
 
 {% navtabs %}
 {% navtab Enterprise endpoints %}
 
-| [Information Routes](href="https://docs.konghq.com/gateway/api/admin-ee/latest/#/Information/get-endpoints" target="_blank") | [Health Routes](/gateway/api/admin-ee/latest/#/Information/get-status) | [Tags](/gateway/api/admin-ee/latest/#/tags/get-tags) |
-| [Debug Routes](/gateway/api/admin-ee/latest/#/debug/put-debug-cluster-control-planes-nodes-log-level-log_level) | [Services](/gateway/api/admin-ee/latest/#/Services/list-service) | [Routes](/gateway/api/admin-ee/latest/#/Routes/list-route) |
-| [Consumers](/gateway/api/admin-ee/latest/#/Consumers/list-consumer) | [Plugins](/gateway/api/admin-ee/latest/#/Plugins/list-plugins-with-consumer) | [Certificates](/gateway/api/admin-ee/latest/#/Certificates/list-certificate) |
-| [CA Certificates](/gateway/api/admin-ee/latest/#/CA%20Certificates/list-ca_certificate) | [SNIs](/gateway/api/admin-ee/latest/#/SNIs/list-sni-with-certificate) | [Upstreams](/gateway/api/admin-ee/latest/#/Upstreams/list-upstream) |
-| [Targets](/gateway/api/admin-ee/latest/#/Targets/list-target-with-upstream) | [Vaults](/gateway/api/admin-ee/latest/#/Vaults/list-vault) | [Keys](/gateway/api/admin-ee/latest/#/Keys/list-key) |
-| [Filter Chains](/gateway/api/admin-ee/latest/#/filter-chains/get-filter-chains) | [Licenses](/gateway/api/admin-ee/latest/#/licenses/get-licenses) | [Workspaces](/gateway/api/admin-ee/latest/#/Workspaces/list-workspace) |
-| [RBAC](/gateway/api/admin-ee/latest/#/rbac/get-rbac-users) | [Admins](/gateway/api/admin-ee/latest/#/admins/get-admins) | [Consumer Groups](/gateway/api/admin-ee/latest/#/consumer_groups/) |
-| [Event Hooks](/gateway/api/admin-ee/latest/#/Event-hooks/get-event-hooks) | [Keyring and Data Encryption](/gateway/api/admin-ee/latest/#/Keyring/get-keyring) | [Audit Logs](/gateway/api/admin-ee/latest/#/audit-logs/get-audit-requests) |
+| [Information Routes](/gateway/api/admin-ee/latest/#/Information/get-endpoints){:target="_blank"} | [Health Routes](/gateway/api/admin-ee/latest/#/Information/get-status){:target="_blank"} | [Tags](/gateway/api/admin-ee/latest/#/tags/get-tags){:target="_blank"} |
+| [Debug Routes](/gateway/api/admin-ee/latest/#/debug/put-debug-cluster-control-planes-nodes-log-level-log_level){:target="_blank"} | [Services](/gateway/api/admin-ee/latest/#/Services/list-service){:target="_blank"} | [Routes](/gateway/api/admin-ee/latest/#/Routes/list-route){:target="_blank"} |
+| [Consumers](/gateway/api/admin-ee/latest/#/Consumers/list-consumer){:target="_blank"} | [Plugins](/gateway/api/admin-ee/latest/#/Plugins/list-plugins-with-consumer){:target="_blank"} | [Certificates](/gateway/api/admin-ee/latest/#/Certificates/list-certificate){:target="_blank"} |
+| [CA Certificates](/gateway/api/admin-ee/latest/#/CA%20Certificates/list-ca_certificate){:target="_blank"} | [SNIs](/gateway/api/admin-ee/latest/#/SNIs/list-sni-with-certificate){:target="_blank"} | [Upstreams](/gateway/api/admin-ee/latest/#/Upstreams/list-upstream){:target="_blank"} |
+| [Targets](/gateway/api/admin-ee/latest/#/Targets/list-target-with-upstream){:target="_blank"} | [Vaults](/gateway/api/admin-ee/latest/#/Vaults/list-vault){:target="_blank"} | [Keys](/gateway/api/admin-ee/latest/#/Keys/list-key){:target="_blank"} |
+| [Filter Chains](/gateway/api/admin-ee/latest/#/filter-chains/get-filter-chains){:target="_blank"} | [Licenses](/gateway/api/admin-ee/latest/#/licenses/get-licenses){:target="_blank"} | [Workspaces](/gateway/api/admin-ee/latest/#/Workspaces/list-workspace){:target="_blank"} |
+| [RBAC](/gateway/api/admin-ee/latest/#/rbac/get-rbac-users){:target="_blank"} | [Admins](/gateway/api/admin-ee/latest/#/admins/get-admins){:target="_blank"} | [Consumer Groups](/gateway/api/admin-ee/latest/#/consumer_groups/){:target="_blank"} |
+| [Event Hooks](/gateway/api/admin-ee/latest/#/Event-hooks/get-event-hooks){:target="_blank"} | [Keyring and Data Encryption](/gateway/api/admin-ee/latest/#/Keyring/get-keyring){:target="_blank"} | [Audit Logs](/gateway/api/admin-ee/latest/#/audit-logs/get-audit-requests){:target="_blank"} |
 {% endnavtab %}
 {% navtab OSS endpoints %}
-| [Information Routes](/gateway/api/admin-oss/latest/#/Information/get-endpoints) | [Health Routes](/gateway/api/admin-oss/latest/#/Information/get-status) | [Tags](/gateway/api/admin-oss/latest/#/tags/get-tags) |
-| [Debug Routes](/gateway/api/admin-oss/latest/#/debug/put-debug-cluster-control-planes-nodes-log-level-log_level) | [Services](/gateway/api/admin-oss/latest/#/Services/list-service) | [Routes](/gateway/api/admin-oss/latest/#/Routes/list-route) |
-| [Consumers](/gateway/api/admin-oss/latest/#/Consumers/list-consumer) | [Plugins](/gateway/api/admin-oss/latest/#/Plugins/list-plugins-with-consumer) | [Certificates](/gateway/api/admin-oss/latest/#/Certificates/list-certificate) |
-| [CA Certificates](/gateway/api/admin-oss/latest/#/CA%20Certificates/list-ca_certificate) | [SNIs](/gateway/api/admin-oss/latest/#/SNIs/list-sni-with-certificate) | [Upstreams](/gateway/api/admin-oss/latest/#/Upstreams/list-upstream) |
-| [Targets](/gateway/api/admin-oss/latest/#/Targets/list-target-with-upstream) | [Vaults](/gateway/api/admin-oss/latest/#/Vaults/list-vault) | [Keys](/gateway/api/admin-oss/latest/#/Keys/list-key) |
+| [Information Routes](/gateway/api/admin-oss/latest/#/Information/get-endpoints){:target="_blank"} | [Health Routes](/gateway/api/admin-oss/latest/#/Information/get-status){:target="_blank"} | [Tags](/gateway/api/admin-oss/latest/#/tags/get-tags){:target="_blank"} |
+| [Debug Routes](/gateway/api/admin-oss/latest/#/debug/put-debug-cluster-control-planes-nodes-log-level-log_level){:target="_blank"} | [Services](/gateway/api/admin-oss/latest/#/Services/list-service){:target="_blank"} | [Routes](/gateway/api/admin-oss/latest/#/Routes/list-route){:target="_blank"} |
+| [Consumers](/gateway/api/admin-oss/latest/#/Consumers/list-consumer){:target="_blank"} | [Plugins](/gateway/api/admin-oss/latest/#/Plugins/list-plugins-with-consumer){:target="_blank"} | [Certificates](/gateway/api/admin-oss/latest/#/Certificates/list-certificate){:target="_blank"} |
+| [CA Certificates](/gateway/api/admin-oss/latest/#/CA%20Certificates/list-ca_certificate){:target="_blank"} | [SNIs](/gateway/api/admin-oss/latest/#/SNIs/list-sni-with-certificate){:target="_blank"} | [Upstreams](/gateway/api/admin-oss/latest/#/Upstreams/list-upstream){:target="_blank"} |
+| [Targets](/gateway/api/admin-oss/latest/#/Targets/list-target-with-upstream){:target="_blank"} | [Vaults](/gateway/api/admin-oss/latest/#/Vaults/list-vault){:target="_blank"} | [Keys](/gateway/api/admin-oss/latest/#/Keys/list-key){:target="_blank"} |
 {% endnavtab %}
 {% endnavtabs %}
 
