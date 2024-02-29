@@ -42,6 +42,7 @@ _packages:
     arm: false
     fips: false
     graviton: false
+    eol: June 2024
   centos8: &centos8
     os: CentOS
     version: 8
@@ -49,6 +50,7 @@ _packages:
     arm: false
     fips: false
     graviton: false
+    eol: December 2021
   debian8: &debian8
     os: Debian
     version: 8
@@ -128,6 +130,7 @@ _packages:
     arm: false
     fips: false
     graviton: false
+    eol: April 2023
   ubuntu2004: &ubuntu2004
     os: Ubuntu
     version: 20.04

@@ -108,6 +108,26 @@ TODO: document how to generate and use zone token on universal.-->
 
 ## TargetRef support matrix
 
+{% if_version gte:2.7.x %}
+{% tabs targetRef useUrlFragment=false %}
+{% tab targetRef Sidecar %}
+| `targetRef`             | Allowed kinds                         |
+| ----------------------- | ------------------------------------- |
+| `targetRef.kind`        | `Mesh`, `MeshSubset`, `MeshService`   |
+| `from[].targetRef.kind` | `Mesh`                                |
+{% endtab %}
+
+{% tab targetRef Builtin Gateway %}
+| `targetRef`             | Allowed kinds                                             |
+| ----------------------- | --------------------------------------------------------- |
+| `targetRef.kind`        | `Mesh`, `MeshGateway`                                     |
+| `to[].targetRef.kind` | `Mesh`                                                    |
+{% endtab %}
+{% endtabs %}
+
+{% endif_version %}
+{% if_version lte:2.5.x %}
+
 | TargetRef type    | Top level | To  | From |
 | ----------------- | --------- | --- | ---- |
 | Mesh              | ✅        | ❌  | ✅   |
@@ -115,6 +135,8 @@ TODO: document how to generate and use zone token on universal.-->
 | MeshService       | ✅        | ❌  | ❌   |
 | MeshServiceSubset | ❌        | ❌  | ❌   |
 | MeshGatewayRoute  | ❌        | ❌  | ❌   |
+
+{% endif_version %}
 
 To learn more about the information in this table, see the [matching docs](/mesh/{{page.release}}/policies/targetref).
 
