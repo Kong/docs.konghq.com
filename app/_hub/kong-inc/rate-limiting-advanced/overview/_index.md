@@ -183,9 +183,8 @@ to perform more requests than the limit, but there will still be a limit per nod
 {% if_plugin_version gte:3.4.x%}
 ## Rate limiting for consumer groups
 
-As of {{site.base_gateway}} 3.4, you can use the [consumer groups entity](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/25d728a0-cfe3-4cf4-8e90-93a5bb15cfd9#/default/post-consumer_groups) to manage custom rate limiting configurations for
+You can use the [consumer groups entity](/gateway/api/admin-ee/latest/#/consumer_groups/get-consumer_groups) to manage custom rate limiting configurations for
 subsets of consumers. This is enabled by default **without** using the `/consumer_groups/:id/overrides` endpoint.
-
 
 You can see an example of this in the [Enforcing rate limiting tiers with the Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/how-to/) guide.
 
