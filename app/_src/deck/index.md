@@ -12,16 +12,10 @@ content_type: explanation
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-deployment-color.svg" alt="">
     <div class="install-text">Install decK</div>
   </a>
-  {% if_version gte:1.35.x %}
+  {% if_version gte:1.24.x %}
   <a href="/deck/{{page.release}}/guides/apiops/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/konnect/icn-cogwheel-nav.svg" alt="">
     <div class="install-text">APIOps with decK</div>
-  </a>
-  {% endif_version %}
-  {% if_version gte:1.24.x %}
-  <a href="/deck/{{page.release}}/use-case/" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-solution-guide.svg" alt="">
-    <div class="install-text">decK Use Case: Streamlining KongAir APIs</div>
   </a>
   {% endif_version %}
   <a href="/deck/{{page.release}}/reference/deck/" class="docs-grid-install-block no-description">
@@ -49,7 +43,7 @@ are processed and routed through Kong.
 
 {% if_version gte:1.35.x %}
 Check out our [KongAir use case](/deck/latest/use-case/) to learn how decK can be used to
-streamline API management processes for an (imaginary) airline.
+streamline API management processes for an airline.
 {% endif_version %}
 
 decK is compatible with {{site.ce_product_name}} >= 1.x and
@@ -135,7 +129,8 @@ Read the [LICENSE](https://github.com/kong/deck/blob/main/LICENSE) file for more
 * [**decK FAQs**](/deck/{{page.release}}/faqs)
 
 {% if_version gte:1.35.x inline:true %}
-* **Use case:** [Streamlining KongAir APIs](/deck/{{page.release}}/use-case/)
+* **Use case:** [Streamlining KongAir APIs](/deck/{{page.release}}/use-case/), based on the 
+[KongAir demo app](https://github.com/Kong/KongAir)
 {% endif_version %}
 
 * **References:** The command line `--help` flag on the main command or a subcommand (like `diff`,

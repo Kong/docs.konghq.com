@@ -2,7 +2,7 @@
 title: decK Use Case - Streamlining KongAir APIs
 ---
 
-Let's explore how KongAir, an imaginary airline, leverages decK to streamline its API management processes. The KongAir API Community of Practice has established a set of governance rules to ensure uniformity and efficiency across all API teams:
+Let's explore how [KongAir](https://github.com/Kong/KongAir), an imaginary airline, leverages decK to streamline its API management processes. The KongAir API Community of Practice has established a set of governance rules to ensure uniformity and efficiency across all API teams:
 
 - Every API team within KongAir, including those responsible for the Flights and Routes APIs, adopts OpenAPI specifications to define their API contracts.
 - These teams maintain the flexibility to employ Kong's Transformation and Validation plugins to enhance their APIs. They manage these plugins' configurations through modular decK state files, promoting autonomy and customization.
@@ -10,34 +10,36 @@ Let's explore how KongAir, an imaginary airline, leverages decK to streamline it
 - The API Platform Team assumes a pivotal role in configuring critical plugins related to observability, security, and traffic control within Kong, centralizing expertise and governance for these essential aspects.
 - Furthermore, this team is tasked with the management of environment-specific variables, ensuring seamless deployment and operation across different stages of the development lifecycle.
 
+You can check out the [KongAir demo app](https://github.com/Kong/KongAir) yourself to see how it all comes together in reality.
+
 The diagram below delineates KongAir's structured approach to deploying decK, steered by their established governance protocols:
 
-1. The Flights API team initiates the process by converting their OpenAPI Specification into a decK state file using the `deck file openapi2kong` command.
-2. Next, they enhance the state file by integrating transformation plugins (such as [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) and [Correlation ID](/hub/kong-inc/correlation-id/) and validation plugins (like [OAS Validation](/hub/kong-inc/oas-validation/) using the `deck file add-plugins` command.
-3. To track the configuration's creation time, they apply relevant tags using `deck file add-tags`.
-4. The state file undergoes a quality check against a predefined linting ruleset with `deck file lint`, ensuring adherence to best practices.
-5. Environment-specific adjustments, including upstream API URLs, are made using the `deck file patch` command.
-6. The Platform Team then merges global plugins for observability, authentication, authorization, and traffic control into the main state file with `deck file merge`.
-7. At this stage, a comprehensive state file for the Flights API is ready. This file is combined with the Routes API's state file using `deck file render`, creating a unified configuration.
-8. The final state file is subjected to an offline validation through `deck file validate`.
+1. The Flights API team initiates the process by converting their OpenAPI Specification into a decK state file using the [`deck file openapi2kong`](/deck/{{page.release}}/reference/deck_file_openapi2kong/) command.
+2. Next, they enhance the state file by integrating transformation plugins (such as [Request Transformer Advanced](/hub/kong-inc/request-transformer-advanced/) and [Correlation ID](/hub/kong-inc/correlation-id/) and validation plugins (like [OAS Validation](/hub/kong-inc/oas-validation/) using the [`deck file add-plugins`](/deck/{{page.release}}/reference/deck_file_add-plugins/) command.
+3. To track the configuration's creation time, they apply relevant tags using [`deck file add-tags`](/deck/{{page.release}}/reference/deck_file_add-tags/).
+4. The state file undergoes a quality check against a predefined linting ruleset with [`deck file lint`](/deck/{{page.release}}/reference/deck_file_lint/), ensuring adherence to best practices.
+5. Environment-specific adjustments, including upstream API URLs, are made using the [`deck file patch`](/deck/{{page.release}}/reference/deck_file_patch/) command.
+6. The Platform Team then merges global plugins for observability, authentication, authorization, and traffic control into the main state file with [`deck file merge`](/deck/{{page.release}}/reference/deck_file_merge/).
+7. At this stage, a comprehensive state file for the Flights API is ready. This file is combined with the Routes API's state file using [`deck file render`](/deck/{{page.release}}/reference/deck_file_render/), creating a unified configuration.
+8. The final state file is subjected to an offline validation through [`deck file validate`](/deck/{{page.release}}/reference/deck_file_validate/).
 
 {% capture validate %}
 {% navtabs %}
 {% navtab Konnect or Gateway %}
 For {{site.konnect_product_name}} or {{site.base_gateway}} deployments, the process involves:
 
-1. Ensuring connectivity with the Admin API via `deck gateway ping`.
-2. Performing an online validation with `deck gateway validate`.
-3. Backing up the current Kong state with `deck gateway dump`.
-4. Previewing changes with `deck gateway diff`.
-5. Applying the new configuration with `deck gateway sync`.
+1. Ensuring connectivity with the Admin API via [`deck gateway ping`](/deck/{{page.release}}/reference/deck_gateway_ping/).
+2. Performing an online validation with [`deck gateway validate`](/deck/{{page.release}}/reference/deck_gateway_validate/).
+3. Backing up the current Kong state with [`deck gateway dump`](/deck/{{page.release}}/reference/deck_gateway_dump/).
+4. Previewing changes with [`deck gateway diff`](/deck/{{page.release}}/reference/deck_gateway_diff/).
+5. Applying the new configuration with [`deck gateway sync`](/deck/{{page.release}}/reference/deck_gateway_sync/).
 
 {% endnavtab %}
 {% navtab KIC %}
 
 For {{site.kic_product_name}} deployments, the sequence is:
 
-1. Transforming the decK state file into Kubernetes manifests using `deck file kong2kic`.
+1. Transforming the decK state file into Kubernetes manifests using [`deck file kong2kic`](/deck/{{page.release}}/reference/deck_file_kong2kic/).
 2. Deploying the configuration with `kubectl apply`.
 {% endnavtab %}
 {% endnavtabs %}
@@ -99,5 +101,7 @@ For {{site.kic_product_name}} deployments, the sequence is:
     target_platform -->|Kubernetes API| deck_kic([deck file kong2kic])
     deck_kic --> k8s_manifests[[KongAir APIs K8s Manifests]]
     k8s_manifests --> kubectl([kubectl apply])
+
+
 {% endmermaid %}
 <!--vale on-->
