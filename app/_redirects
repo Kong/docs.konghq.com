@@ -96,7 +96,7 @@
 /gateway/3.5.x/admin-api/*                   /gateway/api/admin-ee/latest/
 
 # 3.6
-/gateway/3.6.x/production/benchmark /gateway/3.6.x/production/performance/benchmark
+/gateway/3.6.x/production/benchmark/  /gateway/3.6.x/production/performance/benchmark/
 
 # 3.5
 /gateway/latest/kong-enterprise/analytics/* /gateway/3.4.x/kong-enterprise/analytics/:splat
