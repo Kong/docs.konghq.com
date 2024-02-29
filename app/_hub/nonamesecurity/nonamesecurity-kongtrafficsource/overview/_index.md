@@ -16,9 +16,9 @@ For example, an action could be fetching a log file, or to initiating a block ba
 The Noname Security Kong plugin is available as a LuaRocks module.
 The [Noname Security install and configuration documentation](https://docs.nonamesecurity.com/docs/kong-plugin) explains how to log on to the Noname admin user interface, go to the Integrations section of the platform, begin the Kong integration wizard, and download the plugin that is used in the Dockerfile to create a custom docker image with the plugins preinstalled. 
 
-Prevention is enabled by default. To disable the prevention feature, see [official documentation] (https://docs.nonamesecurity.com/docs/kong-plugin#disabling-the-prevention-feature) 
+Prevention is enabled by default. To disable the prevention feature, see [official documentation](https://docs.nonamesecurity.com/docs/kong-plugin#disabling-the-prevention-feature) 
 
-If you already had a prevention integration configured and would like to migrate to this new integration, see [official documentation] (https://docs.nonamesecurity.com/docs/kong-plugin#updating-your-prevention-integration)
+If you already had a prevention integration configured and would like to migrate to this new integration, see [official documentation](https://docs.nonamesecurity.com/docs/kong-plugin#updating-your-prevention-integration)
 
 
 ### Performance benchmarks
