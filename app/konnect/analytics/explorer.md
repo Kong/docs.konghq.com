@@ -86,8 +86,6 @@ After customizing a view using Explorer's metrics and filters, you can perform s
 * **Save as a Report**: This function creates a new custom report based on your current view, allowing you to revisit these specific insights at a later time.
 * **Export as CSV**: If you prefer to analyze your data using other tools, you can download the current view as a CSV file, making it portable and ready for further analysis elsewhere.
 
-You can see this example of [diagnosing latency issues](/konnect/analytics/use-cases/latency).
-
 ## Diagnosing latency issues example
 
 Explorer in {{site.konnect_saas}} gives you the power to monitor your API data in detail and export that data to a CSV file. 
@@ -112,3 +110,7 @@ Then, they add a filter to filter by the control plane
 
 ![Production - Kong vs Upstream Latency (last hour)](/assets/images/products/konnect/analytics/custom-reports/kong-vs-upstream-latency.png){:.image-border}
 > _**Figure 1:** Line chart showing average upstream and Kong latency over the last hour. ._
+
+## More information
+
+* [Custom Reports Use Case - Analyze API Usage and Performance](/konnect/analytics/use-cases/): Learn how to analyze API usage and performance using custom reports.
