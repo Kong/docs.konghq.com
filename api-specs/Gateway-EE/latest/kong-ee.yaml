@@ -14388,6 +14388,140 @@ paths:
       operationId: get-event-hooks-event-hook-id-ping
       description: |
         Ping a webhook event hook.
+  '/{workspace_name_or_id}/rbac/roles':
+    parameters:
+      - schema:
+          type: string
+        name: workspace_name_or_id
+        in: path
+        required: true
+        description: The workspace name or UUID.
+    get:
+      summary: List roles for a workspace
+      tags: 
+        - Workspaces
+      responses:
+        '200': 
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        comment:
+                          type: string
+                        created_at:
+                          type: integer
+                        id:
+                          type: string
+                        name:
+                          type: string
+                  next:
+                    type: string
+                x-examples:
+                    Example 1:
+                      data:
+                        - comment: 'Full access to all endpoints, across all workspaces—except RBAC Admin API'
+                          created_at: 1557506249
+                          id: 38a03d47-faae-4366-b430-f6c10aee5029
+                          name: admin
+                        - comment: 'Read access to all endpoints, across all workspaces'
+                          created_at: 1557506249
+                          id: 4141675c-8beb-41a5-aa04-6258ab2d2f7f
+                          name: read-only
+                        - comment: 'Full access to all endpoints, across all workspaces'
+                          created_at: 1557506249
+                          id: 888117e0-f2b3-404d-823b-dee595423505
+                          name: super-admin
+                        - comment: null
+                          created_at: 1557532241
+                          id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
+                          name: doc_lord
+                      next: null
+              examples:
+                Multiple roles:
+                  value:
+                    data:
+                      - comment: 'Full access to all endpoints, across all workspaces—except RBAC Admin API'
+                        created_at: 1557506249
+                        id: 38a03d47-faae-4366-b430-f6c10aee5029
+                        name: admin
+                      - comment: 'Read access to all endpoints, across all workspaces'
+                        created_at: 1557506249
+                        id: 4141675c-8beb-41a5-aa04-6258ab2d2f7f
+                        name: read-only
+                      - comment: 'Full access to all endpoints, across all workspaces'
+                        created_at: 1557506249
+                        id: 888117e0-f2b3-404d-823b-dee595423505
+                        name: super-admin
+                      - comment: 'null'
+                        created_at: 1557532241
+                        id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
+                        name: doc_lord
+                    next: 'null'
+      operationId: get-rbac-roles-by-workspace
+      description: Listr all roles by workspace
+    post: 
+      summary: Add a role
+      operationId: post-rbac-roles-workspace
+      responses:
+          '201':
+            description: Created
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    comment:
+                      type: string
+                    created_at:
+                      type: integer
+                    id:
+                      type: string
+                    is_default:
+                      type: boolean
+                    name:
+                      type: string
+                  x-examples:
+                    Example 1:
+                      comment: null
+                      created_at: 1557532241
+                      id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
+                      is_default: false
+                      name: service_reader
+                examples:
+                  New role response body:
+                    value:
+                      comment: 'null'
+                      created_at: 1557532241
+                      id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
+                      is_default: false
+                      name: service_reader
+      tags:
+        - Workspaces
+      requestBody:
+        content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  
+
+                    description: The RBAC role name.
+                  comment:
+                    type: string
+                  
+                    description: A string describing the RBAC user object.
+        description: The request body contains the name of the role and an optional attribute. 
+      description: Add a role.
+
   '/fips-status':
     get:
       summary: FIPS Mode Status
