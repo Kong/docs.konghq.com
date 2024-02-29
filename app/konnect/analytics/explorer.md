@@ -9,26 +9,26 @@ Explorer is an intuitive web-based interface that displays API usage data gather
 To begin using Explorer, go to the **Analytics** {% konnect_icon analytics %} section and select **Explorer**. 
 {% navtabs %}
 {% navtab Grouping and Filtering %}
-### Grouping and filtering
+## Grouping and filtering
 
 This is an overview of the different grouping and filtering categories available: 
 
-Category | Description
----------|------------
-None | Aggregate all of the data in the organization without any grouping.
-API Product | Group or filter the data by the {{site.konnect_short_name}} API product.
-API Product Version | Group or filter the data by the {{site.konnect_short_name}} API product version.
-Route | Group or filter the data by route.
-Application | Group or filter the data by application.
-Status Code | Group or filter the data by individual response status code. Individual status codes can range from 100 to 599.
-Status Code (grouped) | Group or filter the data by response status code category: 1XX, 2XX, 3XX, 4XX, and 5XX.
-Control Plane | Group or filter the data by control plane.
-Gateway Services | Group or filter the data by gateway services.
-Consumer | Group or filter the data by consumer.
+* **None:** Aggregate all of the data in the organization without any grouping.
+* **API Product:** Group or filter the data by the {{site.konnect_short_name}} API product.
+* **API Product Version:** Group or filter the data by the {{site.konnect_short_name}} API product version.
+* **Route:** Group or filter the data by route.
+* **Application:** Group or filter the data by application.
+* **Status Code:** Group or filter the data by individual response status code. Individual status codes can range from 100 to 599.
+* **Status Code Group:** Group or filter the data by response status code category: 1XX, 2XX, 3XX, 4XX, and 5XX.
+* **Control Plane:** Group or filter the data by control plane.
+* **Control Plane Group:** Group or filter the data by control plane group
+* **Data Plane Node:** Group or filter the data by data plane node
+* **Gateway Services:** Group or filter the data by gateway services.
+* **Consumer:** Group or filter the data by consumer.
 {% endnavtab %}
 {% navtab Metrics %}
 
-### Metrics
+## Metrics
 
 Traffic metrics provide insight into which of your services are being used and how they are responding. Within a single report, you have the flexibility to choose one or multiple metrics from the same category.
 
@@ -44,7 +44,7 @@ Response Size | Size | The size of the response payload returned to the client, 
 
 {% endnavtab %}
 {% navtab Time intervals %}
-### Time intervals
+## Time intervals
 
 The time frame selector controls the time frame of data visualized, which indirectly controls the
 granularity of the data. For example, the “5M” selection displays five minutes in
@@ -79,11 +79,36 @@ Previous month | Data is aggregated in daily increments. Logs any traffic in the
 
 {% endnavtab %}
 {% endnavtabs %}
-### Actions
+## Actions
 
 After customizing a view using Explorer's metrics and filters, you can perform several actions:
 
-**Save as a Report**: This function creates a new custom report based on your current view, allowing you to revisit these specific insights at a later time.
-**Export as CSV**: If you prefer to analyze your data using other tools, you can download the current view as a CSV file, making it portable and ready for further analysis elsewhere.
+* **Save as a Report**: This function creates a new custom report based on your current view, allowing you to revisit these specific insights at a later time.
+* **Export as CSV**: If you prefer to analyze your data using other tools, you can download the current view as a CSV file, making it portable and ready for further analysis elsewhere.
 
 You can see this example of [diagnosing latency issues](/konnect/analytics/use-cases/latency).
+
+## Diagnosing latency issues example
+
+Explorer in {{site.konnect_saas}} gives you the power to monitor your API data in detail and export that data to a CSV file. 
+Let's go through an example situation where you could leverage custom reports created in Explorer. With this type of report, you can start exploring which upstream service might cause the latency spike.
+
+One way you can build custom reports is by navigating to {% konnect_icon analytics %} **Analytics** in the {{site.konnect_short_name}} menu, then **Explorer**. This brings you to a page where you can control which analytics data you want to visualize. From here, configure the filter settings as follows:
+
+* **Name**: Production - Kong vs Upstream Latency (last hour)
+* **Show**: Line
+* **Date/Time**: Last One Hour
+* **With**: Kong Latency (avg), Upstream Latency (avg)
+* **Per**: Minute
+
+{:.note}
+> You can select more than one metric by clicking on **Select Multiple** next to the Metrics dropdown list.
+
+Then, they add a filter to filter by the control plane
+
+* **Filter By**: Control Plane
+* **Choose Operator**: In
+* **Filter Value**: prod
+
+![Production - Kong vs Upstream Latency (last hour)](/assets/images/products/konnect/analytics/custom-reports/kong-vs-upstream-latency.png){:.image-border}
+> _**Figure 1:** Line chart showing average upstream and Kong latency over the last hour. ._

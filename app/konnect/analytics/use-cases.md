@@ -1,9 +1,9 @@
 ---
-title: Analyze API Usage and Performance
+title: Custom Reports Use Case - Analyze API Usage and Performance
 content_type: tutorial
 ---
 
-Custom reporting in {{site.konnect_saas}} gives you the power to monitor your API data in detail and export that data to CSV. 
+Custom reporting in {{site.konnect_saas}} enables you to save, revisit, and share views created during data exploration, facilitating analysis over different time intervals. These reports can be used to analyze metrics, investigate anomalies and sharing. 
 Let's go through some example situations where you could leverage custom reports.
 
 In this scenario, you just joined an organization as an API product manager. 
@@ -57,11 +57,11 @@ To gain further insight into the Accounts API, let's build a report that display
 Set the following options in the UI:
 
 * **Name**: Daily Accounts API Usage (last 30 days)
-* **Show**: Line chart
 * **Date/Time**: Last 30 days
+* **Show**: Line
 * **With**: Request Count
+* **And**: Day
 * **By**: API Product
-* **And**: Daily
 
 Add a filter for the Accounts API. Click **Add Filter**, then set the following options:
 
@@ -100,8 +100,8 @@ You can track requests per minute, per day, and even differentiate it across dif
 To configure the {{site.konnect_saas}} to create a look back report of total traffic across different applications, set the following options in the UI: 
 
 * **Name**: API Usage by Application (last 30 days)
-* **Show**: Vertical bar chart
 * **Date/Time**: Last 30 days
+* **Show**: Vertical Bar
 * **With**: Request Count
 * **By**: API Product
 * **And**: Application
@@ -126,10 +126,10 @@ Your company determines that it is critical that payments are processed quickly 
 
 * **Name**: Payment API - Latency (last 30 days)
 * **Date/Time**: Last 30 days
-* **Show**: Line chart
+* **Show**: Line
 * **With**: Response Latency (p99)
+* **Per**: Day
 * **By**: API Product 
-* **And**: None
 
 Add a filter for the Payment API. Click **Add Filter**, then set the following options:
  
@@ -160,7 +160,6 @@ or the Analytics Editor role to let them customize the reports for themselves.
 plug into any of your external dashboards or visualization services.
 
     Open one of the reports you created, then from the **Reports Actions** drop-down, select **Export Report as CSV**.
-
 
 ## Conclusion 
 

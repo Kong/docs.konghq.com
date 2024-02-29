@@ -58,7 +58,9 @@
 
 # Konnect Analytics Explorer revision
 
-/konnect/analytics/troubleshoot/    /konnect/analytics/dashboard/#troubleshooting
+/konnect/analytics/reference/   /konnect/analytics/explorer/
+/konnect/analytics/use-cases/latency/   /konnect/analytics/explorer/#diagnosing-latency-issues-example
+/konnect/analytics/custom-reports/  /konnect/analytics/use-cases/
 
 # API markdown doc deprecation
 

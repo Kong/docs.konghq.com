@@ -208,18 +208,12 @@
       url: /analytics/dashboard/
     - text: Explorer
       url: /analytics/explorer/
-    - text: Reports
-      items:
-        - text: Overview
-          url: /analytics/custom-reports/
-        - text: Analyze API Usage and Performance
-          url: /analytics/use-cases/
-        - text: Diagnosing Latency Issues
-          url: /analytics/use-cases/latency/
-        - text: Reports Reference
-          url: /analytics/reference/
+    - text: Analyze API Usage and Performance with Reports
+      url: /analytics/use-cases/
     - text: Requests
       url: /analytics/api-requests/
+    - text: Troubleshooting
+      url: /analytics/troubleshoot
 - title: Org Management
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
   items:

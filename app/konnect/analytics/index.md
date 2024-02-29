@@ -15,17 +15,12 @@ Konnect provides embedded reports at various different levels throughout its use
 
 You can use the following diagram to help you determine which analytics tools are best for your use case:
 
-{% mermaid %}
-flowchart TD
-    A((What is your goal?)) -->B(Quickly understand API usage and performance at a glance)
-    A((What is your goal?)) -->C(In-depth analytics of API data)
-    B --> D([Summary Dashboard])
-    C --> E([Explorer])
-
-    %% this section defines node interactions
-    click D "/konnect/analytics/dashboard/"
-    click E "/konnect/analytics/explorer/"
-{% endmermaid %}
+| You want to... | Then use... |
+| -------------- | ----------- |
+| Quickly understand API usage and performance at a glance, and gain insights across your entire organization. | [Summary dashboard](/konnect/analytics/dashboard/) |
+| Browse API usage data to gain access to key performance and health statistics. Visualize and slice and dice API usage data you’ve stored in only a few clicks. | [Explorer](/konnect/analytics/explorer/) |
+| Communicate insights across teams or departments and share important KPIs. | [Custom reports](/konnect/analytics/custom-reports/) |
+| Understand user behavior or pin point where issues occur. See detailed information about each individual request made to your APIs. | [Requests](/konnect/analytics/api-requests/)  |
 
 
 ### Charts and limitations
