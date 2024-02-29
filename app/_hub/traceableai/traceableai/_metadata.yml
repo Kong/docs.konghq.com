@@ -1,0 +1,41 @@
+# This file sets metadata for an individual Kong partner plugin.
+# View the full instructions for documenting a plugin
+# at https://docs.konghq.com/contributing/partner-plugins
+
+name: Traceable.ai
+publisher: Traceable.ai
+categories:
+  - security
+type: plugin
+
+desc: API security with inline request blocking and data capture.
+
+support_url: https://support.traceable.ai
+
+kong_version_compatibility:
+  community_edition:
+    compatible:
+      - 3.4.x
+      - 3.3.x
+      - 3.2.x
+      - 3.1.x
+      - 3.0.x
+      - 2.8.x
+      - 2.7.x
+      - 2.6.x
+  enterprise_edition:
+    compatible:
+      - 3.4.x
+      - 3.3.x
+      - 3.2.x
+      - 3.1.x
+      - 3.0.x
+      - 2.8.x
+      - 2.7.x
+      - 2.6.x
+
+enterprise: false
+
+konnect: false
+
+dbless_compatible: yes
