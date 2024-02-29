@@ -18,7 +18,7 @@ The [Noname Security install and configuration documentation](https://docs.nonam
 
 Prevention is enabled by default. To disable the prevention feature, review the [official documentation](https://docs.nonamesecurity.com/docs/kong-plugin#disabling-the-prevention-feature).
 
-If you already had a prevention integration configured and would like to migrate to this new integration, see [official documentation](https://docs.nonamesecurity.com/docs/kong-plugin#updating-your-prevention-integration)
+If you already had a prevention integration configured and would like to migrate to this new integration, see the [upgrade guide in the official documentation](https://docs.nonamesecurity.com/docs/kong-plugin#updating-your-prevention-integration).
 
 
 ### Performance benchmarks
