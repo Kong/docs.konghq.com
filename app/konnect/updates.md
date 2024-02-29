@@ -20,9 +20,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 * [Proxy Cache](/hub/kong-inc/proxy-cache/)
 * [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/)
 
-## February 2024
-
-
 **Konnect API Products**
 : Konnect now supports reusable auth strategies that can be applied to one or more API product versions. Konnect now also supports multiple DCR providers for portal applications. Users can now create separate DCR providers with various Identity Providers and apply them selectively to API Product Versions while still using non-DCR auth strategies for other API product versions. For more information, see [Enable app registration with multiple IdPs](/konnect/dev-portal/applications/enable-app-reg/#enable-app-registration-with-multiple-idps)
 
