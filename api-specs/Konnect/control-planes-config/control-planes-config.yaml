@@ -6910,4 +6910,3 @@ components:
         title: Not Found
         instance: kong:trace:6816496025408232265
         detail: Not Found
-x-internal: false
