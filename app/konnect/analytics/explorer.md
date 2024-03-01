@@ -93,14 +93,11 @@ Let's go through an example situation where you could leverage custom reports cr
 
 One way you can build custom reports is by navigating to {% konnect_icon analytics %} **Analytics** in the {{site.konnect_short_name}} menu, then **Explorer**. This brings you to a page where you can control which analytics data you want to visualize. From here, configure the filter settings as follows:
 
-* **Name**: Production - Kong vs Upstream Latency (last hour)
 * **Show**: Line
-* **Date/Time**: Last One Hour
-* **With**: Kong Latency (avg), Upstream Latency (avg)
+* **Date/Time**: Last 15 minutes
+* **With**: Kong Latency (p95), Upstream Latency (p95)
 * **Per**: Minute
 
-{:.note}
-> You can select more than one metric by clicking on **Select Multiple** next to the Metrics dropdown list.
 
 Then, they add a filter to filter by the control plane
 

@@ -67,7 +67,7 @@ Add a filter for the Accounts API. Click **Add Filter**, then set the following 
 
 * **Filter By**: API Product
 * **Choose Operator**: In
-* **Filter Value**: Accounts API (or your own API name)
+* **Filter Value**: Account (or your own API name)
 
 ![Daily Accounts API Usage (last 30 days)](/assets/images/products/konnect/analytics/custom-reports/total-usage-accounts-api-30.png){:.image-border}
 > _**Figure 2:** Line chart showing the daily usage for the Accounts API over the last 30 days._
