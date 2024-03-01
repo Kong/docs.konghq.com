@@ -433,17 +433,12 @@ header.navbar-v2 {
         box-sizing: border-box;
         border-radius: 4px;
         font-family: Roboto;
-        font-weight: 400;
+        font-weight: 500;
         font-size: 16px;
         line-height: 22px;
         transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
         color: #fff;
         margin-left: 8px;
-
-        &:hover {
-          background: linear-gradient(90deg,#1155cb 0, #0a2b66 100%);
-          color: white;
-        }
       }
     }
 
@@ -689,13 +684,29 @@ header.navbar-v2 {
     }
   }
 
-  #konnect-cta {
+  #top-cta {
     color: #fff;
     background: #1155CB;
 
     &:hover {
-      background: linear-gradient(90deg,#1155cb 0, #0a2b66 100%);
+      background: #0e46a8;
+      border-color: #0e46a8;
       color: #fff;
+    }
+  }
+
+  #konnect-cta {
+    background-color: transparent;
+    border: 1px solid #fff;
+
+    @media (max-width: 1100px) {
+      border: 1px solid #1155cb;
+    }
+
+    &:hover {
+      background-color: #fff;
+      border-color: #fff;
+      color: #35363a;
     }
   }
 }
