@@ -39,6 +39,22 @@ overrides:
   2.7.x: 0.12.x
 ```
 
+## Version-specific plugin pages
+
+Content within a page can be conditionally rendered using `if_plugin_version`.
+Adding specific pages to a range of versions is also supported by including
+`minimum_version` and/or `maximum_version` in the frontmatter the of the page.
+
+```yaml
+---
+title: Page for a specific version range
+minimum_version: 3.6.x
+---
+```
+
+If a page has one of these set in frontmatter, it gets generated for that version range.
+Otherwise, it defaults to the setting for the whole plugin, which is specified in `versions.yml`
+
 ## Open source and enterprise discrepancies
 
 In some cases, the version of a plugin is different between the Community Edition (OSS) and Enterprise Edition. 
