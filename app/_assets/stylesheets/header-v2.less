@@ -1,5 +1,5 @@
 .item-hovered {
-  text-decoration: underline;
+  text-decoration: none;
   color: @color-blue !important;
 }
 
@@ -334,7 +334,7 @@ header.navbar-v2 {
         }
 
         &:hover {
-          text-decoration: underline;
+          text-decoration: none;
           color: #fff !important;
         }
 
@@ -483,9 +483,15 @@ header.navbar-v2 {
   @media (max-width: 1470px) {
     .navbar-content {
       .navbar-items {
+        color: #043558;
+
         .navbar-item {
           margin-right: 20px;
           transition: ease 0.5s;
+        }
+
+        &:hover {
+          .item-hovered();
         }
       }
       .search-input-wrapper {
@@ -531,7 +537,12 @@ header.navbar-v2 {
     .navbar-content {
       .navbar-items {
         .navbar-item {
+          color: #043558;
           margin-right: 24px;
+
+          &:hover {
+            .item-hovered();
+          }  
         }
 
         .navbar-button {
@@ -637,6 +648,7 @@ header.navbar-v2 {
           align-items: center;
           justify-content: center;
           align-self: stretch;
+          color: #1155CB;
         }
       }
 
