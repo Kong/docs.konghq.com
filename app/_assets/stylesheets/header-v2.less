@@ -9,8 +9,7 @@ header.navbar-v2 {
   top: 0;
   right: 0;
   height: 60px;
-  background: white;
-  box-shadow: 0 8px 24px rgba(4, 53, 88, 0.1);
+  background: #121418;
   z-index: 100;
   padding: 0 24px;
 
@@ -227,7 +226,7 @@ header.navbar-v2 {
     margin: 0 auto;
     display: flex;
     align-items: center;
-    background: white;
+    background: #121418;
 
     .navbar-brand {
       display: flex;
@@ -305,14 +304,14 @@ header.navbar-v2 {
         font-family: Roboto;
         font-size: 16px;
         line-height: 22px;
-        color: #043558;
+        color: #AAB4BB;
         transition: color 0.25s;
         margin-right: 30px;
         padding: 18px 0;
         white-space: nowrap;
         cursor: pointer;
         font-weight: 400;
-        color: #043558;
+        color: #AAB4BB;
         font: 500 16px/24px Roboto;
         transition: color 0.25s;
 
@@ -324,6 +323,7 @@ header.navbar-v2 {
           justify-content: space-between;
 
           .caret {
+            color: #58A6FF;
             margin-left: 5px;
             margin-top: 32px;
           }
@@ -334,7 +334,8 @@ header.navbar-v2 {
         }
 
         &:hover {
-          .item-hovered();
+          text-decoration: underline;
+          color: #fff !important;
         }
 
         .navbar-item-submenu {
@@ -424,7 +425,7 @@ header.navbar-v2 {
         height: auto;
         padding: 8px 16px;
         border: 1px solid #1155cb;
-        background: linear-gradient(90deg,#1155cb 0, #1155cb 100%);
+        background: none;
         box-sizing: border-box;
         border-radius: 4px;
         font-family: Roboto;
@@ -458,8 +459,8 @@ header.navbar-v2 {
       div {
         position: absolute;
         width: 100%;
-        border: 1px solid #004b80;
-        background: #004b80;
+        border: 1px solid #fff;
+        background: #fff;
         border-radius: 2px;
         left: 0;
         top: 0;
@@ -554,6 +555,7 @@ header.navbar-v2 {
         padding: 24px 0;
         z-index: -100;
         max-height: unset;
+        color: #043558;
 
         > ul {
           max-height: unset;
@@ -666,15 +668,15 @@ header.navbar-v2 {
           width: 100%;
           margin: 0 10px;
           padding: 2px 16px;
-          background: rgba(248, 249, 252, 1);
+          background:#666C70;
         }
       }
     }
   }
 
   #top-cta {
-    color: #1155cb;
-    background: linear-gradient(90deg,#fff 0, #fff 100%);
+    color: #fff;
+    background: #1155CB;
 
     &:hover {
       background: linear-gradient(90deg,#1155cb 0, #0a2b66 100%);
