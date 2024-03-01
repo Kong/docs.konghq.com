@@ -2,7 +2,6 @@
 nav_title: Overview
 ---
 
-{% if_plugin_version gte:3.1.x %}
 Rate limit how many HTTP requests can be made in a given time frame.
 
 The Rate Limiting Advanced plugin offers more functionality than the {{site.base_gateway}} (OSS) [Rate Limiting plugin](/hub/kong-inc/rate-limiting/), such as:
@@ -13,7 +12,6 @@ The Rate Limiting Advanced plugin offers more functionality than the {{site.base
 * More control over which requests contribute to incrementing the rate limiting counters via the `disable_penalty` parameter
 {% if_plugin_version gte:3.4.x %}
 * Consumer groups support: Apply different rate limiting configurations to select groups of consumers. Learn more in [Rate limiting for consumer groups](/hub/kong-inc/rate-limiting-advanced/how-to/)
-{% endif_plugin_version %}
 {% endif_plugin_version %}
 
 {% if_plugin_version lte:3.0.x %}
@@ -82,7 +80,7 @@ expected to be unavailable to the client. When using `window_type=sliding` and `
 may increase due to the rate calculation for the sliding window.
 
 {:.important}
-> The headers `RateLimit-Limit`, `RateLimit-Remaining`, and `RateLimit-Reset` are based on the Internet-Draft [RateLimit Header Fields for HTTP]({% if_plugin_version lte:3.0.x %}https://tools.ietf.org/html/draft-polli-ratelimit-headers-02{% endif_plugin_version %}{% if_plugin_version gte:3.1.x %}https://datatracker.ietf.org/doc/draft-ietf-httpapi-ratelimit-headers{% endif_plugin_version %}) and may change in the future to respect specification updates.
+> The headers `RateLimit-Limit`, `RateLimit-Remaining`, and `RateLimit-Reset` are based on the Internet-Draft [RateLimit Header Fields for HTTP](https://datatracker.ietf.org/doc/draft-ietf-httpapi-ratelimit-headers) and may change in the future to respect specification updates.
 
 ## Multiple limits and window sizes {#multi-limits-windows}
 
