@@ -13,18 +13,18 @@ To begin using Explorer, go to the **Analytics** {% konnect_icon analytics %} se
 
 This is an overview of the different grouping and filtering categories available: 
 
-* **None:** Aggregate all of the data in the organization without any grouping.
-* **API Product:** Group or filter the data by the {{site.konnect_short_name}} API product.
-* **API Product Version:** Group or filter the data by the {{site.konnect_short_name}} API product version.
-* **Route:** Group or filter the data by route.
-* **Application:** Group or filter the data by application.
-* **Status Code:** Group or filter the data by individual response status code. Individual status codes can range from 100 to 599.
-* **Status Code Group:** Group or filter the data by response status code category: 1XX, 2XX, 3XX, 4XX, and 5XX.
-* **Control Plane:** Group or filter the data by control plane.
-* **Control Plane Group:** Group or filter the data by control plane group
-* **Data Plane Node:** Group or filter the data by data plane node
-* **Gateway Services:** Group or filter the data by gateway services.
-* **Consumer:** Group or filter the data by consumer.
+* **None** 
+* **API Product**
+* **API Product Version** 
+* **Route** 
+* **Application**
+* **Status Code** (status codes can range from 100 to 599)
+* **Status Code Group** (1XX, 2XX, 3XX, 4XX, and 5XX)
+* **Control Plane**
+* **Control Plane Group**
+* **Data Plane Node** 
+* **Gateway Services** 
+* **Consumer** 
 {% endnavtab %}
 {% navtab Metrics %}
 
@@ -98,8 +98,7 @@ One way you can build custom reports is by navigating to {% konnect_icon analyti
 * **With**: Kong Latency (p95), Upstream Latency (p95)
 * **Per**: Minute
 
-
-Then, they add a filter to filter by the control plane
+Then, you can add a filter to filter by the control plane:
 
 * **Filter By**: Control Plane
 * **Choose Operator**: In

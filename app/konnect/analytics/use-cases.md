@@ -3,7 +3,7 @@ title: Custom Reports Use Case - Analyze API Usage and Performance
 content_type: tutorial
 ---
 
-Custom reporting in {{site.konnect_saas}} enables you to save, revisit, and share views created during data exploration, facilitating analysis over different time intervals. These reports can be used to analyze metrics, investigate anomalies and sharing. 
+Custom reporting in {{site.konnect_saas}} enables you to save, revisit, and share views created during data exploration, facilitating analysis over different time intervals. These reports can be used to analyze metrics, investigate anomalies, and you can share a saved report to communicate these insights with others.
 Let's go through some example situations where you could leverage custom reports.
 
 In this scenario, you just joined an organization as an API product manager. 

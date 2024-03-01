@@ -13,7 +13,7 @@ Konnect provides embedded reports at various different levels throughout its use
 
 {{site.konnect_short_name}}  Analytics {% konnect_icon analytics %} provides different tools to help you track the performance and behavior of your APIs and data plane nodes. You can use these tools to access key statistics, monitor vitals, and pinpoint anomalies in real time. 
 
-You can use the following diagram to help you determine which analytics tools are best for your use case:
+You can use the following table to help you determine which analytics tools are best for your use case:
 
 | You want to... | Then use... |
 | -------------- | ----------- |
