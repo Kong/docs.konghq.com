@@ -2,6 +2,229 @@
 
 <!--vale off-->
 
+## Week 9
+
+### [Fix: Consumer groups links and descriptions](https://github.com/Kong/docs.konghq.com/pull/7016) (2024-02-29)
+
+The consumer groups description is outdated on the Kong Enterprise overview, as it describes consumer groups for rate limiting only. This is no longer the case.
+
+https://docs.konghq.com/gateway/latest/kong-enterprise/#consumer-groups
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced/overview/
+
+
+### [chore: Add step to stop kong before uninstalling](https://github.com/Kong/docs.konghq.com/pull/7012) (2024-02-28)
+
+Add a step to stop Kong before trying to uninstall it to prevent errors, per https://konghq.atlassian.net/browse/DOCU-253
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.1.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.2.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.3.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.4.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.5.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.6.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.7.x/kong-manager/auth/oidc/configure
+- https://docs.konghq.com/gateway/3.0.x/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.1.x/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.2.x/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.3.x/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.4.x/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.5.x/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.6.x/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.7.x/get-started/load-balancing
+- https://docs.konghq.com/gateway/3.0.x/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.1.x/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.2.x/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.3.x/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.4.x/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.5.x/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.6.x/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.7.x/get-started/services-and-routes
+- https://docs.konghq.com/gateway/3.0.x/migrate-cassandra-to-postgres/
+- https://docs.konghq.com/gateway/3.1.x/migrate-cassandra-to-postgres/
+- https://docs.konghq.com/gateway/3.2.x/migrate-cassandra-to-postgres/
+- https://docs.konghq.com/gateway/3.3.x/migrate-cassandra-to-postgres/
+- https://docs.konghq.com/gateway/3.4.x/migrate-cassandra-to-postgres/
+- https://docs.konghq.com/gateway/3.5.x/migrate-cassandra-to-postgres/
+- https://docs.konghq.com/gateway/3.6.x/migrate-cassandra-to-postgres/
+- https://docs.konghq.com/gateway/3.7.x/migrate-cassandra-to-postgres/
+
+
+### [Fix: Delete Kong prevention plugin directory and update metadata show compatibility with Konnect](https://github.com/Kong/docs.konghq.com/pull/7007) (2024-02-29)
+
+Deleted the prevention plugin directory and updated docs and the metadata to show compatibility with kong konnect and the merging of the prevention plugin with the traffic source plugin and version compatibility with 3.5.x
+
+#### Modified
+
+- https://docs.konghq.com/hub/nonamesecurity/nonamesecurity-kongtrafficsource/_metadata.yml
+- https://docs.konghq.com/hub/nonamesecurity/nonamesecurity-kongtrafficsource/overview/
+- https://docs.konghq.com/assets/images/icons/hub/nonamesecurity_nonamesecurity-kongtrafficsource.png
+
+
+### [Chore: Move Gateway 3.2 to sunset versions](https://github.com/Kong/docs.konghq.com/pull/7004) (2024-02-29)
+
+Gateway 3.2.x enters sunset support on Feb 28th. 
+
+Resolves [DOCU-3521](https://konghq.atlassian.net/browse/DOCU-3521).
+
+#### Modified
+
+- https://docs.konghq.com/mesh/2.1.x/features/meshopa
+- https://docs.konghq.com/gateway/3.0.x/install/linux/rhel
+- https://docs.konghq.com/gateway/3.1.x/install/linux/rhel
+- https://docs.konghq.com/gateway/3.2.x/install/linux/rhel
+- https://docs.konghq.com/gateway/3.3.x/install/linux/rhel
+- https://docs.konghq.com/gateway/3.4.x/install/linux/rhel
+- https://docs.konghq.com/gateway/3.5.x/install/linux/rhel
+- https://docs.konghq.com/gateway/3.6.x/install/linux/rhel
+- https://docs.konghq.com/gateway/3.7.x/install/linux/rhel
+- https://docs.konghq.com/gateway/3.0.x/install/linux/ubuntu
+- https://docs.konghq.com/gateway/3.1.x/install/linux/ubuntu
+- https://docs.konghq.com/gateway/3.2.x/install/linux/ubuntu
+- https://docs.konghq.com/gateway/3.3.x/install/linux/ubuntu
+- https://docs.konghq.com/gateway/3.4.x/install/linux/ubuntu
+- https://docs.konghq.com/gateway/3.5.x/install/linux/ubuntu
+- https://docs.konghq.com/gateway/3.6.x/install/linux/ubuntu
+- https://docs.konghq.com/gateway/3.7.x/install/linux/ubuntu
+
+
+### [Feat: Appreg v2 updates ](https://github.com/Kong/docs.konghq.com/pull/7003) (2024-02-28)
+
+This PR is a copy of the accidentally merged **https://github.com/Kong/docs.konghq.com/pull/6855** 
+
+
+Updating DCR docs for App Reg v2 API, specifically documenting two major changes:
+
+1. You now create auth configs independently (instead of at the Org wide level) and apply them to the API Product versions of your choice
+2. If you want to use a DCR auth config, you need to independently create the DCR config and then apply it your auth config.
+
+https://github.com/Kong/docs.konghq.com/pull/6855
+https://konghq.atlassian.net/browse/DOCU-3602
+https://konghq.atlassian.net/browse/DOCU-3684
+
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Added
+
+- https://docs.konghq.com/konnect/getting-started/app-registration
+
+#### Modified
+
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/manage-app-connections
+- https://docs.konghq.com/konnect/dev-portal/access-and-approval/manage-app-reg-requests
+- https://docs.konghq.com/konnect/dev-portal/access
+- https://docs.konghq.com/konnect/dev-portal/applications/application-overview
+- https://docs.konghq.com/konnect/dev-portal/applications/dev-apps
+- https://docs.konghq.com/konnect/dev-portal/applications/dynamic-client-registration/auth0
+- https://docs.konghq.com/konnect/dev-portal/applications/dynamic-client-registration/azure
+- https://docs.konghq.com/konnect/dev-portal/applications/dynamic-client-registration/curity
+- https://docs.konghq.com/konnect/dev-portal/applications/dynamic-client-registration/
+- https://docs.konghq.com/konnect/dev-portal/applications/dynamic-client-registration/okta
+- https://docs.konghq.com/konnect/dev-portal/applications/enable-app-reg
+- https://docs.konghq.com/konnect/updates
+
+
+### [Add Gateway 3.6 to KIC compatibility matrix](https://github.com/Kong/docs.konghq.com/pull/6998) (2024-02-27)
+
+
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.1.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.2.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.3.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.4.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.5.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.6.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.7.x/install/linux/debian
+
+
+### [Updated example of Auth0 configuration _auth0.md](https://github.com/Kong/docs.konghq.com/pull/6996) (2024-02-27)
+
+Auth0 configurations example is misleading in docs, updated the doc to remove properties that are not needed and added the important property that is needed.
+
+
+
+
+Auth0 configurations example is misleading in docs, updated the doc to remove unwanted properties and added the important property that is needed.
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/third-party/
+
+
+### [Automated submodule update (app/_src/.repos/kong-plugins)](https://github.com/Kong/docs.konghq.com/pull/6995) (2024-02-26)
+
+
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.1.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.2.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.3.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.4.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.5.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.6.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.7.x/install/linux/debian
+
+
+### [Release: Gateway 3.6.1.0](https://github.com/Kong/docs.konghq.com/pull/6994) (2024-02-26)
+
+Changelog and version bump for gateway 3.6.1.0
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Fix: replace benchmark redirect with moved url entry](https://github.com/Kong/docs.konghq.com/pull/6983) (2024-02-29)
+
+This URL got flagged as 404ing at /latest/ by google console. Did some digging, realized that it should probably be in moved URLs instead anyway, based on the following rule:
+* When a topic is moved and not removed or renamed, we should add an entry to moved URLs instead of redirects.
+
+This _should_ generate the correct redirects automatically.
+
+#### Modified
+
+- https://docs.konghq.com/moved_urls.yml
+
+
+### [docs(mesh): update MeshGlobalRateLimit and MeshOPA targetref support table](https://github.com/Kong/docs.konghq.com/pull/6948) (2024-02-28)
+
+<!-- What did you change and why? -->
+
+Change the targetRef support table since 2.6 it has a different layout.
+
+**Listener tags are not yet supported because the plugins need to be adjusted**
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.1.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.2.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.3.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.4.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.5.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.6.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.7.x/install/linux/debian
+- https://docs.konghq.com/gateway/3.0.x/install/linux/rhel
+- https://docs.konghq.com/gateway/3.1.x/install/linux/rhel
+- https://docs.konghq.com/gateway/3.2.x/install/linux/rhel
+- https://docs.konghq.com/gateway/3.3.x/install/linux/rhel
+- https://docs.konghq.com/gateway/3.4.x/install/linux/rhel
+- https://docs.konghq.com/gateway/3.5.x/install/linux/rhel
+- https://docs.konghq.com/gateway/3.6.x/install/linux/rhel
+- https://docs.konghq.com/gateway/3.7.x/install/linux/rhel
+
 ## Week 8
 
 ### [fix: Remove inaccurate note in OAuth2 plugin](https://github.com/Kong/docs.konghq.com/pull/6988) (2024-02-22)
