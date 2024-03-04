@@ -1,6 +1,6 @@
 tabs:
   gateway:
-    icon:
+    icon: /assets/images/product-logos/logo-kong-gateway-light.svg
     description: Grains lemonade zest cilantro cozy cinnamon oatmeal comforting pumpkin spice latte.
     items:
       - name: Packages
@@ -45,7 +45,7 @@ tabs:
             url: https://github.com/kong/kong-terraform-aws
             name: AWS with Terraform
   mesh:
-    icon:
+    icon: /assets/images/product-logos/logo-kong-mesh-light.svg
     description: Grains lemonade zest cilantro cozy cinnamon oatmeal comforting pumpkin spice latte.
     items:
       - name: Centralized
@@ -83,7 +83,7 @@ tabs:
             url: /mesh/latest/installation/ubuntu/
             name: Ubuntu
   gateway_oss:
-    icon:
+    icon: /assets/images/product-logos/logo-kong-gateway-light.svg
     description: Grains lemonade zest cilantro cozy cinnamon oatmeal comforting pumpkin spice latte.
     items:
       - name: Supported by Kong
