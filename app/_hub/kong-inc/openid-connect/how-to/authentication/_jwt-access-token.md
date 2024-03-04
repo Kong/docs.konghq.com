@@ -44,90 +44,112 @@ sequenceDiagram
 
 {% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
-Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step:
+Using the Keycloak and {{site.base_gateway}} configuration from the [prerequisites](#prerequisites), 
+set up an instance of the OpenID Connect plugin with JWT access token authentication.
 
-1. We want to only use the bearer authentication, but we also enable the 
-[password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/) for demoing purposes.
-2. We want to search the bearer token for the bearer authentication from the headers only.
+### Bearer token in headers
+
+For the demo, we're going to set up the following:
+* Issuer, client ID, and client auth: settings that connect the plugin to your IdP (in this case, the sample Keycloak app).
+* Auth method: bearer authentication. 
+For the purposes of the demo, the example also enables the
+[password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/).
+* We only want to search for the bearer token in the headers.
+
+With all of the above in mind, let's test out JWT access token auth with Keycloak. 
+Enable the OpenID Connect plugin on the `openid-connect` service:
+
+<!-- vale off-->
+{% plugin_example %}
+plugin: kong-inc/openid-connect
+name: openid-connect
+config:
+  issuer: "http://keycloak.test:8080/auth/realms/master"
+  client_id: "kong"
+  client_auth: "private_key_jwt"
+  auth_methods:
+    - "bearer"
+    - "password"
+  client_credentials_param_type: 
+    - "header"
+targets:
+  - service
+formats:
+  - konnect
+  - curl
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on -->
+
+### Bearer token in query string 
+
+You can also specify the bearer token as a query string parameter. 
+All parameters are the same as for the 
+[bearer token in headers](#bearer-token-in-headers) configuration,
+except the `client_credentials_param_type`, which must be set to `query`:
+
+<!-- vale off-->
+{% plugin_example %}
+plugin: kong-inc/openid-connect
+name: openid-connect
+config:
+  issuer: "http://keycloak.test:8080/auth/realms/master"
+  client_id: "kong"
+  client_auth: "private_key_jwt"
+  auth_methods:
+    - "bearer"
+    - "password"
+  client_credentials_param_type: 
+    - "query"
+targets:
+  - service
+formats:
+  - konnect
+  - curl
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on -->
+
+## Test the JWT access token authentication
+
+At this point you have created a service, routed traffic to the service, and 
+enabled the OpenID Connect plugin on the service. You can now test authentication with a JWT access token.
+
+In this example, the [password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/) 
+lets you obtain a JWT access token, enabling you to test how JWT access token authentication works. 
+One way to get a JWT access token is to issue the following call 
+(we use [jq](https://stedolan.github.io/jq/) to filter the response):
 
 ```bash
-http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
-  config.bearer_token_param_type=header                          \
-  config.auth_methods=bearer                                     \
-  config.auth_methods=password # only enabled for demoing purposes
-```
-```http
-HTTP/1.1 200 OK
-```
-```json
-{
-    "id": "5f35b796-ced6-4c00-9b2a-90eef745f4f9",
-    "name": "openid-connect",
-    "service": {
-        "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd"
-    },
-    "config": {
-        "auth_methods": [
-            "bearer",
-            "password"
-        ],
-        "bearer_token_param_type": [ "header" ]
-    }
-}
+curl --user user:pass http://localhost:8000/openid-connect \
+    | jq -r .headers.Authorization
 ```
 
-The [password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/) is enabled so that we can get a JWT access token that we can use
-to show how the JWT access token authentication works. That is: we need a token. One way to get a JWT access token
-is to issue the following call (we use [jq](https://stedolan.github.io/jq/) to filter the response):
-
-```bash
-http -a john:doe :8000 | jq -r .headers.Authorization
-```
 Output:
 ```
 Bearer <access-token>
 ```
 
-We can use the output in `Authorization` header.
+You can now use the token in the `Authorization` header or in a query.
 
-### Test the JWT access token authentication
-
+### Bearer token in header
 Request the service with a bearer token:
 
-```bash
-http -v :8000 Authorization:"$(http -a john:doe :8000 | \
-    jq -r .headers.Authorization)"
-```
-or
-```bash
-http -v :8000 Authorization:"Bearer <access-token>"
-```
-```http
-GET / HTTP/1.1
-Authorization: Bearer <access-token>
-```
-```http
-HTTP/1.1 200 OK
-```
-```json
-{
-    "headers": {
-        "Authorization": "Bearer <access-token>"
-    },
-    "method": "GET"
-}
+```sh
+curl -I http://localhost:8000/openid-connect \
+    -H "Authorization: \
+    '$(curl --user user:pass http://localhost:8000/openid-connect \
+    | jq -r .headers.Authorization)'"
 ```
 
-### Test the JWT Access Token Authentication with access token in query string 
-
-To specify the bearer token as a query string parameter:
-
-```bash
-curl -i -X PATCH http://localhost:8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9  \
-  --data "config.bearer_token_param_type=query"                 \
-  --data "config.auth_methods=bearer"                           \
-  --data "config.auth_methods=password" # only enabled for demoing purposes
+or:
+```sh
+curl -I http://localhost:8000/openid-connect -H "Authorization: Bearer <access-token>"
 ```
+
+### Bearer token in query
 
 Test out the token by accessing the Kong proxy:
 
