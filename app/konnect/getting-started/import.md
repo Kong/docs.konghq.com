@@ -21,6 +21,7 @@ You cannot import [unsupported plugins](/konnect/servicehub/plugins/#plugin-limi
 
 ## Prerequisites
 
+* [A {{site.konnect_short_name}} account](https://konghq.com/products/kong-konnect/register)
 * [decK 1.28 or later](/deck/latest/installation/)
 * Make sure that if you're using a `.deck.yaml` config file that it doesn't contain a {{site.konnect_short_name}} personal access token (PAT)
 
@@ -39,6 +40,9 @@ When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.
     ```sh
     deck gateway ping --konnect-token-file /PATH/TO/FILE
     ```
+    
+    {:.note}
+    > **Note**: If you don't want to pass the PAT in a file, you can either pass the PAT directly in the CLI (`--konnect-token PAT_02uI9CEOkYo36NlJnFVyZf8xDxfgirtgq0NvNWASfweoGMqA`) or via an environmental variable (`export DECK_KONNECT_TOKEN=PAT_02uI9CEOkYo36NlJnFVyZf8xDxfgirtgq0NvNWASfweoGMqA && deck gateway ping`).
 
 1. Run [`deck gateway dump`](/deck/latest/reference/deck_gateway_dump/) to export the configuration into a file:
 
