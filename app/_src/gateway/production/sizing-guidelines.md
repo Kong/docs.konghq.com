@@ -36,8 +36,7 @@ We do not provide any hard numbers for database sizing (DB sizing), as it
 depends on your particular setup. Sizing varies based on:
 * Traffic
 * Number of nodes
-* Enabled features: for example, Vitals, or if rate limiting uses a
-database or Redis
+* Enabled features: for example, if rate limiting uses a database or Redis
 * Number and rate of change of configured entities
 * The rate at which {{site.base_gateway}} processes are started and restarted within the cluster
 * The size of {{site.base_gateway}}'s [in-memory cache](#in-memory-caching)

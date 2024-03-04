@@ -26,6 +26,7 @@ and advanced Redis support for greater performance. Ensure that you have install
     --data "name=teamA"
    ```
    The results should look like this:
+{% if_version lte:3.4.x %}
    ```json
    {
      "meta": {
@@ -61,6 +62,25 @@ and advanced Redis support for greater performance. Ensure that you have install
      "id": "9e829c45-f478-4d7e-8c81-e5c9072548f3"
    }
    ```
+{% endif_version %}
+{% if_version gte:3.5.x %}
+   ```json
+   {
+     "meta": {
+       "color": null,
+       "thumbnail": null
+     },
+     "name": "teamA",
+     "comment": null,
+     "config": {
+       "meta": null,
+    },
+     "updated_at": 1699524963,
+     "created_at": 1699524963,
+     "id": "9e829c45-f478-4d7e-8c81-e5c9072548f3"
+   }
+   ```
+{% endif_version %}
 1. Create a service named `httpbin`:
    ```bash
    curl --request POST \
