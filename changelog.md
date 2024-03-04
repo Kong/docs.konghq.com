@@ -95,9 +95,6 @@ Resolves [DOCU-3521](https://konghq.atlassian.net/browse/DOCU-3521).
 
 ### [Feat: Appreg v2 updates ](https://github.com/Kong/docs.konghq.com/pull/7003) (2024-02-28)
 
-This PR is a copy of the accidentally merged **https://github.com/Kong/docs.konghq.com/pull/6855** 
-
-
 Updating DCR docs for App Reg v2 API, specifically documenting two major changes:
 
 1. You now create auth configs independently (instead of at the Org wide level) and apply them to the API Product versions of your choice
@@ -106,8 +103,6 @@ Updating DCR docs for App Reg v2 API, specifically documenting two major changes
 https://github.com/Kong/docs.konghq.com/pull/6855
 https://konghq.atlassian.net/browse/DOCU-3602
 https://konghq.atlassian.net/browse/DOCU-3684
-
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Added
 
@@ -128,10 +123,7 @@ https://konghq.atlassian.net/browse/DOCU-3684
 - https://docs.konghq.com/konnect/dev-portal/applications/enable-app-reg
 - https://docs.konghq.com/konnect/updates
 
-
 ### [Add Gateway 3.6 to KIC compatibility matrix](https://github.com/Kong/docs.konghq.com/pull/6998) (2024-02-27)
-
-
 
 #### Modified
 
@@ -149,31 +141,9 @@ https://konghq.atlassian.net/browse/DOCU-3684
 
 Auth0 configurations example is misleading in docs, updated the doc to remove properties that are not needed and added the important property that is needed.
 
-
-
-
-Auth0 configurations example is misleading in docs, updated the doc to remove unwanted properties and added the important property that is needed.
-
 #### Modified
 
 - https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/third-party/
-
-
-### [Automated submodule update (app/_src/.repos/kong-plugins)](https://github.com/Kong/docs.konghq.com/pull/6995) (2024-02-26)
-
-
-
-#### Modified
-
-- https://docs.konghq.com/gateway/3.0.x/install/linux/debian
-- https://docs.konghq.com/gateway/3.1.x/install/linux/debian
-- https://docs.konghq.com/gateway/3.2.x/install/linux/debian
-- https://docs.konghq.com/gateway/3.3.x/install/linux/debian
-- https://docs.konghq.com/gateway/3.4.x/install/linux/debian
-- https://docs.konghq.com/gateway/3.5.x/install/linux/debian
-- https://docs.konghq.com/gateway/3.6.x/install/linux/debian
-- https://docs.konghq.com/gateway/3.7.x/install/linux/debian
-
 
 ### [Release: Gateway 3.6.1.0](https://github.com/Kong/docs.konghq.com/pull/6994) (2024-02-26)
 
@@ -186,10 +156,7 @@ Changelog and version bump for gateway 3.6.1.0
 
 ### [Fix: replace benchmark redirect with moved url entry](https://github.com/Kong/docs.konghq.com/pull/6983) (2024-02-29)
 
-This URL got flagged as 404ing at /latest/ by google console. Did some digging, realized that it should probably be in moved URLs instead anyway, based on the following rule:
-* When a topic is moved and not removed or renamed, we should add an entry to moved URLs instead of redirects.
-
-This _should_ generate the correct redirects automatically.
+This URL got flagged as 404ing at /latest/ by google console. 
 
 #### Modified
 
@@ -198,13 +165,10 @@ This _should_ generate the correct redirects automatically.
 
 ### [docs(mesh): update MeshGlobalRateLimit and MeshOPA targetref support table](https://github.com/Kong/docs.konghq.com/pull/6948) (2024-02-28)
 
-<!-- What did you change and why? -->
-
 Change the targetRef support table since 2.6 it has a different layout.
 
 **Listener tags are not yet supported because the plugins need to be adjusted**
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
@@ -290,9 +254,6 @@ Ran into a couple other cross-folder issues (kic-v2 vs kubernetes-ingress-contro
 
 ### [Fix: remove if_version on the Or operator in the expressions router table](https://github.com/Kong/docs.konghq.com/pull/6975) (2024-02-20)
 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 Remove the `if_version` on OR operator in expression language reference page to let the OR operator (`||`) displayed correctly.
 fixes #6972.
 
@@ -310,10 +271,8 @@ fixes #6972.
 
 ### [fix: Add 3.6 conditional rendering for single backup nodes](https://github.com/Kong/docs.konghq.com/pull/6974) (2024-02-21)
 
-<!-- What did you change and why? -->
 We missed some conditional rendering for a note about single backup nodes. It should only apply to 3.6 and later? (waiting on confirmation for the correct version, so this PR might change a little)
  
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 https://kongstrong.slack.com/archives/CDSTDSG9J/p1708369514356029?thread_ts=1708368658.991799&cid=CDSTDSG9J
 
 #### Modified
@@ -340,11 +299,9 @@ This pull request adds the ignored parameters to the migration guide for Kong Ma
 
 ### [Fix: docs(mesh)- in Vault docs switch to orphan tokens](https://github.com/Kong/docs.konghq.com/pull/6964) (2024-02-23)
 
-<!-- What did you change and why? -->
 As described in the PR changes, it's likely users want to create orphan tokens to authenticate to vault.
 
 See also https://github.com/Kong/kong-mesh/issues/5412
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
 
 #### Modified
 
