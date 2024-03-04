@@ -5,12 +5,21 @@
 
 .shadowed-card() {
   background: #ffffff;
-  box-shadow: 4px 4px 14px rgba(0, 48, 130, 0.1);
+  // box-shadow: 4px 4px 14px rgba(0, 48, 130, 0.1);
   border-radius: 8px;
+  border:1px solid #CCD2D6;
 }
 
 header.navbar {
   transition: background 0.5s, box-shadow 0.5s;
+}
+
+.banner-image {
+  height: 28px;
+  padding: 12px;
+  // width: 100%;
+  // border-top-right-radius: 8px;
+  // border-top-left-radius: 8px;
 }
 
 .landing-page {
@@ -43,13 +52,6 @@ header.navbar {
     }
   }
 
-  h2 {
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 34px;
-    color: text;
-  }
-
   h3 {
     padding-top: 45px;
     font-weight: 500;
@@ -58,24 +60,27 @@ header.navbar {
     color: @color-text;
   }
 
-  h4 {
+  // h5 {
+  //   text-align: left;
+  //   font-weight: normal;
+  //   font-size: 16px;
+  //   line-height: 20px;
+  //   color: @color-text-light;
+  // }
+
+  // hr {
+  //   border-color: #e7ebee;
+  // }
+
+  .landing-page-subtitle {
+    margin-top: 0;
+    margin-bottom: 3rem;
+    letter-spacing: 0;
     text-align: center;
-    font-weight: normal;
+    font-weight: lighter;
     font-size: 20px;
     line-height: 28px;
     color: white;
-  }
-
-  h5 {
-    text-align: left;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 20px;
-    color: @color-text-light;
-  }
-
-  hr {
-    border-color: #e7ebee;
   }
 
   .links-container {
@@ -102,6 +107,11 @@ header.navbar {
 
   #feature-title {
     padding-top: 45px;
+    letter-spacing: 0;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 34px;
+    color: text;
   }
 
   .cards-container {
@@ -111,10 +121,9 @@ header.navbar {
 
   .card {
     .shadowed-card;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    // display: flex;
+    // flex-direction: column;
+    align-items: left;
     position: relative;
     padding: 24px;
 
@@ -122,22 +131,24 @@ header.navbar {
       font-weight: 500;
       font-size: 18px;
       line-height: 25px;
-      text-align: center;
+      text-align: left;
       color: @color-text;
+      padding: 8px 12px;
     }
 
     .description {
       font-weight: normal;
       font-size: 14px;
       line-height: 22px;
-      text-align: center;
+      text-align: left;
       color: @color-text-light;
+      padding: 8px 12px;
     }
 
     &.default {
       > .icon {
         height: 40px;
-        padding: 25px;
+        padding: 10px;
       }
 
       .title {
@@ -146,7 +157,7 @@ header.navbar {
 
       .description {
         margin-top: 8px;
-        flex-grow: 1;
+        // flex-grow: 1;
       }
 
       hr {
@@ -157,8 +168,8 @@ header.navbar {
 
       .link-text {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        align-items: left;
+        justify-content: left;
         padding: 8px 12px;
         border-radius: 8px;
         transition: background-color @hover-transition-time;
@@ -205,7 +216,7 @@ header.navbar {
       .shadowed-card;
 
       .platform-links {
-        padding: 5px 0 20px;
+        padding: 40px;
         justify-content: space-around;
         flex-direction: row;
         display: flex;
@@ -234,7 +245,7 @@ header.navbar {
       font-weight: 700;
       line-height: 30px;
       color: @navy-text;
-      text-align: center;
+      text-align: left;
       padding: 20px 24px 20px;
       background-image: url(/assets/images/landing-page/hero-konnect.png);
       border-top-right-radius: 8px;
@@ -247,7 +258,7 @@ header.navbar {
 
     .platform-description {
       padding: 5px 24px;
-      text-align: center;
+      text-align: left;
       font-size: 14px;
     }
 
@@ -258,27 +269,27 @@ header.navbar {
       padding-left: 24px;
       .shadowed-card;
 
-      .arrow-card {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-grow: 1;
-        max-width: 600px;
+      // .arrow-card {
+      //   display: flex;
+      //   align-items: center;
+      //   justify-content: center;
+      //   flex-grow: 1;
+      //   max-width: 600px;
 
-        .arrow {
-          flex: 1 1;
-          display: flex;
-          justify-content: center;
+      //   .arrow {
+      //     flex: 1 1;
+      //     display: flex;
+      //     justify-content: center;
 
-          img {
-            min-width: 48px;
-          }
-        }
+      //     img {
+      //       min-width: 48px;
+      //     }
+      //   }
 
-        .card {
-          flex: 1 0;
-        }
-      }
+      //   .card {
+      //     flex: 1 0;
+      //   }
+      // }
 
       .card {
         min-height: 228px;
@@ -301,6 +312,7 @@ header.navbar {
           margin-top: 8px;
           max-width: 230px;
           flex-grow: 1;
+          text-align: left;
         }
 
         .link-text {
@@ -342,38 +354,27 @@ header.navbar {
 
         .card {
           position: relative;
-          padding-top: 114px;
           margin-right: 24px;
           width: 100%;
 
-          .banner-image {
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 96px;
-            width: 100%;
-            border-top-right-radius: 8px;
-            border-top-left-radius: 8px;
-          }
-
-          .title {
-            position: absolute;
-            top: 32px;
-            left: 24px;
-            font-size: 28px;
-            font-weight: bold;
-            line-height: 39px;
-            color: @navy-text;
-          }
+          // .title {
+          //   position: absolute;
+          //   top: 32px;
+          //   left: 24px;
+          //   font-size: 28px;
+          //   font-weight: bold;
+          //   line-height: 39px;
+          //   color: @navy-text;
+          // }
 
           .description {
             flex-grow: 1;
           }
 
-          hr {
-            margin: 14px 0;
-            width: 100%;
-          }
+          // hr {
+          //   margin: 14px 0;
+          //   width: 100%;
+          // }
 
           .links-container {
             display: flex;
