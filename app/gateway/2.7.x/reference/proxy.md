@@ -1080,8 +1080,8 @@ HTTP/1.1 201 Created
 ...
 ```
 
-The `snis` form parameter is a sugar parameter, directly inserting an SNI and
-associating the uploaded certificate to it.
+The `snis` form parameter is a convenience parameter. Under the hood, it directly inserts an SNI and
+associates the uploaded certificate to it.
 
 Note that one of the SNI names defined in `snis` above contains a wildcard
 (`*.tls-example.com`). An SNI may contain a single wildcard in the leftmost (prefix) or
