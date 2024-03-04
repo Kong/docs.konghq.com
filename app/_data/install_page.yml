@@ -82,9 +82,6 @@ tabs:
           - icon: /assets/images/icons/third-party/logomark-ubuntu.svg
             url: /mesh/latest/installation/ubuntu/
             name: Ubuntu
-          - icon:
-            url:
-            name: macOS
   gateway_oss:
     icon:
     description: Grains lemonade zest cilantro cozy cinnamon oatmeal comforting pumpkin spice latte.
@@ -159,6 +156,3 @@ tabs:
           - icon: /assets/images/icons/third-party/logomark-ubuntu.svg
             url: https://kuma.io/docs/latest/installation/ubuntu/
             name: Ubuntu
-          - icon:
-            url:
-            name: macOS
