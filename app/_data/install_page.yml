@@ -1,0 +1,164 @@
+tabs:
+  gateway:
+    icon:
+    description: Grains lemonade zest cilantro cozy cinnamon oatmeal comforting pumpkin spice latte.
+    items:
+      - name: Packages
+        cards:
+          - icon: /assets/images/icons/third-party/logomark-debian.svg
+            url: /gateway/latest/install/linux/debian/
+            name: Debian
+          - icon: /assets/images/icons/third-party/logomark-ubuntu.svg
+            url: /gateway/latest/install/linux/ubuntu/
+            name: Ubuntu
+          - icon: /assets/images/icons/third-party/logomark-redhat.svg
+            url: /gateway/latest/install/linux/rhel/
+            name: RedHat
+          - icon:
+            url: /gateway/latest/install/linux/amazon-linux/
+            name: Amazon Linux 2
+      - name: Kubernetes
+        cards:
+          - icon: /assets/images/icons/third-party/logomark-kubernetes.svg
+            url: /gateway/latest/install/kubernetes/
+            name: Kubernetes
+          - icon: /assets/images/icons/third-party/logomark-openshift.svg
+            url: /gateway/latest/install/kubernetes/
+            name: OpenShift
+      - name: Docker
+        cards:
+          - icon: /assets/images/icons/third-party/logomark-debian.svg
+            url: /gateway/latest/install/docker/build-custom-images/
+            name: Debian (bullseye-slim)
+          - icon: /assets/images/icons/third-party/logomark-redhat.svg
+            url: /gateway/latest/install/docker/build-custom-images/
+            name: RHEL (8-ubi)
+          - icon: /assets/images/icons/third-party/logomark-ubuntu.svg
+            url: /gateway/latest/install/docker/
+            name: Ubuntu
+          - icon:
+            url: 'https://hub.docker.com/r/kong/kong-gateway/tags?page=1&name=amazonlinux'
+            name: Amazon Linux (2 and 2023)
+      - name: Other
+        cards:
+          - icon: /assets/images/icons/third-party/logomark-terraform.svg
+            url: https://github.com/kong/kong-terraform-aws
+            name: AWS with Terraform
+  mesh:
+    icon:
+    description: Grains lemonade zest cilantro cozy cinnamon oatmeal comforting pumpkin spice latte.
+    items:
+      - name: Centralized
+        cards:
+          - icon: /assets/images/icons/third-party/logomark-kubernetes.svg
+            url: /mesh/latest/installation/kubernetes/
+            name: Kubernetes
+          - icon: /assets/images/icons/third-party/logomark-helm.svg
+            url: /mesh/latest/installation/helm/
+            name: Helm
+          - icon: /assets/images/icons/third-party/logomark-openshift.svg
+            url: /mesh/latest/installation/kubernetes/
+            name: Openshift
+          - icon: /assets/images/icons/third-party/logomark-docker.svg
+            url: /mesh/latest/installation/docker/
+            name: Docker
+          - icon: /assets/images/icons/third-party/logomark-amazonecs.svg
+            url: /mesh/latest/installation/ecs/
+            name: Amazon ECS
+      - name: Operating Systems
+        cards:
+          - icon: /assets/images/icons/third-party/logomark-centos.svg
+            url: /mesh/latest/installation/centos/
+            name: CentOS
+          - icon: /assets/images/icons/third-party/logomark-redhat.svg
+            url: /mesh/latest/installation/redhat/
+            name: RedHat
+          - icon:
+            url: /mesh/latest/installation/amazonlinux/
+            name: Amazon Linux
+          - icon: /assets/images/icons/third-party/logomark-debian.svg
+            url: /mesh/latest/installation/debian/
+            name: Debian
+          - icon: /assets/images/icons/third-party/logomark-ubuntu.svg
+            url: /mesh/latest/installation/ubuntu/
+            name: Ubuntu
+          - icon:
+            url:
+            name: macOS
+  gateway_oss:
+    icon:
+    description: Grains lemonade zest cilantro cozy cinnamon oatmeal comforting pumpkin spice latte.
+    items:
+      - name: Supported by Kong
+        cards:
+          - icon: /assets/images/icons/third-party/logomark-docker.svg
+            url: /gateway/latest/install/docker/?install=oss
+            name: Docker
+          - icon:
+            url: /gateway/latest/install/linux/amazon-linux/?install=oss
+            name: Amazon Linux
+          - icon: /assets/images/icons/third-party/logomark-kubernetes.svg
+            url: /kubernetes-ingress-controller/latest/deployment/k4k8s/
+            name: Kubernetes
+          - icon: /assets/images/icons/third-party/logomark-debian.svg
+            url: /gateway/latest/install/linux/debian/?install=oss
+            name: Debian
+          - icon: /assets/images/icons/third-party/logomark-redhat.svg
+            url: /gateway/latest/install/linux/rhel/?install=oss
+            name: RedHat
+          - icon:
+            url: /mesh/latest/explore/gateway/
+            name: Kong Gateway on Kuma
+          - icon:
+            url: /kubernetes-ingress-controller/latest/guides/getting-started-istio/
+            name: Kong Gateway on Istio
+          - icon: /assets/images/icons/third-party/logomark-ubuntu.svg
+            url: /gateway/latest/install/linux/ubuntu/?install=oss
+            name: Ubuntu
+      - name: Supported by the Community
+        cards:
+          - icon: /assets/images/icons/third-party/logomark-azure.svg
+            url: /hub/bitnami/microsoft_azure?install=oss
+            name: Kong on Microsoft Azure
+          - icon: /assets/images/icons/third-party/logomark-terraform.svg
+            url: /hub/kong-inc/kong-terraform-aws/
+            name: Kong on AWS with Terraform
+  kuma:
+    icon:
+    description: Grains lemonade zest cilantro cozy cinnamon oatmeal comforting pumpkin spice latte.
+    items:
+      - name: Category name
+        cards:
+          - icon: /assets/images/icons/third-party/logomark-kubernetes.svg
+            url: https://kuma.io/docs/latest/installation/kubernetes/
+            name: Kubernetes
+          - icon: /assets/images/icons/third-party/logomark-helm.svg
+            url: https://kuma.io/docs/latest/installation/helm/
+            name: Helm
+          - icon: /assets/images/icons/third-party/logomark-openshift.svg
+            url: https://kuma.io/docs/latest/installation/openshift/
+            name: OpenShift
+          - icon: /assets/images/icons/third-party/logomark-docker.svg
+            url: https://kuma.io/docs/latest/installation/docker/
+            name: Docker
+          - icon:
+            url: https://kuma.io/docs/latest/installation/amazonlinux/
+            name: Amazon Linux
+          - icon: /assets/images/icons/third-party/logomark-amazoneks.svg
+            url:
+            name: Amazon EKS
+          - icon: /assets/images/icons/third-party/logomark-centos.svg
+            url: https://kuma.io/docs/latest/installation/centos/
+            name: CentOS
+          - icon: /assets/images/icons/third-party/logomark-redhat.svg
+            url: https://kuma.io/docs/latest/installation/redhat/
+            name: RedHat
+          - icon: /assets/images/icons/third-party/logomark-debian.svg
+            url: https://kuma.io/docs/latest/installation/debian/
+            name: Debian
+          - icon: /assets/images/icons/third-party/logomark-ubuntu.svg
+            url: https://kuma.io/docs/latest/installation/ubuntu/
+            name: Ubuntu
+          - icon:
+            url:
+            name: macOS

@@ -1,0 +1,29 @@
+---
+layout: default
+---
+
+<div class="landing-page install">
+  <div class="page--header-background"></div>
+  <h1 id="main" tabindex="-1">Installation page heading</h1>
+  <h4>Built for hybrid and multi-cloud environments, optimized for microservices and distributed architectures.</h4>
+
+  <section class="products">
+    {% navtabs %}
+      {% navtab Kong Gateway %}
+{% include install/tab.html product=site.data.install_page.tabs.gateway product_name=site.base_gateway %}
+      {% endnavtab %}
+
+      {% navtab Kong Mesh %}
+{% include install/tab.html product=site.data.install_page.tabs.mesh product_name=site.mesh_product_name %}
+      {% endnavtab %}
+
+      {% navtab Kong Gateway OSS %}
+{% include install/tab.html product=site.data.install_page.tabs.gateway_oss product_name=site.ce_product_name %}
+      {% endnavtab %}
+
+      {% navtab Kuma %}
+{% include install/tab.html product=site.data.install_page.tabs.kuma product_name=site.kuma_product_name %}
+      {% endnavtab %}
+    {% endnavtabs %}
+  </section>
+</div>

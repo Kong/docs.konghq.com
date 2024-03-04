@@ -1,0 +1,21 @@
+<section>
+  <h2 class="install-title">Get started with</h2>
+  <img src="{{ include.product.icon }}" alt="{{ include.product_name }} icon"/>
+  <p class="install-description">{{ include.product.description }}</p>
+</section>
+
+{% for item in include.product.items %}
+  <h3>{{ item.name }}</h3>
+  <section>
+    <div class="cards-container">
+      {% for card in item.cards %}
+        <div class="card">
+          <a class="card-link" href="{{ card.url }}" title="{{ card.name }}">
+            <img class="card-image" src="{{ card.icon }}" alt="{{ card.name }} icon"/>
+            <h5 class="card-title">{{ card.name }}</h5>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endfor %}

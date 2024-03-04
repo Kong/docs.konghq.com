@@ -214,6 +214,7 @@ konnect_saas: Kong Konnect
 package_name: Kong Konnect
 company_name: Kong Inc.
 mesh_product_name: Kong Mesh
+kuma_product_name: Kuma
 deck_product_name: decK
 contributing_product_name: Contribution Guidelines
 # Mesh specific config
