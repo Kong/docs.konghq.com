@@ -15,15 +15,15 @@ Here are a couple of benefits of using API Requests:
 ## Inspect and filter API requests
 
 Each API request on the **Requests** page shows the following information:
-* Timestamp when the API request was made.
-* Status code returned for the API request.
-* HTTP method of the API request.
-* Path that was requested.
+* Timestamp when the API request was made
+* Status code returned for the API request
+* HTTP method of the API request
+* Path that was requested
 * Latency numbers for:
-  * Response: how long it took to return the request
-  * Kong: how long it took for Kong to process the request
-  * Upstream: how long it took for your upstream service to return the request back to Kong.
+  * Response: How long it took to return the request
+  * Kong: How long it took for Kong to process the request
+  * Upstream: How long it took for your upstream service to return the request back to Kong
 
-By clicking on a single API request, you can further inspect that request and see, for example, which API Product, Application, Consumer, or Control Plane is associated with this request. You can now continue to investigate each associated entity to see its configuration and adjust it if necessary.
+By clicking on a single API request, you can further inspect that request and see, for example, which API product, application, consumer, or control plane is associated with this request. You can now continue to investigate each associated entity to see its configuration and adjust it if necessary.
 
 You can filter API requests by specific properties such as a certain Gateway service or only a particular route of interest. You can also filter API requests for up to seven days.

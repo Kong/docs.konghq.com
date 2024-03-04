@@ -6,10 +6,9 @@ Explorer is an intuitive web-based interface that displays API usage data gather
 
 ![Explorer Dashboard](/assets/images/products/konnect/analytics/konnect-explorer-dashboard.png){:.image-border}
 
-To begin using Explorer, go to the **Analytics** {% konnect_icon analytics %} section and select **Explorer**. 
+To begin using Explorer, go to the **Analytics** {% konnect_icon analytics %} section and select [**Explorer**](https://cloud.konghq.com/analytics/explorer). 
 {% navtabs %}
 {% navtab Grouping and Filtering %}
-## Grouping and filtering
 
 This is an overview of the different grouping and filtering categories available: 
 
@@ -28,7 +27,6 @@ This is an overview of the different grouping and filtering categories available
 {% endnavtab %}
 {% navtab Metrics %}
 
-## Metrics
 
 Traffic metrics provide insight into which of your services are being used and how they are responding. Within a single report, you have the flexibility to choose one or multiple metrics from the same category.
 
@@ -44,7 +42,6 @@ Response Size | Size | The size of the response payload returned to the client, 
 
 {% endnavtab %}
 {% navtab Time intervals %}
-## Time intervals
 
 The time frame selector controls the time frame of data visualized, which indirectly controls the
 granularity of the data. For example, the “5M” selection displays five minutes in

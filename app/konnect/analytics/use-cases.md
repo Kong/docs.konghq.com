@@ -1,5 +1,5 @@
 ---
-title: Custom Reports Use Case - Analyze API Usage and Performance
+title: Analyze API Usage and Performance
 content_type: tutorial
 ---
 
@@ -114,7 +114,7 @@ This report can be used to highlight which applications users prefer and where t
 
 Some example scenarios where this type of report would be useful are: 
 
-* Security: If you find that a particular application is generating more traffic than expected, you can assess its security to ensure that it wont be a potential risk for the organization. 
+* Security: If you find that a particular application is generating more traffic than expected, you can assess its security to ensure that it won't be a potential risk for the organization. 
 * Monetization: If you have a monetization strategy, knowing which applications are actually consuming the data can help you allocate resources to make financial decisions. 
 * Innovation: You can identify API usage patterns and trends using these reports, which can help you allocate resources and make development decisions. 
 
@@ -171,9 +171,8 @@ You learned that:
 * You can use information from reports to dig deeper into any anomalies, performance, or stability issues to determine what is causing the problem
 * After you create a report, you can export and share the reports with stakeholders to let them draw conclusions based on further analysis
 
-If you want to continue learning about ways to use {{site.konnect_short_name}} to analyze data, read the next use case [Diagnosing latency issues](/konnect/analytics/use-cases/latency/).
+If you want to continue learning about ways to use {{site.konnect_short_name}} to analyze data, read [Diagnosing latency issues](/konnect/analytics/use-cases/latency/).
 
 ## More information
-* [Reports reference for metrics, filtering and grouping, and time intervals](/konnect/analytics/reference/)
 * [Teams reference](/konnect/org-management/teams-and-roles/teams-reference)
 * [Troubleshoot reports](/konnect/analytics/troubleshoot/)
