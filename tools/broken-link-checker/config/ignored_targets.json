@@ -55,5 +55,6 @@
   "http://lua-users.org/*",
   "*/gateway/unreleased/install/*",
   "/hub/kong-inc/konnect-application-auth/",
-  "/hub/kong-inc/renew-certificates/"
+  "/hub/kong-inc/renew-certificates/",
+  "https://success.nonamesecurity.com/"
 ]
