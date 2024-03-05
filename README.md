@@ -93,6 +93,16 @@ KONG_PRODUCTS='*:latest'
 ```
  are also possible.
 
+### Skipping slow generators
+
+Unfortunately, the `Sitemap` and `Hub` generators are slow. Even if they don't need to re-render a page,
+they still need to read the files and generate the necessary structures and pages, which takes time.
+You can speed up build times by disabling them and setting the environment variables: `DISABLE_SITEMAP` and `DISABLE_HUB`.
+
+```bash
+DISABLE_SITEMAP=1 DISABLE_HUB=1 make run
+```
+
 ## Plugin contributors
 
 If you have contributed a plugin, you can add a Kong badge to your plugin README.
