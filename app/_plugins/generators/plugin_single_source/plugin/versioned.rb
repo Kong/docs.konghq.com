@@ -3,10 +3,6 @@
 module PluginSingleSource
   module Plugin
     class Versioned < Base
-      def sources
-        @sources ||= super.merge(data.fetch('sources', {}))
-      end
-
       def releases
         @releases ||= ReleasesGenerator.call(
           releases: supported_releases,

@@ -50,64 +50,26 @@ RSpec.describe PluginSingleSource::Plugin::Versioned do
     end
   end
 
-  describe '#sources' do
-    context 'when the key is not present in `versions.yml`' do
-      it { expect(subject.sources).to eq({}) }
-    end
-
-    context 'when the key is present' do
-      let(:name) { 'jwt-signer' }
-
-      it 'returns the sources defined in the file' do
-        expect(subject.sources).to eq({
-          '2.7.x' => '_2.6.x',
-          '2.6.x' => '_2.6.x',
-        })
-      end
-    end
-  end
-
   describe '#create_pages' do
     it 'creates a page for each version of the plugin' do
       expect(PluginSingleSource::Plugin::Release)
         .to receive(:new)
-        .with(site:, version: '3.0.x', is_latest: true, plugin: subject, source: '_index')
+        .with(site:, version: '3.0.x', is_latest: true, plugin: subject)
         .and_call_original
       expect(PluginSingleSource::Plugin::Release)
         .to receive(:new)
-        .with(site:, version: '2.8.x', is_latest: false, plugin: subject, source: '_index')
+        .with(site:, version: '2.8.x', is_latest: false, plugin: subject)
         .and_call_original
       expect(PluginSingleSource::Plugin::Release)
         .to receive(:new)
-        .with(site:, version: '2.7.x', is_latest: false, plugin: subject, source: '_index')
+        .with(site:, version: '2.7.x', is_latest: false, plugin: subject)
         .and_call_original
       expect(PluginSingleSource::Plugin::Release)
         .to receive(:new)
-        .with(site:, version: '2.6.x', is_latest: false, plugin: subject, source: '_index')
+        .with(site:, version: '2.6.x', is_latest: false, plugin: subject)
         .and_call_original
 
       expect(subject.create_pages.size).to eq(20)
-    end
-
-    context 'when there is a file for a specific version or `source` present ' do
-      let(:name) { 'jwt-signer' }
-
-      it 'creates a page for each version of the plugin, except for those for which a .md file exist' do
-        expect(PluginSingleSource::Plugin::Release)
-          .to receive(:new)
-          .with(site:, version: '2.8.x', is_latest: true, plugin: subject, source: '_index')
-          .and_call_original
-        expect(PluginSingleSource::Plugin::Release)
-          .to receive(:new)
-          .with(site:, version: '2.7.x', is_latest: false, plugin: subject, source: '_2.6.x')
-          .and_call_original
-        expect(PluginSingleSource::Plugin::Release)
-          .to receive(:new)
-          .with(site:, version: '2.6.x', is_latest: false, plugin: subject, source: '_2.6.x')
-          .and_call_original
-
-        expect(subject.create_pages.size).to eq(19)
-      end
     end
   end
 

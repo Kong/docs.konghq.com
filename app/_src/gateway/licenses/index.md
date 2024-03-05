@@ -19,10 +19,11 @@ functionality, {{site.base_gateway}} enforces the presence and validity of a
 
 ## Deploying the license file
 
-* **Hybrid mode deployment:** The license file only needs to be deployed to
-control plane nodes, which distribute the license to the data planes in their
-clusters.
-* **Traditional deployment with no separate control plane:** License files must
+* **Hybrid mode deployment:** The license file must be deployed to each control
+plane and data plane node. Apply the license through the Kong Admin API to the
+control plane. The control plane distributes the license to its data plane nodes.
+This is the only method that applies the license to data planes automatically.
+* **Traditional deployment with no separate control plane:** The license file must
 be deployed to each node running {{site.base_gateway}}.
 
 License file checking is done independently by each node as the Kong process starts; no network connectivity is necessary to execute the license validation process.
@@ -58,15 +59,21 @@ Licenses expire at 00:00 on the date of expiration, relative to the time zone th
 Kong Manager displays a banner with a license expiration warning starting at 15 days before expiration.
 Expiration warnings also appear in [{{site.base_gateway}} logs](#license-expiration-logs).
 
-When a license expires, {{site.base_gateway}} behaves as follows:
+After the license expires, there's a 30 day grace period. During the grace period, the full functionality of the license is available, but a message will be logged once a day, which includes information on when the functionality will no longer be available.
+
+After the grace period, {{site.base_gateway}} behaves as follows:
 
 * Kong Manager and its configuration are accessible and may be changed, however any [Enterprise-specific features](/gateway/{{page.release}}/kong-enterprise/) become read-only.
-* The Admin API is not accessible until the license is either renewed or the subscription is downgraded to free mode.
+* The Admin API allows OSS features to continue working and configured {{site.ee_product_name}} features to continue operating in read-only mode.
 * Proxy traffic, including traffic using Enterprise plugins, continues to be processed as if the license had not expired.
 * Other Enterprise features are not accessible.
+* There may be some Enterprise features that are still writable, but they may also change later, so do not rely on this behavior.
 
-If you downgrade to free mode, the Admin API will be unlocked, but Enterprise features such Dev Portal, 
-Enterprise plugins, and others will no longer be accessible.
+The behavior of the different deployment modes is as follows:
+
+- **Traditional:** Nodes will be able to restart/scale as needed.
+- **Hybrid:** Existing data planes or new data planes **can accept** config from a control plane with an expired license.
+- **DB-less and KIC:** New nodes **cannot** come up, restarts will break.
 
 To upload a new license, see [Deploy an Enterprise License](/gateway/{{page.release}}/licenses/deploy/).
 

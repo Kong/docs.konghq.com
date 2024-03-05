@@ -13,14 +13,11 @@ or hybrid mode), you can enable {{site.base_gateway}}'s graphical user interface
 1. Set the [`KONG_ADMIN_GUI_PATH`](/gateway/{{page.release}}/reference/configuration/#admin_gui_path) and [`KONG_ADMIN_GUI_URL`](/gateway/{{page.release}}/reference/configuration/#admin_gui_url) properties in the ([`kong.conf`](/gateway/{{page.release}}/production/kong-conf/)) configuration file to the DNS or IP address of your system, then restart {{site.base_gateway}} for the setting to take effect. For example:
 
     ```bash
-    echo "-e 'KONG_ADMIN_GUI_PATH=/manager' \
-    'KONG_ADMIN_GUI_URL=http://localhost:8002/manager' \
-    kong reload exit" | docker exec -i KONG_CONTAINER_ID /bin/sh
+    docker exec -i <KONG_CONTAINER_ID> /bin/sh -c "export KONG_ADMIN_GUI_PATH='/'; export KONG_ADMIN_GUI_URL='http://localhost:8002/manager'; kong reload; exit"
     ```
-
     Replace `KONG_CONTAINER_ID` with the ID of your Docker container.
 
-2. Access Kong Manager on port `8002` at the path you specified in `KONG_ADMIN_GUI_PATH`.
+2. Access Kong Manager on port `8002` at the path you specified in `KONG_ADMIN_GUI_PATH`, or the default URL `http://localhost:8002/workspaces`.
 
 {% endnavtab %}
 {% navtab Linux (kong.conf) %}

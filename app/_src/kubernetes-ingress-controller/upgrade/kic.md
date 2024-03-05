@@ -39,6 +39,10 @@ ingressController:
 {% endcapture %}
 {{ the_code | indent }}
 
+### Update custom resource definitions
+
+{% include /md/kic-crd-upgrades.md %}
+
 ### Upgrade
 
 Run the following command, specifying the old release name, the namespace where

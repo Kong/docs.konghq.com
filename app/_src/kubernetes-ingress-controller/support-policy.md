@@ -52,6 +52,31 @@ LTS versions of {{site.kic_product_name}} are supported for 3 years after releas
 
 {% include /md/support-policy.md %}
 
+## Helm chart compatibility
+
+The [Helm chart](https://github.com/Kong/charts/) is designed to be version
+agnostic with regards to support for any particular {{site.base_gateway}},
+{{site.kic_product_name}}, or Kubernetes version. When possible, it detects
+those versions and disables incompatible functionality. Note that while the
+chart indicates a single app version, this is just the default
+{{site.base_gateway}} release that chart release uses. Helm's app version
+metadata does not support indicating a range.
+
+New chart releases are, however, tested against only a select group of recent
+dependency and Kubernetes versions, and may have unknown compatibility problems
+with older versions. If you discover a set of incompatible versions where
+dependencies are not past their end of support, please [file an
+issue](https://github.com/Kong/charts/issues/) with your {{site.base_gateway}},
+{{site.kic_product_name}}, and Kubernetes versions and any special values.yaml
+configuration needed to trigger the problem. Some issues may require using an
+older chart version for LTS releases of other products, in which case Kong can
+backport fixes to an older chart release as needed.
+
+The chart includes [custom resource definitions](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/)
+(CRDs) that are not compatible with older Kubernetes versions. 
+
+{% include /md/kic-crd-upgrades.md %}
+
 ## See also
 * [Version support policy for {{site.base_gateway}}](/gateway/latest/support-policy/)
 * [Version support policy for {{site.mesh_product_name}}](/mesh/latest/support-policy/)
