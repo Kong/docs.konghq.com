@@ -11,6 +11,10 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## February 2024
 
+
+**Download button added the documents UI**
+: You can now click the **Download** button to download the markdown file currently being viewed from the documents UI.
+
 **Additional plugin support for consumer groups**
 : Along with {{site.base_gateway}} 3.6 support in {{site.konnect_short_name}}, additional plugins are now supported for consumer groups.
 
@@ -35,7 +39,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : You can now export configuration of core Gateway Manager objects, like services, routes, and plugins, to YAML or JSON. This allows you to import the file to APIOps tooling, like decK. For more information, see [Manage Control Plane Configuration with decK](/konnect/gateway-manager/declarative-config/).
 
 ![Konnect-config-export](/assets/images/products/konnect/gateway-manager/konnect-config-export.png)
-
 
 ## January 2024
 
