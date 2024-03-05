@@ -17,4 +17,9 @@ If running {{site.base_gateway}} in hybrid deployment mode, these admin SMTP set
 
 Kong does not check for the validity of email addresses set in the configuration. If the SMTP settings are configured incorrectly, for example if they point to a non-existent email address, Kong Manager will _not_ display an error message.
 
+{% if_version lte:3.4.x %}
 For additional information about SMTP, refer to the [general SMTP configuration](/gateway/{{page.release}}/reference/configuration/#general-smtp-configuration) shared by Kong Manager and Dev Portal.
+{% endif_version %}
+{% if_version gte:3.5.x %}
+For additional information about SMTP, refer to the [general SMTP configuration](/gateway/{{page.release}}/reference/configuration/#general-smtp-configuration).
+{% endif_version %}
