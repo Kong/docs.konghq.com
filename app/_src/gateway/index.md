@@ -151,8 +151,6 @@ while {{site.ee_product_name}} builds on top of the open-source foundation with 
 Gateway, are modified and managed by the proxy based on your Gateway
 configuration, and forwarded to upstream services._
 
-![Introduction to {{site.base_gateway}}](/assets/images/products/gateway/kong-gateway-features-alt.png)
-
 ## Features
 
 {% include_cached feature-table.html config=site.data.tables.features.gateway %}
