@@ -2801,31 +2801,6 @@ components:
                     example: custom-group-claim
       description: The request schema for the update IdP configuration request.
   schemas:
-    Auth0Organization:
-      title: Auth0 organization schema.
-      type: object
-      description: A single auth0 organization.
-      properties:
-        name:
-          type: string
-          example: My Organization
-          description: The name of the organization.
-          readOnly: true
-        login_path:
-          type: string
-          example: >-
-            /v2/authenticate/federated?org_id=7f9fd312-a987-4628-b4c5-bb4f4fddd5f7
-          description: The login path of the organization.
-          readOnly: true
-    Auth0Registration:
-      title: Auth0 organization registration response
-      type: object
-      description: A successful Auth0 organization registration response.
-      properties:
-        organization_id:
-          type: string
-        login_path:
-          type: string
     IdP:
       title: IdP Configuration
       type: object
@@ -3064,55 +3039,6 @@ components:
             - '*'
           example: eu
           description: Region of the entity.
-    ParameterizedAssignedRole:
-      title: ParameterizedAssignedRole
-      type: object
-      description: >-
-        A parameterized assigned role is a role that has been assigned to a
-        managed system account with additional parameters.
-      example:
-        id: 54cc6168-ebb1-4300-8168-d62a0dd08fc8
-        role_name: Viewer
-        entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
-        entity_type_name: Control Planes
-        entity_region: us
-        parameters:
-          zoneName: zone3
-      x-internal: true
-      properties:
-        id:
-          type: string
-          format: uuid
-          example: eaf7adf1-32c8-4bbf-b960-d1f8456afe67
-          description: The ID of the role assignment.
-        role_name:
-          type: string
-          example: Viewer
-          description: Name of the role being assigned.
-        entity_id:
-          type: string
-          format: uuid
-          example: 817d0422-45c9-4d88-8d64-45aef05c1ae7
-          description: A RBAC entity ID.
-        entity_type_name:
-          type: string
-          example: Control Planes
-          description: Name of the entity type the role is being assigned to.
-        entity_region:
-          type: string
-          enum:
-            - us
-            - eu
-            - au
-            - '*'
-          example: eu
-          description: Region of the entity.
-        parameters:
-          type: object
-          description: Additional parameters for the role assignment.
-          properties:
-            '':
-              type: object
     SystemAccount:
       title: System Account
       type: object
@@ -3686,28 +3612,6 @@ components:
             entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
             entity_type_name: Services
             entity_region: '*'
-    Parameterized-Assigned-Roles-Collection-Example:
-      value:
-        meta:
-          page:
-            number: 1
-            size: 10
-            total: 100
-        data:
-          - id: b02e23c5-8ee4-4e5a-99f4-43329923adcd
-            role_name: Connector
-            entity_id: 437c7192-fea0-4f35-8478-c8d57783f8c1
-            entity_type_name: Mesh Control Planes
-            entity_region: us
-            parameters:
-              zoneName: zone2
-          - id: 869d9402-f117-4f9a-840f-69acaf70a81a
-            role_name: Connector
-            entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
-            entity_type_name: Mesh Control Planes
-            entity_region: eu
-            parameters:
-              zoneName: zone3
     Assigned-Role-Example:
       value:
         id: eaf7adf1-32c8-4bbf-b960-d1f8456afe67
@@ -3715,15 +3619,6 @@ components:
         entity_id: 817d0422-45c9-4d88-8d64-45aef05c1ae7
         entity_type_name: Control Planes
         entity_region: eu
-    Parameterized-Assigned-Role-Example:
-      value:
-        id: eaf7adf1-32c8-4bbf-b960-d1f8456afe67
-        role_name: Connector
-        entity_id: 18ee2573-dec0-4b83-be99-fa7700bcdc61
-        entity_type_name: Mesh Control Planes
-        entity_region: eu
-        parameters:
-          zoneName: zone4
     group-collection-example:
       value:
         meta:
@@ -3842,14 +3737,6 @@ components:
         basic_auth_enabled: true
         idp_mapping_enabled: false
         konnect_mapping_enabled: true
-    Update-Organization:
-      value:
-        owner_id: df120cb4-f60b-47bc-a2f8-6a28e6a3c63b
-        name: Kong Inc
-    AWS-Resolve-Customer-Request:
-      value:
-        token: >-
-          A1B2C3D4E5F6G7H8I9J0K+LMNOPQRSTUVWXYZabcd+efghijklmnopqrstuv+wxyz0123456789+
   parameters:
     PageSize:
       name: page[size]
