@@ -7,7 +7,7 @@ title: Analytics dashboard
 
 You can access a summary dashboard by navigating to [**Analytics** > **Summary**](https://cloud.konghq.com/analytics). The summary dashboard shows performance and health statistics of all your APIs across your organization on a single page and provides greater insights into your service usage.
 
-From {% konnect_icon analytics %} Analytics, you can view dashboards and access historical data for a range greater than 30 days. You can view the Analytics summary dashboard to track traffic, errors by error code, and latency across all services in your organization.
+From {% konnect_icon analytics %} Analytics, you can view dashboards and access historical data for a range greater than 30 days. You can view the Analytics summary dashboard to track traffic, error rate, and latency across all services in your organization.
 
 These categories measure trends by comparing metrics across fixed comparable time intervals and plotting the data points. For example, hour-over-hour, day-over-day, week-over-week, and month-over-month.
 You can view a graph for the **Requests**, **Error Rate**, and **P99 Latency** categories:
@@ -16,8 +16,8 @@ You can view a graph for the **Requests**, **Error Rate**, and **P99 Latency** c
     * Successful requests contain all requests that returned a **1xx-3xx** status code.
     * Failed requests contain all requests that returned a **4xx-5xx** status code.
     * 6xx status codes are not reported.
-* **Error Rate**: This graph displays the total number of failed HTTP requests categorized by error response codes over the specified time interval. Error response codes include any **4xx-5xx** status codes. This graph also includes any requests made to incorrect routes.
-* **P99 Latency**: This graph displays request latency, in milliseconds, of the 99th percentile.
+* **Error Rate**: This number displays the total number of failed HTTP requests over the specified time interval. Error response codes include any **4xx-5xx** status codes. This number also includes any requests made to incorrect routes.
+* **P99 Latency**: This number displays request latency, in milliseconds, of the 99th percentile.
 You can monitor the latency, investigate where delays are noticed, and optimize performance for APIs.
 
     {:.note}
