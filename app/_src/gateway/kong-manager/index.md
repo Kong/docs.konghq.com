@@ -13,9 +13,14 @@ Here are some of the things you can do with Kong Manager:
 * Create new routes and services
 * Activate or deactivate plugins
 * Group your teams, services, plugins, consumer management, and everything else exactly how you want them
+{% if_version lte:3.4.x %}
 * Manage users and roles for both {{site.base_gateway}} and for the Dev Portal
 * Configure Dev Portals: customize appearance, manage developers and applications, and edit Dev Portal layouts, specs, and documentation
 * Monitor performance: visualize cluster-wide, workspace-level, or even object-level health using intuitive, customizable dashboards
+{% endif_version %}
+{% if_version gte:3.5.x %}
+* Manage users and roles for {{site.base_gateway}}
+{% endif_version %}
 {% if_version gte:3.2.x %}
 * Centrally store and easily access key sets and keys. 
 {% endif_version %}

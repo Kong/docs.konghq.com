@@ -9,6 +9,32 @@ Changelog for supported Kong Gateway versions.
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.6.1.1
+**Release Date** 03/05/2024
+
+### Fixes
+
+#### Clustering
+
+* Adjusted a clustering compatibility check related to HashiCorp Vault Approle authentication.
+
+#### Core
+
+* Fixed the missing router section for the output of request debugging.
+* Reverted the hard-coded limitation of the `ngx.read_body()` API in OpenResty upstreams' new versions when downstream connections are in HTTP/2 or HTTP/3 stream modes.
+
+#### Kong Manager and Konnect
+* Fixed an issue where custom plugins were missing from the plugin selection page.
+* Fixed an issue where the service was not prefilled in the route form while using the expressions router.
+
+#### Plugins
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed an issue with `sync_rate` setting being used with the `redis` strategy. 
+  If the Redis connection is interrupted while `sync_rate = 0`, the plugin now accurately falls back to the `local` strategy.
+  * Fixed an issue where, if `sync_rate` was changed from a value greater than `0` to `0`, the namespace was cleared unexpectedly.
+  * Fixed some timer-related issues where the counter syncing timer couldn't be created or destroyed properly.
+  * The plugin now creates counter syncing timers during plugin execution instead of plugin creation to reduce some meaningless error logs.
+
 ## 3.6.1.0
 **Release Date** 02/26/2024
 

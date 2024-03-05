@@ -2,8 +2,8 @@ name: Mocking
 dbless_compatible: 'yes'
 dbless_explanation: |
   {:.note}
-  > Use the `api_specification` config for DB-less or hybrid mode. Attach the spec contents directly
-  instead of uploading to the Dev Portal. The API spec is configured directly in the plugin.
+  > Use the `api_specification` config for DB-less or hybrid mode. The API spec
+  is configured directly in the plugin.
 examples: true
 free: false
 enterprise: true
