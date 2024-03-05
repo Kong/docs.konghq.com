@@ -93,6 +93,17 @@ KONG_PRODUCTS='*:latest'
 ```
  are also possible.
 
+### Skipping slow generators
+
+Unfortunately, the `Sitemap` and `Hub` generators are slow. Even if they don't need to re-render a page,
+they still need to read the files and generate the necessary structures and pages, which takes time.
+The `Sitemap` generator is disabled by default if `JEKYLL_ENV=development`, so it doesn't run locally.
+Disabling the `Hub` generator can be done by setting the environment variable: `DISABLE_HUB`.
+
+```bash
+DISABLE_HUB=1 make run
+```
+
 ## Plugin contributors
 
 If you have contributed a plugin, you can add a Kong badge to your plugin README.

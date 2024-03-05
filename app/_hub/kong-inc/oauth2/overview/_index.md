@@ -10,7 +10,6 @@ Add an OAuth 2.0 authentication layer with one of the following grant flows:
 
 {:.important}
 > **Important**: 
-* Using Kong as an identity provider, as is supported by this plugin, is not recommended in production
 * Once applied, any user with a valid credential can access the service.
   To restrict usage to only some of the authenticated users, also add the
   [ACL](/hub/kong-inc/acl/) plugin (not covered here) and create allowed or
@@ -340,7 +339,7 @@ grpcurl -H 'authorization: bearer XXX' ...
 
 Note that the rest of the credentials flow uses HTTPS and not gRPC protocol.  Depending on your application, you might have to configure the `oauth2` plugin on two separate routes: one under `protocols: ["https"]` and another under `protocols: ["grpcs"]`.
 
-[consumer-object]: /gateway/latest/admin-api/#consumer-object
+[consumer-object]: /gateway/api/admin-ee/latest/#/Consumers/list-consumer/
 [proxy-port]: https://docs.konghq.com/latest/configuration/#proxy_listen
 
 ## WebSocket requests

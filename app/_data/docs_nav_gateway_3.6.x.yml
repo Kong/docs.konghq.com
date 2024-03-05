@@ -27,11 +27,13 @@ items:
       - text: Release Notes
         url: /gateway/changelog
         absolute_url: true
-      - text: Breaking Changes	
+      - text: Breaking Changes
         items:
-          - text: Kong Gateway 3.5.x
+          - text: Kong Gateway 3.6.x
             url: /breaking-changes/
-            src: /gateway/breaking-changes/35x
+            src: /gateway/breaking-changes/36x
+          - text: Kong Gateway 3.5.x
+            url: /breaking-changes/35x/
           - text: Kong Gateway 3.4.x
             url: /breaking-changes/34x/
           - text: Kong Gateway 3.3.x
@@ -85,6 +87,8 @@ items:
         url: /get-started/key-authentication
       - text: Load-Balancing
         url: /get-started/load-balancing
+      - text: AI Gateway
+        url: /get-started/ai-gateway
   - title: Kong in Production
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
     items:
@@ -226,8 +230,12 @@ items:
         url: /production/canary
       - text: Clustering Reference
         url: /production/clustering
-      - text: Establish a Performance Benchmark
-        url: /production/benchmark
+      - text: Performance Testing
+        items:
+        - text: Performance Testing Benchmarks
+          url: /production/performance/performance-testing
+        - text: Establish a Performance Benchmark
+          url: /production/performance/benchmark
       - text: Logging and Debugging
         items:
           - text: Log Reference
@@ -380,6 +388,8 @@ items:
                 url: /kong-manager/auth/oidc/configure
               - text: OIDC Authenticated Group Mapping
                 url: /kong-manager/auth/oidc/mapping
+              - text: Migrate from previous configurations
+                url: /kong-manager/auth/oidc/migrate
           - text: Sessions
             url: /kong-manager/auth/sessions
           - text: RBAC
@@ -521,60 +531,141 @@ items:
     items:
       - text: Overview
         url: /admin-api/
-      - text: Information Routes
-        url: /admin-api/#information-routes
-      - text: Health Routes
-        url: /admin-api/#health-routes
-      - text: Tags
-        url: /admin-api/#tags
-      - text: Debug Routes
-        url: /admin-api/#debug-routes
-      - text: Services
-        url: /admin-api/#service-object
-      - text: Routes
-        url: /admin-api/#route-object
-      - text: Consumers
-        url: /admin-api/#consumer-object
-      - text: Plugins
-        url: /admin-api/#plugin-object
-      - text: Certificates
-        url: /admin-api/#certificate-object
-      - text: CA Certificates
-        url: /admin-api/#ca-certificate-object
-      - text: SNIs
-        url: /admin-api/#sni-object
-      - text: Upstreams
-        url: /admin-api/#upstream-object
-      - text: Targets
-        url: /admin-api/#target-object
-      - text: Vaults
-        url: /admin-api/#vaults-object
-      - text: Keys
-        url: /admin-api/#keys-object
-      - text: Filter Chains
-        url: /admin-api/#filter-chain-object
-      - text: Licenses
-        url: /admin-api/licenses/reference
-      - text: Workspaces
-        url: /admin-api/workspaces/reference
-      - text: RBAC
-        url: /admin-api/rbac/reference
-      - text: Admins
-        url: /admin-api/admins/reference
-      - text: Consumer Groups
-        url: /gateway/api/admin-ee/latest/#/consumer_groups/
+        src: /gateway/admin-api/index_latest
+      - text: Declarative Configuration
+        url: /admin-api/declarative-configuration
+      - text: Enterprise API
+        items:
+        - text: Information Routes
+          url: /gateway/api/admin-ee/latest/#/Information/get-endpoints
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Health Routes
+          url: /gateway/api/admin-ee/latest/#/Information/get-status
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Tags
+          url: /gateway/api/admin-ee/latest/#/tags/get-tags
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Debug Routes
+          url: /gateway/api/admin-ee/latest/#/debug/put-debug-cluster-control-planes-nodes-log-level-log_level
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Services
+          url: /gateway/api/admin-ee/latest/#/Services/list-service
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Routes
+          url: /gateway/api/admin-ee/latest/#/Routes/list-route
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Consumers
+          url: /gateway/api/admin-ee/latest/#/Consumers/list-consumer
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Plugins
+          url: /gateway/api/admin-ee/latest/#/Plugins/list-plugins-with-consumer
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Certificates
+          url: /gateway/api/admin-ee/latest/#/Certificates/list-certificate
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: CA Certificates
+          url: /gateway/api/admin-ee/latest/#/CA%20Certificates/list-ca_certificate
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: SNIs
+          url:  /gateway/api/admin-ee/latest/#/SNIs/list-sni-with-certificate
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Upstreams
+          url: /gateway/api/admin-ee/latest/#/Upstreams/list-upstream
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Targets
+          url: /gateway/api/admin-ee/latest/#/Targets/list-target-with-upstream
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Vaults
+          url: /gateway/api/admin-ee/latest/#/Vaults/list-vault
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Keys
+          url: /gateway/api/admin-ee/latest/#/Keys/list-key
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Filter Chains
+          url:  /gateway/api/admin-ee/latest/#/filter-chains/get-filter-chains
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Licenses
+          url: /gateway/api/admin-ee/latest/#/licenses/get-licenses
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Workspaces
+          url: /gateway/api/admin-ee/latest/#/Workspaces/list-workspace
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: RBAC
+          url: /gateway/api/admin-ee/latest/#/rbac/get-rbac-users
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Admins
+          url: /gateway/api/admin-ee/latest/#/admins/get-admins
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Consumer Groups
+          url: /gateway/api/admin-ee/latest/#/consumer_groups/
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Event Hooks
+          url: /gateway/api/admin-ee/latest/#/Event-hooks/get-event-hooks
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Keyring and Data Encryption
+          url: /gateway/api/admin-ee/latest/#/Keyring/get-keyring
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Audit Logs
+          url: /gateway/api/admin-ee/latest/#/audit-logs/get-audit-requests
+          absolute_url: true
+          generate: false
+          target_blank: true
+        - text: Status API
+          url: /gateway/api/status/v1/
+          absolute_url: true
+          generate: false
+          target_blank: true
+      - text: Open Source API
+        url: /gateway/api/admin-oss/latest/
         absolute_url: true
         generate: false
-      - text: Event Hooks
-        url: /admin-api/event-hooks/reference
-      - text: Keyring and Data Encryption
-        url: /admin-api/db-encryption
-      - text: Audit Logs
-        url: /admin-api/audit-logs
-      - text: Status API
-        url: /gateway/api/status/v1/
-        absolute_url: true
-        generate: false
+        target_blank: true
   - title: Reference
     icon: /assets/images/icons/documentation/icn-references-color.svg
     items:

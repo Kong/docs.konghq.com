@@ -67,9 +67,11 @@ service, you must add the new consumer to an allowed group. See
 
 A Vault object represents the connection between Kong and a Vault server. It defines the connection and authentication information used to communicate with the Vault API. This allows different instances of the `vault-auth` plugin to communicate with different Vault servers, providing a flexible deployment and consumption model.
 
+{% if_plugin_version gte:3.1.x %}
 Vault objects require setting a `vault_token` attribute. This attribute is _referenceable_, which means it can be securely stored as a
 [secret](/gateway/latest/kong-enterprise/secrets-management/getting-started/)
 in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
+{% endif_plugin_version %}
 
 Vault objects can be created via the following HTTP request:
 

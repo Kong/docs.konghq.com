@@ -300,6 +300,16 @@ runtime:
           periodSeconds: 5 # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_LIVENESS_PROBE_PERIOD_SECONDS
           # Minimum consecutive failures for the probe to be considered failed after having succeeded.
           failureThreshold: 12 # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_LIVENESS_PROBE_FAILURE_THRESHOLD
+        # Startup probe (if sidecar containers feature is enabled).
+        startupProbe:
+          # Number of seconds after the container has started before startup probes are initiated.
+          initialDelaySeconds: 1 # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_STARTUP_PROBE_INITIAL_DELAY_SECONDS
+          # Number of seconds after which the probe times out.
+          timeoutSeconds: 3 # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_STARTUP_PROBE_TIMEOUT_SECONDS
+          # How often (in seconds) to perform the probe.
+          periodSeconds: 5 # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_STARTUP_PROBE_PERIOD_SECONDS
+          # Minimum consecutive failures for the probe to be considered failed after having succeeded.
+          failureThreshold: 12 # ENV: KUMA_RUNTIME_KUBERNETES_INJECTOR_SIDECAR_CONTAINER_STARTUP_PROBE_FAILURE_THRESHOLD
         # Compute resource requirements.
         resources:
           # Minimum amount of compute resources required.
@@ -388,6 +398,8 @@ runtime:
   universal:
     # DataplaneCleanupAge defines how long Dataplane should be offline to be cleaned up by GC
     dataplaneCleanupAge: 72h0m0s # ENV: KUMA_RUNTIME_UNIVERSAL_DATAPLANE_CLEANUP_AGE
+    # VIPRefreshInterval defines how often all meshes' VIPs should be recomputed
+    vipRefreshInterval: 500ms # ENV: KUMA_RUNTIME_UNIVERSAL_VIP_REFRESH_INTERVAL
 # Default Kuma entities configuration
 defaults:
   # If true, it skips creating the default Mesh
@@ -734,6 +746,9 @@ experimental:
   # If true then control plane computes reachable services automatically based on MeshTrafficPermission.
   # Lack of MeshTrafficPermission is treated as Deny the traffic.
   autoReachableServices: false # ENV: KUMA_EXPERIMENTAL_AUTO_REACHABLE_SERVICES
+  # Enables sidecar containers in Kubernetes if supported by the Kubernetes
+  # environment.
+  sidecarContainers: false # ENV: KUMA_EXPERIMENTAL_SIDECAR_CONTAINERS
 proxy:
   gateway:
     # Sets the envoy runtime value to limit maximum number of incoming
@@ -747,6 +762,25 @@ eventBus:
   # BufferSize controls the buffer for every single event listener.
   # If we go over buffer, additional delay may happen to various operation like insight recomputation or KDS.
   bufferSize: 100 # ENV: KUMA_EVENT_BUS_BUFFER_SIZE
+policies:
+  # PluginPoliciesEnabled controls which policy plugins are enabled
+  pluginPoliciesEnabled: # ENV: KUMA_PLUGIN_POLICIES_ENABLED
+    - meshaccesslogs
+    - meshcircuitbreakers
+    - meshfaultinjections
+    - meshglobalratelimits
+    - meshhealthchecks
+    - meshhttproutes
+    - meshloadbalancingstrategies
+    - meshmetrics
+    - meshopas
+    - meshproxypatches
+    - meshratelimits
+    - meshretries
+    - meshtcproutes
+    - meshtimeouts
+    - meshtraces
+    - meshtrafficpermissions
 kmesh:
   # License of Kong Mesh
   license:

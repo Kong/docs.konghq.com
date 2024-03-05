@@ -36,8 +36,7 @@ We do not provide any hard numbers for database sizing (DB sizing), as it
 depends on your particular setup. Sizing varies based on:
 * Traffic
 * Number of nodes
-* Enabled features: for example, Vitals, or if rate limiting uses a
-database or Redis
+* Enabled features: for example, if rate limiting uses a database or Redis
 * Number and rate of change of configured entities
 * The rate at which {{site.base_gateway}} processes are started and restarted within the cluster
 * The size of {{site.base_gateway}}'s [in-memory cache](#in-memory-caching)
@@ -237,3 +236,9 @@ impact of increasing the number of Workspaces on the cluster is also affected
 by the cardinality of configured plugins on the cluster. There is an
 exponential impact on request throughput capacity within the cluster
 as the cardinality of plugins _and_ the number of Workspaces increases.
+
+{% if_version gte:3.6.x %}
+## More information
+* [Establish a {{site.base_gateway}} performance benchmark](/gateway/{{page.release}}/production/performance/benchmark): Learn how to optimize {{site.base_gateway}} for performance.
+* [Performance testing benchmark results](/gateway/{{page.release}}/production/performance/performance-testing): See Kong's performance testing benchmark results for the current version and learn how to use Kong's test suite to conduct your own performance tests.
+{% endif_version %}

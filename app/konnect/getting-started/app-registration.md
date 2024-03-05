@@ -85,7 +85,7 @@ reference ID, and description. The reference ID must be unique.
 1. In the **Authentication** pane of the application detail page, click **Generate Credential**.
 
 1. Test the generated credential by making a call to the service the
-   [application is registered with](/konnect/dev-portal/applications/dev-reg-app-service/)
+   [application is registered with](/konnect/dev-portal/applications/dev-apps/)
    using your generated API key:
 
    ```sh

@@ -51,8 +51,14 @@ So, uncheck everything except the email, given name, and family name fields.
     “https://kong-ee:8446/default, https://kong-ee:8447/default/, https://kong-ee:8447/default/auth, https://kong-ee:8443/cognito”
     ```
 
+{% if_plugin_version lte:3.4.x %}
     Note that AWS Cognito doesn’t support HTTP callback URLs. This field should
     include the API and Dev Portal URLs that you want to secure using AWS Cognito.
+{% endif_plugin_version %}
+{% if_plugin_version gte:3.5.x %}
+    Note that AWS Cognito doesn’t support HTTP callback URLs. This field should
+    include the API URL that you want to secure using AWS Cognito.
+{% endif_plugin_version %}
 
 1. Click the **Authorization code grant** checkbox under Allowed OAuth Flows.
 1. Click the checkboxes next to `email`, `OpenID`, `aws.cognito.signin.user.admin`, and `profile`.
@@ -62,7 +68,12 @@ So, uncheck everything except the email, given name, and family name fields.
    If it reports `This domain is available`, the name you have chosen will work.
 1. Click the **Save changes** button.
 
+{% if_plugin_version lte:3.4.x %}
 Now that you have created an Amazon Cognito User Pool and Application Definition, we can configure the OpenID Connect plugin in Kong. We can then test integration between Dev Portal and Amazon Cognito.
+{% endif_plugin_version %}
+{% if_plugin_version gte:3.5.x %}
+Now that you have created an Amazon Cognito User Pool and Application Definition, you can configure the OpenID Connect plugin in Kong.
+{% endif_plugin_version %}
 
 Amazon’s OIDC discovery endpoint is available from:
 ```

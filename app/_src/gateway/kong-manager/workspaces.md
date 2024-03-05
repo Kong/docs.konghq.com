@@ -24,8 +24,14 @@ any other workspaces.
 
 ## Navigating across workspaces in Kong Manager
 
+{% if_version lte:3.4.x %}
 To navigate between workspaces from the **Overview** page, click on any
 workspace displayed beneath the **Vitals** chart.
+{% endif_version %}
+{% if_version gte:3.5.x %}
+To navigate between workspaces from the **Overview** page, click on any
+workspace displayed in the list of workspaces.
+{% endif_version %}
 
 The list of workspaces may be rendered as cards or a table,
 depending on preference.
@@ -33,7 +39,7 @@ depending on preference.
 ## Create a Workspace
 
 This guide describes how to create workspaces in Kong
-Manager. You can also use the Admin API [`/workspaces/` route](/gateway/{{page.release}}/admin-api/workspaces/reference/#add-workspace) to create a workspace.
+Manager. You can also use the Admin API [`/workspaces/` route](/gateway/api/admin-ee/latest/#/Workspaces/create-workspace) to create a workspace.
 
 1. Log in as the **Super Admin**. On the **Workspaces** page, click the **New Workspace**
 button to see the **Create Workspace** form. Name and choose a
@@ -96,7 +102,10 @@ all files from a folder will remove the folder.
 1. In the workspace you want to delete, navigate to the **Dashboard** page.
 1. Click the **Settings** button to open the **Edit Workspace** page.
 1. Click **Delete**.
-    The deletion will fail if you have any data in your workspace.
+
+{:.note}
+> To delete a workspace using the Kong Manager GUI, the workspace must first be empty. If the workspace contains any entities, you will need to follow the admin API instructions to delete both the workspace and any associated entities.
+
 {% endnavtab %}
 {% navtab Admin API %}
 
@@ -134,7 +143,7 @@ from the workspace:
 {% endif_version %}
 
 {% if_version gte:3.4.x %}
-Delete the workspace and [all entities associated with the workspace](/gateway/{{page.release}}/admin-api/workspaces/reference/#delete-a-workspace):
+Delete the workspace and [all entities associated with the workspace](/gateway/api/admin-ee/latest/#/Workspaces/delete-workspace):
 
 ```bash
 curl -i -X DELETE http://localhost:8001/{WORKSPACE_NAME}?cascade=true
@@ -188,9 +197,10 @@ Using Kong Manager, complete the following:
 
 This will automatically delete all entities (teams, roles, services, and routes, for example) associated with the workspace as well as the workspace itself.
 
+
 {% endnavtab %}
 {% navtab Admin API %}
-Delete the workspace and [all entities associated with the workspace](/gateway/{{page.release}}/admin-api/workspaces/reference/#delete-a-workspace):
+Delete the workspace and [all entities associated with the workspace](/gateway/api/admin-ee/latest/#/Workspaces/delete-workspace):
 
 ```bash
 curl -i -X DELETE http://localhost:8001/{WORKSPACE_NAME}?cascade=true

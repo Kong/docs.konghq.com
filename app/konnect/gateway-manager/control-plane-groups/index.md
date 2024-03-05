@@ -13,7 +13,47 @@ control plane group share the same cluster of data plane nodes.
 In a standard control plane setup, each team configures and manages their own data plane nodes.
 For example, in the following diagram, Team Blue configures Control Plane Blue, which then uses a set of data plane nodes that only run Blue configuration; the same happens with Team Yellow.
 
-![Standard control plane](/assets/images/products/konnect/gateway-manager/konnect-control-plane.svg)
+<!--vale off-->
+{% mermaid %}
+flowchart LR
+  A(fa:fa-users Team Blue )
+  B(fa:fa-users Team Green)
+  C(Control plane Blue
+  #40;standard group#41;)
+  D(Control plane Green
+  #40;standard group#41;)
+  E(fa:fa-layer-group Data plane nodes)
+  F(fa:fa-layer-group Data plane nodes)
+
+
+  A -- deck gateway sync --> C
+  B -- deck gateway sync --> D
+  subgraph id1 ["`**KONNECT ORG**`"]
+  C
+  D
+  end
+  C --Get config from 
+  control plane Blue--> E
+  D --Get config from 
+  control plane Green--> F
+  subgraph id2 [Data centers]
+  E
+  F
+  end
+  
+  style A stroke:none,fill:#286FEB,color:#fff
+  style B stroke:none,fill:#11A06B,color:#fff
+  style C stroke:none,fill:#286FEB,color:#fff
+  style D stroke:none,fill:#11A06B,color:#fff
+  style E stroke:#286FEB
+  style F stroke:#11A06B
+  linkStyle 0,2 stroke:#286FEB
+  linkStyle 1,3 stroke:#11A06B
+  style id1 rx:10,ry:10,stroke:#a2afb7,stroke-dasharray:3
+  style id2 rx:10,ry:10,stroke:#a2afb7,stroke-dasharray:3
+{% endmermaid %}
+<!--vale on-->
+
 > _**Figure 1:** Standard control plane workflow_
 
 In a control plane group setup, each team still administers their own control plane, but the data plane nodes are shared. 
@@ -22,7 +62,56 @@ The following diagram illustrates using a control plane group for a federated pl
 
 The data plane nodes in the cluster use the combined configuration from all three groups.
 
-![Control plane group](/assets/images/products/konnect/gateway-manager/konnect-control-plane-group.svg)
+<!--vale off-->
+{% mermaid %}
+flowchart LR
+  A(fa:fa-users Team Blue)
+  B(fa:fa-users Team Green)
+  C(Control plane Blue
+  #40;standard group#41;)
+  D(Control plane Purple
+    global config
+    #40;standard group#41;)
+  E(Control plane Green
+   #40;standard group#41;)
+  F(fa:fa-layer-group Data plane nodes)
+  G(fa:fa-layer-group Data plane nodes)
+
+  A -- deck gateway sync --> C
+  B -- deck gateway sync --> E
+
+  subgraph id1 ["`**KONNECT ORG**`"]
+    subgraph id2 [<br>Control plane group Steel]
+    C
+    D
+    E
+    end
+  end
+
+  id2 -- Get config from 
+  control plane group
+  Steel--> F & G
+
+  subgraph id3 [Data centers]
+  F
+  G
+  end
+
+  style A stroke:none,fill:#286FEB,color:#fff
+  style B stroke:none,fill:#11A06B,color:#fff
+  style C stroke:none,fill:#286FEB,color:#fff
+  style D stroke:none,fill:#5F43E9,color:#fff
+  style E stroke:none,fill:#11A06B,color:#fff
+  style F stroke:#a2afb7
+  style G stroke:#a2afb7
+  linkStyle 0 stroke:#286FEB
+  linkStyle 1 stroke:#11A06B
+  style id1 rx:10,ry:10,stroke:#a2afb7,stroke-dasharray:3
+  style id2 rx:10,ry:10,stroke:none,fill:#dae3f2
+  style id3 rx:10,ry:10,stroke:#a2afb7,stroke-dasharray:3
+{% endmermaid %}
+<!--vale on-->
+
 > _**Figure 2:** Control plane group workflow_
 
 A control plane group can contain up to 256 control planes. 
@@ -104,12 +193,10 @@ The following are exceptions to the read-only rule:
 * A data plane node client certificate can be generated in the UI or uploaded to a control plane group.
 * Data plane nodes can be connected to a control plane group, however, members of a control plane group cannot have any data plane nodes connected to them.
 
-Kong Ingress Controller control planes can't be part of a control plane group.
+{{site.kic_product_name}} control planes can't be part of a control plane group.
 
 One control plane group cannot be a member of another control plane group. 
 
-Analytics for a control plane group are only available at the group level. 
-Member standard control planes have no individual analytics reporting.
 
 Conflict detection in a control plane group happens only after you have added a data plane node to the control plane group.
 ## More information

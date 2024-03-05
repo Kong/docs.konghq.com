@@ -1,6 +1,10 @@
 ## Changelog
 
-**{{site.base_gateway}} 3.1.x**
+### {{site.base_gateway}} 3.6.x
+* The plugin now falls back to the non-streaming proxy when the request body was already read.
+* Fixed an issue where request payload was discarded when the payload exceeded the `client_body_buffer_size`.
+
+### {{site.base_gateway}} 3.1.x
 
 - **Forward Proxy**: `x_headers` field added. This field indicates how the plugin handles the headers
   `X-Real-IP`, `X-Forwarded-For`, `X-Forwarded-Proto`, `X-Forwarded-Host`, and `X-Forwarded-Port`.
@@ -12,7 +16,7 @@
 
   Note that all options respect the trusted IP setting, and will ignore last hop headers if they are not from clients with trusted IPs.
 
-**{{site.base_gateway}} 2.8.x**
+### {{site.base_gateway}} 2.8.x
 
 * Added `http_proxy_host`, `http_proxy_port`, `https_proxy_host`, and
 `https_proxy_port` configuration parameters for mTLS support.
@@ -24,8 +28,8 @@
 * The `auth_password` and `auth_username` configuration fields are now marked as
 referenceable, which means they can be securely stored as
 [secrets](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started)
-in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/security/secrets-management/reference-format).
+in a vault. References must follow a [specific format](/gateway/latest/kong-enterprise/secrets-management/reference-format/).
 
-**{{site.base_gateway}} 2.7.x**
+### {{site.base_gateway}} 2.7.x
 
 * Added `auth_username` and `auth_password` parameters for proxy authentication.

@@ -29,7 +29,7 @@
     pcre: "8.45"
   lua_doc: true
 - release: "2.8.x"
-  ee-version: "2.8.4.6"
+  ee-version: "2.8.4.7"
   ce-version: "2.8.4"
   edition: "gateway"
   luarocks_version: "2.5.1-0"
@@ -100,7 +100,7 @@
     pcre: 8.45
   lua_doc: true
 - release: "3.4.x"
-  ee-version: "3.4.3.3"
+  ee-version: "3.4.3.4"
   ce-version: "3.4.2"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -114,7 +114,7 @@
     pcre: 8.45
   lua_doc: true
 - release: "3.5.x"
-  ee-version: "3.5.0.2"
+  ee-version: "3.5.0.3"
   ce-version: "3.5.0"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
@@ -127,10 +127,9 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
-  latest: true
 - release: "3.6.x"
-  ee-version: "3.6.0.0"
-  ce-version: "3.6.0"
+  ee-version: "3.6.1.1"
+  ce-version: "3.6.1"
   edition: "gateway"
   luarocks_version: "3.0.0-0"
   dependencies:
@@ -142,7 +141,22 @@
     libyaml: "0.2.5"
     pcre: 8.45
   lua_doc: true
-  label: dev
+  latest: true
+- release: "3.7.x"
+  ee-version: "3.7.0.0"
+  ce-version: "3.7.0"
+  edition: "gateway"
+  luarocks_version: "3.0.0-0"
+  dependencies:
+    luajit: "2.1-20220411"
+    luarocks: "3.9.1"
+    postgres: "9.5+"
+    openresty: "1.21.4.1"
+    openssl: "1.1.1.q"
+    libyaml: "0.2.5"
+    pcre: 8.45
+  lua_doc: true
+  label: unreleased
 - release: "pre-1.7"
   version: "1.6.0"
   edition: "deck"
@@ -218,7 +232,17 @@
 - release: "1.30.x"
   version: "1.30.0"
   edition: "deck"
+- release: "1.34.x"
+  version: "1.34.0"
+  edition: "deck"
+- release: "1.35.x"
+  version: "1.35.0"
+  edition: "deck"
   latest: true
+- release: "1.36.x"
+  version: "1.36.0"
+  edition: "deck"
+  label: unreleased
 - edition: "konnect"
 - edition: "contributing"
 - release: "1.0.x"
@@ -275,11 +299,14 @@
 - release: "3.0.x"
   version: "3.0.2"
   edition: "kubernetes-ingress-controller"
-  latest: true
 - release: "3.1.x"
   version: "3.1.0"
   edition: "kubernetes-ingress-controller"
-  label: dev
+  latest: true
+- release: "3.2.x"
+  version: "3.2.0"
+  edition: "kubernetes-ingress-controller"
+  label: unreleased
 - edition: gateway-operator
   version: 1.0.3
   release: 1.0.x
@@ -290,7 +317,7 @@
 - edition: gateway-operator
   version: 1.2.0
   release: 1.2.x
-  label: dev
+  label: unreleased
 - edition: mesh
   version: 1.2.6
   release: 1.2.x
@@ -352,32 +379,38 @@
   endOfLifeDate: "2024-01-30"
   branch: release-2.1
 - edition: mesh
-  version: 2.2.5
+  version: 2.2.7
   release: 2.2.x
   releaseDate: "2023-04-14"
   endOfLifeDate: "2024-04-14"
   branch: release-2.2
 - edition: mesh
-  version: 2.3.3
+  version: 2.3.5
   release: 2.3.x
   releaseDate: "2023-06-26"
   endOfLifeDate: "2024-06-26"
   branch: release-2.3
 - edition: mesh
-  version: 2.4.4
+  version: 2.4.6
   release: 2.4.x
   releaseDate: "2023-08-29"
   endOfLifeDate: "2024-08-29"
   branch: release-2.4
 - edition: mesh
-  version: 2.5.1
+  version: 2.5.3
   release: 2.5.x
-  latest: true
   releaseDate: "2023-11-15"
   endOfLifeDate: "2024-11-15"
   branch: release-2.5
 - edition: mesh
-  version: 2.6.0
+  version: 2.6.1
   release: 2.6.x
-  label: dev
+  latest: true
+  releaseDate: "2024-02-01"
+  endOfLifeDate: "2025-02-01"
+  branch: release-2.6
+- edition: mesh
+  version: preview
+  release: 2.7.x
   branch: master
+  label: dev

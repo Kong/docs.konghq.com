@@ -2,7 +2,7 @@
 
 module PluginSingleSource
   class Generator < Jekyll::Generator
-    priority :highest
+    priority :high
 
     PLUGINS_FOLDER = '_hub'
     SAMPLE_PLUGIN = '_init/my-extension'
@@ -10,6 +10,7 @@ module PluginSingleSource
     def generate(site)
       site.data['ssg_hub'] = []
 
+      return if ENV['DISABLE_HUB']
       return if ENV['KONG_PRODUCTS'] && !ENV['KONG_PRODUCTS'].include?('hub')
 
       generate_pages(site)

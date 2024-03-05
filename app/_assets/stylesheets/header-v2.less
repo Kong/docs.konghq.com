@@ -1,5 +1,5 @@
 .item-hovered {
-  text-decoration: underline;
+  text-decoration: none;
   color: @color-blue !important;
 }
 
@@ -9,10 +9,8 @@ header.navbar-v2 {
   top: 0;
   right: 0;
   height: 60px;
-  background: white;
-  box-shadow: 0 8px 24px rgba(4, 53, 88, 0.1);
+  background: #121418;
   z-index: 100;
-  padding: 0 24px;
 
   hr {
     width: 90%;
@@ -227,12 +225,13 @@ header.navbar-v2 {
     margin: 0 auto;
     display: flex;
     align-items: center;
-    background: white;
+    background: #121418;
 
     .navbar-brand {
       display: flex;
       flex-shrink: 0;
       max-width: 100px;
+      margin-left: 12px;
 
       #kong-logo {
         max-width: 100px;
@@ -245,10 +244,9 @@ header.navbar-v2 {
 
     .logo-divider {
       font-size: 28px;
-      text-align: middle;
-      margin-right: 8px;
-      margin-left: 8px;
-      color: @steel-200;
+      margin-left: 12px;
+      color: #fff;
+      opacity: 0.4;
     }
 
     .separator {
@@ -289,6 +287,10 @@ header.navbar-v2 {
       }
     }
 
+    > .navbar-items {
+      padding: 0 12px 0 0;
+    }
+
     .navbar-items {
       flex-shrink: 0;
       display: flex;
@@ -305,14 +307,14 @@ header.navbar-v2 {
         font-family: Roboto;
         font-size: 16px;
         line-height: 22px;
-        color: #043558;
+        color: #AAB4BB;
         transition: color 0.25s;
         margin-right: 30px;
         padding: 18px 0;
         white-space: nowrap;
         cursor: pointer;
         font-weight: 400;
-        color: #043558;
+        color: #AAB4BB;
         font: 500 16px/24px Roboto;
         transition: color 0.25s;
 
@@ -324,6 +326,7 @@ header.navbar-v2 {
           justify-content: space-between;
 
           .caret {
+            color: #58A6FF;
             margin-left: 5px;
             margin-top: 32px;
           }
@@ -334,7 +337,8 @@ header.navbar-v2 {
         }
 
         &:hover {
-          .item-hovered();
+          text-decoration: none;
+          color: #fff !important;
         }
 
         .navbar-item-submenu {
@@ -424,21 +428,16 @@ header.navbar-v2 {
         height: auto;
         padding: 8px 16px;
         border: 1px solid #1155cb;
-        background: linear-gradient(90deg,#1155cb 0, #1155cb 100%);
+        background: none;
         box-sizing: border-box;
         border-radius: 4px;
         font-family: Roboto;
-        font-weight: 400;
+        font-weight: 500;
         font-size: 16px;
         line-height: 22px;
         transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
         color: #fff;
         margin-left: 8px;
-
-        &:hover {
-          background: linear-gradient(90deg,#1155cb 0, #0a2b66 100%);
-          color: white;
-        }
       }
     }
 
@@ -454,12 +453,13 @@ header.navbar-v2 {
       width: 18px;
       height: 18px;
       cursor: pointer;
+      margin-right: 12px;
 
       div {
         position: absolute;
         width: 100%;
-        border: 1px solid #004b80;
-        background: #004b80;
+        border: 1px solid #fff;
+        background: #fff;
         border-radius: 2px;
         left: 0;
         top: 0;
@@ -482,9 +482,15 @@ header.navbar-v2 {
   @media (max-width: 1470px) {
     .navbar-content {
       .navbar-items {
+        color: #043558;
+
         .navbar-item {
           margin-right: 20px;
           transition: ease 0.5s;
+        }
+
+        &:hover {
+          .item-hovered();
         }
       }
       .search-input-wrapper {
@@ -525,12 +531,15 @@ header.navbar-v2 {
   }
 
   @media (max-width: 1100px) {
-    padding: 0 12px;
-
     .navbar-content {
       .navbar-items {
         .navbar-item {
+          color: #043558;
           margin-right: 24px;
+
+          &:hover {
+            .item-hovered();
+          }
         }
 
         .navbar-button {
@@ -554,6 +563,7 @@ header.navbar-v2 {
         padding: 24px 0;
         z-index: -100;
         max-height: unset;
+        color: #043558;
 
         > ul {
           max-height: unset;
@@ -635,6 +645,7 @@ header.navbar-v2 {
           align-items: center;
           justify-content: center;
           align-self: stretch;
+          color: #1155CB;
         }
       }
 
@@ -666,19 +677,35 @@ header.navbar-v2 {
           width: 100%;
           margin: 0 10px;
           padding: 2px 16px;
-          background: rgba(248, 249, 252, 1);
+          background:#666C70;
         }
       }
     }
   }
 
   #top-cta {
-    color: #1155cb;
-    background: linear-gradient(90deg,#fff 0, #fff 100%);
+    color: #fff;
+    background: #1155CB;
 
     &:hover {
-      background: linear-gradient(90deg,#1155cb 0, #0a2b66 100%);
+      background: #0e46a8;
+      border-color: #0e46a8;
       color: #fff;
+    }
+  }
+
+  #konnect-cta {
+    background-color: transparent;
+    border: 1px solid #fff;
+
+    @media (max-width: 1100px) {
+      border: 1px solid #1155cb;
+    }
+
+    &:hover {
+      background-color: #fff;
+      border-color: #fff;
+      color: #35363a;
     }
   }
 }

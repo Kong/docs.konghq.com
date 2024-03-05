@@ -13,9 +13,7 @@ module Jekyll
 
       # Loop through all registered pages, and return if there
       # is a page with the URL that we're expecting
-      !context.registers[:site].pages.detect do |page|
-        page.url == url
-      end.nil?
+      context.registers[:site].data['pages_urls'].include?(url)
     end
   end
 end

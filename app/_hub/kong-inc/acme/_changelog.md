@@ -1,5 +1,11 @@
 ## Changelog
 
+### {{site.base_gateway}} 3.6.x
+
+* Standardized Redis configuration across plugins. 
+The Redis configuration now follows a common schema that is shared across other plugins.
+[#12300](https://github.com/Kong/kong/issues/12300)  [#12301](https://github.com/Kong/kong/issues/12301)
+
 ### {{site.base_gateway}} 3.5.x
 
 * Exposed the new configuration field `scan_count` for Redis storage, 

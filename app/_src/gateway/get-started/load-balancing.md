@@ -16,7 +16,7 @@ it automatically detects the problem and routes all traffic to the working serve
 An [upstream](/gateway/latest/key-concepts/upstreams/) 
 refers to the service applications sitting behind {{site.base_gateway}}, 
 to which client requests are forwarded. In {{site.base_gateway}}, an upstream represents a virtual hostname and can be 
-used to health check, circuit break, and load balance incoming requests over multiple [target](/gateway/latest/admin-api/#target-object) backend services.
+used to health check, circuit break, and load balance incoming requests over multiple [target](/gateway/api/admin-ee/latest/#/Targets/list-target-with-upstream/) backend services.
 
 In this section, you’ll re-configure the service created earlier, (`example_service`) to point to an upstream 
 instead of a specific host. For the purposes of our example, the upstream will point to two different targets, 
@@ -24,7 +24,31 @@ instead of a specific host. For the purposes of our example, the upstream will p
 
 Here is a diagram illustrating the setup:
 
-![Upstream targets](/assets/images/products/gateway/getting-started-guide/upstream-targets.png)
+<!--vale off-->
+
+{% mermaid %}
+flowchart LR
+  A("`Route 
+  (/mock)`")
+  B("`Service
+  (example_service)`")
+  C(Load balancer)
+  D(httpbin.org)
+  E(httpbun.com)
+  
+  subgraph id1 ["`**KONG GATEWAY**`"]
+    A --> B --> C
+  end
+
+  subgraph id2 ["`Targets (example_upstream)`"]
+    C --> D & E
+  end
+
+  style id1 rx:10,ry:10
+  style id2 stroke:none
+{% endmermaid %}
+
+<!--vale on-->
 
 ## Enable load balancing
 

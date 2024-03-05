@@ -38,7 +38,7 @@ You can set the header type `ldap` to any string (such as `basic`) using
 
 
 [configuration]: /gateway/latest/reference/configuration
-[consumer-object]: /gateway/latest/admin-api/#consumer-object
+[consumer-object]: /gateway/api/admin-ee/latest/#/Consumers/list-consumer/
 
 
 
