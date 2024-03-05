@@ -5,6 +5,8 @@ module Sitemap
     priority :low
 
     def generate(site)
+      return if ENV['DISABLE_SITEMAP']
+
       index = SEO::Index.new(site)
       index.generate
       site.data['sitemap_pages'] = SEO::Sitemap.generate(index)
