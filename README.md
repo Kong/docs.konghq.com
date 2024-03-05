@@ -97,10 +97,11 @@ KONG_PRODUCTS='*:latest'
 
 Unfortunately, the `Sitemap` and `Hub` generators are slow. Even if they don't need to re-render a page,
 they still need to read the files and generate the necessary structures and pages, which takes time.
-You can speed up build times by disabling them and setting the environment variables: `DISABLE_SITEMAP` and `DISABLE_HUB`.
+The `Sitemap` generator is disabled by default if `JEKYLL_ENV=development`, so it doesn't run locally.
+Disabling the `Hub` generator can be done by setting the environment variable: `DISABLE_HUB`.
 
 ```bash
-DISABLE_SITEMAP=1 DISABLE_HUB=1 make run
+DISABLE_HUB=1 make run
 ```
 
 ## Plugin contributors
