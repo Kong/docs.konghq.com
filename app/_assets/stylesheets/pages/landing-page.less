@@ -5,9 +5,14 @@
 
 .shadowed-card() {
   background: #ffffff;
-  // box-shadow: 4px 4px 14px rgba(0, 48, 130, 0.1);
   border-radius: 8px;
   border:1px solid #CCD2D6;
+}
+
+.landing-text() {
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 400;
 }
 
 header.navbar {
@@ -17,9 +22,11 @@ header.navbar {
 .banner-image {
   height: 28px;
   padding: 12px;
-  // width: 100%;
-  // border-top-right-radius: 8px;
-  // border-top-left-radius: 8px;
+  display: flex;
+
+  @media (max-width: 475px) {
+    width: 100%;
+  }
 }
 
 .landing-page {
@@ -41,9 +48,9 @@ header.navbar {
 
   h1 {
     text-align: center;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 48px;
-    line-height: 67px;
+    line-height: 58px;
     color: white;
     scroll-margin-top: 100px;
 
@@ -60,27 +67,15 @@ header.navbar {
     color: @color-text;
   }
 
-  // h5 {
-  //   text-align: left;
-  //   font-weight: normal;
-  //   font-size: 16px;
-  //   line-height: 20px;
-  //   color: @color-text-light;
-  // }
-
-  // hr {
-  //   border-color: #e7ebee;
-  // }
-
   .landing-page-subtitle {
     margin-top: 0;
     margin-bottom: 3rem;
     letter-spacing: 0;
     text-align: center;
-    font-weight: lighter;
+    font-weight: 400;
     font-size: 20px;
     line-height: 28px;
-    color: white;
+    color: #aab4bb;
   }
 
   .links-container {
@@ -94,10 +89,9 @@ header.navbar {
     display: flex;
     align-items: center;
     font-weight: normal;
-    font-size: 16px;
-    line-height: 22px;
     color: @color-blue;
     cursor: pointer;
+    .landing-text;
 
     > .icon {
       width: 20px;
@@ -108,7 +102,7 @@ header.navbar {
   #feature-title {
     padding-top: 45px;
     letter-spacing: 0;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 24px;
     line-height: 34px;
     color: text;
@@ -121,25 +115,22 @@ header.navbar {
 
   .card {
     .shadowed-card;
-    // display: flex;
-    // flex-direction: column;
     align-items: left;
     position: relative;
     padding: 24px;
 
     .title {
-      font-weight: 500;
+      font-weight: 700;
       font-size: 18px;
-      line-height: 25px;
+      line-height: 24px;
       text-align: left;
       color: @color-text;
       padding: 8px 12px;
     }
 
     .description {
+      .landing-text;
       font-weight: normal;
-      font-size: 14px;
-      line-height: 22px;
       text-align: left;
       color: @color-text-light;
       padding: 8px 12px;
@@ -157,7 +148,6 @@ header.navbar {
 
       .description {
         margin-top: 8px;
-        // flex-grow: 1;
       }
 
       hr {
@@ -216,9 +206,7 @@ header.navbar {
       .shadowed-card;
 
       .platform-links {
-        padding: 40px;
-        justify-content: space-around;
-        flex-direction: row;
+        flex-direction: column;
         display: flex;
         width: 100%;
 
@@ -236,6 +224,16 @@ header.navbar {
           &:hover {
             background-color: #f8f9fc;
           }
+        }
+      }
+
+      .konnect-docs-card-content {
+        display: flex;
+        flex-direction: column;
+
+        @media (min-width: 900px) {
+          flex-direction: row;
+          gap: 80px;
         }
       }
     }
@@ -257,9 +255,9 @@ header.navbar {
     }
 
     .platform-description {
-      padding: 5px 24px;
+      .landing-text;
+      padding: 0px 12px;
       text-align: left;
-      font-size: 14px;
     }
 
     .cards-container {
@@ -268,28 +266,6 @@ header.navbar {
       padding-right: 24px;
       padding-left: 24px;
       .shadowed-card;
-
-      // .arrow-card {
-      //   display: flex;
-      //   align-items: center;
-      //   justify-content: center;
-      //   flex-grow: 1;
-      //   max-width: 600px;
-
-      //   .arrow {
-      //     flex: 1 1;
-      //     display: flex;
-      //     justify-content: center;
-
-      //     img {
-      //       min-width: 48px;
-      //     }
-      //   }
-
-      //   .card {
-      //     flex: 1 0;
-      //   }
-      // }
 
       .card {
         min-height: 228px;
@@ -339,42 +315,27 @@ header.navbar {
   }
 
   section.docs {
-    display: flex;
-
     section.title-cards {
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      margin-top: 32px;
-      margin-right: 24px;
+      margin-top: 20px;
 
       .cards-container {
         align-items: stretch;
-        flex-grow: 1;
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: 1fr 1fr;
+
+        @media (max-width: 900px) {
+          grid-template-columns: 1fr;
+        }
 
         .card {
-          position: relative;
-          margin-right: 24px;
-          width: 100%;
-
-          // .title {
-          //   position: absolute;
-          //   top: 32px;
-          //   left: 24px;
-          //   font-size: 28px;
-          //   font-weight: bold;
-          //   line-height: 39px;
-          //   color: @navy-text;
-          // }
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
 
           .description {
             flex-grow: 1;
           }
-
-          // hr {
-          //   margin: 14px 0;
-          //   width: 100%;
-          // }
 
           .links-container {
             display: flex;
@@ -413,27 +374,7 @@ header.navbar {
               background-color: #f8f9fc;
             }
           }
-
-          &:last-of-type {
-            margin-right: 0;
-          }
         }
-      }
-
-      &:nth-of-type(1) {
-        flex-basis: 33%;
-      }
-
-      &:nth-of-type(2) {
-        flex-basis: 67%;
-
-        .card {
-          flex-basis: 50%;
-        }
-      }
-
-      &:last-of-type {
-        margin-right: 0;
       }
     }
   }
@@ -530,18 +471,6 @@ header.navbar {
       }
     }
 
-    section.docs {
-      section.title-cards {
-        margin-right: 48px;
-
-        .cards-container {
-          .card {
-            margin-right: 16px;
-          }
-        }
-      }
-    }
-
     section.features {
       .cards-container {
         grid-gap: 16px;
@@ -596,7 +525,7 @@ header.navbar {
       section.konnect-docs {
         .platform-links {
           flex-direction: column;
-          align-items: center;
+          align-items: flex-start;
           padding-top: 8px;
           padding-bottom: 8px;
 
@@ -609,25 +538,6 @@ header.navbar {
 
     section.docs {
       flex-direction: row;
-
-      section.title-cards {
-        margin-top: 8px;
-        margin-right: 0;
-
-        .cards-container {
-          flex-direction: column;
-          margin-right: 48px;
-          justify-content: center;
-
-          .card {
-            margin-right: 0;
-
-            &:first-child {
-              margin-bottom: 24px;
-            }
-          }
-        }
-      }
     }
 
     section.features {
