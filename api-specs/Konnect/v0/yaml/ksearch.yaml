@@ -1,7 +1,7 @@
 openapi: 3.0.2
 info:
   title: Konnect Search
-  version: 0.0.0
+  version: 0.0.1
   description: The search API for Kong Konnect.
   contact:
     name: Kong
@@ -19,9 +19,70 @@ security:
   - personalAccessToken: []
   - systemAccountAccessToken: []
   - konnectAccessToken: []
-tags: []
-paths: {}
+tags:
+  - name: Search
+paths:
+  /search:
+    get:
+      operationId: get-search
+      summary: Search Konnect
+      description: Retrieves a list of Konnect entities matching the search query provided.
+      tags:
+        - Search
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageAfter'
+        - in: query
+          name: q
+          description: The query that defines the search criteria.
+          example: name:"John Smith"
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/SearchResponse'
+        '400':
+          $ref: '#/components/responses/SearchBadRequest'
+  /search/types:
+    get:
+      operationId: get-search-types
+      summary: List Search Types
+      description: Retrieves a list of searchable Konnect entity types.
+      tags:
+        - Search
+      responses:
+        '200':
+          $ref: '#/components/responses/SearchTypesResponse'
 components:
+  responses:
+    SearchResponse:
+      description: Search response for containing all matched Konnect entities.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SearchResponse'
+          examples:
+            Successful Search Response:
+              $ref: '#/components/examples/Successful-Search-Example'
+    SearchBadRequest:
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BadRequestError'
+          examples:
+            Request Format is Invalid:
+              $ref: '#/components/examples/400-query-is-invalid'
+    SearchTypesResponse:
+      description: Search response for containing all searchable Konnect types.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SearchTypesResponse'
+          examples:
+            Searchable Entity Types:
+              $ref: '#/components/examples/Searchable-Entity-Types'
   schemas:
     SearchResponse:
       title: SearchResponse
@@ -31,7 +92,7 @@ components:
         data:
           type: array
           items:
-            $ref: '#/components/schemas/KonnectEntity'
+            $ref: '#/components/schemas/SearchResultItem'
         meta:
           $ref: '#/components/schemas/CursorPaginatedMeta'
     SearchTypesResponse:
@@ -39,13 +100,22 @@ components:
       description: The collection of searchable entity types.
       type: object
       properties:
-        types:
+        data:
           type: array
           items:
-            type: string
-    KonnectEntity:
-      title: KonnectEntity
-      description: Konnect entity schema.
+            type: object
+            properties:
+              type:
+                type: string
+                description: The entity type.
+              regions:
+                type: array
+                items:
+                  type: string
+                description: The regions the entity is available.
+    SearchResultItem:
+      title: SearchResultItem
+      description: Item included in the list of search results.
       type: object
       required:
         - id
@@ -64,11 +134,6 @@ components:
         description:
           type: string
           description: Description of the entity.
-        tags:
-          type: array
-          description: Tags for the entity.
-          items:
-            type: string
         labels:
           type: object
           description: Labels for the entity.
@@ -366,21 +431,29 @@ components:
       value:
         data:
           - id: c0010105-e840-4824-b7ee-787f22267c36
-            type: service
+            type: team
             name: Sonar Readings
-            tags:
-              - us
-              - api
             labels:
               env: prod
-            relations:
-              control_plane: 0734a1d4-829d-423c-b95a-d3efe437baa8
+            attributes:
+              created_at: '2022-07-31T09:15:15.04Z'
+              updated_at: '2023-02-11T18:47:03.34Z'
           - id: c0010105-e840-4824-b7ee-787f22267c37
             type: user
             name: Jason Developer
+            attributes:
+              created_at: '2023-01-16T00:21:01.68Z'
+              email: jason.developer@test.com
+              preferred_name: ''
+              updated_at: '2023-09-08T22:39:51.53Z'
           - id: c0010105-e840-4824-b7ee-787f22267c38
             type: user
             name: Sonia Engineer
+            attributes:
+              created_at: '2023-07-19T00:00:00.00Z'
+              email: sonia.engineer@test.com
+              preferred_name: ''
+              updated_at: '2023-07-19T00:00:00.00Z'
         meta:
           page:
             size: 3
@@ -391,5 +464,28 @@ components:
           - developer
           - developer_team
           - user
-          - team
           - system_account
+          - team
+  parameters:
+    PageSize:
+      name: page[size]
+      description: >-
+        The maximum number of items to include per page. The last page of a
+        collection may include fewer items.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: integer
+        example: 10
+    PageAfter:
+      name: page[after]
+      description: >-
+        Request the next page of data, starting with the item after this
+        parameter.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: string
+        example: ewogICJpZCI6ICJoZWxsbyB3b3JsZCIKfQ
