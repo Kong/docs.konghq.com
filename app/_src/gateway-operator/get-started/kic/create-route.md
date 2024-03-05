@@ -3,8 +3,14 @@ title: Create a Route
 content-type: tutorial
 book: kgo-kic-get-started
 chapter: 3
-alpha: true
 ---
+
+{% if_version lte: 1.1.x %}
+{:.note}
+> **Note:** `Gateway` and `ControlPlane` controllers are still `alpha` so be sure
+> to use the [installation steps from this guide](/gateway-operator/{{ page.release }}/get-started/kic/install/)
+> in order to get your `Gateway` up and running.
+{% endif_version %}
 
 After you've installed all of the required components and configured a `GatewayClass` you can route some traffic to a service in your Kubernetes cluster.
 

@@ -21,6 +21,8 @@ items:
             url: /concepts/gateway-api
           - text: Gateway Configuration
             url: /concepts/gateway-configuration
+          - text: Managed Gateways
+            url: /concepts/managed-gateways
       - text: Changelog
         url: /gateway-operator/changelog
         absolute_url: true

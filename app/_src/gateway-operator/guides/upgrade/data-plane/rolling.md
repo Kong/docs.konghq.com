@@ -24,7 +24,7 @@ The `GatewayConfiguration` API can be used to provide the image and the image ve
 
 ```yaml
 kind: GatewayConfiguration
-apiVersion: gateway-operator.konghq.com/v1alpha1
+apiVersion: gateway-operator.konghq.com/v1beta1
 metadata:
   name: kong
   namespace: default

@@ -10,7 +10,7 @@ Here is an example of the `GatewayConfiguration` that provides an enterprise lic
 
 ```yaml
 kind: GatewayConfiguration
-apiVersion: gateway-operator.konghq.com/v1alpha1
+apiVersion: gateway-operator.konghq.com/v1beta1
 metadata:
   name: kong
   namespace: <your-namespace>
