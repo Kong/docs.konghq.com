@@ -202,7 +202,10 @@ in a test environment can help locate potential causes.
 Under normal operation, the controller does not store generated configuration;
 it is only sent to Kong's Admin API. The `--dump-config` flag enables a
 diagnostic mode where the controller also saves generated configuration to a
-temporary file. To use the diagnostic mode:
+temporary file and can be retrieved via web interface of the diagnostic
+server at `host:10256/debug/config`.
+
+To use the diagnostic mode:
 
 1. Set the `--dump-config` flag (or `CONTROLLER_DUMP_CONFIG` environment
    variable) to `true`. Optionally set the `--dump-sensitive-config` flag to
