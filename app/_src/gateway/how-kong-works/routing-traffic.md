@@ -179,7 +179,7 @@ upstream service untouched, with the exception of various headers such as
 Let's now discuss how {{site.base_gateway}} matches a request against the configured routing
 attributes.
 
-{{site.base_gateway}} supports native proxying of HTTP/HTTPS, TCL/TLS, and GRPC/GRPCS protocols;
+{{site.base_gateway}} supports native proxying of HTTP/HTTPS, TCP/TLS, and GRPC/GRPCS protocols;
 as mentioned earlier, each of these protocols accept a different set of routing
 attributes:
 - `http`: `methods`, `hosts`, `headers`, `paths` (and `snis`, if `https`)
