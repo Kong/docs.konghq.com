@@ -136,13 +136,15 @@ with added functionality.
 You can manage {{site.ee_product_name}} in Free or Enterprise mode with Kong's
 [Admin API](#kong-admin-api), [declarative configuration](#deck), or [Kong Manager](#kong-manager).
 
-![Introduction to {{site.base_gateway}}](/assets/images/products/gateway/gateway_overview.png)
-> _Figure 1: Diagram of {{site.base_gateway}} modules and how they relate to the
-foundational Gateway components._
+![Introduction to {{site.base_gateway}}](/assets/images/products/gateway/kong-gateway-features.png)
+> _Figure 1: Diagram of {{site.base_gateway}} key features. {{site.ce_product_name}} provides basic functionality, 
+while {{site.ee_product_name}} builds on top of the open-source foundation with advanced proxy features._
 > <br>
 > _Requests flow from an API client into the
 Gateway, are modified and managed by the proxy based on your Gateway
 configuration, and forwarded to upstream services._
+
+![Introduction to {{site.base_gateway}}](/assets/images/products/gateway/kong-gateway-features-alt.png)
 
 ## Features
 
