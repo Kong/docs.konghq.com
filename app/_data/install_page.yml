@@ -121,7 +121,7 @@ tabs:
             url: /hub/kong-inc/kong-terraform-aws/
             name: Kong on AWS with Terraform
   kuma:
-    icon:
+    icon: /assets/images/logos/kuma-logo.svg
     description: Grains lemonade zest cilantro cozy cinnamon oatmeal comforting pumpkin spice latte.
     items:
       - name: Category name
