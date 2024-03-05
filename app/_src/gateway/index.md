@@ -117,7 +117,7 @@ For more information, visit the [pricing page](https://konghq.com/pricing).
 > <br>
 > _Requests flow from an API client into the
 Gateway data planes, are modified and managed by the proxy based on your control plane
-configuration, and forwarded to upstream services._
+configuration, and are forwarded to upstream services._
 
 ### Self-managed
 
