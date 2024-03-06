@@ -7,20 +7,40 @@ content_type: how-to
 
 ## Create an application
 
-To create a new application, log in to the Dev Portal and click **My Apps**. From the **My Apps** page, follow these instructions: 
+### Using the catalog
 
-1. Click the **New App** button.
+1. Sign in to the Dev Portal and click **Catalog**. Find the API product version you want to register for and click **Register**
 
-2. Fill out the **Create New Application** form with your application name, reference ID, and description.
+1. Select **Create an application**. 
+
+1. Complete the Create New Application form by providing your application's name, unique reference ID, and a brief description. Kong will auto select the appropriate auth strategy for the API product version you're registering for.
 
    {:.note}
-   > Note that the Reference ID must be unique. If your organization is using the
+   > The Reference ID must be unique. If your organization is using the
    [OIDC](/konnect/dev-portal/applications/enable-app-reg#oidc-flow)
    flow for application registration, enter the ID of your third-party OAuth2 claim.
 
-3. Click **Create** to save your application. You will automatically be sent to the new application's details page. 
+1. After filling out the form, click **Create**. This will direct you back to the registration modal.
 
-From the **Application Page** you can [generate credentials](/konnect/dev-portal/applications/dev-gen-creds/) and view registered services. 
+1. Choose your application from the list and click **Request Access** to proceed with the registration.
+
+
+### Using my apps 
+
+1. Sign in to the Dev Portal and click **My Apps**. From the **My Apps** page, click the **New App** button to start creating a new application.
+
+1. Complete the Create New Application form by entering your application's name, choosing an authentication strategy, providing a unique reference ID, and adding a description.
+
+   {:.note}
+   > The Reference ID must be unique. If your organization is using the
+   [OIDC](/konnect/dev-portal/applications/enable-app-reg#oidc-flow)
+   flow for application registration, enter the ID of your third-party OAuth2 claim.
+
+   {:.important}
+   > Your application may only be able to register for API Product versions that share the same auth strategy.
+
+1. After filling in the details, click **Create**. You'll be directed to your new application's details page where you can [generate credentials](/konnect/dev-portal/applications/dev-gen-creds/) and view registered services. 
+
 
 ## Edit an Application
 

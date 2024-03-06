@@ -24,8 +24,14 @@ any other workspaces.
 
 ## Navigating across workspaces in Kong Manager
 
+{% if_version lte:3.4.x %}
 To navigate between workspaces from the **Overview** page, click on any
 workspace displayed beneath the **Vitals** chart.
+{% endif_version %}
+{% if_version gte:3.5.x %}
+To navigate between workspaces from the **Overview** page, click on any
+workspace displayed in the list of workspaces.
+{% endif_version %}
 
 The list of workspaces may be rendered as cards or a table,
 depending on preference.

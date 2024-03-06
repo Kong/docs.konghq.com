@@ -22,10 +22,26 @@ dashboard: [https://grafana.com/grafana/dashboards/7424-kong-official/](https://
 
 ## Available metrics
 
+{% if_plugin_version lte:2.8.x %}
+- **Status codes**: HTTP status codes returned by upstream services.
+  These are available per service, across all services, and per route per consumer.
+- **Latencies Histograms**: Latency (in ms), as measured at Kong:
+   - **Request**: Total time taken by Kong and upstream services to serve
+     requests.
+   - **Kong**: Time taken for Kong to route a request and run all configured
+     plugins.
+   - **Upstream**: Time taken by the upstream service to respond to requests.
+- **Bandwidth**: Total Bandwidth (egress/ingress) flowing through Kong.
+  This metric is available per service and as a sum across all services.
+{% endif_plugin_version %}
 - **DB reachability**: A gauge type with a value of 0 or 1, which represents
   whether DB can be reached by a Kong node.
 - **Connections**: Various Nginx connection metrics like active, reading,
   writing, and number of accepted connections.
+{% if_plugin_version lte:2.8.x %}
+- **Target Health**: The healthiness status (`healthchecks_off`, `healthy`, `unhealthy`, or `dns_error`) of targets
+  belonging to a given upstream as well as their subsystem (`http` or `stream`).
+{% endif_plugin_version %}
 - **Dataplane Status**: The last seen timestamp, config hash, config sync status and certificate expiration timestamp for
 data plane nodes is exported to control plane.
 - **Enterprise License Information**: The {{site.base_gateway}} license expiration date, features and
@@ -35,6 +51,7 @@ license signature. Those metrics are only exported on {{site.base_gateway}}.
 - **Number of Nginx timers** : A gauge metric that measures the total number of Nginx
     timers, in Running or Pending state.
 
+{% if_plugin_version gte:3.0.x %}
 Following metrics are disabled by default as it may create high cardinality of metrics and may
 cause performance issues:
 
@@ -58,6 +75,8 @@ When `upstream_health_metrics` is set to true:
 - **Target Health**: The healthiness status (`healthchecks_off`, `healthy`, `unhealthy`, or `dns_error`) of targets
   belonging to a given upstream as well as their subsystem (`http` or `stream`).
 
+{% endif_plugin_version %}
+
 Here is an example of output you could expect from the `/metrics` endpoint:
 
 ```bash
@@ -74,6 +93,7 @@ Transfer-Encoding: chunked
 Connection: keep-alive
 Access-Control-Allow-Origin: *
 
+{% if_plugin_version gte:3.0.x %}
 # HELP kong_bandwidth_bytes Total bandwidth (ingress/egress) throughput in bytes
 # TYPE kong_bandwidth_bytes counter
 kong_bandwidth_bytes{service="google",route="google.route-1",direction="egress",consumer=""} 264
@@ -196,7 +216,92 @@ kong_upstream_latency_ms_bucket{service="google",route="google.route-1",le="6000
 kong_upstream_latency_ms_bucket{service="google",route="google.route-1",le="+Inf"} 1
 kong_upstream_latency_ms_count{service="google",route="google.route-1"} 1
 kong_upstream_latency_ms_sum{service="google",route="google.route-1"} 2
+{% endif_plugin_version %}
 
+{% if_plugin_version lte:2.8.x %}
+# HELP kong_bandwidth Total bandwidth in bytes consumed per service/route in Kong
+# TYPE kong_bandwidth counter
+kong_bandwidth{type="egress",service="google",route="google.route-1"} 1277
+kong_bandwidth{type="ingress",service="google",route="google.route-1"} 254
+{% if_plugin_version gte:2.8.x %}
+# HELP kong_nginx_timers Number of nginx timers
+# TYPE kong_nginx_timers gauge
+kong_nginx_timers{state="running"} 3
+kong_nginx_timers{state="pending"} 1
+{% endif_plugin_version %}
+# HELP kong_datastore_reachable Datastore reachable from Kong, 0 is unreachable
+# TYPE kong_datastore_reachable gauge
+kong_datastore_reachable 1
+# HELP kong_http_consumer_status HTTP status codes for customer per service/route in Kong
+# TYPE kong_http_consumer_status counter
+kong_http_consumer_status{service="s1",route="s1.route-1",code="200",consumer="CONSUMER_USERNAME"} 3
+# HELP kong_http_status HTTP status codes per service/route in Kong
+# TYPE kong_http_status counter
+kong_http_status{code="301",service="google",route="google.route-1"} 2
+# HELP kong_latency Latency added by Kong in ms, total request time and upstream latency for each service in Kong
+# TYPE kong_latency histogram
+kong_latency_bucket{type="kong",service="google",route="google.route-1",le="00001.0"} 1
+kong_latency_bucket{type="kong",service="google",route="google.route-1",le="00002.0"} 1
+.
+.
+.
+kong_latency_bucket{type="kong",service="google",route="google.route-1",le="+Inf"} 2
+kong_latency_bucket{type="request",service="google",route="google.route-1",le="00300.0"} 1
+kong_latency_bucket{type="request",service="google",route="google.route-1",le="00400.0"} 1
+.
+.
+kong_latency_bucket{type="request",service="google",route="google.route-1",le="+Inf"} 2
+kong_latency_bucket{type="upstream",service="google",route="google.route-1",le="00300.0"} 2
+kong_latency_bucket{type="upstream",service="google",route="google.route-1",le="00400.0"} 2
+.
+.
+kong_latency_bucket{type="upstream",service="google",route="google.route-1",le="+Inf"} 2
+kong_latency_count{type="kong",service="google",route="google.route-1"} 2
+kong_latency_count{type="request",service="google",route="google.route-1"} 2
+kong_latency_count{type="upstream",service="google",route="google.route-1"} 2
+kong_latency_sum{type="kong",service="google",route="google.route-1"} 2145
+kong_latency_sum{type="request",service="google",route="google.route-1"} 2672
+kong_latency_sum{type="upstream",service="google",route="google.route-1"} 527
+# HELP kong_nginx_http_current_connections Number of HTTP connections
+# TYPE kong_nginx_http_current_connections gauge
+kong_nginx_http_current_connections{state="accepted"} 8
+kong_nginx_http_current_connections{state="active"} 1
+kong_nginx_http_current_connections{state="handled"} 8
+kong_nginx_http_current_connections{state="reading"} 0
+kong_nginx_http_current_connections{state="total"} 8
+kong_nginx_http_current_connections{state="waiting"} 0
+kong_nginx_http_current_connections{state="writing"} 1
+# HELP kong_memory_lua_shared_dict_bytes Allocated slabs in bytes in a shared_dict
+# TYPE kong_memory_lua_shared_dict_bytes gauge
+kong_memory_lua_shared_dict_bytes{shared_dict="kong",kong_subsystem="http"} 40960
+.
+.
+# HELP kong_memory_lua_shared_dict_total_bytes Total capacity in bytes of a shared_dict
+# TYPE kong_memory_lua_shared_dict_total_bytes gauge
+kong_memory_lua_shared_dict_total_bytes{shared_dict="kong",kong_subsystem="http"} 5242880
+.
+.
+# HELP kong_memory_workers_lua_vms_bytes Allocated bytes in worker Lua VM
+# TYPE kong_memory_workers_lua_vms_bytes gauge
+kong_memory_workers_lua_vms_bytes{pid="7281",kong_subsystem="http"} 41124353
+# HELP kong_data_plane_config_hash Config hash value of the data plane
+# TYPE kong_data_plane_config_hash gauge
+kong_data_plane_config_hash{node_id="d4e7584e-b2f2-415b-bb68-3b0936f1fde3",hostname="ubuntu-bionic",ip="127.0.0.1"} 1.7158931820287e+38
+# HELP kong_data_plane_last_seen Last time data plane contacted control plane
+# TYPE kong_data_plane_last_seen gauge
+kong_data_plane_last_seen{node_id="d4e7584e-b2f2-415b-bb68-3b0936f1fde3",hostname="ubuntu-bionic",ip="127.0.0.1"} 1600190275
+# HELP kong_data_plane_version_compatible Version compatible status of the data plane, 0 is incompatible
+# TYPE kong_data_plane_version_compatible gauge
+kong_data_plane_version_compatible{node_id="d4e7584e-b2f2-415b-bb68-3b0936f1fde3",hostname="ubuntu-bionic",ip="127.0.0.1",kong_version="2.4.1"} 1
+# HELP kong_nginx_metric_errors_total Number of nginx-lua-prometheus errors
+# TYPE kong_nginx_metric_errors_total counter
+kong_nginx_metric_errors_total 0
+# HELP kong_upstream_target_health Health status of targets of upstream. States = healthchecks_off|healthy|unhealthy|dns_error, value is 1 when state is populated.
+kong_upstream_target_health{upstream="UPSTREAM_NAME",target="TARGET",address="IP:PORT",state="healthchecks_off",subsystem="http"} 0
+kong_upstream_target_health{upstream="UPSTREAM_NAME",target="TARGET",address="IP:PORT",state="healthy",subsystem="http"} 1
+kong_upstream_target_health{upstream="UPSTREAM_NAME",target="TARGET",address="IP:PORT",state="unhealthy",subsystem="http"} 0
+kong_upstream_target_health{upstream="UPSTREAM_NAME",target="TARGET",address="IP:PORT",state="dns_error",subsystem="http"} 0
+{% endif_plugin_version %}
 ```
 
 {:.note}

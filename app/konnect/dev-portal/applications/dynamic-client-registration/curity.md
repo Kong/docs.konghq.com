@@ -75,28 +75,99 @@ To get started configuring Curity, log in to your Curity dashboard and complete 
 
 ## Configure the Dev Portal
 
+{% navtabs %}
+{% navtab Konnect UI %}
+
 Once you have Curity configured, you can set up the Dev Portal to use Curity for dynamic client registration (DCR).
 
 1. Sign in to {{site.konnect_short_name}}, then select {% konnect_icon dev-portal %} **Dev Portal** from the menu.
 
-2. Click **Settings** to open the Dev Portal settings.
+2. Navigate to **Application Auth** to access the authentication settings for your API Products.
 
-3. Click the **Application Setup** tab to open the DCR settings for your Dev Portal.
+3. Open the **DCR Providers** to view all configured DCR Providers
 
-4. Select **Curity** as the external identity provider.
+4. Select **New DCR Provider** button to create a Curity configuration. Provide a name for internal use within {{site.konnect_short_name}}. The name and provider type information will not be exposed to Dev Portal developers.
 
-5. Enter the **Issuer URL** for your authorization server, it will look something like `https://CURITY_INSTANCE_DOMAIN/oauth/v2/oauth-anonymous/.well-known/openid-configuration`
+5. Input the **Issuer URL** of your Curity authorization server, formatted as `https://CURITY_INSTANCE_DOMAIN/oauth/v2/oauth-anonymous/.well-known/openid-configuration`
 
-6. If you are using the Curity configuration described in the previous sections, enter the `sub` into the **Claims** field and leave the **Scopes** field empty. If you configured Curity differently, then ensure you add the correct **Scopes** and **Claims**.
+6. Select Curity as the **Provider Type**.
 
-7. Enter the Client ID of the admin client created in Curity above into the **Initial Client ID** field.
+7. Enter the Client ID of the admin client created in Curity above into the **Initial Client ID** field. Enter the value you saved for the Client secret into the **Initial Client Secret** field.  Note: The Initial Client Secret will be stored in isolated, encrypted storage and will not be readable through any Konnect API.
 
-8. Enter the value you saved for the Client secret into the **Initial Client Secret** field.
+8. Save your DCR Provider. You should now see it in the list of DCR providers.
 
-9. Click **Save**.
+9. Click the **Auth Strategy** tab to see all your Auth Strategies. Select **New Auth Strategy** to create an auth strategy that uses the DCR Provider you created.
 
-   If you previously configured any DCR settings, this will
-   overwrite them.
+10. Enter a name for internal use in {{site.konnect_short_name}} and a display name that will be displayed the portal. In the **Auth Type** dropdown menu select DCR. In the **DCR Provider** dropdown, select the name of the DCR Provider config you created. Your **Issuer URL** will be prepopulated with the issuer URL you added to the DCR Provider.
+
+11. If you are using the Curity configuration described in the previous sections, enter the `sub` into the **Claims** field and leave the **Scopes** field empty. If you configured Curity differently, then ensure you add the correct **Scopes** and **Claims**.
+
+12. Select the relevant **Auth Methods** you need (`client_credentials`, `bearer`, `session`) and **Save**. 
+
+{% endnavtab %}
+{% navtab API %}
+After configuring Curity, you can integrate it with the Dev Portal for dynamic client registration (DCR). This process involves two steps: creating the DCR provider and establishing the authentication strategy. DCR providers are designed to be reusable configurations. This means once you've configured the Curity DCR provider, it can be used across multiple authentication strategies without needing to be set up again.
+
+1. Start by creating the DCR provider. Send a `POST` request to the [`dcr-providers`](/konnect/api/application-auth-strategies/latest/#/DCR%20Providers/create-dcr-provider) endpoint with your DCR configuration details:
+```sh
+curl --request POST \
+  --url https://us.api.konghq.com/v2/dcr-providers \
+  --header 'Authorization: $KPAT' \
+  --header 'content-type: application/json' \
+  --data '{
+  "name": "DCR Curity",
+  "provider_type": "Curity",
+  "issuer": "https://CURITY_INSTANCE_DOMAIN/oauth/v2/oauth-anonymous/.well-known/openid-configuration",
+  "dcr_config": {
+    "dcr_token": "my_dcr_token"
+  }'
+```
+You will receive a response that includes a `dcr_provider` object similar to the following:
+
+   ```sh
+   "dcr_provider": {
+   "id": "33f8380e-7798-4566-99e3-2edf2b57d289",
+   "name": "DCR Curity",
+   "display_name": "Credentials",
+   "provider_type": "Curity"
+   }
+   ```
+Save the `id` value for creating the authentication strategy.
+
+2. With the `dcr_id` obtained from the first step, create an authentication strategy. Sen a `POST` request to the [`create-auth-stratgies`](/konnect/api/application-auth-strategies/latest/#/App%20Auth%20Strategies/create-app-auth-strategy) endpoint describing an authentication strategy: 
+
+   ```sh
+   curl --request POST \
+   --url https://us.api.konghq.com/v2/application-auth-strategies \
+   --header 'Authorization: $KPAT' \
+   --header 'content-type: application/json' \
+   --data '{
+   "name": "Curity auth strategy",
+   "display_name": "Curity",
+   "strategy_type": "Curity",
+   "configs": {
+      "openid-connect": {
+         "issuer": "https://my-issuer.auth0.com/api/v2/",
+         "credential_claim": [
+         "client_id"
+         ],
+         "scopes": [
+         "openid",
+         "email"
+         ],
+         "auth_methods": [
+         "client_credentials",
+         "bearer"
+         ]
+      }
+   },
+   "dcr_provider_id": "93f8380e-7798-4566-99e3-2edf2b57d289"
+   }'
+
+   ```
+
+{% endnavtab %}
+{% endnavtabs %}
 
 ## Create an application with DCR
 
@@ -104,7 +175,7 @@ From the **My Apps** page in the Dev Portal, follow these instructions:
 
 1. Click **New App**.
 
-2. Fill out the **Create New Application** form with your application name, redirect URI, and a description.
+2. Fill out the **Create New Application** form with your application name, authentication strategy, and description.
 
 3. Click **Create** to save your application.
 

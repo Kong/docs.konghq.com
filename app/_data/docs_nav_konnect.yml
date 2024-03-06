@@ -30,20 +30,8 @@
   items:
     - text: Overview
       url: /getting-started/
-    - text: Create a Konnect Account
-      url: /getting-started/access-account/
-    - text: Set up a Data Plane Node
-      url: /getting-started/configure-data-plane-node/
-    - text: Proxy and Test a Service
-      url: /getting-started/deploy-service/
-    - text: Productize a Service
-      url: /getting-started/productize-service/
-    - text: Get Started with the Dev Portal
-      items:
-        - text: Add Documentation
-          url: /getting-started/publish-service/
-        - text: Register Applications
-          url: /getting-started/app-registration/
+    - text: Add your API
+      url: /getting-started/add-api/
     - text: Import Kong Gateway Entities into Konnect
       url: /getting-started/import/
 
@@ -136,6 +124,8 @@
       url: /api-products/
     - text: Manage API Product Documentation
       url: /api-products/service-documentation/
+    - text: Productize a Service
+      url: /api-products/productize-service/
 
 
 - title: Dev Portal
@@ -147,6 +137,8 @@
       url: /dev-portal/access/
     - text: Sign Up for a Dev Portal Account
       url: /dev-portal/dev-reg/
+    - text: Productize a Service
+      url: /dev-portal/publish-service/ 
     - text: Access and Approval
       items:
         - text: Manage Developer Access
@@ -163,35 +155,34 @@
           url: /dev-portal/access-and-approval/auto-approve-devs-apps/
         - text: Azure OIDC
           url: /dev-portal/access-and-approval/azure/
-    - text: Working with Applications
+    - text: Application Lifecycle
       items:
-        - text: Application Overview
+        - text: Overview
           url: /dev-portal/applications/application-overview/
         - text: Enable and Disable App Registration for API Product Versions
           url: /dev-portal/applications/enable-app-reg/
-        - text: Dynamic Client Registration
-          items:
-            - text: Overview
-              url: /dev-portal/applications/dynamic-client-registration/
-            - text: Okta
-              url: /dev-portal/applications/dynamic-client-registration/okta/
-            - text: Curity
-              url: /dev-portal/applications/dynamic-client-registration/curity/
-            - text: Auth0
-              url: /dev-portal/applications/dynamic-client-registration/auth0/
-            - text: Azure
-              url: /dev-portal/applications/dynamic-client-registration/azure/
-            - text: Custom IdP
-              url: /dev-portal/applications/dynamic-client-registration/custom/
         - text: Create, Edit, and Delete an Application
           url: /dev-portal/applications/dev-apps/
-        - text: Register an Application with an API product
-          url: /dev-portal/applications/dev-reg-app-service/
         - text: Generate Credentials for an Application
           url: /dev-portal/applications/dev-gen-creds/
-    - text: Konnect Portal Management API Automation Guide
+    - text: Dynamic Client Registration
+      items:
+        - text: Overview
+          url: /dev-portal/applications/dynamic-client-registration/
+        - text: Okta
+          url: /dev-portal/applications/dynamic-client-registration/okta/
+        - text: Curity
+          url: /dev-portal/applications/dynamic-client-registration/curity/
+        - text: Auth0
+          url: /dev-portal/applications/dynamic-client-registration/auth0/
+        - text: Azure
+          url: /dev-portal/applications/dynamic-client-registration/azure/
+        - text: Custom IdP
+          url: /dev-portal/applications/dynamic-client-registration/custom/
+          
+    - text: Portal Management API Automation Guide
       url: /dev-portal/konnect-portal-management-automation/
-    - text: Customize Dev Portal
+    - text: Portal Customization
       items:
         - text: Overview
           url: /dev-portal/customization/

@@ -14,6 +14,26 @@ The Rate Limiting Advanced plugin offers more functionality than the {{site.base
 * Consumer groups support: Apply different rate limiting configurations to select groups of consumers. Learn more in [Rate limiting for consumer groups](/hub/kong-inc/rate-limiting-advanced/how-to/)
 {% endif_plugin_version %}
 
+{% if_plugin_version lte:3.0.x %}
+The Rate Limiting Advanced plugin for Konnect is a re-engineered version of the {{site.base_gateway}} (OSS) [Rate Limiting plugin](/hub/kong-inc/rate-limiting/).
+
+As compared to the standard Rate Limiting plugin, Rate Limiting Advanced provides:
+* Enhanced capabilities to tune the rate limiter, provided by the parameters `limit` and `window_size`. Learn more in [Multiple Limits and Window Sizes](#multi-limits-windows)
+* Support for Redis Sentinel, Redis cluster, and Redis SSL
+* Increased performance: Rate Limiting Advanced has better throughput performance with better accuracy. The plugin allows you to tune performance and accuracy via a configurable synchronization of counter data with the backend storage. This can be controlled by setting the desired value on the `sync_rate` parameter.
+* More limiting algorithms to choose from: These algorithms are more accurate and they enable configuration with more specificity. Learn more about our algorithms in [How to Design a Scalable Rate Limiting Algorithm](https://konghq.com/blog/how-to-design-a-scalable-rate-limiting-algorithm).
+* Consumer groups support: Apply different rate limiting configurations to select groups of consumers. Learn more in [Rate limiting for consumer groups](#rate-limiting-for-consumer-groups)
+
+{:.note}
+> **Notes**:
+* The plugin does not support the `cluster` strategy in
+  [hybrid mode](/gateway/latest/plan-and-deploy/hybrid-mode/).
+  The `redis` strategy must be used instead.
+* Redis configuration values are ignored if the `cluster` strategy is used.
+* PostgreSQL 9.5+ is required when using the `cluster` strategy with `postgres` as the backing Kong cluster data store.
+* The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary,
+  which could lead to `no memory` errors.
+{% endif_plugin_version %}
 
 ## Headers sent to the client
 
@@ -173,6 +193,18 @@ To minimize inaccuracies, consider using a consistent-hashing load balancer in f
 Kong. The load balancer ensures that a user is always directed to the same Kong node, thus reducing
 inaccuracies and preventing scaling problems.
 
+{% if_plugin_version lte:3.0.x %}
+
+#### Fallback to IP
+
+When the selected strategy cannot be retrieved, the `rate-limiting-advanced` plugin will fall back
+to limit using IP as the identifier. This can happen for several reasons, such as the
+selected header was not sent by the client or the configured service was not found.
+
+[`Retry-After`]: https://tools.ietf.org/html/rfc7231#section-7.1.3
+
+{% endif_plugin_version %}
+
 #### Fallback from Redis
 
 When the `redis` strategy is used and a {{site.base_gateway}} node is disconnected from Redis, the `rate-limiting-advanced` plugin will fall back to `local`. This can happen when the Redis server is down or the connection to Redis broken.
@@ -183,9 +215,8 @@ to perform more requests than the limit, but there will still be a limit per nod
 {% if_plugin_version gte:3.4.x%}
 ## Rate limiting for consumer groups
 
-As of {{site.base_gateway}} 3.4, you can use the [consumer groups entity](https://developer.konghq.com/spec/937dcdd7-4485-47dc-af5f-b805d562552f/25d728a0-cfe3-4cf4-8e90-93a5bb15cfd9#/default/post-consumer_groups) to manage custom rate limiting configurations for
+You can use the [consumer groups entity](/gateway/api/admin-ee/latest/#/consumer_groups/get-consumer_groups) to manage custom rate limiting configurations for
 subsets of consumers. This is enabled by default **without** using the `/consumer_groups/:id/overrides` endpoint.
-
 
 You can see an example of this in the [Enforcing rate limiting tiers with the Rate Limiting Advanced plugin](/hub/kong-inc/rate-limiting-advanced/how-to/) guide.
 

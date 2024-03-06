@@ -1,0 +1,17 @@
+name: Mocking
+dbless_compatible: 'yes'
+dbless_explanation: |
+  {:.note}
+  > Use the `api_specification` config for DB-less or hybrid mode. The API spec
+  is configured directly in the plugin.
+examples: true
+free: false
+enterprise: true
+paid: true
+konnect: true
+network_config_opts: All
+notes: --
+categories:
+  - traffic-control
+publisher: Kong Inc.
+desc: Provide mock endpoints to test your APIs against your services

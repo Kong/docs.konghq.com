@@ -1130,7 +1130,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.5.0.0` or above.
     DocumentationURL: |
-      [Enable App Reg plugin](/hub/kong-inc/enable-app-reg/)
+      N/A
   - ID: D203
     Severity: error
     Description: |
@@ -1153,7 +1153,7 @@ messages:
     Resolution: |
       Please upgrade Kong Gateway to version `3.6.0.0` or above.
     DocumentationURL: |
-      [Enable App Reg plugin](/hub/kong-inc/enable-app-reg/)
+      N/A
   - ID: D206
     Severity: error
     Description: |
@@ -2615,7 +2615,7 @@ messages:
       Enable wasm support on all data plane nodes or remove filter chain entities from
       the config.
     DocumentationURL: |
-      [Wasm plugin](/hub/kong-inc/wasm/)
+      [Proxy-Wasm filter configuration](/gateway/latest/plugin-development/wasm/filter-configuration/)
   - ID: P224
     Severity: error
     Description: |

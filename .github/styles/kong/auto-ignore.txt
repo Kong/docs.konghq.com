@@ -23,6 +23,7 @@ endpoint_key
 eventTime
 firstTimestamp
 foogineer
+geos
 if_version
 ingress_controller_configuration_push_count
 ingress_controller_configuration_push_duration_milliseconds

@@ -9,6 +9,70 @@ Changelog for supported Kong Gateway versions.
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.6.1.1
+**Release Date** 03/05/2024
+
+### Fixes
+
+#### Clustering
+
+* Adjusted a clustering compatibility check related to HashiCorp Vault Approle authentication.
+
+#### Core
+
+* Fixed the missing router section for the output of request debugging.
+* Reverted the hard-coded limitation of the `ngx.read_body()` API in OpenResty upstreams' new versions when downstream connections are in HTTP/2 or HTTP/3 stream modes.
+
+#### Kong Manager and Konnect
+* Fixed an issue where custom plugins were missing from the plugin selection page.
+* Fixed an issue where the service was not prefilled in the route form while using the expressions router.
+
+#### Plugins
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed an issue with `sync_rate` setting being used with the `redis` strategy. 
+  If the Redis connection is interrupted while `sync_rate = 0`, the plugin now accurately falls back to the `local` strategy.
+  * Fixed an issue where, if `sync_rate` was changed from a value greater than `0` to `0`, the namespace was cleared unexpectedly.
+  * Fixed some timer-related issues where the counter syncing timer couldn't be created or destroyed properly.
+  * The plugin now creates counter syncing timers during plugin execution instead of plugin creation to reduce some meaningless error logs.
+
+## 3.6.1.0
+**Release Date** 02/26/2024
+
+### Features
+
+#### Configuration
+
+* TLSv1.1 and lower is now disabled by default in OpenSSL 3.x.
+
+#### Plugins
+
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
+  * Increased queue max batch size to 200.
+
+### Fixes
+
+#### General 
+
+* Fixed a bug where a low ulimit setting (open files) caused Kong to fail to start, 
+as the `lua-resty-timer-ng` exhausted the available `worker_connections`. 
+Decreased the concurrency range of the `lua-resty-timer-ng` library from `[512, 2048]` to `[256, 1024]` to fix this bug.
+
+#### Configuration
+
+* Set the security level of gRPC's TLS to `0` when `ssl_cipher_suite` is set to `old`.
+
+#### Clustering
+
+* Adjusted a clustering compatibility check related to HCV Kubernetes authentication paths.
+
+#### Plugins
+
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
+  * Fixed an OTEL sampling mode Lua panic bug that occurred when the `http_response_header_for_traceid` option was enabled.
+
+* [**LDAP Authentication Advanced**](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
+  * Fixed an issue where, if the credential was encoded with no username, Kong Gateway threw an error and returned a 500 code.
+
 ## 3.6.0.0
 **Release Date** 02/12/2024
 
@@ -3297,7 +3361,7 @@ Kong Gateway version.
     Validate individual WebSocket messages against a user-specified schema
     before proxying them.
 
-* [ACME](/hub/kong-inc/ACME/) (`acme`)
+* [ACME](/hub/kong-inc/acme/) (`acme`)
   * Added the `allow_any_domain` field. It defaults to false and if set to true, the gateway will
   ignore the `domains` field.
   [#9047](https://github.com/Kong/kong/pull/9047)
@@ -3575,7 +3639,7 @@ Debian 8 [reached end-of-life in June 30, 2020](https://www.debian.org/News/2020
   * Removed the deprecated `blacklist` and `whitelist` configuration parameters.
    [#8560](https://github.com/Kong/kong/pull/8560)
 
-* [ACME](/hub/kong-inc/ACME/) (`acme`)
+* [ACME](/hub/kong-inc/acme/) (`acme`)
   * The default value of the `auth_method` configuration parameter is now `token`.
 
 * [AWS Lambda](/hub/kong-inc/aws-lambda/) (`aws-lambda`)
@@ -3794,7 +3858,7 @@ during the initialization of the [keyring module](/gateway/latest/kong-enterpris
 * External plugins: Kong Gateway now handles logging better when a plugin instance loses the `instances_id` in an event handler.
   [#8652](https://github.com/Kong/kong/pull/8652)
 
-* [ACME](/hub/kong-inc/ACME/) (`acme`)
+* [ACME](/hub/kong-inc/acme/) (`acme`)
   * The default value of the `auth_method` configuration parameter is now set to `token`.
   [#8565](https://github.com/Kong/kong/pull/8565)
   * Added a cache for `domains_matcher`.
@@ -4902,7 +4966,7 @@ making your environment more secure.
 * [jq](/hub/kong-inc/jq/) (`jq`)
   * Use response buffering from the PDK.
 
-* [ACME](/hub/kong-inc/ACME/) (`acme`)
+* [ACME](/hub/kong-inc/acme/) (`acme`)
   * Added the `rsa_key_size` configuration parameter.
 
     Thanks, [lodrantl](https://github.com/lodrantl)!

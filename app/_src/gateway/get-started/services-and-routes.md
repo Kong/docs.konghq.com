@@ -14,8 +14,35 @@ through the system.
 
 The high level overview below shows requests arriving at routes and being forward to services,
 with responses taking the opposite pathway:
+  
+<!--vale off-->
 
-![Services and routes](/assets/images/products/gateway/getting-started-guide/route-and-service.png)
+{% mermaid %}
+flowchart LR
+  A(API client)
+  B("`Route 
+  (/mock)`")
+  C("`Service
+  (example_service)`")
+  D(Upstream 
+  application)
+  
+  A <--requests
+  responses--> B
+  subgraph id1 ["`
+  **KONG GATEWAY**`"]
+    B <--requests
+    responses--> C
+  end
+  C <--requests
+  responses--> D
+
+  style id1 rx:10,ry:10
+  
+{% endmermaid %}
+  
+<!-- vale on -->
+
 
 ### What is a service
 

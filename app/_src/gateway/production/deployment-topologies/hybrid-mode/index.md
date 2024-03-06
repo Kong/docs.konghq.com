@@ -15,7 +15,39 @@ of the CP nodes, and only the CP nodes are directly connected to a database.
 Instead of accessing the database contents directly, the DP nodes maintain a 
 connection with CP nodes to receive the latest configuration.
 
-![Hybrid mode topology](/assets/images/products/gateway/deployment-hybrid-2.png)
+<!--vale off -->
+{% mermaid %}
+flowchart LR
+
+A[(Database)]
+B(<img src="/assets/images/logos/kogo-white.svg" style="max-height:20px" class="no-image-expand"/> Control plane \n #40;{{site.base_gateway}} instance#41;)
+C(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> Data plane 3\n #40;{{site.base_gateway}} instance#41;)
+D(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> Data plane 1\n #40;{{site.base_gateway}} instance#41;)
+E(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> Data plane 2\n #40;{{site.base_gateway}} instance#41;)
+
+subgraph id1 [cloud node]
+A---B
+end
+
+B --Kong proxy 
+configuration---> C & D & E
+
+subgraph id2 [on-premise node]
+C
+end
+
+subgraph id3 [cloud nodes]
+D
+E
+end
+
+style id1 stroke-dasharray:3,rx:10,ry:10
+style id2 stroke-dasharray:3,rx:10,ry:10
+style id3 stroke-dasharray:3,rx:10,ry:10
+style B stroke:none,fill:#0E44A2,color:#fff
+
+{% endmermaid %}
+<!-- vale on-->
 
 When you create a new data plane node, it establishes a connection to the
 control plane. The control plane listens on port `8005` for connections and

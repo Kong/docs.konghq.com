@@ -259,7 +259,7 @@ certificate_body: |
     `cert_alt`<br>*optional* |  PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it.
     `key_alt`<br>*optional* | PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it.
     `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering.
-    `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. To set this attribute this certificate must have a valid private key associated with it.
+    `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a convenience parameter: under the hood, it creates an SNI object and associates it with this certificate. To set this attribute this certificate must have a valid private key associated with it.
      `passphrase`<br>*optional* (Enterprise only) | To load an encrypted private key into Kong, specify the passphrase using this attribute. Kong will decrypt the private key and store it in its database. To encrypt the private key and other sensitive information in Kong's database, consider using DB encryption.
 
 certificate_json: |
