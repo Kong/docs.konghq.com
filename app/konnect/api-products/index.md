@@ -65,5 +65,5 @@ Learn more:
 
 ## More information
 
-* [Deploy and Test a Service](/konnect/getting-started/deploy-service/) - Learn how to deploy and test a service with Gateway Manager.
+* [Deploy and Test a Service](/konnect/getting-started/add-api) - Learn how to deploy and test a service with Gateway Manager.
 * [Productize a Service](/konnect/getting-started/productize-service/) - Learn how to productize a service with API Products.
