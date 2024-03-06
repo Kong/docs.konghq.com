@@ -6,7 +6,7 @@ publisher: Optum
 type: plugin
 
 categories:
-  - none
+  - community
 
 desc: Expose OAS/Swagger/etc. specifications of auth protected APIs proxied by Kong
 
