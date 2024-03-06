@@ -5,7 +5,7 @@
 name: Traceable.ai
 publisher: Traceable.ai
 categories:
-  - none
+  - community
 type: plugin
 
 desc: API security with inline request blocking and data capture
