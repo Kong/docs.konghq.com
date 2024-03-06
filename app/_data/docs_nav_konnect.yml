@@ -56,8 +56,6 @@
           url: /gateway-manager/data-plane-nodes/parameter-reference/
         - text: Using Custom DP Labels
           url: /gateway-manager/data-plane-nodes/custom-dp-labels
-    - text: Proxy and Test a Service
-      url: /gateway-manager/deploy-service/
     - text: Control Plane Groups
       items:
         - text: Overview
