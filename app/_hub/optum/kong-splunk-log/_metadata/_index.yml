@@ -4,7 +4,7 @@ publisher: Optum
 type: plugin
 
 categories:
-  - none
+  - community
 
 desc: Log API transactions to Splunk using the Splunk HTTP collector
 

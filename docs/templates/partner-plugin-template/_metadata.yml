@@ -9,7 +9,14 @@ publisher: # (Required) The company name of the publisher of this plugin.
   # Use capitals and spaces as needed.
   # Note that every plugin by a given publisher must have the exact same value.
 
-categories: # (Required) Uncomment ONE that applies.
+categories: # (Required) In the following categories, first choose
+# "community" or "third party partner".
+# Uncomment "community" if you are submitting a 3rd party plugin that isn't a technical partner. 
+# No other categories apply if "community" is active.
+# Uncomment "third-party-partner" if you are a Kong technical partner, 
+# and choose a secondary category from the list.
+  #- community 
+  #- third-party-partner
   #- authentication
   #- security
   #- traffic-control
@@ -18,15 +25,14 @@ categories: # (Required) Uncomment ONE that applies.
   #- transformations
   #- logging
   #- deployment
-# Array format only; if your plugin applies to multiple categories,
-# uncomment the most applicable category.
+# Array format only.
 
 type: plugin
 
 desc: # (Required) Short, one sentence description; max 80 characters.
 
 #support_url:
-  # (Optional) A support URL for plugin users to file tickets,
+  # (Required) A support URL or email for plugin users to file tickets,
   # bug reports, or support requests.
 
 #source_code:
