@@ -37,7 +37,7 @@ lightweight, fast, and flexible API gateway.
     <div class="install-text">Features</div>
   </a> -->
 
-  <a href="https://konghq.com/products/kong-konnect/register" class="docs-grid-install-block no-description">
+  <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=konnect-getting-started" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
     <div class="install-text">Sign up for {{site.konnect_short_name}}</div>
   </a>

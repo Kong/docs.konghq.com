@@ -21,7 +21,7 @@ You cannot import [unsupported plugins](/konnect/servicehub/plugins/#plugin-limi
 
 ## Prerequisites
 
-* [A {{site.konnect_short_name}} account](https://konghq.com/products/kong-konnect/register)
+* [A {{site.konnect_short_name}} account](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=konnect-getting-started)
 * [decK 1.28 or later](/deck/latest/installation/)
 * Make sure that if you're using a `.deck.yaml` config file that it doesn't contain a {{site.konnect_short_name}} personal access token (PAT)
 
