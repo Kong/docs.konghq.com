@@ -75,6 +75,14 @@ items:
             url: /production/upgrade/data-plane/blue-green/
       - text: Autoscaling Data Planes
         url: /production/horizontal-autoscaling/
+      - text: Autoscaling workloads based on latency
+        items:
+        - text: Overview
+          url: /production/workloads-autoscaling/overview/
+        - text: Prometheus
+          url: /production/workloads-autoscaling/prometheus/
+        - text: DataDog
+          url: /production/workloads-autoscaling/datadog/
   - title: Reference
     icon: /assets/images/icons/icn-magnifying-glass.svg
     items:
