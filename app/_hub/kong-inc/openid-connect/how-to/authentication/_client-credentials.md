@@ -84,7 +84,7 @@ formats:
 {% endplugin_example %}
 <!--vale on -->
 
-### Test the client credentials grant
+## Test the client credentials grant
 
 At this point you have created a service, routed traffic to the service, and 
 enabled the OpenID Connect plugin on the service. You can now test the client credentials grant.
