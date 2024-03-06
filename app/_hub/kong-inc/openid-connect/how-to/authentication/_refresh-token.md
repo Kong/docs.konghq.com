@@ -100,7 +100,7 @@ One way to get a refresh token is to issue the following call
 (we use [jq](https://stedolan.github.io/jq/) to filter the response):
 
 ```bash
-curl --user user:pass http://localhost:8000 | jq -r '.headers."Refresh-Token"'
+curl --user <user>:<pass> http://localhost:8000 | jq -r '.headers."Refresh-Token"'
 ```
 
 You can use the output from the `Refresh-Token` header:
@@ -114,7 +114,7 @@ Request the service with a refresh token:
 
 ```bash
 curl http://localhost:8000 \
- --header "Refresh-Token:$(curl --user user:pass http://localhost:8000 | \
+ --header "Refresh-Token:$(curl --user <user>:<pass> http://localhost:8000 | \
  jq -r '.headers."Refresh-Token"')"
 ```
 
