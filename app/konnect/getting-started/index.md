@@ -32,8 +32,8 @@ title: Get started with Konnect
 
 {{site.konnect_short_name}} can help you with the following use cases:
 
-* **Developers:** Use {{site.konnect_short_name}} as the easiest way to manage {{site.base_gateway}}. This helps you save time on boilerplate code to protect and secure APIs. 
-* **Small teams:** Use advanced features like API cataloguing, external developer portals, and API analytics to monetize your APIs. 
+* **Developers:** Use {{site.konnect_short_name}} as the easiest way to manage {{site.base_gateway}}. This helps save time on writing boilerplate code used to protect and secure APIs. 
+* **Small teams:** Use features like API cataloguing, external developer portals, and API analytics to share and monetize their APIs. 
 * **Large enterprise companies:** Use multi-geo support for the control plane and achieve federated API management by giving central teams governance tools while providing API teams with speed and flexibility.
 
 ### {{site.konnect_short_name}} architecture
