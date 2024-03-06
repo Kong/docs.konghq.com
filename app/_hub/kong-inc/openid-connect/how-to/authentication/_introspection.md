@@ -75,7 +75,7 @@ config:
   auth_methods:
     - "introspection"
     - "password"
-  client_credentials_param_type: 
+  bearer_token_param_type: 
     - "header"
 targets:
   - service
@@ -87,7 +87,7 @@ formats:
 {% endplugin_example %}
 <!--vale on -->
 
-### Test the introspection authentication
+## Test the introspection authentication
 
 At this point you have created a service, routed traffic to the service, and 
 enabled the OpenID Connect plugin on the service. You can now test the introspection auth flow.
