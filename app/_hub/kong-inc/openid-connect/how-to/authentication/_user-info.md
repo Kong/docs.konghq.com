@@ -94,7 +94,7 @@ Request the service with a bearer token:
 ```sh
 curl -I http://localhost:8000/openid-connect \
   -H "Authorization: \
-  '$(curl --user user:pass http://localhost:8000/openid-connect \
+  '$(curl --user <user>:<pass> http://localhost:8000/openid-connect \
   | jq -r .headers.Authorization)'"
 ```
 

@@ -14,39 +14,42 @@ access control functionality in the form of allow and deny lists.
 
 {% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
-Let's first configure the OpenID Connect plugin for integration with the ACL plugin
-(remove any other authorization if enabled):
+### Configure OpenID Connect
+
+First, configure the OpenID Connect plugin for integration with the ACL plugin.
+For the purposes of the demo, you can use the 
+[password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/).
+
+<!-- vale off-->
+{% plugin_example %}
+plugin: kong-inc/openid-connect
+name: openid-connect
+config:
+  issuer: "http://keycloak.test:8080/auth/realms/master"
+  client_id: "kong"
+  client_auth: "private_key_jwt"
+  auth_methods:
+    - "password"
+  authenticated_groups_claim:
+    - "scope"
+targets:
+  - service
+formats:
+  - konnect
+  - curl
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on -->
+
+Before applying the ACL plugin, test the OpenID Connect plugin configuration:
 
 ```bash
-http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
-  config.auth_methods=password                                   \
-  config.authenticated_groups_claim=scope
-```
-```http
-HTTP/1.1 200 OK
-```
-```json
-{
-    "id": "5f35b796-ced6-4c00-9b2a-90eef745f4f9",
-    "name": "openid-connect",
-    "service": {
-        "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd"
-    },
-    "config": {
-        "auth_methods": [ "password" ],
-        "authorized_groups_claim": [ "scope" ]
-    }
-}
+curl --user user:pass http://localhost:8000
 ```
 
-Before we apply the ACL plugin, let's try it once:
+You should get an HTTP 200 response with an `X-Authenticated-Groups` header:
 
-```bash
-http -v -a john:doe :8000
-```
-```http
-HTTP/1.1 200 OK
-```
 ```json
 {
     "headers": {
@@ -55,43 +58,76 @@ HTTP/1.1 200 OK
 }
 ```
 
-Interesting, the `X-Authenticated-Groups` header was injected in a request.
-This means that we are all good to add the ACL plugin:
+### Configure the ACL plugin
+
+The following examples show how to enable ACL deny or allow lists with OpenID Connect. 
+You can also have both `allow` and `deny` lists configured at the same time.
+
+{% navtabs %}
+{% navtab Allow %}
+
+Add the ACL plugin to the `openid-connect` service and configure the `allow` parameter:
+
+<!-- vale off-->
+{% plugin_example %}
+plugin: kong-inc/acl
+name: acl
+config:
+  allow:
+    - "openid"
+targets:
+  - service
+formats:
+  - konnect
+  - curl
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on -->
+
+Test the configuration with both plugins enabled:
 
 ```bash
-http -f put :8001/plugins/b238b64a-8520-4bbb-b5ff-2972165cf3a2 \
-  name=acl                                                     \
-  service.name=openid-connect                                  \
-  config.allow=openid
+curl --user user:pass http://localhost:8000
 ```
 
-Let's test it again:
+You should get an HTTP 200 response.
+
+{% endnavtab %}
+{% navtab Deny %}
+
+Add the ACL plugin to the `openid-connect` service and configure the `deny` parameter:
+
+<!-- vale off-->
+{% plugin_example %}
+plugin: kong-inc/acl
+name: acl
+config:
+  deny:
+    - "openid"
+targets:
+  - service
+formats:
+  - konnect
+  - curl
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on -->
+
+Try accessing the proxy:
 
 ```bash
-http -v -a john:doe :8000
-```
-```http
-HTTP/1.1 200 OK
+curl --user <user>:<pass> http://localhost:8000
 ```
 
-Let's make it forbidden by changing it to a deny list:
+You should get an HTTP 403 Forbidden response, and the following message:
 
-```bash
-http -f patch :8001/plugins/b238b64a-8520-4bbb-b5ff-2972165cf3a2 \
-  config.allow=                                                  \
-  config.deny=profile
-```
-
-And try again:
-
-```bash
-http -v -a john:doe :8000
-```
-```http
-HTTP/1.1 403 Forbidden
-```
 ```json
 {
     "message": "You cannot consume this service"
 }
 ```
+
+{% endnavtab %}
+{% endnavtabs %}

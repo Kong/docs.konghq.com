@@ -90,7 +90,7 @@ enabled the OpenID Connect plugin on the service. You can now test the password 
 Request the service with basic authentication credentials created in the [Keycloak configuration](#prerequisites) step:
 
 ```bash
-curl --user user:pass http://localhost:8000/openid-connect
+curl --user <user>:<pass> http://localhost:8000
 ```
 
 You should get an HTTP 200 response with a basic auth header:
