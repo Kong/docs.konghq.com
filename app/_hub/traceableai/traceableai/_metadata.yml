@@ -5,10 +5,10 @@
 name: Traceable.ai
 publisher: Traceable.ai
 categories:
-  - security
+  - none
 type: plugin
 
-desc: API security with inline request blocking and data capture.
+desc: API security with inline request blocking and data capture
 
 support_url: https://support.traceable.ai
 

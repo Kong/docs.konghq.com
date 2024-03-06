@@ -3,19 +3,21 @@ nav_title: Overview
 title: Overview
 ---
 
-Traceable's Kong plugin lets traceable capture a copy of the API traffic that is flowing through Kong's API Gateway. Using this data Traceable is able to create a security posture profile of  APIs hosted on Kong. Traceable plugin is also capable of blocking traffic coming from malicious actors and IPs into Kong API Gateway.
+Traceable's Kong plugin lets Traceable capture a copy of the API traffic that is flowing through {{site.base_gateway}}.
+Using this data, Traceable is able to create a security posture profile of APIs hosted on Kong.
+Based on its findings, the Traceable plugin can also block traffic coming from malicious actors and IPs into {{site.base_gateway}}.
 
 ## How it works
 
-The Traceable Kong Plugin captures request and response data to forward to a locally running Traceable Module Extension(TME).
+The Traceable Kong Plugin captures request and response data to forward to a locally running Traceable Module Extension (TME).
 
 ## Prerequisites
-The Traceable Kong Plugin requires a Traceable Platform Agent to be deployed in your environment. 
-For complete deployment instructions of the Traceable Platform Agent please visit the [traceable.ai docs site](https://docs.traceable.ai/docs/k8s).
+The Traceable Kong Plugin requires a Traceable Platform Agent to be deployed in your environment.
+For complete deployment instructions of the Traceable Platform Agent, visit the [traceable.ai docs site](https://docs.traceable.ai/docs/k8s).
 
 ## How to install
 
-Once you have deployed a Traceable Platform Agent you are ready to install the plugin using the LuaRocks package manager:
+Once you have deployed a Traceable Platform Agent, you are ready to install the plugin using the LuaRocks package manager:
 
 1. Install the traceable plugin:
 
@@ -39,10 +41,10 @@ Once you have deployed a Traceable Platform Agent you are ready to install the p
 
 ## Using the plugin
 
-Register the Traceable plugin:
+Enable the Traceable plugin on a service:
 
 ```shell
-$ curl -X POST http://<kong-domain>:<kong-port>/services/<your-kong-service-id>/plugins/ \
+$curl -X POST http://localhost:8001/services/{serviceId}/plugins/ \
   --data "name=traceable" \
   --data "config.ext_cap_endpoint=<ext_cap_endpoint>" \
   --data "config.service_name=<name_of_service>" \
