@@ -7,20 +7,20 @@ id: landing-page
 <div class="landing-page">
   <div class="page--header-background"></div>
   <h1 id="main" tabindex="-1">Welcome <span>to Kong Docs</span></h1>
-  <div class="landing-page-subtitle">Find all the information you need to use Kong’s platforms and projects</div>
+  <h2 class="landing-page-subtitle">Find all the information you need to use Kong’s platforms and projects</h2>
 
   <section class="cloud-platform">
     <section class="konnect-docs card">
       <img class="banner-image" src="/assets/images/logos/kong-konnect-logo.svg" alt="Kong Konnect's logo" />
       <div class="konnect-docs-card-content">
-        <h5 class="platform-description">
+        <div class="description">
           An end-to-end SaaS API lifecycle management platform that is designed for the cloud native era and provides the easiest way to get started with {{ site.base_gateway }}
-        </h5>
+        </div>
         <div class="platform-links">
           <a href="/konnect/" class="name-link">
             <div class="name-label">
               <div class="link-text">
-                <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
+                <img class="icon" src="/assets/images/icons/icn-script2.svg" alt="">
                 Konnect Overview
               </div>
             </div>
@@ -29,7 +29,7 @@ id: landing-page
           <a href="/konnect/getting-started/" class="name-link">
             <div class="name-label">
               <div class="link-text">
-                <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
+                <img class="icon" src="/assets/images/icons/icn-script2.svg" alt="">
                 Get Started With Konnect
               </div>
             </div>
@@ -38,7 +38,7 @@ id: landing-page
           <a href="/hub/?compatibility=konnect" class="name-link">
             <div class="name-label">
               <div class="link-text">
-                <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
+                <img class="icon" src="/assets/images/icons/icn-script2.svg" alt="">
                 Konnect-compatible Plugins
               </div>
             </div>
@@ -60,7 +60,7 @@ id: landing-page
             <a href="/gateway/latest/" class="name-link">
               <div class="name-label">
                 <div class="link-text">
-                  <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
+                  <img class="icon" src="/assets/images/icons/icn-script2.svg" alt="">
                   {{site.base_gateway}} Overview
                 </div>
               </div>
@@ -68,7 +68,7 @@ id: landing-page
             <a href="/gateway/latest/get-started/" class="name-link">
               <div class="name-label">
                 <div class="link-text">
-                  <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
+                  <img class="icon" src="/assets/images/icons/icn-script2.svg" alt="">
                   Get Started With {{site.base_gateway}}
                 </div>
               </div>
@@ -76,7 +76,7 @@ id: landing-page
             <a href="/hub/" class="name-link">
               <div class="name-label">
                 <div class="link-text">
-                  <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
+                  <img class="icon" src="/assets/images/icons/icn-script2.svg" alt="">
                   Plugins
                 </div>
               </div>
@@ -84,7 +84,7 @@ id: landing-page
             <a href="/gateway/latest/admin-api/" class="name-link">
               <div class="name-label">
                 <div class="link-text">
-                  <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
+                  <img class="icon" src="/assets/images/icons/icn-script2.svg" alt="">
                   Admin API
                 </div>
               </div>
@@ -102,7 +102,7 @@ id: landing-page
             <a href="/mesh/latest/" class="name-link">
               <div class="name-label">
                 <div class="link-text">
-                  <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
+                  <img class="icon" src="/assets/images/icons/icn-script2.svg" alt="">
                   {{site.mesh_product_name}} Overview
                 </div>
               </div>
@@ -110,7 +110,7 @@ id: landing-page
             <a href="/mesh/latest/quickstart/kubernetes-demo/" class="name-link">
               <div class="name-label">
                 <div class="link-text">
-                  <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
+                  <img class="icon" src="/assets/images/icons/icn-script2.svg" alt="">
                   {{site.mesh_product_name}} Quickstart
                 </div>
               </div>
@@ -118,7 +118,7 @@ id: landing-page
             <a href="https://kuma.io/docs/" class="name-link">
               <div class="name-label">
                 <div class="link-text">
-                  <img class="icon" src="/assets/images/icons/icn-doc.svg" alt="">
+                  <img class="icon" src="/assets/images/icons/icn-script2.svg" alt="">
                   Kuma (open-source)
                 </div>
               </div>
@@ -130,7 +130,7 @@ id: landing-page
   </section>
 
   {% for feature in site.data.landing_page.features %}
-  <h2 id="feature-title">{{ feature.title }}</h2>
+  <h3 id="feature-title">{{ feature.title }}</h3>
   <section class="features">
     <div class="cards-container">
       {% for item in feature.items %}
