@@ -1,7 +1,3 @@
-# This file sets metadata for an individual Kong partner plugin.
-# View the full instructions for documenting a plugin
-# at https://docs.konghq.com/contributing/partner-plugins
-
 name: Traceable.ai
 publisher: Traceable.ai
 categories:
@@ -39,3 +35,7 @@ enterprise: false
 konnect: false
 
 dbless_compatible: yes
+
+search_aliases:
+  - traceable ai
+  - traceableai
