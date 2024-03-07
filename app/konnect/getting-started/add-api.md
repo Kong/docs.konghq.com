@@ -139,7 +139,7 @@ And that's it! You have your first service set up, running, and routing
 traffic proxied through a {{site.base_gateway}} data plane node.
 
 {:.important}
-> **Important:** To conserve your free trial credits, delete any APIs you test but won't use in production.
+> **Important:** To conserve your free trial credits, delete any APIs you don't plan to use in production.
 
 ## Next steps
 
