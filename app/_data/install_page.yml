@@ -103,10 +103,10 @@ tabs:
           - icon: /assets/images/icons/third-party/logomark-redhat.svg
             url: /gateway/latest/install/linux/rhel/?install=oss
             name: RedHat
-          - icon:
+          - icon: /assets/images/logos/kong-kuma.png
             url: /mesh/latest/explore/gateway/
             name: Kong Gateway on Kuma
-          - icon:
+          - icon: /assets/images/logos/kong-istio.png
             url: /kubernetes-ingress-controller/latest/guides/getting-started-istio/
             name: Kong Gateway on Istio
           - icon: /assets/images/icons/third-party/logomark-ubuntu.svg
