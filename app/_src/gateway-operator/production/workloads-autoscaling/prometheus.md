@@ -63,6 +63,12 @@ spec:
 After applying the above manifest you can check one of the metrics that's exposed by {{ site.kgo_product_name }}
 to verify that the scrape config has been applied.
 
+You should be able to access the UI using a port-forward like this:
+
+```bash
+kubectl port-forward service/prometheus-kube-prometheus-prometheus 9090:9090 -n prometheus
+```
+
 This can be verified by going to your Prometheus UI and querying e.g.:
 
 ```
@@ -86,9 +92,11 @@ This can be done by `prometheus-adapter`.
 
    [prom-adapter-chart]: https://artifacthub.io/packages/helm/prometheus-community/prometheus-adapter
 
+   If you're working with Prometheus deployed in a different namespace than `prometheus`, than replace it below in the `prometheus.url` value.
+
    ```yaml
    prometheus:
-     url: http://prometheus-kube-prometheus-prometheus.<PROMETHEUS_NAMESPACE>.svc
+     url: http://prometheus-kube-prometheus-prometheus.prometheus.svc
 
    rules:
      default: false
