@@ -10,7 +10,9 @@ By default, {{site.base_gateway}} listens on the following ports:
 | [`:8001`](/gateway/{{page.release}}/reference/configuration/#admin_api_uri)     | HTTP     | Admin API. Listens for calls from the command line over HTTP. | All tiers and modes |
 | [`:8444`](/gateway/{{page.release}}/reference/configuration/#admin_api_uri)     | HTTPS    | Admin API. Listens for calls from the command line over HTTPS. | All tiers and modes |
 | [`:8005`](/gateway/{{page.release}}/production/deployment-topologies/hybrid-mode/setup/)         | TCP     | Hybrid mode only. Control Plane listens for traffic from Data Planes. | All tiers and modes |
-| [`:8006`](/gateway/{{page.release}}/production/deployment-topologies/hybrid-mode/setup/)         | TCP     | Hybrid mode only. Control Plane listens for Vitals telemetry data from Data Planes. | {{site.ee_product_name}} tier |
+| [`:8006`](/gateway/{{page.release}}/production/deployment-topologies/hybrid-mode/setup/)         | TCP     | Hybrid mode only. Control Plane listens for Vitals telemetry data from Data Planes. |
+| [`:8007`](/gateway/{{page.release}}/reference/configuration/#status_listen)     | HTTP     | Status listener. Listens for calls from the command line over HTTP. | All tiers and modes |
+{{site.ee_product_name}} tier |
 {% if_version lte:3.3.x %}
 
 | [`:8002`](/gateway/{{page.release}}/reference/configuration/#admin_gui_listen)  | HTTP     | Kong Manager (GUI). Listens for HTTP traffic. | {{site.base_gateway}} free mode |
