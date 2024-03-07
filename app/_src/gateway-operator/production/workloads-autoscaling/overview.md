@@ -67,6 +67,7 @@ metadata:
   labels:
     app: echo
   name: echo
+  namespace: default
 spec:
   replicas: 1
   selector:

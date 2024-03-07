@@ -54,7 +54,6 @@ spec:
     bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
     tlsConfig:
       insecureSkipVerify: true
-
   selector:
     matchLabels:
       control-plane: controller-manager
@@ -128,7 +127,7 @@ This can be done by `prometheus-adapter`.
 When all is configured you should be able to see the metric you've configure in `prometheus-adapter` exposed via Kubernetes Custom Metrics API:
 
 ```bash
-kubectl get --raw "/apis/custom.metrics.k8s.io/v1beta1/namespaces/default/services/echo/kong_upstream_latency_ms_30s_average" | jq
+kubectl get --raw '/apis/custom.metrics.k8s.io/v1beta1/namespaces/default/services/echo/kong_upstream_latency_ms_30s_average' | jq
 ```
 
 This should result in:
@@ -213,13 +212,13 @@ across last 30s at 40ms.
 You can watch those events using the following `kubectl` command:
 
 ```bash
-kubectl get events --field-selector involvedObject.name=echo --field-selector involvedObject.kind=HorizontalPodAutoscaler -w
+kubectl get events -n default --field-selector involvedObject.name=echo --field-selector involvedObject.kind=HorizontalPodAutoscaler -w
 ```
 
 Assuming that you have access to the deployed `Gateway` address you can try enforcing the scaling by issuing requests like so:
 
 ```bash
-while curl -k http://$(kubectl get gateway kong -o custom-columns='name:.status.addresses[0].value' --no-headers -n default)/echo/shell\?cmd=sleep%200.1 ; do sleep 1; done
+while curl -k "http://$(kubectl get gateway kong -o custom-columns='name:.status.addresses[0].value' --no-headers -n default)/echo/shell?cmd=sleep%200.1" ; do sleep 1; done
 ```
 
 This will cause the underlying deployment to sleep for 100ms on each request and thus increase the average response time to that value.
