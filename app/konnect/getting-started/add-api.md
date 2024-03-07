@@ -140,7 +140,7 @@ And that's it! You have your first service set up, running, and routing
 traffic proxied through a {{site.base_gateway}} data plane node.
 
 {:.important}
-> **Important:** Once you are done testing your API, make sure to delete it if you don't plan to use it in production. This will help you conserve your free trial credits in {{site.konnect_short_name}}.
+> **Important:** To conserve your free trial credits, delete any APIs you test but won't use in production.
 
 ## Next steps
 
