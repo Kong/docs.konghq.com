@@ -30,7 +30,7 @@ Applying `DataPlaneMetricsExtension` and attaching it to a `ControlPlane` will:
   as defined in [`MetricsConfig`](/gateway-operator/{{ page.release }}/reference/custom-resources/#metricsconfig)
 - Annotate the selected `Service`s (through `DataPlaneMetricsExtension`'s [`serviceSelector`](/gateway-operator/{{ page.release }}/reference/custom-resources/#serviceselector) field)
   with `konghq.com/plugins` annotation which will point to the managed `KongPlugin` instance.
-  This takes into account already existing annotations, so it there are already plugins configured on that `Service`
+  This takes into account already existing annotations, so if there are already plugins configured on that `Service`
   the new plugin name will be appended.
 - Start the process of scraping {{ site.base_gateway }}'s metrics and enriching them with Kubernetes metadata
 - Expose those metrics in {{ site.kgo_product_name }}'s `/metrics`
@@ -225,7 +225,7 @@ with a variety of monitoring systems out there.
 
 Nevertheless you can follow our guides to integrate {{ site.kgo_product_name }} with:
 
-- Prometheus or
+- Prometheus
 - Datadog
 
 ### Prometheus
