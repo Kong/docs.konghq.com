@@ -28,7 +28,13 @@ title: Get started with Konnect
 
 ## About {{site.konnect_short_name}}
 
-{% include_cached /md/konnect/introducing-konnect.md %}
+{{site.konnect_short_name}} is an API lifecycle management platform that lets you build modern applications better, faster, and more securely. The control plane is hosted in the cloud by Kong, while the data plane is managed by you within your preferred network environment. All of this is powered by {{site.base_gateway}} — Kong's lightweight, fast, and flexible API gateway. 
+
+{{site.konnect_short_name}} can help you with the following use cases:
+
+* **Developers:** Use {{site.konnect_short_name}} as the easiest way to manage {{site.base_gateway}}. This helps save time on writing boilerplate code used to protect and secure APIs. 
+* **Small teams:** Use features like API cataloguing, external developer portals, and API analytics to share and monetize their APIs. 
+* **Large enterprise companies:** Use multi-geo support for the control plane and achieve federated API management by giving central teams governance tools while providing API teams with speed and flexibility.
 
 ### {{site.konnect_short_name}} architecture
 

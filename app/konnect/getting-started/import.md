@@ -21,6 +21,7 @@ You cannot import [unsupported plugins](/konnect/servicehub/plugins/#plugin-limi
 
 ## Prerequisites
 
+* [A {{site.konnect_short_name}} account](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=konnect-getting-started)
 * [decK 1.28 or later](/deck/latest/installation/)
 * Make sure that if you're using a `.deck.yaml` config file that it doesn't contain a {{site.konnect_short_name}} personal access token (PAT)
 
@@ -34,11 +35,14 @@ When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.
   
     In {{site.konnect_short_name}} in your [**Personal Access Token** account settings](https://cloud.konghq.com/global/account/tokens), click **Generate Token**.
 
-1. Save the PAT to a file and run: 
+1. Set your PAT as an environment variable and authenticate: 
 
     ```sh
-    deck gateway ping --konnect-token-file /PATH/TO/FILE
+    export DECK_KONNECT_TOKEN=PAT_02uI9CEOkYo36NlJnFVyZf8xDxfgirtgq0NvNWASfweoGMqA && deck gateway ping
     ```
+    
+    {:.note}
+    > **Note**: Alternatively, you can pass your PAT directly into the CLI using `--konnect-token <pat>` or read it to a file using `--konnect-token-file /PATH/TO/FILE`.
 
 1. Run [`deck gateway dump`](/deck/latest/reference/deck_gateway_dump/) to export the configuration into a file:
 
@@ -54,7 +58,7 @@ When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.
 command.
 
     ```sh
-    deck gateway diff kong.yaml --konnect-token-file /PATH/TO/FILE
+    deck gateway diff kong.yaml
     ```
 
     If you're not using the default `kong.yaml` file, specify the filename and
@@ -63,7 +67,7 @@ command.
 1. If you're satisfied with the preview, run [`deck gateway sync`](/deck/latest/reference/deck_gateway_sync/):
 
     ```sh
-    deck gateway sync kong.yaml --konnect-token-file /PATH/TO/FILE
+    deck gateway sync kong.yaml
     ```
 
     If you don't specify the `--konnect-control-plane-name` flag, decK targets the

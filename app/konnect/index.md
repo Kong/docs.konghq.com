@@ -6,7 +6,13 @@ breadcrumb: Overview
 
 ## Introducing {{site.konnect_short_name}}
 
-{% include_cached /md/konnect/introducing-konnect.md %} 
+{{site.konnect_short_name}} is an API lifecycle
+management platform designed from the ground up for the cloud native era
+and delivered as a service. This platform lets you build modern applications
+better, faster, and more securely. The control plane is hosted
+in the cloud by Kong, while the data plane is managed by you within your
+preferred network environment. All of this is powered by {{site.base_gateway}} — Kong's
+lightweight, fast, and flexible API gateway. 
 
 <p align="center">
   <img src="/assets/images/products/konnect/dashboard/konnect-dashboard.png" alt="Konnect's dashboard screenshot" />
@@ -31,11 +37,10 @@ breadcrumb: Overview
     <div class="install-text">Features</div>
   </a> -->
 
-  <!-- Uncomment once wizard is fixed to allow repeating it
-  <a href="https://cloud.konghq.com/quick-start" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-learning.svg" alt="">
-    <div class="install-text">Use the onboarding wizard</div>
-  </a> -->
+  <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=konnect-getting-started" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
+    <div class="install-text">Sign up for {{site.konnect_short_name}}</div>
+  </a>
 
   <a href="/konnect/getting-started/add-api" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-admin-api-color.svg" alt="">
