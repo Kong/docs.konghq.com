@@ -22,7 +22,6 @@ In this guide, you will build on your Konnect environment by adding your own API
 
 * [A {{site.konnect_short_name}} account](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=konnect-getting-started)
 * If you didn't use the in-app onboarding wizard in {{site.konnect_short_name}}, open the Konnect [Gateway Manager](https://cloud.konghq.com/gateway-manager), and create a new data plane node.
-* If you did use the in-app onboarding wizard, make sure to delete the examples you created as part of the wizard. This will help you conserve your free trial credits in {{site.konnect_short_name}}.
 
 ## Add your API
 
