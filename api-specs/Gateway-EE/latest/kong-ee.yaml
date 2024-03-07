@@ -1432,7 +1432,13 @@ components:
               instance_name:
                 type: string
                 description: |
-                  The plugin instance name.
+                  An optional custom name to identify an instance of the plugin, for example `basic-auth_example-service`.
+                  
+                  The instance name shows up in Kong Manager, so it's useful when running the same 
+                  plugin in multiple contexts, for example, on multiple services. You can also use it to access a specific plugin instance
+                  via the Kong Admin API.
+
+                  An instance name must be unique within a workspace for Kong Gateway Enterprise.
                 example: rate-limiting-foo
               config:
                 type: object
@@ -5082,7 +5088,13 @@ components:
               instance_name:
                 type: string
                 description: |
-                  The plugin instance name.
+                  An optional custom name to identify an instance of the plugin, for example `basic-auth_example-service`.
+                  
+                  The instance name shows up in Kong Manager, so it's useful when running the same 
+                  plugin in multiple contexts, for example, on multiple services. You can also use it to access a specific plugin instance
+                  via the Kong Admin API.
+
+                  An instance name must be unique within a workspace for Kong Gateway Enterprise.
                 example: rate-limiting-foo
               config:
                 type: object
