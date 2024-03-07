@@ -81,7 +81,7 @@ items:
           url: /production/workloads-autoscaling/overview/
         - text: Prometheus
           url: /production/workloads-autoscaling/prometheus/
-        - text: DataDog
+        - text: Datadog
           url: /production/workloads-autoscaling/datadog/
   - title: Reference
     icon: /assets/images/icons/icn-magnifying-glass.svg

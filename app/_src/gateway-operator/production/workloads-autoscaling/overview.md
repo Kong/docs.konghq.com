@@ -232,6 +232,6 @@ Nevertheless you can follow our guides to integrate {{ site.kgo_product_name }} 
 
 To use Prometheus and `prometheus-adapter` please follow [this guide](./../prometheus/)
 
-### DataDog
+### Datadog
 
-To use DataDog please follow [this guide](./../datadog/)
+To use Datadog please follow [this guide](./../datadog/)
