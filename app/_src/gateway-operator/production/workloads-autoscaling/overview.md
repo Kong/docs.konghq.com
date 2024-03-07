@@ -220,14 +220,17 @@ spec:
 
 ## Custom Metrics providers support
 
-Currently {{ site.kgo_product_name }} supports 2 metric providers:
+Metrics exposed by {{ site.kgo_product_name }} are not specific to any monitoring solution and can be integrated
+with a variety of monitoring systems out there.
 
-- Prometheus
+Nevertheless you can follow our guides to integrate {{ site.kgo_product_name }} with:
+
+- Prometheus or
 - Datadog
 
 ### Prometheus
 
-To use Prometheus and prometheus-adapter please follow [this guide](./../prometheus/)
+To use Prometheus and `prometheus-adapter` please follow [this guide](./../prometheus/)
 
 ### DataDog
 
