@@ -9,6 +9,17 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## March 2024
+
+**New Analytics Explorer page**
+: You can now explore and visualize analytics data via an easy to use, point-and-click web interface. The [Explorer page](https://cloud.konghq.com/analytics/explorer) allows you to drill-down into data and easily discover how issues may impact your business. For more information, see the [Explorer overview](/konnect/analytics/explorer/).
+
+**Improved Analytics summary dashboard**
+: A new version of the Analytics summary dashboard is now available for all {{site.konnect_short_name}} users. This new version displays all analytics information on one page, which allows you to focus on your most critical API usage data.
+
+: ![analytics summary dashboard](/assets/images/products/konnect/changelog/konnect-analytics-summary-dashboard.png)
+: > _**Figure 1:** Example of the improved Analytics summary dashboard that displays total traffic, error rate, P99 latency, total traffic over time, latency breakdown over time, and Kong vs upstream latency over time._
+
 ## February 2024
 
 
@@ -28,6 +39,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : Konnect now supports reusable auth strategies that can be applied to one or more API product versions. Konnect now also supports multiple DCR providers for portal applications. Users can now create separate DCR providers with various Identity Providers and apply them selectively to API Product Versions while still using non-DCR auth strategies for other API product versions. For more information, see [Enable app registration with multiple IdPs](/konnect/dev-portal/applications/enable-app-reg/#enable-app-registration-with-multiple-idps)
 
 : If you previously configured application registration, you will see your auth configs saved in a new sidebar section under **Dev Portal** called **Application Auth**.
+
 
 **Enhanced onboarding wizard**
 : {{site.konnect_short_name}} users can now experience an enhanced onboarding wizard when they sign up for a new {{site.konnect_short_name}} organization. After signing up, you can optionally use the wizard to test a popular {{site.konnect_short_name}} use case: key authentication or rate limiting. This experience starts with a local, Docker-based gateway setup, automatically configures Gateway Manager entities against demo endpoints, and then guides you through a basic workflow that tests gateway functionality.
