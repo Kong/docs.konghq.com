@@ -1,5 +1,6 @@
-@color-text: #043558;
+@color-text-primary: #35363A;
 @color-text-light: #4c6d80;
+@color-text-secondary: #666C70;
 @color-blue: #1155cb;
 @hover-transition-time: 0.25s;
 
@@ -59,14 +60,6 @@ header.navbar {
     }
   }
 
-  h3 {
-    padding-top: 45px;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 28px;
-    color: @color-text;
-  }
-
   .landing-page-subtitle {
     margin-top: 0;
     margin-bottom: 3rem;
@@ -75,7 +68,7 @@ header.navbar {
     font-weight: 400;
     font-size: 20px;
     line-height: 28px;
-    color: #aab4bb;
+    color: #fff;
   }
 
   .links-container {
@@ -105,7 +98,7 @@ header.navbar {
     font-weight: 700;
     font-size: 24px;
     line-height: 34px;
-    color: text;
+    color: @color-text-primary;
   }
 
   .cards-container {
@@ -124,15 +117,16 @@ header.navbar {
       font-size: 18px;
       line-height: 24px;
       text-align: left;
-      color: @color-text;
+      color: @color-text-primary;
       padding: 8px 12px;
     }
 
     .description {
       .landing-text;
+      font-size: 16px;
       font-weight: normal;
       text-align: left;
-      color: @color-text-light;
+      color: @color-text-secondary;
       padding: 8px 12px;
     }
 
@@ -362,7 +356,7 @@ header.navbar {
                 font-weight: normal;
                 font-size: 11px;
                 line-height: 15px;
-                color: @color-text-light;
+                color: @color-text-secondary;
 
                 img {
                   margin-right: 4px;
@@ -408,7 +402,7 @@ header.navbar {
     .info-container {
       flex-grow: 1;
 
-      h2 {
+      h4 {
         margin-bottom: 4px;
       }
 
@@ -416,7 +410,7 @@ header.navbar {
         font-weight: normal;
         font-size: 16px;
         line-height: 26px;
-        color: @color-text-light;
+        color: @color-text-secondary;
       }
 
       .links-container {
