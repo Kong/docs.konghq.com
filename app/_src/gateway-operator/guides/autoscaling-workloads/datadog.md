@@ -110,14 +110,23 @@ to instruct Datadog agent to expose one for use.
 There are several ways to achieve this but we'll use a Kubernetes native way and
 use [`DatadogMetric` CRD][ddmetricguide]:
 
-```
+```yaml
+echo '
 apiVersion: datadoghq.com/v1alpha1
 kind: DatadogMetric
 metadata:
   name: echo-kong-upstream-latency-avg
   namespace: default
 spec:
-  query: autoscaling.kong_upstream_latency_ms{service:echo}
+  query: autoscaling.kong_upstream_latency_ms{service:echo} ' | kubectl apply -f -
+```
+
+When Datadog's agent calculates this metric for you, it will update its status:
+
+```bash
+kubectl get -n default datadogmetric echo-kong-upstream-latency-avg -w
+NAME                             ACTIVE   VALID   VALUE               REFERENCES         UPDATE TIME
+echo-kong-upstream-latency-avg   True     True    24.46194839477539                      38s
 ```
 
 If everything works correctly, in a couple of seconds you should be able to get the metric via Kubernetes External Metrics API:
@@ -188,6 +197,14 @@ spec:
 
 This HPA will watch for `echo-kong-upstream-latency-avg` `DatadogMetric` from `default` namespace and it will scale
 `echo` `Deployment` in that namespace to aim for 40ms average response time.
+
+When everything is configured correctly, `DatadogMetric`'s status will update and it will now have a reference to the HPA:
+
+```bash
+kubectl get -n default datadogmetric echo-kong-upstream-latency-avg -w
+NAME                             ACTIVE   VALID   VALUE               REFERENCES         UPDATE TIME
+echo-kong-upstream-latency-avg   True     True    24.46194839477539   hpa:default/echo   38s
+```
 
 ## Generate traffic against `echo` `Service`
 
