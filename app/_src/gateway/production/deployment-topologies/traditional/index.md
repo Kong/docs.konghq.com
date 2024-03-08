@@ -10,6 +10,11 @@ configuration since they point to the same database. Kong nodes pointing to the
 You need a load balancer in front of your Kong cluster to distribute traffic
 across your available nodes.
 
+{% include_cached /md/gateway/deployment-topologies.md topology='traditional' %}
+
+> _Figure 1: In a traditional deployment, all {{site.base_gateway}} nodes connect to the database. 
+Each node manages its own configuration._
+
 ## What a Kong cluster does and doesn't do
 
 **Having a Kong cluster does not mean that your clients traffic will be
