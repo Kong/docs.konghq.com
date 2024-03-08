@@ -14,14 +14,14 @@ based on their metrics.
 ### Datadog API and application keys
 
 In order to install Datadog agents in your cluster you will need Datadog API key
-and an application key. Please refer to [this Datadog manual page][ddkeys] to obtains those.
+and an application key. Please refer to [this Datadog manual page][ddkeys] to obtain those.
 
 [ddkeys]: https://docs.datadoghq.com/account_management/api-app-keys/
 
 ### Installing
 
-In order to install Datadog in your cluster can follow [this guide][ddk8sguide]
-or simply use the following `values.yaml`:
+In order to install Datadog in your cluster, you can follow [this guide][ddk8sguide]
+or use the following `values.yaml`:
 
 ```yaml
 datadog:
