@@ -9,12 +9,12 @@ based on their metrics.
 
 [dmetrics]: https://docs.datadoghq.com/metrics/
 
-## Install Datadog in your Kubernets cluster
+## Install Datadog in your Kubernetes cluster
 
 ### Datadog API and application keys
 
-In order to install Datadog agents in your cluster you will need Datadog API KEY
-and and APP KEY. Please refer to [this Datadog manual page][ddkeys] to obtains those.
+In order to install Datadog agents in your cluster you will need Datadog API key
+and an application key. Please refer to [this Datadog manual page][ddkeys] to obtains those.
 
 [ddkeys]: https://docs.datadoghq.com/account_management/api-app-keys/
 
@@ -62,7 +62,7 @@ helm install -n datadog datadog --set datadog.apiKey=${DD_APIKEY} --set datadog.
 [ddk8sguide]: https://docs.datadoghq.com/containers/kubernetes/installation/?tab=helm
 [ddchart]: https://github.com/DataDog/helm-charts/tree/main/charts/datadog
 
-## Annotate {{ site.kgo_product_name }} witho Datadog checks config
+## Annotate {{ site.kgo_product_name }} with Datadog checks config
 
 {:.note}
 > **Note:** {{ site.kgo_product_name }} uses [kube-rbac-proxy][kuberbacproxy_github]
