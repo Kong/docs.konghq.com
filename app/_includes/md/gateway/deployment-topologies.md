@@ -14,7 +14,7 @@ A --- B & B2
 end
 
 id1 --Kong proxy 
-configuration---> C & D & E
+configuration---> id2 & id3
 
 subgraph id2 [Self-managed on-premise node]
 C
@@ -51,7 +51,7 @@ A---B
 end
 
 B --Kong proxy 
-configuration---> C & D & E
+configuration---> id2 & id3
 
 subgraph id2 [Self-managed on-premise node]
 C
