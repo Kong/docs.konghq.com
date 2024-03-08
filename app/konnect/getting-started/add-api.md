@@ -20,7 +20,8 @@ In this guide, you will build on your Konnect environment by adding your own API
 
 ## Prerequisites
 
-If you didn't use the in-app onboarding wizard in {{site.konnect_short_name}}, open the Konnect [Gateway Manager](https://cloud.konghq.com/gateway-manager), and create a new data plane node.
+* [A {{site.konnect_short_name}} account](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=konnect-getting-started)
+* If you didn't use the in-app onboarding wizard in {{site.konnect_short_name}}, open the Konnect [Gateway Manager](https://cloud.konghq.com/gateway-manager), and create a new data plane node.
 
 ## Add your API
 
@@ -136,6 +137,9 @@ If successful, you should see the homepage for `httpbin.org`. In the Gateway Man
 
 And that's it! You have your first service set up, running, and routing
 traffic proxied through a {{site.base_gateway}} data plane node.
+
+{:.important}
+> **Important:** To conserve your free trial credits, delete any APIs you don't plan to use in production.
 
 ## Next steps
 
