@@ -30,10 +30,4 @@ If you want to use experimental resources and fields such as `TCPRoute`s and `UD
 kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v{{ gwapi_version }}/experimental-install.yaml
 ```
 
-To install Kong specific CRDs, run the following command.
-
-```bash
-kubectl apply -k https://github.com/Kong/kubernetes-ingress-controller/config/crd
-```
-
-{% include snippets/gateway-operator/install_with_kubectl_all_controllers.md version=page.version%}
+{% include snippets/gateway-operator/install_with_helm.md version=page.version release=page.release %}
