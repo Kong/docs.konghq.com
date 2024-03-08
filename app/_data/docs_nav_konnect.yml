@@ -155,6 +155,8 @@
           url: /dev-portal/access-and-approval/auto-approve-devs-apps/
         - text: Azure OIDC
           url: /dev-portal/access-and-approval/azure/
+    - text: Developer Flow
+      url: /dev-portal/dev-flow/
     - text: Application Lifecycle
       items:
         - text: Overview
