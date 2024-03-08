@@ -14388,7 +14388,7 @@ paths:
       operationId: get-event-hooks-event-hook-id-ping
       description: |
         Ping a webhook event hook.
-  '/{workspace_name_or_id}/rbac/roles':
+  '/{workspace}/rbac/roles':
     parameters:
       - schema:
           type: string
