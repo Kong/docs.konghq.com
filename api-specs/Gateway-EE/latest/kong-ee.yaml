@@ -12510,7 +12510,7 @@ paths:
     get:
       summary: List Users
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           $ref: '#/components/responses/rbac-user-response'
@@ -12530,7 +12530,7 @@ paths:
         '401': 
           $ref: '#/components/responses/HTTP401Error'
       tags:
-        - rbac
+        - RBAC
       requestBody:
         $ref: '#/components/requestBodies/rbac-request'
       description: Add a User
@@ -12545,7 +12545,7 @@ paths:
     get:
       summary: Retrieve a User
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           $ref: '#/components/responses/rbac-user-response'
@@ -12562,7 +12562,7 @@ paths:
         '401': 
           $ref: '#/components/responses/HTTP401Error'
       tags:
-        - rbac
+        - RBAC
       description: Update a user. Users are unable to update their own roles.
       requestBody:
         $ref: '#/components/requestBodies/rbac-request'
@@ -12577,12 +12577,12 @@ paths:
       description: |
         Delete a user.
       tags:
-        - rbac
+        - RBAC
   /rbac/roles:
     get:
       summary: List Roles
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           description: OK
@@ -12686,7 +12686,7 @@ paths:
                     is_default: false
                     name: service_reader
       tags:
-        - rbac
+        - RBAC
       requestBody:
         content:
           application/json:
@@ -12715,7 +12715,7 @@ paths:
     get:
       summary: Retrieve a Role
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           description: OK
@@ -12790,7 +12790,7 @@ paths:
         '401': 
           $ref: '#/components/responses/HTTP401Error'
       tags:
-        - rbac
+        - RBAC
       requestBody:
         content:
           application/json:
@@ -12842,7 +12842,7 @@ paths:
                     is_default: false
                     name: service_reader
       tags:
-        - rbac
+        - RBAC
       requestBody:
         content:
           application/json:
@@ -12865,7 +12865,7 @@ paths:
         '401': 
           $ref: '#/components/responses/HTTP401Error'
       tags:
-        - rbac
+        - RBAC
       description: Delete a role
   '/rbac/roles/{name_or_id}/endpoints':
     parameters:
@@ -12878,7 +12878,7 @@ paths:
     get:
       summary: List Role Endpoints Permissions
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           description: OK
@@ -12991,7 +12991,7 @@ paths:
                       id: 23df9f20-e7cc-4da4-bc89-d3a08f976e50
                     workspace: default
       tags:
-        - rbac
+        - RBAC
       description: |-
         Add a role endpoint permission for the path of the associated endpoint. Permissions can be exact matches, or contain wildcards, represented by `*`.
 
@@ -13058,7 +13058,7 @@ paths:
     get:
       summary: Retrieve a Role Endpoint Permission
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           description: OK
@@ -13172,7 +13172,7 @@ paths:
                       id: 23df9f20-e7cc-4da4-bc89-d3a08f976e50
                     workspace: default
       tags:
-        - rbac
+        - RBAC
       description: |
         Update a Role Endpoint Permission
       requestBody:
@@ -13202,7 +13202,7 @@ paths:
       description: |
         Delete a Role Endpoint Permission
       tags:
-        - rbac
+        - RBAC
   '/rbac/roles/{name_or_id}/entities':
     parameters:
       - schema:
@@ -13214,7 +13214,7 @@ paths:
     get:
       summary: List Entity Permissions
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           description: OK
@@ -13331,7 +13331,7 @@ paths:
                     role:
                       id: bba049fa-bf7e-40ef-8e89-553dda292e99
       tags:
-        - rbac
+        - RBAC
       description: The `entity_id` must be the ID of an entity in Kong. If you provide the ID of a workspace, the permission applies to all entities in that workspace. Future entities belonging to that workspace will get the same permissions. A wildcard (`*`) will be interpreted as all entities in the system.
       requestBody:
         content:
@@ -13380,7 +13380,7 @@ paths:
     get:
       summary: Retrieve a Role Entity Permission
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           description: OK
@@ -13486,7 +13486,7 @@ paths:
         '401': 
           $ref: '#/components/responses/HTTP401Error'
       tags:
-        - rbac
+        - RBAC
       description: Update an Entity Permission
       requestBody:
         content:
@@ -13514,7 +13514,7 @@ paths:
       description: |
         Delete an Entity Permission
       tags:
-        - rbac
+        - RBAC
   '/rbac/roles/{name_or_id}/permissions':
     parameters:
       - schema:
@@ -13526,7 +13526,7 @@ paths:
     get:
       summary: List Role Permissions
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           description: OK
@@ -13616,7 +13616,7 @@ paths:
     get:
       summary: List a User’s Roles
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           description: OK
@@ -13778,7 +13778,7 @@ paths:
                   
                   description: Comma-separated list of role names to assign to the user.
       tags:
-        - rbac
+        - RBAC
     delete:
       summary: Delete a Role from a User
       operationId: delete-rbac-users-name_or_id-roles
@@ -13786,7 +13786,7 @@ paths:
         '204':
           description: No Content
       tags:
-        - rbac
+        - RBAC
       description: Delete a Role from a User
   '/rbac/users/{name_or_id}/permissions':
     parameters:
@@ -13799,7 +13799,7 @@ paths:
     get:
       summary: List a User’s Permissions
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           description: OK
@@ -14392,14 +14392,14 @@ paths:
     parameters:
       - schema:
           type: string
-        name: workspace_name_or_id
+        name: workspace
         in: path
         required: true
         description: The workspace name or UUID.
     get:
       summary: List roles for a workspace
       tags: 
-        - Workspaces
+        - RBAC
       responses:
         '200': 
           description: OK
@@ -14503,7 +14503,7 @@ paths:
                       is_default: false
                       name: service_reader
       tags:
-        - Workspaces
+        - RBAC
       requestBody:
         content:
             application/json:
@@ -14521,6 +14521,70 @@ paths:
                     description: A string describing the RBAC user object.
         description: The request body contains the name of the role and an optional attribute. 
       description: Add a role.
+  '/{workspace}/rbac/roles/{role}/endpoints/{endpoint}/':
+    get:
+      summary: Get role-specific permissions for an endpoint within a workspace
+      parameters:
+        - in: path
+          name: workspace
+          required: true
+          schema:
+            type: string
+          description: The workspace name or UUID.
+        - in: path
+          name: role
+          required: true
+          schema:
+            type: string
+          description: The RBAC role ID.
+        - in: path
+          name: endpoint
+          required: true
+          schema:
+            type: string
+          description: The specific endpoint to retrieve permissions for.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  actions:
+                    type: array
+                    items:
+                      type: string
+                  created_at:
+                    type: integer
+                  endpoint:
+                    type: string
+                  negative:
+                    type: boolean
+                  role:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                  workspace:
+                    type: string
+              example: 
+                actions:
+                  - "delete"
+                  - "create"
+                  - "update"
+                  - "read"
+                created_at: 1557764505
+                endpoint: "/consumers"
+                negative: false
+                role:
+                  id: "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+                workspace: "default"
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      operationId: getRoleSpecificEndpointPermissions
+      tags:
+        - RBAC
 
   '/fips-status':
     get:
@@ -14698,7 +14762,7 @@ tags:
       * Role: Set of permissions (`role_endpoint` and `role_entity`). Has a name and can be associated with zero, one, or more permissions. For example: The user `bob` is associated with the role `developer`.
       * `role_endpoint`: A set of enabled or disabled actions. For example: The role `developer` has one `role_endpoint` and reads and writes to `/routes`.
       * `role_entity`: A set of enabled or disabled actions. For example: The role `developer` has one `role_entity` attached to a UUID.
-    name: rbac
+    name: RBAC
   - description: |
       A filter chain is the database entity representing one or more WebAssembly filters executed for each request to a particular service or route, each one with its configuration.
     name: filter-chains
