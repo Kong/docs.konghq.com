@@ -136,9 +136,15 @@
     }
 
     .sidebar-tree-toggle {
-      position: absolute;
-      right: 0;
       border: none;
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      height: 10px;
+
+      &:hover {
+        background: none;
+      }
     }
 
     .sidebar-label {
@@ -200,7 +206,7 @@
     }
 
     > .sidebar-label {
-      padding: 16px 16px 16px 15px;
+      padding: 16px 0 16px 15px;
     }
   }
 }
