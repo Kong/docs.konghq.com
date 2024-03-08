@@ -14465,7 +14465,7 @@ paths:
                         name: doc_lord
                     next: 'null'
       operationId: get-rbac-roles-by-workspace
-      description: Listr all roles by workspace
+      description: List all roles by workspace
     post: 
       summary: Add a role
       operationId: post-rbac-roles-workspace
