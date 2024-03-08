@@ -6,28 +6,10 @@ chapter: 1
 alpha: true
 ---
 
-{% assign gwapi_version = "1.0.0" %}
-{% if_version lte:1.0.0 %}
-{% assign gwapi_version = "0.8.1" %}
-{% endif_version %}
-
 Both {{ site.kgo_product_name }} and {{ site.kic_product_name }} can be configured using the [Kubernetes Gateway API](https://github.com/kubernetes-sigs/gateway-api).
 
 You configure your `GatewayClass` and `Gateway` objects in a vendor independent way and {{ site.kgo_product_name }} translates those requirements in to Kong specific configuration.
 
 This means that CRDs for both the Gateway API and {{ site.kic_product_name }} have to be installed.
 
-Below command installs all Gateway API resources that have graduated to GA or beta,
-including `GatewayClass`, `Gateway`, `HTTPRoute`, and `ReferenceGrant`.
-
-```shell
-kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v{{ gwapi_version }}/standard-install.yaml
-```
-
-If you want to use experimental resources and fields such as `TCPRoute`s and `UDPRoute`s, please run this command.
-
-```shell
-kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v{{ gwapi_version }}/experimental-install.yaml
-```
-
-{% include snippets/gateway-operator/install_with_helm.md version=page.version release=page.release %}
+{% include md/kgo/prerequisites-kic.md disable_accordian=true version=page.version release=page.release %}

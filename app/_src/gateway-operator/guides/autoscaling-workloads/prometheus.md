@@ -39,6 +39,7 @@ make it do so.
 This can be done by using the following manifest:
 
 ```yaml
+echo '
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
@@ -56,7 +57,7 @@ spec:
       insecureSkipVerify: true
   selector:
     matchLabels:
-      control-plane: controller-manager
+      control-plane: controller-manager ' | kubectl apply -f -
 ```
 
 After applying the above manifest you can check one of the metrics that's exposed by {{ site.kgo_product_name }}
@@ -71,7 +72,7 @@ kubectl port-forward service/prometheus-kube-prometheus-prometheus 9090:9090 -n 
 This can be verified by going to your Prometheus UI and querying e.g.:
 
 ```
-up{service=~"gateway-operator-controller-manager-metrics-service"}
+up{service=~"kgo-gateway-operator-metrics-service"}
 ```
 
 ## Install `prometheus-adapter`

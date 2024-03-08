@@ -5,16 +5,7 @@ badge: enterprise
 
 {{ site.kgo_product_name }} can scrape {{ site.base_gateway }} and enrich it with Kubernetes metadata so that it can be used by users to autoscale their workloads.
 
-This guide shows how to autoscale your workloads based on their response time.
-
-{:.note}
-> **Note:** In order to leverage workloads autoscaling you'll need to install
-> {{ site.kgo_product_name }} with {{site.kic_product_name}} using
-> [installation steps from this guide](/gateway-operator/{{ page.release }}/get-started/kic/install/).
-
-{:.note}
-> **Note:** This is an enterprise feature. In order to use it you'll need a license
-> installed in your cluster so that {{ site.kgo_product_name }} can consume it.
+{% include md/kgo/prerequisites-kic.md version=page.version release=page.release enterprise=true %}
 
 ## Overview
 
@@ -47,6 +38,7 @@ Below attached manifest shows a complete working example which
   {{ site.kgo_product_name }}'s `/metrics`
 
 ```yaml
+echo '
 apiVersion: v1
 kind: Service
 metadata:
@@ -210,7 +202,7 @@ spec:
     backendRefs:
     - name: echo
       kind: Service
-      port: 80
+      port: 80 ' | kubectl apply -f -
 ```
 
 ## Metrics support for enrichment
