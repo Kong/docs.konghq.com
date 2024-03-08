@@ -123,6 +123,18 @@ This can be done by `prometheus-adapter`.
    helm upgrade --install --create-namespace -n prometheus --values values.yaml prometheus-adapter prometheus-community/prometheus-adapter
    ```
 
+## Generate traffic against `echo` `Service`
+
+Assuming that you have access to the deployed `Gateway` address you can try enforcing the scaling by issuing requests like so:
+
+```bash
+while curl -k "http://$(kubectl get gateway kong -o custom-columns='name:.status.addresses[0].value' --no-headers -n default)/echo/shell?cmd=sleep%200.1" ; do sleep 1; done
+```
+
+This will cause the underlying deployment to sleep for 100ms on each request and thus increase the average response time to that value.
+
+Keep this running while we move on to next steps.
+
 ## Verify metrics are exposed in Kubernetes
 
 When all is configured you should be able to see the metric you've configure in `prometheus-adapter` exposed via Kubernetes Custom Metrics API:
@@ -216,14 +228,7 @@ You can watch those events using the following `kubectl` command:
 kubectl get events -n default --field-selector involvedObject.name=echo --field-selector involvedObject.kind=HorizontalPodAutoscaler -w
 ```
 
-Assuming that you have access to the deployed `Gateway` address you can try enforcing the scaling by issuing requests like so:
-
-```bash
-while curl -k "http://$(kubectl get gateway kong -o custom-columns='name:.status.addresses[0].value' --no-headers -n default)/echo/shell?cmd=sleep%200.1" ; do sleep 1; done
-```
-
-This will cause the underlying deployment to sleep for 100ms on each request and thus increase the average response time to that value.
-This will in turn cause the HPA to autoscale the `Deployment`:
+If everything went well we should see the `SuccessfulRescale` events:
 
 ```bash
 kubectl get events -n default --field-selector involvedObject.name=echo --field-selector involvedObject.kind=HorizontalPodAutoscaler -w

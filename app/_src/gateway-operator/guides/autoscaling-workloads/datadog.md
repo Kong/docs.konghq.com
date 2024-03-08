@@ -62,6 +62,18 @@ helm install -n datadog datadog --set datadog.apiKey=${DD_APIKEY} --set datadog.
 [ddk8sguide]: https://docs.datadoghq.com/containers/kubernetes/installation/?tab=helm
 [ddchart]: https://github.com/DataDog/helm-charts/tree/main/charts/datadog
 
+## Generate traffic against `echo` `Service`
+
+Assuming that you have access to the deployed `Gateway` address you can try enforcing the scaling by issuing requests like so:
+
+```bash
+while curl -k "http://$(kubectl get gateway kong -o custom-columns='name:.status.addresses[0].value' --no-headers -n default)/echo/shell?cmd=sleep%200.1" ; do sleep 1; done
+```
+
+This will cause the underlying deployment to sleep for 100ms on each request and thus increase the average response time to that value.
+
+Keep this running while we move on to next steps.
+
 ## Annotate {{ site.kgo_product_name }} with Datadog checks config
 
 {:.note}
@@ -205,16 +217,6 @@ kubectl get -n default datadogmetric echo-kong-upstream-latency-avg -w
 NAME                             ACTIVE   VALID   VALUE               REFERENCES         UPDATE TIME
 echo-kong-upstream-latency-avg   True     True    24.46194839477539   hpa:default/echo   38s
 ```
-
-## Generate traffic against `echo` `Service`
-
-Assuming that you have access to the deployed `Gateway` address you can try enforcing the scaling by issuing requests like so:
-
-```bash
-while curl -k "http://$(kubectl get gateway kong -o custom-columns='name:.status.addresses[0].value' --no-headers -n default)/echo/shell?cmd=sleep%200.1" ; do sleep 1; done
-```
-
-This will cause the underlying deployment to sleep for 100ms on each request and thus increase the average response time to that value.
 
 If everything went well we should see the `SuccessfulRescale` events:
 
