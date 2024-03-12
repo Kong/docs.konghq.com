@@ -15,7 +15,7 @@ OpenResty is *not* a fork of Nginx, but a bundle of modules extending its
 capabilities.
 
 {{site.base_gateway}} is a Lua application, designed to load and execute Lua modules,
-commonly refered to as *plugins*. {{site.base_gateway}} provides a broad plugin 
+commonly referred to as *plugins*. {{site.base_gateway}} provides a broad plugin 
 development environment including an SDK, database abstractions, migrations, and more.
 
 Plugins consist of Lua modules interacting with request/response objects or

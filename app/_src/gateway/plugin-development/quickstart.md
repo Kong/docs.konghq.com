@@ -167,7 +167,7 @@ plugin development and best practices.
 1. **Initialize the test environment**
 
     Pongo allows us to validate a plugin's behavior by giving us tools to quickly run a 
-    {{site.base_gateway}} with our plugin installed and avaialble. Let's validate the plugin 
+    {{site.base_gateway}} with our plugin installed and available. Let's validate the plugin 
     manually first then we will add automated tests in subsequent steps of this guide. 
 
     {:.note}
