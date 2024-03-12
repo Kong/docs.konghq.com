@@ -227,3 +227,36 @@ To use Prometheus and `prometheus-adapter` please follow [this guide](./../prome
 ### Datadog
 
 To use Datadog please follow [this guide](./../datadog/)
+
+## Limitations
+
+### Multi backend Kong services
+
+Since workload autoscaling is based on the metrics exposed by {{ site.base_gateway }} and the labels attached to those metrics,
+{{ site.kgo_product_name }} is not able to provide accurate measurements for multi backend Kong services.
+
+This type of services are generated for e.g. `HTTPRoute`s that have more than 1 `backendRef` like this:
+
+```yaml
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: httproute-testing
+spec:
+  parentRefs:
+  - name: kong
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /httproute-testing
+    backendRefs:
+    - name: httpbin
+      kind: Service
+      port: 80
+      weight: 75
+    - name: nginx
+      kind: Service
+      port: 8080
+      weight: 25
+```
