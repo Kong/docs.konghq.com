@@ -13,14 +13,14 @@ based on their metrics.
 
 ### Datadog API and application keys
 
-In order to install Datadog agents in your cluster you will need Datadog API key
+To install Datadog agents in your cluster you will need a Datadog API key
 and an application key. Please refer to [this Datadog manual page][ddkeys] to obtain those.
 
 [ddkeys]: https://docs.datadoghq.com/account_management/api-app-keys/
 
 ### Installing
 
-In order to install Datadog in your cluster, you can follow [this guide][ddk8sguide]
+To install Datadog in your cluster, you can follow [this guide][ddk8sguide]
 or use the following `values.yaml`:
 
 ```yaml
@@ -53,7 +53,7 @@ agents:
 
 to install [Datadog's helm chart][ddchart]:
 
-```
+```bash
 helm repo add datadog https://helm.datadoghq.com
 helm repo update
 helm install -n datadog datadog --set datadog.apiKey=${DD_APIKEY} --set datadog.AppKey=${DD_APPKEY} datadog/datadog
@@ -82,7 +82,7 @@ Keep this running while we move on to next steps.
 > and not the `manager` container.
 
 
-In order for Datadog to scrape {{ site.kgo_product_name }}'s metrics we need to let it know how to do it.
+For Datadog to scrape {{ site.kgo_product_name }}'s metrics we need to let it know how to do it.
 This can be done through the following annotation on {{ site.kgo_product_name }}'s Pod:
 
 ```yaml
@@ -116,8 +116,7 @@ After applying the above you should see `avg:autoscaling.kong_upstream_latency_m
 
 ## Use `DatadogMetric` to configure cluster agent to expose external metric
 
-In order to be able to use an external metric in `HorizontalPodAutoscaler` we have
-to instruct Datadog agent to expose one for use.
+To use an external metric in `HorizontalPodAutoscaler`, we need to configure the Datadog agent to expose it.
 
 There are several ways to achieve this but we'll use a Kubernetes native way and
 use [`DatadogMetric` CRD][ddmetricguide]:

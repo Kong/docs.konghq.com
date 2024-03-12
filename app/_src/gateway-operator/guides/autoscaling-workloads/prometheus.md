@@ -33,7 +33,7 @@ based on their metrics.
 
 ## Apply `ServiceMonitor` to scrape {{ site.kgo_product_name }}
 
-In order to make Prometheus scrape {{ site.kgo_product_name }}'s `/metrics` we'll need to add a `ServiceMonitor` which will
+To make Prometheus scrape {{ site.kgo_product_name }}'s `/metrics` we'll need to add a `ServiceMonitor` which will
 make it do so.
 
 This can be done by using the following manifest:
@@ -77,10 +77,10 @@ up{service=~"kgo-gateway-operator-metrics-service"}
 
 ## Install `prometheus-adapter`
 
-In order to adapt metrics from Prometheus so that they can be used by Kubernetes we'll need an adapter.
+To make Prometheus metrics usable in Kubernetes, an adapter is needed.
 This can be done by `prometheus-adapter`.
 
-1. In order to deploy `prometheus-adapter` you'll need to decide what time series to expose so that Kubernetes can consume it.
+1. To deploy `prometheus-adapter` you'll need to decide what time series to expose so that Kubernetes can consume it.
 
    {:.note}
    > **Note:** To see currently supported {{ site.base_gateway }} metrics which are exposed enriched in {{ site.kgo_product_name }}
@@ -231,7 +231,6 @@ kubectl get events -n default --field-selector involvedObject.name=echo --field-
 If everything went well we should see the `SuccessfulRescale` events:
 
 ```bash
-kubectl get events -n default --field-selector involvedObject.name=echo --field-selector involvedObject.kind=HorizontalPodAutoscaler -w
 ...
 12m         Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 5; reason: Service metric kong_upstream_latency_ms_30s_average above target
 12m         Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 10; reason: Service metric kong_upstream_latency_ms_30s_average above target
