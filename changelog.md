@@ -33,31 +33,16 @@ https://konghq.atlassian.net/browse/DOCU-2482
 - https://docs.konghq.com/gateway/3.7.x/production/deployment-topologies/hybrid-mode/setup
 
 
-### [docs(gateway): adjust references to `ulimit -n`.](https://github.com/Kong/docs.konghq.com/pull/7058) (2024-03-08)
+### [Fix: adjust references to `ulimit -n` in Gateway docs](https://github.com/Kong/docs.konghq.com/pull/7058) (2024-03-08)
 
 The wording of https://github.com/Kong/docs.konghq.com/pull/6984 around `ulimit` is ambiguous; this PR changes it to specifically mention `ulimit -n`.
 
-https://deploy-preview-7058--kongdocs.netlify.app/gateway/latest/breaking-changes/#operating-system-requirements
+
 
 #### Modified
 
 - https://docs.konghq.com/gateway/changelog
 
-
-### [chore: Adjust landing page card styling](https://github.com/Kong/docs.konghq.com/pull/7052) (2024-03-07)
-
-Adjust font colours and sizing to fit with the layout better (following figma). 
-Since we adjusted some things but not others, the font colours and sizing now stand out awkwardly, not looking quite right.
-One exception: switched the header subtitle to white instead of the text colour in Figma, since we've kept the blue header.
-
-Other things:
-* One of the tickets that got closed with the landing page update was to fix header order for accessibility. That wasn't quite completed in the previous PR, so fixing that. 
-* Set the heading subtitle to h2 to match plugin hub, and the subtitle text to do the same.
-* Using the script icon.
-
-#### Added
-
-- https://docs.konghq.com/assets/images/icons/icn-script2.svg
 
 
 ### [Chore: Update the 'No support available' plugins category and language](https://github.com/Kong/docs.konghq.com/pull/7051) (2024-03-06)
@@ -132,26 +117,6 @@ Parallel PR in decK repo: https://github.com/Kong/deck/pull/1237
 - https://docs.konghq.com/gateway/3.7.x/kong-manager/enable
 
 
-### [removed "CA" on examples of CP and DP PKI certs](https://github.com/Kong/docs.konghq.com/pull/7039) (2024-03-05)
-
-removed "CA" on the certificate examples on CP and DP certificates.  
-
-In PKI we only need to provide a single  "CA certificate" that will issue the certs for CP and CP (The "CA certificate example" does have the "CA: true")  
-
-So the other examples are not "CA certificates" are just Certificates for CP and DP.
-
-#### Modified
-
-- https://docs.konghq.com/gateway/3.0.x/kong-manager/enable
-- https://docs.konghq.com/gateway/3.1.x/kong-manager/enable
-- https://docs.konghq.com/gateway/3.2.x/kong-manager/enable
-- https://docs.konghq.com/gateway/3.3.x/kong-manager/enable
-- https://docs.konghq.com/gateway/3.4.x/kong-manager/enable
-- https://docs.konghq.com/gateway/3.5.x/kong-manager/enable
-- https://docs.konghq.com/gateway/3.6.x/kong-manager/enable
-- https://docs.konghq.com/gateway/3.7.x/kong-manager/enable
-
-
 ### [Fix: TCL/TCP typo](https://github.com/Kong/docs.konghq.com/pull/7038) (2024-03-05)
 
 Doc said "TCL/TLS", should be "TCP/TLS". 
@@ -202,21 +167,6 @@ https://konghq.atlassian.net/browse/DOCU-3707
 - https://docs.konghq.com/gateway/2.8.x/admin-api/
 - https://docs.konghq.com/gateway/2.8.x/reference/proxy
 
-
-### [fix: Konnect Get Started Guide fast follows](https://github.com/Kong/docs.konghq.com/pull/7035) (2024-03-07)
-
-<!-- What did you change and why? -->
-We got some feedback before we shipped the Konnect get started rework, so this PR implements that feedback. 
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-DOCU-3691
-
-#### Modified
-
-- https://docs.konghq.com/konnect/getting-started/add-api
-- https://docs.konghq.com/konnect/getting-started/import
-- https://docs.konghq.com/konnect/getting-started/
-- https://docs.konghq.com/konnect/
 
 
 ### [Homepage rebrand](https://github.com/Kong/docs.konghq.com/pull/7033) (2024-03-05)
