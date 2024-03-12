@@ -85,12 +85,12 @@
   },
   {
     "id": "0267e60f-bf5d-4565-9618-b061f8398e14",
-    "title": "Konnect Control Planes Config (Beta)",
+    "title": "Konnect Control Planes Config",
     "latestVersion": {
       "name": "v2",
       "id": "fa795b03-e0fc-4d33-aa97-28632b41cc61"
     },
-    "description": "Manage Kong Gateway services, routes, certificates, consumer and global configuration within Konnect. This spec is a Beta version.",
+    "description": "Manage Kong Gateway services, routes, certificates, consumer, and global configuration within Konnect.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
@@ -139,7 +139,7 @@
       {
         "id": "f683716f-218d-4fab-9eef-b453cf795130",
         "created_at": "2024-02-21T17:28:17.757Z",
-        "updated_at": "2024-02-26T21:22:23.095Z",
+        "updated_at": "2024-02-29T19:12:41.588Z",
         "name": "v2",
         "deprecated": false,
         "registration_configs": []
