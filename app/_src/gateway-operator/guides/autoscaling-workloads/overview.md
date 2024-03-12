@@ -9,36 +9,27 @@ badge: enterprise
 
 ## Overview
 
-Through the usage of [`DataPlaneMetricsExtension`](/gateway-operator/{{ page.release }}/reference/custom-resources/#dataplanemetricsextension)
-on [`ControlPlane`s](/gateway-operator/{{ page.release }}/reference/custom-resources/#controlplane),
-users can enable Kong metrics scraping and enrichment for the purposes of workloads autoscaling using Kubernetes native mechanism like [`HorizontalPodAutoscaler`][hpa].
+{{ site.base_gateway }} provides extensive metrics through it's Prometheus plugin. However, these metrics are labelled with Kong entities such as `Service` and `Route` rather than Kubernetes resources.
 
-[hpa]: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
+{{ site.kgo_product_name }} provides [`DataPlaneMetricsExtension`](/gateway-operator/{{ page.release }}/reference/custom-resources/#dataplanemetricsextension), which scrapes the Kong metrics and enriches them with Kubernetes labels before exposing them on it's own `/metrics` endpoint.
 
-Applying `DataPlaneMetricsExtension` and attaching it to a `ControlPlane` will:
+These enriched metrics can be used with the Kubernetes [`HorizontalPodAutoscaler`](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) to autoscale workloads.
 
-- Create a managed Prometheus `KongPlugin` instance with the [configuration](/hub/kong-inc/prometheus/configuration/)
-  as defined in [`MetricsConfig`](/gateway-operator/{{ page.release }}/reference/custom-resources/#metricsconfig)
-- Annotate the selected `Service`s (through `DataPlaneMetricsExtension`'s [`serviceSelector`](/gateway-operator/{{ page.release }}/reference/custom-resources/#serviceselector) field)
-  with `konghq.com/plugins` annotation which will point to the managed `KongPlugin` instance.
-  This takes into account already existing annotations, so if there are already plugins configured on that `Service`
-  the new plugin name will be appended.
-- Start the process of scraping {{ site.base_gateway }}'s metrics and enriching them with Kubernetes metadata
-- Expose those metrics in {{ site.kgo_product_name }}'s `/metrics`
+## How it works
 
-### Example
+Attaching a `DataPlaneMetricsExtension` resource to a `ControlPlane` will:
 
-Below attached manifest shows a complete working example which
+- Create a managed Prometheus `KongPlugin` instance with the [configuration](/hub/kong-inc/prometheus/configuration/) defined in [`MetricsConfig`](/gateway-operator/{{ page.release }}/reference/custom-resources/#metricsconfig)
+- Append the managed plugin to the selected `Service`s (through `DataPlaneMetricsExtension`'s [`serviceSelector`](/gateway-operator/{{ page.release }}/reference/custom-resources/#serviceselector) field)
+   `konghq.com/plugins` annotation
+- Scrape {{ site.base_gateway }}'s metrics and enrich them with Kubernetes metadata
+- Expose those metrics on {{ site.kgo_product_name }}'s `/metrics` endpoint
 
-- Deploys `DataPlaneMetricsExtension` which will be used in
-  [`GatewayConfiguration`](/gateway-operator/{{ page.release }}/reference/custom-resources/#gatewayconfiguration)
-  to customize the `ControlPlane`
-- Deploys a Gateway API `Gateway` using the aforementioned `GatewayConfiguration`
-- Deploys an `echo` `Service` which will have its latency measured and exposed in
-  {{ site.kgo_product_name }}'s `/metrics`
+## Example
+
+This example deploys an `echo` `Service` which will have its latency measured and exposed on {{ site.kgo_product_name }}'s `/metrics` endpoint. The service allows us to run any shell command, which we'll use to add artificial latency later for testing purposes.
 
 ```yaml
-echo '
 apiVersion: v1
 kind: Service
 metadata:
@@ -96,8 +87,13 @@ spec:
             - name: POD_IP
               valueFrom:
                 fieldRef:
-                  fieldPath: status.podIP
----
+                  fieldPath: status.podIP' | kubectl apply -f
+```
+
+Next, create a `DataPlaneMetricsExtension` that points to the `echo` service, attach it to a `GatewayConfiguration` resource and deploy a `Gateway` with a `HTTPRoute` so that we can make a HTTP request to the service.
+
+```yaml
+echo '
 kind: DataPlaneMetricsExtension
 apiVersion: gateway-operator.konghq.com/v1alpha1
 metadata:
@@ -120,38 +116,19 @@ spec:
     deployment:
       replicas: 1
       podTemplateSpec:
-        metadata:
-          labels:
-            dataplane-pod-label: example
-          annotations:
-            dataplane-pod-annotation: example
         spec:
           containers:
           - name: proxy
             image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
-            env:
-            - name: KONG_LOG_LEVEL
-              value: debug
             readinessProbe:
               initialDelaySeconds: 1
               periodSeconds: 1
-    network:
-      services:
-        ingress:
-          annotations:
-            foo: bar
   controlPlaneOptions:
     deployment:
       podTemplateSpec:
-        metadata:
-          labels:
-            controlplane-pod-label: example
         spec:
           containers:
           - name: controller
-            env:
-            - name: CONTROLLER_LOG_LEVEL
-              value: debug
             readinessProbe:
               initialDelaySeconds: 1
               periodSeconds: 1
@@ -212,30 +189,18 @@ spec:
 
 ## Custom Metrics providers support
 
-Metrics exposed by {{ site.kgo_product_name }} are not specific to any monitoring solution and can be integrated
-with a variety of monitoring systems out there.
+Metrics exposed by {{ site.kgo_product_name }}  can be integrated with a variety of monitoring systems.
 
 Nevertheless you can follow our guides to integrate {{ site.kgo_product_name }} with:
 
-- Prometheus
-- Datadog
-
-### Prometheus
-
-To use Prometheus and `prometheus-adapter` please follow [this guide](./../prometheus/)
-
-### Datadog
-
-To use Datadog please follow [this guide](./../datadog/)
+- [Prometheus](./../prometheus/)
+- [Datadog](./../datadog/)
 
 ## Limitations
 
 ### Multi backend Kong services
 
-Since workload autoscaling is based on the metrics exposed by {{ site.base_gateway }} and the labels attached to those metrics,
-{{ site.kgo_product_name }} is not able to provide accurate measurements for multi backend Kong services.
-
-This type of services are generated for e.g. `HTTPRoute`s that have more than 1 `backendRef` like this:
+{{ site.kgo_product_name }} is not able to provide accurate measurements for multi backend Kong services e.g. `HTTPRoute`s that have more than 1 `backendRef`:
 
 ```yaml
 apiVersion: gateway.networking.k8s.io/v1
