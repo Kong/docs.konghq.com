@@ -26,7 +26,7 @@ You will be greeted by the dashboard for the API product that you just created. 
 {% endnavtab %}
 {% navtab API%}
 
-1. Create a new API product by issuing a `POST` request to the [`/api-products`](/konnect/api/api-products/latest/#/API%20Products/create-api-product) endpoint. 
+Create a new API product by issuing a `POST` request to the [`/api-products`](/konnect/api/api-products/latest/#/API%20Products/create-api-product) endpoint. 
 
     ```sh
     curl -X 'POST' \
@@ -110,7 +110,7 @@ API products can be published to the Dev Portal. To publish your new API product
 Your API product is now consumable by developers from the **Dev Portal**.
 {% endnavtab %}
 {% navtab API %}
-1. You can publish an API product by issuing a `POST` request to the [`/api-product-versions/`](/konnect/api/api-products/latest/#/API%20Product%20Versions/create-api-product-version) endpoint. Ensure you replace `{ApiProductId}` with the API product ID returned in the previous step.. 
+You can publish an API product by issuing a `POST` request to the [`/api-product-versions/`](/konnect/api/api-products/latest/#/API%20Product%20Versions/create-api-product-version) endpoint. Ensure you replace `{ApiProductId}` with the API product ID returned in the previous step.. 
 
     ```sh
     curl -X 'POST' \
