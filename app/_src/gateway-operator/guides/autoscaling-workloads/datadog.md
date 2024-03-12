@@ -126,7 +126,7 @@ echo '
 apiVersion: datadoghq.com/v1alpha1
 kind: DatadogMetric
 metadata:
-  name: echo-kong-upstream-latency-avg
+  name: echo-kong-upstream-latency-ms-avg
   namespace: default
 spec:
   query: autoscaling.kong_upstream_latency_ms{service:echo} ' | kubectl apply -f -
@@ -137,34 +137,38 @@ When Datadog's agent calculates this metric for you, it will update its status
 You can check the status of `DatadogMetric` with:
 
 ```bash
-kubectl get -n default datadogmetric echo-kong-upstream-latency-avg -w
+kubectl get -n default datadogmetric echo-kong-upstream-latency-ms-avg -w
 ```
 
 Which should give you something like this:
 
 ```bash
-NAME                             ACTIVE   VALID   VALUE               REFERENCES         UPDATE TIME
-echo-kong-upstream-latency-avg   True     True    24.46194839477539                      38s
+NAME                                ACTIVE   VALID   VALUE               REFERENCES         UPDATE TIME
+echo-kong-upstream-latency-ms-avg   True     True    104.46194839477539                     38s
 ```
 
 If everything works correctly, in a couple of seconds you should be able to get the metric via Kubernetes External Metrics API:
 
 ```bash
-kubectl get --raw "/apis/external.metrics.k8s.io/v1beta1/namespaces/default/datadogmetric@default:echo-kong-upstream-latency-avg" | jq
+kubectl get --raw "/apis/external.metrics.k8s.io/v1beta1/namespaces/default/datadogmetric@default:echo-kong-upstream-latency-ms-avg" | jq
 {
   "kind": "ExternalMetricValueList",
   "apiVersion": "external.metrics.k8s.io/v1beta1",
   "metadata": {},
   "items": [
     {
-      "metricName": "datadogmetric@default:echo-kong-upstream-latency-avg",
+      "metricName": "datadogmetric@default:echo-kong-upstream-latency-ms-avg",
       "metricLabels": null,
       "timestamp": "2024-03-08T18:03:02Z",
-      "value": "24233138021n"
+      "value": "104233138021n"
     }
   ]
 }
 ```
+
+{:.note}
+> **Note:** `104233138021n` is a Kubernetes way of expressing numbers as integers.
+> Since `value` here represents latency in milliseconds, it is approximately equivalent to 104.23ms.
 
 [ddmetricguide]: https://docs.datadoghq.com/containers/guide/cluster_agent_autoscaling_metrics/?tab=helm#autoscaling-with-datadogmetric-queries
 
@@ -208,13 +212,13 @@ spec:
   - type: External
     external:
       metric:
-        name: datadogmetric@default:echo-kong-upstream-latency-avg
+        name: datadogmetric@default:echo-kong-upstream-latency-ms-avg
       target:
         type: Value
         value: 40 ' | kubectl apply -f -
 ```
 
-This HPA will watch for `echo-kong-upstream-latency-avg` `DatadogMetric` from `default` namespace and it will scale
+This HPA will watch for `echo-kong-upstream-latency-ms-avg` `DatadogMetric` from `default` namespace and it will scale
 `echo` `Deployment` in that namespace to aim for 40ms average response time.
 
 When everything is configured correctly, `DatadogMetric`'s status will update and it will now have a reference to the HPA:
@@ -222,14 +226,14 @@ When everything is configured correctly, `DatadogMetric`'s status will update an
 You can reissue:
 
 ```bash
-kubectl get -n default datadogmetric echo-kong-upstream-latency-avg -w
+kubectl get -n default datadogmetric echo-kong-upstream-latency-ms-avg -w
 ```
 
 Which should now show the HPA reference:
 
 ```bash
-NAME                             ACTIVE   VALID   VALUE               REFERENCES         UPDATE TIME
-echo-kong-upstream-latency-avg   True     True    24.46194839477539   hpa:default/echo   38s
+NAME                                ACTIVE   VALID   VALUE               REFERENCES         UPDATE TIME
+echo-kong-upstream-latency-ms-avg   True     True    104.46194839477539  hpa:default/echo  38s
 ```
 
 If everything went well we should see the `SuccessfulRescale` events:
