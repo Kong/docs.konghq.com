@@ -345,7 +345,7 @@ items:
       - text: Verify Signatures for Signed Kong Images
         url: /kong-enterprise/signed-images
       - text: Verify Build Provenance for Signed Kong Images
-      url: /kong-enterprise/provenance-verification
+        url: /kong-enterprise/provenance-verification
 
   - title: Kong Manager
     icon: /assets/images/icons/documentation/icn-manager-color.svg
