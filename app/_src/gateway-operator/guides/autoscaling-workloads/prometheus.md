@@ -160,12 +160,16 @@ This should result in:
       },
       "metricName": "kong_upstream_latency_ms_30s_average",
       "timestamp": "2024-03-06T13:11:12Z",
-      "value": "0",
+      "value": "102312m",
       "selector": null
     }
   ]
 }
 ```
+
+{:.note}
+> **Note:** `102312m` is a Kubernetes way of expressing numbers as integers.
+> Since `value` here represents latency in milliseconds, it is approximately equivalent to 102ms.
 
 ## Use exposed metric in `HorizontalPodAutoscaler`
 
