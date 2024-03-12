@@ -9,6 +9,7 @@
 ## Prerequisites
 {% endunless %}
 
+### Install CRDs
 {% assign gwapi_version = "1.0.0" %}
 {% if include.release.value == "1.0.x" %}
 {% assign gwapi_version = "0.8.1" %}
@@ -27,13 +28,28 @@ If you want to use experimental resources and fields such as `TCPRoute`s and `UD
 kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v{{ gwapi_version }}/experimental-install.yaml
 ```
 
+### Install {{ site.kgo_product_name }}
+
 {% include snippets/gateway-operator/install_with_helm.md version=include.version release=include.release %}
 
 {% if include.enterprise %}
+
+### Enterprise License
+
 {:.note}
 > **Note:** This is an enterprise feature. In order to use it you'll need a [license](/gateway-operator/{{ page.release }}/license/)
 > installed in your cluster so that {{ site.kgo_product_name }} can consume it.
 {% endif %}
+
+```yaml
+echo "
+apiVersion: configuration.konghq.com/v1alpha1
+kind: KongLicense
+metadata:
+ name: kong-license
+rawLicenseString: '$(cat ./license.json)'
+" | kubectl apply -f -
+```
 
 {% unless include.disable_accordian %}
 </details>
