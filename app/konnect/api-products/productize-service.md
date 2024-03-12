@@ -65,7 +65,7 @@ After creating the new version, you will see **Link with a Gateway Service** as 
 {% endnavtab %}
 {% navtab API%}
 
-1. To create a new API product version, execute a POST request to the  [`/api-product-versions/`](/konnect/api/api-products/latest/#/API%20Product%20Versions/create-api-product-version) endpoint, replace `{ApiProductId}` with your API product's actual ID:
+1. To create a new API product version, execute a POST request to the  [`/product-versions/`](/konnect/api/api-products/latest/#/API%20Product%20Versions/create-api-product-version) endpoint, replace `{ApiProductId}` with your API product's actual ID:
 
     ```sh
     curl -X 'POST' \
