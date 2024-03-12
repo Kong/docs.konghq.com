@@ -49,6 +49,20 @@ For developers:
 
 * [Generate credentials for an application](/konnect/dev-portal/applications/dev-gen-creds/) - This guide walks you through the process of generating and deleting API keys on the Dev Portal platform.
 
+
+## Access the Dev Portal
+
+You can access the Dev Portal using the Dev Portal URL. The URL is displayed when you click {% konnect_icon dev-portal %} **Dev Portal** to open the **Published API Products** overview page.
+The Dev Portal URL looks like this: 
+    
+    https://example.us.portal.konghq.com/
+
+Your Dev Portal URL may vary. Keep the following in mind:
+
+* The Dev Portal URL varies based on geo.
+* If you're hosting your Dev Portal through Netlify, the Dev Portal URL is the one you specify in the **Dev Portal** sidebar under **Settings** > **Portal Domain** > **Custom Self-Hosted UI Domain**. 
+
+
 ### Contextual developer analytics 
 
 You can view analytics for developer applications from within the {{site.konnect_short_name}} Dev Portal. This gives developers the ability to gain insights into all of their applications and the relationships between applications and APIs.

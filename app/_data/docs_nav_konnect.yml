@@ -133,8 +133,6 @@
   items:
     - text: Overview
       url: /dev-portal/
-    - text: Access the Dev Portal
-      url: /dev-portal/access/
     - text: Sign Up for a Dev Portal Account
       url: /dev-portal/dev-reg/
     - text: Productize a Service
