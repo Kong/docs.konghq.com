@@ -63,7 +63,7 @@ Your Dev Portal URL may vary. Keep the following in mind:
 * If you're hosting your Dev Portal through Netlify, the Dev Portal URL is the one you specify in the **Dev Portal** sidebar under **Settings** > **Portal Domain** > **Custom Self-Hosted UI Domain**. 
 
 
-### Contextual developer analytics 
+## Contextual developer analytics 
 
 You can view analytics for developer applications from within the {{site.konnect_short_name}} Dev Portal. This gives developers the ability to gain insights into all of their applications and the relationships between applications and APIs.
 
