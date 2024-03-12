@@ -193,8 +193,8 @@ Metrics exposed by {{ site.kgo_product_name }}  can be integrated with a variety
 
 Nevertheless you can follow our guides to integrate {{ site.kgo_product_name }} with:
 
-- [Prometheus](./../prometheus/)
-- [Datadog](./../datadog/)
+- [Prometheus](/gateway-operator/{{ page.release }}/guides/autoscaling-workloads/prometheus/)
+- [Datadog](/gateway-operator/{{ page.release }}/guides/autoscaling-workloads/datadog/)
 
 ## Limitations
 
