@@ -4,10 +4,9 @@
 {% endif %}
 
 {:.important}
-> TODO: Use the actual chart rather than a local one in the following command.
 
 ```
-helm install kgo ./gateway-operator -n kong-system --create-namespace --set image.tag={{ kgo_version }}
+helm install kgo kong/gateway-operator --devel -n kong-system --create-namespace --set image.tag={{ kgo_version }}
 ```
 
 You can wait for the operator to be ready using `kubectl wait`:
