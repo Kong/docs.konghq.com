@@ -132,10 +132,17 @@ spec:
   query: autoscaling.kong_upstream_latency_ms{service:echo} ' | kubectl apply -f -
 ```
 
-When Datadog's agent calculates this metric for you, it will update its status:
+When Datadog's agent calculates this metric for you, it will update its status
+
+You can check the status of `DatadogMetric` with:
 
 ```bash
 kubectl get -n default datadogmetric echo-kong-upstream-latency-avg -w
+```
+
+Which should give you something like this:
+
+```bash
 NAME                             ACTIVE   VALID   VALUE               REFERENCES         UPDATE TIME
 echo-kong-upstream-latency-avg   True     True    24.46194839477539                      38s
 ```
@@ -166,6 +173,7 @@ kubectl get --raw "/apis/external.metrics.k8s.io/v1beta1/namespaces/default/data
 When we have the metric already available in Kubernetes External API we can use it in HPA like so:
 
 ```yaml
+echo '
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -203,7 +211,7 @@ spec:
         name: datadogmetric@default:echo-kong-upstream-latency-avg
       target:
         type: Value
-        value: 40
+        value: 40 ' | kubectl apply -f -
 ```
 
 This HPA will watch for `echo-kong-upstream-latency-avg` `DatadogMetric` from `default` namespace and it will scale
@@ -211,8 +219,15 @@ This HPA will watch for `echo-kong-upstream-latency-avg` `DatadogMetric` from `d
 
 When everything is configured correctly, `DatadogMetric`'s status will update and it will now have a reference to the HPA:
 
+You can reissue:
+
 ```bash
 kubectl get -n default datadogmetric echo-kong-upstream-latency-avg -w
+```
+
+Which should now show the HPA reference:
+
+```bash
 NAME                             ACTIVE   VALID   VALUE               REFERENCES         UPDATE TIME
 echo-kong-upstream-latency-avg   True     True    24.46194839477539   hpa:default/echo   38s
 ```

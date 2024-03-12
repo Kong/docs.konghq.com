@@ -175,6 +175,7 @@ we can use it in `HorizontalPodAutoscaler` to autoscale our workload: specifical
 This can be done by using the following manifest:
 
 ```yaml
+echo '
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
@@ -216,7 +217,7 @@ spec:
 
       target:
         type: Value
-        value: "40"
+        value: "40" ' | kubectl apply -f -
 ```
 
 This configuration will scale the underlying `echo` `Deployment` between 1 and 10 replicas, trying to keep the average latency
@@ -231,7 +232,6 @@ kubectl get events -n default --field-selector involvedObject.name=echo --field-
 If everything went well we should see the `SuccessfulRescale` events:
 
 ```bash
-...
 12m         Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 5; reason: Service metric kong_upstream_latency_ms_30s_average above target
 12m         Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 10; reason: Service metric kong_upstream_latency_ms_30s_average above target
 ```
