@@ -156,6 +156,14 @@ Starting in version 3.2, {{site.base_gateway}} can be configured to support conf
 Starting with {{site.ee_product_name}} 3.5.0.2, Docker container images are signed, and can be verified using `cosign` with signatures published to a Docker Hub repository. Read the [Verify signatures for Signed Kong Images](/gateway/{{ page.release }}/kong-enterprise/signed-images/) documentation to learn more.
 {% endif_version %}
 
+{% if_version gte:3.6.x %}
+
+## Docker container image build provenance
+
+Starting with {{site.ee_product_name}} 3.6.0.0, Build provenance for docker container images is produced, and can be verified using `cosign` / `slsa-verifier` with attestations published to a Docker Hub repository. Read the [Verify Build Provenance for Signed Kong Images](/gateway/{{ page.release }}/kong-enterprise/provenance-verification/) documentation to learn more.
+
+{% endif_version %}
+
 ## More information
 
 See [Plugin Compatibility](/hub/plugins/compatibility/) for more information about Enterprise-only plugins.
