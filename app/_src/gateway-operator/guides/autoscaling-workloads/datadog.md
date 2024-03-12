@@ -62,15 +62,13 @@ helm install -n datadog datadog --set datadog.apiKey=${DD_APIKEY} --set datadog.
 [ddk8sguide]: https://docs.datadoghq.com/containers/kubernetes/installation/?tab=helm
 [ddchart]: https://github.com/DataDog/helm-charts/tree/main/charts/datadog
 
-## Generate traffic against `echo` `Service`
+## Send traffic
 
-Assuming that you have access to the deployed `Gateway` address you can try enforcing the scaling by issuing requests like so:
+To trigger autoscaling, run the following command in a new terminal window. This will cause the underlying deployment to sleep for 100ms on each request and thus increase the average response time to that value.
 
 ```bash
 while curl -k "http://$(kubectl get gateway kong -o custom-columns='name:.status.addresses[0].value' --no-headers -n default)/echo/shell?cmd=sleep%200.1" ; do sleep 1; done
 ```
-
-This will cause the underlying deployment to sleep for 100ms on each request and thus increase the average response time to that value.
 
 Keep this running while we move on to next steps.
 
@@ -78,12 +76,10 @@ Keep this running while we move on to next steps.
 
 {:.note}
 > **Note:** {{ site.kgo_product_name }} uses [kube-rbac-proxy][kuberbacproxy_github]
-> to secure its endpoints behind an RBAC proxy. That's why we'd going to scrape `kube-rbac-proxy`
+> to secure its endpoints behind an RBAC proxy. This is why we scrape `kube-rbac-proxy`
 > and not the `manager` container.
 
-
-For Datadog to scrape {{ site.kgo_product_name }}'s metrics we need to let it know how to do it.
-This can be done through the following annotation on {{ site.kgo_product_name }}'s Pod:
+Add the following annotation on {{ site.kgo_product_name }}'s Pod to tell Datadog how to scrape {{ site.kgo_product_name }}'s metrics:
 
 ```yaml
 ad.datadoghq.com/kube-rbac-proxy.checks: |
@@ -114,12 +110,12 @@ After applying the above you should see `avg:autoscaling.kong_upstream_latency_m
 
 [kuberbacproxy_github]: https://github.com/brancz/kube-rbac-proxy
 
-## Use `DatadogMetric` to configure cluster agent to expose external metric
+## Expose Datadog metrics to Kubernetes
 
 To use an external metric in `HorizontalPodAutoscaler`, we need to configure the Datadog agent to expose it.
 
 There are several ways to achieve this but we'll use a Kubernetes native way and
-use [`DatadogMetric` CRD][ddmetricguide]:
+use the [`DatadogMetric` CRD][ddmetricguide]:
 
 ```yaml
 echo '
@@ -132,22 +128,20 @@ spec:
   query: autoscaling.kong_upstream_latency_ms{service:echo} ' | kubectl apply -f -
 ```
 
-When Datadog's agent calculates this metric for you, it will update its status
-
 You can check the status of `DatadogMetric` with:
 
 ```bash
 kubectl get -n default datadogmetric echo-kong-upstream-latency-ms-avg -w
 ```
 
-Which should give you something like this:
+Which should look like this:
 
 ```bash
 NAME                                ACTIVE   VALID   VALUE               REFERENCES         UPDATE TIME
 echo-kong-upstream-latency-ms-avg   True     True    104.46194839477539                     38s
 ```
 
-If everything works correctly, in a couple of seconds you should be able to get the metric via Kubernetes External Metrics API:
+You should be able to get the metric via Kubernetes External Metrics API within 30 seconds:
 
 ```bash
 kubectl get --raw "/apis/external.metrics.k8s.io/v1beta1/namespaces/default/datadogmetric@default:echo-kong-upstream-latency-ms-avg" | jq
@@ -175,6 +169,10 @@ kubectl get --raw "/apis/external.metrics.k8s.io/v1beta1/namespaces/default/data
 ### Use `DatadogMetric` in `HorizontalPodAutoscaler`
 
 When we have the metric already available in Kubernetes External API we can use it in HPA like so:
+
+The `echo-kong-upstream-latency-ms-avg` `DatadogMetric` from `default` namespace can be used by the Kubernetes `HorizontalPodAutoscaler` to autoscale our workload: specifically the `echo` `Deployment`.
+
+The following manifest will scale the underlying `echo` `Deployment` between 1 and 10 replicas, trying to keep the average latency across last 30s at 40ms.
 
 ```yaml
 echo '
@@ -218,18 +216,15 @@ spec:
         value: 40 ' | kubectl apply -f -
 ```
 
-This HPA will watch for `echo-kong-upstream-latency-ms-avg` `DatadogMetric` from `default` namespace and it will scale
-`echo` `Deployment` in that namespace to aim for 40ms average response time.
+When everything is configured correctly, `DatadogMetric`'s status will update and it will now have a reference to the `HorizontalPodAutoscaler`:
 
-When everything is configured correctly, `DatadogMetric`'s status will update and it will now have a reference to the HPA:
-
-You can reissue:
+Get the `DatadogMetric` using `kubectl`:
 
 ```bash
 kubectl get -n default datadogmetric echo-kong-upstream-latency-ms-avg -w
 ```
 
-Which should now show the HPA reference:
+You will see the HPA reference in the output:
 
 ```bash
 NAME                                ACTIVE   VALID   VALUE               REFERENCES         UPDATE TIME
@@ -239,10 +234,11 @@ echo-kong-upstream-latency-ms-avg   True     True    104.46194839477539  hpa:def
 If everything went well we should see the `SuccessfulRescale` events:
 
 ```bash
-kubectl get events --field-selector involvedObject.name=echo --field-selector involvedObject.kind=HorizontalPodAutoscaler -w
-LAST SEEN   TYPE      REASON                         OBJECT                         MESSAGE
-55m         Normal    SuccessfulRescale              horizontalpodautoscaler/echo   New size: 7; reason: All metrics below target
-55m         Normal    SuccessfulRescale              horizontalpodautoscaler/echo   New size: 5; reason: All metrics below target
-55m         Normal    SuccessfulRescale              horizontalpodautoscaler/echo   New size: 4; reason: All metrics below target
-54m         Normal    SuccessfulRescale              horizontalpodautoscaler/echo   New size: 2; reason: All metrics below target
+12m          Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 2; reason: Service metric kong_upstream_latency_ms_30s_average above target
+12m          Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 4; reason: Service metric kong_upstream_latency_ms_30s_average above target
+12m          Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 8; reason: Service metric kong_upstream_latency_ms_30s_average above target
+12m          Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 10; reason: Service metric kong_upstream_latency_ms_30s_average above target
+
+# Then when latency drops
+4s          Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 1; reason: All metrics below target
 ```

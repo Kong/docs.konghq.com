@@ -166,7 +166,7 @@ This should result in:
 ## Use exposed metric in HorizontalPodAutoscaler
 
 When the metric configured in `prometheus-adapter` is available through Kubernetes' Custom Metrics API
-we can use it in `HorizontalPodAutoscaler` to autoscale our workload: specifically the `echo` `Service`.
+we can use it in `HorizontalPodAutoscaler` to autoscale our workload: specifically the `echo` `Deployment`.
 
 This can be done by using the following manifest, which will scale the underlying `echo` `Deployment` between 1 and 10 replicas, trying to keep the average latency across last 30s at 40ms.
 
