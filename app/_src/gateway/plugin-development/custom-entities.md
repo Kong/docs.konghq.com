@@ -1,7 +1,7 @@
 ---
 title: Storing Custom Entities
 book: plugin_dev
-chapter: 6
+chapter: 7
 ---
 
 While not all plugins need it, your plugin might need to store more than

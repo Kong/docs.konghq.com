@@ -1,7 +1,7 @@
 ---
 title: Caching Custom Entities
 book: plugin_dev
-chapter: 7
+chapter: 8
 ---
 
 Your plugin may need to frequently access custom entities (explained in the

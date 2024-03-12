@@ -1,7 +1,7 @@
 ---
 title: Writing tests
 book: plugin_dev
-chapter: 9
+chapter: 10
 ---
 
 

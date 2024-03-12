@@ -21,7 +21,7 @@ development environment including an SDK, database abstractions, migrations, and
 Plugins consist of Lua modules interacting with request/response objects or
 network streams to implement arbitrary logic. {{site.base_gateway}} provides a 
 **Plugin Development Kit** (PDK) which is a set of Lua functions that are used  
-to facilitate interactions between plugins, the {{site.base_gateway} core, and other 
+to facilitate interactions between plugins, the {{site.base_gateway}} core, and other 
 components. 
 
 This guide will explore in detail the structure of plugins, what they can

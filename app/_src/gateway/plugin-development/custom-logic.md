@@ -1,7 +1,7 @@
 ---
 title: Implementing Custom Logic
 book: plugin_dev
-chapter: 3
+chapter: 4
 ---
 
 {:.note}

@@ -1,7 +1,7 @@
 ---
 title: (un)Installing your plugin
 book: plugin_dev
-chapter: 10
+chapter: 11
 ---
 
 Custom plugins for Kong consist of Lua source files that need to be in the file
