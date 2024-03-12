@@ -75,6 +75,9 @@ This can be verified by going to your Prometheus UI and querying e.g.:
 up{service=~"kgo-gateway-operator-metrics-service"}
 ```
 
+{:.important}
+> Prometheus metrics can take up to 60 seconds to appear
+
 ## Install `prometheus-adapter`
 
 To make Prometheus metrics usable in Kubernetes, an adapter is needed.
@@ -88,14 +91,11 @@ This can be done by `prometheus-adapter`.
 
    In this guide we'll use `kong_upstream_latency_ms_30s_average` which will expose a 30s moving average of upstream response latency.
 
-   To do this we'll use the following `values.yaml` to deploy [`prometheus-adapter` helm chart][prom-adapter-chart]:
-
-   [prom-adapter-chart]: https://artifacthub.io/packages/helm/prometheus-community/prometheus-adapter
-
-   If you're working with Prometheus deployed in a different namespace than `prometheus`, than replace it below in the `prometheus.url` value.
+   Create a `values.yaml` file to deploy the [`prometheus-adapter` helm chart](https://artifacthub.io/packages/helm/prometheus-community/prometheus-adapter):
 
    ```yaml
    prometheus:
+     # Update this value if Prometheus is installed in a different namespace
      url: http://prometheus-kube-prometheus-prometheus.prometheus.svc
 
    rules:
@@ -142,6 +142,9 @@ When all is configured you should be able to see the metric you've configure in 
 ```bash
 kubectl get --raw '/apis/custom.metrics.k8s.io/v1beta1/namespaces/default/services/echo/kong_upstream_latency_ms_30s_average' | jq
 ```
+
+{:.note}
+> **Note:** The `prometheus-adapter` may take up to 2 minutes to populate the custom metrics
 
 This should result in:
 
@@ -238,4 +241,7 @@ If everything went well we should see the `SuccessfulRescale` events:
 ```bash
 12m         Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 5; reason: Service metric kong_upstream_latency_ms_30s_average above target
 12m         Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 10; reason: Service metric kong_upstream_latency_ms_30s_average above target
+
+# Then when latency drops
+4s          Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 1; reason: All metrics below target
 ```
