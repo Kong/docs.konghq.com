@@ -30,6 +30,7 @@ Attaching a `DataPlaneMetricsExtension` resource to a `ControlPlane` will:
 This example deploys an `echo` `Service` which will have its latency measured and exposed on {{ site.kgo_product_name }}'s `/metrics` endpoint. The service allows us to run any shell command, which we'll use to add artificial latency later for testing purposes.
 
 ```yaml
+echo '
 apiVersion: v1
 kind: Service
 metadata:
@@ -87,7 +88,7 @@ spec:
             - name: POD_IP
               valueFrom:
                 fieldRef:
-                  fieldPath: status.podIP' | kubectl apply -f
+                  fieldPath: status.podIP' | kubectl apply -f -
 ```
 
 Next, create a `DataPlaneMetricsExtension` that points to the `echo` service, attach it to a `GatewayConfiguration` resource and deploy a `Gateway` with a `HTTPRoute` so that we can make a HTTP request to the service.

@@ -72,7 +72,7 @@ up{service=~"kgo-gateway-operator-metrics-service"}
 ```
 
 {:.important}
-> Prometheus metrics can take up to 60 seconds to appear
+> Prometheus metrics can take up to 2 minutes to appear
 
 ## Install prometheus-adapter
 

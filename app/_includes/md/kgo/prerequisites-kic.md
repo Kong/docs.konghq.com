@@ -46,7 +46,7 @@ echo "
 apiVersion: configuration.konghq.com/v1alpha1
 kind: KongLicense
 metadata:
- name: kong-license
+  name: kong-license
 rawLicenseString: '$(cat ./license.json)'
 " | kubectl apply -f -
 ```
