@@ -2,7 +2,7 @@
 <details class="custom" markdown="1">
 <summary>
 <blockquote class="note">
-  <p style="cursor: pointer">Before you begin ensure that you have <u>installed the {{site.kgo_product_name}}</u> in your Kubernetes cluster and are able to connect to Kong. {% if include.enterprise %}This guide requires an enterprise license.{% endif %}</p>
+  <p style="cursor: pointer">Before you begin ensure that you have <u>installed the {{site.kgo_product_name}}</u> in your Kubernetes cluster {% if include.aiGateway %}with AI Gateway support enabled{% endif %}. {% if include.enterprise %}This guide requires an enterprise license.{% endif %}</p>
 </blockquote>
 </summary>
 
@@ -22,15 +22,25 @@ including `GatewayClass`, `Gateway`, `HTTPRoute`, and `ReferenceGrant`.
 kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v{{ gwapi_version }}/standard-install.yaml
 ```
 
+{% if include.experimental %}
 If you want to use experimental resources and fields such as `TCPRoute`s and `UDPRoute`s, please run this command.
 
 ```shell
 kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v{{ gwapi_version }}/experimental-install.yaml
 ```
+{% endif %}
+
+{% if include.aiGateway %}
+The `AIGateway` feature is an **alpha** release, and needs additional CRDs installed:
+
+```bash
+kubectl apply -f {{site.links.web}}/assets/gateway-operator/ai-gateway-crd.yaml --server-side
+```
+{% endif %}
 
 ### Install {{ site.kgo_product_name }}
 
-{% include snippets/gateway-operator/install_with_helm.md version=include.version release=include.release %}
+{% include snippets/gateway-operator/install_with_helm.md version=include.version release=include.release aiGateway=include.aiGateway %}
 
 {% if include.enterprise %}
 

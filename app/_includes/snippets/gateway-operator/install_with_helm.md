@@ -3,10 +3,10 @@
 {% assign kgo_version = "nightly" %}
 {% endif %}
 
-{:.important}
-
-```
-helm install kgo kong/gateway-operator --devel -n kong-system --create-namespace --set image.tag={{ kgo_version }}
+```bash
+helm upgrade --install kgo kong/gateway-operator --devel -n kong-system --create-namespace \
+--set image.tag={{ kgo_version }}{%- if include.aiGateway %} \
+--set controllers.aiGatewayController.enabled=true{% endif %}
 ```
 
 You can wait for the operator to be ready using `kubectl wait`:

@@ -63,6 +63,8 @@ items:
   - title: Guides
     icon: /assets/images/icons/documentation/icn-solution-guide.svg
     items:
+      - text: AI Gateway
+        url: /guides/ai-gateway/
       - text: Customization
         items:
           - text: Set data plane image
