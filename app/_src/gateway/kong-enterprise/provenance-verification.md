@@ -13,7 +13,7 @@ This guide provides steps to verify build provenance for signed {{site.ee_produc
 For the minimal example, you only need Docker Manifest Digest and a GitHub repo name.
 
 {:.important .no-icon}
-> Docker manifest digest is required for build provenance verification. This is different from the platform specific image manifest.
+> Docker manifest digest is required for build provenance verification. The manifest digest can be different from the platform specific image digest for a specific distribution.
 
 For the complete example, you need the same details as the minimal example, as well as any of the optional annotations you wish to verify:
 
@@ -40,7 +40,7 @@ For both examples, you need to:
 4. Parse the `<manifest_digest>` for the image using `regctl`.
 
    ```sh
-      regctl manifest digest <image>:<tag>
+   regctl manifest digest <image>:<tag>
    ```
 
 {:.important .no-icon}
