@@ -1714,6 +1714,10 @@ components:
     PortalProductVersionUpdateRequestExample1:
       value:
         auto_approve_registration: false
+    PortalProductVersionUpdateAuthStrategyExample:
+      value:
+        auth_strategy_ids:
+          - 44f8380e-7798-4566-99e3-2edf2b57d289
     GetPortalExample1:
       value:
         id: 9f9fd312-a987-4628-b4c5-bb4f4fddd5f7
@@ -2999,6 +3003,9 @@ components:
           examples:
             PortalProductVersion:
               $ref: '#/components/examples/PortalProductVersionUpdateRequestExample1'
+            PortalProductVersionUpdateAuthStrategy:
+              $ref: >-
+                #/components/examples/PortalProductVersionUpdateAuthStrategyExample
     UpdateApplicationRegistration:
       description: Update an application registration.
       required: true
