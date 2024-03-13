@@ -5,6 +5,11 @@ book: kgo-kic-get-started
 chapter: 2
 ---
 
+{% assign gatewayConfigApiVersion = "v1beta1" %}
+{% if_version lte:1.1.x %}
+{% assign gatewayConfigApiVersion = "v1alpha1" %}
+{% endif_version %}
+
 {% if_version lte: 1.1.x %}
 {:.note}
 > **Note:** `Gateway` and `ControlPlane` controllers are still `alpha` so be sure
@@ -17,7 +22,7 @@ To use the Gateway API resources to configure your routes, you need to create a 
 ```yaml
 echo '
 kind: GatewayConfiguration
-apiVersion: gateway-operator.konghq.com/v1beta1
+apiVersion: gateway-operator.konghq.com/{{ gatewayConfigApiVersion }}
 metadata:
   name: kong
   namespace: default

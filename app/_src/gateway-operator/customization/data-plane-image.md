@@ -17,7 +17,7 @@ You can customize the image of your `DataPlane` using  the `DataPlane` resource 
 The `DataPlane` resource uses the Kubernetes [PodTemplateSpec](/gateway-operator/{{ page.release }}/customization/pod-template-spec/) to define how the Pods should run. Set the`spec.deployment.podTemplateSpec.spec.containers[].image` to customize the {{ site.base_gateway }} image.
 
 ```yaml
-apiVersion: gateway-operator.konghq.com/{{ gatewayConfigApiVersion }}
+apiVersion: gateway-operator.konghq.com/v1beta1
 kind: DataPlane
 metadata:
   name: dataplane-example
