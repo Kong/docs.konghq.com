@@ -2,6 +2,11 @@
 title: Rolling Upgrades
 ---
 
+{% assign gatewayConfigApiVersion = "v1beta1" %}
+{% if_version lte:1.1.x %}
+{% assign gatewayConfigApiVersion = "v1alpha1" %}
+{% endif_version %}
+
 ## Using DataPlane
 
 {:.note}
@@ -24,7 +29,7 @@ The `GatewayConfiguration` API can be used to provide the image and the image ve
 
 ```yaml
 kind: GatewayConfiguration
-apiVersion: gateway-operator.konghq.com/v1beta1
+apiVersion: gateway-operator.konghq.com/{{ gatewayConfigApiVersion }}
 metadata:
   name: kong
   namespace: default

@@ -2,6 +2,11 @@
 title: Customizing the Data Plane image
 ---
 
+{% assign gatewayConfigApiVersion = "v1beta1" %}
+{% if_version lte:1.1.x %}
+{% assign gatewayConfigApiVersion = "v1alpha1" %}
+{% endif_version %}
+
 You can customize the image of your `DataPlane` using  the `DataPlane` resource or the `GatewayConfiguration` CRD .
 
 ## Using DataPlane
@@ -12,7 +17,7 @@ You can customize the image of your `DataPlane` using  the `DataPlane` resource 
 The `DataPlane` resource uses the Kubernetes [PodTemplateSpec](/gateway-operator/{{ page.release }}/customization/pod-template-spec/) to define how the Pods should run. Set the`spec.deployment.podTemplateSpec.spec.containers[].image` to customize the {{ site.base_gateway }} image.
 
 ```yaml
-apiVersion: gateway-operator.konghq.com/v1beta1
+apiVersion: gateway-operator.konghq.com/{{ gatewayConfigApiVersion }}
 kind: DataPlane
 metadata:
   name: dataplane-example
@@ -37,7 +42,7 @@ You can customize both the container image and version.
 1.  Define the image in the `GatewayConfiguration`.
     ```yaml
     kind: GatewayConfiguration
-    apiVersion: gateway-operator.konghq.com/v1beta1
+    apiVersion: gateway-operator.konghq.com/{{ gatewayConfigApiVersion }}
     metadata:
       name: kong
       namespace: default
