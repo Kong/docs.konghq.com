@@ -903,6 +903,82 @@ was called multiple times in a request lifecycle.
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
+## 3.4.3.5
+**Release Date** 2024/03/15
+
+### Breaking Changes
+In OpenSSL 3.2, the default SSL/TLS security level has been changed from 1 to 2. Which means security level set to 112 bits of security. As a result RSA, DSA and DH keys shorter than 2048 bits and ECC keys shorter than 224 bits are prohibited. In addition to the level 1 exclusions any cipher suite using RC4 is also prohibited. SSL version 3 is also not allowed. Compression is disabled. #8158 KAG-3679
+
+### Features
+#### Core
+* The expressions route now supports the ! (not) operator, which allows creating routes like !(http.path =^ "/a") and !(http.path == "/a" || http.path == "/b") #8452 KAG-3586
+
+* Support observing the time consumed by some components in the given request. #7675 KAG-3440
+
+* Plugins can now implement Plugin:configure(configs) function that is called whenever there is a change in plugin entities. An array of current plugin configurations is passed to the function, or nil in case there is no active configurations for the plugin. #8390 FTI-5752
+
+* Support http.path.segments.len and http.path.segments.* fields in the expressions router which allows matching incoming (normalized) request path by individual segment or ranges of segments, plus checking the total number of segments. #8452 KAG-3586
+
+* net.src.* and net.dst.* match fields are now accessible in HTTP routes defined using expressions. #8452 KAG-3586
+
+* Modified the current AWS Vault backend to support CredentialProviderChain so that users can choose not to use AK-SK environment variables to grant IAM role permissions. #8415 FTI-5811
+
+* HashiCorp Vault backend now supports using Approle authentication method #8302 FTI-5774
+
+* Allow OSS features to continue working with an expired license and configured Kong Enterprise features to continue operating in read-only mode. Kong Gateway now logs a daily critical message when a license is expired and within the 30 days grace period. #8331 KAG-3691
+
+* Allow using RBAC token to authenticate while using group mapping feature (e.g., OIDC, LDAP) with Kong Manager, and also fix some issue with the group mapping feature. #8289 FTI-5666
+
+#### Plugins
+CORS: Support the Access-Control-Request-Private-Network header in crossing-origin pre-light requests #8285 FTI-5258
+
+#### Configuration
+
+* now TLSv1.1 and lower is by default disabled in OpenSSL 3.x #8245 KAG-3259
+
+### Fixes
+#### Configuration
+Set security level of gRPC's TLS to 0 when ssl_cipher_suite is set to old #8314 KAG-3259
+#### Core
+Header value matching (http.headers.*) in expressions router flavor are now case sensitive. This change does not affect on traditional_compatible mode where header value match are always performed ignoring the case. #8452 KAG-3586
+
+update file permission of kong.logrotate to 644 #8399 FTI-5756
+
+Expressions route in http and stream subsystem now have stricter validation. Previously they share the same validation schema which means admin can configure expressions route using fields like http.path even for stream routes. This is no longer allowed. #8452 KAG-3586
+Admin API
+Fix a bug that when an entity is deleted, the rbac_role_entities records of its cascaded entities are not deleted. #8310 FTI-5240
+Clustering
+reduce message push error log when cluster_telemetry_endpoint config is disabled #8442
+#### Kong Manager
+fixed the display of the remaining days of license expireation date #3269
+
+Conceal the user token input field while editing an RBAC user. #3264
+
+#### Plugin
+Forward Proxy: fallback to the non-streaming proxy when the request body has already been read #8346 FTI-5683
+
+Opentelemetry: fix otel sampling mode lua panic bug when http_response_header_for_traceid option enable #8213 FTI-5742
+Mark the introspection_headers_values in the openid-connect plugin as an encrypted and referenceable field #8258 FTI-5716
+
+Rate Limiting Advanced: Falling back to local strategy if sync_rate = 0 when redis goes down #8383 FTI-5755
+
+Rate Limiting Advanced: The plugin now creates counter syncing timers when being executed instead of being created to reduce some meaningless error logs #8048 FTI-5246
+
+Rate Limiting Advanced: fix an issue where if sync_rate is changed from a value greater than 0 to 0, the namespace will be cleared unexpectedly #8048 FTI-5246
+
+Rate Limiting Advanced: fix some timer-related issues where the counter syncing timer can't be created or destroyed properly #8048 FTI-5246
+
+### Performance
+#### Configuration
+Bumped default values of nginx_http_keepalive_requests and upstream_keepalive_max_requests to 10000. #7873 KAG-3360
+#### Core
+Reuse match context between requests to avoid frequent memory allocation/deallocation #8452 KAG-3586
+#### Plugins
+Opentelemetry: increase queue max batch size to 200 #8226 KAG-3173
+
+### Dependencies
+Bumped atc-router from 1.2.0 to 1.6.0 #8452 KAG-3586
+
 ## 3.4.3.4
 **Release Date** 2024/02/10
 
