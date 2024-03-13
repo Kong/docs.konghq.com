@@ -93,7 +93,7 @@ complete-plugin
 
 Here is the complete list of possible modules to implement and a brief
 description of what their purpose is. This guide will go in details to let you
-master each one of them.
+understand each of them.
 
 | Module name            | Required   | Description
 |:-----------------------|------------|------------

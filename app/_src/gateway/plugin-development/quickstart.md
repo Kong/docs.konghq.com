@@ -183,18 +183,30 @@ plugin development and best practices.
     {:.important}
     > **Important:** These commands must be ran from the base `my-plugin` directory so Pongo properly 
     > packages and includes the plugin code in the running {{site.base_gateway}}.
-    
-    First we start the database container to initalize the environment: 
+   
+    Pongo provides an optional command that will initialize the project directory with some
+    default configuration files which can be ran one time when starting a new project.
+
+    Initialize the project folder:
+
+    ```sh
+    pongo init
+    ```
+
+    Now we are ready to start dependency containers for {{site.base_gateway}}. By default
+    this only includes the Postgres database used in traditional mode.
+
+    Start the dependencies: 
 
     ```sh
     pongo up
     ```
 
-    Once that completes successfully, we run a {{site.base_gateway}} instance and open a 
+    Once the dependencies are running successfully, we run a {{site.base_gateway}} container and open a 
     shell within it so we can interact with the gateway. Pongo runs a {{site.base_gateway}}
     container with various CLI tools pre-installed to help with testing.
 
-    Launch the gateway and shell with:
+    Launch the gateway and open shell with:
 
     ```sh
     pongo shell
@@ -236,7 +248,8 @@ plugin development and best practices.
     using `curl` and filtering the response with `jq`:
 
     ```sh
-    curl -s localhost:8001 | jq '.plugins.available_on_server."my-plugin"'
+    curl -s localhost:8001 | \
+      jq '.plugins.available_on_server."my-plugin"'
     ```
 
     You should see a response that matches the information we put in our plugin's table:
@@ -312,23 +325,36 @@ plugin development and best practices.
     X-Kong-Request-Id: 8ab8c32c4782536592994514b6dadf55
     ```
 
-1. Write a test
+    Exit the {{site.base_gateway}} shell before proceeding:
 
-    WIP HERE
+    ```sh
+    exit
+    ```
 
-    https://lunarmodules.github.io/busted/
+1. **Write a test**
 
     For quickly getting started, manually validating a plugin using the Pongo shell works
     nicely. However, you will prefer to deploy a Test-driven development (TDD) methodology
     and Pongo can help with this as well. 
 
+    Pongo supports running automated tests using the 
+    [Busted](https://lunarmodules.github.io/busted/) Lua test framework. In plugin
+    projects the test files reside under the `spec/<plugin-name>` directory. For this project
+    we created the `spec/my-plugin` folder earlier.  
+     
+    The following is a code listing for a test that validates our plugin's current behavior. 
+    Copy this code and place it into a new file located at `spec/my-plugin/01-integration_spec.lua`. 
+    See the code comments for details on the design of the test and the test helpers provided by 
+    {{site.base_gateway}}.
+
     ```lua
+    -- Helper functions provided by Kong Gateway, see https://github.com/Kong/kong/blob/master/spec/helpers.lua
     local helpers = require "spec.helpers"
     
-    -- matches our plugin name defined in plugin schema
+    -- matches our plugin name defined in the plugins's schema.lua
     local PLUGIN_NAME = "my-plugin"
     
-    -- Run the tests for each strategy. Strategies include "postgres" and "off" 
+    -- Run the tests for each strategy. Strategies include "postgres" and "off"
     -- which represent the deployment topologies for Kong Gateway
     for _, strategy in helpers.all_strategies() do
     
@@ -338,18 +364,18 @@ plugin development and best practices.
     
         setup(function()
     
-          -- A BluePrint gives us a helpful database wrapper to 
-          -- manage Kong Gateway entities directly. The custom plugin name is 
-          -- provided to mark it as loaded
+          -- A BluePrint gives us a helpful database wrapper to
+          -- manage Kong Gateway entities directly.
+          -- The custom plugin name is provided to this function so it mark as loaded
           local blue_print = helpers.get_db_utils(strategy, nil, { PLUGIN_NAME })
     
-          -- Using the BluePrint to create a test route automatically attaches it
-          -- to the default "echo" service that is created
+          -- Using the BluePrint to create a test route, automatically attaches it
+          -- to the default "echo" service that will be created by the test framework
           local test_route = blue_print.routes:insert({
             paths = { "/mock" },
           })
     
-          -- Add the custom plugin to test to the route
+          -- Add the custom plugin to the test route
           blue_print.plugins:insert {
             name = PLUGIN_NAME,
             route = { id = test_route.id },
@@ -365,18 +391,22 @@ plugin development and best practices.
     
         end)
     
+        -- teardown runs after its parent describe block
         teardown(function()
           helpers.stop_kong(nil, true)
         end)
     
+        -- before_each runs before each child describe
         before_each(function()
           client = helpers.proxy_client()
         end)
     
+        -- after_each runs after each child describe
         after_each(function()
           if client then client:close() end
         end)
     
+        -- a nested describe defines an actual test on the plugin behavior
         describe("response", function()
     
           it("gets a 'X-MyPlugin' header", function()
@@ -394,16 +424,15 @@ plugin development and best practices.
     
           end)
         end)
-    
       end)
-    
     end
     ```
-    
 
-1. Run the test
+1. **Run the test**
 
-    blah
+    ```sh
+    pongo run
+    ```
 
 1. Add a configuration
 
