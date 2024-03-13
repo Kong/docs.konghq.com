@@ -775,6 +775,8 @@ policies:
     - meshtimeouts
     - meshtraces
     - meshtrafficpermissions
+coreResources:
+  enabled: [] # ENV: KUMA_CORE_RESOURCES_ENABLED
 kmesh:
   # License of Kong Mesh
   license:
