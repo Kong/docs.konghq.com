@@ -12,6 +12,7 @@
   * `request`: The time in milliseconds that has elapsed between when the first bytes were read from the client and the last byte was sent to the client. This is useful for detecting slow clients.
   * `proxy`: The time in milliseconds that it took for the upstream to process the request. In other words, it's the time elapsed between transferring the 
   request to the final service and when {{site.base_gateway}} starts receiving the response.
+  * `receive`: The time in milliseconds that it took to receive and process the response (headers and body) from the upstream.
 * `tries`: a list of iterations made by the load balancer for this request.
   * `balancer_start`: A Unix timestamp for when the balancer started.
   * `ip`: The IP address of the contacted balancer.
