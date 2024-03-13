@@ -438,6 +438,26 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
+    delete:
+      summary: Delete Application
+      description: >-
+        Delete a single application in this portal, along with its registrations
+        and credentials.
+      operationId: delete-application
+      parameters:
+        - $ref: '#/components/parameters/parameters-PortalId'
+        - $ref: '#/components/parameters/ApplicationId'
+      tags:
+        - Portal Applications
+      responses:
+        '204':
+          description: The application has been deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
   /portals/{portalId}/application-registrations:
     get:
       summary: List Application Registrations by Portal
