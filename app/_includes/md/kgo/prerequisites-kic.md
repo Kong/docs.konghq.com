@@ -39,7 +39,6 @@ kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/downloa
 {:.note}
 > **Note:** This is an enterprise feature. In order to use it you'll need a [license](/gateway-operator/{{ page.release }}/license/)
 > installed in your cluster so that {{ site.kgo_product_name }} can consume it.
-{% endif %}
 
 ```yaml
 echo "
@@ -50,6 +49,7 @@ metadata:
 rawLicenseString: '$(cat ./license.json)'
 " | kubectl apply -f -
 ```
+{% endif %}
 
 {% unless include.disable_accordian %}
 </details>
