@@ -123,6 +123,7 @@ kong:{{page.versions.ce}} kong migrations bootstrap
     In order, this is the Kong Gateway container name and tag, followed by the
     command to Kong to prepare the Postgres database.
 <!-- vale on -->
+
 ### Start {{site.base_gateway}}
 
 {% include_cached /md/admin-listen.md desc='long' release=page.release %}
