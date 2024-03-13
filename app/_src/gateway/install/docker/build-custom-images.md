@@ -27,12 +27,15 @@ chmod +x docker-entrypoint.sh
     {% comment %}
     not all of the older alpine "packages" met Cloudsmith's definition for what an alpine package must be
     so some are uploaded there as "raw" artifacts instead and must be linked to differently
+    this page doesn't exist for lte:2.8.x
     {% endcomment %}
-    {% if_version lte:3.3.x eq:3.0.x %}
+    {% if_version lte:3.3.x %}
+    {% if_version eq:3.0.x %}
     * **Alpine**: [.apk.tar.gz]({{ site.links.direct }}/gateway-{{ page.major_minor_version }}/raw/names/kong-enterprise-edition-x86_64/versions/{{page.versions.ee}}/kong-enterprise-edition-{{page.versions.ee}}.x86_64.apk.tar.gz)
     {% endif_version %}
-    {% if_version lte:3.3.x gte:3.1.x lte:2.8.x %}
+    {% if_version gte:3.1.x %}
     * **Alpine**: [.apk]({{ site.links.direct }}/gateway-{{ page.major_minor_version }}/alpine/any-version/main/x86_64/kong-enterprise-edition-{{page.versions.ee}}.apk)
+    {% endif_version %}
     {% endif_version %}
     * **RHEL**:[ .rpm]({{ site.links.direct }}/gateway-{{ page.major_minor_version }}/rpm/el/8/x86_64/kong-enterprise-edition-{{page.versions.ee}}.el8.x86_64.rpm)
 
