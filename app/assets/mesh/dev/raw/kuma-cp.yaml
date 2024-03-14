@@ -776,7 +776,8 @@ policies:
     - meshtraces
     - meshtrafficpermissions
 coreResources:
-  enabled: [] # ENV: KUMA_CORE_RESOURCES_ENABLED
+  enabled: # ENV: KUMA_CORE_RESOURCES_ENABLED
+    - meshservices
 kmesh:
   # License of Kong Mesh
   license:
