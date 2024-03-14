@@ -3,8 +3,20 @@ title: Install KIC with Kong Gateway Operator
 content-type: tutorial
 book: kgo-kic-get-started
 chapter: 1
-alpha: true
 ---
+
+{% if_version lte: 1.1.x %}
+{:.note}
+> **Note:** `Gateway` and `ControlPlane` controllers are still `alpha` so be sure
+> to use the [installation steps from this guide](/gateway-operator/{{ page.release }}/get-started/kic/install/)
+> in order to get your `Gateway` up and running.
+{% endif_version %}
+
+
+{% assign gwapi_version = "1.0.0" %}
+{% if_version lte:1.0.0 %}
+{% assign gwapi_version = "0.8.1" %}
+{% endif_version %}
 
 Both {{ site.kgo_product_name }} and {{ site.kic_product_name }} can be configured using the [Kubernetes Gateway API](https://github.com/kubernetes-sigs/gateway-api).
 
