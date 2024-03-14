@@ -73,7 +73,6 @@ items:
             url: /customization/sidecars/
           - text: Customizing PodTemplateSpec
             url: /customization/pod-template-spec/
-          - text: Upgrading Data Planes
       - text: Autoscaling Kong Gateway
         url: /guides/autoscaling-kong/
       - text: Autoscaling Workloads
