@@ -71,7 +71,6 @@ items:
             url: /customization/sidecars/
           - text: Customizing PodTemplateSpec
             url: /customization/pod-template-spec/
-          - text: Upgrading Data Planes
       - text: Upgrading Data Planes
         items:
           - text: Rolling Deployment
