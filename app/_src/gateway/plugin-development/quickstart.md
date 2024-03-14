@@ -9,6 +9,12 @@ The following instructions are written to help you quickly build, test, and run 
 this section will provide details on other advanced topics related to 
 plugin development and best practices.
 
+{:.note}
+> **Note:** The following prerequisites are required to complete this guide
+>   * A `docker` CLI and associated Docker engine
+>   * `git` 
+>   * `curl`
+
 1. **Initialize a new plugin repository**
 
     Start by opening a terminal and changing directories to a location where you store source code. 
@@ -430,30 +436,45 @@ plugin development and best practices.
 
 1. **Run the test**
 
+    Pongo can execute this test for us with the `pongo run` command:
+
     ```sh
     pongo run
     ```
 
-1. Add a configuration
+    You should see a successful report that looks similar to the following:
 
-    explain configuration
+    ```sh
+    [pongo-INFO] auto-starting the test environment, use the 'pongo down' action to stop it
+    Kong version: 3.6.1
+    
+    [==========] Running tests from scanned files.
+    [----------] Global test environment setup.
+    [----------] Running tests from /kong-plugin/spec/my-plugin/01-integration_spec.lua
+    [ RUN      ] /kong-plugin/spec/my-plugin/01-integration_spec.lua:62: my-plugin: [#postgres] response gets a 'X-MyPlugin' header
+    [       OK ] /kong-plugin/spec/my-plugin/01-integration_spec.lua:62: my-plugin: [#postgres] response gets a 'X-MyPlugin' header (3.97 ms)
+    [ RUN      ] /kong-plugin/spec/my-plugin/01-integration_spec.lua:62: my-plugin: [#off] response gets a 'X-MyPlugin' header
+    [       OK ] /kong-plugin/spec/my-plugin/01-integration_spec.lua:62: my-plugin: [#off] response gets a 'X-MyPlugin' header (3.08 ms)
+    [----------] 2 tests from /kong-plugin/spec/my-plugin/01-integration_spec.lua (23022.12 ms total)
+    
+    [----------] Global test environment teardown.
+    [==========] 2 tests from 1 test file ran. (23022.80 ms total)
+    [  PASSED  ] 2 tests.
+    ```
 
-1. Run the failed test
-
-    blah
-
-1. Fix the test code
-
-    Write the schema (not required if not configurable)
-
-1. Run the passing test
-
-    blah
-
-1. Package the plugin
-
-    blah
-
-1. Deploy the plugin
-
-    blah
+<!-- 
+# 1. **Make plugin configurable**
+# 
+#     explain configuration
+#     Update the schema.lua file, include defaults
+# 
+# 1. **
+# 
+# 1. Package the plugin
+# 
+#     blah
+# 
+# 1. Deploy the plugin
+# 
+#     blah
+-->
