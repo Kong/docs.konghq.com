@@ -30,12 +30,12 @@ Install {{site.base_gateway}} on Debian from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.versions.ee}}.all.deb "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/deb/debian/pool/buster/main/k/ko/kong-enterprise-edition_{{page.versions.ee}}/kong-enterprise-edition_{{page.versions.ee}}_all.deb"
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.all.deb "{{ site.links.direct }}/gateway-{{ page.major_minor_version }}/deb/debian/pool/buster/main/k/ko/kong-enterprise-edition_{{page.versions.ee}}/kong-enterprise-edition_{{page.versions.ee}}_all.deb"
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.versions.ce}}.amd64.deb "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/deb/debian/pool/buster/main/k/ko/kong_{{page.versions.ce}}/kong_{{page.versions.ce}}_amd64.deb"
+curl -Lo kong-{{page.versions.ce}}.amd64.deb "{{ site.links.direct }}/gateway-{{ page.major_minor_version }}/deb/debian/pool/buster/main/k/ko/kong_{{page.versions.ce}}/kong_{{page.versions.ce}}_amd64.deb"
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -71,8 +71,8 @@ Install the APT repository from the command line.
 
 1. Download the Kong APT repository:
     ```bash
-    curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-28/gpg.{{ gpg_key }}.key" |  gpg --dearmor | sudo tee /usr/share/keyrings/kong-gateway-28-archive-keyring.gpg > /dev/null
-    curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-28/config.deb.txt?distro=debian&codename=$(lsb_release -sc)" | sudo tee /etc/apt/sources.list.d/kong-gateway-28.list > /dev/null
+    curl -1sLf "{{ site.links.direct }}/gateway-28/gpg.{{ gpg_key }}.key" |  gpg --dearmor | sudo tee /usr/share/keyrings/kong-gateway-28-archive-keyring.gpg > /dev/null
+    curl -1sLf "{{ site.links.direct }}/gateway-28/config.deb.txt?distro=debian&codename=$(lsb_release -sc)" | sudo tee /etc/apt/sources.list.d/kong-gateway-28.list > /dev/null
     ```
 2. Update the repository:
     ```bash

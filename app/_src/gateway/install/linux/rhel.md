@@ -15,7 +15,7 @@ Kong is licensed under an
 * (Enterprise only) A `license.json` file from Kong
 
 {:.note}
-> **Note:** In July of 2023 Kong announced that package hosting was shifting from {{ site.links.download }} to [{{ site.links.cloudsmith }}]({{ site.links.cloudsmith }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
+> **Note:** In July of 2023 Kong announced that package hosting was shifting from download.konghq.com to [{{ site.links.download }}]({{ site.links.download }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
 
 ## Package install
 
@@ -35,12 +35,12 @@ Install {{site.base_gateway}} on RHEL from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/el/%{rhel}/%{_arch}/kong-enterprise-edition-{{page.versions.ee}}.el%{rhel}.%{_arch}.rpm)
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.direct }}/gateway-{{ page.major_minor_version }}/rpm/el/%{rhel}/%{_arch}/kong-enterprise-edition-{{page.versions.ee}}.el%{rhel}.%{_arch}.rpm)
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/el/%{rhel}/%{_arch}/kong-{{page.versions.ce}}.el%{rhel}.%{_arch}.rpm)
+curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval {{ site.links.direct }}/gateway-{{ page.major_minor_version }}/rpm/el/%{rhel}/%{_arch}/kong-{{page.versions.ce}}.el%{rhel}.%{_arch}.rpm)
  ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -91,7 +91,7 @@ Install the YUM repository from the command line.
 
 1. Download the Kong YUM repository:
     ```bash
-    curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/config.rpm.txt?distro=el&codename=$(rpm --eval '%{rhel}')" | sudo tee /etc/yum.repos.d/kong-gateway-{{ page.major_minor_version }}.repo
+    curl -1sLf "{{ site.links.direct }}/gateway-{{ page.major_minor_version }}/config.rpm.txt?distro=el&codename=$(rpm --eval '%{rhel}')" | sudo tee /etc/yum.repos.d/kong-gateway-{{ page.major_minor_version }}.repo
     sudo yum -q makecache -y --disablerepo='*' --enablerepo='kong-gateway-{{ page.major_minor_version }}'
     ```
 
