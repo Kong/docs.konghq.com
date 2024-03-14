@@ -3,6 +3,14 @@
 {% assign kgo_version = "nightly" %}
 {% endif %}
 
+Update the Helm repository:
+
+```bash
+helm repo update kong
+```
+
+Install {{ site.kgo_product_name }} with Helm:
+
 ```bash
 helm upgrade --install kgo kong/gateway-operator --devel -n kong-system --create-namespace \
 --set image.tag={{ kgo_version }}{%- if include.aiGateway %} \

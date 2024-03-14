@@ -15,13 +15,6 @@
 {% assign gwapi_version = "0.8.1" %}
 {% endif %}
 
-Below command installs all Gateway API resources that have graduated to GA or beta,
-including `GatewayClass`, `Gateway`, `HTTPRoute`, and `ReferenceGrant`.
-
-```shell
-kubectl apply -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v{{ gwapi_version }}/standard-install.yaml
-```
-
 {% if include.experimental %}
 If you want to use experimental resources and fields such as `TCPRoute`s and `UDPRoute`s, please run this command.
 
