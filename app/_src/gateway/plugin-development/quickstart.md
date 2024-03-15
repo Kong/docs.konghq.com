@@ -134,11 +134,11 @@ plugin development and best practices.
       PRIORITY = 1000,
       VERSION = "0.0.1",
     }
-    
-    function MyPluginHandler:access(conf)
-      kong.service.request.set_header("X-MyPlugin", "access")
+
+    function MyPluginHandler:response(conf)
+        kong.response.set_header("X-MyPlugin", "response")
     end
-    
+ 
     return MyPluginHandler
     ```
 
@@ -220,9 +220,7 @@ plugin development and best practices.
 
     Your terminal is now running a shell _inside_ the {{site.base_gateway}} container. Your 
     shell prompt should change, showing you the gateway version, the host plugin directory, 
-    and current path inside the container.
-    
-    An example prompt may look like the following:
+    and current path inside the container. An example prompt may look like the following.
 
     ```sh
     [Kong-3.6.1:my-plugin:/kong]$
@@ -356,37 +354,37 @@ plugin development and best practices.
     ```lua
     -- Helper functions provided by Kong Gateway, see https://github.com/Kong/kong/blob/master/spec/helpers.lua
     local helpers = require "spec.helpers"
-    
+ 
     -- matches our plugin name defined in the plugins's schema.lua
     local PLUGIN_NAME = "my-plugin"
-    
+
     -- Run the tests for each strategy. Strategies include "postgres" and "off"
     -- which represent the deployment topologies for Kong Gateway
     for _, strategy in helpers.all_strategies() do
-    
+
       describe(PLUGIN_NAME .. ": [#" .. strategy .. "]", function()
-    
+
         local client
-    
+
         setup(function()
-    
+
           -- A BluePrint gives us a helpful database wrapper to
           -- manage Kong Gateway entities directly.
           -- The custom plugin name is provided to this function so it mark as loaded
           local blue_print = helpers.get_db_utils(strategy, nil, { PLUGIN_NAME })
-    
+
           -- Using the BluePrint to create a test route, automatically attaches it
           -- to the default "echo" service that will be created by the test framework
           local test_route = blue_print.routes:insert({
             paths = { "/mock" },
           })
-    
+
           -- Add the custom plugin to the test route
           blue_print.plugins:insert {
             name = PLUGIN_NAME,
             route = { id = test_route.id },
           }
-    
+
           -- start kong
           assert(helpers.start_kong({
             -- use the custom test template to create a local mock server
@@ -394,40 +392,40 @@ plugin development and best practices.
             -- make sure our plugin gets loaded
             plugins = "bundled," .. PLUGIN_NAME,
           }))
-    
+
         end)
-    
+
         -- teardown runs after its parent describe block
         teardown(function()
           helpers.stop_kong(nil, true)
         end)
-    
+
         -- before_each runs before each child describe
         before_each(function()
           client = helpers.proxy_client()
         end)
-    
+
         -- after_each runs after each child describe
         after_each(function()
           if client then client:close() end
         end)
-    
+
         -- a nested describe defines an actual test on the plugin behavior
         describe("response", function()
-    
+
           it("gets a 'X-MyPlugin' header", function()
-    
+
             local r = client:get("/mock/anything", {})
-    
+
             -- validate that the request succeeded, response status 200
             assert.response(r).has.status(200)
-    
+
             -- now check the response to have the header
             local header_value = assert.response(r).has.header("X-MyPlugin")
-    
+
             -- validate the value of that header
             assert.equal("response", header_value)
-    
+
           end)
         end)
       end)
@@ -436,7 +434,7 @@ plugin development and best practices.
 
 1. **Run the test**
 
-    Pongo can execute this test for us with the `pongo run` command:
+    We can easily run our test with the `pongo run` command:
 
     ```sh
     pongo run
