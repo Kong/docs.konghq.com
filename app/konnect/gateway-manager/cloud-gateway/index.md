@@ -18,11 +18,12 @@ Dedicated cloud gateways have the following benefits over a typical hybrid gatew
 * **One click upgrades:** {{site.konnect_short_name}} handles upgrades for you. You decide when you want to upgrade and what {{site.base_gateway}} version you want to upgrade to and {{site.konnect_short_name}} does it for you. There's no downtime when upgrading the infrastructure.
 * **Multi-region:** Dedicated cloud gateways are supported on the following AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon.
 
-## Diagram of how the thing works
+## Dedicated cloud gateway architecture
 
 {% include_cached /md/konnect/deployment-topologies.md topology='cloud' %}
-> _Figure 1: In self-managed hybrid mode, the control plane and data planes are hosted on different nodes. The control plane connects to the database, and the data planes receive configuration from the control plane._
+
+> _Figure 1: In a dedicated cloud gateway, the control plane is hosted in {{site.konnect_short_name}} and data planes are hosted in the cloud by Kong. The control plane connects to the database, and the data planes receive configuration from the control plane._
 
 ## More information
 
-Link out to other CGW sections
+[Link out to other CGW sections]
