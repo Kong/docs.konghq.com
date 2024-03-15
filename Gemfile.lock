@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/kong/jekyll-generator-single-source.git
+  revision: 9ad685fd26acef50e14b2ab80f24ae4e7115da9e
+  branch: DOCU-3690/conditional-rendering
+  specs:
+    jekyll-generator-single-source (0.0.11)
+      jekyll (>= 4.2, < 5.0)
+
 PATH
   remote: app/_src/.repos/kuma/jekyll-kuma-plugins
   specs:
@@ -92,8 +100,6 @@ GEM
       safe_yaml (~> 1.0)
       terminal-table (>= 1.8, < 4.0)
       webrick (~> 1.7)
-    jekyll-generator-single-source (0.0.11)
-      jekyll (>= 4.2, < 5.0)
     jekyll-include-cache (0.2.1)
       jekyll (>= 3.7, < 5.0)
     jekyll-redirect-from (0.16.0)
@@ -221,7 +227,7 @@ DEPENDENCIES
   capybara
   foreman
   jekyll
-  jekyll-generator-single-source
+  jekyll-generator-single-source!
   jekyll-include-cache
   jekyll-kuma-plugins!
   jekyll-redirect-from
