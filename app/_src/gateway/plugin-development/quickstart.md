@@ -9,11 +9,11 @@ The following instructions are written to help you quickly build, test, and run 
 this section will provide details on other advanced topics related to 
 plugin development and best practices.
 
-{:.note}
-> **Note:** The following prerequisites are required to complete this guide
->   * A `docker` CLI and associated Docker engine
->   * `git` 
->   * `curl`
+### Prerequisites
+
+* [Docker](https://docs.docker.com/get-docker/) (or Docker equivalent) is used to run {{site.base_gateway}} and test code
+* [curl](https://curl.se/) is used to download web resources. `curl` is pre-installed on most systems.
+* [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) is used to install and update software on the host machine.
 
 1. **Initialize a new plugin repository**
 
@@ -38,8 +38,6 @@ plugin development and best practices.
       mkdir -p spec/my-plugin
     ```
 
-1. **Initialize plugin modules**
-
     Plugins are made up of [Lua modules](http://www.lua.org/manual/5.1/manual.html#5.3) defined in 
     individual files. 
 
@@ -50,26 +48,10 @@ plugin development and best practices.
     touch kong/plugins/my-plugin/handler.lua
     touch kong/plugins/my-plugin/schema.lua
     ```
-  
-    The `handler.lua` module contains the core logic of your new plugin.
-    Start by putting the following Lua code into the `handler.lua` file:
 
-    ```lua
-    local MyPluginHandler = {
-        PRIORITY = 1000,
-        VERSION = "0.0.1",
-    }
+    We now have the base structure for a new plugin, let's look at how to author code for these modules.
 
-    return MyPluginHandler
-    ```
-
-    This code defines a [Lua table](https://www.lua.org/pil/2.5.html) specifying a set of required 
-    fields for a valid plugin:
-
-    * The `PRIORITY` field sets the static 
-    [execution order](/gateway/{{page.release}}/plugin-development/custom-logic/#plugins-execution-order) 
-    of the plugin, which determines when this plugin is executed relative to other loaded plugins.
-    * The `VERSION` field sets the version for this plugin and should follow the `major.minor.revision` format.
+1. **Initialize the Schema module**
 
     The `schema.lua` file defines your plugins configuration data model. The following is the minimum structure 
     required for a valid plugin.
@@ -94,8 +76,30 @@ plugin development and best practices.
     return schema
     ```
     
-    This creates a base table for our plugin's configuration.  Later in this guide we will add 
+    This creates a base table for our plugin's configuration (which is empty).  Later in this guide we will add 
     configurable values to the table and show how to configure the plugin at runtime.
+
+1. **Initialize the Handler module**
+  
+    The `handler.lua` module contains the core logic of your new plugin.
+    Start by putting the following Lua code into the `handler.lua` file:
+
+    ```lua
+    local MyPluginHandler = {
+        PRIORITY = 1000,
+        VERSION = "0.0.1",
+    }
+
+    return MyPluginHandler
+    ```
+
+    This code defines a [Lua table](https://www.lua.org/pil/2.5.html) specifying a set of required 
+    fields for a valid plugin:
+
+    * The `PRIORITY` field sets the static 
+    [execution order](/gateway/{{page.release}}/plugin-development/custom-logic/#plugins-execution-order) 
+    of the plugin, which determines when this plugin is executed relative to other loaded plugins.
+    * The `VERSION` field sets the version for this plugin and should follow the `major.minor.revision` format.
     
     At this point, we have a valid plugin (which does nothing). Next We will add logic to the plugin
     and then see how to validate it.
@@ -163,12 +167,16 @@ plugin development and best practices.
     curl -Ls https://get.konghq.com/pongo | bash
     ```
 
-    After successfully installing Pongo, ensure that the `pongo` command is 
+    For the remainder of this guide to work properly the `pongo` command must be present on your system
+    path. The script and manual installation instructions above both include hints for
+    putting `pongo` on your path. Ensure that the `pongo` command is 
     available on your `PATH` by running the command within our project directory:
 
     ```sh
     pongo help
     ```
+
+    With Pongo installed, let's proceed to setup a test environment for our new plugin.
 
 1. **Initialize the test environment**
 
@@ -265,6 +273,8 @@ plugin development and best practices.
     }
     ```
 
+    With the test environment initialized lets see how to manually run our plugin code. 
+
 1. **Manually test plugin**
 
     Our plugin is installed, let's configure {{site.base_gateway}} entities so we can invoke and validate 
@@ -335,15 +345,15 @@ plugin development and best practices.
     exit
     ```
 
-1. **Write a test**
-
     For quickly getting started, manually validating a plugin using the Pongo shell works
     nicely. However, you will prefer to deploy automated testing and maybe a Test-driven development 
-    (TDD) methodology and Pongo can help with these as well.
+    (TDD) methodology. Let's see how Pongo can help with this as well.
+
+1. **Write a test**
 
     Pongo supports running automated tests using the 
     [Busted](https://lunarmodules.github.io/busted/) Lua test framework. In plugin
-    projects the test files reside under the `spec/<plugin-name>` directory. For this project
+    projects, the test files reside under the `spec/<plugin-name>` directory. For this project
     we created the `spec/my-plugin` folder earlier.  
      
     The following is a code listing for a test that validates our plugin's current behavior. 
@@ -359,11 +369,11 @@ plugin development and best practices.
     local PLUGIN_NAME = "my-plugin"
 
     -- Run the tests for each strategy. Strategies include "postgres" and "off"
-    -- which represent the deployment topologies for Kong Gateway
+    --   which represent the deployment topologies for Kong Gateway
     for _, strategy in helpers.all_strategies() do
 
       describe(PLUGIN_NAME .. ": [#" .. strategy .. "]", function()
-
+        -- Will be initialized before_each nested test
         local client
 
         setup(function()
@@ -412,16 +422,17 @@ plugin development and best practices.
         end)
 
         -- a nested describe defines an actual test on the plugin behavior
-        describe("response", function()
+        describe("The response", function()
 
           it("gets a 'X-MyPlugin' header", function()
 
+            -- invoke a test request
             local r = client:get("/mock/anything", {})
 
             -- validate that the request succeeded, response status 200
             assert.response(r).has.status(200)
 
-            -- now check the response to have the header
+            -- now validate and retrieve the expected response header 
             local header_value = assert.response(r).has.header("X-MyPlugin")
 
             -- validate the value of that header
@@ -433,13 +444,16 @@ plugin development and best practices.
     end
     ```
 
+    We now have test code, let's see how Pongo can help us automate testing.
+
 1. **Run the test**
 
     Pongo can run automated tests for us with the `pongo run` command. When this is executed,
     Pongo will determine if dependency containers are already running and use them
     if so. The test library will handle truncating existing data in between test runs for us.
 
-    Execute a test run:
+    Once the test file from the previous step is saved in the `spec/my-plugin/01-integration_spec.lua` file, 
+    execute a test run:
 
     ```sh
     pongo run
@@ -454,10 +468,11 @@ plugin development and best practices.
     [==========] Running tests from scanned files.
     [----------] Global test environment setup.
     [----------] Running tests from /kong-plugin/spec/my-plugin/01-integration_spec.lua
-    [ RUN      ] /kong-plugin/spec/my-plugin/01-integration_spec.lua:62: my-plugin: [#postgres] response gets a 'X-MyPlugin' header
-    [       OK ] /kong-plugin/spec/my-plugin/01-integration_spec.lua:62: my-plugin: [#postgres] response gets a 'X-MyPlugin' header (3.97 ms)
-    [ RUN      ] /kong-plugin/spec/my-plugin/01-integration_spec.lua:62: my-plugin: [#off] response gets a 'X-MyPlugin' header
-    [       OK ] /kong-plugin/spec/my-plugin/01-integration_spec.lua:62: my-plugin: [#off] response gets a 'X-MyPlugin' header (3.08 ms)
+    [----------] Running tests from /kong-plugin/spec/my-plugin/01-integration_spec.lua
+    [ RUN      ] /kong-plugin/spec/my-plugin/01-integration_spec.lua:63: my-plugin: [#postgres] The response gets a 'X-MyPlugin' header
+    [       OK ] /kong-plugin/spec/my-plugin/01-integration_spec.lua:63: my-plugin: [#postgres] The response gets a 'X-MyPlugin' header (6.59 ms)
+    [ RUN      ] /kong-plugin/spec/my-plugin/01-integration_spec.lua:63: my-plugin: [#off] The response gets a 'X-MyPlugin' header
+    [       OK ] /kong-plugin/spec/my-plugin/01-integration_spec.lua:63: my-plugin: [#off] The response gets a 'X-MyPlugin' header (4.76 ms)
     [----------] 2 tests from /kong-plugin/spec/my-plugin/01-integration_spec.lua (23022.12 ms total)
     
     [----------] Global test environment teardown.
@@ -465,12 +480,32 @@ plugin development and best practices.
     [  PASSED  ] 2 tests.
     ```
 
-<!-- 
-1. **Make plugin configurable**
+    Pongo can also run as part of a Continuous Integration (CI) system, the 
+    [repository documentation](https://github.com/Kong/kong-pongo?tab=readme-ov-file#setting-up-ci) has more details. 
 
-    explain configuration
+    Next, let's see how we can modify the behavior of our plugin with configuration data.
+
+
+1. **Make `my-plugin` configurable**
+
+    Plugins are not typically as simplistic as our current example. You will likley wish
+    to control the behavior of your plugin using configurable values. Plugin
+    configuration is controlled by the `schema.lua` file.  Let's add some configuration values to our
+    plugin and use them to make the plugin behavior configurable.
+
     Update the schema.lua file, include defaults
 
+    Here is what a typical field definition in a plugin configuraiton schema looks like:
+
+    ```lua
+     { request_header = typedefs.header_name {
+              required = true,
+              default = "Hello-World" } },
+    ```
+
+    https://docs.konghq.com/gateway/latest/plugin-development/configuration/#schemalua-specifications
+
+<!-- 
 # 1. **
 # 
 # 1. Package the plugin
