@@ -338,8 +338,8 @@ plugin development and best practices.
 1. **Write a test**
 
     For quickly getting started, manually validating a plugin using the Pongo shell works
-    nicely. However, you will prefer to deploy a Test-driven development (TDD) methodology
-    and Pongo can help with this as well. 
+    nicely. However, you will prefer to deploy automated testing and maybe a Test-driven development 
+    (TDD) methodology and Pongo can help with these as well.
 
     Pongo supports running automated tests using the 
     [Busted](https://lunarmodules.github.io/busted/) Lua test framework. In plugin
@@ -369,12 +369,13 @@ plugin development and best practices.
         setup(function()
 
           -- A BluePrint gives us a helpful database wrapper to
-          -- manage Kong Gateway entities directly.
+          --    manage Kong Gateway entities directly.
+          -- This function also truncates any existing data in an existing db.
           -- The custom plugin name is provided to this function so it mark as loaded
           local blue_print = helpers.get_db_utils(strategy, nil, { PLUGIN_NAME })
 
           -- Using the BluePrint to create a test route, automatically attaches it
-          -- to the default "echo" service that will be created by the test framework
+          --    to the default "echo" service that will be created by the test framework
           local test_route = blue_print.routes:insert({
             paths = { "/mock" },
           })
@@ -434,7 +435,11 @@ plugin development and best practices.
 
 1. **Run the test**
 
-    We can easily run our test with the `pongo run` command:
+    Pongo can run automated tests for us with the `pongo run` command. When this is executed,
+    Pongo will determine if dependency containers are already running and use them
+    if so. The test library will handle truncating existing data in between test runs for us.
+
+    Execute a test run:
 
     ```sh
     pongo run
@@ -461,11 +466,11 @@ plugin development and best practices.
     ```
 
 <!-- 
-# 1. **Make plugin configurable**
-# 
-#     explain configuration
-#     Update the schema.lua file, include defaults
-# 
+1. **Make plugin configurable**
+
+    explain configuration
+    Update the schema.lua file, include defaults
+
 # 1. **
 # 
 # 1. Package the plugin
