@@ -21,7 +21,7 @@
           v-if="deprecatedProductVersion"
           appearance="warning"
           class="deprecated-warning"
-          alert-message="This product version is now deprecated. The endpoints will remain fully usable until this version is sunsetted."
+          message="This product version is now deprecated. The endpoints will remain fully usable until this version is sunsetted."
         />
 
         <div class="swagger-ui has-sidebar breadcrumbs">

@@ -1,8 +1,8 @@
 <template>
   <KEmptyState
     data-testid="empty-state-card"
-    cta-is-hidden
-    :is-error="isError"
+    action-button-visible
+    icon-variant="error"
   >
     <template
       v-if="!isError"
@@ -12,11 +12,7 @@
         {{ title }}
       </slot>
     </template>
-    <template #message>
-      <slot name="message">
-        {{ displayMessage }}
-      </slot>
-    </template>
+    {{ displayMessage }}
   </KEmptyState>
 </template>
 
