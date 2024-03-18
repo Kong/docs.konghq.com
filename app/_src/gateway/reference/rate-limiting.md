@@ -55,15 +55,15 @@ Define configurations for a new namespace. The following options are accepted:
 
 - `dict`: Name of the shared dictionary to use
 - `sync_rate`: Rate, in seconds, to sync data diffs to the storage server.
-{% if_version lte:3.3.x %}
+{% if_version lte:3.3.x -%}
 - `strategy`: Storage strategy to use. Cassandra, PostgresSQL, and Redis are supported. Strategies must provide several public—functions defined below.
 
     {% include_cached /md/enterprise/cassandra-deprecation.md length='short' release=page.release %}
   
-{% endif_version %}
-{% if_version gte:3.4.x %}
+{% endif_version -%}
+{% if_version gte:3.4.x -%}
 - `strategy`: Storage strategy to use. PostgresSQL and Redis are supported. Strategies must provide several public—functions defined below.
-{% endif_version %}
+{% endif_version -%}
 - `strategy_opts`: A table of options used by the storage strategy. Currently only applicable for the 'redis' strategy.
 - `namespace`: String defining these config values. A namespace may only be defined once; if a namespace has already been defined on this worker, an error is thrown. If no namespace is defined, the literal string "default" will be used.
 - `window_sizes`: A list of window sizes used by this configuration.

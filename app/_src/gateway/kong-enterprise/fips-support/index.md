@@ -50,10 +50,10 @@ The following table explains where cryptographic algorithms are used for non-cry
 | core/uuid | Lua random number generator | Lua random number generator | The RNG isn’t used for cryptographic purposes. |
 | core/declarative_config/uuid | UUIDv5 (namespaced SHA1) | UUIDv5 (namespaced SHA1) | Used to generate a unique identifier. |
 | core/declarative_config/config_hash and core/hybrid/hashes | MD5 | MD5 | Used to generate a unique identifier. |
-
 {% if_version gte:3.5.x %}
 | core/kong_request_id | rand(3) | rand(3) | The RNG isn’t used for cryptographic purposes. |
 {% endif_version %}
+
 
 ### SSL client
 
@@ -61,7 +61,7 @@ FIPS 140-2 only mentioned SSL server, which is already supported in {{site.base_
 
 This includes:
 * Using Lua to talk in HTTPS and PostgreSQL SSL
-{% if_version lte:3.3.x %}
+{% if_version lte:3.3.x -%}
 * Using Lua to talk in HTTPS, PostgreSQL SSL, and Cassandra SSL
-{% endif_version %}
+{% endif_version -%}
 * Using an upstream that proxies in HTTPS
