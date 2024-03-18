@@ -39,7 +39,7 @@ control plane after a 5-10 second delay.
 
 ### How does network peering work with Cloud Gateway nodes?
 
-Each Cloud Gateway node is part of a dedicated Cloud Gateway network that corresponds to a specific cloud region, such as `us-east-1` or `us-west-2`. For enhanced security and seamless connectivity between your cloud network and the {{site.konnect_short_name}} environment, users have the option to peer their Cloud Gateway network with their own network in AWS. This integration is facilitated through the use of AWS's [TransitGateway](https://aws.amazon.com/transit-gateway/) feature, enabling secure network connections across both platforms.
+Each Cloud Gateway node is part of a dedicated Cloud Gateway network that corresponds to a specific cloud region, such as `us-east-1` or `us-west-2`. For enhanced security and seamless connectivity between your cloud network and the {{site.konnect_short_name}} environment, you can peer your Cloud Gateway network with your own network in AWS. This integration is facilitated by using AWS's [TransitGateway](https://aws.amazon.com/transit-gateway/) feature, enabling secure network connections across both platforms.
 
 ### What types of data travel between the {{site.konnect_saas}} control plane and the data plane nodes, and how?
 
