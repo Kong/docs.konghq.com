@@ -7,16 +7,17 @@ Dedicated cloud gateways are a type of API gateway in {{site.konnect_short_name}
 
 In just a few steps, you can configure a dedicated cloud gateway using the UI wizard in {{site.konnect_short_name}}. You can manage your dedicated cloud gateways alongside all your other gateways in Gateway Manager.
 
-[Screenshots of the new deployment dashboard]
-
 Dedicated cloud gateways have the following benefits over a typical hybrid gateway:
 
 * **Pre-warm a cluster:** You can pre-warm your cluster by specifying the number of requests per second so that the first requests don’t have to wait for the infrastructure to scale up.
-* **Fast setup:** Configure and start your dedicated cloud gateway in x steps, a regular hybrid gateway takes longer to configure at x steps.  
+* **Fast setup:** Configure and start your dedicated cloud gateway in four steps.  
 * **SOC1 compliant:** Dedicated cloud gateways are SOC1 compliant out-of-the-box.
 * **Kong-managed:** Kong manages the cluster for you, all you need to do is configure a few settings. 
-* **One click upgrades:** {{site.konnect_short_name}} handles upgrades for you. You decide when you want to upgrade and what {{site.base_gateway}} version you want to upgrade to and {{site.konnect_short_name}} does it for you. There's no downtime when upgrading the infrastructure.
+* **One-click upgrades:** {{site.konnect_short_name}} handles upgrades for you. You decide when you want to upgrade and what {{site.base_gateway}} version you want to upgrade to and {{site.konnect_short_name}} does it for you. There's no downtime when upgrading the infrastructure.
 * **Multi-region:** Dedicated cloud gateways are supported on the following AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon.
+
+![cloud gateway dashboard](/assets/images/products/konnect/gateway-manager/konnect-control-plane-cloud-gateway.png)
+> _**Figure 1:** Example of the dedicated cloud gateway dashboard in Gateway Manager. The dashboard displays the total traffic, error rate, and P99 latency. It also displays the top five gateway services and routes by traffic, as well as the plugins and consumers associated with the gateway._
 
 ## Dedicated cloud gateway architecture
 
@@ -26,4 +27,4 @@ Dedicated cloud gateways have the following benefits over a typical hybrid gatew
 
 ## More information
 
-[Link out to other CGW sections]
+[Link out to other CGW sections, currently we don't have those sections drafted, so I don't have anything to link to]

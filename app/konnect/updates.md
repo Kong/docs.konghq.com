@@ -14,7 +14,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **New dedicated cloud gateways**
 : You can now quickly spin up a dedicated AWS cloud gateway in {{site.konnect_short_name}}. With a dedicated cloud infrastructure, you control the sizing and deployment locations of the gateway infrastructure and Kong manages the operations of individual instances and the cluster for you. 
 
-: Dedicated cloud gateways are the fastest way to configure and create a {{site.base_gateway}} in {{site.konnect_short_name}}. All you have to do is specify the security you want to use and pre-warm the cluster while {{site.konnect_short_name}} handles the actual spinning up of the cluster.
+: Dedicated cloud gateways are the fastest way to configure and create a {{site.base_gateway}} in {{site.konnect_short_name}}. All you have to do is specify the security you want to use and pre-warm the cluster while {{site.konnect_short_name}} handles the cluster creation.
 
 : Dedicated cloud gateways also have the following benefits:
 * SOC1 compliant out-of-the-box
@@ -22,6 +22,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 * Supported on the following AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon
 
 : For more information, see [About Cloud Gateways](/konnect/gateway-manager/cloud-gateway/).
+
+: ![cloud gateway dashboard](/assets/images/products/konnect/gateway-manager/konnect-control-plane-cloud-gateway.png)
+: > _**Figure 1:** Example of the dedicated cloud gateway dashboard in Gateway Manager. The dashboard displays the total traffic, error rate, and P99 latency. It also displays the top five gateway services and routes by traffic, as well as the plugins and consumers associated with the gateway._
 
 ## March 2024
 
