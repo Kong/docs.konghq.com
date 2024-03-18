@@ -5,7 +5,7 @@ content_type: how-to
 
 Kong is distributed as prebuilt {% if_version lte:3.3.x %}`apk`, {% endif_version %}`deb` and `rpm` packages, in addition to official Docker images hosted on [DockerHub](https://hub.docker.com/r/kong)
 
-Kong builds and verifies [Debian](#dockerhub-debian-link-here) and [RHEL](#dockerhub-rhel-link-here) images for use in production. {% if_version lte:3.3.x %}[Alpine](#dockerhub-alpine-link-here) images are provided for **development purposes only** as they contain development tooling such as `git` for plugin development purposes.{% endif_version %}
+Kong builds and verifies [Debian](#dockerhub-debian-link-here) and [RHEL](#dockerhub-rhel-link-here) images for use in production. {% if_version lte:3.3.x %}[Alpine](#dockerhub-alpine-link-here) images are provided for **development purposes only** as they contain development tooling such as `git` for plugin development purposes.{%- endif_version %}
 
 The Debian and RHEL images are built with minimal dependencies (as of {{ site.base_gateway }} 3.0) and run through automated security scanners before being published. Any vulnerabilities detected in supported images will be addressed in the next available patch release.
 
@@ -18,25 +18,25 @@ chmod +x docker-entrypoint.sh
 
 1. Download the {{site.base_gateway}} package:
     * **Debian**: [.deb]({{ site.links.direct }}/gateway-{{ page.major_minor_version }}/deb/debian/pool/bullseye/main/k/ko/kong-enterprise-edition_{{page.versions.ee}}/kong-enterprise-edition_{{page.versions.ee}}_amd64.deb).
-    {% if_version lte:3.0.x %}
+    {% if_version lte:3.0.x -%}
     * **Ubuntu**: [.deb]({{ site.links.direct }}/gateway-{{ page.major_minor_version }}/deb/ubuntu/pool/focal/main/k/ko/kong-enterprise-edition_{{page.versions.ee}}/kong-enterprise-edition_{{page.versions.ee}}_amd64.deb).
-    {% endif_version %}
-    {% if_version gte:3.1.x %}
+    {% endif_version -%}
+    {% if_version gte:3.1.x -%}
     * **Ubuntu**: [.deb]({{ site.links.direct }}/gateway-{{ page.major_minor_version }}/deb/ubuntu/pool/jammy/main/k/ko/kong-enterprise-edition_{{page.versions.ee}}/kong-enterprise-edition_{{page.versions.ee}}_amd64.deb).
-    {% endif_version %}
-    {% comment %}
+    {% endif_version -%}
+    {%- comment -%}
     not all of the older alpine "packages" met Cloudsmith's definition for what an alpine package must be
     so some are uploaded there as "raw" artifacts instead and must be linked to differently
     this page doesn't exist for lte:2.8.x
-    {% endcomment %}
-    {% if_version lte:3.3.x %}
-    {% if_version eq:3.0.x %}
+    {%- endcomment -%}
+    {% if_version lte:3.3.x -%}
+    {% if_version eq:3.0.x -%}
     * **Alpine**: [.apk.tar.gz]({{ site.links.direct }}/gateway-{{ page.major_minor_version }}/raw/names/kong-enterprise-edition-x86_64/versions/{{page.versions.ee}}/kong-enterprise-edition-{{page.versions.ee}}.x86_64.apk.tar.gz)
-    {% endif_version %}
-    {% if_version gte:3.1.x %}
+    {% endif_version -%}
+    {% if_version gte:3.1.x -%}
     * **Alpine**: [.apk]({{ site.links.direct }}/gateway-{{ page.major_minor_version }}/alpine/any-version/main/x86_64/kong-enterprise-edition-{{page.versions.ee}}.apk)
-    {% endif_version %}
-    {% endif_version %}
+    {% endif_version -%}
+    {% endif_version -%}
     * **RHEL**:[ .rpm]({{ site.links.direct }}/gateway-{{ page.major_minor_version }}/rpm/el/8/x86_64/kong-enterprise-edition-{{page.versions.ee}}.el8.x86_64.rpm)
 
 1. Create a `Dockerfile`, ensuring you replace the filename by the first `COPY` with the name of the {{site.base_gateway}} file you downloaded in step 2:

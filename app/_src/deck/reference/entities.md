@@ -26,14 +26,12 @@ Workspaces | <i class="fa fa-check"></i> <sup>2</sup>
 RBAC: roles and endpoint permissions | <i class="fa fa-check"></i>
 RBAC: groups and admins | <i class="fa fa-times"></i>
 Developers | <i class="fa fa-times"></i>
-
-{% if_version lte:1.16.x inline:true %}
+{% if_version lte:1.16.x -%}
 Consumer groups | <i class="fa fa-times"></i>
-{% endif_version %}
-{% if_version gte:1.17.x inline:true %}
+{% endif_version -%}
+{% if_version gte:1.17.x -%}
 Consumer groups | <i class="fa fa-check"></i>
-{% endif_version %}
-
+{% endif_version -%}
 Event hooks | <i class="fa fa-times"></i>
 Keyring and data encryption | <i class="fa fa-times"></i>
 

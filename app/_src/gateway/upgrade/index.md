@@ -27,7 +27,7 @@ A {{site.base_gateway}} upgrade requires two phases of work: preparing for the u
 1. Review version compatibility between your platform version and the version of {{site.kong_gateway}} that you are upgrading to:
     * [OS version](/gateway/{{page.release}}/support-policy/#supported-versions)
     * [Kubernetes version and Helm prerequisites](/kubernetes-ingress-controller/latest/support-policy/)
-    {% if_version gte:3.2.x %}
+    {% if_version gte:3.2.x -%}
     * [Database version](/gateway/{{page.release}}/support/third-party/)
     * [Dependency versions](/gateway/{{page.release}}/support/third-party/)
     {% endif_version %}
@@ -230,6 +230,7 @@ The following table outlines various upgrade path scenarios to {{page.release}} 
 
 {% endif_version %}
 
+
 ## Preparation: Choose a backup strategy
 
 {% include_cached /md/gateway/upgrade-backup.md release=page.release %}
@@ -321,7 +322,7 @@ Factors may include, but are not limited to:
   * [OS version](/gateway/{{page.release}}/support-policy/#supported-versions)
   * [Kubernetes version and Helm prerequisites](/kubernetes-ingress-controller/latest/support-policy/)
   * [Hardware resources](/gateway/{{page.release}}/production/sizing-guidelines/)
-  {% if_version gte:3.2.x %}
+  {% if_version gte:3.2.x -%}
   * [Database version](/gateway/{{page.release}}/support/third-party/)
   * [Dependency versions](/gateway/{{page.release}}/support/third-party/)
   {% endif_version %}
@@ -340,7 +341,7 @@ Factors may include, but are not limited to:
 Refer to [Nginx Directives](/gateway/{{page.release}}/reference/nginx-directives/) for a detailed customization guide.
 * If you're using {{site.ee_product_name}}, make sure to [apply the enterprise license](/gateway/{{page.release}}/licenses/deploy/) to the new Gateway cluster.
 * Always remember to take a [backup](/gateway/{{page.release}}/upgrade/backup-and-restore/).
-{% if_version gte:3.4.x %}
+{% if_version gte:3.4.x -%}
 * Cassandra DB support has been removed from {{site.base_gateway}} with 3.4.0.0.
 Migrate to PostgreSQL according to the [Cassandra to PostgreSQL Migration Guidelines](/gateway/{{page.release}}/migrate-cassandra-to-postgres/).
 {% endif_version %}

@@ -70,14 +70,14 @@ the {{site.kic_product_name}}:
     This guide gives an overview of how to use UDPIngress/UDPRoute resources to expose
     non-HTTP-based services outside a Kubernetes cluster.
   - [Exposing gRPC-based service](/kubernetes-ingress-controller/{{page.release}}/guides/using-ingress-with-grpc)
-    {%- if_version lte:2.8.x -%}
+    {% if_version lte:2.8.x -%}
     This guide gives an overview of how to use Ingress resources to expose
     gRPC-based services outside a Kubernetes cluster.
     {%- endif_version -%}
     {%- if_version gte:2.9.x -%}
     This guide gives an overview of how to use Ingress/GRPCRoute resources to expose
     gRPC-based services outside a Kubernetes cluster.
-    {%- endif_version -%}
+    {%- endif_version %}
 - [Using mtls-auth plugin](/kubernetes-ingress-controller/{{page.release}}/guides/using-mtls-auth-plugin)
   This guide gives an overview of how to use `mtls-auth` plugin and CA
   certificates to authenticate requests using client certificates.
@@ -85,7 +85,7 @@ the {{site.kic_product_name}}:
   This guide walks through steps necessary to set up OIDC authentication.
 - [Allow Multiple Authentication Plugins](/kubernetes-ingress-controller/{{page.release}}/guides/allowing-multiple-authentication-methods)
   This guide walks through the steps for configuring multiple authentication options for consumers.
-{% if_version gte:2.9.x %}
+{% if_version gte:2.9.x -%}
 - [Using Gateway Discovery](/kubernetes-ingress-controller/{{page.release}}/guides/using-gateway-discovery)
   This guide walks through the steps for configuring {{site.base_gateway}} and
   {{site.kic_product_name}} in separate deployments with KIC being able to

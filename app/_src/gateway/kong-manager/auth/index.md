@@ -38,10 +38,10 @@ However, if you configure Kong Manager to use [OIDC authentication](/gateway/{{p
 The **Sessions plugin** (configured with `admin_gui_session_conf`) requires a secret and is configured securely by default.
 * Under all circumstances, the `secret` must be manually set to a string.
 * If using HTTP instead of HTTPS, `cookie_secure` must be manually set to `false`.
-{% if_version lte:3.1.x %}
+{% if_version lte:3.1.x -%}
 * If using different domains for the Admin API and Kong Manager, `cookie_samesite` must be set to `off`.
-{% endif_version %}
-{% if_version gte:3.2.x %}
+{% endif_version -%}
+{% if_version gte:3.2.x -%}
 * If using different domains for the Admin API and Kong Manager, `cookie_same_site` must be set to `Lax`.
 {% endif_version %}
 

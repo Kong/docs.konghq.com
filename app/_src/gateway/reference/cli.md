@@ -373,8 +373,7 @@ Options:
  --run-migrations (optional boolean)  optionally run migrations on the DB
  --db-timeout     (default 60)
  --lock-timeout   (default 60)
-
-{% if_version gte:3.3.x %}
+{% if_version gte:3.3.x -%}
  --nginx-conf-flags        (optional string)   flags that can be used to control
                                                how Nginx configuration templates are rendered
 {% endif_version %}
@@ -423,9 +422,8 @@ Options:
  --lock-timeout   (default 60)        When --run-migrations is enabled, timeout,
                                       in seconds, for nodes waiting on the
                                       leader node to finish running migrations.
-```
-```
-{% if_version gte:3.5.x %}
+                                      
+{% if_version gte:3.5.x -%}
  --nginx-conf-flags        (optional string)   Flags that can be used to control
                                                how Nginx configuration templates are rendered
 {% endif_version %}

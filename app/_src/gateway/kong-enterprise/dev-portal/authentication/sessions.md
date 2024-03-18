@@ -52,20 +52,20 @@ portal_session_conf = {
   manually set for use with the Dev Portal since it must be the same across all
   Kong workers/nodes.
 * `"storage":"kong"`: Where session data is stored. This value _must_ be set to `kong` for use with the Dev Portal.
-{% if_version lte:3.1.x %}
+{% if_version lte:3.1.x -%}
 * `"cookie_lifetime":<NUMBER_OF_SECONDS_TO_LIVE>`: The duration (in seconds) that the session will remain open; 3600 by default.
-{% endif_version %}
-{% if_version gte:3.2.x %}
+{% endif_version -%}
+{% if_version gte:3.2.x -%}
 * `"rolling_timeout":<NUMBER_OF_SECONDS_UNTIL_RENEWAL>`: Specifies, in seconds, how long the session can be used until it needs to be renewed. 3600 by default.
-{% endif_version %}
+{% endif_version -%}
 * `"cookie_secure":<SET_DEPENDING_ON_PROTOCOL>`: `true` by default. See [Session Security](#session-security) for
     exceptions.
 * `"cookie_domain":<SET_DEPENDING_ON_DOMAIN>:` Optional. See [Session Security](#session-security) for exceptions.
-{% if_version lte:3.1.x %}
+{% if_version lte:3.1.x -%}
 * `"cookie_samesite":"<SET_DEPENDING_ON_DOMAIN>"`: `"Strict"` by default. See [Session Security](#session-security) for
     exceptions.
-{% endif_version %}
-{% if_version gte:3.2.x %}
+{% endif_version -%}
+{% if_version gte:3.2.x -%}
 * `"cookie_same_site":"<SET_DEPENDING_ON_DOMAIN>"`: `"Strict"` by default. See [Session Security](#session-security) for
     exceptions.
 {% endif_version %}
