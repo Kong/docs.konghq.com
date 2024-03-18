@@ -488,13 +488,13 @@ plugin development and best practices.
 
 1. **Make `my-plugin` configurable**
 
-    Plugins are not typically as simplistic as our current example. You will likley wish
+    Plugins are not typically as simplistic as our current example. You will likely wish
     to control the behavior of your plugin using configurable values. 
     Let's add some configuration fields to our `schema.lua` file allowing us to 
     make the plugin behavior configurable without having to redeploy or restart.
 
     {{site.base_gateway}} provides a module of 
-    base [type defintions](https://github.com/Kong/kong/blob/master/kong/db/schema/typedefs.lua) that can
+    base [type definitions](https://github.com/Kong/kong/blob/master/kong/db/schema/typedefs.lua) that can
     help us with common types related to API gateway plugins. 
 
     At the top of the `schema.lua` file we include the {{site.base_gateway}} 
@@ -662,21 +662,18 @@ plugin development and best practices.
     curl -is -X POST http://localhost:8001/services/example_service/plugins \
         --data 'name=my-plugin' --data 'config.response_header_name=X-CustomHeaderName'
     ```
-
-1. **Packaging and deploying `my-plugin`**
    
-    Now that we have a functioning plugin and tests that validate its behavior, how can we deploy the plugin
-    to our actual {{site.base_gateway}} systems?
+Now that we have a functioning plugin and tests that validate its behavior, how can we deploy the plugin
+to our actual {{site.base_gateway}} systems?
 
-    This guide will not go through the individual steps to package and deploy your new plugin. See the
-    [documention guide](/gateway/{{page.release}}/plugin-development/distribution/) for intalling your 
-    plugin for the detailed steps. 
-
+This guide will not go through the individual steps to package and deploy your new plugin. See the
+[documentation guide](/gateway/{{page.release}}/plugin-development/distribution/) on installation 
+for the detailed steps. 
 
 Custom plugins are a powerful feature of {{site.base_gateway}}, however, prior to investing in building
 your own plugin consider evaluating the available plugins in the [{{site.base_gateway}} Plugin Hub](/hub/).
 Many common customizations can be achieved using [transformation plugins](/hub/?category=transformations), 
-[AI plugins](https://docs.konghq.com/hub/?category=ai), or one of the other categories of behavior provided
+[AI plugins](/hub/?category=ai), or one of the other categories of behavior provided
 by Kong supported or community provided plugins.
 
 See the following chapters in this section for many more details related to plugin development.
