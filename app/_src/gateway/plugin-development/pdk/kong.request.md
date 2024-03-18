@@ -647,10 +647,8 @@ Returns the plain request body.
 * `string`:  The plain request body.
 {% endif_version %}
 {% if_version gte:3.5.x %}
-
 1.  `string|nil`:  The plain request body or nil if it does not fit into
  the NGINX temporary buffer.
-
 1.  `nil|string`:  An error message.
 {% endif_version %}
 

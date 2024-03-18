@@ -94,10 +94,10 @@ directives.
 
 The following properties must be altered depending on the protocol and domains in use:
 * If using HTTP instead of HTTPS: `"cookie_secure": false`
-{% if_version lte:3.1.x %}
+{% if_version lte:3.1.x -%}
 * If using different domains for the Admin API and Kong Manager: `"cookie_samesite": "off"`
-{% endif_version %}
-{% if_version gte:3.2.x %}
+{% endif_version -%}
+{% if_version gte:3.2.x -%}
 * If using different domains for the Admin API and Kong Manager: `"cookie_same_site": "Lax"`
 {% endif_version %}
 

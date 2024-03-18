@@ -13,15 +13,15 @@ Here are some of the things you can do with Kong Manager:
 * Create new routes and services
 * Activate or deactivate plugins
 * Group your teams, services, plugins, consumer management, and everything else exactly how you want them
-{% if_version lte:3.4.x %}
+{% if_version lte:3.4.x -%}
 * Manage users and roles for both {{site.base_gateway}} and for the Dev Portal
 * Configure Dev Portals: customize appearance, manage developers and applications, and edit Dev Portal layouts, specs, and documentation
 * Monitor performance: visualize cluster-wide, workspace-level, or even object-level health using intuitive, customizable dashboards
-{% endif_version %}
-{% if_version gte:3.5.x %}
+{% endif_version -%}
+{% if_version gte:3.5.x -%}
 * Manage users and roles for {{site.base_gateway}}
-{% endif_version %}
-{% if_version gte:3.2.x %}
+{% endif_version -%}
+{% if_version gte:3.2.x -%}
 * Centrally store and easily access key sets and keys. 
 {% endif_version %}
 
@@ -78,19 +78,23 @@ Item | Description
 {% endif_version %}
 {% if_version lte:3.4.x %}
 
-Number | Item | Description
+| Number | Item | Description |
 -------|------|------------
-6 | **Change workspace** | Shortcut to quickly change between workspaces.
-7 | **API Gateway** | Manage the {{site.base_gateway}} entities in the current workspace.
-8 | **Dev Portal** | Workspace-specific Dev Portal configuration. If you enable Dev Portal for the current workspace, the menu will have additional items: <br> &nbsp;&nbsp;&bull; Settings: General settings for the Dev Portal instance in this workspace <br> &nbsp;&nbsp;&bull; Appearance: Customize your Dev Portal colors, fonts, and branding <br> &nbsp;&nbsp;&bull; Developers: Manage developer requests and access <br> &nbsp;&nbsp;&bull; Applications: Manage application requests and access <br> &nbsp;&nbsp;&bull; Permissions: Manage roles and content permissions <br> &nbsp;&nbsp;&bull; Editor: Access the Dev Portal files editor to configure layouts, documentation, and specs
-9 | **Vitals** | Monitor requests by access code for all services in the workspace.
+| 6 | **Change workspace** | Shortcut to quickly change between workspaces. |
+| 7 | **API Gateway** | Manage the {{site.base_gateway}} entities in the current workspace. |
+| 8 | **Dev Portal** | Workspace-specific Dev Portal configuration. If you enable Dev Portal for the current workspace, the menu will have additional items: <br> &nbsp;&nbsp;&bull; Settings: General settings for the Dev Portal instance in this workspace <br> &nbsp;&nbsp;&bull; Appearance: Customize your Dev Portal colors, fonts, and branding <br> &nbsp;&nbsp;&bull; Developers: Manage developer requests and access <br> &nbsp;&nbsp;&bull; Applications: Manage application requests and access <br> &nbsp;&nbsp;&bull; Permissions: Manage roles and content permissions <br> &nbsp;&nbsp;&bull; Editor: Access the Dev Portal files editor to configure layouts, documentation, and specs |
+| 9 | **Vitals** | Monitor requests by access code for all services in the workspace. |
+
 {% if_version gte:3.1.x %}
-10 | **Vaults** | Manage secret vaults in your environment.
+| 10 | **Vaults** | Manage secret vaults in your environment. |
 {% endif_version %}
+
 {% if_version gte:3.2.x %}
-11 | **Keys** | Centrally store and easily access key sets and keys.
+| 11 | **Keys** | Centrally store and easily access key sets and keys. |
 {% endif_version %}
+
 {% endif_version %}
+
 {% if_version lte:3.4.x %}
 ### Workspace dashboard
 

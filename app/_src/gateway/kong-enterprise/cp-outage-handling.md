@@ -29,12 +29,7 @@ If associating with an IAM role and if the backup node does not reside on the AW
 
 {:.important}
 > We do not recommend using backup nodes to proxy traffic. The backup job enlarges the attack surface of a proxying DP and contributes significantly to the P99 delay. You need to know the risk if you want to deploy a node this way, 
-{% if_version lte:3.5.x %}
-and a DP acting as a backup node cannot be provisioned with backup configurations.
-{% endif_version %}
-{% if_version gte:3.6.x %}
-and the DP needs to be at least `3.6.0.0` to be provisioned with backup configuration when it's configured as a backup node. 
-
+{% if_version lte:3.5.x %} and a DP acting as a backup node cannot be provisioned with backup configurations.{% endif_version %}{% if_version gte:3.6.x %}and the DP needs to be at least `3.6.0.0` to be provisioned with backup configuration when it's configured as a backup node. 
 Although a single backup node is sufficient for all deployments, you can also configure additional backup nodes. A leader election algorithm selects one node from the group of designated backup nodes to do the backup job.
 {% endif_version %}
 
