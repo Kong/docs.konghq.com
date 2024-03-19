@@ -2,6 +2,100 @@
 
 <!--vale off-->
 
+## Week 11
+
+### [fix if blocks for license part in KGO](https://github.com/Kong/docs.konghq.com/pull/7073) (2024-03-13)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+Fix `{if}` block to introduce licenses when `enterprise` is enabled in the page to introduce prerequisite of installing KGO.
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/1.0.x/get-started/kic/install/
+- https://docs.konghq.com/gateway-operator/1.1.x/get-started/kic/install/
+- https://docs.konghq.com/gateway-operator/1.2.x/get-started/kic/install/
+
+
+### [Fix: Update `get-admins` endpoint description](https://github.com/Kong/docs.konghq.com/pull/7064) (2024-03-12)
+
+Update Admin API's `get-admins` endpoint description.
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/admin-api/admins/reference
+- https://docs.konghq.com/gateway/3.1.x/admin-api/admins/reference
+- https://docs.konghq.com/gateway/3.2.x/admin-api/admins/reference
+- https://docs.konghq.com/gateway/3.3.x/admin-api/admins/reference
+- https://docs.konghq.com/gateway/3.4.x/admin-api/admins/reference
+
+
+### [kgo: guides for workloads latency based autoscaling](https://github.com/Kong/docs.konghq.com/pull/7048) (2024-03-12)
+
+- Add `DataPlaneMetricsExtension` CRD and update CRD reference
+- Add `Horizontally autoscale workloads` guide
+
+### Related issue
+
+Part of https://github.com/Kong/gateway-operator-enterprise/issues/71
+
+Milestone: KGO 1.2 https://github.com/Kong/gateway-operator-enterprise/milestone/1
+
+#### Added
+
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/autoscaling-workloads/datadog/
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/autoscaling-workloads/overview/
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/autoscaling-workloads/prometheus/
+- https://docs.konghq.com/gateway-operator/1.2.x/license/
+- https://docs.konghq.com/assets/gateway-operator/v1.2.0/all_controllers.yaml
+- https://docs.konghq.com/assets/gateway-operator/v1.2.0/crds.yaml
+- https://docs.konghq.com/assets/gateway-operator/v1.2.0/default.yaml
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/1.0.x/get-started/kic/install/
+- https://docs.konghq.com/gateway-operator/1.1.x/get-started/kic/install/
+- https://docs.konghq.com/gateway-operator/1.2.x/get-started/kic/install/
+
+
+### [KGO managed gateways](https://github.com/Kong/docs.konghq.com/pull/7044) (2024-03-14)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Added
+
+- https://docs.konghq.com/gateway-operator/1.2.x/concepts/managed-gateways
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/1.0.x/concepts/gateway-configuration
+- https://docs.konghq.com/gateway-operator/1.1.x/concepts/gateway-configuration
+- https://docs.konghq.com/gateway-operator/1.2.x/concepts/gateway-configuration
+- https://docs.konghq.com/gateway-operator/1.0.x/customization/data-plane-image/
+- https://docs.konghq.com/gateway-operator/1.1.x/customization/data-plane-image/
+- https://docs.konghq.com/gateway-operator/1.2.x/customization/data-plane-image/
+- https://docs.konghq.com/gateway-operator/1.0.x/get-started/kic/create-gateway/
+- https://docs.konghq.com/gateway-operator/1.1.x/get-started/kic/create-gateway/
+- https://docs.konghq.com/gateway-operator/1.2.x/get-started/kic/create-gateway/
+- https://docs.konghq.com/gateway-operator/1.0.x/get-started/kic/create-route/
+- https://docs.konghq.com/gateway-operator/1.1.x/get-started/kic/create-route/
+- https://docs.konghq.com/gateway-operator/1.2.x/get-started/kic/create-route/
+- https://docs.konghq.com/gateway-operator/1.0.x/get-started/kic/install/
+- https://docs.konghq.com/gateway-operator/1.1.x/get-started/kic/install/
+- https://docs.konghq.com/gateway-operator/1.2.x/get-started/kic/install/
+- https://docs.konghq.com/gateway-operator/1.0.x/get-started/konnect/create-route/
+- https://docs.konghq.com/gateway-operator/1.1.x/get-started/konnect/create-route/
+- https://docs.konghq.com/gateway-operator/1.2.x/get-started/konnect/create-route/
+- https://docs.konghq.com/gateway-operator/1.0.x/guides/upgrade/data-plane/rolling/
+- https://docs.konghq.com/gateway-operator/1.1.x/guides/upgrade/data-plane/rolling/
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/upgrade/data-plane/rolling/
+
 ## Week 10
 
 ### [Feat: Topology diagrams for gateway docs](https://github.com/Kong/docs.konghq.com/pull/7059) (2024-03-08)
