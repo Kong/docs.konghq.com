@@ -188,8 +188,24 @@ Most commonly, you will use the commands from CI/CD tools built into your versio
 to bring full and partial {{site.base_gateway}} configurations together to create APIOps for your 
 particular needs.
 
+## Extending OpenAPI Specifications
+Several custom annotations can be leveraged in OpenAPI specifications that will allow for an even more seamless conversion from standard definition to Kong Gateway configuration. All custom annotations related to Kong Gateway configuration are prepended with ```x-kong-``` label.
+
+- ```x-kong-tags```: specify the tags to use for each Kong entity generated. The tags can be overridden when doing the conversion. This can only be specified on document level.
+- ```x-kong-service-defaults```: the defaults for the [Kong services](https://docs.konghq.com/gateway/latest/admin-api/#service-object) generated from 'servers' object in the OpenAPI spec. These defaults can also be added to "path" and "operation" objects, in which case a new Service entity will be generated.
+- ```x-kong-upstream-defaults```: the defaults for the [Kong upstream](https://docs.konghq.com/gateway/latest/admin-api/#upstream-object) (loadbalancers) generated from 'servers' object in the OpenAPI spec. These defaults can also be added to "path" and "operation" objects, in which case a new Service and Upstream entity will be generated.
+- ```x-kong-route-defaults```: the defaults for the [Kong routes](https://docs.konghq.com/gateway/latest/admin-api/#route-object) generated from 'paths' in the OpenAPI spec.
+- ```x-kong-name```: the above directive gives the entire spec file its name. This will be used for naming the service and upstream objects in Kong. If not given it will use the 'info.title' field above to name them, or a random UUID if the 'info.title' field is missing. Names are converted into valid identifiers. This directive can also be used on "path" and "operation" objects to name them. Similar to operationId, each x-kong-name must be unique within the spec file.
+- ```x-kong-plugin-{Kong plugin name}```: Directive to add a plugin. The plugin name is derived from the extension name and is a generic mechanism that can add any type of plugin. This plugin is configured on a global level for the OpenAPI spec. As such it will be configured on the Kong Service entity, and hence apply on all paths and operations in this spec. It can be specified again on paths and operations to override the config for that specific subset of the spec, in that case it will be added to the generated Kong Route entity. If new Service entities are generated from "path" or "operation" objects, the plugins will be copied over accordingly (for example by having "servers" objects, or Upstream or Service defaults specified on those levels). A consumer can be referenced by setting the "consumer" field to the consumer name or id. Note: since the plugin name is in the key, only 1 instance of each plugin can be added on each level.
+- ```securitySchemes.[...].x-kong-security-openid-connect```: specifies that the Kong OpenID Connect plugin is to be used to implement this "security scheme object". Any custom configuration can be added as usual for plugins.
+- ```components.x-kong```: reusable Kong configuration components. All Kong references must be under this key. Referenceable elements are:
+  - ```x-kong-service-defaults```
+  - ```x-kong-upstream-defaults```
+  - ```x-kong-route-defaults```
+  - ```x-kong-plugin-[...] plugin configurations```
+  - ```x-kong-security-[...] plugin configurations```
+
 ## More information
 
 See the example file at [Kong/go-apiops](https://github.com/Kong/go-apiops/blob/main/docs/learnservice_oas.yaml)
-for extensive annotations explaining the conversion process, as well as all supported custom 
-annotations (`x-kong-...` directives).
+that showcases examples of the extensive annotations (`x-kong-...` directives), as well as explaining the conversion process.
