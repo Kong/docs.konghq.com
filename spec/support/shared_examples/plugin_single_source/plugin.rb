@@ -21,10 +21,6 @@ RSpec.shared_examples 'a Plugin' do
     it { expect(subject).to respond_to(:create_pages) }
   end
 
-  describe '#sources' do
-    it { expect(subject).to respond_to(:sources) }
-  end
-
   describe '#releases' do
     it { expect(subject).to respond_to(:releases) }
   end

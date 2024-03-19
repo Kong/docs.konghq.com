@@ -49,15 +49,6 @@ items:
             url: /get-started/kic/create-gateway/
           - text: Create a Route
             url: /get-started/kic/create-route/
-  - title: Customization
-    icon: /assets/images/icons/documentation/icn-solution-guide.svg
-    items:
-      - text: Set data plane image
-        url: /customization/data-plane-image/
-      - text: Deploying Sidecars
-        url: /customization/sidecars/
-      - text: Customizing PodTemplateSpec
-        url: /customization/pod-template-spec/
   - title: Production Deployment
     icon: /assets/images/icons/icn-server.svg
     items:
@@ -69,12 +60,23 @@ items:
         url: /production/monitoring/
       - text: Upgrade Gateway Operator
         url: /production/upgrade/gateway-operator/
+  - title: Guides
+    icon: /assets/images/icons/documentation/icn-solution-guide.svg
+    items:
+      - text: Customization
+        items:
+          - text: Set data plane image
+            url: /customization/data-plane-image/
+          - text: Deploying Sidecars
+            url: /customization/sidecars/
+          - text: Customizing PodTemplateSpec
+            url: /customization/pod-template-spec/
       - text: Upgrading Data Planes
         items:
           - text: Rolling Deployment
-            url: /production/upgrade/data-plane/rolling/
+            url: /guides/upgrade/data-plane/rolling/
           - text: Blue / Green Deployment
-            url: /production/upgrade/data-plane/blue-green/
+            url: /guides/upgrade/data-plane/blue-green/
   - title: Reference
     icon: /assets/images/icons/icn-magnifying-glass.svg
     items:

@@ -76,9 +76,10 @@ kind: Secret
 apiVersion: v1
 metadata:
   name: alice-key
+  labels:
+    konghq.com/credential: key-auth
 stringData:
   key: bylkogdatomoryakom
-  kongCredType: key-auth
 
 ---
 

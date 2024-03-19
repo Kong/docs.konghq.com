@@ -39,6 +39,22 @@ overrides:
   2.7.x: 0.12.x
 ```
 
+## Version-specific plugin pages
+
+Content within a page can be conditionally rendered using `if_plugin_version`.
+Adding specific pages to a range of versions is also supported by including
+`minimum_version` and/or `maximum_version` in the frontmatter the of the page.
+
+```yaml
+---
+title: Page for a specific version range
+minimum_version: 3.6.x
+---
+```
+
+If a page has one of these set in frontmatter, it gets generated for that version range.
+Otherwise, it defaults to the setting for the whole plugin, which is specified in `versions.yml`
+
 ## Open source and enterprise discrepancies
 
 In some cases, the version of a plugin is different between the Community Edition (OSS) and Enterprise Edition. 
@@ -54,9 +70,6 @@ replacements:
   2.3.x:
     - 2.3.x-CE
     - 2.3.x-EE
-sources:
-  2.2.x-CE: _1.0
-  2.2.x: _1.0
 overrides:
   2.4.x: 2.0.x
   2.3.x-EE: 2.0.x
@@ -64,7 +77,7 @@ overrides:
   2.2.x: 1.0.x
 ```
 
-`2.3.x-EE` and `2.4.x` both use plugin version `2.0.x` and the default `_index` source file. `2.3.x-CE` and `2.2.x` use plugin version `1.0.x` and the `_1.0` source file.
+`2.3.x-EE` and `2.4.x` both use plugin version `2.0.x` and the default `_index` source file. `2.3.x-CE` and `2.2.x` use plugin version `1.0.x`.
 
 If you want to use `releases` but have one or two versions that you need to override, you can use `replacements`:
 
@@ -76,8 +89,6 @@ replacements:
   2.3.x:
     - 2.3.x-CE
     - 2.3.x-EE
-sources:
-  2.3.x-CE: _foo
 overrides:
   2.3.x-EE: 2.0.x
   2.3.x-CE: 1.0.x

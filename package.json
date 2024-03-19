@@ -55,7 +55,7 @@
     "@kong-ui-public/spec-renderer": "^0.13.0",
     "@kong/kongponents": "^8.119.0",
     "@kong/sdk-portal-js": "^2.0.0",
-    "@segment/analytics-next": "1.64.0",
+    "@segment/analytics-next": "1.66.0",
     "algoliasearch": "^4.20.0",
     "instantsearch.css": "^8.1.0",
     "jquery": "3.7.1",

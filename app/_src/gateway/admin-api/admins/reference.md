@@ -36,6 +36,8 @@ HTTP 200 OK
 }
 ```
 
+To query all admins, add a parameter `all_workspaces=true` to the `/admins` endpoint.
+
 The `status` field in the response indicates if the admin has accepted their invitation:
 
 | Code | Status     |

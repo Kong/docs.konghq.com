@@ -16,7 +16,21 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ![Konnect-error-log](/assets/images/products/konnect/changelog/konnect-error-log.png)
 
+**New Analytics Explorer page**
+: You can now explore and visualize analytics data via an easy to use, point-and-click web interface. The [Explorer page](https://cloud.konghq.com/analytics/explorer) allows you to drill-down into data and easily discover how issues may impact your business. For more information, see the [Explorer overview](/konnect/analytics/explorer/).
+
+**Improved Analytics summary dashboard**
+: A new version of the Analytics summary dashboard is now available for all {{site.konnect_short_name}} users. This new version displays all analytics information on one page, which allows you to focus on your most critical API usage data.
+
+: ![analytics summary dashboard](/assets/images/products/konnect/changelog/konnect-analytics-summary-dashboard.png)
+: > _**Figure 1:** Example of the improved Analytics summary dashboard that displays total traffic, error rate, P99 latency, total traffic over time, latency breakdown over time, and Kong vs upstream latency over time._
+
+
 ## February 2024
+
+
+**Download button added the documents UI**
+: You can now click the **Download** button to download the markdown file currently being viewed from the documents UI.
 
 **Additional plugin support for consumer groups**
 : Along with {{site.base_gateway}} 3.6 support in {{site.konnect_short_name}}, additional plugins are now supported for consumer groups.
@@ -27,13 +41,11 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 * [Proxy Cache](/hub/kong-inc/proxy-cache/)
 * [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/)
 
-## February 2024
-
-
 **Konnect API Products**
 : Konnect now supports reusable auth strategies that can be applied to one or more API product versions. Konnect now also supports multiple DCR providers for portal applications. Users can now create separate DCR providers with various Identity Providers and apply them selectively to API Product Versions while still using non-DCR auth strategies for other API product versions. For more information, see [Enable app registration with multiple IdPs](/konnect/dev-portal/applications/enable-app-reg/#enable-app-registration-with-multiple-idps)
 
 : If you previously configured application registration, you will see your auth configs saved in a new sidebar section under **Dev Portal** called **Application Auth**.
+
 
 **Enhanced onboarding wizard**
 : {{site.konnect_short_name}} users can now experience an enhanced onboarding wizard when they sign up for a new {{site.konnect_short_name}} organization. After signing up, you can optionally use the wizard to test a popular {{site.konnect_short_name}} use case: key authentication or rate limiting. This experience starts with a local, Docker-based gateway setup, automatically configures Gateway Manager entities against demo endpoints, and then guides you through a basic workflow that tests gateway functionality.
@@ -45,7 +57,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : You can now export configuration of core Gateway Manager objects, like services, routes, and plugins, to YAML or JSON. This allows you to import the file to APIOps tooling, like decK. For more information, see [Manage Control Plane Configuration with decK](/konnect/gateway-manager/declarative-config/).
 
 ![Konnect-config-export](/assets/images/products/konnect/gateway-manager/konnect-config-export.png)
-
 
 ## January 2024
 

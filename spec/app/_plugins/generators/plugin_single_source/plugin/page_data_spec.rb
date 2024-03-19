@@ -4,7 +4,7 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
     PluginSingleSource::Plugin::Base.make_for(dir: plugin_name, site:)
   end
   let(:release) do
-    PluginSingleSource::Plugin::Release.new(site:, version:, plugin:, is_latest:, source:)
+    PluginSingleSource::Plugin::Release.new(site:, version:, plugin:, is_latest:)
   end
 
   subject { described_class.generate(release:) }
@@ -25,7 +25,6 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
     context 'when it is the latest version of the plugin' do
       let(:is_latest) { true }
       let(:version) { '2.8.x' }
-      let(:source) { '_index' }
 
       it 'includes the attributes defined in the frontmatter' do
         expect(subject).to include(
@@ -54,7 +53,7 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
 
       it 'includes the attributes defined in _metadata.yml' do
         expect(subject)
-          .to include(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_metadata.yml', site.source))))
+          .to include(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_metadata/_index.yml', site.source))))
       end
 
       it_behaves_like 'includes the hub_examples'
@@ -66,8 +65,7 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
 
     context 'when it is not the latest version of the plugin' do
       let(:is_latest) { false }
-      let(:version) { '2.5.x' }
-      let(:source) { '_2.6.x' }
+      let(:version) { '2.6.x' }
 
       it 'includes the attributes defined in the frontmatter' do
         expect(subject).to include(
@@ -87,16 +85,16 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
           'version' => version,
           'extn_slug' => 'jwt-signer',
           'extn_publisher' => 'kong-inc',
-          'extn_release' => '2.5.x',
+          'extn_release' => '2.6.x',
           'extn_icon' => '/assets/images/icons/hub/kong-inc_jwt-signer.png',
           'layout' => 'extension',
-          'book' => 'plugins/kong-inc/jwt-signer/2.5.x'
+          'book' => 'plugins/kong-inc/jwt-signer/2.6.x'
         )
       end
 
       it 'includes the attributes defined in _metadata.yml' do
         expect(subject)
-          .to include(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_2.6.x/_metadata.yml', site.source))))
+          .to include(SafeYAML.load(File.read(File.expand_path('_hub/kong-inc/jwt-signer/_metadata/_2.6.x.yml', site.source))))
       end
 
       it_behaves_like 'includes the hub_examples'
@@ -108,7 +106,6 @@ RSpec.describe PluginSingleSource::Plugin::PageData do
 
     context 'when there are frontmatter overrides' do
       let(:plugin_name) { 'acme/unbundled-plugin' }
-      let(:source) { '_index' }
       let(:is_latest) { true }
       let(:version) { '3.0.x' }
 

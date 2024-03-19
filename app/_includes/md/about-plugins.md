@@ -2,14 +2,14 @@
 ## What are plugins?
 
 {{site.base_gateway}} is a Lua application designed to load and execute Lua or Go modules, which
-we commonly refer to as _plugins_. Kong provides a set of standard Lua
-plugins that get bundled with {{site.base_gateway}}. The set of plugins you
-have access to depends on your installation: open-source, enterprise, or either
-of these {{site.base_gateway}} options running on Kubernetes.
+we commonly refer to as _plugins_. Kong provides a set of 
+[standard Lua plugins](/hub/?support=kong-inc) that get bundled with {{site.base_gateway}} and 
+{{site.konnect_short_name}}. The set of plugins you
+have access to depends on your [license tier](/hub/plugins/license-tiers/).
 
 Custom plugins can also be developed by the Kong Community and are supported
 and maintained by the plugin creators. If they are published on the Kong Plugin
-Hub, they are called Community or Third-Party plugins. 
+Hub, they are called Community or Third-Party plugins.
 
 ## Why use plugins?
 
@@ -22,9 +22,8 @@ upstream API, as well as on any incoming responses.
 ## Plugin compatibility with deployment types
 
 {{site.base_gateway}} can be deployed in a variety of ways, and not all plugins
-are fully compatible with each mode. See [Plugin Compatibility](/konnect/compatibility#plugin-compatibility)
+are fully compatible with each mode. See [Plugin Compatibility](/hub/plugins/compatibility#plugin-compatibility)
 for a comparison.
-
 
 ## Precedence 
 
@@ -67,7 +66,7 @@ contain which plugin features. Kong plugins are bundled with the
 with the correct version of Kong.
 
 **Kong plugin** or **Kong bundled plugin**
-: A plugin developed, maintained, and supported by Kong.
+: A plugin developed, maintained, and [supported by Kong](/hub/?support=kong-inc).
 
 : Because third-party plugins are not maintained by Kong and are not bundled with
 the {{site.base_gateway}}, version compatibility is a bigger concern. See each
@@ -75,13 +74,20 @@ individual plugin's page for its tested compatibility.
 
 : If the versions on the plugin page are outdated, contact the maintainer directly.
 
-**Unsupported plugin**
-: A custom plugin developed, tested, and maintained by an external developer,
-not by Kong. Kong does not test these plugins, or update their version
+**Plugin supported by 3rd party**
+: A plugin in the category "Contact 3rd party for support".
+This is a custom plugin developed, tested, and maintained by an external developer,
+not by Kong. 
+Unless the plugin is explicitly labelled as a technical partner,
+Kong does not test these plugins, or update their version
 compatibility.
 
-**Partner plugin**
-: Definition TBD
+**Technical partner plugin**
+: A 3rd party custom plugin that has been carefully validated by Kong and 
+has met certain standards.
+These plugins are still developed, tested, and maintained by an external developer,
+not by Kong. The plugin owner also maintains the plugin's version compatibility with
+{{site.base_gateway}}.
 
 ## Developing custom plugins
 

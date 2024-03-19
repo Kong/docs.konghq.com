@@ -20,7 +20,6 @@ tags:
 paths:
   /api-requests:
     post:
-      x-unstable: true
       summary: Query API Requests
       operationId: query-requests
       description: |-

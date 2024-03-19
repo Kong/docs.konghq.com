@@ -1,6 +1,6 @@
 RSpec.describe Jekyll::Drops::Plugins::Schema do
   let(:plugin_name) { 'application-registration' }
-  let(:metadata_file) { 'app/_hub/kong-inc/application-registration/_metadata.yml' }
+  let(:metadata_file) { 'app/_hub/kong-inc/application-registration/_metadata/_index.yml' }
   let(:metadata) { SafeYAML.load(File.read(metadata_file)) }
   let(:version) { '3.1.1' }
   let(:schema) do
@@ -16,7 +16,7 @@ RSpec.describe Jekyll::Drops::Plugins::Schema do
   describe '#global?' do
     context 'returns true if the metadata does not have the `global` key' do
       let(:plugin_name) { 'acme' }
-      let(:metadata_file) { 'app/_hub/kong-inc/acme/_metadata.yml' }
+      let(:metadata_file) { 'app/_hub/kong-inc/acme/_metadata/_index.yml' }
 
       it { expect(subject.global?).to eq(true) }
     end
@@ -44,7 +44,7 @@ RSpec.describe Jekyll::Drops::Plugins::Schema do
   describe '#deprecated_fields' do
     let(:plugin_name) { 'saml' }
     let(:version) { '3.2.2' }
-    let(:metadata_file) { 'app/_hub/kong-inc/saml/_metadata.yml' }
+    let(:metadata_file) { 'app/_hub/kong-inc/saml/_metadata/_index.yml' }
 
     it 'returns an array containing the schema\'s shorthand_fields' do
       expect(subject.deprecated_fields.size).to eq(14)
@@ -76,7 +76,7 @@ RSpec.describe Jekyll::Drops::Plugins::Schema do
 
     context 'when it is not' do
       let(:plugin_name) { 'acme' }
-      let(:metadata_file) { 'app/_hub/kong-inc/acme/_metadata.yml' }
+      let(:metadata_file) { 'app/_hub/kong-inc/acme/_metadata/_index.yml' }
 
       it { expect(subject.global?).to eq(true) }
     end

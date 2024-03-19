@@ -1178,6 +1178,56 @@ components:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
           $ref: '#/components/schemas/UpdatedAt'
+    AuthStrategySyncError:
+      type: object
+      additionalProperties: false
+      required:
+        - message
+      properties:
+        plugin_name:
+          type: string
+        value:
+          type: string
+          enum:
+            - plugin_sync_error_comm
+            - plugin_sync_error_unknown
+            - plugin_sync_error_fatal
+            - plugin_sync_error_updating_plugin_refs
+        message:
+          type: string
+        info:
+          type: object
+          additionalProperties: true
+          properties:
+            details:
+              type: array
+              items:
+                type: object
+                additionalProperties: true
+                properties:
+                  type:
+                    type: string
+                  message:
+                    type: array
+                    items:
+                      type: string
+      example:
+        plugin_name: konnect-application-auth
+        value: plugin_sync_error_comm
+        message: Unable to connect to the control plane to update plugin
+    AuthStrategySyncErrors:
+      readOnly: true
+      type: array
+      nullable: true
+      description: >-
+        The set of errors encountered when trying to sync the auth strategies on
+        the version
+      items:
+        $ref: '#/components/schemas/AuthStrategySyncError'
+      example:
+        - plugin_name: konnect-application-auth
+          value: plugin_sync_error_comm
+          message: Unable to connect to the control plane to update plugin
     APIProductVersion:
       title: API Product Version
       type: object
@@ -1244,6 +1294,8 @@ components:
           type: boolean
           description: Indicates if this API product version is deprecated
           example: false
+        auth_strategy_sync_errors:
+          $ref: '#/components/schemas/AuthStrategySyncErrors'
         created_at:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
@@ -1396,7 +1448,6 @@ components:
         - slug
         - status
         - title
-        - content
       properties:
         parent_document_id:
           type: string
@@ -1423,8 +1474,16 @@ components:
         content:
           type: string
           format: byte
-          description: Must be a base64 encoded string
+          description: >-
+            Must be a base64 encoded string. Either raw_content or
+            str_mdr_content are required.
           example: YmFzZTY0LWVuY29kZWQgdGV4dCBzdHJpbmc=
+        str_md_content:
+          type: string
+          description: >-
+            markdown content. Either raw_content or str_mdr_content are
+            required.
+          example: '## My Markdown'
         metadata:
           type: object
           nullable: false
@@ -1467,6 +1526,10 @@ components:
           format: byte
           description: base64 encoded string of the document content
           example: YmFzZTY0LWVuY29kZWQgdGV4dCBzdHJpbmc=
+        str_md_content:
+          type: string
+          description: markdown content.
+          example: '## My Markdown'
         metadata:
           type: object
           nullable: false

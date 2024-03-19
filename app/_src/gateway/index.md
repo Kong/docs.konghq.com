@@ -112,6 +112,13 @@ to only pay for the services your organization uses.
 
 For more information, visit the [pricing page](https://konghq.com/pricing).
 
+![Introduction to {{site.base_gateway}} in {{site.konnect_short_name}}](/assets/images/products/konnect/gateway-manager/konnect-control-planes-example.png)
+> _Figure 1: Diagram of {{site.base_gateway}} data planes connected to a {{site.konnect_short_name}} control plane._
+> <br>
+> _Requests flow from an API client into the
+Gateway data planes, are modified and managed by the proxy based on your control plane
+configuration, and are forwarded to upstream services._
+
 ### Self-managed
 
 {{site.base_gateway}} is available in two different packages: Open Source (OSS) and Enterprise.
@@ -136,9 +143,9 @@ with added functionality.
 You can manage {{site.ee_product_name}} in Free or Enterprise mode with Kong's
 [Admin API](#kong-admin-api), [declarative configuration](#deck), or [Kong Manager](#kong-manager).
 
-![Introduction to {{site.base_gateway}}](/assets/images/products/gateway/gateway_overview.png)
-> _Figure 1: Diagram of {{site.base_gateway}} modules and how they relate to the
-foundational Gateway components._
+![Introduction to {{site.base_gateway}}](/assets/images/products/gateway/kong-gateway-features.png)
+> _Figure 2: Diagram of {{site.base_gateway}} key features. {{site.ce_product_name}} provides basic functionality, 
+while {{site.ee_product_name}} builds on top of the open-source foundation with advanced proxy features._
 > <br>
 > _Requests flow from an API client into the
 Gateway, are modified and managed by the proxy based on your Gateway
