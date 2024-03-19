@@ -906,7 +906,7 @@ was called multiple times in a request lifecycle.
 ## 3.4.3.5
 **Release Date** 2024/03/15
 
-### Breaking Changes
+### Breaking changes
 * In OpenSSL 3.2, the default SSL/TLS security level has been changed from 1 to 2.
   This means the security level is set to 112 bits of security. 
   As a result, the following are prohibited:
@@ -918,18 +918,19 @@ was called multiple times in a request lifecycle.
 
 ### Features
 #### Core
-* The expressions router now supports the `! (not)` operator, which allows creating routes like `!(http.path =^ "/a")` and `!(http.path == "/a" || http.path == "/b")` 
-* Support observing the time consumed by some components in the given request. 
-* Support `http.path.segments.len` and `http.path.segments.*` fields in the expressions router which allows matching incoming (normalized) request path by individual segment or ranges of segments, plus checking the total number of segments. 
-* `net.src.*` and `net.dst.*` match fields are now accessible in HTTP routes defined using expressions.
+* The expressions router now supports the `! (not)` operator, which allows creating routes like `!(http.path =^ "/a")` and `!(http.path == "/a" || http.path == "/b")`.
+* Added support for the debug request header `X-Kong-Request-Debug-Output`, which lets you observe the time consumed by specific components in a given request. Enable it using the [request_debug](/gateway/3.4.x/reference/configuration/#request_debug) configuration parameter. This header helps you diagnose the cause of any latency in Kong Gateway. See the [Request Debugging](/gateway/3.4.x/production/debug-request/) guide for more information.
+* Kong Gateway now supports [`http.path.segments.len` and `http.path.segments.*`](/gateway/latest/key-concepts/routes/expressions/#matching-fields) fields in the expressions router, which allows matching incoming (normalized) request paths by individual segments or ranges of segments, and checking the total number of segments.
+* The `net.src.*` and `net.dst.*` match fields are now accessible in HTTP routes defined using expressions.
 * Modified the current AWS Vault backend to support `CredentialProviderChain` so that users can choose not to use AK-SK environment variables to grant IAM role permissions. 
-* HashiCorp Vault backend now supports using Approle authentication method. 
+* The HashiCorp Vault secrets management backend now supports the AppRole authentication method.
 * Allow OSS features to continue working with an expired license and configured Kong Enterprise features to continue operating in read-only mode. Kong Gateway now logs a daily critical message when a license is expired and within the 30 days grace period.
 * Allow using RBAC token to authenticate while using group mapping feature (e.g., OIDC, LDAP) with Kong Manager, and also fix some issue with the group mapping feature. 
 
 #### Plugins
 * Plugins can now implement `Plugin:configure(configs)` function that is called whenever there is a change in plugin entities. An array of current plugin configurations is passed to the function, or nil in case there is no active configurations for the plugin.
-* [**CORS**](/hub/kong-inc/cors) (`cors`): Support the `Access-Control-Request-Private-Network` header in crossing-origin pre-light requests 
+* [**CORS**](/hub/kong-inc/cors) (`cors`)
+  * Added support for the `Access-Control-Request-Private-Network` header in cross-origin pre-flight requests.
 
 #### Configuration
 
