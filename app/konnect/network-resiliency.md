@@ -37,7 +37,7 @@ keep the connection alive. If it receives no answer, it tries to reconnect to th
 control plane after a 5-10 second delay.
 
 
-### How does network peering work with Cloud Gateway nodes?
+### How does network peering work with Dedicated Cloud Gateway nodes?
 
 Each Cloud Gateway node is part of a dedicated Cloud Gateway network that corresponds to a specific cloud region, such as `us-east-1` or `us-west-2`. For enhanced security and seamless connectivity between your cloud network and the {{site.konnect_short_name}} environment, you can peer your Cloud Gateway network with your own network in AWS. This integration is facilitated by using AWS's [TransitGateway](https://aws.amazon.com/transit-gateway/) feature, enabling secure network connections across both platforms.
 
