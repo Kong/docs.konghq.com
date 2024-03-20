@@ -12,12 +12,6 @@ chapter: 1
 > in order to get your `Gateway` up and running.
 {% endif_version %}
 
-
-{% assign gwapi_version = "1.0.0" %}
-{% if_version lte:1.0.0 %}
-{% assign gwapi_version = "0.8.1" %}
-{% endif_version %}
-
 Both {{ site.kgo_product_name }} and {{ site.kic_product_name }} can be configured using the [Kubernetes Gateway API](https://github.com/kubernetes-sigs/gateway-api).
 
 You can configure your `GatewayClass` and `Gateway` objects in a vendor independent way and {{ site.kgo_product_name }} translates those requirements in to Kong specific configuration.
