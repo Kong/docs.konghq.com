@@ -20,6 +20,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : ![analytics summary dashboard](/assets/images/products/konnect/changelog/konnect-analytics-summary-dashboard.png)
 : > _**Figure 1:** Example of the improved Analytics summary dashboard that displays total traffic, error rate, P99 latency, total traffic over time, latency breakdown over time, and Kong vs upstream latency over time._
 
+**Improved UI/UX for Plugins**
+: We are happy to announce that a polished UI/UX experience for plugins is now available to our customers on Konnect. Required configuration settings are now grouped together, and indicated as required on the forms, improved tooltips and default fields are present on forms, a "most popular" plugins section is now available, and more.
+
 ## February 2024
 
 
