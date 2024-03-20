@@ -68,7 +68,7 @@ kubectl port-forward service/prometheus-kube-prometheus-prometheus 9090:9090 -n 
 This can be verified by going to your Prometheus UI and querying e.g.:
 
 ```
-up{service=~"kgo-gateway-operator-metrics-service"}
+up{service=~"gateway-operator-controller-manager-metrics-service"}
 ```
 
 {:.important}
@@ -83,7 +83,8 @@ To deploy `prometheus-adapter` you'll need to decide what time series to expose 
 {:.note}
 > **Note:** {{ site.kgo_product_name }} enriches specific metrics for use with `prometheus-adapter`. See the [overview](/gateway-operator/{{ page.release }}/guides/autoscaling-workloads/overview/#metrics-support-for-enrichment) for a complete list.
 
-Create a `values.yaml` file to deploy the [`prometheus-adapter` helm chart](https://artifacthub.io/packages/helm/prometheus-community/prometheus-adapter). This configuration calculates a `kong_upstream_latency_ms_30s_average` metric, which exposes a 30s moving average of upstream response latency:
+Create a `values.yaml` file to deploy the [`prometheus-adapter` helm chart](https://artifacthub.io/packages/helm/prometheus-community/prometheus-adapter).
+This configuration calculates a `kong_upstream_latency_ms_60s_average` metric, which exposes a 60s moving average of upstream response latency:
 
 ```yaml
 prometheus:
@@ -101,11 +102,11 @@ rules:
         exported_service:
           resource: "service"
     name:
-      as: "kong_upstream_latency_ms_30s_average"
+      as: "kong_upstream_latency_ms_60s_average"
     metricsQuery: |
-      sum by (exported_service) (rate(kong_upstream_latency_ms_sum{<<.LabelMatchers>>}[30s:5s]))
+      sum by (exported_service) (rate(kong_upstream_latency_ms_sum{<<.LabelMatchers>>}[60s:10s]))
         /
-      sum by (exported_service) (rate(kong_upstream_latency_ms_count{<<.LabelMatchers>>}[30s:5s]))
+      sum by (exported_service) (rate(kong_upstream_latency_ms_count{<<.LabelMatchers>>}[60s:10s]))
 ```
 
 Install `prometheus-adapter` using Helm:
@@ -129,7 +130,7 @@ Keep this running while we move on to next steps.
 When all is configured you should be able to see the metric you've configured in `prometheus-adapter` exposed via the Kubernetes Custom Metrics API:
 
 ```bash
-kubectl get --raw '/apis/custom.metrics.k8s.io/v1beta1/namespaces/default/services/echo/kong_upstream_latency_ms_30s_average' | jq
+kubectl get --raw '/apis/custom.metrics.k8s.io/v1beta1/namespaces/default/services/echo/kong_upstream_latency_ms_60s_average' | jq
 ```
 
 {:.note}
@@ -150,7 +151,7 @@ This should result in:
         "name": "echo",
         "apiVersion": "/v1"
       },
-      "metricName": "kong_upstream_latency_ms_30s_average",
+      "metricName": "kong_upstream_latency_ms_60s_average",
       "timestamp": "2024-03-06T13:11:12Z",
       "value": "102312m",
       "selector": null
@@ -168,7 +169,7 @@ This should result in:
 When the metric configured in `prometheus-adapter` is available through Kubernetes' Custom Metrics API
 we can use it in `HorizontalPodAutoscaler` to autoscale our workload: specifically the `echo` `Deployment`.
 
-This can be done by using the following manifest, which will scale the underlying `echo` `Deployment` between 1 and 10 replicas, trying to keep the average latency across last 30s at 40ms.
+This can be done by using the following manifest, which will scale the underlying `echo` `Deployment` between 1 and 10 replicas, trying to keep the average latency across last 60s at 40ms.
 
 ```yaml
 echo '
@@ -205,7 +206,7 @@ spec:
   - type: Object
     object:
       metric:
-        name: "kong_upstream_latency_ms_30s_average"
+        name: "kong_upstream_latency_ms_60s_average"
       describedObject:
         apiVersion: v1
         kind: Service
@@ -215,8 +216,9 @@ spec:
         value: "40" ' | kubectl apply -f -
 ```
 
+## Observe Kubernetes `SuccessfulRescale` events
 
-You can watch those events using the following `kubectl` command:
+You can watch `SuccessfulRescale` events using the following `kubectl` command:
 
 ```bash
 kubectl get events -n default --field-selector involvedObject.name=echo --field-selector involvedObject.kind=HorizontalPodAutoscaler -w
@@ -225,11 +227,14 @@ kubectl get events -n default --field-selector involvedObject.name=echo --field-
 If everything went well we should see the `SuccessfulRescale` events:
 
 ```bash
-12m          Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 2; reason: Service metric kong_upstream_latency_ms_30s_average above target
-12m          Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 4; reason: Service metric kong_upstream_latency_ms_30s_average above target
-12m          Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 8; reason: Service metric kong_upstream_latency_ms_30s_average above target
-12m          Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 10; reason: Service metric kong_upstream_latency_ms_30s_average above target
+12m          Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 2; reason: Service metric kong_upstream_latency_ms_60s_average above target
+12m          Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 4; reason: Service metric kong_upstream_latency_ms_60s_average above target
+12m          Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 8; reason: Service metric kong_upstream_latency_ms_60s_average above target
+12m          Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 10; reason: Service metric kong_upstream_latency_ms_60s_average above target
+```
 
-# Then when latency drops
+Then when latency drops (when you stop sending traffic with the `curl` command) you should observe the `SuccessfulRescale` events scaling your workloads down:
+
+```bash
 4s          Normal   SuccessfulRescale   horizontalpodautoscaler/echo   New size: 1; reason: All metrics below target
 ```
