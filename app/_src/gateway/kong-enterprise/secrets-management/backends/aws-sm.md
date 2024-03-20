@@ -5,7 +5,7 @@ badge: enterprise
 
 [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) can be configured in multiple ways.
 
-{% if_version gte:3.5.x %}
+{% if_version gte:3.4.x %}
 To access secrets stored in the AWS Secrets Manager, {{site.base_gateway}} needs to be configured with an IAM Role that has sufficient permissions to read the required secret values.
 
 {{site.base_gateway}} can automatically fetch IAM role credentials based on your AWS environment, observing the following precedence order:
@@ -40,7 +40,8 @@ following environment variable on your control plane:
 ```bash
 export KONG_VAULT_AWS_REGION=<aws-region>
 ```
-{% if_version gte:3.5.x %}
+
+{% if_version gte:3.4.x %}
 Additionally, if you want to use [`assume_role`](https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html), make sure you have the following environment variables on your {{site.base_gateway}} data plane:
 
 ```bash
@@ -181,11 +182,13 @@ Configuration options for an AWS Secrets Manager vault in {{site.base_gateway}}:
 Parameter | Field name                     | Description
 ----------|--------------------------------|------------
 `vaults.config.region` | **AWS region** | The AWS region your vault is located in.
-{% if_version gte:3.5.x %}
+
+{% if_version gte:3.4.x inline:true %}
 `vaults.config.endpoint_url` | **AWS Secrets Manager Endpoint URL** | The endpoint URL of the AWS Secrets Manager service. If not specified, the value used by vault will be the official AWS Secrets Manager service url which is `https://secretsmanager.{region}.amazonaws.com`. You can specify a complete URL(including the `http/https` scheme) to override the endpoint.
 `vaults.config.assume_role_arn` | **Assume AWS IAM role ARN** | The target IAM role ARN that will assume as the AWS Secrets Manager service. If specified, the vault backend will do additional role assuming based on your current runtime's IAM Role. If you are not using assume role, do not specify this value.
 `vaults.config.role_session_name` | **Role Session Name** | The role session name used for role assuming. The default value is `KongVault`.
 {% endif_version %}
+
 `vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the vault when it's cached. The special value of 0 means "no rotation" and it's the default. When using non-zero values, it is recommended that they're at least 1 minute.
 `vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a vault miss (no secret). Negatively cached secrets will remain valid until `neg_ttl` is reached, after which Kong will attempt to refresh the secret again. The default value for `neg_ttl` is 0, meaning no negative caching occurs.
 `vaults.config.resurrect_ttl` | **Resurrect TTL** | Time (in seconds) for how long secrets will remain in use after they are expired ( using `config.ttl` as the stopping point). This is useful when a vault becomes unreachable, or when a secret is deleted from the vault and isn't replaced immediately. In both cases, gateway will keep trying to refresh the secret for `resurrect_ttl` seconds. After that, it will stop trying to refresh. Assigning a sufficiently high value to this configuration option is recommended to ensure a seamless transition in case there are unexpected issues with the vault. The default value for `resurrect_ttl` is 1^e8 seconds, which is about 3 years.
