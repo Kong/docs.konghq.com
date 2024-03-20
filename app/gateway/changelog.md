@@ -651,7 +651,7 @@ Kong Konnect users can take advantage of our [API Analytics](/konnect/analytics/
 * Modified the current AWS Vault backend to support `CredentialProviderChain` so that users can
 choose not to use `AK-SK` environment variables to grant IAM role permissions.
 * Added support for Microsoft Azure's KeyVault Secrets Engine. 
-Set it up using the [`*_azure_vault`](/gateway/3.5.x/reference/configuration/#vault_azure_vault_uri).
+Set it up using the [`vault_azure_*`](/gateway/3.5.x/reference/configuration/#vault_azure_vault_uri).
 configuration parameters.
 * License management:
   * Implemented a new grace period that lasts 30 days from the Kong Enterprise license expiration date. 
@@ -924,11 +924,14 @@ If you still need to support TLS 1.1, set the [`ssl_cipher_suite`](/gateway/3.4.
 
 #### Configuration
 
-* TLSv1.1 and lower is now disabled by default in OpenSSL 3.x. <!-- TBD if this line and the folloing ssl_cipher_suite belong in breaking changes section. That's where they were listed in 3.6.0.0. I've asked Zachary for comment on PR8443 -->
+* Added support for Microsoft Azure's KeyVault Secrets Engine. 
+Set it up using the [`vault_azure_*`](/gateway/3.4.x/reference/configuration/#vault_azure_vault_uri)
+configuration parameters.
+* TLSv1.1 and lower is now disabled by default in OpenSSL 3.x.
 
 #### Core
 * The expressions router now supports the `! (not)` operator, which allows creating routes like `!(http.path =^ "/a")` and `!(http.path == "/a" || http.path == "/b")`.
-* Added support for the debug request header `X-Kong-Request-Debug-Output`, which lets you observe the time consumed by specific components in a given request. Enable it using the [request_debug](/gateway/3.4.x/reference/configuration/#request_debug) configuration parameter. This header helps you diagnose the cause of any latency in Kong Gateway. See the [Request Debugging](/gateway/3.4.x/production/debug-request/) guide for more information.
+* Added support for the debug request header `X-Kong-Request-Debug-Output`, which lets you observe the time consumed by specific components in a given request. Enable it using the [`request_debug`](/gateway/3.4.x/reference/configuration/#request_debug) configuration parameter. This header helps you diagnose the cause of any latency in Kong Gateway. See the [Request Debugging](/gateway/3.4.x/production/debug-request/) guide for more information.
 * Kong Gateway now supports [`http.path.segments.len` and `http.path.segments.*`](/gateway/3.4.x/key-concepts/routes/expressions/#matching-fields) fields in the expressions router, which allows matching incoming (normalized) request paths by individual segments or ranges of segments, and checking the total number of segments.
 * The [`net.src.*` and `net.dst.*`](/gateway/3.4.x/key-concepts/routes/expressions/#matching-fields) match fields are now accessible in HTTP routes defined using expressions.
 * Modified the current AWS Vault backend to support `CredentialProviderChain` so that users can
@@ -937,6 +940,7 @@ choose not to use `AK-SK` environment variables to grant IAM role permissions.
 * OSS features will now continue working with an expired license, and configured Kong Enterprise features will continue operating in read-only mode. Kong Gateway now logs a daily critical message when a license is expired and within the 30 days grace period.
 * You can now use an RBAC token to authenticate while using 
 [group mapping with Kong Manager](/gateway/3.4.x/kong-manager/auth/oidc/mapping/) (for example, with OIDC or LDAP).
+* Introduced the new endpoint [`/schemas/vaults/:name`](/gateway/api/admin-ee/latest/#/Information/get-schemas-vaults-vault_name) for retrieving the schema of a vault. 
 
 #### Plugins
 
@@ -948,9 +952,14 @@ Learn more about this function in the guide for [Implementing Custom Logic](/gat
 * [**CORS**](/hub/kong-inc/cors) (`cors`)
   * Added support for the `Access-Control-Request-Private-Network` header in cross-origin pre-flight requests.
 
+* [**mTLS Auth**](/hub/kong-inc/mtls-auth/) (`mtls-auth`)
+  * Added a `default_consumer` option, which allows a default consumer to be used when the 
+  client certificate is valid but doesn't match any existing consumers.
+
 ### Fixes
 #### Configuration
 * Set the security level of gRPC's TLS to `0` when `ssl_cipher_suite` is set to `old`.
+* Added the missing `azure_vault` config options to the `kong.conf` file.
 
 #### Core
 * Header value matching (`http.headers.*`) in the `expressions` router flavor is now case sensitive.
@@ -962,6 +971,7 @@ Previously, they shared the same validation schema, so admins could configure ex
 routes using fields like `http.path` even for stream routes. This is no longer allowed.
 * Fixed an issue where `rbac_role_entities` records of cascaded entities were not deleted when the entity was deleted.
 * Reduce message push error logs when the `cluster_telemetry_endpoint` config is disabled.
+* Vaults: Fixed an issue where the vault used the wrong (default) workspace identifier when retrieving a vault entity by prefix.
 
 #### Kong Manager
 * Fixed the display of the remaining days of license expiration date. 
@@ -987,6 +997,11 @@ routes using fields like `http.path` even for stream routes. This is no longer a
   * Fixed some timer-related issues where the counter syncing timer couldn't be created or destroyed properly.
   * The plugin now creates counter syncing timers during plugin execution instead of plugin creation to reduce some meaningless error logs.
 
+* [**JWT Signer**](/hub/kong-inc/jwt-signer/) (`jwt-signer`), [**LDAP Authentication Advanced**](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`),
+[**OAuth 2.0 Introspection**](/hub/kong-inc/oauth2-introspection/) (`oauth2-introspection`), [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`), and 
+[**SAML**](/hub/kong-inc/saml) (`saml`)
+  * Added support for consumer group scoping by using the PDK `kong.client.authenticate` function.
+
 ### Performance
 
 #### Configuration
@@ -997,6 +1012,7 @@ routes using fields like `http.path` even for stream routes. This is no longer a
 
 ### Dependencies
 * Bumped `atc-router` from 1.2.0 to 1.6.0
+* Bumped `lua-resty-openssl` from 1.2.0 to 1.2.1
 
 
 ## 3.4.3.4
