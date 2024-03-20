@@ -45,7 +45,7 @@ Control planes come in three types:
     This means that teams within a group share a cluster of {{site.base_gateway}} data 
     plane nodes, where each team has its own segregated configuration.
 
-* [**Kong Ingress Controller**](/konnect/gateway-manager/kic/)
+* [**{{site.kic_product_name}}**](/konnect/gateway-manager/kic/)
     Monitor the configuration of Kubernetes-based {{site.base_gateway}} data plane nodes.
 
 You can find a list of all control planes in your organization
