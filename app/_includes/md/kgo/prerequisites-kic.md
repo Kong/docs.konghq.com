@@ -9,13 +9,13 @@
 ## Prerequisites
 {% endunless %}
 
+{% if include.experimental %}
 ### Install CRDs
 {% assign gwapi_version = "1.0.0" %}
 {% if include.release.value == "1.0.x" %}
 {% assign gwapi_version = "0.8.1" %}
 {% endif %}
 
-{% if include.experimental %}
 If you want to use experimental resources and fields such as `TCPRoute`s and `UDPRoute`s, please run this command.
 
 ```shell
