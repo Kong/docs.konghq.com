@@ -5,7 +5,7 @@ content_type: concept
 
 Dedicated cloud gateways are a type of API gateway in {{site.konnect_short_name}} that are completely managed by the cloud provider of your choice. You maintain control over the size and location of the gateway infrastructure, while Kong oversees the management of each instance and the entire cluster for you.
 
-You can manage your dedicated cloud gateways alongside all your other gateways in [Gateway Manager](https://docs.konghq.com/konnect/gateway-manager/).
+You can manage your dedicated cloud gateways alongside all your other gateways in [Gateway Manager](https://cloud.konghq.com/gateway-manager/).
 
 Dedicated cloud gateways have the following benefits over a typical hybrid gateway:
 
