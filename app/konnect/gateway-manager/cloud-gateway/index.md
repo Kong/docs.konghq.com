@@ -3,13 +3,13 @@ title: About Cloud Gateways
 content_type: concept
 ---
 
-Dedicated cloud gateways are a type of API gateway in {{site.konnect_short_name}} that are completely managed by the cloud provider of your choice. You maintain control over the size and location of the gateway infrastructure, while Kong oversees the management of each instance and the entire cluster for you.```
+Dedicated cloud gateways are a type of API gateway in {{site.konnect_short_name}} that are completely managed by the cloud provider of your choice. You maintain control over the size and location of the gateway infrastructure, while Kong oversees the management of each instance and the entire cluster for you.
 
 You can manage your dedicated cloud gateways alongside all your other gateways in [Gateway Manager](https://docs.konghq.com/konnect/gateway-manager/).
 
 Dedicated cloud gateways have the following benefits over a typical hybrid gateway:
 
-* **Pre-warm a cluster:** You can pre-warm your cluster by specifying the number of requests per second so that the first requests don’t have to wait for the infrastructure to scale up.
+* **Pre-warm functionality:** You can pre-warm your cluster by specifying the number of requests per second so that the first requests don’t have to wait for the infrastructure to scale up.
 * **Fast setup:** Configure and start your dedicated cloud gateway in four steps.  
 * **Kong-managed:** Kong manages the cluster for you, all you need to do is configure a few settings. 
 * **One-click upgrades:** {{site.konnect_short_name}} handles upgrades for you. You decide when you want to upgrade and what {{site.base_gateway}} version you want to upgrade to and {{site.konnect_short_name}} does it for you. There's no downtime when upgrading the infrastructure.
