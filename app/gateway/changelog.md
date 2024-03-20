@@ -97,7 +97,7 @@ Decreased the concurrency range of the `lua-resty-timer-ng` library from `[512, 
   Additionally, compression is disabled.
 
 * The recent OpenResty bump includes TLS 1.3 and deprecates TLS 1.1. 
-If you still need to still support TLS 1.1, set the [`ssl_cipher_suite`](/gateway/latest/reference/configuration/#ssl_cipher_suite) setting to `old`.
+If you still need to support TLS 1.1, set the [`ssl_cipher_suite`](/gateway/latest/reference/configuration/#ssl_cipher_suite) setting to `old`.
 
 * If you are using `ngx.var.http_*` in custom code to access HTTP headers, the behavior of that variable changes slightly when the same header is used multiple times in a single request. 
 Previously, it would return the first value only; now it returns all of the values, separated by commas. Kong Gateway's PDK header getters and setters work as before.
@@ -904,9 +904,10 @@ was called multiple times in a request lifecycle.
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
 
 ## 3.4.3.5
-**Release Date** 2024/03/15
+**Release Date** 2024/03/22
 
 ### Breaking changes
+
 * In OpenSSL 3.2, the default SSL/TLS security level has been changed from 1 to 2.
   This means the security level is set to 112 bits of security. 
   As a result, the following are prohibited:
@@ -916,61 +917,80 @@ was called multiple times in a request lifecycle.
     * SSL version 3
   Additionally, compression is disabled.
 
+* The recent OpenResty bump includes TLS 1.3 and deprecates TLS 1.1. 
+If you still need to support TLS 1.1, set the [`ssl_cipher_suite`](/gateway/3.4.x/reference/configuration/#ssl_cipher_suite) setting to `old`.
+
 ### Features
+
+#### Configuration
+
+* TLSv1.1 and lower is now disabled by default in OpenSSL 3.x. <!-- TBD if this line and the folloing ssl_cipher_suite belong in breaking changes section. That's where they were listed in 3.6.0.0. I've asked Zachary for comment on PR8443 -->
+
 #### Core
 * The expressions router now supports the `! (not)` operator, which allows creating routes like `!(http.path =^ "/a")` and `!(http.path == "/a" || http.path == "/b")`.
 * Added support for the debug request header `X-Kong-Request-Debug-Output`, which lets you observe the time consumed by specific components in a given request. Enable it using the [request_debug](/gateway/3.4.x/reference/configuration/#request_debug) configuration parameter. This header helps you diagnose the cause of any latency in Kong Gateway. See the [Request Debugging](/gateway/3.4.x/production/debug-request/) guide for more information.
-* Kong Gateway now supports [`http.path.segments.len` and `http.path.segments.*`](/gateway/latest/key-concepts/routes/expressions/#matching-fields) fields in the expressions router, which allows matching incoming (normalized) request paths by individual segments or ranges of segments, and checking the total number of segments.
-* The `net.src.*` and `net.dst.*` match fields are now accessible in HTTP routes defined using expressions.
-* Modified the current AWS Vault backend to support `CredentialProviderChain` so that users can choose not to use AK-SK environment variables to grant IAM role permissions. 
+* Kong Gateway now supports [`http.path.segments.len` and `http.path.segments.*`](/gateway/3.4.x/key-concepts/routes/expressions/#matching-fields) fields in the expressions router, which allows matching incoming (normalized) request paths by individual segments or ranges of segments, and checking the total number of segments.
+* The [`net.src.*` and `net.dst.*`](/gateway/3.4.x/key-concepts/routes/expressions/#matching-fields) match fields are now accessible in HTTP routes defined using expressions.
+* Modified the current AWS Vault backend to support `CredentialProviderChain` so that users can
+choose not to use `AK-SK` environment variables to grant IAM role permissions.
 * The HashiCorp Vault secrets management backend now supports the AppRole authentication method.
-* Allow OSS features to continue working with an expired license and configured Kong Enterprise features to continue operating in read-only mode. Kong Gateway now logs a daily critical message when a license is expired and within the 30 days grace period.
-* Allow using RBAC token to authenticate while using group mapping feature (e.g., OIDC, LDAP) with Kong Manager, and also fix some issue with the group mapping feature. 
+* OSS features will now continue working with an expired license, and configured Kong Enterprise features will continue operating in read-only mode. Kong Gateway now logs a daily critical message when a license is expired and within the 30 days grace period.
+* You can now use an RBAC token to authenticate while using 
+[group mapping with Kong Manager](/gateway/3.4.x/kong-manager/auth/oidc/mapping/) (for example, with OIDC or LDAP).
 
 #### Plugins
-* Plugins can now implement `Plugin:configure(configs)` function that is called whenever there is a change in plugin entities. An array of current plugin configurations is passed to the function, or nil in case there is no active configurations for the plugin.
+
+* Plugins can now implement the `Plugin:configure(configs)` function, 
+which is called when there is a change in plugin entities. 
+It receives an array of current plugin configurations, or nil if there are no active configurations.
+Learn more about this function in the guide for [Implementing Custom Logic](/gateway/3.4.x/plugin-development/custom-logic/) for plugins.
+
 * [**CORS**](/hub/kong-inc/cors) (`cors`)
   * Added support for the `Access-Control-Request-Private-Network` header in cross-origin pre-flight requests.
 
-#### Configuration
-
-* now TLSv1.1 and lower is by default disabled in OpenSSL 3.x <!-- TBD if this line and the folloing ssl_cipher_suite belong in breaking changes section. That's where they were listed in 3.6.0.0. I've asked Zachary for comment on PR8443 -->
-
 ### Fixes
 #### Configuration
-* Set security level of gRPC's TLS to 0 when ssl_cipher_suite is set to old #8314 KAG-3259
+* Set the security level of gRPC's TLS to `0` when `ssl_cipher_suite` is set to `old`.
 
 #### Core
-* Header value matching (`http.headers.*`) in expressions router flavor are now case sensitive. This change does not affect on `traditional_compatible` mode where header value match are always performed ignoring the case. 
-* Update file permission of `kong.logrotate` to 644 
-* Expressions router in http and stream subsystem now have stricter validation. Previously, they shared the same validation schema which meant admins could configure expressions route using fields like `http.path` even for stream routes. This is no longer allowed.
-* Fixed a bug that when an entity is deleted, the `rbac_role_entities` records of its cascaded entities are not deleted. 
-* Reduce message push error log when `cluster_telemetry_endpoint` config is disabled 
+* Header value matching (`http.headers.*`) in the `expressions` router flavor is now case sensitive.
+This change doesn't affect `traditional_compatible` mode
+where header value matching is always performed with the case ignored.
+* Updated the file permission of `kong.logrotate` to 644.
+* Expressions routes in `http` and `stream` subsystems now have stricter validation.
+Previously, they shared the same validation schema, so admins could configure expressions
+routes using fields like `http.path` even for stream routes. This is no longer allowed.
+* Fixed an issue where `rbac_role_entities` records of cascaded entities were not deleted when the entity was deleted.
+* Reduce message push error logs when the `cluster_telemetry_endpoint` config is disabled.
 
 #### Kong Manager
 * Fixed the display of the remaining days of license expiration date. 
 * The user token input field is now concealed while editing an RBAC user. 
+* Fixed some issues with group mapping.
 
-#### Plugin
+#### Plugins
 * [**Forward Proxy**](/hub/kong-inc/forward-proxy/) (`forward-proxy`)
-  * Fall back to the non-streaming proxy when the request body has already been read.
+  * The plugin now falls back to the non-streaming proxy when the request body has already been read.
 
 * [**OpenTelemetry**](/hub/kong-inc/opentelemetry) (`opentelemetry`)
-  * Fixed otel sampling mode lua panic bug when `http_response_header_for_traceid` option enabled. <!-- asked for clarification on this description -->
-  * Increase queue max batch size to 200. 
+  * Fixed an OTEL sampling mode Lua panic bug that occurred when the `http_response_header_for_traceid` option was enabled.
+ <!-- asked for clarification on this description -->
+  * Increased queue max batch size to 200. 
    
 * [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
-  * Mark the `introspection_headers_values` as an encrypted and referenceable field.
+  * Marked the `introspection_headers_values` as an encrypted and referenceable field.
 
 * [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
-  * Falling back to local strategy if `sync_rate = 0` when redis goes down.
-  * The plugin now creates counter syncing timers when being executed instead of being created to reduce some meaningless error logs.
-  * Fixed an issue where if `sync_rate` is changed from a value greater than 0 to 0, the namespace will be cleared unexpectedly.
-  * Fixed some timer-related issues where the counter syncing timer can't be properly created or destroyed .
+  * Fixed an issue with `sync_rate` setting being used with the `redis` strategy. 
+  If the Redis connection is interrupted while `sync_rate = 0`, the plugin now accurately falls back to the `local` strategy.
+  * Fixed an issue where, if `sync_rate` was changed from a value greater than `0` to `0`, the namespace was cleared unexpectedly.
+  * Fixed some timer-related issues where the counter syncing timer couldn't be created or destroyed properly.
+  * The plugin now creates counter syncing timers during plugin execution instead of plugin creation to reduce some meaningless error logs.
 
 ### Performance
+
 #### Configuration
-* Bumped default values of `nginx_http_keepalive_requests` and `upstream_keepalive_max_requests` to 10000.
+* Bumped the default values of `nginx_http_keepalive_requests` and `upstream_keepalive_max_requests` to 10000.
   
 #### Core
 * Reuse match context between requests to avoid frequent memory allocation/deallocation.
