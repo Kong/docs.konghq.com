@@ -1,4 +1,4 @@
-{% assign kgo_version = include.version %}
+{% assign kgo_version = include.release | replace: ".x", "" %}
 {% if include.release.label == "unreleased" %}
 {% assign kgo_version = "nightly" %}
 {% endif %}
