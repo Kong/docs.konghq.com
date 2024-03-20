@@ -69,11 +69,11 @@ Changelog for supported {{ site.kgo_product_name }} versions.
 
 * The `GatewayConfiguration` API has been promoted from `v1alpha1` to `v1beta1`.
 * The `ControlPlane` API has been promoted from `v1alpha1` to `v1beta1`.
-* The CRD's shortnames of `ControlPlane`, `DataPlane` and `GatewayConfiguration`
+* The CRD's short names of `ControlPlane`, `DataPlane` and `GatewayConfiguration`
   has been changed to `kocp`, `kodp` and `kogc`.
-* `ControlPlane` (Kong Ingress Controller) default and minimum version has been
+* `ControlPlane` ({{site.kic_product_name}}) default and minimum version has been
   bumped to 3.1.2.
-* `DataPlane` (Kong Gateway) default version has been bumped to `v3.6.0`.
+* `DataPlane` ({{site.base_gateway}}) default version has been bumped to `v3.6.0`.
 
 ### Fixes
 
