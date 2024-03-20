@@ -94,7 +94,7 @@ items:
             generate: false
       - text: Configuration Options
         url: /reference/cli-arguments/
-        src: reference/cli-arguments-1.1.x
+        src: reference/cli-arguments/1.1.x
       - text: License
         url: /reference/license
       - text: Version Compatibility
