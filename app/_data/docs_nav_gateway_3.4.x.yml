@@ -237,6 +237,8 @@ items:
             url: /production/logging/update-log-level-dynamically
           - text: Customize Gateway Logs
             url: /production/logging/customize-gateway-logs
+          - text: Debug Requests
+            url: /production/debug-request
         url: /production/logging
       - text: Configure a gRPC service
         url: /production/configuring-a-grpc-service
@@ -661,6 +663,7 @@ items:
     items:
       - text: kong.conf
         url: /reference/configuration
+        src: /gateway/reference/configuration/configuration-3.4.x
       - text: Injecting Nginx Directives
         url: /reference/nginx-directives
       - text: CLI
