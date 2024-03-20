@@ -67,7 +67,7 @@ Changelog for supported {{ site.kgo_product_name }} versions.
 * Added validation on checking if ports in `KONG_PORT_MAPS` and `KONG_PROXY_LISTEN`
   environment variables of deployment options in `DataPlane` match the `ports`
   in the ingress service options of the `DataPlane`.
-* Support for KongLicense CRD to manage Kong Enterprise licenses.
+* Support for KongLicense CRD to manage {{site.ee_product_name}} licenses.
 * New ControlPlane extensions controller to manage control plane extensions with initial support for `DataPlaneMetricsExtension`.
 * DataPlane Prometheus metrics scrapping support for `DataPlaneMetricsExtension`.
 * DataPlane resources can provision cert-manager Certificate resources from a (Cluster) Issuer for use with Konnect's PKI mode.
