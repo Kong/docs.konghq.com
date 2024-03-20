@@ -68,7 +68,7 @@ kubectl port-forward service/prometheus-kube-prometheus-prometheus 9090:9090 -n 
 This can be verified by going to your Prometheus UI and querying e.g.:
 
 ```
-up{service=~"gateway-operator-controller-manager-metrics-service"}
+up{service=~"kgo-gateway-operator-metrics-service"}
 ```
 
 {:.important}
