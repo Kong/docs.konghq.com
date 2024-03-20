@@ -7,12 +7,13 @@ Changelog for supported {{ site.kgo_product_name }} versions.
 
 ## 1.2.1
 
-**Release Date** 2024/03/19
+**Release Date** 2024/03/20
 
 ### Fixes
 
 * Fixed an issue where operator wasn't able to update `ControlPlane` `ClusterRole` or `ClusterRoleBinding`
   when they got out of date.
+* Add missing watch RBAC policy rule for cert-manager's Certificate resources
 
 ### Changes
 
@@ -30,6 +31,8 @@ Changelog for supported {{ site.kgo_product_name }} versions.
   `GatewayConfiguration` API.
 * ✨ `Gateway` listeners are dynamically mapped to the `DataPlane` proxy service ports.
 * 🧠 The new feature `AIGateway` has been released in `alpha` stage.
+* ✨ {{site.kgo_product_name}} exposes metrics with latency that can be used for autoscaling of your workloads.
+* ✨ Automated handling of certificates for Konnect's PKI mode with cert-manager.
 
 ## Added
 
@@ -64,6 +67,11 @@ Changelog for supported {{ site.kgo_product_name }} versions.
 * Added validation on checking if ports in `KONG_PORT_MAPS` and `KONG_PROXY_LISTEN`
   environment variables of deployment options in `DataPlane` match the `ports`
   in the ingress service options of the `DataPlane`.
+* Support for KongLicense CRD to manage {{site.ee_product_name}} licenses.
+* New ControlPlane extensions controller to manage control plane extensions with initial support for `DataPlaneMetricsExtension`.
+* DataPlane Prometheus metrics scrapping support for `DataPlaneMetricsExtension`.
+* DataPlane resources can provision cert-manager Certificate resources from a (Cluster) Issuer for use with Konnect's PKI mode.
+* ControlPlane extensions controller now checks for a valid Kong enterprise license.
 
 ### Changes
 
