@@ -135,8 +135,6 @@
       url: /dev-portal/
     - text: Access the Dev Portal
       url: /dev-portal/access/
-    - text: Sign Up for a Dev Portal Account
-      url: /dev-portal/dev-reg/
     - text: Productize a Service
       url: /dev-portal/publish-service/ 
     - text: Access and Approval
@@ -157,16 +155,12 @@
           url: /dev-portal/access-and-approval/azure/
     - text: Developer Flow
       url: /dev-portal/dev-flow/
+    - text: Enable and Disable App Registration for API Product Versions
+      url: /dev-portal/applications/enable-app-reg/
     - text: Application Lifecycle
       items:
         - text: Overview
           url: /dev-portal/applications/application-overview/
-        - text: Enable and Disable App Registration for API Product Versions
-          url: /dev-portal/applications/enable-app-reg/
-        - text: Create, Edit, and Delete an Application
-          url: /dev-portal/applications/dev-apps/
-        - text: Generate Credentials for an Application
-          url: /dev-portal/applications/dev-gen-creds/
     - text: Dynamic Client Registration
       items:
         - text: Overview

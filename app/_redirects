@@ -67,6 +67,12 @@
 /konnect/analytics/use-cases/latency/   /konnect/analytics/explorer/#diagnosing-latency-issues-example
 /konnect/analytics/custom-reports/  /konnect/analytics/use-cases/
 
+# Konnect Dev Portal rework
+
+/konnect/dev-portal/dev-reg/
+/konnect/dev-portal/applications/dev-apps/
+/konnect/dev-portal/applications/dev-gen-creds/
+
 # API markdown doc deprecation
 
 /gateway/latest/admin-api/licenses/reference   /gateway/api/admin-ee/latest/#/licenses/get-licenses/
