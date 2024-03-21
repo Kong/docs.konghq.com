@@ -246,20 +246,6 @@ experiencing LRU churning in the database cache (i.e. when the configured
 
 **Default:** `bundled`
 
-{% if_version gte:3.5.x %}
-
-### dedicated_config_processing
-
-Enables or disables a special worker process for configuration processing. This
-process increases memory usage a little bit while allowing to reduce latencies
-by moving some background tasks, such as CP/DP connection handling, to an
-additional worker process specific to handling these background tasks.
-
-Currently this has effect only on data planes.
-
-**Default:** `on`
-
-{% endif_version %}
 
 ### pluginserver_names
 
@@ -341,8 +327,6 @@ authority.
 Path to the custom html error template to override the default html kong error
 template.
 
-{% if_version gte:3.5.x %}
-
 The template may contain up to two `%s` placeholders. The first one will expand
 to the error message. The second one will expand to the request ID. Both
 placeholders are optional, but recommended.
@@ -360,23 +344,6 @@ render the template:
 </html>
 ```
 
-{% endif_version %}
-{% if_version lte:3.4.x %}
-
-The template is required to contain one single `%s` placeholder for the error
-message, as in the following example:
-
-```
-<html>
-   <body>
-     <h1>My custom error template</h1>
-     <p>%s.</p>
-   </body>
-</html>
-```
-
-{% endif_version %}
-
 **Default:** none
 
 
@@ -385,19 +352,8 @@ message, as in the following example:
 Path to the custom json error template to override the default json kong error
 template.
 
-{% if_version gte:3.5.x %}
-
 Similarly to `error_template_html`, the template may contain up to two `%s`
 placeholders for the error message and the request ID respectively.
-
-{% endif_version %}
-
-{% if_version lte:3.4.x %}
-
-Similarly to `error_template_html`, the template is required to contain one
-single `%s` placeholder for the error message.
-
-{% endif_version %}
 
 **Default:** none
 
@@ -407,19 +363,8 @@ single `%s` placeholder for the error message.
 Path to the custom xml error template to override the default xml kong error
 template
 
-{% if_version gte:3.5.x %}
-
 Similarly to `error_template_html`, the template may contain up to two `%s`
 placeholders for the error message and the request ID respectively.
-
-{% endif_version %}
-
-{% if_version lte:3.4.x %}
-
-Similarly to `error_template_html`, the template is required to contain one
-single `%s` placeholder for the error message.
-
-{% endif_version %}
 
 **Default:** none
 
@@ -429,19 +374,8 @@ single `%s` placeholder for the error message.
 Path to the custom plain error template to override the default plain kong
 error template
 
-{% if_version gte:3.5.x %}
-
 Similarly to `error_template_html`, the template may contain up to two `%s`
 placeholders for the error message and the request ID respectively.
-
-{% endif_version %}
-
-{% if_version lte:3.4.x %}
-
-Similarly to `error_template_html`, the template is required to contain one
-single `%s` placeholder for the error message.
-
-{% endif_version %}
 
 **Default:** none
 
@@ -933,21 +867,13 @@ The following suffix can be specified for each pair:
   address/port be made with TLS enabled.
 - `http2` will allow for clients to open HTTP/2 connections to Kong's Status
   API server.
-{% if_version gte:3.6.x %}
-- `proxy_protocol` will enable usage of the PROXY protocol.
-{% endif_version %}
 
 This value can be set to `off`, disabling the Status API for this node.
 
 Example: `status_listen = 0.0.0.0:8100 ssl http2`
 
-{% if_version gte:3.6.x %}
-**Default:** `127.0.0.1:8007 reuseport backlog=16384`
-{% endif_version %}
-
-{% if_version lte:3.5.x %}
 **Default:** `off`
-{% endif_version %}
+
 
 ### debug_listen
 {:.badge .enterprise}
@@ -968,20 +894,6 @@ Example: `debug_listen = 0.0.0.0:8200 ssl http2`
 
 **Default:** `off`
 
-{% if_version gte:3.5.x %}
-
-### debug_listen_local
-{:.badge .enterprise}
-
-Expose `debug_listen` functionalities via a Unix domain socket under the Kong
-prefix.
-
-This option allows local user to use "kong debug" command to invoke various
-debug functionalities without needing to enable `debug_listen` ahead of time.
-
-**Default:** `on`
-
-{% endif_version %}
 
 ### nginx_user
 
@@ -1039,6 +951,8 @@ Defines the TLS ciphers served by Nginx.
 
 Accepted values are `modern`, `intermediate`, `old`, `fips` or `custom`.
 
+If you want to enable TLSv1.1, this value has to be `old`.
+
 See https://wiki.mozilla.org/Security/Server_Side_TLS for detailed descriptions
 of each cipher suite. `fips` cipher suites are as described in
 https://wiki.openssl.org/index.php/FIPS_mode_and_TLS.
@@ -1053,8 +967,6 @@ conform to the pattern defined by `openssl ciphers`.
 
 This value is ignored if `ssl_cipher_suite` is not `custom`.
 
-If you use DHE ciphers, you must also configure the `ssl_dhparam` parameter.
-
 **Default:** none
 
 
@@ -1064,9 +976,11 @@ Enables the specified protocols for client-side connections. The set of
 supported protocol versions also depends on the version of OpenSSL Kong was
 built with. This value is ignored if `ssl_cipher_suite` is not `custom`.
 
+If you want to enable TLSv1.1, you should set `ssl_cipher_suite` to `old`.
+
 See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols
 
-**Default:** `TLSv1.1 TLSv1.2 TLSv1.3`
+**Default:** `TLSv1.2 TLSv1.3`
 
 
 ### ssl_prefer_server_ciphers
@@ -1293,9 +1207,7 @@ Accepted values are:
 - `X-Kong-Upstream-Status`: The HTTP status code returned by the upstream
   service. This is particularly useful for clients to distinguish upstream
   statuses if the response is rewritten by a plugin.
-{% if_version gte:3.5.x %}
 - `X-Kong-Request-Id`: Unique identifier of the request.
-{% endif_version %}
 - `server_tokens`: Same as specifying both `Server` and `Via`.
 - `latency_tokens`: Same as specifying `X-Kong-Proxy-Latency`,
   `X-Kong-Response-Latency`, `X-Kong-Admin-Latency` and
@@ -1307,15 +1219,8 @@ injecting headers of their own.
 
 Example: `headers = via, latency_tokens`
 
-{% if_version gte:3.5.x %}
 **Default:** `server_tokens, latency_tokens, X-Kong-Request-Id`
-{% endif_version %}
 
-{% if_version lte:3.4.x %}
-**Default:** `server_tokens, latency_tokens`
-{% endif_version %}
-
-{% if_version gte:3.5.x %}
 
 ### headers_upstream
 
@@ -1331,7 +1236,6 @@ of their own.
 
 **Default:** `X-Kong-Request-Id`
 
-{% endif_version %}
 
 ### trusted_ips
 
@@ -1411,13 +1315,8 @@ attributes of a connection.
 A value of `0` will disable upstream keepalive connections by default, forcing
 each upstream request to open a new connection.
 
-{% if_version gte:3.5.x %}
 **Default:** `512`
-{% endif_version %}
 
-{% if_version lte:3.4.x %}
-**Default:** `60`
-{% endif_version %}
 
 ### upstream_keepalive_max_requests
 
@@ -1429,14 +1328,8 @@ After the maximum number of requests is reached, the connection will be closed.
 A value of `0` will disable this behavior, and a keepalive connection can be
 used to proxy an indefinite number of requests.
 
+**Default:** `10000`
 
-{% if_version gte:3.5.x %}
-**Default:** `1000`
-{% endif_version %}
-
-{% if_version lte:3.4.x %}
-**Default:** `100`
-{% endif_version %}
 
 ### upstream_keepalive_idle_timeout
 
@@ -1487,10 +1380,6 @@ The following namespaces are supported:
 - `nginx_http_<directive>`: Injects `<directive>` in Kong's `http {}` block.
 - `nginx_proxy_<directive>`: Injects `<directive>` in Kong's proxy `server {}`
   block.
-{% if_version gte:3.6.x %}
-- `nginx_location_<directive>`: Injects `<directive>` in Kong's proxy `/`
-  location block (nested under Kong's proxy server {} block).
-{% endif_version %}
 - `nginx_upstream_<directive>`: Injects `<directive>` in Kong's proxy `upstream
   {}` block.
 - `nginx_admin_<directive>`: Injects `<directive>` in Kong's Admin API `server
@@ -1498,9 +1387,7 @@ The following namespaces are supported:
 - `nginx_status_<directive>`: Injects `<directive>` in Kong's Status API
   `server {}` block (only effective if `status_listen` is enabled).
 - `nginx_debug_<directive>` <span class="badge enterprise"></span>: 
-Injects `<directive>` in Kong's Debug API `server {}` block 
-{% if_version gte:3.5.x %}(only effective if `debug_listen` is enabled).{% endif_version %}
-{% if_version lte:3.4.x %}(only effective if `debug_listen` or `debug_listen_local` is enabled).{% endif_version %}
+Injects `<directive>` in Kong's Debug API `server {}` block (only effective if `debug_listen` is enabled).
 - `nginx_stream_<directive>`: Injects `<directive>` in Kong's stream module
   `stream {}` block (only effective if `stream_listen` is enabled).
 - `nginx_sproxy_<directive>`: Injects `<directive>` in Kong's stream module
@@ -1639,16 +1526,13 @@ ensure at worst any regex Kong executes could finish within roughly 2 seconds.
 ### nginx_http_lua_regex_cache_max_entries
 
 Specifies the maximum number of entries allowed in the worker process level
-PCRE JIT compiled regex cache.
+compiled regex cache.
 
 It is recommended to set it to at least (number of regex paths * 2) to avoid
-high CPU usages. If you manually specified `router_flavor` to `traditional`,
-`expressions` and `traditional_compat` router does not make use of the PCRE
-library and their behavior is unaffected by this setting.
+high CPU usages.
 
 **Default:** `8192`
 
-{% if_version gte:3.5.x %}
 
 ### nginx_http_keepalive_requests
 
@@ -1663,15 +1547,8 @@ in excessive memory usage and not recommended.
 See:
 https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_requests
 
-{% endif_version %}
-
-{% if_version eq:3.5.x %}
-**Default:** `1000`
-{% endif_version %}
-
-{% if_version gte:3.6.x %}
 **Default:** `10000`
-{% endif_version %}
+
 
 ---
 
@@ -1982,13 +1859,7 @@ completes, or the `dns_stale_ttl` number of seconds have passed.
 
 This configuration enables Kong to be more resilient during resolver downtime.
 
-{% if_version gte:3.6.x %}
 **Default:** `3600`
-{% endif_version %}
-
-{% if_version lte:3.5.x %}
-**Default:** `4`
-{% endif_version %}
 
 
 ### dns_cache_size
@@ -2024,16 +1895,8 @@ query.
 When disabled multiple requests for the same name/type will be synchronised to
 a single query.
 
-{% if_version gte:3.5.x %}
 **Default:** `off`
 
-{:.important}
-> **Important:** For version 3.5.0.0 and 3.5.0.1, the default value is `on`. 
-{% endif_version %}
-
-{% if_version lte:3.4.x %}
-**Default:** `off`
-{% endif_version %}
 
 ---
 
@@ -2072,7 +1935,6 @@ The AWS region your vault is located in.
 
 **Default:** none
 
-{% if_version gte:3.5.x %}
 
 ### vault_aws_endpoint_url
 {:.badge .enterprise}
@@ -2106,7 +1968,6 @@ The role session name used for role assuming. The default value is `KongVault`.
 
 **Default:** `KongVault`
 
-{% endif_version %}
 
 ### vault_aws_ttl
 {:.badge .enterprise}
@@ -2253,13 +2114,7 @@ A token string.
 Defines the authentication mechanism when connecting to the Hashicorp Vault
 service.
 
-{% if_version gte:3.6.x %}
 Accepted values are: `token`, `kubernetes` or `approle`.
-{% endif_version %}
-
-{% if_version lte:3.5.x %}
-Accepted values are: `token`, or `kubernetes`.
-{% endif_version %}
 
 **Default:** `token`
 
@@ -2274,8 +2129,6 @@ activate.
 **Default:** none
 
 
-{% if_version gte:3.5.x %}
-
 ### vault_hcv_kube_auth_path
 {:.badge .enterprise}
 
@@ -2284,7 +2137,6 @@ Place where the Kubernetes auth method will be accessible:
 
 **Default:** `kubernetes`
 
-{% endif_version %}
 
 ### vault_hcv_kube_api_token_file
 {:.badge .enterprise}
@@ -2294,6 +2146,7 @@ pod's filesystem, if using a non-standard container platform setup.
 
 **Default:** none
 
+
 ### vault_hcv_approle_auth_path
 {:.badge .enterprise}
 
@@ -2302,7 +2155,6 @@ Place where the Approle auth method will be accessible:
 
 **Default:** `approle`
 
-{% if_version gte:3.6.x %}
 
 ### vault_hcv_approle_role_id
 {:.badge .enterprise}
@@ -2337,7 +2189,6 @@ response-wrapping token instead of a real Secret ID.
 
 **Default:** `false`
 
-{% endif_version %}
 
 ### vault_hcv_ttl
 {:.badge .enterprise}
@@ -2375,7 +2226,6 @@ will be made.
 
 **Default:** none
 
-{% if_version gte:3.5.x %}
 
 ### vault_azure_vault_uri
 {:.badge .enterprise}
@@ -2451,7 +2301,6 @@ will be made.
 
 **Default:** none
 
-{% endif_version %}
 
 ---
 
@@ -2647,7 +2496,7 @@ This affects connections made by Lua code, such as connections to the database
 Kong uses, or when sending logs using a logging plugin. It does *not* affect
 connections made to the upstream Service or from downstream clients.
 
-**Default:** `TLSv1.1 TLSv1.2 TLSv1.3`
+**Default:** `TLSv1.2 TLSv1.3`
 
 
 ### lua_package_path
@@ -2676,13 +2525,8 @@ every remote server.
 
 See https://github.com/openresty/lua-nginx-module#lua_socket_pool_size
 
-{% if_version gte:3.5.x %}
-**Default:** `256`
-{% endif_version %}
-
-{% if_version lte:3.4.x %}
 **Default:** `30`
-{% endif_version %}
+
 
 ### enforce_rbac
 {:.badge .enterprise}
@@ -2742,8 +2586,6 @@ Turn on FIPS mode; this mode is only available on a FIPS build.
 The Admin GUI for Kong Enterprise.
 
 ### admin_gui_listen
-{% if_version lte:3.3.x %}{:.badge .free}{% endif_version %}
-
 
 Kong Manager Listeners
 
@@ -2758,7 +2600,6 @@ directive.
 
 
 ### admin_gui_url
-{% if_version lte:3.3.x %}{:.badge .free}{% endif_version %}
 
 Kong Manager URL
 
@@ -2781,7 +2622,6 @@ resolved listener port depending on the requested protocol.
 
 
 ### admin_gui_path
-{% if_version lte:3.3.x %}{:.badge .free}{% endif_version %}
 
 Kong Manager base path
 
@@ -2819,18 +2659,8 @@ resolved admin_listen HTTP/HTTPS port.
 
 **Default:** none
 
-{% if_version gte:3.5.x %}
-### admin_gui_ssl_protocols
-{:.badge .free}
-
-Defines the TLS versions supported for Kong Manager
-
-**Default:** `TLSv1.1 TLSv1.2 TLSv1.3`
-
-{% endif_version %}
 
 ### admin_gui_ssl_cert
-{% if_version lte:3.3.x %}{:.badge .free}{% endif_version %}
 
 The SSL certificate for `admin_gui_listen` values with SSL enabled.
 
@@ -2843,7 +2673,6 @@ values:
 
 
 ### admin_gui_ssl_cert_key
-{% if_version lte:3.3.x %}{:.badge .free}{% endif_version %}
 
 The SSL key for `admin_gui_listen` values with SSL enabled.
 
@@ -2865,7 +2694,6 @@ Alters the layout Admin GUI (JSON) The only supported value is `{
 
 
 ### admin_gui_access_log
-{% if_version lte:3.3.x %}{:.badge .free}{% endif_version %}
 
 Kong Manager Access Logs
 
@@ -2878,7 +2706,6 @@ Setting this value to `off` disables access logs for Kong Manager.
 
 
 ### admin_gui_error_log
-{% if_version lte:3.3.x %}{:.badge .free}{% endif_version %}
 
 Kong Manager Error Logs
 
@@ -3108,13 +2935,7 @@ On a Proxy-only node, `vitals` determines whether to collect data for Vitals.
 On an Admin-only node, `vitals` determines whether to display Vitals metrics
 and visualizations on the dashboard.
 
-{% if_version gte:3.5.x %}
-**Default:** `off`
-{% endif_version %}
-
-{% if_version lte:3.4.x %}
 **Default:** `on`
-{% endif_version %}
 
 
 ### vitals_strategy
@@ -3234,15 +3055,6 @@ there is no network connection to Konnect.
 
 **Default:** `100000`
 
-{% if_version gte:3.5.x %}
-
-### analytics_debug
-
-Outputs analytics payload to Kong logs.
-
-**Default:** `off`
-
-{% endif_version %}
 
 ---
 
@@ -3303,9 +3115,7 @@ Examples:
 
 - `<IP>:<PORT>` -> `portal_gui_host = 127.0.0.1:8003`
 - `<HOSTNAME>` -> `portal_gui_host = portal_api.domain.tld`
-{% if_version gte:3.6.x %}
 - `<HOSTNAME>/<PATH>` -> `portal_gui_host = dev-machine/dev-285`
-{% endif_version %}
 
 **Default:** `127.0.0.1:8003`
 
@@ -3351,17 +3161,6 @@ Example (on): - `<scheme>://<WORKSPACE>.<HOSTNAME>` ->
 
 **Default:** `off`
 
-
-{% if_version gte:3.5.x %}
-
-### portal_gui_ssl_protocols
-{:.badge .enterprise}
-
-Defines the TLS versions supported for Kong Developer Portal
-
-**Default:** `TLSv1.1 TLSv1.2 TLSv1.3`
-
-{% endif_version %}
 
 ### portal_gui_ssl_cert
 {:.badge .enterprise}
@@ -3467,16 +3266,6 @@ By default this value points to the local interface:
 
 **Default:** none
 
-{% if_version gte:3.5.x %}
-
-### portal_api_ssl_protocols
-{:.badge .enterprise}
-
-Defines the TLS versions supported for Kong Developer Portal API
-
-**Default:** `TLSv1.1 TLSv1.2 TLSv1.3`
-
-{% endif_version %}
 
 ### portal_api_ssl_cert
 {:.badge .enterprise}
@@ -4308,13 +4097,6 @@ workspaces.
 - `off` disables any check.
 - `path` enforces routes to comply with the pattern described in config
   `enforce_route_path_pattern`.
-- `static` relies on the PostgreSQL database.
-
-  Before creating a new route, it checks if the route is unique across all
-  workspaces based on the following params: `paths`, `methods`, and `hosts`. If
-  all fields of the new route overlap with an existing one, a 409 is returned with
-  the route of the collision. The array order is not important for the overlap
-  filter.
 
 **Default:** `smart`
 
@@ -4648,32 +4430,9 @@ is the endpoint that hosts S3-like storage.
 The credentials for GCP are provided via the environment variable
 `GCP_SERVICE_ACCOUNT`.
 
-**Default:** none
-
-{% if_version gte:3.5.x %}
-
-### cluster_fallback_export_s3_config
-{:.badge .enterprise}
-
-fallback config export S3 config This is used only when
-`cluster_fallback_config_storage` is S3-like schema.
-
-If set, it will add config table to kong exporter config S3 putObject request.
-
-The config table should be in JSON format and can be unserialized into a table.
-
-It should contain the necessary parameters as described in the documentation.
-
-
-https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property.
-
-For example, if you want to set the ServerSideEncryption headers / KMS Key ID
-for the S3 putObject request, you can set the config table to:
-`{"ServerSideEncryption": "aws:kms", "SSEKMSKeyId": "your-kms-key-id"}`
 
 **Default:** none
 
-{% endif_version %}
 
 ### cluster_fallback_config_export
 {:.badge .enterprise}
@@ -4736,7 +4495,6 @@ Notes:
 
 **Default:** none
 
-{% if_version gte:3.5.x %}
 
 ---
 
@@ -4749,16 +4507,9 @@ configuration of these directives via its Nginx directive injection mechanism.
 The following namespaces are supported:
 
 - `nginx_wasm_<directive>`: Injects `<directive>` into the `wasm {}` block.
-{% if_version gte:3.6.x %}
-- `nginx_wasm_shm_kv_<name>`: Injects `shm_kv <name>` into the `wasm {}` block,
-  allowing operators to define custom shared memory zones which are usable by
-  the `get_shared_data`/`set_shared_data` Proxy-Wasm SDK functions.
-{% endif_version %}
-{% if_version lte:3.5.x %}
 - `nginx_wasm_shm_<name>`: Injects `shm_kv <name>` into the `wasm {}` block,
   allowing operators to define custom shared memory zones which are usable by
   the `get_shared_data`/`set_shared_data` Proxy-Wasm SDK functions.
-{% endif_version %}
 - `nginx_wasm_wasmtime_<flag>`: Injects `flag <flag>` into the `wasmtime {}`
   block, allowing various Wasmtime-specific flags to be set.
 - `nginx_<http|proxy>_<directive>`: Injects `<directive>` into the `http {}` or
@@ -4854,9 +4605,7 @@ proxy request:
     - `header_filter`: Collect timing information from the `header_filter` phase. 
     - `body_filter`: Collect timing information from the `body_filter` phase. 
     - `log`: Collect timing information from the `log` phase.
-    {% if_version gte:3.6.x %}
     - `upstream`: Collect timing information from the `upstream` phase.
-    {% endif_version %}
 
 - `X-Kong-Request-Debug-Log`: If set to `true`, timing information will also be
   logged in the Kong error log with a log level of `notice`. Defaults to
@@ -4889,7 +4638,6 @@ You can locate the generated debug token in two locations:
 
 **Default:** `<random>`
 
-{% endif_version %}
 
 
 [Penlight]: http://stevedonovan.github.io/Penlight/api/index.html

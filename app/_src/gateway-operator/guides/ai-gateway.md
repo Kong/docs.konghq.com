@@ -6,7 +6,7 @@ The `AIGateway` CRD is an opinionated CRD to simplify getting started with [Kong
 
 `AIGateway` allows you to configure `largeLanguageModels` and will translate the configuration in to `Gateway`, `HTTPRoute` and `KongPlugin` resources automatically. 
 
-{% include md/kgo/prerequisites-kic.md version=page.version release=page.release aiGateway=true %}
+{% include md/kgo/prerequisites.md version=page.version release=page.release aiGateway=true %}
 
 ## Get Started
 
