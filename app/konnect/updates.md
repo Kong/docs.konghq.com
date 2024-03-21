@@ -11,6 +11,11 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## March 2024
 
+**Enhanced error notification in {{site.konnect_short_name}}**
+: Customers now have the ability to view detailed error notifications for their data plane directly within {{site.konnect_short_name}}. The enhanced logging feature categorizes errors for improved clarity, distinguishing between configuration errors, transient configuration reload errors, and general exceptions. This update empowers users to diagnose and resolve CP/DP connection issues more efficiently.
+
+![Konnect-error-log](/assets/images/products/konnect/changelog/konnect-error-log.png)
+
 **New Analytics Explorer page**
 : You can now explore and visualize analytics data via an easy to use, point-and-click web interface. The [Explorer page](https://cloud.konghq.com/analytics/explorer) allows you to drill-down into data and easily discover how issues may impact your business. For more information, see the [Explorer overview](/konnect/analytics/explorer/).
 
@@ -19,6 +24,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 : ![analytics summary dashboard](/assets/images/products/konnect/changelog/konnect-analytics-summary-dashboard.png)
 : > _**Figure 1:** Example of the improved Analytics summary dashboard that displays total traffic, error rate, P99 latency, total traffic over time, latency breakdown over time, and Kong vs upstream latency over time._
+
 
 ## February 2024
 
