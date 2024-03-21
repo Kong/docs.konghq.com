@@ -15,14 +15,14 @@ connection as it is proxied by {{site.base_gateway}}. To do so, the file
 more functions with predetermined names. Those functions will be
 invoked by {{site.base_gateway}} at different phases when it processes traffic.
 
-{% if_version gte: 3.5.x %}
+{% if_version gte: 3.4.x %}
 The first parameter they take is always `self`. All functions except `init_worker`
-and `configure`can receive a second parameter which is a table with the plugin
+and `configure` can receive a second parameter which is a table with the plugin
 configuration. The `configure` receives an array of all configurations for the
 specific plugin.
 {% endif_version %}
 
-{% if_version lte:3.4.x %}
+{% if_version lte:3.3.x %}
 The first parameter they take is always `self`. All functions except `init_worker`
 can receive a second parameter which is a table with the plugin configuration.
 {% endif_version %}
@@ -40,7 +40,7 @@ file you'll implement custom logic at various entry-points
 of {{site.base_gateway}}'s execution life-cycle:
 
 - **[HTTP Module]** *is used for plugins written for HTTP/HTTPS requests*
-{% if_version lte: 3.4.x %}
+{% if_version lte: 3.3.x %}
 
 | Function name       | Phase             | Request Protocol        | Description
 |---------------------|-------------------|-------------------------|------------
@@ -73,7 +73,7 @@ To reduce unexpected behaviour changes, {{site.base_gateway}} does not start if 
 
 {% endif_version %}
 
-{% if_version gte: 3.5.x %}
+{% if_version gte: 3.4.x %}
 | Function name       | Phase               | Request Protocol              | Description
 |---------------------|---------------------|-------------------------------|------------
 | `init_worker`       | [init_worker]       | *                             | Executed upon every Nginx worker process's startup.
@@ -122,21 +122,23 @@ connection.  After a configurable time without any packet, the connection is
 considered closed and the `log` function is executed.
 
 {:.note}
-> The `configure` handler was added on Kong 3.5. We are currently looking feedback for this new phase,
+> The `configure` handler was added in Kong 3.5, and has been backported to 3.4 LTS. 
+We are currently looking feedback for this new phase,
 > and there is a slight possibility that its signature might change in a future.
 {% endif_version %}
+
 ## handler.lua specifications
 
 {{site.base_gateway}} processes requests in **phases**. A plugin is a piece of code that gets
 activated by {{site.base_gateway}} as each phase is executed while the request gets proxied.
 
-{% if_version gte:3.5.x %}
+{% if_version gte:3.4.x %}
 Phases are limited in what they can do. For example, the `init_worker` phase
 does not have access to the `config` parameter because that information isn't
 available when kong is initializing each worker. On the other hand the `configure`
 is passed with all the active configurations for the plugin (or `nil` if not configured).
 {% endif_version %}
-{% if_version lte: 3.4.x %}
+{% if_version lte: 3.3.x %}
 Phases are limited in what they can do. For example, the `init_worker` phase
 does not have access to the `config` parameter because that information isn't
 available when kong is initializing each worker.
@@ -173,7 +175,7 @@ function CustomHandler:init_worker()
   kong.log("init_worker")
 end
 
-{% if_version gte:3.5.x %}
+{% if_version gte:3.4.x %}
 function CustomHandler:configure(configs)
   -- Implement logic for the configure phase here
   --(called whenever there is change to any of the plugins)
@@ -346,7 +348,7 @@ The following handlers are _unique to_ WebSocket services:
 
 The following handlers are executed for both WebSocket _and_ non-Websocket services:
   - `init_worker`
-  {% if_version gte:3.5.x %}
+  {% if_version gte:3.4.x %}
   - `configure`
   {% endif_version %}
   - `certificate` (TLS/SSL requests only)

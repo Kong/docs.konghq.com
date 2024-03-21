@@ -140,10 +140,13 @@ Expressions language support a rich set of operators that can be performed on va
 | `&&`           | And                   | Returns `true` if **both** expressions on the left and right side evaluates to `true`                                                                                                                        |
 | `||` | Or | Returns `true` if **any** expressions on the left and right side evaluates to `true` |                                                                                                                    |
 | `(Expression)` | Parenthesis           | Groups expressions together to be evaluated first                                                                                                                                                            |
-
-{% if_version gte:3.6.x inline:true %}
+{% unless page.release == '3.5.x' %}
+{% if_version gte:3.4.x %}
 | `!`            | Not                   | Negates the result of a parenthesized expression. **Note:** The `!` operator can only be used with parenthesized expression like `!(foo == 1)`, it **cannot** be used with a bare predicate like `! foo == 1` |
 {% endif_version %}
+{% endunless %}
+
+<!-- TO DO: Remove the "unless" tags when we have support for eq/neq OR if all of these changes get backported into 3.5 as well-->
 
 ### Extended descriptions
 

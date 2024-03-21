@@ -95,6 +95,23 @@ entries:
       The module `kong.tools.batch_queue` has been renamed to `kong.tools.batch` and the API was changed. 
       If your custom plugin uses queues, it must be updated to use the new parameters.
 
+  - area: OpenSSL
+    category: 1
+    description: |
+      > _Applies to 3.4.3.5 and later versions._
+
+      In OpenSSL 3.2, the default SSL/TLS security level has been changed from 1 to 2.
+
+      This means the security level is set to 112 bits of security. 
+      As a result, the following are prohibited:
+      * RSA, DSA, and DH keys shorter than 2048 bits
+      * ECC keys shorter than 224 bits
+      * Any cipher suite using RC4
+      * SSL version 3
+      Additionally, compression is disabled.
+    action: |
+      Ensure that your configuration complies with the new security level requirements.
+
   - area: Deployment
     category: 2
     description: |
