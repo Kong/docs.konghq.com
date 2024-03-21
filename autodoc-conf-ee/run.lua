@@ -204,7 +204,8 @@ for _, section in ipairs(parsed) do
         write("{:.badge .enterprise}")
 
       elseif string.match(var.name, "debug_") 
-        and not string.match(var.name, "allow_debug_header") 
+        and not string.match(var.name, "allow_debug_header")
+        and not string.match(var.name, "request_debug_token")
       then
         write("{:.badge .enterprise}")
 
