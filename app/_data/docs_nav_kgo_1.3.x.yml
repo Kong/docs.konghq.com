@@ -54,6 +54,8 @@ items:
     items:
       - text: Overview
         url: /production/
+      - text: Install
+        url: /install/
       - text: Enterprise License
         url: /license/
       - text: Monitoring

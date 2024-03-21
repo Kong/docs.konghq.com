@@ -18,4 +18,4 @@ You can configure your `GatewayClass` and `Gateway` objects in a vendor independ
 
 This means that CRDs for both the Gateway API and {{ site.kic_product_name }} have to be installed.
 
-{% include md/kgo/prerequisites-kic.md disable_accordian=true version=page.version release=page.release %}
+{% include md/kgo/prerequisites.md disable_accordian=true version=page.version release=page.release %}

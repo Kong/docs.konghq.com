@@ -52,6 +52,8 @@ items:
     items:
       - text: Overview
         url: /production/
+      - text: Install
+        url: /install/
       - text: Monitoring
         url: /production/monitoring/
       - text: Upgrade Gateway Operator
