@@ -300,7 +300,7 @@
   version: "3.0.2"
   edition: "kubernetes-ingress-controller"
 - release: "3.1.x"
-  version: "3.1.0"
+  version: "3.1.2"
   edition: "kubernetes-ingress-controller"
   latest: true
 - release: "3.2.x"
@@ -314,7 +314,7 @@
   version: 1.1.0
   release: 1.1.x
 - edition: gateway-operator
-  version: 1.2.0
+  version: 1.2.1
   release: 1.2.x
   latest: true
 - edition: gateway-operator
