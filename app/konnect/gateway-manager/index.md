@@ -149,9 +149,10 @@ You cannot delete the default control plane.
 A data plane node is a single {{site.base_gateway}} instance. 
 Data plane nodes service traffic for the control plane. 
 
-Kong only hosts fully-managed Dedicated Cloud Gateway data plane nodes.
-You must deploy your own nodes if you want to self-manage them, either on your own systems or in 
-an external cloud provider.
+You can deploy your data plane nodes in one of the following ways:
+* Self-managed nodes, hosted either on your own systems or in 
+an external cloud provider
+* Fully-managed dedicated cloud gateway nodes
 
 The Gateway Manager simplifies self-managed data plane node deployment 
 by providing a script to provision a {{site.base_gateway}} data plane node in a 

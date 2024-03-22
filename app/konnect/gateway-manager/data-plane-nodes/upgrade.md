@@ -1,5 +1,5 @@
 ---
-title: Upgrade a Self-managed Data Plane Node to a New Version
+title: Upgrade a Data Plane Node to a New Version
 content_type: how-to
 ---
 
