@@ -193,7 +193,7 @@ You can use several custom annotations within the OpenAPI specification, allowin
 
 | Annotation | Description | 
 |------------|-------------|
-| `x-kong-tags` | Specify the tags to use for each {{site.base_gateway}} entity generated. Tags can be overridden when doing the conversion. This can only be specified at the document level. |
+| `x-kong-tags` | Specify the [tags](/gateway/api/admin-ee/latest/#/Tags) to use for each {{site.base_gateway}} entity generated. Tags can be overridden when doing the conversion. This can only be specified at the document level. |
 | `x-kong-service-defaults` | The defaults for the [services](/gateway/api/admin-ee/latest/#/Services) generated from the `servers` object in the OpenAPI spec. These defaults can also be added to the `path` and `operation` objects, which will generate a new service entity. |
 | `x-kong-upstream-defaults` | The defaults for [upstreams](/gateway/api/admin-ee/latest/#/Upstreams) generated from the `servers` object in the OpenAPI spec. These defaults can also be added to the `path` and `operation` objects, which will generate a new service entity. |
 | `x-kong-route-defaults` | The defaults for the [routes](/gateway/api/admin-ee/latest/#/Routes) generated from `paths` in the OpenAPI spec. |
