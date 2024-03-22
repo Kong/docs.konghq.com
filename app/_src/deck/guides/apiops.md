@@ -205,7 +205,7 @@ You can use several custom annotations within the OpenAPI specification, allowin
   {:.note}
   > Note: Since the plugin name is in the key, only one instance of each plugin can be added at each level.
 - `securitySchemes.[...].x-kong-security-openid-connect`: Specifies that the [OpenID Connect plugin](/hub/kong-inc/openid-connect) is to be used to implement this `security scheme object`. Any custom configuration can be added as usual for plugins.
-- ```components.x-kong```: reusable Kong configuration components. All Kong references must be under this key. Referenceable elements are:
+- `components.x-kong`: Reusable {{site.base_gateway}} configuration components. All `x-kong` references must be under this key. It accepts the following referenceable elements:
   - ```x-kong-service-defaults```
   - ```x-kong-upstream-defaults```
   - ```x-kong-route-defaults```
