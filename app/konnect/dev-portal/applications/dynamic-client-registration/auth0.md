@@ -89,7 +89,7 @@ Once you have Auth0 configured, you can configure the Dev Portal to use Auth0 fo
 
 4. Select **New DCR provider** to create an Auth0 configuration. Provide a name for internal use in {{site.konnect_short_name}}. The name and provider type information will not be exposed to Dev Portal developers.
 
-5. Input the **Issuer URL** of your Auth0 tenant, formatted as: `https://AUTH0_TENANT_SUBDOMAIN.us.auth0.com`.  DO NOT have a trailing forward slash in URL.
+5. Input the **Issuer URL** of your Auth0 tenant, formatted as: `https://AUTH0_TENANT_SUBDOMAIN.us.auth0.com`.  Do not include a forward slash at the end of the URL.
 
    {:.note}
    > **Note:** You can find the value for your `AUTH0_TENANT_SUBDOMAIN` by checking the **Tenant Name** under **Settings** > **General**.
