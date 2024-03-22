@@ -11,6 +11,8 @@
       url: /network/
     - text: Geographic Regions
       url: /geo/
+    - text: Dedicated Cloud Gateways
+      url: /dedicated-cloud-gateways/
     - text: Compatibility
       url: /compatibility/
     - text: Stages of Software Availability
@@ -66,10 +68,6 @@
           url: /gateway-manager/control-plane-groups/migrate/
         - text: Conflicts in Control Planes
           url: /gateway-manager/control-plane-groups/conflicts/
-    - text: Cloud Gateways
-      items:
-        - text: Overview
-          url: /gateway-manager/cloud-gateway/
     - text: Kong Gateway Configuration in Konnect
       items:
         - text: Overview
