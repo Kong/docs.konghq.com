@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/kong/jekyll-generator-single-source.git
-  revision: 9ad685fd26acef50e14b2ab80f24ae4e7115da9e
+  revision: 647edd68d1d120163a3fa1540cb5c36cb028be63
   branch: DOCU-3690/conditional-rendering
   specs:
     jekyll-generator-single-source (0.0.11)
