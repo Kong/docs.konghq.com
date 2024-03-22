@@ -191,7 +191,7 @@ particular needs.
 ## Extending OpenAPI Specifications
 You can use several custom annotations within the OpenAPI specification, allowing you to declare {{site.base_gateway}} capabilities directly in the specification document. All custom annotations related to {{site.base_gateway}} configuration are prepended with the `x-kong-` label.
 
-- ```x-kong-tags```: specify the tags to use for each Kong entity generated. The tags can be overridden when doing the conversion. This can only be specified on document level.
+- `x-kong-tags`: Specify the tags to use for each {{site.base_gateway}} entity generated. Tags can be overridden when doing the conversion. This can only be specified at the document level.
 - ```x-kong-service-defaults```: the defaults for the [Kong services](/gateway/{{page.release}}/admin-api/#service-object) generated from 'servers' object in the OpenAPI spec. These defaults can also be added to "path" and "operation" objects, in which case a new Service entity will be generated.
 - ```x-kong-upstream-defaults```: the defaults for [upstreams](https://docs.konghq.com/gateway/latest/admin-api/#upstream-object) generated from the `servers` object in the OpenAPI spec. These defaults can also be added to `path` and `operation` objects, in which case a new Service and Upstream entity will be generated.
 - ```x-kong-route-defaults```: the defaults for the [Kong routes](/gateway/{{page.release}}/admin-api/#route-object) generated from 'paths' in the OpenAPI spec.
