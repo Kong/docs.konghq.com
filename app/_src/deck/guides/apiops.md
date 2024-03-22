@@ -189,7 +189,7 @@ to bring full and partial {{site.base_gateway}} configurations together to creat
 particular needs.
 
 ## Extending OpenAPI Specifications
-Several custom annotations can be used within the OpenAPI specification allowing you to declare {{site.base_gateway}} capabilities directly in the specification document. All custom annotations related to {{site.base_gateway}} configuration are prepended with ```x-kong-``` label.
+You can use several custom annotations within the OpenAPI specification, allowing you to declare {{site.base_gateway}} capabilities directly in the specification document. All custom annotations related to {{site.base_gateway}} configuration are prepended with the `x-kong-` label.
 
 - ```x-kong-tags```: specify the tags to use for each Kong entity generated. The tags can be overridden when doing the conversion. This can only be specified on document level.
 - ```x-kong-service-defaults```: the defaults for the [Kong services](/gateway/{{page.release}}/admin-api/#service-object) generated from 'servers' object in the OpenAPI spec. These defaults can also be added to "path" and "operation" objects, in which case a new Service entity will be generated.
