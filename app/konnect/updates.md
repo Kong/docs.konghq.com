@@ -11,6 +11,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## March 2024
 
+**Refined UI/UX for Control Plane Groups in {{site.konnect_short_name}}**
+: We've made UI/UX improvements to refine the E2E workflow of Control Plane Groups for our customers. Now, CPGs are more intuitive, and easier to understand than ever before.
+
 **Enhanced error notification in {{site.konnect_short_name}}**
 : Customers now have the ability to view detailed error notifications for their data plane directly within {{site.konnect_short_name}}. The enhanced logging feature categorizes errors for improved clarity, distinguishing between configuration errors, transient configuration reload errors, and general exceptions. This update empowers users to diagnose and resolve CP/DP connection issues more efficiently.
 
