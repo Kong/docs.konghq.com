@@ -417,7 +417,7 @@ paths:
           $ref: '#/components/responses/NotFound'
   /portals/{portalId}/applications/{applicationId}:
     get:
-      summary: Get Application
+      summary: Get Application by Portal
       description: >-
         Returns the configuration of a single application in this portal. If an
         application is linked to a DCR Provider, the `dcr_provider.id` and
@@ -439,7 +439,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
     delete:
-      summary: Delete Application
+      summary: Delete Application by Portal
       description: >-
         Delete a single application in this portal, along with its registrations
         and credentials.
@@ -452,6 +452,28 @@ paths:
       responses:
         '204':
           description: The application has been deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /applications/{applicationId}:
+    get:
+      summary: Get Application
+      description: >-
+        Returns the configuration of a single application in any portal. If an
+        application is linked to a DCR Provider, the `dcr_provider.id` and
+        `reference_id` can be used to correlate it. An application manages a set
+        of credentials and registrations for specific API product versions.
+      operationId: get-application-unscoped
+      parameters:
+        - $ref: '#/components/parameters/ApplicationId'
+      tags:
+        - Portal Applications
+      responses:
+        '200':
+          $ref: '#/components/responses/GetApplication'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
