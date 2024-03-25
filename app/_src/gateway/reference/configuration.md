@@ -1292,7 +1292,9 @@ Accepted values are:
   Admin API request.
 - `X-Kong-Upstream-Status`: The HTTP status code returned by the upstream
   service. This is particularly useful for clients to distinguish upstream
-  statuses if the response is rewritten by a plugin.
+  statuses if the response is rewritten by a plugin.  In the case that the 
+  response is retrieved by a plugin (such as `proxy-cache` plugin) from the
+  cache it holds, the status code always respects to the one in cache.
 {% if_version gte:3.5.x %}
 - `X-Kong-Request-Id`: Unique identifier of the request.
 {% endif_version %}
