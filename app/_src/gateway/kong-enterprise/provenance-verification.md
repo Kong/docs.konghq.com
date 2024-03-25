@@ -10,20 +10,20 @@ This guide provides steps to verify build provenance for signed {{site.ee_produc
 * A minimal example, used to verify an image without leveraging any annotations
 * A complete example, leveraging optional annotations for increased trust
 
-For the minimal example, you only need Docker Manifest Digest and a GitHub repo name.
+For the minimal example, you only need a Docker manifest digest and a GitHub repo name.
 
 {:.important .no-icon}
-> Docker manifest digest is required for build provenance verification. The manifest digest can be different from the platform specific image digest for a specific distribution.
+> The Docker manifest digest is required for build provenance verification. The manifest digest can be different from the platform specific image digest for a specific distribution.
 
 For the complete example, you need the same details as the minimal example, as well as any of the optional annotations you wish to verify:
 
 | Shorthand | Description | Example Value |
 |---|---|---|
-| `<repo>` | Github repository | `kong-ee` |
-| `<workflow name>` | Github workflow name | `Package & Release` |
-| `<worflow trigger>` | Github workflow Trigger | `workflow_dispatch` |
+| `<repo>` | GitHub repository | `kong-ee` |
+| `<workflow name>` | GitHub workflow name | `Package & Release` |
+| `<workflow trigger>` | GitHub workflow trigger | `workflow_dispatch` |
 
-Because Kong uses Github Actions to build and release, Kong also uses Github's OIDC identity to generate build provenance for container images, which is why many of these details are Github-related.
+Because Kong uses GitHub Actions to build and release, Kong also uses GitHub's OIDC identity to generate build provenance for container images, which is why many of these details are GitHub-related.
 
 ## Examples
 
@@ -44,7 +44,7 @@ For both examples, you need to:
    ```
 
 {:.important .no-icon}
-> Github owner is case-sensitive (`Kong/kong-ee` vs `kong/kong-ee`).
+> The GitHub owner is case-sensitive (`Kong/kong-ee` vs `kong/kong-ee`).
 
 ### Minimal example
 
@@ -94,6 +94,8 @@ slsa-verifier verify-image \
 
 #### Using Cosign
 
+Run the `cosign verify-attestation ...` command:
+
 ```sh
 cosign verify-attestation \
    <image>:<tag>@sha256:<manifest_digest> \
@@ -117,6 +119,8 @@ cosign verify-attestation \
 ```
 
 #### Using slsa-verifier
+
+Run the `slsa-verifier verify-image ...` command:
 
 ```sh
 slsa-verifier verify-image \

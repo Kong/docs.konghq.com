@@ -160,7 +160,7 @@ Starting with {{site.ee_product_name}} 3.5.0.2, Docker container images are sign
 
 ## Docker container image build provenance
 
-Starting with {{site.ee_product_name}} 3.6.0.0, Build provenance for docker container images is produced, and can be verified using `cosign` / `slsa-verifier` with attestations published to a Docker Hub repository. Read the [Verify Build Provenance for Signed Kong Images](/gateway/{{ page.release }}/kong-enterprise/provenance-verification/) documentation to learn more.
+Kong produces build provenance for docker container images, which can be verified using `cosign` / `slsa-verifier` with attestations published to a Docker Hub repository. Read the [Verify Build Provenance for Signed Kong Images](/gateway/{{ page.release }}/kong-enterprise/provenance-verification/) documentation to learn more.
 
 {% endif_version %}
 

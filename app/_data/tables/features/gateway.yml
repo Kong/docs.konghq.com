@@ -98,7 +98,7 @@ features:
         oss: false
         enterprise: true
       - name: Kong Images Build Provenance
-        tooltip: Kong Gateway container images generates build level provenance and verifiable in accordance with SLSA guidelines.
+        tooltip: Kong Gateway container images generate build level provenance and are verifiable in accordance with SLSA guidelines.
         oss: false
         enterprise: true
   - name: Observability
