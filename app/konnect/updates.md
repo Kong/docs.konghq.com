@@ -12,7 +12,9 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## March 2024
 
 **OAS 3.1 Support**
-Konnect and Portal now support OAS 3.1 out of the box. Users can now upload a YAML/JSON version of OAS 3.1 into their API Product version and the specification will be rendered in the spec viewer on both Konnect and Portal. With OAS 3.1, we now support describing the webhooks in your OAS the same way you describe your API paths. The new version of the spec renderer also supports all available theming options as before. OSS Portal users can also take advantage of this component by upgrading to the latest version of @kong-ui-public/spec-renderer@2.1.1
+: Konnect and Portal now support OAS 3.1 out of the box. Users can now upload a YAML/JSON version of OAS 3.1 into their API Product version and the specification will be rendered in the spec viewer on both Konnect and Portal. With OAS 3.1, we now support describing the webhooks in your OAS the same way you describe your API paths. The new version of the spec renderer also supports all available theming options as before. 
+
+: OSS Portal users can also take advantage of this component by upgrading to the latest version of `@kong-ui-public/spec-renderer@2.1.1`.
 
 
 **Enhanced error notification in {{site.konnect_short_name}}**
