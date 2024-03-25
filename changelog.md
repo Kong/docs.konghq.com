@@ -4,11 +4,9 @@
 
 ## Week 12
 
-### [(fix) Update auth0 instructions to include warning on trailing forward slash in URL](https://github.com/Kong/docs.konghq.com/pull/7122) (2024-03-22)
+### [fix: Update auth0 instructions to include warning on trailing forward slash in URL](https://github.com/Kong/docs.konghq.com/pull/7122) (2024-03-22)
 
 Updated the Issuer URL information, as providing a trailing slash will cause issues.
-
-
 
 
 When we have trailing slash for issuer URL, it get concatenated which will result in issuer as this https://dev-26uur0y8i4n8x3ez.us.auth0.com//api/v2/". So, informing users via docs will be valuable until if this can be gracefully handled.
@@ -49,23 +47,8 @@ Will do the same for 3.5 with upcoming patch release (should be end of next week
 - https://docs.konghq.com/gateway-operator/1.3.x/install/
 
 
-### [kgo: update version compat table for 1.2](https://github.com/Kong/docs.konghq.com/pull/7112) (2024-03-21)
 
-Update version compat matrix for KGO 1.2.
-
-Also bump KIC latest to 3.1.2 and KGO to 1.2.1 to have up to date latest versions referenced in guides.
-
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
-#### Modified
-
-- https://docs.konghq.com/gateway-operator/1.0.x/reference/version-compatibility
-- https://docs.konghq.com/gateway-operator/1.1.x/reference/version-compatibility
-- https://docs.konghq.com/gateway-operator/1.2.x/reference/version-compatibility
-- https://docs.konghq.com/gateway-operator/1.3.x/reference/version-compatibility
-
-
-### [kgo: use helm as installation method](https://github.com/Kong/docs.konghq.com/pull/7108) (2024-03-21)
+### [Kong Gateway Operator: use helm as installation method](https://github.com/Kong/docs.konghq.com/pull/7108) (2024-03-21)
 
 Rewrites KGO installation guides to all use helm and KGO's helm chart.
 
@@ -83,7 +66,7 @@ Related: https://github.com/Kong/gateway-operator-archive/issues/1594
 - https://docs.konghq.com/gateway-operator/1.3.x/guides/ai-gateway/
 
 
-### [kgo: fix Prometheus query in the guide which intermittently produced 0s which caused the targeted workload to scale down to 0](https://github.com/Kong/docs.konghq.com/pull/7106) (2024-03-20)
+### [Kong Gateway Operator: fix Prometheus query in the guide which intermittently produced 0s which caused the targeted workload to scale down to 0](https://github.com/Kong/docs.konghq.com/pull/7106) (2024-03-20)
 
 Fix Prometheus query in KGO guide which caused it to intermittently (incorrectly) report 0 which then in turn caused the HPA to scale the workload to 0.
 
@@ -93,19 +76,6 @@ Fix Prometheus query in KGO guide which caused it to intermittently (incorrectly
 - https://docs.konghq.com/gateway-operator/1.1.x/get-started/kic/install/
 - https://docs.konghq.com/gateway-operator/1.2.x/get-started/kic/install/
 - https://docs.konghq.com/gateway-operator/1.3.x/get-started/kic/install/
-
-
-### [release(KGO): update changelog for 1.2.0 and 1.2.1](https://github.com/Kong/docs.konghq.com/pull/7105) (2024-03-20)
-
-Follow up for https://github.com/Kong/docs.konghq.com/pull/7102. CHANGELOG now contains changes introduced in the EE version of KGO too.
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
-#### Modified
-
-- https://docs.konghq.com/gateway-operator/changelog
 
 
 ### [kgo: add cli args docs and regenerate 1.2 CRD ref doc](https://github.com/Kong/docs.konghq.com/pull/7104) (2024-03-20)
@@ -123,18 +93,6 @@ Add KGO 1.2 and 1.1 CLI arguments page.
 - https://docs.konghq.com/gateway-operator/1.1.x/install/
 - https://docs.konghq.com/gateway-operator/1.2.x/install/
 - https://docs.konghq.com/gateway-operator/1.3.x/install/
-
-
-### [add changelogs for KGO 1.2](https://github.com/Kong/docs.konghq.com/pull/7102) (2024-03-20)
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-Update changelogs of kong gateway operator 1.2, including 1.2.0 and 1.2.1.
-
-#### Modified
-
-- https://docs.konghq.com/gateway-operator/changelog
 
 
 ### [Update: Document custom annotations for decK APIOps](https://github.com/Kong/docs.konghq.com/pull/7098) (2024-03-22)
@@ -221,19 +179,6 @@ Addresses https://konghq.atlassian.net/browse/DOCU-3719 and https://konghq.atlas
 
 ## Week 11
 
-### [fix if blocks for license part in KGO](https://github.com/Kong/docs.konghq.com/pull/7073) (2024-03-13)
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-Fix `{if}` block to introduce licenses when `enterprise` is enabled in the page to introduce prerequisite of installing KGO.
-
-#### Modified
-
-- https://docs.konghq.com/gateway-operator/1.0.x/get-started/kic/install/
-- https://docs.konghq.com/gateway-operator/1.1.x/get-started/kic/install/
-- https://docs.konghq.com/gateway-operator/1.2.x/get-started/kic/install/
-
 
 ### [Fix: Update `get-admins` endpoint description](https://github.com/Kong/docs.konghq.com/pull/7064) (2024-03-12)
 
@@ -278,40 +223,6 @@ Milestone: KGO 1.2 https://github.com/Kong/gateway-operator-enterprise/milestone
 - https://docs.konghq.com/gateway-operator/1.1.x/get-started/kic/install/
 - https://docs.konghq.com/gateway-operator/1.2.x/get-started/kic/install/
 
-
-### [KGO managed gateways](https://github.com/Kong/docs.konghq.com/pull/7044) (2024-03-14)
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
-#### Added
-
-- https://docs.konghq.com/gateway-operator/1.2.x/concepts/managed-gateways
-
-#### Modified
-
-- https://docs.konghq.com/gateway-operator/1.0.x/concepts/gateway-configuration
-- https://docs.konghq.com/gateway-operator/1.1.x/concepts/gateway-configuration
-- https://docs.konghq.com/gateway-operator/1.2.x/concepts/gateway-configuration
-- https://docs.konghq.com/gateway-operator/1.0.x/customization/data-plane-image/
-- https://docs.konghq.com/gateway-operator/1.1.x/customization/data-plane-image/
-- https://docs.konghq.com/gateway-operator/1.2.x/customization/data-plane-image/
-- https://docs.konghq.com/gateway-operator/1.0.x/get-started/kic/create-gateway/
-- https://docs.konghq.com/gateway-operator/1.1.x/get-started/kic/create-gateway/
-- https://docs.konghq.com/gateway-operator/1.2.x/get-started/kic/create-gateway/
-- https://docs.konghq.com/gateway-operator/1.0.x/get-started/kic/create-route/
-- https://docs.konghq.com/gateway-operator/1.1.x/get-started/kic/create-route/
-- https://docs.konghq.com/gateway-operator/1.2.x/get-started/kic/create-route/
-- https://docs.konghq.com/gateway-operator/1.0.x/get-started/kic/install/
-- https://docs.konghq.com/gateway-operator/1.1.x/get-started/kic/install/
-- https://docs.konghq.com/gateway-operator/1.2.x/get-started/kic/install/
-- https://docs.konghq.com/gateway-operator/1.0.x/get-started/konnect/create-route/
-- https://docs.konghq.com/gateway-operator/1.1.x/get-started/konnect/create-route/
-- https://docs.konghq.com/gateway-operator/1.2.x/get-started/konnect/create-route/
-- https://docs.konghq.com/gateway-operator/1.0.x/guides/upgrade/data-plane/rolling/
-- https://docs.konghq.com/gateway-operator/1.1.x/guides/upgrade/data-plane/rolling/
-- https://docs.konghq.com/gateway-operator/1.2.x/guides/upgrade/data-plane/rolling/
 
 ## Week 10
 
