@@ -2,20 +2,182 @@
 
 <!--vale off-->
 
-## Week 11
+## Week 12
 
-### [fix if blocks for license part in KGO](https://github.com/Kong/docs.konghq.com/pull/7073) (2024-03-13)
+### [fix: Update auth0 instructions to include warning on trailing forward slash in URL](https://github.com/Kong/docs.konghq.com/pull/7122) (2024-03-22)
 
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-Fix `{if}` block to introduce licenses when `enterprise` is enabled in the page to introduce prerequisite of installing KGO.
+Updated the Issuer URL information, as providing a trailing slash will cause issues.
+
+
+When we have trailing slash for issuer URL, it get concatenated which will result in issuer as this https://dev-26uur0y8i4n8x3ez.us.auth0.com//api/v2/". So, informing users via docs will be valuable until if this can be gracefully handled.
+
+#### Modified
+
+- https://docs.konghq.com/konnect/dev-portal/applications/dynamic-client-registration/auth0
+
+
+### [fix: Use consistent names in Mocking plugin example](https://github.com/Kong/docs.konghq.com/pull/7116) (2024-03-22)
+
+Fixes https://konghq.atlassian.net/browse/DOCU-3284.
+
+Examples were using two sets of names, Ron and Jessica, and Hao and Sasha. The latter two are carried through the rest of the topic; the first two don't appear anywhere else, and feel like they might be left over from a previous version of the example .
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/mocking/overview/
+
+
+### [Fix: Generate 3.6 Gateway kong.conf reference](https://github.com/Kong/docs.konghq.com/pull/7115) (2024-03-21)
+
+Regenerating the configuration reference for Gateway based on latest 3.6.1.1 patch. 
+We didn't generate it with the release and there were significant changes to the file in that version. 
+Now that these files are split out by version, this is easier to see. 
+
+Also making some tweaks to run.lua and data.lua to use the same text that we have in the page description, and to remove a badge that doesn't need to exist.
+
+Fixes https://konghq.atlassian.net/browse/DOCU-2889.
+
+Will do the same for 3.5 with upcoming patch release (should be end of next week).
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/1.0.x/install/
+- https://docs.konghq.com/gateway-operator/1.1.x/install/
+- https://docs.konghq.com/gateway-operator/1.2.x/install/
+- https://docs.konghq.com/gateway-operator/1.3.x/install/
+
+
+
+### [Kong Gateway Operator: use helm as installation method](https://github.com/Kong/docs.konghq.com/pull/7108) (2024-03-21)
+
+Rewrites KGO installation guides to all use helm and KGO's helm chart.
+
+Removes the old instructions which used the manifests.
+
+Related: https://github.com/Kong/gateway-operator-archive/issues/1594
 
 #### Modified
 
 - https://docs.konghq.com/gateway-operator/1.0.x/get-started/kic/install/
 - https://docs.konghq.com/gateway-operator/1.1.x/get-started/kic/install/
 - https://docs.konghq.com/gateway-operator/1.2.x/get-started/kic/install/
+- https://docs.konghq.com/gateway-operator/1.3.x/get-started/kic/install/
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/ai-gateway/
+- https://docs.konghq.com/gateway-operator/1.3.x/guides/ai-gateway/
+
+
+### [Kong Gateway Operator: fix Prometheus query in the guide which intermittently produced 0s which caused the targeted workload to scale down to 0](https://github.com/Kong/docs.konghq.com/pull/7106) (2024-03-20)
+
+Fix Prometheus query in KGO guide which caused it to intermittently (incorrectly) report 0 which then in turn caused the HPA to scale the workload to 0.
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/1.0.x/get-started/kic/install/
+- https://docs.konghq.com/gateway-operator/1.1.x/get-started/kic/install/
+- https://docs.konghq.com/gateway-operator/1.2.x/get-started/kic/install/
+- https://docs.konghq.com/gateway-operator/1.3.x/get-started/kic/install/
+
+
+### [kgo: add cli args docs and regenerate 1.2 CRD ref doc](https://github.com/Kong/docs.konghq.com/pull/7104) (2024-03-20)
+
+Add KGO 1.2 and 1.1 CLI arguments page.
+
+#### Added
+
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/ai-gateway/
+- https://docs.konghq.com/gateway-operator/1.3.x/guides/ai-gateway/
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/1.0.x/install/
+- https://docs.konghq.com/gateway-operator/1.1.x/install/
+- https://docs.konghq.com/gateway-operator/1.2.x/install/
+- https://docs.konghq.com/gateway-operator/1.3.x/install/
+
+
+### [Update: Document custom annotations for decK APIOps](https://github.com/Kong/docs.konghq.com/pull/7098) (2024-03-22)
+
+Added documentation for the custom annotations that can be added to OpenAPI specifications to support APIOps, and specifically the ```deck file openapi2kong``` command.
+ 
+[Example OAS](https://github.com/Kong/go-apiops/blob/main/docs/learnservice_oas.yaml)
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/1.0.x/get-started/kic/install/
+- https://docs.konghq.com/gateway-operator/1.1.x/get-started/kic/install/
+- https://docs.konghq.com/gateway-operator/1.2.x/get-started/kic/install/
+- https://docs.konghq.com/gateway-operator/1.3.x/get-started/kic/install/
+
+
+### [KGO: AIGateway docs](https://github.com/Kong/docs.konghq.com/pull/7078) (2024-03-18)
+
+Add example usage for AIGateway
+
+#### Added
+
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/ai-gateway/
+- https://docs.konghq.com/gateway-operator/1.3.x/guides/ai-gateway/
+- https://docs.konghq.com/assets/gateway-operator/ai-gateway-crd.yaml
+
+
+### [Release: Gateway 3.4.3.5 ](https://github.com/Kong/docs.konghq.com/pull/7076) (2024-03-21)
+
+Sourced from https://github.com/Kong/kong-ee/blob/next/3.4.x.x/changelog/3.4.3.5/3.4.3.5.md
+
+Addresses https://konghq.atlassian.net/browse/DOCU-3719 and https://konghq.atlassian.net/browse/DOCU-3713.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.5.x/breaking-changes/34x/
+- https://docs.konghq.com/gateway/3.6.x/breaking-changes/34x/
+- https://docs.konghq.com/gateway/3.7.x/breaking-changes/34x/
+- https://docs.konghq.com/gateway/3.0.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.1.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.2.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.3.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.4.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.5.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.6.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.7.x/key-concepts/routes/expressions
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.6.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.7.x/kong-enterprise/secrets-management/backends/aws-sm
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/secrets-management/backends/azure-key-vaults
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/secrets-management/backends/azure-key-vaults
+- https://docs.konghq.com/gateway/3.6.x/kong-enterprise/secrets-management/backends/azure-key-vaults
+- https://docs.konghq.com/gateway/3.7.x/kong-enterprise/secrets-management/backends/azure-key-vaults
+- https://docs.konghq.com/gateway/3.0.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/3.1.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/3.2.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/3.3.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/3.4.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/3.5.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/3.6.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/3.7.x/kong-enterprise/secrets-management/backends/hashicorp-vault
+- https://docs.konghq.com/gateway/3.0.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.1.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.2.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.3.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.4.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.5.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.6.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.7.x/plugin-development/custom-logic
+- https://docs.konghq.com/gateway/3.0.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.1.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.2.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.3.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.4.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.5.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.6.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/3.7.x/reference/expressions-language/language-references
+- https://docs.konghq.com/gateway/changelog
+
+## Week 11
 
 
 ### [Fix: Update `get-admins` endpoint description](https://github.com/Kong/docs.konghq.com/pull/7064) (2024-03-12)
@@ -61,40 +223,6 @@ Milestone: KGO 1.2 https://github.com/Kong/gateway-operator-enterprise/milestone
 - https://docs.konghq.com/gateway-operator/1.1.x/get-started/kic/install/
 - https://docs.konghq.com/gateway-operator/1.2.x/get-started/kic/install/
 
-
-### [KGO managed gateways](https://github.com/Kong/docs.konghq.com/pull/7044) (2024-03-14)
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
-#### Added
-
-- https://docs.konghq.com/gateway-operator/1.2.x/concepts/managed-gateways
-
-#### Modified
-
-- https://docs.konghq.com/gateway-operator/1.0.x/concepts/gateway-configuration
-- https://docs.konghq.com/gateway-operator/1.1.x/concepts/gateway-configuration
-- https://docs.konghq.com/gateway-operator/1.2.x/concepts/gateway-configuration
-- https://docs.konghq.com/gateway-operator/1.0.x/customization/data-plane-image/
-- https://docs.konghq.com/gateway-operator/1.1.x/customization/data-plane-image/
-- https://docs.konghq.com/gateway-operator/1.2.x/customization/data-plane-image/
-- https://docs.konghq.com/gateway-operator/1.0.x/get-started/kic/create-gateway/
-- https://docs.konghq.com/gateway-operator/1.1.x/get-started/kic/create-gateway/
-- https://docs.konghq.com/gateway-operator/1.2.x/get-started/kic/create-gateway/
-- https://docs.konghq.com/gateway-operator/1.0.x/get-started/kic/create-route/
-- https://docs.konghq.com/gateway-operator/1.1.x/get-started/kic/create-route/
-- https://docs.konghq.com/gateway-operator/1.2.x/get-started/kic/create-route/
-- https://docs.konghq.com/gateway-operator/1.0.x/get-started/kic/install/
-- https://docs.konghq.com/gateway-operator/1.1.x/get-started/kic/install/
-- https://docs.konghq.com/gateway-operator/1.2.x/get-started/kic/install/
-- https://docs.konghq.com/gateway-operator/1.0.x/get-started/konnect/create-route/
-- https://docs.konghq.com/gateway-operator/1.1.x/get-started/konnect/create-route/
-- https://docs.konghq.com/gateway-operator/1.2.x/get-started/konnect/create-route/
-- https://docs.konghq.com/gateway-operator/1.0.x/guides/upgrade/data-plane/rolling/
-- https://docs.konghq.com/gateway-operator/1.1.x/guides/upgrade/data-plane/rolling/
-- https://docs.konghq.com/gateway-operator/1.2.x/guides/upgrade/data-plane/rolling/
 
 ## Week 10
 
