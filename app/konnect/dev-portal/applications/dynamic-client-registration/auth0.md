@@ -72,7 +72,7 @@ To create a new API audience:
 
 5. Click **create**
 
-6. Note the **identifier** value used above, which is also known as the **audience**, as it will be used as the **Client Token Audience** value in {{site.konnect_short_name}}
+6. Note the **identifier** value used above, which is also known as the **audience**, as it will be used as the **Client Audience** value in {{site.konnect_short_name}}
 
 ## Configure the Dev Portal
 
@@ -98,7 +98,7 @@ Once you have Auth0 configured, you can configure the Dev Portal to use Auth0 fo
 
 7. Input the Client ID of the previously created admin application in Auth0 into the **Initial Client ID** field. input the Client Secret of the same Auth0 admin application into the Initial Client Secret field. **The Initial client secret will be stored in isolated, encrypted storage and will not be readable through any Konnect API.**
 
-8. Enter the **Client Token Audience** as the identifier value you set when configuring the API entity above. If you’re using developer managed scopes, this value should map to the audience field of your associated Auth0 API.
+8. Enter the **Client Audience** as the identifier value you set when configuring the API entity above.
 
 9. **Optional**: If you are using developer-managed scopes, select the **Use Developer Managed Scopes** checkbox.
 
@@ -112,7 +112,9 @@ Once you have Auth0 configured, you can configure the Dev Portal to use Auth0 fo
 
 14. Enter `azp` into the **Credential Claims** field, which will match the client ID of each Auth0 application
 
-15. Choose the required **Auth Methods** (`client_credentials`, `bearer`, `session`) and **save**.
+15. Enter the value audience field of your associated Auth0 API in the **Audience** field. If you’re using developer managed scopes, scopes selected by the developer should be in this audience.
+
+16. Choose the required **Auth Methods** (`client_credentials`, `bearer`, `session`) and **save**.
 {% endnavtab %}
 {% navtab API %} 
 
