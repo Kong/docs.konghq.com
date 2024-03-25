@@ -26,7 +26,7 @@
     "broken-link-checker": "0.7.8",
     "browser-sync": "3.0.2",
     "cheerio": "1.0.0-rc.12",
-    "cloudflare": "2.9.1",
+    "cloudflare": "3.0.0-beta.11",
     "del": "6.1.1",
     "fancy-log": "2.0.0",
     "jest": "29.7.0",
