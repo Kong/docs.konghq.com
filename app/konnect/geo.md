@@ -21,7 +21,7 @@ Geographic regions allow you to also operate {{site.konnect_saas}} in a similar 
 
 ### Dedicated Cloud Gateways
 
-{{site.konnect_saas}} Dedicated Cloud Gateways supports the following AWS geos: 
+{{site.konnect_saas}} Dedicated Cloud Gateways support the following AWS geos: 
 
 * US-west
 * US-east-1
