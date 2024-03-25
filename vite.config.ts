@@ -45,6 +45,18 @@ export default ({ command, mode }) => {
   dns.setDefaultResultOrder('verbatim')
 
   return defineConfig({
+    define: {
+      'process.env.development': JSON.stringify('development'),
+      'process.env.production': JSON.stringify('production'),
+    },
+    build: {
+      commonjsOptions: {
+        include: [
+          /@kong\/kongponents/,
+          /node_modules/
+        ]
+      },
+    },
     plugins: [
       inject({
         $: 'jquery',
