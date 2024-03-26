@@ -56,7 +56,7 @@ Learn more:
 
 ## Documentation
 
-Manage your API product's documentation directly within the **Documentation** section of the [API Product dashboard](https://cloud.konghq.com/api-products/). After uploading, you have the capability to edit documentation seamlessly from the the {{site.konnect_short_name}} dashboard. Documentation is accessible after the publication of an API product.
+Manage your API product's documentation directly within the **Documentation** section of the [API Product dashboard](https://cloud.konghq.com/api-products/). After uploading, you have the capability to edit documentation seamlessly from the {{site.konnect_short_name}} dashboard. Documentation is accessible after the publication of an API product.
 Learn more: 
 
 
