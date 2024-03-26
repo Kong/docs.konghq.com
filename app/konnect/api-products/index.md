@@ -5,13 +5,11 @@ content_type: explanation
 
 API Products bundles and manages multiple services. Each API product consists of at least one API product version, and each API product version is connected to a Gateway service. You can document your services and publish API products to a Dev Portal for consumption.
 
-**[Access {{site.konnect_short_name}} API Products](https://cloud.konghq.com/api-products).**
 
-![{{site.konnect_short_name}} API Products](/assets/images/products/konnect/api-products/api-products-overview.png)
 
 ## API Products Dashboard
 
-The API Products Dashboard is the place to manage API products, versions, and documentation. The dashboard is available by clicking any API product in API Products. 
+The API Products Dashboard is the place to manage API products, versions, and documentation. The dashboard is available by clicking any API product within the API Products dashboard. 
 
 Here are some of the things you can do from the API Products Dashboard: 
 
@@ -28,8 +26,10 @@ Here are some of the things you can do from the API Products Dashboard:
 -------|------|------------
 **Overview** | Analytics data for the API product. You can configure the analytics options using the [**Analytics tool**](/konnect/analytics/).
 **Product Versions** | This section displays the status of an API product version. From the context menu you can **Delete** an API product version, or use the **View Details** button to navigate to that version's dashboard. 
-**Documentation** | You can add markdown documentation for your API product, as well as an API specification for each version of the API product. You can control the individual publishing status of each document you upload to a API product.
+**Documentation** | You can add and edit markdown documentation for your API product, upload API specs and manage the publishing status for each document. 
 
+{:.note}
+> **Note**: API products can only be published to the Dev Portal within your [geographic region](/konnect/geo). To publish to a Dev Portal in a different region, switch geos using the control in the bottom-left corner of {{site.konnect_product_name}}.
 
 ### API product versions
 
@@ -53,15 +53,17 @@ The analytics dashboard shown in the API product **Overview** is a high level ov
 Learn more: 
 
 * [Analytics overview](/konnect/analytics/)
-* [How to generate reports](/konnect/analytics/generate-reports/)
 
-### Documentation
+## Documentation
 
-The API product **Documentation** can be used to manage documentation for your API product. Once the documentation is uploaded it can be edited from the dashboard. The documentation can be accessed once the API product is published.
-
+Manage your API product's documentation directly within the **Documentation** section of the [API Product dashboard](https://cloud.konghq.com/api-products/). After uploading, you have the capability to edit documentation seamlessly from the the {{site.konnect_short_name}} dashboard. Documentation is accessible after the publication of an API product.
 Learn more: 
 
-* [Manage service documentation](/konnect/api-products/service-documentation/)
+
+* [Manage API product documentation](/konnect/api-products/service-documentation/)
+
+
+### {{site.konnect_short_name}} markdown renderer
 
 ## More information
 
