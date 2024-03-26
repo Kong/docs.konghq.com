@@ -4147,7 +4147,6 @@ apply a change to the plugin config via the Admin API.
 
 ### Dependencies
 
-* Bumped `lua-resty-openssl` to 1.2.1
 * Bumped OpenSSL from 3.1.4 to 3.1.5
 * Bumped `lua-kong-nginx-module` to 0.2.3
 * Bumped `kong-lua-resty-kafka` to 0.18
