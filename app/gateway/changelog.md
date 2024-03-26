@@ -4138,8 +4138,7 @@ apply a change to the plugin config via the Admin API.
   * Fixed some cache-related issues which caused `groups_required` to return unexpected codes after a non-200 response.
 
 * [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
-  * Fixed an issue with `sync_rate` setting being used with the `redis` strategy. 
-  If the Redis connection is interrupted while `sync_rate = 0`, the plugin now accurately falls back to the `local` strategy.
+  * Fixed an issue where, if `sync_rate` was set to `0` and the `redis` strategy was in use, the plugin did not properly revert to the `local` strategy if the Redis connection was interrupted.
 
 * [Rate Limiting](/hub/kong-inc/rate-limiting/) (`rate-limiting`), [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`), [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`), and [Response Rate Limiting](/hub/kong-inc/response-ratelimiting/) (`response-ratelimiting`)
   * Fixed an issue where any plugins using the `rate-limiting` library, when used together, 
