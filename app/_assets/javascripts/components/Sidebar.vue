@@ -160,4 +160,22 @@ function versionToRelease(version) {
     cursor: pointer;
     pointer-events: none;
   }
+
+  .operations-list :deep(input) {
+    margin: 0 !important;
+  }
+
+  .py-6 {
+    padding-top: 32px !important;
+    padding-bottom: 32px !important;
+  }
+
+  .px-5 {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+
+  .mb-3 {
+    margin-bottom: 12px !important;
+  }
 </style>

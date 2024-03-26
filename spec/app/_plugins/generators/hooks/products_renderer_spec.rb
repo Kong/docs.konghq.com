@@ -7,11 +7,11 @@ RSpec.describe ProductsRenderer do
     end
 
     shared_examples_for 'renders the page' do |page_dir|
-      it { expect(subject.render?(double(dir: page_dir))).to eq(true) }
+      it { expect(subject.render?(double(dir: page_dir, relative_path: page_dir))).to eq(true) }
     end
 
     shared_examples_for 'does not render the page' do |page_dir|
-      it { expect(subject.render?(double(dir: page_dir))).to eq(false) }
+      it { expect(subject.render?(double(dir: page_dir, relative_path: page_dir))).to eq(false) }
     end
 
     context 'plugin hub' do

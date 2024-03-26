@@ -84,7 +84,12 @@ RUN set -ex; \
 {% navtab Ubuntu %}
 ```dockerfile
 
+{% if_version lte:3.0.x %}
 FROM ubuntu:20.04
+{% endif_version %}
+{% if_version gte:3.1.x %}
+FROM ubuntu:22.04
+{% endif_version %}
 
 COPY kong.deb /tmp/kong.deb
 
