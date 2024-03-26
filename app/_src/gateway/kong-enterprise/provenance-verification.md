@@ -3,7 +3,7 @@ title: Verify Build Provenance for Signed Kong Images
 badge: enterprise
 ---
 
-Starting with {{site.ee_product_name}} 3.6.0.0, Build provenance for docker container images is produced, and can be verified using `cosign` / `slsa-verifier` with attestations published to a Docker Hub repository.
+Kong produces build provenance for docker container images, which can be verified using `cosign` / `slsa-verifier` with attestations published to a Docker Hub repository.
 
 This guide provides steps to verify build provenance for signed {{site.ee_product_name}} Docker container images in two different ways:
 
