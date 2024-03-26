@@ -3,13 +3,16 @@ title: Upgrade a Data Plane Node to a New Version
 content_type: how-to
 ---
 
-You can upgrade data plane nodes to a new {{site.base_gateway}} version by bringing
+You can upgrade self-managed data plane nodes to a new {{site.base_gateway}} version by bringing
 up new data plane nodes, and then shutting down the old ones. This is the best
 method for high availability, as the new node starts processing data before the
 old node is removed. It is the cleanest and safest way to upgrade with no
 proxy downtime.
 
 We recommend running one major version (2.x or 3.x) of a data plane node per control plane, unless you are in the middle of version upgrades to the data plane. Mixing versions may cause [compatibility issues](/konnect/gateway-manager/version-compatibility).
+
+{:.note}
+> **Note**: If you don't want to manually upgrade data plane nodes, you can use a Dedicated Cloud Gateway. With cloud gateways, Kong fully-manages the data plane and handles upgrades for you.
 
 ## Prerequisites
 
