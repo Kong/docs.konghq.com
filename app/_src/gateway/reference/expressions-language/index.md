@@ -154,6 +154,6 @@ This matches all TLS connections with the `.example.com` SNI ending.
 
 *[Language References](/gateway/latest/reference/expressions-language/language-references/) - Once you are familiar with the expression router basics, see this documentation to understand everything the expressions language has to provide.
 * [How to configure Routes using Expressions](/gateway/{{ page.release }}/key-concepts/routes/expressions). - Learn how to configure routes using expressions as well as which fields are available.
-*[Performance](/gateway/latest/reference/expressions-language/performance/) - Understand performance characteristics when
+* [Performance](/gateway/latest/reference/expressions-language/performance/) - Understand performance characteristics when
 using the expressions router and how to optimize your routes.
 * [Expressions repository](https://github.com/Kong/atc-router#table-of-contents)
