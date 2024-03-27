@@ -13,7 +13,8 @@
   * `proxy`: The time in milliseconds that it took for the upstream to process the request. In other words, it's the time elapsed between transferring the 
   request to the final service and when {{site.base_gateway}} starts receiving the response.
   * `receive`: The time in milliseconds that it took to receive and process the response (headers and body) from the upstream.
-{% else %}
+{% endif_plugin_version %}
+{% if_plugin_version lt:3.7.x %}
   * `kong`: The internal {{site.base_gateway}} latency, in milliseconds, that it takes to process the request. It varies based on the actual processing flow. Generally, it consists of three parts:
     * The time it took to find the right upstream.
     * The time it took to receive the whole response from upstream.
