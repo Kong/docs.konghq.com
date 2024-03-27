@@ -5,6 +5,16 @@
 * `request`: Properties about the request sent by the client.
 * `response`: Properties about the response sent to the client.
 * `latencies`: Latency data.
+{% if_plugin_version gte:3.7.x %}
+  * `kong`: The internal {{site.base_gateway}} latency, in milliseconds, that it takes to process the request.
+    * For requests that are proxied to an upstream, it is equivalent to the `X-Kong-Proxy-Latency` [response header](/gateway/latest/reference/configuration/#headers).
+    * For requests that generate a response within {{ site.base_gateway }} (typically the result of an error or a plugin-generated response), it is equivalent to the `X-Kong-Response-Latency` [response header](/gateway/latest/reference/configuration/#headers).
+  * `request`: The time in milliseconds that has elapsed between when the first bytes were read from the client and the last byte was sent to the client. This is useful for detecting slow clients.
+  * `proxy`: The time in milliseconds that it took for the upstream to process the request. In other words, it's the time elapsed between transferring the 
+  request to the final service and when {{site.base_gateway}} starts receiving the response.
+  * `receive`: The time in milliseconds that it took to receive and process the response (headers and body) from the upstream.
+{% endif_plugin_version %}
+{% if_plugin_version lte:3.6.x %}
   * `kong`: The internal {{site.base_gateway}} latency, in milliseconds, that it takes to process the request. It varies based on the actual processing flow. Generally, it consists of three parts:
     * The time it took to find the right upstream.
     * The time it took to receive the whole response from upstream.
@@ -12,8 +22,6 @@
   * `request`: The time in milliseconds that has elapsed between when the first bytes were read from the client and the last byte was sent to the client. This is useful for detecting slow clients.
   * `proxy`: The time in milliseconds that it took for the upstream to process the request. In other words, it's the time elapsed between transferring the 
   request to the final service and when {{site.base_gateway}} starts receiving the response.
-{% if_plugin_version gte:3.7.x %}
-  * `receive`: The time in milliseconds that it took to receive and process the response (headers and body) from the upstream.
 {% endif_plugin_version %}
 * `tries`: a list of iterations made by the load balancer for this request.
   * `balancer_start`: A Unix timestamp for when the balancer started.
