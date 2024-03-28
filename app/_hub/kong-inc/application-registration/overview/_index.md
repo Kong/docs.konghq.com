@@ -5,7 +5,10 @@ nav_title: Overview
 Applications allow registered developers on Kong Developer Portal to
 authenticate against a Gateway service. Dev Portal admins can
 selectively admit access to services using the
-Application Registration plugin.
+Application Registration plugin. Furthermore, enabling `enable_proxy_with_consumer_credential` will introduce
+an additional method for accessing the service using the consumer's credential.
+It is essential to exercise caution when enabling this parameter.
+Once activated, it will bypass the plugin's ACL control, potentially compromising security measures.
 
 {:.note}
 > **Note**: This plugin is for application registration in _self-managed_ 
