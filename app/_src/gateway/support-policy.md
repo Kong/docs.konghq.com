@@ -32,7 +32,11 @@ content-type: reference
 > *Table 1: Version Support for {{site.ee_product_name}}*
 
 ## Types of releases
-Kong primarily follows [semantic versioning](https://semver.org/) (SemVer) with its products. That is, products typically follow a pattern of `{MAJOR_VERSION}.{MINOR_VERSION}.{PATCH_VERSION}`. {{site.ee_product_name}} additionally has one more decimal point on the right which identifies a sub-patch based on the Kong Community Gateway. For the purposes of this support document:
+Kong adopts a structured approach to versioning its products.
+Products follow a pattern of `{MAJOR}.{MINOR}.{PATCH}.{ENTERPRISE_PATCH}`.
+The `ENTERPRISE_PATCH` segment identifies a sub-patch for {{site.ee_product_name}} based on {{site.ce_product_name}}.
+
+For the purposes of this support document:
 
 * **Major Version** refers to a version of {{site.ee_product_name}} identified by the number to the left of the leftmost decimal point. For example, 2.1.3.0 has Major Version 2 and 1.3.0.0 has Major Version 1.
 

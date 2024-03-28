@@ -42,7 +42,7 @@ configuration, without dropping existing in-flight connections.
 
 ## Upgrade to 2.8.x
 
-Kong adheres to [semantic versioning](https://semver.org/), which makes a
+Kong adopts a structured versioning approach, which makes a
 distinction between "major", "minor", and "patch" versions. The upgrade path
 will be different depending on which previous version from which you are migrating.
 
