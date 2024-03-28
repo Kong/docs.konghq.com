@@ -18,7 +18,7 @@ module Jekyll
       page = context.environments.first['page']
 
       # Validate that there was at least one check
-      unless %i[eq gte lte].any? { |k| @params.key?(k) }
+      unless %i[eq gte gt lte lt].any? { |k| @params.key?(k) }
         ::Jekyll.logger.error "Invalid if_plugin_version usage: #{@params.to_json}"
         return contents
       end
@@ -50,10 +50,22 @@ module Jekyll
         return '' unless current_version >= version
       end
 
+      # If there's a greater than to check, fail if it's lower
+      if @params.key?(:gt)
+        version = to_version(@params[:gt])
+        return '' unless current_version > version
+      end
+
       # If there's a less than or equal to check, fail if it's higher
       if @params.key?(:lte)
         version = to_version(@params[:lte])
         return '' unless current_version <= version
+      end
+
+      # If there's a less than to check, fail if it's higher
+      if @params.key?(:lt)
+        version = to_version(@params[:lt])
+        return '' unless current_version < version
       end
 
       contents
