@@ -1,5 +1,6 @@
 ---
 title: Contributing to the Kong docs
+description: Optimize your contribution to Kong Docs with our comprehensive guidelines and documentation. Learn how to contribute effectively and powerfully!
 ---
 
 <!-- vale off -->
