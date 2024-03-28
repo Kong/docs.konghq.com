@@ -98,7 +98,7 @@ items:
         items:
           - text: Overview
             url: /reference/custom-resources/
-            src: reference/custom-resources/1.2.x
+            src: reference/custom-resources/1.3.x
           - text: GatewayConfiguration
             url: /reference/custom-resources/#gatewayconfiguration
             generate: false
