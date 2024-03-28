@@ -49,3 +49,7 @@ See [Manage multiple workspaces](/deck/{{page.release}}/guides/kong-enterprise/#
 While deck can manage a majority of {{site.base_gateway}}'s configuration, we recommend additional arrangements for deployment, backup, and restoring unmanaged entities for a more comprehensive approach.
 
 In the event that the data plane loses connection to the control plane in hybrid mode, the data plane can continue to function using a [backup declarative configuration file](/gateway/latest/reference/configuration/#declarative_config). This feature is not available if you have any unmanaged entities configured.
+
+## See also
+
+* [Kong Admin API endpoints used by decK](/deck/{{page.release}}/guides/kong-enterprise/#endpoints-used-by-deck)
