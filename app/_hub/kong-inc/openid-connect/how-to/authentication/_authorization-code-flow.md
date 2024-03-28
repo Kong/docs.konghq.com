@@ -61,7 +61,10 @@ sequenceDiagram
 <!--vale on-->
 
 {:.note}
-> If using PKCE, the identity provider *must* contain the `code_challenge_methods_supported` object in the `/.well-known/openid-configuration` issuer discovery endpoint response, as required by [RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html). If it is not included, the PKCE `code_challenge` query parameter will not be sent.
+> If using PKCE, the identity provider *must* contain the `code_challenge_methods_supported` object 
+in the `/.well-known/openid-configuration` issuer discovery endpoint response, as required by 
+[RFC 8414](https://www.rfc-editor.org/rfc/rfc8414.html).
+If it is not included, the PKCE `code_challenge` query parameter will not be sent.
 
 ## Prerequisites
 
@@ -71,58 +74,69 @@ sequenceDiagram
 
 {% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
-Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step with the following changes:
+Using the Keycloak and {{site.base_gateway}} configuration from the [prerequisites](#prerequisites), 
+set up an instance of the OpenID Connect plugin.
 
-1. We want to only use the authorization code flow and the session authentication.
-2. We want to set the response mode to `form_post` so that authorization codes won't get logged to the access logs.
-3. We want to preserve the original request query arguments over the authorization code flow redirection.
-3. We want to redirect the client to original request url after the authorization code flow so that
-   the `POST` request (because of `form_post`) is turned to the `GET` request, and the browser address bar is updated
-   with the original request query arguments.
-4. We don't want to include any tokens in the browser address bar.
+For the demo, we're going to set up the following:
+* Issuer, client ID, and client auth: settings that connect the plugin to your IdP (in this case, the sample Keycloak app).
+* Auth methods: authorization code flow and session authentication.
+* Response mode: set to `form_post` so that authorization codes won't get logged to the access logs.
+* We want to preserve the original request query arguments over the authorization code flow redirection.
+* We want to redirect the client to original request url after the authorization code flow so that
+   the `POST` request (because of `form_post`) is turned to the `GET` request, and the browser address 
+   bar is updated with the original request query arguments.
+* We don't want to include any tokens in the browser address bar.
 
-```bash
-http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
-  config.auth_methods=authorization_code                         \
-  config.auth_methods=session                                    \
-  config.response_mode=form_post                                 \
-  config.preserve_query_args=true                                \
-  config.login_action=redirect                                   \
-  config.login_tokens=
-```
-```http
-HTTP/1.1 200 OK
-```
-```json
-{
-    "id": "5f35b796-ced6-4c00-9b2a-90eef745f4f9",
-    "name": "openid-connect",
-    "service": {
-        "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd"
-    },
-    "config": {
-        "auth_methods": [
-            "authorization_code",
-            "session"
-        ],
-        "login_action": "redirect",
-        "preserve_query_args": true,
-        "login_tokens": null
-    }
-}
-```
+With all of the above in mind, let's test out the authorization code flow with Keycloak. 
+Enable the OpenID Connect plugin on the `openid-connect` service:
 
-### Test the authorization code flow
+<!-- vale off-->
+{% plugin_example %}
+plugin: kong-inc/openid-connect
+name: openid-connect
+config:
+  issuer: "http://keycloak.test:8080/auth/realms/master"
+  client_id: "kong"
+  client_auth: "private_key_jwt"
+  auth_methods:
+    - "authorization_code"
+    - "session"
+  response_mode: "form_post"
+  preserve_query_args: true
+  login_action: "redirect"
+  login_tokens: null
+targets:
+  - service
+formats:
+  - konnect
+  - curl
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on -->
+
+## Test the authorization code flow
+
+At this point you have created a service, routed traffic to the service, and 
+enabled the OpenID Connect plugin on the service. You can now test the authorization code flow.
+
+1. Check the discovery cache: 
+
+    ```sh
+    curl -i -X GET http://localhost:8001/openid-connect/issuers
+    ```
+
+    It should contain Keycloak OpenID Connect discovery document and the keys.
 
 1. Open the service page with some query arguments:
 
    ```bash
-   open http://service.test:8000/?hello=world
+   open http://localhost:8000/?hello=world
    ```
 
 2. The browser should be redirected to the Keycloak login page.
 
-   You may examine the query arguments passed to Keycloak with the browser developer tools.
+   You can examine the query arguments passed to Keycloak with the browser's developer tools.
 
 3. And finally you will be presented a response from `httpbin.org` that looks something like this:
 
@@ -135,7 +149,7 @@ HTTP/1.1 200 OK
         "Authorization": "Bearer <access-token>",
     },
     "method": "GET",
-    "url": "http://service.test/anything?hello=world"
+    "url": "http://localhost:8001/anything?hello=world"
    }
    ```
 
