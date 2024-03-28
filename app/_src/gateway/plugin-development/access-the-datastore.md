@@ -1,7 +1,7 @@
 ---
 title: Accessing the Datastore
 book: plugin_dev
-chapter: 5
+chapter: 6
 ---
 
 Kong interacts with the model layer through classes we refer to as "DAOs". This

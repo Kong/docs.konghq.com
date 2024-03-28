@@ -1,7 +1,7 @@
 ---
 title: File Structure
 book: plugin_dev
-chapter: 2
+chapter: 3
 ---
 
 {:.note}
@@ -9,7 +9,7 @@ chapter: 2
 [Lua](http://www.lua.org/).
 
 Consider your plugin as a set of [Lua
-modules](http://www.lua.org/manual/5.1/manual.html#6.3). Each file described in
+modules](http://www.lua.org/manual/5.1/manual.html#5.3). Each file described in
 this chapter is to be considered as a separate module. Kong will detect and
 load your plugin's modules if their names follow this convention:
 
@@ -93,7 +93,7 @@ complete-plugin
 
 Here is the complete list of possible modules to implement and a brief
 description of what their purpose is. This guide will go in details to let you
-master each one of them.
+understand each of them.
 
 | Module name            | Required   | Description
 |:-----------------------|------------|------------

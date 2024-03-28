@@ -425,6 +425,8 @@ items:
     items:
       - text: Overview
         url: /plugin-development/
+      - text: Quick Start
+        url: /plugin-development/quickstart
       - text: File Structure
         url: /plugin-development/file-structure
       - text: Implementing Custom Logic

@@ -1,7 +1,7 @@
 ---
 title: Caching Custom Entities
 book: plugin_dev
-chapter: 7
+chapter: 8
 ---
 
 Your plugin may need to frequently access custom entities (explained in the
@@ -323,7 +323,7 @@ end, "crud", "consumers")
 {:.note}
 > In many cases it is worth to check whether implementing `configure` with the plugin
 > solves the issue/need without having to use events. For examples events might work
-> differently depending on Kong node's role (traditional, dbless, or data plane).
+> differently depending on Kong node's role (traditional, DB-less, or data plane).
 {% endif_version %}
 ## Extending the Admin API
 
