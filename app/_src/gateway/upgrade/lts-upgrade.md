@@ -30,7 +30,7 @@ If you're using Cassandra as your data store, [migrate off of Cassandra](/gatewa
 * Review version compatibility between your platform version and the version of {{site.kong_gateway}} that you are upgrading to:
     * [OS version](/gateway/{{page.release}}/support-policy/#supported-versions)
     * [Kubernetes version and Helm prerequisites](/kubernetes-ingress-controller/latest/support-policy/)
-    {% if_version gte:3.2.x %}
+    {% if_version gte:3.2.x -%}
     * [Database version](/gateway/{{page.release}}/support/third-party/)
     * [Dependency versions](/gateway/{{page.release}}/support/third-party/)
     {% endif_version %}

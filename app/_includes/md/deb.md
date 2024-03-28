@@ -7,9 +7,9 @@ You can install Kong by downloading an installation package or using our apt rep
 
     {% if include.distribution == "ubuntu" %}
 
-    {% if_version lte:2.8.x %}
+    {% if_version lte:2.8.x -%}
 - [Xenial]({{ site.links.download }}/gateway-2.x-ubuntu-xenial/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)
-    {% endif_version %}
+    {% endif_version -%}
 - [Bionic]({{ site.links.download }}/gateway-2.x-ubuntu-bionic/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)
 - [Focal]({{ site.links.download }}/gateway-2.x-ubuntu-focal/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)
 
@@ -17,9 +17,9 @@ You can install Kong by downloading an installation package or using our apt rep
 
     {% if include.distribution == "debian" %}
 
-    {% if_version lte:2.8.x %}
+    {% if_version lte:2.8.x -%}
 - [8 Jessie]({{ site.links.download }}/gateway-2.x-debian-jessie/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)
-    {% endif_version %}
+    {% endif_version -%}
 - [9 Stretch]({{ site.links.download }}/gateway-2.x-debian-stretch/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)
 - [10 Buster]({{ site.links.download }}/gateway-2.x-debian-buster/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)
 - [11 Bullseye]({{ site.links.download }}/gateway-2.x-debian-bullseye/pool/all/k/kong/kong_{{site.data.kong_latest.version}}_amd64.deb)

@@ -56,6 +56,7 @@ Following table describes all the flags that are available:
 {% if_version gte:2.5.x %}
 | `--feature-gates`                        | `strings`          | A set of key=value pairs that describe feature gates for alpha/beta/experimental features.                                                          | see [feature-gates][fg]           |
 {% endif_version %}
+
 {% if_version gte:2.6.x %}
 | `--gateway-api-controller-name`          | `string`           | Controller name of the Kubernetes Gateway API. Gateway resources are reconciled only when their GatewayClass has the same value in `spec.controllerName`.           | `konghq.com/kic-gateway-controller` |
 {% endif_version %}
@@ -77,13 +78,16 @@ Following table describes all the flags that are available:
 {% if_version lte:2.8.x %}
 | `--kong-admin-url`                       | `string`           | The Kong Admin URL to connect to in the format "protocol://address:port".                                                                           | `"http://localhost:8001"`         |
 {% endif_version %}
+
 {% if_version gte:2.9.x %}
 | `--kong-admin-url`                       | `strings`          | Comma-separated string list of Kong Admin URL(s) to connect to in the format "protocol://address:port".                                             | `["http://localhost:8001"]`       |
 {% endif_version %}
+
 {% if_version gte:2.9.x %}
 | `--kong-admin-svc`                       | `strings`          | Kong Admin API Service namespaced name in "namespace/name" format, to use for Gateway discovery.                                                    | `""`                              |
 | `--kong-admin-svc-port-names`            | `strings`          | Names of ports on Kong Admin API service to take into account when doing gateway discovery.                                                         | `["admin","admin-tls","kong-admin","kong-admin-tls"]` |
 {% endif_version %}
+
 {% if_version lte:2.8.x %}
 | `--kong-custom-entities-secret`          | `string`           | A Secret containing custom entities for DB-less mode, in "namespace/name" format.                                                                   |                                   |
 {% endif_version %}
@@ -103,9 +107,11 @@ Following table describes all the flags that are available:
 | `--publish-service-udp`                  | `string`           | Service fronting UDP routing resources in "namespace/name" format. The controller updates Ingress status information with this Service's endpoints. If omitted, the same Service is used for both TCP and UDP routes. |                                   |
 | `--publish-status-address-udp`           | `strings`          | User-provided addresses in comma-separated string format, for use instead of `publish-service-udp` when that Service lacks useful address information. |                                   |
 {% endif_version %}
+
 {% if_version gte:2.4.x %}
 | `--skip-ca-certificates`                 | `boolean`          | Disable CA certificate handling. When using multiple controllers for separate workspaces in the same Kong instance, all but one controller should have this set to `true`. | `false`     |
 {% endif_version %}
+
 | `--sync-period`                          | `duration`         | Relist and confirm cloud resources this often.                                                                                                       | `48h`                             |
 
 {% if_version gte:2.4.x %}
