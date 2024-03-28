@@ -1013,6 +1013,7 @@ routes using fields like `http.path` even for stream routes. This is no longer a
 ### Dependencies
 * Bumped `atc-router` from 1.2.0 to 1.6.0
 * Bumped `lua-resty-openssl` from 1.2.0 to 1.2.1
+* Bumped `kong-lua-resty-kafka` from 0.17 to 0.18
 
 
 ## 3.4.3.4
