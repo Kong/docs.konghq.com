@@ -4641,7 +4641,13 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/keys-request'
     put:
-      description: Create or Update Key using ID or name.
+      description: |
+        Create or Update Key using ID or name.
+        Please note that if you used uuid as key name and would like to
+        update it you need to use such key ID. Using this uuid-name will
+        result in an upsert of a new key with this uuid set as ID (or fail with
+        collision error). If the name is a regular string you can use either
+        name or ID.
       operationId: upsert-key
       responses:
         '200':
@@ -4979,6 +4985,12 @@ paths:
 
 
         > Note: This API is not available in DB-less mode.
+
+        Please note that if you used uuid as route name and would like to
+        update it you need to use such route ID. Using this uuid-name will
+        result in an upsert of a new route with this uuid set as ID (or fail with
+        collision error). If the name is a regular string you can use either
+        name or ID.
       operationId: upsert-route
       responses:
         '200':
@@ -5288,7 +5300,13 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/service-request'
     put:
-      description: Create or Update service using ID or name.
+      description: |
+        Create or Update service using ID or name.
+        Please note that if you used uuid as service name and would like to
+        update it you need to use such service ID. Using this uuid-name will
+        result in an upsert of a new service with this uuid set as ID (or fail with
+        collision error). If the name is a regular string you can use either
+        name or ID.
       operationId: upsert-service
       parameters:
         - description: Name or ID of the service to lookup
@@ -5621,7 +5639,13 @@ paths:
         $ref: '#/components/requestBodies/route-request'
       operationId: update-route-for-service
     put:
-      description: Create or Update a route associated with a service using ID or name.
+      description: |
+        Create or Update a route associated with a Service using ID or name.
+        Please note that if you used uuid as route name and would like to
+        update it you need to use such route ID. Using this uuid-name will
+        result in an upsert of a new route with this uuid set as ID (or fail with
+        collision error). If the name is a regular string you can use either
+        name or ID.
       responses:
         '200':
           content:
@@ -6024,7 +6048,13 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/upstream-request'
     put:
-      description: Create or Update Upstream using ID or name.
+      description: |
+        Create or Update Upstream using ID or name.
+        Please note that if you used uuid as upstream name and would like to
+        update it you need to use such upstream ID. Using this uuid-name will
+        result in an upsert of a new upstream with this uuid set as ID (or fail with
+        collision error). If the name is a regular string you can use either
+        name or ID.
       operationId: upsert-upstream
       responses:
         '200':

@@ -6981,6 +6981,11 @@ paths:
     put:
       description: |
         Create or update a key using ID or name.
+        Please note that if you used uuid as key name and would like to
+        update it you need to use such key ID. Using this uuid-name will
+        result in an upsert of a new key with this uuid set as ID (or fail with
+        collision error). If the name is a regular string you can use either
+        name or ID.
       operationId: upsert-key
       responses:
         '200':
@@ -7215,7 +7220,13 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/route-request'
     put:
-      description: Create or update a route using ID or name.
+      description: |
+        Create or update a route using ID or name.
+        Please note that if you used uuid as route name and would like to
+        update it you need to use such route ID. Using this uuid-name will
+        result in an upsert of a new route with this uuid set as ID (or fail with
+        collision error). If the name is a regular string you can use either
+        name or ID.
       operationId: upsert-route
       responses:
         '200':
@@ -7461,7 +7472,13 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/service-request'
     put:
-      description: Create or Update Service using ID or name.
+      description: |
+        Create or Update Service using ID or name.
+        Please note that if you used uuid as service name and would like to
+        update it you need to use such service ID. Using this uuid-name will
+        result in an upsert of a new service with this uuid set as ID (or fail with
+        collision error). If the name is a regular string you can use either
+        name or ID.
       operationId: upsert-service
       responses:
         '200':
@@ -7706,7 +7723,13 @@ paths:
         $ref: '#/components/requestBodies/route-request'
       operationId: update-route-with-service
     put:
-      description: Create or Update a route associated with a Service using ID or name.
+      description: |
+        Create or Update a route associated with a Service using ID or name.
+        Please note that if you used uuid as route name and would like to
+        update it you need to use such route ID. Using this uuid-name will
+        result in an upsert of a new route with this uuid set as ID (or fail with
+        collision error). If the name is a regular string you can use either
+        name or ID.
       responses:
         '200':
           content:
@@ -7938,7 +7961,13 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/upstream-request'
     put:
-      description: Create or Update Upstream using ID or name.
+      description: |
+        Create or Update Upstream using ID or name.
+        Please note that if you used uuid as upstream name and would like to
+        update it you need to use such upstream ID. Using this uuid-name will
+        result in an upsert of a new upstream with this uuid set as ID (or fail with
+        collision error). If the name is a regular string you can use either
+        name or ID.
       operationId: upsert-upstream
       responses:
         '200':
@@ -8349,7 +8378,13 @@ paths:
       tags:
         - Workspaces
     put:
-      description: Create or Update Workspace using ID or name.
+      description: |
+        Create or Update Workspace using ID or name.
+        Please note that if you used uuid as workspace name and would like to
+        update it you need to use such workspace ID. Using this uuid-name will
+        result in an upsert of a new workspace with this uuid set as ID (or fail with
+        collision error). If the name is a regular string you can use either
+        name or ID.
       operationId: upsert-workspace
       requestBody:
         content:
@@ -8932,7 +8967,13 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/key-set-request'
     put:
-      description: Create or Update Key-set using ID or name in a workspace.
+      description: |
+        Create or Update Key-set using ID or name in a workspace.
+        Please note that if you used uuid as key-set name and would like to
+        update it you need to use such key-set ID. Using this uuid-name will
+        result in an upsert of a new key-set with this uuid set as ID (or fail with
+        collision error). If the name is a regular string you can use either
+        name or ID.
       operationId: upsert-key-set-in-workspace
       responses:
         '200':
@@ -9089,7 +9130,13 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/keys-request'
     put:
-      description: Create or Update Key using ID or name in a workspace.
+      description: |
+        Create or Update Key using ID or name in a workspace.
+        Please note that if you used uuid as key name and would like to
+        update it you need to use such key ID. Using this uuid-name will
+        result in an upsert of a new key with this uuid set as ID (or fail with
+        collision error). If the name is a regular string you can use either
+        name or ID.
       operationId: upsert-key-in-workspace
       responses:
         '200':
@@ -9341,7 +9388,13 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/route-request'
     put:
-      description: Create or Update route using ID or name in a workspace.
+      description: |
+        Create or Update route using ID or name in a workspace.
+        Please note that if you used uuid as route name and would like to
+        update it you need to use such route ID. Using this uuid-name will
+        result in an upsert of a new route with this uuid set as ID (or fail with
+        collision error). If the name is a regular string you can use either
+        name or ID.
       operationId: upsert-route-in-workspace
       responses:
         '200':
@@ -9577,7 +9630,13 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/service-request'
     put:
-      description: Create or Update Service using ID or name in a workspace.
+      description: |
+        Create or Update Service using ID or name in a workspace.
+        Please note that if you used uuid as service name and would like to
+        update it you need to use such service ID. Using this uuid-name will
+        result in an upsert of a new service with this uuid set as ID (or fail with
+        collision error). If the name is a regular string you can use either
+        name or ID.
       operationId: upsert-service-in-workspace
       responses:
         '200':
@@ -9683,7 +9742,13 @@ paths:
         $ref: '#/components/requestBodies/plugin-request'
       operationId: update-plugin-with-service-workspace
     put:
-      description: Create or Update a plugin associated with a Service using ID in a workspace.
+      description: |
+        Create or Update a plugin associated with a Service using ID in a workspace.
+        Please note that if you used uuid as plugin name and would like to
+        update it you need to use such plugin ID. Using this uuid-name will
+        result in an upsert of a new plugin with this uuid set as ID (or fail with
+        collision error). If the name is a regular string you can use either
+        name or ID.
       responses:
         '200':
           $ref: '#/components/responses/plugin-response'
@@ -9804,7 +9869,13 @@ paths:
         $ref: '#/components/requestBodies/route-request'
       operationId: update-route-with-service-workspace
     put:
-      description: Create or Update a route associated with a Service using ID or name in a workspace.
+      description: |
+        Create or Update a route associated with a Service using ID or name in a workspace.
+        Please note that if you used uuid as route name and would like to
+        update it you need to use such route ID. Using this uuid-name will
+        result in an upsert of a new route with this uuid set as ID (or fail with
+        collision error). If the name is a regular string you can use either
+        name or ID.
       responses:
         '200':
           content:
@@ -10041,7 +10112,13 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/upstream-request'
     put:
-      description: Create or Update Upstream using ID or name in a workspace.
+      description: |
+        Create or Update Upstream using ID or name in a workspace.
+        Please note that if you used uuid as upstream name and would like to
+        update it you need to use such upstream ID. Using this uuid-name will
+        result in an upsert of a new upstream with this uuid set as ID (or fail with
+        collision error). If the name is a regular string you can use either
+        name or ID.
       operationId: upsert-upstream-in-workspace
       responses:
         '200':
