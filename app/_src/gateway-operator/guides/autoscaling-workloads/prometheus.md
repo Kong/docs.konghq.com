@@ -16,7 +16,6 @@ based on their metrics.
 > (e.g. through [`ServiceMonitor`](https://github.com/prometheus-operator/prometheus-operator/blob/release-0.53/Documentation/api.md#servicemonitor)) and note down the namespace
 > in which it's deployed.
 
-
 1. Add the `prometheus-community` helm charts:
 
    ```bash

@@ -59,7 +59,19 @@ items:
       - text: Enterprise License
         url: /license/
       - text: Monitoring
-        url: /production/monitoring/
+        items:
+          - text: Metrics
+            url: /production/monitoring/metrics
+          - text: Status fields
+            items:
+            - text: Overview
+              url: /production/monitoring/status/overview/
+            - text: DataPlane
+              url: /production/monitoring/status/dataplane/
+            - text: ControlPlane
+              url: /production/monitoring/status/controlplane/
+            - text: Gateway
+              url: /production/monitoring/status/gateway/
       - text: Upgrade Gateway Operator
         url: /production/upgrade/gateway-operator/
   - title: Guides

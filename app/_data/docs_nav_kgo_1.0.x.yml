@@ -57,7 +57,9 @@ items:
       - text: Install
         url: /install/
       - text: Monitoring
-        url: /production/monitoring/
+        items:
+          - text: Metrics
+            url: /production/monitoring/metrics
       - text: Upgrade Gateway Operator
         url: /production/upgrade/gateway-operator/
   - title: Guides
