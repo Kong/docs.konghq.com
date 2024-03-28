@@ -31,7 +31,7 @@ _packages:
   azurelinux2xx: &azurelinux2xx
     os: Azure Linux
     version: 2.x.x
-    package: true
+    package: false
     arm: false
     fips: false
     graviton: false
