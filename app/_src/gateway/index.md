@@ -244,8 +244,7 @@ There are a few ways to test out the Gateway's Enterprise features:
 representative will reach out with details to get you started.
 
 ## Support policy
-Kong primarily follows a [semantic versioning](https://semver.org/) (SemVer)
-model for its products.
+Kong follows a structured approach to versioning its products.
 
 For the latest version support information for {{site.ee_product_name}} and
 {{site.mesh_product_name}}, see the [version support policy](/gateway/{{page.release}}/support-policy/).
