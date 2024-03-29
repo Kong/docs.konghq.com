@@ -6,6 +6,9 @@ nav_title: ACL
 The OpenID Connect plugin can be integrated with the [ACL plugin](/hub/kong-inc/acl/), which provides
 access control functionality in the form of allow and deny lists.
 
+You can also pair ACL-based authorization with 
+[Kong consumer authorization](/hub/kong-inc/openid-connect/how-to/authorization/consumer/).
+
 ## Prerequisites
 
 {% include_cached /md/plugins-hub/oidc-prereqs.md %}

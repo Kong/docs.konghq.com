@@ -21,137 +21,102 @@ retrieved and checked against the value of the second configuration option: `con
 
 {% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
-Let's take a look at a JWT access token:
+First, configure the OpenID Connect plugin.
+For the purposes of the demo, you can use the 
+[password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/).
 
-1. Patch the plugin to enable the password grant:
-   ```bash
-   http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
-     config.auth_methods=password
-   ```
-2. Retrieve the content of an access token:
-   ```bash
-   http -a john:doe :8000 | jq -r .headers.Authorization
-   ```
-   ```http
-   HTTP/1.1 200 OK
-   ```
-   ```
-   Bearer <access-token>
-   ```
-3. The signed JWT `<access-token>` (JWS) comes with three parts separated with a dot `.`:
-   `<header>.<payload>.<signature>` (a JWS compact serialization format)
-4. We are interested with the `<payload>`, and you should have something similar to:
-   ```
-   eyJleHAiOjE2MjI1NTY3MTMsImF1ZCI6ImFjY291bnQiLCJ0eXAiOiJCZWFyZXIiLC
-   JzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwicHJlZmVycmVkX3VzZXJuYW1l
-   Ijoiam9obiIsImdpdmVuX25hbWUiOiJKb2huIiwiZmFtaWx5X25hbWUiOiJEb2UifQ
-   ```
-   That can be base64 url decoded to the following `JSON`:
-   ```json
-   {
-       "exp": 1622556713,
-       "aud": "account",
-       "typ": "Bearer",
-       "scope": "openid email profile",
-       "preferred_username": "john",
-       "given_name": "John",
-       "family_name": "Doe"
-   }
-   ```
-   This payload may contain arbitrary claims, such as user roles and groups,
-   but as we didn't configure them in Keycloak, let's just use the claims that
-   we have. In this case we want to authorize against the values in `scope` claim.
-
-Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step:
-
-1. We want to only use the password grant for demonstration purposes.
-2. We require the value `openid` and `email` to be present in `scope` claim of
+For the demo, we're going to set up the following:
+* Issuer, client ID, and client auth: settings that connect the plugin to your IdP (in this case, the sample Keycloak app).
+* Auth method: [password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/)
+ (enabled for demo purposes).
+* We require the values `openid` and `email` to be present in the `scope` claim of
    the access token.
 
+   A claim payload may contain arbitrary claims, such as user roles and groups,
+   but as you didn't configure them in Keycloak, let's just use the claims that
+   are configured. In this case, we want to authorize against the values in `scope` claim.
+
+<!-- vale off-->
+{% plugin_example %}
+plugin: kong-inc/openid-connect
+name: openid-connect
+config:
+  issuer: "http://keycloak.test:8080/auth/realms/master"
+  client_id: "kong"
+  client_auth: "private_key_jwt"
+  auth_methods:
+    - password
+  scopes_claim:
+    - scope
+  scopes_required:
+    - openid
+    - email
+targets:
+  - service
+formats:
+  - konnect
+  - curl
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on -->
+
+## Test the claims-based authorization
+
+### Retrieve access token
+
+In this example, the password grant
+lets you obtain a JWT access token, enabling you to test how JWT access token authentication works. 
+One way to get a JWT access token is to issue the following call 
+(we use [jq](https://stedolan.github.io/jq/) to filter the response):
+
 ```bash
-http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
-  config.auth_methods=password                                   \
-  config.scopes_claim=scope                                      \
-  config.scopes_required="openid email"
+curl --user <user>:<pass> http://localhost:8000/openid-connect \
+    | jq -r .headers.Authorization
 ```
-```http
-HTTP/1.1 200 OK
+
+Output:
 ```
+Bearer <access-token>
+```
+
+The signed JWT `<access-token>` (JWS) composed of three parts, each separated with a dot character `.`:
+`<header>.<payload>.<signature>` (a JWS compact serialization format).
+We are interested with the `<payload>`, and you should have something similar to:
+```
+eyJleHAiOjE2MjI1NTY3MTMsImF1ZCI6ImFjY291bnQiLCJ0eXAiOiJCZWFyZXIiLC
+JzY29wZSI6Im9wZW5pZCBlbWFpbCBwcm9maWxlIiwicHJlZmVycmVkX3VzZXJuYW1l
+Ijoiam9obiIsImdpdmVuX25hbWUiOiJKb2huIiwiZmFtaWx5X25hbWUiOiJEb2UifQ
+```
+
+That can be base64 url decoded to the following `JSON`:
 ```json
 {
-    "id": "5f35b796-ced6-4c00-9b2a-90eef745f4f9",
-    "name": "openid-connect",
-    "service": {
-        "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd"
-    },
-    "config": {
-        "auth_methods": [ "password" ],
-        "scopes_claim": [ "scope" ],
-        "scopes_required": [ "openid email" ]
-    }
+    "exp": 1622556713,
+    "aud": "account",
+    "typ": "Bearer",
+    "scope": "openid email profile",
+    "preferred_username": "john",
+    "given_name": "John",
+    "family_name": "Doe"
 }
 ```
 
-Now let's see if we can still access the service:
+### Access the service
+
+Try accessing the service:
 
 ```bash
-http -v -a john:doe :8000
+curl --user <user>:<pass> http://localhost:8000
 ```
-```http
-GET / HTTP/1.1
-Authorization: Basic BEkg3bHT0ERXFmKr1qelBQYrLBeHb5Hr
-```
-```http
-HTTP/1.1 200 OK
-```
-```json
-{
-   "headers": {
-       "Authorization": "Bearer <access-token>"
-   },
-   "method": "GET"
-}
-```
+You should get an HTTP 200 response.
 
-Works as expected, but let's try to add another authorization:
+If you set a claim that isn't enabled in your IdP, you will get a 
+403 Forbidden response instead. 
 
-```bash
-http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
-  config.audience_claim=aud                                      \
-  config.audience_required=httpbin
-```
-```http
-HTTP/1.1 200 OK
-```
-```json
-{
-    "id": "5f35b796-ced6-4c00-9b2a-90eef745f4f9",
-    "name": "openid-connect",
-    "service": {
-        "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd"
-    },
-    "config": {
-        "auth_methods": [ "password" ],
-        "audience_claim": [ "scope" ],
-        "audience_required": [ "httpbin" ]
-    }
-}
-```
+For example, if you also add `audience_claim = aud` to the plugin's configuration and try to access it with your Keycloak credentials from the [#prerequisites], the response will be a 403, as the access token has `"aud": "account"`, and that does not match `"httpbin"`.
 
-As we know, the access token has `"aud": "account"`, and that does not match with `"httpbin"`, so
-the request should now be forbidden:
-
-```bash
-http -v -a john:doe :8000
-```
-```http
-HTTP/1.1 403 Forbidden
-```
-```json
-{
-    "message": "Forbidden"
-}
-```
+## Arrays in claims-based configuration
 
 A few words about `config.scopes_claim` and `config.scopes_required` (and the similar configuration options).
 You may have noticed that `config.scopes_claim` is an array of string elements. Why? It is used to traverse
@@ -189,9 +154,9 @@ is not a top-level claim, so you need to traverse there:
 or
 
 ```bash
-http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
-  config.groups_claim=user                                       \
-  config.groups_claim=groups
+curl -i -X PATCH http://localhost:8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
+  --data "config.groups_claim=user" \
+  --data "config.groups_claim=groups"
 ```
 
 The value of a claim can be the following:
@@ -224,9 +189,9 @@ For example:
 or
 
 ```bash
-http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
-  config.groups_required="employee marketing"                    \
-  config.groups_required="super-admins"
+curl -i -X PATCH http://localhost:8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
+  --data "config.groups_required=employee marketing" \
+  --data "config.groups_required=super-admins"
 ```
 
 The above means that a claim has to have:
