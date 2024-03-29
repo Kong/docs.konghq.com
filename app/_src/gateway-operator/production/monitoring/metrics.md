@@ -1,10 +1,121 @@
 ---
-title: Monitoring
+title: Metrics
 ---
 
 {{ site.kgo_product_name }} exposes metrics that are provided by [controller-runtime](https://pkg.go.dev/sigs.k8s.io/controller-runtime/pkg/metrics).
 
-You can access the metrics on the port set in `--metrics-bind-address` (default `:8080`)
+## Configuration
+
+{{ site.kgo_product_name }} itself exposes the metrics on the address set by the:
+
+- `--metrics-bind-address` CLI flag
+{% if_version gte:1.2.x %}
+- or `GATEWAY_OPERATOR_METRICS_BIND_ADDRESS` environment variable.
+{% endif_version %}
+
+The default is set to `:8080`.
+
+## How to access
+
+{{ site.kgo_product_name }} uses [kube-rbac-proxy][kuberbacproxy_github] to secure its endpoints behind an RBAC proxy.
+By default, [Kong's Gateway Operator Helm chart][kgochart] creates a `Service` which is configured to expose `kube-rbac-proxy` behind port 8443.
+
+Assuming the following `helm` installation invocation:
+
+```bash
+helm install kgo kong/gateway-operator -n kong-system --create-namespace
+```
+
+You can find the metrics `Service` by running:
+
+```bash
+kubectl get svc -n kong-system -lcontrol-plane=controller-manager
+```
+
+Which should give you:
+
+```bash
+NAME                                   TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE
+kgo-gateway-operator-metrics-service   ClusterIP   10.96.25.90   <none>        8443/TCP   31s
+```
+
+Because {{ site.kgo_product_name }} uses `kube-rbac-proxy` simple HTTP(S) request without a token will be rejected.
+You can verify that by port forwarding the exposed `Service` port:
+
+```bash
+kubectl port-forward -n kong-system svc/kgo-gateway-operator-metrics-service 8443
+```
+
+And sending a request:
+
+```bash
+curl -sk https://localhost:8443/metrics
+Unauthorized
+```
+
+To access that endpoint you'll need to bind the scraping `Service`'s `ServiceAccount` to a `ClusterRole` which contains the following policy rule:
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: metrics-reader
+rules:
+- nonResourceURLs:
+  - "/metrics"
+  verbs:
+  - get
+```
+
+To verify that locally you can apply the following manifest:
+
+```bash
+echo 'apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: metrics-reader-sa
+  namespace: kong-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: metrics-reader
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: metrics-reader
+subjects:
+- kind: ServiceAccount
+  name: metrics-reader-sa
+  namespace: kong-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: metrics-reader
+rules:
+- nonResourceURLs:
+  - /metrics
+  verbs:
+  - get ' | kubectl apply -f -
+```
+
+And create a temporary token for that `ServiceAccount`:
+
+```bash
+export TOKEN=$(kubectl create token -n kong-system metrics-reader-sa)
+```
+
+You can then use this token to access the metrics just as the in-cluster `Service` would:
+
+```bash
+curl -k --header "Authorization: Bearer $(TOKEN)" https://localhost:8443/metrics
+```
+
+[kuberbacproxy_github]: https://github.com/brancz/kube-rbac-proxy
+[kgochart]: https://github.com/Kong/charts/tree/main/charts/gateway-operator
+
+## Example metrics dump
 
 Here's an example of what is available:
 
@@ -415,3 +526,6 @@ workqueue_work_duration_seconds_bucket{name="service",le="+Inf"} 29
 workqueue_work_duration_seconds_sum{name="service"} 0.12272996100000001
 workqueue_work_duration_seconds_count{name="service"} 29
 ```
+
+
+
