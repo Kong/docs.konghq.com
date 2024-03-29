@@ -26,7 +26,7 @@ Kong introduces major functionality and breaking changes by releasing a new majo
 Kong aims to release a new minor version approximately every 12 weeks. Minor versions contain features and bug fixes. Minor versions are usually¹ backwards compatible within that major version sequence. Every minor version is supported for a period of 1 year from date of release. This is done by releasing patches that apply to each supported minor version. Customers are encouraged to keep their installations up to date by applying the patches appropriate to their installed version. All patches released by Kong are roll-up patches (for example, patch 1.5 for release version 3.3 includes all the fixes in patches 1.4, 1.3, 1.2, and 1.1).
 
 {:.note}
-> (1) **Note:** There can be exceptions to the versioning model. 
+> ¹**Note:** There can be exceptions to the versioning model. 
 Due to backports, new features and breaking changes are possible at any version level, including patch versions.
 To avoid issues, do not upgrade to any new version automatically, and 
 make sure to review all relevant [changelog entries](/gateway/changelog/) before manually upgrading your deployments.
