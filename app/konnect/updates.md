@@ -11,7 +11,10 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## March 2024
 
-**Enhanced error notification in {{site.konnect_short_name}}**
+**Refined user experience for Control Plane Groups**
+: We've made improvements to refine the end-to-end workflow of Control Plane Groups for our customers. Now, Control Plane Groups are more intuitive, and easier to understand.
+
+**Enhanced error notification**
 : Customers now have the ability to view detailed error notifications for their data plane directly within {{site.konnect_short_name}}. The enhanced logging feature categorizes errors for improved clarity, distinguishing between configuration errors, transient configuration reload errors, and general exceptions. This update empowers users to diagnose and resolve CP/DP connection issues more efficiently.
 
 ![Konnect-error-log](/assets/images/products/konnect/changelog/konnect-error-log.png)
