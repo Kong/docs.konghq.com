@@ -56,6 +56,8 @@
           url: /gateway-manager/data-plane-nodes/parameter-reference/
         - text: Using Custom DP Labels
           url: /gateway-manager/data-plane-nodes/custom-dp-labels
+        - text: Transit Gateways
+          url: /gateway-manager/data-plane-nodes/transit-gateways
     - text: Control Plane Groups
       items:
         - text: Overview
