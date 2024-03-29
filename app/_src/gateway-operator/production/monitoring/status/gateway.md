@@ -13,7 +13,7 @@ Consider adding invocations of gwctl when that becomes stable and provides usefu
 https://github.com/kubernetes-sigs/gateway-api/tree/main/gwctl
 -->
 
-In order to retrieve the `status` field of a `Gateway` you can use the following `kubectl` command:
+To retrieve the `status` field of a `Gateway` you can use the following `kubectl` command:
 
 ```bash
 kubectl get gateway kong -o jsonpath-as-json='{.status}'

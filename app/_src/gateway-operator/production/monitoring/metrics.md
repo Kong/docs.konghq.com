@@ -39,7 +39,7 @@ NAME                                   TYPE        CLUSTER-IP    EXTERNAL-IP   P
 kgo-gateway-operator-metrics-service   ClusterIP   10.96.25.90   <none>        8443/TCP   31s
 ```
 
-Because of the fact that {{ site.kgo_product_name }} uses `kube-rbac-proxy` simple HTTP(S) request without a token will be rejected.
+Because {{ site.kgo_product_name }} uses `kube-rbac-proxy` simple HTTP(S) request without a token will be rejected.
 You can verify that by port forwarding the exposed `Service` port:
 
 ```bash
@@ -53,7 +53,7 @@ curl -sk https://localhost:8443/metrics
 Unauthorized
 ```
 
-In order to access that endpoint you'll need to bind the scraping `Service`'s `ServiceAccount` to a `ClusterRole` which contains the following policy rule:
+To access that endpoint you'll need to bind the scraping `Service`'s `ServiceAccount` to a `ClusterRole` which contains the following policy rule:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1

@@ -83,7 +83,7 @@ kubectl get -n default dataplane dataplane-example -o jsonpath-as-json='{.status
 
 ## Troubleshooting using status condition
 
-If your `DataPlane` does not work you can start from look at its `.status.conditions` field.
+If your `DataPlane` does not work you can start by looking at its `.status.conditions` field.
 
 ```bash
 kubectl get -n default dataplane dataplane-example -o jsonpath-as-json='{.status.conditions}'
