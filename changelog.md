@@ -2,6 +2,140 @@
 
 <!--vale off-->
 
+## Week 13
+
+### [style(gateway/expressions-language): fix incorrect formatting](https://github.com/Kong/docs.konghq.com/pull/7143) (2024-03-27)
+
+Bad format: 
+<img width="856" alt="image" src="https://github.com/Kong/docs.konghq.com/assets/1131072/3cd96427-2c0b-4eb2-b140-d2158eac208f">
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.1.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.2.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.3.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.4.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.5.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.6.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.7.x/production/tracing/api
+
+
+### [docs(3.4.3.5): add missing version bump of kong-lua-resty-kafka](https://github.com/Kong/docs.konghq.com/pull/7142) (2024-03-29)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+The docs of `3.4.3.5` missed a version bump of `kong-lua-resty-kafka` from `0.17` to `0.18`.
+
+FTI-5751
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Release: Gateway 2.8.4.8](https://github.com/Kong/docs.konghq.com/pull/7136) (2024-03-26)
+
+Changelog, version bump, and generating kong.conf reference.
+
+https://konghq.atlassian.net/browse/DOCU-3738
+
+#### Modified
+
+- https://docs.konghq.com/gateway/2.8.x/reference/configuration
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Fix: Audience UI label in auth0 DCR doc](https://github.com/Kong/docs.konghq.com/pull/7135) (2024-03-25)
+
+saw issue in docs around audience, suggesting update
+
+
+
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/dev-portal/applications/dynamic-client-registration/auth0
+
+
+### [docs(*): fix docs related to Kong Gateway Tracing](https://github.com/Kong/docs.konghq.com/pull/7133) (2024-03-25)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+The docs on Kong Tracing has some misleading info.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.1.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.2.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.3.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.4.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.5.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.6.x/production/tracing/api
+- https://docs.konghq.com/gateway/3.7.x/production/tracing/api
+
+
+### [kgo: add status field monitoring section](https://github.com/Kong/docs.konghq.com/pull/7124) (2024-03-29)
+
+This PR adds pages to KGO's monitoring guide.
+
+Specifically how to retrieve and use objects' `.status` field.
+
+Part of: https://github.com/Kong/gateway-operator-archive/issues/1207
+
+#### Added
+
+- https://docs.konghq.com/gateway-operator/1.1.x/production/monitoring/status/controlplane/
+- https://docs.konghq.com/gateway-operator/1.2.x/production/monitoring/status/controlplane/
+- https://docs.konghq.com/gateway-operator/1.3.x/production/monitoring/status/controlplane/
+- https://docs.konghq.com/gateway-operator/1.1.x/production/monitoring/status/dataplane/
+- https://docs.konghq.com/gateway-operator/1.2.x/production/monitoring/status/dataplane/
+- https://docs.konghq.com/gateway-operator/1.3.x/production/monitoring/status/dataplane/
+- https://docs.konghq.com/gateway-operator/1.1.x/production/monitoring/status/gateway/
+- https://docs.konghq.com/gateway-operator/1.2.x/production/monitoring/status/gateway/
+- https://docs.konghq.com/gateway-operator/1.3.x/production/monitoring/status/gateway/
+- https://docs.konghq.com/gateway-operator/1.1.x/production/monitoring/status/overview/
+- https://docs.konghq.com/gateway-operator/1.2.x/production/monitoring/status/overview/
+- https://docs.konghq.com/gateway-operator/1.3.x/production/monitoring/status/overview/
+
+
+### [chore: Clarify our use of SemVer with Kong Gateway](https://github.com/Kong/docs.konghq.com/pull/7117) (2024-03-29)
+
+Adding a note to clarify what we deliver in a version, most notably patch versions, to make it clear that it is never safe to upgrade automatically. We can break semver with backports, and it isn't always predicatable.
+
+https://konghq.atlassian.net/browse/DOCU-3717
+
+#### Modified
+
+- https://docs.konghq.com/gateway-operator/1.2.x/guides/autoscaling-workloads/prometheus/
+- https://docs.konghq.com/gateway-operator/1.3.x/guides/autoscaling-workloads/prometheus/
+- https://docs.konghq.com/gateway-operator/1.0.x/production/monitoring/metrics
+- https://docs.konghq.com/gateway-operator/1.1.x/production/monitoring/metrics
+- https://docs.konghq.com/gateway-operator/1.2.x/production/monitoring/metrics
+- https://docs.konghq.com/gateway-operator/1.3.x/production/monitoring/metrics/
+- https://docs.konghq.com/gateway-operator/1.1.x/production/monitoring/status/controlplane/
+- https://docs.konghq.com/gateway-operator/1.2.x/production/monitoring/status/controlplane/
+- https://docs.konghq.com/gateway-operator/1.3.x/production/monitoring/status/controlplane/
+- https://docs.konghq.com/gateway/2.6.x/
+- https://docs.konghq.com/gateway/2.6.x/install-and-run/upgrade-enterprise
+- https://docs.konghq.com/gateway/2.6.x/install-and-run/upgrade-oss
+- https://docs.konghq.com/gateway/2.7.x/
+- https://docs.konghq.com/gateway/2.7.x/install-and-run/upgrade-enterprise
+- https://docs.konghq.com/gateway/2.7.x/install-and-run/upgrade-oss
+- https://docs.konghq.com/gateway/2.8.x/
+- https://docs.konghq.com/gateway/2.8.x/install-and-run/upgrade-enterprise
+- https://docs.konghq.com/gateway/2.8.x/install-and-run/upgrade-oss
+- https://docs.konghq.com/gateway/2.8.x/support-policy
+
 ## Week 12
 
 ### [fix: Update auth0 instructions to include warning on trailing forward slash in URL](https://github.com/Kong/docs.konghq.com/pull/7122) (2024-03-22)
