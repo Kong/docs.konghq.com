@@ -26,15 +26,14 @@ Manage all API product descriptions from the Documentation section in the API Pr
 The integrated markdown editor allows you to edit your documentation directly within {{site.konnect_saas}}. It supports:
 
 * Code syntax highlighting for Bash, JSON, Go, and JavaScript
-* Support for rendering UML diagrams and flowcharts via Mermaid and PlantUML
-* Support for emojis
+* Rendering UML diagrams and flowcharts via Mermaid and PlantUML
+* Emojis
 
-In addition to the typical Markdown support for code syntax highlighting, Mermaid and PlantUML diagrams are supported by using a language-specific identifier immediately following the triple backtick (```) notation that initiates the code block, for example: 
+You can insert Mermaid and PlantUML diagrams by using a language-specific identifier immediately following the triple backtick (```) notation that initiates the code block:
 
 * ```mermaid
 * ```plantuml
 
-These identifiers instruct the renderer on how to process and display the information.
 
 ## API specifications
 

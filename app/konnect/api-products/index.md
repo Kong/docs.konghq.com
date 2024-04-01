@@ -26,10 +26,10 @@ Here are some of the things you can do from the API Products Dashboard:
 -------|------|------------
 **Overview** | Analytics data for the API product. You can configure the analytics options using the [**Analytics tool**](/konnect/analytics/).
 **Product Versions** | This section displays the status of an API product version. From the context menu you can **Delete** an API product version, or use the **View Details** button to navigate to that version's dashboard. 
-**Documentation** | You can add and edit markdown documentation for your API product, upload API specs and manage the publishing status for each document. 
+**Documentation** | You can add and edit markdown documentation for your API product, upload API specs, and manage the publishing status for each document. 
 
 {:.note}
-> **Note**: API products can only be published to the Dev Portal within your [geographic region](/konnect/geo). To publish to a Dev Portal in a different region, switch geos using the control in the bottom-left corner of {{site.konnect_product_name}}.
+> **Note**: API products can only be published to the Dev Portal in the [geographic region](/konnect/geo) you currently have selected. To publish to a Dev Portal in a different region, switch geos using the control in the bottom-left corner of {{site.konnect_product_name}}.
 
 ### API product versions
 
@@ -56,7 +56,7 @@ Learn more:
 
 ## Documentation
 
-Manage your API product's documentation directly within the **Documentation** section of the [API Product dashboard](https://cloud.konghq.com/api-products/). After uploading, you have the capability to edit documentation seamlessly from the {{site.konnect_short_name}} dashboard. Documentation is accessible after the publication of an API product.
+Manage your API product's documentation directly within the **Documentation** section of the [API Product dashboard](https://cloud.konghq.com/api-products/). After uploading documentation, you can edit it seamlessly from the {{site.konnect_short_name}} dashboard. Documentation is accessible after the API product is published.
 Learn more: 
 
 

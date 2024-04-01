@@ -12,10 +12,10 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ## April 2024
 
 **Integrated Markdown Renderer**
-: {{site.konnect_short_name}} users can now take advantage of an integrated markdown editor for API Products in {{site.konnect_short_name}}. This enhancement simplifies documentation updates by enabling you to edit markdown files directly within Konnect. The {{site.konnect_short_name}} interactive markdown renderer supports: 
+: You can now take advantage of an integrated markdown editor for API Products in {{site.konnect_short_name}}. This enhancement simplifies documentation updates by enabling you to edit markdown files directly within {{site.konnect_short_name}}. The {{site.konnect_short_name}} interactive markdown renderer supports: 
 * Code syntax highlighting for bash, json, go, and js
-* Support for rendering UML diagrams and flowcharts via Mermaid and PlantUML
-* Support for emojis
+* Rendering UML diagrams and flowcharts via Mermaid and PlantUML
+* Emojis
 
 ![Interactive editor](/assets/images/products/konnect/changelog/konnect-interactive-markdown.png)
 
