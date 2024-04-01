@@ -83,7 +83,7 @@ formats:
 1. Request the service with basic authentication credentials (created in the [Keycloak configuration](#prerequisites) step),
    and store the session:
    ```bash
-   curl --user <user>:<pass> http://localhost:8000 \
+   curl --user john:doe http://localhost:8000 \
      --cookie-jar example-user
    ```
    

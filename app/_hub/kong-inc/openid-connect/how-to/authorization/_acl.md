@@ -121,7 +121,7 @@ formats:
 Try accessing the proxy:
 
 ```bash
-curl --user <user>:<pass> http://localhost:8000
+curl --user john:doe http://localhost:8000
 ```
 
 You should get an HTTP 403 Forbidden response, and the following message:

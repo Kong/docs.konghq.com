@@ -71,7 +71,7 @@ One way to get a JWT access token is to issue the following call
 (we use [jq](https://stedolan.github.io/jq/) to filter the response):
 
 ```bash
-curl --user <user>:<pass> http://localhost:8000/openid-connect \
+curl --user john:doe http://localhost:8000/openid-connect \
     | jq -r .headers.Authorization
 ```
 
@@ -107,7 +107,7 @@ That can be base64 url decoded to the following `JSON`:
 Try accessing the service:
 
 ```bash
-curl --user <user>:<pass> http://localhost:8000
+curl --user john:doe http://localhost:8000
 ```
 You should get an HTTP 200 response.
 

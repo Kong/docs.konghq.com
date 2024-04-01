@@ -94,8 +94,8 @@ Request the service with a bearer token:
 ```sh
 curl -I http://localhost:8000/openid-connect \
   -H "Authorization: \
-  '$(curl --user <user>:<pass> http://localhost:8000/openid-connect \
-  | jq -r .headers.Authorization)'"
+  \"$(curl --user john:doe http://localhost:8000/openid-connect \
+  | jq -r .headers.Authorization)\""
 ```
 
 You should get an HTTP 200 response with a bearer token header:
