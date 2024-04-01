@@ -40,7 +40,7 @@ Using the API, you can upgrade your data plane node versions by issuing a POST r
     ```bash
     curl --request PUT \
     --url https://us.api.konghq.com/v2/cloud-gateways/configurations \
-    --header 'Authorization: Bearer YOUR_API_KEY' \
+    --header 'Authorization: Bearer BEARER_TOKEN' \
     --data '{
     "control_plane_id": "CONTROL_PLANE_ID",
     "version": "DESIRED_VERSION",
@@ -60,7 +60,7 @@ Using the API, you can upgrade your data plane node versions by issuing a POST r
     ```
 
 {:.note}
-> Replace `YOUR_API_KEY`, `CONTROL_PLANE_ID`, `DESIRED_VERSION`, `GEO_LOCATION`, and `CLOUD_GATEWAY_NETWORK_ID` with your specific details.
+> Replace `BEARER_TOKEN`, `CONTROL_PLANE_ID`, `DESIRED_VERSION`, `GEO_LOCATION`, and `CLOUD_GATEWAY_NETWORK_ID` with your specific details.
 
 
 {{site.konnect_short_name}} will upgrade the version of all the data plane nodes to the version you selected automatically, the response body will contain information about the data plane group, including the version. 
