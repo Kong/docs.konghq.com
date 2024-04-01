@@ -52,82 +52,81 @@ sequenceDiagram
 
 {% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
-Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step:
+Using the Keycloak and {{site.base_gateway}} configuration from the [prerequisites](#prerequisites), 
+set up an instance of the OpenID Connect plugin with a refresh token grant.
 
-1. We want to only use the refresh token grant, but we also enable 
-[password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/) for demoing purposes.
-2. We want to search the refresh token for the refresh token grant from the headers only.
-3. We want to pass refresh token from the client in `Refresh-Token` header.
-4. We want to pass refresh token to upstream in `Refresh-Token` header.
+For the demo, we're going to set up the following:
+* Issuer, client ID, and client auth: settings that connect the plugin to your IdP (in this case, the sample Keycloak app).
+* Auth method: you only need the refresh token grant for this flow. 
+For the purposes of the demo, the example also enables the
+[password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/).
+* We want to only search headers for the refresh token.
+
+With all of the above in mind, let's test out the refresh token grant with Keycloak. 
+Enable the OpenID Connect plugin on the `openid-connect` service:
+
+<!-- vale off-->
+{% plugin_example %}
+plugin: kong-inc/openid-connect
+name: openid-connect
+config:
+  issuer: "http://keycloak.test:8080/auth/realms/master"
+  client_id: "kong"
+  client_auth: "private_key_jwt"
+  auth_methods:
+    - "refresh_token"
+    - "password"
+  refresh_token_param_type:
+    - "header"
+  refresh_token_param_name: "refresh_token"
+  upstream_refresh_token_header: "refresh_token"
+targets:
+  - service
+formats:
+  - konnect
+  - curl
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on -->
+
+## Test the refresh token grant
+
+### Get a refresh token
+
+In this example, the [password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/) 
+and the `upstream_refresh_token_header` are enabled for demoing purposes. 
+One way to get a refresh token is to issue the following call 
+(we use [jq](https://stedolan.github.io/jq/) to filter the response):
 
 ```bash
-http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
-  config.refresh_token_param_name=refresh_token                  \
-  config.refresh_token_param_type=header                         \
-  config.auth_methods=refresh_token                              \
-  config.auth_methods=password                                   \
-  config.upstream_refresh_token_header=refresh_token
-```
-```http
-HTTP/1.1 200 OK
-```
-```json
-{
-    "id": "5f35b796-ced6-4c00-9b2a-90eef745f4f9",
-    "name": "openid-connect",
-    "service": {
-        "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd"
-    },
-    "config": {
-        "auth_methods": [
-            "refresh_token",
-            "password"
-        ],
-        "refresh_token_param_name": "refresh_token",
-        "refresh_token_param_type": [ "header" ],
-        "upstream_refresh_token_header": "refresh_token"
-    }
-}
+curl --user john:doe http://localhost:8000 | jq -r '.headers."Refresh-Token"'
 ```
 
-The `config.auth_methods` and `config.upstream_refresh_token_header`
-are only enabled for demoing purposes so that we can get a refresh token with:
-
-```bash
-http -a john:doe :8000 | jq -r '.headers."Refresh-Token"'
-```
-Output:
+You can use the output from the `Refresh-Token` header:
 ```
 <refresh-token>
 ```
 
-We can use the output in `Refresh-Token` header.
+### Access a service with the token
 
-### Test the refresh token grant
-
-Request the service with a bearer token:
+Request the service with a refresh token:
 
 ```bash
-http -v :8000 Refresh-Token:$(http -a john:doe :8000 | \
-    jq -r '.headers."Refresh-Token"')
+curl http://localhost:8000 \
+ --header "Refresh-Token:$(curl --user john:doe http://localhost:8000 | \
+ jq -r '.headers."Refresh-Token"')"
 ```
+
 or
 ```bash
-http -v :8000 Refresh-Token:"<refresh-token>"
+curl http://localhost:8000 \
+ --header "Refresh-Token: <refresh-token>"
 ```
+
+You should get an HTTP 200 response with a refresh token header:
+
 ```http
 GET / HTTP/1.1
 Refresh-Token: <refresh-token>
-```
-```http
-HTTP/1.1 200 OK
-```
-```json
-{
-    "headers": {
-        "Authorization": "Bearer <access-token>",
-        "Refresh-Token": "<refresh-token>"
-    },
-    "method": "GET"
-}
 ```
