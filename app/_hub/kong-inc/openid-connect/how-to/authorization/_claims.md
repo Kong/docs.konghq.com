@@ -114,7 +114,7 @@ You should get an HTTP 200 response.
 If you set a claim that isn't enabled in your IdP, you will get a 
 403 Forbidden response instead. 
 
-For example, if you also add `audience_claim = aud` to the plugin's configuration and try to access it with your Keycloak credentials from the [#prerequisites], the response will be a 403, as the access token has `"aud": "account"`, and that does not match `"httpbin"`.
+For example, if you also add `audience_claim = aud` to the plugin's configuration and try to access it with your Keycloak credentials from the [prerequisites](#prerequisites), the response will be a 403, as the access token has `"aud": "account"`, and that does not match `"httpbin"`.
 
 ## Arrays in claims-based configuration
 

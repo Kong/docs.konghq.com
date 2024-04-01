@@ -37,6 +37,8 @@ sequenceDiagram
 
 {% include_cached /md/plugins-hub/oidc-prereqs.md %}
 
+{% include_cached /md/plugins-hub/oidc-prod-note.md %}
+
 ## Prepare Kong OAuth application
 
 1. Create a consumer:
@@ -85,8 +87,6 @@ sequenceDiagram
 
 ## Set up Kong OAuth token authentication
 
-{% include_cached /md/plugins-hub/oidc-prod-note.md %}
-
 Using the Keycloak and {{site.base_gateway}} configuration from the [prerequisites](#prerequisites), 
 set up an instance of the OpenID Connect plugin.
 
@@ -128,7 +128,7 @@ curl -I http:localhost:8000 \
   -H "Authorization: \
   \"Bearer $(curl -i -X POST --insecure https://localhost:8443/mock/oauth2/token \
   --data \"client_id=client\" \
-  --data \"client_secret=secret" \
+  --data \"client_secret=secret\" \
   --data \"grant_type=client_credentials\" | \
     jq -r .access_token)\""
 ```
