@@ -78,7 +78,7 @@ across the organization’s applications.
 collaborate and manage their own set of data plane nodes and services without
 the risk of impacting other teams and projects. Gateway Manager instantly
 provisions a hosted {{site.base_gateway}} control plane and supports securely
-attaching self-hosted nodes running in cloud or hybrid environments, or using fully-managed data plane nodes.
+attaching data plane nodes.
 
 Through the Gateway Manager, increase the security of your APIs with out-of-the-box enterprise and community plugins, including OpenID Connect, Open Policy Agent, Mutual TLS, and more.
 
