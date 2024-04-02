@@ -1,14 +1,25 @@
 ---
 title: Installation Options
+subtitle: Kong is a low-demand, high-performing API gateway. You can setup Kong with Konnect or it can be installed on many different self-managed systems.
 disable_image_expand: true
 ---
-
-Kong can be installed on many different systems. From bare metal, to virtual machines, and cloud native Kubernetes environments, Kong is a low-demand, high-performing API gateway.
 
 {% if_version lte:3.3.x %}
 {% include install.html config=site.data.tables.install_options %}
 {% endif_version %}
 
 {% if_version gte:3.4.x %}
+
+<blockquote class="note">
+  <p><strong>Setup your Gateway in under 5 minutes with Kong Konnect:</strong></p><br/>
+  <p>
+    <a href="/konnect/">Kong Konnect</a> is an API lifecycle management platform that lets you build modern applications better, faster, and more securely.
+  </p>
+  <p><a href="/konnect/getting-started/">Start for Free &rarr;</a></p>
+</blockquote>
+
+Or you can setup Kong on your own self-managed system:
+
 {% include install.html config=site.data.tables.install_options_34x %}
+
 {% endif_version %}
