@@ -53,7 +53,7 @@
               {% assign url = item.url | replace: 'VERSION', page.release | append: "?install=oss" %}
             {% endif %}
             <a class="installation-options__link" href="{{ url }}">
-              <img class="installation-options__image" src="{{ item.icon }}" alt="{{ item.name }}">
+              <img class="installation-options__image" src="{{ item.icon }}" alt="{{ item.name }} icon">
               <span>{{ item.name }}</span>
             </a>
           {% endfor %}
@@ -62,7 +62,7 @@
           {% assign enterprise_items = feature.items | where: "enterprise", true %}
           {% for item in enterprise_items %}
             <a class="installation-options__link" href="{{ item.url | replace: 'VERSION', page.release }}">
-              <img class="installation-options__image" src="{{ item.icon }}" alt="{{ item.name }}">
+              <img class="installation-options__image" src="{{ item.icon }}" alt="{{ item.name }} icon">
               <span>{{ item.name }}</span>
             </a>
           {% endfor %}
