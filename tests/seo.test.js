@@ -14,7 +14,7 @@ describe("Canonical links", () => {
     },
     {
       title: "links to the product index when showing the index page for a specific version (kic)",
-      src: "/kubernetes-ingress-controller/2.2.x/",
+      src: "/kubernetes-ingress-controller/2.5.x/",
       href: "/kubernetes-ingress-controller/latest/",
     },
      {
