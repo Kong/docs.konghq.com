@@ -44,6 +44,7 @@ To add a custom URL to Dev Portal, you need:
 
 * A domain and access to configure the domain's DNS `CNAME` records.
 * Your organization's auto-generated default Dev Portal URL.
+* A [CAA DNS](https://datatracker.ietf.org/doc/html/rfc6844) record that allows `pki.goog` only if any pre-existing CAA DNS records are present on the domain.
 
 You can also choose to [self-host the Dev Portal with Netlify](/konnect/dev-portal/customization/netlify/) or any other static hosting service that supports single page applications.
 
@@ -55,6 +56,8 @@ The record will look like this:
 | Type  | Name   | Value                                  |
 |:------|--------|----------------------------------------|
 | CNAME | portal | `https://example.us.portal.konghq.com` |
+
+If your domain has specific CAA DNS records that list authorized certificate authorities/issuers, you'll also need to create a new CAA DNS record to permit [Google Trust Services](https://pki.goog/faq/#caa) as an issuer. If your domain doesn't currently have any CAA DNS records, it means all issuers are implicitly allowed, and there's no need for a new CAA DNS record in that case.
 
 ### Update Dev Portal URL settings {#update-portal}
 

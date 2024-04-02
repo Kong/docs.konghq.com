@@ -11343,7 +11343,7 @@ paths:
                 '200':
                     $ref: '#/components/responses/admins-response'
             operationId: get-admins
-            description: Returns a list of admins. The `status` field in the response indicates the state of the admins invitation. `0`= Approved, `1`= Pending, `2`= Rejected, `3`= Revoked, `4` = Invited, `5`= Unverified.
+            description: Returns a list of admins. To query all admins, add a parameter `all_workspaces=true` to the `/admins` endpoint. The `status` field in the response indicates the state of the admins invitation. `0`= Approved, `1`= Pending, `2`= Rejected, `3`= Revoked, `4` = Invited, `5`= Unverified.
         post:
             summary: Invite an Admin
             operationId: post-admins

@@ -9,7 +9,31 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## March 2024
+
+**Refined user experience for Control Plane Groups**
+: We've made improvements to refine the end-to-end workflow of Control Plane Groups for our customers. Now, Control Plane Groups are more intuitive, and easier to understand.
+
+**Enhanced error notification**
+: Customers now have the ability to view detailed error notifications for their data plane directly within {{site.konnect_short_name}}. The enhanced logging feature categorizes errors for improved clarity, distinguishing between configuration errors, transient configuration reload errors, and general exceptions. This update empowers users to diagnose and resolve CP/DP connection issues more efficiently.
+
+![Konnect-error-log](/assets/images/products/konnect/changelog/konnect-error-log.png)
+
+**New Analytics Explorer page**
+: You can now explore and visualize analytics data via an easy to use, point-and-click web interface. The [Explorer page](https://cloud.konghq.com/analytics/explorer) allows you to drill-down into data and easily discover how issues may impact your business. For more information, see the [Explorer overview](/konnect/analytics/explorer/).
+
+**Improved Analytics summary dashboard**
+: A new version of the Analytics summary dashboard is now available for all {{site.konnect_short_name}} users. This new version displays all analytics information on one page, which allows you to focus on your most critical API usage data.
+
+: ![analytics summary dashboard](/assets/images/products/konnect/changelog/konnect-analytics-summary-dashboard.png)
+: > _**Figure 1:** Example of the improved Analytics summary dashboard that displays total traffic, error rate, P99 latency, total traffic over time, latency breakdown over time, and Kong vs upstream latency over time._
+
+
 ## February 2024
+
+
+**Download button added the documents UI**
+: You can now click the **Download** button to download the markdown file currently being viewed from the documents UI.
 
 **Additional plugin support for consumer groups**
 : Along with {{site.base_gateway}} 3.6 support in {{site.konnect_short_name}}, additional plugins are now supported for consumer groups.
@@ -25,6 +49,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 : If you previously configured application registration, you will see your auth configs saved in a new sidebar section under **Dev Portal** called **Application Auth**.
 
+
 **Enhanced onboarding wizard**
 : {{site.konnect_short_name}} users can now experience an enhanced onboarding wizard when they sign up for a new {{site.konnect_short_name}} organization. After signing up, you can optionally use the wizard to test a popular {{site.konnect_short_name}} use case: key authentication or rate limiting. This experience starts with a local, Docker-based gateway setup, automatically configures Gateway Manager entities against demo endpoints, and then guides you through a basic workflow that tests gateway functionality.
 
@@ -35,7 +60,6 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : You can now export configuration of core Gateway Manager objects, like services, routes, and plugins, to YAML or JSON. This allows you to import the file to APIOps tooling, like decK. For more information, see [Manage Control Plane Configuration with decK](/konnect/gateway-manager/declarative-config/).
 
 ![Konnect-config-export](/assets/images/products/konnect/gateway-manager/konnect-config-export.png)
-
 
 ## January 2024
 

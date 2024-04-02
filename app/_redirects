@@ -20,7 +20,7 @@
 ## App reg v2 
 
 /konnect/dev-portal/applications/dev-reg-app-service/ /konnect/dev-portal/applications/dev-apps/
-
+/konnect/dev-portal/access/ /konnect/dev-portal/
 # API
 
 /konnect/api/portal-rbac/latest/*    /konnect/api/portal-management/latest/
@@ -59,7 +59,13 @@
 /konnect/getting-started/publish-service/   /konnect/dev-portal/publish-service/  
 /konnect/getting-started/app-registration/  /konnect/dev-portal/applications/dev-apps/
 /konnect/getting-started/productize-service/    /konnect/api-products/productize-service/
+/konnect/gateway-manager/deploy-service/        /konnect/getting-started/add-api
 
+# Konnect Analytics Explorer revision
+
+/konnect/analytics/reference/   /konnect/analytics/explorer/
+/konnect/analytics/use-cases/latency/   /konnect/analytics/explorer/#diagnosing-latency-issues-example
+/konnect/analytics/custom-reports/  /konnect/analytics/use-cases/
 
 # API markdown doc deprecation
 

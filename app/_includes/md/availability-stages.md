@@ -26,4 +26,4 @@ If feature documentation doesn't have a tech preview, alpha, or beta label, then
 
 You can depend on GA features in production environments.
 
-Interfaces are guaranteed to follow a [semantic versioning](https://semver.org/) model for any changes.
+Interfaces follow a [structured versioning model](/gateway/latest/support/) for any changes.

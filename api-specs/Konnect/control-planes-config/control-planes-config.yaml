@@ -167,6 +167,26 @@ paths:
         - $ref: '#/components/parameters/page_number'
     parameters:
       - $ref: '#/components/parameters/controlPlaneId'
+  /control-planes/{controlPlaneId}/nodes/eol:
+    get:
+      summary: List End-of-Life Data Plane Node Records
+      responses:
+        '200':
+          $ref: '#/components/responses/list-nodes-eol'
+      operationId: get-nodes-eol
+      tags:
+        - DP Nodes
+      description: >-
+        Returns a list of records of data plane nodes, whose versions are
+        approaching End of Full Support/End of Life, that are associated with
+        this control plane. Each record contains a data plane node's id,
+        version, and corresponding resolution message to upgrade to the closest
+        Long Term Support version.
+      parameters:
+        - $ref: '#/components/parameters/page_size'
+        - $ref: '#/components/parameters/page_number'
+    parameters:
+      - $ref: '#/components/parameters/controlPlaneId'
   /control-planes/{controlPlaneId}/nodes/{nodeId}:
     parameters:
       - schema:
@@ -6729,6 +6749,29 @@ components:
                 properties:
                   total_count:
                     type: integer
+    list-nodes-eol:
+      description: Example response
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              items:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    node_id:
+                      type: string
+                    node_version:
+                      type: string
+                    message:
+                      type: string
+              page:
+                type: object
+                properties:
+                  total_count:
+                    type: integer
     get-node:
       description: Example response
       content:
@@ -6910,4 +6953,3 @@ components:
         title: Not Found
         instance: kong:trace:6816496025408232265
         detail: Not Found
-x-internal: false

@@ -118,8 +118,8 @@ Certificate:
 ```
 {% endnavtab %}
 
-{% navtab CA Certificate on CP %}
-Here is an example of a CA certificate on a control plane:
+{% navtab Certificate on CP %}
+Here is an example of a certificate on a control plane:
 
 ```
 Certificate:
@@ -169,8 +169,8 @@ Certificate:
 ```
 {% endnavtab %}
 
-{% navtab CA Certificate on DP %}
-Here is an example of a CA certificate on a data plane:
+{% navtab Certificate on DP %}
+Here is an example of a certificate on a data plane:
 
 ```
 Certificate:

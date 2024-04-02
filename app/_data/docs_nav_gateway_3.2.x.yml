@@ -614,7 +614,7 @@ items:
     items:
       - text: kong.conf
         url: /reference/configuration
-        src: /gateway/reference/configuration-3.0-3.3
+        src: /gateway/reference/configuration/configuration-3.0-3.3
       - text: Injecting Nginx Directives
         url: /reference/nginx-directives
       - text: CLI

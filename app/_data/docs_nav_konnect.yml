@@ -56,8 +56,6 @@
           url: /gateway-manager/data-plane-nodes/parameter-reference/
         - text: Using Custom DP Labels
           url: /gateway-manager/data-plane-nodes/custom-dp-labels
-    - text: Proxy and Test a Service
-      url: /gateway-manager/deploy-service/
     - text: Control Plane Groups
       items:
         - text: Overview
@@ -135,8 +133,6 @@
   items:
     - text: Overview
       url: /dev-portal/
-    - text: Access the Dev Portal
-      url: /dev-portal/access/
     - text: Sign Up for a Dev Portal Account
       url: /dev-portal/dev-reg/
     - text: Productize a Service
@@ -203,19 +199,16 @@
   items:
     - text: Introduction to Analytics
       url: /analytics/
-    - text: Report Use Cases
-      items:
-      - text: Analyze API Usage and Performance
-        url: /analytics/use-cases/
-      - text: Diagnosing Latency Issues
-        url: /analytics/use-cases/latency
-    - text: Reports Reference
-      url: /analytics/reference/
-    - text: API Requests
-      url: /analytics/api-requests
-    - text: Troubleshoot
-      url: /analytics/troubleshoot/
-
+    - text: Dashboard
+      url: /analytics/dashboard/
+    - text: Explorer
+      url: /analytics/explorer/
+    - text: Analyze API Usage and Performance with Reports
+      url: /analytics/use-cases/
+    - text: Requests
+      url: /analytics/api-requests/
+    - text: Troubleshooting
+      url: /analytics/troubleshoot
 - title: Org Management
   icon: /assets/images/icons/konnect/icn-organizations-nav.svg
   items:

@@ -1,6 +1,8 @@
 ---
 nav_title: Using ACLs with consumer groups
 title: Using ACLs with consumer groups
+
+minimum_version: 3.6.x
 ---
 
 ## ACL configuration with {{site.base_gateway}}
