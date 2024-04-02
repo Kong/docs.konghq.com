@@ -75,6 +75,11 @@ module SingleSource
       # This is the directory that we're going to write the output file to
       @dir = "#{product}/#{release}/#{output_path}"
 
+      # Hack to make index pages work
+      if dest == "#{product}/#{release}/"
+        @dir = "#{product}/#{release}/./"
+      end
+
       # If the src file doesn't start with a /, assume it's within the product folder
       # Otherwise, it's an absolute src path and we should start from /src
       src = "#{product}/#{src}" unless src[0] == '/'

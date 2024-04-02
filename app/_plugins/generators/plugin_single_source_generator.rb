@@ -29,7 +29,7 @@ module PluginSingleSource
 
         # Skip if a markdown file exists for this version
         # and we're not generating the index version
-        next if File.exists?("app/_hub/#{name}/#{v['release']}.md") && current_version != max_version
+        next if File.exist?("app/_hub/#{name}/#{v['release']}.md") && current_version != max_version
 
         # Otherwise duplicate the source file, fallback to _index.md
         source = v['source'] || "_index"
