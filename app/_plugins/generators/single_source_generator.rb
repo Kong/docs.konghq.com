@@ -29,7 +29,8 @@ module SingleSource
     def create_pages(data, site, product, release, version, assume_generated) # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity, Metrics/AbcSize, Metrics/ParameterLists
       data.each do |v, _k|
         # Enable generation of specific files as required
-        next unless v['generate'] || assume_generated
+        next unless assume_generated
+        next if v['generate'] == false
 
         # Handle when it's the root page.
         # We always want to generate this, even if
