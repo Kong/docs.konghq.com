@@ -46,7 +46,13 @@
         <td class="installation-options__cell installation-options__cell--body">
           {% assign oss_items = feature.items | where: "oss", true %}
           {% for item in oss_items %}
-            <a class="installation-options__link" href="{{ item.url | replace: 'VERSION', page.release }}">
+            {% assign url = item.url %}
+            {% if url contains 'http://' or url contains 'https://' %}
+              {% assign url = item.url %}
+            {% else %}
+              {% assign url = item.url | replace: 'VERSION', page.release | append: "?install=oss" %}
+            {% endif %}
+            <a class="installation-options__link" href="{{ url }}">
               <img class="installation-options__image" src="{{ item.icon }}" alt="{{ item.name }}">
               <span>{{ item.name }}</span>
             </a>
