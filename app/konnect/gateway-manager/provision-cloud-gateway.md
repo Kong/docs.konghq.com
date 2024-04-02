@@ -2,15 +2,17 @@
 title: Provision a Dedicated Cloud Gateway
 ---
 
-This guide explains how to provision a [Dedicated Cloud Gateway](/konnect/?) in {{site.konnect_short_name}}.
+This guide explains how to provision a [Dedicated Cloud Gateway](/konnect/dedicated-cloud-gateways/) in {{site.konnect_short_name}}.
 
 ## Prerequisites
 
-## Provision
+* Network configured
+
+## Provision your fully-managed data plane nodes
 
 {% navtabs %}
 {% navtab UI %}
-1. From Gateway Manager in the navigation menu, click the **New Control Plane** menu and select **Kong Gateway**.
+1. From [Gateway Manager](https://cloud.konghq.com/gateway-manager) in the navigation menu, click the **New Control Plane** menu and select **Kong Gateway**.
 
 1. In the **Create a Control Plane** dialog, enter a name for your cloud gateway and click **Dedicated Cloud Instances**.
 
@@ -33,47 +35,39 @@ This guide explains how to provision a [Dedicated Cloud Gateway](/konnect/?) in 
 Your cloud gateway is now provisioned. You can use it like you would any other {{site.base_gateway}} in {{site.konnect_short_name}}.
 {% endnavtab %}
 {% navtab API %}
-1. ? 
+The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
+
+1. 
 {% endnavtab %}
 {% endnavtabs %}
 
-## Upgrade
+## Upgrade your fully-managed data plane nodes
+
+{{site.konnect_short_name}} handles upgrades for you. There's no downtime when upgrading the infrastructure. For more information about how to upgrade your data plane nodes, see [Upgrade a Data Plane Node to a New Version](/konnect/gateway-manager/data-plane-nodes/upgrade/)
+
+## Scale your fully-managed data plane nodes
 
 {% navtabs %}
 {% navtab UI %}
-1. I have no idea where this is in the UI, unless you just go to update config in Actions and then just select the new version from the config dialog.
+1. From [Gateway Manager](https://cloud.konghq.com/gateway-manager) in the navigation menu, click the Dedicated Cloud Gateway control plane you want to scale the data plane nodes for.
+
+1. Click **Data Plane Nodes** in the navigation menu.
+
+1. From the **Control Plane Actions** menu, click **Update Cluster Config** and do the following:
+
+    1. To rescale your entire instance, select the most appropriate option based on the requests per second, CPU, and memory from the Custom Configure Mode options.
+
+    1. To only rescale the number of data plane nodes in a cluster region, increase or decrease the number of nodes in the Configure Cluster section. 
+
+1. Click **Update Cluster**.
 {% endnavtab %}
 {% navtab API %}
+The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
+
 1. ? 
 {% endnavtab %}
 {% endnavtabs %}
-
-## Delete
-
-{% navtabs %}
-{% navtab UI %}
-1. ?
-{% endnavtab %}
-{% navtab API %}
-1. ? 
-{% endnavtab %}
-{% endnavtabs %}
-
-## Scale 
-
-{% navtabs %}
-{% navtab UI %}
-1. Also not sure where this in the UI.
-{% endnavtab %}
-{% navtab API %}
-1. ? 
-{% endnavtab %}
-{% endnavtabs %}
-
-## Troubleshooting
-
-### Issue name here
 
 ## More information
 
-* link to CGW overview
+* [About Dedicated Cloud Gateways](/konnect/dedicated-cloud-gateways/): Learn more about Dedicated Cloud Gateway features and use cases.
