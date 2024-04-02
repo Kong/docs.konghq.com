@@ -7,46 +7,6 @@ columns:
     subtitle: Kong’s API gateway with added functionality.
     key: enterprise
 features:
-  - name: "Linux"
-    items:
-      - name: "Debian"
-        url: /gateway/VERSION/install/linux/debian/
-        oss: true
-        enterprise: true
-        support: true
-        icon: /assets/images/icons/third-party/debian-logo.jpg
-      - name: "Ubuntu"
-        url: /gateway/VERSION/install/linux/ubuntu/
-        oss: true
-        enterprise: true
-        support: true
-        icon: /assets/images/icons/third-party/ubuntu.png
-      - name: "RedHat"
-        url: /gateway/VERSION/install/linux/rhel/
-        oss: true
-        enterprise: true
-        support: true
-        icon: /assets/images/icons/third-party/rhel.jpg
-      - name: "Amazon Linux 2"
-        url: /gateway/VERSION/install/linux/amazon-linux/
-        oss: true
-        enterprise: true
-        support: true
-        icon: /assets/images/icons/third-party/amazon-linux.png
-  - name: "Kubernetes"
-    items:
-      - name: "Kubernetes"
-        url: /gateway/VERSION/install/kubernetes/
-        oss: true
-        enterprise: true
-        support: true
-        icon: /assets/images/icons/third-party/kubernetes-logo.png
-      - name: "Kubernetes ingress controller"
-        url: /gateway/VERSION/install/kubernetes/
-        oss: true
-        enterprise: false
-        support: true
-        icon: /assets/images/icons/third-party/kubernetes-logo.png
   - name: "Docker"
     items:
       - name: "Debian (bullseye-slim)"
@@ -73,13 +33,43 @@ features:
         support: true
         url: https://hub.docker.com/r/kong/kong-gateway/tags?page=1&name=amazonlinux
         icon: /assets/images/icons/third-party/amazon-linux.png
-
-  - name: "Other"
+  - name: "Kubernetes"
     items:
-      - name: "Debian"
+      - name: "Kubernetes"
+        url: /gateway/VERSION/install/kubernetes/
         oss: true
         enterprise: true
         support: true
-        url: https://github.com/kong/kong-terraform-aws
-        icon: /assets/images/icons/third-party/terraform.svg
-
+        icon: /assets/images/icons/third-party/kubernetes-logo.png
+      - name: "Kubernetes ingress controller"
+        url: /gateway/VERSION/install/kubernetes/
+        oss: true
+        enterprise: false
+        support: true
+        icon: /assets/images/icons/third-party/kubernetes-logo.png
+  - name: "Linux"
+    items:
+      - name: "Debian"
+        url: /gateway/VERSION/install/linux/debian/
+        oss: true
+        enterprise: true
+        support: true
+        icon: /assets/images/icons/third-party/debian-logo.jpg
+      - name: "Ubuntu"
+        url: /gateway/VERSION/install/linux/ubuntu/
+        oss: true
+        enterprise: true
+        support: true
+        icon: /assets/images/icons/third-party/ubuntu.png
+      - name: "RedHat"
+        url: /gateway/VERSION/install/linux/rhel/
+        oss: true
+        enterprise: true
+        support: true
+        icon: /assets/images/icons/third-party/rhel.jpg
+      - name: "Amazon Linux 2"
+        url: /gateway/VERSION/install/linux/amazon-linux/
+        oss: true
+        enterprise: true
+        support: true
+        icon: /assets/images/icons/third-party/amazon-linux.png
