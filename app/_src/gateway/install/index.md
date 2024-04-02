@@ -11,9 +11,9 @@ disable_image_expand: true
 {% if_version gte:3.4.x %}
 
 <blockquote class="note">
-  <p><strong>Setup your Gateway in under 5 minutes with Kong Konnect:</strong></p><br/>
+  <p><strong>Setup your Gateway in under 5 minutes with {{ site.konnect_product_name }}:</strong></p><br/>
   <p>
-    <a href="/konnect/">Kong Konnect</a> is an API lifecycle management platform that lets you build modern applications better, faster, and more securely.
+    <a href="/konnect/">{{ site.konnect_product_name }}</a> is an API lifecycle management platform that lets you build modern applications better, faster, and more securely.
   </p>
   <p><a href="/konnect/getting-started/">Start for Free &rarr;</a></p>
 </blockquote>
