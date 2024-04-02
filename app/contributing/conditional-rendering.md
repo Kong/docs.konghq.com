@@ -40,9 +40,11 @@ You can use the `if_version` block for this, or `if_plugin_version` for any cont
 * `if_plugin_version` can only be used for plugin documentation in the `app/_hub` directory.
 
 `if_version` and `if_plugin_version` support the following filters:
-* `eq`: Render content that **equals** the provided version.
+* `eq`: Render content that **equals** the provided version. It also supports a comma-separated list of values, i.e. `if_version eq:1.1.x,1.3.x`
+* `neq`: Render content that does not **equal** the provided version.
 * `gte`: Render content that is **equal or greater than** the provided version.
 * `lte`: Render content that is **equal or less than** the provided version.
+
 
 For example, `eq` displays content for only one specific version:
 
@@ -109,18 +111,22 @@ The filter expects new lines before and after `if_version` or `if_plugin_version
 
 The above will be rendered as a single table.
 
-### Inline content
+### Whitespace control
 
-If you want to conditionally render content in a sentence, you can use `if_version` or `if_plugin_version`
-and specify `inline:true`:
+Both `if_version` and `if_plugin_version` use the same implementation as Liquid's `if` tag. Therefore, they have the same [whitespace control](https://shopify.github.io/liquid/basics/whitespace/).
+
+When rendering lists with `{if_version`, `if_plugin_version`, or `if`, there's a caveat: a hyphen needs to be added to the right side of the tags (for consistency, it could be either side) for them to be rendered correctly.
 
 {% raw %}
 ```
-Hello {% if_version eq:1.0.0 inline:true %}everyone in the {% endif_version %} world.
-
-Hello {% if_plugin_version lte:2.8.x inline:true %}everyone in the {% endif_plugin_version %} world.
+* Item 1
+{% if_version gte:3.6.x -%}
+* Item 2
+{% endif_version -%}
+* Item 3
 ```
 {% endraw %}
+
 
 ### Front matter
 
