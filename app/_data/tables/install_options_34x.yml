@@ -36,13 +36,13 @@ features:
   - name: "Kubernetes"
     items:
       - name: "Kubernetes"
-        url: /gateway/VERSION/install/kubernetes/
+        url: /gateway/VERSION/install/kubernetes/proxy/
         oss: true
-        enterprise: true
+        enterprise: false
         support: true
         icon: /assets/images/icons/third-party/kubernetes-logo.png
       - name: "Kubernetes ingress controller"
-        url: /gateway/VERSION/install/kubernetes/
+        url: /kubernetes-ingress-controller/latest/install/helm/
         oss: true
         enterprise: false
         support: true
