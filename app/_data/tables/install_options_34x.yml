@@ -1,12 +1,13 @@
 columns:
-  - name: Kong OSS
+  - name: Platform
+  - name: Open Source
+    subtitle: An open-source package containing the basic API gateway functionality and open-source plugins.
     key: oss
   - name: Kong Gateway Enterprise
+    subtitle: Kong’s API gateway with added functionality.
     key: enterprise
-  - name: Officially Supported
-    key: support
 features:
-  - name: "Packages"
+  - name: "Linux"
     items:
       - name: "Debian"
         url: /gateway/VERSION/install/linux/debian/
@@ -40,12 +41,12 @@ features:
         enterprise: true
         support: true
         icon: /assets/images/icons/third-party/kubernetes-logo.png
-      - name: "OpenShift"
+      - name: "Kubernetes ingress controller"
         url: /gateway/VERSION/install/kubernetes/
         oss: true
-        enterprise: true
+        enterprise: false
         support: true
-        icon: /assets/images/icons/third-party/openshift-logo.png
+        icon: /assets/images/icons/third-party/kubernetes-logo.png
   - name: "Docker"
     items:
       - name: "Debian (bullseye-slim)"
@@ -75,7 +76,7 @@ features:
 
   - name: "Other"
     items:
-      - name: "AWS with Terraform"
+      - name: "Debian"
         oss: true
         enterprise: true
         support: true

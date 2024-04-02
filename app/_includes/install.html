@@ -1,23 +1,4 @@
-{% if include.header == "no-header" %}
-<div class="docs-grid-install">
-  {% for f in include.config.features %}
-    {% for i in f.items %}
-      {% if i.url %}
-        <a href="{{ i.url | replace: 'VERSION', page.release }}" class="docs-grid-install-block no-description">
-          <img class="install-icon" src="{{ i.icon }}" alt="" />
-          <div class="install-text">{{ i.name }}</div>
-        </a>
-      {% else %}
-        <div class="docs-grid-install-block no-description">
-          <img class="install-icon" src="{{ i.icon }}" alt="" />
-          <div class="install-text">{{ i.name }}</div>
-        </div>
-      {% endif %}
-    {% endfor %}
-  {% endfor %}
-</div>
-
-{% else %}
+{% if_version lte:3.3.x %}
 
 {% for f in include.config.features %}
   <h2>{{ f.name }}</h2>
@@ -39,4 +20,50 @@
   </div>
 {% endfor %}
 
-{% endif %}
+{% endif_version %}
+
+{% if_version gte:3.4.x %}
+
+<table class="installation-options">
+  <thead>
+    <tr class="installation-options__row">
+      {% for column in include.config.columns %}
+        <th class="installation-options__cell">
+          <p class="installation-options__heading">{{ column.name }}</p>
+          <p class="installation-options__heading mobile-label">{{ column.name }}</p>
+          {% if column.subtitle %}
+            <p class="installation-options__subheading">{{ column.subtitle }}</p>
+          {% endif %}
+        </th>
+      {% endfor %}
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for feature in include.config.features %}
+      <tr class="installation-options__row">
+        <td class="installation-options__cell installation-options__cell--body installation-options__cell--platform">{{ feature.name }}</td>
+        <td class="installation-options__cell installation-options__cell--body">
+          {% assign oss_items = feature.items | where: "oss", true %}
+          {% for item in oss_items %}
+            <a class="installation-options__link" href="{{ item.url | replace: 'VERSION', page.release }}">
+              <img class="installation-options__image" src="{{ item.icon }}" alt="{{ item.name }}">
+              <span>{{ item.name }}</span>
+            </a>
+          {% endfor %}
+        </td>
+        <td class="installation-options__cell installation-options__cell--body">
+          {% assign enterprise_items = feature.items | where: "enterprise", true %}
+          {% for item in enterprise_items %}
+            <a class="installation-options__link" href="{{ item.url | replace: 'VERSION', page.release }}">
+              <img class="installation-options__image" src="{{ item.icon }}" alt="{{ item.name }}">
+              <span>{{ item.name }}</span>
+            </a>
+          {% endfor %}
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endif_version %}
