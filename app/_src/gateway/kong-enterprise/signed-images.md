@@ -58,7 +58,7 @@ cosign verify \
    --certificate-identity-regexp='https://github.com/Kong/kong-ee/.github/workflows/release.yml'
 ```
 
-The command will exit with `0` if the `cosign` verification was complete:
+The command will exit with `0` when the `cosign` verification is complete:
 
 ```sh
 ...
