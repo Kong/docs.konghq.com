@@ -22,24 +22,26 @@ To upgrade a data plane node to a new version, follow these steps:
 {% navtab Dedicated Cloud Gateways %}
 {% navtabs %}
 {% navtab Konnect UI %}
-1. Open [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager/), choose the Dedicated Cloud Gateways powered control plane,
-1. From the **Actions** drop-down menu, select **Update Cluster Config**
-1. Select the desired {{site.base_gateway}} version, and **Update Cluster**.
+1. In [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager/), select the Dedicated Cloud Gateways powered control plane you want to upgrade the data plane nodes for.
+1. From the **Actions** menu, select **Update Cluster Config**.
+1. Select the desired {{site.base_gateway}} version, and click **Update Cluster**.
 
 {{site.konnect_short_name}} will upgrade the version of all the data plane nodes to the version you selected automatically. 
+
+Kong performs a rolling upgrade of the fully-managed data plane nodes. This is a zero downtime upgrade because Kong synchronizes the data plane with load balancer registration and deregistration and gracefully terminates the the old data plane nodes to reduce the impact on the ongoing traffic.
 {% endnavtab %}
 {% navtab API %}
 
 Using the API, you can upgrade your data plane node versions by issuing a POST request to the `/cloud-gateways/configurations` endpoint: 
 
 
-1. Open [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager/), choose the Dedicated Cloud Gateways powered control plane, and copy the `control_plane_id`.
+1. In [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager/), select the Dedicated Cloud Gateways powered control plane and copy the `control_plane_id`.
 1. From the {{site.konnect_short_name}} sidebar, click on **Data Plane Nodes**, select the relevant data plane group, and record the `cloud_gateway_network_id`.
 1. Construct and send a POST request to `/cloud-gateways/configurations`, using both the `control_plane_id`, `cloud_gateway_network_id`, and the desired [`version`](/konnect/compatibility/):
 
     ```bash
     curl --request PUT \
-    --url https://us.api.konghq.com/v2/cloud-gateways/configurations \
+    --url https://{region}.api.konghq.com/v2/cloud-gateways/configurations \
     --header 'Authorization: Bearer BEARER_TOKEN' \
     --data '{
     "control_plane_id": "CONTROL_PLANE_ID",
@@ -64,6 +66,8 @@ Using the API, you can upgrade your data plane node versions by issuing a POST r
 
 
 {{site.konnect_short_name}} will upgrade the version of all the data plane nodes to the version you selected automatically, the response body will contain information about the data plane group, including the version. 
+
+Kong performs a rolling upgrade of the fully-managed data plane nodes. This is a zero downtime upgrade because Kong synchronizes the data plane with load balancer registration and deregistration and gracefully terminates the the old data plane nodes to reduce the impact on the ongoing traffic.
 {% endnavtab %}
 {% endnavtabs %}
 
