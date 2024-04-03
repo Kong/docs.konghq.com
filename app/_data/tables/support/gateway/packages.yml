@@ -28,13 +28,6 @@ _packages:
     arm: false
     fips: false
     graviton: false
-  azurelinux2xx: &azurelinux2xx
-    os: Azure Linux
-    version: 2.x.x
-    package: false
-    arm: false
-    fips: false
-    graviton: false
   centos7: &centos7
     os: CentOS
     version: 7
