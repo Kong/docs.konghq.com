@@ -11,9 +11,9 @@ plugin development and best practices.
 
 ### Prerequisites
 
-* [Docker](https://docs.docker.com/get-docker/) (or Docker equivalent) is used to run {{site.base_gateway}} and test code
-* [curl](https://curl.se/) is used to download web resources. `curl` is pre-installed on most systems.
-* [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) is used to install and update software on the host machine.
+#### [Docker](https://docs.docker.com/get-docker/) (or Docker equivalent) is used to run {{site.base_gateway}} and test code
+#### [curl](https://curl.se/) is used to download web resources. `curl` is pre-installed on most systems.
+#### [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) is used to install and update software on the host machine.
 
 1. **Initialize a new plugin repository**
 
@@ -425,7 +425,7 @@ plugin development and best practices.
         -- a nested describe defines an actual test on the plugin behavior
         describe("The response", function()
 
-          it("gets a 'X-MyPlugin' header", function()
+          it("gets the expected header", function()
 
             -- invoke a test request
             local r = client:get("/mock/anything", {})
