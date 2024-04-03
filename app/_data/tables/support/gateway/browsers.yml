@@ -1,27 +1,9 @@
-_browsers:
-  edge: &edge
-    name: Edge
-    versions:
-      - 109
-      - 108 (Extended)
+browsers:
+  - name: Edge
     icon: edge.svg
-  chrome: &chrome
-    name: Edge
-    name: Chrome
-    versions:
-      - 109
-      - 108 (Extended)
+  - name: Chrome
     icon: chrome.svg
-  firefox: &firefox
-    name: Firefox
-    versions:
-      - 102 (Extended)
-      - 106
-      - 107
+  - name: Firefox
     icon: firefox.svg
-  safari: &safari
-    name: Safari
-    versions:
-      - 15
-      - 16
+  - name: Safari
     icon: safari.svg
