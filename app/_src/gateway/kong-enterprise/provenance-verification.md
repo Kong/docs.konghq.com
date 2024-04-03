@@ -70,6 +70,14 @@ cosign verify-attestation \
    --certificate-identity-regexp='^https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v[0-9]+.[0-9]+.[0-9]+$'
 ```
 
+The command will exit with `0` if the `cosign` verification was complete:
+
+```sh
+...
+echo $?
+0
+```
+
 #### Using slsa-verifier
 
 Run the `slsa-verifier verify-image ...` command:
@@ -88,6 +96,13 @@ slsa-verifier verify-image \
    'kong/kong-gateway:3.6.0.0-ubuntu@sha256:2f4d417efee8b4c26649d8171dd0d26e0ca16213ba37b7a6b807c98a4fd413e8' \
    --print-provenance \
    --source-uri 'github.com/Kong/kong-ee'
+```
+
+The command will print "Verified SLASA provenance" if successful:
+
+```sh
+...
+PASSED: Verified SLSA provenance
 ```
 
 ### Complete example

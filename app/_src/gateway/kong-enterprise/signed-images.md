@@ -50,11 +50,20 @@ cosign verify \
 ```
 
 Here's the same example using sample values instead of placeholders:
+
 ```sh
 cosign verify \
    'kong/kong-gateway:3.6.0.0-ubuntu@sha256:2f4d417efee8b4c26649d8171dd0d26e0ca16213ba37b7a6b807c98a4fd413e8' \
    --certificate-oidc-issuer='https://token.actions.githubusercontent.com' \
    --certificate-identity-regexp='https://github.com/Kong/kong-ee/.github/workflows/release.yml'
+```
+
+The command will exit with `0` if the `cosign` verification was complete:
+
+```sh
+...
+echo $?
+0
 ```
 
 ### Complete example
