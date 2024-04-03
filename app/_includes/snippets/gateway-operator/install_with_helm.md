@@ -6,6 +6,7 @@
 Update the Helm repository:
 
 ```bash
+helm repo add kong https://charts.konghq.com
 helm repo update kong
 ```
 
