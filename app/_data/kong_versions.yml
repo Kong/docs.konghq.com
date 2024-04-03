@@ -29,7 +29,7 @@
     pcre: "8.45"
   lua_doc: true
 - release: "2.8.x"
-  ee-version: "2.8.4.7"
+  ee-version: "2.8.4.8"
   ce-version: "2.8.4"
   edition: "gateway"
   luarocks_version: "2.5.1-0"
@@ -245,33 +245,6 @@
   label: unreleased
 - edition: "konnect"
 - edition: "contributing"
-- release: "1.0.x"
-  version: "1.0.0"
-  edition: "kubernetes-ingress-controller"
-- release: "1.1.x"
-  version: "1.1.1"
-  edition: "kubernetes-ingress-controller"
-- release: "1.2.x"
-  version: "1.2.0"
-  edition: "kubernetes-ingress-controller"
-- release: "1.3.x"
-  version: "1.3.4"
-  edition: "kubernetes-ingress-controller"
-- release: "2.0.x"
-  version: "2.0.7"
-  edition: "kubernetes-ingress-controller"
-- release: "2.1.x"
-  version: "2.1.1"
-  edition: "kubernetes-ingress-controller"
-- release: "2.2.x"
-  version: "2.2.1"
-  edition: "kubernetes-ingress-controller"
-- release: "2.3.x"
-  version: "2.3.1"
-  edition: "kubernetes-ingress-controller"
-- release: "2.4.x"
-  version: "2.4.2"
-  edition: "kubernetes-ingress-controller"
 - release: "2.5.x"
   version: "2.5.0"
   edition: "kubernetes-ingress-controller"
@@ -400,13 +373,13 @@
   endOfLifeDate: "2024-08-29"
   branch: release-2.4
 - edition: mesh
-  version: 2.5.4
+  version: 2.5.6
   release: 2.5.x
   releaseDate: "2023-11-15"
   endOfLifeDate: "2024-11-15"
   branch: release-2.5
 - edition: mesh
-  version: 2.6.2
+  version: 2.6.4
   release: 2.6.x
   latest: true
   releaseDate: "2024-02-01"

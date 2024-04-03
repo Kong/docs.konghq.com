@@ -106,7 +106,7 @@ You can test the route by accessing URL “https://kong-ee:8443/cognito/anything
 
 You can verify the confirmed user from the Cognito page under “General settings” -> “Users and groups”.
 
-{% if_version lte:3.4.x %}
+{% if_plugin_version lte:3.4.x %}
 ## Dev Portal integration
 
 {% include_cached /md/admin-listen.md desc='long' release=page.release %}
@@ -188,4 +188,4 @@ Please also note that the developer signed up from Dev Portal doesn’t get crea
 * The developer signs up from Amazon Cognito. Please make sure that you use the _same email address_ for both sign-ups.
 Now you should be able to login to Dev Portal using the Amazon Cognito user and credential.
 
-{% endif_version %}
+{% endif_plugin_version %}

@@ -1013,6 +1013,7 @@ routes using fields like `http.path` even for stream routes. This is no longer a
 ### Dependencies
 * Bumped `atc-router` from 1.2.0 to 1.6.0
 * Bumped `lua-resty-openssl` from 1.2.0 to 1.2.1
+* Bumped `kong-lua-resty-kafka` from 0.17 to 0.18
 
 
 ## 3.4.3.4
@@ -4104,6 +4105,52 @@ openid-connect
   [#9287](https://github.com/Kong/kong/pull/9287)
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
+
+
+## 2.8.4.8
+**Release Date** 2024/03/26
+
+### Features
+#### Configuration
+
+* TLSv1.1 and lower is now disabled by default in OpenSSL 3.x.
+* **Performance:** Bumped the default values of `nginx_http_keepalive_requests` and `upstream_keepalive_max_requests` to `10000`. 
+These changes are optimized to work better in systems with high throughput. 
+In a low-throughput setting, these new settings may have visible effects in load balancing, where it can take more requests to start 
+using all the upstreams than before.
+
+### Fixes
+#### Configuration
+
+* Fixed an issue where an external plugin (Go, Javascript, or Python) would fail to
+apply a change to the plugin config via the Admin API.
+* Set the security level of gRPC's TLS to `0` when `ssl_cipher_suite` is set to `old`.
+ 
+#### Core
+
+* Updated the file permission of `kong.logrotate` to 644.
+* Fixed the missing router section for the output of request debugging.
+* Fixed a issue where the `/metrics` endpoint would throw an error when database was down.
+* Fixed the UDP socket leak of the DNS module.
+
+#### Plugins
+
+* [LDAP Auth Advanced](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
+  * Fixed some cache-related issues which caused `groups_required` to return unexpected codes after a non-200 response.
+
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed an issue where, if `sync_rate` was set to `0` and the `redis` strategy was in use, the plugin did not properly revert to the `local` strategy if the Redis connection was interrupted.
+
+* [Rate Limiting](/hub/kong-inc/rate-limiting/) (`rate-limiting`), [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`), [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`), and [Response Rate Limiting](/hub/kong-inc/response-ratelimiting/) (`response-ratelimiting`)
+  * Fixed an issue where any plugins using the `rate-limiting` library, when used together, 
+  would interfere with each other and fail to synchronize counter data to the central data store.
+
+### Dependencies
+
+* Bumped OpenSSL from 3.1.4 to 3.1.5
+* Bumped `lua-kong-nginx-module` to 0.2.3
+* Bumped `kong-lua-resty-kafka` to 0.18
+* Bumped `lua-resty-luasocket` to 1.1.2 to fix [luasocket#427](https://github.com/lunarmodules/luasocket/issues/427)
 
 ## 2.8.4.7
 **Release Date** 2024/02/08
