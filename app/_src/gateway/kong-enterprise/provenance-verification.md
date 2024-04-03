@@ -70,7 +70,7 @@ cosign verify-attestation \
    --certificate-identity-regexp='^https://github.com/slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@refs/tags/v[0-9]+.[0-9]+.[0-9]+$'
 ```
 
-The command will exit with `0` if the `cosign` verification was complete:
+The command will exit with `0` when the `cosign` verification is completed:
 
 ```sh
 ...
