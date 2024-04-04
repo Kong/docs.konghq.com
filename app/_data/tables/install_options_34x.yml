@@ -27,6 +27,8 @@ features:
         support: true
         url: /gateway/VERSION/install/docker/
         icon: /assets/images/icons/third-party/ubuntu.png
+        query_params:
+          oss: "install=oss"
       - name: "Amazon Linux (2 and 2023)"
         oss: true
         enterprise: true
@@ -55,21 +57,29 @@ features:
         enterprise: true
         support: true
         icon: /assets/images/icons/third-party/debian-logo.jpg
+        query_params:
+          oss: "install=oss"
       - name: "Ubuntu"
         url: /gateway/VERSION/install/linux/ubuntu/
         oss: true
         enterprise: true
         support: true
         icon: /assets/images/icons/third-party/ubuntu.png
+        query_params:
+          oss: "install=oss"
       - name: "RedHat"
         url: /gateway/VERSION/install/linux/rhel/
         oss: true
         enterprise: true
         support: true
         icon: /assets/images/icons/third-party/rhel.jpg
+        query_params:
+          oss: "install=oss"
       - name: "Amazon Linux 2"
         url: /gateway/VERSION/install/linux/amazon-linux/
         oss: true
         enterprise: true
         support: true
         icon: /assets/images/icons/third-party/amazon-linux.png
+        query_params:
+          oss: "install=oss"
