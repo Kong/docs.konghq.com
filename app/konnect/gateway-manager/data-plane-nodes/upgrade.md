@@ -3,11 +3,8 @@ title: Upgrade a Data Plane Node to a New Version
 content_type: how-to
 ---
 
-You can upgrade data plane nodes to a new {{site.base_gateway}} version by bringing
-up new data plane nodes, and then shutting down the old ones. This is the best
-method for high availability, as the new node starts processing data before the
-old node is removed. It is the cleanest and safest way to upgrade with no
-proxy downtime.
+
+Self-managed data plane nodes can be upgraded to a new {{site.base_gateway}} by initializing new nodes before decomissing old ones. This method ensures high availbility, allowing the new node to commence data processing prior to the removal of the old node. Managed nodes are upgraded automatically after selecting the new version of {{site.base_gateway}}. 
 
 We recommend running one major version (2.x or 3.x) of a data plane node per control plane, unless you are in the middle of version upgrades to the data plane. Mixing versions may cause [compatibility issues](/konnect/gateway-manager/version-compatibility).
 
@@ -28,15 +25,21 @@ To upgrade a data plane node to a new version, follow these steps:
 
 {{site.konnect_short_name}} will upgrade the version of all the data plane nodes to the version you selected automatically. 
 
-Kong performs a rolling upgrade of the fully-managed data plane nodes. This is a zero downtime upgrade because Kong synchronizes the data plane with load balancer registration and deregistration and gracefully terminates the the old data plane nodes to reduce the impact on the ongoing traffic.
+Kong performs a rolling upgrade of the fully-managed data plane nodes. This is a zero downtime upgrade because Kong synchronizes the data plane with load balancer registration and de-registration and gracefully terminates the old data plane nodes to reduce the impact on the ongoing traffic.
 {% endnavtab %}
 {% navtab API %}
 
-Using the API, you can upgrade your data plane node versions by issuing a POST request to the `/cloud-gateways/configurations` endpoint: 
+Using the `control-plane-id` for the data plane group you want to upgrade, you can upgrade via the API by following these steps:
 
 
-1. In [**Gateway Manager**](https://cloud.konghq.com/us/gateway-manager/), select the Dedicated Cloud Gateways powered control plane and copy the `control_plane_id`.
-1. From the {{site.konnect_short_name}} sidebar, click on **Data Plane Nodes**, select the relevant data plane group, and record the `cloud_gateway_network_id`.
+1. Send a GET request to the `/cloud-gateway/networks/` endpoint, the response will contain a list of all the active Cloud Gateway networks.
+
+    ```bash
+    curl --request GET \
+    --url https://us.api.konghq.com/v2/cloud-gateways/networks \
+    --header 'Authorization: Bearer kpat_iIGUb6bPml2G6WUSPnZMLdty6pwgUf8GIJbSlBlasg6w4y1cS'
+  ```
+1. From the response body save the `cloud_gaetway_network_id`, `control_plane_id`. 
 1. Construct and send a POST request to `/cloud-gateways/configurations`, using both the `control_plane_id`, `cloud_gateway_network_id`, and the desired [`version`](/konnect/compatibility/):
 
     ```bash
@@ -50,7 +53,7 @@ Using the API, you can upgrade your data plane node versions by issuing a POST r
     "dataplane_groups": [
         {
         "provider": "aws",
-        "region": "ap-northeast-1",
+        "region": "REGION",
         "cloud_gateway_network_id": "CLOUD_GATEWAY_NETWORK_ID",
         "autoscale": {
                 "kind": "autopilot",
@@ -62,12 +65,12 @@ Using the API, you can upgrade your data plane node versions by issuing a POST r
     ```
 
 {:.note}
-> Replace `BEARER_TOKEN`, `CONTROL_PLANE_ID`, `DESIRED_VERSION`, `GEO_LOCATION`, and `CLOUD_GATEWAY_NETWORK_ID` with your specific details.
+> Replace `BEARER_TOKEN`, `CONTROL_PLANE_ID`, `DESIRED_VERSION`, `GEO_LOCATION`, `REGION`, and `CLOUD_GATEWAY_NETWORK_ID` with your specific details.
 
 
 {{site.konnect_short_name}} will upgrade the version of all the data plane nodes to the version you selected automatically, the response body will contain information about the data plane group, including the version. 
 
-Kong performs a rolling upgrade of the fully-managed data plane nodes. This is a zero downtime upgrade because Kong synchronizes the data plane with load balancer registration and deregistration and gracefully terminates the the old data plane nodes to reduce the impact on the ongoing traffic.
+Kong performs a rolling upgrade of the fully-managed data plane nodes. This is a zero downtime upgrade because Kong synchronizes the data plane with load balancer registration and de-registration and gracefully terminates the old data plane nodes to reduce the impact on the ongoing traffic.
 {% endnavtab %}
 {% endnavtabs %}
 
