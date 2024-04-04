@@ -3,7 +3,7 @@ title: Security Recommendations
 ---
 
 {{site.mesh_product_name}} is designed to be secure by default. However, there are additional steps you can take to further secure your deployment.
-For a strongly secure and high-availability deployment checkout [Mesh in Konnect](https://docs.konghq.com/konnect/mesh-manager/).
+For a strongly secure and high-availability deployment checkout [Mesh in Konnect](/konnect/mesh-manager/).
 
 ## Control Plane
 
@@ -19,4 +19,4 @@ In multi-zone deployments, you can enable [KDS authentication](/mesh/{{page.rele
 ### CORS
 
 By default CORS setup in {{site.mesh_product_name}} is allowing any origin.
-You can configure it by setting the control-plane config: `KUMA_API_SERVER_CORS_ALLOWED_DOMAINS` to a list of domains that are allowed to access the control plane API.
+You can configure it by setting the [control-plane config](/mesh/{{page.release}}/documentation/configuration): `KUMA_API_SERVER_CORS_ALLOWED_DOMAINS` to a list of domains that are allowed to access the control plane API.
