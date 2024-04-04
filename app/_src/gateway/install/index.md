@@ -1,6 +1,6 @@
 ---
 title: Installation Options
-subtitle: Kong is a low-demand, high-performing API gateway. You can setup Kong with Konnect or it can be installed on many different self-managed systems.
+subtitle: Kong Gateway is a low-demand, high-performing API gateway. You can set up Kong Gateway with Konnect, or install it on various self-managed systems.
 disable_image_expand: true
 ---
 
