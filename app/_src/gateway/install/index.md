@@ -18,7 +18,7 @@ disable_image_expand: true
   <p><a href="/konnect/getting-started/">Start for Free &rarr;</a></p>
 </blockquote>
 
-Or you can setup Kong on your own self-managed system:
+Or you can set up {{site.base_gateway}} on your own self-managed system:
 
 {% include install.html config=site.data.tables.install_options_34x %}
 
