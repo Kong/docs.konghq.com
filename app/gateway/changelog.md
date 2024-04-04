@@ -9,6 +9,66 @@ Changelog for supported Kong Gateway versions.
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+
+## 3.6.1.1
+**Release Date** 04/04/2024
+
+### Features
+
+#### Plugins
+
+* [**OAS Validation**](/hub/kong-inc/oas-validation/) (`oas-validation`)
+  * Added the new field `api_spec_encoded` to indicate whether the `api_spec` is URI-encoded.
+
+### Fixes
+
+#### Clustering
+
+* Modified the current AWS Vault backend to support `CredentialProviderChain` so that users can choose not 
+to use `AK-SK` environment variables to grant IAM role permissions.
+
+#### Configuration
+
+- Fixed an issue where an external plugin (Go, Javascript, or Python) would fail to
+apply a change to the plugin config via the Admin API.
+
+#### Core
+
+* Updated the file permission of `kong.logrotate` to 644.
+* Vaults: 
+  * Fixed an issue where the vault used the wrong (default) workspace identifier when retrieving a vault entity by prefix.
+  * Fixed an issue where a new data plane couldn't resolve a Vault reference after the first configuration push. 
+    This was happening due to issues with license pre-loading.
+* Fixed an issue where users were not allowed to start Kong Gateway if `admin_gui_auth_conf.scope` was missing `"openid"`, 
+or if `"offline_access"` when `admin_gui_auth` was set to `openid-connect`. 
+Kong Gateway will now only print warning logs if `"openid"` is missing from `admin_gui_auth_conf.scope`.
+
+#### Kong Manager Enterprise
+
+* Fixed the display of the remaining days for the license expiration date.
+* Updated the type of RBAC token for the RBAC user to `password`.
+
+#### Plugins
+
+* [**ACME**](/hub/kong-inc/acme/) (`acme`)
+  * Fixed an issue where the certificate was not successfully renewed during ACME renewal.
+
+* [DeGraphQL](/hub/kong-inc/degraphql/) (`degraphql`)
+  * Fixed an issue where GraphQL variables were not being correctly parsed and coerced into their defined types.
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed an issue where any plugins using the `rate-limiting` library, when used together, 
+  would interfere with each other and fail to synchronize counter data to the central data store.
+
+#### Dependencies
+
+* Bumped `lua-resty-openssl` to 1.2.1
+* Bumped PCRE from the legacy `libpcre` 8.45 to `libpcre2` 10.43
+* Bumped `lua-kong-nginx-module` to 0.8.1
+* Bumped `kong-lua-resty-kafka` to 0.18
+* Bumped `lua-resty-luasocket` to 1.1.2 to fix [luasocket#427](https://github.com/lunarmodules/luasocket/issues/427)
+
+
 ## 3.6.1.1
 **Release Date** 03/05/2024
 
