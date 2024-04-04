@@ -29,7 +29,7 @@ to use `AK-SK` environment variables to grant IAM role permissions.
 
 #### Configuration
 
-- Fixed an issue where an external plugin (Go, Javascript, or Python) would fail to
+* Fixed an issue where an external plugin (Go, Javascript, or Python) would fail to
 apply a change to the plugin config via the Admin API.
 
 #### Core
@@ -53,7 +53,7 @@ Kong Gateway will now only print warning logs if `"openid"` is missing from `adm
 * [**ACME**](/hub/kong-inc/acme/) (`acme`)
   * Fixed an issue where the certificate was not successfully renewed during ACME renewal.
 
-* [DeGraphQL](/hub/kong-inc/degraphql/) (`degraphql`)
+* [**DeGraphQL**](/hub/kong-inc/degraphql/) (`degraphql`)
   * Fixed an issue where GraphQL variables were not being correctly parsed and coerced into their defined types.
 
 * [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
