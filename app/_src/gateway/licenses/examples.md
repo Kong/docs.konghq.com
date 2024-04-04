@@ -144,6 +144,8 @@ Response:
 }
 ```
 
+Ensure to [restart](https://docs.konghq.com/gateway/latest/production/running-kong/systemd/#restart-kong-gateway) the Kong Gateway nodes after updating a license.
+
 ## Generate license report
 
 To generate a report, submit a `GET` request directly to `/license/report`:

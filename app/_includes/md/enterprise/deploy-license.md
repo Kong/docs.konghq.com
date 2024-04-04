@@ -81,6 +81,8 @@ Result:
 For more detail and options, see the
 [Admin API `licenses` endpoint reference](/gateway/latest/licenses/examples).
 
+It is recommended to [restart](https://docs.konghq.com/gateway/latest/production/running-kong/systemd/#restart-kong-gateway) the Kong Gateway nodes after applying or modifying a license.
+
 {% endnavtab %}
 {% navtab Filesystem %}
 
