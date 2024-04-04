@@ -115,7 +115,7 @@ The above will be rendered as a single table.
 
 Both `if_version` and `if_plugin_version` use the same implementation as Liquid's `if` tag. Therefore, they have the same [whitespace control](https://shopify.github.io/liquid/basics/whitespace/).
 
-When rendering lists with `{if_version`, `if_plugin_version`, or `if`, there's a caveat: a hyphen needs to be added to the right side of the tags (for consistency, it could be either side) for them to be rendered correctly.
+When rendering lists with `if_version`, `if_plugin_version`, or `if`, there's a caveat: you must add a hyphen to the right side of the tags (for consistency, it could be either side) to render them correctly.
 
 {% raw %}
 ```
