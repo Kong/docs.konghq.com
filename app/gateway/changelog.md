@@ -10,8 +10,8 @@ Changelog for supported Kong Gateway versions.
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
 
-## 3.6.1.1
-**Release Date** 04/04/2024
+## 3.6.1.2
+**Release Date** 04/05/2024
 
 ### Features
 
