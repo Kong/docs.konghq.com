@@ -11,7 +11,7 @@ control plane group share the same cluster of data plane nodes.
 ## Standard control planes vs groups
 
 In a standard control plane setup, each team configures and manages their own data plane nodes.
-For example, in the following diagram, Team Blue configures Control Plane Blue, which then uses a set of data plane nodes that only run Blue configuration; the same happens with Team Yellow.
+For example, in the following diagram, Team Blue configures Control Plane Blue, which then uses a set of data plane nodes that only run Blue configuration; the same happens with Team Green.
 
 <!--vale off-->
 {% mermaid %}
@@ -58,7 +58,7 @@ flowchart LR
 
 In a control plane group setup, each team still administers their own control plane, but the data plane nodes are shared. 
 
-The following diagram illustrates using a control plane group for a federated platform administrator model. In this example, Team Blue configures Control Plane Blue, which is then combined with the configuration from Team Yellow. In addition, the control plane group contains Control Plane Green, which is managed by a central platform team. The central team provides global plugin configuration, which is added to any configuration that teams Blue and Yellow provide.
+The following diagram illustrates using a control plane group for a federated platform administrator model. In this example, Team Blue configures Control Plane Blue, which is then combined with the configuration from team Green. In addition, the control plane group contains Control Plane Green, which is managed by a central platform team. The central team provides global plugin configuration, which is added to any configuration that teams Blue and Green provide.
 
 The data plane nodes in the cluster use the combined configuration from all three groups.
 
