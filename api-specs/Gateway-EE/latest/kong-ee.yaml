@@ -14224,6 +14224,7 @@ paths:
       operationId: get-audit-requests
       description: |-
         You can access request and database audit logs through the Admin API.
+        The default order of audit log is by request timestamp - latest to oldest.
         For usage examples, see [Audit Logging in Kong Gateway](https://docs.konghq.com/gateway/latest/kong-enterprise/audit-log/).
   /audit/objects:
     get:
@@ -14236,7 +14237,7 @@ paths:
       operationId: get-audit-objects
       tags:
         - audit-logs
-      description: List database audit logs
+      description: List database audit logs (ordered by request timestamp - latest to oldest)
   /event-hooks:
     get:
       summary: List all event hooks
@@ -14868,7 +14869,7 @@ tags:
       A filter chain is the database entity representing one or more WebAssembly filters executed for each request to a particular service or route, each one with its configuration.
     name: filter-chains
   - description: |
-      You can access request and database audit logs through the Admin API.
+      You can access request and database audit logs through the Admin API. The default order of audit log is by request timestamp - latest to oldest.
       <br><br>
       For usage examples, see [Audit Logging in Kong Gateway](https://docs.konghq.com/gateway/latest/admin-api/audit-logs/).
     name: audit-logs
