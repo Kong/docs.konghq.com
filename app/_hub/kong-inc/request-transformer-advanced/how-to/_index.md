@@ -97,13 +97,13 @@ Append multiple headers and remove a body parameter:
 ```bash
 curl -X POST http://localhost:8001/services/httpbin/plugins \
   --data "name=request-transformer-advanced" \
-  --data "config.add.headers=h1:v2,h2:v1" \
+  --data "config.append.headers=h1:v2,h2:v1" \
   --data "config.remove.body=p1" \
 ```
 
 | Incoming Request Headers | Upstream Proxied Headers
 | --------- | -----------
-| h1: v1 | h1: v1, h1: v2, h2: v1
+| h1: v1 | h1: v1, v2, h2: v1
 
 | Incoming URL Encoded Body | Upstream Proxied URL Encoded Body
 | --------- | -----------
