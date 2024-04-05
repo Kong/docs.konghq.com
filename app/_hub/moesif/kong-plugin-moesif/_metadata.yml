@@ -12,7 +12,7 @@ type: plugin
 
 desc: Powerful API analytics and usage-based billing to monetize APIs
 
-support_url: https://www.moesif.com/implementation/log-http-calls-from-kong-api-gateway?utm_medium=docs&utm_campaign=partners&utm_source=kong
+support_url: mailto:support@moesif.com
 
 source_code: https://github.com/Moesif/kong-plugin-moesif
 
