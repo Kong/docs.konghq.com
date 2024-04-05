@@ -4,7 +4,7 @@ content_type: how-to
 ---
 
 
-Self-managed data plane nodes can be upgraded to a new {{site.base_gateway}} by initializing new nodes before decomissing old ones. This method ensures high availbility, allowing the new node to commence data processing prior to the removal of the old node. Managed nodes are upgraded automatically after selecting the new version of {{site.base_gateway}}. 
+Self-managed data plane nodes can be upgraded to a new {{site.base_gateway}} by initializing new nodes before decommissioning old ones. This method ensures high availability, allowing the new node to commence data processing prior to the removal of the old node. Managed nodes are upgraded automatically after selecting the new version of {{site.base_gateway}}. 
 
 We recommend running one major version (2.x or 3.x) of a data plane node per control plane, unless you are in the middle of version upgrades to the data plane. Mixing versions may cause [compatibility issues](/konnect/gateway-manager/version-compatibility).
 
