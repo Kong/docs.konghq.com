@@ -17,6 +17,10 @@
 /gateway/latest/kong-production/db-encryption/ /gateway/latest/kong-enterprise/db-encryption/
 ######################################################################
 
+## App reg v2 
+
+/konnect/dev-portal/applications/dev-reg-app-service/ /konnect/dev-portal/applications/dev-apps/
+/konnect/dev-portal/access/ /konnect/dev-portal/
 # API
 
 /konnect/api/portal-rbac/latest/*    /konnect/api/portal-management/latest/
@@ -46,6 +50,22 @@
 /konnect/runtime-manager/* /konnect/gateway-manager/:splat
 /konnect/getting-started/configure-runtime/ /konnect/getting-started/configure-data-plane-node/
 /konnect/api/runtime-groups-config/overview/ /konnect/api/
+
+# Konnect get started rework
+
+/konnect/getting-started/access-account/    /konnect/getting-started/
+/konnect/getting-started/configure-data-plane-node/ /konnect/gateway-manager/data-plane-nodes/#supported-installation-options
+/konnect/getting-started/deploy-service/    /konnect/gateway-manager/deploy-service/
+/konnect/getting-started/publish-service/   /konnect/dev-portal/publish-service/  
+/konnect/getting-started/app-registration/  /konnect/dev-portal/applications/dev-apps/
+/konnect/getting-started/productize-service/    /konnect/api-products/productize-service/
+/konnect/gateway-manager/deploy-service/        /konnect/getting-started/add-api
+
+# Konnect Analytics Explorer revision
+
+/konnect/analytics/reference/   /konnect/analytics/explorer/
+/konnect/analytics/use-cases/latency/   /konnect/analytics/explorer/#diagnosing-latency-issues-example
+/konnect/analytics/custom-reports/  /konnect/analytics/use-cases/
 
 # API markdown doc deprecation
 
@@ -80,6 +100,9 @@
 /gateway/3.5.x/admin-api/audit-logs/        /gateway/api/admin-ee/latest/#/audit-logs/get-audit-requests/
 /gateway/3.5.x/admin-api/admins/reference/   /gateway/api/admin-ee/latest/#/admins/get-admins/
 /gateway/3.5.x/admin-api/*                   /gateway/api/admin-ee/latest/
+
+# 3.6
+/gateway/3.6.x/production/benchmark/  /gateway/3.6.x/production/performance/benchmark/
 
 # 3.5
 /gateway/latest/kong-enterprise/analytics/* /gateway/3.4.x/kong-enterprise/analytics/:splat

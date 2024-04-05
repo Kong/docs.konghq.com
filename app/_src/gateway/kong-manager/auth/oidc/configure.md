@@ -4,7 +4,7 @@ badge: enterprise
 ---
 
 {{site.base_gateway}} offers the ability to bind authentication for Kong
-Manager admins  to an organization's OpenID Connect Identity
+Manager admins to an organization's OpenID Connect Identity
 Provider using the
 [OpenID Connect Plugin](/hub/kong-inc/openid-connect/).
 
@@ -31,13 +31,13 @@ admin_gui_auth_conf={                                      \
   "client_secret": ["<ENTER_YOUR_CLIENT_SECRET_HERE>"],    \
   "consumer_by": ["username","custom_id"],                 \
   "ssl_verify": false,                                     \
-  "admin_claim": ["email"],                             \
+  "admin_claim": ["email"],                                \
   "leeway": 60,                                            \
-  "redirect_uri": ["http://localhost:8002/default"],                      \
-  "login_redirect_uri": ["http://localhost:8002/default"],                \
+  "redirect_uri": ["http://localhost:8002/default"],       \
+  "login_redirect_uri": ["http://localhost:8002/default"], \
   "logout_methods": ["GET", "DELETE"],                     \
   "logout_query_arg": "logout",                            \
-  "logout_redirect_uri": ["http://localhost:8002/default"],               \
+  "logout_redirect_uri": ["http://localhost:8002/default"], \
   "scopes": ["openid","profile","email","offline_access"], \
   "auth_methods": ["authorization_code"]                   \
 }
@@ -65,20 +65,20 @@ The following are configuration parameters in `admin_gui_auth_conf` for `openid-
 
 | parameter                        | data type | default value                      | notes                                                                                                |
 |------------------------------|----------|-----------|------------------------------------|-------------------------------------------------------------------------------------------------------|
-| `issuer`<br>*required*   | String    | "input issuer"    | A string representing a URL               |
-| `client_id`<br>*required*      | Array     | ["input client id"]   | The client id(s) that the plugin uses when it calls authenticated endpoints on the identity provider. |
-| `client_secret`<br>*required*  | Array     | ["input client secret"]            | The client secret.    |
-| `redirect_uri`<br>*required*   | Array     | ["input http://ip:8002/default"] | The redirect URI passed to the authorization and token endpoints.                                     |
-| `authenticated_groups_claim`<br>*required* | Array     | ["groups"]                         | The claim that contains authenticated groups.                                                         |
-| `admin_claim`<br>*required*    | Array     | ["email"]     | Retrieve the field as a username.      |
-| `admin_auto_create`<br>*optional*  | Boolean   | true   | This parameter is used to enable the automatic creation of administrators.    |
-| `ssl_verify`<br>*optional*     | Boolean   | false   | Verify identity provider server certificate.    |
+| `issuer`<br>*required*   | String    | `"input issuer"`    | A string representing a URL               |
+| `client_id`<br>*required*      | Array     | `["input client id"]`   | The client ID(s) that the plugin uses when it calls authenticated endpoints on the identity provider. |
+| `client_secret`<br>*required*  | Array     | `["input client secret"]`            | The client secret.    |
+| `redirect_uri`<br>*required*   | Array     | `["input http://ip:8002/default"]` | The redirect URI passed to the authorization and token endpoints.                                     |
+| `authenticated_groups_claim`<br>*required* | Array     | `["groups"]`                         | The claim that contains authenticated groups.                                                         |
+| `admin_claim`<br>*required*    | Array     | `["email"]`     | Retrieve the field as a username.      |
+| `admin_auto_create`<br>*optional*  | Boolean   | `true`   | This parameter is used to enable the automatic creation of administrators.    |
+| `ssl_verify`<br>*optional*     | Boolean   | `false`   | Verify identity provider server certificate.    |
 
 {% endif_version %}
 {% if_version gte:3.6.x %}
 
-{:.note}
-> **Note**: If you are using configuration from previous versions, you may need to follow the 
+{:.important}
+> **Important**: If you are using configuration from previous versions, you may need to follow the 
 [migration guide](/gateway/{{page.release}}/kong-manager/auth/oidc/migrate/) to review and update your configuration.
 
 The `admin_gui_auth_config` value must be valid JSON. The following is an example of the configuration:
@@ -94,7 +94,7 @@ admin_gui_auth_conf={                                                           
   "scopes": ["openid","email","offline_access"], # "email" is for the admin_claim, may vary in different IdPs \
   "login_redirect_uri": ["http://localhost:8002"],                                                            \
   "logout_redirect_uri": ["http://localhost:8002"],                                                           \
-  "admin_claim": "email",                                                                                   \
+  "admin_claim": "email",                                                                                     \
   "authenticated_groups_claim": ["groups"],                                                                   \
 }
 ```
@@ -108,12 +108,12 @@ for using OIDC with Kong Manager:
 
 | parameter                                  | data type | default value                           | notes                                                                                                                                                                           |
 |--------------------------------------------|-----------|-----------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `issuer`<br>*required*                     | String    | --                | The base URL to resolve metadata about the IdP (Identity Provider). e.g., `"https://dev-xxxx.okta.com/oauth2/default"`                                                          |
-| `client_id`<br>*required*                  | Array     | --                | The client id(s) that the plugin uses while communicating with the IdP.                                                                                                         |
+| `issuer`<br>*required*                     | String    | --                | The base URL to resolve metadata about the IdP (Identity Provider). For example: `"https://dev-xxxx.okta.com/oauth2/default"`                                                          |
+| `client_id`<br>*required*                  | Array     | --                | The client ID(s) that the plugin uses while communicating with the IdP.                                                                                                         |
 | `client_secret`<br>*required*              | Array     | --                | The client secret.                                                                                                                                                              |
-| `redirect_uri`<br>*required*               | Array     | --                | The URI to redirect after authentication with the IdP. Should point to Admin API's /auth endpoint. e.g., `"http://localhost:8001/auth"`                                         |
-| `login_redirect_uri`<br>*required*         | Array     | --                | The URI to redirect after authentication with the Admin API. Should point to Kong Manager's endpoint. e.g., `"http://localhost:8002"`                                           |
-| `logout_redirect_uri`<br>*required*        | Array     | --                | The URI to redirect after logging out from the IdP. Should point to Kong Manager's endpoint. e.g., `"http://localhost:8002"`                                                    |
+| `redirect_uri`<br>*required*               | Array     | --                | The URI to redirect after authentication with the IdP. Should point to Admin API's `/auth` endpoint. For example: `"http://localhost:8001/auth"`                                         |
+| `login_redirect_uri`<br>*required*         | Array     | --                | The URI to redirect after authentication with the Admin API. Should point to Kong Manager's endpoint. For example: `"http://localhost:8002"`                                           |
+| `logout_redirect_uri`<br>*required*        | Array     | --                | The URI to redirect after logging out from the IdP. Should point to Kong Manager's endpoint. For example: `"http://localhost:8002"`                                                    |
 | `admin_auto_create`<br>*optional*          | Boolean   | `true`                                  | This parameter is used to enable the automatic creation of administrators.                                                                                                      |
 | `admin_claim`<br>*optional*                | String    | `"email"`                               | The claim to use while looking up for the admin's username.                                                                                                                     |
 | `authenticated_groups_claim`<br>*optional* | Array     | `["groups"]`                            | The claim to use while looking up for authenticated groups.                                                                                                                     |

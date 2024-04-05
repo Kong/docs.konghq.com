@@ -82,6 +82,7 @@ Noname
 OAuth
 Okta
 Okta's
+Ollama
 OpenSSL
 Openwhisk
 PayPal
@@ -106,6 +107,7 @@ Tal
 Templatized
 Terraform
 Terraform's
+toolchain
 UIs
 Unicode
 Valero
@@ -138,7 +140,9 @@ autoscalers
 Autonegotiation
 aws
 backport
+backports
 backported
+backporting
 backtrace
 Bagdi
 bcc
@@ -153,6 +157,7 @@ booleans
 burstable
 CAs
 certificate_admin
+chatbot
 cleartext
 client_payload
 client_status
@@ -189,6 +194,8 @@ deduplication
 degraphql
 denylist
 deployer
+dereference
+dereferenced
 deserialization
 deserialize
 deserialized
@@ -225,6 +232,9 @@ filetypes
 firewalled
 flamegraph
 full_name
+geo
+getter
+getters
 gevent
 gibibytes
 Github
@@ -324,6 +334,8 @@ lapis
 Librato
 libxml2
 liveness
+LLM
+LLMs
 Loggly
 loggly
 lookup
@@ -381,6 +393,7 @@ onwards
 opa
 openresty
 OpenSSL
+openid
 Openwhisk
 outbounds
 passthrough
@@ -432,10 +445,13 @@ regexes
 rego
 reinstall
 reinstallation
+remediation
+remediations
 repo
 requery
 Resty
 retryOn
+reusability
 rockspec
 rockspecs
 rolling_timeout
@@ -458,6 +474,7 @@ SDKs
 secret_id
 serializer
 serverless
+serviceless
 shm
 slas
 slos
@@ -523,6 +540,7 @@ txt
 udpingress
 udpingresses
 UIs
+ulimit
 unary
 unassign
 uncheck

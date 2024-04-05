@@ -20,14 +20,10 @@ Afterward, you must manually move over:
 You cannot import [unsupported plugins](/konnect/servicehub/plugins/#plugin-limitations).
 
 ## Prerequisites
-* {{site.konnect_saas}} [account credentials](/konnect/getting-started/access-account/).
-* decK v1.12 or later [installed](/deck/latest/installation/).
 
-## Generate a Personal Access Token
-
-To use decK to import entity configurations, we recommend that you use a personal access token (PAT).
-
-{% include_cached /md/personal-access-token.md %}
+* [A {{site.konnect_short_name}} account](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=konnect-getting-started)
+* [decK 1.28 or later](/deck/latest/installation/)
+* Make sure that if you're using a `.deck.yaml` config file that it doesn't contain a {{site.konnect_short_name}} personal access token (PAT)
 
 ## Import entity configuration
 
@@ -35,76 +31,43 @@ Use decK to import entity configurations into a control plane.
 
 When you provide any {{site.konnect_short_name}} flags, decK targets the `cloud.konghq.com` environment by default.
 
-1. Make sure that decK can connect to your {{site.konnect_short_name}} account:
+1. Generate a {{site.konnect_short_name}} personal access token (PAT) for a user account.
+  
+    In {{site.konnect_short_name}} in your [**Personal Access Token** account settings](https://cloud.konghq.com/global/account/tokens), click **Generate Token**.
+
+1. Set your PAT as an environment variable and authenticate: 
 
     ```sh
-    deck ping \
-      --konnect-control-plane-name default \
-      --konnect-token {YOUR_PERSONAL_ACCESS_TOKEN}
+    export DECK_KONNECT_TOKEN=PAT_02uI9CEOkYo36NlJnFVyZf8xDxfgirtgq0NvNWASfweoGMqA && deck gateway ping
     ```
+    
+    {:.note}
+    > **Note**: Alternatively, you can pass your PAT directly into the CLI using `--konnect-token <pat>` or read it to a file using `--konnect-token-file /PATH/TO/FILE`.
 
-    If the connection is successful, the terminal displays the full name of the
-    user associated with the account:
+1. Run [`deck gateway dump`](/deck/latest/reference/deck_gateway_dump/) to export the configuration into a file:
 
     ```sh
-    Successfully Konnected to the Example-Name organization!
-    ```
-
-    You can also use decK with {{site.konnect_short_name}} more securely by storing
-    your personal access token in a file, then either calling it with
-    `--konnect-token-file /path/{FILENAME}.txt`, or adding it to your decK configuration
-    file under the `konnect-token` option:
-
-    ```yaml
-    konnect-token: {YOUR_PERSONAL_ACCESS_TOKEN}
-    ```
-
-    The default location for this file is `$HOME/.deck.yaml`. You can target a
-    different configuration file with the `--config /path/{FILENAME}.yaml` flag,
-    if needed.
-
-    The following steps all use a `.deck.yaml` file to store the
-    {{site.konnect_short_name}} credentials instead of flags.
-
-1. Run [`deck dump`](/deck/latest/reference/deck_dump/) to export configuration into a file:
-
-    ```sh
-    deck dump
+    deck gateway dump -o kong.yaml
     ```
 
     This command outputs {{site.base_gateway}}'s object configuration into
-    `kong.yaml` by default. You can also set `--output-file /path/{FILENAME}.yaml`
+    to ` by default. You can also set `--output-file /path/{FILENAME}.yaml`
     to set a custom filename or location.
 
-1. Open the file. If you have any of the following in your configuration, remove it:
-
-    * Any `_workspace` entries: There are no workspaces in {{site.konnect_short_name}}. For a similar
-    concept, see [control planes](/konnect/gateway-manager/control-plane-groups/).
-
-    * Configuration for the Portal App Registration plugin: App registration is
-    [supported in {{site.konnect_short_name}}](/konnect/dev-portal/applications/application-overview/),
-    but not through a plugin, and decK does not manage it.
-
-    * Any other unsupported plugins:
-        * OAuth2 Authentication
-        * Apache OpenWhisk
-        * Vault Auth
-        * Key Authentication Encrypted
-
-1. Preview the import with the [`deck diff`](/deck/latest/reference/deck_diff/)
-command, pointing to the control plane that you want to target:
+1. Preview the import with the [`deck gateway diff`](/deck/latest/reference/deck_gateway_diff/)
+command.
 
     ```sh
-    deck diff --konnect-control-plane-name default
+    deck gateway diff kong.yaml
     ```
 
     If you're not using the default `kong.yaml` file, specify the filename and
     path with `--state /path/{FILENAME}.yaml`.
 
-1. If you're satisfied with the preview, run [`deck sync`](/deck/latest/reference/deck_sync/):
+1. If you're satisfied with the preview, run [`deck gateway sync`](/deck/latest/reference/deck_gateway_sync/):
 
     ```sh
-    deck sync --konnect-control-plane-name default
+    deck gateway sync kong.yaml
     ```
 
     If you don't specify the `--konnect-control-plane-name` flag, decK targets the
@@ -112,59 +75,56 @@ command, pointing to the control plane that you want to target:
     organization, we recommend always setting this flag to avoid accidentally
     pushing configuration to the wrong control plane.
 
-1. Log in to your [{{site.konnect_saas}}](http://cloud.konghq.com/login) account.
-
-1. From the left navigation menu, open **Gateway Manager**, then open the control plane
-you just updated.
-
-1. Look through the configuration details of any imported entities to make sure
+1. Log in to your {{site.konnect_saas}} account and open the control plane you just migrated in [**Gateway Manager**](https://cloud.konghq.com/gateway-manager/). Look through the configuration details of any imported entities to make sure
 they were migrated successfully.
 
-## Migrate data planes
+## Next steps
 
-You can keep any data plane nodes that are:
-* Running {{site.base_gateway}} (Enterprise, include _free_ mode)
-* Are at least version 2.5 or higher
+Now that you've imported your {{site.base_gateway}} entities to {{site.konnect_short_name}}, you can migrate additional settings from {{site.base_gateway}} or continue to test {{site.konnect_short_name}}'s capabilities.
 
-Turn any self-managed nodes into cloud data plane nodes by registering them
-through the Gateway Manager and adjusting their configurations, or power down
-the old data plane nodes and deploy new nodes through {{site.konnect_saas}}.
+### Migrate additional settings
 
-1. Follow the [data plane node setup guide](/konnect/gateway-manager/#data-plane-nodes) for
-your preferred deployment type.
+<div class="docs-grid-install max-4" >
 
-2. Once you have created or converted the data plane nodes, `kong stop` your
-old Gateway data plane nodes, then shut them down.
+  <a href="/konnect/api-products/service-documentation/" class="docs-grid-install-block no-description" style="min-height:150px">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-upload.svg" alt="">
+    <div class="install-text">Migrate API specs and markdown service descriptions</div>
+  </a>
 
-3. If any of the old nodes have connected database instances,
-you can shut them down now.
+  <a href="/konnect/dev-portal/dev-reg/" class="docs-grid-install-block no-description" style="min-height:150px">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-customers.svg" alt="">
+    <div class="install-text">Create Dev Portal accounts for developers</div>
+  </a>
 
-## Post-migration tasks
+  <a href="/konnect/gateway-manager/plugins/#custom-plugins" class="docs-grid-install-block no-description" style="min-height:150px">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-extensibility.svg" alt="">
+    <div class="install-text">Prepare custom plugins for migration</div>
+  </a>
 
-See the following docs to set up any additional things you may need:
+  <a href="/konnect/org-management/teams-and-roles/" class="docs-grid-install-block no-description" style="min-height:150px">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-teams.svg" alt="">
+    <div class="install-text">Review and set up teams and roles</div>
+  </a>
 
-* **Dev Portal files:** You can migrate API specs and markdown service descriptions
-into API Products using the {{site.konnect_saas}} GUI. Each API product accepts
-one markdown description file, and each API product version accepts one API spec.
-See [Dev Portal Service Documentation](/konnect/api-products/service-documentation/).
+</div>
 
-* **Dev Portal applications and developers:** If you have developers or
-applications registered through the Portal, those developers need to create new
-accounts in {{site.konnect_saas}} and register their applications in the new
-location.
-    * [Create Dev Portal accounts](/konnect/dev-portal/dev-reg/)
-    * [Enable application registration](/konnect/dev-portal/applications/enable-app-reg/):
-    App registration in {{site.konnect_saas}} works through a different
-    mechanism than in self-managed {{site.base_gateway}}. Enable app
-    registration on each service that requires it.
-    * [Publish services to the Dev Portal](/konnect/api-products/service-documentation/#publishing):
-    The Dev Portal is automatically enabled on a {{site.konnect_saas}} org Publish your services to the Dev Portal.
-* [**Prepare custom plugins for migration**](/konnect/gateway-manager/plugins/#custom-plugins):
-Custom plugins are supported in {{site.konnect_saas}}, but with limitations. As
-long as your plugins fit the criteria, or if you can adjust them to do so,
-contact Kong Support to get the plugin manually added to your account.
-* [**Review and set up teams and roles**](/konnect/org-management/teams-and-roles/):
-{{site.konnect_saas}} groups and roles don't map directly to
-{{site.base_gateway}} teams and roles. Set up teams to mirror your
-{{site.base_gateway}} groups, then invite users to your {{iste.konnect_saas}}
-org and assign them to a team on invite.
+### Test other {{site.konnect_short_name}} use cases
+
+<div class="docs-grid-install max-3">
+
+  <a href="/hub/kong-inc/key-auth/how-to/basic-example/?tab=konnect-api" class="docs-grid-install-block no-description" style="min-height:150px">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-key-auth.png" alt="" style="max-height:50px">
+    <div class="install-text">Protect my APIs with key authentication</div>
+  </a>
+
+  <a href="/hub/kong-inc/rate-limiting/?tab=konnect-api" class="docs-grid-install-block no-description" style="min-height:150px">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-rl.png" alt="" style="max-height:50px">
+    <div class="install-text">Rate limit my APIs</div>
+  </a>
+
+  <a href="/konnect/dev-portal/applications/enable-app-reg/" class="docs-grid-install-block no-description" style="min-height:150px">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/brand-icons/icn-operation.svg" alt="">
+    <div class="install-text">Make my APIs available to customers</div>
+  </a>
+
+</div>

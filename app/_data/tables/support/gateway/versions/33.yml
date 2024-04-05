@@ -23,8 +23,7 @@ distributions:
   - <<: *rhel8
     docker: true
     fips: true
-  - <<: *ubuntu1804
-    eol: April 2023
+  - *ubuntu1804
   - <<: *ubuntu2004
     arm: false
     docker: false

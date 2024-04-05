@@ -23,8 +23,8 @@ description: "Documentation for Kong, the Cloud Connectivity Company for APIs an
 links:
   web: https://docs.konghq.com
   share: https://docs.konghq.com # legacy link, must maintain for social sharing counters
-  download: https://download.konghq.com
-  cloudsmith: https://packages.konghq.com
+  download: https://cloudsmith.io/~kong/repos
+  direct: https://packages.konghq.com/public
   instaclustr: "https://www.instaclustr.com/products/kong/?utm_source=partnership&utm_medium=link&utm_campaign=mashape"
   learn: https://education.konghq.com # kong academy
   archive: https://legacy-gateway--kongdocs.netlify.app
@@ -38,6 +38,10 @@ repos:
 # for Kong platform extensions (not Jekyll)
 extensions:
   categories: &plugin_categories
+    - name: AI
+      slug: ai
+      desc: Govern, secure, and control AI traffic with multi-LLM AI Gateway plugins
+      icon: /assets/images/nav/hub/ai.svg
     - name: Authentication
       slug: authentication
       desc: Protect your services with an authentication layer
@@ -188,9 +192,9 @@ hub-filters:
     - name: Kong
       slug: kong-inc
     - name: Technical partner
-      slug: third-party
-    - name: No support available
-      slug: none
+      slug: third-party-partner
+    - name: Support by 3rd party
+      slug: community
   compatibility:
     - name: Konnect
       slug: konnect

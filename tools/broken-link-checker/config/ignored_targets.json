@@ -55,5 +55,8 @@
   "http://lua-users.org/*",
   "*/gateway/unreleased/install/*",
   "/hub/kong-inc/konnect-application-auth/",
-  "/hub/kong-inc/renew-certificates/"
+  "/hub/kong-inc/renew-certificates/",
+  "https://success.nonamesecurity.com/",
+  "https://support.traceable.ai/",
+  "https://app.datadome.co/dashboard/management/integrations"
 ]

@@ -19,7 +19,7 @@ module Jekyll
             if page_exists?(url)
               url
             else
-              @page.base_url
+              "#{@page.base_url}#{release}/"
             end
           end
         end
@@ -29,6 +29,8 @@ module Jekyll
         end
 
         def text
+          return @release unless @latest
+
           if @release == @latest
             "#{@release} <em>(latest)</em>"
           else
@@ -39,7 +41,7 @@ module Jekyll
         private
 
         def page_exists?(url)
-          !@page.site.pages.detect { |p| p.url == url }.nil?
+          @page.site.data['pages_urls'].include?(url)
         end
       end
 

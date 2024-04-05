@@ -1,0 +1,8 @@
+- output: ../../app/assets/images/products/konnect/analytics/konnect-summary-dashboard.png
+  url: https://cloud.konghq.com/us/analytics/dashboard
+  wait: 4000
+  width: 2033
+  height: 1384
+  javascript: |
+   async () => {
+    zoomPercentage(-35);} // 65% zoom level (100% - 35%)

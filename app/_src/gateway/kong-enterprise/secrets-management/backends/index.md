@@ -8,7 +8,7 @@ The following Vault implementations are supported:
 |---------------------------------------------------------------------------------------------------------------|------------|
 | [AWS Secrets Manager](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/aws-sm/)      | Enterprise |
 
-{% if_version gte:3.5.x %}
+{% if_version gte:3.4.x %}
 | [Azure Key Vault](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/azure-key-vaults/) | Enterprise |
 {% endif_version %}
 

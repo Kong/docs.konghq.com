@@ -3,12 +3,21 @@ title: DNS Considerations for Kong Gateway
 badge: enterprise
 ---
 
+{% if_version lte:3.4.x %}
 {{site.base_gateway}} provides web applications that must be able to interact with
 other Kong services to function properly: Kong Manager must be able to
 interact with the Admin API, and the Dev Portal must be able to interact with
 the Portal API. These applications are subject to security restrictions
 enforced by browsers, and Kong must send appropriate information to browsers in
 order for them to function properly.
+{% endif_version %} 
+
+{% if_version gte:3.5.x %}
+{{site.base_gateway}} provides the Kong Manager, which must be able to interact
+with the Admin API. This application is subject to security restrictions
+enforced by browsers, and Kong must send appropriate information to browsers in
+order for it to function properly.
+{% endif_version %} 
 
 These security restrictions use the applications' DNS hostnames to evaluate
 whether the applications' metadata satisfies the security constraints. As such,
@@ -27,7 +36,9 @@ one of the two criteria below:
   `manager.admin.kong.example`). Admin session configuration sets
   `cookie_domain` to the shared suffix.
 
+{% if_version lte:3.4.x %}
 The same applies to the Portal API and Dev Portal.
+{% endif_version %} 
 
 The first option simplifies configuration in `kong.conf`, but requires an HTTP
 proxy in front of the applications (because it uses HTTP path-based routing).
@@ -93,6 +104,7 @@ Missing CORS headers when CORS headers are expected results in failure.
 
 ### CORS in the context of {{site.base_gateway}}
 
+{% if_version lte:3.4.x %}
 Kong Manager and the Dev Portal operate by issuing requests to their respective
 APIs using JavaScript. These requests may be cross-origin depending on your
 environment.
@@ -103,6 +115,13 @@ hint settings in `kong.conf`. The Admin API obtains its ACAO header value from
 information in the `portal_gui_protocol`, `portal_gui_host`, and
 `portal_gui_use_subdomains` settings. You may optionally specify additional
 Portal API origins using `portal_cors_origins`.
+{% endif_version %} 
+
+{% if_version gte:3.5.x %}
+Kong Manager operate by issuing requests to the Admin API using JavaScript.
+These requests may be cross-origin depending on your environment. The Admin API
+obtains its ACAO header value from `admin_gui_url` in `kong.conf`.
+{% endif_version %} 
 
 You can configure your environment such that these requests are not
 cross-origin by accessing both the GUI and its associated API via the same
@@ -165,19 +184,29 @@ interest are the following directives:
 
 ### Cookies in the context of {{site.base_gateway}}
 
+{% if_version lte:3.4.x %}
 After you log in to Kong Manager or the Dev Portal, Kong stores session
 information in a cookie to recognize your browser during future requests. These
 cookies are created using the [session plugin][session-plugin] (via
 `admin_gui_session_conf`) or [OpenID Connect plugin][oidc-plugin].
+{% endif_version %} 
+{% if_version gte:3.5.x %}
+After you log in to Kong Manager, Kong stores session information in a cookie
+to recognize your browser during future requests. These cookies are created
+using the [session plugin][session-plugin] (via `admin_gui_session_conf`) or
+[OpenID Connect plugin][oidc-plugin].
+{% endif_version %}
 Configuration is more or less the same between each--the OpenID Connect plugin
 contains an embedded version of the session plugin, so while cookie handling
 code is the same, it is configured directly in the OpenID Connect plugin
 settings (`admin_gui_auth_conf`).
 
+{% if_version lte:3.4.x %}
 - `cookie_name` does not affect where the cookie is used, but should be set to
   a unique value to avoid collisions: some configurations may use the same
   `cookie_domain` for both admin and Portal cookies, and using the same name
   for both would then cause their cookies to collide and overwrite one another.
+{% endif_version %}
 - `cookie_domain` should match the common hostname suffix shared by the GUI and
   its API. For example, if you use `api.admin.kong.example` and
   `manager.admin.kong.example` for the Admin API and Kong Manager,
@@ -220,9 +249,11 @@ settings (`admin_gui_auth_conf`).
 OpenID Connect uses the same settings, but prefixed with `session_`, e.g.
 `session_cookie_name` rather than `cookie_name`.
 
+{% if_version lte:3.4.x %}
 Dev Portal configuration does not differ significantly from Kong Manager
 configuration, but is configured per workspace under the Portal > Settings
 section of Kong Manager, in the "Session Config (JSON)" field.
+{% endif_version %} 
 
 As with CORS, the above is not necessary if both the GUI and API use the same
 hostname, with both behind a proxy and the API under a specific path on the

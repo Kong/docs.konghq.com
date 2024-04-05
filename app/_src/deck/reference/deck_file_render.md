@@ -38,6 +38,10 @@ deck file render [command-specific flags] [global flags]
 `-o`, `--output-file`
 :  File to which to write Kong's configuration. Use `-` to write to stdout. (Default: `"-"`)
 
+{% if_version gte:1.36.x %}
+`--populate-env-vars`
+:  Populate `DECK_` environment variables in the output file. The default behavior is to mock environment variable values.
+{% endif_version %}
 
 ## Global flags
 

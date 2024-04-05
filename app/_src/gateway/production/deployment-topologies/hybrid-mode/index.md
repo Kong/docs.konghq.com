@@ -15,7 +15,10 @@ of the CP nodes, and only the CP nodes are directly connected to a database.
 Instead of accessing the database contents directly, the DP nodes maintain a 
 connection with CP nodes to receive the latest configuration.
 
-![Hybrid mode topology](/assets/images/products/gateway/deployment-hybrid-2.png)
+{% include_cached /md/gateway/deployment-topologies.md topology='hybrid' %}
+
+> _Figure 2: In self-managed hybrid mode, the control plane and data planes are hosted on different nodes. 
+The control plane connects to the database, and the data planes receive configuration from the control plane._
 
 When you create a new data plane node, it establishes a connection to the
 control plane. The control plane listens on port `8005` for connections and

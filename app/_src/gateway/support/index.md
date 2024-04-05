@@ -3,9 +3,11 @@ title: Kong Gateway Enterprise Version Support
 breadcrumb: Distributions
 ---
 
-Kong primarily follows [semantic versioning](https://semver.org/) (SemVer) with its products, with an added segment for {{site.ee_product_name}} patch releases. Products follow a pattern of `{MAJOR}.{MINOR}.{PATCH}.{ENTERPRISE_PATCH}`. The `ENTERPRISE_PATCH` segment identifies a sub-patch based on the Kong Community Gateway. 
+Kong adopts a structured approach to versioning its products.
+Products follow a pattern of `{MAJOR}.{MINOR}.{PATCH}.{ENTERPRISE_PATCH}`.
+The `ENTERPRISE_PATCH` segment identifies a sub-patch for {{site.ee_product_name}} based on {{site.ce_product_name}}.
 
-## Semantic Versioning
+## Versioning
 
 For the purposes of this support document:
 
@@ -21,7 +23,13 @@ For the purposes of this support document:
 
 Kong introduces major functionality and breaking changes by releasing a new major version. Major version releases happen rarely and are usually in response to changes in major industry trends, significant architectural changes or significant internal product innovation. There is no regular release cadence of major versions.
 
-Kong aims to release a new minor version every 10 weeks. Minor versions contain features and bug fixes. Minor versions are backwards compatible within that major version sequence.  Every minor version is supported for a period of 1 year from date of release. This is done by releasing patches that apply to each supported minor version. Customers are encouraged to keep their installations up to date by applying the patches appropriate to their installed version. All patches released by Kong are roll-up patches (for example, patch 1.5 for release version 3.3 includes all the fixes in patches 1.4, 1.3, 1.2, and 1.1).  
+Kong aims to release a new minor version approximately every 12 weeks. Minor versions contain features and bug fixes. Minor versions are usually¹ backwards compatible within that major version sequence. Every minor version is supported for a period of 1 year from date of release. This is done by releasing patches that apply to each supported minor version. Customers are encouraged to keep their installations up to date by applying the patches appropriate to their installed version. All patches released by Kong are roll-up patches (for example, patch 1.5 for release version 3.3 includes all the fixes in patches 1.4, 1.3, 1.2, and 1.1).
+
+{:.note}
+> ¹**Note:** There can be exceptions to the versioning model. 
+Due to backports, new features and breaking changes are possible at any version level, including patch versions.
+To avoid issues, do not upgrade to any new version automatically, and 
+make sure to review all relevant [changelog entries](/gateway/changelog/) before manually upgrading your deployments.
 
 Kong may designate a specific minor version as a Long-Term Support (LTS) version. Kong provides technical support for the LTS version on a given distribution for the duration of the distribution’s lifecycle, or for 3 years from LTS version release, whichever comes sooner. An LTS version is backwards compatible within its major version sequence. An LTS version receives all security fixes. Additionally, an LTS version may receive certain non-security patches at Kong's discretion. At any time, there will be at least 1 active LTS {{site.ee_product_name}} version.
 
@@ -29,18 +37,7 @@ Kong may designate a specific minor version as a Long-Term Support (LTS) version
 ## Sunset support
 After the product hits the end of the support period, Kong will provide limited support to help the customer upgrade to a fully supported version of {{site.ee_product_name}} for up to an additional 12 month sunset period. Kong will not provide patches for software covered by this sunset period. If there is an issue that requires a patch during this period, the customer will need to upgrade to a newer {{site.ee_product_name}} version covered by active support.
 
-## Bug fix guidelines
-Unfortunately, all software is susceptible to bugs. Kong seeks to remedy bugs through a structured protocol as follows:
-
-* Serious security vulnerabilities are treated with the utmost priority. See [here](/gateway/latest/production/security-update-process/) for our security vulnerability reporting and remedy process, including how to report a vulnerability.
-
-* Bugs which result in production outages of {{site.ee_product_name}} or effective non-operation (such as catastrophic performance degradation) will be remedied through high priority bug fixes and provided in patch releases to the Latest Major/Minor Version Release of all currently supported Major Versions of the software and optionally ported to other versions at Kong’s discretion based on the severity and impact of the bug.
-
-* Bugs which prevent the upgrade of a supported version of {{site.ee_product_name}} to a more recent supported version will be remedied through high priority bug fixes and provided in the Latest Major/Minor Version Release of all currently supported Major Versions of the software and optionally ported to other versions at Kong’s discretion based on the severity and impact of the bug.
-
-* Other bugs as well as feature requests will be assessed for severity and fixes or enhancements applied to versions of {{site.ee_product_name}} at Kong’s discretion depending on the impact of the bug. Typically, these types of fixes and enhancements will only be applied to the most recent Minor Version in the most recent Major Version.
-
-Customers with platinum or higher subscriptions may request fixes outside of the above and Kong will assess them at its sole discretion.
+{% include_cached /md/support-policy.md %}
 
 ## Supported versions
 
@@ -61,9 +58,6 @@ Kong supports the following versions of {{site.ee_product_name}}:
   {% navtab 3.3 %}
     {% include_cached gateway-support.html version="3.3" data=site.data.tables.support.gateway.versions.33 eol="May 2024" %}
   {% endnavtab %}
-  {% navtab 3.2 %}
-    {% include_cached gateway-support.html version="3.2" data=site.data.tables.support.gateway.versions.32 eol="Feb 2024" %}
-  {% endnavtab %}
   {% navtab 2.8 LTS %}
     {% include_cached gateway-support.html version="2.8 LTS" data=site.data.tables.support.gateway.versions.28  eol="March 2025" %}
   {% endnavtab %}
@@ -75,6 +69,7 @@ These versions have reached the end of full support.
 
 | Version  | Released Date | End of Full Support | End of Sunset Support |
 |:--------:|:-------------:|:-------------------:|:---------------------:|
+|  3.2.x.x |  2023-02-28   |     2024-02-28      |      2025-02-28       |
 |  3.1.x.x |  2022-12-06   |     2023-12-06      |      2024-12-06       |
 |  3.0.x.x |  2022-09-09   |     2023-09-09      |      2024-09-09       |
 |  2.7.x.x |  2021-12-16   |     2023-02-24      |      2024-08-24       |

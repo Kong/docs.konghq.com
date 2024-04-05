@@ -138,20 +138,15 @@ Expressions language support a rich set of operators that can be performed on va
 | `not in`       | Not in                | Field value is not inside the constant value                                                                                                                                                                 |
 | `contains`     | Contains              | Field value contains the constant value                                                                                                                                                                      |
 | `&&`           | And                   | Returns `true` if **both** expressions on the left and right side evaluates to `true`                                                                                                                        |
-
-{% if_version lte:3.5.x %}
-| `||` | Or | Returns `true` if **any** expressions on the left and right side evaluates to `true` |
-{% endif_version %}
-
-{% if_version gte:3.6.x %}
-| `\|\|`         | Or                    | Returns `true` if **any** expressions on the left and right side evaluates to `true`                                                                                                                         |
-{% endif_version %}
-
+| `||` | Or | Returns `true` if **any** expressions on the left and right side evaluates to `true` |                                                                                                                    |
 | `(Expression)` | Parenthesis           | Groups expressions together to be evaluated first                                                                                                                                                            |
-
-{% if_version gte:3.6.x %}
+{% unless page.release == '3.5.x' %}
+{% if_version gte:3.4.x %}
 | `!`            | Not                   | Negates the result of a parenthesized expression. **Note:** The `!` operator can only be used with parenthesized expression like `!(foo == 1)`, it **cannot** be used with a bare predicate like `! foo == 1` |
 {% endif_version %}
+{% endunless %}
+
+<!-- TO DO: Remove the "unless" tags when we have support for eq/neq OR if all of these changes get backported into 3.5 as well-->
 
 ### Extended descriptions
 
@@ -169,16 +164,16 @@ This will match a `http.path` that looks like `/foo`, `/abc/foo`, or `/xfooy`, f
 
 ### Type and operator semantics
 
-Here are the allowed combination of field types and constant types with each operator:
-
-> **Note:** Rows represents field types that display on the left-hand side (LHS) of the predicate where columns represents constant value types that display on the right-hand side (RHS) of the predicate.
+Here are the allowed combination of field types and constant types with each operator.
+In the following table, rows represent field types that display on the left-hand side (LHS) of the predicate, 
+whereas columns represent constant value types that display on the right-hand side (RHS) of the predicate.
 
 | Field (LHS)/Constant (RHS) types | `String`                                | `IpCidr`       | `IpAddr` | `Int`                            | `Regex` | `Expression` |
 |----------------------------------|-----------------------------------------|----------------|----------|----------------------------------|---------|--------------|
 | `String`                         | `==`, `!=`, `~`, `^=`, `=^`, `contains` | ❌              | ❌        | ❌                                | `~`     | ❌            |
 | `IpAddr`                         | ❌                                       | `in`, `not in` | `==`     | ❌                                | ❌       | ❌            |
 | `Int`                            | ❌                                       | ❌              | ❌        | `==`, `!=`, `>=`, `>`, `<=`, `<` | ❌       | ❌           |
-| `Expression`                     | ❌                                       | ❌              | ❌        | ❌                                | ❌       | `&&`,{% if_version lte:3.5.x inline:true %} `{% raw %}||{% endraw %}`{% endif_version %}{% if_version gte:3.6.x inline:true %} `\|\|`{% endif_version %}  |
+| `Expression`                     | ❌                                       | ❌              | ❌        | ❌                                | ❌       | `&&`, `||`|
 
 
 {:.note}

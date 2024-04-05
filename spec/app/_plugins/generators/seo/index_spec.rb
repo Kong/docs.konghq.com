@@ -17,6 +17,7 @@ RSpec.describe SEO::Index do
         '/hub/kong-inc/jwt-signer/changelog/' => { 'url' => '/hub/kong-inc/jwt-signer/changelog/', 'page' => find_page_by_url('/hub/kong-inc/jwt-signer/changelog/') },
         '/hub/kong-inc/jwt-signer/how-to/' => { 'url' => '/hub/kong-inc/jwt-signer/how-to/', 'page' => find_page_by_url('/hub/kong-inc/jwt-signer/how-to/') },
         '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/' => { 'url' => '/hub/kong-inc/jwt-signer/how-to/nested/tutorial/', 'page' => find_page_by_url('/hub/kong-inc/jwt-signer/how-to/nested/tutorial/') },
+        '/hub/kong-inc/jwt-signer/how-to/nested/tutorial-with-min-and-max/' => { 'url' => '/hub/kong-inc/jwt-signer/how-to/nested/tutorial-with-min-and-max/', 'page' => find_page_by_url('/hub/kong-inc/jwt-signer/how-to/nested/tutorial-with-min-and-max/') },
         '/hub/kong-inc/jwt-signer/configuration/' => { 'url' => '/hub/kong-inc/jwt-signer/configuration/', 'page' => find_page_by_url('/hub/kong-inc/jwt-signer/configuration/') },
         '/hub/kong-inc/jwt-signer/how-to/basic-example/' => { 'url' => '/hub/kong-inc/jwt-signer/how-to/basic-example/', 'page' => find_page_by_url('/hub/kong-inc/jwt-signer/how-to/basic-example/') },
         '/hub/acme/kong-plugin/' => { 'url' => '/hub/acme/kong-plugin/', 'page' => find_page_by_url('/hub/acme/kong-plugin/') },

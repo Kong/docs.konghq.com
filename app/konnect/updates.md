@@ -9,8 +9,67 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
+## April 2024
+
+
+**Improved UI/UX for Plugins**
+: We are happy to announce that a polished UI/UX experience for plugins is now available to our customers on Konnect. Required configuration settings are now grouped together, and indicated as required on the forms, improved tooltips and default fields are present on plugin forms, and a "most popular" plugins section is now available.
+: ![Improved UI/UX for plugins](/assets/images/products/konnect/changelog/improved-plugins-ui.png)
+
+
+**Integrated Markdown Renderer**
+: You can now take advantage of an integrated markdown editor for API Products in {{site.konnect_short_name}}. This enhancement simplifies documentation updates by enabling you to edit markdown files directly within {{site.konnect_short_name}}. The {{site.konnect_short_name}} interactive markdown renderer supports: 
+* Code syntax highlighting for bash, json, go, and js
+* Rendering UML diagrams and flowcharts via Mermaid and PlantUML
+* Emojis
+
+![Interactive editor](/assets/images/products/konnect/changelog/konnect-interactive-markdown.png)
+
+## March 2024
+
+**Refined user experience for Control Plane Groups**
+: We've made improvements to refine the end-to-end workflow of Control Plane Groups for our customers. Now, Control Plane Groups are more intuitive, and easier to understand.
+
+**Enhanced error notification**
+: Customers now have the ability to view detailed error notifications for their data plane directly within {{site.konnect_short_name}}. The enhanced logging feature categorizes errors for improved clarity, distinguishing between configuration errors, transient configuration reload errors, and general exceptions. This update empowers users to diagnose and resolve CP/DP connection issues more efficiently.
+
+![Konnect-error-log](/assets/images/products/konnect/changelog/konnect-error-log.png)
+
+**New Analytics Explorer page**
+: You can now explore and visualize analytics data via an easy to use, point-and-click web interface. The [Explorer page](https://cloud.konghq.com/analytics/explorer) allows you to drill-down into data and easily discover how issues may impact your business. For more information, see the [Explorer overview](/konnect/analytics/explorer/).
+
+**Improved Analytics summary dashboard**
+: A new version of the Analytics summary dashboard is now available for all {{site.konnect_short_name}} users. This new version displays all analytics information on one page, which allows you to focus on your most critical API usage data.
+
+: ![analytics summary dashboard](/assets/images/products/konnect/changelog/konnect-analytics-summary-dashboard.png)
+: > _**Figure 1:** Example of the improved Analytics summary dashboard that displays total traffic, error rate, P99 latency, total traffic over time, latency breakdown over time, and Kong vs upstream latency over time._
 
 ## February 2024
+
+
+**Download button added the documents UI**
+: You can now click the **Download** button to download the markdown file currently being viewed from the documents UI.
+
+**Additional plugin support for consumer groups**
+: Along with {{site.base_gateway}} 3.6 support in {{site.konnect_short_name}}, additional plugins are now supported for consumer groups.
+
+: The following plugins can be applied to consumer groups using the Admin API and the Gateway Manager UI:
+* [Rate Limiting (OSS)](/hub/kong-inc/rate-limiting/)
+* [Request Termination](/hub/kong-inc/request-termination/)
+* [Proxy Cache](/hub/kong-inc/proxy-cache/)
+* [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/)
+
+**Konnect API Products**
+: Konnect now supports reusable auth strategies that can be applied to one or more API product versions. Konnect now also supports multiple DCR providers for portal applications. Users can now create separate DCR providers with various Identity Providers and apply them selectively to API Product Versions while still using non-DCR auth strategies for other API product versions. For more information, see [Enable app registration with multiple IdPs](/konnect/dev-portal/applications/enable-app-reg/#enable-app-registration-with-multiple-idps)
+
+: If you previously configured application registration, you will see your auth configs saved in a new sidebar section under **Dev Portal** called **Application Auth**.
+
+
+**Enhanced onboarding wizard**
+: {{site.konnect_short_name}} users can now experience an enhanced onboarding wizard when they sign up for a new {{site.konnect_short_name}} organization. After signing up, you can optionally use the wizard to test a popular {{site.konnect_short_name}} use case: key authentication or rate limiting. This experience starts with a local, Docker-based gateway setup, automatically configures Gateway Manager entities against demo endpoints, and then guides you through a basic workflow that tests gateway functionality.
+
+: For more information about how to get started with {{site.konnect_short_name}}, see the [{{site.konnect_short_name}} Getting Started overview](/konnect/getting-started/).
+
 
 **Autogenerated YAML and JSON configuration files for {{site.konnect_short_name}}**
 : You can now export configuration of core Gateway Manager objects, like services, routes, and plugins, to YAML or JSON. This allows you to import the file to APIOps tooling, like decK. For more information, see [Manage Control Plane Configuration with decK](/konnect/gateway-manager/declarative-config/).
@@ -319,7 +378,7 @@ For more information, see the documentation for [Audit Logging](/konnect/org-man
 * **API viewer**: Allows the Dev Portal developer to view the documentation of services.
 * **API consumer**: Allows the Dev Portal developer to register their applications with the consumer services.
 
-: For more information, see [Portal RBAC Setup](/konnect/api/portal-auth/portal-rbac-guide/) and the [Portal RBAC API documentation](/konnect/api/portal-rbac/v2/).
+: For more information, see [Portal RBAC Setup](/konnect/api/portal-auth/portal-rbac-guide/) and the [Portal RBAC API documentation](/konnect/api/portal-rbac/latest/).
 
 ## January 2023
 

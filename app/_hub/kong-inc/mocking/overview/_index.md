@@ -57,11 +57,11 @@ paths:
           content:
             application/json:
               examples:
-                Jessica:
+                Hao:
                   value:
                     id: 10
                     name: Hao
-                Ron:
+                Sasha:
                   value:
                     id: 20
                     name: Sasha

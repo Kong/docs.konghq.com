@@ -7,11 +7,11 @@ The {{site.konnect_short_name}} Dev Portal is a customizable website for develop
 
 ## Publish service documentation
 
-In {{site.konnect_short_name}}, API products can be published to the Dev Portal with one click. Published API products become immediately available to users who have access to the Dev Portal. When an API product is published, the API spec and any service documentation becomes discoverable. We use the term discoverable here because the Dev Portal can create a unified API experience where a developer can navigate through the different APIs that are available, read documentation, test endpoints within the Dev Portal, and register to create applications for specific APIs. 
+In {{site.konnect_short_name}}, API products can be published to the Dev Portal with one click. Published API products become immediately available to users who have access to the Dev Portal. When an API product is published, the API spec and any product documentation becomes discoverable. We use the term discoverable here because the Dev Portal can create a unified API experience where a developer can navigate through the different APIs that are available, read documentation, test endpoints within the Dev Portal, and register to create applications for specific APIs. 
 
 * [Getting started guide](/konnect/getting-started/publish-service/): This guide walks you through importing an API spec, publishing your service and corresponding API spec to the Dev Portal, and configuring registration settings so that users can view your services and register applications.
 
-* [API product documentation](/konnect/api-products/service-documentation/): This doc explains how to upload and publish product documentation using the **API Products** dashboard and publish services to the Dev Portal so they can be publicly consumed.
+* [API product documentation](/konnect/api-products/service-documentation/): This doc explains how to upload, edit, and publish product documentation using the **API Products** dashboard and publish API product to the Dev Portal to be consumed by your users.
 
 * [Manage Konnect API product versions](/konnect/api-products/): This explains how to manage the API product version for your services, including the status of the API product version. API product versions can have a status of "Published", "Deprecated", or "Unpublished". 
 
@@ -49,7 +49,21 @@ For developers:
 
 * [Generate credentials for an application](/konnect/dev-portal/applications/dev-gen-creds/) - This guide walks you through the process of generating and deleting API keys on the Dev Portal platform.
 
-### Contextual developer analytics 
+
+## Access the Dev Portal
+
+You can access the Dev Portal using the Dev Portal URL. The URL is displayed when you click {% konnect_icon dev-portal %} **Dev Portal** to open the **Published API Products** overview page.
+The Dev Portal URL looks like this: 
+    
+    https://example.us.portal.konghq.com/
+
+Your Dev Portal URL may vary. Keep the following in mind:
+
+* The Dev Portal URL varies based on geo.
+* If you're hosting your Dev Portal through Netlify, the Dev Portal URL is the one you specify in the **Dev Portal** sidebar under **Settings** > **Portal Domain** > **Custom Self-Hosted UI Domain**. 
+
+
+## Contextual developer analytics 
 
 You can view analytics for developer applications from within the {{site.konnect_short_name}} Dev Portal. This gives developers the ability to gain insights into all of their applications and the relationships between applications and APIs.
 

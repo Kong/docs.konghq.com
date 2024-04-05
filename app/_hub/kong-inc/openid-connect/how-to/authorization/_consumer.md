@@ -17,7 +17,7 @@ groups attached to them and be further authorized with the
 
 {% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
-Let's use the following token payload:
+Let's use the following example token payload:
 
 ```json
 {
@@ -33,91 +33,83 @@ Let's use the following token payload:
 
 Out of these attributes, the `preferred_username` claim looks promising for consumer mapping.
 
-Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step:
+Configure the OpenID Connect plugin for integration with the ACL plugin.
+For the purposes of the demo, you can use the 
+[password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/).
 
-```bash
-http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
-  config.auth_methods=password                                   \
-  config.consumer_claim=preferred_username                       \
-  config.consumer_by=username
-```
-```http
-HTTP/1.1 200 OK
-```
-```json
-{
-    "id": "5f35b796-ced6-4c00-9b2a-90eef745f4f9",
-    "name": "openid-connect",
-    "service": {
-        "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd"
-    },
-    "config": {
-        "auth_methods": [ "password" ],
-        "consumer_claim": [ "preferred_username" ],
-        "consumer_by": [ "username" ]
+For the demo, we're going to set up the following:
+* Issuer, client ID, and client auth: settings that connect the plugin to your IdP (in this case, the sample Keycloak app).
+* Auth method: [password grant](/hub/kong-inc/openid-connect/how-to/authentication/password-grant/)
+ (enabled for demo purposes).
+* The `preferred_username` claim from the example payload.
+
+<!-- vale off-->
+{% plugin_example %}
+plugin: kong-inc/openid-connect
+name: openid-connect
+config:
+  issuer: "http://keycloak.test:8080/auth/realms/master"
+  client_id: "kong"
+  client_auth: "private_key_jwt"
+  auth_methods:
+    - password
+  consumer_claim:
+    - preferred_username
+  consumer_by:
+    - username
+targets:
+  - service
+formats:
+  - konnect
+  - curl
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on -->
+
+## Test consumer-based authorization
+
+1. Before moving on, make sure the consumer `john` doesn't exist:
+
+    ```bash
+    curl -i -X DELETE http//localhost:8001/consumers/john
+    ```
+
+2. Now try access the service without a matching consumer:
+
+    ```bash
+    curl --user john:doe http://localhost:8000
+    ```
+
+    You should get an HTTP 403 Forbidden response.
+
+3. Now, add the consumer:
+
+    ```bash
+    curl -i -X PUT http://localhost:8001/consumers/john
+    ```
+
+    You should get an HTTP 200 if the consumer creation is successful.
+
+4. Try to access the service again using the same consumer:
+
+    ```bash
+    curl --user john:doe http://localhost:8000
+    ```
+
+    This time, you should get an HTTP 200 response. 
+    You should also see that the plugin added `X-Consumer-Id` and `X-Consumer-Username` as request headers:
+
+    ```json
+    {
+        "headers": {
+            "Authorization": "Bearer <access-token>",
+            "X-Consumer-Id": "<consumer-id>",
+            "X-Consumer-Username": "john"
+        },
+        "method": "GET"
     }
-}
-```
-
-Before we proceed, let's make sure we don't have consumer `john`:
-
-```bash
-http delete :8001/consumers/john
-```
-```http
-HTTP/1.1 204 No Content
-```
-
-Let's try to access the service without a matching consumer:
-
-```bash
-http -a john:doe :8000
-```
-```http
-HTTP/1.1 403 Forbidden
-```
-```json
-{
-    "message": "Forbidden"
-}
-```
-
-Now, let's add the consumer:
-
-```bash
-http -f put :8001/consumers/john
-```
-```http
-HTTP/1.1 200 OK
-```
-```json
-
-{
-    "id": "<consumer-id>",
-    "username": "john"
-}
-```
-
-Let's try to access the service again:
-
-```bash
-http -a john:doe :8000
-```
-```http
-HTTP/1.1 200 OK
-```
-```json
-{
-    "headers": {
-        "Authorization": "Bearer <access-token>",
-        "X-Consumer-Id": "<consumer-id>",
-        "X-Consumer-Username": "john"
-    },
-    "method": "GET"
-}
-```
-
-You can see that the plugin added the `X-Consumer-Id` and `X-Consumer-Username` as request headers.
+    ```
 
 {:.note}
 > It is possible to make consumer mapping optional and non-authorizing by setting the configuration parameter 

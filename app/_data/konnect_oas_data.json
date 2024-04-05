@@ -85,12 +85,12 @@
   },
   {
     "id": "0267e60f-bf5d-4565-9618-b061f8398e14",
-    "title": "Konnect Control Planes Config (Beta)",
+    "title": "Konnect Control Planes Config",
     "latestVersion": {
       "name": "v2",
       "id": "fa795b03-e0fc-4d33-aa97-28632b41cc61"
     },
-    "description": "Manage Kong Gateway services, routes, certificates, consumer and global configuration within Konnect. This spec is a Beta version.",
+    "description": "Manage Kong Gateway services, routes, certificates, consumer, and global configuration within Konnect.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
@@ -126,6 +126,27 @@
     ]
   },
   {
+    "id": "ccb264be-1963-49a4-b6e8-bc7c98a6e4c2",
+    "title": "Application Auth Strategies",
+    "latestVersion": {
+      "name": "v2",
+      "id": "f683716f-218d-4fab-9eef-b453cf795130"
+    },
+    "description": "Application Auth Strategies are used to manage authentication to your APIs.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "f683716f-218d-4fab-9eef-b453cf795130",
+        "created_at": "2024-02-21T17:28:17.757Z",
+        "updated_at": "2024-02-29T19:12:41.588Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
     "id": "3e65edbc-364d-4762-9d3e-f13083e1b534",
     "title": "Gateway Dev Portal",
     "latestVersion": {
@@ -150,12 +171,12 @@
     "id": "680541e5-de6e-46e5-b43d-0bd1b2369453",
     "title": "Gateway Admin - OSS (Beta)",
     "latestVersion": {
-      "name": "3.5.0",
-      "id": "7323acff-61a5-4d95-9670-3cc30db88d94"
+      "name": "3.6.0",
+      "id": "51e64ccc-5c4a-46db-a33d-9b39226abd5e"
     },
     "description": "Kong Gateway (OSS) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
     "documentCount": 0,
-    "versionCount": 3,
+    "versionCount": 4,
     "versions": [
       {
         "id": "e2a0ef29-573d-4fc4-86df-216c417f4aa9",
@@ -176,8 +197,16 @@
       {
         "id": "7323acff-61a5-4d95-9670-3cc30db88d94",
         "created_at": "2023-11-06T20:42:08.188Z",
-        "updated_at": "2023-11-07T16:36:32.325Z",
+        "updated_at": "2023-11-08T19:39:53.374Z",
         "name": "3.5.0",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "51e64ccc-5c4a-46db-a33d-9b39226abd5e",
+        "created_at": "2024-02-14T20:08:38.884Z",
+        "updated_at": "2024-02-14T20:12:53.995Z",
+        "name": "3.6.0",
         "deprecated": false,
         "registration_configs": []
       }
@@ -187,12 +216,12 @@
     "id": "937dcdd7-4485-47dc-af5f-b805d562552f",
     "title": "Gateway Admin - EE (Beta)",
     "latestVersion": {
-      "name": "3.5.0.0",
-      "id": "5363c8ea-e2ce-4670-9117-143b3b3d2bfb"
+      "name": "3.6.0.0",
+      "id": "95e68025-45a1-4e24-8561-6d7e5f422de5"
     },
     "description": "Kong Gateway (EE) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
     "documentCount": 2,
-    "versionCount": 3,
+    "versionCount": 4,
     "versions": [
       {
         "id": "be79b812-46d5-4cc1-b757-b5270bf4fa60",
@@ -213,8 +242,16 @@
       {
         "id": "5363c8ea-e2ce-4670-9117-143b3b3d2bfb",
         "created_at": "2023-11-06T20:40:21.660Z",
-        "updated_at": "2023-11-07T16:36:19.265Z",
+        "updated_at": "2023-11-08T19:39:15.438Z",
         "name": "3.5.0.0",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "95e68025-45a1-4e24-8561-6d7e5f422de5",
+        "created_at": "2024-02-14T20:06:29.376Z",
+        "updated_at": "2024-02-14T20:13:13.359Z",
+        "name": "3.6.0.0",
         "deprecated": false,
         "registration_configs": []
       }

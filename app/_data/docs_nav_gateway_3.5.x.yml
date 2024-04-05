@@ -228,6 +228,7 @@ items:
         url: /production/clustering
       - text: Establish a Performance Benchmark
         url: /production/benchmark
+        src: /gateway/production/performance/benchmark
       - text: Logging and Debugging
         items:
           - text: Log Reference
@@ -661,6 +662,7 @@ items:
     items:
       - text: kong.conf
         url: /reference/configuration
+        src: /gateway/reference/configuration/configuration-3.5.x
       - text: Injecting Nginx Directives
         url: /reference/nginx-directives
       - text: CLI

@@ -1432,7 +1432,13 @@ components:
               instance_name:
                 type: string
                 description: |
-                  The plugin instance name.
+                  An optional custom name to identify an instance of the plugin, for example `basic-auth_example-service`.
+                  
+                  The instance name shows up in Kong Manager, so it's useful when running the same 
+                  plugin in multiple contexts, for example, on multiple services. You can also use it to access a specific plugin instance
+                  via the Kong Admin API.
+
+                  An instance name must be unique within a workspace for Kong Gateway Enterprise.
                 example: rate-limiting-foo
               config:
                 type: object
@@ -5082,7 +5088,13 @@ components:
               instance_name:
                 type: string
                 description: |
-                  The plugin instance name.
+                  An optional custom name to identify an instance of the plugin, for example `basic-auth_example-service`.
+                  
+                  The instance name shows up in Kong Manager, so it's useful when running the same 
+                  plugin in multiple contexts, for example, on multiple services. You can also use it to access a specific plugin instance
+                  via the Kong Admin API.
+
+                  An instance name must be unique within a workspace for Kong Gateway Enterprise.
                 example: rate-limiting-foo
               config:
                 type: object
@@ -5777,6 +5789,153 @@ info:
   version: 3.6.0
 openapi: 3.0.0
 paths:
+  /:
+    get:
+      summary: Get Kong's instance information
+      tags:
+        - Information
+      operationId: geInfo
+      description: |
+        Returns detailed information about the Kong gateway instance, including the full Kong configuration, available and unavailable plugins, version, edition (enterprise or community), a tagline, the unique node identifier, and other metadata.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: string
+                    description: The version number of the Kong instance.
+                    example: "2.3.3"
+                  edition:
+                    type: string
+                    description: Indicates whether the Kong instance is the Community or Enterprise edition.
+                    example: "enterprise"
+                  tagline:
+                    type: string
+                    description: A tagline or slogan for the Kong instance.
+                    example: "Welcome to Kong"
+                  node_id:
+                    type: string
+                    description: A unique identifier for the node, in UUID format.
+                    format: uuid
+                    example: "a74d7c4f-ef83-4bbe-a5e7-3f5409f4a0b9"
+                  hostname:
+                    type: string
+                    description: The hostname of the Kong node.
+                    example: "kong-node.example.com"
+                  timers:
+                    type: object
+                    description: Information about running and pending timers.
+                    properties:
+                      running:
+                        type: integer
+                        description: The number of running timers.
+                        example: 5
+                      pending:
+                        type: integer
+                        description: The number of pending timers.
+                        example: 2
+                  plugins:
+                    type: object
+                    description: Information about plugins.
+                    properties:
+                      available_on_server:
+                        type: object
+                        additionalProperties:
+                          type: object
+                          properties:
+                            version:
+                              type: string
+                              description: The version of the plugin.
+                            priority:
+                              type: integer
+                              description: The priority of the plugin.
+                      enabled_in_cluster:
+                        type: array
+                        items:
+                          type: string
+                        description: A list of distinct plugin names enabled in the cluster.
+                        example: ["jwt", "acl"]
+                  lua_version:
+                    type: string
+                    description: The version of Lua used by the Kong instance.
+                    example: "LuaJIT 2.1.0-beta3"
+                  configuration:
+                    type: object
+                    description: A sanitized version of the Kong configuration, excluding sensitive values.
+                    additionalProperties: true
+                  pids:
+                    type: object
+                    description: Process IDs for the master process and worker processes.
+                    properties:
+                      master:
+                        type: integer
+                        description: The PID of the master process.
+                        example: 4321
+                      workers:
+                        type: array
+                        items:
+                          type: integer
+                        description: An array of worker process PIDs.
+                        example: [1234, 5678]
+              examples:
+                fullExample:
+                  summary: Example response
+                  value: 
+                    configuration:
+                      _debug_pg_ttl_cleanup_interval: 300
+                      admin_acc_logs: "/usr/local/kong/logs/admin_access.log"
+                      admin_access_log: "/dev/stdout"
+                      admin_approved_email: "true"
+                      admin_emails_from: "\"\""
+                      admin_error_log: "/dev/stderr"
+                      admin_gui_access_log: "logs/admin_gui_access.log"
+                      admin_gui_auth_header: "******"
+                      admin_gui_auth_login_attempts: 0
+                      admin_gui_error_log: "logs/admin_gui_error.log"
+                      admin_gui_flags: "{}"
+                      admin_gui_listen:
+                        - "0.0.0.0:8002"
+                        - "0.0.0.0:8445 ssl"
+                      admin_gui_origin: "http://localhost:8002"
+                    edition: "enterprise"
+                    hostname: "8a487998603b"
+                    lua_version: "LuaJIT 2.1.0-20231117"
+                    node_id: "1f257156-5e44-46e2-a618-767f5c7529e3"
+                    pids:
+                      master: 1
+                      workers:
+                        - 2382
+                        - 2383
+                    plugins:
+                      available_on_server:
+                        acl: true
+                        acme: true
+                      disabled_on_server:
+                        application-registration: true
+                      enabled_in_cluster: []
+                    tagline: "Welcome to kong"
+                    timers:
+                      pending: 1
+                      running: 1128
+                    version: "3.6.0.0"
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+        '405':
+          description: Method Not Allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+          headers:
+            Server:
+              description: Kong's server tokens.
+              schema:
+                type: string
+                example: "kong/2.3.3"
   /ca_certificates:
     get:
       description: Retrieve a list of all available Certificate Authority (CA) certificates, including the certificate ID, creation date, and other details. You can use query parameters to filter the results by size or tags, for example `/ca-certificates?size=50&tags=enterprise`.
@@ -11444,6 +11603,8 @@ paths:
       description: |-
         Retrieve usage information about a node, with some basic information about the connections being processed by the underlying nginx process, the status of the database connection, and node's memory usage.
 
+        This endpoint now listens on `127.0.0.1:8007` by default for status checks. It provides detailed metrics regarding memory usage, worker process stats, database connection status, and server connection metrics.
+
         If you want to monitor the Kong process, since Kong is built on top of nginx, every existing nginx monitoring tool or agent can be used.
         '401': 
           $ref: '#/components/responses/HTTP401Error'
@@ -11760,7 +11921,7 @@ paths:
         '401': 
           $ref: '#/components/responses/HTTP401Error'
       operationId: get-admins
-      description: Returns a list of admins. The `status` field in the response indicates the state of the admins invitation. `0`= Approved, `1`= Pending, `2`= Rejected, `3`= Revoked, `4` = Invited, `5`= Unverified.
+      description: Returns a list of admins. To query all admins, add a parameter `all_workspaces=true` to the `/admins` endpoint. The `status` field in the response indicates the state of the admins invitation. `0`= Approved, `1`= Pending, `2`= Rejected, `3`= Revoked, `4` = Invited, `5`= Unverified.
     post:
       summary: Invite an Admin
       operationId: post-admins
@@ -12361,7 +12522,7 @@ paths:
     get:
       summary: List Users
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           $ref: '#/components/responses/rbac-user-response'
@@ -12381,7 +12542,7 @@ paths:
         '401': 
           $ref: '#/components/responses/HTTP401Error'
       tags:
-        - rbac
+        - RBAC
       requestBody:
         $ref: '#/components/requestBodies/rbac-request'
       description: Add a User
@@ -12396,7 +12557,7 @@ paths:
     get:
       summary: Retrieve a User
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           $ref: '#/components/responses/rbac-user-response'
@@ -12413,7 +12574,7 @@ paths:
         '401': 
           $ref: '#/components/responses/HTTP401Error'
       tags:
-        - rbac
+        - RBAC
       description: Update a user. Users are unable to update their own roles.
       requestBody:
         $ref: '#/components/requestBodies/rbac-request'
@@ -12428,12 +12589,12 @@ paths:
       description: |
         Delete a user.
       tags:
-        - rbac
+        - RBAC
   /rbac/roles:
     get:
       summary: List Roles
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           description: OK
@@ -12537,7 +12698,7 @@ paths:
                     is_default: false
                     name: service_reader
       tags:
-        - rbac
+        - RBAC
       requestBody:
         content:
           application/json:
@@ -12566,7 +12727,7 @@ paths:
     get:
       summary: Retrieve a Role
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           description: OK
@@ -12641,7 +12802,7 @@ paths:
         '401': 
           $ref: '#/components/responses/HTTP401Error'
       tags:
-        - rbac
+        - RBAC
       requestBody:
         content:
           application/json:
@@ -12693,7 +12854,7 @@ paths:
                     is_default: false
                     name: service_reader
       tags:
-        - rbac
+        - RBAC
       requestBody:
         content:
           application/json:
@@ -12716,7 +12877,7 @@ paths:
         '401': 
           $ref: '#/components/responses/HTTP401Error'
       tags:
-        - rbac
+        - RBAC
       description: Delete a role
   '/rbac/roles/{name_or_id}/endpoints':
     parameters:
@@ -12729,7 +12890,7 @@ paths:
     get:
       summary: List Role Endpoints Permissions
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           description: OK
@@ -12842,7 +13003,7 @@ paths:
                       id: 23df9f20-e7cc-4da4-bc89-d3a08f976e50
                     workspace: default
       tags:
-        - rbac
+        - RBAC
       description: |-
         Add a role endpoint permission for the path of the associated endpoint. Permissions can be exact matches, or contain wildcards, represented by `*`.
 
@@ -12909,7 +13070,7 @@ paths:
     get:
       summary: Retrieve a Role Endpoint Permission
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           description: OK
@@ -13023,7 +13184,7 @@ paths:
                       id: 23df9f20-e7cc-4da4-bc89-d3a08f976e50
                     workspace: default
       tags:
-        - rbac
+        - RBAC
       description: |
         Update a Role Endpoint Permission
       requestBody:
@@ -13053,7 +13214,7 @@ paths:
       description: |
         Delete a Role Endpoint Permission
       tags:
-        - rbac
+        - RBAC
   '/rbac/roles/{name_or_id}/entities':
     parameters:
       - schema:
@@ -13065,7 +13226,7 @@ paths:
     get:
       summary: List Entity Permissions
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           description: OK
@@ -13182,7 +13343,7 @@ paths:
                     role:
                       id: bba049fa-bf7e-40ef-8e89-553dda292e99
       tags:
-        - rbac
+        - RBAC
       description: The `entity_id` must be the ID of an entity in Kong. If you provide the ID of a workspace, the permission applies to all entities in that workspace. Future entities belonging to that workspace will get the same permissions. A wildcard (`*`) will be interpreted as all entities in the system.
       requestBody:
         content:
@@ -13231,7 +13392,7 @@ paths:
     get:
       summary: Retrieve a Role Entity Permission
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           description: OK
@@ -13337,7 +13498,7 @@ paths:
         '401': 
           $ref: '#/components/responses/HTTP401Error'
       tags:
-        - rbac
+        - RBAC
       description: Update an Entity Permission
       requestBody:
         content:
@@ -13365,7 +13526,7 @@ paths:
       description: |
         Delete an Entity Permission
       tags:
-        - rbac
+        - RBAC
   '/rbac/roles/{name_or_id}/permissions':
     parameters:
       - schema:
@@ -13377,7 +13538,7 @@ paths:
     get:
       summary: List Role Permissions
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           description: OK
@@ -13467,7 +13628,7 @@ paths:
     get:
       summary: List a User’s Roles
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           description: OK
@@ -13629,7 +13790,7 @@ paths:
                   
                   description: Comma-separated list of role names to assign to the user.
       tags:
-        - rbac
+        - RBAC
     delete:
       summary: Delete a Role from a User
       operationId: delete-rbac-users-name_or_id-roles
@@ -13637,7 +13798,7 @@ paths:
         '204':
           description: No Content
       tags:
-        - rbac
+        - RBAC
       description: Delete a Role from a User
   '/rbac/users/{name_or_id}/permissions':
     parameters:
@@ -13650,7 +13811,7 @@ paths:
     get:
       summary: List a User’s Permissions
       tags:
-        - rbac
+        - RBAC
       responses:
         '200':
           description: OK
@@ -14239,6 +14400,204 @@ paths:
       operationId: get-event-hooks-event-hook-id-ping
       description: |
         Ping a webhook event hook.
+  '/{workspace}/rbac/roles':
+    parameters:
+      - schema:
+          type: string
+        name: workspace
+        in: path
+        required: true
+        description: The workspace name or UUID.
+    get:
+      summary: List roles for a workspace
+      tags: 
+        - RBAC
+      responses:
+        '200': 
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        comment:
+                          type: string
+                        created_at:
+                          type: integer
+                        id:
+                          type: string
+                        name:
+                          type: string
+                  next:
+                    type: string
+                x-examples:
+                    Example 1:
+                      data:
+                        - comment: 'Full access to all endpoints, across all workspaces—except RBAC Admin API'
+                          created_at: 1557506249
+                          id: 38a03d47-faae-4366-b430-f6c10aee5029
+                          name: admin
+                        - comment: 'Read access to all endpoints, across all workspaces'
+                          created_at: 1557506249
+                          id: 4141675c-8beb-41a5-aa04-6258ab2d2f7f
+                          name: read-only
+                        - comment: 'Full access to all endpoints, across all workspaces'
+                          created_at: 1557506249
+                          id: 888117e0-f2b3-404d-823b-dee595423505
+                          name: super-admin
+                        - comment: null
+                          created_at: 1557532241
+                          id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
+                          name: doc_lord
+                      next: null
+              examples:
+                Multiple roles:
+                  value:
+                    data:
+                      - comment: 'Full access to all endpoints, across all workspaces—except RBAC Admin API'
+                        created_at: 1557506249
+                        id: 38a03d47-faae-4366-b430-f6c10aee5029
+                        name: admin
+                      - comment: 'Read access to all endpoints, across all workspaces'
+                        created_at: 1557506249
+                        id: 4141675c-8beb-41a5-aa04-6258ab2d2f7f
+                        name: read-only
+                      - comment: 'Full access to all endpoints, across all workspaces'
+                        created_at: 1557506249
+                        id: 888117e0-f2b3-404d-823b-dee595423505
+                        name: super-admin
+                      - comment: 'null'
+                        created_at: 1557532241
+                        id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
+                        name: doc_lord
+                    next: 'null'
+      operationId: get-rbac-roles-by-workspace
+      description: List all roles by workspace
+    post: 
+      summary: Add a role
+      operationId: post-rbac-roles-workspace
+      responses:
+          '201':
+            description: Created
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    comment:
+                      type: string
+                    created_at:
+                      type: integer
+                    id:
+                      type: string
+                    is_default:
+                      type: boolean
+                    name:
+                      type: string
+                  x-examples:
+                    Example 1:
+                      comment: null
+                      created_at: 1557532241
+                      id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
+                      is_default: false
+                      name: service_reader
+                examples:
+                  New role response body:
+                    value:
+                      comment: 'null'
+                      created_at: 1557532241
+                      id: b5c5cfd4-3330-4796-9b7b-6026e91e3ad6
+                      is_default: false
+                      name: service_reader
+      tags:
+        - RBAC
+      requestBody:
+        content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  
+
+                    description: The RBAC role name.
+                  comment:
+                    type: string
+                  
+                    description: A string describing the RBAC user object.
+        description: The request body contains the name of the role and an optional attribute. 
+      description: Add a role.
+  '/{workspace}/rbac/roles/{role}/endpoints/{endpoint}/':
+    get:
+      summary: Get role-specific permissions for an endpoint within a workspace
+      parameters:
+        - in: path
+          name: workspace
+          required: true
+          schema:
+            type: string
+          description: The workspace name or UUID.
+        - in: path
+          name: role
+          required: true
+          schema:
+            type: string
+          description: The RBAC role ID.
+        - in: path
+          name: endpoint
+          required: true
+          schema:
+            type: string
+          description: The specific endpoint to retrieve permissions for.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  actions:
+                    type: array
+                    items:
+                      type: string
+                  created_at:
+                    type: integer
+                  endpoint:
+                    type: string
+                  negative:
+                    type: boolean
+                  role:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                  workspace:
+                    type: string
+              example: 
+                actions:
+                  - "delete"
+                  - "create"
+                  - "update"
+                  - "read"
+                created_at: 1557764505
+                endpoint: "/consumers"
+                negative: false
+                role:
+                  id: "23df9f20-e7cc-4da4-bc89-d3a08f976e50"
+                workspace: "default"
+        '401': 
+          $ref: '#/components/responses/HTTP401Error'
+      operationId: getRoleSpecificEndpointPermissions
+      tags:
+        - RBAC
+
   '/fips-status':
     get:
       summary: FIPS Mode Status
@@ -14415,7 +14774,7 @@ tags:
       * Role: Set of permissions (`role_endpoint` and `role_entity`). Has a name and can be associated with zero, one, or more permissions. For example: The user `bob` is associated with the role `developer`.
       * `role_endpoint`: A set of enabled or disabled actions. For example: The role `developer` has one `role_endpoint` and reads and writes to `/routes`.
       * `role_entity`: A set of enabled or disabled actions. For example: The role `developer` has one `role_entity` attached to a UUID.
-    name: rbac
+    name: RBAC
   - description: |
       A filter chain is the database entity representing one or more WebAssembly filters executed for each request to a particular service or route, each one with its configuration.
     name: filter-chains

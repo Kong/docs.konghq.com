@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: Portal Management
-  version: 2.0.0
+  version: 2.1.0
   description: The management API for Portals
   contact:
     name: Kong
@@ -39,6 +39,15 @@ tags:
     description: APIs related to Konnect Developer Portal Authentication Settings.
   - name: Portal Appearance
     description: APIs related to Konnect Developer Portal Appearance Settings.
+  - name: Portal Product Versions
+    description: >
+      Portal Product Versions hold metadata that describes how a Product Version
+      is configured for a specific portal.
+        
+        They contain:
+        - Lifecyle and deprecation statuses
+        - Application registration settings like auto approve or whether application registration is enabled
+        - The authentication strategy that is enabled for Application Registration
 paths:
   /portals:
     get:
@@ -76,7 +85,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
   /portals/{portalId}:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
     get:
       summary: Get Portal
       description: >-
@@ -136,7 +145,7 @@ paths:
           $ref: '#/components/responses/NotFound'
   /portals/{portalId}/products:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
     get:
       summary: List Portal Products
       operationId: list-portal-products
@@ -172,9 +181,108 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
-  /portals/{portalId}/developers/{developerId}:
+  /portals/{portalId}/product-versions:
     parameters:
       - $ref: '#/components/parameters/PortalId'
+    get:
+      summary: List portal product versions
+      operationId: list-portal-product-versions
+      description: List portal product versions
+      parameters:
+        - $ref: '#/components/parameters/SortPortalProductVersions'
+        - $ref: '#/components/parameters/PortalProductVersionFilter'
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
+      responses:
+        '200':
+          $ref: '#/components/responses/ListPortalProductVersions'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Portal Product Versions
+    post:
+      summary: Create a portal product version
+      operationId: create-portal-product-version
+      description: Create a portal product version
+      requestBody:
+        $ref: '#/components/requestBodies/CreatePortalProductVersion'
+      responses:
+        '201':
+          $ref: '#/components/responses/PortalProductVersion'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Portal Product Versions
+  /portals/{portalId}/product-versions/{productVersionId}:
+    parameters:
+      - $ref: '#/components/parameters/ProductVersionId'
+      - $ref: '#/components/parameters/PortalId'
+    get:
+      summary: Get a portal product version
+      operationId: get-portal-product-version
+      description: Get a portal product version
+      responses:
+        '200':
+          $ref: '#/components/responses/PortalProductVersion'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Portal Product Versions
+    patch:
+      summary: Update a portal product version
+      operationId: update-portal-product-version
+      description: Update a portal product version
+      requestBody:
+        $ref: '#/components/requestBodies/UpdatePortalProductVersion'
+      responses:
+        '200':
+          $ref: '#/components/responses/PortalProductVersion'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Portal Product Versions
+    delete:
+      summary: Delete a portal product version
+      operationId: delete-portal-product-version
+      description: Delete a portal product version
+      responses:
+        '204':
+          description: No Content.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+      tags:
+        - Portal Product Versions
+  /portals/{portalId}/developers/{developerId}:
+    parameters:
+      - $ref: '#/components/parameters/parameters-PortalId'
       - $ref: '#/components/parameters/DeveloperId'
     get:
       summary: Get Developer
@@ -185,7 +293,7 @@ paths:
         can be limited to specific API products using RBAC.
       operationId: get-developer
       parameters:
-        - $ref: '#/components/parameters/PortalId'
+        - $ref: '#/components/parameters/parameters-PortalId'
         - $ref: '#/components/parameters/DeveloperId'
       tags:
         - Portal Developers
@@ -261,7 +369,7 @@ paths:
         `reference_id`.
       operationId: list-applications
       parameters:
-        - $ref: '#/components/parameters/PortalId'
+        - $ref: '#/components/parameters/parameters-PortalId'
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
         - $ref: '#/components/parameters/SortApplications'
@@ -309,7 +417,7 @@ paths:
           $ref: '#/components/responses/NotFound'
   /portals/{portalId}/applications/{applicationId}:
     get:
-      summary: Get Application
+      summary: Get Application by Portal
       description: >-
         Returns the configuration of a single application in this portal. If an
         application is linked to a DCR Provider, the `dcr_provider.id` and
@@ -317,7 +425,49 @@ paths:
         of credentials and registrations for specific API product versions.
       operationId: get-application
       parameters:
-        - $ref: '#/components/parameters/PortalId'
+        - $ref: '#/components/parameters/parameters-PortalId'
+        - $ref: '#/components/parameters/ApplicationId'
+      tags:
+        - Portal Applications
+      responses:
+        '200':
+          $ref: '#/components/responses/GetApplication'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      summary: Delete Application by Portal
+      description: >-
+        Delete a single application in this portal, along with its registrations
+        and credentials.
+      operationId: delete-application
+      parameters:
+        - $ref: '#/components/parameters/parameters-PortalId'
+        - $ref: '#/components/parameters/ApplicationId'
+      tags:
+        - Portal Applications
+      responses:
+        '204':
+          description: The application has been deleted.
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /applications/{applicationId}:
+    get:
+      summary: Get Application
+      description: >-
+        Returns the configuration of a single application in any portal. If an
+        application is linked to a DCR Provider, the `dcr_provider.id` and
+        `reference_id` can be used to correlate it. An application manages a set
+        of credentials and registrations for specific API product versions.
+      operationId: get-application-unscoped
+      parameters:
         - $ref: '#/components/parameters/ApplicationId'
       tags:
         - Portal Applications
@@ -341,7 +491,7 @@ paths:
         registration.
       operationId: list-registrations
       parameters:
-        - $ref: '#/components/parameters/PortalId'
+        - $ref: '#/components/parameters/parameters-PortalId'
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
         - $ref: '#/components/parameters/SortListAllApplicationRegistrations'
@@ -399,7 +549,7 @@ paths:
         and their current status (e.g., pending, approved, rejected, revoked).
       operationId: list-registrations-by-application
       parameters:
-        - $ref: '#/components/parameters/PortalId'
+        - $ref: '#/components/parameters/parameters-PortalId'
         - $ref: '#/components/parameters/ApplicationId'
         - $ref: '#/components/parameters/PageSize'
         - $ref: '#/components/parameters/PageNumber'
@@ -446,7 +596,7 @@ paths:
           $ref: '#/components/responses/NotFound'
   /portals/{portalId}/applications/{applicationId}/registrations/{registrationId}:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
       - $ref: '#/components/parameters/ApplicationId'
       - $ref: '#/components/parameters/RegistrationId'
     get:
@@ -527,7 +677,7 @@ paths:
       tags:
         - Portal Application Registrations
       parameters:
-        - $ref: '#/components/parameters/PortalId'
+        - $ref: '#/components/parameters/parameters-PortalId'
         - $ref: '#/components/parameters/ApplicationId'
         - $ref: '#/components/parameters/RegistrationId'
       responses:
@@ -565,7 +715,7 @@ paths:
         by disregarding them in the code.
       operationId: get-portal-appearance
       parameters:
-        - $ref: '#/components/parameters/PortalId'
+        - $ref: '#/components/parameters/parameters-PortalId'
       tags:
         - Portal Appearance
       responses:
@@ -588,7 +738,7 @@ paths:
       requestBody:
         $ref: '#/components/requestBodies/UpdatePortalAppearance'
       parameters:
-        - $ref: '#/components/parameters/PortalId'
+        - $ref: '#/components/parameters/parameters-PortalId'
       tags:
         - Portal Appearance
       responses:
@@ -622,7 +772,7 @@ paths:
         if a corresponding SSL certificate has been generated.
       operationId: verify-portal-domains
       parameters:
-        - $ref: '#/components/parameters/PortalId'
+        - $ref: '#/components/parameters/parameters-PortalId'
       tags:
         - Portals
       responses:
@@ -645,7 +795,7 @@ paths:
           $ref: '#/components/responses/NotFound'
   /portals/{portalId}/authentication-settings:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
     get:
       summary: Get Auth Settings
       description: >-
@@ -704,7 +854,7 @@ paths:
           $ref: '#/components/responses/Forbidden'
   /portals/{portalId}/identity-provider/team-group-mappings:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
     get:
       summary: List Team Group Mappings
       description: >-
@@ -770,7 +920,7 @@ paths:
         $ref: '#/components/requestBodies/UpdatePortalTeamGroupMappings'
   /portals/{portalId}/teams:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
     get:
       summary: List Teams
       description: >-
@@ -837,7 +987,7 @@ paths:
   /portals/{portalId}/teams/{teamId}:
     parameters:
       - $ref: '#/components/parameters/TeamId'
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
     get:
       summary: Get Team
       responses:
@@ -890,7 +1040,7 @@ paths:
         - Portal Teams
   /portals/{portalId}/teams/{teamId}/developers:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
       - $ref: '#/components/parameters/TeamId'
     get:
       summary: List Team Developers
@@ -943,7 +1093,7 @@ paths:
         - Portal Team Membership
   /portals/{portalId}/teams/{teamId}/developers/{developerId}:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
       - $ref: '#/components/parameters/parameters-DeveloperId'
       - $ref: '#/components/parameters/TeamId'
     delete:
@@ -965,7 +1115,7 @@ paths:
         - Portal Team Membership
   /portals/{portalId}/teams/{teamId}/assigned-roles:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
       - $ref: '#/components/parameters/TeamId'
       - $ref: '#/components/parameters/PageSize'
       - $ref: '#/components/parameters/PageNumber'
@@ -1026,7 +1176,7 @@ paths:
   /portals/{portalId}/teams/{teamId}/assigned-roles/{roleId}:
     parameters:
       - $ref: '#/components/parameters/RoleId'
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
       - $ref: '#/components/parameters/TeamId'
     delete:
       summary: Remove Role
@@ -1047,7 +1197,7 @@ paths:
         - Portal Team Roles
   /portals/{portalId}/developers:
     parameters:
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
     get:
       summary: List Developers
       description: >-
@@ -1102,7 +1252,7 @@ paths:
   /portals/{portalId}/developers/{developerId}/teams:
     parameters:
       - $ref: '#/components/parameters/parameters-DeveloperId'
-      - $ref: '#/components/parameters/PortalId'
+      - $ref: '#/components/parameters/parameters-PortalId'
     get:
       summary: List Developer Teams
       operationId: list-portal-developer-teams
@@ -1560,6 +1710,56 @@ components:
               department: engineering
               location: cyberspace
             version_count: 21
+    PortalProductVersionExample1:
+      value:
+        id: 22f8380e-7798-4566-99e3-2edf2b57d289
+        publish_status: published
+        product_version_id: 33f8380e-7798-4566-99e3-2edf2b57d289
+        auth_strategies:
+          - id: 44f8380e-7798-4566-99e3-2edf2b57d289
+            name: key auth strategy
+            credential_type: key_auth
+        application_registration_enabled: true
+        auto_approve_registration: true
+        deprecated: false
+        created_at: '2023-01-01T00:00:00.000Z'
+        updated_at: '2023-01-01T00:00:00.000Z'
+    ListPortalProductVersionsExample1:
+      value:
+        data:
+          - id: 22f8380e-7798-4566-99e3-2edf2b57d289
+            publish_status: published
+            product_version_id: 33f8380e-7798-4566-99e3-2edf2b57d289
+            auth_strategies:
+              - id: 44f8380e-7798-4566-99e3-2edf2b57d289
+                name: key auth strategy
+                credential_type: key_auth
+            application_registration_enabled: true
+            auto_approve_registration: true
+            deprecated: false
+            created_at: '2023-01-01T00:00:00.000Z'
+            updated_at: '2023-01-01T00:00:00.000Z'
+        meta:
+          page:
+            number: 1
+            size: 1
+            total: 10
+    PortalProductVersionCreateRequestExample1:
+      value:
+        product_version_id: 33f8380e-7798-4566-99e3-2edf2b57d289
+        auth_strategy_ids:
+          - 44f8380e-7798-4566-99e3-2edf2b57d289
+        publish_status: published
+        application_registration_enabled: true
+        auto_approve_registration: true
+        deprecated: false
+    PortalProductVersionUpdateRequestExample1:
+      value:
+        auto_approve_registration: false
+    PortalProductVersionUpdateAuthStrategyExample:
+      value:
+        auth_strategy_ids:
+          - 44f8380e-7798-4566-99e3-2edf2b57d289
     GetPortalExample1:
       value:
         id: 9f9fd312-a987-4628-b4c5-bb4f4fddd5f7
@@ -2827,6 +3027,27 @@ components:
               $ref: '#/components/examples/UpdatePortalExampleAutoApprove'
             Custom Domains:
               $ref: '#/components/examples/UpdatePortalExampleCustomDomains'
+    CreatePortalProductVersion:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreatePortalProductVersionPayload'
+          examples:
+            PortalProductVersion:
+              $ref: '#/components/examples/PortalProductVersionCreateRequestExample1'
+    UpdatePortalProductVersion:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdatePortalProductVersionPayload'
+          examples:
+            PortalProductVersion:
+              $ref: '#/components/examples/PortalProductVersionUpdateRequestExample1'
+            PortalProductVersionUpdateAuthStrategy:
+              $ref: >-
+                #/components/examples/PortalProductVersionUpdateAuthStrategyExample
     UpdateApplicationRegistration:
       description: Update an application registration.
       required: true
@@ -2875,6 +3096,20 @@ components:
             Revoked:
               $ref: '#/components/examples/UpdateDeveloperExampleRevoked'
   parameters:
+    PortalId:
+      name: portalId
+      description: portal identifier
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/schemas-UUID'
+    ProductVersionId:
+      name: productVersionId
+      description: API product version identifier
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/schemas-UUID'
     DeveloperId:
       name: developerId
       in: path
@@ -2906,6 +3141,31 @@ components:
       required: false
       schema:
         type: string
+    SortPortalProductVersions:
+      name: sort
+      description: >
+        Sorts a collection of Portal Product Versions. Supported sort attributes
+        are:
+          - created_at
+          - updated_at
+          - publish_status
+          - product_version_id
+          - auth_strategy_ids
+          - application_registration_enabled
+          - auto_approve_registration
+          - deprecated
+      in: query
+      required: false
+      schema:
+        type: string
+    PortalProductVersionFilter:
+      name: filter
+      description: Filters a collection of Portal Product Versions.
+      required: false
+      in: query
+      style: deepObject
+      schema:
+        $ref: '#/components/schemas/PortalProductVersionFilters'
     SortDevelopers:
       name: sort
       description: |
@@ -2975,7 +3235,7 @@ components:
       schema:
         type: integer
         example: 1
-    PortalId:
+    parameters-PortalId:
       schema:
         type: string
         format: uuid
@@ -3102,6 +3362,24 @@ components:
           examples:
             Example 1:
               $ref: '#/components/examples/ListPortalProductsExample1'
+    ListPortalProductVersions:
+      description: A response containing a list of portal product versions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ListPortalProductVersions'
+          examples:
+            PortalProductVersion:
+              $ref: '#/components/examples/ListPortalProductVersionsExample1'
+    PortalProductVersion:
+      description: A response containing a portal product version
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PortalProductVersion'
+          examples:
+            PortalProductVersion:
+              $ref: '#/components/examples/PortalProductVersionExample1'
     GetPortal:
       description: Details about a portal and its current settings.
       content:
@@ -3267,6 +3545,12 @@ components:
           examples:
             NotFoundExample:
               $ref: '#/components/examples/NotFoundExample'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BadRequestError'
     Conflict:
       description: Conflict
       content:
@@ -3274,6 +3558,13 @@ components:
           schema:
             $ref: '#/components/schemas/ConflictError'
   schemas:
+    AuthStrategy:
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/AuthStrategyKeyAuth'
+        - $ref: '#/components/schemas/AuthStrategyClientCredentials'
+      discriminator:
+        propertyName: credential_type
     PortalClaimMappings:
       title: PortalClaimMappings
       description: Mappings from a portal developer atribute to an Identity Provider claim.
@@ -3898,6 +4189,178 @@ components:
               department: engineering
               location: cyberspace
             version_count: 21
+    PortalProductVersionFilters:
+      title: PortalProductVersionFilters
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/UuidFieldFilter'
+        publish_status:
+          $ref: '#/components/schemas/PublishStatusFilter'
+        product_version_id:
+          $ref: '#/components/schemas/UuidFieldFilter'
+        created_at:
+          $ref: '#/components/schemas/DateTimeFieldFilter'
+        updated_at:
+          $ref: '#/components/schemas/DateTimeFieldFilter'
+        auth_strategy_ids:
+          $ref: '#/components/schemas/UuidFieldFilter'
+        application_registration_enabled:
+          $ref: '#/components/schemas/BooleanFieldFilter'
+        auto_approve_registration:
+          $ref: '#/components/schemas/BooleanFieldFilter'
+        deprecated:
+          $ref: '#/components/schemas/BooleanFieldFilter'
+    PortalProductVersionPublishStatus:
+      type: string
+      description: Publication status of the API product version on the portal
+      enum:
+        - published
+        - unpublished
+    PortalProductVersionDeprecated:
+      type: boolean
+      description: Whether the api product version on the portal is deprecated
+    PublishStatusFilter:
+      title: PublishStatusFilter
+      description: Filters on the given publish status
+      oneOf:
+        - $ref: '#/components/schemas/StringFieldEqualsFilter'
+        - $ref: '#/components/schemas/StringFieldOEQFilter'
+        - $ref: '#/components/schemas/StringFieldNEQFilter'
+      x-examples:
+        example-1: published
+        example-2:
+          eq: unpublished
+        example-3:
+          neq: unpublished
+    ApplicationRegistrationEnabled:
+      type: boolean
+      description: >-
+        Whether the application registration on this portal for the api product
+        version is enabled
+    AutoApproveRegistration:
+      type: boolean
+      description: >-
+        Whether the application registration auto approval on this portal for
+        the api product version is enabled
+    AuthStrategies:
+      description: A list of authentication strategies
+      type: array
+      minItems: 0
+      maxItems: 1
+      items:
+        $ref: '#/components/schemas/AuthStrategy'
+    AuthStrategyIDs:
+      description: A list of authentication strategy IDs
+      type: array
+      minItems: 0
+      maxItems: 1
+      items:
+        $ref: '#/components/schemas/UUID_RW'
+    CreatePortalProductVersionPayload:
+      title: CreatePortalProductVersionPayload
+      description: Payload to create a Portal Product Version
+      type: object
+      additionalProperties: false
+      properties:
+        publish_status:
+          $ref: '#/components/schemas/PortalProductVersionPublishStatus'
+        product_version_id:
+          $ref: '#/components/schemas/UUID_RW'
+        auth_strategy_ids:
+          $ref: '#/components/schemas/AuthStrategyIDs'
+        application_registration_enabled:
+          $ref: '#/components/schemas/ApplicationRegistrationEnabled'
+        auto_approve_registration:
+          $ref: '#/components/schemas/AutoApproveRegistration'
+        deprecated:
+          $ref: '#/components/schemas/PortalProductVersionDeprecated'
+      required:
+        - publish_status
+        - application_registration_enabled
+        - auto_approve_registration
+        - product_version_id
+        - deprecated
+        - auth_strategy_ids
+    UpdatePortalProductVersionPayload:
+      title: UpdatePortalProductVersionPayload
+      type: object
+      description: Payload to update a Portal Product Version
+      additionalProperties: false
+      properties:
+        publish_status:
+          $ref: '#/components/schemas/PortalProductVersionPublishStatus'
+        auth_strategy_ids:
+          $ref: '#/components/schemas/AuthStrategyIDs'
+        application_registration_enabled:
+          $ref: '#/components/schemas/ApplicationRegistrationEnabled'
+        auto_approve_registration:
+          $ref: '#/components/schemas/AutoApproveRegistration'
+        deprecated:
+          $ref: '#/components/schemas/PortalProductVersionDeprecated'
+    PortalProductVersion:
+      title: PortalProductVersion
+      type: object
+      description: >
+        A Portal Product Version holds metadata that describes how a Product
+        Version is configured for a specific portal.
+
+
+        It contains:
+
+        - Lifecyle and deprecation statuses
+
+        - Application registration settings like auto approve or whether
+        application registration is enabled
+
+        - The Authentication Strategy (if present) that is enabled for
+        Application Registration
+      additionalProperties: false
+      properties:
+        id:
+          $ref: '#/components/schemas/schemas-UUID'
+        publish_status:
+          $ref: '#/components/schemas/PortalProductVersionPublishStatus'
+        product_version_id:
+          $ref: '#/components/schemas/UUID_RW'
+        created_at:
+          $ref: '#/components/schemas/CreatedAt'
+        updated_at:
+          $ref: '#/components/schemas/UpdatedAt'
+        auth_strategies:
+          $ref: '#/components/schemas/AuthStrategies'
+        application_registration_enabled:
+          $ref: '#/components/schemas/ApplicationRegistrationEnabled'
+        auto_approve_registration:
+          $ref: '#/components/schemas/AutoApproveRegistration'
+        deprecated:
+          $ref: '#/components/schemas/PortalProductVersionDeprecated'
+      required:
+        - id
+        - publish_status
+        - application_registration_enabled
+        - auto_approve_registration
+        - product_version_id
+        - deprecated
+        - auth_strategies
+        - created_at
+        - updated_at
+    ListPortalProductVersions:
+      title: ListPortalProductVersions
+      type: object
+      description: A paginated list response for a collection of portal product versions
+      additionalProperties: false
+      required:
+        - data
+        - meta
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PortalProductVersion'
+        meta:
+          $ref: '#/components/schemas/PaginatedMeta'
     PublishedAPIProduct:
       title: PublishedApiProduct
       type: object
@@ -4537,6 +5000,8 @@ components:
             email:
               description: The email of the developer that created the application.
               type: string
+        auth_strategy:
+          $ref: '#/components/schemas/AuthStrategy'
       example:
         id: b15e2460-ba40-431d-9df0-4957fcffacda
         name: App 1
@@ -5937,6 +6402,12 @@ components:
         minLength: 1
         maxLength: 63
       default: {}
+    schemas-UUID:
+      type: string
+      format: uuid
+      example: 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+      description: Contains a unique identifier used by the API for this resource.
+      readOnly: true
     StringFieldEqualsFilter:
       title: StringFieldEqualsFilter
       description: Filters on the given string field value by exact match.
@@ -5997,6 +6468,153 @@ components:
           oeq: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
         example-4:
           neq: 3bbfd3a-e9ab-48a9-9881-ed589e4615d1
+    DateTimeFieldFilter:
+      title: DateTimeFieldFilter
+      description: Filters on the given datetime (RFC-3339) field value.
+      oneOf:
+        - type: string
+          format: date-time
+          description: Value strictly equals given RFC-3339 formatted timestamp in UTC
+          example: '2022-03-30T07:20:50Z'
+        - type: object
+          title: DateTimeFieldEqualsFilter
+          additionalProperties: false
+          properties:
+            eq:
+              type: string
+              format: date-time
+              description: Value strictly equals given RFC-3339 formatted timestamp in UTC
+              example: '2022-03-30T07:20:50Z'
+          required:
+            - eq
+        - type: object
+          title: DateTimeFieldLTFilter
+          additionalProperties: false
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: Value is less than the given RFC-3339 formatted timestamp in UTC
+              example: '2022-03-30T07:20:50Z'
+          required:
+            - lt
+        - type: object
+          title: DateTimeFieldLTEFilter
+          additionalProperties: false
+          properties:
+            lte:
+              type: string
+              format: date-time
+              description: >-
+                Value is less than or equal to the given RFC-3339 formatted
+                timestamp in UTC
+              example: '2022-03-30T07:20:50Z'
+          required:
+            - lte
+        - type: object
+          title: DateTimeFieldGTFilter
+          additionalProperties: false
+          properties:
+            lt:
+              type: string
+              format: date-time
+              description: >-
+                Value is greater than the given RFC-3339 formatted timestamp in
+                UTC
+              example: '2022-03-30T07:20:50Z'
+          required:
+            - gt
+        - type: object
+          title: DateTimeFieldGTEFilter
+          additionalProperties: false
+          properties:
+            lte:
+              type: string
+              format: date-time
+              description: >-
+                Value is greater than or equal to the given RFC-3339 formatted
+                timestamp in UTC
+              example: '2022-03-30T07:20:50Z'
+          required:
+            - gte
+      x-examples:
+        datetime_field_1: '2022-03-30T07:20:50Z'
+        datetime_field_2:
+          eq: '2022-03-30T07:20:50Z'
+        datetime_field_3:
+          lt: '2022-03-30T07:20:50Z'
+        datetime_field_4:
+          lte: '2022-03-30T07:20:50Z'
+        datetime_field_5:
+          gt: '2022-03-30T07:20:50Z'
+        datetime_field_6:
+          gte: '2022-03-30T07:20:50Z'
+    BooleanFieldFilter:
+      title: BooleanFieldFilter
+      description: Filter by a boolean value (true/false).
+      type: boolean
+      x-examples:
+        example-1: true
+    UUID_RW:
+      type: string
+      format: uuid
+      example: 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+      description: Contains a unique identifier used by the API for this resource.
+    AuthStrategyKeyAuth:
+      description: KeyAuth Auth strategy that the application uses.
+      type: object
+      required:
+        - id
+        - name
+        - credential_type
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: b9e81174-b5bb-4638-a3c3-8afe61a0abf8
+          description: The Application Auth Strategy ID.
+          readOnly: true
+        name:
+          type: string
+          example: name
+          default: name
+        credential_type:
+          type: string
+          enum:
+            - key_auth
+    AuthMethods:
+      type: array
+      items:
+        description: Auth Methods enabled for this strategy
+        type: string
+      example:
+        - bearer
+    AuthStrategyClientCredentials:
+      description: Client Credential Auth strategy that the application uses.
+      type: object
+      required:
+        - id
+        - name
+        - credential_type
+        - auth_methods
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: b9e81174-b5bb-4638-a3c3-8afe61a0abf8
+          description: The Application Auth Strategy ID.
+          readOnly: true
+        name:
+          type: string
+          example: name
+          default: name
+        credential_type:
+          type: string
+          enum:
+            - client_credentials
+            - self_managed_client_credentials
+        auth_methods:
+          $ref: '#/components/schemas/AuthMethods'
     StringFieldContainsFilter:
       title: StringFieldContainsFilter
       description: Filters on the given string field value by fuzzy match.

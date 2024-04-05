@@ -148,10 +148,8 @@ through it:
 Use the following configuration options to configure the vaults entity through
 any of the supported tools:
 
-{% if_version gte:3.1.x %}
 * Kong Manager
 * {{site.konnect_short_name}}
-{% endif_version %}
 * Admin API
 * Declarative configuration
 
