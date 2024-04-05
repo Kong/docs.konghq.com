@@ -10,8 +10,7 @@ breadcrumb: Overview
 management platform designed from the ground up for the cloud native era
 and delivered as a service. This platform lets you build modern applications
 better, faster, and more securely. The control plane is hosted
-in the cloud by Kong, while the data plane is managed by you within your
-preferred network environment. All of this is powered by {{site.base_gateway}} — Kong's
+in the cloud by Kong, while you can choose to either host the data plane yourself in your preferred network environment or let Kong manage it for you in the cloud. All of this is powered by {{site.base_gateway}} — Kong's
 lightweight, fast, and flexible API gateway. 
 
 <p align="center">
@@ -79,7 +78,7 @@ across the organization’s applications.
 collaborate and manage their own set of data plane nodes and services without
 the risk of impacting other teams and projects. Gateway Manager instantly
 provisions a hosted {{site.base_gateway}} control plane and supports securely
-attaching data plane nodes from your cloud or hybrid environments.
+attaching data plane nodes.
 
 Through the Gateway Manager, increase the security of your APIs with out-of-the-box enterprise and community plugins, including OpenID Connect, Open Policy Agent, Mutual TLS, and more.
 
