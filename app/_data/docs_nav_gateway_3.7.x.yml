@@ -427,8 +427,16 @@ items:
     items:
       - text: Overview
         url: /plugin-development/
-      - text: Quick Start
-        url: /plugin-development/quickstart
+      - text: Getting Started
+        items:
+          - text: Introduction
+            url: /plugin-development/get-started/index
+          - text: Setup a Plugin Project
+            url: /plugin-development/get-started/setup
+          - text: Add Plugin Testing
+            url: /plugin-development/get-started/testing
+          - text: Add Plugin Configuration
+            url: /plugin-development/get-started/config
       - text: File Structure
         url: /plugin-development/file-structure
       - text: Implementing Custom Logic
