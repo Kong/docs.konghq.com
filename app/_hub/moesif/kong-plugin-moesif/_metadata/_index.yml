@@ -12,7 +12,7 @@ type: plugin
 
 desc: Powerful API analytics and usage-based billing to monetize APIs
 
-support_url: https://www.moesif.com/implementation/log-http-calls-from-kong-api-gateway?utm_medium=docs&utm_campaign=partners&utm_source=kong
+support_url: mailto:support@moesif.com
 
 source_code: https://github.com/Moesif/kong-plugin-moesif
 
@@ -30,6 +30,8 @@ enterprise: false
 kong_version_compatibility: # required
   community_edition: # optional
     compatible:
+      - 3.5.x
+      - 3.4.x
       - 3.3.x
       - 3.2.x
       - 3.0.x
@@ -57,6 +59,8 @@ kong_version_compatibility: # required
     #incompatible:
   enterprise_edition: # optional
     compatible:
+      - 3.5.x
+      - 3.4.x
       - 3.3.x
       - 3.2.x
       - 3.0.x
@@ -81,3 +85,6 @@ kong_version_compatibility: # required
 
 search_aliases:
   - kong-plugin-moesif
+  - Moesif
+  - Moesif API Analytics
+  - Moesif API Monetization
