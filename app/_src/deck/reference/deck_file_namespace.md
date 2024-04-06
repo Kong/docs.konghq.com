@@ -4,18 +4,18 @@ source_url: https://github.com/Kong/deck/tree/main/cmd/file_namespace.go
 content_type: reference
 ---
 
-{% if_version gte:1.36.x}
+{% if_version gte:1.36.x %}
 
 Apply a namespace to routes in a decK file by path or hostname.
 
 There are two main ways to namespace APIs:
 
-1. Use path prefixes, all on the same hostname;
-   a. `http://api.acme.com/service1/somepath`
-   b. `http://api.acme.com/service2/somepath`
+1. Use path prefixes, all on the same hostname:
+   1. `http://api.acme.com/service1/somepath`
+   2. `http://api.acme.com/service2/somepath`
 2. Use separate hostnames:
-   a. `http://service1.api.acme.com/somepath`
-   b. `http://service2.api.acme.com/somepath`
+   1. `http://service1.api.acme.com/somepath`
+   2. `http://service2.api.acme.com/somepath`
 
 For hostnames, the `--host` and `--clear-hosts` flags are used. Just using `--host` appends
 to the existing hosts, while adding `--clear-hosts` will effectively replace the existing ones.
@@ -56,6 +56,8 @@ deck file namespace [command-specific flags] [global flags] filename [...filenam
 ```
 
 ## Examples
+
+{% if_version gte:1.36.x %}
 
 ```sh
 # Apply namespace to a deckfile, path and host:
