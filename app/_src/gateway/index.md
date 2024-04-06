@@ -6,41 +6,27 @@ description: Kong Gateway is a lightweight, fast, and flexible cloud-native API 
 konnect_cta_card: true
 ---
 
-## Quick Links
+## How to get started
 
 <div class="docs-grid-install max-3">
 
-  <a href="#features" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
-    <div class="install-text">Features</div>
-  </a>
-
   <a href="/konnect/getting-started/" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/icn-cloud-blue.svg" alt="">
-    <div class="install-text">Quick Start (Cloud)</div>
+    <img class="install-icon no-image-expand small" src="/assets/images/icons/konnect/runtimes.svg" alt="">
+    <div class="install-text">Start with Konnect <br> <span class="badge recommended"></span></div>
   </a>
 
   <a href="/gateway/{{page.release}}/get-started/" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-learning.svg" alt="">
-    <div class="install-text">Quick Start (Docker)</div>
+    <img class="install-icon no-image-expand small" src="/assets/images/icons/third-party/docker.svg" alt="">
+    <div class="install-text">Start locally with Docker</div>
   </a>
 
   <a href="/gateway/{{page.release}}/install/" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-deployment-color.svg" alt="">
-    <div class="install-text">Install</div>
+    <img class="install-icon no-image-expand small" src="/assets/images/icons/documentation/icn-deployment-color.svg" alt="">
+    <div class="install-text">Install on your platform</div>
   </a>
-
-  <a href="/hub/" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-api-plugins-color.svg" alt="">
-    <div class="install-text">Plugins</div>
-  </a>
-
-  <a href="/gateway/{{page.release}}/admin-api/" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-admin-api-color.svg" alt="">
-    <div class="install-text">API Reference</div>
-  </a>
-
 </div>
+
+To learn more about what you can do with {{site.base_gateway}}, see [Features](#features).
 
 ## Introducing {{ site.base_gateway }}
 
