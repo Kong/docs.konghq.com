@@ -1,10 +1,10 @@
 product: deck
-release: 1.36.x
+release: 1.37.x
 generate: true
 items:
   - title: Introduction
     icon: /assets/images/icons/documentation/icn-flag.svg
-    url: /deck/1.36.x/
+    url: /deck/1.37.x/
     absolute_url: true
     items:
       - text: Terminology
