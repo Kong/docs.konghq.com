@@ -364,6 +364,7 @@ nameserver
 nameservers
 namespace
 namespaced
+namespacing
 namespaces
 NAT
 NATs
