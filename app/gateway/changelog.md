@@ -24,7 +24,7 @@ For product versions that have reached the end of sunset support, see the [chang
 
 #### Clustering
 
-* Modified the current AWS Vault backend to support `CredentialProviderChain` so that users can choose not 
+* Adjusted clustering compatible check related to AWS Secrets Manager.
 to use `AK-SK` environment variables to grant IAM role permissions.
 
 #### Configuration
