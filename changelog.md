@@ -2,6 +2,84 @@
 
 <!--vale off-->
 
+## Week 14
+
+### [Add tls.mode=Terminate to KIC Gateway API concept](https://github.com/Kong/docs.konghq.com/pull/7182) (2024-04-05)
+
+Resolves #7132
+
+#### Modified
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/concepts/gateway-api
+- https://docs.konghq.com/kubernetes-ingress-controller/3.1.x/concepts/gateway-api
+- https://docs.konghq.com/kubernetes-ingress-controller/3.2.x/concepts/gateway-api
+
+
+### [Correct append config example](https://github.com/Kong/docs.konghq.com/pull/7179) (2024-04-05)
+
+The append example was not really using the append config option
+
+
+
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/request-transformer-advanced/how-to/
+
+
+### [Remove KIC versions below 2.5](https://github.com/Kong/docs.konghq.com/pull/7149) (2024-04-02)
+
+KIC versions < 2.5 are out of support. Content migrated in #7148
+
+
+
+### [Feat: Interactive markdown renderer](https://github.com/Kong/docs.konghq.com/pull/7140) (2024-04-03)
+
+https://konghq.atlassian.net/browse/DOCU-3620
+
+* Adds docs for interactive markdown renderer. 
+* Renames `Manage API Product Documentation` -> `Product Documentation` in navigation bar
+* Updates and replaces screenshots
+* Does not update shotscraper script this will be a fast follow. 
+* adds changelog
+
+
+https://deploy-preview-7140--kongdocs.netlify.app/
+
+#### Added
+
+- https://docs.konghq.com/assets/images/products/konnect/changelog/konnect-interactive-markdown.png
+
+#### Modified
+
+- https://docs.konghq.com/assets/images/products/konnect/api-products/konnect_service_docs_description.png
+- https://docs.konghq.com/konnect/api-products/
+- https://docs.konghq.com/konnect/api-products/service-documentation
+- https://docs.konghq.com/konnect/dev-portal/
+- https://docs.konghq.com/konnect/updates
+
+
+### [Add gateway image build provenance verification docs](https://github.com/Kong/docs.konghq.com/pull/7067) (2024-04-01)
+
+These are the customer-facing docs needed to allow customers to take full advantage of the recent changes to the Kong Enterprise build that implement SLSA build provenance and verification for only container images
+
+Confluence: [Solutions Document](https://konghq.atlassian.net/wiki/spaces/KS/pages/3309273092/Solution+-+Container+Provenance+-+SLSA+generator)
+Jira: [SEC-973](https://konghq.atlassian.net/browse/SEC-1003)
+https://github.com/Kong/kong-ee/pull/7179
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Added
+
+- https://docs.konghq.com/gateway/3.6.x/kong-enterprise/provenance-verification
+- https://docs.konghq.com/gateway/3.7.x/kong-enterprise/provenance-verification
+
 ## Week 13
 
 ### [style(gateway/expressions-language): fix incorrect formatting](https://github.com/Kong/docs.konghq.com/pull/7143) (2024-03-27)
