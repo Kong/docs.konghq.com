@@ -33,6 +33,7 @@ type: plugin
     %}
 
     {% capture full_content %}
+      {% include missing_translation_banner.html %}
       {% if extn_versions %}
         {% unless page.is_latest %}
             {% if page.release.label %}
@@ -60,8 +61,6 @@ type: plugin
     <div class="page-content-container v2" id="documentation">
       <div class="page-content">
         <div class="content show-anchor-links">
-          {% include missing_translation_banner.html %}
-
           {% if page.alpha %}
             <blockquote class="warning no-icon">
               This plugin is released as a <a href="/gateway/latest/availability-stages/#tech-preview"><span class="badge alpha" role="link" aria-label="tech preview"></span></a> (alpha-quality) and should not be deployed in a production environment.
