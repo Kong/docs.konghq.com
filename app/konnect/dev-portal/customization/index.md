@@ -48,7 +48,7 @@ To add a custom URL to Dev Portal, you need:
 
 You can also choose to [self-host the Dev Portal with Netlify](/konnect/dev-portal/customization/netlify/) or any other static hosting service that supports single page applications.
 
-[Configure DNS](/konnect/reference/custom-dns)
+[Configure DNS &rarr;](/konnect/reference/custom-dns)
 
 ## Single sign-on
 {:.badge .enterprise}

@@ -5,12 +5,12 @@ title: Custom Domains
 {{site.konnect_short_name}} integrates domain name management and configuration in the Dev Portal and with [managed data planes](/konnect/dedicated-cloud-gateways/). 
 
 
-## Managed Data Planes
+## Managed data planes
 ### {{site.konnect_short_name}} configuration
 
 1. Open {% konnect_icon runtimes %} **Gateway Manager**, choose a control plane to open the **Overview** dashboard, then click **Connect**.
     
-    The **Connect** menu will open and display the URL for the **Public Edge DNS**, save this URL.
+    The **Connect** menu will open and display the URL for the **Public Edge DNS**. Save this URL.
 
 
 1. Select **Custom Domains** from the side navigation, then **New Custom Domain**, and enter your domain name.
@@ -18,11 +18,11 @@ title: Custom Domains
     Save the values that appear under **CNAME** and **Content**. 
 
 
-### Domain Register configuration
+### Domain registrar configuration
 
 1. Log in to your domain registrar's dashboard.
 1. Navigate to the DNS settings section. This area might be labeled differently depending on your registrar.
-1. Locate the option to add a new CNAME record and create the following records with the values saved in the previous step. For example in AWS Route 53, it would look like this: 
+1. Locate the option to add a new CNAME record and create the following records using the values saved in the [{{site.konnect_short_name}} configuration](#konnect-configuration) section. For example, in AWS Route 53, it would look like this: 
 
 | Host Name                       | Record Type | Routing Policy | Alias | Evaluate Target Health | Value                                                | TTL |
 |---------------------------------|-------------|----------------|-------|------------------------|------------------------------------------------------|-----|

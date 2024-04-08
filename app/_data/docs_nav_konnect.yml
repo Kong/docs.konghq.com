@@ -372,4 +372,4 @@
     - text: Plugin Ordering Reference
       url: /reference/plugins/
     - text: Custom DNS
-      url: /gateway-manager/data-plane-nodes/custom-dns
+      url: /reference/custom-dns/
