@@ -5,7 +5,7 @@ content_type: concept
 
 Dedicated cloud gateways are API gateway data plane nodes in {{site.konnect_short_name}} that are completely managed by Kong in the cloud provider of your choice. You maintain control over the size and location of the gateway infrastructure, while Kong oversees the management of each instance and the entire cluster for you. This allows Kong to autoscale your nodes for you and reduces your operational complexity.
 
-You can manage your dedicated cloud gateway nodes alongside all your other gateway nodes in [Gateway Manager](https://cloud.konghq.com/gateway-manager/).
+You can manage your Dedicated Cloud Gateway nodes in [Gateway Manager](https://cloud.konghq.com/gateway-manager/).
 
 ![cloud gateway dashboard](/assets/images/products/konnect/gateway-manager/konnect-control-plane-cloud-gateway.png)
 > _**Figure 1:** Example of the dedicated cloud gateway data plane node dashboard in Gateway Manager. The dashboard displays the requests, error rate, and P99 latency. It also displays the cluster configuration, as well as the data plane groups and regions._
