@@ -1,0 +1,7 @@
+{% unless site.locale == 'en' %}
+  {% if page.translation_fallback == true %}
+    <blockquote class="note missing-translation-banner">
+      <p>{% t _includes.missing_translation_banner.text %}</p>
+    </blockquote>
+  {% endif %}
+{% endunless %}
