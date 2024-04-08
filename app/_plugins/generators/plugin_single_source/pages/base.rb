@@ -31,6 +31,7 @@ module PluginSingleSource
                   .merge!(url_attributes)
                   .merge!(page_attributes)
                   .merge!(frontmatter_attributes)
+                  .merge!(i18n_attributes)
       end
 
       def content
@@ -136,6 +137,10 @@ module PluginSingleSource
         @frontmatter_attributes ||= Utils::FrontmatterParser.new(
           File.read(File.expand_path(@file, @source_path))
         ).frontmatter
+      end
+
+      def i18n_attributes
+        Jekyll::Pages::TranslationMissingData.new(@site).data
       end
     end
   end
