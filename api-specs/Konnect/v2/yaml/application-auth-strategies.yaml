@@ -735,6 +735,12 @@ components:
 
         verified on the server to ensure that incoming requests are coming from
         Konnect.
+    DcrConfigPropertyDisableEventHooks:
+      title: DcrConfigPropertyDisableEventHooks
+      type: boolean
+      description: >-
+        This flag disables all the event-hooks on the application flow for the
+        DCR provider.
     DcrConfigAuth0InResponse:
       title: DcrConfigAuth0InResponse
       type: object
@@ -882,6 +888,8 @@ components:
         dcr_base_url:
           type: string
           format: url
+        disable_event_hooks:
+          $ref: '#/components/schemas/DcrConfigPropertyDisableEventHooks'
     CreateDcrConfigHttpInRequest:
       title: CreateDcrConfigHttpInRequest
       type: object
@@ -895,6 +903,8 @@ components:
           $ref: '#/components/schemas/DcrBaseUrl'
         api_key:
           $ref: '#/components/schemas/DcrConfigPropertyApiKey'
+        disable_event_hooks:
+          $ref: '#/components/schemas/DcrConfigPropertyDisableEventHooks'
     UpdateDcrConfigHttpInRequest:
       title: CreateDcrConfigHttpInRequest
       type: object
@@ -905,6 +915,8 @@ components:
           $ref: '#/components/schemas/DcrBaseUrl'
         api_key:
           $ref: '#/components/schemas/DcrConfigPropertyApiKey'
+        disable_event_hooks:
+          $ref: '#/components/schemas/DcrConfigPropertyDisableEventHooks'
     DcrProviderType:
       title: DcrProviderType
       type: string
@@ -954,6 +966,8 @@ components:
         dcr_config:
           type: object
           description: The DCR configuration for this DCR provider.
+        labels:
+          $ref: '#/components/schemas/Labels'
         created_at:
           $ref: '#/components/schemas/CreatedAt'
         updated_at:
@@ -1092,6 +1106,8 @@ components:
           type: string
           format: url
           maxLength: 256
+        labels:
+          $ref: '#/components/schemas/Labels'
     CreateDcrProviderRequestAzureAd:
       title: CreateDcrProviderRequestAzureAd
       type: object
@@ -1116,6 +1132,8 @@ components:
           type: string
           format: url
           maxLength: 256
+        labels:
+          $ref: '#/components/schemas/Labels'
     CreateDcrProviderRequestCurity:
       title: CreateDcrProviderRequestCurity
       type: object
@@ -1140,6 +1158,8 @@ components:
           type: string
           format: url
           maxLength: 256
+        labels:
+          $ref: '#/components/schemas/Labels'
     CreateDcrProviderRequestOkta:
       title: CreateDcrProviderRequestOkta
       type: object
@@ -1164,6 +1184,8 @@ components:
           type: string
           format: url
           maxLength: 256
+        labels:
+          $ref: '#/components/schemas/Labels'
     CreateDcrProviderRequestHttp:
       title: CreateDcrProviderRequestHttp
       type: object
@@ -1188,6 +1210,8 @@ components:
           type: string
           format: url
           maxLength: 256
+        labels:
+          $ref: '#/components/schemas/Labels'
     CreateDcrProviderRequest:
       title: CreateDcrProviderRequest
       description: >-
@@ -1218,6 +1242,8 @@ components:
           type: string
           format: url
           maxLength: 256
+        labels:
+          $ref: '#/components/schemas/LabelsUpdate'
         dcr_config:
           anyOf:
             - $ref: '#/components/schemas/UpdateDcrConfigAuth0InRequest'
@@ -1677,6 +1703,24 @@ components:
       example: 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7
       description: Contains a unique identifier used by the API for this resource.
       readOnly: true
+    Labels:
+      title: Labels
+      type: object
+      example:
+        env: test
+      maxProperties: 50
+      description: >
+        Labels store metadata of an entity that can be used for filtering an
+        entity list or for searching across entity types. 
+
+
+        Keys must be of length 1-63 characters, and cannot start with "kong",
+        "konnect", "mesh", "kic", or "_".
+      additionalProperties:
+        type: string
+        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$
+        minLength: 1
+        maxLength: 63
     CreatedAt:
       type: string
       format: date-time
@@ -1919,6 +1963,26 @@ components:
           example: Not found
       allOf:
         - $ref: '#/components/schemas/BaseError'
+    LabelsUpdate:
+      type: object
+      nullable: true
+      description: >
+        Labels store metadata of an entity that can be used for filtering an
+        entity list or for searching across entity types. 
+
+
+        Keys must be of length 1-63 characters, and cannot start with "kong",
+        "konnect", "mesh", "kic", or "_".
+      example:
+        env: test
+      maxProperties: 50
+      additionalProperties:
+        type: string
+        pattern: ^[a-z0-9A-Z]{1}([a-z0-9A-Z-._]*[a-z0-9A-Z]+)?$
+        minLength: 1
+        maxLength: 63
+        nullable: true
+      writeOnly: true
     StringFieldEqualsFilter:
       title: StringFieldEqualsFilter
       description: Filters on the given string field value by exact match.
