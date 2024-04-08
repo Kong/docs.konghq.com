@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
 
 set -e
-bundle exec jekyll build --config jekyll.yml --profile
+
+if [ "$LOCALE" = "ja" ]; then
+    echo "Building site in japanese..."
+    bundle exec jekyll build --config jekyll.yml,_translated_content/jekyll.yml --profile
+else
+    echo "Building site in english..."
+    bundle exec jekyll build --config jekyll.yml --profile
+fi

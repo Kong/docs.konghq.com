@@ -1,0 +1,39 @@
+# for Kong platform extensions (not Jekyll)
+categories:
+  - name: AI
+    slug: ai
+    desc: Govern, secure, and control AI traffic with multi-LLM AI Gateway plugins
+    icon: /assets/images/nav/hub/ai.svg
+  - name: Authentication
+    slug: authentication
+    desc: Protect your services with an authentication layer
+    icon: /assets/images/nav/hub/lock_person.svg
+  - name: Security
+    slug: security
+    desc: Protect your services with additional security layer
+    icon: /assets/images/nav/hub/shield.svg
+  - name: Traffic Control
+    slug: traffic-control
+    desc: Manage, throttle and restrict inbound and outbound API traffic
+    icon: /assets/images/nav/hub/route.svg
+  - name: Serverless
+    slug: serverless
+    desc: Invoke serverless functions in combination with other plugins
+    icon: /assets/images/nav/hub/serverless.svg
+  - name: Analytics & Monitoring
+    slug: analytics-monitoring
+    desc: Visualize, inspect and monitor APIs and microservices traffic
+    icon: /assets/images/nav/hub/bar_chart.svg
+  - name: Transformations
+    slug: transformations
+    desc: Transform request and responses on the fly on Kong
+    icon: /assets/images/nav/hub/swap_horiz.svg
+  - name: Logging
+    slug: logging
+    desc: Log request and response data using the best transport for your infrastructure
+    icon: /assets/images/nav/hub/list_alt.svg
+types:
+  - name: plugin
+    slug: plugin
+  - name: integration
+    slug: integration
