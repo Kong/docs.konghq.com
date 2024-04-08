@@ -238,9 +238,12 @@
 - release: "1.35.x"
   version: "1.35.0"
   edition: "deck"
-  latest: true
 - release: "1.36.x"
-  version: "1.36.0"
+  version: "1.36.1"
+  edition: "deck"
+  latest: true
+- release: "1.37.x"
+  version: "1.37.0"
   edition: "deck"
   label: unreleased
 - edition: "konnect"
