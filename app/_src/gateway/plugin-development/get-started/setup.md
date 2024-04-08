@@ -23,137 +23,139 @@ In this chapter we start by creating a bare-bones {{site.base_gateway}} custom p
 create the necessary folders and files and then author a short amount of Lua code to create a 
 basic functioning plugin.
 
-1. **Initialize a new plugin repository**
+### 1. Initialize a new plugin repository
 
-    Start by opening a terminal and changing directories to a location where you store source code. 
-    
-    Create a new folder for the plugin and navigate into it:
+Start by opening a terminal and changing directories to a location where you store source code. 
 
-    ```sh
-    mkdir -p my-plugin && \
-      cd my-plugin
-    ```
+Create a new folder for the plugin and navigate into it:
 
-    Next, create the plugin folder structure:
+```sh
+mkdir -p my-plugin && \
+  cd my-plugin
+```
 
-    {:.note}
-    > **Important:** The specific tree structure and filenames shown in this guide are important to ensuring 
-    > the development and execution of your plugin works properly with {{site.base_gateway}}. Do not
-    > deviate from these names for this guide.
+Next, create the plugin folder structure:
 
-    ```sh
-    mkdir -p kong/plugins/my-plugin && \
-      mkdir -p spec/my-plugin
-    ```
+{:.note}
+> **Important:** The specific tree structure and filenames shown in this guide are important to ensuring 
+> the development and execution of your plugin works properly with {{site.base_gateway}}. Do not
+> deviate from these names for this guide.
 
-    Plugins are made up of [Lua modules](http://www.lua.org/manual/5.1/manual.html#5.3) defined in 
-    individual files. 
+```sh
+mkdir -p kong/plugins/my-plugin && \
+  mkdir -p spec/my-plugin
+```
 
-    Start by creating empty `handler.lua` and `schema.lua` files, which are the minimum required modules
-    for a functioning plugin:
+Plugins are made up of [Lua modules](http://www.lua.org/manual/5.1/manual.html#5.3) defined in 
+individual files. 
 
-    ```sh
-    touch kong/plugins/my-plugin/handler.lua
-    touch kong/plugins/my-plugin/schema.lua
-    ```
+Start by creating empty `handler.lua` and `schema.lua` files, which are the minimum required modules
+for a functioning plugin:
 
-    We now have the base structure for a new plugin, let's look at how to author code for these modules.
+```sh
+touch kong/plugins/my-plugin/handler.lua
+touch kong/plugins/my-plugin/schema.lua
+```
 
-1. **Initialize the Schema module**
+We now have the base structure for a new plugin, let's look at how to author code for these modules.
 
-    The `schema.lua` file defines your plugins configuration data model. The following is the minimum structure 
-    required for a valid plugin.
+### 2. Initialize the Schema module
 
-    Add the following code to the `schema.lua` file:
+ The `schema.lua` file defines your plugins configuration data model. The following is the minimum structure 
+ required for a valid plugin.
 
-    ```lua
-    local PLUGIN_NAME = "my-plugin"
+ Add the following code to the `schema.lua` file:
 
-    local schema = {
-      name = PLUGIN_NAME,
-      fields = {
-        { config = {
-            type = "record",
-            fields = {
-            },
-          },
-        },
-      },
-    }
-    
-    return schema
-    ```
-    
-    This creates a base table for our plugin's configuration (which is empty).  Later in this guide we will add 
-    configurable values to the table and show how to configure the plugin at runtime. Next, let's begin to 
-    add the handler code for the plugin.
+ ```lua
+ local PLUGIN_NAME = "my-plugin"
 
-1. **Initialize the Handler module**
-  
-    The `handler.lua` module contains the core logic of your new plugin.
-    Start by putting the following Lua code into the `handler.lua` file:
-
-    ```lua
-    local MyPluginHandler = {
-        PRIORITY = 1000,
-        VERSION = "0.0.1",
-    }
-
-    return MyPluginHandler
-    ```
-
-    This code defines a [Lua table](https://www.lua.org/pil/2.5.html) specifying a set of required 
-    fields for a valid plugin:
-
-    * The `PRIORITY` field sets the static 
-    [execution order](/gateway/{{page.release}}/plugin-development/custom-logic/#plugins-execution-order) 
-    of the plugin, which determines when this plugin is executed relative to other loaded plugins.
-    * The `VERSION` field sets the version for this plugin and should follow the `major.minor.revision` format.
-    
-    At this point, we have a valid plugin (which does nothing). Next We will add logic to the plugin
-    and then see how to validate it.
-
-1. **Add handler logic**
-
-    Plugin logic is defined to be executed at several key points in the lifecycle of
-    HTTP requests, tcp streams, and {{site.base_gateway}} itself.
-
-    Inside the `handler.lua` module, you will add 
-    [functions](/gateway/{{page.release}}/plugin-development/custom-logic/#available-contexts)
-    with well known names to the plugin table, indicating at what points the plugin logic should 
-    be executed. 
-
-    In this example we will add an `response` function, which is executed after a response has been
-    received from an upstream service but before returning it to the client. 
-
-    Let's add a header to the response prior to returning it to the client. Add the following 
-    function implementation to the `handler.lua` file before the `return MyPluginHandler` statement:
-
-    ```lua
-    function MyPluginHandler:response(conf)
-        kong.response.set_header("X-MyPlugin", "response")
-    end
-    ```
-
-    The `kong.response` module provided in the 
-    [Kong PDK](/gateway/{{page.release}}/plugin-development/pdk/), provides
-    functions for manipulating the response sent back to the client. The code above sets 
-    a new header on all responses with the name `X-MyPlugin` and value of `response`. 
-
-    The full `handler.lua` file listing now looks like this:
-
-    ```lua
-    local MyPluginHandler = {
-      PRIORITY = 1000,
-      VERSION = "0.0.1",
-    }
-
-    function MyPluginHandler:response(conf)
-        kong.response.set_header("X-MyPlugin", "response")
-    end
+ local schema = {
+   name = PLUGIN_NAME,
+   fields = {
+     { config = {
+         type = "record",
+         fields = {
+         },
+       },
+     },
+   },
+ }
  
-    return MyPluginHandler
-    ```
+ return schema
+ ```
+ 
+ This creates a base table for our plugin's configuration (which is empty).  Later in this guide we will add 
+ configurable values to the table and show how to configure the plugin at runtime. Next, let's begin to 
+ add the handler code for the plugin.
+
+### 3. Initialize the Handler module
+
+ The `handler.lua` module contains the core logic of your new plugin.
+ Start by putting the following Lua code into the `handler.lua` file:
+
+ ```lua
+ local MyPluginHandler = {
+     PRIORITY = 1000,
+     VERSION = "0.0.1",
+ }
+
+ return MyPluginHandler
+ ```
+
+ This code defines a [Lua table](https://www.lua.org/pil/2.5.html) specifying a set of required 
+ fields for a valid plugin:
+
+ * The `PRIORITY` field sets the static 
+ [execution order](/gateway/{{page.release}}/plugin-development/custom-logic/#plugins-execution-order) 
+ of the plugin, which determines when this plugin is executed relative to other loaded plugins.
+ * The `VERSION` field sets the version for this plugin and should follow the `major.minor.revision` format.
+ 
+ At this point, we have a valid plugin (which does nothing). Next We will add logic to the plugin
+ and then see how to validate it.
+
+### 4. Add handler logic
+
+Plugin logic is defined to be executed at several key points in the lifecycle of
+HTTP requests, tcp streams, and {{site.base_gateway}} itself.
+
+Inside the `handler.lua` module, you will add 
+[functions](/gateway/{{page.release}}/plugin-development/custom-logic/#available-contexts)
+with well known names to the plugin table, indicating at what points the plugin logic should 
+be executed. 
+
+In this example we will add an `response` function, which is executed after a response has been
+received from an upstream service but before returning it to the client. 
+
+Let's add a header to the response prior to returning it to the client. Add the following 
+function implementation to the `handler.lua` file before the `return MyPluginHandler` statement:
+
+```lua
+function MyPluginHandler:response(conf)
+    kong.response.set_header("X-MyPlugin", "response")
+end
+```
+
+The `kong.response` module provided in the 
+[Kong PDK](/gateway/{{page.release}}/plugin-development/pdk/), provides
+functions for manipulating the response sent back to the client. The code above sets 
+a new header on all responses with the name `X-MyPlugin` and value of `response`. 
+
+The full `handler.lua` file listing now looks like this:
+
+```lua
+local MyPluginHandler = {
+  PRIORITY = 1000,
+  VERSION = "0.0.1",
+}
+
+function MyPluginHandler:response(conf)
+    kong.response.set_header("X-MyPlugin", "response")
+end
+
+return MyPluginHandler
+```
+
+## What's next?
 
 At this stage, you now have a functional plugin for {{site.base_gateway}}. 
 However, a development project is incomplete without testing. In the following chapter, 

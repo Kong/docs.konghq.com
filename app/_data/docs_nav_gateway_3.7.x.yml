@@ -431,12 +431,16 @@ items:
         items:
           - text: Introduction
             url: /plugin-development/get-started/index
-          - text: Setup a Plugin Project
+          - text: Setup the Plugin Project
             url: /plugin-development/get-started/setup
           - text: Add Plugin Testing
             url: /plugin-development/get-started/testing
           - text: Add Plugin Configuration
             url: /plugin-development/get-started/config
+          - text: Consume External Services
+            url: /plugin-development/get-started/http
+          - text: Deploy Plugins
+            url: /plugin-development/get-started/deploy
       - text: File Structure
         url: /plugin-development/file-structure
       - text: Implementing Custom Logic

@@ -8,16 +8,16 @@ This tutorial will walk you through all the steps to build a new custom plugin f
 The plugin you build will transform HTTP traffic as it passes through the API gateway, and give you
 a solid starting point for building custom plugins to solve your specific business needs.
 
-The guide starts by setting up a new plugin project, showing how folders are structured and which
-files contain the custom plugin code. The second chapter describes testing tools and how to build automated tests 
-for your custom plugins. In the third chapter we explain how to add configuration to your plugin 
-allowing for customization at runtime. 
+The guide starts by setting up a new plugin project, showing how folders are structured and explaining 
+code file contents and best practices. The guide proceeds by describing testing tools and how to 
+build automated tests for your custom plugins. The guide continues by showing how to add 
+plugin configuration to the project allowing for runtime behavior changes.
 
-Later chapters of the guide go further and provide guideance on more advanced topics including 
-plugin deployments. 
+Later chapters of the guide go further to provide guidance on advanced topics including 
+consuming external services from within your plugin and plugin deployments.
 
 Use the links on the bottom of these pages to navigate the guide. If you experience any issues
-with this guide, please reach out by 
+with this sample code or guidance in these pages, please reach out by 
 [reporting an issue on GitHub](https://github.com/Kong/docs.konghq.com/issues).
 
 {:.note}
