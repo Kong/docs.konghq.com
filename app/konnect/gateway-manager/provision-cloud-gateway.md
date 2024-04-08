@@ -37,7 +37,127 @@ Your cloud gateway is now provisioned. You can use it like you would any other {
 {% navtab API %}
 The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
 
-1. 
+1. Create a Dedicated Cloud Gateway control plane using the [`/control-planes` endpoint](https://docs.konghq.com/konnect/api/control-planes/latest/#/Control%20Planes/create-control-plane):
+    info about why you have to do this.
+    ```bash
+    curl --request POST \
+    --url https://<region>.api.konghq.com/v2/control-planes \
+    --header 'Authorization: Bearer kpat_TOKEN' \
+    --header 'Content-Type: application/json' \
+    --header 'User-Agent: insomnia/8.6.0' \
+    --data '{
+    "name": "Docs-test-api",
+    "description": "A test control plane for exploration.",
+    "cluster_type": "CLUSTER_TYPE_CONTROL_PLANE",
+    "cloud_gateway": true,
+    "proxy_urls": [
+        {
+        "host": "example.com",
+        "port": 443,
+        "protocol": "https"
+        }
+    ],
+    "labels": {
+        "env": "test-docs"
+    }
+    }'
+    ```
+
+    Response:
+
+    ```bash
+    {
+	"id": "3e62d2e6-45e9-4046-8065-9cd28cb3487d",
+	"name": "Docs-test-api",
+	"description": "A test control plane for exploration.",
+	"labels": {
+		"env": "test-docs"
+	},
+	"config": {
+		"control_plane_endpoint": "https://cf1cdd4d58.us.cp0.konghq.com",
+		"telemetry_endpoint": "https://cf1cdd4d58.us.tp0.konghq.com",
+		"cluster_type": "CLUSTER_TYPE_HYBRID",
+		"auth_type": "pinned_client_certs",
+		"cloud_gateway": true,
+		"proxy_urls": [
+			{
+				"host": "example.com",
+				"port": 443,
+				"protocol": "https"
+			}
+		]
+	},
+	"created_at": "2024-04-04T14:03:46.157Z",
+	"updated_at": "2024-04-04T14:03:46.157Z"
+    }
+    ```
+1. Create a Dedicated Cloud Gateway data plane using the [`/cloud-gateways/configurations` endpoint](link):
+
+    ```sh
+    curl --request PUT \
+        --url https://<region>.api.konghq.com/v2/cloud-gateways/configurations \
+        --header 'Authorization: Bearer kpat_TOKEN' \
+        --header 'Content-Type: application/json' \
+        --data '{
+        "control_plane_id": "3e62d2e6-45e9-4046-8065-9cd28cb3487d",
+        "version": "3.6",
+            "control_plane_geo": "us",
+        "dataplane_groups": [
+            {
+            "provider": "aws",
+            "region": "ap-northeast-1",
+            "cloud_gateway_network_id": "0e465f2f-4fa3-43ed-8900-bb6210c1e554",
+            "autoscale": {
+                    "kind": "autopilot",
+                                "base_rps": 100
+                }
+            }
+        ]
+        }'
+    ```
+
+    Response:
+
+    ```sh
+    {
+	"id": "3682c148-1985-44a0-8cf0-c49f76a53dda",
+	"control_plane_id": "3e62d2e6-45e9-4046-8065-9cd28cb3487d",
+	"control_plane_geo": "us",
+	"version": "3.6",
+	"api_access": "private+public",
+	"dataplane_group_config": [
+		{
+			"provider": "aws",
+			"region": "ap-northeast-1",
+			"autoscale": {
+				"kind": "autopilot",
+				"base_rps": 100,
+				"max_rps": 1000
+			},
+			"cloud_gateway_network_id": "0e465f2f-4fa3-43ed-8900-bb6210c1e554"
+		}
+	],
+	"dataplane_groups": [
+		{
+			"id": "a27b8b9b-f3c9-42f6-b0ea-5a678c008298",
+			"provider": "aws",
+			"region": "ap-northeast-1",
+			"autoscale": {
+				"kind": "autopilot",
+				"base_rps": 100,
+				"max_rps": 1000
+			},
+			"state": "initializing",
+			"cloud_gateway_network_id": "0e465f2f-4fa3-43ed-8900-bb6210c1e554",
+			"created_at": "2024-04-04T14:14:22.717Z",
+			"updated_at": "2024-04-04T14:14:22.717Z"
+		}
+	],
+	"created_at": "2024-04-04T14:14:22.717Z",
+	"updated_at": "2024-04-04T14:14:22.717Z",
+	"entity_version": 1
+    }
+    ```
 {% endnavtab %}
 {% endnavtabs %}
 
@@ -64,7 +184,78 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 {% navtab API %}
 The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
 
-1. ? 
+1. Scale your Dedicated Cloud Gateway data plane nodes by sending a request to the [`/cloud-gateways/configurations` endpoint](link to spec):
+
+    ```sh
+    curl --request PUT \
+    --url https://<region>.api.konghq.com/v2/cloud-gateways/configurations \
+    --header 'Authorization: Bearer kpat_iIGUb6bPml2G6WUSPnZMLdty6pwgUf8GIJbSlBlasg6w4y1cS' \
+    --header 'Content-Type: application/json' \
+    --data '{
+    "control_plane_id": "3e62d2e6-45e9-4032-8065-9cd28cb3487d",
+    "version": "3.6",
+        "control_plane_geo": "us",
+    "dataplane_groups": [
+        {
+        "provider": "aws",
+        "region": "ap-northeast-1",
+        "cloud_gateway_network_id": "0e465f2f-4fa3-43ed-8900-bb6210c1e554",
+        "autoscale": {
+            "kind": "static",
+            "instance_type": "small",
+            "requested_instances": 3
+        }
+        }
+    ]
+    }'
+    ```
+
+    Response:
+    ```sh
+    {
+	"id": "a8b122ff-8bf3-4688-b15d-2cf1af1e511f",
+	"control_plane_id": "3e62d2e6-45e9-4032-8065-9cd28cb3487d",
+	"control_plane_geo": "us",
+	"version": "3.6",
+	"api_access": "private+public",
+	"dataplane_group_config": [
+		{
+			"provider": "aws",
+			"region": "ap-northeast-1",
+			"autoscale": {
+				"kind": "static",
+				"instance_type": "small",
+				"requested_instances": 3
+			},
+			"cloud_gateway_network_id": "0e465f2f-4fa3-43ed-8900-bb6210c1e554"
+		}
+	],
+	"dataplane_groups": [
+		{
+			"id": "a27b8b9b-f3c9-42f6-b0ea-5a678c008298",
+			"provider": "aws",
+			"region": "ap-northeast-1",
+			"autoscale": {
+				"kind": "static",
+				"instance_type": "small",
+				"requested_instances": 3
+			},
+			"state": "initializing",
+			"cloud_gateway_egress_ip_addresses": [
+				"54.178.193.160",
+				"3.115.245.174",
+				"52.192.132.237"
+			],
+			"cloud_gateway_network_id": "0e465f2f-4fa3-43ed-8900-bb6210c1e554",
+			"created_at": "2024-04-04T14:14:22.717Z",
+			"updated_at": "2024-04-04T14:19:19.516Z"
+		}
+	],
+	"created_at": "2024-04-04T14:19:19.516Z",
+	"updated_at": "2024-04-04T14:19:19.516Z",
+	"entity_version": 2
+    }
+    ```
 {% endnavtab %}
 {% endnavtabs %}
 
