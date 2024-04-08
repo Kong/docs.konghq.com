@@ -3,7 +3,7 @@ This document guides you through the process of upgrading Kong Mesh.
 First, check if a section named `Upgrade to x.y.z` exists,
 with `x.y.z` being the version you are planning to upgrade to.
 
-If such a section does not exist, check Kuma's `UPGRADE.md`.
+Make sure to also check the upgrade notes for the matching version of [Kuma](https://kuma.io/docs/latest/production/upgrades-tuning/upgrades).
 
 ## Upgrade to `2.7.x`
 
