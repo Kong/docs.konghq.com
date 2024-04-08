@@ -26,7 +26,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 ![Interactive editor](/assets/images/products/konnect/changelog/konnect-interactive-markdown.png)
 
 **PKI Cert Mode Improvements**
-: Konnect now defaults to PKI Cert mode for CP/DP connections. As a result, you can now specify your own CA certs during the creation of control planes. In addition, you can now upload your own Kong Cluster Cert/Key pairs to sign off using the CA cert that you uploaded OR continue to have Konnect generate Kong Cluster Cert/Key pairs for you. 
+: Konnect now defaults to PKI Cert mode for CP/DP connections. As a result, you can now specify your own CA certs during the creation of control planes. In addition, you can now upload your own Kong Cluster Cert/Key pairs to sign off using the CA cert that you uploaded, or continue to have Konnect generate Kong Cluster Cert/Key pairs for you. 
 
 ## March 2024
 
