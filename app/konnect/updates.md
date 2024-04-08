@@ -11,12 +11,12 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## April 2024
 
-**New dedicated cloud gateways**
+**New Dedicated Cloud Gateways**
 : You can now quickly spin up a dedicated AWS cloud gateway data plane node in {{site.konnect_short_name}}. With a dedicated cloud infrastructure, you control the sizing and deployment locations of the gateway infrastructure and Kong manages the operations of individual instances and the cluster for you. 
 
-: Dedicated cloud gateways are the fastest way to configure and create a {{site.base_gateway}} in {{site.konnect_short_name}}. All you have to do is specify the security you want to use and pre-warm the cluster while {{site.konnect_short_name}} handles the cluster creation.
+: Dedicated Cloud Gateways are the fastest way to configure and create a {{site.base_gateway}} in {{site.konnect_short_name}}. All you have to do is specify the security you want to use and pre-warm the cluster while {{site.konnect_short_name}} handles the cluster creation.
 
-: Dedicated cloud gateways also have the following benefits:
+: Dedicated Cloud Gateways also have the following benefits:
 * SOC1 compliant out-of-the-box
 * {{site.konnect_short_name}} handles gateway upgrades for you
 * Supported on the following AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon

@@ -1,9 +1,19 @@
 ---
-title: About Cloud Gateways
+title: Dedicated Cloud Gateways
 content_type: concept
 ---
 
-Dedicated cloud gateways are API gateway data plane nodes in {{site.konnect_short_name}} that are completely managed by Kong in the cloud provider of your choice. You maintain control over the size and location of the gateway infrastructure, while Kong oversees the management of each instance and the entire cluster for you. This allows Kong to autoscale your nodes for you and reduces your operational complexity.
+Dedicated Cloud Gateways are API gateways that are fully managed by Kong in the cloud provider of your choice. 
+	
+With Dedicated Cloud Gateways, you don't need to host any pieces of the infrastructure yourself. You maintain control over the size and location of the gateway infrastructure, while Kong oversees the management of each instance and the entire cluster for you. This allows Kong to autoscale your nodes for you and reduces your operational complexity.
+
+Dedicated Cloud Gateways are the fastest way to configure and create a {{site.base_gateway}} in {{site.konnect_short_name}}. All you have to do is specify the security you want to use and pre-warm the cluster while {{site.konnect_short_name}} handles the cluster creation.
+
+Dedicated Cloud Gateways also have the following benefits:
+* SOC1 compliant out-of-the-box
+* {{site.konnect_short_name}} handles gateway upgrades for you
+* Supported on the following AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon
+* Choose public or private mode to decide who can view your APIs. In public mode, powered by Kong's public Edge DNS for clusters, you can expose your APIs to the internet. 
 
 You can manage your Dedicated Cloud Gateway nodes in [Gateway Manager](https://cloud.konghq.com/gateway-manager/).
 
@@ -12,7 +22,7 @@ You can manage your Dedicated Cloud Gateway nodes in [Gateway Manager](https://c
 
 Dedicated Cloud Gateways are useful for the following use cases:
 
-| Use Case | Benefit |
+| Use case | Cloud gateway solution |
 | ------- | ----------- |
 | Reducing latency is important to your org. You need an infrastructure that is fault tolerant and has low-latency. | Dedicated Cloud Gateways are supported on multiple AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon. This helps you achieve high availability and regional failover so that if one region goes down, you can switch to another. You can use this capability to implement configurations like [cross-region DNS-based load balancing and failover](https://docs.aws.amazon.com/whitepapers/latest/real-time-communication-on-aws/cross-region-dns-based-load-balancing-and-failover.html). |
 | Your organization operates in a regulated industry with strict data protection and privacy requirements. | Dedicated Cloud Gateways help ensure compliance by keeping data traffic within a secure, private network, reducing exposure to external threats. If you select the private gateway option, Kong provisions a private network load balancer and only exposes the IP address in the UI. Only your users can hit the private IPs to access the gateway.|
