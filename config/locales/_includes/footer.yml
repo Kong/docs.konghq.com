@@ -1,0 +1,32 @@
+en:
+  _includes:
+    footer:
+      title: "Powering the API world"
+      description: "Increase developer productivity, security, and performance at scale with the unified platform for API management, service mesh, and ingress controller."
+      email_placeholder: "Email"
+      submit_button: "Subscribe"
+      categories:
+        products: "Products"
+        documentation: "Documentation"
+        open_source: "Open Source"
+        company: "Company"
+      links:
+        terms: "Terms"
+        privacy: "Privacy"
+        compliance: "Trust and Compliance"
+        product_updates: "Product Updates"
+        contact_sales: "Get Started"
+        about_us: "About Kong"
+        customers: "Customers"
+        careers: "Careers"
+        press_room: "Press"
+        events: "Events"
+        contact_us: "Contact"
+        community: "Kong Community"
+        docs:
+          konnect: "Kong Konnect Docs"
+          gateway: "Kong Gateway Docs"
+          kong_enterprise: "Kong Gateway Enterprise Docs"
+          mesh: "Kong Mesh Docs"
+          insomnia: "Kong Insomnia Docs"
+          hub: "Kong Konnect Plugin Hub"
