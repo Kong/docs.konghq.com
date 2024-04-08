@@ -94,6 +94,8 @@ id: documentation
 
       <div class="page-content">
         <div class="content show-anchor-links">
+          {% include missing_translation_banner.html %}
+
           {% unless page.release.latest? or page.no_version == true %}
             {% if page.release.label != nil %}
               <blockquote id="version-notice" class="warning no-icon">
@@ -131,8 +133,6 @@ id: documentation
           {% if page.subtitle %}
             <h2 class="page-content-subtitle">{{page.subtitle | flatify }}</h2>
           {% endif %}
-
-          {% include missing_translation_banner.html %}
 
           {% if page.alpha %}
             <blockquote class="important">
