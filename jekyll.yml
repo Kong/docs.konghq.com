@@ -191,7 +191,6 @@ hub-filters:
   categories:
     *plugin_categories
 
-
 # product name vars
 ee_product_name: Kong Gateway Enterprise
 ce_product_name: Kong Gateway (OSS)
@@ -228,3 +227,6 @@ mesh_install_archive_name: kong-mesh
 jekyll-generator-single-source:
   versions_file: '_data/kong_versions.yml'
   docs_nav_folder: '_data'
+
+locale: en
+translated_content_path: ../_translated_content/app # relative to docs root

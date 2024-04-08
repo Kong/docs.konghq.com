@@ -241,3 +241,6 @@ mesh_install_archive_name: kong-mesh
 jekyll-generator-single-source:
   versions_file: '_data/kong_versions.yml'
   docs_nav_folder: '_data'
+
+locale: en
+translated_content_path: ../_translated_content/app # relative to docs root
