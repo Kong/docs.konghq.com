@@ -10,8 +10,8 @@ body_id: page-hub
 {% assign kong_extns = hub | where: "extn_publisher", "kong-inc" %}
 {% assign third_party_extns = hub | where_exp: "extn", "extn.extn_publisher != 'kong-inc'" %}
 
-{% assign categories = site.extensions.categories %}
-{% assign types = site.extensions.types %}
+{% assign categories = site.data.extensions.categories %}
+{% assign types = site.data.extensions.types %}
 
 <div class="page page-hub">
   <div class="page-hub--header-background"></div>
@@ -31,16 +31,16 @@ body_id: page-hub
             <div class="clear-search"><img src="/assets/images/icons/documentation/close.svg" alt="Clear search icon" /></div>
           </div>
           <div class="page-hub--filters__filter page-hub--filters__filter-tiers">
-            {% include components/dropdown.html label='Tiers' field_name='tier' options=site.hub-filters.tiers %}
+            {% include components/dropdown.html label='Tiers' field_name='tier' options=site.data.hub_filters.tiers %}
           </div>
           <div class="page-hub--filters__filter page-hub--filters__filter-categories">
-            {% include components/dropdown.html label='Functionality' field_name='category' options=site.hub-filters.categories %}
+            {% include components/dropdown.html label='Functionality' field_name='category' options=categories %}
           </div>
           <div class="page-hub--filters__filter page-hub--filters__filter-support">
-            {% include components/dropdown.html label='Support by' field_name='support' options=site.hub-filters.support %}
+            {% include components/dropdown.html label='Support by' field_name='support' options=site.data.hub_filters.support %}
           </div>
           <div class="page-hub--filters__filter page-hub--filters__filter-compatibility">
-            {% include components/dropdown.html label='Compatibility' field_name='compatibility' options=site.hub-filters.compatibility %}
+            {% include components/dropdown.html label='Compatibility' field_name='compatibility' options=site.data.hub_filters.compatibility %}
           </div>
         </div>
 
