@@ -4,38 +4,6 @@
 
 ## Week 14
 
-### [Add tls.mode=Terminate to KIC Gateway API concept](https://github.com/Kong/docs.konghq.com/pull/7182) (2024-04-05)
-
-Resolves #7132
-
-#### Modified
-
-- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/concepts/gateway-api
-- https://docs.konghq.com/kubernetes-ingress-controller/3.1.x/concepts/gateway-api
-- https://docs.konghq.com/kubernetes-ingress-controller/3.2.x/concepts/gateway-api
-
-
-### [Correct append config example](https://github.com/Kong/docs.konghq.com/pull/7179) (2024-04-05)
-
-The append example was not really using the append config option
-
-
-
-
-<!-- What did you change and why? -->
- 
-<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
-
-#### Modified
-
-- https://docs.konghq.com/hub/kong-inc/request-transformer-advanced/how-to/
-
-
-### [Remove KIC versions below 2.5](https://github.com/Kong/docs.konghq.com/pull/7149) (2024-04-02)
-
-KIC versions < 2.5 are out of support. Content migrated in #7148
-
-
 
 ### [Feat: Interactive markdown renderer](https://github.com/Kong/docs.konghq.com/pull/7140) (2024-04-03)
 
