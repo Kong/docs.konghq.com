@@ -11,7 +11,7 @@ For product versions that have reached the end of sunset support, see the [chang
 
 
 ## 3.6.1.2
-**Release Date** 04/05/2024
+**Release Date** 04/08/2024
 
 ### Features
 
