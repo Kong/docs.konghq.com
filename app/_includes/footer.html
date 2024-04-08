@@ -5,14 +5,14 @@
         <div class="logo">
           <img src="/assets/images/logos/konglogo-light-theme-primary.svg" alt="Kong" />
         </div>
-        <div class="footer-title">Powering the API world</div>
+        <div class="footer-title">{% t _includes.footer.title %}</div>
         <p>
-          Increase developer productivity, security, and performance at scale with the unified platform for API management, service mesh, and ingress controller.
+          {% t _includes.footer.description %}
         </p>
         <div class="footer-form-container">
           <form id="subscribe-form" method="POST" action="/assets/javascripts/subscribe.js">
-            <input required id="subscribe-input" type="email" name="email" id="email" placeholder="Email" aria-required="true" aria-invalid="false">
-            <input id="footer-form-button" type="submit" form="subscribe-form" value="Subscribe">
+            <input required id="subscribe-input" type="email" name="email" id="email" placeholder="{% t _includes.footer.email_placeholder %}" aria-required="true" aria-invalid="false">
+            <input id="footer-form-button" type="submit" form="subscribe-form" value="{% t _includes.footer.submit_button %}">
           </form>
 
           <div id="form-response"></div>
@@ -23,7 +23,7 @@
         <ul class="footer-columns-product-list">
           <li>
             <nav>
-              <div class="footer-category">Products</div>
+              <div class="footer-category">{% t _includes.footer.categories.products %}</div>
               <ul>
                 <li>
                   <a
@@ -66,13 +66,13 @@
                 <li>
                   <a
                     href="https://konghq.com/product-updates"
-                    >Product Updates</a
+                    >{% t _includes.footer.links.product_updates %}</a
                   >
                 </li>
                 <li>
                   <a
                     href="https://konghq.com/contact-sales"
-                    >Get Started</a
+                    >{% t _includes.footer.links.contact_sales %}</a
                   >
                 </li>
               </ul>
@@ -80,30 +80,30 @@
           </li>
           <li>
             <nav>
-              <div class="footer-category">Documentation</div>
+              <div class="footer-category">{% t _includes.footer.categories.documentation %}</div>
               <ul>
                 <li>
                   <a
                     href="/konnect/"
-                    >Kong Konnect Docs</a
+                    >{% t _includes.footer.links.docs.konnect %}</a
                   >
                 </li>
                 <li>
                   <a
                     href="/gateway/latest/"
-                    >Kong Gateway Docs</a
+                    >{% t _includes.footer.links.docs.gateway %}</a
                   >
                 </li>
                 <li>
                   <a
                     href="/gateway/latest/kong-enterprise/"
-                    >Kong Gateway Enterprise Docs</a
+                    >{% t _includes.footer.links.docs.kong_enterprise %}</a
                   >
                 </li>
                 <li>
                   <a
                     href="/mesh/latest/"
-                    >Kong Mesh Docs</a
+                    >{% t _includes.footer.links.docs.mesh %}</a
                   >
                 </li>
                 <li>
@@ -111,13 +111,13 @@
                     href="https://docs.insomnia.rest/"
                     target="_blank"
                     rel="noopener nofollow noreferrer"
-                    >Kong Insomnia Docs</a
+                    >{% t _includes.footer.links.docs.insomnia %}</a
                   >
                 </li>
                 <li>
                   <a
                     href="/hub/"
-                    >Kong Konnect Plugin Hub</a
+                    >{% t _includes.footer.links.docs.hub %}</a
                   >
                 </li>
               </ul>
@@ -125,7 +125,7 @@
           </li>
           <li>
             <nav>
-              <div class="footer-category">Open Source</div>
+              <div class="footer-category">{% t _includes.footer.categories.open_source %}</div>
               <ul>
                 <li>
                   <a
@@ -152,7 +152,7 @@
                 <li>
                   <a
                     href="https://konghq.com/community"
-                    >Kong Community</a
+                    >{% t _includes.footer.links.community %}</a
                   >
                 </li>
               </ul>
@@ -160,42 +160,42 @@
           </li>
           <li>
             <nav>
-              <div class="footer-category">Company</div>
+              <div class="footer-category">{% t _includes.footer.categories.company %}</div>
               <ul>
                 <li>
                   <a
                     href="https://konghq.com/company/about-us"
-                    >About Kong</a
+                    >{% t _includes.footer.links.about_us %}</a
                   >
                 </li>
                 <li>
                   <a
                     href="https://konghq.com/customers"
-                    >Customers</a
+                    >{% t _includes.footer.links.customers %}</a
                   >
                 </li>
                 <li>
                   <a
                     href="https://konghq.com/company/careers"
-                    >Careers</a
+                    >{% t _includes.footer.links.careers %}</a
                   >
                 </li>
                 <li>
                   <a
                     href="https://konghq.com/press-room"
-                    >Press</a
+                    >{% t _includes.footer.links.press_room %}</a
                   >
                 </li>
                 <li>
                   <a
                     href="https://konghq.com/events"
-                    >Events</a
+                    >{% t _includes.footer.links.events %}</a
                   >
                 </li>
                 <li>
                   <a
                     href="https://konghq.com/company/contact-us"
-                    >Contact</a
+                    >{% t _includes.footer.links.contact_us %}</a
                   >
                 </li>
               </ul>
@@ -251,9 +251,9 @@
       <ul>
         <li>
           <span class="mashape-footer-content">
-            <a href="https://konghq.com/terms">Terms</a><b>•</b>
-            <a href="https://konghq.com/privacy">Privacy</a><b>•</b>
-            <a href="https://konghq.com/compliance">Trust and Compliance</a>
+            <a href="https://konghq.com/terms">{% t _includes.footer.links.terms %}</a><b>•</b>
+            <a href="https://konghq.com/privacy">{% t _includes.footer.links.privacy %}</a><b>•</b>
+            <a href="https://konghq.com/compliance">{% t _includes.footer.links.compliance %}</a>
           </span>
         </li>
       </ul>
