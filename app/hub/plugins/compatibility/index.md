@@ -39,7 +39,7 @@ data plane roles. Kong provides and hosts the control plane and a database with
 {% assign hub = site.data.ssg_hub %}
 {% assign kong_extns = hub | where: "extn_publisher", "kong-inc" %}
 
-{% assign categories = site.extensions.categories %}
+{% assign categories = site.data.extensions.categories %}
 
 {% for category in categories %}
 <h3 id="{{ category.slug }}">
