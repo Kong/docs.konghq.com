@@ -1,0 +1,19 @@
+tiers:
+  - name: Free
+    slug: free
+  - name: Konnect Paid
+    slug: paid
+  - name: Konnect Premium
+    slug: premium
+  - name: Kong Gateway Enterprise
+    slug: enterprise
+support:
+  - name: Kong
+    slug: kong-inc
+  - name: Technical partner
+    slug: third-party-partner
+  - name: Support by 3rd party
+    slug: community
+compatibility:
+  - name: Konnect
+    slug: konnect
