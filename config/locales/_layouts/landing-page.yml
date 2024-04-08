@@ -1,0 +1,25 @@
+en:
+  _layouts:
+    landing-page:
+      title: "Welcome to"
+      subtitle: "Find all the information you need to use Kong’s platforms and projects"
+      cards:
+        konnect:
+          description: "An end-to-end SaaS API lifecycle management platform that is designed for the cloud native era and provides the easiest way to get started with Kong Gateway"
+          links:
+            overview: "Konnect Overview"
+            get_started: "Get Started With Konnect"
+            plugins: "Konnect-compatible Plugins"
+        gateway:
+          description: "A lightweight, fast, and flexible cloud-native API gateway."
+          links:
+            overview: "Kong Gateway Overview"
+            get_started: "Get Started With Kong Gateway"
+            plugins: "Plugins"
+            admin_api: "Admin API"
+        mesh:
+          description: "An enterprise service mesh based on Kuma for multi-cloud and multi-cluster on both Kubernetes and VMs."
+          links:
+            overview: "Kong Mesh Overview"
+            quickstart: "Kong Mesh Quickstart"
+            kuma: "Kuma (open-source)"
