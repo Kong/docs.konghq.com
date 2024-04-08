@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" itemscope itemtype="http://schema.org/Article">
+<html lang="{{ site.locale }}" itemscope itemtype="http://schema.org/Article">
 
   {% include_cached head.html
      seo_noindex=page.seo_noindex
@@ -12,7 +12,10 @@
      release=page.release
      no_version=page.no_version
      type=page.type
-     kong_latest=page.kong_latest %}
+     kong_latest=page.kong_latest
+     translation_fallback=page.translation_fallback
+     site_locale=site.locale
+     %}
 
   <body
     id="{{ page.id }}"
@@ -179,6 +182,13 @@
             }
             {% endif %}
           });
+      </script>
+    {% endif %}
+
+    {% if site.locale != 'en' and page.translation_fallback == true %}
+      {%- capture banner %}{%- t _includes.missing_translation_banner.text -%}{%- endcapture -%}
+      <script>
+        window.pageI18n = { "banner": {{ banner | rstrip | jsonify }} }
       </script>
     {% endif %}
   </body>
