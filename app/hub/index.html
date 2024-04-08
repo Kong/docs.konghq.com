@@ -44,6 +44,8 @@ body_id: page-hub
           </div>
         </div>
 
+        {% include missing_translation_banner.html %}
+
         {% for cat in categories %}
         {% assign weighted_extns = kong_extns | where_exp: "extn", "extn.categories contains cat.slug and extn.weight != nil" | sort: "weight", "last" %}
         {% assign extns = kong_extns | where_exp: "extn", "extn.categories contains cat.slug and extn.weight == nil" | sort: "name" %}
