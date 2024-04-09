@@ -74,7 +74,7 @@ rules:
 {% endnavtab %}
 {% endnavtabs %}
 {% endnavtab %}
-{% navtab `targetRef` selectors %}
+{% navtab "targetRef" selectors %}
 For policies using the `targetRef` selector. You can specify which `targetRef` kinds users should have access to.
 
 {% navtabs %}
@@ -810,7 +810,7 @@ In order for this example to work you must either run the control plane with `KU
 {% endnavtab %}
 {% endnavtabs %}
 {% endnavtab %}
-{% navtab `targetRef` selectors %}
+{% navtab "targetRef" selectors %}
 {% navtabs %}
 {% navtab Kubernetes %}
 
