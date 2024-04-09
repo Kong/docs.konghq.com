@@ -41,8 +41,7 @@ spec:
     - targetRef:
         kind: MeshSubset
         tags:
-        - name: k8s.kuma.io/namespace
-          value: kuma-demo
+          k8s.kuma.io/namespace: kuma-demo
 ```
 {% endif_version %}
 {% if_version gte:2.1.x %}
@@ -64,8 +63,7 @@ spec:
     - targetRef:
         kind: MeshSubset
         tags:
-        - name: k8s.kuma.io/namespace
-          value: kuma-demo
+          k8s.kuma.io/namespace: kuma-demo
     - targetRef:
         kind: MeshService
         name: web
@@ -99,8 +97,7 @@ rules:
   - targetRef:
       kind: MeshSubset
       tags:
-      - name: k8s.kuma.io/namespace
-        value: kuma-demo
+        k8s.kuma.io/namespace: kuma-demo
 ```
 {% endif_version %}
 {% if_version gte:2.1.x %}
@@ -119,8 +116,7 @@ rules:
   - targetRef:
       kind: MeshSubset
       tags:
-      - name: k8s.kuma.io/namespace
-        value: kuma-demo
+        k8s.kuma.io/namespace: kuma-demo
   - targetRef:
       kind: MeshService
       name: web
