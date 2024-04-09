@@ -1,16 +1,19 @@
+{% capture description %}
+{% t _includes.gateway-support.tab_description %}
+{% endcapture %}
 
-Kong Gateway {{ include.version }} supports the following deployment targets until {{ include.eol }}, unless otherwise noted by an earlier OS vendor end of life (EOL) date.
+{{ description | markdownify }}
 
 <table style="display: table;" width="100%">
   <thead>
     <tr>
-      <th>OS</th>
-      <th>Version</th>
-      <th style="width: 18%">Artifacts</th>
-      <th>ARM support</th>
-      <th>FIPS compliant</th>
-      <th>AWS Graviton support</th>
-      <th>EOL</th>
+      <th>{% t _includes.gateway-support.thead.os %}</th>
+      <th>{% t _includes.gateway-support.thead.version %}</th>
+      <th style="width: 18%">{% t _includes.gateway-support.thead.artifacts %}</th>
+      <th>{% t _includes.gateway-support.thead.arm_support %}</th>
+      <th>{% t _includes.gateway-support.thead.fips_compliant %}</th>
+      <th>{% t _includes.gateway-support.thead.aws_graviton_support %}</th>
+      <th>{% t _includes.gateway-support.thead.eol %}</th>
     </tr>
   </thead>
   <tbody>
