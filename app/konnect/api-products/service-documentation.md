@@ -1,19 +1,13 @@
 ---
-title: Dev Portal API Product Documentation
+title: Product Documentation
 content_type: how-to
 ---
 
-A core function of the Dev Portal is publishing API product descriptions and API specs. Developers can use the Dev Portal to access, consume, and register new applications against your API product.
+A core function of the Dev Portal is publishing API product descriptions, documentation, and API specs. Developers can use the Dev Portal to access, consume, and register new applications against your API product.
 
-Through API Products, you can also publish any API product and its
-documentation to the Dev Portal. Publishing API products to the Dev Portal is the only way to expose your service to developers. Once the API product is published and available to developers, they can apply for access by [registering](/konnect/dev-portal/dev-reg/) a developer account. You can also [manage](/konnect/dev-portal/access-and-approval/manage-devs/) access to the Dev Portal from the {{site.konnect_saas}} interface.
+## API Product Documentation
 
-{:.note}
-> **Note**: You can only publish API products in your [geographic region](/konnect/geo) to the Dev Portal in your geo. If you want to publish API products to a Dev Portal in another geo, switch to the new geo in the bottom-left of {{site.konnect_product_name}}.
-
-## API product descriptions
-
-You can provide extended descriptions of your API products with a Markdown (`.md`) file. The contents of this file will be displayed as the introduction to your API in the Dev Portal. API product descriptions can be any markdown document that describes your service: 
+You can provide extended descriptions of your API products with a Markdown (`.md`) file. The contents of this file will be displayed as the introduction to your API in the Dev Portal. API product descriptions can be any markdown document that describes your service such as: 
 
 * Release notes
 * Support and SLA 
@@ -24,9 +18,24 @@ You can provide extended descriptions of your API products with a Markdown (`.md
   <img src="/assets/images/products/konnect/api-products/konnect_service_docs_description.png" />
 </p>
 
-All API product descriptions are managed from the **Documentation** section in the API Product overview. Once you've uploaded the markdown file, you have a preview of how it will render, the option to edit, and a view of the publication status. You can also create a hierarchy between the docs you upload that will be reflected in the way they're displayed in the Dev Portal.
 
-## API specification
+Manage all API product descriptions from the Documentation section in the API Product overview. After uploading your markdown file, you'll be able to preview its rendering, edit it directly using the {{site.konnect_saas}} Markdown Renderer, and check its publication status. Additionally, you can organize your documents into a hierarchy, which will influence the order they are displayed to your users from within the Dev Portal.
+
+### Interactive markdown renderer
+
+The integrated markdown editor allows you to edit your documentation directly within {{site.konnect_saas}}. It supports:
+
+* Code syntax highlighting for Bash, JSON, Go, and JavaScript
+* Rendering UML diagrams and flowcharts via Mermaid and PlantUML
+* Emojis
+
+You can insert Mermaid and PlantUML diagrams by using a language-specific identifier immediately following the triple backtick (```) notation that initiates the code block:
+
+* ```mermaid
+* ```plantuml
+
+
+## API specifications
 
 API specifications, or specs, can be uploaded and attached to a specific API product version within API products.
 {{site.konnect_short_name}} accepts OpenAPI (Swagger) specs in YAML or JSON.

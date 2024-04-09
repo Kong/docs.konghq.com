@@ -45,7 +45,7 @@ Control planes come in three types:
     This means that teams within a group share a cluster of {{site.base_gateway}} data 
     plane nodes, where each team has its own segregated configuration.
 
-* [**Kong Ingress Controller**](/konnect/gateway-manager/kic/)
+* [**{{site.kic_product_name}}**](/konnect/gateway-manager/kic/)
     Monitor the configuration of Kubernetes-based {{site.base_gateway}} data plane nodes.
 
 You can find a list of all control planes in your organization
@@ -149,16 +149,11 @@ You cannot delete the default control plane.
 A data plane node is a single {{site.base_gateway}} instance. 
 Data plane nodes service traffic for the control plane. 
 
-Kong does not host data plane nodes.
-You must deploy your own nodes, either on your own systems or in 
-an external cloud provider.
+You can deploy your data plane nodes in the following ways:
+* **Fully-managed**: Dedicated Cloud Gateways data plane nodes are completely managed by Kong in the cloud provider of your choice. You maintain control over the size and location of the gateway infrastructure, while Kong oversees the management of each instance and the entire cluster for you. You can use the Dedicated Cloud Gateways wizard in Gateway Manager to provision a {{site.base_gateway}} data plane node in a cloud provider.
+* **Self-managed**: The data plane nodes are hosted either on your own systems or in  an external cloud provider. You can use the script in Gateway Manager to provision a {{site.base_gateway}} data plane node in a Docker container running Linux, on MacOS, or on Windows. 
 
-The Gateway Manager simplifies data plane node deployment 
-by providing a script to provision a {{site.base_gateway}} data plane node in a 
-Docker container running Linux, on MacOS, or on Windows. 
-
-You can also choose to manually configure data plane nodes on various platforms, including cloud providers.
-See the [data plane node installation options](/konnect/gateway-manager/data-plane-nodes/) for more detail.
+See the [data plane node installation options](/konnect/gateway-manager/data-plane-nodes/) for more information.
 
 ## Plugins
 

@@ -52,7 +52,7 @@ Now, let's move on to preparation, starting with determining your upgrade path.
 
 ## Preparation: Review upgrade paths
 
-{{site.base_gateway}} adheres to [semantic versioning](https://semver.org/), which makes a
+{{site.base_gateway}} adheres to a structured approach to versioning its products, which makes a
 distinction between major, minor, and patch versions.
 
 The upgrade from 2.x to 3.x is a **major** upgrade.
