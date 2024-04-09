@@ -17,8 +17,8 @@ Dedicated Cloud Gateways offer the following benefits:
 
 You can manage your Dedicated Cloud Gateway nodes in [Gateway Manager](https://cloud.konghq.com/gateway-manager/).
 
-![cloud gateway dashboard](/assets/images/products/konnect/gateway-manager/konnect-control-plane-cloud-gateway.png)
-> _**Figure 1:** Example of the dedicated cloud gateway data plane node dashboard in Gateway Manager. The dashboard displays the requests, error rate, and P99 latency. It also displays the cluster configuration, as well as the data plane groups and regions._
+![cloud gateway wizard](/assets/images/products/konnect/gateway-manager/konnect-control-plane-cloud-gateway-wizard.png)
+> _**Figure 3:** The Dedicated Cloud Gateway wizard in the {{site.konnect_short_name}} UI. The wizard allows you to configure the {{site.base_gateway}} version, mode, cluster region, and API access level._
 
 Dedicated Cloud Gateways are useful for the following use cases:
 
@@ -29,7 +29,7 @@ Dedicated Cloud Gateways are useful for the following use cases:
 | Your organization needs high availability with zero downtime when upgrading data plane nodes. | There's no downtime when upgrading your data plane nodes. Additionally, you can pre-warm your cluster by specifying the number of requests per second so that the first requests don’t have to wait for the infrastructure to scale up. |
 | You have infrastructure in multiple clouds. | Dedicated Cloud Gateways allows you to run a multi-cloud solution that allows you to standardize API operations across the board to reduce complexity and increase agility. |
 
-## How do Dedicated Cloud Gateways work?
+## How do Dedicated Cloud Gateways work? {#dedicated-features}
 
 {% include_cached /md/konnect/deployment-topologies.md topology='cloud' %}
 
@@ -46,16 +46,7 @@ Because data plane nodes in Autopilot configuration mode automatically scale, yo
 
 Control planes in {{site.konnect_short_name}} **cannot** contain both Dedicated Cloud Gateway and self-managed data plane nodes.
 
-![cloud gateway wizard](/assets/images/products/konnect/gateway-manager/konnect-control-plane-cloud-gateway-wizard.png)
-> _**Figure 3:** The Dedicated Cloud Gateway wizard in the {{site.konnect_short_name}} UI. The wizard allows you to configure the {{site.base_gateway}} version, mode, cluster region, and API access level._
 
-## How do Dedicated Cloud Gateways secure my APIs?
-
-When you create a Dedicated Cloud Gateway, you have the option to choose between public or private API access. When you choose private API access, Kong provisions a private network load balancer and only exposes the IP address in the {{site.konnect_short_name}} UI so only your users can hit the private IP to access the gateway. 
-
-When you choose public API access, Kong provisions public network load balancers. Each network load balancer gets its own IP set and DNS record that Kong exposes in the {{site.konnect_short_name}} UI, as well as a top-level domain record that uses latency based routing. 
-
-In addition, you can reuse the public gateway for a private gateway. Even though the gateway has a public IP, it will never leave the AWS Backbone in the region, so it's still within the AWS infrastructure. If you want strict gateway isolation, you can create separate public and private gateways. 
 
 ## More information
 
