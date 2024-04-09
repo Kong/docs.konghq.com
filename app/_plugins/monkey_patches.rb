@@ -33,7 +33,7 @@ module Jekyll
 
     # Used by {% include %}
     class OptimizedIncludeTag
-      def locate_include_file(file)
+      def locate_include_file(file) # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
         @site.includes_load_paths.each do |dir|
           unless @site.config['locale'] == I18n.default_locale.to_s
             # japanese
