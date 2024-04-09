@@ -11,11 +11,25 @@ Geographic regions allow you to also operate {{site.konnect_saas}} in a similar 
 
 ## Supported geos 
 
+### Control planes
+
 {{site.konnect_saas}} currently supports the following geos:
 
 * AU
 * EU
 * US
+
+### Dedicated Cloud Gateways
+
+{{site.konnect_saas}} Dedicated Cloud Gateways support the following AWS geos: 
+
+* US-west
+* US-east-1
+* US-east-2
+* EU-west
+* EU-central
+* AP-northeast
+* AP-southeast-1
 
 ## Geo management
 

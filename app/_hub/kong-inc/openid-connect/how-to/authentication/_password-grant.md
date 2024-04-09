@@ -49,55 +49,56 @@ sequenceDiagram
 
 {% include_cached /md/plugins-hub/oidc-prod-note.md %}
 
-Let's patch the plugin that we created in the [Kong configuration](#prerequisites) step:
+Using the Keycloak and {{site.base_gateway}} configuration from the [prerequisites](#prerequisites), 
+set up an instance of the OpenID Connect plugin with the password grant.
 
-1. We want to only use the password grant.
-2. We want to search credentials for password grant from the headers only.
+For the demo, we're going to set up the following:
+* Issuer, client ID, and client auth: settings that connect the plugin to your IdP (in this case, the sample Keycloak app).
+* Auth method: you only need the password grant for this flow. 
+* We want to only search headers for credentials for the password grant.
 
-```bash
-http -f patch :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
-  config.auth_methods=password                                   \
-  config.password_param_type=header
-```
-```http
-HTTP/1.1 200 OK
-```
-```json
-{
-    "id": "5f35b796-ced6-4c00-9b2a-90eef745f4f9",
-    "name": "openid-connect",
-    "service": {
-        "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd"
-    },
-    "config": {
-        "auth_methods": [ "password" ],
-        "password_param_type": [ "header" ]
-    }
-}
-```
+With all of the above in mind, let's test out the password grant with Keycloak. 
+Enable the OpenID Connect plugin on the `openid-connect` service:
 
-### Test the password grant
+<!-- vale off-->
+{% plugin_example %}
+plugin: kong-inc/openid-connect
+name: openid-connect
+config:
+  issuer: "http://keycloak.test:8080/auth/realms/master"
+  client_id: "kong"
+  client_auth: "private_key_jwt"
+  auth_methods:
+    - "password"
+  password_param_type: 
+    - "header"
+targets:
+  - service
+formats:
+  - konnect
+  - curl
+  - yaml
+  - kubernetes
+{% endplugin_example %}
+<!--vale on -->
+
+## Test the password grant
+
+At this point you have created a service, routed traffic to the service, and 
+enabled the OpenID Connect plugin on the service. You can now test the password grant.
 
 Request the service with basic authentication credentials created in the [Keycloak configuration](#prerequisites) step:
 
 ```bash
-http -v -a john:doe :8000
+curl --user john:doe http://localhost:8000
 ```
+
+You should get an HTTP 200 response with a basic auth header:
+
 ```http
 GET / HTTP/1.1
 Authorization: Basic BEkg3bHT0ERXFmKr1qelBQYrLBeHb5Hr
 ```
-```http
-HTTP/1.1 200 OK
-```
-```json
-{
-    "headers": {
-        "Authorization": "Bearer <access-token>"
-    },
-    "method": "GET"
-}
-   ```
 
 If you make another request using the same credentials, you should see that Kong adds less
 latency to the request as it has cached the token endpoint call to Keycloak.

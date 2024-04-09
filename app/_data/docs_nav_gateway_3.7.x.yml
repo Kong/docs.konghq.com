@@ -344,6 +344,8 @@ items:
         url: /kong-enterprise/aws-iam-auth-to-rds-database
       - text: Verify Signatures for Signed Kong Images
         url: /kong-enterprise/signed-images
+      - text: Verify Build Provenance for Signed Kong Images
+        url: /kong-enterprise/provenance-verification
 
   - title: Kong Manager
     icon: /assets/images/icons/documentation/icn-manager-color.svg
@@ -671,6 +673,7 @@ items:
     items:
       - text: kong.conf
         url: /reference/configuration
+        src: /gateway/reference/configuration/configuration-3.6.x
       - text: Injecting Nginx Directives
         url: /reference/nginx-directives
       - text: CLI

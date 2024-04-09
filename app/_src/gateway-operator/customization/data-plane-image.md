@@ -2,6 +2,11 @@
 title: Customizing the Data Plane image
 ---
 
+{% assign gatewayConfigApiVersion = "v1beta1" %}
+{% if_version lte:1.1.x %}
+{% assign gatewayConfigApiVersion = "v1alpha1" %}
+{% endif_version %}
+
 You can customize the image of your `DataPlane` using  the `DataPlane` resource or the `GatewayConfiguration` CRD .
 
 ## Using DataPlane
@@ -37,7 +42,7 @@ You can customize both the container image and version.
 1.  Define the image in the `GatewayConfiguration`.
     ```yaml
     kind: GatewayConfiguration
-    apiVersion: gateway-operator.konghq.com/v1alpha1
+    apiVersion: gateway-operator.konghq.com/{{ gatewayConfigApiVersion }}
     metadata:
       name: kong
       namespace: default

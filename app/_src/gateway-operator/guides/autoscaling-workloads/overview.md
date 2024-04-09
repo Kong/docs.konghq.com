@@ -5,7 +5,7 @@ badge: enterprise
 
 {{ site.kgo_product_name }} can scrape {{ site.base_gateway }} and enrich it with Kubernetes metadata so that it can be used by users to autoscale their workloads.
 
-{% include md/kgo/prerequisites-kic.md version=page.version release=page.release enterprise=true %}
+{% include md/kgo/prerequisites.md version=page.version release=page.release enterprise=true %}
 
 ## Overview
 

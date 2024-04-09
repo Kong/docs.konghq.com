@@ -97,7 +97,7 @@ Decreased the concurrency range of the `lua-resty-timer-ng` library from `[512, 
   Additionally, compression is disabled.
 
 * The recent OpenResty bump includes TLS 1.3 and deprecates TLS 1.1. 
-If you still need to still support TLS 1.1, set the [`ssl_cipher_suite`](/gateway/latest/reference/configuration/#ssl_cipher_suite) setting to `old`.
+If you still need to support TLS 1.1, set the [`ssl_cipher_suite`](/gateway/latest/reference/configuration/#ssl_cipher_suite) setting to `old`.
 
 * If you are using `ngx.var.http_*` in custom code to access HTTP headers, the behavior of that variable changes slightly when the same header is used multiple times in a single request. 
 Previously, it would return the first value only; now it returns all of the values, separated by commas. Kong Gateway's PDK header getters and setters work as before.
@@ -651,7 +651,7 @@ Kong Konnect users can take advantage of our [API Analytics](/konnect/analytics/
 * Modified the current AWS Vault backend to support `CredentialProviderChain` so that users can
 choose not to use `AK-SK` environment variables to grant IAM role permissions.
 * Added support for Microsoft Azure's KeyVault Secrets Engine. 
-Set it up using the [`*_azure_vault`](/gateway/3.5.x/reference/configuration/#vault_azure_vault_uri).
+Set it up using the [`vault_azure_*`](/gateway/3.5.x/reference/configuration/#vault_azure_vault_uri).
 configuration parameters.
 * License management:
   * Implemented a new grace period that lasts 30 days from the Kong Enterprise license expiration date. 
@@ -902,6 +902,119 @@ was called multiple times in a request lifecycle.
 * Kong CLI dependencies:
   * Bumped `curl` from 8.3.0 to 8.4.0
   * Bumped `nghttp2` from 1.56.0 to 1.57.0
+
+## 3.4.3.5
+**Release Date** 2024/03/21
+
+### Breaking changes
+
+* In OpenSSL 3.2, the default SSL/TLS security level has been changed from 1 to 2.
+  This means the security level is set to 112 bits of security. 
+  As a result, the following are prohibited:
+    * RSA, DSA, and DH keys shorter than 2048 bits
+    * ECC keys shorter than 224 bits
+    * Any cipher suite using RC4
+    * SSL version 3
+  Additionally, compression is disabled.
+
+* The recent OpenResty bump includes TLS 1.3 and deprecates TLS 1.1. 
+If you still need to support TLS 1.1, set the [`ssl_cipher_suite`](/gateway/3.4.x/reference/configuration/#ssl_cipher_suite) setting to `old`.
+
+### Features
+
+#### Configuration
+
+* Added support for Microsoft Azure's KeyVault Secrets Engine. 
+Set it up using the [`vault_azure_*`](/gateway/3.4.x/reference/configuration/#vault_azure_vault_uri)
+configuration parameters.
+* TLSv1.1 and lower is now disabled by default in OpenSSL 3.x.
+
+#### Core
+* The expressions router now supports the `! (not)` operator, which allows creating routes like `!(http.path =^ "/a")` and `!(http.path == "/a" || http.path == "/b")`.
+* Added support for the debug request header `X-Kong-Request-Debug-Output`, which lets you observe the time consumed by specific components in a given request. Enable it using the [`request_debug`](/gateway/3.4.x/reference/configuration/#request_debug) configuration parameter. This header helps you diagnose the cause of any latency in Kong Gateway. See the [Request Debugging](/gateway/3.4.x/production/debug-request/) guide for more information.
+* Kong Gateway now supports [`http.path.segments.len` and `http.path.segments.*`](/gateway/3.4.x/key-concepts/routes/expressions/#matching-fields) fields in the expressions router, which allows matching incoming (normalized) request paths by individual segments or ranges of segments, and checking the total number of segments.
+* The [`net.src.*` and `net.dst.*`](/gateway/3.4.x/key-concepts/routes/expressions/#matching-fields) match fields are now accessible in HTTP routes defined using expressions.
+* Modified the current AWS Vault backend to support `CredentialProviderChain` so that users can
+choose not to use `AK-SK` environment variables to grant IAM role permissions.
+* The HashiCorp Vault secrets management backend now supports the AppRole authentication method.
+* OSS features will now continue working with an expired license, and configured Kong Enterprise features will continue operating in read-only mode. Kong Gateway now logs a daily critical message when a license is expired and within the 30 days grace period.
+* You can now use an RBAC token to authenticate while using 
+[group mapping with Kong Manager](/gateway/3.4.x/kong-manager/auth/oidc/mapping/) (for example, with OIDC or LDAP).
+* Introduced the new endpoint [`/schemas/vaults/:name`](/gateway/api/admin-ee/latest/#/Information/get-schemas-vaults-vault_name) for retrieving the schema of a vault. 
+
+#### Plugins
+
+* Plugins can now implement the `Plugin:configure(configs)` function, 
+which is called when there is a change in plugin entities. 
+It receives an array of current plugin configurations, or nil if there are no active configurations.
+Learn more about this function in the guide for [Implementing Custom Logic](/gateway/3.4.x/plugin-development/custom-logic/) for plugins.
+
+* [**CORS**](/hub/kong-inc/cors) (`cors`)
+  * Added support for the `Access-Control-Request-Private-Network` header in cross-origin pre-flight requests.
+
+* [**mTLS Auth**](/hub/kong-inc/mtls-auth/) (`mtls-auth`)
+  * Added a `default_consumer` option, which allows a default consumer to be used when the 
+  client certificate is valid but doesn't match any existing consumers.
+
+### Fixes
+#### Configuration
+* Set the security level of gRPC's TLS to `0` when `ssl_cipher_suite` is set to `old`.
+* Added the missing `azure_vault` config options to the `kong.conf` file.
+
+#### Core
+* Header value matching (`http.headers.*`) in the `expressions` router flavor is now case sensitive.
+This change doesn't affect `traditional_compatible` mode
+where header value matching is always performed with the case ignored.
+* Updated the file permission of `kong.logrotate` to 644.
+* Expressions routes in `http` and `stream` subsystems now have stricter validation.
+Previously, they shared the same validation schema, so admins could configure expressions
+routes using fields like `http.path` even for stream routes. This is no longer allowed.
+* Fixed an issue where `rbac_role_entities` records of cascaded entities were not deleted when the entity was deleted.
+* Reduce message push error logs when the `cluster_telemetry_endpoint` config is disabled.
+* Vaults: Fixed an issue where the vault used the wrong (default) workspace identifier when retrieving a vault entity by prefix.
+
+#### Kong Manager
+* Fixed the display of the remaining days of license expiration date. 
+* The user token input field is now concealed while editing an RBAC user. 
+* Fixed some issues with group mapping.
+
+#### Plugins
+* [**Forward Proxy**](/hub/kong-inc/forward-proxy/) (`forward-proxy`)
+  * The plugin now falls back to the non-streaming proxy when the request body has already been read.
+
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry) (`opentelemetry`)
+  * Fixed an OTEL sampling mode Lua panic bug that occurred when the `http_response_header_for_traceid` option was enabled.
+ <!-- asked for clarification on this description -->
+  * Increased queue max batch size to 200. 
+   
+* [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`)
+  * Marked the `introspection_headers_values` as an encrypted and referenceable field.
+
+* [**Rate Limiting Advanced**](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed an issue with `sync_rate` setting being used with the `redis` strategy. 
+  If the Redis connection is interrupted while `sync_rate = 0`, the plugin now accurately falls back to the `local` strategy.
+  * Fixed an issue where, if `sync_rate` was changed from a value greater than `0` to `0`, the namespace was cleared unexpectedly.
+  * Fixed some timer-related issues where the counter syncing timer couldn't be created or destroyed properly.
+  * The plugin now creates counter syncing timers during plugin execution instead of plugin creation to reduce some meaningless error logs.
+
+* [**JWT Signer**](/hub/kong-inc/jwt-signer/) (`jwt-signer`), [**LDAP Authentication Advanced**](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`),
+[**OAuth 2.0 Introspection**](/hub/kong-inc/oauth2-introspection/) (`oauth2-introspection`), [**OpenID Connect**](/hub/kong-inc/openid-connect/) (`openid-connect`), and 
+[**SAML**](/hub/kong-inc/saml) (`saml`)
+  * Added support for consumer group scoping by using the PDK `kong.client.authenticate` function.
+
+### Performance
+
+#### Configuration
+* Bumped the default values of `nginx_http_keepalive_requests` and `upstream_keepalive_max_requests` to 10000.
+  
+#### Core
+* Reuse match context between requests to avoid frequent memory allocation/deallocation.
+
+### Dependencies
+* Bumped `atc-router` from 1.2.0 to 1.6.0
+* Bumped `lua-resty-openssl` from 1.2.0 to 1.2.1
+* Bumped `kong-lua-resty-kafka` from 0.17 to 0.18
+
 
 ## 3.4.3.4
 **Release Date** 2024/02/10
@@ -3992,6 +4105,52 @@ openid-connect
   [#9287](https://github.com/Kong/kong/pull/9287)
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
+
+
+## 2.8.4.8
+**Release Date** 2024/03/26
+
+### Features
+#### Configuration
+
+* TLSv1.1 and lower is now disabled by default in OpenSSL 3.x.
+* **Performance:** Bumped the default values of `nginx_http_keepalive_requests` and `upstream_keepalive_max_requests` to `10000`. 
+These changes are optimized to work better in systems with high throughput. 
+In a low-throughput setting, these new settings may have visible effects in load balancing, where it can take more requests to start 
+using all the upstreams than before.
+
+### Fixes
+#### Configuration
+
+* Fixed an issue where an external plugin (Go, Javascript, or Python) would fail to
+apply a change to the plugin config via the Admin API.
+* Set the security level of gRPC's TLS to `0` when `ssl_cipher_suite` is set to `old`.
+ 
+#### Core
+
+* Updated the file permission of `kong.logrotate` to 644.
+* Fixed the missing router section for the output of request debugging.
+* Fixed a issue where the `/metrics` endpoint would throw an error when database was down.
+* Fixed the UDP socket leak of the DNS module.
+
+#### Plugins
+
+* [LDAP Auth Advanced](/hub/kong-inc/ldap-auth-advanced/) (`ldap-auth-advanced`)
+  * Fixed some cache-related issues which caused `groups_required` to return unexpected codes after a non-200 response.
+
+* [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`)
+  * Fixed an issue where, if `sync_rate` was set to `0` and the `redis` strategy was in use, the plugin did not properly revert to the `local` strategy if the Redis connection was interrupted.
+
+* [Rate Limiting](/hub/kong-inc/rate-limiting/) (`rate-limiting`), [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) (`rate-limiting-advanced`), [GraphQL Rate Limiting Advanced](/hub/kong-inc/graphql-rate-limiting-advanced/) (`graphql-rate-limiting-advanced`), and [Response Rate Limiting](/hub/kong-inc/response-ratelimiting/) (`response-ratelimiting`)
+  * Fixed an issue where any plugins using the `rate-limiting` library, when used together, 
+  would interfere with each other and fail to synchronize counter data to the central data store.
+
+### Dependencies
+
+* Bumped OpenSSL from 3.1.4 to 3.1.5
+* Bumped `lua-kong-nginx-module` to 0.2.3
+* Bumped `kong-lua-resty-kafka` to 0.18
+* Bumped `lua-resty-luasocket` to 1.1.2 to fix [luasocket#427](https://github.com/lunarmodules/luasocket/issues/427)
 
 ## 2.8.4.7
 **Release Date** 2024/02/08

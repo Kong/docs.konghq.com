@@ -123,7 +123,7 @@
   items:
     - text: Overview
       url: /api-products/
-    - text: Manage API Product Documentation
+    - text: Product Documentation
       url: /api-products/service-documentation/
     - text: Productize a Service
       url: /api-products/productize-service/
@@ -372,3 +372,5 @@
       url: /reference/labels/
     - text: Plugin Ordering Reference
       url: /reference/plugins/
+    - text: Custom DNS
+      url: /reference/custom-dns/

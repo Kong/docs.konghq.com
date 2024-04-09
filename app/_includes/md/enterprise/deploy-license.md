@@ -10,10 +10,21 @@ Method | Supported deployment types
 -------|---
  `/licenses` Admin API endpoint | &#8226; Traditional database-backed deployment <br> &#8226; Hybrid mode deployment
 File on the node filesystem <br>(`license.json`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
-Environment variable <br>(`KONG_LICENSE_DATA`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
-Environment variable <br>(`KONG_LICENSE_PATH`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
+Environment variable containing the full license <br>(`KONG_LICENSE_DATA`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
+Environment variable containing path to license file <br>(`KONG_LICENSE_PATH`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
 
 The recommended method is using the Admin API.
+
+{:.important}
+> **Important**:
+> * If you deploy a license using the `/license` endpoint on the control plane, the control plane propagates 
+> the license to connected data planes automatically.
+> * If you deploy a license using a `KONG_LICENSE_DATA` or `KONG_LICENSE_PATH` environment variable, 
+> the control plane **does not** propagate the license to data plane nodes.
+> You **must** add the license to each data plane node, and each node **must** start with the license.
+> The license can't be added after starting the node. 
+>
+>  We don't recommend using this method in hybrid mode deployments.
 
 {{ include.heading }} Prerequisites
 

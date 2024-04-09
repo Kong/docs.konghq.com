@@ -26,7 +26,28 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 : ![cloud gateway dashboard](/assets/images/products/konnect/gateway-manager/konnect-control-plane-cloud-gateway.png)
 : > _**Figure 1:** Example of the dedicated cloud gateway dashboard in Gateway Manager. The dashboard displays the total traffic, error rate, and P99 latency. It also displays the top five gateway services and routes by traffic, as well as the plugins and consumers associated with the gateway._
 
+**Improved UI/UX for Plugins**
+: We are happy to announce that a polished UI/UX experience for plugins is now available to our customers on Konnect. Required configuration settings are now grouped together, and indicated as required on the forms, improved tooltips and default fields are present on plugin forms, and a "most popular" plugins section is now available.
+: ![Improved UI/UX for plugins](/assets/images/products/konnect/changelog/improved-plugins-ui.png)
+
+
+**Integrated Markdown Renderer**
+: You can now take advantage of an integrated markdown editor for API Products in {{site.konnect_short_name}}. This enhancement simplifies documentation updates by enabling you to edit markdown files directly within {{site.konnect_short_name}}. The {{site.konnect_short_name}} interactive markdown renderer supports: 
+* Code syntax highlighting for bash, json, go, and js
+* Rendering UML diagrams and flowcharts via Mermaid and PlantUML
+* Emojis
+
+![Interactive editor](/assets/images/products/konnect/changelog/konnect-interactive-markdown.png)
+
 ## March 2024
+
+**Refined user experience for Control Plane Groups**
+: We've made improvements to refine the end-to-end workflow of Control Plane Groups for our customers. Now, Control Plane Groups are more intuitive, and easier to understand.
+
+**Enhanced error notification**
+: Customers now have the ability to view detailed error notifications for their data plane directly within {{site.konnect_short_name}}. The enhanced logging feature categorizes errors for improved clarity, distinguishing between configuration errors, transient configuration reload errors, and general exceptions. This update empowers users to diagnose and resolve CP/DP connection issues more efficiently.
+
+![Konnect-error-log](/assets/images/products/konnect/changelog/konnect-error-log.png)
 
 **New Analytics Explorer page**
 : You can now explore and visualize analytics data via an easy to use, point-and-click web interface. The [Explorer page](https://cloud.konghq.com/analytics/explorer) allows you to drill-down into data and easily discover how issues may impact your business. For more information, see the [Explorer overview](/konnect/analytics/explorer/).

@@ -19,7 +19,7 @@
     />
 
     <ViewSpecModal
-      :is-visible="viewSpecModalIsVisible"
+      :visible="viewSpecModalIsVisible"
       :spec-contents="specContents"
       :spec-name="specName"
       :download-callback="downloadSpecContents"
@@ -116,7 +116,6 @@ function downloadSpecContents (){
 <style lang="scss">
 .spec-loading-container {
   align-items: center;
-  background-color: #fff;
   display: flex;
   height: 50%;
   justify-content: center;
@@ -125,5 +124,9 @@ function downloadSpecContents (){
   top: 60px;
   width: 100%;
   z-index: 10;
+}
+
+.mt-6 {
+  margin-top: 36px;
 }
 </style>

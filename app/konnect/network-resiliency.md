@@ -36,6 +36,11 @@ plane. The node sends a heartbeat to the control plane every 30 seconds to
 keep the connection alive. If it receives no answer, it tries to reconnect to the
 control plane after a 5-10 second delay.
 
+
+### How does network peering work with Dedicated Cloud Gateway nodes?
+
+Each Cloud Gateway node is part of a dedicated Cloud Gateway network that corresponds to a specific cloud region, such as `us-east-1` or `us-west-2`. For enhanced security and seamless connectivity between your cloud network and the {{site.konnect_short_name}} environment, you can peer your Cloud Gateway network with your own network in AWS. This integration is facilitated by using AWS's [TransitGateway](https://aws.amazon.com/transit-gateway/) feature, enabling secure network connections across both platforms.
+
 ### What types of data travel between the {{site.konnect_saas}} control plane and the data plane nodes, and how?
 
 There are two types of data that travel between the planes: configuration

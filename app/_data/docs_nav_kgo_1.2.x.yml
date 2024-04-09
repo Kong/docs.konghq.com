@@ -21,6 +21,8 @@ items:
             url: /concepts/gateway-api
           - text: Gateway Configuration
             url: /concepts/gateway-configuration
+          - text: Managed Gateways
+            url: /concepts/managed-gateways
       - text: Changelog
         url: /gateway-operator/changelog
         absolute_url: true
@@ -57,12 +59,26 @@ items:
       - text: Enterprise License
         url: /license/
       - text: Monitoring
-        url: /production/monitoring/
+        items:
+          - text: Metrics
+            url: /production/monitoring/metrics
+          - text: Status fields
+            items:
+            - text: Overview
+              url: /production/monitoring/status/overview/
+            - text: DataPlane
+              url: /production/monitoring/status/dataplane/
+            - text: ControlPlane
+              url: /production/monitoring/status/controlplane/
+            - text: Gateway
+              url: /production/monitoring/status/gateway/
       - text: Upgrade Gateway Operator
         url: /production/upgrade/gateway-operator/
   - title: Guides
     icon: /assets/images/icons/documentation/icn-solution-guide.svg
     items:
+      - text: AI Gateway
+        url: /guides/ai-gateway/
       - text: Customization
         items:
           - text: Set data plane image
@@ -71,7 +87,6 @@ items:
             url: /customization/sidecars/
           - text: Customizing PodTemplateSpec
             url: /customization/pod-template-spec/
-          - text: Upgrading Data Planes
       - text: Autoscaling Kong Gateway
         url: /guides/autoscaling-kong/
       - text: Autoscaling Workloads
@@ -105,6 +120,9 @@ items:
           - text: DataPlane
             url: /reference/custom-resources/#dataplane
             generate: false
+      - text: Configuration Options
+        url: /reference/cli-arguments/
+        src: reference/cli-arguments/1.2.x
       - text: License
         url: /reference/license
       - text: Version Compatibility
