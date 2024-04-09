@@ -1,0 +1,12 @@
+en:
+  _includes:
+    gateway-support:
+      tab_description: Kong Gateway {{ include.version }} supports the following deployment targets until {{ include.eol }}, unless otherwise noted by an earlier OS vendor end of life (EOL) date.
+      thead:
+        os: OS
+        version: Version
+        artifacts: Artifacts
+        arm_support: ARM support
+        fips_compliant: FIPS compliant
+        aws_graviton_support: AWS Graviton support
+        eol: EOL
