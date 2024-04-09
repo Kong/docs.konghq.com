@@ -1,0 +1,7 @@
+en:
+  _includes:
+    docs-sidebar:
+      version: Version
+      latest: (latest)
+      contribution_guidelines: Docs contribution guidelines
+      archive: Archive (pre-2.6)
