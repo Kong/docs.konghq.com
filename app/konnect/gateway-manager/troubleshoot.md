@@ -3,7 +3,45 @@ title: Troubleshoot Data Plane Nodes
 content_type: how-to
 ---
 
-## Out of sync data plane node
+## Dedicated Cloud Gateway nodes
+
+### Upgrading data planes
+
+**Problem** 
+
+The data plane version is out of date. 
+
+**Solution**
+
+With Dedicated Cloud Gateways, {{site.base_gateway}} updates can be performed with the {{site.konnect_short_name}} manager or API. {{site.konnect_short_name}} will automatically provision new data plane nodes and slowly migrate traffic while monitoring for errors. For more information, read the [Upgrade documentation](/konnect/gateway-manager/data-plane-nodes/upgrade/).
+
+### DNS capabilities
+
+**Problem**
+
+APIs need to be availble publicly for external applications and privately for internal traffic. 
+
+**Solution**
+
+Cloud Gateways offer both a **Public** and **Private** mode. In public mode, you can expose your APIs to the internet, 
+
+A public or private mode to decide who can view your APIs. In public mode, powered by Kong's public Edge DNS for clusters, you can expose your APIs to the internet. Private mode allows you to create internal APIs that won't be availble on the public internet. 
+
+### Custom domains
+
+**Problem**
+
+How do you configure custom domains?
+
+
+**Solution**
+
+{{site.konnect_short_name}} integrates domain name management and configuration for managed data planes. For information on configuring a custom domain, review the [custom domains documentation](/konnect/reference/custom-dns)
+
+
+## Self-managed data plane nodes
+
+### Out of sync data plane node
 
 **Problem**
 
@@ -39,7 +77,7 @@ directory for {{site.base_gateway}} logs is [`/usr/local/kong/logs`](/gateway/la
 If you are unable to resolve sync issues using the above methods, contact
 [Kong Support](https://support.konghq.com/).
 
-## Missing functionality
+### Missing functionality
 
 **Problem**
 
@@ -67,7 +105,7 @@ may need [upgrading](/konnect/gateway-manager/data-plane-nodes/upgrade/).
 If your version is up to date but the feature still isn't working, contact
 [Kong Support](https://support.konghq.com/).
 
-## Kubernetes data plane node installation does not work
+### Kubernetes data plane node installation does not work
 
 **Problem**
 
@@ -91,7 +129,7 @@ helm upgrade my-kong kong/kong -n kong \
   --values ./values.yaml
 ```
 
-## Connect a data plane to {{site.konnect_saas}} that is behind a non-trasparent forward proxy.
+### Connect a data plane to {{site.konnect_saas}} that is behind a non-trasparent forward proxy.
 
 In situations where forward proxies are non-transparent, you can still connect the {{site.base_gateway}} data plane with the {{site.konnect_saas}} control plane.
 To do this, you need to configure each {{site.base_gateway}} data plane node to authenticate with the proxy server and allow traffic through.
