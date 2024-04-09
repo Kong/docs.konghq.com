@@ -371,3 +371,5 @@
       url: /reference/labels/
     - text: Plugin Ordering Reference
       url: /reference/plugins/
+    - text: Custom DNS
+      url: /reference/custom-dns/
