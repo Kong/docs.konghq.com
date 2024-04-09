@@ -3,13 +3,13 @@
     {% if site.locale == 'en' %}
       {% if include.edit_link %}
         <a href={{ include.edit_link }}>
-          <img src="/assets/images/icons/third-party/logo-github-white.svg" alt="github-edit-page"/>Edit this page
+          <img src="/assets/images/icons/third-party/logo-github-white.svg" alt="github-edit-page"/>{% t _includes.header.nav-links.edit_page %}
         </a>
       {% endif %}
     {% endif %}
   </div>
   <div class="github-links--issues">
     <a href="https://github.com/Kong/docs.konghq.com/issues">
-      <img src="/assets/images/icons/documentation/icn-monitoring-white.svg" alt="report-issue"/>Report an issue</a>
+      <img src="/assets/images/icons/documentation/icn-monitoring-white.svg" alt="report-issue"/>{% t _includes.header.nav-links.report_an_issue %}</a>
   </div>
 </div>
