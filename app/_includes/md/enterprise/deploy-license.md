@@ -81,6 +81,8 @@ Result:
 For more detail and options, see the
 [Admin API `licenses` endpoint reference](/gateway/latest/licenses/examples).
 
+We recommend [restarting](/gateway/{{page.release}}/reference/cli/#kong-restart) the {{site.base_gateway}} nodes after applying or updating a license.
+
 {% endnavtab %}
 {% navtab Filesystem %}
 
