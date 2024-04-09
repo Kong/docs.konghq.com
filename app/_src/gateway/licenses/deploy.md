@@ -11,7 +11,7 @@ to [Enterprise-specific features](/gateway/{{page.release}}/licenses/).
 ## Troubleshooting and support
 
 For troubleshooting license issues, see:
-* [License Troubleshooting](/gateway/latest/licenses/#troubleshooting)
+* [License Troubleshooting](/gateway/{{page.release}}/licenses/#troubleshooting)
 
 For more details and examples, see:
 * [`/licenses` API reference](/gateway/api/admin-ee/latest/#/licenses)
