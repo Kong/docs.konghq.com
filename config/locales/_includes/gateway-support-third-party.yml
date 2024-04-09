@@ -1,0 +1,24 @@
+en:
+  _includes:
+    gateway-support-third-party:
+      data_stores:
+        title: "Data Stores"
+        description: "Kong interacts with multiple data stores during normal operation. The following stores have been tested by Kong:"
+      vaults:
+        title: "Vaults"
+        description: "Kong allows you to store secret values in external vaults. The following versions have been tested by Kong:"
+      service_mesh:
+        title: "Service Mesh"
+        description: "Kong Ingress Controller has been tested against the following Service Mesh versions:"
+      metrics:
+        title: "Metrics"
+        description: "Kong Ingress Controller has been tested against the following metrics providers:"
+      log_providers:
+        title: "Log Providers"
+        description: "Kong Ingress Controller has been tested against the following log providers:"
+      s3_compatible_apis:
+        title: "S3 Compatible APIs"
+        description: "Any S3 compatible API is available for use when working with remote file storage. The following have been tested by Kong:"
+      identity_providers:
+        title: "Identity Providers"
+        description: "Kong is expected to work with the following third party identity providers (IDP) when using the OpenID Connect (OIDC) plugin:"
