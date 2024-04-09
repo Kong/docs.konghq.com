@@ -3,17 +3,17 @@ title: Dedicated Cloud Gateways
 content_type: concept
 ---
 
-Dedicated Cloud Gateways are API gateways that are fully managed by Kong in the cloud provider of your choice. 
+Dedicated Cloud Gateways are data plane nodes that are fully managed by Kong in {{site.konnect_short_name}}.
 	
-With Dedicated Cloud Gateways, you don't need to host any pieces of the infrastructure yourself. You maintain control over the size and location of the gateway infrastructure, while Kong oversees the management of each instance and the entire cluster for you. This allows Kong to autoscale your nodes for you and reduces your operational complexity.
+You don't need to host any data planes, while maintaining control over the size and location of the gateway infrastructure. This allows Kong to autoscale your nodes for you and reduces your operational complexity.
 
-Dedicated Cloud Gateways are the fastest way to configure and create a {{site.base_gateway}} in {{site.konnect_short_name}}. All you have to do is specify the security you want to use and pre-warm the cluster while {{site.konnect_short_name}} handles the cluster creation.
 
-Dedicated Cloud Gateways also have the following benefits:
-* SOC1 compliant out-of-the-box
+Dedicated Cloud Gateways offer the following benefits:
 * {{site.konnect_short_name}} handles gateway upgrades for you
+* A public or private mode to decide who can view your APIs. In public mode, powered by Kong's public Edge DNS for clusters, you can expose your APIs to the internet. 
+* Auto-pilot mode
+* SOC1 compliant out-of-the-box
 * Supported on the following AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon
-* Choose public or private mode to decide who can view your APIs. In public mode, powered by Kong's public Edge DNS for clusters, you can expose your APIs to the internet. 
 
 You can manage your Dedicated Cloud Gateway nodes in [Gateway Manager](https://cloud.konghq.com/gateway-manager/).
 
@@ -22,28 +22,27 @@ You can manage your Dedicated Cloud Gateway nodes in [Gateway Manager](https://c
 
 Dedicated Cloud Gateways are useful for the following use cases:
 
-| Use case | Cloud gateway solution |
+| Use case | Solution |
 | ------- | ----------- |
-| Reducing latency is important to your org. You need an infrastructure that is fault tolerant and has low-latency. | Dedicated Cloud Gateways are supported on multiple AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon. This helps you achieve high availability and regional failover so that if one region goes down, you can switch to another. You can use this capability to implement configurations like [cross-region DNS-based load balancing and failover](https://docs.aws.amazon.com/whitepapers/latest/real-time-communication-on-aws/cross-region-dns-based-load-balancing-and-failover.html). |
-| Your organization operates in a regulated industry with strict data protection and privacy requirements. | Dedicated Cloud Gateways help ensure compliance by keeping data traffic within a secure, private network, reducing exposure to external threats. If you select the private gateway option, Kong provisions a private network load balancer and only exposes the IP address in the UI. Only your users can hit the private IPs to access the gateway.|
-| Your organization needs high availability with zero downtime while upgrading data plane nodes. | {{site.konnect_short_name}} handles upgrades for you. There's no downtime when upgrading the infrastructure because when Kong performs the rolling upgrade, we synchronize the data plane node with load balancer registration and deregistration and gracefully terminate the old data plane nodes to reduce the impact on ongoing traffic. Additionally, you can pre-warm your cluster by specifying the number of requests per second so that the first requests don’t have to wait for the infrastructure to scale up. |
-| Your organization uses several tools for API gateways and their infrastructure and you  want to reduce operational complexity. | Kong manages the cluster for you, all you need to do is configure the {{site.base_gateway}} version, configuration mode, cluster region, and the API access level. |
+| Reducing latency is important to your organization.  | Dedicated Cloud Gateways supports multiple AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon. |
+| Your organization operates in an industry with strict data protection and privacy requirements. |  Using the private gateway option, Kong provisions a private network load balancer and only exposes the IP address in the UI. |
+| Your organization needs high availability with zero downtime when upgrading data plane nodes. | There's no downtime when upgrading your data plane nodes. Additionally, you can pre-warm your cluster by specifying the number of requests per second so that the first requests don’t have to wait for the infrastructure to scale up. |
 | You have infrastructure in multiple clouds. | Dedicated Cloud Gateways allows you to run a multi-cloud solution that allows you to standardize API operations across the board to reduce complexity and increase agility. |
 
 ## How do Dedicated Cloud Gateways work?
 
 {% include_cached /md/konnect/deployment-topologies.md topology='cloud' %}
 
-> _**Figure 2:** In a dedicated cloud gateway, the control plane is hosted in {{site.konnect_short_name}} and data planes are hosted in the cloud by Kong. The control plane connects to the database, and the data planes receive configuration from the control plane._
+> _**Figure 2:** Data planes are hosted in the cloud by Kong. The control plane connects to the database, and the data planes receive configuration from the control plane._
 
-When you create a Dedicated Cloud Gateway, {{site.konnect_short_name}} also creates a control plane for the cloud gateway. This control plane, like other {{site.konnect_short_name}} control planes, is hosted in {{site.konnect_short_name}} using the AWS infrastructure. Kong also creates, and manages, the data plane nodes in the AWS region that you specify while configuring the Dedicated Cloud Gateway.
+When you create a Dedicated Cloud Gateway, {{site.konnect_short_name}} creates a control plane. This control plane, like other {{site.konnect_short_name}} control planes, is hosted by {{site.konnect_short_name}}. You can then deploy data planes in regions close to yours users that will be managed by {{site.konnect_short_name}}. 
 
 When you configure your Dedicated Cloud Gateway, you can choose one of two configuration modes to create your data plane nodes:
 
 * **Autopilot:** In Autopilot mode, you configure how many requests per second you expect the instance to recieve, then Kong pre-warms and autoscales the data plane nodes in the cluster for you.
 * **Custom:** In Custom mode, you specify the instance size and type (for example, dev, production, or large production) as well as the number of nodes per cluster.
 
-Because data plane nodes in Autopilot configuration mode are auto scaled, you **cannot** manually increase or decrease nodes. You can only manually increase or decrease data plane nodes when the Dedicated Cloud Gateway is configured in the Custom mode.
+Because data plane nodes in Autopilot configuration mode automatically scale, you **cannot** manually increase or decrease nodes. You can only manually increase or decrease data plane nodes when the Dedicated Cloud Gateway is configured in the Custom mode.
 
 Control planes in {{site.konnect_short_name}} **cannot** contain both Dedicated Cloud Gateway and self-managed data plane nodes.
 
