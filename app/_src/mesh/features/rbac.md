@@ -31,11 +31,11 @@ spec:
     names: ["res-1"] # list of allowed names of types to which access is granted. If empty, then access is granted to resources regardless of the name.
     mesh: default # Mesh within which the access to resources is granted. It can only be used with the Mesh-scoped resources.
     access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN", "GENERATE_ZONE_TOKEN"] # an action that is bound to a type.
-    when: # a set of qualifiers to receive an access. Only one of them needs to be fulfilled to receive an access
-    - sources: # a condition on sources section in connection policies (like TrafficRoute or Healtchecheck). If missing, then all sources are allowed
+    when: # a set of qualifiers to receive access. Only one of them needs to be fulfilled to receive an access
+    - sources: # a condition on sources section in connection policies (like TrafficRoute or HealthCheck). If missing, then all sources are allowed
         match:
           kuma.io/service: web
-      destinations: # a condition on destinations section in connection policies (like TrafficRoute or Healtchecheck). If missing, then all destinations are allowed
+      destinations: # a condition on destinations section in connection policies (like TrafficRoute or HealthCheck). If missing, then all destinations are allowed
         match:
           kuma.io/service: backend
     - selectors: # a condition on selectors section in dataplane policies (like TrafficTrace or ProxyTemplate).
@@ -56,11 +56,11 @@ rules:
   names: ["res-1"] # list of allowed names of types to which access is granted. If empty, then access is granted to resources regardless of the name.
   mesh: default # Mesh within which the access to resources is granted. It can only be used with the Mesh-scoped resources.
   access: ["CREATE", "UPDATE", "DELETE", "GENERATE_DATAPLANE_TOKEN", "GENERATE_USER_TOKEN", "GENERATE_ZONE_CP_TOKEN", "GENERATE_ZONE_TOKEN"] # an action that is bound to a type.
-  when: # a set of qualifiers to receive an access. Only one of them needs to be fulfilled to receive an access
-  - sources: # a condition on sources section in connection policies (like TrafficRoute or Healtchecheck). If missing, then all sources are allowed
+  when: # a set of qualifiers to receive access. Only one of them needs to be fulfilled to receive an access
+  - sources: # a condition on sources section in connection policies (like TrafficRoute or HealthCheck). If missing, then all sources are allowed
       match:
         kuma.io/service: web
-    destinations: # a condition on destinations section in connection policies (like TrafficRoute or Healtchecheck). If missing, then all destinations are allowed
+    destinations: # a condition on destinations section in connection policies (like TrafficRoute or HealthCheck). If missing, then all destinations are allowed
       match:
         kuma.io/service: backend
   - selectors: # a condition on selectors section in dataplane policies (like TrafficTrace or ProxyTemplate).
@@ -92,7 +92,7 @@ spec:
     mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
     access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
     when: # A set of qualifiers to receive access. Only one of them needs to be fulfilled to receive access.
-    - tagetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
+    - targetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
         kind: MeshService
         name: backend
     - targetRef:
@@ -115,7 +115,7 @@ spec:
     mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
     access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
     when: # A set of qualifiers to receive access. Only one of them needs to be fulfilled to receive access.
-    - tagetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
+    - targetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
         kind: MeshService
         name: backend
     - targetRef:
@@ -150,7 +150,7 @@ rules:
   mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
   access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
   when: # A set of qualifiers to receive access. Only one of them needs to be fulfilled to receive access.
-  - tagetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
+  - targetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
         kind: MeshService
         name: backend
   - targetRef:
@@ -170,7 +170,7 @@ rules:
   mesh: default # Grants access to the resources in the named mesh. It can only be used with the mesh-scoped resources.
   access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
   when: # A set of qualifiers to receive access. Only one of them needs to be fulfilled to receive access.
-  - tagetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
+  - targetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
         kind: MeshService
         name: backend
   - targetRef:
@@ -403,7 +403,7 @@ This way an observability operator can:
 ### Single Mesh operator
 
 {{site.mesh_product_name}} lets us segment the deployment into many logical service meshes configured by Mesh object.
-We may want to give an access to one specific Mesh and all objects connected with this Mesh.
+We may want to give access to one specific Mesh and all objects connected with this Mesh.
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -443,8 +443,8 @@ This way all observability operator can:
 ## Kubernetes
 
 Kubernetes provides their own RBAC system, but it's not sufficient to cover use cases for several reasons:
-* You cannot restrict an access to resources of specific Mesh
-* You cannot restrict an access based on the content of the policy
+* You cannot restrict access to resources of specific Mesh
+* You cannot restrict access based on the content of the policy
 
 {{site.mesh_product_name}} RBAC works on top of Kubernetes RBAC.
 For example, to restrict the access for a user to modify `TrafficPermission` for backend service, they need to be able to create `TrafficPermission` in the first place.
@@ -555,7 +555,7 @@ Here are the steps to create a new user and restrict the access only to `Traffic
 {% navtabs %}
 {% navtab Kubernetes %}
 
-1.  Create a backend-owner Kubernetes user and configure kubectl:
+1. Create a backend-owner Kubernetes user and configure kubectl:
 
     ```sh
     mkdir -p /tmp/k8s-certs
@@ -580,7 +580,7 @@ Here are the steps to create a new user and restrict the access only to `Traffic
     kubectl config set-context backend-owner --cluster=YOUR_CLUSTER_NAME --user=backend-owner
     ```
 
-1.  Create Kubernetes RBAC to allow backend-owner to manage all `TrafficPermission`:
+2. Create Kubernetes RBAC to allow backend-owner to manage all `TrafficPermission`:
 
     ```sh
     echo "
@@ -618,7 +618,7 @@ Here are the steps to create a new user and restrict the access only to `Traffic
     " | kubectl apply -f -
     ```
 
-1.  Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
+3. Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
 
     ```sh
     echo "
@@ -639,7 +639,7 @@ Here are the steps to create a new user and restrict the access only to `Traffic
     " | kubectl apply -f -
     ```
 
-1.  Create an AccessRole to grant permissions to user `backend-owner` to modify `TrafficPermission` only for the backend service:
+4. Create an AccessRole to grant permissions to user `backend-owner` to modify `TrafficPermission` only for the backend service:
 
     ```sh
     echo '
@@ -671,7 +671,7 @@ Here are the steps to create a new user and restrict the access only to `Traffic
     ' | kubectl apply -f -
     ```
 
-1.  Change the service to test user access:
+5. Change the service to test user access:
 
     ```sh
     kubectl config use-context backend-owner
@@ -714,7 +714,7 @@ Here are the steps to create a new user and restrict the access only to `Traffic
 > **Note**: By default, all requests that originates from localhost are authenticated as user `admin` belonging to group `mesh-system:admin`.
 In order for this example to work you must either run the control plane with `KUMA_API_SERVER_AUTHN_LOCALHOST_IS_ADMIN` set to `false` or be accessing the control plane not via localhost.
 
-1.  Extract admin token and configure kumactl with admin:
+1. Extract admin token and configure kumactl with admin:
 
     ```sh
     export ADMIN_TOKEN=$(curl http://localhost:5681/global-secrets/admin-user-token | jq -r .data | base64 -d)
@@ -726,7 +726,7 @@ In order for this example to work you must either run the control plane with `KU
     --auth-conf token=$ADMIN_TOKEN
     ```
 
-1.  Configure backend-owner:
+2. Configure backend-owner:
 
     ```sh
     export BACKEND_OWNER_TOKEN=$(kumactl generate user-token --valid-for=24h --name backend-owner)
@@ -739,7 +739,7 @@ In order for this example to work you must either run the control plane with `KU
     kumactl config control-planes switch --name cp-admin # switch back to admin
     ```
 
-1.  Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
+3. Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
 
     ```sh
     echo "type: AccessRoleBinding
@@ -751,7 +751,7 @@ In order for this example to work you must either run the control plane with `KU
     - admin" | kumactl apply -f -
     ```
 
-1.  Create {{site.mesh_product_name}} RBAC to restrict backend-owner to only modify `TrafficPermission` for backend:
+4. Create {{site.mesh_product_name}} RBAC to restrict backend-owner to only modify `TrafficPermission` for backend:
 
     ```sh
     echo '
@@ -776,7 +776,7 @@ In order for this example to work you must either run the control plane with `KU
     - backend-owner' | kumactl apply -f -
     ```
 
-1.  Change the user and test RBAC:
+5. Change the user and test RBAC:
 
     ```sh
     kumactl config control-planes switch --name cp-backend-owner
@@ -814,7 +814,7 @@ In order for this example to work you must either run the control plane with `KU
 {% navtabs %}
 {% navtab Kubernetes %}
 
-1.  Create a backend-owner Kubernetes user and configure kubectl:
+1. Create a backend-owner Kubernetes user and configure kubectl:
 
     ```sh
     mkdir -p /tmp/k8s-certs
@@ -839,7 +839,7 @@ In order for this example to work you must either run the control plane with `KU
     kubectl config set-context backend-owner --cluster=YOUR_CLUSTER_NAME --user=backend-owner
     ```
 
-1.  Create Kubernetes RBAC to allow backend-owner to manage all `TrafficPermission`:
+2. Create Kubernetes RBAC to allow backend-owner to manage all `TrafficPermission`:
 
     ```sh
     echo "
@@ -877,7 +877,7 @@ In order for this example to work you must either run the control plane with `KU
     " | kubectl apply -f -
     ```
 
-1.  Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
+3. Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
 
     ```sh
     echo "
@@ -898,7 +898,7 @@ In order for this example to work you must either run the control plane with `KU
     " | kubectl apply -f -
     ```
 
-1.  Create an AccessRole to grant permissions to user `backend-owner` to modify `TrafficPermission` only for the backend service:
+4. Create an AccessRole to grant permissions to user `backend-owner` to modify `TrafficPermission` only for the backend service:
 
     ```sh
     echo '
@@ -930,7 +930,7 @@ In order for this example to work you must either run the control plane with `KU
     ' | kubectl apply -f -
     ```
 
-1.  Change the service to test user access:
+5. Change the service to test user access:
 
     ```sh
     kubectl config use-context backend-owner
@@ -983,7 +983,7 @@ In order for this example to work you must either run the control plane with `KU
 > **Note**: By default, all requests that originate from localhost are authenticated as the `admin` user in the `mesh-system:admin` group.
 For this example to work, you must either run the control plane with `KUMA_API_SERVER_AUTHN_LOCALHOST_IS_ADMIN` set to `false` or access the control plane using a method other than localhost.
 
-1.  Extract admin token and configure kumactl with admin:
+1. Extract admin token and configure kumactl with admin:
 
     ```sh
     export ADMIN_TOKEN=$(curl http://localhost:5681/global-secrets/admin-user-token | jq -r .data | base64 -d)
@@ -995,7 +995,7 @@ For this example to work, you must either run the control plane with `KUMA_API_S
     --auth-conf token=$ADMIN_TOKEN
     ```
 
-1.  Configure backend-owner:
+2. Configure backend-owner:
 
     ```sh
     export BACKEND_OWNER_TOKEN=$(kumactl generate user-token --valid-for=24h --name backend-owner)
@@ -1008,7 +1008,7 @@ For this example to work, you must either run the control plane with `KUMA_API_S
     kumactl config control-planes switch --name cp-admin # switch back to admin
     ```
 
-1.  Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
+3. Change default {{site.mesh_product_name}} RBAC to restrict access to resources by default:
 
     ```sh
     echo "type: AccessRoleBinding
@@ -1020,7 +1020,7 @@ For this example to work, you must either run the control plane with `KUMA_API_S
     - admin" | kumactl apply -f -
     ```
 
-1.  Create {{site.mesh_product_name}} RBAC to only allow the backend-owner to modify `TrafficPermission` for backend:
+4. Create {{site.mesh_product_name}} RBAC to only allow the backend-owner to modify `TrafficPermission` for backend:
 
     ```sh
     echo '
@@ -1045,7 +1045,7 @@ For this example to work, you must either run the control plane with `KUMA_API_S
     - backend-owner' | kumactl apply -f -
     ```
 
-1.  Change the user and test RBAC:
+5. Change the user and test RBAC:
 
     ```sh
     kumactl config control-planes switch --name cp-backend-owner
