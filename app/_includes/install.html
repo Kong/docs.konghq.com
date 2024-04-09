@@ -32,7 +32,7 @@
           <p class="installation-options__heading">{{ column.name }}</p>
           <p class="installation-options__heading mobile-label">{{ column.name }}</p>
           {% if column.subtitle %}
-            <p class="installation-options__subheading">{{ column.subtitle }}</p>
+            <p class="installation-options__subheading">{{ column.subtitle | safe }}</p>
           {% endif %}
         </th>
       {% endfor %}

@@ -1,7 +1,7 @@
 columns:
   - name: Platform
   - name: Open Source
-    subtitle: An open-source package containing the basic API gateway functionality and open-source plugins.
+    subtitle: An open-source package containing the basic API <br />gateway functionality and open-source plugins.
     key: oss
   - name: Kong Gateway Enterprise
     subtitle: Kong’s API gateway with added functionality.
