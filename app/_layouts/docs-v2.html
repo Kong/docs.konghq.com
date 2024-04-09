@@ -18,14 +18,14 @@ id: documentation
           {% elsif page.edition == 'deck' %}decK
           {% elsif page.edition == 'kubernetes-ingress-controller' %}{{site.kic_product_name}}
           {% elsif page.edition == 'gateway' %}Kong Gateway
-          {% elsif page.edition == 'contributing' %}Contribution guidelines
+          {% elsif page.edition == 'contributing' %}{% t _layouts.docs-v2.contribution_guidelines %}
           {% endif %}
         </div>
         {% unless page.no_version == true %}
         <div class="version">
           {{ page.release }}
           {% if page.release.latest? %}
-            <span>(latest)</span>
+            <span>{% t _layouts.docs-v2.latest %}</span>
           {% endif %}
           {% if page.release.lts %}
             <span>LTS</span>
@@ -78,7 +78,7 @@ id: documentation
         <div id="oss-ee-toggle" data-current="Enterprise" style="display: none">
           <span class="oss-ee-toggle-inner">
             <img src="/assets/images/icons/icn-enterprise-black.svg" alt="enterprise-switcher-icon"/>
-            <span>Switch to <span id="switch-to-version">OSS</span></span>
+            <span>{% t _layouts.docs-v2.switch_to %} <span id="switch-to-version">OSS</span></span>
           </span>
         </div>
 
@@ -101,15 +101,15 @@ id: documentation
               <blockquote id="version-notice" class="warning no-icon">
                 {% if page.edition == 'mesh' and page.release.label == 'dev' %}
                  <!-- Special case for Mesh, since Kuma uses "dev" -->
-                  You are browsing <strong>unreleased</strong> documentation.
+                 {% t _layouts.docs-v2.browsing_unreleased_documentation %}
                 {% else %}
-                  You are browsing <strong>{{page.release.label}}</strong> documentation.
+                 {% t _layouts.docs-v2.browsing_versioned_documentation %}
                 {% endif %}
             {% else %}
               <blockquote id="version-notice" class="important">
-                You are browsing documentation for an older version.
+                {% t _layouts.docs-v2.browsing_outdated_documentation %}
             {% endif %}
-                See the <a href="{{ page.canonical_url }}">latest documentation here</a>.
+                {% t _layouts.docs-v2.see_latest_documentation %}
               </blockquote>
           {% endunless %}
 
@@ -136,7 +136,7 @@ id: documentation
 
           {% if page.alpha %}
             <blockquote class="important">
-              This feature is released as a <a href="/gateway/latest/availability-stages/#tech-preview">tech preview</a> (alpha-quality) and should not be depended upon in a production environment.
+              {% t _layouts.docs-v2.tech_preview %}
 
               {% if page.stability_message %}
               {{ page.stability_message }}
@@ -145,7 +145,7 @@ id: documentation
           {% endif %}
           {% if page.beta %}
             <blockquote class="important">
-              This feature is released as <a href="/gateway/latest/availability-stages/#beta">beta</a> and should not be depended upon in a production environment.
+              {% t _layouts.docs-v2.beta %}
 
               {% if page.stability_message %}
               {{ page.stability_message }}
@@ -176,14 +176,16 @@ id: documentation
   <div class="modal closed" id="modal" role="dialog" aria-hidden="true" aria-labelledby="title" aria-describedby="description">
     <div class="konnect-cta-card">
       <div class="title">
-      Too much on your plate?
+        {% t _layouts.docs-v2.konnect_cta_card.too_much_on_your_plate %}
       <a href="#" class="cta-card-close modal-close" id="modal-close">
           <img src="/assets/images/icons/documentation/close.svg" alt="close cta icon"/>
         </a>
       </div>
-      <div class="description">More features, less infrastructure with Kong Konnect. 1M requests per month for free.</div>
+      <div class="description">
+        {% t _layouts.docs-v2.konnect_cta_card.description %}
+      </div>
       <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_campaign=right-nav-card&utm_content={{ page.edition }}" class="button" target="_blank">
-      Try it for Free
+        {% t _layouts.docs-v2.konnect_cta_card.try_it %}
     </a>
     </div>
   </div>

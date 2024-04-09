@@ -1,0 +1,18 @@
+en:
+  _layouts:
+    docs-v2:
+      contribution_guidelines: Contribution guidelines
+      latest: (latest)
+      switch_to: Switch to
+      browsing_versioned_documentation: You are browsing <strong> {{ page.release.label }} </strong> documentation.
+      browsing_unreleased_documentation: You are browsing <strong> unreleased </strong> documentation.
+      browsing_outdated_documentation: You are browsing documentation for an older version.
+      see_latest_documentation: See the <a href="{{ page.canonical_url }}">latest documentation here</a>.
+      tech_preview: |
+        This feature is released as a <a href="/gateway/latest/availability-stages/#tech-preview">tech preview</a> (alpha-quality) and should not be depended upon in a production environment.
+      beta: |
+        This feature is released as <a href="/gateway/latest/availability-stages/#beta">beta</a> and should not be depended upon in a production environment.
+      konnect_cta_card:
+        too_much_on_your_plate: Too much on your plate?
+        description: More features, less infrastructure with Kong Konnect. 1M requests per month for free.
+        try_it: Try it for Free
