@@ -528,14 +528,14 @@ This way a service owners can:
 * Modify `TrafficTrace` or `ProxyTemplate` that matches backend service. This changes the configuration of data plane proxy that implements `backend` service.
 {% endif_version %}
 {% if_version gte:2.1.x %}
-* Modify `MeshRateLimit` and `MeshTrafficPermission` that allows/restrict access to the backend service.
-  This changes the configuration of data plane proxy that implements `backend` service.
+* Modify `MeshRateLimit` and `MeshTrafficPermission` that allows/restricts access to the backend service.
+  This changes the configuration of the data plane proxy that implements the `backend` service.
 * Modify connection policies (`MeshHTTPRoute`, {% if_version gte:2.3.x inline:true %}`MeshTCPRoute`, {% endif_version %}`MeshHealthCheck`, `MeshCircuitBreaker`, `MeshFaultInjection`, `MeshRetry`, `MeshTimeout`, `MeshRateLimit`, `MeshAccessLog`)
-  that matches backend service that connects to other services. This changes the configuration of data plane proxy that implements `backend` service.
+  that matches the backend service that connects to other services. This changes the configuration of the data plane proxy that implements the `backend` service.
 * Modify connection policies that matches any service that consumes backend service.
-  This changes the configuration of data plane proxies that are connecting to backend, but the configuration only affects connections to backend service.
-  It's useful because the service owner of backend has the best knowledge what (`MeshTimeout`, `MeshHealthCheck`) should be applied when communicating with their service.
-* Modify `MeshTrace` or `MeshProxyPatch` that matches backend service. This changes the configuration of data plane proxy that implements `backend` service.
+  This changes the configuration of data plane proxies that are connecting to the backend, but the configuration only affects connections to the backend service.
+  It's useful because the service owner of the backend knows what (`MeshTimeout`, `MeshHealthCheck`) should be applied when communicating with their service.
+* Modify the `MeshTrace` or `MeshProxyPatch` that matches the backend service. This changes the configuration of the data plane proxy that implements the `backend` service.
 {% endif_version %}
 
 {:.note}
@@ -544,7 +544,7 @@ This way a service owners can:
 ### Observability operator
 
 We may also have an infrastructure team which is responsible for the logging/metrics/tracing systems in the organization.
-Currently, those features are configured on `Mesh`, {% if_version lte:2.0.x inline:true %}`TrafficLog` and `TrafficTrace`{% endif_version %}{% if_version gte:2.1.x inline:true %}`MeshAccessLog` and `MeshTrace`{% endif_version %} objects.
+Currently, those features are configured on `Mesh`, {% if_version lte:2.0.x inline:true %}`TrafficLog`, and `TrafficTrace`{% endif_version %}{% if_version gte:2.1.x inline:true %}`MeshAccessLog`, and `MeshTrace`{% endif_version %} objects.
 
 {% navtabs %}
 {% navtab Kubernetes %}
@@ -765,12 +765,12 @@ roles:
 
 {% navtabs %}
 {% navtab "targetRef" selectors %}
-Here are the steps to create a new user and restrict the access only to `MeshTrafficPermission` for backend service.
+The following steps create a new user and restrict the access to only `MeshTrafficPermission` for the backend service.
 
 {% navtabs %}
 {% navtab Kubernetes %}
 
-1. Create a backend-owner Kubernetes user and configure kubectl:
+1. Create a backend-owner Kubernetes user and configure `kubectl`:
 
     ```sh
     mkdir -p /tmp/k8s-certs
@@ -934,13 +934,13 @@ Here are the steps to create a new user and restrict the access only to `MeshTra
     ```
 {% endnavtab %}
 {% navtab Universal %}
-Here are the steps to create a new user and restrict the access only to `TrafficPermission` for backend service.
+The following steps create a new user and restrict the access to only `TrafficPermission` for the backend service.
 
 {:.note}
 > **Note**: By default, all requests that originate from localhost are authenticated as the `admin` user in the `mesh-system:admin` group.
 For this example to work, you must either run the control plane with `KUMA_API_SERVER_AUTHN_LOCALHOST_IS_ADMIN` set to `false` or access the control plane using a method other than localhost.
 
-1. Extract admin token and configure kumactl with admin:
+1. Extract the admin token and configure `kumactl` with the admin:
 
     ```sh
     export ADMIN_TOKEN=$(curl http://localhost:5681/global-secrets/admin-user-token | jq -r .data | base64 -d)
@@ -1048,7 +1048,7 @@ For this example to work, you must either run the control plane with `KUMA_API_S
 {% navtabs %}
 {% navtab Kubernetes %}
 
-1. Create a backend-owner Kubernetes user and configure kubectl:
+1. Create a backend-owner Kubernetes user and configure `kubectl`:
 
     ```sh
     mkdir -p /tmp/k8s-certs
@@ -1132,7 +1132,7 @@ For this example to work, you must either run the control plane with `KUMA_API_S
     " | kubectl apply -f -
     ```
 
-4. Create an AccessRole to grant permissions to user `backend-owner` to modify `TrafficPermission` only for the backend service:
+4. Create an AccessRole to grant permissions to the `backend-owner` user to modify `TrafficPermission` only for the backend service:
 
     ```sh
     echo '
@@ -1204,8 +1204,8 @@ For this example to work, you must either run the control plane with `KUMA_API_S
 {% navtab Universal %}
 
 {:.note}
-> **Note**: By default, all requests that originates from localhost are authenticated as user `admin` belonging to group `mesh-system:admin`.
-In order for this example to work you must either run the control plane with `KUMA_API_SERVER_AUTHN_LOCALHOST_IS_ADMIN` set to `false` or be accessing the control plane not via localhost.
+> **Note**: By default, all requests that originates from localhost are authenticated as the `admin` user belonging to the `mesh-system:admin` group.
+For this example to work, you must either run the control plane with `KUMA_API_SERVER_AUTHN_LOCALHOST_IS_ADMIN` set to `false` or access the control plane via a method other than localhost.
 
 1. Extract admin token and configure kumactl with admin:
 
