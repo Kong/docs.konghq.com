@@ -5,19 +5,18 @@ title: How to configure Transit Gateway
 
 This guide will walk you through connecting your {{site.konnect_short_name}} managed Dedicated Cloud Gateways to AWS Transit Gateway, providing a secure and private channel for your API traffic.
 
-## Prerequsites 
+## Prerequisites 
 
-Before you start setting up the Transit Gateway with your {{site.konnect_short_name}} Dedicated Cloud Gateways, ensure that you have the following prerequisites:
 
-* A {{site.konnect_short_name}} Cloud Control Plane
-* AWS account with administrative privileges to create resources and manage peering.
-* The **AWS ID** which can be found in {{site.konnect_short_name}} by selecting the desired Network from **Gateway Manager** > **Networks**
+* A {{site.konnect_short_name}} control plane
+* An AWS account with administrative privileges to create resources and manage peering
+* The **AWS ID**. You can find this in {{site.konnect_short_name}} by selecting the desired Network from **Gateway Manager** > **Networks**
 
 ## Configure AWS Transit Gateway
 
 1. While logged in to AWS, select the same region as your cloud gateways network. 
 1. Select **VPC** > **Transit Gateways**, then click **Create Transit Gateway**.
-1. Name the transit gateway then click **Create Transit Gateway**. 
+1. Name the transit gateway and then click **Create Transit Gateway**. 
 
 This will display a **Transit Gateway ID**, save this. 
 
@@ -45,7 +44,7 @@ After creating the resource share, copy the **RAM Share ARN**. You will need thi
 ### Accept Transit Gateway attachment request
 
 1. From the AWS Console > VPC > Transit Gateway Attachments.
-2. Wait for an attachment request coming from the **AWS Account ID** you used in {{site.konnect_short_name}}
+2. Wait for an attachment request coming from the AWS Account ID you used in {{site.konnect_short_name}}.
 1. Accept the attachment to complete the setup.
 
 Once the transit gateway attachment is successful, add a route where the upstream services are running, and configure the route to forward all traffic for the {{site.konnect_short_name}} managed VPC via the transit gateway. This ensures that traffic from the {{site.konnect_short_name}} data plane reaches the service and the response packets are routed back correctly.
@@ -54,4 +53,4 @@ Once the transit gateway attachment is successful, add a route where the upstrea
 ## More Information
 
 * [Dedicated Cloud Gateways](/konnect/dedicated-cloud-gateways/)
-* [Network Resiliency and availbility](/konnect/network-resiliency/)
+* [Network Resiliency and availability](/konnect/network-resiliency/)
