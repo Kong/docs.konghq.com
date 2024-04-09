@@ -20,15 +20,6 @@ You can manage your Dedicated Cloud Gateway nodes in [Gateway Manager](https://c
 ![cloud gateway wizard](/assets/images/products/konnect/gateway-manager/konnect-control-plane-cloud-gateway-wizard.png)
 > _**Figure 3:** The Dedicated Cloud Gateway wizard in the {{site.konnect_short_name}} UI. The wizard allows you to configure the {{site.base_gateway}} version, mode, cluster region, and API access level._
 
-Dedicated Cloud Gateways are useful for the following use cases:
-
-| Use case | Solution |
-| ------- | ----------- |
-| Reducing latency is important to your organization.  | Dedicated Cloud Gateways supports multiple AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon. |
-| Your organization operates in an industry with strict data protection and privacy requirements. |  Using the private gateway option, Kong provisions a private network load balancer and only exposes the IP address in the UI. |
-| Your organization needs high availability with zero downtime when upgrading data plane nodes. | There's no downtime when upgrading your data plane nodes. Additionally, you can pre-warm your cluster by specifying the number of requests per second so that the first requests don’t have to wait for the infrastructure to scale up. |
-| You have infrastructure in multiple clouds. | Dedicated Cloud Gateways allows you to run a multi-cloud solution that allows you to standardize API operations across the board to reduce complexity and increase agility. |
-
 ## How do Dedicated Cloud Gateways work? {#dedicated-features}
 
 {% include_cached /md/konnect/deployment-topologies.md topology='cloud' %}
@@ -39,7 +30,7 @@ When you create a Dedicated Cloud Gateway, {{site.konnect_short_name}} creates a
 
 When you configure your Dedicated Cloud Gateway, you can choose one of two configuration modes to create your data plane nodes:
 
-* **Autopilot:** In Autopilot mode, you configure how many requests per second you expect the instance to recieve, then Kong pre-warms and autoscales the data plane nodes in the cluster for you.
+* **Autopilot:** In Autopilot mode, you configure how many requests per second you expect the instance to receive, then Kong pre-warms and autoscales the data plane nodes in the cluster for you.
 * **Custom:** In Custom mode, you specify the instance size and type (for example, dev, production, or large production) as well as the number of nodes per cluster.
 
 Because data plane nodes in Autopilot configuration mode automatically scale, you **cannot** manually increase or decrease nodes. You can only manually increase or decrease data plane nodes when the Dedicated Cloud Gateway is configured in the Custom mode.
