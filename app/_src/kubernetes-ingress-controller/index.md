@@ -20,7 +20,7 @@ A Kubernetes ingress controller is an application that runs in a cluster and con
 
 ## Deployment Methods
 
-Kong recommends using the `kong/ingress` Helm chart to deploy {{ site.kic_product_name }}. This chart supports both [DB-less](/kubernetes-ingress-controller/{{ page.release }}/production/deployment-topologies/gateway-discovery/) and [DB-backed](/kubernetes-ingress-controller/{{ page.release }}/production/deployment-topologies/db-backed/) deployments. If you're not sure which to choose, we recommend choosing DB-less which treats the Kubernetes API server as the source of truth.
+Kong recommends using the `kong/ingress` Helm chart to deploy {{ site.kic_product_name }}. This chart supports both [DB-less](/kubernetes-ingress-controller/{{ page.release }}/production/deployment-topologies/gateway-discovery/) and [DB-backed](/kubernetes-ingress-controller/{{ page.release }}/production/deployment-topologies/db-backed/) deployments. If you're unsure which to choose, we recommend choosing DB-less, which treats the Kubernetes API server as the source of truth.
 
 [Learn More &raquo;](/kubernetes-ingress-controller/{{ page.release }}/production/deployment-topologies/gateway-discovery/)
 
@@ -37,7 +37,7 @@ To do all of these in under 10 minutes, follow our [getting started guide](/kube
 
 ## Gateway API Support
 
-Kong are proud to be a driving force behind the Kubernetes Gateway API standard. With multiple contributors in maintainer and reviewer roles, Kong is all-in on Gateway API as the future of Kubernetes networking.
+Kong is proud to be a driving force behind the Kubernetes Gateway API standard. With multiple contributors in maintainer and reviewer roles, Kong is all-in on Gateway API as the future of Kubernetes networking.
 
 {{ site.kic_product_name }} was the first submitted conformance report, and is 100% compliant with the core conformance tests (in addition to many extended tests). Kong has implemented the Gateway API resources as first-class citizens, converting them directly in to {{ site.base_gateway }} configuration rather than using intermediate CRDs. This makes the Gateway API CRDs a native language for {{ site.kic_product_name }}.
 
