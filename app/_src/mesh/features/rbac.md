@@ -764,10 +764,10 @@ roles:
 
 ## Example
 
-Here are the steps to create a new user and restrict the access only to `TrafficPermission` for backend service.
-
 {% navtabs %}
 {% navtab "targetRef" selectors %}
+Here are the steps to create a new user and restrict the access only to `MeshTrafficPermission` for backend service.
+
 {% navtabs %}
 {% navtab Kubernetes %}
 
@@ -796,7 +796,7 @@ Here are the steps to create a new user and restrict the access only to `Traffic
     kubectl config set-context backend-owner --cluster=YOUR_CLUSTER_NAME --user=backend-owner
     ```
 
-2. Create Kubernetes RBAC to allow backend-owner to manage all `TrafficPermission`:
+2. Create Kubernetes RBAC to allow backend-owner to manage all `MeshTrafficPermission`:
 
     ```sh
     echo "
@@ -855,7 +855,7 @@ Here are the steps to create a new user and restrict the access only to `Traffic
     " | kubectl apply -f -
     ```
 
-4. Create an AccessRole to grant permissions to user `backend-owner` to modify `TrafficPermission` only for the backend service:
+4. Create an AccessRole to grant permissions to user `backend-owner` to modify `MeshTrafficPermission` only for the backend service:
 
     ```sh
     echo '
@@ -935,6 +935,7 @@ Here are the steps to create a new user and restrict the access only to `Traffic
     ```
 {% endnavtab %}
 {% navtab Universal %}
+Here are the steps to create a new user and restrict the access only to `TrafficPermission` for backend service.
 
 {:.note}
 > **Note**: By default, all requests that originate from localhost are authenticated as the `admin` user in the `mesh-system:admin` group.
@@ -977,7 +978,7 @@ For this example to work, you must either run the control plane with `KUMA_API_S
     - admin" | kumactl apply -f -
     ```
 
-4. Create {{site.mesh_product_name}} RBAC to only allow the backend-owner to modify `TrafficPermission` for backend:
+4. Create {{site.mesh_product_name}} RBAC to only allow the backend-owner to modify `MeshTrafficPermission` for backend:
 
     ```sh
     echo '
