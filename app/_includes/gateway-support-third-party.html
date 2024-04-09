@@ -1,8 +1,7 @@
 
-## Data Stores
+## {% t _includes.gateway-support-third-party.data_stores.title %}
 
-Kong interacts with multiple data stores during normal operation. The following stores have been tested by Kong:
-
+{% t _includes.gateway-support-third-party.data_stores.description %}
 
 <div class="docs-grid-install">
   {% for d in include.data.third-party.datastore %}
@@ -19,9 +18,9 @@ Kong interacts with multiple data stores during normal operation. The following 
 </div>
 
 
-## Vaults
+## {% t _includes.gateway-support-third-party.vaults.title %}
 
-Kong allows you to store secret values in external vaults. The following versions have been tested by Kong:
+{% t _includes.gateway-support-third-party.vaults.description %}
 
 <div class="docs-grid-install">
   {% for d in include.data.third-party.vault %}
@@ -37,9 +36,9 @@ Kong allows you to store secret values in external vaults. The following version
   {% endfor %}
 </div>
 
-## Service Mesh
+## {% t _includes.gateway-support-third-party.service_mesh.title %}
 
-Kong Ingress Controller has been tested against the following Service Mesh versions:
+{% t _includes.gateway-support-third-party.service_mesh.description %}
 
 <div class="docs-grid-install">
   {% for d in include.data.third-party.service_mesh %}
@@ -56,9 +55,9 @@ Kong Ingress Controller has been tested against the following Service Mesh versi
 </div>
 
 
-## Metrics
+## {% t _includes.gateway-support-third-party.metrics.title %}
 
-Kong Ingress Controller has been tested against the following metrics providers:
+{% t _includes.gateway-support-third-party.metrics.description %}
 
 <div class="docs-grid-install">
   {% for d in include.data.third-party.metrics %}
@@ -74,9 +73,9 @@ Kong Ingress Controller has been tested against the following metrics providers:
   {% endfor %}
 </div>
 
-## Log Providers
+## {% t _includes.gateway-support-third-party.log_providers.title %}
 
-Kong Ingress Controller has been tested against the following log providers:
+{% t _includes.gateway-support-third-party.log_providers.description %}
 
 <div class="docs-grid-install">
   {% for d in include.data.third-party.log_provider %}
@@ -92,9 +91,9 @@ Kong Ingress Controller has been tested against the following log providers:
   {% endfor %}
 </div>
 
-## S3 Compatible APIs
+## {% t _includes.gateway-support-third-party.s3_compatible_apis.title %}
 
-Any S3 compatible API is available for use when working with remote file storage. The following have been tested by Kong:
+{% t _includes.gateway-support-third-party.s3_compatible_apis.description %}
 
 <div class="docs-grid-install">
   {% for d in include.data.third-party.s3_api %}
@@ -110,9 +109,9 @@ Any S3 compatible API is available for use when working with remote file storage
   {% endfor %}
 </div>
 
-## Identity Providers
+## {% t _includes.gateway-support-third-party.identity_providers.title %}
 
-Kong is expected to work with the following third party identity providers (IDP) when using the OpenID Connect (OIDC) plugin:
+{% t _includes.gateway-support-third-party.identity_providers.description %}
 
 {% for d in include.data.third-party.identity_provider %}
 * **{{ d.name }}**{% if d.versions %}: {{ d.versions | join: ", " }}
