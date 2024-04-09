@@ -1,0 +1,7 @@
+en:
+  _includes:
+    lts-changes:
+      thead:
+        change: Change
+        category: Category
+        action_required: Action required
