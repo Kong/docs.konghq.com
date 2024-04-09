@@ -80,140 +80,87 @@ The control plane contains all {{ site.base_gateway }} configurations. The confi
 
 1. Create a `values-cp.yaml` file.
 
-{% if_version lte:3.4.x %}
-    ```yaml
-    # Do not use {{ site.kic_product_name }}
-    ingressController:
-      enabled: false
+{% capture yamlconfig %}
+```yaml
+# Do not use {{ site.kic_product_name }}
+ingressController:
+  enabled: false
 
-    image:
-      repository: kong/kong-gateway
-      tag: "{{ page.versions.ee }}"
+image:
+  repository: kong/kong-gateway
+  tag: "{{ page.versions.ee }}"
 
-    # Mount the secret created earlier
-    secretVolumes:
-      - kong-cluster-cert
+# Mount the secret created earlier
+secretVolumes:
+  - kong-cluster-cert
 
-    env:
-      # This is a control_plane node
-      role: control_plane
-      # These certificates are used for control plane / data plane communication
-      cluster_cert: /etc/secrets/kong-cluster-cert/tls.crt
-      cluster_cert_key: /etc/secrets/kong-cluster-cert/tls.key
+env:
+  # This is a control_plane node
+  role: control_plane
+  # These certificates are used for control plane / data plane communication
+  cluster_cert: /etc/secrets/kong-cluster-cert/tls.crt
+  cluster_cert_key: /etc/secrets/kong-cluster-cert/tls.key
 
-      # Database
-      # CHANGE THESE VALUES
-      database: postgres
-      pg_database: kong
-      pg_user: kong
-      pg_password: demo123
-      pg_host: kong-cp-postgresql.kong.svc.cluster.local
-      pg_ssl: "on"
+  # Database
+  # CHANGE THESE VALUES
+  database: postgres
+  pg_database: kong
+  pg_user: kong
+  pg_password: demo123
+  pg_host: kong-cp-postgresql.kong.svc.cluster.local
+  pg_ssl: "on"
 
-      # Kong Manager password
-      password: kong_admin_password
+  # Kong Manager password
+  password: kong_admin_password
 
-    # Enable enterprise functionality
-    enterprise:
-      enabled: true
-      license_secret: kong-enterprise-license
+# Enable enterprise functionality
+enterprise:
+  enabled: true
+  license_secret: kong-enterprise-license
 
-    # The control plane serves the Admin API
-    admin:
-      enabled: true
-      http:
-        enabled: true
+# The control plane serves the Admin API
+admin:
+  enabled: true
+  http:
+    enabled: true
 
-    # Clustering endpoints are required in hybrid mode
-    cluster:
-      enabled: true
-      tls:
-        enabled: true
+# Clustering endpoints are required in hybrid mode
+cluster:
+  enabled: true
+  tls:
+    enabled: true
 
-    clustertelemetry:
-      enabled: true
-      tls:
-        enabled: true
+clustertelemetry:
+  enabled: true
+  tls:
+    enabled: true
 
-    # Optional features
-    manager:
-      enabled: false
+# Optional features
+{% if_version lte:3.4.x -%}
+manager:
+  enabled: false
 
-    portal:
-      enabled: false
+portal:
+  enabled: false
 
-    portalapi:
-      enabled: false
+portalapi:
+  enabled: false
 
-    # These roles will be served by different Helm releases
-    proxy:
-      enabled: false
-    ```
-{% endif_version %}
-{% if_version gte:3.5.x %}
-    ```yaml
-    # Do not use {{ site.kic_product_name }}
-    ingressController:
-      enabled: false
+# These roles will be served by different Helm releases
+proxy:
+  enabled: false
+{% else -%}
+manager:
+  enabled: false
 
-    image:
-      repository: kong/kong-gateway
-      tag: "{{ page.versions.ee }}"
+# These roles will be served by different Helm releases
+proxy:
+  enabled: false
+{% endif_version -%}
+```
+{% endcapture %}
 
-    # Mount the secret created earlier
-    secretVolumes:
-      - kong-cluster-cert
-
-    env:
-      # This is a control_plane node
-      role: control_plane
-      # These certificates are used for control plane / data plane communication
-      cluster_cert: /etc/secrets/kong-cluster-cert/tls.crt
-      cluster_cert_key: /etc/secrets/kong-cluster-cert/tls.key
-
-      # Database
-      # CHANGE THESE VALUES
-      database: postgres
-      pg_database: kong
-      pg_user: kong
-      pg_password: demo123
-      pg_host: kong-cp-postgresql.kong.svc.cluster.local
-      pg_ssl: "on"
-
-      # Kong Manager password
-      password: kong_admin_password
-
-    # Enable enterprise functionality
-    enterprise:
-      enabled: true
-      license_secret: kong-enterprise-license
-
-    # The control plane serves the Admin API
-    admin:
-      enabled: true
-      http:
-        enabled: true
-
-    # Clustering endpoints are required in hybrid mode
-    cluster:
-      enabled: true
-      tls:
-        enabled: true
-
-    clustertelemetry:
-      enabled: true
-      tls:
-        enabled: true
-
-    # Optional features
-    manager:
-      enabled: false
-
-    # These roles will be served by different Helm releases
-    proxy:
-      enabled: false
-    ```
-{% endif_version %}
+{{ yamlconfig | indent }}
 
 
 1. _(Optional)_ If you want to deploy a Postgres database within the cluster for testing purposes, add the following to the bottom of `values-cp.yaml`.
@@ -260,102 +207,68 @@ The {{ site.base_gateway }} data plane is responsible for processing incoming tr
 
 1. Create a `values-dp.yaml` file.
 
-{% if_version lte:3.4.x %}
-    ```yaml
-    # Do not use {{ site.kic_product_name }}
-    ingressController:
-      enabled: false
+{% capture yamlconfig %}
+```yaml
+# Do not use {{ site.kic_product_name }}
+ingressController:
+  enabled: false
 
-    image:
-      repository: kong/kong-gateway
-      tag: "{{ page.versions.ee }}"
+image:
+  repository: kong/kong-gateway
+  tag: "{{ page.versions.ee }}"
 
-    # Mount the secret created earlier
-    secretVolumes:
-      - kong-cluster-cert
+# Mount the secret created earlier
+secretVolumes:
+  - kong-cluster-cert
 
-    env:
-      # data_plane nodes do not have a database
-      role: data_plane
-      database: "off"
+env:
+  # data_plane nodes do not have a database
+  role: data_plane
+  database: "off"
 
-      # Tell the data plane how to connect to the control plane
-      cluster_control_plane: kong-cp-kong-cluster.kong.svc.cluster.local:8005
-      cluster_telemetry_endpoint: kong-cp-kong-clustertelemetry.kong.svc.cluster.local:8006
+  # Tell the data plane how to connect to the control plane
+  cluster_control_plane: kong-cp-kong-cluster.kong.svc.cluster.local:8005
+  cluster_telemetry_endpoint: kong-cp-kong-clustertelemetry.kong.svc.cluster.local:8006
 
-      # Configure control plane / data plane authentication
-      lua_ssl_trusted_certificate: /etc/secrets/kong-cluster-cert/tls.crt
-      cluster_cert: /etc/secrets/kong-cluster-cert/tls.crt
-      cluster_cert_key: /etc/secrets/kong-cluster-cert/tls.key
+  # Configure control plane / data plane authentication
+  lua_ssl_trusted_certificate: /etc/secrets/kong-cluster-cert/tls.crt
+  cluster_cert: /etc/secrets/kong-cluster-cert/tls.crt
+  cluster_cert_key: /etc/secrets/kong-cluster-cert/tls.key
 
-    # Enable enterprise functionality
-    enterprise:
-      enabled: true
-      license_secret: kong-enterprise-license
+# Enable enterprise functionality
+enterprise:
+  enabled: true
+  license_secret: kong-enterprise-license
 
-    # The data plane handles proxy traffic only
-    proxy:
-      enabled: true
+# The data plane handles proxy traffic only
+proxy:
+  enabled: true
 
-    # These roles are served by the kong-cp deployment
-    admin:
-      enabled: false
+# These roles are served by the kong-cp deployment
 
-    portal:
-      enabled: false
+{%- if_version lte:3.4.x %}
+admin:
+  enabled: false
 
-    portalapi:
-      enabled: false
+portal:
+  enabled: false
 
-    manager:
-      enabled: false
-    ```
-{% endif_version %}
-{% if_version gte:3.5.x %}
-    ```yaml
-    # Do not use {{ site.kic_product_name }}
-    ingressController:
-      enabled: false
+portalapi:
+  enabled: false
 
-    image:
-      repository: kong/kong-gateway
-      tag: "{{ page.versions.ee }}"
+manager:
+  enabled: false
+{% else %}
+admin:
+  enabled: false
 
-    # Mount the secret created earlier
-    secretVolumes:
-      - kong-cluster-cert
+manager:
+  enabled: false
+{% endif_version -%}
+```
+{% endcapture %}
 
-    env:
-      # data_plane nodes do not have a database
-      role: data_plane
-      database: "off"
-
-      # Tell the data plane how to connect to the control plane
-      cluster_control_plane: kong-cp-kong-cluster.kong.svc.cluster.local:8005
-      cluster_telemetry_endpoint: kong-cp-kong-clustertelemetry.kong.svc.cluster.local:8006
-
-      # Configure control plane / data plane authentication
-      lua_ssl_trusted_certificate: /etc/secrets/kong-cluster-cert/tls.crt
-      cluster_cert: /etc/secrets/kong-cluster-cert/tls.crt
-      cluster_cert_key: /etc/secrets/kong-cluster-cert/tls.key
-
-    # Enable enterprise functionality
-    enterprise:
-      enabled: true
-      license_secret: kong-enterprise-license
-
-    # The data plane handles proxy traffic only
-    proxy:
-      enabled: true
-
-    # These roles are served by the kong-cp deployment
-    admin:
-      enabled: false
-
-    manager:
-      enabled: false
-    ```
-{% endif_version %}
+{{ yamlconfig | indent }}
 
 1. Run `helm install` to create the release.
 
