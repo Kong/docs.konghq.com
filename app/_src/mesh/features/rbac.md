@@ -151,8 +151,8 @@ rules:
   access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
   when: # A set of qualifiers to receive access. Only one of them needs to be fulfilled to receive access.
   - targetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
-        kind: MeshService
-        name: backend
+      kind: MeshService
+      name: backend
   - targetRef:
       kind: MeshSubset
       tags:
@@ -171,8 +171,8 @@ rules:
   access: ["CREATE", "UPDATE", "DELETE"] # The action bound to a type.
   when: # A set of qualifiers to receive access. Only one of them needs to be fulfilled to receive access.
   - targetRef: # A condition on the targetRef section in policies 2.0 (like MeshAccessLog or MeshTrace).
-        kind: MeshService
-        name: backend
+      kind: MeshService
+      name: backend
   - targetRef:
       kind: MeshSubset
       tags:
