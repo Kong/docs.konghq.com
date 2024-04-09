@@ -153,6 +153,15 @@ You can deploy your data plane nodes in the following ways:
 * **Fully-managed**: Dedicated Cloud Gateways data plane nodes are completely managed by Kong in the cloud provider of your choice. You maintain control over the size and location of the gateway infrastructure, while Kong oversees the management of each instance and the entire cluster for you. You can use the Dedicated Cloud Gateways wizard in Gateway Manager to provision a {{site.base_gateway}} data plane node in a cloud provider.
 * **Self-managed**: The data plane nodes are hosted either on your own systems or in  an external cloud provider. You can use the script in Gateway Manager to provision a {{site.base_gateway}} data plane node in a Docker container running Linux, on MacOS, or on Windows. 
 
+Dedicated Cloud Gateways are useful for the following use cases:
+
+| Use case | Solution |
+| ------- | ----------- |
+| Reducing latency is important to your organization.  | Dedicated Cloud Gateways supports multiple AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon. |
+| Your organization operates in an industry with strict data protection and privacy requirements. |  Using the private gateway option, Kong provisions a private network load balancer and only exposes the IP address in the UI. |
+| Your organization needs high availability with zero downtime when upgrading data plane nodes. | There's no downtime when upgrading your data plane nodes. Additionally, you can pre-warm your cluster by specifying the number of requests per second so that the first requests don’t have to wait for the infrastructure to scale up. |
+| You have infrastructure in multiple clouds. | Dedicated Cloud Gateways allows you to run a multi-cloud solution that allows you to standardize API operations across the board to reduce complexity and increase agility. |
+
 See the [data plane node installation options](/konnect/gateway-manager/data-plane-nodes/) for more information.
 
 ## Plugins
