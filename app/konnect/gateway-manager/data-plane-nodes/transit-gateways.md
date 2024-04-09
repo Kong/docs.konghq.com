@@ -43,7 +43,7 @@ After creating the resource share, copy the **RAM Share ARN**. You will need thi
 
 ### Accept Transit Gateway attachment request
 
-1. From the AWS Console > VPC > Transit Gateway Attachments.
+1. From the **AWS Console > VPC > Transit Gateway Attachments**.
 2. Wait for an attachment request coming from the AWS Account ID you used in {{site.konnect_short_name}}.
 1. Accept the attachment to complete the setup.
 
