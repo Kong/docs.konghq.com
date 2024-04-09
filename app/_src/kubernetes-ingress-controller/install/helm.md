@@ -32,4 +32,4 @@ gateway:
 
 ## Installation
 
-{% include /md/kic/prerequisites.md release=page.release disable_accordian=true %}
+{% include /md/kic/prerequisites.md release=page.release disable_accordian=true enable_oss=true %}
