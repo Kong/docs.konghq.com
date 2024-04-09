@@ -201,18 +201,17 @@ contains an embedded version of the session plugin, so while cookie handling
 code is the same, it is configured directly in the OpenID Connect plugin
 settings (`admin_gui_auth_conf`).
 
-{% if_version lte:3.4.x %}
+{% if_version lte:3.4.x -%}
 - `cookie_name` does not affect where the cookie is used, but should be set to
   a unique value to avoid collisions: some configurations may use the same
   `cookie_domain` for both admin and Portal cookies, and using the same name
   for both would then cause their cookies to collide and overwrite one another.
-{% endif_version %}
+{% endif_version -%}
 - `cookie_domain` should match the common hostname suffix shared by the GUI and
   its API. For example, if you use `api.admin.kong.example` and
   `manager.admin.kong.example` for the Admin API and Kong Manager,
   `cookie_domain` should be `admin.kong.example`.
-
-{% if_version lte:3.1.x %}
+{% if_version lte:3.1.x -%}
 - `cookie_samesite` should typically be left at 
   its default, `strict`. 
    - `none` is not necessary if you have your DNS records and 
@@ -225,20 +224,18 @@ settings (`admin_gui_auth_conf`).
     should not be used in production.
 {% endif_version %} 
 
-{% if_version gte:3.2.x %}
+{% if_version gte:3.2.x -%}
 - `cookie_same_site` should typically be left at its default, `Strict`.
-  
     - `None` is 
     not necessary if you have your DNS records and 
     `cookie_domain` set following the examples in this document.
-
     - `Lax` is only needed if the GUI and
     API are on entirely separate hostnames, e.g. `admin.kong.example` for the API
     and `manager.example.com` for Kong Manager. This configuration is not
     recommended because `Lax` opens a vector for cross-site request forgery
     attacks. It may be needed in some development or testing environments, but
     should not be used in production.
-{% endif_version %}
+{% endif_version -%}
 
 - `cookie_secure` controls whether cookies can be sent over unsecured
   (plaintext HTTP) requests. By default, it is set to `true`, which does not

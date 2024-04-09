@@ -143,6 +143,8 @@ paths:
           $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
   /portals/{portalId}/products:
     parameters:
       - $ref: '#/components/parameters/parameters-PortalId'
@@ -1674,6 +1676,7 @@ components:
             created_at: '2022-02-07T17:46:57.52Z'
             updated_at: '2022-10-08T17:00:00.52Z'
             name: Portal A
+            description: The Portal A
             default_domain: 123455678abcd.us.portal.konghq.com
             is_public: false
             rbac_enabled: true
@@ -1766,6 +1769,7 @@ components:
         created_at: '2022-02-07T17:46:57.52Z'
         updated_at: '2022-10-08T17:00:00.52Z'
         name: Portal A
+        description: The Portal A
         default_domain: 123455678abcd.us.portal.konghq.com
         is_public: false
         rbac_enabled: true
@@ -1779,6 +1783,7 @@ components:
         created_at: '2022-02-07T17:46:57.52Z'
         updated_at: '2022-10-08T17:00:00.52Z'
         name: Portal A
+        description: The Portal A
         default_domain: 123455678abcd.us.portal.konghq.com
         is_public: false
         rbac_enabled: true
@@ -2329,6 +2334,7 @@ components:
           - field: custom_domain
             reason: portal needs a custom_domain to be verified
     UpdatePortalBadRequestExample1:
+      summary: Unknown property
       value:
         status: 400
         title: Invalid Request
@@ -3545,18 +3551,18 @@ components:
           examples:
             NotFoundExample:
               $ref: '#/components/examples/NotFoundExample'
-    BadRequest:
-      description: Bad Request
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/BadRequestError'
     Conflict:
       description: Conflict
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/ConflictError'
+    BadRequest:
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/BadRequestError'
   schemas:
     AuthStrategy:
       type: object
@@ -4140,6 +4146,7 @@ components:
             created_at: '2022-02-07T17:46:57.52Z'
             updated_at: '2022-10-08T17:00:00.52Z'
             name: Portal A
+            description: The Portal A
             default_domain: 123455678abcd.us.portal.konghq.com
             is_public: false
             rbac_enabled: true
@@ -5141,6 +5148,7 @@ components:
         - auto_approve_developers
         - custom_domain
         - custom_client_domain
+        - description
       properties:
         id:
           $ref: '#/components/schemas/UUID'
@@ -5149,10 +5157,9 @@ components:
         updated_at:
           $ref: '#/components/schemas/UpdatedAt'
         name:
-          description: The name of the portal, used to distinguish it from other portals.
-          type: string
-          maxLength: 255
-          minLength: 1
+          $ref: '#/components/schemas/PortalName'
+        description:
+          $ref: '#/components/schemas/PortalDescription'
         default_domain:
           description: >-
             The domain assigned to the portal by Konnect. This is the default
@@ -5215,6 +5222,7 @@ components:
         created_at: '2022-02-07T17:46:57.52Z'
         updated_at: '2022-10-08T17:00:00.52Z'
         name: Portal A
+        description: The Portal A
         default_domain: 123455678abcd.us.portal.konghq.com
         is_public: false
         rbac_enabled: true
@@ -5222,16 +5230,30 @@ components:
         auto_approve_developers: true
         custom_domain: api.example.com
         custom_client_domain: portal.example.com
+    PortalDescription:
+      description: The description of the portal.
+      type: string
+      maxLength: 512
+      nullable: true
     DefaultApplicationAuthStratID:
       description: Default strategy ID applied on applications for the portal
       nullable: true
       type: string
       format: uuid
       example: 5f9fd312-a987-4628-b4c5-bb4f4fddd5f7
+    PortalName:
+      description: >-
+        The name of the portal, used to distinguish it from other portals. Name
+        must be unique.
+      type: string
+      maxLength: 255
+      minLength: 1
     UpdatePortalRequest:
       additionalProperties: false
       type: object
       properties:
+        name:
+          $ref: '#/components/schemas/PortalName'
         is_public:
           description: >-
             Whether the portal catalog can be accessed publicly without any
@@ -5284,6 +5306,7 @@ components:
         default_application_auth_strategy_id:
           $ref: '#/components/schemas/DefaultApplicationAuthStratID'
       example:
+        name: Aperture
         is_public: false
         rbac_enabled: true
         auto_approve_applications: false
@@ -6385,6 +6408,21 @@ components:
           example: Not found
       allOf:
         - $ref: '#/components/schemas/BaseError'
+    ConflictError:
+      type: object
+      properties:
+        status:
+          example: 409
+        title:
+          example: Conflict
+        type:
+          example: https://httpstatuses.com/409
+        instance:
+          example: kong:trace:1234567890
+        detail:
+          example: Conflict
+      allOf:
+        - $ref: '#/components/schemas/BaseError'
     APIProductLabels:
       title: Labels
       type: object
@@ -6677,21 +6715,6 @@ components:
         must be a data URL with base64 image data, e.g.,
         data:image/jpeg;base64,<BASE64_IMAGE_DATA>
       example: data:image/png,YW5faW1hZ2VfZmlsZQ==
-    ConflictError:
-      type: object
-      properties:
-        status:
-          example: 409
-        title:
-          example: Conflict
-        type:
-          example: https://httpstatuses.com/409
-        instance:
-          example: kong:trace:1234567890
-        detail:
-          example: Conflict
-      allOf:
-        - $ref: '#/components/schemas/BaseError'
   securitySchemes:
     personalAccessToken:
       type: http
