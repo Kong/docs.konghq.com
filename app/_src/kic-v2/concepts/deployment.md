@@ -70,26 +70,20 @@ stored in the Kubernetes object store.
 
 It needs read permissions (get, list, watch) on the following Kubernetes resources:
 
-{% if_version lte:2.9.x inline: true%}
-
+{% if_version lte:2.9.x -%}
 - Endpoints
-
-{%- endif_version %}
-{% if_version gte:2.9.x inline: true%}
-
+{% endif_version -%}
+{% if_version gte:2.9.x -%}
 - EndpointSlices
-
 {%- endif_version %}
 - Events
 - Nodes
 - Pods
 - Secrets
 - Ingress
-{% if_version gte:2.4.x inline:true %}
-
+{% if_version gte:2.4.x -%}
 - IngressClassParameters
-
-{%- endif_version %}
+{% endif_version -%}
 - KongClusterPlugins
 - KongPlugins
 - KongConsumers
@@ -181,7 +175,7 @@ Following are the different options to consider while deploying the
   Running multiple {{site.kic_product_name}}s inside the same Kubernetes cluster
 - [**Runtime**](#runtime):
   Using {{site.ce_product_name}} or {{site.ee_product_name}} (for Enterprise customers)
-{% if_version gte: 2.9.x %}
+{% if_version gte: 2.9.x -%}
 - [**Gateway Discovery**](#gateway-discovery):
   Dynamically discovering Kong's Admin API endpoints
 - [**{{site.konnect_short_name}} integration**](#konnect-integration):

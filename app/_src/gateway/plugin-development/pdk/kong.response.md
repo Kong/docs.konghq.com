@@ -263,10 +263,10 @@ Sets a response header with the given value.  This function overrides any
 **Parameters**
 
 * **name** (`string`):  The name of the header
-{% if_version lte:3.5.x %}
+{% if_version lte:3.5.x -%}
 * **value** (`string|number|boolean`):  The new value for the header.
-{% endif_version %}
-{% if_version gte:3.6.x %}
+{% endif_version -%}
+{% if_version gte:3.6.x -%}
 * **value** (`array of strings|string|number|boolean`): The new value for the header.
 {% endif_version %}
 **Returns**
@@ -300,10 +300,10 @@ Adds a response header with the given value.  Unlike
 **Parameters**
 
 * **name** (`string`):  The header name.
-{% if_version lte:3.5.x %}
+{% if_version lte:3.5.x -%}
 * **value** (`string|number|boolean`):  The header value.
-{% endif_version %}
-{% if_version gte:3.6.x %}
+{% endif_version -%}
+{% if_version gte:3.6.x -%}
 * **value** (`array of strings|string|number|boolean`): The header value.
 {% endif_version %}
 **Returns**

@@ -175,18 +175,18 @@ function CustomHandler:init_worker()
   kong.log("init_worker")
 end
 
-{% if_version gte:3.4.x %}
+{% if_version gte:3.4.x -%}
 function CustomHandler:configure(configs)
   -- Implement logic for the configure phase here
   --(called whenever there is change to any of the plugins)
   kong.log("configure")
 end
-{% endif_version %}
+{%- endif_version %}
+
 function CustomHandler:preread(config)
   -- Implement logic for the preread phase here (stream)
   kong.log("preread")
 end
-
 
 function CustomHandler:certificate(config)
   -- Implement logic for the certificate phase here (http/stream)
@@ -348,9 +348,9 @@ The following handlers are _unique to_ WebSocket services:
 
 The following handlers are executed for both WebSocket _and_ non-Websocket services:
   - `init_worker`
-  {% if_version gte:3.4.x %}
+  {% if_version gte:3.4.x -%}
   - `configure`
-  {% endif_version %}
+  {% endif_version -%}
   - `certificate` (TLS/SSL requests only)
   - `rewrite`
 
