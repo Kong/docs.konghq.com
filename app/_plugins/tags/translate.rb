@@ -9,14 +9,7 @@ module Jekyll
     end
 
     def render(context)
-      if I18n.exists?(@key)
-        I18n.t(@key)
-      else
-        # TODO: check if this key is equal to @key
-        # if it is not, then it's a variable
-        key = Liquid::Template.parse(@key).render(context)
-        I18n.t(key)
-      end
+      Liquid::Template.parse(I18n.t(@key)).render(context)
     end
   end
 end
