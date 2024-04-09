@@ -40,15 +40,19 @@ features:
       - name: "Kubernetes"
         url: /gateway/VERSION/install/kubernetes/proxy/
         oss: true
-        enterprise: false
+        enterprise: true
         support: true
         icon: /assets/images/icons/third-party/kubernetes-logo.png
-      - name: "Kubernetes ingress controller"
+        query_params:
+          oss: "install=oss"
+      - name: "Kubernetes Ingress Controller"
         url: /kubernetes-ingress-controller/latest/install/helm/
         oss: true
-        enterprise: false
+        enterprise: true
         support: true
         icon: /assets/images/icons/third-party/kubernetes-logo.png
+        query_params:
+          oss: "install=oss"
   - name: "Linux"
     items:
       - name: "Debian"
