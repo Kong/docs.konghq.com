@@ -286,30 +286,30 @@ metadata:
   name: backend-owner
 spec:
   rules:
-    - mesh: default
-      types: ["TrafficPermission", "RateLimit"]
-      access: ["CREATE", "DELETE", "UPDATE"]
-      when:
-        - destinations:
-            match:
-              kuma.io/service: backend
-    - mesh: default
-      types: ["TrafficRoute", "HealthCheck", "CircuitBreaker", "FaultInjection", "Retry", "Timeout", "TrafficLog"]
-      access: ["CREATE", "DELETE", "UPDATE"]
-      when:
-        - sources:
-            match:
-              kuma.io/service: backend
-        - destinations:
-            match:
-              kuma.io/service: backend
-    - mesh: default
-      types: ["TrafficTrace", "ProxyTemplate"]
-      access: ["CREATE", "DELETE", "UPDATE"]
-      when:
-        - selectors:
-            match:
-              kuma.io/service: backend
+  - mesh: default
+    types: ["TrafficPermission", "RateLimit"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+    when:
+    - destinations:
+        match:
+          kuma.io/service: backend
+  - mesh: default
+    types: ["TrafficRoute", "HealthCheck", "CircuitBreaker", "FaultInjection", "Retry", "Timeout", "TrafficLog"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+    when:
+    - sources:
+        match:
+          kuma.io/service: backend
+    - destinations:
+        match:
+          kuma.io/service: backend
+  - mesh: default
+    types: ["TrafficTrace", "ProxyTemplate"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+    when:
+    - selectors:
+        match:
+          kuma.io/service: backend
 ```
 {% endif_version %}
 [//]: # (MeshTCPRoute was added in `2.3.0`)
@@ -321,39 +321,39 @@ metadata:
   name: backend-owner
 spec:
   rules:
-    - mesh: default
-      types: ["MeshTrafficPermission", "MeshRateLimit"]
-      access: ["CREATE", "DELETE", "UPDATE"]
-      when:
-        - targetRef:
-            kind: Mesh
-          to:
-            targetRef:
-              kind: MeshService
-              name: backend
-    - mesh: default
-      types: ["MeshHTTPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
-      access: ["CREATE", "DELETE", "UPDATE"]
-      when:
-        - targetRef:
-            kind: Mesh
-          from:
-            targetRef:
-              kind: MeshService
-              name: backend
-        - targetRef:
-            kind: Mesh
-          to:
-            targetRef:
-              kind: MeshService
-              name: backend
-    - mesh: default
-      types: ["MeshTrace", "MeshProxyPatch"]
-      access: ["CREATE", "DELETE", "UPDATE"]
-      when:
-        - targetRef:
-            kind: MeshService
-            name: backend
+  - mesh: default
+    types: ["MeshTrafficPermission", "MeshRateLimit"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+    when:
+    - targetRef:
+        kind: Mesh
+      to:
+        targetRef:
+          kind: MeshService
+          name: backend
+  - mesh: default
+    types: ["MeshHTTPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+    when:
+    - targetRef:
+        kind: Mesh
+      from:
+        targetRef:
+          kind: MeshService
+          name: backend
+    - targetRef:
+        kind: Mesh
+      to:
+        targetRef:
+          kind: MeshService
+          name: backend
+  - mesh: default
+    types: ["MeshTrace", "MeshProxyPatch"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+    when:
+    - targetRef:
+        kind: MeshService
+        name: backend
 ```
 {% endif_version %}
 {% if_version gte:2.3.x %}
@@ -364,39 +364,39 @@ metadata:
   name: backend-owner
 spec:
   rules:
-    - mesh: default
-      types: ["MeshTrafficPermission", "MeshRateLimit"]
-      access: ["CREATE", "DELETE", "UPDATE"]
-      when:
-        - targetRef:
-            kind: Mesh
-          to:
-            targetRef:
-              kind: MeshService
-              name: backend
-    - mesh: default
-      types: ["MeshHTTPRoute", "MeshTCPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
-      access: ["CREATE", "DELETE", "UPDATE"]
-      when:
-        - targetRef:
-            kind: Mesh
-          from:
-            targetRef:
-              kind: MeshService
-              name: backend
-        - targetRef:
-            kind: Mesh
-          to:
-            targetRef:
-              kind: MeshService
-              name: backend
-    - mesh: default
-      types: ["MeshTrace", "MeshProxyPatch"]
-      access: ["CREATE", "DELETE", "UPDATE"]
-      when:
-        - targetRef:
-            kind: MeshService
-            name: backend
+  - mesh: default
+    types: ["MeshTrafficPermission", "MeshRateLimit"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+    when:
+    - targetRef:
+        kind: Mesh
+      to:
+        targetRef:
+          kind: MeshService
+          name: backend
+  - mesh: default
+    types: ["MeshHTTPRoute", "MeshTCPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+    when:
+    - targetRef:
+        kind: Mesh
+      from:
+        targetRef:
+          kind: MeshService
+          name: backend
+    - targetRef:
+        kind: Mesh
+      to:
+        targetRef:
+          kind: MeshService
+          name: backend
+  - mesh: default
+    types: ["MeshTrace", "MeshProxyPatch"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+    when:
+    - targetRef:
+        kind: MeshService
+        name: backend
 ```
 {% endif_version %}
 {% endnavtab %}
@@ -438,39 +438,39 @@ rules:
 type: AccessRole
 name: backend-owner
 rules:
-  - mesh: default
-    types: ["MeshTrafficPermission", "MeshRateLimit"]
-    access: ["CREATE", "DELETE", "UPDATE"]
-    when:
-      - targetRef:
-          kind: Mesh
-        to:
-          targetRef:
-            kind: MeshService
-            name: backend
-  - mesh: default
-    types: ["MeshHTTPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
-    access: ["CREATE", "DELETE", "UPDATE"]
-    when:
-      - targetRef:
-          kind: Mesh
-        from:
-          targetRef:
-            kind: MeshService
-            name: backend
-      - targetRef:
-          kind: Mesh
-        to:
-          targetRef:
-            kind: MeshService
-            name: backend
-  - mesh: default
-    types: ["MeshTrace", "MeshProxyPatch"]
-    access: ["CREATE", "DELETE", "UPDATE"]
-    when:
-      - targetRef:
-          kind: MeshService
-          name: backend
+- mesh: default
+  types: ["MeshTrafficPermission", "MeshRateLimit"]
+  access: ["CREATE", "DELETE", "UPDATE"]
+  when:
+  - targetRef:
+      kind: Mesh
+    to:
+      targetRef:
+        kind: MeshService
+        name: backend
+- mesh: default
+  types: ["MeshHTTPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
+  access: ["CREATE", "DELETE", "UPDATE"]
+  when:
+  - targetRef:
+      kind: Mesh
+    from:
+      targetRef:
+        kind: MeshService
+        name: backend
+  - targetRef:
+      kind: Mesh
+    to:
+      targetRef:
+        kind: MeshService
+        name: backend
+- mesh: default
+  types: ["MeshTrace", "MeshProxyPatch"]
+  access: ["CREATE", "DELETE", "UPDATE"]
+  when:
+  - targetRef:
+      kind: MeshService
+      name: backend
 ```
 {% endif_version %}
 {% if_version gte:2.3.x %}
@@ -478,39 +478,39 @@ rules:
 type: AccessRole
 name: backend-owner
 rules:
-  - mesh: default
-    types: ["MeshTrafficPermission", "MeshRateLimit"]
-    access: ["CREATE", "DELETE", "UPDATE"]
-    when:
-      - targetRef:
-          kind: Mesh
-        to:
-          targetRef:
-            kind: MeshService
-            name: backend
-  - mesh: default
-    types: ["MeshHTTPRoute", "MeshTCPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
-    access: ["CREATE", "DELETE", "UPDATE"]
-    when:
-      - targetRef:
-          kind: Mesh
-        from:
-          targetRef:
-            kind: MeshService
-            name: backend
-      - targetRef:
-          kind: Mesh
-        to:
-          targetRef:
-            kind: MeshService
-            name: backend
-  - mesh: default
-    types: ["MeshTrace", "MeshProxyPatch"]
-    access: ["CREATE", "DELETE", "UPDATE"]
-    when:
-      - targetRef:
-          kind: MeshService
-          name: backend
+- mesh: default
+  types: ["MeshTrafficPermission", "MeshRateLimit"]
+  access: ["CREATE", "DELETE", "UPDATE"]
+  when:
+  - targetRef:
+      kind: Mesh
+    to:
+      targetRef:
+        kind: MeshService
+        name: backend
+- mesh: default
+  types: ["MeshHTTPRoute", "MeshTCPRoute", "MeshHealthCheck", "MeshCircuitBreaker", "MeshFaultInjection", "MeshRetry", "MeshTimeout", "MeshAccessLog"]
+  access: ["CREATE", "DELETE", "UPDATE"]
+  when:
+  - targetRef:
+      kind: Mesh
+    from:
+      targetRef:
+        kind: MeshService
+        name: backend
+  - targetRef:
+      kind: Mesh
+    to:
+      targetRef:
+        kind: MeshService
+        name: backend
+- mesh: default
+  types: ["MeshTrace", "MeshProxyPatch"]
+  access: ["CREATE", "DELETE", "UPDATE"]
+  when:
+  - targetRef:
+      kind: MeshService
+      name: backend
 ```
 {% endif_version %}
 {% endnavtab %}
@@ -556,11 +556,11 @@ metadata:
   name: observability-operator
 spec:
   rules:
-    - mesh: '*'
-      types: ["TrafficLog", "TrafficTrace"]
-      access: ["CREATE", "DELETE", "UPDATE"]
-    - types: ["Mesh"]
-      access: ["CREATE", "DELETE", "UPDATE"]
+  - mesh: '*'
+    types: ["TrafficLog", "TrafficTrace"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+  - types: ["Mesh"]
+    access: ["CREATE", "DELETE", "UPDATE"]
 ```
 {% endif_version %}
 {% if_version gte:2.1.x %}
@@ -571,11 +571,11 @@ metadata:
   name: observability-operator
 spec:
   rules:
-    - mesh: '*'
-      types: ["MeshAccessLog", "MeshTrace"]
-      access: ["CREATE", "DELETE", "UPDATE"]
-    - types: ["Mesh"]
-      access: ["CREATE", "DELETE", "UPDATE"]
+  - mesh: '*'
+    types: ["MeshAccessLog", "MeshTrace"]
+    access: ["CREATE", "DELETE", "UPDATE"]
+  - types: ["Mesh"]
+    access: ["CREATE", "DELETE", "UPDATE"]
 ```
 {% endif_version %}
 {% endnavtab %}
@@ -625,12 +625,11 @@ metadata:
   name: demo-mesh-operator
 spec:
   rules:
-    - mesh: demo
-      access: ["CREATE", "DELETE", "UPDATE"]
-    - types: ["Mesh"]
-      names: ["demo"]
-      access: ["CREATE", "DELETE", "UPDATE"]
-
+  - mesh: demo
+    access: ["CREATE", "DELETE", "UPDATE"]
+  - types: ["Mesh"]
+    names: ["demo"]
+    access: ["CREATE", "DELETE", "UPDATE"]
 ```
 {% endnavtab %}
 {% navtab Universal %}
@@ -904,11 +903,11 @@ Here are the steps to create a new user and restrict the access only to `MeshTra
         kind: MeshService
         name: backend
       from:
-        - targetRef:
-            kind: MeshService
-            name: web
-          default:
-            action: ALLOW
+      - targetRef:
+          kind: MeshService
+          name: web
+        default:
+          action: ALLOW
     " | kubectl apply -f -
     # operation should succeed, access to backend service access is granted
 
@@ -925,11 +924,11 @@ Here are the steps to create a new user and restrict the access only to `MeshTra
         kind: MeshService
         name: not-backend # access to this service is not granted
       from:
-        - targetRef:
-            kind: MeshService
-            name: web
-          default:
-            action: ALLOW
+      - targetRef:
+          kind: MeshService
+          name: web
+        default:
+          action: ALLOW
     " | kubectl apply -f -
     # operation should not succeed
     ```
@@ -1016,11 +1015,11 @@ For this example to work, you must either run the control plane with `KUMA_API_S
         kind: MeshService
         name: backend
       from:
-        - targetRef:
-            kind: MeshService
-            name: web
-          default:
-            action: ALLOW
+      - targetRef:
+          kind: MeshService
+          name: web
+        default:
+          action: ALLOW
     " | kumactl apply -f -
     # this operation should succeed
 
@@ -1033,11 +1032,11 @@ For this example to work, you must either run the control plane with `KUMA_API_S
         kind: MeshService
         name: not-backend
       from:
-        - targetRef:
-            kind: MeshService
-            name: web
-          default:
-            action: ALLOW
+      - targetRef:
+          kind: MeshService
+          name: web
+        default:
+          action: ALLOW
     " | kumactl apply -f -
     Error: Access Denied (user "backend-owner/mesh-system:authenticated" cannot access the resource)
     ```
@@ -1177,11 +1176,11 @@ For this example to work, you must either run the control plane with `KUMA_API_S
       name: web-to-backend
     spec:
       sources:
-        - match:
-            kuma.io/service: web
+      - match:
+          kuma.io/service: web
       destinations:
-        - match:
-            kuma.io/service: backend
+      - match:
+          kuma.io/service: backend
     " | kubectl apply -f -
     # operation should succeed, access to backend service access is granted
 
@@ -1193,11 +1192,11 @@ For this example to work, you must either run the control plane with `KUMA_API_S
       name: web-to-backend
     spec:
       sources:
-        - match:
-            kuma.io/service: web
+      - match:
+          kuma.io/service: web
       destinations:
-        - match:
-            kuma.io/service: not-backend # access to this service is not granted
+      - match:
+          kuma.io/service: not-backend # access to this service is not granted
     " | kubectl apply -f -
     # operation should not succeed
     ```
@@ -1374,13 +1373,13 @@ metadata:
   name: tr-orders
 spec:
   sources:
-    - match:
-        k8s.kuma.io/namespace: 'orders'
+  - match:
+      k8s.kuma.io/namespace: 'orders'
   destinations:
-    - match:
-        kuma.io/service: web_orders_svc_1000
-    - match:
-        kuma.io/service: backend_orders_svc_1000
+  - match:
+      kuma.io/service: web_orders_svc_1000
+  - match:
+      kuma.io/service: backend_orders_svc_1000
   conf:
     destination:
       kuma.io/service: '*'
@@ -1392,13 +1391,13 @@ type: TrafficRoute
 mesh: default
 name: tr-orders
 sources:
-  - match:
-      k8s.kuma.io/namespace: 'orders'
+- match:
+    k8s.kuma.io/namespace: 'orders'
 destinations:
-  - match:
-      kuma.io/service: web_orders_svc_1000
-  - match:
-      kuma.io/service: backend_orders_svc_1000
+- match:
+    kuma.io/service: web_orders_svc_1000
+- match:
+    kuma.io/service: backend_orders_svc_1000
 conf:
   destination:
     kuma.io/service: '*'
