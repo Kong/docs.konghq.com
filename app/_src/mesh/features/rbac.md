@@ -1314,6 +1314,10 @@ In a multi-zone setup, `AccessRole` and `AccessRoleBinding` are not synchronized
 {:.note}
 > **Note**: This feature is available starting in {{site.mesh_product_name}} 1.9.1
 
+{:.note}
+> **Note**: This feature currently only works with "Source and Destination" selectors. This limitation restricts using newer policy types like `MeshTrafficPermission`, `MeshAccessLog`, or `MeshHTTPRoute`.
+
+
 You can perform partial tag value matching using `*` wildcards.
 
 For example, the following role:
