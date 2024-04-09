@@ -1,0 +1,6 @@
+en:
+  _includes:
+    header:
+      nav-links:
+        edit_page: Edit this page
+        report_an_issue: Report an issue
