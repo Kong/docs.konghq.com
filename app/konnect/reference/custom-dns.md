@@ -36,9 +36,9 @@ Every Dev Portal instance has an auto-generated default URL. You can also manage
 
 To add a custom URL to Dev Portal, you need:
 
-* A domain and access to configure the domain's DNS `CNAME` records.
-* Your organization's auto-generated default Dev Portal URL.
-* A [CAA DNS](https://datatracker.ietf.org/doc/html/rfc6844) record that allows `pki.goog` only if any pre-existing CAA DNS records are present on the domain.
+* A domain and access to configure the domain's DNS `CNAME` records
+* Your organization's auto-generated default Dev Portal URL
+* A [CAA DNS](https://datatracker.ietf.org/doc/html/rfc6844) record that only allows `pki.goog` if any pre-existing CAA DNS records are present on the domain
 
 You can also choose to [self-host the Dev Portal with Netlify](/konnect/dev-portal/customization/netlify/) or any other static hosting service that supports single page applications.
 
@@ -105,7 +105,7 @@ Delete a custom Dev Portal URL through your organization's {{site.konnect_short_
 After the DNS verification process is complete, {{site.konnect_short_name}} will attempt to automatically generate
 an SSL certificate for your custom domain. This process can take several hours. If you attempt to access the custom URL from a browser _before_ the certificate generation process is finished,
 you will receive an SSL certificate error.  If this process takes more than 24 hours,
-please check if the new DNS record is correctly applied. You can use the `dig` tool to troubleshoot your DNS:
+check if the new DNS record is correctly applied. You can use the `dig` tool to troubleshoot your DNS:
 
 * Run `dig`, replacing `CUSTOM_DOMAIN` with your custom domain
 and `CUSTOM_DOMAIN_DNS` with the DNS server for the custom domain:
