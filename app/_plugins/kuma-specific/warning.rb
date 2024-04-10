@@ -11,10 +11,11 @@ module Jekyll
     def render(context)
       content = Kramdown::Document.new(super).to_html
 
+      # warnings in Kuma map to {:.important} in docs
       <<~TIP
-        <div class="custom-block warning">
+        <blockquote class="important">
           <p>#{content}</p>
-        </div>
+        </blockquote>
       TIP
     end
   end
