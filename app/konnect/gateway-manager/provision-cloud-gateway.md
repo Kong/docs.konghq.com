@@ -14,13 +14,13 @@ This guide explains how to provision a [Dedicated Cloud Gateway](/konnect/dedica
 {% navtab UI %}
 1. From [Gateway Manager](https://cloud.konghq.com/gateway-manager) in the navigation menu, click the **New Control Plane** menu and select **{{site.base_gateway}}**.
 
-1. In the Create a Control Plane dialog, enter a name for your cloud gateway and click **Dedicated Cloud Instances**.
+1. Enter a name for your cloud gateway and click **Dedicated Cloud Instances**.
 
 1. Configure any labels as needed, and click **Next Step**. 
     
-	You will be redirected the provisioning dialog for your newly created Dedicated Cloud Gateway. The cloud gateway is only created, it still needs to be provisioned and a data plane node needs to be added.
+	You will be redirected the provisioning dialog for your newly created Dedicated Cloud Gateway. The cloud gateway is created but not yet provisioned, and it still requires a data plane node.
 
-1. To add a data plane node to your Dedicated Cloud Gateway, do the following in the Create a Data Plane Node dialog:
+1. Add a data plane node to your Dedicated Cloud Gateway:
 
     1. From the **Gateway Version** menu, select the {{site.base_gateway}} version you want to use. 
         
@@ -34,7 +34,7 @@ This guide explains how to provision a [Dedicated Cloud Gateway](/konnect/dedica
 
     1. Configure your API access as either public or private, and then click **Create Cluster**. 
 
-Your cloud gateway is now provisioned. You can use it like you would any other {{site.base_gateway}} in {{site.konnect_short_name}}.
+Your cloud gateway is now provisioned with data plane nodes. You can use it like you would any other {{site.base_gateway}} in {{site.konnect_short_name}}.
 {% endnavtab %}
 {% navtab API %}
 The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
@@ -89,7 +89,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 	"updated_at": "2024-04-04T14:03:46.157Z"
     }
     ```
-	Be sure to save the control plane `id` to use in the next step. 
+	Save the control plane `id` to use in the next step. 
 
 1. Create a Dedicated Cloud Gateway data plane in Autopilot mode using the [`/cloud-gateways/configurations` endpoint](link):
 
