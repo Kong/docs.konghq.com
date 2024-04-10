@@ -1,6 +1,7 @@
 ---
 title: Certificate-Bound Access Tokens
 nav_title: Certificate-Bound Access Tokens
+minimum_version: 3.6.x
 ---
 
 ## Overview

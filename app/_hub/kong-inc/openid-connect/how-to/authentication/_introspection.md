@@ -114,6 +114,8 @@ enabled the OpenID Connect plugin on the service. You can now test the introspec
     curl -I http://localhost:8000/openid-connect -H "Authorization: Bearer <access-token>"
     ```
 
+{% if_plugin_version gte:3.5.x %}
 ## More information
 
 Introspection authentication is also compatible with [certificate-bound access tokens](/hub/kong-inc/openid-connect/how-to/cert-bound-access-tokens/). 
+{% endif_plugin_version %}

@@ -157,6 +157,8 @@ Test out the token by accessing the Kong proxy:
 curl http://localhost:8000?access_token=<token>
 ```
 
+{% if_plugin_version gte:3.5.x %}
 ## More information
 
 JWT access token authentication is also compatible with [certificate-bound access tokens](/hub/kong-inc/openid-connect/how-to/cert-bound-access-tokens/).
+{% endif_plugin_version %}

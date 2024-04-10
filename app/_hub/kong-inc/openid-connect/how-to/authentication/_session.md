@@ -108,7 +108,9 @@ formats:
 > **Note**: If you want to disable session creation with some grants, you can use the 
 [`config.disable_session`](/hub/kong-inc/openid-connect/configuration/#disable_session) configuration parameter.
 
+{% if_plugin_version gte:3.5.x %}
 ## More information
 
 Session authentication is also compatible with [certificate-bound access tokens](/hub/kong-inc/openid-connect/how-to/cert-bound-access-tokens/). 
 In that case, it must be used along with one of the other supported auth methods.
+{% endif_plugin_version %}
