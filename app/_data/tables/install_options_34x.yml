@@ -27,7 +27,7 @@ features:
         oss: true
         enterprise: true
         support: true
-        url: "https://hub.docker.com/r/kong/kong/tags?page=&page_size=&ordering=&name=ubuntu"
+        url: "https://hub.docker.com/_/kong/tags?page=&page_size=&ordering=&name=ubuntu"
         ee_url: "https://hub.docker.com/r/kong/kong-gateway/tags?page=&page_size=&ordering=&name=ubuntu"
         icon: /assets/images/icons/third-party/ubuntu.png
         query_params:
