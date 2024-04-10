@@ -22,7 +22,7 @@ Replace `<service>` with your service name or ID, and `<my_service_display_name>
 `display_name` of your service:
 
 ```
-curl -X POST http://localhost:8001/services/<service> \
+curl -X POST http://localhost:8001/services/<service>/plugins \
     --data "name=application-registration"  \
     --data "config.display_name=<my_service_display_name>" \
     --data "config.auto_approve=true
@@ -34,6 +34,65 @@ Replace `<plugin_id>` with the `id` of your plugin.
 ```
 curl -X PATCH http://localhost:8001/plugins/<plugin_id> \
   --data "config.auto_approve=true"
+```
+
+### Allow accessing the service with consumer credentials (optional)
+
+By enabling the Application Registration plugin on a service, access to the service with consumer credentials is disallowed by default. To allow this behavior, you can set `enable_proxy_with_consumer_credential` to `true`.
+
+{:.important}
+> **Important:** Always use `enable_proxy_with_consumer_credential` with caution, as this allows accessing the scoped service via consumer credentials other than your application's client ID (API key).
+
+```sh
+curl -X POST http://localhost:8001/services/<service>/plugins \
+    --data "name=application-registration"  \
+    --data "config.display_name=<my_service_display_name>" \
+    --data "config.enable_proxy_with_consumer_credential=true"
+```
+
+Or, update your current configuration with a `PATCH` request.
+Replace `<plugin_id>` with the `id` from the existing application-registration instance:
+
+```sh
+curl -X PATCH http://localhost:8001/plugins/<plugin_id> \
+  --data "config.enable_proxy_with_consumer_credential=true"
+```
+
+Then, enable the Key Auth plugin and a route for the service:
+
+```sh
+curl -X POST http://localhost:8001/services/<service>/routes \
+    --data "path=/test"
+```
+
+```sh
+curl -X POST http://localhost:8001/services/<service>/plugins \
+    --data "name=key-auth" \
+    --data "config.key_names=apikey"
+```
+
+Create a consumer and a credential for the consumer. You'll need this to use key authentication:
+
+```sh
+curl -X POST http://localhost:8001/consumers \
+    --data "username=test"
+```
+
+```sh
+curl -X POST http://localhost:8001/consumers/<consumer_id>/key-auth \
+    --data "key:<apikey>"
+```
+
+When `enable_proxy_with_consumer_credential` is enabled, constructing a request to the service should yield a 200 response, rather than the 401 response when disabled:
+
+```sh
+curl http://localhost:8000/test?apikey=<apikey>
+```
+
+The route should still be accessible with the `client_id` of the application.
+
+```sh
+curl http://localhost:8000/test?apikey=<client_id>
 ```
 
 ### Enable show issuer URL

@@ -8,6 +8,9 @@ selectively admit access to services using the
 Application Registration plugin.
 
 {:.note}
+> **Note**: By enabling the Application Registration plugin on a service, access to the service with consumer credentials is disallowed by default. To allow this behavior, check [how-to guide for allowing access to the service](/hub/kong-inc/application-registration/how-to/#allow-accessing-the-service-with-consumer-credentials-optional) for advanced configuration.
+
+{:.note}
 > **Note**: This plugin is for application registration in _self-managed_ 
 > {{site.base_gateway}} instances.
 > <br>
