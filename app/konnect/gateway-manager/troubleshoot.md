@@ -18,19 +18,19 @@ With Dedicated Cloud Gateways, {{site.base_gateway}} updates can be performed wi
 
 **Problem**
 
-APIs need to be availble publicly for external applications and privately for internal traffic. 
+APIs need to be available publicly for external applications and privately for internal traffic. 
 
 **Solution**
 
-Cloud Gateways offer both a **Public** and **Private** mode. In public mode, you can expose your APIs to the internet, 
+Cloud Gateways offer both a **Public** and **Private** mode.
 
-A public or private mode to decide who can view your APIs. In public mode, powered by Kong's public Edge DNS for clusters, you can expose your APIs to the internet. Private mode allows you to create internal APIs that won't be availble on the public internet. 
+You can choose public or private mode to decide who can view your APIs. In public mode, powered by Kong's public Edge DNS for clusters, you can expose your APIs to the internet. In private mode, you can create internal APIs that won't be available on the public internet. 
 
 ## Custom domains
 
 **Problem**
 
-How do you configure custom domains for managed data planes
+How do you configure custom domains for managed data planes?
 
 **Solution**
 
