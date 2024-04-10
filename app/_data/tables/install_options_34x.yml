@@ -13,19 +13,22 @@ features:
         oss: true
         enterprise: true
         support: true
-        url: /gateway/VERSION/install/docker/build-custom-images/
+        url: "https://hub.docker.com/r/kong/kong/tags?page=&page_size=&ordering=&name=debian"
+        ee_url: "https://hub.docker.com/r/kong/kong-gateway/tags?page=&page_size=&ordering=&name=debian"
         icon: /assets/images/icons/third-party/debian-logo.jpg
       - name: "RHEL (8-ubi)"
         oss: true
         enterprise: true
         support: true
-        url: /gateway/VERSION/install/docker/build-custom-images/
+        url: "https://hub.docker.com/r/kong/kong/tags?page=&page_size=&ordering=&name=rhel"
+        ee_url: "https://hub.docker.com/r/kong/kong-gateway/tags?page=&page_size=&ordering=&name=rhel"
         icon: /assets/images/icons/third-party/rhel.jpg
       - name: "Ubuntu"
         oss: true
         enterprise: true
         support: true
-        url: /gateway/VERSION/install/docker/
+        url: "https://hub.docker.com/r/kong/kong/tags?page=&page_size=&ordering=&name=ubuntu"
+        ee_url: "https://hub.docker.com/r/kong/kong-gateway/tags?page=&page_size=&ordering=&name=ubuntu"
         icon: /assets/images/icons/third-party/ubuntu.png
         query_params:
           oss: "install=oss"
@@ -33,7 +36,8 @@ features:
         oss: true
         enterprise: true
         support: true
-        url: https://hub.docker.com/r/kong/kong-gateway/tags?page=1&name=amazonlinux
+        url: "https://hub.docker.com/r/kong/kong/tags?page=&page_size=&ordering=&name=amazonlinux"
+        ee_url: "https://hub.docker.com/r/kong/kong-gateway/tags?page=1&name=amazonlinux"
         icon: /assets/images/icons/third-party/amazon-linux.png
   - name: "Kubernetes"
     items:
