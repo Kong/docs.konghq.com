@@ -306,6 +306,13 @@
           absolute_url: true
           generate: false
           target_blank: true
+    - text: Cloud Gateways API
+      items: 
+        - text: API Spec
+          url: /konnect/api/cloud-gateways/latest/
+          absolute_url: true
+          generate: false
+          target_blank: true
     - text: Identity API
       items:
         - text: API Spec

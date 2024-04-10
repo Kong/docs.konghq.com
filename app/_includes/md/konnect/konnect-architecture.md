@@ -6,7 +6,7 @@ to manage all service configurations. You can use one or more of the following c
 * {{site.mesh_product_name}}
 
 The control plane propagates those configurations to
-the data plane, which is composed of data plane 
-nodes (and proxies in the case of {{site.mesh_product_name}}). The individual nodes can be running either on-premise or in 
-cloud-hosted environments, and each data plane node stores the configuration 
+the data plane group, which is composed of data plane 
+nodes (and in the case of {{site.mesh_product_name}} proxies). The individual nodes can be running either on-premise, in 
+cloud-hosted environments, or managed by {{site.konnect_product_name}}, and each data plane node stores the configuration 
 in-memory. 

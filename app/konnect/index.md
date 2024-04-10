@@ -74,11 +74,9 @@ across the organization’s applications.
 
 ### Gateway Manager
 
-[Gateway Manager](/konnect/gateway-manager/) empowers your teams to securely
-collaborate and manage their own set of data plane nodes and services without
-the risk of impacting other teams and projects. Gateway Manager instantly
+[Gateway Manager](/konnect/gateway-manager/) instantly
 provisions a hosted {{site.base_gateway}} control plane and supports securely
-attaching data plane nodes.
+attaching self-hosed or [managed](/konnect/dedicated-cloud-gateways/) data planes.
 
 Through the Gateway Manager, increase the security of your APIs with out-of-the-box enterprise and community plugins, including OpenID Connect, Open Policy Agent, Mutual TLS, and more.
 

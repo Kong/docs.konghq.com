@@ -1,131 +1,5 @@
 [
   {
-    "id": "d420333f-01b0-464e-a87a-97acc92c2026",
-    "title": "Konnect API Products",
-    "latestVersion": {
-      "name": "v2",
-      "id": "941af975-8cfa-40f7-afea-e82d248489a0"
-    },
-    "description": "API Products can be used to manage API versions, documentation, and analytics.",
-    "documentCount": 0,
-    "versionCount": 1,
-    "versions": [
-      {
-        "id": "941af975-8cfa-40f7-afea-e82d248489a0",
-        "created_at": "2023-06-28T18:37:55.070Z",
-        "updated_at": "2023-07-17T14:08:02.747Z",
-        "name": "v2",
-        "deprecated": false,
-        "registration_configs": []
-      }
-    ]
-  },
-  {
-    "id": "98e74b12-7b86-429f-9255-d4a33e40f13b",
-    "title": "Konnect Control Planes",
-    "latestVersion": {
-      "name": "v2",
-      "id": "ffd06bfa-0a1c-4fb7-ade4-54089688225e"
-    },
-    "description": "Manage the control plane entity in Konnect.",
-    "documentCount": 0,
-    "versionCount": 1,
-    "versions": [
-      {
-        "id": "ffd06bfa-0a1c-4fb7-ade4-54089688225e",
-        "created_at": "2023-09-19T20:03:32.547Z",
-        "updated_at": "2023-09-20T15:53:46.683Z",
-        "name": "v2",
-        "deprecated": false,
-        "registration_configs": []
-      }
-    ]
-  },
-  {
-    "id": "f99f0f29-be4e-4fc8-8cec-64e5d3511bff",
-    "title": "Konnect Portal Management",
-    "latestVersion": {
-      "name": "v2",
-      "id": "43fca68c-f83d-4cf1-8c40-87574d423313"
-    },
-    "description": "Integrate portal management operations with  automation systems (such as CI/CD pipelines) utilizing this AIP-compliant API.",
-    "documentCount": 0,
-    "versionCount": 1,
-    "versions": [
-      {
-        "id": "43fca68c-f83d-4cf1-8c40-87574d423313",
-        "created_at": "2023-10-27T16:34:46.991Z",
-        "updated_at": "2023-11-02T22:42:46.657Z",
-        "name": "v2",
-        "deprecated": false,
-        "registration_configs": []
-      }
-    ]
-  },
-  {
-    "id": "51eda0ea-74ca-48c9-bf6e-80a413d620b4",
-    "title": "Konnect API Requests (Beta)",
-    "latestVersion": {
-      "name": "v2",
-      "id": "bf65b13d-d12e-42cb-8392-8d898d83b7a1"
-    },
-    "description": "API Requests provides access to detailed records for requests made to your API, in near real-time.\n\nThis API is released as beta.",
-    "documentCount": 0,
-    "versionCount": 1,
-    "versions": [
-      {
-        "id": "bf65b13d-d12e-42cb-8392-8d898d83b7a1",
-        "created_at": "2023-09-19T12:13:00.185Z",
-        "updated_at": "2023-09-26T18:13:52.394Z",
-        "name": "v2",
-        "deprecated": false,
-        "registration_configs": []
-      }
-    ]
-  },
-  {
-    "id": "0267e60f-bf5d-4565-9618-b061f8398e14",
-    "title": "Konnect Control Planes Config",
-    "latestVersion": {
-      "name": "v2",
-      "id": "fa795b03-e0fc-4d33-aa97-28632b41cc61"
-    },
-    "description": "Manage Kong Gateway services, routes, certificates, consumer, and global configuration within Konnect.",
-    "documentCount": 0,
-    "versionCount": 1,
-    "versions": [
-      {
-        "id": "fa795b03-e0fc-4d33-aa97-28632b41cc61",
-        "created_at": "2023-09-19T15:03:02.006Z",
-        "updated_at": "2023-09-25T21:38:59.893Z",
-        "name": "v2",
-        "deprecated": false,
-        "registration_configs": []
-      }
-    ]
-  },
-  {
-    "id": "f3675942-dbc0-4298-bec2-cbcfdcc10fab",
-    "title": "Konnect Mesh Manager",
-    "latestVersion": {
-      "name": "v0",
-      "id": "0426ee88-bf76-45e3-9f89-fc03bea0c3a5"
-    },
-    "description": "The Mesh Manager API can be used to create and manage your global mesh control planes.",
-    "documentCount": 0,
-    "versionCount": 1,
-    "versions": [
-      {
-        "id": "0426ee88-bf76-45e3-9f89-fc03bea0c3a5",
-        "created_at": "2023-09-25T17:02:31.016Z",
-        "updated_at": "2023-09-26T21:30:47.305Z",
-        "name": "v0",
-        "deprecated": false,
-        "registration_configs": []
-      }
-    ]
-  },
-  {
     "id": "ccb264be-1963-49a4-b6e8-bc7c98a6e4c2",
     "title": "Application Auth Strategies",
     "latestVersion": {
@@ -147,66 +21,21 @@
     ]
   },
   {
-    "id": "3e65edbc-364d-4762-9d3e-f13083e1b534",
-    "title": "Gateway Dev Portal",
+    "id": "3e660af4-c727-4640-8f71-19718640d6b4",
+    "title": "Cloud Gateways",
     "latestVersion": {
-      "name": "v1",
-      "id": "33cd4595-e389-4c2b-80ee-5275f25e80e1"
+      "name": "v2",
+      "id": "1b770f7b-581b-4ab2-9766-70c046aa7fca"
     },
-    "description": "Dev Portal provides a single source of truth for all developers to locate, access, and consume services for Kong Gateway EE. This spec is a Beta version.",
+    "description": "Konnect API for managing cloud-gateways infrastructure.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
       {
-        "id": "33cd4595-e389-4c2b-80ee-5275f25e80e1",
-        "created_at": "2022-11-09T18:13:05.107Z",
-        "updated_at": "2023-02-24T17:05:21.077Z",
-        "name": "v1",
-        "deprecated": false,
-        "registration_configs": []
-      }
-    ]
-  },
-  {
-    "id": "680541e5-de6e-46e5-b43d-0bd1b2369453",
-    "title": "Gateway Admin - OSS (Beta)",
-    "latestVersion": {
-      "name": "3.6.0",
-      "id": "51e64ccc-5c4a-46db-a33d-9b39226abd5e"
-    },
-    "description": "Kong Gateway (OSS) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
-    "documentCount": 0,
-    "versionCount": 4,
-    "versions": [
-      {
-        "id": "e2a0ef29-573d-4fc4-86df-216c417f4aa9",
-        "created_at": "2023-05-11T19:34:55.498Z",
-        "updated_at": "2023-05-11T19:35:57.388Z",
-        "name": "3.3.0",
-        "deprecated": false,
-        "registration_configs": []
-      },
-      {
-        "id": "7df4368a-a2d1-41a3-b8de-708e86c218f4",
-        "created_at": "2023-08-08T20:53:41.418Z",
-        "updated_at": "2023-08-09T21:03:42.381Z",
-        "name": "3.4.0",
-        "deprecated": false,
-        "registration_configs": []
-      },
-      {
-        "id": "7323acff-61a5-4d95-9670-3cc30db88d94",
-        "created_at": "2023-11-06T20:42:08.188Z",
-        "updated_at": "2023-11-08T19:39:53.374Z",
-        "name": "3.5.0",
-        "deprecated": false,
-        "registration_configs": []
-      },
-      {
-        "id": "51e64ccc-5c4a-46db-a33d-9b39226abd5e",
-        "created_at": "2024-02-14T20:08:38.884Z",
-        "updated_at": "2024-02-14T20:12:53.995Z",
-        "name": "3.6.0",
+        "id": "1b770f7b-581b-4ab2-9766-70c046aa7fca",
+        "created_at": "2024-04-10T19:07:03.399Z",
+        "updated_at": "2024-04-10T19:14:56.526Z",
+        "name": "v2",
         "deprecated": false,
         "registration_configs": []
       }
@@ -258,6 +87,219 @@
     ]
   },
   {
+    "id": "680541e5-de6e-46e5-b43d-0bd1b2369453",
+    "title": "Gateway Admin - OSS (Beta)",
+    "latestVersion": {
+      "name": "3.6.0",
+      "id": "51e64ccc-5c4a-46db-a33d-9b39226abd5e"
+    },
+    "description": "Kong Gateway (OSS) comes with an internal RESTful API for administration purposes. This spec is a Beta version.",
+    "documentCount": 0,
+    "versionCount": 4,
+    "versions": [
+      {
+        "id": "e2a0ef29-573d-4fc4-86df-216c417f4aa9",
+        "created_at": "2023-05-11T19:34:55.498Z",
+        "updated_at": "2023-05-11T19:35:57.388Z",
+        "name": "3.3.0",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "7df4368a-a2d1-41a3-b8de-708e86c218f4",
+        "created_at": "2023-08-08T20:53:41.418Z",
+        "updated_at": "2023-08-09T21:03:42.381Z",
+        "name": "3.4.0",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "7323acff-61a5-4d95-9670-3cc30db88d94",
+        "created_at": "2023-11-06T20:42:08.188Z",
+        "updated_at": "2023-11-08T19:39:53.374Z",
+        "name": "3.5.0",
+        "deprecated": false,
+        "registration_configs": []
+      },
+      {
+        "id": "51e64ccc-5c4a-46db-a33d-9b39226abd5e",
+        "created_at": "2024-02-14T20:08:38.884Z",
+        "updated_at": "2024-02-14T20:12:53.995Z",
+        "name": "3.6.0",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "3e65edbc-364d-4762-9d3e-f13083e1b534",
+    "title": "Gateway Dev Portal",
+    "latestVersion": {
+      "name": "v1",
+      "id": "33cd4595-e389-4c2b-80ee-5275f25e80e1"
+    },
+    "description": "Dev Portal provides a single source of truth for all developers to locate, access, and consume services for Kong Gateway EE. This spec is a Beta version.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "33cd4595-e389-4c2b-80ee-5275f25e80e1",
+        "created_at": "2022-11-09T18:13:05.107Z",
+        "updated_at": "2023-02-24T17:05:21.077Z",
+        "name": "v1",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "9542436a-58d1-4522-a00b-32125b5940f0",
+    "title": "Gateway Status",
+    "latestVersion": {
+      "name": "v1",
+      "id": "5feb007a-348b-486d-8d06-92f615471d22"
+    },
+    "description": "Gateway Status is a read-only endpoint allowing monitoring tools to retrieve metrics, healthiness, and other non-sensitive information of the node.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "5feb007a-348b-486d-8d06-92f615471d22",
+        "created_at": "2023-05-08T15:01:55.082Z",
+        "updated_at": "2023-05-11T19:31:56.661Z",
+        "name": "v1",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "d420333f-01b0-464e-a87a-97acc92c2026",
+    "title": "Konnect API Products",
+    "latestVersion": {
+      "name": "v2",
+      "id": "941af975-8cfa-40f7-afea-e82d248489a0"
+    },
+    "description": "API Products can be used to manage API versions, documentation, and analytics.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "941af975-8cfa-40f7-afea-e82d248489a0",
+        "created_at": "2023-06-28T18:37:55.070Z",
+        "updated_at": "2023-07-17T14:08:02.747Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "51eda0ea-74ca-48c9-bf6e-80a413d620b4",
+    "title": "Konnect API Requests (Beta)",
+    "latestVersion": {
+      "name": "v2",
+      "id": "bf65b13d-d12e-42cb-8392-8d898d83b7a1"
+    },
+    "description": "API Requests provides access to detailed records for requests made to your API, in near real-time.\n\nThis API is released as beta.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "bf65b13d-d12e-42cb-8392-8d898d83b7a1",
+        "created_at": "2023-09-19T12:13:00.185Z",
+        "updated_at": "2023-09-26T18:13:52.394Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "e46e7742-befb-49b1-9bf1-7cbe477ab818",
+    "title": "Konnect Audit Logging",
+    "latestVersion": {
+      "name": "v2",
+      "id": "d36126ee-ab8d-47b2-960f-5703da22cced"
+    },
+    "description": "Audit logging enables administrators to better spot security risks and maintain compliance of their core infrastructure.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "d36126ee-ab8d-47b2-960f-5703da22cced",
+        "created_at": "2023-01-18T22:01:21.688Z",
+        "updated_at": "2023-01-19T16:53:17.132Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "98e74b12-7b86-429f-9255-d4a33e40f13b",
+    "title": "Konnect Control Planes",
+    "latestVersion": {
+      "name": "v2",
+      "id": "ffd06bfa-0a1c-4fb7-ade4-54089688225e"
+    },
+    "description": "Manage the control plane entity in Konnect.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "ffd06bfa-0a1c-4fb7-ade4-54089688225e",
+        "created_at": "2023-09-19T20:03:32.547Z",
+        "updated_at": "2023-09-20T15:53:46.683Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "0267e60f-bf5d-4565-9618-b061f8398e14",
+    "title": "Konnect Control Planes Config",
+    "latestVersion": {
+      "name": "v2",
+      "id": "fa795b03-e0fc-4d33-aa97-28632b41cc61"
+    },
+    "description": "Manage Kong Gateway services, routes, certificates, consumer, and global configuration within Konnect.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "fa795b03-e0fc-4d33-aa97-28632b41cc61",
+        "created_at": "2023-09-19T15:03:02.006Z",
+        "updated_at": "2023-09-25T21:38:59.893Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6",
+    "title": "Konnect Customizable Portal",
+    "latestVersion": {
+      "name": "v2",
+      "id": "b4539157-4ced-4df5-affa-7d790baee356"
+    },
+    "description": "Customize your self-hosted developer portal experience.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "b4539157-4ced-4df5-affa-7d790baee356",
+        "created_at": "2023-04-29T22:35:19.274Z",
+        "updated_at": "2023-06-28T03:09:02.039Z",
+        "name": "v2",
+        "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
     "id": "5175b87f-bfae-40f6-898d-82d224387f9b",
     "title": "Konnect Identity Management",
     "latestVersion": {
@@ -287,83 +329,41 @@
     ]
   },
   {
-    "id": "9542436a-58d1-4522-a00b-32125b5940f0",
-    "title": "Gateway Status",
+    "id": "f3675942-dbc0-4298-bec2-cbcfdcc10fab",
+    "title": "Konnect Mesh Manager",
     "latestVersion": {
-      "name": "v1",
-      "id": "5feb007a-348b-486d-8d06-92f615471d22"
+      "name": "v0",
+      "id": "0426ee88-bf76-45e3-9f89-fc03bea0c3a5"
     },
-    "description": "Gateway Status is a read-only endpoint allowing monitoring tools to retrieve metrics, healthiness, and other non-sensitive information of the node.",
+    "description": "The Mesh Manager API can be used to create and manage your global mesh control planes.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
       {
-        "id": "5feb007a-348b-486d-8d06-92f615471d22",
-        "created_at": "2023-05-08T15:01:55.082Z",
-        "updated_at": "2023-05-11T19:31:56.661Z",
-        "name": "v1",
+        "id": "0426ee88-bf76-45e3-9f89-fc03bea0c3a5",
+        "created_at": "2023-09-25T17:02:31.016Z",
+        "updated_at": "2023-09-26T21:30:47.305Z",
+        "name": "v0",
         "deprecated": false,
         "registration_configs": []
       }
     ]
   },
   {
-    "id": "2aad2bcb-8d82-43b3-abdd-1d5e6e84dbd6",
-    "title": "Konnect Customizable Portal",
+    "id": "f99f0f29-be4e-4fc8-8cec-64e5d3511bff",
+    "title": "Konnect Portal Management",
     "latestVersion": {
       "name": "v2",
-      "id": "b4539157-4ced-4df5-affa-7d790baee356"
+      "id": "43fca68c-f83d-4cf1-8c40-87574d423313"
     },
-    "description": "Customize your self-hosted developer portal experience.",
+    "description": "Integrate portal management operations with  automation systems (such as CI/CD pipelines) utilizing this AIP-compliant API.",
     "documentCount": 0,
     "versionCount": 1,
     "versions": [
       {
-        "id": "b4539157-4ced-4df5-affa-7d790baee356",
-        "created_at": "2023-04-29T22:35:19.274Z",
-        "updated_at": "2023-06-28T03:09:02.039Z",
-        "name": "v2",
-        "deprecated": false,
-        "registration_configs": []
-      }
-    ]
-  },
-  {
-    "id": "3c38bff8-3b7b-4323-8e2e-690d35ef97e0",
-    "title": "Konnect Runtime Group Config (Deprecated)",
-    "latestVersion": {
-      "name": "v2",
-      "id": "16adcd15-493a-49b2-ad53-8c73891e29bf"
-    },
-    "description": "(Deprecated) Manage Kong Gateway services, routes, certificates, consumer and global configuration within Konnect.",
-    "documentCount": 0,
-    "versionCount": 1,
-    "versions": [
-      {
-        "id": "16adcd15-493a-49b2-ad53-8c73891e29bf",
-        "created_at": "2022-12-15T21:13:44.308Z",
-        "updated_at": "2023-09-19T20:52:16.144Z",
-        "name": "v2",
-        "deprecated": true,
-        "registration_configs": []
-      }
-    ]
-  },
-  {
-    "id": "e46e7742-befb-49b1-9bf1-7cbe477ab818",
-    "title": "Konnect Audit Logging",
-    "latestVersion": {
-      "name": "v2",
-      "id": "d36126ee-ab8d-47b2-960f-5703da22cced"
-    },
-    "description": "Audit logging enables administrators to better spot security risks and maintain compliance of their core infrastructure.",
-    "documentCount": 0,
-    "versionCount": 1,
-    "versions": [
-      {
-        "id": "d36126ee-ab8d-47b2-960f-5703da22cced",
-        "created_at": "2023-01-18T22:01:21.688Z",
-        "updated_at": "2023-01-19T16:53:17.132Z",
+        "id": "43fca68c-f83d-4cf1-8c40-87574d423313",
+        "created_at": "2023-10-27T16:34:46.991Z",
+        "updated_at": "2023-11-02T22:42:46.657Z",
         "name": "v2",
         "deprecated": false,
         "registration_configs": []
@@ -387,6 +387,27 @@
         "updated_at": "2023-02-24T17:04:31.582Z",
         "name": "v2",
         "deprecated": false,
+        "registration_configs": []
+      }
+    ]
+  },
+  {
+    "id": "3c38bff8-3b7b-4323-8e2e-690d35ef97e0",
+    "title": "Konnect Runtime Group Config (Deprecated)",
+    "latestVersion": {
+      "name": "v2",
+      "id": "16adcd15-493a-49b2-ad53-8c73891e29bf"
+    },
+    "description": "(Deprecated) Manage Kong Gateway services, routes, certificates, consumer and global configuration within Konnect.",
+    "documentCount": 0,
+    "versionCount": 1,
+    "versions": [
+      {
+        "id": "16adcd15-493a-49b2-ad53-8c73891e29bf",
+        "created_at": "2022-12-15T21:13:44.308Z",
+        "updated_at": "2023-09-19T20:52:16.144Z",
+        "name": "v2",
+        "deprecated": true,
         "registration_configs": []
       }
     ]

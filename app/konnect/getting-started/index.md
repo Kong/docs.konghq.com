@@ -44,7 +44,7 @@ In the getting started guide, we will show you how to use a {{site.base_gateway}
 
 ![{{site.konnect_product_name}}](/assets/images/products/konnect/konnect-intro.png)
 
-> Figure 1: Diagram of {{site.konnect_short_name}} modules. The {{site.konnect_short_name}} environment, hosted by Kong, consists of the {{site.konnect_short_name}} applications, {{site.konnect_short_name}} platform, and control planes. The {{site.base_gateway}}, {{site.mesh_product_name}}, and {{site.kic_product_name}} data plane nodes that are connected with the {{site.konnect_short_name}} platform are self-managed.
+> Figure 1: Diagram of {{site.konnect_short_name}} modules. The {{site.konnect_short_name}} environment, hosted by Kong, consists of the {{site.konnect_short_name}} applications, {{site.konnect_short_name}} platform, and control planes. The {{site.base_gateway}}, {{site.mesh_product_name}}, and {{site.kic_product_name}} data plane nodes that are connected with the {{site.konnect_short_name}} platform are managed either by you or your cloud provider, or by {{site.konnect_short_name}}.
 
 ### Dedicated Cloud Gateways
 
