@@ -156,3 +156,7 @@ Test out the token by accessing the Kong proxy:
 ```bash
 curl http://localhost:8000?access_token=<token>
 ```
+
+## More information
+
+JWT access token authentication is also compatible with [certificate-bound access tokens](/hub/kong-inc/openid-connect/how-to/cert-bound-access-tokens/).
