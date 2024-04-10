@@ -4,7 +4,7 @@ content_type: how-to
 ---
 
 
-### Out of sync data plane node
+## Out of sync data plane node
 
 **Problem**
 
@@ -40,7 +40,7 @@ directory for {{site.base_gateway}} logs is [`/usr/local/kong/logs`](/gateway/la
 If you are unable to resolve sync issues using the above methods, contact
 [Kong Support](https://support.konghq.com/).
 
-### Missing functionality
+## Missing functionality
 
 **Problem**
 
@@ -74,7 +74,7 @@ If your version is up to date but the feature still isn't working, contact
 [Kong Support](https://support.konghq.com/).
 {% endnavtab %}
 {% endnavtabs %}
-### Kubernetes data plane node installation does not work
+## Kubernetes data plane node installation does not work
 
 **Problem**
 
@@ -98,7 +98,7 @@ helm upgrade my-kong kong/kong -n kong \
   --values ./values.yaml
 ```
 
-### Connect a data plane to {{site.konnect_saas}} that is behind a non-trasparent forward proxy.
+## Connect a data plane to {{site.konnect_saas}} that is behind a non-trasparent forward proxy.
 
 In situations where forward proxies are non-transparent, you can still connect the {{site.base_gateway}} data plane with the {{site.konnect_saas}} control plane.
 To do this, you need to configure each {{site.base_gateway}} data plane node to authenticate with the proxy server and allow traffic through.
