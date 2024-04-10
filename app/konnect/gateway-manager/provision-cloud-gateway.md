@@ -52,14 +52,14 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 		"cloud_gateway": true,
 		"proxy_urls": [
 			{
-			"host": "example.com",
-			"port": 443,
-			"protocol": "https"
+				"host": "example.com",
+				"port": 443,
+				"protocol": "https"
 			}
-		],
+		]
     }'
     ```
-	Be sure to replace the PAT as well as the following placeholders with your own values:
+	Replace the PAT as well as the following placeholders with your own values:
 	* `name`: The name that you want to display for the cloud gateway control plane.
 	* `description`: Description of the cloud gateway control plane.
 	* `host`: The URL of the host.
@@ -91,7 +91,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
     ```
 	Save the control plane `id` to use in the next step. 
 
-1. Create a Dedicated Cloud Gateway data plane in Autopilot mode using the [`/cloud-gateways/configurations` endpoint](link):
+1. Create a Dedicated Cloud Gateway data plane using the [`/cloud-gateways/configurations` endpoint](link):
 
     ```sh
     curl --request PUT \
@@ -104,23 +104,24 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 		"control_plane_geo": "us",
 		"dataplane_groups": [
 			{
-			"provider": "aws",
-			"region": "ap-northeast-1",
-			"cloud_gateway_network_id": "0e465f2f-4fa3-43ed-8900-bb6210c1e554",
-			"autoscale": {
-				"kind": "autopilot",
-				"base_rps": 100
-			}
+				"provider": "aws",
+				"region": "ap-northeast-1",
+				"cloud_gateway_network_id": "0e465f2f-4fa3-43ed-8900-bb6210c1e554",
+				"autoscale": {
+					"kind": "autopilot",
+					"base_rps": 100
+				}
 			}
 		]
 	}'
     ```
-	Be sure to replace the PAT as well as the following placeholders with your own values:
+	Replace the PAT as well as the following placeholders with your own values:
 	* `control_plane_id`: The ID of the control plane you created in the previous step.
 	* `version`: The version of {{site.base_gateway}} you want to use.
 	* `control_plane_geo`: The geo of the control plane.
 	* `region`: The AWS region you want to deploy the data plane nodes in.
 	* `cloud_gateway_network_id`: The network ID of the cloud gateway.
+	* `kind`: The configuration mode. Choose between `static` or `autopilot`. Autopilot mode allows Kong to automatically scale your instances based on incoming traffic. You can pre-warm your cluster by specifying the number of requests per second. Custom mode (`static`) allows you to select from three different instance sizes: small, medium, or large.
 
     You should get a `201` response like the following:
 
@@ -192,19 +193,19 @@ Your cloud gateway is now provisioned. You can use it like you would any other {
 {% navtab API %}
 The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
 
-1. Scale your Dedicated Cloud Gateway data plane nodes by sending a request to the [`/cloud-gateways/configurations` endpoint](link to spec):
+Scale your Dedicated Cloud Gateway data plane nodes by sending a request to the [`/cloud-gateways/configurations` endpoint](link to spec):
 
-    ```sh
-    curl --request PUT \
-    --url https://<region>.api.konghq.com/v2/cloud-gateways/configurations \
-    --header 'Authorization: Bearer <personal-access-token>' \
-    --header 'Content-Type: application/json' \
-    --data '{
-		"control_plane_id": "3e62d2b5-45e9-4032-8065-9cd28cb3487d",
-		"version": "3.6",
-		"control_plane_geo": "us",
-		"dataplane_groups": [
-			{
+```sh
+curl --request PUT \
+--url https://<region>.api.konghq.com/v2/cloud-gateways/configurations \
+--header 'Authorization: Bearer <personal-access-token>' \
+--header 'Content-Type: application/json' \
+--data '{
+	"control_plane_id": "3e62d2b5-45e9-4032-8065-9cd28cb3487d",
+	"version": "3.6",
+	"control_plane_geo": "us",
+	"dataplane_groups": [
+		{
 			"provider": "aws",
 			"region": "ap-northeast-1",
 			"cloud_gateway_network_id": "0e465f2f-4fa3-43ed-8900-bb6210c1e554",
@@ -213,64 +214,64 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 				"instance_type": "small",
 				"requested_instances": 3
 			}
-			}
-		]
-    }'
-    ```
-	Be sure to replace the PAT as well as the following placeholders with your own values:
-	* `control_plane_id`: The ID of the control plane you created for Dedicated Cloud Gateways.
-	* `version`: The version of {{site.base_gateway}} you want to use.
-	* `control_plane_geo`: The geo of the control plane.
-	* `region`: The AWS region the data plane nodes are deployed in.
-	* `cloud_gateway_network_id`: The network ID of the cloud gateway.
-	* `requested_instances`: The number of total data plane nodes you want.
+		}
+	]
+}'
+```
+Replace the PAT as well as the following placeholders with your own values:
+* `control_plane_id`: The ID of the control plane you created for Dedicated Cloud Gateways.
+* `version`: The version of {{site.base_gateway}} you want to use.
+* `control_plane_geo`: The geo of the control plane.
+* `region`: The AWS region the data plane nodes are deployed in.
+* `cloud_gateway_network_id`: The network ID of the cloud gateway.
+* `requested_instances`: The number of total data plane nodes you want.
 
-    You should get a `201` response like the following:
-    ```sh
-    {
-	"id": "a8b122ff-8bf3-4688-b15d-2cf1af1e511f",
-	"control_plane_id": "3e62d2b5-45e9-4032-8065-9cd28cb3487d",
-	"control_plane_geo": "us",
-	"version": "3.6",
-	"api_access": "private+public",
-	"dataplane_group_config": [
-		{
-		"provider": "aws",
-		"region": "ap-northeast-1",
-		"autoscale": {
-			"kind": "static",
-			"instance_type": "small",
-			"requested_instances": 3
-		},
-		"cloud_gateway_network_id": "0e465f2f-4fa3-43ed-8900-bb6210c1e554"
-		}
+You should get a `201` response like the following:
+```sh
+{
+"id": "a8b122ff-8bf3-4688-b15d-2cf1af1e511f",
+"control_plane_id": "3e62d2b5-45e9-4032-8065-9cd28cb3487d",
+"control_plane_geo": "us",
+"version": "3.6",
+"api_access": "private+public",
+"dataplane_group_config": [
+	{
+	"provider": "aws",
+	"region": "ap-northeast-1",
+	"autoscale": {
+		"kind": "static",
+		"instance_type": "small",
+		"requested_instances": 3
+	},
+	"cloud_gateway_network_id": "0e465f2f-4fa3-43ed-8900-bb6210c1e554"
+	}
+],
+"dataplane_groups": [
+	{
+	"id": "a27b8b9b-f3c9-42f6-b0ea-5a678c008298",
+	"provider": "aws",
+	"region": "ap-northeast-1",
+	"autoscale": {
+		"kind": "static",
+		"instance_type": "small",
+		"requested_instances": 3
+	},
+	"state": "initializing",
+	"cloud_gateway_egress_ip_addresses": [
+		"54.178.193.160",
+		"3.115.245.174",
+		"52.192.132.237"
 	],
-	"dataplane_groups": [
-		{
-		"id": "a27b8b9b-f3c9-42f6-b0ea-5a678c008298",
-		"provider": "aws",
-		"region": "ap-northeast-1",
-		"autoscale": {
-			"kind": "static",
-			"instance_type": "small",
-			"requested_instances": 3
-		},
-		"state": "initializing",
-		"cloud_gateway_egress_ip_addresses": [
-			"54.178.193.160",
-			"3.115.245.174",
-			"52.192.132.237"
-		],
-		"cloud_gateway_network_id": "0e465f2f-4fa3-43ed-8900-bb6210c1e554",
-		"created_at": "2024-04-04T14:14:22.717Z",
-		"updated_at": "2024-04-04T14:19:19.516Z"
-		}
-	],
-	"created_at": "2024-04-04T14:19:19.516Z",
-	"updated_at": "2024-04-04T14:19:19.516Z",
-	"entity_version": 2
-    }
-    ```
+	"cloud_gateway_network_id": "0e465f2f-4fa3-43ed-8900-bb6210c1e554",
+	"created_at": "2024-04-04T14:14:22.717Z",
+	"updated_at": "2024-04-04T14:19:19.516Z"
+	}
+],
+"created_at": "2024-04-04T14:19:19.516Z",
+"updated_at": "2024-04-04T14:19:19.516Z",
+"entity_version": 2
+}
+```
 {% endnavtab %}
 {% endnavtabs %}
 
