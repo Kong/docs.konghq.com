@@ -172,4 +172,3 @@ jekyll-generator-single-source:
   docs_nav_folder: '_data'
 
 locale: en
-translated_content_path: ../_translated_content/app # relative to docs root
