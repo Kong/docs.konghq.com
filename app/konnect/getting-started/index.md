@@ -46,15 +46,25 @@ In the getting started guide, we will show you how to use a {{site.base_gateway}
 
 > Figure 1: Diagram of {{site.konnect_short_name}} modules. The {{site.konnect_short_name}} environment, hosted by Kong, consists of the {{site.konnect_short_name}} applications, {{site.konnect_short_name}} platform, and control planes. The {{site.base_gateway}}, {{site.mesh_product_name}}, and {{site.kic_product_name}} data plane nodes that are connected with the {{site.konnect_short_name}} platform are self-managed.
 
+### Dedicated Cloud Gateways
+
+{{site.konnect_short_name}} features [Dedicated Cloud Gateways](/konnect/dedicated-cloud-gateways/), allowing for performant, scalable, and highly available global API management infrastructure. 
+These gateways provide:
+* Multi-region support with one-click provisioning
+* No downtime for upgrades
+* Scalability to handle varying API traffic workloads
+* Private networking for secure connections
+
+You can run Dedicated Cloud Gateways in [autopilot mode](/konnect/dedicated-cloud-gateways/#autopilot-mode) to streamline the management of your API gateway resources by automatically adjusting to traffic and volume. 
+This mode ensures that your infrastructure is prepared to handle traffic as it arrives, scaling resources to maintain consistent performance without manual intervention. 
+
+Dedicated Cloud Gateways also support [private networking](/konnect/gateway-manager/data-plane-nodes/transit-gateways). 
+Integration with [AWS Transit Gateway](https://aws.amazon.com/transit-gateway/), allows you to connect your networks in a way that supports your organization's security requirements, enabling your {{site.konnect_short_name}}-powered API infrastructure to interact with your internal networks and cloud resources securely.
+
+
 ### {{site.base_gateway}} entities in {{site.konnect_short_name}}
 
-Entities, like services, are self-hosted in {{site.base_gateway}}.
-
-![{{site.konnect_product_name}}](/assets/images/products/konnect/getting-started/konnect-gateway-entities.png)
-
-> Figure 2: Diagram that describes how entities, like services, routes, consumers, and load balancers, are self-hosted by the {{site.base_gateway}} data plane node.
-
-Each self-hosted {{site.base_gateway}} data plane node contains the following entities:
+Each {{site.base_gateway}} data plane node contains the following entities:
 
 * [**Services:**](/gateway/latest/key-concepts/services/) A service is an entity representing an external upstream API or microservice. For example, a data transformation microservice, a billing API, and so on.
 * [**Routes:**](/gateway/latest/key-concepts/routes/) Routes determine how (and if) requests are sent to their services after they reach the gateway. Where a service represents the backend API, a route defines what is exposed to clients. A single service can have many routes. Once a route is matched, the gateway proxies the request to its associated service.
