@@ -64,7 +64,14 @@
         <td class="installation-options__cell installation-options__cell--body">
           {% assign enterprise_items = feature.items | where: "enterprise", true %}
           {% for item in enterprise_items %}
-            <a class="installation-options__link" href="{{ item.url | replace: 'VERSION', page.release }}">
+            {% if item.ee_url %}
+              {% assign url = item.ee_url %}
+            {% else %}
+              {% assign url = item.url %}
+            {% endif %}
+            {% assign url = url | replace: 'VERSION', page.release %}
+
+            <a class="installation-options__link" href="{{ url }}">
               <img class="installation-options__image" src="{{ item.icon }}" alt="{{ item.name }} icon">
               <span>{{ item.name }}</span>
             </a>
