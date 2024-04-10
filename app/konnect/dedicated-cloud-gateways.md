@@ -41,4 +41,9 @@ Control planes in {{site.konnect_short_name}} **cannot** contain both Dedicated 
 
 ## More information
 
-[Link out to other CGW sections and the API spec, currently we don't have those sections drafted, so I don't have anything to link to]
+[Networking and Peering information](/konnect/network-resiliency/#how-does-network-peering-work-with-dedicated-cloud-gateway-nodes)
+[Supported regions](/konnect/geo/#dedicated-cloud-gateways)
+[Transit Gateways](/konnect/gateway-manager/data-plane-nodes/transit-gateways/)
+[How to upgrade data planes](/konnect/gateway-manager/data-plane-nodes/upgrade/)
+[Custom Domains](/konnect/reference/custom-dns/)
+[Cloud Gateways API](/konnect/api/cloud-gateways/latest/)
