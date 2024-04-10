@@ -12,7 +12,7 @@ This guide explains how to provision a [Dedicated Cloud Gateway](/konnect/dedica
 
 {% navtabs %}
 {% navtab UI %}
-1. From [Gateway Manager](https://cloud.konghq.com/gateway-manager) in the navigation menu, click the **New Control Plane** menu and select **{{site.base_gateway}}**.
+1. From [Gateway Manager](https://cloud.konghq.com/gateway-manager), click the **New Control Plane** button and select **{{site.base_gateway}}**.
 
 1. Enter a name for your cloud gateway and click **Dedicated Cloud Instances**.
 
