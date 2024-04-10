@@ -28,6 +28,9 @@ links:
   instaclustr: "https://www.instaclustr.com/products/kong/?utm_source=partnership&utm_medium=link&utm_campaign=mashape"
   learn: https://education.konghq.com # kong academy
   archive: https://legacy-gateway--kongdocs.netlify.app
+  locales:
+    ja: https://docs.jp.konghq.com
+    en: https://docs.konghq.com
 repos:
   kong: https://github.com/Kong/kong
   docs: https://github.com/Kong/docs.konghq.com
