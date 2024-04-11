@@ -6,8 +6,8 @@ The AI Rate Limiting Advanced plugin provides rate limiting for the providers us
 AI Rate Limiting plugin extends the
 [Rate Limiting Advanced](/hub/kong-inc/rate-limiting-advanced/) plugin.
 
-This token is using the tokens data returned by LLM provider to calculate the queries cose.
-The same HTTP request can vary greatly in cost depending on the caluclation of the 
+This token is using the tokens data returned by LLM provider to calculate the queries cost.
+The same HTTP request can vary greatly in cost depending on the calculation of the 
 LLM providers.
 
 A common pattern to protect your AI API is then to analyze and
@@ -22,7 +22,7 @@ You can also create a generic prompt rate limit using the request prompt provide
   * The `dictionary_name` directive was added to prevent the usage of the `kong` shared dictionary, which could lead to `no memory` errors.
     * Known limitation: the cost for `AI proxy` will be only reflected during the next request.
     * Example: a request is made and `AI proxy` plugin is returning a token cost of `100` for the `OpenAi` provider:
-      - The request will be made to OpenAi provider and response returnged to user
+      - The request will be made to OpenAi provider and response returned to user
       - The next request will be blocked if rate limit is reached
     * Known limitation: the disable penalty will only work for the `requestPrompt` provider
 
@@ -71,7 +71,7 @@ X-AI-RateLimit-Retry-After-30-azure: 1500
 X-AI-RateLimit-Reset-30-azure: 1500
 ```
 
-If using the request prompot provider, the plugin will send the query cost:
+If using the request prompt provider, the plugin will send the query cost:
 
 ```plaintext
 X-AI-RateLimit-Query-Cost: 100
@@ -90,7 +90,7 @@ You can optionally hide the cost, limit and remaining headers with the `hide_cli
 
 ### Token count Strategies
 
-The plugin supports three strategies to calulate the token:
+The plugin supports three strategies to calculate the token:
 
 | Strategy    | Description |
 | --------- | ---- |
