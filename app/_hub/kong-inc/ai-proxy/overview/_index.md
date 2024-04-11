@@ -182,7 +182,8 @@ See the [sample OpenAPI specification](https://github.com/kong/kong/blob/master/
 
 The AI Proxy plugin enables using all of the following AI plugins:
 * [AI Request Transformer](/hub/kong-inc/ai-request-transformer/)
-* [AI Response Transformer](/hub/kong-inc/ai-request-transformer/)
+* [AI Response Transformer](/hub/kong-inc/ai-response-transformer/)
+* [AI Rate Limiting Advanded](/hub/kong-inc/ai-rate-limiting-advanced/)
 * [AI Prompt Template](/hub/kong-inc/ai-prompt-template/)
 * [AI Prompt Guard](/hub/kong-inc/ai-prompt-guard/)
 * [AI Prompt Decorator](/hub/kong-inc/ai-prompt-decorator/)

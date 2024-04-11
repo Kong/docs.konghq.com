@@ -25,6 +25,7 @@ Check out the [AI Gateway quickstart](/gateway/latest/get-started/ai-gateway/) t
 You may also be interested in the following AI plugins:
 * [AI Proxy](/hub/kong-inc/ai-proxy/)
 * [AI Request Transformer](/hub/kong-inc/ai-request-transformer/)
-* [AI Response Transformer](/hub/kong-inc/ai-request-transformer/)
+* [AI Response Transformer](/hub/kong-inc/ai-response-transformer/)
+* [AI Rate Limiting Advanded](/hub/kong-inc/ai-rate-limiting-advanced/)
 * [AI Prompt Template](/hub/kong-inc/ai-prompt-template/)
 * [AI Prompt Guard](/hub/kong-inc/ai-prompt-guard/)

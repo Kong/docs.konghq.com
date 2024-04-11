@@ -114,7 +114,8 @@ You can decide to use a custom function to count the tokens for a requests. When
 
 You may also be interested in the following AI plugins:
 * [AI Proxy](/hub/kong-inc/ai-proxy/)
-* [AI Response Transformer](/hub/kong-inc/ai-request-transformer/)
+* [AI Response Transformer](/hub/kong-inc/ai-response-transformer/)
+* [AI Rate Limiting Advanded](/hub/kong-inc/ai-rate-limiting-advanced/)
 * [AI Prompt Template](/hub/kong-inc/ai-prompt-template/)
 * [AI Prompt Guard](/hub/kong-inc/ai-prompt-guard/)
 * [AI Prompt Decorator](/hub/kong-inc/ai-prompt-decorator/)
