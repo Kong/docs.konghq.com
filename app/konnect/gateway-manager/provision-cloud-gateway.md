@@ -94,7 +94,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
     ```
 	Save the control plane `id` to use in the next step. 
 
-1. Create a Dedicated Cloud Gateway data plane using the [`/cloud-gateways/configurations` endpoint](link):
+1. Create a Dedicated Cloud Gateway data plane using the [`/cloud-gateways/configurations` endpoint](/konnect/api/cloud-gateways/latest/):
 
     ```sh
     curl --request PUT \
@@ -187,7 +187,7 @@ Your cloud gateway is now provisioned. You can use it like you would any other {
 
 1. From the **Control Plane Actions**, click **Update Cluster Config** and do the following:
 
-    1. To rescale your entire instance, select the most appropriate option based on the requests per second, CPU, and memory from the Custom Configure Mode options.
+    1. To rescale your entire instance, select the most appropriate option based on the requests per second, CPU, and memory from the Configure Mode options.
 
     1. To only rescale the number of data plane nodes in a cluster region, increase or decrease the number of nodes in the Configure Cluster section. 
 
@@ -196,7 +196,7 @@ Your cloud gateway is now provisioned. You can use it like you would any other {
 {% navtab API %}
 The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/api/#authentication) authentication. You can obtain your PAT from the [personal access token page](https://cloud.konghq.com/global/account/tokens). The PAT must be passed in the `Authorization` header of all requests.
 
-Scale your Dedicated Cloud Gateway data plane nodes by sending a request to the [`/cloud-gateways/configurations` endpoint](link to spec):
+Scale your Dedicated Cloud Gateway data plane nodes by sending a request to the [`/cloud-gateways/configurations` endpoint](/konnect/api/cloud-gateways/latest/):
 
 ```sh
 curl --request PUT \
