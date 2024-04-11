@@ -1,3 +1,5 @@
+SHELL := /usr/bin/env bash
+
 RUBY_VERSION := "$(shell ruby -v)"
 RUBY_VERSION_REQUIRED := "$(shell cat .ruby-version)"
 RUBY_MATCH := $(shell [[ "$(shell ruby -v)" =~ "ruby $(shell cat .ruby-version)" ]] && echo matched)
