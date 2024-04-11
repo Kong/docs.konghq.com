@@ -49,6 +49,12 @@ spec:
   - name: proxy-ssl
     port: 443
     protocol: HTTPS
+    hostname: kong.example.com
+    tls:
+      mode: Terminate
+      certificateRefs:
+        - kind: Secret
+          name: kong-example-com-cert
   - name: proxy-tcp-9901
     port: 9901
     protocol: TCP

@@ -31,6 +31,9 @@ paths:
           $ref: '#/components/responses/MeshControlPlaneForbiddenError'
       operationId: list-mesh-control-planes
       description: Returns an array of control planes objects.
+      parameters:
+        - $ref: '#/components/parameters/PageSize'
+        - $ref: '#/components/parameters/PageNumber'
       tags:
         - Mesh
     post:
@@ -194,9 +197,11 @@ components:
           type: string
           example: Test control plane
           description: The name of the control plane.
+          maxLength: 100
         description:
           type: string
           example: A control plane to handle traffic on development environment.
+          maxLength: 250
         labels:
           $ref: '#/components/schemas/MeshControlPlaneLabels'
         created_at:
@@ -220,9 +225,11 @@ components:
           example: Test control plane
           description: The name of the control plane.
           minLength: 1
+          maxLength: 100
         description:
           type: string
           example: A control plane to handle traffic on development environment.
+          maxLength: 250
         labels:
           $ref: '#/components/schemas/MeshControlPlaneLabels'
     UpdateMeshControlPlaneRequest:
@@ -234,9 +241,11 @@ components:
           type: string
           example: Test control plane
           description: The name of the control plane.
+          maxLength: 100
         description:
           type: string
           example: A control plane to handle traffic on development environment.
+          maxLength: 250
         labels:
           $ref: '#/components/schemas/MeshControlPlaneLabels'
     PageMeta:
@@ -638,3 +647,24 @@ components:
         description: A test control plane for exploration.
         labels:
           test: 'true'
+  parameters:
+    PageSize:
+      name: page[size]
+      description: >-
+        The maximum number of items to include per page. The last page of a
+        collection may include fewer items.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: integer
+        example: 10
+    PageNumber:
+      name: page[number]
+      description: Determines which page of the entities to retrieve.
+      required: false
+      in: query
+      allowEmptyValue: true
+      schema:
+        type: integer
+        example: 1

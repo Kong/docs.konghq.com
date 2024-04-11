@@ -10,6 +10,7 @@ apiVersion
 Arya
 Autonegotiation
 autoscale
+autoscales
 autoscaling
 APIOps
 Bagdi
@@ -140,7 +141,9 @@ autoscalers
 Autonegotiation
 aws
 backport
+backports
 backported
+backporting
 backtrace
 Bagdi
 bcc
@@ -362,6 +365,7 @@ nameserver
 nameservers
 namespace
 namespaced
+namespacing
 namespaces
 NAT
 NATs

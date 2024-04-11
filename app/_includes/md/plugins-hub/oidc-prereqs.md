@@ -72,76 +72,18 @@ and that can be a problem if both are started on the same host.
 1. Create a service:
 
     ```bash
-    http -f put :8001/services/openid-connect url=http://httpbin.org/anything
+    curl -i -X POST http://localhost:8001/services \
+      --data "name=openid-connect" \
+      --data "url=http://httpbin.org/anything"
     ```
-    ```http
-    HTTP/1.1 200 OK
-    ```
-    ```json
-    {
-        "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd",
-        "name": "openid-connect",
-        "protocol": "http",
-        "host": "httpbin.org",
-        "port": 80,
-        "path": "/anything"
-    }
-    ```
-
+    
 1. Create a route:
 
     ```bash
-    http -f put :8001/services/openid-connect/routes/openid-connect paths=/
+    curl -i -X POST http://localhost:8001/services/openid-connect/routes \
+      --data "name=openid-connect" \
+      --data "paths[]=/"
     ```
-    ```http
-    HTTP/1.1 200 OK
-    ```
-    ```json
-    {
-        "id": "ac1e86bd-4bce-4544-9b30-746667aaa74a",
-        "name": "openid-connect",
-        "paths": [ "/" ]
-    }
-    ```
-
-1. Create a plugin:
-
-    You may execute this before patching the plugin (as seen on following examples) to reset
-    the plugin configuration.
-
-    ```bash
-    http -f put :8001/plugins/5f35b796-ced6-4c00-9b2a-90eef745f4f9 \
-    name=openid-connect                                          \
-    service.name=openid-connect                                  \
-    config.issuer=http://keycloak.test:8080/auth/realms/master   \
-    config.client_id=kong                                        \
-    config.client_auth=private_key_jwt
-    ```
-    ```http
-    HTTP/1.1 200 OK
-    ```
-    ```json
-    {
-        "id": "5f35b796-ced6-4c00-9b2a-90eef745f4f9",
-        "name": "openid-connect",
-        "service": {
-            "id": "5fa9e468-0007-4d7e-9aeb-49ca9edd6ccd"
-        },
-        "config": {
-            "issuer": "http://keycloak.test:8080/auth/realms/master",
-            "client_id": [ "kong" ],
-            "client_auth": [ "private_key_jwt" ]
-        }
-    }
-    ```
-
-1. Check the discovery cache: `http :8001/openid-connect/issuers`.
-
-    It should contain Keycloak OpenID Connect discovery document and the keys.
-
-
-At this point you have created a service, routed traffic to the service, and 
-enabled OpenID Connect plugin on the service.
 
 {% endcapture %}
 

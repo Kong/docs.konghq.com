@@ -6,7 +6,7 @@ Kong interacts with multiple data stores during normal operation. The following 
 
 <div class="docs-grid-install">
   {% for d in include.data.third-party.datastore %}
-    <div class="docs-grid-install-block no-description">
+    <div class="docs-grid-install-block no-description not-clickable">
       <img class="install-icon no-image-expand" src="/assets/images/icons/third-party/{{ d.icon }}" alt="">
       <div class="install-text">
         <span style="font-size: 22px;display:block;margin-bottom:8px;">{{ d.name }}</span>
@@ -25,7 +25,7 @@ Kong allows you to store secret values in external vaults. The following version
 
 <div class="docs-grid-install">
   {% for d in include.data.third-party.vault %}
-    <div class="docs-grid-install-block no-description">
+    <div class="docs-grid-install-block no-description not-clickable">
       <img class="install-icon no-image-expand" src="/assets/images/icons/third-party/{{ d.icon }}" alt="">
       <div class="install-text">
         <span style="font-size: 22px">{{ d.name }}</span><br/>
@@ -43,7 +43,7 @@ Kong Ingress Controller has been tested against the following Service Mesh versi
 
 <div class="docs-grid-install">
   {% for d in include.data.third-party.service_mesh %}
-    <div class="docs-grid-install-block no-description">
+    <div class="docs-grid-install-block no-description not-clickable">
       <img class="install-icon no-image-expand" src="/assets/images/icons/third-party/{{ d.icon }}" alt="">
       <div class="install-text">
         <span style="font-size: 22px">{{ d.name }}</span><br/>
@@ -62,7 +62,7 @@ Kong Ingress Controller has been tested against the following metrics providers:
 
 <div class="docs-grid-install">
   {% for d in include.data.third-party.metrics %}
-    <div class="docs-grid-install-block no-description">
+    <div class="docs-grid-install-block no-description not-clickable">
       <img class="install-icon no-image-expand" src="/assets/images/icons/third-party/{{ d.icon }}" alt="">
       <div class="install-text">
         <span style="font-size: 22px;display:block;margin-bottom:4px;">{{ d.name }}</span>
@@ -80,7 +80,7 @@ Kong Ingress Controller has been tested against the following log providers:
 
 <div class="docs-grid-install">
   {% for d in include.data.third-party.log_provider %}
-    <div class="docs-grid-install-block no-description">
+    <div class="docs-grid-install-block no-description not-clickable">
       <img class="install-icon no-image-expand" src="/assets/images/icons/third-party/{{ d.icon }}" alt="">
       <div class="install-text">
         <span style="font-size: 22px;display:block;margin-bottom:4px;">{{ d.name }}</span>
@@ -98,7 +98,7 @@ Any S3 compatible API is available for use when working with remote file storage
 
 <div class="docs-grid-install">
   {% for d in include.data.third-party.s3_api %}
-    <div class="docs-grid-install-block no-description">
+    <div class="docs-grid-install-block no-description not-clickable">
       <img class="install-icon no-image-expand" src="/assets/images/icons/third-party/{{ d.icon }}" alt="">
       <div class="install-text">
         <span style="font-size: 22px">{{ d.name }}</span><br/>

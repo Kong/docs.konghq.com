@@ -15,7 +15,7 @@ If you experience any issues when running migrations, contact
 
 ## Upgrade path for {{site.base_gateway}} releases
 
-Kong adheres to [semantic versioning](https://semver.org/), which makes a
+Kong follows a structured approach to versioning its products, which makes a
 distinction between major, minor, and patch versions. The upgrade
 path for major and minor versions differs depending on the previous version
 from which you are migrating:

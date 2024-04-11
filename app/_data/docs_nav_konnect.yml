@@ -11,6 +11,8 @@
       url: /network/
     - text: Geographic Regions
       url: /geo/
+    - text: Dedicated Cloud Gateways
+      url: /dedicated-cloud-gateways/
     - text: Compatibility
       url: /compatibility/
     - text: Stages of Software Availability
@@ -56,6 +58,8 @@
           url: /gateway-manager/data-plane-nodes/parameter-reference/
         - text: Using Custom DP Labels
           url: /gateway-manager/data-plane-nodes/custom-dp-labels
+        - text: Transit Gateways
+          url: /gateway-manager/data-plane-nodes/transit-gateways
     - text: Provision a Dedicated Cloud Gateway
       url: /gateway-manager/provision-cloud-gateway/
     - text: Control Plane Groups
@@ -68,7 +72,6 @@
           url: /gateway-manager/control-plane-groups/migrate/
         - text: Conflicts in Control Planes
           url: /gateway-manager/control-plane-groups/conflicts/
-
     - text: Kong Gateway Configuration in Konnect
       items:
         - text: Overview
@@ -124,7 +127,7 @@
   items:
     - text: Overview
       url: /api-products/
-    - text: Manage API Product Documentation
+    - text: Product Documentation
       url: /api-products/service-documentation/
     - text: Productize a Service
       url: /api-products/productize-service/
@@ -373,3 +376,5 @@
       url: /reference/labels/
     - text: Plugin Ordering Reference
       url: /reference/plugins/
+    - text: Custom DNS
+      url: /reference/custom-dns/

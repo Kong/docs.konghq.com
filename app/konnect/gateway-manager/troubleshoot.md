@@ -3,6 +3,7 @@ title: Troubleshoot Data Plane Nodes
 content_type: how-to
 ---
 
+
 ## Out of sync data plane node
 
 **Problem**
@@ -48,6 +49,11 @@ the version may be out of date.
 
 **Solution**
 
+{% navtabs %}
+{% navtab Dedicated Cloud Gateway %}
+With Dedicated Cloud Gateways, {{site.base_gateway}} updates can be performed with the {{site.konnect_short_name}} manager or API. {{site.konnect_short_name}} will automatically provision new data plane nodes and slowly migrate traffic while monitoring for errors. For more information, read the [Upgrade documentation](/konnect/gateway-manager/data-plane-nodes/upgrade/).
+{% endnavtab %}
+{% navtab Self-hosted %}
 Verify that your data plane node versions are up to date:
 
 1. Open {% konnect_icon runtimes %} **Gateway Manager**, then open your control plane.
@@ -66,7 +72,8 @@ may need [upgrading](/konnect/gateway-manager/data-plane-nodes/upgrade/).
 
 If your version is up to date but the feature still isn't working, contact
 [Kong Support](https://support.konghq.com/).
-
+{% endnavtab %}
+{% endnavtabs %}
 ## Kubernetes data plane node installation does not work
 
 **Problem**
