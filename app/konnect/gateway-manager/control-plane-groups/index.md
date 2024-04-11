@@ -203,4 +203,4 @@ Conflict detection in a control plane group happens only after you have added a 
 * [Set up and manage control planes](/konnect/gateway-manager/control-plane-groups/how-to/)
 * [Migrate configuration into a control plane group](/konnect/gateway-manager/control-plane-groups/migrate/)
 * [Conflicts in control planes](/konnect/gateway-manager/control-plane-groups/conflicts/)
-* [Troubleshooting data planes](/konnect/gatway-manager/troubleshooting)
+* [Troubleshooting data planes](/konnect/gatway-manager/troubleshooting/)
