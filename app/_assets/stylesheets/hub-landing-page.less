@@ -2,8 +2,10 @@
   font-family: @family-display;
 
   .container {
-    max-width: 1464px;
+    max-width: @content-max-width;
     margin-bottom: 30px;
+    width: 100%;
+    padding: 0 40px;
   }
 
   // Sets scroll distance for skip to content button
@@ -92,7 +94,6 @@
     align-items: flex-start;
     gap: 40px;
     margin: 0 auto;
-    max-width: 1464px;
   }
 
   .page-hub--container {
@@ -124,7 +125,7 @@
     order: 0;
     align-self: stretch;
     flex-grow: 0;
-    max-width: 1464px;
+    max-width: @content-max-width;
     flex-wrap: wrap;
 
     @media (max-width: 990px) {
@@ -351,19 +352,13 @@
     }
 
     &-cards {
-      display: flex;
-      align-items: flex-start;
-      padding: 0px;
-      gap: 32px;
-      flex-wrap: wrap;
+      display: grid;
+      grid-gap: 32px;
+      grid-template-columns: 1fr 1fr 1fr;
       width: 100%;
 
-      @media (max-width: 690px) {
-        flex-direction: column;
-      }
-
-      @media (min-width: 1351px) {
-        padding-left: 15px;
+      @media (max-width: 767px) {
+        grid-template-columns: none;
       }
     }
   }
@@ -393,21 +388,9 @@
     border-radius: 16px;
     order: 0;
     align-self: stretch;
-    flex: 1 31%;
-    max-width: 31%;
 
     @media (min-width: 990px) {
       min-height: 305px;
-    }
-
-    @media (max-width: 1350px) {
-      flex: 1 47%;
-      max-width: 47%;
-    }
-
-    @media (max-width: 690px) {
-      flex: 1 100%;
-      max-width: 100%;
     }
 
     a {

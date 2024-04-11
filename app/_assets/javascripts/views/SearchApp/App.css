@@ -14,7 +14,7 @@
 .search-container {
   display: flex;
   margin: 20px auto 0;
-  max-width: 1300px;
+  max-width: @max-width-content;
 }
 
 .search-container-filters {

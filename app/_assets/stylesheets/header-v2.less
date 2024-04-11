@@ -221,7 +221,7 @@ header.navbar-v2 {
   .navbar-content {
     width: 100%;
     height: 100%;
-    max-width: 1280px;
+    max-width: @content-max-width;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -487,7 +487,7 @@ header.navbar-v2 {
     }
   }
 
-  @media (max-width: 1280px) {
+  @media (max-width: @content-max-width) {
     .navbar-content {
       .navbar-items {
         .navbar-button {
