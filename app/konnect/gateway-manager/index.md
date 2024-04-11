@@ -60,7 +60,7 @@ Every region in every organization starts with one default control plane.
 This control plane can't be deleted, and its status as the default can't be changed.
 
 With {{site.konnect_short_name}} you can configure additional {{site.base_gateway}}
-control panes, each of which will have isolated configuration.
+control planes, each of which will have isolated configuration.
 Use multiple control planes in one {{site.konnect_short_name}} organization to
 manage data plane nodes and their configuration in any groupings you want.
 
@@ -72,9 +72,35 @@ development, staging, and production.
 regions. Spin up data plane nodes in those regions for each control plane.
 * **Team separation:** Dedicate each control plane to a different team and share
 resources based on team purpose.
+* **Resource hosting and management separation**: Run a hybrid control plane with 
+self-hosted data plane nodes, and a separate Dedicated Cloud Gateway control 
+plane with Kong-managed nodes.
 
-![control planes](/assets/images/products/konnect/gateway-manager/konnect-control-planes-example.png)
-> _**Figure 1:** Example control plane group configuration for three control planes: the default, a development CP, and a production CP. {{site.konnect_short_name}} is the SaaS-managed global management plane that manages all of the control planes, while the control planes manage configuration for data plane nodes._
+<!--vale off-->
+{% mermaid %}
+flowchart TD
+A(Hybrid control plane)
+B(Dedicated Cloud Gateway \n control plane)
+C(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> Self-managed \n data plane nodes \n #40;locally-hosted#41;)
+D(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> Self-managed \n data plane nodes \n #40;hosted in cloud provider#41;)
+E(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> Dedicated Cloud Gateway \n data plane nodes \n #40;Kong-managed#41;)
+
+subgraph id1 [Konnect]
+A
+B
+end
+
+A --proxy configuration---> C & D
+B --proxy configuration---> E
+
+style id1 stroke-dasharray:3,rx:10,ry:10
+style A stroke:none,fill:#0E44A2,color:#fff
+style B stroke:none,fill:#0E44A2,color:#fff
+
+{% endmermaid %}
+<!--vale on-->
+
+> _**Figure 2:** Example control plane group configuration for two control planes: a hybrid control plane and a Dedicated Cloud Gateway control plane. {{site.konnect_short_name}} is the SaaS-managed global management plane that manages all of the control planes, while the control planes manage configuration for data plane nodes._
 
 #### Control plane configuration
 
