@@ -11,7 +11,7 @@ ifndef RUBY_MATCH
 endif
 
 install-prerequisites:
-	npm install -g netlify-cli
+	npm install -g netlify-cli@16.5.1
 
 # Installs npm packages and gems.
 install: ruby-version-check
