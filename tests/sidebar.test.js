@@ -55,7 +55,7 @@ describe("Sidebar section count", () => {
     {
       title: "Gateway Single Sourced",
       path: "/gateway/latest/",
-      count: 10,
+      count: 11,
     },
     {
       title: "decK",

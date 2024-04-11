@@ -89,8 +89,54 @@ items:
         url: /get-started/load-balancing
       - text: AI Gateway
         url: /get-started/ai-gateway
-  - title: Kong in Production
+
+  - title: Install Kong
     icon: /assets/images/icons/documentation/icn-deployment-color.svg
+    items:
+      - text: Overview
+        url: /install/
+      - text: Kubernetes
+        items:
+          - text: Overview
+            url: /install/kubernetes/
+          - text: Install Kong Gateway
+            url: /install/kubernetes/proxy/
+          - text: Configure the Admin API
+            url: /install/kubernetes/admin/
+          - text: Install Kong Manager
+            url: /install/kubernetes/manager/
+      - text: Docker
+        items:
+          - text: Using docker run
+            url: /install/docker
+          - text: Build your own Docker images
+            url: /install/docker/build-custom-images/
+      - text: Linux
+        items:
+          - text: Amazon Linux
+            url: /install/linux/amazon-linux
+          - text: Debian
+            url: /install/linux/debian
+          - text: Red Hat
+            url: /install/linux/rhel
+          - text: Ubuntu
+            url: /install/linux/ubuntu
+      - text: Post-installation
+        items:
+          - text: Set up a data store
+            url: /install/post-install/set-up-data-store/
+          - text: Apply Enterprise license
+            url: /install/post-install/enterprise-license/
+            generate: false
+          - text: Enable Kong Manager (Enterprise)
+            url: /install/post-install/kong-manager/
+            generate: false
+          - text: Enable Kong Manager (OSS)
+            url: /install/post-install/kong-manager-oss/
+            generate: false
+
+  - title: Kong in Production
+    icon: /assets/images/icons/icn-server.svg
     items:
       - text: Deployment Topologies
         items:
@@ -106,49 +152,6 @@ items:
             url: /production/deployment-topologies/db-less-and-declarative-config
           - text: Traditional
             url: /production/deployment-topologies/traditional
-      - text: Installation Options
-        items:
-          - text: Overview
-            url: /install/
-          - text: Kubernetes
-            items:
-              - text: Overview
-                url: /install/kubernetes/
-              - text: Install Kong Gateway
-                url: /install/kubernetes/proxy/
-              - text: Configure the Admin API
-                url: /install/kubernetes/admin/
-              - text: Install Kong Manager
-                url: /install/kubernetes/manager/
-          - text: Docker
-            items:
-              - text: Using docker run
-                url: /install/docker
-              - text: Build your own Docker images
-                url: /install/docker/build-custom-images/
-          - text: Linux
-            items:
-              - text: Amazon Linux
-                url: /install/linux/amazon-linux
-              - text: Debian
-                url: /install/linux/debian
-              - text: Red Hat
-                url: /install/linux/rhel
-              - text: Ubuntu
-                url: /install/linux/ubuntu
-          - text: Post-installation
-            items:
-              - text: Set up a data store
-                url: /install/post-install/set-up-data-store/
-              - text: Apply Enterprise license
-                url: /install/post-install/enterprise-license/
-                generate: false
-              - text: Enable Kong Manager (Enterprise)
-                url: /install/post-install/kong-manager/
-                generate: false
-              - text: Enable Kong Manager (OSS)
-                url: /install/post-install/kong-manager-oss/
-                generate: false
       - text: Running Kong
         items:
           - text: Running Kong as a non-root user
@@ -276,6 +279,7 @@ items:
           - text: Breaking Changes
             url: /production/breaking-changes/
             generate: false
+
   - title: Kong Gateway Enterprise
     icon: /assets/images/icons/documentation/icn-enterprise-blue.svg
     items:

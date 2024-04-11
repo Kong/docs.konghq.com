@@ -196,7 +196,7 @@ The load balancers support the following load-balancing algorithms:
 * `round-robin`
 * `consistent-hashing`
 * `least-connections`
-{% if_version gte:3.2.x %}
+{% if_version gte:3.2.x -%}
 * `latency`
 {% endif_version %}
 
