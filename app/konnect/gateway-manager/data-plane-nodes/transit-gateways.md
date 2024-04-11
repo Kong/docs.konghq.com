@@ -52,6 +52,6 @@ Once the transit gateway attachment is successful, add a route where the upstrea
 
 ## More information
 
-* [Dedicated Cloud Gateways](/konnect/dedicated-cloud-gateways/)
+* [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/)
 * [Network Resiliency and availability](/konnect/network-resiliency/)
 * [Getting started with transit gateways - Amazon VPC](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-getting-started.html)

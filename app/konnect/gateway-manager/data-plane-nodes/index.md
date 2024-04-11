@@ -8,7 +8,7 @@ A data plane node is a single instance of {{site.base_gateway}} that acts as a p
 In {{site.konnect_saas}}, data plane nodes are managed by [control planes](/konnect/gateway-manager/control-plane-groups/). Control planes manage and store configurations in {{site.konnect_saas}}, and data plane nodes are configured according to the configuration distributed by the control plane.
 
 {{site.konnect_short_name}} provides data plane node installation scripts for various platforms. 
-These data plane nodes are configured to run in your {{site.konnect_short_name}} environment. Alternatively, {{site.konnect_short_name}} offers fully-managed data planes through [Dedicated Cloud Gateways](/konnect/dedicated-cloud-gateways).
+These data plane nodes are configured to run in your {{site.konnect_short_name}} environment. Alternatively, {{site.konnect_short_name}} offers fully-managed data planes through [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways).
 
 ## Supported installation options
 

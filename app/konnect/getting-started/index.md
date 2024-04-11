@@ -48,14 +48,14 @@ In the getting started guide, we will show you how to use a {{site.base_gateway}
 
 ### Dedicated Cloud Gateways
 
-{{site.konnect_short_name}} features [Dedicated Cloud Gateways](/konnect/dedicated-cloud-gateways/), allowing for performant, scalable, and highly available global API management infrastructure. 
+{{site.konnect_short_name}} features [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/), allowing for performant, scalable, and highly available global API management infrastructure. 
 These gateways provide:
 * Multi-region support with one-click provisioning
 * No downtime for upgrades
 * Scalability to handle varying API traffic workloads
 * Private networking for secure connections
 
-You can run Dedicated Cloud Gateways in [autopilot mode](/konnect/dedicated-cloud-gateways/#autopilot-mode) to streamline the management of your API gateway resources by automatically adjusting to traffic and volume. 
+You can run Dedicated Cloud Gateways in [autopilot mode](/konnect/gateway-manager/dedicated-cloud-gateways/#autopilot-mode) to streamline the management of your API gateway resources by automatically adjusting to traffic and volume. 
 This mode ensures that your infrastructure is prepared to handle traffic as it arrives, scaling resources to maintain consistent performance without manual intervention. 
 
 Dedicated Cloud Gateways also support [private networking](/konnect/gateway-manager/data-plane-nodes/transit-gateways). 

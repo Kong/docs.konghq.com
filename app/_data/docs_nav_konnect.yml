@@ -11,8 +11,6 @@
       url: /network/
     - text: Geographic Regions
       url: /geo/
-    - text: Dedicated Cloud Gateways
-      url: /dedicated-cloud-gateways/
     - text: Compatibility
       url: /compatibility/
     - text: Stages of Software Availability
@@ -42,6 +40,8 @@
   items:
     - text: Overview
       url: /gateway-manager/
+    - text: Dedicated Cloud Gateways
+      url: /dedicated-cloud-gateways/
     - text: Data Plane Nodes
       items:
         - text: Installation Options
