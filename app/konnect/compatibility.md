@@ -42,9 +42,11 @@ To use [Mesh Manager](/konnect/mesh-manager/), you must also use a compatible ve
 
 There are three tiers of plugins available in {{site.konnect_saas}}:
 
+<!--vale off-->
 * [**Free tier**](https://docs.konghq.com/hub/?tier=free&compatibility=konnect)
 * [**Paid tier**](https://docs.konghq.com/hub/?tier=paid&compatibility=konnect)
 * [**Premium tier**](https://docs.konghq.com/hub/?tier=premium&compatibility=konnect)
+<!--vale on-->
 
 The tiers denote plugin pricing. See the [{{site.konnect_short_name}} pricing page](https://konghq.com/pricing) for more detail. 
 
@@ -56,7 +58,7 @@ There are some limitations for plugins with Dedicated Cloud Gateways:
 
 * Any plugins that depend on a local agent will not work with Dedicated Cloud Gateways.
 * Any plugins that depend on the Status API or on Admin API endpoints will not work.
-* Any plugins or functionality that might depend on IAM assumeRole need to be configured differently. 
+* Any plugins or functionality that depend on AWS IAM `AssumeRole` need to be configured differently. 
 This includes [Data Plane Resilience](/gateway/latest/kong-enterprise/cp-outage-handling/).
 
 See the following table for details on each plugin.
