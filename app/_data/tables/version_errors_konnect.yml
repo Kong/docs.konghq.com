@@ -2741,3 +2741,11 @@ messages:
       Please upgrade Kong Gateway to version `3.6.0.0` or above.
     DocumentationURL: |
       [Response Rate Limiting plugin](/hub/kong-inc/response-ratelimiting/)
+  - ID: P239
+    Severity: error
+    Description: |
+      Plugin `ai-rate-limiting-advanced` is not available in Kong gateway versions < 3.7.0.0.
+    Resolution: |
+      Please upgrade Kong Gateway to version `3.7.0.0` or above.
+    DocumentationURL: |
+      [Ai Rate Limiting Advanced plugin](/hub/kong-inc/ai-rate-limiting-advanced/)
