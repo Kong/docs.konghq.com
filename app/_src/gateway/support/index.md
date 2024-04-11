@@ -63,6 +63,15 @@ Kong supports the following versions of {{site.ee_product_name}}:
   {% endnavtab %}
 {% endnavtabs %}
 
+### Marketplaces
+
+{{site.ee_product_name}} is available through the following marketplaces:
+- Azure Marketplace
+- AWS Marketplace
+- Google Cloud Marketplace
+
+Latest versions are not guaranteed.
+
 ## Older versions
 
 These versions have reached the end of full support.

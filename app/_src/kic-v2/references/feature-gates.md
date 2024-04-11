@@ -24,29 +24,37 @@ Features that reach GA and become stable are removed from this table, but they c
 {% if_version lte: 2.5.x %}
 | Gateway                | `false` | Alpha | 2.2.0 | 2.5.0 |
 {% endif_version %}
+
 {% if_version gte:2.6.x %}
 | Gateway                | `true`  | Beta  | 2.6.0 | TBD   |
 | GatewayAlpha           | `false` | Alpha | 2.6.0 | TBD   |
 {% endif_version %}
+
 {% if_version lte: 2.7.x %}
 | CombinedRoutes         | `false` | Alpha | 2.4.0 | TBD   |
 {% endif_version %}
+
 {% if_version gte: 2.8.x %}
 | CombinedRoutes         | `true`  | Beta  | 2.8.0 | TBD   |
 {% endif_version %}
+
 {% if_version gte: 2.10.x %}
 | ExpressionRoutes       | `false` | Alpha | 2.10.0 | TBD   |
 | FillIDs                | `false` | Alpha | 2.10.0 | 3.0   |
 {% endif_version %}
+
 {% if_version eq:2.10.x %}
 | CombinedServices       | `false` | Alpha | 2.10.0 | TBD   |
 {% endif_version %}
+
 {% if_version gte: 2.11.x %}
 | CombinedServices       | `true`  | Beta  | 2.11.0 | TBD   |
 {% endif_version %}
+
 {% if_version gte: 2.12.x %}
 | RewriteURIs            | `false`  | Beta  | 2.12.0 | TBD   |
 {% endif_version %}
+
 
 ### Feature gates details
 

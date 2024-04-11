@@ -52,8 +52,8 @@
     ]
   },
   "dependencies": {
-    "@kong-ui-public/spec-renderer": "2.1.0",
-    "@kong/kongponents": "9.0.0-alpha.113",
+    "@kong-ui-public/spec-renderer": "2.1.13",
+    "@kong/kongponents": "^9.0.0-alpha.124",
     "@kong/sdk-portal-js": "^2.0.0",
     "@segment/analytics-next": "1.66.0",
     "algoliasearch": "^4.20.0",

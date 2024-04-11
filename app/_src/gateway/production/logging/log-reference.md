@@ -20,6 +20,6 @@ Log levels are set in [Kong's configuration](/gateway/{{page.release}}/reference
 ## More Information
 
 * [Remove elements from {{site.base_gateway}} logs](/gateway/{{page.release}}/production/logging/customize-gateway-logs/)
-{% if_version gte:3.1.x %}
+{% if_version gte:3.1.x -%}
 * [Dynamic log level updates](/gateway/{{page.release}}/production/logging/update-log-level-dynamically/)
 {% endif_version %}

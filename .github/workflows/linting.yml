@@ -44,7 +44,7 @@ jobs:
       - run: npm ci
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v43
+        uses: tj-actions/changed-files@v44
         with:
           sha: ${{ github.sha }}
           files: |
@@ -96,7 +96,7 @@ jobs:
           fetch-depth: 2
       - name: Get changed files
         id: changed-files
-        uses: tj-actions/changed-files@v43
+        uses: tj-actions/changed-files@v44
         with:
           sha: ${{ github.sha }}
           files: |
@@ -106,6 +106,7 @@ jobs:
             app/gateway/2.7.x/**
             app/gateway/2.6.x/**
             app/assets/mesh/raw/CHANGELOG.md
+            app/assets/mesh/raw/UPGRADE.md
           json: true
           quotepath: false
           escape_json: false
