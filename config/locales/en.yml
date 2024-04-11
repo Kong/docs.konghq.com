@@ -1,0 +1,151 @@
+en:
+  _layouts:
+    landing-page:
+      title: "Welcome to"
+      subtitle: "Find all the information you need to use Kong’s platforms and projects"
+      cards:
+        konnect:
+          description: "An end-to-end SaaS API lifecycle management platform that is designed for the cloud native era and provides the easiest way to get started with Kong Gateway"
+          links:
+            overview: "Konnect Overview"
+            get_started: "Get Started With Konnect"
+            plugins: "Konnect-compatible Plugins"
+        gateway:
+          description: "A lightweight, fast, and flexible cloud-native API gateway."
+          links:
+            overview: "Kong Gateway Overview"
+            get_started: "Get Started With Kong Gateway"
+            plugins: "Plugins"
+            admin_api: "Admin API"
+        mesh:
+          description: "An enterprise service mesh based on Kuma for multi-cloud and multi-cluster on both Kubernetes and VMs."
+          links:
+            overview: "Kong Mesh Overview"
+            quickstart: "Kong Mesh Quickstart"
+            kuma: "Kuma (open-source)"
+    docs-v2:
+      contribution_guidelines: Contribution guidelines
+      latest: (latest)
+      switch_to: Switch to
+      browsing_versioned_documentation: You are browsing <strong> {{ page.release.label }} </strong> documentation.
+      browsing_unreleased_documentation: You are browsing <strong> unreleased </strong> documentation.
+      browsing_outdated_documentation: You are browsing documentation for an older version.
+      see_latest_documentation: See the <a href="{{ page.canonical_url }}">latest documentation here</a>.
+      tech_preview: |
+        This feature is released as a <a href="/gateway/latest/availability-stages/#tech-preview">tech preview</a> (alpha-quality) and should not be depended upon in a production environment.
+      beta: |
+        This feature is released as <a href="/gateway/latest/availability-stages/#beta">beta</a> and should not be depended upon in a production environment.
+      konnect_cta_card:
+        too_much_on_your_plate: Too much on your plate?
+        description: More features, less infrastructure with Kong Konnect. 1M requests per month for free.
+        try_it: Try it for Free
+
+  _includes:
+    nav-v2:
+      skip_main: "Skip to content"
+      navbar:
+        docs: "Docs"
+        plugin_hub: "Plugin Hub"
+        support: "Support"
+        community: "Community"
+        kong_academy: "Kong Academy"
+        buttons:
+          top_cta: "Get a Demo"
+          konnect_cta: "Start Free Trial"
+      explore_the_api_specs: "Explore the API Specs"
+      view_all_api_specs: "View all API Specs"
+      documentation: "Documentation"
+      explore_the_plugin_hub: "Explore the Plugin Hub"
+      view_all_plugins: "View all plugins"
+      functionality: "Functionality"
+      view_all: "View all"
+
+    missing_translation_banner:
+      text: |
+        This page is not yet available in Japanese, its translation is in progress.
+
+    lts-changes:
+      thead:
+        change: Change
+        category: Category
+        action_required: Action required
+
+    gateway-support:
+      tab_description: Kong Gateway {{ include.version }} supports the following deployment targets until {{ include.eol }}, unless otherwise noted by an earlier OS vendor end of life (EOL) date.
+      thead:
+        os: OS
+        version: Version
+        artifacts: Artifacts
+        arm_support: ARM support
+        fips_compliant: FIPS compliant
+        aws_graviton_support: AWS Graviton support
+        eol: EOL
+
+    gateway-support-third-party:
+      data_stores:
+        title: "Data Stores"
+        description: "Kong interacts with multiple data stores during normal operation. The following stores have been tested by Kong:"
+      vaults:
+        title: "Vaults"
+        description: "Kong allows you to store secret values in external vaults. The following versions have been tested by Kong:"
+      service_mesh:
+        title: "Service Mesh"
+        description: "Kong Ingress Controller has been tested against the following Service Mesh versions:"
+      metrics:
+        title: "Metrics"
+        description: "Kong Ingress Controller has been tested against the following metrics providers:"
+      log_providers:
+        title: "Log Providers"
+        description: "Kong Ingress Controller has been tested against the following log providers:"
+      s3_compatible_apis:
+        title: "S3 Compatible APIs"
+        description: "Any S3 compatible API is available for use when working with remote file storage. The following have been tested by Kong:"
+      identity_providers:
+        title: "Identity Providers"
+        description: "Kong is expected to work with the following third party identity providers (IDP) when using the OpenID Connect (OIDC) plugin:"
+
+    footer:
+      title: "Powering the API world"
+      description: "Increase developer productivity, security, and performance at scale with the unified platform for API management, service mesh, and ingress controller."
+      email_placeholder: "Email"
+      submit_button: "Subscribe"
+      categories:
+        products: "Products"
+        documentation: "Documentation"
+        open_source: "Open Source"
+        company: "Company"
+      links:
+        terms: "Terms"
+        privacy: "Privacy"
+        compliance: "Trust and Compliance"
+        product_updates: "Product Updates"
+        contact_sales: "Get Started"
+        about_us: "About Kong"
+        customers: "Customers"
+        careers: "Careers"
+        press_room: "Press"
+        events: "Events"
+        contact_us: "Contact"
+        community: "Kong Community"
+        docs:
+          konnect: "Kong Konnect Docs"
+          gateway: "Kong Gateway Docs"
+          kong_enterprise: "Kong Gateway Enterprise Docs"
+          mesh: "Kong Mesh Docs"
+          insomnia: "Kong Insomnia Docs"
+          hub: "Kong Konnect Plugin Hub"
+
+    docs-sidebar:
+      version: Version
+      latest: (latest)
+      contribution_guidelines: Docs contribution guidelines
+      archive: Archive (pre-2.6)
+
+    book:
+      previous: Previous
+      next: Next
+
+    header:
+      nav-links:
+        edit_page: Edit this page
+        report_an_issue: Report an issue
