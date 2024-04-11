@@ -7,6 +7,9 @@ This guide explains how to provision a [Dedicated Cloud Gateway](/konnect/dedica
 ## Prerequisites
 
 * A network configured in {{site.konnect_short_name}} <!--I feel like a link is missing here, but I can't find a good doc to link to-->
+* The following user permissions:
+	* Control plane admin role for the Dedicated Cloud Gateway control plane
+	* Network viewer role for either all networks (`*`) or the specific networks you plan to use for the Dedicated Cloud Gateway 
 
 ## Provision your fully-managed data plane nodes
 
@@ -42,7 +45,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 1. Create a Dedicated Cloud Gateway control plane using the [`/control-planes` endpoint](/konnect/api/control-planes/latest/#/Control%20Planes/create-control-plane):
     ```bash
     curl --request POST \
-    --url https://<region>.api.konghq.com/v2/control-planes \
+    --url https://{region}.api.konghq.com/v2/control-planes \
     --header 'Authorization: Bearer <personal-access-token>' \
     --header 'Content-Type: application/json' \
     --data '{
@@ -95,7 +98,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 
     ```sh
     curl --request PUT \
-	--url https://<region>.api.konghq.com/v2/cloud-gateways/configurations \
+	--url https://{region}.api.konghq.com/v2/cloud-gateways/configurations \
 	--header 'Authorization: Bearer <personal-access-token>' \
 	--header 'Content-Type: application/json' \
 	--data '{
@@ -120,7 +123,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 	* `version`: The version of {{site.base_gateway}} you want to use.
 	* `control_plane_geo`: The geo of the control plane.
 	* `region`: The AWS region you want to deploy the data plane nodes in.
-	* `cloud_gateway_network_id`: The network ID of the cloud gateway.
+	* `cloud_gateway_network_id`: The network ID of the cloud gateway. You can find this by sending a `GET` request to the `/cloud-gateways/network` endpoint or in the {{site.konnect_short_name}} UI by navigating to the Data Plane Nodes menu for your Dedicated Cloud Gateway and clicking the network.
 	* `kind`: The configuration mode. Choose between `static` or `autopilot`. Autopilot mode allows Kong to automatically scale your instances based on incoming traffic. You can pre-warm your cluster by specifying the number of requests per second. Custom mode (`static`) allows you to select from three different instance sizes: small, medium, or large.
 
     You should get a `201` response like the following:
@@ -178,11 +181,11 @@ Your cloud gateway is now provisioned. You can use it like you would any other {
 
 {% navtabs %}
 {% navtab UI %}
-1. From [Gateway Manager](https://cloud.konghq.com/gateway-manager) in the navigation menu, click the Dedicated Cloud Gateway control plane you want to scale the data plane nodes for.
+1. From [Gateway Manager](https://cloud.konghq.com/gateway-manager), click the Dedicated Cloud Gateway control plane you want to scale the data plane nodes for.
 
 1. Click **Data Plane Nodes** in the navigation menu.
 
-1. From the **Control Plane Actions** menu, click **Update Cluster Config** and do the following:
+1. From the **Control Plane Actions**, click **Update Cluster Config** and do the following:
 
     1. To rescale your entire instance, select the most appropriate option based on the requests per second, CPU, and memory from the Custom Configure Mode options.
 
@@ -197,7 +200,7 @@ Scale your Dedicated Cloud Gateway data plane nodes by sending a request to the 
 
 ```sh
 curl --request PUT \
---url https://<region>.api.konghq.com/v2/cloud-gateways/configurations \
+--url https://{region}.api.konghq.com/v2/cloud-gateways/configurations \
 --header 'Authorization: Bearer <personal-access-token>' \
 --header 'Content-Type: application/json' \
 --data '{
