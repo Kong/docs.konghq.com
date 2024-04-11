@@ -19,3 +19,5 @@ categories:
   - traffic-control
 publisher: Kong Inc.
 desc: Provide rate limiting for AI providers defined in the AI plugins
+
+kong_beta: true
