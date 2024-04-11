@@ -6,8 +6,11 @@ dbless_compatible: 'yes'
 free: true
 enterprise: true
 konnect: true
-network_config_opts: All
-notes: --
+cloud_gateways: false
+network_config_opts: traditional, hybrid, konnect hybrid, and db-less
+notes: | 
+   <b>Dedicated Cloud Gateways</b>: This plugin is not supported in Dedicated Cloud Gateways because it depends on a local agent, 
+   and there are no local nodes in Dedicated Cloud Gateways.
 categories:
   - logging
 publisher: Kong Inc.

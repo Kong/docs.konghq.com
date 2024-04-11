@@ -29,10 +29,12 @@ with any of the following network configurations:
     nodes, so only control plane nodes require a database
     (available in {{site.ce_product_name}} 2.0 and {{site.ee_product_name}} 2.1 onward).
 
-* **{{site.konnect_short_name}} (Kong-hosted cloud)**: Hybrid deployment. Nodes are split into control plane and
+* **{{site.konnect_short_name}} (Kong-hosted cloud)**: 
+  * **Hybrid**: Nodes are split into control plane and
 data plane roles. Kong provides and hosts the control plane and a database with
 {{site.konnect_product_name}}, and you provide the {{site.base_gateway}} data plane nodes (no databases required).
-
+  * [**Dedicated Cloud Gateways:**](/konnect/dedicated-cloud-gateways/) 
+  Kong manages both the control plane and the data plane nodes through {{site.konnect_product_name}}.
 
 {% assign hub = site.data.ssg_hub %}
 {% assign kong_extns = hub | where: "extn_publisher", "kong-inc" %}
@@ -49,8 +51,9 @@ data plane roles. Kong provides and hosts the control plane and a database with
       <th style="text-align: left; width: 10%">Plugin</th>
       <th style="text-align: center">Traditional</th>
       <th style="text-align: center">DB-less</th>
-      <th style="text-align: center">Hybrid mode</th>
-      <th style="text-align: center">Konnect </th>
+      <th style="text-align: center">Self-managed hybrid</th>
+      <th style="text-align: center">Konnect hybrid </th>
+      <th style="text-align: center">Dedicated Cloud Gateways</th>
       <th style="text-align: left; width: 35%">Notes</th>
   </thead>
   <tbody>
@@ -87,6 +90,13 @@ data plane roles. Kong provides and hosts the control plane and a database with
             <i class="fa fa-check"></i>
           {% elsif plugin.konnect == false %}
             <i class="fa fa-times"></i>
+          {% endif %}
+        </td>
+        <td style="text-align: center">
+          {% if plugin.cloud_gateways == false or plugin.konnect == false %}
+            <i class="fa fa-times"></i>
+          {% else %}
+            <i class="fa fa-check"></i>
           {% endif %}
         </td>
         <td>

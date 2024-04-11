@@ -50,6 +50,19 @@ The tiers denote plugin pricing. See the [{{site.konnect_short_name}} pricing pa
 
 If you're looking for supported network protocols and entity scopes, see [Plugin Compatibility](/hub/plugins/compatibility/) on the Plugin Hub.
 
+### Considerations for Dedicated Cloud Gateways
+
+There are some limitations for plugins with Dedicated Cloud Gateways:
+
+* Any plugins that depend on a local agent will not work with Dedicated Cloud Gateways.
+* Any plugins that depend on the Status API or on Admin API endpoints will not work.
+* Any plugins or functionality that might depend on IAM assumeRole need to be configured differently. 
+This includes [Data Plane Resilience](/gateway/latest/kong-enterprise/cp-outage-handling/).
+
+See the following table for details on each plugin.
+
+### Plugin tiers
+
 {% assign hub = site.data.ssg_hub %}
 {% assign kong_extns = hub | where: "extn_publisher", "kong-inc" %}
 {% assign categories = site.extensions.categories %}
