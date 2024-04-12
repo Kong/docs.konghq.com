@@ -22,9 +22,9 @@ You can manage your Dedicated Cloud Gateway nodes in [Gateway Manager](https://c
 
 ## How do Dedicated Cloud Gateways work? {#dedicated-features}
 
-{% include_cached /md/konnect/deployment-topologies.md topology='cloud' %}
+{% include_cached /md/konnect/deployment-topologies.md %}
 
-> _**Figure 2:** Data planes are hosted in the cloud by Kong. The control plane connects to the database, and the data planes receive configuration from the control plane._
+> _**Figure 2:** Data planes are hosted in the cloud by Kong. The control plane connects to the database, and the data planes receive configuration from the control plane. Data plane nodes are scaled automatically according to the settings in your Dedicated Cloud Gateway._
 
 When you create a Dedicated Cloud Gateway, {{site.konnect_short_name}} creates a control plane. This control plane, like other {{site.konnect_short_name}} control planes, is hosted by {{site.konnect_short_name}}. You can then deploy data planes in regions close to yours users that will be managed by {{site.konnect_short_name}}. 
 
