@@ -33,7 +33,7 @@ with any of the following network configurations:
   * **Hybrid**: Nodes are split into control plane and
 data plane roles. Kong provides and hosts the control plane and a database with
 {{site.konnect_product_name}}, and you provide the {{site.base_gateway}} data plane nodes (no databases required).
-  * [**Dedicated Cloud Gateways:**](/konnect/dedicated-cloud-gateways/) 
+  * [**Dedicated Cloud Gateways:**](/konnect/gateway-manager/dedicated-cloud-gateways/) 
   Kong manages both the control plane and the data plane nodes through {{site.konnect_product_name}}.
 
 {% assign hub = site.data.ssg_hub %}
