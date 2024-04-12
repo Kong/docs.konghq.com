@@ -8,7 +8,7 @@ paid: true
 konnect: true
 network_config_opts: All
 notes: |
-  <b>Dedicated Cloud Gateways</b>: If you use the IAM assumeRole functiuonality with this plugin, 
+  <b>Dedicated Cloud Gateways</b>: If you use the IAM assumeRole functionality with this plugin, 
   it must be configured differently than for hybrid deployments in Konnect.
 categories:
   - serverless
