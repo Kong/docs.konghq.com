@@ -96,13 +96,13 @@ case, it's because gRPC routes cannot use HTTP methods.
 
 ### Events for cluster scoped resources
 
-Kubernetes Events are namespaced and created in the same namespace as the involved object.
-Cluster scoped objects are handled differently due to not being assigned to a particular namespace.
+Kubernetes events are namespaced and created in the same namespace as the involved object.
+Cluster scoped objects are handled differently because they aren't assigned to a particular namespace.
 
-`kubectl` and Kubernetes libraries like `client-go`, assign `default` namespace to
-Events that involve cluster scoped resources.
+`kubectl` and Kubernetes libraries, like `client-go`, assign the `default` namespace to
+events that involve cluster scoped resources.
 
-Assuming that you've defined the following `KongClusterPlugin` which has an incorrect schema:
+For example, if you defined the following `KongClusterPlugin`, which has an incorrect schema:
 
 ```yaml
 apiVersion: configuration.konghq.com/v1
@@ -119,13 +119,13 @@ metadata:
 plugin: prometheus
 ```
 
-you can find the relevant Event in `default` namespace using the following `kubectl` command:
+You can find the relevant event in the `default` namespace using the following `kubectl` command:
 
 ```bash
 kubectl get events --field-selector involvedObject.name=prometheus -n default
 ```
 
-which could yield the following output:
+This could output the following:
 
 ```bash
 LAST SEEN   TYPE      REASON                         OBJECT                         MESSAGE
