@@ -14,7 +14,7 @@ plugin development and best practices.
 The following development tools are required to complete this guide. 
 
 * [Docker](https://docs.docker.com/get-docker/) (or Docker equivalent) is used to run {{site.base_gateway}} and test code
-* [curl](https://curl.se/) is used to download web resources. `curl` is pre-installed on most systems.
+* [curl](https://curl.se/) is used to download web resources. 
 * [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) is used to install and update software on the host machine.
 
 ## Step by Step
