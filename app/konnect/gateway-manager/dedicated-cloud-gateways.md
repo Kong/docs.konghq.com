@@ -40,18 +40,18 @@ Control planes in {{site.konnect_short_name}} **cannot** contain both Dedicated 
 ## Private vs public networks
 
 Dedicated Cloud Gateways support public and private networking.
-* **Public networking:** easy access to services and APIs, but low security. We recommend only using this option for testing.
-* **Private networking:** a secure way to expose your APIs to the internet. 
+* **Public networking:** Easy access to services and APIs, but low security. We recommend only using this option for testing.
+* **Private networking:** A secure way to expose your APIs to the internet.
  
 You can set up private networking for Dedicated Cloud Gateways with AWS Transit Gateways.
 
 {% include /md/konnect/cloud-gateway-networking.md %}
 
 > _**Figure 3:** In this diagram, the User AWS account represents you are running your microservices, APIs, or applications. 
-You can connect your infrascture securely to Konnect throught AWS Transit Gateways. 
-On the Kong side, the Kong AWS cloud is the cloud account running your Dedicated Cloud Gateways, which ingests traffic coming in from the Transit Gateway and securely exposes it to the internet._
+You can connect your infrastructure securely to {{site.konnect_short_name}} through an AWS Transit Gateway. 
+On the Kong side, the Kong AWS Cloud is the cloud account running your Dedicated Cloud Gateways, which ingests traffic coming in from the Transit Gateway and securely exposes it to the internet._
 
-To establish private connectivity between the Konnect network and your account or VPC, you need to allow traffic via the the [AWS RAM shared resource flow](https://docs.aws.amazon.com/ram/latest/userguide/shareable.html). 
+To establish private connectivity between the {{site.konnect_short_name}} network and your account or VPC, you need to allow traffic via the [AWS RAM shared resource flow](https://docs.aws.amazon.com/ram/latest/userguide/shareable.html). 
 Learn more about setting up private networking with [Transit Gateways](/konnect/gateway-manager/data-plane-nodes/transit-gateways/).
 
 ## More information
