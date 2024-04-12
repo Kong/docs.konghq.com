@@ -219,9 +219,9 @@ header.navbar-v2 {
   }
 
   .navbar-content {
-    width: 100%;
     height: 100%;
-    max-width: 1600px;
+    max-width: @content-max-width;
+    padding: 0 8px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -231,7 +231,6 @@ header.navbar-v2 {
       display: flex;
       flex-shrink: 0;
       max-width: 100px;
-      margin-left: 12px;
 
       #kong-logo {
         max-width: 100px;
@@ -244,7 +243,7 @@ header.navbar-v2 {
 
     .logo-divider {
       font-size: 28px;
-      margin-left: 12px;
+      margin: 0 5px;
       color: #fff;
       opacity: 0.4;
     }
@@ -264,22 +263,12 @@ header.navbar-v2 {
     .search-input-wrapper {
       display: flex;
       align-items: center;
-      margin: 0 20px 0 30px;
       border-radius: 100px;
-
-      @media (min-width: 400px) {
-        min-width: 98px;
-      }
-
-      @media (min-width: 1600px) {
-        width: 368px;
-      }
 
       @media (max-width: 1100px) {
         background: transparent;
         margin: 0 10px;
         padding: 2px;
-        width: unset;
       }
 
       .algolia-autocomplete {
@@ -288,7 +277,7 @@ header.navbar-v2 {
     }
 
     > .navbar-items {
-      padding: 0 12px 0 0;
+      margin-left: auto;
     }
 
     .navbar-items {
@@ -485,7 +474,6 @@ header.navbar-v2 {
         color: #043558;
 
         .navbar-item {
-          margin-right: 20px;
           transition: ease 0.5s;
         }
 
@@ -494,17 +482,15 @@ header.navbar-v2 {
         }
       }
       .search-input-wrapper {
-        padding: 2px 8px;
         transition: ease 0.5s;
       }
     }
   }
 
-  @media (max-width: 1380px) {
+  @media (max-width: @content-max-width) {
     .navbar-content {
       .navbar-items {
         .navbar-button {
-          display: none;
           transition: ease 0.5s;
         }
       }
@@ -532,6 +518,7 @@ header.navbar-v2 {
 
   @media (max-width: 1100px) {
     .navbar-content {
+      padding: 0 8px;
       .navbar-items {
         .navbar-item {
           color: #043558;
