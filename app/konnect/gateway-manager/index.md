@@ -19,7 +19,7 @@ _default control plane, a KIC control plane, and control planes for development 
 With {{site.konnect_short_name}} hosting the control plane, a data plane node
 doesn't need a database to store configuration data. Instead, configuration
 is stored in-memory on each node, and you can easily update all data plane nodes
-in a control plane with a few clicks.
+in a control plane with a few clicks. This model applies whether the nodes are managed on-premise, in cloud-hosted environments, or through our fully managed SaaS offering with [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways).
 
 The Gateway Manager, and the {{site.konnect_saas}} application as
 a whole, does not have access or visibility into the data flowing through your
