@@ -16,6 +16,9 @@ of update.
 See [Editing or deleting a custom plugin's schema](/konnect/gateway-manager/plugins/update-custom-plugin/) 
 for more information.
 
+{:.note}
+> **Note**: Custom plugins are not supported in Dedicated Cloud Gateways.
+
 ## Prerequisites
 
 * Your custom plugin meets {{site.konnect_short_name}}'s [requirements](/konnect/gateway-manager/plugins/#custom-plugins)
