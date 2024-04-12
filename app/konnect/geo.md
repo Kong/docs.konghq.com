@@ -28,7 +28,7 @@ Geographic regions allow you to also operate {{site.konnect_saas}} in a similar 
     * Ohio (us-east-2)
     * Oregon (us-west-2)
 * Europe:
-    * Frannkfurt (eu-central-1)
+    * Frankfurt (eu-central-1)
     * Ireland (eu-west-1)
     * London (eu-west-2)
 * Asia Pacific:
