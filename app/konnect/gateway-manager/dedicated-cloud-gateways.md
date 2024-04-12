@@ -12,13 +12,13 @@ Dedicated Cloud Gateways offer the following benefits:
 * {{site.konnect_short_name}} handles gateway upgrades for you
 * A public or private mode to decide who can view your APIs. In public mode, powered by Kong's public Edge DNS for clusters, you can expose your APIs to the internet. 
 * Auto-pilot mode
-* SOC1 compliant out-of-the-box
 * Supported on the following AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon
 
 You can manage your Dedicated Cloud Gateway nodes in [Gateway Manager](https://cloud.konghq.com/gateway-manager/).
 
-![cloud gateway wizard](/assets/images/products/konnect/gateway-manager/konnect-control-plane-cloud-gateway-wizard.png)
+<img src="/assets/images/products/konnect/gateway-manager/konnect-control-plane-cloud-gateway-wizard.png" alt="cloud gateway wizard" width="1080">
 > _**Figure 3:** The Dedicated Cloud Gateway wizard in the {{site.konnect_short_name}} UI. The wizard allows you to configure the {{site.base_gateway}} version, mode, cluster region, and API access level._
+
 
 ## How do Dedicated Cloud Gateways work? {#dedicated-features}
 
@@ -41,4 +41,9 @@ Control planes in {{site.konnect_short_name}} **cannot** contain both Dedicated 
 
 ## More information
 
-[Link out to other CGW sections and the API spec, currently we don't have those sections drafted, so I don't have anything to link to]
+* [Networking and Peering information](/konnect/network-resiliency/#how-does-network-peering-work-with-dedicated-cloud-gateway-nodes)
+* [Supported regions](/konnect/geo/#dedicated-cloud-gateways)
+* [Transit Gateways](/konnect/gateway-manager/data-plane-nodes/transit-gateways/)
+* [How to upgrade data planes](/konnect/gateway-manager/data-plane-nodes/upgrade/)
+* [Custom Domains](/konnect/reference/custom-dns/)
+* [Cloud Gateways API](/konnect/api/cloud-gateways/latest/)

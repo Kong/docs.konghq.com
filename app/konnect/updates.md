@@ -21,7 +21,7 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 * {{site.konnect_short_name}} handles gateway upgrades for you
 * Supported on the following AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon
 
-: For more information, see [About Cloud Gateways](/konnect/dedicated-cloud-gateways/).
+: For more information, see [About Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/).
 
 : ![cloud gateway dashboard](/assets/images/products/konnect/gateway-manager/konnect-control-plane-cloud-gateway.png)
 : > _**Figure 1:** Example of the dedicated cloud gateway dashboard in Gateway Manager. The dashboard displays the total traffic, error rate, and P99 latency. It also displays the top five gateway services and routes by traffic, as well as the plugins and consumers associated with the gateway._

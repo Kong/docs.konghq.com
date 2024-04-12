@@ -2,7 +2,7 @@
 title: Custom Domains
 ---
 
-{{site.konnect_short_name}} integrates domain name management and configuration in the Dev Portal and with [managed data planes](/konnect/dedicated-cloud-gateways/). 
+{{site.konnect_short_name}} integrates domain name management and configuration in the Dev Portal and with [managed data planes](/konnect/gateway-manager/dedicated-cloud-gateways/). 
 
 
 ## Managed data planes

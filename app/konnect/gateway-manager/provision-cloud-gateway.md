@@ -2,7 +2,7 @@
 title: Provision a Dedicated Cloud Gateway
 ---
 
-This guide explains how to provision a [Dedicated Cloud Gateway](/konnect/dedicated-cloud-gateways/) and scale the data plane nodes in {{site.konnect_short_name}}.
+This guide explains how to provision a [Dedicated Cloud Gateway](/konnect/gateway-manager/dedicated-cloud-gateways/) and scale the data plane nodes in {{site.konnect_short_name}}.
 
 ## Prerequisites
 
