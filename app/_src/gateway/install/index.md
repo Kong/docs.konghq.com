@@ -15,7 +15,7 @@ disable_image_expand: true
   <p>
     <a href="/konnect/">{{ site.konnect_product_name }}</a> is an API lifecycle management platform that lets you build modern applications better, faster, and more securely.
   </p>
-  <p><a href="(https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=install-gateway)">Start for Free &rarr;</a></p>
+  <p><a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=install-gateway">Start for Free &rarr;</a></p>
 </blockquote>
 
 Or you can set up {{site.base_gateway}} on your own self-managed system:
