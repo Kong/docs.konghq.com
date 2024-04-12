@@ -45,7 +45,7 @@ Dedicated Cloud Gateways support public and private networking.
  
 You can set up private networking for Dedicated Cloud Gateways with AWS Transit Gateways.
 
-{% include /md/konnect/cloud-gateway-networking.md %}
+{% include_cached /md/konnect/cloud-gateway-networking.md %}
 
 > _**Figure 3:** In this diagram, the User AWS account represents you are running your microservices, APIs, or applications. 
 You can connect your infrastructure securely to {{site.konnect_short_name}} through an AWS Transit Gateway. 
