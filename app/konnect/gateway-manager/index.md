@@ -4,8 +4,8 @@ title: About Gateway Manager
 
 The [Gateway Manager](https://cloud.konghq.com/gateway-manager)
 is a {{site.konnect_saas}} functionality module
-that lets you catalog, connect to, and monitor the status of all control planes
-and data plane nodes in one place, as well as manage control plane configuration.
+that lets you catalog, connect to, and monitor the status of all control planes (CP)
+and data plane nodes (DPs) in one place, as well as manage control plane configuration.
 
 The Gateway Manager overview page displays a list of
 control planes currently owned by the organization. From here, you can add or
@@ -80,10 +80,10 @@ plane with Kong-managed nodes.
 {% mermaid %}
 flowchart TD
 A(Hybrid control plane)
-B(Dedicated Cloud Gateway \n control plane)
+B(Fully-managed \n control plane)
 C(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> Self-managed \n data plane nodes \n #40;locally-hosted#41;)
-D(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> Self-managed \n data plane nodes \n #40;hosted in cloud provider#41;)
-E(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> Dedicated Cloud Gateway \n data plane nodes \n #40;Kong-managed#41;)
+D(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> Self-managed \n data plane nodes \n #40;hosted by you in cloud provider#41;)
+E(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> Fully-managed \n data plane nodes \n #40;hosted by Kong#41;)
 
 subgraph id1 [Konnect]
 A
@@ -100,7 +100,9 @@ style B stroke:none,fill:#0E44A2,color:#fff
 {% endmermaid %}
 <!--vale on-->
 
-> _**Figure 2:** Example control plane group configuration for two control planes: a hybrid control plane and a Dedicated Cloud Gateway control plane. {{site.konnect_short_name}} is the SaaS-managed global management plane that manages all of the control planes, while the control planes manage configuration for data plane nodes._
+> _**Figure 2:** Example control plane group configuration for two control planes: a hybrid control plane and a fully-managed Dedicated Cloud Gateway control plane._
+><br><br>
+> _The hybrid control plane consists of a Kong-managed CP and self-managed DP nodes, while the Dedicated Cloud Gateway control plane consists of fully-managed CP and DP nodes. {{site.konnect_short_name}} is the SaaS-managed global management plane that manages all of the control planes, while the control planes manage configuration for data plane nodes._
 
 #### Control plane configuration
 
