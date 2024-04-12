@@ -12,7 +12,6 @@ Dedicated Cloud Gateways offer the following benefits:
 * {{site.konnect_short_name}} handles gateway upgrades for you
 * A public or private mode to decide who can view your APIs. In public mode, powered by Kong's public Edge DNS for clusters, you can expose your APIs to the internet. 
 * Auto-pilot mode
-* SOC1 compliant out-of-the-box
 * Supported on the following AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon
 
 You can manage your Dedicated Cloud Gateway nodes in [Gateway Manager](https://cloud.konghq.com/gateway-manager/).
