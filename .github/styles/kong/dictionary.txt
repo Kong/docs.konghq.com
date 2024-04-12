@@ -140,7 +140,9 @@ autoscalers
 Autonegotiation
 aws
 backport
+backports
 backported
+backporting
 backtrace
 Bagdi
 bcc
@@ -362,6 +364,7 @@ nameserver
 nameservers
 namespace
 namespaced
+namespacing
 namespaces
 NAT
 NATs

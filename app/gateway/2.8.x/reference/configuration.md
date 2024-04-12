@@ -502,6 +502,7 @@ adjusted by the `log_level` property.
 ---
 
 #### debug_access_log
+{:.badge .enterprise}
 
 Path for Debug API request access logs. The default value of `off` implies that
 logging for this API is disabled by default.
@@ -514,6 +515,7 @@ location.
 ---
 
 #### debug_error_log
+{:.badge .enterprise}
 
 Path for Debug API request error logs. The granularity of these logs is
 adjusted by the `log_level` property.
@@ -1120,6 +1122,7 @@ Example: `status_listen = 0.0.0.0:8100`
 ---
 
 #### debug_listen
+{:.badge .enterprise}
 
 Comma-separated list of addresses and ports on which the Debug API should
 listen.
@@ -1193,6 +1196,8 @@ Defines the TLS ciphers served by Nginx.
 
 Accepted values are `modern`, `intermediate`, `old`, `fips` or `custom`.
 
+If you want to enable TLSv1.1, this value has to be `old`.
+
 See https://wiki.mozilla.org/Security/Server_Side_TLS for detailed descriptions
 of each cipher suite. `fips` cipher suites are as decribed in
 https://wiki.openssl.org/index.php/FIPS_mode_and_TLS.
@@ -1218,9 +1223,11 @@ Enables the specified protocols for client-side connections. The set of
 supported protocol versions also depends on the version of OpenSSL Kong was
 built with. This value is ignored if `ssl_cipher_suite` is not `custom`.
 
+If you want to enable TLSv1.1, you should set `ssl_cipher_suite` to `old`.
+
 See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols
 
-**Default:** `TLSv1.1 TLSv1.2 TLSv1.3`
+**Default:** `TLSv1.2 TLSv1.3`
 
 ---
 
@@ -1391,6 +1398,7 @@ See docs for `ssl_cert_key` for detailed usage.
 ---
 
 #### debug_ssl_cert
+{:.badge .enterprise}
 
 Comma-separated list of certificates for `debug_listen` values with TLS
 enabled.
@@ -1402,6 +1410,7 @@ See docs for `ssl_cert` for detailed usage.
 ---
 
 #### debug_ssl_cert_key
+{:.badge .enterprise}
 
 Comma-separated list of keys for `debug_listen` values with TLS enabled.
 
@@ -1752,7 +1761,7 @@ in excessive memory usage and not recommended.
 See:
 https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_requests
 
-**Default:** `1000`
+**Default:** `10000`
 
 ---
 
@@ -2075,7 +2084,9 @@ value will be used while the new DNS record is fetched in the background.
 Stale data will be used from expiry of a record until either the refresh query
 completes, or the `dns_stale_ttl` number of seconds have passed.
 
-**Default:** `4`
+This configuration enables Kong to be more resilient during resolver downtime.
+
+**Default:** `3600`
 
 ---
 
@@ -2268,7 +2279,7 @@ This affects connections made by Lua code, such as connections to the database
 Kong uses, or when sending logs using a logging plugin. It does *not* affect
 connections made to the upstream Service or from downstream clients.
 
-**Default:** `TLSv1.1 TLSv1.2 TLSv1.3`
+**Default:** `TLSv1.2 TLSv1.3`
 
 ---
 
@@ -4020,7 +4031,6 @@ Defines the token value used to communicate with the v2 KV Vault HTTP(S) API.
 ---
 
 #### untrusted_lua
-{:.badge .enterprise}
 
 Controls loading of Lua functions from admin-supplied sources such as the Admin
 API. LuaJIT bytecode loading is always disabled.
@@ -4068,7 +4078,6 @@ and `untrusted_lua_sandbox_environment` parameters below.
 ---
 
 #### untrusted_lua_sandbox_requires
-{:.badge .enterprise}
 
 Comma-separated list of modules allowed to be loaded with `require` inside the
 sandboxed environment. Ignored if `untrusted_lua` is not `sandbox`.
@@ -4095,7 +4104,6 @@ sandbox. For example, allowing `os` or `luaposix` may be unsafe.
 ---
 
 #### untrusted_lua_sandbox_environment
-{:.badge .enterprise}
 
 Comma-separated list of global Lua variables that should be made available
 inside the sandboxed environment. Ignored if `untrusted_lua` is not `sandbox`.
@@ -4108,7 +4116,6 @@ to escape the sandbox.
 ---
 
 #### openresty_path
-{:.badge .enterprise}
 
 Path to the OpenResty installation that Kong will use. When this is empty (the
 default), Kong determines the OpenResty installation by searching for a

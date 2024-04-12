@@ -45,6 +45,7 @@ The performance tests cover a number of baseline configurations and common use c
 | Rate limit and basic auth   | 100 routes, 100 consumers   | 89777.4                   | 9.34     | 5.89     |
 {% endif_version %}
 
+
 ### Test environment
 
 Kong ran these tests in AWS using EC2 machines. We used [Kubernetes taints](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) to ensure that {{site.base_gateway}} is on its own node while the load testing and observability tools are on their own separate nodes in the same cluster.

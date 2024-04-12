@@ -134,9 +134,10 @@ with added functionality.
   this package adds [Kong Manager](#kong-manager) to the basic open-source functionality.
 * <span class="badge enterprise"></span> With an **Enterprise** subscription,
   it also includes:
-  {% if_version lte:3.4.x %}
+    {% if_version lte:3.4.x -%}
     * [Dev Portal](#kong-dev-portal)
-    * [Vitals](#kong-vitals){% endif_version %}
+    * [Vitals](#kong-vitals)
+    {% endif_version -%}
     * [RBAC](/gateway/api/admin-ee/latest/#/rbac/get-rbac-users)
     * [Enterprise plugins](/hub/)
 
@@ -181,7 +182,7 @@ Here are some of the things you can do with Kong Manager:
 * Activate or deactivate plugins with a couple of clicks
 * Group your teams, services, plugins, consumer management, and everything else
 exactly how you want them
-{%- if_version lte:3.4.x -%}
+{% if_version lte:3.4.x -%}
 * Monitor performance: visualize cluster-wide, workspace-level, or
 object-level health using intuitive, customizable dashboards
 {% endif_version %}
@@ -244,8 +245,7 @@ There are a few ways to test out the Gateway's Enterprise features:
 representative will reach out with details to get you started.
 
 ## Support policy
-Kong primarily follows a [semantic versioning](https://semver.org/) (SemVer)
-model for its products.
+Kong follows a structured approach to versioning its products.
 
 For the latest version support information for {{site.ee_product_name}} and
 {{site.mesh_product_name}}, see the [version support policy](/gateway/{{page.release}}/support-policy/).

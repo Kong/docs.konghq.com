@@ -45,6 +45,8 @@ cp .env.example .env
 make run
 ```
 
+Once you see the `Server now ready on …` message, the docs site is available at [http://localhost:8888](http://localhost:8888).
+
 ### Troubleshooting the local build
 
 #### Invalid byte sequence in US-ASCII 

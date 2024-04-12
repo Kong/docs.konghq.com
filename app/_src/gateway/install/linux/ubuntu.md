@@ -67,15 +67,17 @@ You should receive a `200` status code.
 Once {{ site.base_gateway }} is running, you may want to do the following:
 
 * Optional: [Add your Enterprise license](/gateway/{{ page.release }}/licenses/deploy/)
-{%- if_version gte:3.4.x -%}
+{% if_version gte:3.4.x -%}
 * Enable Kong Manager:
   * [Kong Manager Enterprise](/gateway/{{ page.release }}/kong-manager/enable/)
   * [Kong Manager OSS](/gateway/{{ page.release }}/kong-manager-oss/)
-{%- endif_version -%}{%- if_version lte:3.3.x -%}
+{% endif_version -%}
+{% if_version lte:3.3.x -%}
 * [Enable Kong Manager](/gateway/{{ page.release }}/kong-manager/enable/)
-{%- endif_version -%}{%- if_version lte:3.4.x -%}
+{% endif_version -%}
+{% if_version lte:3.4.x -%}
 * [Enable Dev Portal](/gateway/{{ page.release }}/kong-enterprise/dev-portal/enable/)
-{%- endif_version -%}
+{% endif_version -%}
 * [Create services and routes](/gateway/{{ page.release }}/get-started/services-and-routes/)
 
 ## Advanced installation
@@ -209,12 +211,12 @@ and update the `kong.conf.default` configuration property file with a reference 
 
 Depending on your desired environment, also see the following guides:
 * Optional: [Add your Enterprise license](/gateway/{{ page.release }}/licenses/deploy/)
-{%- if_version gte:3.4.x -%}
+{% if_version gte:3.4.x -%}
 * Enable Kong Manager:
   * [Kong Manager Enterprise](/gateway/{{ page.release }}/kong-manager/enable/)
   * [Kong Manager OSS](/gateway/{{ page.release }}/kong-manager-oss/)
-{%- endif_version -%}
-{%- if_version lte:3.3.x -%}
+{% endif_version -%}
+{% if_version lte:3.3.x -%}
 * [Enable Kong Manager](/gateway/{{ page.release }}/kong-manager/enable/)
 {% endif_version %}
 

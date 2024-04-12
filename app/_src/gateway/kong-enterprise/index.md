@@ -22,13 +22,14 @@ It offers exclusive versions of OSS plugins like the [Rate Limiting Advanced plu
 * [Mocking](/hub/kong-inc/mocking/)
 * [Advanced data transformation](/hub/kong-inc/jq/)
 * [OPA Policy driven traffic management](/hub/kong-inc/opa/)
-{% if_version lte:3.3.x %}
+{% if_version lte:3.3.x -%}
 * [API product tiers](/gateway/{{page.release}}/admin-api/consumer-groups/reference/)
-{% endif_version %}
-{% if_version gte:3.4.x %}
+{% endif_version -%}
+{% if_version gte:3.4.x -%}
 * [API product tiers](/gateway/api/admin-ee/latest/#/consumer_groups/get-consumer_groups)
 {% endif_version %}
 [Get started with plugins &rarr;](/hub/)
+
 {% if_version lte:3.4.x %}
 ## Dev Portal
 
@@ -56,9 +57,9 @@ The Vitals platform provides deep insights into services, routes, and applicatio
 {{site.ee_product_name}} offers out of the box secrets management with the following backends: 
 
 * [Amazon Web Services (AWS)](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/aws-sm/)
-{% if_version gte:3.5.x %}
+{% if_version gte:3.5.x -%}
 * [Microsoft Azure](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/azure-key-vaults/)
-{% endif_version %}
+{% endif_version -%}
 * [Google Cloud Platform (GCP)](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/gcp-sm/)
 * [Hashicorp Vault](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
 
@@ -154,6 +155,14 @@ Starting in version 3.2, {{site.base_gateway}} can be configured to support conf
 ## Docker container image signing
 
 Starting with {{site.ee_product_name}} 3.5.0.2, Docker container images are signed, and can be verified using `cosign` with signatures published to a Docker Hub repository. Read the [Verify signatures for Signed Kong Images](/gateway/{{ page.release }}/kong-enterprise/signed-images/) documentation to learn more.
+{% endif_version %}
+
+{% if_version gte:3.6.x %}
+
+## Docker container image build provenance
+
+Kong produces build provenance for docker container images, which can be verified using `cosign` / `slsa-verifier` with attestations published to a Docker Hub repository. Read the [Verify Build Provenance for Signed Kong Images](/gateway/{{ page.release }}/kong-enterprise/provenance-verification/) documentation to learn more.
+
 {% endif_version %}
 
 ## More information

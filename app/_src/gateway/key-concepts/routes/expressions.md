@@ -99,7 +99,6 @@ The following table describes the available matching fields, as well as their as
 | `net.src.port`                        | `Int`      | ❌  | ✅  | The port number used by the client to connect.                                     |
 | `net.dst.ip`                          | `IpAddr`   | ❌  | ✅  | Listening IP address where {{site.base_gateway}} accepts the incoming connection.  |
 | `net.dst.port`                        | `Int`      | ❌  | ✅  | Listening port number where {{site.base_gateway}} accepts the incoming connection. |
-
 {% endif_version %}
 {% endunless %}
 
