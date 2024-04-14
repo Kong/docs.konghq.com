@@ -2,6 +2,208 @@
 
 <!--vale off-->
 
+## Week 15
+
+### [feat(SLSA/provenance): publish provenance to central notary repository](https://github.com/Kong/docs.konghq.com/pull/7223) (2024-04-12)
+
+- PR aims to publish provenance signatures into a single central `kong/notary` repository instead of image repository. 
+- This will require users performing an additional step starting GW 3.7.x for verifying provenance 
+- Aims to provide a similar ux flow for provenance verification similar to verifying image signatures 
+- This change is added in a `condition block` to avoid breaking any previous UX prior to 3.7.x for provenance verification
+
+### Dependency
+This PR features a change starting from GW release for 3.7.x that should include the GW PR: https://github.com/Kong/kong-ee/pull/8814 and https://github.com/Kong/kong-ee/pull/8816
+
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.6.x/kong-enterprise/provenance-verification
+- https://docs.konghq.com/gateway/3.7.x/kong-enterprise/provenance-verification
+
+
+### [Remove br from install page note](https://github.com/Kong/docs.konghq.com/pull/7215) (2024-04-11)
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/
+- https://docs.konghq.com/kubernetes-ingress-controller/3.1.x/
+- https://docs.konghq.com/kubernetes-ingress-controller/3.2.x/
+
+
+### [Fix: Add missing client-bound access tokens doc to OIDC plugin](https://github.com/Kong/docs.konghq.com/pull/7208) (2024-04-11)
+
+The OIDC cert-bound access tokens doc was added in 3.5, but got lost in a rebase. 
+
+Issue reported on Slack.
+
+#### Added
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/
+
+#### Modified
+
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+- https://docs.konghq.com/hub/kong-inc/openid-connect/how-to/authentication/
+
+
+### [kic: add section about events for cluster scoped resources](https://github.com/Kong/docs.konghq.com/pull/7203) (2024-04-12)
+
+Adds a section about Events for cluster scoped resources
+
+Relevant KIC issue: https://github.com/Kong/kubernetes-ingress-controller/issues/5847
+
+#### Modified
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/production/observability/events
+- https://docs.konghq.com/kubernetes-ingress-controller/3.1.x/production/observability/events
+- https://docs.konghq.com/kubernetes-ingress-controller/3.2.x/production/observability/events
+
+
+### [Fix: Replace `plain` with `plaintext` for syntax highlighting](https://github.com/Kong/docs.konghq.com/pull/7196) (2024-04-09)
+
+The syntax highlighter doesn't recognize `plain`, so it breaks the codeblock. The copy code icon scrolls with the text:
+
+![Screenshot 2024-04-09 at 8 55 54 AM](https://github.com/Kong/docs.konghq.com/assets/54370747/75f3d010-70d6-4c9d-80aa-ccc3fd0504d5)
+
+(source: https://docs.konghq.com/gateway/latest/plugin-development/pdk/kong.log/)
+
+Reported on Slack.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/2.6.x/pdk/kong.log
+- https://docs.konghq.com/gateway/2.7.x/pdk/kong.log
+- https://docs.konghq.com/gateway/2.8.x/pdk/kong.log
+
+
+### [Fix: KIC overview grammar and punctuation](https://github.com/Kong/docs.konghq.com/pull/7193) (2024-04-09)
+
+<!-- What did you change and why? -->
+Minor update to grammar and punctuation.
+
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+N/A
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.0.x/plugin-development/pdk/kong.log
+- https://docs.konghq.com/gateway/3.1.x/plugin-development/pdk/kong.log
+- https://docs.konghq.com/gateway/3.2.x/plugin-development/pdk/kong.log
+- https://docs.konghq.com/gateway/3.3.x/plugin-development/pdk/kong.log
+- https://docs.konghq.com/gateway/3.4.x/plugin-development/pdk/kong.log
+- https://docs.konghq.com/gateway/3.5.x/plugin-development/pdk/kong.log
+- https://docs.konghq.com/gateway/3.6.x/plugin-development/pdk/kong.log
+- https://docs.konghq.com/gateway/3.7.x/plugin-development/pdk/kong.log
+
+
+### [docs(kaudit): document the 'skip_ssl_verification' webhook configuration option [TPS-2050]](https://github.com/Kong/docs.konghq.com/pull/7183) (2024-04-11)
+
+Document how to disable SSL verification in audit webhook configuration, along with a strong recommendation to not turn it on in production environments.
+
+Ref: 
+- https://konghq.aha.io/features/KP-478
+- https://konghq.atlassian.net/browse/TPS-2050
+
+#### Modified
+
+- https://docs.konghq.com/konnect/org-management/audit-logging/webhook
+
+
+### [Update: Licensing Admin API updates and Troubleshooting section links](https://github.com/Kong/docs.konghq.com/pull/7174) (2024-04-09)
+
+* Added notes about restarting the Kong Gateway nodes/service when updating a license.
+* Linked the Troubleshooting documentation from Overview page on the Deploy page.
+
+Added because this was an occasional issue with customers after updating a license where they kept seeing warnings in the logs and Kong Manager UI about an expiring license after updating it.
+
+#### Modified
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/
+- https://docs.konghq.com/kubernetes-ingress-controller/3.1.x/
+- https://docs.konghq.com/kubernetes-ingress-controller/3.2.x/
+
+
+### [Release: Gateway 3.6.1.2](https://github.com/Kong/docs.konghq.com/pull/7170) (2024-04-08)
+
+Changelog and version bump for Gateway 3.6.1.2.
+
+There are no kong.conf updates.
+
+https://konghq.atlassian.net/browse/DOCU-3756
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Chore: Browser support rework](https://github.com/Kong/docs.konghq.com/pull/7165) (2024-04-09)
+
+Update the browser version support policy page to a more general statement, as we don't test _specific_ versions, we only guarantee latest.
+
+https://konghq.atlassian.net/browse/DOCU-3689
+
+#### Added
+
+- https://docs.konghq.com/assets/images/icons/third-party/chrome.svg
+- https://docs.konghq.com/assets/images/icons/third-party/edge.svg
+- https://docs.konghq.com/assets/images/icons/third-party/firefox.svg
+- https://docs.konghq.com/assets/images/icons/third-party/safari.svg
+
+
+### [Update Gateway install page](https://github.com/Kong/docs.konghq.com/pull/7157) (2024-04-11)
+
+Related [Jira ticket](https://konghq.atlassian.net/browse/DOCU-3744)
+
+Update Gateway's install page.
+
+Note: The `on this page` section isn't rendered because it parses the `headings` on the page and creates the list out of those which we no longer have with the table.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.2.x/support/browser
+- https://docs.konghq.com/gateway/3.3.x/support/browser
+- https://docs.konghq.com/gateway/3.4.x/support/browser
+- https://docs.konghq.com/gateway/3.5.x/support/browser
+- https://docs.konghq.com/gateway/3.6.x/support/browser
+- https://docs.konghq.com/gateway/3.7.x/support/browser
+- https://docs.konghq.com/gateway/3.0.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.1.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.2.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.3.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.4.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.5.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.6.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.7.x/install/kubernetes/proxy/
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/install/helm
+- https://docs.konghq.com/kubernetes-ingress-controller/3.1.x/install/helm
+- https://docs.konghq.com/kubernetes-ingress-controller/3.2.x/install/helm
+
+
+### [Feature: OAS 3.1 Support in Konnect](https://github.com/Kong/docs.konghq.com/pull/7134) (2024-04-12)
+
+adding OAS 3.1 announcement update
+
+
+
+
+<!-- What did you change and why? -->
+ 
+<!-- Include any supporting resources, e.g. link to a Jira ticket, GH issue, FTI, Slack, Aha, etc. -->
+
+#### Modified
+
+- https://docs.konghq.com/konnect/updates
+
 ## Week 14
 
 
