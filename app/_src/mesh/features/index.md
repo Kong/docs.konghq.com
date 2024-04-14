@@ -62,15 +62,15 @@ You can [install {{site.mesh_product_name}} on Windows](/mesh/{{page.release}}/i
 
 ## Docker container image signing
 
-Starting with {{site.mesh_product_name}} 2.7.0, Docker container images are signed, and can be verified using `cosign` with signatures published to a Docker Hub repository. Read the [Verify signatures for Signed Kong Mesh Images](/mesh/{{ page.release }}/features/signed-images/) documentation to learn more.
+Starting with {{site.mesh_product_name}} 2.7.0, Docker container images are signed, and can be verified using `cosign` with signatures published to a Docker Hub repository. Read the [Verify signatures for Signed Mesh Images](/mesh/{{ page.release }}/features/signed-images/) documentation to learn more.
 {% endif_version %}
 
 {% if_version gte:2.7.x %}
 
 ## Build provenance
 
-Kong Mesh produces build provenance for Docker container images and binaries and can be verified using `cosign` / `slsa-verifier`.
+Starting with {{site.mesh_product_name}} 2.7.0, {{site.mesh_product_name}} produces build provenance for Docker container images and binaries and can be verified using `cosign` / `slsa-verifier`.
 
-* Read the [Verify Build Provenance for Signed Kong Mesh Images](/mesh/{{ page.release }}/features/provenance-verification-images/) to learn more.
-* Read the [Verify Build Provenance for Signed Kong Mesh Binaries](/mesh/{{ page.release }}/features/provenance-verification-binaries/) to learn more.
+* Read the [Verify Build Provenance for Signed Mesh Images](/mesh/{{ page.release }}/features/provenance-verification-images/) to learn more.
+* Read the [Verify Build Provenance for Signed Mesh Binaries](/mesh/{{ page.release }}/features/provenance-verification-binaries/) to learn more.
 {% endif_version %}

@@ -3,7 +3,7 @@ title: Verify Build Provenance for Signed Kong Mesh Images
 badge: enterprise
 ---
 
-Starting with {{site.mesh_product_name}} 2.7.0, Kong Mesh produces build provenance for docker container images, which can be verified using `cosign` / `slsa-verifier` with attestations published to a Docker Hub repository.
+Starting with 2.7.0, {{site.mesh_product_name}} produces build provenance for docker container images, which can be verified using `cosign` / `slsa-verifier` with attestations published to a Docker Hub repository.
 
 This guide provides steps to verify build provenance for signed {{site.mesh_product_name}} Docker container images in two different ways:
 
@@ -150,7 +150,7 @@ slsa-verifier verify-image \
    <image>:<tag>@sha256:<manifest_digest> \
    --print-provenance \
    --source-uri 'github.com/Kong/<repo>' \
-   --source-tag '<tag>'
+   --source-tag '<release-tag-version>'
 ```
 
 Here's the same example using sample values instead of placeholders:

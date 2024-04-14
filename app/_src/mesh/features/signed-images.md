@@ -6,6 +6,7 @@ badge: enterprise
 Starting with {{site.mesh_product_name}} 2.7.0, Docker container images are now signed using `cosign` with signatures published to a Docker Hub repository.
 
 This guide provides steps to verify signatures for signed {{site.mesh_product_name}} Docker container images in two different ways:
+
 * A minimal example, used to verify an image without leveraging any annotations
 * A complete example, leveraging optional annotations for increased trust
 
@@ -22,7 +23,9 @@ For the complete example, you need the same details as the minimal example, as w
 Because Kong uses Github Actions to build and release, Kong also uses Github's OIDC identity to sign images, which is why many of these details are Github-related.
 
 ## Examples
+
 ### Prerequisites
+
 For both examples, you need to:
 
 1. Ensure `cosign` is installed.
@@ -32,11 +35,12 @@ For both examples, you need to:
 3. Set the `COSIGN_REPOSITORY` environment variable:
 
    ```sh
-   export COSIGN_REPOSITORY=kong/notary-internal
+   export COSIGN_REPOSITORY=kong/notary
    ```
 
 {:.important .no-icon}
 > Github owner is case-sensitive (`Kong/kong-mesh` vs `kong/kong-mesh`).
+
 ### Minimal example
 
 Run the `cosign verify ...` command:
@@ -49,6 +53,7 @@ cosign verify \
 ```
 
 Here's the same example using sample values instead of placeholders:
+
 ```sh
 cosign verify \
    'kong/kuma-cp:2.7.0-preview.v579166351@sha256:4382a3879994a08df804e0007431907d014f9d4899efb4fb5cedf292f14e6a4a' \
@@ -68,6 +73,7 @@ cosign verify \
 ```
 
 Here's the same example using sample values instead of placeholders:
+
 ```sh
 cosign verify \
    'kong/kuma-cp:2.7.0-preview.v579166351@sha256:4382a3879994a08df804e0007431907d014f9d4899efb4fb5cedf292f14e6a4a' \
