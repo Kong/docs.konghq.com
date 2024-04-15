@@ -394,6 +394,6 @@
   branch: release-2.7
 - edition: mesh
   version: preview
-  release: dev
+  release: 2.8.x
   branch: master
   label: dev
