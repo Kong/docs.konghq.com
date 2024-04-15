@@ -93,5 +93,18 @@ configuration file:
       {% endnavtab %}
       {% endif %}
     {% endunless %}
+
+  {% unless page.terraform_examples == false %}
+    {% if hub_example.render_terraform? %}
+    {% navtab Konnect Terraform %}
+
+  {% include_cached plugins/hub-examples/terraform.html example=hub_example %}
+
+  {% include_cached plugins/create-consumer/terraform.html hub_example=hub_example %}
+
+    {% endnavtab %}
+    {% endif %}
+  {% endunless %}
+
   {% endnavtabs %}
 {% endif %}
