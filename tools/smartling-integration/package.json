@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "smartling-api-sdk-nodejs": "^2.9.1"
+  },
+  "name": "smartling-integration",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
