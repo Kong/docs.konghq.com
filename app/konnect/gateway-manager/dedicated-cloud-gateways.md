@@ -17,7 +17,7 @@ Dedicated Cloud Gateways offer the following benefits:
 You can manage your Dedicated Cloud Gateway nodes in [Gateway Manager](https://cloud.konghq.com/gateway-manager/).
 
 <img src="/assets/images/products/konnect/gateway-manager/konnect-control-plane-cloud-gateway-wizard.png" alt="cloud gateway wizard" width="1080">
-> _**Figure 3:** The Dedicated Cloud Gateway wizard in the {{site.konnect_short_name}} UI. The wizard allows you to configure the {{site.base_gateway}} version, mode, cluster region, and API access level._
+> _**Figure 1:** The Dedicated Cloud Gateway wizard in the {{site.konnect_short_name}} UI. The wizard allows you to configure the {{site.base_gateway}} version, mode, cluster region, and API access level._
 
 
 ## How do Dedicated Cloud Gateways work? {#dedicated-features}
@@ -37,7 +37,13 @@ Because data plane nodes in Autopilot configuration mode automatically scale, yo
 
 Control planes in {{site.konnect_short_name}} **cannot** contain both Dedicated Cloud Gateway and self-managed data plane nodes.
 
+## Private vs public networks
 
+Dedicated Cloud Gateways support public and private networking.
+* **Public networking:** Easy access to services and APIs, but low security. We recommend only using this option for testing.
+* **Private networking:** A secure way to expose your APIs to the internet.
+ 
+You can set up private networking for Dedicated Cloud Gateways with [AWS Transit Gateways](/konnect/gateway-manager/data-plane-nodes/transit-gateways/).
 
 ## More information
 
