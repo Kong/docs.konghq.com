@@ -280,4 +280,4 @@ You should get a `201` response like the following:
 
 ## More information
 
-* [About Dedicated Cloud Gateways](/konnect/dedicated-cloud-gateways/): Learn more about Dedicated Cloud Gateway features and use cases.
+* [Dedicated Cloud Gateways overview](/konnect/gateway-manager/dedicated-cloud-gateways/): Learn more about Dedicated Cloud Gateway features and use cases.
