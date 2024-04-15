@@ -2,6 +2,77 @@
 
 <!--vale off-->
 
+## Week 15
+
+### [kic: add section about events for cluster scoped resources](https://github.com/Kong/docs.konghq.com/pull/7203) (2024-04-12)
+
+Adds a section about Events for cluster scoped resources
+
+Relevant KIC issue: https://github.com/Kong/kubernetes-ingress-controller/issues/5847
+
+#### Modified
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/production/observability/events
+- https://docs.konghq.com/kubernetes-ingress-controller/3.1.x/production/observability/events
+- https://docs.konghq.com/kubernetes-ingress-controller/3.2.x/production/observability/events
+
+
+### [Update: Licensing Admin API updates and Troubleshooting section links](https://github.com/Kong/docs.konghq.com/pull/7174) (2024-04-09)
+
+* Added notes about restarting the Kong Gateway nodes/service when updating a license.
+* Linked the Troubleshooting documentation from Overview page on the Deploy page.
+
+Added because this was an occasional issue with customers after updating a license where they kept seeing warnings in the logs and Kong Manager UI about an expiring license after updating it.
+
+#### Modified
+
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/
+- https://docs.konghq.com/kubernetes-ingress-controller/3.1.x/
+- https://docs.konghq.com/kubernetes-ingress-controller/3.2.x/
+
+
+### [Release: Gateway 3.6.1.2](https://github.com/Kong/docs.konghq.com/pull/7170) (2024-04-08)
+
+Changelog and version bump for Gateway 3.6.1.2.
+
+There are no kong.conf updates.
+
+https://konghq.atlassian.net/browse/DOCU-3756
+
+#### Modified
+
+- https://docs.konghq.com/gateway/changelog
+
+
+### [Update Gateway install page](https://github.com/Kong/docs.konghq.com/pull/7157) (2024-04-11)
+
+Related [Jira ticket](https://konghq.atlassian.net/browse/DOCU-3744)
+
+Update Gateway's install page.
+
+Note: The `on this page` section isn't rendered because it parses the `headings` on the page and creates the list out of those which we no longer have with the table.
+
+#### Modified
+
+- https://docs.konghq.com/gateway/3.2.x/support/browser
+- https://docs.konghq.com/gateway/3.3.x/support/browser
+- https://docs.konghq.com/gateway/3.4.x/support/browser
+- https://docs.konghq.com/gateway/3.5.x/support/browser
+- https://docs.konghq.com/gateway/3.6.x/support/browser
+- https://docs.konghq.com/gateway/3.7.x/support/browser
+- https://docs.konghq.com/gateway/3.0.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.1.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.2.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.3.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.4.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.5.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.6.x/install/kubernetes/proxy/
+- https://docs.konghq.com/gateway/3.7.x/install/kubernetes/proxy/
+- https://docs.konghq.com/kubernetes-ingress-controller/3.0.x/install/helm
+- https://docs.konghq.com/kubernetes-ingress-controller/3.1.x/install/helm
+- https://docs.konghq.com/kubernetes-ingress-controller/3.2.x/install/helm
+
+
 ## Week 14
 
 
