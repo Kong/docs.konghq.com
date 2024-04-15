@@ -7,6 +7,11 @@ Make sure to also check the upgrade notes for the matching version of [Kuma](htt
 
 ## Upgrade to `2.7.x`
 
+### RBAC
+
+A new access type: `VIEW_CONTROL_PLANE_METADATA` has been added to the RBAC configuration which restricts access to `/config`.
+If you want to leave the access to `/config` unrestricted, you need to add `VIEW_CONTROL_PLANE_METADATA` to the rules of your `admin` `AccessRole`.
+
 ### ECS
 
 The configuration for AWS IAM data plane authentication has changed slightly

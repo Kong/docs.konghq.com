@@ -1,6 +1,5 @@
 {% include_relative_once _data/tables/support/gateway/packages.yml %}
 {% include_relative_once _data/tables/support/gateway/third-party.yml %}
-{% include_relative_once _data/tables/support/gateway/browsers.yml %}
 
 lts: false
 distributions:
@@ -12,7 +11,6 @@ distributions:
     docker: true
     arm: true
     graviton: true
-  - <<: *azurelinux2xx
   - <<: *debian10
     eol: June 2024
   - <<: *debian11
@@ -102,9 +100,3 @@ third-party:
   s3_api:
     - *s3
     - *minio
-
-browsers:
-  - *edge
-  - *chrome
-  - *firefox
-  - *safari

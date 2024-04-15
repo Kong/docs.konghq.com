@@ -171,7 +171,7 @@ function versionToRelease(version) {
   }
 
   .px-5 {
-    padding-left: 24px !important;
+    padding-left: 8px !important;
     padding-right: 24px !important;
   }
 

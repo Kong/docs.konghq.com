@@ -171,7 +171,7 @@ Use the following configuration options to configure the `vaults` entity through
 any of the supported tools:
 * Admin API
 * Declarative configuration
-{% if_version gte:3.1.x %}
+{% if_version gte:3.1.x -%}
 * Kong Manager
 * {{site.konnect_short_name}}
 {% endif_version %}
@@ -182,12 +182,11 @@ Configuration options for an AWS Secrets Manager vault in {{site.base_gateway}}:
 Parameter | Field name                     | Description
 ----------|--------------------------------|------------
 `vaults.config.region` | **AWS region** | The AWS region your vault is located in.
-
-{% if_version gte:3.4.x inline:true %}
+{% if_version gte:3.4.x -%}
 `vaults.config.endpoint_url` | **AWS Secrets Manager Endpoint URL** | The endpoint URL of the AWS Secrets Manager service. If not specified, the value used by vault will be the official AWS Secrets Manager service url which is `https://secretsmanager.{region}.amazonaws.com`. You can specify a complete URL(including the `http/https` scheme) to override the endpoint.
 `vaults.config.assume_role_arn` | **Assume AWS IAM role ARN** | The target IAM role ARN that will assume as the AWS Secrets Manager service. If specified, the vault backend will do additional role assuming based on your current runtime's IAM Role. If you are not using assume role, do not specify this value.
 `vaults.config.role_session_name` | **Role Session Name** | The role session name used for role assuming. The default value is `KongVault`.
-{% endif_version %}
+{% endif_version -%}
 
 `vaults.config.ttl` | **TTL** | Time-to-live (in seconds) of a secret from the vault when it's cached. The special value of 0 means "no rotation" and it's the default. When using non-zero values, it is recommended that they're at least 1 minute.
 `vaults.config.neg_ttl` | **Negative TTL** | Time-to-live (in seconds) of a vault miss (no secret). Negatively cached secrets will remain valid until `neg_ttl` is reached, after which Kong will attempt to refresh the secret again. The default value for `neg_ttl` is 0, meaning no negative caching occurs.
