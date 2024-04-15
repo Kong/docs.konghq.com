@@ -16,7 +16,7 @@ Dedicated Cloud Gateways offer the following benefits:
 
 You can manage your Dedicated Cloud Gateway nodes in [Gateway Manager](https://cloud.konghq.com/gateway-manager/).
 
-<img src="/assets/images/products/konnect/gateway-manager/konnect-control-plane-cloud-gateway-wizard.png" alt="cloud gateway wizard" width="1080">
+<img src="/assets/images/products/konnect/gateway-manager/konnect-control-plane-cloud-gateway-wizard.png" alt="cloud gateway wizard" style="max-width: 800px;">
 > _**Figure 1:** The Dedicated Cloud Gateway wizard in the {{site.konnect_short_name}} UI. The wizard allows you to configure the {{site.base_gateway}} version, mode, cluster region, and API access level._
 
 
