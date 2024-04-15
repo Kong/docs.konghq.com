@@ -1,0 +1,227 @@
+const fs = require('fs');
+const path = require('path');
+const yaml = require('js-yaml');
+const fg = require('fast-glob');
+
+const PRODUCT_MAPPINGS = {
+  "gateway": "gateway",
+  "kgo": "gateway-operator",
+  "kic": "kubernetes-ingress-controller",
+  "mesh": "mesh",
+  "konnect": "konnect",
+  "deck": "deck"
+};
+
+const DATA_FILES_TO_EXCLUDE = [
+  'pdk_info.yml',
+  'konnect_oas_data.json',
+  'kong_versions.yml',
+  'books.yml',
+  'installation/fateway.yml',
+  'tables/compat.json'
+]
+
+function readTranslationConfig() {
+  try {
+    const config = path.resolve(__dirname, '../', 'config.yml');
+    return yaml.load(fs.readFileSync(config, 'utf8'));
+  } catch (error) {
+    console.error('Error reading config file', error);
+    return null;
+  }
+}
+
+async function configLocaleFiles() {
+  const localesPath = 'config/locales/';
+  const localesDir = path.resolve(__dirname, '../../../', localesPath)
+  return fs.readdirSync(localesDir).map((file) => {
+    return path.join(localesPath, file);
+  });
+}
+
+async function docsNavFiles(productConfig) {
+  console.log(`   app/_data/docs_nav_${productConfig.product}`);
+
+  const srcPath = 'app/_data';
+  const root = path.resolve(__dirname, '../../../');
+  const { product, versions } = productConfig;
+  let fileUris = [];
+
+  if (product === 'konnect') {
+    let fileUri = path.join(srcPath, `docs_nav_${product}.yml`);
+    if (fs.existsSync(path.join(root, fileUri))) {
+      fileUris.push(fileUri);
+    } else {
+      console.log(`DocsNavFile not found for: ${product} - ${version}`)
+      process.exit(1);
+    }
+  } else {
+    for (version of versions) {
+      let fileUri = path.join(srcPath, `docs_nav_${product}_${version}.yml`);
+
+      if (fs.existsSync(path.join(root, fileUri))) {
+        fileUris.push(fileUri);
+      } else {
+        console.log(`DocsNavFile not found for: ${product} - ${version}`)
+        process.exit(1);
+      }
+    };
+  }
+  return fileUris;
+}
+
+async function appSrcFiles(productConfig) {
+  try {
+    let srcPath = 'app/_src';
+    const { product, versions } = productConfig;
+    const normalizedProductName = PRODUCT_MAPPINGS[product];
+    let srcFiles = [];
+
+    let srcDirs = [];
+    if (product === 'kic') {
+      if (versions.some(v => /^2\./.test(v))) {
+        srcDirs.push('kic-v2');
+      }
+      if (versions.some(v => /^3\./.test(v))) {
+        srcDirs.push(normalizedProductName);
+      }
+    } else {
+      srcDirs.push(normalizedProductName);
+    }
+
+    for (dir of srcDirs) {
+      console.log(`   ${path.join(srcPath, dir)}`);
+      let files = await fg('**/*', { cwd: path.resolve(__dirname, '../../../', srcPath, dir), onlyFiles: true });
+      srcFiles.push(...files.map((file) => {
+        return path.join(srcPath, dir, file);
+      }));
+    }
+    return srcFiles;
+  } catch (e) {
+    console.log(`There was a problem reading from app/_src/${normalizedProductName}`)
+    process.exit(1);
+  }
+}
+
+async function appFiles(productConfig) {
+  let appFiles = [];
+  const { product, versions } = productConfig;
+  const normalizedProductName = PRODUCT_MAPPINGS[product];
+  const srcPath = `app/${normalizedProductName}/`;
+
+  console.log(`   ${srcPath}`);
+
+  try {
+    // /<product>/*.md
+    let topLevelFiles = await fg(`app/${normalizedProductName}/*.md`);
+    // exclude changelogs
+    topLevelFiles = topLevelFiles.filter(filePath => filePath !== `app/${normalizedProductName}/changelog.md`)
+
+    appFiles.push(...topLevelFiles);
+
+    if (normalizedProductName === 'konnect') {
+      // app/konnect/**/*.md
+      const files = await fg(`app/${normalizedProductName}/**/*.md`, {  onlyfiles: true });
+      appFiles.push(...files);
+    } else {
+      //  app/<product>/<version>/**/*.md
+      for (let version of versions) {
+        let files = await fg(`app/${normalizedProductName}/${version}/**/*.md`, {  onlyfiles: true });
+        appFiles.push(...files);
+      }
+    }
+    return appFiles;
+  } catch(e) {
+    console.log(`There was a problem reading from app/${normalizedProductName}`)
+    process.exit(1);
+  }
+}
+
+async function dataFiles() {
+  let dataFiles = [];
+  try {
+    const dataPath = 'app/_data';
+    const srcDir = path.resolve(__dirname, '../../../', dataPath);
+
+    if (fs.existsSync(srcDir)) {
+      const files = await fg('**/*', { cwd: srcDir, onlyFiles: true });
+      files.map((file) => {
+        if (!DATA_FILES_TO_EXCLUDE.includes(file) && !file.startsWith('docs_nav_') && !file.startsWith('tables/support/')) {
+          dataFiles.push(path.join(dataPath, file));
+        }
+      });
+    } else {
+      console.log(`The folder ${srcDir} doesn't exist.`)
+      process.exit(1);
+    }
+    return dataFiles;
+  } catch (e) {
+    console.log("There was a problem reading from app/_data")
+    process.exit(1);
+  }
+}
+
+async function dfsExtractIncludeFilePaths(filePath, includeFilePaths = new Set()) {
+  try {
+    const data = await fs.promises.readFile(filePath, 'utf8');
+    const regex = /{%\s*include(_cached)?\s+(\/?md\/.*.md)/g;
+    const interpolationRegex = /\/{{\s*.*?\s*}}\//g;
+    let match;
+
+    while ((match = regex.exec(data)) !== null) {
+      const fullPath = path.join('app/_includes', match[2]);
+
+      if (interpolationRegex.test(fullPath)) {
+        const expandedPath = fullPath.replace(interpolationRegex, '/**/');
+        const files = await fg(expandedPath);
+        files.forEach(file => {
+          if (!includeFilePaths.has(file)) {
+            includeFilePaths.add(file);
+            dfsExtractIncludeFilePaths(file, includeFilePaths);
+          }
+        });
+      } else {
+        if (!includeFilePaths.has(fullPath)) {
+          includeFilePaths.add(fullPath);
+          await dfsExtractIncludeFilePaths(fullPath, includeFilePaths);
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Error reading file:', error);
+  }
+  return includeFilePaths;
+}
+
+async function readIncludeFilesForProduct(productConfig, srcFiles) {
+  try {
+    let includes = new Set();
+    for (file of srcFiles) {
+      await dfsExtractIncludeFilePaths(file, includes);
+    }
+
+    return Array.from(includes);
+  } catch (e) {
+    console.log(`There was a problem reading include files for: ${productConfig.product}`)
+    process.exit(1);
+  }
+}
+
+async function getProductsConfigs(config, locale) {
+  return Object.entries(config[locale]).map(([product, versions]) => {
+    return { product, versions };
+  });
+}
+
+module.exports = {
+  PRODUCT_MAPPINGS,
+  appFiles,
+  appSrcFiles,
+  configLocaleFiles,
+  dataFiles,
+  dfsExtractIncludeFilePaths,
+  docsNavFiles,
+  getProductsConfigs,
+  readIncludeFilesForProduct,
+  readTranslationConfig
+}
