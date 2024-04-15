@@ -1,6 +1,6 @@
 columns:
-  - name: Platform
-  - name: Open Source
+  - name:
+  - name: Kong Gateway (Open Source)
     subtitle: An open-source package containing the basic API <br />gateway functionality and open-source plugins.
     key: oss
   - name: Kong Gateway Enterprise
