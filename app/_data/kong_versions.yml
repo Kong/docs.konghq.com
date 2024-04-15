@@ -389,7 +389,11 @@
   endOfLifeDate: "2025-02-01"
   branch: release-2.6
 - edition: mesh
-  version: preview
+  version: 2.7.0
   release: 2.7.x
+  branch: release-2.7
+- edition: mesh
+  version: preview
+  release: dev
   branch: master
   label: dev
