@@ -1,6 +1,6 @@
 generate: true
 assume_generated: true
-release: 2.7.x
+release: 2.8.x
 max_depth: 3
 inherit:
   path: /.repos/kuma/app/_src
