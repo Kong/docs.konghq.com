@@ -60,9 +60,13 @@ PluginA:
 ### Consumer scoping
 
 Consumer-scoped plugins don't support dynamic ordering because consumer mapping
-also runs in the access phase. The order of the plugins must be determined
-after consumer mapping has happened. {{site.base_gateway}} can't reliably
-change the order of the plugins in relation to consumer mapping.
+also runs in the access phase. When Kong encounters an ordering field in its 
+configuration, it must evaluate all plugins prior to their execution. This process 
+is essential because Kong permits rearranging plugins in any desired order. Notably, 
+this evaluation of plugins occurs even before the execution of authentication plugins. 
+Consequently, at this stage, Kong is not aware of any authenticated users. 
+As a result, any plugins that are specifically scoped to consumers are not considered 
+in determining the new execution order.
 
 ### Cascading deletes & updates
 
