@@ -308,7 +308,12 @@ There are three steps to completely remove a plugin.
 
 ## Distribute your plugin
 
-The preferred way to do so is to use [LuaRocks](https://luarocks.org/), a
+Depending on the platform that Gateway is running on, there are different ways of 
+distributing custom plugins.
+
+### Via LuaRocks
+
+One way to do so is to use [LuaRocks](https://luarocks.org/), a
 package manager for Lua modules. It calls such modules "rocks". **Your module
 does not have to live inside the Kong repository**, but it can be if that's
 how you'd like to maintain your Kong setup.
@@ -323,6 +328,94 @@ build type to define modules in Lua notation and their corresponding file.
 For more information about the format, see the LuaRocks
 [documentation on rockspecs][rockspec].
 
+### Via OCI Artefacts
+
+Many users will have access to an OCI-compliant registry (Dockerhub, AWS ECR, etc). 
+Kong Plugins can be packaged as generic OCI artefacts and uploaded to one of these 
+registries for versioning, storage, and distribution. 
+
+The advantage of distributing plugins as OCI artefacts is that users can make use of 
+a number of ecosystem benefits including tooling around building, pushing/pulling, and 
+signing (for secure provenance attestation) of these artefacts. The steps below 
+illustrate a sample flow for packaging, distributing, and verifying a Kong custom plugin 
+as an OCI artefact.
+
+On the machine where the plugin is developed, or as part of an automated workflow, run the following 
+steps:
+
+1. Package the plugin according to the [Packaging Sources](#packaging-sources) section above.
+
+    ```
+    tar czf my-plugin.tar.gz ./my-plugin-dir
+    ```
+
+2. Use the OSS [Cosign tool][cosign-install] to generate a key pair for use signing and verifying plugins:
+
+    ```
+    cosign generate-key-pair
+    ```
+
+    The private key (`cosign.key`) should be kept secure and is used for signing the plugin artefact. The public key 
+    (`cosign.pub`) should be distributed and used by target machines to validate the downloaded plugin later in the flow. 
+
+    There are also keyless methods for signing and verifying artefacts with Cosign. More information 
+    is available in their [documentation][cosign-signing].
+
+3. Login to your OCI-compliant registry. In this case we'll use Dockerhub:
+
+    ```
+    cat ~/foo_password.txt | docker login --username foo-user --password-stdin
+    ```
+
+4. Upload the plugin artefact to the OCI registry using Cosign. This is the equivalent of running 
+a `docker push <image>` when pushing a local Docker image up to a registry.
+
+    ```
+    cosign upload blob -f my-plugin.tar.gz docker.io/foo-user/my-plugin
+    ```
+
+    The `cosign upload` command will return the digest of the artefact if it's successfully uploaded.
+
+5. Sign the artefact with the key pair generated in step 1:
+
+    ```
+    cosign sign --key cosign.key index.docker.io/foo-user/my-plugin@sha256:xxxxxxxxxx
+    ```
+
+    The command may prompt for the private key passphrase. It also may prompt to confirm that you consent 
+    to the signing information being permanently recorded in Rekor, the transparency log. For more information 
+    on Sigstore tooling and flows visit the [documentation][rekor-docs].
+
+Then, on the machines where the plugin should be installed (the Gateway data plane nodes), run the following 
+steps (can also be automated):
+
+6. Ensure the `cosign.pub` public key is available. Verify the signature of the plugin artefact that you want to 
+pull:
+
+    ```
+    cosign verify --key cosign.pub index.docker.io/foo-user/my-plugin@sha256:xxxxxxxxxx
+    ```
+
+    The command should succeed if the artefact was verified.
+
+7. Use the OSS [Crane][crane] tool to pull the plugin artefact to the machine:
+
+    ```
+    crane pull index.docker.io/foo-user/my-plugin@sha256:xxxxxxxxxx my-downloaded-plugin.tar.gz
+    ```
+
+    The command should pull the artefact and save it to the working directory.
+
+8. Unpackage the plugin. The download `.tar.gz` file will container a manifest file and 
+another nested `.tar.gz`. This nested archive contains the plugin directory.
+
+    ```
+    tar xvf my-downloaded-plugin.tar.gz
+    tar xvf xxxxxxxxxxxxxxxxxxxxx.tar.gz
+    ```
+
+9. Copy the plugin directory to the correct location and update Kong's configuration to properly 
+reference it according to the [install manually](#manually) section above.
 
 ## Troubleshooting
 
@@ -351,3 +444,7 @@ make sure that the `schema.lua` file is present alongside the plugin's
 [rockspec]: https://github.com/keplerproject/luarocks/wiki/Creating-a-rock
 [plugin-template]: https://github.com/Kong/kong-plugin
 [example-rockspec]: https://github.com/Kong/kong-plugin/blob/master/kong-plugin-myplugin-0.1.0-1.rockspec
+[cosign-install]: https://docs.sigstore.dev/system_config/installation/
+[cosign-signing]: https://docs.sigstore.dev/signing/overview/
+[rekor-docs]: https://docs.sigstore.dev/logging/overview/
+[crane]: https://github.com/google/go-containerregistry/tree/main/cmd/crane
