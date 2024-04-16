@@ -39,6 +39,9 @@ schema, it creates a plugin configuration object in {{site.konnect_short_name}},
 can access via the Konnect UI or the custom plugins API. This means that {{site.konnect_short_name}}
 only sees a custom plugin's configuration options, and does not see any other data.
 
+{:.note}
+> **Note**: Custom plugins are not supported in Dedicated Cloud Gateways.
+
 To run in {{site.konnect_short_name}}, every custom plugin must meet the following requirements:
 
 * **General requirements:**

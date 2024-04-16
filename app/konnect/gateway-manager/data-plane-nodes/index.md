@@ -8,7 +8,7 @@ A data plane node is a single instance of {{site.base_gateway}} that acts as a p
 In {{site.konnect_saas}}, data plane nodes are managed by [control planes](/konnect/gateway-manager/control-plane-groups/). Control planes manage and store configurations in {{site.konnect_saas}}, and data plane nodes are configured according to the configuration distributed by the control plane.
 
 {{site.konnect_short_name}} provides data plane node installation scripts for various platforms. 
-These data plane nodes are configured to run in your {{site.konnect_short_name}} environment.
+These data plane nodes are configured to run in your {{site.konnect_short_name}} environment. Alternatively, {{site.konnect_short_name}} offers fully-managed data planes through [Dedicated Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways).
 
 ## Supported installation options
 
@@ -36,7 +36,6 @@ Advanced setup:
 {:.note}
 > **Notes:** 
 > * Gateway Manager includes a feature called Control Plane Launcher which can be used with any of AWS, Azure, or GCP. This feature is currently in tech preview.
-> * Kong does not host data plane nodes. You must install and host your own.
 > * Gateway Manager allows users to select the {{site.base_gateway}} version that they want for their Quickstart scripts (except for cloud provider quickstart scripts for AWS, Azure, and GCP). This allows you to leverage official {{site.konnect_short_name}} scripts to start your gateways while reducing the number of errors due to an invalid script for a certain {{site.base_gateway}} version.
 > * SSH access to Konnect data planes must be done using the cloud provider's tools when using [AWS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-connect-methods.html), [Azure](https://learn.microsoft.com/azure/cloud-shell/overview), and [Google Cloud](https://cloud.google.com/compute/docs/instances/ssh) advanced setups. Direct SSH access isn't possible because the keys are randomly generated and not exposed.
 
