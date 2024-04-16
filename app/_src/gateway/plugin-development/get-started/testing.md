@@ -91,7 +91,7 @@ Once the dependencies are running successfully, we run a {{site.base_gateway}} c
 shell within it so we can interact with the gateway. Pongo runs a {{site.base_gateway}}
 container with various CLI tools pre-installed to help with testing.
 
-Launch the gateway and open shell with:
+Launch the gateway and open a shell with:
 
 ```sh
 pongo shell
