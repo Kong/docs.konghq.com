@@ -2,7 +2,7 @@
 
 module Jekyll
   class KGOPodtemplatespecExample < Liquid::Block
-    def render(context)
+    def render(context) # rubocop:disable Metrics/AbcSize
       spec = super
 
       config = YAML.safe_load(spec)
