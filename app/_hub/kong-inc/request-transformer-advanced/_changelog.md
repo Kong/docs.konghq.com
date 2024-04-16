@@ -2,7 +2,7 @@
 
 **{{site.base_gateway}} 3.3.x**
 - The plugin now honors the value configured for the global parameter: [`untrusted_lua`](/gateway/latest/reference/configuration/#untrusted_lua)
-  when [advanced templates](/hub/kong-inc/request-transformer/how-to/templates/#advanced-templates) are configured.
+  when [advanced templates](/hub/kong-inc/request-transformer-advanced/how-to/templates/#advanced-templates) are configured.
 
 **{{site.base_gateway}} 3.1.x**
 - Added support for navigating nested JSON objects and arrays when transforming a JSON payload.
