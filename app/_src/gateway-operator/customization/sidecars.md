@@ -61,7 +61,7 @@ dataplane:
         initialDelaySeconds: 1
         periodSeconds: 1
     - name: proxy
-      image: kong:3.4
+      image: kong/kong-gateway:{{ site.data.kong_latest_gateway.ee-version }}
       volumeMounts:
       - name: proxy-logs
         mountPath: /etc/kong/log/
