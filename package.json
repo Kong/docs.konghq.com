@@ -52,10 +52,10 @@
     ]
   },
   "dependencies": {
-    "@kong-ui-public/spec-renderer": "2.1.13",
+    "@kong-ui-public/spec-renderer": "2.1.15",
     "@kong/kongponents": "^9.0.0-alpha.124",
     "@kong/sdk-portal-js": "^2.0.0",
-    "@segment/analytics-next": "1.66.0",
+    "@segment/analytics-next": "1.67.0",
     "algoliasearch": "^4.20.0",
     "instantsearch.css": "^8.1.0",
     "jquery": "3.7.1",
