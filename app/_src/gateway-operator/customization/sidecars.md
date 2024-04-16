@@ -32,6 +32,7 @@ data:
 ## Configure PodTemplateSpec
 
 {% kgo_podtemplatespec_example %}
+release: {{ page.release }}
 gatewayConfigApiVersion: {{ gatewayConfigApiVersion }}
 dataplane:
   metadata:

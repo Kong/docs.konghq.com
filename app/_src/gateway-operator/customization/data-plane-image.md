@@ -10,6 +10,7 @@ title: Customizing the Data Plane image
 You can customize the image of your `DataPlane` using  the `DataPlane` resource or the `GatewayConfiguration` CRD .
 
 {% kgo_podtemplatespec_example %}
+release: {{ page.release }}
 gatewayConfigApiVersion: {{ gatewayConfigApiVersion }}
 dataplane:
   spec:
