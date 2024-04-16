@@ -2,10 +2,10 @@
   <a class="skip-main" href="#main">Skip to content</a>
   <!-- uncomment the promo-banner div when adding a new promo banner-->
   <!--also uncomment the promo banner sections in app/assets/stylesheets/header.less and application.js-->
-  {% if page.edition == 'gateway' or 
-        page.edition == 'kubernetes-ingress-controller' or 
-        page.edition == 'gateway-operator' or
-        page.edition == 'deck' %}
+  {% if include.edition == 'gateway' or
+        include.edition == 'kubernetes-ingress-controller' or 
+        include.edition == 'gateway-operator' or 
+        include.edition == 'deck' %}
   <div id="promo-banner">
     <div class="container">
       <div class="closebanner"></div> <strong>Kong Gateway users, share your feedback and enter for a chance to win a $100 gift card!<a href="https://forms.gle/W57twHijT7kLXKu66">Take Survey &rarr;</a> </strong>
