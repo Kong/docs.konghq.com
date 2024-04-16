@@ -6,12 +6,20 @@ description: Kong Gateway is a lightweight, fast, and flexible cloud-native API 
 konnect_cta_card: true
 ---
 
+<blockquote class="note">
+  <p><strong>Set up your Gateway in under 5 minutes with {{ site.konnect_product_name }}:</strong></p>
+  <p>
+    <a href="/konnect/">{{ site.konnect_product_name }}</a> is an API lifecycle management platform that lets you build modern applications better, faster, and more securely.
+  </p>
+  <p><a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=install-gateway" class="no-link-icon">Start for Free &rarr;</a></p>
+</blockquote>
+
 ## How to get started
 
 <div class="docs-grid-install max-3">
 
   <a href="/konnect/getting-started/" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand small" src="/assets/images/icons/konnect/runtimes.svg" alt="">
+    <img class="install-icon no-image-expand small" src="/assets/images/icons/kong-gradient.svg" alt="">
     <div class="install-text">Start with Konnect <br> <span class="badge recommended"></span></div>
   </a>
 
@@ -23,6 +31,24 @@ konnect_cta_card: true
   <a href="/gateway/{{page.release}}/install/" class="docs-grid-install-block no-description">
     <img class="install-icon no-image-expand small" src="/assets/images/icons/documentation/icn-deployment-color.svg" alt="">
     <div class="install-text">Install on your platform</div>
+  </a>
+</div>
+
+<div class="docs-grid-install docs-grid-install__bottom max-2">
+  <a href="/hub/" class="docs-grid-install-block docs-grid-install-block__bottom">
+    <img class="install-icon no-image-expand small" src="/assets/images/icons/documentation/icn-api-plugins-color.svg" alt="">
+    <div class="install-block-column">
+      <div class="install-text">Kong Plugin Hub</div>
+      <div class="install-description">Extend your gateway with powerful plugins</div>
+    </div>
+  </a>
+
+  <a href="/gateway/{{page.release}}/admin-api/" class="docs-grid-install-block docs-grid-install-block__bottom">
+    <img class="install-icon no-image-expand small" src="/assets/images/icons/documentation/icn-admin-api-color.svg" alt="">
+    <div class="install-block-column">
+      <div class="install-text">API Reference Documentation</div>
+      <div class="install-description">Setup an internal REST API for admin purposes</div>
+    </div>
   </a>
 </div>
 
