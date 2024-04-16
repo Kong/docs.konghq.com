@@ -47,7 +47,7 @@ konnect_cta_card: true
     <img class="install-icon no-image-expand small" src="/assets/images/icons/documentation/icn-admin-api-color.svg" alt="">
     <div class="install-block-column">
       <div class="install-text">API Reference Documentation</div>
-      <div class="install-description">Setup an internal REST API for admin purposes</div>
+      <div class="install-description">Set up an internal REST API for admin purposes</div>
     </div>
   </a>
 </div>
