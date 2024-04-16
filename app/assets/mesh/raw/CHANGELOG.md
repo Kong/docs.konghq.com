@@ -1060,14 +1060,3 @@ Built on top of [Kuma 1.1.3](https://github.com/kumahq/kuma/blob/master/CHANGELO
 
 - Built-in DNS provides support for specifying external services by original hostname and port
 
-
-## 1.2.2
-> Released on 2021/04/12
-
-Built on top of Kuma 1.1.2 with [fixes and improvements](https://github.com/kumahq/kuma/blob/master/CHANGELOG.md#112). Features include:
-- 19 new observability charts and golden metrics.
-- IPv6 support across the service mesh.
-- New threshold configuration in the Circuit Breaker policy.
-- Performance improvements, especially with external services.
-- Stability improvements to kuma-cp and DNS resolution.
-
