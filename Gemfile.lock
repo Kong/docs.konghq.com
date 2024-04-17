@@ -92,7 +92,7 @@ GEM
       safe_yaml (~> 1.0)
       terminal-table (>= 1.8, < 4.0)
       webrick (~> 1.7)
-    jekyll-generator-single-source (0.0.12)
+    jekyll-generator-single-source (0.0.13)
       jekyll (>= 4.2, < 5.0)
     jekyll-include-cache (0.2.1)
       jekyll (>= 3.7, < 5.0)
