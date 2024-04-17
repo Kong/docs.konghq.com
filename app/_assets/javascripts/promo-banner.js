@@ -1,13 +1,15 @@
 jQuery(document).ready(function () {
-  var closed = localStorage.getItem("closebanner-gateway-survey-2024");
-  if (closed !== "closebanner") {
-    $(".navbar-v2").removeClass("closed");
-    $("body").addClass("banner");
-    $("#mosaic-provider-react-aria-0-1").addClass("banner-offset");
-  } else {
-    $(".navbar-v2").addClass("closed");
-    $("body").removeClass("banner");
-    $("#mosaic-provider-react-aria-0-1").removeClass("banner-offset");
+  if ($("#promo-banner").length > 0) {
+    var closed = localStorage.getItem("closebanner-gateway-survey-2024");
+    if (closed !== "closebanner") {
+      $(".navbar-v2").removeClass("closed");
+      $("body").addClass("banner");
+      $("#mosaic-provider-react-aria-0-1").addClass("banner-offset");
+    } else {
+      $(".navbar-v2").addClass("closed");
+      $("body").removeClass("banner");
+      $("#mosaic-provider-react-aria-0-1").removeClass("banner-offset");
+    }
   }
 });
 var scrolling = false;
