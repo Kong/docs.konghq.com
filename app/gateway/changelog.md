@@ -9,6 +9,17 @@ Changelog for supported Kong Gateway versions.
 
 For product versions that have reached the end of sunset support, see the [changelog archives](https://legacy-gateway--kongdocs.netlify.app/enterprise/changelog/).
 
+## 3.6.1.3
+**Release Date** 04/16/2024
+
+### Fixes
+
+#### Kong Manager
+* Fixed an issue where the admin account profile page returned a 404 error if the `admin_gui_path` was not a slash.
+
+#### Plugins
+* [**OpenTelemetry**](/hub/kong-inc/opentelemetry/) (`opentelemetry`)
+  * Improved robustness of parsing for short trace IDs.
 
 ## 3.6.1.2
 **Release Date** 04/08/2024
