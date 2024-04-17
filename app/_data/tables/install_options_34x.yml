@@ -9,33 +9,13 @@ columns:
 features:
   - name: "Docker"
     items:
-      - name: "Ubuntu"
+      - name: "Install with Docker"
         oss: true
         enterprise: true
         support: true
         url: "/gateway/VERSION/install/docker/?install=oss"
         ee_url: "/gateway/VERSION/install/docker/"
-        icon: /assets/images/icons/third-party/ubuntu.png
-      - name: "Debian (bullseye-slim)"
-        oss: true
-        enterprise: true
-        support: true
-        url: "/gateway/VERSION/install/docker/?os=debian&install=oss"
-        ee_url: "/gateway/VERSION/install/docker/?os=debian"
-        icon: /assets/images/icons/third-party/debian-logo.jpg
-      - name: "RHEL (8-ubi)"
-        oss: true
-        enterprise: true
-        support: true
-        url: "/gateway/VERSION/install/docker/?os=rhel&install=oss"
-        ee_url: "/gateway/VERSION/install/docker/?os=rhel"
-        icon: /assets/images/icons/third-party/rhel.jpg
-      - name: "Amazon Linux (2 and 2023)"
-        oss: false
-        enterprise: true
-        support: true
-        ee_url: "/gateway/VERSION/install/docker/?os=amazonlinux"
-        icon: /assets/images/icons/third-party/amazon-linux.png
+        icon: /assets/images/icons/third-party/docker.png
   - name: "Kubernetes"
     items:
       - name: "Kubernetes"
