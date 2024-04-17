@@ -32,6 +32,11 @@ inherit:
       url: /support-policy/
       action: insert
       index: -3
+    - path: [ Introduction ]
+      text: Software Bill of Materials
+      url: /sbom
+      action: insert
+      index: -3
     - path: [ Introduction, Release notes]
       url: /mesh/changelog
       src: /mesh/changelog

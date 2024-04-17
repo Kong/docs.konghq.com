@@ -51,7 +51,7 @@ slsa-verifier verify-artifact \
    '<path to binary-artifact>.tar.gz'
 ```
 
-Here's the same example using sample values instead of placeholders where the downoad path is assumed to `/tmp`:
+Here's the same example using sample values instead of placeholders where the download path is assumed to `/tmp`:
 
 ```sh
 slsa-verifier verify-artifact \
@@ -83,7 +83,7 @@ slsa-verifier verify-artifact \
    '<path to binary-artifact>.tar.gz'
 ```
 
-Here's the same example using sample values instead of placeholders where the downoad path is assumed to `/tmp`:
+Here's the same example using sample values instead of placeholders where the download path is assumed to `/tmp`:
 
 ```sh
 slsa-verifier verify-artifact \
