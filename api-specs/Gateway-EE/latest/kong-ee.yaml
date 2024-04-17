@@ -6981,9 +6981,9 @@ paths:
     put:
       description: |
         Create or update a key using ID or name.
-        Please note that if you used uuid as key name and would like to
+        Please note that if you used uuid as the key name and would like to
         update it you need to use such key ID. Using this uuid-name will
-        result in an upsert of a new key with this uuid set as ID (or fail with
+        result in an upsert of a new key with this uuid set as the ID (or fail with a
         collision error). If the name is a regular string you can use either
         name or ID.
       operationId: upsert-key
@@ -7222,10 +7222,10 @@ paths:
     put:
       description: |
         Create or update a route using ID or name.
-        Please note that if you used uuid as route name and would like to
-        update it you need to use such route ID. Using this uuid-name will
-        result in an upsert of a new route with this uuid set as ID (or fail with
-        collision error). If the name is a regular string you can use either
+        Please note that if you used uuid as the route name and would like to
+        update it you need to use a route ID. Using this uuid-name will
+        result in an upsert of a new route with this uuid set as ID (or fail with a
+        collision error). If the name is a regular string you can use either the
         name or ID.
       operationId: upsert-route
       responses:
@@ -7473,10 +7473,10 @@ paths:
         $ref: '#/components/requestBodies/service-request'
     put:
       description: |
-        Create or Update Service using ID or name.
-        Please note that if you used uuid as service name and would like to
-        update it you need to use such service ID. Using this uuid-name will
-        result in an upsert of a new service with this uuid set as ID (or fail with
+        Create or Update a service using an ID or name.
+        Please note that if you used uuid as the service name and would like to
+        update it you need to use a service ID. Using this uuid-name will
+        result in an upsert of the new service with this uuid set as ID (or fail with
         collision error). If the name is a regular string you can use either
         name or ID.
       operationId: upsert-service
@@ -7724,10 +7724,10 @@ paths:
       operationId: update-route-with-service
     put:
       description: |
-        Create or Update a route associated with a Service using ID or name.
+        Create or Update a route associated with a Service using an ID or name.
         Please note that if you used uuid as route name and would like to
         update it you need to use such route ID. Using this uuid-name will
-        result in an upsert of a new route with this uuid set as ID (or fail with
+        result in an upsert of a new route with this uuid set as the ID (or fail with
         collision error). If the name is a regular string you can use either
         name or ID.
       responses:
@@ -7963,9 +7963,9 @@ paths:
     put:
       description: |
         Create or Update Upstream using ID or name.
-        Please note that if you used uuid as upstream name and would like to
-        update it you need to use such upstream ID. Using this uuid-name will
-        result in an upsert of a new upstream with this uuid set as ID (or fail with
+        Please note that if you used uuid as route name and would like to
+        update it you need to use such route ID. Using this uuid-name will
+        result in an upsert of a new route with this uuid set as the ID (or fail with
         collision error). If the name is a regular string you can use either
         name or ID.
       operationId: upsert-upstream
@@ -8380,9 +8380,9 @@ paths:
     put:
       description: |
         Create or Update Workspace using ID or name.
-        Please note that if you used uuid as workspace name and would like to
-        update it you need to use such workspace ID. Using this uuid-name will
-        result in an upsert of a new workspace with this uuid set as ID (or fail with
+        Please note that if you used uuid as route name and would like to
+        update it you need to use such route ID. Using this uuid-name will
+        result in an upsert of a new route with this uuid set as the ID (or fail with
         collision error). If the name is a regular string you can use either
         name or ID.
       operationId: upsert-workspace
@@ -8969,9 +8969,9 @@ paths:
     put:
       description: |
         Create or Update Key-set using ID or name in a workspace.
-        Please note that if you used uuid as key-set name and would like to
-        update it you need to use such key-set ID. Using this uuid-name will
-        result in an upsert of a new key-set with this uuid set as ID (or fail with
+        Please note that if you used uuid as route name and would like to
+        update it you need to use such route ID. Using this uuid-name will
+        result in an upsert of a new route with this uuid set as the ID (or fail with
         collision error). If the name is a regular string you can use either
         name or ID.
       operationId: upsert-key-set-in-workspace
@@ -9132,9 +9132,9 @@ paths:
     put:
       description: |
         Create or Update Key using ID or name in a workspace.
-        Please note that if you used uuid as key name and would like to
-        update it you need to use such key ID. Using this uuid-name will
-        result in an upsert of a new key with this uuid set as ID (or fail with
+        Please note that if you used uuid as route name and would like to
+        update it you need to use such route ID. Using this uuid-name will
+        result in an upsert of a new route with this uuid set as the ID (or fail with
         collision error). If the name is a regular string you can use either
         name or ID.
       operationId: upsert-key-in-workspace
@@ -9392,7 +9392,7 @@ paths:
         Create or Update route using ID or name in a workspace.
         Please note that if you used uuid as route name and would like to
         update it you need to use such route ID. Using this uuid-name will
-        result in an upsert of a new route with this uuid set as ID (or fail with
+        result in an upsert of a new route with this uuid set as the ID (or fail with
         collision error). If the name is a regular string you can use either
         name or ID.
       operationId: upsert-route-in-workspace
@@ -9632,9 +9632,9 @@ paths:
     put:
       description: |
         Create or Update Service using ID or name in a workspace.
-        Please note that if you used uuid as service name and would like to
-        update it you need to use such service ID. Using this uuid-name will
-        result in an upsert of a new service with this uuid set as ID (or fail with
+        Please note that if you used uuid as route name and would like to
+        update it you need to use such route ID. Using this uuid-name will
+        result in an upsert of a new route with this uuid set as the ID (or fail with
         collision error). If the name is a regular string you can use either
         name or ID.
       operationId: upsert-service-in-workspace
@@ -9744,9 +9744,9 @@ paths:
     put:
       description: |
         Create or Update a plugin associated with a Service using ID in a workspace.
-        Please note that if you used uuid as plugin name and would like to
-        update it you need to use such plugin ID. Using this uuid-name will
-        result in an upsert of a new plugin with this uuid set as ID (or fail with
+        Please note that if you used uuid as route name and would like to
+        update it you need to use such route ID. Using this uuid-name will
+        result in an upsert of a new route with this uuid set as the ID (or fail with
         collision error). If the name is a regular string you can use either
         name or ID.
       responses:
@@ -9873,7 +9873,7 @@ paths:
         Create or Update a route associated with a Service using ID or name in a workspace.
         Please note that if you used uuid as route name and would like to
         update it you need to use such route ID. Using this uuid-name will
-        result in an upsert of a new route with this uuid set as ID (or fail with
+        result in an upsert of a new route with this uuid set as the ID (or fail with
         collision error). If the name is a regular string you can use either
         name or ID.
       responses:
