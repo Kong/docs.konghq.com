@@ -2,11 +2,11 @@
 
 module QuoteFilter
   def quote(input)
-    if input.is_a?(Numeric)
-      input
-    else
-      "\"#{input}\""
-    end
+    return input if ['true', 'false', true, false].include?(input)
+
+    return input if input.is_a?(Numeric)
+
+    "\"#{input}\""
   end
 end
 
