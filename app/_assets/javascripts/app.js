@@ -388,8 +388,7 @@ jQuery(function () {
 
   // Handle EE/OSS Sidebar switcher
   const ossEeToggle = $("#oss-ee-toggle");
-  // The amazonlinux check is for the docker install page
-  if ($(".external-trigger").length && getParams.os != "amazonlinux") {
+  if ($(".external-trigger").length) {
     ossEeToggle.show();
   }
 
