@@ -126,3 +126,9 @@
         targetDiv.textContent = formattedNumber;
       }
     }
+- type: function
+  name: screenshotMermaid
+  javascript: |
+    function screenshotMermaid(selector) {
+      const element = document.querySelector(selector);
+      element.scrollIntoView();}
