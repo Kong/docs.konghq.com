@@ -33,7 +33,7 @@ Additional entities will be added in future releases. You can view a list of all
 
 ```bash
 curl -X 'GET' \
-  'https://global.api.konghq.com/v0/search/types' \
+  'https://global.api.konghq.com/v1/search/types' \
   -H 'accept: application/json'
 ```
 

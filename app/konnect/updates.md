@@ -13,11 +13,11 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 **{{site.konnect_short_name}} Search API**
 : You can now use the beta {{site.konnect_saas}} Search API to search {{site.konnect_short_name}} for the following entities:
-* Users
-* Teams
-* System Accounts
-* Developers
-* Developer Teams
+  * Users
+  * Teams
+  * System Accounts
+  * Developers
+  * Developer Teams
 
 : The {{site.konnect_short_name}} Search API allows you to search through all supported {{site.konnect_short_name}} entities with a common search query language. For more information, see the [Konnect Search API](/konnect/api/search/latest/) and the [Konnect Search Guide](/konnect/api/ksearch/).
 
