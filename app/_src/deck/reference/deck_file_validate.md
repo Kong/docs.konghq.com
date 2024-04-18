@@ -41,7 +41,7 @@ This takes precedence over `_workspace` fields in state files.
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## See also
 

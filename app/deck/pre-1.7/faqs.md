@@ -64,7 +64,7 @@ your use-case:
 
 - If you've a very large installation, it can take some time for decK to
   sync up the configuration to Kong. This can be mitigated by adopting
-  [distributed configuration](/deck/{{page.kong_version}}/guides/distributed-configuration/) for your
+  [distributed configuration](/deck/{{page.release}}/guides/distributed-configuration/) for your
   Kong installation and tweaking the `--parallelism` value.
   Kong's `db_import` will be usually faster by orders of magnitude.
 - decK cannot export and re-import fields that are hashed in the database.

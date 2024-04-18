@@ -16,7 +16,7 @@ Use Kong Vitals (Vitals) to monitor {{site.ee_product_name}} health and performa
 Vitals is enabled by default in {{site.ee_product_name}} and available upon the first login of a Super Admin.
 
 {% if_version lte:3.3.x %}
-{% include_cached /md/enterprise/cassandra-deprecation.md length='short' kong_version=page.kong_version %}
+{% include_cached /md/enterprise/cassandra-deprecation.md length='short' release=page.release %}
 {% endif_version %}
 
 You can use one of the following storage strategies with Vitals:
@@ -105,7 +105,7 @@ Options to populate the Vitals view, or areas in the chart, include:
 | Cluster and Node Data    | Metrics are displayed on Vitals charts at both node and cluster level. Controls are available to show cluster-wide metrics and/or node-specific metrics. Clicking on individual nodes will toggle the display of data from those nodes. Nodes are identified by a unique Kong node identifier, by hostname, or by a combination of the two.|
 
 ## Status Codes
-The Status Codes view displays visualizations of cluster-wide status code classes (1xx, 2xx, 3xx, 4xx, 5xx). The Status Codes view contains the counts of status code classes graphed over time, as well as the ratio of code classes to total requests. See [Status Codes](/gateway/{{page.kong_version}}/kong-enterprise/analytics/metrics/#status-codes).
+The Status Codes view displays visualizations of cluster-wide status code classes (1xx, 2xx, 3xx, 4xx, 5xx). The Status Codes view contains the counts of status code classes graphed over time, as well as the ratio of code classes to total requests. See [Status Codes](/gateway/{{page.release}}/kong-enterprise/analytics/metrics/#status-codes).
 
 >**Note**: The Status Codes view does not include non-standard code classes (6xx, 7xx, etc.). Individual status code data can be viewed in the Consumer, Route, and Service details pages under the Activity tab. Both standard and non-standard status codes are visible in these views.
 

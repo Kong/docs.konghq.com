@@ -7,7 +7,7 @@ module PluginSingleSource
       @site = site
 
       # Set self.ext and self.basename by extracting information from the page filename
-      process("#{page.version}.md")
+      process("#{page.gateway_release}.md")
 
       # This is the directory that we're going to write the output file to
       @dir = page.dir

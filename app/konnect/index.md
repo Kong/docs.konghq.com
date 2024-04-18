@@ -10,8 +10,7 @@ breadcrumb: Overview
 management platform designed from the ground up for the cloud native era
 and delivered as a service. This platform lets you build modern applications
 better, faster, and more securely. The control plane is hosted
-in the cloud by Kong, while the data plane is managed by you within your
-preferred network environment.  All of this is powered by {{site.base_gateway}} — Kong's
+in the cloud by Kong, while you can choose to either host the data plane yourself in your preferred network environment or let Kong manage it for you in the cloud. All of this is powered by {{site.base_gateway}} — Kong's
 lightweight, fast, and flexible API gateway. 
 
 <p align="center">
@@ -37,19 +36,19 @@ lightweight, fast, and flexible API gateway.
     <div class="install-text">Features</div>
   </a> -->
 
-  <a href="https://cloud.konghq.com/quick-start" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-learning.svg" alt="">
-    <div class="install-text">Get Started</div>
+  <a href="https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=gateway-konnect&utm_content=konnect-getting-started" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-flag.svg" alt="">
+    <div class="install-text">Sign up for {{site.konnect_short_name}}</div>
   </a>
 
-  <a href="/konnect/gateway-manager/data-plane-nodes/" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/konnect/icn-runtimes-nav.svg" alt="">
-    <div class="install-text">Set up Data Plane Nodes</div>
+  <a href="/konnect/getting-started/add-api" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-admin-api-color.svg" alt="">
+    <div class="install-text">Add an API to {{site.konnect_short_name}}</div>
   </a>
 
-  <a href="/deck/guides/konnect/" class="docs-grid-install-block no-description">
-    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-references-color.svg" alt="">
-    <div class="install-text">Manage {{site.konnect_short_name}} with decK</div>
+  <a href="/konnect/getting-started/import" class="docs-grid-install-block no-description">
+    <img class="install-icon no-image-expand" src="/assets/images/icons/documentation/icn-deployment-color.svg" alt="">
+    <div class="install-text">Import {{site.base_gateway}} entities to {{site.konnect_short_name}}</div>
   </a>
 
   <a href="/hub/" class="docs-grid-install-block no-description">
@@ -75,11 +74,9 @@ across the organization’s applications.
 
 ### Gateway Manager
 
-[Gateway Manager](/konnect/gateway-manager/) empowers your teams to securely
-collaborate and manage their own set of data plane nodes and services without
-the risk of impacting other teams and projects. Gateway Manager instantly
+[Gateway Manager](/konnect/gateway-manager/) instantly
 provisions a hosted {{site.base_gateway}} control plane and supports securely
-attaching data plane nodes from your cloud or hybrid environments.
+attaching self-hosted or [managed](/konnect/gateway-manager/dedicated-cloud-gateways/) data planes.
 
 Through the Gateway Manager, increase the security of your APIs with out-of-the-box enterprise and community plugins, including OpenID Connect, Open Policy Agent, Mutual TLS, and more.
 

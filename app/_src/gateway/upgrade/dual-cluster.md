@@ -69,7 +69,7 @@ PostgreSQL or Cassandra.
 
 ## Prerequisites
 
-* Review the [general upgrade guide](/gateway/{{page.kong_version}}/upgrade/) to prepare for the upgrade and review your options.
+* Review the [general upgrade guide](/gateway/{{page.release}}/upgrade/) to prepare for the upgrade and review your options.
 * You have a traditional deployment or you need to upgrade the control planes (CPs) in a hybrid mode deployment.
 * You have enough resources to temporarily run an additional {{site.base_gateway}} cluster alongside your existing cluster.
 
@@ -83,30 +83,30 @@ The exact execution of these steps will vary depending on your environment.
 This is critical to guarantee data consistency between cluster X and cluster Y.
 
     To keep data consistency between the two clusters, you must not execute any write operations through the 
-    [Admin API](/gateway/{{page.kong_version}}/admin-api/), [Kong Manager](/gateway/{{page.kong_version}}/kong-manager/), 
+    [Admin API](/gateway/{{page.release}}/admin-api/), [Kong Manager](/gateway/{{page.release}}/kong-manager/), 
     [decK](/deck/), or direct database updates. 
 
 2. Back up data from the current cluster X by following the 
-[Backup guide](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/).
+[Backup guide](/gateway/{{page.release}}/upgrade/backup-and-restore/).
 
-3. Evaluate factors that may impact the upgrade, as described in [Upgrade considerations](/gateway/{{page.kong_version}}/upgrade/#preparation-upgrade-considerations/).
+3. Evaluate factors that may impact the upgrade, as described in [Upgrade considerations](/gateway/{{page.release}}/upgrade/#preparation-upgrade-considerations/).
 You may have to consider customization of both `kong.conf` and {{site.base_gateway}} configuration data.
 
 4. Evaluate any changes that have happened between releases:
-    * [Breaking changes](/gateway/{{page.kong_version}}/breaking-changes/)
+    * [Breaking changes](/gateway/{{page.release}}/breaking-changes/)
     * [Full changelog](/gateway/changelog/)
 
 5. Deploy a new {{site.base_gateway}} cluster of version Y:
 
     1. Install a new {{site.base_gateway}} cluster running version Y as instructed in the 
-    [{{site.base_gateway}} Installation Options](/gateway/{{page.kong_version}}/install/).
+    [{{site.base_gateway}} Installation Options](/gateway/{{page.release}}/install/).
 
         Provision the new cluster Y with the same-sized resource capacity as that of 
         the current cluster X.
 
     2. Install a new database of the same version.
 
-    3. [Restore the backup data](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/#restore-gateway-entities)
+    3. [Restore the backup data](/gateway/{{page.release}}/upgrade/backup-and-restore/#restore-gateway-entities)
     to the new database.
 
     4. Configure the new cluster Y to point to the new database.
@@ -118,8 +118,8 @@ You may have to consider customization of both `kong.conf` and {{site.base_gatew
         For example, does the Key Authentication plugin authenticate requests properly?
         
         If the outcome is not as expected, look over the 
-        [upgrade considerations](/gateway/{{page.kong_version}}/upgrade/#preparation-upgrade-considerations/) and the 
-        [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/)
+        [upgrade considerations](/gateway/{{page.release}}/upgrade/#preparation-upgrade-considerations/) and the 
+        [breaking changes](/gateway/{{page.release}}/breaking-changes/)
         again to see if you missed anything.
 
 6. Divert traffic from old cluster X to new cluster Y.

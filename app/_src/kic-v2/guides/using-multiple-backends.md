@@ -11,7 +11,7 @@ stability_message: |
 HTTPRoute supports adding multiple Services under its `BackendRefs` field. When you add multiple Services,
 requests through the HTTPRoute are distributed across the Services. This guide walks through creating an HTTPRoute with multiple backend Services.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
+{% include_cached /md/kic/prerequisites.md release=page.release disable_gateway_api=false %}
 
 ## Deploy multiple Services with HTTPRoute
 

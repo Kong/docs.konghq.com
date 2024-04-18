@@ -45,6 +45,8 @@ cp .env.example .env
 make run
 ```
 
+Once you see the `Server now ready on …` message, the docs site is available at [http://localhost:8888](http://localhost:8888).
+
 ### Troubleshooting the local build
 
 #### Invalid byte sequence in US-ASCII 
@@ -92,6 +94,17 @@ and
 KONG_PRODUCTS='*:latest'
 ```
  are also possible.
+
+### Skipping slow generators
+
+Unfortunately, the `Sitemap` and `Hub` generators are slow. Even if they don't need to re-render a page,
+they still need to read the files and generate the necessary structures and pages, which takes time.
+The `Sitemap` generator is disabled by default if `JEKYLL_ENV=development`, so it doesn't run locally.
+Disabling the `Hub` generator can be done by setting the environment variable: `DISABLE_HUB`.
+
+```bash
+DISABLE_HUB=1 make run
+```
 
 ## Plugin contributors
 
@@ -205,7 +218,7 @@ In `docker.md`:
 In `deployment-options-k8s`:
 
 ```md
-This is an include that uses {{ page.kong_version }}
+This is an include that uses {{ page.release }}
 ```
 
 To resolve this, the two files should be updated to pass in the URL when `include_cached` is called:
@@ -213,13 +226,13 @@ To resolve this, the two files should be updated to pass in the URL when `includ
 In `docker.md`:
 
 ```md
-{% include_cached app/_includes/md/admin-listen.md kong_version=page.kong_version %}
+{% include_cached app/_includes/md/admin-listen.md release=page.release %}
 ```
 
 In `admin-listen`:
 
 ```md
-This is an include that uses {{ include.kong_version }}
+This is an include that uses {{ include.release }}
 ```
 
 The `include_cached` gem uses all passed parameters as the cache lookup key, and this ensures that all required permutations of an include file will be generated.

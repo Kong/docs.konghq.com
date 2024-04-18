@@ -2,7 +2,7 @@
 title: Getting Started with decK
 ---
 
-Once you've [installed](/deck/{{page.kong_version}}/installation/) decK, let's get started with it.
+Once you've [installed](/deck/{{page.release}}/installation/) decK, let's get started with it.
 
 You can find help in the terminal itself for any command using the `-help`
 flag.

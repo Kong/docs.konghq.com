@@ -67,10 +67,10 @@ If you have a {{site.base_gateway}} 2.8.x version earlier than 2.8.2.x, upgrade 
 
 ## Prerequisites
 
-* Review the [general upgrade guide](/gateway/{{page.kong_version}}/upgrade/) to prepare for the upgrade and review your options.
+* Review the [general upgrade guide](/gateway/{{page.release}}/upgrade/) to prepare for the upgrade and review your options.
 * You have a traditional deployment or you need to upgrade the control planes (CPs) in a hybrid mode deployment.
 * You have {{site.base_gateway}} 2.8.2.x or later.
-* You can't perform [dual-cluster upgrades](/gateway/{{page.kong_version}}/upgrade/dual-cluster/) due to resource limitations.
+* You can't perform [dual-cluster upgrades](/gateway/{{page.release}}/upgrade/dual-cluster/) due to resource limitations.
 
 ## Upgrade using the blue-green method
 
@@ -85,19 +85,19 @@ The exact execution of these steps will vary depending on your environment.
 This is critical to guarantee data consistency between cluster X and cluster Y.
 
 2. Back up data from the current cluster X by following the 
-[Backup guide](/gateway/{{page.kong_version}}/upgrade/backup-and-restore/).
+[Backup guide](/gateway/{{page.release}}/upgrade/backup-and-restore/).
 
-3. Evaluate factors that may impact the upgrade, as described in [Upgrade considerations](/gateway/{{page.kong_version}}/upgrade/#preparation-upgrade-considerations/).
+3. Evaluate factors that may impact the upgrade, as described in [Upgrade considerations](/gateway/{{page.release}}/upgrade/#preparation-upgrade-considerations/).
 You may have to consider customization of both `kong.conf` and {{site.base_gateway}} configuration data.
 
 4. Evaluate any changes that have happened between releases:
-    * [Breaking changes](/gateway/{{page.kong_version}}/breaking-changes/)
+    * [Breaking changes](/gateway/{{page.release}}/breaking-changes/)
     * [Full changelog](/gateway/changelog/)
 
 5. Deploy a new {{site.base_gateway}} cluster of version Y:
 
     1. Install a new {{site.base_gateway}} cluster running version Y as instructed in the 
-    [{{site.base_gateway}} Installation Options](/gateway/{{page.kong_version}}/install/) and 
+    [{{site.base_gateway}} Installation Options](/gateway/{{page.release}}/install/) and 
     point it at the existing database for cluster X.
 
         Provision the new cluster Y with the same-sized resource capacity as that of 
@@ -115,8 +115,8 @@ You may have to consider customization of both `kong.conf` and {{site.base_gatew
         For example, does the Key Authentication plugin authenticate requests properly?
         
         If the outcome is not as expected, look over the 
-        [upgrade considerations](/gateway/{{page.kong_version}}/upgrade/#preparation-upgrade-considerations/) and the 
-        [breaking changes](/gateway/{{page.kong_version}}/breaking-changes/)
+        [upgrade considerations](/gateway/{{page.release}}/upgrade/#preparation-upgrade-considerations/) and the 
+        [breaking changes](/gateway/{{page.release}}/breaking-changes/)
         again to see if you missed anything.
 
 6. Divert traffic from old cluster X to new cluster Y.
@@ -136,5 +136,5 @@ and repeat the steps above.
 Write updates to {{site.base_gateway}} can now be performed, though we suggest you keep monitoring metrics for a while.
 
 {:.note}
-> **Note**: This upgrade strategy is not the same thing as the [Blue-green (Canary) Deployment](/gateway/{{page.kong_version}}/production/canary/). 
+> **Note**: This upgrade strategy is not the same thing as the [Blue-green (Canary) Deployment](/gateway/{{page.release}}/production/canary/). 
 That process is meant for upgrading your upstream services and is not related to {{site.base_gateway}} upgrades.

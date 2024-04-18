@@ -144,6 +144,10 @@ Response:
 }
 ```
 
+Ensure to [restart](/gateway/{{page.release}}/reference/cli/#kong-restart) the {{site.base_gateway}} nodes after updating a license.
+
+
+
 ## Generate license report
 
 To generate a report, submit a `GET` request directly to `/license/report`:
@@ -203,4 +207,4 @@ curl -i -X GET http://localhost:8001/license/report
 {% endnavtabs %}
 
 
-[services]: /gateway/{{page.kong_version}}/admin-api/#service-object
+[services]: /gateway/{{page.release}}/admin-api/#service-object

@@ -11,7 +11,7 @@ module PluginSingleSource
         if @release.latest?
           canonical_url
         else
-          "#{base_url}#{@release.version}/api/"
+          "#{base_url}#{gateway_release}/api/"
         end
       end
 

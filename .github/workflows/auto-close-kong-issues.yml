@@ -7,10 +7,11 @@ jobs:
   auto-close-org-issues:
     name: Auto Close Org Issues
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Generate app token
         id: generate-app-token
-        uses: tibdex/github-app-token@v1.9.0
+        uses: tibdex/github-app-token@v2.1.0
         with:
           app_id: ${{ vars.GH_APP_KONG_DOCS_APP_ID }}
           private_key: ${{ secrets.GH_APP_KONG_DOCS_PRIVATE_KEY }}

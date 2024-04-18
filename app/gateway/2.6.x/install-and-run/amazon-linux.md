@@ -9,7 +9,7 @@ Kong is licensed under an
 
 ## Prerequisites
 
-* A [supported system](/gateway/{{page.kong_version}}/compatibility/) with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user/) access.
+* A [supported system](/gateway/{{page.release}}/compatibility/) with root or [root-equivalent](/gateway/{{page.release}}/plan-and-deploy/kong-user/) access.
 * (Enterprise only) A `license.json` file from Kong.
 
 ## Download and Install
@@ -30,12 +30,12 @@ Install {{site.base_gateway}} on Amazon Linux from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-legacy/rpm/amzn/%{amzn}/noarch/kong-enterprise-edition-{{page.versions.ee}}.aws.noarch.rpm)
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.direct }}/gateway-legacy/rpm/amzn/%{amzn}/noarch/kong-enterprise-edition-{{page.versions.ee}}.aws.noarch.rpm)
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-legacy/rpm/amzn/%{amzn}/x86_64/kong-{{page.versions.ce}}.aws.x86_64.rpm)
+curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval {{ site.links.direct }}/gateway-legacy/rpm/amzn/%{amzn}/x86_64/kong-{{page.versions.ce}}.aws.x86_64.rpm)
 ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -69,7 +69,7 @@ Install the YUM repository from the command line.
 
 1. Download the Kong YUM repository:
     ```bash
-    curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-legacy/config.rpm.txt?distro=amzn&codename=$(rpm --eval '%{amzn}')" | sudo tee /etc/yum.repos.d/kong-gateway-legacy.repo > /dev/null
+    curl -1sLf "{{ site.links.direct }}/gateway-legacy/config.rpm.txt?distro=amzn&codename=$(rpm --eval '%{amzn}')" | sudo tee /etc/yum.repos.d/kong-gateway-legacy.repo > /dev/null
     sudo yum -q makecache -y --disablerepo='*' --enablerepo='kong-gateway-legacy'
     ```
 
@@ -95,4 +95,4 @@ sudo yum install -y kong-{{page.versions.ce}}
 {% endnavtab %}
 {% endnavtabs %}
 
-{% include_cached /md/gateway/setup.md kong_version=page.kong_version %}
+{% include_cached /md/gateway/setup.md release=page.release %}

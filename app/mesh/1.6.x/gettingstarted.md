@@ -10,7 +10,7 @@ title: Getting Started with Kong Mesh
  executables.
 
 You can download the {{site.mesh_product_name}} binaries from the
-[official installation page](/mesh/{{page.kong_version}}/install), then follow
+[official installation page](/mesh/{{page.release}}/install), then follow
 [Kuma's official documentation](https://kuma.io/docs){:target="_blank"} to start using the product.
 
 {:.note}
@@ -20,7 +20,7 @@ currently maintaining both the project and the documentation.
 ## 1. Installing {{site.mesh_product_name}}
 
 Download and install {{site.mesh_product_name}} from the
-[official installation page](/mesh/{{page.kong_version}}/install).
+[official installation page](/mesh/{{page.release}}/install).
 
 ## 2. Getting Started
 
@@ -34,11 +34,11 @@ After you install, follow the Kuma getting started guide to get
 
 * Read the [Kuma documentation](https://kuma.io/docs/){:target="_blank"}
 * Learn about enterprise features:
-  * [Support for HashiCorp Vault CA](/mesh/{{page.kong_version}}/features/vault/)
-  * [Support for Open Policy Agent](/mesh/{{page.kong_version}}/features/opa/)
-  * [Multi-zone authentication](/mesh/{{page.kong_version}}/features/kds-auth/)
-  * [Support for FIPS](/mesh/{{page.kong_version}}/features/fips-support/)
-  * [Certificate Authority rotation](/mesh/{{page.kong_version}}/features/ca-rotation/)
+  * [Support for HashiCorp Vault CA](/mesh/{{page.release}}/features/vault/)
+  * [Support for Open Policy Agent](/mesh/{{page.release}}/features/opa/)
+  * [Multi-zone authentication](/mesh/{{page.release}}/features/kds-auth/)
+  * [Support for FIPS](/mesh/{{page.release}}/features/fips-support/)
+  * [Certificate Authority rotation](/mesh/{{page.release}}/features/ca-rotation/)
 
 If you are a {{site.mesh_product_name}} customer, you can also open a support
 ticket with any questions or feedback you may have.

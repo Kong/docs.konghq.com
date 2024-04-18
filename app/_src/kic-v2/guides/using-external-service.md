@@ -4,7 +4,7 @@ title: Expose an external application
 
 Learn to expose a service located outside the Kubernetes cluster using an Ingress.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=true %}
+{% include_cached /md/kic/prerequisites.md release=page.release disable_gateway_api=true %}
 
 ## Create a Kubernetes Service
 
@@ -30,7 +30,7 @@ Learn to expose a service located outside the Kubernetes cluster using an Ingres
     ```    
 1. Create an Ingress to expose the service at the path `/httpbin`
 
-    {% include_cached /md/kic/http-test-routing-resource.md kong_version=page.kong_version path='/httpbin' name='proxy-from-k8s-to-httpbin' service='proxy-to-httpbin' port='80' %}
+    {% include_cached /md/kic/http-test-routing-resource.md release=page.release path='/httpbin' name='proxy-from-k8s-to-httpbin' service='proxy-to-httpbin' port='80' %}
 
 ## Test the Service
 

@@ -20,7 +20,7 @@ For `HTTPRoute` or `GRPCRoute`, the route's `hostname` must match the listener h
 
 ## Ingress
 
-The Ingress API supports TLS temination using the `.spec.tls` field. To terminate TLS with the Ingress API, provide `.spec.tls.secretName` that contains a TLS certificate and a list of `.spec.tls.hosts` to match in your Ingress definition. 
+The Ingress API supports TLS termination using the `.spec.tls` field. To terminate TLS with the Ingress API, provide `.spec.tls.secretName` that contains a TLS certificate and a list of `.spec.tls.hosts` to match in your Ingress definition. 
 
 ## Examples
 
@@ -49,7 +49,10 @@ The Ingress API supports TLS temination using the `.spec.tls` field. To terminat
         protocol: HTTPS
         hostname: "demo.example.com"
         tls:
-          mode: Passthrough
+          mode: Terminate
+          certificateRefs:
+            - kind: Secret
+              name: demo-example-com-cert
     ```
 
 2. Bind a `HTTPRoute` to the `Gateway`.
@@ -61,7 +64,7 @@ The Ingress API supports TLS temination using the `.spec.tls` field. To terminat
       name: demo-example 
     spec:
       parentRefs:
-      - name: kong
+      - name: example-gateway
         sectionName: https
       hostnames:
       - demo.example.com
@@ -130,13 +133,10 @@ The Ingress API supports TLS temination using the `.spec.tls` field. To terminat
       listeners:
       - name: https
         port: 443
-        protocol: HTTPS
+        protocol: TLS
         hostname: "demo.example.com"
         tls:
           mode: Passthrough
-          certificateRefs:
-          - kind: Secret
-            name: example-com
     ```
 
 2. Bind a `TLSRoute` to the `Gateway`.
@@ -148,7 +148,7 @@ The Ingress API supports TLS temination using the `.spec.tls` field. To terminat
       name: demo-example-passthrough
     spec:
       parentRefs:
-      - name: kong
+      - name: example-gateway
         sectionName: https
       hostnames:
       - demo.example.com

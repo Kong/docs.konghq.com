@@ -35,7 +35,7 @@ The following tutorial walks through how to enable the [Key Authentication plugi
 various aspects in {{site.base_gateway}}.
 
 API key authentication is a popular method for enforcing API authentication. In key authentication, 
-{{site.base_gateway}} is used to generate and associate an API key with a [consumer](/gateway/latest/admin-api/#consumer-object). 
+{{site.base_gateway}} is used to generate and associate an API key with a [consumer](/gateway/api/admin-ee/latest/#/Consumers/list-consumer/). 
 That key is the authentication secret presented by the client when making subsequent requests. {{site.base_gateway}} approves or 
 denies requests based on the validity of the presented key. This process can be applied globally or to individual 
 [services](/gateway/latest/key-concepts/services/) and [routes](/gateway/latest/key-concepts/routes/).

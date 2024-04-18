@@ -67,11 +67,11 @@ sync, reset, etc.) shows the help text along with supported flags for those
 commands.
 
 A list of all commands that are available in decK can be found
-[here](/deck/{{page.kong_version}}/commands).
+[here](/deck/{{page.release}}/commands).
 
 ## Frequently Asked Questions (FAQs)
 
-You can find answers to FAQs [here](/deck/{{page.kong_version}}/faqs/).
+You can find answers to FAQs [here](/deck/{{page.release}}/faqs/).
 
 ## Explainer video
 

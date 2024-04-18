@@ -13,7 +13,7 @@ Subcommand to host the decK file manipulation operations.
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## decK file commands
 

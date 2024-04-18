@@ -357,7 +357,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       --data '{"id":"DEVELOPER-ID"}'
     ```
 
-    If you don't remember the IDs for your test developers, you can send a [GET request to list developers](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Developers/list-portal-developers).
+    If you don't remember the IDs for your test developers, you can send a [GET request to list developers](/konnect/api/portal-management/latest/#/Portal%20Developers/list-portal-developers).
     
     You should get a `201` response like the following:
     ```bash
@@ -373,7 +373,7 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
       --data '{"id":"DEVELOPER-ID"}'
     ```
       
-    If you don't remember the IDs for your test developers, you can send a [GET request to list developers](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Developers/list-portal-developers).<br><br>
+    If you don't remember the IDs for your test developers, you can send a [GET request to list developers](/konnect/api/portal-management/latest/#/Portal%20Developers/list-portal-developers).<br><br>
     You should get a `201` response like the following:
     ```bash
     Created
@@ -382,8 +382,8 @@ The {{site.konnect_short_name}} API uses [Personal Access Token (PAT)](/konnect/
 You now have added your test developer accounts to two teams with different access permissions for your Dev Portal. These developers won't be able to access anything in Dev Portal yet, though, because we need to enable Portal RBAC next.
 
 So far, you've used the following endpoints:
-* [Create team](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Teams/create-portal-team)
-* [Assign role](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/0ecb66fc-0049-414a-a1f9-f29e8a02c696#/Team%20Roles/portal-teams-assign-role)
+* [Create team](/konnect/api/portal-management/latest/#/Portal%20Teams/create-portal-team)
+* [Assign role](/konnect/api/portal-management/latest/#/Portal%20Team%20Roles/assign-role-to-portal-teams)
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -423,4 +423,4 @@ Now, if you access your Dev Portal as one of the test developer accounts, you sh
 Now that you've completed the steps in this scenario, you have a developer team for vetted, pizza delivery partners that can view and consume your APIs as well as a read-only developer team for unvetted, potential delivery partners. Since Portal RBAC is enabled, those teams can now view your Pizza Ordering APIs. 
 
 ## More information
-[Portal RBAC API documentation](https://developer.konghq.com/spec/2dad627f-7269-40db-ab14-01264379cec7/)
+[Portal RBAC API documentation](/konnect/api/portal-management/latest/)

@@ -7,7 +7,7 @@ purpose: |
 
 Expose a service located outside the Kubernetes cluster using an Ingress.
 
-{% include /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false %}
+{% include /md/kic/prerequisites.md release=page.release disable_gateway_api=false %}
 
 ## Create a Kubernetes Service
 
@@ -33,7 +33,7 @@ Expose a service located outside the Kubernetes cluster using an Ingress.
     ```    
 1. Create an Ingress to expose the service at the path `/httpbin`
 
-    {% include /md/kic/http-test-routing-resource.md kong_version=page.kong_version path='/httpbin' name='proxy-from-k8s-to-httpbin' service='proxy-to-httpbin' port='80' skip_host=true %}
+    {% include /md/kic/http-test-routing-resource.md release=page.release path='/httpbin' name='proxy-from-k8s-to-httpbin' service='proxy-to-httpbin' port='80' skip_host=true %}
 
 ## Test the Service
 

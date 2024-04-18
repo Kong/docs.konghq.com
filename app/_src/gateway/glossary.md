@@ -8,7 +8,7 @@ title: Glossary
 |Admin | An admin is a {{site.base_gateway}} user account capable of accessing the Admin API or Kong Manager. |
 |Authentication| Authentication is the process by which a system validates the identity of a user account. |
 |Authorization| Authorization is the system of defining access to certain resources. In {{site.base_gateway}}, role-based access control (RBAC) is the main authorization mode. |
-|Beta| See [stability](/gateway/{{page.kong_version}}/stability/). |
+|Beta| See [stability](/gateway/{{page.release}}/stability/). |
 |Catalog| A list of all specs within a Dev Portal instance. This catalog can react to developer permissions, allowing a given developer to see whatever specs their role permits.|
 |Client| A Kong client refers to the downstream client making requests to {{site.base_gateway}}’s proxy port. It could be another service in a distributed application, a user’s identity, a user’s browser, or a specific device. |
 |Consumer| A consumer object represents the client of a service. A consumer is also the Admin API entity representing a developer or machine using the API. |

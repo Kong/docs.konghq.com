@@ -55,4 +55,6 @@ using a [minifier][lua-minifier].
 * [Basic configuration example](/hub/kong-inc/pre-function/how-to/basic-example/)
 * [Get started with pre-functions: filter requests by headers](/hub/kong-inc/pre-function/how-to/)
 * [Running functions in multiple phases](/hub/kong-inc/pre-function/how-to/phases/)
+* [Set rate limit based on peak or non-peak time](/hub/kong-inc/pre-function/how-to/ratelimit/)
+
 

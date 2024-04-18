@@ -59,7 +59,7 @@ For example, if you have both a decK config file and a {{site.konnect_short_name
 By default, decK looks for a configuration file named `.deck.yaml` in the `$HOME` directory.
 This file lets you specify flags to include with every decK command.
 
-You can create the file at the default location, or set a custom filename and path with [`--config`](/deck/{{page.kong_version}}/reference/deck/).
+You can create the file at the default location, or set a custom filename and path with [`--config`](/deck/{{page.release}}/reference/deck/).
 
 If you store a {{site.konnect_short_name}} token in the file, decK uses the token for every command.
 
@@ -152,7 +152,7 @@ To target a specific geo, set `konnect-addr` to one of the following:
 
 ## Control planes
 
-Each [state file](/deck/{{page.kong_version}}/terminology/#state-files) targets one control plane.
+Each [state file](/deck/{{page.release}}/terminology/#state-files) targets one control plane.
 If you don't provide a control plane, decK targets the `default` control plane.
 
 If you have a custom control plane, you can specify it in the state file,

@@ -633,7 +633,7 @@ CMD ["kong", "docker-start"]
 [go-pluginserver]: https://github.com/Kong/go-pluginserver
 [go-plugins]: https://github.com/Kong/go-plugins
 [go-pdk]: https://github.com/Kong/go-pdk
-[kong-pdk]: /gateway/{{page.kong_version}}/plugin-development/pdk/
+[kong-pdk]: /gateway/{{page.release}}/plugin-development/pdk/
 [go-hello]: https://github.com/Kong/go-plugins/blob/master/go-hello.go
 [kong-js-pdk]: https://github.com/Kong/kong-js-pdk
 [kong-python-pdk]: https://github.com/Kong/kong-python-pdk

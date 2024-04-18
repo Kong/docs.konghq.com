@@ -1,6 +1,6 @@
 {% assign crumbs = include.url | split : '/' %}
 
-{% assign version = include.kong_version %}
+{% assign version = include.release %}
 {% if include.is_latest %}
   {% assign version = "latest" %}
 {% endif %}

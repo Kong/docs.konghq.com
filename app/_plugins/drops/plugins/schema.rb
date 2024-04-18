@@ -125,6 +125,10 @@ module Jekyll
             SchemaField.new(name: f.keys.first, parent: f.keys.first, schema: f.values.first)
           end
         end
+
+        def defined?
+          !@schema.config.empty?
+        end
       end
     end
   end

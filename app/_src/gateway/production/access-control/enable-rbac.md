@@ -1106,5 +1106,5 @@ Response:
 }
 ```
 
-[workspaces-examples]: /gateway/{{page.kong_version}}/kong-enterprise/workspaces
-[getting-started-guide]: /gateway/{{page.kong_version}}/get-started/
+[workspaces-examples]: /gateway/{{page.release}}/kong-enterprise/workspaces
+[getting-started-guide]: /gateway/{{page.release}}/get-started/

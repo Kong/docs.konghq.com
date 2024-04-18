@@ -60,7 +60,7 @@ This example shows what a typical layout can look like:
 ```
 {% endraw %}
 
-To learn more about the templating syntax used in this example, see the [template guide](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/working-with-templates/).
+To learn more about the templating syntax used in this example, see the [template guide](/gateway/{{page.release}}/kong-enterprise/dev-portal/working-with-templates/).
 
 ## Theme partials
 

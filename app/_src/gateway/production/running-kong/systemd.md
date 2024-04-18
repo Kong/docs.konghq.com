@@ -9,7 +9,7 @@ Note that some of the supported GNU/Linux distributions for {{site.base_gateway}
 may not have adopted systemd as their default init system
 (for example, CentOS 6 and RHEL 6). For the following instructions, it is
 assumed that {{site.base_gateway}} has already been
-[installed and configured](/gateway/{{page.kong_version}}/install) on a
+[installed and configured](/gateway/{{page.release}}/install) on a
 systemd-supported GNU/Linux distribution.
 
 ## systemd commands for working with {{site.base_gateway}}
@@ -159,7 +159,7 @@ tail -F /var/log/syslog
 
 ### Customize Kong's Nginx instance using the Nginx directive injection system
 
-To use the [injection system](/gateway/{{page.kong_version}}/reference/configuration/#injecting-individual-nginx-directives) with environment variables, add the below `Environment` systemd directive to your custom service at `/etc/systemd/system/kong-enterprise-edition.service` ({{site.base_gateway}}) or `/etc/systemd/system/kong.service` ({{site.ce_product_name}}). Note the quoting rules defined by systemd to specify an environment variable containing spaces:
+To use the [injection system](/gateway/{{page.release}}/reference/configuration/#injecting-individual-nginx-directives) with environment variables, add the below `Environment` systemd directive to your custom service at `/etc/systemd/system/kong-enterprise-edition.service` ({{site.base_gateway}}) or `/etc/systemd/system/kong.service` ({{site.ce_product_name}}). Note the quoting rules defined by systemd to specify an environment variable containing spaces:
 
 ```
 Environment="KONG_NGINX_HTTP_OUTPUT_BUFFERS=4 64k"
@@ -167,7 +167,7 @@ Environment="KONG_NGINX_HTTP_OUTPUT_BUFFERS=4 64k"
 
 ### Customize Kong's Nginx instance using &ndash;&ndash;nginx-conf
 
-To use the [`--nginx-conf`](/gateway/{{page.kong_version}}/reference/configuration/#custom-nginx-templates) argument, modify the `ExecStartPre` systemd directive to execute `kong prepare` with the `--nginx-conf` argument. For example, if you have a custom template at `/usr/local/kong/custom-nginx.template`, modify the `ExecStartPre` directive as follows:
+To use the [`--nginx-conf`](/gateway/{{page.release}}/reference/configuration/#custom-nginx-templates) argument, modify the `ExecStartPre` systemd directive to execute `kong prepare` with the `--nginx-conf` argument. For example, if you have a custom template at `/usr/local/kong/custom-nginx.template`, modify the `ExecStartPre` directive as follows:
 
 ```
 ExecStartPre=/usr/local/bin/kong prepare -p /usr/local/kong --nginx-conf /usr/local/kong/custom-nginx.template
@@ -175,7 +175,7 @@ ExecStartPre=/usr/local/bin/kong prepare -p /usr/local/kong --nginx-conf /usr/lo
 
 ### Customize Kong's Nginx instance including files via the injected Nginx directives
 
-To [include files via the injected Nginx directives](/gateway/{{page.kong_version}}/reference/configuration/#including-files-via-injected-nginx-directives) with environment variables, add the below `Environment` systemd directive to your custom service at `/etc/systemd/system/kong-enterprise-edition.service` ({{site.base_gateway}}) or `/etc/systemd/system/kong.service` ({{site.ce_product_name}}):
+To [include files via the injected Nginx directives](/gateway/{{page.release}}/reference/configuration/#including-files-via-injected-nginx-directives) with environment variables, add the below `Environment` systemd directive to your custom service at `/etc/systemd/system/kong-enterprise-edition.service` ({{site.base_gateway}}) or `/etc/systemd/system/kong.service` ({{site.ce_product_name}}):
 
 ```
 Environment=KONG_NGINX_HTTP_INCLUDE=/path/to/your/my-server.kong.conf

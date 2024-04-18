@@ -22,7 +22,7 @@ module PluginSingleSource
         end
 
         def example
-          @example ||= YAML.load(File.read(file_path)) if File.exist?(file_path)
+          @example ||= YAML.load_file(file_path) if File.exist?(file_path)
         end
       end
     end

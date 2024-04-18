@@ -241,13 +241,13 @@ definition](https://github.com/Kong/kong-mesh-ecs/blob/main/deploy/counter-demo/
 
 <!-- links -->
 {% if_version gte:2.2.x %}
-[dpp-spec]: /mesh/{{page.kong_version}}/production/dp-config/dpp-on-universal/
+[dpp-spec]: /mesh/{{page.release}}/production/dp-config/dpp-on-universal/
 {% endif_version %}
 {% if_version eq:2.1.x %}
-[dpp-spec]: /mesh/{{page.kong_version}}/generated/resources/proxy_dataplane/
+[dpp-spec]: /mesh/{{page.release}}/generated/resources/proxy_dataplane/
 {% endif_version %}
 {% if_version eq:2.0.x %}
-[dpp-spec]: /mesh/{{page.kong_version}}/generated/resources/proxy_dataplane/
+[dpp-spec]: /mesh/{{page.release}}/generated/resources/proxy_dataplane/
 {% endif_version %}
 
 {% if_version lte:1.9.x %}

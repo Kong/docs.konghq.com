@@ -5,14 +5,14 @@ purpose: |
   How to configure the OIDC plugin
 ---
 
-Kong Enterprise's OIDC plugin can authenticate requests using OpenID Connect protocol.
+{{site.ee_product_name}}'s OIDC plugin can authenticate requests using OpenID Connect protocol.
 Learn to setup the OIDC plugin using the Ingress Controller. It is important that create a domain name to use OIDC plugin in a production environment. 
 
-{% include /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false enterprise=true %}
+{% include /md/kic/prerequisites.md release=page.release disable_gateway_api=false enterprise=true %}
 
-{% include /md/kic/test-service-echo.md kong_version=page.kong_version %}
+{% include /md/kic/test-service-echo.md release=page.release %}
 
-{% include /md/kic/http-test-routing.md kong_version=page.kong_version path='/echo' name='echo' hostname="127.0.0.1.nip.io" %}
+{% include /md/kic/http-test-routing.md release=page.release path='/echo' name='echo' hostname="127.0.0.1.nip.io" %}
 
 This example uses `127.0.0.1.nip.io` as the host, you can use any domain name
 of your choice. For demo purpose, you can [nip.io](http://nip.io) service to avoid setting up a DNS record.
@@ -89,4 +89,4 @@ once again.
 This basic configuration permits any user with a valid Google account to access
 the dummy service.
 For setting up more complicated authentication and authorization flows, see the
-[plugin docs](/gateway/latest/kong-plugins/authentication/oidc/google).
+[plugin docs](/hub/kong-inc/openid-connect/how-to/third-party/google/).

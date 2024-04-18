@@ -4,7 +4,7 @@ title: Kong Mesh with Amazon Linux
 
 {:.note}
 > If you want to use {{site.mesh_product_name}} on Amazon EKS, follow the
-[Kubernetes instructions](/mesh/{{page.kong_version}}/installation/kubernetes/)
+[Kubernetes instructions](/mesh/{{page.release}}/installation/kubernetes/)
 instead.
 
 To install and run {{site.mesh_product_name}} on Amazon Linux (**x86_64**):
@@ -35,7 +35,7 @@ $ curl -L https://docs.konghq.com/mesh/installer.sh | VERSION={{page.version}} s
 {% endnavtab %}
 {% navtab Manually %}
 
-You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-centos-amd64.tar.gz)
+You can also [download]({{site.links.direct}}/kong-mesh-legacy/raw/names/kong-mesh-centos-amd64/versions/{{page.version}}/kong-mesh-{{page.version}}-centos-amd64.tar.gz)
 the distribution manually.
 
 Then, extract the archive with:

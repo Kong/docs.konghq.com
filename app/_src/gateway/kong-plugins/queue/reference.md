@@ -27,4 +27,4 @@ The unified queue parameter set consists of the following parameters:
 
 ## More information
 
-[About Plugin Queuing](/gateway/{{page.kong_version}}/kong-plugins/queue/) - Find out how plugin queuing works.
+[About Plugin Queuing](/gateway/{{page.release}}/kong-plugins/queue/) - Find out how plugin queuing works.

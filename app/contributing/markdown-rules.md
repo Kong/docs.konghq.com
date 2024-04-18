@@ -112,7 +112,7 @@ domain (`docs.konghq.com`).
 - **Use version variables when possible:** For versioned doc sets such as
 {{site.base_gateway}} and {{site.mesh_product_name}}, use the page version variable.
 
-    For example: {% raw %}`/enterprise/{{page.kong_version}}/file`{% endraw %}
+    For example: {% raw %}`/enterprise/{{page.release}}/file`{% endraw %}
 
 - **Use `latest` in docs without versions:** If you're linking to a versioned topic
 from an topic without versions, use `/latest/` instead of a version name or variable.

@@ -4,7 +4,7 @@ badge: enterprise
 ---
 
 Kong supports running multiple instances of the Dev Portal with the use of
-[**Workspaces**](/gateway/{{page.kong_version}}/admin-api/workspaces/reference). This allows each Workspace to enable
+[**Workspaces**](/gateway/{{page.release}}/admin-api/workspaces/reference). This allows each Workspace to enable
 and maintain separate Dev Portals (complete with separate files, settings, and
 authorization) from within a single instance of Kong.
 
@@ -37,7 +37,7 @@ curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE_NAME> \
  --data "config.portal=true"
 ```
 
-On initialization, Kong will populate the new Dev Portal with the [**Default Settings**](/gateway/{{page.kong_version}}/reference/configuration/#dev-portal) defined in Kong's configuration file.
+On initialization, Kong will populate the new Dev Portal with the [**Default Settings**](/gateway/{{page.release}}/reference/configuration/#dev-portal) defined in Kong's configuration file.
 
 >*Note* A Workspace can only enable a Dev Portal if the Dev Portal feature has been enabled in Kong's configuration.
 
@@ -61,11 +61,11 @@ cannot be edited via the Kong Manager.
 
 ## Override Default Settings
 
-On initialization, the Dev Portal will be configured using the [**Default Portal Settings**](/gateway/{{page.kong_version}}/reference/configuration/#dev-portal) defined in Kong's configuration file.
+On initialization, the Dev Portal will be configured using the [**Default Portal Settings**](/gateway/{{page.release}}/reference/configuration/#dev-portal) defined in Kong's configuration file.
 
 {:.note}
 > **Note**: You can only enable a Dev Portal for a Workspace if the
-Dev Portal feature has been [enabled for {{site.base_gateway}}](/gateway/{{page.kong_version}}/developer-portal/enable-dev-portal/).
+Dev Portal feature has been [enabled for {{site.base_gateway}}](/gateway/{{page.release}}/developer-portal/enable-dev-portal/).
 
 These settings can be manually overridden in the Dev Portals **Settings** tab
 in the Kong Manager or by patching the setting directly.

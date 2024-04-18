@@ -21,6 +21,6 @@ The Dev Portal provides a single source of truth for all developers to locate, a
 
 ## More information
 
-* [Customizing the look and feel of the site and editor](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/customize/theme-editing/)
-* [Managing access](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/managing-developers/)
-* [Enable the Dev Portal](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/enable/)
+* [Customizing the look and feel of the site and editor](/gateway/{{page.release}}/kong-enterprise/dev-portal/customize/theme-editing/)
+* [Managing access](/gateway/{{page.release}}/kong-enterprise/dev-portal/authentication/managing-developers/)
+* [Enable the Dev Portal](/gateway/{{page.release}}/kong-enterprise/dev-portal/enable/)

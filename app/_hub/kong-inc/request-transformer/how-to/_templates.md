@@ -33,8 +33,8 @@ logical operators may be used. For example:
 
     Header-Name:$(uri_captures["user-id"] or query_params["user"] or "unknown")
 
-This will first look for the path parameter (`uri_captures`). If not found, it will
-return the query parameter. If that also doesn't exist, it returns the default
+This will first look for the path parameter named `user-id` (in `uri_captures`). If not found, it will
+return the query parameter named `user`. If that also doesn't exist, it returns the default
 value '"unknown"'.
 
 Constant parts can be specified as part of the template outside the dynamic

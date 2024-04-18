@@ -28,4 +28,4 @@ share one queue.
 * [Basic configuration example](/hub/kong-inc/http-log/how-to/basic-example/)
 * [Log format](/hub/kong-inc/http-log/log-format/)
 * [Custom fields and headers](/hub/kong-inc/http-log/using-custom-fields/)
-* [Configure HTTP Log to send logs to Splunk](/hub/kong-inc/http-log/how-to/custom-fields/)
+* [Configure HTTP Log to send logs to Splunk](/hub/kong-inc/http-log/how-to/splunk/)

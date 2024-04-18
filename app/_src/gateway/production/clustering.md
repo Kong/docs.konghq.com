@@ -57,7 +57,7 @@ All nodes perform a periodic background job to synchronize with changes that
 may have been triggered by other nodes. The frequency of this job can be
 configured via:
 
-* [`db_update_frequency`](/gateway/{{page.kong_version}}/reference/configuration/#db_update_frequency)(default: 5 seconds)
+* [`db_update_frequency`](/gateway/{{page.release}}/reference/configuration/#db_update_frequency)(default: 5 seconds)
 
 Every `db_update_frequency` seconds, all running Kong nodes will poll the
 database for any update, and will purge the relevant entities from their cache
@@ -79,7 +79,7 @@ greatly reduces the load on the main database instance since read-only
 queries are no longer sent to it.
 
 To learn more about how to configure this feature, refer to the
-[Datastore section](/gateway/{{page.kong_version}}/reference/configuration/#datastore-section)
+[Datastore section](/gateway/{{page.release}}/reference/configuration/#datastore-section)
 of the Configuration reference.
 
 ## What is being cached?
@@ -178,7 +178,7 @@ traffic.
 > **Note**: Changes propagate through the cluster in up to `db_update_frequency`
 seconds.
 
-View the `db_update_frequency` entry in the configuration [reference documentation](/gateway/{{page.kong_version}}/reference/configuration/#db_update_frequency).
+View the `db_update_frequency` entry in the configuration [reference documentation](/gateway/{{page.release}}/reference/configuration/#db_update_frequency).
 
 <!--vale off-->
 ### db_update_propagation (default: 0s)
@@ -204,7 +204,7 @@ cluster takes to propagate changes.
 > **Note**: When this value is set, changes propagate through the cluster in
 up to `db_update_frequency + db_update_propagation` seconds.
 
-View the `db_update_propagation` entry in the configuration [reference documentation](/gateway/{{page.kong_version}}/reference/configuration/#db_update_propagation).
+View the `db_update_propagation` entry in the configuration [reference documentation](/gateway/{{page.release}}/reference/configuration/#db_update_propagation).
 
 <!--vale off-->
 ### db_cache_ttl (default: 0s)
@@ -223,7 +223,7 @@ node might miss invalidation event for any reason, you should set a TTL. Otherwi
 the node might run with a stale value in its cache for an undefined amount of time
 until the cache is manually purged, or the node is restarted.
 
-View the `db_cache_ttl` entry in the configuration [reference documentation](/gateway/{{page.kong_version}}/reference/configuration/#db_cache_ttl).
+View the `db_cache_ttl` entry in the configuration [reference documentation](/gateway/{{page.release}}/reference/configuration/#db_cache_ttl).
 
 {% if_version lte:3.3.x %}
 ### When using Cassandra
@@ -312,6 +312,6 @@ will trigger many requests to your database, and could cause a
 
 ## Read more
 
-* [`db_update_frequency`](/gateway/{{page.kong_version}}/reference/configuration/#db_update_frequency)
-* [`db_update_propagation`](/gateway/{{page.kong_version}}/reference/configuration/#db_update_propagation)
-* [`db_cache_ttl`](/gateway/{{page.kong_version}}/reference/configuration/#db_cache_ttl)
+* [`db_update_frequency`](/gateway/{{page.release}}/reference/configuration/#db_update_frequency)
+* [`db_update_propagation`](/gateway/{{page.release}}/reference/configuration/#db_update_propagation)
+* [`db_cache_ttl`](/gateway/{{page.release}}/reference/configuration/#db_cache_ttl)

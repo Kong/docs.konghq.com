@@ -2,19 +2,23 @@
   <a class="skip-main" href="#main">Skip to content</a>
   <!-- uncomment the promo-banner div when adding a new promo banner-->
   <!--also uncomment the promo banner sections in app/assets/stylesheets/header.less and application.js-->
-  <!-- <div id="promo-banner">
+  {% if include.edition == 'gateway' or
+        include.edition == 'kubernetes-ingress-controller' or 
+        include.edition == 'gateway-operator' or 
+        include.edition == 'deck' %}
+  <div id="promo-banner">
     <div class="container">
-      <div class="closebanner"></div> <strong>2023 API Summit Hackathon: Experiment with AI for APIs (August 28 - September 27) <a
-          href="https://konghq.com/conferences/kong-summit/hackathon?utm_medium=website&utm_source=docs-konghq-com&utm_campaign=docs-banner">Learn More &rarr;</a></strong>
+      <div class="closebanner"></div> <strong>Kong Gateway users, share your feedback and enter for a chance to win a $100 gift card!<a href="https://forms.gle/W57twHijT7kLXKu66">Take Survey &rarr;</a> </strong>
     </div>
-  </div> -->
+  </div>
+  {% endif %}
   <div class="navbar-content">
     <a href="https://konghq.com" class="navbar-brand col col-xl-auto" target="_blank" rel="noopener noreferrer" data-skip-external-links-hook=true>
-      <img src="/assets/images/logos/kong-logo-blue.svg" alt="Kong Logo" id="kong-logo">
+      <img src="/assets/images/logos/konglogo-dark-theme.svg" alt="Kong Logo" id="kong-logo">
     </a>
     <span class="logo-divider">|</span>
     <a href="/" class="navbar-brand col col-xl-auto">
-      <img src="/assets/images/logos/docs-logo-steel.svg" alt="Kong Docs Logo" id="kong-docs-logo">
+      <img src="/assets/images/logos/docslogo-dark-theme.svg" alt="Kong Docs Logo" id="kong-docs-logo">
     </a>
 
     <div class="separator mobile"></div>
@@ -23,7 +27,6 @@
 
     <div class="search-results-wrapper"></div>
 
-    <div class="separator"></div>
     <div class="navbar-items" role="navigation" aria-label="Main menu">
       <ul class="navbar-items" role="menubar">
         <li id="top-module-list" aria-haspopup="true" role="menuitem" aria-expanded="false"
@@ -31,7 +34,7 @@
         >
           <span tabindex="0" id="docs-link" class="main-menu-item-title">Docs</span>
           <span class="caret"></span>
-          <ul class="navbar-item-submenu">
+          <ul class="navbar-item-submenu" role="menu">
             <div class="submenu-section">
               <li role="menuitem" class="docs-dropdown-li">
                 <a href="/api/" class="docs-dropdown-li__link" tabindex="-1">
@@ -89,7 +92,7 @@
         >
           <span id="plugin-link" class="main-menu-item-title" tabindex="0">Plugin Hub</span>
           <span class="caret"></span>
-          <ul class="navbar-item-submenu">
+          <ul class="navbar-item-submenu" role="menu">
             <div class="submenu-section">
               <li role="menuitem" class="docs-dropdown-li">
                 <a href="/hub/" class="docs-dropdown-li__link" tabindex="-1">

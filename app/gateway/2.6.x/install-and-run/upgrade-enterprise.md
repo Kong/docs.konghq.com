@@ -8,14 +8,14 @@ Upgrade to major, minor, and patch {{site.ee_product_name}} releases using the
 
 You can also use the commands to migrate all {{site.ce_product_name}} entities
 to {{site.ee_product_name}}. See
-[Migrating from {{site.ce_product_name}} to {{site.base_gateway}}](/gateway/{{page.kong_version}}/install-and-run/migrate-ce-to-ke/).
+[Migrating from {{site.ce_product_name}} to {{site.base_gateway}}](/gateway/{{page.release}}/install-and-run/migrate-ce-to-ke/).
 
 If you experience any issues when running migrations, contact
 [Kong Support](https://support.konghq.com/support/s/) for assistance.
 
 ## Upgrade path for {{site.base_gateway}} releases
 
-Kong adheres to [semantic versioning](https://semver.org/), which makes a
+Kong follows a structured approach to versioning its products, which makes a
 distinction between major, minor, and patch versions. The upgrade
 path for major and minor versions differs depending on the previous version
 from which you are migrating:
@@ -66,12 +66,12 @@ affect your current installation.
 ### Hybrid mode considerations
 
 {:.important}
-> **Important:** If you are currently running in [hybrid mode](/gateway/{{page.kong_version}}/plan-and-deploy/hybrid-mode/),
+> **Important:** If you are currently running in [hybrid mode](/gateway/{{page.release}}/plan-and-deploy/hybrid-mode/),
 upgrade the Control Plane first, and then the Data Planes.
 
 * If you are currently running 2.6.x in classic (traditional)
   mode and want to run in hybrid mode instead, follow the hybrid mode
-  [installation instructions](/gateway/{{page.kong_version}}/plan-and-deploy/hybrid-mode/hybrid-mode-setup/)
+  [installation instructions](/gateway/{{page.release}}/plan-and-deploy/hybrid-mode/hybrid-mode-setup/)
   after running the migration.
 * Custom plugins (either your own plugins or third-party plugins that are not shipped with Kong)
   need to be installed on both the Control Plane and the Data Planes in Hybrid mode. Install the

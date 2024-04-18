@@ -1,6 +1,5 @@
 {% include_relative_once _data/tables/support/gateway/packages.yml %}
 {% include_relative_once _data/tables/support/gateway/third-party.yml %}
-{% include_relative_once _data/tables/support/gateway/browsers.yml %}
 
 lts: false
 distributions:
@@ -23,8 +22,7 @@ distributions:
   - <<: *rhel8
     docker: true
     fips: true
-  - <<: *ubuntu1804
-    eol: April 2023
+  - *ubuntu1804
   - <<: *ubuntu2004
     arm: false
     docker: false
@@ -95,9 +93,3 @@ third-party:
   s3_api:
     - *s3
     - *minio
-
-browsers:
-  - *edge
-  - *chrome
-  - *firefox
-  - *safari

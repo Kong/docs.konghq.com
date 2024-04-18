@@ -274,4 +274,4 @@ HTTP 200 OK
 }
 ```
 
-[Admin API]: /gateway/{{page.kong_version}}/admin-api/
+[Admin API]: /gateway/{{page.release}}/admin-api/

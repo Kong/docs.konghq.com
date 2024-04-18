@@ -8,13 +8,10 @@ chapter: 2
 Custom reporting in {{site.konnect_saas}} gives you the power to monitor your API data in detail and export that data to a CSV file. 
 Let's go through an example situation where you could leverage custom reports.
 
-In this scenario, Tal is a platform owner who supervises the implementation and maintenance of the API Gateway infrastructure that governs all APIs at ACME. A few minutes ago, they received an email that stated that the response latency seemed to be very high and causing a bad customer experience. To better understand the source of the delays, Tal decides to create a report to compare the average **upstream latency** against the **Kong latency** for all traffic to the production servers in the last hour to pin point where the problem occurs.
-
 ## Build reports
 
 You can build custom reports by navigating to {% konnect_icon analytics %} **Analytics** in the {{site.konnect_short_name}} menu, then **Reports**. This brings you to a list of all custom reports in the organization. From here, click **New Report** to get started.
 
-For the this report, Tal configures the following:
 
 * **Name**: Production - Kong vs Upstream Latency (last hour)
 * **Chart type**: Line chart
@@ -36,4 +33,4 @@ Then, they add a filter to filter by the control plane
 
 ## Conclusion
 
-With this report, Tal can rule out the platform as the source of the problem and start exploring which upstream service might cause the latency spike.
+With this type of report,  you can start exploring which upstream service might cause the latency spike.

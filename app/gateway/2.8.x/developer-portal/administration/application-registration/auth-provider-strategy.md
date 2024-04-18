@@ -32,7 +32,7 @@ authorization strategy:
 
 If you're using the default `kong-oauth2` authorization strategy with {{site.base_gateway}} as the system of record, set up app registration using the following steps:
 
-1. Enable the [Application Registration plugin](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/applications/enable-application-registration/) on a service.
+1. Enable the [Application Registration plugin](/gateway/{{page.release}}/kong-enterprise/dev-portal/applications/enable-application-registration/) on a service.
 
 2. Configure either the [OAuth2](/hub/kong-inc/oauth2/) plugin or the [Key Auth](/hub/kong-inc/key-auth/) plugin on the same service as the Application Registration plugin.
     
@@ -43,7 +43,7 @@ If you're using the default `kong-oauth2` authorization strategy with {{site.bas
 If you are using an external IdP (`external-oauth2`), follow these steps.
 
 1. Review and choose one of the
-[recommended workflows](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/3rd-party-oauth#supported-oauth-flows).
+[recommended workflows](/gateway/{{page.release}}/kong-enterprise/dev-portal/authentication/3rd-party-oauth#supported-oauth-flows).
 
 1. Open `kong.conf.default` and set the `portal_app_auth` option to your chosen
    strategy. The example configuration below switches from the default
@@ -63,12 +63,12 @@ If you are using an external IdP (`external-oauth2`), follow these steps.
    kong reload
    ```
   
-1. Enable the [Application Registration plugin](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/applications/enable-application-registration/) on a service.
+1. Enable the [Application Registration plugin](/gateway/{{page.release}}/kong-enterprise/dev-portal/applications/enable-application-registration/) on a service.
 
 1. Configure the [OIDC plugin](/hub/kong-inc/openid-connect/) on the same service as the
  Application Registration plugin.
 
 1. Configure the identity provider for your application, configure your
 application in {{site.base_gateway}}, and associate them with each other. See the
-[Okta](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/okta-config/)
-or the [Azure](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/authentication/azure-oidc-config/) setup examples.
+[Okta](/gateway/{{page.release}}/kong-enterprise/dev-portal/authentication/okta-config/)
+or the [Azure](/gateway/{{page.release}}/kong-enterprise/dev-portal/authentication/azure-oidc-config/) setup examples.

@@ -19,7 +19,7 @@ To learn how to manually enable the webhook for an existing non-Helm deployment,
 ## Test the configuration
 You can test if the admission webhook is enabled for duplicate KongConsumers, incorrect KongPlugins, incorrect credential secrets, and incorrect routes.
 
-{% include /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=true %}
+{% include /md/kic/prerequisites.md release=page.release disable_gateway_api=true %}
 
 ### Verify duplicate KongConsumers
 
@@ -86,23 +86,37 @@ With 0.7 and later versions of {{site.kic_product_name}}, validations also take 
 for incorrect secret types and wrong parameters to the secrets.
 
 ```bash
-kubectl create secret generic missing-password-credential \
-  --from-literal=kongCredType=basic-auth \
-  --from-literal=username=foo
+echo '
+apiVersion: v1
+kind: Secret
+metadata:
+  name: missing-password-credential
+  labels:
+    konghq.com/credential: basic-auth
+stringData:
+  username: foo
+' | kubectl apply -f -
 ```
 The results should look like this:
 ```
-Error from server: admission webhook "validations.kong.konghq.com" denied the request: missing required field(s): password
+Error from server: "STDIN": error when creating "STDIN": admission webhook "validations.kong.konghq.com" denied the request: consumer credential failed validation: missing required field(s): password
 ```
 
 ```bash
-kubectl create secret generic wrong-cred-credential \
-  --from-literal=kongCredType=wrong-auth \
-  --from-literal=sdfkey=my-sooper-secret-key
+echo '
+apiVersion: v1
+kind: Secret
+metadata:
+  name: wrong-cred-credential
+  labels:
+    konghq.com/credential: wrong-auth
+stringData:
+  sdfkey: my-sooper-secret-key
+' | kubectl apply -f -
 ```
 The results should look like this:
 ```
-Error from server: admission webhook "validations.kong.konghq.com" denied the request: invalid credential type: wrong-auth
+Error from server: error when creating "STDIN": admission webhook "validations.kong.konghq.com" denied the request: consumer credential failed validation: invalid credential type wrong-auth
 ```
 
 ### Verify incorrect routes

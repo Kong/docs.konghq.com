@@ -85,7 +85,7 @@ greatly reduces the load on the main database instance since read-only
 queries are no longer sent to it.
 
 To learn more about how to configure this feature, refer to the
-[Datastore section](/gateway/{{page.kong_version}}/reference/configuration/#datastore-section)
+[Datastore section](/gateway/{{page.release}}/reference/configuration/#datastore-section)
 of the Configuration reference.
 
 ## What is being cached?
@@ -297,6 +297,6 @@ will trigger many requests to your database, and could cause a
 [dog-pile effect](https://en.wikipedia.org/wiki/Cache_stampede).
 
 <!--vale off-->
-[db_update_frequency]: /gateway/{{page.kong_version}}/reference/configuration/#db_update_frequency
-[db_update_propagation]: /gateway/{{page.kong_version}}/reference/configuration/#db_update_propagation
-[db_cache_ttl]: /gateway/{{page.kong_version}}/reference/configuration/#db_cache_ttl
+[db_update_frequency]: /gateway/{{page.release}}/reference/configuration/#db_update_frequency
+[db_update_propagation]: /gateway/{{page.release}}/reference/configuration/#db_update_propagation
+[db_cache_ttl]: /gateway/{{page.release}}/reference/configuration/#db_cache_ttl

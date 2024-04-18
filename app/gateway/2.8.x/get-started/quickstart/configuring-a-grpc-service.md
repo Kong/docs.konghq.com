@@ -22,7 +22,7 @@ requests on port 9080.
 
 ## Before you start
 
-You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart/) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install-and-run/).
+You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.release}}/get-started/quickstart/) or a more [comprehensive installation](/gateway/{{page.release}}/install-and-run/).
 
 ## 1. Single gRPC Service and Route
 
@@ -273,9 +273,9 @@ tail -f grpc-say-hello.log
 {"latencies":{"request":3,"kong":1,"proxy":1},"service":{"host":"localhost","created_at":1564527408,"connect_timeout":60000,"id":"74a95d95-fbe4-4ddb-a448-b8faf07ece4c","protocol":"grpc","name":"grpc","read_timeout":60000,"port":15002,"updated_at":1564527408,"write_timeout":60000,"retries":5},"request":{"querystring":{},"size":"46","uri":"\/hello.HelloService\/SayHello","url":"http:\/\/localhost:9080\/hello.HelloService\/SayHello","headers":{"host":"localhost:9080","content-type":"application\/grpc","kong-debug":"1","user-agent":"grpc-go\/1.20.0-dev","te":"trailers"},"method":"POST"},"client_ip":"127.0.0.1","tries":[{"balancer_latency":0,"port":15002,"balancer_start":1564527733555,"ip":"127.0.0.1"}],"response":{"headers":{"kong-route-id":"e49f2df9-3e8e-4bdb-8ce6-2c505eac4ab6","content-type":"application\/grpc","connection":"close","kong-service-name":"grpc","kong-service-id":"74a95d95-fbe4-4ddb-a448-b8faf07ece4c","kong-route-name":"say-hello","via":"kong\/1.2.1","x-kong-proxy-latency":"1","x-kong-upstream-latency":"1"},"status":200,"size":"298"},"route":{"id":"e49f2df9-3e8e-4bdb-8ce6-2c505eac4ab6","updated_at":1564527431,"protocols":["grpc"],"created_at":1564527431,"service":{"id":"74a95d95-fbe4-4ddb-a448-b8faf07ece4c"},"name":"say-hello","preserve_host":false,"regex_priority":0,"strip_path":false,"paths":["\/hello.HelloService\/SayHello"],"https_redirect_status_code":426},"started_at":1564527733554}
 ```
 
-[enabling-plugins]: /gateway/{{page.kong_version}}/get-started/quickstart/enabling-plugins
-[conf-service]: /gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service
-[configuration-reference]: /gateway/{{page.kong_version}}/reference/configuration/
+[enabling-plugins]: /gateway/{{page.release}}/get-started/quickstart/enabling-plugins
+[conf-service]: /gateway/{{page.release}}/get-started/quickstart/configuring-a-service
+[configuration-reference]: /gateway/{{page.release}}/reference/configuration/
 [grpc-reflection]: https://github.com/grpc/grpc/blob/master/doc/server_reflection_tutorial.md
 [grpcbin]: https://github.com/moul/grpcbin
 [grpcurl]: https://github.com/fullstorydev/grpcurl

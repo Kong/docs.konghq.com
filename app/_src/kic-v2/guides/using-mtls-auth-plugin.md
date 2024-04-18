@@ -5,7 +5,7 @@ title: Using mtls-auth plugin
 Configure the {{site.kic_product_name}} to verify client certificates using CA certificates and
 [mtls-auth](/hub/kong-inc/mtls-auth/) plugin for HTTPS requests.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=true enterprise=true %}
+{% include_cached /md/kic/prerequisites.md release=page.release disable_gateway_api=true enterprise=true %}
 
 1. Generate self-signed CA certificates using OpenSSL:
 

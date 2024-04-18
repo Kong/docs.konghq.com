@@ -35,9 +35,9 @@ For more information, see [multiple authentication](/gateway/latest/configure/au
 
 ### Set up with a database
 
-For usage with [Key Auth] plugin
+The following example uses the Session plugin together with the [Key Auth](/hub/kong-inc/key-auth) plugin.
 
-1. Create an example Service and a Route
+1. Create an example service and a route:
 
    Issue the following cURL request to create `example-service` pointing to
    httpbin.org, which echoes the request:
@@ -49,7 +49,7 @@ For usage with [Key Auth] plugin
      --data 'url=http://httpbin.org/anything'
    ```
 
-   Add a route to the Service:
+   Add a route to the service:
 
    ```bash
    curl -i -X POST \
@@ -60,9 +60,9 @@ For usage with [Key Auth] plugin
    The URL `http://localhost:8000/sessions-test` now echoes whatever is being
    requested.
 
-1. Configure the key-auth plugin for the Service
+1. Configure the `key-auth` plugin for the service.
 
-   Issue the following cURL request to add the key-auth plugin to the Service:
+   Issue the following cURL request to add the `key-auth` plugin to the service:
 
    ```bash
    curl -i -X POST \
@@ -72,10 +72,10 @@ For usage with [Key Auth] plugin
 
    Be sure to note the created plugin `id`, which is needed later.
 
-1. Verify that the key-auth plugin is properly configured
+1. Verify that the `key-auth` plugin is properly configured.
 
-   Issue the following cURL request to verify that the [key-auth][key-auth]
-   plugin is properly configured on the Service:
+   Issue the following cURL request to verify that the `key-auth`
+   plugin is properly configured on the service:
 
    ```bash
    curl -i -X GET \
@@ -85,10 +85,10 @@ For usage with [Key Auth] plugin
    Since the required header or parameter `apikey` is not specified, and
    anonymous access is not yet enabled, the response should be `401 Unauthorized`.
 
-1. Create a Consumer and an anonymous Consumer
+1. Create a consumer and an anonymous consumer.
 
-   Every request proxied and authenticated by Kong must be associated with a
-   Consumer. You can now create a Consumer named `anonymous_users` by issuing
+   Every request proxied and authenticated by {{site.base_gateway}} must be associated with a
+   consumer. You can now create a consumer named `anonymous_users` by issuing
    the following request:
 
    ```bash
@@ -97,7 +97,7 @@ For usage with [Key Auth] plugin
      --data "username=anonymous_users"
    ```
 
-   Be sure to note the Consumer `id`, which is needed later.
+   Be sure to note the consumer `id`, which is needed later.
 
    Now create a consumer that authenticates via sessions:
 
@@ -107,7 +107,7 @@ For usage with [Key Auth] plugin
      --data "username=fiona"
    ```
 
-1. Provision `key-auth` credentials for your Consumer
+1. Provision `key-auth` credentials for your consumer:
 
    ```bash
    curl -i -X POST \
@@ -115,11 +115,11 @@ For usage with [Key Auth] plugin
      --data 'key=open_sesame'
    ```
 
-1. Enable anonymous access
+1. Enable anonymous access.
 
-   You can now re-configure the key-auth plugin to permit anonymous access by
-   issuing the following request (**replace the UUIDs below with the `id` value
-   from previous steps**):
+   You can now re-configure the `key-auth` plugin to permit anonymous access by
+   issuing the following request. Replace the UUIDs in the following example
+   with the `id` value from previous steps:
 
    ```bash
    curl -i -X PATCH \
@@ -127,7 +127,7 @@ For usage with [Key Auth] plugin
      --data "config.anonymous=<anonymous_consumer_id>"
    ```
 
-1. Add the Kong Session plugin to the service
+1. Add the Session plugin to the service:
 
    ```bash
    curl -X POST http://localhost:8001/services/example-service/plugins \
@@ -140,10 +140,10 @@ For usage with [Key Auth] plugin
    > **Note:** `cookie_secure` is true by default, and should always be true, but is set to
    > false for the sake of this demo to avoid using HTTPS.
 
-1. Add the Request Termination plugin
+1. Add the Request Termination plugin.
 
    To disable anonymous access to only allow users access via sessions or via
-   authentication credentials, enable the Request Termination plugin.
+   authentication credentials, enable the Request Termination plugin:
 
    ```bash
    curl -X POST http://localhost:8001/services/example-service/plugins \
@@ -155,7 +155,7 @@ For usage with [Key Auth] plugin
 
 ### Set up without a database
 
-Add all these to the declarative config file:
+Add the following snippet to your declarative config file:
 
 ```yaml
 services:
@@ -199,7 +199,7 @@ plugins:
 
 ### Verification
 
-1. Check that Anonymous requests are disabled:
+1. Check that anonymous requests are disabled:
 
    ```bash
    curl -i -X GET \
@@ -208,7 +208,7 @@ plugins:
 
    Should return `403`.
 
-2. Verify that a user can authenticate via sessions
+2. Verify that a user can authenticate via sessions:
 
    ```bash
    curl -i -X GET \
@@ -235,16 +235,16 @@ plugins:
    This request should succeed and the `Set-Cookie` response header does not appear
    until the renewal period.
 
-3. Navigate to `http://localhost:8000/sessions-test`
+3. Navigate to `http://localhost:8000/sessions-test`.
 
    If the cookie is attached to the browser session, it should return the
    code `403` and the message “So long and thanks for all the fish!”.
 
-4. Navigate to `http://localhost:8000/sessions-test?apikey=open_sesame`
+4. Navigate to `http://localhost:8000/sessions-test?apikey=open_sesame`.
 
-   It should return `200` and authenticated via `key-auth` key query parameter.
+   It should return `200` and be authenticated via the `key-auth` key query parameter.
 
-5. Navigate to `http://localhost:8000/sessions-test`
+5. Navigate to `http://localhost:8000/sessions-test`.
 
    It can now use the session cookie that is granted by the Session plugin.
 
@@ -256,8 +256,8 @@ variable host, but can be overridden.
 
 ### Session data storage
 
-The session data can be stored in the cookie itself (encrypted) `storage=cookie`,
-or inside [Kong](#kong-storage-adapter). The session data stores these context
+The session data can be stored in the cookie itself (encrypted) by setting `storage` to `cookie`,
+or [inside Kong by setting `storage` to `kong`](#kong-storage-adapter). The session data stores these context
 variables:
 
 ```
@@ -278,8 +278,8 @@ plugins, it also sets `authenticated_groups` associated headers.
 
 ## Kong storage adapter
 
-The Session plugin extends the functionality of [lua-resty-session] with its own
-session data storage adapter when `storage=kong`. This stores encrypted
+The Session plugin extends the functionality of [lua-resty-session](https://github.com/bungle/lua-resty-session)
+with its own session data storage adapter when `storage=kong`. This stores encrypted
 session data into the current database strategy and the cookie does not contain
 any session data. Data stored in the database is encrypted and the cookie contains only
 the session id, expiration time, and HMAC signature. Sessions use the built-in Kong

@@ -1,9 +1,13 @@
 RSpec.describe SEO::IndexEntry::GlobalPage do
   let(:page) { find_page_by_url('/gateway/changelog/') }
   let(:index) { {} }
+  let(:latest) do
+    Utils::Version.to_version(site.data['kong_latest_gateway']['release'])
+  end
 
   before do
     PluginSingleSource::Generator.new.generate(site)
+    Jekyll::Versions.new.generate(site)
   end
 
   subject { described_class.new(page) }
@@ -29,7 +33,7 @@ RSpec.describe SEO::IndexEntry::GlobalPage do
   end
 
   describe '#attributes' do
-    it { expect(subject.attributes).to eq({ 'url' => '/gateway/changelog/', 'page' => page, 'version' => Gem::Version.new('9999.9.9') }) }
+    it { expect(subject.attributes).to eq({ 'url' => '/gateway/changelog/', 'page' => page, 'version' => latest }) }
   end
 
   describe '#key' do
@@ -37,6 +41,6 @@ RSpec.describe SEO::IndexEntry::GlobalPage do
   end
 
   describe '#version' do
-    it { expect(subject.version).to eq(Gem::Version.new('9999.9.9')) }
+    it { expect(subject.version).to eq(latest) }
   end
 end

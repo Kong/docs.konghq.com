@@ -38,7 +38,7 @@ Kubernetes cluster.
     {:.important}
     > It may take some time for Amazon to associate the IP address to the `kong-gateway-proxy` Service.
 
-After you've installed the {{site.kic_product_name}}, learn to use Ingress Controller, see the [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/get-started/services-and-routes/) tutorial.
+After you've installed the {{site.kic_product_name}}, learn to use Ingress Controller, see the [getting started](/kubernetes-ingress-controller/{{page.release}}/get-started/services-and-routes/) tutorial.
 
 ## Troubleshooting
 

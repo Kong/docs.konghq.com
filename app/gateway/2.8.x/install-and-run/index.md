@@ -5,47 +5,47 @@ disable_image_expand: true
 
 <div class="docs-grid-install">
 
-  <a href="/gateway/{{page.kong_version}}/install-and-run/docker" class="docs-grid-install-block no-description">
+  <a href="/gateway/{{page.release}}/install-and-run/docker" class="docs-grid-install-block no-description">
     <img class="install-icon" src="/assets/images/icons/third-party/docker.png" alt="" />
     <div class="install-text">Docker</div>
   </a>
 
-  <a href="/gateway/{{page.kong_version}}/install-and-run/kubernetes" class="docs-grid-install-block no-description">
+  <a href="/gateway/{{page.release}}/install-and-run/kubernetes" class="docs-grid-install-block no-description">
     <img class="install-icon" src="/assets/images/icons/third-party/kubernetes-logo.png" alt="" />
     <div class="install-text">Kubernetes</div>
   </a>
 
-  <a href="/gateway/{{page.kong_version}}/install-and-run/helm" class="docs-grid-install-block no-description">
+  <a href="/gateway/{{page.release}}/install-and-run/helm" class="docs-grid-install-block no-description">
     <img class="install-icon" src="/assets/images/icons/third-party/helm-icon-color.svg" alt="" />
     <div class="install-text">Helm</div>
   </a>
 
-  <a href="/gateway/{{page.kong_version}}/install-and-run/openshift" class="docs-grid-install-block no-description">
+  <a href="/gateway/{{page.release}}/install-and-run/openshift" class="docs-grid-install-block no-description">
     <img class="install-icon" src="/assets/images/icons/third-party/openshift-logo.png" alt="" />
     <div class="install-text">OpenShift</div>
   </a>
 
-  <a href="/gateway/{{page.kong_version}}/install-and-run/centos" class="docs-grid-install-block no-description">
+  <a href="/gateway/{{page.release}}/install-and-run/centos" class="docs-grid-install-block no-description">
     <img class="install-icon" src="/assets/images/icons/third-party/centos.gif" alt="" />
     <div class="install-text">CentOS</div>
   </a>
 
-  <a href="/gateway/{{page.kong_version}}/install-and-run/ubuntu" class="docs-grid-install-block no-description">
+  <a href="/gateway/{{page.release}}/install-and-run/ubuntu" class="docs-grid-install-block no-description">
     <img class="install-icon" src="/assets/images/icons/third-party/ubuntu.png" alt="" />
     <div class="install-text">Ubuntu</div>
   </a>
 
-  <a href="/gateway/{{page.kong_version}}/install-and-run/amazon-linux" class="docs-grid-install-block no-description">
+  <a href="/gateway/{{page.release}}/install-and-run/amazon-linux" class="docs-grid-install-block no-description">
     <img class="install-icon" src="/assets/images/icons/third-party/amazon-linux.png" alt="" />
     <div class="install-text">Amazon Linux 2</div>
   </a>
 
-  <a href="/gateway/{{page.kong_version}}/install-and-run/rhel" class="docs-grid-install-block no-description">
+  <a href="/gateway/{{page.release}}/install-and-run/rhel" class="docs-grid-install-block no-description">
     <img class="install-icon" src="/assets/images/icons/third-party/rhel.jpg" alt="" />
     <div class="install-text">RHEL</div>
   </a>
 
-  <a href="/gateway/{{page.kong_version}}/install-and-run/debian" class="docs-grid-install-block no-description">
+  <a href="/gateway/{{page.release}}/install-and-run/debian" class="docs-grid-install-block no-description">
     <img class="install-icon" src="/assets/images/icons/third-party/debian-logo.jpg" alt="" />
     <div class="install-text">Debian
     </div>
@@ -54,7 +54,7 @@ disable_image_expand: true
 
 ## Deployment options
 
-{% include_cached /md/gateway/deployment-options.md kong_version=page.kong_version %}
+{% include_cached /md/gateway/deployment-options.md release=page.release %}
 
 ## Installation paths
 

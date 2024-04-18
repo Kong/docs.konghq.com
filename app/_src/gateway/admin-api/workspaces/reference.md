@@ -15,7 +15,7 @@ Admin API.
 The workspace object describes the workspace entity, which has an ID
 and a name.
 
-For workspace use cases and configuration examples, see [Workspace Examples](/gateway/{{page.kong_version}}/kong-enterprise/workspaces/).
+For workspace use cases and configuration examples, see [Workspace Examples](/gateway/{{page.release}}/kong-enterprise/workspaces/).
 
 ## Add workspace
 
@@ -394,4 +394,4 @@ http://localhost:8001/SRE/services
 
 ---
 
-[Admin API]: /gateway/{{page.kong_version}}/admin-api/
+[Admin API]: /gateway/{{page.release}}/admin-api/

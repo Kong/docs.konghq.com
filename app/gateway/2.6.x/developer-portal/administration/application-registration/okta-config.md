@@ -48,7 +48,8 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
 
       ![OIDC with Okta Issuer URL](/assets/images/products/gateway/dev-portal/oidc-issuer-url.png)
 
-   2. In the `Config.Consumer Claim` field, enter your `<application_id>`.
+   2. In the `Config.Consumer Claim` field, enter the name of the field from the Okta payload that contains the application ID. 
+   This is usually `sub`.
 
    **Tip:** Because Okta's discovery document does not include all supported
    auth types by default, ensure the
@@ -58,17 +59,17 @@ of the `Issuer` URL, which you will use to associate Kong with your authorizatio
 
    The core configuration should be:
 
-   ```
+   ```json
    {
      "issuer": "<auth_server_issuer_url>",
      "verify_credentials": false,
-     "consumer_claim": "<application_id>",
+     "consumer_claim": "sub",
    }
 
    ```
 
 8. Configure a Portal Application Registration plugin on the Service as well. See
-[Application Registration](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/enable-application-registration#config-app-reg-plugin).
+[Application Registration](/gateway/{{page.release}}/developer-portal/administration/application-registration/enable-application-registration#config-app-reg-plugin).
 
 ## Register an application in Okta
 
@@ -84,7 +85,7 @@ your Okta application will vary:
 
      ![Okta Create New Application](/assets/images/products/gateway/dev-portal/okta-client-creds-app.png)
 
-    You will need your `client_id` and `client_secret` later on when you [authenticate with the proxy](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth#cc-flow).
+    You will need your `client_id` and `client_secret` later on when you [authenticate with the proxy](/gateway/{{page.release}}/developer-portal/administration/application-registration/3rd-party-oauth#cc-flow).
 
     ![Okta Client Credentials](/assets/images/products/gateway/dev-portal/okta-client-id-secret.png)
 
@@ -116,4 +117,4 @@ This example assumes Client Credentials is the chosen OAuth flow.
 
 Now that the application has been created, developers can authenticate with the
 endpoint using the supported and recommended
-[third-party OAuth flows](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/3rd-party-oauth).
+[third-party OAuth flows](/gateway/{{page.release}}/developer-portal/administration/application-registration/3rd-party-oauth).

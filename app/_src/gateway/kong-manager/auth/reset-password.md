@@ -8,7 +8,7 @@ For authentication, Kong uses two different credentials for admins:
 1. An admin uses a **password** to log in to Kong Manager.
 2. An admin uses an **RBAC token** to make requests to the Kong Admin API.
 
-If using [basic authentication](/gateway/{{page.kong_version}}/kong-manager/auth/basic/), an admin may reset their password from within Kong Manager. Since **LDAP** and **OIDC Authentication** imply that an organization stores and manages passwords outside of Kong, password reset is not possible with either type.
+If using [basic authentication](/gateway/{{page.release}}/kong-manager/auth/basic/), an admin may reset their password from within Kong Manager. Since **LDAP** and **OIDC Authentication** imply that an organization stores and manages passwords outside of Kong, password reset is not possible with either type.
 
 Each RBAC token is stored in Kong as a hash. Regardless of the authentication option selected, an admin may reset their RBAC token from within Kong Manager. Note that to support confidentiality, RBAC tokens are hashed and cannot be retrieved after they are created. If a user forgets the token, the only recourse is to reset it.
 
@@ -16,8 +16,8 @@ Each RBAC token is stored in Kong as a hash. Regardless of the authentication op
 
 ### Prerequisites
 
-* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable/) with [basic authentication](/gateway/{{page.kong_version}}/kong-manager/auth/basic/)
-* [SMTP](/gateway/{{page.kong_version}}/kong-manager/configuring-to-send-email/) is configured to send emails
+* Authentication and RBAC are [enabled](/gateway/{{page.release}}/kong-manager/auth/rbac/enable/) with [basic authentication](/gateway/{{page.release}}/kong-manager/auth/basic/)
+* [SMTP](/gateway/{{page.release}}/kong-manager/configuring-to-send-email/) is configured to send emails
 
 ### Steps
 
@@ -31,8 +31,8 @@ Each RBAC token is stored in Kong as a hash. Regardless of the authentication op
 
 ### Prerequisites
 
-* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable/) with [basic authentication](/gateway/{{page.kong_version}}/kong-manager/auth/basic/)
-* You have [super admin permissions](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin/)
+* Authentication and RBAC are [enabled](/gateway/{{page.release}}/kong-manager/auth/rbac/enable/) with [basic authentication](/gateway/{{page.release}}/kong-manager/auth/basic/)
+* You have [super admin permissions](/gateway/{{page.release}}/kong-manager/auth/super-admin/)
 or a user that has `/admins` and `/rbac` read and write access
 
 ### Steps
@@ -44,8 +44,8 @@ or a user that has `/admins` and `/rbac` read and write access
 
 ### Prerequisites
 
-* Authentication and RBAC are [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable/)
-* You have [super admin permissions](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin/)
+* Authentication and RBAC are [enabled](/gateway/{{page.release}}/kong-manager/auth/rbac/enable/)
+* You have [super admin permissions](/gateway/{{page.release}}/kong-manager/auth/super-admin/)
 or a user that has `/admins` and `/rbac` read and write access
 
 ### Steps

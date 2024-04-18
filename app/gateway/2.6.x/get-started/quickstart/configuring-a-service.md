@@ -20,7 +20,7 @@ Kong exposes a [RESTful Admin API][API] on port `:8001`. Kong's configuration, i
 Routes, is made via requests on that API.
 
 ## Before you start
-You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart/) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install-and-run/).
+You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.release}}/get-started/quickstart/) or a more [comprehensive installation](/gateway/{{page.release}}/install-and-run/).
 
 ## 1. Add your Service using the Admin API
 
@@ -126,7 +126,7 @@ Now that you've added your Service to Kong, let's learn how to enable plugins.
 
 Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 
-[API]: /gateway/{{page.kong_version}}/admin-api
-[enabling-plugins]: /gateway/{{page.kong_version}}/get-started/quickstart/enabling-plugins
-[proxy-port]: /gateway/{{page.kong_version}}/reference/configuration/#nginx-section
+[API]: /gateway/{{page.release}}/admin-api
+[enabling-plugins]: /gateway/{{page.release}}/get-started/quickstart/enabling-plugins
+[proxy-port]: /gateway/{{page.release}}/reference/configuration/#nginx-section
 [httpbin]: https://httpbin.org/

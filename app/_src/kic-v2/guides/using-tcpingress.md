@@ -13,7 +13,7 @@ There are two modes available:
 - **Port based routing**: {{site.base_gateway}} simply proxies all traffic it receives on a specific port to the Kubernetes Service. TCP connections are load balanced across all the available Pods of the Service.
 - **SNI based routing**: {site.base_gateway}} accepts a TLS-encrypted stream at the specified port and can route traffic to different services based on the `SNI` present in the TLS handshake. {{site.base_gateway}} also terminates the TLS handshake and forward the TCP stream to the Kubernetes Service.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false%}
+{% include_cached /md/kic/prerequisites.md release=page.release disable_gateway_api=false%}
 
 ## Expose additional ports
 
@@ -260,7 +260,7 @@ echo-plaintext   <PROXY_IP>   3m18s
 
 ## Route based on SNI
 
-{% include_cached /md/kic/add-certificate.md hostname='tls9443.kong.example' kong_version=page.kong_version %}
+{% include_cached /md/kic/add-certificate.md hostname='tls9443.kong.example' release=page.release %}
 
 1. Create the TCPIngress resource to route TLS-encrypted traffic to the `echo` service.
   {% capture the_code %}

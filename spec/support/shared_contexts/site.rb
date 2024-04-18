@@ -19,6 +19,9 @@ module SharedContexts
     let(:site) do
       site = Jekyll::Site.new(config)
       site.read
+
+      Jekyll::SiteProductData.new.generate(site)
+
       site
     end
 
@@ -45,6 +48,7 @@ module SharedContexts
       Jekyll::Versions.new.generate(site)
       LatestVersion::Generator.new.generate(site)
       OasDefinitionPages::Generator.new.generate(site)
+      Jekyll::Hooks.trigger :site, :pre_render, site
     end
 
     def markdown_content(file_path)

@@ -3,7 +3,7 @@
 
 {% if_version gte:2.0.x %}
 To start using {{site.mesh_product_name}}, see the
-[quickstart guide for Universal deployments](/mesh/{{page.kong_version}}/quickstart/universal/).
+[quickstart guide for Universal deployments](/mesh/{{page.release}}/quickstart/universal/).
 {% endif_version %}
 
 {% if_version lte:1.9.x %}

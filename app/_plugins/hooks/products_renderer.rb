@@ -14,12 +14,16 @@ class ProductsRenderer
   end
 
   def read?(page)
+    return true if page.relative_path.start_with?('assets')
+
     products.any? do |product, _versions|
       page.relative_path == 'index.html' || page.relative_path.start_with?(product)
     end
   end
 
-  def render?(page) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  def render?(page) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity, Metrics/MethodLength
+    return true if page.relative_path.start_with?('assets')
+
     products.any? do |product, versions|
       return true if page.dir == '/'
 

@@ -11,9 +11,9 @@ Learn to set up monitoring for {{site.base_gateway}} with Prometheus.
 
 As of {{site.kic_product_name}} 2.0, there are additional
 performance metrics associated with the configuration process
-rather than the runtime performance of the Gateway. For more information, see the [Prometheus metrics reference](/kubernetes-ingress-controller/{{page.kong_version}}/production/observability/prometheus/).
+rather than the runtime performance of the Gateway. For more information, see the [Prometheus metrics reference](/kubernetes-ingress-controller/{{page.release}}/production/observability/prometheus/).
 
-{% include /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=true %}
+{% include /md/kic/prerequisites.md release=page.release disable_gateway_api=true %}
 
 ## Install Prometheus and Grafana
 

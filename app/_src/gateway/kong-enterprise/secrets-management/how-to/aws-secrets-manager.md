@@ -6,8 +6,8 @@ description: "How to keep your {{site.base_gateway}} database credentials secure
 ---
 
 Application secrets include sensitive data like passwords, keys, certifications, tokens, and other items
-which must be secured. [{{site.base_gateway}}](/gateway/{{page.kong_version}}/) supports
-[Secrets Management](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/)
+which must be secured. [{{site.base_gateway}}](/gateway/{{page.release}}/) supports
+[Secrets Management](/gateway/{{page.release}}/kong-enterprise/secrets-management/)
 which allows you to store secrets in various secure backend systems and helps you protect them from accidental
 exposure.
 
@@ -126,9 +126,9 @@ database username and password. To authorize {{site.base_gateway}} to connect to
 you need to provide IAM security credentials via environment variables.
 
    You specify the database credentials using the standard `KONG_`
-   [environment variable names](/gateway/{{page.kong_version}}/reference/configuration/#environment-variables),
+   [environment variable names](/gateway/{{page.release}}/reference/configuration/#environment-variables),
    but instead of providing a static value you use a
-   [reference value](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/reference-format/).
+   [reference value](/gateway/{{page.release}}/kong-enterprise/secrets-management/reference-format/).
 
    The format looks like this: `{vault://aws/kong-gateway-database/pg_user}`. In this example,
    the reference format contains `aws` as the backend vault type, `kong-gateway-database` matches
@@ -136,7 +136,7 @@ you need to provide IAM security credentials via environment variables.
    in the secret value.
 
    See the
-   [AWS Secrets Manager documentation](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/aws-sm/)
+   [AWS Secrets Manager documentation](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/aws-sm/)
    for more details.
 
    Assuming you have set `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, and `AWS_SESSION_TOKEN` in the current
@@ -153,7 +153,7 @@ you need to provide IAM security credentials via environment variables.
      -e "AWS_SESSION_TOKEN" \
      -e "KONG_PG_USER={vault://aws/kong-gateway-database/pg_user}" \
      -e "KONG_PG_PASSWORD={vault://aws/kong-gateway-database/pg_password}" \
-     kong/kong-gateway:{{page.kong_version}}
+     kong/kong-gateway:{{page.release}}
    ```
 
    After a moment, {{site.base_gateway}} should be running, which you can verify with the Admin API:
@@ -164,15 +164,15 @@ you need to provide IAM security credentials via environment variables.
 
    You should receive a JSON response with various information from {{site.base_gateway}}.
 
-The [Secrets Management documentation](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/)
+The [Secrets Management documentation](/gateway/{{page.release}}/kong-enterprise/secrets-management/)
 contains more information about available backends and configuration details.
 
 ### More information
 
 * See the following documentation for supported vault backends that  {{site.base_gateway}} can integrate with:
-  * [Environment Variables Vault](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/env/)
-  * [AWS Secrets Manager](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/aws-sm/)
-  * [Hashicorp Vault](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
-  * [Google Secrets Management](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/gcp-sm/)
-* See [Starting Kong Securely](/gateway/{{page.kong_version}}/production/access-control/start-securely/) for more
+  * [Environment Variables Vault](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/env/)
+  * [AWS Secrets Manager](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/aws-sm/)
+  * [Hashicorp Vault](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
+  * [Google Secrets Management](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/gcp-sm/)
+* See [Starting Kong Securely](/gateway/{{page.release}}/production/access-control/start-securely/) for more
 security practices with {{site.base_gateway}}

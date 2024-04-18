@@ -32,7 +32,7 @@ When using Vitals, note:
   * If a user does not have access to Vitals data, charts will not display.
 
 ## Vitals API
-Vitals data is available via endpoints on Kong’s Admin API. Access to these endpoints may be controlled via Admin API RBAC. The Vitals API is described in the OAS (Open API Spec, formerly Swagger) file. See a sample here (downloadable file): [`vitalsSpec.yaml`](/gateway/{{page.kong_version}}/vitals/vitalsSpec.yaml).
+Vitals data is available via endpoints on Kong’s Admin API. Access to these endpoints may be controlled via Admin API RBAC. The Vitals API is described in the OAS (Open API Spec, formerly Swagger) file. See a sample here (downloadable file): [`vitalsSpec.yaml`](/gateway/{{page.release}}/vitals/vitalsSpec.yaml).
 
 ## Viewing Vitals in Kong Manager
 View Vitals information in Kong Manager using any of the following:
@@ -60,7 +60,7 @@ Options to populate the Vitals view, or areas in the chart, include:
 | Cluster and Node Data    | Metrics are displayed on Vitals charts at both node and cluster level. Controls are available to show cluster-wide metrics and/or node-specific metrics. Clicking on individual nodes will toggle the display of data from those nodes. Nodes are identified by a unique Kong node identifier, by hostname, or by a combination of the two.|
 
 ## Status Codes
-The Status Codes view displays visualizations of cluster-wide status code classes (1xx, 2xx, 3xx, 4xx, 5xx). The Status Codes view contains the counts of status code classes graphed over time, as well as the ratio of code classes to total requests. See [Status Codes](/gateway/{{page.kong_version}}/vitals/vitals-metrics/#status-code).
+The Status Codes view displays visualizations of cluster-wide status code classes (1xx, 2xx, 3xx, 4xx, 5xx). The Status Codes view contains the counts of status code classes graphed over time, as well as the ratio of code classes to total requests. See [Status Codes](/gateway/{{page.release}}/vitals/vitals-metrics/#status-code).
 
 >**Note**: The Status Codes view does not include non-standard code classes (6xx, 7xx, etc.). Individual status code data can be viewed in the Consumer, Route, and Service details pages under the Activity tab. Both standard and non-standard status codes are visible in these views.
 

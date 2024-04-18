@@ -63,4 +63,4 @@ Each developer is BCC'd by default for privacy. You may choose to edit the messa
 
 ## Developer Management Property Reference
 
-For comprehensive documentation on developer management properties, see [Default Dev Portal Authentication](/gateway/{{page.kong_version}}/reference/configuration/#default-developer-portal-authentication-section).
+For comprehensive documentation on developer management properties, see [Default Dev Portal Authentication](/gateway/{{page.release}}/reference/configuration/#default-developer-portal-authentication-section).

@@ -451,12 +451,12 @@ Here's a non-exhaustive explanation of some of the field attributes available:
 
 To learn more about schemas, see:
 
-* The source code of [typedefs.lua](https://github.com/Kong/kong/blob/{{page.kong_version | replace: "x", "0"}}/kong/db/schema/typedefs.lua)
+* The source code of [typedefs.lua](https://github.com/Kong/kong/blob/{{page.release | replace: "x", "0"}}/kong/db/schema/typedefs.lua)
   to get an idea of what's provided there by default.
-* [The Core Schemas](https://github.com/Kong/kong/tree/{{page.kong_version | replace: "x", "0"}}/kong/db/schema/entities)
+* [The Core Schemas](https://github.com/Kong/kong/tree/{{page.release | replace: "x", "0"}}/kong/db/schema/entities)
   to see examples of some other field attributes not discussed here.
 * [All the `daos.lua` files for embedded plugins](https://github.com/search?utf8=%E2%9C%93&q=repo%3Akong%2Fkong+path%3A%2Fkong%2Fplugins+filename%3Adaos.lua),
-  especially [the key-auth one](https://github.com/Kong/kong/blob/{{page.kong_version | replace: "x", "0"}}/kong/plugins/key-auth/daos.lua),
+  especially [the key-auth one](https://github.com/Kong/kong/blob/{{page.release | replace: "x", "0"}}/kong/plugins/key-auth/daos.lua),
   which was used for this guide as an example.
 
 
@@ -666,5 +666,5 @@ to cache it in-memory by leveraging the in-memory cache API provided by Kong.
 The next chapter will focus on caching custom entities, and invalidating them
 when they change in the datastore: [Caching custom entities]({{page.book.next.url}}).
 
-[Admin API]: /gateway/{{page.kong_version}}/admin-api/
-[Plugin Development Kit]: /gateway/{{page.kong_version}}/pdk
+[Admin API]: /gateway/{{page.release}}/admin-api/
+[Plugin Development Kit]: /gateway/{{page.release}}/pdk

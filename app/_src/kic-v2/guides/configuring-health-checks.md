@@ -6,7 +6,7 @@ Learn to setup active and passive health checking using the {{site.kic_product_n
 Kong to automatically short-circuit requests to specific Pods that are
 mis-behaving in your Kubernetes Cluster.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=true %}
+{% include_cached /md/kic/prerequisites.md release=page.release disable_gateway_api=true %}
 
 ## Create a Kubernetes service
 

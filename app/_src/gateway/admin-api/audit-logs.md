@@ -5,7 +5,7 @@ badge: enterprise
 
 You can access request and database audit logs through the Admin API.
 
-For usage examples, see [Audit Logging in {{site.base_gateway}}](/gateway/{{page.kong_version}}/kong-enterprise/audit-log/).
+For usage examples, see [Audit Logging in {{site.base_gateway}}](/gateway/{{page.release}}/kong-enterprise/audit-log/).
 
 ## List audit logs
 

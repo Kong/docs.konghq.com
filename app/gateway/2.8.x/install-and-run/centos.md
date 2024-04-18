@@ -19,7 +19,7 @@ Kong is licensed under an
 
 ## Prerequisites
 
-* A supported system with root or [root-equivalent](/gateway/{{page.kong_version}}/plan-and-deploy/kong-user/) access.
+* A supported system with root or [root-equivalent](/gateway/{{page.release}}/plan-and-deploy/kong-user/) access.
 * (Enterprise only) A `license.json` file from Kong.
 
 ## Download and Install
@@ -35,7 +35,7 @@ Install {{site.base_gateway}} on CentOS from the command line.
 1. Download the Kong package:
 
     ```bash
-    curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/el/%{centos_ver}/x86_64/kong-enterprise-edition-{{page.versions.ee}}.el%{centos_ver}.noarch.rpm)
+    curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.direct }}/gateway-{{ page.major_minor_version }}/rpm/el/%{centos_ver}/x86_64/kong-enterprise-edition-{{page.versions.ee}}.el%{centos_ver}.noarch.rpm)
     ```
 
 2. Install the package:
@@ -51,7 +51,7 @@ Install the YUM repository from the command line.
 
 1. Download the Kong yum repository:
     ```bash
-    curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/config.rpm.txt?distro=el&codename=$(rpm --eval '%{rhel}')" | sudo tee /etc/yum.repos.d/kong-gateway-{{ page.major_minor_version }}.repo
+    curl -1sLf "{{ site.links.direct }}/gateway-{{ page.major_minor_version }}/config.rpm.txt?distro=el&codename=$(rpm --eval '%{rhel}')" | sudo tee /etc/yum.repos.d/kong-gateway-{{ page.major_minor_version }}.repo
     sudo yum -q makecache -y --disablerepo='*' --enablerepo='kong-gateway-{{ page.major_minor_version }}'
     ```
 
@@ -72,4 +72,4 @@ Located in the app/_includes/md/gateway folder.
 See https://docs.konghq.com/contributing/includes/ for more information about using includes in this project.
 -->
 
-{% include_cached /md/gateway/setup.md kong_version=page.kong_version %}
+{% include_cached /md/gateway/setup.md release=page.release %}

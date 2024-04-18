@@ -35,11 +35,11 @@ You can also download the distribution manually. Download a distribution for
 the client host from the machine where you plan to run the commands to access
 Kubernetes:
 
-* [CentOS]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-centos-amd64.tar.gz)
-* [Red Hat]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-rhel-amd64.tar.gz)
-* [Debian]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-debian-amd64.tar.gz)
-* [Ubuntu]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-ubuntu-amd64.tar.gz)
-* [macOS]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-darwin-amd64.tar.gz)
+* [CentOS]({{site.links.direct}}/kong-mesh-legacy/raw/names/kong-mesh-centos-amd64/versions/{{page.version}}/kong-mesh-{{page.version}}-centos-amd64.tar.gz)
+* [Red Hat]({{site.links.direct}}/kong-mesh-legacy/raw/names/kong-mesh-rhel-amd64/versions/{{page.version}}/kong-mesh-{{page.version}}-rhel-amd64.tar.gz)
+* [Debian]({{site.links.direct}}/kong-mesh-legacy/raw/names/kong-mesh-debian-amd64/versions/{{page.version}}/kong-mesh-{{page.version}}-debian-amd64.tar.gz)
+* [Ubuntu]({{site.links.direct}}/kong-mesh-legacy/raw/names/kong-mesh-ubuntu-amd64/versions/{{page.version}}/kong-mesh-{{page.version}}-ubuntu-amd64.tar.gz)
+* [macOS]({{site.links.direct}}/kong-mesh-legacy/raw/names/kong-mesh-darwin-amd64/versions/{{page.version}}/kong-mesh-{{page.version}}-darwin-amd64.tar.gz)
 
 Then, extract the archive with:
 
@@ -60,7 +60,7 @@ kong-mesh-{{page.version}}/bin/kumactl install control-plane --license-path=/pat
 
 {:.note}
 > **Note**: {{site.mesh_product_name}} also has UBI images.
-To use these images instead, check out the [UBI documentation](/mesh/{{page.kong_version}}/features/ubi-images/).
+To use these images instead, check out the [UBI documentation](/mesh/{{page.release}}/features/ubi-images/).
 
 Where `/path/to/license.json` is the path to a valid {{site.mesh_product_name}}
 license file on the file system.
@@ -186,8 +186,8 @@ To start using {{site.mesh_product_name}}, see the
 
 <!-- links -->
 {% if_version gte:2.0.x %}
-[deployments]: /mesh/{{page.kong_version}}/introduction/deployments/
-[get-started-k8s]: /mesh/{{page.kong_version}}/quickstart/kubernetes/
+[deployments]: /mesh/{{page.release}}/introduction/deployments/
+[get-started-k8s]: /mesh/{{page.release}}/quickstart/kubernetes/
 {% endif_version %}
 
 {% if_version lte:1.9.x %}

@@ -7,7 +7,7 @@ content-type: how-to
 
 The {{site.base_gateway}} configuration file is a YAML file that can be used to configure individual properties of your Kong instance. This guide explains how to configure {{site.base_gateway}} using the `kong.conf` file.
 
-For all available parameters in `kong.conf`, see the [Configuration Parameter reference](/gateway/{{page.kong_version}}/reference/configuration/). 
+For all available parameters in `kong.conf`, see the [Configuration Parameter reference](/gateway/{{page.release}}/reference/configuration/). 
 
 ## Configure {{site.base_gateway}}
 
@@ -51,7 +51,7 @@ Boolean values can be specified as `on`/`off` or `true`/`false`:
 > {{site.base_gateway}} will use the default settings for any value in `kong.conf` that is commented out.
 
 ## Verify configuration
-To verify that your configuration is usable, use the `check` command. The `check` command will evaluate the [environment variables](/gateway/{{page.kong_version}}/production/environment-variables/) you have
+To verify that your configuration is usable, use the `check` command. The `check` command will evaluate the [environment variables](/gateway/{{page.release}}/production/environment-variables/) you have
 currently set, and will output an error if your settings are invalid. 
 
 ```bash
@@ -82,7 +82,7 @@ kong start --conf /path/to/kong.conf
 
 ### Debug mode
 
-You can use the [{{site.base_gateway}} CLI](/gateway/{{page.kong_version}}/reference/cli/) in debug-mode to output configuration properties in the shell:
+You can use the [{{site.base_gateway}} CLI](/gateway/{{page.release}}/reference/cli/) in debug-mode to output configuration properties in the shell:
 
 ```bash
 kong start -c /etc/kong.conf --vv
@@ -98,7 +98,7 @@ kong start -c /etc/kong.conf --vv
 
 ## More Information
 
-* [Embedding Kong in OpenResty](/gateway/{{page.kong_version}}/production/kong-openresty/)
-* [Setting environment variables](/gateway/{{page.kong_version}}/production/environment-variables/)
-* [How to serve an API and a website with Kong](/gateway/{{page.kong_version}}/production/website-api-serving/)
-* [Configuration parameter reference](/gateway/{{page.kong_version}}/reference/configuration/)
+* [Embedding Kong in OpenResty](/gateway/{{page.release}}/production/kong-openresty/)
+* [Setting environment variables](/gateway/{{page.release}}/production/environment-variables/)
+* [How to serve an API and a website with Kong](/gateway/{{page.release}}/production/website-api-serving/)
+* [Configuration parameter reference](/gateway/{{page.release}}/reference/configuration/)

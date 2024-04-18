@@ -57,5 +57,19 @@ RSpec.describe SEO::IndexEntryBuilder do
         it { expect(subject).to be_a(SEO::IndexEntry::OasPage) }
       end
     end
+
+    context 'assets' do
+      let(:page) { double(url: '/assets/mesh/2.4.x/raw/crds/kuma.io_virtualoutbounds.yaml') }
+
+      it { expect(subject).to be_a(SEO::IndexEntry::UnprocessablePage) }
+    end
+
+    context 'sitemap' do
+      let(:page) do
+        double(url: '/sitemap.xml', path: '/sitemap.xml', relative_path: '/sitemap.xml', data: {})
+      end
+
+      it { expect(subject).to be_a(SEO::IndexEntry::UnprocessablePage) }
+    end
   end
 end

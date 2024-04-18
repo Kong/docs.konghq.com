@@ -9,7 +9,7 @@ If you prefer to use the Admin API, check out the [{{site.base_gateway}} getting
 
 ## Prerequisites
 
-You need a {{site.base_gateway}} instance with Kong Manager [enabled](/gateway/{{page.kong_version}}/kong-manager/enable/).
+You need a {{site.base_gateway}} instance with Kong Manager [enabled](/gateway/{{page.release}}/kong-manager/enable/).
 
 ## Add a service
 
@@ -65,4 +65,4 @@ From a web browser, navigate to `http://localhost:8000/mock/anything`.
 
 ## Next steps
 
-Next, you can learn about [enforcing rate limiting on a service](/gateway/{{page.kong_version}}/kong-manager/get-started/rate-limiting/) through Kong Manager.
+Next, you can learn about [enforcing rate limiting on a service](/gateway/{{page.release}}/kong-manager/get-started/rate-limiting/) through Kong Manager.

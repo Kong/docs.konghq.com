@@ -26,7 +26,7 @@ Before you enable the AWS IAM authentication, you must configure your AWS RDS da
 - **Enable the IAM database authentication on your database instance.** For more information, see [Enabling and disabling IAM database authentication](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.Enabling.html) in the Amazon RDS user guide.
 - **Assign an IAM role to your {{site.base_gateway}} instance.** {{site.base_gateway}} can automatically discover and fetch the AWS credentials to use for the IAM role.
    - If you use an EC2 environment, use the [EC2 IAM role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html).
-   - If you use an ECS cluster, use a [ECS task IAM role](https://docs.aws.amazon.com/AmazonECS/latest/userguide/task-iam-roles.html).
+   - If you use an ECS cluster, use a [ECS task IAM role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html).
    - If you use an EKS cluster, configure a Kubernetes service account that can annotate your assigned role and configure the pods to use an [IAM role defined by `serviceaccount`](https://docs.aws.amazon.com/eks/latest/userguide/associate-service-account-role.html). 
    
       Using an IAM role defined by `serviceaccount` requires a request to the AWS STS service, so you also need to make sure that your Kong instance inside the Pod can access the AWS STS service endpoint. 
@@ -74,7 +74,7 @@ KONG_PG_RO_IAM_AUTH=on
 
 ### Enable AWS IAM authentication in the configuration file
 
-The [`kong.conf` file](/gateway/{{page.kong_version}}/production/kong-conf/) contains the `pg_iam_auth` and `pg_ro_iam_auth` properties.
+The [`kong.conf` file](/gateway/{{page.release}}/production/kong-conf/) contains the `pg_iam_auth` and `pg_ro_iam_auth` properties.
 Just like the environment variable, you can set them to `on` accordingly, if you want to enable the IAM Authentication on both read and write connection, or just read-only connection to the RDS Postgres database.
 
 To enable AWS IAM authentication in read-write mode, set `pg_iam_auth` to `on`:

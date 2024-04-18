@@ -14,7 +14,7 @@ may negatively impact availability.
 
 {{site.base_gateway}} imposes rate limits on clients through the use of the [Rate Limiting plugin](/hub/kong-inc/rate-limiting/). 
 When rate limiting is enabled, clients are restricted in the number of requests that can be made in a configurable period of time.
-The plugin supports identifying clients as [consumers](/gateway/latest/admin-api/#consumer-object) 
+The plugin supports identifying clients as [consumers](/gateway/api/admin-ee/latest/#/Consumers/list-consumer/) 
 or by the client IP address of the requests.
 
 {:.note}
@@ -132,12 +132,12 @@ curl -X POST http://localhost:8001/routes/example_route/plugins \
 
 ### Consumer level rate limiting
 
-In {{site.base_gateway}}, [consumers](/gateway/latest/admin-api/#consumer-object) are an abstraction
+In {{site.base_gateway}}, [consumers](/gateway/api/admin-ee/latest/#/Consumers/list-consumer/) are an abstraction
 that defines a user of a service. Consumer-level rate limiting can be used to limit request rates per consumer.
 
 1. **Create a consumer**
 
-   Consumers are created using the [consumer object](/gateway/latest/admin-api/#consumer-object) in the Admin API. 
+   Consumers are created using the [consumer object](/gateway/api/admin-ee/latest/#/Consumers/list-consumer/) in the Admin API. 
 
    ```sh
    curl -X POST http://localhost:8001/consumers/ \

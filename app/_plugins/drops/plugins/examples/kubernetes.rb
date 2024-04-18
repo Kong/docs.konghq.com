@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './yaml'
+require_relative 'yaml'
 
 module Jekyll
   module Drops

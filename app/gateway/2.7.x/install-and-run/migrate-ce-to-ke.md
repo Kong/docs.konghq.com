@@ -20,7 +20,7 @@ supports the same {{site.ce_product_name}} version.
    {{site.ce_product_name}} to {{site.ee_product_name}}.
 
 * If running a version of {{site.ce_product_name}} earlier than 2.7.x,
-  [upgrade to Kong 2.7.x](/gateway/{{page.kong_version}}/install-and-run/upgrade-oss/) before migrating
+  [upgrade to Kong 2.7.x](/gateway/{{page.release}}/install-and-run/upgrade-oss/) before migrating
   {{site.ce_product_name}} to {{site.ee_product_name}} 2.7.x.
 
 ## Migration steps

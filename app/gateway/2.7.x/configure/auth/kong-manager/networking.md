@@ -7,7 +7,7 @@ badge: enterprise
 
 By default, Kong Manager starts up without authentication (see
 [`admin_gui_auth`]), and it assumes that the Admin API is available
-on port 8001 (see [Default Ports](/gateway/{{page.kong_version}}/plan-and-deploy/default-ports/) of the same host that serves
+on port 8001 (see [Default Ports](/gateway/{{page.release}}/plan-and-deploy/default-ports/) of the same host that serves
 Kong Manager.
 
 ## Custom Configuration
@@ -28,7 +28,7 @@ Common configurations to enable are
   8444 on localhost. Change [`admin_listen`] if necessary, or set
   [`admin_api_uri`].
 
-{% include_cached /md/admin-listen.md kong_version=page.kong_version desc='short' %}
+{% include_cached /md/admin-listen.md release=page.release desc='short' %}
 
 * Securing Kong Manager and serving it from a dedicated node
 
@@ -95,12 +95,12 @@ is cleared from the browser after testing to prevent stale certificates from int
 `localhost`.
 
 
-[`admin_gui_auth`]: /gateway/{{page.kong_version}}/reference/configuration/#admin_gui_auth
-[`admin_gui_ssl_cert`]: /gateway/{{page.kong_version}}/reference/configuration/#admin_gui_ssl_cert
-[`admin_gui_ssl_cert_key`]: /gateway/{{page.kong_version}}/reference/configuration/#admin_gui_ssl_cert_key
-[`default_ports`]: /gateway/{{page.kong_version}}/plan-and-deploy/default-ports
-[`admin_api_uri`]: /gateway/{{page.kong_version}}/reference/configuration/#admin_api_uri
-[`admin_gui_auth_conf`]: /gateway/{{page.kong_version}}/reference/configuration/#admin_gui_auth_conf
-[`enforce_rbac`]: /gateway/{{page.kong_version}}/reference/configuration/#enforce_rbac
-[`admin_listen`]: /gateway/{{page.kong_version}}/reference/configuration/#admin_listen
-[`admin_gui_session_conf`]: /gateway/{{page.kong_version}}/reference/configuration/#admin_gui_session_conf
+[`admin_gui_auth`]: /gateway/{{page.release}}/reference/configuration/#admin_gui_auth
+[`admin_gui_ssl_cert`]: /gateway/{{page.release}}/reference/configuration/#admin_gui_ssl_cert
+[`admin_gui_ssl_cert_key`]: /gateway/{{page.release}}/reference/configuration/#admin_gui_ssl_cert_key
+[`default_ports`]: /gateway/{{page.release}}/plan-and-deploy/default-ports
+[`admin_api_uri`]: /gateway/{{page.release}}/reference/configuration/#admin_api_uri
+[`admin_gui_auth_conf`]: /gateway/{{page.release}}/reference/configuration/#admin_gui_auth_conf
+[`enforce_rbac`]: /gateway/{{page.release}}/reference/configuration/#enforce_rbac
+[`admin_listen`]: /gateway/{{page.release}}/reference/configuration/#admin_listen
+[`admin_gui_session_conf`]: /gateway/{{page.release}}/reference/configuration/#admin_gui_session_conf

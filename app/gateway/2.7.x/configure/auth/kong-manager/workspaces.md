@@ -12,8 +12,8 @@ delimit the types of actions and entities available to an admin.
 
 ## Prerequisites
 
-* [`enforce_rbac = on`](/gateway/{{page.kong_version}}/reference/configuration/#enforce_rbac)
-* {{site.base_gateway}} has [started](/gateway/{{page.kong_version}}/plan-and-deploy/security/start-kong-securely/)
+* [`enforce_rbac = on`](/gateway/{{page.release}}/reference/configuration/#enforce_rbac)
+* {{site.base_gateway}} has [started](/gateway/{{page.release}}/plan-and-deploy/security/start-kong-securely/)
 * Logged in to Kong Manager as a **Super Admin**
 
 ## Default workspace
@@ -34,7 +34,7 @@ depending on preference.
 ## Create a Workspace
 
 This guide describes how to create workspaces in Kong
-Manager. You can also use the Admin API [`/workspaces/` route](/gateway/{{page.kong_version}}/admin-api/workspaces/reference/#add-workspace) to create a workspace.
+Manager. You can also use the Admin API [`/workspaces/` route](/gateway/{{page.release}}/admin-api/workspaces/reference/#add-workspace) to create a workspace.
 
 1. Log in as the **Super Admin**. On the **Workspaces** page, click the **New Workspace**
 button at the top right to see the **Create Workspace** form. Name and choose a
@@ -110,7 +110,7 @@ all files from a folder will remove the folder.
     --data "config.portal=false"
    ```
 
-1. [Delete each role](/gateway/{{page.kong_version}}/admin-api/rbac/reference/#delete-a-role)
+1. [Delete each role](/gateway/{{page.release}}/admin-api/rbac/reference/#delete-a-role)
 from the workspace:
 
     ```bash
@@ -195,4 +195,4 @@ workspace are already visible, and new roles specific
 to the workspace can be assigned from this page.
 
 For more information about admins and roles, see
-[RBAC in Kong Manager](/gateway/{{page.kong_version}}/configure/auth/rbac/).
+[RBAC in Kong Manager](/gateway/{{page.release}}/configure/auth/rbac/).

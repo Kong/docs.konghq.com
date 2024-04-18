@@ -10,10 +10,21 @@ Method | Supported deployment types
 -------|---
  `/licenses` Admin API endpoint | &#8226; Traditional database-backed deployment <br> &#8226; Hybrid mode deployment
 File on the node filesystem <br>(`license.json`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
-Environment variable <br>(`KONG_LICENSE_DATA`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
-Environment variable <br>(`KONG_LICENSE_PATH`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
+Environment variable containing the full license <br>(`KONG_LICENSE_DATA`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
+Environment variable containing path to license file <br>(`KONG_LICENSE_PATH`) | &#8226; Traditional database-backed deployment <br> &#8226; DB-less mode
 
 The recommended method is using the Admin API.
+
+{:.important}
+> **Important**:
+> * If you deploy a license using the `/license` endpoint on the control plane, the control plane propagates 
+> the license to connected data planes automatically.
+> * If you deploy a license using a `KONG_LICENSE_DATA` or `KONG_LICENSE_PATH` environment variable, 
+> the control plane **does not** propagate the license to data plane nodes.
+> You **must** add the license to each data plane node, and each node **must** start with the license.
+> The license can't be added after starting the node. 
+>
+>  We don't recommend using this method in hybrid mode deployments.
 
 {{ include.heading }} Prerequisites
 
@@ -70,6 +81,8 @@ Result:
 For more detail and options, see the
 [Admin API `licenses` endpoint reference](/gateway/latest/licenses/examples).
 
+We recommend [restarting](/gateway/{{page.release}}/reference/cli/#kong-restart) the {{site.base_gateway}} nodes after applying or updating a license.
+
 {% endnavtab %}
 {% navtab Filesystem %}
 
@@ -124,13 +137,13 @@ substituting your own license key.
     {% if_version gte:2.6.x lte:2.8.x %}
     {:.note}
     > **Note:** This is only a snippet. For a full working example, see the instructions to
-    [Install {{site.base_gateway}} on Docker](/gateway/{{page.kong_version}}/install-and-run/docker/).
+    [Install {{site.base_gateway}} on Docker](/gateway/{{page.release}}/install-and-run/docker/).
 
     {% endif_version %}
     {% if_version gte:3.0.x %}
     {:.note}
     > **Note:** This is only a snippet. For a full working example, see the instructions to
-    [Install {{site.base_gateway}} on Docker](/gateway/{{page.kong_version}}/install/docker/).
+    [Install {{site.base_gateway}} on Docker](/gateway/{{page.release}}/install/docker/).
 
     {% endif_version %}
 
@@ -139,7 +152,7 @@ substituting your own license key.
      --network=kong-net \
      ...
      -e KONG_LICENSE_DATA \
-     kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+     kong/kong-gateway:{{page.releases_hash[page.version-index].ee-version}}-alpine
     ```
 {% endnavtab %}
 {% navtab Environment variable (file path) %}
@@ -157,13 +170,13 @@ from the container:
 {% if_version gte:2.6.x lte:2.8.x %}
 {:.note}
 > **Note:** This is only a snippet. For a full working example, see the instructions to
-[Install {{site.base_gateway}} on Docker](/gateway/{{page.kong_version}}/install-and-run/docker).
+[Install {{site.base_gateway}} on Docker](/gateway/{{page.release}}/install-and-run/docker).
 
 {% endif_version %}
 {% if_version gte:3.0.x %}
 {:.note}
 > **Note:** This is only a snippet. For a full working example, see the instructions to
-[Install {{site.base_gateway}} on Docker](/gateway/{{page.kong_version}}/install/docker).
+[Install {{site.base_gateway}} on Docker](/gateway/{{page.release}}/install/docker).
 
 {% endif_version %}
 
@@ -173,7 +186,7 @@ docker run -d --name kong-gateway \
  ...
  -v "$(pwd)/kong-license/:/kong-license/" \
  -e "KONG_LICENSE_PATH=/kong-license/license.json" \
- kong/kong-gateway:{{page.kong_versions[page.version-index].ee-version}}-alpine
+ kong/kong-gateway:{{page.releases_hash[page.version-index].ee-version}}-alpine
 ```
 
 {% endnavtab %}

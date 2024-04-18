@@ -36,67 +36,9 @@ module PluginSingleSource
 
       def sidenav
         @sidenav ||= ::Jekyll::Drops::Sidenav.new(
-          sidenav_items,
+          Sidenav.new(@release).items,
           { 'plugin-key' => "#{@release.vendor}-#{@release.name}-#{@release.version}" }
         )
-      end
-
-      def icon
-        '/assets/images/icons/hub-layout/icn-how-to.svg'
-      end
-
-      def items_for(pages)
-        pages.flatten.compact.map { |p| { 'text' => p.nav_title, 'url' => p.permalink } }
-      end
-
-      def sidenav_items # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
-        items = [
-          { 'title' => 'Introduction',
-            'items' => items_for(@release.overviews),
-            'icon' => '/assets/images/icons/hub-layout/icn-overview.svg' }
-        ]
-
-        if @release.configuration
-          items.push({
-                       'title' => @release.configuration.nav_title,
-                       'url' => @release.configuration.permalink,
-                       'icon' => '/assets/images/icons/hub-layout/icn-configuration.svg'
-                     })
-        end
-
-        if @release.configuration_examples
-          if @release.vendor == 'kong-inc'
-            items.push({
-                         'title' => 'Using the plugin',
-                         'items' => items_for([@release.configuration_examples, @release.how_tos]),
-                         'icon' => icon
-                       })
-          else
-            items.push({
-                         'title' => @release.configuration_examples.nav_title,
-                         'url' => @release.configuration_examples.permalink,
-                         'icon' => icon
-                       })
-          end
-        end
-
-        if @release.references
-          items.push({
-                       'title' => @release.references.nav_title,
-                       'url' => @release.references.permalink,
-                       'icon' => @release.references.icon
-                     })
-        end
-
-        if @release.changelog
-          items.push({
-                       'title' => @release.changelog.nav_title,
-                       'url' => @release.changelog.permalink,
-                       'icon' => @release.changelog.icon
-                     })
-        end
-
-        items
       end
     end
   end

@@ -102,7 +102,7 @@ anything yet, the file should only contain the decK version:
 
 ## (Optional) Verify Control Plane and Data Plane connection
 
-If you're running {{site.base_gateway}} in [hybrid mode](/gateway/{{page.kong_version}}/plan-and-deploy/hybrid-mode/), 
+If you're running {{site.base_gateway}} in [hybrid mode](/gateway/{{page.release}}/plan-and-deploy/hybrid-mode/), 
 you need to perform all tasks in this guide from the control plane. You can check
 that all of your configurations are being pushed from the control plane to your
 data planes using the Cluster Status CLI.
@@ -153,4 +153,4 @@ The output shows all of the connected data plane instances in the cluster:
 
 In this section, you learned about the methods of administering
 {{site.base_gateway}} and how to access its configuration. Next, go on to
-learn about [exposing your services with {{site.base_gateway}}](/gateway/{{page.kong_version}}/get-started/comprehensive/expose-services/).
+learn about [exposing your services with {{site.base_gateway}}](/gateway/{{page.release}}/get-started/comprehensive/expose-services/).

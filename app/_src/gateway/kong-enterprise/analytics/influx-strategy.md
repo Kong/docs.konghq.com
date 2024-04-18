@@ -10,7 +10,7 @@ requests per second), without placing additional write load on the database
 backing the Kong cluster.
 
 For information about using Kong Vitals with a database as the backend, refer to
-[Kong Vitals](/gateway/{{page.kong_version}}/kong-enterprise/analytics/).
+[Kong Vitals](/gateway/{{page.release}}/kong-enterprise/analytics/).
 
 ## Set up Kong Vitals with InfluxDB
 
@@ -102,7 +102,7 @@ will work for the purposes of this guide.
 
 1. Start the gateway with Kong Manager and InfluxDB:
 
-{% include_cached /md/admin-listen.md desc='long' kong_version=page.kong_version %}
+{% include_cached /md/admin-listen.md desc='long' release=page.release %}
 
     ```sh
     docker run -d --name kong-ee --network=kong-ee-net \
@@ -141,7 +141,7 @@ instance, skip to [Configure Vitals with InfluxDB](#configure-vitals-with-influx
 You will not be able to access the Kong Vitals functionality without a valid
 {{site.ee_product_name}} license attached to your {{site.base_gateway}} instance.
 
-{% include_cached /md/enterprise/deploy-license.md heading="####" kong_version=page.kong_version %}
+{% include_cached /md/enterprise/deploy-license.md heading="####" release=page.release %}
 
 
 ### Configure Vitals with InfluxDB {{site.base_gateway}}
@@ -160,8 +160,8 @@ echo "KONG_VITALS_STRATEGY=influxdb KONG_VITALS_TSDB_ADDRESS=influxdb:8086 kong 
 ```
 
 {:.note}
-> **Note**: In Hybrid Mode, configure [`vitals_strategy`](/gateway/{{page.kong_version}}/reference/configuration/#vitals_strategy)
-and [`vitals_tsdb_address`](/gateway/{{page.kong_version}}/reference/configuration/#vitals_tsdb_address)
+> **Note**: In Hybrid Mode, configure [`vitals_strategy`](/gateway/{{page.release}}/reference/configuration/#vitals_strategy)
+and [`vitals_tsdb_address`](/gateway/{{page.release}}/reference/configuration/#vitals_tsdb_address)
 on both the control plane and all data planes.
 
 ## Understanding Vitals data using InfluxDB measurements

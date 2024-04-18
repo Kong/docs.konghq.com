@@ -5,6 +5,8 @@ module Sitemap
     priority :low
 
     def generate(site)
+      return if ENV['JEKYLL_ENV'] == 'development'
+
       index = SEO::Index.new(site)
       index.generate
       site.data['sitemap_pages'] = SEO::Sitemap.generate(index)

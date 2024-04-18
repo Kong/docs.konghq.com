@@ -280,7 +280,7 @@ return CustomHandler
 ```
 
 Note that the above example uses the
-[kong.log.inspect](/gateway/{{page.kong_version}}/plugin-development/pdk/kong.log/#kong_log_inspect)
+[kong.log.inspect](/gateway/{{page.release}}/plugin-development/pdk/kong.log/#kong_log_inspect)
 function of the [Plugin Development Kit] to print out those values to the Kong
 logs.
 
@@ -375,6 +375,6 @@ return CustomHandler
 
 You can also see a real-world example of schema in [the Key-Auth plugin source code].
 
-[Admin API]: /gateway/{{page.kong_version}}/admin-api
-[Plugin Development Kit]: /gateway/{{page.kong_version}}/plugin-development/pdk
+[Admin API]: /gateway/{{page.release}}/admin-api
+[Plugin Development Kit]: /gateway/{{page.release}}/plugin-development/pdk
 [the Key-Auth plugin source code]: https://github.com/Kong/kong/blob/master/kong/plugins/key-auth/schema.lua

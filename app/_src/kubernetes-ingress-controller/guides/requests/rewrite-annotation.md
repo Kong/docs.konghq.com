@@ -11,7 +11,7 @@ The annotation can be used on `Ingress` and `HTTPRoute` resources, and configure
 
 This definition creates a route that matches the path `/users/(\w+)` and rewrites it to `/requests/users_svc/$1` before sending the request upstream.
 
-{% include /md/kic/http-test-routing-resource.md kong_version=page.kong_version path='/users/(\w+)' name='user' service='users' port='80' skip_host=true route_type='RegularExpression' no_results=true annotation_rewrite="/requests/users_svc/$1" %}
+{% include /md/kic/http-test-routing-resource.md release=page.release path='/users/(\w+)' name='user' service='users' port='80' skip_host=true route_type='RegularExpression' no_results=true annotation_rewrite="/requests/users_svc/$1" %}
 
 Alternatively, you can define this in a plugin configuration.
 

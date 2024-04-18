@@ -1,6 +1,12 @@
 RSpec.describe SEO::IndexEntry::HubHtmlPage do
   let(:url) { '/hub/plugins/compatibility/' }
-  let(:page) { double('url' => url, 'data' => {}) }
+  let(:page) { double('url' => url, 'data' => {}, 'site' => site) }
+  let(:latest) do
+    Jekyll::GeneratorSingleSource::Product::Edition
+      .new(edition: 'gateway', site:)
+      .latest_release
+      .value
+  end
   let(:index) { {} }
 
   before do
@@ -15,7 +21,7 @@ RSpec.describe SEO::IndexEntry::HubHtmlPage do
 
   describe '#attributes' do
     it { expect(subject.attributes)
-      .to eq({ 'url' => url, 'page' => page, 'version' => Utils::Version.to_version('latest' ) }) }
+      .to eq({ 'url' => url, 'page' => page, 'version' => Utils::Version.to_version(latest) }) }
   end
 
   describe '#key' do

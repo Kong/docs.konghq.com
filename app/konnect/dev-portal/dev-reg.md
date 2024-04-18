@@ -11,7 +11,7 @@ Developer registrations can be manually approved by {{site.konnect_short_name}} 
 
 ## Register as a Developer {#register}
 
-All developers must register through the {{site.konnect_short_name}} [Dev Portal](/konnect/dev-portal/access/). A {{site.konnect_short_name}} admin can provide you with the correct registration URL. 
+All developers must register through the {{site.konnect_short_name}} Dev Portal. A {{site.konnect_short_name}} admin can provide you with the correct registration URL. 
 
 To register as a developer, navigate to the {{site.konnect_short_name}} Dev Portal and follow these steps: 
 
@@ -37,7 +37,7 @@ To log in to the Dev Portal using SSO, navigate to the Dev Portal and follow the
 
 2. After you are redirected to the identity provider (IdP), log in using your IdP's credentials.
 
-3. You will be automatically logged in and redirected to the {{site.konnect_short_name}} catalog.
+3. You will be automatically logged in and redirected to the Dev Portal catalog.
 
 ## Account Management {#management}
 

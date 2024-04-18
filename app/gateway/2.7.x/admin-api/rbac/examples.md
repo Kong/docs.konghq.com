@@ -1040,7 +1040,7 @@ he created.
 
 ---
 
-[rbac-overview]: /gateway/{{page.kong_version}}/configure/auth/rbac
-[rbac-admin]: /gateway/{{page.kong_version}}/admin-api/rbac/reference
-[workspaces-examples]: /gateway/{{page.kong_version}}/admin-api/workspaces/examples
-[getting-started-guide]: /gateway/{{page.kong_version}}/get-started/comprehensive
+[rbac-overview]: /gateway/{{page.release}}/configure/auth/rbac
+[rbac-admin]: /gateway/{{page.release}}/admin-api/rbac/reference
+[workspaces-examples]: /gateway/{{page.release}}/admin-api/workspaces/examples
+[getting-started-guide]: /gateway/{{page.release}}/get-started/comprehensive

@@ -16,12 +16,12 @@ from unauthorized use.
 
 ## Before you start
 
-* You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart/) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install-and-run/)
-* You have [configured your Service](/gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service/) in {{site.base_gateway}}
+* You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.release}}/get-started/quickstart/) or a more [comprehensive installation](/gateway/{{page.release}}/install-and-run/)
+* You have [configured your Service](/gateway/{{page.release}}/get-started/quickstart/configuring-a-service/) in {{site.base_gateway}}
 
 ## 1. Configure the key-auth plugin
 
-To configure the key-auth plugin for the Service you <a href="/gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service/">configured in Kong</a>,
+To configure the key-auth plugin for the Service you <a href="/gateway/{{page.release}}/get-started/quickstart/configuring-a-service/">configured in Kong</a>,
 issue the following cURL request:
 
 ```bash
@@ -66,4 +66,4 @@ Go to [Adding Consumers &rsaquo;][adding-consumers]
 
 [key-auth]: /hub/kong-inc/key-auth
 [plugins]: /hub/
-[adding-consumers]: /gateway/{{page.kong_version}}/get-started/quickstart/adding-consumers
+[adding-consumers]: /gateway/{{page.release}}/get-started/quickstart/adding-consumers

@@ -74,4 +74,4 @@ curl -sS -H "Authorization: Bearer $KONNECT_TOKEN" https://us.api.konghq.com/v2/
 Now that you have a `DataPlane` that has configuration from Konnect you can explore all of the capabilities that {{ site.base_gateway }} provides.
 
 * [Configuring {{ site.base_gateway }} in Konnect](/konnect/runtime-manager/configuration/)
-* [Upgrading {{ site.kgo_product_name }} managed data planes](/gateway-operator/{{ page.release }}/production/upgrade/data-plane/rolling/)
+* [Upgrading {{ site.kgo_product_name }} managed data planes](/gateway-operator/{{ page.release }}/guides/upgrade/data-plane/rolling/)

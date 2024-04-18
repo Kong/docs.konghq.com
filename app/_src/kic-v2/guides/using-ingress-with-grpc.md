@@ -18,7 +18,7 @@ In this guide, we use
 [`grpcurl`](https://github.com/fullstorydev/grpcurl#installation).
 Ensure that you have it installed on your local system.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=true %}
+{% include_cached /md/kic/prerequisites.md release=page.release disable_gateway_api=true %}
 
 ## Deploy a gRPC test application
 

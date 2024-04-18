@@ -26,7 +26,7 @@ There are two main ways to rotate secrets:
 
 Kong supports both methods for rotating secrets. Rotation on failure requires code to be written,
 and thus it has limited support in Kong (Postgres credentials for now). There is an experimental
-Kong PDK API that can be used to rotate secrets on failure: [kong.vault.try](/gateway/{{page.kong_version}}/plugin-development/pdk/kong.vault/#kongvaulttrycallback-options).
+Kong PDK API that can be used to rotate secrets on failure: [kong.vault.try](/gateway/{{page.release}}/plugin-development/pdk/kong.vault/#kongvaulttrycallback-options).
 
 ## Periodically rotating secrets using TTLs
 
@@ -42,9 +42,9 @@ Kong automatically rotates secrets *once every minute* in the background. This d
 
 The TTL based rotation works with most of the Kong supported vaults, including:
 
-* [AWS Secrets Manager](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/aws-sm/)
-* [GCP Secrets Manager](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/gcp-sm/)
-* [HashiCorp Vault](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
+* [AWS Secrets Manager](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/aws-sm/)
+* [GCP Secrets Manager](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/gcp-sm/)
+* [HashiCorp Vault](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
 
 When rotating with TTLs, it is usually useful to have two versions of the same secret valid at the same time.
 This means that following steps occur during secrets rotation:
@@ -55,7 +55,7 @@ This means that following steps occur during secrets rotation:
 
 ### Configuring AWS Secrets Manager Secrets Rotation using TTLs
 
-The default [AWS Secrets Manager](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/aws-sm/)
+The default [AWS Secrets Manager](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/aws-sm/)
 vault TTLs can be configured through `kong.conf` or environment variables (the values are in seconds):
 
 ```bash
@@ -100,7 +100,7 @@ their expiry.
 
 ### Configuring GCP Secrets Manager Secrets Rotation using TTLs
 
-The default [GCP Secrets Manager](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/gcp-sm/)
+The default [GCP Secrets Manager](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/gcp-sm/)
 vault TTLs can be configured through `kong.conf` or environment variables (the values are in seconds):
 
 ```bash
@@ -144,7 +144,7 @@ their expiry.
 
 ### Configuring HashiCorp Vault Secrets Rotation using TTLs
 
-The default [HashiCorp Vault](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
+The default [HashiCorp Vault](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/hashicorp-vault/)
 TTLs can be configured through `kong.conf` or environment variables (the values are in seconds):
 
 ```bash

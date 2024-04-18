@@ -12,6 +12,7 @@
   "labels": [
     "review:tech"
   ],
+  "cloneSubmodules": true,
   "packageRules": [
     {
       "groupName": "Non-major dependencies",

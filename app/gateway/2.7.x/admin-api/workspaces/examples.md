@@ -185,4 +185,4 @@ operation that is allowed in the non-workspaced Kong world.
 
 ---
 
-[services]: /gateway/{{page.kong_version}}/admin-api/#service-object
+[services]: /gateway/{{page.release}}/admin-api/#service-object

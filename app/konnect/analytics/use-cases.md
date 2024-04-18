@@ -1,11 +1,9 @@
 ---
 title: Analyze API Usage and Performance
 content_type: tutorial
-book: use-cases
-chapter: 1
 ---
 
-Custom reporting in {{site.konnect_saas}} gives you the power to monitor your API data in detail and export that data to CSV. 
+Custom reporting in {{site.konnect_saas}} enables you to save, revisit, and share views created during data exploration, facilitating analysis over different time intervals. These reports can be used to analyze metrics, investigate anomalies, and you can share a saved report to communicate these insights with others.
 Let's go through some example situations where you could leverage custom reports.
 
 In this scenario, you just joined an organization as an API product manager. 
@@ -29,11 +27,11 @@ This brings you to a list of all custom reports in the organization. From here, 
 To build a report that displays the total number of requests across all of your APIs over the last 30 days, set the following options in the UI: 
 
 * **Name**:  API usage (last 30 days)
-* **Chart type**: Horizontal bar chart
 * **Date/Time**: Last 30 days
-* **Select a metric**: Request Count
-* **Group by**: API Product
-* **Then by**: None
+* **Show**: Horizontal Bar
+* **With**: Request Count
+* **By**: API Product 
+* **And**: None
 
 ![API usage (last 30 days)](/assets/images/products/konnect/analytics/custom-reports/total-api-requests.png){:.image-border}
 > _**Figure 1:** Horizontal bar chart showing the total number of requests across all APIs in the organization over the last 30 days._
@@ -59,17 +57,17 @@ To gain further insight into the Accounts API, let's build a report that display
 Set the following options in the UI:
 
 * **Name**: Daily Accounts API Usage (last 30 days)
-* **Chart type**: Line chart
 * **Date/Time**: Last 30 days
-* **Select a metric**: Request Count
-* **Group by**: API Product
-* **Choose granularity**: Daily
+* **Show**: Line
+* **With**: Request Count
+* **And**: Day
+* **By**: API Product
 
 Add a filter for the Accounts API. Click **Add Filter**, then set the following options:
 
-* **Filter by**: API Product
-* **Operator**: In
-* **Filter value**: Accounts API (or your own API name)
+* **Filter By**: API Product
+* **Choose Operator**: In
+* **Filter Value**: Account (or your own API name)
 
 ![Daily Accounts API Usage (last 30 days)](/assets/images/products/konnect/analytics/custom-reports/total-usage-accounts-api-30.png){:.image-border}
 > _**Figure 2:** Line chart showing the daily usage for the Accounts API over the last 30 days._
@@ -102,11 +100,11 @@ You can track requests per minute, per day, and even differentiate it across dif
 To configure the {{site.konnect_saas}} to create a look back report of total traffic across different applications, set the following options in the UI: 
 
 * **Name**: API Usage by Application (last 30 days)
-* **Chart type**: Vertical bar chart
 * **Date/Time**: Last 30 days
-* **Select a metric**: Request Count
-* **Group by**: API Product
-* **Then by**: Application
+* **Show**: Vertical Bar
+* **With**: Request Count
+* **By**: API Product
+* **And**: Application
 
 
 ![API Usage by Application (last 30 days)](/assets/images/products/konnect/analytics/custom-reports/api-usage-by-application.png){:.image-border}
@@ -116,7 +114,7 @@ This report can be used to highlight which applications users prefer and where t
 
 Some example scenarios where this type of report would be useful are: 
 
-* Security: If you find that a particular application is generating more traffic than expected, you can assess its security to ensure that it wont be a potential risk for the organization. 
+* Security: If you find that a particular application is generating more traffic than expected, you can assess its security to ensure that it won't be a potential risk for the organization. 
 * Monetization: If you have a monetization strategy, knowing which applications are actually consuming the data can help you allocate resources to make financial decisions. 
 * Innovation: You can identify API usage patterns and trends using these reports, which can help you allocate resources and make development decisions. 
 
@@ -128,17 +126,16 @@ Your company determines that it is critical that payments are processed quickly 
 
 * **Name**: Payment API - Latency (last 30 days)
 * **Date/Time**: Last 30 days
-* **Chart type**: Line chart
-* **Select a metric**: Response Latency (p99)
-* **Group by**: API Product
-* **Choose granularity**: Daily
-* **Entity Selection**: Payment 
+* **Show**: Line
+* **With**: Response Latency (p99)
+* **Per**: Day
+* **By**: API Product 
 
 Add a filter for the Payment API. Click **Add Filter**, then set the following options:
  
-* **Filter by**: API Product
-* **Operator**: In
-* **Filter value**: Payment
+* **Filter By**: API Product
+* **Choose Operator**: In
+* **Filter Value**: Payment
 
 ![Payment API - Latency (last 30 days)](/assets/images/products/konnect/analytics/custom-reports/latency-payments-api-30.png){:.image-border}
 > _**Figure 5:** Line chart showing the latency for the Payments API over the last 30 days._
@@ -164,7 +161,6 @@ plug into any of your external dashboards or visualization services.
 
     Open one of the reports you created, then from the **Reports Actions** drop-down, select **Export Report as CSV**.
 
-
 ## Conclusion 
 
 Now that you've created these reports and gleaned some insights from the data, you can be more informed when you talk to your stakeholders.
@@ -175,9 +171,10 @@ You learned that:
 * You can use information from reports to dig deeper into any anomalies, performance, or stability issues to determine what is causing the problem
 * After you create a report, you can export and share the reports with stakeholders to let them draw conclusions based on further analysis
 
-If you want to continue learning about ways to use {{site.konnect_short_name}} to analyze data, read the next use case [Diagnosing latency issues](/konnect/analytics/use-cases/latency/).
+If you want to continue learning about ways to use {{site.konnect_short_name}} to analyze data, read [Diagnosing latency issues](/konnect/analytics/use-cases/latency/).
 
 ## More information
-* [Reports reference for metrics, filtering and grouping, and time intervals](/konnect/analytics/reference/)
+
+* [Explorer](/konnect/analytics/explorer/)
 * [Teams reference](/konnect/org-management/teams-and-roles/teams-reference)
 * [Troubleshoot reports](/konnect/analytics/troubleshoot/)

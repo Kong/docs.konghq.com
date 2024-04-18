@@ -73,6 +73,14 @@ components:
         type: string
         example: my-username
       description: The unique identifier or the username of the Consumer to retrieve.
+    filter_chain_name_or_id:
+      name: filter_chain_name_or_id
+      in: path
+      required: true
+      schema:
+        type: string
+        example: my-filter-chain
+      description: The unique identifier or name of the Filter Chain to create or update.
     plugin_id:
       name: plugin_id
       in: path
@@ -277,6 +285,77 @@ components:
           type: string
       type: object
       title: Consumer
+    Filter-chain:
+      description: A Filter Chain entity represents a list of one or more WebAssembly filters that will be executed during the HTTP request/response lifecycle.
+      example:
+        id: "ce44eef5-41ed-47f6-baab-f725cecf98c7"
+        name: "my-filter-chain"
+        created_at: 1422386534
+        updated_at: 1422386534
+        enabled: true
+        route: null
+        service: "20487393-41ed-47f6-93a8-3407cade2002"
+        filters:
+          - name: "go-rate-limiting"
+            enabled: true
+            config: '{ "minute": 30 }'
+          - name: "rust-response-transformer"
+            enabled: true
+            config: '{ "remove_header": "X-Example" }'
+        tags: ["my-tag"]
+      properties:
+        created_at:
+          description: Unix epoch when the resource was created.
+          type: integer
+        enabled:
+          description: Whether the filter chain is applied.
+          type: boolean
+        filters:
+          description: "An array of filter definitions that will be executed in order."
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                description: "The name of the filter. This name matches the basename of the WebAssembly module file: for a filter file called `my-filter.wasm`, then filter name will be `my-filter`."
+                type: string
+              config:
+                description: "The configuration for the filter. Proxy-Wasm does not define a configuration format, so this field accepts either a raw string, or a JSON object. A raw string is passed uninterpreted to the filter, to be validated at request time. If a JSON object is used, there must be a metadata file called `my-filter.meta.json` in the same folder as your `my-filter.wasm` file. The metadata file must contain an object with a field `\"config_schema\"`, and its value must the JSON Schema for the filter configuration. This schema will be used for validating the configuration upon insertion in the filter chain, ahead of execution."
+                oneOf:
+                  - type: string
+                  - type: object
+              enabled:
+                description: Whether the filter is to be applied.
+                type: boolean
+        id:
+          type: string
+        name:
+          description: The name of the filter chain.
+          type: string
+        route:
+          additionalProperties: false
+          description: "The route to which this chain is applied. A filter chain must be applied to either a single route or a single service."
+          properties:
+            id:
+              type: string
+          type: object
+        service:
+          additionalProperties: false
+          description: "The service to which this chain is applied. A filter chain must be applied to either a single route or a single service."
+          properties:
+            id:
+              type: string
+          type: object
+        tags:
+          description: An optional set of strings associated with the Filter Chain for grouping and filtering.
+          items:
+            type: string
+          type: array
+        updated_at:
+          description: Unix epoch when the resource was last updated.
+          type: integer
+      type: object
+      title: Filter Chain
     Key:
       description: A Key object holds a representation of asymmetric keys in various formats. When Kong or a Kong plugin requires a specific public or private key to perform certain operations, it can use this entity.
       example:
@@ -357,7 +436,7 @@ components:
           example: '"example-key-set"'
         tags:
           type: array
-          description: n optional set of strings associated with the Key for grouping and filtering
+          description: An optional set of strings associated with the Key for grouping and filtering
           items:
             type: string
             example: '["google-keys", "mozilla-keys"]'
@@ -397,12 +476,6 @@ components:
         consumer:
           additionalProperties: false
           description: If set, the plugin will activate only for requests where the specified has been authenticated. (Note that some plugins can not be restricted to consumers this way.). Leave unset for the plugin to activate regardless of the authenticated Consumer.
-          properties:
-            id:
-              type: string
-          type: object
-        consumer_group:
-          additionalProperties: false
           properties:
             id:
               type: string
@@ -462,7 +535,7 @@ components:
       example:
         hosts:
           - foo.example.com
-          - foo.example.us
+          - bar.example.com
         id: 56c4566c-14cc-4132-9011-4139fcbbe50a
         name: example-route
         paths:
@@ -1257,6 +1330,88 @@ components:
               - username
               - custom_id
       description: Consumer request body
+    filter-chain-request:
+      content:
+        application/json:
+          schema:
+            type: object
+            x-examples:
+              Example 1:
+                id: "ce44eef5-41ed-47f6-baab-f725cecf98c7"
+                name: "my-filter-chain"
+                enabled: true
+                route: null
+                service: "20487393-41ed-47f6-93a8-3407cade2002"
+                filters:
+                  - name: "go-rate-limiting"
+                    enabled: true
+                    config: '{ "minute": 30 }'
+                  - name: "rust-response-transformer"
+                    enabled: true
+                    config: '{ "remove_header": "X-Example" }'
+                tags: ["my-tag"]
+            properties:
+              enabled:
+                description: Whether the filter chain is applied.
+                type: boolean
+                example: true
+              filters:
+                description: "An array of filter definitions that will be executed in order."
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      description: "The name of the filter. This name matches the basename of the WebAssembly module file: for a filter file called `my-filter.wasm`, then filter name will be `my-filter`."
+                      type: string
+                    config:
+                      description: "The configuration for the filter. Proxy-Wasm does not define a configuration format, so this field is a raw string, intended to contain the configuration in the format expected by the particular filter in use."
+                      type: string
+                    enabled:
+                      description: Whether the filter is to be applied.
+                      type: boolean
+              id:
+                type: string
+              name:
+                description: The name of the filter chain.
+                type: string
+                example: "my-filter-chain"
+              route:
+                additionalProperties: false
+                description: "The route to which this chain is applied. A filter chain must be applied to either a single route or a single service."
+                properties:
+                  id:
+                    type: string
+                type: object
+              service:
+                additionalProperties: false
+                description: "The service to which this chain is applied. A filter chain must be applied to either a single route or a single service."
+                properties:
+                  id:
+                    type: string
+                type: object
+              tags:
+                description: An optional set of strings associated with the Filter Chain for grouping and filtering.
+                items:
+                  type: string
+                type: array
+          examples:
+            request example:
+              value:
+                id: "ce44eef5-41ed-47f6-baab-f725cecf98c7"
+                name: "my-filter-chain"
+                enabled: true
+                route: null
+                service: "20487393-41ed-47f6-93a8-3407cade2002"
+                filters:
+                  - name: "go-rate-limiting"
+                    enabled: true
+                    config: '{ "minute": 30 }'
+                  - name: "rust-response-transformer"
+                    enabled: true
+                    config: '{ "remove_header": "X-Example" }'
+                tags: ["my-tag"]
+      description: Filter Chain request body
     plugin-request:
       content:
         application/json:
@@ -2471,24 +2626,6 @@ components:
                   - '/acme/certificates/{certificates}'
                   - /acme_storage
                   - '/acme_storage/{acme_storage}'
-                  - /admins
-                  - /admins/password_resets
-                  - /admins/register
-                  - /admins/self/password
-                  - /admins/self/token
-                  - '/admins/{admins}'
-                  - '/admins/{admins}/consumer'
-                  - '/admins/{admins}/rbac_user'
-                  - '/admins/{admin}/roles'
-                  - '/admins/{admin}/workspaces'
-                  - /applications
-                  - '/applications/{applications}'
-                  - '/applications/{applications}/application_instances'
-                  - '/applications/{applications}/application_instances/{application_instances}'
-                  - '/applications/{applications}/consumer'
-                  - '/applications/{applications}/credentials/{plugin}'
-                  - '/applications/{applications}/credentials/{plugin}/{credential_id}'
-                  - '/applications/{applications}/developer'
                   - /auth
                   - /basic-auths
                   - '/basic-auths/{basicauth_credentials}'
@@ -2510,13 +2647,6 @@ components:
                   - /clustering/data-planes
                   - /clustering/status
                   - /config
-                  - /consumer_groups
-                  - '/consumer_groups/{consumer_groups}'
-                  - '/consumer_groups/{consumer_groups}/consumers'
-                  - '/consumer_groups/{consumer_groups}/consumers/{consumers}'
-                  - '/consumer_groups/{consumer_groups}/overrides/plugins/rate-limiting-advanced'
-                  - '/consumer_groups/{consumer_groups}/plugins'
-                  - '/consumer_groups/{consumer_groups}/plugins/{plugins}'
                   - /consumers
                   - '/consumers/{consumers}'
                   - '/consumers/{consumers}/acls'
@@ -2527,8 +2657,6 @@ components:
                   - '/consumers/{consumers}/applications/{applications}'
                   - '/consumers/{consumers}/basic-auth'
                   - '/consumers/{consumers}/basic-auth/{basicauth_credentials}'
-                  - '/consumers/{consumers}/consumer_groups'
-                  - '/consumers/{consumers}/consumer_groups/{consumer_groups}'
                   - '/consumers/{consumers}/developers'
                   - '/consumers/{consumers}/developers/{developers}'
                   - '/consumers/{consumers}/hmac-auth'
@@ -2558,27 +2686,6 @@ components:
                   - /degraphql_routes
                   - '/degraphql_routes/{degraphql_routes}'
                   - '/degraphql_routes/{degraphql_routes}/service'
-                  - /developers
-                  - /developers/export
-                  - /developers/invite
-                  - /developers/roles
-                  - '/developers/roles/{rbac_roles}'
-                  - '/developers/{developers}'
-                  - '/developers/{developers}/applications'
-                  - '/developers/{developers}/applications/{applications}'
-                  - '/developers/{developers}/applications/{applications}/application_instances'
-                  - '/developers/{developers}/applications/{applications}/application_instances/{application_instances}'
-                  - '/developers/{developers}/applications/{applications}/credentials/{plugin}'
-                  - '/developers/{developers}/applications/{applications}/credentials/{plugin}/{credential_id}'
-                  - '/developers/{developers}/consumer'
-                  - '/developers/{developers}/credentials/{plugin}'
-                  - '/developers/{developers}/credentials/{plugin}/{credential_id}'
-                  - '/developers/{developers}/rbac_user'
-                  - '/developers/{email_or_id}/plugins/'
-                  - '/developers/{email_or_id}/plugins/{id}'
-                  - /document_objects
-                  - '/document_objects/{document_objects}'
-                  - '/document_objects/{document_objects}/service'
                   - /endpoints
                   - /entities/migrate
                   - /event-hooks
@@ -2626,16 +2733,6 @@ components:
                   - '/key-sets/{key_sets}'
                   - '/key-sets/{key_sets}/keys'
                   - '/key-sets/{key_sets}/keys/{keys}'
-                  - /keyring
-                  - /keyring/activate
-                  - /keyring/active
-                  - /keyring/export
-                  - /keyring/generate
-                  - /keyring/import
-                  - /keyring/import/raw
-                  - /keyring/recover
-                  - /keyring/remove
-                  - /keyring/vault/sync
                   - /keys
                   - '/keys/{keys}'
                   - '/keys/{keys}/set'
@@ -2671,7 +2768,6 @@ components:
                   - '/plugins/schema/{name}'
                   - '/plugins/{plugins}'
                   - '/plugins/{plugins}/consumer'
-                  - '/plugins/{plugins}/consumer_group'
                   - '/plugins/{plugins}/route'
                   - '/plugins/{plugins}/service'
                   - /proxy-cache
@@ -2680,23 +2776,6 @@ components:
                   - /proxy-cache-advanced
                   - '/proxy-cache-advanced/{cache_key}'
                   - '/proxy-cache-advanced/{plugin_id}/caches/{cache_key}'
-                  - /rbac/roles
-                  - '/rbac/roles/{rbac_roles}'
-                  - '/rbac/roles/{rbac_roles}/endpoints'
-                  - '/rbac/roles/{rbac_roles}/endpoints/permissions'
-                  - '/rbac/roles/{rbac_roles}/endpoints/{workspace}/*'
-                  - '/rbac/roles/{rbac_roles}/entities'
-                  - '/rbac/roles/{rbac_roles}/entities/permissions'
-                  - '/rbac/roles/{rbac_roles}/entities/{entity_id}'
-                  - '/rbac/roles/{rbac_roles}/permissions'
-                  - /rbac/users
-                  - '/rbac/users/{rbac_users}'
-                  - '/rbac/users/{rbac_users}/admins'
-                  - '/rbac/users/{rbac_users}/admins/{admins}'
-                  - '/rbac/users/{rbac_users}/developers'
-                  - '/rbac/users/{rbac_users}/developers/{developers}'
-                  - '/rbac/users/{rbac_users}/permissions'
-                  - '/rbac/users/{rbac_users}/roles'
                   - /routes
                   - '/routes/{routes}'
                   - '/routes/{routes}/filter-chains'
@@ -2707,6 +2786,7 @@ components:
                   - '/routes/{routes}/plugins'
                   - '/routes/{routes}/plugins/{plugins}'
                   - '/routes/{routes}/service'
+                  - '/schemas/filters/{name}'
                   - /schemas/plugins/validate
                   - '/schemas/plugins/{name}'
                   - '/schemas/{db_entity_name}/validate'
@@ -2721,8 +2801,6 @@ components:
                   - '/services/{services}/degraphql/routes/{degraphql_routes}'
                   - '/services/{services}/degraphql_routes'
                   - '/services/{services}/degraphql_routes/{degraphql_routes}'
-                  - '/services/{services}/document_objects'
-                  - '/services/{services}/document_objects/{document_objects}'
                   - '/services/{services}/filter-chains'
                   - '/services/{services}/filter-chains/{filter_chains}'
                   - '/services/{services}/graphql-rate-limiting-advanced/costs'
@@ -2777,327 +2855,6 @@ components:
                   - /vitals/status_codes/by_consumer_and_route
                   - /vitals/status_codes/by_route
                   - /vitals/status_codes/by_service
-                  - /workspaces
-                  - '/workspaces/{workspaces}'
-                  - '/workspaces/{workspaces}/meta'
-                  - '/{workspace_name}/kong'
-                  - workspace_/acls
-                  - 'workspace_/acls/{acls}'
-                  - 'workspace_/acls/{acls}/consumer'
-                  - workspace_/acme
-                  - workspace_/acme/certificates
-                  - 'workspace_/acme/certificates/{certificates}'
-                  - workspace_/acme_storage
-                  - 'workspace_/acme_storage/{acme_storage}'
-                  - workspace_/admins
-                  - workspace_/admins/password_resets
-                  - workspace_/admins/register
-                  - workspace_/admins/self/password
-                  - workspace_/admins/self/token
-                  - 'workspace_/admins/{admins}'
-                  - 'workspace_/admins/{admins}/consumer'
-                  - 'workspace_/admins/{admins}/rbac_user'
-                  - 'workspace_/admins/{admin}/roles'
-                  - 'workspace_/admins/{admin}/workspaces'
-                  - workspace_/applications
-                  - 'workspace_/applications/{applications}'
-                  - 'workspace_/applications/{applications}/application_instances'
-                  - 'workspace_/applications/{applications}/application_instances/{application_instances}'
-                  - 'workspace_/applications/{applications}/consumer'
-                  - 'workspace_/applications/{applications}/credentials/{plugin}'
-                  - 'workspace_/applications/{applications}/credentials/{plugin}/{credential_id}'
-                  - 'workspace_/applications/{applications}/developer'
-                  - workspace_/auth
-                  - workspace_/basic-auths
-                  - 'workspace_/basic-auths/{basicauth_credentials}'
-                  - 'workspace_/basic-auths/{basicauth_credentials}/consumer'
-                  - workspace_/ca_certificates
-                  - 'workspace_/ca_certificates/{ca_certificates}'
-                  - 'workspace_/ca_certificates/{ca_certificates}/mtls_auth_credentials'
-                  - 'workspace_/ca_certificates/{ca_certificates}/mtls_auth_credentials/{mtls_auth_credentials}'
-                  - workspace_/cache
-                  - 'workspace_/cache/{key}'
-                  - workspace_/certificates
-                  - 'workspace_/certificates/{certificates}'
-                  - 'workspace_/certificates/{certificates}/services'
-                  - 'workspace_/certificates/{certificates}/services/{services}'
-                  - 'workspace_/certificates/{certificates}/snis'
-                  - 'workspace_/certificates/{certificates}/snis/{snis}'
-                  - 'workspace_/certificates/{certificates}/upstreams'
-                  - 'workspace_/certificates/{certificates}/upstreams/{upstreams}'
-                  - workspace_/clustering/data-planes
-                  - workspace_/clustering/status
-                  - workspace_/config
-                  - workspace_/consumer_groups
-                  - 'workspace_/consumer_groups/{consumer_groups}'
-                  - 'workspace_/consumer_groups/{consumer_groups}/consumers'
-                  - 'workspace_/consumer_groups/{consumer_groups}/consumers/{consumers}'
-                  - 'workspace_/consumer_groups/{consumer_groups}/overrides/plugins/rate-limiting-advanced'
-                  - 'workspace_/consumer_groups/{consumer_groups}/plugins'
-                  - 'workspace_/consumer_groups/{consumer_groups}/plugins/{plugins}'
-                  - workspace_/consumers
-                  - 'workspace_/consumers/{consumers}'
-                  - 'workspace_/consumers/{consumers}/acls'
-                  - 'workspace_/consumers/{consumers}/acls/{acls}'
-                  - 'workspace_/consumers/{consumers}/admins'
-                  - 'workspace_/consumers/{consumers}/admins/{admins}'
-                  - 'workspace_/consumers/{consumers}/applications'
-                  - 'workspace_/consumers/{consumers}/applications/{applications}'
-                  - 'workspace_/consumers/{consumers}/basic-auth'
-                  - 'workspace_/consumers/{consumers}/basic-auth/{basicauth_credentials}'
-                  - 'workspace_/consumers/{consumers}/consumer_groups'
-                  - 'workspace_/consumers/{consumers}/consumer_groups/{consumer_groups}'
-                  - 'workspace_/consumers/{consumers}/developers'
-                  - 'workspace_/consumers/{consumers}/developers/{developers}'
-                  - 'workspace_/consumers/{consumers}/hmac-auth'
-                  - 'workspace_/consumers/{consumers}/hmac-auth/{hmacauth_credentials}'
-                  - 'workspace_/consumers/{consumers}/jwt'
-                  - 'workspace_/consumers/{consumers}/jwt/{jwt_secrets}'
-                  - 'workspace_/consumers/{consumers}/key-auth'
-                  - 'workspace_/consumers/{consumers}/key-auth/{keyauth_credentials}'
-                  - 'workspace_/consumers/{consumers}/key-auth-enc'
-                  - 'workspace_/consumers/{consumers}/key-auth-enc/{keyauth_enc_credentials}'
-                  - 'workspace_/consumers/{consumers}/login_attempts'
-                  - 'workspace_/consumers/{consumers}/login_attempts/{login_attempts}'
-                  - 'workspace_/consumers/{consumers}/mtls-auth'
-                  - 'workspace_/consumers/{consumers}/mtls-auth/{mtls_auth_credentials}'
-                  - 'workspace_/consumers/{consumers}/mtls_auth_credentials'
-                  - 'workspace_/consumers/{consumers}/mtls_auth_credentials/{mtls_auth_credentials}'
-                  - 'workspace_/consumers/{consumers}/oauth2'
-                  - 'workspace_/consumers/{consumers}/oauth2/{oauth2_credentials}'
-                  - 'workspace_/consumers/{consumers}/plugins'
-                  - 'workspace_/consumers/{consumers}/plugins/{plugins}'
-                  - 'workspace_/debug/cluster/log-level/{log_level}'
-                  - workspace_/debug/node/log-level
-                  - 'workspace_/debug/node/log-level/{log_level}'
-                  - workspace_/debug/profiling/cpu
-                  - workspace_/debug/profiling/gc-snapshot
-                  - workspace_/debug/profiling/memory
-                  - workspace_/degraphql_routes
-                  - 'workspace_/degraphql_routes/{degraphql_routes}'
-                  - 'workspace_/degraphql_routes/{degraphql_routes}/service'
-                  - workspace_/developers
-                  - workspace_/developers/export
-                  - workspace_/developers/invite
-                  - workspace_/developers/roles
-                  - 'workspace_/developers/roles/{rbac_roles}'
-                  - 'workspace_/developers/{developers}'
-                  - 'workspace_/developers/{developers}/applications'
-                  - 'workspace_/developers/{developers}/applications/{applications}'
-                  - 'workspace_/developers/{developers}/applications/{applications}/application_instances'
-                  - 'workspace_/developers/{developers}/applications/{applications}/application_instances/{application_instances}'
-                  - 'workspace_/developers/{developers}/applications/{applications}/credentials/{plugin}'
-                  - 'workspace_/developers/{developers}/applications/{applications}/credentials/{plugin}/{credential_id}'
-                  - 'workspace_/developers/{developers}/consumer'
-                  - 'workspace_/developers/{developers}/credentials/{plugin}'
-                  - 'workspace_/developers/{developers}/credentials/{plugin}/{credential_id}'
-                  - 'workspace_/developers/{developers}/rbac_user'
-                  - 'workspace_/developers/{email_or_id}/plugins/'
-                  - 'workspace_/developers/{email_or_id}/plugins/{id}'
-                  - workspace_/document_objects
-                  - 'workspace_/document_objects/{document_objects}'
-                  - 'workspace_/document_objects/{document_objects}/service'
-                  - workspace_/endpoints
-                  - workspace_/entities/migrate
-                  - workspace_/event-hooks
-                  - workspace_/event-hooks/sources
-                  - 'workspace_/event-hooks/sources/{source}'
-                  - 'workspace_/event-hooks/sources/{source}/{event}'
-                  - 'workspace_/event-hooks/{event_hooks}'
-                  - 'workspace_/event-hooks/{event_hooks}/ping'
-                  - 'workspace_/event-hooks/{event_hooks}/test'
-                  - workspace_/files
-                  - workspace_/files/*
-                  - workspace_/files/partials/*
-                  - 'workspace_/files/{files}'
-                  - workspace_/filter-chains
-                  - 'workspace_/filter-chains/{filter_chains}'
-                  - 'workspace_/filter-chains/{filter_chains}/route'
-                  - 'workspace_/filter-chains/{filter_chains}/service'
-                  - workspace_/graphql-proxy-cache-advanced
-                  - 'workspace_/graphql-proxy-cache-advanced/{cache_key}'
-                  - 'workspace_/graphql-proxy-cache-advanced/{plugin_id}/caches/{cache_key}'
-                  - workspace_/graphql-rate-limiting-advanced/costs
-                  - 'workspace_/graphql-rate-limiting-advanced/costs/{graphql_ratelimiting_advanced_cost_decoration}'
-                  - workspace_/graphql_ratelimiting_advanced_cost_decoration
-                  - 'workspace_/graphql_ratelimiting_advanced_cost_decoration/{graphql_ratelimiting_advanced_cost_decoration}'
-                  - 'workspace_/graphql_ratelimiting_advanced_cost_decoration/{graphql_ratelimiting_advanced_cost_decoration}/service'
-                  - workspace_/groups
-                  - 'workspace_/groups/{groups}'
-                  - 'workspace_/groups/{groups}/roles'
-                  - workspace_/hmac-auths
-                  - 'workspace_/hmac-auths/{hmacauth_credentials}'
-                  - 'workspace_/hmac-auths/{hmacauth_credentials}/consumer'
-                  - workspace_/jwt-signer/jwks
-                  - 'workspace_/jwt-signer/jwks/{jwt_signer_jwks}'
-                  - 'workspace_/jwt-signer/jwks/{jwt_signer_jwks}/rotate'
-                  - workspace_/jwts
-                  - 'workspace_/jwts/{jwt_secrets}'
-                  - 'workspace_/jwts/{jwt_secrets}/consumer'
-                  - workspace_/key-auths
-                  - 'workspace_/key-auths/{keyauth_credentials}'
-                  - 'workspace_/key-auths/{keyauth_credentials}/consumer'
-                  - workspace_/key-auths-enc
-                  - 'workspace_/key-auths-enc/{keyauth_enc_credentials}'
-                  - 'workspace_/key-auths-enc/{keyauth_enc_credentials}/consumer'
-                  - workspace_/key-sets
-                  - 'workspace_/key-sets/{key_sets}'
-                  - 'workspace_/key-sets/{key_sets}/keys'
-                  - 'workspace_/key-sets/{key_sets}/keys/{keys}'
-                  - workspace_/keyring
-                  - workspace_/keyring/activate
-                  - workspace_/keyring/active
-                  - workspace_/keyring/export
-                  - workspace_/keyring/generate
-                  - workspace_/keyring/import
-                  - workspace_/keyring/import/raw
-                  - workspace_/keyring/recover
-                  - workspace_/keyring/remove
-                  - workspace_/keyring/vault/sync
-                  - workspace_/keys
-                  - 'workspace_/keys/{keys}'
-                  - 'workspace_/keys/{keys}/set'
-                  - workspace_/konnect_applications
-                  - 'workspace_/konnect_applications/{konnect_applications}'
-                  - workspace_/license/report
-                  - workspace_/licenses
-                  - 'workspace_/licenses/{licenses}'
-                  - workspace_/login_attempts
-                  - 'workspace_/login_attempts/{login_attempts}'
-                  - 'workspace_/login_attempts/{login_attempts}/consumer'
-                  - workspace_/metrics
-                  - workspace_/mtls-auths
-                  - 'workspace_/mtls-auths/{mtls_auth_credentials}/consumer'
-                  - workspace_/mtls_auth_credentials
-                  - 'workspace_/mtls_auth_credentials/{mtls_auth_credentials}'
-                  - 'workspace_/mtls_auth_credentials/{mtls_auth_credentials}/ca_certificate'
-                  - 'workspace_/mtls_auth_credentials/{mtls_auth_credentials}/consumer'
-                  - workspace_/oauth2
-                  - 'workspace_/oauth2/{oauth2_credentials}'
-                  - 'workspace_/oauth2/{oauth2_credentials}/consumer'
-                  - 'workspace_/oauth2/{oauth2_credentials}/oauth2_tokens'
-                  - 'workspace_/oauth2/{oauth2_credentials}/oauth2_tokens/{oauth2_tokens}'
-                  - workspace_/oauth2_tokens
-                  - 'workspace_/oauth2_tokens/{oauth2_tokens}'
-                  - 'workspace_/oauth2_tokens/{oauth2_tokens}/credential'
-                  - 'workspace_/oauth2_tokens/{oauth2_tokens}/service'
-                  - workspace_/openid-connect/issuers
-                  - 'workspace_/openid-connect/issuers/{oic_issuers}'
-                  - workspace_/openid-connect/jwks
-                  - workspace_/plugins
-                  - workspace_/plugins/enabled
-                  - 'workspace_/plugins/schema/{name}'
-                  - 'workspace_/plugins/{plugins}'
-                  - 'workspace_/plugins/{plugins}/consumer'
-                  - 'workspace_/plugins/{plugins}/consumer_group'
-                  - 'workspace_/plugins/{plugins}/route'
-                  - 'workspace_/plugins/{plugins}/service'
-                  - workspace_/proxy-cache
-                  - 'workspace_/proxy-cache/{cache_key}'
-                  - 'workspace_/proxy-cache/{plugin_id}/caches/{cache_key}'
-                  - workspace_/proxy-cache-advanced
-                  - 'workspace_/proxy-cache-advanced/{cache_key}'
-                  - 'workspace_/proxy-cache-advanced/{plugin_id}/caches/{cache_key}'
-                  - workspace_/rbac/roles
-                  - 'workspace_/rbac/roles/{rbac_roles}'
-                  - 'workspace_/rbac/roles/{rbac_roles}/endpoints'
-                  - 'workspace_/rbac/roles/{rbac_roles}/endpoints/permissions'
-                  - 'workspace_/rbac/roles/{rbac_roles}/endpoints/{workspace}/*'
-                  - 'workspace_/rbac/roles/{rbac_roles}/entities'
-                  - 'workspace_/rbac/roles/{rbac_roles}/entities/permissions'
-                  - 'workspace_/rbac/roles/{rbac_roles}/entities/{entity_id}'
-                  - 'workspace_/rbac/roles/{rbac_roles}/permissions'
-                  - workspace_/rbac/users
-                  - 'workspace_/rbac/users/{rbac_users}'
-                  - 'workspace_/rbac/users/{rbac_users}/admins'
-                  - 'workspace_/rbac/users/{rbac_users}/admins/{admins}'
-                  - 'workspace_/rbac/users/{rbac_users}/developers'
-                  - 'workspace_/rbac/users/{rbac_users}/developers/{developers}'
-                  - 'workspace_/rbac/users/{rbac_users}/permissions'
-                  - 'workspace_/rbac/users/{rbac_users}/roles'
-                  - workspace_/routes
-                  - 'workspace_/routes/{routes}'
-                  - 'workspace_/routes/{routes}/filter-chains'
-                  - 'workspace_/routes/{routes}/filter-chains/{filter_chains}'
-                  - 'workspace_/routes/{routes}/filters/all'
-                  - 'workspace_/routes/{routes}/filters/disabled'
-                  - 'workspace_/routes/{routes}/filters/enabled'
-                  - 'workspace_/routes/{routes}/plugins'
-                  - 'workspace_/routes/{routes}/plugins/{plugins}'
-                  - 'workspace_/routes/{routes}/service'
-                  - workspace_/schemas/plugins/validate
-                  - 'workspace_/schemas/plugins/{name}'
-                  - 'workspace_/schemas/{db_entity_name}/validate'
-                  - 'workspace_/schemas/{name}'
-                  - workspace_/services
-                  - 'workspace_/services/{services}'
-                  - 'workspace_/services/{services}/application_instances'
-                  - 'workspace_/services/{services}/application_instances/{application_instances}'
-                  - 'workspace_/services/{services}/applications'
-                  - 'workspace_/services/{services}/client_certificate'
-                  - 'workspace_/services/{services}/degraphql/routes'
-                  - 'workspace_/services/{services}/degraphql/routes/{degraphql_routes}'
-                  - 'workspace_/services/{services}/degraphql_routes'
-                  - 'workspace_/services/{services}/degraphql_routes/{degraphql_routes}'
-                  - 'workspace_/services/{services}/document_objects'
-                  - 'workspace_/services/{services}/document_objects/{document_objects}'
-                  - 'workspace_/services/{services}/filter-chains'
-                  - 'workspace_/services/{services}/filter-chains/{filter_chains}'
-                  - 'workspace_/services/{services}/graphql-rate-limiting-advanced/costs'
-                  - 'workspace_/services/{services}/graphql_ratelimiting_advanced_cost_decoration'
-                  - 'workspace_/services/{services}/graphql_ratelimiting_advanced_cost_decoration/{graphql_ratelimiting_advanced_cost_decoration}'
-                  - 'workspace_/services/{services}/oauth2_tokens'
-                  - 'workspace_/services/{services}/oauth2_tokens/{oauth2_tokens}'
-                  - 'workspace_/services/{services}/plugins'
-                  - 'workspace_/services/{services}/plugins/{plugins}'
-                  - 'workspace_/services/{services}/routes'
-                  - 'workspace_/services/{services}/routes/{routes}'
-                  - workspace_/sessions
-                  - 'workspace_/sessions/{sessions}'
-                  - workspace_/snis
-                  - 'workspace_/snis/{snis}'
-                  - 'workspace_/snis/{snis}/certificate'
-                  - workspace_/status
-                  - workspace_/tags
-                  - 'workspace_/tags/{tags}'
-                  - workspace_/targets
-                  - 'workspace_/targets/{targets}'
-                  - 'workspace_/targets/{targets}/upstream'
-                  - workspace_/timers
-                  - workspace_/upstreams
-                  - 'workspace_/upstreams/{upstreams}'
-                  - 'workspace_/upstreams/{upstreams}/client_certificate'
-                  - 'workspace_/upstreams/{upstreams}/health'
-                  - 'workspace_/upstreams/{upstreams}/targets'
-                  - 'workspace_/upstreams/{upstreams}/targets/all'
-                  - 'workspace_/upstreams/{upstreams}/targets/{targets}'
-                  - 'workspace_/upstreams/{upstreams}/targets/{targets}/healthy'
-                  - 'workspace_/upstreams/{upstreams}/targets/{targets}/unhealthy'
-                  - 'workspace_/upstreams/{upstreams}/targets/{targets}/{address}/healthy'
-                  - 'workspace_/upstreams/{upstreams}/targets/{targets}/{address}/unhealthy'
-                  - workspace_/userinfo
-                  - workspace_/vault-auth
-                  - 'workspace_/vault-auth/{vault_auth_vaults}'
-                  - 'workspace_/vault-auth/{vault}/credentials'
-                  - 'workspace_/vault-auth/{vault}/credentials/token/{access_token}'
-                  - 'workspace_/vault-auth/{vault}/credentials/{consumer}'
-                  - workspace_/vaults
-                  - 'workspace_/vaults/{vaults}'
-                  - workspace_/vitals/
-                  - workspace_/vitals/cluster
-                  - workspace_/vitals/cluster/status_codes
-                  - 'workspace_/vitals/consumers/{consumer_id}/cluster'
-                  - workspace_/vitals/nodes/
-                  - 'workspace_/vitals/nodes/{node_id}'
-                  - 'workspace_/vitals/reports/{entity_type}'
-                  - workspace_/vitals/status_code_classes
-                  - workspace_/vitals/status_codes/by_consumer
-                  - workspace_/vitals/status_codes/by_consumer_and_route
-                  - workspace_/vitals/status_codes/by_route
-                  - workspace_/vitals/status_codes/by_service
-                  - workspace_/workspaces
-                  - 'workspace_/workspaces/{workspaces}'
-                  - 'workspace_/workspaces/{workspaces}/meta'
           examples:
             Get all endpoints:
               value:
@@ -3111,16 +2868,6 @@ components:
                   - '/acme/certificates/{certificates}'
                   - /acme_storage
                   - '/acme_storage/{acme_storage}'
-                  - /admins
-                  - /admins/password_resets
-                  - /admins/register
-                  - /admins/self/password
-                  - /admins/self/token
-                  - '/admins/{admins}'
-                  - '/admins/{admins}/consumer'
-                  - '/admins/{admins}/rbac_user'
-                  - '/admins/{admin}/roles'
-                  - '/admins/{admin}/workspaces'
                   - /applications
                   - '/applications/{applications}'
                   - '/applications/{applications}/application_instances'
@@ -3150,13 +2897,6 @@ components:
                   - /clustering/data-planes
                   - /clustering/status
                   - /config
-                  - /consumer_groups
-                  - '/consumer_groups/{consumer_groups}'
-                  - '/consumer_groups/{consumer_groups}/consumers'
-                  - '/consumer_groups/{consumer_groups}/consumers/{consumers}'
-                  - '/consumer_groups/{consumer_groups}/overrides/plugins/rate-limiting-advanced'
-                  - '/consumer_groups/{consumer_groups}/plugins'
-                  - '/consumer_groups/{consumer_groups}/plugins/{plugins}'
                   - /consumers
                   - '/consumers/{consumers}'
                   - '/consumers/{consumers}/acls'
@@ -3167,8 +2907,6 @@ components:
                   - '/consumers/{consumers}/applications/{applications}'
                   - '/consumers/{consumers}/basic-auth'
                   - '/consumers/{consumers}/basic-auth/{basicauth_credentials}'
-                  - '/consumers/{consumers}/consumer_groups'
-                  - '/consumers/{consumers}/consumer_groups/{consumer_groups}'
                   - '/consumers/{consumers}/developers'
                   - '/consumers/{consumers}/developers/{developers}'
                   - '/consumers/{consumers}/hmac-auth'
@@ -3198,27 +2936,6 @@ components:
                   - /degraphql_routes
                   - '/degraphql_routes/{degraphql_routes}'
                   - '/degraphql_routes/{degraphql_routes}/service'
-                  - /developers
-                  - /developers/export
-                  - /developers/invite
-                  - /developers/roles
-                  - '/developers/roles/{rbac_roles}'
-                  - '/developers/{developers}'
-                  - '/developers/{developers}/applications'
-                  - '/developers/{developers}/applications/{applications}'
-                  - '/developers/{developers}/applications/{applications}/application_instances'
-                  - '/developers/{developers}/applications/{applications}/application_instances/{application_instances}'
-                  - '/developers/{developers}/applications/{applications}/credentials/{plugin}'
-                  - '/developers/{developers}/applications/{applications}/credentials/{plugin}/{credential_id}'
-                  - '/developers/{developers}/consumer'
-                  - '/developers/{developers}/credentials/{plugin}'
-                  - '/developers/{developers}/credentials/{plugin}/{credential_id}'
-                  - '/developers/{developers}/rbac_user'
-                  - '/developers/{email_or_id}/plugins/'
-                  - '/developers/{email_or_id}/plugins/{id}'
-                  - /document_objects
-                  - '/document_objects/{document_objects}'
-                  - '/document_objects/{document_objects}/service'
                   - /endpoints
                   - /entities/migrate
                   - /event-hooks
@@ -3266,16 +2983,6 @@ components:
                   - '/key-sets/{key_sets}'
                   - '/key-sets/{key_sets}/keys'
                   - '/key-sets/{key_sets}/keys/{keys}'
-                  - /keyring
-                  - /keyring/activate
-                  - /keyring/active
-                  - /keyring/export
-                  - /keyring/generate
-                  - /keyring/import
-                  - /keyring/import/raw
-                  - /keyring/recover
-                  - /keyring/remove
-                  - /keyring/vault/sync
                   - /keys
                   - '/keys/{keys}'
                   - '/keys/{keys}/set'
@@ -3311,7 +3018,6 @@ components:
                   - '/plugins/schema/{name}'
                   - '/plugins/{plugins}'
                   - '/plugins/{plugins}/consumer'
-                  - '/plugins/{plugins}/consumer_group'
                   - '/plugins/{plugins}/route'
                   - '/plugins/{plugins}/service'
                   - /proxy-cache
@@ -3320,23 +3026,6 @@ components:
                   - /proxy-cache-advanced
                   - '/proxy-cache-advanced/{cache_key}'
                   - '/proxy-cache-advanced/{plugin_id}/caches/{cache_key}'
-                  - /rbac/roles
-                  - '/rbac/roles/{rbac_roles}'
-                  - '/rbac/roles/{rbac_roles}/endpoints'
-                  - '/rbac/roles/{rbac_roles}/endpoints/permissions'
-                  - '/rbac/roles/{rbac_roles}/endpoints/{workspace}/*'
-                  - '/rbac/roles/{rbac_roles}/entities'
-                  - '/rbac/roles/{rbac_roles}/entities/permissions'
-                  - '/rbac/roles/{rbac_roles}/entities/{entity_id}'
-                  - '/rbac/roles/{rbac_roles}/permissions'
-                  - /rbac/users
-                  - '/rbac/users/{rbac_users}'
-                  - '/rbac/users/{rbac_users}/admins'
-                  - '/rbac/users/{rbac_users}/admins/{admins}'
-                  - '/rbac/users/{rbac_users}/developers'
-                  - '/rbac/users/{rbac_users}/developers/{developers}'
-                  - '/rbac/users/{rbac_users}/permissions'
-                  - '/rbac/users/{rbac_users}/roles'
                   - /routes
                   - '/routes/{routes}'
                   - '/routes/{routes}/filter-chains'
@@ -3361,8 +3050,6 @@ components:
                   - '/services/{services}/degraphql/routes/{degraphql_routes}'
                   - '/services/{services}/degraphql_routes'
                   - '/services/{services}/degraphql_routes/{degraphql_routes}'
-                  - '/services/{services}/document_objects'
-                  - '/services/{services}/document_objects/{document_objects}'
                   - '/services/{services}/filter-chains'
                   - '/services/{services}/filter-chains/{filter_chains}'
                   - '/services/{services}/graphql-rate-limiting-advanced/costs'
@@ -3417,327 +3104,6 @@ components:
                   - /vitals/status_codes/by_consumer_and_route
                   - /vitals/status_codes/by_route
                   - /vitals/status_codes/by_service
-                  - /workspaces
-                  - '/workspaces/{workspaces}'
-                  - '/workspaces/{workspaces}/meta'
-                  - '/{workspace_name}/kong'
-                  - workspace_/acls
-                  - 'workspace_/acls/{acls}'
-                  - 'workspace_/acls/{acls}/consumer'
-                  - workspace_/acme
-                  - workspace_/acme/certificates
-                  - 'workspace_/acme/certificates/{certificates}'
-                  - workspace_/acme_storage
-                  - 'workspace_/acme_storage/{acme_storage}'
-                  - workspace_/admins
-                  - workspace_/admins/password_resets
-                  - workspace_/admins/register
-                  - workspace_/admins/self/password
-                  - workspace_/admins/self/token
-                  - 'workspace_/admins/{admins}'
-                  - 'workspace_/admins/{admins}/consumer'
-                  - 'workspace_/admins/{admins}/rbac_user'
-                  - 'workspace_/admins/{admin}/roles'
-                  - 'workspace_/admins/{admin}/workspaces'
-                  - workspace_/applications
-                  - 'workspace_/applications/{applications}'
-                  - 'workspace_/applications/{applications}/application_instances'
-                  - 'workspace_/applications/{applications}/application_instances/{application_instances}'
-                  - 'workspace_/applications/{applications}/consumer'
-                  - 'workspace_/applications/{applications}/credentials/{plugin}'
-                  - 'workspace_/applications/{applications}/credentials/{plugin}/{credential_id}'
-                  - 'workspace_/applications/{applications}/developer'
-                  - workspace_/auth
-                  - workspace_/basic-auths
-                  - 'workspace_/basic-auths/{basicauth_credentials}'
-                  - 'workspace_/basic-auths/{basicauth_credentials}/consumer'
-                  - workspace_/ca_certificates
-                  - 'workspace_/ca_certificates/{ca_certificates}'
-                  - 'workspace_/ca_certificates/{ca_certificates}/mtls_auth_credentials'
-                  - 'workspace_/ca_certificates/{ca_certificates}/mtls_auth_credentials/{mtls_auth_credentials}'
-                  - workspace_/cache
-                  - 'workspace_/cache/{key}'
-                  - workspace_/certificates
-                  - 'workspace_/certificates/{certificates}'
-                  - 'workspace_/certificates/{certificates}/services'
-                  - 'workspace_/certificates/{certificates}/services/{services}'
-                  - 'workspace_/certificates/{certificates}/snis'
-                  - 'workspace_/certificates/{certificates}/snis/{snis}'
-                  - 'workspace_/certificates/{certificates}/upstreams'
-                  - 'workspace_/certificates/{certificates}/upstreams/{upstreams}'
-                  - workspace_/clustering/data-planes
-                  - workspace_/clustering/status
-                  - workspace_/config
-                  - workspace_/consumer_groups
-                  - 'workspace_/consumer_groups/{consumer_groups}'
-                  - 'workspace_/consumer_groups/{consumer_groups}/consumers'
-                  - 'workspace_/consumer_groups/{consumer_groups}/consumers/{consumers}'
-                  - 'workspace_/consumer_groups/{consumer_groups}/overrides/plugins/rate-limiting-advanced'
-                  - 'workspace_/consumer_groups/{consumer_groups}/plugins'
-                  - 'workspace_/consumer_groups/{consumer_groups}/plugins/{plugins}'
-                  - workspace_/consumers
-                  - 'workspace_/consumers/{consumers}'
-                  - 'workspace_/consumers/{consumers}/acls'
-                  - 'workspace_/consumers/{consumers}/acls/{acls}'
-                  - 'workspace_/consumers/{consumers}/admins'
-                  - 'workspace_/consumers/{consumers}/admins/{admins}'
-                  - 'workspace_/consumers/{consumers}/applications'
-                  - 'workspace_/consumers/{consumers}/applications/{applications}'
-                  - 'workspace_/consumers/{consumers}/basic-auth'
-                  - 'workspace_/consumers/{consumers}/basic-auth/{basicauth_credentials}'
-                  - 'workspace_/consumers/{consumers}/consumer_groups'
-                  - 'workspace_/consumers/{consumers}/consumer_groups/{consumer_groups}'
-                  - 'workspace_/consumers/{consumers}/developers'
-                  - 'workspace_/consumers/{consumers}/developers/{developers}'
-                  - 'workspace_/consumers/{consumers}/hmac-auth'
-                  - 'workspace_/consumers/{consumers}/hmac-auth/{hmacauth_credentials}'
-                  - 'workspace_/consumers/{consumers}/jwt'
-                  - 'workspace_/consumers/{consumers}/jwt/{jwt_secrets}'
-                  - 'workspace_/consumers/{consumers}/key-auth'
-                  - 'workspace_/consumers/{consumers}/key-auth/{keyauth_credentials}'
-                  - 'workspace_/consumers/{consumers}/key-auth-enc'
-                  - 'workspace_/consumers/{consumers}/key-auth-enc/{keyauth_enc_credentials}'
-                  - 'workspace_/consumers/{consumers}/login_attempts'
-                  - 'workspace_/consumers/{consumers}/login_attempts/{login_attempts}'
-                  - 'workspace_/consumers/{consumers}/mtls-auth'
-                  - 'workspace_/consumers/{consumers}/mtls-auth/{mtls_auth_credentials}'
-                  - 'workspace_/consumers/{consumers}/mtls_auth_credentials'
-                  - 'workspace_/consumers/{consumers}/mtls_auth_credentials/{mtls_auth_credentials}'
-                  - 'workspace_/consumers/{consumers}/oauth2'
-                  - 'workspace_/consumers/{consumers}/oauth2/{oauth2_credentials}'
-                  - 'workspace_/consumers/{consumers}/plugins'
-                  - 'workspace_/consumers/{consumers}/plugins/{plugins}'
-                  - 'workspace_/debug/cluster/log-level/{log_level}'
-                  - workspace_/debug/node/log-level
-                  - 'workspace_/debug/node/log-level/{log_level}'
-                  - workspace_/debug/profiling/cpu
-                  - workspace_/debug/profiling/gc-snapshot
-                  - workspace_/debug/profiling/memory
-                  - workspace_/degraphql_routes
-                  - 'workspace_/degraphql_routes/{degraphql_routes}'
-                  - 'workspace_/degraphql_routes/{degraphql_routes}/service'
-                  - workspace_/developers
-                  - workspace_/developers/export
-                  - workspace_/developers/invite
-                  - workspace_/developers/roles
-                  - 'workspace_/developers/roles/{rbac_roles}'
-                  - 'workspace_/developers/{developers}'
-                  - 'workspace_/developers/{developers}/applications'
-                  - 'workspace_/developers/{developers}/applications/{applications}'
-                  - 'workspace_/developers/{developers}/applications/{applications}/application_instances'
-                  - 'workspace_/developers/{developers}/applications/{applications}/application_instances/{application_instances}'
-                  - 'workspace_/developers/{developers}/applications/{applications}/credentials/{plugin}'
-                  - 'workspace_/developers/{developers}/applications/{applications}/credentials/{plugin}/{credential_id}'
-                  - 'workspace_/developers/{developers}/consumer'
-                  - 'workspace_/developers/{developers}/credentials/{plugin}'
-                  - 'workspace_/developers/{developers}/credentials/{plugin}/{credential_id}'
-                  - 'workspace_/developers/{developers}/rbac_user'
-                  - 'workspace_/developers/{email_or_id}/plugins/'
-                  - 'workspace_/developers/{email_or_id}/plugins/{id}'
-                  - workspace_/document_objects
-                  - 'workspace_/document_objects/{document_objects}'
-                  - 'workspace_/document_objects/{document_objects}/service'
-                  - workspace_/endpoints
-                  - workspace_/entities/migrate
-                  - workspace_/event-hooks
-                  - workspace_/event-hooks/sources
-                  - 'workspace_/event-hooks/sources/{source}'
-                  - 'workspace_/event-hooks/sources/{source}/{event}'
-                  - 'workspace_/event-hooks/{event_hooks}'
-                  - 'workspace_/event-hooks/{event_hooks}/ping'
-                  - 'workspace_/event-hooks/{event_hooks}/test'
-                  - workspace_/files
-                  - workspace_/files/*
-                  - workspace_/files/partials/*
-                  - 'workspace_/files/{files}'
-                  - workspace_/filter-chains
-                  - 'workspace_/filter-chains/{filter_chains}'
-                  - 'workspace_/filter-chains/{filter_chains}/route'
-                  - 'workspace_/filter-chains/{filter_chains}/service'
-                  - workspace_/graphql-proxy-cache-advanced
-                  - 'workspace_/graphql-proxy-cache-advanced/{cache_key}'
-                  - 'workspace_/graphql-proxy-cache-advanced/{plugin_id}/caches/{cache_key}'
-                  - workspace_/graphql-rate-limiting-advanced/costs
-                  - 'workspace_/graphql-rate-limiting-advanced/costs/{graphql_ratelimiting_advanced_cost_decoration}'
-                  - workspace_/graphql_ratelimiting_advanced_cost_decoration
-                  - 'workspace_/graphql_ratelimiting_advanced_cost_decoration/{graphql_ratelimiting_advanced_cost_decoration}'
-                  - 'workspace_/graphql_ratelimiting_advanced_cost_decoration/{graphql_ratelimiting_advanced_cost_decoration}/service'
-                  - workspace_/groups
-                  - 'workspace_/groups/{groups}'
-                  - 'workspace_/groups/{groups}/roles'
-                  - workspace_/hmac-auths
-                  - 'workspace_/hmac-auths/{hmacauth_credentials}'
-                  - 'workspace_/hmac-auths/{hmacauth_credentials}/consumer'
-                  - workspace_/jwt-signer/jwks
-                  - 'workspace_/jwt-signer/jwks/{jwt_signer_jwks}'
-                  - 'workspace_/jwt-signer/jwks/{jwt_signer_jwks}/rotate'
-                  - workspace_/jwts
-                  - 'workspace_/jwts/{jwt_secrets}'
-                  - 'workspace_/jwts/{jwt_secrets}/consumer'
-                  - workspace_/key-auths
-                  - 'workspace_/key-auths/{keyauth_credentials}'
-                  - 'workspace_/key-auths/{keyauth_credentials}/consumer'
-                  - workspace_/key-auths-enc
-                  - 'workspace_/key-auths-enc/{keyauth_enc_credentials}'
-                  - 'workspace_/key-auths-enc/{keyauth_enc_credentials}/consumer'
-                  - workspace_/key-sets
-                  - 'workspace_/key-sets/{key_sets}'
-                  - 'workspace_/key-sets/{key_sets}/keys'
-                  - 'workspace_/key-sets/{key_sets}/keys/{keys}'
-                  - workspace_/keyring
-                  - workspace_/keyring/activate
-                  - workspace_/keyring/active
-                  - workspace_/keyring/export
-                  - workspace_/keyring/generate
-                  - workspace_/keyring/import
-                  - workspace_/keyring/import/raw
-                  - workspace_/keyring/recover
-                  - workspace_/keyring/remove
-                  - workspace_/keyring/vault/sync
-                  - workspace_/keys
-                  - 'workspace_/keys/{keys}'
-                  - 'workspace_/keys/{keys}/set'
-                  - workspace_/konnect_applications
-                  - 'workspace_/konnect_applications/{konnect_applications}'
-                  - workspace_/license/report
-                  - workspace_/licenses
-                  - 'workspace_/licenses/{licenses}'
-                  - workspace_/login_attempts
-                  - 'workspace_/login_attempts/{login_attempts}'
-                  - 'workspace_/login_attempts/{login_attempts}/consumer'
-                  - workspace_/metrics
-                  - workspace_/mtls-auths
-                  - 'workspace_/mtls-auths/{mtls_auth_credentials}/consumer'
-                  - workspace_/mtls_auth_credentials
-                  - 'workspace_/mtls_auth_credentials/{mtls_auth_credentials}'
-                  - 'workspace_/mtls_auth_credentials/{mtls_auth_credentials}/ca_certificate'
-                  - 'workspace_/mtls_auth_credentials/{mtls_auth_credentials}/consumer'
-                  - workspace_/oauth2
-                  - 'workspace_/oauth2/{oauth2_credentials}'
-                  - 'workspace_/oauth2/{oauth2_credentials}/consumer'
-                  - 'workspace_/oauth2/{oauth2_credentials}/oauth2_tokens'
-                  - 'workspace_/oauth2/{oauth2_credentials}/oauth2_tokens/{oauth2_tokens}'
-                  - workspace_/oauth2_tokens
-                  - 'workspace_/oauth2_tokens/{oauth2_tokens}'
-                  - 'workspace_/oauth2_tokens/{oauth2_tokens}/credential'
-                  - 'workspace_/oauth2_tokens/{oauth2_tokens}/service'
-                  - workspace_/openid-connect/issuers
-                  - 'workspace_/openid-connect/issuers/{oic_issuers}'
-                  - workspace_/openid-connect/jwks
-                  - workspace_/plugins
-                  - workspace_/plugins/enabled
-                  - 'workspace_/plugins/schema/{name}'
-                  - 'workspace_/plugins/{plugins}'
-                  - 'workspace_/plugins/{plugins}/consumer'
-                  - 'workspace_/plugins/{plugins}/consumer_group'
-                  - 'workspace_/plugins/{plugins}/route'
-                  - 'workspace_/plugins/{plugins}/service'
-                  - workspace_/proxy-cache
-                  - 'workspace_/proxy-cache/{cache_key}'
-                  - 'workspace_/proxy-cache/{plugin_id}/caches/{cache_key}'
-                  - workspace_/proxy-cache-advanced
-                  - 'workspace_/proxy-cache-advanced/{cache_key}'
-                  - 'workspace_/proxy-cache-advanced/{plugin_id}/caches/{cache_key}'
-                  - workspace_/rbac/roles
-                  - 'workspace_/rbac/roles/{rbac_roles}'
-                  - 'workspace_/rbac/roles/{rbac_roles}/endpoints'
-                  - 'workspace_/rbac/roles/{rbac_roles}/endpoints/permissions'
-                  - 'workspace_/rbac/roles/{rbac_roles}/endpoints/{workspace}/*'
-                  - 'workspace_/rbac/roles/{rbac_roles}/entities'
-                  - 'workspace_/rbac/roles/{rbac_roles}/entities/permissions'
-                  - 'workspace_/rbac/roles/{rbac_roles}/entities/{entity_id}'
-                  - 'workspace_/rbac/roles/{rbac_roles}/permissions'
-                  - workspace_/rbac/users
-                  - 'workspace_/rbac/users/{rbac_users}'
-                  - 'workspace_/rbac/users/{rbac_users}/admins'
-                  - 'workspace_/rbac/users/{rbac_users}/admins/{admins}'
-                  - 'workspace_/rbac/users/{rbac_users}/developers'
-                  - 'workspace_/rbac/users/{rbac_users}/developers/{developers}'
-                  - 'workspace_/rbac/users/{rbac_users}/permissions'
-                  - 'workspace_/rbac/users/{rbac_users}/roles'
-                  - workspace_/routes
-                  - 'workspace_/routes/{routes}'
-                  - 'workspace_/routes/{routes}/filter-chains'
-                  - 'workspace_/routes/{routes}/filter-chains/{filter_chains}'
-                  - 'workspace_/routes/{routes}/filters/all'
-                  - 'workspace_/routes/{routes}/filters/disabled'
-                  - 'workspace_/routes/{routes}/filters/enabled'
-                  - 'workspace_/routes/{routes}/plugins'
-                  - 'workspace_/routes/{routes}/plugins/{plugins}'
-                  - 'workspace_/routes/{routes}/service'
-                  - workspace_/schemas/plugins/validate
-                  - 'workspace_/schemas/plugins/{name}'
-                  - 'workspace_/schemas/{db_entity_name}/validate'
-                  - 'workspace_/schemas/{name}'
-                  - workspace_/services
-                  - 'workspace_/services/{services}'
-                  - 'workspace_/services/{services}/application_instances'
-                  - 'workspace_/services/{services}/application_instances/{application_instances}'
-                  - 'workspace_/services/{services}/applications'
-                  - 'workspace_/services/{services}/client_certificate'
-                  - 'workspace_/services/{services}/degraphql/routes'
-                  - 'workspace_/services/{services}/degraphql/routes/{degraphql_routes}'
-                  - 'workspace_/services/{services}/degraphql_routes'
-                  - 'workspace_/services/{services}/degraphql_routes/{degraphql_routes}'
-                  - 'workspace_/services/{services}/document_objects'
-                  - 'workspace_/services/{services}/document_objects/{document_objects}'
-                  - 'workspace_/services/{services}/filter-chains'
-                  - 'workspace_/services/{services}/filter-chains/{filter_chains}'
-                  - 'workspace_/services/{services}/graphql-rate-limiting-advanced/costs'
-                  - 'workspace_/services/{services}/graphql_ratelimiting_advanced_cost_decoration'
-                  - 'workspace_/services/{services}/graphql_ratelimiting_advanced_cost_decoration/{graphql_ratelimiting_advanced_cost_decoration}'
-                  - 'workspace_/services/{services}/oauth2_tokens'
-                  - 'workspace_/services/{services}/oauth2_tokens/{oauth2_tokens}'
-                  - 'workspace_/services/{services}/plugins'
-                  - 'workspace_/services/{services}/plugins/{plugins}'
-                  - 'workspace_/services/{services}/routes'
-                  - 'workspace_/services/{services}/routes/{routes}'
-                  - workspace_/sessions
-                  - 'workspace_/sessions/{sessions}'
-                  - workspace_/snis
-                  - 'workspace_/snis/{snis}'
-                  - 'workspace_/snis/{snis}/certificate'
-                  - workspace_/status
-                  - workspace_/tags
-                  - 'workspace_/tags/{tags}'
-                  - workspace_/targets
-                  - 'workspace_/targets/{targets}'
-                  - 'workspace_/targets/{targets}/upstream'
-                  - workspace_/timers
-                  - workspace_/upstreams
-                  - 'workspace_/upstreams/{upstreams}'
-                  - 'workspace_/upstreams/{upstreams}/client_certificate'
-                  - 'workspace_/upstreams/{upstreams}/health'
-                  - 'workspace_/upstreams/{upstreams}/targets'
-                  - 'workspace_/upstreams/{upstreams}/targets/all'
-                  - 'workspace_/upstreams/{upstreams}/targets/{targets}'
-                  - 'workspace_/upstreams/{upstreams}/targets/{targets}/healthy'
-                  - 'workspace_/upstreams/{upstreams}/targets/{targets}/unhealthy'
-                  - 'workspace_/upstreams/{upstreams}/targets/{targets}/{address}/healthy'
-                  - 'workspace_/upstreams/{upstreams}/targets/{targets}/{address}/unhealthy'
-                  - workspace_/userinfo
-                  - workspace_/vault-auth
-                  - 'workspace_/vault-auth/{vault_auth_vaults}'
-                  - 'workspace_/vault-auth/{vault}/credentials'
-                  - 'workspace_/vault-auth/{vault}/credentials/token/{access_token}'
-                  - 'workspace_/vault-auth/{vault}/credentials/{consumer}'
-                  - workspace_/vaults
-                  - 'workspace_/vaults/{vaults}'
-                  - workspace_/vitals/
-                  - workspace_/vitals/cluster
-                  - workspace_/vitals/cluster/status_codes
-                  - 'workspace_/vitals/consumers/{consumer_id}/cluster'
-                  - workspace_/vitals/nodes/
-                  - 'workspace_/vitals/nodes/{node_id}'
-                  - 'workspace_/vitals/reports/{entity_type}'
-                  - workspace_/vitals/status_code_classes
-                  - workspace_/vitals/status_codes/by_consumer
-                  - workspace_/vitals/status_codes/by_consumer_and_route
-                  - workspace_/vitals/status_codes/by_route
-                  - workspace_/vitals/status_codes/by_service
-                  - workspace_/workspaces
-                  - 'workspace_/workspaces/{workspaces}'
-                  - 'workspace_/workspaces/{workspaces}/meta'
     sni-response:
       description: SNI response object
       content:
@@ -5799,7 +5165,7 @@ paths:
                     data:
                       - hosts:
                           - foo.example.com
-                          - foo.example.us
+                          - bar.example.com
                         id: 56c4566c-14cc-4132-9011-4139fcbbe50a
                         name: example-route
                         paths:
@@ -5833,7 +5199,7 @@ paths:
                   value:
                     hosts:
                       - foo.example.com
-                      - foo.example.us
+                      - bar.example.com
                     id: 56c4566c-14cc-4132-9011-4139fcbbe50a
                     name: example-route
                     paths:
@@ -5879,7 +5245,7 @@ paths:
                   value:
                     hosts:
                       - foo.example.com
-                      - foo.example.us
+                      - bar.example.com
                     id: 56c4566c-14cc-4132-9011-4139fcbbe50a
                     name: example-route
                     paths:
@@ -5907,7 +5273,7 @@ paths:
                   value:
                     hosts:
                       - foo.example.com
-                      - foo.example.us
+                      - bar.example.com
                     id: 56c4566c-14cc-4132-9011-4139fcbbe50a
                     name: example-route
                     paths:
@@ -5943,7 +5309,7 @@ paths:
                   value:
                     hosts:
                       - foo.example.com
-                      - foo.example.us
+                      - bar.example.com
                     id: 56c4566c-14cc-4132-9011-4139fcbbe50a
                     name: example-route
                     paths:
@@ -6930,6 +6296,46 @@ paths:
         A requests to the entity endpoint using the given configuration may still fail due to other reasons, such as invalid foreign key relationships or uniqueness check failures against the contents of the data store.
       tags:
         - Information
+  '/schemas/filters/{filter_name}':
+    parameters:
+      - schema:
+          type: string
+          example: go-rate-limiting
+        name: filter_name
+        in: path
+        required: true
+        description: The name of a Proxy-Wasm filter
+    get:
+      summary: Retrieve Proxy-Wasm Filter JSON Schema
+      tags:
+        - Information
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                description: |
+                  JSON Schema object describing the expected configuration for the filter. This endpoints always returns a JSON Schema object describing the filter configuration, even if the filter does not include JSON Schema metadata: if the configuration is expected as a raw string, the JSON Schema configuration returned by this endpoint will indicate so.
+              examples:
+                filter returning a JSON Schema included in the filter metadata:
+                  value:
+                    $schema: "http://json-schema.org/draft-04/schema#"
+                    type: "object"
+                    properties:
+                      add:
+                        type: "object"
+                        properties:
+                          headers:
+                            type: "array"
+                            items:
+                              type: "string"
+                        required: [headers]
+                    required: [add]
+      operationId: get-schemas-filters-filter_name
+      description: |
+        Retrieve the JSON Schema of a Proxy-Wasm filter's configuration. This is useful to understand what fields a filter accepts, and can be used for building third-party integrations to the Kong's filter chain system.
   '/schemas/plugins/{plugin_name}':
     parameters:
       - schema:
@@ -7163,12 +6569,6 @@ paths:
                         kong_reports_services:
                           capacity: 1.00 MiB
                           allocated_slabs: 0.02 MiB
-                        kong_reports_workspaces:
-                          capacity: 1.00 MiB
-                          allocated_slabs: 0.02 MiB
-                        kong_keyring:
-                          capacity: 5.00 MiB
-                          allocated_slabs: 0.04 MiB
                         kong_profiling_state:
                           capacity: 1.50 MiB
                           allocated_slabs: 0.02 MiB
@@ -7325,12 +6725,6 @@ paths:
                         kong_reports_services:
                           capacity: 1.00 MiB
                           allocated_slabs: 0.02 MiB
-                        kong_reports_workspaces:
-                          capacity: 1.00 MiB
-                          allocated_slabs: 0.02 MiB
-                        kong_keyring:
-                          capacity: 5.00 MiB
-                          allocated_slabs: 0.04 MiB
                         kong_profiling_state:
                           capacity: 1.50 MiB
                           allocated_slabs: 0.02 MiB

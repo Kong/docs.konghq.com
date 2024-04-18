@@ -7,7 +7,7 @@ This guide covers an example OpenID Connect plugin configuration to authenticate
 
 For information about configuring OIDC using Okta as an Identity provider
 in conjunction with the Application Registration plugin, see
-[Set Up External Portal Application Authentication with Okta and OIDC](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/okta-config).
+[Set Up External Portal Application Authentication with Okta and OIDC](/gateway/{{page.release}}/developer-portal/administration/application-registration/okta-config).
 
 ## Authorization code flow with the OpenID Connect plugin and Okta
 
@@ -55,15 +55,15 @@ The steps in the guide offer an example of configuring OIDC with Okta on a speci
 * A [developer account](https://developer.okta.com) with Okta.
 * A running version of {{site.base_gateway}}.
 * Access to the [OpenID Connect plugin](/hub/kong-inc/openid-connect/).
-* A [service](/gateway/{{page.kong_version}}/admin-api/#service-object)
-and [route](/gateway/{{page.kong_version}}/admin-api/#route-object) in
+* A [service](/gateway/{{page.release}}/admin-api/#service-object)
+and [route](/gateway/{{page.release}}/admin-api/#route-object) in
 {{site.base_gateway}} whose access you want to protect with Okta. For this
 guide, assume the route is in the default workspace.
 * If using {{site.base_gateway}} locally, you need Internet access.
 * Any network access control to your Kong node must allow traffic to and from Okta, the upstream service, and the client.
 
     For security reasons, make sure all requests are sent over HTTPS, and make the Kong proxy available
-     with a fully-qualified domain name and [properly configured certificate](/gateway/{{page.kong_version}}/admin-api/#certificate-object).
+     with a fully-qualified domain name and [properly configured certificate](/gateway/{{page.release}}/admin-api/#certificate-object).
      Authorization tokens should also be stored securely.
 
 ### Configure Okta

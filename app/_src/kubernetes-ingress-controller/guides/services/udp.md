@@ -8,7 +8,7 @@ purpose: |
 Deploy a [Service][svc] that listens for [UDP datagrams][udp], and exposes this service outside of the cluster using
 {{site.base_gateway}}.
 
-{% include /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false gateway_api_experimental=true %}
+{% include /md/kic/prerequisites.md release=page.release disable_gateway_api=false gateway_api_experimental=true %}
 
 ## Configure {{ site.base_gateway }}
 

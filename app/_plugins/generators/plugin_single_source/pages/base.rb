@@ -2,9 +2,17 @@
 
 module PluginSingleSource
   module Pages
-    class Base
-      attr_reader :site, :release
+    class Base # rubocop:disable Metrics/ClassLength
+      attr_reader :site, :release, :file
       attr_accessor :sidenav
+
+      def self.make_for(release:, file:, source_path:)
+        page = new(release:, file:, source_path:)
+
+        return nil unless page.generate?
+
+        page
+      end
 
       def initialize(release:, file:, source_path:)
         @release = release
@@ -36,8 +44,9 @@ module PluginSingleSource
         @dir ||= "hub/#{@release.dir}"
       end
 
-      def version
-        @version ||= @release.version
+      def gateway_release
+        @gateway_release ||= @site.data.dig('editions', 'gateway')
+                                  .releases.detect { |r| r.value == @release.version }&.to_s || @release.version
       end
 
       def source_file
@@ -65,6 +74,14 @@ module PluginSingleSource
           { text: @release.metadata['name'], url: permalink.split('/').tap(&:pop).join('/').concat('/') },
           { text: breadcrumb_title, url: permalink }
         ]
+      end
+
+      def generate?
+        min, max = frontmatter_attributes
+                   .fetch_values('minimum_version', 'maximum_version') { |_k, v| v }
+        return true if min.nil? && max.nil?
+
+        Utils::Version.in_range?(@release.version, min:, max:)
       end
 
       private

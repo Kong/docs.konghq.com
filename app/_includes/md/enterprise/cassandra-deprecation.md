@@ -1,7 +1,7 @@
 {% if include.length == "short" %}
 
 We don't recommend using Cassandra with {{site.base_gateway}},
-because support for Cassandra is [deprecated and planned to be removed](/gateway/{{include.kong_version}}/reference/configuration/#cassandra-settings).
+because support for Cassandra is [deprecated and planned to be removed](/gateway/{{include.release}}/reference/configuration/#cassandra-settings).
 
 {% else %}
 

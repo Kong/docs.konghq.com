@@ -3,7 +3,7 @@ title: Install on OpenShift with Helm
 badge: enterprise
 ---
 
-This page explains how to install {{site.base_gateway}} with {{site.kic_product_name}} with a database. To install in DB-less mode, see the documentation on installing with a [flat Kubernetes manifest](/gateway/{{page.kong_version}}/install-and-run/kubernetes/).
+This page explains how to install {{site.base_gateway}} with {{site.kic_product_name}} with a database. To install in DB-less mode, see the documentation on installing with a [flat Kubernetes manifest](/gateway/{{page.release}}/install-and-run/kubernetes/).
 
 The {{site.base_gateway}} software is governed by the
 [Kong Software License Agreement](https://konghq.com/kongsoftwarelicense).

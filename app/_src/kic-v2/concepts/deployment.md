@@ -54,7 +54,7 @@ A few custom resources are bundled with the {{site.kic_product_name}} to
 configure settings that are specific to Kong and provide fine-grained control
 over the proxying behavior.
 
-Please refer to the [custom resources](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/)
+Please refer to the [custom resources](/kubernetes-ingress-controller/{{page.release}}/concepts/custom-resources/)
 concept document for details.
 
 ### RBAC permissions
@@ -70,26 +70,20 @@ stored in the Kubernetes object store.
 
 It needs read permissions (get, list, watch) on the following Kubernetes resources:
 
-{% if_version lte:2.9.x inline: true%}
-
+{% if_version lte:2.9.x -%}
 - Endpoints
-
-{%- endif_version %}
-{% if_version gte:2.9.x inline: true%}
-
+{% endif_version -%}
+{% if_version gte:2.9.x -%}
 - EndpointSlices
-
 {%- endif_version %}
 - Events
 - Nodes
 - Pods
 - Secrets
 - Ingress
-{% if_version gte:2.4.x inline:true %}
-
+{% if_version gte:2.4.x -%}
 - IngressClassParameters
-
-{%- endif_version %}
+{% endif_version -%}
 - KongClusterPlugins
 - KongPlugins
 - KongConsumers
@@ -105,7 +99,7 @@ In addition to these, it needs:
 
 - Create, list, get, watch, delete and update `ConfigMap`s and `Leases` to
   facilitate leader-election.
-  Please read this [document](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling/)
+  Please read this [document](/kubernetes-ingress-controller/{{page.release}}/concepts/ha-and-scaling/)
   for more details.
 - Update permission on the Ingress resource to update the status of
   the Ingress resource.
@@ -181,7 +175,7 @@ Following are the different options to consider while deploying the
   Running multiple {{site.kic_product_name}}s inside the same Kubernetes cluster
 - [**Runtime**](#runtime):
   Using {{site.ce_product_name}} or {{site.ee_product_name}} (for Enterprise customers)
-{% if_version gte: 2.9.x %}
+{% if_version gte: 2.9.x -%}
 - [**Gateway Discovery**](#gateway-discovery):
   Dynamically discovering Kong's Admin API endpoints
 - [**{{site.konnect_short_name}} integration**](#konnect-integration):
@@ -313,7 +307,7 @@ open-source gateway.
 The {{site.kic_product_name}} is also compatible with the full-blown version of
 {{site.ee_product_name}}. This runtime ships with Kong Manager, Kong Portal, and a
 number of other enterprise-only features.
-[This doc](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/k4k8s-with-kong-enterprise) provides a high-level
+[This doc](/kubernetes-ingress-controller/{{page.release}}/concepts/k4k8s-with-kong-enterprise) provides a high-level
 overview of the architecture.
 
 [k8s-namespace]: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
@@ -353,7 +347,7 @@ Both of those deployments can be scaled independently.
 For more hands on experience with Gateway Discovery please see [our guide][gd-guide].
 
 [admin]: /gateway/latest/admin-api/
-[gd-guide]: /kubernetes-ingress-controller/{{page.kong_version}}/guides/using-gateway-discovery
+[gd-guide]: /kubernetes-ingress-controller/{{page.release}}/guides/using-gateway-discovery
 
 ### {{site.konnect_short_name}} Integration
 

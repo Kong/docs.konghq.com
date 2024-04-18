@@ -16,7 +16,7 @@ For this example, you need to:
 
 To make `gRPC` requests, you need a client that can invoke gRPC requests. You can use [`grpcurl`](https://github.com/fullstorydev/grpcurl#installation) as the client. Ensure that you have it installed on your local system.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false gateway_api_experimental=true %}
+{% include_cached /md/kic/prerequisites.md release=page.release disable_gateway_api=false gateway_api_experimental=true %}
 
 ## Deploy a gRPC test application
 
@@ -86,7 +86,7 @@ service/grpcbin annotated
 
 #### Create a certificate
 
-{% include /md/kic/add-certificate.md hostname='example.com' kong_version=page.kong_version cert_required=true %}
+{% include /md/kic/add-certificate.md hostname='example.com' release=page.release cert_required=true %}
 
 #### Route gRPC traffic
 

@@ -103,7 +103,7 @@ username="Ada Lovelace"
 Custom webhook event hooks are fully customizable requests. Custom webhooks are useful for building direct
 integration with a service. Because custom webhooks are fully configurable, they have more complex configurations.
 Custom webhooks support Lua templating on a configurable body, form payload, and headers. For a list of
-possible fields for templating, see the [sources](/gateway/{{ page.kong_version }}/admin-api/event-hooks/reference/#list-all-sources) endpoint.
+possible fields for templating, see the [sources](/gateway/{{ page.release }}/admin-api/event-hooks/reference/#list-all-sources) endpoint.
 
 The following example sends a message to Slack any time a new administrator is invited to {{site.base_gateway}}.
 Slack allows for [incoming webhooks](https://slack.com/help/articles/115005265063-Incoming-webhooks-for-Slack#set-up-incoming-webhooks)
@@ -302,7 +302,7 @@ any time a consumer changes, but conditionally and with custom formatting.
 
 {:.important}
 > The lambda event hook type is extremely powerful: you can write completely custom logic to handle any use case you want.
-However, it’s [restricted by default through the sandbox.](/gateway/{{ page.kong_version }}/reference/configuration/#untrusted_lua).  This
+However, it’s [restricted by default through the sandbox.](/gateway/{{ page.release }}/reference/configuration/#untrusted_lua).  This
 sandbox is put in place to keep users safe: it’s easy to inadvertently add unsafe libraries/objects into the sandbox
 and leave the {{site.base_gateway}} exposed to security vulnerabilities. Use caution before modifying these sandbox settings.
 

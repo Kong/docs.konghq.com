@@ -6,8 +6,8 @@ module KumaToKongMesh
     priority :lowest
 
     EXACT_LINKS_TRANSFORMS = {
-      '/install/?' => '/mesh/{{ page.kong_version }}/install/',
-      '/enterprise/?' => '/mesh/{{ page.kong_version }}/',
+      '/install/?' => '/mesh/{{ page.release }}/install/',
+      '/enterprise/?' => '/mesh/{{ page.release }}/',
       '/community/?' => 'https://konghq.com/community'
     }.freeze
 
@@ -50,7 +50,7 @@ module KumaToKongMesh
     def replace_kuma_base_url(page)
       page.content = page
                      .content
-                     .gsub(%r{/docs/{{\s*page.version\s*}}}, '/mesh/{{ page.kong_version }}')
+                     .gsub(%r{/docs/{{\s*page.version\s*}}}, '/mesh/{{ page.release }}')
     end
 
     def replace_edit_url(page)

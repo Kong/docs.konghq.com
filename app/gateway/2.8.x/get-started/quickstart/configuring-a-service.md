@@ -3,14 +3,14 @@ title: Configuring a Service
 ---
 
 In this section, you'll be adding an API to Kong. In order to do this, you'll
-first need to add a [Service](/gateway/{{page.kong_version}}/admin-api/#service-object); that is the name Kong uses to refer to the upstream APIs and microservices
+first need to add a [Service](/gateway/{{page.release}}/admin-api/#service-object); that is the name Kong uses to refer to the upstream APIs and microservices
 it manages.
 
 For the purpose of this guide, we'll create a Service pointing to the [httpbin API][httpbin]. Httpbin is
 an "echo" type public website which returns the requests it gets back to the requester, as responses. This
 makes it helpful for learning how Kong proxies your API requests.
 
-Before you can start making requests against the Service, you will need to add a [Route](/gateway/{{page.kong_version}}/admin-api/#route-object) to it.
+Before you can start making requests against the Service, you will need to add a [Route](/gateway/{{page.release}}/admin-api/#route-object) to it.
 Routes specify how (and if) requests are sent to their Services after they reach Kong. There can be multiple Routes to a Service.
 
 After configuring the Service and a Route, you'll be able to proxy a request through Kong to httpbin.
@@ -20,7 +20,7 @@ You can use the Admin API to modify Kong's configuration, including adding
 Services and Routes.
 
 ## Before you start
-You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart/) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install-and-run/). 
+You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.release}}/get-started/quickstart/) or a more [comprehensive installation](/gateway/{{page.release}}/install-and-run/). 
 
 ## 1. Add a Service using the Admin API
 
@@ -122,7 +122,7 @@ Now that you've added your Service to Kong, let's learn how to enable plugins.
 
 Go to [Enabling Plugins &rsaquo;][enabling-plugins]
 
-[API]: /gateway/{{page.kong_version}}/admin-api
-[enabling-plugins]: /gateway/{{page.kong_version}}/get-started/quickstart/enabling-plugins
-[proxy-port]: /gateway/{{page.kong_version}}/reference/configuration/#nginx-section
+[API]: /gateway/{{page.release}}/admin-api
+[enabling-plugins]: /gateway/{{page.release}}/get-started/quickstart/enabling-plugins
+[proxy-port]: /gateway/{{page.release}}/reference/configuration/#nginx-section
 [httpbin]: https://httpbin.org/

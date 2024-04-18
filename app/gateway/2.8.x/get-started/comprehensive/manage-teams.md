@@ -5,7 +5,7 @@ badge: enterprise
 
 In this topic, you’ll learn how to manage and configure user authorization using workspaces and teams in {{site.base_gateway}}.
 
-If you are following the getting started workflow, make sure you have completed [Set Up Intelligent Load Balancing](/gateway/{{page.kong_version}}/get-started/comprehensive/load-balancing/) before moving on.
+If you are following the getting started workflow, make sure you have completed [Set Up Intelligent Load Balancing](/gateway/{{page.release}}/get-started/comprehensive/load-balancing/) before moving on.
 
 ## Overview of workspaces and Teams
 
@@ -177,7 +177,7 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 {% navtab Using the Admin API %}
 
 {:.important}
-> **Note** The following method refers to the `/users` endpoint and creates an Admin API user that won't be visible (or manageable) through Kong Manager. If you want to later administer the admin through Kong Manager, create it under the [`/admins`](/gateway/{{page.kong_version}}/admin-api/admins/reference/) endpoint instead.
+> **Note** The following method refers to the `/users` endpoint and creates an Admin API user that won't be visible (or manageable) through Kong Manager. If you want to later administer the admin through Kong Manager, create it under the [`/admins`](/gateway/{{page.release}}/admin-api/admins/reference/) endpoint instead.
 
 Create a new user named `secureworkspaceadmin` with the RBAC token
 `secureadmintoken`:
@@ -364,4 +364,4 @@ In this topic, you:
 * Created a workspace named `SecureWorkspace`.
 * Created an admin named `secureworkspaceadmin` and granted them permissions to manage to everything in the `SecureWorkspace`.
 
-Next, set up the [Dev Portal](/gateway/{{page.kong_version}}/get-started/comprehensive/dev-portal/).
+Next, set up the [Dev Portal](/gateway/{{page.release}}/get-started/comprehensive/dev-portal/).

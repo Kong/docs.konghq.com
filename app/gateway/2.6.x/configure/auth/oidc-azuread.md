@@ -8,7 +8,7 @@ browser clients using an Azure AD identity provider.
 
 For information about configuring OIDC using Azure as an Identity provider
 in conjunction with the Application Registration plugin, see
-[Set Up External Portal Application Authentication with Azure AD and OIDC](/gateway/{{page.kong_version}}/developer-portal/administration/application-registration/azure-oidc-config).
+[Set Up External Portal Application Authentication with Azure AD and OIDC](/gateway/{{page.release}}/developer-portal/administration/application-registration/azure-oidc-config).
 
 ## Prerequisites
 
@@ -126,8 +126,8 @@ Similarly, setting `authenticated_groups_claim` will extract that claim's value 
 [azure-create-app]: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app
 [azure-manifest]: https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-app-manifest#configure-the-app-manifest
 [azure-tenant]: https://docs.microsoft.com/en-us/azure/active-directory/develop/single-and-multi-tenant-apps
-[add-certificate]: /gateway/{{page.kong_version}}/admin-api/#add-certificate
-[add-service]: /gateway/{{page.kong_version}}/admin-api/#service-object
+[add-certificate]: /gateway/{{page.release}}/admin-api/#add-certificate
+[add-service]: /gateway/{{page.release}}/admin-api/#service-object
 [oidc-id-token]: http://openid.net/specs/openid-connect-core-1_0.html#IDToken
 [credential-claim]: /hub/kong-inc/openid-connect/#configcredential_claim
-[enable-plugin]: /gateway/{{page.kong_version}}/admin-api/#plugin-object
+[enable-plugin]: /gateway/{{page.release}}/admin-api/#plugin-object

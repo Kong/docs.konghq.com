@@ -144,7 +144,7 @@ ENV KONG_PLUGINS=bundled,example-plugin
 USER kong
 
 # Run kong
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
 EXPOSE 8000 8443 8001 8444
 STOPSIGNAL SIGQUIT
 HEALTHCHECK --interval=10s --timeout=10s --retries=10 CMD kong health
@@ -339,7 +339,7 @@ reasons:
 `plugin is enabled but not installed`
 : The plugin's name is present in the `plugins` directive, but Kong can't load
 the `handler.lua` source file from the file system. To resolve, make sure that
-the [`lua_package_path`](/gateway/{{page.kong_version}}/reference/configuration/#development-miscellaneous-section)
+the [`lua_package_path`](/gateway/{{page.release}}/reference/configuration/#development-miscellaneous-section)
 directive is properly set to load this plugin's Lua sources.
 
 `no configuration schema found for plugin`

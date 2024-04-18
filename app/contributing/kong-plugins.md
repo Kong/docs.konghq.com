@@ -38,13 +38,14 @@ For example, `_app/_hub/kong-inc/your-plugin`.
             _changelog.md
             overview
               _index.md
-            _metadata.yml
+            _metadata
+              _index.yml
             versions.yml
     ```
 
 1. Populate the files in the directory with your own info:
 
-    * `_metadata.yml`: Sets the metadata for the plugin. 
+    * `_metadata/_index.yml`: Sets the metadata for the plugin.
     Follow the instructions in the file to fill it out.
 
     * `overview/_index.md`: Introduction for your plugin. This is where you

@@ -49,11 +49,11 @@ control and monitor the status of the entire Kong cluster.
 ## Platform Compatibility
 
 You can run {{site.base_gateway}} in Hybrid mode on any platform where
-{{site.base_gateway}} is [supported](/gateway/{{page.kong_version}}/install-and-run/).
+{{site.base_gateway}} is [supported](/gateway/{{page.release}}/install-and-run/).
 
 ### Kubernetes Support and Additional Documentation
 
-[{{site.base_gateway}} on Kubernetes](/gateway/{{page.kong_version}}/install-and-run/kubernetes)
+[{{site.base_gateway}} on Kubernetes](/gateway/{{page.release}}/install-and-run/kubernetes)
 fully supports Hybrid mode deployments, with or without the {{site.kic_product_name}}.
 
 For the full Kubernetes Hybrid mode documentation, see
@@ -172,7 +172,7 @@ If you have an Enterprise license, the license file must be
 deployed to control plane nodes. The control planes then distribute the license
 to the data planes in their clusters.
 
-Use the [`/licenses`](/gateway/{{page.kong_version}}/admin-api/licenses/reference/)
+Use the [`/licenses`](/gateway/{{page.release}}/admin-api/licenses/reference/)
 endpoint to apply the license to the control plane.
 
 ## Limitations
@@ -218,13 +218,13 @@ multiple Control Planes and redirecting the traffic using a TCP proxy.
 
 ## Readonly Status API endpoints on Data Plane
 
-Several readonly endpoints from the [Admin API](/gateway/{{page.kong_version}}/admin-api/)
-are exposed to the [Status API](/gateway/{{page.kong_version}}/reference/configuration/#status_listen) on data planes, including the following:
+Several readonly endpoints from the [Admin API](/gateway/{{page.release}}/admin-api/)
+are exposed to the [Status API](/gateway/{{page.release}}/reference/configuration/#status_listen) on data planes, including the following:
 
-- [GET /upstreams/{upstream}/targets/](/gateway/{{page.kong_version}}/admin-api/#list-targets)
-- [GET /upstreams/{upstream}/health/](/gateway/{{page.kong_version}}/admin-api/#show-upstream-health-for-node)
-- [GET /upstreams/{upstream}/targets/all/](/gateway/{{page.kong_version}}/admin-api/#list-all-targets)
+- [GET /upstreams/{upstream}/targets/](/gateway/{{page.release}}/admin-api/#list-targets)
+- [GET /upstreams/{upstream}/health/](/gateway/{{page.release}}/admin-api/#show-upstream-health-for-node)
+- [GET /upstreams/{upstream}/targets/all/](/gateway/{{page.release}}/admin-api/#list-all-targets)
 - GET /upstreams/{upstream}/targets/{target}
 
-Please refer to [Upstream objects](/gateway/{{page.kong_version}}/admin-api/#upstream-object) in the Admin API documentation for more information about the
+Please refer to [Upstream objects](/gateway/{{page.release}}/admin-api/#upstream-object) in the Admin API documentation for more information about the
 endpoints.

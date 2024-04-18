@@ -164,20 +164,9 @@ Batch process spans
 **Parameters**
 
 * **processor** (`function`):  a function that accecpt a span as the parameter
-
+  
 
 {% if_version gte:3.3.x %}
-## span:set_should_sample(should_sample)
-
-Update the value of should_sample for all spans
-
-**Parameters**
-
-* **should_sample** (`bool`):  value for the sample parameter
-
-{% endif_version %}
-
-{% if_version gte:3.4.x %}
 ## kong.tracing:set_should_sample(should_sample)
 
 Update the value of should_sample for all spans
@@ -185,4 +174,31 @@ Update the value of should_sample for all spans
 **Parameters**
 
 * **should_sample** (`bool`):  value for the sample parameter
+{% endif_version %}
+
+{% if_version gte: 3.6.x %}
+
+
+## kong.tracing:get_sampling_decision(parent_should_sample, sampling_rate)
+
+Get the sampling decision result
+
+ Uses a parent-based sampler when the parent has sampled flag == false
+ to inherit the non-recording decision from the parent span, or when
+ trace_id is not available.
+
+ Else, apply the probability-based should_sample decision.
+
+
+**Parameters**
+
+* **parent_should_sample** (`bool`):  value of the parent span sampled flag
+ extracted from the incoming tracing headers
+* **sampling_rate** (`number`):  the sampling rate to apply for the
+ probability sampler
+
+**Returns**
+
+* `bool`:  sampled value of sampled for this trace
+
 {% endif_version %}

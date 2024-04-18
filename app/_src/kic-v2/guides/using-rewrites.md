@@ -3,11 +3,11 @@ title: Rewriting hosts and paths
 ---
 This guide demonstrates host and path rewrites using Ingress and Service configuration.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false%}
+{% include_cached /md/kic/prerequisites.md release=page.release disable_gateway_api=false%}
 
-{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
+{% include_cached /md/kic/test-service-echo.md release=page.release %}
 
-{% include_cached /md/kic/http-test-routing.md kong_version=include.kong_version path='/echo' name='echo' %}
+{% include_cached /md/kic/http-test-routing.md release=include.release path='/echo' name='echo' %}
 
 ## Rewriting the host
 
@@ -187,8 +187,8 @@ URL: /api?details=true
 `strip-path` and `path` can be combined together, with the `path` component
 coming first. Adding both annotations send requests for `/api/echo`.
 
-[0]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcompreserve-host
-[1]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcomhost-header
-[2]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcomrewrite
-[3]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcomstrip-path
-[4]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcompath
+[0]: /kubernetes-ingress-controller/{{page.release}}/references/annotations/#konghqcompreserve-host
+[1]: /kubernetes-ingress-controller/{{page.release}}/references/annotations/#konghqcomhost-header
+[2]: /kubernetes-ingress-controller/{{page.release}}/references/annotations/#konghqcomrewrite
+[3]: /kubernetes-ingress-controller/{{page.release}}/references/annotations/#konghqcomstrip-path
+[4]: /kubernetes-ingress-controller/{{page.release}}/references/annotations/#konghqcompath

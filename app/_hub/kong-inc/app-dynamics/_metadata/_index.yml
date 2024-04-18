@@ -1,0 +1,20 @@
+name: AppDynamics
+search_aliases:
+  - app dynamics
+  - app-dynamics
+publisher: Kong Inc.
+desc: Integrate Kong with the AppDynamics APM Platform
+free: false
+enterprise: true
+paid: true
+konnect: true
+cloud_gateways: false
+network_config_opts: traditional, hybrid, konnect hybrid, and db-less
+notes: | 
+   <b>Dedicated Cloud Gateways</b>: This plugin is not supported in Dedicated Cloud Gateways because it depends on a local agent, 
+   and there are no local nodes in Dedicated Cloud Gateways.
+type: plugin
+categories:
+  - analytics-monitoring
+bundled: false
+dbless_compatible: 'yes'

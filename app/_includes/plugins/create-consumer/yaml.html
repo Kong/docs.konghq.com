@@ -1,0 +1,24 @@
+{% if include.hub_example.auth_plugin? %}
+
+As this is an auth plugin, you need to create a consumer and attach a credential to it.
+
+Create a consumer:
+
+{% assign credential_type = "credentials" -%}
+{%- if include.hub_example.plugin_name == "jwt" -%}
+{%- assign credential_type = "secrets" -%}
+{%- endif%}
+
+```yaml
+consumers:
+- username: alex
+  {{ include.hub_example.plugin_name | replace: "-", "" }}_{{ credential_type }}:
+  - {% for field in include.hub_example.auth_fields %}{{ field[0] }}: {{ field[1] }}{% unless forloop.last %}
+{{ '    ' }}{% endunless %}{% endfor %}
+```
+
+Add the above to your declarative config and apply it to your running Kong instance.
+
+You can now authenticate as <code>alex</code> when making your request. See the <a href="/hub/kong-inc/{{ include.hub_example.plugin_name }}{{ include.hub_example.auth_next_steps_url }}">documentation</a> for more information.
+{% else %}
+{% endif %}

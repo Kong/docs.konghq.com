@@ -15,34 +15,20 @@ layout: default
 
     <section class="features">
       <div class="cards-container">
-        {% for oas_page in site.data.ssg_oas_pages %}
-        <div class="card default">
-          <div class="title">
-            <a href="{{ oas_page.canonical_url }}">
-              {{ oas_page.product.title }}
-            </a>
-          </div>
-          <hr>
-          <div class="description">
-            <span>{{ oas_page.description }}</span>
-          </div>
-          <hr>
+        {% assign oas_pages = site.data.ssg_oas_pages | where_exp: "oas_page", "oas_page.product.deprecated? == false" %}
+        {% for oas_page in oas_pages %}
+          {% include oas/card.html oas_page=oas_page %}
+        {% endfor %}
+      </div>
+    </section>
 
-          <div class="links-container">
-            <div class="spec-links">
-            <span>Latest Version: {{ oas_page.product.latest_version }}</span>
-            <a href="{{ oas_page.canonical_url }}" class="link-text">
-              Specification
-              <img src="/assets/images/icons/icn-arrow-right.svg" alt="link to {{ oas_page.product.title }} specification">
-            </a>
-            </div>
-            {% if oas_page.insomnia_link %}
-            <div class="insomnia-link">
-              <a href="{{ oas_page.insomnia_link }}" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
-            </div>
-            {% endif %}
-          </div>
-        </div>
+
+    <h4 class="feature-title feature-title-oas feature-title-oas-deprecated">Deprecated</h4>
+    <section class="features">
+      <div class="cards-container">
+        {% assign deprecated_oas_pages = site.data.ssg_oas_pages | where_exp: "oas_page", "oas_page.product.deprecated?" %}
+        {% for oas_page in deprecated_oas_pages %}
+          {% include oas/card.html oas_page=oas_page %}
         {% endfor %}
       </div>
     </section>

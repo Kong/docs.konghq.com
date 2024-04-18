@@ -12,7 +12,7 @@ To use consumer groups for rate limiting, configure the plugin with the
 `/consumer_groups` endpoint to manage the groups.
 
 For more information and examples of setting up and managing consumer groups, see the
-[Consumer Groups examples](/gateway/{{page.kong_version}}/admin-api/consumer-groups/examples).
+[Consumer Groups examples](/gateway/{{page.release}}/admin-api/consumer-groups/examples).
 
 {:.note}
 > **Note:** Consumer groups are not supported in declarative configuration with

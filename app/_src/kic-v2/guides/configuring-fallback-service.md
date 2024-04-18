@@ -6,7 +6,7 @@ Learn to setup a fallback service using Ingress resource. The fallback service r
 match against any of the defined Ingress rules. This can be useful if you would like to return a 404 page
 to the end user if the user clicks a dead link or inputs an incorrect URL.
 
-{% include_cached /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=true %}
+{% include_cached /md/kic/prerequisites.md release=page.release disable_gateway_api=true %}
 
 ## Setup a sample service
 

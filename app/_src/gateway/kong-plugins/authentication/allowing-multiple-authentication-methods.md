@@ -9,7 +9,7 @@ plugins allows you to offer clients multiple options for authentication.
 
 ## Set up consumers
 
-To begin, [create a service](/gateway/{{page.kong_version}}/admin-api/#service-object),
+To begin, [create a service](/gateway/{{page.release}}/admin-api/#service-object),
 then create three consumers:
 
 

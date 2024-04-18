@@ -9,9 +9,9 @@ management, and more.
 
 ## Before you start
 
-* You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.kong_version}}/get-started/quickstart/) or a more [comprehensive installation](/gateway/{{page.kong_version}}/install-and-run/).
-* You have [configured a Service](/gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service/)
-* You have [enabled the key-auth plugin](/gateway/{{page.kong_version}}/get-started/quickstart/enabling-plugins/)
+* You have installed and started {{site.base_gateway}}, either through the [Docker quickstart](/gateway/{{page.release}}/get-started/quickstart/) or a more [comprehensive installation](/gateway/{{page.release}}/install-and-run/).
+* You have [configured a Service](/gateway/{{page.release}}/get-started/quickstart/configuring-a-service/)
+* You have [enabled the key-auth plugin](/gateway/{{page.release}}/get-started/quickstart/enabling-plugins/)
 
 ## 1. Create a Consumer through the RESTful API
 
@@ -81,10 +81,10 @@ Questions? Issues? Contact us on one of the [Community Channels](https://konghq.
 for help!
 
 [key-auth]: /hub/kong-inc/key-auth
-[API-consumers]: /gateway/{{page.kong_version}}/admin-api#create-consumer
-[enabling-plugins]: /gateway/{{page.kong_version}}/get-started/quickstart/enabling-plugins
-[configuration]: /gateway/{{page.kong_version}}/reference/configuration
-[CLI]: /gateway/{{page.kong_version}}/reference/cli
-[proxy]: /gateway/{{page.kong_version}}/reference/proxy
-[API]: /gateway/{{page.kong_version}}/admin-api
-[cluster]: /gateway/{{page.kong_version}}/reference/clustering
+[API-consumers]: /gateway/{{page.release}}/admin-api#create-consumer
+[enabling-plugins]: /gateway/{{page.release}}/get-started/quickstart/enabling-plugins
+[configuration]: /gateway/{{page.release}}/reference/configuration
+[CLI]: /gateway/{{page.release}}/reference/cli
+[proxy]: /gateway/{{page.release}}/reference/proxy
+[API]: /gateway/{{page.release}}/admin-api
+[cluster]: /gateway/{{page.release}}/reference/clustering

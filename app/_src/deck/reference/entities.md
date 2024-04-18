@@ -26,14 +26,12 @@ Workspaces | <i class="fa fa-check"></i> <sup>2</sup>
 RBAC: roles and endpoint permissions | <i class="fa fa-check"></i>
 RBAC: groups and admins | <i class="fa fa-times"></i>
 Developers | <i class="fa fa-times"></i>
-
-{% if_version lte:1.16.x inline:true %}
+{% if_version lte:1.16.x -%}
 Consumer groups | <i class="fa fa-times"></i>
-{% endif_version %}
-{% if_version gte:1.17.x inline:true %}
+{% endif_version -%}
+{% if_version gte:1.17.x -%}
 Consumer groups | <i class="fa fa-check"></i>
-{% endif_version %}
-
+{% endif_version -%}
 Event hooks | <i class="fa fa-times"></i>
 Keyring and data encryption | <i class="fa fa-times"></i>
 
@@ -44,7 +42,7 @@ If you attempt to delete a service that has an associated document via decK, it 
 > <br><br>
 > **\[2\]**: decK can create workspaces and manage entities in a given workspace. 
 However, decK can't delete workspaces, and it can't update multiple workspaces simultaneously.
-See [Manage multiple workspaces](/deck/{{page.kong_version}}/guides/kong-enterprise/#manage-multiple-workspaces) for more information.
+See [Manage multiple workspaces](/deck/{{page.release}}/guides/kong-enterprise/#manage-multiple-workspaces) for more information.
 
 While deck can manage a majority of {{site.base_gateway}}'s configuration, we recommend additional arrangements for deployment, backup, and restoring unmanaged entities for a more comprehensive approach.
 

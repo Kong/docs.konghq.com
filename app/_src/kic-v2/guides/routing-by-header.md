@@ -9,7 +9,7 @@ requests' headers.
 
 ## Installation
 
-Follow the [deployment](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview/) documentation to install
+Follow the [deployment](/kubernetes-ingress-controller/{{page.release}}/deployment/overview/) documentation to install
 the {{site.kic_product_name}} on your Kubernetes cluster.
 
 ## Test connectivity to {{site.base_gateway}}
@@ -17,7 +17,7 @@ the {{site.kic_product_name}} on your Kubernetes cluster.
 This guide assumes that the `PROXY_IP` environment variable is
 set to contain the IP address or URL pointing to {{site.base_gateway}}.
 Follow one of the
-[deployment guides](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview) to configure this environment variable.
+[deployment guides](/kubernetes-ingress-controller/{{page.release}}/deployment/overview) to configure this environment variable.
 
 If everything is setup correctly, making a request to {{site.base_gateway}} should return
 a HTTP `404` status code.

@@ -7,7 +7,7 @@ purpose: |
 Configure the {{site.kic_product_name}} to verify client certificates using CA certificates and
 [mtls-auth](/hub/kong-inc/mtls-auth/) plugin for HTTPS requests.
 
-{% include /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false enterprise=true %}
+{% include /md/kic/prerequisites.md release=page.release disable_gateway_api=false enterprise=true %}
 
 1. Generate self-signed CA certificates using OpenSSL:
 
@@ -65,9 +65,9 @@ Configure the {{site.kic_product_name}} to verify client certificates using CA c
     kongplugin.configuration.konghq.com/mtls-auth created
     ```
 
-{% include /md/kic/test-service-echo.md kong_version=page.kong_version %}
+{% include /md/kic/test-service-echo.md release=page.release %}
 
-{% include /md/kic/http-test-routing.md kong_version=page.kong_version path='/echo' name='echo' skip_host=true %}
+{% include /md/kic/http-test-routing.md release=page.release path='/echo' name='echo' skip_host=true %}
 
 {% include /md/kic/annotate-plugin.md name='echo' plugins='mtls-auth' %}
 

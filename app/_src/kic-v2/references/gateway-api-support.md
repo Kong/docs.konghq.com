@@ -37,8 +37,8 @@ The {{site.kic_product_name}} supports the following resources and features in t
 
 ### Unsupported
 
-- Gateways [are not provisioned automatically](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/gateway-api#gateway-management).
-- Kong [only supports a single Gateway per GatewayClass](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/gateway-api#listener-compatibility-and-handling-multiple-gateways).
+- Gateways [are not provisioned automatically](/kubernetes-ingress-controller/{{page.release}}/concepts/gateway-api#gateway-management).
+- Kong [only supports a single Gateway per GatewayClass](/kubernetes-ingress-controller/{{page.release}}/concepts/gateway-api#listener-compatibility-and-handling-multiple-gateways).
 
 ## HTTP Routes
 

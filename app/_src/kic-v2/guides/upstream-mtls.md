@@ -87,7 +87,7 @@ server that it talks to.
 
 To configure a different client certificate for each service or only for a
 subset of services, you can do so using the
-[`konghq.com/client-cert`](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#konghqcom/client-cert)
+[`konghq.com/client-cert`](/kubernetes-ingress-controller/{{page.release}}/references/annotations/#konghqcom/client-cert)
 annotation.
 
 To use the annotation, you first need to create a TLS secret with the

@@ -30,20 +30,16 @@ module PluginSingleSource
         @name ||= dir.split('/').last
       end
 
-      def create_pages # rubocop:disable Metrics/AbcSize
+      def create_pages
         releases.map do |version, _|
-          is_latest = KongVersions.to_semver(version) == max_version
+          is_latest = latest?(version)
           # Skip if a markdown file exists for this version
           # and we're not generating the index version
           version_file = File.join(site.source, Generator::PLUGINS_FOLDER, dir, "#{version}.md")
           next if !is_latest && File.exist?(version_file)
 
-          Release.new(plugin: self, source: sources[version], version:, is_latest:, site:).generate_pages
+          Release.new(plugin: self, version:, is_latest:, site:).generate_pages
         end.flatten.compact
-      end
-
-      def sources
-        @sources ||= Hash.new { |_k, _v| '_index' }
       end
 
       def ext_data
@@ -52,10 +48,31 @@ module PluginSingleSource
 
       private
 
+      def latest?(version)
+        max_release = gateway_releases.detect { |r| r.value == Utils::Version.to_release(max_version) }
+        # Edge case for plugins that don't have releases
+        # for which we still want to generate pages
+        return true unless max_release
+
+        latest_release = gateway_releases.detect(&:latest?)
+
+        Utils::Version.to_semver(version) == if max_release&.label
+                                               latest_release.to_semver
+                                             else
+                                               max_release.to_semver
+                                             end
+      end
+
       def max_version
         @max_version ||= releases
-                         .map { |v| KongVersions.to_semver(v) }
+                         .map { |v| Utils::Version.to_semver(v) }
                          .max_by { |v| Gem::Version.new(v) }
+      end
+
+      def gateway_releases
+        @gateway_releases ||= Jekyll::GeneratorSingleSource::Product::Edition
+                              .new(edition: 'gateway', site:)
+                              .releases
       end
     end
   end

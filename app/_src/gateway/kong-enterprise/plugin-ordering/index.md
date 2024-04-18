@@ -100,10 +100,10 @@ plugin ordering.
 ### Kong Manager
 
 Kong Manager also supports dynamic plugin ordering configuration through the
-UI. For more information, see [Get Started with Dynamic Plugin Ordering](/gateway/{{page.kong_version}}/kong-enterprise/plugin-ordering/get-started/)
+UI. For more information, see [Get Started with Dynamic Plugin Ordering](/gateway/{{page.release}}/kong-enterprise/plugin-ordering/get-started/)
 {% endif_version %}
 
 ## See also
 
 Check out the examples in the
-[getting started guide for dynamic plugin ordering](/gateway/{{page.kong_version}}/kong-enterprise/plugin-ordering/get-started).
+[getting started guide for dynamic plugin ordering](/gateway/{{page.release}}/kong-enterprise/plugin-ordering/get-started).

@@ -7,9 +7,9 @@ API, where you'll manage entities including Services, Routes, and Consumers.
 
 ## Start {{site.base_gateway}} using Docker with a database
 
-One quick way to get {{site.base_gateway}} up and running is by using [Docker with a PostgreSQL database](/gateway/{{page.kong_version}}/install-and-run/docker/). We recommend this method to test out basic {{site.base_gateway}} functionality.
+One quick way to get {{site.base_gateway}} up and running is by using [Docker with a PostgreSQL database](/gateway/{{page.release}}/install-and-run/docker/). We recommend this method to test out basic {{site.base_gateway}} functionality.
 
-For a comprehensive list of installation options, see our [Install page](/gateway/{{page.kong_version}}/install-and-run/).
+For a comprehensive list of installation options, see our [Install page](/gateway/{{page.release}}/install-and-run/).
 
 1. Create a Docker network:
 
@@ -110,8 +110,8 @@ Now that you have {{site.base_gateway}} running, you can interact with the Admin
 
 To begin, go to [Configuring a Service &rsaquo;][configuring-a-service]
 
-[configuration-loading]: /gateway/{{page.kong_version}}/reference/configuration/#configuration-loading
-[CLI]: /gateway/{{page.kong_version}}/reference/cli
-[API]: /gateway/{{page.kong_version}}/admin-api
-[datastore-section]: /gateway/{{page.kong_version}}/reference/configuration/#datastore-section
-[configuring-a-service]: /gateway/{{page.kong_version}}/get-started/quickstart/configuring-a-service
+[configuration-loading]: /gateway/{{page.release}}/reference/configuration/#configuration-loading
+[CLI]: /gateway/{{page.release}}/reference/cli
+[API]: /gateway/{{page.release}}/admin-api
+[datastore-section]: /gateway/{{page.release}}/reference/configuration/#datastore-section
+[configuring-a-service]: /gateway/{{page.release}}/get-started/quickstart/configuring-a-service

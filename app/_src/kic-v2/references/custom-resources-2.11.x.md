@@ -26,7 +26,7 @@ Package v1 contains API Schema definitions for the konghq.com v1 API group.
 
 KongClusterPlugin is the Schema for the kongclusterplugins API.
 
-{% include_cached md/kic/crd-ref/kong_cluster_plugin_description.md kong_version=page.kong_version %}
+{% include_cached md/kic/crd-ref/kong_cluster_plugin_description.md release=page.release %}
 
 | Field | Description |
 | --- | --- |
@@ -52,7 +52,7 @@ KongClusterPlugin is the Schema for the kongclusterplugins API.
 
 KongConsumer is the Schema for the kongconsumers API.
 
-{% include_cached md/kic/crd-ref/kong_consumer_description.md kong_version=page.kong_version %}
+{% include_cached md/kic/crd-ref/kong_consumer_description.md release=page.release %}
 
 | Field | Description |
 | --- | --- |
@@ -73,7 +73,7 @@ KongConsumer is the Schema for the kongconsumers API.
 
 KongIngress is the Schema for the kongingresses API.
 
-{% include_cached md/kic/crd-ref/kong_ingress_description.md kong_version=page.kong_version %}
+{% include_cached md/kic/crd-ref/kong_ingress_description.md release=page.release %}
 
 | Field | Description |
 | --- | --- |
@@ -93,7 +93,7 @@ KongIngress is the Schema for the kongingresses API.
 
 KongPlugin is the Schema for the kongplugins API.
 
-{% include_cached md/kic/crd-ref/kong_plugin_description.md kong_version=page.kong_version %}
+{% include_cached md/kic/crd-ref/kong_plugin_description.md release=page.release %}
 
 | Field | Description |
 | --- | --- |
@@ -290,7 +290,7 @@ Package v1alpha1 contains API Schema definitions for the configuration.konghq.co
 
 IngressClassParameters is the Schema for the IngressClassParameters API.
 
-{% include_cached md/kic/crd-ref/ingress_class_parameters_description.md kong_version=page.kong_version %}
+{% include_cached md/kic/crd-ref/ingress_class_parameters_description.md release=page.release %}
 
 | Field | Description |
 | --- | --- |
@@ -334,7 +334,7 @@ Package v1beta1 contains API Schema definitions for the configuration.konghq.com
 
 KongConsumerGroup is the Schema for the kongconsumergroups API.
 
-{% include_cached md/kic/crd-ref/kong_consumer_group_description.md kong_version=page.kong_version %}
+{% include_cached md/kic/crd-ref/kong_consumer_group_description.md release=page.release %}
 
 | Field | Description |
 | --- | --- |
@@ -351,7 +351,7 @@ KongConsumerGroup is the Schema for the kongconsumergroups API.
 
 TCPIngress is the Schema for the tcpingresses API.
 
-{% include_cached md/kic/crd-ref/tcp_ingress_description.md kong_version=page.kong_version %}
+{% include_cached md/kic/crd-ref/tcp_ingress_description.md release=page.release %}
 
 | Field | Description |
 | --- | --- |
@@ -369,7 +369,7 @@ TCPIngress is the Schema for the tcpingresses API.
 
 UDPIngress is the Schema for the udpingresses API.
 
-{% include_cached md/kic/crd-ref/udp_ingress_description.md kong_version=page.kong_version %}
+{% include_cached md/kic/crd-ref/udp_ingress_description.md release=page.release %}
 
 | Field | Description |
 | --- | --- |

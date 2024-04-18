@@ -355,4 +355,4 @@ Options:
 ---
 
 
-[configuration-reference]: /gateway/{{page.kong_version}}/reference/configuration/
+[configuration-reference]: /gateway/{{page.release}}/reference/configuration/

@@ -350,64 +350,64 @@ items:
         items:
           - text: Mesh
             url: /generated/resources/other_mesh/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/other_mesh/
+            src: /.repos/kuma/app/assets/2.1.x/raw/generated/resources/other_mesh/
           - text: CircuitBreaker
             url: /generated/resources/policy_circuit-breaker/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_circuit-breaker/
+            src: /.repos/kuma/app/assets/2.1.x/raw/generated/resources/policy_circuit-breaker/
           - text: ExternalService
             url: /generated/resources/policy_external-service/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_external-service/
+            src: /.repos/kuma/app/assets/2.1.x/raw/generated/resources/policy_external-service/
           - text: FaultInjection
             url: /generated/resources/policy_fault-injection/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_fault-injection/
+            src: /.repos/kuma/app/assets/2.1.x/raw/generated/resources/policy_fault-injection/
           - text: HealthCheck
             url: /generated/resources/policy_health-check/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_health-check/
+            src: /.repos/kuma/app/assets/2.1.x/raw/generated/resources/policy_health-check/
           - text: MeshGateway
             url: /generated/resources/policy_meshgateway/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_meshgateway/
+            src: /.repos/kuma/app/assets/2.1.x/raw/generated/resources/policy_meshgateway/
           - text: MeshGatewayRoute
             url: /generated/resources/policy_meshgatewayroute/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_meshgatewayroute/
+            src: /.repos/kuma/app/assets/2.1.x/raw/generated/resources/policy_meshgatewayroute/
           - text: ProxyTemplate
             url: /generated/resources/policy_proxy-template/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_proxy-template/
+            src: /.repos/kuma/app/assets/2.1.x/raw/generated/resources/policy_proxy-template/
           - text: RateLimit
             url: /generated/resources/policy_rate-limit/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_rate-limit/
+            src: /.repos/kuma/app/assets/2.1.x/raw/generated/resources/policy_rate-limit/
           - text: Retry
             url: /generated/resources/policy_retry/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_retry/
+            src: /.repos/kuma/app/assets/2.1.x/raw/generated/resources/policy_retry/
           - text: Timeout
             url: /generated/resources/policy_timeout/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_timeout/
+            src: /.repos/kuma/app/assets/2.1.x/raw/generated/resources/policy_timeout/
           - text: TrafficLog
             url: /generated/resources/policy_traffic-log/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_traffic-log/
+            src: /.repos/kuma/app/assets/2.1.x/raw/generated/resources/policy_traffic-log/
           - text: TrafficPermission
             url: /generated/resources/policy_traffic-permissions/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_traffic-permissions/
+            src: /.repos/kuma/app/assets/2.1.x/raw/generated/resources/policy_traffic-permissions/
           - text: TrafficRoute
             url: /generated/resources/policy_traffic-route/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_traffic-route/
+            src: /.repos/kuma/app/assets/2.1.x/raw/generated/resources/policy_traffic-route/
           - text: TrafficTrace
             url: /generated/resources/policy_traffic-trace/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_traffic-trace/
+            src: /.repos/kuma/app/assets/2.1.x/raw/generated/resources/policy_traffic-trace/
           - text: VirtualOutbound
             url: /generated/resources/policy_virtual-outbound/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/policy_virtual-outbound/
+            src: /.repos/kuma/app/assets/2.1.x/raw/generated/resources/policy_virtual-outbound/
           - text: Dataplane
             url: /generated/resources/proxy_dataplane/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/proxy_dataplane/
+            src: /.repos/kuma/app/assets/2.1.x/raw/generated/resources/proxy_dataplane/
           - text: ZoneEgress
             url: /generated/resources/proxy_zoneegress/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/proxy_zoneegress/
+            src: /.repos/kuma/app/assets/2.1.x/raw/generated/resources/proxy_zoneegress/
           - text: ZoneIngress
             url: /generated/resources/proxy_zoneingress/
-            src: /.repos/kuma/app/docs/2.1.x/generated/resources/proxy_zoneingress/
+            src: /.repos/kuma/app/assets/2.1.x/raw/generated/resources/proxy_zoneingress/
       - text: Kuma-cp configuration reference
         url: /reference/kuma-cp
-        src: /.repos/kuma/app/docs/2.1.x/generated/kuma-cp
+        src: /.repos/kuma/app/assets/2.1.x/raw/generated/kuma-cp
   - title: Community
     items:
       - text: Open source License

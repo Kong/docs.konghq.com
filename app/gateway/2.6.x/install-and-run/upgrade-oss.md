@@ -10,7 +10,7 @@ To upgrade to prior versions, find the version number in the
 
 ## Upgrade to 2.6.x
 
-Kong adheres to [semantic versioning](https://semver.org/), which makes a
+Kong adopts a structured versioning approach, which makes a
 distinction between "major", "minor", and "patch" versions. The upgrade path
 will be different depending on which previous version from which you are migrating.
 
@@ -42,7 +42,7 @@ repository contains [openresty-build-tools](https://github.com/Kong/kong-build-t
 which allows you to more easily build OpenResty with the necessary patches and modules.
 
 There is a new way to deploy Go using Plugin Servers.
-For more information, see [Developing Go plugins](/gateway/{{page.kong_version}}/reference/external-plugins/#developing-go-plugins).
+For more information, see [Developing Go plugins](/gateway/{{page.release}}/reference/external-plugins/#developing-go-plugins).
 
 ### Template changes
 

@@ -16,8 +16,8 @@ In the following sections, you will need the `kong_admin` account’s password t
 
 ## Prerequisites
 
-* RBAC is [enabled](/gateway/{{page.kong_version}}/kong-manager/auth/rbac/enable/)
-* You are [logged in as the super admin](/gateway/{{page.kong_version}}/kong-manager/auth/super-admin/)
+* RBAC is [enabled](/gateway/{{page.release}}/kong-manager/auth/rbac/enable/)
+* You are [logged in as the super admin](/gateway/{{page.release}}/kong-manager/auth/super-admin/)
 or a user that has `/admins` and `/rbac` read and write access.
 
 ## Create a workspace
@@ -97,7 +97,7 @@ Next, create an admin for the SecureWorkspace, granting them permissions to mana
 
 7. Click **Invite Admin** to send the invite.
 
-    If you have [SMTP](/gateway/{{page.kong_version}}/kong-manager/configuring-to-send-email/) set up, Kong Manager sends an email with a registration link.
+    If you have [SMTP](/gateway/{{page.release}}/kong-manager/configuring-to-send-email/) set up, Kong Manager sends an email with a registration link.
 
     If you don't have SMTP enabled, the following instructions guide you to generate a registration link manually.
 

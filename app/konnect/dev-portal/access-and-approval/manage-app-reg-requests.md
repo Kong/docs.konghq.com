@@ -3,7 +3,7 @@ title: Manage Application Registration Requests
 content_type: how-to
 ---
 
-When a developer [registers an application with an API product](/konnect/dev-portal/applications/dev-reg-app-service/),
+When a developer [registers an application with an API product](/konnect/dev-portal/applications/dev-apps/),
 the requests must be approved by an admin if
 [auto approve](/konnect/dev-portal/access-and-approval/auto-approve-devs-apps) is not enabled. When
 [application registration is enabled](/konnect/dev-portal/applications/enable-app-reg),

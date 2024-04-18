@@ -5,11 +5,16 @@ title: DB-less and Declarative Configuration
 
 Traditionally, {{site.base_gateway}} has always required a database, to store its configured entities such as routes,
 services and plugins. Kong uses its configuration file, `kong.conf`, to
-specify the use of the database and its [various settings](/gateway/{{page.kong_version}}/reference/configuration/#datastore-section).
+specify the use of the database and its [various settings](/gateway/{{page.release}}/reference/configuration/#datastore-section).
 
 {{site.base_gateway}} can be run without a database using only in-memory storage for entities. 
 We call this DB-less mode. When running {{site.base_gateway}} DB-less, the configuration of 
 entities is done in a second configuration file, in YAML or JSON, using declarative configuration.
+
+{% include_cached /md/gateway/deployment-topologies.md topology='dbless' %}
+
+> _Figure 1: In DB-less mode, configuration is applied via YAML files. 
+{{ site.base_gateway }} nodes aren't connected to a database, or to each other._
 
 The combination of DB-less mode and declarative configuration has a number
 of benefits:
@@ -237,8 +242,8 @@ Kong node with the Admin API, using the `/config` endpoint. The
 following example loads `kong.yml`:
 
 ```sh
-curl -i -X GET http://localhost:8001/config \
-  --data config=@kong.yml
+curl -i -X POST http://localhost:8001/config \
+  --form config=@kong.yml
 ```
 
 {:.important}

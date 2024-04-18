@@ -15,6 +15,8 @@ separately.
 * Manage [Gateway entities](/konnect/api/) for each control plane.
 * Migrate configuration from one control plane to another.
 
+One way to learn decK or write a decK file is to view the YAML generated files in {{site.konnect_short_name}}. {{site.konnect_short_name}} autogenerates a YAML configuration file that reflects the current Gateway Manager configuration. You can view and copy the current configuration on the **Configuration** tab of each entity in Gateway Manager.
+
 Use a `--konnect`-prefixed CLI flag or pass {{site.konnect_short_name}}
 parameters using a decK configuration file (`~/.deck.yaml` by default) to target
 `https://cloud.konghq.com`. If you don't pass any {{site.konnect_short_name}} parameters to decK,

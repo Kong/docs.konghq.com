@@ -28,7 +28,7 @@ curl -L https://docs.konghq.com/mesh/installer.sh | VERSION={{page.version}} sh 
 {% endnavtab %}
 {% navtab Manually %}
 
-You can also [download]({{site.links.download}}/mesh-alpine/kong-mesh-{{page.version}}-ubuntu-amd64.tar.gz)
+You can also [download]({{site.links.direct}}/kong-mesh-legacy/raw/names/kong-mesh-ubuntu-amd64/versions/{{page.version}}/kong-mesh-{{page.version}}-ubuntu-amd64.tar.gz)
  the distribution manually.
 
 Then, extract the archive with:
@@ -39,7 +39,7 @@ tar xvzf kong-mesh-{{page.version}}*.tar.gz
 {% endnavtab %}
 {% endnavtabs %}
 
-{% include_cached /md/mesh/install-universal-run.md kong_version=page.kong_version %}
+{% include_cached /md/mesh/install-universal-run.md release=page.release %}
 
 {% include /md/mesh/install-universal-verify.md %}
 

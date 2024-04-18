@@ -2,71 +2,111 @@
 title: Style guide
 ---
 
-<!-- vale off -->
+## Language 
 
-## Content best practices
+The Kong docs use [American English (US English)](https://en.wikipedia.org/wiki/American_English).
+There are some spelling, grammar, and vocabulary differences between American English and other varieties.
 
-|Best practice                      | ✅&nbsp; Do                                     | ❌&nbsp; Don't                                     |
-|---                                |---                                              |---                                                |  
-|Use [US English](https://www.merriam-webster.com) (not British English)|  The response **should** look like...|  The response **shall** look like...|
-|                                   |In the previous section, you **learned**...    |In the previous section, you **learnt**...         |
-|                                   | Color, recognize, analyze                     | Colour, recognise, analyse                        |
-|                                   | While                                         | Whilst                                            |
-|---                                |---                                            |---                                                |   
-|Use present tense                  |This `command` **starts** a proxy.             |This `command` **will start** a proxy.             |
-|---                                |---                                            |---                                                |
-|Use active voice                   |You can explore the API using a browser.       |The API can be explored using a browser.           |
-|                                   |The YAML file specifies the replica count.     |The replica count is specified in the YAML file.   |
-|---                                |---                                            |---                                                |
-|Use conversational tone            |Run the program.                               |Execute the program.                               |
-|                                   |Use the Admin API.                             |Utilize the Admin API.                             |
-|                                   |Open the link *to* do the thing.               |Open the link *in order to* do the thing.          |
-|---                                |---                                            |---                                                |
-|Don’t use Latin phrases            |For example, ...                               |e.g., ...                                          |
-|                                   |That is, ...                                   |i.e., ...                                          |
-|---                                |---                                            |---                                                |
-|Avoid generic pronouns             |Once you have added **the inputs section**, ...|Once you have added **this**, ...                  |
-|Don't use _displays_ or _appears_  |Do the thing.                                  |In the blank that **appears**, do the thing.       |
-|---                                |---                                            |---                                                |
-|Use descriptive headings           |Improve Vitals performance with InfluxDB       |Overview                                           |
-|                                   |Query frequency and precision                  |Query behavior                                     |
-|---                                |---                                            |---                                                |
-|Use sentence case for headings     |Understanding traffic flow in {{site.base_gateway}}     |Understanding Traffic Flow in {{site.base_gateway}}         |
-|---                                |---                                            |---                                                |
-|Use descriptive link titles instead of "click here" |For more information, see the [style guide](#). | For more information, [click here](#).           |
-|                                   |Learn about [content best practices](#) in the Kong style guide. | Learn about content best practices [here](#).|
+Here are some examples:
 
-<!-- vale on -->
+| ✅&nbsp; Do use (American English) | ❌&nbsp; Don't use (other variations) |
+|---                         | ---                         | 
+| The response **should** look like... |   The response **shall** look like...|
+| In the previous section, you **learned**...   | In the previous section, you **learnt**...  |
+| Color, recognize, analyze                     |  Colour, recognise, analyse                 |
+| While                                         |  Whilst                                     |
 
-## Formatting standards
+## Voice and tone
 
-### Automatic formatting
+Write for people, not computers. You are human, Kong's users are human -- let's write for each other.
 
-[Prettier](https://prettier.io/) is used to format all prose and code files. There are three ways to meet this standard:
+At Kong, we try to keep our tone **conversational**, but not at the expense of clarity.
+We keep language simple and concise, take things seriously when we need to, and keep our readers in mind in whatever we write.
 
-* Install the [Prettier plugin](https://prettier.io/docs/en/editors.html) for your editor
-* Run `npx prettier --write ./your/edited/files.md` in the terminal
-* (Maintainers only) Add the `ci:autofix:prettier` label to a Pull Request
+Here are some examples of parallel conversational and formal terms and phrasing:
 
-All files in `app/_src` are formatted with Prettier. Prose in `app` has not been bulk-formatted and _may_ be formatted as you edit those files
+<!--vale off-->
 
-## Content types
+| ✅&nbsp; Do use       | ❌&nbsp; Don't use |
+|---                    | ---                |
+| *Run* the program.    | *Execute* the program. |
+| *Use* the Admin API.  | *Utilize* the Admin API. |
+| Open the link *to* do the thing. | Open the link *in order to* do the thing. |
+| In the open tab, do the thing. | In the open tab that *appears*, do the thing. <br> In the open tab that *displays*, do the thing. |
+| Clearly refer to subjects. <br>For example, say "Once you have added *the inputs section*, ..." | Avoid generic pronouns. <br> For example, don't say "Once you have added *this*, ..." |
 
-At Kong, we use the four following standard content types when we write our documentation:
+<!-- vale on-->
 
-- [Explanation](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/explanation-template.md): Documentation that is understanding-oriented because it clarifies and discusses a particular topic.
-- [How-to](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/how-to-template.md): Documentation that is goal-oriented and prescriptive and that takes readers through the steps to complete a real-world problem.
-- [Reference](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/reference-template.md): Documentation that explains the technology, like API or command line documentation.
-- [Tutorial](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/tutorial-template.md): Documentation that helps users learn about a topic by going step-by-step through a series of tasks.
+### Active voice
 
-Every documentation page should fit one of these four content types.
+Use active voice, and avoid passive voice. 
 
-## Punctuation rules
+With active voice, the subject performs an action. With passive voice, the action is being performed upon the subject:
 
-- Commas and periods always go inside quotation marks, and colons and semicolons (dashes as well) go outside.
-  - For example: “There was a storm last night,” Paul said.
+| ✅&nbsp; Active       | ❌&nbsp; Passive |
+|---                    | ---               |
+| The plugin *applies* rate limiting to consumers. | Rate limits *are applied to* consumers by the plugin. |
+| You *can explore* the API using a browser. | The API *can be explored* using a browser.  |
+| The YAML file *specifies* the replica count. | The replica count *is specified* in the YAML file.   |
 
-### List punctuation
+There are exceptions to this guideline.
+You might use passive voice to communicate that the subject is passive and is having something done to it.
+
+For example: "The CA provider's external account can be registered automatically". 
+In this sentence, the account is passive and isn't doing anything, so you can use passive voice.
+
+### Present tense
+
+Whenever possible, use present tense instead of past or future.
+
+| ✅&nbsp; Do use     | ❌&nbsp; Don't use |
+|---                  | ---                |
+|This `command` *starts* a proxy.          | This `command` *will start* a proxy.  |
+|This `command` *starts* a proxy.          | This `command` *has started* a proxy.     |
+
+### Contractions
+
+Don't be afraid to use contractions (*can't*, *isn't*, *you'll*, and so on)! It adds to the conversational tone.
+
+As with everything, there are exceptions to the rule.
+You can omit contractions when aiming for a more serious tone, typically to emphasize a warning or caution.
+
+For example, you might use a contraction in a phrase like "This plugin **isn't** available in Konnect" to let a reader know about plugin availability.
+On the other hand, you might say "**Do not** use this plugin in Konnect because it will break things" to warn them about potential consequences.
+
+### Latin phrases
+
+Don't use Latin phrases or short forms. Use the english version of the same phrase.
+
+| ✅&nbsp; Do use    | ❌&nbsp; Don't use |
+|---                 | ---         |  
+| For example, ...   | e.g., ...   |
+| That is, ...       | i.e., ...   |
+| So (or therefore), ...      | Ergo, ...   |
+
+### Recommendations
+
+Recommendations should have a reason. If you’re recommending an approach, explain why.
+
+A recommendation should apply to most users. It’s not a suggestion. 
+For example, we wouldn’t recommend DB-less mode without context, but we could recommend it in a specific use case that explains why.
+
+When recommending a course of action, use the phrase "we recommend". 
+
+| ✅&nbsp; Do use    | ❌&nbsp; Don't use |
+|---                 | ---                | 
+| **We recommend** using an access token **because it's more secure**. | **Kong recommends** using an access token. |
+| **We don't recommend** storing a password in plaintext **because it's not secure**. | **It is recommended** that you use an access token. |
+
+## Grammar and syntax
+
+### Punctuation rules
+
+Commas and periods always go inside quotation marks, and colons, semicolons, and dashes go outside.
+
+For example: “There was a storm last night,” Paul said.
+
+#### List punctuation
 
 ✅ &nbsp; Do use punctuation when constructing lists that contain full sentences:
 
@@ -80,13 +120,92 @@ Every documentation page should fit one of these four content types.
 ❌ &nbsp; Don't use punctuation when creating ordered and unordered lists that are extensions of a sentence:
 
 {:.note .no-icon}
->Kong Mesh enables the microservices transformation with:
+>{{site.mesh_product_name}} enables the microservices transformation with:
 >- Out-of-the-box service connectivity and discovery
 >- Zero-trust security
 >- Traffic reliability
 >- Global observability across all traffic
 
-## Placeholder and example values
+### Headings and page titles
+
+When writing section headings or page titles, be descriptive. 
+What is someone going to do in this section, or on this page? 
+If it's an overview, what is it an overview of?
+
+For example:
+
+| ✅&nbsp; Do use | ❌&nbsp; Don't use |
+|---              | ---                |
+| {{site.base_gateway}} Overview | Overview |
+| Improve Vitals performance with InfluxDB | InfluxDB  |
+| Query frequency and precision    | Query behavior    |
+
+Use sentence case for section headings. For example:
+
+| ✅&nbsp; Do use | ❌&nbsp; Don't use |
+|---              | ---                |  
+| Understanding traffic flow in {{site.base_gateway}} | Understanding Traffic Flow in {{site.base_gateway}} |
+| Get started with the Request Transformer Advanced plugin | Get Started with the Request Transformer Advanced Plugin |
+
+### Capitalization
+
+When documenting a user interface (UI), follow its formatting.
+If a term is capitalized in the UI and you are referring to the specific UI element, it should be capitalized in the documentation.
+
+Don't capitalize the following terms:
+
+- application
+- certificate
+- consumer
+- control plane
+- database
+- data plane
+- developer
+- hybrid mode
+- plugin
+- route
+- service
+- service mesh
+- target
+- upstream
+
+#### Plugin name capitalization
+
+1. Capitalize the plugin _name_ but not the word _plugin_. For example, "Rate Limiting plugin".
+2. Don’t capitalize the name if you’re using it in code. For example, `rate-limiting`.
+3. Don’t capitalize if you’re referring to the concept, not the plugin.
+For example, “Set up rate limiting in {{site.base_gateway}} with the Rate Limiting plugin”.
+
+#### Kong-specific term capitalization
+
+For product and component names, see [Word Choice](/contributing/word-choice/).
+
+Object/entity names (for example, service, route, upstream) should be lowercase.
+
+## Formatting
+
+### Automatic formatting
+
+[Prettier](https://prettier.io/) is used to format all prose and code files. There are three ways to meet this standard:
+
+* Install the [Prettier plugin](https://prettier.io/docs/en/editors.html) for your editor
+* Run `npx prettier --write ./your/edited/files.md` in the terminal
+* (Maintainers only) Add the `ci:autofix:prettier` label to a Pull Request
+
+All files in `app/_src` are formatted with Prettier. Prose in `app` has not been bulk-formatted and _may_ be formatted as you edit those files.
+
+### Content types
+
+At Kong, we use the four following standard content types when we write our documentation:
+
+- [Explanation](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/explanation-template.md): Documentation that is understanding-oriented because it clarifies and discusses a particular topic.
+- [How-to](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/how-to-template.md): Documentation that is goal-oriented and prescriptive and that takes readers through the steps to complete a real-world problem.
+- [Reference](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/reference-template.md): Documentation that explains the technology, like API or command line documentation.
+- [Tutorial](https://github.com/Kong/docs.konghq.com/blob/main/docs/templates/tutorial-template.md): Documentation that helps users learn about a topic by going step-by-step through a series of tasks.
+
+Every documentation page should fit one of these four content types.
+
+### Placeholder and example values
 
 The type of placeholder you use depends on context:
 
@@ -115,48 +234,12 @@ per [Swagger guidelines](https://swagger.io/docs/specification/describing-parame
     
         For example: `http://localhost:8001/services/{service_id_or_name}/routes/{route_id_or_name}`
     
-
-### Inline placeholders
+#### Inline placeholders
 
 If you're adding a placeholder inline, such as in a sentence, enclose it in single
 backticks: \`EXAMPLE_TEXT`
 
-## Capitalization guidelines
-
-Follow the user interface (UI).
-If a term is capitalized in the UI and you are referring to the specific UI element, it should be capitalized in the documentation.
-
-Don't capitalize the following terms:
-
-- application
-- certificate
-- consumer
-- control plane
-- database
-- data plane
-- developer
-- hybrid mode
-- plugin
-- route
-- service
-- service mesh
-- target
-- upstream
-
-### Plugin names
-
-1. Capitalize the plugin _name_ but not the word _plugin_. For example, "Rate Limiting plugin".
-2. Don’t capitalize the name if you’re using it in code. For example, `rate-limiting`.
-3. Don’t capitalize if you’re referring to the concept, not the plugin.
-For example, “Set up rate limiting in {{site.base_gateway}} with the Rate Limiting plugin”.
-
-### Kong-specific terms
-
-For product and component names, see [Word Choice](/contributing/word-choice/).
-
-Object/entity names (for example, service, route, upstream) should be lowercase.
-
-## Code formatting
+### Code formatting
 
 - Separate commands from output.
 - Include properly formatted code comments.
@@ -167,7 +250,7 @@ to avoid horizontal scrolling.
     - [List of supported languages](https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers)
 - Do **NOT** use the command prompt marker ($) in code snippets.
 
-### Icons
+## Icons
 
 When deciding which icon to use for a doc, use the following guidelines:
 
@@ -195,8 +278,15 @@ When deciding which icon to use for a doc, use the following guidelines:
 
 ## Links
 
-- Don't use link titles like "Read more" and "Click here". Instead, write descriptive titles that properly detail what content is accessible by clicking the link.
-- If the linked content is a larger area like a panel, add a `title` attribute that describes the linked content to the `a` tag.
+Write descriptive titles that make it clear what the reader is getting by clicking the link.
+Don't use link titles like "Read more" and "Click here":
+
+| ✅&nbsp; Do use      | ❌&nbsp; Don't use |
+|---                 | ---         |  
+|For more information, see the [style guide](#). |  For more information, [click here](#).       |
+|Learn about [content best practices](#) in the Kong style guide. |  Learn about content best practices [here](#).|
+
+If the linked content is a larger area like a panel, add a `title` attribute that describes the linked content to the `a` tag.
 
 ## Reference style guide
 

@@ -7,15 +7,15 @@ purpose: |
 
 Configure the Kong ACL Plugin. To use the ACL Plugin you need at least one Authentication plugin. This example uses the JWT Auth Plugin.
 
-{% include /md/kic/prerequisites.md kong_version=page.kong_version disable_gateway_api=false%}
+{% include /md/kic/prerequisites.md release=page.release disable_gateway_api=false%}
 
-{% include /md/kic/test-service-echo.md kong_version=page.kong_version %}
+{% include /md/kic/test-service-echo.md release=page.release %}
 
-{% include /md/kic/http-test-routing.md kong_version=page.kong_version path='/lemon' name='lemon' skip_host=true %}
+{% include /md/kic/http-test-routing.md release=page.release path='/lemon' name='lemon' skip_host=true %}
 
 After the first route is working, create a second pointing to the same Service:
 
-{% include /md/kic/http-test-routing-resource.md kong_version=include.kong_version path='/lime' name='lime' skip_host=true %}
+{% include /md/kic/http-test-routing-resource.md release=include.release path='/lime' name='lime' skip_host=true %}
 
 ## Add JWT authentication to the service
 
@@ -69,10 +69,10 @@ To access the protected endpoints, create two consumers.
 
 1. Create a consumer named `admin`:
 
-{% include /md/kic/consumer.md kong_version=page.kong_version name='admin' %}
+{% include /md/kic/consumer.md release=page.release name='admin' %}
 
 1. Create a consumer named `user`:
-{% include /md/kic/consumer.md kong_version=page.kong_version name='user' %}
+{% include /md/kic/consumer.md release=page.release name='user' %}
 
 ## Provision JWT credentials
 
@@ -110,19 +110,19 @@ C6V0e/O3LEuJrP+XrEndtLsCAwEAAQ==
     ```bash
     kubectl create secret \
       generic admin-jwt  \
-      --from-literal=kongCredType=jwt  \
       --from-literal=key="admin-issuer" \
       --from-literal=algorithm=RS256 \
       --from-literal=secret="dummy" \
       --from-literal=rsa_public_key="{{ public_key }}"
-    
+    kubectl label secret admin-jwt konghq.com/credential=jwt
+
     kubectl create secret \
       generic user-jwt  \
-      --from-literal=kongCredType=jwt  \
       --from-literal=key="user-issuer" \
       --from-literal=algorithm=RS256 \
       --from-literal=secret="dummy" \
       --from-literal=rsa_public_key="{{ public_key }}"
+    kubectl label secret user-jwt konghq.com/credential=jwt
     ```
 
 Validation requirements impose that even if the `secret` is not used for algorithm
@@ -132,7 +132,9 @@ Validation requirements impose that even if the `secret` is not used for algorit
 
   ```text
   secret/admin-jwt created
+  secret/admin-jwt labeled
   secret/user-jwt created
+  secret/user-jwt labeled
   ```
 
    To associate the JWT Secrets with your consumers, you must add their name to the `credentials` array in the KongConsumers.
@@ -287,15 +289,27 @@ ingress.networking.k8s.io/lime annotated
 1. Add consumers to groups through credentials.
 
     ```bash
-    kubectl create secret \
-      generic admin-acl \
-      --from-literal=kongCredType=acl  \
-      --from-literal=group=admin
+    echo '
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: admin-acl
+      labels:
+        konghq.com/credential: acl
+    stringData:
+      group: admin
+    ' | kubectl apply -f -
     
-    kubectl create secret \
-      generic user-acl \
-      --from-literal=kongCredType=acl  \
-      --from-literal=group=user
+    echo '
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: user-acl
+      labels:
+        konghq.com/credential: acl
+    stringData:
+      group: user
+    ' | kubectl apply -f -
     ```
     The results should look like this:
     ```text

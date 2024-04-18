@@ -1,7 +1,7 @@
 <!-- Shared between Mesh installation topics: Ubuntu, Amazon Linux, RedHat, Debian, MacOS, CentOS -->
 ## 2. Run {{site.mesh_product_name}}
 
-Once downloaded, you will find the contents of {{site.mesh_product_name}} in the `kong-mesh-{{include.kong_version}}` folder. In this folder, you will find &mdash; among other files &mdash; the bin directory that stores all the executables for {{site.mesh_product_name}}.
+Once downloaded, you will find the contents of {{site.mesh_product_name}} in the `kong-mesh-{{include.release}}` folder. In this folder, you will find &mdash; among other files &mdash; the bin directory that stores all the executables for {{site.mesh_product_name}}.
 
 Navigate to the `bin` folder:
 
@@ -35,8 +35,8 @@ but you can use a persistent storage like PostgreSQL by updating the `conf/kuma-
 
 <!-- links -->
 {% if_version gte:2.0.x %}
-[deployments]: /mesh/{{page.kong_version}}/introduction/deployments/
-[backends]: /mesh/{{page.kong_version}}/documentation/configuration/
+[deployments]: /mesh/{{page.release}}/introduction/deployments/
+[backends]: /mesh/{{page.release}}/documentation/configuration/
 {% endif_version %}
 
 {% if_version lte:1.9.x %}

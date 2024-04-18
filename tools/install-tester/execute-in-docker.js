@@ -1,4 +1,4 @@
-module.exports = async function (distro, steps) {
+module.exports = async function (distro, steps, platform) {
   const Dockerode = require("dockerode");
   const streams = require("memory-streams");
   const fs = require("fs");
@@ -11,6 +11,10 @@ module.exports = async function (distro, steps) {
 
   const docker = new Dockerode({ socketPath: "/var/run/docker.sock" });
 
+  if (!platform) {
+    throw new Error("No platform specified");
+  }
+
   let setup = config[distro].setup;
   if (!setup) {
     throw new Error(`No setup found for ${distro}`);
@@ -19,7 +23,9 @@ module.exports = async function (distro, steps) {
 
   steps = steps.join(" && ").replace("\n", " && ");
   if (steps.trim().length == 0) {
-    throw new Error(`Unable to fetch install instructions from docs for ${distro}`);
+    throw new Error(
+      `Unable to fetch install instructions from docs for ${distro}`,
+    );
   }
 
   const asUser = `su tester -c 'cd ~ && ${steps} && kong version'`;
@@ -28,25 +34,21 @@ module.exports = async function (distro, steps) {
 
   // Pull the image
   await new Promise((resolve, reject) => {
-    docker.pull(
-      config[distro].image,
-      { platform: "linux/amd64" },
-      (err, stream) => {
+    docker.pull(config[distro].image, { platform }, (err, stream) => {
+      if (err) {
+        return reject(err);
+      }
+
+      docker.modem.followProgress(stream, onFinished, onProgress);
+
+      function onFinished(err, output) {
         if (err) {
           return reject(err);
         }
-
-        docker.modem.followProgress(stream, onFinished, onProgress);
-
-        function onFinished(err, output) {
-          if (err) {
-            return reject(err);
-          }
-          return resolve(output);
-        }
-        function onProgress(event) {}
-      },
-    );
+        return resolve(output);
+      }
+      function onProgress(event) {}
+    });
   });
 
   return new Promise((resolve, reject) => {
@@ -54,7 +56,7 @@ module.exports = async function (distro, steps) {
       config[distro].image,
       ["bash", "-c", completeString],
       [stdout, stderr],
-      { Tty: false, HostConfig: { AutoRemove: true }, platform: "linux/amd64" },
+      { Tty: false, HostConfig: { AutoRemove: true }, platform },
       function (err, data, container) {
         if (err) {
           return reject(err);

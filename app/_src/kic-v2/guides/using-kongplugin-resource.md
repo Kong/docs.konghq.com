@@ -7,20 +7,20 @@ Learn to apply the {{site.kic_product_name}}
 resources change how {{site.base_gateway}} handles proxied requests. You can 
 configures plugins to modify headers and enforce authentication requirements.
 
-See the [concept](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources/#KongPlugin)
+See the [concept](/kubernetes-ingress-controller/{{page.release}}/concepts/custom-resources/#KongPlugin)
 documentation for more information about the purpose of the `KongPlugin` resource.
 
-{% include_cached /md/kic/installation.md kong_version=page.kong_version %}
+{% include_cached /md/kic/installation.md release=page.release %}
 
-{% include_cached /md/kic/test-service-echo.md kong_version=page.kong_version %}
+{% include_cached /md/kic/test-service-echo.md release=page.release %}
 
-{% include_cached /md/kic/class.md kong_version=page.kong_version %}
+{% include_cached /md/kic/class.md release=page.release %}
 
-{% include_cached /md/kic/http-test-routing.md kong_version=page.kong_version path='/lemon' name='lemon' %}
+{% include_cached /md/kic/http-test-routing.md release=page.release path='/lemon' name='lemon' %}
 
 After you test the routing configuration to proxy `/lemon`, create a second routing configuration to proxy `/lime` that points to the same Service:
 
-{% include_cached /md/kic/http-test-routing-resource.md kong_version=include.kong_version path='/lime' name='lime' %}
+{% include_cached /md/kic/http-test-routing-resource.md release=include.release path='/lime' name='lime' %}
 
 ## Configuring plugins for routing configuration
 
@@ -30,7 +30,7 @@ applied to. Applying a plugin an Ingress or HTTPRoute modifies requests that
 match that resource's routing rules.
 
 {:.important}
-> The [validating admission webhook](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/admission-webhook/)
+> The [validating admission webhook](/kubernetes-ingress-controller/{{page.release}}/deployment/admission-webhook/)
 > is not installed by this guide, but is recommended for all environments. The
 > webhook is required to validate plugin configuration. Not installing the
 > webhook can allow invalid plugin configuration, and invalid plugin
@@ -256,7 +256,7 @@ require a cluster-scoped KongClusterPlugin instead of a namespaced KongPlugin.
     kongclusterplugin.configuration.konghq.com/auth created
     ```
 
-    The `global='true'` label tells {{site.kic_product_name}} to create a global plugin. These plugins do not need annotations on other resources for them to take effect, but they do need [an `ingress.class` annotation](/kubernetes-ingress-controller/{{ page.kong_version }}/concepts/ingress-classes/) for the controller to recognize them.
+    The `global='true'` label tells {{site.kic_product_name}} to create a global plugin. These plugins do not need annotations on other resources for them to take effect, but they do need [an `ingress.class` annotation](/kubernetes-ingress-controller/{{ page.release }}/concepts/ingress-classes/) for the controller to recognize them.
 
 1. Send requests to any route. {{site.base_gateway}} now rejects requests, because the global plugin requires authentication for all of them.
 
@@ -284,11 +284,11 @@ require a cluster-scoped KongClusterPlugin instead of a namespaced KongPlugin.
 
 1. Configure a credential Secret.
 
-{% include_cached /md/kic/key-auth.md kong_version=page.kong_version credName='consumer-1-key-auth' key='consumer-1' %}
+{% include_cached /md/kic/key-auth.md release=page.release credName='consumer-1-key-auth' key='consumer-1' %}
 
 1. Configure a KongConsumer resource that uses the Secret.
 
-{% include_cached /md/kic/consumer.md kong_version=page.kong_version name='consumer-1' credName='consumer-1-key-auth' %}
+{% include_cached /md/kic/consumer.md release=page.release name='consumer-1' credName='consumer-1-key-auth' %}
 
 1. Test the global plugin by including the key that now satisfies the authentication requirement enforced by the global plugin.
 
@@ -506,9 +506,9 @@ them without annotating the consumers individually.
     ```
 1. Create a second credential and KongConsumer.
 
-{% include_cached /md/kic/key-auth.md kong_version=page.kong_version credName='consumer-2-key-auth' key='consumer-2' %}
+{% include_cached /md/kic/key-auth.md release=page.release credName='consumer-2-key-auth' key='consumer-2' %}
 
-{% include_cached /md/kic/consumer.md kong_version=page.kong_version name='consumer-2' credName='consumer-2-key-auth' %}
+{% include_cached /md/kic/consumer.md release=page.release name='consumer-2' credName='consumer-2-key-auth' %}
 
 1.  Add both consumers to this group by adding a `consumerGroups` array to their KongConsumers.
 
@@ -572,4 +572,4 @@ them without annotating the consumers individually.
 There's a lot more you can do with Kong plugins. Check the [Plugin Hub](/hub/) to see all of the available plugins and how to use them.
 
 Next, you might want to learn more about Ingress with the
-[KongIngress resource guide](/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kongingress-resource/).
+[KongIngress resource guide](/kubernetes-ingress-controller/{{page.release}}/guides/using-kongingress-resource/).

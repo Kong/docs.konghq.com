@@ -11,11 +11,11 @@ You will receive this file from Kong when you sign up for a
 
 {:.note}
 > **Note:** The free mode does not require a license. See
-[{{site.base_gateway}} Licensing](/gateway/{{page.kong_version}}/plan-and-deploy/licenses/)
+[{{site.base_gateway}} Licensing](/gateway/{{page.release}}/plan-and-deploy/licenses/)
 for a feature comparison.
 
 Once a license has been deployed to a {{site.base_gateway}} node, retrieve it
-using the [`/licenses` Admin API endpoint](/gateway/{{page.kong_version}}/admin-api/licenses/examples/).
+using the [`/licenses` Admin API endpoint](/gateway/{{page.release}}/admin-api/licenses/examples/).
 
 If you have purchased a subscription but haven't received a license file,
 contact your sales representative.

@@ -6,7 +6,7 @@ badge: enterprise
 The [OpenID Connect Plugin](/hub/kong-inc/openid-connect/) (OIDC)
 allows the Kong Dev Portal to hook into existing authentication setups using third-party
 *Identity Providers* (IdP) such as Google, Okta, Microsoft Azure AD,
-[Curity](/gateway/{{page.kong_version}}/configure/auth/oidc-curity/#kong-dev-portal-authentication), etc.
+[Curity](/gateway/{{page.release}}/configure/auth/oidc-curity/#kong-dev-portal-authentication), etc.
 
 [OIDC](/hub/kong-inc/openid-connect/) must be used with
 the `session` method, utilizing cookies for Dev Portal File API requests.
@@ -106,7 +106,7 @@ Example:
 into the provided text area.
 4. Click **Save Changes**.
 
->**Warning** When Dev Portal Authentication is enabled, content files will remain unauthenticated until a role is applied to them. The exception to this is `settings.txt` and `dashboard.txt` which begin with the `*` role. Please visit the <a href="/gateway/{{page.kong_version}}/developer-portal/administration/developer-permissions">Developer Roles and Content Permissions</a> section for more info.
+>**Warning** When Dev Portal Authentication is enabled, content files will remain unauthenticated until a role is applied to them. The exception to this is `settings.txt` and `dashboard.txt` which begin with the `*` role. Please visit the <a href="/gateway/{{page.release}}/developer-portal/administration/developer-permissions">Developer Roles and Content Permissions</a> section for more info.
 
 ## Enable OIDC using the Command Line
 
@@ -119,7 +119,7 @@ curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE NAME> \
   "config.portal_auth_conf=<REPLACE WITH JSON CONFIG OBJECT>
 ```
 
->**Warning** When Dev Portal Authentication is enabled, content files will remain unauthenticated until a role is applied to them. The exception to this is `settings.txt` and `dashboard.txt` which begin with the `*` role. Please visit the <a href="/gateway/{{page.kong_version}}/developer-portal/administration/developer-permissions">Developer Roles and Content Permissions</a> section for more info.
+>**Warning** When Dev Portal Authentication is enabled, content files will remain unauthenticated until a role is applied to them. The exception to this is `settings.txt` and `dashboard.txt` which begin with the `*` role. Please visit the <a href="/gateway/{{page.release}}/developer-portal/administration/developer-permissions">Developer Roles and Content Permissions</a> section for more info.
 
 ## Enable OIDC using kong.conf
 

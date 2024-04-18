@@ -9,20 +9,135 @@ an application that lets you manage configuration for multiple runtimes
 from a single, cloud-based control plane, and provides a catalog of all deployed
 services. [Try it today!](https://cloud.konghq.com/quick-start)
 
-## December 2023
+## May 2024
 
 **{{site.konnect_short_name}} Search API**
 : You can now use the beta {{site.konnect_saas}} Search API to search {{site.konnect_short_name}} for the following entities:
-  * Users 
-  * Teams
-  * System Accounts 
-  * Developers
-  * Developer Teams
+* Users
+* Teams
+* System Accounts
+* Developers
+* Developer Teams
 
 : The {{site.konnect_short_name}} Search API allows you to search through all supported {{site.konnect_short_name}} entities with a common search query language. For more information, see the [Konnect Search API](/konnect/api/search/latest/) and the [Konnect Search Guide](/konnect/api/ksearch/).
 
+## April 2024
+
+**New Dedicated Cloud Gateways**
+: You can now quickly spin up a dedicated AWS cloud gateway data plane node in {{site.konnect_short_name}}. With a dedicated cloud infrastructure, you control the sizing and deployment locations of the gateway infrastructure and Kong manages the operations of individual instances and the cluster for you. 
+
+: Dedicated Cloud Gateways are the fastest way to configure and create a {{site.base_gateway}} in {{site.konnect_short_name}}. All you have to do is specify the security you want to use and pre-warm the cluster while {{site.konnect_short_name}} handles the cluster creation.
+
+: Dedicated Cloud Gateways also have the following benefits:
+* SOC1 compliant out-of-the-box
+* {{site.konnect_short_name}} handles gateway upgrades for you
+* Supported on the following AWS regions: Sydney, Tokyo, Singapore, Frankfurt, Ireland, London, Ohio, Oregon
+
+: For more information, see [About Cloud Gateways](/konnect/gateway-manager/dedicated-cloud-gateways/).
+
+: ![cloud gateway dashboard](/assets/images/products/konnect/gateway-manager/konnect-control-plane-cloud-gateway.png)
+: > _**Figure 1:** Example of the dedicated cloud gateway dashboard in Gateway Manager. The dashboard displays the total traffic, error rate, and P99 latency. It also displays the top five gateway services and routes by traffic, as well as the plugins and consumers associated with the gateway._
+
+**Improved UI/UX for Plugins**
+: We are happy to announce that a polished UI/UX experience for plugins is now available to our customers on Konnect. Required configuration settings are now grouped together, and indicated as required on the forms, improved tooltips and default fields are present on plugin forms, and a "most popular" plugins section is now available.
+: ![Improved UI/UX for plugins](/assets/images/products/konnect/changelog/improved-plugins-ui.png)
+
+
+**Integrated Markdown Renderer**
+: You can now take advantage of an integrated markdown editor for API Products in {{site.konnect_short_name}}. This enhancement simplifies documentation updates by enabling you to edit markdown files directly within {{site.konnect_short_name}}. The {{site.konnect_short_name}} interactive markdown renderer supports: 
+* Code syntax highlighting for bash, json, go, and js
+* Rendering UML diagrams and flowcharts via Mermaid and PlantUML
+* Emojis
+
+![Interactive editor](/assets/images/products/konnect/changelog/konnect-interactive-markdown.png)
+
+## March 2024
+
+
+**OAS 3.1 Support**
+: Konnect and Portal now support OAS 3.1 out of the box. Users can now upload a YAML/JSON version of OAS 3.1 into their API Product version and the specification will be rendered in the spec viewer on both Konnect and Portal. With OAS 3.1, we now support describing the webhooks in your OAS the same way you describe your API paths. The new version of the spec renderer also supports all available theming options as before. 
+
+: OSS Portal users can also take advantage of this component by upgrading to the latest version of `@kong-ui-public/spec-renderer@2.1.1`.
+
+**Refined user experience for Control Plane Groups**
+: We've made improvements to refine the end-to-end workflow of Control Plane Groups for our customers. Now, Control Plane Groups are more intuitive, and easier to understand.
+
+**Enhanced error notification**
+: Customers now have the ability to view detailed error notifications for their data plane directly within {{site.konnect_short_name}}. The enhanced logging feature categorizes errors for improved clarity, distinguishing between configuration errors, transient configuration reload errors, and general exceptions. This update empowers users to diagnose and resolve CP/DP connection issues more efficiently.
+
+![Konnect-error-log](/assets/images/products/konnect/changelog/konnect-error-log.png)
+
+**New Analytics Explorer page**
+: You can now explore and visualize analytics data via an easy to use, point-and-click web interface. The [Explorer page](https://cloud.konghq.com/analytics/explorer) allows you to drill-down into data and easily discover how issues may impact your business. For more information, see the [Explorer overview](/konnect/analytics/explorer/).
+
+**Improved Analytics summary dashboard**
+: A new version of the Analytics summary dashboard is now available for all {{site.konnect_short_name}} users. This new version displays all analytics information on one page, which allows you to focus on your most critical API usage data.
+
+: ![analytics summary dashboard](/assets/images/products/konnect/changelog/konnect-analytics-summary-dashboard.png)
+: > _**Figure 1:** Example of the improved Analytics summary dashboard that displays total traffic, error rate, P99 latency, total traffic over time, latency breakdown over time, and Kong vs upstream latency over time._
+
+## February 2024
+
+
+**Download button added the documents UI**
+: You can now click the **Download** button to download the markdown file currently being viewed from the documents UI.
+
+**Additional plugin support for consumer groups**
+: Along with {{site.base_gateway}} 3.6 support in {{site.konnect_short_name}}, additional plugins are now supported for consumer groups.
+
+: The following plugins can be applied to consumer groups using the Admin API and the Gateway Manager UI:
+* [Rate Limiting (OSS)](/hub/kong-inc/rate-limiting/)
+* [Request Termination](/hub/kong-inc/request-termination/)
+* [Proxy Cache](/hub/kong-inc/proxy-cache/)
+* [Proxy Cache Advanced](/hub/kong-inc/proxy-cache-advanced/)
+
+**Konnect API Products**
+: Konnect now supports reusable auth strategies that can be applied to one or more API product versions. Konnect now also supports multiple DCR providers for portal applications. Users can now create separate DCR providers with various Identity Providers and apply them selectively to API Product Versions while still using non-DCR auth strategies for other API product versions. For more information, see [Enable app registration with multiple IdPs](/konnect/dev-portal/applications/enable-app-reg/#enable-app-registration-with-multiple-idps)
+
+: If you previously configured application registration, you will see your auth configs saved in a new sidebar section under **Dev Portal** called **Application Auth**.
+
+
+**Enhanced onboarding wizard**
+: {{site.konnect_short_name}} users can now experience an enhanced onboarding wizard when they sign up for a new {{site.konnect_short_name}} organization. After signing up, you can optionally use the wizard to test a popular {{site.konnect_short_name}} use case: key authentication or rate limiting. This experience starts with a local, Docker-based gateway setup, automatically configures Gateway Manager entities against demo endpoints, and then guides you through a basic workflow that tests gateway functionality.
+
+: For more information about how to get started with {{site.konnect_short_name}}, see the [{{site.konnect_short_name}} Getting Started overview](/konnect/getting-started/).
+
+
+**Autogenerated YAML and JSON configuration files for {{site.konnect_short_name}}**
+: You can now export configuration of core Gateway Manager objects, like services, routes, and plugins, to YAML or JSON. This allows you to import the file to APIOps tooling, like decK. For more information, see [Manage Control Plane Configuration with decK](/konnect/gateway-manager/declarative-config/).
+
+![Konnect-config-export](/assets/images/products/konnect/gateway-manager/konnect-config-export.png)
+
+## January 2024
+
+**Improved Proxy URL experience**
+: Customers are now able to connect to their gateway proxy APIs by using either the public edge DNS that points to all regions, or the private IPs pointing to specific regions from directly within {{site.konnect_short_name}}.
+
+**Group and filter API request and usage data by consumers**
+: With {{site.konnect_short_name}} Analytics, you can now breakdown API usage data and individual requests by consumers. This feature extends the existing support for Applications, providing users with a holistic understanding of all APIs and their consumer base, whether internal or external.
+
+: In addition, we've streamlined the filtering experience. Users can now conveniently input either the name or UUID into the filter dropdown, enhancing the overall usability.
+
+**Improved visibility for Control Planes and Control Plane Groups**
+: Member control planes in a control plane group now have contextual analytics reporting available. That allows teams that own the configuration of an individual member control plane to better understand traffic towards their services, routes, and consumers.
+
+: Additionally, {{site.konnect_short_name}} Analytics custom reporting feature now provides users with the option to select between control planes, control plane groups, and data planes which allows for more granular insights into traffic patterns.
+
+**Gateway Manager** 
+: On the Gateway Manager Overview pages, you can now see the configured consumers and plugins. Consumers are listed in topN order based on their traffic, while plugins are displayed in the order of their configuration.
+
+## December 2023
+
+**Konnect in Google Cloud Marketplace**
+: {{site.konnect_saas}} is now available for purchase through the Google Cloud (GCP) Marketplace including public and private offers. This allows you to retire your existing GCP Credits through your purchase of {{site.konnect_saas}} and associated product capabilities.
+
 **Developer-Managed Scopes for Dev Portal**
 : You can now give your customers more control over third-party application permissions using Auth0 DCR developer-managed scopes for Dev Portal. Developers can now configure unique scopes and permissions for each Auth0 DCR application they create, allowing them to set more fine-grained permissions for each of their target audiences. See [Configure Auth0 for Dynamic Client Registration](/konnect/dev-portal/applications/dynamic-client-registration/auth0/) for details.
+
+
+**Gateway Manager** 
+: Navigation within nested entities has been enhanced. Now, any plugin configured for a service, route, or consumer is directly hyperlinked in the configuration. 
+
 
 ## November 2023
 **Multi-geo support**
@@ -295,7 +410,7 @@ For more information, see the documentation for [Audit Logging](/konnect/org-man
 * **API viewer**: Allows the Dev Portal developer to view the documentation of services.
 * **API consumer**: Allows the Dev Portal developer to register their applications with the consumer services.
 
-: For more information, see [Portal RBAC Setup](/konnect/api/portal-auth/portal-rbac-guide/) and the [Portal RBAC API documentation](/konnect/api/portal-rbac/v2/).
+: For more information, see [Portal RBAC Setup](/konnect/api/portal-auth/portal-rbac-guide/) and the [Portal RBAC API documentation](/konnect/api/portal-rbac/latest/).
 
 ## January 2023
 

@@ -50,4 +50,4 @@ http://localhost:8000/mock?apikey=apikey
 
 ## Next steps
 
-Next, you’ll learn about [load balancing upstream services using targets](/gateway/{{page.kong_version}}/kong-manager/get-started/load-balancing/).
+Next, you’ll learn about [load balancing upstream services using targets](/gateway/{{page.release}}/kong-manager/get-started/load-balancing/).

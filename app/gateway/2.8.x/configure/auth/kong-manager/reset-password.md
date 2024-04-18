@@ -36,7 +36,7 @@ Prerequisites:
 
 * `enforce_rbac = on`
 * `admin_gui_auth = basic-auth`
-* [`admin_gui_session_conf` is configured](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/).
+* [`admin_gui_session_conf` is configured](/gateway/{{page.release}}/configure/auth/kong-manager/sessions/).
 * Already logged in to Kong Manager
 
 Steps:
@@ -49,8 +49,8 @@ Steps:
 Prerequisites:
 
 * `enforce_rbac = on`
-* [`admin_gui_auth` is set](/gateway/{{page.kong_version}}/configure/auth/kong-manager/).
-* [`admin_gui_session_conf` is configured](/gateway/{{page.kong_version}}/configure/auth/kong-manager/sessions/).
+* [`admin_gui_auth` is set](/gateway/{{page.release}}/configure/auth/kong-manager/).
+* [`admin_gui_session_conf` is configured](/gateway/{{page.release}}/configure/auth/kong-manager/sessions/).
 * Already logged in to Kong Manager
 
 Steps:

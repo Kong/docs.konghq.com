@@ -1,26 +1,17 @@
 <aside class="docs-sidebar">
   <i class="fa fa-times close-sidebar"></i>
 
-  <ul class="accordion-container">
-    <input id="accordion-opened" type="text" />
-
-    <li class="accordion-item plugin-hub">
-      <input id="accordion-0" type="checkbox" />
-      <label for="accordion-0">
-        <img src="/assets/images/icons/hub-layout/icn-breadcrumbs.svg" alt="Plugin Hub">
-        <a
-          href="/hub/"
-          class="accordion-link"
-          role="menuitem"
-          tabindex="0"
-        >
-          Plugin Hub
+  <ul class="sidebar-container" role="tree" aria-label="Plugin's Documentation">
+    <li class="sidebar-item plugin-hub" role="none">
+      <span role="treeitem" class="sidebar-label">
+        <a class="sidebar-link" tabindex="-1" href="/hub/">
+          {% include_cached sidebar/item_label.html icon='/assets/images/icons/hub-layout/icn-breadcrumbs.svg' label='Plugin Hub' %}
         </a>
-      </label>
+      </span>
     </li>
 
     {% for item in include.sidenav.nav_items %}
-      {% include_cached accordion_item.html item=item id=forloop.index %}
+      {% include_cached sidebar/item.html item=item id=forloop.index %}
     {% endfor %}
   </ul>
 </aside>

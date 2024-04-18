@@ -42,7 +42,7 @@ configuration, without dropping existing in-flight connections.
 
 ## Upgrade to 2.8.x
 
-Kong adheres to [semantic versioning](https://semver.org/), which makes a
+Kong adopts a structured versioning approach, which makes a
 distinction between "major", "minor", and "patch" versions. The upgrade path
 will be different depending on which previous version from which you are migrating.
 
@@ -76,7 +76,7 @@ which allows you to more easily build OpenResty with the necessary patches and m
 ### Deprecations
 
 The external `go-pluginserver` project is considered deprecated in favor of
-the [embedded server approach](/gateway/{{page.kong_version}}/reference/external-plugins/).
+the [embedded server approach](/gateway/{{page.release}}/reference/external-plugins/).
 
 Starting with {{site.base_gateway}} 2.8.0.0, Kong is not building new open-source
 CentOS images. Support for running open-source {{site.base_gateway}} on CentOS on is now

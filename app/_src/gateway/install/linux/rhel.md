@@ -11,11 +11,11 @@ Kong is licensed under an
 
 ## Prerequisites
 
-* A [supported system](/gateway/{{page.kong_version}}/support-policy/#supported-versions) with root or [root-equivalent](/gateway/{{page.kong_version}}/production/running-kong/kong-user/) access.
+* A [supported system](/gateway/{{page.release}}/support-policy/#supported-versions) with root or [root-equivalent](/gateway/{{page.release}}/production/running-kong/kong-user/) access.
 * (Enterprise only) A `license.json` file from Kong
 
 {:.note}
-> **Note:** In July of 2023 Kong announced that package hosting was shifting from {{ site.links.download }} to [{{ site.links.cloudsmith }}]({{ site.links.cloudsmith }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
+> **Note:** In July of 2023 Kong announced that package hosting was shifting from download.konghq.com to [{{ site.links.download }}]({{ site.links.download }}). Read more about it in this [blog post](https://konghq.com/blog/product-releases/changes-to-kong-package-hosting)!
 
 ## Package install
 
@@ -35,12 +35,12 @@ Install {{site.base_gateway}} on RHEL from the command line.
 {% navtabs_ee codeblock %}
 {% navtab Kong Gateway %}
 ```bash
-curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/el/%{rhel}/x86_64/kong-enterprise-edition-{{page.versions.ee}}.el%{rhel}.x86_64.rpm)
+curl -Lo kong-enterprise-edition-{{page.versions.ee}}.rpm $(rpm --eval {{ site.links.direct }}/gateway-{{ page.major_minor_version }}/rpm/el/%{rhel}/%{_arch}/kong-enterprise-edition-{{page.versions.ee}}.el%{rhel}.%{_arch}.rpm)
 ```
 {% endnavtab %}
 {% navtab Kong Gateway (OSS) %}
 ```bash
-curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval {{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/rpm/el/%{rhel}/x86_64/kong-{{page.versions.ce}}.el%{rhel}.x86_64.rpm)
+curl -Lo kong-{{page.versions.ce}}.rpm $(rpm --eval {{ site.links.direct }}/gateway-{{ page.major_minor_version }}/rpm/el/%{rhel}/%{_arch}/kong-{{page.versions.ce}}.el%{rhel}.%{_arch}.rpm)
  ```
 {% endnavtab %}
 {% endnavtabs_ee %}
@@ -91,7 +91,7 @@ Install the YUM repository from the command line.
 
 1. Download the Kong YUM repository:
     ```bash
-    curl -1sLf "{{ site.links.cloudsmith }}/public/gateway-{{ page.major_minor_version }}/config.rpm.txt?distro=el&codename=$(rpm --eval '%{rhel}')" | sudo tee /etc/yum.repos.d/kong-gateway-{{ page.major_minor_version }}.repo
+    curl -1sLf "{{ site.links.direct }}/gateway-{{ page.major_minor_version }}/config.rpm.txt?distro=el&codename=$(rpm --eval '%{rhel}')" | sudo tee /etc/yum.repos.d/kong-gateway-{{ page.major_minor_version }}.repo
     sudo yum -q makecache -y --disablerepo='*' --enablerepo='kong-gateway-{{ page.major_minor_version }}'
     ```
 
@@ -118,25 +118,30 @@ sudo yum install -y kong-{{page.versions.ce}}
 
 ### Next steps
 
-Before starting {{site.base_gateway}}, [set up a data store](/gateway/{{page.kong_version}}/install/post-install/set-up-data-store/) 
+Before starting {{site.base_gateway}}, [set up a data store](/gateway/{{page.release}}/install/post-install/set-up-data-store/) 
 and update the `kong.conf.default` configuration property file with a reference to your data store.
 
 Depending on your desired environment, also see the following guides:
-* [Apply Enterprise license](/gateway/{{page.kong_version}}/licenses/deploy/) 
-{%- if_version gte:3.4.x -%}
+* [Apply Enterprise license](/gateway/{{page.release}}/licenses/deploy/) 
+{% if_version gte:3.4.x -%}
 * Enable Kong Manager:
-  * [Kong Manager Enterprise](/gateway/{{ page.kong_version }}/kong-manager/enable/)
-  * [Kong Manager OSS](/gateway/{{ page.kong_version }}/kong-manager-oss/)
-{%- endif_version -%}
-{%- if_version lte:3.3.x -%}
-* [Enable Kong Manager](/gateway/{{ page.kong_version }}/kong-manager/enable/)
+  * [Kong Manager Enterprise](/gateway/{{ page.release }}/kong-manager/enable/)
+  * [Kong Manager OSS](/gateway/{{ page.release }}/kong-manager-oss/)
+{% endif_version -%}
+{% if_version lte:3.3.x -%}
+* [Enable Kong Manager](/gateway/{{ page.release }}/kong-manager/enable/)
 {% endif_version %}
 
 You can also check out {{site.base_gateway}}'s series of
-[Getting Started](/gateway/{{ page.kong_version }}/get-started/) guides to learn how 
+[Getting Started](/gateway/{{ page.release }}/get-started/) guides to learn how 
 get the most out of {{site.base_gateway}}.
 
 ## Uninstall package
+
+Stop {{site.base_gateway}}:
+```
+kong stop
+```
 
 {% navtabs_ee %}
 {% navtab Kong Gateway %}

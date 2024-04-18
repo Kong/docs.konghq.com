@@ -20,4 +20,4 @@ Hovering over an element will show a color picker, as well as a list of predefin
 
 ## Editing Theme Files with the Editor
 
-The Dev Portal Editor within Kong Manager exposes the default Dev Portal theme files. The theme files can be found at the bottom of the file list under *Themes*. The variables exposed in the *Appearance* tab can be edited in the `theme.conf.yaml` file. See [Using the Editor](/gateway/{{page.kong_version}}/developer-portal/using-the-editor/) for more information on how to edit, preview, and save files in the Editor.
+The Dev Portal Editor within Kong Manager exposes the default Dev Portal theme files. The theme files can be found at the bottom of the file list under *Themes*. The variables exposed in the *Appearance* tab can be edited in the `theme.conf.yaml` file. See [Using the Editor](/gateway/{{page.release}}/developer-portal/using-the-editor/) for more information on how to edit, preview, and save files in the Editor.

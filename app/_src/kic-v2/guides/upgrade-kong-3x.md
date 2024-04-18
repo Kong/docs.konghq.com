@@ -83,7 +83,7 @@ expression paths, those paths will break if you upgrade
 to 3.x without updating configuration.
 
 {:.important}
-> **Important**: `Prefix` and `Exact` rules [must never use regular expressions](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ingress-versions/#networkingk8siov1).
+> **Important**: `Prefix` and `Exact` rules [must never use regular expressions](/kubernetes-ingress-controller/{{page.release}}/concepts/ingress-versions/#networkingk8siov1).
 Only use regular expressions in `ImplementationSpecific` rules.
 
 The new 3.x paths are also incompatible with 2.x. Adding the `/~` prefix to
@@ -312,4 +312,4 @@ consider using a [testing environment](#testing-environment) to
 identify and correct these issues, or reference the
 [troubleshooting documentation][troubleshooting].
 
-[troubleshooting]:/kubernetes-ingress-controller/{{page.kong_version}}/troubleshooting/
+[troubleshooting]:/kubernetes-ingress-controller/{{page.release}}/troubleshooting/

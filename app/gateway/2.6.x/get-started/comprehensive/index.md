@@ -73,7 +73,7 @@ Note the following before you start using this guide:
 
 * This guide assumes that you have {{site.ce_product_name}}
 or {{site.base_gateway}}
-[installed and running](/gateway/{{page.kong_version}}/install-and-run/) on the platform of your choice.
+[installed and running](/gateway/{{page.release}}/install-and-run/) on the platform of your choice.
 * During your installation, take note of the `KONG_PASSWORD`; you’ll need it
 later on in this guide for setting up user authorization.
 
@@ -106,4 +106,4 @@ common to both {{site.ce_product_name}} and {{site.base_gateway}}.
 
 ### Next Steps
 
-Next, [prepare to administer {{site.base_gateway}}](/gateway/{{page.kong_version}}/get-started/comprehensive/prepare/).
+Next, [prepare to administer {{site.base_gateway}}](/gateway/{{page.release}}/get-started/comprehensive/prepare/).

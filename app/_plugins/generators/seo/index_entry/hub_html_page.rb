@@ -10,19 +10,27 @@ module SEO
       end
 
       def attributes
-        super.merge('version' => Utils::Version.to_version('latest'))
+        super.merge('version' => version)
       end
 
       def process!(index)
         super(index)
 
-        @page.data['canonical_url'] ||= url
+        @page.data['canonical_url'] ||= Utils::CanonicalUrl.generate(url)
       end
 
       private
 
       def url
         @url ||= @page.url
+      end
+
+      def version
+        Utils::Version.to_version(
+          @page.site.data.dig('editions', 'gateway')
+          .latest_release
+          .value
+        )
       end
     end
   end

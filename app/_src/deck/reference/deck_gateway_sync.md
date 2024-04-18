@@ -7,6 +7,12 @@ content_type: reference
 The sync command reads the state file and performs operation on Kong
 to get Kong's state in sync with the input state.
 
+{:.note}
+> `deck gateway sync` is the replacement for `deck sync`. 
+> <br><br> In `deck gateway sync`, the following has changed:
+> * Files changed to positional arguments without the `-s/--state` flag
+> * The default write location changed from `kong.yaml` to `-` (stdin/stdout)
+
 ## Syntax
 
 ```
@@ -57,7 +63,7 @@ This takes precedence over _workspace fields in state files.
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## See also
 

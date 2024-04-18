@@ -13,7 +13,7 @@ Finally, you can follow the [Quickstart](#4-quickstart) to take it from here
 and continue your {{site.mesh_product_name}} journey.
 
 The official Docker images are used by default in the
-<a href="/mesh/{{page.kong_version}}/installation/kubernetes">Kubernetes</a>
+<a href="/mesh/{{page.release}}/installation/kubernetes">Kubernetes</a>
 distributions.
 
 ## Prerequisites
@@ -117,11 +117,11 @@ will be executing the commands.
 
 See the individual installation pages for your OS to download and extract
 `kumactl` to your machine:
-* [CentOS](/mesh/{{page.kong_version}}/installation/centos/)
-* [Red Hat](/mesh/{{page.kong_version}}/installation/redhat/)
-* [Debian](/mesh/{{page.kong_version}}/installation/debian/)
-* [Ubuntu](/mesh/{{page.kong_version}}/installation/ubuntu/)
-* [macOS](/mesh/{{page.kong_version}}/installation/macos/)
+* [CentOS](/mesh/{{page.release}}/installation/centos/)
+* [Red Hat](/mesh/{{page.release}}/installation/redhat/)
+* [Debian](/mesh/{{page.release}}/installation/debian/)
+* [Ubuntu](/mesh/{{page.release}}/installation/ubuntu/)
+* [macOS](/mesh/{{page.release}}/installation/macos/)
 
 {% endnavtab %}
 {% endnavtabs %}

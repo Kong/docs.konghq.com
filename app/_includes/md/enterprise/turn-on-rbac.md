@@ -55,5 +55,5 @@ Outside of this guide, you will likely want to modify these settings differently
 {% endif_version %}
 
 {% if_version gte:3.0.x %}
-Outside of this guide, you will likely want to modify these settings differently, depending on your installation. You can read more about these settings here: [Basic Auth for Kong Manager](/gateway/{{page.kong_version}}/kong-manager/auth/basic/).
+Outside of this guide, you will likely want to modify these settings differently, depending on your installation. You can read more about these settings here: [Basic Auth for Kong Manager](/gateway/{{page.release}}/kong-manager/auth/basic/).
 {% endif_version %}

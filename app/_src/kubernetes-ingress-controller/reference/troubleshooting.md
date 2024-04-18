@@ -202,7 +202,10 @@ in a test environment can help locate potential causes.
 Under normal operation, the controller does not store generated configuration;
 it is only sent to Kong's Admin API. The `--dump-config` flag enables a
 diagnostic mode where the controller also saves generated configuration to a
-temporary file. To use the diagnostic mode:
+temporary file. You can retrieve this file via the web interface of the diagnostic
+server at `host:10256/debug/config`.
+
+To use the diagnostic mode:
 
 1. Set the `--dump-config` flag (or `CONTROLLER_DUMP_CONFIG` environment
    variable) to `true`. Optionally set the `--dump-sensitive-config` flag to
@@ -331,7 +334,7 @@ port-forward <POD_NAME> 10256:10256`, and visit `http://localhost:10256/debug/pp
 
 Kubernetes resources can request configuration that {{site.kic_product_name}}
 can't translate into a valid {{site.base_gateway}} configuration. While the
-[admission webhook](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/admission-webhook/)
+[admission webhook](/kubernetes-ingress-controller/{{page.release}}/concepts/admission-webhook/)
 can reject some invalid configurations during creation and the controller can
 fix some invalid configurations on its own, some configuration issues require
 you to review and fix them. When such issues arise, {{site.kic_product_name}}
@@ -339,11 +342,11 @@ creates Kubernetes Events to help you identify problem resources and understand
 how to fix them.
 
 To determine if there are any translation failures that you might want to fix, you
-can monitor the `ingress_controller_translation_count` [Prometheus metric](/kubernetes-ingress-controller/{{page.kong_version}}/production/observability/prometheus/).
+can monitor the `ingress_controller_translation_count` [Prometheus metric](/kubernetes-ingress-controller/{{page.release}}/production/observability/prometheus/).
 
 ### Monitor for issues that require manual fixes
 
-{{site.kic_product_name}}'s [Prometheus metrics](/kubernetes-ingress-controller/{{page.kong_version}}/production/observability/prometheus/)
+{{site.kic_product_name}}'s [Prometheus metrics](/kubernetes-ingress-controller/{{page.release}}/production/observability/prometheus/)
 include `ingress_controller_translation_count` and
 `ingress_controller_configuration_push_count` counters. Issues that require
 human intervention add `success=false` tallies to these counters.

@@ -153,4 +153,4 @@ The output shows all of the connected Data Plane instances in the cluster:
 
 In this section, you learned about the methods of administering
 {{site.base_gateway}} and how to access its configuration. Next, go on to
-learn about [exposing your services with {{site.base_gateway}}](/gateway/{{page.kong_version}}/get-started/comprehensive/expose-services/).
+learn about [exposing your services with {{site.base_gateway}}](/gateway/{{page.release}}/get-started/comprehensive/expose-services/).

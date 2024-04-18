@@ -11,7 +11,7 @@ Open-Source {{site.base_gateway}}. It consists of two components:
 ## Installers
 
 Kong for Kubernetes can be installed using an installer of
-your choice. After the installation is complete, see the [getting started](/kubernetes-ingress-controller/{{page.kong_version}}/guides/getting-started) tutorial to learn more.
+your choice. After the installation is complete, see the [getting started](/kubernetes-ingress-controller/{{page.release}}/guides/getting-started) tutorial to learn more.
 
 {% navtabs %}
 {% navtab YAML manifests %}
@@ -25,10 +25,10 @@ $ kubectl apply -f https://raw.githubusercontent.com/Kong/kubernetes-ingress-con
 
 There are additional instructions for the following platforms:
 
-- [Minikube](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/minikube/)
-- [Google Kubernetes Engine(GKE) by Google](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/gke/)
-- [Elastic Kubernetes Service(EKS) by Amazon](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/eks/)
-- [Azure Kubernetes Service(AKS) by Microsoft](/kubernetes-ingress-controller/{{page.kong_version}}/deployment/aks/)
+- [Minikube](/kubernetes-ingress-controller/{{page.release}}/deployment/minikube/)
+- [Google Kubernetes Engine(GKE) by Google](/kubernetes-ingress-controller/{{page.release}}/deployment/gke/)
+- [Elastic Kubernetes Service(EKS) by Amazon](/kubernetes-ingress-controller/{{page.release}}/deployment/eks/)
+- [Azure Kubernetes Service(AKS) by Microsoft](/kubernetes-ingress-controller/{{page.release}}/deployment/aks/)
 
 {% endnavtab %}
 {% navtab Kustomize %}

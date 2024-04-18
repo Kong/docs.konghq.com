@@ -10,6 +10,11 @@ It loads entities from Kong and performs a diff with
 the entities in local files. This allows you to see the entities
 that will be created, updated, or deleted.
 
+{:.note}
+> `deck gateway diff` is the replacement for `deck diff`. 
+> <br><br> In `deck gateway diff`, the following has changed:
+> * Files changed to positional arguments without the `-s/--state` flag
+> * The default write location changed from `kong.yaml` to `-` (stdin/stdout)
 
 ## Syntax
 
@@ -60,7 +65,7 @@ This takes precedence over _workspace fields in state files.
 
 ## Global flags
 
-{% include_cached /md/deck-global-flags.md kong_version=page.kong_version %}
+{% include_cached /md/deck-global-flags.md release=page.release %}
 
 ## See also
 

@@ -12,6 +12,7 @@ jobs:
   submodule-sync:
     name: Submodule Sync
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Submodule Sync
         uses: mheap/submodule-sync-action@v1

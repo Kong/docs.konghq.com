@@ -60,7 +60,7 @@ ldapsearch -x \
 
 [api-object]: /gateway/latest/admin-api/#api-object
 [configuration]: /gateway/latest/reference/configuration
-[consumer-object]: /gateway/latest/admin-api/#consumer-object
+[consumer-object]: /gateway/api/admin-ee/latest/#/Consumers/list-consumer/
 
 
 

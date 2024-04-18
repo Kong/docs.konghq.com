@@ -230,7 +230,7 @@ For more information on integrating Kong into custom Nginx configurations, see
 ## Role Based Access Control
 {:.badge .enterprise}
 
-{{site.base_gateway}} users can configure [role-based access control](/gateway/{{page.kong_version}}/configure/auth/rbac/)
+{{site.base_gateway}} users can configure [role-based access control](/gateway/{{page.release}}/configure/auth/rbac/)
 to secure access to the Admin API. RBAC allows for fine-grained control over resource access
 based on a model of user roles and permissions. Users are assigned to one or more roles,
 which each in turn possess one or more permissions granting or denying access
@@ -240,6 +240,6 @@ uses.
 
 [acl]: /hub/kong-inc/acl
 [basic-auth]: /hub/kong-inc/basic-auth
-[custom-configuration]: /gateway/{{page.kong_version}}/reference/configuration/#custom-nginx-configuration
+[custom-configuration]: /gateway/{{page.release}}/reference/configuration/#custom-nginx-configuration
 [ip-restriction]: /hub/kong-inc/ip-restriction
 [key-auth]: /hub/kong-inc/key-auth

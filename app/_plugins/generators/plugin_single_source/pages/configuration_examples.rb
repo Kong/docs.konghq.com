@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative './how_to'
+require_relative 'how_to'
 
 module PluginSingleSource
   module Pages
@@ -15,7 +15,7 @@ module PluginSingleSource
         if @release.latest?
           canonical_url
         else
-          "#{base_url}#{@release.version}/how-to/basic-example/"
+          "#{base_url}#{gateway_release}/how-to/basic-example/"
         end
       end
 

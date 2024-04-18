@@ -15,7 +15,7 @@ Key Authentication for the Dev Portal can be enabled in three ways:
 
 >**Warning** Enabling authentication in the Dev Portal requires use of the
 > Sessions plugin. Developers will not be able to login if this is not set
-> properly. More information about [Sessions in the Dev Portal](/gateway/{{page.kong_version}}/developer-portal/configuration/authentication/sessions/)
+> properly. More information about [Sessions in the Dev Portal](/gateway/{{page.release}}/developer-portal/configuration/authentication/sessions/)
 
 ## Enable Portal Session Config
 
@@ -36,7 +36,7 @@ portal_session_conf={ "cookie_name": "portal_session", "secret": "CHANGE_THIS", 
 3. Select **Key Authentication** from the drop down.
 4. Click **Save Changes**.
 
->**Warning** When Dev Portal Authentication is enabled, content files will remain unauthenticated until a role is applied to them. The exception to this is `settings.txt` and `dashboard.txt` which begin with the `*` role. Please visit the <a href="/gateway/{{page.kong_version}}/developer-portal/administration/developer-permissions">Developer Roles and Content Permissions</a> section for more info.
+>**Warning** When Dev Portal Authentication is enabled, content files will remain unauthenticated until a role is applied to them. The exception to this is `settings.txt` and `dashboard.txt` which begin with the `*` role. Please visit the <a href="/gateway/{{page.release}}/developer-portal/administration/developer-permissions">Developer Roles and Content Permissions</a> section for more info.
 
 ## Enable Key Auth via the Command Line
 
@@ -47,7 +47,7 @@ curl -X PATCH http://localhost:8001/workspaces/<WORKSPACE NAME> \
   --data "config.portal_auth=key-auth"
 ```
 
->**Warning** When Dev Portal Authentication is enabled, content files will remain unauthenticated until a role is applied to them. The exception to this is `settings.txt` and `dashboard.txt` which begin with the `*` role. Please visit the <a href="/gateway/{{page.kong_version}}/developer-portal/administration/developer-permissions">Developer Roles and Content Permissions</a> section for more info.
+>**Warning** When Dev Portal Authentication is enabled, content files will remain unauthenticated until a role is applied to them. The exception to this is `settings.txt` and `dashboard.txt` which begin with the `*` role. Please visit the <a href="/gateway/{{page.release}}/developer-portal/administration/developer-permissions">Developer Roles and Content Permissions</a> section for more info.
 
 ## Enable Key Auth via the Kong.conf
 

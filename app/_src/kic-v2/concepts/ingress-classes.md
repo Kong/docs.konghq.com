@@ -28,7 +28,7 @@ categories:
 
 For example, an Ingress is translated directly into a Kong route, and a
 KongConsumer is translated directly into a
-[Kong consumer](/gateway/latest/admin-api/#consumer-object). A Secret containing
+[Kong consumer](/gateway/api/admin-ee/latest/#/Consumers/list-consumer/). A Secret containing
 an authentication plugin credential is _not_ translated directly: it is only
 translated into Kong configuration if a KongConsumer resource references it.
 
@@ -128,7 +128,7 @@ resources that the controller uses as a basis for building Kong configuration.
 The Secret and KongPlugin _do not_ have class annotations, as they are
 referenced by other resources that do.
 
-[class-annotation]:/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/#kubernetesioingressclass
-[knative-class]:/kubernetes-ingress-controller/{{page.kong_version}}/guides/using-kong-with-knative/#ingress-class
+[class-annotation]:/kubernetes-ingress-controller/{{page.release}}/references/annotations/#kubernetesioingressclass
+[knative-class]:/kubernetes-ingress-controller/{{page.release}}/guides/using-kong-with-knative/#ingress-class
 [knative-override]:https://knative.dev/docs/serving/services/ingress-class/
 [ingress-class-name]:https://kubernetes.io/docs/concepts/services-networking/ingress/#deprecated-annotation

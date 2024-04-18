@@ -23,12 +23,12 @@ While the OpenID Connect Plugin can suit many different use cases and extends to
 See our series of integration guides to configure the OIDC plugin for your
 identity provider:
 
-  - [Auth0](/gateway/{{page.kong_version}}/configure/auth/oidc-auth0/)
-  - [Amazon AWS Cognito](/gateway/{{page.kong_version}}/configure/auth/oidc-cognito/)
-  - [Curity](/gateway/{{page.kong_version}}/configure/auth/oidc-curity/)
-  - [Google](/gateway/{{page.kong_version}}/configure/auth/oidc-google/)
-  - [Microsoft Azure Active Directory (Azure AD)](/gateway/{{page.kong_version}}/configure/auth/oidc-azuread/)
-  - [Okta](/gateway/{{page.kong_version}}/configure/auth/oidc-okta/)
+  - [Auth0](/gateway/{{page.release}}/configure/auth/oidc-auth0/)
+  - [Amazon AWS Cognito](/gateway/{{page.release}}/configure/auth/oidc-cognito/)
+  - [Curity](/gateway/{{page.release}}/configure/auth/oidc-curity/)
+  - [Google](/gateway/{{page.release}}/configure/auth/oidc-google/)
+  - [Microsoft Azure Active Directory (Azure AD)](/gateway/{{page.release}}/configure/auth/oidc-azuread/)
+  - [Okta](/gateway/{{page.release}}/configure/auth/oidc-okta/)
 
   For a full list of tested providers and all available configuration options,
   see the [OpenID Connect plugin reference](/hub/kong-inc/openid-connect/).

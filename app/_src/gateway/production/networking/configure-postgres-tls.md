@@ -92,7 +92,7 @@ pg_ssl_version = tlsv1_2
 lua_ssl_trusted_certificate = system,/path/to/ca/chain.crt
 lua_ssl_verify_depth = 1
 ```
-For more information about these parameters, see the {{site.base_gateway}} [PostgreSQL settings documentation](/gateway/{{page.kong_version}}/reference/configuration/#postgres-settings), as well as the specific documentation for [`lua_ssl_trusted_certificate`](/gateway/{{page.kong_version}}/reference/configuration/#lua_ssl_trusted_certificate) and [`lua_ssl_verify_depth`](/gateway/{{page.kong_version}}/reference/configuration/#lua_ssl_verify_depth). 
+For more information about these parameters, see the {{site.base_gateway}} [PostgreSQL settings documentation](/gateway/{{page.release}}/reference/configuration/#postgres-settings), as well as the specific documentation for [`lua_ssl_trusted_certificate`](/gateway/{{page.release}}/reference/configuration/#lua_ssl_trusted_certificate) and [`lua_ssl_verify_depth`](/gateway/{{page.release}}/reference/configuration/#lua_ssl_verify_depth). 
 
 ### {{site.base_gateway}} mTLS configuration
 

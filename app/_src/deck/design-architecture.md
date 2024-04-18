@@ -59,7 +59,7 @@ been incorporated to ensure good performance:
   This is usually not a concern as decK's process is short-lived. For very
   large installations, it is recommended to configure a subset of
   the large configuration at one time using a technique referred to as
-  [distributed configuration](/deck/{{page.kong_version}}/guides/distributed-configuration/).
+  [distributed configuration](/deck/{{page.release}}/guides/distributed-configuration/).
   There are avenues to further reduce the memory requirements of decK,
   although, we don't know by how much. decK's code is written with focus on
   correctness over performance.

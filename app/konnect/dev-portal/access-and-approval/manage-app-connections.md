@@ -4,7 +4,7 @@ content_type: reference
 ---
 
 When a developer
-[registration](/konnect/dev-portal/applications/dev-reg-app-service) request is approved, it creates a connection between
+[registration](/konnect/dev-portal/applications/dev-apps) request is approved, it creates a connection between
 the developer, their applications, and any associated API product versions. In {{site.konnect_short_name}}, you can revoke, reinstate, or delete a connection to an API product version. This functionality is managed from the **Applications** page within the {% konnect_icon dev-portal %} **Dev Portal** section. 
 
 ## Applications section

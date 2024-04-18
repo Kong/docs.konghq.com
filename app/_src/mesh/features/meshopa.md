@@ -21,6 +21,24 @@ When the `MeshOPA` policy is applied, the control plane configures the following
 
 ## TargetRef support matrix
 
+{% if_version gte:2.6.x %}
+{% tabs targetRef useUrlFragment=false %}
+{% tab targetRef Sidecar %}
+| `targetRef`           | Allowed kinds                                            |
+| --------------------- | -------------------------------------------------------- |
+| `targetRef.kind`      | `Mesh`, `MeshSubset`, `MeshService`, `MeshServiceSubset` |
+{% endtab %}
+
+{% tab targetRef Builtin Gateway %}
+| `targetRef`             | Allowed kinds                                             |
+| ----------------------- | --------------------------------------------------------- |
+| `targetRef.kind`        | `Mesh`, `MeshGateway`                                     |
+{% endtab %}
+{% endtabs %}
+
+{% endif_version %}
+{% if_version lte:2.5.x %}
+
 | TargetRef type    | top level | to  | from |
 | ----------------- | --------- | --- | ---- |
 | Mesh              | ✅        | ❌  | ❌   |
@@ -29,7 +47,10 @@ When the `MeshOPA` policy is applied, the control plane configures the following
 | MeshServiceSubset | ✅        | ❌  | ❌   |
 | MeshGatewayRoute  | ❌        | ❌  | ❌   |
 
-To learn more about the information in this table, see the [matching docs](/mesh/{{page.kong_version}}/policies/targetref).
+{% endif_version %}
+
+
+To learn more about the information in this table, see the [matching docs](/mesh/{{page.release}}/policies/targetref).
 
 ## Configuration
 
@@ -437,6 +458,7 @@ The following environment variables are available:
 | KMESH_OPA_EXT_AUTHZ_ADDR   | string    | Address of Envoy External AuthZ service | `localhost:9191`  |
 | KMESH_OPA_CONFIG_OVERRIDES | strings   | Overrides for OPA configuration, in addition to config file(*) | nil |
 {% endif_version %}
+
 
 {% navtabs %}
 {% navtab kumactl %}
@@ -963,12 +985,12 @@ The following example shows how to deploy and test a sample MeshOPA policy on Ku
 
 <!-- links -->
 {% if_version gte:2.0.x %}
-[protocols]: /mesh/{{page.kong_version}}/policies/protocol-support-in-kong-mesh/
+[protocols]: /mesh/{{page.release}}/policies/protocol-support-in-kong-mesh/
 {% if_version lte:2.1.x %}
-[secrets]: /mesh/{{page.kong_version}}/security/secrets/
+[secrets]: /mesh/{{page.release}}/security/secrets/
 {% endif_version %}
 {% if_version gte:2.2.x %}
-[secrets]: /mesh/{{page.kong_version}}/production/secure-deployment/secrets/
+[secrets]: /mesh/{{page.release}}/production/secure-deployment/secrets/
 {% endif_version %}
 {% endif_version %}
 

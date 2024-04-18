@@ -8,24 +8,21 @@ module PluginSingleSource
     class Release
       extend Forwardable
 
-      attr_reader :version, :source, :site
+      attr_reader :version, :site
 
       def_delegators :@plugin, :ext_data, :vendor, :name, :dir
 
-      def initialize(site:, version:, plugin:, source:, is_latest:)
+      def initialize(site:, version:, plugin:, is_latest:)
         @site = site
         @version = version
         @plugin = plugin
-        @source = source
         @is_latest = is_latest
-
-        validate_source!
       end
 
       def metadata
         @metadata ||= SafeYAML.load(
           Utils::SafeFileReader.read(
-            file_name: '_metadata.yml',
+            file_name: Utils::SingleSourceFileFinder.find(file_path: "#{pages_source_path}/_metadata/", version:),
             source_path: pages_source_path
           )
         ) || {}
@@ -37,12 +34,12 @@ module PluginSingleSource
 
       def how_tos
         @how_tos ||= Dir.glob(File.expand_path('how-to/**/*.md', pages_source_path)).map do |file|
-          Pages::HowTo.new(
+          Pages::HowTo.make_for(
             release: self,
             file: file.gsub(pages_source_path, ''),
             source_path: pages_source_path
           )
-        end
+        end.compact
       end
 
       def references
@@ -77,12 +74,12 @@ module PluginSingleSource
 
       def overviews
         @overviews ||= Dir.glob(File.expand_path('overview/**/*.md', pages_source_path)).map do |file|
-          Pages::Overview.new(
+          Pages::Overview.make_for(
             release: self,
             file: file.gsub(pages_source_path, ''),
             source_path: pages_source_path
           )
-        end
+        end.compact
       end
 
       def changelog
@@ -107,11 +104,7 @@ module PluginSingleSource
       end
 
       def pages_source_path
-        @pages_source_path ||= if @source == '_index'
-                                 "#{plugin_base_path}/"
-                               else
-                                 "#{plugin_base_path}/#{@source}/"
-                               end
+        @pages_source_path ||= "#{plugin_base_path}/"
       end
 
       def schema
@@ -120,15 +113,6 @@ module PluginSingleSource
 
       def enterprise_plugin?
         !!metadata['enterprise'] && !!!metadata['free']
-      end
-
-      private
-
-      def validate_source!
-        return if @source.start_with?('_')
-
-        raise ArgumentError,
-              "Plugin source files must start with an _ to prevent Jekyll from rendering them directly. Please fix [#{@source}] in [#{dir}]" # rubocop:disable Layout/LineLength
       end
     end
   end

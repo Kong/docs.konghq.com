@@ -5,8 +5,8 @@
    > <br>
    > If you need to expose the `admin_listen` port to the internet in a production environment,
    > {% if_version lte:2.8.x
-   %}[secure it with authentication](/gateway/{{include.kong_version}}/admin-api/secure-admin-api/).{% endif_version %}{% if_version gte:3.0.x
-   %}[secure it with authentication](/gateway/{{include.kong_version}}/production/running-kong/secure-admin-api/).{% endif_version %}
+   %}[secure it with authentication](/gateway/{{include.release}}/admin-api/secure-admin-api/).{% endif_version %}{% if_version gte:3.0.x
+   %}[secure it with authentication](/gateway/{{include.release}}/production/running-kong/secure-admin-api/).{% endif_version %}
 
 
 {% endif %}
@@ -14,7 +14,7 @@
    {:.important}
    > **Important**: If you need to expose the `admin_listen` port to the internet in a production environment,
   > {% if_version lte:2.8.x
-    %}[secure it with authentication](/gateway/{{include.kong_version}}/admin-api/secure-admin-api/).{% endif_version %}{% if_version gte:3.0.x
-    %}[secure it with authentication](/gateway/{{include.kong_version}}/production/running-kong/secure-admin-api/).{% endif_version %}
+    %}[secure it with authentication](/gateway/{{include.release}}/admin-api/secure-admin-api/).{% endif_version %}{% if_version gte:3.0.x
+    %}[secure it with authentication](/gateway/{{include.release}}/production/running-kong/secure-admin-api/).{% endif_version %}
 
 {% endif %}

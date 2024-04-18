@@ -21,7 +21,7 @@ RSpec.describe KumaToKongMesh::Generator do
             .not_to include('[Read about Kuma](/docs/{{ page.version }}/introduction/what-is-kuma)')
 
           expect(page.content)
-            .to include('[Read about Kuma](/mesh/{{ page.kong_version }}/introduction/what-is-kong-mesh)')
+            .to include('[Read about Kuma](/mesh/{{ page.release }}/introduction/what-is-kong-mesh)')
         end
 
         it 'do not replace `kuma.io` and kumaio in links' do
@@ -39,9 +39,9 @@ RSpec.describe KumaToKongMesh::Generator do
         end
 
         it 'does not replace `kuma` in links that contain kuma commands' do
-          expect(page.content).to include('/mesh/{{ page.kong_version }}/generated/cmd/kuma-cp/kuma-cp_migrate')
-          expect(page.content).to include('/mesh/{{ page.kong_version }}/generated/cmd/kuma-dp/kuma-dp_run')
-          expect(page.content).to include('/mesh/{{ page.kong_version }}/generated/cmd/kumactl/kumactl_apply')
+          expect(page.content).to include('/mesh/{{ page.release }}/generated/cmd/kuma-cp/kuma-cp_migrate')
+          expect(page.content).to include('/mesh/{{ page.release }}/generated/cmd/kuma-dp/kuma-dp_run')
+          expect(page.content).to include('/mesh/{{ page.release }}/generated/cmd/kumactl/kumactl_apply')
         end
 
         context 'assets' do
@@ -55,10 +55,10 @@ RSpec.describe KumaToKongMesh::Generator do
       end
 
       context 'transforms specific links' do
-        it 'replaces `/install` and `/install/` with `/mesh/{{ page.kong_version }}/install/`' do
+        it 'replaces `/install` and `/install/` with `/mesh/{{ page.release }}/install/`' do
           expect(page.content).not_to include('[Install Kuma](/install)')
 
-          expect(page.content).to include('[Install Kuma](/mesh/{{ page.kong_version }}/install/)').twice
+          expect(page.content).to include('[Install Kuma](/mesh/{{ page.release }}/install/)').twice
         end
 
         it 'replaces `/community` and `/community/` with `https://konghq.com/community`' do
@@ -67,18 +67,18 @@ RSpec.describe KumaToKongMesh::Generator do
           expect(page.content).to include('[Community](https://konghq.com/community)').twice
         end
 
-        it 'replaces `/enterprise` and `/enterprise/` with `/mesh/{{ page.kong_version }}/`' do
+        it 'replaces `/enterprise` and `/enterprise/` with `/mesh/{{ page.release }}/`' do
           expect(page.content).not_to include('[Enterprise Support](/enterprise)')
 
-          expect(page.content).to include('[Enterprise Support](/mesh/{{ page.kong_version }}/)').twice
+          expect(page.content).to include('[Enterprise Support](/mesh/{{ page.release }}/)').twice
         end
       end
 
       context 'replaces the base url from Kuma' do
-        it 'replaces `/docs/{{ page.version }}` with `/mesh/{{ page.kong_version }}`' do
+        it 'replaces `/docs/{{ page.version }}` with `/mesh/{{ page.release }}`' do
           expect(page.content).not_to include('/docs/{{ page.version }}')
 
-          expect(page.content).to include('/mesh/{{ page.kong_version }}').exactly(10).times
+          expect(page.content).to include('/mesh/{{ page.release }}').exactly(10).times
         end
       end
     end

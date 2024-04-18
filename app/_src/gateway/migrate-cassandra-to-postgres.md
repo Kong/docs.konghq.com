@@ -3,8 +3,8 @@ title: Cassandra to PostgreSQL Migration Guidelines
 ---
 
 This guide walks you through migrating {{site.base_gateway}} from a Cassandra DB-backed 
-[traditional](/gateway/{{page.kong_version}}/production/deployment-topologies/traditional/) deployment to a PostgreSQL-backed
-[hybrid](/gateway/{{page.kong_version}}/production/deployment-topologies/hybrid-mode/) deployment.
+[traditional](/gateway/{{page.release}}/production/deployment-topologies/traditional/) deployment to a PostgreSQL-backed
+[hybrid](/gateway/{{page.release}}/production/deployment-topologies/hybrid-mode/) deployment.
 
 This guide uses a blue-green migration approach. In this approach, DNS switching helps cut traffic over from a Blue environment to a Green environment. This provides the ability to roll back faster if an issue is detected. 
 
@@ -15,7 +15,7 @@ Migration steps:
 1. Build a target {{site.base_gateway}} hybrid environment with PostgreSQL. This acts as your blank canvas.
 1. Use decK to export (`dump`) configuration from the old traditional Cassandra-backed deployment. 
 1. Use decK to import (`sync`) the configuration to the new hybrid PostgreSQL-backed deployment.
-1. Create basic auth credentials and local RBAC users using either the Admin Api or Kong Manager.
+1. Create basic auth credentials and local RBAC users using either the Admin API or Kong Manager.
 1. When the {{site.base_gateway}} configuration has been migrated over to the green environment, slowly redirect traffic via canary into the green environment. This lowers the risk of the release with a fast rollback mechanism in place.
 
 
@@ -28,12 +28,39 @@ While the document provides high level guidelines, actual migration steps may di
 * External touch points to the Gateway (for example, OIDC with external IdPs)
 * Number of configuration entities, for example services and routes
 * If running an older version of {{site.base_gateway}}, we recommend doing a {{site.base_gateway}} version upgrade before the database migration. This reduces the moving parts in the upgrade procedure.
-* If you're using Cassandra, you likely have a traditional deployment. We recommend taking this opportunity to review the [deployment topology options](/gateway/{{page.kong_version}}/production/deployment-topologies/) for {{site.base_gateway}} and converting to a hybrid mode deployment, if possible.
+* If you're using Cassandra, you likely have a traditional deployment. We recommend taking this opportunity to review the [deployment topology options](/gateway/{{page.release}}/production/deployment-topologies/) for {{site.base_gateway}} and converting to a hybrid mode deployment, if possible.
 
 The following diagram shows the architecture of a hybrid mode deployment, which means there is a split between the {{site.base_gateway}} control and data planes. You can follow the same database migration approach for {{site.base_gateway}} instances deployed in traditional mode.
 
-![migration image](/assets/images/products/gateway/migration.png)
+<!--vale off-->
+{% mermaid %}
+flowchart LR
+A[api.customer.com]
+B[(Cassandra)]
+C(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> {{site.base_gateway}} VM)
+D(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> {{site.base_gateway}} DP)
+E(<img src="/assets/images/logos/KogoBlue.svg" style="max-height:20px" class="no-image-expand"/> {{site.base_gateway}} CP)
+F[(Postgres)]
 
+H[[decK]]
+
+A --> C & D
+
+subgraph id1 ["`**On premise**`"]
+C --> B
+end
+
+subgraph id2 ["`**Kubernetes**`"]
+D --> E --> F
+end
+
+C --export config via yaml--> H --sync config to CP--> E
+
+style id1 stroke-dasharray:3,rx:10,ry:10
+style id2 stroke-dasharray:3,rx:10,ry:10
+
+{% endmermaid %}
+<!--vale on-->
 
 ## Prerequisites
 * The {{site.base_gateway}} blue environment (using Cassandra) and green environment (using PostgreSQL) are running the same Gateway version.
@@ -104,5 +131,5 @@ The purpose of this phase is to migrate traffic in a controlled manner, with a r
 
 After migration, basic authentication credentials can be managed by decK. See the following topics to learn how to manage secrets with deck:
 
-* [Gateway secret management GCP](/gateway/{{page.kong_version}}/kong-enterprise/secrets-management/backends/gcp-sm/)
+* [Gateway secret management GCP](/gateway/{{page.release}}/kong-enterprise/secrets-management/backends/gcp-sm/)
 * [Secrets management with decK](/deck/latest/guides/vaults/#configure-a-secret-vault)

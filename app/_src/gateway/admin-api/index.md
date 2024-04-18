@@ -271,7 +271,7 @@ certificate_body: |
     `cert_alt`<br>*optional* |  PEM-encoded public certificate chain of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started/) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format/).
     `key_alt`<br>*optional* | PEM-encoded private key of the alternate SSL key pair. This should only be set if you have both RSA and ECDSA types of certificate available and would like Kong to prefer serving using ECDSA certs when client advertises support for it. This field is _referenceable_, which means it can be securely stored as a [secret](/gateway/latest/plan-and-deploy/security/secrets-management/getting-started/) in a vault. References must follow a [specific format](/gateway/latest/plan-and-deploy/security/secrets-management/reference-format/).
     `tags`<br>*optional* |  An optional set of strings associated with the Certificate for grouping and filtering.
-    `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a sugar parameter that will, under the hood, create an SNI object and associate it with this certificate for your convenience. To set this attribute this certificate must have a valid private key associated with it.
+    `snis`<br>*shorthand-attribute* |  An array of zero or more hostnames to associate with this certificate as SNIs. This is a convenience parameter: under the hood, it creates an SNI object and associates it with this certificate. To set this attribute this certificate must have a valid private key associated with it.
     `passphrase`<br>*optional* (Enterprise only) | To load an encrypted private key into Kong, specify the passphrase using this attribute. Kong will decrypt the private key and store it in its database. To encrypt the private key and other sensitive information in Kong's database, consider using DB encryption.
 
 certificate_json: |
@@ -857,7 +857,7 @@ filters_data:
 ## DB-less Mode
 
 
-In [DB-less mode](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config/),
+In [DB-less mode](/gateway/{{page.release}}/production/deployment-topologies/db-less-and-declarative-config/),
 the Admin API can be used to load a new declarative
 configuration, and for inspecting the current configuration. In DB-less mode,
 the Admin API for each Kong node functions independently, reflecting the memory state
@@ -906,7 +906,7 @@ are erased from memory, and the entities specified in the
 given file take their place.
 
 To learn more about the file format, see the
-[declarative configuration](/gateway/{{page.kong_version}}/production/deployment-topologies/db-less-and-declarative-config) documentation.
+[declarative configuration](/gateway/{{page.release}}/production/deployment-topologies/db-less-and-declarative-config) documentation.
 
 
 <div class="endpoint post indent">/config</div>
@@ -2194,8 +2194,8 @@ The router adds:
 
 Learn more about the router:
 
-[Configure routes using expressions](/gateway/{{page.kong_version}}/key-concepts/routes/expressions)
-[Expressions language reference](/gateway/{{page.kong_version}}/reference/expressions-language/)
+[Configure routes using expressions](/gateway/{{page.release}}/key-concepts/routes/expressions)
+[Expressions language reference](/gateway/{{page.release}}/reference/expressions-language/)
 
 
 #### Path handling algorithms
@@ -5947,15 +5947,15 @@ HTTP 200 OK
 
 ---
 
-[clustering]: /gateway/{{page.kong_version}}/reference/clustering
-[cli]: /gateway/{{page.kong_version}}/reference/cli
-[active]: /gateway/{{page.kong_version}}/how-kong-works/health-checks/#active-health-checks
-[healthchecks]: /gateway/{{page.kong_version}}/how-kong-works/health-checks
-[secure-admin-api]: /gateway/{{page.kong_version}}/production/running-kong/secure-admin-api
-[proxy-reference]: /gateway/{{page.kong_version}}/how-kong-works/routing-traffic/
-[WebAssembly section]: /gateway/{{page.kong_version}}/reference/wasm/
-[filter execution behavior]: /gateway/{{page.kong_version}}/reference/wasm/#filter_execution_behavior
-[filters]: /gateway/{{page.kong_version}}/reference/wasm/#filter
-[filter chain]: /gateway/{{page.kong_version}}/reference/wasm/#filter_chain
+[clustering]: /gateway/{{page.release}}/reference/clustering
+[cli]: /gateway/{{page.release}}/reference/cli
+[active]: /gateway/{{page.release}}/how-kong-works/health-checks/#active-health-checks
+[healthchecks]: /gateway/{{page.release}}/how-kong-works/health-checks
+[secure-admin-api]: /gateway/{{page.release}}/production/running-kong/secure-admin-api
+[proxy-reference]: /gateway/{{page.release}}/how-kong-works/routing-traffic/
+[WebAssembly section]: /gateway/{{page.release}}/reference/wasm/
+[filter execution behavior]: /gateway/{{page.release}}/reference/wasm/#filter_execution_behavior
+[filters]: /gateway/{{page.release}}/reference/wasm/#filter
+[filter chain]: /gateway/{{page.release}}/reference/wasm/#filter_chain
 
 

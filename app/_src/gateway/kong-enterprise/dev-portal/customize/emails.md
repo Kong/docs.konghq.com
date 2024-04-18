@@ -19,7 +19,7 @@ Not all tokens are supported on all emails.
 
 * The Kong Dev Portal is not running in **Legacy Mode**
 * The Kong Dev Portal is enabled and running
-* [The emails you want are enabled in kong](/gateway/{{page.kong_version}}/kong-enterprise/dev-portal/smtp/#portal_invite_email)
+* [The emails you want are enabled in kong](/gateway/{{page.release}}/kong-enterprise/dev-portal/smtp/#portal_invite_email)
 * If using CLI tool, kong-portal-cli tool 1.1 or later is installed locally and git installed
 
 ## Understanding Email Files

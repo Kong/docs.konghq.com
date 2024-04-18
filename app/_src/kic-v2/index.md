@@ -27,7 +27,7 @@ Refer to the [custom resources concept document][crd] for more details.
 ### Deployment Methods
 
 The {{site.kic_product_name}} can be deployed in a variety of deployment patterns.
-Refer to the [deployment documentation](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/deployment/),
+Refer to the [deployment documentation](/kubernetes-ingress-controller/{{page.release}}/concepts/deployment/),
 which explains all the components
 involved and different ways of deploying them based on the use-case.
 
@@ -35,18 +35,18 @@ involved and different ways of deploying them based on the use-case.
 
 The {{site.kic_product_name}} is designed to scale with your traffic
 and infrastructure.
-Refer to the [High-availability and Scaling guide](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ha-and-scaling/) to understand
+Refer to the [High-availability and Scaling guide](/kubernetes-ingress-controller/{{page.release}}/concepts/ha-and-scaling/) to understand
 failures scenarios, recovery methods, as well as scaling considerations.
 
 ### Ingress classes
 
-[Ingress classes](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/ingress-classes) filter which resources the
+[Ingress classes](/kubernetes-ingress-controller/{{page.release}}/concepts/ingress-classes) filter which resources the
 controller loads. They ensure that {{site.kic_product_name}} instances do not
 load configuration intended for other instances or other ingress controllers.
 
 ### Security
 
-Refer to the [Security concepts guide](/kubernetes-ingress-controller/{{page.kong_version}}/concepts/security/) to understand the
+Refer to the [Security concepts guide](/kubernetes-ingress-controller/{{page.release}}/concepts/security/) to understand the
 default security settings and how to further secure the Ingress Controller.
 
 ## Guides and Tutorials
@@ -60,12 +60,12 @@ The configurations in the {{site.kic_product_name}} can be tweaked using
 Custom Resources and annotations.
 Please refer to the following documents detailing this process:
 
-- [Custom Resource Definitions](/kubernetes-ingress-controller/{{page.kong_version}}/references/custom-resources/)
-- [Annotations](/kubernetes-ingress-controller/{{page.kong_version}}/references/annotations/)
-- [CLI arguments](/kubernetes-ingress-controller/{{page.kong_version}}/references/cli-arguments/)
-- [Version compatibility matrix](/kubernetes-ingress-controller/{{page.kong_version}}/references/version-compatibility/)
-- [Plugin compatibility matrix](/kubernetes-ingress-controller/{{page.kong_version}}/references/plugin-compatibility/)
-- [Prometheus metrics](/kubernetes-ingress-controller/{{page.kong_version}}/references/prometheus/)
+- [Custom Resource Definitions](/kubernetes-ingress-controller/{{page.release}}/references/custom-resources/)
+- [Annotations](/kubernetes-ingress-controller/{{page.release}}/references/annotations/)
+- [CLI arguments](/kubernetes-ingress-controller/{{page.release}}/references/cli-arguments/)
+- [Version compatibility matrix](/kubernetes-ingress-controller/{{page.release}}/references/version-compatibility/)
+- [Plugin compatibility matrix](/kubernetes-ingress-controller/{{page.release}}/references/plugin-compatibility/)
+- [Prometheus metrics](/kubernetes-ingress-controller/{{page.release}}/references/prometheus/)
 
 ## FAQs
 
@@ -84,10 +84,10 @@ alongside Kong.
   Please contribute back if you feel your experience can help
   the larger community.
 
-[annotations]: /kubernetes-ingress-controller/{{page.kong_version}}/references/annotations
-[crd]: /kubernetes-ingress-controller/{{page.kong_version}}/concepts/custom-resources
-[deployment]: /kubernetes-ingress-controller/{{page.kong_version}}/deployment/overview
-[design]: /kubernetes-ingress-controller/{{page.kong_version}}/concepts/design
-[faqs]: /kubernetes-ingress-controller/{{page.kong_version}}/faq
-[troubleshooting]: /kubernetes-ingress-controller/{{page.kong_version}}/troubleshooting
-[guides]: /kubernetes-ingress-controller/{{page.kong_version}}/guides/overview
+[annotations]: /kubernetes-ingress-controller/{{page.release}}/references/annotations
+[crd]: /kubernetes-ingress-controller/{{page.release}}/concepts/custom-resources
+[deployment]: /kubernetes-ingress-controller/{{page.release}}/deployment/overview
+[design]: /kubernetes-ingress-controller/{{page.release}}/concepts/design
+[faqs]: /kubernetes-ingress-controller/{{page.release}}/faq
+[troubleshooting]: /kubernetes-ingress-controller/{{page.release}}/troubleshooting
+[guides]: /kubernetes-ingress-controller/{{page.release}}/guides/overview

@@ -155,20 +155,20 @@ By default, a connection from the zone control plane to the global control plane
 
 ## Legacy Control Plane Token
 
-You can still authenticate a control plane using the separate [Control Plane Token](/mesh/{{page.kong_version}}/features/kds-auth/), but it is deprecated and will be removed in the future.
+You can still authenticate a control plane using the separate [Control Plane Token](/mesh/{{page.release}}/features/kds-auth/), but it is deprecated and will be removed in the future.
 
 <!-- vale off -->
 <!-- links -->
 {% if_version gte:2.0.x %}
 {% if_version lte:2.1.x %}
-[zone-proxy]: /mesh/{{page.kong_version}}/security/zoneproxy-auth/
-[auth]: /mesh/{{page.kong_version}}/security/certificates/#user-to-control-plane-communication
-[certs]: /mesh/{{page.kong_version}}/security/certificates/#control-plane-to-control-plane-multizone
+[zone-proxy]: /mesh/{{page.release}}/security/zoneproxy-auth/
+[auth]: /mesh/{{page.release}}/security/certificates/#user-to-control-plane-communication
+[certs]: /mesh/{{page.release}}/security/certificates/#control-plane-to-control-plane-multizone
 {% endif_version %}
 {% if_version gte:2.2.x %}
-[zone-proxy]: /mesh/{{page.kong_version}}/production/cp-deployment/zoneproxy-auth
-[auth]: /mesh/{{page.kong_version}}/production/secure-deployment/certificates/#data-plane-proxy-to-control-plane-communication
-[certs]: /mesh/{{page.kong_version}}/production/secure-deployment/certificates/#control-plane-to-control-plane-multizone
+[zone-proxy]: /mesh/{{page.release}}/production/cp-deployment/zoneproxy-auth
+[auth]: /mesh/{{page.release}}/production/secure-deployment/certificates/#data-plane-proxy-to-control-plane-communication
+[certs]: /mesh/{{page.release}}/production/secure-deployment/certificates/#control-plane-to-control-plane-multizone
 {% endif_version %}
 {% endif_version %}
 
