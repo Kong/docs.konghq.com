@@ -74,7 +74,7 @@ This script uses Docker to run {{site.base_gateway}} and a [PostgreSQL](https://
    ```text
    HTTP/1.1 200 OK
    Date: Mon, 22 Aug 2022 19:25:49 GMT
-   Content-Type: application/json; charset=utf-8
+   Content-Type: application/json
    Connection: keep-alive
    Access-Control-Allow-Origin: *
    Content-Length: 11063
