@@ -232,3 +232,6 @@ jekyll-generator-single-source:
   docs_nav_folder: '_data'
 
 locale: en
+
+# Analytics
+gtm_id: 'GTM-NL48VKT'
