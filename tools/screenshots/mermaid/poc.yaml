@@ -1,8 +1,8 @@
 - output: ../../app/assets/images/transit-gateways.png
   url: https://docs.konghq.com/konnect/gateway-manager/data-plane-nodes/transit-gateways/
   wait: 6000
-  width: 2033
-  height: 1384
+  width: 9000
+  height: 9000
   selector: "pre.mermaid svg"
   javascript: |
       screenshotMermaid('pre.mermaid svg')
