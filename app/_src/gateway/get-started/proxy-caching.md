@@ -60,7 +60,7 @@ will potentially be cached.
      --data "name=proxy-cache" \
      --data "config.request_method=GET" \
      --data "config.response_code=200" \
-     --data "config.content_type=application/json; charset=utf-8" \
+     --data "config.content_type=application/json" \
      --data "config.cache_ttl=30" \
      --data "config.strategy=memory"
    ```
@@ -69,7 +69,7 @@ will potentially be cached.
 
    This Admin API request configured a Proxy Cache plugin for all `GET` requests that resulted
    in response codes of `200` and *response* `Content-Type` headers that *equal*
-   `application/json; charset=utf-8`. `cache_ttl` instructed the plugin to flush values after 30 seconds.
+   `application/json`. `cache_ttl` instructed the plugin to flush values after 30 seconds.
 
    The final option `config.strategy=memory` specifies the backing data store for cached responses. More
    information on `strategy` can be found in the [parameter reference](/hub/kong-inc/proxy-cache/)
@@ -122,7 +122,7 @@ curl -X POST http://localhost:8001/services/example_service/plugins \
    --data "name=proxy-cache" \
    --data "config.request_method=GET" \
    --data "config.response_code=200" \
-   --data "config.content_type=application/json; charset=utf-8" \
+   --data "config.content_type=application/json" \
    --data "config.cache_ttl=30" \
    --data "config.strategy=memory"
 ```
@@ -136,7 +136,7 @@ curl -X POST http://localhost:8001/routes/example_route/plugins \
    --data "name=proxy-cache" \
    --data "config.request_method=GET" \
    --data "config.response_code=200" \
-   --data "config.content_type=application/json; charset=utf-8" \
+   --data "config.content_type=application/json" \
    --data "config.cache_ttl=30" \
    --data "config.strategy=memory"
 ```
@@ -162,7 +162,7 @@ curl -X POST http://localhost:8001/consumers/sasha/plugins \
    --data "name=proxy-cache" \
    --data "config.request_method=GET" \
    --data "config.response_code=200" \
-   --data "config.content_type=application/json; charset=utf-8" \
+   --data "config.content_type=application/json" \
    --data "config.cache_ttl=30" \
    --data "config.strategy=memory"
 ```
