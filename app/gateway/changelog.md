@@ -4233,6 +4233,26 @@ openid-connect
 * Bumped `lodash` for Dev Portal from 4.17.11 to 4.17.21
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
+## 2.8.4.9
+**Release Date** 2024/04/18
+
+### Fixes
+#### Core
+
+_Backported from 3.3.0.0_
+* Fixed an issue where vault configuration stayed sticky and cached even when configurations were changed.
+
+#### PDK
+
+<!-- _Backported from 3.7.0.0_ -->
+* Fixed an issue where `kong.request.get_forwarded_port` incorrectly returned a string from `ngx.ctx.host_portand`. It now correctly returns a number.
+
+#### Plugins
+
+_Backported from 3.6.1.2_
+* [**DeGraphQL**](/hub/kong-inc/degraphql/) (`degraphql`)
+  * Fixed an issue where GraphQL variables were not being correctly parsed and coerced into their defined types.
+
 
 ## 2.8.4.8
 **Release Date** 2024/03/26
