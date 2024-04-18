@@ -15,7 +15,7 @@ features:
         support: true
         url: "/gateway/VERSION/install/docker/?install=oss"
         ee_url: "/gateway/VERSION/install/docker/"
-        icon: /assets/images/icons/third-party/docker.png
+        icon: /assets/images/icons/third-party/docker.svg
   - name: "Kubernetes"
     items:
       - name: "Kubernetes"
