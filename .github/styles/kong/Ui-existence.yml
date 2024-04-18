@@ -1,0 +1,8 @@
+extends: existence
+message: When writing UI instructions don't use %s.
+level: error
+scope: list & ~raw & ~heading & ~sentence
+ignorecase: true
+tokens: 
+  - button
+  - done

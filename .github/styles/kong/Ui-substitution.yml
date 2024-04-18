@@ -1,0 +1,16 @@
+extends: substitution
+message: When writing UI instructions use '%s' instead of '%s'.
+level: error
+scope: list & ~raw & ~heading & ~sentence
+ignorecase: true
+swap:
+  press: click
+  nav bar: navigation menu
+  navigation bar: navigation menu
+  sidebar: navigation menu
+  side nav: navigation menu
+  text box: field
+  '(?:drop[-\s]?down)': list
+  '(?:click|press|push)?\s*save': save
+  proceed: click **Next**
+  

@@ -1,0 +1,17 @@
+extends: substitution
+message: Add direct links to the UI for example, '%s' instead of '%s'.
+level: error
+scope: list & ~raw & ~heading & ~sentence
+ignorecase: true
+swap:
+  '(?:\*\*)?Gateway Manager(?:\*\*)?': '**[Gateway Manager](https://cloud.konghq.com/gateway-manager/)**'
+  '(?:\*\*)?Mesh Manager(?:\*\*)?': '**[Mesh Manager](https://cloud.konghq.com/mesh-manager)**'
+  '(?:\*\*)?API Products(?:\*\*)?': '**[API Products](https://cloud.konghq.com/api-products/)**'
+  '(?:\*\*)?Analytics(?:\*\*)?': '**[Analytics](https://cloud.konghq.com/analytics)**'
+  '(?:\*\*)?Service Hub(?:\*\*)?': '**[Analytics](https://cloud.konghq.com/servicehub)**'
+  '(?:\*\*)?Teams(?:\*\*)?': '**[Teams](https://cloud.konghq.com/global/organization/teams)**'
+  '(?:\*\*)?Users(?:\*\*)?': '**[Users](https://cloud.konghq.com/global/organization/users)**'
+  '(?:\*\*)?System Accounts(?:\*\*)?': '**[System Accounts](https://cloud.konghq.com/global/organization/system-accounts)**'
+  '(?:\*\*)?Audit Logs(?:\*\*)?': '**[Audit Logs](https://cloud.konghq.com/global/organization/audit-logs)**'
+  '(?:\*\*)?Auth Settings(?:\*\*)?': '**[Auth Settings](https://cloud.konghq.com/global/organization/auth-setting)**'
+
