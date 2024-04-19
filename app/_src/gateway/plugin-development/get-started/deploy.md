@@ -172,5 +172,5 @@ See the Kong [Plugin Hub](/hub/) for the full catalog of supported plugins.
 
 The best way to run {{site.base_gateway}} is on {{site.konnect_product_name}}, Kong's unified API platform as a service. 
 Getting started with {{site.konnect_product_name}} is quick and free, [login](https://cloud.konghq.com/login) 
-or [signup](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs) today.
+or [sign up](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs) today.
 
