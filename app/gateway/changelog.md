@@ -4234,7 +4234,7 @@ openid-connect
 * Bumped `lodash` for Kong Manager from 4.17.15 to 4.17.21
 
 ## 2.8.4.9
-**Release Date** 2024/04/18
+**Release Date** 2024/04/19
 
 ### Fixes
 #### Core
