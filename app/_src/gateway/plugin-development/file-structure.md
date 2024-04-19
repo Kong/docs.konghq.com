@@ -91,7 +91,7 @@ complete-plugin
 └── schema.lua
 ```
 
-Here is the complete list of possible modules to implement, a link to an example iplementation, 
+Here is the complete list of possible modules to implement, a link to an example implementation, 
 and a brief description of what their purpose is. This guide will go in details to let you
 understand each of them.
 
