@@ -19,9 +19,9 @@ flowchart LR
 {% endmermaid %}
 <!--vale on-->
 
-The examples below demonstrate how the propagation configuration options can be used to achieve various use cases.
+The following examples demonstrate how the propagation configuration options can be used to achieve various use cases.
 
-#### Extract, clear and inject
+#### Extract, clear, and inject
 - Extract the tracing context using order of precedence: `w3c` > `b3` > `jaeger` > `ot` > `aws` > `datadog`
 - Clear `b3` and `uber-trace-id` headers after extraction, if present in the request
 - Inject the tracing context using the format: `w3c`
@@ -58,7 +58,7 @@ The examples below demonstrate how the propagation configuration options can be 
       default_format: "w3c"
 ```
 
-**Note:** `preserve` can be used with other formats, to specify that the incoming format should be preserved in addition to the others:
+`preserve` can also be used with other formats, to specify that the incoming format should be preserved in addition to the others:
 
 ```yaml
 - config:
@@ -79,4 +79,5 @@ The examples below demonstrate how the propagation configuration options can be 
       inject: [ b3, datadog ]
 ```
 
-**Note:** Some header formats specify different trace and span ID sizes. When the tracing context is extracted and injected from/to headers with different ID sizes, the IDs are truncated or left-padded to align with the target format.
+{:.note}
+> **Note:** Some header formats specify different trace and span ID sizes. When the tracing context is extracted and injected from/to headers with different ID sizes, the IDs are truncated or left-padded to align with the target format.
