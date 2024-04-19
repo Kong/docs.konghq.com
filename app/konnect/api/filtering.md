@@ -5,7 +5,11 @@ content-type: reference
 
 
 
-The Konnect APIs supports the ability to filter over selected collections and only return results that you are interested in. This reference document explains how filtering generally works across {{site.konnect_short_name}} APIs. Every filter operations described here may not be available in every {{site.konnect_short_name}} API. Specific APIs may support a subset of these options. For accurate information on available filters for each API endpoint, always refer to the [individual API specification](/api/). 
+The {{site.konnect_short_name}} APIs support the ability to filter over selected collections and only return results that you are interested in. 
+This reference document explains how filtering generally works across {{site.konnect_short_name}} APIs. 
+
+Not every filter operation described here is available in every {{site.konnect_short_name}} API. Specific APIs may support a subset of these options. 
+For the most accurate information on available filters for each API endpoint, always refer to the [individual API specification](/api/).
 
 ### Available fields
 
