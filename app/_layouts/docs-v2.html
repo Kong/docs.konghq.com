@@ -27,6 +27,9 @@ id: documentation
           {% if page.release.latest? %}
             <span>(latest)</span>
           {% endif %}
+          {% if page.release == '2.8.x' or page.release == '3.4.x' %}
+            <span>LTS</span>
+          {% endif %}
         </div>
         {% endunless %}
       </div>
