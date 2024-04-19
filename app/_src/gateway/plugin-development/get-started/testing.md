@@ -29,7 +29,7 @@ The following script can automate the installation of Pongo for you, however, if
 you can follow the [manual installation instructions](https://github.com/Kong/kong-pongo?tab=readme-ov-file#installation)
 instead.
 
-If you already have Pongo intalled, you can skip to the next step or run the install script
+If you already have Pongo installed, you can skip to the next step or run the install script
 to update Pongo to the latest version.
 
 Run the following to install / update Pongo:

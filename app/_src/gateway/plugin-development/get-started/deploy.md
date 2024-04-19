@@ -153,7 +153,7 @@ This strategy can work for volume mounts on containerized systems or bare metal 
 
 ### Building a LuaRocks package
 
-LuaRocks is a package manager for Lua modules. It allows you to create and install Lau modules
+LuaRocks is a package manager for Lua modules. It allows you to create and install Lua modules
 as self-contained packages called _rocks_. In order to create a _rock_ package you author
 a _rockspec_ file that specifies various information about your package. Using the `luarocks` tooling,
 you build an archive from the rockspec file and deliver and extract it to your data planes. 
@@ -170,7 +170,7 @@ cover many common use cases including [serverless](/hub/?category=serverless)
 plugins that allow for custom business logic programming directly into a pre-built and supported plugin. 
 See the Kong [Plugin Hub](/hub/) for the full catalog of supported plugins. 
 
-The best way to run {{site.base_gateway}} is on Kong Konnect, Kong's unified API platform as a service. 
-Konnect is free to get started, [login](https://cloud.konghq.com/login) 
+The best way to run {{site.base_gateway}} is on {{site.konnect_product_name}}, Kong's unified API platform as a service. 
+Getting started with {{site.konnect_product_name}} is quick and free, [login](https://cloud.konghq.com/login) 
 or [signup](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs) today.
 

@@ -20,7 +20,7 @@ developer tool prerequisites.
 
 The following are step by step instructions to show you how to consume data from external 
 services using an http client and parsing JSON values. With the parsed data we will
-show you how to ammend values to the response data prior to returning to your
+show you how to add values to the response data prior to returning to your
 API gateway clients.
 
 ### 1. Including HTTP and JSON support
