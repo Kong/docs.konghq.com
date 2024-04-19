@@ -55,12 +55,15 @@ Jekyll::Hooks.register :site, :after_init do |site|
   I18n.locale = site.config['locale']
 
   if I18n.locale.to_s != I18n.default_locale.to_s && ENV['TRANSLATED_CONTENT_PATH']
-    site.config = Jekyll.configuration(
-      Jekyll::Utils.deep_merge_hashes(
-        site.config,
-        translated_content_path: ENV['TRANSLATED_CONTENT_PATH']
-      )
-    )
+    config = Jekyll::Utils.deep_merge_hashes(site.config, translated_content_path: ENV['TRANSLATED_CONTENT_PATH'])
+
+    # Prevent BingSiteAuth and google-verification pages from being generated,
+    # we discussed this with the web team and we'll add those if they become needed.
+    # Unfortunately, deep_merge_hashes doesn't handle arrays well,
+    # so we need to add these manually.
+    config['exclude'].push('BingSiteAuth.xml', 'google275fdcdba19266f5.html', 'googled7a99b1cae8a33d6.html')
+
+    site.config = Jekyll.configuration(config)
 
     locale_folder = File.join('../config/locales', '**', '*.yml')
     I18n.load_path += Dir[File.join(File.expand_path(site.config['translated_content_path'], site.source),
