@@ -27,7 +27,7 @@ const FRONTMATTER_KEYS_TO_EXCLUDE =  [
 async function buildBatchFileParamsForConfig(fileUri, locale) {
   // TODO: when we download this, we need to change the name of the file to ja.yml
   const batchFileParams = new UploadBatchFileParameters()
-    .setFile(fileUri)
+    .setFileFromLocalFilePath(fileUri)
     .setFileUri(fileUri)
     .setFileType(FileType.YAML)
     .setLocalesToApprove([locale]);
@@ -38,7 +38,7 @@ async function buildBatchFileParamsForConfig(fileUri, locale) {
 async function buildBatchFileParamsForDocsNav(fileUri, locale) {
   // TODO: do we need to tell it not to translate product: ???
   const batchFileParams = new UploadBatchFileParameters()
-    .setFile(fileUri)
+    .setFileFromLocalFilePath(fileUri)
     .setFileUri(fileUri)
     .setFileType(FileType.YAML)
     .setLocalesToApprove([locale])
@@ -52,7 +52,7 @@ async function buildBatchFileParamsForDocsNav(fileUri, locale) {
 async function buildBatchFileParamsForApp(fileUri, locale) {
   // TODO: do we need to set the placeholder?
   const batchFileParams = new UploadBatchFileParameters()
-    .setFile(fileUri)
+    .setFileFromLocalFilePath(fileUri)
     .setFileUri(fileUri)
     .setFileType(FileType.MARKDOWN)
     .setLocalesToApprove([locale])
@@ -68,7 +68,7 @@ async function buildBatchFileParamsForApp(fileUri, locale) {
 async function buildBatchFileParamsForSrc(fileUri, locale) {
   // TODO: do we need to set the placeholder?
   const batchFileParams = new UploadBatchFileParameters()
-    .setFile(fileUri)
+    .setFileFromLocalFilePath(fileUri)
     .setFileUri(fileUri)
     .setFileType(FileType.MARKDOWN)
     .setLocalesToApprove([locale])
@@ -85,7 +85,7 @@ async function buildBatchFileParamsForInclude(fileUri, locale) {
   // Includes don't have frontmatters
   // TODO: do we need to set the placeholder?
   const batchFileParams = new UploadBatchFileParameters()
-    .setFile(fileUri)
+    .setFileFromLocalFilePath(fileUri)
     .setFileUri(fileUri)
     .setFileType(FileType.MARKDOWN)
     .setLocalesToApprove([locale])
@@ -101,7 +101,7 @@ async function buildBatchFileParamsForInclude(fileUri, locale) {
 // we shouldn't translate `slug`, so we might need to edit the content when we upload the files...
 async function buildBatchFileParamsForData(fileUri, locale) {
   const batchFileParams = new UploadBatchFileParameters()
-    .setFile(fileUri)
+    .setFileFromLocalFilePath(fileUri)
     .setFileUri(fileUri)
     .setFileType(FileType.YAML)
     .setLocalesToApprove([locale])
