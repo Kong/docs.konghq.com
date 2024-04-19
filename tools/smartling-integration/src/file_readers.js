@@ -18,7 +18,9 @@ const DATA_FILES_TO_EXCLUDE = [
   'kong_versions.yml',
   'books.yml',
   'installation/fateway.yml',
-  'tables/compat.json'
+  'tables/compat.json',
+  'hub_filters.yml',
+  'extensions.yml'
 ]
 
 function readTranslationConfig() {
