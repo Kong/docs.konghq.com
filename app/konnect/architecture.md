@@ -24,4 +24,4 @@ processing invalid requests.
 * All requests are logged for central visibility of traffic.
 
 
-Try it for yourself! [Get started](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs) with {{ site.konnect_short_name }} for free today.
+Try it for yourself! [Get started](https://konghq.com/products/kong-konnect/register?utm_medium=referral&utm_source=docs&utm_campaign=konnect&utm_content=architecture) with {{ site.konnect_short_name }} for free today.
