@@ -22,7 +22,11 @@ module Jekyll
             @data = SafeYAML.load(Regexp.last_match(1))
           end
 
-          # XXX-i18n what about the sidenav?
+          # The sidenav is set in NavItemsData and we don't check
+          # if the docs_nav file exists in the locale.
+          # Files in app/<product> are not single-sourced,
+          # so if they are translated, the corresponding docs_nav file
+          # must be translated too.
           @page.content = content
           @page.data.merge!(@data)
           @page.data['locale'] = @site.config['locale']
