@@ -351,6 +351,45 @@ items:
       - text: Verify Build Provenance for Signed Kong Images
         url: /kong-enterprise/provenance-verification
 
+  - title: Kong AI Gateway
+    icon: /assets/images/icons/documentation/icn-ai.svg
+    items:
+      - text: Overview
+        url: /ai-gateway/
+      - text: Get started with AI Gateway
+        url: /get-started/ai-gateway/
+        generate: false
+      - text: LLM Provider Integration Guides
+        items:
+          - text: OpenAI
+            url: /hub/kong-inc/ai-proxy/how-to/openai/
+            generate: false
+            absolute_url: true
+          - text: Cohere
+            url: /hub/kong-inc/ai-proxy/how-to/cohere/
+            generate: false
+            absolute_url: true
+          - text: Azure
+            url: /hub/kong-inc/ai-proxy/how-to/azure/
+            generate: false
+            absolute_url: true
+          - text: Anthropic
+            url: /hub/kong-inc/ai-proxy/how-to/anthropic/
+            generate: false
+            absolute_url: true
+          - text: Mistral
+            url: /hub/kong-inc/ai-proxy/how-to/mistral/
+            generate: false
+            absolute_url: true
+          - text: Llama2
+            url: /hub/kong-inc/ai-proxy/how-to/llama2/
+            generate: false
+            absolute_url: true
+      - text: AI Gateway plugins
+        url: /hub/?category=ai
+        generate: false
+        absolute_url: true
+  
   - title: Kong Manager
     icon: /assets/images/icons/documentation/icn-manager-color.svg
     items:
