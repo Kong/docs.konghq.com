@@ -98,7 +98,7 @@ spec:
         from: All
 ```
 
-Listeners can allow routes in their own namespace (`from: Same`), any namespace (`from: Any`), or a
+Listeners can allow routes in their own namespace (`from: Same`), all namespaces (`from: All`), or a
 labeled set of namespaces (`from: Selector`).
 
 ## Deploy a Service and HTTPRoute
