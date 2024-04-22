@@ -3,7 +3,7 @@ title: AI Audit Log Reference
 content_type: reference
 ---
 
-Kong AI Gateway offers a unified logging format for AI plugins, enabling the emission of analytics events. This facilitates the aggregation of AI usage analytics across various providers in a standardized manner.
+Kong AI Gateway provides a standardized logging format for AI plugins, enabling the emission of analytics events and facilitating the aggregation of AI usage analytics across various providers.
 
 ## Log Formats
 
@@ -13,9 +13,9 @@ All log entries include the following attributes:
 
 ```json
 "ai": {
-    "payload": { "[$optional_payload_request_]" },
+    "payload": { "request": "[$optional_payload_request_]" },
     "[$plugin_name_1]": {
-      "payload": { "[$optional_payload_response]" },
+      "payload": { "response": "[$optional_payload_response]" },
       "usage": {
         "prompt_token": 28,
         "total_tokens": 48,
@@ -29,7 +29,7 @@ All log entries include the following attributes:
       }
     },
     "[$plugin_name_2]": {
-      "payload": { "[$optional_payload_response]" },
+      "payload": { "response": "[$optional_payload_response]" },
       "usage": {
         "prompt_token": 89,
         "total_tokens": 145,
@@ -43,3 +43,22 @@ All log entries include the following attributes:
       }
     }
   }
+
+```
+
+### Log Details
+
+Each log entry includes the following details:
+
+Property | Description
+---------|-------------
+`ai.payload.request` | The request payload.
+`ai.[$plugin_name].payload.response` |The response payload.
+`ai.[$plugin_name].usage.prompt_token` | Number of tokens used for prompting.
+`ai.[$plugin_name].usage.completion_token` | Number of tokens used for completion.
+`ai.[$plugin_name].usage.total_tokens` | Total number of tokens used.
+`ai.[$plugin_name].meta.request_model` | Model used for the AI request.
+`ai.[$plugin_name].meta.provider_name` | Name of the AI service provider.
+`ai.[$plugin_name].meta.response_model` | Model used for the AI response.
+`ai.[$plugin_name].meta.plugin_id` | Unique identifier of the plugin.
+
