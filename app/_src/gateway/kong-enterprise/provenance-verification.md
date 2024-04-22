@@ -43,6 +43,16 @@ For both examples, you need to:
    regctl manifest digest <image>:<tag>
    ```
 
+{% if_version gte:3.7.x %}
+
+5. Set the `COSIGN_REPOSITORY` environment variable:
+
+   ```sh
+   export COSIGN_REPOSITORY=kong/notary
+   ```
+
+{% endif_version %}
+
 {:.important .no-icon}
 > The GitHub owner is case-sensitive (`Kong/kong-ee` vs `kong/kong-ee`).
 

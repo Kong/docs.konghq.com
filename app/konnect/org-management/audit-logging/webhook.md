@@ -51,6 +51,11 @@ See the [Konnect ports and network requirements](/konnect/network/).
      `"authorization":"Splunk example-token12234352535235"`.
         
     * **Log Format**: The output format of each log message. Can be CEF or JSON.
+    * **Skip SSL Verification**: Skip SSL verification of the host endpoint when delivering payloads.
+
+     {:.note}
+     > We strongly recommend not setting this to `true` as you are subject to man-in-the-middle and other attacks. This option should be considered only when using self-signed SSL certificates in a non-production environment.
+
 1. Switch the toggle to `Enabled`, then save your webhook configuration.
 
 {% endnavtab %}
@@ -82,6 +87,10 @@ Replace the following placeholders with your own data:
     For example, if you are setting up the webhook for Splunk, you could provide a Splunk access token: `"authorization":"Splunk example-token12234352535235"`.
 
 * `log_format`: The output format of each log message. Can be `cef` or `json`.
+* `skip_ssl_verification`: (Optional) Set to `true` to skip SSL verification of the host endpoint when delivering payloads.
+
+  {:.note}
+  > We strongly recommend not setting this to `true` as you are subject to man-in-the-middle and other attacks. This option should be considered only when using self-signed SSL certificates in a non-production environment.
 
 If the request is successful, you will receive a `200` response code, and a response body containing the webhook's configuration details: 
 
@@ -90,6 +99,7 @@ If the request is successful, you will receive a `200` response code, and a resp
     "endpoint":"https://example.com/audit-logs",
     "log_format":"cef",
     "enabled":true,
+    "skip_ssl_verification":false,
     "updated_at":"2023-04-01T00:00:01Z"
 }
 ```
@@ -130,6 +140,7 @@ You will receive a `200` response code and the following data. Note that the `au
     "endpoint":"https://example.com/audit-logs",
     "log_format":"cef",
     "enabled":true,
+    "skip_ssl_verification":false,
     "updated_at":"2023-04-01T00:00:01Z"
 }
 ```

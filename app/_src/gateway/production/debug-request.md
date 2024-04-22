@@ -32,7 +32,7 @@ You can find the debug token in the following locations:
 
 To debug a request, add the following request headers:
 * At a minimum, you should set the `X-Kong-Request-Debug` header. 
-* If the requests originate from loopback addresses, the `X-Kong-Request-Debug-Token` header also needs to be set.
+* If the requests originate from anywhere other than the loopback addresses, the `X-Kong-Request-Debug-Token` header also needs to be set.
 
 ### X-Kong-Request-Debug header
 

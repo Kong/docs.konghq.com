@@ -5,6 +5,13 @@ content-type: reference
 
 In this section, we will describe the tracing capabilities of Kong.
 
+{% if_version gte:3.7.x %}
+{:.important}
+> **Important**: Granular Tracing is deprecated from {{site.base_gateway}} `3.7.0.0` onward,
+and configurations like `tracing = on` are no longer available. Instead, use the
+OpenTelemetry Tracing described on this page.
+{% endif_version %}
+
 ## Core instrumentations
 
 **Note**
