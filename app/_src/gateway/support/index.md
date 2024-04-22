@@ -73,6 +73,21 @@ Kong supports the following versions of {{site.ee_product_name}}:
 
 Latest versions are not guaranteed.
 
+## Supported public cloud deployment platforms
+
+Kong supports the following public cloud deployment platforms:
+
+* AWS EKS
+* AWS EKS Fargate
+* AWS ECS
+* AWS ECS Fargate
+* Azure AKS
+* Azure Container Instances
+* Azure Container Apps
+* Google Cloud GKE
+* Google Cloud GKE Autopilot
+* Google Cloud Run
+
 ## Older versions
 
 These versions have reached the end of full support.
