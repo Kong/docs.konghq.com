@@ -75,7 +75,7 @@ Latest versions are not guaranteed.
 
 ### Supported public cloud deployment platforms
 
-Kong supports the following public cloud deployment platforms:
+{{site.ee_product_name}} supports the following public cloud deployment platforms:
 
 * AWS EKS
 * AWS EKS Fargate
