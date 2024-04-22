@@ -214,5 +214,5 @@ response based on instructions from the LLM. The adjusted response is then sent 
 Kong's AI Gateway also allows you to manage traffic to your LLM API. Kong's AI Gateway provides the `ai rate limiting advance`
 plugin that can be use to implement rate limiting to your ai requests traffic.
 
-* The [AI Rate Limiting Advanced](/hub/kong-inc/ai-rate-limiting-advanced) plugin uses a to introspect LLM requests and enable a rate limits
-to the LLM backend service. Once the LLM service returns a response, this is used a cost to calculate the rate limit.
+* The [AI Rate Limiting Advanced](/hub/kong-inc/ai-rate-limiting-advanced)introspect LLM responses to calculate token cost and enable a rate limits
+to the LLM backend service. Once the LLM service returns a response, this is used as a cost to calculate the rate limit. More info on the analytics format can be found in [AI Analytics](/src/gateway/production/logging/ai-analytics)
