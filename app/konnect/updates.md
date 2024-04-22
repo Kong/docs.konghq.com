@@ -14,6 +14,14 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 **API Requests**
 : {{site.konnect_short_name}} users have now access to a new feature that tracks [API requests](/konnect/analytics/api-requests/) in near real-time. API Requests provide detailed records for the requests that are made to your APIs. This information can not only help you understand your consumers better, but also simplifies any initial investigation into errors or performance issues by providing an intuitive web experience that is fully integrated into the rest of your {{site.konnect_short_name}} organization.
 
+**Manage control plane analytics data ingestion**
+: You can now opt-out from Analytics data ingestion for individual control planes. This allows you to not only manage what data is important for Kong to keep, but also your overall spending on Konnects Advanced Analytics app. <!-- if I disable this, that disables analytics for that control plane, so it won't even show up in my data in Analytics? Is the main use case here money/reducing costs? Why would someone not want to have a control plane in their analytics?-->
+
+: You can manage your control plane analytics data ingestion by editing an existing control plane and clicking the **Analytics** toggle.
+
+: ![control plane without analytics](/assets/images/products/konnect/changelog/konnect-control-plane-without-analytics.png)
+: > _**Figure 1:** Example of a control plane that has analytics data ingestion disabled. Analytics for the control plane are disabled and an alert displays that allows you to enable analytics._
+
 ## May 2024
 
 **Gateway 3.7 Support**
@@ -30,8 +38,8 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## April 2024
 
-
 **Dedicated Cloud Gateways**
+
 : You can now quickly spin up a dedicated AWS cloud gateway data plane node in {{site.konnect_short_name}}. With a dedicated cloud infrastructure, you control the sizing and deployment locations of the gateway infrastructure and Kong manages the operations of individual instances and the cluster for you. 
 
 : Dedicated Cloud Gateways are the fastest way to configure and create a {{site.base_gateway}} in {{site.konnect_short_name}}. All you have to do is specify the security you want to use and pre-warm the cluster while {{site.konnect_short_name}} handles the cluster creation.
