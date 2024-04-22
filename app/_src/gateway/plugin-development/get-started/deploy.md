@@ -36,7 +36,7 @@ Create a new file at the root of the `my-plugin` project named `DOCKERFILE` with
 following contents
 
 ```txt
-FROM kong/kong-gateway:{{page.versions.ee}}
+FROM kong/kong-gateway:{{ page.release.tag }}
 
 # Ensure any patching steps are executed as root user
 USER root
@@ -64,7 +64,7 @@ and a version for the plugin. For example, the following will build the custom i
 labeling the `my-plugin` portion of the version as `0.0.1`:
 
 ```sh
-docker build -t kong-gateway_my-plugin:{{page.versions.ee}}-0.0.1 .
+docker build -t kong-gateway_my-plugin:{{ page.release.tag }}-0.0.1 .
 ```
 
 ### 3. Run the custom image
@@ -76,7 +76,7 @@ repository (`-r`), image (`-i`) and tag (`-t`). Here is an example command:
 
 ```sh
 curl -Ls https://get.konghq.com/quickstart | \
-  bash -s -- -r "" -i kong-gateway_my-plugin -t {{page.versions.ee}}-0.0.1
+  bash -s -- -r "" -i kong-gateway_my-plugin -t {{ page.release.tag }}-0.0.1
 ```
 
 ### 3. Test the deployed `my-plugin` plugin
