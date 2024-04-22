@@ -11,10 +11,11 @@ module Jekyll
     class IncludeTag
       def locate_include_file(context, file, safe) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
         site = context.registers[:site]
+        page = context.registers[:page]
 
         includes_dirs = tag_includes_dirs(context)
         includes_dirs.each do |dir|
-          unless site.config['locale'] == I18n.default_locale.to_s
+          if site.config['locale'] != I18n.default_locale.to_s && page && !page['translation_fallback']
             # japanese
             translated_includes_dir = File.expand_path(File.join(site.config['translated_content_path'], '_includes'),
                                                        site.source)
