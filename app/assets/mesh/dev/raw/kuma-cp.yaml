@@ -9,7 +9,7 @@ store:
   # Kubernetes Store configuration (used when store.type=kubernetes)
   kubernetes:
     # Namespace where Control Plane is installed to.
-    systemNamespace: kuma-system # ENV: KUMA_STORE_KUBERNETES_SYSTEM_NAMESPACE
+    systemNamespace: kong-mesh-system # ENV: KUMA_STORE_KUBERNETES_SYSTEM_NAMESPACE
   # Postgres Store configuration (used when store.type=postgres)
   postgres:
     # Host of the Postgres DB
