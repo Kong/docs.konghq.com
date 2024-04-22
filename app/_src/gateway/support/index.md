@@ -73,7 +73,7 @@ Kong supports the following versions of {{site.ee_product_name}}:
 
 Latest versions are not guaranteed.
 
-## Supported public cloud deployment platforms
+### Supported public cloud deployment platforms
 
 Kong supports the following public cloud deployment platforms:
 
