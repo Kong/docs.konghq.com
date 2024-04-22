@@ -11,6 +11,14 @@ services. [Try it today!](https://cloud.konghq.com/quick-start)
 
 ## April 2024
 
+**Manage control plane analytics data ingestion**
+: You can now opt-out from Analytics data ingestion for individual control planes. This allows you to not only manage what data is important for Kong to keep, but also your overall spending on Konnects Advanced Analytics app. <!-- if I disable this, that disables analytics for that control plane, so it won't even show up in my data in Analytics? Is the main use case here money/reducing costs? Why would someone not want to have a control plane in their analytics?-->
+
+: You can manage your control plane analytics data ingestion by editing an existing control plane and clicking the **Analytics** toggle.
+
+: ![control plane without analytics](/assets/images/products/konnect/changelog/konnect-control-plane-without-analytics.png)
+: > _**Figure 1:** Example of a control plane that has analytics data ingestion disabled. Analytics for the control plane are disabled and an alert displays that allows you to enable analytics._
+
 **New Dedicated Cloud Gateways**
 : You can now quickly spin up a dedicated AWS cloud gateway data plane node in {{site.konnect_short_name}}. With a dedicated cloud infrastructure, you control the sizing and deployment locations of the gateway infrastructure and Kong manages the operations of individual instances and the cluster for you. 
 
