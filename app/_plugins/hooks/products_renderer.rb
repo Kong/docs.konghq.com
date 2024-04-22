@@ -17,7 +17,7 @@ class ProductsRenderer
     return true if page.relative_path.start_with?('assets')
 
     products.any? do |product, _versions|
-      page.relative_path == 'index.html' || page.relative_path.start_with?(product)
+      page.relative_path == 'index.html' || page.relative_path.start_with?("#{product}/")
     end
   end
 
@@ -31,7 +31,7 @@ class ProductsRenderer
       when '*'
         versions.any? { |v| page.dir.start_with?(%r{/(\w|-)+/#{v}/}) }
       else
-        (versions.nil? && page.dir.start_with?("/#{product}")) ||
+        (versions.nil? && page.dir.start_with?("/#{product}/")) ||
           (!versions.nil? && versions.any? { |v| page.dir.start_with?(%r{/#{product}/#{v}}) })
       end
     end
