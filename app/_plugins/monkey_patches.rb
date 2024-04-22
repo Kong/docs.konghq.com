@@ -9,7 +9,7 @@ module Jekyll
     # site's locale and fallback to the english version if it does not exist.
     # Used by {% include_cached %}
     class IncludeTag
-      def locate_include_file(context, file, safe) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+      def locate_include_file(context, file, safe) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
         site = context.registers[:site]
         page = context.registers[:page]
 
