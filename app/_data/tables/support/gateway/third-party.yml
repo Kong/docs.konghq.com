@@ -114,8 +114,7 @@ _third_party:
     name: WSO2
   yahoo: &yahoo
     name: Yahoo!
-  dogfood: &dogfood
-    name: dog food!
+
   # Mesh
   kongmesh: &kongmesh
     name: Kong Mesh
