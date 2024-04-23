@@ -114,7 +114,8 @@ _third_party:
     name: WSO2
   yahoo: &yahoo
     name: Yahoo!
-
+  dogfood: &dogfood
+    name: dog food!
   # Mesh
   kongmesh: &kongmesh
     name: Kong Mesh
@@ -147,3 +148,23 @@ _third_party:
   minio: &minio
     name: MinIO
     icon: minio.svg
+
+  # AI providers
+  openai: &openai
+    name: OpenAI
+  cohere: &cohere
+    name: Coheres
+  azureai: &azure_ai
+    name: Microsoft Azure AI
+  anthropic: &anthropic
+    name: Anthropic
+  mistral: &mistral
+    name: Mistral
+    format:
+      - Raw
+      - OLLAMA
+  llama2: &llama2
+    name: Llama2
+    format:
+      - Raw
+      - OLLAMA

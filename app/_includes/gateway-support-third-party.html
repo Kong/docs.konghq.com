@@ -118,3 +118,17 @@ Kong is expected to work with the following third party identity providers (IDP)
 * **{{ d.name }}**{% if d.versions %}: {{ d.versions | join: ", " }}
   {% endif %}
 {% endfor %}
+
+## AI Providers
+
+Kong can integrate with the following AI providers: 
+
+{% for d in include.data.third-party.ai_providers %}
+* **{{ d.name }}**
+  {% if d.format %}
+    * **Formats:**
+      {% for format in d.format %}
+      * {{ format }}
+      {% endfor %}
+  {% endif %}
+{% endfor %}
