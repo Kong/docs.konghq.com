@@ -8,7 +8,7 @@ Labels allow an organization to specify metadata on an entity.
 
 For example, you might use the label `location:us-west`, where `location` is the key and the `us-west` is the value.
 
-A maximum of 5 user-defined labels are allowed on each resource.
+A maximum of 50 user-defined labels are allowed on most resources.
 
 **Key requirements:**
 * Keys must be 63 characters or less, beginning and ending with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumeric characters in between.
