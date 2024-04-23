@@ -36,6 +36,7 @@ curl -X PATCH http://localhost:8001/plugins/<plugin_id> \
   --data "config.auto_approve=true"
 ```
 
+{% if_version gte:3.4.x %}
 ### Allow accessing the service with consumer credentials (optional)
 
 By enabling the Application Registration plugin on a service, access to the service with consumer credentials is disallowed by default. To allow this behavior, you can set `enable_proxy_with_consumer_credential` to `true`.
@@ -94,7 +95,7 @@ The route should still be accessible with the `client_id` of the application.
 ```sh
 curl http://localhost:8000/test?apikey=<client_id>
 ```
-
+{% endif_version %}
 ### Enable show issuer URL
 
 Enable `show_issuer` to expose the **Issuer URL** in the **Service Details** dialog.
