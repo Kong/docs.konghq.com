@@ -70,14 +70,20 @@ module PluginSingleSource
       end
 
       def problems
-        @problems ||= Dir.glob(File.expand_path('troubleshooting/*.md', @source_path)).map do |file|
+        # Sort by weight, leaving items without weight at the end of the list
+        @problems ||= process_troubleshooting_files.sort_by { |p| p['weight'].nil? ? Float::INFINITY : p['weight'] }
+      end
+
+      def process_troubleshooting_files
+        Dir.glob(File.expand_path('troubleshooting/*.md', @source_path)).map do |file|
           markdown = Utils::FrontmatterParser.new(File.read(file))
-          min, max, title = markdown.frontmatter
+          min, max, title, weight = markdown
+                                    .frontmatter
                                     .fetch_values('minimum_version', 'maximum_version', 'problem') { |_, v| v }
 
           next unless Utils::Version.in_range?(@release.version, min:, max:)
 
-          { 'title' => title, 'content' => markdown.content }
+          { 'title' => title, 'content' => markdown.content, 'weight' => weight }
         end.compact
       end
     end
