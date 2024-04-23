@@ -1,0 +1,10 @@
+---
+layout: plugins/show
+type: plugin
+---
+
+{% for problem in page.problems %}
+<h2>{{ problem.title }}</h2>
+
+{{ problem.content | markdownify }}
+{% endfor %}
