@@ -167,3 +167,4 @@ _third_party:
     format:
       - Raw
       - OLLAMA
+      - OpenAI
