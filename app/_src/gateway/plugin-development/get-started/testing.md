@@ -13,63 +13,67 @@ This page is the second chapter in the [Getting Started](/gateway/{{page.gateway
 guide for developing custom plugins. These instructions refer to the previous chapter in the guide and require the same
 developer tool prerequisites.
 
-## Step by Step
+## Step by step
 
-Now that you have a basic plugin project, the following steps guide you through building testing automations.
+Now that you have a basic plugin project, you can build testing automations for it.
 
 ### 1. Install Pongo
 
-[Pongo](https://github.com/Kong/kong-pongo) is a tool to help you validate and 
+[Pongo](https://github.com/Kong/kong-pongo) is a tool that helps you validate and 
 distribute custom plugins for {{site.base_gateway}}. Pongo uses Docker to
 bootstrap a {{site.base_gateway}} environment allowing you to quickly load your plugin, 
 run automated testing, and manually validate the plugin's behavior against
 various {{site.base_gateway}} versions.
 
-The following script can automate the installation of Pongo for you, however, if you prefer 
-you can follow the [manual installation instructions](https://github.com/Kong/kong-pongo?tab=readme-ov-file#installation)
+The following script can automate the installation of Pongo for you. 
+If you prefer, you can follow the [manual installation instructions](https://github.com/Kong/kong-pongo?tab=readme-ov-file#installation)
 instead.
 
-If you already have Pongo installed, you can skip to the next step or run the install script
+If you already have Pongo installed, you can skip to the [next step](#initialize-the-plugin-environment) or run the install script
 to update Pongo to the latest version.
 
-Run the following to install / update Pongo:
+Run the following to install or update Pongo:
 
 ```sh
 curl -Ls https://get.konghq.com/pongo | bash
 ```
 
-For the remainder of this guide to work properly the `pongo` command must be present on your system
+For the remainder of this guide to work properly, the `pongo` command must be present in your system
 path. The script and manual installation instructions above both include hints for
-putting `pongo` on your path. Ensure that the `pongo` command is 
-available on your `PATH` by running the command within our project directory:
+putting `pongo` on your path. 
+
+Ensure that the `pongo` command is 
+available in your `PATH` by running the command within your project directory:
 
 ```sh
 pongo help
 ```
 
-With Pongo installed, let's proceed to setup a test environment for our new plugin.
+With Pongo installed, you can now set up a test environment for your new plugin.
 
 ### 2. Initialize the test environment
 
-Pongo allows us to validate a plugin's behavior by giving us tools to quickly run a 
-{{site.base_gateway}} with our plugin installed and available. Let's validate the plugin 
-manually first then we will add automated tests in subsequent steps of this guide. 
+Pongo lets you validate a plugin's behavior by giving you tools to quickly run a 
+{{site.base_gateway}} with the plugin installed and available. 
+
+Let's validate the plugin 
+manually first, and then you will add automated tests in subsequent steps of this guide. 
 
 {:.note}
 > **Note**: {{site.base_gateway}} runs in a variety of
 > [deployment topologies](/gateway{{page.release}}/production/deployment-topologies). 
-> By default, Pongo runs {{site.base_gateway}} in _traditional mode_ which uses a database 
+> By default, Pongo runs {{site.base_gateway}} in _traditional mode_, which uses a database 
 > to store configured entities such as routes, services, and plugins. 
-> {{site.base_gateway}} and the database are ran in separate containers allowing us
-> to cycle the gateway independently of the database. This enables a quick
+> {{site.base_gateway}} and the database are run in separate containers,
+> letting you cycle the gateway independently of the database. This enables a quick and 
 > iterative approach to validating the plugin's logical behavior while keeping the gateway
 > state independent in the database.
 
-Pongo provides an optional command that will initialize the project directory with some
-default configuration files which can be ran one time when starting a new project.
+Pongo provides an optional command that initializes the project directory with some
+default configuration files. You can run it to start a new project.
 
 {:.important}
-> **Important:** These commands must be ran from the base `my-plugin` directory so Pongo properly 
+> **Important:** These commands must be run from the base `my-plugin` directory so that Pongo properly 
 > packages and includes the plugin code in the running {{site.base_gateway}}.
 
 Initialize the project folder:
@@ -78,8 +82,8 @@ Initialize the project folder:
 pongo init
 ```
 
-Now we are ready to start dependency containers for {{site.base_gateway}}. By default
-this only includes the Postgres database used in traditional mode.
+Now you can start dependency containers for {{site.base_gateway}}. 
+By default, this only includes the Postgres database used in traditional mode.
 
 Start the dependencies: 
 
@@ -87,8 +91,8 @@ Start the dependencies:
 pongo up
 ```
 
-Once the dependencies are running successfully, we run a {{site.base_gateway}} container and open a 
-shell within it so we can interact with the gateway. Pongo runs a {{site.base_gateway}}
+Once the dependencies are running successfully, you can run a {{site.base_gateway}} container and open a 
+shell within it to interact with the gateway. Pongo runs a {{site.base_gateway}}
 container with various CLI tools pre-installed to help with testing.
 
 Launch the gateway and open a shell with:
@@ -99,15 +103,15 @@ pongo shell
 
 Your terminal is now running a shell _inside_ the {{site.base_gateway}} container. Your 
 shell prompt should change, showing you the gateway version, the host plugin directory, 
-and current path inside the container. An example prompt may look like the following.
+and current path inside the container. For example, your prompt may look like the following:
 
 ```sh
 [Kong-3.6.1:my-plugin:/kong]$
 ```
 
 Pongo provides some aliases to assist with the lifecycle of {{site.base_gateway}} 
-and the database. On our first run, we need to initialize the database and start
-{{site.base_gateway}}. Pongo provides the `kms` alias to perform this common task for us.
+and the database. On its first run, you need to initialize the database and start
+{{site.base_gateway}}. Pongo provides the `kms` alias to perform this common task.
 
 Run the database migrations and start {{site.base_gateway}}:
 
@@ -115,7 +119,7 @@ Run the database migrations and start {{site.base_gateway}}:
 kms
 ```
 
-You should see a success message that {{site.base_gateway}} has started, for example:
+You should see a success message that {{site.base_gateway}} has started:
 
 ```sh
 ...
@@ -126,8 +130,8 @@ Database is up-to-date
 Kong started
 ```
 
-As mentioned previously, Pongo installs some development tools to help us test our plugin. 
-We can now validate our plugin is installed by querying the [Admin API](gateway/{{page.release}}/admin-api/)
+As mentioned previously, Pongo installs some development tools to help us test your plugin. 
+You can now validate that the plugin is installed by querying the [Admin API](gateway/{{page.release}}/admin-api/)
 using `curl` and filtering the response with `jq`:
 
 ```sh
@@ -135,25 +139,24 @@ curl -s localhost:8001 | \
   jq '.plugins.available_on_server."my-plugin"'
 ```
 
-You should see a response that matches the information we put in our plugin's table:
+You should see a response that matches the information in the plugin's table:
 
-```sh
+```json
 {
   "priority": 1000,
   "version": "0.0.1"
 }
 ```
 
-With the test environment initialized lets see how to manually run our plugin code. 
+With the test environment initialized, you can now manually run the plugin code. 
 
 ### 3. Manually test plugin
 
-Our plugin is installed, let's configure {{site.base_gateway}} entities so we can invoke and validate 
-our plugins behavior.
+With the plugin installed, you can now configure {{site.base_gateway}} entities to invoke and validate the plugin's behavior.
 
 {:.note}
 > **Note**: For each of the following `POST` requests to the Admin API, you should receive
-> a `HTTP/1.1 201 Created` response from {{site.base_gateway}} indicating successful creation of the entity.
+> a `HTTP/1.1 201 Created` response from {{site.base_gateway}} indicating the successful creation of the entity.
 
 Still within the {{site.base_gateway}} container's shell, add a new service with the following:
 
@@ -163,14 +166,14 @@ curl -i -s -X POST http://localhost:8001/services \
     --data url='http://httpbin.org'
 ```
 
-Associate our custom plugin with the `example_service` service:
+Associate the custom plugin with the `example_service` service:
 
 ```sh
 curl -is -X POST http://localhost:8001/services/example_service/plugins \
     --data 'name=my-plugin'
 ```
 
-Add a new route so we can send requests through the `example_service`:
+Add a new route for sending requests through the `example_service`:
 
 ```sh
 curl -i -X POST http://localhost:8001/services/example_service/routes \
@@ -178,19 +181,20 @@ curl -i -X POST http://localhost:8001/services/example_service/routes \
     --data name=example_route
 ```
 
-Our plugin is now configured to be invoked when {{site.base_gateway}} proxies
-requests via the `example_service`. Prior to forwarding the response from the 
-upstream, our plugin should append the `X-MyPlugin` header to the list of response headers.
+The plugin is now configured and will be invoked when {{site.base_gateway}} proxies
+requests via the `example_service`. 
+Prior to forwarding the response from the 
+upstream, the plugin should append the `X-MyPlugin` header to the list of response headers.
 
-Let's test the behavior by proxying a request and asking `curl` to show the 
+Test the behavior by proxying a request and asking `curl` to show the 
 response headers with the `-i` flag:
 
 ```sh
 curl -i http://localhost:8000/mock/anything
 ```
 
-`curl` should report `HTTP/1.1 200 OK` and show us the response headers from the gateway. Included
-in the set of headers, should be `X-MyPlugin: response`, indicating that our plugin logic has been invoked.
+`curl` should report `HTTP/1.1 200 OK` and show the response headers from the gateway. 
+You should see `X-MyPlugin: response` in the set of headers, indicating that the plugin's logic has been invoked.
 
 For example: 
 
@@ -224,10 +228,10 @@ nicely. However, you will prefer to deploy automated testing and maybe a Test-dr
 
 Pongo supports running automated tests using the 
 [Busted](https://lunarmodules.github.io/busted/) Lua test framework. In plugin
-projects, the test files reside under the `spec/<plugin-name>` directory. For this project
-we created the `spec/my-plugin` folder earlier.  
+projects, the test files reside under the `spec/<plugin-name>` directory. 
+For this project, this is the `spec/my-plugin` folder you created earlier.  
  
-The following is a code listing for a test that validates our plugin's current behavior. 
+The following is a code listing for a test that validates the plugin's current behavior. 
 Copy this code and place it into a new file located at `spec/my-plugin/01-integration_spec.lua`. 
 See the code comments for details on the design of the test and the test helpers provided by 
 {{site.base_gateway}}.
@@ -315,16 +319,15 @@ for _, strategy in helpers.all_strategies() do
 end
 ```
 
-We now have test code, let's see how Pongo can help us automate testing.
+With this test code, Pongo can help automate testing.
 
 ### 5. Run the test
 
-Pongo can run automated tests for us with the `pongo run` command. When this is executed,
+Pongo can run automated tests with the `pongo run` command. When this is executed,
 Pongo will determine if dependency containers are already running and use them
 if so. The test library will handle truncating existing data in between test runs for us.
 
-Once the test file from the previous step is saved in the `spec/my-plugin/01-integration_spec.lua` file, 
-execute a test run:
+Execute a test run:
 
 ```sh
 pongo run
@@ -351,8 +354,8 @@ Kong version: 3.6.1
 [  PASSED  ] 2 tests.
 ```
 
-Pongo can also run as part of a Continuous Integration (CI) system, the 
-[repository documentation](https://github.com/Kong/kong-pongo?tab=readme-ov-file#setting-up-ci) has more details. 
+Pongo can also run as part of a Continuous Integration (CI) system. See the 
+[repository documentation](https://github.com/Kong/kong-pongo?tab=readme-ov-file#setting-up-ci) for more details. 
 
 ## What's next?
 

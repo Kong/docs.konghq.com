@@ -1,5 +1,5 @@
 ---
-title: Setup a Plugin Project
+title: Set Up a Plugin Project
 book: plugin_dev_getstarted
 chapter: 2
 ---
@@ -11,15 +11,15 @@ plugin development and best practices.
 
 ## Prerequisites
 
-The following development tools are required to complete this guide. 
+The following development tools are required to complete this guide:
 
 * [Docker](https://docs.docker.com/get-docker/) (or Docker equivalent) is used to run {{site.base_gateway}} and test code
 * [curl](https://curl.se/) is used to download web resources. 
 * [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) is used to install and update software on the host machine.
 
-## Step by Step
+## Step by step
 
-In this chapter we start by creating a bare-bones {{site.base_gateway}} custom plugin project. You'll
+In this chapter, you'll start by creating a simple {{site.base_gateway}} custom plugin project. You'll
 create the necessary folders and files and then author a short amount of Lua code to create a 
 basic functioning plugin.
 
@@ -37,7 +37,7 @@ mkdir -p my-plugin && \
 Next, create the plugin folder structure:
 
 {:.note}
-> **Important:** The specific tree structure and filenames shown in this guide are important to ensuring 
+> **Important:** The specific tree structure and filenames shown in this guide are important for ensuring 
 > the development and execution of your plugin works properly with {{site.base_gateway}}. Do not
 > deviate from these names for this guide.
 
@@ -57,11 +57,11 @@ touch kong/plugins/my-plugin/handler.lua
 touch kong/plugins/my-plugin/schema.lua
 ```
 
-We now have the base structure for a new plugin, let's look at how to author code for these modules.
+You now have the base structure for a new plugin. Let's look at how to author code for these modules.
 
 ### 2. Initialize the Schema module
 
- The `schema.lua` file defines your plugins configuration data model. The following is the minimum structure 
+ The `schema.lua` file defines your plugin's configuration data model. The following is the minimum structure 
  required for a valid plugin.
 
  Add the following code to the `schema.lua` file:
@@ -84,9 +84,10 @@ We now have the base structure for a new plugin, let's look at how to author cod
  return schema
  ```
  
- This creates a base table for our plugin's configuration (which is empty).  Later in this guide we will add 
- configurable values to the table and show how to configure the plugin at runtime. Next, let's begin to 
- add the handler code for the plugin.
+ This creates an empty base table for the plugin's configuration. 
+ Later in this guide, you'll add configurable values to the table for configuring the plugin at runtime. 
+ 
+ Next, let's add the handler code for the plugin.
 
 ### 3. Initialize the Handler module
 
@@ -110,23 +111,23 @@ We now have the base structure for a new plugin, let's look at how to author cod
  of the plugin, which determines when this plugin is executed relative to other loaded plugins.
  * The `VERSION` field sets the version for this plugin and should follow the `major.minor.revision` format.
  
- At this point, we have a valid plugin (which does nothing). Next We will add logic to the plugin
- and then see how to validate it.
+You now have a valid plugin - which currently does nothing.
+
+Next, let's add logic to the plugin and learn how to validate it.
 
 ### 4. Add handler logic
 
 Plugin logic is defined to be executed at several key points in the lifecycle of
-HTTP requests, tcp streams, and {{site.base_gateway}} itself.
+HTTP requests, TCP streams, and {{site.base_gateway}} itself.
 
-Inside the `handler.lua` module, you will add 
+Inside the `handler.lua` module, you can add 
 [functions](/gateway/{{page.release}}/plugin-development/custom-logic/#available-contexts)
-with well known names to the plugin table, indicating at what points the plugin logic should 
-be executed. 
+with well-known names to the plugin table, indicating the points at which the plugin logic should be executed. 
 
-In this example we will add an `response` function, which is executed after a response has been
+In this example, you'll add a `response` function, which is executed after a response has been
 received from an upstream service but before returning it to the client. 
 
-Let's add a header to the response prior to returning it to the client. Add the following 
+Let's add a header to the response before returning it to the client. Add the following 
 function implementation to the `handler.lua` file before the `return MyPluginHandler` statement:
 
 ```lua
@@ -158,5 +159,5 @@ return MyPluginHandler
 ## What's next?
 
 At this stage, you now have a functional plugin for {{site.base_gateway}}. 
-However, a development project is incomplete without testing. In the following chapter, 
-we will guide you on how to install testing tools and create automated testing routines.
+However, any development project is incomplete without testing. In the following chapter, 
+you'll learn how to install testing tools and create automated testing routines.
